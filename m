@@ -2,212 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 474E5733B4A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 23:05:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61B3E733B8F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 23:30:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232040AbjFPVFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 17:05:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36328 "EHLO
+        id S231566AbjFPVaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 17:30:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjFPVFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 17:05:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 306753596;
-        Fri, 16 Jun 2023 14:05:40 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B6A0961B11;
-        Fri, 16 Jun 2023 21:05:39 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7532C433C0;
-        Fri, 16 Jun 2023 21:05:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686949539;
-        bh=6cnCdUSqLz7VhNzN0lbB/Xqj6xFuU/O/NQabQhB7NiY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=J7i0S9spk/rq86bSVG2EN5JaWksv1VMyqy/uqYZvc+hC7ysTe5TqccRM2AMZgC4Gb
-         6hwENrxSEFBxJluOcHgbDa0OWR3ILdeMYbHMHyoX2OCc9lCWFTZBrWvgPNdsGzfRNn
-         aV191+D8dJm0lWZwEBN67SJzMEFHZKTV13/HmKBR+g7Jd07SZKwN2XFltofW83J+P8
-         K0YGwMPdMkV2P6Gm5tunFN6kzHDp2DoJ876R+EtbmB8ty94hQRpldVLzmT2J2HhkXy
-         AbGjNxMNOS6br8EFkos9pjzwAQolUgXD503u5DY+0bquBHgRMkcbgnhK3ptEYP8v2c
-         ZsDo7r0cgzVLg==
-Date:   Fri, 16 Jun 2023 22:05:32 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Eric Lin <eric.lin@sifive.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, maz@kernel.org, chenhuacai@kernel.org,
-        baolu.lu@linux.intel.com, will@kernel.org,
-        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
-        pierre.gondois@arm.com, huangguangbin2@huawei.com, jgross@suse.com,
-        chao.gao@intel.com, maobibo@loongson.cn,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
-        Nick Hu <nick.hu@sifive.com>, Zong Li <zong.li@sifive.com>
-Subject: Re: [PATCH 1/3] soc: sifive: Add SiFive private L2 cache support
-Message-ID: <20230616-errand-glutton-f64783da058c@spud>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-2-eric.lin@sifive.com>
+        with ESMTP id S229627AbjFPVav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 17:30:51 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844D535A5;
+        Fri, 16 Jun 2023 14:30:50 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b448b24a61so16692461fa.1;
+        Fri, 16 Jun 2023 14:30:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686951048; x=1689543048;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=SlSbhPNbssIprDpHNOXePwMeZq9BONqa1optZho/VFA=;
+        b=X2Oqo9eS3GakYna+Mz41cEIe+tLHSdc9nn9qX81F6dp1fe84pLTVlOKyUUKnleimWG
+         d6G5FZPKEA9F1BJ2xInh7TSoGWeNJXcCRtD0D8y28iUNRojahSZZIvjg2ZmTegnQHZFE
+         EtQJd7Cgbd8wALKiFqcDgijigm6JDhUtXaR9np0bIoBM0QMDappFhgj4l9yeFvXhMe2V
+         JUYNJ6jplFilgm9wjP3yPV00CMaVIQXCjB8kYST6dwL/njBHL25N6BG2Tn95VfF0NTsF
+         KuAadI8k7MFvjaruxjbeQq+LnTmuJaKW19E3b8vgFt6sMeANA/bYlp60TAh+gVQIyYv/
+         AC1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686951048; x=1689543048;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=SlSbhPNbssIprDpHNOXePwMeZq9BONqa1optZho/VFA=;
+        b=E8ye0TKkTLD6ieUrPNmEZnVtmietSx22ZrAdSm6WJgveDyOvMKFMN7niAM8xqIPyCl
+         GlLF1BQq8v3bfD8P5/p8W//jEKTN+CcKRHypu+scWPa8MG686QcIlq/mD35z4YVEVP9J
+         kcm1LYn9watMlYzNRvS6SGoHP7JlSSaCG6XwklQ9hgTZgfCIIFcKW6biAcdLKOcUG1bc
+         q7xnQrgsT7xajoGouXa9Mz6t9HyrbnySMHQ3xIr2onSpdpynBc6N7BWHz8LKVL3J+DLb
+         qyZQI4HZGqjGPRW632dtpMvrB8EimCNo39rAsnH6q+WWFC3sY20pN4XagGrhJLepHN3r
+         Rb/g==
+X-Gm-Message-State: AC+VfDxPk62AInqTVRrnrjBkTp97Bw5s8BRIw6LRUszGX+xqF3VEt/or
+        4wtNVZocjplbO4hqw777y68=
+X-Google-Smtp-Source: ACHHUZ4AzhyGOtF7rvB9gv6YHMUR1Zu3KGBIF9HNAkK08t5zoh8CJKAb9ppOvrCPtQ5asfg4HI9Ilg==
+X-Received: by 2002:a2e:3306:0:b0:2b4:5b21:a94e with SMTP id d6-20020a2e3306000000b002b45b21a94emr1951020ljc.7.1686951047501;
+        Fri, 16 Jun 2023 14:30:47 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id o18-20020a2e90d2000000b002b445237affsm1060608ljg.58.2023.06.16.14.30.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jun 2023 14:30:46 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] dt-bindings: nvmem: fixed-cell: add compatibles for MAC cells
+Date:   Fri, 16 Jun 2023 23:30:33 +0200
+Message-Id: <20230616213033.8451-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wC0nzxIhkPASdtVL"
-Content-Disposition: inline
-In-Reply-To: <20230616063210.19063-2-eric.lin@sifive.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Rafał Miłecki <rafal@milecki.pl>
 
---wC0nzxIhkPASdtVL
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+A lot of home routers have NVMEM fixed cells containing MAC address that
+need some further processing. In ~99% cases MAC needs to be:
+1. Optionally parsed from ASCII format
+2. Increased by a vendor-picked value
 
-Hey Eric,
+There was already an attempt to design a binding for that at NVMEM
+device level in the past. It wasn't accepted though as it didn't really
+fit NVMEM device layer.
 
-On Fri, Jun 16, 2023 at 02:32:08PM +0800, Eric Lin wrote:
-> This adds SiFive private L2 cache driver which will show
-> cache config information when booting and add cpu hotplug
-> callback functions.
->=20
-> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> Signed-off-by: Nick Hu <nick.hu@sifive.com>
+The introduction of NVMEM fixed-cells layout seems to be an opportunity
+to provide a relevant binding in a clean way.
 
-Missing a Co-developed-by for Nick?
+This commit adds two *generic* compatible strings: "mac-base" and
+"mac-ascii". As always those need to be carefully reviewed.
 
+OpenWrt project currently supports ~300 home routers that would benefit
+from the "mac-base" binding. Those devices are manufactured by multiple
+vendors. There are TP-Link devices (76 of them), Netgear (19),
+D-Link (11), OpenMesh (9), EnGenius (8), GL.iNet (8), ZTE (7),
+Xiaomi (5), Ubiquiti (6) and more. Those devices don't share an
+architecture or SoC.
 
-> +static void pl2_config_read(void __iomem *pl2_base, int cpu)
-> +{
-> +	u32 regval, bank, way, set, cacheline;
-> +
-> +	regval =3D readl(pl2_base);
-> +	bank =3D regval & 0xff;
-> +	pr_info("in the CPU: %d\n", cpu);
-> +	pr_info("No. of Banks in the cache: %d\n", bank);
-> +	way =3D (regval & 0xff00) >> 8;
-> +	pr_info("No. of ways per bank: %d\n", way);
-> +	set =3D (regval & 0xff0000) >> 16;
-> +	pr_info("Total sets: %llu\n", (uint64_t)1 << set);
-> +	cacheline =3D (regval & 0xff000000) >> 24;
-> +	pr_info("Bytes per cache block: %llu\n", (uint64_t)1 << cacheline);
-> +	pr_info("Size: %d\n", way << (set + cacheline));
-> +}
+Amount of devices to benefit from the "mac-ascii" is hard to determine
+as not all of them were converted to DT yet. There are at least 200 of
+such devices.
 
-Isn't this basically all information that we get anyway in sysfs based
-on what gets put into the DT, except printed out once per CPU at
-boottime?
-If there's reason to keep it, please do as suggested by Ben and cut down
-the number of lines emitted. Look at the ccache one for comparison:
-	static void ccache_config_read(void)
-	{
-		u32 cfg;
-=09
-		cfg =3D readl(ccache_base + SIFIVE_CCACHE_CONFIG);
-		pr_info("%llu banks, %llu ways, sets/bank=3D%llu, bytes/block=3D%llu\n",
-			FIELD_GET(SIFIVE_CCACHE_CONFIG_BANK_MASK, cfg),
-			FIELD_GET(SIFIVE_CCACHE_CONFIG_WAYS_MASK, cfg),
-			BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_SETS_MASK, cfg)),
-			BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_BLKS_MASK, cfg)));
-=09
-		cfg =3D readl(ccache_base + SIFIVE_CCACHE_WAYENABLE);
-		pr_info("Index of the largest way enabled: %u\n", cfg);
-	}
-It'd also be good to print the same things as the ccache, no?
+It would be impractical to provide unique "compatible" strings for NVMEM
+layouts of all those devices. It seems like a valid case for allowing a
+generic binding instead. Even if this binding will not be sufficient for
+some further devices it seems to be useful enough as it is.
 
-> +static int sifive_pl2_cache_dev_probe(struct platform_device *pdev)
-> +{
-> +	struct resource *res;
-> +	int cpu, ret =3D -EINVAL;
-> +	struct device_node *cpu_node, *pl2_node;
-> +	struct sifive_pl2_state *pl2_state =3D NULL;
-> +	void __iomem *pl2_base;
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+If this binding gets approved I will still need a minor help with YAML.
 
-Please pick a sensible ordering for variables. IDC if it is reverse xmas
-tree, or sorting by types, but this just seems quite random..
+For some reason my conditions in fixed-cell.yaml don't seem to work as
+expected. I tried to make "#nvmem-cell-cells" required only for the
+"mac-base" but it seems it got required for all cells:
 
-> +	/* Traverse all cpu nodes to find the one mapping to its pl2 node. */
-> +	for_each_cpu(cpu, cpu_possible_mask) {
-> +		cpu_node =3D of_cpu_device_node_get(cpu);
-> +		pl2_node =3D of_parse_phandle(cpu_node, "next-level-cache", 0);
-> +
-> +		/* Found it! */
-> +		if (dev_of_node(&pdev->dev) =3D=3D pl2_node) {
-> +			/* Use cpu to get its percpu data sifive_pl2_state. */
-> +			pl2_state =3D per_cpu_ptr(&sifive_pl2_state, cpu);
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (!pl2_state) {
-> +		pr_err("Not found the corresponding cpu_node in dts.\n");
+  DTC_CHK Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.example.dtb
+Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.example.dtb: nvmem-layout: calibration@4000: '#nvmem-cell-cells' is a required property
+        From schema: Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
 
-I don't think this error message is going to be helpful in figuring out
-where the problem is on a machine with many of the caches. More
-information about *which* cache caused it would be good.
-Also it is not grammatically correct, it should read something like
-"Failed to find CPU node for cache@abc" or something along those lines.
+Cell "calibration" doesn't have any "compatible" so it shouldn't require
+"#nvmem-cell-cells".
+Can someone hint me what I did wrong, please?
+---
+ .../bindings/nvmem/layouts/fixed-cell.yaml    | 35 +++++++++++++++++++
+ .../bindings/nvmem/layouts/fixed-layout.yaml  | 12 +++++++
+ .../devicetree/bindings/nvmem/nvmem.yaml      |  5 ++-
+ 3 files changed, 51 insertions(+), 1 deletion(-)
 
-> +		goto early_err;
+diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
+index e698098450e1..047e42438a4f 100644
+--- a/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
++++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
+@@ -11,6 +11,17 @@ maintainers:
+   - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+ 
+ properties:
++  compatible:
++    oneOf:
++      - const: mac-base
++        description: >
++          Cell with base MAC address to be used for calculating extra relative
++          addresses.
++      - const: mac-ascii
++        description: >
++          Cell with base MAC address stored in an ASCII format (like
++          "00:11:22:33:44:55").
++
+   reg:
+     maxItems: 1
+ 
+@@ -25,6 +36,30 @@ properties:
+         description:
+           Size in bit within the address range specified by reg.
+ 
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mac-base
++    then:
++      properties:
++        "#nvmem-cell-cells":
++          description: The first argument is a MAC address offset.
++          const: 1
++      required:
++        - "#nvmem-cell-cells"
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: mac-ascii
++    then:
++      properties:
++        "#nvmem-cell-cells":
++          description: The first argument is a MAC address offset.
++          const: 1
++
+ required:
+   - reg
+ 
+diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+index c271537d0714..05b8230cd18c 100644
+--- a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
++++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+@@ -44,6 +44,18 @@ examples:
+         #address-cells = <1>;
+         #size-cells = <1>;
+ 
++        mac@100 {
++            compatible = "mac-base";
++            reg = <0x100 0xc>;
++            #nvmem-cell-cells = <1>;
++        };
++
++        mac@110 {
++            compatible = "mac-ascii";
++            reg = <0x110 0x11>;
++            #nvmem-cell-cells = <1>;
++        };
++
+         calibration@4000 {
+             reg = <0x4000 0x100>;
+         };
+diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+index 980244100690..9f921d940142 100644
+--- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
++++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+@@ -49,7 +49,10 @@ properties:
+ patternProperties:
+   "@[0-9a-f]+(,[0-7])?$":
+     type: object
+-    $ref: layouts/fixed-cell.yaml
++    allOf:
++      - $ref: layouts/fixed-cell.yaml
++      - properties:
++          compatible: false
+     deprecated: true
+ 
+ additionalProperties: true
+-- 
+2.35.3
 
-early_err just returns ret. Why not just return the error directly?
-
-> +	}
-> +
-> +	/* Set base address of select and counter registers. */
-> +	pl2_base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> +	if (IS_ERR(pl2_base)) {
-> +		ret =3D PTR_ERR(pl2_base);
-> +		goto early_err;
-> +	}
-> +
-> +	/* Print pL2 configs. */
-> +	pl2_config_read(pl2_base, cpu);
-> +	pl2_state->pl2_base =3D pl2_base;
-> +
-> +	return 0;
-> +
-> +early_err:
-> +	return ret;
-> +}
-
-> +static struct platform_driver sifive_pl2_cache_driver =3D {
-> +	.driver =3D {
-> +		   .name =3D "SiFive-pL2-cache",
-> +		   .of_match_table =3D sifive_pl2_cache_of_ids,
-> +		   },
-> +	.probe =3D sifive_pl2_cache_dev_probe,
-> +};
-> +
-> +static int __init sifive_pl2_cache_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret =3D cpuhp_setup_state(CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE,
-> +				"soc/sifive/pl2:online",
-> +				      sifive_pl2_online_cpu,
-> +				      sifive_pl2_offline_cpu);
-
-Got some weird use of whitespace here & above, please remove the spaces.
-
-Cheers,
-Conor.
-
---wC0nzxIhkPASdtVL
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIzOnAAKCRB4tDGHoIJi
-0qXrAP9I4dkOKQEZhScuLXuEiX6wodn8UZXmdAIfrNoRy5PCeQD/S7nbJJrzxs/e
-2tvhVnxiJgt1PdRYTwuj6gILbgvnpwM=
-=fRw3
------END PGP SIGNATURE-----
-
---wC0nzxIhkPASdtVL--
