@@ -2,134 +2,203 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39EBE732C9A
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82669732CA4
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:01:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229705AbjFPJ7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:59:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34828 "EHLO
+        id S232573AbjFPKBi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 06:01:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229654AbjFPJ7e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:59:34 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EFFBC2D71
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:59:17 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-518ff822360so632498a12.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:59:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686909556; x=1689501556;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=z0kVN4uJ2t6EXhxGAHJQ7Af/HYSNhGQj+DL7pRhqY+A=;
-        b=liDkAwN+gjKjXNRRQ/j5BbR2bHRs+ioFBaRsdJyeB6BaB+k55wVdUrAICLpQ3q/c+d
-         +x9YqitUwz2laN87zOH95H+OQIW1AqYhGp/KL3VD83VLgDi5Mf6hTotj+nnOWEZHIEkI
-         pNjKr0KARmuNd/UXKILCs7g5rWWmZM7WNqhteJYbOg4ZbwD/syEPAvUHHy85PVXodFcm
-         9ORNIBX3IjNokCaPY3vzXtYG+n5Q9RTzl2KL9HuicXiYDZeZvsil9GiB+s+436MnwJU6
-         75T6wXM2r5JvVAWJWBEoIS8s2kKOxdT9zJdKZ5BMAXxZ7PcTZLt2Tb7tGAD41LkowIwj
-         IQww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686909556; x=1689501556;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=z0kVN4uJ2t6EXhxGAHJQ7Af/HYSNhGQj+DL7pRhqY+A=;
-        b=VQuQdPp+1dQ7Eq9VrhXKyilimmMoJWT3mDlaIUdavw9DCyGzEEZs5w+r4RQjR4AJIJ
-         LWds/VUJIhJBbEGGlsXBYvrcah/c4ulZmpKYrWBo6MWXmONexe0dY3DZraNbHsfrmbLu
-         4WVA55UUwPGt0UoS6TgBIzmt6rt6tZoJ4jVK8bO1D4pZr6APFyPyKkCcGvkZMWv9YlUI
-         gG+TVeBw7UYjQbf3kCd7RGKBLQniZELYEzQw/xHmXBU59CtoZ5v6KjUk97yAZVYJd3bx
-         nZ0v5zHm2zmkJcxUifmVUnkCCql0xAK01aW5fn0WamPmvom64xuxJts17SjP0zK/mMdu
-         MZOA==
-X-Gm-Message-State: AC+VfDzUcSYS/Epdaq6fiY2ddA25WpkjowWgTaH34YPs7cHv+OzFQHfh
-        DRN8zoBqByf6E0Uh+/8KU89I2w==
-X-Google-Smtp-Source: ACHHUZ4E4gTgAo61EQOIM9JWP0xKrmQTtHA1n0R7+mNOO3uVHQxrA8Gb7YCsXU9CoyVkm7HHqjyj2Q==
-X-Received: by 2002:a05:6402:354:b0:519:a5cc:e66e with SMTP id r20-20020a056402035400b00519a5cce66emr789487edw.18.1686909556514;
-        Fri, 16 Jun 2023 02:59:16 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id j17-20020aa7ca51000000b00518710798b3sm4578496edt.50.2023.06.16.02.59.14
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 02:59:16 -0700 (PDT)
-Message-ID: <493a28b2-8ad5-2e9a-462b-bdc7d585b722@linaro.org>
-Date:   Fri, 16 Jun 2023 11:59:14 +0200
+        with ESMTP id S233027AbjFPKBe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:01:34 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C6B7F194
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:01:32 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686909691;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=9X5WQIES+6mq7XGo7uf4HLjXsHKtnf4NLzPOksl9SVk=;
+        b=LgRQEufPhj+l9+E7vgGPxDm3rkY2NdCq6QYoro45KxB6Rs/lxfvhxQAWpuX50I6XRWgOrc
+        H3DW9aT6nubsEk1XukvYEN6zDQFI6bqDfOkNEP4wqwJYc1Lz3Q6t+3eRjy/IzXshpUMSg4
+        3NiuVMqTBELN74GdcpEmgQg5j4hVBrRQ5byTendTvCec6MRH9Et2drrWrS7d7w4Gn11bpM
+        jn/nD758w8UEx0ofmq09mmBSMySd7rpidY6o74jwSdPsBMfNkL/3r30CcFJEXjEITPyi4Y
+        se3O1PEj/yXBbbry+vG7NHT/Lmp3DOKKtjd1wOLhVSfM+7kqFnvrwD8grBuA+w==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0CE8E20009;
+        Fri, 16 Jun 2023 10:01:29 +0000 (UTC)
+Date:   Fri, 16 Jun 2023 12:01:29 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH 6/7] drm/panel: sitronix-st7789v: Add EDT ET028013DMA
+ panel support
+Message-ID: <20230616120129.75fb00b3@xps-13>
+In-Reply-To: <tr2rmz375jwkwjufhgvb7vbxwqik2w6i276yshh2tbo6dcfhh7@llvt6bigivfy>
+References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
+        <20230609145951.853533-7-miquel.raynal@bootlin.com>
+        <tr2rmz375jwkwjufhgvb7vbxwqik2w6i276yshh2tbo6dcfhh7@llvt6bigivfy>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 5/6] LoongArch: DeviceTree for Loongson-2K1000
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-References: <cover.1686882123.git.zhoubinbin@loongson.cn>
- <99bdbfc66604b4700e3e22e28c3d27ef7c9c9af7.1686882123.git.zhoubinbin@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <99bdbfc66604b4700e3e22e28c3d27ef7c9c9af7.1686882123.git.zhoubinbin@loongson.cn>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 08:11, Binbin Zhou wrote:
-> Add DeviceTree file for Loongson-2K1000 processor, which integrates two
-> 64-bit dual emission superscalar LA264 processor cores.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  arch/loongarch/boot/dts/Makefile            |   3 +-
->  arch/loongarch/boot/dts/loongson_2k1000.dts | 565 ++++++++++++++++++++
->  2 files changed, 567 insertions(+), 1 deletion(-)
->  create mode 100644 arch/loongarch/boot/dts/loongson_2k1000.dts
-> 
-> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
-> index 0e5ed373b1b4..c0464bb8e430 100644
-> --- a/arch/loongarch/boot/dts/Makefile
-> +++ b/arch/loongarch/boot/dts/Makefile
-> @@ -1,5 +1,6 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  
-> -dtb-$(CONFIG_MACH_LOONGSON64)	= loongson_2k0500.dtb
-> +dtb-$(CONFIG_MACH_LOONGSON64)	= loongson_2k0500.dtb \
-> +				  loongson_2k1000.dtb
->  
->  obj-$(CONFIG_BUILTIN_DTB)	+= $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
-> diff --git a/arch/loongarch/boot/dts/loongson_2k1000.dts b/arch/loongarch/boot/dts/loongson_2k1000.dts
-> new file mode 100644
-> index 000000000000..9fd9d400d97f
-> --- /dev/null
-> +++ b/arch/loongarch/boot/dts/loongson_2k1000.dts
-> @@ -0,0 +1,565 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +/dts-v1/;
-> +
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/clock/loongson,ls2k-clk.h>
-> +#include <dt-bindings/gpio/gpio.h>
-> +
-> +/ {
-> +	model = "LS2K1000 Reference Board";
-> +	compatible = "loongson,ls2k1000";
-> +
+Hi Maxime,
 
-All the same comments apply here. Don't mix SoC (DTSI) with boards.
+mripard@kernel.org wrote on Mon, 12 Jun 2023 10:51:09 +0200:
 
-It does not look like you tested the DTS against bindings. Please run
-`make dtbs_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
+> On Fri, Jun 09, 2023 at 04:59:50PM +0200, Miquel Raynal wrote:
+> > This panel from Emerging Display Technologies Corporation features an
+> > ST7789V2 panel inside which is almost identical to what the Sitronix
+> > panel driver supports.
+> >=20
+> > In practice, the module physical size is specific, and experiments show
+> > that the display will malfunction if any of the following situation
+> > occurs:
+> > * Pixel clock is above 3MHz
+> > * Pixel clock is not inverted
+> > I could not properly identify the reasons behind these failures, scope
+> > captures show valid input signals.
+> >=20
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../gpu/drm/panel/panel-sitronix-st7789v.c    | 34 +++++++++++++++++--
+> >  1 file changed, 32 insertions(+), 2 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/g=
+pu/drm/panel/panel-sitronix-st7789v.c
+> > index 212bccc31804..7de192a3a8aa 100644
+> > --- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+> > +++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+> > @@ -30,7 +30,8 @@
+> >  #define ST7789V_RGBCTRL_RCM(n)			(((n) & 3) << 5)
+> >  #define ST7789V_RGBCTRL_VSYNC_HIGH		BIT(3)
+> >  #define ST7789V_RGBCTRL_HSYNC_HIGH		BIT(2)
+> > -#define ST7789V_RGBCTRL_PCLK_HIGH		BIT(1)
+> > +#define ST7789V_RGBCTRL_PCLK_FALLING		BIT(1)
+> > +#define ST7789V_RGBCTRL_PCLK_RISING		0
+> >  #define ST7789V_RGBCTRL_VBP(n)			((n) & 0x7f)
+> >  #define ST7789V_RGBCTRL_HBP(n)			((n) & 0x1f)
+> > =20
+> > @@ -117,6 +118,7 @@ struct st7789v_panel_info {
+> >  	u16 width_mm;
+> >  	u16 height_mm;
+> >  	u32 bus_format;
+> > +	u32 bus_flags;
+> >  };
+> > =20
+> >  struct st7789v {
+> > @@ -175,6 +177,18 @@ static const struct drm_display_mode default_mode =
+=3D {
+> >  	.vtotal =3D 320 + 8 + 4 + 4,
+> >  };
+> > =20
+> > +static const struct drm_display_mode slow_mode =3D {
+> > +	.clock =3D 3000,
+> > +	.hdisplay =3D 240,
+> > +	.hsync_start =3D 240 + 38,
+> > +	.hsync_end =3D 240 + 38 + 10,
+> > +	.htotal =3D 240 + 38 + 10 + 10,
+> > +	.vdisplay =3D 320,
+> > +	.vsync_start =3D 320 + 8,
+> > +	.vsync_end =3D 320 + 8 + 4,
+> > +	.vtotal =3D 320 + 8 + 4 + 4,
+> > +}; =20
+>=20
+> Why is it supposed to be slow (and compared to what)? It looks like a
+> fairly normal mode to me? Or is it because it's refreshed at 30Hz?
 
-Best regards,
-Krzysztof
+The initial support was using 60Hz and for a reason that I do not
+understand (scope capture look right), the panel I use is highly
+unstable at whatever frequency above 30Hz, so for me it was "slow" :-)
+But of course I'll use the panel name to qualify the mode.
 
+> Either way, the ST7789V is a panel controller and can be connected to a
+> wide range of panels depending on the model, so it would be better to
+> just use the model name there.
+
+Sure.
+
+> >  static int st7789v_get_modes(struct drm_panel *panel,
+> >  			     struct drm_connector *connector)
+> >  {
+> > @@ -197,6 +211,7 @@ static int st7789v_get_modes(struct drm_panel *pane=
+l,
+> > =20
+> >  	connector->display_info.width_mm =3D panel_info->width_mm;
+> >  	connector->display_info.height_mm =3D panel_info->height_mm;
+> > +	connector->display_info.bus_flags =3D panel_info->bus_flags;
+> >  	drm_display_info_set_bus_formats(&connector->display_info,
+> >  					 &panel_info->bus_format, 1);
+> > =20
+> > @@ -206,8 +221,13 @@ static int st7789v_get_modes(struct drm_panel *pan=
+el,
+> >  static int st7789v_prepare(struct drm_panel *panel)
+> >  {
+> >  	struct st7789v *ctx =3D panel_to_st7789v(panel);
+> > +	const struct st7789v_panel_info *panel_info =3D ctx->panel_info;
+> > +	u8 pck =3D ST7789V_RGBCTRL_PCLK_FALLING;
+> >  	int ret;
+> > =20
+> > +	if (panel_info->bus_flags & DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE)
+> > +		pck =3D ST7789V_RGBCTRL_PCLK_RISING;
+> > + =20
+>=20
+> I guess it could be in a separate commit
+
+I will rebase on top of Sebastian's series who already addressed that
+point (as well as many others).
+
+[...]
+
+> > =20
+> > +static const struct st7789v_panel_info et028013dma_info =3D {
+> > +	.display_mode =3D &slow_mode,
+> > +	.width_mm =3D 43,
+> > +	.height_mm =3D 58,
+> > +	.bus_format =3D MEDIA_BUS_FMT_RGB666_1X18,
+> > +	.bus_flags =3D DRM_BUS_FLAG_PIXDATA_SAMPLE_POSEDGE,
+> > +};
+> > +
+> >  static const struct of_device_id st7789v_of_match[] =3D {
+> >  	{ .compatible =3D "sitronix,st7789v", .data =3D &st7789v_info },
+> > +	{ .compatible =3D "edt,et028013dma", .data =3D &et028013dma_info }, =
+=20
+>=20
+> We should sort them by alphabetical order
+>=20
+> Maxime
+
+Ok!
+
+Thanks,
+Miqu=C3=A8l
