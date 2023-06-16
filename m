@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3308A73360E
+	by mail.lfdr.de (Postfix) with ESMTP id B237073360F
 	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:33:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230415AbjFPQdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 12:33:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54314 "EHLO
+        id S230459AbjFPQdS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 12:33:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232752AbjFPQdQ (ORCPT
+        with ESMTP id S231695AbjFPQdQ (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:33:16 -0400
 Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6831235AC
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:33:03 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2F3535B0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:33:04 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686933181;
+        t=1686933183;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=ef50bm+GONHI864NuxeDlYCMC7V2n7+LOBkBBONFzbE=;
-        b=D1UHySufvnJTV2BP3z9GvROABhCgsmpc0Q0bsM9+Jsn3gKQZ3zkx8XngQNXlKHygHaOJ6b
-        bBikA0etagF2TNJWpBBCbycV6Kz6ciyLRf8zInkGFkUdF2+TB6joaSAUyeVKqrskOqRAsn
-        Iq0z1xiGMsjbt2P1lYfzEsiApuS15ADUP/+YHZqxMEx0wNvOfG/nUmHGFMrDlq/eIdWKtq
-        6A11v4BNYCZvhx7S3rIRr/8h4LUte33rGpl3PWcim9w7hTt878rJajICcYZzIRIXJowUf5
-        0tQggrBPRdw16pBNyiUbKIh75tJCT53XJ1HBUloWdRwiTuDT9GzCdBl7TcTTHg==
+        bh=fpw7cRKRZgqOGCBNqWmK0bQaMahtPAr9TMsZHCRkJKs=;
+        b=AlJYW9w0FDitUCtiTYhBYRJ35v3OFSgBjtP3fN2ndAjgxTGwK8arUY1ifY4OO+pO4CBByu
+        09F45FHRZXg9W7u74sbVQWOsMKdEjF8FCCtw7m09fABgQz9Jc9BZNtmhOlxLZCKFjNT/Rg
+        LJ5edZ/Zmaz1XHXMLwIsIJOYKJUQ375uu9dbGCXmPx35oNNVV/DWmkkf5RTRn2BP+css18
+        YDZn785nwCb1MP2/ZmWma8wh7VlyZ3vldzWumFA78pPX2UamxUMo7JTRpMMXS6n1aETpRC
+        FP8BK5I/3qhzTX5lIaT0+iRnQYBVMLc8K89KVBrO8oMD6TlgseOgKf2OV/g1AA==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -39,8 +39,8 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A016AC0009;
-        Fri, 16 Jun 2023 16:33:00 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 11A24C000A;
+        Fri, 16 Jun 2023 16:33:01 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
         Thierry Reding <thierry.reding@gmail.com>,
@@ -54,9 +54,9 @@ Cc:     Maxime Ripard <maxime@cerno.tech>,
         devicetree@vger.kernel.org,
         Michael Riesch <michael.riesch@wolfvision.net>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 2/6] dt-bindings: display: st7789v: bound the number of Rx data lines
-Date:   Fri, 16 Jun 2023 18:32:51 +0200
-Message-Id: <20230616163255.2804163-3-miquel.raynal@bootlin.com>
+Subject: [PATCH v2 3/6] drm/panel: sitronix-st7789v: Use 9 bits per spi word by default
+Date:   Fri, 16 Jun 2023 18:32:52 +0200
+Message-Id: <20230616163255.2804163-4-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
 References: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
@@ -72,31 +72,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ST7789V LCD controller supports regular SPI wiring, as well as no Rx
-data line at all. The operating system needs to know whether it can read
-registers from the device or not. Let's detail this specific design
-possibility by bounding the spi-rx-bus-width property.
+The Sitronix controller expects 9-bit words, provide this as default at
+probe time rather than specifying this in each and every access.
 
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
 ---
- .../devicetree/bindings/display/panel/sitronix,st7789v.yaml   | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/panel/panel-sitronix-st7789v.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-index 0ccf0487fd8e..a25df7e1df88 100644
---- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-+++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.yaml
-@@ -29,6 +29,10 @@ properties:
-   spi-cpha: true
-   spi-cpol: true
+diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+index 172c6c1fc090..605b9f6d0f14 100644
+--- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
++++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
+@@ -142,7 +142,6 @@ static int st7789v_spi_write(struct st7789v *ctx, enum st7789v_prefix prefix,
+ 	u16 txbuf = ((prefix & 1) << 8) | data;
  
-+  spi-rx-bus-width:
-+    minimum: 0
-+    maximum: 1
+ 	xfer.tx_buf = &txbuf;
+-	xfer.bits_per_word = 9;
+ 	xfer.len = sizeof(txbuf);
+ 
+ 	return spi_sync_transfer(ctx->spi, &xfer, 1);
+@@ -436,6 +435,11 @@ static int st7789v_probe(struct spi_device *spi)
+ 	spi_set_drvdata(spi, ctx);
+ 	ctx->spi = spi;
+ 
++	spi->bits_per_word = 9;
++	ret = spi_setup(spi);
++	if (ret < 0)
++		return dev_err_probe(&spi->dev, ret, "Failed to setup spi\n");
 +
- required:
-   - compatible
-   - reg
+ 	ctx->info = device_get_match_data(&spi->dev);
+ 
+ 	drm_panel_init(&ctx->panel, dev, &st7789v_drm_funcs,
 -- 
 2.34.1
 
