@@ -2,90 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 565DA732C85
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:56:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4B5D732C8F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:57:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229654AbjFPJ4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:56:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
+        id S244419AbjFPJ5v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:57:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229516AbjFPJ4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:56:17 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 691032D59
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:56:14 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686909373;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=8/T4ahbYYhg9xGxNTufEKBAfGkusYwd6bc/dclvufaU=;
-        b=Sx1FgyZNi7Iq7mGdv/wHgfG3TQOPJHaRKmm5BPiZaOayV6HAUct1qvoWRvhHe29vP9/iIY
-        Lb1aACB10guksm0QOI/OGB3PeNyGR9HiakjV4CzVGU1AHvU5cdnmTi7jmH8E2Ggv76R97C
-        9mOcAvgpGMooOz7fMVusUl9PYZ3BnpBph7/WuwCh7OD7Um+WRRWDcMAYQutW9AEGmhc0pZ
-        SNX275wOJb8ZUQF0SZiafa5xptpHXPOdmc0khHqJUAJd7UyndInwJPLT2MxKuvU1e2Jq7s
-        e0LXaaHlT/vIxV8UuOf3/fEMVQwNcLYfDbB/mMBtJp/F8ovIfFjhB0b0hibapA==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AA3BF1C0003;
-        Fri, 16 Jun 2023 09:56:12 +0000 (UTC)
-Date:   Fri, 16 Jun 2023 11:56:11 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Maxime Ripard <mripard@kernel.org>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH 3/7] drm/panel: sitronix-st7789v: Specify the expected
- bus format
-Message-ID: <20230616115611.77b8aff9@xps-13>
-In-Reply-To: <20230610201246.GD1041001@ravnborg.org>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
-        <20230609145951.853533-4-miquel.raynal@bootlin.com>
-        <20230610201246.GD1041001@ravnborg.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S243969AbjFPJ5n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:57:43 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3545B30FD;
+        Fri, 16 Jun 2023 02:57:39 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-98377c5d53eso68793566b.0;
+        Fri, 16 Jun 2023 02:57:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686909457; x=1689501457;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8a3s6dNMGohL6lzSETKOy1sEkT5zPauvgRWFqwA9Lic=;
+        b=YF6BktpWF0yg0FoWHEc7Ls5+WQRUH/BKQMHW+zZsIFzq2TMF7HREWBIRdu+wFuz7U7
+         KmN5BX3+dmSV3C24pLEjxLEemBgBBFIycIJm6oi67BwmE6OSjy10KVjYwqAD/RKO7wbX
+         e5PClJ2kDaKJ/n0WcITGWe2SVEuGQh/0tKAmRyG+6KD1IfdtwKexyE54ad/QIlbAzqpO
+         6AWZlgf+0hjpW22N7ys1/lTbkUV30o6vyrLolVFvkPtvfqK6q7tQM2c66wNoIOpaoJ/Z
+         XR/dSq+cfhWgp+THs7iis1wTRCSprg0pW+Jb2SL00kpLVjwGbhpQiaEevKQoQnJhtTDL
+         F9Zw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686909457; x=1689501457;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=8a3s6dNMGohL6lzSETKOy1sEkT5zPauvgRWFqwA9Lic=;
+        b=CdqG5BHkytRAPV2skTuwvR+S2d9Bxmf/bTBRm1+X4avwW7AI0dnUh+x+d/RDtu0pU/
+         AGBmQIrK/z7ufYQfLIRPL8+Ja2RSeXtXWCUviEVXxA5sIUvsvnu2Hc4p3+gf6HG2gKEy
+         x0hlb8R1bYsf5Y9gx9hi6iC9QBB2Ri62740KPalOirp1/f4AAl4zoDJ0CpjjtE9NU59Y
+         KF2bTsfqjAc52WxD+pLgf6RF3EH1MzF7FHSztBW+28OXR0IbQwTd43uE1AWtA0WpPJmL
+         mgCCVuldGqIcwPM9C9+MEwz5f3yl05pF8zSLTRk4KMPfoMIiGs+N9eU9v8hcymjRW3HJ
+         ALYg==
+X-Gm-Message-State: AC+VfDxq9KtQOQ1e8DZgz8J064WFnR6pl4g23x2PMDZNzL9Rb1dKVmSN
+        8EX3EPEerrYGX8zQXaHxj3g=
+X-Google-Smtp-Source: ACHHUZ64SmTt9EJLkdkmc7vYi5fIifUnEDtkCewvVdOGMt4kpV6A7xGsBUBtMjayNgVL5aPP35WrpA==
+X-Received: by 2002:a17:907:6d07:b0:982:9dc1:a439 with SMTP id sa7-20020a1709076d0700b009829dc1a439mr1276356ejc.2.1686909457409;
+        Fri, 16 Jun 2023 02:57:37 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation.station (net-2-39-142-242.cust.vodafonedsl.it. [2.39.142.242])
+        by smtp.gmail.com with ESMTPSA id v22-20020a1709063bd600b0098314c30e8fsm1110083ejf.46.2023.06.16.02.57.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jun 2023 02:57:37 -0700 (PDT)
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+Cc:     jacopo.mondi@ideasonboard.com, laurent.pinchart@ideasonboard.com,
+        martin.hecht@avnet.eu, michael.roeder@avnet.eu,
+        linuxfancy@googlegroups.com, hdegoede@redhat.com,
+        Tommaso Merciai <tomm.merciai@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Shawn Guo <shawnguo@kernel.org>, Jagan Teki <jagan@edgeble.ai>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Gerald Loacker <gerald.loacker@wolfvision.net>,
+        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
+        Mikhail Rudenko <mike.rudenko@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Benjamin Mugnier <benjamin.mugnier@foss.st.com>,
+        Shawn Tu <shawnx.tu@intel.com>,
+        Nicholas Roth <nicholas@rothemail.net>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org
+Subject: [PATCH v6 1/3] dt-bindings: vendor-prefixes: Add prefix alliedvision
+Date:   Fri, 16 Jun 2023 11:56:59 +0200
+Message-Id: <20230616095713.187544-2-tomm.merciai@gmail.com>
+X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230616095713.187544-1-tomm.merciai@gmail.com>
+References: <20230616095713.187544-1-tomm.merciai@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sam,
+Add a vendor prefix entry for Allied Vision Inc.
+(https://www.alliedvision.com)
 
-sam@ravnborg.org wrote on Sat, 10 Jun 2023 22:12:46 +0200:
+Signed-off-by: Tommaso Merciai <tomm.merciai@gmail.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+Changes since v3:
+ - Collected tags from LPinchart, CDooley, KKozlowski
 
-> On Fri, Jun 09, 2023 at 04:59:47PM +0200, Miquel Raynal wrote:
-> > The LCD controller supports RGB444, RGB565 and RGB888. The value that is
-> > written in the COLMOD register indicates using RGB888, so let's clearly
-> > specify the in-use bus format. =20
->=20
-> Confused.
-> MEDIA_BUS_FMT_RGB666_1X18 assumes 6 bits per color.
-> But RGB888 is 8 bits per color.
->=20
-> Something that I have forgotten, or is this inconsistent?
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-That is a typo indeed, I meant RBG666.
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 82d39ab0231b..7bd678956b3d 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -77,6 +77,8 @@ patternProperties:
+     description: ALFA Network Inc.
+   "^allegro,.*":
+     description: Allegro DVT
++  "^alliedvision,.*":
++    description: Allied Vision Inc.
+   "^allo,.*":
+     description: Allo.com
+   "^allwinner,.*":
+-- 
+2.34.1
 
-Thanks, Miqu=C3=A8l
