@@ -2,130 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03B1B733254
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32C7673325B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234035AbjFPNiM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 09:38:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39088 "EHLO
+        id S232403AbjFPNj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 09:39:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243724AbjFPNiL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:38:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2EA2030C1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:38:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AF60761F4E
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 13:38:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 993F9C433C8;
-        Fri, 16 Jun 2023 13:38:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686922687;
-        bh=u9jc2dsGlg1D+RH50wK5bkx2o24kM8ZnMNyQTmP89LI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=LiuIqQ3z3unGqUDxP1wAOjtP/jgeVGaJJqv8xsCAM4+v8I2T1i86HF/cRnx3WFTB1
-         uMn4J9GVs9e1Q1LILktGZZ8Rm0WebLfuabzd+l5RbH8Z3/gGYG6T0Zm2xn0871W5EV
-         U7bLpY2qUM85OM8Bl19PgcPppreXmJhTliwVLSFv/K/eO5anq3VTHVqFA8+SELz3z6
-         fjX25nbXGkQOyFYUSSW8NIg3+mGcK62In2odfkiuYs223PymrzBGoZ3wQMdaf6AzF9
-         5qkiXIfX/nJvZWTOX8gzv3gFqobhs153h17j9NyAToPk31dCk5vM+J82WZMVBotZ3K
-         vHPdru+RMnLpA==
-Received: by mercury (Postfix, from userid 1000)
-        id C65511060BB1; Fri, 16 Jun 2023 15:38:04 +0200 (CEST)
-Date:   Fri, 16 Jun 2023 15:38:04 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 7/7] drm/panel: sitronix-st7789v: Check display ID
-Message-ID: <20230616133804.7jhe4djj5kzzhoyg@mercury.elektranox.org>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
- <20230609145951.853533-8-miquel.raynal@bootlin.com>
- <20230610204525.GA1042549@ravnborg.org>
- <20230614232724.yer2ikvfzmaiejrd@mercury.elektranox.org>
- <20230616121345.2501c36a@xps-13>
+        with ESMTP id S229696AbjFPNjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:39:25 -0400
+Received: from mail-pl1-x62e.google.com (mail-pl1-x62e.google.com [IPv6:2607:f8b0:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBE872D76;
+        Fri, 16 Jun 2023 06:39:22 -0700 (PDT)
+Received: by mail-pl1-x62e.google.com with SMTP id d9443c01a7336-1b3c578c602so4864025ad.2;
+        Fri, 16 Jun 2023 06:39:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686922762; x=1689514762;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=v9wf0p/mJ/JTjbPEDo1M5gAN//dPRqP/MSvd3I7Rd/g=;
+        b=H3+MocatYu8B8b/8V0+jB/MlLouBljTo61iUcRjTzTn+NTEqerFdmmwTAZpvy9iUnX
+         4WP5KBtFZ8GEuUsxhhRdNlALu00IHK1yTOti1oZqDCYpIERBAQgSz8EhuqftIgcPGYPX
+         3oePWllNJA8wqotvNPFhLDCt7CR1wSxBI8e/8EQvK7o3b7NcgU4vLWWv6PnNXCLNRnuq
+         JbzqjJauLZlbp1ZeyxepmO7le9bS/1TYLIW7HmBPKpvdHosPLNhZ+V6lthvBFSxaJqVz
+         GwVx09aZgkMSTdroVv3J6JmeRDlx74405AKh30/a+kTVrmOkW5aFKlTVbl6XfF5kXfhJ
+         +PFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686922762; x=1689514762;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=v9wf0p/mJ/JTjbPEDo1M5gAN//dPRqP/MSvd3I7Rd/g=;
+        b=SwDPKmboJ5eRxqAYr3c3G65sQufc5sk2fv6MKJ1MWKeQjuoTUVNbBUtQvzO6VavdMd
+         cQy+trKs7geG3FJbB47CLxxd6Emn1xdLKBrmTc9XxN+jWPK9m3KYOLFEKTxRXzmKfUx3
+         aVIBgCdK9S6EzaehsNyphfYj9b5sIRMKw8ePbLJ3jQyKF10/7vOc787oK4DxJCRUFDCF
+         nXVvbzzLuD5Brz5BM9R07rcR0fECyNIarTSMTga8gV/NpImQI0a77XpsDopxsrbRg12a
+         Crihbux6MJi/GTgwh/k3w2O9V7hoHt5pVc4IZFPComwsM2Ki4PJZ2bMJuj8l8UjkXJ9J
+         Lnzg==
+X-Gm-Message-State: AC+VfDxyolU7c/1Iz+MztA6YZMPHEAOSyPYrkjUltqoV0KziRuCkypZa
+        LLNI47D6msLGHeqQ7895KQM=
+X-Google-Smtp-Source: ACHHUZ7EiE+4XcjpS4qH4GIBJdDtbnzosK8GTDHFMl0liXmIYcpxk5jfOF9TOaf9H2LCU8K/mgVCEg==
+X-Received: by 2002:a17:903:2796:b0:1b2:5ee9:aa73 with SMTP id jw22-20020a170903279600b001b25ee9aa73mr1439407plb.62.1686922762167;
+        Fri, 16 Jun 2023 06:39:22 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id b10-20020a170902b60a00b001ae6e270d8bsm15773546pls.131.2023.06.16.06.39.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 16 Jun 2023 06:39:21 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Fri, 16 Jun 2023 06:39:19 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, corbet@lwn.net, arnd@arndb.de,
+        gregkh@linuxfoundation.org, derek.kiernan@xilinx.com,
+        dragan.cvetic@xilinx.com, yi.l.liu@intel.com, jgg@ziepe.ca,
+        razor@blackwall.org, stephen@networkplumber.org,
+        prabhakar.csengg@gmail.com, contact@emersion.fr, macro@orcam.me.uk,
+        dsahern@kernel.org, alex.williamson@redhat.com,
+        akrowiak@linux.ibm.com, mark.rutland@arm.com,
+        ye.xingchen@zte.com.cn, ojeda@kernel.org, keescook@chromium.org,
+        me@kloenk.de, mhiramat@kernel.org, milan@mdaverde.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-doc@vger.kernel.org, sterzik@ti.com, u-kumar1@ti.com,
+        eblanc@baylibre.com, jneanne@baylibre.com
+Subject: Re: [PATCH v6 6/6] samples: Add userspace example for TI TPS6594 PFSM
+Message-ID: <613d608c-8c11-497c-81ef-e061d7ab69ab@roeck-us.net>
+References: <20230406075622.8990-1-jpanis@baylibre.com>
+ <20230406075622.8990-7-jpanis@baylibre.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kjfhvwbeq6z6hchc"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230616121345.2501c36a@xps-13>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230406075622.8990-7-jpanis@baylibre.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Apr 06, 2023 at 09:56:22AM +0200, Julien Panis wrote:
+> This patch adds an example showing how to use PFSM devices
+> from a userspace application. The PMIC is armed to be triggered
+> by a RTC alarm to execute state transition.
+> 
+> Signed-off-by: Julien Panis <jpanis@baylibre.com>
+> ---
+>  samples/Kconfig            |   6 ++
+>  samples/Makefile           |   1 +
+>  samples/pfsm/.gitignore    |   2 +
+>  samples/pfsm/Makefile      |   4 ++
+>  samples/pfsm/pfsm-wakeup.c | 125 +++++++++++++++++++++++++++++++++++++
+>  5 files changed, 138 insertions(+)
+>  create mode 100644 samples/pfsm/.gitignore
+>  create mode 100644 samples/pfsm/Makefile
+>  create mode 100644 samples/pfsm/pfsm-wakeup.c
+> 
+> diff --git a/samples/Kconfig b/samples/Kconfig
+> index 30ef8bd48ba3..f23aa60a74cf 100644
+> --- a/samples/Kconfig
+> +++ b/samples/Kconfig
+> @@ -253,6 +253,12 @@ config SAMPLE_INTEL_MEI
+>  	help
+>  	  Build a sample program to work with mei device.
+>  
+> +config SAMPLE_TPS6594_PFSM
+> +	bool "Build example program working with TPS6594 PFSM driver"
+> +	depends on HEADERS_INSTALL
 
---kjfhvwbeq6z6hchc
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This also needs to depend on CC_CAN_LINK to avoid errors such as
 
-Hi,
+Building arm:allmodconfig ... failed
+--------------
+Error log:
+samples/pfsm/pfsm-wakeup.c:12:10: fatal error: fcntl.h: No such file or directory
+   12 | #include <fcntl.h>
 
-On Fri, Jun 16, 2023 at 12:13:45PM +0200, Miquel Raynal wrote:
-> sre@kernel.org wrote on Thu, 15 Jun 2023 01:27:24 +0200:
-> > On Sat, Jun 10, 2023 at 10:45:25PM +0200, Sam Ravnborg wrote:
-> > > On Fri, Jun 09, 2023 at 04:59:51PM +0200, Miquel Raynal wrote: =20
-> > > > A very basic debugging rule when a device is connected for the first
-> > > > time is to access a read-only register which contains known data in
-> > > > order to ensure the communication protocol is properly working. This
-> > > > driver lacked any read helper which is often a critical peace for
-> > > > fastening bring-ups.
-> > > >=20
-> > > > Add a read helper and use it to verify the communication with the p=
-anel
-> > > > is working as soon as possible in order to fail early if this is no=
-t the
-> > > > case. =20
-> > >=20
-> > > The read helper seems like a log of general boiler plate code.
-> > > I briefly looked into the use of regmap for the spi communication,
-> > > but it did not look like it supported the bit9 stuff.
-> > >=20
-> > > I did not stare enough to add a reviewd by, but the approach is fine
-> > > and it is good to detech issues early. =20
-> >=20
-> > The st7789v datasheet describes a setup where SPI is connected
-> > unidirectional (i.e. without MISO). In that case the ID check
-> > will fail.
->=20
-> Right. I'll add a (spi->mode & SPI_NO_RX) check, as the default is to
-> have both lines, if there is no MISO line, I'd expect it to be
-> described in the DT, otherwise the description is broken.
+seen when building images with kernel toolchains.
 
-Checking for SPI_NO_RX sounds good to me.
-
--- Sebastian
-
---kjfhvwbeq6z6hchc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSMZa4ACgkQ2O7X88g7
-+ppOzRAAl2oIV01cduJzEkjxg4QSNuwuCEG2J6aKFijHr3TPYwwSvhxvvC2p5JWG
-a+wEi/9svpJ4CGS3atrwY7VJ6ZMaXxgHIAoylW/gvqxQFaLGNJdwbLJd7Wq5Q8bR
-r4SHsK9DiKcClWBSqpIuAlq04gGK8wk8jVK903fhl2Clj6PHH/f/IRLrI6Ml3wJ+
-87zHS1MNKhvu/zMTygHtLFqI59h4dKcsx52Vj0wUe0jiFs0rGP/xZITIRsIjGlov
-KXsINofc/dg9sCI+Uw3So2TSC19CRU/aUCVU+/H4PU2/0NTAOY9uR6Csny+W0pQF
-LHmDKkbp6+3PbJMAEP1t1Rhkm2/cdKscd9bQItno7+BbTDNPSAAch7/Z8cChfiRs
-AcjKEjDXEVR8Mxns1j5IkXMtUslI/TlMylommDeW22iueqf6k53iiAVzMTvJzUaB
-4wyuEYkRAEYpTIzdvY15gki5zjlY/1y7W2jCm8KVuYMB9cmP69GAI64coiv63Jjs
-8Uj12MudJvKpOURjm5h+Q1+vCHWsGeVWgyKqqvRf6vZD2QOBy/X3LjMfmycajezQ
-HGMyvK1iaQqAX7GAYElpkAtKtFnBUYASLOpy6ESo88SdV5rc+/prvRFrPTa8dVAQ
-HnaW1sOUZkCFZLQnmZQ1jOSJbrP0Rq5GJvG+Eo/KRbiZWNuBksg=
-=RgJZ
------END PGP SIGNATURE-----
-
---kjfhvwbeq6z6hchc--
+Guenter
