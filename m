@@ -2,90 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E900A73305E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:48:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13807733066
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344455AbjFPLs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 07:48:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35866 "EHLO
+        id S235030AbjFPLuP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 07:50:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343703AbjFPLsu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:48:50 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55B79191;
-        Fri, 16 Jun 2023 04:48:49 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686916128;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oLKhvPrptWFoCmJpHArFvlKc/yEEcCk45NeiCg0/3Yg=;
-        b=LL2WMmiQsuIm4g/hjHsD81IzOy08yCDudlals5vYRPZBYhTAwXCnSUWZD8hxJ1ixAlMj+V
-        JYx7e7oVG7MoU4swUjUs2j3hAl6PBV8k7c7E5Z7FNSQjf1MGesJQQ9L4BsP3a4lkHTruFS
-        BK1MVffkb7DWP+kNcYd4mIHG8qYIeHpOKVlSFUfAFgzubUkRbgV9EtXs2U2uTjAypYYwH9
-        X0BbwTXxmZ4PXGtrmlSI8s15MuoaOxM/rZ9NXiLu2AhOzPTH1rrRD1xPYHWoxQr4VO4lCA
-        Z+JVCActDH1jkX1Xa+2xdSqlAOUVJwvSZ1BHYnfBUFMZlRIxDPGj4GXVSs0pQg==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id A2CD0C0002;
-        Fri, 16 Jun 2023 11:48:45 +0000 (UTC)
-Date:   Fri, 16 Jun 2023 13:48:44 +0200
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     David Laight <David.Laight@ACULAB.COM>
-Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S1345405AbjFPLuF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:50:05 -0400
+Received: from pandora.armlinux.org.uk (pandora.armlinux.org.uk [IPv6:2001:4d48:ad52:32c8:5054:ff:fe00:142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6347295B;
+        Fri, 16 Jun 2023 04:50:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=armlinux.org.uk; s=pandora-2019; h=Sender:Content-Type:MIME-Version:
+        Message-ID:Subject:Cc:To:From:Date:Reply-To:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=MbwrDoAUbff9Hrh1LZWVBAun+O4wMXvNsZ8kJJGYQ04=; b=dX6xJdkQx3/pcMqBP7FPTXn4Py
+        08+1Pgj0Lo4jlvTikx25qxu4fWQ60EuhPw3tMLIRDUc/qbSDsudEawq+9LIWsGNlzaqYgJ+qey00B
+        1RH9XIvEns+FzDI3GG//N6EpcK6Rg+iKFFNKYKyJdYzwkzHw1tJlNukZ87I1QzC8KA5fAkNTcpkTv
+        3SAwSrYxFUknAK6hKziG0ZaUdWbksDHF5at9fWKad3P5EfEhnyrIbMwBl9zl7wJPX+nePz9KsJh5b
+        Mi2Jql+dP6MBJjblCsnDJm1llsz+2avxWSqCYtCdTxpYFxNSs+LJ3bloCHSoAIZ0Yc4dEK3Jy1Hpd
+        MQRXXlMA==;
+Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:43656)
+        by pandora.armlinux.org.uk with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <linux@armlinux.org.uk>)
+        id 1qA7xj-0004xg-JI; Fri, 16 Jun 2023 12:49:55 +0100
+Received: from linux by shell.armlinux.org.uk with local (Exim 4.94.2)
+        (envelope-from <linux@shell.armlinux.org.uk>)
+        id 1qA7xh-0002U8-8p; Fri, 16 Jun 2023 12:49:53 +0100
+Date:   Fri, 16 Jun 2023 12:49:53 +0100
+From:   "Russell King (Oracle)" <linux@armlinux.org.uk>
+To:     Amit Kucheria <amitk@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Gregory Clement <gregory.clement@bootlin.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
-Message-ID: <20230616134844.09e7fda3@bootlin.com>
-In-Reply-To: <6c7fe34f7b65421ab618d33ba907ae09@AcuMS.aculab.com>
-References: <20230614074904.29085-1-herve.codina@bootlin.com>
-        <20230614074904.29085-8-herve.codina@bootlin.com>
-        <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
-        <20230614114214.1371485e@bootlin.com>
-        <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
-        <20230614223418.0d7e355d@bootlin.com>
-        <CAHp75VfFyDzr4qHNssXZ8RLy0gxMWdjBgac4JLd7grRLEG-vyw@mail.gmail.com>
-        <20230615113512.07967677@bootlin.com>
-        <6c7fe34f7b65421ab618d33ba907ae09@AcuMS.aculab.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Zhang Rui <rui.zhang@intel.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org
+Subject: [PATCH 0/3] Update for AP807 thermal data
+Message-ID: <ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Sender: Russell King (Oracle) <linux@armlinux.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,37 +63,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi David,
+Hi,
 
-On Fri, 16 Jun 2023 09:08:22 +0000
-David Laight <David.Laight@ACULAB.COM> wrote:
+This series updates the thermal data for the AP807 die, which has
+different coefficients to the AP806.
 
-...
+These patches have come from the SolidRun CN913x build repository
+which can be found at:
+https://github.com/SolidRun/cn913x_build/tree/master/patches/linux
 
-> 
-> Just define two variables typeof(__array[0] + 0) one for an element
-> and one for the limit.
-> The just test (eg):
-> 	if (limit > item) limit = item;
-> finally cast the limit back to the original type.
-> The promotions of char/short to signed int won't matter.
-> There is no need for all the type-checking in min/max.
-> 
-> Indeed, if min_t(type, a, b) is in anyway sane it should
-> expand to:
-> 	type _a = a, _b = b;
-> 	_a < _b ? _a : _b
-> without any of the checks that min() does.
+ .../devicetree/bindings/thermal/armada-thermal.txt |  1 +
+ arch/arm64/boot/dts/marvell/armada-ap807.dtsi      |  3 ++
+ drivers/thermal/armada_thermal.c                   | 32 ++++++++++++++++++++--
+ 3 files changed, 34 insertions(+), 2 deletions(-)
 
-I finally move to use _Generic() in order to "unconstify" and avoid the
-integer promotion. With this done, no extra cast is needed and min()/max()
-are usable.
-
-The patch is available in the v5 series.
-  https://lore.kernel.org/linux-kernel/20230615152631.224529-8-herve.codina@bootlin.com/
-
-Do you think the code present in the v5 series should be changed ?
-If so, can you give me your feedback on the v5 series ?
-
-Thanks for your review,
-Hervé
+-- 
+RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
+FTTP is here! 80Mbps down 10Mbps up. Decent connectivity at last!
