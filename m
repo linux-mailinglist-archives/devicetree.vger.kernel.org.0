@@ -2,77 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9029B73296C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EB3973297B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:06:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245459AbjFPIEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 04:04:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49404 "EHLO
+        id S242564AbjFPIGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 04:06:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244486AbjFPIEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:04:11 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA3FF2D73
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:03:56 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b44200367bso4605631fa.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:03:56 -0700 (PDT)
+        with ESMTP id S232839AbjFPIGP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:06:15 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 261122117
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:06:14 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-9741caaf9d4so52960666b.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:06:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686902634; x=1689494634;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1686902772; x=1689494772;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=hULyAVDg1y9tDeonTJB2nq2Om4nQ0EG3JOer8JbQBgk=;
-        b=IjyyIjRvGJ6T59xW+C0BwtDhrkUtXVrPEBmitFdbVZj5r/FE6bMgxSecYi9QXghR2d
-         V5y9FYiVW5wClSM4X+FYHojfR1F4PZnud/5OnHP2hV64TlSkGF39SpSsvJg+8WHw3hTm
-         Sa0kqwuNfIa6AlNThBEBb0T8fv6aNXyVlbxcM1wiCiZ+Cj/c+I8UDVn+KdZ7aweQCoiY
-         01xKnKQfj7qGmx9kRuxB9ahCcWLlpyPBf8FAic7GrefbQEPt7wV3EOr/bNi6NWxPy4rB
-         Jb5D8yo/m9pfs674Zmtunm9tFzZIDDrbRLOvMOnaLQ5eTC6A9aipJQV8Wd6/OAZbBqeF
-         yxhg==
+        bh=zAkJfVytg9CzxG53pb2zlwC5ThUsyhZUg21fZDixH3I=;
+        b=Kbyhj97I3/HEj8VFofbslJmq109MGPcZMOQc7DBeTQzfWfgiG/E+4q7Y/hJqxy1RsM
+         zM/T5R/2QtRzm+8v8ssTgSd8vJYL4OB1GnD5BfaoOxOPCNWR0I8BVHiv6acX+SnqsX/I
+         w77gZzISM9cHVu/x2PVV8gPq+r9pQaPoMDWQPtsEGoOyiA3dR1ViRuO08zw0Da/w05sW
+         xkxJ99pKm5aJCdeBt1lfKFV6A2QP5Xe2q4mTfUHtoQVt9a1WVxnDVH6qIoDelrDyOUWn
+         0F1ob4+qicAhko5mt+dWD1OBlBpniy7Eg709w6upa1XNTwP/s+Idfnw6JlTMpZlVsTay
+         EJlw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686902634; x=1689494634;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1686902772; x=1689494772;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hULyAVDg1y9tDeonTJB2nq2Om4nQ0EG3JOer8JbQBgk=;
-        b=J0LrhD71fzOzZT7/RTbWmxjOHGOuU5uavXHuBDNf46sASO0Kvz35W/vIknKs3Jt+y3
-         5A2RVrVkmTiC+gLemnUhdQR9l8XiJFUscOG2Y5/4Gfey3H21v6Wu+PCUQloQOhj0XpW+
-         UwSnMvG8nj8hzjPn9z8A7s5kPgZZsC35rZzdtc/ervCphv/6HQTVAmG9VXgupN2zp/S1
-         ylp3P6rgPsohgnjpOJRUemA73OjgCDkRuTwDghI8NXhXD8DVS3OMdVQpPgt8WAqAhRW3
-         V7e5XP77/++4aI+Jb8nwcXey2JBDAz0Eai2Okn/NJ9/l5Hm2WsX6/HJpPsCpO8fDfdnK
-         ZmmQ==
-X-Gm-Message-State: AC+VfDxiKZW8Pq6+jDeSpHQ/nBWc3sGRVzSXwsBapWqx370M6aG5mkM8
-        nW/NajlLXv3pDYDw75bC7bCsKQ==
-X-Google-Smtp-Source: ACHHUZ6I3r39l8aDjCeT+3PLWduhsdthB5fB5sV2c3c0A+8gjY/rggU6SYdfOnmk0HXZbGrejZLc0Q==
-X-Received: by 2002:a2e:86d2:0:b0:2ad:9139:c871 with SMTP id n18-20020a2e86d2000000b002ad9139c871mr1103205ljj.19.1686902634418;
-        Fri, 16 Jun 2023 01:03:54 -0700 (PDT)
+        bh=zAkJfVytg9CzxG53pb2zlwC5ThUsyhZUg21fZDixH3I=;
+        b=bwmqTv6qdgGQ2cmU9ObByc9KzjMSrkwTOlbNRLaxRkBqmX6iMWQ9Eyveu2xuvPRX2q
+         5mB+0kFRjUdvetzDeFhNNJkDIpJ6ghSIafo5r4YonjtpBo+a6Gk0+p4AQFpH+lCTGgi2
+         i7c805IL6Ph/gRakuFM1zDlgRmAminS4dIYqGz1/BFAOk2Xe9CAtChV07YqOsX9PbEpY
+         jggBS9aZhVeXWIFvEKYrYH1cSnJSsaihTi6tKCq4RjFs7e5M8VikGCAc1fl6oP2b92g0
+         I4HomY28s3R4Ly5xTlsu1CrZLyyhlQ2FjJxdeOP4tzBz9DGAsfqE9zLb1euTUpEivuZ7
+         KMRg==
+X-Gm-Message-State: AC+VfDzgoxfb4Lydm94J4v8rEXB/OkdrxH4Y4XwGxW3ATN4hnh0ul4BL
+        zPd1ejLGs6YjimIBHB2wBoK5fA==
+X-Google-Smtp-Source: ACHHUZ50Ua5oIQX4P80cY6kLfN8X7uGCPFRhZLPCW0Cbt+uigbFp1VVaiWp6TArsE9CZvxgetLLB6Q==
+X-Received: by 2002:a17:906:4a0b:b0:966:b4b:eb0 with SMTP id w11-20020a1709064a0b00b009660b4b0eb0mr822512eju.30.1686902772569;
+        Fri, 16 Jun 2023 01:06:12 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u3-20020aa7d543000000b00514bddcb87csm9908991edr.31.2023.06.16.01.03.52
+        by smtp.gmail.com with ESMTPSA id lf29-20020a170907175d00b009787062d21csm10414924ejc.77.2023.06.16.01.06.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 01:03:53 -0700 (PDT)
-Message-ID: <efdd8e66-a8dc-1a7e-6ac3-fdbe0ba45204@linaro.org>
-Date:   Fri, 16 Jun 2023 10:03:51 +0200
+        Fri, 16 Jun 2023 01:06:12 -0700 (PDT)
+Message-ID: <8ef8ab1e-1c3d-2a42-f4de-75ece4c86c2a@linaro.org>
+Date:   Fri, 16 Jun 2023 10:06:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v3 2/3] soc: dt-bindings: add loongson-2 pm
-To:     Yinbo Zhu <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+Subject: Re: [PATCH v2 1/3] dt-bindings: arm: add TQMa93xxLA SOM
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Huacai Chen <chenhuacai@kernel.org>,
-        WANG Xuerui <kernel@xen0n.name>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        loongarch@lists.linux.dev
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230615091757.24686-1-zhuyinbo@loongson.cn>
- <20230615091757.24686-3-zhuyinbo@loongson.cn>
-Content-Language: en-US
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, Marek Vasut <marex@denx.de>
+Cc:     Markus Niebel <Markus.Niebel@ew.tq-group.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux@ew.tq-group.com
+References: <20230616072005.1781043-1-alexander.stein@ew.tq-group.com>
+ <20230616072005.1781043-2-alexander.stein@ew.tq-group.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230615091757.24686-3-zhuyinbo@loongson.cn>
+In-Reply-To: <20230616072005.1781043-2-alexander.stein@ew.tq-group.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,79 +84,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2023 11:17, Yinbo Zhu wrote:
-> Add the Loongson-2 SoC Power Management Controller binding with DT
-> schema format using json-schema.
+On 16/06/2023 09:20, Alexander Stein wrote:
+> From: Markus Niebel <Markus.Niebel@ew.tq-group.com>
 > 
-> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
-> ---
->  .../soc/loongson/loongson,ls2k-pmc.yaml       | 53 +++++++++++++++++++
->  MAINTAINERS                                   |  6 +++
->  2 files changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
+> TQMa93xxLA is a SOM variant in the TQ-Systems GmbH TQMa93xx series using
+> NXP i.MX93 CPU on an LGA type board.
+> MBa93xxCA is a starterkit base board for TQMa93xxLA on an adapter board.
 > 
-> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
-> new file mode 100644
-> index 000000000000..32499bd10f8c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-pmc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson-2 Power Manager controller
-> +
-> +maintainers:
-> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
+> Signed-off-by: Markus Niebel <Markus.Niebel@ew.tq-group.com>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.
 
-Drop oneOf, you don't have here many choices.
-
-> +      - items:
-> +          - enum:
-> +              - loongson,ls2k1000-pmc
-> +              - loongson,ls2k0500-pmc
-> +          - const: syscon
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  suspend-address:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      The "suspend-address" is a deep sleep state (Suspend To RAM)
-> +      firmware entry address which was jumped from kernel and it's
-> +      value was dependent on specific platform firmware code. In
-> +      addition, the PM need according to it to indicate that current
-> +      SoC whether support Suspend To RAM.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    pmc: pm@1fe27000 {
-
-Node name: system-controller or power-pamanagement
-
-With these two:
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
