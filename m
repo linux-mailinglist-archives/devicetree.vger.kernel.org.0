@@ -2,179 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 128D3733061
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:49:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E900A73305E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344267AbjFPLtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 07:49:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36032 "EHLO
+        id S1344455AbjFPLs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 07:48:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344739AbjFPLtO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:49:14 -0400
-Received: from mail-yw1-x112e.google.com (mail-yw1-x112e.google.com [IPv6:2607:f8b0:4864:20::112e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D69B2D63
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 04:49:04 -0700 (PDT)
-Received: by mail-yw1-x112e.google.com with SMTP id 00721157ae682-5702415be17so6959267b3.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 04:49:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686916143; x=1689508143;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=uBENnlCBnEhufAnVuw+D3JGJ02jgGoa7hpaAB7hRNak=;
-        b=xzNmgz7PTzYm+ZtJ4D0RC//YrnsN/UzT4jWuMkskjfXV8kRGJLcq8hh3bu5IeeY9Hg
-         3/v3d9r1To28I8ZzYRXT12NDhnifOmUI780kmtUgnSD6sdtV8b2uaikUITa3CB978jzP
-         KysSc6zpnNYgfHDriFA9L/RKS1YY8jk1XtCJrDWyee/IeDHlBtWDqd+GlEsGxe78lMVa
-         NrAubJe5TCeCl/NUJ+yap/jO5UmvXzI0m1uziPlkVdVSS4HyxJX7GFfiHT7kHBx/bZV6
-         coIOeDPP3LjeW1sygZOms271LwZoyIHy3ppsuvmTKZCeRmYNb39ERXVhryck0WwDMUYQ
-         lpAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686916143; x=1689508143;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uBENnlCBnEhufAnVuw+D3JGJ02jgGoa7hpaAB7hRNak=;
-        b=PXnbgjCSfxCpeHhYMvixo2ojfAq28Sc5ruwmNny1b00BUay3gjnq5j4YBmf+MWgq/a
-         TcnTQlG2BmP3o5nn48gX7FGrKQoV2pqoBf1ylHkC5lteU/yNwkb/ljOpORGNmV7XLfp4
-         PjaAQWJy0ROdWaDh5YLiiPkocQIN5HujpyPjMFE5lwDA9DFzpauOvf9HLfb0txDkSzDZ
-         aCogqELMPemAMDnv+RHYdnnJaqv2cTEiFe5EgIPkCHyTdyEp/hVpb1CRVSWoqT3IY1MZ
-         baXR3/QwK37mzc3uisdWNzWBpO6pBjJosIAg/UEU4DmbMe2CjRUSIOGXvR1leHg9mc5v
-         /mtg==
-X-Gm-Message-State: AC+VfDzwjbOgOAhPKvqbbfLlytjtf7fx9zlMVRksrwTddZ0D4KH9Pdar
-        dEshn6oLFp8pEYBOP6faIr9giiYmTHROBTx4NhksqA==
-X-Google-Smtp-Source: ACHHUZ4wzr+01cdOuLafOhfNu3jhsS6jDdtPFQ6Ei5279VT+EIup/mDYSg4VKWw0E5ijIwT9qylQc9gkSW0cVwiQaec=
-X-Received: by 2002:a0d:fe86:0:b0:570:48db:890 with SMTP id
- o128-20020a0dfe86000000b0057048db0890mr1409278ywf.6.1686916143226; Fri, 16
- Jun 2023 04:49:03 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230607124628.157465-1-ulf.hansson@linaro.org>
- <20230607124628.157465-10-ulf.hansson@linaro.org> <20230615084430.boamsz56kqqi3n6h@bogus>
- <CAPDyKFoiL47wadabh1jcOr4q4uwJm1UyhHHMnmVcys=bBBVcXQ@mail.gmail.com> <20230615133020.pomw53jrzehbwahd@bogus>
-In-Reply-To: <20230615133020.pomw53jrzehbwahd@bogus>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Fri, 16 Jun 2023 13:48:27 +0200
-Message-ID: <CAPDyKFoWcyznGM7EYkuhSAB+6nNBvsPt77o5B3hyL06pwiFYMA@mail.gmail.com>
-Subject: Re: [PATCH 09/16] dt-bindings: firmware: arm,scmi: Extend bindings
- for protocol@13
-To:     Sudeep Holla <sudeep.holla@arm.com>
-Cc:     Cristian Marussi <cristian.marussi@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Nikunj Kela <nkela@quicinc.com>,
-        Prasad Sodagudi <psodagud@quicinc.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-pm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1343703AbjFPLsu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:48:50 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::226])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55B79191;
+        Fri, 16 Jun 2023 04:48:49 -0700 (PDT)
+X-GND-Sasl: herve.codina@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686916128;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=oLKhvPrptWFoCmJpHArFvlKc/yEEcCk45NeiCg0/3Yg=;
+        b=LL2WMmiQsuIm4g/hjHsD81IzOy08yCDudlals5vYRPZBYhTAwXCnSUWZD8hxJ1ixAlMj+V
+        JYx7e7oVG7MoU4swUjUs2j3hAl6PBV8k7c7E5Z7FNSQjf1MGesJQQ9L4BsP3a4lkHTruFS
+        BK1MVffkb7DWP+kNcYd4mIHG8qYIeHpOKVlSFUfAFgzubUkRbgV9EtXs2U2uTjAypYYwH9
+        X0BbwTXxmZ4PXGtrmlSI8s15MuoaOxM/rZ9NXiLu2AhOzPTH1rrRD1xPYHWoxQr4VO4lCA
+        Z+JVCActDH1jkX1Xa+2xdSqlAOUVJwvSZ1BHYnfBUFMZlRIxDPGj4GXVSs0pQg==
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+X-GND-Sasl: herve.codina@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id A2CD0C0002;
+        Fri, 16 Jun 2023 11:48:45 +0000 (UTC)
+Date:   Fri, 16 Jun 2023 13:48:44 +0200
+From:   Herve Codina <herve.codina@bootlin.com>
+To:     David Laight <David.Laight@ACULAB.COM>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
+Message-ID: <20230616134844.09e7fda3@bootlin.com>
+In-Reply-To: <6c7fe34f7b65421ab618d33ba907ae09@AcuMS.aculab.com>
+References: <20230614074904.29085-1-herve.codina@bootlin.com>
+        <20230614074904.29085-8-herve.codina@bootlin.com>
+        <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
+        <20230614114214.1371485e@bootlin.com>
+        <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
+        <20230614223418.0d7e355d@bootlin.com>
+        <CAHp75VfFyDzr4qHNssXZ8RLy0gxMWdjBgac4JLd7grRLEG-vyw@mail.gmail.com>
+        <20230615113512.07967677@bootlin.com>
+        <6c7fe34f7b65421ab618d33ba907ae09@AcuMS.aculab.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jun 2023 at 15:30, Sudeep Holla <sudeep.holla@arm.com> wrote:
->
-> On Thu, Jun 15, 2023 at 11:39:06AM +0200, Ulf Hansson wrote:
-> > On Thu, 15 Jun 2023 at 10:44, Sudeep Holla <sudeep.holla@arm.com> wrote:
-> > >
-> > > On Wed, Jun 07, 2023 at 02:46:21PM +0200, Ulf Hansson wrote:
-> > > > The protocol@13 node is describing the performance scaling option for the
-> > > > ARM SCMI interface, as a clock provider. This is unnecessary limiting, as
-> > > > performance scaling is in many cases not limited to switching a clock's
-> > > > frequency.
-> > > >
-> > > > Therefore, let's extend the binding so the interface can be modelled as a
-> > > > generic "performance domain" too. The common way to describe this, is to
-> > > > use the "power-domain" bindings, so let's use that.
-> > > >
-> > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> > > > Cc: Conor Dooley <conor+dt@kernel.org>
-> > > > Cc: devicetree@vger.kernel.org
-> > > > Signed-off-by: Ulf Hansson <ulf.hansson@linaro.org>
-> > > > ---
-> > > >  Documentation/devicetree/bindings/firmware/arm,scmi.yaml | 4 ++--
-> > > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > > index 5824c43e9893..cff9d1e4cea1 100644
-> > > > --- a/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > > +++ b/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
-> > > > @@ -145,8 +145,8 @@ properties:
-> > > >        '#clock-cells':
-> > > >          const: 1
-> > > >
-> > > > -    required:
-> > > > -      - '#clock-cells'
-> > >
-> > > I am yet to look at the patches, just looked at this binding changes for now.
-> > >
-> > > Won't this break compatibility with existing DTBs. IMO, this is strict
-> > > no no, you can't drop #clock-cells. I wanted to add performance-domains
-> > > here as alternative but decided to not as I knew you were working on this.
-> >
-> > Thanks for reviewing!
-> >
-> > The point with the suggested change was to allow any kind of
-> > combination of using #clock-cells and/or #power-domain-cells. Honestly
-> > I didn't really know how to best express that in the binding, but
-> > maybe someone can help me out here?
-> >
->
-> Even I don't know exact details, but there are rules like if this
-> property is present, some other property can't be there or something
-> on the similar lines. I have vague idea/recollection from my previous
-> experiments which probably was not needed then and hence I can't just
-> point to any examples unless I go and search myself.
+Hi David,
 
-I will figure it out, np!
+On Fri, 16 Jun 2023 09:08:22 +0000
+David Laight <David.Laight@ACULAB.COM> wrote:
 
->
-> > I think enforcing #clock-cells to be used is unnecessary. Making it
-> > optional should not break existing DTBs, right?
->
-> Correct. That is what I meant, it is either #clock-cells or
-> #power-domain-cells
+...
 
-Should we allow both? Or maybe that is just confusing?
+> 
+> Just define two variables typeof(__array[0] + 0) one for an element
+> and one for the limit.
+> The just test (eg):
+> 	if (limit > item) limit = item;
+> finally cast the limit back to the original type.
+> The promotions of char/short to signed int won't matter.
+> There is no need for all the type-checking in min/max.
+> 
+> Indeed, if min_t(type, a, b) is in anyway sane it should
+> expand to:
+> 	type _a = a, _b = b;
+> 	_a < _b ? _a : _b
+> without any of the checks that min() does.
 
-In either case, I am converting the scmi cpufreq driver to cope with
-using #power-domain-cells too, as that is useful regardless I think.
-However, that's a separate series on top of $subject series.
+I finally move to use _Generic() in order to "unconstify" and avoid the
+integer promotion. With this done, no extra cast is needed and min()/max()
+are usable.
 
->
-> >
-> > Moreover, currently it seems to be only Juno that uses "protocol@13"
-> > and the "#clock-cells" (at least by looking at the DTSes in-kernel).
->
-> Yes only one that has upstream DTS changes, but for sure it is used on
-> couple of other platforms. So for we are still far away from deprecate it
-> but we can eventually once users of it are ready to use new binding.
+The patch is available in the v5 series.
+  https://lore.kernel.org/linux-kernel/20230615152631.224529-8-herve.codina@bootlin.com/
 
-Okay, let's discuss when to deprecate it, but let's do that later on.
+Do you think the code present in the v5 series should be changed ?
+If so, can you give me your feedback on the v5 series ?
 
->
-> > So, I wonder if it's really such a big deal to update the DT bindings
-> > for "protocol@13" at this point, but I may not have the complete
-> > picture.
-> >
->
-> Yes it does break compatibility. Yes I know Juno is not a production
-> platform, but associating DT with kernel change makes is hard to switch
-> to older stable kernel versions without DT change which I really hate as
-> I will be wondering which SCMI perf is not working with stable kernel few
-> months down the line. So yes, we are not dropping the support for old
-> bindings even if it just for Juno(though I am sure it is not the only one).
-> I have spent time on such silly things when we were in the process of
-> pushing these bindings initially upstream. I prefer not to repeat that.
-
-Okay, thanks for sharing the information. Let's simply follow the
-regular path of how we deal with deprecating DT bindings then.
-
-Kind regards
-Uffe
+Thanks for your review,
+Hervé
