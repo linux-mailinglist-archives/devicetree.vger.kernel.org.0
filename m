@@ -2,89 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C93D0733509
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 17:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A10373355B
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:02:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345400AbjFPPjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 11:39:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54118 "EHLO
+        id S231920AbjFPQCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 12:02:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230022AbjFPPjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 11:39:37 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id ABF2930D1;
-        Fri, 16 Jun 2023 08:39:29 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 447E11FB;
-        Fri, 16 Jun 2023 08:40:13 -0700 (PDT)
-Received: from bogus (unknown [10.57.96.87])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 905A23F71E;
-        Fri, 16 Jun 2023 08:39:26 -0700 (PDT)
-Date:   Fri, 16 Jun 2023 16:39:24 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Tushar Nimkar <quic_tnimkar@quicinc.com>
-Cc:     "Rafael J . Wysocki" <rafael@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_lsrao@quicinc.com, quic_mkshah@quicinc.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: arm: idle-states: Add
- idle-state-disabled property
-Message-ID: <20230616153924.2wtvgr7lvjcul6to@bogus>
-References: <20230608085544.16211-1-quic_tnimkar@quicinc.com>
- <20230608085544.16211-2-quic_tnimkar@quicinc.com>
- <20230615085629.b2aaumhq7yqhs5lf@bogus>
- <5820345a-4207-3b12-87eb-098bac4ef4e8@quicinc.com>
+        with ESMTP id S245660AbjFPQCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:02:35 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0a-001ae601.pphosted.com [67.231.149.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAA344204;
+        Fri, 16 Jun 2023 09:02:16 -0700 (PDT)
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35GBVHcm018156;
+        Fri, 16 Jun 2023 11:01:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=aM4qTlg66psxyt7MvUaMTfjlMOxNt1M83BDXPCVlrdE=;
+ b=Gh3KuXRDek8q+xUxmtZtD1eBuOoymuBv7/v6TC3Q3rw9DjPFyFWQfxvt14FXP35N7ocU
+ IJzdxdCW/niSf4ilGW4rwaXVqv8impUnXd41HsmIyLPn5/O+qevvEWZma6Qc8YUbULUg
+ +2zO0FYvO7g3USZ4F4bnEjct8yrT/3exot0scjSqDSHq6bBzS+1MugdrLA/3ZjZZq0XI
+ /vKqk/l8UENa4vl3YPGB80AG19ukpvTAoAjkCO6jKUI2Sd6+N1p7Qo/jr6HRCPDduKMt
+ ETh9dJ+cdkEROG/CtJ44Mn1KG+2wSP9c8CHiZnK8XeY39bJKr0VG82wZPKhjNYH8rmCS uw== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0a-001ae601.pphosted.com (PPS) with ESMTPS id 3r4pk0ejjh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Jun 2023 11:01:58 -0500
+Received: from ediex01.ad.cirrus.com (198.61.84.80) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Fri, 16 Jun
+ 2023 17:01:56 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by ediex01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.2.1118.26 via Frontend
+ Transport; Fri, 16 Jun 2023 17:01:56 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id AEE3615A4;
+        Fri, 16 Jun 2023 16:01:56 +0000 (UTC)
+Date:   Fri, 16 Jun 2023 16:01:56 +0000
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <andy.shevchenko@gmail.com>
+CC:     <broonie@kernel.org>, <lee@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <vkoul@kernel.org>, <robh+dt@kernel.org>, <conor+dt@kernel.org>,
+        <lgirdwood@gmail.com>, <yung-chuan.liao@linux.intel.com>,
+        <sanyog.r.kale@intel.com>, <pierre-louis.bossart@linux.intel.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/6] soundwire: bus: Allow SoundWire peripherals to
+ register IRQ handlers
+Message-ID: <20230616160156.GT68926@ediswmail.ad.cirrus.com>
+References: <20230605125504.2570158-1-ckeepax@opensource.cirrus.com>
+ <20230605125504.2570158-2-ckeepax@opensource.cirrus.com>
+ <ZIuNXQIB3j6YjYa7@surfacebook>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <5820345a-4207-3b12-87eb-098bac4ef4e8@quicinc.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <ZIuNXQIB3j6YjYa7@surfacebook>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-ORIG-GUID: g_ZbuS0378fNogebm1OeP16CyalPar6e
+X-Proofpoint-GUID: g_ZbuS0378fNogebm1OeP16CyalPar6e
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 11:26:18AM +0530, Tushar Nimkar wrote:
+On Fri, Jun 16, 2023 at 01:14:53AM +0300, andy.shevchenko@gmail.com wrote:
+> Mon, Jun 05, 2023 at 01:54:59PM +0100, Charles Keepax kirjoitti:
+> > From: Lucas Tanure <tanureal@opensource.cirrus.com>
+> > +	bus->irq_chip.name = dev_name(bus->dev);
+> > +	bus->domain = irq_domain_add_linear(NULL, SDW_MAX_DEVICES, &sdw_domain_ops, bus);
 > 
-> Thanks for review Sundeep,
-> 
-> On 6/15/2023 2:26 PM, Sudeep Holla wrote:
-> > On Thu, Jun 08, 2023 at 02:25:42PM +0530, Tushar Nimkar wrote:
-> > > +      idle-state-disabled:
-> > > +        description: |
-> > > +          If present the idle state stays disabled. It can be enabled back from
-> > > +          shell using below command.
-> > > +          echo N > /sys/devices/system/cpu/cpuX/cpuidle/stateX/disable
-> > > +        type: boolean
-> > > +
-> > 
-> > This is clearly a policy and not a hardware or firmware feature to expose
-> > in the device tree. So NACK, why can't you load it modules if you don't want
-> > idle states in the boot.
-> > 
-> Attempt of making cpuidle governors to modular was rejected in past [2]
->
+> I'm wondering why you are not using existing fwnode, if any
+> (e.g. from parent device).
 
-OK try command line approach to disable all states(you can't get partial
-on/off in that case). I don't think the build config is of any use as we
-end up enabling it which will affect other platforms.
+I think that is just an oversight, I will fixup for the next
+version.
 
-> [2] https://lore.kernel.org/lkml/1637830481-21709-1-git-send-email-quic_mkshah@quicinc.com/#t
-> 
-> > It is same as choosing any default governor or performance states, will you
-> > add those next ? It is simply policy not a feature/property to be exposed
-> > in the device tree.
-> > 
-
-The above still holds, so still NACK. It is a policy and not a
-hardware/firmware property or feature.
-
--- 
-Regards,
-Sudeep
+Thanks,
+Charles
