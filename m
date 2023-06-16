@@ -2,103 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F98C733A38
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 21:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82242733A56
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 22:04:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231663AbjFPT4k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 15:56:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43002 "EHLO
+        id S231171AbjFPUEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 16:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230420AbjFPT4j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 15:56:39 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4AE2359D;
-        Fri, 16 Jun 2023 12:56:38 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-77ac2eb07a3so39207639f.2;
-        Fri, 16 Jun 2023 12:56:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686945398; x=1689537398;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=qS/HVMvqz+3lSoqw9RtE/dO2ukSdMAzMn+pgkdvUh6w=;
-        b=QEGDNs6bloovdRE9Vnx9fVwOXd/Ih0hFt3VejJyexUtf331RonA4c2IbJsVussc/U+
-         KLm0ALZW4EzC9kSrLNifgNyYhEDi308TQE3runAWS/TwK8njLdE/NDnrtv+7Y1qdU6k2
-         Rk8koAd2t06IdsauXjEG3Nxl9TH41kS7qPdhgKVAaMpIPUfGPZXIrxngfH+mBO9sspMF
-         QHfxR9MhWMv+xhdJVVby9e3DSz1g6fvNo3MStYsdNgTOuIVNuBcZC1sWz1YwqupGY93H
-         R6+cNcurC9yJBicknmdtPibMuy7uJGE5/S+ZMIkf3D8MSYXmENI8UGJ3He24DtEgHGoA
-         wVdA==
-X-Gm-Message-State: AC+VfDyLyl4uXjCRgYb8nmU1N4B25NInStqnOtbZeS8DKbHS+JabOggz
-        +FZCwU2D63A79fXL6SIFxA==
-X-Google-Smtp-Source: ACHHUZ6huIxB7TX+/DLvdKdc8mYNTXyBGF99Ajc4+Uni1wbszykli1jrwEBBrzCBaNSbKvMS1cO2lA==
-X-Received: by 2002:a05:6602:29b1:b0:76c:6674:243b with SMTP id u17-20020a05660229b100b0076c6674243bmr123367ios.15.1686945397889;
-        Fri, 16 Jun 2023 12:56:37 -0700 (PDT)
-Received: from robh_at_kernel.org ([2605:ef80:80c2:7a4a:82c2:d6b3:423e:4a47])
-        by smtp.gmail.com with ESMTPSA id q20-20020a02c8d4000000b0040fa0f43777sm6420098jao.161.2023.06.16.12.56.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jun 2023 12:56:37 -0700 (PDT)
-Received: (nullmailer pid 934772 invoked by uid 1000);
-        Fri, 16 Jun 2023 19:56:21 -0000
-Date:   Fri, 16 Jun 2023 13:56:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     =?iso-8859-1?Q?Fern=E1ndez?= Rojas <noltari@gmail.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Marek Vasut <marex@denx.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Suman Anna <s-anna@ti.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-remoteproc@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-pm@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        linux-clk@vger.kernel.org, Abel Vesa <abelvesa@kernel.org>,
-        devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        - <devicetree-spec@vger.kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
-Subject: Re: [PATCH] dt-bindings: Remove last usage of "binding" or "schema"
- in titles
-Message-ID: <168694537949.934680.13323062117489358147.robh@kernel.org>
-References: <20230615213154.1753313-1-robh@kernel.org>
+        with ESMTP id S229696AbjFPUEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 16:04:22 -0400
+X-Greylist: delayed 600 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 16 Jun 2023 13:04:20 PDT
+Received: from hi1smtp01.de.adit-jv.com (smtp1.de.adit-jv.com [93.241.18.167])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB65A2133;
+        Fri, 16 Jun 2023 13:04:20 -0700 (PDT)
+Received: from hi2exch02.adit-jv.com (hi2exch02.adit-jv.com [10.72.92.28])
+        by hi1smtp01.de.adit-jv.com (Postfix) with ESMTP id 01A155202DB;
+        Fri, 16 Jun 2023 21:45:12 +0200 (CEST)
+Received: from lxhi-065 (10.72.94.3) by hi2exch02.adit-jv.com (10.72.92.28)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.1.2507.23; Fri, 16 Jun
+ 2023 21:45:11 +0200
+Date:   Fri, 16 Jun 2023 21:45:05 +0200
+From:   Eugeniu Rosca <erosca@de.adit-jv.com>
+To:     Masahiro Yamada <masahiroy@kernel.org>,
+        <linux-kbuild@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <Matthias.Thomae@de.bosch.com>, <yyankovskyi@de.adit-jv.com>,
+        Eugeniu Rosca <erosca@de.adit-jv.com>,
+        Eugeniu Rosca <roscaeugeniu@gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: fix error in 'make clean' after 'make
+ dt_binding_check'
+Message-ID: <20230616194505.GA27753@lxhi-065>
+References: <20200625170434.635114-1-masahiroy@kernel.org>
+ <20200625170434.635114-2-masahiroy@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230615213154.1753313-1-robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20200625170434.635114-2-masahiroy@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [10.72.94.3]
+X-ClientProxiedBy: hi2exch02.adit-jv.com (10.72.92.28) To
+ hi2exch02.adit-jv.com (10.72.92.28)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dear Yamada-san,
+Dear Kbuild experts,
 
-On Thu, 15 Jun 2023 15:31:54 -0600, Rob Herring wrote:
-> The Devicetree bindings document does not have to say in the title that
-> it is a "Devicetree binding", but instead just describe the hardware.
+On Fri, Jun 26, 2020 at 02:04:31AM +0900, Masahiro Yamada wrote:
+> We are having more and more schema files.
 > 
-> Most of these have been fixed already, so fix the handful that snuck in.
-> With this, a meta-schema check can be enabled to catch these
-> automatically.
+> Commit 8b6b80218b01 ("dt-bindings: Fix command line length limit
+> calling dt-mk-schema") fixed the 'Argument list too long' error of
+> the schema checks, but the same error happens while cleaning too.
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> 'make clean' after 'make dt_binding_check' fails as follows:
+> 
+>   $ make dt_binding_check
+>     [ snip ]
+>   $ make clean
+>   make[2]: execvp: /bin/sh: Argument list too long
+>   make[2]: *** [scripts/Makefile.clean:52: __clean] Error 127
+>   make[1]: *** [scripts/Makefile.clean:66: Documentation/devicetree/bindings] Error 2
+>   make: *** [Makefile:1763: _clean_Documentation] Error 2
+> 
+> 'make dt_binding_check' generates so many .example.dts, .dt.yaml files,
+> which are passed to the 'rm' command when you run 'make clean'.
+> 
+> I added a small hack to use the 'find' command to clean up most of the
+> build artifacts before they are processed by scripts/Makefile.clean
+> 
+> Signed-off-by: Masahiro Yamada <masahiroy@kernel.org>
 > ---
->  .../devicetree/bindings/clock/brcm,bcm63268-timer-clocks.yaml   | 2 +-
->  Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml    | 2 +-
->  .../devicetree/bindings/power/reset/restart-handler.yaml        | 2 +-
->  .../devicetree/bindings/remoteproc/ti,pru-consumer.yaml         | 2 +-
->  .../devicetree/bindings/reserved-memory/framebuffer.yaml        | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
 > 
+>  Documentation/devicetree/bindings/Makefile | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+> index a63898954068..f20d234aec46 100644
+> --- a/Documentation/devicetree/bindings/Makefile
+> +++ b/Documentation/devicetree/bindings/Makefile
+> @@ -53,3 +53,8 @@ $(obj)/processed-schema.yaml: $(DT_SCHEMA_FILES) check_dtschema_version FORCE
+>  	$(call if_changed,mk_schema)
+>  
+>  extra-y += processed-schema.yaml
+> +
+> +# Hack: avoid 'Argument list too long' error for 'make clean'. Remove most of
+> +# build artifacts here before they are processed by scripts/Makefile.clean
+> +clean-files = $(shell find $(obj) \( -name '*.example.dts' -o \
+> +			-name '*.example.dt.yaml' \) -delete 2>/dev/null)
 
-Applied, thanks!
+JFYI, we are running into the "Argument list too long" simply by trying to
+clean an out-of-tree module (with lots of artifacts though), as below.
+Seems to be happening on vanilla (v6.4-rc6-199-gb73056e9f82ebd) too.
+Just in case there are any known hacks (or similar reports), please let us know.
 
+$ make -C /data/linux-src M=my_module clean
+
+make: Entering directory '/data/linux-src'
+make -f ./scripts/Makefile.clean obj=my_module
+set -e;  echo '  CLEAN   my_module';  rm -rf [~1k filenames / 200k char]
+make[1]: /bin/sh: Argument list too long
+make[1]: *** [scripts/Makefile.clean:45: __clean] Error 127
+
+-- 
+Best regards,
+Eugeniu Rosca
