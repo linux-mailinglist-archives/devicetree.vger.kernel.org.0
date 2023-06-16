@@ -2,140 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C7E732D1E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85176732D22
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:13:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232372AbjFPKNa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 06:13:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41308 "EHLO
+        id S244839AbjFPKNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 06:13:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233557AbjFPKN3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:13:29 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DBA5AC;
-        Fri, 16 Jun 2023 03:13:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686910408; x=1718446408;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=YpSM1w+IYXXoUKSojagF+UoCf/8hiOK0HsM860yz38E=;
-  b=x8GaDBO93AJNI8beGQfsCylbIlpJpJ1JtTbkYnJJ2VixP1g/c5tHwlEj
-   mwOZMy22M9szW7tj+PWRko9VdMntMEmJFxSQpEQ4Xsni6N08QnyrdPoED
-   whnePP9zBT/opuxDiSo4b9Ny+Yk0MtQKtAPnLrsb1C6YBl4WmampdEPFn
-   yvsGfErYNlmY+mUPjHVyKvQaMY5hH48//RmX0EDWaqsGz+8V7I7wUs1hs
-   oOQQo2zb74lZjeIAuHA4Xkwbz5TGKPPauPSyMeLyaUqSm3E5m7hWXtzUi
-   3Xj+AC/Of7TGmjYdIX3lrYtQ4GuMEbhWxoyPzdcztwmRfZpEQHId0OqsP
-   w==;
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; 
-   d="asc'?scan'208";a="157251792"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Jun 2023 03:13:27 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 16 Jun 2023 03:13:27 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 16 Jun 2023 03:13:23 -0700
-Date:   Fri, 16 Jun 2023 11:12:57 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Eric Lin <eric.lin@sifive.com>
-CC:     <conor@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
-        <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
-        <maz@kernel.org>, <chenhuacai@kernel.org>,
-        <baolu.lu@linux.intel.com>, <will@kernel.org>,
-        <kan.liang@linux.intel.com>, <nnac123@linux.ibm.com>,
-        <pierre.gondois@arm.com>, <huangguangbin2@huawei.com>,
-        <jgross@suse.com>, <chao.gao@intel.com>, <maobibo@loongson.cn>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dslin1010@gmail.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
-Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
-Message-ID: <20230616-revision-speed-a83dc926b334@wendy>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-3-eric.lin@sifive.com>
+        with ESMTP id S244732AbjFPKNu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:13:50 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1ABA194
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:13:48 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686910427;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=dCdt8ydTrXKYCxEhLduicCEBqeIoTgA8Fak1EkYImKY=;
+        b=jxD9vDfdrnO5MEeSTKs8pQxGzfjl+tfzg5bRvfNCMCt6GJvElxt3Y3QW0vXzLmi4cWRoFd
+        T7yA1v57ezMZF59OaW5W2w60RpDyrVwXT0b/f00E7Vjx/UNVu0D8ZJAAStpwHMjsiuuxE6
+        lqOZs/gfrLpxUySMMcPxv8UCrvJQAYqVgpWXO2Ql5VEOaOZkNe0vQDloSIdeScnZla4q2h
+        TQ+MWUmFepU4+7mr8E0r5tk7RycpjDO9xawi9r0MFIsXKgwIHLrIwszR0A3iU9Ovmqjkvl
+        P7jV8/Zq7nsqO9D6+W4KqX1gXsnlxbE5SKoUQpapQAa0UkcGO9LMCrcgUd56og==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 7765A1BF213;
+        Fri, 16 Jun 2023 10:13:46 +0000 (UTC)
+Date:   Fri, 16 Jun 2023 12:13:45 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Sebastian Reichel <sre@kernel.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>
+Subject: Re: [PATCH 7/7] drm/panel: sitronix-st7789v: Check display ID
+Message-ID: <20230616121345.2501c36a@xps-13>
+In-Reply-To: <20230614232724.yer2ikvfzmaiejrd@mercury.elektranox.org>
+References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
+        <20230609145951.853533-8-miquel.raynal@bootlin.com>
+        <20230610204525.GA1042549@ravnborg.org>
+        <20230614232724.yer2ikvfzmaiejrd@mercury.elektranox.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ElvD8fTDzec/LOV5"
-Content-Disposition: inline
-In-Reply-To: <20230616063210.19063-3-eric.lin@sifive.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---ElvD8fTDzec/LOV5
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Sebastian,
 
-On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
-> From: Greentime Hu <greentime.hu@sifive.com>
->=20
-> This adds SiFive private L2 cache PMU driver. User
-> can use perf tool to profile by event name and event id.
->=20
-> Example:
-> $ perf stat -C 0 -e /sifive_pl2_pmu/inner_acquire_block_btot/
->                 -e /sifive_pl2_pmu/inner_acquire_block_ntob/
->                 -e /sifive_pl2_pmu/inner_acquire_block_ntot/ ls
->=20
->  Performance counter stats for 'CPU(s) 0':
->=20
->                300      sifive_pl2_pmu/inner_acquire_block_btot/
->              17801      sifive_pl2_pmu/inner_acquire_block_ntob/
->               5253      sifive_pl2_pmu/inner_acquire_block_ntot/
->=20
->        0.088917326 seconds time elapsed
->=20
-> $ perf stat -C 0 -e /sifive_pl2_pmu/event=3D0x10001/
->                 -e /sifive_pl2_pmu/event=3D0x4001/
->                 -e /sifive_pl2_pmu/event=3D0x8001/ ls
->=20
->  Performance counter stats for 'CPU(s) 0':
->=20
->                251      sifive_pl2_pmu/event=3D0x10001/
->               2620      sifive_pl2_pmu/event=3D0x4001/
->                644      sifive_pl2_pmu/event=3D0x8001/
->=20
->        0.092827110 seconds time elapsed
->=20
-> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
-> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> Reviewed-by: Nick Hu <nick.hu@sifive.com>
-> ---
->  drivers/soc/sifive/Kconfig            |   9 +
->  drivers/soc/sifive/Makefile           |   1 +
->  drivers/soc/sifive/sifive_pl2.h       |  20 +
->  drivers/soc/sifive/sifive_pl2_cache.c |  16 +
->  drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++++++++
+sre@kernel.org wrote on Thu, 15 Jun 2023 01:27:24 +0200:
 
-Perf drivers should be in drivers/perf, no?
+> Hi,
+>=20
+> On Sat, Jun 10, 2023 at 10:45:25PM +0200, Sam Ravnborg wrote:
+> > Hi Miquel,
+> >=20
+> > On Fri, Jun 09, 2023 at 04:59:51PM +0200, Miquel Raynal wrote: =20
+> > > A very basic debugging rule when a device is connected for the first
+> > > time is to access a read-only register which contains known data in
+> > > order to ensure the communication protocol is properly working. This
+> > > driver lacked any read helper which is often a critical peace for
+> > > fastening bring-ups.
+> > >=20
+> > > Add a read helper and use it to verify the communication with the pan=
+el
+> > > is working as soon as possible in order to fail early if this is not =
+the
+> > > case. =20
+> >=20
+> > The read helper seems like a log of general boiler plate code.
+> > I briefly looked into the use of regmap for the spi communication,
+> > but it did not look like it supported the bit9 stuff.
+> >=20
+> > I did not stare enough to add a reviewd by, but the approach is fine
+> > and it is good to detech issues early. =20
+>=20
+> The st7789v datasheet describes a setup where SPI is connected
+> unidirectional (i.e. without MISO). In that case the ID check
+> will fail.
 
-Cheers,
-Conor.
+Right. I'll add a (spi->mode & SPI_NO_RX) check, as the default is to
+have both lines, if there is no MISO line, I'd expect it to be
+described in the DT, otherwise the description is broken.
 
---ElvD8fTDzec/LOV5
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIw1qQAKCRB4tDGHoIJi
-0q20AP0SJ+XMu+AbrLQcuJNmsYqvVW9wc6xBagHa9pzRoEw0mwD+K5s2+gB8wow+
-BqnI6l1BRUx8VsrF6VfTnTaE4ZlUJQM=
-=YDC2
------END PGP SIGNATURE-----
-
---ElvD8fTDzec/LOV5--
+Thanks,
+Miqu=C3=A8l
