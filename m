@@ -2,104 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F3A6732A9C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BBCB732B22
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:10:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234183AbjFPIzm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 04:55:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49070 "EHLO
+        id S243362AbjFPJKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:10:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244917AbjFPIze (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:55:34 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on2040.outbound.protection.outlook.com [40.107.237.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6136C30F4;
-        Fri, 16 Jun 2023 01:55:32 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ElxdEKjMXuGKZ6umIkL9h3f+uqny6POgRMJzVCGlZ0cAMhsiid7+5zt64qCDjyQhMPEfiTDgH0ry2zQfdXVGlXBy1GoBRwPcfvylurj6+waqaxtL7m5DANZtvRXym1kwHoxq7g0DeFxzDNCR6HcLr170THbw8m3BhQjLm5tGPamm0rBReBnUN+vYK+58wccIZnczuFIGrdG36JhKvoImcdKW01zP1QjkQ//Vvb+LOweQgTvrqYYu83LO7psSLzeuC7MgZ+df4w4NUKqyZB3mKyTe+bxKCeQqiBYRupLozeKu2jcbl8jG5OfAqptDdrbHemY6PQTw32Hjs83RX7nswg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=LUcwvPSeNEP61TNBLUnxBRn3FCI9LfPRUN4FULDF3MA=;
- b=WqkcyQyuCr78KI8s8kr3z5reJoHLKy9+akE2W9WQ5dEhGymHA/ukd57Yjq5Y1rQLsEbwJAw6QLLI/11Oj8I4vdI8VCXLVzyN2mIRyGqZTVLFmA0D4CJL60h8/o9RvM3tUUVaKtCn8BybOTALjn41mYQCtUcqz09uFt844RmjJRxBWe4eENzAmIaetBYa68jisBj/vdwtwNaHtP+0017pt6b/KLKXI3/15bOvbGYv0iM9GKCBi5BsP8gUPwcmrd8GhAwyCcX1XQstcc6kPWUsNuSEQ+lwc4z5fz9KQWYUTbsWEX4cJSfBe8/NHD2xsYIAHlGXxf9oXLURDcEzQU6I7w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LUcwvPSeNEP61TNBLUnxBRn3FCI9LfPRUN4FULDF3MA=;
- b=KphZIN8SgWZTY00n6oQaWFIqdFassKMleuXn7VMSz32BfyBqixz2rWEqH8LLfOk+RZ1P3bEikLuej+egb6JK3knAJmWOV0KXTF3y0KNsNQt/UbilNVCCe2DJtKRN2BsQh/ApdHlZYGiWjZo23X2Lx1Fc6l0EKOiGPGuJcfH4pTo=
-Received: from DM6PR13CA0016.namprd13.prod.outlook.com (2603:10b6:5:bc::29) by
- LV8PR12MB9262.namprd12.prod.outlook.com (2603:10b6:408:1e7::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.25; Fri, 16 Jun
- 2023 08:55:30 +0000
-Received: from CY4PEPF0000EDD4.namprd03.prod.outlook.com
- (2603:10b6:5:bc:cafe::d2) by DM6PR13CA0016.outlook.office365.com
- (2603:10b6:5:bc::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.11 via Frontend
- Transport; Fri, 16 Jun 2023 08:55:29 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000EDD4.mail.protection.outlook.com (10.167.241.208) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.27 via Frontend Transport; Fri, 16 Jun 2023 08:55:29 +0000
-Received: from SATLEXMB06.amd.com (10.181.40.147) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 16 Jun
- 2023 03:55:28 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB06.amd.com
- (10.181.40.147) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 16 Jun
- 2023 03:55:28 -0500
-Received: from xhdakumarma40u.xilinx.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23
- via Frontend Transport; Fri, 16 Jun 2023 03:55:24 -0500
-From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To:     <tudor.ambarus@linaro.org>, <pratyush@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <git@amd.com>, <michael@walle.cc>, <linux-mtd@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <amitrkcian2002@gmail.com>,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH v2 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP signal not connected
-Date:   Fri, 16 Jun 2023 14:25:13 +0530
-Message-ID: <20230616085513.17632-3-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230616085513.17632-1-amit.kumar-mahapatra@amd.com>
-References: <20230616085513.17632-1-amit.kumar-mahapatra@amd.com>
+        with ESMTP id S1344266AbjFPJJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:09:57 -0400
+Received: from eu-smtp-delivery-151.mimecast.com (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BFF9359E
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:08:28 -0700 (PDT)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-25-AX0ny6iUOu2l40pxf4kpiA-1; Fri, 16 Jun 2023 10:08:25 +0100
+X-MC-Unique: AX0ny6iUOu2l40pxf4kpiA-1
+Received: from AcuMS.Aculab.com (10.202.163.4) by AcuMS.aculab.com
+ (10.202.163.4) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Fri, 16 Jun
+ 2023 10:08:22 +0100
+Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
+ id 15.00.1497.048; Fri, 16 Jun 2023 10:08:22 +0100
+From:   David Laight <David.Laight@ACULAB.COM>
+To:     'Herve Codina' <herve.codina@bootlin.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: RE: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
+Thread-Topic: [PATCH v4 07/13] minmax: Introduce {min,max}_array()
+Thread-Index: AQHZn2z+IMzVucn/mECJ0o8xQC0QeK+NI4Pg
+Date:   Fri, 16 Jun 2023 09:08:22 +0000
+Message-ID: <6c7fe34f7b65421ab618d33ba907ae09@AcuMS.aculab.com>
+References: <20230614074904.29085-1-herve.codina@bootlin.com>
+        <20230614074904.29085-8-herve.codina@bootlin.com>
+        <CAHp75Vcur=H_2mBm5Ztuvd7Jnvmr6+tvCbEkFtmaVLsEjXr8NQ@mail.gmail.com>
+        <20230614114214.1371485e@bootlin.com>
+        <CAHp75VcmW2StPqb_LtKFyNyJ2+jz3c19zNRDiSuGs06Bseq04w@mail.gmail.com>
+        <20230614223418.0d7e355d@bootlin.com>
+        <CAHp75VfFyDzr4qHNssXZ8RLy0gxMWdjBgac4JLd7grRLEG-vyw@mail.gmail.com>
+ <20230615113512.07967677@bootlin.com>
+In-Reply-To: <20230615113512.07967677@bootlin.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000EDD4:EE_|LV8PR12MB9262:EE_
-X-MS-Office365-Filtering-Correlation-Id: 21fd9a29-cb37-47a8-3d8e-08db6e476fc6
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: h2xxJWOOph0QicVAa+eJDJzXkUp/JG/R27St2wuCyhY+sbKEqjMz8/R7jC4YhmXU2KtLqa+dmzV4KX/268zL6oC0BJ8LTPdfzUyHsu3jrgX0EzDlkRAadBmHY6hY3ysbZxOFkV0ntyIpqFH0c9gGAvaRgz000mU6KMg3vz0GPa+tQym1aK2Td37XNQuITJrXttz7axDAK5wM0p75Gg+Ss9Gh8jUaawL3xxVm7h/Tt54lmRoX/pbVfjp4tDNd+dMQFaqQ013ok8CywyNu7wPQof9DP9effFj+nRJwt5aA/0naElCzR05WH22VUSZPfZVrZiXCiNtYD83TOEpz53PdxTw6E/1ZBXFAovvQc0pH19agmjxFJUnUdC9VXihcyS7Fxx5r2tTK6IDGD5TTq6Ze9dJmQOU9nkKVvnVHxXlcAOMX20i9YTiuaxv8BDaN6PsXvI3m5X5IFaMnVVrAT3Fe9yasjTejWKqkSvxCzbShrDl+Lc07KbOZEhhaqp2syS87YTbLnOtGJo+B6A+HOS2kqBk6njBB3HFEMsUzqkRFvTHzFYXn9LiQSakSJFWgCAILR5LfGWX/JCuZoum7+YMw8XL8b75atK8+DpXrhkkaoAMFXo21ak/hh+pLIRLjknLkB8LOUKyPd8Z/bYRvw9xGC+UqjG4qlDY9lgwX2gUPwHkSz4T+0RVvWs0iXB1gDOfHnmuqetmHRfv9CbN7sV1E9KDkpKjCPMmnjATKiC66ngPzmn3UUZwkEeeWgWnerwfuBghzWzI2+Vxr+1QvinCwQg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(396003)(39860400002)(346002)(451199021)(46966006)(40470700004)(36840700001)(40460700003)(82740400003)(5660300002)(81166007)(356005)(336012)(2616005)(83380400001)(1076003)(426003)(186003)(2906002)(36860700001)(7416002)(47076005)(26005)(478600001)(40480700001)(70206006)(6666004)(8936002)(316002)(8676002)(41300700001)(86362001)(82310400005)(36756003)(4326008)(70586007)(54906003)(110136005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2023 08:55:29.8959
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 21fd9a29-cb37-47a8-3d8e-08db6e476fc6
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EDD4.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV8PR12MB9262
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: base64
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -107,64 +78,73 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setting the status register write disable (SRWD) bit in the status
-register (SR) with WP signal of the flash not connected will configure the
-SR permanently as read-only. If WP signal is not connected, avoid setting
-SRWD bit while writing the SR during flash protection.
-
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
- drivers/mtd/spi-nor/core.c | 3 +++
- drivers/mtd/spi-nor/core.h | 1 +
- drivers/mtd/spi-nor/swp.c  | 9 +++++++--
- 3 files changed, 11 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index 0bb0ad14a2fc..81b57c51f41c 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor *nor)
- 	if (flags & NO_CHIP_ERASE)
- 		nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
- 
-+	if (of_property_read_bool(np, "broken-wp"))
-+		nor->flags |= SNOR_F_BROKEN_WP;
-+
- 	if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
- 	    !nor->controller_ops)
- 		nor->flags |= SNOR_F_RWW;
-diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
-index 4fb5ff09c63a..6ac932eba913 100644
---- a/drivers/mtd/spi-nor/core.h
-+++ b/drivers/mtd/spi-nor/core.h
-@@ -132,6 +132,7 @@ enum spi_nor_option_flags {
- 	SNOR_F_SWP_IS_VOLATILE	= BIT(13),
- 	SNOR_F_RWW		= BIT(14),
- 	SNOR_F_ECC		= BIT(15),
-+	SNOR_F_BROKEN_WP	= BIT(16),
- };
- 
- struct spi_nor_read_command {
-diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
-index 0ba716e84377..5d91f152c2cc 100644
---- a/drivers/mtd/spi-nor/swp.c
-+++ b/drivers/mtd/spi-nor/swp.c
-@@ -214,8 +214,13 @@ static int spi_nor_sr_lock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- 
- 	status_new = (status_old & ~mask & ~tb_mask) | val;
- 
--	/* Disallow further writes if WP pin is asserted */
--	status_new |= SR_SRWD;
-+	/*
-+	 * Disallow further writes if WP pin is not broken. WP pin is
-+	 * considered broken only if the WP signal of the flash device
-+	 * is not connected.
-+	 */
-+	if (!(nor->flags & SNOR_F_BROKEN_WP))
-+		status_new |= SR_SRWD;
- 
- 	if (!use_top)
- 		status_new |= tb_mask;
--- 
-2.17.1
+RnJvbTogSGVydmUgQ29kaW5hDQo+IFNlbnQ6IDE1IEp1bmUgMjAyMyAxMDozNQ0KPiA+IC4uLg0K
+PiA+DQo+ID4gPiA+ID4gPiA+ICsgICAgICAgdHlwZW9mKF9fYXJyYXlbMF0gKyAwKSBfX2VsZW1l
+bnQgPSBfX2FycmF5Wy0tX19sZW5dOyAgICBcDQo+ID4gPiA+ID4gPg0KPiA+ID4gPiA+ID4gRG8g
+d2UgbmVlZCB0aGUgJyArIDAnIHBhcnQ/DQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBZZXMuDQo+ID4g
+PiA+ID4NCj4gPiA+ID4gPiBfX2FycmF5IGNhbiBiZSBhbiBhcnJheSBvZiBjb25zdCBpdGVtcyBh
+bmQgaXQgaXMgbGVnaXRpbWF0ZSB0byBnZXQgdGhlDQo+ID4gPiA+ID4gbWluaW11bSB2YWx1ZSBm
+cm9tIGNvbnN0IGl0ZW1zLg0KPiA+ID4gPiA+DQo+ID4gPiA+ID4gdHlwZW9mKF9fYXJyYXlbMF0p
+IGtlZXBzIHRoZSBjb25zdCBxdWFsaWZpZXIgYnV0IHdlIG5lZWQgdG8gYXNzaWduIF9fZWxlbWVu
+dA0KPiA+ID4gPiA+IGluIHRoZSBsb29wLg0KPiA+ID4gPiA+IE9uZSB3YXkgdG8gZHJvcCB0aGUg
+Y29uc3QgcXVhbGlmaWVyIGlzIHRvIGdldCB0aGUgdHlwZSBmcm9tIGEgcnZhbHVlIGNvbXB1dGVk
+DQo+ID4gPiA+ID4gZnJvbSBfX2FycmF5WzBdLiBUaGlzIHJ2YWx1ZSBoYXMgdG8gaGF2ZSB0aGUg
+ZXhhY3Qgc2FtZSB0eXBlIHdpdGggb25seSB0aGUgY29uc3QNCj4gPiA+ID4gPiBkcm9wcGVkLg0K
+PiA+ID4gPiA+ICdfX2FycmF5WzBdICsgMCcgd2FzIGEgcGVyZmVjdCBjYW5kaXRhdGUuDQo+ID4g
+PiA+DQo+ID4gPiA+IFNlZW1zIGxpa2UgdGhpcyBhbHNvIGRlc2VydmVzIGEgY29tbWVudC4gQnV0
+IGlmIHRoZSBzZXJpZXMgaXMgYWNjZXB0ZWQNCj4gPiA+ID4gYXMgaXMsIGl0IG1heSBiZSBkb25l
+IGFzIGEgZm9sbG93IHVwLg0KPiA+ID4gPg0KPiA+ID4NCj4gPiA+IEZpbmFsbHkgbm90IHNvIHNp
+bXBsZSAuLi4NCj4gPiA+IEkgZGlkIHNvbWUgZGVlcGVyIHRlc3RzIGFuZCB0aGUgbWFjcm9zIG5l
+ZWQgdG8gYmUgZml4ZWQuDQo+ID4gPg0KPiA+ID4gSSBob3BlIHRoaXMgb25lICh3aXRoIGNvbW1l
+bnRzIGFkZGVkKSBpcyBjb3JyZWN0Og0KPiA+ID4gLS0tIDggLS0tDQo+ID4gPiAvKg0KPiA+ID4g
+ICogRG8gbm90IGNoZWNrIHRoZSBhcnJheSBwYXJhbWV0ZXIgdXNpbmcgX19tdXN0X2JlX2FycmF5
+KCkuDQo+ID4gPiAgKiBJbiB0aGUgZm9sbG93aW5nIGxlZ2l0IHVzZS1jYXNlIHdoZXJlIHRoZSAi
+YXJyYXkiIHBhc3NlZCBpcyBhIHNpbXBsZSBwb2ludGVyLA0KPiA+ID4gICogX19tdXN0X2JlX2Fy
+cmF5KCkgd2lsbCByZXR1cm4gYSBmYWlsdXJlLg0KPiA+ID4gICogLS0tIDg8IC0tLQ0KPiA+ID4g
+ICogaW50ICpidWZmDQo+ID4gPiAgKiAuLi4NCj4gPiA+ICAqIG1pbiA9IG1pbl9hcnJheShidWZm
+LCBuYl9pdGVtcyk7DQo+ID4gPiAgKiAtLS0gODwgLS0tDQo+ID4gPiAgKg0KPiA+ID4gICogVGhl
+IGZpcnN0IHR5cGVvZigmKGFycmF5KVswXSkgaXMgbmVlZGVkIGluIG9yZGVyIHRvIHN1cHBvcnQg
+YXJyYXlzIG9mIGJvdGgNCj4gPiA+ICAqICdpbnQgKmJ1ZmYnIGFuZCAnaW50IGJ1ZltOXScgdHlw
+ZXMuDQo+ID4gPiAgKg0KPiA+ID4gICogdHlwZW9mKF9fYXJyYXlbMF0gKyAwKSB1c2VkIGZvciBf
+X2VsZW1lbnQgaXMgbmVlZGVkIGFzIHRoZSBhcnJheSBjYW4gYmUgYW4NCj4gPiA+ICAqIGFycmF5
+IG9mIGNvbnN0IGl0ZW1zLg0KPiA+ID4gICogSW4gb3JkZXIgdG8gZGlzY2FyZCB0aGUgY29uc3Qg
+cXVhbGlmaWVyIHVzZSBhbiBhcml0aG1ldGljIG9wZXJhdGlvbiAocnZhbHVlKS4NCj4gPg0KPiA+
+DQo+ID4gPiAgKiBUaGlzIGFyaXRobWV0aWMgb3BlcmF0aW9uIGRpc2NhcmQgdGhlIGNvbnN0IGJ1
+dCBhbHNvIGNhbiBsZWFkIHRvIGFuIGludGVnZXINCj4gPg0KPiA+IGRpc2NhcmRzDQo+ID4NCj4g
+PiA+ICAqIHByb21vdGlvbi4gRm9yIGluc3RhbmNlLCBhIGNvbnN0IHM4IF9fYXJyYXlbMF0gbGVh
+ZCB0byBhbiBpbnQgX19lbGVtZW50IGR1ZQ0KPiA+DQo+ID4gbGVhZHMNCj4gPg0KPiA+ID4gICog
+dG8gdGhlIHByb21vdGlvbi4NCj4gPiA+ICAqIEluIHRoaXMgY2FzZSwgc2ltcGxlIG1pbigpIG9y
+IG1heCgpIG9wZXJhdGlvbiBmYWlscyAodHlwZSBtaXNtYXRjaCkuDQo+ID4gPiAgKiBVc2UgbWlu
+X3QoKSBvciBtYXhfdCgpIChvcF90IHBhcmFtZXRlcikgZW5mb3JjaW5nIHRoZSB0eXBlIGluIG9y
+ZGVyIHRvIGF2b2lkDQo+ID4gPiAgKiB0aGUgbWluKCkgb3IgbWF4KCkgZmFpbHVyZS4NCj4gPg0K
+PiA+IFRoaXMgcGFydCBwZXJoYXBzIGNhbiBiZSBhdm9pZGVkLiBTZWUgYmVsb3cuDQo+ID4NCj4g
+PiA+ICAqLw0KPiA+ID4gI2RlZmluZSBfX21pbm1heF9hcnJheShvcF90LCBhcnJheSwgbGVuKSAo
+eyAgICAgICAgICAgICAgICAgICAgIFwNCj4gPiA+ICAgICAgICAgdHlwZW9mKCYoYXJyYXkpWzBd
+KSBfX2FycmF5ID0gKGFycmF5KTsgICAgICAgICAgICAgICAgICBcDQo+ID4gPiAgICAgICAgIHR5
+cGVvZihsZW4pIF9fbGVuID0gKGxlbik7ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgXA0K
+PiA+ID4gICAgICAgICB0eXBlb2YoX19hcnJheVswXSArIDApIF9fZWxlbWVudCA9IF9fYXJyYXlb
+LS1fX2xlbl07ICAgIFwNCj4gPiA+ICAgICAgICAgd2hpbGUgKF9fbGVuLS0pICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcDQo+ID4gPiAgICAgICAgICAgICAgICAgX19l
+bGVtZW50ID0gb3BfdCh0eXBlb2YoX19hcnJheVswXSksIF9fZWxlbWVudCwgX19hcnJheVtfX2xl
+bl0pOyBcDQo+ID4NCj4gPiBCdXQgY2FuJ3Qgd2UgaW5zdGVhZCBoYXZlIHR5cGVvZigrKGFycmF5
+WzBdKSkgaW4gdGhlIGRlZmluaXRpb24gb2YgX19lbGVtZW50Pw0KPiA+IFRoZXJlIGFyZSBhbHNv
+IG90aGVyIHBvc3NpYmxlIHNvbHV0aW9uczogYSkgX0dlbmVyaWMoKSB3aXRoIGxpc3RlZA0KPiA+
+IGNvbnN0IHR5cGVzIHRvIG1vdmUgdGhlbSB0byBub24tY29uc3QsIGFuZCBiKSBfX2F1dG9fdHlw
+ZSAod2hpY2ggaXMNCj4gPiBzdXBwb3J0ZWQgYnkgR0NDIDQuOSBhbmQgY2xhbmcsIGJ1dCBub3Qg
+aW4gdGhlIEMxMSBzdGFuZGFyZCkuDQo+IA0KPiB0eXBlb2YoKyhhcnJheVswXSkpIGtlZXBzIHRo
+ZSBwcm9tb3Rpb24uDQo+IA0KPiBfX2F1dG9fdHlwZSB3b3JrcyB3aXRoIG15IGdjYy0xMiBidXQg
+bm90IHdpdGggYSBnY2MtNS41LiBEZXBlbmRpbmcgb24gdGhlDQo+IGNvbXBpbGVyIHZlcnNpb24s
+IGl0IGRpc2NhcmRzIG9yIGtlZXBzIHRoZSBjb25zdCBxdWFsaWZpZXIuIEZvciB0aGlzIHJlYXNv
+bg0KPiBJIHdvdWxkIHByZWZlciB0byBub3QgdXNlIGl0Lg0KDQpKdXN0IGRlZmluZSB0d28gdmFy
+aWFibGVzIHR5cGVvZihfX2FycmF5WzBdICsgMCkgb25lIGZvciBhbiBlbGVtZW50DQphbmQgb25l
+IGZvciB0aGUgbGltaXQuDQpUaGUganVzdCB0ZXN0IChlZyk6DQoJaWYgKGxpbWl0ID4gaXRlbSkg
+bGltaXQgPSBpdGVtOw0KZmluYWxseSBjYXN0IHRoZSBsaW1pdCBiYWNrIHRvIHRoZSBvcmlnaW5h
+bCB0eXBlLg0KVGhlIHByb21vdGlvbnMgb2YgY2hhci9zaG9ydCB0byBzaWduZWQgaW50IHdvbid0
+IG1hdHRlci4NClRoZXJlIGlzIG5vIG5lZWQgZm9yIGFsbCB0aGUgdHlwZS1jaGVja2luZyBpbiBt
+aW4vbWF4Lg0KDQpJbmRlZWQsIGlmIG1pbl90KHR5cGUsIGEsIGIpIGlzIGluIGFueXdheSBzYW5l
+IGl0IHNob3VsZA0KZXhwYW5kIHRvOg0KCXR5cGUgX2EgPSBhLCBfYiA9IGI7DQoJX2EgPCBfYiA/
+IF9hIDogX2INCndpdGhvdXQgYW55IG9mIHRoZSBjaGVja3MgdGhhdCBtaW4oKSBkb2VzLg0KDQoJ
+RGF2aWQNCg0KLQ0KUmVnaXN0ZXJlZCBBZGRyZXNzIExha2VzaWRlLCBCcmFtbGV5IFJvYWQsIE1v
+dW50IEZhcm0sIE1pbHRvbiBLZXluZXMsIE1LMSAxUFQsIFVLDQpSZWdpc3RyYXRpb24gTm86IDEz
+OTczODYgKFdhbGVzKQ0K
 
