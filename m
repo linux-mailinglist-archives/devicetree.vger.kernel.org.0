@@ -2,184 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D816733498
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 17:21:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64F1E7334A7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 17:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344978AbjFPPVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 11:21:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42938 "EHLO
+        id S230056AbjFPPYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 11:24:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229883AbjFPPVA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 11:21:00 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A99F2358E
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 08:20:57 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-30fceb009faso1574991f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 08:20:57 -0700 (PDT)
+        with ESMTP id S231865AbjFPPYY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 11:24:24 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83A6D297D;
+        Fri, 16 Jun 2023 08:24:23 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51878f8e541so1025010a12.3;
+        Fri, 16 Jun 2023 08:24:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686928856; x=1689520856;
+        d=gmail.com; s=20221208; t=1686929062; x=1689521062;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=nwl0LNhJUMmewFF0gr0xbjGPARcgwNZ+TwWnvyZN5TM=;
-        b=y6d7G/bcZeVfhtOwzWnupZfcpOIbpWqUETtVqEcRoO7agztBlbsJ6YPPP9rYTnGqzZ
-         GaMK7QstokUuhf97rxF7jzZwOYgriGRPuzTUvT48ELnphBNOYsBb9D1DTICnOs6M8OKE
-         afYvikew/Y7RqAZhLpRwdqewU9DxCRMUyvx1k9copwZaX3/AxPMwFqa4eAl8AmUC6O/L
-         MYjLAIxrTSG/+UJT2GjtFggqqIRQGnBl/iecVw42bxB5r48bywnIAXXWp/0rTY8uKtm7
-         ke1QekA/keSjnmIm/uc4gQQ3Nlc4tvOymz/gtGs1v9pBcUMWaFozL8jLveLpXomgA4m+
-         ONAw==
+        bh=dn/BTN44xyxlUw2PKKrOnf8y3fWJcGe7KVRI/Ykt+jA=;
+        b=PjK7PJXUhEVq2tZ96W0rtC4BiVLxcJJ2kCKOScDs0Q0WKawuBsWfLhsMcF7BbyC1y4
+         MxgcVT4sE9BLN7VJMm+cJ9ZaT0uroz+x0ycYf6Z9IYQfuUUJJ6IWU00w5RBxi3ovmK3f
+         05TrBhzwgGTOWuDKXuOV8qzCwvC6Mu+YklmPY3FQZGhEyl2Mb9JiokyJZ11Bxp/QXLXc
+         RIlf14uOhYTlrV2tqXXtcJmF0ehtWlcQ7YY/GUyM4fTmlLorUDmtMMd5leoGmTJoQrap
+         djkOURyaU6XbCg4ohKGl2IcHSul3hbfKWBOauF35IfcpL4uT1aKLH0Cjy3m19RDBf2NT
+         sBrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686928856; x=1689520856;
+        d=1e100.net; s=20221208; t=1686929062; x=1689521062;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nwl0LNhJUMmewFF0gr0xbjGPARcgwNZ+TwWnvyZN5TM=;
-        b=jtQrugkKnUh2sWhxAn3XS5WBLYp4X1vjcyGMej7SiZI3LWCPdBDuJf3URu9G6KJG58
-         PFWMoaHWWYuHnz+e07tYd2qwHHqpg7TBuVmxQWE5rGKyevyqD6DMA7klHiMXOkL649lK
-         FwIMq3o9uaXSfRFr8bO2BYEIC89Lwdn85Y4zcqu22wOUQAZQ/BgtDVmw4Dwn86JHNczO
-         0U/M6QW7lhWdhUckLGzv0P7U42DbqYWKJKDijwqVWMlkdlA654dS+4sCVxHQQKYmfn7o
-         s8wVuDxqvfKB21wDsBQZIrHf76g21SjEkyJ1ODk3tCdgr3PzioyqiUcetMDa6C4cycPz
-         ZSVA==
-X-Gm-Message-State: AC+VfDwbJxcJWu8sdzIrzCgTS1/LfZjAFbIms1wlDc7UyH0ah058Fnip
-        JOqUBAdbdb1fXSFQpiPPkEzkP08PRVdycmIzucPWCw==
-X-Google-Smtp-Source: ACHHUZ7Wieql98Qo7JahSqyBzgeFyTeWSzVEw0p2WQO9ukcNU4vWKZ3JzJ0l9v2deSmbwPenZ18DpHRCFahcErhiCN0=
-X-Received: by 2002:adf:e4cb:0:b0:311:f11:4c55 with SMTP id
- v11-20020adfe4cb000000b003110f114c55mr2252797wrm.13.1686928856105; Fri, 16
- Jun 2023 08:20:56 -0700 (PDT)
+        bh=dn/BTN44xyxlUw2PKKrOnf8y3fWJcGe7KVRI/Ykt+jA=;
+        b=k7yMaMgbUdBvC7FJeJjrOW4voQW9SQIzcGGPrnd6CHxW3TD4qJFoV64+D7oc/jzqLg
+         DaAZrIr8+pZXYTGwaZ3EtAYFhGf3CXFAXbMwq6sjStk6ULpw3JmMC98TnpYdt/16vqfo
+         FzDEtnjhzAXlqB1PpUgPoH5Tp9V0zdOViDx/2WDn8XtgTP9MiJ+fJjO14dDzNipcHdrM
+         FSyhclHiFVEVoXa03uOEf2bNk2FxeqMXPOqQb2UFgGis6DqQC5ENWpf8OTHADFHeErZP
+         /k7aNmPctc1tp4zySQMmAd+Bf3LtwauPTiDGnbb38blh2JQ2x2P13GIwhK4/2wp6/de9
+         x4xw==
+X-Gm-Message-State: AC+VfDx9u/Nn5Zp6IDmTPlPdieoNPceWfsdVHJV5s+Upbz8oeZlffvLY
+        co+F/fpWuSs35+y2s0pU2YSmKhNU8ISZoE2hDmU=
+X-Google-Smtp-Source: ACHHUZ4AMCmpqMcRTbV6e0HWlHqHxMitWeGT8CX56omWy3/0BZFAfW8Pto0JzZaKJMamCHIIfJp8Wjj6rtKhpfsrxXI=
+X-Received: by 2002:a17:907:cca0:b0:978:82fd:758b with SMTP id
+ up32-20020a170907cca000b0097882fd758bmr1532295ejc.29.1686929061758; Fri, 16
+ Jun 2023 08:24:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230615213154.1753313-1-robh@kernel.org>
-In-Reply-To: <20230615213154.1753313-1-robh@kernel.org>
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-Date:   Fri, 16 Jun 2023 09:20:45 -0600
-Message-ID: <CANLsYkx_cd7QxMpE8OKe+jJT-tSt23Ub0p8ceAuKbchLtQmKcg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Remove last usage of "binding" or "schema"
- in titles
-To:     Rob Herring <robh@kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+References: <20230329090403.5274-1-clamor95@gmail.com> <20230329090403.5274-2-clamor95@gmail.com>
+In-Reply-To: <20230329090403.5274-2-clamor95@gmail.com>
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+Date:   Fri, 16 Jun 2023 18:24:10 +0300
+Message-ID: <CAPVz0n3XAonUH-d4hZ7JsWcgQd+fmq_WRPPajbOopq8E6y6TNQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] ARM: tegra: transformer: use labels for mmc in aliases
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Svyatoslav Ryhel <clamor95@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Maxim Schwalm <maxim.schwalm@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Abel Vesa <abelvesa@kernel.org>, Peng Fan <peng.fan@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        =?UTF-8?Q?Fern=C3=A1ndez_Rojas?= <noltari@gmail.com>,
-        Marek Vasut <marex@denx.de>, Suman Anna <s-anna@ti.com>,
-        - <devicetree-spec@vger.kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jun 2023 at 15:32, Rob Herring <robh@kernel.org> wrote:
+=D1=81=D1=80, 29 =D0=B1=D0=B5=D1=80. 2023=E2=80=AF=D1=80. =D0=BE 12:04 Svya=
+toslav Ryhel <clamor95@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5:
 >
-> The Devicetree bindings document does not have to say in the title that
-> it is a "Devicetree binding", but instead just describe the hardware.
+> Use phandle references for mmc instead of path in aliases.
 >
-> Most of these have been fixed already, so fix the handful that snuck in.
-> With this, a meta-schema check can be enabled to catch these
-> automatically.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
 > ---
->  .../devicetree/bindings/clock/brcm,bcm63268-timer-clocks.yaml   | 2 +-
->  Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml    | 2 +-
->  .../devicetree/bindings/power/reset/restart-handler.yaml        | 2 +-
->  .../devicetree/bindings/remoteproc/ti,pru-consumer.yaml         | 2 +-
->  .../devicetree/bindings/reserved-memory/framebuffer.yaml        | 2 +-
->  5 files changed, 5 insertions(+), 5 deletions(-)
+>  arch/arm/boot/dts/tegra114-asus-tf701t.dts           | 12 ++++++------
+>  .../boot/dts/tegra30-asus-transformer-common.dtsi    | 12 ++++++------
+>  2 files changed, 12 insertions(+), 12 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm63268-timer-=
-clocks.yaml b/Documentation/devicetree/bindings/clock/brcm,bcm63268-timer-c=
-locks.yaml
-> index 199818b2fb6d..cd0d763ce2f3 100644
-> --- a/Documentation/devicetree/bindings/clock/brcm,bcm63268-timer-clocks.=
-yaml
-> +++ b/Documentation/devicetree/bindings/clock/brcm,bcm63268-timer-clocks.=
-yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/clock/brcm,bcm63268-timer-clocks.yaml=
-#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm/boot/dts/tegra114-asus-tf701t.dts b/arch/arm/boot/d=
+ts/tegra114-asus-tf701t.dts
+> index 84a3eb38e71d..3a420ac969ff 100644
+> --- a/arch/arm/boot/dts/tegra114-asus-tf701t.dts
+> +++ b/arch/arm/boot/dts/tegra114-asus-tf701t.dts
+> @@ -13,9 +13,9 @@ / {
+>         chassis-type =3D "convertible";
 >
-> -title: Broadcom BCM63268 Timer Clock and Reset Device Tree Bindings
-> +title: Broadcom BCM63268 Timer Clock and Reset
+>         aliases {
+> -               mmc0 =3D "/mmc@78000600"; /* eMMC */
+> -               mmc1 =3D "/mmc@78000400"; /* uSD slot */
+> -               mmc2 =3D "/mmc@78000000"; /* WiFi */
+> +               mmc0 =3D &sdmmc4; /* eMMC */
+> +               mmc1 =3D &sdmmc3; /* uSD slot */
+> +               mmc2 =3D &sdmmc1; /* WiFi */
 >
->  maintainers:
->    - =C3=81lvaro Fern=C3=A1ndez Rojas <noltari@gmail.com>
-> diff --git a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml=
- b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> index ff9600474df2..0a6dc1a6e122 100644
-> --- a/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> +++ b/Documentation/devicetree/bindings/clock/imx8mp-audiomix.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/clock/imx8mp-audiomix.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>                 rtc0 =3D &palmas;
+>                 rtc1 =3D "/rtc@7000e000";
+> @@ -605,12 +605,12 @@ i2s@70080300 {
+>                 };
+>         };
 >
-> -title: NXP i.MX8MP AudioMIX Block Control Binding
-> +title: NXP i.MX8MP AudioMIX Block Control
+> -       mmc@78000000 {
+> +       sdmmc1: mmc@78000000 {
+>                 /* WiFi */
+>         };
 >
->  maintainers:
->    - Marek Vasut <marex@denx.de>
-> diff --git a/Documentation/devicetree/bindings/power/reset/restart-handle=
-r.yaml b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
-> index 1f9a2aac53c0..f2ffdd29d52a 100644
-> --- a/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
-> +++ b/Documentation/devicetree/bindings/power/reset/restart-handler.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/power/reset/restart-handler.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>         /* MicroSD card */
+> -       mmc@78000400 {
+> +       sdmmc3: mmc@78000400 {
+>                 status =3D "okay";
 >
-> -title: Restart and shutdown handler generic binding
-> +title: Restart and shutdown handler Common Properties
+>                 bus-width =3D <4>;
+> @@ -626,7 +626,7 @@ mmc@78000400 {
+>                 pinctrl-0 =3D <&sdmmc3_default>;
+>         };
 >
->  maintainers:
->    - Sebastian Reichel <sre@kernel.org>
-> diff --git a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer=
-.yaml b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> index c6d86964b72a..35f0bb38f7b2 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> +++ b/Documentation/devicetree/bindings/remoteproc/ti,pru-consumer.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/remoteproc/ti,pru-consumer.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+> -       mmc@78000600 {
+> +       sdmmc4: mmc@78000600 {
+>                 /* eMMC */
+>         };
 >
-> -title: Common TI PRU Consumer Binding
-> +title: TI PRU Consumer Common Properties
+> diff --git a/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi b/arc=
+h/arm/boot/dts/tegra30-asus-transformer-common.dtsi
+> index 1861b2de2dc3..f32806f07989 100644
+> --- a/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
+> +++ b/arch/arm/boot/dts/tegra30-asus-transformer-common.dtsi
+> @@ -12,9 +12,9 @@ / {
+>         chassis-type =3D "convertible";
 >
-
-Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-
->  maintainers:
->    - Suman Anna <s-anna@ti.com>
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/framebuffe=
-r.yaml b/Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
-> index 05b6648b3458..851ec24d6142 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
-> +++ b/Documentation/devicetree/bindings/reserved-memory/framebuffer.yaml
-> @@ -4,7 +4,7 @@
->  $id: http://devicetree.org/schemas/reserved-memory/framebuffer.yaml#
->  $schema: http://devicetree.org/meta-schemas/core.yaml#
+>         aliases {
+> -               mmc0 =3D "/mmc@78000600"; /* eMMC */
+> -               mmc1 =3D "/mmc@78000000"; /* uSD slot */
+> -               mmc2 =3D "/mmc@78000400"; /* WiFi */
+> +               mmc0 =3D &sdmmc4; /* eMMC */
+> +               mmc1 =3D &sdmmc1; /* uSD slot */
+> +               mmc2 =3D &sdmmc3; /* WiFi */
 >
-> -title: /reserved-memory framebuffer node bindings
-> +title: /reserved-memory framebuffer node
+>                 rtc0 =3D &pmic;
+>                 rtc1 =3D "/rtc@7000e000";
+> @@ -1388,7 +1388,7 @@ i2s@70080600 {            /* i2s3 */
+>                 };
+>         };
 >
->  maintainers:
->    - devicetree-spec@vger.kernel.org
+> -       mmc@78000000 {
+> +       sdmmc1: mmc@78000000 {
+>                 status =3D "okay";
+>
+>                 /* FIXME: Full 208Mhz clock rate doesn't work reliably */
+> @@ -1401,7 +1401,7 @@ mmc@78000000 {
+>                 vqmmc-supply =3D <&vddio_usd>;    /* ldo3 */
+>         };
+>
+> -       mmc@78000400 {
+> +       sdmmc3: mmc@78000400 {
+>                 status =3D "okay";
+>
+>                 #address-cells =3D <1>;
+> @@ -1431,7 +1431,7 @@ wifi@1 {
+>                 };
+>         };
+>
+> -       mmc@78000600 {
+> +       sdmmc4: mmc@78000600 {
+>                 status =3D "okay";
+>                 bus-width =3D <8>;
+>                 vmmc-supply =3D <&vcore_emmc>;
 > --
-> 2.39.2
+> 2.37.2
 >
+
+Hello Thierry!
+For some reason this commit was not picked while all others in
+the patchset were. May I know why and how to fix this?
+
+Best regards,
+Svyatoslav R.
