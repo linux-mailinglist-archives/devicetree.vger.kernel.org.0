@@ -2,174 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F445732B92
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:30:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 399BB732BDC
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232489AbjFPJad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:30:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
+        id S1344509AbjFPJcz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:32:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48172 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344706AbjFPJaJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:30:09 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3182733;
-        Fri, 16 Jun 2023 02:29:57 -0700 (PDT)
+        with ESMTP id S1344204AbjFPJcb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:32:31 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 087AC3A98
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:31:51 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-977e0fbd742so62529466b.2
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:31:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686907797; x=1718443797;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=32N1yGo7ctZs2eC7CuXCSbbaVed5l58bkGfloxPTIp4=;
-  b=eCEN/Cg3pJShxTMm742vfMXOycmBsyMQiHrfwmUzSS870hmQbUqGkP3M
-   nK+rCcu1DE2ttGfRB1Gas8jOaON2RYFAKEv2y/ySC358bUDAl/hsHe4yg
-   xm2kVfcGf5u2f4XonFO5Y53+vqQehyeEB+KTgvnhVn27R6RQO7H/JEQQ2
-   octK4umYTTuJnLtV5TkKaVhsi6539zu0UDpFtJFcd8g/yWoFGWP2MZsED
-   5otrVsm8/ZDK/EjSAWo3La+FEKjahr99mhzcUNhdI5b8PWvu/a0t5uB29
-   ibi3EphdKbIzKWWfCP9QTpgwApuqWokmhHHAKqeeUjkFZ/o6Ybl2nIU2s
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,247,1681164000"; 
-   d="scan'208";a="31462582"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Jun 2023 11:29:55 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 63301280082;
-        Fri, 16 Jun 2023 11:29:55 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-Cc:     oliver.brown@nxp.com, Sandor.yu@nxp.com, linux-imx@nxp.com,
-        kernel@pengutronix.de, Sandor Yu <Sandor.yu@nxp.com>
-Subject: Re: [PATCH v6 5/8] drm: bridge: Cadence: Add MHDP8501 HDMI driver
-Date:   Fri, 16 Jun 2023 11:29:57 +0200
-Message-ID: <11795277.nUPlyArG6x@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <ee0982418cc2e996b1f7889375b1a5138fb38a11.1686729444.git.Sandor.yu@nxp.com>
-References: <cover.1686729444.git.Sandor.yu@nxp.com> <ee0982418cc2e996b1f7889375b1a5138fb38a11.1686729444.git.Sandor.yu@nxp.com>
+        d=linaro.org; s=google; t=1686907900; x=1689499900;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=aLkZA5cA05PoZNYWbBrpjGAgG6IkmRLsJ3u06LSXUU0=;
+        b=aJDnV/nARYfvrMvwaQd2qAg/79AdgRJbshd/mrYLEHOJFCF1mNziudwHlNgV46X9Cb
+         bAEezRizuNBUbK3SRhEFcJZ2JdTd1xxc4uoh+uJUL08pdyMSpDIuchcxU5YY+1/43OuS
+         r9CdbnyiRmY0iSw7nYDQEnHWfA8PjShbJhaZCqLLBrHNzFuGLhkeaPuZvvkWx/SIGajz
+         d4cdZR0E1Ax3nrvlD4/ZkvHRvnIHVnqAoTWrgsStmMhbNA/JSCxSFDMs1hAowK/NXNkT
+         7WrcFzYib32dUPWpZGKKQSrDOxZgFz9Evyj6LpHIGOHXl4+y/88jcjALOoJoaHHC4lES
+         qKrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686907900; x=1689499900;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=aLkZA5cA05PoZNYWbBrpjGAgG6IkmRLsJ3u06LSXUU0=;
+        b=b7u3K/YU1E97FVT8R3LVgyMfQ2VB8zHc00Y+HTxrPEzveE+KWmE0tJvnvycygMZlpT
+         4UjtdsWvKOf6LwlbimGPyI/1vbh1knu4GYRHTT/jirgblMf/Aheafg6ngmX2H/IH7iZr
+         wqCUQcnDubm4plPztSYj9yVWFNplaH9Cjz1qpHRbFyE5UCHn8C22xUero30dVF0VMZo/
+         0ZXBGYRBsn4hLbszn8xl4q8M69c+kxfY944FNKZKIT04xCKTPX+vLOD1Fw48vu8Kk/Qa
+         sAY/QYDuab1OuSWJtDgdIr/cbGJzKCqkGM6zeQ3oXycru8jT1SBZnASAkJFXA+THxCUo
+         IB6g==
+X-Gm-Message-State: AC+VfDzOyaGQRD96g0ECCopHLUgrmi5whVq2bIqmVlQS570GNfXtPi8P
+        9T8Rp+KXTrXHw94qzK2k8PzyzA==
+X-Google-Smtp-Source: ACHHUZ73FrUEh2r99iSwRFYBQo9PGLyN5ZIWuwxO/dT06jRQk2zGgDQqcdb53zQMlw8C3vmMILtoFw==
+X-Received: by 2002:a17:907:25c1:b0:974:e755:9fde with SMTP id ae1-20020a17090725c100b00974e7559fdemr1323419ejc.19.1686907900280;
+        Fri, 16 Jun 2023 02:31:40 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id h18-20020a1709063b5200b0097457363fc0sm10532382ejf.33.2023.06.16.02.31.38
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 02:31:39 -0700 (PDT)
+Message-ID: <f65955ef-abcb-c542-00ce-1776dd89f893@linaro.org>
+Date:   Fri, 16 Jun 2023 11:31:37 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 03/15] dt-bindings: display: mediatek: merge: Add
+ compatible for MT8188
+Content-Language: en-US
+To:     =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= 
+        <Shawn.Sung@mediatek.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "angelogioacchino.delregno@collabora.com" 
+        <angelogioacchino.delregno@collabora.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
+        <Singo.Chang@mediatek.com>,
+        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230614073125.17958-1-shawn.sung@mediatek.com>
+ <20230614073125.17958-4-shawn.sung@mediatek.com>
+ <25816ad5-339c-e52f-adbb-686aa7977e9e@linaro.org>
+ <61754861be70daa487b98475b246d8fed7e2dbd6.camel@mediatek.com>
+ <643e6681-6ba7-e990-3e90-09071db904d2@linaro.org>
+ <8153fbe67ccc70ff78390b78124a6983f9e329d8.camel@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8153fbe67ccc70ff78390b78124a6983f9e329d8.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sandor,
+On 16/06/2023 10:40, Shawn Sung (宋孝謙) wrote:
+> On Fri, 2023-06-16 at 10:07 +0200, Krzysztof Kozlowski wrote:
+>>  	 
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>  On 16/06/2023 07:29, Shawn Sung (宋孝謙) wrote:
+>>> Hi Krzysztof,
+>>>
+>>> Thanks for the reminder, because MT8188 is not related to MT8173,
+>>
+>> How does it matter?
+> 
+> Because MT8188 Merge is fully compatible with MT8195, we didn't add its
+> compatible name to the driver, but just list it in dt-bindings, and use
+> MT8195's compatible name to match the ID in device table. For example,
+> in mt8188.dtsi:
+> 
+> merge1: merge@1c10c000 {
+>         compatible = "mediatek,mt8188-disp-merge", "mediatek,mt8195-
+> disp-merge";
+>         ...
+> };
+> 
+> If we add MT8188 Merge as an enum with MT8173, then our device tree
+> must be as below, and nothing will match in Merge driver.
+> 
+> merge1: merge@1c10c000 {
+>         compatible = "mediatek,mt8188-disp-
+> merge";
+>         ...
+> };
 
-thanks for sending a new version.
+No, why? It would be incorrect with existing bindings. Again, on what
+tree are you working?
 
-Am Donnerstag, 15. Juni 2023, 03:38:15 CEST schrieb Sandor Yu:
-> Add a new DRM HDMI bridge driver for Cadence MHDP8501
-> that used in Freescale i.MX8MQ SoC.
-> MHDP8501 could support HDMI or DisplayPort standards according
-> embedded Firmware running in the uCPU.
->=20
-> For iMX8MQ SoC, the HDMI FW was loaded and activated by SOC ROM code.
-> Bootload binary included HDMI FW was required for the driver.
->=20
-> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> ---
->  drivers/gpu/drm/bridge/cadence/Kconfig        |   12 +
->  drivers/gpu/drm/bridge/cadence/Makefile       |    1 +
->  .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 1024 +++++++++++++++++
->  3 files changed, 1037 insertions(+)
->  create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
->=20
-> diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig
-> b/drivers/gpu/drm/bridge/cadence/Kconfig index 5b7ec4e49aa1..bee05e834055
-> 100644
-> --- a/drivers/gpu/drm/bridge/cadence/Kconfig
-> +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
-> @@ -59,3 +59,15 @@ config DRM_CDNS_MHDP8501_DP
->  	  Support Cadence MHDP8501 DisplayPort driver.
->  	  Cadence MHDP8501 Controller support one or more protocols,
->  	  DisplayPort firmware is required for this driver.
-> +
-> +config DRM_CDNS_MHDP8501_HDMI
-> +	tristate "Cadence MHDP8501 HDMI DRM driver"
-> +	select DRM_KMS_HELPER
-> +	select DRM_PANEL_BRIDGE
-> +	select DRM_DISPLAY_HELPER
-> +	select DRM_CDNS_AUDIO
-> +	depends on OF
-> +	help
-> +	  Support Cadence MHDP8501 HDMI driver.
-> +	  Cadence MHDP8501 Controller support one or more protocols,
-> +	  HDMI firmware is required for this driver.
-> diff --git a/drivers/gpu/drm/bridge/cadence/Makefile
-> b/drivers/gpu/drm/bridge/cadence/Makefile index 5842e4540c62..8a129c14ac14
-> 100644
-> --- a/drivers/gpu/drm/bridge/cadence/Makefile
-> +++ b/drivers/gpu/drm/bridge/cadence/Makefile
-> @@ -7,3 +7,4 @@ cdns-mhdp8546-y :=3D cdns-mhdp8546-core.o cdns-mhdp8546-h=
-dcp.o
-> cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) +=3D cdns-mhdp8546-j721e.o
->=20
->  obj-$(CONFIG_DRM_CDNS_MHDP8501_DP) +=3D cdns-mhdp8501-dp.o
-> +obj-$(CONFIG_DRM_CDNS_MHDP8501_HDMI) +=3D cdns-mhdp8501-hdmi.o
-> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
-> b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c new file mode 100644
-> index 000000000000..43673f1b50f6
-> --- /dev/null
-> +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
-[...]
-> +static int cdns_hdmi_bridge_attach(struct drm_bridge *bridge,
-> +				 enum drm_bridge_attach_flags flags)
-> +{
-> +	struct cdns_mhdp_device *mhdp =3D bridge->driver_private;
-> +	struct drm_mode_config *config =3D &bridge->dev->mode_config;
-> +	struct drm_encoder *encoder =3D bridge->encoder;
-> +	struct drm_connector *connector =3D &mhdp->connector;
-> +
-> +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
-> +		connector->interlace_allowed =3D 0;
-> +		connector->polled =3D DRM_CONNECTOR_POLL_HPD;
-> +
-> +		drm_connector_helper_add(connector,=20
-&cdns_hdmi_connector_helper_funcs);
-> +
-> +		drm_connector_init(bridge->dev, connector,=20
-&cdns_hdmi_connector_funcs,
-> +				   DRM_MODE_CONNECTOR_HDMIA);
-> +
-> +		drm_object_attach_property(&connector->base,
-> +					   config-
->hdr_output_metadata_property, 0);
-> +
-> +		if (!drm_mode_create_hdmi_colorspace_property(connector))
+> 
+>>
+>>>  I’ll
+>>> keep it as it is for now, however, I do find that MT8195 doesn’t
+>> exist
+>>> in this dt-bindings which it should be, so there may be conflicts
+>> when
+>>> this series is going to be merged.
+>>
+>> Don't top post.
+>>
+>> No, rebase on current next and implement my comment.
+> 
+> Will rebase linux-next in the next version.
 
-This is missing a 2nd parameter.
-
-> +			drm_object_attach_property(&connector->base,
-> +						connector-
->colorspace_property, 0);
-> +
-> +		drm_connector_attach_encoder(connector, encoder);
-> +	}
-> +
-> +	return 0;
-> +}
-[...]
+Rebase now - for this discussion.
 
 Best regards,
-Alexander
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Krzysztof
 
