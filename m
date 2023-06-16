@@ -2,214 +2,1213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 341E373288D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 09:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9B9732897
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 09:16:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S240706AbjFPHOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 03:14:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55502 "EHLO
+        id S230420AbjFPHQP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 03:16:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234125AbjFPHOI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 03:14:08 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2074.outbound.protection.outlook.com [40.107.20.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE74171F;
-        Fri, 16 Jun 2023 00:14:07 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZjOPzluFAXS9WqVSI/Dnaq2fx44/2SVabLVAI+dm5fIjUjt2VmN7do1e/mG44T7E61AFN3YjO8tr9H6UVIey153Yrt1s3JWtjzm3jsCER94qV3yJ5/CYXpdtXDJ1+TCXng9TZW6V1pOm+VssuzIMyShFVftG0vT3WCzmcL/PMWYoWkaJuymnX9xDnybSG9g+xBUCEg37EUchgYv2nfz7ZRs8U5r+f2k4d0PqeEe3u8l9aoQQqyXdVQE50RhrTaWXXLD13aaZE+75g2KfQZt//34Kn1cp1MKr4MYVeFCZgKeRxYwTX+LP9OoqK2AXnUnAcjN8jok+NAX3ssRhUW1VaQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=684CEngxMLDoGn6N4o1ky5K9QhDvkkZszbq1RqD7Kpc=;
- b=DlO5ydP2Xq1jX6oNQT1s34x7YVPBeE87jrpz9ZIViEn1DTEy9ySq8TCV5JQOnUs+XVPYDNKfVbrMmtfm9tj9waEL0cg3os4qk5BQnJFIC2sQRD2tgwFKXxRAR0Oj8SKJXDVG5Wo5zOeKtxnI3VvkFZpxmI/yQOHYtvCZS+ocAjq6vb+yP8xLu7aO+DgCU6fD0Fjhcwol26BjjWDO39hLDQGyDxtuNeR0G+ALNzGVcVjnWn9vR3kLy5fq4oEDOuwTrCRyT06fbKnV/AZHu4aLakOkyA1tDtD+mHFdoHUDKsABGquuCShuB2aWc9ekoR0HrbExgXFUBYc6Ga7NxOWkDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=684CEngxMLDoGn6N4o1ky5K9QhDvkkZszbq1RqD7Kpc=;
- b=sdFU+fDULH0Teh08UMkfkTi7RpLHLT9acoi2icvPeauRfubzybHA4hcjU1EeK7agLcg0hugToaGFZFlsnWzi8z7b0FOPdmY8pxVfeW00HCrO7FGKnXPpfyLrLpHt8QvUOMC8i1zFuco6gJt6qnat+bKoRn1LGg+XZWZrep001kA=
-Received: from PAXPR04MB9448.eurprd04.prod.outlook.com (2603:10a6:102:2b1::21)
- by AS1PR04MB9681.eurprd04.prod.outlook.com (2603:10a6:20b:480::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6477.37; Fri, 16 Jun
- 2023 07:13:57 +0000
-Received: from PAXPR04MB9448.eurprd04.prod.outlook.com
- ([fe80::8af8:59df:c8ab:ff51]) by PAXPR04MB9448.eurprd04.prod.outlook.com
- ([fe80::8af8:59df:c8ab:ff51%5]) with mapi id 15.20.6477.037; Fri, 16 Jun 2023
- 07:13:56 +0000
-From:   Sandor Yu <sandor.yu@nxp.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
-CC:     "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "robert.foss@linaro.org" <robert.foss@linaro.org>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        Oliver Brown <oliver.brown@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: RE: [EXT] Re: [PATCH v6 3/8] drm: bridge: Cadence: Add MHDP8501 DP
- driver
-Thread-Topic: [EXT] Re: [PATCH v6 3/8] drm: bridge: Cadence: Add MHDP8501 DP
- driver
-Thread-Index: AQHZnyaVOp3VLStRVUaOGqNURseKhq+MD9UAgAD0dsA=
-Date:   Fri, 16 Jun 2023 07:13:56 +0000
-Message-ID: <PAXPR04MB9448680E4F589E1F722ADD2CF458A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-References: <cover.1686729444.git.Sandor.yu@nxp.com>
- <67f54be91e91f6291c4ad3f5155598d699b8bc09.1686729444.git.Sandor.yu@nxp.com>
- <20230615163308.GA1588386@ravnborg.org>
-In-Reply-To: <20230615163308.GA1588386@ravnborg.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: PAXPR04MB9448:EE_|AS1PR04MB9681:EE_
-x-ms-office365-filtering-correlation-id: 0db8404a-4dd1-4405-29d6-08db6e393fdd
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: Mxnzv0IpsXIDigCT0qVWgq9q/Ftkz4rG9sNNGt5FgcSu8HnGIBkdHcXnXImuFdpEDPA5f5w+7k92w/EJyhZtH68SPo+JMaS9gRJNCyTjBF1aJ0vxehKYoUkqSYpmVxJ4RzoYK53zjGnLngfAFbdEYsyfi41TkJMDM5Co5zLFQtZkg+TxMumAvHoyIDhjQFDmQqEYOENIvrB/xWGsHxyhu5EslKx2PvuRKcJKkLosQ8ReJR1tXkCIdWQKeIieSceHcYsOp3HKVtr9sIiJDthTIkC02pSmyzUObETygxflJCMccav3gk0vJZ5BBHtgK3+LxQZrSRIqKAhtoYCMty1qIaUX8SW1mpl7d3Z5K44dQJ7SLlyIMOEEe8eAwc5F2tsbK6+O4gr9rlmGGhGrHb9aZCIKKeEb/c+weyAfOZnY14PyFja3mv89vGjvqyVBDndeL/iHM2CutM4kGBhYMELOCdpz+lmqPgO/dRIGvYLbFPguCWDJ7p/kMtQTkY3wTZ1/GM+3yWh3Hv/8WaoYH2VhVKAulr40vWP6sAKCgYBu8allOPPSCxduUZ3qMxzmSyRJI5PpbHx1oVWpgMIs/Q55uZ4IBGdpkl0xoXIMo+V/p3NIu82xU4UFg4l6lKfEpd1m
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:PAXPR04MB9448.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(366004)(376002)(346002)(39860400002)(136003)(451199021)(186003)(38070700005)(2906002)(33656002)(38100700002)(44832011)(7416002)(86362001)(53546011)(26005)(83380400001)(55016003)(9686003)(6506007)(122000001)(66446008)(4326008)(316002)(66476007)(64756008)(71200400001)(76116006)(66556008)(6916009)(7696005)(66946007)(478600001)(41300700001)(54906003)(8676002)(5660300002)(8936002)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?gb2312?B?SEZIaWxSSkFsT3FLNjZXdkZMcHRuSElMRmwwckdYaEhTdkNyTUJuelIwL3NQ?=
- =?gb2312?B?d3hHMU10Y2gxTFlUckt3YWtodzcweWhNY1YyUWtSWGpSdTZVbFFLZmZxY1dW?=
- =?gb2312?B?a1RTOUlKSFk3WlMwWEY0Vlhmd3NhMWpnTEo2UmgzeHY0eUhSeFBGVUpoZHZW?=
- =?gb2312?B?aUhwWHBMRmNKMW9JTEN3c0JSK3Q5dENseldwaHozVTVLVXQwMmw0UTlWSyto?=
- =?gb2312?B?RWNrUVVZOHIzNHJoU01SYkFoanQvcmxnT1BlRUQydTVoTXU5WjQ3bjZvK1Bv?=
- =?gb2312?B?alBKOXV0cGhPVnhRcEZONzQ0RE1la2JXamxyRWJ5MEM3MWxNMkovWWlWQ0Nk?=
- =?gb2312?B?OTRycFFpclI5ZjJmWG9yTXFINjFPblpFbVZONDh1MktwVDhQYklYY2NFZHdW?=
- =?gb2312?B?L21TSDhWeHVyWDhMTmxLdlN5VXJsajhHcHA0aWZxb0dUdSt5R2lmUENveWxu?=
- =?gb2312?B?ai8zcWdhN2J5dkFaWllUWU1EaDBWNFRRZVBQRVJaVjBSK0FBRGtCUmFHUFl1?=
- =?gb2312?B?TUpyU2tIVElzMjZKWUdLWG1ZQUJDZk12WENENXl0ak9oQ1R2TDR2eHF1NFJO?=
- =?gb2312?B?YkJaZjhNMkVKYnNleGxtNGVEaGY2bks1ZWoyVFRZbVNBcExNd2NDRGVNcVFi?=
- =?gb2312?B?cGcrT0ZUcndQMlpyQ1Z0ajlPMVd6cHpMY25Ec21ONEFnSEZ4ZTZ6OFoxcWp5?=
- =?gb2312?B?T2ZWVmdzOHBucENtcnhzenV1Mk44OVlNVS9EYytGQXc5K3N0dHMyNmg5YjNm?=
- =?gb2312?B?azFsNjM3TUcrRVBzL0I1a0pMQ0dPY01ZbWVMekxqMS9Zd3AxRXloRVFvSTJH?=
- =?gb2312?B?d1dUTUNEWnBhR3lzNVZjZC9BeWdGdElEMTZMSU9pZzdvWUFhWHhDTEQ4RHJS?=
- =?gb2312?B?THhjeHc4Zjkrb0lSVmM1VUJycDIybFdYdVhFMTI3NXBESkpkVlZXS3pzY1RB?=
- =?gb2312?B?TjJscnd4bFpBQXd6N0l4dVhua2I4TnRJcmJHbUhCUFJaTVp0a3ZxOHNNTm8y?=
- =?gb2312?B?NVR5UXBvR2tVUlVYRnQyd3JpekFvbWlaTTZxUC9xT3pPMjNiVlQreTQ4Mm15?=
- =?gb2312?B?bzNzK050M0pkVGJzWkpZMXlBS25FTld3TDZvMGc1UDBnVHFReXpLdm5UeXVt?=
- =?gb2312?B?V3YwZ0w5elU2T1hVSzc0T0FTcTRUU0x1empnTklwcG1DNGpob05Ub3Jwa0JK?=
- =?gb2312?B?anp5SkEySGZkLzUwNk1ReW45Y1VKQklUM2s5czAwdmJNRTR0Slkxc1F1WUJz?=
- =?gb2312?B?NzRrSzZGWXJjS3BYVVFrT3RJRmMwTEpsZ0VJdW01SUNPS2xlajFSQ0JKOU9M?=
- =?gb2312?B?eUNBbkI3ajRYY0hZVUpBSTRvVGNIc2NyRDNudU5mN1lWMmMzdnFZZm13Y2Fk?=
- =?gb2312?B?OGJtVm9tdVJydTRzMXIzS0QvQXBXWkJadThNYXp0SEVZNjgrYzRHVHdOaGQw?=
- =?gb2312?B?Rkk4b2U2aHYyU0JtTFpOaTQyeUl5bnVhRmVZUXdOellJM3JtR3pKYWdldzY3?=
- =?gb2312?B?THhMWEt5ekd5L1NTTTJxNndvWG1LaFhKZ0RMZmpFUURqUVJuajVNdkYzYWg2?=
- =?gb2312?B?OS9Qd3RwcTh5MXk5eDJwN0xIWlFqaVhvOGtLTGQ1NCtrZTVnUGhvODlxb0RV?=
- =?gb2312?B?bk85SjZzby9Da1lhSGdWUzFTbjgyL3hYdEJuUEhwZGZxbkJvKzBwYnJtWC9u?=
- =?gb2312?B?ZThiVDFsWk9UblF6WU1FMWRxeFlkZ3d6Wm1ZUzhmL1Ztdm41aVFydXgydFY1?=
- =?gb2312?B?eWhoTVhKR3dQRVVnWUVwRmJUd0pHZldCejVHV0xNMjBkMlEvVEtJNEpwcmRY?=
- =?gb2312?B?MUQvWURnTWg4SDUvQzhKQ2NpZlZ3NlBKT0xvQzZLUG00dGpyUVJseTJ1VmFh?=
- =?gb2312?B?S3o4Tko0VWF3ck9IamxPaUkxSHhPaDVoRzlKYWwySy9FUjdEUU5kZXd3YkVq?=
- =?gb2312?B?VjB4VlNOQytuOGJjQmVIdzR6TUs3RWhDZ29XRE8relZRdWZpR1ZTck9PNExr?=
- =?gb2312?B?K0tOUVllNGY2ekZEMW9XQ1R3aW16QTI5VXFsL01aSzRpdCticEE5YkE5UjFz?=
- =?gb2312?B?eGpvZ0VjTFUyemMxUk1qazFwNXc4OXlJbWtGblJ1OFNlUFF0b0VZNURVZGhD?=
- =?gb2312?Q?bD4M=3D?=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        with ESMTP id S231920AbjFPHQJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 03:16:09 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B50A170E;
+        Fri, 16 Jun 2023 00:16:02 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 43F9480C7;
+        Fri, 16 Jun 2023 15:16:00 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 16 Jun
+ 2023 15:16:00 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Fri, 16 Jun
+ 2023 15:15:59 +0800
+Message-ID: <8a40f63d-fd14-66b7-3fe8-34197414e78d@starfivetech.com>
+Date:   Fri, 16 Jun 2023 15:15:59 +0800
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: PAXPR04MB9448.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0db8404a-4dd1-4405-29d6-08db6e393fdd
-X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2023 07:13:56.6427
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: krIJOTWHhMrzUruK+lv2d+yu3m4Wj0llVgfc6VPMb2La7vdXdYlJYoJojg4SZClB7y3X4mrQUdqIICIHivSjBw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS1PR04MB9681
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v6 4/6] media: starfive: Add video driver
+Content-Language: en-US
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        <bryan.odonoghue@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
+        <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230525083202.67933-1-jack.zhu@starfivetech.com>
+ <20230525083202.67933-5-jack.zhu@starfivetech.com>
+ <20230601125942.GH22609@pendragon.ideasonboard.com>
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <20230601125942.GH22609@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgU2FtLA0KDQpUaGFua3MgeW91ciBjb21tZW50cywNCg0KRm9yIGkuTVg4TVEsIHRoZSBkaXNw
-bGF5IGRyaXZlciBEQ1NTIGhhZCBjcmVhdGUgaXRzIG93biBjb25uZWN0b3IuDQpJIHdpbGwgZHJv
-cCB0aGUgY29kZSBpbiB0aGUgbmV4dCB2ZXJzaW9uIHJldmlldyBwYXRjaCBzZXQuDQoNClRoYW5r
-cw0KU2FuZG9yDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogU2FtIFJh
-dm5ib3JnIDxzYW1AcmF2bmJvcmcub3JnPg0KPiBTZW50OiAyMDIzxOo21MIxNsjVIDA6MzMNCj4g
-VG86IFNhbmRvciBZdSA8c2FuZG9yLnl1QG54cC5jb20+DQo+IENjOiBhbmRyemVqLmhhamRhQGlu
-dGVsLmNvbTsgbmVpbC5hcm1zdHJvbmdAbGluYXJvLm9yZzsNCj4gcm9iZXJ0LmZvc3NAbGluYXJv
-Lm9yZzsgTGF1cmVudC5waW5jaGFydEBpZGVhc29uYm9hcmQuY29tOw0KPiBqb25hc0Brd2lib28u
-c2U7IGplcm5lai5za3JhYmVjQGdtYWlsLmNvbTsgYWlybGllZEBnbWFpbC5jb207DQo+IGRhbmll
-bEBmZndsbC5jaDsgcm9iaCtkdEBrZXJuZWwub3JnOyBrcnp5c3p0b2Yua296bG93c2tpK2R0QGxp
-bmFyby5vcmc7DQo+IHNoYXduZ3VvQGtlcm5lbC5vcmc7IHMuaGF1ZXJAcGVuZ3V0cm9uaXguZGU7
-IGZlc3RldmFtQGdtYWlsLmNvbTsNCj4gdmtvdWxAa2VybmVsLm9yZzsgZHJpLWRldmVsQGxpc3Rz
-LmZyZWVkZXNrdG9wLm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFy
-bS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVs
-Lm9yZzsgbGludXgtcGh5QGxpc3RzLmluZnJhZGVhZC5vcmc7IE9saXZlciBCcm93bg0KPiA8b2xp
-dmVyLmJyb3duQG54cC5jb20+OyBkbC1saW51eC1pbXggPGxpbnV4LWlteEBueHAuY29tPjsNCj4g
-a2VybmVsQHBlbmd1dHJvbml4LmRlDQo+IFN1YmplY3Q6IFtFWFRdIFJlOiBbUEFUQ0ggdjYgMy84
-XSBkcm06IGJyaWRnZTogQ2FkZW5jZTogQWRkIE1IRFA4NTAxIERQDQo+IGRyaXZlcg0KPiANCj4g
-Q2F1dGlvbjogVGhpcyBpcyBhbiBleHRlcm5hbCBlbWFpbC4gUGxlYXNlIHRha2UgY2FyZSB3aGVu
-IGNsaWNraW5nIGxpbmtzIG9yDQo+IG9wZW5pbmcgYXR0YWNobWVudHMuIFdoZW4gaW4gZG91YnQs
-IHJlcG9ydCB0aGUgbWVzc2FnZSB1c2luZyB0aGUgJ1JlcG9ydA0KPiB0aGlzIGVtYWlsJyBidXR0
-b24NCj4gDQo+IA0KPiBIaSBTYW5kb3IsDQo+IA0KPiBPbiBUaHUsIEp1biAxNSwgMjAyMyBhdCAw
-OTozODoxM0FNICswODAwLCBTYW5kb3IgWXUgd3JvdGU6DQo+ID4gQWRkIGEgbmV3IERSTSBEaXNw
-bGF5UG9ydCBicmlkZ2UgZHJpdmVyIGZvciBDYW5kZW5jZSBNSERQODUwMSB1c2VkIGluDQo+ID4g
-aS5NWDhNUSBTT0MuIE1IRFA4NTAxIGNvdWxkIHN1cHBvcnQgSERNSSBvciBEaXNwbGF5UG9ydCBz
-dGFuZGFyZHMNCj4gPiBhY2NvcmRpbmcgZW1iZWRkZWQgRmlybXdhcmUgcnVubmluZyBpbiB0aGUg
-dUNQVS4NCj4gPg0KPiA+IEZvciBpTVg4TVEgU09DLCB0aGUgRGlzcGxheVBvcnQgRlcgd2FzIGxv
-YWRlZCBhbmQgYWN0aXZhdGVkIGJ5IFNPQw0KPiBST00NCj4gPiBjb2RlLiBCb290bG9hZCBiaW5h
-cnkgaW5jbHVkZWQgSERNSSBGVyB3YXMgcmVxdWlyZWQgZm9yIHRoZSBkcml2ZXIuDQo+IA0KPiBU
-aGUgYnJpZGdlIGRyaXZlciBzdXBwb3J0cyBjcmVhdGluZyBhIGNvbm5lY3RvciwgYnV0IGlzIHRo
-aXMgcmVhbGx5IG5lY2Vzc2FyeT8NCj4gDQo+IFRoaXMgcGFydDoNCj4gPiArc3RhdGljIGNvbnN0
-IHN0cnVjdCBkcm1fY29ubmVjdG9yX2Z1bmNzIGNkbnNfZHBfY29ubmVjdG9yX2Z1bmNzID0gew0K
-PiA+ICsgICAgIC5maWxsX21vZGVzID0gZHJtX2hlbHBlcl9wcm9iZV9zaW5nbGVfY29ubmVjdG9y
-X21vZGVzLA0KPiA+ICsgICAgIC5kZXN0cm95ID0gZHJtX2Nvbm5lY3Rvcl9jbGVhbnVwLA0KPiA+
-ICsgICAgIC5yZXNldCA9IGRybV9hdG9taWNfaGVscGVyX2Nvbm5lY3Rvcl9yZXNldCwNCj4gPiAr
-ICAgICAuYXRvbWljX2R1cGxpY2F0ZV9zdGF0ZSA9DQo+IGRybV9hdG9taWNfaGVscGVyX2Nvbm5l
-Y3Rvcl9kdXBsaWNhdGVfc3RhdGUsDQo+ID4gKyAgICAgLmF0b21pY19kZXN0cm95X3N0YXRlID0N
-Cj4gPiArZHJtX2F0b21pY19oZWxwZXJfY29ubmVjdG9yX2Rlc3Ryb3lfc3RhdGUsDQo+ID4gK307
-DQo+ID4gKw0KPiA+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGRybV9jb25uZWN0b3JfaGVscGVyX2Z1
-bmNzDQo+IGNkbnNfZHBfY29ubmVjdG9yX2hlbHBlcl9mdW5jcyA9IHsNCj4gPiArICAgICAuZ2V0
-X21vZGVzID0gY2Ruc19kcF9jb25uZWN0b3JfZ2V0X21vZGVzLCB9Ow0KPiA+ICsNCj4gPiArc3Rh
-dGljIGludCBjZG5zX2RwX2JyaWRnZV9hdHRhY2goc3RydWN0IGRybV9icmlkZ2UgKmJyaWRnZSwN
-Cj4gPiArICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZW51bSBkcm1fYnJpZGdlX2F0dGFj
-aF9mbGFncyBmbGFncykNCj4gew0KPiA+ICsgICAgIHN0cnVjdCBjZG5zX21oZHBfZGV2aWNlICpt
-aGRwID0gYnJpZGdlLT5kcml2ZXJfcHJpdmF0ZTsNCj4gPiArICAgICBzdHJ1Y3QgZHJtX2VuY29k
-ZXIgKmVuY29kZXIgPSBicmlkZ2UtPmVuY29kZXI7DQo+ID4gKyAgICAgc3RydWN0IGRybV9jb25u
-ZWN0b3IgKmNvbm5lY3RvciA9ICZtaGRwLT5jb25uZWN0b3I7DQo+ID4gKyAgICAgaW50IHJldDsN
-Cj4gPiArDQo+ID4gKyAgICAgaWYgKCEoZmxhZ3MgJiBEUk1fQlJJREdFX0FUVEFDSF9OT19DT05O
-RUNUT1IpKSB7DQo+ID4gKyAgICAgICAgICAgICBjb25uZWN0b3ItPmludGVybGFjZV9hbGxvd2Vk
-ID0gMDsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICBjb25uZWN0b3ItPnBvbGxlZCA9IERSTV9D
-T05ORUNUT1JfUE9MTF9IUEQ7DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgZHJtX2Nvbm5lY3Rv
-cl9oZWxwZXJfYWRkKGNvbm5lY3RvciwNCj4gPiArICZjZG5zX2RwX2Nvbm5lY3Rvcl9oZWxwZXJf
-ZnVuY3MpOw0KPiA+ICsNCj4gPiArICAgICAgICAgICAgIGRybV9jb25uZWN0b3JfaW5pdChicmlk
-Z2UtPmRldiwgY29ubmVjdG9yLA0KPiAmY2Ruc19kcF9jb25uZWN0b3JfZnVuY3MsDQo+ID4gKw0K
-PiBEUk1fTU9ERV9DT05ORUNUT1JfRGlzcGxheVBvcnQpOw0KPiA+ICsNCj4gPiArICAgICAgICAg
-ICAgIGRybV9jb25uZWN0b3JfYXR0YWNoX2VuY29kZXIoY29ubmVjdG9yLCBlbmNvZGVyKTsNCj4g
-PiArICAgICB9DQo+IA0KPiBVbmxlc3MgeW91IGhhdmUgYSBkaXNwbGF5IGRyaXZlciB0aGF0IGRv
-IG5vdCBjcmVhdGUgdGhlaXIgb3duIGNvbm5lY3RvciB0aGVuDQo+IGRyb3AgdGhlIGFib3ZlIGFu
-ZCBlcnJvciBvdXQgaWYgRFJNX0JSSURHRV9BVFRBQ0hfTk9fQ09OTkVDVE9SIGlzDQo+IG5vdCBz
-ZXQuDQo+IEl0IGlzIGVuY291cmFnZWQgdGhhdCBkaXNwbGF5IGRyaXZlcnMgY3JlYXRlIHRoZWly
-IG93biBjb25uZWN0b3IuDQo+IA0KPiBUaGlzIHdhcyB0aGUgb25seSBkZXRhaWwgSSBsb29rZWQg
-Zm9yIGluIHRoZSBkcml2ZXIsIEkgaG9wZSBzb21lIGVsc2Ugdm9sdW50ZWVyDQo+IHRvIHJldmll
-dyBpdC4NCj4gDQo+ICAgICAgICAgU2FtDQo=
+Hi Laurent,
+
+Thank you for your comments.
+
+On 2023/6/1 20:59, Laurent Pinchart wrote:
+> Hi Jack,
+> 
+> Thank you for the patch.
+> 
+> On Thu, May 25, 2023 at 04:32:00PM +0800, Jack Zhu wrote:
+>> Add video driver for StarFive Camera Subsystem.
+>> 
+>> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+>> ---
+>>  drivers/media/platform/starfive/Makefile    |   3 +-
+>>  drivers/media/platform/starfive/stf_video.c | 864 ++++++++++++++++++++
+>>  drivers/media/platform/starfive/stf_video.h |  95 +++
+>>  3 files changed, 961 insertions(+), 1 deletion(-)
+>>  create mode 100644 drivers/media/platform/starfive/stf_video.c
+>>  create mode 100644 drivers/media/platform/starfive/stf_video.h
+>> 
+>> diff --git a/drivers/media/platform/starfive/Makefile b/drivers/media/platform/starfive/Makefile
+>> index 796775fa52f4..d7a42b3a938c 100644
+>> --- a/drivers/media/platform/starfive/Makefile
+>> +++ b/drivers/media/platform/starfive/Makefile
+>> @@ -4,6 +4,7 @@
+>>  #
+>>  
+>>  starfive-camss-objs += \
+>> -		stf_camss.o
+>> +		stf_camss.o \
+>> +		stf_video.o
+>>  
+>>  obj-$(CONFIG_VIDEO_STARFIVE_CAMSS) += starfive-camss.o \
+>> diff --git a/drivers/media/platform/starfive/stf_video.c b/drivers/media/platform/starfive/stf_video.c
+>> new file mode 100644
+>> index 000000000000..f027c7308dfb
+>> --- /dev/null
+>> +++ b/drivers/media/platform/starfive/stf_video.c
+>> @@ -0,0 +1,864 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * stf_video.c
+>> + *
+>> + * StarFive Camera Subsystem - V4L2 device node
+>> + *
+>> + * Copyright (C) 2021-2023 StarFive Technology Co., Ltd.
+>> + */
+>> +
+>> +#include <media/media-entity.h>
+>> +#include <media/v4l2-ctrls.h>
+>> +#include <media/v4l2-event.h>
+>> +#include <media/v4l2-mc.h>
+>> +#include <media/videobuf2-dma-contig.h>
+>> +
+>> +#include "stf_camss.h"
+>> +#include "stf_video.h"
+>> +
+>> +static const struct stfcamss_format_info formats_pix_wr[] = {
+>> +	{ MEDIA_BUS_FMT_SRGGB10_1X10, V4L2_PIX_FMT_SRGGB10, 1,
+>> +	  { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+>> +	{ MEDIA_BUS_FMT_SGRBG10_1X10, V4L2_PIX_FMT_SGRBG10, 1,
+>> +	  { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+>> +	{ MEDIA_BUS_FMT_SGBRG10_1X10, V4L2_PIX_FMT_SGBRG10, 1,
+>> +	  { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+>> +	{ MEDIA_BUS_FMT_SBGGR10_1X10, V4L2_PIX_FMT_SBGGR10, 1,
+>> +	  { { 1, 1 } }, { { 1, 1 } }, { 10 } },
+>> +};
+>> +
+>> +static const struct stfcamss_format_info formats_pix_isp[] = {
+>> +	{ MEDIA_BUS_FMT_Y12_1X12, V4L2_PIX_FMT_NV12, 1,
+>> +	  { { 1, 1 } }, { { 2, 3 } }, { 8 } },
+> 
+> The [hv]sub values look weird. NV12 subsamples by 2 in both directions
+> for the chroma plane. The result of your bytesperline calculation is
+> right before the chroma plane is subsampled by 2 horizontally, but
+> contains both U and V components, so the number of bytes equals the
+> width in pixels for both the luma and chroma planes. In the vertical
+> direction, the calculation is fine too for NV12 as you're calculating
+> sizeimage for both planes. 
+> 
+> I would recommend something along the following lines:
+> 
+> struct stfcamss_format_info {
+> 	u32 code;
+> 	u32 pixelformat;
+> 	u8 planes;
+> 	u8 vsub[3];
+> 	u8 bpp;
+> };
+> 
+> static const struct stfcamss_format_info formats_pix_isp[] = {
+> 	{
+> 		.code = MEDIA_BUS_FMT_Y12_1X12,
+> 		.pixelformat = V4L2_PIX_FMT_NV12,
+> 		.planes = 2,
+> 		.vsub = { 1, 2 },
+> 		.bpp = 8,
+> 	},
+> };
+> 
+> {
+> 	unsigned int bytesperline;
+> 	unsigned int sizeimage = 0;
+> 
+> 	bytesperline = width * info->bpp / 8;
+> 
+> 	for (i = 0; i < info->planes; ++i)
+> 		sizeimage += bytesperline * height / info->vsub[i];
+> }
+> 
+
+Okay, I will fix it.
+
+>> +};
+>> +
+>> +/* -----------------------------------------------------------------------------
+>> + * Helper functions
+>> + */
+>> +
+>> +static int video_find_format(u32 code, u32 pixelformat,
+>> +			     const struct stfcamss_format_info *formats,
+>> +			     unsigned int nformats)
+> 
+> I would pass the stfcamss_video pointer to this function instead of
+> formats and nformats.
+> 
+
+Okay, I will modify the function.
+
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < nformats; i++) {
+>> +		if (formats[i].code == code &&
+>> +		    formats[i].pixelformat == pixelformat)
+>> +			return i;
+>> +	}
+>> +
+>> +	for (i = 0; i < nformats; i++)
+>> +		if (formats[i].code == code)
+>> +			return i;
+>> +
+>> +	for (i = 0; i < nformats; i++)
+>> +		if (formats[i].pixelformat == pixelformat)
+>> +			return i;
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int __video_try_fmt(struct stfcamss_video *video, struct v4l2_format *f)
+>> +{
+>> +	struct v4l2_pix_format *pix;
+>> +	const struct stfcamss_format_info *fi;
+>> +	u32 width, height;
+>> +	u32 bpl;
+>> +	int i;
+>> +
+>> +	pix = &f->fmt.pix;
+>> +
+>> +	for (i = 0; i < video->nformats; i++)
+>> +		if (pix->pixelformat == video->formats[i].pixelformat)
+>> +			break;
+>> +
+>> +	if (i == video->nformats)
+>> +		i = 0; /* default format */
+>> +
+>> +	fi = &video->formats[i];
+>> +	width = pix->width;
+>> +	height = pix->height;
+>> +
+>> +	memset(pix, 0, sizeof(*pix));
+>> +
+>> +	pix->pixelformat = fi->pixelformat;
+>> +	pix->width = clamp_t(u32, width, STFCAMSS_FRAME_MIN_WIDTH,
+>> +			     STFCAMSS_FRAME_MAX_WIDTH);
+>> +	pix->height = clamp_t(u32, height, STFCAMSS_FRAME_MIN_HEIGHT,
+>> +			      STFCAMSS_FRAME_MAX_HEIGHT);
+>> +	bpl = pix->width / fi->hsub[0].numerator *
+>> +	      fi->hsub[0].denominator * fi->bpp[0] / 8;
+>> +	bpl = ALIGN(bpl, video->bpl_alignment);
+>> +	pix->bytesperline = bpl;
+>> +	pix->sizeimage = pix->height / fi->vsub[0].numerator *
+>> +			 fi->vsub[0].denominator * bpl;
+>> +
+>> +	pix->field = V4L2_FIELD_NONE;
+>> +	pix->colorspace = V4L2_COLORSPACE_SRGB;
+>> +	pix->flags = 0;
+>> +	pix->ycbcr_enc =
+>> +		V4L2_MAP_YCBCR_ENC_DEFAULT(pix->colorspace);
+>> +	pix->quantization = V4L2_MAP_QUANTIZATION_DEFAULT(true,
+>> +							  pix->colorspace,
+>> +							  pix->ycbcr_enc);
+>> +	pix->xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(pix->colorspace);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int stf_video_init_format(struct stfcamss_video *video)
+>> +{
+>> +	int ret;
+>> +	struct v4l2_format format = {
+>> +		.type = video->type,
+>> +		.fmt.pix = {
+>> +			.width = 1920,
+>> +			.height = 1080,
+>> +			.pixelformat = V4L2_PIX_FMT_RGB565,
+>> +		},
+>> +	};
+>> +
+>> +	ret = __video_try_fmt(video, &format);
+>> +
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	video->active_fmt = format;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +/* -----------------------------------------------------------------------------
+>> + * Video queue operations
+>> + */
+>> +
+>> +static int video_queue_setup(struct vb2_queue *q,
+>> +			     unsigned int *num_buffers,
+>> +			     unsigned int *num_planes,
+>> +			     unsigned int sizes[],
+>> +			     struct device *alloc_devs[])
+>> +{
+>> +	struct stfcamss_video *video = vb2_get_drv_priv(q);
+>> +	const struct v4l2_pix_format *format = &video->active_fmt.fmt.pix;
+>> +
+>> +	if (*num_planes) {
+>> +		if (*num_planes != 1)
+>> +			return -EINVAL;
+>> +
+>> +		if (sizes[0] < format->sizeimage)
+>> +			return -EINVAL;
+>> +	}
+>> +
+>> +	*num_planes = 1;
+>> +	sizes[0] = format->sizeimage;
+>> +	if (!sizes[0])
+>> +		dev_err(video->stfcamss->dev,
+>> +			"%s: error size is zero!!!\n", __func__);
+>> +
+>> +	dev_dbg(video->stfcamss->dev, "planes = %d, size = %d\n",
+>> +		*num_planes, sizes[0]);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_buf_init(struct vb2_buffer *vb)
+>> +{
+>> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
+>> +	struct stfcamss_video *video = vb2_get_drv_priv(vb->vb2_queue);
+>> +	struct stfcamss_buffer *buffer =
+>> +		container_of(vbuf, struct stfcamss_buffer, vb);
+>> +	const struct v4l2_pix_format *fmt = &video->active_fmt.fmt.pix;
+>> +	dma_addr_t *paddr;
+>> +
+>> +	buffer->sizeimage = 0;
+>> +
+>> +	paddr = vb2_plane_cookie(vb, 0);
+>> +	buffer->sizeimage = vb2_plane_size(vb, 0);
+>> +	buffer->addr[0] = *paddr;
+>> +	if (fmt->pixelformat == V4L2_PIX_FMT_NV12 ||
+>> +	    fmt->pixelformat == V4L2_PIX_FMT_NV21 ||
+>> +	    fmt->pixelformat == V4L2_PIX_FMT_NV16 ||
+>> +	    fmt->pixelformat == V4L2_PIX_FMT_NV61)
+>> +		buffer->addr[1] =
+>> +			buffer->addr[0] + fmt->bytesperline * fmt->height;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_buf_prepare(struct vb2_buffer *vb)
+>> +{
+>> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
+>> +	struct stfcamss_video *video = vb2_get_drv_priv(vb->vb2_queue);
+>> +	const struct v4l2_pix_format *fmt = &video->active_fmt.fmt.pix;
+>> +
+>> +	if (fmt->sizeimage > vb2_plane_size(vb, 0)) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"sizeimage = %d, plane size = %d\n",
+>> +			fmt->sizeimage, (unsigned int)vb2_plane_size(vb, 0));
+>> +		return -EINVAL;
+>> +	}
+>> +	vb2_set_plane_payload(vb, 0, fmt->sizeimage);
+>> +
+>> +	vbuf->field = V4L2_FIELD_NONE;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static void video_buf_queue(struct vb2_buffer *vb)
+>> +{
+>> +	struct vb2_v4l2_buffer *vbuf = to_vb2_v4l2_buffer(vb);
+>> +	struct stfcamss_video *video = vb2_get_drv_priv(vb->vb2_queue);
+>> +	struct stfcamss_buffer *buffer =
+>> +		container_of(vbuf, struct stfcamss_buffer, vb);
+>> +
+>> +	video->ops->queue_buffer(video, buffer);
+>> +}
+>> +
+>> +/*
+>> + * video_mbus_to_pix - Convert v4l2_mbus_framefmt to v4l2_pix_format
+>> + * @mbus: v4l2_mbus_framefmt format (input)
+>> + * @pix: v4l2_pix_format_mplane format (output)
+>> + * @f: a pointer to formats array element to be used for the conversion
+>> + * @alignment: bytesperline alignment value
+>> + *
+>> + * Fill the output pix structure with information from the input mbus format.
+>> + *
+>> + * Return 0 on success or a negative error code otherwise
+>> + */
+>> +static int video_mbus_to_pix(const struct v4l2_mbus_framefmt *mbus,
+>> +			     struct v4l2_pix_format *pix,
+>> +			     const struct stfcamss_format_info *f,
+>> +			     unsigned int alignment)
+>> +{
+>> +	u32 bytesperline;
+>> +
+>> +	memset(pix, 0, sizeof(*pix));
+>> +	v4l2_fill_pix_format(pix, mbus);
+>> +	pix->pixelformat = f->pixelformat;
+>> +	bytesperline = pix->width / f->hsub[0].numerator *
+>> +		       f->hsub[0].denominator * f->bpp[0] / 8;
+>> +	bytesperline = ALIGN(bytesperline, alignment);
+>> +	pix->bytesperline = bytesperline;
+>> +	pix->sizeimage = pix->height / f->vsub[0].numerator *
+>> +			 f->vsub[0].denominator * bytesperline;
+>> +	return 0;
+>> +}
+>> +
+>> +static struct v4l2_subdev *video_remote_subdev(struct stfcamss_video *video,
+>> +					       u32 *pad)
+>> +{
+>> +	struct media_pad *remote;
+>> +
+>> +	remote = media_pad_remote_pad_first(&video->pad);
+>> +
+>> +	if (!remote || !is_media_entity_v4l2_subdev(remote->entity))
+>> +		return NULL;
+>> +
+>> +	if (pad)
+>> +		*pad = remote->index;
+>> +
+>> +	return media_entity_to_v4l2_subdev(remote->entity);
+>> +}
+>> +
+>> +static int video_get_subdev_format(struct stfcamss_video *video,
+>> +				   struct v4l2_format *format)
+>> +{
+>> +	struct v4l2_pix_format *pix = &video->active_fmt.fmt.pix;
+>> +	struct v4l2_subdev_format fmt;
+>> +	struct v4l2_subdev *subdev;
+>> +	u32 pixelformat;
+>> +	u32 pad;
+>> +	int ret;
+>> +
+>> +	subdev = video_remote_subdev(video, &pad);
+>> +	if (!subdev)
+>> +		return -EPIPE;
+>> +
+>> +	fmt.pad = pad;
+>> +	fmt.which = V4L2_SUBDEV_FORMAT_ACTIVE;
+>> +
+>> +	ret = v4l2_subdev_call(subdev, pad, get_fmt, NULL, &fmt);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	pixelformat = pix->pixelformat;
+>> +	ret = video_find_format(fmt.format.code, pixelformat,
+>> +				video->formats, video->nformats);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	format->type = video->type;
+>> +
+>> +	return video_mbus_to_pix(&fmt.format, &format->fmt.pix,
+>> +				 &video->formats[ret], video->bpl_alignment);
+>> +}
+>> +
+>> +static int video_check_format(struct stfcamss_video *video)
+>> +{
+>> +	struct v4l2_pix_format *pix = &video->active_fmt.fmt.pix;
+>> +	struct v4l2_format format;
+>> +	struct v4l2_pix_format *sd_pix = &format.fmt.pix;
+>> +	int ret;
+>> +
+>> +	sd_pix->pixelformat = pix->pixelformat;
+>> +	ret = video_get_subdev_format(video, &format);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	if (pix->pixelformat != sd_pix->pixelformat ||
+>> +	    pix->height > sd_pix->height ||
+>> +	    pix->width > sd_pix->width ||
+> 
+> The width and height must be identical.
+> 
+
+Okay, I will fix it.
+
+>> +	    pix->field != format.fmt.pix.field) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"%s, not match:\n"
+>> +			"0x%x 0x%x\n0x%x 0x%x\n0x%x 0x%x\n",
+>> +			__func__,
+>> +			pix->pixelformat, sd_pix->pixelformat,
+>> +			pix->height, sd_pix->height,
+>> +			pix->field, format.fmt.pix.field);
+>> +		return -EPIPE;
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_start_streaming(struct vb2_queue *q, unsigned int count)
+>> +{
+>> +	struct stfcamss_video *video = vb2_get_drv_priv(q);
+>> +	struct video_device *vdev = &video->vdev;
+>> +	struct media_entity *entity;
+>> +	struct media_pad *pad;
+>> +	struct v4l2_subdev *subdev;
+>> +	int ret;
+>> +
+>> +	ret = video_device_pipeline_start(vdev, &video->stfcamss->pipe);
+>> +	if (ret < 0) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"Failed to media_pipeline_start: %d\n", ret);
+>> +		return ret;
+>> +	}
+>> +
+>> +	ret = video_check_format(video);
+>> +	if (ret < 0)
+>> +		goto error;
+>> +	entity = &vdev->entity;
+>> +	while (1) {
+>> +		pad = &entity->pads[0];
+>> +		if (!(pad->flags & MEDIA_PAD_FL_SINK))
+>> +			break;
+>> +
+>> +		pad = media_pad_remote_pad_first(pad);
+>> +		if (!pad || !is_media_entity_v4l2_subdev(pad->entity))
+>> +			break;
+>> +
+>> +		entity = pad->entity;
+>> +		subdev = media_entity_to_v4l2_subdev(entity);
+>> +
+>> +		ret = v4l2_subdev_call(subdev, video, s_stream, 1);
+>> +		if (ret < 0 && ret != -ENOIOCTLCMD)
+>> +			goto error;
+>> +	}
+> 
+> While you're free to decide how to implement the start streaming
+> operation for all the subdevs in your driver, you must not call
+> .s_stream() on all *external* subdevs. Imagine a case where the device
+> connected to your VIN input would be a parallel-to-CSI-2 bridge. This
+> driver must call .s_stream() on the bridge, but must not call
+> .s_stream() on the device at the input of the bridge, as the bridge
+> driver will propagate the .s_stream() call itself.
+> 
+> I will be able to advice better on how to handle stream start once you
+> provide the media graph of the device.
+> 
+
+Okay, I will provide the media graph of the device.
+
+>> +	return 0;
+>> +
+>> +error:
+>> +	video_device_pipeline_stop(vdev);
+>> +	video->ops->flush_buffers(video, VB2_BUF_STATE_QUEUED);
+>> +	return ret;
+>> +}
+>> +
+>> +static void video_stop_streaming(struct vb2_queue *q)
+>> +{
+>> +	struct stfcamss_video *video = vb2_get_drv_priv(q);
+>> +	struct video_device *vdev = &video->vdev;
+>> +	struct media_entity *entity;
+>> +	struct media_pad *pad;
+>> +	struct v4l2_subdev *subdev;
+>> +
+>> +	entity = &vdev->entity;
+>> +	while (1) {
+>> +		pad = &entity->pads[0];
+>> +		if (!(pad->flags & MEDIA_PAD_FL_SINK))
+>> +			break;
+>> +
+>> +		pad = media_pad_remote_pad_first(pad);
+>> +		if (!pad || !is_media_entity_v4l2_subdev(pad->entity))
+>> +			break;
+>> +
+>> +		entity = pad->entity;
+>> +		subdev = media_entity_to_v4l2_subdev(entity);
+>> +
+>> +		v4l2_subdev_call(subdev, video, s_stream, 0);
+>> +	}
+>> +
+>> +	video_device_pipeline_stop(vdev);
+>> +	video->ops->flush_buffers(video, VB2_BUF_STATE_ERROR);
+>> +}
+>> +
+>> +static const struct vb2_ops stf_video_vb2_q_ops = {
+>> +	.queue_setup     = video_queue_setup,
+>> +	.wait_prepare    = vb2_ops_wait_prepare,
+>> +	.wait_finish     = vb2_ops_wait_finish,
+>> +	.buf_init        = video_buf_init,
+>> +	.buf_prepare     = video_buf_prepare,
+>> +	.buf_queue       = video_buf_queue,
+>> +	.start_streaming = video_start_streaming,
+>> +	.stop_streaming  = video_stop_streaming,
+>> +};
+>> +
+>> +/* -----------------------------------------------------------------------------
+>> + * V4L2 ioctls
+>> + */
+>> +
+>> +static int video_querycap(struct file *file, void *fh,
+>> +			  struct v4l2_capability *cap)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +
+>> +	strscpy(cap->driver, "stf camss", sizeof(cap->driver));
+>> +	strscpy(cap->card, "Starfive Camera Subsystem", sizeof(cap->card));
+>> +	snprintf(cap->bus_info, sizeof(cap->bus_info), "platform:%s",
+>> +		 dev_name(video->stfcamss->dev));
+> 
+> No need to set bus_info manually, it's done automatically in
+> v4l_querycap().
+> 
+
+Okay, I will drop it.
+
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_get_pfmt_by_index(struct stfcamss_video *video, int ndx)
+>> +{
+>> +	int i, j, k;
+>> +
+>> +	/* find index "i" of "k"th unique pixelformat in formats array */
+>> +	k = -1;
+>> +	for (i = 0; i < video->nformats; i++) {
+>> +		for (j = 0; j < i; j++) {
+>> +			if (video->formats[i].pixelformat ==
+>> +			    video->formats[j].pixelformat)
+>> +				break;
+>> +		}
+>> +
+>> +		if (j == i)
+>> +			k++;
+>> +
+>> +		if (k == ndx)
+>> +			return i;
+>> +	}
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int video_get_pfmt_by_mcode(struct stfcamss_video *video, u32 mcode)
+>> +{
+>> +	int i;
+>> +
+>> +	for (i = 0; i < video->nformats; i++) {
+>> +		if (video->formats[i].code == mcode)
+>> +			return i;
+>> +	}
+>> +
+>> +	return -EINVAL;
+>> +}
+>> +
+>> +static int video_enum_fmt(struct file *file, void *fh, struct v4l2_fmtdesc *f)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +	int i;
+>> +
+>> +	if (f->type != video->type)
+>> +		return -EINVAL;
+>> +	if (f->index >= video->nformats)
+>> +		return -EINVAL;
+>> +
+>> +	if (f->mbus_code) {
+>> +		/* Each entry in formats[] table has unique mbus_code */
+>> +		if (f->index > 0)
+>> +			return -EINVAL;
+>> +
+>> +		i = video_get_pfmt_by_mcode(video, f->mbus_code);
+>> +	} else {
+>> +		i = video_get_pfmt_by_index(video, f->index);
+>> +	}
+>> +
+>> +	if (i < 0)
+>> +		return -EINVAL;
+>> +
+>> +	f->pixelformat = video->formats[i].pixelformat;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_enum_framesizes(struct file *file, void *fh,
+>> +				 struct v4l2_frmsizeenum *fsize)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +	int i;
+>> +
+>> +	if (fsize->index)
+>> +		return -EINVAL;
+>> +
+>> +	for (i = 0; i < video->nformats; i++) {
+>> +		if (video->formats[i].pixelformat == fsize->pixel_format)
+>> +			break;
+>> +	}
+>> +
+>> +	if (i == video->nformats)
+>> +		return -EINVAL;
+>> +
+>> +	fsize->type = V4L2_FRMSIZE_TYPE_CONTINUOUS;
+>> +	fsize->stepwise.min_width = STFCAMSS_FRAME_MIN_WIDTH;
+>> +	fsize->stepwise.max_width = STFCAMSS_FRAME_MAX_WIDTH;
+>> +	fsize->stepwise.min_height = STFCAMSS_FRAME_MIN_HEIGHT;
+>> +	fsize->stepwise.max_height = STFCAMSS_FRAME_MAX_HEIGHT;
+>> +	fsize->stepwise.step_width = 1;
+>> +	fsize->stepwise.step_height = 1;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_g_fmt(struct file *file, void *fh, struct v4l2_format *f)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +
+>> +	*f = video->active_fmt;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_s_fmt(struct file *file, void *fh, struct v4l2_format *f)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +	int ret;
+>> +
+>> +	if (vb2_is_busy(&video->vb2_q))
+>> +		return -EBUSY;
+>> +
+>> +	ret = __video_try_fmt(video, f);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	video->active_fmt = *f;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_try_fmt(struct file *file, void *fh, struct v4l2_format *f)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +
+>> +	return __video_try_fmt(video, f);
+>> +}
+>> +
+>> +static int video_enum_input(struct file *file, void *fh,
+>> +			    struct v4l2_input *input)
+>> +{
+>> +	if (input->index > 0)
+>> +		return -EINVAL;
+>> +
+>> +	strscpy(input->name, "camera", sizeof(input->name));
+>> +	input->type = V4L2_INPUT_TYPE_CAMERA;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_g_input(struct file *file, void *fh, unsigned int *input)
+>> +{
+>> +	*input = 0;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static int video_s_input(struct file *file, void *fh, unsigned int input)
+>> +{
+>> +	return input == 0 ? 0 : -EINVAL;
+>> +}
+> 
+> You can drop enum_input, g_input and s_input, they make little sense for
+> this device.
+> 
+
+Okay, I will drop them.
+
+>> +
+>> +static int video_g_parm(struct file *file, void *priv,
+>> +			struct v4l2_streamparm *p)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +	struct video_device *vdev = &video->vdev;
+>> +	struct media_entity *entity;
+>> +	struct v4l2_subdev *subdev;
+>> +	struct media_pad *pad;
+>> +	int ret, is_support = 0;
+>> +
+>> +	entity = &vdev->entity;
+>> +	while (1) {
+>> +		pad = &entity->pads[0];
+>> +		if (!(pad->flags & MEDIA_PAD_FL_SINK))
+>> +			break;
+>> +
+>> +		pad = media_pad_remote_pad_first(pad);
+>> +		if (!pad || !is_media_entity_v4l2_subdev(pad->entity))
+>> +			break;
+>> +
+>> +		entity = pad->entity;
+>> +		subdev = media_entity_to_v4l2_subdev(entity);
+>> +
+>> +		ret = v4l2_g_parm_cap(vdev, subdev, p);
+> 
+> Unless I'm missing something, the g_parm operation isn't implemented in
+> the connected subdev (VIN or ISP), and neither is s_parm. You can just
+> drop video_g_parm() and video_s_parm(), you don't have to implement
+> them.
+> 
+
+Okay, I will drop them.
+
+>> +		if (ret < 0 && ret != -ENOIOCTLCMD)
+>> +			break;
+>> +		if (!ret)
+>> +			is_support = 1;
+>> +	}
+>> +
+>> +	return is_support ? 0 : ret;
+>> +}
+>> +
+>> +static int video_s_parm(struct file *file, void *priv,
+>> +			struct v4l2_streamparm *p)
+>> +{
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +	struct video_device *vdev = &video->vdev;
+>> +	struct media_entity *entity;
+>> +	struct v4l2_subdev *subdev;
+>> +	struct media_pad *pad;
+>> +	struct v4l2_streamparm tmp_p;
+>> +	int ret, is_support = 0;
+>> +
+>> +	entity = &vdev->entity;
+>> +	while (1) {
+>> +		pad = &entity->pads[0];
+>> +		if (!(pad->flags & MEDIA_PAD_FL_SINK))
+>> +			break;
+>> +
+>> +		pad = media_pad_remote_pad_first(pad);
+>> +		if (!pad || !is_media_entity_v4l2_subdev(pad->entity))
+>> +			break;
+>> +
+>> +		entity = pad->entity;
+>> +		subdev = media_entity_to_v4l2_subdev(entity);
+>> +
+>> +		tmp_p = *p;
+>> +		ret = v4l2_s_parm_cap(vdev, subdev, &tmp_p);
+>> +		if (ret < 0 && ret != -ENOIOCTLCMD)
+>> +			break;
+>> +		if (!ret) {
+>> +			is_support = 1;
+>> +			*p = tmp_p;
+>> +		}
+>> +	}
+>> +
+>> +	return is_support ? 0 : ret;
+>> +}
+>> +
+>> +static const struct v4l2_ioctl_ops stf_vid_vin_ioctl_ops = {
+>> +	.vidioc_querycap                = video_querycap,
+>> +	.vidioc_enum_fmt_vid_cap        = video_enum_fmt,
+>> +	.vidioc_enum_fmt_vid_out        = video_enum_fmt,
+>> +	.vidioc_enum_framesizes         = video_enum_framesizes,
+>> +	.vidioc_g_fmt_vid_cap           = video_g_fmt,
+>> +	.vidioc_s_fmt_vid_cap           = video_s_fmt,
+>> +	.vidioc_try_fmt_vid_cap         = video_try_fmt,
+>> +	.vidioc_g_fmt_vid_out           = video_g_fmt,
+>> +	.vidioc_s_fmt_vid_out           = video_s_fmt,
+>> +	.vidioc_try_fmt_vid_out         = video_try_fmt,
+>> +	.vidioc_reqbufs                 = vb2_ioctl_reqbufs,
+>> +	.vidioc_querybuf                = vb2_ioctl_querybuf,
+>> +	.vidioc_qbuf                    = vb2_ioctl_qbuf,
+>> +	.vidioc_expbuf                  = vb2_ioctl_expbuf,
+>> +	.vidioc_dqbuf                   = vb2_ioctl_dqbuf,
+>> +	.vidioc_create_bufs             = vb2_ioctl_create_bufs,
+>> +	.vidioc_prepare_buf             = vb2_ioctl_prepare_buf,
+>> +	.vidioc_streamon                = vb2_ioctl_streamon,
+>> +	.vidioc_streamoff               = vb2_ioctl_streamoff,
+>> +	.vidioc_enum_input              = video_enum_input,
+>> +	.vidioc_g_input                 = video_g_input,
+>> +	.vidioc_s_input                 = video_s_input,
+>> +	.vidioc_g_parm                  = video_g_parm,
+>> +	.vidioc_s_parm                  = video_s_parm,
+>> +};
+>> +
+>> +static const struct v4l2_ioctl_ops stf_vid_isp_ioctl_ops = {
+>> +	.vidioc_querycap                = video_querycap,
+>> +	.vidioc_enum_fmt_vid_cap        = video_enum_fmt,
+>> +	.vidioc_enum_fmt_vid_out        = video_enum_fmt,
+>> +	.vidioc_enum_framesizes         = video_enum_framesizes,
+>> +	.vidioc_g_fmt_vid_cap           = video_g_fmt,
+>> +	.vidioc_s_fmt_vid_cap           = video_s_fmt,
+>> +	.vidioc_try_fmt_vid_cap         = video_try_fmt,
+>> +	.vidioc_g_fmt_vid_out           = video_g_fmt,
+>> +	.vidioc_s_fmt_vid_out           = video_s_fmt,
+>> +	.vidioc_try_fmt_vid_out         = video_try_fmt,
+>> +	.vidioc_reqbufs                 = vb2_ioctl_reqbufs,
+>> +	.vidioc_querybuf                = vb2_ioctl_querybuf,
+>> +	.vidioc_qbuf                    = vb2_ioctl_qbuf,
+>> +	.vidioc_expbuf                  = vb2_ioctl_expbuf,
+>> +	.vidioc_dqbuf                   = vb2_ioctl_dqbuf,
+>> +	.vidioc_create_bufs             = vb2_ioctl_create_bufs,
+>> +	.vidioc_prepare_buf             = vb2_ioctl_prepare_buf,
+>> +	.vidioc_streamon                = vb2_ioctl_streamon,
+>> +	.vidioc_streamoff               = vb2_ioctl_streamoff,
+>> +	.vidioc_enum_input              = video_enum_input,
+>> +	.vidioc_g_input                 = video_g_input,
+>> +	.vidioc_s_input                 = video_s_input,
+>> +	.vidioc_g_parm                  = video_g_parm,
+>> +	.vidioc_s_parm                  = video_s_parm,
+>> +};
+> 
+> Unless I'm mistaken the two structures are identical, you can have a
+> single one.
+> 
+
+Okay, I will use a single structure.
+
+>> +
+>> +/* -----------------------------------------------------------------------------
+>> + * V4L2 file operations
+>> + */
+>> +
+>> +static int video_open(struct file *file)
+>> +{
+>> +	struct video_device *vdev = video_devdata(file);
+>> +	struct stfcamss_video *video = video_drvdata(file);
+>> +	struct v4l2_fh *vfh;
+>> +	int ret;
+>> +
+>> +	mutex_lock(&video->lock);
+>> +
+>> +	vfh = kzalloc(sizeof(*vfh), GFP_KERNEL);
+>> +	if (!vfh) {
+>> +		ret = -ENOMEM;
+>> +		goto error_alloc;
+>> +	}
+>> +
+>> +	v4l2_fh_init(vfh, vdev);
+>> +	v4l2_fh_add(vfh);
+>> +
+>> +	file->private_data = vfh;
+>> +
+>> +	ret = v4l2_pipeline_pm_get(&vdev->entity);
+> 
+> This is a deprecated API, you can drop the call. It will greatly
+> simplify video_open(), which can be replaced with v4l2_fh_open(). Same
+> for release, you can use v4l2_fh_release().
+> 
+> Regarding power management, you should use runtime PM, calling
+> pm_runtime_resume_and_get() when starting streaming (in
+> video_start_streaming()) and pm_runtime_put() when stopping streaming.
+> As a result of dropping v4l2_pipeline_pm_get() the .s_power() subdev
+> operations won't be called automatically. They are deprecated, so they
+> should be dropped, and the relevant code moved to the PM runtime
+> resume/suspend handlers. You will be able to drop the power_count
+> fields.
+> 
+
+Okay, I will fix it.
+
+>> +	if (ret < 0) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"Failed to power up pipeline: %d\n", ret);
+>> +		goto error_pm_use;
+>> +	}
+>> +	mutex_unlock(&video->lock);
+>> +
+>> +	return 0;
+>> +
+>> +error_pm_use:
+>> +	v4l2_fh_release(file);
+>> +error_alloc:
+>> +	mutex_unlock(&video->lock);
+>> +	return ret;
+>> +}
+>> +
+>> +static int video_release(struct file *file)
+>> +{
+>> +	struct video_device *vdev = video_devdata(file);
+>> +
+>> +	vb2_fop_release(file);
+>> +	v4l2_pipeline_pm_put(&vdev->entity);
+>> +	file->private_data = NULL;
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct v4l2_file_operations stf_vid_fops = {
+>> +	.owner          = THIS_MODULE,
+>> +	.unlocked_ioctl = video_ioctl2,
+>> +	.open           = video_open,
+>> +	.release        = video_release,
+>> +	.poll           = vb2_fop_poll,
+>> +	.mmap           = vb2_fop_mmap,
+>> +	.read           = vb2_fop_read,
+>> +};
+>> +
+>> +/* -----------------------------------------------------------------------------
+>> + * STFCAMSS video core
+>> + */
+>> +
+>> +static void stf_video_release(struct video_device *vdev)
+>> +{
+>> +	struct stfcamss_video *video = video_get_drvdata(vdev);
+>> +
+>> +	media_entity_cleanup(&vdev->entity);
+>> +
+>> +	mutex_destroy(&video->q_lock);
+>> +	mutex_destroy(&video->lock);
+>> +}
+>> +
+>> +int stf_video_register(struct stfcamss_video *video,
+>> +		       struct v4l2_device *v4l2_dev, const char *name)
+>> +{
+>> +	struct video_device *vdev;
+>> +	struct vb2_queue *q;
+>> +	struct media_pad *pad = &video->pad;
+>> +	int ret;
+>> +
+>> +	vdev = &video->vdev;
+>> +
+>> +	mutex_init(&video->q_lock);
+>> +
+>> +	q = &video->vb2_q;
+>> +	q->drv_priv = video;
+>> +	q->mem_ops = &vb2_dma_contig_memops;
+>> +	q->ops = &stf_video_vb2_q_ops;
+>> +	q->type = video->type;
+>> +	q->io_modes = VB2_DMABUF | VB2_MMAP | VB2_READ;
+>> +	q->timestamp_flags = V4L2_BUF_FLAG_TIMESTAMP_MONOTONIC;
+>> +	q->buf_struct_size = sizeof(struct stfcamss_buffer);
+>> +	q->dev = video->stfcamss->dev;
+>> +	q->lock = &video->q_lock;
+>> +	q->min_buffers_needed = STFCAMSS_MIN_BUFFERS;
+>> +	ret = vb2_queue_init(q);
+>> +	if (ret < 0) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"Failed to init vb2 queue: %d\n", ret);
+>> +		goto err_vb2_init;
+>> +	}
+>> +
+>> +	pad->flags = MEDIA_PAD_FL_SINK;
+>> +	ret = media_entity_pads_init(&vdev->entity, 1, pad);
+>> +	if (ret < 0) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"Failed to init video entity: %d\n", ret);
+>> +		goto err_vb2_init;
+>> +	}
+>> +
+>> +	mutex_init(&video->lock);
+>> +
+>> +	if (video->id == STF_V_LINE_WR) {
+>> +		video->formats = formats_pix_wr;
+>> +		video->nformats = ARRAY_SIZE(formats_pix_wr);
+>> +		video->bpl_alignment = STFCAMSS_FRAME_WIDTH_ALIGN_8;
+>> +		vdev->ioctl_ops = &stf_vid_vin_ioctl_ops;
+>> +	} else {
+>> +		video->formats = formats_pix_isp;
+>> +		video->nformats = ARRAY_SIZE(formats_pix_isp);
+>> +		video->bpl_alignment = STFCAMSS_FRAME_WIDTH_ALIGN_8;
+>> +		vdev->ioctl_ops = &stf_vid_isp_ioctl_ops;
+>> +	}
+>> +
+>> +	ret = stf_video_init_format(video);
+>> +	if (ret < 0) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"Failed to init format: %d\n", ret);
+>> +		goto err_vid_init_format;
+>> +	}
+>> +
+>> +	vdev->fops = &stf_vid_fops;
+>> +	vdev->device_caps = V4L2_CAP_VIDEO_CAPTURE;
+>> +	vdev->vfl_dir = VFL_DIR_RX;
+>> +	vdev->device_caps |= V4L2_CAP_STREAMING | V4L2_CAP_READWRITE;
+>> +	vdev->release = stf_video_release;
+>> +	vdev->v4l2_dev = v4l2_dev;
+>> +	vdev->queue = &video->vb2_q;
+>> +	vdev->lock = &video->lock;
+>> +	strscpy(vdev->name, name, sizeof(vdev->name));
+>> +
+>> +	ret = video_register_device(vdev, VFL_TYPE_VIDEO, video->id);
+>> +	if (ret < 0) {
+>> +		dev_err(video->stfcamss->dev,
+>> +			"Failed to register video device: %d\n", ret);
+>> +		goto err_vid_reg;
+>> +	}
+>> +
+>> +	video_set_drvdata(vdev, video);
+>> +	return 0;
+>> +
+>> +err_vid_reg:
+>> +err_vid_init_format:
+>> +	media_entity_cleanup(&vdev->entity);
+>> +	mutex_destroy(&video->lock);
+>> +err_vb2_init:
+>> +	mutex_destroy(&video->q_lock);
+>> +	return ret;
+>> +}
+>> +
+>> +void stf_video_unregister(struct stfcamss_video *video)
+>> +{
+>> +	vb2_video_unregister_device(&video->vdev);
+>> +}
+>> diff --git a/drivers/media/platform/starfive/stf_video.h b/drivers/media/platform/starfive/stf_video.h
+>> new file mode 100644
+>> index 000000000000..63a9a7706a03
+>> --- /dev/null
+>> +++ b/drivers/media/platform/starfive/stf_video.h
+>> @@ -0,0 +1,95 @@
+>> +/* SPDX-License-Identifier: GPL-2.0 */
+>> +/*
+>> + * stf_video.h
+>> + *
+>> + * StarFive Camera Subsystem - V4L2 device node
+>> + *
+>> + * Copyright (C) 2021-2023 StarFive Technology Co., Ltd.
+>> + */
+>> +
+>> +#ifndef STF_VIDEO_H
+>> +#define STF_VIDEO_H
+>> +
+> 
+> You should include linux/list.h for struct list_head.
+> 
+
+Okay, I will add it.
+
+>> +#include <linux/mutex.h>
+>> +#include <linux/videodev2.h>
+>> +#include <media/v4l2-dev.h>
+>> +#include <media/v4l2-fh.h>
+>> +#include <media/v4l2-ioctl.h>
+>> +#include <media/videobuf2-v4l2.h>
+>> +
+>> +#define STFCAMSS_FRAME_MIN_WIDTH		64
+>> +#define STFCAMSS_FRAME_MAX_WIDTH		1920
+>> +#define STFCAMSS_FRAME_MIN_HEIGHT		64
+>> +#define STFCAMSS_FRAME_MAX_HEIGHT		1080
+>> +#define STFCAMSS_FRAME_WIDTH_ALIGN_8		8
+>> +#define STFCAMSS_FRAME_WIDTH_ALIGN_128		128
+>> +#define STFCAMSS_MIN_BUFFERS			2
+>> +
+>> +#define STFCAMSS_MAX_ENTITY_NAME_LEN		27
+>> +
+>> +enum stf_v_line_id {
+>> +	STF_V_LINE_WR = 0,
+>> +	STF_V_LINE_ISP,
+>> +	STF_V_LINE_MAX,
+>> +};
+>> +
+>> +struct stfcamss_buffer {
+>> +	struct vb2_v4l2_buffer vb;
+>> +	dma_addr_t addr[3];
+>> +	struct list_head queue;
+>> +	int sizeimage;
+> 
+> As far as I can tell, this is set but never used.
+> 
+
+Yes, I will drop it.
+
+>> +};
+>> +
+>> +struct fract {
+>> +	u8 numerator;
+>> +	u8 denominator;
+>> +};
+>> +
+>> +/*
+>> + * struct stfcamss_format_info - ISP media bus format information
+>> + * @code: V4L2 media bus format code
+>> + * @pixelformat: V4L2 pixel format FCC identifier
+>> + * @planes: Number of planes
+>> + * @hsub: Horizontal subsampling (for each plane)
+>> + * @vsub: Vertical subsampling (for each plane)
+>> + * @bpp: Bits per pixel when stored in memory (for each plane)
+>> + */
+>> +struct stfcamss_format_info {
+>> +	u32 code;
+>> +	u32 pixelformat;
+>> +	u8 planes;
+>> +	struct fract hsub[3];
+>> +	struct fract vsub[3];
+> 
+> Only the first element of these arrays is used.
+> 
+
+Yes, I will fix it.
+
+>> +	u8 bpp[3];
+>> +};
+>> +
+>> +struct stfcamss_video {
+>> +	struct stfcamss *stfcamss;
+>> +	u8 id;
+>> +	struct vb2_queue vb2_q;
+>> +	struct video_device vdev;
+>> +	struct media_pad pad;
+>> +	struct media_pipeline pipe;
+> 
+> This isn't used.
+> 
+
+Okay, I will drop it.
+
+>> +	struct v4l2_format active_fmt;
+>> +	enum v4l2_buf_type type;
+>> +	const struct stfcamss_video_ops *ops;
+>> +	struct mutex lock;	 /* serialize device access */
+>> +	struct mutex q_lock;	 /* protects the queue */
+>> +	unsigned int bpl_alignment;
+>> +	const struct stfcamss_format_info *formats;
+>> +	unsigned int nformats;
+>> +};
+>> +
+>> +struct stfcamss_video_ops {
+>> +	int (*queue_buffer)(struct stfcamss_video *vid,
+>> +			    struct stfcamss_buffer *buf);
+>> +	int (*flush_buffers)(struct stfcamss_video *vid,
+>> +			     enum vb2_buffer_state state);
+>> +};
+>> +
+>> +int stf_video_register(struct stfcamss_video *video,
+>> +		       struct v4l2_device *v4l2_dev, const char *name);
+>> +
+>> +void stf_video_unregister(struct stfcamss_video *video);
+>> +
+>> +#endif /* STF_VIDEO_H */
+> 
