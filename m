@@ -2,146 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D16D973317E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 14:44:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F9373333F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:14:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345355AbjFPMoL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 08:44:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40770 "EHLO
+        id S229965AbjFPOOt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 10:14:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345391AbjFPMoI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 08:44:08 -0400
-Received: from EUR02-AM0-obe.outbound.protection.outlook.com (mail-am0eur02on2041.outbound.protection.outlook.com [40.107.247.41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E60D35BE;
-        Fri, 16 Jun 2023 05:43:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Jtgf6T1/aiNArO2F3kCMZM+BSBt1wRp311FjFr3+nJ6gchOOs+TJ0Ee475+xSZ2lVknKRrEESDlmb7r6YSMVwfhXxLY5tyiqUbD6060D6A2c+AAbitXku9vmtn14cF0REYRLZHzYYO5mXGjXugbAK8mTxw/FWdGvHvNFIXFrGNT20fUiQhX/yNu5hOidiOIDGc9mvNT2I/OxR6+vg1wX2T/bTp4Fb+zuO5BQh17KDl9tm5XKbr3lz1PVzllbKt/btt5dNfJ2nierLrr92SXDzpzj2woelu0x5pjyCuiDL6s2804SxbT0Vzn7OSP+Nx2dvRimh9uKVbeRI9Ls3I+rhg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zTkaHzimDYs5V/v3H50MrtfCLaTZp9hn5ECU0FygbLA=;
- b=HZXjODKSQgziWN/IGkJNP5zQG+0BGYGvW43IH4DFZKL7GevZCEN2jenI4Lo2WZcRwIrDNaU44skYHCgMCnQ4Ju1/UxcN7hJbJ565778Xhu+NQhiFIxSYrMWn94jg5vweo6mlQLJpUSCxRdMXQEnEwmLTMhPg9K2qsOagNrrJVt+rNGvYBKQr4tZ8aGIKJ9fyTJTiA7ONg18qhxx7iREaEIzwaIOqR9AcorhVQBkrF98oiMimytkiWS99zRDmc/3tvEnNvF33tDENaOctfenmlorrgKVvcnLnrHMPkySF7ZHvj0w3XuCRIU6OplceJrcCJgleMukXMCdgDpRHnOKxDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zTkaHzimDYs5V/v3H50MrtfCLaTZp9hn5ECU0FygbLA=;
- b=Fd5hh+efVcCq3xjJ2EESsoIdzKeZrEMuLM+d8Zi/ZEXRrJ2neVmm4YefwmjF2y18jl0CFriUx+D3fDYRMDnQkhMm64KMRnY07WR2xZx4Drf/lth9xz+sl+ccuag2ITzb2pIpQvvN/Q6VPPAFtztv3IWTkr9TyDTlXG9z2ZxSRBY=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from DU2PR04MB8630.eurprd04.prod.outlook.com (2603:10a6:10:2dd::15)
- by PAXPR04MB8320.eurprd04.prod.outlook.com (2603:10a6:102:1cf::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.25; Fri, 16 Jun
- 2023 12:43:20 +0000
-Received: from DU2PR04MB8630.eurprd04.prod.outlook.com
- ([fe80::413f:a9d5:4c09:9dad]) by DU2PR04MB8630.eurprd04.prod.outlook.com
- ([fe80::413f:a9d5:4c09:9dad%3]) with mapi id 15.20.6500.029; Fri, 16 Jun 2023
- 12:43:20 +0000
-From:   Pankaj Gupta <pankaj.gupta@nxp.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        gaurav.jain@nxp.com, linux-kernel@vger.kernel.org
-Cc:     Pankaj Gupta <pankaj.gupta@nxp.com>
-Subject: [PATCH v3 7/7] MAINTAINERS: Added maintainer details
-Date:   Fri, 16 Jun 2023 23:41:44 +0530
-Message-Id: <20230616181144.646500-8-pankaj.gupta@nxp.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230616181144.646500-1-pankaj.gupta@nxp.com>
-References: <20230616181144.646500-1-pankaj.gupta@nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR03CA0100.apcprd03.prod.outlook.com
- (2603:1096:4:7c::28) To DU2PR04MB8630.eurprd04.prod.outlook.com
- (2603:10a6:10:2dd::15)
+        with ESMTP id S229779AbjFPOOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:14:48 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC42A26BA
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 07:14:46 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-311167ba376so534581f8f.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 07:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686924885; x=1689516885;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=H6jJ8jl2zxfYRT/VD5e4lCITqgn1yEPd63TtMtS1Jbo=;
+        b=DqXjleaypY7ZnQBr+UjU1Gw0u7GTdlCGT7thozHGBIJi/2iXToh+sDyFLe3XMR2GEv
+         N3W9TxTzUIvBEfzB6LLaOepGodZViW+xMKwyjr42kRJGOFVTgJLgVgBgIbc8gOWotYT/
+         kI7Mo+J9pe/MdRo33Sohw36qAN/yde8A++JM7688Q63ufm5SciQsSjqBuKX5GqzZQBIU
+         ZLkS/uPZnXbTj4IbZWfamogVV+2Ag+owXulb2M+nlNPPl/ujDa0f1yGpUM4d7aC1l+S3
+         F0G8S1C/MKLlo5mvYRYJAUaHWQB9l5UfBFk2bR5n/HH4ew4twZ5NZDRVj/W2sWymq49F
+         oWjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686924885; x=1689516885;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=H6jJ8jl2zxfYRT/VD5e4lCITqgn1yEPd63TtMtS1Jbo=;
+        b=RsAGKUukbPSx3UR8ymmn8CTgfINPM9qaiJtJiDeQAIml/Xfc8+tYH8vjpuxHDr+IUi
+         4c0SQAR5ZKIBR+qqtVcR4SZeLXJghXt7GssCeVwm007btW6KEjMpYzoYIu483/5xL2HY
+         5QSVH7+zSrUVxLEJSnC0caWOMGsVEwW034LCuYeSBRynlpw2rXFLoV9uU7ZremGVAai+
+         W2sQqE/WJg3DO9UwobJuzUJ2BCp2KhyW5x2vAD6kT36p+WY+7seLJQsliYlXzWbW2sG/
+         OnBDJWoZO6MGL9BMIZCy+6AhozZPI3dzXQ7kkj/X9hPBA//jr+mF5gl5VddeyBGNltWM
+         SHYQ==
+X-Gm-Message-State: AC+VfDwcb1wGMI4dc9f1iccCR+ABCFKOJDoxy5cU8kW0uCCGGAlodfHc
+        gNc2fDBt/yDoHG2Rse9KtRMlGw==
+X-Google-Smtp-Source: ACHHUZ5YPMVGvwvOFI532kPukbTnEn0EEfKSfKN/XYgNakXzX7586mZ/qG+bWttFxSqtEjozoLVjNg==
+X-Received: by 2002:adf:e7d2:0:b0:311:19a2:e3cc with SMTP id e18-20020adfe7d2000000b0031119a2e3ccmr1496535wrn.8.1686924885161;
+        Fri, 16 Jun 2023 07:14:45 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:4aa0:8c56:eebe:c05c? ([2a05:6e02:1041:c10:4aa0:8c56:eebe:c05c])
+        by smtp.googlemail.com with ESMTPSA id k7-20020adfe3c7000000b0030fce98f40dsm9894758wrm.42.2023.06.16.07.14.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 07:14:44 -0700 (PDT)
+Message-ID: <42f245c0-8cc4-9b8c-1b7d-a7daced9a57a@linaro.org>
+Date:   Fri, 16 Jun 2023 16:14:43 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DU2PR04MB8630:EE_|PAXPR04MB8320:EE_
-X-MS-Office365-Filtering-Correlation-Id: 02b04227-439e-41c1-8758-08db6e67440b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: hsafLA5/Y31l8mbpcxTs8K0r02PqBknJw356Yzc8KzUFT+T97KU/V8rqc9JuW4viRVgfxphWNm028p5XeAYQT0eoxVoYxLrFUl0koLhCKVbBSOTJ/7Q3k2IJu1LMNexVFbStUaFWg1yFuV78iLsyww64SLMODN9G2BK8weK5M3TPn84FO1F9HpYCq4v9QGTjLMofTo49PXT/SlCXP7S2XD0t0R7kWX9YIe4l2LxmJxKnNr8LqVTO6TYLKboeVCmJtUMKy9eCc9tIvJOa/BBOGV3G+qmYxv/GWkQ8wXkoN3ANW+iCxgVgRLNombCzWyJc1Q6FEobjACvN/4GkuAW3TpflAccHocwmipXRXX50ELVlIrCA1bq+PSVnruao85O42CDdsvn3ZTw8F3W8+Vof3sr6zIcF0egUwXWqtX58KmMTmysZQhEcYmk/GsXlzGR8hnS9bTKX8Sejs0BSwZaRjQ40lniADN+KA3bbQ7wZc5oebcRnR4OAdaOgK67jQS6MyfvPoORd+G+p0NTiBt1EKQiQwbOwFDXdbU7buG+IoNXTnZD/4SFizcwGvg/K8e6Lo20060iuCdfoYokbWF9NqAGaf7CQ8wEriXSlZWTrd6VawQ2mdtjvmI640Ui1AMZ3GN1gBa/7Zyr3LOeLnmDRdw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU2PR04MB8630.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(39860400002)(376002)(136003)(366004)(451199021)(5660300002)(478600001)(8936002)(41300700001)(8676002)(316002)(6486002)(52116002)(1076003)(6506007)(7416002)(44832011)(186003)(6666004)(4326008)(66476007)(66556008)(66946007)(26005)(6512007)(2616005)(2906002)(4744005)(83380400001)(921005)(38100700002)(38350700002)(86362001)(36756003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WE/iXoDg4A+YEavL7GoyUynxFwAjRFsvewZOydQpuPTgqDLs2A/gEnyg8eRS?=
- =?us-ascii?Q?nLNLC9bewuC4zrhOk6gi0VVZ6YlhL7IJ9jO6jcE3kKuKMTP8RQpR43pBKmYX?=
- =?us-ascii?Q?zSL8EItsxsJfIUzAUGrN5Mld8TDYqtC1U9UPI+QSnp0+tcmGHkpxVdoIbU9a?=
- =?us-ascii?Q?exHaYz4GEEZLUyvkLoduqV3S9Ym+1FWxi3740sW8rJXujsROkoWiiFipFbxC?=
- =?us-ascii?Q?0JWPdS2STlwgImpcCVFlwdhngJe0VowUdbNCv/PosjFAaxs/wOfHVB6wgTDU?=
- =?us-ascii?Q?yN/Rzpdt0dX6UPiQ6skvvS+SLnryrmKlaxT0xzlTG2zTRwdSbkOetFtYtzxT?=
- =?us-ascii?Q?HrHRMroJItu694pn+kPAgCDspd0GlbkdqnbsCOfinZ1K5YkZOjs09cp1Cb8i?=
- =?us-ascii?Q?Nv7uQ1q69FOAb1K2ZcqiLZVqR0hN+vn/r+qZtVZcyhVnEuhEF2Bp6ubDNazz?=
- =?us-ascii?Q?DmYNFHRtqNUtasBarVY9F002u6UCLh3hlgHNv4B09UmtuGZgpk4xKLuWW2MR?=
- =?us-ascii?Q?ZlqDPG/6EUvbo7Gl1hJwPTBaJCyPrK5qCgonXFbDezUcffW1had28pgb+6Nz?=
- =?us-ascii?Q?W9F+TvWEV+ICh8YJZb9dL0mIzFCmV6K2tPVa9Tdqju82+3VjnKnb9h8GmAuc?=
- =?us-ascii?Q?W2GdjbSMqtSDWTj/NB113AN1UZH6yM9xQeIXTpnmtD9ZsOrPCf5CBproSles?=
- =?us-ascii?Q?LhjWmse0dxNPJAI/1ghxHN5zxmcI9/9OKaxYupJut4BwJjZJco8FmL4Udl5c?=
- =?us-ascii?Q?Q0cr/9+B+QjHS8KNdgKkWcrteRJbhylQ2MxwwoWx230mwGc6AtqKkXSTtN3G?=
- =?us-ascii?Q?cAnZIealIwSXrxnY2a2avRIUjppLMJSyQdzEj6Fd2mnsrDHxyOgOxPXc5sWj?=
- =?us-ascii?Q?tc2cyYmM9VUMdM/N17uYX7cJRvW5xftGkNaCzEb+Pun7n76yCRMjR6F4CrAo?=
- =?us-ascii?Q?41B5tINR2FBOzZUZpAhIHof0fuGr4DXiWltdE8gqXcpEWf/90+G+mGmcuhfb?=
- =?us-ascii?Q?a8ZrBPYHuMs4d9NvtSGKccVzkFrIXx//BSJMNo/+O2J+IER1oU1/qCwJb5ZF?=
- =?us-ascii?Q?aAcdHswA9Y8XyjPPIWT2z8reVOd4wiNyxGol7yaxB/lg+lBloTJrpxI18MOh?=
- =?us-ascii?Q?DSDVtAkA4GeNaOP7OISxrlGgiX0fnKGcuCoZO5Z9BYxy20fn9oj21a8hfknF?=
- =?us-ascii?Q?9/IYHwYiPha7LQGJH4TuLtao4FdwY30Ogy37D78VrDiqw/8lkN2So3wWJkkZ?=
- =?us-ascii?Q?SnL4AvfzZI+wYPcD8OngqL1orOgfejg1qxT5n1oKxy0WGxqco+dlCVerqYbV?=
- =?us-ascii?Q?4N++H6VE2IXkxqsDCqPGAWqDgGSYRMleDk/gkSxTYl/ilVaUX9ORiLHAK1pA?=
- =?us-ascii?Q?uVRFtAvMyzShSFyoXmdCprOg28ok1Nz1dIKWsYZ4c++JRmOGPN1tz3olpEgg?=
- =?us-ascii?Q?KC5NQIRhpB22oSqE2fz9Zn+6zIFhoQJb1lE1MD2a8LLm04y/eSrxietDdiWB?=
- =?us-ascii?Q?UnRYuNS9GLJzmjHka9Sse+lYpe86o1SSy0B7Y1Dd2fF44hRj9jRg3j1Igqb7?=
- =?us-ascii?Q?XlVNx2FWYTm3TcmbO3Zj4XKphWgSSMavwU2zG7Yv?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 02b04227-439e-41c1-8758-08db6e67440b
-X-MS-Exchange-CrossTenant-AuthSource: DU2PR04MB8630.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Jun 2023 12:43:20.8382
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gHMXas5f0Su3Wa//pdlP4Yk578tFm+5S2T4rzmlSfGvUAXzjJG1JbpzbZmvZFzxZf2hJOZebcwmY7kV8zXPv6w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PAXPR04MB8320
-X-Spam-Status: No, score=0.9 required=5.0 tests=BAYES_00,DATE_IN_FUTURE_03_06,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 0/5] Add LVTS support for mt8192
+Content-Language: en-US
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        =?UTF-8?Q?Bernhard_Rosenkr=c3=a4nzer?= <bero@baylibre.com>,
+        angelogioacchino.delregno@collabora.com, rafael@kernel.org,
+        amitk@kernel.org, rui.zhang@intel.com, matthias.bgg@gmail.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        rdunlap@infradead.org, ye.xingchen@zte.com.cn,
+        p.zabel@pengutronix.de, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        james.lo@mediatek.com, rex-bc.chen@mediatek.com,
+        abailon@baylibre.com, amergnat@baylibre.com, khilman@baylibre.com
+References: <20230530195132.2286163-1-bero@baylibre.com>
+ <CAGXv+5EVfgEBDm=7MmQ=OsP322KmE23PwycJ-0LjU+3dEZygUQ@mail.gmail.com>
+ <572f5a88-8c2e-4324-b477-836a5024ec67@notapiano>
+ <59c7c90c-50f2-5a77-af12-b266c6e6e0b1@linaro.org>
+ <2206a438-8187-4b17-a96c-3affc9552c05@notapiano>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <2206a438-8187-4b17-a96c-3affc9552c05@notapiano>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-MAINTAINERS: Added maintainer details for ele-mu driver.
 
-Signed-off-by: Pankaj Gupta <pankaj.gupta@nxp.com>
----
- MAINTAINERS | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Hi Nicolas,
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6992b7cc7095..21a7a5604436 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13536,6 +13536,15 @@ F:	mm/
- F:	tools/mm/
- F:	tools/testing/selftests/mm/
- 
-+NXP Edgelock Enclave MU DRIVER
-+M:	Pankaj Gupta <pankaj.gupta@nxp.com>
-+R:	NXP Linux Team <linux-imx@nxp.com>
-+L:	linux-kernel@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/arm/freescale/fsl,ele_mu.yaml
-+F:	drivers/firmware/imx/ele*.*
-+F:	include/linux/firmware/imx/ele*.*
-+
- MEMORY TECHNOLOGY DEVICES (MTD)
- M:	Miquel Raynal <miquel.raynal@bootlin.com>
- M:	Richard Weinberger <richard@nod.at>
+thanks for investigating !
+
+On 15/06/2023 21:17, Nícolas F. R. A. Prado wrote:
+> On Thu, Jun 08, 2023 at 11:39:27AM +0200, Daniel Lezcano wrote:
+>> On 01/06/2023 19:09, Nícolas F. R. A. Prado wrote:
+>>> On Wed, May 31, 2023 at 12:49:43PM +0800, Chen-Yu Tsai wrote:
+>>>> On Wed, May 31, 2023 at 3:51 AM Bernhard Rosenkränzer <bero@baylibre.com> wrote:
+>>>>>
+>>>>> From: Balsam CHIHI <bchihi@baylibre.com>
+>>>>>
+>>>>> Add full LVTS support (MCU thermal domain + AP thermal domain) to MediaTek MT8192 SoC.
+>>>>> Also, add Suspend and Resume support to LVTS Driver (all SoCs),
+>>>>> and update the documentation that describes the Calibration Data Offsets.
+>>>>>
+>>>>> Changelog:
+>>>>>       v4 :
+>>>>>           - Shrink the lvts_ap thermal sensor I/O range to 0xc00 to make
+>>>>>             room for SVS support, pointed out by
+>>>>>             AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+>>>>>
+>>>>>       v3 :
+>>>>>           - Rebased :
+>>>>>               base-commit: 6a3d37b4d885129561e1cef361216f00472f7d2e
+>>>>>           - Fix issues in v2 pointed out by Nícolas F. R. A. Prado <nfraprado@collabora.com>:
+>>>>>             Use filtered mode to make sure threshold interrupts are triggered,
+>>>>
+>>>> I'm seeing sensor readout (either through sysfs/thermal/<x>/temp or hwmon)
+>>>> fail frequently on MT8192. If I run `sensors` (lm-sensors), at least a couple
+>>>> of the LVTS sensors would be N/A. Not sure if this is related to this change.
+>>>
+>>> Yes, it is. Filtered mode has some delay associated with reading, meaning most
+>>> of the time the value isn't ready, while immediate mode is, well, pretty much
+>>> immediate and the read always succeeds.
+>>>
+>>> For temperature monitoring, filtered mode should be used. It supports triggering
+>>> interrupts when crossing the thresholds. Immediate mode is meant for one-off
+>>> readings of the temperature. This is why I suggested using filtered mode.
+>>>
+>>> As far as the thermal framework goes, it's ok that filtered mode doesn't always
+>>> return a value, as it will keep the old one. But of course, having the
+>>> temperature readout always work would be a desired improvement.
+>>>
+>>> As for ways to achieve that, I think the intended way would be to enable the
+>>> interrupts that signal data ready on filtered mode (bits 19, 20, 21, 28), read
+>>> the temperature and cache it so it is always available when the get_temp()
+>>> callback is called. The issue with this is that it would cause *a lot* of
+>>> interrupts, which doesn't seem worth it.
+>>>
+>>> Another option that comes to mind would be to enable immediate mode only during
+>>> the get_temp() callback, to immediately read a value, and return to filtered
+>>> mode at the end. That might work, but I haven't tried yet.
+>>
+>> Why not understand why the filtered mode is unable to return temperature
+>> values most of the time?
+>>
+>> I tried with the filtered mode and I can see 90% of the time it is not
+>> possible to read the temperature.
+>>
+>> IIUC there are timings which can be setup, may be understand how to set them
+>> up in order to read the temperature correctly?
+>>
+>> Caching values, switching the mode or whatever is hackish :/
+> 
+> So this is what I've found after some more testing.
+> 
+> With the current settings, using filtered mode, only about 30% of the
+> measurement reads return valid results:
+> rate: 29%   (success: 293, fail: 707)
+> 
+> While, as observed, in immediate mode, the reads always succeed:
+> rate: 100%   (success: 1000, fail: 0)
+> 
+> Changing the configurations so that the measurements take less time improve the
+> rate (and analogously increasing the time worsens the rate). That is, with
+> PERIOD_UNIT = 0, GROUP_INTERVAL = 0, FILTER_INTERVAL = 0, SENSOR_INTERVAL = 0,
+> HW_FILTER = 0 (ie single sample) the rate is much improved:
+> rate: 91%   (success: 918, fail: 82)
+> 
+> Though note that even though we're sampling as fast as possible and sampling
+> only once each time, so supposedly what immediate mode does, it's still not at
+> 100% like in immediate mode.
+> 
+> Enabling the sensor 0 filter IRQ (bit 19) I've observed that it is triggered
+> about every 3500us (on the controller with all four sensors) with the current
+> settings, but after changing those timing registers, it happens every 344us.
+> With that in mind, in addition to those timing changes, if we also read the
+> register more than once with a timeout longer than that 344, that is,
+> 
+> rc = readl_poll_timeout(msr, value, value & BIT(16), 240, 400);
+> 
+> it's enough to get
+> rate: 100%   (success: 1000, fail: 0)
+> and even better:
+> rate: 100%   (success: 10000, fail: 0)
+> 
+> So it's still not exactly clear what's the relation of the VALID bit with the
+> timings in the hardware, but this at least gives us a way to get valid reads
+> without sacrificing interrupts.
+> 
+> Meanwhile, I've also tried reading the measurement during handling of the sensor
+> 0 filter IRQ (bit 19), and while it definitely works much better than the
+> current 30%, giving a rate of 92%, it's still not 100%, which is intriguing
+> given this IRQ is supposed to signal the data is ready... I thought this might
+> be caused by timing issues, but increasing the timing of the measurements (by
+> setting PERIOD_UNIT = 120), lowered the rate to 84%.
+> Simply enabling this interrupt (and not reading the data in the IRQ), gives a
+> drastically worse rate:
+> rate: 3%   (success: 32, fail: 968)
+> Which I understand to mean that whenever the IRQ is cleared, the hardware
+> invalidates the previous measurement. So this IRQ is definitely related to the
+> VALID bit, but it also is unexpectedly influenced by the timings.
+> 
+> The VALID bit is also updated when read, and it tends to take the same time
+> between IRQs to be reset, so my understanding is that on every IRQ the VALID
+> bit is re-set to 1, and reading it clears it. But this does not explain why with
+> smaller intervals a single read has more chance of succeeding.
+> 
+> At this point, though, I feel like if it is possible to guarantee that readings
+> in filtered mode will always be valid, it must be some hidden setting in
+> LVTS_CONFIG. But with what we have access to, the best we can hope for is to
+> make the invalid reads extremely unlikely, which is what shrinking the intervals
+> and polling the register as shown above gives us, so it's what I suggest us to
+> do.
+Let me summarize and check I'm understanding correctly:
+
+1. Immediate mode
+
+  - 100% successful read, no delay when reading
+  - No interrupts when crossing the thresholds (at the first glance)
+
+2. Filtered mode
+
+  - Interrupts when data is ready
+  - Interrupts when crossing the thresholds
+  - Polling read until TMU valid
+	- maximum two register reads
+	- minimum delay 240us
+	- maximum delay 480us
+
+ From my POV, the filtered mode is not designed for an OSPM, it is for 
+real time system for thermal acquisition or similar. It is unthinkable a 
+sensor is firing so many interrupts waking up the CPU to tell a 
+temperature is ready to be read. And it is strange we have to poll loop 
+a register to read a temperature.
+
+The thermal framework is designed to protect the silicon and 
+consequently reads with non constant delay and/or high delay can have an 
+impact on time sensitive governor. Skipping the temperature because we 
+fail to read is also not acceptable, in the case of mitigation, that can 
+have an impact.
+
+
+The normal mode should be:
+
+  - temperature below threshold => no wakeups
+  - temperature crosses the threshold => interrupt fires
+  - mitigation => wake up every 'passive' delay period
+
+With the filtered mode we have:
+
+  - temperature below threshold => interrupts telling the value is ready 
+(we want to ignore that)
+
+  - temperature crosses the threshold => interrupt but not sure we can 
+read the temperature correctly
+
+  - mitigation => wake up every 'passive' delay period but not sure we 
+can read the temperature correctly
+
+With the immediate mode:
+
+  - temperature below threshold => interrupts is not working, so we have 
+to monitor the temperature and wake up every <monitor> delay
+
+  - temperature crosses the threshold => no interrupt, detected by the 
+monitoring
+
+  - mitigation => wake up every 'passive' delay period, temperature is 
+accurate
+
+It seems not logical to have the immediate mode not working with the 
+interrupts when crossing the thresholds. I would say we should stick to 
+the immediate mode and double check if the interrupt can work with this 
+mode.
+
+
+
+
 -- 
-2.34.1
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
