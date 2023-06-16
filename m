@@ -2,148 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DED9732A23
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCE02732A29
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343786AbjFPIoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 04:44:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43048 "EHLO
+        id S1343757AbjFPIro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 04:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343824AbjFPIoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:44:09 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B81A2D79;
-        Fri, 16 Jun 2023 01:44:05 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686905044;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=124xCR73FJ7My9bUcYqnyZtkRBH/lUy5drQixPZ+QjI=;
-        b=dCZABiwoUuGPAgpnhhcFhWhfm2UmADaqppObF3tQyWgbT2m7C6UrA8VZy5IN9GJ8/Ym67M
-        b1eJaMQBaTKSUIMnFnAWpAmqH4t6WqZXsPidzUx5nBGwVATHF9TQWNZz5OgUGiTNkHa615
-        MNo0ba7YmnaW/rhDYtTNse0K3k9ObZKY7ckjm7XpAW42rzreBR2SSsxpQiExTGtbDJbyOX
-        Of+UP+5MYlP2Pp/DO8KEjC/0r+2ayKg4qLmpF4jsPlscRvOgyoZ7mnh/QGD7K6Yw9Gxb6R
-        pnQb+At8OL6MkMe9/iwgzFUpSK5noRNyUbzH3K6pPBwJeqKu/ClNixEyI9FFxw==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2B13D1BF203;
-        Fri, 16 Jun 2023 08:44:01 +0000 (UTC)
-Date:   Fri, 16 Jun 2023 10:44:01 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Vadym Kochan <vadym.kochan@plvision.eu>
-Subject: Re: [PATCH v9 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML
- DT scheme
-Message-ID: <20230616104401.5ca2b4de@xps-13>
-In-Reply-To: <29a9f4a4-b205-d341-bc34-10829af2996a@linaro.org>
-References: <20230615040447.3484564-1-chris.packham@alliedtelesis.co.nz>
-        <20230615040447.3484564-4-chris.packham@alliedtelesis.co.nz>
-        <f16e742f-e6f2-9761-e70d-e0e7cadcba4a@linaro.org>
-        <1863cd53-9846-def2-ee5f-f4a51160ed8d@alliedtelesis.co.nz>
-        <781c1db2-ecca-901a-4e11-7f7c68cf744d@linaro.org>
-        <20230616102414.222dde21@xps-13>
-        <29a9f4a4-b205-d341-bc34-10829af2996a@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S1343764AbjFPIrk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:47:40 -0400
+Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 307ED30CF;
+        Fri, 16 Jun 2023 01:47:33 -0700 (PDT)
+Received: from loongson.cn (unknown [10.20.42.35])
+        by gateway (Coremail) with SMTP id _____8DxSuqjIYxkOOgFAA--.12459S3;
+        Fri, 16 Jun 2023 16:47:31 +0800 (CST)
+Received: from [10.20.42.35] (unknown [10.20.42.35])
+        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxjcqgIYxk+REdAA--.8656S3;
+        Fri, 16 Jun 2023 16:47:29 +0800 (CST)
+Subject: Re: [PATCH v3 2/3] soc: dt-bindings: add loongson-2 pm
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        loongarch@lists.linux.dev, Jianmin Lv <lvjianmin@loongson.cn>,
+        wanghongliang@loongson.cn, Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
+References: <20230615091757.24686-1-zhuyinbo@loongson.cn>
+ <20230615091757.24686-3-zhuyinbo@loongson.cn>
+ <20230616-entangled-cauterize-1cbde7401b91@wendy>
+ <9a53089a-3c87-13e1-0bc4-29058ac0ec54@loongson.cn>
+ <20230616-tablet-isotope-94749a2f8336@wendy>
+From:   zhuyinbo <zhuyinbo@loongson.cn>
+Message-ID: <810c82f2-d7af-b7c4-ce35-ddd135ac1813@loongson.cn>
+Date:   Fri, 16 Jun 2023 16:47:28 +0800
+User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
+ Thunderbird/68.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230616-tablet-isotope-94749a2f8336@wendy>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: AQAAf8BxjcqgIYxk+REdAA--.8656S3
+X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
+X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
+        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
+        nUUI43ZEXa7xR_UUUUUUUUU==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
 
-krzysztof.kozlowski@linaro.org wrote on Fri, 16 Jun 2023 10:38:38 +0200:
 
-> On 16/06/2023 10:24, Miquel Raynal wrote:
-> > Hi Krzysztof,
-> >=20
-> > krzysztof.kozlowski@linaro.org wrote on Fri, 16 Jun 2023 10:15:31 +0200:
-> >  =20
-> >> On 15/06/2023 23:06, Chris Packham wrote: =20
-> >>>>   =20
-> >>>>> +
-> >>>>> +properties:
-> >>>>> +  compatible:
-> >>>>> +    oneOf:
-> >>>>> +      - items:
-> >>>>> +          - const: marvell,armada-8k-nand-controller
-> >>>>> +          - const: marvell,armada370-nand-controller
-> >>>>> +      - enum:
-> >>>>> +          - marvell,armada-8k-nand-controller   =20
-> >>>> This is wrong. 8k cannot be both: compatible and not compatible with
-> >>>> 370. It's not someone's cat to be in both states at the same time...=
-   =20
-> >>>
-> >>> The correct state (IMHO, Miquel correct me if I'm wrong) is `compatib=
-le=20
-> >>> =3D "marvell,armada-8k-nand-controller";`=C2=A0 as there are some 8K =
-specific=20
-> >>> requirements that aren't present on the 370 (specifically the=20
-> >>> system-controller and the 2nd clock).    =20
-> >>
-> >> Presence of specific requirements does not invalidate compatibility. T=
-wo
-> >> devices are compatible if the 8k can bind and work with 370 compatible
-> >> string, even if this means some lower performance or less features (e.=
-g.
-> >> subset of features). =20
-> >=20
-> > Quoting myself from 2019 (comment in the driver):
-> > "Some SoCs like A7k/A8k need to enable manually the NAND controller,
-> > gated clocks and reset bits to avoid being bootloader dependent."
-> >=20
-> > So can the 8k controller work using a 370 compatible : yes, if the
-> > booloader enabled the NAND controller already, no otherwise. But in
-> > practice it is the same controller.
-> >=20
-> > Given this information I don't know whether it makes sense to qualify
-> > the 8k controller compatible with the 370 compatible or not. =20
->=20
-> Indeed, a bit tricky decision. For me they could stay compatible,
-> because apparently programming model is the same or similar.
+在 2023/6/16 下午4:03, Conor Dooley 写道:
+> On Fri, Jun 16, 2023 at 03:53:38PM +0800, zhuyinbo wrote:
+>> 在 2023/6/16 下午2:58, Conor Dooley 写道:
+>>>
+>>> Rob, could you take a look at this please? On v2 while you were away I
+>>> was kinda struggling w/ suspend-address & whether it made sense.
+>>>
+>>> The v2 & v1 are here:
+>>> https://lore.kernel.org/all/20230522093156.7108-3-zhuyinbo@loongson.cn/
+>>> https://lore.kernel.org/all/20230517073149.31980-3-zhuyinbo@loongson.cn/
+>>>
+>>> On Thu, Jun 15, 2023 at 05:17:56PM +0800, Yinbo Zhu wrote:
+>>>> Add the Loongson-2 SoC Power Management Controller binding with DT
+>>>> schema format using json-schema.
+>>>>
+>>>> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>> ---
+>>>>    .../soc/loongson/loongson,ls2k-pmc.yaml       | 53 +++++++++++++++++++
+>>>>    MAINTAINERS                                   |  6 +++
+>>>>    2 files changed, 59 insertions(+)
+>>>>    create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
+>>>> new file mode 100644
+>>>> index 000000000000..32499bd10f8c
+>>>> --- /dev/null
+>>>> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
+>>>
+>>> The filename should ideally match one of the compatibles.
+>>
+>>
+>> I learn about that yaml file name need match this compatible, but here
+>> using a specific compatible as the name of the yaml file seems a bit
+>> inappropriate . After all, this yaml file needs to cover lots of ls2k
+>> series SoC rather than a specific SoC, and the yaml file naming in
+>> kernel drivers is basically the same that use cover a series SoC's way.
+>>
+>>>
+>>>> @@ -0,0 +1,53 @@
+>>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>>> +%YAML 1.2
+>>>> +---
+>>>> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-pmc.yaml#
+>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>> +
+>>>> +title: Loongson-2 Power Manager controller
+>>>> +
+>>>> +maintainers:
+>>>> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    oneOf:
+>>>> +      - items:
+>>>> +          - enum:
+>>>> +              - loongson,ls2k1000-pmc
+>>>> +              - loongson,ls2k0500-pmc
+>>>
+>>> I notice the driver only supports one of these two. Is there a reason
+>>> for that?
+>>
+>>
+>> The driver can support both of the above, and I will add another.
+> 
+> The driver only contains
+> 	static const struct of_device_id loongson2_pm_match[] = {
+> 	       { .compatible = "loongson,ls2k1000-pmc", },
+> 	       {},
+> 	};
+> so it only supports the 2k1000 right now. Are the 2k1000 and 2k0500
+> compatible with eachother?
 
-Agreed, the programming model wrt the controller itself is the same. So
-we will expect 8k controllers to be described with both 8k and 370
-compatible strings then.
 
-Thanks for your feedback.
+They are not completely compatible, 2k500 may still require some work to
+be done, but I can confirm this driver was can compatible 2k0500 and
+2k1000. for match yaml file, and I can add 2k0500 compatible in driver.
 
-Cheers,
-Miqu=C3=A8l
+> 
+>>>> +          - const: syscon
+>>>> +
+>>>> +  reg:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  interrupts:
+>>>> +    maxItems: 1
+>>>> +
+>>>> +  suspend-address:
+>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>> +    description:
+>>>> +      The "suspend-address" is a deep sleep state (Suspend To RAM)
+>>>> +      firmware entry address which was jumped from kernel and it's
+>>>> +      value was dependent on specific platform firmware code. In
+>>>> +      addition, the PM need according to it to indicate that current
+>>>> +      SoC whether support Suspend To RAM.
+>>>> +
+>>>> +required:
+>>>> +  - compatible
+>>>> +  - reg
+>>>> +  - interrupts
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  - |
+>>>> +    #include <dt-bindings/interrupt-controller/irq.h>
+>>>> +
+>>>> +    pmc: pm@1fe27000 {
+>>>          ^^^
+>>>
+>>> nit: this label isn't used, so you can drop it.
+>>
+>>
+>> This lable need to be used by poweroff and reboot node but I don't add
+>> these node that reference pmc here.
+> 
+> Right, in the dts it might need those, but not in the example in the
+> binding.
+
+
+okay, I got it.
+
+Thanks,
+Yinbo
+
