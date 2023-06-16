@@ -2,59 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 266787332F9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:02:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 841E47332F7
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:02:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345582AbjFPOB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 10:01:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51836 "EHLO
+        id S1345705AbjFPOCE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 10:02:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345702AbjFPOBX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:01:23 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEEB53C3E;
-        Fri, 16 Jun 2023 07:00:52 -0700 (PDT)
-Received: from desky.lan (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D38349CA;
-        Fri, 16 Jun 2023 16:00:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1686924008;
-        bh=e8hgMd9naRgk1G2Q6oVS0NzY0giecTRVjFGHh0pIH4g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tzJeiLVtEg4EztEc7jsNCFtBWIaOg+0aiMLwbXXubqS7yTg0w/XNITL/kuxV5SJk0
-         ZBtiBzWvdjHj1V/zWydLpPZxlu80z79NuvQSFpQqqmCzuSMeZCaEcEqyc65JfdRAYP
-         XIYWT8Gr3f+WB1LHK2yPrgcu6iS3WXqWb+TbnmC4=
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Andy Shevchenko <andriy.shevchenko@intel.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1345415AbjFPOB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:01:28 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BD4A4214
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 07:00:58 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686924056;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=vUuQah/jLut+5JCdepeOJ/jXlhpXt0heS9hreLKMNHo=;
+        b=I7NzJG0qWy+YP4gvzB4eyBw8PnR5wozl7o3Vr7pl1cbNo32TDit+ANwC/gie06z3BCa52c
+        YLqUlSBsKwpLCHeRXRgQF4TyTEMrFiz1ZS/Pm8E1TYA6ZEBbbqwtGef6Rtsat3lvVTehoV
+        Z0uGKeMWhElOny7aBsmo9heu6Rb6hxmIdglRJc+MYaWtrteuJ1Nnw3Ml50w9UQPX+YoDe6
+        nxdyxYb71nOA3OGV121NZEx2QlHbg0N8H1i0caMbNeW95wbb8vkdcmTo5sHQXOqrkueeoc
+        zDSVga4gO/+k+gQq54ChVSB6ELFekZFmsthZrsYuyrr4YA9dgr6X8+sjUS3E6g==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 3615340007;
+        Fri, 16 Jun 2023 14:00:55 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        <linux-mtd@lists.infradead.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>,
-        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Subject: [PATCH v14 18/18] media: i2c: ds90ub953: Support non-sync mode
-Date:   Fri, 16 Jun 2023 16:59:22 +0300
-Message-Id: <20230616135922.442979-19-tomi.valkeinen@ideasonboard.com>
+        devicetree@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH] dt-bindings: mtd: spi-nor: clarify the need for spi-nor compatibles
+Date:   Fri, 16 Jun 2023 16:00:54 +0200
+Message-Id: <20230616140054.2788684-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
-References: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -63,84 +65,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for FPD-Link non-sync mode with external clock. The only
-thing that needs to be added is the calculation for the clkout.
+Most SPI NOR devices do not require a specific compatible, their ID can
+in general be discovered with the JEDEC READ ID opcode. In this case,
+only the "jedec,spi-nor" generic compatible is expected. Clarify this
+information in the compatible description to (i) help device-tree
+writers and (ii) prevent further attempts to extend this list with
+useless information.
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- drivers/media/i2c/ds90ub953.c | 34 ++++++++++++++++++++++++++--------
- 1 file changed, 26 insertions(+), 8 deletions(-)
+ Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/media/i2c/ds90ub953.c b/drivers/media/i2c/ds90ub953.c
-index ff55740965eb..ae90a647489a 100644
---- a/drivers/media/i2c/ds90ub953.c
-+++ b/drivers/media/i2c/ds90ub953.c
-@@ -143,6 +143,7 @@ struct ub953_data {
+diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+index 7149784a36ac..bef071163e38 100644
+--- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
++++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+@@ -43,8 +43,10 @@ properties:
+           - const: jedec,spi-nor
+       - const: jedec,spi-nor
+     description:
+-      Must also include "jedec,spi-nor" for any SPI NOR flash that can be
+-      identified by the JEDEC READ ID opcode (0x9F).
++      SPI NOR flashes compatible with the JEDEC standard or which may be
++      identified with the JEDEC READ ID opcode (0x9F) do not deserve a
++      specific compatible. They should instead only be matched against
++      the generic "jedec,spi-nor" compatible.
  
- 	struct i2c_client	*client;
- 	struct regmap		*regmap;
-+	struct clk		*clkin;
- 
- 	u32			num_data_lanes;
- 	bool			non_cont_clk;
-@@ -842,15 +843,21 @@ static int ub953_i2c_master_init(struct ub953_data *priv)
- 
- static u64 ub953_get_fc_rate(struct ub953_data *priv)
- {
--	if (priv->mode != UB953_MODE_SYNC) {
-+	switch (priv->mode) {
-+	case UB953_MODE_SYNC:
-+		if (priv->hw_data->is_ub971)
-+			return priv->plat_data->bc_rate * 160ull;
-+		else
-+			return priv->plat_data->bc_rate / 2 * 160ull;
-+
-+	case UB953_MODE_NONSYNC_EXT:
-+		/* CLKIN_DIV = 1 always */
-+		return clk_get_rate(priv->clkin) * 80ull;
-+
-+	default:
- 		/* Not supported */
- 		return 0;
- 	}
--
--	if (priv->hw_data->is_ub971)
--		return priv->plat_data->bc_rate * 160ull;
--	else
--		return priv->plat_data->bc_rate / 2 * 160ull;
- }
- 
- static unsigned long ub953_calc_clkout_ub953(struct ub953_data *priv,
-@@ -1189,9 +1196,15 @@ static int ub953_hw_init(struct ub953_data *priv)
- 	dev_dbg(dev, "mode from %s: %#x\n", mode_override ? "reg" : "strap",
- 		priv->mode);
- 
--	if (priv->mode != UB953_MODE_SYNC)
-+	if (priv->mode != UB953_MODE_SYNC &&
-+	    priv->mode != UB953_MODE_NONSYNC_EXT)
- 		return dev_err_probe(dev, -ENODEV,
--				     "Only synchronous mode supported\n");
-+				     "Unsupported mode selected: %d\n",
-+				     priv->mode);
-+
-+	if (priv->mode == UB953_MODE_NONSYNC_EXT && !priv->clkin)
-+		return dev_err_probe(dev, -EINVAL,
-+				     "clkin required for non-sync ext mode\n");
- 
- 	ret = ub953_read(priv, UB953_REG_REV_MASK_ID, &v);
- 	if (ret)
-@@ -1319,6 +1332,11 @@ static int ub953_probe(struct i2c_client *client)
- 		goto err_mutex_destroy;
- 	}
- 
-+	priv->clkin = devm_clk_get_optional(dev, "clkin");
-+	if (IS_ERR(priv->clkin))
-+		return dev_err_probe(dev, PTR_ERR(priv->clkin),
-+				     "failed to parse 'clkin'\n");
-+
- 	ret = ub953_parse_dt(priv);
- 	if (ret)
- 		goto err_mutex_destroy;
+   reg:
+     minItems: 1
 -- 
 2.34.1
 
