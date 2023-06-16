@@ -2,108 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85176732D22
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:13:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B989B732D29
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:15:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244839AbjFPKNz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 06:13:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41574 "EHLO
+        id S235200AbjFPKPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 06:15:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244732AbjFPKNu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:13:50 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1ABA194
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:13:48 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686910427;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=dCdt8ydTrXKYCxEhLduicCEBqeIoTgA8Fak1EkYImKY=;
-        b=jxD9vDfdrnO5MEeSTKs8pQxGzfjl+tfzg5bRvfNCMCt6GJvElxt3Y3QW0vXzLmi4cWRoFd
-        T7yA1v57ezMZF59OaW5W2w60RpDyrVwXT0b/f00E7Vjx/UNVu0D8ZJAAStpwHMjsiuuxE6
-        lqOZs/gfrLpxUySMMcPxv8UCrvJQAYqVgpWXO2Ql5VEOaOZkNe0vQDloSIdeScnZla4q2h
-        TQ+MWUmFepU4+7mr8E0r5tk7RycpjDO9xawi9r0MFIsXKgwIHLrIwszR0A3iU9Ovmqjkvl
-        P7jV8/Zq7nsqO9D6+W4KqX1gXsnlxbE5SKoUQpapQAa0UkcGO9LMCrcgUd56og==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 7765A1BF213;
-        Fri, 16 Jun 2023 10:13:46 +0000 (UTC)
-Date:   Fri, 16 Jun 2023 12:13:45 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Sebastian Reichel <sre@kernel.org>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>
-Subject: Re: [PATCH 7/7] drm/panel: sitronix-st7789v: Check display ID
-Message-ID: <20230616121345.2501c36a@xps-13>
-In-Reply-To: <20230614232724.yer2ikvfzmaiejrd@mercury.elektranox.org>
-References: <20230609145951.853533-1-miquel.raynal@bootlin.com>
-        <20230609145951.853533-8-miquel.raynal@bootlin.com>
-        <20230610204525.GA1042549@ravnborg.org>
-        <20230614232724.yer2ikvfzmaiejrd@mercury.elektranox.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S1343956AbjFPKPG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:15:06 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BE88296A
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:15:05 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51a21185130so682418a12.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:15:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686910503; x=1689502503;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zbtiTHYRUOXlyOIwcwOqEO6kZSSqK+WhcE/koScGumQ=;
+        b=sMFNZoHSkQISvmubjflQBjQtoQonpjynnuVWS79rgfvB/iT8e/4Ovmm3e5yFdJr6Q0
+         b4MzLlkFJBSoirPJAETYw4qsn1Mes0tZxAjScuk+6DRJG84cgfOKLRYaa7Qm/EEPxBi4
+         LR9+pTzVkb70NE/VUP0Gj3kBA/9S6TfhFT8aXAzvYSeHEzid57L5Mq65IR4T3dYa0nXm
+         tEboYk+saMxpdzoirtA071XfhWXr29MHq3Wf63ZXo2VAcM9/OwZUt0LMDBF4j/OucyJF
+         zRgVj7EHJhdF+AvdbqSCECFujWR7i+3sa81S0rsk+nz01YKgKhoXhm5VngWWqmTj+KeT
+         tt8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686910503; x=1689502503;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zbtiTHYRUOXlyOIwcwOqEO6kZSSqK+WhcE/koScGumQ=;
+        b=jhxAGxe584sXE1kdrChYtPtOEcAwXCZMWkVkdr+UOnvHbLyA5a7zEMB5P+WAe1reHK
+         Z6MU8DxFQO1KIC/XXy2BABb2JAIMSu11HvqkSh55eT/75ASnXypIhl6Nt/HhNhMYMmdg
+         3+XoENJ7UeX7xgSSfh/URPUmXKd+ixdKlVSqQf7EwcBspc/whe6uhjdnf4DySb7U3LhG
+         1OmUal28UsUbon8DE0eN9dqKOb3s3QrrNuMhi8aKpUH6TGBI9XwHt9vtczKSR2bDTwSY
+         Vn6enY8oVVRjaq1TvshD1zjZIEzF9TprDeuz/DkqTPk0KUBUb6jOKUjiK8rO17hT5pck
+         KeNQ==
+X-Gm-Message-State: AC+VfDzs+Dazw/iMmzkQR66KyePxESQFTkj4aV1bCZSzViNx6NtGdPPt
+        F+QKc/4TulwpkLU7DVIYQ8gorA==
+X-Google-Smtp-Source: ACHHUZ6nfLi3op6yKMoXPg3/r4yTHPsY7kRYiSgR4jseJKqgbXa7XTQ5mUayVTeCFH9xzbAGQr2szQ==
+X-Received: by 2002:a17:907:a42:b0:96a:48ed:5333 with SMTP id be2-20020a1709070a4200b0096a48ed5333mr1651164ejc.50.1686910503506;
+        Fri, 16 Jun 2023 03:15:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a13-20020a170906684d00b009828dac8425sm2590359ejs.105.2023.06.16.03.15.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 03:15:03 -0700 (PDT)
+Message-ID: <05c6aa93-68dc-f0e5-36ea-1ea73b9f4055@linaro.org>
+Date:   Fri, 16 Jun 2023 12:15:01 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
+ Synquacer platform
+Content-Language: en-US
+To:     jaswinder.singh@linaro.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        ilias.apalodimas@linaro.org, masahisa.kojima@linaro.org
+References: <20230616035813.255062-1-jaswinder.singh@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230616035813.255062-1-jaswinder.singh@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sebastian,
+On 16/06/2023 05:58, jaswinder.singh@linaro.org wrote:
+> From: Jassi Brar <jaswinder.singh@linaro.org>
+> 
+> Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
+> Specify bindings for the platform and boards based on that.
+> 
+> Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
+> ---
+>  .../bindings/arm/socionext/synquacer.yaml     | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
+> new file mode 100644
+> index 000000000000..72554a4f1c92
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
+> @@ -0,0 +1,28 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/socionext/synquacer.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Socionext Synquacer platform
+> +
+> +maintainers:
+> +  - Masahisa Kojima <masahisa.kojima@linaro.org>
+> +  - Jassi Brar <jaswinder.singh@linaro.org>
+> +
+> +description:
+> +  Socionext SC2A11B (Synquacer) SoC based boards
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - socionext,developer-box
+> +          - const: socionext,synquacer
 
-sre@kernel.org wrote on Thu, 15 Jun 2023 01:27:24 +0200:
+Last compatible looks very generic. Too generic. Are you sure it
+uniquely identifies one specific SoC (not family, not generation, not
+series)?
 
-> Hi,
->=20
-> On Sat, Jun 10, 2023 at 10:45:25PM +0200, Sam Ravnborg wrote:
-> > Hi Miquel,
-> >=20
-> > On Fri, Jun 09, 2023 at 04:59:51PM +0200, Miquel Raynal wrote: =20
-> > > A very basic debugging rule when a device is connected for the first
-> > > time is to access a read-only register which contains known data in
-> > > order to ensure the communication protocol is properly working. This
-> > > driver lacked any read helper which is often a critical peace for
-> > > fastening bring-ups.
-> > >=20
-> > > Add a read helper and use it to verify the communication with the pan=
-el
-> > > is working as soon as possible in order to fail early if this is not =
-the
-> > > case. =20
-> >=20
-> > The read helper seems like a log of general boiler plate code.
-> > I briefly looked into the use of regmap for the spi communication,
-> > but it did not look like it supported the bit9 stuff.
-> >=20
-> > I did not stare enough to add a reviewd by, but the approach is fine
-> > and it is good to detech issues early. =20
->=20
-> The st7789v datasheet describes a setup where SPI is connected
-> unidirectional (i.e. without MISO). In that case the ID check
-> will fail.
+Best regards,
+Krzysztof
 
-Right. I'll add a (spi->mode & SPI_NO_RX) check, as the default is to
-have both lines, if there is no MISO line, I'd expect it to be
-described in the DT, otherwise the description is broken.
-
-Thanks,
-Miqu=C3=A8l
