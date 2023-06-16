@@ -2,30 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97B237336F2
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22E8C7336FB
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 19:00:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346070AbjFPQ7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 12:59:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43472 "EHLO
+        id S1345937AbjFPRAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 13:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42918 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345941AbjFPQ7N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:59:13 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC4F24213;
-        Fri, 16 Jun 2023 09:57:32 -0700 (PDT)
-Received: from p5dcc3b18.dip0.t-ipconnect.de ([93.204.59.24] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qAClO-0003Fy-5M; Fri, 16 Jun 2023 18:57:30 +0200
-Date:   Fri, 16 Jun 2023 18:57:28 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Josua Mayer <josua@solid-run.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>,
+        with ESMTP id S1346360AbjFPRAW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 13:00:22 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F163B49E7
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:59:20 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5196a728d90so1265795a12.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:59:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686934759; x=1689526759;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mx45Gb+XOJkrBIEOQGfyEEPJszl2aIrpIEmyleHuzAA=;
+        b=oRadAW9LWnD262uK2pxmP5H40mzdqIIoSFwtmKhwYhURgjOAF1K+nhkRzojy3cLt3O
+         ZV9QVOCWHeJ70snod2xzhMr++SyUkZCkk52zXtnAV9eYqu5w/I8o0JVQeplagrkNdgJq
+         StAIQKvXLx3Iqb86k6ALjzMlY5FpwqSjSSM+hOHM1S6V3TcahlOrPrRguCogeZBKgCJ/
+         67xBYPJv5Yjl78YG54OHJ6mwjHVMoyPzLS71qbAB0F/stMl3MMABgtRk/d69jycvF3Br
+         PP7u6318cEznzU1ynPTb8tVDvPraT22NIWhpZu2VAdPjt7n4DgvnaU8k1IfASnNwG6RH
+         +8Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686934759; x=1689526759;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mx45Gb+XOJkrBIEOQGfyEEPJszl2aIrpIEmyleHuzAA=;
+        b=W2ZIiPsV1awhgW5Ngd0EomnGm643NlTlE27yBY4I4JHnjk7kGoOR/9ItPEnKiJCLh0
+         u6aPpemovwNMbGYOf2UFvBs5FhHkEuG1aWkhUHZRmpbjHttLBUtgv5B6dj1AZ4N7ovFI
+         DXao/aio0KvLTL0kFVdWPPQxUSK+8YOdlQ/2SMgz2Z8mRgkQJZM0gJ8/M/1azuiNZDSl
+         eMYSpty2ycc0/PWHRSryPmAtxrn75HwqH/3naHEufMdsgQc5Awiw+peIG7dt0XovfVqv
+         S2ttj20HIqLqy56nHAwp0XB8/zI1jwnKY5u9G21NFejJTdUBoel4U0nQ0D59SC0aMxjF
+         nwMw==
+X-Gm-Message-State: AC+VfDx4t6cA1HrYQZIPi5rYs6yaH8bhCheoUXNnmNqZX61dTmP3cBEo
+        4qgu23mcFmz43YfH2L79n5F8QKJIY0nygL6OPac=
+X-Google-Smtp-Source: ACHHUZ7wllev2biqWgYIidoYvTlpr/fZdLupzoU9AbrYoM7SCIfM4LPZ/0xDi5+7EbQ0/3tuQN2dQg==
+X-Received: by 2002:aa7:c851:0:b0:514:a685:aa3b with SMTP id g17-20020aa7c851000000b00514a685aa3bmr1432750edt.41.1686934759403;
+        Fri, 16 Jun 2023 09:59:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id g25-20020a50ee19000000b0050bfeb15049sm9980703eds.60.2023.06.16.09.59.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 09:59:18 -0700 (PDT)
+Message-ID: <f6283bf7-2c38-8257-e430-d17dd4dd233b@linaro.org>
+Date:   Fri, 16 Jun 2023 18:59:16 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 2/3] dt-bindings: arm: Add SolidRun LX2162A SoM & Clearfog
+ Board
+Content-Language: en-US
+To:     Josua Mayer <josua@solid-run.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
@@ -37,75 +71,94 @@ Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Fabio Estevam <festevam@denx.de>,
         Stefan Wahren <stefan.wahren@chargebyte.com>,
         Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>
-Subject: Re: [PATCH 2/3] dt-bindings: arm: Add SolidRun LX2162A SoM &
- Clearfog Board
-Message-ID: <20230616185728.7f0de1a3@aktux>
-In-Reply-To: <5139b72e-cccb-43b3-ba37-35f0011e4a2b@solid-run.com>
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Andreas Kemnade <andreas@kemnade.info>
 References: <20230616110610.32173-1-josua@solid-run.com>
-        <20230616110610.32173-3-josua@solid-run.com>
-        <a9098664-ac16-eddb-3e2d-78eb08ac973f@linaro.org>
-        <5139b72e-cccb-43b3-ba37-35f0011e4a2b@solid-run.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.24; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+ <20230616110610.32173-3-josua@solid-run.com>
+ <a9098664-ac16-eddb-3e2d-78eb08ac973f@linaro.org>
+ <5139b72e-cccb-43b3-ba37-35f0011e4a2b@solid-run.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <5139b72e-cccb-43b3-ba37-35f0011e4a2b@solid-run.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Jun 2023 16:32:01 +0300
-Josua Mayer <josua@solid-run.com> wrote:
-
+On 16/06/2023 15:32, Josua Mayer wrote:
 > HI Krzysztof,
 > 
 > Am 16.06.23 um 14:36 schrieb Krzysztof Kozlowski:
-> > On 16/06/2023 13:06, Josua Mayer wrote:  
-> >> Add DT compatible for SolidRun LX2162A SoM and Clearfog board.
-> >>
-> >> Signed-off-by: Josua Mayer <josua@solid-run.com>
-> >> ---
-> >>   Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
-> >>   1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-> >> index 15d411084065..438a4ece8157 100644
-> >> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
-> >> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-> >> @@ -1373,9 +1373,11 @@ properties:
-> >>         - description: SolidRun LX2160A based Boards
-> >>           items:
-> >>             - enum:
-> >> +              - solidrun,clearfog
-> >>                 - solidrun,clearfog-cx
-> >>                 - solidrun,honeycomb
-> >>             - const: solidrun,lx2160a-cex7
-> >> +          - const: solidrun,lx2162a-som
-> >>             - const: fsl,lx2160a  
-> > You change existing entries, breaking boards and changing the meaning,
-> > without any explanation in commit msg. That's not how it is done. Please
-> > provide rationale in commit msg.  
+>> On 16/06/2023 13:06, Josua Mayer wrote:
+>>> Add DT compatible for SolidRun LX2162A SoM and Clearfog board.
+>>>
+>>> Signed-off-by: Josua Mayer <josua@solid-run.com>
+>>> ---
+>>>   Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+>>>   1 file changed, 2 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> index 15d411084065..438a4ece8157 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> @@ -1373,9 +1373,11 @@ properties:
+>>>         - description: SolidRun LX2160A based Boards
+>>>           items:
+>>>             - enum:
+>>> +              - solidrun,clearfog
+>>>                 - solidrun,clearfog-cx
+>>>                 - solidrun,honeycomb
+>>>             - const: solidrun,lx2160a-cex7
+>>> +          - const: solidrun,lx2162a-som
+>>>             - const: fsl,lx2160a
+>> You change existing entries, breaking boards and changing the meaning,
+>> without any explanation in commit msg. That's not how it is done. Please
+>> provide rationale in commit msg.
 > 
 > I'm sorry. Given your comment I think I did not understand how these 
 > entries are supposed to work.
 > So perhaps you can provide some guidance based on my explanation?:
 > 
+> - NXP LX2162 is a smaller physical package of the same LX2160 SoC, with 
+> reduced IOs and some silicon blocks disabled.
+> - SolidRun LX2162 SoM is essentially a different form factor of LX2160 CEX
+> - SolidRun LX2162 Clearfog is the reference platform for the SoM. 
+> Despite it's naming similarity to clearfog-cx, it has a different 
+> feature set more similar to SolidRun Armada 388 Clearfog Pro
+> 
+> So I believed I could just add to the existing entry "SolidRun LX2160A 
+> based Boards" also the new LX2162 Board & SoM.
 
-it breaks:
-arm64/boot/dts/freescale/fsl-lx2160a-clearfog-cx.dts
-compatible = "solidrun,clearfog-cx",
-                "solidrun,lx2160a-cex7", "fsl,lx2160a";
+But you added much more, didn't you?
 
-now you would require:
-compatible = "solidrun,clearfog-cx",
-                "solidrun,lx2160a-cex7", "solidrun,lx2162a-som", "fsl,lx2160a"
+> I see now that adding a fourth const messes upthe existing 3-part 
+> compatible for those already existing boards.
+> 
+> Please can you confirm if it would have been more correct to replace 
+> "const: solidrun,lx2160a-cex7" with an enum?:
+> enum:
+>    - solidrun,lx2160a-cex7
+>    - solidrun,lx2162a-som
+> 
+> Finally, is it okay to add a "solidrun,clearfog" given my explanation 
+> above, or should it be more specific "solidrun,lx2162a-clearfog"?
+> 
 
-which is probably not what you want.
+Test the binding and test DTS against it:
+Please run `make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
 
-Regards,
-Andreas
+It might point you to answer.
+
+Why do you make solidrun,honeycomb compatible with cex7 and som?
+
+Best regards,
+Krzysztof
+
