@@ -2,97 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60BCC7333FE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:54:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 992D6733459
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 17:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229708AbjFPOyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 10:54:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55048 "EHLO
+        id S1345837AbjFPPJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 11:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35578 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229706AbjFPOyX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:54:23 -0400
-Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.83])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F45630C5;
-        Fri, 16 Jun 2023 07:54:19 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1686927250; cv=none;
-    d=strato.com; s=strato-dkim-0002;
-    b=KGkoAUAKeMtiRBHVomx2iWOqlEDsXi0cSjrFNf+LsOCs1wXYKi/BYdHwuyDBjmwcTc
-    rj3cruwD7eEp22/9acWr0IRg8X83RcwmgDD29sfEaKhuKhOsdNI6HStAmLQS9p5JEOms
-    tA085JRZcrlj1lI/q7HT1cueuC6LOjD+y0IP7yLoRnjRNjCmcmjdgjdhODrmN9cGo/U8
-    4GkTHD4NqcdISWLoZgdGghrx57UwSdRkSni4FGrnwV2KjLnh/+1O5rDiJKTpJof/2qHJ
-    HuZhbN9O0H67iCUEatgZodYQt83yp4wHen92lvfKRv7yCq5m8wwHMUGs5SLzyShS3Lsa
-    8QUg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686927250;
-    s=strato-dkim-0002; d=strato.com;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=CovIgCHeF0fMuwJihtOV1zblRbWNaXqCptxNFr1SbO8=;
-    b=MvxaxHqptbHO5z4fRe/eq1Oavixy9RumPWI1w16fgP698bw0xVFY9LsmgWbAydRHUB
-    XW4PeLE6uFa73/RTxQQwkb10T5ZZ4SrYnbwFuM8f0yFGnLksfF9S2bjX/X0Oj/hTWM00
-    3dcFg4VqtJJLwpIggI73vf2qLsVyN7arg7919EqXWoBbDx5JiVrZJfFS3qbmFyQi9w5X
-    VZew28S/AXrSM7GEUr9I0bMviXLzRC/4YEZl88JsIMe1niVOqulz2jg+jG2IpWE63nAJ
-    pkOzpJXhqL4dWMlB0dMM1wudiRis2XfE41vSoGhlw23Sx64Dzt0BHNcDSGROC9XruWJ9
-    0l7A==
-ARC-Authentication-Results: i=1; strato.com;
-    arc=none;
-    dkim=none
-X-RZG-CLASS-ID: mo02
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686927250;
-    s=strato-dkim-0002; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=CovIgCHeF0fMuwJihtOV1zblRbWNaXqCptxNFr1SbO8=;
-    b=NzPhoOj1mlA1aThMZ4IIPGuanB+Yj3cmkW+pgpE6O4BeuiUSj0kvAm9EaRn9oVsN0Q
-    5KYTxKhCr0JSe8s7wNaAcLiHO5QCsyjosFjtjv/LIvy1HeQY1peGcryKfdOuze1hgE58
-    nsRIcwvTVEiXhSjpbHBQhevVblgIMhj18t9Pbgas6QXUlcgPGyq8zb1yDlO6q/FyNoQZ
-    +6MfQiFBIl6sZ7TWxKfiRJo5tDIDxUwZxUlUWHQ6zknA7qUqZ+xUdQp+XDPGDF8l5B73
-    OmEj0f0QnDGgB7E7TeqPP41jBTNiAyCpXDoycOQ2Ln1SMG3UQS+3WI3jL4guWGf+yLpc
-    6QjQ==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686927250;
-    s=strato-dkim-0003; d=gerhold.net;
-    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
-    From:Subject:Sender;
-    bh=CovIgCHeF0fMuwJihtOV1zblRbWNaXqCptxNFr1SbO8=;
-    b=Zkx1xt2T3doGB6GlxCwLHaKDZDGpC4Kb/WZ2WhNNIKNVhO48qpnoho811c1c2ExC6M
-    k9QJvX5el2RmT6PXGRCA==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8pqP1A=="
-Received: from gerhold.net
-    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
-    with ESMTPSA id D0d0a8z5GEs971L
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-    Fri, 16 Jun 2023 16:54:09 +0200 (CEST)
-Date:   Fri, 16 Jun 2023 16:54:03 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Douglas Anderson <dianders@chromium.org>, andersson@kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        konrad.dybcio@somainline.org, sumit.semwal@linaro.org,
-        Will Deacon <will@kernel.org>, amit.pundir@linaro.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Andy Gross <agross@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Clark <robdclark@chromium.org>,
+        with ESMTP id S1345804AbjFPPJd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 11:09:33 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 190084208;
+        Fri, 16 Jun 2023 08:09:12 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35GF91oc005267;
+        Fri, 16 Jun 2023 10:09:01 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1686928141;
+        bh=LceLaKBNi5WxPZRer//yhHpngvhHGpG7GcT+OXkw6EQ=;
+        h=From:To:CC:Subject:Date;
+        b=EmBXhzHcTv9Bvahdln5pbEuKfD8xjUqFsDpimTPTTIq4E3E/wxSij+RGZ7teotXWJ
+         OeHhQMvTphKVpzaLL+2N0bDUHbUlCXDKYC+Nz08v3O/3q761DEPfF1UpqWiYApxURx
+         +dmCIxRteCZOyEaKtdnndEiL4A1dywaTmQ5LieTQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35GF91J1123826
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 16 Jun 2023 10:09:01 -0500
+Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
+ Jun 2023 10:09:01 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Fri, 16 Jun 2023 10:09:01 -0500
+Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35GF9024091272;
+        Fri, 16 Jun 2023 10:09:01 -0500
+From:   Aradhya Bhatia <a-bhatia1@ti.com>
+To:     Tomi Valkeinen <tomba@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Mark SCM as dma-coherent for
- trogdor
-Message-ID: <ZIx3i3qmv-aM-RdB@gerhold.net>
-References: <20230615145253.1.Ic62daa649b47b656b313551d646c4de9a7da4bd4@changeid>
- <ZIwKzozbXxhQHxma@gerhold.net>
- <a5605da0-5b6a-cfeb-f095-bbf963551c08@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>,
+        Aradhya Bhatia <a-bhatia1@ti.com>
+Subject: [PATCH v9 0/2] Add DSS support for AM625 SoC
+Date:   Fri, 16 Jun 2023 20:38:58 +0530
+Message-ID: <20230616150900.6617-1-a-bhatia1@ti.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a5605da0-5b6a-cfeb-f095-bbf963551c08@linaro.org>
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -100,42 +73,98 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 01:20:09PM +0200, Konrad Dybcio wrote:
-> On 16.06.2023 09:10, Stephan Gerhold wrote:
-> > On Thu, Jun 15, 2023 at 02:52:54PM -0700, Douglas Anderson wrote:
-> >> Trogdor devices use firmware backed by TF-A instead of Qualcomm's
-> >> normal TZ. On TF-A we end up mapping memory as cachable. Specifically,
-> >> you can see in Trogdor's TF-A code [1] in qti_sip_mem_assign() that we
-> >> call qti_mmap_add_dynamic_region() with MT_RO_DATA. This translates
-> >> down to MT_MEMORY instead of MT_NON_CACHEABLE or MT_DEVICE.
-> >>
-> >> **Apparently Qualcomm's normal TZ implementation maps the memory as
-> >> non-cachable.**
-> > 
-> > Are you sure about this? From the discussion in the chat the conclusion
-> > was that we can check easily for TF-A, but we have absolutely no idea
-> > what Qualcomm's firmware implementation does. It might be "broken" the
-> > same way and we just have not noticed it yet.
-> Nikita (+CC) was able to boot Venus (which uses that memory reservation
-> call, I believe) on next-20230615 with a WP firmware, so it should be okay..
+This patch series adds a new compatible for the Display SubSystem (DSS)
+controller on TI's AM625 SoC. It further adds the required support for
+the same in the tidss driver.
 
-Unfortunately we cannot draw any conclusions from a working case. Doug
-mentioned this happens only with CONFIG_INIT_ON_ALLOC_DEFAULT_ON=y [1].
-But even with that in theory there could be side effects that invalidate
-or evict the cache line, making it look like it's described correctly
-but it will just explode at some later point.
+The AM625-DSS is a newer version of the DSS from the AM65X version with
+the major change being the addition of another OLDI TX. With the help of
+2 OLDI TXes, the AM625 DSS can support dual-linked OLDI displays with a
+resolution of up-to 2K or WUXGA (1920x1200@60fps) at half the OLDI clock
+frequency or even cloned video outputs on each of the TXes.
 
-It's more reliable to draw conclusions from a failing case: I asked
-Nikita to test with "dma-coherent" added to SCM on the WoA firmware.
-This fails with similar errors Doug had without the property ("Assign
-memory protection call failed -22"). Clearly the firmware did not read
-the proper values were just written into the cache. So it's indeed
-reasonable to assume that Qcom's implementation maps the memory as
-non-cacheable.
+This patch series acts as a continuation of the patches posted in v3[1].
+The OLDI support patches combined from v5 onwards are now separated
+again. The OLDI support will be added subsequently with a separte patch
+series.
 
-Feel free to disregard my original comment then and keep the sentence. :)
+I have tested these patches on AM625 SK-EVM and AM625 based Beagle Play.
+To test this series on AM625 based platforms, basic display support
+patches (for driver + devicetree) can be found in the
+"next_am62-base_support-V2" branch on my github fork[2].
 
-Thanks,
-Stephan
+[1]: V3: https://patchwork.freedesktop.org/series/105373/
+[2]: https://github.com/aradhya07/linux-ab/tree/next_am62-base_support-V2
 
-[1]: https://lore.kernel.org/linux-arm-msm/20230614165904.1.I279773c37e2c1ed8fbb622ca6d1397aea0023526@changeid/
+Previous versions:
+- V8: https://patchwork.freedesktop.org/series/119088/
+- V7: https://patchwork.freedesktop.org/series/113328/
+- V6: https://patchwork.freedesktop.org/series/111106/
+- V5: https://patchwork.freedesktop.org/series/109194/
+
+Changelog:
+V9:
+  - Edit the commit message for Patch 2/2.
+  - Add Krzysztof Kozlowski's and Tomi Valkeinen's tags.
+
+V8:
+  - Rebase for current merge window.
+  - Drop all the OLDI support patches.
+  - Update the binding to remove the 2nd OLDI port instances.
+  - Drop the Reviewed-by tags of Krzysztof Kozlowski and Rahul T R
+    because of the changes.
+
+V7:
+  - Rebase to current linux-next.
+  - Address Tomi Valkeinen's comments.
+    1. Separate the DSS VP and output port coupling.
+       v6 introduced 'output_port_bus_type' in addition to 'vp_bus_type'
+       but having both of the variables was redundant. Hence, in v7
+       the 'output_port_bus_type' essentially replaces 'vp_bus_type'.
+    2. Break Patch v6 2/5 into 2 separate patches (v7 1/6 and v7 3/6).
+    3. Change in name and addition of OLDI mode macros.
+    4. Other minor changes.
+
+V6:
+  - Rebase for current merge window.
+  - Add 'allOf:' condition in the DT binding.
+  - Address Tomi Valkeinen's comments.
+    1. Combine DT binding patches for new compatible and 3rd DSS port.
+    2. Further separate DSS VPs and output ports.
+    3. Separate OLDI mode discovery logic from the panel/bridge
+       discovery (which allowed support for OLDI bridges as well.)
+    4. Organize OLDI IO control register macros platform wise.
+
+V5:
+  - Rebase for current merge window.
+  - Add max DT ports in DSS features.
+  - Combine the OLDI support series.
+
+(Changes from OLDI support series v1)
+  - Address Tomi Valkeinen's comments.
+    1. Update the OLDI link detection approach.
+    2. Add port #3 for 2nd OLDI TX.
+    3. Configure 2 panel-bridges for cloned panels.
+    4. Drop the OLDI clock set patch.
+    5. Drop rgb565-to-888 patch.
+
+V3:
+  - Change yaml enum in alphabetical order.
+  - Correct a typo.
+
+V2:
+  - Remove redundant register array.
+
+Aradhya Bhatia (2):
+  dt-bindings: display: ti,am65x-dss: Add am625 dss compatible
+  drm/tidss: Add support for AM625 DSS
+
+ .../bindings/display/ti/ti,am65x-dss.yaml     | 18 ++++--
+ drivers/gpu/drm/tidss/tidss_dispc.c           | 57 ++++++++++++++++++-
+ drivers/gpu/drm/tidss/tidss_dispc.h           |  2 +
+ drivers/gpu/drm/tidss/tidss_drv.c             |  1 +
+ 4 files changed, 71 insertions(+), 7 deletions(-)
+
+-- 
+2.40.1
+
