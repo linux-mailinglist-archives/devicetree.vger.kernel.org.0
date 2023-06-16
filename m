@@ -2,313 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A60A473295C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 09:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38403732974
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:04:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230420AbjFPH7W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 03:59:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47692 "EHLO
+        id S244582AbjFPIDy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 04:03:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbjFPH7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 03:59:19 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A81FF2733
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 00:59:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686902357; x=1718438357;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=3hYbSiVKeoEht0JnaksXH3v8S4W8sPhUYfzRq9a95r0=;
-  b=oq0J6fFeBML/+fb+B2vNVqfJvNqjkQe8R6tJGC7SALsBXKKqFJHRpu1W
-   zSFNnXNbwl3slcnG3f5cAi/s4xLr/KXNmHLPqgEMefRBfWqPR4JIwaKg+
-   lSpE+tTf43oHAsR+prWJkJXmuuJ0aD9OVYQ0zCtRNjoKN03m1iIB0CQM3
-   rbOWTevt7STaB7VUvwUVr7tik6UPUDfL3qjQyd3Z0+XW49B8F79pKoNpU
-   4b8oUpKV+ObSgjpX/HVQvpcHgD8Bnow4os1AY/qWifKePaDk/6YL1HKSC
-   xjxSrno/Y41Znn28bc6Suhuov+FwRWn4Paob80E1wIW0I9wvk6rBT/dce
+        with ESMTP id S244639AbjFPIDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:03:51 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FE132D68;
+        Fri, 16 Jun 2023 01:03:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686902627; x=1718438627;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=eTVc3XGM10yYGWejxI4OFNYMqxF1WUL6v6oHQydkLQ0=;
+  b=vRB0VwWfycZiz9HD5aiHXiSQZHY4NT46r8jvUEB4bfkoYkKbcTSy2wp7
+   J+hWOOILHue6XVOXSNY86unrj9JjCMNottwWn5tTw1f12fZRV+fb5PEW2
+   wHy99pnLY+krAXL2jhpdGWO5uVU/vPJ+6+MklQocK+VGB8RfN0zNo8cAv
+   0e+kt0mnZx3tyjMn+In2tCJNDBPgCdTaBGYn0ljl1ob2P1WG0BYiabZJz
+   WnIhI2CoqYiYxGYbqunU5Q7zri1WhBflj4nBvFKtBq+2vpOshYESni2A/
+   maQdvmeBLplBxsrWTngkan77XWtD0YkNUT4NkaCJdkq07au1MV/8OvUWY
    g==;
-X-IronPort-AV: E=Sophos;i="6.00,247,1681164000"; 
-   d="scan'208";a="31460794"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Jun 2023 09:59:15 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B2CEB280082;
-        Fri, 16 Jun 2023 09:59:15 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; 
+   d="asc'?scan'208";a="220566949"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Jun 2023 01:03:41 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 16 Jun 2023 01:03:41 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 16 Jun 2023 01:03:38 -0700
+Date:   Fri, 16 Jun 2023 09:03:12 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     zhuyinbo <zhuyinbo@loongson.cn>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Frank Li <Frank.Li@nxp.com>
-Subject: [PATCH 1/1] arm64: dts: imx8mq: Add coresight trace components
-Date:   Fri, 16 Jun 2023 09:59:14 +0200
-Message-Id: <20230616075914.2315189-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <loongarch@lists.linux.dev>, Jianmin Lv <lvjianmin@loongson.cn>,
+        <wanghongliang@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
+        <loongson-kernel@lists.loongnix.cn>
+Subject: Re: [PATCH v3 2/3] soc: dt-bindings: add loongson-2 pm
+Message-ID: <20230616-tablet-isotope-94749a2f8336@wendy>
+References: <20230615091757.24686-1-zhuyinbo@loongson.cn>
+ <20230615091757.24686-3-zhuyinbo@loongson.cn>
+ <20230616-entangled-cauterize-1cbde7401b91@wendy>
+ <9a53089a-3c87-13e1-0bc4-29058ac0ec54@loongson.cn>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7zoj86TvI4ME9JFK"
+Content-Disposition: inline
+In-Reply-To: <9a53089a-3c87-13e1-0bc4-29058ac0ec54@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add coresight trace components (ETM, ETF, ETB and Funnel).
+--7zoj86TvI4ME9JFK
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-┌───────┐  ┌───────┐  ┌───────┐
-│ CPU0  ├─►│ ETM0  ├─►│       │
-└───────┘  └───────┘  │       │
-                      │       │
-┌───────┐  ┌───────┐  │  ATP  │
-│ CPU1  ├─►│ ETM1  ├─►│       │
-└───────┘  └───────┘  │       │
-                      │ FUNNEL│
-┌───────┐  ┌───────┐  │       │
-│ CPU2  ├─►│ ETM2  ├─►│       │
-└───────┘  └───────┘  │       │   ┌─────┐
-                      │       │   │     │
-┌───────┐  ┌───────┐  │       │   │ M4  │
-│ CPU3  ├─►│ ETM3  ├─►│       │   │     │
-└───────┘  └───────┘  └───┬───┘   └──┬──┘                        AXI
-                          │          │                            ▲
-                          ▼          ▼                            │
-                      ┌───────────────────────────┐   ┌─────┐   ┌─┴──┐
-                      │          ATP FUNNEL       ├──►│ ETF ├─► │ETR │
-                      └───────────────────────────┘   └─────┘   └────┘
+On Fri, Jun 16, 2023 at 03:53:38PM +0800, zhuyinbo wrote:
+> =E5=9C=A8 2023/6/16 =E4=B8=8B=E5=8D=882:58, Conor Dooley =E5=86=99=E9=81=
+=93:
+> >=20
+> > Rob, could you take a look at this please? On v2 while you were away I
+> > was kinda struggling w/ suspend-address & whether it made sense.
+> >=20
+> > The v2 & v1 are here:
+> > https://lore.kernel.org/all/20230522093156.7108-3-zhuyinbo@loongson.cn/
+> > https://lore.kernel.org/all/20230517073149.31980-3-zhuyinbo@loongson.cn/
+> >=20
+> > On Thu, Jun 15, 2023 at 05:17:56PM +0800, Yinbo Zhu wrote:
+> > > Add the Loongson-2 SoC Power Management Controller binding with DT
+> > > schema format using json-schema.
+> > >=20
+> > > Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> > > ---
+> > >   .../soc/loongson/loongson,ls2k-pmc.yaml       | 53 ++++++++++++++++=
++++
+> > >   MAINTAINERS                                   |  6 +++
+> > >   2 files changed, 59 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/soc/loongson/l=
+oongson,ls2k-pmc.yaml
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,=
+ls2k-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2=
+k-pmc.yaml
+> > > new file mode 100644
+> > > index 000000000000..32499bd10f8c
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pm=
+c.yaml
+> >=20
+> > The filename should ideally match one of the compatibles.
+>=20
+>=20
+> I learn about that yaml file name need match this compatible, but here
+> using a specific compatible as the name of the yaml file seems a bit
+> inappropriate . After all, this yaml file needs to cover lots of ls2k
+> series SoC rather than a specific SoC, and the yaml file naming in
+> kernel drivers is basically the same that use cover a series SoC's way.
+>=20
+> >=20
+> > > @@ -0,0 +1,53 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-pmc.ya=
+ml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Loongson-2 Power Manager controller
+> > > +
+> > > +maintainers:
+> > > +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    oneOf:
+> > > +      - items:
+> > > +          - enum:
+> > > +              - loongson,ls2k1000-pmc
+> > > +              - loongson,ls2k0500-pmc
+> >=20
+> > I notice the driver only supports one of these two. Is there a reason
+> > for that?
+>=20
+>=20
+> The driver can support both of the above, and I will add another.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-This is a 1:1 copy from commit 71c2ac9a2a3da ("arm64: dts: imx8mp: Add
-coresight trace components") with the following changes:
-* Adjust clock names
-* Replace (Cortex-)M7 with M4 in comment
-* Remove Audio DSP funnel port
+The driver only contains
+	static const struct of_device_id loongson2_pm_match[] =3D {
+	       { .compatible =3D "loongson,ls2k1000-pmc", },
+	       {},
+	};
+so it only supports the 2k1000 right now. Are the 2k1000 and 2k0500
+compatible with eachother?
 
-This is untested, but the base addresses for the components are
-identical in the reference manuals.
+> > > +          - const: syscon
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  suspend-address:
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > > +    description:
+> > > +      The "suspend-address" is a deep sleep state (Suspend To RAM)
+> > > +      firmware entry address which was jumped from kernel and it's
+> > > +      value was dependent on specific platform firmware code. In
+> > > +      addition, the PM need according to it to indicate that current
+> > > +      SoC whether support Suspend To RAM.
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +
+> > > +    pmc: pm@1fe27000 {
+> >         ^^^
+> >=20
+> > nit: this label isn't used, so you can drop it.
+>=20
+>=20
+> This lable need to be used by poweroff and reboot node but I don't add
+> these node that reference pmc here.
 
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 196 ++++++++++++++++++++++
- 1 file changed, 196 insertions(+)
+Right, in the dts it might need those, but not in the example in the
+binding.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 33c6bb66d2d69..8ea8c7c7974cc 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -330,6 +330,202 @@ soc: soc@0 {
- 		nvmem-cells = <&imx8mq_uid>;
- 		nvmem-cell-names = "soc_unique_id";
- 
-+		etm0: etm@28440000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0x28440000 0x10000>;
-+			arm,primecell-periphid = <0xbb95d>;
-+			cpu = <&A53_0>;
-+			clocks = <&clk IMX8MQ_CLK_MAIN_AXI>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					etm0_out_port: endpoint {
-+						remote-endpoint = <&ca_funnel_in_port0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm1: etm@28540000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0x28540000 0x10000>;
-+			arm,primecell-periphid = <0xbb95d>;
-+			cpu = <&A53_1>;
-+			clocks = <&clk IMX8MQ_CLK_MAIN_AXI>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					etm1_out_port: endpoint {
-+						remote-endpoint = <&ca_funnel_in_port1>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm2: etm@28640000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0x28640000 0x10000>;
-+			arm,primecell-periphid = <0xbb95d>;
-+			cpu = <&A53_2>;
-+			clocks = <&clk IMX8MQ_CLK_MAIN_AXI>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					etm2_out_port: endpoint {
-+						remote-endpoint = <&ca_funnel_in_port2>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etm3: etm@28740000 {
-+			compatible = "arm,coresight-etm4x", "arm,primecell";
-+			reg = <0x28740000 0x10000>;
-+			arm,primecell-periphid = <0xbb95d>;
-+			cpu = <&A53_3>;
-+			clocks = <&clk IMX8MQ_CLK_MAIN_AXI>;
-+			clock-names = "apb_pclk";
-+
-+			out-ports {
-+				port {
-+					etm3_out_port: endpoint {
-+						remote-endpoint = <&ca_funnel_in_port3>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel {
-+			/*
-+			 * non-configurable funnel don't show up on the AMBA
-+			 * bus.  As such no need to add "arm,primecell".
-+			 */
-+			compatible = "arm,coresight-static-funnel";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					ca_funnel_in_port0: endpoint {
-+						remote-endpoint = <&etm0_out_port>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					ca_funnel_in_port1: endpoint {
-+						remote-endpoint = <&etm1_out_port>;
-+					};
-+				};
-+
-+				port@2 {
-+					reg = <2>;
-+
-+					ca_funnel_in_port2: endpoint {
-+						remote-endpoint = <&etm2_out_port>;
-+					};
-+				};
-+
-+				port@3 {
-+					reg = <3>;
-+
-+					ca_funnel_in_port3: endpoint {
-+						remote-endpoint = <&etm3_out_port>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					ca_funnel_out_port0: endpoint {
-+						remote-endpoint = <&hugo_funnel_in_port0>;
-+					};
-+				};
-+			};
-+		};
-+
-+		funnel@28c03000 {
-+			compatible = "arm,coresight-dynamic-funnel", "arm,primecell";
-+			reg = <0x28c03000 0x1000>;
-+			clocks = <&clk IMX8MQ_CLK_MAIN_AXI>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+
-+				port@0 {
-+					reg = <0>;
-+
-+					hugo_funnel_in_port0: endpoint {
-+						remote-endpoint = <&ca_funnel_out_port0>;
-+					};
-+				};
-+
-+				port@1 {
-+					reg = <1>;
-+
-+					hugo_funnel_in_port1: endpoint {
-+					/* M4 input */
-+					};
-+				};
-+				/* the other input ports are not connect to anything */
-+			};
-+
-+			out-ports {
-+				port {
-+					hugo_funnel_out_port0: endpoint {
-+						remote-endpoint = <&etf_in_port>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etf@28c04000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0x28c04000 0x1000>;
-+			clocks = <&clk IMX8MQ_CLK_MAIN_AXI>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					etf_in_port: endpoint {
-+						remote-endpoint = <&hugo_funnel_out_port0>;
-+					};
-+				};
-+			};
-+
-+			out-ports {
-+				port {
-+					etf_out_port: endpoint {
-+						remote-endpoint = <&etr_in_port>;
-+					};
-+				};
-+			};
-+		};
-+
-+		etr@28c06000 {
-+			compatible = "arm,coresight-tmc", "arm,primecell";
-+			reg = <0x28c06000 0x1000>;
-+			clocks = <&clk IMX8MQ_CLK_MAIN_AXI>;
-+			clock-names = "apb_pclk";
-+
-+			in-ports {
-+				port {
-+					etr_in_port: endpoint {
-+						remote-endpoint = <&etf_out_port>;
-+					};
-+				};
-+			};
-+		};
-+
- 		aips1: bus@30000000 { /* AIPS1 */
- 			compatible = "fsl,aips-bus", "simple-bus";
- 			reg = <0x30000000 0x400000>;
--- 
-2.34.1
+Cheers,
+Conor.
 
+
+--7zoj86TvI4ME9JFK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIwXQAAKCRB4tDGHoIJi
+0hnNAQDgnHCPOhtgmUu8ZJOMwWCm+4EnosPKCPUNqu5+XfCavgEA/3SbSK6yfJke
+g2TIjSEMSVzsRSZR2bsJPYuDAarvaAk=
+=kgbC
+-----END PGP SIGNATURE-----
+
+--7zoj86TvI4ME9JFK--
