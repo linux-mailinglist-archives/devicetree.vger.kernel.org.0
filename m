@@ -2,125 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85FB27327E9
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 08:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B34673282E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 08:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S242521AbjFPGxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 02:53:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44476 "EHLO
+        id S243196AbjFPG7X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 02:59:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S242572AbjFPGxX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 02:53:23 -0400
-Received: from mail-qv1-xf2c.google.com (mail-qv1-xf2c.google.com [IPv6:2607:f8b0:4864:20::f2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D509E2965
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 23:53:20 -0700 (PDT)
-Received: by mail-qv1-xf2c.google.com with SMTP id 6a1803df08f44-62ff0e0c5d7so4130776d6.1
-        for <devicetree@vger.kernel.org>; Thu, 15 Jun 2023 23:53:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686898400; x=1689490400;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=Tpze9TUVJHynLjdP+GtnzdEuwJI6Rj8PjtY5Ob++aYY=;
-        b=nUWwe8XLNUTVjVmjtZcUK9ryHZEt9qKqWQotbbpaSVmZfPQeZ4NxV6uAeE75T7W+9I
-         MReEMq81h+brjHnv2impeAk4hhI/f2JrrUUl2s9TojKjg0UDnJJDaq4aZS5QRIRaFja8
-         Ve0D7kNWVfRSNbdEGRZqwDJtRvbZme3q/oVY9FB8/7kdFEYYm7sIrVDTjZ0nKMRFViFZ
-         WQNvQea/T4VLZmAhkhF4Ad4kbA/gHpycn757WQ/35Y848VXoUQ8kcq7UF8f/h72c5rhG
-         W+D8lhHNLxf6vJkIGOYEW5m5co0+8IwGCTKKJXiaOFeIep4MRP1AmjGG48xLOW5iccjN
-         sPrQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686898400; x=1689490400;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Tpze9TUVJHynLjdP+GtnzdEuwJI6Rj8PjtY5Ob++aYY=;
-        b=EzRNgnkL03vo87vdbStRRnkSyyK55WZOpsciR29QC3Sjcr4P/7OJSNV1GLLvt7h+0g
-         bT27V2/Re2zElysB8zHVbfceX+BQbVynsSZwQWkv2ag8ZG1tyQnfAuj9fZq7XK9xYLJX
-         QFOmf8YMm60DLV6lske5UwCxw3p+cxtMK/DuxQE+gL2kt0u9iVV83KGwEMxeSqSo8MT0
-         P/f8p8a1vs75qRqCAT5Dr6LL5tJ07NpaTK03NrZXXrU1CCnvC9/5SERYYDmuD+C28VFq
-         lRaHUnwC5C3rRznTJScldumfPMnOcGu0FUaCL8VEzQstHNgAGb6061y4Cxjy5/7FTCcS
-         qU2w==
-X-Gm-Message-State: AC+VfDxdLbgD8iVRzBDFkwKVAdfHqaMP9f+bzn5uruUB7uLBofePYn2J
-        R5PxlZmQU7PBnvgmxEt0X+QvzMgDaxglWHYZUt3qCw==
-X-Google-Smtp-Source: ACHHUZ4FIxeZfmI18D29InbyzPX71jiv1O7sM8yYUWYq0e00b0ieniRrLGNLDmU4InWCXSn5yKySJDtcAnuXc+sOaN4=
-X-Received: by 2002:a05:6214:1304:b0:61b:6fcd:34b7 with SMTP id
- pn4-20020a056214130400b0061b6fcd34b7mr1655550qvb.17.1686898399978; Thu, 15
- Jun 2023 23:53:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230615142711.2994811-1-amit.pundir@linaro.org> <5377c938-10df-20ce-2bdb-dad41e472041@linaro.org>
-In-Reply-To: <5377c938-10df-20ce-2bdb-dad41e472041@linaro.org>
-From:   Amit Pundir <amit.pundir@linaro.org>
-Date:   Fri, 16 Jun 2023 12:22:43 +0530
-Message-ID: <CAMi1Hd3Kv1b7bBjqAc4MJ7W8xDZozCd10Byh513hhk9bOcgkjw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: qcom: sdm845-db845c: Mark cont splash
- memory region as reserved
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S242498AbjFPG7O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 02:59:14 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1CC5F2D69;
+        Thu, 15 Jun 2023 23:59:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686898739; x=1718434739;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=B24fwtB2ICXWiKb2YjOOU9xiIvWffWyp4EDuSS+K2kM=;
+  b=HRMaxPE/OZtvLI/8grXIBIbFVJXVTQibEpru4DvOeFxLMWUHDrz5nOf3
+   qJCJmpTN0XjAkSPwaYL1h24FOo2j2IFNq3nmW/X6pPmQlrJfrwHTD1pmF
+   u3sfljDVKbp1syA+omFj7yt9kwGbJ0oPSZtRnYEZadOaMqhYfJqYnmjtO
+   T+QLbUBAvsqZSxkC8gMgDfxEHhmSSPtDen07JXOeDo3jhhIrDhqQJQ6Oz
+   9b6Ciar9T+jjpduwqOGLohtu/hhQMJmWAe1j7qPJGNks/hlbu4hbNdbW4
+   LQ+cybo7LBOeOTsEsbdV5NZQP1y3MIwCogGWf6p2KMuDkL0Zc10GoaABG
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,246,1681196400"; 
+   d="asc'?scan'208";a="218830239"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 15 Jun 2023 23:58:58 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 15 Jun 2023 23:58:58 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 15 Jun 2023 23:58:55 -0700
+Date:   Fri, 16 Jun 2023 07:58:29 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Yinbo Zhu <zhuyinbo@loongson.cn>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Huacai Chen <chenhuacai@kernel.org>,
+        WANG Xuerui <kernel@xen0n.name>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Marc Zyngier <maz@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <loongarch@lists.linux.dev>, Jianmin Lv <lvjianmin@loongson.cn>,
+        <wanghongliang@loongson.cn>, Liu Peibao <liupeibao@loongson.cn>,
+        <loongson-kernel@lists.loongnix.cn>
+Subject: Re: [PATCH v3 2/3] soc: dt-bindings: add loongson-2 pm
+Message-ID: <20230616-entangled-cauterize-1cbde7401b91@wendy>
+References: <20230615091757.24686-1-zhuyinbo@loongson.cn>
+ <20230615091757.24686-3-zhuyinbo@loongson.cn>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="pKwHiKupU1CL+x6/"
+Content-Disposition: inline
+In-Reply-To: <20230615091757.24686-3-zhuyinbo@loongson.cn>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jun 2023 at 22:56, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 15.06.2023 16:27, Amit Pundir wrote:
-> > Adding a reserved memory region for the framebuffer memory
-> > (the splash memory region set up by the bootloader).
-> >
-> > Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> > ---
-> > v2: Updated commit message.
-> >
-> > There was some dicussion on v1 but it didn't go anywhere,
-> > https://lore.kernel.org/linux-kernel/20230124182857.1524912-1-amit.pundir@linaro.org/T/#u.
-> > The general consensus is that this memory should be freed and be
-> > made resuable but that (releasing this piece of memory) has been
-> > tried before and it is not trivial to return the reserved memory
-> > node to the system RAM pool in this case.
-> >
-> >  arch/arm64/boot/dts/qcom/sdm845-db845c.dts | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> > index e14fe9bbb386..10a06ee8e262 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845-db845c.dts
-> > @@ -101,6 +101,14 @@ hdmi_con: endpoint {
-> >               };
-> >       };
-> >
-> > +     reserved-memory {
-> > +             /* Cont splash region set up by the bootloader */
-> > +             cont_splash_mem: framebuffer@9d400000 {
-> > +                     reg = <0x0 0x9d400000 0x0 0x2400000>;
-> > +                     no-map;
-> > +             };
-> > +     };
-> &mdss {
->         memory-region = <&cont_splash_mem>;
-> };
->
-> ?
+--pKwHiKupU1CL+x6/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thank you. Updated in v3.
+Hey,
 
->
-> Konrad
-> > +
-> >       lt9611_1v8: lt9611-vdd18-regulator {
-> >               compatible = "regulator-fixed";
-> >               regulator-name = "LT9611_1V8";
+Rob, could you take a look at this please? On v2 while you were away I
+was kinda struggling w/ suspend-address & whether it made sense.
+
+The v2 & v1 are here:
+https://lore.kernel.org/all/20230522093156.7108-3-zhuyinbo@loongson.cn/
+https://lore.kernel.org/all/20230517073149.31980-3-zhuyinbo@loongson.cn/
+
+On Thu, Jun 15, 2023 at 05:17:56PM +0800, Yinbo Zhu wrote:
+> Add the Loongson-2 SoC Power Management Controller binding with DT
+> schema format using json-schema.
+>=20
+> Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
+> ---
+>  .../soc/loongson/loongson,ls2k-pmc.yaml       | 53 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 +++
+>  2 files changed, 59 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/loongson/loongs=
+on,ls2k-pmc.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k=
+-pmc.yaml b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pm=
+c.yaml
+> new file mode 100644
+> index 000000000000..32499bd10f8c
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.ya=
+ml
+
+The filename should ideally match one of the compatibles.
+
+> @@ -0,0 +1,53 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/soc/loongson/loongson,ls2k-pmc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Loongson-2 Power Manager controller
+> +
+> +maintainers:
+> +  - Yinbo Zhu <zhuyinbo@loongson.cn>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - loongson,ls2k1000-pmc
+> +              - loongson,ls2k0500-pmc
+
+I notice the driver only supports one of these two. Is there a reason
+for that?
+
+> +          - const: syscon
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  suspend-address:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      The "suspend-address" is a deep sleep state (Suspend To RAM)
+> +      firmware entry address which was jumped from kernel and it's
+> +      value was dependent on specific platform firmware code. In
+> +      addition, the PM need according to it to indicate that current
+> +      SoC whether support Suspend To RAM.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    pmc: pm@1fe27000 {
+       ^^^
+
+nit: this label isn't used, so you can drop it.
+
+Cheers,
+Conor.
+
+--pKwHiKupU1CL+x6/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIwIFQAKCRB4tDGHoIJi
+0j0SAP4yEcxiKsuqkTFGnDCYoyr/wDXBuBcURftefENgTTZaRAEA4utfLQgRdtBs
+jlzXhgfdNIcQkw/4ENO94EAQ69eyfQs=
+=cZGJ
+-----END PGP SIGNATURE-----
+
+--pKwHiKupU1CL+x6/--
