@@ -2,92 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4A93732980
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:07:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0744573298F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbjFPIHk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 04:07:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51766 "EHLO
+        id S244632AbjFPILJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 04:11:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S240978AbjFPIHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:07:39 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 583662684
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:07:36 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-977d7bdde43so104866166b.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:07:36 -0700 (PDT)
+        with ESMTP id S234405AbjFPILH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:11:07 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADAD72962
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:11:03 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9828a7a39d1so52807466b.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:11:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686902855; x=1689494855;
+        d=linaro.org; s=google; t=1686903062; x=1689495062;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=E2D3uUdBgerQwcC/y3Nf8U05u3nrpXqViKkgZL68N70=;
-        b=sPQOOHDmR/XTEFptr/jeMJl5AZFX7MeVAyWDCDRqMG5MrJ1lUDInmj1zarcAJixQ5M
-         0DFgkdXAa/GZY9rPQpw3mLyqGOMiYmZHXf+YNjqEBS1lhvdNn58O1YdfbDf1hAox9NmW
-         JmbHiLxv59lQT6a7S/ejUENh/SsJXvxdt9r6Lbp6RgVQ220Npzkj/sxZS72MXq/kwN46
-         OIMJVCSnzkD5jK7xXFlXfsbn+/i17OIjIxX8MYw9bbavitsYZ/uTny8PGMgr/dJ+bgiR
-         t4U+EKqKKi1HDX033VxMZhkyf+mWr80EXnBgyq+2FPztTDQ9ZoiObk1hJEtbMvf2jUCg
-         5G+w==
+        bh=Q+nb5C/fzCmkNH4tFkgENtFMDkmGCOR2QUSuKVrANoM=;
+        b=a2Mlb03zrr9JJo0Q+0A43GCTfWHuVRjCiS/gF7JyjDz88V4vbA0ia7lc9aFr+zYAHP
+         mjZnYFtMIAX7sTsI8nHAhX3q4+3tc8qfOgLpnZ5uKhQN9Jkq1eEQioOZ1VTLmszIuQAC
+         5hyXUj7UplGMDJtzrRggEETAHM3bbWJ6ppB3SbWH13IHZxy9I71Sc3EWKKwH2eUxukg4
+         0Qe1Xp900MGM5mJ573ZkonCWD9YDBkcLMkkDq8ezH38qSJAHTrJtPNP78nKBiPYRyySw
+         vSxPwvarRlNopMoccbz9uYqn4ihPdbAiqcaMvIPPjlCa0d3eBD0qcyFU1QVrRPoGYrt9
+         a89w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686902855; x=1689494855;
+        d=1e100.net; s=20221208; t=1686903062; x=1689495062;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E2D3uUdBgerQwcC/y3Nf8U05u3nrpXqViKkgZL68N70=;
-        b=Uk9S7bDVKYseNo0qGpd2sb7HMGTIsj1Hnw7lsRo4twGMw8f18gZPSnTo/j12qUKI0T
-         RmWyDvrgAwizxAyXCZUcIW2uBXcTIu3GDI2mIDdFKYEJqx3cVKgTxaX5lMA+V+Lh0pz8
-         fotVda5zgYd7TBiYHRxmXThZZYXSjJ1HnUtcAolPUZJf2DFtOqEwH87TE8GoGFdVpiD5
-         mtAM88Z4278fMpVRLYOjOaBAEogczxyL2e/BrP71uvL4dDix9E1R0EJWf2znZn2SpI02
-         lfOLO/ySGiIdffNRUzBXuTsTrol+q0vZ4V5u8SqbbhhHiryUJyGQ98aE3/eCWF6XYmaP
-         TfqQ==
-X-Gm-Message-State: AC+VfDyXQyJzi6WLIZ7/WeKoiWYMH7UrqECvzbcUg3pFLFPP3oqP1c3x
-        LHV+e8LVOi+MuF1tkf4mMLsezQ==
-X-Google-Smtp-Source: ACHHUZ5fuviZiGwMVV38493IJyaxYzNur53hPODqxwhHxkTVBy6xeseAKFpS5q2Hc3Jh2QEaGcjBJA==
-X-Received: by 2002:a17:907:6d25:b0:970:28c:f960 with SMTP id sa37-20020a1709076d2500b00970028cf960mr6277621ejc.17.1686902854787;
-        Fri, 16 Jun 2023 01:07:34 -0700 (PDT)
+        bh=Q+nb5C/fzCmkNH4tFkgENtFMDkmGCOR2QUSuKVrANoM=;
+        b=R1JP/BkUhnWUBe9ru/TdmVcg2rMNG04xo4pk2bYHx+fOVnx7ZLcj+hDg81wcyL3vyr
+         /Iy9Axjl/PuqTjVdUAB7EzK0LfRj03ZRLoV6zamsb0UAMZiU7Yht6V8jMGQ4Sjn1CCza
+         WESADg0WSU9nKPdlN22RWQxsWqsdp2thZnOILwpKgoIvFdnuZBdZaDeWfJBccvSd/0kZ
+         7LuKLdTyemAIsSrCTCo25I+iNVnEuIFmwvALs4incxBrcx44w7puZpBby8rk0F0ylAt1
+         2eDeP73fuftmblsOgts7EtmKxXZTBJJtKjQ6/qDPk18FOGS6CZJEzDW4QfSQMOYltfj0
+         k6lg==
+X-Gm-Message-State: AC+VfDyGjGjmdWwUAO5cpKvkWc+3U3W7Fyh9IbNWtpx1xIzx5YCfd2jP
+        h6c0xifFf0r0ee2suGDAHR/9Mg==
+X-Google-Smtp-Source: ACHHUZ6DK25zXtnnsSAW02R2ilsBGImwvgHJkzYxnvXxZVHh9u1UxrheNHyrTDscWNmMYQ0v4zqmVw==
+X-Received: by 2002:a17:907:928b:b0:973:cc48:f19c with SMTP id bw11-20020a170907928b00b00973cc48f19cmr1002834ejc.56.1686903062144;
+        Fri, 16 Jun 2023 01:11:02 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id br22-20020a170906d15600b0098652857e3asm299469ejb.154.2023.06.16.01.07.33
+        by smtp.gmail.com with ESMTPSA id s24-20020a1709060c1800b00969f25b96basm10347260ejf.204.2023.06.16.01.11.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 01:07:34 -0700 (PDT)
-Message-ID: <643e6681-6ba7-e990-3e90-09071db904d2@linaro.org>
-Date:   Fri, 16 Jun 2023 10:07:32 +0200
+        Fri, 16 Jun 2023 01:11:01 -0700 (PDT)
+Message-ID: <de774e98-0ae1-28b4-c0e1-6dc79905498f@linaro.org>
+Date:   Fri, 16 Jun 2023 10:10:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 03/15] dt-bindings: display: mediatek: merge: Add
- compatible for MT8188
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: qcom,bwmon: Document
+ SC7180 BWMONs
 Content-Language: en-US
-To:     =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= 
-        <Shawn.Sung@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
-        "angelogioacchino.delregno@collabora.com" 
-        <angelogioacchino.delregno@collabora.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
-        <Singo.Chang@mediatek.com>,
-        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
-        <Jason-JH.Lin@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
-        Project_Global_Chrome_Upstream_Group 
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-References: <20230614073125.17958-1-shawn.sung@mediatek.com>
- <20230614073125.17958-4-shawn.sung@mediatek.com>
- <25816ad5-339c-e52f-adbb-686aa7977e9e@linaro.org>
- <61754861be70daa487b98475b246d8fed7e2dbd6.camel@mediatek.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230616-topic-sc7180_bwmons-v1-0-4ddb96f9a6cd@linaro.org>
+ <20230616-topic-sc7180_bwmons-v1-1-4ddb96f9a6cd@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <61754861be70daa487b98475b246d8fed7e2dbd6.camel@mediatek.com>
+In-Reply-To: <20230616-topic-sc7180_bwmons-v1-1-4ddb96f9a6cd@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -98,21 +85,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 07:29, Shawn Sung (宋孝謙) wrote:
-> Hi Krzysztof,
+On 16/06/2023 01:46, Konrad Dybcio wrote:
+> SC7180 - just like SC7280 - has a BWMONv4 for CPU-LLCC and a BWMONv5
+> for DDR-LLCC paths. Document them.
 > 
-> Thanks for the reminder, because MT8188 is not related to MT8173,
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
-How does it matter?
-
->  I’ll
-> keep it as it is for now, however, I do find that MT8195 doesn’t exist
-> in this dt-bindings which it should be, so there may be conflicts when
-> this series is going to be merged.
-
-Don't top post.
-
-No, rebase on current next and implement my comment.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
