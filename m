@@ -2,202 +2,455 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBDD3733613
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5230E733616
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344500AbjFPQdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 12:33:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54360 "EHLO
+        id S229696AbjFPQd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 12:33:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344104AbjFPQdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:33:19 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA7A630FD
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:33:08 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686933187;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=tlzdPZjVhCncGXBrk+Svwfe0n2Vpr58cTUfIRVVymiE=;
-        b=kUQGH6Tn2DKsCXdjh8L3rL0LSyclek6Whc9sMQ1Glh5foLU0ZCETw4YhIw7GkMWjkwjEnT
-        mTdIystdbRa+9FfeTOgQ3cuJ46PTSQ0hTcWY512AxfvhWZF1aEsieDlKqn+raXzFzWSuLK
-        CQOyBk+QW4U4tF6nO4YC/GrvnG2DzK4pjXo7DqkMZoOcUb9gEZ+qKfqTcZGhgGD0YN/5aC
-        lV6Z7PNmESHmReZLJYbzC8jhQNuXqw0Pg3yiwhnOcJyOrj86SA8ffWKDCCepPIns2FbxAg
-        fULUD2AHRw7Eq51p/6k47w0QjoVoPE2X010QNNkHz/G3I34jiglUzMJbXMBo5Q==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 343E6C0002;
-        Fri, 16 Jun 2023 16:33:06 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org
-Cc:     Maxime Ripard <maxime@cerno.tech>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
+        with ESMTP id S232752AbjFPQdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:33:24 -0400
+Received: from mail-il1-x130.google.com (mail-il1-x130.google.com [IPv6:2607:f8b0:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A45B030F4
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:33:22 -0700 (PDT)
+Received: by mail-il1-x130.google.com with SMTP id e9e14a558f8ab-33b1e83e1daso3605885ab.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:33:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686933202; x=1689525202;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=RMzvn7GrYNWa2uH46LDQF7EASLlBeuQBsdi7fubQl4U=;
+        b=e+aGlzUey3htPYGYAoUdpbynMOvWw3zXttEZF1XtfK7sS1B1e4GrxM6PhHgDXieC6L
+         Iay4DgUgYoaZBIxbUM3exb8LKtGRJ7Y2oHiG8HRZDaO83Bh/mMVuYpjyuSni3yMnRsZS
+         nVtN6ihboDt6vx7fgO0+5aSXv6PNuYiqnIqf+IaCRAoVIx2NTx1uqkjLJL5YzyQDqAJV
+         oddRpJ1RE+JllaLgO6B/H6ChzH5R30yrYUxAP0FydMgAMdYA4aQEkYCPVueRBQTSaISl
+         CmY/r3OPLfUn7ye4F4m1Smf/d+ZZ/d1nIhqjTyBlZ6j4oADLBH5k9jVEgi346DT3vI89
+         PmFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686933202; x=1689525202;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=RMzvn7GrYNWa2uH46LDQF7EASLlBeuQBsdi7fubQl4U=;
+        b=h+88NMa/ucPTg6aQiu4bRVjoMrVTgyjIFuIFoFf3g66HDMSkawaRygkIyP9hIP7d3o
+         LUogEiyRMkg8GKHiAjpNVx7Fc/6Tnvu3MMVlb91KvvxHQZF5toaJFqocaZU0hqBkGhLB
+         sdtd7GD5IWK+8MbtZnP2QU1dLrELGPJYdo1ztXt+Bbgu3Puv82iAG5VPqBR4fGQeYXGd
+         Hr9nW392YNdFwby+fhcC+dfcS7bvNAvX3yaTZH722ldNmqNspwzi7yUrZTPxbk0JRDEx
+         cG4t5EuXlnT4kl7k8Lc3vM1sdF1elwkvBaR17mwnHpmWug8sQjq+GS2w25+jjoy1yvW4
+         itsA==
+X-Gm-Message-State: AC+VfDzQhGMGc04pRooH3cIqDR/9JJgRfjy9LhMkYbCjlE1dvVXZYN0E
+        yjnDc15ATC9MvplOYXE5Bh7VUw==
+X-Google-Smtp-Source: ACHHUZ6e5eASUyr0HGn1xn6gEz4YA7CO7nmeBC8gUituZhZ5NYMcyuX+aO67GwddgognDc4sio5krw==
+X-Received: by 2002:a92:cacb:0:b0:340:8b48:8d71 with SMTP id m11-20020a92cacb000000b003408b488d71mr2981429ilq.13.1686933201911;
+        Fri, 16 Jun 2023 09:33:21 -0700 (PDT)
+Received: from [172.22.22.28] ([98.61.227.136])
+        by smtp.gmail.com with ESMTPSA id i19-20020a02cc53000000b0041408b79f1esm6354501jaq.111.2023.06.16.09.33.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 09:33:21 -0700 (PDT)
+Message-ID: <4ad6d4e5-6653-1502-76f8-7b52c0d36db3@linaro.org>
+Date:   Fri, 16 Jun 2023 11:33:19 -0500
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v14 06/25] mailbox: Add Gunyah message queue mailbox
+Content-Language: en-US
+To:     Elliot Berman <quic_eberman@quicinc.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
+        Carl van Schaik <quic_cvanscha@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 6/6] drm/panel: sitronix-st7789v: Check display ID
-Date:   Fri, 16 Jun 2023 18:32:55 +0200
-Message-Id: <20230616163255.2804163-7-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
-References: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230613172054.3959700-1-quic_eberman@quicinc.com>
+ <20230613172054.3959700-7-quic_eberman@quicinc.com>
+From:   Alex Elder <elder@linaro.org>
+In-Reply-To: <20230613172054.3959700-7-quic_eberman@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A very basic debugging rule when a device is connected for the first
-time is to access a read-only register which contains known data in
-order to ensure the communication protocol is properly working. This
-driver lacked any read helper which is often a critical piece for
-speed-up bring-ups.
+On 6/13/23 12:20 PM, Elliot Berman wrote:
+> Gunyah message queues are a unidirectional inter-VM pipe for messages up
+> to 1024 bytes. This driver supports pairing a receiver message queue and
+> a transmitter message queue to expose a single mailbox channel.
+> 
+> Reviewed-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
 
-Add a read helper and use it to verify the communication with the panel
-is working as soon as possible in order to fail early if this is not the
-case.
+Despite a small gripe this looks good.
 
-As this panel may work with no MISO line, the check is discarded in this
-case.
+Reviewed-by: Alex Elder <elder@linaro.org>
 
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
----
- .../gpu/drm/panel/panel-sitronix-st7789v.c    | 81 +++++++++++++++++++
- 1 file changed, 81 insertions(+)
+> ---
+>   Documentation/virt/gunyah/message-queue.rst |   8 +
+>   drivers/mailbox/Makefile                    |   2 +
+>   drivers/mailbox/gunyah-msgq.c               | 219 ++++++++++++++++++++
+>   include/linux/gunyah.h                      |  57 +++++
+>   4 files changed, 286 insertions(+)
+>   create mode 100644 drivers/mailbox/gunyah-msgq.c
+> 
+> diff --git a/Documentation/virt/gunyah/message-queue.rst b/Documentation/virt/gunyah/message-queue.rst
+> index b352918ae54b4..70d82a4ef32d7 100644
+> --- a/Documentation/virt/gunyah/message-queue.rst
+> +++ b/Documentation/virt/gunyah/message-queue.rst
+> @@ -61,3 +61,11 @@ vIRQ: two TX message queues will have two vIRQs (and two capability IDs).
+>         |               |         |                 |         |               |
+>         |               |         |                 |         |               |
+>         +---------------+         +-----------------+         +---------------+
+> +
+> +Gunyah message queues are exposed as mailboxes. To create the mailbox, create
+> +a mbox_client and call `gh_msgq_init()`. On receipt of the RX_READY interrupt,
+> +all messages in the RX message queue are read and pushed via the `rx_callback`
+> +of the registered mbox_client.
+> +
+> +.. kernel-doc:: drivers/mailbox/gunyah-msgq.c
+> +   :identifiers: gh_msgq_init
+> diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
+> index fc93761171113..5f929bb55e9a5 100644
+> --- a/drivers/mailbox/Makefile
+> +++ b/drivers/mailbox/Makefile
+> @@ -55,6 +55,8 @@ obj-$(CONFIG_MTK_CMDQ_MBOX)	+= mtk-cmdq-mailbox.o
+>   
+>   obj-$(CONFIG_ZYNQMP_IPI_MBOX)	+= zynqmp-ipi-mailbox.o
+>   
+> +obj-$(CONFIG_GUNYAH)		+= gunyah-msgq.o
+> +
+>   obj-$(CONFIG_SUN6I_MSGBOX)	+= sun6i-msgbox.o
+>   
+>   obj-$(CONFIG_SPRD_MBOX)		+= sprd-mailbox.o
+> diff --git a/drivers/mailbox/gunyah-msgq.c b/drivers/mailbox/gunyah-msgq.c
+> new file mode 100644
+> index 0000000000000..7f777339278eb
+> --- /dev/null
+> +++ b/drivers/mailbox/gunyah-msgq.c
+> @@ -0,0 +1,219 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
+> + */
+> +
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/module.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/gunyah.h>
+> +#include <linux/printk.h>
+> +#include <linux/init.h>
+> +#include <linux/slab.h>
+> +#include <linux/wait.h>
+> +
+> +#define mbox_chan_to_msgq(chan) (container_of(chan->mbox, struct gh_msgq, mbox))
+> +
+> +static irqreturn_t gh_msgq_rx_irq_handler(int irq, void *data)
+> +{
+> +	struct gh_msgq *msgq = data;
+> +	struct gh_msgq_rx_data rx_data;
+> +	enum gh_error gh_error;
+> +	bool ready = true;
 
-diff --git a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-index 8649966ceae8..36fb3f2453f1 100644
---- a/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-+++ b/drivers/gpu/drm/panel/panel-sitronix-st7789v.c
-@@ -110,6 +110,9 @@
- 			return val;		\
- 	} while (0)
- 
-+#define ST7789V_IDS { 0x85, 0x85, 0x52 }
-+#define ST7789V_IDS_SIZE 3
-+
- struct st7789_panel_info {
- 	const struct drm_display_mode *mode;
- 	u32 bus_format;
-@@ -157,6 +160,80 @@ static int st7789v_write_data(struct st7789v *ctx, u8 cmd)
- 	return st7789v_spi_write(ctx, ST7789V_DATA, cmd);
- }
- 
-+static int st7789v_read_data(struct st7789v *ctx, u8 cmd, u8 *buf,
-+			     unsigned int len)
-+{
-+	struct spi_transfer xfer[2] = { };
-+	struct spi_message msg;
-+	u16 txbuf = ((ST7789V_COMMAND & 1) << 8) | cmd;
-+	u16 rxbuf[4] = {};
-+	u8 bit9 = 0;
-+	int ret, i;
-+
-+	switch (len) {
-+	case 1:
-+	case 3:
-+	case 4:
-+		break;
-+	default:
-+		return -EOPNOTSUPP;
-+	}
-+
-+	spi_message_init(&msg);
-+
-+	xfer[0].tx_buf = &txbuf;
-+	xfer[0].len = sizeof(txbuf);
-+	spi_message_add_tail(&xfer[0], &msg);
-+
-+	xfer[1].rx_buf = rxbuf;
-+	xfer[1].len = len * 2;
-+	spi_message_add_tail(&xfer[1], &msg);
-+
-+	ret = spi_sync(ctx->spi, &msg);
-+	if (ret)
-+		return ret;
-+
-+	for (i = 0; i < len; i++) {
-+		buf[i] = rxbuf[i] >> i | (bit9 << (9 - i));
-+		if (i)
-+			bit9 = rxbuf[i] & GENMASK(i - 1, 0);
-+	}
-+
-+	return 0;
-+}
-+
-+static int st7789v_check_id(struct drm_panel *panel)
-+{
-+	const u8 st7789v_ids[ST7789V_IDS_SIZE] = ST7789V_IDS;
-+	struct st7789v *ctx = panel_to_st7789v(panel);
-+	bool invalid_ids = false;
-+	int ret, i;
-+	u8 ids[3];
-+
-+	if (ctx->spi->mode & SPI_NO_RX)
-+		return 0;
-+
-+	ret = st7789v_read_data(ctx, MIPI_DCS_GET_DISPLAY_ID, ids, ST7789V_IDS_SIZE);
-+	if (ret) {
-+		dev_err(panel->dev, "Failed to read IDs\n");
-+		return ret;
-+	}
-+
-+	for (i = 0; i < ST7789V_IDS_SIZE; i++) {
-+		if (ids[i] != st7789v_ids[i]) {
-+			invalid_ids = true;
-+			break;
-+		}
-+	}
-+
-+	if (invalid_ids) {
-+		dev_err(panel->dev, "Unrecognized panel IDs");
-+		return -EIO;
-+	}
-+
-+	return 0;
-+}
-+
- static const struct drm_display_mode default_mode = {
- 	.clock = 7000,
- 	.hdisplay = 240,
-@@ -295,6 +372,10 @@ static int st7789v_prepare(struct drm_panel *panel)
- 	gpiod_set_value(ctx->reset, 0);
- 	msleep(120);
- 
-+	ret = st7789v_check_id(panel);
-+	if (ret)
-+		return ret;
-+
- 	ST7789V_TEST(ret, st7789v_write_command(ctx, MIPI_DCS_EXIT_SLEEP_MODE));
- 
- 	/* We need to wait 120ms after a sleep out command */
--- 
-2.34.1
+Since ready is true initially, you could use do...while ()
+and not bother pre-initializing it.
+
+> +
+> +	while (ready) {
+> +		gh_error = gh_hypercall_msgq_recv(msgq->rx_ghrsc->capid,
+> +				&rx_data.data, sizeof(rx_data.data),
+> +				&rx_data.length, &ready);
+> +		if (gh_error != GH_ERROR_OK) {
+> +			if (gh_error != GH_ERROR_MSGQUEUE_EMPTY)
+> +				dev_warn(msgq->mbox.dev, "Failed to receive data: %d\n", gh_error);
+> +			break;
+> +		}
+> +		if (likely(gh_msgq_chan(msgq)->cl))
+> +			mbox_chan_received_data(gh_msgq_chan(msgq), &rx_data);
+> +	}
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +/* Fired when message queue transitions from "full" to "space available" to send messages */
+> +static irqreturn_t gh_msgq_tx_irq_handler(int irq, void *data)
+> +{
+> +	struct gh_msgq *msgq = data;
+> +
+> +	mbox_chan_txdone(gh_msgq_chan(msgq), 0);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +/* Fired after sending message and hypercall told us there was more space available. */
+> +static void gh_msgq_txdone_tasklet(struct tasklet_struct *tasklet)
+> +{
+> +	struct gh_msgq *msgq = container_of(tasklet, struct gh_msgq, txdone_tasklet);
+> +
+> +	mbox_chan_txdone(gh_msgq_chan(msgq), msgq->last_ret);
+> +}
+> +
+> +static int gh_msgq_send_data(struct mbox_chan *chan, void *data)
+> +{
+> +	struct gh_msgq *msgq = mbox_chan_to_msgq(chan);
+> +	struct gh_msgq_tx_data *msgq_data = data;
+> +	u64 tx_flags = 0;
+> +	enum gh_error gh_error;
+> +	bool ready;
+> +
+> +	if (!msgq->tx_ghrsc)
+> +		return -EOPNOTSUPP;
+> +
+> +	if (msgq_data->push)
+> +		tx_flags |= GH_HYPERCALL_MSGQ_TX_FLAGS_PUSH;
+> +
+> +	gh_error = gh_hypercall_msgq_send(msgq->tx_ghrsc->capid, msgq_data->length, msgq_data->data,
+> +						tx_flags, &ready);
+> +
+> +	/**
+> +	 * unlikely because Linux tracks state of msgq and should not try to
+> +	 * send message when msgq is full.
+> +	 */
+> +	if (unlikely(gh_error == GH_ERROR_MSGQUEUE_FULL))
+> +		return -EAGAIN;
+> +
+> +	/**
+> +	 * Propagate all other errors to client. If we return error to mailbox
+> +	 * framework, then no other messages can be sent and nobody will know
+> +	 * to retry this message.
+> +	 */
+> +	msgq->last_ret = gh_error_remap(gh_error);
+> +
+> +	/**
+> +	 * This message was successfully sent, but message queue isn't ready to
+> +	 * accept more messages because it's now full. Mailbox framework
+> +	 * requires that we only report that message was transmitted when
+> +	 * we're ready to transmit another message. We'll get that in the form
+> +	 * of tx IRQ once the other side starts to drain the msgq.
+> +	 */
+
+I really dislike this mismatch between Gunyah and mailbox
+semantics.  Oh well.
+
+> +	if (gh_error == GH_ERROR_OK) {
+> +		if (!ready)
+> +			return 0;
+> +	} else {
+> +		dev_err(msgq->mbox.dev, "Failed to send data: %d (%d)\n", gh_error, msgq->last_ret);
+> +	}
+> +
+> +	/**
+> +	 * We can send more messages. Mailbox framework requires that tx done
+> +	 * happens asynchronously to sending the message. Gunyah message queues
+> +	 * tell us right away on the hypercall return whether we can send more
+> +	 * messages. To work around this, defer the txdone to a tasklet.
+> +	 */
+
+This mismatch too...
+
+> +	tasklet_schedule(&msgq->txdone_tasklet);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct mbox_chan_ops gh_msgq_ops = {
+> +	.send_data = gh_msgq_send_data,
+> +};
+> +
+> +/**
+> + * gh_msgq_init() - Initialize a Gunyah message queue with an mbox_client
+> + * @parent: device parent used for the mailbox controller
+> + * @msgq: Pointer to the gh_msgq to initialize
+> + * @cl: A mailbox client to bind to the mailbox channel that the message queue creates
+> + * @tx_ghrsc: optional, the transmission side of the message queue
+> + * @rx_ghrsc: optional, the receiving side of the message queue
+> + *
+> + * At least one of tx_ghrsc and rx_ghrsc must be not NULL. Most message queue use cases come with
+> + * a pair of message queues to facilitate bidirectional communication. When tx_ghrsc is set,
+> + * the client can send messages with mbox_send_message(gh_msgq_chan(msgq), msg). When rx_ghrsc
+> + * is set, the mbox_client must register an .rx_callback() and the message queue driver will
+> + * deliver all available messages upon receiving the RX ready interrupt. The messages should be
+> + * consumed or copied by the client right away as the gh_msgq_rx_data will be replaced/destroyed
+> + * after the callback.
+> + *
+> + * Returns - 0 on success, negative otherwise
+> + */
+> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct mbox_client *cl,
+> +		 struct gh_resource *tx_ghrsc, struct gh_resource *rx_ghrsc)
+> +{
+> +	int ret;
+> +
+> +	/* Must have at least a tx_ghrsc or rx_ghrsc and that they are the right device types */
+> +	if ((!tx_ghrsc && !rx_ghrsc) ||
+> +	    (tx_ghrsc && tx_ghrsc->type != GH_RESOURCE_TYPE_MSGQ_TX) ||
+> +	    (rx_ghrsc && rx_ghrsc->type != GH_RESOURCE_TYPE_MSGQ_RX))
+> +		return -EINVAL;
+> +
+> +	msgq->mbox.dev = parent;
+> +	msgq->mbox.ops = &gh_msgq_ops;
+> +	msgq->mbox.num_chans = 1;
+> +	msgq->mbox.txdone_irq = true;
+> +	msgq->mbox.chans = &msgq->mbox_chan;
+> +
+> +	ret = mbox_controller_register(&msgq->mbox);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = mbox_bind_client(gh_msgq_chan(msgq), cl);
+> +	if (ret)
+> +		goto err_mbox;
+> +
+> +	if (tx_ghrsc) {
+> +		msgq->tx_ghrsc = tx_ghrsc;
+> +
+> +		ret = request_irq(msgq->tx_ghrsc->irq, gh_msgq_tx_irq_handler, 0, "gh_msgq_tx",
+> +				msgq);
+> +		if (ret)
+> +			goto err_tx_ghrsc;
+> +
+> +		enable_irq_wake(msgq->tx_ghrsc->irq);
+> +
+> +		tasklet_setup(&msgq->txdone_tasklet, gh_msgq_txdone_tasklet);
+> +	}
+> +
+> +	if (rx_ghrsc) {
+> +		msgq->rx_ghrsc = rx_ghrsc;
+> +
+> +		ret = request_threaded_irq(msgq->rx_ghrsc->irq, NULL, gh_msgq_rx_irq_handler,
+> +						IRQF_ONESHOT, "gh_msgq_rx", msgq);
+> +		if (ret)
+> +			goto err_tx_irq;
+> +
+> +		enable_irq_wake(msgq->rx_ghrsc->irq);
+> +	}
+> +
+> +	return 0;
+> +err_tx_irq:
+> +	if (msgq->tx_ghrsc)
+> +		free_irq(msgq->tx_ghrsc->irq, msgq);
+> +
+> +	msgq->rx_ghrsc = NULL;
+> +err_tx_ghrsc:
+> +	msgq->tx_ghrsc = NULL;
+> +err_mbox:
+> +	mbox_controller_unregister(&msgq->mbox);
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_msgq_init);
+> +
+> +void gh_msgq_remove(struct gh_msgq *msgq)
+> +{
+> +	mbox_free_channel(gh_msgq_chan(msgq));
+> +
+> +	if (msgq->rx_ghrsc)
+> +		free_irq(msgq->rx_ghrsc->irq, msgq);
+> +
+> +	if (msgq->tx_ghrsc) {
+> +		tasklet_kill(&msgq->txdone_tasklet);
+> +		free_irq(msgq->tx_ghrsc->irq, msgq);
+> +	}
+> +
+> +	mbox_controller_unregister(&msgq->mbox);
+> +
+> +	msgq->rx_ghrsc = NULL;
+> +	msgq->tx_ghrsc = NULL;
+> +}
+> +EXPORT_SYMBOL_GPL(gh_msgq_remove);
+> +
+> +MODULE_LICENSE("GPL");
+> +MODULE_DESCRIPTION("Gunyah Message Queue Driver");
+> diff --git a/include/linux/gunyah.h b/include/linux/gunyah.h
+> index 01a6f202d037e..982e27d10d57f 100644
+> --- a/include/linux/gunyah.h
+> +++ b/include/linux/gunyah.h
+> @@ -8,11 +8,68 @@
+>   
+>   #include <linux/bitfield.h>
+>   #include <linux/errno.h>
+> +#include <linux/interrupt.h>
+>   #include <linux/limits.h>
+> +#include <linux/mailbox_controller.h>
+> +#include <linux/mailbox_client.h>
+>   #include <linux/types.h>
+>   
+> +/* Matches resource manager's resource types for VM_GET_HYP_RESOURCES RPC */
+> +enum gh_resource_type {
+> +	GH_RESOURCE_TYPE_BELL_TX	= 0,
+> +	GH_RESOURCE_TYPE_BELL_RX	= 1,
+> +	GH_RESOURCE_TYPE_MSGQ_TX	= 2,
+> +	GH_RESOURCE_TYPE_MSGQ_RX	= 3,
+> +	GH_RESOURCE_TYPE_VCPU		= 4,
+> +};
+> +
+> +struct gh_resource {
+> +	enum gh_resource_type type;
+> +	u64 capid;
+> +	unsigned int irq;
+> +};
+> +
+> +/**
+> + * Gunyah Message Queues
+> + */
+> +
+> +#define GH_MSGQ_MAX_MSG_SIZE		240
+> +
+> +struct gh_msgq_tx_data {
+> +	size_t length;
+> +	bool push;
+> +	char data[];
+> +};
+> +
+> +struct gh_msgq_rx_data {
+> +	size_t length;
+> +	char data[GH_MSGQ_MAX_MSG_SIZE];
+> +};
+> +
+> +struct gh_msgq {
+> +	struct gh_resource *tx_ghrsc;
+> +	struct gh_resource *rx_ghrsc;
+> +
+> +	/* msgq private */
+> +	int last_ret; /* Linux error, not GH_STATUS_* */
+> +	struct mbox_chan mbox_chan;
+> +	struct mbox_controller mbox;
+> +	struct tasklet_struct txdone_tasklet;
+> +};
+> +
+> +
+> +int gh_msgq_init(struct device *parent, struct gh_msgq *msgq, struct mbox_client *cl,
+> +		     struct gh_resource *tx_ghrsc, struct gh_resource *rx_ghrsc);
+> +void gh_msgq_remove(struct gh_msgq *msgq);
+> +
+> +static inline struct mbox_chan *gh_msgq_chan(struct gh_msgq *msgq)
+> +{
+> +	return &msgq->mbox.chans[0];
+> +}
+> +
+>   /******************************************************************************/
+>   /* Common arch-independent definitions for Gunyah hypercalls                  */
+> +
+>   #define GH_CAPID_INVAL	U64_MAX
+>   #define GH_VMID_ROOT_VM	0xff
+>   
 
