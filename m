@@ -2,124 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EBBE57331EE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:12:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1210E7331F3
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:13:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345054AbjFPNMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 09:12:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56472 "EHLO
+        id S1345547AbjFPNNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 09:13:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345358AbjFPNMu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:12:50 -0400
-Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192862D6A
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:12:48 -0700 (PDT)
-Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-1a9df9ef16dso231590fac.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:12:48 -0700 (PDT)
+        with ESMTP id S1345549AbjFPNNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:13:12 -0400
+Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D003C35A8
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:13:08 -0700 (PDT)
+Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f8c9cb3144so5355315e9.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:13:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686921167; x=1689513167;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=0gzGwVe8x7ZuBanrhWjQ7TnmvtE448GKJfS1GvT+/zo=;
-        b=BjbrjqFOhuzIMoaGLiqeb1jR3CxwWMmj2xxOEVU/otqD5EeCBlv1li6YiB3+Qw/QDH
-         SYpcRtrtUciQ+QShIRgcqSJdjccGiswXthCcB5Dg4kxdTNULvDvsBd015ulwimBEQDep
-         A+W8CTD+1u+CBPL8MUGzfRDasGnWcWVpsU4QGhUpW7/mWJbJ7kYV0TA3gdPLhDTIEzjW
-         g/liIIgwuLMtJkKX/LapyH2PVOIgpUincuJUen7RzFqwf7+12XVM+W+ltNd+OZ8Jzgrb
-         yR9L59lOLFzD5ysg/L3Q/1G9mEnkUTH6+f1MkMoijxODJ+WApvPk5UfFTt+TKqi1NJIM
-         Nigw==
+        d=linaro.org; s=google; t=1686921187; x=1689513187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JgRqkCmLSNrRg0kzYH/gYvgx0ftRsyaeR1bjLn9ohCw=;
+        b=nnmldJE1cqVEB3z6tQT1R7QHIonwbqyKADSkliHOx4r9glNa66H8oF/KUHKM54RpkQ
+         6D1G1LtKnYguRmmeW+zav9/jnuN6+nChpqFPJ4v/vJy44uZXX99GefkTZK488dYGsDNe
+         qLNFHeQg3D6AD6WHGKNvyrtOScCT2WhVe47QKjSZzQAQK2UsE6wXRre7c6IJonhglBzw
+         1hbg9WLXhUWdrJg8hRNpbhM2XF9UEQQWpKou2RUA+rZOxaGXBbb3ezGuodFU5tFO7Xz7
+         msZZwHdUEnabtImuuCpSteVRT9h73T5MG2rHh7Pa9WzS4TgTLlKvZDw2uozNMqnnwpNf
+         Z7Tw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686921167; x=1689513167;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=0gzGwVe8x7ZuBanrhWjQ7TnmvtE448GKJfS1GvT+/zo=;
-        b=j0UZXI5SxxF2cQMUqNuE+8lW6gAEW7HBp8K3U5Tqeomd2JX18QBpke0q4L2x0F+XLl
-         t06Ysd5At8f3jOof4NNh6vUaqNQwjLC0VzhJ4420JE/ajLJD/Oe4+lPCHkINVXI2hA6T
-         wYBW0dVFYUUzr40CFaK/VddIrO2PgsZc++ci4nvd0nA0uNIJznU0i8JIofCdxabaoYOF
-         qIlc0nVwxDmMrtxuwAx1KXwLyC4808U9mkVfh3QdRS/JRRMTMEliVgyuyURfDnnshUyC
-         GrY1Ex/smPtWGY6RaOxbgs7eXrTrJ/V6Xj+4VHrQgvTvCneDufCjHK3oeseKfCQOEvjf
-         Tl7w==
-X-Gm-Message-State: AC+VfDyJDjdSD0AaXUqSaSo3NDLjAFmot7OxoM0WYlIgamXtpNWj2MIF
-        PUq5y8Oiug3EoIzJ0QnLvq9OxxN5kgrRKgpM0xSsyQ==
-X-Google-Smtp-Source: ACHHUZ7iS39YuSl/RSeNmhbqNsxRpKekD9BgLO5dsEZz8fbn7Qf5HfKtHueR6TV+I5Tau106K5d7uZHVuYnJx/jFpdE=
-X-Received: by 2002:a05:6870:3403:b0:1a6:a28b:6e4 with SMTP id
- g3-20020a056870340300b001a6a28b06e4mr1578243oah.37.1686921167245; Fri, 16 Jun
- 2023 06:12:47 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1686921187; x=1689513187;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JgRqkCmLSNrRg0kzYH/gYvgx0ftRsyaeR1bjLn9ohCw=;
+        b=NTz9SswJ5s9vy7aGaI/haF3F/OwZ6bOlLDrLMF7aJTob4UsrIaFhkJQwRD4T9hFwjV
+         l7gXs2mwiQdd3Vx+Fh5plW/aeqVwszNqSa8jlCkoC2DUD93/hkkU0rIbYtqfnGH4bpAw
+         cT1bFVzaiM8gztLcjdKnZxiixhW77WQz7HHZz1YQus5hJ4M7Sz8RrRgVcoSLXBiDpjWr
+         1nkI8hX+P/zsXYSEAAJZCJDOnjju8Zvx8Ax5UYfNccK6TdW4K4GVyOYdGoRzXW6YpPlp
+         4F4ikFupBkpogF5OuY+rTX0zLzc9XxzBa6vmnGNEzeGtiaphMj+LKKQZzWNq22+PtOLG
+         gKDQ==
+X-Gm-Message-State: AC+VfDyNocFjWfLCfW3Q05KVJELLi4kIzMoYN4ZVN92FkwkcsNOERpuF
+        I4vvw4k+x4+J1RRjyR69lgsvyQY6EN7capyqcAdSQg==
+X-Google-Smtp-Source: ACHHUZ6PjvZeXabO13ItqPLMS9+xmOpBl0+X8Yf52uVDge1YdwdjlMRILf7KOevIONlKvHJnOq15VA==
+X-Received: by 2002:a1c:ed08:0:b0:3f7:e3dd:8a47 with SMTP id l8-20020a1ced08000000b003f7e3dd8a47mr1584365wmh.11.1686921187163;
+        Fri, 16 Jun 2023 06:13:07 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id y20-20020a7bcd94000000b003f60a446fe5sm2163536wmj.29.2023.06.16.06.13.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 06:13:05 -0700 (PDT)
+Message-ID: <fa665e61-f36a-5f65-4837-8d7c8c6a052e@linaro.org>
+Date:   Fri, 16 Jun 2023 14:13:03 +0100
 MIME-Version: 1.0
-References: <20230616035813.255062-1-jaswinder.singh@linaro.org> <05c6aa93-68dc-f0e5-36ea-1ea73b9f4055@linaro.org>
-In-Reply-To: <05c6aa93-68dc-f0e5-36ea-1ea73b9f4055@linaro.org>
-From:   Jassi Brar <jaswinder.singh@linaro.org>
-Date:   Fri, 16 Jun 2023 08:12:36 -0500
-Message-ID: <CAJe_ZhdvejBLSKFN5rEAuQMxksMaMbAz8n2jVg2T08X1Y7ksOg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
- Synquacer platform
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-        ilias.apalodimas@linaro.org, masahisa.kojima@linaro.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v6 3/6] media: starfive: Add basic driver
+Content-Language: en-US
+To:     Jack Zhu <jack.zhu@starfivetech.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
+References: <20230525083202.67933-1-jack.zhu@starfivetech.com>
+ <20230525083202.67933-4-jack.zhu@starfivetech.com>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <20230525083202.67933-4-jack.zhu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Jun 2023 at 05:15, Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 16/06/2023 05:58, jaswinder.singh@linaro.org wrote:
-> > From: Jassi Brar <jaswinder.singh@linaro.org>
-> >
-> > Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
-> > Specify bindings for the platform and boards based on that.
-> >
-> > Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
-> > ---
-> >  .../bindings/arm/socionext/synquacer.yaml     | 28 +++++++++++++++++++
-> >  1 file changed, 28 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
-> > new file mode 100644
-> > index 000000000000..72554a4f1c92
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
-> > @@ -0,0 +1,28 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/arm/socionext/synquacer.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Socionext Synquacer platform
-> > +
-> > +maintainers:
-> > +  - Masahisa Kojima <masahisa.kojima@linaro.org>
-> > +  - Jassi Brar <jaswinder.singh@linaro.org>
-> > +
-> > +description:
-> > +  Socionext SC2A11B (Synquacer) SoC based boards
-> > +
-> > +properties:
-> > +  $nodename:
-> > +    const: '/'
-> > +  compatible:
-> > +    oneOf:
-> > +      - items:
-> > +          - enum:
-> > +              - socionext,developer-box
-> > +          - const: socionext,synquacer
->
-> Last compatible looks very generic. Too generic. Are you sure it
-> uniquely identifies one specific SoC (not family, not generation, not
-> series)?
->
-Yeah it does sound generic, but Synquacer and SC2A11B are
-interchangeably used in s/w. And the dts in u-boot use this.
-Kojima-san may have the final opinion.
+On 25/05/2023 09:31, Jack Zhu wrote:
+> Add basic platform driver for StarFive Camera Subsystem.
+> 
+> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
 
-thanks.
+One thing here is the patch title and hence commit message.
+
+"media: starfive:" doesn't really tell you this is a camera versus say a 
+encoder/decoder.
+
+I see you've used the name "camss" for your driver, which I think is a 
+perfectly good and logical choice - however if you started to make 
+commits along the lines of "media: camss" that would conflict with the 
+qcom camss.
+
+How about for starfive and qcom by the way, we do what Laurent did in
+
+commit 3e8537b4c15172bfe1b285c3155ed5c37d523cd3
+Author: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Date:   Wed Dec 21 10:33:39 2022 +0100
+
+     media: ti: omap3isp: Use media_pipeline_for_each_entity()
+
+i.e. future StarFive commits for camera would be "media: starfive: 
+camss" and similarly for Qualcomm "media: qualcomm: camss"
+
+The point being the commit title namespace should be instructive and 
+specific re: 3e8537b4c15172bfe1b285c3155ed5c37d523cd3
+
+---
+bod
