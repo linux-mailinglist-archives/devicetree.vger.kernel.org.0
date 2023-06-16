@@ -2,148 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E9F732BEE
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:37:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49643732BF1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:37:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234151AbjFPJhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:37:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52012 "EHLO
+        id S245543AbjFPJh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:37:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52098 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232489AbjFPJhM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:37:12 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B611172A
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:37:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1686908230; x=1718444230;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HQvWz81Ld93c01HSutLc5bamb4ebTB0r8Bnb201rjcs=;
-  b=YfbvdeACB8K5AgHSYyZSDTX8LFgSBHtETk5h3nBCgBF8IMW84gdvLzIF
-   lOGfEPrh9d4O/Qc28A+ptR0jX5x+T18rCh1yfM99dPgAHJ6HLAz11yU9g
-   Vy8lNkLTSQNWVPNNJ0vYJDMGEPVFHT39x12DbEXJ1Gd7lJ+92wQQ//lxN
-   0vdGwOJy0go5Eg06RAXOGel1p8iiDhscwM3jfvuQkI0sBhE/nFjRj1K/N
-   XqcysUewoJs8iT/IETVLwGP7UN9pmcm2eXE6x3IxVg5yBjHAP3oEc6Rce
-   CwW+oigqE89Gjezg1IIOhvCCUfeX2ylbFAywbVPO40seB0F6aYQKT14AY
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; 
-   d="asc'?scan'208";a="230503115"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Jun 2023 02:37:09 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 16 Jun 2023 02:37:08 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Fri, 16 Jun 2023 02:37:06 -0700
-Date:   Fri, 16 Jun 2023 10:36:40 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Binbin Zhou <zhoubinbin@loongson.cn>
-CC:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, Huacai Chen <chenhuacai@kernel.org>,
-        <loongson-kernel@lists.loongnix.cn>,
-        Xuerui Wang <kernel@xen0n.name>, <loongarch@lists.linux.dev>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-Subject: Re: [PATCH 2/6] dt-bindings: loongarch: Add Loongson SoC boards
- compatibles
-Message-ID: <20230616-endocrine-container-d2625622a56e@wendy>
-References: <cover.1686882123.git.zhoubinbin@loongson.cn>
- <3b2ba830d81f85130e89316dc0c4d478482cd79d.1686882123.git.zhoubinbin@loongson.cn>
+        with ESMTP id S230415AbjFPJh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:37:26 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A532959;
+        Fri, 16 Jun 2023 02:37:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686908245; x=1718444245;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=SyS7X+zCaZvSEhEwk9BWC/gopZ0qkwxTKeMY9FGhWt4=;
+  b=ZTqmMxhDTDjtisdboY2XMYKmMX02dXIyIevRlxcEmlK7faP8AU9WtNvy
+   /DqGw5qzeNUJ3Iqa10Mr62QdifBfX6o9+FZ3EbadFvSi0IIaRQdjJN+tZ
+   QHuxMJvaOjFBALfRbeCEY4G5D9E3pcThREijDDs2p0pPh+7J7g1CZCOoK
+   Wks4ibqpg2qheRd3MkKL2CX5Umv+X9Tc5j8TVw36Ma+jpCX6OU8dJCEmE
+   InivA2+yTwrYuXmyenV0HGs0OVbojc/xVsMrTCEAfkdPUxDkfbAb7EvTi
+   f7+ZnWJJqjEkKO02JjXY15uzHPWLmR6ZJIfy+zWmcDs68+OXX6LZLxBVZ
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,247,1681164000"; 
+   d="scan'208";a="31462715"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Jun 2023 11:37:23 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C211D280082;
+        Fri, 16 Jun 2023 11:37:22 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     oliver.brown@nxp.com, Sandor.yu@nxp.com, linux-imx@nxp.com,
+        kernel@pengutronix.de, Sandor Yu <Sandor.yu@nxp.com>
+Subject: Re: [PATCH v6 0/8] Initial support for Cadence MHDP8501(HDMI/DP) for i.MX8MQ
+Date:   Fri, 16 Jun 2023 11:37:24 +0200
+Message-ID: <4674185.5fSG56mABF@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <cover.1686729444.git.Sandor.yu@nxp.com>
+References: <cover.1686729444.git.Sandor.yu@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="gxUJ7EXtOGyJtlEQ"
-Content-Disposition: inline
-In-Reply-To: <3b2ba830d81f85130e89316dc0c4d478482cd79d.1686882123.git.zhoubinbin@loongson.cn>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---gxUJ7EXtOGyJtlEQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Sandor,
 
-On Fri, Jun 16, 2023 at 02:10:39PM +0800, Binbin Zhou wrote:
-> Add Loongson SoC boards binding with DT schema format using json-schema
+thanks for sending a new version of this driver.
+
+Am Donnerstag, 15. Juni 2023, 03:38:10 CEST schrieb Sandor Yu:
+> The patch set initial support for Cadence MHDP8501(HDMI/DP) DRM bridge
+> drivers and Cadence HDP-TX PHY(HDMI/DP) drivers for Freescale i.MX8MQ.
 >=20
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
-> ---
->  .../devicetree/bindings/loongarch/boards.yaml | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/loongarch/boards.ya=
+> The patch set compose of DRM bridge drivers and PHY drivers.
+
+Using quick and dirty DT changes I was able to enable HDMI on imx8mq=20
+(TQMa8MQ).
+
+Best regards,
+Alexander
+
+> Both of them need the followed two patches to pass build.
+>   drm: bridge: Cadence: convert mailbox functions to macro functions
+>   phy: Add HDMI configuration options
+>=20
+> DRM bridges driver patches:
+>   dt-bindings: display: bridge: Add Cadence MHDP8501 HDMI and DP
+>   drm: bridge: Cadence: Add MHDP8501 DP driver
+>   drm: bridge: Cadence: Add MHDP8501 HDMI driver
+>=20
+> PHY driver patches:
+>   dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+>   phy: freescale: Add DisplayPort PHY driver for i.MX8MQ
+>   phy: freescale: Add HDMI PHY driver for i.MX8MQ
+>=20
+> v5->v6:
+> HDMI/DP bridge driver
+> - 8501 is the part number of Cadence MHDP on i.MX8MQ.
+>   Use MHDP8501 to name hdmi/dp drivers and files.
+> - Add compatible "fsl,imx8mq-mhdp8501-dp" for i.MX8MQ DP driver
+> - Add compatible "fsl,imx8mq-mhdp8501-hdmi" for i.MX8MQ HDMI driver
+> - Combine HDMI and DP dt-bindings into one file cdns,mhdp8501.yaml
+> - Fix HDMI scrambling is not enable issue when driver working in 4Kp60
+>   mode.
+> - Add HDMI/DP PHY API mailbox protect.
+>=20
+> HDMI/DP PHY driver:
+> - Rename DP and HDMI PHY files and move to folder phy/freescale/
+> - Remove properties num_lanes and link_rate from DP PHY driver.
+> - Combine HDMI and DP dt-bindings into one file fsl,imx8mq-dp-hdmi-phy.ya=
 ml
+> - Update compatible string to "fsl,imx8mq-dp-phy".
+> - Update compatible string to "fsl,imx8mq-hdmi-phy".
 >=20
-> diff --git a/Documentation/devicetree/bindings/loongarch/boards.yaml b/Do=
-cumentation/devicetree/bindings/loongarch/boards.yaml
-> new file mode 100644
-> index 000000000000..3ef87b732668
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/loongarch/boards.yaml
-> @@ -0,0 +1,31 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/loongarch/boards.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Loongson SoC-based boards
-> +
-> +maintainers:
-> +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> +
-> +properties:
-> +  $nodename:
-> +    const: '/'
-> +  compatible:
-> +    oneOf:
-> +      - description: Loongson-2K0500 processor based boards
-> +        items:
-> +          - const: loongson,ls2k0500
-> +
-> +      - description: Loongson-2K1000 processor based boards
-> +        items:
-> +          - const: loongson,ls2k1000
-> +
-> +      - description: Loongson-2K2000 processor based boards
-> +        items:
-> +          - const: loongson,ls2k2000
+> v4->v5:
+> - Drop "clk" suffix in clock name.
+> - Add output port property in the example of hdmi/dp.
+>=20
+> v3->v4:
+> dt-bindings:
+> - Correct dt-bindings coding style and address review comments.
+> - Add apb_clk description.
+> - Add output port for HDMI/DP connector
+> PHY:
+> - Alphabetically sorted in Kconfig and Makefile for DP and HDMI PHY
+> - Remove unused registers define from HDMI and DP PHY drivers.
+> - More description in phy_hdmi.h.
+> - Add apb_clk to HDMI and DP phy driver.
+> HDMI/DP:
+> - Use get_unaligned_le32() to replace hardcode type conversion
+>   in HDMI AVI infoframe data fill function.
+> - Add mailbox mutex lock in HDMI/DP driver for phy functions
+>   to reslove race conditions between HDMI/DP and PHY drivers.
+> - Add apb_clk to both HDMI and DP driver.
+> - Rename some function names and add prefix with "cdns_hdmi/cdns_dp".
+> - Remove bpc 12 and 16 optional that not supported.
+>=20
+> v2->v3:
+> Address comments for dt-bindings files.
+> - Correct dts-bindings file names
+>   Rename phy-cadence-hdptx-dp.yaml to cdns,mhdp-imx8mq-dp.yaml
+>   Rename phy-cadence-hdptx-hdmi.yaml to cdns,mhdp-imx8mq-hdmi.yaml
+> - Drop redundant words and descriptions.
+> - Correct hdmi/dp node name.
+>=20
+> v2 is a completely different version compared to v1.
+> Previous v1 can be available here [1].
+>=20
+> v1->v2:
+> - Reuse Cadence mailbox access functions from mhdp8546 instead of
+>   rockchip DP.
+> - Mailbox access functions be convert to marco functions
+>   that will be referenced by HDP-TX PHY(HDMI/DP) driver too.
+> - Plain bridge instead of component driver.
+> - Standalone Cadence HDP-TX PHY(HDMI/DP) driver.
+> - Audio driver are removed from the patch set, it will be add in another
+>   patch set later.
+>=20
+> [1]
+> https://patchwork.kernel.org/project/linux-rockchip/cover/cover.159098288=
+1.
+> git.Sandor.yu@nxp.com/
+>=20
+> Sandor Yu (8):
+>   drm: bridge: Cadence: convert mailbox functions to macro functions
+>   dt-bindings: display: bridge: Add Cadence MHDP8501 HDMI and DP
+>   drm: bridge: Cadence: Add MHDP8501 DP driver
+>   phy: Add HDMI configuration options
+>   drm: bridge: Cadence: Add MHDP8501 HDMI driver
+>   dt-bindings: phy: Add Freescale iMX8MQ DP and HDMI PHY
+>   phy: freescale: Add DisplayPort PHY driver for i.MX8MQ
+>   phy: freescale: Add HDMI PHY driver for i.MX8MQ
+>=20
+>  .../display/bridge/cdns,mhdp8501.yaml         |  105 ++
+>  .../bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml  |   53 +
+>  drivers/gpu/drm/bridge/cadence/Kconfig        |   25 +
+>  drivers/gpu/drm/bridge/cadence/Makefile       |    3 +
+>  .../gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c | 1078 +++++++++++++++++
+>  .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 1024 ++++++++++++++++
+>  .../gpu/drm/bridge/cadence/cdns-mhdp8501.h    |  399 ++++++
+>  .../drm/bridge/cadence/cdns-mhdp8546-core.c   |  195 +--
+>  .../drm/bridge/cadence/cdns-mhdp8546-core.h   |    1 -
+>  drivers/phy/freescale/Kconfig                 |   18 +
+>  drivers/phy/freescale/Makefile                |    2 +
+>  drivers/phy/freescale/phy-fsl-imx8mq-dp.c     |  697 +++++++++++
+>  drivers/phy/freescale/phy-fsl-imx8mq-hdmi.c   |  889 ++++++++++++++
+>  include/drm/bridge/cdns-mhdp-mailbox.h        |  240 ++++
+>  include/linux/phy/phy-hdmi.h                  |   38 +
+>  include/linux/phy/phy.h                       |    7 +-
+>  16 files changed, 4578 insertions(+), 196 deletions(-)
+>  create mode 100644
+> Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml create
+> mode 100644
+> Documentation/devicetree/bindings/phy/fsl,imx8mq-dp-hdmi-phy.yaml create
+> mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-dp.c create mode
+> 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c create mode
+> 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501.h create mode 100644
+> drivers/phy/freescale/phy-fsl-imx8mq-dp.c
+>  create mode 100644 drivers/phy/freescale/phy-fsl-imx8mq-hdmi.c
+>  create mode 100644 include/drm/bridge/cdns-mhdp-mailbox.h
+>  create mode 100644 include/linux/phy/phy-hdmi.h
 
-=46rom what I do know of loongarch stuff, these are all compatibles
-for SoCs, not boards. The usual model would be to do something like
-items:
-  - const: loongsoon,ls2k1000-dev-kit
-  - const: loongsoon,ls2k1000
 
-Where you have a compatible for the SoC and one for the board.
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
 
-Cheers,
-Conor.
 
---gxUJ7EXtOGyJtlEQ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIwtKAAKCRB4tDGHoIJi
-0ghpAQCaA0pckhxQPaKLBZ9TXJCNQUIUIbBNNCrD8NHwpPe+EAD/QtT5jczbOJrS
-keY6X3oqCjvD5sAL73q2TPM55lt8Lwo=
-=8w59
------END PGP SIGNATURE-----
-
---gxUJ7EXtOGyJtlEQ--
