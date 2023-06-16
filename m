@@ -2,129 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F089A733090
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:58:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB74A73309C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 14:00:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229778AbjFPL6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 07:58:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42164 "EHLO
+        id S1344489AbjFPMAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 08:00:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44176 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345241AbjFPL6G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:58:06 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [217.70.183.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D42273F;
-        Fri, 16 Jun 2023 04:58:05 -0700 (PDT)
-X-GND-Sasl: gregory.clement@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686916683;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=oopUZlUtuLZK+7zdDNuIoLpQDqrRtt6+LrJlqbPl+AI=;
-        b=htS+g7ijJc5qam38E8e1ZkE/HXVDeDZ+ba6SRIEWVePZUyKejAdMDewGRoVC/Nr8g8sc3F
-        ME/1ArWeIEkf4ymtm5tSbG7yn/XEYHxlt6GsrT6cIgbk7I6D43+uSG/76cT2UPYZJeodmR
-        b96q9hu9bkt9s5bVrp08fYqYVtIi+FpKhIwl8RlYGRdrdFHWXLE6rlUtAzLXyGN7wOegoF
-        sb1CwFK8RXhqbM2Ty+RISw7Rexiz0AH21PvekTxmJB/kWAUcMLMu4pCaHwmXn9GssgY687
-        TosXZ0/toRqZYHN5M72qgRIqvypo8OoeChBC599H0aQF/OaOLwCWdlCDCd6o4w==
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 95F0160007;
-        Fri, 16 Jun 2023 11:58:00 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, andrew@lunn.ch,
-        sebastian.hesselbarth@gmail.com, vadym.kochan@plvision.eu
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        enachman@marvell.com,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH v6 0/2] dt-bindings: mtd: marvell-nand: Add YAML scheme
-In-Reply-To: <87r0qbhbqt.fsf@BL-laptop>
-References: <20230530005337.3687938-1-chris.packham@alliedtelesis.co.nz>
- <87r0qbhbqt.fsf@BL-laptop>
-Date:   Fri, 16 Jun 2023 13:58:00 +0200
-Message-ID: <87ilbnhb5j.fsf@BL-laptop>
+        with ESMTP id S1344440AbjFPMAS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 08:00:18 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79BEA30C7
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 05:00:15 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-5193c97ecbbso806598a12.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 05:00:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686916814; x=1689508814;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EpphWyl7ymX0IOPQSO+uEg2XIt+pkQmjxlMzsQAx/7s=;
+        b=VdY1cyXveTTIYRJIt1BP0YhvUm1szLzcVcEwghxW2j/QTwyeW3VVFo/IdTcxY8A+Vo
+         /L5pQr/f/wF2a6rwkcco6snmYGvXwkkoYvqCWsI4gePz3ZH9DKDpmk6f+/H4BwIGqR/i
+         lESnTfWo987nMYx4KvB9+rVXHRezb08gH4SDto3GguNQPjUTSguJvIyN8bhamekUs3/P
+         b/oVwdzhmQyGNbycrLkRkrIDVWwpX0K+T6fiCPCllcZUnR/f2GxmZmqtZruM+6GRdOuM
+         8OKLqsqsvhGy2GAK0pIPkHxhcsw2A1wafxWztU6suXs/A8E/kE1CIVOf6OQsQVf5GLqI
+         qi+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686916814; x=1689508814;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EpphWyl7ymX0IOPQSO+uEg2XIt+pkQmjxlMzsQAx/7s=;
+        b=BGCAyg6j4CF+ng7zpS7f3IH29c3qnVtULmX73sucHgrehofQaznDVG4VuI4SFVD81/
+         MbS2rHpqGgFeheRhIbuMSr3/s6RCI4OZvpVg/hv3MF8BcRP+jmbBOUnHi3lxOK11Q3Nr
+         F8ZGuo746nXQcJmLrQAYCetRvpHUBK4OUoHIlgrnOlTrxamz1rzc517x+jCxatnCc+gw
+         imC7XdTUqk3rJJ8JZS/gLtaKHHVf0UUXgBd9jDjnAonehG0dSxBeScBlX5aN6MVkg3C7
+         tm3WwSCNisR9uqz9XP/iDPmsaP/iNnvvWH1ecqUvbwx84FNr9mQwCttMLUTI/txDEqDm
+         T7AA==
+X-Gm-Message-State: AC+VfDwbMB+F80adaFsgsXH8zcTsexpM0jqMZIGtZ/BkWpfzJALYASmL
+        M5jQRhQJGy/vOkLF3TEQanIHIg==
+X-Google-Smtp-Source: ACHHUZ53pfboPQWvCKgtBZ5MALcYWa6/OJ228DvvV2w2b6BQCd55+S6rlMzcsb++j8y/rK/NNGTuBA==
+X-Received: by 2002:aa7:c516:0:b0:518:7d0d:298 with SMTP id o22-20020aa7c516000000b005187d0d0298mr1156216edq.38.1686916813946;
+        Fri, 16 Jun 2023 05:00:13 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id j17-20020aa7ca51000000b00518710798b3sm4683686edt.50.2023.06.16.05.00.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 05:00:13 -0700 (PDT)
+Message-ID: <1b32a1bc-2be8-8ffd-b6fe-8565068601ee@linaro.org>
+Date:   Fri, 16 Jun 2023 14:00:11 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 01/13] dt-bindings: display: mediatek: ethdr: Add
+ compatible for MT8188
+Content-Language: en-US
+To:     Hsiao Chien Sung <shawn.sung@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        Singo Chang <singo.chang@mediatek.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        Jason-JH Lin <jason-jh.lin@mediatek.com>
+References: <20230616114111.17554-1-shawn.sung@mediatek.com>
+ <20230616114111.17554-2-shawn.sung@mediatek.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230616114111.17554-2-shawn.sung@mediatek.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gregory CLEMENT <gregory.clement@bootlin.com> writes:
+On 16/06/2023 13:40, Hsiao Chien Sung wrote:
+> Add compatible name for MediaTek MT8188 ETHDR.
+> 
+> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+> ---
 
-> Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
->
->> Add YAML scheme for the Marvell's NAND controller
->> to validate it's DT bindings. Old txt file is deleted,
->> not included the compatibles and properties which were marked as
->> deprecated.
->>
->> Also fix node name in cp11x DTSI acording to nand-controller.yaml
->>
->> I've picked up this series to hopefully get it over the line. I think I've
->> addressed all the feedback from the last round of review.
->>
->> Vadym Kochan (2):
->>   dt-bindings: mtd: marvell-nand: Convert to YAML DT scheme
->>   arm64: dts: marvell: cp11x: Fix nand_controller node name according to
->>     YAML
->
->
-> Both patch applied on mvebu/dt64
->
-> However if the first patch should be merged through another tree, let me
-> know.
+This is a friendly reminder during the review process.
 
-Finally I removed these both patches, I missed the version 9!
+It looks like you received a tag and forgot to add it.
 
-I applied the 2 patches for the dts files from v9.
+If you do not know the process, here is a short explanation:
+Please add Acked-by/Reviewed-by/Tested-by tags when posting new
+versions. However, there's no need to repost patches *only* to add the
+tags. The upstream maintainer will do that for acks received on the
+version they apply.
 
-Thanks,
+https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
 
-Gregory
->
->
->>
->>  .../bindings/mtd/marvell,nand-controller.yaml | 190 ++++++++++++++++++
->>  .../devicetree/bindings/mtd/marvell-nand.txt  | 126 ------------
->>  MAINTAINERS                                   |   1 -
->>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi |   2 +-
->>  4 files changed, 191 insertions(+), 128 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/mtd/marvell-nand.txt
->>
->> -- 
->> 2.40.1
->>
->
-> -- 
-> Gregory Clement, Bootlin
-> Embedded Linux and Kernel engineering
-> http://bootlin.com
+If a tag was not added on purpose, please state why and what changed.
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+Best regards,
+Krzysztof
+
