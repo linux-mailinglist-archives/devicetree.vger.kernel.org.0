@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C816E7335D3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 717D57335DA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345514AbjFPQT0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 12:19:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45822 "EHLO
+        id S245369AbjFPQUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 12:20:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S244763AbjFPQTD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:19:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8743AA7
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:17:21 -0700 (PDT)
+        with ESMTP id S245728AbjFPQTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:19:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C9E44690
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:18:05 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id BF05E618B6
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 16:16:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B891CC433C0;
-        Fri, 16 Jun 2023 16:16:57 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C73DE60B71
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 16:17:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C78ACC433C0;
+        Fri, 16 Jun 2023 16:17:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686932219;
-        bh=PDwkv60EQCWy5qGksW1AAr9W5S2ssqF6zh+bk2dPy5s=;
+        s=k20201202; t=1686932226;
+        bh=QPuB4lxAmkqhETy9vD/l3bdOr37fLrsF+66p19Po4zk=;
         h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=cyt+VaHlKG7ttwFhw9RIRYQORm7mUAFA9cJKHKJpY5xRdI2BYTVn3mCxWvmZ258nX
-         mABFXOvINxgHwTdoEpD9NeD1SlajheNfiGOb2KSYfZqfvtFFvDBrwRBWAcjT1NcnWP
-         /rylzYKTPMbAVPFvWctqYJSOXlXq0atbbltXVFrZ2W2Cx4ZRyVBA8mZNqhGggJOJvu
-         Fwuevf1F7/W8asS7AZTm/snz2oThdWEj7aFIL0d1s1RqXn1GDUptboNdbm9auknkTt
-         0hzTzNd9iYhXuN4foH+wRiGdN32bdNFX9V//hGassTYiXhYrGkQCQPipo4mgz0PHXl
-         8KOPjz8Xz3DoQ==
+        b=JIsxuP3yetE+SCrWlraYxKCXe/v+vo90m6qBZwx2eiBCM9u42shtLzMX9jMo7FWW5
+         lOUpfVxVeb0kwSoAOym968+3D4w9Bx/N5SKuM6ulOiY5lMsavT31AHhZMEIIZgLi9p
+         KcbcjMq4FBj7G4+tWBvU+vqat9NaED9QKqe7eeq6f26YJNiyKpNl8656NNt62SpjaH
+         dhZb1Lxq5OdbvrhPrJQgJ2kbXwWZw4rMd7bwMREQv77/8OaA7iQe4kVJI4dOygUTCC
+         eLspnP/IaWoogVt6c3YYzm5IwFAUeI/yTPwVo/lijea6nZjQXZJHd2Wmz77WEjMfDX
+         sgmVGwbFoEX4g==
 From:   Mark Brown <broonie@kernel.org>
 To:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -39,18 +39,18 @@ To:     Liam Girdwood <lgirdwood@gmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
         Alexander Stein <alexander.stein@ew.tq-group.com>
 Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-In-Reply-To: <20230608081547.442763-1-alexander.stein@ew.tq-group.com>
-References: <20230608081547.442763-1-alexander.stein@ew.tq-group.com>
-Subject: Re: [PATCH 1/1] ASoC: dt-bindings: tlv320aic32x4: convert to DT
+In-Reply-To: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
+References: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
+Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: tlv320aic32x4: convert to DT
  schema format
-Message-Id: <168693221747.298269.8557688849359189253.b4-ty@kernel.org>
-Date:   Fri, 16 Jun 2023 17:16:57 +0100
+Message-Id: <168693222453.298269.4226326426787113161.b4-ty@kernel.org>
+Date:   Fri, 16 Jun 2023 17:17:04 +0100
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
 X-Mailer: b4 0.13-dev-c6835
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -59,7 +59,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Jun 2023 10:15:47 +0200, Alexander Stein wrote:
+On Fri, 16 Jun 2023 10:35:49 +0200, Alexander Stein wrote:
 > Convert the binding to DT schema format.
 > Since commit 514b044cba667 ("ASoC: tlv320aic32x4: Model PLL in CCF")
 > clocks & clock-names = "mclk" is mandatory, it has been added to required
