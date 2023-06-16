@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 42CB17333E1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85EE57333DF
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:44:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345655AbjFPOpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 10:45:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50314 "EHLO
+        id S1345741AbjFPOoz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 10:44:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234426AbjFPOpX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:45:23 -0400
-X-Greylist: delayed 342 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 16 Jun 2023 07:45:21 PDT
-Received: from kuriko.dram.page (kuriko.dram.page [65.108.252.55])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 438392D73;
-        Fri, 16 Jun 2023 07:45:21 -0700 (PDT)
-Message-ID: <4440a0b1-bf67-9c37-0526-1a447ff8568a@dram.page>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dram.page; s=mail;
-        t=1686926376; bh=D3G6HTwRcPV6KnfEheAEItSyD7W7vt2jWXDdc7E1V78=;
-        h=Date:To:Cc:References:From:Subject:In-Reply-To;
-        b=YFPavAo7QyVgTMfpKQgwgzy89b8jO6AdVmNablD2JZi8OCPQXDzYs+QyGqPgKsEGq
-         4n0fCMiL6DuOta7+rR04nkyzUtIe1dU+nMrXFbekxjeDLHcrEd4noPqjQllCHMPu0p
-         5J1V03UYBKBcrr8RaZEFob8Xqxz9Sx9McIpT1mo0=
-Date:   Fri, 16 Jun 2023 22:39:09 +0800
+        with ESMTP id S1345720AbjFPOow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:44:52 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 544492D73;
+        Fri, 16 Jun 2023 07:44:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=lrmY5DOLGXtA1k0B/72pEMtj8OGLUiDM+PjIMPdL11w=; b=ILuZyqjhcrRfkR9E/LRyChDSUF
+        SICNiYWjepUZWOFCAp2zgaLizRgwStMiR/ZclNzIYDDCZ2NVnm8rDWRgdoGcv9Zkmb3GTIlW9nYQg
+        JWL+KcHTzpAFi0LDdgAUSayJlceo/UrTw2bw3MIhZn4fwDM6lexJRsXf/NjOqpSJL/ZU=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qAAgt-00GjGY-Vr; Fri, 16 Jun 2023 16:44:43 +0200
+Date:   Fri, 16 Jun 2023 16:44:43 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Michael Walle <mwalle@kernel.org>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Walle <michael@walle.cc>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH net-next] dt-bindings: net: phy: gpy2xx: more precise
+ description
+Message-ID: <248899a6-ae04-4e57-baba-e77e79f5a4f8@lunn.ch>
+References: <20230616-feature-maxlinear-dt-better-irq-desc-v1-1-57a8936543bf@kernel.org>
 MIME-Version: 1.0
-To:     Anup Patel <anup.patel@wdc.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <maz@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        Anup Patel <anup@brainfault.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Bin Meng <bmeng.cn@gmail.com>,
-        "Hongren (Zenithal) Zheng" <i@zenithal.me>
-References: <20211007123632.697666-1-anup.patel@wdc.com>
- <20211007123632.697666-6-anup.patel@wdc.com>
-Content-Language: en-US
-From:   Vivian Wang <uwu@dram.page>
-Subject: Re: [RFC PATCH v4 05/10] dt-bindings: interrupt-controller: Add
- ACLINT MSWI and SSWI bindings
-In-Reply-To: <20211007123632.697666-6-anup.patel@wdc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230616-feature-maxlinear-dt-better-irq-desc-v1-1-57a8936543bf@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,30 +56,13 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
+On Fri, Jun 16, 2023 at 12:45:57PM +0200, Michael Walle wrote:
+> Mention that the interrupt line is just asserted for a random period of
+> time, not the entire time.
+> 
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Michael Walle <mwalle@kernel.org>
 
-We are working on devicetree generation for rocket-chip, specifically
-generating ACLINT nodes instead of CLINT nodes. (WIP at [1].) We were
-wondering if riscv,aclint-{m,s}swi should really be an interrupt-controller.
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
-According to the devicetree specification (v0.3 found at [2]), an
-interrupt-controller *receives* interrupts. The ACLINT devices only ever
-generates interrupts, so they would be classified as interrupt
-generating device rather than interrupt controller or interrupt nexus.
-
-These bindings, as is, require the MSWI and SSWI devices to have the
-interrupt-controller property and #interrupt-cells = <0>, which does not
-reflect its functionality. It nonsensically implies that another device
-may have an interrupt routed through an MSWI/SSWI as interrupt-parent.
-Removing these requirements makes more sense.
-
-I'm not sure about what other node name to use though. It seems that
-these are more like mailboxes, but also not exactly. In any case a
-clarification of the bindings would be appreciated.
-
-Thanks,
-dram
-
-[1]: https://github.com/chipsalliance/rocket-chip/pull/3330
-[2]: https://www.devicetree.org/specifications/
-
+    Andrew
