@@ -2,119 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1210E7331F3
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:13:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB7757331FE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:18:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345547AbjFPNNP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 09:13:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56848 "EHLO
+        id S1344184AbjFPNSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 09:18:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345549AbjFPNNM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:13:12 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D003C35A8
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:13:08 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f8c9cb3144so5355315e9.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:13:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686921187; x=1689513187;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JgRqkCmLSNrRg0kzYH/gYvgx0ftRsyaeR1bjLn9ohCw=;
-        b=nnmldJE1cqVEB3z6tQT1R7QHIonwbqyKADSkliHOx4r9glNa66H8oF/KUHKM54RpkQ
-         6D1G1LtKnYguRmmeW+zav9/jnuN6+nChpqFPJ4v/vJy44uZXX99GefkTZK488dYGsDNe
-         qLNFHeQg3D6AD6WHGKNvyrtOScCT2WhVe47QKjSZzQAQK2UsE6wXRre7c6IJonhglBzw
-         1hbg9WLXhUWdrJg8hRNpbhM2XF9UEQQWpKou2RUA+rZOxaGXBbb3ezGuodFU5tFO7Xz7
-         msZZwHdUEnabtImuuCpSteVRT9h73T5MG2rHh7Pa9WzS4TgTLlKvZDw2uozNMqnnwpNf
-         Z7Tw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686921187; x=1689513187;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JgRqkCmLSNrRg0kzYH/gYvgx0ftRsyaeR1bjLn9ohCw=;
-        b=NTz9SswJ5s9vy7aGaI/haF3F/OwZ6bOlLDrLMF7aJTob4UsrIaFhkJQwRD4T9hFwjV
-         l7gXs2mwiQdd3Vx+Fh5plW/aeqVwszNqSa8jlCkoC2DUD93/hkkU0rIbYtqfnGH4bpAw
-         cT1bFVzaiM8gztLcjdKnZxiixhW77WQz7HHZz1YQus5hJ4M7Sz8RrRgVcoSLXBiDpjWr
-         1nkI8hX+P/zsXYSEAAJZCJDOnjju8Zvx8Ax5UYfNccK6TdW4K4GVyOYdGoRzXW6YpPlp
-         4F4ikFupBkpogF5OuY+rTX0zLzc9XxzBa6vmnGNEzeGtiaphMj+LKKQZzWNq22+PtOLG
-         gKDQ==
-X-Gm-Message-State: AC+VfDyNocFjWfLCfW3Q05KVJELLi4kIzMoYN4ZVN92FkwkcsNOERpuF
-        I4vvw4k+x4+J1RRjyR69lgsvyQY6EN7capyqcAdSQg==
-X-Google-Smtp-Source: ACHHUZ6PjvZeXabO13ItqPLMS9+xmOpBl0+X8Yf52uVDge1YdwdjlMRILf7KOevIONlKvHJnOq15VA==
-X-Received: by 2002:a1c:ed08:0:b0:3f7:e3dd:8a47 with SMTP id l8-20020a1ced08000000b003f7e3dd8a47mr1584365wmh.11.1686921187163;
-        Fri, 16 Jun 2023 06:13:07 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id y20-20020a7bcd94000000b003f60a446fe5sm2163536wmj.29.2023.06.16.06.13.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 06:13:05 -0700 (PDT)
-Message-ID: <fa665e61-f36a-5f65-4837-8d7c8c6a052e@linaro.org>
-Date:   Fri, 16 Jun 2023 14:13:03 +0100
+        with ESMTP id S229883AbjFPNSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:18:44 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05AFA2D76;
+        Fri, 16 Jun 2023 06:18:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 91EAC611CE;
+        Fri, 16 Jun 2023 13:18:43 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C670C433C0;
+        Fri, 16 Jun 2023 13:18:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686921522;
+        bh=KVFfsiSxn7JYS8i36Z43httvnNgyY9og4aYrwJralzM=;
+        h=From:Subject:Date:To:Cc:From;
+        b=pyP+ra7lVMuR8hw2VKf0j2poax3sye8mRqMuZH7wMy8POznEDsk30mqhEq8NhudFk
+         GhaIL06bmJBdPMb+gqPDYPSEgzEDKGNSQKn+FPnvdsNV7r7K7LTHqTsXeSVndqUuMS
+         PivBEY53X/VNzD4t5z0METK4UuzpEhSgGfz54aiId5srHvYTPNuTqpP1w3yXFQtFnn
+         120IRfJoZAW96d9Xrr2ub6zSjphpKR8zPoTYmB6bwA/8kpkA+iD6nAxC/IvlUUc19n
+         tgx2Bl0+7BVdmMB3esjx7x68G13tvqek7J6H2PIwOaCXPI6TbOBQWpO95EHKdQTTnE
+         6FFV+/lvrNtPw==
+From:   Michael Walle <mwalle@kernel.org>
+Subject: [PATCH 0/3] ARM: dts: lan966x: kontron-d10: device tree updates
+Date:   Fri, 16 Jun 2023 15:18:38 +0200
+Message-Id: <20230616-feature-d10-dt-cleanups-v1-0-50dd0452b8fe@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v6 3/6] media: starfive: Add basic driver
-Content-Language: en-US
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAC5hjGQC/x2NzQrCMBAGX6Xs2YUkYv15Felhk3y1AY1lk4pQ+
+ u6mHodhmJUKNKHQrVtJ8UklvXMDe+goTJIf4BQbkzPuaHrb8wipi4KjNRwrhyckL3NhnK8+Olh
+ 3shdqtZcC9io5THv/klKhu5gVY/r+l/dh235PPcV+ggAAAA==
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, changhuang.liang@starfivetech.com
-References: <20230525083202.67933-1-jack.zhu@starfivetech.com>
- <20230525083202.67933-4-jack.zhu@starfivetech.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230525083202.67933-4-jack.zhu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Michael Walle <michael@walle.cc>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Michael Walle <mwalle@kernel.org>
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/05/2023 09:31, Jack Zhu wrote:
-> Add basic platform driver for StarFive Camera Subsystem.
-> 
-> Reviewed-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+Fixes board reset and SPI CS# of the Kontron D10 board. Since the
+MaxLinear PHY now correctly handles interrupts, we can add the correct
+hardware descrption.
 
-One thing here is the patch title and hence commit message.
-
-"media: starfive:" doesn't really tell you this is a camera versus say a 
-encoder/decoder.
-
-I see you've used the name "camss" for your driver, which I think is a 
-perfectly good and logical choice - however if you started to make 
-commits along the lines of "media: camss" that would conflict with the 
-qcom camss.
-
-How about for starfive and qcom by the way, we do what Laurent did in
-
-commit 3e8537b4c15172bfe1b285c3155ed5c37d523cd3
-Author: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Date:   Wed Dec 21 10:33:39 2022 +0100
-
-     media: ti: omap3isp: Use media_pipeline_for_each_entity()
-
-i.e. future StarFive commits for camera would be "media: starfive: 
-camss" and similarly for Qualcomm "media: qualcomm: camss"
-
-The point being the commit title namespace should be instructive and 
-specific re: 3e8537b4c15172bfe1b285c3155ed5c37d523cd3
-
+Signed-off-by: Michael Walle <mwalle@kernel.org>
 ---
-bod
+Michael Walle (3):
+      ARM: dts: lan966x: kontron-d10: fix board reset
+      ARM: dts: lan966x: kontron-d10: fix SPI CS
+      ARM: dts: lan966x: kontron-d10: add PHY interrupts
+
+ .../dts/lan966x-kontron-kswitch-d10-mmt-8g.dts     |  2 ++
+ .../boot/dts/lan966x-kontron-kswitch-d10-mmt.dtsi  | 29 +++++++++++++++++++++-
+ 2 files changed, 30 insertions(+), 1 deletion(-)
+---
+base-commit: f7efed9f38f886edb450041b82a6f15d663c98f8
+change-id: 20230616-feature-d10-dt-cleanups-e79bd2e12518
+
