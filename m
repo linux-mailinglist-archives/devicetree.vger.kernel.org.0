@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7053173307F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:56:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE072733083
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:57:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbjFPL4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 07:56:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40526 "EHLO
+        id S233472AbjFPL4e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 07:56:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344958AbjFPLz4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:55:56 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 917FC2944;
-        Fri, 16 Jun 2023 04:55:55 -0700 (PDT)
+        with ESMTP id S1344943AbjFPL4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:56:11 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4000E2D67;
+        Fri, 16 Jun 2023 04:56:10 -0700 (PDT)
 X-GND-Sasl: gregory.clement@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1686916554;
+        t=1686916568;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:content-type:content-type:
          in-reply-to:in-reply-to:references:references;
-        bh=v3VbCZZPj2MH0B0+AxaXEpesaRl2NPyrEf1VpNxwlIQ=;
-        b=j6qpC/T8VW1/ouaPpAkjq2VsAZfIQtkXFSdnWjuzAQS4RsC4Kw+gi590pUuYPb976fLsH1
-        3Q/+4HPwTOEjzQ1LXKm1DUDzc1JX6zs19JNVW1zg8wkXQZ1BTszQVJseVTdDvqQWuSKY+w
-        g7nO7Uw6b0YUF03aP6e3xYlUkkI46SZ52VVrfxDpqe27j7EPmfbJV6nS70ch8WCp5OOrwr
-        vg8dv3qpXhaakMbyfLaCvIdVfd5kapMes7HV7Ne3xneNVBXa8ie/FHATVuFKglJ6ZScQS0
-        /RqCVTJWZmi0U4x2FmA3w0E0YSqkIVqk5Rv6YvMkhfIN8xrhPf2rVGiLmy28cg==
+        bh=6QaZnoro0oU0BUT67Qd+xO/fbwDMI8KTckqLRYFBC1A=;
+        b=F4yISwuao80Yq+BfiQHCmYOpMnGAeJxFSVfrWuqpY/P6HLjFFCoFhz0lo96y1NyGig0eWj
+        sDErek1g/skSmiysKMh7RQDKWRKllmMsl0byx0C4xXIa1v5Tby/m81i9EzeHKKo1KAI2Xh
+        jZ5tKuFuRxaWWQG453O6K/oKdgppll19PVojTDpxeFWSMErJZtnmraOglde5qpBlcMGWft
+        DNlCpRYwy6ADtML0ewRZrsx0fbSSdbXFbmPowV63AFelyzYBmgbci1OvpG92FVKlrxx6pC
+        6nEgNgBeuOGKW4E/ssMzNDlRlcW2bccMh4vCSvY54g+o1EJV9RgOFnY59bE7Ow==
 X-GND-Sasl: gregory.clement@bootlin.com
 X-GND-Sasl: gregory.clement@bootlin.com
 X-GND-Sasl: gregory.clement@bootlin.com
@@ -38,9 +38,8 @@ X-GND-Sasl: gregory.clement@bootlin.com
 X-GND-Sasl: gregory.clement@bootlin.com
 X-GND-Sasl: gregory.clement@bootlin.com
 X-GND-Sasl: gregory.clement@bootlin.com
-X-GND-Sasl: gregory.clement@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 2BFC12000B;
-        Fri, 16 Jun 2023 11:55:52 +0000 (UTC)
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 398F92000C;
+        Fri, 16 Jun 2023 11:56:08 +0000 (UTC)
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
 To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
         miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
@@ -48,21 +47,21 @@ To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
         andrew@lunn.ch, sebastian.hesselbarth@gmail.com
 Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Vadym Kochan <vadym.kochan@plvision.eu>,
         Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: Re: [PATCH v9 1/3] arm64: dts: marvell: cp11x: Fix nand_controller
- node name according to YAML
-In-Reply-To: <20230615040447.3484564-2-chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v9 2/3] ARM: dts: mvebu: align MTD partition nodes to
+ dtschema
+In-Reply-To: <20230615040447.3484564-3-chris.packham@alliedtelesis.co.nz>
 References: <20230615040447.3484564-1-chris.packham@alliedtelesis.co.nz>
- <20230615040447.3484564-2-chris.packham@alliedtelesis.co.nz>
-Date:   Fri, 16 Jun 2023 13:55:52 +0200
-Message-ID: <87o7lfhb93.fsf@BL-laptop>
+ <20230615040447.3484564-3-chris.packham@alliedtelesis.co.nz>
+Date:   Fri, 16 Jun 2023 13:56:07 +0200
+Message-ID: <87legjhb8o.fsf@BL-laptop>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -71,16 +70,13 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
 
-> From: Vadym Kochan <vadym.kochan@plvision.eu>
+> Update the node names for the SPI NOR and NAND partitions to conform to
+> the partition properties in the relevant dtschema.
 >
-> Marvell NAND controller has now YAML to validate it's DT bindings, so
-> change the node name of cp11x DTSI as it is required by nand-controller.yaml
->
-> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
 > Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
 > Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Applied on mvebu/dt64
+Applied on mvebu/dt
 
 Thanks,
 
@@ -95,22 +91,57 @@ Gregory
 >     Changes in v8:
 >     - Add r-by from Miquel
 >
->  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm/boot/dts/armada-385-atl-x530.dts | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> index 7d0043824f2a..982b180b33e6 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
-> @@ -468,7 +468,7 @@ CP11X_LABEL(uart3): serial@702300 {
->  			status = "disabled";
->  		};
->  
-> -		CP11X_LABEL(nand_controller): nand@720000 {
-> +		CP11X_LABEL(nand_controller): nand-controller@720000 {
->  			/*
->  			 * Due to the limitation of the pins available
->  			 * this controller is only usable on the CPM
+> diff --git a/arch/arm/boot/dts/armada-385-atl-x530.dts b/arch/arm/boot/dts/armada-385-atl-x530.dts
+> index 241f5d7c80e9..5a9ab8410b7b 100644
+> --- a/arch/arm/boot/dts/armada-385-atl-x530.dts
+> +++ b/arch/arm/boot/dts/armada-385-atl-x530.dts
+> @@ -179,19 +179,19 @@ partitions {
+>  			compatible = "fixed-partitions";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> -			partition@u-boot {
+> +			partition@0 {
+>  				reg = <0x00000000 0x00100000>;
+>  				label = "u-boot";
+>  			};
+> -			partition@u-boot-env {
+> +			partition@100000 {
+>  				reg = <0x00100000 0x00040000>;
+>  				label = "u-boot-env";
+>  			};
+> -			partition@unused {
+> +			partition@140000 {
+>  				reg = <0x00140000 0x00e80000>;
+>  				label = "unused";
+>  			};
+> -			partition@idprom {
+> +			partition@fc0000 {
+>  				reg = <0x00fc0000 0x00040000>;
+>  				label = "idprom";
+>  			};
+> @@ -216,16 +216,16 @@ partitions {
+>  			compatible = "fixed-partitions";
+>  			#address-cells = <1>;
+>  			#size-cells = <1>;
+> -			partition@user {
+> +			partition@0 {
+>  				reg = <0x00000000 0x0f000000>;
+>  				label = "user";
+>  			};
+> -			partition@errlog {
+> +			partition@f000000 {
+>  				/* Maximum mtdoops size is 8MB, so set to that. */
+>  				reg = <0x0f000000 0x00800000>;
+>  				label = "errlog";
+>  			};
+> -			partition@nand-bbt {
+> +			partition@f800000 {
+>  				reg = <0x0f800000 0x00800000>;
+>  				label = "nand-bbt";
+>  			};
 > -- 
 > 2.40.1
 >
