@@ -2,85 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15EDD732B37
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F445732B92
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:30:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232488AbjFPJP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:15:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36046 "EHLO
+        id S232489AbjFPJad (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:30:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344095AbjFPJPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:15:21 -0400
-Received: from mail-vk1-xa2e.google.com (mail-vk1-xa2e.google.com [IPv6:2607:f8b0:4864:20::a2e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C09081BC3
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:15:20 -0700 (PDT)
-Received: by mail-vk1-xa2e.google.com with SMTP id 71dfb90a1353d-460eb67244eso149472e0c.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:15:20 -0700 (PDT)
+        with ESMTP id S1344706AbjFPJaJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:30:09 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3182733;
+        Fri, 16 Jun 2023 02:29:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1686906920; x=1689498920;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8rTrcJmVo8/odo0YNKJ0kqA9w+6Lxfc+GT+B/xhBCn0=;
-        b=0a41RlEDxqzhARVY8DZt8r6BDYlhjL5wzuIs50zDqo6xd1PwUIfjqrvLAczKKsb5ml
-         fkKs5VSX2cvqi5Kx1tWcakxpma1RBZjji6s68ST6kmMER50sfW2xrlxZjrY8t6x6OfRj
-         GOVmIbCw3Cl7fqzYY2o06iSEz0MvBTex7o/szm1mwqkZhfubu+T3K2R4eGsEPa4tf1Bk
-         kRLBVq7wOCQk6lB6hyds/xYhOUuSSCUNfBbFqTItBgrfnP/pRI+ye7kzepCRgMeBNjs4
-         s41oCw+wC0Voib7/ggCMVX22SdlYQZEtxQppbETSMRP9IOAy+bcbXWavnsi7/OwKBGuh
-         ts4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686906920; x=1689498920;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8rTrcJmVo8/odo0YNKJ0kqA9w+6Lxfc+GT+B/xhBCn0=;
-        b=lXcCEje4sxgjIWwjAfo26ELd2qPGsR+R6er+vCtBCIHsrlMvHOPMPt5NxhN1/IUDtN
-         VKmdSFkN0LrGI3kGO+jW1E9A8+//eJ4rJBpvGWxwgsgLkck2Ik2rouMufw9K7188We+i
-         i5jArvhGHzfQNbc63wpaAjsklIePwRdBrIjZJ8vMtECKLXZSz8iU8l7ABj4TaIyJ2cMG
-         iLIoPtWIfXuinsBQmKVHgbwSRjFBqZB+SPRSNabh8qUhPM9E4sBGl4WGOuqAALmNEPdE
-         0ocOkTlnzvTlwb3IKa1XeLUM7Wbqo+3Env67nEP2Guv7/VFqcZrtA35IJrsMAkaF3EaC
-         cM7A==
-X-Gm-Message-State: AC+VfDwxJLjFQrVECYRhP8ihgZpMnBQu7YfYsn9gQFw5rC2fJIgQn81r
-        gyc5sHu61tqQSToIhK4KAUe26hMM716YO+EVulvvFA==
-X-Google-Smtp-Source: ACHHUZ47TvG6l7pdc7ZI/Lk7WDurYw1i5RynV1Z17ir9PMwtvXWYmm/x4Rg9EWDru7Y31rSzG5Js8uwjqK6WBb51hHU=
-X-Received: by 2002:a1f:bf43:0:b0:465:fa30:d633 with SMTP id
- p64-20020a1fbf43000000b00465fa30d633mr1477681vkf.0.1686906918373; Fri, 16 Jun
- 2023 02:15:18 -0700 (PDT)
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1686907797; x=1718443797;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=32N1yGo7ctZs2eC7CuXCSbbaVed5l58bkGfloxPTIp4=;
+  b=eCEN/Cg3pJShxTMm742vfMXOycmBsyMQiHrfwmUzSS870hmQbUqGkP3M
+   nK+rCcu1DE2ttGfRB1Gas8jOaON2RYFAKEv2y/ySC358bUDAl/hsHe4yg
+   xm2kVfcGf5u2f4XonFO5Y53+vqQehyeEB+KTgvnhVn27R6RQO7H/JEQQ2
+   octK4umYTTuJnLtV5TkKaVhsi6539zu0UDpFtJFcd8g/yWoFGWP2MZsED
+   5otrVsm8/ZDK/EjSAWo3La+FEKjahr99mhzcUNhdI5b8PWvu/a0t5uB29
+   ibi3EphdKbIzKWWfCP9QTpgwApuqWokmhHHAKqeeUjkFZ/o6Ybl2nIU2s
+   g==;
+X-IronPort-AV: E=Sophos;i="6.00,247,1681164000"; 
+   d="scan'208";a="31462582"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 16 Jun 2023 11:29:55 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 63301280082;
+        Fri, 16 Jun 2023 11:29:55 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, festevam@gmail.com, vkoul@kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+Cc:     oliver.brown@nxp.com, Sandor.yu@nxp.com, linux-imx@nxp.com,
+        kernel@pengutronix.de, Sandor Yu <Sandor.yu@nxp.com>
+Subject: Re: [PATCH v6 5/8] drm: bridge: Cadence: Add MHDP8501 HDMI driver
+Date:   Fri, 16 Jun 2023 11:29:57 +0200
+Message-ID: <11795277.nUPlyArG6x@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <ee0982418cc2e996b1f7889375b1a5138fb38a11.1686729444.git.Sandor.yu@nxp.com>
+References: <cover.1686729444.git.Sandor.yu@nxp.com> <ee0982418cc2e996b1f7889375b1a5138fb38a11.1686729444.git.Sandor.yu@nxp.com>
 MIME-Version: 1.0
-References: <20230424123522.18302-1-nikita.shubin@maquefel.me> <20230601054549.10843-15-nikita.shubin@maquefel.me>
-In-Reply-To: <20230601054549.10843-15-nikita.shubin@maquefel.me>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Fri, 16 Jun 2023 11:15:07 +0200
-Message-ID: <CAMRc=Mf6mt0wGqUU1PS+YqJJBV9Dy2nAyAASWg8BvJ6UDUvVXA@mail.gmail.com>
-Subject: Re: [PATCH v1 33/43] dt-bindings: gpio: Add Cirrus EP93xx
-To:     Nikita Shubin <nikita.shubin@maquefel.me>
-Cc:     Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Michael Peters <mpeters@embeddedts.com>,
-        Kris Bahnsen <kris@embeddedts.com>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 1, 2023 at 7:46=E2=80=AFAM Nikita Shubin <nikita.shubin@maquefe=
-l.me> wrote:
->
-> Add YAML bindings for ep93xx SoC gpio controller.
->
-> Signed-off-by: Nikita Shubin <nikita.shubin@maquefel.me>
+Hi Sandor,
+
+thanks for sending a new version.
+
+Am Donnerstag, 15. Juni 2023, 03:38:15 CEST schrieb Sandor Yu:
+> Add a new DRM HDMI bridge driver for Cadence MHDP8501
+> that used in Freescale i.MX8MQ SoC.
+> MHDP8501 could support HDMI or DisplayPort standards according
+> embedded Firmware running in the uCPU.
+>=20
+> For iMX8MQ SoC, the HDMI FW was loaded and activated by SOC ROM code.
+> Bootload binary included HDMI FW was required for the driver.
+>=20
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
 > ---
+>  drivers/gpu/drm/bridge/cadence/Kconfig        |   12 +
+>  drivers/gpu/drm/bridge/cadence/Makefile       |    1 +
+>  .../drm/bridge/cadence/cdns-mhdp8501-hdmi.c   | 1024 +++++++++++++++++
+>  3 files changed, 1037 insertions(+)
+>  create mode 100644 drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+>=20
+> diff --git a/drivers/gpu/drm/bridge/cadence/Kconfig
+> b/drivers/gpu/drm/bridge/cadence/Kconfig index 5b7ec4e49aa1..bee05e834055
+> 100644
+> --- a/drivers/gpu/drm/bridge/cadence/Kconfig
+> +++ b/drivers/gpu/drm/bridge/cadence/Kconfig
+> @@ -59,3 +59,15 @@ config DRM_CDNS_MHDP8501_DP
+>  	  Support Cadence MHDP8501 DisplayPort driver.
+>  	  Cadence MHDP8501 Controller support one or more protocols,
+>  	  DisplayPort firmware is required for this driver.
+> +
+> +config DRM_CDNS_MHDP8501_HDMI
+> +	tristate "Cadence MHDP8501 HDMI DRM driver"
+> +	select DRM_KMS_HELPER
+> +	select DRM_PANEL_BRIDGE
+> +	select DRM_DISPLAY_HELPER
+> +	select DRM_CDNS_AUDIO
+> +	depends on OF
+> +	help
+> +	  Support Cadence MHDP8501 HDMI driver.
+> +	  Cadence MHDP8501 Controller support one or more protocols,
+> +	  HDMI firmware is required for this driver.
+> diff --git a/drivers/gpu/drm/bridge/cadence/Makefile
+> b/drivers/gpu/drm/bridge/cadence/Makefile index 5842e4540c62..8a129c14ac14
+> 100644
+> --- a/drivers/gpu/drm/bridge/cadence/Makefile
+> +++ b/drivers/gpu/drm/bridge/cadence/Makefile
+> @@ -7,3 +7,4 @@ cdns-mhdp8546-y :=3D cdns-mhdp8546-core.o cdns-mhdp8546-h=
+dcp.o
+> cdns-mhdp8546-$(CONFIG_DRM_CDNS_MHDP8546_J721E) +=3D cdns-mhdp8546-j721e.o
+>=20
+>  obj-$(CONFIG_DRM_CDNS_MHDP8501_DP) +=3D cdns-mhdp8501-dp.o
+> +obj-$(CONFIG_DRM_CDNS_MHDP8501_HDMI) +=3D cdns-mhdp8501-hdmi.o
+> diff --git a/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+> b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c new file mode 100644
+> index 000000000000..43673f1b50f6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/bridge/cadence/cdns-mhdp8501-hdmi.c
+[...]
+> +static int cdns_hdmi_bridge_attach(struct drm_bridge *bridge,
+> +				 enum drm_bridge_attach_flags flags)
+> +{
+> +	struct cdns_mhdp_device *mhdp =3D bridge->driver_private;
+> +	struct drm_mode_config *config =3D &bridge->dev->mode_config;
+> +	struct drm_encoder *encoder =3D bridge->encoder;
+> +	struct drm_connector *connector =3D &mhdp->connector;
+> +
+> +	if (!(flags & DRM_BRIDGE_ATTACH_NO_CONNECTOR)) {
+> +		connector->interlace_allowed =3D 0;
+> +		connector->polled =3D DRM_CONNECTOR_POLL_HPD;
+> +
+> +		drm_connector_helper_add(connector,=20
+&cdns_hdmi_connector_helper_funcs);
+> +
+> +		drm_connector_init(bridge->dev, connector,=20
+&cdns_hdmi_connector_funcs,
+> +				   DRM_MODE_CONNECTOR_HDMIA);
+> +
+> +		drm_object_attach_property(&connector->base,
+> +					   config-
+>hdr_output_metadata_property, 0);
+> +
+> +		if (!drm_mode_create_hdmi_colorspace_property(connector))
 
-Applied, thanks!
+This is missing a 2nd parameter.
 
-Bart
+> +			drm_object_attach_property(&connector->base,
+> +						connector-
+>colorspace_property, 0);
+> +
+> +		drm_connector_attach_encoder(connector, encoder);
+> +	}
+> +
+> +	return 0;
+> +}
+[...]
+
+Best regards,
+Alexander
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
