@@ -2,57 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C213C73307E
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7053173307F
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 13:56:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232166AbjFPLy7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 07:54:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39836 "EHLO
+        id S231190AbjFPL4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 07:56:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345113AbjFPLy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:54:56 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 607512944
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 04:54:55 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E85D460EB0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 11:54:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71187C433C0;
-        Fri, 16 Jun 2023 11:54:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686916494;
-        bh=ACpTR9SBV3aPtqJMQnni7TkSIEUIkE5zHWNAvE8mfrU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HAcsLlGAzFFj7Sjbi2jWa/66JhCkAaVi/XldgpBQO7C1DAktA9XeZCvc9/PnB/d6D
-         OfP9qVPP6sVrtxFEeUqBcGSOwYktQ7SlL92nD67+bCz0SN6kAXa9oG5VityZejfrly
-         xIDtUt6UfgQawu+N8ue6SQ0OR/mZf2Ht06iR7qT/3EPNPAdlhxnecJzWpLXM9PRq6b
-         yqE0EE5P3hvQr9/jvd2H5sAVO9+5hTIZ5v/WzRgReDXH7T1ZyMmGaBKavOOK4bCrIR
-         wTILVVRN4DoM1uFU99AEvlg9++qanl1G/G+xTkBvk9ynrkBi3k5h6APd6YOTuKjwiS
-         HcOTv4kUlUcpA==
-Date:   Fri, 16 Jun 2023 12:54:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: tlv320aic32x4: convert to DT
- schema format
-Message-ID: <5a562bbc-9bba-4829-8998-af12041a434c@sirena.org.uk>
-References: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
+        with ESMTP id S1344958AbjFPLz4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 07:55:56 -0400
+Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::227])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 917FC2944;
+        Fri, 16 Jun 2023 04:55:55 -0700 (PDT)
+X-GND-Sasl: gregory.clement@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686916554;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=v3VbCZZPj2MH0B0+AxaXEpesaRl2NPyrEf1VpNxwlIQ=;
+        b=j6qpC/T8VW1/ouaPpAkjq2VsAZfIQtkXFSdnWjuzAQS4RsC4Kw+gi590pUuYPb976fLsH1
+        3Q/+4HPwTOEjzQ1LXKm1DUDzc1JX6zs19JNVW1zg8wkXQZ1BTszQVJseVTdDvqQWuSKY+w
+        g7nO7Uw6b0YUF03aP6e3xYlUkkI46SZ52VVrfxDpqe27j7EPmfbJV6nS70ch8WCp5OOrwr
+        vg8dv3qpXhaakMbyfLaCvIdVfd5kapMes7HV7Ne3xneNVBXa8ie/FHATVuFKglJ6ZScQS0
+        /RqCVTJWZmi0U4x2FmA3w0E0YSqkIVqk5Rv6YvMkhfIN8xrhPf2rVGiLmy28cg==
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+X-GND-Sasl: gregory.clement@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 2BFC12000B;
+        Fri, 16 Jun 2023 11:55:52 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        andrew@lunn.ch, sebastian.hesselbarth@gmail.com
+Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Vadym Kochan <vadym.kochan@plvision.eu>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v9 1/3] arm64: dts: marvell: cp11x: Fix nand_controller
+ node name according to YAML
+In-Reply-To: <20230615040447.3484564-2-chris.packham@alliedtelesis.co.nz>
+References: <20230615040447.3484564-1-chris.packham@alliedtelesis.co.nz>
+ <20230615040447.3484564-2-chris.packham@alliedtelesis.co.nz>
+Date:   Fri, 16 Jun 2023 13:55:52 +0200
+Message-ID: <87o7lfhb93.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vsElv/D6vtd1CJEQ"
-Content-Disposition: inline
-In-Reply-To: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
-X-Cookie: -- Owen Meredith
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,34 +69,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Chris Packham <chris.packham@alliedtelesis.co.nz> writes:
 
---vsElv/D6vtd1CJEQ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+> From: Vadym Kochan <vadym.kochan@plvision.eu>
+>
+> Marvell NAND controller has now YAML to validate it's DT bindings, so
+> change the node name of cp11x DTSI as it is required by nand-controller.yaml
+>
+> Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
+> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Reviewed-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-On Fri, Jun 16, 2023 at 10:35:49AM +0200, Alexander Stein wrote:
-> Convert the binding to DT schema format.
-> Since commit 514b044cba667 ("ASoC: tlv320aic32x4: Model PLL in CCF")
-> clocks & clock-names = "mclk" is mandatory, it has been added to required
-> properties as well. '#sound-dai-cells' is added for reference from
-> simple-audio-card.
+Applied on mvebu/dt64
 
-This doesn't apply against current code, please check and resend.  This
-should be an incremental patch perhaps?
+Thanks,
 
---vsElv/D6vtd1CJEQ
-Content-Type: application/pgp-signature; name="signature.asc"
+Gregory
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSMTYgACgkQJNaLcl1U
-h9D3dgf/X+L0zgKjEpviXcu69nZ8E5ELzKgl1XtMWaQQTLn6eCnUJuaZAAIkqHpr
-6yfgu3Aqak1UgM8bRT5je1dJYpB2xG5zxSZmNSfia1ENlz+tVWGLGo9sBFJLP1GZ
-+4wnVUNW5aFjUiELxWVJRTUFn2/02H7p9RhwsN9ZH5NbbtlynYHDjDSvZ49rHAYB
-7m7/wHCY2DuXIwaxZCtGRpt1UKJDOt+SXQBgvrYMp6YqdNSUg7LAzh1RtGuMT4mH
-gcL+nI+PNBW90gEUY2ovo7+0LlDgkkAXCqZD0GMJZK2s3JlB1GghH3sORNlTEg0g
-8s9Eo7Rw6oT2VEIljA8hV1xKTwM4BQ==
-=YWF8
------END PGP SIGNATURE-----
+> ---
+>
+> Notes:
+>     Changes in v9:
+>     - None
+>     Changes in v8:
+>     - Add r-by from Miquel
+>
+>  arch/arm64/boot/dts/marvell/armada-cp11x.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> index 7d0043824f2a..982b180b33e6 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-cp11x.dtsi
+> @@ -468,7 +468,7 @@ CP11X_LABEL(uart3): serial@702300 {
+>  			status = "disabled";
+>  		};
+>  
+> -		CP11X_LABEL(nand_controller): nand@720000 {
+> +		CP11X_LABEL(nand_controller): nand-controller@720000 {
+>  			/*
+>  			 * Due to the limitation of the pins available
+>  			 * this controller is only usable on the CPM
+> -- 
+> 2.40.1
+>
 
---vsElv/D6vtd1CJEQ--
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
