@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F44C732CE1
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:05:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A2D9732D1C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 12:11:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S245245AbjFPKFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 06:05:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36514 "EHLO
+        id S229654AbjFPKL5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 06:11:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S241493AbjFPKEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:04:49 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F940194
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:04:48 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-982ae93386aso73301966b.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 03:04:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686909887; x=1689501887;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uYBJJFpgemmy6W4txbxWomnmBYNEc2Pci2rgkT0U7hg=;
-        b=WeM4PckhJwPQ1923kkK/m24dg7JziG6V4ajokijrPIYQHuZp5fTGYVsti5xHtHMZbE
-         OjRnMw4ofWUHcGbWQbNu10iJrQVNfgAaEnCAHvAs/ZTPLLiYgzlcURrMAUgsRyyiKq5z
-         yi/gkplSCNfDeiFqKmzghI7XGH19x5qWCpCIeZkx8HAGV5PvMPHr8uE9tltyhabd0lAe
-         pSf9WZ82qoRpGkZZnsAGG4qs0g73oT1uIN5kSmb5qqQMWRzDJ5ArvsJLwKSjWQfwxhC1
-         YYKkr4heeFlGCIK3ck0mukJh4avG2R51W+EqtmzLSKgGrohcL8F5xhSm8hKse0auGsxO
-         r1Ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686909887; x=1689501887;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uYBJJFpgemmy6W4txbxWomnmBYNEc2Pci2rgkT0U7hg=;
-        b=Stnf2shWJTdQ2gKELOR4ywJF9IVeJp3KrhhIdhspB8SnDT6L3qDpRZUMUleXOypQfj
-         ZIv5tCDhXGtChMU3Z0WgrfzdlKyGfdaNgrr+c4mIlrezqp90jBFEuELCasQFo56sjabr
-         cHRS2856vfZAzcRS9i10TIRBG84lQv9XF45zhHOR3IxUhZjbFCmjTp0zqrARlfUqAH76
-         IszznZ5oCkcRwCUTHzctEHuFh8LwKDhsOjiyfDdGFUQZJ6phNHwRHlscgDvqrx4FCgaZ
-         R7yrMrm7fkA9vqKPsUXW20WIjgfBjvbRLhc7UAl6nGNHiPsXAdOJNhaQVl07zbeizoEU
-         mVGA==
-X-Gm-Message-State: AC+VfDwZdqOFicZkowoNQHYKqsVly4J4WMGmcvErw/0bTfbQTRst7hsk
-        xqd4mzClCHjB/kIvpILlSo3ANA==
-X-Google-Smtp-Source: ACHHUZ4rcmI11g1mhDGNXV6YANHaooS38LFWir880NILrYi+St8Lb9fV6/jlWjeoYYiY2HdPxS6i2w==
-X-Received: by 2002:a17:907:86ab:b0:973:a30d:b264 with SMTP id qa43-20020a17090786ab00b00973a30db264mr1281273ejc.46.1686909887022;
-        Fri, 16 Jun 2023 03:04:47 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id s16-20020a170906355000b00982943c7892sm2383714eja.134.2023.06.16.03.04.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 03:04:46 -0700 (PDT)
-Message-ID: <ca49f782-7e5f-5203-c981-e601eb2ff4c5@linaro.org>
-Date:   Fri, 16 Jun 2023 12:04:40 +0200
+        with ESMTP id S232372AbjFPKL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 06:11:56 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3E75AC;
+        Fri, 16 Jun 2023 03:11:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1686910315; x=1718446315;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=8PTgZpEiLPMpSVSdcmzuYsdAeMPqe+xF/Qpo/bvYr4c=;
+  b=cgstJHhezPetkHvG92uPdCNw4wkrhY8A6LrehgFQfFZ1pGR5gvij/qnl
+   jiLquz+18Mw+NG/FEUMRrpdmN3ib2rNlJO4SyINFOJhXtgpdevPkONhmX
+   xSa9SYyvQLmXfyDhB6eJZOM7E3V3g8UGMT4X4ettam+Ykb9jin+TOpBDs
+   3anUrMWzKWg4naJIc3xzRKjUmX8UjvCvzF3UNIbtcHzbnOtNkNB8JVia2
+   u3s3E2giDETGPSD5A2IgOf1h4+tf75fjf/eISAVLb+2U51vbRNJgszgX4
+   V39XYaRp92Skd+vYsEQUeKEVYMRquqJDBkV3ilGzL2Xb8h7nXEJpicQzU
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; 
+   d="asc'?scan'208";a="157251664"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 16 Jun 2023 03:11:54 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 16 Jun 2023 03:11:03 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 16 Jun 2023 03:11:00 -0700
+Date:   Fri, 16 Jun 2023 11:10:34 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Eric Lin <eric.lin@sifive.com>
+CC:     <conor@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <palmer@dabbelt.com>,
+        <paul.walmsley@sifive.com>, <aou@eecs.berkeley.edu>,
+        <maz@kernel.org>, <chenhuacai@kernel.org>,
+        <baolu.lu@linux.intel.com>, <will@kernel.org>,
+        <kan.liang@linux.intel.com>, <nnac123@linux.ibm.com>,
+        <pierre.gondois@arm.com>, <huangguangbin2@huawei.com>,
+        <jgross@suse.com>, <chao.gao@intel.com>, <maobibo@loongson.cn>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <dslin1010@gmail.com>,
+        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
+Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
+Message-ID: <20230616-renovate-country-12b9873b4494@wendy>
+References: <20230616063210.19063-1-eric.lin@sifive.com>
+ <20230616063210.19063-4-eric.lin@sifive.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 4/6] LoongArch: DeviceTree for Loongson-2K0500
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-References: <cover.1686882123.git.zhoubinbin@loongson.cn>
- <c7087046a725e7a2cfde788185112c150e216f1b.1686882123.git.zhoubinbin@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c7087046a725e7a2cfde788185112c150e216f1b.1686882123.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ssNWi0cU4z5MFoHT"
+Content-Disposition: inline
+In-Reply-To: <20230616063210.19063-4-eric.lin@sifive.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,28 +75,155 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 08:10, Binbin Zhou wrote:
-> Add DeviceTree file for Loongson-2K0500 processor, which integrates one
-> 64-bit dual emission superscalar LA264 processor core.
-> 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+--ssNWi0cU4z5MFoHT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hey Eric,
+
+On Fri, Jun 16, 2023 at 02:32:10PM +0800, Eric Lin wrote:
+> This add YAML DT binding documentation for SiFive Private L2
+> cache controller
+>=20
+> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> Reviewed-by: Zong Li <zong.li@sifive.com>
+> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+
+Firstly, bindings need to come before the driver using them.
+
 > ---
+>  .../bindings/riscv/sifive,pL2Cache0.yaml      | 81 +++++++++++++++++++
+>  1 file changed, 81 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/sifive,pL2Cac=
+he0.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yam=
+l b/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml
+> new file mode 100644
+> index 000000000000..b5d8d4a39dde
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml
 
+Cache bindings have moved to devicetree/bindings/cache.
+
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2023 SiFive, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/riscv/sifive,pL2Cache0.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SiFive Private L2 Cache Controller
+> +
+> +maintainers:
+> +  - Greentime Hu  <greentime.hu@sifive.com>
+> +  - Eric Lin      <eric.lin@sifive.com>
+
+Drop the alignment here please.
 
 > +
-> +		pixi2c@1ff4a800 {
-> +			compatible = "loongson,ls2k-i2c";
-> +			reg = <0 0x1ff4a800 0 0x0800>;
-> +			interrupt-parent = <&eiointc>;
-> +			interrupts = <19>;
-> +			status = "disabled";
-> +		};
+> +description:
+> +  The SiFive Private L2 Cache Controller is per hart and communicates wi=
+th both the upstream
+> +  L1 caches and downstream L3 cache or memory, enabling a high-performan=
+ce cache subsystem.
+> +  All the properties in ePAPR/DeviceTree specification applies for this =
+platform.
+
+Please wrap before 80 characters.
+
 > +
-> +		pmc: acpi@1ff6c000 {
-> +			compatible = "syscon";
+> +allOf:
+> +  - $ref: /schemas/cache-controller.yaml#
+> +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - sifive,pL2Cache0
+> +          - sifive,pL2Cache1
 
-One more - this is not allowed and clear NAK.
+Why is this select: required?
 
-Best regards,
-Krzysztof
+> +  required:
+> +    - compatible
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +          - sifive,pL2Cache0
+> +          - sifive,pL2Cache1
 
+What is the difference between these? (and drop the caps please)
+
+Should this also not fall back to "cache"?
+
+> +
+> +  cache-block-size:
+> +    const: 64
+> +
+> +  cache-level:
+> +    const: 2
+> +
+> +  cache-sets:
+> +    const: 512
+> +
+> +  cache-size:
+> +    const: 262144
+> +
+> +  cache-unified: true
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  next-level-cache: true
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - cache-block-size
+> +  - cache-level
+> +  - cache-sets
+> +  - cache-size
+> +  - cache-unified
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    pl2@10104000 {
+
+cache-controller@
+
+Cheers,
+Conor.
+
+> +        compatible =3D "sifive,pL2Cache0";
+> +        cache-block-size =3D <64>;
+> +        cache-level =3D <2>;
+> +        cache-sets =3D <512>;
+> +        cache-size =3D <262144>;
+> +        cache-unified;
+> +        reg =3D <0x10104000 0x4000>;
+> +        next-level-cache =3D <&L4>;
+> +    };
+> --=20
+> 2.40.1
+>=20
+
+--ssNWi0cU4z5MFoHT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZIw1GgAKCRB4tDGHoIJi
+0gNOAQCIJoftwKLE7w2VWLh+kuM2k8LgVXAVjLDyCKgmSzTT0AD/deRzPJgKXPwV
+MMGvlTkxTrxIz9e+3MVzNEw/6+WpHQY=
+=Q4Dq
+-----END PGP SIGNATURE-----
+
+--ssNWi0cU4z5MFoHT--
