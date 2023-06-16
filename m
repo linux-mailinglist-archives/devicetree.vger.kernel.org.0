@@ -2,247 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DABCC7329F5
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:36:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8CB2732A06
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244419AbjFPIgF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 04:36:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37052 "EHLO
+        id S242529AbjFPIis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 04:38:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S245676AbjFPIf4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:35:56 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D48C30EA
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:35:53 -0700 (PDT)
+        with ESMTP id S231469AbjFPIio (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:38:44 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FBC42D6A
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:38:42 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-985b04c46caso62881266b.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:38:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686904553; x=1718440553;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=tpoazCjFq7exKrGL72cd/5zbo5h8D99AwbUvKsLXxjU=;
-  b=LJTvCkW8RRBl72Fe535+2XrsSSnZNcBdinaEyZ00oGzqX8+Og4wEZY3a
-   3zJ9Tzy5n4qLsUsQMNxrcCPWrrikxB/T52BfNJwQu+KyewmgWEyZilwS4
-   sHwNyMY7RpbKp4hbmG0OWTYlnlsqJfyq4sSpwLAOIhsvZaimYuQaizJj+
-   I2PlHZ2TezydP/c90nc/F+xsApZT9C7hojyy+eTvzD7i/xeVtV8rpJL6I
-   rLBvLugsZBLuuTtYGbN5KK91CvqNYPtreBszSNYkqL6OMgDIM6oapbUI0
-   7xGYDK4AH9EeT1BPhcOm0YQ0rl9VGCwTeFhJAU6gJ6JdtRtMSTMd/s1l6
-   g==;
-X-IronPort-AV: E=Sophos;i="6.00,247,1681164000"; 
-   d="scan'208";a="31461603"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Jun 2023 10:35:51 +0200
-Received: from steina-w.tq-net.de (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id DCBAF280082;
-        Fri, 16 Jun 2023 10:35:50 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 1/1] ASoC: dt-bindings: tlv320aic32x4: convert to DT schema format
-Date:   Fri, 16 Jun 2023 10:35:49 +0200
-Message-Id: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
-X-Mailer: git-send-email 2.34.1
+        d=linaro.org; s=google; t=1686904721; x=1689496721;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=pZEfJSYnwqLnbdKTWIKySlr4932iv0cggheuIvgWyaQ=;
+        b=nQs/n0SJ5phrJogsv3awLm5NSsFpgx4QUySC4eBNCwYCX7s8emhUdNGSM9snOJdx0c
+         1zEUnqrTovNcGgKvluiNirHj11V8MoyLMltmeu//J4RTVBkqyU64WjlX/k+M0yFT1ZtJ
+         hgwjE1bXhP65N4phVOn3TEvR5G9ZaAaVLL102Y3muCgEW70I9qiDbbRPDVfIbcs2tVlf
+         +iBQQF1JpqAh0sdJsWZb1GHGZ9ihiQ+zQKUf66AcwvZszqqrROAUS0fDSO5cYnkd93uY
+         DmqzqH14PX/hR6GbIZHDdSb/R1Qfrf2mwJ7YeZCnmDHCyoq5acbIXyOi99xfw5Y9O/XJ
+         uJSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686904721; x=1689496721;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=pZEfJSYnwqLnbdKTWIKySlr4932iv0cggheuIvgWyaQ=;
+        b=dvnXCU9eiGXkvNuMYBepf0BPDlApyWUc/Oq18en0smu7yHX7oXcXe89q43PkHhuz7d
+         NrMSqCOtr+bm2Gq9tfVvWBqI+O5iLCZqxIawUaxAtQHnenbqJHXvigHk//4kPkq9zOh9
+         YIs4PDFvooft7AhrdfAHO1p3p/Si0qBjiJoy/WzGa95/spgPTPfmhVCc44GJFIltDEOM
+         XvuWBVEe3TGXfUW1C3WKRLF4hJ9ya+FcFK87zSydVTqeE/3hsgRVMXU1F8zOfnsP6jHX
+         NlxNtq3Xu1oLWQCKULp+qWtq0/kE4ZgidbnmNHhslwa5znvP/rc5YZ4ndq/xq3cAcCRS
+         k06w==
+X-Gm-Message-State: AC+VfDzny+Thh462Hhf+fsAZPep6Z25sw2yIwmaAc+h8etZM1fker0ym
+        /ysR0H2U5PKdTPo9w+XWXPLRFT6fPBaGA18FkBk=
+X-Google-Smtp-Source: ACHHUZ4Ie2Po3MUDE6dj9CrV/HK9CiJ0NB9rm5vu9DTI7XghCArJ3u4gjKsWFnHbluQdq8m01/fx6A==
+X-Received: by 2002:a17:907:7287:b0:973:93e3:bc9a with SMTP id dt7-20020a170907728700b0097393e3bc9amr1522867ejc.6.1686904721006;
+        Fri, 16 Jun 2023 01:38:41 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id m25-20020a170906235900b00982aec29db1sm1684992eja.126.2023.06.16.01.38.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 01:38:40 -0700 (PDT)
+Message-ID: <29a9f4a4-b205-d341-bc34-10829af2996a@linaro.org>
+Date:   Fri, 16 Jun 2023 10:38:38 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v9 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
+Content-Language: en-US
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "richard@nod.at" <richard@nod.at>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+References: <20230615040447.3484564-1-chris.packham@alliedtelesis.co.nz>
+ <20230615040447.3484564-4-chris.packham@alliedtelesis.co.nz>
+ <f16e742f-e6f2-9761-e70d-e0e7cadcba4a@linaro.org>
+ <1863cd53-9846-def2-ee5f-f4a51160ed8d@alliedtelesis.co.nz>
+ <781c1db2-ecca-901a-4e11-7f7c68cf744d@linaro.org>
+ <20230616102414.222dde21@xps-13>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230616102414.222dde21@xps-13>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the binding to DT schema format.
-Since commit 514b044cba667 ("ASoC: tlv320aic32x4: Model PLL in CCF")
-clocks & clock-names = "mclk" is mandatory, it has been added to required
-properties as well. '#sound-dai-cells' is added for reference from
-simple-audio-card.
+On 16/06/2023 10:24, Miquel Raynal wrote:
+> Hi Krzysztof,
+> 
+> krzysztof.kozlowski@linaro.org wrote on Fri, 16 Jun 2023 10:15:31 +0200:
+> 
+>> On 15/06/2023 23:06, Chris Packham wrote:
+>>>>  
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    oneOf:
+>>>>> +      - items:
+>>>>> +          - const: marvell,armada-8k-nand-controller
+>>>>> +          - const: marvell,armada370-nand-controller
+>>>>> +      - enum:
+>>>>> +          - marvell,armada-8k-nand-controller  
+>>>> This is wrong. 8k cannot be both: compatible and not compatible with
+>>>> 370. It's not someone's cat to be in both states at the same time...  
+>>>
+>>> The correct state (IMHO, Miquel correct me if I'm wrong) is `compatible 
+>>> = "marvell,armada-8k-nand-controller";`  as there are some 8K specific 
+>>> requirements that aren't present on the 370 (specifically the 
+>>> system-controller and the 2nd clock).   
+>>
+>> Presence of specific requirements does not invalidate compatibility. Two
+>> devices are compatible if the 8k can bind and work with 370 compatible
+>> string, even if this means some lower performance or less features (e.g.
+>> subset of features).
+> 
+> Quoting myself from 2019 (comment in the driver):
+> "Some SoCs like A7k/A8k need to enable manually the NAND controller,
+> gated clocks and reset bits to avoid being bootloader dependent."
+> 
+> So can the 8k controller work using a 370 compatible : yes, if the
+> booloader enabled the NAND controller already, no otherwise. But in
+> practice it is the same controller.
+> 
+> Given this information I don't know whether it makes sense to qualify
+> the 8k controller compatible with the 370 compatible or not.
 
-Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
----
-Changes in v2:
-* Rebased onto for-next of [1]
-* Add vendor prefix 'ti' to file name
-* Simplify 'reg' property
-* Removed description from 'reset-gpios'
-* Added reference to dai-common.yaml
-* Fixed node name in example
+Indeed, a bit tricky decision. For me they could stay compatible,
+because apparently programming model is the same or similar.
 
-There is no in-tree user for aic32x4-gpio-func, so I just converted the
-bindings to YAML and skipped introducing a dt-binding header for
-defining the constants.
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git/log/
-
- .../bindings/sound/ti,tlv320aic32x4.yaml      | 101 ++++++++++++++++++
- .../bindings/sound/tlv320aic32x4.txt          |  42 --------
- 2 files changed, 101 insertions(+), 42 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/sound/ti,tlv320aic32x4.yaml
- delete mode 100644 Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-
-diff --git a/Documentation/devicetree/bindings/sound/ti,tlv320aic32x4.yaml b/Documentation/devicetree/bindings/sound/ti,tlv320aic32x4.yaml
-new file mode 100644
-index 0000000000000..a7cc9aa344684
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/ti,tlv320aic32x4.yaml
-@@ -0,0 +1,101 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2019 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/ti,tlv320aic32x4.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Texas Instruments TLV320AIC32x4 Stereo Audio codec
-+
-+maintainers:
-+  - Alexander Stein <alexander.stein@ew.tq-group.com>
-+
-+description: |
-+  The TLV320AIC32x4 audio codec can be accessed using I2C or SPI
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,tas2505
-+      - ti,tlv320aic32x4
-+      - ti,tlv320aic32x6
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Master clock
-+
-+  clock-names:
-+    items:
-+      - const: mclk
-+
-+  av-supply:
-+    description: Analog core power supply
-+
-+  dv-supply:
-+    description: Digital core power supply
-+
-+  iov-supply:
-+    description: Digital IO power supply
-+
-+  ldoin-supply:
-+    description: LDO power supply
-+
-+  reset-gpios:
-+    maxItems: 1
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+  aic32x4-gpio-func:
-+    description: |
-+       GPIO function configuration for pins MFP1-MFP5.
-+       Types are defined in include/sound/tlv320aic32x4.h
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 5
-+    maxItems: 5
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - iov-supply
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+  - if:
-+      not:
-+        required:
-+          - ldoin-supply
-+    then:
-+      required:
-+        - av-supply
-+        - dv-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      audio-codec@18 {
-+        compatible = "ti,tlv320aic32x4";
-+        reg = <0x18>;
-+        iov-supply = <&reg_3v3>;
-+        ldoin-supply = <&reg_3v3>;
-+        clocks = <&clks 201>;
-+        clock-names = "mclk";
-+        aic32x4-gpio-func= <
-+          0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
-+          0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
-+          0x04 /* MFP3 AIC32X4_MFP3_GPIO_ENABLED */
-+          0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
-+          0x08 /* MFP5 AIC32X4_MFP5_GPIO_INPUT */
-+        >;
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt b/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-deleted file mode 100644
-index 0b4e21bde5bc1..0000000000000
---- a/Documentation/devicetree/bindings/sound/tlv320aic32x4.txt
-+++ /dev/null
-@@ -1,42 +0,0 @@
--Texas Instruments - tlv320aic32x4 Codec module
--
--The tlv320aic32x4 serial control bus communicates through I2C protocols
--
--Required properties:
-- - compatible - "string" - One of:
--	"ti,tlv320aic32x4" TLV320AIC3204
--	"ti,tlv320aic32x6" TLV320AIC3206, TLV320AIC3256
--	"ti,tas2505" TAS2505, TAS2521
-- - reg: I2C slave address
-- - *-supply: Required supply regulators are:
--    "iov" - digital IO power supply
--    "ldoin" - LDO power supply
--    "dv" - Digital core power supply
--    "av" - Analog core power supply
--    If you supply ldoin, dv and av are optional. Otherwise they are required
--   See regulator/regulator.txt for more information about the detailed binding
--   format.
--
--Optional properties:
-- - reset-gpios: Reset-GPIO phandle with args as described in gpio/gpio.txt
-- - clocks/clock-names: Clock named 'mclk' for the master clock of the codec.
--   See clock/clock-bindings.txt for information about the detailed format.
-- - aic32x4-gpio-func - <array of 5 int>
--	- Types are defined in include/sound/tlv320aic32x4.h
--
--
--Example:
--
--codec: tlv320aic32x4@18 {
--	compatible = "ti,tlv320aic32x4";
--	reg = <0x18>;
--	clocks = <&clks 201>;
--	clock-names = "mclk";
--	aic32x4-gpio-func= <
--			0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
--			0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
--			0x04 /* MFP3 AIC32X4_MFP3_GPIO_ENABLED */
--			0xff /* AIC32X4_MFPX_DEFAULT_VALUE */
--			0x08 /* MFP5 AIC32X4_MFP5_GPIO_INPUT */
--		>;
--};
--- 
-2.34.1
+Best regards,
+Krzysztof
 
