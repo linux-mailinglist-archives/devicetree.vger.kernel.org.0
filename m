@@ -2,212 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC8D1733603
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5CCF73360C
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344178AbjFPQcl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 12:32:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53670 "EHLO
+        id S232085AbjFPQdQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 12:33:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54298 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343948AbjFPQcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:32:39 -0400
-Received: from mail-io1-xd2c.google.com (mail-io1-xd2c.google.com [IPv6:2607:f8b0:4864:20::d2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6EB630F1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:32:37 -0700 (PDT)
-Received: by mail-io1-xd2c.google.com with SMTP id ca18e2360f4ac-777b4716673so27477739f.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:32:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686933157; x=1689525157;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=27BucVbJGmBPMM/ePWYXHXpruzrUnk1K2qiauBa6U6w=;
-        b=p75neDQO9RFaCXBXb4VTCDLzw3oNuDrxwvEHbWCKcq58eoh4ThNA+jR72ziL8lCfLU
-         Cd4cj5yx7pPzPLnTXcjZ5UHKdemuPVJ9Cv0iC5vPLOE/Tn9+AO92pYaBcN+MA5bljSt5
-         fLwH/M0ME25RVpU0wo1xHuK1BUnDwx4pexSTiD2YHQ80OxPGMferUkJ5oh/LVFXFpn9G
-         ZUJly6SDFmzWhOKxyg8rFn/fOO+A9PPOowM7yJKK3AtdGczOHrMwM9lLWOoWf1M12WG5
-         cRbMteunWDnEDAj6ozVajdcvLHeuc+j6knMvoWenFurSIBvFOWzCTy7ZZt4Jox62FdKu
-         cvqw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686933157; x=1689525157;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=27BucVbJGmBPMM/ePWYXHXpruzrUnk1K2qiauBa6U6w=;
-        b=JTkPCqiGV+weBS37QVdUpdBt8vAMpe0QauVfky+YgOZchd6F95gsWe7yNPJLPKee4i
-         pAD3I28y+ahoQH6wgiMEpusvJrlt7YmY3iIs0YV7VljRS/UdK6CAAnWA7AivBy9O2apn
-         a/9X4tBfTjkTBttUicCI/eamp7CnVlvhsL61rjDbXzM8QGR1htTUgdgmmtI1D7w2BLFn
-         Z3Bw4KuFCvghB0UEkVuaJECl4Pt1lmm/BLTB3N9WOt2It4BHS7IJNoKYRIMaZ0FO8Tbq
-         oLZ7YSRfDR8rfpWCrH3hC0/H7y8Qll2GB9cv39F5jO88it6e9JjDT/DJnozX8An17R2i
-         qXjA==
-X-Gm-Message-State: AC+VfDzs7WfNo3L41OnHPgVWHDExNKJSAU+KRT6K/RJCGKdmDzKs5ml+
-        1Q6IX6g68BHsyWyquGW0z1FqbA==
-X-Google-Smtp-Source: ACHHUZ6aWtyXtIoCHeSQHdFbRI0tSWDXdS9E+1oIA6eNu3too5L8oHgF3ZAPjcrK8Qvw90nXmXiKJA==
-X-Received: by 2002:a05:6602:4184:b0:77a:e8c6:9f15 with SMTP id bx4-20020a056602418400b0077ae8c69f15mr6110998iob.4.1686933157034;
-        Fri, 16 Jun 2023 09:32:37 -0700 (PDT)
-Received: from [172.22.22.28] ([98.61.227.136])
-        by smtp.gmail.com with ESMTPSA id k19-20020a02a713000000b0041ab38c1a4esm6425620jam.60.2023.06.16.09.32.35
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 09:32:36 -0700 (PDT)
-Message-ID: <5b6a97cc-3604-7a37-b61d-018034dd37de@linaro.org>
-Date:   Fri, 16 Jun 2023 11:32:35 -0500
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v14 02/25] dt-bindings: Add binding for gunyah hypervisor
-Content-Language: en-US
-To:     Elliot Berman <quic_eberman@quicinc.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>,
+        with ESMTP id S231695AbjFPQdP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:33:15 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 762EA30EB
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:33:00 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1686933179;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=rNKYvNwhbFXZTMrZMR6PZ0ZSwbpD9eFmPanu+do8Pb4=;
+        b=B8qYY6MHX8qaYJcBep7+WOTOcB8z7ocWd6R2QHy1KSr9Igb2FyB5uaqGA92aWP2tZKw+V7
+        zhq+PYuciXlo6EsrWapcKIpJo9vhj3PT/XlXnTl9v+nkFttTlRVz8iFzXTgCBz55KjQtHm
+        Nd4C7/dBMzv+IfGMBbE9R4pVcJuKejmtSwzXEOrCAUQ24B/KH7cL3DEjT0YTwv5TcTtRg4
+        dd6BPogbEw/Wb3KGPCSNUsnymHHOOZkuwNGNxfwtANGMRStVQIszoAmVOGm37+CaA8v17Z
+        Ngqk7kxmxNP1vGhDKqfgK/v17zyPbJuMUnBfj09ar5jILGRfo83qwdP5WkwwwA==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id BDCA3C0005;
+        Fri, 16 Jun 2023 16:32:56 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org
+Cc:     Maxime Ripard <maxime@cerno.tech>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Murali Nalajala <quic_mnalajal@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Srivatsa Vaddagiri <quic_svaddagi@quicinc.com>,
-        Carl van Schaik <quic_cvanscha@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Will Deacon <will@kernel.org>, Andy Gross <agross@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-doc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Rob Herring <robh@kernel.org>
-References: <20230613172054.3959700-1-quic_eberman@quicinc.com>
- <20230613172054.3959700-3-quic_eberman@quicinc.com>
-From:   Alex Elder <elder@linaro.org>
-In-Reply-To: <20230613172054.3959700-3-quic_eberman@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH v2 0/6] drm/panel: sitronix-st7789v: Support ET028013DMA panel
+Date:   Fri, 16 Jun 2023 18:32:49 +0200
+Message-Id: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/13/23 12:20 PM, Elliot Berman wrote:
-> When Linux is booted as a guest under the Gunyah hypervisor, the Gunyah
-> Resource Manager applies a devicetree overlay describing the virtual
-> platform configuration of the guest VM, such as the message queue
-> capability IDs for communicating with the Resource Manager. This
-> information is not otherwise discoverable by a VM: the Gunyah hypervisor
-> core does not provide a direct interface to discover capability IDs nor
-> a way to communicate with RM without having already known the
-> corresponding message queue capability ID. Add the DT bindings that
-> Gunyah adheres for the hypervisor node and message queues.
+Hello,
 
-Isn't the resource-manager property required?  And there
-is exactly one of them?  (Maybe those constraints are
-represented here; I learn something every time I try to
-write a YAML binding...)
+The aim of this series is to add support for the EDT ET028013DMA
+panel. This panel features a Sitronix ST7789V2 LCD controller, which is
+already supported mainline (or very close to the ST7789V for which
+Maxime added support years ago).
 
-Anyway, this otherwise looks good to me.
+The EDT panel is slightly different on the geometry and appears not to
+support refresh rates higher than 30fps (above, glitches are visible,
+despite the incoming signals being rather clean). While I was working on
+this panel, I found quite inconvenient to not be able to read anything
+back as it is a great tool for debugging purposes. So the last patch
+actually adds a read helper and uses it to perform a sanity check at
+probe time by verifying the Sitronix controller IDs.
 
-Reviewed-by: Alex Elder <elder@linaro.org>
+This series applies on top of Sebastian's series which was also bringing
+a number of good improvements to this driver. As Sebastian started and
+contributed his work before me, I think his series is close to be merged
+so I adapted my changes on top of it.
 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Elliot Berman <quic_eberman@quicinc.com>
-> ---
->   .../bindings/firmware/gunyah-hypervisor.yaml  | 82 +++++++++++++++++++
->   1 file changed, 82 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
-> new file mode 100644
-> index 0000000000000..3fc0b043ac3cf
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/firmware/gunyah-hypervisor.yaml
-> @@ -0,0 +1,82 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/firmware/gunyah-hypervisor.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Gunyah Hypervisor
-> +
-> +maintainers:
-> +  - Prakruthi Deepak Heragu <quic_pheragu@quicinc.com>
-> +  - Elliot Berman <quic_eberman@quicinc.com>
-> +
-> +description: |+
-> +  Gunyah virtual machines use this information to determine the capability IDs
-> +  of the message queues used to communicate with the Gunyah Resource Manager.
-> +  See also: https://github.com/quic/gunyah-resource-manager/blob/develop/src/vm_creation/dto_construct.c
-> +
-> +properties:
-> +  compatible:
-> +    const: gunyah-hypervisor
-> +
-> +  "#address-cells":
-> +    description: Number of cells needed to represent 64-bit capability IDs.
-> +    const: 2
-> +
-> +  "#size-cells":
-> +    description: must be 0, because capability IDs are not memory address
-> +                  ranges and do not have a size.
-> +    const: 0
-> +
-> +patternProperties:
-> +  "^gunyah-resource-mgr(@.*)?":
-> +    type: object
-> +    description:
-> +      Resource Manager node which is required to communicate to Resource
-> +      Manager VM using Gunyah Message Queues.
-> +
-> +    properties:
-> +      compatible:
-> +        const: gunyah-resource-manager
-> +
-> +      reg:
-> +        items:
-> +          - description: Gunyah capability ID of the TX message queue
-> +          - description: Gunyah capability ID of the RX message queue
-> +
-> +      interrupts:
-> +        items:
-> +          - description: Interrupt for the TX message queue
-> +          - description: Interrupt for the RX message queue
-> +
-> +    additionalProperties: false
-> +
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - interrupts
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    hypervisor {
-> +        #address-cells = <2>;
-> +        #size-cells = <0>;
-> +        compatible = "gunyah-hypervisor";
-> +
-> +        gunyah-resource-mgr@0 {
-> +            compatible = "gunyah-resource-manager";
-> +            interrupts = <GIC_SPI 3 IRQ_TYPE_EDGE_RISING>, /* TX full IRQ */
-> +                         <GIC_SPI 4 IRQ_TYPE_EDGE_RISING>; /* RX empty IRQ */
-> +            reg = <0x00000000 0x00000000>, <0x00000000 0x00000001>;
-> +                  /* TX, RX cap ids */
-> +        };
-> +    };
+Link: https://lore.kernel.org/dri-devel/20230422205012.2464933-1-sre@kernel.org/
+
+Thanks,
+Miquèl
+
+Changes in v2:
+* Rebased on top of Sebastian's series and adapted all my changes to the
+  existing infrastructure he has already added.
+* Collected tags.
+* Prevented the ID check to fail if there is no MISO line.
+* Used dev_err_probe() when relevant.
+* Sorted the IDs in the tables.
+* Renamed the panel mode.
+* Fixed typos.
+
+Miquel Raynal (6):
+  dt-bindings: display: st7789v: Add the edt,et028013dma panel
+    compatible
+  dt-bindings: display: st7789v: bound the number of Rx data lines
+  drm/panel: sitronix-st7789v: Use 9 bits per spi word by default
+  drm/panel: sitronix-st7789v: Clarify a definition
+  drm/panel: sitronix-st7789v: Add EDT ET028013DMA panel support
+  drm/panel: sitronix-st7789v: Check display ID
+
+ .../display/panel/sitronix,st7789v.yaml       |   5 +
+ .../gpu/drm/panel/panel-sitronix-st7789v.c    | 116 +++++++++++++++++-
+ 2 files changed, 118 insertions(+), 3 deletions(-)
+
+-- 
+2.34.1
 
