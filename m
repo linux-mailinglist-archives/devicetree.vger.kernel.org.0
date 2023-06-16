@@ -2,79 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0744573298F
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:11:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99A557329A1
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:16:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244632AbjFPILJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 04:11:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53678 "EHLO
+        id S234426AbjFPIQA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 04:16:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234405AbjFPILH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:11:07 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADAD72962
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:11:03 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9828a7a39d1so52807466b.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:11:03 -0700 (PDT)
+        with ESMTP id S233557AbjFPIPy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:15:54 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6503B30EB
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:15:35 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51a2de3385fso557006a12.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 01:15:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686903062; x=1689495062;
+        d=linaro.org; s=google; t=1686903334; x=1689495334;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+nb5C/fzCmkNH4tFkgENtFMDkmGCOR2QUSuKVrANoM=;
-        b=a2Mlb03zrr9JJo0Q+0A43GCTfWHuVRjCiS/gF7JyjDz88V4vbA0ia7lc9aFr+zYAHP
-         mjZnYFtMIAX7sTsI8nHAhX3q4+3tc8qfOgLpnZ5uKhQN9Jkq1eEQioOZ1VTLmszIuQAC
-         5hyXUj7UplGMDJtzrRggEETAHM3bbWJ6ppB3SbWH13IHZxy9I71Sc3EWKKwH2eUxukg4
-         0Qe1Xp900MGM5mJ573ZkonCWD9YDBkcLMkkDq8ezH38qSJAHTrJtPNP78nKBiPYRyySw
-         vSxPwvarRlNopMoccbz9uYqn4ihPdbAiqcaMvIPPjlCa0d3eBD0qcyFU1QVrRPoGYrt9
-         a89w==
+        bh=9MReGSBx2uByIi2fo/tJwMA37xAAYbHkch5+QA0BSAc=;
+        b=w1+P6WxDkkOtvrHR+bpoYcNqd69PX0LLN5AS/xARvhLia9RhcR+sNpsl8jkJBNCzJ8
+         n8CdR55HJ5B/bv/43K1+gpAoSxG+4C+pNQLAxRmkikQvsinyqD2Y5LggdTiSgyhvuUKc
+         umWhq3YKvgzMfRG8ptLvPOn2AnRqx84s+6L3HOW2GXZDWhPjIQlUTvbizrXXgC6NYNAS
+         q5FGE5AqJQzMsOfnDu8N7nFdiXSbZg1/oR6bza1jW7I2W+Zji5LCGFYqlD3vxnRW8kEh
+         igB/6Xctzszxt675mjtm62JPafLCE/qtI9D3B32bR5BCDhhAVynMzE5snZh0RUDlsQpo
+         ACww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686903062; x=1689495062;
+        d=1e100.net; s=20221208; t=1686903334; x=1689495334;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Q+nb5C/fzCmkNH4tFkgENtFMDkmGCOR2QUSuKVrANoM=;
-        b=R1JP/BkUhnWUBe9ru/TdmVcg2rMNG04xo4pk2bYHx+fOVnx7ZLcj+hDg81wcyL3vyr
-         /Iy9Axjl/PuqTjVdUAB7EzK0LfRj03ZRLoV6zamsb0UAMZiU7Yht6V8jMGQ4Sjn1CCza
-         WESADg0WSU9nKPdlN22RWQxsWqsdp2thZnOILwpKgoIvFdnuZBdZaDeWfJBccvSd/0kZ
-         7LuKLdTyemAIsSrCTCo25I+iNVnEuIFmwvALs4incxBrcx44w7puZpBby8rk0F0ylAt1
-         2eDeP73fuftmblsOgts7EtmKxXZTBJJtKjQ6/qDPk18FOGS6CZJEzDW4QfSQMOYltfj0
-         k6lg==
-X-Gm-Message-State: AC+VfDyGjGjmdWwUAO5cpKvkWc+3U3W7Fyh9IbNWtpx1xIzx5YCfd2jP
-        h6c0xifFf0r0ee2suGDAHR/9Mg==
-X-Google-Smtp-Source: ACHHUZ6DK25zXtnnsSAW02R2ilsBGImwvgHJkzYxnvXxZVHh9u1UxrheNHyrTDscWNmMYQ0v4zqmVw==
-X-Received: by 2002:a17:907:928b:b0:973:cc48:f19c with SMTP id bw11-20020a170907928b00b00973cc48f19cmr1002834ejc.56.1686903062144;
-        Fri, 16 Jun 2023 01:11:02 -0700 (PDT)
+        bh=9MReGSBx2uByIi2fo/tJwMA37xAAYbHkch5+QA0BSAc=;
+        b=iqp2YemPIKzvlhWFuNuKMRhQwoxpxePLb6aVOGu0+HtorCL/weZ24tbEMdp5M3kevz
+         B/Gv7tQy2GV8yTr1mF3SJmC4pfrmHT1+/Mv8JzfNivFnmR+JpgP1GytogVnoRf5rM8v2
+         adkpNoDyfkqEsjRsZ/jrpHPi3SgduGCS/OKHmnb0mTgADB05oN5uJYQelqjG3mhXGupj
+         7DUGcp9S2dSxMrxZgfL1JCwMajxpjQByxwzXxJ0ChitDHdR9CpiXepfSIolsJghwjzDR
+         KMxBJ/RcXP+GnpBIBbmRv+516a/bR/oNIyS9hJS4kG8wV0ffZGEGDNuUythCelXrUAj7
+         1cGQ==
+X-Gm-Message-State: AC+VfDza9PRmw8vq1FN6QYFRcK2eB6AJMk7wYDuJgvN14wtMA2NmffrZ
+        +fM+0H5hY9079veWus1Px0V2dg==
+X-Google-Smtp-Source: ACHHUZ7K3IUgFGVoNdenbD2CwL3R5l4B/kpNp36xbvmraCQBKM4RYo6seANHgU1Ju9wQH1QYDQbeTw==
+X-Received: by 2002:a17:907:7245:b0:982:a454:6d24 with SMTP id ds5-20020a170907724500b00982a4546d24mr1224781ejc.74.1686903333855;
+        Fri, 16 Jun 2023 01:15:33 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id s24-20020a1709060c1800b00969f25b96basm10347260ejf.204.2023.06.16.01.11.00
+        by smtp.gmail.com with ESMTPSA id r4-20020a170906a20400b00982c0ac984asm1418708ejy.176.2023.06.16.01.15.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 01:11:01 -0700 (PDT)
-Message-ID: <de774e98-0ae1-28b4-c0e1-6dc79905498f@linaro.org>
-Date:   Fri, 16 Jun 2023 10:10:59 +0200
+        Fri, 16 Jun 2023 01:15:33 -0700 (PDT)
+Message-ID: <781c1db2-ecca-901a-4e11-7f7c68cf744d@linaro.org>
+Date:   Fri, 16 Jun 2023 10:15:31 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: qcom,bwmon: Document
- SC7180 BWMONs
+Subject: Re: [PATCH v9 3/3] dt-bindings: mtd: marvell-nand: Convert to YAML DT
+ scheme
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230616-topic-sc7180_bwmons-v1-0-4ddb96f9a6cd@linaro.org>
- <20230616-topic-sc7180_bwmons-v1-1-4ddb96f9a6cd@linaro.org>
+To:     Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
+        "richard@nod.at" <richard@nod.at>,
+        "vigneshr@ti.com" <vigneshr@ti.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "andrew@lunn.ch" <andrew@lunn.ch>,
+        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
+        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>
+Cc:     "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Vadym Kochan <vadym.kochan@plvision.eu>
+References: <20230615040447.3484564-1-chris.packham@alliedtelesis.co.nz>
+ <20230615040447.3484564-4-chris.packham@alliedtelesis.co.nz>
+ <f16e742f-e6f2-9761-e70d-e0e7cadcba4a@linaro.org>
+ <1863cd53-9846-def2-ee5f-f4a51160ed8d@alliedtelesis.co.nz>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230616-topic-sc7180_bwmons-v1-1-4ddb96f9a6cd@linaro.org>
+In-Reply-To: <1863cd53-9846-def2-ee5f-f4a51160ed8d@alliedtelesis.co.nz>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -85,14 +91,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 01:46, Konrad Dybcio wrote:
-> SC7180 - just like SC7280 - has a BWMONv4 for CPU-LLCC and a BWMONv5
-> for DDR-LLCC paths. Document them.
+On 15/06/2023 23:06, Chris Packham wrote:
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    oneOf:
+>>> +      - items:
+>>> +          - const: marvell,armada-8k-nand-controller
+>>> +          - const: marvell,armada370-nand-controller
+>>> +      - enum:
+>>> +          - marvell,armada-8k-nand-controller
+>> This is wrong. 8k cannot be both: compatible and not compatible with
+>> 370. It's not someone's cat to be in both states at the same time...
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
+> The correct state (IMHO, Miquel correct me if I'm wrong) is `compatible 
+> = "marvell,armada-8k-nand-controller";`  as there are some 8K specific 
+> requirements that aren't present on the 370 (specifically the 
+> system-controller and the 2nd clock). 
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Presence of specific requirements does not invalidate compatibility. Two
+devices are compatible if the 8k can bind and work with 370 compatible
+string, even if this means some lower performance or less features (e.g.
+subset of features).
+
+Now whether they are really compatible or not - I don't know. I expect
+the answer from you (as plural you).
+
+> The only reason `compatible = 
+> "marvell,armada-8k-nand-controller", 
+> "marvell,armada370-nand-controller";` is supported is because that is 
+> what is in use in the existing dtses.
+
+Fix the DTS, use here the correct combination and, if it is a deviation
+from old binding, mention this in commit msg.
 
 Best regards,
 Krzysztof
