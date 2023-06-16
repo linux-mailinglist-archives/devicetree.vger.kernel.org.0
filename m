@@ -2,94 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 28A8D733285
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:50:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1F107332BA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:00:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S244629AbjFPNuz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 09:50:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44738 "EHLO
+        id S244026AbjFPOAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 10:00:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjFPNuy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:50:54 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D277B30E0;
-        Fri, 16 Jun 2023 06:50:53 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-25e836b733eso536358a91.0;
-        Fri, 16 Jun 2023 06:50:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686923453; x=1689515453;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DZSMsfjHYkbv48QukJ7afwamMn5a+T7mg3WCsl3VYqo=;
-        b=pJEAs8F20r47QcdjnJY4KALVQvbGF86ucToy9Jp3IZXEn7edd5IdyV10zYoYBxW4RK
-         n303rc21hGLzLafU6pVBA5c6oCPF9vBPdVcA6b5IDGgH7g5xqqdmwnON0wtHRsoy8vlC
-         SlKw8XKBGX9Zh3eNhze9D0+Mcin+0iHqjyP8Ed4L298pa/TiY/NhSoNtmdBsrSKnvQ3S
-         mYyIrH7hzgxeEO0ICUZ12H4GP/Pho0D5S6BjzuPJBI7Yzw90avLkl5beM+hAlT7D2vB6
-         DQ1rpUASmrgucFfojxJ63xqGUZNWyNUnJ/9fhO6PuF2NAajFr6F46mIdiyg+C9FmE7Qq
-         VrCA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686923453; x=1689515453;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=DZSMsfjHYkbv48QukJ7afwamMn5a+T7mg3WCsl3VYqo=;
-        b=GLNwsLK3Q3GfO936PJpArFJ3BU9sPMFz2TxifmGIh2y5SvhhzkRy2oqEE6OkXDswB4
-         PADIkyzFxHkqI0E9hlJvWrvnp+S4qfsnBNycFgvImvjm5qgDe8e5Gci6bVOaEHlXiNur
-         FMI1Hvsb4zs4pa/TyFJ7cc8IA5wdyaK1GbsKquS1z6AO0yUfTlduhRyeagj1wrg3Cql9
-         ofaALOUFGlcHcaC2e985gNE5JkrsXzg4lZaW+zM0D1V1SAmCF4hGrnrJsYRpDmalF+PI
-         wD2ctxcosOwRWhKvzdH/AZd14eeMR4MBAZT00zqxCIJSpeqSPc+wiw3CZ1fL5ZqsvOxN
-         Mg4Q==
-X-Gm-Message-State: AC+VfDzerkoyFYUpJsAsBZF2L5uh3vE8TpfiliTLS29y2Dn/IyarWwht
-        aovpLuFAv/M72hoS7N8XC5h8dAUMtwcHR6/z/vg=
-X-Google-Smtp-Source: ACHHUZ5K5CXGV94bxSHgTvSnRBnDdUt2EDVt6IkdoIxbkSmxIlctam5o5kYMV7oHVLeLb78IbPkgIqT9eHVcxVZEC6U=
-X-Received: by 2002:a17:90a:1999:b0:25b:cccb:4b8f with SMTP id
- 25-20020a17090a199900b0025bcccb4b8fmr1473411pji.44.1686923453255; Fri, 16 Jun
- 2023 06:50:53 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230616062101.601837-1-s.hauer@pengutronix.de>
-In-Reply-To: <20230616062101.601837-1-s.hauer@pengutronix.de>
-From:   Vincent Legoll <vincent.legoll@gmail.com>
-Date:   Fri, 16 Jun 2023 13:50:42 +0000
-Message-ID: <CAEwRq=qze2NV5emMdohTPKK_UfSVMa2wmPNS2c2zzNqFVdmK+w@mail.gmail.com>
-Subject: Re: [PATCH v6 00/26] Add perf support to the rockchip-dfi driver
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S1343556AbjFPOAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:00:10 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D66562720;
+        Fri, 16 Jun 2023 07:00:08 -0700 (PDT)
+Received: from desky.lan (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 631149CA;
+        Fri, 16 Jun 2023 15:59:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1686923974;
+        bh=TYH6BSykl1V+B4KQ/yXIjolbxZaYebv3C2ZkUVO7gPE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=pgqSL/lDUG1dVcKSuf7ZxGbL/zVmm0KttbN7fV1aS2kX1LKxW0FqGyEL2bIb90k9v
+         VNm330ua9beTQZVKThNfRxzxXR9eLIiCpgQxRJSdPTLUskPysW302p42baBwpDG+aa
+         sxLC5SZZEClI9wD3lGXH0Gay3l04HpgGALi6GhAU=
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v14 00/18] i2c-atr and FPDLink
+Date:   Fri, 16 Jun 2023 16:59:04 +0300
+Message-Id: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Sascha,
+Hi,
 
-On Fri, Jun 16, 2023 at 6:22=E2=80=AFAM Sascha Hauer <s.hauer@pengutronix.d=
-e> wrote:
-> - Add more reviewed-by tags
+v13 can be found from:
 
-Can you explain how the Tested-Bys are handled, I don't see any patch
-with those tags, not Sebastians, nor mine. Is the testing useful ? Should I
-retest the new patchset ?
+https://lore.kernel.org/all/20230426115114.156696-1-tomi.valkeinen@ideasonboard.com/
 
-Regards
+In this version I opted to keep the main patches unchanged and make the
+new changes as additional patches. The reason is that the main patches
+have been reviewed and have been out there for quite a while, and the
+fixes & improvements are much clearer this way.
 
---=20
-Vincent Legoll
+ Tomi
+
+Luca Ceresoli (1):
+  i2c: add I2C Address Translator (ATR) support
+
+Tomi Valkeinen (17):
+  dt-bindings: i2c: Add I2C Address Translator (ATR)
+  dt-bindings: media: add TI DS90UB913 FPD-Link III Serializer
+  dt-bindings: media: add TI DS90UB953 FPD-Link III Serializer
+  dt-bindings: media: add TI DS90UB960 FPD-Link III Deserializer
+  media: i2c: add DS90UB960 driver
+  media: i2c: add DS90UB913 driver
+  media: i2c: add DS90UB953 driver
+  media: i2c: ds90ub960: Fix use of UB960_SR_FWD_CTL1
+  media: i2c: ds90ub9xx: Add COMMON_CLK kconfig dependency
+  media: i2c: ds90ub9xx: Select GPIOLIB rather than OF_GPIO
+  media: i2c: ds90ub960: Configure CSI-2 continuous clock
+  media: i2c: ds90ub953: Use v4l2_fwnode_endpoint_parse()
+  media: i2c: ds90ub913: Use v4l2_fwnode_endpoint_parse()
+  media: i2c: ds90ub953: Handle V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK
+  media: i2c: ds90ub960: Allow FPD-Link async mode
+  media: i2c: ds90ub953: Restructure clkout management
+  media: i2c: ds90ub953: Support non-sync mode
+
+ .../devicetree/bindings/i2c/i2c-atr.yaml      |   34 +
+ .../bindings/media/i2c/ti,ds90ub913.yaml      |  133 +
+ .../bindings/media/i2c/ti,ds90ub953.yaml      |  134 +
+ .../bindings/media/i2c/ti,ds90ub960.yaml      |  427 ++
+ Documentation/i2c/i2c-address-translators.rst |   96 +
+ Documentation/i2c/index.rst                   |    1 +
+ MAINTAINERS                                   |   16 +
+ drivers/i2c/Kconfig                           |    9 +
+ drivers/i2c/Makefile                          |    1 +
+ drivers/i2c/i2c-atr.c                         |  710 +++
+ drivers/media/i2c/Kconfig                     |   47 +
+ drivers/media/i2c/Makefile                    |    3 +
+ drivers/media/i2c/ds90ub913.c                 |  914 ++++
+ drivers/media/i2c/ds90ub953.c                 | 1434 ++++++
+ drivers/media/i2c/ds90ub960.c                 | 4058 +++++++++++++++++
+ include/linux/i2c-atr.h                       |  116 +
+ include/media/i2c/ds90ub9xx.h                 |   22 +
+ 17 files changed, 8155 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-atr.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub913.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+ create mode 100644 Documentation/i2c/i2c-address-translators.rst
+ create mode 100644 drivers/i2c/i2c-atr.c
+ create mode 100644 drivers/media/i2c/ds90ub913.c
+ create mode 100644 drivers/media/i2c/ds90ub953.c
+ create mode 100644 drivers/media/i2c/ds90ub960.c
+ create mode 100644 include/linux/i2c-atr.h
+ create mode 100644 include/media/i2c/ds90ub9xx.h
+
+-- 
+2.34.1
+
