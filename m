@@ -2,81 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EBC67333E7
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:47:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60BCC7333FE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 16:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345717AbjFPOrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 10:47:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51020 "EHLO
+        id S229708AbjFPOyY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 10:54:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345709AbjFPOrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:47:20 -0400
-Received: from mga14.intel.com (mga14.intel.com [192.55.52.115])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F49030EB;
-        Fri, 16 Jun 2023 07:47:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1686926839; x=1718462839;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=3pdNeP0i/PgyncqKPW3Fgnkmv3W9fkTO/Cx83udpRkk=;
-  b=fODlW8eAKDpDp9XRDtWANG3eSmWyDsu678TnTGW+FSSzeGe8HTpdRmjf
-   za+fM8Sjzwc7UDJJn55Y2Fme4xNXuqIW934EgZyNP2nSt6vP8A4FjNxcW
-   uXK2iRngdXdE20umn6b8p3Gus29MBdlCJtilrSXClSTkl2xicTe2ySNc8
-   wXeZJPAcoY054zota+wjX+gw+9/j8KqkXuTBSlE7VItMOz0XziHrfdGKt
-   pm+HTj0CYmimKKUZ+vFYe8GyoKPOJLXDp4o/1WY+LI7HXGHNNDsdcJxmg
-   nG1xmYXvWtkFduH69TY/qPEmJDt8vRR8CvB/VuYTgSZXG+HAbXl9Pq38y
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="359237419"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; 
-   d="scan'208";a="359237419"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 16 Jun 2023 07:47:18 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10742"; a="663210345"
-X-IronPort-AV: E=Sophos;i="6.00,247,1681196400"; 
-   d="scan'208";a="663210345"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by orsmga003.jf.intel.com with ESMTP; 16 Jun 2023 07:47:12 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1qAAjG-004J3L-0o;
-        Fri, 16 Jun 2023 17:47:10 +0300
-Date:   Fri, 16 Jun 2023 17:47:09 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229706AbjFPOyX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 10:54:23 -0400
+Received: from mo4-p02-ob.smtp.rzone.de (mo4-p02-ob.smtp.rzone.de [85.215.255.83])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F45630C5;
+        Fri, 16 Jun 2023 07:54:19 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1686927250; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=KGkoAUAKeMtiRBHVomx2iWOqlEDsXi0cSjrFNf+LsOCs1wXYKi/BYdHwuyDBjmwcTc
+    rj3cruwD7eEp22/9acWr0IRg8X83RcwmgDD29sfEaKhuKhOsdNI6HStAmLQS9p5JEOms
+    tA085JRZcrlj1lI/q7HT1cueuC6LOjD+y0IP7yLoRnjRNjCmcmjdgjdhODrmN9cGo/U8
+    4GkTHD4NqcdISWLoZgdGghrx57UwSdRkSni4FGrnwV2KjLnh/+1O5rDiJKTpJof/2qHJ
+    HuZhbN9O0H67iCUEatgZodYQt83yp4wHen92lvfKRv7yCq5m8wwHMUGs5SLzyShS3Lsa
+    8QUg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1686927250;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=CovIgCHeF0fMuwJihtOV1zblRbWNaXqCptxNFr1SbO8=;
+    b=MvxaxHqptbHO5z4fRe/eq1Oavixy9RumPWI1w16fgP698bw0xVFY9LsmgWbAydRHUB
+    XW4PeLE6uFa73/RTxQQwkb10T5ZZ4SrYnbwFuM8f0yFGnLksfF9S2bjX/X0Oj/hTWM00
+    3dcFg4VqtJJLwpIggI73vf2qLsVyN7arg7919EqXWoBbDx5JiVrZJfFS3qbmFyQi9w5X
+    VZew28S/AXrSM7GEUr9I0bMviXLzRC/4YEZl88JsIMe1niVOqulz2jg+jG2IpWE63nAJ
+    pkOzpJXhqL4dWMlB0dMM1wudiRis2XfE41vSoGhlw23Sx64Dzt0BHNcDSGROC9XruWJ9
+    0l7A==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo02
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1686927250;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=CovIgCHeF0fMuwJihtOV1zblRbWNaXqCptxNFr1SbO8=;
+    b=NzPhoOj1mlA1aThMZ4IIPGuanB+Yj3cmkW+pgpE6O4BeuiUSj0kvAm9EaRn9oVsN0Q
+    5KYTxKhCr0JSe8s7wNaAcLiHO5QCsyjosFjtjv/LIvy1HeQY1peGcryKfdOuze1hgE58
+    nsRIcwvTVEiXhSjpbHBQhevVblgIMhj18t9Pbgas6QXUlcgPGyq8zb1yDlO6q/FyNoQZ
+    +6MfQiFBIl6sZ7TWxKfiRJo5tDIDxUwZxUlUWHQ6zknA7qUqZ+xUdQp+XDPGDF8l5B73
+    OmEj0f0QnDGgB7E7TeqPP41jBTNiAyCpXDoycOQ2Ln1SMG3UQS+3WI3jL4guWGf+yLpc
+    6QjQ==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1686927250;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=CovIgCHeF0fMuwJihtOV1zblRbWNaXqCptxNFr1SbO8=;
+    b=Zkx1xt2T3doGB6GlxCwLHaKDZDGpC4Kb/WZ2WhNNIKNVhO48qpnoho811c1c2ExC6M
+    k9QJvX5el2RmT6PXGRCA==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u261EJF5OxJD4peA8pqP1A=="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.6.0 DYNA|AUTH)
+    with ESMTPSA id D0d0a8z5GEs971L
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Fri, 16 Jun 2023 16:54:09 +0200 (CEST)
+Date:   Fri, 16 Jun 2023 16:54:03 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Douglas Anderson <dianders@chromium.org>, andersson@kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        konrad.dybcio@somainline.org, sumit.semwal@linaro.org,
+        Will Deacon <will@kernel.org>, amit.pundir@linaro.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Andy Gross <agross@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        Krzysztof =?utf-8?Q?Ha=C5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>
-Subject: Re: [PATCH v14 18/18] media: i2c: ds90ub953: Support non-sync mode
-Message-ID: <ZIx17WC7plfDPpmc@smile.fi.intel.com>
-References: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
- <20230616135922.442979-19-tomi.valkeinen@ideasonboard.com>
+        Rob Clark <robdclark@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Nikita Travkin <nikita@trvn.ru>
+Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Mark SCM as dma-coherent for
+ trogdor
+Message-ID: <ZIx3i3qmv-aM-RdB@gerhold.net>
+References: <20230615145253.1.Ic62daa649b47b656b313551d646c4de9a7da4bd4@changeid>
+ <ZIwKzozbXxhQHxma@gerhold.net>
+ <a5605da0-5b6a-cfeb-f095-bbf963551c08@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230616135922.442979-19-tomi.valkeinen@ideasonboard.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+In-Reply-To: <a5605da0-5b6a-cfeb-f095-bbf963551c08@linaro.org>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,35 +100,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 04:59:22PM +0300, Tomi Valkeinen wrote:
-> Add support for FPD-Link non-sync mode with external clock. The only
-> thing that needs to be added is the calculation for the clkout.
+On Fri, Jun 16, 2023 at 01:20:09PM +0200, Konrad Dybcio wrote:
+> On 16.06.2023 09:10, Stephan Gerhold wrote:
+> > On Thu, Jun 15, 2023 at 02:52:54PM -0700, Douglas Anderson wrote:
+> >> Trogdor devices use firmware backed by TF-A instead of Qualcomm's
+> >> normal TZ. On TF-A we end up mapping memory as cachable. Specifically,
+> >> you can see in Trogdor's TF-A code [1] in qti_sip_mem_assign() that we
+> >> call qti_mmap_add_dynamic_region() with MT_RO_DATA. This translates
+> >> down to MT_MEMORY instead of MT_NON_CACHEABLE or MT_DEVICE.
+> >>
+> >> **Apparently Qualcomm's normal TZ implementation maps the memory as
+> >> non-cachable.**
+> > 
+> > Are you sure about this? From the discussion in the chat the conclusion
+> > was that we can check easily for TF-A, but we have absolutely no idea
+> > what Qualcomm's firmware implementation does. It might be "broken" the
+> > same way and we just have not noticed it yet.
+> Nikita (+CC) was able to boot Venus (which uses that memory reservation
+> call, I believe) on next-20230615 with a WP firmware, so it should be okay..
 
-...
+Unfortunately we cannot draw any conclusions from a working case. Doug
+mentioned this happens only with CONFIG_INIT_ON_ALLOC_DEFAULT_ON=y [1].
+But even with that in theory there could be side effects that invalidate
+or evict the cache line, making it look like it's described correctly
+but it will just explode at some later point.
 
-> +	switch (priv->mode) {
-> +	case UB953_MODE_SYNC:
-> +		if (priv->hw_data->is_ub971)
-> +			return priv->plat_data->bc_rate * 160ull;
-> +		else
-> +			return priv->plat_data->bc_rate / 2 * 160ull;
+It's more reliable to draw conclusions from a failing case: I asked
+Nikita to test with "dma-coherent" added to SCM on the WoA firmware.
+This fails with similar errors Doug had without the property ("Assign
+memory protection call failed -22"). Clearly the firmware did not read
+the proper values were just written into the cache. So it's indeed
+reasonable to assume that Qcom's implementation maps the memory as
+non-cacheable.
 
-Redundant 'else'.
+Feel free to disregard my original comment then and keep the sentence. :)
 
-Do I understand correctly you don't want to fallthrough because it will give
-±160 in the rate (depending if it's even or odd)?
+Thanks,
+Stephan
 
-> +	case UB953_MODE_NONSYNC_EXT:
-> +		/* CLKIN_DIV = 1 always */
-> +		return clk_get_rate(priv->clkin) * 80ull;
-> +
-> +	default:
->  		/* Not supported */
->  		return 0;
->  	}
-
--- 
-With Best Regards,
-Andy Shevchenko
-
-
+[1]: https://lore.kernel.org/linux-arm-msm/20230614165904.1.I279773c37e2c1ed8fbb622ca6d1397aea0023526@changeid/
