@@ -2,259 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9410873345D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 17:10:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC6A733473
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 17:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346105AbjFPPKX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 11:10:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34500 "EHLO
+        id S1345844AbjFPPNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 11:13:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345881AbjFPPJi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 11:09:38 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65C794218;
-        Fri, 16 Jun 2023 08:09:20 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35GF94d9005293;
-        Fri, 16 Jun 2023 10:09:04 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1686928144;
-        bh=fSIOR21GyNGwrlLsCC1Pmti5aHVr60HCZep3gwVHG0w=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=kswZs73Y5WXfmVfFsN7TsgeTG1JnpsncXB1QO7rvGPlwCsFHiuK8XUmSfo45Qg4no
-         A3DDprAeli7I3knGW0qPA7WYpHdhLgq3UKTf6OgQ7HZc6ft29hSsR2eLCgP41m2vZG
-         2qOq3CGhe6SGKslnrUM2a4pki7rS7NwLqp7QVmg4=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35GF94Fv005781
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 16 Jun 2023 10:09:04 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Fri, 16
- Jun 2023 10:09:04 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Fri, 16 Jun 2023 10:09:04 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35GF93hP091387;
-        Fri, 16 Jun 2023 10:09:03 -0500
-From:   Aradhya Bhatia <a-bhatia1@ti.com>
-To:     Tomi Valkeinen <tomba@kernel.org>, Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S1345881AbjFPPNa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 11:13:30 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0BD33581;
+        Fri, 16 Jun 2023 08:13:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; q=dns/txt; s=axis-central1; t=1686928409;
+  x=1718464409;
+  h=references:from:to:cc:subject:in-reply-to:date:
+   message-id:mime-version;
+  bh=BuJWD6MDEmgPeXDb5794LN9Pv82aJsMiwAk15GVPLck=;
+  b=fEeHnF6roftz+0JFxpjLDFMyAFMGISh+UdGR+xlsPVsOgT/Zuq9ZKSGu
+   4aKP+FGQCXcN03q1ohT7hx0LbitjAxhvBpqgGd3UpjFc/T/hhRYcjjFpa
+   +GCcK25eyrVAvBk7H4O1VKZC0vNRifARtCPqj4lFgHXeIgBBESZrJtv4h
+   7Rq/A96xkW71HUFR9c66Cr445384BH+q8LcZ8uqkfVWw+2OIItL11qEHI
+   TT7/mCWXmVJg3tLvgAwPHULVLFjkLLsyAKJUZkKa2heJZtEb3z9zOgQ46
+   0P1BYLMDFb5H3apdSVoA4ZBIHE2xbNumrkkRWUkyc0c3EDRbbUqpJHtGb
+   g==;
+References: <cover.1686926857.git.waqarh@axis.com>
+User-agent: a.out
+From:   Waqar Hameed <waqar.hameed@axis.com>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-CC:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>,
-        Aradhya Bhatia <a-bhatia1@ti.com>
-Subject: [PATCH v9 2/2] drm/tidss: Add support for AM625 DSS
-Date:   Fri, 16 Jun 2023 20:39:00 +0530
-Message-ID: <20230616150900.6617-3-a-bhatia1@ti.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230616150900.6617-1-a-bhatia1@ti.com>
-References: <20230616150900.6617-1-a-bhatia1@ti.com>
+CC:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@axis.com>
+Subject: [PATCH 1/2] dt-bindings: iio: proximity: Add bindings for Murata
+ IRS-D200
+In-Reply-To: <cover.1686926857.git.waqarh@axis.com>
+Date:   Fri, 16 Jun 2023 17:10:42 +0200
+Message-ID: <9487391b0565434761055b39ba04900bd839580a.1686926857.git.waqarh@axis.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Originating-IP: [10.0.5.60]
+X-ClientProxiedBy: se-mail01w.axis.com (10.20.40.7) To se-mail01w.axis.com
+ (10.20.40.7)
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the DSS controller on TI's AM625 SoC in the tidss
-driver.
+Murata IRS-D200 is a PIR sensor for human detection. It uses the I2C bus
+for communication with interrupt support. Add devicetree bindings
+requiring the compatible string, I2C slave address (reg) and interrupts.
 
-The AM625 DSS supports 2 video planes connecting to 2 video ports.
-The first plane is a full plane supporting all the features, while the
-2nd plane is a "lite" plane without scaling support.
-
-The first video port in AM625 DSS internally provides DPI output to 2
-OLDI transmitters. Each OLDI TX outputs 4 differential lanes of video
-output and 1 of clock output.
-
-This patch does not automatically enable the OLDI features of AM625 yet.
-That support for OLDI will be added subsequently.
-
-The second video port outputs DPI data directly out of the SoC. It has
-24 data lines and can support a maximum of RGB888 output bus format.
-
-Signed-off-by: Aradhya Bhatia <a-bhatia1@ti.com>
-Reviewed-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
 ---
+ .../iio/proximity/murata,irsd200.yaml         | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml
 
-Notes:
-
-  Changes from v8:
-  * Update commit message.
-  * Add Tomi Valkeinen's R-b tag.
-
-  Changes from v7:
-  * Drop all changes made after v3.
-    - Drop output bus type support. All outputs from DSS will be the
-      video port outptus.
-  * Make the first video port type as INTERNAL from OLDI.
-
- drivers/gpu/drm/tidss/tidss_dispc.c | 57 ++++++++++++++++++++++++++++-
- drivers/gpu/drm/tidss/tidss_dispc.h |  2 +
- drivers/gpu/drm/tidss/tidss_drv.c   |  1 +
- 3 files changed, 59 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/tidss/tidss_dispc.c b/drivers/gpu/drm/tidss/tidss_dispc.c
-index dca077411f77..484da1aa27bb 100644
---- a/drivers/gpu/drm/tidss/tidss_dispc.c
-+++ b/drivers/gpu/drm/tidss/tidss_dispc.c
-@@ -275,6 +275,55 @@ const struct dispc_features dispc_j721e_feats = {
- 	.vid_order = { 1, 3, 0, 2 },
- };
- 
-+const struct dispc_features dispc_am625_feats = {
-+	.max_pclk_khz = {
-+		[DISPC_VP_DPI] = 165000,
-+		[DISPC_VP_INTERNAL] = 170000,
-+	},
+diff --git a/Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml b/Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml
+new file mode 100644
+index 000000000000..d317fbe7bd50
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/proximity/murata,irsd200.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	.scaling = {
-+		.in_width_max_5tap_rgb = 1280,
-+		.in_width_max_3tap_rgb = 2560,
-+		.in_width_max_5tap_yuv = 2560,
-+		.in_width_max_3tap_yuv = 4096,
-+		.upscale_limit = 16,
-+		.downscale_limit_5tap = 4,
-+		.downscale_limit_3tap = 2,
-+		/*
-+		 * The max supported pixel inc value is 255. The value
-+		 * of pixel inc is calculated like this: 1+(xinc-1)*bpp.
-+		 * The maximum bpp of all formats supported by the HW
-+		 * is 8. So the maximum supported xinc value is 32,
-+		 * because 1+(32-1)*8 < 255 < 1+(33-1)*4.
-+		 */
-+		.xinc_max = 32,
-+	},
++title: Murata IRS-D200 PIR sensor
 +
-+	.subrev = DISPC_AM625,
++maintainers:
++  - Waqar Hameed <waqar.hameed@axis.com>
 +
-+	.common = "common",
-+	.common_regs = tidss_am65x_common_regs,
++description: |
++  PIR sensor for human detection.
 +
-+	.num_vps = 2,
-+	.vp_name = { "vp1", "vp2" },
-+	.ovr_name = { "ovr1", "ovr2" },
-+	.vpclk_name =  { "vp1", "vp2" },
-+	.vp_bus_type = { DISPC_VP_INTERNAL, DISPC_VP_DPI },
++properties:
++  compatible:
++    const: murata,irsd200
 +
-+	.vp_feat = { .color = {
-+			.has_ctm = true,
-+			.gamma_size = 256,
-+			.gamma_type = TIDSS_GAMMA_8BIT,
-+		},
-+	},
++  reg:
++    items:
++      - enum:
++          - 0x48
++          - 0x49
++        description: |
++          When the AD pin is connected to GND, the slave address is 0x48.
++          When the AD pin is connected to VDD, the slave address is 0x49.
 +
-+	.num_planes = 2,
-+	/* note: vid is plane_id 0 and vidl1 is plane_id 1 */
-+	.vid_name = { "vid", "vidl1" },
-+	.vid_lite = { false, true, },
-+	.vid_order = { 1, 0 },
-+};
++  interrupts:
++    maxItems: 1
++    description:
++      Type should be IRQ_TYPE_EDGE_RISING.
 +
- static const u16 *dispc_common_regmap;
- 
- struct dss_vp_data {
-@@ -776,6 +825,7 @@ dispc_irq_t dispc_read_and_clear_irqstatus(struct dispc_device *dispc)
- 	switch (dispc->feat->subrev) {
- 	case DISPC_K2G:
- 		return dispc_k2g_read_and_clear_irqstatus(dispc);
-+	case DISPC_AM625:
- 	case DISPC_AM65X:
- 	case DISPC_J721E:
- 		return dispc_k3_read_and_clear_irqstatus(dispc);
-@@ -791,6 +841,7 @@ void dispc_set_irqenable(struct dispc_device *dispc, dispc_irq_t mask)
- 	case DISPC_K2G:
- 		dispc_k2g_set_irqenable(dispc, mask);
- 		break;
-+	case DISPC_AM625:
- 	case DISPC_AM65X:
- 	case DISPC_J721E:
- 		dispc_k3_set_irqenable(dispc, mask);
-@@ -1281,6 +1332,7 @@ void dispc_ovr_set_plane(struct dispc_device *dispc, u32 hw_plane,
- 		dispc_k2g_ovr_set_plane(dispc, hw_plane, hw_videoport,
- 					x, y, layer);
- 		break;
-+	case DISPC_AM625:
- 	case DISPC_AM65X:
- 		dispc_am65x_ovr_set_plane(dispc, hw_plane, hw_videoport,
- 					  x, y, layer);
-@@ -2199,6 +2251,7 @@ static void dispc_plane_init(struct dispc_device *dispc)
- 	case DISPC_K2G:
- 		dispc_k2g_plane_init(dispc);
- 		break;
-+	case DISPC_AM625:
- 	case DISPC_AM65X:
- 	case DISPC_J721E:
- 		dispc_k3_plane_init(dispc);
-@@ -2305,6 +2358,7 @@ static void dispc_vp_write_gamma_table(struct dispc_device *dispc,
- 	case DISPC_K2G:
- 		dispc_k2g_vp_write_gamma_table(dispc, hw_videoport);
- 		break;
-+	case DISPC_AM625:
- 	case DISPC_AM65X:
- 		dispc_am65x_vp_write_gamma_table(dispc, hw_videoport);
- 		break;
-@@ -2579,7 +2633,8 @@ int dispc_runtime_resume(struct dispc_device *dispc)
- 		REG_GET(dispc, DSS_SYSSTATUS, 2, 2),
- 		REG_GET(dispc, DSS_SYSSTATUS, 3, 3));
- 
--	if (dispc->feat->subrev == DISPC_AM65X)
-+	if (dispc->feat->subrev == DISPC_AM625 ||
-+	    dispc->feat->subrev == DISPC_AM65X)
- 		dev_dbg(dispc->dev, "OLDI RESETDONE %d,%d,%d\n",
- 			REG_GET(dispc, DSS_SYSSTATUS, 5, 5),
- 			REG_GET(dispc, DSS_SYSSTATUS, 6, 6),
-diff --git a/drivers/gpu/drm/tidss/tidss_dispc.h b/drivers/gpu/drm/tidss/tidss_dispc.h
-index 946ed769caaf..33ac5ad7a423 100644
---- a/drivers/gpu/drm/tidss/tidss_dispc.h
-+++ b/drivers/gpu/drm/tidss/tidss_dispc.h
-@@ -59,6 +59,7 @@ enum dispc_vp_bus_type {
- 
- enum dispc_dss_subrevision {
- 	DISPC_K2G,
-+	DISPC_AM625,
- 	DISPC_AM65X,
- 	DISPC_J721E,
- };
-@@ -86,6 +87,7 @@ struct dispc_features {
- };
- 
- extern const struct dispc_features dispc_k2g_feats;
-+extern const struct dispc_features dispc_am625_feats;
- extern const struct dispc_features dispc_am65x_feats;
- extern const struct dispc_features dispc_j721e_feats;
- 
-diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
-index 3f5f27fb6ebc..0a6f19314662 100644
---- a/drivers/gpu/drm/tidss/tidss_drv.c
-+++ b/drivers/gpu/drm/tidss/tidss_drv.c
-@@ -232,6 +232,7 @@ static void tidss_shutdown(struct platform_device *pdev)
- 
- static const struct of_device_id tidss_of_table[] = {
- 	{ .compatible = "ti,k2g-dss", .data = &dispc_k2g_feats, },
-+	{ .compatible = "ti,am625-dss", .data = &dispc_am625_feats, },
- 	{ .compatible = "ti,am65x-dss", .data = &dispc_am65x_feats, },
- 	{ .compatible = "ti,j721e-dss", .data = &dispc_j721e_feats, },
- 	{ }
++required:
++  - compatible
++  - reg
++  - interrupts
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        pir@48 {
++            compatible = "murata,irsd200";
++            reg = <0x48>;
++            interrupts = <24 IRQ_TYPE_EDGE_RISING>;
++        };
++    };
++...
 -- 
-2.40.1
+2.30.2
 
