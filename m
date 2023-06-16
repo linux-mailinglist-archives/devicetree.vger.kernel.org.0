@@ -2,137 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F60732C5C
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9E93732C6D
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbjFPJnT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:43:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55510 "EHLO
+        id S231140AbjFPJrf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:47:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S243969AbjFPJmx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:42:53 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 243063C22
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:42:29 -0700 (PDT)
+        with ESMTP id S234267AbjFPJrK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:47:10 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E721B5
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:47:09 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51a4088c4ebso84463a12.1
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:47:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1686908550; x=1718444550;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=cvM4BtjtOdVPVTJtyyb1q6nRBRkQTnYs3z8tLWGfmTY=;
-  b=cwpRb02cnBSJd+4IRWSBMBKCKNj7QJW4Wy1k7KUGyVKq3WOWXpTCTHOg
-   8JDQWJHbdPyCPKHwfLpNec/iFLA5AyZD9NOciQqfpN8vzMJMTldpNV7gq
-   Gf0JOf3dFbW+r26m9z/clJ8DlDBeBwHujAF8Qs9PCT1/LUMUQLo+O2v16
-   QGak7wSXg6SmECAOM8uMhs/rdNPq9x8BrQt5UoXUqywC+A2CLWR5wpnEz
-   4c1VcKoAK78A96Y+F2FzM1i+/29i7uaebILlYiRlutshpiiivgwWIzQ6/
-   y06stZzOUyrwwPNCKIYBxagnXLEx6OVl6i4QyWXNa2z4UaebtmiOwRqrW
-   A==;
-X-IronPort-AV: E=Sophos;i="6.00,247,1681164000"; 
-   d="scan'208";a="31462784"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 16 Jun 2023 11:42:17 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id B0E28280082;
-        Fri, 16 Jun 2023 11:42:17 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Markus Niebel <Markus.Niebel@ew.tq-group.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] ARM: dts: imx6qdl-mba6: Add missing supply regulator for lm75 and at24
-Date:   Fri, 16 Jun 2023 11:42:19 +0200
-Message-ID: <3268282.VLH7GnMWUR@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <20230503113112.1751886-3-alexander.stein@ew.tq-group.com>
-References: <20230503113112.1751886-1-alexander.stein@ew.tq-group.com> <20230503113112.1751886-3-alexander.stein@ew.tq-group.com>
+        d=linaro.org; s=google; t=1686908828; x=1689500828;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ifjs8IzGG51I99S8/uEN1zbxdqPw85c/zfKSzuZxu0c=;
+        b=mYaq4eLXeDX588B7PnPusUgbtP0xodNgXFt+zvt5ErujCNWuo+tV82S7btWcFw5UYC
+         aqFGAHxYfrMkqPkz65ye/9gbM7Dohn8bRwQQ8ZN01WfzV50qZhcHw6mf4KNDYGLyVyMi
+         bBzpzHvSKdzd3KhjotsSHS4ixZ9CXRetMEPg+DJEJXxQto2tfYMkBRfRinEJMoNKTHJg
+         Rr1MeJc35gXBisfwfx+279X34JJthSycH37/+HRN/NgefHIe4g+96ZIXMP/mTzzBoTy1
+         JsAoEwQtVLofvAecwmWIaFiuExvgi4xAvpuA89ni+6IuywlH8LF9WQmjgxcAOoma5kFb
+         WUdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686908828; x=1689500828;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ifjs8IzGG51I99S8/uEN1zbxdqPw85c/zfKSzuZxu0c=;
+        b=Dz878Jm3Z/iSC7h1ZXOQL+LAPEBnMqalD3c0Jlrsx8LJh2AUVw2AikRrWtnjwLC2Lu
+         86RAIVANHFm97kAMqfrZmhHnOVjXS/M+TZ3htY8RYsKBJ/0jZMczc/WNp3x2Gv5F4V1o
+         B0L+D99IbemPTwikTRDDghsB/rDTO2bN5Pb9P77woWw+nabCdYIP+s17l9UOrQ5LVC//
+         ltouay/Wu8WgDpQkS4Qd6UuvIBYbt7aGLWtXGdMPHXV++Me5R8QHkH/6rsO4y6hAz5iV
+         t5NDTTsmg7HrsTII/+/xMJgP+YqUnul5pLSostpuA6Cp8kQKWJBGv02t7OqzUXlIr0I/
+         8nMw==
+X-Gm-Message-State: AC+VfDxlG4kPBan87DP4q3yUlvdN7+yQyUC6wQC075U1cLgslIvH/BZ9
+        7+Wv77fzrhTt95FIsE9klM62CQ==
+X-Google-Smtp-Source: ACHHUZ6HAxVgJx2QSRY/5nUox1m78oic1SYdy3ZwKZhZezMNKwREPHgmZ4rHXvX7m+8NTxphc0GRdg==
+X-Received: by 2002:a05:6402:21a:b0:518:7a51:7e97 with SMTP id t26-20020a056402021a00b005187a517e97mr822922edv.36.1686908827946;
+        Fri, 16 Jun 2023 02:47:07 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id v15-20020aa7cd4f000000b0051a3f9770dasm212422edw.8.2023.06.16.02.47.06
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jun 2023 02:47:07 -0700 (PDT)
+Message-ID: <172e50ef-c516-b992-72b7-dc9ef82a3667@linaro.org>
+Date:   Fri, 16 Jun 2023 11:47:05 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="iso-8859-1"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/6] dt-bindings: loongarch: Add CPU bindings for
+ LoongArch
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Binbin Zhou <zhoubinbin@loongson.cn>
+Cc:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Hongliang Wang <wanghongliang@loongson.cn>
+References: <cover.1686882123.git.zhoubinbin@loongson.cn>
+ <c1f86e5d1026937abda331ce564e5ee96b7114c7.1686882123.git.zhoubinbin@loongson.cn>
+ <20230616-gallon-shrank-42613cd73666@wendy>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230616-gallon-shrank-42613cd73666@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shawn,
+On 16/06/2023 11:34, Conor Dooley wrote:
+> On Fri, Jun 16, 2023 at 02:10:38PM +0800, Binbin Zhou wrote:
+>> Add the available CPUs in LoongArch binding with DT schema format using
+>> json-schema.
+>>
+>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>> ---
+>>  .../devicetree/bindings/loongarch/cpus.yaml   | 65 +++++++++++++++++++
+>>  1 file changed, 65 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/loongarch/cpus.yaml b/Documentation/devicetree/bindings/loongarch/cpus.yaml
+>> new file mode 100644
+>> index 000000000000..c3e2dba42c81
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/loongarch/cpus.yaml
+>> @@ -0,0 +1,65 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/loongarch/cpus.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: LoongArch CPUs
+>> +
+>> +maintainers:
+>> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+>> +
+>> +description:
+>> +  The device tree allows to describe the layout of CPUs in a system through
+>> +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
+>> +  defining properties for every CPU.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    enum:
+>> +      - loongson,la264
+>> +      - loongson,la364
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  device_type: true
+>> +
+>> +  clock-frequency:
+>> +    description: The frequency of cpu in Hz.
+> 
+> Why don't you just add a ref to the common cpu schema and use the
+> standard properties for communicating clock frequencies?
+> You then get the standard properties for l1 caches, power management,
+> frequency scaling etc as a side effect.
+> 
 
-Am Mittwoch, 3. Mai 2023, 13:31:12 CEST schrieb Alexander Stein:
-> Fixes the warnings:
-> at24 0-0057: supply vcc not found, using dummy regulator
-> lm75 0-0049: supply vs not found, using dummy regulator
->=20
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+And operating-points-v2... unless all Loongson CPUs work with only one
+frequency and do not allow dynamic scaling?
 
-You applied patch 1 & 2. Is something missing for this patch to be applied?
 
 Best regards,
-Alexander
-
-> ---
->  arch/arm/boot/dts/imx6qdl-mba6a.dtsi | 2 ++
->  arch/arm/boot/dts/imx6qdl-mba6b.dtsi | 2 ++
->  2 files changed, 4 insertions(+)
->=20
-> diff --git a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
-> b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi index c3f3a25133ca..3ca028c2dbe9
-> 100644
-> --- a/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-mba6a.dtsi
-> @@ -15,6 +15,7 @@ &i2c1 {
->  	lm75: temperature-sensor@49 {
->  		compatible =3D "national,lm75";
->  		reg =3D <0x49>;
-> +		vs-supply =3D <&reg_mba6_3p3v>;
->  	};
->=20
->  	m24c64_57: eeprom@57 {
-> @@ -23,6 +24,7 @@ m24c64_57: eeprom@57 {
->  		pagesize =3D <32>;
->  		#address-cells =3D <1>;
->  		#size-cells =3D <1>;
-> +		vcc-supply =3D <&reg_mba6_3p3v>;
->=20
->  		mba_mac_address: mac-address@20 {
->  				reg =3D <0x20 0x6>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
-> b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi index 85866cfed965..c97bd67462e7
-> 100644
-> --- a/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-mba6b.dtsi
-> @@ -25,6 +25,7 @@ &i2c3 {
->  	lm75: temperature-sensor@49 {
->  		compatible =3D "national,lm75";
->  		reg =3D <0x49>;
-> +		vs-supply =3D <&reg_mba6_3p3v>;
->  	};
->=20
->  	m24c64_57: eeprom@57 {
-> @@ -33,6 +34,7 @@ m24c64_57: eeprom@57 {
->  		pagesize =3D <32>;
->  		#address-cells =3D <1>;
->  		#size-cells =3D <1>;
-> +		vcc-supply =3D <&reg_mba6_3p3v>;
->=20
->  		mba_mac_address: mac-address@20 {
->  				reg =3D <0x20 0x6>;
-
-
-=2D-=20
-TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
-Amtsgericht M=FCnchen, HRB 105018
-Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
-http://www.tq-group.com/
-
+Krzysztof
 
