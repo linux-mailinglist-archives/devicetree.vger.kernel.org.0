@@ -2,163 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3380B732C78
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:51:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1789732C79
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:51:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234233AbjFPJv1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:51:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59546 "EHLO
+        id S234696AbjFPJvd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 05:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230505AbjFPJvZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:51:25 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4ABB12977
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:51:24 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-5193c97ecbbso641185a12.1
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 02:51:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686909083; x=1689501083;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hsoplbcfrZFEeLbInsOKgLV7qLBEVxNAPdh3qoACM8c=;
-        b=DDlMoyyPQ2+g63PQan8VB28u32p42tkfqY41+EB6QVu4ckLuKhaOBPbNmDkfHiYKYN
-         ktpBbBSs3h5vn1OneCIGZ3If8qOdsiAEDfcAZW6vTi66EunOQDsYLmadenLq1EJuQnrH
-         0TNerrz2TQUOfsnKGW8FGGus7EzpiHAAufzkCnBHvQbJe2wuq3arGHOD4TEMnwdr6Eo/
-         W93zPZIBYR7v9bG6hczJfyFQ7c5gaxSOOxA9SNGi1HWe3AqDeWoQn4wZ9vncYNoAaW4z
-         03yMZbeI3Ho15mbExhIH/OPGg3U9QyfvsGqMnlW7FSSAorQ94+3QS1iWOhIItSv8Tr+p
-         K1JQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686909083; x=1689501083;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hsoplbcfrZFEeLbInsOKgLV7qLBEVxNAPdh3qoACM8c=;
-        b=Y2MbMYI9QBqrB3e0cTr3L3Yy8s4oY4p2DLHimDIlp50G8ZvDUyAKmor5S8d4idY0rV
-         J49co4Qq6g0lHe43mAvATfEvXbWHiPcQLONOwMNo0PLw8AH4En9zuuQ91Oots3t2ZjiN
-         GeXujBUESKlztae+hhITwKf2hVY7u/9MFu6uUoKlXPHz6+6iqY6GN+lGXAYjmoljo9UV
-         8y+4ix5x+SRJa7EQVjcEPleHRdMnVNFd1SNCkDQudI7mcHQBHVMb9f3w+L+Y/kv2VRzg
-         1beMKhCik5COumr6OKTiH4r5mq2jqYLGaNQn4i7RZ9uynE5ATXtOmKqidIggB6TDCfV+
-         PCVw==
-X-Gm-Message-State: AC+VfDyv2NBwre+5uKbl86vGmwpyaDpSyRIbEWaII+5gXG/tUeSMKVw+
-        soMhlir6tEcx8d6H5yalkEXqJQ==
-X-Google-Smtp-Source: ACHHUZ7GEO9/u+75MVi2ghulEmqcyLseJuj8+XSCikPpDyjnEEzBV0nlVtluIHCPuDnR1dQe4LHJ3Q==
-X-Received: by 2002:a17:907:74b:b0:971:484:6391 with SMTP id xc11-20020a170907074b00b0097104846391mr1215822ejb.20.1686909082263;
-        Fri, 16 Jun 2023 02:51:22 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id k9-20020a170906128900b00965ffb8407asm10466077ejb.87.2023.06.16.02.51.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 02:51:21 -0700 (PDT)
-Message-ID: <6bfd273e-d7e8-8447-f7e7-ebda33092337@linaro.org>
-Date:   Fri, 16 Jun 2023 11:51:19 +0200
+        with ESMTP id S230505AbjFPJvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:51:32 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A49D297A;
+        Fri, 16 Jun 2023 02:51:30 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id E4FE21230;
+        Fri, 16 Jun 2023 11:51:27 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1686909088;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=W59P54ZQm4yLfNN4lYHed/UxX8Xd4Uj8ugKkX1f9adA=;
+        b=UdWowJ0ZfVpq05woisOR+GhHljah1MbXIyLobDSQb/sDahAnSmch4ntx11HZ4w/WCHL64R
+        soewo4QkKX9RIGkFt6yaHydt4hAT1zyml8RtYcd1CjyrKKjDXF4dCRnV5u/8xKso5sZcoF
+        BfaqGv4BjebsBMFHrcSwwteqV47H9TwsEKQ7yovH1HHtLlRucJy+x65pqho1D7CvIjP9lv
+        AtEzQk0z0iuGvdCW7SroaaF7EgPnNwsVVsYdS0Wh6B/9F4lyP8MsdmVWT0B8BttS7ZNTHx
+        w4bNoEOG1cD7c/TgJsHXhO6NDoniYqOupYpzCzysYeQK1CtPp896yoqmjrFISA==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/6] dt-bindings: loongarch: Add CPU bindings for
- LoongArch
-Content-Language: en-US
-To:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Huacai Chen <chenhuacai@loongson.cn>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Cc:     Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-References: <cover.1686882123.git.zhoubinbin@loongson.cn>
- <c1f86e5d1026937abda331ce564e5ee96b7114c7.1686882123.git.zhoubinbin@loongson.cn>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <c1f86e5d1026937abda331ce564e5ee96b7114c7.1686882123.git.zhoubinbin@loongson.cn>
-Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 16 Jun 2023 11:51:27 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, git@amd.com, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        amitrkcian2002@gmail.com
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: jedec, spi-nor: Add DT property
+ to avoid setting SRWD bit in status register
+In-Reply-To: <20230616085513.17632-2-amit.kumar-mahapatra@amd.com>
+References: <20230616085513.17632-1-amit.kumar-mahapatra@amd.com>
+ <20230616085513.17632-2-amit.kumar-mahapatra@amd.com>
+User-Agent: Roundcube Webmail/1.4.13
+Message-ID: <f1d065e98d7b0d115e6a2a562a2a5c68@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 08:10, Binbin Zhou wrote:
-> Add the available CPUs in LoongArch binding with DT schema format using
-> json-schema.
+Am 2023-06-16 10:55, schrieb Amit Kumar Mahapatra:
+> If the WP signal of the flash device is not connected and the software 
+> sets
+> the status register write disable (SRWD) bit in the status register 
+> then
+> thestatus register permanently becomes read-only. To avoid this added a 
+> new
+> boolean DT property "broken-wp". If WP signal is not connected, then 
+> this
+> property should be set in the DT to avoid setting the SRWD during 
+> status
+> register write operation.
 > 
-> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../devicetree/bindings/loongarch/cpus.yaml   | 65 +++++++++++++++++++
->  1 file changed, 65 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus.yaml
+>  .../devicetree/bindings/mtd/jedec,spi-nor.yaml    | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/loongarch/cpus.yaml b/Documentation/devicetree/bindings/loongarch/cpus.yaml
-> new file mode 100644
-> index 000000000000..c3e2dba42c81
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/loongarch/cpus.yaml
-> @@ -0,0 +1,65 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/loongarch/cpus.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LoongArch CPUs
-> +
-> +maintainers:
-> +  - Binbin Zhou <zhoubinbin@loongson.cn>
-> +
-> +description:
-> +  The device tree allows to describe the layout of CPUs in a system through
-> +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
-> +  defining properties for every CPU.
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 89959e5c47ba..10a6df752f6f 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -70,6 +70,21 @@ properties:
+>        be used on such systems, to denote the absence of a reliable 
+> reset
+>        mechanism.
+> 
+> +  broken-wp:
+> +    type: boolean
+> +    description:
+> +      The status register write disable (SRWD) bit in status register, 
+> combined
+> +      with the WP signal, provides hardware data protection for the
+> device. When
+> +      the SRWD bit is set to 1, and the WP signal is either driven LOW 
+> or hard
+> +      strapped to LOW, the status register nonvolatile bits become
+> read-only and
+> +      the WRITE STATUS REGISTER operation will not execute. The only
+> way to exit
+> +      this hardware-protected mode is to drive WP HIGH. If the WP 
+> signal of the
+> +      flash device is not connected then status register permanently 
+> becomes
+> +      read-only as the SRWD bit cannot be reset. This boolean flag can 
+> be used
+> +      on systems in which WP signal is not connected, to avoid setting 
+> the SRWD
+> +      bit while writing the status register.
 
-I understand you copied it from ARM, but I would prefer to have here
-something meaningful. Bindings description does not explain what is DTS,
-but explains what the hardware is.
+This is not true for all flashes, for example, Macronix flashes seem to 
+have
+an internal pull-up, so if the pin is unconnected H/W write protection 
+is
+disabled.
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - loongson,la264
-> +      - loongson,la364
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  device_type: true
-> +
-> +  clock-frequency:
-> +    description: The frequency of cpu in Hz.
-> +
-> +  model:
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    description: User-visible cpu name in /proc/cpuinfo.
+So maybe only mention that "if the pin is wrongly tied to GND (that 
+includes
+internal pull-downs) or it is left floating".
 
-First, aren't you mixing nodes?
-Second, it is derived from compatible, so no need for such property.
+Same goes for your comment in the driver code. Sorry for nitpicking, but
+I fear some misuse of this property to disable the locking of the status
+register.
 
+> If the WP signal is hard strapped
+> +      to LOW then it is not broken as it can be a valid use case.
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clock-frequency
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    cpus {
-> +        #size-cells = <0>;
-> +        #address-cells = <1>;
-> +
-> +        model = "Loongson-2K1000";
 
-Drop, not related.
+I'm not sure it the bindings use negative notion of pins, because that
+signal is usually called WP#.
 
-Best regards,
-Krzysztof
-
+-michael
