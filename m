@@ -2,102 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93E417331C0
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 14:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBBE57331EE
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 15:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1343928AbjFPM6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 08:58:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49062 "EHLO
+        id S1345054AbjFPNMv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 09:12:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344428AbjFPM6g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 08:58:36 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D6D63C3B
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 05:58:13 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98377c5d53eso94382866b.0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 05:58:13 -0700 (PDT)
+        with ESMTP id S1345358AbjFPNMu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 09:12:50 -0400
+Received: from mail-oa1-x2e.google.com (mail-oa1-x2e.google.com [IPv6:2001:4860:4864:20::2e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 192862D6A
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:12:48 -0700 (PDT)
+Received: by mail-oa1-x2e.google.com with SMTP id 586e51a60fabf-1a9df9ef16dso231590fac.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 06:12:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686920291; x=1689512291;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MgtDQ6bDPZyyAntdHn08plKAlJAs76Eb6ZzIbs7ABB8=;
-        b=yclOATTzqCQCO9g0Jb2Dw5FaBgTwDNdUxQVVEFA94uZJGmJwNlPwDupKjU9JUhLNWm
-         FjCNjKX4wMg1Sh3MJ9vrJrzqCdxDOjq+6Jw8kgncrG6YCFP1vC8xUXwL1SpVZ9aZREx3
-         Qazs5czixy52zNXmb2W5yAAgHUYSpWjia8FEzpyx6QLrmos1uk6EGD88iZg14+cnZDf7
-         MYVG7ly62NJW6lu2DtbLmY2V489OPahS7O2MgfbGyu2H3AUDcVJCH1nNkNz+nI2YFCmd
-         Hqy9hQ3ld5Hs6xgtKZmof7wM7j7Wbi+i8Bk2gyMv9K4/sA2R+Ij15Utp8X/68HuFqrSn
-         V8dA==
+        d=linaro.org; s=google; t=1686921167; x=1689513167;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=0gzGwVe8x7ZuBanrhWjQ7TnmvtE448GKJfS1GvT+/zo=;
+        b=BjbrjqFOhuzIMoaGLiqeb1jR3CxwWMmj2xxOEVU/otqD5EeCBlv1li6YiB3+Qw/QDH
+         SYpcRtrtUciQ+QShIRgcqSJdjccGiswXthCcB5Dg4kxdTNULvDvsBd015ulwimBEQDep
+         A+W8CTD+1u+CBPL8MUGzfRDasGnWcWVpsU4QGhUpW7/mWJbJ7kYV0TA3gdPLhDTIEzjW
+         g/liIIgwuLMtJkKX/LapyH2PVOIgpUincuJUen7RzFqwf7+12XVM+W+ltNd+OZ8Jzgrb
+         yR9L59lOLFzD5ysg/L3Q/1G9mEnkUTH6+f1MkMoijxODJ+WApvPk5UfFTt+TKqi1NJIM
+         Nigw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686920291; x=1689512291;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MgtDQ6bDPZyyAntdHn08plKAlJAs76Eb6ZzIbs7ABB8=;
-        b=dwOL/+ckzKWXyFz7BQHVvGvILdvZQ0N+at1WILTpvg1gsTkWm8RDMjIm06pW5OPTrR
-         M41KZwgqKPP6b0515eHuNivUe2S3M8NwTMFyaQJAjBOAuWysTpP2nfkzlImELuoUhmsc
-         TV6drOcBJlYnQC4yY37LIceXNd1A928hKgvcO23FFdwqA59Mx3Yh2KvRMY3JbkKU+6go
-         K1UsCl8kl9xCrPQ9bQF732EKyQ4vi/Eehj+K8MDgmliAUQkD1VNWzzfnDDQ3J2I4BDnu
-         jlJcAx4zz7x906U27iC0dQeqIGBh2MehlSX6t6f3H3zFjIzw78Zrcszx41i22YbTAew5
-         ILRQ==
-X-Gm-Message-State: AC+VfDwYZtjSfOmHuGwB5QQqdTtsnthifbU0Hr1BCau3qfpfWkJzcb3u
-        ZUmbu2n1xcD4fZwwGkZcjFu+Dw==
-X-Google-Smtp-Source: ACHHUZ4Ta/+1VYO7sObstNfnTgsWxYUXdoJ8QcqTt0hEmAwLEUHwpap+M9Sy9lhjMKQU5S6Iv0sUcg==
-X-Received: by 2002:a17:906:ef03:b0:974:183a:54b6 with SMTP id f3-20020a170906ef0300b00974183a54b6mr1894788ejs.33.1686920291060;
-        Fri, 16 Jun 2023 05:58:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id qc11-20020a170906d8ab00b00977d7ccd9fdsm10964730ejb.95.2023.06.16.05.58.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 05:58:10 -0700 (PDT)
-Message-ID: <33c48eb8-c970-b560-8031-848a79233765@linaro.org>
-Date:   Fri, 16 Jun 2023 14:58:08 +0200
+        d=1e100.net; s=20221208; t=1686921167; x=1689513167;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=0gzGwVe8x7ZuBanrhWjQ7TnmvtE448GKJfS1GvT+/zo=;
+        b=j0UZXI5SxxF2cQMUqNuE+8lW6gAEW7HBp8K3U5Tqeomd2JX18QBpke0q4L2x0F+XLl
+         t06Ysd5At8f3jOof4NNh6vUaqNQwjLC0VzhJ4420JE/ajLJD/Oe4+lPCHkINVXI2hA6T
+         wYBW0dVFYUUzr40CFaK/VddIrO2PgsZc++ci4nvd0nA0uNIJznU0i8JIofCdxabaoYOF
+         qIlc0nVwxDmMrtxuwAx1KXwLyC4808U9mkVfh3QdRS/JRRMTMEliVgyuyURfDnnshUyC
+         GrY1Ex/smPtWGY6RaOxbgs7eXrTrJ/V6Xj+4VHrQgvTvCneDufCjHK3oeseKfCQOEvjf
+         Tl7w==
+X-Gm-Message-State: AC+VfDyJDjdSD0AaXUqSaSo3NDLjAFmot7OxoM0WYlIgamXtpNWj2MIF
+        PUq5y8Oiug3EoIzJ0QnLvq9OxxN5kgrRKgpM0xSsyQ==
+X-Google-Smtp-Source: ACHHUZ7iS39YuSl/RSeNmhbqNsxRpKekD9BgLO5dsEZz8fbn7Qf5HfKtHueR6TV+I5Tau106K5d7uZHVuYnJx/jFpdE=
+X-Received: by 2002:a05:6870:3403:b0:1a6:a28b:6e4 with SMTP id
+ g3-20020a056870340300b001a6a28b06e4mr1578243oah.37.1686921167245; Fri, 16 Jun
+ 2023 06:12:47 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: armada-thermal: add armada-ap807-thermal
- compatible
-Content-Language: en-US
-To:     "Russell King (Oracle)" <rmk+kernel@armlinux.org.uk>,
-        Amit Kucheria <amitk@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     Josua Mayer <josua@solid-run.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
-References: <ZIxMYXDCTB7IvsDk@shell.armlinux.org.uk>
- <E1qA7yP-00Ea4o-FS@rmk-PC.armlinux.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <E1qA7yP-00Ea4o-FS@rmk-PC.armlinux.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230616035813.255062-1-jaswinder.singh@linaro.org> <05c6aa93-68dc-f0e5-36ea-1ea73b9f4055@linaro.org>
+In-Reply-To: <05c6aa93-68dc-f0e5-36ea-1ea73b9f4055@linaro.org>
+From:   Jassi Brar <jaswinder.singh@linaro.org>
+Date:   Fri, 16 Jun 2023 08:12:36 -0500
+Message-ID: <CAJe_ZhdvejBLSKFN5rEAuQMxksMaMbAz8n2jVg2T08X1Y7ksOg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
+ Synquacer platform
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        ilias.apalodimas@linaro.org, masahisa.kojima@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 13:50, Russell King (Oracle) wrote:
-> From: Alex Leibovich <alexl@marvell.com>
-> 
-> Add marvell,armada-ap807-thermal compatible for the AP807 die.
-> 
-> Signed-off-by: Alex Leibovich <alexl@marvell.com>
-> Tested-by: sa_ip-sw-jenkins <sa_ip-sw-jenkins@marvell.com>
+On Fri, 16 Jun 2023 at 05:15, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/06/2023 05:58, jaswinder.singh@linaro.org wrote:
+> > From: Jassi Brar <jaswinder.singh@linaro.org>
+> >
+> > Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
+> > Specify bindings for the platform and boards based on that.
+> >
+> > Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
+> > ---
+> >  .../bindings/arm/socionext/synquacer.yaml     | 28 +++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
+> > new file mode 100644
+> > index 000000000000..72554a4f1c92
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
+> > @@ -0,0 +1,28 @@
+> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/arm/socionext/synquacer.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Socionext Synquacer platform
+> > +
+> > +maintainers:
+> > +  - Masahisa Kojima <masahisa.kojima@linaro.org>
+> > +  - Jassi Brar <jaswinder.singh@linaro.org>
+> > +
+> > +description:
+> > +  Socionext SC2A11B (Synquacer) SoC based boards
+> > +
+> > +properties:
+> > +  $nodename:
+> > +    const: '/'
+> > +  compatible:
+> > +    oneOf:
+> > +      - items:
+> > +          - enum:
+> > +              - socionext,developer-box
+> > +          - const: socionext,synquacer
+>
+> Last compatible looks very generic. Too generic. Are you sure it
+> uniquely identifies one specific SoC (not family, not generation, not
+> series)?
+>
+Yeah it does sound generic, but Synquacer and SC2A11B are
+interchangeably used in s/w. And the dts in u-boot use this.
+Kojima-san may have the final opinion.
 
-This is a TXT file, thus testing by some jenkins seems like a fake tag.
-Please drop fake tags.
-
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+thanks.
