@@ -2,202 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 049C97338BD
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 21:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D55F1733931
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 21:05:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1345814AbjFPTCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 15:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41828 "EHLO
+        id S230265AbjFPTFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 15:05:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1344678AbjFPTCh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 15:02:37 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAAAC3AB0
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 12:02:34 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-9786fc23505so144383466b.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 12:02:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686942153; x=1689534153;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9vQ02kk0CK2h3ErJz8z6Ep1qcggcVyQJ1gM1c04hINE=;
-        b=bGWtSoGLB1peMCBf52XlzDb7bvLB1AHniFb6nvOR5O1+k+2zikcMs6Hq5hILn+fH6q
-         5r4KjKyryAbqrkDsa3atRIbiH3Ucj+xnbh+1XUQbzjeGzC8U5ORltaJ42Xgrz0k5cy1a
-         tpvWKgU26po8JxYT4Zv4Cpns9u9qTBoYIRpj04dz3bqnwsJWEHygy3nims94pdAPZS3q
-         6IfGccUw65KvKAwq+82Cx5AEULc06/Q4TwqJMAvAY5l4e7u3202StwutsRXDDZIPeDfc
-         lTI4cvCxP7JG/cZV/0DmGq4J5KGwVNHDkJ51RTey+Iy29pTETrRe0rzYpoYabYAIgg3M
-         Bdhw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686942153; x=1689534153;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9vQ02kk0CK2h3ErJz8z6Ep1qcggcVyQJ1gM1c04hINE=;
-        b=AezH6NAuYh6/F48J8EZW6wo/2PSh2E4BAHLl+R1J/RTTL25xs7ula+mYC8zXPdo6l+
-         jFoGwrvwpdvxJCHmvcXS1EOSMhT7B018A2HRvGZfIysCrOuzkUEeIWU1JtAL/xOhtV7y
-         4R/xP4lqS/JA8ZkR/Ore9wePbUzb2wSMYoFJ3DivSW2c9ld9VZ0j7v+nPLSPW1Ga6Vog
-         CAkJDpKWJ9bXwSSw5DDQwuIhGyT1gUiEGhYufz/Qwhy4zQDZ9lHfOMHGOsI2a3n31W/E
-         CSuIPlW4rdN2vHofFO4GEjlP5i5DACck+R3ucgMt5T25NnuDGK5P6dmk8fPGfIp7qvEI
-         vskg==
-X-Gm-Message-State: AC+VfDzxWwXqRqJONKe9I5haxHM52fp0aRpB65+w9xgzb4hCPXBjJ3Pq
-        TtjshPGEwiZrtg8UTVNfssAL+A==
-X-Google-Smtp-Source: ACHHUZ4bfewyOsXoScTqh1DZ4woXYDf81koTRzGcqGD3KU4aZGRqveNO4jTOsKsSkWsDXTTW7YtC1g==
-X-Received: by 2002:a17:907:3e92:b0:982:3d6a:89d with SMTP id hs18-20020a1709073e9200b009823d6a089dmr3140510ejc.75.1686942153456;
-        Fri, 16 Jun 2023 12:02:33 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id q2-20020a1709060e4200b00982362776cbsm5637880eji.118.2023.06.16.12.02.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 16 Jun 2023 12:02:33 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: sm8350: add APR and LPASS TLMM
-Date:   Fri, 16 Jun 2023 21:02:22 +0200
-Message-Id: <20230616190222.2251186-3-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230616190222.2251186-1-krzysztof.kozlowski@linaro.org>
-References: <20230616190222.2251186-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S1344139AbjFPTF1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 15:05:27 -0400
+Received: from smtp.smtpout.orange.fr (smtp-28.smtpout.orange.fr [80.12.242.28])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A96D30F9
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 12:05:26 -0700 (PDT)
+Received: from [192.168.1.18] ([86.243.2.178])
+        by smtp.orange.fr with ESMTPA
+        id AEl3qsN0azGOZAEl3qbxZO; Fri, 16 Jun 2023 21:05:24 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wanadoo.fr;
+        s=t20230301; t=1686942324;
+        bh=/1NDZljZnmXw+wvMypf9in+CWgaJ6Ha7fof+KMEWXkA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To;
+        b=L1UHQQdov53KIZubtn8++RpOhsQ336Ta3YPRBhRuX+L5tPvyLagPQfB5+mOFL66hO
+         ZdKc16v0XbvRm3X8+bPz6G2+CG7tdKOqAmJh2pT9xIRa959Pw4eXeNRGbn3lQ4yjPj
+         dp7ttXFUrwPSQJF08JZflCBCFkXtuUO1Wj01VGMcDfBwI8F5evSGqQDsx490s3tPPx
+         CcWi/aIYBk7nWVuCyg+R1RY3I+/R0XZJ3hQvAZFNpdjJsDFy08URyIiitMJw58wNZD
+         qY6d6yPcosQpXXPf/3sf+1e8wlXlYN0U0Bf55QZAaBuukY4Bt2T3APgG+WFl4IYl9o
+         0jtudusahc8SA==
+X-ME-Helo: [192.168.1.18]
+X-ME-Auth: Y2hyaXN0b3BoZS5qYWlsbGV0QHdhbmFkb28uZnI=
+X-ME-Date: Fri, 16 Jun 2023 21:05:24 +0200
+X-ME-IP: 86.243.2.178
+Message-ID: <ae77d0ce-9a54-d779-daa2-c429631c8bb7@wanadoo.fr>
+Date:   Fri, 16 Jun 2023 21:05:17 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
+Content-Language: fr
+To:     Eric Lin <eric.lin@sifive.com>, conor@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        palmer@dabbelt.com, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, maz@kernel.org, chenhuacai@kernel.org,
+        baolu.lu@linux.intel.com, will@kernel.org,
+        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
+        pierre.gondois@arm.com, huangguangbin2@huawei.com, jgross@suse.com,
+        chao.gao@intel.com, maobibo@loongson.cn,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dslin1010@gmail.com
+Cc:     Greentime Hu <greentime.hu@sifive.com>,
+        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
+References: <20230616063210.19063-1-eric.lin@sifive.com>
+ <20230616063210.19063-3-eric.lin@sifive.com>
+From:   Christophe JAILLET <christophe.jaillet@wanadoo.fr>
+In-Reply-To: <20230616063210.19063-3-eric.lin@sifive.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add audio-related nodes: the APR in the ADSP (same as on SM8250) and
-LPASS TLMM pin controller.
+Le 16/06/2023 à 08:32, Eric Lin a écrit :
+> From: Greentime Hu <greentime.hu@sifive.com>
+> 
+> This adds SiFive private L2 cache PMU driver. User
+> can use perf tool to profile by event name and event id.
+> 
+> Example:
+> $ perf stat -C 0 -e /sifive_pl2_pmu/inner_acquire_block_btot/
+>                  -e /sifive_pl2_pmu/inner_acquire_block_ntob/
+>                  -e /sifive_pl2_pmu/inner_acquire_block_ntot/ ls
+> 
+>   Performance counter stats for 'CPU(s) 0':
+> 
+>                 300      sifive_pl2_pmu/inner_acquire_block_btot/
+>               17801      sifive_pl2_pmu/inner_acquire_block_ntob/
+>                5253      sifive_pl2_pmu/inner_acquire_block_ntot/
+> 
+>         0.088917326 seconds time elapsed
+> 
+> $ perf stat -C 0 -e /sifive_pl2_pmu/event=0x10001/
+>                  -e /sifive_pl2_pmu/event=0x4001/
+>                  -e /sifive_pl2_pmu/event=0x8001/ ls
+> 
+>   Performance counter stats for 'CPU(s) 0':
+> 
+>                 251      sifive_pl2_pmu/event=0x10001/
+>                2620      sifive_pl2_pmu/event=0x4001/
+>                 644      sifive_pl2_pmu/event=0x8001/
+> 
+>         0.092827110 seconds time elapsed
+> 
+> Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> Reviewed-by: Zong Li <zong.li@sifive.com>
+> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+> ---
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+[...]
 
----
+> +int sifive_pl2_pmu_probe(struct device_node	*pl2_node,
+> +			 void __iomem *pl2_base, int cpu)
+> +{
+> +	struct sifive_pl2_pmu_event *ptr = per_cpu_ptr(&sifive_pl2_pmu_event, cpu);
+> +	int ret = -EINVAL;
 
-Bindings for SM8350:
-https://lore.kernel.org/linux-arm-msm/20230616185742.2250452-1-krzysztof.kozlowski@linaro.org/T/#t
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 82 ++++++++++++++++++++++++++++
- 1 file changed, 82 insertions(+)
+Nit: no need to init
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index 33b7ef8fd78a..9650cecb1370 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -15,7 +15,9 @@
- #include <dt-bindings/mailbox/qcom-ipcc.h>
- #include <dt-bindings/phy/phy-qcom-qmp.h>
- #include <dt-bindings/power/qcom-rpmpd.h>
-+#include <dt-bindings/soc/qcom,apr.h>
- #include <dt-bindings/soc/qcom,rpmh-rsc.h>
-+#include <dt-bindings/sound/qcom,q6afe.h>
- #include <dt-bindings/thermal/thermal.h>
- #include <dt-bindings/interconnect/qcom,sm8350.h>
- 
-@@ -1780,6 +1782,20 @@ tcsr_mutex: hwlock@1f40000 {
- 			#hwlock-cells = <1>;
- 		};
- 
-+		lpass_tlmm: pinctrl@33c0000 {
-+			compatible = "qcom,sm8350-lpass-lpi-pinctrl";
-+			reg = <0 0x033c0000 0x0 0x20000>,
-+			      <0 0x03550000 0x0 0x10000>;
-+
-+			clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-+				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-+			clock-names = "core", "audio";
-+
-+			gpio-controller;
-+			#gpio-cells = <2>;
-+			gpio-ranges = <&lpass_tlmm 0 0 15>;
-+		};
-+
- 		gpu: gpu@3d00000 {
- 			compatible = "qcom,adreno-660.1", "qcom,adreno";
- 
-@@ -3189,6 +3205,72 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
- 				label = "lpass";
- 				qcom,remote-pid = <2>;
- 
-+				apr {
-+					compatible = "qcom,apr-v2";
-+					qcom,glink-channels = "apr_audio_svc";
-+					qcom,domain = <APR_DOMAIN_ADSP>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+
-+					service@3 {
-+						reg = <APR_SVC_ADSP_CORE>;
-+						compatible = "qcom,q6core";
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+					};
-+
-+					q6afe: service@4 {
-+						compatible = "qcom,q6afe";
-+						reg = <APR_SVC_AFE>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+						q6afedai: dais {
-+							compatible = "qcom,q6afe-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+						};
-+
-+						q6afecc: clock-controller {
-+							compatible = "qcom,q6afe-clocks";
-+							#clock-cells = <2>;
-+						};
-+					};
-+
-+					q6asm: service@7 {
-+						compatible = "qcom,q6asm";
-+						reg = <APR_SVC_ASM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+						q6asmdai: dais {
-+							compatible = "qcom,q6asm-dais";
-+							#address-cells = <1>;
-+							#size-cells = <0>;
-+							#sound-dai-cells = <1>;
-+							iommus = <&apps_smmu 0x1801 0x0>;
-+
-+							dai@0 {
-+								reg = <0>;
-+							};
-+
-+							dai@1 {
-+								reg = <1>;
-+							};
-+
-+							dai@2 {
-+								reg = <2>;
-+							};
-+						};
-+					};
-+
-+					q6adm: service@8 {
-+						compatible = "qcom,q6adm";
-+						reg = <APR_SVC_ADM>;
-+						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
-+						q6routing: routing {
-+							compatible = "qcom,q6adm-routing";
-+							#sound-dai-cells = <0>;
-+						};
-+					};
-+				};
-+
- 				fastrpc {
- 					compatible = "qcom,fastrpc";
- 					qcom,glink-channels = "fastrpcglink-apps-dsp";
--- 
-2.34.1
+> +
+> +	/* Get counter numbers. */
+> +	ret = of_property_read_u32(pl2_node, "sifive,perfmon-counters", &ptr->counters);
+> +	if (ret) {
+> +		pr_err("Not found sifive,perfmon-counters property\n");
+> +		goto early_err;
+> +	}
+> +	pr_info("perfmon-counters: %d for CPU %d\n", ptr->counters, cpu);
+> +
+> +	/* Allocate perf_event. */
+> +	ptr->events = kcalloc(ptr->counters, sizeof(struct perf_event), GFP_KERNEL);
+> +	if (!ptr->events)
+> +		return -ENOMEM;
+> +
+> +	ptr->event_select_base = pl2_base + SIFIVE_PL2_SELECT_BASE_OFFSET;
+> +	ptr->event_counter_base = pl2_base + SIFIVE_PL2_COUNTER_BASE_OFFSET;
+> +
+> +	if (!pl2pmu_init_done) {
+> +		ret = perf_pmu_register(sifive_pl2_pmu.pmu, sifive_pl2_pmu.pmu->name, -1);
+> +		if (ret) {
+> +			cpuhp_state_remove_instance(CPUHP_AP_PERF_RISCV_SIFIVE_PL2_PMU_ONLINE,
+> +						    &sifive_pl2_pmu.node);
+> +			pr_err("Failed to register sifive_pl2_pmu.pmu: %d\n", ret);
+> +		}
+> +		sifive_pl2_pmu_pm_init();
+> +		pl2pmu_init_done = true;
+> +	}
+> +
+> +	return 0;
+> +
+> +early_err:
+> +	return ret;
+> +}
+> +
+> +int sifive_pl2_pmu_init(void)
+> +{
+> +	int ret = 0;
+
+Nit: no need to init
+
+> +
+> +	ret = cpuhp_setup_state_multi(CPUHP_AP_PERF_RISCV_SIFIVE_PL2_PMU_ONLINE,
+> +				      "perf/sifive/pl2pmu:online",
+> +				      sifive_pl2_pmu_online_cpu,
+> +				      sifive_pl2_pmu_offline_cpu);
+> +	if (ret)
+> +		pr_err("Failed to register CPU hotplug notifier %d\n", ret);
+> +
+> +	ret = cpuhp_state_add_instance(CPUHP_AP_PERF_RISCV_SIFIVE_PL2_PMU_ONLINE,
+> +				       &sifive_pl2_pmu.node);
+> +	if (ret)
+> +		pr_err("Failed to add hotplug instance: %d\n", ret);
+> +
+> +	return ret;
+
+Nit: return 0;
+
+> +}
+
+[...]
 
