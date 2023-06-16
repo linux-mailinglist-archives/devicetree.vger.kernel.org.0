@@ -2,366 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCC8E732B10
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 11:08:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCB547329DD
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 10:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1344041AbjFPJIN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 05:08:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58698 "EHLO
+        id S230226AbjFPIdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 04:33:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1343764AbjFPJH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 05:07:56 -0400
-X-Greylist: delayed 2066 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 16 Jun 2023 02:06:08 PDT
-Received: from imap5.colo.codethink.co.uk (imap5.colo.codethink.co.uk [78.40.148.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A91030CA;
-        Fri, 16 Jun 2023 02:06:07 -0700 (PDT)
-Received: from [167.98.27.226] (helo=[10.35.6.111])
-        by imap5.colo.codethink.co.uk with esmtpsa  (Exim 4.94.2 #2 (Debian))
-        id 1qA4qw-009I4S-AX; Fri, 16 Jun 2023 09:30:43 +0100
-Message-ID: <3f264505-af11-b667-fc82-a5310982ef8b@codethink.co.uk>
-Date:   Fri, 16 Jun 2023 09:30:42 +0100
+        with ESMTP id S231362AbjFPIdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 04:33:33 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A3A92D4D;
+        Fri, 16 Jun 2023 01:33:32 -0700 (PDT)
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35G8EYmH032761;
+        Fri, 16 Jun 2023 08:33:29 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=qUqY/n6KDFwI17yYU0Q9hBztJRtqKxxJ9IpJOixWwgo=;
+ b=QbnqYdt4fL54yELn6LY2sbVOMm89jvs+pEgGrNQiokw8dROSp7KvcOHyAxqMlhcaS2pE
+ NwhjpfwxjbppnhJuuO0ZydflZcZueeFk4HKCU+PAeJa1E//8lEWg/8rdvdNFnD3qG3Ev
+ ArxSFwETnM8WqMEh+NQW9KvtWSxnZCTd+F7H9mgtH5xylo0yKXDaakMfstL0OAHE9E69
+ YyOTsmv6IYW0g3iXT2cg7Ws2pG/zmJfVZ7EeZzFDm+ywAmPzVaIRmN2OQDAJCE7uv38m
+ ix27c2QRXwEFyyF+1oHIt9ngVzV8w2dcYijvgGoU6OJLHl0nMIo0JCmkPpx7GJGHwifG pw== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3r8m1mg125-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Jun 2023 08:33:29 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35G8XS3x018455
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 16 Jun 2023 08:33:28 GMT
+Received: from sridsn-linux.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 16 Jun 2023 01:33:02 -0700
+From:   Sridharan S N <quic_sridsn@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     Sridharan S N <quic_sridsn@quicinc.com>
+Subject: [PATCH V4 0/2] Add support for GPIO based leds and buttons on IPQ5332/9574 devices
+Date:   Fri, 16 Jun 2023 14:02:36 +0530
+Message-ID: <20230616083238.20690-1-quic_sridsn@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/3] soc: sifive: Add SiFive private L2 cache support
-Content-Language: en-GB
-To:     Eric Lin <eric.lin@sifive.com>, conor@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        palmer@dabbelt.com, paul.walmsley@sifive.com,
-        aou@eecs.berkeley.edu, maz@kernel.org, chenhuacai@kernel.org,
-        baolu.lu@linux.intel.com, will@kernel.org,
-        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
-        pierre.gondois@arm.com, huangguangbin2@huawei.com, jgross@suse.com,
-        chao.gao@intel.com, maobibo@loongson.cn,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com
-Cc:     Nick Hu <nick.hu@sifive.com>, Zong Li <zong.li@sifive.com>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-2-eric.lin@sifive.com>
-From:   Ben Dooks <ben.dooks@codethink.co.uk>
-Organization: Codethink Limited.
-In-Reply-To: <20230616063210.19063-2-eric.lin@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: GkORsIUBzv49E_agTg9CZXPMEYin0-3U
+X-Proofpoint-GUID: GkORsIUBzv49E_agTg9CZXPMEYin0-3U
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-16_05,2023-06-15_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ impostorscore=0 mlxlogscore=557 malwarescore=0 adultscore=0 clxscore=1015
+ suspectscore=0 spamscore=0 phishscore=0 mlxscore=0 bulkscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306160075
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 07:32, Eric Lin wrote:
-> This adds SiFive private L2 cache driver which will show
-> cache config information when booting and add cpu hotplug
-> callback functions.
-> 
-> Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> Signed-off-by: Nick Hu <nick.hu@sifive.com>
-> Reviewed-by: Zong Li <zong.li@sifive.com>
-> ---
->   drivers/soc/sifive/Kconfig            |   8 +
->   drivers/soc/sifive/Makefile           |   1 +
->   drivers/soc/sifive/sifive_pl2.h       |  25 ++++
->   drivers/soc/sifive/sifive_pl2_cache.c | 202 ++++++++++++++++++++++++++
->   include/linux/cpuhotplug.h            |   1 +
->   5 files changed, 237 insertions(+)
->   create mode 100644 drivers/soc/sifive/sifive_pl2.h
->   create mode 100644 drivers/soc/sifive/sifive_pl2_cache.c
-> 
-> diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
-> index e86870be34c9..573564295058 100644
-> --- a/drivers/soc/sifive/Kconfig
-> +++ b/drivers/soc/sifive/Kconfig
-> @@ -7,4 +7,12 @@ config SIFIVE_CCACHE
->   	help
->   	  Support for the composable cache controller on SiFive platforms.
->   
-> +config SIFIVE_PL2
-> +	bool "Sifive private L2 Cache controller"
-> +	help
-> +	  Support for the private L2 cache controller on SiFive platforms.
-> +	  The SiFive Private L2 Cache Controller is per hart and communicates
-> +	  with both the upstream L1 caches and downstream L3 cache or memory,
-> +	  enabling a high-performance cache subsystem.
-> +
->   endif
-> diff --git a/drivers/soc/sifive/Makefile b/drivers/soc/sifive/Makefile
-> index 1f5dc339bf82..707493e1c691 100644
-> --- a/drivers/soc/sifive/Makefile
-> +++ b/drivers/soc/sifive/Makefile
-> @@ -1,3 +1,4 @@
->   # SPDX-License-Identifier: GPL-2.0
->   
->   obj-$(CONFIG_SIFIVE_CCACHE)	+= sifive_ccache.o
-> +obj-$(CONFIG_SIFIVE_PL2)	+= sifive_pl2_cache.o
-> diff --git a/drivers/soc/sifive/sifive_pl2.h b/drivers/soc/sifive/sifive_pl2.h
-> new file mode 100644
-> index 000000000000..57aa1019d5ed
-> --- /dev/null
-> +++ b/drivers/soc/sifive/sifive_pl2.h
-> @@ -0,0 +1,25 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (C) 2023 SiFive, Inc.
-> + *
-> + */
-> +
-> +#ifndef _SIFIVE_PL2_H
-> +#define _SIFIVE_PL2_H
-> +
-> +#define SIFIVE_PL2_CONFIG1_OFFSET	0x1000
-> +#define SIFIVE_PL2_CONFIG0_OFFSET	0x1008
-> +#define SIFIVE_PL2_PMCLIENT_OFFSET	0x2800
-> +
-> +struct sifive_pl2_state {
-> +	void __iomem *pl2_base;
-> +	u32 config1;
-> +	u32 config0;
-> +	u64 pmclientfilter;
-> +};
-> +
-> +int sifive_pl2_pmu_init(void);
-> +int sifive_pl2_pmu_probe(struct device_node *pl2_node,
-> +			 void __iomem *pl2_base, int cpu);
-> +
-> +#endif /*_SIFIVE_PL2_H */
-> diff --git a/drivers/soc/sifive/sifive_pl2_cache.c b/drivers/soc/sifive/sifive_pl2_cache.c
-> new file mode 100644
-> index 000000000000..aeb51d576af9
-> --- /dev/null
-> +++ b/drivers/soc/sifive/sifive_pl2_cache.c
-> @@ -0,0 +1,202 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * SiFive private L2 cache controller Driver
-> + *
-> + * Copyright (C) 2018-2023 SiFive, Inc.
-> + */
-> +
-> +#define pr_fmt(fmt) "pL2CACHE: " fmt
-> +
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/io.h>
-> +#include <linux/cpu_pm.h>
-> +#include <linux/cpuhotplug.h>
-> +#include "sifive_pl2.h"
-> +
-> +static DEFINE_PER_CPU(struct sifive_pl2_state, sifive_pl2_state);
-> +
-> +static void sifive_pl2_state_save(struct sifive_pl2_state *pl2_state)
-> +{
-> +	void __iomem *pl2_base = pl2_state->pl2_base;
-> +
-> +	if (!pl2_base)
-> +		return;
+Add support for wlan-2g led and wps button available on IPQ5332 and
+IPQ9574
 
-is this test realy needed?
+Changes since V1:
+	- Updated patch series title. Mentioned platform in series
+	  title
+	  
+Sridharan S N (2):
+  arm64: dts: qcom: ipq5332: enable GPIO based LEDs and Buttons
+  arm64: dts: qcom: ipq9574: enable GPIO based LEDs
 
-> +
-> +	pl2_state->config1 = readl(pl2_base + SIFIVE_PL2_CONFIG1_OFFSET);
-> +	pl2_state->config0 = readl(pl2_base + SIFIVE_PL2_CONFIG0_OFFSET);
-> +	pl2_state->pmclientfilter = readq(pl2_base + SIFIVE_PL2_PMCLIENT_OFFSET);
-> +}
-> +
-> +static void sifive_pl2_state_restore(struct sifive_pl2_state *pl2_state)
-> +{
-> +	void __iomem *pl2_base = pl2_state->pl2_base;
-> +
-> +	if (!pl2_base)
-> +		return;
-> +
-> +	writel(pl2_state->config1, pl2_base + SIFIVE_PL2_CONFIG1_OFFSET);
-> +	writel(pl2_state->config0, pl2_base + SIFIVE_PL2_CONFIG0_OFFSET);
-> +	writeq(pl2_state->pmclientfilter, pl2_base + SIFIVE_PL2_PMCLIENT_OFFSET);
-> +}
-> +
-> +/*
-> + * CPU Hotplug call back function
-> + */
-> +static int sifive_pl2_online_cpu(unsigned int cpu)
-> +{
-> +	struct sifive_pl2_state *pl2_state = this_cpu_ptr(&sifive_pl2_state);
-> +
-> +	sifive_pl2_state_restore(pl2_state);
-> +
-> +	return 0;
-> +}
-> +
-> +static int sifive_pl2_offline_cpu(unsigned int cpu)
-> +{
-> +	struct sifive_pl2_state *pl2_state = this_cpu_ptr(&sifive_pl2_state);
-> +
-> +	/* Save the pl2 state */
-> +	sifive_pl2_state_save(pl2_state);
-> +
-> +	return 0;
-> +}
-> +
-> +/*
-> + *  PM notifer for suspend to ram
-> + */
-> +#ifdef CONFIG_CPU_PM
-> +static int sifive_pl2_pm_notify(struct notifier_block *b, unsigned long cmd,
-> +				void *v)
-> +{
-> +	struct sifive_pl2_state *pl2_state = this_cpu_ptr(&sifive_pl2_state);
-> +
-> +	switch (cmd) {
-> +	case CPU_PM_ENTER:
-> +		/* Save the pl2 state */
-> +		sifive_pl2_state_save(pl2_state);
-> +		break;
-> +	case CPU_PM_ENTER_FAILED:
-> +	case CPU_PM_EXIT:
-> +		sifive_pl2_state_restore(pl2_state);
-> +		break;
-> +	default:
-> +		break;
-> +	}
-> +
-> +	return NOTIFY_OK;
-> +}
-> +
-> +static struct notifier_block sifive_pl2_pm_notifier_block = {
-> +	.notifier_call = sifive_pl2_pm_notify,
-> +};
-> +
-> +static inline void sifive_pl2_pm_init(void)
-> +{
-> +	cpu_pm_register_notifier(&sifive_pl2_pm_notifier_block);
-> +}
-> +
-> +#else
-> +static inline void sifive_pl2_pm_init(void) { }
-> +#endif /* CONFIG_CPU_PM */
-> +
-> +static const struct of_device_id sifive_pl2_cache_of_ids[] = {
-> +	{ .compatible = "sifive,pL2Cache0" },
-> +	{ .compatible = "sifive,pL2Cache1" },
-
-why the single cap here? I think that looks ugly.
-
-> +	{ /* sentinel value */ }
-> +};
-> +
-> +static void pl2_config_read(void __iomem *pl2_base, int cpu)
-> +{
-> +	u32 regval, bank, way, set, cacheline;
-> +
-> +	regval = readl(pl2_base);
-> +	bank = regval & 0xff;
-> +	pr_info("in the CPU: %d\n", cpu);
-> +	pr_info("No. of Banks in the cache: %d\n", bank);
-> +	way = (regval & 0xff00) >> 8;
-> +	pr_info("No. of ways per bank: %d\n", way);
-> +	set = (regval & 0xff0000) >> 16;
-> +	pr_info("Total sets: %llu\n", (uint64_t)1 << set);
-> +	cacheline = (regval & 0xff000000) >> 24;
-> +	pr_info("Bytes per cache block: %llu\n", (uint64_t)1 << cacheline);
-> +	pr_info("Size: %d\n", way << (set + cacheline));
-
-
-please either remove this or make it a single line, this is just going 
-to spam the log with any system with more than one cpu core.
-
-> +}
-> +
-> +static int sifive_pl2_cache_dev_probe(struct platform_device *pdev)
-> +{
-> +	struct resource *res;
-> +	int cpu, ret = -EINVAL;
-> +	struct device_node *cpu_node, *pl2_node;
-> +	struct sifive_pl2_state *pl2_state = NULL;
-> +	void __iomem *pl2_base;
-> +
-> +	/* Traverse all cpu nodes to find the one mapping to its pl2 node. */
-> +	for_each_cpu(cpu, cpu_possible_mask) {
-> +		cpu_node = of_cpu_device_node_get(cpu);
-> +		pl2_node = of_parse_phandle(cpu_node, "next-level-cache", 0);
-> +
-> +		/* Found it! */
-> +		if (dev_of_node(&pdev->dev) == pl2_node) {
-> +			/* Use cpu to get its percpu data sifive_pl2_state. */
-> +			pl2_state = per_cpu_ptr(&sifive_pl2_state, cpu);
-> +			break;
-> +		}
-> +	}
-> +
-> +	if (!pl2_state) {
-> +		pr_err("Not found the corresponding cpu_node in dts.\n");
-> +		goto early_err;
-> +	}
-> +
-> +	/* Set base address of select and counter registers. */
-> +	pl2_base = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-> +	if (IS_ERR(pl2_base)) {
-> +		ret = PTR_ERR(pl2_base);
-> +		goto early_err;
-> +	}
-> +
-> +	/* Print pL2 configs. */
-> +	pl2_config_read(pl2_base, cpu);
-> +	pl2_state->pl2_base = pl2_base;
-> +
-> +	return 0;
-> +
-> +early_err:
-> +	return ret;
-> +}
-> +
-> +static struct platform_driver sifive_pl2_cache_driver = {
-> +	.driver = {
-> +		   .name = "SiFive-pL2-cache",
-> +		   .of_match_table = sifive_pl2_cache_of_ids,
-> +		   },
-> +	.probe = sifive_pl2_cache_dev_probe,
-> +};
-> +
-> +static int __init sifive_pl2_cache_init(void)
-> +{
-> +	int ret;
-> +
-> +	ret = cpuhp_setup_state(CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE,
-> +				"soc/sifive/pl2:online",
-> +				      sifive_pl2_online_cpu,
-> +				      sifive_pl2_offline_cpu);
-> +	if (ret < 0) {
-> +		pr_err("Failed to register CPU hotplug notifier %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = platform_driver_register(&sifive_pl2_cache_driver);
-> +	if (ret) {
-> +		pr_err("Failed to register sifive_pl2_cache_driver: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	sifive_pl2_pm_init();
-> +
-> +	return ret;
-> +}
-> +
-> +device_initcall(sifive_pl2_cache_init);
-> diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h
-> index 0f1001dca0e0..35cd5ba0030b 100644
-> --- a/include/linux/cpuhotplug.h
-> +++ b/include/linux/cpuhotplug.h
-> @@ -207,6 +207,7 @@ enum cpuhp_state {
->   	CPUHP_AP_IRQ_AFFINITY_ONLINE,
->   	CPUHP_AP_BLK_MQ_ONLINE,
->   	CPUHP_AP_ARM_MVEBU_SYNC_CLOCKS,
-> +	CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE,
->   	CPUHP_AP_X86_INTEL_EPB_ONLINE,
->   	CPUHP_AP_PERF_ONLINE,
->   	CPUHP_AP_PERF_X86_ONLINE,
+ .../boot/dts/qcom/ipq5332-rdp-common.dtsi     | 39 +++++++++++++++++++
+ .../boot/dts/qcom/ipq9574-rdp-common.dtsi     | 20 ++++++++++
+ 2 files changed, 59 insertions(+)
 
 -- 
-Ben Dooks				http://www.codethink.co.uk/
-Senior Engineer				Codethink - Providing Genius
-
-https://www.codethink.co.uk/privacy.html
+2.17.1
 
