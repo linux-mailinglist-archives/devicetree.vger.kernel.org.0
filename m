@@ -2,53 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA0487335D8
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:20:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA3F7335EA
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 18:23:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230201AbjFPQUK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 12:20:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46718 "EHLO
+        id S229770AbjFPQXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 12:23:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1345661AbjFPQTz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:19:55 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03D94423E;
-        Fri, 16 Jun 2023 09:18:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D85BF618BB;
-        Fri, 16 Jun 2023 16:17:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BA2B5C433C0;
-        Fri, 16 Jun 2023 16:17:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686932236;
-        bh=S8SFMN20YyS2xfNsshsCq2Vavr7dBJyysliO/cqZNrU=;
-        h=Subject:From:In-Reply-To:References:To:Cc:Date:From;
-        b=R2lEKsTaJ7pU9XW5bEXWrWcENH87NMvBZQ6kh6ZDyw4EWNSx5YkNe09F346U4CpQy
-         YUiz6c1JoMVGLU8w6h7hF9Z3NlkqFKKcMffZ+bh0oUzSeyL2JcusKqCCL120KltSm1
-         xgxyH8411xSdvqkBA0YByAZyac3v8faQsrjwrmM03BZIL/YXKVgHDcumvjuiT08+lQ
-         H1Q56N9Scx9mfF9Qjy1X/k/s6Q+sefQSXwbQy1WxKvuYcZEubSYC0BpGlToGE/YBFA
-         yyVDNpCZN/KPE4EUrScVNJOzutoc27C+i1pzuRKp+4DSLuqvWywoxgHUoExszJQdFM
-         X7LFkyWwHuZQw==
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229587AbjFPQXP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 12:23:15 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DED630C5
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:23:13 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-1a2c85ef3c2so1054270fac.0
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 09:23:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686932592; x=1689524592;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=82lTB4+3Vquz8SEapgRewIbFRq4sI1EPFHTcQMWOuo0=;
+        b=c90Wj5O9cXsIXh/BpCZemnIGSSrnYRhfXBUW0wq4i1T/6IYYUAcP2sov0Czj4afwJr
+         ndCAjc82/Fkm4htVXRewTN8ltSkFl5k3GoKVcgeu/5XvhVj92+WbnWvVlCT9rRznRSzP
+         xpa9Cbor4HKC7tuiAe4HdE2c9JQTkvtBLPEBYoDrN/kYIxsCJTBfXRV/KEUjsJqV0Ihj
+         E7QeLD1G8alhGoNujTr798PCJqjB8V8DWV6n3bbQWjIlD//jn5/b3z7htx8GFZRdnfih
+         Q6wZ/z2aCf9hDhSP57C7Y/nPpWHiz+N7dgktEzmgxCNOKJpWwOt2PUl0ELDqM+sRy9uN
+         s3dw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686932592; x=1689524592;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=82lTB4+3Vquz8SEapgRewIbFRq4sI1EPFHTcQMWOuo0=;
+        b=V0L7GBRSBM8SG+OM/dQDPisYCZ4q3GTOs6KeZ9cmr8LpuVx5+Cakmkv1uqLl+EWIL4
+         FJFTf7fOgKNhDQrzfPvX+GwK3ViUFrnEssFuVcl6yHrVWQzvmHscGGYm4yLdBbLFQWYT
+         /3eeZy8hUvgyHd8DTyMzJgqMFrgTVDn04kxaMrIZUTSQTb+VKebrBARe5nYfHxUx52J/
+         Buzy8j0Km5lIF7D/6W7v6qdCpv9dnzNBLmasN53IpY5eH8DgoSoct4JNyoY5nbKGYsL+
+         yAx08ZYEwkz6IaR/578nVDxKFFkb4xPZZrkZGwFmceQYwAGwbgYOfC98El6wsDLdn6W1
+         +UeA==
+X-Gm-Message-State: AC+VfDzqqtyIqQfvt8Lmj/zX5rwWmTlUDOxnT8rb0xOY2EUMeaJjSqKQ
+        vLvAoMUZA4jfSySBcE7aVGmdriBuyXW7IndUZOwn1A==
+X-Google-Smtp-Source: ACHHUZ4PM5m7JuiU2ThA7DOCue+LNUdpG0GGrtMdxTGIYaSFF6Y82pfrRL3+XfRHK8mpMMuOgebmCfV5Z1f39UR4h6w=
+X-Received: by 2002:a05:6870:5b16:b0:1a2:c149:99cc with SMTP id
+ ds22-20020a0568705b1600b001a2c14999ccmr2904192oab.24.1686932592435; Fri, 16
+ Jun 2023 09:23:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v2] dt-bindings: net: wireless: ath10k: add
- ieee80211-freq-limit property
-From:   Kalle Valo <kvalo@kernel.org>
-In-Reply-To: <c33c928b7c6c9bb4e7abe84eb8df9f440add275b.1686486464.git.chunkeey@gmail.com>
-References: <c33c928b7c6c9bb4e7abe84eb8df9f440add275b.1686486464.git.chunkeey@gmail.com>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
-        ath10k@lists.infradead.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-User-Agent: pwcli/0.1.1-git (https://github.com/kvalo/pwcli/) Python/3.7.3
-Message-ID: <168693223258.12400.17129558152991659679.kvalo@kernel.org>
-Date:   Fri, 16 Jun 2023 16:17:14 +0000 (UTC)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+References: <20230616035813.255062-1-jaswinder.singh@linaro.org> <165dd295-1b3a-5062-772a-613a7bf6fd45@linaro.org>
+In-Reply-To: <165dd295-1b3a-5062-772a-613a7bf6fd45@linaro.org>
+From:   Jassi Brar <jaswinder.singh@linaro.org>
+Date:   Fri, 16 Jun 2023 11:23:01 -0500
+Message-ID: <CAJe_ZhdV3yaKUVD43duO4hkGMByJhq7x9bN+eBXJdBXdxgDneg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
+ Synquacer platform
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
+        ilias.apalodimas@linaro.org, masahisa.kojima@linaro.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -57,33 +68,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Christian Lamparter <chunkeey@gmail.com> wrote:
+On Fri, 16 Jun 2023 at 05:15, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 16/06/2023 05:58, jaswinder.singh@linaro.org wrote:
+> > From: Jassi Brar <jaswinder.singh@linaro.org>
+> >
+> > Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
+> > Specify bindings for the platform and boards based on that.
+>
+> A nit, subject: drop second/last, redundant "bindings". The
+> "dt-bindings" prefix is already stating that these are bindings.
+>
+I can remove it, but I see many mentions like "Fix bindings for"  "Add
+binding for" etc in the subject line.
 
-> This is an existing optional property that ieee80211.yaml/cfg80211
-> provides. It's useful to further restrict supported frequencies
-> for a specified device through device-tree.
-> 
-> For testing the addition, I added the ieee80211-freq-limit
-> property with values from an OpenMesh A62 device. This is
-> because the OpenMesh A62 has "special filters in front of
-> the RX+TX paths to the 5GHz PHYs. These filtered channel
-> can in theory still be used by the hardware but the signal
-> strength is reduced so much that it makes no sense."
-> 
-> The driver supported this since ~2018 by
-> commit 34d5629d2ca8 ("ath10k: limit available channels via DT ieee80211-freq-limit")
-> 
-> Link: https://git.openwrt.org/?p=openwrt/openwrt.git;a=commit;h=e3b8ae2b09e137ce2eae33551923daf302293a0c
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Kalle Valo <quic_kvalo@quicinc.com>
+>
+> Binding without it's user is usually useless. Where is the user?
+>
+It is required for SystemReady-2.0 certification.
 
-Patch applied to ath-next branch of ath.git, thanks.
-
-7f6ee56ca0df dt-bindings: net: wireless: ath10k: add ieee80211-freq-limit property
-
--- 
-https://patchwork.kernel.org/project/linux-wireless/patch/c33c928b7c6c9bb4e7abe84eb8df9f440add275b.1686486464.git.chunkeey@gmail.com/
-
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
-
+thanks
