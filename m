@@ -2,96 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C695A73313D
-	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 14:30:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E599273313E
+	for <lists+devicetree@lfdr.de>; Fri, 16 Jun 2023 14:31:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234267AbjFPMap (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 08:30:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35876 "EHLO
+        id S230108AbjFPMbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 08:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36040 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229558AbjFPMao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 08:30:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BA4B30DE
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 05:30:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 971FA618FE
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 12:30:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2587FC433C8;
-        Fri, 16 Jun 2023 12:30:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686918642;
-        bh=Cj+Wk0BwYW8r8EUY/TzZICqsApqGJ5k+uKM7KjKEwUI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=qQPl7pv8SnN6vVdFbJ0RBIjxiGIjUQmSY1sgv5lLTp4jjTcJP3OoK5HvqI6bP/Ypu
-         5kpPJ2BwVQ7qwaO1o8T4KnmMsx2ZZqHX2Y21c8a9oVOxCLWAVM35bN9qRKvNaiJw2n
-         GK0qUhd180e++VIBOtSWbGQ6b9kHGnPg6Dk1sYcR+LMltWGv3e6xgdvQlf5SutvEu9
-         LqSXTjkFDAvO2nBUwJUQ0h9vfuIJo24iBoTqcycTGSQYCUT5B8RFelk4uEuIMZFCaM
-         Up7G8vBCXrKy4qsAXOSwaNJPjOTDbVxKU9zTr18dv+tvtFUFqI8Lp9ebv7lgEyMZ6N
-         nBWYS7DZxzghQ==
-Date:   Fri, 16 Jun 2023 13:30:37 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 1/1] ASoC: dt-bindings: tlv320aic32x4: convert to DT
- schema format
-Message-ID: <993767ab-d7eb-440a-9f13-026821fd1f61@sirena.org.uk>
-References: <20230616083549.2331830-1-alexander.stein@ew.tq-group.com>
- <4930994.QJadu78ljV@steina-w>
- <3ddb3d09-2a9b-4a25-8108-a79ea83a9dd5@sirena.org.uk>
- <24617723.6Emhk5qWAg@steina-w>
+        with ESMTP id S229558AbjFPMbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 08:31:37 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10E411FCC;
+        Fri, 16 Jun 2023 05:31:37 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6664a9f0b10so614623b3a.0;
+        Fri, 16 Jun 2023 05:31:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1686918696; x=1689510696;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=lm26FPRdEuF0YwkxWbrT+z8zY664CKlz4NjHENy56Us=;
+        b=a05oQ1ePVVw5aKhJV/qcSzr4QWznhaIZ5pzXjcJZTHAoK67+GdFkyd52kBiq+Xo5wy
+         6v1lgAXd26LTOw0MuJGgkxHAsBktMM5/FqTLDTBv8BsDm/4yeY3E4dSsIaQy8HzaRvKu
+         T1X3PkRzIOldSrE79Wwb8PrnlmPYoht0PRGJStEaET7Vd8T1ex9uoFBuxawzlipL8ME0
+         7KBy8VO24fCQwuwLxSfYZ6WsPFnfj/f/6QdfogmNw1jIU1SGKByaKcLudiMAOe/0TtMA
+         AoPb3bdhIorOHE0u1wQ+Lu5gR5mPWGLqvhuqelZZdVlVinrCHh8GRZNsd8PuVJ8u7k/I
+         Zt6g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686918696; x=1689510696;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=lm26FPRdEuF0YwkxWbrT+z8zY664CKlz4NjHENy56Us=;
+        b=gLVgNE8dtkFOyLUu8s7DP/A1u/cOfchQUwDGu/d48XWDl90ixs7YXl95oZsJOqvghp
+         v6NfDWnYgytzJ7aPJ0lxl5zQcolhY/2J2RJcvv/hdJTYaq0aMpAA98J/K12oLh5CtXF9
+         IMhArOrZtBrCX0fdL442ynEkgI8oNrJFIiAAsv6t0wc4PkZ7OGBJ4ONidho/Jcgp912o
+         fq3kSOeYGvbO+BgF7HCpgroR+yvYjdlVpIvDTyEAFIPV5KgssdiPz9dNfmYzxGsu80so
+         BHMDzkl2vAiOKIKzald9WU49fDsYMoZOxeUhb3UFyFo0DYugaj2xs+fn1N9KIMtcF34Z
+         JawQ==
+X-Gm-Message-State: AC+VfDxVmPUDHW1DLtfP5gfyBqowPdEcNExmzjZ00N7HtP41SoWga55U
+        7BElWn17yTOOzR/cUw/+clJMQ/1+riLRiDXjmqOZ35h12FM=
+X-Google-Smtp-Source: ACHHUZ4v59zC84NLCUrSS490QCKZGfzTuz9JmKYtcJPuSOdbHRtJu6+cZfkZCOvoJv1GUV6IauD+v8rwbtxKcgsidRE=
+X-Received: by 2002:a17:90a:656:b0:259:343:86b5 with SMTP id
+ q22-20020a17090a065600b00259034386b5mr1338940pje.47.1686918696408; Fri, 16
+ Jun 2023 05:31:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="HTPZ85NJJ/wNaNFk"
-Content-Disposition: inline
-In-Reply-To: <24617723.6Emhk5qWAg@steina-w>
-X-Cookie: P-K4
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230607151127.1542024-1-pavacic.p@gmail.com> <20230607151127.1542024-4-pavacic.p@gmail.com>
+ <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
+ <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com> <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
+In-Reply-To: <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
+From:   Paulo Pavacic <pavacic.p@gmail.com>
+Date:   Fri, 16 Jun 2023 14:31:25 +0200
+Message-ID: <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+pet, 16. lip 2023. u 13:44 Linus Walleij <linus.walleij@linaro.org> napisao=
+ je:
+>
+> On Fri, Jun 16, 2023 at 11:57=E2=80=AFAM Paulo Pavacic <pavacic.p@gmail.c=
+om> wrote:
+> > =C4=8Det, 15. lip 2023. u 21:55 Linus Walleij <linus.walleij@linaro.org=
+> napisao je:
+> > >
+> > > I doubt that the display controller is actually by Fannal, but I gues=
+s
+> > > you tried to find out? We usually try to identify the underlying disp=
+lay
+> > > controller so the driver can be named after it and reused for more
+> > > display panels.
+> >
+> > Yes, of course, the controller is ST7701S.
+>
+> Hm did you try to just refactor
+> drivers/gpu/drm/panel/panel-sitronix-st7701.c
+> to support your new panel?
+>
 
---HTPZ85NJJ/wNaNFk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yes I have tried, but there are too many changes needed and I wasn't
+sure whether I would be breaking compatibility with st7701 based
+panels.
 
-On Fri, Jun 16, 2023 at 02:24:17PM +0200, Alexander Stein wrote:
-> Am Freitag, 16. Juni 2023, 14:21:29 CEST schrieb Mark Brown:
+> One major reason would be that that driver knows what
+> commands actually mean and have #defines for them.
+>
+> Yours,
+> Linus Walleij
 
-> > That'll be the issue, yes.
-
-> Ok, there is nothing I can do, right?
-
-You could check for dependencies and tell me about them.  For example in
-this case it turns out the issue is that there's a fix to add supply
-names that went in which is only on my fixes branch.
-
---HTPZ85NJJ/wNaNFk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSMVewACgkQJNaLcl1U
-h9CYJwf/YE21gNPFb/6PxnNe3XkUBbbIUIS7j43aaipTwoIvtSBe5Mk2EplxjCHO
-y/MgVq56mF4rQ4pSD301IsCW2Ls9yspsIVOnnx94uxkcsjpZ2UAjgTAbVkdWdbCq
-rp8f5WpVBBqB78HmvRqyvlKfxQa6dRNQby7Q6WiqPp8RuiwAOFQz8rI47FVLU81n
-y7QgwrJBNW4baqcGRbWrf/foTOxYJTsEnT1jYA4sLuEcTvrAa3/svDs1y8+EHPaa
-3WJG9CALR9paLEJF+DRSjiifN95qekn14fP/Yn+MHACZM5VC/MnSjT8Wo9Ad7eXG
-YA9i2qtt2w85GOELYTo5k0mnqQsf7g==
-=C+td
------END PGP SIGNATURE-----
-
---HTPZ85NJJ/wNaNFk--
+Best regards,
+Paulo
