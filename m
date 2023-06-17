@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3237373437F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:30:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6640A734382
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:34:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346381AbjFQU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 16:29:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39794 "EHLO
+        id S234340AbjFQUeX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 16:34:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234287AbjFQU34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:29:56 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021171729
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:29:55 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-986d871a9beso222339366b.1
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:29:54 -0700 (PDT)
+        with ESMTP id S231321AbjFQUeW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:34:22 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99DA91723
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:34:21 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-982c996a193so282970766b.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:34:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687033793; x=1689625793;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1687034060; x=1689626060;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WotXs+XtzzrhlYB5laz6cnJm1VOdwaPgisww3kS+BtM=;
-        b=lW9fTA9v9HxxmIHFjctBcM5mJ8sibJgQJFs7a+noaiQ3kf+VggSz3rxCQS77BYbuKj
-         ibyDg5uP78O5Ypgznaqh1Y8JVeE+0649VRACesm/ssk3yZRpIKxHwqt8sBiR5QwvpnrQ
-         ym94m87zIjd+jps/yrzwuUFHyyz/kBbeYTQM3IDQlWp+Tuyek65gi3/hZHV3GwZL4dFA
-         4muMUlITlw2uO8ywZPtFhKoIdbzxUc0+4qaAbl+qdxHOu4ExleWtWpUpqCpIDKJJEmGn
-         5T04eLpsuGKo1r2rRhWP7VBJL7dSFL9qcNT32JOCE8QXZpu94h2rTmVHE/QlafnT4wXm
-         beog==
+        bh=eDT98+tq9yphi2ITN6OKufow+YGDt55MTQWdD14+NmM=;
+        b=au+AT2YEcGZIpWxwoWts5CEwJ7E0F7Y+y+gCnwMEvgDHf+eUb7q6IfM/BWOySeK4FK
+         0ZgmgnRt5BjmiACb9TK9bGErdx8l47NSUJpv8LKgcFCfflhOg7LPwunzKlCPAdXjj9fI
+         oU6Zn4LZhtR6zHRX/iuv8PBrGvJV/c+qHNfcLWVbx5t8yh1sWDk1/NavmZlxUSFUFg01
+         dDAoL/6ds3SJWxbnEp5BZo0MumrMAogJDDdk1E6nV2hJRXmjqWbr4+Oq67EVak9pL4jH
+         pmln4OpPFk2xE+y96KxLt8nX35AXVMzDvtpUK+WNmnv+l4tAOofzd5br1V5lHfODP9U7
+         lJLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687033793; x=1689625793;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687034060; x=1689626060;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WotXs+XtzzrhlYB5laz6cnJm1VOdwaPgisww3kS+BtM=;
-        b=NKydsa7gj5vudeeHC0LHHsSfAzQcZY5q3hem0wYcl9UuNIbpQkMS/Oz8s3uT7ZfjQ+
-         4dSiS4dylLGPOq7jq2D/jd1tBI8Lufj9WGlnrt9ZbNW24jW4g9xpSfMBe4sKzCYIVCgl
-         pemQu/QEZK77UVAQXL5XHjCbF0HEOX5h0xdQOvYcVv645muaw9DJSz4jh6nhbFCcORFR
-         lWknVo5gSSHKICneDjQwvypzlIJbZ/nhaK2LGD0b9F4OwqIhemsditSOB/T9syOHvi86
-         QvRvZO0Pk60o9K08YiCZis4Za4+z6Jj6nXAGA6g3ZB4xxDmABv09aUhSUHifAPzJun8j
-         hrbg==
-X-Gm-Message-State: AC+VfDyB4svJKQLpUV6Cu55AWANq4/3/bSgAMKfpernKKNE1Yd1zIY+m
-        IFXYlwKz8ZH/SRxUlt8z/4GtuA==
-X-Google-Smtp-Source: ACHHUZ53sBLPaVvnnGgxK0nUyl1GvLMLow9cJxFJcPNV2oyhFecpAq7IGFCYchBcJkCqaWuR6eSlkw==
-X-Received: by 2002:a17:907:3187:b0:96f:c0b0:f137 with SMTP id xe7-20020a170907318700b0096fc0b0f137mr5548380ejb.16.1687033793351;
-        Sat, 17 Jun 2023 13:29:53 -0700 (PDT)
+        bh=eDT98+tq9yphi2ITN6OKufow+YGDt55MTQWdD14+NmM=;
+        b=EDDW1ZKhXB24hwk3klC6kdqnEoI3H0GsE7m+ENgzOIV7H7dXFUCRSsx51aOGRCfEFo
+         LImehFxRYTE16lMPpdHhHzA5bI50t8IAD1b4OBRfgWwh2dOsNJqWth5dOMJ0DpCuG+D7
+         ek00M61pzAich5HhueixQUaUZIajvS8DdySV21pNJV4f7INWOvtd3jlFswJitx3iSYgb
+         /WDd7100gTthFx7FzVc2fqhpUN7lr/p7h3oKN3JqYt/JH2niIy0znQDKAO0lXxGXtmzN
+         8AkS0F3++E/WOkeui/CdCfLHucPXZl4CwA1zvbIcVb0BrDQPWLMuMsR1+pbCv08D2RYf
+         EMYg==
+X-Gm-Message-State: AC+VfDw4j91UJxX/pFpl7mEY7u1Drlgm0CZ8QaXwfyjEjX+UgY6MpYPB
+        B6ANphWOTPDB9ZQMYcczZP9MpQ==
+X-Google-Smtp-Source: ACHHUZ5ARZwxtt3P0MlCdDeWpXMZMHNeiJP/9Y3veHLePivd6vRYzfO31quVGPyf2/33w+Hqr4TKfg==
+X-Received: by 2002:a17:907:5c8:b0:974:6de:8a5e with SMTP id wg8-20020a17090705c800b0097406de8a5emr5119000ejb.40.1687034059963;
+        Sat, 17 Jun 2023 13:34:19 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u2-20020a1709064ac200b00977eda0ea29sm12728337ejt.14.2023.06.17.13.29.51
+        by smtp.gmail.com with ESMTPSA id y20-20020a170906471400b009663115c8f8sm12436310ejq.152.2023.06.17.13.34.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Jun 2023 13:29:52 -0700 (PDT)
-Message-ID: <fe1f44f0-3c6d-4375-6aad-286d6d539d73@linaro.org>
-Date:   Sat, 17 Jun 2023 22:29:50 +0200
+        Sat, 17 Jun 2023 13:34:19 -0700 (PDT)
+Message-ID: <68aeb55a-dd0e-e517-4e66-3bf7fd32bba1@linaro.org>
+Date:   Sat, 17 Jun 2023 22:34:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v3] Documentation/process: add soc maintainer handbook
-To:     Conor Dooley <conor@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     "Conor.Dooley" <conor.dooley@microchip.com>, soc@kernel.org,
-        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Olof Johansson <olof@lixom.net>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Randy Dunlap <rdunlap@infradead.org>
-References: <20230606-escapable-stuffed-7ca5033e7741@wendy>
- <05c50d10-080b-43ab-9131-98f71508ac2d@app.fastmail.com>
- <20230617-succulent-surgery-3dbbf9454737@spud>
+Subject: Re: [PATCH v2 2/4] dt-bindings: net: dpaa2 mac: add phys property
 Content-Language: en-US
+To:     Josua Mayer <josua@solid-run.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Ioana Ciornei <ioana.ciornei@nxp.com>
+References: <20230617134009.23042-1-josua@solid-run.com>
+ <20230617134009.23042-3-josua@solid-run.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230617-succulent-surgery-3dbbf9454737@spud>
+In-Reply-To: <20230617134009.23042-3-josua@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,38 +82,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2023 20:32, Conor Dooley wrote:
-> Hey Arnd,
+On 17/06/2023 15:40, Josua Mayer wrote:
+> dpaa2 mac supports runtime configuration of network protocols on a
+> generic phy object specified via the "phys" property.
+> It is currently used with the SerDes28G driver to switch SerDes
+> protocol between SGMII and USXGMII at runtime.
 > 
-> On Tue, Jun 06, 2023 at 12:23:26PM +0200, Arnd Bergmann wrote:
->> On Tue, Jun 6, 2023, at 10:27, Conor Dooley wrote:
->>> Arnd suggested that adding a maintainer handbook for the SoC "subsystem"
->>> would be helpful in trying to bring on board maintainers for the various
->>> new platforms cropping up in RISC-V land.
->>>
->>> Add a document briefly describing the role of the SoC subsystem and some
->>> basic advice for (new) platform maintainers.
->>>
->>> Suggested-by: Arnd Bergmann <arnd@arndb.de>
->>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>> Changes in v3:
->>> - sort out a rake of spelling/grammar bits spotted by Randy, apart from
->>>   the one noted as a suggestion
->>> - drop the refs for document filepaths
->>
->> Thanks, I've applied this in the soc/newsoc branch of the soc tree
->> now, which is where I'm already queuing new platforms.
+> Support was introduced with:
+> f978fe8 "dpaa2-mac: configure the SerDes phy on a protocol change"
 > 
-> Having cited this document for the first time, it came to mind that I
-> never mentioned putting the submaintainer trees into linux-next. Should
-> I send a follow-up patch for that, or do you think that that isn't
+> Add bindings description for the missing "phys" property, to fix dtc_chk
+> errors present in various layerscape based dts:
+> 
+> 'phys' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Josua Mayer <josua@solid-run.com>
 
-This is common maintainer stuff, so every maintainer - not only SoC
-related - should ensure his tree is in next. I would trim all such
-common things from the document and store it somewhere else, because
-otherwise people will just not read it.
+This was sent:
+
+https://lore.kernel.org/all/20220801181347.3873041-1-sean.anderson@seco.com/
+
+And obviously will get lost because Sean for some reason decided to not
+Cc maintainers and lists... so sure, we can go with this one:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
