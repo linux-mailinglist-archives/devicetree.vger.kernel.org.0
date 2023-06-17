@@ -2,83 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4635734386
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:35:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C96D073438D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346446AbjFQUfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 16:35:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40948 "EHLO
+        id S1346317AbjFQUgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 16:36:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346455AbjFQUf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:35:28 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A6D4172D
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:35:27 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-986864cfe5dso303960366b.1
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:35:27 -0700 (PDT)
+        with ESMTP id S1346399AbjFQUgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:36:47 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0FB7B9
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:36:46 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-5169f614977so2838037a12.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:36:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687034125; x=1689626125;
+        d=linaro.org; s=google; t=1687034205; x=1689626205;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=adlDrTPzEegmM8kKoFP+1uNa9d2EBOUIJ6kOaUFDC8o=;
-        b=MmsSWecYScl1Z4CBgj+PdYoPxynVHDccuAU5zyxkbT/6npgB4BEbPla7+AmVHqe67P
-         gurJyKt58AHee2zmIiwR7vIMqCEJeWHqHuPzruDIZXPHcnymLGfnTuVNSrD3e+Ah4Jfo
-         eLaeXHeDGzny7UmEqcNiAGjCFjnUcBEqVSYPBRcKjBv26t3/cH49D6okTsSRkV5NjULC
-         4iPjMBt0zhaaukCovXloi88DTZCcNroZr0Tvg+a4aGhVrmzvTZhM4enhHaVRhHXzvQJ5
-         J2ICZkkcwz7o99ToH1U0bmzP4r5gNdDlgxcOUL2YFhwxqWb+g6B1PObOPqvMYpEfGVFC
-         KE9A==
+        bh=2aJz+RT/xyq0N/i2nhfM+NmOZutl67Cvwf+2Z6rBvnE=;
+        b=KgsFph9+3TeTFwsHIYPeBYpJGSM/BFb++KvNOt2lJShBCESxyFR2hxFgEjCTMnSMUo
+         if2aBcWChwui//SHSR/ZwfojH6ZW7hE9SIBnTWXfZzW6ERo0bAovKD5h6aILaY+1vFQl
+         GHncrOxQze3YycrmK5cGDccCYic6U3TE+wp3LaYYERZAHa6LzOhEtedUcUauEOFC3C2g
+         E1kG9DA+Q4jGt5iYKJi6JTg8dhSLesRpLPNKP78FzjZkA9fC+m5XRM6hyr8+HOKHGRp2
+         DcYPP+9kjd9mrlc2UoFq+hOUYaQxXVoiYm19bLatwuKiGXN5j8GBWSVjcQlIboNpQVnt
+         W4vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687034125; x=1689626125;
+        d=1e100.net; s=20221208; t=1687034205; x=1689626205;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=adlDrTPzEegmM8kKoFP+1uNa9d2EBOUIJ6kOaUFDC8o=;
-        b=XryxgF4H4DADoLbDsyXBLAl2hDc7FbS3Ad+jcj7yvia+4NAr4ZC3q0o+pDeJJVm7jE
-         O84MJtWbjvRx23FoCdz7rwrd2/e/e373EIvRjepuyRcnqPkRCfou37Qeh8FAXHX98Z1K
-         BdTiM5OqrL7QMqsPBtlg637QME+0L6dP1eDknO63u4ZOpJ0R88pPZWegTrfOImhNAIHQ
-         N8Lg8mQAUY2E+3bQOXiSaoVeuSlx6Ft1n9X72IkBIeWhSF2n2sAQKkle6QllNy2VpmoW
-         nPXVsPvanBTt/MTDKNiLGKXjy5mSQtEQTztGVk/5WTSM5zYtZoxWB4x/j1pTfgHJxw62
-         HpSg==
-X-Gm-Message-State: AC+VfDwgX7vnrow1fwoRiV/tY16WMvIh0rjRcs/a7iETNah7oZXqR3L9
-        tAdYJIlvXgYZe6nzGJuY2pa0cA==
-X-Google-Smtp-Source: ACHHUZ58dkvrB8dYMz8btetiN6tKfvDjYmtdQlofAz2nrYz0tg/5zEj1tNhm11Jq5QOKZr1vvS1sGQ==
-X-Received: by 2002:a17:907:84b:b0:94e:4285:390c with SMTP id ww11-20020a170907084b00b0094e4285390cmr4810155ejb.10.1687034125475;
-        Sat, 17 Jun 2023 13:35:25 -0700 (PDT)
+        bh=2aJz+RT/xyq0N/i2nhfM+NmOZutl67Cvwf+2Z6rBvnE=;
+        b=IKeMDzFOd9hDtRDhqsReH45DQNlZLrPXIFSOYVsOrfYAhOdWXLGZxbAilKQF31N6wL
+         fKyHCEqeQihDjzW88jaIBBF4p1Ja8KvxjSGY1oIUVqsAl+BJop3FTx6Gw4s4y5mXek+G
+         2w7/WFBHVGVrW/k8uNeqYCXfkszmiomx1jxG4WnBhAmdFsZGbc8DgEV18MdnUmkCU8Xn
+         /8TfVCzRl2J9KoiJSNiDC5T2vEbft573l7Aw5fiI5hKHM9SZtPUn6npHeVJ8VJyljNCB
+         krZ9UUK3ZBuu+lLzQ8oRc7YaSWjOr9e/p3yPLx5TbJAQm31XhzzZ97kKCqoxE9K+/YSa
+         nT0w==
+X-Gm-Message-State: AC+VfDyxNWcJVNvUjGMBZIk5NweQpIznbVE83h7AprtyaNqA5c3VIHp2
+        8xftJl66E2o+cnagK6ETwEJsLg==
+X-Google-Smtp-Source: ACHHUZ7YPFcNDwh5hs6abIefKOUQ+hQDS6/+wrmEAKKAg1RNr7W9xWwIqfkUZ7FXupdhoF1WejLc/A==
+X-Received: by 2002:a17:907:3f87:b0:97d:9b73:690b with SMTP id hr7-20020a1709073f8700b0097d9b73690bmr6103013ejc.59.1687034205126;
+        Sat, 17 Jun 2023 13:36:45 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id lv16-20020a170906bc9000b00965a52d2bf6sm12352099ejb.88.2023.06.17.13.35.22
+        by smtp.gmail.com with ESMTPSA id y9-20020a17090668c900b0098242730348sm6313405ejr.72.2023.06.17.13.36.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Jun 2023 13:35:25 -0700 (PDT)
-Message-ID: <eac7cce5-6218-bf14-f2fa-800d09cb2a00@linaro.org>
-Date:   Sat, 17 Jun 2023 22:35:21 +0200
+        Sat, 17 Jun 2023 13:36:44 -0700 (PDT)
+Message-ID: <9e9c9f70-7b02-900f-36b9-27c734c12721@linaro.org>
+Date:   Sat, 17 Jun 2023 22:36:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 3/4] dt-bindings: arm: Add SolidRun LX2162A SoM &
- Clearfog Board
+Subject: Re: [PATCH v2 4/4] arm64: dts: freescale: Add support for LX2162 SoM
+ & Clearfog Board
 Content-Language: en-US
 To:     Josua Mayer <josua@solid-run.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, Marek Vasut <marex@denx.de>,
-        Fabio Estevam <festevam@denx.de>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Stefan Wahren <stefan.wahren@chargebyte.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Andreas Kemnade <andreas@kemnade.info>,
         Li Yang <leoyang.li@nxp.com>
 References: <20230617134009.23042-1-josua@solid-run.com>
- <20230617134009.23042-4-josua@solid-run.com>
+ <20230617134009.23042-5-josua@solid-run.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230617134009.23042-4-josua@solid-run.com>
+In-Reply-To: <20230617134009.23042-5-josua@solid-run.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -86,31 +85,72 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 17/06/2023 15:40, Josua Mayer wrote:
-> SolidRun now have 2 product lines around NXP Layerscape SoC:
-> - LX2160A COM Express 7
-> - LX2162A System on Module
+> Add support for the SolidRun LX2162A System on Module (SoM), and the
+> Clearfog evaluation board.
 > 
-> LX2162 is a smaller package and reduced feature set to LX2160A;
-> LX2162 SoM is also a smaller form factor and reduced feature set to CEX.
+> The SoM has few software-controllable features:
+> - AR8035 Ethernet PHY
+> - eMMC
+> - SPI Flash
+> - fan controller
+> - various eeproms
 > 
-> Since both product lines are physically incompatible,
-> the existing group "SolidRun LX2160A based Boards" has been renamed to
-> include "CEX" in its name, meaning products based on LX2160A COM Express
-> Module, following this pattern:
-> "solidrun,<board>", "solidrun,lx2160a-cex", "fsl,lx2160a"
+> The Clearfog evaluation board provides:
+> - microSD connector
+> - USB-A
+> - 2x 10Gbps SFP+
+> - 2x 25Gbps SFP+ with a retimer
+> - 8x 2.5Gbps RJ45
+> - 2x mPCI (assembly option / disables 2xRJ45)
 > 
-> Add DT compatible for both SolidRun LX2162A SoM, and LX2162 Clearfog
-> boards to a new group based on LX2162A SoM, following this pattern:
-> "solidrun,<board>", "solidrun,lx2162a-som", "fsl,lx2160a"
+> The 8x RJ45 ports are connected with an 8-port PHY: Marvell 88E2580
+> supporting up to 5Gbps, while SoC and magnetics are limited to 2.5Gbps.
+> 
+> However 2500 speed is untested due to documentation and drivier
+> limitations. To avoid confusion the phy nodes have been explicitly
+> limited to 1000 for now.
+> 
+> The PCI nodes are disabled, but explicitly added to mark that this board
+> can have pci.
+> It is expected that the bootloader will patch the status property
+> "okay" and disable 2x RJ45 ports, according to active serdes configuration.
 > 
 > Signed-off-by: Josua Mayer <josua@solid-run.com>
 > ---
-> V1 -> V2: fixed to not break existing boards
-> V1 -> V2: explained new board / som DT binding in commit message
+> V1 -> V2: reordered "compatible" and "reg" properties
+> V1 -> V2: replaced chip-specific DT node names with generic ones
 > 
+>  arch/arm64/boot/dts/freescale/Makefile        |   1 +
+>  .../dts/freescale/fsl-lx2162a-clearfog.dts    | 371 ++++++++++++++++++
+>  .../dts/freescale/fsl-lx2162a-sr-som.dtsi     |  75 ++++
+>  3 files changed, 447 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-clearfog.dts
+>  create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-sr-som.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
+> index ef7d17aef58f..b4fb5044d1c7 100644
+> --- a/arch/arm64/boot/dts/freescale/Makefile
+> +++ b/arch/arm64/boot/dts/freescale/Makefile
+> @@ -34,6 +34,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-honeycomb.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
+>  dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
+> +dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-clearfog.dtb
+>  
 
+...
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +&fspi {
+> +	status = "okay";
+> +
+> +	flash@0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		compatible = "jedec,spi-nor";
+> +		reg = <0>;
+
+Still wrong order of properties. compatible is always first, then reg.
 
 Best regards,
 Krzysztof
