@@ -2,65 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 33B39733E8C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 08:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6850733EB6
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 08:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjFQGAy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 02:00:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54810 "EHLO
+        id S230233AbjFQGbA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 02:31:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229493AbjFQGAy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 02:00:54 -0400
-Received: from mail-ot1-x32f.google.com (mail-ot1-x32f.google.com [IPv6:2607:f8b0:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6017B10DD;
-        Fri, 16 Jun 2023 23:00:51 -0700 (PDT)
-Received: by mail-ot1-x32f.google.com with SMTP id 46e09a7af769-6b44b5adfd3so1088838a34.3;
-        Fri, 16 Jun 2023 23:00:51 -0700 (PDT)
+        with ESMTP id S243801AbjFQGa1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 02:30:27 -0400
+Received: from mail-yw1-x1135.google.com (mail-yw1-x1135.google.com [IPv6:2607:f8b0:4864:20::1135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8824A3C0F
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 23:29:19 -0700 (PDT)
+Received: by mail-yw1-x1135.google.com with SMTP id 00721157ae682-56fff21c2ebso18429517b3.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 23:29:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1686981650; x=1689573650;
+        d=gmail.com; s=20221208; t=1686983359; x=1689575359;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dsMcBAzokADfDQj+dcl9riTWGJRFeO6KPrhVYaZaLbE=;
-        b=cqV1VAc+CW2y1q0B8H7xLgWwrIaPt3xH5+65rvlVgf0kDgE1PntwzmcLropSCHsc3w
-         3NKol9XRS9po/LXhn9Wc4qphPQPZna6Jw/MXk4/P/au2Zn7DDtyPQm7+kz4NkUpcp98e
-         lxRZ+HHRp8N6CV3R8kd0KUjJMTDobcEdV7UJ5pnuZVj16tfgXXjhPJs5xHdsJm5woN/W
-         RYAGdwpY4op1V1EZuTo5RfgHUUdimgqaJhxlxBuTJz2nwboELmizMX88zLKBSHmgMHWh
-         r5lcUtEwe32NcowAZYELFM2jvcnCIb1yfEzokglgJ72UsnL6fULRX0gbD8IqKRPWvubz
-         E0jw==
+        bh=nGsJ3GmkLm/SN/kLvTNcYuy0c+xYeJmxn3Y+T48Gt3o=;
+        b=rcXqNIwnXiQ4MbL/Tlyq/wIM/fW5ttpoYim4O0noMUOso517SAJAKbM8p1b3l/qM7S
+         DgZRBJlwJ93X34A6esm/UxEO3gcxECVyrxBEGvk9HwFIdaoqnYNG3wOj7itk4+szKtuL
+         b2NNF1IcyGuThMrdcbD1bttPgGKajvjYz671WWDDci+FR6TCKXkkvFPeJuFOmiN+hNya
+         /NbbZZ2JlpwKPms5fo9q7fy2QUf/nWUaOqIOKVoyKz3QHS+WWB1x80wLFyEykmFb9i71
+         8QikWYYKaeJlXiPFD3vTZ8LBW7JO4NnBOYB+6LxdopXy6lJ/hLgoaE5gY722owFXwZi4
+         xOIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686981650; x=1689573650;
+        d=1e100.net; s=20221208; t=1686983359; x=1689575359;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dsMcBAzokADfDQj+dcl9riTWGJRFeO6KPrhVYaZaLbE=;
-        b=e2BPvwGTm1+1cngp5wL/4cU8dRu2J/01nvX/9j23g3gpfzQLguUzuP6JBK3py8EbVk
-         q1nLzN8li6S5czuu+4d+Ktw8a1BVr6yGTE0+pqy6Xx+jiwKZs9FaOCPRKkdjgjWeboz+
-         MAzZ8zhq/dZHwFuhQELLnIKYsZtIS/zQqolDGuuxqluEhjD9e7HoRoTg472+IJmtKXpC
-         JrI+J+FbjM0SSYrDCIKhHgX4di8xVpCONd0xtWC0NvDTNFpY7AWsVlLg83Fwt0d+K8hj
-         K7zkx+P0JdDziDoa5m5l0i4ysHVuUPU0baQ4ER+f+AsmE0lytcFtM1Vy7U4K17gPqNuE
-         cteg==
-X-Gm-Message-State: AC+VfDyvbfvPpz31j8QZ+9B5FDdM9YuOwG5N5WZ6+BEQJEp3CDnXPVI1
-        yWv5DWMkB2LiHr3R7bvcPP/IsGTOcM9/X/EV6CM=
-X-Google-Smtp-Source: ACHHUZ7M+3ahl8aA1MWs6d/uUu4V7qCSK+MWXW+1JTHNn93McFFieptDJhDlxwwDNFj+LBvLv4HgNni2E3XkOJKI6m8=
-X-Received: by 2002:a54:470a:0:b0:398:45e0:38c0 with SMTP id
- k10-20020a54470a000000b0039845e038c0mr4306200oik.15.1686981650571; Fri, 16
- Jun 2023 23:00:50 -0700 (PDT)
+        bh=nGsJ3GmkLm/SN/kLvTNcYuy0c+xYeJmxn3Y+T48Gt3o=;
+        b=XzafkJUF9cNJSE8WWsjPApsS1aSvwT80TCxZuc43E8PKqDASB9Wtx+nIvB0ucCZJJ6
+         0w4wxy8+HQrt646zac0lWRc+Pgq/AugHZB9i/BZuheJJukZQk0t3XH4AakcGHPPOn3DM
+         M0eMww1hH5QuSti1JHJTkNq7+TGPLl3WEUA4cNsblVuqfpHxeOCZlWsf+OItuQPM8i2r
+         IUZCD+Vds+HBhfcoH7BKDxUe7pRmAYSFIugU01Q4YZG5l8AnmV+OxSdgT8lxHuUNEIb2
+         1n0X62FGnMVQ/NvgB40MKOdp1xKw8eophz8A0kvtY4IPF5uiknxBhMtquyAisVCQG84Z
+         LcuA==
+X-Gm-Message-State: AC+VfDw5f6rpxnYS5FwxrzZoXKCCBD7d40qLwl5aLvv5K3QtwLpkHJF6
+        GRTp/+tmKjPjVN1Jj1OSv1nBvHpzPmsa76BAfcTwNEs+5uw=
+X-Google-Smtp-Source: ACHHUZ7QN2ySclaaaIyW0feGuNgYn7FOUItA15CKRwTqaaNdVI/VT2l1kKGrQAOuOAOaGaPgoF2CiTlThU+wG6o4dF8=
+X-Received: by 2002:a81:4788:0:b0:55d:a9d7:521e with SMTP id
+ u130-20020a814788000000b0055da9d7521emr4350517ywa.18.1686983358711; Fri, 16
+ Jun 2023 23:29:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <CAMhs-H_GjHU+r33oeytXiyu+bgGTrGL8Ck=DbsMYnqC-XBNYYw@mail.gmail.com>
- <TYAP286MB0315C2088627FB035A5D43D6BC59A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
-In-Reply-To: <TYAP286MB0315C2088627FB035A5D43D6BC59A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Sat, 17 Jun 2023 08:00:39 +0200
-Message-ID: <CAMhs-H_sHWu_uFMbjzB2APU=aYv6d4gnXD9xw=ANigTXDjQzzg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/9] clk: ralink: add clock and reset driver for MTMIPS SoCs
-To:     Shiji Yang <yangshiji66@outlook.com>
-Cc:     arinc.unal@arinc9.com, devicetree@vger.kernel.org,
-        john@phrozen.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-mips@vger.kernel.org, matthias.bgg@gmail.com,
-        mturquette@baylibre.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, sboyd@kernel.org, tsbogend@alpha.franken.de
+References: <cover.1686882123.git.zhoubinbin@loongson.cn> <c1f86e5d1026937abda331ce564e5ee96b7114c7.1686882123.git.zhoubinbin@loongson.cn>
+ <20230616-gallon-shrank-42613cd73666@wendy>
+In-Reply-To: <20230616-gallon-shrank-42613cd73666@wendy>
+From:   Binbin Zhou <zhoubb.aaron@gmail.com>
+Date:   Sat, 17 Jun 2023 14:29:06 +0800
+Message-ID: <CAMpQs4J4hOAFaarv9O3u20czpNjeHfBoPHWOzY7Y_Zno0R3vYg@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: loongarch: Add CPU bindings for LoongArch
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Hongliang Wang <wanghongliang@loongson.cn>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -73,83 +76,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 17, 2023 at 7:51=E2=80=AFAM Shiji Yang <yangshiji66@outlook.com=
-> wrote:
+On Fri, Jun 16, 2023 at 5:34=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
 >
-> Thank you for your quick reply!
->
-> >> >+      {
-> >> >+              .compatible =3D "ralink,mt7620a-sysc",
-> >> >+              .data =3D &mt7620_clk_data,
-> >> >+      },
-> >> >+      {
-> >> >+              .compatible =3D "ralink,mt7620-sysc",
-> >> >+              .data =3D &mt7620_clk_data,
-> >> >+      },
-> >> >+      {
-> >>
-> >> I am confused about the difference between `ralink,mt7620-sysc` and
-> >> `ralink,mt7620a-sysc`. Do you mean mt7620n?
-> >> https://www.mediatek.com/products/home-networking/mt7620n-a
+> On Fri, Jun 16, 2023 at 02:10:38PM +0800, Binbin Zhou wrote:
+> > Add the available CPUs in LoongArch binding with DT schema format using
+> > json-schema.
 > >
-> >There is no real difference. As you can see both of them use the same
-> >'mt7620_clk_data' but since both compatible strings already exist
-> >somewhere I introduced both of them.
-> >arch/mips/boot/dts/ralink
+> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+> > ---
+> >  .../devicetree/bindings/loongarch/cpus.yaml   | 65 +++++++++++++++++++
+> >  1 file changed, 65 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus.ya=
+ml
+> >
+> > diff --git a/Documentation/devicetree/bindings/loongarch/cpus.yaml b/Do=
+cumentation/devicetree/bindings/loongarch/cpus.yaml
+> > new file mode 100644
+> > index 000000000000..c3e2dba42c81
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/loongarch/cpus.yaml
+> > @@ -0,0 +1,65 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/loongarch/cpus.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: LoongArch CPUs
+> > +
+> > +maintainers:
+> > +  - Binbin Zhou <zhoubinbin@loongson.cn>
+> > +
+> > +description:
+> > +  The device tree allows to describe the layout of CPUs in a system th=
+rough
+> > +  the "cpus" node, which in turn contains a number of subnodes (ie "cp=
+u")
+> > +  defining properties for every CPU.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - loongson,la264
+> > +      - loongson,la364
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  device_type: true
+> > +
+> > +  clock-frequency:
+> > +    description: The frequency of cpu in Hz.
 >
-> If they are the same, perhaps `mt7620a` also need to be checked in mtmips=
-_clk_regs_init().
-> Or just remove compatible string of `mt7620a` and update dtsi files?
+> Why don't you just add a ref to the common cpu schema and use the
+> standard properties for communicating clock frequencies?
+> You then get the standard properties for l1 caches, power management,
+> frequency scaling etc as a side effect.
 
-We are planning to properly port dts files from openWRT into the
-mainline kernel and also update the current out of date files which
-already exist on tree, so we will take care of this kind of details
-then.
+Hi Conor:
 
->
-> >+static void __init mtmips_clk_regs_init(struct device_node *node,
-> >+                                      struct mtmips_clk_priv *priv)
-> >+{
-> >+      u32 t;
-> >+
-> >+      if (!of_device_is_compatible(node, "ralink,mt7620-sysc"))
-> >+              return;
-> >+
-> >+      /*
-> >+       * When the CPU goes into sleep mode, the BUS
-> >+       * clock will be too low for USB to function properly.
-> >+       * Adjust the busses fractional divider to fix this
-> >+       */
-> >+      regmap_read(priv->sysc, SYSC_REG_CPU_SYS_CLKCFG, &t);
-> >+      t &=3D ~(CLKCFG_FDIV_MASK | CLKCFG_FFRAC_MASK);
-> >+      t |=3D CLKCFG_FDIV_USB_VAL | CLKCFG_FFRAC_USB_VAL;
-> >+      regmap_write(priv->sysc, SYSC_REG_CPU_SYS_CLKCFG, t);
-> >+}
-> >+
->
-> If we choose to update dts file. We can also remove the legacy
-> "ralink,rt2880-reset" compatible string by the way.
+Sorry, not sure if I understand correctly. Do the standard attributes
+refer to the following:
 
-Ditto.
+power-domains =3D <>
+clocks =3D <>
+i-cache-size =3D <>
+d-cache-size =3D <>
+next-level-cache =3D <>
+
+Thanks.
+Binbin
 
 >
-> >+static const struct of_device_id mtmips_clk_of_match[] =3D {
-> >+      { .compatible =3D "ralink,rt2880-reset" },
-> >+      { .compatible =3D "ralink,rt2880-sysc" },
-> >+      { .compatible =3D "ralink,rt3050-sysc" },
-> >+      { .compatible =3D "ralink,rt3050-sysc" },
-> >+      { .compatible =3D "ralink,rt3352-sysc" },
-> >+      { .compatible =3D "ralink,rt3883-sysc" },
-> >+      { .compatible =3D "ralink,rt5350-sysc" },
-> >+      { .compatible =3D "ralink,mt7620a-sysc" },
-> >+      { .compatible =3D "ralink,mt7620-sysc" },
-> >+      { .compatible =3D "ralink,mt7628-sysc" },
-> >+      { .compatible =3D "ralink,mt7688-sysc" },
-> >+      {}
-> >+};
->
-> Thanks,
->     Shiji Yang
-
-Thanks,
-    Sergio Paracuellos
+> Cheers,
+> Conor.
