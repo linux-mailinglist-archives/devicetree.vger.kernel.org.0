@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8AE37343BF
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AA5F7343C1
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:41:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346551AbjFQUlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 16:41:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45024 "EHLO
+        id S229515AbjFQUlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 16:41:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346481AbjFQUl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:41:28 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D819119BB
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:41:26 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-970028cfb6cso322796766b.1
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:41:26 -0700 (PDT)
+        with ESMTP id S1346485AbjFQUl3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:41:29 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9BE31FF6
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:41:28 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98220bb31c6so321606166b.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:41:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687034485; x=1689626485;
+        d=linaro.org; s=google; t=1687034487; x=1689626487;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4ul5u2LRy09FnZ57VCih9X+lrbtOZWLMB4/wwnDvm74=;
-        b=KPyTRKkk7Sl3y7iSnj0nTVpXG8juNgHaXnt4p94mLn8MSFQD9+/gjievTziaCNsM7p
-         bhLHWz3eJYD9Xh44GjUkIeDTZujPW93RPjVYdTW1knU6H8lRpktBSpZ4hmmdlDtgHtyw
-         hjMS3p6YWI5Z6kqTmA+YKwAbAKwSKJIxEVhJT4raGS68oHHvAXYqXHr2nLiVxApxSPNx
-         hzro+o5cLG2Haj8o6IHQk5ywSWiXKtuc+QET8JUeh+CiArzdEy4jtR4T4A9yUx5fs7wr
-         SJ0eJxJE16Y5qLcMFQE7U8iA0Ck/wapcZLqsEm42VZlGX8dl5V1NZbQVODqqtDjCqFWk
-         brnA==
+        bh=0YMohJWhk2sPmAd88p9LdyGWgkzdVwbfUdAqnb6H2VE=;
+        b=cE1eusYADr7vRUpNFcqt0nQuoXX4oWfGd8Mbi+v7wYMZydVDiAVSOllaxD/EnkcYly
+         rM6fZTSUFMkGTdd2Gjs5j2xCEGAaMQZKEKHbmE956KQe0LzqASww9muAuGOQboHHdzwX
+         upa2ix7x5+JrK6ZTvF7gGp407OXD3WHtZrBJt8mpZ8faBjtNXNeDokrv08Btj+nfmiIe
+         5glojJXxSIQueE0sQcj0XRrton/LeOSKB0+Ro7fqkbkakn8DxAsw9O50ezuZZ4MkOl/8
+         EDZ92eT7YNyIiuliujhRInhYEgJ7GWM4+3n+5z6LhBqiyUtOVETtwY/25r3KVf8NaBmS
+         btvw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687034485; x=1689626485;
+        d=1e100.net; s=20221208; t=1687034487; x=1689626487;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=4ul5u2LRy09FnZ57VCih9X+lrbtOZWLMB4/wwnDvm74=;
-        b=N6wHrA0+4NWdZZLjo5GrEdlxhOfgG3gfdP7RY/2j5vGYoFvcuve3fsqsqrfH+sNj5v
-         9MkwZmJ7OrCYKJag/611z3L2ntEN12560CpTTcoGJvxvWQQap6L17hPs5oZpGZj/c/ji
-         HkkGOS8TYaRv0sZpC92ZYi1gZPDOiTK3Pq1Iq+Wm9yaawEQnKEpi9Cf26IbYhPvjvFuz
-         aQ76PCJzHVW1WlOu50T4gGMBwXWoosHfz0I30CdnORsER6gHkpFY5r/aAYR9WpzUR5YX
-         a1syPN/K1nZvMDXkzcr85uJby14OMTtueRB4iWiXJleRM2d/Wmr7uYmiXONF50/q/God
-         /Iew==
-X-Gm-Message-State: AC+VfDwTLTcsJHJn2b/yDhjxFP+Lsn+RMEjlf9puO6xP8ImUFO5bg6Nj
-        qLB7lQqe2O1v9uCDBgdop+eOEQ==
-X-Google-Smtp-Source: ACHHUZ6Nq28V7NfTNJ2gPispeaQvufR5U9VpQWF83dtJOsWHm/sSwQxGq8GFfVJUQMruwFlGlYJy3g==
-X-Received: by 2002:a17:907:60cc:b0:94a:845c:3528 with SMTP id hv12-20020a17090760cc00b0094a845c3528mr5551178ejc.45.1687034485459;
-        Sat, 17 Jun 2023 13:41:25 -0700 (PDT)
+        bh=0YMohJWhk2sPmAd88p9LdyGWgkzdVwbfUdAqnb6H2VE=;
+        b=Ficf4G3ssWHn7CUHaW7bThk43KwYCA94Z+857Lx/pptVcw0AEG/G+WRgVHATvxTgT7
+         Ld9PO9Zop3whtCurllLkYeYOMbhOkc5sQpWt6Kn2tBdR6OllYr4T/tlNanf+nAgS0tEp
+         vahSd542UM0zrbPmsn+ZEap38jvy2UTFm+L8PTlVGK2EiI1JD+tgbPewkj6KugrdS3gY
+         bx/1GmUzfqJhEfminvs5AoWYWyLQl4vzKgfzCPgUo+vfw3Jf3KKeuJSOHCcGgCFiBdYW
+         076pezhuGcuNZyq0aU3lTWGu9MM2V1md0oJi/1+JeHOxOJKTAVIKNB1vU1X+YbBHZmTO
+         EkGQ==
+X-Gm-Message-State: AC+VfDznnKij7HvGrcfIK5DgTwCHrbdyurhN331N+T8Hx7IZeGBJHq7q
+        Qu3ucSZr1f7yTukud+Ylvt5Zmw==
+X-Google-Smtp-Source: ACHHUZ5Gpx59p807a0VPtzDT1W0oByYpr/1RXTu1WKeTtPOX0qmZAin6Xk889vlq45xUJ8s6GFtVVQ==
+X-Received: by 2002:a17:907:86ac:b0:96f:88a3:3a0e with SMTP id qa44-20020a17090786ac00b0096f88a33a0emr6422515ejc.0.1687034487174;
+        Sat, 17 Jun 2023 13:41:27 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id qn18-20020a170907211200b00982c33ea394sm3349203ejb.97.2023.06.17.13.41.24
+        by smtp.gmail.com with ESMTPSA id qn18-20020a170907211200b00982c33ea394sm3349203ejb.97.2023.06.17.13.41.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 13:41:25 -0700 (PDT)
+        Sat, 17 Jun 2023 13:41:26 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -60,9 +60,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/3] arm64: dts: qcom: sm8250: Fix EPSS L3 interconnect cells
-Date:   Sat, 17 Jun 2023 22:41:17 +0200
-Message-Id: <20230617204118.61959-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 3/3] arm64: dts: qcom: sc8180x: Fix OSM L3 compatible
+Date:   Sat, 17 Jun 2023 22:41:18 +0200
+Message-Id: <20230617204118.61959-3-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230617204118.61959-1-krzysztof.kozlowski@linaro.org>
 References: <20230617204118.61959-1-krzysztof.kozlowski@linaro.org>
@@ -78,104 +78,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Qualcomm EPSS L3 Interconnect does not take path (third) argument.  This
-was introduced by commit b5a12438325b ("arm64: dts: qcom: sm8250: Use 2
-interconnect cells") which probably wanted to use 2 cells only for RPMh
-interconnects.
+Since commit c70edc067739 ("dt-bindings: interconnect: Add sm8350,
+sc8280xp and generic OSM L3 compatibles") OSM L3 compatible should have
+generic fallback:
 
-  sm8250-hdk.dtb: interconnect@18590000: #interconnect-cells:0:0: 1 was expected
+  sc8180x-primus.dtb: interconnect@18321000: compatible: 'oneOf' conditional failed, one must be fixed:
 
-Fixes: b5a12438325b ("arm64: dts: qcom: sm8250: Use 2 interconnect cells")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 83ab6de459bc..1efa07f2caff 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -107,7 +107,7 @@ CPU0: cpu@0 {
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_0: l2-cache {
- 				compatible = "cache";
-@@ -138,7 +138,7 @@ CPU1: cpu@100 {
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_100: l2-cache {
- 				compatible = "cache";
-@@ -163,7 +163,7 @@ CPU2: cpu@200 {
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_200: l2-cache {
- 				compatible = "cache";
-@@ -188,7 +188,7 @@ CPU3: cpu@300 {
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			operating-points-v2 = <&cpu0_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_300: l2-cache {
- 				compatible = "cache";
-@@ -213,7 +213,7 @@ CPU4: cpu@400 {
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_400: l2-cache {
- 				compatible = "cache";
-@@ -238,7 +238,7 @@ CPU5: cpu@500 {
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_500: l2-cache {
- 				compatible = "cache";
-@@ -263,7 +263,7 @@ CPU6: cpu@600 {
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			operating-points-v2 = <&cpu4_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_600: l2-cache {
- 				compatible = "cache";
-@@ -288,7 +288,7 @@ CPU7: cpu@700 {
- 			qcom,freq-domain = <&cpufreq_hw 2>;
- 			operating-points-v2 = <&cpu7_opp_table>;
- 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
--					<&epss_l3 MASTER_OSM_L3_APPS 0 &epss_l3 SLAVE_OSM_L3 0>;
-+					<&epss_l3 MASTER_OSM_L3_APPS &epss_l3 SLAVE_OSM_L3>;
- 			#cooling-cells = <2>;
- 			L2_700: l2-cache {
- 				compatible = "cache";
-@@ -5679,7 +5679,7 @@ epss_l3: interconnect@18590000 {
- 			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
- 			clock-names = "xo", "alternate";
- 
--			#interconnect-cells = <2>;
-+			#interconnect-cells = <1>;
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+index b02e14c96874..204deefbfa8b 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+@@ -3564,7 +3564,7 @@ rpmhpd_opp_turbo_l1: opp10 {
  		};
  
- 		cpufreq_hw: cpufreq@18591000 {
+ 		osm_l3: interconnect@18321000 {
+-			compatible = "qcom,sc8180x-osm-l3";
++			compatible = "qcom,sc8180x-osm-l3", "qcom,osm-l3";
+ 			reg = <0 0x18321000 0 0x1400>;
+ 
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
 -- 
 2.34.1
 
