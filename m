@@ -2,225 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D02B73429E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:27:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 967D17342A7
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:38:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230263AbjFQR14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 13:27:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60126 "EHLO
+        id S232688AbjFQRhn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 13:37:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346366AbjFQR1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:27:54 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.19])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 014DEE52;
-        Sat, 17 Jun 2023 10:27:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.de;
- s=s31663417; t=1687022863; x=1687627663; i=julian.ribbeck@gmx.de;
- bh=4rrE9fbrtibQKxhrqH1MY7aY9tEVOUx8M44gNqot0uE=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
- b=McwMx4UkIqlLpFGrHfK7pqcIosuDDGZ+Lh3tfwchMNZ9pYDNHiWhrZm91WrXFCid0ju0p97
- F7d0ZJa/bfRyDi6lxWAyUDW6gSEQdVL5IoNpH5F/8ZcNWIEvXrzBWyg8HL0X/Ygd1erKTVqxU
- W2ULxza8RgoafQiQXtjiGv9GbvlLmW+yY83AhfznRI1qqlWHl1m5Hai4VGjjasyIfUtLYN7nH
- gFDebgEj0SaSoT5chwqOCOWgsHyLIpjQ7DVAoOZ2LpfcrBHbgpyO6lD2rm2k+gqx6a/WsyR0s
- xZCAvJkt6wD8HeuGoxIlr6LjY/g0TjE8qiqWIi66leHNz3UgeSFQ==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from x1-yoga-arch.speedport.ip ([93.242.194.247]) by mail.gmx.net
- (mrgmx005 [212.227.17.190]) with ESMTPSA (Nemesis) id
- 1MysVs-1pxjvZ1n8c-00vyRR; Sat, 17 Jun 2023 19:27:43 +0200
-From:   Julian Ribbeck <julian.ribbeck@gmx.de>
-To:     devicetree@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229745AbjFQRhm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:37:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36AF8CF;
+        Sat, 17 Jun 2023 10:37:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B5F5D60C36;
+        Sat, 17 Jun 2023 17:37:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6103EC433C0;
+        Sat, 17 Jun 2023 17:37:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687023460;
+        bh=yjWqLCRuNvNrNClVvawWz5iSG0BNNGOBbd1yVAVgv2E=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Gk6cX/rJ1Ri3cwZfCCTHAHjNyKUq1gbgys78oMyIELRnFGfeyX9pcMC1ImDIksVoD
+         1K2QvyGUdwHS6OK9VUKdSsgnwJZTEiv3Wa/QFyEUf1CnA3J0curCqLE0EV13fbM+6S
+         DDiO4qh6Ju9GoQ/8wbSd3yECsiSzgnrBmhukBE6AjqlYOEJRYQiLTqkxWKL7XdKPEF
+         2KwZlk6NEZdbjc+o0vhvVIIVQTGX6lY4yfQJBh5XWQ/6B5jzyVtJ86vtBjo97nQXIj
+         8KsLWD0oHiZxX+3f26gIMXOfzmdYTpkjIUQLy7FzWwbD42m2Mznh9fIUMMw9DgSVJG
+         hSgpQYQsnHTRw==
+Date:   Sat, 17 Jun 2023 18:37:31 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Julian Ribbeck <julian.ribbeck@gmx.de>
-Subject: [PATCH] ARM: dts: sun7i: Add Iteaduino Plus A20
-Date:   Sat, 17 Jun 2023 19:27:35 +0200
-Message-ID: <20230617172735.1098591-1-julian.ribbeck@gmx.de>
-X-Mailer: git-send-email 2.41.0
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v5 01/13] ASoC: dt-bindings: Add audio-iio-aux
+Message-ID: <20230617183731.31e9b3c4@jic23-huawei>
+In-Reply-To: <20230615152631.224529-2-herve.codina@bootlin.com>
+References: <20230615152631.224529-1-herve.codina@bootlin.com>
+        <20230615152631.224529-2-herve.codina@bootlin.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-Provags-ID: V03:K1:nCL+sr8yW5ABMCO80uxx558sAlW0aZ8z/IBe/BbgnErlAM7g6T0
- BmR27XqDoCI72fiRogdw7vsD1NLe2Qv7ITxISfJxE0yEnaf/pwZ2UTk3peMGDcWo+g3eQIH
- lHEPa1rfhrhtze7u+8yCSKLq9GR7zNh6+eeafHLDUY7Ea9ttFlNB4Ts2jmISstvMxWvDW9p
- 2edyGUOJeIuP1W1kyPVSw==
-UI-OutboundReport: notjunk:1;M01:P0:ZNgCLGI9FBQ=;bKBLSChUJONOroUJNG9dxqPql6w
- fTNDdBDN4vHWZcOuRhVBDc+bWKPlL4xf0s760PKk/P5T2gG1IyuAKwlCtsAMlUJ9S36U0QUgS
- hTNxMzHNuVbeqPXeov5oCWAdslnVhWa0oQGuQIoB783rNOGRTzkMI0biuXbsD3tYs9oeLDbaJ
- ILutUG9sIKIAk/iCCNUdrchfWDdbvy0QB8TBjmCPNgiXNwMhQa5hTuiDXKRWRn6OOJVHLc9uU
- Z/ejAcryDv9ahNPVIQE9ZS9UF/IwcEa1VVZGCfsjJ7KLX6gyn6YxKiIeBsMu2tlIpEW3iM38X
- wERdao0xw9qnKgt49Apd40wCedd1ldhzPKJJBI+7GJCrZMucAfLpOthVoJj/NCaS2P3NrDRGF
- extsnD0R5Q9Z4BKAEbrBGIzQIt67LhwxmaFhcY8UXKUCBMr/dPfnAt7eXPXP9kIjrmY6NaMWb
- tCD6XWBjVdFN1/wH//BFUMbsZoHme/69yQpgZipPoJ2C2nIBZYXYqxKk5r2QDPHW9s/s8kZNX
- 0t2OxB8A0zhDCEgq9mowODTv7ViSwngdOC3RmAFnJpFu++Hc5m093X7QVLRKuS57SKJdfXfW0
- 4RlaI8TLHMFQQZgk/6zQRmQbWeiVQ3agp9mQHswoMElL/cJ+Q9ii/IleEfccAo4NUn9vSKEMY
- RvD0V2J1XwPoYPh3Le8G2uCHjP103H51jIh42hHjaQbTdRd6GRivW15IA3hVBKAZs04Dqc2En
- 2a+FIpeh3zlU8bPz2ZEUdpYaOL/Fe9ocXnx0xuNVKaS02j0tRNd4NweGBssDwhlqFhhwjlQ6v
- Tu+3OoJtkyCsS0ieFEvvnJtOG8ezwxXC2ZR4meCXBlUTZ2kcbaXSKpL93knav1DP8A1clR4aX
- XdT8KpN7E4WMVbVSZfmLCVJbFPM+7AGM0jNz5wDLoj4wf8nDvgr63ZzOb6clN8GVS1lOx4V1+
- GLQDWGYkLLpHl8RlOMkAdu5YPLw=
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Iteaduino Plus A20 is very similar to Iteaduino Plus A10. In fact it
-shares the same breakout board and the Itead Core A20 on top of it, is
-only adapted to support the dual-core A20.
+On Thu, 15 Jun 2023 17:26:19 +0200
+Herve Codina <herve.codina@bootlin.com> wrote:
 
-This commits enables the following hardware:
+> Industrial I/O devices can be present in the audio path.
+> These devices needs to be viewed as audio components in order to be
+> fully integrated in the audio path.
+> 
+> audio-iio-aux allows to consider these Industrial I/O devices as
+> auxliary audio devices.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
 
-* HDMI Video output
-* USB
-* SATA (untested due to lack of hardware I could attach)
-* Ethernet
-* MMC storage
-* UART
-* USB OTG (untested, because I don't own an USB OTG cable/device)
+LGTM
+Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Signed-off-by: Julian Ribbeck <julian.ribbeck@gmx.de>
-=2D--
- arch/arm/boot/dts/Makefile                    |   1 +
- .../dts/sun7i-a20-itead-iteaduino-plus.dts    | 109 ++++++++++++++++++
- 2 files changed, 110 insertions(+)
- create mode 100644 arch/arm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 59829fc90315..1d5ab086f8de 100644
-=2D-- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1334,6 +1334,7 @@ dtb-$(CONFIG_MACH_SUN7I) +=3D \
- 	sun7i-a20-haoyu-marsboard.dtb \
- 	sun7i-a20-hummingbird.dtb \
- 	sun7i-a20-itead-ibox.dtb \
-+	sun7i-a20-itead-iteaduino-plus.dts \
- 	sun7i-a20-i12-tvbox.dtb \
- 	sun7i-a20-icnova-swac.dtb \
- 	sun7i-a20-lamobo-r1.dtb \
-diff --git a/arch/arm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts b/arch/a=
-rm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts
-new file mode 100644
-index 000000000000..8d94db5520af
-=2D-- /dev/null
-+++ b/arch/arm/boot/dts/sun7i-a20-itead-iteaduino-plus.dts
-@@ -0,0 +1,109 @@
-+// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-+
-+/dts-v1/;
-+#include "sun7i-a20.dtsi"
-+#include "sunxi-itead-core-common.dtsi"
-+#include "axp209.dtsi"
-+
-+/ {
-+	model =3D "Itead Iteaduino Plus A20";
-+	compatible =3D "itead,iteaduino-plus-a20", "allwinner,sun7i-a20";
-+
-+	hdmi-connector {
-+		compatible =3D "hdmi-connector";
-+		type =3D "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint =3D <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+};
-+
-+&ac_power_supply {
-+	status =3D "okay";
-+};
-+
-+&ahci {
-+	target-supply =3D <&reg_ahci_5v>;
-+	status =3D "okay";
-+};
-+
-+&axp209 {
-+	interrupts =3D <0>;
-+};
-+
-+&battery_power_supply {
-+	status =3D "okay";
-+};
-+
-+
-+&de {
-+	status =3D "okay";
-+};
-+
-+&emac {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&emac_pa_pins>;
-+	phy-handle =3D <&phy1>;
-+	status =3D "okay";
-+};
-+
-+&emac_sram {
-+	status =3D "okay";
-+};
-+
-+&hdmi {
-+	status =3D "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint =3D <&hdmi_con_in>;
-+	};
-+};
-+
-+&mdio {
-+	status =3D "okay";
-+
-+	phy1: ethernet-phy@1 {
-+		reg =3D <1>;
-+	};
-+};
-+
-+&mmc0 {
-+	vmmc-supply =3D <&reg_vcc3v3>;
-+	bus-width =3D <4>;
-+	cd-gpios =3D <&pio 7 1 GPIO_ACTIVE_LOW>; /* PH1 */
-+	status =3D "okay";
-+};
-+
-+
-+&otg_sram {
-+	status =3D "okay";
-+};
-+
-+&reg_ahci_5v {
-+	status =3D "okay";
-+};
-+
-+
-+&reg_usb0_vbus {
-+	status =3D "okay";
-+};
-+
-+&usb_otg {
-+	status =3D "otg";
-+};
-+
-+&usb_power_supply {
-+	status =3D "okay";
-+};
-+
-+&usbphy {
-+	usb0_id_det-gpios =3D <&pio 7 4 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /* P=
-H4 */
-+	usb0_vbus_det-gpios =3D <&pio 7 5 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>; /*=
- PH5 */
-+	usb0_vbus_power-supply =3D <&usb_power_supply>;
-+	usb0_vbus-supply =3D <&reg_usb0_vbus>;
-+};
-=2D-
-2.41.0
+> ---
+>  .../bindings/sound/audio-iio-aux.yaml         | 64 +++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sound/audio-iio-aux.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/audio-iio-aux.yaml b/Documentation/devicetree/bindings/sound/audio-iio-aux.yaml
+> new file mode 100644
+> index 000000000000..d3cc1ea4a175
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sound/audio-iio-aux.yaml
+> @@ -0,0 +1,64 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sound/audio-iio-aux.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Audio IIO auxiliary
+> +
+> +maintainers:
+> +  - Herve Codina <herve.codina@bootlin.com>
+> +
+> +description:
+> +  Auxiliary device based on Industrial I/O device channels
+> +
+> +allOf:
+> +  - $ref: dai-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: audio-iio-aux
+> +
+> +  io-channels:
+> +    description:
+> +      Industrial I/O device channels used
+> +
+> +  io-channel-names:
+> +    description:
+> +      Industrial I/O channel names related to io-channels.
+> +      These names are used to provides sound controls, widgets and routes names.
+> +
+> +  snd-control-invert-range:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    description: |
+> +      A list of 0/1 flags defining whether or not the related channel is
+> +      inverted
+> +    items:
+> +      enum: [0, 1]
+> +      default: 0
+> +      description: |
+> +        Invert the sound control value compared to the IIO channel raw value.
+> +          - 1: The related sound control value is inverted meaning that the
+> +               minimum sound control value correspond to the maximum IIO channel
+> +               raw value and the maximum sound control value correspond to the
+> +               minimum IIO channel raw value.
+> +          - 0: The related sound control value is not inverted meaning that the
+> +               minimum (resp maximum) sound control value correspond to the
+> +               minimum (resp maximum) IIO channel raw value.
+> +
+> +required:
+> +  - compatible
+> +  - io-channels
+> +  - io-channel-names
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    iio-aux {
+> +        compatible = "audio-iio-aux";
+> +        io-channels = <&iio 0>, <&iio 1>, <&iio 2>, <&iio 3>;
+> +        io-channel-names = "CH0", "CH1", "CH2", "CH3";
+> +        /* Invert CH1 and CH2 */
+> +        snd-control-invert-range = <0 1 1 0>;
+> +    };
 
