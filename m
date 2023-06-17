@@ -2,184 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A885733FCA
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 10:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25581733FE9
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 11:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233722AbjFQI5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 04:57:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40688 "EHLO
+        id S234776AbjFQJoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 05:44:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232285AbjFQI5t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 04:57:49 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D25E2113
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 01:57:48 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-519c0ad1223so2035131a12.0
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 01:57:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686992266; x=1689584266;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=pgysnMUWPxrDeN0B1Faf6Ufq3sMPZzJpEejdj3yiLTo=;
-        b=Ep4rhGij69HlZdJB6dvhGBslIi5J1X0YN5FQ+uVyl9cBUJW4BfzzKi92yLruwMKJNR
-         x2v9cMCpTHOjdh3EcfEZ3ifxfGvgbxbZUCxDLXg4p/19hlPTRfpC5tBklY13lNSTpCPb
-         TR8Iw4gbKvN2ZSdKBNjvB+zyxe/7LRkOvAlGH50xTHBrn39SakHg6Q57hNlzZsg8R0oG
-         ZcpVtJJg1TTlp33Vx3YoVregwSDu/gJ/5ne2m0Go8KJJZx7lJdGiYMKzXC1K8IqQpWqu
-         g/R6Db3wS5nims712daAO7jHshKPIQ07PCu436EEUmojpzn1i6xX30JJvbK2zMYMhQ11
-         l4wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686992266; x=1689584266;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=pgysnMUWPxrDeN0B1Faf6Ufq3sMPZzJpEejdj3yiLTo=;
-        b=giIgrwO3SAIqilG+YW+vXl98elmVQgpbnvlLMhuRe0ld2Augv/d9GkYe8q7b2iwWSi
-         Y9bQcrezR1YEmvF0AXNwqiBM5ukdwrgnDxazE6zAe6fkATgpniMxxa53pA8bmyr10M7x
-         VuP7KNmijmEzsfpccmURoQkL7JbFPdYhSn1GLZL3TUHpCkhytJ5TG0Uko4gTx/WY9qMI
-         Dy57sU2PZz/Ji9GQgIN9VOWL4I7aE29vC7HrW/HUQtmxxPNBMNi5p2ww2+g7cg9lzgxR
-         5BJABCk+zk+Y8XVSplT0fnK1omvK2J3rs2cyJdeIiO9NKfqUZ2xQxZx/3EuTml9B9WYV
-         QVgQ==
-X-Gm-Message-State: AC+VfDwgKoa8SvVu70lwpenIQQV3Lr+dClxM/neF8QrDUokALOj2l0AZ
-        fdQUuaa6PDX2HrVgHnSCgbwu5w==
-X-Google-Smtp-Source: ACHHUZ61jEiVOPgq3xLBlRirBwI281rOwqromd11/oVJ0r1/1HEzj6D02KClx0KTTDExEFXIXQMDAA==
-X-Received: by 2002:a17:907:7290:b0:96b:48d2:1997 with SMTP id dt16-20020a170907729000b0096b48d21997mr4283094ejc.65.1686992266535;
-        Sat, 17 Jun 2023 01:57:46 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id g26-20020a1709064e5a00b00987ac9cfb8esm368474ejw.67.2023.06.17.01.57.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Jun 2023 01:57:45 -0700 (PDT)
-Message-ID: <ad189220-424b-89bb-a187-60b0294ae1a7@linaro.org>
-Date:   Sat, 17 Jun 2023 10:57:44 +0200
+        with ESMTP id S231894AbjFQJo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 05:44:29 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA09C1FF6
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 02:44:27 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 45F6760A5A
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 09:44:27 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0F86C433C8;
+        Sat, 17 Jun 2023 09:44:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1686995066;
+        bh=4VRCSjLyFEKt1E90Lp4P4+ANdjWWgRwqDNQs93ufpg0=;
+        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
+        b=toj1Qncs9YohzQX7ic/5RB/PAiUnUYhZNsjKHvWzBg2wE68q8PL7B929mPI3SIvds
+         xAActnC7yKfo/DfEAJpEZrQjcHDomI/NuNOVTi8VbrhgIc7pnGJo/5lXZG4LmEtm+j
+         wGkSiHeUdV/INSt0W7yJ6XQ2uPIBiunTwO2DnpEHfgzeheMh1iUottUb4SXvZcDT58
+         PIHeGvfo6A5ubQG3u4pdIza4o4xJNTGbORq5Qs/6v9unWNW6BcS4oaiTChZNEzZAPJ
+         PDpQaPfT+/kYEORnzjhelRaC7+wKCZpxHCTM9ExU+2yTd9Qo3BII+cxatIKtfAtq1c
+         CYY86eb/uX5mA==
+Date:   Sat, 17 Jun 2023 10:44:21 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
+        Conor Dooley <conor.dooley@microchip.com>
+CC:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Hongliang Wang <wanghongliang@loongson.cn>
+Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_1/6=5D_dt-bindings=3A_loonga?= =?US-ASCII?Q?rch=3A_Add_CPU_bindings_for_LoongArch?=
+User-Agent: K-9 Mail for Android
+In-Reply-To: <CAMpQs4J4hOAFaarv9O3u20czpNjeHfBoPHWOzY7Y_Zno0R3vYg@mail.gmail.com>
+References: <cover.1686882123.git.zhoubinbin@loongson.cn> <c1f86e5d1026937abda331ce564e5ee96b7114c7.1686882123.git.zhoubinbin@loongson.cn> <20230616-gallon-shrank-42613cd73666@wendy> <CAMpQs4J4hOAFaarv9O3u20czpNjeHfBoPHWOzY7Y_Zno0R3vYg@mail.gmail.com>
+Message-ID: <47CA141F-464F-4FD1-AD7D-DBE6B3C4A0DC@kernel.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7 12/12] dt-bindings: fsl-dma: fsl-edma: add edma3
- compatible string
-Content-Language: en-US
-To:     Frank Li <Frank.Li@nxp.com>, vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
-        imx@lists.linux.dev
-References: <20230616153438.2299922-1-Frank.Li@nxp.com>
- <20230616153438.2299922-13-Frank.Li@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230616153438.2299922-13-Frank.Li@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain;
+ charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 17:34, Frank Li wrote:
-> Extend Freescale eDMA driver bindings to support eDMA3 IP blocks in
-> i.MX8QM and i.MX8QXP SoCs. In i.MX93, both eDMA3 and eDMA4 are now.
-> 
-> Signed-off-by: Frank Li <Frank.Li@nxp.com>
-> ---
->  .../devicetree/bindings/dma/fsl,edma.yaml     | 103 ++++++++++++++++--
->  1 file changed, 96 insertions(+), 7 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/dma/fsl,edma.yaml b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> index 5fd8fc604261..2363c10e0d1c 100644
-> --- a/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> +++ b/Documentation/devicetree/bindings/dma/fsl,edma.yaml
-> @@ -21,32 +21,41 @@ properties:
->        - enum:
->            - fsl,vf610-edma
->            - fsl,imx7ulp-edma
-> +          - fsl,imx8qm-adma
-> +          - fsl,imx8qm-edma
-> +          - fsl,imx93-edma3
-> +          - fsl,imx93-edma4
->        - items:
->            - const: fsl,ls1028a-edma
->            - const: fsl,vf610-edma
->  
->    reg:
-> -    minItems: 2
-> +    minItems: 1
->      maxItems: 3
->  
->    interrupts:
-> -    minItems: 2
-> -    maxItems: 17
-> +    minItems: 1
-> +    maxItems: 64
->  
->    interrupt-names:
-> -    minItems: 2
-> -    maxItems: 17
-> +    minItems: 1
-> +    maxItems: 64
->  
->    "#dma-cells":
-> -    const: 2
-> +    enum:
-> +      - 2
-> +      - 3
->  
->    dma-channels:
-> -    const: 32
-> +    minItems: 1
-> +    maxItems: 64
->  
->    clocks:
-> +    minItems: 1
->      maxItems: 2
->  
->    clock-names:
-> +    minItems: 1
->      maxItems: 2
->  
->    big-endian:
-> @@ -65,6 +74,26 @@ required:
->  
->  allOf:
->    - $ref: dma-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - fsl,imx8qm-adma
-> +              - fsl,imx8qm-edma
-> +              - fsl,imx93-edma3
-> +              - fsl,imx93-edma4
-> +    then:
-> +      properties:
-> +        "#dma-cells":
-> +          const: 3
-> +        # It is not necessary to write the interrupt name for each channel.
-> +        # instead, you can simply maintain the sequential IRQ numbers as
-> +        # defined for the DMA channels.
-> +        interrupt-names: false
-> +        clock-names:
 
-items:
-  - const: dma
 
-missing clocks...
+On 17 June 2023 07:29:06 IST, Binbin Zhou <zhoubb=2Eaaron@gmail=2Ecom> wro=
+te:
+>On Fri, Jun 16, 2023 at 5:34=E2=80=AFPM Conor Dooley <conor=2Edooley@micr=
+ochip=2Ecom> wrote:
+>>
+>> On Fri, Jun 16, 2023 at 02:10:38PM +0800, Binbin Zhou wrote:
+>> > Add the available CPUs in LoongArch binding with DT schema format usi=
+ng
+>> > json-schema=2E
+>> >
+>> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson=2Ecn>
+>> > ---
+>> >  =2E=2E=2E/devicetree/bindings/loongarch/cpus=2Eyaml   | 65 +++++++++=
+++++++++++
+>> >  1 file changed, 65 insertions(+)
+>> >  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus=
+=2Eyaml
+>> >
+>> > diff --git a/Documentation/devicetree/bindings/loongarch/cpus=2Eyaml =
+b/Documentation/devicetree/bindings/loongarch/cpus=2Eyaml
+>> > new file mode 100644
+>> > index 000000000000=2E=2Ec3e2dba42c81
+>> > --- /dev/null
+>> > +++ b/Documentation/devicetree/bindings/loongarch/cpus=2Eyaml
+>> > @@ -0,0 +1,65 @@
+>> > +# SPDX-License-Identifier: (GPL-2=2E0-only OR BSD-2-Clause)
+>> > +%YAML 1=2E2
+>> > +---
+>> > +$id: http://devicetree=2Eorg/schemas/loongarch/cpus=2Eyaml#
+>> > +$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
+>> > +
+>> > +title: LoongArch CPUs
+>> > +
+>> > +maintainers:
+>> > +  - Binbin Zhou <zhoubinbin@loongson=2Ecn>
+>> > +
+>> > +description:
+>> > +  The device tree allows to describe the layout of CPUs in a system =
+through
+>> > +  the "cpus" node, which in turn contains a number of subnodes (ie "=
+cpu")
+>> > +  defining properties for every CPU=2E
+>> > +
+>> > +properties:
+>> > +  compatible:
+>> > +    enum:
+>> > +      - loongson,la264
+>> > +      - loongson,la364
+>> > +
+>> > +  reg:
+>> > +    maxItems: 1
+>> > +
+>> > +  device_type: true
+>> > +
+>> > +  clock-frequency:
+>> > +    description: The frequency of cpu in Hz=2E
+>>
+>> Why don't you just add a ref to the common cpu schema and use the
+>> standard properties for communicating clock frequencies?
+>> You then get the standard properties for l1 caches, power management,
+>> frequency scaling etc as a side effect=2E
+>
+>Hi Conor:
+>
+>Sorry, not sure if I understand correctly=2E Do the standard attributes
+>refer to the following:
+>
+>power-domains =3D <>
+>clocks =3D <>
+>i-cache-size =3D <>
+>d-cache-size =3D <>
+>next-level-cache =3D <>
 
-oh wait, I already said this. Let's use reviewers time for doing the
-same review, why not. They work for free.
+Yes, those are the sort of things I meant=2E
 
-This is a friendly reminder during the review process.
-
-It seems my previous comments were not fully addressed. Maybe my
-feedback got lost between the quotes, maybe you just forgot to apply it.
-Please go back to the previous discussion and either implement all
-requested changes or keep discussing them.
-
-Thank you.
-
-Best regards,
-Krzysztof
-
+Cheers,
+Conor=2E
