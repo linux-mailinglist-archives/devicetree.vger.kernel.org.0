@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FD83734279
+	by mail.lfdr.de (Postfix) with ESMTP id BAA5273427A
 	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S235937AbjFQRQG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 13:16:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53954 "EHLO
+        id S236091AbjFQRQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 13:16:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54032 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234510AbjFQRQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:16:00 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22CFC19B5
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:59 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-987341238aeso156842466b.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:59 -0700 (PDT)
+        with ESMTP id S1346101AbjFQRQD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:16:03 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B1BE1BCC
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:16:00 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-519c0ad1223so2431847a12.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:16:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687022157; x=1689614157;
+        d=linaro.org; s=google; t=1687022159; x=1689614159;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=HOCNMOjszYf3SG5RNm6dEa6DZINwDQf5LX3pp9CTfwo=;
-        b=vJW5p0yDMw5Y89nNLVcumQTbFcmpfduFXDVFrXF8gubvKp6ygrTlBkmr7UOlMfPTYB
-         g9ujkWre49/jwLvJbwg53GCpecPX3s2UtKjU1fPtbK0FrGXVC197Q44Qz1NOeOpz5FtB
-         UnuKKJ6TGbHMHgYVLLxfzJ7yUJPsM1hMTBTwnkwxJTHDQ5Ftcma3kfmb1MnqT5BTUaQ+
-         LbD4RZ159uvk0rpy2Q6kUJJvAVXCYPFBBTjKxzQ1LSL4Ny9sAjqA4A8J/YaA8jaqAho+
-         8THGewwrVwLdU7vkmNNYRv1x9QtsNdgWV8MbITYn2u1ZNECGmwEz9yrW6p37Yg0aA0Ox
-         bpBw==
+        bh=gdEr0QXfQOOVLl/2L8091g5Hi2eNOE2Xs9that42Tmo=;
+        b=JpW/EbMXhfLgsLDM/c6xVzzQKO5ba6il/KphPUE3b1nKTUTW9iJ3xYJ8ElCW4y6LqB
+         4MjjKVV6teWI/D/FSvP0KexCa3iCe3iFumfdLp7IoUcVKQuk4yWpX9Kecv6JpdpgiwSj
+         BSdAWOstmpmCUHl1cbOGTMZeFwkEIFEFcVzK9NCDE8VicXZvzNGtK+09wOthPpVaarYg
+         4wDMjQx5NwA52DoahTPg+SW2Nd9KH2Z7Iz/FIAKrErVrnWkYn3FVhGzhKkIMRy0bu4Sz
+         FYd+cvdYAwICOyLxfHIkIYUHwOMW/zvZyMTxvq7zGoQXyUT9E/Sguwm5EnYv6Wy0d/1m
+         fo9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687022157; x=1689614157;
+        d=1e100.net; s=20221208; t=1687022159; x=1689614159;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=HOCNMOjszYf3SG5RNm6dEa6DZINwDQf5LX3pp9CTfwo=;
-        b=Zp7FG0wRM1qYVeNcVwuIIlyeLanH1mNGGV87/Nvq8ffJhzL28SuTs9thUemivqWxeg
-         wghjIAvOuVVk95wps4JBbuPInyDQ2unl41xYE4LStamLkRGCUgiyIuMm+tDbRh8jKwFP
-         chvBk15i7Ljr+NfTdi0y/fwNpjb6BM64MKt7bXeKNifR/8RbLS/NrXm050meLQ4JKFkt
-         tqo3wj+HThguJOpNyKgO2Ps4ioY6aXV9o9/21WshJ9UjppygNGpe7ZicxFvqaz/ykbBU
-         ZkfkUazp3eXpYx3Tgpgn7pXtAZ6uWew5tmcOq7v/vRr4j7fvYPssPUQIL8y3MOIkAATS
-         JQRw==
-X-Gm-Message-State: AC+VfDwAIt+JKGcqGsgjQRZrbC0IubK0jE7YIUkRuzAuOp6m2vhspX69
-        cVtvSUd6c3bzABJWS6+5dT1NMg==
-X-Google-Smtp-Source: ACHHUZ5voVHr7VMnPDydDiOcTflsjH6hSd/G6BUxCxIpDs+j/TgZOF48dZrnhYk5IdmpUbXSq/SLpg==
-X-Received: by 2002:a17:907:7faa:b0:988:2037:c688 with SMTP id qk42-20020a1709077faa00b009882037c688mr1117466ejc.65.1687022157693;
-        Sat, 17 Jun 2023 10:15:57 -0700 (PDT)
+        bh=gdEr0QXfQOOVLl/2L8091g5Hi2eNOE2Xs9that42Tmo=;
+        b=NwFRnFp5Oi8UqI0TDn2Hd36ruFwUozJHcFOnt4ns4JhoaEJFhL2Qq7TXoGVahxUSUi
+         Y9/mM/04P0GXKbC7632lONb6NjrFgriFhBr3AOS2vEYZwmywriWuZsYHkquB9HhTFkm/
+         PgSBpdZVVLLqKqldL0dsAlb5/8CmNDKoERZWX2QUK2n3LBPnbjRYBqFA92IRTHsAXl78
+         cGS2K25fSFQQt6e5o4qlyL3y0K7o1f52MPgTxcaAat5ETU3/HU1cTVlON/4afSfPYUQq
+         zbsyJleqmaJAJA7Kg4GTHwq+8USyq+EntZdcH5EBocz4XCwi1lV9a1rMflpoHbWfCiTm
+         MDhA==
+X-Gm-Message-State: AC+VfDxlBbq0i42tSlMki4r9yDIZyxGknb24BMYikILequP/XMAHNbn5
+        EcLrH/5v8nKwQmmh8g+U6ilptw==
+X-Google-Smtp-Source: ACHHUZ6X8S63O428ROGyuLuPISZ5SLHrzhr3enWuQVfl3TKVcnyGOt5a98Hhwuk6uRzM50HqSmRajg==
+X-Received: by 2002:a17:907:3f17:b0:978:8f29:8c85 with SMTP id hq23-20020a1709073f1700b009788f298c85mr4791015ejc.32.1687022158988;
+        Sat, 17 Jun 2023 10:15:58 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.56
+        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 10:15:57 -0700 (PDT)
+        Sat, 17 Jun 2023 10:15:58 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,9 +62,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 10/15] arm64: dts: qcom: sc8180x: use generic ADC channel node names
-Date:   Sat, 17 Jun 2023 19:15:36 +0200
-Message-Id: <20230617171541.286957-10-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 11/15] arm64: dts: qcom: sc8180x: align thermal node name with bindings
+Date:   Sat, 17 Jun 2023 19:15:37 +0200
+Message-Id: <20230617171541.286957-11-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
 References: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
@@ -73,119 +73,44 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ADC channel node names were changed to require generic 'channel'.  The
-user-visible part is defined via label.
+Bindings expect thermal node names to end with 'thermal':
 
-  sc8180x-lenovo-flex-5g.dtb: adc@3100: 'die-temp@6', 'ref-gnd@0', 'vref-1p25@1' do not match any of the regexes: '^channel@[0-9a-f]+$', 'pinctrl-[0-9]+'
+  sc8180x-lenovo-flex-5g.dtb: thermal-zones: 'gpu-thermal-bottom', 'gpu-thermal-top' do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi | 24 ++++++++++-----------
- 1 file changed, 12 insertions(+), 12 deletions(-)
+ arch/arm64/boot/dts/qcom/sc8180x.dtsi | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-index 8247af01c84a..4556af6cd103 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x-pmics.dtsi
-@@ -105,19 +105,19 @@ pmc8180_adc: adc@3100 {
- 			#io-channel-cells = <1>;
- 			interrupts = <0x0 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
- 
--			ref-gnd@0 {
-+			channel@0 {
- 				reg = <ADC5_REF_GND>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "ref_gnd";
+diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+index d3ae18535636..576180451491 100644
+--- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
+@@ -3856,7 +3856,7 @@ cluster-crit {
  			};
+ 		};
  
--			vref-1p25@1 {
-+			channel@1 {
- 				reg = <ADC5_1P25VREF>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "vref_1p25";
+-		gpu-thermal-top {
++		gpu-top-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <1000>;
+ 
+@@ -4006,7 +4006,7 @@ trip-point0 {
  			};
+ 		};
  
--			die-temp@6 {
-+			channel@6 {
- 				reg = <ADC5_DIE_TEMP>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "die_temp";
-@@ -172,19 +172,19 @@ adc@3100 {
- 			#io-channel-cells = <1>;
- 			interrupts = <0x2 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
+-		gpu-thermal-bottom {
++		gpu-bottom-thermal {
+ 			polling-delay-passive = <250>;
+ 			polling-delay = <1000>;
  
--			ref-gnd@0 {
-+			channel@0 {
- 				reg = <ADC5_REF_GND>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "ref_gnd";
- 			};
- 
--			vref-1p25@1 {
-+			channel@1 {
- 				reg = <ADC5_1P25VREF>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "vref_1p25";
- 			};
- 
--			vcoin@85 {
-+			channel@85 {
- 				reg = <0x85>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "vcoin2";
-@@ -220,19 +220,19 @@ adc@3100 {
- 			#io-channel-cells = <1>;
- 			interrupts = <0xa 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
- 
--			ref-gnd@0 {
-+			channel@0 {
- 				reg = <ADC5_REF_GND>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "ref_gnd";
- 			};
- 
--			vref-1p25@1 {
-+			channel@1 {
- 				reg = <ADC5_1P25VREF>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "vref_1p25";
- 			};
- 
--			vcoin@85 {
-+			channel@85 {
- 				reg = <0x85>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "vcoin";
-@@ -270,19 +270,19 @@ pmc8180c_adc: adc@3100 {
- 			#io-channel-cells = <1>;
- 			interrupts = <0x4 0x31 0x0 IRQ_TYPE_EDGE_RISING>;
- 
--			ref-gnd@0 {
-+			channel@0 {
- 				reg = <ADC5_REF_GND>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "ref_gnd";
- 			};
- 
--			vref-1p25@1 {
-+			channel@1 {
- 				reg = <ADC5_1P25VREF>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "vref_1p25";
- 			};
- 
--			die-temp@6 {
-+			channel@6 {
- 				reg = <ADC5_DIE_TEMP>;
- 				qcom,pre-scaling = <1 1>;
- 				label = "die_temp";
 -- 
 2.34.1
 
