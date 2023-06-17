@@ -2,153 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A150E734335
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 20:52:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77AD773433C
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 21:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231211AbjFQSw2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 14:52:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54426 "EHLO
+        id S231996AbjFQTBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 15:01:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55756 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230339AbjFQSw1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 14:52:27 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D0F419BE;
-        Sat, 17 Jun 2023 11:52:26 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-982acf0a4d2so268250166b.3;
-        Sat, 17 Jun 2023 11:52:26 -0700 (PDT)
+        with ESMTP id S229446AbjFQTBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 15:01:24 -0400
+Received: from mail-oo1-xc2a.google.com (mail-oo1-xc2a.google.com [IPv6:2607:f8b0:4864:20::c2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6305319BE;
+        Sat, 17 Jun 2023 12:01:22 -0700 (PDT)
+Received: by mail-oo1-xc2a.google.com with SMTP id 006d021491bc7-55b3b3e2928so1453359eaf.2;
+        Sat, 17 Jun 2023 12:01:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687027945; x=1689619945;
+        d=gmail.com; s=20221208; t=1687028481; x=1689620481;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=IzK3QhwOQbNBL0QFe3mmmruOL89rBfwrLckQ4Lu4tw0=;
-        b=U6pm4jaJS8m2UDl5VXEpxwxyEDkQHF9QkXqtVNIGqvYUOfLq7S32g4YLmC3Sqb+bpq
-         A5aHeO5vtvvjURkrsSjRIErKQNawz2pmzcdyE0ETSHmd+rgVKxSzve3tBc6oaoKI+zXv
-         W7S+slQW2VP9zijRGLMbvldmtrWYybAs4W+VatwcU1jy9/+JIyLI26+dHnTRKB4TgZmF
-         O5Thtl2g9ai5+N5F1Fr8ztrekEbGqWHJhErXjKufts4RfAqdMKYk59yoUWcn3ztZ6lJX
-         8MvELPPOFeC3fnLgW4NCPPg1DStOTN/jCqDb8npw3/tPveBPPE0cXRVc/Wzje4x1HxJw
-         HSIQ==
+        bh=o9zYN1s6aJ0LEi8KHBtKqVNpKfhxjbsJ2S0b8cW5gUk=;
+        b=ei2g1Tda9xPPuzWdfE0kdTxLxyTjEePRpmC8O3phoxF/ad5eJ/QhfYkNEpUDn1AUNj
+         ii2rkio3ptUDSI/JVwKh/+PnQqUD1y2yStkw6UOVY6vyYQUZW6119MGZ34ivdUB4qs0V
+         1Kn2koCXwLVOWxW5xC1a0c0M/Yo85i2nNQjT1NEvax6fGz22GV4sZTLo+z8R3vFUumyJ
+         vKOl322oqVvMU4yp7rOidil04c1kiuBxIpCmt88M6IBHiwIqpxOiRa89AieTjOjXNwzx
+         4j7A5hxEEnWs5gXdGeH7YF4TeVkdJO9g+yxIvtOk1kuQfszGMj6mHFSAPDLlsh4o12fo
+         C65w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687027945; x=1689619945;
+        d=1e100.net; s=20221208; t=1687028481; x=1689620481;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=IzK3QhwOQbNBL0QFe3mmmruOL89rBfwrLckQ4Lu4tw0=;
-        b=eJEFYe/5kTNiAcBf7qULgb6o+s/cozlP0t8cu/kXGsJzzMLZeSid6VQosLWbpUJtfH
-         2R6i//odQ7vs5qaQ5kNFbJF6Twob5x2sGS9NQwX9LE7AS9j2cJC1NgfbpYip2D71zONL
-         613Pbf/8Bb+XnpRGqw2oA7EIJgY9ZNpbzs3bK6Li0Z2GaKFWjHzX13nVYMtLFOR+jJ1V
-         2GYWazHrUK/pzWFFnu7y4pDJMy6qiPQS+O6LNEtJEw4XsbY0Ie5rMsphKxevyDy6waSU
-         Y/TauS7zF5DxGCleBI0Aw6bTE30bvKilw1YbEyNr6azU7ET8c+me2qSMg4pa7ibcRoDK
-         rrpA==
-X-Gm-Message-State: AC+VfDwDeN3K/agzb9RI0f1mekMkb6wbgfqX4my2bQcthuYKNSfzX6WS
-        EyeKMnJ7SmAzFk6xde8tZtvwOORak5FTxP8Q0LA=
-X-Google-Smtp-Source: ACHHUZ5QbT7Jg6uOgdeAKNzv3ZBblzxwZ5KIiDFzExm5SfOEog04farQMGB0tuGmdV8OQf2IrM3SebaH7vJEO5LQFdE=
-X-Received: by 2002:a17:907:7faa:b0:987:f7ae:4af6 with SMTP id
- qk42-20020a1709077faa00b00987f7ae4af6mr1496201ejc.35.1687027944402; Sat, 17
- Jun 2023 11:52:24 -0700 (PDT)
+        bh=o9zYN1s6aJ0LEi8KHBtKqVNpKfhxjbsJ2S0b8cW5gUk=;
+        b=WW6uRgXK6aEzLryT3KQOJdw5COj3vlENLtoroaSWPiV4N1e0cibT1pzwjj0lyKZ9sq
+         3A8X12DZ5BRaWZ2Ed24IcHJol8+fOLM1ZFl9xB53h7LziytJugBqH43IcyLPGrC3E6dy
+         igwDI77Kf8KvrSfcyqNq6JmcnZPtb9vLjvR6ldWpH9SGWPKxiRI+9gQeCTQ6B3PbNJFM
+         qatlSLvwCXa0EAKasG877j8AXfSDcA7t/hZg9PRrVlvYrElzw7vv7464JMDoAWGjbIKz
+         sIG3YORGFHpNIwDOQfKy7NuNX+iykYhBR7bKdk6FO7NPwyDIESsjhrV2NKdATakcWjDt
+         lqYQ==
+X-Gm-Message-State: AC+VfDyAkP3ohcrRFIPPOBKsr8b4ZId9fHbfupihGJJo1hc5KZWXfPQx
+        xaW6jQvWiA2u42Ty+eEpcrLBsQ847ZqwyLX09wvwi1dKdRI=
+X-Google-Smtp-Source: ACHHUZ6TIudfqAPWfTKVZSw+J8QK7VO2DFBdsk8l64XrzvemQpn/a5hCexUP0R16WaBfoM+iR+ufRszT0q/+tnNC70Y=
+X-Received: by 2002:a4a:de82:0:b0:55c:6812:27c5 with SMTP id
+ v2-20020a4ade82000000b0055c681227c5mr2920690oou.9.1687028481556; Sat, 17 Jun
+ 2023 12:01:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230615205540.1803975-1-bigunclemax@gmail.com>
- <20230615205540.1803975-2-bigunclemax@gmail.com> <20230617144855.0388c4ff@jic23-huawei>
-In-Reply-To: <20230617144855.0388c4ff@jic23-huawei>
-From:   Maxim Kiselev <bigunclemax@gmail.com>
-Date:   Sat, 17 Jun 2023 21:52:12 +0300
-Message-ID: <CALHCpMgxNwz197qgiEueV9Y26LN7BBfYSGBHy6J4gOTFpiVUtw@mail.gmail.com>
-Subject: Re: [PATCH v7 1/3] iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        =?UTF-8?Q?Leonard_G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+References: <20230617052435.359177-1-sergio.paracuellos@gmail.com>
+ <20230617052435.359177-9-sergio.paracuellos@gmail.com> <c1a69db7-96c2-f3ad-3ef2-9a655b10bfb5@linaro.org>
+ <CAMhs-H_HjsT2om2CZpMmVDYao=M5FoZwyy0Te1QB9MLj6mAxnw@mail.gmail.com> <b995dead-5cca-de05-5840-bed882d2c4ff@linaro.org>
+In-Reply-To: <b995dead-5cca-de05-5840-bed882d2c4ff@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sat, 17 Jun 2023 21:01:09 +0200
+Message-ID: <CAMhs-H-kBNKLQMgAPgt7M7wO+hcHqRiYsgqnuJYkK1NFk1jYGw@mail.gmail.com>
+Subject: Re: [PATCH v4 8/9] mips: ralink: get cpu rate from new driver code
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-clk@vger.kernel.org, linux-mips@vger.kernel.org,
+        tsbogend@alpha.franken.de, john@phrozen.org,
+        linux-kernel@vger.kernel.org, p.zabel@pengutronix.de,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, matthias.bgg@gmail.com,
+        devicetree@vger.kernel.org, arinc.unal@arinc9.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D1=81=D0=B1, 17 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 16:49, Jon=
-athan Cameron <jic23@kernel.org>:
+On Sat, Jun 17, 2023 at 7:27=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On Thu, 15 Jun 2023 23:55:20 +0300
-> Maksim Kiselev <bigunclemax@gmail.com> wrote:
+> On 17/06/2023 17:35, Sergio Paracuellos wrote:
+> > On Sat, Jun 17, 2023 at 4:48=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 17/06/2023 07:24, Sergio Paracuellos wrote:
+> >>> At very early stage on boot, there is a need to set 'mips_hpt_frequen=
+cy'.
+> >>> This timer frequency is a half of the CPU frequency. To get clocks pr=
+operly
+> >>> set we need to call to 'of_clk_init()' and properly get cpu clock fre=
+quency
+> >>> afterwards. Depending on the SoC, CPU clock index in the clock provid=
+er is
+> >>> different being two for MT7620 SoC and one for the rest. Hence, adapt=
+ code
+> >>> to be aligned with new clock driver.
+> >>
+> >>
+> >>>  void __init plat_time_init(void)
+> >>>  {
+> >>> +     struct of_phandle_args clkspec;
+> >>>       struct clk *clk;
+> >>> +     int cpu_clk_idx;
+> >>>
+> >>>       ralink_of_remap();
+> >>>
+> >>> -     ralink_clk_init();
+> >>> -     clk =3D clk_get_sys("cpu", NULL);
+> >>> +     cpu_clk_idx =3D clk_cpu_index();
+> >>> +     if (cpu_clk_idx =3D=3D -1)
+> >>> +             panic("unable to get CPU clock index");
+> >>> +
+> >>> +     of_clk_init(NULL);
+> >>> +     clkspec.np =3D of_find_node_by_name(NULL, "sysc");
+> >>> +     clkspec.args_count =3D 1;
+> >>> +     clkspec.args[0] =3D cpu_clk_idx;
+> >>> +     clk =3D of_clk_get_from_provider(&clkspec);
+> >>
+> >> This is very obfuscated way of getting clock. Why can't you get it fro=
+m
+> >> "clocks" property of "cpu", like every other recent platform?
+> >
+> > I did not find any other approach that works for me. So I ended up in t=
+his one.
+> > Can you point me out in a sample of code doing the same so I can check
+> > if it works for me then?
 >
-> > The General Purpose ADC (GPADC) can convert the external signal into
-> > a certain proportion of digital value, to realize the measurement of
-> > analog signal, which can be applied to power detection and key detectio=
-n.
-> >
-> > Theoretically, this ADC can support up to 16 channels. All SoCs below
-> > contain this GPADC IP. The only difference between them is the number
-> > of available channels:
-> >
-> >  T113 - 1 channel
-> >  D1   - 2 channels
-> >  R329 - 4 channels
-> >  T507 - 4 channels
-> >
-> > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> > ---
-> >  drivers/iio/adc/Kconfig            |  10 ++
-> >  drivers/iio/adc/Makefile           |   1 +
-> >  drivers/iio/adc/sun20i-gpadc-iio.c | 276 +++++++++++++++++++++++++++++
-> >  3 files changed, 287 insertions(+)
-> >  create mode 100644 drivers/iio/adc/sun20i-gpadc-iio.c
-> >
-> > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > index eb2b09ef5d5b..deff7ae704ce 100644
-> > --- a/drivers/iio/adc/Kconfig
-> > +++ b/drivers/iio/adc/Kconfig
-> > @@ -1123,6 +1123,16 @@ config SUN4I_GPADC
-> >         To compile this driver as a module, choose M here: the module w=
-ill be
-> >         called sun4i-gpadc-iio.
-> >
-> > +config SUN20I_GPADC
-> > +     tristate "Support for the Allwinner SoCs GPADC"
-> I applied this and started a build test before noticing that this Kconfig=
- description
-> is very vague and matches the one for the existing 4i driver...
-
-Indeed. I must have forgotten to change this line when copying from sun4i..=
-.
-
-> The 'Support for the' bit also isn't appropriate for what you see in make=
- menuconfig
-> menu etc.   Please come up with something descriptive. Maybe
-> "sun20i and similar SoC GPADC"?
+> You mean bindings?
+> git grep cpus.yaml
 >
-> Bonus points if you change the text for the 4i at the same time to be
-> more meaningful. I clearly missed that in review a long time ago!
+> Driver?
+> git grep clk_get_rate
+> clk_get
+> eventually of_clk_get
+>
+> It all depends on the context.
+>
+> Anyway, it is very easy to find existing solutions not using
+> of_find_node_by_name for your platform:
+>
+> git grep mips_hpt_frequency
+>
+> First result.
 
-Should I do this in a separate patch?
+I have tested before all of these and got into panic because clock
+cannot get retrieved:
+
+For example first result is to make use of clk_get so change the code into:
+
+void __init plat_time_init(void)
+{
+    struct clk *clk;
+
+    of_clk_init(NULL);
+    clk =3D clk_get(NULL, "cpu");
+    if (IS_ERR(clk))
+       panic("unable to get CPU clock, err=3D%ld", PTR_ERR(clk));
+
+    pr_info("CPU Clock: %ldMHz\n", clk_get_rate(clk) / 1000000);
+    mips_hpt_frequency =3D clk_get_rate(clk) / 2;
+    clk_put(clk);
+    timer_probe();
+}
+
+And I panic because I cannot get the cpu clock...
+
+>
+>
+> Best regards,
+> Krzysztof
+>
+
+Thanks,
+    Sergio Paracuellos
