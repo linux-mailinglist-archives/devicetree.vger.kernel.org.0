@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CE33D734274
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:16:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79994734276
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:16:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S238423AbjFQRQD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 13:16:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53896 "EHLO
+        id S234538AbjFQRQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 13:16:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S236059AbjFQRP4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:15:56 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE99519B0
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:54 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5169f614977so2651690a12.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:54 -0700 (PDT)
+        with ESMTP id S236309AbjFQRP6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:15:58 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A42019B5
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:56 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-977d7bdde43so385802566b.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687022153; x=1689614153;
+        d=linaro.org; s=google; t=1687022155; x=1689614155;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=kPDYBUqR9l7ZWoKsqO3wGVGBzQKRhUym+LyVhNjS9Kc=;
-        b=HteCPkFhJQffzVFaLvd6umeUyL7SlMRq6RORzp4o0hyw7uRzMRSu4F72dV75NC2aHX
-         z0iJxdS2ztOEgudJU2Fba7CX+Zl44yAq62rKZdjxnKBV6UFvbGJSPaPDzdF1YbEddidi
-         k2iAuzLMpm5kewWTLG+7a093qp/M0nmLgxCUl7EqpxJqnxAUgEzK/wLC8ieDcLEd8yMW
-         KYuvZusSD4/M94SRt0Uq5ix7gPpDiCzD4Gsu0dcxTFyaLxP9F4AIMiHqcwZr+y9jut0x
-         pQ8kRo3fknOKr+e05A76YJfyU/1QHm8UB4MZznDK0Egw7XwhoJHC+T1dKtm0FbCWjpxN
-         92sA==
+        bh=zhLpA0bxGouYBguVcte9AL2IENZphar7chhyNxF0ifM=;
+        b=Hh9QzNbv2xu30g0ehY/3sESKiu93qmIT6SlNmmk5PxrzCYEHsa9lScWKvasU8BsMLO
+         9fa5ee+vWcDBEJhFLH28qfPBdJtK/7y9ipWgG79WAjDuhSbvSmaP6CcRTcQGFgdjuRu+
+         rYf7agx5HDXXLMvxRGFKDCDwG7SEVqj/jFRIROFKW4v5Icqjc3kz/1TmaR0cp+6MiDs9
+         Z6gtukakwdfP+uMUQrk3aQkWzIX13S+Dudk7EviFHvq8QerMo9noYlrR6I0ofmg0HpHr
+         hM6WWo2dAKlGMjdZd2gXcVnNOPG/zEBNiHpvBoSYx0+OD5D0Tn90neIflRHE4JfRqhhv
+         fLWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687022153; x=1689614153;
+        d=1e100.net; s=20221208; t=1687022155; x=1689614155;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kPDYBUqR9l7ZWoKsqO3wGVGBzQKRhUym+LyVhNjS9Kc=;
-        b=PsaZZIeA+BFevD47NgNx53GD9iq1/XG3UMbNZrZHCdKednM4yTJEnPFZkh8Q4PB/8n
-         52JY44jS4uMP8TAaow9EVB6wyGvXltSqZNU26d5am+goUG1XLW4Vphrov4eQEBqbZbmR
-         oq7bYZqWLGMr5AGoXxoYHvri/mx2t12PW+5lxVH6GFtarn8EOQ5nV/z577/zzJaiPbUb
-         jktdqS8EhoOVg6WcWMiWys/PjIEXoykXnLEy2S+MeTyAAGSP2s97JNA8v1Cl270OYWQh
-         13cdEsW2szPN6XM8/aXFoZ1X2JHa1qWJGsPcUVVWaeT9l6FbEg5oFKVemarWRuzY/92F
-         tX3w==
-X-Gm-Message-State: AC+VfDxsf94E9r04v6MNlHdeNp2CbnFh0gjXbbKbAg7uSJba3wKzwePL
-        5n24hABdg8dpzLx4uauyP6RARg==
-X-Google-Smtp-Source: ACHHUZ4Cq0GZsuQSaHZn8Rw/ZWdz7BHEt0h0zCZyh62j4vXwIejL/QxrcveNtss5TqiEar5Sp3i0vw==
-X-Received: by 2002:a17:907:360e:b0:96a:4ea0:a1e7 with SMTP id bk14-20020a170907360e00b0096a4ea0a1e7mr5307339ejc.50.1687022153375;
-        Sat, 17 Jun 2023 10:15:53 -0700 (PDT)
+        bh=zhLpA0bxGouYBguVcte9AL2IENZphar7chhyNxF0ifM=;
+        b=bilvAiDltgAvLythhf+t6qR5SUklFNgQRsYmjB7Wyw7bSCuM9ePzxtlbWsmdDAuQhH
+         bdLX5uFlgA9NxXaY7QVBGCWiugHSyPpozF2XOzDyrorjsJPI7fQP96aq4E+hOer5Y7k4
+         ghsQuK5QVfaKBsE/hjEgxruBhYdMy5CcIZ3Rmv9ahCdO5274WGnEurPmby4oVjHmGsQ6
+         Il9i9pOy5qOeV2yG+yUI4qw6k+4TgIiELJdzsr0Ilv4KoZ0gUH7Gm2JbQ16a7Ea4FGOv
+         fxal8Xez7YgrFzkgX873IU+6riq/XUNro8mDtKuBOUG288vgS4lqCmG8vOp2merwHDtO
+         0Kag==
+X-Gm-Message-State: AC+VfDzTyXraD16VBvn+wx12ZMQL4F9y8zOugCYbMVLl5L1SXbNPKC5f
+        OwAxZ1P8rLYhpu1PoyYwf/6DPg==
+X-Google-Smtp-Source: ACHHUZ54LtkrjalIw0YC443P7C4klcIqGF9SJOxQOCbX51pSyN04jR6IxLuDGhKJ6dPLiVH8s+EG9w==
+X-Received: by 2002:a17:907:1607:b0:982:b253:dc20 with SMTP id hb7-20020a170907160700b00982b253dc20mr4485747ejc.27.1687022154871;
+        Sat, 17 Jun 2023 10:15:54 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.52
+        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 10:15:53 -0700 (PDT)
+        Sat, 17 Jun 2023 10:15:54 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,9 +62,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 07/15] arm64: dts: qcom: msm8996-xiaomi: use generic node names
-Date:   Sat, 17 Jun 2023 19:15:33 +0200
-Message-Id: <20230617171541.286957-7-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 08/15] arm64: dts: qcom: sc7180-aspire1: use generic ADC channel node names
+Date:   Sat, 17 Jun 2023 19:15:34 +0200
+Message-Id: <20230617171541.286957-8-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
 References: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
@@ -80,35 +80,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use generic node names for I2C devices.
+ADC channel node names were changed to require generic 'channel'.  The
+user-visible part is defined via label.
+
+  sc7180-acer-aspire1.dtb: adc@3100: 'charger-thermistor@4f', 'thermistor@4e' do not match any of the regexes: '^channel@[0-9a-f]+$', 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-index 8c2d6e9e851b..bcd2397eb373 100644
---- a/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8996-xiaomi-common.dtsi
-@@ -189,7 +189,7 @@ &blsp2_i2c2 {
- 	status = "okay";
- 	clock-frequency = <400000>;
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
+index b637b4270f88..dbb48934d499 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
++++ b/arch/arm64/boot/dts/qcom/sc7180-acer-aspire1.dts
+@@ -314,16 +314,18 @@ &mdss_dsi0_phy {
+ };
  
--	nfc: pn548@28 {
-+	nfc: nfc@28 {
- 		compatible = "nxp,nxp-nci-i2c";
+ &pm6150_adc {
+-	thermistor@4e {
++	channel@4e {
+ 		reg = <ADC5_AMUX_THM2_100K_PU>;
+ 		qcom,ratiometric;
+ 		qcom,hw-settle-time = <200>;
++		label = "thermistor";
+ 	};
  
- 		reg = <0x28>;
-@@ -208,7 +208,7 @@ nfc: pn548@28 {
- &blsp2_i2c3 {
- 	status = "okay";
+-	charger-thermistor@4f {
++	channel@4f {
+ 		reg = <ADC5_AMUX_THM3_100K_PU>;
+ 		qcom,ratiometric;
+ 		qcom,hw-settle-time = <200>;
++		label = "charger_thermistor";
+ 	};
+ };
  
--	typec: tusb320l@47 {
-+	typec: typec@47 {
- 		compatible = "ti,tusb320l";
- 		reg = <0x47>;
- 		interrupt-parent = <&tlmm>;
 -- 
 2.34.1
 
