@@ -2,98 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A571733F29
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 09:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91D8F733F2D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 09:28:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346034AbjFQHZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 03:25:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45838 "EHLO
+        id S1346094AbjFQH21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 03:28:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346044AbjFQHZS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 03:25:18 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 60C582702;
-        Sat, 17 Jun 2023 00:25:14 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8Dxh+nYX41klz4GAA--.11400S3;
-        Sat, 17 Jun 2023 15:25:12 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxGOXYX41k5wseAA--.19685S3;
-        Sat, 17 Jun 2023 15:25:12 +0800 (CST)
-Subject: Re: [PATCH v14 1/2] thermal: loongson-2: add thermal management
- support
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn,
-        zhanghongchen <zhanghongchen@loongson.cn>, zhuyinbo@loongson.cn
-References: <20230426062018.19755-1-zhuyinbo@loongson.cn>
- <af4d1e00-76d6-b71a-2ed1-562e6405306b@linaro.org>
- <bc081559-e6f5-7ac8-7ae1-3cfbbee51697@loongson.cn>
- <dd3cc9db-bb60-8dfd-19b7-afeeedb65177@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <dc4c03bb-9353-fd0a-03f3-8ab147424f65@loongson.cn>
-Date:   Sat, 17 Jun 2023 15:25:12 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        with ESMTP id S1346084AbjFQH20 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 03:28:26 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7273C271E
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:28:25 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51a2fa4a45eso2044622a12.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:28:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686986904; x=1689578904;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tNOXDR8ammGfhSACaL8GR+6Nt9orr8dF7n6TFf183BI=;
+        b=qA+WvJ4hNQbyu/ACCtBfo8NrOiRUJJsOv2VOujI9VBUaTryLoSEHQ9Tuq9GNM9kw8b
+         pYWAVBmXglKYw10E5rOfOpKqY/QmJtvyB5GWFYmzaWj/mQZqii+aHgNv62HhXgvHius2
+         D7R4Ju0yD2qUzxwY9FY9zS7Z4W57zmIqnLMiKk6bM2JX85TrIeAwKJOrgskvantYq26u
+         dDqDQsTcIzeyl7fpmAEOq0NrSXfH1IX1xv6TLcn4nfewHcJYm74oZP/Rx5xgmLOa1ft3
+         FWFUrpsUZSmFOUe6YV9cwWvkL73ltimhmXShmLbL3mkkD1YmdpCqZYscRZn+1EoxDic7
+         95Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686986904; x=1689578904;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tNOXDR8ammGfhSACaL8GR+6Nt9orr8dF7n6TFf183BI=;
+        b=b+3YbpDeNPNXu3KxROXqqKxzsM6b73ckkxCIkWaxAKZusWTSxZgtA6cd7bw8WT7X0y
+         ef0OtNtEz6ouqrWjl4xK0E5AnrTm6ex84u12TCgA0Ix7qOURnTe/cd8z9T4qZi3zTnJb
+         xBi+YA/Qr4pIdQRVSBwUH25L6tMUpLAaa1B5m4IBTx8PSBB4ghNS/c6kOyFNqhmlERFP
+         1WjaVv+uuZIMSoiW2diKacYfwMqQlHae2Mx4Q2m23qvU7MoNR3LOcGsK4SaHBYmBUyQw
+         n4ATdTfGwU5W2F4kDdhfT+vLSR412Ji15eJj4rqPjij2V0i+/N/PvvAAMsxhtQKx97Pd
+         /f1w==
+X-Gm-Message-State: AC+VfDxWm9jufPa2yC8yBKp39/AV5exK9e0ipFsFw8ntURk8nehXQGoH
+        IIxJ586mzcU/gm7RThCPvJmlmQ==
+X-Google-Smtp-Source: ACHHUZ64pqeOFhHo+B+O2squOClmtsXC2rT2z2VNvrH1Uhz5PU02jMg1G7EMy4k5dz26C/Vc342YkA==
+X-Received: by 2002:a17:907:3e27:b0:982:30e3:ddcb with SMTP id hp39-20020a1709073e2700b0098230e3ddcbmr5108273ejc.65.1686986903823;
+        Sat, 17 Jun 2023 00:28:23 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a13-20020a170906684d00b009828dac8425sm3713144ejs.105.2023.06.17.00.28.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jun 2023 00:28:23 -0700 (PDT)
+Message-ID: <83807d70-c35c-6b66-e7f9-521bdfc6d1b4@linaro.org>
+Date:   Sat, 17 Jun 2023 09:28:21 +0200
 MIME-Version: 1.0
-In-Reply-To: <dd3cc9db-bb60-8dfd-19b7-afeeedb65177@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v8 10/11] arm64: dts: qcom: sm8350: Add Crypto Engine
+ support
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        vladimir.zapolskiy@linaro.org, rfoss@kernel.org,
+        neil.armstrong@linaro.org, djakov@kernel.org, stephan@gerhold.net,
+        Anders Roxell <anders.roxell@linaro.org>,
+        Linux Kernel Functional Testing <lkft@linaro.org>
+References: <20230526192210.3146896-1-bhupesh.sharma@linaro.org>
+ <20230526192210.3146896-11-bhupesh.sharma@linaro.org>
+ <d239ad07-fbdd-16fa-3555-5bcf33c67059@linaro.org>
+ <11c3eb6c-823d-9688-ec53-e05c7bb557c5@linaro.org>
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxGOXYX41k5wseAA--.19685S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <11c3eb6c-823d-9688-ec53-e05c7bb557c5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-在 2023/6/17 下午3:15, Daniel Lezcano 写道:
-> On 17/06/2023 05:25, zhuyinbo wrote:
->>
->> Hi Daniel,
->>
->> 在 2023/6/12 下午10:22, Daniel Lezcano 写道:
->>
->> ...
->>
->>>>
->>>> +#define LOONGSON2_SOC_MAX_SENSOR_NUM            4
->>>> +
->>>> +#define LOONGSON2_TSENSOR_CTRL_HI            0x0
->>>> +#define LOONGSON2_TSENSOR_CTRL_LO            0x8
->>>> +#define LOONGSON2_TSENSOR_STATUS            0x10
->>>> +#define LOONGSON2_TSENSOR_OUT                0x14
+On 17/06/2023 01:33, Konrad Dybcio wrote:
+> On 16.06.2023 19:36, Krzysztof Kozlowski wrote:
+>> On 26/05/2023 21:22, Bhupesh Sharma wrote:
+>>> Add crypto engine (CE) and CE BAM related nodes and definitions to
+>>> 'sm8350.dtsi'.
 >>>
->>> Please use BIT() macros
+>>> Tested-by: Anders Roxell <anders.roxell@linaro.org>
+>>> Tested-by: Linux Kernel Functional Testing <lkft@linaro.org>
+>>> Co-developed-by and Signed-off-by: Robert Foss <rfoss@kernel.org>
+>>> [Bhupesh: Switch to '#interconnect-cells = <2>', available since commit 4f287e31ff5f]
+>>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+>>> ---
 >>
+>> #regzbot introduced: f1040a7fe8f069d2259ab3dab9190210005ceb33
+>> #regzbot title: HDK8350 silently crashes early on boot
 >>
->> I learn about that BIT() is generally used to describe the functional
->> bit or control bit or status bits of a register, but these register was
->> some different register offset and not some control bit or status bit
->> So using BIT() here seems a bit inappropriate, Do you think so?
+>> Hi, this landed in the next but unfortunately it causes silent crash
+>> (and reboot) of HDK8350. Reverting this commit helps.
+> Downstream also references the following SIDs:
 > 
-> Yes, you are right
+> iommus = <&apps_smmu 0x592 0>,
+> 	 <&apps_smmu 0x598 0>,
+> 	 <&apps_smmu 0x599 0>,
+> 	 <&apps_smmu 0x59F 0>;
+
+I already tried iommus from downstream from:
+1. qcrypto node (0x584, 0x594)
+2. qcedev (0x586, 0x596)
+3. qcom_cedev_ns_cb (0x592, 0x598, 0x599, 0x59F), although with 0x0011
+last argument.
+
+Same results, but indeed iommu would be nice reason here.
+
+I also double checked the version of block (BAM DMA is v1.7.4) and other
+properties. When I disabled crypto but left BAM DMA, the result was the
+same, thus it is maybe the BAM who causes abort.
 
 
-okay, I got it.
-
-Thanks,
-Yinbo
+Best regards,
+Krzysztof
 
