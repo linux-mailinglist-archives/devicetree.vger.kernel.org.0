@@ -2,77 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEA9733F07
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 09:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37BC7733F0A
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 09:15:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231982AbjFQHMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 03:12:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41130 "EHLO
+        id S234302AbjFQHPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 03:15:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41612 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234063AbjFQHMt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 03:12:49 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA8B52688
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:12:47 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9827109c6e9so211119166b.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:12:47 -0700 (PDT)
+        with ESMTP id S232118AbjFQHPH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 03:15:07 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D706B213F
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:15:05 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f8fae01224so9381355e9.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:15:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686985966; x=1689577966;
+        d=linaro.org; s=google; t=1686986104; x=1689578104;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=xJ/O7JTgvls0IaKgZkaCp9/RlgVG325GYsMwuH2AZMM=;
-        b=QegjsKAcp3RLddA/g7sGAXXIxD7FSR3D2ONG5BxV/czb+XZ4FVFReuV9zn3cTXJAhV
-         geJww72CaSmj+JC2fDnC803oj4ReP76gbk2wFDao2MbhxtBSPTcDEkbgLgpIfrx6DstI
-         aB6pPVH1GMyiTl7N6eXdTtBiuqa+0d7cec5xdRpYeGWnRdNu9Z1vxMU/GAF6OqhRWFfi
-         +t+rgx7W2z+7OkPrpXQMamGQhnXSboWKhw24tWMgpzgG0N1C70asePM8CdtyrgAbgCFA
-         UWDlf4S7+zLRF1ia5sCgC/vEYlELkfOYvlM63OfB7N1MKPCVM2OW4xha0Xej9R9R13ne
-         Jrug==
+        bh=qkJta/itqN/plYtDpPSK5B2b/lfTXQ8wtnzVNHq6pLE=;
+        b=ycmJGcahVDhbo4zOAmSq3lKerxRW6RC3JCMzXhwfVt5UvBk/TgeuQrTapqugeYLPvN
+         qy0ktDd9U08LGZRRgjXYmhb0ILQAwM0B6A95fewx/Wu4+UyZt0LHuMCQl5WU75ujZT5C
+         rm2ojIKbqyY7CbIHO6hKRDcknLcpqncqujV7u4oKlx7iDKUY1fPolscXd3QiTudbPkmG
+         sFWJj2vaHfaMykLDDUY3YkUVbtu59vkMCos6sGf69zVRjNvwso5WYKUDQOwNEfK25HCE
+         1gTotbnZv9vvgda7fR62QgrhXFFPo66oqyiIjXt3t3PJ3UrmUe2vvInawh6CHBXDEZY+
+         QWPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686985966; x=1689577966;
+        d=1e100.net; s=20221208; t=1686986104; x=1689578104;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=xJ/O7JTgvls0IaKgZkaCp9/RlgVG325GYsMwuH2AZMM=;
-        b=WsHesNm023tVuXXVLMoXWWANTwj86O0MYRCJleI5UmbfN1sdBSm2ly1AdYERHRFBrY
-         Qf3CCVgX9Ljum7mGEjd4XEhtuFwId19iuno+iGHBxCrz2N2G1eOpcnuxkB0HvYt8jNVD
-         yNreOJHMH/eECR1nII0+Hi1ufvIkQFWCPNE0NSpps6ruKRteVCrNZjFXiurBHTVa5Lme
-         nuvNOdVvhT4YPkEWswRxIX9zNQBqSm6/nc4HO6N3bOSw27sbhObNWnrdmP35VBLROceK
-         6gzxqBy17ZfcYBwsLW4hAebAz32wqO68nHisvnWFy3G3qcvEaHJPTIqMj4+AmA0Kz4AW
-         c0vg==
-X-Gm-Message-State: AC+VfDxPduIGQ50RecP3NsDNJLEtYTgNYVFHJWS7KrTMv/aom+of2YLm
-        HBBYVpYFUZOQsKHLPgWK27G7ig==
-X-Google-Smtp-Source: ACHHUZ57eieUxh6KiFZ33aqWxdvwuJbCqyZ9LsvL5TGCfT0mfZ3lJFrJBk2HHCzt9h0jhP8n1aTRYA==
-X-Received: by 2002:a17:907:1b1e:b0:97e:aad0:12fe with SMTP id mp30-20020a1709071b1e00b0097eaad012femr3034838ejc.77.1686985966364;
-        Sat, 17 Jun 2023 00:12:46 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id b1-20020a1709062b4100b00982842ea98bsm4034180ejg.195.2023.06.17.00.12.44
+        bh=qkJta/itqN/plYtDpPSK5B2b/lfTXQ8wtnzVNHq6pLE=;
+        b=P9yEv+0+7O5T6nzbmGX+0aRj7Ydrvhttr9Z1w/AYWhWbpYBeKCd9IHMeTO6nAQq9tA
+         1ubHa/JWfNeI9NaQ9eEJFr78Vu5I49bxK4AKy83/Luq32XzCRNBQm/7NkYdwDXEsRaIm
+         z5nPB43vCkL1L/C21k27lw1yw2w+Pg0PqtPZKFPfukLxXZ1dyAROCK8tRXSd7U8L99F3
+         9dZfHT0hwpc+rcHRf/MZFv56F0egyFROQAh+2BhNBQkkm49RsFMOHs5ghcUrgFUqL3Tc
+         tZ+nhvpQ+DkL/VBs3v43BfPpyLJ/42GChKqsra3TNSoqwL3CyX2Ms5fgdEcmq9qwRuXS
+         I6yw==
+X-Gm-Message-State: AC+VfDwP22fHUzfWx7QDPacxB77yIH+vFImvBl8GHlwvaGXgSzTO8Ro7
+        7QN3d2MXQguDqTStEeht38npaQ==
+X-Google-Smtp-Source: ACHHUZ5OiiQzsETNaWBoHR3RwTTo+lhlSaUAJZCEBguY17vTlskHr3Q8Om8diCiSMwvip/2wP+bn/A==
+X-Received: by 2002:a05:600c:2043:b0:3f7:3280:810b with SMTP id p3-20020a05600c204300b003f73280810bmr2941325wmg.19.1686986104226;
+        Sat, 17 Jun 2023 00:15:04 -0700 (PDT)
+Received: from ?IPV6:2a05:6e02:1041:c10:4aa0:8c56:eebe:c05c? ([2a05:6e02:1041:c10:4aa0:8c56:eebe:c05c])
+        by smtp.googlemail.com with ESMTPSA id p19-20020a05600c469300b003f7f475c3bcsm11212368wmo.1.2023.06.17.00.15.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Jun 2023 00:12:45 -0700 (PDT)
-Message-ID: <ed5c02d3-e9ed-ecd8-ca70-be6e2c478902@linaro.org>
-Date:   Sat, 17 Jun 2023 09:12:43 +0200
+        Sat, 17 Jun 2023 00:15:03 -0700 (PDT)
+Message-ID: <dd3cc9db-bb60-8dfd-19b7-afeeedb65177@linaro.org>
+Date:   Sat, 17 Jun 2023 09:15:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 5/6] LoongArch: DeviceTree for Loongson-2K1000
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v14 1/2] thermal: loongson-2: add thermal management
+ support
 Content-Language: en-US
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>
-Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
+To:     zhuyinbo <zhuyinbo@loongson.cn>,
+        "Rafael J . Wysocki" <rafael@kernel.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-References: <cover.1686882123.git.zhoubinbin@loongson.cn>
- <99bdbfc66604b4700e3e22e28c3d27ef7c9c9af7.1686882123.git.zhoubinbin@loongson.cn>
- <493a28b2-8ad5-2e9a-462b-bdc7d585b722@linaro.org>
- <CAMpQs4JJWryScd_nEi+LpKGPXup=RZXw=rBhb7HQkxJuBXgTBw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMpQs4JJWryScd_nEi+LpKGPXup=RZXw=rBhb7HQkxJuBXgTBw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
+        Liu Peibao <liupeibao@loongson.cn>,
+        loongson-kernel@lists.loongnix.cn,
+        zhanghongchen <zhanghongchen@loongson.cn>
+References: <20230426062018.19755-1-zhuyinbo@loongson.cn>
+ <af4d1e00-76d6-b71a-2ed1-562e6405306b@linaro.org>
+ <bc081559-e6f5-7ac8-7ae1-3cfbbee51697@loongson.cn>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <bc081559-e6f5-7ac8-7ae1-3cfbbee51697@loongson.cn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -84,64 +86,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2023 08:59, Binbin Zhou wrote:
-> On Fri, Jun 16, 2023 at 5:59 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 16/06/2023 08:11, Binbin Zhou wrote:
->>> Add DeviceTree file for Loongson-2K1000 processor, which integrates two
->>> 64-bit dual emission superscalar LA264 processor cores.
->>>
->>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
->>> ---
->>>  arch/loongarch/boot/dts/Makefile            |   3 +-
->>>  arch/loongarch/boot/dts/loongson_2k1000.dts | 565 ++++++++++++++++++++
->>>  2 files changed, 567 insertions(+), 1 deletion(-)
->>>  create mode 100644 arch/loongarch/boot/dts/loongson_2k1000.dts
->>>
->>> diff --git a/arch/loongarch/boot/dts/Makefile b/arch/loongarch/boot/dts/Makefile
->>> index 0e5ed373b1b4..c0464bb8e430 100644
->>> --- a/arch/loongarch/boot/dts/Makefile
->>> +++ b/arch/loongarch/boot/dts/Makefile
->>> @@ -1,5 +1,6 @@
->>>  # SPDX-License-Identifier: GPL-2.0-only
->>>
->>> -dtb-$(CONFIG_MACH_LOONGSON64)        = loongson_2k0500.dtb
->>> +dtb-$(CONFIG_MACH_LOONGSON64)        = loongson_2k0500.dtb \
->>> +                               loongson_2k1000.dtb
->>>
->>>  obj-$(CONFIG_BUILTIN_DTB)    += $(addsuffix .dtb.o, $(CONFIG_BUILTIN_DTB_NAME))
->>> diff --git a/arch/loongarch/boot/dts/loongson_2k1000.dts b/arch/loongarch/boot/dts/loongson_2k1000.dts
->>> new file mode 100644
->>> index 000000000000..9fd9d400d97f
->>> --- /dev/null
->>> +++ b/arch/loongarch/boot/dts/loongson_2k1000.dts
->>> @@ -0,0 +1,565 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include <dt-bindings/interrupt-controller/irq.h>
->>> +#include <dt-bindings/clock/loongson,ls2k-clk.h>
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +
->>> +/ {
->>> +     model = "LS2K1000 Reference Board";
->>> +     compatible = "loongson,ls2k1000";
->>> +
->>
->> All the same comments apply here. Don't mix SoC (DTSI) with boards.
+On 17/06/2023 05:25, zhuyinbo wrote:
 > 
-> Hi Krzysztof:
+> Hi Daniel,
 > 
-> I'm very sorry, this is the first time I've written a full DTS.
-> Do you mean that I need to put the descriptions of these devices into
-> DTSI and the descriptions of the boards into DTS?
+> 在 2023/6/12 下午10:22, Daniel Lezcano 写道:
+> 
+> ...
+> 
+>>>
+>>> +#define LOONGSON2_SOC_MAX_SENSOR_NUM            4
+>>> +
+>>> +#define LOONGSON2_TSENSOR_CTRL_HI            0x0
+>>> +#define LOONGSON2_TSENSOR_CTRL_LO            0x8
+>>> +#define LOONGSON2_TSENSOR_STATUS            0x10
+>>> +#define LOONGSON2_TSENSOR_OUT                0x14
+>>
+>> Please use BIT() macros
+> 
+> 
+> I learn about that BIT() is generally used to describe the functional
+> bit or control bit or status bits of a register, but these register was
+> some different register offset and not some control bit or status bit
+> So using BIT() here seems a bit inappropriate, Do you think so?
 
-You need to clearly identify what is SoC and what is board. Just look
-for every arm/arm64/riscv example. SoC relevant properties go to SoC
-DTSI. Board relevant properties go to board DTS.
+Yes, you are right
 
-Best regards,
-Krzysztof
+
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
