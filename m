@@ -2,118 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B49A733F61
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 10:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EE9A733F65
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 10:05:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346233AbjFQIEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 04:04:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54418 "EHLO
+        id S1346243AbjFQIFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 04:05:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55026 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231929AbjFQIEN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 04:04:13 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE0231BDF
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 01:04:11 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51a270e4d57so2196864a12.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 01:04:11 -0700 (PDT)
+        with ESMTP id S1346278AbjFQIEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 04:04:50 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885D21BDF
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 01:04:45 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-519b771f23aso2170334a12.1
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 01:04:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686989050; x=1689581050;
+        d=linaro.org; s=google; t=1686989084; x=1689581084;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JskatFucMmAeLdfnFCEkpDxKlTgR0k+Wi7MQ3LzyqlE=;
-        b=olYtqBvXhj2eKwZADpIRHO8dazWhRSBP/tCJtpoDYyDDVmhEDF0TB+NvCPLMGD4WHV
-         7nvMuE66b4sIY5fkHjfyVyDw/sUoN7iUcwOPjQLHXUeiB5abyGuMZE69eZ7NKiFZCiT1
-         XPHSFGYUkCNherRbPgj83LB77/wHo0Gc8G151opIYyhPNBp8VpNM0ISAf/4NYk7rX6/o
-         Q80TEGfTdXJU1J4Ez9wqFGMIBNI7uVT9N6SG8jCGL7zjG2HsHjR5BcI8havwN1vUSLJg
-         abiAh1Cgosi89RPA+CAQAIlynRtS2tFYFMvq0ReWWtBbidr13hRBc7gLQyB26Vu73/fq
-         x2sQ==
+        bh=qJrsf2pwoMXl3PeH2n9Eu8zL86w1f8iDhqh4pji1Kuk=;
+        b=TWts4lPBT8wmpu8xEy/41MsKVIzbCajbsglH9p9R9Vu0ARwJfbqMpZ0mmceE6qYCIl
+         iMvOYfxplWhTK3W5PdRiXkuZt1/4wTrfQI3dAMxrz9RxGDLDNNOuC3amY5ULF4OvfiVy
+         nNFgI/NelFKPxTo860DYlZQm9vOyXAO/Q+AklHg5aYuJABxgVMPpWhDgTz8rnWaaSn16
+         Lar82GOunRuu3Pb4QQS/UZEZqVOSzSjFw83q9Zqu01hDBlaq300Xu+ByOhnkwRencpjL
+         imlF3HWljBUsO8xbZqsDZfhcVf+Lo6xPLkCk66CpjjUfIGSfKvb2/kaC0LkmANPLPyaa
+         RyiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686989050; x=1689581050;
+        d=1e100.net; s=20221208; t=1686989084; x=1689581084;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JskatFucMmAeLdfnFCEkpDxKlTgR0k+Wi7MQ3LzyqlE=;
-        b=glEnfdIBvvFc2eUM4zV2diLLo1DGdhMMsGoI0+1KsmSLOIIXa47NDiVc7trQWDMVJA
-         LlOGDDeCDRms47z/GhdgDlpjy0kukdWrRxzUFTGzXR7jShQSKy1m3vjHpX010+CPTXPN
-         8HEsNc3m7fVkE2GXrHhBM6nqO2wVi60VCkIcYnfF7s9MRc4nLbGGAs7DCUGth1Eq+tAe
-         tLy7WCqbGLW9TalK5XJcAFR7HDguVm/kHasgmBJGRYsJNgnioM3b9czrHDqwZSwsYhY6
-         QsXGjE1RrQWoy/nVNlgA/VcsXUBkJ32iEvMeLInz6S+VkJney7UPn3Uxz0+/xVPQ7JZS
-         2O1g==
-X-Gm-Message-State: AC+VfDztxh132PNk2me6Ik83jKvVVA2OrZ3V2w72qFE57F/2i6b0AH/4
-        y0UWOhpncs7Y7m9X3IM2sWD6zw==
-X-Google-Smtp-Source: ACHHUZ7kZqKBEMLNLGBMJ8yGHStlrG8Dg/LXVr7TO3CkwsYIX8auZF1/tEu6GqnbYv+WO0MdC2nQ6A==
-X-Received: by 2002:a17:907:3188:b0:966:5a6c:752d with SMTP id xe8-20020a170907318800b009665a6c752dmr4045542ejb.20.1686989050183;
-        Sat, 17 Jun 2023 01:04:10 -0700 (PDT)
+        bh=qJrsf2pwoMXl3PeH2n9Eu8zL86w1f8iDhqh4pji1Kuk=;
+        b=FnkW1XpqcUGA7K5gKvDpobBHPwQsBojp4+4g18IJlkIOC+T2D55hxLWjAFtHtemHeV
+         8DT3u8HUDQprTDUdmJtbAV4HkSP/qspBJP70eIu/4ts7NyuQnr36rONnTwaQSToFlHcz
+         IG6hMyufLuY5I+h1JocDJemONs2oMl/jqgo22t5zl1vsYWRvsFyEZmbqAZlQc7QzQXsK
+         K5timOQWEE59rC6t4aq+0EMlv3cjpsJfeXQfcbHe7hBA/XfdRrxRvD0bbCeaAwS/W4vN
+         eOX4bx66yVwpHzX5qB2/NMjjlhucUfmX6A5gcONRb6Ykv3zsPv+YXYv2Q8blUGlfIdiV
+         FJgg==
+X-Gm-Message-State: AC+VfDyiFTp9ExEONjMLw6Z/sN4J208HsE0iFd3jG7AzHOKC0Amd6Akh
+        p/6vYu6D+NQEtAMBY1PtLokymA==
+X-Google-Smtp-Source: ACHHUZ7tfsqu+22+UNCW+G6AYFrV7goBkQ5VBIhB+LhrccM00EVCmocaQdT96lk/VxA3oP2U6Cofkg==
+X-Received: by 2002:a17:907:704:b0:974:e767:e1e7 with SMTP id xb4-20020a170907070400b00974e767e1e7mr3815136ejb.28.1686989084099;
+        Sat, 17 Jun 2023 01:04:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id z8-20020a17090655c800b009828bc469a4sm3813170ejp.103.2023.06.17.01.04.08
+        by smtp.gmail.com with ESMTPSA id n25-20020a170906379900b00977cc473b41sm11917947ejc.142.2023.06.17.01.04.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Jun 2023 01:04:09 -0700 (PDT)
-Message-ID: <fd07ea29-0b9d-4955-0f1b-2879c8b3442f@linaro.org>
-Date:   Sat, 17 Jun 2023 10:04:07 +0200
+        Sat, 17 Jun 2023 01:04:43 -0700 (PDT)
+Message-ID: <f2c19379-4d1a-e5c4-1452-103dd693735b@linaro.org>
+Date:   Sat, 17 Jun 2023 10:04:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/6] dt-bindings: mmc: mmci: Add st,stm32mp25-sdmmc2
- compatible
+Subject: Re: [PATCH v3 05/13] dt-bindings: remoteproc: glink-rpm-edge: Use
+ "glink-edge" as node name
 Content-Language: en-US
-To:     Yann Gautier <yann.gautier@foss.st.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+To:     Stephan Gerhold <stephan@gerhold.net>,
+        Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        Xiang wangx <wangxiang@cdjrlc.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230615092001.1213132-1-yann.gautier@foss.st.com>
- <20230615092001.1213132-2-yann.gautier@foss.st.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-remoteproc@vger.kernel.org
+References: <20230531-rpm-rproc-v3-0-a07dcdefd918@gerhold.net>
+ <20230531-rpm-rproc-v3-5-a07dcdefd918@gerhold.net>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230615092001.1213132-2-yann.gautier@foss.st.com>
+In-Reply-To: <20230531-rpm-rproc-v3-5-a07dcdefd918@gerhold.net>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/06/2023 11:19, Yann Gautier wrote:
-> For STM32MP25, we'll need to distinguish how is managed the delay block.
-> This is done through a new comptible dedicated for this SoC, as the
-> delay block registers are located in SYSCFG peripheral.
+On 15/06/2023 18:50, Stephan Gerhold wrote:
+> Semantically glink-edge and glink-rpm-edge are similar: Both describe
+> the communication channels to a remote processor. The RPM glink-edge is
+> a special case that needs slightly different properties but otherwise
+> it is used exactly the same.
 > 
-> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
-> ---
->  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 6 ++++++
->  1 file changed, 6 insertions(+)
+> To improve consistency use the same "glink-edge" node name also for
+> glink-rpm-edge. Drop the $nodename from qcom,glink-edge.yaml to avoid
+> matching the wrong schema. qcom,glink-edge.yaml is always referenced
+> explicitly from other schemas. This will already ensure that the nodes
+> are being checked, so it's not necessary to bind to all nodes named
+> "glink-edge".
 > 
-> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> index 1c96da04f0e53..e47b3418b6c77 100644
-> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> @@ -59,6 +59,12 @@ properties:
->            - const: st,stm32-sdmmc2
->            - const: arm,pl18x
->            - const: arm,primecell
-> +      - description: Entry for STMicroelectronics variant of PL18x for
-> +          STM32MP25. This dedicated compatible is used by bootloaders.
-> +        items:
-> +          - const: st,stm32mp25-sdmmc2
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 
-Except what's said, this looks like can be part of previous entry via enum.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
