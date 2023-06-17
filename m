@@ -2,79 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37BC7733F0A
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 09:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABC8D733F0D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 09:15:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234302AbjFQHPJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 03:15:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41612 "EHLO
+        id S232806AbjFQHPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 03:15:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232118AbjFQHPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 03:15:07 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D706B213F
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:15:05 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f8fae01224so9381355e9.3
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:15:05 -0700 (PDT)
+        with ESMTP id S244026AbjFQHPU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 03:15:20 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A479B2962
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:15:17 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-982c996a193so209310466b.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 00:15:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686986104; x=1689578104;
+        d=linaro.org; s=google; t=1686986116; x=1689578116;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=qkJta/itqN/plYtDpPSK5B2b/lfTXQ8wtnzVNHq6pLE=;
-        b=ycmJGcahVDhbo4zOAmSq3lKerxRW6RC3JCMzXhwfVt5UvBk/TgeuQrTapqugeYLPvN
-         qy0ktDd9U08LGZRRgjXYmhb0ILQAwM0B6A95fewx/Wu4+UyZt0LHuMCQl5WU75ujZT5C
-         rm2ojIKbqyY7CbIHO6hKRDcknLcpqncqujV7u4oKlx7iDKUY1fPolscXd3QiTudbPkmG
-         sFWJj2vaHfaMykLDDUY3YkUVbtu59vkMCos6sGf69zVRjNvwso5WYKUDQOwNEfK25HCE
-         1gTotbnZv9vvgda7fR62QgrhXFFPo66oqyiIjXt3t3PJ3UrmUe2vvInawh6CHBXDEZY+
-         QWPQ==
+        bh=nv079PwSDx5Qjn48gGeMYGtp2X8BMlgLzerQPmDR5LU=;
+        b=RSbQZEZFGuZ5r45XsssWGjfFZCE6MPC/VuHIuur6EfwZ7Gt6jY+TGqrAUA00wSgzJf
+         mkvmne0R07+SSURIehBpSWH+lz2L+FUt5dm9e4I/vjeRwtuoVHxmzWOITS5kfB7E1wW9
+         vIRTa/qTjJXXfgmL37kAZo+uraTZc6H76bWvLLzRJpSdHRCdDoUj0WjWCMOazbyAI/p2
+         W68QvydiDWbYv4OPFGwa0iw/rvO6fXTliPx2kM3AyFjLRoWgZkhUegFzgxXy76XED3V3
+         eqD8BcFjr/EvVQmb6RK88l0h+SU57M+1xrJRxY3TDluBxz0papFhB3Fv91mn1Z4+DcqH
+         BuGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686986104; x=1689578104;
+        d=1e100.net; s=20221208; t=1686986116; x=1689578116;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qkJta/itqN/plYtDpPSK5B2b/lfTXQ8wtnzVNHq6pLE=;
-        b=P9yEv+0+7O5T6nzbmGX+0aRj7Ydrvhttr9Z1w/AYWhWbpYBeKCd9IHMeTO6nAQq9tA
-         1ubHa/JWfNeI9NaQ9eEJFr78Vu5I49bxK4AKy83/Luq32XzCRNBQm/7NkYdwDXEsRaIm
-         z5nPB43vCkL1L/C21k27lw1yw2w+Pg0PqtPZKFPfukLxXZ1dyAROCK8tRXSd7U8L99F3
-         9dZfHT0hwpc+rcHRf/MZFv56F0egyFROQAh+2BhNBQkkm49RsFMOHs5ghcUrgFUqL3Tc
-         tZ+nhvpQ+DkL/VBs3v43BfPpyLJ/42GChKqsra3TNSoqwL3CyX2Ms5fgdEcmq9qwRuXS
-         I6yw==
-X-Gm-Message-State: AC+VfDwP22fHUzfWx7QDPacxB77yIH+vFImvBl8GHlwvaGXgSzTO8Ro7
-        7QN3d2MXQguDqTStEeht38npaQ==
-X-Google-Smtp-Source: ACHHUZ5OiiQzsETNaWBoHR3RwTTo+lhlSaUAJZCEBguY17vTlskHr3Q8Om8diCiSMwvip/2wP+bn/A==
-X-Received: by 2002:a05:600c:2043:b0:3f7:3280:810b with SMTP id p3-20020a05600c204300b003f73280810bmr2941325wmg.19.1686986104226;
-        Sat, 17 Jun 2023 00:15:04 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:4aa0:8c56:eebe:c05c? ([2a05:6e02:1041:c10:4aa0:8c56:eebe:c05c])
-        by smtp.googlemail.com with ESMTPSA id p19-20020a05600c469300b003f7f475c3bcsm11212368wmo.1.2023.06.17.00.15.03
+        bh=nv079PwSDx5Qjn48gGeMYGtp2X8BMlgLzerQPmDR5LU=;
+        b=eBPRUamPnvgRE3zJQEeUTLMCSi2evdhj3baNG6eKpSu0Jpx3ezMeplvtcecT9avhXp
+         zW8mGdSLwUF1u+Zz0qfqYZxgykxUdKjXDHRX4GXqS3fFidPNQbhIj37XKouA2426Y1YE
+         7+zDJQiyDvLXYgNj+WU2Vipyy4N+qnCwarW5R3xCMQzEo45b87Xm0nAGAjhUnR7ogygD
+         U72G2i2nD/fGMq7sldrAY8KZB06tyqMvZXQ3/bKu0AZttOq05GIXMLC7dkhmQZOb0yRB
+         +38aG7T8xim11uVsaQkd3crtZgyD5Z6IfvPE6O5IUVYW1S9KMjcWmd4aFPVWTLjXc7Jh
+         YoAQ==
+X-Gm-Message-State: AC+VfDyXBjY9Jw9vADhrEXphtO2008BAb45kg5pWK1YfFCPXx3ADBHLu
+        gAYCyVFT1KqHv6chAyzhT0Ifgg==
+X-Google-Smtp-Source: ACHHUZ7i1+uGK10quNG5gGL8cY74t/gEKzCHFIRi3MAorDFNUNSYKKLaeCOXAZ6g5jz/Icc/uMGXhw==
+X-Received: by 2002:a17:907:1b0b:b0:978:90cc:bf73 with SMTP id mp11-20020a1709071b0b00b0097890ccbf73mr3364967ejc.48.1686986116122;
+        Sat, 17 Jun 2023 00:15:16 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id lx15-20020a170906af0f00b009837806ae2fsm2158177ejb.78.2023.06.17.00.15.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 17 Jun 2023 00:15:03 -0700 (PDT)
-Message-ID: <dd3cc9db-bb60-8dfd-19b7-afeeedb65177@linaro.org>
-Date:   Sat, 17 Jun 2023 09:15:03 +0200
+        Sat, 17 Jun 2023 00:15:15 -0700 (PDT)
+Message-ID: <a0e0e3d7-8e9d-3ebd-e57e-5f99255b1afb@linaro.org>
+Date:   Sat, 17 Jun 2023 09:15:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v14 1/2] thermal: loongson-2: add thermal management
- support
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/6] dt-bindings: loongarch: Add CPU bindings for
+ LoongArch
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
+To:     Binbin Zhou <zhoubb.aaron@gmail.com>
+Cc:     Binbin Zhou <zhoubinbin@loongson.cn>,
+        Huacai Chen <chenhuacai@loongson.cn>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn,
-        zhanghongchen <zhanghongchen@loongson.cn>
-References: <20230426062018.19755-1-zhuyinbo@loongson.cn>
- <af4d1e00-76d6-b71a-2ed1-562e6405306b@linaro.org>
- <bc081559-e6f5-7ac8-7ae1-3cfbbee51697@loongson.cn>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <bc081559-e6f5-7ac8-7ae1-3cfbbee51697@loongson.cn>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        Huacai Chen <chenhuacai@kernel.org>,
+        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
+        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Hongliang Wang <wanghongliang@loongson.cn>
+References: <cover.1686882123.git.zhoubinbin@loongson.cn>
+ <c1f86e5d1026937abda331ce564e5ee96b7114c7.1686882123.git.zhoubinbin@loongson.cn>
+ <6bfd273e-d7e8-8447-f7e7-ebda33092337@linaro.org>
+ <CAMpQs4JiyGk+qTyv6Bbnn-P++5FTxdhBNBOa+FcxNVm0j0-9tg@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMpQs4JiyGk+qTyv6Bbnn-P++5FTxdhBNBOa+FcxNVm0j0-9tg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -86,37 +85,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/06/2023 05:25, zhuyinbo wrote:
-> 
-> Hi Daniel,
-> 
-> 在 2023/6/12 下午10:22, Daniel Lezcano 写道:
-> 
-> ...
-> 
->>>
->>> +#define LOONGSON2_SOC_MAX_SENSOR_NUM            4
->>> +
->>> +#define LOONGSON2_TSENSOR_CTRL_HI            0x0
->>> +#define LOONGSON2_TSENSOR_CTRL_LO            0x8
->>> +#define LOONGSON2_TSENSOR_STATUS            0x10
->>> +#define LOONGSON2_TSENSOR_OUT                0x14
+On 17/06/2023 08:31, Binbin Zhou wrote:
+> On Fri, Jun 16, 2023 at 5:51 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
 >>
->> Please use BIT() macros
+>> On 16/06/2023 08:10, Binbin Zhou wrote:
+>>> Add the available CPUs in LoongArch binding with DT schema format using
+>>> json-schema.
+>>>
+>>> Signed-off-by: Binbin Zhou <zhoubinbin@loongson.cn>
+>>> ---
+>>>  .../devicetree/bindings/loongarch/cpus.yaml   | 65 +++++++++++++++++++
+>>>  1 file changed, 65 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/loongarch/cpus.yaml b/Documentation/devicetree/bindings/loongarch/cpus.yaml
+>>> new file mode 100644
+>>> index 000000000000..c3e2dba42c81
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/loongarch/cpus.yaml
+>>> @@ -0,0 +1,65 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/loongarch/cpus.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: LoongArch CPUs
+>>> +
+>>> +maintainers:
+>>> +  - Binbin Zhou <zhoubinbin@loongson.cn>
+>>> +
+>>> +description:
+>>> +  The device tree allows to describe the layout of CPUs in a system through
+>>> +  the "cpus" node, which in turn contains a number of subnodes (ie "cpu")
+>>> +  defining properties for every CPU.
+>>
+>> I understand you copied it from ARM, but I would prefer to have here
+>> something meaningful. Bindings description does not explain what is DTS,
+>> but explains what the hardware is.
 > 
+> Hi Krzysztof:
 > 
-> I learn about that BIT() is generally used to describe the functional
-> bit or control bit or status bits of a register, but these register was
-> some different register offset and not some control bit or status bit
-> So using BIT() here seems a bit inappropriate, Do you think so?
+> I am very sorry, this is my problem and I will rewrite this part.
+> 
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    enum:
+>>> +      - loongson,la264
+>>> +      - loongson,la364
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  device_type: true
+>>> +
+>>> +  clock-frequency:
+>>> +    description: The frequency of cpu in Hz.
+>>> +
+>>> +  model:
+>>> +    $ref: /schemas/types.yaml#/definitions/string
+>>> +    description: User-visible cpu name in /proc/cpuinfo.
+>>
+>> First, aren't you mixing nodes?
+>> Second, it is derived from compatible, so no need for such property.
+> 
+> Well, this attribute is an attempt to tweak it.
+> 
+> As the description says, this attribute was added to show the model
+> name in /proc/cpuinfo. here, we will show the custom name instead of
+> using the cpu core name directly.
 
-Yes, you are right
+DTS is not some translation layer. You can decode compatible and put
+into /proc/cpuinfo whatever you wish.
 
+> 
+> For example, on a Loongson-3A5000 machine, although its cpu core is
+> la464, we can see:
+> [root@fedora ~]# cat /proc/cpuinfo
+> system type : generic-loongson-machine
+> ..............
+> Model Name : Loongson-3A5000-HV
+> ............
+> CPU MHz : 2500.00
+> ...........
+> 
+> Unfortunately, some Loongson-2K chips are not designed with
+> corresponding CPUNAME registers, so we expect to add them in the DTS.
+> 
+> At first, we considered writing it directly into cpu compatible, but
+> it seems that dts compatible is all lower case, while our desired
+> model name contains upper case letters.
+> 
+> What do you think if we repositioned this attribute under cpu?
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+You already did it, so about which solution we talk about?
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Anyway, I am against store translation of compatibles in DTS.
+
+Best regards,
+Krzysztof
 
