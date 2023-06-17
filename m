@@ -2,133 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF3327342FA
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 20:16:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E01C173430B
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 20:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231822AbjFQSQE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 14:16:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43920 "EHLO
+        id S231279AbjFQS2z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 14:28:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346423AbjFQSQA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 14:16:00 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.126.187])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27CE6173A;
-        Sat, 17 Jun 2023 11:15:53 -0700 (PDT)
-Received: from [192.168.1.131] ([89.1.214.195]) by mrelayeu.kundenserver.de
- (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1N3Kc6-1q26EK0AFO-010Pfd; Sat, 17 Jun 2023 20:15:30 +0200
-Message-ID: <5d2eb5af-b674-751b-1583-e048fbf8c3a5@mweigand.net>
-Date:   Sat, 17 Jun 2023 20:15:29 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH 2/3] dt-bindings: backlight: lm3630a: add entries to
- control boost frequency
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        =?UTF-8?Q?Heiko_St=c3=bcbner?= <heiko@sntech.de>,
-        Maximilian Weigand <mweigand2017@gmail.com>,
-        Lee Jones <lee@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Helge Deller <deller@gmx.de>, Pavel Machek <pavel@ucw.cz>,
+        with ESMTP id S229637AbjFQS2y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 14:28:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE01E1999;
+        Sat, 17 Jun 2023 11:28:52 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6AA3861138;
+        Sat, 17 Jun 2023 18:28:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64AB9C433C8;
+        Sat, 17 Jun 2023 18:28:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687026531;
+        bh=DIQI2aiPOqmTZwoXiyYS0cVloN0L8cK8fYmkEg4zs9Y=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=WbtOZGRdTYByXuA/REJfyXx5w/wO/ggga9iEtYL4FlGhkdYD9IR0H4E6NUxNkrDgR
+         rsaK5RzWLMnjH8LV5S+aG2k/AgWr4lfwxnQL55o1c4dknFXPZraGPHmMJ7wpYq9yXb
+         zqXffiTmgABgNuUuhcwmuMuvrgy3xYLcOTdGuEz6PSPGGDikE88cm8468FONj9cS6r
+         7jsKKW/UVHJC9TWYXdRY1KDOwXbZGte+pjj5G2f4kHlM9bfe6f2r019NTZq0nskG7g
+         50NNMxYoHNcdD4Fgy+9lzAwjcsRKC76/jJZnu9IBQV/E/ThbWCkW7GKY9ScI3B8leq
+         iYuIIgQ5WWf2Q==
+From:   Conor Dooley <conor@kernel.org>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-References: <20230602-lm3630a_boost_frequency-v1-0-076472036d1a@mweigand.net>
- <20230602-lm3630a_boost_frequency-v1-2-076472036d1a@mweigand.net>
- <17576d81-a342-0b77-367a-eb9f2b97b734@linaro.org> <7491264.lOV4Wx5bFT@diego>
- <c29b2b0c-2b0c-f79c-9de5-58a67edd5c87@linaro.org>
-Content-Language: en-US
-From:   Maximilian Weigand <mweigand@mweigand.net>
-In-Reply-To: <c29b2b0c-2b0c-f79c-9de5-58a67edd5c87@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        Conor Dooley <conor+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Jisheng Zhang <jszhang@kernel.org>
+Cc:     conor@kernel.org, Conor Dooley <conor.dooley@microchip.com>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, arnd@arndb.de
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+Date:   Sat, 17 Jun 2023 19:20:43 +0100
+Message-Id: <20230617-duress-phantom-3da79e33f204@spud>
+X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230617161529.2092-1-jszhang@kernel.org>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1288; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=NHJtQzxObh7bfZ36xoARCKxRiu8T393ZQ6X51ZnJ1sc=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCm9PyvZw7o3PF+yaPuySV+rtoq+b54np7xvtYS5OGtYv kZInPnqjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAExEdSHDP+25u+fVud761HXA d+Oj61H11xLz9h0zNhHkfvaq7Yx1lx8jw8NWnVO1n96aPdoeUvtVzv3yqmP8b0yf+3448oiLy8J RlRsA
+X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:bV9uqzgIsGllvko+cxd+BlB62CSSsLP5A90XEJ+9cqd1n+07lc+
- AfZkzBcAE+RV8jmhmYvi7ZBTU3W3R7AlJCe1I4Kn5uQTVqpj3r/ox+IW7poeTyFs4hLMuhj
- 9XrXA3fiYg+eFkeddVpPQItFoaFs3iaHTpK5cl9PbjUYoKZHT0H24ESmlq9xEHyoBHU5ca1
- Bd+ymstKQAx8B71uT2pAg==
-UI-OutboundReport: notjunk:1;M01:P0:25qzwWuEuJA=;SVGc/5dvXzWRF5cOZD0NSglS10i
- Mjr6t2rtiy83DfLVRfBX5GUKRRdMRlaWmJe34yyXjKalRWoW3tDENB5uTDSaR5+W/zLzd0fka
- ehqA+xuQKkQEMmc4FcIchWDQVmgMYHgWIIiGDgtK1F1Mk0DfQql5l45JrjJ8Yc/bPruOAo1YA
- +PYRAREqSd1M7zkCYwpafdYaIZ7J568TLPz36dHk9JqtIXNbpTU9DdP4ZKcMkQhgT1pIZASvo
- zijqDqWHGNe9P9dbPhGb47lYTkTHFXedFOi95dvk57xsnQTZi1UDi73XsRl+6DeuWU9h6H+OU
- JwCxFrq1VtokvzaVCA2JfjLlGoSFpWGpKjciNKgW7ZHWLYdQvkvCTdLbxBi3XbGSI8HZ2zt7G
- z+u9SUcbsDkLumGfXwh+58rmwffBXj+E2Jq63hKTfbJcytqcjpp81+Go+MMnetLecVZSpQWoR
- 7tkThgHMmQ1RAFvcoUfpkG6ErXY05ayeVwRWEwDCxg3YIAgkTCeBparFVNhohf794HdP7/KVf
- Dus9PoqxmwhJ4+touPvIMO39BTZcBDOqm0CFYjqAW+FpU0sNzZHopm761MdGtfHKN6FogSNt+
- jsRkUI5HtJ8/ssNdKyKTth5LvSfFleua07eXEXaSYfhNxqk9CjEau2nRg+x1yx6q4Se+tKkSS
- ACUK1ubkwqRY5h3RfmlJB+Y+P4MUqW1WdUURnJp7pw==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+From: Conor Dooley <conor.dooley@microchip.com>
 
-On 17.06.23 19:42, Krzysztof Kozlowski wrote:
-> On 17/06/2023 18:34, Heiko Stübner wrote:
->> Am Samstag, 17. Juni 2023, 12:12:17 CEST schrieb Krzysztof Kozlowski:
->>> On 14/06/2023 21:08, Maximilian Weigand wrote:
->>>> From: Maximilian Weigand <mweigand@mweigand.net>
->>>>
->>>> Add 'ti,boost_use_1mhz' to switch between 500 kHz and 1 MHz boost
->>>> converter switching frequency, and add 'ti,boost_frequency_shift' to
->>>> activate a frequency shift to 560 kHz or 1.12 MHz, respectively.
->>>>
->>>> Signed-off-by: Maximilian Weigand <mweigand@mweigand.net>
->>>> ---
->>>>  .../bindings/leds/backlight/lm3630a-backlight.yaml           | 12 ++++++++++++
->>>>  1 file changed, 12 insertions(+)
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
->>>> index 3c9b4054ed9a..ef7ea0ad2d25 100644
->>>> --- a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
->>>> +++ b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
->>>> @@ -33,6 +33,18 @@ properties:
->>>>      description: GPIO to use to enable/disable the backlight (HWEN pin).
->>>>      maxItems: 1
->>>>  
->>>> +  ti,boost_use_1mhz:
->>>
->>> No underscores in property names.
->>>
->>>> +    description: |
->>>
->>> Do not need '|' unless you need to preserve formatting.
->>>
->>>> +      If present, change the boost converter switching frequency from the
->>>> +      default 500 kHz to 1 MHz. Refer to data sheet for hardware requirements.
->>>> +    type: boolean
->>>> +
->>>> +  ti,boost_frequency_shift:
->>>> +    description: |
->>>> +      If present, change boost converter switching frequency from 500 kHz to
->>>> +      560 kHz or from 1 Mhz to 1.12 Mhz, respectively.
->>>
->>> So just make it a property choosing the frequency, not bools, with
->>> proper unit suffix.
->>
->> i.e.
->> ti,boost-frequency-hz = <x>;
->> with x being 500000, 560000, 1000000, 1120000
->>
->> with the driver failing when the frequency is not achievable
->> with the two knobs of 1mhz and shift.
+On Sun, 18 Jun 2023 00:15:21 +0800, Jisheng Zhang wrote:
+> Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
+> module which is powered by T-HEAD's TH1520 SoC. Add minimal device
+> tree files for the core module and the development board.
 > 
-> Yeah, with a default value (500000, I guess).
+> Support basic uart/gpio/dmac drivers, so supports booting to a basic
+> shell.
+> 
+> [...]
 
-Thanks for the feedback, this is quite obviously the better solution! I
-will rework the submission accordingly.
+Applied to riscv-dt-for-next, thanks!
 
-Best regards
+[1/8] dt-bindings: interrupt-controller: Add T-HEAD's TH1520 PLIC
+      https://git.kernel.org/conor/c/a04cc7391d88
+[2/8] dt-bindings: timer: Add T-HEAD TH1520 clint
+      https://git.kernel.org/conor/c/413c24b03f4e
+[3/8] dt-bindings: riscv: Add T-HEAD TH1520 board compatibles
+      https://git.kernel.org/conor/c/89b0186ab532
+[4/8] riscv: Add the T-HEAD SoC family Kconfig option
+      https://git.kernel.org/conor/c/da47ce003963
+[5/8] riscv: dts: add initial T-HEAD TH1520 SoC device tree
+      https://git.kernel.org/conor/c/8e396880a864
+[6/8] riscv: dts: thead: add sipeed Lichee Pi 4A board device tree
+      https://git.kernel.org/conor/c/5af4cb0c42c5
+[7/8] MAINTAINERS: add entry for T-HEAD RISC-V SoC
+      https://git.kernel.org/conor/c/1203f584fe66
+[8/8] riscv: defconfig: enable T-HEAD SoC
+      https://git.kernel.org/conor/c/318afa081204
 
-Maximilian
+I'll send it to Arnd as a "RISC-V Devicetrees for v6.5 Part 2" once it
+has been in linux-next for a day or two.
 
+Going forward, who is going to pick up the patches and send the PRs to
+Arnd? I wrote a document that should be in v6.5 about SoC tree
+submaintainer stuff that is worth reading:
+https://lore.kernel.org/all/20230606-escapable-stuffed-7ca5033e7741@wendy/
+
+I'll do it if nobody else is willing to, but I don't want to be
+responsible for applying patches for all the platforms that pop up,
+especially for ones that I don't even have the hardware for ;)
+
+Thanks,
+Conor.
