@@ -2,144 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25581733FE9
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 11:44:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54A7473400D
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 12:12:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234776AbjFQJoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 05:44:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46536 "EHLO
+        id S234178AbjFQKM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 06:12:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231894AbjFQJo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 05:44:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA09C1FF6
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 02:44:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 45F6760A5A
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 09:44:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E0F86C433C8;
-        Sat, 17 Jun 2023 09:44:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1686995066;
-        bh=4VRCSjLyFEKt1E90Lp4P4+ANdjWWgRwqDNQs93ufpg0=;
-        h=Date:From:To:CC:Subject:In-Reply-To:References:From;
-        b=toj1Qncs9YohzQX7ic/5RB/PAiUnUYhZNsjKHvWzBg2wE68q8PL7B929mPI3SIvds
-         xAActnC7yKfo/DfEAJpEZrQjcHDomI/NuNOVTi8VbrhgIc7pnGJo/5lXZG4LmEtm+j
-         wGkSiHeUdV/INSt0W7yJ6XQ2uPIBiunTwO2DnpEHfgzeheMh1iUottUb4SXvZcDT58
-         PIHeGvfo6A5ubQG3u4pdIza4o4xJNTGbORq5Qs/6v9unWNW6BcS4oaiTChZNEzZAPJ
-         PDpQaPfT+/kYEORnzjhelRaC7+wKCZpxHCTM9ExU+2yTd9Qo3BII+cxatIKtfAtq1c
-         CYY86eb/uX5mA==
-Date:   Sat, 17 Jun 2023 10:44:21 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Binbin Zhou <zhoubb.aaron@gmail.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-CC:     Binbin Zhou <zhoubinbin@loongson.cn>,
-        Huacai Chen <chenhuacai@loongson.cn>,
+        with ESMTP id S233558AbjFQKMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 06:12:23 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EA061FD5
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 03:12:21 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-5183101690cso5542163a12.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 03:12:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1686996740; x=1689588740;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=TgP7Xo0/BI+q/hHqVMJMUYkrnaQIXgCa1ZtLOmCe39I=;
+        b=WY/Al9fg2u/uL7+ehIIXuN3VmIYDiGimoYGFQeZU7j8AvPZCB+bcbRw/+WqHtBruYr
+         ETErEbysbq115pvxQot3y8VruE74oD1UwQMYIRagJLyOxXLehg4EwLAlNRfH0kRRSkDz
+         wSLNCUUueHDn9G0f2kA7bNDD86wzffQKqbq5sO3Ow2jlbhRsG0hn646D5aEmZre6NfVe
+         s4SOKzNa4tdpcPXF8+sMQGyOQSUfUytKGY9n8FPEaGDgKgEeSfm5ddwC9IlXMquMhlL1
+         84g4IDdebc+bMhNpNSMw1kE0850ioi+5VEaN9QcNCz4LhNBPQ2QCw83m1zPCHLrb82xI
+         JWJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1686996740; x=1689588740;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=TgP7Xo0/BI+q/hHqVMJMUYkrnaQIXgCa1ZtLOmCe39I=;
+        b=Dum2z6KyvtYK8pdY3yzuqmoUlmQPEZi01v764jOE+nLofDZI8cAaVAmK8PAA6AD0Ms
+         xr3wZDOicE5tTrdnWmuIsBF71GAPPyTOCYj2PsDi0yEcy/deZvytNq4Xg8oaGHkm/NKU
+         vu27AnFoAmux6yhM03675oW3zZYg+TmRPpiRRVYvCntEFBtQVMMt2CkSRG/E7p6MhiH6
+         Ui2jLFrVS2x8KhQBv28VqebZY38TwiDXLJ9Myu2a6btmN4x6iBGwGYC36jJMOw59/l13
+         soB/8XO9zLqqKuLWcTQppi9YJ7yE/PmofsG10Rw7M6HYJlaa6GGIANg2NwtZ6KYl2qHn
+         7HTQ==
+X-Gm-Message-State: AC+VfDy/CSVxP1zQXkq6WVTa3/XLAK4vMkitRbyTccE1/rAW0SUBbNtJ
+        I+SgM46DHV6KdG02QYLhw5/j2A==
+X-Google-Smtp-Source: ACHHUZ6Yrsd8H0C60FMXwj8vhCdlHIXessbhg49bscbUVgRS9oFYMYBeaKA0rC+pw4cm1EFHhY8Ygg==
+X-Received: by 2002:a17:907:d26:b0:977:d468:827 with SMTP id gn38-20020a1709070d2600b00977d4680827mr4767373ejc.17.1686996739862;
+        Sat, 17 Jun 2023 03:12:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id i24-20020a170906115800b0098642e99c26sm1980189eja.174.2023.06.17.03.12.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jun 2023 03:12:19 -0700 (PDT)
+Message-ID: <17576d81-a342-0b77-367a-eb9f2b97b734@linaro.org>
+Date:   Sat, 17 Jun 2023 12:12:17 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 2/3] dt-bindings: backlight: lm3630a: add entries to
+ control boost frequency
+Content-Language: en-US
+To:     Maximilian Weigand <mweigand2017@gmail.com>,
+        Lee Jones <lee@kernel.org>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Helge Deller <deller@gmx.de>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Huacai Chen <chenhuacai@kernel.org>,
-        loongson-kernel@lists.loongnix.cn, Xuerui Wang <kernel@xen0n.name>,
-        loongarch@lists.linux.dev, Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Hongliang Wang <wanghongliang@loongson.cn>
-Subject: =?US-ASCII?Q?Re=3A_=5BPATCH_1/6=5D_dt-bindings=3A_loonga?= =?US-ASCII?Q?rch=3A_Add_CPU_bindings_for_LoongArch?=
-User-Agent: K-9 Mail for Android
-In-Reply-To: <CAMpQs4J4hOAFaarv9O3u20czpNjeHfBoPHWOzY7Y_Zno0R3vYg@mail.gmail.com>
-References: <cover.1686882123.git.zhoubinbin@loongson.cn> <c1f86e5d1026937abda331ce564e5ee96b7114c7.1686882123.git.zhoubinbin@loongson.cn> <20230616-gallon-shrank-42613cd73666@wendy> <CAMpQs4J4hOAFaarv9O3u20czpNjeHfBoPHWOzY7Y_Zno0R3vYg@mail.gmail.com>
-Message-ID: <47CA141F-464F-4FD1-AD7D-DBE6B3C4A0DC@kernel.org>
-MIME-Version: 1.0
-Content-Type: text/plain;
- charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Maximilian Weigand <mweigand@mweigand.net>
+References: <20230602-lm3630a_boost_frequency-v1-0-076472036d1a@mweigand.net>
+ <20230602-lm3630a_boost_frequency-v1-2-076472036d1a@mweigand.net>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230602-lm3630a_boost_frequency-v1-2-076472036d1a@mweigand.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 14/06/2023 21:08, Maximilian Weigand wrote:
+> From: Maximilian Weigand <mweigand@mweigand.net>
+> 
+> Add 'ti,boost_use_1mhz' to switch between 500 kHz and 1 MHz boost
+> converter switching frequency, and add 'ti,boost_frequency_shift' to
+> activate a frequency shift to 560 kHz or 1.12 MHz, respectively.
+> 
+> Signed-off-by: Maximilian Weigand <mweigand@mweigand.net>
+> ---
+>  .../bindings/leds/backlight/lm3630a-backlight.yaml           | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+> index 3c9b4054ed9a..ef7ea0ad2d25 100644
+> --- a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+> +++ b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
+> @@ -33,6 +33,18 @@ properties:
+>      description: GPIO to use to enable/disable the backlight (HWEN pin).
+>      maxItems: 1
+>  
+> +  ti,boost_use_1mhz:
+
+No underscores in property names.
+
+> +    description: |
+
+Do not need '|' unless you need to preserve formatting.
+
+> +      If present, change the boost converter switching frequency from the
+> +      default 500 kHz to 1 MHz. Refer to data sheet for hardware requirements.
+> +    type: boolean
+> +
+> +  ti,boost_frequency_shift:
+> +    description: |
+> +      If present, change boost converter switching frequency from 500 kHz to
+> +      560 kHz or from 1 Mhz to 1.12 Mhz, respectively.
+
+So just make it a property choosing the frequency, not bools, with
+proper unit suffix.
 
 
-On 17 June 2023 07:29:06 IST, Binbin Zhou <zhoubb=2Eaaron@gmail=2Ecom> wro=
-te:
->On Fri, Jun 16, 2023 at 5:34=E2=80=AFPM Conor Dooley <conor=2Edooley@micr=
-ochip=2Ecom> wrote:
->>
->> On Fri, Jun 16, 2023 at 02:10:38PM +0800, Binbin Zhou wrote:
->> > Add the available CPUs in LoongArch binding with DT schema format usi=
-ng
->> > json-schema=2E
->> >
->> > Signed-off-by: Binbin Zhou <zhoubinbin@loongson=2Ecn>
->> > ---
->> >  =2E=2E=2E/devicetree/bindings/loongarch/cpus=2Eyaml   | 65 +++++++++=
-++++++++++
->> >  1 file changed, 65 insertions(+)
->> >  create mode 100644 Documentation/devicetree/bindings/loongarch/cpus=
-=2Eyaml
->> >
->> > diff --git a/Documentation/devicetree/bindings/loongarch/cpus=2Eyaml =
-b/Documentation/devicetree/bindings/loongarch/cpus=2Eyaml
->> > new file mode 100644
->> > index 000000000000=2E=2Ec3e2dba42c81
->> > --- /dev/null
->> > +++ b/Documentation/devicetree/bindings/loongarch/cpus=2Eyaml
->> > @@ -0,0 +1,65 @@
->> > +# SPDX-License-Identifier: (GPL-2=2E0-only OR BSD-2-Clause)
->> > +%YAML 1=2E2
->> > +---
->> > +$id: http://devicetree=2Eorg/schemas/loongarch/cpus=2Eyaml#
->> > +$schema: http://devicetree=2Eorg/meta-schemas/core=2Eyaml#
->> > +
->> > +title: LoongArch CPUs
->> > +
->> > +maintainers:
->> > +  - Binbin Zhou <zhoubinbin@loongson=2Ecn>
->> > +
->> > +description:
->> > +  The device tree allows to describe the layout of CPUs in a system =
-through
->> > +  the "cpus" node, which in turn contains a number of subnodes (ie "=
-cpu")
->> > +  defining properties for every CPU=2E
->> > +
->> > +properties:
->> > +  compatible:
->> > +    enum:
->> > +      - loongson,la264
->> > +      - loongson,la364
->> > +
->> > +  reg:
->> > +    maxItems: 1
->> > +
->> > +  device_type: true
->> > +
->> > +  clock-frequency:
->> > +    description: The frequency of cpu in Hz=2E
->>
->> Why don't you just add a ref to the common cpu schema and use the
->> standard properties for communicating clock frequencies?
->> You then get the standard properties for l1 caches, power management,
->> frequency scaling etc as a side effect=2E
->
->Hi Conor:
->
->Sorry, not sure if I understand correctly=2E Do the standard attributes
->refer to the following:
->
->power-domains =3D <>
->clocks =3D <>
->i-cache-size =3D <>
->d-cache-size =3D <>
->next-level-cache =3D <>
+Best regards,
+Krzysztof
 
-Yes, those are the sort of things I meant=2E
-
-Cheers,
-Conor=2E
