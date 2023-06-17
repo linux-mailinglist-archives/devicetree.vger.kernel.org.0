@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98797734265
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41237734268
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:16:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbjFQRPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 13:15:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53748 "EHLO
+        id S232720AbjFQRP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 13:15:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53798 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232260AbjFQRPs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:15:48 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CF01BD6
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:46 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-970056276acso268179666b.2
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:46 -0700 (PDT)
+        with ESMTP id S233086AbjFQRPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:15:50 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B586219B0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:47 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5169f614977so2651590a12.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687022144; x=1689614144;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=c21VY/2BYjMlFucoAaJTu2heJdLQjzrbKq28dJy2kr8=;
-        b=hXitajQIYQy6+cIjWT7Br2R8daKc/xIkbkDOfexi27WhXBrb/ySi4i35aFb7TldkC8
-         Tloafqwlgo0J4vcpHNtbtomLmLJaxB/6NbRXs0HTuCgiuSnnc8N7WpRi+yIIzu3eOPT2
-         X1f8pebRXGkJ6ZZPmrndSGxF7HlQlhGDlU++G8PiKQ4dGrhOSHmwok23Yw3mwF6RCmpy
-         5t+kVxca2/4W+IuySLlt5dPOa+xGyRyK6ZDMf1hcWfFUpZ6+Z+Mc1Z6I/yMA5uvfwKch
-         sV/D2p2A+t7qVmk/AjS/qyl9X4PBuGR1towLVYtSD3TwHmAcaHT+o96zDJs9rWpzPdzI
-         nVNg==
+        d=linaro.org; s=google; t=1687022146; x=1689614146;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ryyRdsO+uy3BCRmVto44nGCPzUM9FoodOXbSOYnlHhU=;
+        b=ZeWUJ5XvwX5W9YM/6RWJlIgs/l2msuVOhAqNeiccnbnkThyEyzPmjf/0JdYV7bE1Cg
+         7Dj5SDfTsu+HT7GOB00l8tpUojVLfsikuUFWckIEy9dY4rh8SoiUJtcfnrMN8cjaOn+d
+         IPaOphhdDNVy4qnro+kbBYzF69/lekjIjX1mBdA2lwPD1fHaeDNVFioWQXF0JWNKhR7n
+         oM054/yasiWBeaQyiSw5LtT8l9a5aaVrKMFvdLE8aV0wtW/diX94aRpJmGpKF4Wkp/f4
+         hsjB2Vxs4yMPtb/VY/vbK/bnYwY6duHKDqcN/IQN0f3O3VriRmDrHiuUSVD0/U3CDM1c
+         Dc9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687022144; x=1689614144;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=c21VY/2BYjMlFucoAaJTu2heJdLQjzrbKq28dJy2kr8=;
-        b=TIP7VIE3HlDi0exDiqZxNOvckKgJ41P7eAfpzfnm4x0ZSuCtIT5XrJ8ogRWFH+5Zq1
-         wE+kkQEOSe3/VHCoTsDua2YMPLvtik9GXOw1096b9x+dQ4Gtc4gUiuKXJPRl+vFZeJuF
-         Nt49l6X9i8HMum/arKjtUi+kfbrENFDh2Gdjx3E+NzcfsQPGFB4sKnQbeB2wk62pH2rZ
-         +F3tyrJPlL4BXgU094hTXSMVwV0nMuXcrH6UL2arJLBMOot4JTD1eA0MzpcZLqaPQnOx
-         /94vI4mYpXnxJ4hRQqKOk745o/dQsLcbdkeiq34Xx8QX8TIDvizHYJvgAplgywlwJI+h
-         V9zQ==
-X-Gm-Message-State: AC+VfDwlHn2ML7OjUPrNaELQR2KPtF//sdIsZmwCNYmqK+pCH2PY2Qpu
-        YscTc+Vpzi3cM1QcsI3b00iUHg==
-X-Google-Smtp-Source: ACHHUZ69OM/TksZc6GNPrPvtkN8ZrxorrwSL2oPcxVDNZVs0v/WVIdkPYlMrgzCIEZceFpY2YkAajw==
-X-Received: by 2002:a17:907:7e83:b0:982:30e3:ddc7 with SMTP id qb3-20020a1709077e8300b0098230e3ddc7mr5045228ejc.5.1687022144588;
-        Sat, 17 Jun 2023 10:15:44 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687022146; x=1689614146;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ryyRdsO+uy3BCRmVto44nGCPzUM9FoodOXbSOYnlHhU=;
+        b=IwOIdI/JigrB1b+bhZtpYd2emLKLW6wfBkHFrppumRGuCCYtOcCTms4SxIjZ+aOhFd
+         qO3uowGOusK9NtmFbDGrMACcvUEnCMHIL5FVl6SOFI1bUf6FuG4KrQri0Qr1gNHvFqy9
+         F2emq4HUGTs8FZAHm8gNj0gye/cJE5dO0vFkeJfMeuEmXhSw+r1FdkWtRkK2sZTRy7ml
+         PnwK56/6B+6zT3QSq+WqigcdZXiJbtgfV/FAm/WJW1G/JNC88ZlTc6TajCsVfulKvbh3
+         LayQX34M1oyqaGKeno7KjpYZwDcTBSsoulSv9pZ1ki9mXUkQ2YqsPq0YC+4bkvJyL2Gp
+         QCwg==
+X-Gm-Message-State: AC+VfDwjnXRJpLfMU1oltw42kzK6uOfVCvJWy9AE4hNwqSvsC2nLSgNG
+        Yt4YroAZ7x9F5d2VgU6ASzq+9Q==
+X-Google-Smtp-Source: ACHHUZ4jiSGn32jtjmPO4mnwBbFULo/e3clnewfaQHDuBH15d3PmnDECa1nwIYj1ABCuqymKRMNm+A==
+X-Received: by 2002:a17:907:6295:b0:979:65f0:cd12 with SMTP id nd21-20020a170907629500b0097965f0cd12mr5372553ejc.15.1687022146006;
+        Sat, 17 Jun 2023 10:15:46 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.43
+        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.44
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 10:15:44 -0700 (PDT)
+        Sat, 17 Jun 2023 10:15:45 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,43 +62,47 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 01/15] arm64: dts: qcom: msm8916-gt5: drop incorrect accelerometer interrupt-names
-Date:   Sat, 17 Jun 2023 19:15:27 +0200
-Message-Id: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 02/15] arm64: dts: qcom: msm8916-l8150: correct light sensor VDDIO supply
+Date:   Sat, 17 Jun 2023 19:15:28 +0200
+Message-Id: <20230617171541.286957-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
+References: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-st,lis2hh12 accelerometer binding does not allow interrupt-names:
+liteon,ltr559 light sensor takes VDDIO, not VIO, supply:
 
-  msm8916-samsung-gt58.dtb: accelerometer@1d: 'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+  msm8916-longcheer-l8150.dtb: light-sensor@23: 'vio-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
 
+Fixes: 3016af34ef8d ("arm64: dts: qcom: msm8916-longcheer-l8150: Add light and proximity sensor")
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+ arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
-index 7943bb619116..54d648972d35 100644
---- a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
-@@ -101,7 +101,6 @@ accelerometer@1d {
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+index 97262b8519b3..3892ad4f639a 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
++++ b/arch/arm64/boot/dts/qcom/msm8916-longcheer-l8150.dts
+@@ -165,7 +165,7 @@ light-sensor@23 {
+ 		pinctrl-0 = <&light_int_default>;
  
- 		interrupt-parent = <&tlmm>;
- 		interrupts = <115 IRQ_TYPE_LEVEL_HIGH>;
--		interrupt-names = "INT1";
+ 		vdd-supply = <&pm8916_l17>;
+-		vio-supply = <&pm8916_l6>;
++		vddio-supply = <&pm8916_l6>;
+ 	};
  
- 		st,drdy-int-pin = <1>;
- 		mount-matrix = "0", "1", "0",
+ 	gyroscope@68 {
 -- 
 2.34.1
 
