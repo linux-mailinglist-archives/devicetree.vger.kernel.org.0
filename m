@@ -2,78 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C369733CF6
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 01:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B198F733D19
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 02:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232716AbjFPXgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 16 Jun 2023 19:36:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49094 "EHLO
+        id S229950AbjFQAA6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 16 Jun 2023 20:00:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231690AbjFPXgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 19:36:19 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F6833AAF
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 16:36:12 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b43a99c887so17659471fa.2
-        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 16:36:11 -0700 (PDT)
+        with ESMTP id S233522AbjFQAA5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 16 Jun 2023 20:00:57 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7731530F6
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 17:00:54 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f8467e39cfso1843548e87.3
+        for <devicetree@vger.kernel.org>; Fri, 16 Jun 2023 17:00:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686958570; x=1689550570;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1686960053; x=1689552053;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=K9LcqzytxsnlUCpwt3/0jckCNFrbRrdSG/YYwL4/gv8=;
-        b=RhgKhPTdOb8ZsmMtVqK2Ffp2oLXn9kpDbqsqaUfK/4EpWcwnV04VgLMRuxVc9FZAKQ
-         UXsUZN7+GCaqx7aE/xk8JMVIC1byuMu756IhDBmQtZ9pyE/4SUSQLxyFxaC8fC+UPMOb
-         lHo0PUUCaY4OU3n1WmPM58IybeX/67FciTwgiLfM3ifHrKhrkhgUZHCRNdQvdxjmZ7Fw
-         8PMKMVE53qvYt65n39pn9ntT0/U8yQNB4trtyrPU6hEeDwpR5I61WfIyq7zdYMWgdZY1
-         IYZIhacP+nGLHFDasvmec7NcUow/nnNUbEmH5JVPs5Yodr+p9JV+aV0X+735hRmqkOZL
-         1DhA==
+        bh=W3KWVeHmsHPIaRZA6DLr0joW7Ttav+PaqmaoaMCes3k=;
+        b=Fr0YFsTnFYpZr2E6woSTSacK+xGPXui0A8DNyQZGfB51pPpU1dv679Yqiik1+Mp2ms
+         AknaszaOVklCNwMrU3js2EURxkTM6x3XvCay9wVJh17pDhMr0WttgAphHJBYmiquCzbr
+         0OpF9rVsG/V4aakdyotWQiNqgrmdEMtmAqHhm+bjis4Jl1X1gj9t2rnk93JRJStkXN7i
+         FWJeoiTrW0VAIZz8aw2O2/NaT8rluHZd6+slkgvjSI80tkXwBtVSFdwztdLHrhls+URp
+         QBvL4+SgkHUXHcYyzdGB4bLGNB5WJoj8wpR4fiMgWJ12xIPob+sKMoTTRSwkoOXJOxmU
+         RhAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686958570; x=1689550570;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1686960053; x=1689552053;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=K9LcqzytxsnlUCpwt3/0jckCNFrbRrdSG/YYwL4/gv8=;
-        b=IDmIAY10YPfg/KZ60ddaPQYCvctG+LA7VHHZxJ3ODQMvP/DS8SCZ7LXeI4xGnxqRTC
-         4MkwsoduBwGwbCNiq149HUTZvd/8TUTdMotJtkLEctJTxmJPoQHWNyqxEqHvFKsHGZYy
-         YVbEb360FLzX06/W+9MuCKW1D7vdQUhrtupNDshwkyMW412OqneU7z+7iyZHxOVdEIgt
-         frolxE4QcCARssmO/biZRFuUKURRwZTiSf+wWlYDtQPmJgHS9Vv8dLO/rKuf14Kvw4iN
-         QjU5qeeM9FgUJEgzRPxNaKF/S2vQAqtWD83unJBzNTVOAvTHUj8/8UXc3u5+F6ukdXef
-         bKOw==
-X-Gm-Message-State: AC+VfDwA9vLOsPxoICYq+eLIzfUx7SGT8BzDQr7QVttnKzULq4izyMtw
-        jQa3tYghgVLYcTz90FFyOgn/tw==
-X-Google-Smtp-Source: ACHHUZ7009qU1X7H4xrmyzb1e+yJRfRakNSwtJ6dStPKQfkGCKbWuCMKUBC5gR3qI/PauabDsv0JSw==
-X-Received: by 2002:a2e:93c1:0:b0:2ac:7d78:3465 with SMTP id p1-20020a2e93c1000000b002ac7d783465mr2482619ljh.15.1686958570294;
-        Fri, 16 Jun 2023 16:36:10 -0700 (PDT)
+        bh=W3KWVeHmsHPIaRZA6DLr0joW7Ttav+PaqmaoaMCes3k=;
+        b=c1IephL2Kj99gjNwZf2gHhuLFwlqVRI8/vhD0+4eEa14FFV8YstXUpAUPQPze4V307
+         gIALOnPur6MbBr0NCW6JdrBmSJwY2SvSTX+7838DgNWk8w92/jeDsTNH8EA8uIxMJH05
+         6O0waNHvhGJXyf8k+19RgN2+BhNjk7YpCUV/2U/m92O0FYM0AAA9MvvSy3HPjH7ApQae
+         Wpm8InXoHZEUDNk4KKwmSqThM6+JRdV1ZwtXdWhpL57/gAUOVnvDTY2Q5DzAcRgrTXa6
+         9HMQng4S6qrp7v0wwfYaoH21Nvq9aLWSFQrjC+/azWSIKwluavpc3vpWVd7EUeyTzptA
+         CT5w==
+X-Gm-Message-State: AC+VfDx6Ki1S05pkBLmTchkP+bRvuDMpxq2nX58y8B5A7RrSuAj+mI0/
+        wNk2UKZEJOSY9Hw89WItTg18lw==
+X-Google-Smtp-Source: ACHHUZ6VIkLSjzCxdHpJRh/DtsIbyfdxALlas9PDHHZfTsJPGHvn+jB/qypqfMhEsiVOUWjQZj9N8g==
+X-Received: by 2002:a05:6512:290:b0:4f6:1504:f93c with SMTP id j16-20020a056512029000b004f61504f93cmr2518520lfp.66.1686960052552;
+        Fri, 16 Jun 2023 17:00:52 -0700 (PDT)
 Received: from [192.168.1.101] (abyj190.neoplus.adsl.tpnet.pl. [83.9.29.190])
-        by smtp.gmail.com with ESMTPSA id m19-20020a2e97d3000000b002b31feab8f9sm3012560ljj.100.2023.06.16.16.36.09
+        by smtp.gmail.com with ESMTPSA id t12-20020ac2548c000000b004f60e0ecc78sm3202487lfk.239.2023.06.16.17.00.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 16 Jun 2023 16:36:09 -0700 (PDT)
-Message-ID: <835bc0c9-0218-80e3-f64f-bd4116ad02e8@linaro.org>
-Date:   Sat, 17 Jun 2023 01:36:08 +0200
+        Fri, 16 Jun 2023 17:00:52 -0700 (PDT)
+Message-ID: <68e64a35-9705-6565-3b5c-5de38419aba8@linaro.org>
+Date:   Sat, 17 Jun 2023 02:00:50 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.2
-Subject: Re: [PATCH 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS
- TLMM
+Subject: Re: [Freedreno] [PATCH v8 10/18] drm/msm/a6xx: Introduce GMU wrapper
+ support
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     Rob Clark <robdclark@chromium.org>,
+        freedreno@lists.freedesktop.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230616185742.2250452-1-krzysztof.kozlowski@linaro.org>
- <20230616185742.2250452-2-krzysztof.kozlowski@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>
+References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
+ <20230223-topic-gmuwrapper-v8-10-69c68206609e@linaro.org>
+ <2vr72w4tslxxumzphtuwgkcnbfjrtmw2j4qak2cukcabchadlg@spjbqoa7v4lr>
+ <c5396101-ad5b-afdd-d6d7-1a2efa3b9bf7@linaro.org>
+ <z5imqaxyumc5pyk4ijumjby4tswfmnjsnedeekonx5tymhwsfi@h5dk3pl2zawf>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230616185742.2250452-2-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <z5imqaxyumc5pyk4ijumjby4tswfmnjsnedeekonx5tymhwsfi@h5dk3pl2zawf>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,230 +92,364 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16.06.2023 20:57, Krzysztof Kozlowski wrote:
-> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
-> driver is similar to SM8450 LPASS pin controller, with difference in one
-> new pin (gpio14).
-8250*
+On 16.06.2023 19:54, Akhil P Oommen wrote:
+> On Thu, Jun 15, 2023 at 11:43:04PM +0200, Konrad Dybcio wrote:
+>>
+>> On 10.06.2023 00:06, Akhil P Oommen wrote:
+>>> On Mon, May 29, 2023 at 03:52:29PM +0200, Konrad Dybcio wrote:
+>>>>
+>>>> Some (particularly SMD_RPM, a.k.a non-RPMh) SoCs implement A6XX GPUs
+>>>> but don't implement the associated GMUs. This is due to the fact that
+>>>> the GMU directly pokes at RPMh. Sadly, this means we have to take care
+>>>> of enabling & scaling power rails, clocks and bandwidth ourselves.
+>>>>
+>>>> Reuse existing Adreno-common code and modify the deeply-GMU-infused
+>>>> A6XX code to facilitate these GPUs. This involves if-ing out lots
+>>>> of GMU callbacks and introducing a new type of GMU - GMU wrapper (it's
+>>>> the actual name that Qualcomm uses in their downstream kernels).
+>>>>
+>>>> This is essentially a register region which is convenient to model
+>>>> as a device. We'll use it for managing the GDSCs. The register
+>>>> layout matches the actual GMU_CX/GX regions on the "real GMU" devices
+>>>> and lets us reuse quite a bit of gmu_read/write/rmw calls.
+>>>>
+>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>> ---
+[...]
 
-8450 has a whole lot more!
+>>>> +
+>>>> +	ret = clk_bulk_prepare_enable(gpu->nr_clocks, gpu->grp_clks);
+>>>> +	if (ret)
+>>>> +		goto err_bulk_clk;
+>>>> +
+>>>> +	/* If anything goes south, tear the GPU down piece by piece.. */
+>>>> +	if (ret) {
+>>>> +err_bulk_clk:
+>>>
+>>> Goto jump directly to another block looks odd to me. Why do you need this label
+>>> anyway?
+>> If clk_bulk_prepare_enable() fails, trying to proceed will hang the
+>> platform with unclocked accesses. We need to unwind everything that
+>> has been done up until that point, in reverse order.
+> 
+> I missed this response from you earlier.
+> 
+> But you are checking for 'ret' twice here. You will end up here even
+> if you don't jump! So "if (ret) goto err_bulk_clk;" looks
+> unnecessary.
+> 
+> -Akhil.
+Ohhh right, silly mistake on my part ;)
 
-The 8250 in fact does look almost identical.. Perhaps in this case it
-would be sane to combine the two?
+I already sent out a v9 since.. Please check it out and if you
+have any further comments, I'll fix this, and if not.. Perhaps I
+could fix it in an incremental patch if that revision is gtg?
 
 Konrad
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->  drivers/pinctrl/qcom/Kconfig                  |  10 ++
->  drivers/pinctrl/qcom/Makefile                 |   1 +
->  .../pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c   | 167 ++++++++++++++++++
->  3 files changed, 178 insertions(+)
->  create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c
-> 
-> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
-> index 634c75336983..9c43bc05c447 100644
-> --- a/drivers/pinctrl/qcom/Kconfig
-> +++ b/drivers/pinctrl/qcom/Kconfig
-> @@ -77,6 +77,16 @@ config PINCTRL_SM8250_LPASS_LPI
->  	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
->  	  (Low Power Island) found on the Qualcomm Technologies Inc SM8250 platform.
->  
-> +config PINCTRL_SM3550_LPASS_LPI
-> +	tristate "Qualcomm Technologies Inc SM8350 LPASS LPI pin controller driver"
-> +	depends on ARM64 || COMPILE_TEST
-> +	depends on PINCTRL_LPASS_LPI
-> +	help
-> +	  This is the pinctrl, pinmux, pinconf and gpiolib driver for the
-> +	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
-> +	  (Low Power Island) found on the Qualcomm Technologies Inc SM8350
-> +	  platform.
-> +
->  config PINCTRL_SM8450_LPASS_LPI
->  	tristate "Qualcomm Technologies Inc SM8450 LPASS LPI pin controller driver"
->  	depends on ARM64 || COMPILE_TEST
-> diff --git a/drivers/pinctrl/qcom/Makefile b/drivers/pinctrl/qcom/Makefile
-> index 426ddbf35f32..76ffcfbffc8e 100644
-> --- a/drivers/pinctrl/qcom/Makefile
-> +++ b/drivers/pinctrl/qcom/Makefile
-> @@ -52,6 +52,7 @@ obj-$(CONFIG_PINCTRL_SM8150) += pinctrl-sm8150.o
->  obj-$(CONFIG_PINCTRL_SM8250) += pinctrl-sm8250.o
->  obj-$(CONFIG_PINCTRL_SM8250_LPASS_LPI) += pinctrl-sm8250-lpass-lpi.o
->  obj-$(CONFIG_PINCTRL_SM8350) += pinctrl-sm8350.o
-> +obj-$(CONFIG_PINCTRL_SM8350_LPASS_LPI) += pinctrl-sm8350-lpass-lpi.o
->  obj-$(CONFIG_PINCTRL_SM8450) += pinctrl-sm8450.o
->  obj-$(CONFIG_PINCTRL_SM8450_LPASS_LPI) += pinctrl-sm8450-lpass-lpi.o
->  obj-$(CONFIG_PINCTRL_SM8550) += pinctrl-sm8550.o
-> diff --git a/drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c b/drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c
-> new file mode 100644
-> index 000000000000..23cce59d1a95
-> --- /dev/null
-> +++ b/drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c
-> @@ -0,0 +1,167 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +/*
-> + * Copyright (c) 2016-2019, The Linux Foundation. All rights reserved.
-> + * Copyright (c) 20202-2023 Linaro Ltd.
-> + */
-> +
-> +#include <linux/gpio/driver.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "pinctrl-lpass-lpi.h"
-> +
-> +enum lpass_lpi_functions {
-> +	LPI_MUX_dmic1_clk,
-> +	LPI_MUX_dmic1_data,
-> +	LPI_MUX_dmic2_clk,
-> +	LPI_MUX_dmic2_data,
-> +	LPI_MUX_dmic3_clk,
-> +	LPI_MUX_dmic3_data,
-> +	LPI_MUX_i2s1_clk,
-> +	LPI_MUX_i2s1_data,
-> +	LPI_MUX_i2s1_ws,
-> +	LPI_MUX_i2s2_clk,
-> +	LPI_MUX_i2s2_data,
-> +	LPI_MUX_i2s2_ws,
-> +	LPI_MUX_qua_mi2s_data,
-> +	LPI_MUX_qua_mi2s_sclk,
-> +	LPI_MUX_qua_mi2s_ws,
-> +	LPI_MUX_swr_rx_clk,
-> +	LPI_MUX_swr_rx_data,
-> +	LPI_MUX_swr_tx_clk,
-> +	LPI_MUX_swr_tx_data,
-> +	LPI_MUX_swr_tx_data2,
-> +	LPI_MUX_wsa_swr_clk,
-> +	LPI_MUX_wsa_swr_data,
-> +	LPI_MUX_gpio,
-> +	LPI_MUX__,
-> +};
-> +
-> +static int gpio0_pins[] = { 0 };
-> +static int gpio1_pins[] = { 1 };
-> +static int gpio2_pins[] = { 2 };
-> +static int gpio3_pins[] = { 3 };
-> +static int gpio4_pins[] = { 4 };
-> +static int gpio5_pins[] = { 5 };
-> +static int gpio6_pins[] = { 6 };
-> +static int gpio7_pins[] = { 7 };
-> +static int gpio8_pins[] = { 8 };
-> +static int gpio9_pins[] = { 9 };
-> +static int gpio10_pins[] = { 10 };
-> +static int gpio11_pins[] = { 11 };
-> +static int gpio12_pins[] = { 12 };
-> +static int gpio13_pins[] = { 13 };
-> +static int gpio14_pins[] = { 14 };
-> +
-> +static const struct pinctrl_pin_desc sm8350_lpi_pins[] = {
-> +	PINCTRL_PIN(0, "gpio0"),
-> +	PINCTRL_PIN(1, "gpio1"),
-> +	PINCTRL_PIN(2, "gpio2"),
-> +	PINCTRL_PIN(3, "gpio3"),
-> +	PINCTRL_PIN(4, "gpio4"),
-> +	PINCTRL_PIN(5, "gpio5"),
-> +	PINCTRL_PIN(6, "gpio6"),
-> +	PINCTRL_PIN(7, "gpio7"),
-> +	PINCTRL_PIN(8, "gpio8"),
-> +	PINCTRL_PIN(9, "gpio9"),
-> +	PINCTRL_PIN(10, "gpio10"),
-> +	PINCTRL_PIN(11, "gpio11"),
-> +	PINCTRL_PIN(12, "gpio12"),
-> +	PINCTRL_PIN(13, "gpio13"),
-> +	PINCTRL_PIN(14, "gpio14"),
-> +};
-> +
-> +static const char * const swr_tx_clk_groups[] = { "gpio0" };
-> +static const char * const swr_tx_data_groups[] = { "gpio1", "gpio2", "gpio5", "gpio14" };
-> +static const char * const swr_rx_clk_groups[] = { "gpio3" };
-> +static const char * const swr_rx_data_groups[] = { "gpio4", "gpio5" };
-> +static const char * const dmic1_clk_groups[] = { "gpio6" };
-> +static const char * const dmic1_data_groups[] = { "gpio7" };
-> +static const char * const dmic2_clk_groups[] = { "gpio8" };
-> +static const char * const dmic2_data_groups[] = { "gpio9" };
-> +static const char * const i2s2_clk_groups[] = { "gpio10" };
-> +static const char * const i2s2_ws_groups[] = { "gpio11" };
-> +static const char * const dmic3_clk_groups[] = { "gpio12" };
-> +static const char * const dmic3_data_groups[] = { "gpio13" };
-> +static const char * const qua_mi2s_sclk_groups[] = { "gpio0" };
-> +static const char * const qua_mi2s_ws_groups[] = { "gpio1" };
-> +static const char * const qua_mi2s_data_groups[] = { "gpio2", "gpio3", "gpio4" };
-> +static const char * const i2s1_clk_groups[] = { "gpio6" };
-> +static const char * const i2s1_ws_groups[] = { "gpio7" };
-> +static const char * const i2s1_data_groups[] = { "gpio8", "gpio9" };
-> +static const char * const wsa_swr_clk_groups[] = { "gpio10" };
-> +static const char * const wsa_swr_data_groups[] = { "gpio11" };
-> +static const char * const i2s2_data_groups[] = { "gpio12", "gpio12" };
-> +
-> +static const struct lpi_pingroup sm8350_groups[] = {
-> +	LPI_PINGROUP(0, 0, swr_tx_clk, qua_mi2s_sclk, _, _),
-> +	LPI_PINGROUP(1, 2, swr_tx_data, qua_mi2s_ws, _, _),
-> +	LPI_PINGROUP(2, 4, swr_tx_data, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(3, 8, swr_rx_clk, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(4, 10, swr_rx_data, qua_mi2s_data, _, _),
-> +	LPI_PINGROUP(5, 12, swr_tx_data, swr_rx_data, _, _),
-> +	LPI_PINGROUP(6, LPI_NO_SLEW, dmic1_clk, i2s1_clk, _,  _),
-> +	LPI_PINGROUP(7, LPI_NO_SLEW, dmic1_data, i2s1_ws, _, _),
-> +	LPI_PINGROUP(8, LPI_NO_SLEW, dmic2_clk, i2s1_data, _, _),
-> +	LPI_PINGROUP(9, LPI_NO_SLEW, dmic2_data, i2s1_data, _, _),
-> +	LPI_PINGROUP(10, 16, i2s2_clk, wsa_swr_clk, _, _),
-> +	LPI_PINGROUP(11, 18, i2s2_ws, wsa_swr_data, _, _),
-> +	LPI_PINGROUP(12, LPI_NO_SLEW, dmic3_clk, i2s2_data, _, _),
-> +	LPI_PINGROUP(13, LPI_NO_SLEW, dmic3_data, i2s2_data, _, _),
-> +	LPI_PINGROUP(14, 6, swr_rx_data, _, _, _),
-> +};
-> +
-> +static const struct lpi_function sm8350_functions[] = {
-> +	LPI_FUNCTION(dmic1_clk),
-> +	LPI_FUNCTION(dmic1_data),
-> +	LPI_FUNCTION(dmic2_clk),
-> +	LPI_FUNCTION(dmic2_data),
-> +	LPI_FUNCTION(dmic3_clk),
-> +	LPI_FUNCTION(dmic3_data),
-> +	LPI_FUNCTION(i2s1_clk),
-> +	LPI_FUNCTION(i2s1_data),
-> +	LPI_FUNCTION(i2s1_ws),
-> +	LPI_FUNCTION(i2s2_clk),
-> +	LPI_FUNCTION(i2s2_data),
-> +	LPI_FUNCTION(i2s2_ws),
-> +	LPI_FUNCTION(qua_mi2s_data),
-> +	LPI_FUNCTION(qua_mi2s_sclk),
-> +	LPI_FUNCTION(qua_mi2s_ws),
-> +	LPI_FUNCTION(swr_rx_clk),
-> +	LPI_FUNCTION(swr_rx_data),
-> +	LPI_FUNCTION(swr_tx_clk),
-> +	LPI_FUNCTION(swr_tx_data),
-> +	LPI_FUNCTION(wsa_swr_clk),
-> +	LPI_FUNCTION(wsa_swr_data),
-> +};
-> +
-> +static const struct lpi_pinctrl_variant_data sm8350_lpi_data = {
-> +	.pins = sm8350_lpi_pins,
-> +	.npins = ARRAY_SIZE(sm8350_lpi_pins),
-> +	.groups = sm8350_groups,
-> +	.ngroups = ARRAY_SIZE(sm8350_groups),
-> +	.functions = sm8350_functions,
-> +	.nfunctions = ARRAY_SIZE(sm8350_functions),
-> +};
-> +
-> +static const struct of_device_id lpi_pinctrl_of_match[] = {
-> +	{
-> +	       .compatible = "qcom,sm8350-lpass-lpi-pinctrl",
-> +	       .data = &sm8350_lpi_data,
-> +	},
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(of, lpi_pinctrl_of_match);
-> +
-> +static struct platform_driver lpi_pinctrl_driver = {
-> +	.driver = {
-> +		   .name = "qcom-sm8350-lpass-lpi-pinctrl",
-> +		   .of_match_table = lpi_pinctrl_of_match,
-> +	},
-> +	.probe = lpi_pinctrl_probe,
-> +	.remove = lpi_pinctrl_remove,
-> +};
-> +
-> +module_platform_driver(lpi_pinctrl_driver);
-> +MODULE_DESCRIPTION("QTI SM8350 LPI GPIO pin control driver");
-> +MODULE_LICENSE("GPL");
+>>
+>>>
+>>>> +		pm_runtime_put(gmu->gxpd);
+>>>> +		pm_runtime_put(gmu->dev);
+>>>> +		dev_pm_opp_set_opp(&gpu->pdev->dev, NULL);
+>>>> +	}
+>>>> +err_set_opp:
+>>>
+>>> Generally, it is better to name the label based on what you do here. For
+>>> eg: "unlock_lock:".
+>> That seems to be a mixed bag all throughout the kernel, I've seen many
+>> usages of err_(what went wrong)
+>>
+>>>
+>>> Also, this function is small enough that it is better to return directly
+>>> in case of error. I think that would be more readable.
+>> Not really, adding the necessary cleanup steps in `if (ret)`
+>> blocks would roughly double the function's size.
+>>
+>>>
+>>>> +	mutex_unlock(&a6xx_gpu->gmu.lock);
+>>>> +
+>>>> +	if (!ret)
+>>>> +		msm_devfreq_resume(gpu);
+>>>> +
+>>>> +	return ret;
+>>>> +}
+>>>> +
+>>>> +static int a6xx_gmu_pm_suspend(struct msm_gpu *gpu)
+>>>>  {
+>>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>>  	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>> @@ -1720,7 +1799,40 @@ static int a6xx_pm_suspend(struct msm_gpu *gpu)
+>>>>  	return 0;
+>>>>  }
+>>>>  
+>>>> -static int a6xx_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>> +static int a6xx_pm_suspend(struct msm_gpu *gpu)
+>>>> +{
+>>>> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>> +	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
+>>>> +	int i;
+>>>> +
+>>>> +	trace_msm_gpu_suspend(0);
+>>>> +
+>>>> +	msm_devfreq_suspend(gpu);
+>>>> +
+>>>> +	mutex_lock(&a6xx_gpu->gmu.lock);
+>>>
+>>> Again, is this initialized somewhere?
+>>>
+>>>> +
+>>>> +	/* Drain the outstanding traffic on memory buses */
+>>>> +	a6xx_bus_clear_pending_transactions(adreno_gpu, true);
+>>>> +
+>>>> +	clk_bulk_disable_unprepare(gpu->nr_clocks, gpu->grp_clks);
+>>>> +
+>>>> +	pm_runtime_put_sync(gmu->gxpd);
+>>>> +	dev_pm_opp_set_opp(&gpu->pdev->dev, NULL);
+>>>> +	pm_runtime_put_sync(gmu->dev);
+>>>> +
+>>>> +	mutex_unlock(&a6xx_gpu->gmu.lock);
+>>>> +
+>>>> +	if (a6xx_gpu->shadow_bo)
+>>>> +		for (i = 0; i < gpu->nr_rings; i++)
+>>>> +			a6xx_gpu->shadow[i] = 0;
+>>>> +
+>>>> +	gpu->suspend_count++;
+>>>> +
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>> +static int a6xx_gmu_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>>  {
+>>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>>  	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>> @@ -1739,6 +1851,12 @@ static int a6xx_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>>  	return 0;
+>>>>  }
+>>>>  
+>>>> +static int a6xx_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>> +{
+>>>> +	*value = gpu_read64(gpu, REG_A6XX_CP_ALWAYS_ON_COUNTER);
+>>>> +	return 0;
+>>>> +}
+>>>> +
+>>>>  static struct msm_ringbuffer *a6xx_active_ring(struct msm_gpu *gpu)
+>>>>  {
+>>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>> @@ -2004,8 +2122,8 @@ static const struct adreno_gpu_funcs funcs = {
+>>>>  		.set_param = adreno_set_param,
+>>>>  		.hw_init = a6xx_hw_init,
+>>>>  		.ucode_load = a6xx_ucode_load,
+>>>> -		.pm_suspend = a6xx_pm_suspend,
+>>>> -		.pm_resume = a6xx_pm_resume,
+>>>> +		.pm_suspend = a6xx_gmu_pm_suspend,
+>>>> +		.pm_resume = a6xx_gmu_pm_resume,
+>>>>  		.recover = a6xx_recover,
+>>>>  		.submit = a6xx_submit,
+>>>>  		.active_ring = a6xx_active_ring,
+>>>> @@ -2020,6 +2138,35 @@ static const struct adreno_gpu_funcs funcs = {
+>>>>  #if defined(CONFIG_DRM_MSM_GPU_STATE)
+>>>>  		.gpu_state_get = a6xx_gpu_state_get,
+>>>>  		.gpu_state_put = a6xx_gpu_state_put,
+>>>> +#endif
+>>>> +		.create_address_space = a6xx_create_address_space,
+>>>> +		.create_private_address_space = a6xx_create_private_address_space,
+>>>> +		.get_rptr = a6xx_get_rptr,
+>>>> +		.progress = a6xx_progress,
+>>>> +	},
+>>>> +	.get_timestamp = a6xx_gmu_get_timestamp,
+>>>> +};
+>>>> +
+>>>> +static const struct adreno_gpu_funcs funcs_gmuwrapper = {
+>>>> +	.base = {
+>>>> +		.get_param = adreno_get_param,
+>>>> +		.set_param = adreno_set_param,
+>>>> +		.hw_init = a6xx_hw_init,
+>>>> +		.ucode_load = a6xx_ucode_load,
+>>>> +		.pm_suspend = a6xx_pm_suspend,
+>>>> +		.pm_resume = a6xx_pm_resume,
+>>>> +		.recover = a6xx_recover,
+>>>> +		.submit = a6xx_submit,
+>>>> +		.active_ring = a6xx_active_ring,
+>>>> +		.irq = a6xx_irq,
+>>>> +		.destroy = a6xx_destroy,
+>>>> +#if defined(CONFIG_DRM_MSM_GPU_STATE)
+>>>> +		.show = a6xx_show,
+>>>> +#endif
+>>>> +		.gpu_busy = a6xx_gpu_busy,
+>>>> +#if defined(CONFIG_DRM_MSM_GPU_STATE)
+>>>> +		.gpu_state_get = a6xx_gpu_state_get,
+>>>> +		.gpu_state_put = a6xx_gpu_state_put,
+>>>>  #endif
+>>>>  		.create_address_space = a6xx_create_address_space,
+>>>>  		.create_private_address_space = a6xx_create_private_address_space,
+>>>> @@ -2050,15 +2197,31 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>>>>  
+>>>>  	adreno_gpu->registers = NULL;
+>>>>  
+>>>> +	/* Check if there is a GMU phandle and set it up */
+>>>> +	node = of_parse_phandle(pdev->dev.of_node, "qcom,gmu", 0);
+>>>> +	/* FIXME: How do we gracefully handle this? */
+>>>> +	BUG_ON(!node);
+>>>> +
+>>>> +	adreno_gpu->gmu_is_wrapper = of_device_is_compatible(node, "qcom,adreno-gmu-wrapper");
+>>>> +
+>>>>  	/*
+>>>>  	 * We need to know the platform type before calling into adreno_gpu_init
+>>>>  	 * so that the hw_apriv flag can be correctly set. Snoop into the info
+>>>>  	 * and grab the revision number
+>>>>  	 */
+>>>>  	info = adreno_info(config->rev);
+>>>> -
+>>>> -	if (info && (info->revn == 650 || info->revn == 660 ||
+>>>> -			adreno_cmp_rev(ADRENO_REV(6, 3, 5, ANY_ID), info->rev)))
+>>>> +	if (!info)
+>>>> +		return ERR_PTR(-EINVAL);
+>>>> +
+>>>> +	/* Assign these early so that we can use the is_aXYZ helpers */
+>>>> +	/* Numeric revision IDs (e.g. 630) */
+>>>> +	adreno_gpu->revn = info->revn;
+>>>> +	/* New-style ADRENO_REV()-only */
+>>>> +	adreno_gpu->rev = info->rev;
+>>>> +	/* Quirk data */
+>>>> +	adreno_gpu->info = info;
+>>>> +
+>>>> +	if (adreno_is_a650(adreno_gpu) || adreno_is_a660_family(adreno_gpu))
+>>>>  		adreno_gpu->base.hw_apriv = true;
+>>>>  
+>>>>  	a6xx_llc_slices_init(pdev, a6xx_gpu);
+>>>> @@ -2069,7 +2232,10 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>>>>  		return ERR_PTR(ret);
+>>>>  	}
+>>>>  
+>>>> -	ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs, 1);
+>>>> +	if (adreno_has_gmu_wrapper(adreno_gpu))
+>>>> +		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_gmuwrapper, 1);
+>>>> +	else
+>>>> +		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs, 1);
+>>>>  	if (ret) {
+>>>>  		a6xx_destroy(&(a6xx_gpu->base.base));
+>>>>  		return ERR_PTR(ret);
+>>>> @@ -2082,13 +2248,10 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>>>>  	if (adreno_is_a618(adreno_gpu) || adreno_is_7c3(adreno_gpu))
+>>>>  		priv->gpu_clamp_to_idle = true;
+>>>>  
+>>>> -	/* Check if there is a GMU phandle and set it up */
+>>>> -	node = of_parse_phandle(pdev->dev.of_node, "qcom,gmu", 0);
+>>>> -
+>>>> -	/* FIXME: How do we gracefully handle this? */
+>>>> -	BUG_ON(!node);
+>>>> -
+>>>> -	ret = a6xx_gmu_init(a6xx_gpu, node);
+>>>> +	if (adreno_has_gmu_wrapper(adreno_gpu))
+>>>> +		ret = a6xx_gmu_wrapper_init(a6xx_gpu, node);
+>>>> +	else
+>>>> +		ret = a6xx_gmu_init(a6xx_gpu, node);
+>>>>  	of_node_put(node);
+>>>>  	if (ret) {
+>>>>  		a6xx_destroy(&(a6xx_gpu->base.base));
+>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>>>> index aa70390ee1c6..c788b06e72da 100644
+>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>>>> @@ -76,6 +76,7 @@ int a6xx_gmu_set_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state);
+>>>>  void a6xx_gmu_clear_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state);
+>>>>  
+>>>>  int a6xx_gmu_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node);
+>>>> +int a6xx_gmu_wrapper_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node);
+>>>>  void a6xx_gmu_remove(struct a6xx_gpu *a6xx_gpu);
+>>>>  
+>>>>  void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+>>>> index 30ecdff363e7..4e5d650578c6 100644
+>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+>>>> @@ -1041,16 +1041,18 @@ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu)
+>>>>  	/* Get the generic state from the adreno core */
+>>>>  	adreno_gpu_state_get(gpu, &a6xx_state->base);
+>>>>  
+>>>> -	a6xx_get_gmu_registers(gpu, a6xx_state);
+>>>> +	if (!adreno_has_gmu_wrapper(adreno_gpu)) {
+>>>> +		a6xx_get_gmu_registers(gpu, a6xx_state);
+>>>>  
+>>>> -	a6xx_state->gmu_log = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.log);
+>>>> -	a6xx_state->gmu_hfi = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.hfi);
+>>>> -	a6xx_state->gmu_debug = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.debug);
+>>>> +		a6xx_state->gmu_log = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.log);
+>>>> +		a6xx_state->gmu_hfi = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.hfi);
+>>>> +		a6xx_state->gmu_debug = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.debug);
+>>>>  /
+>>>> -	a6xx_snapshot_gmu_hfi_history(gpu, a6xx_state);
+>>>> +		a6xx_snapshot_gmu_hfi_history(gpu, a6xx_state);
+>>>> +	}
+>>>>  
+>>>>  	/* If GX isn't on the rest of the data isn't going to be accessible */
+>>>> -	if (!a6xx_gmu_gx_is_on(&a6xx_gpu->gmu))
+>>>> +	if (!adreno_has_gmu_wrapper(adreno_gpu) && !a6xx_gmu_gx_is_on(&a6xx_gpu->gmu))
+>>>>  		return &a6xx_state->base;
+>>>>  
+>>>>  	/* Get the banks of indexed registers */
+>>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>>>> index 6934cee07d42..5c5901d65950 100644
+>>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>>>> @@ -528,6 +528,10 @@ int adreno_load_fw(struct adreno_gpu *adreno_gpu)
+>>>>  		if (!adreno_gpu->info->fw[i])
+>>>>  			continue;
+>>>>  
+>>>> +		/* Skip loading GMU firwmare with GMU Wrapper */
+>>>> +		if (adreno_has_gmu_wrapper(adreno_gpu) && i == ADRENO_FW_GMU)
+>>>> +			continue;
+>>>> +
+>>>>  		/* Skip if the firmware has already been loaded */
+>>>>  		if (adreno_gpu->fw[i])
+>>>>  			continue;
+>>>> @@ -1074,8 +1078,8 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+>>>>  	u32 speedbin;
+>>>>  	int ret;
+>>>>  
+>>>> -	/* Only handle the core clock when GMU is not in use */
+>>>> -	if (config->rev.core < 6) {
+>>>> +	/* Only handle the core clock when GMU is not in use (or is absent). */
+>>>> +	if (adreno_has_gmu_wrapper(adreno_gpu) || config->rev.core < 6) {
+>>>>  		/*
+>>>>  		 * This can only be done before devm_pm_opp_of_add_table(), or
+>>>>  		 * dev_pm_opp_set_config() will WARN_ON()
+>>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>>> index f62612a5c70f..ee5352bc5329 100644
+>>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>>> @@ -115,6 +115,7 @@ struct adreno_gpu {
+>>>>  	 * code (a3xx_gpu.c) and stored in this common location.
+>>>>  	 */
+>>>>  	const unsigned int *reg_offsets;
+>>>> +	bool gmu_is_wrapper;
+>>>>  };
+>>>>  #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
+>>>>  
+>>>> @@ -145,6 +146,11 @@ struct adreno_platform_config {
+>>>>  
+>>>>  bool adreno_cmp_rev(struct adreno_rev rev1, struct adreno_rev rev2);
+>>>>  
+>>>> +static inline bool adreno_has_gmu_wrapper(struct adreno_gpu *gpu)
+>>>> +{
+>>>> +	return gpu->gmu_is_wrapper;
+>>>> +}
+>>>> +
+>>>>  static inline bool adreno_is_a2xx(struct adreno_gpu *gpu)
+>>>>  {
+>>>>  	return (gpu->revn < 300);
+>>>>
+>>>> -- 
+>>>> 2.40.1
+>>>>
+>>>
+>>> I am still not fully onboard with the idea of gmu_wrapper node in devicetree.
+>>> Aside from that, I don't see any other issue. Please check the few comments I left.
+>> Thanks for your review!
+>>
+>> Konrad
+>>>
+>>> -Akhil.
+>>>
