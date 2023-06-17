@@ -2,154 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C974573410F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 14:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88442734117
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 15:07:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346259AbjFQMz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 08:55:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60458 "EHLO
+        id S235986AbjFQNHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 09:07:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231877AbjFQMzu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 08:55:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35CCC1BD6;
-        Sat, 17 Jun 2023 05:55:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C5D6160FA8;
-        Sat, 17 Jun 2023 12:55:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AD8A7C433C8;
-        Sat, 17 Jun 2023 12:55:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687006541;
-        bh=9rtErtqoAEzQqg0zkXddXSShr9vSuldH5TEoYh3KshU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=o28KeHaj253gtQ4WjWnZIHAR9/cKbvtJg/hFxZpCWjfgJz34bqKAHYECStcat09y5
-         sJjEKyiizLReFUD0QCWScHOj0umrn0as9MglH1itUwVCpPNbj9gXiUXK0kRgCC4e9h
-         5GLE9kFiLg5Vt5P/qsN0w8xjIcJoAJYmQ3IhBl96BJnj6jQrb16uYwQIUWF/SPHZnO
-         EtAE5nkOa3u4VrM3bqQVIVhpATqc+UDOUHhHJDs0QbnSvTyrI9bx3iMa/OdzQHUSPh
-         TseY8V/DA2LUhxSx5TFdvJTvFRDbG4fQKg2j93efJ0A25JJnfY3wrxGSZkvLYCVCBy
-         FUK0BgqJiswPA==
-Date:   Sat, 17 Jun 2023 13:55:32 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Waqar Hameed <waqar.hameed@axis.com>
-Cc:     Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <kernel@axis.com>
-Subject: Re: [PATCH 1/2] dt-bindings: iio: proximity: Add bindings for
- Murata IRS-D200
-Message-ID: <20230617135532.328dc3c8@jic23-huawei>
-In-Reply-To: <9487391b0565434761055b39ba04900bd839580a.1686926857.git.waqarh@axis.com>
-References: <cover.1686926857.git.waqarh@axis.com>
-        <9487391b0565434761055b39ba04900bd839580a.1686926857.git.waqarh@axis.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        with ESMTP id S234911AbjFQNH2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 09:07:28 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2524BF3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 06:07:26 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-978863fb00fso266607866b.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 06:07:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687007244; x=1689599244;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yD2mfuV+fqGi2BrJFGebt9olEIT6uNOgf7P1D42KFcQ=;
+        b=MBX1P0855t6gkTdc1NHQ+J/Ew1POQStwXIl0hRyX1DvA4Dv/TlNJl6PJ5GXhk+gZZA
+         2liu38gJYjKlu32bcsa1jlGSE3kQ11LEMjWHhwYvM43V7AAbKwXixu9JoSxd0TiTFdLQ
+         VcTTjzmFK++Xh1V+mEaxuvEF9BeThaYZ2YirEdUKpobdQ6tjVwIIQUxAod1On0+Ynfxk
+         iUUDn1WE1O/ZWXny+Y0K1i2tzE19sCWur8I/4+p0WPAbQQblvADnzPTNJw+58AoNSXCX
+         NykUO1heXFkGdrrmRGqZpmSk7wGMsYBGf2suXjdd2u0DilHeab5dgLK+NvFsQQKsp5LD
+         YE/w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687007244; x=1689599244;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yD2mfuV+fqGi2BrJFGebt9olEIT6uNOgf7P1D42KFcQ=;
+        b=P2mqGZ+wpK+GMOIT7MVim8eH2pZGbOwd1cxyhr+4/7ywHgCtx9b5qh2RhgFqYBChjX
+         s55YMmweQmEMTCc/JKPe31LdxIueLkVxO79zSnwWhqhTpjHypbBMzMpEf61Br2fpIayb
+         QXKgy2Irm7PwJH+4b1k49da+WiiFQ7HkJi21IcnvYoxtkAehF9kiIkR0Zaka3ApR1aaN
+         V3Jgc1yHzvndlbSdRzZ270sxPUMGhDi4Zs/3pTcfmSfqojSY0pV2MjjUfv13sa3XDL5O
+         ER7ujLZWvSW0My3FG5nxp9HNwsI6PDn3WQ+iGls9UIKANxDu5k11D4MAcxUvUxjykYzz
+         c6JA==
+X-Gm-Message-State: AC+VfDyRjo6rJo4rHDq9xNiWo65mH2FQiZRttwCd0tcw/g45BXydbFJE
+        mJS6TAz2Db8NVLTQgr3gB/HrHQ==
+X-Google-Smtp-Source: ACHHUZ4gYM6ydBQK0EgrOwyfQoTSFwyHgIxaBPQ5wFrrUb/ITf24ayGCnkR+OuBRp2TvkExH1e9E4Q==
+X-Received: by 2002:a17:907:8a08:b0:987:ae30:4b96 with SMTP id sc8-20020a1709078a0800b00987ae304b96mr1706703ejc.12.1687007244300;
+        Sat, 17 Jun 2023 06:07:24 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id t4-20020a170906178400b00982be08a9besm3063447eje.172.2023.06.17.06.07.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jun 2023 06:07:23 -0700 (PDT)
+Message-ID: <e0f74bdc-3a4b-596a-5ec7-83054377813e@linaro.org>
+Date:   Sat, 17 Jun 2023 15:07:21 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 2/9] clk: ralink: add clock and reset driver for MTMIPS
+ SoCs
+To:     Shiji Yang <yangshiji66@outlook.com>, sergio.paracuellos@gmail.com
+Cc:     arinc.unal@arinc9.com, devicetree@vger.kernel.org,
+        john@phrozen.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-mips@vger.kernel.org, matthias.bgg@gmail.com,
+        mturquette@baylibre.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, sboyd@kernel.org, tsbogend@alpha.franken.de
+References: <20230617052435.359177-3-sergio.paracuellos@gmail.com>
+ <TYAP286MB0315AB8274CDD341D49809A2BC59A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <TYAP286MB0315AB8274CDD341D49809A2BC59A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Jun 2023 17:10:42 +0200
-Waqar Hameed <waqar.hameed@axis.com> wrote:
-
-> Murata IRS-D200 is a PIR sensor for human detection. It uses the I2C bus
-> for communication with interrupt support. Add devicetree bindings
-> requiring the compatible string, I2C slave address (reg) and interrupts.
+On 17/06/2023 14:54, Shiji Yang wrote:
+>> void __init plat_time_init(void)
+>> {
+>> +	struct of_phandle_args clkspec;
+>> 	struct clk *clk;
+>> +	int cpu_clk_idx;
+>>
+>> 	ralink_of_remap();
+>>
+>> -	ralink_clk_init();
+>> -	clk = clk_get_sys("cpu", NULL);
+>> +	cpu_clk_idx = clk_cpu_index();
+>> +	if (cpu_clk_idx == -1)
+>> +		panic("unable to get CPU clock index");
+>> +
+>> +	of_clk_init(NULL);
+>> +	clkspec.np = of_find_node_by_name(NULL, "sysc");
 > 
-> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>
+> The node name should be "syscon" as the example node name in the
+> dt-bindings document is "syscon".
 
-This device will have some power supplies, so I'd expect those to be both
-listed and marked as required (maybe some are optional?)
+NAK for both.
 
-Other than that and the points in the other review one thing inline about interrupts.
+Node names must not be an ABI, unless you talk about child of some
+device node. I don't think this is the case here. Look by phandle (for a
+device context) or by compatible (looks the case here).
 
-Jonathan
 
-> ---
->  .../iio/proximity/murata,irsd200.yaml         | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml b/Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml
-> new file mode 100644
-> index 000000000000..d317fbe7bd50
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/proximity/murata,irsd200.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/proximity/murata,irsd200.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Murata IRS-D200 PIR sensor
-> +
-> +maintainers:
-> +  - Waqar Hameed <waqar.hameed@axis.com>
-> +
-> +description: |
-> +  PIR sensor for human detection.
-> +
-> +properties:
-> +  compatible:
-> +    const: murata,irsd200
-> +
-> +  reg:
-> +    items:
-> +      - enum:
-> +          - 0x48
-> +          - 0x49
-> +        description: |
-> +          When the AD pin is connected to GND, the slave address is 0x48.
-> +          When the AD pin is connected to VDD, the slave address is 0x49.
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description:
-> +      Type should be IRQ_TYPE_EDGE_RISING.
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
 
-If it is possible to remove interrupts from requires  - and hence have
-at least a partly functional driver doing basic reading of the sensor
-then that is usually a good idea.   Far too many board designers seem
-to decide that they don't need to wire up interrupt lines.
-
-If it's really hard then don't worry too much.
-
-Jonathan
-
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        pir@48 {
-> +            compatible = "murata,irsd200";
-> +            reg = <0x48>;
-> +            interrupts = <24 IRQ_TYPE_EDGE_RISING>;
-> +        };
-> +    };
-> +...
+Best regards,
+Krzysztof
 
