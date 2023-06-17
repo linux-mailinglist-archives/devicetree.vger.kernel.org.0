@@ -2,145 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D8F73417A
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 15:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2997D734192
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 16:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230312AbjFQNtN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 09:49:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44988 "EHLO
+        id S234149AbjFQOM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 10:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbjFQNtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 09:49:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ECA7E4F;
-        Sat, 17 Jun 2023 06:49:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1A7CC6122E;
-        Sat, 17 Jun 2023 13:49:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A19BC433C8;
-        Sat, 17 Jun 2023 13:49:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687009750;
-        bh=504yc8iPPjU8NVzPNBErG7ipfm0t5oxlemyrrJViFX0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tjon9VrmDrWjBjdgLGkvf/8Fb+HKIMLZwjsReYzLHRZ8QGRpVntYczSD/rl+YMHHA
-         Xjwx8Sgg8hmJjCMaC1wi+IgUQRXM0f0anVkTYddzchDDiV68bFQn+H27ye03DP9q2e
-         UUL037fuM7skmcPqT56XRBVi9fzNfIdlyBT/b4LDwD6g+1Hjyr+BA4FA6HDnCupdYw
-         Gkf9895nfE8jlylfQ0Xcop5SqbJDIKJIJOcubgWUe1U9lnaGwGr9mwM7Eo9/vzpMKA
-         btKbwrIEWqNHfwEdpdjr0JjLNTqQ64y1Vtre6qzAtAKmRldzmXGLcMhLLYcPxUE5Fb
-         E5l/44Ln30euQ==
-Date:   Sat, 17 Jun 2023 14:48:55 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     linux-iio@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v7 1/3] iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs
- GPADC
-Message-ID: <20230617144855.0388c4ff@jic23-huawei>
-In-Reply-To: <20230615205540.1803975-2-bigunclemax@gmail.com>
-References: <20230615205540.1803975-1-bigunclemax@gmail.com>
-        <20230615205540.1803975-2-bigunclemax@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        with ESMTP id S232182AbjFQOM2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 10:12:28 -0400
+X-Greylist: delayed 607 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 17 Jun 2023 07:12:25 PDT
+Received: from mail.manjaro.org (mail.manjaro.org [IPv6:2a01:4f8:c0c:51f3::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE13C19A9;
+        Sat, 17 Jun 2023 07:12:24 -0700 (PDT)
+From:   Furkan Kardame <f.kardame@manjaro.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
+        t=1687010018;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Bbqiov4Op0v1yv6B2iZ6b4aJ69uVgQBZKHbEsOQQ+Ms=;
+        b=XvONLIaguEdw3eRIvRs21O8r/dSNfd9QrB4ENd0VDyxkNR5Jdu35Hr3MBa26pR5/buXNVH
+        Tt4evY92oirREYSScQj+4hDihmyXlZKt3yyMClCI38d4WG4Twz9fO4FhXSJ0/vliVRoGzQ
+        5y196eoinHUVoBI/FWpM9RY+fW6bgbmD5VeKa7p82qFxmfyJUp0BufpUtMzqQpRc+yRN3P
+        V9L3jyMwxiBOZCC5OiFS3Q8iF7+t6SkzLp9MS5RUejMHF5NX8S5US81rSd/zDoG+fnJKjX
+        23FAZT9Wohsfqa4YTqjlfKTAV7o/NTrH9XXFK5UP5SVjdbszu4ytd1G/d7yv7Q==
+To:     robh+dt@kernel.org
+Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        heiko@sntech.de, broonie@kernel.org, deller@gmx.de,
+        dsterba@suse.com, arnd@arndb.de, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Furkan Kardame <f.kardame@manjaro.org>
+Subject: [PATCHv2 0/2] Add support for Firefly Station P2 aka rk3568-roc-pc
+Date:   Sat, 17 Jun 2023 16:53:13 +0300
+Message-Id: <20230617135315.25441-1-f.kardame@manjaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Authentication-Results: ORIGINATING;
+        auth=pass smtp.auth=f.kardame@manjaro.org smtp.mailfrom=f.kardame@manjaro.org
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 15 Jun 2023 23:55:20 +0300
-Maksim Kiselev <bigunclemax@gmail.com> wrote:
+Patch 1 adds the requisite dt-binding.
+Patch 2 adds Firefly Station P2 device tree
 
-> The General Purpose ADC (GPADC) can convert the external signal into
-> a certain proportion of digital value, to realize the measurement of
-> analog signal, which can be applied to power detection and key detection.
-> 
-> Theoretically, this ADC can support up to 16 channels. All SoCs below
-> contain this GPADC IP. The only difference between them is the number
-> of available channels:
-> 
->  T113 - 1 channel
->  D1   - 2 channels
->  R329 - 4 channels
->  T507 - 4 channels
-> 
-> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> ---
->  drivers/iio/adc/Kconfig            |  10 ++
->  drivers/iio/adc/Makefile           |   1 +
->  drivers/iio/adc/sun20i-gpadc-iio.c | 276 +++++++++++++++++++++++++++++
->  3 files changed, 287 insertions(+)
->  create mode 100644 drivers/iio/adc/sun20i-gpadc-iio.c
-> 
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index eb2b09ef5d5b..deff7ae704ce 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -1123,6 +1123,16 @@ config SUN4I_GPADC
->  	  To compile this driver as a module, choose M here: the module will be
->  	  called sun4i-gpadc-iio.
->  
-> +config SUN20I_GPADC
-> +	tristate "Support for the Allwinner SoCs GPADC"
-I applied this and started a build test before noticing that this Kconfig description
-is very vague and matches the one for the existing 4i driver...
+Please review and let me know if I have missed anything.
 
-The 'Support for the' bit also isn't appropriate for what you see in make menuconfig
-menu etc.   Please come up with something descriptive. Maybe
-"sun20i and similar SoC GPADC"?
+Furkan Kardame
 
-Bonus points if you change the text for the 4i at the same time to be
-more meaningful. I clearly missed that in review a long time ago!
+--- 
+v2: 
+- Add regulator suffix to nodes
+- Fix indentation
+- Remove sdio_pwrseq node as it's not needed until sdmmc2 is added
+- Remove underscore from pinctrl node name
+- Fix dt-binding compatible name
 
-It's now too late anyway for the 6.5 cycle, so no particular rush though
-I can queue this up for build testing whilst waiting for 6.5-rc1 to come
-along (I'll rebase my tree on that once available) and it will then end up
-in next etc.
+v1: https://lore.kernel.org/all/20230616211020.55755-3-f.kardame@manjaro.org/
 
-Jonathan
+Furkan Kardame (2):
+  dt-bindings: arm: rockchip: Add Firefly Station P2
+  arm64: dts: rockchip: add dts for Firefly Station P2 aka rk3568-roc-pc
 
-> +	depends on ARCH_SUNXI || COMPILE_TEST
-> +	help
-> +	  Say yes here to build support for Allwinner (D1, T113, T507 and R329)
-> +	  SoCs GPADC. This ADC provides up to 16 channels.
-> +
-> +	  To compile this driver as a module, choose M here: the module will be
-> +	  called sun20i-gpadc-iio.
-> +
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../arm64/boot/dts/rockchip/rk3568-roc-pc.dts | 673 ++++++++++++++++++
+ 3 files changed, 679 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3568-roc-pc.dts
+
+-- 
+2.40.1
+
