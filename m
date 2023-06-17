@@ -2,75 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 832E373404F
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 12:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34991734057
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 12:45:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234017AbjFQKkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 06:40:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59896 "EHLO
+        id S236025AbjFQKpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 06:45:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235663AbjFQKkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 06:40:18 -0400
-Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDED91B9
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 03:40:16 -0700 (PDT)
-Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-519c0ad1223so2114448a12.0
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 03:40:16 -0700 (PDT)
+        with ESMTP id S235351AbjFQKnU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 06:43:20 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 242D310C8
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 03:43:19 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-977ed383b8aso249849866b.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 03:43:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1686998415; x=1689590415;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=sSnihe6/3LsI4jFSKnj7YtNbRA5nWcr5gKNA2Dnynwk=;
-        b=T9G+PZ+eoawTUj6hMyXcjssFlBnmGy5bXDwAjpFiHyt4XOAEQ4oDbChwjxoU80Q4AB
-         yOeSo1vmZAqFjpzTajVTo2cKrKwcrYyPbi58bNwUK1bWu7ay7LINS0UlDhTIFnYkHkbp
-         0Ppa6NBxZvofyO4X6tLYc68k0JUuNBs2+aiEdCc7dqRhPfO5IHFf30Yttgw/T0gLQXB6
-         zzaZsco/c7v3qvb6dyT5dkyrvkI/oCSKxXLd2nkvv2LODhT2IQxXw0K51TXwfJZfOG0B
-         NIRxYA8SxRkcX8Qv02/cLeAaaE+BWPAbtSWomUSXRyQM26Sk277T6K3KapjVsNw6djlB
-         Jjzw==
+        d=linaro.org; s=google; t=1686998597; x=1689590597;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=SXehPHfp4hD58zuOBHpI3CN7ZUjU79jauVD9+CTL9CU=;
+        b=v/5eAneTfiOB6RtTochY284msjQvoPq6a4pZgXDJuLXT70Wi1NKtsfoCOmebDSRwGw
+         9xwMFYw4JDSFzzDLdiKFaEYKaP55sLzzpy3DX2rd8eYhzL0NEXLCB+EJ99YzNwlky3kW
+         ngmYmxg/RuPQdw0kWxG4SYpQ66dUDsKoc9LH4dgJPsPznX59YNwWz/Hdi9ldxMcOgYQy
+         ehjmkv1au49VmSREY6VLfRRBQEYdhQE90/u7DHHUUK2CPpma2YYRpiTRSmdasEj5AUGk
+         VIYTlu8VXoibu9ti6g97DJCOEKI5J2DV7MGgu80iGu83kc8h803oJFu1IZRUpBC3I5Q3
+         I3ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1686998415; x=1689590415;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=sSnihe6/3LsI4jFSKnj7YtNbRA5nWcr5gKNA2Dnynwk=;
-        b=ic5W9Kc381hxumgSvKKt1faVN2bbb/PSxDyq14g6kJ1pCfr8P6dYD5v+N1DdEDC2F7
-         wHO53LtbeLQp+AzcUZ1ZlvA1pixiBmXv+Pk7IDR6nwaI5qzBVPnyRO2j/ZIGXv/gv9d8
-         rqu/r0KD8H9W3GJQxrNNf0V0HoXniuybAXhIoU2SBxFRNOJUzCc6jrlRybJdV9bUnqpR
-         9IWfjHQjAEqckWLuGUz0B3tS6xMlEhoh7L0S4V7d1UU6e23FtV8e6B9SKQWeeCVXspMi
-         HHJ5EIhkaiLOHBEbSojIieq6u1f5Sdrxo/CwQHweijAVF6WGjHjObeRKPdLG6UksdZWl
-         g7Ew==
-X-Gm-Message-State: AC+VfDwAKMDE531hvxd1+iOixMiiRMXf/SwtyRSbGTgQDYC3ZXOEiFHf
-        gNrzhPssUuCMnh9QxOMQrNBgcw==
-X-Google-Smtp-Source: ACHHUZ7tV6WpfiqDGYeU/OBZDJDwz25cQ8/HxmzDiCuSWUNZCf3rdqHHuo4zpPKdi5/fPYMi7R4YsA==
-X-Received: by 2002:aa7:c912:0:b0:518:a5e5:47b6 with SMTP id b18-20020aa7c912000000b00518a5e547b6mr3334973edt.24.1686998415162;
-        Sat, 17 Jun 2023 03:40:15 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id g25-20020a50ee19000000b0050bfeb15049sm10677124eds.60.2023.06.17.03.40.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 03:40:14 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Campello <campello@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Subject: [RESEND PATCH 2/2] dt-bindings: iio: semtech,sx9324: reference common schema for label
-Date:   Sat, 17 Jun 2023 12:36:58 +0200
-Message-Id: <20230617103658.114453-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230617103658.114453-1-krzysztof.kozlowski@linaro.org>
-References: <20230617103658.114453-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20221208; t=1686998597; x=1689590597;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=SXehPHfp4hD58zuOBHpI3CN7ZUjU79jauVD9+CTL9CU=;
+        b=MJLfFpq5SH9FKtA3AiHW9uu61raENjwL40I+KB5gnDG8ffNpR7kon2aUin8McAJSkl
+         rOTgZ77xGlXXU5Maq/2V2bzgu1y4yzyZage4ntVM3A+TTlsYtxO7IEnkDxGL3cTg3gCQ
+         KG6WVaPKorf6CyWMldj+5jLo47bparEfPHPdYVCzWM2bVSyUY0+z3ztv30Md0Lr33Gcc
+         Y1BCENhUo4ryzmUjfKsu05RK+lQGpIZPmDjNWRzFEHHi8DNFzl3GuCnhVig4Uz+vo18i
+         r+KmMSNfkv9XKHD+ieWz8jkCmU7Iw4VxAieOeStm21HKahH1miav2hD4fx4OUvHTSRvr
+         h0Sw==
+X-Gm-Message-State: AC+VfDyxBnQ6bg/0+RYMDjoxnq7AIyDE88wH3AIwjF3q4drk5wA0pqc8
+        KiyDn6nNHLg/kAEdJLQ6oBV15g==
+X-Google-Smtp-Source: ACHHUZ5mNmonmeX1pj58nQ8JJHbgPkGUtqFcLoO43kCROLgIVGLDO/BjBAkgHRjsjF0V8RgZ50iQ9w==
+X-Received: by 2002:a17:907:16a6:b0:978:66bd:d771 with SMTP id hc38-20020a17090716a600b0097866bdd771mr5423085ejc.55.1686998597567;
+        Sat, 17 Jun 2023 03:43:17 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id z20-20020a1709064e1400b009745eddf997sm11789464eju.198.2023.06.17.03.43.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jun 2023 03:43:16 -0700 (PDT)
+Message-ID: <168b28ba-cc37-84a1-2b1f-a045525b50a1@linaro.org>
+Date:   Sat, 17 Jun 2023 12:43:14 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [RESEND PATCH 1/3] dt-bindings: remoteproc: qcom,pas: correct
+ memory-region constraints
+Content-Language: en-US
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        linux-remoteproc@vger.kernel.org,
+        Manivannan Sadhasivam <mani@kernel.org>
+References: <20230331092125.44885-1-krzysztof.kozlowski@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230331092125.44885-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -79,44 +84,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Reference iio.yaml schema from dtschema to allow already used
-label property:
+On 31/03/2023 11:21, Krzysztof Kozlowski wrote:
+> Qualcomm PAS devices expect exactly one memory region, not many.  Also,
+> the memory-region is now defined in device specific binding, not in
+> qcom,pas-common.yaml, thus also require it in the same place.
+> 
+> Fixes: cee616c68846 ("dt-bindings: remoteproc: qcom: adsp: move memory-region and firmware-name out of pas-common")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> 
+> ---
 
-  sc7180-trogdor-pazquel360-lte.dtb: proximity@28: 'label' does not match any of the regexes: 'pinctrl-[0-9]+'
+I sent it in March. Then on 31st of March I resent it. Almost three
+months ago.
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Acked-by: Rob Herring <robh@kernel.org>
+Shall I resend it one more time? Any comments? Applying?
 
----
-
-Resending with ack as dependency (dtschema patch) was applied.
----
- .../devicetree/bindings/iio/proximity/semtech,sx9324.yaml    | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-index b3aa2ebf9661..48f221463166 100644
---- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-+++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9324.yaml
-@@ -13,6 +13,9 @@ maintainers:
- description: |
-   Semtech's SX9324 proximity sensor.
- 
-+allOf:
-+  - $ref: /schemas/iio/iio.yaml#
-+
- properties:
-   compatible:
-     const: semtech,sx9324
-@@ -167,7 +170,7 @@ required:
-   - reg
-   - "#io-channel-cells"
- 
--additionalProperties: false
-+unevaluatedProperties: false
- 
- examples:
-   - |
--- 
-2.34.1
+Best regards,
+Krzysztof
 
