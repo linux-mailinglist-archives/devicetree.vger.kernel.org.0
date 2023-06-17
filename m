@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E091734261
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:15:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98797734265
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:15:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231748AbjFQRPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 13:15:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53400 "EHLO
+        id S229934AbjFQRPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 13:15:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53748 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231504AbjFQRPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:15:18 -0400
-Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C58619BD
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:17 -0700 (PDT)
-Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51a21185130so2358646a12.0
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:17 -0700 (PDT)
+        with ESMTP id S232260AbjFQRPs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:15:48 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26CF01BD6
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:46 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-970056276acso268179666b.2
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687022115; x=1689614115;
+        d=linaro.org; s=google; t=1687022144; x=1689614144;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=OFlTog3oqwb41eoYl1kdqakfvXtFCraQtd5UVb/cu4E=;
-        b=zeFtzruM2axOg+F/lkHzveED2K7zG2KVylFOgDS+1T61QcLXKQbfeqXYvIeke/hi+u
-         ugi07CSivPmjkOcxyWEYDTWpo9A0QJt8tRwntWGRQN2aRX9QGsg8S4r6VuzJdQNYdt7U
-         xXb+p5jzmb1oaETjIh0IzMCukb3fHzi2O+z9CAm3DTLxR4fh5qWQRJw+xAmHxSM8Ejbe
-         C8kXi77BFR4/F5VLr2mKXE+4MZd796XpPE7MER7uUL4s+/X9yrpxg5d0Yy64Mhay1FPJ
-         0qPoixLkgBhb9di4Y4bTTX2th9/9d+EG/Wz2YyyjPNu9lFAb2+T4R5HFaN99ZIJOsWLu
-         vdmg==
+        bh=c21VY/2BYjMlFucoAaJTu2heJdLQjzrbKq28dJy2kr8=;
+        b=hXitajQIYQy6+cIjWT7Br2R8daKc/xIkbkDOfexi27WhXBrb/ySi4i35aFb7TldkC8
+         Tloafqwlgo0J4vcpHNtbtomLmLJaxB/6NbRXs0HTuCgiuSnnc8N7WpRi+yIIzu3eOPT2
+         X1f8pebRXGkJ6ZZPmrndSGxF7HlQlhGDlU++G8PiKQ4dGrhOSHmwok23Yw3mwF6RCmpy
+         5t+kVxca2/4W+IuySLlt5dPOa+xGyRyK6ZDMf1hcWfFUpZ6+Z+Mc1Z6I/yMA5uvfwKch
+         sV/D2p2A+t7qVmk/AjS/qyl9X4PBuGR1towLVYtSD3TwHmAcaHT+o96zDJs9rWpzPdzI
+         nVNg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687022115; x=1689614115;
+        d=1e100.net; s=20221208; t=1687022144; x=1689614144;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OFlTog3oqwb41eoYl1kdqakfvXtFCraQtd5UVb/cu4E=;
-        b=KoEDIah6z0FCdbpN0BaEnc38K38FdkE9hDveeEk4b98+XI9hVoYno9LOrhVYujRZXP
-         r7KIdY6U8JlCzhFcXdHvFb/JO7+RTb6adAhASyzrvAXOQhHd/eqIAquNHyNC1EYoHkKo
-         X82kWQFMQoYY+gFhjEOWa47f3mPpaLqm5SrzQT6yuErwQjSNIElIwEQ9M7mj4HGaBQeZ
-         Oc/ymYSdR61ilOLCBOb6XWdckZUjbFdrB2zumLE0ebmmlvf9+qF84PCFEb10E0eQekIq
-         Els4va//ilwKn6TwuMqYQJT8jSFED48OsZnwzpDgPdDnT7cp1Ub3gv+fqPoXKdv/fM6e
-         aXPg==
-X-Gm-Message-State: AC+VfDxieCSpADVo6tvrEZEcHgEcIQAD22cLsqlXq3QQgnpMmyoPlsAy
-        WqRY3Nul8GQ6f1Dei4RkRlVIgaB2FqdC6QnSONU=
-X-Google-Smtp-Source: ACHHUZ4tbfzcAccYIZTT1GBR5RzCcoqfk3TCNwSEVzBTWuSbxibvwvhrziSWwSb0kB4yh6phT654ow==
-X-Received: by 2002:a05:6402:517a:b0:50b:f929:c6d3 with SMTP id d26-20020a056402517a00b0050bf929c6d3mr3940776ede.1.1687022115507;
-        Sat, 17 Jun 2023 10:15:15 -0700 (PDT)
+        bh=c21VY/2BYjMlFucoAaJTu2heJdLQjzrbKq28dJy2kr8=;
+        b=TIP7VIE3HlDi0exDiqZxNOvckKgJ41P7eAfpzfnm4x0ZSuCtIT5XrJ8ogRWFH+5Zq1
+         wE+kkQEOSe3/VHCoTsDua2YMPLvtik9GXOw1096b9x+dQ4Gtc4gUiuKXJPRl+vFZeJuF
+         Nt49l6X9i8HMum/arKjtUi+kfbrENFDh2Gdjx3E+NzcfsQPGFB4sKnQbeB2wk62pH2rZ
+         +F3tyrJPlL4BXgU094hTXSMVwV0nMuXcrH6UL2arJLBMOot4JTD1eA0MzpcZLqaPQnOx
+         /94vI4mYpXnxJ4hRQqKOk745o/dQsLcbdkeiq34Xx8QX8TIDvizHYJvgAplgywlwJI+h
+         V9zQ==
+X-Gm-Message-State: AC+VfDwlHn2ML7OjUPrNaELQR2KPtF//sdIsZmwCNYmqK+pCH2PY2Qpu
+        YscTc+Vpzi3cM1QcsI3b00iUHg==
+X-Google-Smtp-Source: ACHHUZ69OM/TksZc6GNPrPvtkN8ZrxorrwSL2oPcxVDNZVs0v/WVIdkPYlMrgzCIEZceFpY2YkAajw==
+X-Received: by 2002:a17:907:7e83:b0:982:30e3:ddc7 with SMTP id qb3-20020a1709077e8300b0098230e3ddc7mr5045228ejc.5.1687022144588;
+        Sat, 17 Jun 2023 10:15:44 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id m10-20020aa7c2ca000000b005184165f1fasm7146769edp.5.2023.06.17.10.15.14
+        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 10:15:15 -0700 (PDT)
+        Sat, 17 Jun 2023 10:15:44 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,12 +55,15 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Nikita Travkin <nikita@trvn.ru>,
+        Stephan Gerhold <stephan@gerhold.net>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH] arm64: dts: qcom: sdm850-c630: add missing panel supply
-Date:   Sat, 17 Jun 2023 19:15:12 +0200
-Message-Id: <20230617171512.286795-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 01/15] arm64: dts: qcom: msm8916-gt5: drop incorrect accelerometer interrupt-names
+Date:   Sat, 17 Jun 2023 19:15:27 +0200
+Message-Id: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -74,58 +77,27 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Panel bindings (boe,nv133fhm-n61) require supply which here actually can
-be turned on/off via GPIO control:
+st,lis2hh12 accelerometer binding does not allow interrupt-names:
 
-  sdm850-lenovo-yoga-c630.dtb: panel: 'power-supply' is a required property
+  msm8916-samsung-gt58.dtb: accelerometer@1d: 'interrupt-names' does not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
 ---
+ arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
-Not tested on hardware
----
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 20 +++++++++++++++++++
- 1 file changed, 20 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-index cfbc4fc1eba9..3d871567cf81 100644
---- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-+++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-@@ -87,6 +87,25 @@ sn65dsi86_refclk: sn65dsi86-refclk {
- 		clock-frequency = <19200000>;
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
+index 7943bb619116..54d648972d35 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-gt5-common.dtsi
+@@ -101,7 +101,6 @@ accelerometer@1d {
  
-+	vph_pwr: regulator-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph_pwr";
-+		regulator-min-microvolt = <3700000>;
-+		regulator-max-microvolt = <3700000>;
-+	};
-+
-+	vlcm_3v3: regulator-vlcm-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vlcm_3v3";
-+
-+		vin-supply = <&vph_pwr>;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+
-+		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	backlight: backlight {
- 		compatible = "pwm-backlight";
- 		pwms = <&sn65dsi86 1000000>;
-@@ -419,6 +438,7 @@ aux-bus {
- 			panel: panel {
- 				compatible = "boe,nv133fhm-n61";
- 				backlight = <&backlight>;
-+				power-supply = <&vlcm_3v3>;
+ 		interrupt-parent = <&tlmm>;
+ 		interrupts = <115 IRQ_TYPE_LEVEL_HIGH>;
+-		interrupt-names = "INT1";
  
- 				port {
- 					panel_in_edp: endpoint {
+ 		st,drdy-int-pin = <1>;
+ 		mount-matrix = "0", "1", "0",
 -- 
 2.34.1
 
