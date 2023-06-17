@@ -2,76 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED38D73428B
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:16:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D0A7734294
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1346408AbjFQRQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 13:16:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54092 "EHLO
+        id S236455AbjFQRUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 13:20:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1346333AbjFQRQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:16:14 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D5E92101
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:16:06 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9829a5ae978so293943266b.2
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:16:06 -0700 (PDT)
+        with ESMTP id S1346389AbjFQRUi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:20:38 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 298DF2967
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:20:33 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51a200fc3eeso2638993a12.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:20:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687022164; x=1689614164;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=gUJBexFXTPwWKH7yZsvSF3vGxHfqWARsgLpggkseDL4=;
-        b=QcWCFiiyyJvX3VA/uYU3fiwUDTw9sCAhiJaU2SdbKwb6+EMTaFUii4EB3NEGb+NTd8
-         aiGS0omQFe0kdN5JkAxSFTtMI4+dU5q2ftDk/FRSjLj3jU8KTCIUj4qKK3AjBQsyoHoF
-         eb8P6BFYoEYxr7PbAg992LaZso5UxZU6/bB6uNy4JTypwzlFvRwXpp3lbX4Tln9Mqvji
-         TUDGYbN9ejdF7yiGxlLvz/WTmtAjxCB/u9pRF6Ok8silb0tZrc4xvQVtbGv7htuy2p1X
-         JvtJ/I0LY7ChYC7oRLzmlkQZYEOg3gSb8x7Yyt2XH3/zKAvvQ+NZD4zfWbXrMH3FZcW9
-         /t7w==
+        d=linaro.org; s=google; t=1687022431; x=1689614431;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=xCt3kM+nBMBe594FBcfTM0tt8nk7YD6lBO7D+bNK+No=;
+        b=Du9+514DgcGtUB/CaouAziyCXzCocuhrAmwZwLu6Z6o0f4YiuIHbJOceqpoKwVRKrb
+         IMis+k9vJdE5dbGMD2oCg08ZrpdMEe5vS/XLdO+vYFSCKeJS7p4QgoYChiyLTQDqXq0Z
+         2PYg/KZD7wTPTOCfHXVr7RUZyt1AxrTRvcCLXg2sKU/iZDSbWGas4gC9BsuQSMuhZjhT
+         ey8zHuLGJtKL7v+T0V6TfRQuPizD1MfVzcLXv32b2wcNQzoosSzCTA034X90qaXaZMV9
+         eVuvlLjZiUUoqePtRhUTmBi2jur4eeNEeWHCWhq/3tP/stLhB6WkNFh/A+SbQ81JaNx9
+         i2GA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687022164; x=1689614164;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=gUJBexFXTPwWKH7yZsvSF3vGxHfqWARsgLpggkseDL4=;
-        b=CD1Td3c088dx2bTyy8WFH/ntqFgyaZEtGCDSZfNlHTMmAmH+GG/uJKsBL9zJumod0P
-         Pw7adxy7updEmGU1Xd99J6hG7xHzybqkaNjq0O4LoM5fbcjF10EgbPYvYaiQ99U87m+K
-         J4WSPMBSZvMIP4SyGuovIaJVJO4GoGoDpIGsxPVqffDRSM9E4VD2Ia/GjjNx0LqCMtt7
-         NtiJkbdRlkUQJ/MHi4fLTBH7lxFXzf/syPdM3HsRIAqFhZQD3fk8tBPPzAtQJiR6cM0l
-         N+045Kh/Hqd3QNTS/56Qk9PiQbAOR7h3fDNbLJ7gF6PjQM+TFj011G4t0IjvaVPT6ga/
-         UKUA==
-X-Gm-Message-State: AC+VfDy5P3AQ8XUYsTGfHlbsOnkAHZ3fvMBmXp25A1UyvW8c5g64opnn
-        Zvtilbe/Jozkpee8fIoJr7DwBQ==
-X-Google-Smtp-Source: ACHHUZ7zyUSR9ML6otAiMIYQtn6i8nUnZfLY2CAn3lhtlMreWSlgdKq94ZuipNIlUBwV9n2iiIxC3w==
-X-Received: by 2002:a17:907:d0f:b0:94e:4489:f24d with SMTP id gn15-20020a1709070d0f00b0094e4489f24dmr5609501ejc.61.1687022164853;
-        Sat, 17 Jun 2023 10:16:04 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.16.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 10:16:04 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Nikita Travkin <nikita@trvn.ru>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 15/15] arm64: dts: qcom: sm6115-pro1x: fix incorrect gpio-key,wakeup
-Date:   Sat, 17 Jun 2023 19:15:41 +0200
-Message-Id: <20230617171541.286957-15-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
-References: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
+        d=1e100.net; s=20221208; t=1687022431; x=1689614431;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=xCt3kM+nBMBe594FBcfTM0tt8nk7YD6lBO7D+bNK+No=;
+        b=UW0n1cCRzOLJk9CT7o+UK9Q9ngm9k6jg2jIjppNeYdNBfBkayTBaFKD3HxHwFH5ukO
+         ujhFIDs+0+UesJ30rXZAEeoRwyAoyPvcxO86cKEfAdTUqhbbv9k7SkyeIKL35AaXYL8B
+         VKEdCihyecH9DLJ8XYksbKv0poZ0thVjYAXTKJuTQFJ/LOQOmaPvgZmec2+ARa3pDUWQ
+         N+3avdtR7FIFz89vhWU2urp/J1CTnzaT/ubSvbCYgWZyVJeJwXfpGoicArc4OXZknPah
+         FwIEY7sfAwI3YMBJlvHx4SkVwtJKyn9mbtPyqqxiKEeDVCqVcDXt8DB+jNFJAe+6PCsF
+         /mDA==
+X-Gm-Message-State: AC+VfDwI3hxQyEGUFW58eTpiVSvxlU1RFayQzOt8/RDQuJo2/+SCMo7w
+        OUTXJDPOn/dhKI3A38SjalSoz9YXiN8Lf/RvipM=
+X-Google-Smtp-Source: ACHHUZ67Jnv01Z/zOyUpAp9dkjkqX8yvoTR8yCwjGiZup7X6z/Xq1Sk3420wgPlDdVWG0UkP1sqHVQ==
+X-Received: by 2002:a05:6402:1252:b0:514:a0e9:3deb with SMTP id l18-20020a056402125200b00514a0e93debmr4012221edw.23.1687022431641;
+        Sat, 17 Jun 2023 10:20:31 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id b13-20020aa7c90d000000b0051879590e06sm1375373edt.24.2023.06.17.10.20.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jun 2023 10:20:31 -0700 (PDT)
+Message-ID: <10f01535-ab4f-b0d4-306b-a90f4ad19008@linaro.org>
+Date:   Sat, 17 Jun 2023 19:20:28 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 2/9] clk: ralink: add clock and reset driver for MTMIPS
+ SoCs
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Cc:     Shiji Yang <yangshiji66@outlook.com>, arinc.unal@arinc9.com,
+        devicetree@vger.kernel.org, john@phrozen.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        matthias.bgg@gmail.com, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
+        tsbogend@alpha.franken.de
+References: <20230617052435.359177-3-sergio.paracuellos@gmail.com>
+ <TYAP286MB0315AB8274CDD341D49809A2BC59A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+ <e0f74bdc-3a4b-596a-5ec7-83054377813e@linaro.org>
+ <CAMhs-H9M_c8+AkqUTpYeS2q7_+wBA-jhhiXj-QVXNUDmuERcOA@mail.gmail.com>
+ <05e3ff33-ad4e-d2fb-dfd5-7b5265881b74@linaro.org>
+ <CAMhs-H-ncXC37SAMkLfrFmpRi0ORkkCV9rQmrtmw_ndOLo+J0Q@mail.gmail.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAMhs-H-ncXC37SAMkLfrFmpRi0ORkkCV9rQmrtmw_ndOLo+J0Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,29 +85,23 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use 'wakeup-source' instead of 'gpio-key,wakeup' to indicate key can
-wake-up the device:
+On 17/06/2023 17:37, Sergio Paracuellos wrote:
+>>> The case of
+>>> searching for compatible is a mess since as you can see in the
+>>> bindings there are tons of compatibles to search for, then (this code
+>>> is common to all ralink platforms).
+>>
+>> Compatible is one of the ways using ABI.
+> 
+> Ok so it is also a broken approach, then.
 
-  sm6115-fxtec-pro1x.dtb: gpio-keys: key-volume-up: Unevaluated properties are not allowed ('gpio-key,wakeup' was unexpected)
+What is exactly broken approach? Fetching by compatibles? Somehow many
+other platforms do not have problem with that, even for multiple
+compatibles. Why yours is special?
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Anyway, it is not a correct way to get clocks frequency. There is CCF
+for this, although maybe Ralink does not support it?
 
-diff --git a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-index 3ce9875e932c..9b70a87906dc 100644
---- a/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-+++ b/arch/arm64/boot/dts/qcom/sm6115-fxtec-pro1x.dts
-@@ -44,7 +44,7 @@ key-volume-up {
- 			gpios = <&pm6125_gpios 5 GPIO_ACTIVE_LOW>;
- 			debounce-interval = <15>;
- 			linux,can-disable;
--			gpio-key,wakeup;
-+			wakeup-source;
- 		};
- 	};
- };
--- 
-2.34.1
+Best regards,
+Krzysztof
 
