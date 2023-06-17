@@ -2,154 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E61073436E
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3237373437F
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233961AbjFQUHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 16:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36622 "EHLO
+        id S1346381AbjFQU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 16:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231379AbjFQUHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:07:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6796BB2;
-        Sat, 17 Jun 2023 13:07:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0028E60B2C;
-        Sat, 17 Jun 2023 20:07:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DF954C433C8;
-        Sat, 17 Jun 2023 20:07:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687032431;
-        bh=akUaIhagBcheMMLkG/7LBKRbSkqRUijdxyGkrwPVDr0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=bAxpYRUC4lZprbJCp81S5RRf0u2D0S1f/fMGvnVAB+zygd2WT7pmA6APGe1teSDqt
-         XKPOD1zUbhMFLrLZanvb8Anbj367cMyHZ92M+00ps0ejbMK1adQl1ov6Y9blEfAI/T
-         vvR0WL0vy8HYnoeb0pwaeeGtxSA3kgRViMzYuoR2BK9LBjTryJ8wOdQSPIsBhhJXCu
-         G5NbyXdphy1Af85mGhOKuk7Y82Iw8kzxVtJzP64Jh3PdNn4Qj3HZYmaxH2mXMDVHxL
-         oCalc+H6WNnnLieSWTcbsmgexXfq33St9mvgv4/4MnEu6zQ80N0bX6RXJTSAvWkwd0
-         Z0q7ZwLgz7CFA==
-Date:   Sat, 17 Jun 2023 21:06:58 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Maxim Kiselev <bigunclemax@gmail.com>
-Cc:     linux-iio@vger.kernel.org,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        ChiaEn Wu <chiaen_wu@richtek.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v7 1/3] iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs
- GPADC
-Message-ID: <20230617210658.43d5b787@jic23-huawei>
-In-Reply-To: <CALHCpMgxNwz197qgiEueV9Y26LN7BBfYSGBHy6J4gOTFpiVUtw@mail.gmail.com>
-References: <20230615205540.1803975-1-bigunclemax@gmail.com>
-        <20230615205540.1803975-2-bigunclemax@gmail.com>
-        <20230617144855.0388c4ff@jic23-huawei>
-        <CALHCpMgxNwz197qgiEueV9Y26LN7BBfYSGBHy6J4gOTFpiVUtw@mail.gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        with ESMTP id S234287AbjFQU34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:29:56 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021171729
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:29:55 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-986d871a9beso222339366b.1
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:29:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687033793; x=1689625793;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WotXs+XtzzrhlYB5laz6cnJm1VOdwaPgisww3kS+BtM=;
+        b=lW9fTA9v9HxxmIHFjctBcM5mJ8sibJgQJFs7a+noaiQ3kf+VggSz3rxCQS77BYbuKj
+         ibyDg5uP78O5Ypgznaqh1Y8JVeE+0649VRACesm/ssk3yZRpIKxHwqt8sBiR5QwvpnrQ
+         ym94m87zIjd+jps/yrzwuUFHyyz/kBbeYTQM3IDQlWp+Tuyek65gi3/hZHV3GwZL4dFA
+         4muMUlITlw2uO8ywZPtFhKoIdbzxUc0+4qaAbl+qdxHOu4ExleWtWpUpqCpIDKJJEmGn
+         5T04eLpsuGKo1r2rRhWP7VBJL7dSFL9qcNT32JOCE8QXZpu94h2rTmVHE/QlafnT4wXm
+         beog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687033793; x=1689625793;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WotXs+XtzzrhlYB5laz6cnJm1VOdwaPgisww3kS+BtM=;
+        b=NKydsa7gj5vudeeHC0LHHsSfAzQcZY5q3hem0wYcl9UuNIbpQkMS/Oz8s3uT7ZfjQ+
+         4dSiS4dylLGPOq7jq2D/jd1tBI8Lufj9WGlnrt9ZbNW24jW4g9xpSfMBe4sKzCYIVCgl
+         pemQu/QEZK77UVAQXL5XHjCbF0HEOX5h0xdQOvYcVv645muaw9DJSz4jh6nhbFCcORFR
+         lWknVo5gSSHKICneDjQwvypzlIJbZ/nhaK2LGD0b9F4OwqIhemsditSOB/T9syOHvi86
+         QvRvZO0Pk60o9K08YiCZis4Za4+z6Jj6nXAGA6g3ZB4xxDmABv09aUhSUHifAPzJun8j
+         hrbg==
+X-Gm-Message-State: AC+VfDyB4svJKQLpUV6Cu55AWANq4/3/bSgAMKfpernKKNE1Yd1zIY+m
+        IFXYlwKz8ZH/SRxUlt8z/4GtuA==
+X-Google-Smtp-Source: ACHHUZ53sBLPaVvnnGgxK0nUyl1GvLMLow9cJxFJcPNV2oyhFecpAq7IGFCYchBcJkCqaWuR6eSlkw==
+X-Received: by 2002:a17:907:3187:b0:96f:c0b0:f137 with SMTP id xe7-20020a170907318700b0096fc0b0f137mr5548380ejb.16.1687033793351;
+        Sat, 17 Jun 2023 13:29:53 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id u2-20020a1709064ac200b00977eda0ea29sm12728337ejt.14.2023.06.17.13.29.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 17 Jun 2023 13:29:52 -0700 (PDT)
+Message-ID: <fe1f44f0-3c6d-4375-6aad-286d6d539d73@linaro.org>
+Date:   Sat, 17 Jun 2023 22:29:50 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3] Documentation/process: add soc maintainer handbook
+To:     Conor Dooley <conor@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+Cc:     "Conor.Dooley" <conor.dooley@microchip.com>, soc@kernel.org,
+        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        Olof Johansson <olof@lixom.net>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Randy Dunlap <rdunlap@infradead.org>
+References: <20230606-escapable-stuffed-7ca5033e7741@wendy>
+ <05c50d10-080b-43ab-9131-98f71508ac2d@app.fastmail.com>
+ <20230617-succulent-surgery-3dbbf9454737@spud>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230617-succulent-surgery-3dbbf9454737@spud>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 17 Jun 2023 21:52:12 +0300
-Maxim Kiselev <bigunclemax@gmail.com> wrote:
+On 17/06/2023 20:32, Conor Dooley wrote:
+> Hey Arnd,
+> 
+> On Tue, Jun 06, 2023 at 12:23:26PM +0200, Arnd Bergmann wrote:
+>> On Tue, Jun 6, 2023, at 10:27, Conor Dooley wrote:
+>>> Arnd suggested that adding a maintainer handbook for the SoC "subsystem"
+>>> would be helpful in trying to bring on board maintainers for the various
+>>> new platforms cropping up in RISC-V land.
+>>>
+>>> Add a document briefly describing the role of the SoC subsystem and some
+>>> basic advice for (new) platform maintainers.
+>>>
+>>> Suggested-by: Arnd Bergmann <arnd@arndb.de>
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> ---
+>>> Changes in v3:
+>>> - sort out a rake of spelling/grammar bits spotted by Randy, apart from
+>>>   the one noted as a suggestion
+>>> - drop the refs for document filepaths
+>>
+>> Thanks, I've applied this in the soc/newsoc branch of the soc tree
+>> now, which is where I'm already queuing new platforms.
+> 
+> Having cited this document for the first time, it came to mind that I
+> never mentioned putting the submaintainer trees into linux-next. Should
+> I send a follow-up patch for that, or do you think that that isn't
 
-> =D1=81=D0=B1, 17 =D0=B8=D1=8E=D0=BD. 2023=E2=80=AF=D0=B3. =D0=B2 16:49, J=
-onathan Cameron <jic23@kernel.org>:
-> >
-> > On Thu, 15 Jun 2023 23:55:20 +0300
-> > Maksim Kiselev <bigunclemax@gmail.com> wrote:
-> > =20
-> > > The General Purpose ADC (GPADC) can convert the external signal into
-> > > a certain proportion of digital value, to realize the measurement of
-> > > analog signal, which can be applied to power detection and key detect=
-ion.
-> > >
-> > > Theoretically, this ADC can support up to 16 channels. All SoCs below
-> > > contain this GPADC IP. The only difference between them is the number
-> > > of available channels:
-> > >
-> > >  T113 - 1 channel
-> > >  D1   - 2 channels
-> > >  R329 - 4 channels
-> > >  T507 - 4 channels
-> > >
-> > > Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
-> > > Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
-> > > ---
-> > >  drivers/iio/adc/Kconfig            |  10 ++
-> > >  drivers/iio/adc/Makefile           |   1 +
-> > >  drivers/iio/adc/sun20i-gpadc-iio.c | 276 +++++++++++++++++++++++++++=
-++
-> > >  3 files changed, 287 insertions(+)
-> > >  create mode 100644 drivers/iio/adc/sun20i-gpadc-iio.c
-> > >
-> > > diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> > > index eb2b09ef5d5b..deff7ae704ce 100644
-> > > --- a/drivers/iio/adc/Kconfig
-> > > +++ b/drivers/iio/adc/Kconfig
-> > > @@ -1123,6 +1123,16 @@ config SUN4I_GPADC
-> > >         To compile this driver as a module, choose M here: the module=
- will be
-> > >         called sun4i-gpadc-iio.
-> > >
-> > > +config SUN20I_GPADC
-> > > +     tristate "Support for the Allwinner SoCs GPADC" =20
-> > I applied this and started a build test before noticing that this Kconf=
-ig description
-> > is very vague and matches the one for the existing 4i driver... =20
->=20
-> Indeed. I must have forgotten to change this line when copying from sun4i=
-...
->=20
-> > The 'Support for the' bit also isn't appropriate for what you see in ma=
-ke menuconfig
-> > menu etc.   Please come up with something descriptive. Maybe
-> > "sun20i and similar SoC GPADC"?
-> >
-> > Bonus points if you change the text for the 4i at the same time to be
-> > more meaningful. I clearly missed that in review a long time ago! =20
->=20
-> Should I do this in a separate patch?
-Yes please.
+This is common maintainer stuff, so every maintainer - not only SoC
+related - should ensure his tree is in next. I would trim all such
+common things from the document and store it somewhere else, because
+otherwise people will just not read it.
 
-Thanks,
-
-Jonathan
-
+Best regards,
+Krzysztof
 
