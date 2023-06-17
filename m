@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2894073426C
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:16:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D77C3734271
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 19:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S237122AbjFQRQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 13:16:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53820 "EHLO
+        id S237245AbjFQRQC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 13:16:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235173AbjFQRPy (ORCPT
+        with ESMTP id S235353AbjFQRPy (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 13:15:54 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B79FF1BDB
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:50 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-98802908fedso58827966b.1
-        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:50 -0700 (PDT)
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DAAA119B0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:51 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9883123260fso45295966b.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 10:15:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687022149; x=1689614149;
+        d=linaro.org; s=google; t=1687022150; x=1689614150;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Ps3QWhVVgM6yGh2UTWWsOwF/OhEiPRE19a/BAGqkfqA=;
-        b=oVqwU31gtiEEDfj1eoeE+VmSOhCMLMwXXabNAHauNMZRtyHi1OSr8aIk8+OyWUrhDU
-         3UeECwwK5pG6JxC3/ZcUfDPyYAFZgZ+O7tDYJO12ffSnz4PuPN3zgBpV+Q0fPB7gZBy6
-         Q05camFlcR4He86LcAMbFKMWuNCpwgazMmvHKZ5ahanIBdZngLMAJorPzjrY/tOujAQx
-         C7VHmZ9/qyiKuuLjPJdS4XnHO8yzPOL1E+sC/TXXjuHRZQRMwPTfcz42/GwP+Rf/xyyE
-         k0CkL2ji9d9vT/i1XkkOjTTKREZ9PMBdBHdBYO8xwmD7T5Kd4rNu2IIBPMcNcEcGEXE5
-         MRrQ==
+        bh=MT2V6V7pjeRtWQ2ArGgc6CKhR6L6FYJOXQ1d2V4JyVg=;
+        b=qM8Y7/l9FTnxPLGnP1WBffQ5RMenMnfqIrxtxybudeC7J+pKPDtm3SnzysPSAypDKI
+         IaGfzFxYJIlJUNg7uZGdpyxB9JcqQ08tztsvUV9BHGDtfKyGX4o9AEI6wsW67meulNaE
+         oAYYk+dLYcmuWrEEwiNkPZDZEBOIYxbRddyIl2Voy+KWT6q8M736wTDkkoun6pQ29VIB
+         u3AQSnEJL/uS0+pCZsaOslgsvI1yzdtXSllOb89qzqKn3AdUX/UOh140jVtCD9iAhjm+
+         LKMEbCXh7P4eRZVtO8kso+xybCATn5oHuCI5VkmPqtrKjb8z/ANdCMBoqb3tUuubncbI
+         5fQw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687022149; x=1689614149;
+        d=1e100.net; s=20221208; t=1687022150; x=1689614150;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Ps3QWhVVgM6yGh2UTWWsOwF/OhEiPRE19a/BAGqkfqA=;
-        b=L+iq2sUlQlwPo8sibmak2QSd3T6TFzLEg/XbORCbwC81fIQ1oyTa7bGBmSQYQps4/u
-         sJu1NICJABxcgz+r29i09xA3AQsD3Lpuhl+SeQzTOX0JZh5jx7FMOTKo10viJl0WPqMQ
-         KYM6YvbvMvkW45Uws6naOqL1iAOy5pzPUEpkDjlUp5bQDUIK0Hjqs6blq5PZF7m91D5d
-         FhL6s2zPEvTYD+qVjfAEpLB3RxaK2MKF1eTFq5h3J/ovAgqenTMgodOVRwNJxKZcGmwJ
-         17dEowjXaaavppLDo+Q9o3pMJny/DHclUt5YtNVyyugDx6wRDXbhkBVtxpplMlqDKoAD
-         70uA==
-X-Gm-Message-State: AC+VfDxdcfGgv7WsBj8AmAFVoaewjaqrq/Lr02U4DYrMxn+9lmzA1WiZ
-        QhH2wZV6V2QEZGnrZucZeOcVkQ==
-X-Google-Smtp-Source: ACHHUZ5LRta2MSNgyD5Erud7nJ08cxzq9SD3oia0W3ulgA2TZ+4a1Qm7H3m11Sc648D6tS1N5llJ4Q==
-X-Received: by 2002:a17:907:9453:b0:987:47b3:6e34 with SMTP id dl19-20020a170907945300b0098747b36e34mr2143469ejc.67.1687022149172;
-        Sat, 17 Jun 2023 10:15:49 -0700 (PDT)
+        bh=MT2V6V7pjeRtWQ2ArGgc6CKhR6L6FYJOXQ1d2V4JyVg=;
+        b=OgLorJ/0+oaF7QREfBCKRS7vs3A9YrSxrFSeCrPfcilMTzlyXrjIhQ+9dCS2XW3Ioo
+         9cRAYjI8iW75LU29Wlz+wk5YuITCN76ZXhgUfjAqAB9yTzDhJDug/4SePVSStNibUsyc
+         8MONJ3hkNFqU4qqYu4r6w7/SfOc+UuJV7fzQ+BFzNR5154Ku1G//fvifZn+j4kSswZ6S
+         MWK7gWmzcQGR9HkAKfKKPpJkfIf6nZd06LXXRgr8bz8MUUIBRPANnZhk2YVxZWOeiXAS
+         kZZ8oHF0G/BXZXjWIJnlCyPx2yjWbZIfnuWp0TYXkbHuVZLKMzRLNxorrbF13gWZDqCK
+         XPKA==
+X-Gm-Message-State: AC+VfDwyKYB70nuAefTR/9SlhAqLfZ4s6XgShP/4zS1SW3XfI1RDfYqX
+        uiuFPSwAuH+y+eh920D4YRSsFA==
+X-Google-Smtp-Source: ACHHUZ4t/PzWdQt0PFtynGVm/glocMc4HXNygJXwCS5NOMi25o4Vj2WFmtfXJ2ZucHxrkYMCMSTDfw==
+X-Received: by 2002:a17:906:e211:b0:977:d048:ff9c with SMTP id gf17-20020a170906e21100b00977d048ff9cmr4223023ejb.31.1687022150465;
+        Sat, 17 Jun 2023 10:15:50 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.47
+        by smtp.gmail.com with ESMTPSA id os5-20020a170906af6500b009829dc0f2a0sm3841897ejb.111.2023.06.17.10.15.49
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 17 Jun 2023 10:15:48 -0700 (PDT)
+        Sat, 17 Jun 2023 10:15:50 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -62,9 +62,9 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 04/15] arm64: dts: qcom: apq8096-db820c: drop label from I2C
-Date:   Sat, 17 Jun 2023 19:15:30 +0200
-Message-Id: <20230617171541.286957-4-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 05/15] arm64: dts: qcom: msm8939: drop incorrect smp2p Hexagon properties
+Date:   Sat, 17 Jun 2023 19:15:31 +0200
+Message-Id: <20230617171541.286957-5-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
 References: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
@@ -73,52 +73,34 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I2C controller bindings do not allow label property:
+The children of qcom,smp2p do not need address/size-cells:
 
-  apq8096-db820c.dtb: i2c@7577000: Unevaluated properties are not allowed ('label' was unexpected)
+  msm8939-sony-xperia-kanuti-tulip.dtb: smp2p-hexagon: slave-kernel: '#address-cells', '#size-cells' do not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/apq8096-db820c.dts | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-index 537547b97459..002cf5806d83 100644
---- a/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-+++ b/arch/arm64/boot/dts/qcom/apq8096-db820c.dts
-@@ -138,8 +138,7 @@ wlan_en: wlan-en-1-8v {
- };
+diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+index 895cafc11480..05d8abbbc840 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
+@@ -386,8 +386,6 @@ hexagon_smp2p_in: slave-kernel {
  
- &blsp1_i2c3 {
--	/* On Low speed expansion */
--	label = "LS-I2C0";
-+	/* On Low speed expansion: LS-I2C0 */
- 	status = "okay";
- };
- 
-@@ -168,14 +167,12 @@ &adsp_pil {
- };
- 
- &blsp2_i2c1 {
--	/* On High speed expansion */
--	label = "HS-I2C2";
-+	/* On High speed expansion: HS-I2C2 */
- 	status = "okay";
- };
- 
- &blsp2_i2c1 {
--	/* On Low speed expansion */
--	label = "LS-I2C1";
-+	/* On Low speed expansion: LS-I2C1 */
- 	status = "okay";
- };
+ 			interrupt-controller;
+ 			#interrupt-cells = <2>;
+-			#address-cells = <0>;
+-			#size-cells = <0>;
+ 		};
+ 	};
  
 -- 
 2.34.1
