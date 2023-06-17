@@ -2,116 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30E967343B6
-	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:40:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D138F7343BD
+	for <lists+devicetree@lfdr.de>; Sat, 17 Jun 2023 22:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231310AbjFQUk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 16:40:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44264 "EHLO
+        id S1346531AbjFQUlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 17 Jun 2023 16:41:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjFQUk0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:40:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CC7AB9;
-        Sat, 17 Jun 2023 13:40:26 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C50A8612D7;
-        Sat, 17 Jun 2023 20:40:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A531C433C0;
-        Sat, 17 Jun 2023 20:40:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687034425;
-        bh=0LLv8XPCxxF1BZFuleTtUBGJqrxR9PiZesMF6yEglMY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Hh3lWD/SUmwgNUQr6ZuD6AJ2bL2Pferm/QuBKiui3LXI1MCRFBZ8QaeXhS7TmINK3
-         anGT+I2ZZ/8UYrM+FfJ8NyYxML1W8QN62YSOSUYBqjFG0XI1mwZaEgr/bwaV6R5LA3
-         lZUsBDPSGGalZkg6iRkTOf/8Y6V/2554ORL/sCmQVxJrtx3xW6B3/D1Hr2c6qBbIAR
-         fO2MGMgdxbxiOJsx7hS1pxwVt0QbV3qwnh6uqnwgd+xz6fAHoqEZ0ONYotLfSyohE3
-         OWf/Kvc5Q6bKzO5doov36s8CVCV54WwYahwfCrzpR0sjgfuVFJdjPPtSEdRfW8xcjM
-         rVZ0W45i/buMg==
-Date:   Sat, 17 Jun 2023 21:40:19 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Furkan Kardame <f.kardame@manjaro.org>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, heiko@sntech.de, broonie@kernel.org,
-        deller@gmx.de, dsterba@suse.com, arnd@arndb.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCHv2 1/2] dt-bindings: arm: rockchip: Add Firefly Station P2
-Message-ID: <20230617-compacter-unloader-ab326e0badfc@spud>
-References: <20230617135315.25441-1-f.kardame@manjaro.org>
- <20230617135315.25441-2-f.kardame@manjaro.org>
+        with ESMTP id S1346478AbjFQUl1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 16:41:27 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C86CC1992
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:41:25 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-985b04c46caso317844366b.0
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 13:41:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687034484; x=1689626484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=l4vgBQIdezab+uv8qKX62YxsEkskvdgwPbAcwg7/AX8=;
+        b=jh0IDKMzx58PthW4kACF8YpXD+TGBvd3q0tJhF5gO3RvOSgXE7HkDQyyk7ZkRKukff
+         DhJKdlQa8CZQRSpxBeZzAOnjNopKoQkzGd4w/PNe6j/v5/I5jknDYrfS7ejMWEAAcYF9
+         lMRsquqzDarHg3IMS3wcoJZnulOz8z/7Cwt46TNAZyWMYeFZ62E0WYaVpaYWCi6jUdDj
+         JF2/9cT/6bCq4StxUlmrHJPZNMmhbTd97eguN8mdTixTUDT99lP+VYFZW8tt3FX+XnZ9
+         GjieT2r+lJPDTEDnfIbXGSKVdqXZoGTSZoe4Yhu4K6FvU2S5ZkBkBsISAGwN0ukywSjF
+         qquQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687034484; x=1689626484;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=l4vgBQIdezab+uv8qKX62YxsEkskvdgwPbAcwg7/AX8=;
+        b=Zg9oIDcYJsjYCFPqatyIVXM9++BO6zqbDlEIW8HO4AkiQEAGY/h0XXmudNlvBj+NiS
+         LM2zVqj2AnH+amOR5ki1Ns0BeKPmGVdXp+mzrAnTV99t2ppVqqHk8s4P6HQ0Eilu2NjQ
+         1PtovnHoAFI4xQ2LFnkEwgs5StX/WeSqDxqvfSgX/UpGRuKi/Wqe8IhYdfPuRuOnNCqC
+         YXCF20czmf4ilDO8kHiiqRhdSyaEum0B4o51jGRC3HV/kgdixA0SD1YDR/VAxrwiLoI5
+         eNhQ2dtHNr9hxY/iHHnXdwdzhjt/VQWHnXeChu4m2dn8C3TYYjT5HqC4ISkegIhJEHfg
+         czrA==
+X-Gm-Message-State: AC+VfDxyTwV+Vl7m5IzhTCK7Raz8cLbfiUdDf2dXEk9HwbGzruaNkjVJ
+        KOPBnJZnKVR/tUeQnot3NnPWYA==
+X-Google-Smtp-Source: ACHHUZ4l/VAynlLGat76XroIqRsYR6P0DP3wBd8BenejvZVtmo8JIzHkblXP2J/HbCKAH8jgey7sDQ==
+X-Received: by 2002:a17:906:4fd1:b0:973:ff8d:2a46 with SMTP id i17-20020a1709064fd100b00973ff8d2a46mr5776689ejw.3.1687034483837;
+        Sat, 17 Jun 2023 13:41:23 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id qn18-20020a170907211200b00982c33ea394sm3349203ejb.97.2023.06.17.13.41.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 17 Jun 2023 13:41:23 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/3] arm64: dts: qcom: sm8150: Fix OSM L3 interconnect cells
+Date:   Sat, 17 Jun 2023 22:41:16 +0200
+Message-Id: <20230617204118.61959-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2fEk0WfosvVyBFB3"
-Content-Disposition: inline
-In-Reply-To: <20230617135315.25441-2-f.kardame@manjaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Qualcomm Operating State Manager (OSM) L3 Interconnect does not take
+path (third) argument.  This was introduced by commit 97c289026c62
+("arm64: dts: qcom: sm8150: Use 2 interconnect cells") which probably
+wanted to use 2 cells only for RPMh interconnects.
 
---2fEk0WfosvVyBFB3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+  sm8150-microsoft-surface-duo.dtb: interconnect@18321000: #interconnect-cells:0:0: 1 was expected
 
-Hey Furkan,
+Fixes: 97c289026c62 ("arm64: dts: qcom: sm8150: Use 2 interconnect cells")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8150.dtsi | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-On Sat, Jun 17, 2023 at 04:53:14PM +0300, Furkan Kardame wrote:
-> Station P2 is a single board computer by firefly based
-> on rk3568 soc
->=20
-> Signed-off-by: Furkan Kardame <f.kardame@manjaro.org>
-> ---
->  Documentation/devicetree/bindings/arm/rockchip.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Docume=
-ntation/devicetree/bindings/arm/rockchip.yaml
-> index ec141c937..fa21640bc 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -185,6 +185,11 @@ properties:
->            - const: firefly,rk3566-roc-pc
->            - const: rockchip,rk3566
-> =20
-> +      - description: Firefly Station P2
-> +	items:
-> +	  - const: firefly,rk3568-roc-pc
-> +	  - const: rockchip,rk3568
+diff --git a/arch/arm64/boot/dts/qcom/sm8150.dtsi b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+index 18c822abdb88..b46e55bb8bde 100644
+--- a/arch/arm64/boot/dts/qcom/sm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8150.dtsi
+@@ -56,7 +56,7 @@ CPU0: cpu@0 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD0>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -85,7 +85,7 @@ CPU1: cpu@100 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD1>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -109,7 +109,7 @@ CPU2: cpu@200 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD2>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -133,7 +133,7 @@ CPU3: cpu@300 {
+ 			qcom,freq-domain = <&cpufreq_hw 0>;
+ 			operating-points-v2 = <&cpu0_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD3>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -157,7 +157,7 @@ CPU4: cpu@400 {
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD4>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -181,7 +181,7 @@ CPU5: cpu@500 {
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD5>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -205,7 +205,7 @@ CPU6: cpu@600 {
+ 			qcom,freq-domain = <&cpufreq_hw 1>;
+ 			operating-points-v2 = <&cpu4_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD6>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -229,7 +229,7 @@ CPU7: cpu@700 {
+ 			qcom,freq-domain = <&cpufreq_hw 2>;
+ 			operating-points-v2 = <&cpu7_opp_table>;
+ 			interconnects = <&gem_noc MASTER_AMPSS_M0 0 &mc_virt SLAVE_EBI_CH0 0>,
+-					<&osm_l3 MASTER_OSM_L3_APPS 0 &osm_l3 SLAVE_OSM_L3 0>;
++					<&osm_l3 MASTER_OSM_L3_APPS &osm_l3 SLAVE_OSM_L3>;
+ 			power-domains = <&CPU_PD7>;
+ 			power-domain-names = "psci";
+ 			#cooling-cells = <2>;
+@@ -4342,7 +4342,7 @@ osm_l3: interconnect@18321000 {
+ 			clocks = <&rpmhcc RPMH_CXO_CLK>, <&gcc GPLL0>;
+ 			clock-names = "xo", "alternate";
+ 
+-			#interconnect-cells = <2>;
++			#interconnect-cells = <1>;
+ 		};
+ 
+ 		cpufreq_hw: cpufreq@18323000 {
+-- 
+2.34.1
 
-yaml files are indented with spaces, not tabs.
-
-Cheers,
-Conor.
-
-> +
->        - description: FriendlyElec NanoPi R2 series boards
->          items:
->            - enum:
-> --=20
-> 2.40.1
->=20
-
---2fEk0WfosvVyBFB3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZI4aMwAKCRB4tDGHoIJi
-0mnHAP9NnZhCnjUvboVh1fbFN1gAtvEDB01vHkni+Ag/FdNZIgEApfBUf5TMv81j
-+mEIxCjYHT4/ktVmecuKXnSveMQiswA=
-=tpqL
------END PGP SIGNATURE-----
-
---2fEk0WfosvVyBFB3--
