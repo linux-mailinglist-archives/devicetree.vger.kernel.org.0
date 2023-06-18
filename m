@@ -2,86 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E91B0734882
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 23:12:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3640734886
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 23:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229648AbjFRVM4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 17:12:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
+        id S229552AbjFRVPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 17:15:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229499AbjFRVMz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 17:12:55 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [IPv6:2001:df5:b000:5::4])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A6641A6
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 14:12:50 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 4AC1E2C0295;
-        Mon, 19 Jun 2023 09:12:40 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1687122760;
-        bh=n8GHzQbNON/Xjem4iPLcPT56xSQCP05AtkAX//cM2f4=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=hLOfbg3dnAiMkzPUA0tInJLoJgt/yEP53K+wUOFT4bHn+SDMi6eEB0dgo56EzEpX0
-         hSbSEeMlnGPUmscqEmpQfI9B0MIz25MKcn1QiQcm95jIBzcye/cfgzyftEsXL1ZOQD
-         ST1neWyxFBJgmUzUZjOf3h8sovf2ISJLWp3msIHddZVoneOyeo8gJGbIqQSJrvT3uX
-         29c252Lwn3gV2rX5JOe01djaj8HE3VPCxRgAwHwrmgPOmjYEDwj+qVUgCB+dw3m/4M
-         qZvLFtrhPRR497n2BJFo55gaDryzM+QdnMN78V3u59MTOC9xT6FVmjEP5P/QVtGXI2
-         zMwnWaM+YU9ig==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B648f73480001>; Mon, 19 Jun 2023 09:12:40 +1200
-Received: from svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8:f753:6de:11c0:a008) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.2.1118.30; Mon, 19 Jun 2023 09:12:40 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex1.atlnz.lc (2001:df5:b000:bc8::77) with Microsoft SMTP Server
- (TLS) id 15.0.1497.48; Mon, 19 Jun 2023 09:12:39 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.030; Mon, 19 Jun 2023 09:12:39 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     Gregory CLEMENT <gregory.clement@bootlin.com>,
-        "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "andrew@lunn.ch" <andrew@lunn.ch>,
-        "sebastian.hesselbarth@gmail.com" <sebastian.hesselbarth@gmail.com>,
-        "vadym.kochan@plvision.eu" <vadym.kochan@plvision.eu>
-CC:     "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "enachman@marvell.com" <enachman@marvell.com>
-Subject: Re: [PATCH v6 0/2] dt-bindings: mtd: marvell-nand: Add YAML scheme
-Thread-Topic: [PATCH v6 0/2] dt-bindings: mtd: marvell-nand: Add YAML scheme
-Thread-Index: AQHZkpEvKI1tV7pyn0+RiOLc0KH0K6+MoboAgAADkQCAA7+hgA==
-Date:   Sun, 18 Jun 2023 21:12:39 +0000
-Message-ID: <e79cb44c-a669-3726-ea71-1a4db88ebe7b@alliedtelesis.co.nz>
-References: <20230530005337.3687938-1-chris.packham@alliedtelesis.co.nz>
- <87r0qbhbqt.fsf@BL-laptop> <87ilbnhb5j.fsf@BL-laptop>
-In-Reply-To: <87ilbnhb5j.fsf@BL-laptop>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <6664D2983A17914E9F86CFFF8D694C22@atlnz.lc>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229482AbjFRVPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 17:15:18 -0400
+Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDDE13D;
+        Sun, 18 Jun 2023 14:15:17 -0700 (PDT)
+Received: from [192.168.1.141] ([37.4.248.58]) by mrelayeu.kundenserver.de
+ (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1N49Ul-1q1x8z1GuP-0102WV; Sun, 18 Jun 2023 23:14:56 +0200
+Message-ID: <13ec386b-2305-27da-9765-8fa3ad71146c@i2se.com>
+Date:   Sun, 18 Jun 2023 23:14:55 +0200
 MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=NPqrBHyg c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=of4jigFt-DYA:10 a=P-IC7800AAAA:8 a=62ntRvTiAAAA:8 a=ddKjx2dgZxSzjoJ6qqIA:9 a=QEXdDO2ut3YA:10 a=N53muDpBR4cA:10 a=d3PnA9EDa4IxuAV0gXij:22 a=pToNdpNmrtiFLRE6bQ9Z:22
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SCC_BODY_URI_ONLY,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH RFC 00/11] dmaengine: bcm2835: add BCM2711 40-bit DMA
+ support
+Content-Language: en-US
+To:     Shengyu Qu <wiagn233@outlook.com>, Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>
+Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com, dmaengine@vger.kernel.org,
+        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lukas Wunner <lukas@wunner.de>,
+        linux-rpi-kernel@lists.infradead.org
+References: <1640606743-10993-1-git-send-email-stefan.wahren@i2se.com>
+ <OS3P286MB259736F317E80CBAA2658853985EA@OS3P286MB2597.JPNP286.PROD.OUTLOOK.COM>
+From:   Stefan Wahren <stefan.wahren@i2se.com>
+In-Reply-To: <OS3P286MB259736F317E80CBAA2658853985EA@OS3P286MB2597.JPNP286.PROD.OUTLOOK.COM>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:TIm3R3XPlUbydU1vM5V4ahYsqGo22AdiXsrRxOaOlWU9yeSHu9k
+ BnFuxrMMKsdukwnss/8wvNbnpvebOU94j8vCP18EBzGpJOCdXGykXjDXCnSzCGmkyYNblME
+ qqhmERJEpCXiFV6tC/AEYT46fKK1q9jUCPQA+W7L1ejz1IrwlhSNSfcbaA9cLiDpgqePxDn
+ vEIHs2qJspz9W0O62S6lQ==
+UI-OutboundReport: notjunk:1;M01:P0:Xch+nh9eO/Y=;2Slx9wsa2DFcky3IfpoB+BeWYDG
+ a6ua9lH8S88U/rSzU2pjJV/CX2hpT9T7iTCQYZ8LW3WjkACIr/TTKl5VCubUBZo52m/+vfdDN
+ N31jtUiOUiaG5cIrhXXiEZu6IwVP00iixusExsakUFVxDmOh6dSMlbExnStl0uB+J2Ddx7uEq
+ 9glhZBwdo4y8+Wh3/pyAS7Vy1nVXA9I5PydDVgzmJKQzRlquoVLCxCI+MYm1UqD4CD4UjGA/O
+ m+q6+Y7fji53TokomhadfkMnVCcrtDWoPl5gtROLE19su1uh0A7vwuI5t3aXgejslkxH2tnHb
+ Ubnq6urUsDT7jGWjSAUhJKefW8djAXE9OhaMT7SkDt0PCLL5T7GGM8xEYiuWlFCqMFTEZg+6q
+ 71JREDfIX/J8NAxfIrMKrpL3bh1g/BjozeeZGWmOS0iehbafn/KqNhxLULHg8FkF5hVB4u/ut
+ eaoFsjccUcHzzM1W9n3HC7WT6zUSDwOb9KymZRTbTGX0iC+cPoIHfJ1yeD9/CFS8t6xet5T7o
+ QSesjWiHHw7qMGGm8fdDFfBEk5esdC8KD2kHM/VdMfSQwRoP5wvVpaW88gYEnJfYKnmHFQO3r
+ VmqF/1c+WeZiHW1fzmaK4DdVWbUBn+fHHzT9t2riqyS7bNFBh10ccam9vWyJMPAsd0h+kWOC9
+ qb39kdq/J8Hn8A7Ffdd0lEW1HDUsW84RzDG/+Al4sQ==
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,37 +66,85 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAxNi8wNi8yMyAyMzo1OCwgR3JlZ29yeSBDTEVNRU5UIHdyb3RlOg0KPiBHcmVnb3J5IENM
-RU1FTlQgPGdyZWdvcnkuY2xlbWVudEBib290bGluLmNvbT4gd3JpdGVzOg0KPg0KPj4gQ2hyaXMg
-UGFja2hhbSA8Y2hyaXMucGFja2hhbUBhbGxpZWR0ZWxlc2lzLmNvLm56PiB3cml0ZXM6DQo+Pg0K
-Pj4+IEFkZCBZQU1MIHNjaGVtZSBmb3IgdGhlIE1hcnZlbGwncyBOQU5EIGNvbnRyb2xsZXINCj4+
-PiB0byB2YWxpZGF0ZSBpdCdzIERUIGJpbmRpbmdzLiBPbGQgdHh0IGZpbGUgaXMgZGVsZXRlZCwN
-Cj4+PiBub3QgaW5jbHVkZWQgdGhlIGNvbXBhdGlibGVzIGFuZCBwcm9wZXJ0aWVzIHdoaWNoIHdl
-cmUgbWFya2VkIGFzDQo+Pj4gZGVwcmVjYXRlZC4NCj4+Pg0KPj4+IEFsc28gZml4IG5vZGUgbmFt
-ZSBpbiBjcDExeCBEVFNJIGFjb3JkaW5nIHRvIG5hbmQtY29udHJvbGxlci55YW1sDQo+Pj4NCj4+
-PiBJJ3ZlIHBpY2tlZCB1cCB0aGlzIHNlcmllcyB0byBob3BlZnVsbHkgZ2V0IGl0IG92ZXIgdGhl
-IGxpbmUuIEkgdGhpbmsgSSd2ZQ0KPj4+IGFkZHJlc3NlZCBhbGwgdGhlIGZlZWRiYWNrIGZyb20g
-dGhlIGxhc3Qgcm91bmQgb2YgcmV2aWV3Lg0KPj4+DQo+Pj4gVmFkeW0gS29jaGFuICgyKToNCj4+
-PiAgICBkdC1iaW5kaW5nczogbXRkOiBtYXJ2ZWxsLW5hbmQ6IENvbnZlcnQgdG8gWUFNTCBEVCBz
-Y2hlbWUNCj4+PiAgICBhcm02NDogZHRzOiBtYXJ2ZWxsOiBjcDExeDogRml4IG5hbmRfY29udHJv
-bGxlciBub2RlIG5hbWUgYWNjb3JkaW5nIHRvDQo+Pj4gICAgICBZQU1MDQo+Pg0KPj4gQm90aCBw
-YXRjaCBhcHBsaWVkIG9uIG12ZWJ1L2R0NjQNCj4+DQo+PiBIb3dldmVyIGlmIHRoZSBmaXJzdCBw
-YXRjaCBzaG91bGQgYmUgbWVyZ2VkIHRocm91Z2ggYW5vdGhlciB0cmVlLCBsZXQgbWUNCj4+IGtu
-b3cuDQo+IEZpbmFsbHkgSSByZW1vdmVkIHRoZXNlIGJvdGggcGF0Y2hlcywgSSBtaXNzZWQgdGhl
-IHZlcnNpb24gOSENCj4NCj4gSSBhcHBsaWVkIHRoZSAyIHBhdGNoZXMgZm9yIHRoZSBkdHMgZmls
-ZXMgZnJvbSB2OS4NCj4NCj4gVGhhbmtzLA0KPg0KPiBHcmVnb3J5DQpUaGFua3MgYW5kIHNvcnJ5
-IGZvciB0aGUgY29uZnVzaW9uLiBUaGVyZSdzIGEgdjEwIG9uIHRoZSB3YXkgYnV0IEkgY2FuIA0K
-ZHJvcCBvdXQgdGhlIGR0cyBjaGFuZ2VzIGZyb20gdGhhdCBub3cuDQo+Pg0KPj4+ICAgLi4uL2Jp
-bmRpbmdzL210ZC9tYXJ2ZWxsLG5hbmQtY29udHJvbGxlci55YW1sIHwgMTkwICsrKysrKysrKysr
-KysrKysrKw0KPj4+ICAgLi4uL2RldmljZXRyZWUvYmluZGluZ3MvbXRkL21hcnZlbGwtbmFuZC50
-eHQgIHwgMTI2IC0tLS0tLS0tLS0tLQ0KPj4+ICAgTUFJTlRBSU5FUlMgICAgICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIHwgICAxIC0NCj4+PiAgIGFyY2gvYXJtNjQvYm9vdC9kdHMvbWFy
-dmVsbC9hcm1hZGEtY3AxMXguZHRzaSB8ICAgMiArLQ0KPj4+ICAgNCBmaWxlcyBjaGFuZ2VkLCAx
-OTEgaW5zZXJ0aW9ucygrKSwgMTI4IGRlbGV0aW9ucygtKQ0KPj4+ICAgY3JlYXRlIG1vZGUgMTAw
-NjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tdGQvbWFydmVsbCxuYW5kLWNv
-bnRyb2xsZXIueWFtbA0KPj4+ICAgZGVsZXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy9tdGQvbWFydmVsbC1uYW5kLnR4dA0KPj4+DQo+Pj4gLS0gDQo+Pj4g
-Mi40MC4xDQo+Pj4NCj4+IC0tIA0KPj4gR3JlZ29yeSBDbGVtZW50LCBCb290bGluDQo+PiBFbWJl
-ZGRlZCBMaW51eCBhbmQgS2VybmVsIGVuZ2luZWVyaW5nDQo+PiBodHRwOi8vc2Nhbm1haWwudHJ1
-c3R3YXZlLmNvbS8/Yz0yMDk4OCZkPTBjNk01SDhQQmFnV1hEdVNLc2piWHBkMXpMWC1ISEhSazN4
-U1pPZEZEdyZ1PWh0dHAlM2ElMmYlMmZib290bGluJTJlY29t
+Hi Sengyu,
+
+Am 18.06.23 um 21:43 schrieb Shengyu Qu:
+> Hello Stefan,
+> 
+> Sorry to reply to this old series, but I wonder what happens to this 
+> series?
+
+i never found the time to prepare a newer version. Unfortunately the 
+downstream kernel had a lot of changes regarding this feature recently.
+
+> 
+> Best regards,
+> 
+> Shengyu
+> 
+>> The BCM2711 has 4 DMA channels with a 40-bit address range, allowing them
+>> to access the full 4GB of memory on a Pi 4. This patch series serves as a
+>> basis for a discussion (just compile tested, so don't expect anything 
+>> working)
+>> which include the following points:
+>>
+>> * correct DT binding and representation for BCM2711
+>>
+>> According to the vendor DTS [1] the 4 DMA channels are connected to SCB.
+>> I'm not sure how this is properly adapted to the mainline DT.
+>>
+>> * general implementation approach
+>>
+>> The vendor approach mapped all the BCM2835 control block bits to the 
+>> BCM2711
+>> layout and the rest of the differences are handled by a lot of 
+>> is_40bit_channel
+>> conditions. An advantage of this is the small amount of changes to the 
+>> driver.
+>> But on the down side the code is now much harder to understand and 
+>> maintain.
+>>
+>> This series tries to implement this feature in a more cleaner way
+>> while keeping it in the bcm2835-dma driver. Before this series the driver
+>> has ~ 1000 lines and after that ~ 1500 lines.
+>>
+>> So the question is this approach acceptable?
+>>
+>> Patches 1 - 3 are just clean-ups.
+>>
+>> Disclaimer: my knowledge about the DMA controller is very limited
+>>
+>> More information:
+>>
+>> https://datasheets.raspberrypi.com/bcm2711/bcm2711-peripherals.pdf
+>>
+>> [1] - 
+>> https://github.com/raspberrypi/linux/blob/561deffcf471ba0f7bd48541d06a79d5aa38d297/arch/arm/boot/dts/bcm2711-rpi-ds.dtsi#L47
+>> [2] - 
+>> https://github.com/raspberrypi/linux/commit/44364bd140b0bc9187c881fbdc4ee358961059d5
+>>
+>> Stefan Wahren (11):
+>>    ARM: dts: bcm283x: Update DMA node name per DT schema
+>>    dt-bindings: dma: Convert brcm,bcm2835-dma to json-schema
+>>    dmaengine: bcm2835: Support common dma-channel-mask
+>>    dmaengine: bcm2835: move CB info generation into separate function
+>>    dmaengine: bcm2835: move CB final extra info generation into function
+>>    dmaengine: bcm2835: make address increment platform independent
+>>    dmaengine: bcm2385: drop info parameters
+>>    dmaengine: bcm2835: pass dma_chan to generic functions
+>>    dmaengine: bcm2835: introduce multi platform support
+>>    dmaengine: bcm2835: add BCM2711 40-bit DMA support
+>>    ARM: dts: bcm2711: add bcm2711-dma node
+>>
+>>   .../devicetree/bindings/dma/brcm,bcm2835-dma.txt   |  83 ---
+>>   .../devicetree/bindings/dma/brcm,bcm2835-dma.yaml  | 107 +++
+>>   arch/arm/boot/dts/bcm2711.dtsi                     |  18 +-
+>>   arch/arm/boot/dts/bcm2835-common.dtsi              |   2 +-
+>>   drivers/dma/bcm2835-dma.c                          | 745 
+>> +++++++++++++++++----
+>>   5 files changed, 734 insertions(+), 221 deletions(-)
+>>   delete mode 100644 
+>> Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
+>>   create mode 100644 
+>> Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
+>>
