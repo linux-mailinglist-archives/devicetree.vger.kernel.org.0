@@ -2,90 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CA54734669
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 15:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 482DD734677
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 15:58:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbjFRNkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 09:40:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44050 "EHLO
+        id S229814AbjFRN6H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 09:58:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjFRNkW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 09:40:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A0981AB;
-        Sun, 18 Jun 2023 06:40:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 24B5960ED3;
-        Sun, 18 Jun 2023 13:40:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 6E30DC433C8;
-        Sun, 18 Jun 2023 13:40:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687095620;
-        bh=3ZfdVHlvWNk4QSgyJ/JM9b/WhTMvolihQEHxoUoZ6WI=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=FSNXu9IxG8HHlo3Q3bHO/+wYR6f5hmyP6lit/1BvnN/YM3KS0qhf8rSZxOCVyyZQX
-         A3biijXH0y+nklROibUpIKSx111pD/yby0WnMFStfqLkFzmmzqeidiBlPCSwKtRAVI
-         jGcxwtCh6US2vnyvgcto1NDqoc1u6YsRU0Ju/+N90ChKZknCNPAPNoOHD4U9XfaI+J
-         CpvdzCANorGsUEwftwsrbey7ZJxJPKb3pMIfubv3lXpJzQLP7i/TFh7f5YMY737UI4
-         VuIY6KGCuUqgg0dTIij7aYtH6ZOU9SdmYkuteL4RGcqZfgN9QWAO4ZfstQkxtOp365
-         BFwjWLrOgO1lg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 507FAE49BBF;
-        Sun, 18 Jun 2023 13:40:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229779AbjFRN6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 09:58:06 -0400
+Received: from aposti.net (aposti.net [89.234.176.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 671211BF;
+        Sun, 18 Jun 2023 06:58:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1687096683;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=YFvP7ex7sh59x2Zu10sumdOcBtAoUqyi0bcCYgQlGWg=;
+        b=oeomZ+Lh4LsIYrRa1ueU6sp5sjcBeRBkiVFe96qQ2aTd4+WbMBrxDdDMo8cSC5L1zO3WJr
+        R8mbbMaWOOFJpjmdqGrYLhPV4wZzvpBR8jpineG40OwyjgB7QSINuDpOXIEKiY0GOh2ozK
+        98VCgkq/wLOkOaR8tFHJ+6mmUggrQq4=
+Message-ID: <5511fba10119cdc08a18ea2cca98fed343f9cd33.camel@crapouillou.net>
+Subject: Re: [PATCH 0/9] MIPS: CI20: Add WiFi / Bluetooth support
+From:   Paul Cercueil <paul@crapouillou.net>
+To:     "H. Nikolaus Schaller" <hns@goldelico.com>
+Cc:     list@opendingux.net, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Paul Boddie <paul@boddie.org.uk>,
+        Paul Burton <paulburton@kernel.org>,
+        Christophe Branchereau <cbranchereau@gmail.com>
+Date:   Sun, 18 Jun 2023 15:58:01 +0200
+In-Reply-To: <ebf776a8fb8dee045e7661daaca4564fe39917a6.camel@crapouillou.net>
+References: <20230615084006.79194526F801@goldelico.com>
+         <C1924536-FA97-4E75-9D22-99E5AF24EE5B@goldelico.com>
+         <A8EBCBA4-D9BA-4C2F-9C91-38128D06EDBA@goldelico.com>
+         <AA802E24-A97B-42B6-90A4-5ECB1E4D9294@goldelico.com>
+         <5EF6B0D2-2B84-4C98-B799-88062E035EC1@goldelico.com>
+         <43DCEEA5-C013-44BE-85C7-D61A980B0EA5@goldelico.com>
+         <ebf776a8fb8dee045e7661daaca4564fe39917a6.camel@crapouillou.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] dt-bindings: net: phy: gpy2xx: more precise
- description
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168709562032.22941.5957562536489573890.git-patchwork-notify@kernel.org>
-Date:   Sun, 18 Jun 2023 13:40:20 +0000
-References: <20230616-feature-maxlinear-dt-better-irq-desc-v1-1-57a8936543bf@kernel.org>
-In-Reply-To: <20230616-feature-maxlinear-dt-better-irq-desc-v1-1-57a8936543bf@kernel.org>
-To:     Michael Walle <mwalle@kernel.org>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        andrew@lunn.ch, michael@walle.cc, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Hi All,
 
-This patch was applied to netdev/net-next.git (main)
-by David S. Miller <davem@davemloft.net>:
+[...]
 
-On Fri, 16 Jun 2023 12:45:57 +0200 you wrote:
-> Mention that the interrupt line is just asserted for a random period of
-> time, not the entire time.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Michael Walle <mwalle@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/maxlinear,gpy2xx.yaml | 11 ++++++-----
->  1 file changed, 6 insertions(+), 5 deletions(-)
-> 
-> [...]
+> Looking at the JZ4780_DS.PDF file, the SoC actually wants 1.1V so the
+> DT is not wrong - in theory. But in practice it does not work, as you
+> experienced yourself. However, if the ACT8600 defaults to 1.2V, or if
+> the bootloader configures it to 1.2V, I would think that this is
+> actually a voltage that the SoC can handle - otherwise the SoC would
+> be
+> overvolted until the kernel starts, and the board design would be
+> flawed.
+>=20
+> I measured that the old 3.x kernel keeps the SoC voltage at 1.2V, so
+> it
+> sounds like a better default. Therefore the fix here would be to
+> raise
+> the DCDC1 regulator to 1.2V.
+>=20
+> I'll send a patch later today.
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: phy: gpy2xx: more precise description
-    https://git.kernel.org/netdev/net-next/c/264879fdbea0
+After a talk with Christophe (Cc'd), I changed my mind.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
+A +100 mV overvolt is a *huge* step up, and although the SoC doesn't
+burst into flames, it could very well reduce its life span.
 
+I used to have huge stability issues (kernel not booting to userspace
+half the times, or just plain reboots after a few minutes of uptime)
+and I now realize it's because I was running the core at 1.1V, because
+these issues disappeared the moment I switched to 1.2V.
 
+However, I am now running at 1.125 volts, which is just 25mV above the
+nominal voltage - and it's been extremely stable so far.
+
+Nikolaus: could you test at 1.125 volts? If it's stable for you as
+well, I'd suggest to use this as the new default.
+
+Paul (Burton): As you wrote most of the drivers (and uboot?) for the
+board, do you know why VDDCORE was set to 1.2V?
+
+Cheers,
+-Paul
