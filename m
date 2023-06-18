@@ -2,147 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AC187346A3
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 16:38:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D8447346A4
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 16:38:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbjFROiH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 10:38:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53838 "EHLO
+        id S229519AbjFROiO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 10:38:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229470AbjFROiG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 10:38:06 -0400
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05A5AB7
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 07:38:04 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 8D4185C0151;
-        Sun, 18 Jun 2023 10:38:01 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Sun, 18 Jun 2023 10:38:01 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1687099081; x=1687185481; bh=yH
-        PTUvDEJzexGeFyXGlFy4j+8AWZoDxdix6s9FqPIHs=; b=XjWeHdw6sM5ayuW9JN
-        Q+vEd5b/msGbtZ0G4YZa8kGWab0hY1Xl4Fk2wL6uDrFjzRkvubCV1+RzltObSRHU
-        /SatV9aP+EvnvGQ61ReiFrk94aCMCM/v+DLIUdGGKJ3aa3kZI17/yGfLvPY41mDv
-        7INoAYAvulKaX6PqqiS+LLCzfCTBv5ZHoRRE0/wWl++UGzhA0FIgRy9GaLmZsAQL
-        WAnjfRM0CaGzvrW8b2Wlhw7vvRYMykWIiIqrCM0J8vWEz2YMOK2C1lOrHqhcI/Dr
-        thaPKcfq6nIvpnG2J7oPb6C3uMcT1WwT8nihHwQN21y3W0g/krq9la/Md7roWo4H
-        eeSw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1687099081; x=1687185481; bh=yHPTUvDEJzexG
-        eFyXGlFy4j+8AWZoDxdix6s9FqPIHs=; b=o7wnUfH5tsmL46BJoVnqf2HidewD3
-        uV5SoOyjREuoZxLy7/aAhOd1JrlBMue2pqvWN/NTwWhwWBbIFvt9TVbBjEm3+N6f
-        KfXRu5XxGvYwlyY/4FarqMavmlzkTwTcKKlnNrrPLKf2yKvZX5cxZoU06vrrR2W2
-        GnPzdutkN6zWZm2Wj3N8PbqHCcLugewOs47GYOkbjWYQgIj2jrP5UedsRhB3hQcx
-        5UCXW50ExYnJSlpiWgUb0h5yYOY7+J4SDJcEF9Q8dJ6TiU7PrWzKZHjz4tC/uTC4
-        AeR/4jXxU1PaUB8PYIydRJd0rvJ/ovTnBT07dfXOxLvuPTmami6gpaa7A==
-X-ME-Sender: <xms:yRaPZKeFGfwexWCQh_aeCWXju7UMmUNq_TjUxvV4x_K4OduqIMzY6Q>
-    <xme:yRaPZEMO3JS484JbMHB-myJv4DZAtKuK7dBlm9faoAkQkcBwwKrky3q2W-KGabWiW
-    uakLlYClkB0bojxsB4>
-X-ME-Received: <xmr:yRaPZLicpk1jeeVkVuwKRX-ACY-9VPIVgYgYOZrUM04sUDizi_MSXV-bhuET2S0dsJk8qqGR2yCFUtdzt4BRsA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgeeftddgjeelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtsfertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeeuveduheeutdekvefgudevjeeufedvvdevhfejgfelgfdtkeevueegteek
-    gfelfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:yRaPZH92QQ-zJD8fHCiJ3uwaQe6EgJodXUZ0sbrq3S4B9fYrXIvZCw>
-    <xmx:yRaPZGtSrepKc9Oajx0IfCTiLUcp87jGxzoVuXZjG-t-uj0XFWdhAA>
-    <xmx:yRaPZOHVYukn0vYqyNGrOHvt2Bb9FaOg4YWh0GpFpcXNyq2F-xDCJg>
-    <xmx:yRaPZHlViflruuuBRPx7aaBx68vH6gcLOzAjdZuDGsohOcQMM72Phw>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Sun,
- 18 Jun 2023 10:38:00 -0400 (EDT)
-Date:   Sun, 18 Jun 2023 16:37:58 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v2 2/6] dt-bindings: display: st7789v: bound the number
- of Rx data lines
-Message-ID: <tcxifa7ol3fukfsdw7hh3kl25dhpviu6lasdc6xasz4dvhjedx@mo2vae6smtok>
-References: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
- <20230616163255.2804163-3-miquel.raynal@bootlin.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="otms7pwhtdnr5mrv"
-Content-Disposition: inline
-In-Reply-To: <20230616163255.2804163-3-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S229512AbjFROiO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 10:38:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D8DB18B
+        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 07:38:13 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A3E1060BAC
+        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 14:38:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9B51C433C0;
+        Sun, 18 Jun 2023 14:38:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687099092;
+        bh=MexRQi6ryRiFWia6auG4Bx08XeZUfCYXxh/Eno0wAZ8=;
+        h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
+        b=dDazEZleoaHmeFViUBfKdmuM5wJ/dRIYho6n49iBIOu79Kp+gLvF13+xMzY8ynIOh
+         u+pYmr3Smm3cRvlu6dJn3YQm21jt+cfoYVCcnTllWUPJAilFhAuYKYpXr09ohk8QRz
+         T2/AEx4Y3FuRkQL+6xW2HjOT8IQCbVw/6riu0bXasgDSP0PYg8JTNw2NA+gQ4MSUL7
+         inHaZuLNIduVW3wD7C3PPdyelSXmTiZ9bJWNQjTYke+n7ckKOpR1mu4Osqrn+KqqbB
+         XH8tlIYR15ZYvydUbCQg0UWsZjHrGqMpsv6sJIspwAiu//90vOJoQ8OjZcWCzvH/Bf
+         hahenSqrl/fSg==
+Message-ID: <f58a0545f4ace43df098d6a08820f658.mripard@kernel.org>
+Date:   Sun, 18 Jun 2023 14:38:09 +0000
+From:   "Maxime Ripard" <mripard@kernel.org>
+To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 3/6] drm/panel: sitronix-st7789v: Use 9 bits per spi
+ word by default
+In-Reply-To: <20230616163255.2804163-4-miquel.raynal@bootlin.com>
+References: <20230616163255.2804163-4-miquel.raynal@bootlin.com>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        "Daniel Vetter" <daniel@ffwll.ch>,
+        "David Airlie" <airlied@gmail.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Maxime Ripard" <maxime@cerno.tech>,
+        "Michael Riesch" <michael.riesch@wolfvision.net>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Sam Ravnborg" <sam@ravnborg.org>,
+        "Sebastian Reichel" <sre@kernel.org>,
+        "Thierry Reding" <thierry.reding@gmail.com>,
+        "Thomas Petazzoni" <thomas.petazzoni@bootlin.com>
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---otms7pwhtdnr5mrv
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi,
-
-On Fri, Jun 16, 2023 at 06:32:51PM +0200, Miquel Raynal wrote:
-> The ST7789V LCD controller supports regular SPI wiring, as well as no Rx
-> data line at all. The operating system needs to know whether it can read
-> registers from the device or not. Let's detail this specific design
-> possibility by bounding the spi-rx-bus-width property.
->=20
+On Fri, 16 Jun 2023 18:32:52 +0200, Miquel Raynal wrote:
+> The Sitronix controller expects 9-bit words, provide this as default at
+> probe time rather than specifying this in each and every access.
+> 
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> ---
->  .../devicetree/bindings/display/panel/sitronix,st7789v.yaml   | 4 ++++
->  1 file changed, 4 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/display/panel/sitronix,st7=
-789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st7789=
-v.yaml
-> index 0ccf0487fd8e..a25df7e1df88 100644
-> --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
-ml
-> +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789v.ya=
-ml
-> @@ -29,6 +29,10 @@ properties:
->    spi-cpha: true
->    spi-cpol: true
-> =20
-> +  spi-rx-bus-width:
-> +    minimum: 0
-> +    maximum: 1
-> +
+> Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+> 
+> [ ... ]
 
-It's not clear to me what the default would be?
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
+Thanks!
 Maxime
-
---otms7pwhtdnr5mrv
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZI8WxgAKCRDj7w1vZxhR
-xc99AP9Ts/kjlHjrEnVxIWs+FQYB3wAKMrbjGvgwoEsK6sh7CQEA4vP8NKL9uarv
-CstXKeIeibHyRFjG/QilV4JYFWDPswA=
-=fqY3
------END PGP SIGNATURE-----
-
---otms7pwhtdnr5mrv--
