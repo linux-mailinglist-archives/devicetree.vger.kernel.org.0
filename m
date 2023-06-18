@@ -2,484 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 013BD73475D
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 19:44:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1DB4734770
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 20:09:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229500AbjFRRoz convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 18 Jun 2023 13:44:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51214 "EHLO
+        id S229487AbjFRSJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 14:09:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbjFRRot (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 13:44:49 -0400
-Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CCA0E50;
-        Sun, 18 Jun 2023 10:44:48 -0700 (PDT)
-Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5701eaf0d04so30726837b3.2;
-        Sun, 18 Jun 2023 10:44:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687110287; x=1689702287;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=y9KdNjinEz6R6TTGochCLoYBY6M9YCjI05gTuZN0owo=;
-        b=K4xWJFsWWR10wQk/m/23ozUX1d9agijoGl1/1kUZdqdCSGUMRQiWQUuBDef8gXRami
-         iL+bbnSTfC2cCGwk2110bDFy18lPfmxu1GoKGAIxv3Oq0ZagFP8iJ4yNEe2Udc3q+oME
-         MWRX4+NgwbVPcQ3Dnd2FuNJlGPlz6iFBn/8gWsFer3P0D/rPjoEzxfMEcbtL3Z7spNO8
-         m2+CJx9duPAwlUBmiMcCQjar0oECOTwE9RmMnn7jMUgDLKDkDbRD+DeE8B8qM61f9jWu
-         egMUOGLm9UULpWLqGkKan1WIAEe2EOZsVkquNrWafMX+B6olz0isKNdBP5QWbGFnkY1Z
-         tynA==
-X-Gm-Message-State: AC+VfDwRUO5GoN62ZOEFwB9gy1EiYS5hOgsB5rOtoSYo++VKKEBdBdBi
-        vdXyJjG2WBjq+qcnn6cXdnUXrkOS4A1uoKGg894=
-X-Google-Smtp-Source: ACHHUZ6Qkyha88Bx2a76NX3xEYiBjP/3Dw6ESHoYD3XPwpzyUzonQvls6jCOYJsugNGDbgYHtNgDRg==
-X-Received: by 2002:a0d:c6c5:0:b0:56f:ee38:786a with SMTP id i188-20020a0dc6c5000000b0056fee38786amr6764626ywd.24.1687110286888;
-        Sun, 18 Jun 2023 10:44:46 -0700 (PDT)
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
-        by smtp.gmail.com with ESMTPSA id o125-20020a815a83000000b00545a08184cesm6274821ywb.94.2023.06.18.10.44.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jun 2023 10:44:45 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-bb167972cffso2875788276.1;
-        Sun, 18 Jun 2023 10:44:45 -0700 (PDT)
-X-Received: by 2002:a25:aa72:0:b0:bc9:51a1:5a86 with SMTP id
- s105-20020a25aa72000000b00bc951a15a86mr4340442ybi.64.1687110285167; Sun, 18
- Jun 2023 10:44:45 -0700 (PDT)
+        with ESMTP id S229491AbjFRSJv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 14:09:51 -0400
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (mail-vi1eur05on2046.outbound.protection.outlook.com [40.107.21.46])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE0F3110;
+        Sun, 18 Jun 2023 11:09:48 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=mNyW7K5yUm2oUBVH/ZRkkLKVBiKJP8kWa01cWw06+Xtg+dlQubC6tH2HeXiSOq7xdKCl6y0uIEFDxYqCMUTKowgsTZfZMTBvE4LBzTkA0jLVRQxo5t+dUBpvyV2B+AOmhSnL8LwmnDWHDr/wOvSVFJfen3rusVOvpDg95Oabhr0EtH9fN7AKxuDOuAF6Jqg8LJhfnLVc2UdYLFCaHP56c/kk2gJgiV46JXTVxxmgb6YG3t7aKhFSHF7im0WAUhmVoJ9ea+gdRGNwgDtMdj95PcY+OwUBdxDhe1WhkhW2XwRL9RHRGPqsYxTFeXNUc87BZWILBewaBPshWATM6p6XiA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MEnGh6GNW3N201nd85++3IFZ1FlWARWFbB5j++mchM0=;
+ b=Iypca6en4rqqMB23b4uoSukujZrWTkN4qyudWf48mWrDOQt1ze8Hwcw6Xk7/YokfpOOnU1mnydJAwqD8WhOlB7EcJ8qmiEPKuy1AM1gLA20J1BuQPcZ5sa3riHk6PpuHxVgGJ66z4zJejozuLTvhebRqfw+RJfG8Tww06f/WF/qnpNyzVlDsbEte4PoDUf27K0iCgwJEeAS86ba+Wj8x2TgkTqJDfMvUGbrmvIu/PjBrlP1l7nQOdvxc0lGFP6juJ8Fi+JVGz70JLyFk2vA2OlXJDHlC5NsMKmPpq/QXKdnNH+1TlkVhHDXWkwNqJ+rIzAhiLzRwrqB+Hv/9G753QQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MEnGh6GNW3N201nd85++3IFZ1FlWARWFbB5j++mchM0=;
+ b=X7e186mVnTf+FiYP+E4mPgDXyPz9n53mZsPsVBvN+2B0GyOtI8jFqpc9OTKOCOAeErxtQGWWSg7cMUZcObmPIAtdCeVWEXAg3WtK1YjR02HZUSwvK/O7E1xuAifTBbmqPNwyd7j8Uo+3MS7cezzhi3DsRtaXUzH03J5R7VlkNMo=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by DB8PR04MB7019.eurprd04.prod.outlook.com (2603:10a6:10:12b::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.29; Sun, 18 Jun
+ 2023 18:09:45 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::4a2a:262e:415f:e41c]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::4a2a:262e:415f:e41c%7]) with mapi id 15.20.6500.031; Sun, 18 Jun 2023
+ 18:09:45 +0000
+From:   Frank Li <Frank.Li@nxp.com>
+To:     frank.li@nxp.com
+Cc:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org,
+        imx@lists.linux.dev, joy.zou@nxp.com,
+        krzysztof.kozlowski+dt@linaro.org, krzysztof.kozlowski@linaro.org,
+        linux-kernel@vger.kernel.org, peng.fan@nxp.com, robh+dt@kernel.org,
+        shenwei.wang@nxp.com, vkoul@kernel.org
+Subject: [PATCH v8 00/12] dmaengine: edma: add freescale edma v3 support
+Date:   Sun, 18 Jun 2023 14:09:13 -0400
+Message-Id: <20230618180925.2350169-1-Frank.Li@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0048.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::23) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 MIME-Version: 1.0
-References: <20230615182938.18487-1-tanure@linux.com> <20230615182938.18487-7-tanure@linux.com>
- <ZIumTthAmBLBxpXn@ofant> <CAJX_Q+14r0knLHLg0=G_kA=JhVvhZD1VRK=xuKkvTzwg820coA@mail.gmail.com>
-In-Reply-To: <CAJX_Q+14r0knLHLg0=G_kA=JhVvhZD1VRK=xuKkvTzwg820coA@mail.gmail.com>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Sun, 18 Jun 2023 18:44:33 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+2oVhE5zcYZPcFY_7AbGQBOkNoY0_1n6dBOiz40GFZ=bg@mail.gmail.com>
-Message-ID: <CAJX_Q+2oVhE5zcYZPcFY_7AbGQBOkNoY0_1n6dBOiz40GFZ=bg@mail.gmail.com>
-Subject: Re: [PATCH 6/6] arm64: dts: meson-t7-a311d2-khadas-vim4: add initial device-tree
-To:     Yixun Lan <dlan@gentoo.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Nick <nick@khadas.com>, Artem <art@khadas.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-serial@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|DB8PR04MB7019:EE_
+X-MS-Office365-Filtering-Correlation-Id: f07986ad-c600-4ee2-17d3-08db7027320f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: tuPEwiUkivlEm4cjZjK2vLXXfAOLCzj9u8f9s2Jt9E3P4VfnkTytUq5VwTSgPXOteTA9M/P5XmRsN4bfLtx3yV/Tq6j3H8mIOzrpIypiCQggRGWPZb06sCOgBlYl5350pSt0oZK5qvq7AbJZI/KreFqs73uFCDH/zM/ozibbdRaHWtAG3e2HeOdS5S9OrulN/H7V5mRrIrW/WHHAvyJovvcAMnqbKRS7kMQgI/Uyayhbee4F+7tfuix2hijVolki/g57wJ4fM5IvEecl5541E0Bwh3Kl4EwLFcDUsZLlCTZdl9xob+LpF2c+vXYBXhAHBBvOGBEFnV8zwtFR1cqOAWFcs3BKpfjylU8f8birkfvD8sAweDCWb6Jn8I5I6bxY/UoyGselrLYKJZZgKI2/1mZkicJUuAOj20FJshe4v+HD52+vP9laYabm8PZV2ACE5LTQhDpd43xxyJfam2GN7qJlg/pzCewR8BZ5XtvyAHblSpy6MvZ0nu47PHyZ1gkEplZI/Tx8MPvzNfXEb8i1GLMOYURzBkgbzyfEOUtubGWOAX+rlsjJif2OZp59RqcwQR8RxF/mcktyXCtIC30ZdvPWGD1yMai/jjE+3P/5NRhIUeYdorjeFtf8W41Vag7T
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(39860400002)(396003)(136003)(366004)(451199021)(66946007)(316002)(4326008)(478600001)(66476007)(37006003)(66556008)(86362001)(36756003)(186003)(6506007)(1076003)(83380400001)(26005)(6512007)(6486002)(34206002)(8676002)(8936002)(5660300002)(2906002)(6666004)(52116002)(38100700002)(38350700002)(2616005)(41300700001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gJcFrkHL+PzJkBBjF2eBV41IHA66Y8jsbPglxGHZ7FrxR5IiNo7hSa0Yo13k?=
+ =?us-ascii?Q?sx1PbPwL2oxRwgzqSY/0B4UmHtQ3nQb6aKy2CSJkXMspN9SMRhSg/FCEMfbv?=
+ =?us-ascii?Q?tPi38YwKzS1iUSC/aEsK1dmfEdFBFic1qhX6GGoW2k0kzLq24SZecEfxf+rP?=
+ =?us-ascii?Q?oBt556mk2syOLYKBU2BR9GHYW2UGL0yJIj8U3Wiwbj9PIORlgAphTPM43dY0?=
+ =?us-ascii?Q?4Y2DGalCF9M3okfT5e8jgnvPIzRh8OyXfYHD1dFLp838D+2ejtD0AOVrrDnI?=
+ =?us-ascii?Q?7lOFfqrRF+OBMQ3+1n3rYY+qKRu7epMeFDc+Ycd4MVms4RUkCDAC1wkp7sL4?=
+ =?us-ascii?Q?IE0egtuAv/cisAG2ChIqJSSoHgST7nsDpTf7+kelCottMEoubjme9fisg5Ca?=
+ =?us-ascii?Q?WK26bmcFUfu0QKRnRX3l9elHQ464gerndAHl44XwUe1MbS7txiSsR8YfDRCq?=
+ =?us-ascii?Q?LkJvGiSLHSm1H3rNM2jh8ZDykG39PX/VAvEgP3boq3qCWvPPrjxCtnnZpKH1?=
+ =?us-ascii?Q?jt2R/c5v8Bd0LwmRQocbpNKP10z4V/UhpXSMPEhteLJQGruCiXZvRJDWUOCW?=
+ =?us-ascii?Q?asKsQqH52qULUD5WJNc+WPnIxAyVEcUjfGkP7t+uodFWOZZ1AlBgU/tsPg5T?=
+ =?us-ascii?Q?W7FU+3xckok+CPTNmhn0xDVqBNzmqo/hmIaX2uSTnDpEibK1pStdYAdHAbrw?=
+ =?us-ascii?Q?k9nitR0Q7IpAQ8HBLyeZ6vV8cbMdp4i4fMd4uQlvBtgOW/Tnp/VLL1efD/s2?=
+ =?us-ascii?Q?AmHHnn0OgGk0u8yW9X5AvT9xqSSv1xj7J2FSQA/UrMQof1Y5wSoLQiisNkyJ?=
+ =?us-ascii?Q?3mMQ6f6+RrM3Zto24Cho/i3FuaSV4pZjfcBgdEOHHD1VuDLHjRhllGhEK1l5?=
+ =?us-ascii?Q?z7A27x7O8nFM98w+1QHOjrD3Si3S7Yub4vKsLSeZ5+u+w7gv8c2wanq2PgFQ?=
+ =?us-ascii?Q?z5zt9tQakoccr6Xx/wYQ/w5zZkCWshhjBnsiVkwlCSah+ZzfL188d1XA3yld?=
+ =?us-ascii?Q?vvDgsmRGii+xnq2+UB/H1e87ldsXopcJVYhhFMv+XMnBf1dodBnCe5cJr9K3?=
+ =?us-ascii?Q?HIT2R/Cia/wF+GiR4eYp+QtSxIh2wSFYrXkVmpger66nXNWsH+vA+NmhLKFa?=
+ =?us-ascii?Q?PEPcJusozLwdF2s1d4Mnz53Lw6FSLmlIzz0i7OrJcTTuwl2b1zbPTB1L7I+o?=
+ =?us-ascii?Q?H4wKkXzSREQ9urCdI+ba5ApYcbkN866hfEiNkF+wO+SYHs5q6t4uDqYUgz9B?=
+ =?us-ascii?Q?OVWS1lq6tWfwBPZHA/eyl6tRUO+S2nAon8rv73WzE0UeIa2vA4rhSkJsvwCK?=
+ =?us-ascii?Q?KncQbiPXjakOpeNr9TFxQM5zgZ1rO8pBwFGC4lM0craKgUyxuclgo4WBlIm5?=
+ =?us-ascii?Q?3bso8ZSOVBbOVcUyNXigGd1SkVjRhDvfxjcYr5xjYUajAY+Fn/udL6SRWMmq?=
+ =?us-ascii?Q?PyTuUgnoLD18M3WiMWDJUHno/S6CYAUSkXbtVpo/MxBIiPgFEh2yV1+LIWs8?=
+ =?us-ascii?Q?zs1nBu/fK1ygnC5BkvpKZ944GP34XvypFlGKUo/wVHb9rtCMgy/0hYxgm3cB?=
+ =?us-ascii?Q?DQStZZzFe2XQ1iI/+4caxRLRtjw1Iw+trrP7gssM?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f07986ad-c600-4ee2-17d3-08db7027320f
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Jun 2023 18:09:45.0528
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: X+Z37oqiN9Buhq+snG6eskXbjg5pgqhyjmOs0tGY1uJ77FsTWKqQloa45k8ui7ka40B65Gw3LffuBGn6DT05tQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7019
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 18, 2023 at 6:41 PM Lucas Tanure <tanure@linux.com> wrote:
->
-> On Fri, Jun 16, 2023 at 1:01 AM Yixun Lan <dlan@gentoo.org> wrote:
-> >
-> > Hi Lucas:
-> >
-> > On 19:29 Thu 15 Jun     , Lucas Tanure wrote:
-> > > The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 SoC
-> > > family, on a board with the same form factor as the VIM3 models.
-> > I'd like to see little bit more verbose messages here, like
-> > which functionality/driver added here - cpu, gic, timer, uart?
-> Ok, I add this information in the next version.
-> Its adding CPU, GIC, and UART.
->
-> >
-> > so, it's capable of booting into a serial console?
-> yes
->
-> >
-> > >
-> > > - 8GB LPDDR4X 2016MHz
-> > > - 32GB eMMC 5.1 storage
-> > > - 32MB SPI flash
-> > > - 10/100/1000 Base-T Ethernet
-> > > - AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
-> > > - HDMI 2.1 video
-> > > - HDMI Input
-> > > - 1x USB 2.0 + 1x USB 3.0 ports
-> > > - 1x USB-C (power) with USB 2.0 OTG
-> > > - 3x LED's (1x red, 1x blue, 1x white)
-> > > - 3x buttons (power, function, reset)
-> > > - M2 socket with PCIe, USB, ADC & I2C
-> > > - 40pin GPIO Header
-> > > - 1x micro SD card slot
-> > >
-> > > Signed-off-by: Lucas Tanure <tanure@linux.com>
-> > > ---
-> > >  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
-> > >  .../amlogic/meson-t7-a311d2-khadas-vim4.dts   | 112 ++++++++++
-> > >  arch/arm64/boot/dts/amlogic/meson-t7.dtsi     | 202 ++++++++++++++++++
-> > >  3 files changed, 315 insertions(+)
-> > >  create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
-> > >  create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7.dtsi
-> > >
-> > > diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> > > index cd1c5b04890a..1c5846bd1ca0 100644
-> > > --- a/arch/arm64/boot/dts/amlogic/Makefile
-> > > +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> > > @@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
-> > >  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
-> > >  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
-> > >  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-> > > +dtb-$(CONFIG_ARCH_MESON) += meson-t7-a311d2-khadas-vim4.dtb
-> > > diff --git a/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
-> > > new file mode 100644
-> > > index 000000000000..46e175536edf
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
-> > > @@ -0,0 +1,112 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +/*
-> > > + * Copyright (c) 2022 Wesion, Inc. All rights reserved.
-> > > + */
-> > > +
-> > > +/dts-v1/;
-> > > +
-> > > +#include "meson-t7.dtsi"
-> > > +
-> > > +/ {
-> > > +     model = "Khadas VIM4";
-> > > +
-> > > +     aliases {
-> > > +             serial0 = &uart_A;
-> > > +     };
-> > > +
-> > > +     reserved-memory {
-> > > +             #address-cells = <2>;
-> > > +             #size-cells = <2>;
-> > > +             ranges;
-> > > +
-> > > +             /* 3 MiB reserved for ARM Trusted Firmware (BL31) */
-> > > +             secmon_reserved: secmon@5000000 {
-> > > +                     reg = <0x0 0x05000000 0x0 0x300000>;
-> > > +                     no-map;
-> > > +             };
-> > > +
-> > > +             /* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-> > > +             secmon_reserved_bl32: secmon@5300000 {
-> > > +                     reg = <0x0 0x05300000 0x0 0x2000000>;
-> > > +                     no-map;
-> > > +             };
-> > > +     };
-> > > +
-> > > +     xtal: xtal-clk {
-> > > +             compatible = "fixed-clock";
-> > > +             clock-frequency = <24000000>;
-> > > +             clock-output-names = "xtal";
-> > > +             #clock-cells = <0>;
-> > > +     };
-> > > +
-> > > +     vddcpu_a: regulator-vddcpu-a {
-> > > +             /*
-> > > +              * MP8756GD Regulator.
-> > > +              */
-> > > +             compatible = "pwm-regulator";
-> > > +
-> > > +             regulator-name = "VDDCPU_A";
-> > > +             regulator-min-microvolt = <689000>;
-> > > +             regulator-max-microvolt = <1049000>;
-> > > +
-> > > +             regulator-boot-on;
-> > > +             regulator-always-on;
-> > > +     };
-> > > +
-> > > +     vddcpu_b: regulator-vddcpu-a {
-> > > +             /*
-> > > +              * MP8756GD Regulator.
-> > > +              */
-> > > +             compatible = "pwm-regulator";
-> > > +
-> > > +             regulator-name = "VDDCPU_B";
-> > > +             regulator-min-microvolt = <689000>;
-> > > +             regulator-max-microvolt = <1049000>;
-> > > +
-> > > +             regulator-boot-on;
-> > > +             regulator-always-on;
-> > > +     };
-> > > +};
-> > > +
-> > > +&clkc{
-> > > +     clocks = <&xtal>;
-> > > +     clock-names = "xtal";
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&uart_A {
-> > > +     status = "okay";
-> > > +};
-> > > +
-> > > +&cpu0 {
-> > > +     cpu-supply = <&vddcpu_a>;
-> > > +};
-> > > +
-> > > +&cpu1 {
-> > > +     cpu-supply = <&vddcpu_a>;
-> > > +};
-> > > +
-> > > +&cpu2 {
-> > > +     cpu-supply = <&vddcpu_a>;
-> > > +};
-> > > +
-> > > +&cpu3 {
-> > > +     cpu-supply = <&vddcpu_a>;
-> > > +};
-> > > +
-> > > +&cpu100 {
-> > > +     cpu-supply = <&vddcpu_b>;
-> > > +};
-> > > +
-> > > +&cpu101 {
-> > > +     cpu-supply = <&vddcpu_b>;
-> > > +};
-> > > +
-> > > +&cpu102 {
-> > > +     cpu-supply = <&vddcpu_b>;
-> > > +};
-> > > +
-> > > +&cpu103 {
-> > > +     cpu-supply = <&vddcpu_b>;
-> > > +};
-> > > +
-> > > diff --git a/arch/arm64/boot/dts/amlogic/meson-t7.dtsi b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
-> > > new file mode 100644
-> > > index 000000000000..453b3d9cb9d8
-> > > --- /dev/null
-> > > +++ b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
-> > > @@ -0,0 +1,202 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > > +/*
-> > > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> > > + */
-> > > +
-> > > +#include <dt-bindings/clock/mesont7-clkc.h>
-> > > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +
-> > > +/ {
-> > > +     compatible = "amlogic,t7";
-> > > +     interrupt-parent = <&gic>;
-> > > +     #address-cells = <2>;
-> > > +     #size-cells = <2>;
-> > > +
-> > > +     cpus {
-> > > +             #address-cells = <0x2>;
-> > > +             #size-cells = <0x0>;
-> > > +
-> > > +             cpu-map {
-> > > +                     cluster0 {
-> > > +                             core0 {
-> > > +                                     cpu = <&cpu100>;
-> > > +                             };
-> > > +                             core1 {
-> > > +                                     cpu = <&cpu101>;
-> > > +                             };
-> > > +                             core2 {
-> > > +                                     cpu = <&cpu102>;
-> > > +                             };
-> > > +                             core3 {
-> > > +                                     cpu = <&cpu103>;
-> > > +                             };
-> > > +                     };
-> > > +
-> > > +                     cluster1 {
-> > > +                             core0 {
-> > > +                                     cpu = <&cpu0>;
-> > > +                             };
-> > > +                             core1 {
-> > > +                                     cpu = <&cpu1>;
-> > > +                             };
-> > > +                             core2 {
-> > > +                                     cpu = <&cpu2>;
-> > > +                             };
-> > > +                             core3 {
-> > > +                                     cpu = <&cpu3>;
-> > > +                             };
-> > > +                     };
-> > > +             };
-> > > +
-> > > +             cpu100: cpu@100 {
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a53";
-> > > +                     reg = <0x0 0x100>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <632>;
-> > > +                     dynamic-power-coefficient = <110>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +
-> > > +             cpu101: cpu@101{
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a53";
-> > > +                     reg = <0x0 0x101>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <632>;
-> > > +                     dynamic-power-coefficient = <110>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +
-> > > +             cpu102: cpu@102 {
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a53";
-> > > +                     reg = <0x0 0x102>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <632>;
-> > > +                     dynamic-power-coefficient = <110>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +
-> > > +             cpu103: cpu@103 {
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a53";
-> > > +                     reg = <0x0 0x103>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <632>;
-> > > +                     dynamic-power-coefficient = <110>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +
-> > > +             cpu0: cpu@0 {
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a73";
-> > > +                     reg = <0x0 0x0>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <1024>;
-> > > +                     dynamic-power-coefficient = <550>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +
-> > > +             cpu1: cpu@1 {
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a73";
-> > > +                     reg = <0x0 0x1>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <1024>;
-> > > +                     dynamic-power-coefficient = <550>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +
-> > > +             cpu2: cpu@2 {
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a73";
-> > > +                     reg = <0x0 0x2>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <1024>;
-> > > +                     dynamic-power-coefficient = <550>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +
-> > > +             cpu3: cpu@3 {
-> > > +                     device_type = "cpu";
-> > > +                     compatible = "arm,cortex-a73";
-> > > +                     reg = <0x0 0x3>;
-> > > +                     enable-method = "psci";
-> > > +                     capacity-dmips-mhz = <1024>;
-> > > +                     dynamic-power-coefficient = <550>;
-> > > +                     #cooling-cells = <2>;
-> > > +             };
-> > > +     };
-> > > +
-> > > +     timer {
-> > > +             compatible = "arm,armv8-timer";
-> > > +             interrupts = <GIC_PPI 13 0xff08>,
-> > > +                          <GIC_PPI 14 0xff08>,
-> > > +                          <GIC_PPI 11 0xff08>,
-> > > +                          <GIC_PPI 10 0xff08>;
-> > > +     };
-> > > +
-> > > +     gic: interrupt-controller@fff01000 {
-> > > +             compatible = "arm,cortex-a15-gic", "arm,cortex-a9-gic";
-> > > +             #interrupt-cells = <3>;
-> > > +             #address-cells = <0>;
-> > > +             interrupt-controller;
-> > > +             reg = <0x0 0xfff01000 0 0x1000>,
-> > > +                   <0x0 0xfff02000 0 0x0100>;
-> > > +             interrupts = <GIC_PPI 9 0xf04>;
-> > > +     };
-> > > +
-> > > +     psci {
-> > > +             compatible = "arm,psci-0.2";
-> > can you double check if it is actual version 0.2?
-> > most recent Amlogic SoC should support psci-1.0
-> >
-> > > +             method = "smc";
-> > > +     };
-> > > +
-> > > +     sm: secure-monitor {
-> > > +             compatible = "amlogic,meson-gxbb-sm";
-> > > +     };
-> > > +
-> > > +     soc {
-> > > +             compatible = "simple-bus";
-> > > +             #address-cells = <2>;
-> > > +             #size-cells = <2>;
-> > > +             ranges;
-> > > +
-> > > +             apb4: apb4@fe000000 {
-> > > +                     compatible = "simple-bus";
-> > > +                     reg = <0x0 0xfe000000 0x0 0x480000>;
-> > > +                     #address-cells = <2>;
-> > > +                     #size-cells = <2>;
-> > > +                     ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> > > +
-> > > +                     clkc: clock-controller {
-> > > +                             compatible = "amlogic,t7-clkc";
-> > > +                             #clock-cells = <1>;
-> > > +                             reg = <0x0 0x0 0x0 0x49c>,
-> > > +                                   <0x0 0x8000 0x0 0x320>,
-> > > +                                   <0x0 0xe040 0x0 0xbc>;
-> > > +                             reg-names = "basic",
-> > > +                                         "pll",
-> > > +                                         "cpu_clk";
-> > > +                     };
-> > > +
-> > > +                     ao-secure@140 {
-> > > +                             compatible = "amlogic,meson-gx-ao-secure", "syscon";
-> > > +                             reg=<0x0 0x10220 0x0 0x140>;
-> > > +                             amlogic,has-chip-id;
-> > > +                     };
-> > > +             };
-> > > +
-> > > +             uart_A: serial@fe078000 {
-> > > +                     compatible = "amlogic,meson-t7-uart";
-> > > +                     reg = <0x0 0xfe078000 0x0 0x18>;
-> > > +                     interrupts = <0 168 1>;
-> > > +                     status = "disabled";
-> > > +                     clocks = <&xtal>, <&clkc CLKID_UART_A>, <&xtal>;
-> > > +                     clock-names = "xtal", "pclk", "baud";
-> > > +                     fifo-size = < 64 >;
-> > > +                     pinctrl-names = "default";
-> > > +             };
-> > I believe there are more uart ports, it's worth the effort to add them all in one run,
-> > which sounds more consistent to me, anyway you could also choose to add them
-> > in later patch series, no problem..
->
-> Yeah, I prefer to add those uarts later, when I can propper test them.
->
-> >
-> > > +     };
-> > > +};
-> > > +
-> > > --
-> > > 2.41.0
-> > >
-> > >
-> > > _______________________________________________
-> > > linux-amlogic mailing list
-> > > linux-amlogic@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> >
-> > --
-> > Yixun Lan (dlan)
-> > Gentoo Linux Developer
-> > GPG Key ID AABEFD55
-The datasheet I have doesn't mention the version of PSCI supported, so
-I can't check.
-But It continues to work ( serial log ) when using the 1.0 version.
+This patch series introduces support for the eDMA version 3 from
+Freescale. The eDMA v3 brings alterations in the register layout,
+particularly, the separation of channel control registers into
+different channels. The Transfer Control Descriptor (TCD) layout,
+however, remains identical with only the offset being changed.
+
+The first ten patches aim at tidying up the existing Freescale
+eDMA code and laying the groundwork for the integration of eDMA v3
+support.
+
+Patch 1-10:
+These patches primarily focus on cleaning up and refactoring the existing
+fsl_edma driver code. This is to accommodate the upcoming changes and new
+features introduced with the eDMA v3.
+
+Patch 11:
+This patch introduces support for eDMA v3. In addition, this patch has
+been designed with an eye towards future upgradability, specifically for
+transitioning to eDMA v5. The latter involves a significant upgrade
+where the TCD address would need to support 64 bits.
+
+Patch 12:
+This patch focuses on the device tree bindings and their modifications
+to properly handle and integrate the changes brought about by eDMA v3
+
+Change from v7 to v8
+-dt-bind: add missed part
+
+clock-names:
+> items:
+>   - const: dma
+> 
+> clocks:
+>   maxItems: 1
+
+Change from v6 to v7
+-dt-bind: remove "else" branch. 
+
+Change from v5 to v6
+- dt-bind: rework it by fixed top level constraint.
+
+Change from v4 to v5
+- dt-bind, add example for imx93 to trigger make dt_binding_check to
+generate the yaml error. fixed dt_binding_check error. 
+  keep compatible string ordered alphabetically.
+
+Change from v3 to v4.
+- use dma-channel-mask instead of fsl,channel-mask
+- don't use dmamux after v3. only use flags to distinguish the IP
+difference
+- fixed 8qm and imx93 have not CH_MUX register. Previous can work
+because dmamux is 0.
+
+Change from v2 to v3
+- dt-binding: add interrupt-names
+- dt-binding: add minItems
+- dt-binding: add missed property: fsl,channel-mask
+- rework patch 4, removed edma_version to avoid confuse with hardware
+IP version.
+
+Change from v1 to v2
+- fixed issue found by make DT_CHECKER_FLAGS=-m dt_binding_check
+- fixed warning found by kernel test robot
+
+Frank Li (12):
+1   dmaengine: fsl-edma: clean up EXPORT_SYMBOL_GPL in fsl-edma-common.c
+2   dmaengine: fsl-edma: clean up fsl_edma_irq_exit()
+3   dmaengine: fsl-edma: transition from bool fields to bitmask flags in
+     drvdata
+4   dmaengine: fsl-edma: remove v3 from enum edma_version
+5   dmaengine: fsl-edma: move common IRQ handler to common.c
+6   dmaengine: fsl-edma: simply ATTR_DSIZE and ATTR_SSIZE by using ffs()
+7   dmaengine: fsl-edma: refactor using devm_clk_get_enabled
+8   dmaengine: fsl-edma: move clearing of register interrupt into
+     setup_irq function
+9   dmaengine: fsl-edma: refactor chan_name setup and safety
+10  dmaengine: fsl-edma: move tcd into struct fsl_dma_chan
+11  dmaengine: fsl-edma: integrate v3 support
+12  dt-bindings: fsl-dma: fsl-edma: add edma3 compatible string
+
+ .../devicetree/bindings/dma/fsl,edma.yaml     |  19 ++
+ drivers/dma/Makefile                          |   6 +-
+ drivers/dma/fsl-edma-common.c                 | 267 +++++++++++----
+ drivers/dma/fsl-edma-common.h                 | 119 ++++++-
+ drivers/dma/{fsl-edma.c => fsl-edma-main.c}   | 323 ++++++++++++++----
+ drivers/dma/{mcf-edma.c => mcf-edma-main.c}   |  34 +-
+ 6 files changed, 578 insertions(+), 190 deletions(-)
+ rename drivers/dma/{fsl-edma.c => fsl-edma-main.c} (62%)
+ rename drivers/dma/{mcf-edma.c => mcf-edma-main.c} (91%)
+
+-- 
+2.34.1
+
