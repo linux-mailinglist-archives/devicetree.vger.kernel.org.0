@@ -2,149 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3640734886
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 23:15:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D982734898
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 23:34:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229552AbjFRVPT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 17:15:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33418 "EHLO
+        id S229665AbjFRVeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 17:34:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229482AbjFRVPS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 17:15:18 -0400
-Received: from mout.kundenserver.de (mout.kundenserver.de [212.227.17.24])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDDE13D;
-        Sun, 18 Jun 2023 14:15:17 -0700 (PDT)
-Received: from [192.168.1.141] ([37.4.248.58]) by mrelayeu.kundenserver.de
- (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
- 1N49Ul-1q1x8z1GuP-0102WV; Sun, 18 Jun 2023 23:14:56 +0200
-Message-ID: <13ec386b-2305-27da-9765-8fa3ad71146c@i2se.com>
-Date:   Sun, 18 Jun 2023 23:14:55 +0200
+        with ESMTP id S229456AbjFRVeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 17:34:01 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B594E1;
+        Sun, 18 Jun 2023 14:34:00 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b466744368so20640031fa.0;
+        Sun, 18 Jun 2023 14:34:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687124038; x=1689716038;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IOkfA4GaYDZQ1KN9R5z9rbZZiuOU0JFMDz+JkNVoMfs=;
+        b=aAQvxhthEnemgwN0nPek8VPAe3c11NrE5vCc+DphFxmfMZqaWyrmMIZOwGm4aBNMQU
+         NbjAdD3fhtV776hvXI2DVLsbuTuttHb+Pqdylq2JYMd05eBq/M+dacpuYlyuT87VXS4f
+         LvISPpp4xWuHE0xCKecnyNtk52xGXkC6kOYVi73vbT5XKwyyERjRdP8ypjjID5mlLxj6
+         ZIFFaFYn4VE1gYK8CQ2fvE/U5BPsfr+rPqWG+BYCsL6aGj2KBdhzWCYx9vdofRRdvb0x
+         WdqXu8l6XssSq4MDHy7V3A1g5kgP+C4cwtfLTTLLCatE7xUaT0PMdyKN5tCwalAJyEfT
+         S53Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687124038; x=1689716038;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IOkfA4GaYDZQ1KN9R5z9rbZZiuOU0JFMDz+JkNVoMfs=;
+        b=Dh7G5/rO8Zs59+SL/8nchStUkJXiRk2BysEigQgiWz/qddAkQRI4Iy1U05dp4VK7oN
+         UsYx94kmBMXvzGItJzP6WmXOeBzWoZQsCWF+ZaD+tw+SLRHxRlPO00qz3nP75Xi9ZsTV
+         L+55dkSOIzisFGlmb3KuWkz1+QXngamRbrB3PiYPQNQcipBeepqCSXJpaJbMHOgHxZyu
+         PhvPnrgm3NObwcV7WbxKFNCFRdZcBrneJoSiIdlDu9krcYTqxWqoOv9m1+q6UgS5hZUL
+         YDi94qxQjyyfYfYHHBlChr5KngXxajWuVFSZLWM9bD1j+MbWCOBbecRWcn34ydURU9bD
+         IxfQ==
+X-Gm-Message-State: AC+VfDzQSVf5camHpzkq1KoWxfmyzJKjCtx89FY4X2uVxcjARZkvL7WJ
+        +vsoG1O4sQcBMLoNd4ZwwjI=
+X-Google-Smtp-Source: ACHHUZ6pDuW5qdUrIsfxfB9WTCqbDn7YAwLcOcCOYbQq5TcMIHTtccwbnokjfhHkYJy2zt8464CiyA==
+X-Received: by 2002:a2e:90c9:0:b0:2b4:7380:235 with SMTP id o9-20020a2e90c9000000b002b473800235mr1036205ljg.32.1687124038186;
+        Sun, 18 Jun 2023 14:33:58 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-149-7.dynamic.spd-mgts.ru. [109.252.149.7])
+        by smtp.googlemail.com with ESMTPSA id s25-20020a2e9c19000000b002b469fd0baasm965650lji.111.2023.06.18.14.33.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 18 Jun 2023 14:33:57 -0700 (PDT)
+Message-ID: <e41ff013-8224-1b96-5cd3-f0632d27191d@gmail.com>
+Date:   Mon, 19 Jun 2023 00:33:56 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH RFC 00/11] dmaengine: bcm2835: add BCM2711 40-bit DMA
- support
+ Thunderbird/102.11.2
+Subject: Re: [PATCH v2 2/2] misc: sram: Generate unique names for subpools
 Content-Language: en-US
-To:     Shengyu Qu <wiagn233@outlook.com>, Vinod Koul <vkoul@kernel.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>
-Cc:     Ray Jui <rjui@broadcom.com>, Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com, dmaengine@vger.kernel.org,
-        Phil Elwell <phil@raspberrypi.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lukas Wunner <lukas@wunner.de>,
-        linux-rpi-kernel@lists.infradead.org
-References: <1640606743-10993-1-git-send-email-stefan.wahren@i2se.com>
- <OS3P286MB259736F317E80CBAA2658853985EA@OS3P286MB2597.JPNP286.PROD.OUTLOOK.COM>
-From:   Stefan Wahren <stefan.wahren@i2se.com>
-In-Reply-To: <OS3P286MB259736F317E80CBAA2658853985EA@OS3P286MB2597.JPNP286.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
+ <20230417-ux500-sram-v2-2-6e62ad551faa@linaro.org>
+From:   Dmitry Osipenko <digetx@gmail.com>
+In-Reply-To: <20230417-ux500-sram-v2-2-6e62ad551faa@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:TIm3R3XPlUbydU1vM5V4ahYsqGo22AdiXsrRxOaOlWU9yeSHu9k
- BnFuxrMMKsdukwnss/8wvNbnpvebOU94j8vCP18EBzGpJOCdXGykXjDXCnSzCGmkyYNblME
- qqhmERJEpCXiFV6tC/AEYT46fKK1q9jUCPQA+W7L1ejz1IrwlhSNSfcbaA9cLiDpgqePxDn
- vEIHs2qJspz9W0O62S6lQ==
-UI-OutboundReport: notjunk:1;M01:P0:Xch+nh9eO/Y=;2Slx9wsa2DFcky3IfpoB+BeWYDG
- a6ua9lH8S88U/rSzU2pjJV/CX2hpT9T7iTCQYZ8LW3WjkACIr/TTKl5VCubUBZo52m/+vfdDN
- N31jtUiOUiaG5cIrhXXiEZu6IwVP00iixusExsakUFVxDmOh6dSMlbExnStl0uB+J2Ddx7uEq
- 9glhZBwdo4y8+Wh3/pyAS7Vy1nVXA9I5PydDVgzmJKQzRlquoVLCxCI+MYm1UqD4CD4UjGA/O
- m+q6+Y7fji53TokomhadfkMnVCcrtDWoPl5gtROLE19su1uh0A7vwuI5t3aXgejslkxH2tnHb
- Ubnq6urUsDT7jGWjSAUhJKefW8djAXE9OhaMT7SkDt0PCLL5T7GGM8xEYiuWlFCqMFTEZg+6q
- 71JREDfIX/J8NAxfIrMKrpL3bh1g/BjozeeZGWmOS0iehbafn/KqNhxLULHg8FkF5hVB4u/ut
- eaoFsjccUcHzzM1W9n3HC7WT6zUSDwOb9KymZRTbTGX0iC+cPoIHfJ1yeD9/CFS8t6xet5T7o
- QSesjWiHHw7qMGGm8fdDFfBEk5esdC8KD2kHM/VdMfSQwRoP5wvVpaW88gYEnJfYKnmHFQO3r
- VmqF/1c+WeZiHW1fzmaK4DdVWbUBn+fHHzT9t2riqyS7bNFBh10ccam9vWyJMPAsd0h+kWOC9
- qb39kdq/J8Hn8A7Ffdd0lEW1HDUsW84RzDG/+Al4sQ==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sengyu,
+21.04.2023 00:17, Linus Walleij пишет:
+> The current code will, if we do not specify unique labels
+> for the SRAM subnodes, fail to register several nodes named
+> the same.
+> 
+> Example:
+> 
+> sram@40020000 {
+>   (...)
+>   sram@0 {
+>     (...)
+>   };
+>   sram@1000 {
+>     (...)
+>   };
+> };
+> 
+> Since the child->name in both cases will be "sram" the
+> gen_pool_create() will fail because the name is not unique.
+> 
+> Use dev_name() for the device as this will have bus ID
+> set to the fully translated address for the node, and that
+> will always be unique.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v1->v2:
+> - Stop complicating things and just use dev_name()
+> ---
+>  drivers/misc/sram.c | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/misc/sram.c b/drivers/misc/sram.c
+> index f0e7f02605eb..f80c3adddf0b 100644
+> --- a/drivers/misc/sram.c
+> +++ b/drivers/misc/sram.c
+> @@ -240,10 +240,11 @@ static int sram_reserve_regions(struct sram_dev *sram, struct resource *res)
+>  				goto err_chunks;
+>  			}
+>  			if (!label)
+> -				label = child->name;
+> -
+> -			block->label = devm_kstrdup(sram->dev,
+> -						    label, GFP_KERNEL);
+> +				block->label = devm_kasprintf(sram->dev, GFP_KERNEL,
+> +							      "%s", dev_name(sram->dev));
 
-Am 18.06.23 um 21:43 schrieb Shengyu Qu:
-> Hello Stefan,
-> 
-> Sorry to reply to this old series, but I wonder what happens to this 
-> series?
+This broke device-trees that have no label property. The SRAM DT binding
+says:
 
-i never found the time to prepare a newer version. Unfortunately the 
-downstream kernel had a lot of changes regarding this feature recently.
+"
+label:
+description:
+	The name for the reserved partition, if omitted, the label is taken
+	from the node name excluding the unit address.
+"
 
-> 
-> Best regards,
-> 
-> Shengyu
-> 
->> The BCM2711 has 4 DMA channels with a 40-bit address range, allowing them
->> to access the full 4GB of memory on a Pi 4. This patch series serves as a
->> basis for a discussion (just compile tested, so don't expect anything 
->> working)
->> which include the following points:
->>
->> * correct DT binding and representation for BCM2711
->>
->> According to the vendor DTS [1] the 4 DMA channels are connected to SCB.
->> I'm not sure how this is properly adapted to the mainline DT.
->>
->> * general implementation approach
->>
->> The vendor approach mapped all the BCM2835 control block bits to the 
->> BCM2711
->> layout and the rest of the differences are handled by a lot of 
->> is_40bit_channel
->> conditions. An advantage of this is the small amount of changes to the 
->> driver.
->> But on the down side the code is now much harder to understand and 
->> maintain.
->>
->> This series tries to implement this feature in a more cleaner way
->> while keeping it in the bcm2835-dma driver. Before this series the driver
->> has ~ 1000 lines and after that ~ 1500 lines.
->>
->> So the question is this approach acceptable?
->>
->> Patches 1 - 3 are just clean-ups.
->>
->> Disclaimer: my knowledge about the DMA controller is very limited
->>
->> More information:
->>
->> https://datasheets.raspberrypi.com/bcm2711/bcm2711-peripherals.pdf
->>
->> [1] - 
->> https://github.com/raspberrypi/linux/blob/561deffcf471ba0f7bd48541d06a79d5aa38d297/arch/arm/boot/dts/bcm2711-rpi-ds.dtsi#L47
->> [2] - 
->> https://github.com/raspberrypi/linux/commit/44364bd140b0bc9187c881fbdc4ee358961059d5
->>
->> Stefan Wahren (11):
->>    ARM: dts: bcm283x: Update DMA node name per DT schema
->>    dt-bindings: dma: Convert brcm,bcm2835-dma to json-schema
->>    dmaengine: bcm2835: Support common dma-channel-mask
->>    dmaengine: bcm2835: move CB info generation into separate function
->>    dmaengine: bcm2835: move CB final extra info generation into function
->>    dmaengine: bcm2835: make address increment platform independent
->>    dmaengine: bcm2385: drop info parameters
->>    dmaengine: bcm2835: pass dma_chan to generic functions
->>    dmaengine: bcm2835: introduce multi platform support
->>    dmaengine: bcm2835: add BCM2711 40-bit DMA support
->>    ARM: dts: bcm2711: add bcm2711-dma node
->>
->>   .../devicetree/bindings/dma/brcm,bcm2835-dma.txt   |  83 ---
->>   .../devicetree/bindings/dma/brcm,bcm2835-dma.yaml  | 107 +++
->>   arch/arm/boot/dts/bcm2711.dtsi                     |  18 +-
->>   arch/arm/boot/dts/bcm2835-common.dtsi              |   2 +-
->>   drivers/dma/bcm2835-dma.c                          | 745 
->> +++++++++++++++++----
->>   5 files changed, 734 insertions(+), 221 deletions(-)
->>   delete mode 100644 
->> Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.txt
->>   create mode 100644 
->> Documentation/devicetree/bindings/dma/brcm,bcm2835-dma.yaml
->>
+Not sure whether breakage was on purpose, otherwise doc needs to be
+updated or there should be explicit check for the duplicated node names.
+
+Secondly, AFAICS, the dev_name(sram->dev) is the name of the parent SRAM
+device and not of the children sub-nodes, hence it's now always the same
+dev_name(sram->dev) for all sub-nodes.
+
