@@ -2,171 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D77807346C5
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 17:13:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F25E57346F9
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 18:25:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229529AbjFRPNO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 11:13:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57930 "EHLO
+        id S229526AbjFRQZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 12:25:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229525AbjFRPNN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 11:13:13 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 464C3137;
-        Sun, 18 Jun 2023 08:13:12 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-307d20548adso1746115f8f.0;
-        Sun, 18 Jun 2023 08:13:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687101191; x=1689693191;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=oxPv/Yf4Ohjyr/HMPVB1IDHR+64j2GjZCQu7s6Zg4G4=;
-        b=YEmBA+2+do/1xH2G+keV1PSovoV8RspTcN/ch+vYVMv4XUUUQMPAqEe7joAC5rl/hI
-         VqbW2pwx28SUIvn35YzR6/xznsAIJaLqkFBrAyTr4NzgmvN65lYxB4MpahIpA0cLfICn
-         frSEcdaTJs9tbTSPMDve31W++rOOhflarj2AyWwNYQgstvvhYwYOw1ueKlAgJoyWTp2k
-         wNDsJaleUshW4ETyeO3fxWV3MQ2k8upUO7DmJtIxcGGlKwafFCKnxvE7pmUIzKwCxws1
-         pcBqk8/3rR2BZ+koLERlCCgbK1qQaafZnWMGGkiHVgrGjEcMH9Gn3q0qcVoG8nlPC65V
-         7mww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687101191; x=1689693191;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oxPv/Yf4Ohjyr/HMPVB1IDHR+64j2GjZCQu7s6Zg4G4=;
-        b=QK5JhQukQ9ph69sTmI4d66veeaLp+L4FCknXleRQBCnH2qJaGcTv4hJhTkYAWe62t5
-         QdHRrAFiwYE4D9b2haxCBVCR8k0BXVvASYHlQPC9+tDBAC44lTTA3AsqwcZ9wjZPO4Zi
-         5PT1nyXMKUAw+FnCVQ+Wc6wdOsXLGaHR0aMQtYR05u39bkz9HCwQ4wFFXC/rbIm6/4it
-         WTa8Kp2JK965SEjCH4i5oBV4x9cYkBAetItyiT6KTUd6LTClJUbXxMa/WqIAbtu5ApBp
-         IGEgsMtRbot1D7tgMyPo8hX27BQBMEA+EIj326qosYrLJThBXvIeLno3Gp14V0Bl3ehT
-         92PA==
-X-Gm-Message-State: AC+VfDzmeQ66dL1SntFVQx2YqlB+0YenhEYRxUCbwGnPQX1qhnU6+XSL
-        np2EiKiGOF14ZBWP0LBm9/86V32NFbA=
-X-Google-Smtp-Source: ACHHUZ74oE+Im5v8BcxvV0Dov2iMA8UpY4FztbdrC0OwN46U9ow1YYZLLKkbg+F/nOIvpBWqFfTSyg==
-X-Received: by 2002:a5d:4bc1:0:b0:30a:ae5b:9e93 with SMTP id l1-20020a5d4bc1000000b0030aae5b9e93mr4554763wrt.11.1687101190571;
-        Sun, 18 Jun 2023 08:13:10 -0700 (PDT)
-Received: from standask-GA-A55M-S2HP ([188.123.113.247])
-        by smtp.gmail.com with ESMTPSA id g18-20020a7bc4d2000000b003f8d0308604sm8065373wmk.9.2023.06.18.08.13.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jun 2023 08:13:10 -0700 (PDT)
-Date:   Sun, 18 Jun 2023 17:13:08 +0200
-From:   Stanislav Jakubek <stano.jakubek@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229545AbjFRQZ0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 12:25:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 043D7E54;
+        Sun, 18 Jun 2023 09:25:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8B1CD60C56;
+        Sun, 18 Jun 2023 16:25:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A8408C433C8;
+        Sun, 18 Jun 2023 16:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687105524;
+        bh=cj0lc42efzA9zyJIt7r/5DSLfw+aWNTYfV86CgQQ2v8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HlnolcDypmBwuyNMPmDah4a2HQ6fJ6MyiTNeeOCIZurbSPM3kut6AwAOct9kR48uS
+         w2BBHnFoD6k/qjI4HJtOkCOaIoE7s5inV8PA7bm1TBwKHpC0SSNT59GPpz5eCgP2eM
+         xFcrbMh1V3HJWXlP8JYh69X6sLH+XPgKJT8tFf2wKK4gg7uJNtgdT75FiF4O8CPMFD
+         3LOzZRFqW7rHsU/p8hFlfiJeb0S2h4gKj3hXjPcSeLVPBXA+/XjjO8Vtx34/EiYaBM
+         MXDZxzZiNUJDS4WVj9ykOmWWPIhmlzr5PhHoZIesQuoaBas4F6ENuyJQQ0xtYeP7EA
+         0NZIG2aT/G4Kg==
+Date:   Mon, 19 Jun 2023 00:14:01 +0800
+From:   Jisheng Zhang <jszhang@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>
-Cc:     bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v4] dt-bindings: firmware: brcm,kona-smc: convert to YAML
-Message-ID: <20230618151308.GA23586@standask-GA-A55M-S2HP>
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Guo Ren <guoren@kernel.org>, Fu Wei <wefu@redhat.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
+Message-ID: <ZI8tSYgpz85gYJqW@xhacker>
+References: <20230617161529.2092-1-jszhang@kernel.org>
+ <20230617-preppy-eggbeater-a256e963bcc6@spud>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230617-preppy-eggbeater-a256e963bcc6@spud>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert Broadcom Kona family Secure Monitor bounce buffer bindings
-to DT schema.
+On Sat, Jun 17, 2023 at 06:02:20PM +0100, Conor Dooley wrote:
+> Hey Jisheng,
 
-Changes during conversion:
-  - move from misc to firmware subdirectory
-  - add used, but previously undocumented SoC-specific compatibles
-  - drop deprecated compatibles (they've been deprecated for ~10 years)
+Hi Conor,
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
----
-Changes in V4:
-  - collect Krzysztof's R-b
-  - rebase on next-20230616
+> 
+> On Sun, Jun 18, 2023 at 12:15:21AM +0800, Jisheng Zhang wrote:
+> > Sipeed's Lichee Pi 4A development board uses Lichee Module 4A core
+> > module which is powered by T-HEAD's TH1520 SoC. Add minimal device
+> > tree files for the core module and the development board.
+> > 
+> > Support basic uart/gpio/dmac drivers, so supports booting to a basic
+> > shell.
+> > 
+> > NOTE: the thead cpu reset dt-binding and DT node are removed in v3. This
+> > makes secondary CPUs unable to be online.
+> 
+> The kernel doesn't do anything with that node though, so if you were to
+> load a fitImage in U-Boot containing this DT, having booted with
+> whatever the factory provided OpenSBI has, that limitation doesn't
+> apply, right?
 
-Changes in V3:
-  - remove unnecessary oneOf (Krzysztof)
+The cpu reset DT node is for opensbi, linux kernel doesn't need it.
+So you are right: if the u-boot contains the DT node(no matter how
+the DT node is added, statically added or dynamically added with
+uboot cmd), the limitation doesn't apply.
 
-Changes in V2:
-  - move to firmware subdirectory (Krzysztof)
-  - drop deprecated compatibles (Krzysztof)
-  - adjusted commit message to reflect the above changes
+> 
+> > However, minimal th1520
+> > support is better than nothing. And the community has been working on
+> > and will work on the cpu reset dt-binding, for example, Conor, Guo and
+> > Jessica are discussing about it, I have seen valuable comments and
+> > inputs from them. I believe we can add back cpu reset in next
+> > development window.
+> 
+> I'll go take a look through this, if it's good I'll apply it and send it
+> on to Arnd for 6.5? Although I assume it is fine since v2 was nearly
 
- .../bindings/firmware/brcm,kona-smc.yaml      | 39 +++++++++++++++++++
- .../bindings/misc/brcm,kona-smc.txt           | 15 -------
- 2 files changed, 39 insertions(+), 15 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
- delete mode 100644 Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
+Thank you for helping to send out this Pull request!
 
-diff --git a/Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml b/Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
-new file mode 100644
-index 000000000000..684b15ba9ad0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/firmware/brcm,kona-smc.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/firmware/brcm,kona-smc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom Kona family Secure Monitor bounce buffer
-+
-+description:
-+  A bounce buffer used for non-secure to secure communications.
-+
-+maintainers:
-+  - Florian Fainelli <f.fainelli@gmail.com>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - brcm,bcm11351-smc
-+          - brcm,bcm21664-smc
-+          - brcm,bcm23550-smc
-+      - const: brcm,kona-smc
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    smc@3404c000 {
-+        compatible = "brcm,bcm11351-smc", "brcm,kona-smc";
-+        reg = <0x3404c000 0x400>; /* 1 KiB in SRAM */
-+    };
-+...
-diff --git a/Documentation/devicetree/bindings/misc/brcm,kona-smc.txt b/Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
-deleted file mode 100644
-index 05b47232ed9e..000000000000
---- a/Documentation/devicetree/bindings/misc/brcm,kona-smc.txt
-+++ /dev/null
-@@ -1,15 +0,0 @@
--Broadcom Secure Monitor Bounce buffer
-------------------------------------------------------
--This binding defines the location of the bounce buffer
--used for non-secure to secure communications.
--
--Required properties:
--- compatible : "brcm,kona-smc"
--- DEPRECATED: compatible : "bcm,kona-smc"
--- reg : Location and size of bounce buffer
--
--Example:
--	smc@3404c000 {
--		compatible = "brcm,bcm11351-smc", "brcm,kona-smc";
--		reg = <0x3404c000 0x400>; //1 KiB in SRAM
--	};
--- 
-2.25.1
+> fine!
+> 
+> Cheers,
+> Conor.
+
 
