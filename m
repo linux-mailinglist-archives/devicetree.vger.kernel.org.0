@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FAC07345EB
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 13:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C61037345EE
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 13:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229765AbjFRLov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 07:44:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53816 "EHLO
+        id S229677AbjFRLox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 07:44:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjFRLou (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 07:44:50 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E742410D1
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 04:44:48 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-978863fb00fso400891566b.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 04:44:48 -0700 (PDT)
+        with ESMTP id S229769AbjFRLow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 07:44:52 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11E60E5E
+        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 04:44:51 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-98220bb31c6so386905366b.3
+        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 04:44:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687088687; x=1689680687;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=E2l62kT3eiLEXqJg8CxMuWY141wzPG/hn4e3QVCnoRo=;
-        b=whUyseXZjMZhBSfuawXlWU0LfE0rSHAdHQOKBNAIR+CrxT7m1V70RciIGp+YM6yHAO
-         6HBjvZg59OnFQ4FTYrhHWz5++OfJmZjh/N1fMrMG1FYn+jIlnvSs16EKkW38KUlxWgio
-         twb0wyP77TH8tW4/r30MLeOnFhuNQ9SbU2FJOTXg8m34sdv0HKH3NlW9bzL0L8rea+5X
-         7+SfIZjHdAkxwP9JjrWJeeUFZvoQhXWdST7kMH8kfsm8/k77iwPEhnpRzgTCMT+zKXOY
-         cPycoOoQ4QcAEbwMvox/Y1BPmrDkEgwXjUsIdQ+5Rs1r5HRxRTVYJ+6mzBdG0kstlCtA
-         ytVg==
+        d=linaro.org; s=google; t=1687088689; x=1689680689;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nhL8KtwaYHcT7IR66TG7VubSU1MX9CLuOzM0f221Puo=;
+        b=GW0IYfNFLemT3JyZkg+GYmqSqwWKFgg6ihpkp56SCYQ5LPz544JAWaiptb9Xgb4EgM
+         X6Gpm9nRX0vUDWGll7cZm6rIn+h+XNKTPIeufTfPacnEjjjZVr0XmcxW6YEgI5lK8Aug
+         2+9GHLfBEaH09EWvQZwWDH900+7fLaLCDBa4Cht40oDDe4kPstbvfEzNSpzX55fEYMr9
+         2b63INeMw24d80LyXmVXzSPzx7ZnR+0Y54RuqGVemqmvstqOIlYOIufLqH4F0mqdu0Md
+         Hfa5HjFsmG8DXxU9eYfxo0QQ8Bm55kXv0KskSzHu/vRFxNe4Wntm0oiCQlU2vC5pmDxL
+         833Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687088687; x=1689680687;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=E2l62kT3eiLEXqJg8CxMuWY141wzPG/hn4e3QVCnoRo=;
-        b=e+HNXrb9PLEbGgPbtRWJ/fIUZEE5Vhs87WH/2qlv6lRnqVyoshCzy3z45IXfpduhzl
-         jg2vr6Q5m0+OA4YLwNP43bkmY+dFV9FSObE/jU8nyPQm4bk0RCTuP4WXwJHS9mOlIqqB
-         RiSRZELlM+iwaD7w4jgrsAx3Gq4A20u+cFUK5FfE7S9CWePCC9K2skUbBG//SQOZEWSZ
-         bu1QWyT/LvTytnki2RfER00u1oYjR1IQkXrAPhiMveXFCyRc08itAR61Mq866oD2Qz4P
-         AkBCU4yF58TsTDWpeR0uwWXWLrVaY3wWlgzbDAnhw29wDsYVlE8ict5v3Ua5LSN7GwkM
-         oYDA==
-X-Gm-Message-State: AC+VfDw3fsTF/NHSyJydSBzqxNe4PYKi9PlL7QpBke8dH43oeERdotUT
-        012Vwd3uDCt6sDs20Es7/ft+FQ==
-X-Google-Smtp-Source: ACHHUZ7OkwHwZ354uyf5KpKgxVBy17PLodEGLL3XG9b4tYp1rBqRcUayxXIOn5EkFUKTc1VIZ7I1Gw==
-X-Received: by 2002:a17:907:7e91:b0:973:cb21:8479 with SMTP id qb17-20020a1709077e9100b00973cb218479mr7048460ejc.70.1687088687234;
-        Sun, 18 Jun 2023 04:44:47 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687088689; x=1689680689;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nhL8KtwaYHcT7IR66TG7VubSU1MX9CLuOzM0f221Puo=;
+        b=Arg8DyVIOARXc51q1WKfgPy0ghuZo3H0o+Qc2vMNazi/MuR2HmVruO+vfulcxz2bnE
+         HTPRN6qQsknkxxF4QYC6r7NJka7v2S6pZmURLn9RKBG9Rpf//R8c6wlL3uGG/q6Ix2iT
+         WcFZueY/+vIZmDPemHK4ahd0f3NTIkQ62SoSOkzdqdwBt5Y8DfyQNJKlRSk4D3aurRmr
+         C3B8aWLwvQptcIYYZuUKOsCUQfRhI8BBOht1jeAdWBbIXiQ7/HsOOYNcW2iqLAhd7wgQ
+         /JlbbP+xbe1StwL2oEiogV0M10pkKcVVgSOPw36ZXjctKJFVyg9dp7GRo7YDxZgMnuIT
+         eawA==
+X-Gm-Message-State: AC+VfDyPxFJy+8IqON5gxYRrXfIhHFsJjsTsadghIwu3LeO/JCVgYoNq
+        2hPbkM7htty+FI0QkQvLXE9Ehw==
+X-Google-Smtp-Source: ACHHUZ5OT0jWVs00PZn5ksvk+MMG3/2lSYbe9YqHXEkgKh30EIWsOl/maNhkNafs0ECtpnsYlwY17Q==
+X-Received: by 2002:a17:906:da83:b0:982:ab8d:1e08 with SMTP id xh3-20020a170906da8300b00982ab8d1e08mr7149008ejb.59.1687088689498;
+        Sun, 18 Jun 2023 04:44:49 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id p4-20020a1709060dc400b0096f937b0d3esm13183854eji.3.2023.06.18.04.44.45
+        by smtp.gmail.com with ESMTPSA id p4-20020a1709060dc400b0096f937b0d3esm13183854eji.3.2023.06.18.04.44.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 18 Jun 2023 04:44:46 -0700 (PDT)
+        Sun, 18 Jun 2023 04:44:49 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -61,10 +62,12 @@ To:     Andy Gross <agross@kernel.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 1/7] arm64: dts: qcom: sm8350-hdk: correct FSA4480 port
-Date:   Sun, 18 Jun 2023 13:44:36 +0200
-Message-Id: <20230618114442.140185-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 2/7] arm64: dts: qcom: sm8450-hdk: correct FSA4480 port
+Date:   Sun, 18 Jun 2023 13:44:37 +0200
+Message-Id: <20230618114442.140185-2-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20230618114442.140185-1-krzysztof.kozlowski@linaro.org>
+References: <20230618114442.140185-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,18 +82,18 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 FSA4480 has only one port according to bindings:
 
-  sm8350-hdk.dtb: typec-mux@42: 'port' is a required property
+  sm8450-hdk.dtb: typec-mux@42: 'port' is a required property
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/sm8350-hdk.dts | 13 +++----------
+ arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 13 +++----------
  1 file changed, 3 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-index b182f4cf06cc..95a2a42ccb9e 100644
---- a/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8350-hdk.dts
-@@ -349,16 +349,9 @@ typec-mux@42 {
+diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+index d7975b3cf064..e5cbea92e07a 100644
+--- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
++++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+@@ -518,16 +518,9 @@ typec-mux@42 {
  		mode-switch;
  		orientation-switch;
  
