@@ -2,86 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 30DD1734558
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 10:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D64F73456E
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 10:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229526AbjFRIHz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 04:07:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59950 "EHLO
+        id S229485AbjFRIOI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 04:14:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjFRIHy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 04:07:54 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E995810D7
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 01:07:52 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-982c996a193so326753866b.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 01:07:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687075671; x=1689667671;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=83Nn/kApjqMqR5Y+eBpYu2YO03PvXgyqsQgNeKs9ERs=;
-        b=qXmtLTMeaNyTrIbn+548Mj5DoAdBX6VKfAhSux/803cNvj1mkf2XeClqWtQ4Jnj1b9
-         f0Ivs4xK34vtrxttfs6gqB1TK0Q9BzmajrXk9XIGTnVHfswpvjq/9z4ZrYMYISdrIZVU
-         FKhojUr415St4/7Q8AObHIjWKyHWn35gNvrvOYvp9KIQ1e4jYmMgDTyhfT/QP1wVaog3
-         0AiI3GnRco+XeCijLZpRpV2R7hlGXhj07lN/LBiwItusdZwDRyYR7WTEoUukLsdaKWfI
-         9VZIAoAEVLjDx5QvuTUe188FAYMJCb5C7hrebKrH/EWICkmwtVBbmScXC0Gv9cm/ZjO9
-         VREg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687075671; x=1689667671;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=83Nn/kApjqMqR5Y+eBpYu2YO03PvXgyqsQgNeKs9ERs=;
-        b=aLSmmXlKXZlCNH6+raTj68us8T2+yTBYEX304zZZvOiuQriBVexLveSM/5BEYiWqPC
-         rvXnnypiSM0+KwqtYwrrK0sXJi7XUJa3tIAetgHb2JV3LOSVsWB+dgO9FqGpQSaHXwLe
-         RG4AEBU4/Vfw2rg2SQwT3FN6JXS2fM0hdpTEUGSEpW8OE84zn9tG0HrDXQvozYk3MnqK
-         j73jVR3CZshfCx6qmZCvpzm2x74O3gcFpa/HCW2pAMj/DCD2mg1eXXhk362Ta6fD11qL
-         CqfxpYX99D5SjaJxpGbEsqJeKZx45cUFsJUjk/Iq8lh6wieMIs1gPuh3zr8s5hDhzErU
-         r/SA==
-X-Gm-Message-State: AC+VfDyrzdjvyhHtfoMeDf3mr39bFmcI6Bdav4YszG0jbfVIAmKLzUnB
-        CLosz4iLXFMsLunYvXHOy0yGS7vcS0luyhZc4RY=
-X-Google-Smtp-Source: ACHHUZ75qpVXAxr5KwOMXF12+H05NwigsHfr8/BY8mshNmgxXsOq3XP/2PF1B3jSenJ7CMeKukh3nQ==
-X-Received: by 2002:a17:907:702:b0:982:be38:a5df with SMTP id xb2-20020a170907070200b00982be38a5dfmr5961054ejb.63.1687075671039;
-        Sun, 18 Jun 2023 01:07:51 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id e27-20020a170906249b00b0098654d3c270sm2815779ejb.52.2023.06.18.01.07.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jun 2023 01:07:50 -0700 (PDT)
-Message-ID: <e89e574c-db6d-877b-462c-bb91cc9d9ff1@linaro.org>
-Date:   Sun, 18 Jun 2023 10:07:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: firmware: qcom,scm: Document that SCM
- can be dma-coherent
-Content-Language: en-US
-To:     Douglas Anderson <dianders@chromium.org>, andersson@kernel.org
-Cc:     amit.pundir@linaro.org, Will Deacon <will@kernel.org>,
-        sumit.semwal@linaro.org, linux-arm-msm@vger.kernel.org,
-        konrad.dybcio@somainline.org, linux-arm-kernel@lists.infradead.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229456AbjFRIOI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 04:14:08 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01E1AE70;
+        Sun, 18 Jun 2023 01:14:04 -0700 (PDT)
+Received: from i53875b22.versanet.de ([83.135.91.34] helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko@sntech.de>)
+        id 1qAnXn-00028P-K9; Sun, 18 Jun 2023 10:13:55 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Damien Le Moal <dlemoal@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230616081440.v2.1.Ie79b5f0ed45739695c9970df121e11d724909157@changeid>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230616081440.v2.1.Ie79b5f0ed45739695c9970df121e11d724909157@changeid>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com
+Subject: Re: [PATCH v4 5/5] arm64: dts: rockchip: rk3588: add SATA support
+Date:   Sun, 18 Jun 2023 10:13:54 +0200
+Message-ID: <4844617.31r3eYUQgx@diego>
+In-Reply-To: <fa42c1ad-c411-2121-92f7-fc1e1f0f8172@kernel.org>
+References: <20230612171337.74576-1-sebastian.reichel@collabora.com>
+ <20230612171337.74576-6-sebastian.reichel@collabora.com>
+ <fa42c1ad-c411-2121-92f7-fc1e1f0f8172@kernel.org>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,20 +50,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 17:14, Douglas Anderson wrote:
-> Trogdor devices use firmware backed by TF-A instead of Qualcomm's
-> normal TZ. On TF-A we end up mapping memory as cacheable. Specifically,
-> you can see in Trogdor's TF-A code [1] in qti_sip_mem_assign() that we
-> call qti_mmap_add_dynamic_region() with MT_RO_DATA. This translates
-> down to MT_MEMORY instead of MT_NON_CACHEABLE or MT_DEVICE.
-> 
-> Let's allow devices like trogdor to be described properly by allowing
-> "dma-coherent" in the SCM node.
-> 
-> Signed-off-by: Douglas Anderson <dianders@chromium.org
+Hi Damien,
 
-2
+Am Sonntag, 18. Juni 2023, 05:10:58 CEST schrieb Damien Le Moal:
+> On 6/13/23 02:13, Sebastian Reichel wrote:
+> > Add all three SATA IP blocks to the RK3588 DT.
+> > 
+> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> 
+> This patch does not apply to libata for-6.5 branch. What is it based on ?
 
-Best regards,
-Krzysztof
+I guess probably either mainline or my dts-branch [0] .
+
+Most of the time we have series doing driver changes + devicetree changes
+where subsystem maintainers pick the driver + binding patches 
+(1-3 in this case) and after that I pick the devicetree changes (4-5 here).
+
+
+Heiko
+
+
+[0] https://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git/log/?h=v6.5-armsoc/dts64
+
 
