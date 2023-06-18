@@ -2,185 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2603734602
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 13:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 492CE73461B
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 14:22:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229569AbjFRLvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 07:51:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57086 "EHLO
+        id S229632AbjFRMWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 08:22:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjFRLvI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 07:51:08 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871E7FA;
-        Sun, 18 Jun 2023 04:51:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1687089064;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zaLQZRJzkXP7u1JRsYLXSI2d3hce21yOLxns9cE2+0c=;
-        b=1xWntLyTa58wwy/f+xowka2n0ALb4yVY7aOsoKXBsizbw9PJMxvoxDMjN1VMUIRKaSwjxc
-        Fa5LvfOjjB2dgf8KbBnGYMZ77f7oeeJvXuzCvyKINzxgLhWmlvipkVYAHK8sdynCgn52Px
-        P6VHBhplQ2EpOPtJGpzZEfQzyYGEtKc=
-Message-ID: <ebf776a8fb8dee045e7661daaca4564fe39917a6.camel@crapouillou.net>
-Subject: Re: [PATCH 0/9] MIPS: CI20: Add WiFi / Bluetooth support
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     list@opendingux.net, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Paul Boddie <paul@boddie.org.uk>,
-        Paul Burton <paulburton@kernel.org>
-Date:   Sun, 18 Jun 2023 13:51:01 +0200
-In-Reply-To: <43DCEEA5-C013-44BE-85C7-D61A980B0EA5@goldelico.com>
-References: <20230615084006.79194526F801@goldelico.com>
-         <C1924536-FA97-4E75-9D22-99E5AF24EE5B@goldelico.com>
-         <A8EBCBA4-D9BA-4C2F-9C91-38128D06EDBA@goldelico.com>
-         <AA802E24-A97B-42B6-90A4-5ECB1E4D9294@goldelico.com>
-         <5EF6B0D2-2B84-4C98-B799-88062E035EC1@goldelico.com>
-         <43DCEEA5-C013-44BE-85C7-D61A980B0EA5@goldelico.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: base64
+        with ESMTP id S229525AbjFRMWX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 08:22:23 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E0FD124;
+        Sun, 18 Jun 2023 05:22:17 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DAC017FEF;
+        Sun, 18 Jun 2023 20:22:08 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 18 Jun
+ 2023 20:22:08 +0800
+Received: from [192.168.125.127] (113.72.145.217) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Sun, 18 Jun
+ 2023 20:22:07 +0800
+Message-ID: <a91f4167-e797-435f-8867-dbef4b109df8@starfivetech.com>
+Date:   Sun, 18 Jun 2023 20:22:05 +0800
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 5/7] dt-bindings: usb: Add StarFive JH7110 USB
+ controller
+Content-Language: en-US
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "Kishon Vijay Abraham I" <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pawel Laszczak <pawell@cadence.com>,
+        Peter Chen <peter.chen@kernel.org>,
+        Roger Quadros <rogerq@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-usb@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Mason Huo" <mason.huo@starfivetech.com>
+References: <20230518112750.57924-1-minda.chen@starfivetech.com>
+ <20230518112750.57924-6-minda.chen@starfivetech.com>
+ <20230525-shopper-handbrake-27fc06aede32@spud>
+ <5124e6a8-8ca6-71a5-19d6-8c15e954c458@starfivetech.com>
+ <20230526-grain-cubical-e0af96202007@wendy>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <20230526-grain-cubical-e0af96202007@wendy>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.145.217]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTmlrb2xhdXMsCgpMZSBzYW1lZGkgMTcganVpbiAyMDIzIMOgIDEyOjQ1ICswMjAwLCBILiBO
-aWtvbGF1cyBTY2hhbGxlciBhIMOpY3JpdMKgOgo+IEhpIFBhdWwsCj4gCj4gPiBBbSAxNi4wNi4y
-MDIzIHVtIDIyOjIxIHNjaHJpZWIgSC4gTmlrb2xhdXMgU2NoYWxsZXIKPiA+IDxobnNAZ29sZGVs
-aWNvLmNvbT46Cj4gCj4gPiAtIEJ1dCByZW5hbWluZyB0aGUgRFQgbm9kZXMgKGUuZy4gU1VEQ0RD
-MSAtPiBEQ0RDMSkgKHdpdGggb3IKPiA+IHdpdGhvdXQgcmVndWxhdG9yX25hbWUpIG1ha2VzCj4g
-PiBib290IGhhbmcgd2l0aCBzdHJhbmdlIGVycm9ycyB3aGljaCBpbmRpY2F0ZSB0aGF0IHRoZSBw
-cm9jZXNzb3IKPiA+IHBvd2VyIHN1cHBseSBpcyBub3Qgc3RhYmxlLgo+ID4gT25jZSBhIHdoaWxl
-IGl0IGRpZCBldmVuIGF1dG9tYXRpY2FsbHkgcmVib290LiBJbiBtb3N0IGNhc2VzIHRoZXJlCj4g
-PiBhcmUgc29tZSBFWFQ0IGVycm9ycwo+ID4gYWZ0ZXJ3YXJkcy4KPiAKPiBJIGFtIGNvbWluZyBj
-bG9zZXIsIEkgdGhpbmsuIEkgaGF2ZSBub3cgdG91Y2hlZCBvbmx5IHRoZSBEQ0RDMSBub2RlCj4g
-bmFtZS4KPiAKPiBhKSB3aXRoICJTVURDREMxIiAtPiAiRENEQzEiIChiYWQgYm9vZCk6Cj4gCj4g
-cmVndWxhdG9yX29mX2dldF9pbml0X25vZGUoKSByZXR1cm5zIHRoZSBjaGlsZCBub2RlCj4gCj4g
-VGhlbjoKPiBbwqDCoMKgIDAuNjY2OTYyXSBhY3Q4ODY1IDAtMDA1YTogTG9va2luZyB1cCB2cDEt
-c3VwcGx5IGZyb20gZGV2aWNlIHRyZWUKPiBbwqDCoMKgIDAuNjczMTkxXSBEQ0RDMTogc3VwcGxp
-ZWQgYnkgdmNjXzMzdgo+IFvCoMKgwqAgMC43MjcwNzBdIERDREMxOiBCcmluZ2luZyAxMjAwMDAw
-dVYgaW50byAxMTAwMDAwLTExMDAwMDB1Vgo+IFvCoMKgwqAgMC43MzkzOThdIERDREMxOiAxMTAw
-IG1WLCBlbmFibGVkCj4gCj4gYikgd2l0aG91dCBwYXRjaC9zZXJpZXMgb3IgcmV2ZXJ0ZWQgKGdv
-b2QgYm9vdCk6Cj4gCj4gcmVndWxhdG9yX29mX2dldF9pbml0X25vZGUoKSByZXR1cm5zIE5VTEwK
-PiAKPiBUaGVuOgo+IFvCoMKgwqAgMS4wMTY0ODddIERDREMxOiBhdCAxMjAwIG1WLCBlbmFibGVk
-Cj4gW8KgwqDCoCAxLjAyMDU3OF0gYWN0ODg2NSAwLTAwNWE6IExvb2tpbmcgdXAgdnAxLXN1cHBs
-eSBmcm9tIGRldmljZSB0cmVlCj4gW8KgwqDCoCAxLjAyNjkxN10gRENEQzE6IHN1cHBsaWVkIGJ5
-IHZjY18zM3YKPiAKPiBTbyBhdCBsZWFzdCBmb3IgbXkgYm9hcmQgdGhlIHBhdGNoZWQgc2VyaWVz
-IHNlZW1zIHRvIHJlZHVjZSBEQ0RDMQo+IHZvbHRhZ2UKPiB0byAxLjFWIHdoaWNoIG1heSB0cmln
-Z2VyIHRoZSBib290IGFuZCBzdGFiaWxpdHkgcHJvYmxlbXMgb24gbXkgYm9hcmQKPiB3aGlsZQo+
-IGl0IGlzIGZpbmUgZm9yIHlvdXJzLiBUaGlzIGNvdWxkIGV4cGxhaW4gdGhlIGhhcmR3YXJlIGRl
-cGVuZGVuY3kuCj4gCj4gTm93IEkgaGF2ZSBubyBkYXRhIHNoZWV0cyBvciBpbmZvcm1hdGlvbiB3
-aGljaCB2b2x0YWdlcyBhcmUgdGhlIHJpZ2h0Cj4gb25lcwo+IGFuZCB3aGVyZSB0aGUgMTIwMG1W
-IGNvbWUgZnJvbSAobW9zdCBsaWtlbHkgc29tZSBkZWZhdWx0IHByb2dyYW1tZWQKPiBpbnRvIHRo
-ZSBQTVUgY2hpcCkuCj4gCj4gQW5kIHRoZSBpc3N1ZSBzZWVtcyB0byBiZSB0aGF0IHdpdGhvdXQg
-bWF0Y2hpbmcgdGhlIG5vZGUgbmFtZXMgdGhlCj4gdm9sdGFnZXMgaW4gdGhlIGRldmljZSB0cmVl
-IG1heSBoYXZlIGJlZW4gaWdub3JlZCBjb21wbGV0ZWx5IGFsbCB0aGUKPiB0aW1lLi4uIE5vdyBp
-dCBzZXRzIHVwIHZvbHRhZ2VzLCB3aGljaCBzaG91bGQgaGFwcGVuLiBCdXQgZGlmZmVyZW50Cj4g
-b25lcyBmb3IgbXkgYm9hcmQgd2hpY2ggYnJlYWtzIGJvb3QuCgpTbyB0aGUgbm9kZSBuYW1lcyBm
-aXggY2F1c2VkIHRoZSBkcml2ZXIgdG8gYWN0dWFsbHkgdXNlIHRoZSBpbmZvIGZyb20KRFQsIHdo
-aWNoIGRvZXNuJ3QgYWxsb3cgdGhlIGJvYXJkIHRvIGJvb3QuIE5pY2UuCgo+IEZpbmFsbHkgSSBk
-aWQgcmlzayAoSSBoYXZlIG5vIHJlcGxhY2VtZW50IENJMjAgYm9hcmQgYW5kIHRoZXkgYXJlIG5v
-Cj4gbG9uZ2VyCj4gb24gc2FsZS4uLiBSUyBwYXJ0IyB3YXMgMTI1LTMzMDUgTW91c2VyIDQ1Ni1W
-TC02Mjg1MSkgdG8gcnVuIGEgdGVzdAo+IHdpdGgKPiByZW5hbWUgdG8gIkRDREMxIiBidXQgY2hh
-bmdpbmcgdGhlIHZvbHRhZ2UgdG8gMTIwMG1WLiBBbmQgdGhpcwo+IHZlcnNpb24gYm9vdHMuCgpM
-b29raW5nIGF0IHRoZSBKWjQ3ODBfRFMuUERGIGZpbGUsIHRoZSBTb0MgYWN0dWFsbHkgd2FudHMg
-MS4xViBzbyB0aGUKRFQgaXMgbm90IHdyb25nIC0gaW4gdGhlb3J5LiBCdXQgaW4gcHJhY3RpY2Ug
-aXQgZG9lcyBub3Qgd29yaywgYXMgeW91CmV4cGVyaWVuY2VkIHlvdXJzZWxmLiBIb3dldmVyLCBp
-ZiB0aGUgQUNUODYwMCBkZWZhdWx0cyB0byAxLjJWLCBvciBpZgp0aGUgYm9vdGxvYWRlciBjb25m
-aWd1cmVzIGl0IHRvIDEuMlYsIEkgd291bGQgdGhpbmsgdGhhdCB0aGlzIGlzCmFjdHVhbGx5IGEg
-dm9sdGFnZSB0aGF0IHRoZSBTb0MgY2FuIGhhbmRsZSAtIG90aGVyd2lzZSB0aGUgU29DIHdvdWxk
-IGJlCm92ZXJ2b2x0ZWQgdW50aWwgdGhlIGtlcm5lbCBzdGFydHMsIGFuZCB0aGUgYm9hcmQgZGVz
-aWduIHdvdWxkIGJlCmZsYXdlZC4KCkkgbWVhc3VyZWQgdGhhdCB0aGUgb2xkIDMueCBrZXJuZWwg
-a2VlcHMgdGhlIFNvQyB2b2x0YWdlIGF0IDEuMlYsIHNvIGl0CnNvdW5kcyBsaWtlIGEgYmV0dGVy
-IGRlZmF1bHQuIFRoZXJlZm9yZSB0aGUgZml4IGhlcmUgd291bGQgYmUgdG8gcmFpc2UKdGhlIERD
-REMxIHJlZ3VsYXRvciB0byAxLjJWLgoKSSdsbCBzZW5kIGEgcGF0Y2ggbGF0ZXIgdG9kYXkuCgpD
-aGVlcnMsCi1QYXVsCgo+IFN0aWxsIHdpdGhvdXQgV2lGaS9CbHVldG9vdGggYnV0IHRoYXQgbWF5
-IGJlIHJlbGF0ZWQgdG8gbWlzc2luZwo+IHJlbmFtZQo+IG9mIHRoZSBvdGhlciByZWd1bGF0b3Jz
-Lgo+IAo+IFNvIEkgdHJpZWQgcmVuYW1pbmcgYWxsIHJlZ3VsYXRvcnMgYXMgYnkgeW91ciBbUEFU
-Q0ggMi85XSwgYW5kIG5vdyBJCj4gc2VlIHNvbWV0aGluZyBmcm9tIFdpRmkgKGhhdmVuJ3QgaW5z
-dGFsbGVkIGZpcm13YXJlIHlldCkgYW5kIHRoZQo+IEJsdWV0b290aCBjaGlwOgo+IAo+IFvCoMKg
-wqAgMS45Nzc4NzZdIG1tYzE6IG5ldyBoaWdoIHNwZWVkIFNESU8gY2FyZCBhdCBhZGRyZXNzIDAw
-MDEKPiAKPiBbwqDCoCAxMS4zNDE5OTRdIEJsdWV0b290aDogaGNpMDogQkNNOiBjaGlwIGlkIDYy
-Cj4gW8KgwqAgMTEuMzQ4ODExXSBCbHVldG9vdGg6IGhjaTA6IEJDTTogZmVhdHVyZXMgMHgwZgo+
-IFvCoMKgIDExLjM3NjY5OF0gQmx1ZXRvb3RoOiBoY2kwOiBCQ000MzMwQjEKPiBbwqDCoCAxMS4z
-ODA2NjJdIEJsdWV0b290aDogaGNpMDogQkNNNDMzMEIxICgwMDIuMDAxLjAwMykgYnVpbGQgMDAw
-MAo+IFvCoMKgIDExLjM5MjA1M10gQmx1ZXRvb3RoOiBoY2kwOiBCQ000MzMwQjEgJ2JyY20vQkNN
-NDMzMEIxLmhjZCcgUGF0Y2gKPiAKPiBbwqDCoCAxMi4xNDUzMzBdIGJyY21mbWFjIG1tYzE6MDAw
-MToxOiBEaXJlY3QgZmlybXdhcmUgbG9hZCBmb3IKPiBicmNtL2JyY21mbWFjNDMzMC1zZGlvLmlt
-ZyxjaTIwLmJpbiBmYWlsZWQgd2l0aCBlcnJvciAtMgo+IFvCoMKgIDEyLjIwODAwMV0gYnJjbWZt
-YWMgbW1jMTowMDAxOjE6IERpcmVjdCBmaXJtd2FyZSBsb2FkIGZvcgo+IGJyY20vYnJjbWZtYWM0
-MzMwLXNkaW8uY2xtX2Jsb2IgZmFpbGVkIHdpdGggZXJyb3IgLTIKPiAKPiBVbmZvcnR1bmF0bGV5
-IHN5c3RlbWQgYmFpbGVkIG91dCBzdGFydGluZyBCbHVldG9vdGggc2VydmljZSBidXQKPiBmYWls
-ZWQgdG8gcHJvdmlkZSBhIGxvZ2luOgo+IAo+IEluIHN1bW1hcnkgaXQgbG9va3MgbGlrZSBhIHBv
-dGVudGlhbCBmaXggY291bGQgYmUgdG8gcmVwbGFjZSB0aGUKPiBEQ0RDMQo+IG1pbi9tYXggcmFu
-Z2UgYnkgMS4wIC0gMS4yViBpbnN0ZWFkIG9mIDEuMSAtIDEuMVYgYnV0IHdlIG5lZWQgZGVlcGVy
-Cj4gdW5kZXJzdGFuZGluZyBmaXJzdC4gVXN1YWxseSB0aGlzIGhhcyBzb21ldGhpbmcgdG8gZG8g
-d2l0aCBkeW5hbWljCj4gdm9sdGFnZQo+IHNjYWxpbmcgZGVwZW5kaW5nIG9uIHByb2Nlc3NvciBj
-bG9jayBhbmQgbG93ZXIgdm9sdGFnZXMgYXJlIG9ubHkKPiBhbGxvd2VkCj4gZm9yIGxvd2VyIGZy
-ZXF1ZW5jaWVzIGJ1dCBtYXguIGNsb2NrIHJlcXVpcmVzIHRoZSBoaWdoZXN0IHBvc3NpYmxlCj4g
-dm9sdGFnZS4KPiBBRkFJSyB3ZSBoYXZlIG5vIGNwdWZyZXEgaW50ZWdyYXRlZCBhbmQgdGhlcmVm
-b3JlIGFsd2F5cyBydW4gYXQgbWF4Lgo+IHNwZWVkLgo+IAo+IEJSLAo+IE5pa29sYXVzCj4gCj4g
-UFM6IGhlcmUgaXMgd2hhdCBJIHJlYWQgYmFjayBmcm9tIHRoZSByZWd1bGF0b3Igdm9sdGFnZXMg
-KGZvciBEQ0RDMcKgCj4gbWluL21heCA9IDEuMlYpOgo+IAo+IHJvb3RAbGV0dXg6fiMgY2F0IC9z
-eXMva2VybmVsL2RlYnVnL3JlZ3VsYXRvci9yZWd1bGF0b3Jfc3VtbWFyeQo+IMKgcmVndWxhdG9y
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHVzZSBvcGVuIGJ5cGFz
-c8KgIG9wbW9kZSB2b2x0YWdlCj4gY3VycmVudMKgwqDCoMKgIG1pbsKgwqDCoMKgIG1heAo+IC0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLQo+IC0tLS0tLS0tLS0tLS0tLS0tLQo+IMKgcmVndWxhdG9yLWR1bW15wqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAxwqDCoMKgIDDCoMKgwqDCoMKgIDAgdW5rbm93
-bsKgwqDCoMKgIDBtVsKgwqDCoMKgCj4gMG1BwqDCoMKgwqAgMG1WwqDCoMKgwqAgMG1WIAo+IMKg
-ZXRoMF9wb3dlcsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDHC
-oMKgwqAgMcKgwqDCoMKgwqAgMCB1bmtub3duwqAgMzMwMG1WwqDCoMKgwqAKPiAwbUHCoCAzMzAw
-bVbCoCAzMzAwbVYgCj4gwqDCoMKgIDE2MDAwMDAwLmRtOTAwMC12Y2PCoMKgwqDCoMKgwqDCoMKg
-wqDCoCAxwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoAo+IDBtQcKgwqDCoMKgIDBtVsKgwqDCoMKgIDBtVgo+IMKgb3RnX3Bvd2Vy
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwwqDCoMKgIDDC
-oMKgwqDCoMKgIDAgdW5rbm93bsKgIDUwMDBtVsKgwqDCoMKgCj4gMG1BwqAgNTAwMG1WwqAgNTAw
-MG1WIAo+IMKgdmNjXzMzdsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgIDTCoMKgwqAgOcKgwqDCoMKgwqAgMCB1bmtub3duwqAgMzMwMG1WwqDCoMKgwqAK
-PiAwbUHCoCAzMzAwbVbCoCAzMzAwbVYgCj4gwqDCoMKgIDEzNDUwMDAwLm1tYy12cW1tY8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqAgMcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAKPiAwbUHCoMKgwqDCoCAwbVbCoMKgwqDCoCAwbVYK
-PiDCoMKgwqAgMTM0NTAwMDAubW1jLXZtbWPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMcKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqAKPiAwbUHCoCAzMzAwbVbCoCAzNDAwbVYKPiDCoMKgwqAgRENEQzHCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMcKgwqDCoCAwwqDCoMKgwqDCoCAwIHN0
-YW5kYnnCoCAxMjAwbVbCoMKgwqDCoAo+IDBtQcKgIDEyMDBtVsKgIDEyMDBtViAKPiDCoMKgwqAg
-RENEQzLCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMMKg
-wqDCoCAwwqDCoMKgwqDCoCAwIHN0YW5kYnnCoCAxNTAwbVbCoMKgwqDCoAo+IDBtQcKgwqDCoMKg
-IDBtVsKgwqDCoMKgIDBtViAKPiDCoMKgwqAgRENEQzPCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMMKgwqDCoCAwwqDCoMKgwqDCoCAwIHVua25vd27CoCAz
-MzAwbVbCoMKgwqDCoAo+IDBtQcKgwqDCoMKgIDBtVsKgwqDCoMKgIDBtViAKPiDCoMKgwqAgTERP
-NcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDDCoMKg
-wqAgMMKgwqDCoMKgwqAgMCB1bmtub3duwqAgMjUwMG1WwqDCoMKgwqAKPiAwbUHCoMKgwqDCoCAw
-bVbCoMKgwqDCoCAwbVYgCj4gwqDCoMKgIExETzbCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAwwqDCoMKgIDDCoMKgwqDCoMKgIDDCoCBub3JtYWzCoCAx
-ODAwbVbCoMKgwqDCoAo+IDBtQcKgIDE4MDBtVsKgIDE4MDBtViAKPiDCoMKgwqAgTERPN8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDDCoMKgwqAgMMKg
-wqDCoMKgwqAgMCB1bmtub3duwqAgMzMwMG1WwqDCoMKgwqAKPiAwbUHCoMKgwqDCoCAwbVbCoMKg
-wqDCoCAwbVYgCj4gwqDCoMKgIExETzjCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoCAwwqDCoMKgIDDCoMKgwqDCoMKgIDAgdW5rbm93bsKgIDMzMDBtVsKg
-wqDCoMKgCj4gMG1BwqDCoMKgwqAgMG1WwqDCoMKgwqAgMG1WIAo+IMKgU1VEQ0RDX1JFRzTCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMMKgwqDCoCAwwqDCoMKgwqDC
-oCAwwqAgbm9ybWFswqAgNTAwMG1WwqDCoMKgwqAKPiAwbUHCoMKgwqDCoCAwbVbCoMKgwqDCoCAw
-bVYgCj4gwqBMRE9fUkVHOcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCAxwqDCoMKgIDDCoMKgwqDCoMKgIDAgdW5rbm93bsKgIDMzMDBtVsKgwqDCoMKgCj4g
-MG1BwqAgMzMwMG1WwqAgMzMwMG1WIAo+IMKgTERPX1JFRzEwwqDCoMKgwqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAxwqDCoMKgIDDCoMKgwqDCoMKgIDAgdW5rbm93bsKg
-IDEyMDBtVsKgwqDCoMKgCj4gMG1BwqAgMTIwMG1WwqAgMTIwMG1WIAo+IMKgYnRfcG93ZXLCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgMMKgwqDCoCAwwqDC
-oMKgwqDCoCAwIHVua25vd27CoCAzMzAwbVbCoMKgwqDCoAo+IDBtQcKgIDMzMDBtVsKgIDMzMDBt
-ViAKPiByb290QGxldHV4On4jIAo+IAo+IFRoaXMgbWF0Y2hlcyBkZXZpY2UgdHJlZSBleGNlcHQg
-RENEQzEsIExETzcgYW5kIExETzggKGNhbWVyYSkuCj4gCgo=
 
+
+On 2023/5/26 21:13, Conor Dooley wrote:
+> On Fri, May 26, 2023 at 06:24:48PM +0800, Minda Chen wrote:
+> 
+>> >> +title: StarFive JH7110 wrapper module for the Cadence USBSS-DRD controller
+>> > 
+>> > I think you told Krzysztof you'd rename this to "StarFive JH7110 Cadence
+>> > USBSS-DRD SoC controller"?
+>> > 
+>> The previous title describe whole USB controller for previous dts node is
+>> merged. Now the dts node is split. 
+>> "starfive,jh7110-usb" just contain starfive wrapper layer dts configuration.
+> 
+> Okay, I must have misunderstood the conversation on the previous
+> version. Sorry about that.
+> 
+>> > Otherwise, it looks like all the stuff from him and Rob have been sorted
+>> > out, so other than $title this is
+>> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> 
+
+Hi Greg
+Can this patch can be applied to Linux-USB-next tree? Since this patch is reviewed by Conor.
+
+List Below is Conor's previous E-mail.
+
+   I think I missed this mail somehow. 5/7 had the binding for the driver
+   so probably that should've gone via the USB tree too?
+   Should apply on its own (no deps on the phy patches) & has dt-binding
+   maintainer reviews.
+
+   `b4 am -P 5 20230518112750.57924-6-minda.chen@starfivetech.com` if
+   that's your cup of tea.
