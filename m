@@ -2,64 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CD837344BF
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 05:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3FD67344EF
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 07:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbjFRDLE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 17 Jun 2023 23:11:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36952 "EHLO
+        id S229507AbjFRFFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 01:05:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229379AbjFRDLD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 17 Jun 2023 23:11:03 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F2A4E62;
-        Sat, 17 Jun 2023 20:11:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E647160B6D;
-        Sun, 18 Jun 2023 03:11:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C7AC1C433C8;
-        Sun, 18 Jun 2023 03:10:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687057861;
-        bh=QfJGGmVPtzH2/wtuC9y7Mu4NQbqbm41TJrsmBMBHqYc=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=adNlcTOIQdffWMYX4FWuZIbY9HuYoiAGLyr3ozcML06ju56PtAa02qK7CF6eAGh8D
-         fR5wRi7si6Ut9H/DbAx9CdPSYN+mXyy4qSAyKLy8XGk2k67sedXzxmcem7XRKrpLJZ
-         N/mEo8O9XrCe82Yhr5p8lOAZD5JymNFhzC4nrA2+zjTq7cGjnu92lmwAk1Q1gtM1lI
-         4LUE8K0VeWg+83PFioWOo9ZO3sCvz7E9ADF9u1O8D4MA0gQGf6FdxwNTPfjoKCngG7
-         99awsLy54uyU4QMXg4uteI/Mw1p2bvqzXhNG9iROJ9d0QwyzXb0BuFcWbyjnHcnaSZ
-         pzKjwR8WkJC3w==
-Message-ID: <fa42c1ad-c411-2121-92f7-fc1e1f0f8172@kernel.org>
-Date:   Sun, 18 Jun 2023 12:10:58 +0900
+        with ESMTP id S229494AbjFRFFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 01:05:09 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 444BE1731;
+        Sat, 17 Jun 2023 22:05:08 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1a991886254so2448084fac.2;
+        Sat, 17 Jun 2023 22:05:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687064706; x=1689656706;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2PiW+MJlJ2pTX+mzQXGX5U4qXNI/w3DLeXi95EkHBqc=;
+        b=JGC0dfEwqu6kZ3c45wSO54eZXVM1fnR6DcXcK76aS3HtHJL0QFFAKdx1xcWqBBc4Ka
+         V95+yuD7O2dlwsyzmiXpPDQ9h/c59cLxPKvN0Wnl+zngT/VFckrO2Sxc6Ju4JtcZxpxQ
+         ZdMujd4c+3J37u378dNkqumrPnrEzLGqnBkzqW70zLEvj2JWL2x6wjm237Wzx+kbtztU
+         qpQ6zVINLPokjU2aOVPkT0wIRDhmZv7zLZgVlXprufYelVjg8Y84UZC0Ss54iBAFpxJC
+         I3Iu8HWtCo1Jc5/1UvlwXnPe2R3dC9WG1yYcKtL+ArpOic3iwIqHf9Os2sGyvHvLYWjA
+         YzmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687064706; x=1689656706;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2PiW+MJlJ2pTX+mzQXGX5U4qXNI/w3DLeXi95EkHBqc=;
+        b=aLvdFwl/8tIqm1ZK9TOPzU7VrRMQbEnWuD3wTeKEQl8I9mDTem2C6MsptViG86WcTV
+         baAPKVD636VseMmI5RQXMCQDI1RUhVpxlMuXJoOFAzKe6JA7Uk5Azouum3rYzPNpS8uL
+         eMVIrHVzEPpAxd8BvWeJAOeAssGUBzBHivicG2ND2ZS72G10aAU99DnwdtsoN6Kjgo4k
+         27wkYmxKDtqz/C5NXF/0l/EB5K0tl2KmPW90jQmrGcXVke4LmV3d+gTJpTlbq7KHmV/l
+         ejUC9+RJWX8yys8JaWSGDu+T/4X1wwB5h/0raJohEoUoz7vqVzcpR1AvXaOGIwvP0r5W
+         KUMw==
+X-Gm-Message-State: AC+VfDwTmlcw6Ew2qvpUGLbaT6dwLE7GVJ5AFQ+fvWxJcYa1mW1601t2
+        g/LtdlYU3zWqaOAJMKczbVapfzSzItloUjiqIBZyHcUJh2c=
+X-Google-Smtp-Source: ACHHUZ5B7zcZSRzkr3xEkDsmDO4sQjMK2G6DnHnF9bhgUSsx4rAVHDbb+ZlljI5BWOF1QtYQRJ3OW25mnYeJvw/bEWY=
+X-Received: by 2002:a05:6870:8805:b0:192:ba3b:a18 with SMTP id
+ n5-20020a056870880500b00192ba3b0a18mr3761926oam.51.1687064706585; Sat, 17 Jun
+ 2023 22:05:06 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v4 5/5] arm64: dts: rockchip: rk3588: add SATA support
-Content-Language: en-US
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Damien Le Moal <damien.lemoal@opensource.wdc.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-ide@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com
-References: <20230612171337.74576-1-sebastian.reichel@collabora.com>
- <20230612171337.74576-6-sebastian.reichel@collabora.com>
-From:   Damien Le Moal <dlemoal@kernel.org>
-Organization: Western Digital Research
-In-Reply-To: <20230612171337.74576-6-sebastian.reichel@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+References: <20230617052435.359177-3-sergio.paracuellos@gmail.com>
+ <TYAP286MB0315AB8274CDD341D49809A2BC59A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
+ <e0f74bdc-3a4b-596a-5ec7-83054377813e@linaro.org> <CAMhs-H9M_c8+AkqUTpYeS2q7_+wBA-jhhiXj-QVXNUDmuERcOA@mail.gmail.com>
+ <05e3ff33-ad4e-d2fb-dfd5-7b5265881b74@linaro.org> <CAMhs-H-ncXC37SAMkLfrFmpRi0ORkkCV9rQmrtmw_ndOLo+J0Q@mail.gmail.com>
+ <10f01535-ab4f-b0d4-306b-a90f4ad19008@linaro.org> <CAMhs-H-uc_VzZ4MS0VLn9AajFRM-BYKEn4zGJ36H3EmL0oX-WA@mail.gmail.com>
+In-Reply-To: <CAMhs-H-uc_VzZ4MS0VLn9AajFRM-BYKEn4zGJ36H3EmL0oX-WA@mail.gmail.com>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Sun, 18 Jun 2023 07:04:55 +0200
+Message-ID: <CAMhs-H-Aw8gdj=ZUep6ZX_9JH0TK9JgDx=sdduNkOROkzEN96g@mail.gmail.com>
+Subject: Re: [PATCH v3 2/9] clk: ralink: add clock and reset driver for MTMIPS SoCs
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Shiji Yang <yangshiji66@outlook.com>, arinc.unal@arinc9.com,
+        devicetree@vger.kernel.org, john@phrozen.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        matthias.bgg@gmail.com, mturquette@baylibre.com,
+        p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
+        tsbogend@alpha.franken.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,14 +77,110 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/13/23 02:13, Sebastian Reichel wrote:
-> Add all three SATA IP blocks to the RK3588 DT.
-> 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+Hi krzysztof,
 
-This patch does not apply to libata for-6.5 branch. What is it based on ?
+On Sat, Jun 17, 2023 at 9:11=E2=80=AFPM Sergio Paracuellos
+<sergio.paracuellos@gmail.com> wrote:
+>
+> On Sat, Jun 17, 2023 at 7:20=E2=80=AFPM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 17/06/2023 17:37, Sergio Paracuellos wrote:
+> > >>> The case of
+> > >>> searching for compatible is a mess since as you can see in the
+> > >>> bindings there are tons of compatibles to search for, then (this co=
+de
+> > >>> is common to all ralink platforms).
+> > >>
+> > >> Compatible is one of the ways using ABI.
+> > >
+> > > Ok so it is also a broken approach, then.
+> >
+> > What is exactly broken approach? Fetching by compatibles? Somehow many
+> > other platforms do not have problem with that, even for multiple
+> > compatibles. Why yours is special?
 
--- 
-Damien Le Moal
-Western Digital Research
+Ok so fetching by compatible would be a valid approach, then. The
+following works for me. Would you also be ok doing it this way?
 
+static const char *clk_cpu(int *idx)
+{
+    *idx =3D 1;
+
+    switch (ralink_soc) {
+    case RT2880_SOC:
+        return "ralink,rt2880-sysc";
+    case RT3883_SOC:
+        return "ralink,rt3883-sysc";
+    case RT305X_SOC_RT3050:
+        return "ralink,rt3050-sysc";
+    case RT305X_SOC_RT3052:
+        return "ralink,rt3052-sysc";
+    case RT305X_SOC_RT3350:
+        return "ralink,rt3350-sysc";
+    case RT305X_SOC_RT3352:
+        return "ralink,rt3352-sysc";
+    case RT305X_SOC_RT5350:
+        return "ralink,rt5350-sysc";
+    case MT762X_SOC_MT7620A:
+        *idx =3D 2;
+        return "ralink,mt7620a-sysc";
+     case MT762X_SOC_MT7620N:
+        *idx =3D 2;
+        return "ralink,mt7620-sysc";
+     case MT762X_SOC_MT7628AN:
+        return "ralink,mt7628-sysc";
+     case MT762X_SOC_MT7688:
+       return "ralink,mt7688-sysc";
+     default:
+        *idx =3D -1;
+        return "invalid";
+  }
+}
+
+void __init plat_time_init(void)
+{
+    struct of_phandle_args clkspec;
+    const char *compatible;
+    struct clk *clk;
+    int cpu_clk_idx;
+
+    ralink_of_remap();
+
+    compatible =3D clk_cpu(&cpu_clk_idx);
+    if (cpu_clk_idx =3D=3D -1)
+        panic("unable to get CPU clock index");
+
+   of_clk_init(NULL);
+   clkspec.np =3D of_find_compatible_node(NULL, NULL, compatible);
+   clkspec.args_count =3D 1;
+   clkspec.args[0] =3D cpu_clk_idx;
+   clk =3D of_clk_get_from_provider(&clkspec);
+   if (IS_ERR(clk))
+       panic("unable to get CPU clock, err=3D%ld", PTR_ERR(clk));
+   pr_info("CPU Clock: %ldMHz\n", clk_get_rate(clk) / 1000000);
+   mips_hpt_frequency =3D clk_get_rate(clk) / 2;
+   clk_put(clk);
+   timer_probe();
+}
+
+Thanks,
+    Sergio Paracuellos
+>
+> I guess it is not special but I cannot figure out the way of getting
+> this clock using compatibles...
+>
+> >
+> > Anyway, it is not a correct way to get clocks frequency. There is CCF
+> > for this, although maybe Ralink does not support it?
+>
+> This means to use clk_get() if I understand properly but it does not
+> work at all for ralink...
+>
+> >
+> > Best regards,
+> > Krzysztof
+> >
+>
+> Thanks,
+>     Sergio Paracuellos
