@@ -2,76 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DD64734625
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 14:42:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E42D734649
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 15:23:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229468AbjFRMl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 08:41:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33870 "EHLO
+        id S229640AbjFRNXM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 09:23:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229487AbjFRMl6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 08:41:58 -0400
-Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC4D51AE
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 05:41:56 -0700 (PDT)
-Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51878f8e541so2923926a12.3
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 05:41:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687092115; x=1689684115;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LcmCILrgJX1B1Vteq2MM9FqRXYqqpViPdWNgRXDlb3o=;
-        b=dLxTN7sLvrQKZSpwIGW+AeLTtG/dhcI5bwtBx1FK7kHl1JuyqlMTryBFUs8YIupTvl
-         AD22hN0u+IOPT2sf5wlG2QYlQc28vagkoCC14EBWQfH7ZHi/K44hgYjMzqu62nJAyhgE
-         Pn9VWnGkzbcUIN8IHmLIr1XqQzjLjq2NlKFXRS1a3uDzUTkeBTqsNpVZXUmbP/t34P/X
-         B9R3WMrkCL7TwAyQGxPbO9WojQmOfpmoAfcd/NRw6xSq4Y57xB32eZmfRZTXf0gcP3VD
-         Xp7u80SadEF36cf9A/WOGsi7YIXtsOe3+AH1kf1V/oupO+SWozZywwYjlAaaECC2iejh
-         Mwpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687092115; x=1689684115;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LcmCILrgJX1B1Vteq2MM9FqRXYqqpViPdWNgRXDlb3o=;
-        b=WnWJd3GYOpJuHFQar3PPgpe6jE093Z0gaHgOzqgAZScXpFqj0Fcbp+2A9AH1ZSd6JC
-         fa+IjUGfbHj28il3FamwwvxwHxbi8SoIvz5LGR3gVADEvS9SjxEzrrDGJuDi/xN71ynT
-         2YbcUklOh78KtOXs0oxPG/b827U9r0MepRLb+DbqZmuss9MNrMXS46w/2CcV5hJzqkH+
-         nV1h1FE52Wldv3KfCQZRafRzeWfW59f0PqqjiT1Vtr5UF2ldt+N40ZZQXIhWKgG02q0S
-         eJtgL9/Y7ChjzSFZm+tQn2tCo269uvCTAa3qWV90JkI34gx2iT8ShsiQJU0GGRKzQt99
-         Ykyw==
-X-Gm-Message-State: AC+VfDzbHOUFij0n31u9Txglfnw7kkIdzjjRSYnv6B2LZxhrEbX1Dv92
-        TY5JdAUznakNgIRpGY3iwXVW7SgRBnz7Tt1wvEU=
-X-Google-Smtp-Source: ACHHUZ50WlmlYxWLSbjtOGtaGPZ2SyiLg5sdXpLwhX0ienP7WjjARcHT61+XPqJAdqMSWmHIqxuyTA==
-X-Received: by 2002:a05:6402:88e:b0:514:7f39:aa80 with SMTP id e14-20020a056402088e00b005147f39aa80mr4377322edy.18.1687092115222;
-        Sun, 18 Jun 2023 05:41:55 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id t18-20020a05640203d200b0051a4fcf7187sm720934edw.62.2023.06.18.05.41.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jun 2023 05:41:54 -0700 (PDT)
-Message-ID: <7cbc6572-6772-64a6-6c91-567d58286426@linaro.org>
-Date:   Sun, 18 Jun 2023 14:41:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: leds: Add Kinetic KTD2026/2027 LED
-To:     =?UTF-8?Q?Andr=c3=a9_Apitzsch?= <git@apitzsch.eu>,
-        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229659AbjFRNXL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 09:23:11 -0400
+Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F2BD12F;
+        Sun, 18 Jun 2023 06:23:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1687094588; x=1718630588;
+  h=from:to:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=FVlwepFy/UglT5MUNxy17NwDKspoxGIR9qfU/vyDNtI=;
+  b=GI7as7+xH50gOW8GpW0dmvfKQGVqPxveId98UYLOSX4iBmV86b3IPY7K
+   jF3lXRDcDuqpMfT0foXa9Ri5LIql4tulS0Zw+4DyYOMKsRfCJWjnHaAhE
+   Sk0slrRu69AxAK46/felmUvjhFeDA/X/asCjRk9ClUKVTfA63g/J5U936
+   Bvvt8Ux84ZEsWQbK8iEJWdTIgHJThWukbGFJj0B8M6V00C1KvpISWAACk
+   SJJY2t/YWgBZGemP9V5cvBirb+iej/JvUlh5XKCLr6A5iEPE/wr1J0s3a
+   ZAUy7+1Go2eJzfXzivfD1KPZCoXa1bGYNcmZPHBuTacT8HZi+8JR2aueq
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="356967032"
+X-IronPort-AV: E=Sophos;i="6.00,252,1681196400"; 
+   d="scan'208";a="356967032"
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2023 06:23:08 -0700
+X-IronPort-AV: E=McAfee;i="6600,9927,10745"; a="747146720"
+X-IronPort-AV: E=Sophos;i="6.00,252,1681196400"; 
+   d="scan'208";a="747146720"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga001.jf.intel.com with ESMTP; 18 Jun 2023 06:23:03 -0700
+From:   niravkumar.l.rabara@intel.com
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230618-ktd202x-v1-0-fc182fefadd7@apitzsch.eu>
- <20230618-ktd202x-v1-1-fc182fefadd7@apitzsch.eu>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230618-ktd202x-v1-1-fc182fefadd7@apitzsch.eu>
-Content-Type: text/plain; charset=UTF-8
+        Conor Dooley <conor+dt@kernel.org>,
+        Niravkumar L Rabara <niravkumar.l.rabara@intel.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Dinh Nguyen <dinguyen@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Wen Ping <wen.ping.teh@intel.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, netdev@vger.kernel.org,
+        Adrian Ng Ho Yin <adrian.ho.yin.ng@intel.com>
+Subject: [PATCH 0/4] Add support for Agilex5 SoCFPGA platform
+Date:   Sun, 18 Jun 2023 21:22:31 +0800
+Message-Id: <20230618132235.728641-1-niravkumar.l.rabara@intel.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,38 +68,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/06/2023 13:45, André Apitzsch wrote:
-> Document Kinetic KTD2026/2027 LED driver devicetree bindings.
-> 
-> Signed-off-by: André Apitzsch <git@apitzsch.eu>
-> ---
->  .../devicetree/bindings/leds/leds-ktd202x.yaml     | 164 +++++++++++++++++++++
->  1 file changed, 164 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/leds/leds-ktd202x.yaml b/Documentation/devicetree/bindings/leds/leds-ktd202x.yaml
-> new file mode 100644
-> index 000000000000..9868d6f6f147
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/leds-ktd202x.yaml
+From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 
-Filename matching compatible, so missing vendor prefix. Can be
-kinetic,ktd202x.yaml
+This patch set introduce the changes required for Agilx5 platform.
 
-> @@ -0,0 +1,164 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/leds-ktd202x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Kinetic KTD2026/7 RGB/White LED Driver
+patch [1/4] - Introduced compatible string for Agilex5 board
+patch [2/4] - Add reset and clock header and yaml file.
+patch [3/4] - Add clock driver for Agilex5 platform. This patch depends
+on patch 2.
+patch [4/4] - Add device tree files, socfpga_agilex5_socdk_swvp.dts is
+used for Virtual Platform (SIMICS) and socfpga_agilex5_socdk_nand.dts
+is used for NAND Flash based board. This patch depends on patch 3.
 
-Driver stands for Linux driver or for driving a LED? If the first, then
-drop.
+Niravkumar L Rabara (4):
+  dt-bindings: intel: Add Intel Agilex5 compatible
+  dt-bindings: clock: Add Intel Agilex5 clocks and resets
+  clk: socfpga: agilex5: Add clock driver for Agilex5 platform
+  arm64: dts: agilex5: Add initial support for Intel's Agilex5 SoCFPGA
 
+ .../bindings/arm/intel,socfpga.yaml           |   1 +
+ .../bindings/clock/intel,agilex5.yaml         |  42 +
+ arch/arm64/boot/dts/intel/Makefile            |   3 +
+ .../arm64/boot/dts/intel/socfpga_agilex5.dtsi | 641 +++++++++++++
+ .../boot/dts/intel/socfpga_agilex5_socdk.dts  | 184 ++++
+ .../dts/intel/socfpga_agilex5_socdk_nand.dts  | 131 +++
+ .../dts/intel/socfpga_agilex5_socdk_swvp.dts  | 248 ++++++
+ drivers/clk/socfpga/Kconfig                   |   4 +-
+ drivers/clk/socfpga/Makefile                  |   2 +-
+ drivers/clk/socfpga/clk-agilex5.c             | 843 ++++++++++++++++++
+ drivers/clk/socfpga/clk-pll-s10.c             |  48 +
+ drivers/clk/socfpga/stratix10-clk.h           |   2 +
+ include/dt-bindings/clock/agilex5-clock.h     | 100 +++
+ .../dt-bindings/reset/altr,rst-mgr-agilex5.h  |  79 ++
+ 14 files changed, 2325 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/intel,agilex5.yaml
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5.dtsi
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_nand.dts
+ create mode 100644 arch/arm64/boot/dts/intel/socfpga_agilex5_socdk_swvp.dts
+ create mode 100644 drivers/clk/socfpga/clk-agilex5.c
+ create mode 100644 include/dt-bindings/clock/agilex5-clock.h
+ create mode 100644 include/dt-bindings/reset/altr,rst-mgr-agilex5.h
 
-The rest looks good, so you just need to use proper filename.
-
-Best regards,
-Krzysztof
+-- 
+2.25.1
 
