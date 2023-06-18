@@ -2,185 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3FD67344EF
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 07:05:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29827734527
+	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 08:50:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229507AbjFRFFK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 01:05:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33780 "EHLO
+        id S229521AbjFRGuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 02:50:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50630 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbjFRFFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 01:05:09 -0400
-Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 444BE1731;
-        Sat, 17 Jun 2023 22:05:08 -0700 (PDT)
-Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1a991886254so2448084fac.2;
-        Sat, 17 Jun 2023 22:05:08 -0700 (PDT)
+        with ESMTP id S229494AbjFRGuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 02:50:03 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38ACC10D3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 23:50:01 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id ffacd0b85a97d-3112c11fdc9so646447f8f.3
+        for <devicetree@vger.kernel.org>; Sat, 17 Jun 2023 23:50:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687064706; x=1689656706;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2PiW+MJlJ2pTX+mzQXGX5U4qXNI/w3DLeXi95EkHBqc=;
-        b=JGC0dfEwqu6kZ3c45wSO54eZXVM1fnR6DcXcK76aS3HtHJL0QFFAKdx1xcWqBBc4Ka
-         V95+yuD7O2dlwsyzmiXpPDQ9h/c59cLxPKvN0Wnl+zngT/VFckrO2Sxc6Ju4JtcZxpxQ
-         ZdMujd4c+3J37u378dNkqumrPnrEzLGqnBkzqW70zLEvj2JWL2x6wjm237Wzx+kbtztU
-         qpQ6zVINLPokjU2aOVPkT0wIRDhmZv7zLZgVlXprufYelVjg8Y84UZC0Ss54iBAFpxJC
-         I3Iu8HWtCo1Jc5/1UvlwXnPe2R3dC9WG1yYcKtL+ArpOic3iwIqHf9Os2sGyvHvLYWjA
-         YzmA==
+        d=linaro.org; s=google; t=1687070999; x=1689662999;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=kTbsJHJAIh6L3OpmlKEMiLQ8FVA+BH6GdkanOhtFItg=;
+        b=am0n7jcHfoIjQo2hsnQsbevfZPseixSmpo2SSFGzb5Hpphzcc0coNeq1wFtWFmCgPf
+         Gs7slH4VN0Xs09KXbj2Wznu4ZP/OzkmWqn4jEM25d26yjSovzt/fHh8Towa7WRWvoixs
+         WDKCkF2wsVgv13NcweE+ZHmnY3Id4s46yAdJM5yqccCVw9sjmeNfwBDvteOYlkP+dtxi
+         JWSn+LUoN2FbR/Ffu6h6spvadXl7WFwIIHLCdbVDLHs5+iiaieUab6SSmjiFvcY/Dbgl
+         ZQa018CeTpHP1ieINDU2k55V6OnfDwcBXuW42bbJSLDnR9X58XeHCN7wHrdEbM0j3vhe
+         AyKg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687064706; x=1689656706;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=2PiW+MJlJ2pTX+mzQXGX5U4qXNI/w3DLeXi95EkHBqc=;
-        b=aLvdFwl/8tIqm1ZK9TOPzU7VrRMQbEnWuD3wTeKEQl8I9mDTem2C6MsptViG86WcTV
-         baAPKVD636VseMmI5RQXMCQDI1RUhVpxlMuXJoOFAzKe6JA7Uk5Azouum3rYzPNpS8uL
-         eMVIrHVzEPpAxd8BvWeJAOeAssGUBzBHivicG2ND2ZS72G10aAU99DnwdtsoN6Kjgo4k
-         27wkYmxKDtqz/C5NXF/0l/EB5K0tl2KmPW90jQmrGcXVke4LmV3d+gTJpTlbq7KHmV/l
-         ejUC9+RJWX8yys8JaWSGDu+T/4X1wwB5h/0raJohEoUoz7vqVzcpR1AvXaOGIwvP0r5W
-         KUMw==
-X-Gm-Message-State: AC+VfDwTmlcw6Ew2qvpUGLbaT6dwLE7GVJ5AFQ+fvWxJcYa1mW1601t2
-        g/LtdlYU3zWqaOAJMKczbVapfzSzItloUjiqIBZyHcUJh2c=
-X-Google-Smtp-Source: ACHHUZ5B7zcZSRzkr3xEkDsmDO4sQjMK2G6DnHnF9bhgUSsx4rAVHDbb+ZlljI5BWOF1QtYQRJ3OW25mnYeJvw/bEWY=
-X-Received: by 2002:a05:6870:8805:b0:192:ba3b:a18 with SMTP id
- n5-20020a056870880500b00192ba3b0a18mr3761926oam.51.1687064706585; Sat, 17 Jun
- 2023 22:05:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687070999; x=1689662999;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kTbsJHJAIh6L3OpmlKEMiLQ8FVA+BH6GdkanOhtFItg=;
+        b=I/Za9QabZ6NkkwRtAZVEUu3gWFwv8nFAW3RS5t7bnWpaRoMzSzrxSFUOBjs+MkwY/O
+         TS3fmdMaT81eEAqO7xHCkPhoiWmy4S1/dIoEhiIlg5GjBw9oi13E+Ff5fygYQDFtfcDW
+         YbsvAUdX/lnRsN/+MDh5myeWIvyArLDks1Y1s02opnCzY58syRkhJKlGVKQ1EGH81nOS
+         yDryOar137c4uAEa5k4vA3MeIQWuy6MY6Ow5QWxSzBkd+CS3fnnqZn+hY2GRS+y2eBGZ
+         rx4JVQTnWh2pfK6h0WX73HCK13B5QvENlV2ePZPDKxN7YJbDPdIF/LW4Tn1uUZxeAijm
+         67jA==
+X-Gm-Message-State: AC+VfDyKHoFakq4ruvkh3G8jBfyM6qc5S16foKU/M2PZuHe9opExNC4a
+        cu+1fuZ4jxB3XGLs/GiwU+Emb44MeFFO8RuEf+7n/g==
+X-Google-Smtp-Source: ACHHUZ7S6ECk8uaphJNxTelZTmW4DZh6bWCMyhptboMmhW4e7hixs2RagJ/j3zTRKjShC7214bpopIgYhKQR4gMWn0c=
+X-Received: by 2002:a5d:6ad1:0:b0:311:18ce:152b with SMTP id
+ u17-20020a5d6ad1000000b0031118ce152bmr3848340wrw.61.1687070999524; Sat, 17
+ Jun 2023 23:49:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230617052435.359177-3-sergio.paracuellos@gmail.com>
- <TYAP286MB0315AB8274CDD341D49809A2BC59A@TYAP286MB0315.JPNP286.PROD.OUTLOOK.COM>
- <e0f74bdc-3a4b-596a-5ec7-83054377813e@linaro.org> <CAMhs-H9M_c8+AkqUTpYeS2q7_+wBA-jhhiXj-QVXNUDmuERcOA@mail.gmail.com>
- <05e3ff33-ad4e-d2fb-dfd5-7b5265881b74@linaro.org> <CAMhs-H-ncXC37SAMkLfrFmpRi0ORkkCV9rQmrtmw_ndOLo+J0Q@mail.gmail.com>
- <10f01535-ab4f-b0d4-306b-a90f4ad19008@linaro.org> <CAMhs-H-uc_VzZ4MS0VLn9AajFRM-BYKEn4zGJ36H3EmL0oX-WA@mail.gmail.com>
-In-Reply-To: <CAMhs-H-uc_VzZ4MS0VLn9AajFRM-BYKEn4zGJ36H3EmL0oX-WA@mail.gmail.com>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Sun, 18 Jun 2023 07:04:55 +0200
-Message-ID: <CAMhs-H-Aw8gdj=ZUep6ZX_9JH0TK9JgDx=sdduNkOROkzEN96g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/9] clk: ralink: add clock and reset driver for MTMIPS SoCs
+References: <20230526192210.3146896-1-bhupesh.sharma@linaro.org>
+ <20230526192210.3146896-11-bhupesh.sharma@linaro.org> <d239ad07-fbdd-16fa-3555-5bcf33c67059@linaro.org>
+ <11c3eb6c-823d-9688-ec53-e05c7bb557c5@linaro.org> <83807d70-c35c-6b66-e7f9-521bdfc6d1b4@linaro.org>
+In-Reply-To: <83807d70-c35c-6b66-e7f9-521bdfc6d1b4@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+Date:   Sun, 18 Jun 2023 12:19:48 +0530
+Message-ID: <CAH=2NtyNqbhY6B0orqyGvhOWs7M5z9tBQ05E7e7Fb1toamN95Q@mail.gmail.com>
+Subject: Re: [PATCH v8 10/11] arm64: dts: qcom: sm8350: Add Crypto Engine support
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Shiji Yang <yangshiji66@outlook.com>, arinc.unal@arinc9.com,
-        devicetree@vger.kernel.org, john@phrozen.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        matthias.bgg@gmail.com, mturquette@baylibre.com,
-        p.zabel@pengutronix.de, robh+dt@kernel.org, sboyd@kernel.org,
-        tsbogend@alpha.franken.de
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        vladimir.zapolskiy@linaro.org, rfoss@kernel.org,
+        neil.armstrong@linaro.org, djakov@kernel.org, stephan@gerhold.net,
+        Anders Roxell <anders.roxell@linaro.org>,
+        Linux Kernel Functional Testing <lkft@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi krzysztof,
-
-On Sat, Jun 17, 2023 at 9:11=E2=80=AFPM Sergio Paracuellos
-<sergio.paracuellos@gmail.com> wrote:
+On Sat, 17 Jun 2023 at 12:58, Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 >
-> On Sat, Jun 17, 2023 at 7:20=E2=80=AFPM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+> On 17/06/2023 01:33, Konrad Dybcio wrote:
+> > On 16.06.2023 19:36, Krzysztof Kozlowski wrote:
+> >> On 26/05/2023 21:22, Bhupesh Sharma wrote:
+> >>> Add crypto engine (CE) and CE BAM related nodes and definitions to
+> >>> 'sm8350.dtsi'.
+> >>>
+> >>> Tested-by: Anders Roxell <anders.roxell@linaro.org>
+> >>> Tested-by: Linux Kernel Functional Testing <lkft@linaro.org>
+> >>> Co-developed-by and Signed-off-by: Robert Foss <rfoss@kernel.org>
+> >>> [Bhupesh: Switch to '#interconnect-cells = <2>', available since commit 4f287e31ff5f]
+> >>> Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
+> >>> ---
+> >>
+> >> #regzbot introduced: f1040a7fe8f069d2259ab3dab9190210005ceb33
+> >> #regzbot title: HDK8350 silently crashes early on boot
+> >>
+> >> Hi, this landed in the next but unfortunately it causes silent crash
+> >> (and reboot) of HDK8350. Reverting this commit helps.
+> > Downstream also references the following SIDs:
 > >
-> > On 17/06/2023 17:37, Sergio Paracuellos wrote:
-> > >>> The case of
-> > >>> searching for compatible is a mess since as you can see in the
-> > >>> bindings there are tons of compatibles to search for, then (this co=
-de
-> > >>> is common to all ralink platforms).
-> > >>
-> > >> Compatible is one of the ways using ABI.
-> > >
-> > > Ok so it is also a broken approach, then.
-> >
-> > What is exactly broken approach? Fetching by compatibles? Somehow many
-> > other platforms do not have problem with that, even for multiple
-> > compatibles. Why yours is special?
+> > iommus = <&apps_smmu 0x592 0>,
+> >        <&apps_smmu 0x598 0>,
+> >        <&apps_smmu 0x599 0>,
+> >        <&apps_smmu 0x59F 0>;
+>
+> I already tried iommus from downstream from:
+> 1. qcrypto node (0x584, 0x594)
+> 2. qcedev (0x586, 0x596)
+> 3. qcom_cedev_ns_cb (0x592, 0x598, 0x599, 0x59F), although with 0x0011
+> last argument.
+>
+> Same results, but indeed iommu would be nice reason here.
+>
+> I also double checked the version of block (BAM DMA is v1.7.4) and other
+> properties. When I disabled crypto but left BAM DMA, the result was the
+> same, thus it is maybe the BAM who causes abort.
 
-Ok so fetching by compatible would be a valid approach, then. The
-following works for me. Would you also be ok doing it this way?
+I remember testing it on the sm8350-mtp and found no issues. Infact
+Robert (the original author of the patch) had also done some testing
+in the past.
 
-static const char *clk_cpu(int *idx)
-{
-    *idx =3D 1;
-
-    switch (ralink_soc) {
-    case RT2880_SOC:
-        return "ralink,rt2880-sysc";
-    case RT3883_SOC:
-        return "ralink,rt3883-sysc";
-    case RT305X_SOC_RT3050:
-        return "ralink,rt3050-sysc";
-    case RT305X_SOC_RT3052:
-        return "ralink,rt3052-sysc";
-    case RT305X_SOC_RT3350:
-        return "ralink,rt3350-sysc";
-    case RT305X_SOC_RT3352:
-        return "ralink,rt3352-sysc";
-    case RT305X_SOC_RT5350:
-        return "ralink,rt5350-sysc";
-    case MT762X_SOC_MT7620A:
-        *idx =3D 2;
-        return "ralink,mt7620a-sysc";
-     case MT762X_SOC_MT7620N:
-        *idx =3D 2;
-        return "ralink,mt7620-sysc";
-     case MT762X_SOC_MT7628AN:
-        return "ralink,mt7628-sysc";
-     case MT762X_SOC_MT7688:
-       return "ralink,mt7688-sysc";
-     default:
-        *idx =3D -1;
-        return "invalid";
-  }
-}
-
-void __init plat_time_init(void)
-{
-    struct of_phandle_args clkspec;
-    const char *compatible;
-    struct clk *clk;
-    int cpu_clk_idx;
-
-    ralink_of_remap();
-
-    compatible =3D clk_cpu(&cpu_clk_idx);
-    if (cpu_clk_idx =3D=3D -1)
-        panic("unable to get CPU clock index");
-
-   of_clk_init(NULL);
-   clkspec.np =3D of_find_compatible_node(NULL, NULL, compatible);
-   clkspec.args_count =3D 1;
-   clkspec.args[0] =3D cpu_clk_idx;
-   clk =3D of_clk_get_from_provider(&clkspec);
-   if (IS_ERR(clk))
-       panic("unable to get CPU clock, err=3D%ld", PTR_ERR(clk));
-   pr_info("CPU Clock: %ldMHz\n", clk_get_rate(clk) / 1000000);
-   mips_hpt_frequency =3D clk_get_rate(clk) / 2;
-   clk_put(clk);
-   timer_probe();
-}
+I am sure - mtp v/s hdk board variation would not cause this, so let
+me have a stab at it tomorrow.
 
 Thanks,
-    Sergio Paracuellos
->
-> I guess it is not special but I cannot figure out the way of getting
-> this clock using compatibles...
->
-> >
-> > Anyway, it is not a correct way to get clocks frequency. There is CCF
-> > for this, although maybe Ralink does not support it?
->
-> This means to use clk_get() if I understand properly but it does not
-> work at all for ralink...
->
-> >
-> > Best regards,
-> > Krzysztof
-> >
->
-> Thanks,
->     Sergio Paracuellos
+Bhupesh
