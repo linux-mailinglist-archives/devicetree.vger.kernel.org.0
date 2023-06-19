@@ -2,124 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E5DB734D44
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8B51734D49
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230019AbjFSIMQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:12:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54242 "EHLO
+        id S229846AbjFSINW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 04:13:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230161AbjFSIMF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:12:05 -0400
-Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1275E7F
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:12:02 -0700 (PDT)
-Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b45a71c9caso36620201fa.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:12:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687162321; x=1689754321;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=7MkhTrJ9T0aYR/ypFkdnmXuhMMz/1JRUzQsSC4Yvkus=;
-        b=QqpRxf01ABUbLt9+xVQ3DYAogIXvxBukHbzT6IO53gGfL4sXz89QnCXsA4BQY6ATjo
-         NXnaf5Q2nMHwWBBEnEbEmkGhZhz1Jv3hT7ruF7NMRH4a6Pog+dmN2F42LyFTOgeLgpYP
-         a5h8C1UdGdURjlRfKyVGfqmPMWtCJuugRJkPuKWLpercaCab02f4au3k3lMCTdHuZPGb
-         4W2PoL4PibmES9QwScb4v9zyQFv2Rgp+9A3AhZr6+ANPcupRTblgtrmrcSys+afehYE6
-         wNCyGNgA6DTAOfv3vU1Lr1Q5GIvD6YPRJCA01yhTOg3CeV/RtBKSbr2f3XbfahWo9PSJ
-         gY0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687162321; x=1689754321;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :to:content-language:subject:reply-to:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=7MkhTrJ9T0aYR/ypFkdnmXuhMMz/1JRUzQsSC4Yvkus=;
-        b=DkOTtRISUD1Hu2h9asIruYqFlzCMN8uhdcoVN+GSiGcrWVCkpvLlEOKBOd97MeItBy
-         yWAg99Q6SjlQZwNn9pBBHLlvUdAuBTnLlcI6ln+oFFL8D1x5psj7EaLxVWq1AdGCyv0P
-         Y6WlBdqvNWpHprSiyf34GZAw82qxKTE7gHqnnHa78SzJLD/535O2eZsQ72pq6XYUcsTl
-         CDUxfswnpjK/VCKVHVgWVA8XUFFhbfDyTvKUdwT/ePFrfRd8o/WkgwXEk7ZM0aXwwTbw
-         aEDwQyCzJrlcnf0HN13wMyHcWpiqXzUfPy4VFBrm7C5Fpgl+FoOiucCz6dHXupLgKEya
-         nT1A==
-X-Gm-Message-State: AC+VfDyUYBCe/0POKJmLFWvtJzkUEDz6nCV3KSCs3uhf4SZmfMQ0LIXa
-        6I63cwiCeDbaNMpok8o10J9pZw==
-X-Google-Smtp-Source: ACHHUZ5BIZqOUn6vxe0wdzVkKVSgdsXpn+O7ruN3luGwb786xYDYZQ8vIqdtm3NH41FBRZ9bhCjOGw==
-X-Received: by 2002:a19:2d17:0:b0:4f8:55dd:e726 with SMTP id k23-20020a192d17000000b004f855dde726mr4514984lfj.12.1687162321068;
-        Mon, 19 Jun 2023 01:12:01 -0700 (PDT)
-Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id p4-20020a5d4e04000000b003113943bb66sm3327084wrt.110.2023.06.19.01.12.00
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 01:12:00 -0700 (PDT)
-Message-ID: <59a2a835-346d-22b1-ba5c-820b5b3b347e@linaro.org>
-Date:   Mon, 19 Jun 2023 10:11:59 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/7] arm64: dts: qcom: sm8450-hdk: correct FSA4480 port
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kees Cook <keescook@chromium.org>,
-        Tony Luck <tony.luck@intel.com>,
-        "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <20230618114442.140185-1-krzysztof.kozlowski@linaro.org>
- <20230618114442.140185-2-krzysztof.kozlowski@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230618114442.140185-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229881AbjFSINV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:13:21 -0400
+Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD87AF;
+        Mon, 19 Jun 2023 01:13:19 -0700 (PDT)
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
+        by mailout.nyi.internal (Postfix) with ESMTP id D5F135C0091;
+        Mon, 19 Jun 2023 04:13:18 -0400 (EDT)
+Received: from imap51 ([10.202.2.101])
+  by compute6.internal (MEProxy); Mon, 19 Jun 2023 04:13:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm1; t=1687162398; x=1687248798; bh=ac
+        mQm0nuxCyr0NIKr6vJjBR8GRwKxrYohjffNuU8ThI=; b=jSf0Dn1cNRjWCPqBp/
+        tmQZzNRdUPVbsfRpFhe4brf3D6W8oWhX7R/kba0c2bdIfpHuioIPd+GAaTGuQQMS
+        JejO5C+VGa75RTFv/tGXYBNjhMX9zDV6DWD680ak+HG2ufngtLABDMK8bAP3mmGf
+        iKIiJ1bc+wkBe320cg4NLxrfcUc0rA9mHGm3dSaP64B4lzE11awVDRpfrLOD0OvS
+        BLO6jKPG1lDXy1Re+bQbocQBuvmZGIXnzyAH3peknh3DlaI5lhyCUGQHpFwT0cHR
+        QW+/0joER771++ZsU8/NZK8LXDJC5izVBQqCTsMovWTC2t5TqfS3ZkeUtH1EScdb
+        Opqg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1687162398; x=1687248798; bh=acmQm0nuxCyr0
+        NIKr6vJjBR8GRwKxrYohjffNuU8ThI=; b=FFGWsIVeXBmDhzlMRAfZjj3K2eiwR
+        v0Bd6yvnCFsXK7oYvg118CsfDxw27jjWlwL2aRHzHx6S5VYTWiCK1fBRpbzwjp1t
+        681ZuaiQc1d2lkVP/ZOhlMuO2kkOI0SPJIRM9s+gf7idnKhG++vzwbSj5VLANeLH
+        6JR50eJMDDOdwzyIRsF5f7qLFCuBBL1fmWN5w2BzgSeb2u6LJFAF7Ah6A1LFQJ+d
+        INj+Hv143hG8dlqTXlhlJ4p3n5UhXCQ1feV1kWgrgtsYLxSfKL4czVSfCRCmGuDk
+        U2dJinyRCawabNBZBrg5Rqf4ecqcV+g8mlv6U2aNVUmak3wfG0GdLRAHA==
+X-ME-Sender: <xms:HQ6QZHudSZcr99XCGAwT8aexgY-5xPnlBrnMRPhHxX3M_KLtiUhGPw>
+    <xme:HQ6QZIerLq1unp2hy-1fvpPA3Si46dm91um9J5xJwV9O5OVoWqzV63c-uypohthH1
+    4W0shxPNhSWefEavyc>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgeefvdcutefuodetggdotefrodftvfcurf
+    hrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecuuegr
+    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
+    hrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhnugcu
+    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
+    hnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeetffen
+    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
+    esrghrnhgusgdruggv
+X-ME-Proxy: <xmx:Hg6QZKyqztS5u4jssAhWLeO90hrurtwGAZK24v5IXmDaggara6lybg>
+    <xmx:Hg6QZGOfyAy2G09L8c5M7pjUCnGIxCooHD4r4H8-EFH1PHulm6_iyg>
+    <xmx:Hg6QZH-TJrb7_qIrOl-SxEH7hfAU1cMNiShpH_cXFHQ8Df1Hnmvsqg>
+    <xmx:Hg6QZGjya9-5i6kyAcYL4gA-4Ns_yms7_IzDbRXRLzt2KIkoGQ2OZg>
+Feedback-ID: i56a14606:Fastmail
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id D61E5B60086; Mon, 19 Jun 2023 04:13:17 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.9.0-alpha0-496-g8c46984af0-fm-20230615.001-g8c46984a
+Mime-Version: 1.0
+Message-Id: <f3f9bd5c-b4bd-461c-a6e1-b310cdaa0595@app.fastmail.com>
+In-Reply-To: <20230619033041.233921-1-ychuang570808@gmail.com>
+References: <20230619033041.233921-1-ychuang570808@gmail.com>
+Date:   Mon, 19 Jun 2023 10:12:56 +0200
+From:   "Arnd Bergmann" <arnd@arndb.de>
+To:     "Jacky Huang" <ychuang570808@gmail.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        "Stephen Boyd" <sboyd@kernel.org>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Jiri Slaby" <jirislaby@kernel.org>,
+        "Tomer Maimon" <tmaimon77@gmail.com>,
+        "Catalin Marinas" <catalin.marinas@arm.com>,
+        "Will Deacon" <will@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, soc@kernel.org, schung@nuvoton.com,
+        mjchen@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v15 2/2] clk: nuvoton: Add clock driver for ma35d1 clock controller
+Content-Type: text/plain
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18/06/2023 13:44, Krzysztof Kozlowski wrote:
-> FSA4480 has only one port according to bindings:
-> 
->    sm8450-hdk.dtb: typec-mux@42: 'port' is a required property
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 13 +++----------
->   1 file changed, 3 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index d7975b3cf064..e5cbea92e07a 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -518,16 +518,9 @@ typec-mux@42 {
->   		mode-switch;
->   		orientation-switch;
->   
-> -		ports {
-> -			#address-cells = <1>;
-> -			#size-cells = <0>;
-> -
-> -			port@0 {
-> -				reg = <0>;
-> -
-> -				fsa4480_sbu_mux: endpoint {
-> -					remote-endpoint = <&pmic_glink_sbu>;
-> -				};
-> +		port {
-> +			fsa4480_sbu_mux: endpoint {
-> +				remote-endpoint = <&pmic_glink_sbu>;
->   			};
->   		};
->   	};
+On Mon, Jun 19, 2023, at 05:30, Jacky Huang wrote:
+> From: Jacky Huang <ychuang3@nuvoton.com>
+>
+> The clock controller generates clocks for the whole chip, including
+> system clocks and all peripheral clocks. This driver support ma35d1
+> clock gating, divider, and individual PLL configuration.
+>
+> There are 6 PLLs in ma35d1 SoC:
+>   - CA-PLL for the two Cortex-A35 CPU clock
+>   - SYS-PLL for system bus, which comes from the companion MCU
+>     and cannot be programmed by clock controller.
+>   - DDR-PLL for DDR
+>   - EPLL for GMAC and GFX, Display, and VDEC IPs.
+>   - VPLL for video output pixel clock
+>   - APLL for SDHC, I2S audio, and other IPs.
+> CA-PLL has only one operation mode.
+> DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
+> operation modes: integer mode, fraction mode, and spread specturm mode.
+>
+> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Hi Jacky,
+
+Since I have already picked up the previous version of this patch,
+please send a diff against the version I merged please.
+
+     Arnd
