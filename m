@@ -2,99 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59B42734C88
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60CC6734C93
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:44:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229978AbjFSHm6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 03:42:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37912 "EHLO
+        id S229587AbjFSHoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 03:44:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37960 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229982AbjFSHmp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:42:45 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DC56E70
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 00:42:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=p616TOQ+HzOPu0YrIkat+11cC5Ga
-        Tl1I3cp6P8kXlT4=; b=V0TnQuVi/XA2zRhILOg90KNJNNFAL10T1tLYvLiOTk4s
-        vTKogDiyFJjEaCHfOHpovb5Fg/JwDIxxO+T3vxNdj0+t9F5D7urHF8I+NVLYFN3o
-        YccnAfYf7zfIpt6cR34L3UVWw48zh9ANrJwZDxndNn+1rvysikRmiXtB59R+pVU=
-Received: (qmail 149438 invoked from network); 19 Jun 2023 09:42:29 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 19 Jun 2023 09:42:29 +0200
-X-UD-Smtp-Session: l3s3148p1@YxQ5rXb+/Ktehh9k
-Date:   Mon, 19 Jun 2023 09:42:29 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pci@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: Re: [PATCH v3 0/2] KingFisher: support regulators for PCIe
-Message-ID: <ZJAG5aN1vtAJHqHz@ninjato>
-Mail-Followup-To: Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pci@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-References: <20230512075241.2770-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S229926AbjFSHny (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:43:54 -0400
+Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A70B4E7A
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 00:43:51 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1687160630;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=N+AZBD5Sf/0h8WaVwiEe9j7DpVzPOO6Hvd7gosZu7QY=;
+        b=WQxY9a/1Jdcrb6GT6sOP3EB9yPgnHN/PywxbW7XkW3MFyYKJKhP3dxszTzOGDcM3/M4q1b
+        5HAjXvgPBf0CccTa5CRbVdy6IG9Mhc00kyONWY2nInFb9VLtSIukB2u8UadcT+KRV9bswO
+        XOuhQBCDKdlm7hSEu2m5txxgXM6q63JY2oEYUlHyZwZErPiPUXdunlKX2psycXghRB0qLQ
+        YB5gYuxO4YLVuASWKvRB8BpuZxRS+bADsrFCLBhScgCB0nQ4iSZqFZDKPLGSjj+MhaVDh/
+        fmTTf2FommjHMgmkZoPOFlpzY/u6NfNsEqzp6DXxGJAuQOp3OkaPjULRVBhsKA==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 28C771C0002;
+        Mon, 19 Jun 2023 07:43:49 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/2] dt-bindings: display: simple: Add Mitsubishi AA084XE01 panel
+Date:   Mon, 19 Jun 2023 09:43:47 +0200
+Message-Id: <20230619074348.2893701-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zGCe0u+Tq+fUjznm"
-Content-Disposition: inline
-In-Reply-To: <20230512075241.2770-1-wsa+renesas@sang-engineering.com>
-X-Spam-Status: No, score=-0.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add Mitsubishi AA084XE01 8.4" XGA TFT LCD panel compatible string.
 
---zGCe0u+Tq+fUjznm
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/display/panel/panel-simple.yaml         | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Hiya,
+diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+index 18241f4051d2..cc841cf96fae 100644
+--- a/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
++++ b/Documentation/devicetree/bindings/display/panel/panel-simple.yaml
+@@ -232,6 +232,8 @@ properties:
+       - logictechno,lttd800480070-l6wh-rt
+         # Mitsubishi "AA070MC01 7.0" WVGA TFT LCD panel
+       - mitsubishi,aa070mc01-ca1
++        # Mitsubishi AA084XE01 8.4" XGA TFT LCD panel
++      - mitsubishi,aa084xe01
+         # Multi-Inno Technology Co.,Ltd MI0700S4T-6 7" 800x480 TFT Resistive Touch Module
+       - multi-inno,mi0700s4t-6
+         # Multi-Inno Technology Co.,Ltd MI0800FT-9 8" 800x600 TFT Resistive Touch Module
+-- 
+2.34.1
 
-On Fri, May 12, 2023 at 09:52:39AM +0200, Wolfram Sang wrote:
-> Here are the patches to make PCIe cards work in the slot CN15 on a
-> KingFisher board. Look at the patches for a changelog, please.
->=20
->=20
-> Wolfram Sang (2):
->   dt-bindings: PCI: rcar-pci-host: add optional regulators
->   PCI: rcar-host: add support for optional regulators
-
-Is it possible to have this in 6.5? I don't see it in -next as of today.
-
-Happy hacking,
-
-   Wolfram
-
-
---zGCe0u+Tq+fUjznm
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAmSQBuEACgkQFA3kzBSg
-KbaFcg//ci7a7SLs/O+xsnTBL+uszAiaHyBQSmx5WW8eIebPlnX81CMvTwOZZ/QN
-DLF0AFqtJa+umqltP5KsZbldItK7FF4pkHm5tW0ctA5W+zpBPs+oXm68Z87Kanpj
-uBdGpAbPq/Jslhw+7vG9IG8BIHa3z2zglxNsf0m2kXm9mQHLxhxpwBC8EVJcTQaB
-vtP+e3VVc1iGpjqIYlpsXkgarD5J+JiLNM1/EkBxLa1Nqb6ObUvWj9C/rwNh06mf
-sA3NPVNFZihwzW7B8XtstC1QIObpbvP+YyjzCf9Ovk5QiEZuths+4uKiMYSbqCfd
-Pfbahh7WNS7WT3RTYyz92w8Ng3UIR7EMdYQXm5VkdoxWa6guk6obJj44eVeVuAjV
-qQ4TzqswbUBKIVxyUDoxxMPK816wXyJC2Xv+FCu0nWptJXU9edsZi//JDOIs5iyr
-Fsz0VrIyzLnw8c9Ms6kBCx9yxXTP+MZZABix9XWJUgh8vkhDoNBSN8PB69yAdWTa
-bwA4wcxoxipkeL1wil6cdRPMUjtXjTvrDsTz51DuqZw6g6dD4j5RmlBPNI28lXGJ
-tXdKaGEWFI+qpdowagyeDbbAmik9mG6flsdkst/+AGWzOTgi8TAZormviky6HVVk
-fXxKyA4lY/L8khVb1LoTJ6+FtogBsP/dBapwBrzLLOi3xnLtf9A=
-=lYsb
------END PGP SIGNATURE-----
-
---zGCe0u+Tq+fUjznm--
