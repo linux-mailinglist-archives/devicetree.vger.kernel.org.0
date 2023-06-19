@@ -2,144 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D982734898
-	for <lists+devicetree@lfdr.de>; Sun, 18 Jun 2023 23:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CA0A7349F8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 04:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229665AbjFRVeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 18 Jun 2023 17:34:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36010 "EHLO
+        id S229494AbjFSCPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 18 Jun 2023 22:15:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229456AbjFRVeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 17:34:01 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B594E1;
-        Sun, 18 Jun 2023 14:34:00 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b466744368so20640031fa.0;
-        Sun, 18 Jun 2023 14:34:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687124038; x=1689716038;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=IOkfA4GaYDZQ1KN9R5z9rbZZiuOU0JFMDz+JkNVoMfs=;
-        b=aAQvxhthEnemgwN0nPek8VPAe3c11NrE5vCc+DphFxmfMZqaWyrmMIZOwGm4aBNMQU
-         NbjAdD3fhtV776hvXI2DVLsbuTuttHb+Pqdylq2JYMd05eBq/M+dacpuYlyuT87VXS4f
-         LvISPpp4xWuHE0xCKecnyNtk52xGXkC6kOYVi73vbT5XKwyyERjRdP8ypjjID5mlLxj6
-         ZIFFaFYn4VE1gYK8CQ2fvE/U5BPsfr+rPqWG+BYCsL6aGj2KBdhzWCYx9vdofRRdvb0x
-         WdqXu8l6XssSq4MDHy7V3A1g5kgP+C4cwtfLTTLLCatE7xUaT0PMdyKN5tCwalAJyEfT
-         S53Q==
+        with ESMTP id S229639AbjFSCPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 18 Jun 2023 22:15:35 -0400
+Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 144A4E47;
+        Sun, 18 Jun 2023 19:15:34 -0700 (PDT)
+Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-77e35504c1bso72174939f.1;
+        Sun, 18 Jun 2023 19:15:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687124038; x=1689716038;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=IOkfA4GaYDZQ1KN9R5z9rbZZiuOU0JFMDz+JkNVoMfs=;
-        b=Dh7G5/rO8Zs59+SL/8nchStUkJXiRk2BysEigQgiWz/qddAkQRI4Iy1U05dp4VK7oN
-         UsYx94kmBMXvzGItJzP6WmXOeBzWoZQsCWF+ZaD+tw+SLRHxRlPO00qz3nP75Xi9ZsTV
-         L+55dkSOIzisFGlmb3KuWkz1+QXngamRbrB3PiYPQNQcipBeepqCSXJpaJbMHOgHxZyu
-         PhvPnrgm3NObwcV7WbxKFNCFRdZcBrneJoSiIdlDu9krcYTqxWqoOv9m1+q6UgS5hZUL
-         YDi94qxQjyyfYfYHHBlChr5KngXxajWuVFSZLWM9bD1j+MbWCOBbecRWcn34ydURU9bD
-         IxfQ==
-X-Gm-Message-State: AC+VfDzQSVf5camHpzkq1KoWxfmyzJKjCtx89FY4X2uVxcjARZkvL7WJ
-        +vsoG1O4sQcBMLoNd4ZwwjI=
-X-Google-Smtp-Source: ACHHUZ6pDuW5qdUrIsfxfB9WTCqbDn7YAwLcOcCOYbQq5TcMIHTtccwbnokjfhHkYJy2zt8464CiyA==
-X-Received: by 2002:a2e:90c9:0:b0:2b4:7380:235 with SMTP id o9-20020a2e90c9000000b002b473800235mr1036205ljg.32.1687124038186;
-        Sun, 18 Jun 2023 14:33:58 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-149-7.dynamic.spd-mgts.ru. [109.252.149.7])
-        by smtp.googlemail.com with ESMTPSA id s25-20020a2e9c19000000b002b469fd0baasm965650lji.111.2023.06.18.14.33.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jun 2023 14:33:57 -0700 (PDT)
-Message-ID: <e41ff013-8224-1b96-5cd3-f0632d27191d@gmail.com>
-Date:   Mon, 19 Jun 2023 00:33:56 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2 2/2] misc: sram: Generate unique names for subpools
-Content-Language: en-US
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
- <20230417-ux500-sram-v2-2-6e62ad551faa@linaro.org>
-From:   Dmitry Osipenko <digetx@gmail.com>
-In-Reply-To: <20230417-ux500-sram-v2-2-6e62ad551faa@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+        d=1e100.net; s=20221208; t=1687140933; x=1689732933;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=bBtnlsl4Pv/CEloCUaVVZxW6xo2UFnTXvxqXhklKZoE=;
+        b=F5G9pRqhc5Cjsfg18aNpWbo5KZrFVgZ7ffKzGXaOnp0SFk+QyL1JHtuvbruDBqAG6C
+         WRVjbUkiDcujmaESnfQjI2Ota77+xRuEzc4g3KD7GPVHe4cSdqUWUXfTDuAaGU2kL5NK
+         0Q/c32e7BE9/LVc8JLeHJwocuds2oPgvDj44k3IO1eJPF5WboKkdjHKRQkFSEoX34m17
+         m9RtjajHnoxU5TiMOd/DYlMxq+wyjUFbxbquJ9QJbbcbyjsrLM4x5u/CGG9Mhaa7Peld
+         I4YdH/EFDc1A6FfyB3bdBHZ6fQhv3lNSgoOCVxgX9nHFMHV2WDdggCBVImY14RjAdC0S
+         vdLQ==
+X-Gm-Message-State: AC+VfDz/7J9esFyODZADHYkCNj+axDXNka2z+MrCBcw4vwM+y2ssG9JN
+        yHPSYSxBGWZQxVQ7dh/SOQ==
+X-Google-Smtp-Source: ACHHUZ4vbf5Ns9/6gGG0RTqSrtAFSQNlqmKu62lK5EfG6OfihpRyqotDLGVxGu+nbKPTCZABchn2lw==
+X-Received: by 2002:a5d:8f95:0:b0:766:48cf:6ca9 with SMTP id l21-20020a5d8f95000000b0076648cf6ca9mr8693407iol.12.1687140933249;
+        Sun, 18 Jun 2023 19:15:33 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id k25-20020a02cb59000000b0042675e04900sm290517jap.119.2023.06.18.19.15.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Jun 2023 19:15:32 -0700 (PDT)
+Received: (nullmailer pid 2833 invoked by uid 1000);
+        Mon, 19 Jun 2023 02:15:27 -0000
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+MIME-Version: 1.0
+From:   Rob Herring <robh@kernel.org>
+To:     niravkumar.l.rabara@intel.com
+Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Adrian Ng Ho Yin <adrian.ho.yin.ng@intel.com>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Wen Ping <wen.ping.teh@intel.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Dinh Nguyen <dinguyen@kernel.org>, netdev@vger.kernel.org,
+        Philipp Zabel <p.zabel@pengutronix.de>
+In-Reply-To: <20230618132235.728641-3-niravkumar.l.rabara@intel.com>
+References: <20230618132235.728641-1-niravkumar.l.rabara@intel.com>
+ <20230618132235.728641-3-niravkumar.l.rabara@intel.com>
+Message-Id: <168714092772.2813.6608190334028827343.robh@kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: clock: Add Intel Agilex5 clocks and
+ resets
+Date:   Sun, 18 Jun 2023 20:15:27 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-21.04.2023 00:17, Linus Walleij пишет:
-> The current code will, if we do not specify unique labels
-> for the SRAM subnodes, fail to register several nodes named
-> the same.
+
+On Sun, 18 Jun 2023 21:22:33 +0800, niravkumar.l.rabara@intel.com wrote:
+> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > 
-> Example:
+> Add clock and reset ID definitions for Intel Agilex5 SoCFPGA
 > 
-> sram@40020000 {
->   (...)
->   sram@0 {
->     (...)
->   };
->   sram@1000 {
->     (...)
->   };
-> };
-> 
-> Since the child->name in both cases will be "sram" the
-> gen_pool_create() will fail because the name is not unique.
-> 
-> Use dev_name() for the device as this will have bus ID
-> set to the fully translated address for the node, and that
-> will always be unique.
-> 
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> Co-developed-by: Teh Wen Ping <wen.ping.teh@intel.com>
+> Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
+> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
 > ---
-> ChangeLog v1->v2:
-> - Stop complicating things and just use dev_name()
-> ---
->  drivers/misc/sram.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>  .../bindings/clock/intel,agilex5.yaml         |  42 ++++++++
+>  include/dt-bindings/clock/agilex5-clock.h     | 100 ++++++++++++++++++
+>  .../dt-bindings/reset/altr,rst-mgr-agilex5.h  |  79 ++++++++++++++
+>  3 files changed, 221 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/intel,agilex5.yaml
+>  create mode 100644 include/dt-bindings/clock/agilex5-clock.h
+>  create mode 100644 include/dt-bindings/reset/altr,rst-mgr-agilex5.h
 > 
-> diff --git a/drivers/misc/sram.c b/drivers/misc/sram.c
-> index f0e7f02605eb..f80c3adddf0b 100644
-> --- a/drivers/misc/sram.c
-> +++ b/drivers/misc/sram.c
-> @@ -240,10 +240,11 @@ static int sram_reserve_regions(struct sram_dev *sram, struct resource *res)
->  				goto err_chunks;
->  			}
->  			if (!label)
-> -				label = child->name;
-> -
-> -			block->label = devm_kstrdup(sram->dev,
-> -						    label, GFP_KERNEL);
-> +				block->label = devm_kasprintf(sram->dev, GFP_KERNEL,
-> +							      "%s", dev_name(sram->dev));
 
-This broke device-trees that have no label property. The SRAM DT binding
-says:
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-"
-label:
-description:
-	The name for the reserved partition, if omitted, the label is taken
-	from the node name excluding the unit address.
-"
+yamllint warnings/errors:
 
-Not sure whether breakage was on purpose, otherwise doc needs to be
-updated or there should be explicit check for the duplicated node names.
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/clock/intel,agilex5.yaml: title: 'Intel SoCFPGA Agilex5 platform clock controller binding' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
+	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
+	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
 
-Secondly, AFAICS, the dev_name(sram->dev) is the name of the parent SRAM
-device and not of the children sub-nodes, hence it's now always the same
-dev_name(sram->dev) for all sub-nodes.
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230618132235.728641-3-niravkumar.l.rabara@intel.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
