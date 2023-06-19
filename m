@@ -2,69 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FC447358B7
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 15:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A2E7735939
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 16:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229740AbjFSNfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 09:35:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40430 "EHLO
+        id S229448AbjFSOME (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 10:12:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229642AbjFSNfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 09:35:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C702C1;
-        Mon, 19 Jun 2023 06:35:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id CD18160C6C;
-        Mon, 19 Jun 2023 13:35:52 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9A6B1C433C8;
-        Mon, 19 Jun 2023 13:35:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1687181752;
-        bh=0Clqdzr8ksnDkV+ZCSDshro8OIUJJGdZ5wYLpnZqzUY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fwzq1KJKGuiDsTlLvIiQh0/jqhtxg5tocu13OII5gIvkOGmNEhDza3mmh9Gee3JdZ
-         0OBPYmd9hVUIlvldbvP3kzO3I8/jV9fG4dVfth4nhqB0wbmQreSQj3eizRIlwyVqDQ
-         7veBCotYt2cLnodWKa/VCMMjMwMUEi1NEfQOGfVU=
-Date:   Mon, 19 Jun 2023 15:35:49 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Minda Chen <minda.chen@starfivetech.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S231755AbjFSOMD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 10:12:03 -0400
+Received: from mail-yw1-x112a.google.com (mail-yw1-x112a.google.com [IPv6:2607:f8b0:4864:20::112a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3D60DC9
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:12:00 -0700 (PDT)
+Received: by mail-yw1-x112a.google.com with SMTP id 00721157ae682-57028539aadso41535207b3.2
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:12:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=kali.org; s=google; t=1687183919; x=1689775919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OSgLesRZe3XK9svI7DO/JvZqoNlNuyMtRCaFHnv2L+E=;
+        b=X6+8JyKcaPHB7AK+cJJKPZyZbGRQQ/mO2aQ5hkcnjvovHEW2cunEHrts6QAJ/mwTi2
+         43CF3DnN98Jc5fibm5ajT8XmVCkbxqXPDEL7OIx8+cXzGzIRQrvIE8UNN/9OzSogB18J
+         snP0NbR34kfJ/dM7JwY2vKLJwTJ3iN1oEvwAJN+J1zrR67fkltCc04uEmiwuhLR/dT0v
+         xl+/sc402EkH3cz3kc5Pr6qse8Wxm4636eeDwlLjT9i+9wiVG/YgFRbHqiOuroKlbJxX
+         2jn8zJM6JkoEexPhdlrcKIkenTpcyXWs636uzSOaHXi/Ep8NKiPclbvpAnwzh2e0tsfp
+         0SjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687183919; x=1689775919;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=OSgLesRZe3XK9svI7DO/JvZqoNlNuyMtRCaFHnv2L+E=;
+        b=ZQrmSB/ssaobzYcZxyzM0zEpjlbWShodA+T+OfZAS2iCsjxUTyhrfwr8bUjfbKUKB6
+         Zs/udbVuLbYSeQSBQnNhufm6IlZcXcOXM1HGSq/DI3DGQhW0ZhVJW+rhfC8Jtp9qDB4j
+         U5LooY+ei4S7IVoxhxZHt1pGV1eNwZB2eT99Vr+GURbEoogGBJt6xYIT95VmUBTQVq6s
+         1GuG0+tFlL3kWrvVyMg/rLCu4F49zVY26xhROHmia8UZqU0bEgzLdFOyA1sR81dXCjRG
+         XPGaRMWWxxRtPMisKTS/Cw4SstuytdlpoAzk99206anN+dy+sfT7u38Ak7Bhew1pKQEX
+         hSqw==
+X-Gm-Message-State: AC+VfDyh0MNm757lk0rkrZ98L3t32YH9AX6H+o3aAApeAlXPoTBL4ajB
+        d2SeZ+pMZb0E8PDW7c5mlIFd+31wPVjVatY5Ypq7uA==
+X-Google-Smtp-Source: ACHHUZ5ogfYmP/IJ2NvjeqZvZL4TifLjKNSFKzqLEH0w/B4WtWiGqLxT5J3OJF25r7AdRiNd4Yd7AMOhZj4Q2AkiydU=
+X-Received: by 2002:a0d:dd46:0:b0:56f:ff55:2b7d with SMTP id
+ g67-20020a0ddd46000000b0056fff552b7dmr11174210ywe.17.1687183919401; Mon, 19
+ Jun 2023 07:11:59 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230617171512.286795-1-krzysztof.kozlowski@linaro.org> <4c71208b-5621-2495-a5de-3622a44d05d4@linaro.org>
+In-Reply-To: <4c71208b-5621-2495-a5de-3622a44d05d4@linaro.org>
+From:   Steev Klimaszewski <steev@kali.org>
+Date:   Mon, 19 Jun 2023 09:11:48 -0500
+Message-ID: <CAKXuJqhQJftK9rjG_CRmuc93Sdi1-p0LCNZQ56Uwfxsa-V8WUA@mail.gmail.com>
+Subject: Re: [RFT PATCH] arm64: dts: qcom: sdm850-c630: add missing panel supply
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Pawel Laszczak <pawell@cadence.com>,
-        Peter Chen <peter.chen@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org, linux-usb@vger.kernel.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-Subject: Re: [PATCH v6 5/7] dt-bindings: usb: Add StarFive JH7110 USB
- controller
-Message-ID: <2023061941-bok-gooey-c4fc@gregkh>
-References: <20230518112750.57924-1-minda.chen@starfivetech.com>
- <20230518112750.57924-6-minda.chen@starfivetech.com>
- <20230525-shopper-handbrake-27fc06aede32@spud>
- <5124e6a8-8ca6-71a5-19d6-8c15e954c458@starfivetech.com>
- <20230526-grain-cubical-e0af96202007@wendy>
- <a91f4167-e797-435f-8867-dbef4b109df8@starfivetech.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <a91f4167-e797-435f-8867-dbef4b109df8@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -73,42 +74,72 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 18, 2023 at 08:22:05PM +0800, Minda Chen wrote:
-> 
-> 
-> On 2023/5/26 21:13, Conor Dooley wrote:
-> > On Fri, May 26, 2023 at 06:24:48PM +0800, Minda Chen wrote:
-> > 
-> >> >> +title: StarFive JH7110 wrapper module for the Cadence USBSS-DRD controller
-> >> > 
-> >> > I think you told Krzysztof you'd rename this to "StarFive JH7110 Cadence
-> >> > USBSS-DRD SoC controller"?
-> >> > 
-> >> The previous title describe whole USB controller for previous dts node is
-> >> merged. Now the dts node is split. 
-> >> "starfive,jh7110-usb" just contain starfive wrapper layer dts configuration.
-> > 
-> > Okay, I must have misunderstood the conversation on the previous
-> > version. Sorry about that.
-> > 
-> >> > Otherwise, it looks like all the stuff from him and Rob have been sorted
-> >> > out, so other than $title this is
-> >> > Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> > 
-> 
-> Hi Greg
-> Can this patch can be applied to Linux-USB-next tree? Since this patch is reviewed by Conor.
-> 
-> List Below is Conor's previous E-mail.
-> 
->    I think I missed this mail somehow. 5/7 had the binding for the driver
->    so probably that should've gone via the USB tree too?
->    Should apply on its own (no deps on the phy patches) & has dt-binding
->    maintainer reviews.
-> 
->    `b4 am -P 5 20230518112750.57924-6-minda.chen@starfivetech.com` if
->    that's your cup of tea.
+On Mon, Jun 19, 2023 at 8:16=E2=80=AFAM Konrad Dybcio <konrad.dybcio@linaro=
+.org> wrote:
+>
+> On 17.06.2023 19:15, Krzysztof Kozlowski wrote:
+> > Panel bindings (boe,nv133fhm-n61) require supply which here actually ca=
+n
+> > be turned on/off via GPIO control:
+> >
+> >   sdm850-lenovo-yoga-c630.dtb: panel: 'power-supply' is a required prop=
+erty
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> >
+> > ---
+> >
+> > Not tested on hardware
+> > ---
+> +Steev
+>
+> Konrad
+> >  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 20 +++++++++++++++++++
+> >  1 file changed, 20 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arc=
+h/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > index cfbc4fc1eba9..3d871567cf81 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> > @@ -87,6 +87,25 @@ sn65dsi86_refclk: sn65dsi86-refclk {
+> >               clock-frequency =3D <19200000>;
+> >       };
+> >
+> > +     vph_pwr: regulator-vph-pwr {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vph_pwr";
+> > +             regulator-min-microvolt =3D <3700000>;
+> > +             regulator-max-microvolt =3D <3700000>;
+> > +     };
+> > +
+> > +     vlcm_3v3: regulator-vlcm-3v3 {
+> > +             compatible =3D "regulator-fixed";
+> > +             regulator-name =3D "vlcm_3v3";
+> > +
+> > +             vin-supply =3D <&vph_pwr>;
+> > +             regulator-min-microvolt =3D <3300000>;
+> > +             regulator-max-microvolt =3D <3300000>;
+> > +
+> > +             gpio =3D <&tlmm 88 GPIO_ACTIVE_HIGH>;
+> > +             enable-active-high;
+> > +     };
+> > +
+> >       backlight: backlight {
+> >               compatible =3D "pwm-backlight";
+> >               pwms =3D <&sn65dsi86 1000000>;
+> > @@ -419,6 +438,7 @@ aux-bus {
+> >                       panel: panel {
+> >                               compatible =3D "boe,nv133fhm-n61";
+> >                               backlight =3D <&backlight>;
+> > +                             power-supply =3D <&vlcm_3v3>;
+> >
+> >                               port {
+> >                                       panel_in_edp: endpoint {
 
-Thanks, I missed that, now applied!
+I've tested this on my c630, which does have the nv133fhm-n61,
+however... the c630 has 2 different LCD panels available, and I do not
+have a c630 which has the other panel (anymore).  I reached out on IRC
+to the person who has it, but have not yet heard back.
 
-greg k-h
+-- steev
