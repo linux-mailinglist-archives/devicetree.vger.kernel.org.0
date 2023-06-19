@@ -2,90 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E890735804
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 15:06:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58E9F735813
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 15:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231934AbjFSNGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 09:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45612 "EHLO
+        id S229526AbjFSNK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 09:10:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231841AbjFSNFs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 09:05:48 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7550119B0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:05:08 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f8689fbf59so1947205e87.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:05:08 -0700 (PDT)
+        with ESMTP id S230198AbjFSNKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 09:10:51 -0400
+Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18E75AA
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:10:49 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b466073e19so30229931fa.1
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:10:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687179906; x=1689771906;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5bcXIhURMNb0zAXxfMHWv0nL5TXiAv91yaE+1dFMG5E=;
-        b=yLs6U1vH6ZNYrVyHJuTLCL9VSu+l1nMGRoZt/7irYjgs4pGm3FBTFGHaPa/hkBzCYa
-         oqhe8eVUSLdQe/Ieza9Job7gFeHhdFJb9aEDPcsuHNzBwaY9mg3xcRx8lxW3uD3eSNxU
-         Cg5KtjOep3J1h6NuGxLkF6ba/ZiHHHuCWkRMpGCJUfeJJn6ntws4ErWsNyWG6zXzwpm4
-         L54psYe3mvS/4iSt5MwjQnXVVOljkTzTk6I63AgHpWj9BRdKUjBAKOzzJKyTW0uFITMS
-         tIxE62v93VWue2ayP+1OTYvKge/Rz0wsy2sJOMk5I3qjuMYTFrtdCzDqHk/AoUdlsnJA
-         ZXmw==
+        d=linaro.org; s=google; t=1687180247; x=1689772247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=PtVdSdU88LNefkY72KFJQZutSu/EAmlxtmHK1QOiwmw=;
+        b=Btmt5VBwmuO+gYWg4hz6LJAYqrE/pf6gWMF9KW0ZL1p6ttVPYn4leAVhdecN254JGD
+         Q2kilkwqlje1MAnUdtDBZnY3gEU465W9HjIFaWFzhrHVAzKbZ7uKJIIw8la1JLg0c+U9
+         /5qdfMUkUQTeJDkO5+ckbK5A6jXqsh+F7PBWsKH9qMXn5zZhDKwOO+ooPDifTsge3GHw
+         5WdlFGFf1w0VLrY3ziJb4uR39n1vZnMSouC30BPk81HpPBf/WXQ+ifvyauwmSqcsdphK
+         CR0STgE/aMNTXIrrCGLEqZPDx2RLDtr7GDL2ra0aSSXZ5ouY3jwZhyRy75OIAlMpQlIv
+         VYAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687179906; x=1689771906;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=5bcXIhURMNb0zAXxfMHWv0nL5TXiAv91yaE+1dFMG5E=;
-        b=GI4uzaRlMqiCNw5m1PziPQK80Wo7W/pjMzfB8+R+UP8Ei7kYiQpUTJc/CETF8hR+w0
-         BIk0NH6kB1sAcY8P8o0wLDtfZpjhtMvkAr23nGV9KAGamHT7TeITA8uR39mr+j1o/V76
-         9OgXav8xj/UZBGE/NM1zDY6j3ifHR+Kht+aw/HF1iux27/PUF0TwyGyNStV8idRNbIYY
-         CRrk5NJOuc4cxm3rbzAS4GBTtmlJ6rsUJg9FLbgIA/BPDUgsL18+lInZq50BizVvtQDb
-         zOnBKUqgUQeEJT7O6ywib6R9BKA77MIHhle39+ymbDRPrc+Whty5sGP51Ayv0jdB6jIQ
-         MXVw==
-X-Gm-Message-State: AC+VfDxjjZDx7PD2IH8daMYNNI/zsABgZadz8RgiBBHM7AknDD+t328R
-        6GYhmUg8aea14dxdKa7dcXvsiw==
-X-Google-Smtp-Source: ACHHUZ4KjPd4RSujP1eXvOEIwPcLEdi3IrOErlPVqQMD3qL3V8uI3dIZCNSAFvnQcsSdBsgnP/mnyg==
-X-Received: by 2002:a05:6512:31c9:b0:4f8:5e4e:52ad with SMTP id j9-20020a05651231c900b004f85e4e52admr2030562lfe.23.1687179906402;
-        Mon, 19 Jun 2023 06:05:06 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687180247; x=1689772247;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=PtVdSdU88LNefkY72KFJQZutSu/EAmlxtmHK1QOiwmw=;
+        b=MfIb9nqh/dSNU35KQFSziJZp0m84L6Bq29kTTW3zbQ3uuTPgmibTvqEVNYpQUmEyxq
+         /at9WZjIVjqTNoUc0lqRfTieVDAj0IjDHG1dkljhqqAw85TpSBEweSrBKR0535zTHarh
+         6ssMVc1JbrGyra7SwN223Oz/R9+0wDelSLYGTw8VZaqBUrIhVQNHmK1jENOsm81k2BFr
+         uSDHjFAy1D309FFQH3hxTlUtj50ePEskQ6k58wqxH1gsa4kmhin3xAYPnz2d5kQbQJqQ
+         WPK7SCoAqDGMeqtVRo6WbCgA43y5+rsZXULJdfGPMuf7PqTyckToz5ASW5BRkA9kEDbz
+         kWnA==
+X-Gm-Message-State: AC+VfDw/oqWKBYZ7Y2qRr6fpoK7G1dZ9QkJSz4EW52lK37XyYkXNVBh7
+        c22XmW/EwDXxptgy0Wx1GyngyA==
+X-Google-Smtp-Source: ACHHUZ4DnGAHEekUA4iOo293sW8ZgS8Q4mleM8K8Lnivp0CUEHjzUgdefTLrh8L3iHJ87q4a0S1qaQ==
+X-Received: by 2002:a2e:3a05:0:b0:2b2:4e86:510b with SMTP id h5-20020a2e3a05000000b002b24e86510bmr6120161lja.13.1687180247222;
+        Mon, 19 Jun 2023 06:10:47 -0700 (PDT)
 Received: from [192.168.1.101] (abyl242.neoplus.adsl.tpnet.pl. [83.9.31.242])
-        by smtp.gmail.com with ESMTPSA id q28-20020ac25a1c000000b004f643664882sm4256489lfn.147.2023.06.19.06.05.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jun 2023 06:05:06 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 19 Jun 2023 15:04:47 +0200
-Subject: [PATCH v7 22/22] interconnect: qcom: icc-rpm: Fix bandwidth
- calculations
+        by smtp.gmail.com with ESMTPSA id a15-20020a2e860f000000b002b44bcdf809sm2114696lji.87.2023.06.19.06.10.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jun 2023 06:10:46 -0700 (PDT)
+Message-ID: <0696f655-1928-ac7a-da3f-67c40f8f6743@linaro.org>
+Date:   Mon, 19 Jun 2023 15:10:44 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230526-topic-smd_icc-v7-22-09c78c175546@linaro.org>
-References: <20230526-topic-smd_icc-v7-0-09c78c175546@linaro.org>
-In-Reply-To: <20230526-topic-smd_icc-v7-0-09c78c175546@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        Leo Yan <leo.yan@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [Freedreno] [PATCH v8 10/18] drm/msm/a6xx: Introduce GMU wrapper
+ support
+Content-Language: en-US
+To:     Akhil P Oommen <quic_akhilpo@quicinc.com>
+Cc:     Rob Clark <robdclark@chromium.org>,
+        freedreno@lists.freedesktop.org,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687179869; l=5027;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=tAzLN6zVkcV/6YKzpXaiTCXmJB8hBKbRsR3dIrek/EQ=;
- b=NCMJwqTsNmd7gjeCZZUMYUr51ZiZyZNsXzOOjUQdIyTKlKP+JA/c/YiL21ufE55+ZBWj8P9Tu
- /dnoX3XFF2SBjCgZF+s71kA7CQoLO+IWXw5OxxIcakjof7x8haVK7bt
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        devicetree@vger.kernel.org, Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Rob Clark <robdclark@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        David Airlie <airlied@gmail.com>
+References: <20230223-topic-gmuwrapper-v8-0-69c68206609e@linaro.org>
+ <20230223-topic-gmuwrapper-v8-10-69c68206609e@linaro.org>
+ <2vr72w4tslxxumzphtuwgkcnbfjrtmw2j4qak2cukcabchadlg@spjbqoa7v4lr>
+ <c5396101-ad5b-afdd-d6d7-1a2efa3b9bf7@linaro.org>
+ <z5imqaxyumc5pyk4ijumjby4tswfmnjsnedeekonx5tymhwsfi@h5dk3pl2zawf>
+ <68e64a35-9705-6565-3b5c-5de38419aba8@linaro.org>
+ <ghxtdcvjaqkyu3xnsvwanevjxbucaw2qlesbm26yrk423jfxxt@epmsxqse3njs>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <ghxtdcvjaqkyu3xnsvwanevjxbucaw2qlesbm26yrk423jfxxt@epmsxqse3njs>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,133 +94,393 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Up until now, we've been aggregating the bandwidth values and only
-dividing them by the bus width of the source node. This was completely
-wrong, as different nodes on a given path may (and usually do) have
-varying bus widths.  That in turn, resulted in the calculated clock rates
-being completely bogus - usually they ended up being much higher, as
-NoC_A<->NoC_B links are very wide.
+On 17.06.2023 18:07, Akhil P Oommen wrote:
+> On Sat, Jun 17, 2023 at 02:00:50AM +0200, Konrad Dybcio wrote:
+>>
+>> On 16.06.2023 19:54, Akhil P Oommen wrote:
+>>> On Thu, Jun 15, 2023 at 11:43:04PM +0200, Konrad Dybcio wrote:
+>>>>
+>>>> On 10.06.2023 00:06, Akhil P Oommen wrote:
+>>>>> On Mon, May 29, 2023 at 03:52:29PM +0200, Konrad Dybcio wrote:
+>>>>>>
+>>>>>> Some (particularly SMD_RPM, a.k.a non-RPMh) SoCs implement A6XX GPUs
+>>>>>> but don't implement the associated GMUs. This is due to the fact that
+>>>>>> the GMU directly pokes at RPMh. Sadly, this means we have to take care
+>>>>>> of enabling & scaling power rails, clocks and bandwidth ourselves.
+>>>>>>
+>>>>>> Reuse existing Adreno-common code and modify the deeply-GMU-infused
+>>>>>> A6XX code to facilitate these GPUs. This involves if-ing out lots
+>>>>>> of GMU callbacks and introducing a new type of GMU - GMU wrapper (it's
+>>>>>> the actual name that Qualcomm uses in their downstream kernels).
+>>>>>>
+>>>>>> This is essentially a register region which is convenient to model
+>>>>>> as a device. We'll use it for managing the GDSCs. The register
+>>>>>> layout matches the actual GMU_CX/GX regions on the "real GMU" devices
+>>>>>> and lets us reuse quite a bit of gmu_read/write/rmw calls.
+>>>>>>
+>>>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>>>> ---
+>> [...]
+>>
+>>>>>> +
+>>>>>> +	ret = clk_bulk_prepare_enable(gpu->nr_clocks, gpu->grp_clks);
+>>>>>> +	if (ret)
+>>>>>> +		goto err_bulk_clk;
+>>>>>> +
+>>>>>> +	/* If anything goes south, tear the GPU down piece by piece.. */
+>>>>>> +	if (ret) {
+>>>>>> +err_bulk_clk:
+>>>>>
+>>>>> Goto jump directly to another block looks odd to me. Why do you need this label
+>>>>> anyway?
+>>>> If clk_bulk_prepare_enable() fails, trying to proceed will hang the
+>>>> platform with unclocked accesses. We need to unwind everything that
+>>>> has been done up until that point, in reverse order.
+>>>
+>>> I missed this response from you earlier.
+>>>
+>>> But you are checking for 'ret' twice here. You will end up here even
+>>> if you don't jump! So "if (ret) goto err_bulk_clk;" looks
+>>> unnecessary.
+>>>
+>>> -Akhil.
+>> Ohhh right, silly mistake on my part ;)
+>>
+>> I already sent out a v9 since.. Please check it out and if you
+>> have any further comments, I'll fix this, and if not.. Perhaps I
+>> could fix it in an incremental patch if that revision is gtg?
+> 
+> Incremental patch is fine as there is no functional issue.
+Okay so I took another look with today's next that already contains
+this series, and it currently looks like:
 
-Since we're not using the aggregate bandwidth value for anything other
-than clock rate calculations, remodel qcom_icc_bus_aggregate() to
-calculate the per-context clock rate for a given provider, taking into
-account the bus width of every individual node.
 
-Fixes: 30c8fa3ec61a ("interconnect: qcom: Add MSM8916 interconnect provider driver")
-Reported-by: Stephan Gerhold <stephan@gerhold.net>
-Reviewed-by: Stephan Gerhold <stephan@gerhold.net>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/interconnect/qcom/icc-rpm.c | 59 ++++++++++++-------------------------
- 1 file changed, 19 insertions(+), 40 deletions(-)
+ret = clk_bulk_prepare_enable(gpu->nr_clocks, gpu->grp_clks);
+if (ret)
+	goto err_bulk_clk;
 
-diff --git a/drivers/interconnect/qcom/icc-rpm.c b/drivers/interconnect/qcom/icc-rpm.c
-index 5733261d9407..3209d8de709b 100644
---- a/drivers/interconnect/qcom/icc-rpm.c
-+++ b/drivers/interconnect/qcom/icc-rpm.c
-@@ -292,58 +292,44 @@ static int qcom_icc_bw_aggregate(struct icc_node *node, u32 tag, u32 avg_bw,
- }
- 
- /**
-- * qcom_icc_bus_aggregate - aggregate bandwidth by traversing all nodes
-+ * qcom_icc_bus_aggregate - calculate bus clock rates by traversing all nodes
-  * @provider: generic interconnect provider
-- * @agg_avg: an array for aggregated average bandwidth of buckets
-- * @agg_peak: an array for aggregated peak bandwidth of buckets
-- * @max_agg_avg: pointer to max value of aggregated average bandwidth
-+ * @agg_clk_rate: array containing the aggregated clock rates in kHz
-  */
--static void qcom_icc_bus_aggregate(struct icc_provider *provider,
--				   u64 *agg_avg, u64 *agg_peak,
--				   u64 *max_agg_avg)
-+static void qcom_icc_bus_aggregate(struct icc_provider *provider, u64 *agg_clk_rate)
- {
--	struct icc_node *node;
-+	u64 agg_avg_rate, agg_rate;
- 	struct qcom_icc_node *qn;
--	u64 sum_avg[QCOM_SMD_RPM_STATE_NUM];
-+	struct icc_node *node;
- 	int i;
- 
--	/* Initialise aggregate values */
--	for (i = 0; i < QCOM_SMD_RPM_STATE_NUM; i++) {
--		agg_avg[i] = 0;
--		agg_peak[i] = 0;
--	}
--
--	*max_agg_avg = 0;
--
- 	/*
--	 * Iterate nodes on the interconnect and aggregate bandwidth
--	 * requests for every bucket.
-+	 * Iterate nodes on the provider, aggregate bandwidth requests for
-+	 * every bucket and convert them into bus clock rates.
- 	 */
- 	list_for_each_entry(node, &provider->nodes, node_list) {
- 		qn = node->data;
- 		for (i = 0; i < QCOM_SMD_RPM_STATE_NUM; i++) {
- 			if (qn->channels)
--				sum_avg[i] = div_u64(qn->sum_avg[i], qn->channels);
-+				agg_avg_rate = div_u64(qn->sum_avg[i], qn->channels);
- 			else
--				sum_avg[i] = qn->sum_avg[i];
--			agg_avg[i] += sum_avg[i];
--			agg_peak[i] = max_t(u64, agg_peak[i], qn->max_peak[i]);
-+				agg_avg_rate = qn->sum_avg[i];
-+
-+			agg_rate = max_t(u64, agg_avg_rate, qn->max_peak[i]);
-+			do_div(agg_rate, qn->buswidth);
-+
-+			agg_clk_rate[i] = max_t(u64, agg_clk_rate[i], agg_rate);
- 		}
- 	}
--
--	/* Find maximum values across all buckets */
--	for (i = 0; i < QCOM_SMD_RPM_STATE_NUM; i++)
--		*max_agg_avg = max_t(u64, *max_agg_avg, agg_avg[i]);
- }
- 
- static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- {
--	struct qcom_icc_provider *qp;
- 	struct qcom_icc_node *src_qn = NULL, *dst_qn = NULL;
-+	u64 agg_clk_rate[QCOM_SMD_RPM_STATE_NUM] = { 0 };
- 	struct icc_provider *provider;
-+	struct qcom_icc_provider *qp;
- 	u64 active_rate, sleep_rate;
--	u64 agg_avg[QCOM_SMD_RPM_STATE_NUM], agg_peak[QCOM_SMD_RPM_STATE_NUM];
--	u64 max_agg_avg;
- 	int ret;
- 
- 	src_qn = src->data;
-@@ -352,7 +338,9 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- 	provider = src->provider;
- 	qp = to_qcom_provider(provider);
- 
--	qcom_icc_bus_aggregate(provider, agg_avg, agg_peak, &max_agg_avg);
-+	qcom_icc_bus_aggregate(provider, agg_clk_rate);
-+	active_rate = agg_clk_rate[QCOM_SMD_RPM_ACTIVE_STATE];
-+	sleep_rate = agg_clk_rate[QCOM_SMD_RPM_SLEEP_STATE];
- 
- 	ret = qcom_icc_rpm_set(src_qn, src_qn->sum_avg);
- 	if (ret)
-@@ -368,15 +356,6 @@ static int qcom_icc_set(struct icc_node *src, struct icc_node *dst)
- 	if (!qp->bus_clk_desc && !qp->bus_clk)
- 		return 0;
- 
--	/* Intentionally keep the rates in kHz as that's what RPM accepts */
--	active_rate = max(agg_avg[QCOM_SMD_RPM_ACTIVE_STATE],
--			  agg_peak[QCOM_SMD_RPM_ACTIVE_STATE]);
--	do_div(active_rate, src_qn->buswidth);
--
--	sleep_rate = max(agg_avg[QCOM_SMD_RPM_SLEEP_STATE],
--			 agg_peak[QCOM_SMD_RPM_SLEEP_STATE]);
--	do_div(sleep_rate, src_qn->buswidth);
--
- 	/*
- 	 * Downstream checks whether the requested rate is zero, but it makes little sense
- 	 * to vote for a value that's below the lower threshold, so let's not do so.
+if (adreno_is_a619_holi(adreno_gpu))
+	a6xx_sptprac_enable(gmu);
 
--- 
-2.41.0
+/* If anything goes south, tear the GPU down piece by piece.. */
+if (ret) {
+err_bulk_clk:
 
+
+So it makes sense this way.. perhaps I just left it in this patch
+by mistake when I was rebasing some changes. I guess it requires
+no further action now?
+
+Konrad
+> 
+> -Akhil.
+> 
+>>
+>> Konrad
+>>>
+>>>>
+>>>>>
+>>>>>> +		pm_runtime_put(gmu->gxpd);
+>>>>>> +		pm_runtime_put(gmu->dev);
+>>>>>> +		dev_pm_opp_set_opp(&gpu->pdev->dev, NULL);
+>>>>>> +	}
+>>>>>> +err_set_opp:
+>>>>>
+>>>>> Generally, it is better to name the label based on what you do here. For
+>>>>> eg: "unlock_lock:".
+>>>> That seems to be a mixed bag all throughout the kernel, I've seen many
+>>>> usages of err_(what went wrong)
+>>>>
+>>>>>
+>>>>> Also, this function is small enough that it is better to return directly
+>>>>> in case of error. I think that would be more readable.
+>>>> Not really, adding the necessary cleanup steps in `if (ret)`
+>>>> blocks would roughly double the function's size.
+>>>>
+>>>>>
+>>>>>> +	mutex_unlock(&a6xx_gpu->gmu.lock);
+>>>>>> +
+>>>>>> +	if (!ret)
+>>>>>> +		msm_devfreq_resume(gpu);
+>>>>>> +
+>>>>>> +	return ret;
+>>>>>> +}
+>>>>>> +
+>>>>>> +static int a6xx_gmu_pm_suspend(struct msm_gpu *gpu)
+>>>>>>  {
+>>>>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>>>>  	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>>>> @@ -1720,7 +1799,40 @@ static int a6xx_pm_suspend(struct msm_gpu *gpu)
+>>>>>>  	return 0;
+>>>>>>  }
+>>>>>>  
+>>>>>> -static int a6xx_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>>>> +static int a6xx_pm_suspend(struct msm_gpu *gpu)
+>>>>>> +{
+>>>>>> +	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>>>> +	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>>>> +	struct a6xx_gmu *gmu = &a6xx_gpu->gmu;
+>>>>>> +	int i;
+>>>>>> +
+>>>>>> +	trace_msm_gpu_suspend(0);
+>>>>>> +
+>>>>>> +	msm_devfreq_suspend(gpu);
+>>>>>> +
+>>>>>> +	mutex_lock(&a6xx_gpu->gmu.lock);
+>>>>>
+>>>>> Again, is this initialized somewhere?
+>>>>>
+>>>>>> +
+>>>>>> +	/* Drain the outstanding traffic on memory buses */
+>>>>>> +	a6xx_bus_clear_pending_transactions(adreno_gpu, true);
+>>>>>> +
+>>>>>> +	clk_bulk_disable_unprepare(gpu->nr_clocks, gpu->grp_clks);
+>>>>>> +
+>>>>>> +	pm_runtime_put_sync(gmu->gxpd);
+>>>>>> +	dev_pm_opp_set_opp(&gpu->pdev->dev, NULL);
+>>>>>> +	pm_runtime_put_sync(gmu->dev);
+>>>>>> +
+>>>>>> +	mutex_unlock(&a6xx_gpu->gmu.lock);
+>>>>>> +
+>>>>>> +	if (a6xx_gpu->shadow_bo)
+>>>>>> +		for (i = 0; i < gpu->nr_rings; i++)
+>>>>>> +			a6xx_gpu->shadow[i] = 0;
+>>>>>> +
+>>>>>> +	gpu->suspend_count++;
+>>>>>> +
+>>>>>> +	return 0;
+>>>>>> +}
+>>>>>> +
+>>>>>> +static int a6xx_gmu_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>>>>  {
+>>>>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>>>>  	struct a6xx_gpu *a6xx_gpu = to_a6xx_gpu(adreno_gpu);
+>>>>>> @@ -1739,6 +1851,12 @@ static int a6xx_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>>>>  	return 0;
+>>>>>>  }
+>>>>>>  
+>>>>>> +static int a6xx_get_timestamp(struct msm_gpu *gpu, uint64_t *value)
+>>>>>> +{
+>>>>>> +	*value = gpu_read64(gpu, REG_A6XX_CP_ALWAYS_ON_COUNTER);
+>>>>>> +	return 0;
+>>>>>> +}
+>>>>>> +
+>>>>>>  static struct msm_ringbuffer *a6xx_active_ring(struct msm_gpu *gpu)
+>>>>>>  {
+>>>>>>  	struct adreno_gpu *adreno_gpu = to_adreno_gpu(gpu);
+>>>>>> @@ -2004,8 +2122,8 @@ static const struct adreno_gpu_funcs funcs = {
+>>>>>>  		.set_param = adreno_set_param,
+>>>>>>  		.hw_init = a6xx_hw_init,
+>>>>>>  		.ucode_load = a6xx_ucode_load,
+>>>>>> -		.pm_suspend = a6xx_pm_suspend,
+>>>>>> -		.pm_resume = a6xx_pm_resume,
+>>>>>> +		.pm_suspend = a6xx_gmu_pm_suspend,
+>>>>>> +		.pm_resume = a6xx_gmu_pm_resume,
+>>>>>>  		.recover = a6xx_recover,
+>>>>>>  		.submit = a6xx_submit,
+>>>>>>  		.active_ring = a6xx_active_ring,
+>>>>>> @@ -2020,6 +2138,35 @@ static const struct adreno_gpu_funcs funcs = {
+>>>>>>  #if defined(CONFIG_DRM_MSM_GPU_STATE)
+>>>>>>  		.gpu_state_get = a6xx_gpu_state_get,
+>>>>>>  		.gpu_state_put = a6xx_gpu_state_put,
+>>>>>> +#endif
+>>>>>> +		.create_address_space = a6xx_create_address_space,
+>>>>>> +		.create_private_address_space = a6xx_create_private_address_space,
+>>>>>> +		.get_rptr = a6xx_get_rptr,
+>>>>>> +		.progress = a6xx_progress,
+>>>>>> +	},
+>>>>>> +	.get_timestamp = a6xx_gmu_get_timestamp,
+>>>>>> +};
+>>>>>> +
+>>>>>> +static const struct adreno_gpu_funcs funcs_gmuwrapper = {
+>>>>>> +	.base = {
+>>>>>> +		.get_param = adreno_get_param,
+>>>>>> +		.set_param = adreno_set_param,
+>>>>>> +		.hw_init = a6xx_hw_init,
+>>>>>> +		.ucode_load = a6xx_ucode_load,
+>>>>>> +		.pm_suspend = a6xx_pm_suspend,
+>>>>>> +		.pm_resume = a6xx_pm_resume,
+>>>>>> +		.recover = a6xx_recover,
+>>>>>> +		.submit = a6xx_submit,
+>>>>>> +		.active_ring = a6xx_active_ring,
+>>>>>> +		.irq = a6xx_irq,
+>>>>>> +		.destroy = a6xx_destroy,
+>>>>>> +#if defined(CONFIG_DRM_MSM_GPU_STATE)
+>>>>>> +		.show = a6xx_show,
+>>>>>> +#endif
+>>>>>> +		.gpu_busy = a6xx_gpu_busy,
+>>>>>> +#if defined(CONFIG_DRM_MSM_GPU_STATE)
+>>>>>> +		.gpu_state_get = a6xx_gpu_state_get,
+>>>>>> +		.gpu_state_put = a6xx_gpu_state_put,
+>>>>>>  #endif
+>>>>>>  		.create_address_space = a6xx_create_address_space,
+>>>>>>  		.create_private_address_space = a6xx_create_private_address_space,
+>>>>>> @@ -2050,15 +2197,31 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>>>>>>  
+>>>>>>  	adreno_gpu->registers = NULL;
+>>>>>>  
+>>>>>> +	/* Check if there is a GMU phandle and set it up */
+>>>>>> +	node = of_parse_phandle(pdev->dev.of_node, "qcom,gmu", 0);
+>>>>>> +	/* FIXME: How do we gracefully handle this? */
+>>>>>> +	BUG_ON(!node);
+>>>>>> +
+>>>>>> +	adreno_gpu->gmu_is_wrapper = of_device_is_compatible(node, "qcom,adreno-gmu-wrapper");
+>>>>>> +
+>>>>>>  	/*
+>>>>>>  	 * We need to know the platform type before calling into adreno_gpu_init
+>>>>>>  	 * so that the hw_apriv flag can be correctly set. Snoop into the info
+>>>>>>  	 * and grab the revision number
+>>>>>>  	 */
+>>>>>>  	info = adreno_info(config->rev);
+>>>>>> -
+>>>>>> -	if (info && (info->revn == 650 || info->revn == 660 ||
+>>>>>> -			adreno_cmp_rev(ADRENO_REV(6, 3, 5, ANY_ID), info->rev)))
+>>>>>> +	if (!info)
+>>>>>> +		return ERR_PTR(-EINVAL);
+>>>>>> +
+>>>>>> +	/* Assign these early so that we can use the is_aXYZ helpers */
+>>>>>> +	/* Numeric revision IDs (e.g. 630) */
+>>>>>> +	adreno_gpu->revn = info->revn;
+>>>>>> +	/* New-style ADRENO_REV()-only */
+>>>>>> +	adreno_gpu->rev = info->rev;
+>>>>>> +	/* Quirk data */
+>>>>>> +	adreno_gpu->info = info;
+>>>>>> +
+>>>>>> +	if (adreno_is_a650(adreno_gpu) || adreno_is_a660_family(adreno_gpu))
+>>>>>>  		adreno_gpu->base.hw_apriv = true;
+>>>>>>  
+>>>>>>  	a6xx_llc_slices_init(pdev, a6xx_gpu);
+>>>>>> @@ -2069,7 +2232,10 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>>>>>>  		return ERR_PTR(ret);
+>>>>>>  	}
+>>>>>>  
+>>>>>> -	ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs, 1);
+>>>>>> +	if (adreno_has_gmu_wrapper(adreno_gpu))
+>>>>>> +		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs_gmuwrapper, 1);
+>>>>>> +	else
+>>>>>> +		ret = adreno_gpu_init(dev, pdev, adreno_gpu, &funcs, 1);
+>>>>>>  	if (ret) {
+>>>>>>  		a6xx_destroy(&(a6xx_gpu->base.base));
+>>>>>>  		return ERR_PTR(ret);
+>>>>>> @@ -2082,13 +2248,10 @@ struct msm_gpu *a6xx_gpu_init(struct drm_device *dev)
+>>>>>>  	if (adreno_is_a618(adreno_gpu) || adreno_is_7c3(adreno_gpu))
+>>>>>>  		priv->gpu_clamp_to_idle = true;
+>>>>>>  
+>>>>>> -	/* Check if there is a GMU phandle and set it up */
+>>>>>> -	node = of_parse_phandle(pdev->dev.of_node, "qcom,gmu", 0);
+>>>>>> -
+>>>>>> -	/* FIXME: How do we gracefully handle this? */
+>>>>>> -	BUG_ON(!node);
+>>>>>> -
+>>>>>> -	ret = a6xx_gmu_init(a6xx_gpu, node);
+>>>>>> +	if (adreno_has_gmu_wrapper(adreno_gpu))
+>>>>>> +		ret = a6xx_gmu_wrapper_init(a6xx_gpu, node);
+>>>>>> +	else
+>>>>>> +		ret = a6xx_gmu_init(a6xx_gpu, node);
+>>>>>>  	of_node_put(node);
+>>>>>>  	if (ret) {
+>>>>>>  		a6xx_destroy(&(a6xx_gpu->base.base));
+>>>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>>>>>> index aa70390ee1c6..c788b06e72da 100644
+>>>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>>>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.h
+>>>>>> @@ -76,6 +76,7 @@ int a6xx_gmu_set_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state);
+>>>>>>  void a6xx_gmu_clear_oob(struct a6xx_gmu *gmu, enum a6xx_gmu_oob_state state);
+>>>>>>  
+>>>>>>  int a6xx_gmu_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node);
+>>>>>> +int a6xx_gmu_wrapper_init(struct a6xx_gpu *a6xx_gpu, struct device_node *node);
+>>>>>>  void a6xx_gmu_remove(struct a6xx_gpu *a6xx_gpu);
+>>>>>>  
+>>>>>>  void a6xx_gmu_set_freq(struct msm_gpu *gpu, struct dev_pm_opp *opp,
+>>>>>> diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+>>>>>> index 30ecdff363e7..4e5d650578c6 100644
+>>>>>> --- a/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+>>>>>> +++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu_state.c
+>>>>>> @@ -1041,16 +1041,18 @@ struct msm_gpu_state *a6xx_gpu_state_get(struct msm_gpu *gpu)
+>>>>>>  	/* Get the generic state from the adreno core */
+>>>>>>  	adreno_gpu_state_get(gpu, &a6xx_state->base);
+>>>>>>  
+>>>>>> -	a6xx_get_gmu_registers(gpu, a6xx_state);
+>>>>>> +	if (!adreno_has_gmu_wrapper(adreno_gpu)) {
+>>>>>> +		a6xx_get_gmu_registers(gpu, a6xx_state);
+>>>>>>  
+>>>>>> -	a6xx_state->gmu_log = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.log);
+>>>>>> -	a6xx_state->gmu_hfi = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.hfi);
+>>>>>> -	a6xx_state->gmu_debug = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.debug);
+>>>>>> +		a6xx_state->gmu_log = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.log);
+>>>>>> +		a6xx_state->gmu_hfi = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.hfi);
+>>>>>> +		a6xx_state->gmu_debug = a6xx_snapshot_gmu_bo(a6xx_state, &a6xx_gpu->gmu.debug);
+>>>>>>  /
+>>>>>> -	a6xx_snapshot_gmu_hfi_history(gpu, a6xx_state);
+>>>>>> +		a6xx_snapshot_gmu_hfi_history(gpu, a6xx_state);
+>>>>>> +	}
+>>>>>>  
+>>>>>>  	/* If GX isn't on the rest of the data isn't going to be accessible */
+>>>>>> -	if (!a6xx_gmu_gx_is_on(&a6xx_gpu->gmu))
+>>>>>> +	if (!adreno_has_gmu_wrapper(adreno_gpu) && !a6xx_gmu_gx_is_on(&a6xx_gpu->gmu))
+>>>>>>  		return &a6xx_state->base;
+>>>>>>  
+>>>>>>  	/* Get the banks of indexed registers */
+>>>>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>>>>>> index 6934cee07d42..5c5901d65950 100644
+>>>>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>>>>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
+>>>>>> @@ -528,6 +528,10 @@ int adreno_load_fw(struct adreno_gpu *adreno_gpu)
+>>>>>>  		if (!adreno_gpu->info->fw[i])
+>>>>>>  			continue;
+>>>>>>  
+>>>>>> +		/* Skip loading GMU firwmare with GMU Wrapper */
+>>>>>> +		if (adreno_has_gmu_wrapper(adreno_gpu) && i == ADRENO_FW_GMU)
+>>>>>> +			continue;
+>>>>>> +
+>>>>>>  		/* Skip if the firmware has already been loaded */
+>>>>>>  		if (adreno_gpu->fw[i])
+>>>>>>  			continue;
+>>>>>> @@ -1074,8 +1078,8 @@ int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
+>>>>>>  	u32 speedbin;
+>>>>>>  	int ret;
+>>>>>>  
+>>>>>> -	/* Only handle the core clock when GMU is not in use */
+>>>>>> -	if (config->rev.core < 6) {
+>>>>>> +	/* Only handle the core clock when GMU is not in use (or is absent). */
+>>>>>> +	if (adreno_has_gmu_wrapper(adreno_gpu) || config->rev.core < 6) {
+>>>>>>  		/*
+>>>>>>  		 * This can only be done before devm_pm_opp_of_add_table(), or
+>>>>>>  		 * dev_pm_opp_set_config() will WARN_ON()
+>>>>>> diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>>>>> index f62612a5c70f..ee5352bc5329 100644
+>>>>>> --- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>>>>> +++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
+>>>>>> @@ -115,6 +115,7 @@ struct adreno_gpu {
+>>>>>>  	 * code (a3xx_gpu.c) and stored in this common location.
+>>>>>>  	 */
+>>>>>>  	const unsigned int *reg_offsets;
+>>>>>> +	bool gmu_is_wrapper;
+>>>>>>  };
+>>>>>>  #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
+>>>>>>  
+>>>>>> @@ -145,6 +146,11 @@ struct adreno_platform_config {
+>>>>>>  
+>>>>>>  bool adreno_cmp_rev(struct adreno_rev rev1, struct adreno_rev rev2);
+>>>>>>  
+>>>>>> +static inline bool adreno_has_gmu_wrapper(struct adreno_gpu *gpu)
+>>>>>> +{
+>>>>>> +	return gpu->gmu_is_wrapper;
+>>>>>> +}
+>>>>>> +
+>>>>>>  static inline bool adreno_is_a2xx(struct adreno_gpu *gpu)
+>>>>>>  {
+>>>>>>  	return (gpu->revn < 300);
+>>>>>>
+>>>>>> -- 
+>>>>>> 2.40.1
+>>>>>>
+>>>>>
+>>>>> I am still not fully onboard with the idea of gmu_wrapper node in devicetree.
+>>>>> Aside from that, I don't see any other issue. Please check the few comments I left.
+>>>> Thanks for your review!
+>>>>
+>>>> Konrad
+>>>>>
+>>>>> -Akhil.
+>>>>>
