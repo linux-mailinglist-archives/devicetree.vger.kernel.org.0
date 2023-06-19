@@ -2,120 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EB44734C23
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEAA0734C44
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:19:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbjFSHLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 03:11:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56880 "EHLO
+        id S229478AbjFSHTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 03:19:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229769AbjFSHLg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:11:36 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EE64106
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 00:11:35 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-bad0c4f6f50so4656124276.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 00:11:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687158694; x=1689750694;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/mUeepgJ1O9cz8Kl0I6X55iLETdP0NbFcT/ejiaDsQQ=;
-        b=JbRn+7OdF7AufnePj+eplT2mGaIj2u1IwBrwOH6tnkiQ+PZs8GHeMz+PSQgw3KJbFB
-         xLLVUWLWKC5i2olWlGi0A4no/0w434x+iT7QrlYxMTSwpkiEoR1P6OY/rDGxx24DsZk0
-         eN8/IbplZdrdxgrKBNffqxm5JKSiz9UG9L2y6lR0Pe5yhIbCpionZUJvsDqI9ncqFMmn
-         VHcIp+cHlQdu75zAARyI0bsaRnRk2BQ1G0FUjyVD+gLE+TeieFyYvOYUSmXa+o9Nefx1
-         wtgpPZNZNam/ViY6NA69hdLRJNfIzoP6N63WH3BYNsThMSwwGjsCrbiZioR+XdYjJ5yI
-         LU+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687158694; x=1689750694;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=/mUeepgJ1O9cz8Kl0I6X55iLETdP0NbFcT/ejiaDsQQ=;
-        b=SesESvVl6LWWOttweSwktlerrJ/XVdUCRwfYekbNfsWzMJZJgSZrEEw2IXNEPd9IuB
-         7oKVjO+7sMnWxORqQe4Qv7BkQJwItayCQECQx+i/UQcR74mKi6XgOesw1EFSq4WM0CFj
-         ai5tSARm19CW6++r1vf/cYhMA5V2ot+9OQzW+V7u07AGGbUADmRekN/+oO9J+XgQ8z1a
-         X0P15CDkOUQeDt0tdtC2k5rzMcdTU0i7xzTPXMR76XsFTu1jODEiVXbhVjNsqObAPB2t
-         aaeQPToinZ4xWeybMOMYTbaimOIKH18F2bO47Jvpo/MQa92R8Fwg3PDOuU/UxIJAUhgk
-         AJCA==
-X-Gm-Message-State: AC+VfDwHDZzE2WeC/Oa1lMa19h4EmjqyA3n+NIA0lnolOgYHJPpVDx5J
-        kPPBn1Ply+Pwip+Y4v6qnED80KYVcpJzO0Ocn4q/Mw==
-X-Google-Smtp-Source: ACHHUZ7xT7ohcHWC/jRL4gObxDq8YAx42oA5crBnwhAm9ubPFQceXHcvTmrEUJcqDaJ6P5ftDa09D2dA/tjHa+CcXCc=
-X-Received: by 2002:a25:6a43:0:b0:ba8:2a74:155 with SMTP id
- f64-20020a256a43000000b00ba82a740155mr5461790ybc.32.1687158694570; Mon, 19
- Jun 2023 00:11:34 -0700 (PDT)
+        with ESMTP id S229471AbjFSHTP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:19:15 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D6CE4
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 00:19:13 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1687159152;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=k1veaGQ2wOdpEaAy0NCuYfkXutrbxrLHWI4Iiw5PKCg=;
+        b=nW4j5Mnd/ro6eB9V51g+7y+suGmrcIdQbF8ApvvKPRYCKs4aFfRYQ/4kZMbaJmFT94vnKh
+        b9auw/VPpGZ+2zD5IIxGC5Ak77WS/6/7Ejm+KnzCMgCKkmiwQCwAHFX6wr1O+stPNmtMaC
+        U2vRZZkEbwioM5BX/zdPYiJpDpoTr3U5ePkiM+vJYdblEFfG/aw2/SsHO8oNqiIPT8qtAJ
+        zMQk03U6jkaZLBMlkRErsvN8Ak9eMY1qSMTNbGSwcq4bfkVHgKr4MDdpjZ7f1isPl6j7AA
+        UQ/iXSYfioSCzi/bgiweeP/a37mN3kmnX0/sFYQwktp128iy5lvdB/v5jwnbEg==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 0EBEE1BF20F;
+        Mon, 19 Jun 2023 07:19:09 +0000 (UTC)
+Date:   Mon, 19 Jun 2023 09:19:09 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Manivannan Sadhasivam <mani@kernel.org>
+Subject: Re: [PATCH v2 05/17] dt-bindings: mtd: qcom: Fix a property
+ position
+Message-ID: <20230619091909.179a29ec@xps-13>
+In-Reply-To: <3f4f4beb-4136-312a-be0b-5ec018b4329d@linaro.org>
+References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
+        <20230606175246.190465-6-miquel.raynal@bootlin.com>
+        <3f4f4beb-4136-312a-be0b-5ec018b4329d@linaro.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20230417-ux500-sram-v2-0-6e62ad551faa@linaro.org>
- <20230417-ux500-sram-v2-2-6e62ad551faa@linaro.org> <e41ff013-8224-1b96-5cd3-f0632d27191d@gmail.com>
-In-Reply-To: <e41ff013-8224-1b96-5cd3-f0632d27191d@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 19 Jun 2023 09:11:23 +0200
-Message-ID: <CACRpkdagHDUz4P0Z81ZqyhJD97gfn=p1=fx1dwKTrO8J3zkPrw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] misc: sram: Generate unique names for subpools
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 18, 2023 at 11:33=E2=80=AFPM Dmitry Osipenko <digetx@gmail.com>=
- wrote:
+Hi Krzysztof,
 
-> >                       if (!label)
-> > -                             label =3D child->name;
-> > -
-> > -                     block->label =3D devm_kstrdup(sram->dev,
-> > -                                                 label, GFP_KERNEL);
-> > +                             block->label =3D devm_kasprintf(sram->dev=
-, GFP_KERNEL,
-> > +                                                           "%s", dev_n=
-ame(sram->dev));
->
-> This broke device-trees that have no label property.
+krzysztof.kozlowski@linaro.org wrote on Mon, 19 Jun 2023 08:54:13 +0200:
 
-Which system is affected? Asking so I can inspect the DTS file
-and figure out how this needs to work.
+> On 06/06/2023 19:52, Miquel Raynal wrote:
+> > qcom,boot-partitions is a NAND chip property, not a NAND controller
+> > property. Move the description of the property into the NAND chip
+> > section and just enable the property in the if/else block.
+> >=20
+> > Fixes: 5278cc93a97f ("dt-bindings: mtd: qcom_nandc: document qcom,boot-=
+partitions binding")
+> > Cc: Manivannan Sadhasivam <mani@kernel.org>
+> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > ---
+> >  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 41 +++++++++++--------
+> >  1 file changed, 25 insertions(+), 16 deletions(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Do=
+cumentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > index 07024ee45951..7217d8a64d14 100644
+> > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+> > @@ -45,6 +45,22 @@ patternProperties:
+> >          enum:
+> >            - 512
+> > =20
+> > +      qcom,boot-partitions:
+> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
+> > +        items:
+> > +          items:
+> > +            - description: offset
+> > +            - description: size
+> > +        description:
+> > +          Boot partition use a different layout where the 4 bytes of s=
+pare
+> > +          data are not protected by ECC. Use this to declare these spe=
+cial
+> > +          partitions by defining first the offset and then the size.
+> > +
+> > +          It's in the form of <offset1 size1 offset2 size2 offset3 ...>
+> > +          and should be declared in ascending order.
+> > +
+> > +          Refer to the ipq8064 example on how to use this special bind=
+ing.
+> > +
+> >  allOf:
+> >    - $ref: "nand-controller.yaml#" =20
+>=20
+> Also based on some old tree.
 
->  The SRAM DT binding says:
->
-> "
-> label:
-> description:
->         The name for the reserved partition, if omitted, the label is tak=
-en
->         from the node name excluding the unit address.
-> "
->
-> Not sure whether breakage was on purpose, otherwise doc needs to be
-> updated or there should be explicit check for the duplicated node names.
->
-> Secondly, AFAICS, the dev_name(sram->dev) is the name of the parent SRAM
-> device and not of the children sub-nodes, hence it's now always the same
-> dev_name(sram->dev) for all sub-nodes.
+I do have=20
 
-Sounds like I should go back to the original approach in patch v1:
-https://lore.kernel.org/linux-devicetree/20230417-ux500-sram-v1-2-5924988bb=
-835@linaro.org/
+1f79a611e74c ("dt-bindings: mtd: Drop unneeded quotes")
 
-and also augment the DTS binding text to say it uses the full node name
-including the address.
+in my log, so I don't understand the quotes. When I re-generate the
+patches, they no longer appear. I must have done something silly at
+some point without noticing. My apologies. I'll "try" again.
 
-Does that look OK to you, or will this regress your system as well?
+> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>=20
+> Best regards,
+> Krzysztof
+>=20
 
-Yours,
-Linus Walleij
+
+Thanks,
+Miqu=C3=A8l
