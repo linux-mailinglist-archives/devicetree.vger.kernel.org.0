@@ -2,139 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46112734BFD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 08:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A342734C00
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 08:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229628AbjFSG7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 02:59:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52628 "EHLO
+        id S229892AbjFSG7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 02:59:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229513AbjFSG66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 02:58:58 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E564199
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 23:58:57 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5195c85fbb2so3967673a12.2
-        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 23:58:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687157935; x=1689749935;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4G6hf18TKdmfNtJ8UCEo6JcM7dVVDUhqliUhTUBuICc=;
-        b=NWnPdS7D1gDt3/LuJFeLM1TendCaMiVqQJD+F4P1R56EoN7m1O5j/1TOTzV4tW5QnM
-         z3qSJa66nU6AVAXlSKmyMw7NsegMUwKGXm8x+Z7H7uR5VQUe1RKiqUi/3YDf+ipvqVWJ
-         hfMZnmJd+vci2rzqV5EBfQaAiBXcZjLfnXZc9zlHgInF+kOyELYsxw8dYpWfkQ1taYhE
-         3MqxdfI1BC2AQ5/9xkXVCHr/7zXKiCA1ZPyerIm0vjCqUMKFyA3lc82/CBp5mhvAUe9s
-         iKqPqUVZoTtA0nVNpbq/PpBEESHcAtBD3A+maZyrJ1LCYAoDzhcCKF7kY5L9z9XaFWGL
-         jKjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687157936; x=1689749936;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4G6hf18TKdmfNtJ8UCEo6JcM7dVVDUhqliUhTUBuICc=;
-        b=bYJuG9Mlk8gl/tI/fduKic5KMzKuTIFT7FZeQ4ZqqwzT1syEekcEMXtPVc2hAxZpTu
-         NGdfi8EPw+D7ypLhWiUWajm5WJXeQDwLq2OLhTjCOeHaNNj0sBTUDlteGynCHuB88MPj
-         nAFxzeteX2sLqv8L03TEWwQ/icCcL/jbhe6+JkJRiwxXnawncXV3/Jqb1S0Sg6yzj+le
-         hSxKg4veixiS1EMA+0wvInHC+i3rpT6gyPdfx5RfUMhHGvVnKrQ0DsrK7pWdz17I7pOB
-         oZGC1da8Lg5iDGjQXNgw24Ky1pBnXOW1z4SUlbG48cyC/cMNctIhC3CVnqvHvCZrDcPA
-         Er2A==
-X-Gm-Message-State: AC+VfDwWDsxfN+V0KVAjOYKH+WV++rGQt7mFgksvQuyvEkwKtu94IKET
-        LavBSSM55zlTZvh7QyWa5VFbpA==
-X-Google-Smtp-Source: ACHHUZ7dJrESQHn9geXJxEPrr2M7TIYqbkSdh/fM8A4bQoGoLVTjbKoOXm0qEqvY2My4FfHw1MZbAQ==
-X-Received: by 2002:a50:ef12:0:b0:51a:f6de:bb81 with SMTP id m18-20020a50ef12000000b0051af6debb81mr150817eds.28.1687157935727;
-        Sun, 18 Jun 2023 23:58:55 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id ca15-20020aa7cd6f000000b00514a5f7a145sm12562486edb.37.2023.06.18.23.58.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 18 Jun 2023 23:58:55 -0700 (PDT)
-Message-ID: <f5e6a29f-6df7-b56c-c7b2-9914008eaa33@linaro.org>
-Date:   Mon, 19 Jun 2023 08:58:53 +0200
+        with ESMTP id S229647AbjFSG7P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 02:59:15 -0400
+Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE561AC
+        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 23:59:12 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1687157950;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Y1KdaauZRk96Ps44rUmpp7eWpG6S5yUxJCxmfYf6qgM=;
+        b=ZzcjdfySthabM0zwwHRt1qjl5uHoBJyBFM3a9KGwn4wmcEgpXqz7RoiRfUc3aaoWzPKPLM
+        kYCaHQXaMTFzt+56IoAZJ2CIwyeQ8NnBwsm5nt3fxqMlnfJooKNiSkxa9DF2YQIwizBIkp
+        ElV4CwsedGEeLQtYM4DK22tQ/JeF8g8agIlgjxqIpaEHJ385URefEz09+mk+5sCg5/tiyG
+        KffZMbLAmIy1jrPns2MU3S4Fo61BHOcYDw4lIbRrVlvFnHZF91leRj5UzAAqrS+nK2QIhb
+        479hBJsQcBD3cpiGAf7ADVY8WyEEzcDO/dphmff7/pRV6rYIXyPgjerlDkwJbw==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B0FA5E000D;
+        Mon, 19 Jun 2023 06:59:08 +0000 (UTC)
+Date:   Mon, 19 Jun 2023 08:59:07 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>,
+        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: Re: [PATCH v2 02/17] dt-bindings: mtd: Create a file for raw NAND
+ chip properties
+Message-ID: <20230619085907.70218553@xps-13>
+In-Reply-To: <f7218445-77e7-7429-5d81-ee7380a3e045@kernel.org>
+References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
+        <20230606175246.190465-3-miquel.raynal@bootlin.com>
+        <f7218445-77e7-7429-5d81-ee7380a3e045@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5 2/2] ARM: dts: aspeed: Adding Inventec Starscream BMC
-Content-Language: en-US
-To:     PJ Chen <chen.pj@inventec.com>, Arnd Bergmann <arnd@arndb.de>,
-        Olof Johansson <olof@lixom.net>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Cc:     ye.vic@inventec.com, Huang.Alang@inventec.com
-References: <20230619064249.3623-1-chen.pj@inventec.com>
- <20230619064249.3623-2-chen.pj@inventec.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230619064249.3623-2-chen.pj@inventec.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 08:42, PJ Chen wrote:
-> From: Chen PJ <Chen.pj@inventec.com>
-> 
-> Initial introduction of Inventec Starscream x86 family
-> equipped with AST2600 BMC SoC.
-> 
-> Signed-off-by: Chen PJ <Chen.pj@inventec.com>
-> 
+Hi Krzysztof,
 
-...
+krzk@kernel.org wrote on Mon, 19 Jun 2023 08:28:28 +0200:
 
-> +	reserved-memory {
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges;
-> +
-> +		video_engine_memory: video {
-> +			size = <0x04000000>;
-> +			alignment = <0x01000000>;
-> +			compatible = "shared-dma-pool";
-> +			reusable;
-> +		};
-> +	};
-> +
-> +
+> On 06/06/2023 19:52, Miquel Raynal wrote:
+> > In an effort to constrain as much as we can the existing binding, we
+> > want to add "unevaluatedProperties: false" in all the NAND chip
+> > descriptions part of NAND controller bindings. But in order to do that
+> > properly, we also need to reference a file which contains all the
+> > "allowed" properties. Right now this file is nand-chip.yaml but in
+> > practice raw NAND controllers may use additional properties in their
+> > NAND chip children node. These properties are listed under
+> > nand-controller.yaml, which makes the "unevaluatedProperties" checks
+> > fail while the description are valid. We need to move these NAND chip
+> > related properties into another file, because we do not want to pollute
+> > nand-chip.yaml which is also referenced by eg. SPI-NAND devices.
+> >=20
+> > Let's create a raw-nand-chip.yaml file to reference all the properties a
+> > raw NAND chip description can contain. The chain of inheritance becomes:
+> >   nand-controller.yaml <- raw-nand-chip.yaml
+> >   raw-nand-chip.yaml   <- nand-chip.yaml
+> >   spi-nand.yaml        <- nand-chip.yaml =20
+>=20
+> ...
+>=20
+> > -  The interpretation of these parameters is implementation-defined, so
+> > -  not all implementations must support all possible
+> > -  combinations. However, implementations are encouraged to further
+> > -  specify the value(s) they support.
+> > -
+> >  properties:
+> >    $nodename:
+> >      pattern: "^nand-controller(@.*)?"
+> > @@ -51,79 +41,8 @@ properties:
+> > =20
+> >  patternProperties:
+> >    "^nand@[a-f0-9]$":
+> > -    $ref: "nand-chip.yaml#" =20
+>=20
+> You work on some old tree, judging by email addresses you CC and by
+> this. I would expect here current next, but this is even pre v6.4-rc1!
+> Working on something older than current master branch doss not make any
+> sense.
 
-Drop stray blank lines. Only one blank line, not two. Comment applies to
-multiple places.
+This is really based on v6.4-rc1, I think Rob's tooling is applying the
+patches against -rc1 so I try to keep the robots happy by picking that
+tag as base. I know you are removing the quotes so I went through my
+series and dropped them from all the files which now reference
+raw-nand-chip.yaml, but of course I missed that one, I am sorry, I will
+drop the quotes here as well.
 
-> +	iio-hwmon {
-> +		compatible = "iio-hwmon";
-> +		io-channels =
-> +		<&adc_u74 0>, // P0_VDD11
-> +		<&adc_u74 1>, // P1_VDD11
-> +		<&adc_u74 2>, // P0_3V3_S5
-> +		<&adc_u74 3>, // P1_3V3_S5
-> +		<&adc_u74 4>, // P3V3
-> +		<&adc_u74 5>, // VBAT
-> +		<&adc_u74 6>, // P3V3_STBY
-> +		<&adc_u74 7>, // P5V_STBY
-> +		<&adc_u74 8>, // P5V
-> +		<&adc_u74 9>, // P12V
-> +		<&adc_u74 10>, // P1_VDD18_S5
-> +		<&adc_u74 11> // P0_VDD18_S5
-> +		;
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		uid {
-
-No improvements. Still not fixed and not tested.
-
-Best regards,
-Krzysztof
-
+Thanks,
+Miqu=C3=A8l
