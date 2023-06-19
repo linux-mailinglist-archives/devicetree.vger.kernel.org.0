@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B0B3735035
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:30:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D18D673503C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:31:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229558AbjFSJan (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 05:30:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55388 "EHLO
+        id S231470AbjFSJa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231764AbjFSJaD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:30:03 -0400
+        with ESMTP id S231785AbjFSJaI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:30:08 -0400
 Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [217.70.183.201])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 381ABD3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:29:28 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA928B0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:29:30 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687166967;
+        t=1687166969;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=yN5s37mcAvDysIIW+UFRybg3HA/s8awhFr1IrZ93t8Y=;
-        b=KGfLYX6xOzTXPteqN0j+uifhAsUXoYaxVVkJ3EYydI72A9Fvwrpm64fMEKaV6EypgC6+4V
-        fJcZ+DaS18iEl9xPY9WXQXv4xzJ4cnRRo4kW9PWVM86ZCP51eYvO7WuIhH1IRVMUFxQvfB
-        ql0MHrxSVh7N03WCvmGyVz+MWMmmv8JEiEKugpb0SRu97v/0y5rwxxZGGQIfSGpMIluPpH
-        TnvC8E9eONwbwlgpu4BZlRwDTyDN1VtKd2MJ3LBfWWLen/E5ApbBLukIAdZ94Se4Er7OwO
-        j/4O2CFZE+LOH5AAiSFCNQkg05w/G4PvNPUoGxKabny9z7sgrduLrIxPiUCKVA==
+        bh=QFNn7R3CCLELog5sCLD8kgMqopmVWyHvy7AjleYx/tM=;
+        b=QpznXL/FJ88qPbjryvLymATBxEG0I4hZwAPb5p7zFyvJ0BpnLKcX+NUA9h5ucAqaz1Mxui
+        8sgRATFZ7t8krSU/ZLzuo9tTT9BUQOX2PxMtcRDJlzWloLwygxFoULtC8eZbVk+oSCr5QU
+        Xv2kPbjnsk4NTW6B/AqO03cSeXMncQuxd2LRz7sqGbZA4FW6hGKEYcx1DPCCTUFnDjkyAV
+        csFN/kINKf41uicg1bkr7vGAM+l9q9k8Oq+JYXjSox0l7CiqVZ5NoCDzJ17l9UNcJSbw4I
+        aGHjh8ug4IYhAmah9qsBSbnHjs2EmLRuLmW/TZ4RjyUk97yDEFR0rg8nbst9LQ==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -40,8 +40,9 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 9BAC11BF208;
-        Mon, 19 Jun 2023 09:29:26 +0000 (UTC)
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 092A31BF213;
+        Mon, 19 Jun 2023 09:29:27 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -55,11 +56,12 @@ Cc:     Richard Weinberger <richard@nod.at>,
         Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
         Rob Herring <robh@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v3 04/17] dt-bindings: mtd: Describe nand-ecc-mode
-Date:   Mon, 19 Jun 2023 11:29:03 +0200
-Message-Id: <20230619092916.3028470-5-miquel.raynal@bootlin.com>
+Subject: [PATCH v3 05/17] dt-bindings: mtd: qcom: Fix a property position
+Date:   Mon, 19 Jun 2023 11:29:04 +0200
+Message-Id: <20230619092916.3028470-6-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230619092916.3028470-1-miquel.raynal@bootlin.com>
 References: <20230619092916.3028470-1-miquel.raynal@bootlin.com>
@@ -75,38 +77,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This property has been extensively used for almost two decades already,
-a lot of device trees use it, this is not the preferred way to configure
-the ECC engines but we cannot just ignore it. Describe the property,
-list the exact strings which have once been supported and mark it
-deprecated.
+qcom,boot-partitions is a NAND chip property, not a NAND controller
+property. Move the description of the property into the NAND chip
+section and just enable the property in the if/else block.
 
+Fixes: 5278cc93a97f ("dt-bindings: mtd: qcom_nandc: document qcom,boot-partitions binding")
+Cc: Manivannan Sadhasivam <mani@kernel.org>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 Reviewed-by: Rob Herring <robh@kernel.org>
 Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ .../devicetree/bindings/mtd/qcom,nandc.yaml   | 41 +++++++++++--------
+ 1 file changed, 25 insertions(+), 16 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml b/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
-index a0488bf60971..cd9ac60b048b 100644
---- a/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
-+++ b/Documentation/devicetree/bindings/mtd/raw-nand-chip.yaml
-@@ -41,6 +41,14 @@ properties:
-     enum: [ oob, interleaved ]
-     deprecated: true
+diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+index 00c991ffa6c4..3d77922dfaef 100644
+--- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
++++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
+@@ -45,6 +45,22 @@ patternProperties:
+         enum:
+           - 512
  
-+  nand-ecc-mode:
-+    description:
-+      Legacy ECC configuration mixing the ECC engine choice and
-+      configuration.
-+    $ref: /schemas/types.yaml#/definitions/string
-+    enum: [none, soft, soft_bch, hw, hw_syndrome, on-die]
-+    deprecated: true
++      qcom,boot-partitions:
++        $ref: /schemas/types.yaml#/definitions/uint32-matrix
++        items:
++          items:
++            - description: offset
++            - description: size
++        description:
++          Boot partition use a different layout where the 4 bytes of spare
++          data are not protected by ECC. Use this to declare these special
++          partitions by defining first the offset and then the size.
 +
-   nand-bus-width:
-     description:
-       Bus width to the NAND chip
++          It's in the form of <offset1 size1 offset2 size2 offset3 ...>
++          and should be declared in ascending order.
++
++          Refer to the ipq8064 example on how to use this special binding.
++
+ allOf:
+   - $ref: nand-controller.yaml#
+ 
+@@ -107,22 +123,15 @@ allOf:
+               - qcom,ipq806x-nand
+ 
+     then:
+-      properties:
+-        qcom,boot-partitions:
+-          $ref: /schemas/types.yaml#/definitions/uint32-matrix
+-          items:
+-            items:
+-              - description: offset
+-              - description: size
+-          description:
+-            Boot partition use a different layout where the 4 bytes of spare
+-            data are not protected by ECC. Use this to declare these special
+-            partitions by defining first the offset and then the size.
+-
+-            It's in the form of <offset1 size1 offset2 size2 offset3 ...>
+-            and should be declared in ascending order.
+-
+-            Refer to the ipq8064 example on how to use this special binding.
++      patternProperties:
++        "^nand@[a-f0-9]$":
++          properties:
++            qcom,boot-partitions: true
++    else:
++      patternProperties:
++        "^nand@[a-f0-9]$":
++          properties:
++            qcom,boot-partitions: false
+ 
+ required:
+   - compatible
 -- 
 2.34.1
 
