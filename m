@@ -2,200 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 471C5734DAF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:30:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C962734DBF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:32:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230201AbjFSIaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:30:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
+        id S229513AbjFSIcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 04:32:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36014 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229636AbjFSIaN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:30:13 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675CB100;
-        Mon, 19 Jun 2023 01:30:12 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F3E6D6144D;
-        Mon, 19 Jun 2023 08:30:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C732C433C8;
-        Mon, 19 Jun 2023 08:30:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687163411;
-        bh=eIZI6ptS5tkUzsgX/wDjow3J+YGKEh3sq048gze+kVg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=r/LMg6qFV2+qi6N8vQgKjVUkMoSyhOvEYY6fV7fNsloqn1HTMl7ngQKS7z5TT3cQI
-         GRbeINLl747qcecYs9/eoxQxqj6/cxZYrqoKS6MriKRQi5iyovzgR7ZdJ/obHFjGpT
-         IamdPUFka+FU9DL4oYh1SI7rmBKH8TL53TxFRFeMZMW9LHF4A6AC6fN2S9963DM1/p
-         NfLGwA7Ox8n/9bqC8odPLCnrP/ZVCBF4zxmEIHO1QpMb8miNRaEYSpyUYo3IFww5/K
-         R1LK3+iYZXUagisS2DSFC3Hbp0+jkUvdpYvHz3nx5iFtpHutwNRcRWDHBhSpULII/G
-         dsIym3OTTV1uQ==
-Date:   Mon, 19 Jun 2023 09:30:05 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Charles Keepax <ckeepax@opensource.cirrus.com>
-Cc:     broonie@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linus.walleij@linaro.org, vkoul@kernel.org, robh+dt@kernel.org,
-        conor+dt@kernel.org, lgirdwood@gmail.com,
-        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
-        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 3/6] mfd: cs42l43: Add support for cs42l43 core driver
-Message-ID: <20230619083005.GN3635807@google.com>
-References: <20230605125504.2570158-1-ckeepax@opensource.cirrus.com>
- <20230605125504.2570158-4-ckeepax@opensource.cirrus.com>
- <20230615171124.GL3635807@google.com>
- <20230616083404.GR68926@ediswmail.ad.cirrus.com>
+        with ESMTP id S229921AbjFSIcI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:32:08 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B0697;
+        Mon, 19 Jun 2023 01:32:05 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 37A9A547;
+        Mon, 19 Jun 2023 10:31:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687163490;
+        bh=iTBmgvKkm/RP71iegbPwrVucLcjIHJ7plxMSPCw6Oc0=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=glwrKMUxVkqwUz9nEFWGj2T80a1Nvk35ivf6ESWzFTV80mALHg32mrqOsX0OHUfJI
+         0JzSGTjDS/IfNG9jAtaHje1/xD713o0LNc9w66Bvko18xFBtXqGa4zRuwyU6t4aBAL
+         2pU790FLQgq7aru38ImrjZSG5qod94QbDxZqlLrE=
+Message-ID: <ac326ebe-4d99-e73d-27bf-c21b532f3c4b@ideasonboard.com>
+Date:   Mon, 19 Jun 2023 11:31:59 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230616083404.GR68926@ediswmail.ad.cirrus.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v9 0/2] Add DSS support for AM625 SoC
+To:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel List <linux-kernel@vger.kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rahul T R <r-ravikumar@ti.com>,
+        Devarsh Thakkar <devarsht@ti.com>,
+        Jayesh Choudhary <j-choudhary@ti.com>
+References: <20230616150900.6617-1-a-bhatia1@ti.com>
+Content-Language: en-US
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <20230616150900.6617-1-a-bhatia1@ti.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 16 Jun 2023, Charles Keepax wrote:
-
-> On Thu, Jun 15, 2023 at 06:11:24PM +0100, Lee Jones wrote:
-> > On Mon, 05 Jun 2023, Charles Keepax wrote:
-> > > +// SPDX-License-Identifier: GPL-2.0
-> > > +//
-> > > +// CS42L43 I2C driver
-> > > +//
-> > > +// Copyright (C) 2022-2023 Cirrus Logic, Inc. and
-> > > +//                         Cirrus Logic International Semiconductor Ltd.
-> > > +
-> > 
-> > I realise there is some precedent for this already in MFD.
-> > 
-> > However, I'd rather headers used C style multi-line comments.
-> > 
+On 16/06/2023 18:08, Aradhya Bhatia wrote:
+> This patch series adds a new compatible for the Display SubSystem (DSS)
+> controller on TI's AM625 SoC. It further adds the required support for
+> the same in the tidss driver.
 > 
-> Apologies but just to be super clear you want this to look like:
+> The AM625-DSS is a newer version of the DSS from the AM65X version with
+> the major change being the addition of another OLDI TX. With the help of
+> 2 OLDI TXes, the AM625 DSS can support dual-linked OLDI displays with a
+> resolution of up-to 2K or WUXGA (1920x1200@60fps) at half the OLDI clock
+> frequency or even cloned video outputs on each of the TXes.
 > 
-> // SPDX-License-Identifier: GPL-2.0
-> /*
->  * CS42L43 I2C driver
->  *
->  * Copyright (C) 2022-2023 Cirrus Logic, Inc. and
->  *                         Cirrus Logic International Semiconductor Ltd.
->  */
+> This patch series acts as a continuation of the patches posted in v3[1].
+> The OLDI support patches combined from v5 onwards are now separated
+> again. The OLDI support will be added subsequently with a separte patch
+> series.
 > 
-> Just clarifying since you want to get rid of all the // comments,
-> but the SPDX stuff specifically requires one according to
-> Documentation/process/license-rules.rst.
+> I have tested these patches on AM625 SK-EVM and AM625 based Beagle Play.
+> To test this series on AM625 based platforms, basic display support
+> patches (for driver + devicetree) can be found in the
+> "next_am62-base_support-V2" branch on my github fork[2].
 
-Yes please.
+Looks good to me. I'll pick these up to drm-misc.
 
-> > > +	// I2C is always attached by definition
-> > 
-> > C please.  And everywhere else.
-> > 
+  Tomi
+
 > 
-> Can do.
-
-
-> > > +static struct i2c_device_id cs42l43_i2c_id[] = {
-> > > +	{ "cs42l43", 0 },
-> > > +	{}
-> > > +};
-> > > +MODULE_DEVICE_TABLE(i2c, cs42l43_i2c_id);
-> > 
-> > Is this required anymore?
-> > 
+> [1]: V3: https://patchwork.freedesktop.org/series/105373/
+> [2]: https://github.com/aradhya07/linux-ab/tree/next_am62-base_support-V2
 > 
-> I was not aware of it not being required, I think it will still
-> be used for the purposes of module naming. Perhaps someone more
-> knowledgable than me can comment?
-
-Since this table isn't providing any information which cannot be derived
-from the other (OF, ACPI) tables, the I2C subsystem should be able to
-obtain it from those sources instead.
-
-> > > +#if IS_ENABLED(CONFIG_MFD_CS42L43_I2C)
-> > > +const struct regmap_config cs42l43_i2c_regmap = {
-> > > +	.reg_bits		= 32,
-> > > +	.reg_stride		= 4,
-> > > +	.val_bits		= 32,
-> > > +	.reg_format_endian	= REGMAP_ENDIAN_BIG,
-> > > +	.val_format_endian	= REGMAP_ENDIAN_BIG,
-> > > +
-> > > +	.max_register		= CS42L43_MCU_RAM_MAX,
-> > > +	.readable_reg		= cs42l43_readable_register,
-> > > +	.volatile_reg		= cs42l43_volatile_register,
-> > > +	.precious_reg		= cs42l43_precious_register,
-> > > +
-> > > +	.cache_type		= REGCACHE_RBTREE,
-> > > +	.reg_defaults		= cs42l43_reg_default,
-> > > +	.num_reg_defaults	= ARRAY_SIZE(cs42l43_reg_default),
-> > > +};
-> > > +EXPORT_SYMBOL_NS_GPL(cs42l43_i2c_regmap, MFD_CS42L43);
-> > > +#endif
-> > 
-> > We don't tend to like #ifery in C files.
-> > 
-> > Why is it required?
-> > 
-> > And why not just put them were they're consumed?
+> Previous versions:
+> - V8: https://patchwork.freedesktop.org/series/119088/
+> - V7: https://patchwork.freedesktop.org/series/113328/
+> - V6: https://patchwork.freedesktop.org/series/111106/
+> - V5: https://patchwork.freedesktop.org/series/109194/
 > 
-> The trouble is the cs42l43_reg_default array and the array size.
-> There is no good way to statically initialise those two fields
-> from a single array in both the I2C and SDW modules.
-
-Can you have a little think for another way to solve this please?
-
-> > > +static int cs42l43_soft_reset(struct cs42l43 *cs42l43)
-> > > +{
-> > > +	static const struct reg_sequence reset[] = {
-> > > +		{ CS42L43_SFT_RESET, 0x5A000000 },
-> > > +	};
-> > > +	unsigned long time;
-> > > +
-> > > +	dev_dbg(cs42l43->dev, "Soft resetting\n");
-> > 
-> > How often are you realistically going to enable these?  Can you do
-> > without them and just add some printks when debugging?  Seems a shame to
-> > dirty the code-base with seldom used / questionably helpful LoC.
+> Changelog:
+> V9:
+>    - Edit the commit message for Patch 2/2.
+>    - Add Krzysztof Kozlowski's and Tomi Valkeinen's tags.
 > 
-> I mean I use them all the time they are very helpful. But yeah I
-> can just add them each time I need them its just a pain, but I
-
-Sure, during development.  Now the driver is authored however, how often
-are you likely to turn it back on.  Besides, this isn't real debug
-information with dynamically obtained values and useful information,
-it's a function call trace which can be obtained from other sources,
-such as ftrace and the like.
-
-[...]
-
-> > > +	if (ret) {
-> > > +		dev_err(cs42l43->dev, "Failed to move to stage 3: %d, 0x%x\n", ret, val);
-> > 
-> > Stage 3 what?
-> > 
+> V8:
+>    - Rebase for current merge window.
+>    - Drop all the OLDI support patches.
+>    - Update the binding to remove the 2nd OLDI port instances.
+>    - Drop the Reviewed-by tags of Krzysztof Kozlowski and Rahul T R
+>      because of the changes.
 > 
-> Of the MCU boot.
-
-Please make that clear.  I don't see any documentation or pointers here.
-
-> > Perhaps some simple function headers would help?
-> > 
+> V7:
+>    - Rebase to current linux-next.
+>    - Address Tomi Valkeinen's comments.
+>      1. Separate the DSS VP and output port coupling.
+>         v6 introduced 'output_port_bus_type' in addition to 'vp_bus_type'
+>         but having both of the variables was redundant. Hence, in v7
+>         the 'output_port_bus_type' essentially replaces 'vp_bus_type'.
+>      2. Break Patch v6 2/5 into 2 separate patches (v7 1/6 and v7 3/6).
+>      3. Change in name and addition of OLDI mode macros.
+>      4. Other minor changes.
 > 
-> You mean add some kernel doc for these functions, right? Assuming
-> that is what you mean, will do.
+> V6:
+>    - Rebase for current merge window.
+>    - Add 'allOf:' condition in the DT binding.
+>    - Address Tomi Valkeinen's comments.
+>      1. Combine DT binding patches for new compatible and 3rd DSS port.
+>      2. Further separate DSS VPs and output ports.
+>      3. Separate OLDI mode discovery logic from the panel/bridge
+>         discovery (which allowed support for OLDI bridges as well.)
+>      4. Organize OLDI IO control register macros platform wise.
+> 
+> V5:
+>    - Rebase for current merge window.
+>    - Add max DT ports in DSS features.
+>    - Combine the OLDI support series.
+> 
+> (Changes from OLDI support series v1)
+>    - Address Tomi Valkeinen's comments.
+>      1. Update the OLDI link detection approach.
+>      2. Add port #3 for 2nd OLDI TX.
+>      3. Configure 2 panel-bridges for cloned panels.
+>      4. Drop the OLDI clock set patch.
+>      5. Drop rgb565-to-888 patch.
+> 
+> V3:
+>    - Change yaml enum in alphabetical order.
+>    - Correct a typo.
+> 
+> V2:
+>    - Remove redundant register array.
+> 
+> Aradhya Bhatia (2):
+>    dt-bindings: display: ti,am65x-dss: Add am625 dss compatible
+>    drm/tidss: Add support for AM625 DSS
+> 
+>   .../bindings/display/ti/ti,am65x-dss.yaml     | 18 ++++--
+>   drivers/gpu/drm/tidss/tidss_dispc.c           | 57 ++++++++++++++++++-
+>   drivers/gpu/drm/tidss/tidss_dispc.h           |  2 +
+>   drivers/gpu/drm/tidss/tidss_drv.c             |  1 +
+>   4 files changed, 71 insertions(+), 7 deletions(-)
+> 
 
-I'd suggest not using kernel-doc formatting, but that type of thing,
-yes.
-
--- 
-Lee Jones [李琼斯]
