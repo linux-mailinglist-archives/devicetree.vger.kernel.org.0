@@ -2,81 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76763735BF2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 18:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19990735C0A
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 18:18:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231846AbjFSQMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 12:12:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60908 "EHLO
+        id S231743AbjFSQSM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 12:18:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231513AbjFSQMe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 12:12:34 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB315C1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 09:12:31 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f90b51ab39so21455935e9.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 09:12:31 -0700 (PDT)
+        with ESMTP id S229513AbjFSQSL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 12:18:11 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAE601AC
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 09:18:10 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f9b4bf99c2so3999385e9.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 09:18:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687191150; x=1689783150;
+        d=linaro.org; s=google; t=1687191489; x=1689783489;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=v0/b2EjSkCTg8kSWGnyoY5ofxy0GORXIjVW1oN5fAkI=;
-        b=hOrLIhP3eghCi8ZLw5KuAl3EYvGzAwacdIJP8r3PCS8+eO157uGjvOl0mswuigm8i+
-         3rWQ4iVLhlnpxk/Ho7ovyZ0ewMaczC27GDpfXoxwkYXAyOj4Rf1tmm6j6zlj33kHuLp/
-         nv3BINASFrSa3aEx+PqEDPICI/DnOxY4fFU0PvIR2C5ahPBW5Nr/FVI9rB7k3BCnBB7j
-         1EJ9DApUIWAGUguoZ7duFObmn8SNd2WtWGh75XKdVkAXx3x/m4JeApU1bmw4WzQGQTa1
-         7snk4W16BWgZgdu8zEnssNTquwTxDF+jkqX9Xb7dtipmQwNeGOzHp3La4kv+BuwkrWgC
-         FkAw==
+        bh=Yo3DBVJVu3xDPlokmKpCsLRzFG8I713/g/AkrSk7nUg=;
+        b=zYo+L9wNLsuwA/BAg7csYNRcj5gp4CC6wrmqrzbKR1+BFFq1NO0Be8itgaQu02/LRT
+         gRWpqMPt8+jy2XjhKU+XtULeG+bgusWf7K2mx7KpGSJC3rjZlEeG7f+vnrNoUWXpSAbY
+         XEsVavf0WN+MjChS/wNi8x3nv664BKs34Yc0YaAGYSq+hsiSzEgfFuLaKXuODKpZEebn
+         YJi3CAcDWdL7Yd7DrrYVgChSAQ0hq5TLKbwsV/Hc35GjeEcM65hpBeIlBv+KpJD6frC6
+         9I4EAtcDu5p/yRPMEbhf6hQ+y5JSvG5gUobfDQLeXzUrhSBXMe4YPnz/KttRU6TtjEgg
+         L+7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687191150; x=1689783150;
+        d=1e100.net; s=20221208; t=1687191489; x=1689783489;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=v0/b2EjSkCTg8kSWGnyoY5ofxy0GORXIjVW1oN5fAkI=;
-        b=iqEW3MQfwTmlY9kzEHD7x+VG2WTXByuBreUBlmADbnAl2LaNMUYHpk4i4slAk6L97S
-         KDy/btJN1uI5g8R/qaBrJeN/3MlmNEHhqrzLwvea0k5AAIrui14RNYgOT2twEYbJ4z/L
-         jGxgs2fzl7+QmrAYbKmadg1tCU6+/rt0IR2atmUU0EBcdHB6s05kZU++FV35vEJaJUdz
-         YiWBJNJ5Mck5nDmi6DYCl6uI4s3dRuh0eekWmqDsHqUd1VbevMDhSKPZLdJIaeVVH+gZ
-         ertBJXhRE2JfU/Rhqqz9YBE8CNEmuA7Qbv5hC4gy8hVDGDncs+OzAklHts/6RnJDB3AL
-         qhJw==
-X-Gm-Message-State: AC+VfDyi78whvl5howmD1kCgWROW15QJUfUE/Dt4/TUuWTlCaDmOLxoj
-        dr0Qlz6oSA6WUKsPMuSea7QJbQ==
-X-Google-Smtp-Source: ACHHUZ7Jius8lE7B9o8DmcK3xv1xBW2j/h8yXk8k2d4mvYFLUUvsMtvnPOG+51chV5CbC9Tj5mrOeA==
-X-Received: by 2002:a1c:ed08:0:b0:3f7:f584:5796 with SMTP id l8-20020a1ced08000000b003f7f5845796mr10625015wmh.2.1687191150340;
-        Mon, 19 Jun 2023 09:12:30 -0700 (PDT)
+        bh=Yo3DBVJVu3xDPlokmKpCsLRzFG8I713/g/AkrSk7nUg=;
+        b=hEPMyUASrzvKaXtg/jNdF7nRLdW076Ox/fq4EduzufD7EW4ktSWJGNk4PTaOtKaHH2
+         5+gZGeBsebEvyKOv1WN5rJiXinH4TxY2ZBfnUJHO2QeHMhTJT8nY7G/ffkoj8g5r7A2h
+         8BEMGaOjF3KfQO9he7DIXeovHEGWdixp8y8SnH+0/hE5O8LmqItjLPHb+9u2ReqSpf3F
+         E4QPCc+wd0sQOungf0AFao6lxLMA9hjpcra56lSg4x6v709qQa+QZw4pJW/Msue1B/EJ
+         XmvVqd+Bd8Ao5iztGHGhGJ4AKXg8qkWyoaYuoiS9UZiL3A2tG6lN+k5Sbrt3l3aS7Q1h
+         b2yA==
+X-Gm-Message-State: AC+VfDzt2+2l6pQgJvBDEXflmc9JJYMbZKNfbzhJSfbohgQGoP8vz2u1
+        Kck2vPmooo0hNhreEreIgzEAOw==
+X-Google-Smtp-Source: ACHHUZ5+rTZ8Ox45IYYvKqJuPg1frA16DyTE1URxEftheyE0BZuDtXfgk9LggkHajUG88pYEMKS3cQ==
+X-Received: by 2002:a05:600c:2190:b0:3f9:be1:507d with SMTP id e16-20020a05600c219000b003f90be1507dmr3357674wme.20.1687191489231;
+        Mon, 19 Jun 2023 09:18:09 -0700 (PDT)
 Received: from ?IPV6:2a05:6e02:1041:c10:13d0:1b6c:ce40:5429? ([2a05:6e02:1041:c10:13d0:1b6c:ce40:5429])
-        by smtp.googlemail.com with ESMTPSA id u23-20020a05600c00d700b003f78fd2cf5esm78197wmm.40.2023.06.19.09.12.29
+        by smtp.googlemail.com with ESMTPSA id 24-20020a05600c22d800b003f8c5ceeb77sm126220wmg.21.2023.06.19.09.18.08
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 09:12:29 -0700 (PDT)
-Message-ID: <a98f4b5b-5656-a960-61d1-a258a1681784@linaro.org>
-Date:   Mon, 19 Jun 2023 18:12:29 +0200
+        Mon, 19 Jun 2023 09:18:08 -0700 (PDT)
+Message-ID: <6282082a-1e03-0cf2-2f00-31445b9522c8@linaro.org>
+Date:   Mon, 19 Jun 2023 18:18:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH v2 2/3] clocksource: Add StarFive timer driver
+Subject: Re: [PATCH v2] dt-bindings: timer: brcm,kona-timer: convert to YAML
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Stanislav Jakubek <stano.jakubek@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Samin Guo <samin.guo@starfivetech.com>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor@kernel.org>
-References: <20230320135433.144832-1-xingyu.wu@starfivetech.com>
- <20230320135433.144832-3-xingyu.wu@starfivetech.com>
- <506c0a1e-a839-c9b7-1b04-7fb3af535fe0@starfivetech.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <florian.fainelli@broadcom.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Cc:     bcm-kernel-feedback-list@broadcom.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230618144635.GA22166@standask-GA-A55M-S2HP>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <506c0a1e-a839-c9b7-1b04-7fb3af535fe0@starfivetech.com>
+In-Reply-To: <20230618144635.GA22166@standask-GA-A55M-S2HP>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,21 +81,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/06/2023 11:45, Xingyu Wu wrote:
-> On 2023/3/20 21:54, Xingyu Wu wrote:
->> Add timer driver for the StarFive JH7110 SoC.
->>
->> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->> ---
-
-[ ... ]
-
-> Hi Daniel and Thomas,
+On 18/06/2023 16:46, Stanislav Jakubek wrote:
+> Convert Broadcom Kona family timer bindings to DT schema.
 > 
-> I have submitted patches for Timer driver. Could you please help to review and give your comments?
+> Changes during conversion:
+>    - drop deprecated compatible (it's been deprecated for ~10 years)
+> 
+> Signed-off-by: Stanislav Jakubek <stano.jakubek@gmail.com>
+> ---
 
-You told in the series you will send a new version
-
+Applied, thanks
 
 -- 
 <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
