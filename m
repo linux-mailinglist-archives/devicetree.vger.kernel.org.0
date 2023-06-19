@@ -2,88 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 595D2735EDB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 23:16:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFEC735F50
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 23:42:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229570AbjFSVQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 17:16:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47076 "EHLO
+        id S229632AbjFSVmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 17:42:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjFSVQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 17:16:42 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A8A4DC;
-        Mon, 19 Jun 2023 14:16:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C06E560EAE;
-        Mon, 19 Jun 2023 21:16:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91A1DC433C0;
-        Mon, 19 Jun 2023 21:16:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687209401;
-        bh=JBTWR99Q1eDNuEVibhcmNlst4vu0Z56hRZJoZoOhNwg=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ntsWACbUMlnuW5BSnHsZG2TTKeBnqu9hsRTu2DIbaC85MZo+lGwm6tnlfJ8J+7HM9
-         elm8G1GjrejFg+VwKxcuqiQFN37K7ae5J7lxLKIBz39nVf4tA40IPNiVmFDP2LdOGS
-         J9HwwI7Ci9S3Xp6IJuDchl8Nyj3BhSr3D+O0zRSBAIBUnB5E8uW4ZqzfbGmp6nW5AM
-         2Wr4XOsUqqPhLxfvwTFsrrj098Qspkf3uPElDBmFpjQttojz2GxLSn0LO2897pFljV
-         6tGr0YE4Nu5z+wbRNotqfHjARq6tLaliXmpnC2ONRZ4eHtpFBh3l84C+hEOwW+WqJR
-         Bc8rxLL7U4PJQ==
-Date:   Mon, 19 Jun 2023 22:16:37 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: samsung,s5m8767: Simplify excluding
- properties
-Message-ID: <20230619-rejoin-brook-f878220ba872@spud>
-References: <20230619101424.25897-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S229489AbjFSVmy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 17:42:54 -0400
+Received: from mail.z3ntu.xyz (mail.z3ntu.xyz [128.199.32.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79DD1A4;
+        Mon, 19 Jun 2023 14:42:52 -0700 (PDT)
+Received: from g550jk.localnet (unknown [62.108.10.64])
+        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 0D633C6A1D;
+        Mon, 19 Jun 2023 21:42:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=z3ntu.xyz; s=z3ntu;
+        t=1687210970; bh=3hu0soY9YtA7km69BMGRI2IE7KVXxSt8iu2LEiYvoTA=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=Gj7U3cG7k9Fcgl3XhebpEAHFAeaw+vYZ66Dee3gcqkpFUXkk/g74PzshA4fdQRSMU
+         Jk1ttgNaUr373W5d97uOZR/xijnmYXFXOFTu/ICjg3D2yKZv16tYsU/abh+cYDZEoD
+         g0dv8uA7CrBf5x/l07LEpyxgEm6mKc446uPHUMMU=
+From:   Luca Weiss <luca@z3ntu.xyz>
+To:     agross@kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, joro@8bytes.org,
+        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        marijn.suijten@somainline.org, kernel@collabora.com,
+        a39.skl@gmail.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Matti =?ISO-8859-1?Q?Lehtim=E4ki?= <matti.lehtimaki@gmail.com>
+Subject: Re: [PATCH v3 0/6] Add support for Qualcomm's legacy IOMMU v2
+Date:   Mon, 19 Jun 2023 23:42:49 +0200
+Message-ID: <2759637.mvXUDI8C0e@z3ntu.xyz>
+In-Reply-To: <254cfbb5-c8b8-0abc-e6bc-5007fe757004@collabora.com>
+References: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
+ <254cfbb5-c8b8-0abc-e6bc-5007fe757004@collabora.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="hmlYTsCCInqqIcWl"
-Content-Disposition: inline
-In-Reply-To: <20230619101424.25897-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mittwoch, 22. Februar 2023 10:57:47 CEST AngeloGioacchino Del Regno wrote:
+> Il 15/11/22 11:11, AngeloGioacchino Del Regno ha scritto:
+> > This series adds support for handling "v2" firmware's IOMMU, found
+> > on at least MSM8956 and MSM8976 (some other SoCs also need the same
+> > but I honestly don't remember which ones precisely).
+> > 
+> > This is strictly required to get functional IOMMUs on these SoCs.
+> > 
+> > I'm sorry for not performing a much needed schema conversion on
+> > qcom,iommu.txt, but I really didn't have time to do that :-(
+> > 
+> > This series was tested on Sony Xperia X and X Compact (MSM8956):
+> > ADSP, LPASS, Venus, MSS, MDP and GPU are happy :-)
+> 
+> Hello,
+> this series is really old and got sent and resent many times.
+> The first time I've sent this one was .. I think in 2019, then, at the
+> end of 2022, I had some time to actually respin it and send another
+> three versions. It's been 3 long years :-)
+> The third version got the last comments addressed.
+> 
+> Since this didn't get any more feedback for 3 months, I'm worried that it
+> will be forgotten again, hence:
+> 
+> Is there any more feedback? Anything else to fix?
+> If not, can this be picked, please?
 
---hmlYTsCCInqqIcWl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Angelo,
 
-On Mon, Jun 19, 2023 at 12:14:24PM +0200, Krzysztof Kozlowski wrote:
-> Mutually exclusive s5m8767,pmic-buck[234]-uses-gpio-dvs properties can
-> be written simpler, with half of the lines of code.
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+there's some open review comments since March now on this series. Since some 
+of these patches are also needed for msm8953 and msm8974 IOMMU it would be 
+nice if you could respin :)
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Regards
+Luca
 
-Cheers,
-Conor.
+> 
+> Thank you.
+> 
+> Best regards,
+> Angelo
+> 
+> > Changes in v3:
+> >   - Removed useless FSRRESTORE reset and definition as pointed
+> >   
+> >     out in Robin Murphy's review
+> >   
+> >   - Fixed qcom,iommu.txt changes: squashed MSM8976 compatible
+> >   
+> >     string addition with msm-iommu-v2 generics addition
+> > 
+> > Changes in v2:
+> >   - Added back Marijn's notes (sorry man!)
+> >   - Added ARM_SMMU_CB_FSRRESTORE definition
+> >   - Changed context bank reset to properly set FSR and FSRRESTORE
+> > 
+> > AngeloGioacchino Del Regno (6):
+> >    dt-bindings: iommu: qcom,iommu: Document qcom,ctx-num property
+> >    iommu/qcom: Use the asid read from device-tree if specified
+> >    iommu/qcom: Properly reset the IOMMU context
+> >    iommu/qcom: Index contexts by asid number to allow asid 0
+> >    dt-bindings: iommu: qcom,iommu: Document QSMMUv2 and MSM8976
+> >    
+> >      compatibles
+> >    
+> >    iommu/qcom: Add support for QSMMUv2 and QSMMU-500 secured contexts
+> >   
+> >   .../devicetree/bindings/iommu/qcom,iommu.txt  |  9 +++
+> >   drivers/iommu/arm/arm-smmu/qcom_iommu.c       | 78 +++++++++++++++----
+> >   2 files changed, 70 insertions(+), 17 deletions(-)
 
---hmlYTsCCInqqIcWl
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJDFtQAKCRB4tDGHoIJi
-0iUCAP4i1Kjk0wc2dj0ZaaIq8QmB9iocPvRDHthhZumZnr0ePgD9Hqb8IWG9I42G
-VOFA7KootLNN1/cXoX+wPZIFqtB0bwE=
-=o6Lb
------END PGP SIGNATURE-----
 
---hmlYTsCCInqqIcWl--
