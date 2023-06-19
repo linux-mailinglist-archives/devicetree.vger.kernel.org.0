@@ -2,62 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B758734E28
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:42:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1E4E734E2E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:43:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbjFSIm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:42:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43236 "EHLO
+        id S229896AbjFSInP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 04:43:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230491AbjFSImh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:42:37 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C56111728;
-        Mon, 19 Jun 2023 01:40:28 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687163979;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=mTDF7gvwxzrCzya064NH4YZSB1as4XuurS6P4ipH9yk=;
-        b=kFXvEoeBsQxnLN2kUOJxFt7hMwL3sp9f/6mNbh+5nLHjZTLg3H3KAO4gK8CUkdLBUzaN/u
-        Yb56JCqOVBQV4jbz4iWn2y+yP98dHctXnk2r2vSs9dI5Om3eOwpVy7ArTq1Ob37jpzJLSJ
-        eNbAZF7wtyfb8751PRZCWIdPJcpe+MgfocuN5mNOGb4leU7TdPVfF7PsLoDB+urBPZc1kV
-        odADCq4Yrk2y0zsKRpT4/UA0LmRryMAJZyg9GmnuXvd8hxvKq38VejOHl8JlcwXu+DssaN
-        8Kj8xRZjwfhSL9+4X80RaYcE2wG99ZTH5pvx/1/tCkxhzQiN88KBQDKdN7wQ0w==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 438D2FF80C;
-        Mon, 19 Jun 2023 08:39:38 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mtd: partition: Add missing type for "linux,rootfs"
-Date:   Mon, 19 Jun 2023 10:39:37 +0200
-Message-Id: <20230619083937.2940420-1-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230613201014.2823185-1-robh@kernel.org>
-References: 
+        with ESMTP id S229674AbjFSImz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:42:55 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265D03A92;
+        Mon, 19 Jun 2023 01:40:48 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 18098547;
+        Mon, 19 Jun 2023 10:39:56 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687163998;
+        bh=6NJRwC5Dr2vzbjlVl+AeJg6cppAZ6p7cGxmaf/F5s+A=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=PaMdwDVelUCr2Bpl2OTfDXcqBa72Fpqc3Hu/XO7d+sfRqTSba/rZCj1lwsB+RT3uR
+         gIs59uF6Vc5B3SJS4habkckkrntXpSc/YOZGagGbM0stbTIGIvGlg/AkMT1KEKFO5J
+         +4E8WyJYBT0wdbv/Q2lI9F6NGyDLy4rYgedF8/Wg=
+Message-ID: <fa3f72a1-8f69-e3f1-96c3-5e53c612afe7@ideasonboard.com>
+Date:   Mon, 19 Jun 2023 11:40:28 +0300
 MIME-Version: 1.0
-X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'a5e393c1e8760cd66b3f3860a8aede185733cd6d'
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v14 11/18] media: i2c: ds90ub9xx: Select GPIOLIB rather
+ than OF_GPIO
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>
+References: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
+ <20230616135922.442979-12-tomi.valkeinen@ideasonboard.com>
+ <ZIxu+IvTSaFW3erU@smile.fi.intel.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <ZIxu+IvTSaFW3erU@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,12 +69,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2023-06-13 at 20:10:14 UTC, Rob Herring wrote:
-> "linux,rootfs" is missing a type, add it.
+On 16/06/2023 17:17, Andy Shevchenko wrote:
+> On Fri, Jun 16, 2023 at 04:59:15PM +0300, Tomi Valkeinen wrote:
+>> Select GPIOLIB rather than OF_GPIO, as the drivers use gpiolib
+>> functionality, but no of_gpio (directly).
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> This is useful change, but has to be folded in the original code.
+> We do not want even a trace of newly added OF_GPIO.
 
-Applied to https://git.kernel.org/pub/scm/linux/kernel/git/mtd/linux.git mtd/next, thanks.
+Yes, I think the first three new patches should be squashed:
 
-Miquel
+   media: i2c: ds90ub960: Fix use of UB960_SR_FWD_CTL1
+   media: i2c: ds90ub9xx: Add COMMON_CLK kconfig dependency
+   media: i2c: ds90ub9xx: Select GPIOLIB rather than OF_GPIO
+
+The rest... Thinking about it now, I should have perhaps left them out, 
+as they're not fixing issues, and perhaps they just confuse the merging 
+process.
+
+  Tomi
+
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> 
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+>> ---
+>>   drivers/media/i2c/Kconfig | 6 +++---
+>>   1 file changed, 3 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
+>> index 8a5f09a3de6c..29fc00e30d8b 100644
+>> --- a/drivers/media/i2c/Kconfig
+>> +++ b/drivers/media/i2c/Kconfig
+>> @@ -1622,7 +1622,7 @@ config VIDEO_DS90UB913
+>>   	depends on OF && I2C && VIDEO_DEV && COMMON_CLK
+>>   	select I2C_ATR
+>>   	select MEDIA_CONTROLLER
+>> -	select OF_GPIO
+>> +	select GPIOLIB
+>>   	select REGMAP_I2C
+>>   	select V4L2_FWNODE
+>>   	select VIDEO_V4L2_SUBDEV_API
+>> @@ -1635,7 +1635,7 @@ config VIDEO_DS90UB953
+>>   	depends on OF && I2C && VIDEO_DEV && COMMON_CLK
+>>   	select I2C_ATR
+>>   	select MEDIA_CONTROLLER
+>> -	select OF_GPIO
+>> +	select GPIOLIB
+>>   	select REGMAP_I2C
+>>   	select V4L2_FWNODE
+>>   	select VIDEO_V4L2_SUBDEV_API
+>> @@ -1648,7 +1648,7 @@ config VIDEO_DS90UB960
+>>   	depends on OF && I2C && VIDEO_DEV && COMMON_CLK
+>>   	select I2C_ATR
+>>   	select MEDIA_CONTROLLER
+>> -	select OF_GPIO
+>> +	select GPIOLIB
+>>   	select REGMAP_I2C
+>>   	select V4L2_FWNODE
+>>   	select VIDEO_V4L2_SUBDEV_API
+>> -- 
+>> 2.34.1
+>>
+> 
+
