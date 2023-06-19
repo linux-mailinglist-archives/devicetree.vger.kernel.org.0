@@ -2,129 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C00A37354D2
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 12:59:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4E89735542
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 13:03:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232505AbjFSK7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 06:59:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
+        id S232508AbjFSLDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 07:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34050 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232385AbjFSK64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 06:58:56 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ECCB10F2;
-        Mon, 19 Jun 2023 03:57:35 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 59952DDA;
-        Mon, 19 Jun 2023 12:56:58 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687172219;
-        bh=cD5pqKTY5/ObcvKp271EhUpO47bHD0WwDTzCRMlW9Ng=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=TdV0Ju26ZNebUaHN5/9bM4MNZNuAMA3ToCFYvHf9NrkG65IIPBcgXh9lkLmotE20l
-         wybYH2rdiekkF1OKSbv821V3chou6EkYMRAydKIGa7eGdC6u5xr3IYDDfyJkolJ2/u
-         enRIPVPhukWDi0ZRB+3DkwvJoBFvgN5K6WbpnQFs=
-Message-ID: <3dda6808-cda2-e587-88a7-00621b2cfca3@ideasonboard.com>
-Date:   Mon, 19 Jun 2023 13:57:29 +0300
+        with ESMTP id S232572AbjFSLCn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 07:02:43 -0400
+Received: from mail-yb1-xb36.google.com (mail-yb1-xb36.google.com [IPv6:2607:f8b0:4864:20::b36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB2CF7
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 04:01:45 -0700 (PDT)
+Received: by mail-yb1-xb36.google.com with SMTP id 3f1490d57ef6-bb2ffa1e235so3556725276.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 04:01:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687172504; x=1689764504;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JFefUUpn1s6a7sJJBpPvKuxmZjNogUs0xOa+QZnqFw4=;
+        b=SdRHTtBPelSA/gTKMa772eDiMFG1SNghdBlsxSp2Rs3hhMmvMPa5E9v+esTAq1QdY9
+         K+406rprsK8aqTaDcp4fuD4yp7bRyTcDqvMkluqA25WjKVctNPcDX1Dki7Pxn2HNvoN+
+         eLUXkp/PNCHCRtCB46RVh05uT/QqpmBM9ulnIPwM2kbhjNeZOSubJROQl6QaPGQcLsdh
+         Umo2XYB6sEotu+XeeQR0tOLvaQOPTdGXyLGUFYRm3W/swUNF4R4fuTOH97GOd/snVCfZ
+         kccZU4FM4PRr7biN4qCdp1Fh26xz386blriwRdYO+rOtPaK8vTFudKLF6UTxcqSLR5av
+         GXYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687172504; x=1689764504;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JFefUUpn1s6a7sJJBpPvKuxmZjNogUs0xOa+QZnqFw4=;
+        b=M3TryvKkmejukjRRdYfYMYc/TGToKqAdTuT14Hx+MB0R8lheh71O5fGOgdUZdg42aK
+         LxV70jV/sp28A8RaIS1Jgbg/jlazQKOb33NeNZplnsVyNTsM8mGQXPspAtvk91NnZ8ti
+         AqriacuzsIh+d41IrJJiCKFDvRBR5/rKos2GRD8XgKVAva03FMAbaOVe6CYBEgiBjSVy
+         wA+nYo76AdHkuqWEnLoob6H2FKEsbout9WMPvrjalYLNPjrxa7EZoVBG1SkDyNFwIbnp
+         872sX32L7M94AbkpAKHemlbDXthL9/vy34VrDnGnUxgqLLmcl/Ln+zT0pgEcgRB4lgO5
+         FMRw==
+X-Gm-Message-State: AC+VfDxmQT/04XSHhE5GkcRuMbgi8gZ3OmkfvjgsEluLpiybRKfOp7dN
+        pR1uIIWldb0kpf5bm/8Ghn8pjh4W+6SbFrivRWbH1iAL13VlqXER
+X-Google-Smtp-Source: ACHHUZ6yXD1YVYZsgvEzYDtnMbGbh5qM6C4D1UWyOOsBUjPqOujWNbk15CRXAKCKjGRyVYZdQo7HBjCr2cb2DJnTlZA=
+X-Received: by 2002:a25:d4b:0:b0:bc7:21f:4ef6 with SMTP id 72-20020a250d4b000000b00bc7021f4ef6mr6804080ybn.52.1687172504171;
+ Mon, 19 Jun 2023 04:01:44 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v14 18/18] media: i2c: ds90ub953: Support non-sync mode
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Wolfram Sang <wsa@kernel.org>,
+References: <20230615092001.1213132-1-yann.gautier@foss.st.com>
+ <20230615092001.1213132-2-yann.gautier@foss.st.com> <CAPDyKFqJsqmNzeRg8hj55yUEMSycOWsmKVKsMWk4Qu7Y8_dNzg@mail.gmail.com>
+ <3b6781cb-8f59-e70a-bcf8-9fb48fa47cbf@foss.st.com> <266de9f5-826a-c1bf-be8d-11f5e27c87dc@foss.st.com>
+ <CACRpkdZLtCwPQsPw_Lp3Ppw2ed6gOo+-82_y2WPVJ_oZUHbLoQ@mail.gmail.com> <78f8bd3d-c4a7-7383-441d-69cd8f5c30fb@foss.st.com>
+In-Reply-To: <78f8bd3d-c4a7-7383-441d-69cd8f5c30fb@foss.st.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 19 Jun 2023 13:01:07 +0200
+Message-ID: <CAPDyKFp5NwzyYJrX6zt9Gm0uNDy=YE3wuYR6dwq4mo1EncNwJQ@mail.gmail.com>
+Subject: Re: [PATCH 1/6] dt-bindings: mmc: mmci: Add st,stm32mp25-sdmmc2 compatible
+To:     Yann Gautier <yann.gautier@foss.st.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>
-References: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
- <20230616135922.442979-19-tomi.valkeinen@ideasonboard.com>
- <ZIx17WC7plfDPpmc@smile.fi.intel.com>
- <dc79de4e-4043-5448-db44-ef8f7749a376@ideasonboard.com>
- <ZJAyb9WHjWrdSsBw@smile.fi.intel.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <ZJAyb9WHjWrdSsBw@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Christophe Kerello <christophe.kerello@foss.st.com>,
+        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Yang Yingliang <yangyingliang@huawei.com>,
+        Xiang wangx <wangxiang@cdjrlc.com>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 13:48, Andy Shevchenko wrote:
-> On Mon, Jun 19, 2023 at 12:00:57PM +0300, Tomi Valkeinen wrote:
->> On 16/06/2023 17:47, Andy Shevchenko wrote:
->>> On Fri, Jun 16, 2023 at 04:59:22PM +0300, Tomi Valkeinen wrote:
->>>> Add support for FPD-Link non-sync mode with external clock. The only
->>>> thing that needs to be added is the calculation for the clkout.
-> 
-> ...
-> 
->>>> +	switch (priv->mode) {
->>>> +	case UB953_MODE_SYNC:
->>>> +		if (priv->hw_data->is_ub971)
->>>> +			return priv->plat_data->bc_rate * 160ull;
->>>> +		else
->>>> +			return priv->plat_data->bc_rate / 2 * 160ull;
->>>
->>> Redundant 'else'.
->>
->> True, but I like the symmetry in:
->>
->> if (foo)
->> 	return 123;
->> else
->> 	return 321;
-> 
-> At the same time it will be symmetry with other switch-case(s). That's why the
-> question about fallthrough below.
-> 
->>> Do I understand correctly you don't want to fallthrough because it will give
->>> ±160 in the rate (depending if it's even or odd)?
->>
->> Sorry, can you clarify? Fallthrough to what?
-> 
-> To the below case since '/ 2 * 160 ~= *80'. Why ~ because it might give
-> off-by-one error due to even/odd input.
+On Mon, 19 Jun 2023 at 09:29, Yann Gautier <yann.gautier@foss.st.com> wrote=
+:
+>
+> On 6/15/23 20:51, Linus Walleij wrote:
+> > On Thu, Jun 15, 2023 at 5:19=E2=80=AFPM Yann Gautier <yann.gautier@foss=
+.st.com> wrote:
+> >
+> >>>         - description: Entry for STMicroelectronics variant of PL18x.
+> >>>             This dedicated compatible is used by bootloaders.
+> > (...)
+> >>>         - description: Entry for STMicroelectronics variant of PL18x =
+for
+> >>>             STM32MP25. This dedicated compatible is used by bootloade=
+rs.
+> > (...)
+> >>> Should I remove (or adapt) both descriptions?
+> >>>
+> >>>
+> >>
+> >> At the time the patch was done it was really just used by bootloaders.
+> >> But as it is now used in the driver for delay block, I should remove t=
+he
+> >> second sentence.
+> >
+> > Remove both.
+> >
+> > After "This dedicated compatible is used by bootloaders" there is
+> > an implicit "in the SDK provided by ST Microelectronics", and that
+> > is of no concern for DT bindings, which are (well, in theory) used by
+> > e.g. BSD or other operating systems and who knows what they will
+> > use and not, we don't put Linux specifics in there, neither Boot
+> > loader specifics nor ST SDK specifics.
+> >
+> > At least that is the little bureaucratic ambition we have.
+> >
+> > Yours,
+> > Linus Walleij
+>
+> Hi,
+>
+> Thanks for all the reviews.
+> I'll update this patch in the v2, removing bootloader line and using enum=
+.
+>
+> Ulf, should I send the new series now, or do you prefer to review the
+> whole series before?
 
-The below case is different. "priv->plat_data->bc_rate" vs 
-"clk_get_rate(priv->clkin)".
+Actually I have already looked through the series and it looks good to
+me! Please submit a new version so we can get this queued up for v6.5.
 
-As to the order of the calculation (/ 2 * 160 versus * 160 / 2), 
-generally speaking, I have never figured out what are the correct ways 
-to calculate clock rates.
-
-I wrote "x / 2 * 160" as that's what the documentation gives (there's a 
-hardware /2 divider in non-ub971 chips, followed by a 160 multiplier). 
-But does the documentation presume that the calculation is done 
-precisely, not in integers? If so, "x * 160 / 2" would be better (but 
-then, do we need to round?). Or does the /2 hardware divider basically 
-actually work as a an integer division, in case "x / 2 * 160" is the 
-correct one.
-
->>>> +	case UB953_MODE_NONSYNC_EXT:
->>>> +		/* CLKIN_DIV = 1 always */
->>>> +		return clk_get_rate(priv->clkin) * 80ull;
-> 
-
-  Tomi
-
+Kind regards
+Uffe
