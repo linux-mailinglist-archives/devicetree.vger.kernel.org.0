@@ -2,166 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0F873541B
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 12:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C00A37354D2
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 12:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232249AbjFSKwV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 06:52:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51996 "EHLO
+        id S232505AbjFSK7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 06:59:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232268AbjFSKv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 06:51:58 -0400
-Received: from NAM04-DM6-obe.outbound.protection.outlook.com (mail-dm6nam04on2046.outbound.protection.outlook.com [40.107.102.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 233471BC8;
-        Mon, 19 Jun 2023 03:50:56 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b6PY4OmLeW8V0EyojS6pgk45c60A2y3DRtjYsbt9gyIuCzGOkClPBg/JN6Fw7I2p7yZ0X26xdxMYgHIwbROsZz6EUGEzxZtIbzfvFR9KwuuuFa8gFgqjMUDhOtSzOOh8ismuqogD02Rdaj83X2eeux3n8SWEp0Q1gdpF70D7/h5ncj/YoLt4tvPwAF8y/F0TyizD415kO6YW8mjBpt8TsaKjbznOZzBnSg2X7CRuowsJVBA1O0+rJ8C0e8XCxBDTf7Y6M1WeoOefqvbFkCAIZZtUc9PafVs3VjrMywKPgZrqSY//aF3O2DMPJHS+x6hGDvWzcenA/GpLzKE+eAFN/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=29dLV5yQKdLOW9UG3t6z5YKrt+YFp2o45dGtjr7F66o=;
- b=d8bLiZ8fZRfDsRsfy+67Sx7VOBiTPakBbvCuAJnH5f2JOQJiExFjn/YkgFPJCqZc3Es0+MYOVQUzeSNd6FBDcuexb7gQH3GosvUOZ6ucFVuMr9D/96j9AIBL14yCL3Tf8tiPnrSSVPFQtqVgWkOBLz8toAY+OYvlBeQ50AgXMS2gUmQDikXwG+T0DmAbn2dnsZApveldpqlb5vjm0+JacwXIbMDX87fG2Cztz1Ff2xiVL4+QFz4X9iAgPpVnU3wcHtms9Focn40w+vjTrrZkwjjx2A4ldK0siLlNBirUGUwofu63Rvo4LaXdjoFZVHq0t6mDQhjMIqsofKKwAqSLxw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linuxfoundation.org smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=29dLV5yQKdLOW9UG3t6z5YKrt+YFp2o45dGtjr7F66o=;
- b=CSMc//yEoT7JDgINPScst5yxJ9Ay1mcvdH3mUyazITNkjuq7lFde/a97MhRut6jx/IFPbsQGTzCAU1iJ7ETYQpAThIvh7S/psT0mHF/xAAfmRUKc6hfftZDVDQGPnXO7jvaEMlFffpKNv+d1LuGaz9vbm4CkTxakV0lsARA2rKA=
-Received: from CY8PR11CA0006.namprd11.prod.outlook.com (2603:10b6:930:48::10)
- by SN7PR12MB7910.namprd12.prod.outlook.com (2603:10b6:806:34b::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37; Mon, 19 Jun
- 2023 10:50:54 +0000
-Received: from CY4PEPF0000E9D9.namprd05.prod.outlook.com
- (2603:10b6:930:48:cafe::65) by CY8PR11CA0006.outlook.office365.com
- (2603:10b6:930:48::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37 via Frontend
- Transport; Mon, 19 Jun 2023 10:50:54 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CY4PEPF0000E9D9.mail.protection.outlook.com (10.167.241.77) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6521.17 via Frontend Transport; Mon, 19 Jun 2023 10:50:53 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 19 Jun
- 2023 05:50:52 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Mon, 19 Jun
- 2023 03:50:44 -0700
-Received: from xhdnavam40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
- Transport; Mon, 19 Jun 2023 05:50:42 -0500
-From:   Piyush Mehta <piyush.mehta@amd.com>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <balbi@kernel.org>
-CC:     <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <michal.simek@amd.com>,
-        <git@amd.com>, Piyush Mehta <piyush.mehta@amd.com>
-Subject: [PATCH V4] dt-bindings: usb: dwc3: Add interrupt-names property support for wakeup interrupt
-Date:   Mon, 19 Jun 2023 16:20:32 +0530
-Message-ID: <20230619105032.2888128-1-piyush.mehta@amd.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S232385AbjFSK64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 06:58:56 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ECCB10F2;
+        Mon, 19 Jun 2023 03:57:35 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 59952DDA;
+        Mon, 19 Jun 2023 12:56:58 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687172219;
+        bh=cD5pqKTY5/ObcvKp271EhUpO47bHD0WwDTzCRMlW9Ng=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=TdV0Ju26ZNebUaHN5/9bM4MNZNuAMA3ToCFYvHf9NrkG65IIPBcgXh9lkLmotE20l
+         wybYH2rdiekkF1OKSbv821V3chou6EkYMRAydKIGa7eGdC6u5xr3IYDDfyJkolJ2/u
+         enRIPVPhukWDi0ZRB+3DkwvJoBFvgN5K6WbpnQFs=
+Message-ID: <3dda6808-cda2-e587-88a7-00621b2cfca3@ideasonboard.com>
+Date:   Mon, 19 Jun 2023 13:57:29 +0300
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v14 18/18] media: i2c: ds90ub953: Support non-sync mode
+Content-Language: en-US
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Wolfram Sang <wsa@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>
+References: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
+ <20230616135922.442979-19-tomi.valkeinen@ideasonboard.com>
+ <ZIx17WC7plfDPpmc@smile.fi.intel.com>
+ <dc79de4e-4043-5448-db44-ef8f7749a376@ideasonboard.com>
+ <ZJAyb9WHjWrdSsBw@smile.fi.intel.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <ZJAyb9WHjWrdSsBw@smile.fi.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY4PEPF0000E9D9:EE_|SN7PR12MB7910:EE_
-X-MS-Office365-Filtering-Correlation-Id: 94c56cc0-6cd3-4a3b-54bc-08db70b30e14
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: UQsqwuZVhlSTZlcb80caOvOIEIJ4sFsqeRawr54JCgHyPMujM0A/8lCf0Z3u+/Ks9K5h7DKEpZTGK0hB5MkNl2joPhC08syq0t920MbpvAEmiXX+AKC+gq8HZ14Qt3GpOF/oShaSLEocusnoa8ZAGIsN/GdGNBlEQ4R6Ba08+lIJvyfRkfzmtbfEULISQTs0lPqMhjkJx5xgP9Q1NafJ4tj45HlRWva0FrJYSMnBSV2IQXcub0KhCJ3A/eRpjLMaIJfn56jNa0iurHbYi9GZ3LmVsM6kf/Mi3c/F5zDw9W58ilvCo5tJoDf3OPmqa/vYg7h037JSx+MZDMyB6q3HVdTDuAZy5ObzvTNOvNZnq2gnwctDdecGmeVdmyJkxdoGA/6L/++lZtvWGN+nsBxlamPfPPQLWcLN0vygGBAUFjQDjoOdePfHdvPSakXR8c0ENRAuVXzBh2VH3FjMiDrZRaD939aVARubdnLfJnhNG9hg5FCBheOa2aLHOcwgd19bpr6EKvckdgxrGaAMpHjVpL/Z+yBENloIQ58aPRwKWVr3vkdvhNLwhNg102Ag4hOi1fUOYBIonjy+elwWpHaKjRFUY0K7YFCWRW3OGSVnvw9PSYvro+8X0Wb0ntCLE8Gv/Z+w/DUzG3lmUlkJhKgFwWcgEsKlVPgA9/wDDvXwklWqvxBI0r5Wld0UmwRy5528xwjZZTRzYAHNrlZYeLYgq0yMTcpVdW22ApYfdKaseHfCPVfboARjg7636VZK9XRdhjVP/t4n3nrHdKBI5lufb2Oib3of0D+TTM2iKaea+xI=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(346002)(396003)(136003)(376002)(39860400002)(451199021)(36840700001)(40470700004)(46966006)(4326008)(54906003)(478600001)(110136005)(1076003)(40460700003)(26005)(186003)(966005)(40480700001)(6666004)(36756003)(2906002)(8676002)(8936002)(41300700001)(70206006)(70586007)(316002)(5660300002)(44832011)(82310400005)(83380400001)(47076005)(86362001)(426003)(336012)(81166007)(356005)(2616005)(36860700001)(82740400003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 19 Jun 2023 10:50:53.9633
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 94c56cc0-6cd3-4a3b-54bc-08db70b30e14
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000E9D9.namprd05.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7910
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
-As the DWC3 IP supports the hibernation feature, to handle the wakeup
-or hibernation interrupt, add host mode "wakeup" interrupt-names
-optional property in the binding schema to capture remote-wakeup and
-connect/ disconnect event in the hibernation state and increased maxItems
-to 4 for the interrupts and interrupt-names property.
+On 19/06/2023 13:48, Andy Shevchenko wrote:
+> On Mon, Jun 19, 2023 at 12:00:57PM +0300, Tomi Valkeinen wrote:
+>> On 16/06/2023 17:47, Andy Shevchenko wrote:
+>>> On Fri, Jun 16, 2023 at 04:59:22PM +0300, Tomi Valkeinen wrote:
+>>>> Add support for FPD-Link non-sync mode with external clock. The only
+>>>> thing that needs to be added is the calculation for the clkout.
+> 
+> ...
+> 
+>>>> +	switch (priv->mode) {
+>>>> +	case UB953_MODE_SYNC:
+>>>> +		if (priv->hw_data->is_ub971)
+>>>> +			return priv->plat_data->bc_rate * 160ull;
+>>>> +		else
+>>>> +			return priv->plat_data->bc_rate / 2 * 160ull;
+>>>
+>>> Redundant 'else'.
+>>
+>> True, but I like the symmetry in:
+>>
+>> if (foo)
+>> 	return 123;
+>> else
+>> 	return 321;
+> 
+> At the same time it will be symmetry with other switch-case(s). That's why the
+> question about fallthrough below.
+> 
+>>> Do I understand correctly you don't want to fallthrough because it will give
+>>> ±160 in the rate (depending if it's even or odd)?
+>>
+>> Sorry, can you clarify? Fallthrough to what?
+> 
+> To the below case since '/ 2 * 160 ~= *80'. Why ~ because it might give
+> off-by-one error due to even/odd input.
 
-We have a dedicated IRQ line specifically for the hibernation feature.
-When the "wakeup" IRQ line is triggered, it initiates a hibernation
-interrupt, causing the system to wake up from the hibernation state.
+The below case is different. "priv->plat_data->bc_rate" vs 
+"clk_get_rate(priv->clkin)".
 
-Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
----
-Change in V2:
-- Addressed ROB review comments
- - Updated name of interrupt-names property with "wakeup"
- - Move interrupt-names property from dwc3-xilinx core to dwc3 core.
+As to the order of the calculation (/ 2 * 160 versus * 160 / 2), 
+generally speaking, I have never figured out what are the correct ways 
+to calculate clock rates.
 
-Link: https://lore.kernel.org/all/CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com/
+I wrote "x / 2 * 160" as that's what the documentation gives (there's a 
+hardware /2 divider in non-ub971 chips, followed by a 160 multiplier). 
+But does the documentation presume that the calculation is done 
+precisely, not in integers? If so, "x * 160 / 2" would be better (but 
+then, do we need to round?). Or does the /2 hardware divider basically 
+actually work as a an integer division, in case "x / 2 * 160" is the 
+correct one.
 
-Change in V3:
--  Addressed Krzysztof Kozlowski comments
- - Update binding schema enum.
- - Upadet commit message.
+>>>> +	case UB953_MODE_NONSYNC_EXT:
+>>>> +		/* CLKIN_DIV = 1 always */
+>>>> +		return clk_get_rate(priv->clkin) * 80ull;
+> 
 
-Link: https://lore.kernel.org/all/76dfbf27-8ad2-6e09-5354-b006b9e81af1@linaro.org/
-
-Change in V4:
-- Addressed ROB review comments:
- - Fixed dt_check warnings
-
-Link: https://lore.kernel.org/lkml/168448091422.2968830.10066003697035225886.robh@kernel.org/
----
- Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-index 4f7625955ccc..a696f23730d3 100644
---- a/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-+++ b/Documentation/devicetree/bindings/usb/snps,dwc3.yaml
-@@ -44,15 +44,15 @@ properties:
-       It's either a single common DWC3 interrupt (dwc_usb3) or individual
-       interrupts for the host, gadget and DRD modes.
-     minItems: 1
--    maxItems: 3
-+    maxItems: 4
- 
-   interrupt-names:
-     minItems: 1
--    maxItems: 3
-+    maxItems: 4
-     oneOf:
-       - const: dwc_usb3
-       - items:
--          enum: [host, peripheral, otg]
-+          enum: [host, peripheral, otg, wakeup]
- 
-   clocks:
-     description:
--- 
-2.25.1
+  Tomi
 
