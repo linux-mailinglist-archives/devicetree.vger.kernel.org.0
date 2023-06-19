@@ -2,137 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFCC734C94
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:44:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75F0A734CA5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbjFSHoU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 03:44:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38982 "EHLO
+        id S229448AbjFSHsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 03:48:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40376 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbjFSHny (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:43:54 -0400
-Received: from relay5-d.mail.gandi.net (relay5-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::225])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AEF3FE7F
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 00:43:52 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687160631;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=9BFD9qSkR0s44UL7BAPwQ0yamsSWDUEyrKoM0Ms23go=;
-        b=PND6pAgVD9bniIhRY2PH5BA5DZZNWkDBhU3LDnq8IH7qIJViT2DH4mNjPlOMGDdbOT6BtD
-        MZoXztOYnxxfL8XrfaCgmxmH7qaVToPzAd4f6zAe0FminFWXK4KrwGXHOLZKNX8Ir+6NUF
-        gUs7dXbzmHlcZsfMGxEoieAvl16bJWASsqRx1qEYe1i85OGYebTKHVOtRoeNQ+LbYNd6k9
-        5fXzAbNZxjXtkdbAaY3wxdxc95nTDyzcVLXOtZL64sF+0HhIEXLspO/PU1H565rphZqMUj
-        cfs2SIv6lyCo6ZOEwNGFKNsBRxzX9UXhuo9lhmQUO12pdgSS35R55OVEeblIGg==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4593D1C000A;
-        Mon, 19 Jun 2023 07:43:50 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org
-Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        with ESMTP id S229538AbjFSHsB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:48:01 -0400
+Received: from mail.inventec.com (mail.inventec.com [218.32.67.185])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90CACC0;
+        Mon, 19 Jun 2023 00:47:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+    s=sEx03; d=inventec.com;
+    h=from:to:cc:subject:date:message-id:in-reply-to:content-type:
+      mime-version;
+    bh=8SApXZkGgOeFsWFeTThrw5Y0o/+JYCBncaziLDbuwuc=;
+    b=QXivl8xrM3UHk0nqNlz65C3MyDhIvvsBQi1hNUgJzij/aUoLaWSFA3uw1k1P5T
+      JT9kXFvfiF2eiLHpWPLNdnTpvYfLXrZWY2ozsN67on3bpbBJJWUkit3hRdeP87
+      DuhSX8Srv4MhID+O6vzfTBuJnfjshk9qHJLBVo+4xpP09cY=
+Received: from IEC1-EX2016-04.iec.inventec (10.1.254.222) by
+ IEC1-EX2016-03.iec.inventec (10.15.2.59) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 19 Jun 2023 15:47:55 +0800
+Received: from IEC1-MSE-FE2.inventec.com (10.1.254.204) by
+ IEC1-EX2016-04.iec.inventec (10.1.254.222) with Microsoft SMTP Server id
+ 15.1.2507.23 via Frontend Transport; Mon, 19 Jun 2023 15:47:55 +0800
+Received: from IEC1-EX2016-02.iec.inventec (IEC1-EX2016-02.iec.inventec [10.1.254.221])
+        by IEC1-MSE-FE2.inventec.com with ESMTP id 35J7lom5069730;
+        Mon, 19 Jun 2023 15:47:50 +0800 (GMT-8)
+        (envelope-from Chen.PJ@inventec.com)
+Received: from IEC1-EX2016-01.iec.inventec (10.15.2.58) by
+ IEC1-EX2016-02.iec.inventec (10.1.254.221) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.23; Mon, 19 Jun 2023 15:47:51 +0800
+Received: from IEC1-EX2016-01.iec.inventec ([fe80::81ed:c8de:ba4:c745]) by
+ IEC1-EX2016-01.iec.inventec ([fe80::81ed:c8de:ba4:c745%7]) with mapi id
+ 15.01.2507.023; Mon, 19 Jun 2023 15:47:50 +0800
+From:   =?utf-8?B?Q2hlbi5QSiDpmbPmn4/ku7sgVEFP?= <Chen.PJ@inventec.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Thomas Weber <thomas.weber@corscience.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v2 2/2] drm/panel: simple: Add support for Mitsubishi AA084XE01
-Date:   Mon, 19 Jun 2023 09:43:48 +0200
-Message-Id: <20230619074348.2893701-2-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230619074348.2893701-1-miquel.raynal@bootlin.com>
-References: <20230619074348.2893701-1-miquel.raynal@bootlin.com>
+        Joel Stanley <joel@jms.id.au>,
+        "Andrew Jeffery" <andrew@aj.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+CC:     =?utf-8?B?WWUuVmljIOiRieWuh+a4hSBUQU8=?= <ye.vic@inventec.com>,
+        =?utf-8?B?SHVhbmcuQWxhbmcg6buD6Iux6YOOIFRBTw==?= 
+        <Huang.Alang@inventec.com>
+Subject: RE: [PATCH v5 1/2] dt-bindings: arm: aspeed: add Inventec
+ starscream-bmc
+Thread-Topic: [PATCH v5 1/2] dt-bindings: arm: aspeed: add Inventec
+ starscream-bmc
+Thread-Index: AQHZonlGhub8MK1GcUC3/L5H9ZwPt6+RK0EAgACQAKA=
+Date:   Mon, 19 Jun 2023 07:47:50 +0000
+Message-ID: <832a9af9c9024ed3b7bee0d36a482837@inventec.com>
+References: <20230619064249.3623-1-chen.pj@inventec.com>
+ <2a9e503b-7a5b-3b1e-a912-5d54a23c1ca1@linaro.org>
+In-Reply-To: <2a9e503b-7a5b-3b1e-a912-5d54a23c1ca1@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.6.245.192]
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MAIL: IEC1-MSE-FE2.inventec.com 35J7lom5069730
+X-TM-SNTS-SMTP: 9DCE9D045593F2EF9FC039E1ACED29B7002FF0250890EEAFEE7D2B4813BA86872000:8
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thomas Weber <thomas.weber@corscience.de>
-
-Add support for the Mitsubishi AA084XE01 panel which is an 8.4 inch XGA
-TFT-LCD module for industrial use.
-
-Link: https://www.mouser.fr/datasheet/2/274/aa084xe01_e-364171.pdf
-Signed-off-by: Thomas Weber <thomas.weber@corscience.de>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
-
-Changes in v2:
-* Lowered the clock to match the typical 65MHz frequency.
-* Added the connector type and the missing bus flags.
-* Collected an A-by tag.
-
- drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
-
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 8a3b685c2fcc..963f3223c985 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -2670,6 +2670,32 @@ static const struct panel_desc mitsubishi_aa070mc01 = {
- 	.bus_flags = DRM_BUS_FLAG_DE_HIGH,
- };
- 
-+static const struct drm_display_mode mitsubishi_aa084xe01_mode = {
-+	.clock = 56234,
-+	.hdisplay = 1024,
-+	.hsync_start = 1024 + 24,
-+	.hsync_end = 1024 + 24 + 63,
-+	.htotal = 1024 + 24 + 63 + 1,
-+	.vdisplay = 768,
-+	.vsync_start = 768 + 3,
-+	.vsync_end = 768 + 3 + 6,
-+	.vtotal = 768 + 3 + 6 + 1,
-+	.flags = DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
-+};
-+
-+static const struct panel_desc mitsubishi_aa084xe01 = {
-+	.modes = &mitsubishi_aa084xe01_mode,
-+	.num_modes = 1,
-+	.bpc = 8,
-+	.size = {
-+		.width = 1024,
-+		.height = 768,
-+	},
-+	.bus_format = MEDIA_BUS_FMT_RGB565_1X16,
-+	.connector_type = DRM_MODE_CONNECTOR_LVDS,
-+	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGEDGE,
-+};
-+
- static const struct display_timing multi_inno_mi0700s4t_6_timing = {
- 	.pixelclock = { 29000000, 33000000, 38000000 },
- 	.hactive = { 800, 800, 800 },
-@@ -4158,6 +4184,9 @@ static const struct of_device_id platform_of_match[] = {
- 	}, {
- 		.compatible = "mitsubishi,aa070mc01-ca1",
- 		.data = &mitsubishi_aa070mc01,
-+	}, {
-+		.compatible = "mitsubishi,aa084xe01",
-+		.data = &mitsubishi_aa084xe01,
- 	}, {
- 		.compatible = "multi-inno,mi0700s4t-6",
- 		.data = &multi_inno_mi0700s4t_6,
--- 
-2.34.1
-
+SGkgS3J6eXN6dG9mLA0KDQpTb3JyeSBmb3IgYnJvdGhlcmluZyB5b3UgYW5kIHRoYW5rcyBmb3Ig
+eW91ciBwYXRpZW5jZS4NCg0KSSB1c2UgImdpdCBpbWFwIHNlbmQiIGFuZCBjYW4gb25seSBzZW5k
+IHR3byBwYXRjaCBzZXBhcmF0ZWx5Lg0KQWZ0ZXIgeW91ciBpbnN0cnVjdGlvbiwgd2Ugc2V0dXAg
+dGhlIHNtdHAgc2VydmVyIGFuZCBub3cgc2VuZCB0d28gcGF0Y2ggdG9nZXRoZXIuDQoNCkJ1dCBp
+dCBzZWVtcyBzdGlsbCBub3QgZW5vdWdoLg0KRGlkIHlvdSBtZWFuIHdlIG5lZWQgdG8gY29tYmlu
+ZSB0d28gcGF0Y2ggdGhhdCBtb2RpZnkgdGhlIGRvY3VtZW50IGFuZCBkdHMgaW4gIm9uZSIgcGF0
+Y2g/DQoNCkJlc3QgUmVnYXJkcw0KUEogQ2hlbg0KDQotLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0t
+LQ0KRnJvbTogS3J6eXN6dG9mIEtvemxvd3NraSA8a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8u
+b3JnPiANClNlbnQ6IE1vbmRheSwgSnVuZSAxOSwgMjAyMyAyOjU2IFBNDQpUbzogQ2hlbi5QSiDp
+mbPmn4/ku7sgVEFPIDxDaGVuLlBKQGludmVudGVjLmNvbT47IEFybmQgQmVyZ21hbm4gPGFybmRA
+YXJuZGIuZGU+OyBPbG9mIEpvaGFuc3NvbiA8b2xvZkBsaXhvbS5uZXQ+OyBzb2NAa2VybmVsLm9y
+ZzsgUm9iIEhlcnJpbmcgPHJvYmgrZHRAa2VybmVsLm9yZz47IEtyenlzenRvZiBLb3psb3dza2kg
+PGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9yZz47IEpvZWwgU3RhbmxleSA8am9lbEBq
+bXMuaWQuYXU+OyBBbmRyZXcgSmVmZmVyeSA8YW5kcmV3QGFqLmlkLmF1PjsgbGludXgtYXJtLWtl
+cm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZzsgbGlu
+dXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtYXNwZWVkQGxpc3RzLm96bGFicy5vcmcN
+CkNjOiBZZS5WaWMg6JGJ5a6H5riFIFRBTyA8eWUudmljQGludmVudGVjLmNvbT47IEh1YW5nLkFs
+YW5nIOm7g+iLsemDjiBUQU8gPEh1YW5nLkFsYW5nQGludmVudGVjLmNvbT4NClN1YmplY3Q6IFJl
+OiBbUEFUQ0ggdjUgMS8yXSBkdC1iaW5kaW5nczogYXJtOiBhc3BlZWQ6IGFkZCBJbnZlbnRlYyBz
+dGFyc2NyZWFtLWJtYw0KDQpPbiAxOS8wNi8yMDIzIDA4OjQyLCBQSiBDaGVuIHdyb3RlOg0KPiBG
+cm9tOiBDaGVuIFBKIDxDaGVuLnBqQGludmVudGVjLmNvbT4NCj4gDQo+IERvY3VtZW50IHRoZSBu
+ZXcgY29tcGF0aWJsZXMgdXNlZCBvbiBJbnZlbnRlYyBzdGFyc2NyZWFtLWJtYw0KPiANCj4gU2ln
+bmVkLW9mZi1ieTogQ2hlbiBQSiA8Q2hlbi5wakBpbnZlbnRlYy5jb20+DQoNCmh0dHBzOi8vbG9y
+ZS5rZXJuZWwub3JnL2FsbC8zMTA2YzRhMS1jZTViLWE5YzQtNWNmNC02YWRlYWQ3ZmNlODBAbGlu
+YXJvLm9yZy8NCg0KaHR0cHM6Ly9sb3JlLmtlcm5lbC5vcmcvYWxsLzJlMDZlN2RiLTY0ZjktNTFm
+OC1hZGYxLWIyNDBmMzBhMjYwOEBsaW5hcm8ub3JnLw0KDQpXaGF0J3MgdW5jbGVhciBoZXJlPyBZ
+b3UgZGlkIG5vdCBjYXJlIHRvIHJlc3BvbmQgdG8gdGhhdCAodGhlIHNlY29uZCBwYXJ0IG9mIHRo
+YXQgbWVzc2FnZSkuDQoNCkJlc3QgcmVnYXJkcywNCktyenlzenRvZg0KDQo=
