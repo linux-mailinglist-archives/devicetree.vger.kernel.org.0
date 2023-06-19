@@ -2,138 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 659AA7352A5
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 12:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C96217352BC
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 12:37:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbjFSKhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 06:37:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42424 "EHLO
+        id S231287AbjFSKho (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 06:37:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231287AbjFSKgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 06:36:40 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17FA910D9
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 03:36:35 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-31126037f41so2936212f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 03:36:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687170994; x=1689762994;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ejTbf4LoKogG/Ln74Pk82fARkIEkMJUQlIgg7+Wp5uA=;
-        b=cZQ+XdV0cjSiIJUue049gOJ63z1o+Bm5BMwN6K6EFzSIeJ2SA4ke+YkuxraSHYmD0l
-         GS3bEUP9EtuBl1eb2X6tCSnGoII1m/WAJz06o4ET91pEjInQeQ42DiNbxpC/twP9V+/4
-         3Gj8yMNImEbdRJJwLeisOgfI/NoxFJuCHxF+VALOIrOzuhzEqhEIFBplsYCjF/a10tnI
-         93KH7LnGYk/4r4aEFokFTEp+oClEb9EyG5/Cu7axXD4WnV3YngObv9H6xS1EVDVCWXEg
-         JqEgrW4F7TutEVFS2z8zooJ30Ze8SDHs0hicd8RmpwFoOTWTm5I87VesPwdguUs099q/
-         0mFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687170994; x=1689762994;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ejTbf4LoKogG/Ln74Pk82fARkIEkMJUQlIgg7+Wp5uA=;
-        b=hq5csWwpzdbgyRpX8FNUr+VA1ceeflt8FTiycm393WuqR9EcPTLHshmeD3H5RbRpFU
-         lzEDXOP3rslaM5cpp1OQStz4JHDaJBUZwLRgjJ9dhLe3oKv5uXVchWEqcdauiZCBfAR5
-         mEqjyngvh95//Q+JP9Z/qeLy8NeY6avjeO6MZx3koaMEpmPxTOfzMR8RQdWKsKPJgsHM
-         b8djc11AB9XPOFqCSuWjNWNsw0HKkWKc1Fo2IqE+bq6+IXKvQi9Ukx/nAo8LarL/nfmu
-         5TYfg7ii4hW04srlK3k7RBuK0r1QU30m3y2lbuX1EF5vM1h4ATT+5EaGBDx1XTrYeIwN
-         8Yug==
-X-Gm-Message-State: AC+VfDzZQ+3vD674Csiarmd6PM9J8yyTgfS7lr+Q4kqu9kF8gZMLtLx3
-        N1h+nlqSv3U9au33niuA8jafjsMPHj19dxtUopE=
-X-Google-Smtp-Source: ACHHUZ77/vPLkGtrYJe9RkVK0QQ5x+vBGoIstm3Y3I16fnaPGyjwJGTc1YvxW4AFSsIPL8eUKmuIaw==
-X-Received: by 2002:a05:600c:21d6:b0:3f9:a4e:190b with SMTP id x22-20020a05600c21d600b003f90a4e190bmr3629171wmj.7.1687170994150;
-        Mon, 19 Jun 2023 03:36:34 -0700 (PDT)
-Received: from ?IPV6:2a05:6e02:1041:c10:13d0:1b6c:ce40:5429? ([2a05:6e02:1041:c10:13d0:1b6c:ce40:5429])
-        by smtp.googlemail.com with ESMTPSA id l17-20020a1c7911000000b003f9b0f640b1sm2558593wme.22.2023.06.19.03.36.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 03:36:33 -0700 (PDT)
-Message-ID: <e69ada00-dd2b-4b95-b639-346929832910@linaro.org>
-Date:   Mon, 19 Jun 2023 12:36:33 +0200
+        with ESMTP id S231342AbjFSKhi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 06:37:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F14102;
+        Mon, 19 Jun 2023 03:37:37 -0700 (PDT)
+Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CDD9BFB;
+        Mon, 19 Jun 2023 12:36:59 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687171021;
+        bh=j9D//YVQRuMR4JMg7qTsktMpiYHgQzslyET9vXnkYSM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=wkRCdL384dHyrzyc5/AzEr1y4PG/e063YSnYU+MjC1opw04AURFAkbt/QT8cR9k6q
+         NhmK2GmVrH0HG+KDKRUSgPg/qXK0rlAQXIlZGtWWpuOMCMA/DHNBPRLQ7368ZgmSEB
+         QF+KWfY5QTRlgZvqdaPDvjG8TM75ZqiMQh7BMVF0=
+Message-ID: <e0df1839-5c00-7d4a-8322-527bd93420bb@ideasonboard.com>
+Date:   Mon, 19 Jun 2023 13:37:31 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 00/10] thermal: tegra: Do not register cooling device
+Subject: Re: [PATCH v14 15/18] media: i2c: ds90ub953: Handle
+ V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK
 Content-Language: en-US
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Wolfram Sang <wsa@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Amit Kucheria <amitk@kernel.org>, Zhang Rui <rui.zhang@intel.com>,
-        Jon Hunter <jonathanh@nvidia.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230414125721.1043589-1-thierry.reding@gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-In-Reply-To: <20230414125721.1043589-1-thierry.reding@gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>
+References: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
+ <20230616135922.442979-16-tomi.valkeinen@ideasonboard.com>
+ <ZIxyqTdEsS40emBV@smile.fi.intel.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+In-Reply-To: <ZIxyqTdEsS40emBV@smile.fi.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 16/06/2023 17:33, Andy Shevchenko wrote:
+> On Fri, Jun 16, 2023 at 04:59:19PM +0300, Tomi Valkeinen wrote:
+>> Handle V4L2_MBUS_CSI2_NONCONTINUOUS_CLOCK flag to configure the CSI-2 RX
+>> continuous/non-continuous clock register.
+> 
+> ...
+> 
+>>   	struct regmap		*regmap;
+> 
+> I forgot if we discussed this along with i2c_client *client nearby. Since I
+> reviewed Hans' patches the pure struct device *dev (instead of *client) might
+> make more sense, despite being duplicative with regmap associated device.
+> 
+>>   	u32			num_data_lanes;
+>> +	bool			non_cont_clk;
+>>   
+>>   	struct gpio_chip	gpio_chip;
+> 
+> And also try to place this as a first member and see (by using bloat-o-meter,
+> for example) if it saves bytes.
+> 
+> I'm wondering if we have tools like pahole but which suggests the better layout
+> based on the code generation... Maybe something along with clang?
 
-Hi Thierry,
+Isn't all this a bit on the side of pointless micro-optimizations? We're 
+talking about possibly saving a few tens of bytes in a struct that's 
+likely allocated a few times, by possibly messing up the (cosmetic) 
+grouping and ordering of the fields in the struct?
 
-are you planning to send a new version ?
+If there's a common rule-of-thumb wrt. struct members that everyone 
+should follow, I'm good with that and can change this accordingly. But 
+just trying to hunt for a field order that happens to save a few bytes 
+here... It doesn't sound like time well spent.
 
+If things were perfect, this would be something the compiler would 
+optimize, presuming the field ordering in the struct doesn't matter.
 
-On 14/04/2023 14:57, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Hi,
-> 
-> this set of patches removes the registration of the SOCTHERM internal
-> throttling mechanism as cooling device. Since this throttling starts
-> automatically once a certain temperature threshold is crossed, it
-> doesn't make sense to represent it as a cooling device, which are
-> typically "manually" activated by the thermal framework when thermal
-> sensors report temperature thresholds being crossed.
-> 
-> Instead of using the cooling device mechanism, this statically programs
-> the throttling mechanism when it is configured in device tree. In order
-> to do this, an additional device tree property is needed to replace the
-> information that was previously contained in trip points.
-> 
-> There's a few preparatory patches to make the removal a bit simpler and
-> also some follow up cleanups included as well.
-> 
-> Thierry
-> 
-> Thierry Reding (10):
->    dt-bindings: thermal: tegra: Document throttle temperature
->    thermal: tegra: Use driver-private data consistently
->    thermal: tegra: Constify SoC-specific data
->    thermal: tegra: Do not register cooling device
->    thermal: tegra: Use unsigned int where appropriate
->    thermal: tegra: Avoid over-allocation of temporary array
->    thermal: tegra: Remove gratuitous error assignment
->    thermal: tegra: Minor stylistic cleanups
->    arm64: tegra: Rework SOCTHERM on Tegra132 and Tegra210
->    ARM: tegra: Rework SOCTHERM on Tegra124
-> 
->   .../thermal/nvidia,tegra124-soctherm.yaml     |   7 +
->   arch/arm/boot/dts/tegra124.dtsi               |  65 +--
->   arch/arm64/boot/dts/nvidia/tegra132.dtsi      |  63 +--
->   arch/arm64/boot/dts/nvidia/tegra210.dtsi      |  83 +---
->   drivers/thermal/tegra/soctherm.c              | 392 ++++++------------
->   drivers/thermal/tegra/soctherm.h              |   1 +
->   drivers/thermal/tegra/tegra124-soctherm.c     |   4 +
->   drivers/thermal/tegra/tegra132-soctherm.c     |   4 +
->   drivers/thermal/tegra/tegra210-soctherm.c     |   4 +
->   9 files changed, 208 insertions(+), 415 deletions(-)
-> 
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+  Tomi
 
