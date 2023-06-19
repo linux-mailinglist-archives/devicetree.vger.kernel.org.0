@@ -2,87 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0908735165
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 12:02:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 411B57351B8
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 12:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231793AbjFSKCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 06:02:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47656 "EHLO
+        id S231801AbjFSKOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 06:14:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231829AbjFSKB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 06:01:58 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D84BE65
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 03:01:32 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51a200fc3eeso4561598a12.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 03:01:32 -0700 (PDT)
+        with ESMTP id S231698AbjFSKOd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 06:14:33 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB4341A6
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 03:14:31 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51a200fc3eeso4576728a12.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 03:14:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687168891; x=1689760891;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=mi0odYZrNrQKpGzw5pHs6LQO/1iyCGY9vkdXXwKkTF4=;
-        b=L+yWMlBqSShj9sCq4emOy+ZP9U+SEJeb+06+PNfJW+hYojJwsDXMUbgjFV6jKeKpjm
-         cxyLBTMywkj8ODTab8jKv3kWzIt98Yp7wvAATmXLFPEwIG43qCzBj8jyn8rRfpa3HAXT
-         XFWfe9A3YQfW80ScopExHmLkWUC0hV+g8vEocIXnFgd4P43IHVGQgqBupJ65fcQTGSRk
-         AyBbeYvEusX6q2KvMe8+mjmkmxsiCZLhQBAMaioWkENpt3uIe+QSVM2U4DFGWtVv/38B
-         GODElrI693wmoWAtwZb7OCxEzHWSueBG/EPLVLDZWnRc37n2iv7Smk+nOdJCKLyUWeec
-         19bw==
+        d=linaro.org; s=google; t=1687169670; x=1689761670;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:from:to:cc:subject:date:message-id:reply-to;
+        bh=jmy3F/STWdRiL9bkqBfvVFLMvAXz5VhFeOVkXrx1CF4=;
+        b=wQThKrx+V5oo09dQi+r3zPsMwmfjwQyVipEpwJsNEiLF1Z4vY+W0lrXMO0WKykqGOR
+         EH4bEpxGufI7N5p//HoX3BtghojxkfiHV26ShxRtV+M58RtL1P41umG9+Z4QnWWcJArQ
+         qzjKqqn5R6BHN7dVUY9+MrJs3nCsC6OHLQoJPMqZRuspLOwDALCJoDU/J75gAoo1Xw6N
+         wHaEe2kbM+UiltiO0JIgYS3PIUOyj8/p8cb4fxJkOqf5CYhiOK/sVgJL4bNEdK36lKWm
+         Do36EAxLI7WhFMAuHg41vlV3zIn5th71zojhqj7WE/aaN/Fy8ruoWGcosnvUZcHTWdJw
+         GWMQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687168891; x=1689760891;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=mi0odYZrNrQKpGzw5pHs6LQO/1iyCGY9vkdXXwKkTF4=;
-        b=d8dHob1fjZXMcjXTHBw64OynN7bZlIqL8MgMj9O3OnM9ncezZ/mcW2/EJBMx/HRGPm
-         2MC3xtJx4p1AU7f+jsa9zoc9ZAiDobSu+egpC77q/d2/fOjQZpoqkGNXzMWw4gf8QU8y
-         tfKAP35/smlkDOLVbhbxDi1wlx9pOPzzKytLfEElIbPSbLURwMfYRcnodQXMTREyqQOq
-         TOx/AhebuRs2bldpkd7KK5XFTRbN/lytQmXBc71mxLd0dMfK5eu6urpjZIzfaOrq2e9I
-         O3g7axClQvSW1u+iN/ZD1ys66qqjTkjUKZJXwSlCxIKXpYAijjRkBQjcfvzHZz/6gVjJ
-         ulDA==
-X-Gm-Message-State: AC+VfDzRPCmUKQfpkFS/0dtprbnUhTs0l/UcyaoLnQMVV06WBvRE4pkZ
-        etWKuLYP7H2yxFr6wjVTxhyaEQ==
-X-Google-Smtp-Source: ACHHUZ7iLPMfAVkQt+pj0GE9+mhW4YCjeFhwk799Y3AhojRcbkBWBNp6i4fChge21Aam9eSkWvKAew==
-X-Received: by 2002:a05:6402:12c2:b0:514:9d2f:10be with SMTP id k2-20020a05640212c200b005149d2f10bemr6230109edx.18.1687168890853;
-        Mon, 19 Jun 2023 03:01:30 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id o8-20020aa7d3c8000000b0051a575c76e6sm1368098edr.43.2023.06.19.03.01.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 03:01:30 -0700 (PDT)
-Message-ID: <c65313c7-c1e1-3a51-9fff-4324701ebfd7@linaro.org>
-Date:   Mon, 19 Jun 2023 12:01:27 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 1/4] dt-bindings: firmware: qcom,scm: Document that SCM
- can be dma-coherent
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>, andersson@kernel.org
-Cc:     amit.pundir@linaro.org, Will Deacon <will@kernel.org>,
-        sumit.semwal@linaro.org, linux-arm-msm@vger.kernel.org,
-        konrad.dybcio@somainline.org, linux-arm-kernel@lists.infradead.org,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Nikita Travkin <nikita@trvn.ru>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Das Srinagesh <quic_gurus@quicinc.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230616081440.v2.1.Ie79b5f0ed45739695c9970df121e11d724909157@changeid>
- <e89e574c-db6d-877b-462c-bb91cc9d9ff1@linaro.org>
- <23cecdde-2b24-a472-1497-5da9f1158c00@linaro.org>
+        d=1e100.net; s=20221208; t=1687169670; x=1689761670;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:to
+         :from:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=jmy3F/STWdRiL9bkqBfvVFLMvAXz5VhFeOVkXrx1CF4=;
+        b=f78uKxxT2/DKOdOfpOEvVPqxKmfr1c4H+CY4A0eXgLm0Wap/0FA6JdBgzPOV4pY3hy
+         So+WJ35gd+II9dQfMLEQhSl+UH6Zzwkjl9Y2Yky4aVrQrfmMXPCZ6RM7BEUm2+lE03Rm
+         jxWtRUj4r7r4ixZJTCgtoZ60ClL3VoZNz1h71+w6MgBC7sydpK0+Q++hi8oo5FTYZy0X
+         9xQj+XZEG1r8j6/ZWEEY3RxeVp2Ho2bd0S/ZvyX2QwbMNYgLR5DectGFzF8olltipMPQ
+         YPU6XjMdMwAPd+MEVJ1m1dsDVz05hwxFRsisb+9woEJiZKC8L02NQR9/6Id+vVH/erwd
+         0BfA==
+X-Gm-Message-State: AC+VfDw/EAyx2ZJI7SxpWBwG6jZ4zIZkuc3lnu29nrwYJYdTSkN9WgoD
+        1mCLk0G3JPVWzTkZN9i7nC7FYFC6A4l3d51Wl7w=
+X-Google-Smtp-Source: ACHHUZ64qvqhSjA86PMKDj5ir0y2AJzbUzQGkl3PfbIW4mBGV0fCUurWI+TSUVL56A6MX4V1lAW8iA==
+X-Received: by 2002:a05:6402:642:b0:51a:5ebe:4ab9 with SMTP id u2-20020a056402064200b0051a5ebe4ab9mr920088edx.14.1687169670039;
+        Mon, 19 Jun 2023 03:14:30 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id v24-20020aa7d818000000b005184165f1fasm109431edq.5.2023.06.19.03.14.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jun 2023 03:14:29 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <23cecdde-2b24-a472-1497-5da9f1158c00@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH] dt-bindings: mfd: samsung,s5m8767: Simplify excluding properties
+Date:   Mon, 19 Jun 2023 12:14:24 +0200
+Message-Id: <20230619101424.25897-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -91,25 +69,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 12:00, Konrad Dybcio wrote:
-> On 18.06.2023 10:07, Krzysztof Kozlowski wrote:
->> On 16/06/2023 17:14, Douglas Anderson wrote:
->>> Trogdor devices use firmware backed by TF-A instead of Qualcomm's
->>> normal TZ. On TF-A we end up mapping memory as cacheable. Specifically,
->>> you can see in Trogdor's TF-A code [1] in qti_sip_mem_assign() that we
->>> call qti_mmap_add_dynamic_region() with MT_RO_DATA. This translates
->>> down to MT_MEMORY instead of MT_NON_CACHEABLE or MT_DEVICE.
->>>
->>> Let's allow devices like trogdor to be described properly by allowing
->>> "dma-coherent" in the SCM node.
->>>
->>> Signed-off-by: Douglas Anderson <dianders@chromium.org
->>
->> 2
-> Forgot to press alt or something
+Mutually exclusive s5m8767,pmic-buck[234]-uses-gpio-dvs properties can
+be written simpler, with half of the lines of code.
 
-D'oh!
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../bindings/mfd/samsung,s5m8767.yaml         | 25 ++++++-------------
+ 1 file changed, 7 insertions(+), 18 deletions(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+index 10c7b408f33a..aea0b7d57d04 100644
+--- a/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
++++ b/Documentation/devicetree/bindings/mfd/samsung,s5m8767.yaml
+@@ -153,29 +153,18 @@ dependencies:
+ additionalProperties: false
+ 
+ allOf:
+-  - if:
++  - not:
+       required:
+         - s5m8767,pmic-buck2-uses-gpio-dvs
+-    then:
+-      properties:
+-        s5m8767,pmic-buck3-uses-gpio-dvs: false
+-        s5m8767,pmic-buck4-uses-gpio-dvs: false
+-
+-  - if:
++        - s5m8767,pmic-buck3-uses-gpio-dvs
++  - not:
++      required:
++        - s5m8767,pmic-buck2-uses-gpio-dvs
++        - s5m8767,pmic-buck4-uses-gpio-dvs
++  - not:
+       required:
+         - s5m8767,pmic-buck3-uses-gpio-dvs
+-    then:
+-      properties:
+-        s5m8767,pmic-buck2-uses-gpio-dvs: false
+-        s5m8767,pmic-buck4-uses-gpio-dvs: false
+-
+-  - if:
+-      required:
+         - s5m8767,pmic-buck4-uses-gpio-dvs
+-    then:
+-      properties:
+-        s5m8767,pmic-buck2-uses-gpio-dvs: false
+-        s5m8767,pmic-buck3-uses-gpio-dvs: false
+ 
+ examples:
+   - |
+-- 
+2.34.1
 
