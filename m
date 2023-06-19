@@ -2,41 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AEB073502A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:30:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BA5F735062
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:34:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231386AbjFSJac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 05:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55766 "EHLO
+        id S231663AbjFSJei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:34:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231719AbjFSJ3v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:29:51 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 084B719B2;
-        Mon, 19 Jun 2023 02:29:22 -0700 (PDT)
+        with ESMTP id S231680AbjFSJdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:33:33 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1491E7A;
+        Mon, 19 Jun 2023 02:32:22 -0700 (PDT)
 Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
         (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 981056606E98;
-        Mon, 19 Jun 2023 10:29:20 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 28F3E6606E98;
+        Mon, 19 Jun 2023 10:32:20 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1687166961;
-        bh=8SdaP7ntrKluxKpCnNBDtyK/qq34xMIqJVvJvy6SKNQ=;
+        s=mail; t=1687167140;
+        bh=aNF1XWxWRzAVft7Ybg3OBBrUH7jcQWRNkcZlTCYXx7o=;
         h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZjW8Wi2jRcotxAKybid4GWjCNQRJ3u+9ezC6GKGFXIUoyt6qzitYC+HTZFI3v1mCZ
-         +vV146z0N8Evfmui6O5P6t0MkonySoBX36IppFEmoVftnpuYDd1Ck6S/X4p7MRq3UA
-         y0mugChJcc6iHDwnJ9SyKzr3f4LNAroqNcyW9fxY1cOwNsha4bsDL9S+dnorYgiVKx
-         1pKiIRVDzWJUivyGo+Fr4fljmu9+lZly5AlS+tKosBbgKrXmNKTIi/ojqAXm+iEZMb
-         L4lrx0EUXLxIure/9M8rDQF8jMa81bX6aYer8mHsVvMusH1A7rzS8cF958xoB0UTay
-         8V05Gn1JbkjOQ==
-Message-ID: <590f9a11-a153-abaf-0f99-9496882ee929@collabora.com>
-Date:   Mon, 19 Jun 2023 11:29:18 +0200
+        b=g6P65oyU4697HQLiasJoqjg2j/MBFI1onj9/4v11GfAyyQoe2avk6K/46pJbahk3s
+         GEgCnlZf+fArK/wVzMmOgnzg+jX2wIf7F2xzzAO17K/w6TG0Gy0BYl24y/C5vE3u9u
+         PG6Xymb97PAk9bRqn2wXu1DmX6uxKtHXW5US5L6Oyx+BQTS/+HADLvVCAGfRr81CnV
+         zDpiuU0SDmJEkC6t75vC+AVD1eMMlgzhu2GQxCSlpIWvq9X/C7Y0xrV0eYmgvbmAIa
+         RdY7WvcrEMEvU2ZH7l2WcQGDXD6G12UGnjdsu/cuxBJyWsh7hj+hfvl8AUOSzH6/Mn
+         wdnhSlYeEB2Nw==
+Message-ID: <3404135b-a893-523d-c776-3b6d10227049@collabora.com>
+Date:   Mon, 19 Jun 2023 11:32:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v5 6/8] soc: mediatek: Add support for WAY_EN operations
+Subject: Re: [PATCH v5 2/8] soc: mediatek: pm-domains: Move bools to a flags
+ field
 Content-Language: en-US
 To:     Markus Schneider-Pargmann <msp@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -47,14 +48,12 @@ Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
         Tinghan Shen <tinghan.shen@mediatek.com>,
         Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>
+        linux-mediatek@lists.infradead.org
 References: <20230619085344.2885311-1-msp@baylibre.com>
- <20230619085344.2885311-7-msp@baylibre.com>
+ <20230619085344.2885311-3-msp@baylibre.com>
 From:   AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230619085344.2885311-7-msp@baylibre.com>
+In-Reply-To: <20230619085344.2885311-3-msp@baylibre.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -68,167 +67,95 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Il 19/06/23 10:53, Markus Schneider-Pargmann ha scritto:
-> From: Alexandre Bailon <abailon@baylibre.com>
+> To simplify the macros, use a flags field for simple bools. This is in
+> preparation for more flags.
 > 
-> This updates the power domain to support WAY_EN operations. WAY_EN
-> operations on mt8365 are using a different component to check for the
-> acknowledgment, namely the infracfg-nao component. Also to enable a way
-> it the bit needs to be cleared while disabling a way needs a bit to be
-> set. To support these two operations two flags are added,
-> BUS_PROT_INVERTED and BUS_PROT_STA_COMPONENT_INFRA_NAO. Additionally
-> another regmap is created if the INFRA_NAO capability is set.
-> 
-> This operation is required by the mt8365 for the MM power domain.
-> 
-> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->   drivers/soc/mediatek/mtk-pm-domains.c | 39 +++++++++++++++++++++++----
->   drivers/soc/mediatek/mtk-pm-domains.h |  7 +++--
->   2 files changed, 39 insertions(+), 7 deletions(-)
+>   drivers/soc/mediatek/mtk-pm-domains.c |  6 +++---
+>   drivers/soc/mediatek/mtk-pm-domains.h | 19 +++++++++++--------
+>   2 files changed, 14 insertions(+), 11 deletions(-)
 > 
 > diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-> index 3cdf62c0b6bd..4659f0a0aa08 100644
+> index 354249cc1b12..aa9ab413479e 100644
 > --- a/drivers/soc/mediatek/mtk-pm-domains.c
 > +++ b/drivers/soc/mediatek/mtk-pm-domains.c
-> @@ -44,6 +44,7 @@ struct scpsys_domain {
->   	struct clk_bulk_data *clks;
->   	int num_subsys_clks;
->   	struct clk_bulk_data *subsys_clks;
-> +	struct regmap *infracfg_nao;
->   	struct regmap *infracfg;
->   	struct regmap *smi;
->   	struct regulator *supply;
-> @@ -127,13 +128,26 @@ static struct regmap *scpsys_bus_protect_get_regmap(struct scpsys_domain *pd,
->   		return pd->infracfg;
->   }
->   
-> +static struct regmap *scpsys_bus_protect_get_sta_regmap(struct scpsys_domain *pd,
-> +							const struct scpsys_bus_prot_data *bpd)
-> +{
-> +	if (bpd->flags & BUS_PROT_STA_COMPONENT_INFRA_NAO)
-> +		return pd->infracfg_nao;
-> +	else
-> +		return scpsys_bus_protect_get_regmap(pd, bpd);
-> +}
-> +
->   static int scpsys_bus_protect_clear(struct scpsys_domain *pd,
->   				    const struct scpsys_bus_prot_data *bpd)
->   {
-> +	struct regmap *sta_regmap = scpsys_bus_protect_get_sta_regmap(pd, bpd);
->   	struct regmap *regmap = scpsys_bus_protect_get_regmap(pd, bpd);
-> +	u32 expected_ack;
->   	u32 val;
->   	u32 sta_mask = bpd->bus_prot_sta_mask;
->   
-> +	expected_ack = (bpd->flags & BUS_PROT_STA_COMPONENT_INFRA_NAO ? sta_mask : 0);
-> +
->   	if (bpd->flags & BUS_PROT_REG_UPDATE)
->   		regmap_clear_bits(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
->   	else
-> @@ -142,14 +156,15 @@ static int scpsys_bus_protect_clear(struct scpsys_domain *pd,
->   	if (bpd->flags & BUS_PROT_IGNORE_CLR_ACK)
->   		return 0;
->   
-> -	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> -					val, !(val & sta_mask),
-> +	return regmap_read_poll_timeout(sta_regmap, bpd->bus_prot_sta,
-> +					val, (val & sta_mask) == expected_ack,
->   					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
->   }
->   
->   static int scpsys_bus_protect_set(struct scpsys_domain *pd,
->   				  const struct scpsys_bus_prot_data *bpd)
->   {
-> +	struct regmap *sta_regmap = scpsys_bus_protect_get_sta_regmap(pd, bpd);
->   	struct regmap *regmap = scpsys_bus_protect_get_regmap(pd, bpd);
->   	u32 val;
->   	u32 sta_mask = bpd->bus_prot_sta_mask;
-> @@ -159,7 +174,7 @@ static int scpsys_bus_protect_set(struct scpsys_domain *pd,
->   	else
->   		regmap_write(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
->   
-> -	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> +	return regmap_read_poll_timeout(sta_regmap, bpd->bus_prot_sta,
->   					val, (val & sta_mask) == sta_mask,
->   					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
->   }
-> @@ -173,7 +188,10 @@ static int scpsys_bus_protect_enable(struct scpsys_domain *pd)
->   		if (!bpd->bus_prot_set_clr_mask)
+> @@ -128,7 +128,7 @@ static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, st
+>   		if (!mask)
 >   			break;
 >   
-> -		ret = scpsys_bus_protect_set(pd, bpd);
-> +		if (bpd->flags & BUS_PROT_INVERTED)
-> +			ret = scpsys_bus_protect_clear(pd, bpd);
-> +		else
-> +			ret = scpsys_bus_protect_set(pd, bpd);
->   		if (ret)
->   			return ret;
->   	}
-> @@ -190,7 +208,10 @@ static int scpsys_bus_protect_disable(struct scpsys_domain *pd)
->   		if (!bpd->bus_prot_set_clr_mask)
+> -		if (bpd[i].bus_prot_reg_update)
+> +		if (bpd[i].flags & BUS_PROT_REG_UPDATE)
+>   			regmap_set_bits(regmap, bpd[i].bus_prot_set, mask);
+>   		else
+>   			regmap_write(regmap, bpd[i].bus_prot_set, mask);
+> @@ -165,12 +165,12 @@ static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
+>   		if (!mask)
 >   			continue;
 >   
-> -		ret = scpsys_bus_protect_clear(pd, bpd);
-> +		if (bpd->flags & BUS_PROT_INVERTED)
-> +			ret = scpsys_bus_protect_set(pd, bpd);
-> +		else
-> +			ret = scpsys_bus_protect_clear(pd, bpd);
->   		if (ret)
->   			return ret;
->   	}
-> @@ -377,6 +398,14 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_no
->   			return ERR_CAST(pd->smi);
->   	}
+> -		if (bpd[i].bus_prot_reg_update)
+> +		if (bpd[i].flags & BUS_PROT_REG_UPDATE)
+>   			regmap_clear_bits(regmap, bpd[i].bus_prot_clr, mask);
+>   		else
+>   			regmap_write(regmap, bpd[i].bus_prot_clr, mask);
 >   
-> +	pd->infracfg_nao = syscon_regmap_lookup_by_phandle(node, "mediatek,infracfg-nao");
-
-If we don't expect infracfg-nao to be present, what's the point about trying to
-get a regmap handle and then failing only if we do expect it to be there?
-
-At this point you can just do...
-
-	if (MTK_SCPD_CAPS(pd, MTK_SCPD_HAS_INFRA_NAO)) {
-		pd->infracfg_nao = syscon_regmap_lookup_by_phandle(...);
-		if (IS_ERR(....))
-			return ....
-	}
-
-> +	if (IS_ERR(pd->infracfg_nao)) {
-> +		if (MTK_SCPD_CAPS(pd, MTK_SCPD_HAS_INFRA_NAO))
-> +			return ERR_CAST(pd->infracfg_nao);
-> +
-> +		pd->infracfg_nao = NULL;
-> +	}
-> +
->   	num_clks = of_clk_get_parent_count(node);
->   	if (num_clks > 0) {
->   		/* Calculate number of subsys_clks */
+> -		if (bpd[i].ignore_clr_ack)
+> +		if (bpd[i].flags & BUS_PROT_IGNORE_CLR_ACK)
+>   			continue;
+>   
+>   		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
 > diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-> index 356788263db2..562d4e92ce16 100644
+> index 5ec53ee073c4..e26c8c317a6b 100644
 > --- a/drivers/soc/mediatek/mtk-pm-domains.h
 > +++ b/drivers/soc/mediatek/mtk-pm-domains.h
-> @@ -11,6 +11,7 @@
->   /* can't set MTK_SCPD_KEEP_DEFAULT_OFF at the same time */
->   #define MTK_SCPD_ALWAYS_ON		BIT(5)
->   #define MTK_SCPD_EXT_BUCK_ISO		BIT(6)
-> +#define MTK_SCPD_HAS_INFRA_NAO		BIT(7)
->   #define MTK_SCPD_CAPS(_scpd, _x)	((_scpd)->data->caps & (_x))
+> @@ -42,23 +42,27 @@
 >   
->   #define SPM_VDE_PWR_CON			0x0210
-> @@ -45,8 +46,10 @@
->   enum scpsys_bus_prot_flags {
->   	BUS_PROT_REG_UPDATE = BIT(1),
->   	BUS_PROT_IGNORE_CLR_ACK = BIT(2),
-> -	BUS_PROT_COMPONENT_INFRA = BIT(3),
-> -	BUS_PROT_COMPONENT_SMI = BIT(4),
-> +	BUS_PROT_INVERTED = BIT(3),
+>   #define SPM_MAX_BUS_PROT_DATA		6
+>   
+> -#define _BUS_PROT(_mask, _set, _clr, _sta, _update, _ignore) {	\
+> +enum scpsys_bus_prot_flags {
+> +	BUS_PROT_REG_UPDATE = BIT(1),
+> +	BUS_PROT_IGNORE_CLR_ACK = BIT(2),
+> +};
+> +
+> +#define _BUS_PROT(_mask, _set, _clr, _sta, _flags) {		\
+>   		.bus_prot_mask = (_mask),			\
+>   		.bus_prot_set = _set,				\
+>   		.bus_prot_clr = _clr,				\
+>   		.bus_prot_sta = _sta,				\
+> -		.bus_prot_reg_update = _update,			\
+> -		.ignore_clr_ack = _ignore,			\
+> +		.flags = _flags					\
+>   	}
+>   
+>   #define BUS_PROT_WR(_mask, _set, _clr, _sta)			\
+> -		_BUS_PROT(_mask, _set, _clr, _sta, false, false)
+> +		_BUS_PROT(_mask, _set, _clr, _sta, 0)
+>   
+>   #define BUS_PROT_WR_IGN(_mask, _set, _clr, _sta)		\
+> -		_BUS_PROT(_mask, _set, _clr, _sta, false, true)
+> +		_BUS_PROT(_mask, _set, _clr, _sta, BUS_PROT_IGNORE_CLR_ACK)
+>   
+>   #define BUS_PROT_UPDATE(_mask, _set, _clr, _sta)		\
+> -		_BUS_PROT(_mask, _set, _clr, _sta, true, false)
+> +		_BUS_PROT(_mask, _set, _clr, _sta, BUS_PROT_REG_UPDATE)
+>   
+>   #define BUS_PROT_UPDATE_TOPAXI(_mask)				\
+>   		BUS_PROT_UPDATE(_mask,				\
+> @@ -71,8 +75,7 @@ struct scpsys_bus_prot_data {
+>   	u32 bus_prot_set;
+>   	u32 bus_prot_clr;
+>   	u32 bus_prot_sta;
+> -	bool bus_prot_reg_update;
+> -	bool ignore_clr_ack;
+> +	u32 flags;
 
-I get the reason why you're setting inverted as bit 3, but at that point you can
-just set BUS_PROT_COMPONENT_INFRA to bit 4 from the very beginning, instead of
-using bit 3 for that and then changing them all in a subsequent commit (this one).
+As far as I understand, we don't expect more than six bits to be populated as bus
+protection flags, so we can save some memory by changing that to u8...
 
-Cheers,
+...after which:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
+Regards,
 Angelo
-
