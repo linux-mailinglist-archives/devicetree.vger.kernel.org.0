@@ -2,169 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B779736218
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 05:15:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1DEE73631D
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 07:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230144AbjFTDPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 23:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53910 "EHLO
+        id S230373AbjFTFVQ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 20 Jun 2023 01:21:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230185AbjFTDOs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 23:14:48 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20FEE4A
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 20:14:46 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f849605df4so5460576e87.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 20:14:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1687230885; x=1689822885;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=uqyo5lF4AwdBTzGc1HNFwSE64aWc0p6L5cBBmEt7Tpc=;
-        b=i/EUqGMyUXa9aG6pPFn0r02UAFn+MavJrb9ApbyAaak83jn+3pyNYz6C6vhJkpZjGl
-         STArlSqWxB6SCQPvMmZM2ej3jZJt9X8DVNtSnmSdfRBpDYqJal4rpP6m+nEQYDdm3JaT
-         N/yZzr52RjN1EeaHz38psuMSshz1wuHsGW6jCczk7dxhcod3789zhFvqHKGMiMigZ9tJ
-         //XtKOTbeDzYg2SB7kmgfB7rKx+vG7HJFyCEB8852iMc9bZKj6MK6hN7Z9AjzIlzhjS2
-         KgpZkQKOopwysEcRKJRNSDMtqZd1dDW2vaEIcF6IURyh5ja3LbVF87Rbg5GwaT9HR9Bn
-         8kKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687230885; x=1689822885;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uqyo5lF4AwdBTzGc1HNFwSE64aWc0p6L5cBBmEt7Tpc=;
-        b=M00+/bIg7aIr1Zv2BcWty95qBcyI3i86Kz07NggPt327pAhij/6QkeEI8oy+EpvJ2w
-         8CZbpK516P4ZDF8yz1co6Nq6X2+OB2x1kXR5bFtR9UsxKG/tLkjq2vz69lGWchhAbkB0
-         RV2mwrdg3THlemLH7zlCWcd/dk2DnUNT0k0L9TkxdFiI1ST43PmGz6EO6sachtMN86MW
-         hdZNb5e5qOYwX4qLtheVFn+/Oni7oFDBmXcdUl9dIA7YjVED3iBm5uNrlGUgTpwlwL38
-         t1Mo1RB6ZiPOzuv39lvXDwsqz6Tosy+nO93i8NjFkF4I7hotHBDxBpYjcl9cfB5ctYOu
-         uIAw==
-X-Gm-Message-State: AC+VfDyMaYyZP5TyiJex6HwGZtQQrwBMx3SpO2nWAZ/YiOx/cPmRERbL
-        DCv/78CewUB5xh7WeDXlcEEbYR0XnkvwO/VI/EtUEQ==
-X-Google-Smtp-Source: ACHHUZ6vqEjLRW4QLCzyiLQ48x1Nfy69MYGkWlDCTNK0yoj1tcpO2ZxAZS7wqqWmeiELbNh5hu82AcEGOEWj4D1qOzs=
-X-Received: by 2002:a05:6512:554:b0:4f8:66db:8235 with SMTP id
- h20-20020a056512055400b004f866db8235mr3417503lfl.39.1687230884819; Mon, 19
- Jun 2023 20:14:44 -0700 (PDT)
+        with ESMTP id S230367AbjFTFVP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 01:21:15 -0400
+X-Greylist: delayed 21193 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 19 Jun 2023 22:21:14 PDT
+Received: from vps45872.dreamhostps.com (vps45872.dreamhostps.com [208.113.189.109])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E527A1A8
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 22:21:14 -0700 (PDT)
+Received: from [23.105.178.143] (localhost [127.0.0.1])
+        by vps45872.dreamhostps.com (Postfix) with ESMTP id 4QkrMh0dkTz9kt6
+        for <devicetree@vger.kernel.org>; Sun, 18 Jun 2023 17:33:04 -0700 (PDT)
+Reply-To: aamer@zararahtansporting.com
+From:   "Procurement Admin" <achandon@entrec.com>
+To:     devicetree@vger.kernel.org
+Subject: Inquiry Regarding General Merchandise
+Date:   18 Jun 2023 20:33:04 -0400
+Message-ID: <20230618203303.1CAF9A46AAF13500@entrec.com>
 MIME-Version: 1.0
-References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-3-eric.lin@sifive.com>
- <20230616-revision-speed-a83dc926b334@wendy>
-In-Reply-To: <20230616-revision-speed-a83dc926b334@wendy>
-From:   Eric Lin <eric.lin@sifive.com>
-Date:   Tue, 20 Jun 2023 11:14:32 +0800
-Message-ID: <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
-Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     conor@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
-        chenhuacai@kernel.org, baolu.lu@linux.intel.com, will@kernel.org,
-        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
-        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
-        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dslin1010@gmail.com, Greentime Hu <greentime.hu@sifive.com>,
-        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=3.5 required=5.0 tests=BAYES_50,DATE_IN_PAST_24_48,
+        RCVD_IN_BL_SPAMCOP_NET,RCVD_IN_MSPIKE_BL,RCVD_IN_MSPIKE_L4,SPF_FAIL,
+        SPF_HELO_PASS,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 6:13=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
-> > From: Greentime Hu <greentime.hu@sifive.com>
-> >
-> > This adds SiFive private L2 cache PMU driver. User
-> > can use perf tool to profile by event name and event id.
-> >
-> > Example:
-> > $ perf stat -C 0 -e /sifive_pl2_pmu/inner_acquire_block_btot/
-> >                 -e /sifive_pl2_pmu/inner_acquire_block_ntob/
-> >                 -e /sifive_pl2_pmu/inner_acquire_block_ntot/ ls
-> >
-> >  Performance counter stats for 'CPU(s) 0':
-> >
-> >                300      sifive_pl2_pmu/inner_acquire_block_btot/
-> >              17801      sifive_pl2_pmu/inner_acquire_block_ntob/
-> >               5253      sifive_pl2_pmu/inner_acquire_block_ntot/
-> >
-> >        0.088917326 seconds time elapsed
-> >
-> > $ perf stat -C 0 -e /sifive_pl2_pmu/event=3D0x10001/
-> >                 -e /sifive_pl2_pmu/event=3D0x4001/
-> >                 -e /sifive_pl2_pmu/event=3D0x8001/ ls
-> >
-> >  Performance counter stats for 'CPU(s) 0':
-> >
-> >                251      sifive_pl2_pmu/event=3D0x10001/
-> >               2620      sifive_pl2_pmu/event=3D0x4001/
-> >                644      sifive_pl2_pmu/event=3D0x8001/
-> >
-> >        0.092827110 seconds time elapsed
-> >
-> > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
-> > Signed-off-by: Eric Lin <eric.lin@sifive.com>
-> > Reviewed-by: Zong Li <zong.li@sifive.com>
-> > Reviewed-by: Nick Hu <nick.hu@sifive.com>
-> > ---
-> >  drivers/soc/sifive/Kconfig            |   9 +
-> >  drivers/soc/sifive/Makefile           |   1 +
-> >  drivers/soc/sifive/sifive_pl2.h       |  20 +
-> >  drivers/soc/sifive/sifive_pl2_cache.c |  16 +
-> >  drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++++++++
->
-> Perf drivers should be in drivers/perf, no?
->
+Dear Supplier,
 
-Hi Conor,
+I hope this email finds you well. I am writing to inquire about 
+the general merchandise available at your company. I recently 
+came across your business and I am interested in learning more 
+about the range of products you offer.
 
-Yes, I see most of the drivers are in the drivers/perf.
+Could you please provide me with information regarding the types 
+of general merchandise you carry and any unique features or 
+specialties that set your products apart? Additionally, I would 
+appreciate if you could share details about pricing, minimum 
+order quantities, and shipping options.
 
-But I grep perf_pmu_register(), it seems not all the pmu drivers are
-in drivers/perf as below:
-
-arch/arm/mach-imx/mmdc.c:517:   ret =3D
-perf_pmu_register(&(pmu_mmdc->pmu), name, -1);
-arch/arm/mm/cache-l2x0-pmu.c:552:       ret =3D
-perf_pmu_register(l2x0_pmu, l2x0_name, -1);
-...
-drivers/dma/idxd/perfmon.c:627: rc =3D perf_pmu_register(&idxd_pmu->pmu,
-idxd_pmu->name, -1);
-drivers/fpga/dfl-fme-perf.c:904:static int
-fme_perf_pmu_register(struct platform_device *pdev,
-drivers/fpga/dfl-fme-perf.c:929:        ret =3D perf_pmu_register(pmu, name=
-, -1);
-...
-drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:549:    ret =3D
-perf_pmu_register(&pmu_entry->pmu, pmu_name, -1);
-drivers/gpu/drm/i915/i915_pmu.c:1190:   ret =3D
-perf_pmu_register(&pmu->base, pmu->name, -1);
-drivers/hwtracing/coresight/coresight-etm-perf.c:907:   ret =3D
-perf_pmu_register(&etm_pmu, CORESIGHT_ETM_PMU_NAME, -1);
-drivers/hwtracing/ptt/hisi_ptt.c:895:   ret =3D
-perf_pmu_register(&hisi_ptt->hisi_ptt_pmu, pmu_name, -1);
-drivers/iommu/intel/perfmon.c:570:      return
-perf_pmu_register(&iommu_pmu->pmu, iommu_pmu->pmu.name, -1);
-drivers/nvdimm/nd_perf.c:309:   rc =3D perf_pmu_register(&nd_pmu->pmu,
-nd_pmu->pmu.name, -1);
-...
-
-I just wondering what kind of pmu drivers should be in drivers/perf
-and what kind of pmu drivers should not be in drivers/perf.
-Thanks.
-
+Thank you for your attention to this inquiry. I look forward to 
+hearing from you soon.
 
 Best regards,
-Eric Lin
 
-> Cheers,
-> Conor.
+Procurement Department
+Zararah Transporting L.L.C.
++971521054496
