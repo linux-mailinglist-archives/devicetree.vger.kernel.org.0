@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83B70734FBB
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:24:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C23E734FCE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231361AbjFSJY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 05:24:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50242 "EHLO
+        id S231426AbjFSJY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231376AbjFSJYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:24:22 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAB0D134
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:24:20 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-311153ec442so2298295f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:24:20 -0700 (PDT)
+        with ESMTP id S231387AbjFSJYX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:24:23 -0400
+Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19ACB124
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:24:22 -0700 (PDT)
+Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f90a7325f6so18490115e9.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:24:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1687166659; x=1689758659;
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1687166660; x=1689758660;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=r1Ok1IYka1vb/vM8tvKH2bExKZHEfvi4JId7lcZB7pk=;
-        b=kyHT8TL+2GSjjQREnvB3sDGmITerXPnmzkNogrnyC+QjJOC6XyLg2cdclezHjWaXPH
-         zfGTSZePqXBZcCL5FKoRCWQsiHOxWONCURN9XFcfwFtqHLxK0VGUv47VJ/iKqP8ivnUT
-         +0qyHmkDi8Ja6fQ+JssQeGdFGfISfMn2BCpDgdTrg6ogiAmIqnVsSn4odIrAeGc7XsIE
-         UXGFFyF43iaDeIM/9rgTPFr5eN9CQwYmiTll65ySroOyumfs++eBFi/EYb5rTIQ+Napk
-         IvKkDERUvy0JAY9sWgZUu3b1zF/YjGTGMOb6738nk6iU0q6Tj49q7Wz5E89jPFwxkD/Y
-         5RYQ==
+        bh=uMgaAHe76eIn3F9IB6JgFSErZkAha9wqjAecsB/W5Vk=;
+        b=k6hUzsBdbW852NGN1tgRKfvV8+nCAhx6DYEPsgRjsWlZ0BTtUlFExnS/x1vqW5n848
+         D4J1nktobWGcUq4l0hluW577VVrCeg+Py9HYgt4695ySSnSmkrlNnPc9RmtNwK1stwQY
+         Jsx7XXRnhk6C5mQ9jTw5RboNB4higsW7c0F1HuaeZPTCaTdjtY3R4V+K7+KysIzkdj27
+         0XuGEv7CgJ21CbJ9AhNl9A49Los6afD9v2IgckI0lgFJ5E1+v0rzd1bwrf/aPs16VOrY
+         475v0VPp49d8KiURbla6ANCC2JIWJ7/gVEUG2XUk3sOD9fLBi9Si5IQtVkkJbLAR1T0L
+         l8Lw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687166659; x=1689758659;
+        d=1e100.net; s=20221208; t=1687166660; x=1689758660;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=r1Ok1IYka1vb/vM8tvKH2bExKZHEfvi4JId7lcZB7pk=;
-        b=CIXiSVx6nYc/XdSTSVOQMFrWqaJ/4AQv+MYX+IsLgZFPcmzueJPpV8uFjGCaYwuSjo
-         l6hx0Eou4rrIObNO/B3sKfmfGOYqQAPRM1LV9mu7TmSwzy15KmJworgYrOZLYbU0Fvan
-         Ef/XjGoqzmw7WHB5bOcgKuootZrHKtY3LdY5DJm7bKoODBR7st1hEBcIltTKM+U4S3jy
-         nC3VkGncrkkFoYTavHNNNHACpbNi7cLFt0XHqRkstNF68d/N9mfBfrT7tMIAzxwV4v69
-         kyJs9vq1lyoDQ6DuWr77ArSjESxlPW4VFJRbrzD+f2CNac6TV/i3qb3AZ5UEUmk91qCN
-         FEgw==
-X-Gm-Message-State: AC+VfDyT/NJ8NOyuGkDTYnYm3DchdCor+pcMCDdH1ivZnRwkjkIPxcoD
-        ENqxTTZQidbVjj8FvgVsKJ96xw==
-X-Google-Smtp-Source: ACHHUZ4CVUlTIzAxN+LAPNfnxBCniWd6XVG9x7Oys2PrG/4EHzRom2BdwYzcTsWwhaF6q/GoKdWTkA==
-X-Received: by 2002:adf:ce84:0:b0:30e:5bf2:ef1b with SMTP id r4-20020adfce84000000b0030e5bf2ef1bmr12363169wrn.25.1687166659271;
-        Mon, 19 Jun 2023 02:24:19 -0700 (PDT)
+        bh=uMgaAHe76eIn3F9IB6JgFSErZkAha9wqjAecsB/W5Vk=;
+        b=B9YyBv2tNhPWFDQbTgz67Uc+dRAxpv4M/m13+6MlP/l5dPprteWChAmtlykQjzDGho
+         KyMZ2HveF2qKCiQevFbu/YnwtS5VdkgbXMy+jQZGa58scREjr5PWZcF7+6r6OyqFQ3/Z
+         8YlxiCEh3b6gPnjSgapXyCddlifcWjWvuk6c0tZa98rM0hhXC+l5ik0hxz5a8eKa8tJZ
+         xAhbt58QQIu3Xhg/IUIx5ey0CoXRzqDLJNMvwc1IAhEVA9PJS4GF8qVElgQsej0HIZFc
+         p8B2Beq/OibMI0IEoHUhmU1xE+O1xcvddFvDUjRAZiGuSWU++kovT/aVmK3vNM3cRFBA
+         ctHg==
+X-Gm-Message-State: AC+VfDypm4IHtbI5+9cQaitj4f2H5fmIO33l1Qnsdh1Q0xq82WBXxj8z
+        55VZR53wMQMprpENmSuC4vbfwA==
+X-Google-Smtp-Source: ACHHUZ6Nn/68uiujSBlIeSENzRMSR5Q+y8Y7jbVXv2vkfmhUq7+1i9cbhugLNdmWErDKVc9aUsPEZw==
+X-Received: by 2002:a7b:cb56:0:b0:3f7:e48b:974d with SMTP id v22-20020a7bcb56000000b003f7e48b974dmr10384783wmj.27.1687166660443;
+        Mon, 19 Jun 2023 02:24:20 -0700 (PDT)
 Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d9e8:ddbf:7391:a0b0])
-        by smtp.gmail.com with ESMTPSA id q9-20020a7bce89000000b003f7cb42fa20sm10045229wmj.42.2023.06.19.02.24.18
+        by smtp.gmail.com with ESMTPSA id q9-20020a7bce89000000b003f7cb42fa20sm10045229wmj.42.2023.06.19.02.24.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jun 2023 02:24:18 -0700 (PDT)
+        Mon, 19 Jun 2023 02:24:20 -0700 (PDT)
 From:   Bartosz Golaszewski <brgl@bgdev.pl>
 To:     Vinod Koul <vkoul@kernel.org>,
         Bhupesh Sharma <bhupesh.sharma@linaro.org>,
@@ -72,9 +72,9 @@ Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org,
         Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [RESEND PATCH v2 06/14] net: stmmac: dwmac-qcom-ethqos: add a newline between headers
-Date:   Mon, 19 Jun 2023 11:23:54 +0200
-Message-Id: <20230619092402.195578-7-brgl@bgdev.pl>
+Subject: [RESEND PATCH v2 07/14] net: stmmac: dwmac-qcom-ethqos: remove stray space
+Date:   Mon, 19 Jun 2023 11:23:55 +0200
+Message-Id: <20230619092402.195578-8-brgl@bgdev.pl>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230619092402.195578-1-brgl@bgdev.pl>
 References: <20230619092402.195578-1-brgl@bgdev.pl>
@@ -92,27 +92,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Typically we use a newline between global and local headers so add it
-here as well.
+There's an unnecessary space in the rgmii_updatel() function, remove it.
 
 Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 ---
- drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-index b66d64d138cb..e3a9b785334d 100644
+index e3a9b785334d..ec3bbd199501 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-qcom-ethqos.c
-@@ -7,6 +7,7 @@
- #include <linux/platform_device.h>
- #include <linux/phy.h>
- #include <linux/property.h>
-+
- #include "stmmac.h"
- #include "stmmac_platform.h"
+@@ -117,7 +117,7 @@ static void rgmii_updatel(struct qcom_ethqos *ethqos,
+ {
+ 	unsigned int temp;
  
+-	temp =  rgmii_readl(ethqos, offset);
++	temp = rgmii_readl(ethqos, offset);
+ 	temp = (temp & ~(mask)) | val;
+ 	rgmii_writel(ethqos, temp, offset);
+ }
 -- 
 2.39.2
 
