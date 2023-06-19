@@ -2,145 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEAA0734C44
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:19:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F21DC734C59
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 09:27:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229478AbjFSHTQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 03:19:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59330 "EHLO
+        id S229506AbjFSH1a convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 19 Jun 2023 03:27:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229471AbjFSHTP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:19:15 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6D6CE4
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 00:19:13 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687159152;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=k1veaGQ2wOdpEaAy0NCuYfkXutrbxrLHWI4Iiw5PKCg=;
-        b=nW4j5Mnd/ro6eB9V51g+7y+suGmrcIdQbF8ApvvKPRYCKs4aFfRYQ/4kZMbaJmFT94vnKh
-        b9auw/VPpGZ+2zD5IIxGC5Ak77WS/6/7Ejm+KnzCMgCKkmiwQCwAHFX6wr1O+stPNmtMaC
-        U2vRZZkEbwioM5BX/zdPYiJpDpoTr3U5ePkiM+vJYdblEFfG/aw2/SsHO8oNqiIPT8qtAJ
-        zMQk03U6jkaZLBMlkRErsvN8Ak9eMY1qSMTNbGSwcq4bfkVHgKr4MDdpjZ7f1isPl6j7AA
-        UQ/iXSYfioSCzi/bgiweeP/a37mN3kmnX0/sFYQwktp128iy5lvdB/v5jwnbEg==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 0EBEE1BF20F;
-        Mon, 19 Jun 2023 07:19:09 +0000 (UTC)
-Date:   Mon, 19 Jun 2023 09:19:09 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Subject: Re: [PATCH v2 05/17] dt-bindings: mtd: qcom: Fix a property
- position
-Message-ID: <20230619091909.179a29ec@xps-13>
-In-Reply-To: <3f4f4beb-4136-312a-be0b-5ec018b4329d@linaro.org>
-References: <20230606175246.190465-1-miquel.raynal@bootlin.com>
-        <20230606175246.190465-6-miquel.raynal@bootlin.com>
-        <3f4f4beb-4136-312a-be0b-5ec018b4329d@linaro.org>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S229482AbjFSH10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 03:27:26 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 253E6121;
+        Mon, 19 Jun 2023 00:27:22 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 378B88138;
+        Mon, 19 Jun 2023 15:27:14 +0800 (CST)
+Received: from EXMBX073.cuchost.com (172.16.6.83) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 19 Jun
+ 2023 15:27:14 +0800
+Received: from [192.168.1.218] (180.164.60.184) by EXMBX073.cuchost.com
+ (172.16.6.83) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 19 Jun
+ 2023 15:27:13 +0800
+Message-ID: <73ded260-3967-7547-9317-f4cbe5bcbb1c@starfivetech.com>
+Date:   Mon, 19 Jun 2023 15:27:13 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v6 3/6] media: starfive: Add basic driver
+Content-Language: en-US
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Robert Foss <rfoss@kernel.org>,
+        Todor Tomov <todor.too@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Eugen Hristev <eugen.hristev@collabora.com>,
+        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
+CC:     <linux-media@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <changhuang.liang@starfivetech.com>
+References: <20230525083202.67933-1-jack.zhu@starfivetech.com>
+ <20230525083202.67933-4-jack.zhu@starfivetech.com>
+ <fa665e61-f36a-5f65-4837-8d7c8c6a052e@linaro.org>
+From:   Jack Zhu <jack.zhu@starfivetech.com>
+In-Reply-To: <fa665e61-f36a-5f65-4837-8d7c8c6a052e@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Originating-IP: [180.164.60.184]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX073.cuchost.com
+ (172.16.6.83)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi Bryan,
 
-krzysztof.kozlowski@linaro.org wrote on Mon, 19 Jun 2023 08:54:13 +0200:
+Thank you for your comments.
 
-> On 06/06/2023 19:52, Miquel Raynal wrote:
-> > qcom,boot-partitions is a NAND chip property, not a NAND controller
-> > property. Move the description of the property into the NAND chip
-> > section and just enable the property in the if/else block.
-> >=20
-> > Fixes: 5278cc93a97f ("dt-bindings: mtd: qcom_nandc: document qcom,boot-=
-partitions binding")
-> > Cc: Manivannan Sadhasivam <mani@kernel.org>
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  .../devicetree/bindings/mtd/qcom,nandc.yaml   | 41 +++++++++++--------
-> >  1 file changed, 25 insertions(+), 16 deletions(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml b/Do=
-cumentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > index 07024ee45951..7217d8a64d14 100644
-> > --- a/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > +++ b/Documentation/devicetree/bindings/mtd/qcom,nandc.yaml
-> > @@ -45,6 +45,22 @@ patternProperties:
-> >          enum:
-> >            - 512
-> > =20
-> > +      qcom,boot-partitions:
-> > +        $ref: /schemas/types.yaml#/definitions/uint32-matrix
-> > +        items:
-> > +          items:
-> > +            - description: offset
-> > +            - description: size
-> > +        description:
-> > +          Boot partition use a different layout where the 4 bytes of s=
-pare
-> > +          data are not protected by ECC. Use this to declare these spe=
-cial
-> > +          partitions by defining first the offset and then the size.
-> > +
-> > +          It's in the form of <offset1 size1 offset2 size2 offset3 ...>
-> > +          and should be declared in ascending order.
-> > +
-> > +          Refer to the ipq8064 example on how to use this special bind=
-ing.
-> > +
-> >  allOf:
-> >    - $ref: "nand-controller.yaml#" =20
->=20
-> Also based on some old tree.
+On 2023/6/16 21:13, Bryan O'Donoghue wrote:
+> On 25/05/2023 09:31, Jack Zhu wrote:
+>> Add basic platform driver for StarFive Camera Subsystem.
+>>
+>> Reviewed-by: Bryan O'Donoghue <c.odonoghue@linaro.org>
+>> Signed-off-by: Jack Zhu <jack.zhu@starfivetech.com>
+> 
+> One thing here is the patch title and hence commit message.
+> 
+> "media: starfive:" doesn't really tell you this is a camera versus say a encoder/decoder.
+> 
+> I see you've used the name "camss" for your driver, which I think is a perfectly good and logical choice - however if you started to make commits along the lines of "media: camss" that would conflict with the qcom camss.
+> 
+> How about for starfive and qcom by the way, we do what Laurent did in
+> 
+> commit 3e8537b4c15172bfe1b285c3155ed5c37d523cd3
+> Author: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Date:   Wed Dec 21 10:33:39 2022 +0100
+> 
+>     media: ti: omap3isp: Use media_pipeline_for_each_entity()
+> 
+> i.e. future StarFive commits for camera would be "media: starfive: camss" and similarly for Qualcomm "media: qualcomm: camss"
+> 
+> The point being the commit title namespace should be instructive and specific re: 3e8537b4c15172bfe1b285c3155ed5c37d523cd3
+> 
 
-I do have=20
+Okay， I will add a camss directory under the starfive directory and modify the patch title.
 
-1f79a611e74c ("dt-bindings: mtd: Drop unneeded quotes")
+> ---
+> bod
 
-in my log, so I don't understand the quotes. When I re-generate the
-patches, they no longer appear. I must have done something silly at
-some point without noticing. My apologies. I'll "try" again.
+-- 
+Regards,
 
-> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->=20
-> Best regards,
-> Krzysztof
->=20
-
-
-Thanks,
-Miqu=C3=A8l
+Jack Zhu
