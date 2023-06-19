@@ -2,187 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A900734F8C
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEEA7734F90
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:22:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230514AbjFSJW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 05:22:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48632 "EHLO
+        id S231271AbjFSJWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:22:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48866 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230507AbjFSJW2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:22:28 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 572A783;
-        Mon, 19 Jun 2023 02:22:23 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 496AA6606E98;
-        Mon, 19 Jun 2023 10:22:21 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1687166541;
-        bh=zLjRj3WSaKuGlgYqMVIfTgOq1QN75uhZ6wvkJa/Q7Qs=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=ZJOMen5BsHbC1Ttsc7jEs0Hcu1i6qj94S7y7pJ6V/tj/7koAow+7kEuCE9xnuIEvq
-         frMhvKMaAfm7Kyew0p0Ghl9uSsmn39uVyOPMzs2znWeD4l8brOIz4OU3Y4oJzerrF/
-         GX1BfXBcTuhn49WHCVuprl095Uw0rsoa7HwkTeBlEHjNmAFFYMWTIGI81vsoknrkXo
-         46S6B/19DFTecx09ZIDraL3G1Oc8xkG5lSunSw/+/f1B8j2Ub8ZFa+zVCgAhktDEY4
-         clwIWzODessFWR8689aBf1wExPsiFf89HBi2Bjab3Pgl6vvyuoP5SHQof3uNIb1PBU
-         1Xal7SVVMpy5g==
-Message-ID: <b53d201d-6906-12f4-2f72-506fb742c585@collabora.com>
-Date:   Mon, 19 Jun 2023 11:22:18 +0200
+        with ESMTP id S231293AbjFSJWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:22:44 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58BDA128
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:22:41 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-988e6fc41ccso29380566b.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:22:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687166560; x=1689758560;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MdC/fMIPx6UA3s+DVlDK7Rnv9jD9kePiwHfMZxA0SPk=;
+        b=f9ppezhmE9Pi/JXsCnVn+ji6HUVnzvck23GDW+NClY3hv86VkJfOdTZliBovaYc+bg
+         lve8A18TaQV2VvAI+G8Gyu0QB115aWyNstmw4TP4XDnGQ7M38xh7ON3SAppxwWcsOtgT
+         uX9yl54AQo5bvwM/N9UWauhMZw1elnZl0SDIYvcVry2rQJ/ZBHU1QzAX1HeYmRSNqA9R
+         OOjxigEVjutT7R8xmF0nbtAr5KyVarT5G80r+2ctkrXmjONKzpvYqUlvEcJJXD1zXImS
+         KCZ0k8pPDGYizsw3id7mWJLQxn/GSMYKr/W4stNsG6zMxiayuRHeXrCB2ofMFZZcXBGx
+         ceZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687166560; x=1689758560;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MdC/fMIPx6UA3s+DVlDK7Rnv9jD9kePiwHfMZxA0SPk=;
+        b=UG5icp6CJ2dZ3pMTmT0KO8haQrGyKyJyiifd2GLZoeLKnyoJzuSpxeb0iReseQQIPy
+         HXez/HkTApmEhXKlm5Ac2RnPwSCzaOmdU65NsLtKo68r03ve6wZO1V2jkHFpcuHKx8p+
+         HPO0xz2eW6WdkJYbfEonpAn5/Oat1R1NidTvhNXy3Y6EoJgmDhuaA+sAWh4dQbp6i6B6
+         mXJhFnG2waZ0PPXN6ONWpXA2gg0gIUtnNbkpFDl3wp/RW2+BJxhPhihOfa1fxfWkeJdm
+         ePbkmVu8Xj5S8IN54nu0HoPVPhygTQ54QFJbOGpuCI8L6ML0Y+kqgCW6Ql8SXAbi9bK7
+         Q6sw==
+X-Gm-Message-State: AC+VfDx38n+JiBNlbhjx1QADYwF6lyNSs7ccu4PRf5PtcxcjUK2w0TOB
+        vN9AjsiUY+ZaczMXKtOK5swFSA==
+X-Google-Smtp-Source: ACHHUZ5oYBZDGcwLs5tXjzLOJ8wzi3FM5x+RriKV/eKNwxSYs11Uf3t1Fpw/w2jGBQykH6hGXQ5lgQ==
+X-Received: by 2002:a17:906:974a:b0:94e:1764:b09b with SMTP id o10-20020a170906974a00b0094e1764b09bmr7786108ejy.45.1687166559810;
+        Mon, 19 Jun 2023 02:22:39 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id bg23-20020a170906a05700b0094e7d196aa4sm14309382ejb.160.2023.06.19.02.22.37
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jun 2023 02:22:39 -0700 (PDT)
+Message-ID: <c664a9c8-fe32-1c1b-cfe6-22dee4b7b803@linaro.org>
+Date:   Mon, 19 Jun 2023 11:22:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v5 5/8] soc: mediatek: pm-domains: Unify configuration for
- infracfg and smi
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+Subject: Re: [PATCH 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS
+ TLMM
+Content-Language: en-US
+To:     neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230619085344.2885311-1-msp@baylibre.com>
- <20230619085344.2885311-6-msp@baylibre.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230619085344.2885311-6-msp@baylibre.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230616185742.2250452-1-krzysztof.kozlowski@linaro.org>
+ <20230616185742.2250452-2-krzysztof.kozlowski@linaro.org>
+ <613aa197-62c7-5a4d-2495-b77d9fc902d8@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <613aa197-62c7-5a4d-2495-b77d9fc902d8@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 19/06/23 10:53, Markus Schneider-Pargmann ha scritto:
-> Use flags to distinguish between infracfg and smi subsystem for a bus
-> protection configuration. It simplifies enabling/disabling and prepares
-> the driver for the use of another regmap for mt8365.
+On 19/06/2023 10:55, Neil Armstrong wrote:
+> On 16/06/2023 20:57, Krzysztof Kozlowski wrote:
+>> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
+>> driver is similar to SM8450 LPASS pin controller, with difference in one
+>> new pin (gpio14).
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   drivers/pinctrl/qcom/Kconfig                  |  10 ++
+>>   drivers/pinctrl/qcom/Makefile                 |   1 +
+>>   .../pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c   | 167 ++++++++++++++++++
+>>   3 files changed, 178 insertions(+)
+>>   create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c
+>>
+>> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
+>> index 634c75336983..9c43bc05c447 100644
+>> --- a/drivers/pinctrl/qcom/Kconfig
+>> +++ b/drivers/pinctrl/qcom/Kconfig
+>> @@ -77,6 +77,16 @@ config PINCTRL_SM8250_LPASS_LPI
+>>   	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
+>>   	  (Low Power Island) found on the Qualcomm Technologies Inc SM8250 platform.
+>>   
+>> +config PINCTRL_SM3550_LPASS_LPI
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> ---
->   drivers/soc/mediatek/mt6795-pm-domains.h |  16 +-
->   drivers/soc/mediatek/mt8167-pm-domains.h |  20 +-
->   drivers/soc/mediatek/mt8173-pm-domains.h |  16 +-
->   drivers/soc/mediatek/mt8183-pm-domains.h | 198 ++++-----
->   drivers/soc/mediatek/mt8186-pm-domains.h | 212 +++++-----
->   drivers/soc/mediatek/mt8188-pm-domains.h | 518 +++++++++++------------
->   drivers/soc/mediatek/mt8192-pm-domains.h | 262 ++++++------
->   drivers/soc/mediatek/mt8195-pm-domains.h | 464 ++++++++++----------
->   drivers/soc/mediatek/mtk-pm-domains.c    |  64 ++-
->   drivers/soc/mediatek/mtk-pm-domains.h    |  37 +-
->   10 files changed, 908 insertions(+), 899 deletions(-)
-> 
+> s/PINCTRL_SM3550_LPASS_LPI/PINCTRL_SM8350_LPASS_LPI/g
 
-..snip..
+Indeed, thanks.
 
-> diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-> index 4b6ae56e7c95..356788263db2 100644
-> --- a/drivers/soc/mediatek/mtk-pm-domains.h
-> +++ b/drivers/soc/mediatek/mtk-pm-domains.h
-> @@ -45,6 +45,8 @@
->   enum scpsys_bus_prot_flags {
->   	BUS_PROT_REG_UPDATE = BIT(1),
->   	BUS_PROT_IGNORE_CLR_ACK = BIT(2),
-> +	BUS_PROT_COMPONENT_INFRA = BIT(3),
-> +	BUS_PROT_COMPONENT_SMI = BIT(4),
->   };
->   
->   #define _BUS_PROT(_set_clr_mask, _set, _clr, _sta_mask, _sta, _flags) {	\
-> @@ -56,17 +58,30 @@ enum scpsys_bus_prot_flags {
->   		.flags = _flags					\
->   	}
->   
-> -#define BUS_PROT_WR(_mask, _set, _clr, _sta)			\
-> -		_BUS_PROT(_mask, _set, _clr, _mask, _sta, 0)
-> +#define BUS_PROT_INFRA_WR(_mask, _set, _clr, _sta) \
-> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_COMPONENT_INFRA)
->   
-
-What about doing that like
-
-#define BUS_PROT_WR(_hwip, _mask, _set, _clr, _sta)
-	_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_COMPONENT_##_hwip)
-
-...so that instead of defining BUS_PROT_INFRA_WR, BUS_PROT_SMI_WR and
-BUS_PROT_ANOTHERIP_WR, we keep just one macro?
-
-That'd be then like:
-
-	.bp_cfg = {
-		BUS_PROT_WR(INFRA, MT8183_TOP_AXI_PROT_EN_1_DISP,
-			    MT8183_TOP_AXI_PROT_EN_....
-			    ....),
-		BUS_PROT_WR(SMI, MT8183_SMI_COMMON_SMI_CLAMP_DISP,
-			    .....),
-	}
-
-IMO, that's cleaner, less lines of code and more flexible for eventual
-future new variations of that.
-
-Cheers,
-Angelo
-
-> -#define BUS_PROT_WR_IGN(_mask, _set, _clr, _sta)		\
-> -		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_IGNORE_CLR_ACK)
-> +#define BUS_PROT_INFRA_WR_IGN(_mask, _set, _clr, _sta) \
-> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
-> +			  BUS_PROT_COMPONENT_INFRA | BUS_PROT_IGNORE_CLR_ACK)
->   
-> -#define BUS_PROT_UPDATE(_mask, _set, _clr, _sta)		\
-> -		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_REG_UPDATE)
-> +#define BUS_PROT_INFRA_UPDATE(_mask, _set, _clr, _sta) \
-> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
-> +			  BUS_PROT_COMPONENT_INFRA | BUS_PROT_REG_UPDATE)
->   
-> -#define BUS_PROT_UPDATE_TOPAXI(_mask)				\
-> -		BUS_PROT_UPDATE(_mask,				\
-> +#define BUS_PROT_SMI_WR(_mask, _set, _clr, _sta) \
-> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_COMPONENT_SMI)
-> +
-> +#define BUS_PROT_SMI_WR_IGN(_mask, _set, _clr, _sta) \
-> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
-> +			  BUS_PROT_COMPONENT_SMI | BUS_PROT_IGNORE_CLR_ACK)
-> +
-> +#define BUS_PROT_SMI_UPDATE(_mask, _set, _clr, _sta) \
-> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
-> +			  BUS_PROT_COMPONENT_SMI | BUS_PROT_REG_UPDATE)
-> +
-> +#define BUS_PROT_INFRA_UPDATE_TOPAXI(_mask)				\
-> +		BUS_PROT_INFRA_UPDATE(_mask,				\
->   				INFRA_TOPAXI_PROTECTEN,		\
->   				INFRA_TOPAXI_PROTECTEN,		\
->   				INFRA_TOPAXI_PROTECTSTA1)
-> @@ -90,8 +105,7 @@ struct scpsys_bus_prot_data {
->    * @ext_buck_iso_offs: The offset for external buck isolation
->    * @ext_buck_iso_mask: The mask for external buck isolation
->    * @caps: The flag for active wake-up action.
-> - * @bp_infracfg: bus protection for infracfg subsystem
-> - * @bp_smi: bus protection for smi subsystem
-> + * @bp_cfg: bus protection configuration for any subsystem
->    */
->   struct scpsys_domain_data {
->   	const char *name;
-> @@ -102,8 +116,7 @@ struct scpsys_domain_data {
->   	int ext_buck_iso_offs;
->   	u32 ext_buck_iso_mask;
->   	u8 caps;
-> -	const struct scpsys_bus_prot_data bp_infracfg[SPM_MAX_BUS_PROT_DATA];
-> -	const struct scpsys_bus_prot_data bp_smi[SPM_MAX_BUS_PROT_DATA];
-> +	const struct scpsys_bus_prot_data bp_cfg[SPM_MAX_BUS_PROT_DATA];
->   	int pwr_sta_offs;
->   	int pwr_sta2nd_offs;
->   };
+Best regards,
+Krzysztof
 
