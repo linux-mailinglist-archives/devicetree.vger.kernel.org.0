@@ -2,158 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D586A735693
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 14:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E011C735699
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 14:22:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230417AbjFSMUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 08:20:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44022 "EHLO
+        id S230006AbjFSMW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 08:22:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44792 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229788AbjFSMUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 08:20:17 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82BF3E70
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 05:20:15 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9887ebe16d0so190421966b.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 05:20:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687177214; x=1689769214;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=r8IkgjCbYZ6ybcsI1GkHhRXG+M118R7BE1wtTAsnJr8=;
-        b=ClBnqG9Gjo9yzp03JC2sB9Tl5OykGEG0MCJfr1gRTiPcMlb2sUa63W1A/h/3FcWLZ6
-         Oy+I69ZWHgkwChDAddgOpSJnOFM9+abTF6e1r5FBj+O42kaBoGYG0U0mC7k920HYfGIF
-         FAQh/w9ifmvIm7waigd8Lj1Y4DeFo1UeUkH8y2Lgf0RZYTSMy9fabS9jneySUICduSAY
-         wMB/lz9ssGuuLUzSwZuB8bSDc+sZMiRDCHVvS3SSpsbJYgUQkDKp5xuBM7QUy0586W4B
-         sy3v8JwtknzXVgYmQgfnckuUpNmuLUpsd+2aCcn03JLheYs9kqu0H6wjdMY2qpPD1A24
-         +J1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687177214; x=1689769214;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=r8IkgjCbYZ6ybcsI1GkHhRXG+M118R7BE1wtTAsnJr8=;
-        b=Z6PL/wVhY5gdnmifLq27fzX0rPko2elP6S40JyNHKrPbhOGHnV5egOn9W87f4SNfHX
-         JgKumRz+NUo+J2hlLVKFrZRgRHxDiHHFL/qh69hdarGVtlIYYHUDHs1PnsmFemQ1vPOq
-         QcpLMNxhGwMrpT0Hcvhd0TSfigh0iO8GoQvrxlzRiQrxuPrtU7nDzyWpcmTRQay2WSBx
-         wfpxWUgUbaSqfykPgQadM6Y52TrLmLCCphm/4fskf/+wLEGpVyaFRC9mLlWg6WhE8E/0
-         Ovs8WlSApV5AbKYuUpeiG+Flc/kf1O5pabmgV3k9Wrvvd7CrI897+qJrmbq7ugxIWJEe
-         4Qgw==
-X-Gm-Message-State: AC+VfDywiiodDxXjRBIYfq8hSzi+P0Kv03qCw9iE/LbwKt5sFltPFfqj
-        dDXflSVgjkx1INEBqln+PAsrag==
-X-Google-Smtp-Source: ACHHUZ47zEpJ6DeZD7uVxLdbu7k9xsdXjPX7y1tBu5kP3TPtRM2Jk60R/mDNGae7578PNVPH21KORg==
-X-Received: by 2002:a17:907:7d86:b0:978:8790:9103 with SMTP id oz6-20020a1709077d8600b0097887909103mr9499787ejc.70.1687177214016;
-        Mon, 19 Jun 2023 05:20:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id c21-20020a170906341500b00985bdb7dd5fsm4805480ejb.201.2023.06.19.05.20.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 05:20:13 -0700 (PDT)
-Message-ID: <7b7694da-8b40-d76a-adca-4cf9aa206ff4@linaro.org>
-Date:   Mon, 19 Jun 2023 14:20:11 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 3/3] riscv: dts: starfive: Add QSPI controller node for
- StarFive JH7110 SoC
-Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229489AbjFSMWY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 08:22:24 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E11D7DB;
+        Mon, 19 Jun 2023 05:22:23 -0700 (PDT)
+Received: from desky.lan (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 73DD9547;
+        Mon, 19 Jun 2023 14:21:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687177308;
+        bh=2FWS4cERZu71iRk319OUTrszXLYNV4laX9KC2uKVblA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=YJgd47V8Ex63HMLXpxv5XRaFTFSI7ZM6f0+3xuNYp67/iosFlQFqjM+3pqaJri76y
+         1fyo3gCPPVJ851SeUkyw8xBTPFpRlA/FJLrOGI+pQGoWXpw1gm9PZP8sCqkU7mZ1oz
+         pxqyFfvYPRdPN8pu1njOja19aYTkzfXGEcXerqr4=
+From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Luca Ceresoli <luca.ceresoli@bootlin.com>,
+        Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>
+Cc:     Wolfram Sang <wsa@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230619083517.415597-1-william.qiu@starfivetech.com>
- <20230619083517.415597-4-william.qiu@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230619083517.415597-4-william.qiu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Peter Rosin <peda@axentia.se>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Mike Pagano <mpagano@gentoo.org>,
+        =?UTF-8?q?Krzysztof=20Ha=C5=82asa?= <khalasa@piap.pl>,
+        Marek Vasut <marex@denx.de>,
+        Satish Nagireddy <satish.nagireddy@getcruise.com>,
+        Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Subject: [PATCH v15 0/8] i2c-atr and FPDLink
+Date:   Mon, 19 Jun 2023 15:22:04 +0300
+Message-Id: <20230619122212.304962-1-tomi.valkeinen@ideasonboard.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 10:35, William Qiu wrote:
-> Add the quad spi controller node for the StarFive JH7110 SoC.
-> 
-> Co-developed-by: Ziv Xu <ziv.xu@starfivetech.com>
-> Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> ---
->  .../jh7110-starfive-visionfive-2.dtsi         | 32 +++++++++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 18 +++++++++++
->  2 files changed, 50 insertions(+)
-> 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index 2a6d81609284..22212c1150f9 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -126,6 +126,38 @@ &i2c6 {
->  	status = "okay";
->  };
->  
-> +&qspi {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	nor_flash: flash@0 {
-> +		compatible = "jedec,spi-nor";
-> +		reg=<0>;
+Hi,
 
-Missing spaces.
+You can find v14 from:
 
-> +		cdns,read-delay = <5>;
-> +		spi-max-frequency = <12000000>;
-> +		cdns,tshsl-ns = <1>;
-> +		cdns,tsd2d-ns = <1>;
-> +		cdns,tchsh-ns = <1>;
-> +		cdns,tslch-ns = <1>;
-> +
-> +		partitions {
-> +			compatible = "fixed-partitions";
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +
-> +			spl@0 {
-> +				reg = <0x0 0x20000>;
-> +			};
-> +			uboot@100000 {
-> +				reg = <0x100000 0x300000>;
-> +			};
-> +			data@f00000 {
-> +				reg = <0xf00000 0x100000>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &sysgpio {
->  	i2c0_pins: i2c0-0 {
->  		i2c-pins {
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index 4c5fdb905da8..0b24f9e66e67 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -440,6 +440,24 @@ i2c6: i2c@12060000 {
->  			status = "disabled";
->  		};
->  
-> +		qspi: spi@13010000 {
-> +			compatible = "starfive,jh7110-qspi", "cdns,qspi-nor";
-> +			reg = <0x0 0x13010000 0x0 0x10000
-> +				0x0 0x21000000 0x0 0x400000>;
+https://lore.kernel.org/all/20230616135922.442979-1-tomi.valkeinen@ideasonboard.com/
 
-This should be two items so <>, <>. Not one item.
+In v15 I have squashed the following fix patches from v14:
 
-Best regards,
-Krzysztof
+  media: i2c: ds90ub960: Fix use of UB960_SR_FWD_CTL1
+  media: i2c: ds90ub9xx: Add COMMON_CLK kconfig dependency
+  media: i2c: ds90ub9xx: Select GPIOLIB rather than OF_GPIO
+
+and I have dropped the rest of the "extra" cleanup / feature patches in
+the series. The aim here is to get the base driver merged. I will
+continue working on the dropped patches and will post them at some point
+later.
+
+ Tomi
+
+Luca Ceresoli (1):
+  i2c: add I2C Address Translator (ATR) support
+
+Tomi Valkeinen (7):
+  dt-bindings: i2c: Add I2C Address Translator (ATR)
+  dt-bindings: media: add TI DS90UB913 FPD-Link III Serializer
+  dt-bindings: media: add TI DS90UB953 FPD-Link III Serializer
+  dt-bindings: media: add TI DS90UB960 FPD-Link III Deserializer
+  media: i2c: add DS90UB960 driver
+  media: i2c: add DS90UB913 driver
+  media: i2c: add DS90UB953 driver
+
+ .../devicetree/bindings/i2c/i2c-atr.yaml      |   34 +
+ .../bindings/media/i2c/ti,ds90ub913.yaml      |  133 +
+ .../bindings/media/i2c/ti,ds90ub953.yaml      |  134 +
+ .../bindings/media/i2c/ti,ds90ub960.yaml      |  427 ++
+ Documentation/i2c/i2c-address-translators.rst |   96 +
+ Documentation/i2c/index.rst                   |    1 +
+ MAINTAINERS                                   |   16 +
+ drivers/i2c/Kconfig                           |    9 +
+ drivers/i2c/Makefile                          |    1 +
+ drivers/i2c/i2c-atr.c                         |  710 +++
+ drivers/media/i2c/Kconfig                     |   47 +
+ drivers/media/i2c/Makefile                    |    3 +
+ drivers/media/i2c/ds90ub913.c                 |  906 ++++
+ drivers/media/i2c/ds90ub953.c                 | 1400 ++++++
+ drivers/media/i2c/ds90ub960.c                 | 4051 +++++++++++++++++
+ include/linux/i2c-atr.h                       |  116 +
+ include/media/i2c/ds90ub9xx.h                 |   22 +
+ 17 files changed, 8106 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-atr.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub913.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub953.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/ti,ds90ub960.yaml
+ create mode 100644 Documentation/i2c/i2c-address-translators.rst
+ create mode 100644 drivers/i2c/i2c-atr.c
+ create mode 100644 drivers/media/i2c/ds90ub913.c
+ create mode 100644 drivers/media/i2c/ds90ub953.c
+ create mode 100644 drivers/media/i2c/ds90ub960.c
+ create mode 100644 include/linux/i2c-atr.h
+ create mode 100644 include/media/i2c/ds90ub9xx.h
+
+-- 
+2.34.1
 
