@@ -2,125 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8B51734D49
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDE26734D52
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:14:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229846AbjFSINW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:13:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55132 "EHLO
+        id S229618AbjFSIO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 04:14:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229881AbjFSINV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:13:21 -0400
-Received: from out5-smtp.messagingengine.com (out5-smtp.messagingengine.com [66.111.4.29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FD87AF;
-        Mon, 19 Jun 2023 01:13:19 -0700 (PDT)
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.47])
-        by mailout.nyi.internal (Postfix) with ESMTP id D5F135C0091;
-        Mon, 19 Jun 2023 04:13:18 -0400 (EDT)
-Received: from imap51 ([10.202.2.101])
-  by compute6.internal (MEProxy); Mon, 19 Jun 2023 04:13:18 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=arndb.de; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm1; t=1687162398; x=1687248798; bh=ac
-        mQm0nuxCyr0NIKr6vJjBR8GRwKxrYohjffNuU8ThI=; b=jSf0Dn1cNRjWCPqBp/
-        tmQZzNRdUPVbsfRpFhe4brf3D6W8oWhX7R/kba0c2bdIfpHuioIPd+GAaTGuQQMS
-        JejO5C+VGa75RTFv/tGXYBNjhMX9zDV6DWD680ak+HG2ufngtLABDMK8bAP3mmGf
-        iKIiJ1bc+wkBe320cg4NLxrfcUc0rA9mHGm3dSaP64B4lzE11awVDRpfrLOD0OvS
-        BLO6jKPG1lDXy1Re+bQbocQBuvmZGIXnzyAH3peknh3DlaI5lhyCUGQHpFwT0cHR
-        QW+/0joER771++ZsU8/NZK8LXDJC5izVBQqCTsMovWTC2t5TqfS3ZkeUtH1EScdb
-        Opqg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1687162398; x=1687248798; bh=acmQm0nuxCyr0
-        NIKr6vJjBR8GRwKxrYohjffNuU8ThI=; b=FFGWsIVeXBmDhzlMRAfZjj3K2eiwR
-        v0Bd6yvnCFsXK7oYvg118CsfDxw27jjWlwL2aRHzHx6S5VYTWiCK1fBRpbzwjp1t
-        681ZuaiQc1d2lkVP/ZOhlMuO2kkOI0SPJIRM9s+gf7idnKhG++vzwbSj5VLANeLH
-        6JR50eJMDDOdwzyIRsF5f7qLFCuBBL1fmWN5w2BzgSeb2u6LJFAF7Ah6A1LFQJ+d
-        INj+Hv143hG8dlqTXlhlJ4p3n5UhXCQ1feV1kWgrgtsYLxSfKL4czVSfCRCmGuDk
-        U2dJinyRCawabNBZBrg5Rqf4ecqcV+g8mlv6U2aNVUmak3wfG0GdLRAHA==
-X-ME-Sender: <xms:HQ6QZHudSZcr99XCGAwT8aexgY-5xPnlBrnMRPhHxX3M_KLtiUhGPw>
-    <xme:HQ6QZIerLq1unp2hy-1fvpPA3Si46dm91um9J5xJwV9O5OVoWqzV63c-uypohthH1
-    4W0shxPNhSWefEavyc>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgeefvdcutefuodetggdotefrodftvfcurf
-    hrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecuuegr
-    ihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenucfjug
-    hrpefofgggkfgjfhffhffvvefutgesthdtredtreertdenucfhrhhomhepfdetrhhnugcu
-    uegvrhhgmhgrnhhnfdcuoegrrhhnugesrghrnhgusgdruggvqeenucggtffrrghtthgvrh
-    hnpeffheeugeetiefhgeethfejgfdtuefggeejleehjeeutefhfeeggefhkedtkeetffen
-    ucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrrhhnug
-    esrghrnhgusgdruggv
-X-ME-Proxy: <xmx:Hg6QZKyqztS5u4jssAhWLeO90hrurtwGAZK24v5IXmDaggara6lybg>
-    <xmx:Hg6QZGOfyAy2G09L8c5M7pjUCnGIxCooHD4r4H8-EFH1PHulm6_iyg>
-    <xmx:Hg6QZH-TJrb7_qIrOl-SxEH7hfAU1cMNiShpH_cXFHQ8Df1Hnmvsqg>
-    <xmx:Hg6QZGjya9-5i6kyAcYL4gA-4Ns_yms7_IzDbRXRLzt2KIkoGQ2OZg>
-Feedback-ID: i56a14606:Fastmail
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id D61E5B60086; Mon, 19 Jun 2023 04:13:17 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.9.0-alpha0-496-g8c46984af0-fm-20230615.001-g8c46984a
-Mime-Version: 1.0
-Message-Id: <f3f9bd5c-b4bd-461c-a6e1-b310cdaa0595@app.fastmail.com>
-In-Reply-To: <20230619033041.233921-1-ychuang570808@gmail.com>
-References: <20230619033041.233921-1-ychuang570808@gmail.com>
-Date:   Mon, 19 Jun 2023 10:12:56 +0200
-From:   "Arnd Bergmann" <arnd@arndb.de>
-To:     "Jacky Huang" <ychuang570808@gmail.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, "Lee Jones" <lee@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Jiri Slaby" <jirislaby@kernel.org>,
-        "Tomer Maimon" <tmaimon77@gmail.com>,
-        "Catalin Marinas" <catalin.marinas@arm.com>,
-        "Will Deacon" <will@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, soc@kernel.org, schung@nuvoton.com,
-        mjchen@nuvoton.com, "Jacky Huang" <ychuang3@nuvoton.com>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v15 2/2] clk: nuvoton: Add clock driver for ma35d1 clock controller
-Content-Type: text/plain
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230288AbjFSIOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:14:54 -0400
+Received: from mail-oi1-x236.google.com (mail-oi1-x236.google.com [IPv6:2607:f8b0:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE8E6A8
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:14:52 -0700 (PDT)
+Received: by mail-oi1-x236.google.com with SMTP id 5614622812f47-39ca48cd4c6so2067718b6e.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:14:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687162492; x=1689754492;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=rJ/7Kbo9gs7zs3QTF5nFKkJrBjocKGAtdax9LA/wsFg=;
+        b=FDISoEFTwML/+p368lw1P/Cn3vgdll9kixDZ2w6lnoYYAp8s8Z+hqKuaOVevpLCOMI
+         ph54uOPb2e9ngwvgg8My1IiADYjqT7Qwp7Oz69iR839wWcx/TVrIJwC7/hAXVlvKxhQG
+         EUviG/ZRkcdHGA8fZ6+HvO3OJd89syyb1I+HhxUMtX+CAiQlWf6TnU7bdcaLAWdzYWNV
+         XpNsAUONjxeJJTofE8ExIdPiMBQjRZhzVOpjPKeKiQ4rEcDGKIUibD0EVAeTNLSqcAct
+         kePtpwl4f5GYqXWFP0QKYYTjFIjwD2pxvjcNVYVcQwOtl/PcljQlRJvPjB70ZVOwvUqI
+         GHVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687162492; x=1689754492;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rJ/7Kbo9gs7zs3QTF5nFKkJrBjocKGAtdax9LA/wsFg=;
+        b=c4ynDehO5KeX+ID/tyAKakvllh2l/mJXUDpu6LfrxU7awK9POdm9idSURx2wYGParl
+         HExUGc5dXErzizPqS1bfDnU6T/ckug4onIBN4xuPltaG4sNJBh80yAqQaJa1H112xV5E
+         YCngdkjGV7fe1gTkZUI5vdNG2FiiOFBUavf35tvLC9BYnku0ur1k6w8fO4z17GjIBOS8
+         19L6ehMCGe7V5vDA5ZlvhKLoVuxmME3VyqJlAssWYH01W+3aICte6vfpFNYHP63WKuYV
+         BIt/NPWlL/bShxDvj7JI9XSO98fXKTrpJ8v5p2268GPkjkxzo5gsZNluo12E7/Q10BBE
+         4RAA==
+X-Gm-Message-State: AC+VfDzMRKHQDPs33y1ydQsJ0AvsbcQxUkfBMwR5ZjW2YS1Ah3QIoor5
+        LlD8I6k6Q6z6b6kXwBCLimN2wk71/5tv5f1inP8=
+X-Google-Smtp-Source: ACHHUZ6gBLx4NH9cZ6UThAbHP/9UMoYMmPUQrSEdOIi38EPe7t+3DFpGtUChcuuq1Gm5ZGOC9zSPzL2r9cT4iNhGGZs=
+X-Received: by 2002:a05:6808:6398:b0:39c:8bc5:f8db with SMTP id
+ ec24-20020a056808639800b0039c8bc5f8dbmr6693095oib.37.1687162491819; Mon, 19
+ Jun 2023 01:14:51 -0700 (PDT)
+MIME-Version: 1.0
+Received: by 2002:a05:6359:6e83:b0:127:8127:f692 with HTTP; Mon, 19 Jun 2023
+ 01:14:51 -0700 (PDT)
+From:   OFFER <diazanna810@gmail.com>
+Date:   Sun, 18 Jun 2023 20:14:51 -1200
+Message-ID: <CAO6W-YLZC8t7fAc6s5=KCjJUV2S48JR8gjJde-xf00=-WSAtsA@mail.gmail.com>
+Subject: Greetings From Saudi Arabia
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=3.8 required=5.0 tests=BAYES_50,DEAR_SOMETHING,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FREEMAIL_REPLY,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
+X-Spam-Level: ***
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 19, 2023, at 05:30, Jacky Huang wrote:
-> From: Jacky Huang <ychuang3@nuvoton.com>
->
-> The clock controller generates clocks for the whole chip, including
-> system clocks and all peripheral clocks. This driver support ma35d1
-> clock gating, divider, and individual PLL configuration.
->
-> There are 6 PLLs in ma35d1 SoC:
->   - CA-PLL for the two Cortex-A35 CPU clock
->   - SYS-PLL for system bus, which comes from the companion MCU
->     and cannot be programmed by clock controller.
->   - DDR-PLL for DDR
->   - EPLL for GMAC and GFX, Display, and VDEC IPs.
->   - VPLL for video output pixel clock
->   - APLL for SDHC, I2S audio, and other IPs.
-> CA-PLL has only one operation mode.
-> DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
-> operation modes: integer mode, fraction mode, and spread specturm mode.
->
-> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Dear Sir,
 
-Hi Jacky,
+Need funding for your project or your business ? We are looking for
+foreign direct investment partners in any of the sectors stated below and we are
+willing to provide financing for up to US$ ten Billion to corporate
+bodies, companies, industries and entrepreneurs with profitable
+business ideas and investment projects that can generate the required
+ROI, so you can draw from this opportunity. We are currently providing
+funds in any of the sectors stated below. Energy & Power,
+construction, Agriculture, Acquisitions, Healthcare or Hospital, Real
+Estate, Oil & Gas, IT, technology, transport, mining,marine
+transportation and manufacturing, Education, hotels, etc. We are
+willing to finance your projects. We have developed a new funding
+method that does not take longer to receive funding from our
+customers. If you are seriously pursuing Foreign Direct Investment or
+Joint Venture for your projects in any of the sectors above or are you
+seeking a Loan to expand your Business or seeking funds to finance
+your business or project ? We are willing to fund your business and we
+would like you to provide us with your comprehensive business plan for
+our team of investment experts to review. Kindly contact me with below
+email: yousefahmedalgosaibi@consultant.com
 
-Since I have already picked up the previous version of this patch,
-please send a diff against the version I merged please.
-
-     Arnd
+Regards
+Mr. Yousef Ahmed
