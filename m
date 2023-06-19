@@ -2,58 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F01F735FD7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 00:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E5A2735FE3
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 00:33:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229925AbjFSW3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 18:29:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34874 "EHLO
+        id S229595AbjFSWdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 18:33:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229931AbjFSW3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 18:29:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B93E4A;
-        Mon, 19 Jun 2023 15:29:18 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2BB5D60F28;
-        Mon, 19 Jun 2023 22:29:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32074C433CA;
-        Mon, 19 Jun 2023 22:29:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687213757;
-        bh=1Fai1c9PqtR1nbAseq/sPKVMxOFXSch7MmBt+o0w9SE=;
-        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
-        b=W7bI+Z4RXdoKnSAQfVmWdPXZIz6ju2OLKJyLf75gQ3sLjh1VUnG4zk+WskfVUk4j7
-         vowDxMBzOLKs5fPcVMXgXrdyacOdwhtb9q3OCK2rYE3BuAP1iD3OSrTpqHu4t7M07k
-         bOsbtyvti6RUptBz1ITex243pDdP0LED/em/IHfz1WIgs45P3e2Q8lraGG/pXNoKxW
-         fKeGSkC8YtsX+7THc2ljZeTLsxCzJuAaDjcqs2tfyTZ4VJ7qBhUGh9dCGpQyFffuJH
-         bN8VzmlNpCYqwYR4gG9UY8CYe/mpo/4fxtqh1ZnYcCRDqOafZJRTTJfLnwsubokOKh
-         XmjGSeEKybNyA==
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        robh+dt@kernel.org, lgirdwood@gmail.com, perex@perex.cz,
-        pierre-louis.bossart@linux.intel.com,
-        Shenghao Ding <13916275206@139.com>
-Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
-        navada@ti.com, gentuser@gmail.com, Ryan_Chu@wistron.com,
-        Sam_Wu@wistron.com, tiwai@suse.de
-In-Reply-To: <20230618122819.23143-1-13916275206@139.com>
-References: <20230618122819.23143-1-13916275206@139.com>
-Subject: Re: [PATCH v6 1/4] ASoC: tas2781: Add Header file for tas2781
- driver
-Message-Id: <168721375392.200161.3235917580792681848.b4-ty@kernel.org>
-Date:   Mon, 19 Jun 2023 23:29:13 +0100
+        with ESMTP id S229462AbjFSWds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 18:33:48 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31E83E53;
+        Mon, 19 Jun 2023 15:33:47 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-3427426f2ddso6834545ab.3;
+        Mon, 19 Jun 2023 15:33:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687214026; x=1689806026;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=HHIUlRfkQF4MrOkbDohxiMjKEeqR0IrsvdE7LEZAk6E=;
+        b=MW6SIMDZmCLp8jpAx49A3Iw+T+MVU8EDe+x9m+kopNWEcNa4Y5nx+mM8Nrn8kMig26
+         1ZfqE6RBl3JrO0m9L24sJFY1HRZC641I+FGQVYAFvE85vmfspvxSNVMogP4FkcfsnYJ5
+         3hWYjIFkofpPJu03DkuSIIWaS5Zga+kDZ58tCGfBO9Or2FizCSXPWTnqKscrUOi9nDyH
+         L/pM0x20Uf9L6SKPp32YxpNbFGF3FhxCByzDH3Nml19Ur8cWGtVjRA6uaP4c3tDXp25S
+         pL2ytVC2LO7nGdUVJtCfUclxcnLMfwnZtOMwM4oyKmrbALb0h093ANILjAN72ulwXIMs
+         9oWQ==
+X-Gm-Message-State: AC+VfDw53fTCfHtoBY/c68sy1yMtaZpn6x5teynW/YjYCk0bEsNQ2vu7
+        /6twNLFcXmF/mquVM2GjYA==
+X-Google-Smtp-Source: ACHHUZ7mzynTL8o5IwCZeywI+S0P/T3Md2K8mFSdxl/MNWTSsYd+RwoVRrPwOXjir3u5kvRncMblaw==
+X-Received: by 2002:a92:ce92:0:b0:33d:8b4e:6613 with SMTP id r18-20020a92ce92000000b0033d8b4e6613mr7352185ilo.15.1687214026381;
+        Mon, 19 Jun 2023 15:33:46 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id p24-20020a02c818000000b0042672a015f0sm265010jao.25.2023.06.19.15.33.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jun 2023 15:33:45 -0700 (PDT)
+Received: (nullmailer pid 1648271 invoked by uid 1000);
+        Mon, 19 Jun 2023 22:33:43 -0000
+Date:   Mon, 19 Jun 2023 16:33:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Piyush Mehta <piyush.mehta@amd.com>
+Cc:     gregkh@linuxfoundation.org, devicetree@vger.kernel.org,
+        conor+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        git@amd.com, balbi@kernel.org, linux-usb@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        michal.simek@amd.com
+Subject: Re: [PATCH V4] dt-bindings: usb: dwc3: Add interrupt-names property
+ support for wakeup interrupt
+Message-ID: <168721402338.1648213.9342325663890021008.robh@kernel.org>
+References: <20230619105032.2888128-1-piyush.mehta@amd.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-c6835
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230619105032.2888128-1-piyush.mehta@amd.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -61,42 +66,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 18 Jun 2023 20:28:16 +0800, Shenghao Ding wrote:
-> Create Header file for  tas2781 driver.
+
+On Mon, 19 Jun 2023 16:20:32 +0530, Piyush Mehta wrote:
+> The hibernation feature enabled for Xilinx Versal NET SoC in DWC3 IP.
+> As the DWC3 IP supports the hibernation feature, to handle the wakeup
+> or hibernation interrupt, add host mode "wakeup" interrupt-names
+> optional property in the binding schema to capture remote-wakeup and
+> connect/ disconnect event in the hibernation state and increased maxItems
+> to 4 for the interrupts and interrupt-names property.
 > 
+> We have a dedicated IRQ line specifically for the hibernation feature.
+> When the "wakeup" IRQ line is triggered, it initiates a hibernation
+> interrupt, causing the system to wake up from the hibernation state.
+> 
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> ---
+> Change in V2:
+> - Addressed ROB review comments
+>  - Updated name of interrupt-names property with "wakeup"
+>  - Move interrupt-names property from dwc3-xilinx core to dwc3 core.
+> 
+> Link: https://lore.kernel.org/all/CAL_JsqK6_7XD7+w+EQvPPmbmSOpfo3JDb0xDN4StuHUm1kgchw@mail.gmail.com/
+> 
+> Change in V3:
+> -  Addressed Krzysztof Kozlowski comments
+>  - Update binding schema enum.
+>  - Upadet commit message.
+> 
+> Link: https://lore.kernel.org/all/76dfbf27-8ad2-6e09-5354-b006b9e81af1@linaro.org/
+> 
+> Change in V4:
+> - Addressed ROB review comments:
+>  - Fixed dt_check warnings
+> 
+> Link: https://lore.kernel.org/lkml/168448091422.2968830.10066003697035225886.robh@kernel.org/
+> ---
+>  Documentation/devicetree/bindings/usb/snps,dwc3.yaml | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 > 
 
-Applied to
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/4] ASoC: tas2781: Add Header file for tas2781 driver
-      commit: 678f38eba1f2fe33ff700e85390ac98393e609ef
-[2/4] ASoC: tas2781: firmware lib
-      commit: 915f5eadebd29ba185ac506766a90120153b7e14
-[3/4] ASoC: tas2781: Add tas2781 driver
-      commit: ef3bcde75d06d65f78ba38a30d5a87fb83a5cdae
-[4/4] ASoC: dt-bindings: Add tas2781 amplifier
-      commit: 3e4ecd6c4e14e1eff8f52bd89240399e7dac881c
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Reviewed-by: Rob Herring <robh@kernel.org>
 
