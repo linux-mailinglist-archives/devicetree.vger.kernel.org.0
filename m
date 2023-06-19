@@ -2,133 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F45A735B62
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 17:44:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCA2D735B7E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 17:49:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232008AbjFSPoo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 11:44:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47062 "EHLO
+        id S230047AbjFSPt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 11:49:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50476 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232040AbjFSPom (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 11:44:42 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9ABC7139;
-        Mon, 19 Jun 2023 08:44:39 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f849605df4so4660599e87.3;
-        Mon, 19 Jun 2023 08:44:39 -0700 (PDT)
+        with ESMTP id S229771AbjFSPt1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 11:49:27 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 01A09139
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 08:49:26 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f85966b0f2so4041112e87.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 08:49:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687189477; x=1689781477;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=A2xW1pdD4hh2VGs4Mpg9cKE/j/pXz/wg2o6KnZsreRQ=;
-        b=SXi9EuYemDFlDxp0BqouWi1+qLw4f2dj8Wiuwrapoqielba8KLGExvIZVg831z4yh3
-         n9YHgewmBi/vaHWDfDGSKEpC72HxQIzH8PcrDpN3EpQZvZMqRoHVJ7V8WC0h071yrRd/
-         yjJ1KFmUABIwfoo0Cwrw7pSyffKMlHGB0qgS1k8qkXTXKQ+OBnZ0SQ8rnR2diuoSUD5B
-         fWhRAyGZkSnFTAsdlUAwXFnx2UYjxddxGfSfNnLGrO2nqRd1bq9WNetJYb+RsWW85ED2
-         zjFc46hV/eGrfqKuG/LfBj6tpbAUcdzezYY8RJOCeJSfHi2CKqHwiHBukPmYhJlnsQkq
-         VzPQ==
+        d=linaro.org; s=google; t=1687189764; x=1689781764;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ACDERcE15xG4+xhzIKgftHezyTgiUPbMstvC//CTbQ0=;
+        b=hCs7buA/k5b4wsYCGT0jTut/OtBaAhO23CKjv2ACpyfcMVzU3uJmPot65QVFn/J84A
+         SlMqsK8TECZ96Otr5Q9LTH+pj9AD3DqxB+7y5MclNC20xjyBeTe3DVKTUQ/CGB5jzp4z
+         b4KaWL+QN5+zzO/FPHRjapOqfEquZcqTZpjxJmCTghGe7rEaMDaX5tpJugpBVF9BV+WY
+         4PuPSVVT82Mbxv0dLpiBo7H5z5+KNGKerVWJ+6vMdKZpmImr1FGDRn+X4en6p8HAw30+
+         2vfuK9c2kFimVNjwCVbYs7atR39ZFYdar39k7XOiUAOICK1v02S2VTGmoHmr9A7TKTY8
+         OkmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687189477; x=1689781477;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=A2xW1pdD4hh2VGs4Mpg9cKE/j/pXz/wg2o6KnZsreRQ=;
-        b=MtUoM+Wx+hSzrmuAmsFL+oOWlx+VH7XN/amXwRWmPVAGIsiyxw6LXAkI2bzlgJGgCM
-         jJJp5VIbifkadjU+u14gUs3KcGX2l09lmEu4RaXYOdnJF7XX5Bif3VxdmyA/rf3eYXx7
-         s5izV7VC35fTcoIwQy5/t18ppm8AY9KL7KbNwrkuZNXLi7OpqLHBc/q7iksmyo+xM+dS
-         jz0HTj8kueOuIhQ26NY+RRv123yIS1ILl77QT8tb+JEI3nfe7VoYhaecvTTs/THwjoSu
-         ei1ylaw88vW5iw4/eaRubSftp7AO4Y+3HM7acoXj5FgXokya0bMfc0aqQTDP/Ipw3bOI
-         RlWg==
-X-Gm-Message-State: AC+VfDy6L886+rUJ/K71cai3qLQTwJEe+K5lus5Aqo5Nbti5A9xsnFVU
-        fi76KZjv6qRD4AAfGr2GMkdONQvAZXuDgf7s
-X-Google-Smtp-Source: ACHHUZ6fyzgyF6IaPo1cFaZ/Jbu3BHrWZiNQ4Ii9axwoUxhdnuwBR6cJW7DJpqJrgj7c7vZ8IZ/jdQ==
-X-Received: by 2002:a19:505b:0:b0:4f8:5af4:73ef with SMTP id z27-20020a19505b000000b004f85af473efmr4062285lfj.28.1687189477519;
-        Mon, 19 Jun 2023 08:44:37 -0700 (PDT)
-Received: from user-PC.. ([178.134.198.138])
-        by smtp.gmail.com with ESMTPSA id f11-20020a19ae0b000000b004f85e53250bsm1207144lfc.191.2023.06.19.08.44.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jun 2023 08:44:37 -0700 (PDT)
-From:   Maksim Kiselev <bigunclemax@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        d=1e100.net; s=20221208; t=1687189764; x=1689781764;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ACDERcE15xG4+xhzIKgftHezyTgiUPbMstvC//CTbQ0=;
+        b=Nx1cuCyiUJpHsuyfizI7OFXhld9ylM+gSKNPeID02BcAAeuBUKe8s8/4NPWqrQYEA2
+         X6gRkll/hhggX7dAykvNqPa9yrnuV+e/DkZZyNKB6B3+71hONUctoaszeY76jGqCo5n/
+         m1dUbeYK4clfX8PD3U4T0j8oz/yG3CvKx4Hvmi/lgqZHv5DdoDeVwNK5KHgrAmbVHAjz
+         dItQwEEy9l7XCCWAgQ28gMDoQTkxTUw5gM2qD0eeWIDDtQuZKEE1/h2gQpsjG9dES8oD
+         0qITelgI4nWzAe1lAJKkigvB0DTDBqu47t/YowQ5+aCXvqBp4l1WYLFendkUTCFVD99L
+         uJfw==
+X-Gm-Message-State: AC+VfDymati1wXjSp7rHUuGwS4i9zV0i9TlX+vK9dvTgsdyFhFkWDO0M
+        ka9HXzL10kCIzR9SBUfJPWXErA==
+X-Google-Smtp-Source: ACHHUZ7E/UnlfoIhqQWY5EoVpEU2HJG7wQ6StvGgyHoQvAHqdeviDtcmIDt5DCSWoYHSs3BBlbszjg==
+X-Received: by 2002:a19:7917:0:b0:4f8:477f:d47c with SMTP id u23-20020a197917000000b004f8477fd47cmr5505152lfc.6.1687189764192;
+        Mon, 19 Jun 2023 08:49:24 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id s13-20020aa7cb0d000000b005163a6c9f18sm13043672edt.53.2023.06.19.08.49.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jun 2023 08:49:23 -0700 (PDT)
+Message-ID: <30c50635-ff42-3a85-a419-673ca6d0422e@linaro.org>
+Date:   Mon, 19 Jun 2023 17:49:20 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 0/2] GPIO-based hotplug i2c bus
+Content-Language: en-US
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        =?UTF-8?q?Leonard=20G=C3=B6hrs?= <l.goehrs@pengutronix.de>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Maxime Ripard <mripard@kernel.org>,
-        Quentin Schulz <quentin.schulz@free-electrons.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-sunxi@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH v8 4/4] riscv: dts: allwinner: d1: Add GPADC node
-Date:   Mon, 19 Jun 2023 18:42:27 +0300
-Message-Id: <20230619154252.3951913-5-bigunclemax@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230619154252.3951913-1-bigunclemax@gmail.com>
-References: <20230619154252.3951913-1-bigunclemax@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Wolfram Sang <wsa@kernel.org>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230619153732.46258-1-clamor95@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230619153732.46258-1-clamor95@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds declaration of the general purpose ADC for D1
-and T113s SoCs.
+On 19/06/2023 17:37, Svyatoslav Ryhel wrote:
+> ASUS Transformers require this driver for proper work with their dock.
+> Dock is controlled by EC and its presence is detected by a GPIO.
+> 
+> ---
+> Changes in v2:
+> - adjusted documentation
 
-Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
----
- arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+This is too generic. Everything can be adjustment. Be precise what you
+did here. What changed?
 
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-index 922e8e0e2c09..cb353d5805cb 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-@@ -138,6 +138,16 @@ ccu: clock-controller@2001000 {
- 			#reset-cells = <1>;
- 		};
- 
-+		gpadc: adc@2009000 {
-+			compatible = "allwinner,sun20i-d1-gpadc";
-+			reg = <0x2009000 0x400>;
-+			clocks = <&ccu CLK_BUS_GPADC>;
-+			resets = <&ccu RST_BUS_GPADC>;
-+			interrupts = <SOC_PERIPHERAL_IRQ(57) IRQ_TYPE_LEVEL_HIGH>;
-+			status = "disabled";
-+			#io-channel-cells = <1>;
-+		};
-+
- 		dmic: dmic@2031000 {
- 			compatible = "allwinner,sun20i-d1-dmic",
- 				     "allwinner,sun50i-h6-dmic";
--- 
-2.39.2
+Best regards,
+Krzysztof
 
