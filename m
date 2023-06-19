@@ -2,131 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CAC17356C0
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 14:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 315447356E6
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 14:31:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231191AbjFSMYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 08:24:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46412 "EHLO
+        id S230077AbjFSMb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 08:31:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230077AbjFSMYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 08:24:13 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CD0E72
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 05:23:34 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b4636bb22eso30970251fa.2
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 05:23:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687177409; x=1689769409;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TSP20PRjLfEjEczhmjfYNlia/vcSKNLRdUGUz9NHLWk=;
-        b=yo+Z+f5JTD4zf+O3aNYVki4aAyWmqo9AGYDhyQXjeCuyotDVx5sjiU3lNnxu5dNF4r
-         gWi9toGSJ0qggbyNgYt83JM5CmBlAoJk5Na/Rxh8xLCneHmgrQHJfo4EZMKUq4J4gT8m
-         vbfLwDA9/sMvcAtiqOLpM/80FvrFBsls1lOpQ92tmXK1Q5X0Z/fsxjv7zSQ2OAoLAvNq
-         1q8VrWtJYjZ/Qt4qyeuEQd6R2iNvsUpfKcPYu1ed0Yrlpxl6aP5/5XC3ABwl0vH3UMRz
-         6dyS1XvJNUMU1084BqEMdAcA04kzQS4pxZc79NCW3EtIZoZ7rL1l4XfIBUMcJEUtdO5z
-         R7Cg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687177409; x=1689769409;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TSP20PRjLfEjEczhmjfYNlia/vcSKNLRdUGUz9NHLWk=;
-        b=SbNfs7UZEKP6l17Cp8VHPARQa8+awONIPvKZtd3DB4juXpc8b/CBbvZqpz8+fI9duR
-         77NhuH6xkoLh9q7x523zCVW8Nx1lvhSIcVMe+EX3C1O21nZP5kmjPhChv3ESvkZu1jec
-         OEyRYELDC0oYdpDvNMTwXBdX2FuZb++Vh7LuiZ8J1uP2XTysZH6WaXbMWjyo3T93I9No
-         rnjWonu0b4zvJAvkrwfDa4ZfehAr+UBUp4DftYal2eXo07FvpfneBa6tFOTxTES4WrBN
-         jIomXqGexoSy8vbaW/G/09aZdBH601SQYfaIkrJ5K3HiB6l7VtKMM5nwDequHaEA0RoD
-         cqDQ==
-X-Gm-Message-State: AC+VfDzvwv1yVHN4bCPG/3UsqK2p7Gjt29eQVuZuadwRHhuycLWibH8k
-        m8zFtuug1YFvkubQvIGTfIfd5g==
-X-Google-Smtp-Source: ACHHUZ55Tp1NaWXP5nJ6mewhwTdXY+WArg4PWOHSlyIXMGE3IKFjWZen5h93Q5FJPTwyw1f8IXcyAA==
-X-Received: by 2002:a2e:a401:0:b0:2b4:809a:1c7c with SMTP id p1-20020a2ea401000000b002b4809a1c7cmr933619ljn.19.1687177408953;
-        Mon, 19 Jun 2023 05:23:28 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id k27-20020a17090646db00b00988be3c1d87sm1123119ejs.116.2023.06.19.05.23.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 05:23:28 -0700 (PDT)
-Message-ID: <598c14f9-395c-d218-4af9-31bba022dcf6@linaro.org>
-Date:   Mon, 19 Jun 2023 14:23:25 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 1/6] dt-bindings: mmc: mmci: Add st,stm32mp25-sdmmc2
- compatible
-Content-Language: en-US
-To:     Yann Gautier <yann.gautier@foss.st.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+        with ESMTP id S230484AbjFSMbY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 08:31:24 -0400
+Received: from out1-smtp.messagingengine.com (out1-smtp.messagingengine.com [66.111.4.25])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5112EC6
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 05:31:23 -0700 (PDT)
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 1C5665C026F;
+        Mon, 19 Jun 2023 08:31:20 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 19 Jun 2023 08:31:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
+        :cc:content-type:content-type:date:date:from:from:in-reply-to
+        :in-reply-to:message-id:mime-version:references:reply-to:sender
+        :subject:subject:to:to; s=fm2; t=1687177880; x=1687264280; bh=GA
+        QXkFx5rP9qiKxhnuup7uWPTRBTYWVFfhze3j96ciQ=; b=gEiQxjsCrITet1vH20
+        2aMo97fyH9nxFLOz7iiyi9CAYqkWD7c7osGJIVUKT5QADHqGc6hymtQ7WZNnL8Iq
+        so7nIzhsmooq3D/BKC/hicadzYanmCIGiZylU21HAAb2h/u9ltKlgk3LznIbF/7a
+        P9nlOnbpV37sNrgDTRwB2xpRAJ6O4dgIVdQ09VqBXaEORaKZDrfj8RFD/rkhzh5h
+        PYl0KpkSwIXMusXT8F47epPOyzeZk+KicyVJAm9osgFXAc40BJqvvli0A21iGZs5
+        82qyFQa4swxg7rv6iA4z4ezP8SNseX3seEVfy9nbMFO4w5k5hhCIHdix4bqSZL1L
+        fOwA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:cc:content-type:content-type:date:date
+        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
+        :message-id:mime-version:references:reply-to:sender:subject
+        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm2; t=1687177880; x=1687264280; bh=GAQXkFx5rP9qi
+        Kxhnuup7uWPTRBTYWVFfhze3j96ciQ=; b=aTYHTRv+Cc4FxH+gSX5Tk3qbqHoHY
+        LoLa1H+VQsEi8DVDAQxhoebMpElBb9krnwnXG01w1HYKMPAcHkbjw8P+5hRFwUXM
+        1lKWH7JttXRYSlCaFUcua3vjoWjEwU+JeOctymuMYJTPRjSYmujjxXnMOkjlsGAv
+        pQZhZAGVFih3pYxunmo5hrCQNveO6ucQh2bRJbRs3J8OMbTH1jesCfLTCtGtaY+I
+        YYD8516CUgVi+QnEKogSFP7InPU2UF0h/SWAS3/2puDPVUOuzYklUHDv4VRmRQSp
+        JUHKgsKoJTWTFJNTf5c5dzAiIGGC0sxl/XJ2/zFhCeKBbvjReTT4kh2+g==
+X-ME-Sender: <xms:l0qQZCgEweesZR6_xW0bXeP8cdo56X_UpoSW_aVLmvoWlqci18FRJg>
+    <xme:l0qQZDDRwOOJrh868MvAwqt9zJHIuxYpN4k4fsYeQZRcNS-rnyNdT3dgjxFrwniAP
+    K2Nrynk5bmo-_vvwbM>
+X-ME-Received: <xmr:l0qQZKGJqqTlp0MQs5bdzOsGVtENUnVaIP7zNjpDb-9aGScgv48AMGCt3Tvae8L9au1KjhPduUzETCUEFNF1kA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgeefvddgheduucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepfffhvfevuffkfhggtggujgesghdtsfertddtvdenucfhrhhomhepofgrgihi
+    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
+    htthgvrhhnpedtgfdukeeigeeuhfelheeftdfhgfegfefgudeuiefhueeuleekveetvdei
+    tddvieenucffohhmrghinhepkhgvrhhnvghlrdhorhhgnecuvehluhhsthgvrhfuihiivg
+    eptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggt
+    hh
+X-ME-Proxy: <xmx:l0qQZLSrkhcCGfP-wpOjA75iMENwQxDOvhsEBcjaPnWhoBJ-4WhQcA>
+    <xmx:l0qQZPyX6m0YIcHSAgndV45MWl6LfVUMc0eW_A03UGJnBouLnd7J5g>
+    <xmx:l0qQZJ66pbYhRLnJnP22C6O1w-xRSLWXlEXbob4tUhRzOJWV4xlE1A>
+    <xmx:mEqQZEohV6y4QIWmlRPLRS3T9hIffE9FIxtlOeOkCRoVBOGbTex7OA>
+Feedback-ID: i8771445c:Fastmail
+Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
+ 19 Jun 2023 08:31:19 -0400 (EDT)
+Date:   Mon, 19 Jun 2023 14:31:17 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Christophe Kerello <christophe.kerello@foss.st.com>,
-        linux-kernel@vger.kernel.org, Marek Vasut <marex@denx.de>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Yang Yingliang <yangyingliang@huawei.com>,
-        Xiang wangx <wangxiang@cdjrlc.com>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230619115120.64474-1-yann.gautier@foss.st.com>
- <20230619115120.64474-2-yann.gautier@foss.st.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230619115120.64474-2-yann.gautier@foss.st.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        devicetree@vger.kernel.org,
+        Michael Riesch <michael.riesch@wolfvision.net>
+Subject: Re: [PATCH v2 2/6] dt-bindings: display: st7789v: bound the number
+ of Rx data lines
+Message-ID: <yv3c5rzoz5bdo34q7eczydlawdkmikekxzkzejcxq74nf7xzcc@qgwg5yapdtwn>
+References: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
+ <20230616163255.2804163-3-miquel.raynal@bootlin.com>
+ <tcxifa7ol3fukfsdw7hh3kl25dhpviu6lasdc6xasz4dvhjedx@mo2vae6smtok>
+ <20230618193732.04fc1909@xps-13>
+ <wgi4wtewth3xwtl5updyg5et3roiqp4h5kz6oyevd4uxjveboq@gff42fefym7m>
+ <20230619121958.2e4a7c95@xps-13>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="e6brfdgkpu66s3xx"
+Content-Disposition: inline
+In-Reply-To: <20230619121958.2e4a7c95@xps-13>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 13:51, Yann Gautier wrote:
-> For STM32MP25, we'll need to distinguish how is managed the delay block.
-> This is done through a new comptible dedicated for this SoC, as the
-> delay block registers are located in SYSCFG peripheral.
-> 
-> Signed-off-by: Yann Gautier <yann.gautier@foss.st.com>
-> ---
-> Changes in v2:
-> - update dt-bindings file (remove bootloader reference and use enum)
-> 
->  Documentation/devicetree/bindings/mmc/arm,pl18x.yaml | 7 ++++---
->  1 file changed, 4 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> index 1c96da04f0e53..2459a55ed540b 100644
-> --- a/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/arm,pl18x.yaml
-> @@ -53,10 +53,11 @@ properties:
->          items:
->            - const: arm,pl18x
->            - const: arm,primecell
-> -      - description: Entry for STMicroelectronics variant of PL18x.
-> -          This dedicated compatible is used by bootloaders.
-> +      - description: Entries for STMicroelectronics variant of PL18x.
->          items:
-> -          - const: st,stm32-sdmmc2
-> +          - enum:
-> +              - st,stm32-sdmmc2
-> +              - st,stm32mp25-sdmmc2
 
-It's nicely visible that old stm32 entry was family-generic, not
-device-specific, thus not really correct. :( I hope we can learn from
-this for future stm submissions.
+--e6brfdgkpu66s3xx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Mon, Jun 19, 2023 at 12:19:58PM +0200, Miquel Raynal wrote:
+> Hi Maxime,
+>=20
+> maxime@cerno.tech wrote on Mon, 19 Jun 2023 11:39:56 +0200:
+>=20
+> > On Sun, Jun 18, 2023 at 07:37:32PM +0200, Miquel Raynal wrote:
+> > > Hello Maxime,
+> > >=20
+> > > maxime@cerno.tech wrote on Sun, 18 Jun 2023 16:37:58 +0200:
+> > >  =20
+> > > > Hi,
+> > > >=20
+> > > > On Fri, Jun 16, 2023 at 06:32:51PM +0200, Miquel Raynal wrote: =20
+> > > > > The ST7789V LCD controller supports regular SPI wiring, as well a=
+s no Rx
+> > > > > data line at all. The operating system needs to know whether it c=
+an read
+> > > > > registers from the device or not. Let's detail this specific desi=
+gn
+> > > > > possibility by bounding the spi-rx-bus-width property.
+> > > > >=20
+> > > > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> > > > > ---
+> > > > >  .../devicetree/bindings/display/panel/sitronix,st7789v.yaml   | =
+4 ++++
+> > > > >  1 file changed, 4 insertions(+)
+> > > > >=20
+> > > > > diff --git a/Documentation/devicetree/bindings/display/panel/sitr=
+onix,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitroni=
+x,st7789v.yaml
+> > > > > index 0ccf0487fd8e..a25df7e1df88 100644
+> > > > > --- a/Documentation/devicetree/bindings/display/panel/sitronix,st=
+7789v.yaml
+> > > > > +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st=
+7789v.yaml
+> > > > > @@ -29,6 +29,10 @@ properties:
+> > > > >    spi-cpha: true
+> > > > >    spi-cpol: true
+> > > > > =20
+> > > > > +  spi-rx-bus-width:
+> > > > > +    minimum: 0
+> > > > > +    maximum: 1
+> > > > > +   =20
+> > > >=20
+> > > > It's not clear to me what the default would be? =20
+> > >=20
+> > > This binding references spi-peripheral-props.yaml which sets the
+> > > default to 1, I believe it is sane to keep it that way? =20
+> >=20
+> > I'm not sure.
+> >=20
+> > The driver didn't need RX before, and we didn't have any property that
+> > was expressing whether we had MISO in the device tree.
+> >=20
+> > That means we had both devices with and without MISO expressed in the
+> > same way, the driver handling both (by ignoring MISO entirely).
+> >=20
+> > With this patch, you now introduce a property that specifies whether
+> > MISO is connected or not, and defaults to MISO being there. And a later
+> > patch will use MISO if it's available.
+> >=20
+> > This means that, while it's working fine for devices that had MISO
+> > connected, devices that didn't are assumed to have it, and the driver
+> > makes use of it.
+>=20
+> Ah yes, I get your concern. I thought you wanted to talk about the fact
+> that it was not constrained in the yaml description. Your concern is
+> about breaking existing devices.
+>=20
+> Your concern is real, designs not wiring the MISO line which do not
+> describe this in the device tree will no longer succeed to probe with
+> the current implementation. Technically speaking, they're broken since
+> 2021:
+>=20
+> c476d430bfc0 ("dt-bindings: display: Add SPI peripheral schema to SPI bas=
+ed displays")
 
+I mean, I guess, but an old DT was still booting fine. Validation didn't
+pass but that's a bit irrelevant for devices that shipped already.
 
-Best regards,
-Krzysztof
+> We actually discussed this with Sebastian, right there:
+> https://lore.kernel.org/all/20230609145951.853533-6-miquel.raynal@bootlin=
+=2Ecom/T/#m9286cdb4d617c5efc29052b552e981ecfa2628e4
+>=20
+> And the conclusion was that we decided not to care about the broken
+> descriptions (because, let's agree on this, not wiring the MISO line is
+> not a standard spi design).
 
+It might not be, but it's there. Just like the 9 bits per word :)
+
+All the current in-tree users seem to only mux (at least, I haven't
+checked the design) MOSI, and the devices I worked on with this driver
+also didn't iirc.
+
+> But I don't have a strong opinion TBH, so if you think it's best to
+> prevent these probes from failing (note that I already added a debug
+> line explicitly saying why the probe would fail, "easy" to identify)
+> I'm fine turning the check as a warning and ignoring the error to
+> avoid failing.
+
+Updating the DT isn't always an option, so yeah, please make it backward
+compatible.
+
+Maxime
+
+--e6brfdgkpu66s3xx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZJBKlQAKCRDj7w1vZxhR
+xf0ZAQDmDZTRz3V1/lsj/hq17Cnf/N3/RpU/V0PpnyCmJuEaOQEA7ECAgWdFQD+q
+MUDS4Y7G4D9hXq93on/jlTikgoIG6A4=
+=dIzl
+-----END PGP SIGNATURE-----
+
+--e6brfdgkpu66s3xx--
