@@ -2,193 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD5517359FF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 16:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58EFC735A12
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 16:53:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232105AbjFSOqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 10:46:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43472 "EHLO
+        id S231256AbjFSOxx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 10:53:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbjFSOqE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 10:46:04 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C833810D4
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:45:56 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-988a5383fd4so206456866b.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:45:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687185955; x=1689777955;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=cdvdZc1XBtu7GSZPktQLdJjAq5f8weyxwcqQX3iLhs0=;
-        b=OkdaLAj4ZOWqderFYyGn4GoPZk6dcmqg1xpJun/ubGVnxaswXXGCm7C4KS2hJlN7Hi
-         k+44vxUz9fBlE58wSc6uHaF28GOVFyNTt1+0Waxorzscoipv9LhjexVL13uDV8oFHuEL
-         viSawuIT5SC92ofY1pzJG9AWv6t0l3OsUlQ02WSSgIhwupbrcOhJ6Od/VsVoyxO3KhhR
-         p9xSjoprmJjNtJ4//2L/gdv0RTUN0+s3JKYwOEP77Kc/aexGSpnoOpDu+g3cto4qMrH6
-         CIdXAGRYFYluC3vYHVyaH2TOAX/YbmSdM+Xc59o261TgbOReyuQORccGmB8eAE3U7xsV
-         jLog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687185955; x=1689777955;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=cdvdZc1XBtu7GSZPktQLdJjAq5f8weyxwcqQX3iLhs0=;
-        b=K75oymgPkxva9XdueZraSmy5yEW6yV+c4xwl54h0j6JWIpP6cfZRqBbNXztkMwrgow
-         epTI/L1TVMnVUo0EooIp7IycuhS+vRo+x2TA2wmAghCTNV0nbqHqBRGJcHoWVHWIEVqU
-         FMlglP/q913SwYNl8e3wPyaTkRoUybgfspESifvnMUC4VhdkbGqW3usNzglbYB4EjRUB
-         Ce4UdOIwE9q7rQkLegnT/hFu6SYgkV8wyl2obtTV5QvHFAIHCXMK/u57a8v+3ZrKx0Zv
-         w+cbANxr8FybVCV3oOUpF0EFDR2p7+H28x6MCS2rIL7Tu8LBKOWoM6Fg2WFLVw0oOGrs
-         bf9A==
-X-Gm-Message-State: AC+VfDyxvyVBcbPvXR0MWM22dX4N0hMP++LXpJ3pnpIoMMqd7t3CoU4n
-        Uj0p8mWVfTa2yzozuNnEd3tirA==
-X-Google-Smtp-Source: ACHHUZ6YO8OQMADgWFX7R93c5JysxCsxQBxKxyhuNEMc/bIRFU5Nbo0+vk4rzag0LVlzo+wU7flj+Q==
-X-Received: by 2002:a17:907:3e27:b0:978:8685:71d5 with SMTP id hp39-20020a1709073e2700b00978868571d5mr9076379ejc.30.1687185955295;
-        Mon, 19 Jun 2023 07:45:55 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id gq19-20020a170906e25300b009884b9da1f7sm2849226ejb.106.2023.06.19.07.45.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 07:45:54 -0700 (PDT)
-Message-ID: <f26edf98-617f-cb37-d34d-497fce5e0867@linaro.org>
-Date:   Mon, 19 Jun 2023 16:45:53 +0200
+        with ESMTP id S229448AbjFSOxw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 10:53:52 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94059B9;
+        Mon, 19 Jun 2023 07:53:50 -0700 (PDT)
+Received: from nicolas-tpx395.localdomain (unknown [IPv6:2606:6d00:15:c623::7a9])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: nicolas)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id C89126605835;
+        Mon, 19 Jun 2023 15:53:47 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1687186429;
+        bh=niF9buWzQfwlsD8+0WxDqigxgGldCwE0sdhB490duRw=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=RhrO/fhYzcvZx98RzqYQEiLJ3TrEGalMfd8nk6+RGKBrbPebHnFya2IPl8ACCknPs
+         z12yy74T+6f7Sr3fQp9PkczyG7btBA7Qx0gAGvujtPx/gmlyNiQg8SEO3Ztl9SkJov
+         +pkyG1pldjVC9wxwggOYh7cXTwHAmIlwM9iPc5hQYOzk0gwOHH6nw65EnDeJiKF/7n
+         AVXPXrjemTJIWP9FBpeC/AKcxiStQbs7Vl4wp/6paBHeMnf4UF/qHRBMJGN64nJptg
+         sPQ3ol+T2wK117drQlXHia3H3Paz6M7SmZ8Kg4m1ybskgaiEdn847LrjSg64B9sbRG
+         YQY+mzwOXewQg==
+Message-ID: <e6a1ed5937c3a2182ba6b7a90572f905a62269f3.camel@collabora.com>
+Subject: Re: [PATCH v3,03/11] media: mediatek: vcodec: re-write shared
+ interface
+From:   Nicolas Dufresne <nicolas.dufresne@collabora.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        =?ISO-8859-1?Q?N=EDcolas?= "F . R . A . Prado" 
+        <nfraprado@collabora.com>, Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Nathan Hebert <nhebert@chromium.org>
+Cc:     Chen-Yu Tsai <wenst@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Steve Cho <stevecho@chromium.org>, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Date:   Mon, 19 Jun 2023 10:53:38 -0400
+In-Reply-To: <20230617103255.20239-4-yunfei.dong@mediatek.com>
+References: <20230617103255.20239-1-yunfei.dong@mediatek.com>
+         <20230617103255.20239-4-yunfei.dong@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.48.3 (3.48.3-1.fc38) 
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: add binding for i2c-hotplug-gpio
-Content-Language: en-US
-To:     Svyatoslav Ryhel <clamor95@gmail.com>,
-        Andi Shyti <andi.shyti@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230619143611.24482-1-clamor95@gmail.com>
- <20230619143611.24482-2-clamor95@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230619143611.24482-2-clamor95@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 16:36, Svyatoslav Ryhel wrote:
-> Document device tree schema which describes hot-pluggable via GPIO
-> i2c bus.
-> 
-> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+
+Hi Yunfei,
+
+
+Le samedi 17 juin 2023 =C3=A0 18:32 +0800, Yunfei Dong a =C3=A9crit=C2=A0:
+> Re-write shared interface which encoder and decoder used at
+> the same time. Using the common struct as the parameter of
+> these interface in order to remove the depedency.
+>=20
+> Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
 > ---
->  .../bindings/i2c/i2c-hotplug-gpio.yaml        | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
-> new file mode 100644
-> index 000000000000..74544687a2b8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
-> @@ -0,0 +1,68 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/i2c/i2c-hotplug-gpio.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>  .../mediatek/vcodec/mtk_vcodec_intr.c         | 30 ++++++++++++-------
+>  .../mediatek/vcodec/mtk_vcodec_intr.h         |  3 +-
+>  .../mediatek/vcodec/mtk_vcodec_util.c         | 19 +++++-------
+>  .../mediatek/vcodec/mtk_vcodec_util.h         |  9 ++----
+>  .../mediatek/vcodec/vdec/vdec_vp8_if.c        | 14 ++++-----
+>  .../mediatek/vcodec/venc/venc_h264_if.c       |  2 +-
+>  .../mediatek/vcodec/venc/venc_vp8_if.c        |  2 +-
+>  7 files changed, 39 insertions(+), 40 deletions(-)
+>=20
+> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.c b/d=
+rivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.c
+> index 552b4c93d972..daa44f635727 100644
+> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.c
+> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.c
+> @@ -11,32 +11,40 @@
+>  #include "mtk_vcodec_intr.h"
+>  #include "mtk_vcodec_util.h"
+> =20
+> -int mtk_vcodec_wait_for_done_ctx(struct mtk_vcodec_ctx *ctx,
+> -				 int command, unsigned int timeout_ms,
+> +int mtk_vcodec_wait_for_done_ctx(void *priv, int command, unsigned int t=
+imeout_ms,
+>  				 unsigned int hw_id)
+>  {
+> +	struct mtk_vcodec_ctx *ctx =3D priv;
+>  	long timeout_jiff, ret;
+> -	int status =3D 0;
+> +	int status =3D 0, ctx_id, ctx_type;
+> +	int *ctx_int_cond, *ctx_int_type;
+> +	wait_queue_head_t *ctx_queue;
 > +
-> +title: GPIO detected hot-plugged I2C bus
-> +
-> +maintainers:
-> +  - Michał Mirosław <mirq-linux@rere.qmqm.pl>
-> +
-> +description: |
+> +	ctx_id =3D ctx->id;
+> +	ctx_type =3D ctx->type;
+> +	ctx_int_cond =3D ctx->int_cond;
+> +	ctx_int_type =3D ctx->int_type;
+> +	ctx_queue =3D ctx->queue;
+> =20
+>  	timeout_jiff =3D msecs_to_jiffies(timeout_ms);
+> -	ret =3D wait_event_interruptible_timeout(ctx->queue[hw_id],
+> -					       ctx->int_cond[hw_id],
+> +	ret =3D wait_event_interruptible_timeout(ctx_queue[hw_id],
+> +					       ctx_int_cond[hw_id],
+>  					       timeout_jiff);
+> =20
+>  	if (!ret) {
+>  		status =3D -1;	/* timeout */
+>  		mtk_v4l2_err("[%d] cmd=3D%d, type=3D%d, dec timeout=3D%ums (%d %d)",
+> -			     ctx->id, command, ctx->type, timeout_ms,
+> -			     ctx->int_cond[hw_id], ctx->int_type[hw_id]);
+> +			     ctx_id, command, ctx_type, timeout_ms,
+> +			     ctx_int_cond[hw_id], ctx_int_type[hw_id]);
+>  	} else if (-ERESTARTSYS =3D=3D ret) {
+>  		status =3D -1;
+>  		mtk_v4l2_err("[%d] cmd=3D%d, type=3D%d, dec inter fail (%d %d)",
+> -			     ctx->id, command, ctx->type,
+> -			     ctx->int_cond[hw_id], ctx->int_type[hw_id]);
+> +			     ctx_id, command, ctx_type,
+> +			     ctx_int_cond[hw_id], ctx_int_type[hw_id]);
+>  	}
+> =20
+> -	ctx->int_cond[hw_id] =3D 0;
+> -	ctx->int_type[hw_id] =3D 0;
+> +	ctx_int_cond[hw_id] =3D 0;
+> +	ctx_int_type[hw_id] =3D 0;
+> =20
+>  	return status;
+>  }
+> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.h b/d=
+rivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.h
+> index 9681f492813b..11bf0ef94d5d 100644
+> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.h
+> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_intr.h
+> @@ -12,8 +12,7 @@
+>  struct mtk_vcodec_ctx;
 
-Do not need '|' unless you need to preserve formatting.
+You have a forward declaration here.
 
-> +  Driver for hot-plugged I2C busses, where some devices on a bus
-> +  are hot-pluggable and their presence is indicated by GPIO line.
-> +
-> +properties:
-> +  $nodename:
-> +    pattern: "^i2c-(.*)?"
+> =20
+>  /* timeout is ms */
+> -int mtk_vcodec_wait_for_done_ctx(struct mtk_vcodec_ctx *ctx,
+> -				 int command, unsigned int timeout_ms,
+> +int mtk_vcodec_wait_for_done_ctx(void *priv, int command, unsigned int t=
+imeout_ms,
+>  				 unsigned int hw_id);
 
-Drop
+So has the CTX is only uses has a pointer, its hard to follow why you need =
+to
+hide the type here. At least its not clear to me how this helps with the go=
+al
+set in the commit message and would simply like to understand before giving=
+ an
+r-b.
 
-> +
-> +  compatible:
-> +    items:
-> +      - const: i2c-hotplug-gpio
-> +
-> +  '#address-cells':
-> +    const: 1
-> +
-> +  '#size-cells':
-> +    const: 0
-> +
-> +  interrupts-extended:
-> +    minItems: 1
-> +
-> +  detect-gpios:
-> +    maxItems: 1
-> +
-> +  i2c-parent:
-> +    maxItems: 1
-
-I don't understand this part. You built it as a complimentary device to
-the I2C controller, but there is no such device as "hotplug I2C", right?
-The GPIO is part of the controller and this is imaginary (virtual) device?
-
-Otherwise, where does the "detect-gpios" go? To the SoC? Then it is not
-a real device...
-
-> +
-> +required:
-> +  - compatible
-> +  - "#address-cells"
-> +  - "#size-cells"
-
-Use consistent quotes (' or ").
-
-> +  - interrupts-extended
-> +  - detect-gpios
-> +  - i2c-parent
-> +
-> +unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    /*
-> +     * Asus Transformers use I2C hotplug for attachable dock keyboard
-> +     */
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c-dock {
-> +        compatible = "i2c-hotplug-gpio";
-> +
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        interrupts-extended = <&gpio 164 IRQ_TYPE_EDGE_BOTH>;
-> +        detect-gpios = <&gpio 164 1>;
-
-You forgot define.
-
-> +
-> +        i2c-parent = <&{/i2c@7000c400}>;
-
-Use normal phandles/labels like entire DTS, not full paths or node names.
-
-> +    };
-> +...
-
-Best regards,
-Krzysztof
+> =20
+>  #endif /* _MTK_VCODEC_INTR_H_ */
+> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c b/d=
+rivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c
+> index f214e6f67005..847e321f4fcc 100644
+> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c
+> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.c
+> @@ -21,24 +21,20 @@ int mtk_v4l2_dbg_level;
+>  EXPORT_SYMBOL(mtk_v4l2_dbg_level);
+>  #endif
+> =20
+> -void __iomem *mtk_vcodec_get_reg_addr(struct mtk_vcodec_ctx *data,
+> -					unsigned int reg_idx)
+> +void __iomem *mtk_vcodec_get_reg_addr(void __iomem **reg_base, unsigned =
+int reg_idx)
+>  {
+> -	struct mtk_vcodec_ctx *ctx =3D (struct mtk_vcodec_ctx *)data;
+> -
+> -	if (!data || reg_idx >=3D NUM_MAX_VCODEC_REG_BASE) {
+> +	if (reg_idx >=3D NUM_MAX_VCODEC_REG_BASE) {
+>  		mtk_v4l2_err("Invalid arguments, reg_idx=3D%d", reg_idx);
+>  		return NULL;
+>  	}
+> -	return ctx->dev->reg_base[reg_idx];
+> +	return reg_base[reg_idx];
+>  }
+>  EXPORT_SYMBOL(mtk_vcodec_get_reg_addr);
+> =20
+> -int mtk_vcodec_mem_alloc(struct mtk_vcodec_ctx *data,
+> -			struct mtk_vcodec_mem *mem)
+> +int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem)
+>  {
+>  	unsigned long size =3D mem->size;
+> -	struct mtk_vcodec_ctx *ctx =3D (struct mtk_vcodec_ctx *)data;
+> +	struct mtk_vcodec_ctx *ctx =3D priv;
+>  	struct device *dev =3D &ctx->dev->plat_dev->dev;
+> =20
+>  	mem->va =3D dma_alloc_coherent(dev, size, &mem->dma_addr, GFP_KERNEL);
+> @@ -57,11 +53,10 @@ int mtk_vcodec_mem_alloc(struct mtk_vcodec_ctx *data,
+>  }
+>  EXPORT_SYMBOL(mtk_vcodec_mem_alloc);
+> =20
+> -void mtk_vcodec_mem_free(struct mtk_vcodec_ctx *data,
+> -			struct mtk_vcodec_mem *mem)
+> +void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem)
+>  {
+>  	unsigned long size =3D mem->size;
+> -	struct mtk_vcodec_ctx *ctx =3D (struct mtk_vcodec_ctx *)data;
+> +	struct mtk_vcodec_ctx *ctx =3D priv;
+>  	struct device *dev =3D &ctx->dev->plat_dev->dev;
+> =20
+>  	if (!mem->va) {
+> diff --git a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h b/d=
+rivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+> index 88d389b65f13..827937bcb4b4 100644
+> --- a/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+> +++ b/drivers/media/platform/mediatek/vcodec/mtk_vcodec_util.h
+> @@ -68,12 +68,9 @@ extern int mtk_vcodec_dbg;
+>  #define mtk_vcodec_debug_enter(h)  mtk_vcodec_debug(h, "+")
+>  #define mtk_vcodec_debug_leave(h)  mtk_vcodec_debug(h, "-")
+> =20
+> -void __iomem *mtk_vcodec_get_reg_addr(struct mtk_vcodec_ctx *data,
+> -				unsigned int reg_idx);
+> -int mtk_vcodec_mem_alloc(struct mtk_vcodec_ctx *data,
+> -				struct mtk_vcodec_mem *mem);
+> -void mtk_vcodec_mem_free(struct mtk_vcodec_ctx *data,
+> -				struct mtk_vcodec_mem *mem);
+> +void __iomem *mtk_vcodec_get_reg_addr(void __iomem **reg_base, unsigned =
+int reg_idx);
+> +int mtk_vcodec_mem_alloc(void *priv, struct mtk_vcodec_mem *mem);
+> +void mtk_vcodec_mem_free(void *priv, struct mtk_vcodec_mem *mem);
+>  void mtk_vcodec_set_curr_ctx(struct mtk_vcodec_dev *vdec_dev,
+>  			     struct mtk_vcodec_ctx *ctx, int hw_idx);
+>  struct mtk_vcodec_ctx *mtk_vcodec_get_curr_ctx(struct mtk_vcodec_dev *vd=
+ec_dev,
+> diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp8_if.c b/=
+drivers/media/platform/mediatek/vcodec/vdec/vdec_vp8_if.c
+> index 88c046731754..5edbccc9ae68 100644
+> --- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp8_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_vp8_if.c
+> @@ -167,13 +167,13 @@ struct vdec_vp8_inst {
+> =20
+>  static void get_hw_reg_base(struct vdec_vp8_inst *inst)
+>  {
+> -	inst->reg_base.top =3D mtk_vcodec_get_reg_addr(inst->ctx, VDEC_TOP);
+> -	inst->reg_base.cm =3D mtk_vcodec_get_reg_addr(inst->ctx, VDEC_CM);
+> -	inst->reg_base.hwd =3D mtk_vcodec_get_reg_addr(inst->ctx, VDEC_HWD);
+> -	inst->reg_base.sys =3D mtk_vcodec_get_reg_addr(inst->ctx, VDEC_SYS);
+> -	inst->reg_base.misc =3D mtk_vcodec_get_reg_addr(inst->ctx, VDEC_MISC);
+> -	inst->reg_base.ld =3D mtk_vcodec_get_reg_addr(inst->ctx, VDEC_LD);
+> -	inst->reg_base.hwb =3D mtk_vcodec_get_reg_addr(inst->ctx, VDEC_HWB);
+> +	inst->reg_base.top =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base=
+, VDEC_TOP);
+> +	inst->reg_base.cm =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base,=
+ VDEC_CM);
+> +	inst->reg_base.hwd =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base=
+, VDEC_HWD);
+> +	inst->reg_base.sys =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base=
+, VDEC_SYS);
+> +	inst->reg_base.misc =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_bas=
+e, VDEC_MISC);
+> +	inst->reg_base.ld =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base,=
+ VDEC_LD);
+> +	inst->reg_base.hwb =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base=
+, VDEC_HWB);
+>  }
+> =20
+>  static void write_hw_segmentation_data(struct vdec_vp8_inst *inst)
+> diff --git a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c b=
+/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
+> index 60fd165c0d94..10365c95ebbe 100644
+> --- a/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/venc/venc_h264_if.c
+> @@ -612,7 +612,7 @@ static int h264_enc_init(struct mtk_vcodec_ctx *ctx)
+>  	inst->ctx =3D ctx;
+>  	inst->vpu_inst.ctx =3D ctx;
+>  	inst->vpu_inst.id =3D is_ext ? SCP_IPI_VENC_H264 : IPI_VENC_H264;
+> -	inst->hw_base =3D mtk_vcodec_get_reg_addr(inst->ctx, VENC_SYS);
+> +	inst->hw_base =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base, VEN=
+C_SYS);
+> =20
+>  	mtk_vcodec_debug_enter(inst);
+> =20
+> diff --git a/drivers/media/platform/mediatek/vcodec/venc/venc_vp8_if.c b/=
+drivers/media/platform/mediatek/vcodec/venc/venc_vp8_if.c
+> index 56ce58f761f1..73ebc35d7c99 100644
+> --- a/drivers/media/platform/mediatek/vcodec/venc/venc_vp8_if.c
+> +++ b/drivers/media/platform/mediatek/vcodec/venc/venc_vp8_if.c
+> @@ -336,7 +336,7 @@ static int vp8_enc_init(struct mtk_vcodec_ctx *ctx)
+>  	inst->ctx =3D ctx;
+>  	inst->vpu_inst.ctx =3D ctx;
+>  	inst->vpu_inst.id =3D IPI_VENC_VP8;
+> -	inst->hw_base =3D mtk_vcodec_get_reg_addr(inst->ctx, VENC_LT_SYS);
+> +	inst->hw_base =3D mtk_vcodec_get_reg_addr(inst->ctx->dev->reg_base, VEN=
+C_LT_SYS);
+> =20
+>  	mtk_vcodec_debug_enter(inst);
+> =20
 
