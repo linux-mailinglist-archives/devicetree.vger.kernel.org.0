@@ -2,131 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8327C734D93
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 471C5734DAF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:30:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230138AbjFSIZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:25:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60998 "EHLO
+        id S230201AbjFSIaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 04:30:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229992AbjFSIZn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:25:43 -0400
-Received: from mail-pf1-x436.google.com (mail-pf1-x436.google.com [IPv6:2607:f8b0:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 054DCFA;
-        Mon, 19 Jun 2023 01:25:42 -0700 (PDT)
-Received: by mail-pf1-x436.google.com with SMTP id d2e1a72fcca58-666ed230c81so2068951b3a.0;
-        Mon, 19 Jun 2023 01:25:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687163141; x=1689755141;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vRAMSb3QLjF2Pifd9MJCuo7PLicH63ZOqCju9kt2DRc=;
-        b=g9vkRqXznPmnyw096XgVwqzl/mWuQjez8CHkXq0G3sgqxo5UrY+QhcNKe7Aq9h4lGq
-         LvAZYej2HJTgizPJk5Ei3J4ZtYVQx4uGPnZRikXhTKqAqQFUurbYfWeJJeZZbBns5yfW
-         rasG1e0w2wRllONuQYPZ9xWB4z0mAoNgKLh/BHFENVI6DW5n+FNZdtx8885jr3Ltp1et
-         rHVFeV/phZ7Ak2jEhgwIxCOCJ1b3R6m7DHs/YjnTg8DdjsvOWtPDWyN25xJtt45HlQrU
-         yUUKjk5s5hvEqy7ibBXGvm1RWtPXQ0QVLyjHEH/Knr6JMS4vvk84b8YDwIXXnMGpBS5O
-         s2ww==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687163141; x=1689755141;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vRAMSb3QLjF2Pifd9MJCuo7PLicH63ZOqCju9kt2DRc=;
-        b=U1DySPDBEQr3k4Y1Y55Hr75cx2r74dcUdjlt38sus0n2jleh+ieU/QKnyF9r0/bWE/
-         WcvcP6aJvNOQ9zzefdYXJ/grqm8QPs9In86RngSUB/RXkOw5B+7wNIZRxm6S5fy5UfCy
-         movTX1TZ9X6eGGuaftM62rZyUvWLpvVtH/bEUVm7kMcP9BSJcgTquOxfBFIftu9j5r5n
-         1e/OTSzNMcp/yPF9Yd592azXE0gKlv3UiMytTx10OfVQ7F2z7IqpKoCnieTR5Qg4ozY8
-         2rl2febR9l/Il7PsDQTOliOglYXUVdZgAGRw0cnnKNn1u7RvXpxgJa8bvMc0/MPUOTNf
-         ALFQ==
-X-Gm-Message-State: AC+VfDx21AT6pCWzHUu+6QU/vGz4KeuqZ9aHZVwNumZmX6T/socuAtdX
-        ib18O9ztB1TmW4DUdEZlkdo=
-X-Google-Smtp-Source: ACHHUZ68kJjz2ljXB0Yz5H2UWJkK6ZZQS9rxmZ3ddDF9ffIAXIG/lVIosS4Jf8SsHVunlrF9VeARAA==
-X-Received: by 2002:a05:6a00:21ce:b0:666:64fb:b129 with SMTP id t14-20020a056a0021ce00b0066664fbb129mr13429469pfj.27.1687163141133;
-        Mon, 19 Jun 2023 01:25:41 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id a7-20020aa78647000000b0066642f95bc5sm8075178pfo.35.2023.06.19.01.25.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 01:25:40 -0700 (PDT)
-Message-ID: <f7594eb2-9c89-14bf-56a2-990bcd0c7abe@gmail.com>
-Date:   Mon, 19 Jun 2023 16:25:36 +0800
+        with ESMTP id S229636AbjFSIaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:30:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 675CB100;
+        Mon, 19 Jun 2023 01:30:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F3E6D6144D;
+        Mon, 19 Jun 2023 08:30:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C732C433C8;
+        Mon, 19 Jun 2023 08:30:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687163411;
+        bh=eIZI6ptS5tkUzsgX/wDjow3J+YGKEh3sq048gze+kVg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=r/LMg6qFV2+qi6N8vQgKjVUkMoSyhOvEYY6fV7fNsloqn1HTMl7ngQKS7z5TT3cQI
+         GRbeINLl747qcecYs9/eoxQxqj6/cxZYrqoKS6MriKRQi5iyovzgR7ZdJ/obHFjGpT
+         IamdPUFka+FU9DL4oYh1SI7rmBKH8TL53TxFRFeMZMW9LHF4A6AC6fN2S9963DM1/p
+         NfLGwA7Ox8n/9bqC8odPLCnrP/ZVCBF4zxmEIHO1QpMb8miNRaEYSpyUYo3IFww5/K
+         R1LK3+iYZXUagisS2DSFC3Hbp0+jkUvdpYvHz3nx5iFtpHutwNRcRWDHBhSpULII/G
+         dsIym3OTTV1uQ==
+Date:   Mon, 19 Jun 2023 09:30:05 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     broonie@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linus.walleij@linaro.org, vkoul@kernel.org, robh+dt@kernel.org,
+        conor+dt@kernel.org, lgirdwood@gmail.com,
+        yung-chuan.liao@linux.intel.com, sanyog.r.kale@intel.com,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
+        patches@opensource.cirrus.com, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 3/6] mfd: cs42l43: Add support for cs42l43 core driver
+Message-ID: <20230619083005.GN3635807@google.com>
+References: <20230605125504.2570158-1-ckeepax@opensource.cirrus.com>
+ <20230605125504.2570158-4-ckeepax@opensource.cirrus.com>
+ <20230615171124.GL3635807@google.com>
+ <20230616083404.GR68926@ediswmail.ad.cirrus.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v15 2/2] clk: nuvoton: Add clock driver for ma35d1 clock
- controller
-Content-Language: en-US
-To:     Arnd Bergmann <arnd@arndb.de>, Rob Herring <robh+dt@kernel.org>,
-        krzysztof.kozlowski+dt@linaro.org, Lee Jones <lee@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jirislaby@kernel.org>,
-        Tomer Maimon <tmaimon77@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, soc@kernel.org, schung@nuvoton.com,
-        mjchen@nuvoton.com, Jacky Huang <ychuang3@nuvoton.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230619033041.233921-1-ychuang570808@gmail.com>
- <f3f9bd5c-b4bd-461c-a6e1-b310cdaa0595@app.fastmail.com>
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <f3f9bd5c-b4bd-461c-a6e1-b310cdaa0595@app.fastmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230616083404.GR68926@ediswmail.ad.cirrus.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 16 Jun 2023, Charles Keepax wrote:
+
+> On Thu, Jun 15, 2023 at 06:11:24PM +0100, Lee Jones wrote:
+> > On Mon, 05 Jun 2023, Charles Keepax wrote:
+> > > +// SPDX-License-Identifier: GPL-2.0
+> > > +//
+> > > +// CS42L43 I2C driver
+> > > +//
+> > > +// Copyright (C) 2022-2023 Cirrus Logic, Inc. and
+> > > +//                         Cirrus Logic International Semiconductor Ltd.
+> > > +
+> > 
+> > I realise there is some precedent for this already in MFD.
+> > 
+> > However, I'd rather headers used C style multi-line comments.
+> > 
+> 
+> Apologies but just to be super clear you want this to look like:
+> 
+> // SPDX-License-Identifier: GPL-2.0
+> /*
+>  * CS42L43 I2C driver
+>  *
+>  * Copyright (C) 2022-2023 Cirrus Logic, Inc. and
+>  *                         Cirrus Logic International Semiconductor Ltd.
+>  */
+> 
+> Just clarifying since you want to get rid of all the // comments,
+> but the SPDX stuff specifically requires one according to
+> Documentation/process/license-rules.rst.
+
+Yes please.
+
+> > > +	// I2C is always attached by definition
+> > 
+> > C please.  And everywhere else.
+> > 
+> 
+> Can do.
 
 
-On 2023/6/19 下午 04:12, Arnd Bergmann wrote:
-> On Mon, Jun 19, 2023, at 05:30, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> The clock controller generates clocks for the whole chip, including
->> system clocks and all peripheral clocks. This driver support ma35d1
->> clock gating, divider, and individual PLL configuration.
->>
->> There are 6 PLLs in ma35d1 SoC:
->>    - CA-PLL for the two Cortex-A35 CPU clock
->>    - SYS-PLL for system bus, which comes from the companion MCU
->>      and cannot be programmed by clock controller.
->>    - DDR-PLL for DDR
->>    - EPLL for GMAC and GFX, Display, and VDEC IPs.
->>    - VPLL for video output pixel clock
->>    - APLL for SDHC, I2S audio, and other IPs.
->> CA-PLL has only one operation mode.
->> DDR-PLL, EPLL, VPLL, and APLL are advanced PLLs which have 3
->> operation modes: integer mode, fraction mode, and spread specturm mode.
->>
->> Signed-off-by: Jacky Huang <ychuang3@nuvoton.com>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Hi Jacky,
->
-> Since I have already picked up the previous version of this patch,
-> please send a diff against the version I merged please.
->
->       Arnd
+> > > +static struct i2c_device_id cs42l43_i2c_id[] = {
+> > > +	{ "cs42l43", 0 },
+> > > +	{}
+> > > +};
+> > > +MODULE_DEVICE_TABLE(i2c, cs42l43_i2c_id);
+> > 
+> > Is this required anymore?
+> > 
+> 
+> I was not aware of it not being required, I think it will still
+> be used for the purposes of module naming. Perhaps someone more
+> knowledgable than me can comment?
 
-Dear Arnd,
+Since this table isn't providing any information which cannot be derived
+from the other (OF, ACPI) tables, the I2C subsystem should be able to
+obtain it from those sources instead.
 
-I got it. Thank you.
-I will send a diff version based on the previous patch.
+> > > +#if IS_ENABLED(CONFIG_MFD_CS42L43_I2C)
+> > > +const struct regmap_config cs42l43_i2c_regmap = {
+> > > +	.reg_bits		= 32,
+> > > +	.reg_stride		= 4,
+> > > +	.val_bits		= 32,
+> > > +	.reg_format_endian	= REGMAP_ENDIAN_BIG,
+> > > +	.val_format_endian	= REGMAP_ENDIAN_BIG,
+> > > +
+> > > +	.max_register		= CS42L43_MCU_RAM_MAX,
+> > > +	.readable_reg		= cs42l43_readable_register,
+> > > +	.volatile_reg		= cs42l43_volatile_register,
+> > > +	.precious_reg		= cs42l43_precious_register,
+> > > +
+> > > +	.cache_type		= REGCACHE_RBTREE,
+> > > +	.reg_defaults		= cs42l43_reg_default,
+> > > +	.num_reg_defaults	= ARRAY_SIZE(cs42l43_reg_default),
+> > > +};
+> > > +EXPORT_SYMBOL_NS_GPL(cs42l43_i2c_regmap, MFD_CS42L43);
+> > > +#endif
+> > 
+> > We don't tend to like #ifery in C files.
+> > 
+> > Why is it required?
+> > 
+> > And why not just put them were they're consumed?
+> 
+> The trouble is the cs42l43_reg_default array and the array size.
+> There is no good way to statically initialise those two fields
+> from a single array in both the I2C and SDW modules.
 
+Can you have a little think for another way to solve this please?
 
-Best regards,
-Jacky Huang
+> > > +static int cs42l43_soft_reset(struct cs42l43 *cs42l43)
+> > > +{
+> > > +	static const struct reg_sequence reset[] = {
+> > > +		{ CS42L43_SFT_RESET, 0x5A000000 },
+> > > +	};
+> > > +	unsigned long time;
+> > > +
+> > > +	dev_dbg(cs42l43->dev, "Soft resetting\n");
+> > 
+> > How often are you realistically going to enable these?  Can you do
+> > without them and just add some printks when debugging?  Seems a shame to
+> > dirty the code-base with seldom used / questionably helpful LoC.
+> 
+> I mean I use them all the time they are very helpful. But yeah I
+> can just add them each time I need them its just a pain, but I
 
+Sure, during development.  Now the driver is authored however, how often
+are you likely to turn it back on.  Besides, this isn't real debug
+information with dynamically obtained values and useful information,
+it's a function call trace which can be obtained from other sources,
+such as ftrace and the like.
 
+[...]
 
+> > > +	if (ret) {
+> > > +		dev_err(cs42l43->dev, "Failed to move to stage 3: %d, 0x%x\n", ret, val);
+> > 
+> > Stage 3 what?
+> > 
+> 
+> Of the MCU boot.
+
+Please make that clear.  I don't see any documentation or pointers here.
+
+> > Perhaps some simple function headers would help?
+> > 
+> 
+> You mean add some kernel doc for these functions, right? Assuming
+> that is what you mean, will do.
+
+I'd suggest not using kernel-doc formatting, but that type of thing,
+yes.
+
+-- 
+Lee Jones [李琼斯]
