@@ -2,59 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC913735E2A
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 22:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97D7F735E54
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 22:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229547AbjFSUGR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 16:06:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57342 "EHLO
+        id S230071AbjFSUSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 16:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60666 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjFSUGQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 16:06:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87C34E0;
-        Mon, 19 Jun 2023 13:06:15 -0700 (PDT)
+        with ESMTP id S230007AbjFSUSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 16:18:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52AFBE72;
+        Mon, 19 Jun 2023 13:18:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1BA8160EAE;
-        Mon, 19 Jun 2023 20:06:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01AE7C433C0;
-        Mon, 19 Jun 2023 20:06:11 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D42A460EAE;
+        Mon, 19 Jun 2023 20:18:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BDFB9C433C8;
+        Mon, 19 Jun 2023 20:18:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687205174;
-        bh=CTxCMk1gTTUHDIrUKyoalHysRRGv6bTbdPSH/3zbi5o=;
+        s=k20201202; t=1687205911;
+        bh=HhghJ0yctP0ql16cZYZqxzheR0DW80MolXe2adxh4PI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TIQTVfeYtBre7rWe8mp0bQlH/s+0b6z1oAmHfdXAyHNEmr7q3Nn69xHczgv/dtMZi
-         tuCdsCB0LyQYhSRCMZB5KumypM+b/RkXwiaSmxAuc60kddU+09MBFuC9luPtVc/jos
-         JcIW2Sb6ZHrqprYBq7nhZQlD2tQkR+EskgAto9tnZA0mtvZpiq52NkwjznRRmhlS7l
-         Ym7UxQfUpiaNNIZycmSGkqetlAGyCYUFiAh1XKlq6uJ5gDlOpj3Ji8QhCyZp21PzER
-         /3rP9Mjh5bWePyXn/d/HivSH31jJ8m9AnFWDed6vrvI90tnnUXYS+dZ4CosP/HLv5f
-         WexPSroD6RIsw==
-Date:   Mon, 19 Jun 2023 21:06:09 +0100
+        b=JFJ28e8C/9xbrFv+nFHoy99cXRAzDYp/c1J1kHsrsr0fK0UZGoFs1GeQTFLH5GFBe
+         LGYTdHv/yg8aDWvwuBCREEXjxpv/EyT7i08ksdgAFpWcP+8l9Rjx++O88/5udK+kZJ
+         Hknr4Rkn9Go5AsgmBzjjfpsqtuoKiT57cVyAxVeR/jJESFWk5NwbXME3/XHfa4JmV+
+         TgcKts6kxfDCyi67QVuFaEJi8tD2hJ2EIiTYe6AyAyDLvpsB5BUcgVp3PX5VS4R0Ej
+         6/oKCF9bnEFeuC2anUCBG7v60rG1tJuj+gGt39p8EDCWvnjMrQDoUW975N2KrNHxla
+         o3kP7IsfJdEPw==
+Date:   Mon, 19 Jun 2023 21:18:25 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Marek Vasut <marex@denx.de>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next] dt-bindings: net: micrel,ks8851: allow SPI
- device properties
-Message-ID: <20230619-aware-robin-789ada1c6db4@spud>
-References: <20230619170134.65395-1-krzysztof.kozlowski@linaro.org>
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v4 4/6] dt-bindings: display: stm32-ltdc: add optional
+ st,fb-bpp property
+Message-ID: <20230619-ion-decree-c63d2eb11e83@spud>
+References: <20230619165525.1035243-1-dario.binacchi@amarulasolutions.com>
+ <20230619165525.1035243-5-dario.binacchi@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Nal+MxCjpXktrc4o"
+        protocol="application/pgp-signature"; boundary="wB3prgNFdxLAzRiP"
 Content-Disposition: inline
-In-Reply-To: <20230619170134.65395-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+In-Reply-To: <20230619165525.1035243-5-dario.binacchi@amarulasolutions.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,37 +72,77 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Nal+MxCjpXktrc4o
+--wB3prgNFdxLAzRiP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 19, 2023 at 07:01:34PM +0200, Krzysztof Kozlowski wrote:
-> The Micrel KS8851 can be attached to SPI or parallel bus and the
-> difference is expressed in compatibles.  Allow common SPI properties
-> when this is a SPI variant and narrow the parallel memory bus properties
-> to the second case.
->=20
-> This fixes dtbs_check warning:
->=20
->   qcom-msm8960-cdp.dtb: ethernet@0: Unevaluated properties are not allowe=
-d ('spi-max-frequency' was unexpected)
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hey,
 
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+On Mon, Jun 19, 2023 at 06:55:23PM +0200, Dario Binacchi wrote:
+> Boards that use the STM32F{4,7} series have limited amounts of RAM. The
+> added property allows to size, within certain limits, the memory footprint
+> required by the framebuffer.
+
+Hmm, this sounds quite a lot like "software policy", since the actual
+display doesn't have these limitations. Rob, Krzysztof?
+
+>=20
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+>=20
+> (no changes since v1)
+
+Really?
+https://lore.kernel.org/all/?q=3Ddfn:st,stm32-ltdc.yaml%20
+
+You sure this shouldn't be "new in v4"?
+
+>  .../devicetree/bindings/display/st,stm32-ltdc.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml=
+ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> index d6ea4d62a2cf..1c3a3653579f 100644
+> --- a/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> +++ b/Documentation/devicetree/bindings/display/st,stm32-ltdc.yaml
+> @@ -42,6 +42,12 @@ properties:
+>        - for internal dpi input of the MIPI DSI host controller.
+>        Note: These 2 endpoints cannot be activated simultaneously.
+> =20
+> +  st,fb-bpp:
+
+Is there not a more understandable property name than this?
+Maybe I just had to think about it because fbdev stuff aint something
+I've worked with...
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      bit depth of framebuffer (8, 16 or 32)
+> +    maxItems: 1
+
+Why not make it an enum, since there are only 4 values?
+
 Cheers,
 Conor.
 
---Nal+MxCjpXktrc4o
+> +
+>  required:
+>    - compatible
+>    - reg
+> --=20
+> 2.32.0
+>=20
+
+--wB3prgNFdxLAzRiP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJC1MQAKCRB4tDGHoIJi
-0rWMAQCcFMIt8ItKOlPO3UX2ZtobWQGO+xcS/uHckB0dDYyWIwEA/cUiCww3Nisg
-NpZFU/CH5HUAVJOzke4wq4gzE/zngwA=
-=0/YM
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJC4EQAKCRB4tDGHoIJi
+0oPpAP92h4xspKGtI1yHs7XjwoYCJXDpWoGzANgb0IX7QDSxWQEA+mwt+9KLghOY
+jMdSLkmbkdR8P3BWLJOmAnP6AsLtKQQ=
+=IYJt
 -----END PGP SIGNATURE-----
 
---Nal+MxCjpXktrc4o--
+--wB3prgNFdxLAzRiP--
