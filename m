@@ -2,120 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3164735F67
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 23:54:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EA06735FC8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 00:11:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229843AbjFSVyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 17:54:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57556 "EHLO
+        id S229906AbjFSWLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 18:11:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229758AbjFSVyU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 17:54:20 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5BB3E76;
-        Mon, 19 Jun 2023 14:54:14 -0700 (PDT)
-Received: from mercury (unknown [185.209.196.239])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: sre)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 4DB116606F13;
-        Mon, 19 Jun 2023 22:54:13 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1687211653;
-        bh=iX1WsP52rvu8TUG/hr+rCxY7LacBt13DuItmHpip29E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TrkY2SKYM46DhmM8O7nYasLX5BjBSNtXCZhZCVbhkBLP5geLMHMVacQakqp6ZCFRa
-         LDHECS6Y7wucE2IxLIItibj8crNn5HZHXM1hcNHb9Iue0nddIAiU0D2ct7ykBTuxvL
-         NoshC0Gh2Y/PLq9sFIY2Vf+/FtSXfiwYl47AL0CE4hc+JuJ6oO+8CbUoi104WRSMAg
-         N1zl2+X2kXxm6M0cKYPlwcLXBu1Gd2Y4Y/xj+YKR2KbLyUoRTdlmGtV+UVxrzl0/if
-         zyDjK815DlqZFlrxdhsz8+OWxn9opajoT8NGncd1ed4RmoMLr+PVeG5vGxlo7RjKPe
-         C4/8RYi3r0NNA==
-Received: by mercury (Postfix, from userid 1000)
-        id DD5331060A6A; Mon, 19 Jun 2023 23:54:10 +0200 (CEST)
-Date:   Mon, 19 Jun 2023 23:54:10 +0200
-From:   Sebastian Reichel <sebastian.reichel@collabora.com>
-To:     Claudiu Beznea <claudiu.beznea@microchip.com>
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Subject: Re: [PATCH v3 4/4] MAINTAINERS: add documentation file for Microchip
- SAMA5D2 shutdown controller
-Message-ID: <20230619215410.cw52rjbjenjifvcx@mercury.elektranox.org>
-References: <20230616101646.879480-1-claudiu.beznea@microchip.com>
- <20230616101646.879480-5-claudiu.beznea@microchip.com>
+        with ESMTP id S229818AbjFSWLR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 18:11:17 -0400
+Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E44187;
+        Mon, 19 Jun 2023 15:11:17 -0700 (PDT)
+Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3422161e53bso8158865ab.1;
+        Mon, 19 Jun 2023 15:11:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687212676; x=1689804676;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2GzJl3YIufx24rrPPBjiGHwcJLGJVUI+UoKbrhxXg1M=;
+        b=eomirQcs7pb2q2stKCz+ZVrYK5fGAj7cMs0tgYixkxoYbjACJD4AZaT1VmVCmnrBUC
+         SijCGD2xukzPHXUalO9NiZE61ondsCEE8b8qVefCDywgiOBaL7OKyUZLQp3XYC6AbNQL
+         LHe4Av5L4gfeF3282FgK4CfMAEK0mBpLAaswI0LqjLt1/HDTKMKei6z7TOLv6PVeVR0M
+         x+TuoqnPDv5IZ+18PayIU8/IIkkdWio0p53z5a/F64tnEF0FGJTWzN042/nR0GRPwkIa
+         m0n9l9uNsRDG7np6gulvZCBNejC5oWfPnQhFvkIHYLYlF7x1irjUeRaEcKCzcuWEd60B
+         Ir9Q==
+X-Gm-Message-State: AC+VfDzVAFv4qE3lcRKM+I4gnUmyu7RQUg2tHHRXDSjytivznYPBh1uF
+        7HcplAoyBTWUQpRBv0KFfhJtGLCo1w==
+X-Google-Smtp-Source: ACHHUZ6YHBtLREVH2RBkLmpN6iF2iPKgeZP7XF9P82sV7Y/BeGqT4CuDM3LoXhiiKoMP9nbsocyEXQ==
+X-Received: by 2002:a92:c60a:0:b0:33e:6d37:ce76 with SMTP id p10-20020a92c60a000000b0033e6d37ce76mr6318463ilm.12.1687212676512;
+        Mon, 19 Jun 2023 15:11:16 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id v2-20020a92c6c2000000b0033bc3a3ea39sm170537ilm.70.2023.06.19.15.11.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jun 2023 15:11:15 -0700 (PDT)
+Received: (nullmailer pid 1611621 invoked by uid 1000);
+        Mon, 19 Jun 2023 22:11:13 -0000
+Date:   Mon, 19 Jun 2023 16:11:13 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        linux-kernel@vger.kernel.org,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        michael@amarulasolutions.com,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Yannick Fertre <yannick.fertre@foss.st.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: Re: [PATCH v4 4/6] dt-bindings: display: stm32-ltdc: add optional
+ st,fb-bpp property
+Message-ID: <20230619221113.GA1608794-robh@kernel.org>
+References: <20230619165525.1035243-1-dario.binacchi@amarulasolutions.com>
+ <20230619165525.1035243-5-dario.binacchi@amarulasolutions.com>
+ <20230619-ion-decree-c63d2eb11e83@spud>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5gzjbh54lkf3rfdd"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230616101646.879480-5-claudiu.beznea@microchip.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230619-ion-decree-c63d2eb11e83@spud>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 19, 2023 at 09:18:25PM +0100, Conor Dooley wrote:
+> Hey,
+> 
+> On Mon, Jun 19, 2023 at 06:55:23PM +0200, Dario Binacchi wrote:
+> > Boards that use the STM32F{4,7} series have limited amounts of RAM. The
+> > added property allows to size, within certain limits, the memory footprint
+> > required by the framebuffer.
+> 
+> Hmm, this sounds quite a lot like "software policy", since the actual
+> display doesn't have these limitations. Rob, Krzysztof?
 
---5gzjbh54lkf3rfdd
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Indeed. This doesn't belong in DT.
 
-Hi,
+Rob
 
-On Fri, Jun 16, 2023 at 01:16:46PM +0300, Claudiu Beznea wrote:
-> Add documentation file for SAMA5D2 shutdown controller.
->=20
-> Signed-off-by: Claudiu Beznea <claudiu.beznea@microchip.com>
-> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
-> ---
-
-Thanks, queued.
-
--- Sebastian
-
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 74a6b6b13d84..cdf4b41cf62b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -13811,6 +13811,7 @@ F:	include/dt-bindings/iio/adc/at91-sama5d2_adc.h
->  MICROCHIP SAMA5D2-COMPATIBLE SHUTDOWN CONTROLLER
->  M:	Claudiu Beznea <claudiu.beznea@microchip.com>
->  S:	Supported
-> +F:	Documentation/devicetree/bindings/power/reset/atmel,sama5d2-shdwc.yaml
->  F:	drivers/power/reset/at91-sama5d2_shdwc.c
-> =20
->  MICROCHIP SPI DRIVER
-> --=20
-> 2.34.1
->=20
-
---5gzjbh54lkf3rfdd
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAmSQzoIACgkQ2O7X88g7
-+prvsQ//ZolFWiSJZtyR3LPZn7Mmq9cwerjY1feOPQoyiV9Sm9MSr1cx9lWDRzAK
-7fLCt9ZibihWYzFnpGgBmPsjVMSwmQSC8mYmqt1kyinDBYI5W/isjXyGKFdRowhz
-cdHejnBqPOwskKjjcQeNfxkgOfsoRmmVTYw5iFjVvsn68Se/1Wnwfq2S/dTXzVcU
-n8xx7R6c5Q800rdZtCWcQi//kB9+regOG653+vdHrzLwbBv9RndzbOZN42NYQlNx
-KkFCMMc7N1yYg7IPXriZtgfTzL9KSqSAYQN8u0EeUax6oSktIpbdRVpW+SnUxos+
-K/ByH/DNeTsvw2jDT5DtbS2wirrI98c1ARnCZ4mV0eVJ/St1MqmUEPUdzGoZvU9c
-I419JDACOnER6kTbecJeDYu+acZa9bXrgOIkVaQJnv9pgRse7qoqBQb1vjugDTZr
-LolBhpt9kkJptmL0UdTml8enM1MToMVDehEbXEjYiGvbcUfT9hvGgD+oLE1+wGzG
-gOyk5BUYQPNan1zl7UsLdqtgfU12pEi5JOHk7lEF+xzriqV/JmOwcH5EHv3wfm+Z
-lHypVzRtbPr/cyeqx20qVNsltgmqAt6RdNkT1ODNFnqJhOkTiFV99PLReh1SZgsO
-9VbT9MMhk8xxT6pYLbQk4zcFcny9DGirGC/yAWlqghLQyKMq9Ts=
-=MKQh
------END PGP SIGNATURE-----
-
---5gzjbh54lkf3rfdd--
