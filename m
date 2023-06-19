@@ -2,92 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5FD735086
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D8127350D5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjFSJkF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 05:40:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33518 "EHLO
+        id S230271AbjFSJsW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:48:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37628 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229694AbjFSJkE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:40:04 -0400
-Received: from out3-smtp.messagingengine.com (out3-smtp.messagingengine.com [66.111.4.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 643BEAF
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:40:03 -0700 (PDT)
-Received: from compute5.internal (compute5.nyi.internal [10.202.2.45])
-        by mailout.nyi.internal (Postfix) with ESMTP id 050845C024A;
-        Mon, 19 Jun 2023 05:40:00 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute5.internal (MEProxy); Mon, 19 Jun 2023 05:40:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=cc
-        :cc:content-type:content-type:date:date:from:from:in-reply-to
-        :in-reply-to:message-id:mime-version:references:reply-to:sender
-        :subject:subject:to:to; s=fm2; t=1687167600; x=1687254000; bh=aN
-        45kGmqBIxAG12dnd6Q0Yr1ClH4O5r4wrOtgu7daTU=; b=oKh6ILcZftQblC0rVa
-        i23g9WfTUykmIq9jtJN7uhhy9dcKE0CDtHx2Zp+1/wZTldFscBRECJKdLTTYeoUR
-        9LquVL9/s20kw8ZGQ5Xo1Cwt6+Q/6M1XNisrA9Y9g3SDyNQ9HMH4pwxWSSM0C1uJ
-        Bkd9QzQWGNjBeHPPk63wuOnH5ASsQDzMCZUO87xw3FTh6vWC0lbv/3ALdk7xBMgP
-        +cYSS6+UcEWzODVFeIbmNMHC/f2tVsbPhje1oYLE6g7yTh8dQ870dnBrdD75Tel+
-        Xj6B53q/Ndo+H9o8UZhLZnco73eJz1oTK0/hUgvGd3x/wt4BwanSD5s0NFzco5iU
-        qgjw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:cc:content-type:content-type:date:date
-        :feedback-id:feedback-id:from:from:in-reply-to:in-reply-to
-        :message-id:mime-version:references:reply-to:sender:subject
-        :subject:to:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm2; t=1687167600; x=1687254000; bh=aN45kGmqBIxAG
-        12dnd6Q0Yr1ClH4O5r4wrOtgu7daTU=; b=Iq+FtKOQ4QBQcE4C4cbyxuJ+BUMf8
-        5KjZJ7wp8gy3iHiMRySTS8nD0qhzr4DXmEpIsl5uXGQlWUtSXPXUN9gyGOK6wfm5
-        +iusTLDel0VuWoMz7mjKpQHQYueBsEU2pczhsQh7J0PYYbiH2IXzvR7E3ZBCoayP
-        KLhBwBkRJTpdQtbEdDOJpGVGC/D92E3Y8AdHJMz/YDYjwEDL5U9GvkH9CcLRCEBi
-        U4LKet+VqZlKTYQr21fQZBZeZ6l7n3WmDBKopVOXJXZIp7oDoyZx9ZL67clBrJ2k
-        rV8VOheirbSprElYaFC58WqNQ8I304pflF47MOEGSqukYwwFdUVLulsDQ==
-X-ME-Sender: <xms:byKQZA3OpFMyOO94C4ulv809_UPGulLhm2TeQa8TKfzfsFIpS3AzYw>
-    <xme:byKQZLGFPTA6YbBewoRmtsvI4DwryasR0-VuwBjgJSWkNIwQbR8TI8BYr7rscPFnD
-    86q9Q65-3-qKn60JNU>
-X-ME-Received: <xmr:byKQZI5K24QtjMmdOg7076rE6xXKPh5kHQN9XDVwWtEG_G4YpUH4g2AL7mdmMzcXCEtkcVysHsCBCegx9s6xWg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedvhedrgeefvddgudejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvfevuffkfhggtggujgesghdtsfertddtvdenucfhrhhomhepofgrgihi
-    mhgvucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrg
-    htthgvrhhnpeeuveduheeutdekvefgudevjeeufedvvdevhfejgfelgfdtkeevueegteek
-    gfelfeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    hmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:byKQZJ2-JbpdfRapMvttNNIlTlTp3wh-VYiw2xvN2mcwAK7c2xnpWw>
-    <xmx:byKQZDH7UkbTaadNEQTP6tgIj0yMyy7vBC4DAlJ2LzKKkQrvBQ_DBw>
-    <xmx:byKQZC-WFQ_wZGxx0F0ZPTWNjmUC3Pu-muDubGC2UzcNvFtBIzsGCQ>
-    <xmx:cCKQZL-7okOv3Y9Ekt4HAblodYSz3_lqQMI0Bi7AbaIiJty3T6pI4Q>
-Feedback-ID: i8771445c:Fastmail
-Received: by mail.messagingengine.com (Postfix) with ESMTPA; Mon,
- 19 Jun 2023 05:39:59 -0400 (EDT)
-Date:   Mon, 19 Jun 2023 11:39:56 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
+        with ESMTP id S229489AbjFSJsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:48:16 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 354F11AB;
+        Mon, 19 Jun 2023 02:48:09 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 4454124DD82;
+        Mon, 19 Jun 2023 17:48:02 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 19 Jun
+ 2023 17:48:02 +0800
+Received: from ubuntu.localdomain (113.72.145.217) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 19 Jun
+ 2023 17:48:01 +0800
+From:   Minda Chen <minda.chen@starfivetech.com>
+To:     Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Subject: Re: [PATCH v2 2/6] dt-bindings: display: st7789v: bound the number
- of Rx data lines
-Message-ID: <wgi4wtewth3xwtl5updyg5et3roiqp4h5kz6oyevd4uxjveboq@gff42fefym7m>
-References: <20230616163255.2804163-1-miquel.raynal@bootlin.com>
- <20230616163255.2804163-3-miquel.raynal@bootlin.com>
- <tcxifa7ol3fukfsdw7hh3kl25dhpviu6lasdc6xasz4dvhjedx@mo2vae6smtok>
- <20230618193732.04fc1909@xps-13>
+        Roger Quadros <rogerq@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-riscv@lists.infradead.org>,
+        "Paul Walmsley" <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Minda Chen <minda.chen@starfivetech.com>,
+        Mason Huo <mason.huo@starfivetech.com>
+Subject: [PATCH v7 0/7] Add JH7110 USB PHY driver support
+Date:   Mon, 19 Jun 2023 17:47:54 +0800
+Message-ID: <20230619094759.21013-1-minda.chen@starfivetech.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="fkpq67rzflalivu3"
-Content-Disposition: inline
-In-Reply-To: <20230618193732.04fc1909@xps-13>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+Content-Type: text/plain
+X-Originating-IP: [113.72.145.217]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -96,82 +58,86 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds USB and PCIe PHY for the StarFive JH7110 SoC.
+The patch has been tested on the VisionFive 2 board.
 
---fkpq67rzflalivu3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This patchset is base on v6.4-rc6
 
-On Sun, Jun 18, 2023 at 07:37:32PM +0200, Miquel Raynal wrote:
-> Hello Maxime,
->=20
-> maxime@cerno.tech wrote on Sun, 18 Jun 2023 16:37:58 +0200:
->=20
-> > Hi,
-> >=20
-> > On Fri, Jun 16, 2023 at 06:32:51PM +0200, Miquel Raynal wrote:
-> > > The ST7789V LCD controller supports regular SPI wiring, as well as no=
- Rx
-> > > data line at all. The operating system needs to know whether it can r=
-ead
-> > > registers from the device or not. Let's detail this specific design
-> > > possibility by bounding the spi-rx-bus-width property.
-> > >=20
-> > > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > > ---
-> > >  .../devicetree/bindings/display/panel/sitronix,st7789v.yaml   | 4 ++=
-++
-> > >  1 file changed, 4 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/sitronix=
-,st7789v.yaml b/Documentation/devicetree/bindings/display/panel/sitronix,st=
-7789v.yaml
-> > > index 0ccf0487fd8e..a25df7e1df88 100644
-> > > --- a/Documentation/devicetree/bindings/display/panel/sitronix,st7789=
-v.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/panel/sitronix,st7789=
-v.yaml
-> > > @@ -29,6 +29,10 @@ properties:
-> > >    spi-cpha: true
-> > >    spi-cpol: true
-> > > =20
-> > > +  spi-rx-bus-width:
-> > > +    minimum: 0
-> > > +    maximum: 1
-> > > + =20
-> >=20
-> > It's not clear to me what the default would be?
->=20
-> This binding references spi-peripheral-props.yaml which sets the
-> default to 1, I believe it is sane to keep it that way?
+patch 1 is usb phy dt-binding document.
+patch 2 is Pcie PHY dt-binding document.
+patch 3 is USB 2.0 PHY driver.
+patch 4 is PCIe PHY driver.
+patch 5 is PCIe PHY dts
 
-I'm not sure.
+Previous version are merged with USB controller patch.
+For USB controller patch is accepted. Now remove the USB controller patch.
+And remove the dependency.
 
-The driver didn't need RX before, and we didn't have any property that
-was expressing whether we had MISO in the device tree.
+previous change can be seen list below.
+(start from old patch set v3)
+v3: https://patchwork.kernel.org/project/linux-phy/cover/20230315104411.73614-1-minda.chen@starfivetech.com/
+v4: https://patchwork.kernel.org/project/linux-phy/cover/20230406015216.27034-1-minda.chen@starfivetech.com/
+v5: https://patchwork.kernel.org/project/linux-phy/cover/20230420110052.3182-1-minda.chen@starfivetech.com/
+v6: https://patchwork.kernel.org/project/linux-phy/cover/20230518112750.57924-1-minda.chen@starfivetech.com/
 
-That means we had both devices with and without MISO expressed in the
-same way, the driver handling both (by ignoring MISO entirely).
+changes:
+v7:
+  (patch3 and patch 4) Add /driver/phy/starfive directory, Makefile and Kconfig. Remove the dependency.
+  (patch 5) add PCIe PHY dts configuration. (USB 2.0 PHY clock reply on other patch, Dont add this first).
+  
+v6:
+  1. (patch 3) remove the platform remove function.
+  2. (patch 4)
+     - add switch to pcie mode function.
+     - remove the redundant init/exit function.
 
-With this patch, you now introduce a property that specifies whether
-MISO is connected or not, and defaults to MISO being there. And a later
-patch will use MISO if it's available.
+v5:
+  1. (patch 1) set correct model name and commit title.
+  2. (patch 2) change to '-item' in syscon property. change commit title.
 
-This means that, while it's working fine for devices that had MISO
-connected, devices that didn't are assumed to have it, and the driver
-makes use of it.
+v4:
+  1. (patch 1) split PCIe PHY dt-binding doc to patch 2.
+  2. (patch 2) PCIe PHY add stg and sys con configuration to dt-binding doc.
+  3. (patch 3)
+     - split PCIe PHY driver to patch 4.
+     - replace dr_mode to phy mode in jh7110_usb2_phy.
+  4. (patch 4) 
+     - Makefile and Kconfig sorted by alphabet sequence.
+     - Add PCIe PHY stg and syscon PHY connection configuration
+       for USB 3.0.
 
-Maxime
+v3:
+  1. Add patch 1 - 4. Add USB PHY driver and dt-binding doc. 
+     USB PHY codes are moved to patch 3 and patch 4.
 
---fkpq67rzflalivu3
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+Minda Chen (5):
+  dt-bindings: phy: Add StarFive JH7110 USB PHY
+  dt-bindings: phy: Add StarFive JH7110 PCIe PHY
+  phy: starfive: Add JH7110 USB 2.0 PHY driver
+  phy: starfive: Add JH7110 PCIE 2.0 PHY driver
+  riscv: dts: starfive: Add PCIe PHY dts configuration for JH7110
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZJAibAAKCRDj7w1vZxhR
-xY+rAP0QdETO/flzliKqO/TiFMIIFDduM+m8VCu0QyIQSFtLGAD/fxF97CLVuhkI
-8iXzvUDlUJM1FVNCNrbz689yGknAfwk=
-=gCP9
------END PGP SIGNATURE-----
+ .../phy/starfive,jh7110-pcie-phy.yaml         |  58 +++++
+ .../bindings/phy/starfive,jh7110-usb-phy.yaml |  50 +++++
+ MAINTAINERS                                   |   8 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  12 ++
+ drivers/phy/Kconfig                           |   1 +
+ drivers/phy/Makefile                          |   1 +
+ drivers/phy/starfive/Kconfig                  |  25 +++
+ drivers/phy/starfive/Makefile                 |   3 +
+ drivers/phy/starfive/phy-jh7110-pcie.c        | 204 ++++++++++++++++++
+ drivers/phy/starfive/phy-jh7110-usb.c         | 150 +++++++++++++
+ 10 files changed, 512 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-pcie-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/starfive,jh7110-usb-phy.yaml
+ create mode 100644 drivers/phy/starfive/Kconfig
+ create mode 100644 drivers/phy/starfive/Makefile
+ create mode 100644 drivers/phy/starfive/phy-jh7110-pcie.c
+ create mode 100644 drivers/phy/starfive/phy-jh7110-usb.c
 
---fkpq67rzflalivu3--
+
+base-commit: 858fd168a95c5b9669aac8db6c14a9aeab446375
+-- 
+2.17.1
+
