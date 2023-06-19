@@ -2,376 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40599734EC8
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:55:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 707DC734ED5
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:56:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231190AbjFSIzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:55:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57854 "EHLO
+        id S231139AbjFSI45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 04:56:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231442AbjFSIzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:55:07 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6E842115
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:54:21 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-988b204ce5fso91790466b.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:54:21 -0700 (PDT)
+        with ESMTP id S231263AbjFSI4g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:56:36 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485AD1BDF
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:55:42 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f90a7325f6so18202265e9.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:55:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687164860; x=1689756860;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ci8Dv1Srq1+mFYYcSCRVX8KDacfrknwGHC/+xkmrHiI=;
-        b=zZp8nOtLARCPGtSOYtyCgzazirx8FNphIiNNijeq0FTE7DIaRk/YnH1GfAVmF170dC
-         9EDXzeK+/dT1PDxizhsDyhb5coQzFQznwtCIOUOubikfrMPXYXl8qUNdhcgMspvvL5kf
-         wQOYfrDC9SQqm5tSxZMFv5D0DuTJ8aF67ISdn3Qu5FMLaLcxQt0Lzn97mmnkuLbYKpGx
-         ywO1VdMYZRL4srwqJL1667JI4V35RpDUZlTAFnKJ8PfYS/GRO7gVxxW4TFhhMiqh76Jh
-         DaONbnZKZAmMgXWvyrYOCqoCM7pa6p8nCiR8xNTczcaGGFceJQ+yaw7UBg373lahyyfM
-         qjZA==
+        d=linaro.org; s=google; t=1687164940; x=1689756940;
+        h=content-transfer-encoding:in-reply-to:organization:from
+         :content-language:references:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ab/uccW/SU2clnL7XMqPxhlr/0i0qnP9OFatwF2duQQ=;
+        b=nqsqLIrl8CSWESdnM/quQtpg3UjEW8V+yoGzWVrPNz/PiWRb+MroGyVsGbF10zdEUU
+         58FSXMD99ATdJ8ateeOoXxrIfi9cvveOu1lIEhh18V2RaUZzOFBQw15CrQFwOWdL93ba
+         rGMLKFB21ikTmbIl0F8mzpPNwzD2eQrT+uxFl+1RomQf8WYCyID+BJfk8VdBnBW411K6
+         9+xeaSMJBoiRtogYKsb5tvJvJBzcOPIxytSmg3P9wNv+m/gROVKyhM6B3TRaJrOLOl3w
+         6tRX7feD6viUGat+fXwfiBivQ5k6ztGj8RXzEzL/Q64HdR8eXPkS1NfYNSOGDqt4EvLn
+         FPoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687164860; x=1689756860;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ci8Dv1Srq1+mFYYcSCRVX8KDacfrknwGHC/+xkmrHiI=;
-        b=Ku71PdvGZvJlawcivE4z3ZahTO8PYP1orNf3x4jEaTMlS26N5T7gAWZBv4mFikNGdC
-         MM5eOiGzMdVa9xDs+4Yn5Djv1+iGUc9tIwfelSzGUP0KkDkY5Qw1QCY1nfsFk6Douzkp
-         SFKMQfdBxIAywodYiZiwrEooDuP2cbpExk4acizJ5kadmMrvTIKPitKq5MeaRUwhTjyE
-         NV5H3Y6ztqk/A1+nUJeIWYQ6igbuT04pCNzaDl3ZQkiCOi0dOvuERO2QLx0+/DjnnRs+
-         SGzzo5bMkgk5rs+wdyd5RONrEKUpgXM7DGvKqpOs1nzVfntzqtYwBmrixxqQixawSv5h
-         TRHA==
-X-Gm-Message-State: AC+VfDy/R6lT+AfYQM0XGs5bVNRSKZjWufkUlmeJhQXG24xGRn2IjM7j
-        bPLBTogOspyRMc4SZjK/NCoChg==
-X-Google-Smtp-Source: ACHHUZ7ub0Fd+/+CKiAlHA/0uvNXN0jlccJ1Htth82batH2QgdjAPXzAK9TTy3r4gF0XMe3JYnS12w==
-X-Received: by 2002:a17:907:a01:b0:987:fe18:1c56 with SMTP id bb1-20020a1709070a0100b00987fe181c56mr4311994ejc.47.1687164860152;
-        Mon, 19 Jun 2023 01:54:20 -0700 (PDT)
-Received: from blmsp.fritz.box ([2001:4090:a245:802c:bc2b:8db8:9210:41eb])
-        by smtp.gmail.com with ESMTPSA id h27-20020a17090619db00b00987a6e01e94sm2994339ejd.214.2023.06.19.01.54.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jun 2023 01:54:19 -0700 (PDT)
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1687164940; x=1689756940;
+        h=content-transfer-encoding:in-reply-to:organization:from
+         :content-language:references:to:subject:reply-to:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=ab/uccW/SU2clnL7XMqPxhlr/0i0qnP9OFatwF2duQQ=;
+        b=ET5sAYkoY0h120Dy5cOjb6JceB4uQMvQue+ih2iXW/yvUt5SM528JRwOGEOhapYI2d
+         9ngP2H72g5DAWrLj675Gn01TWPzgG6CMvkMCxyf17WSxHMHWFyIXVQO6O4BpD3bS9IZp
+         9IATpTqim3pLVJ5aeo01PG+XoMegLQ6E8SxhgMO9P04P/7vDT29DpS/riLxfYRDEeJxs
+         wGIZZugwVqF5go8KrrkDzTpEz3BoLdNBFqqd+rd7Uz8F+NEy2o/Ti0RtcJE92pGSPezd
+         sjIAWMX3K/DAhhpkw8WU9rvfp3n/IQae6+s+hqtGwg5KPibfa12EUUQksSi89Bh7US4/
+         dXqQ==
+X-Gm-Message-State: AC+VfDzxZi2SdNKnckxDVt0x8c5MHPm5aoGOYsLZDn4UZmM7VMxJl1o+
+        OdZ72gcoVzv1F45Lesw46HlieQ==
+X-Google-Smtp-Source: ACHHUZ6DYorP55IGV9cW6MrOSU6CDDy/X55ds2R2gJokv4SvLCDIJJcM5yGsxke8P//Hh8XInPL09g==
+X-Received: by 2002:a1c:e90d:0:b0:3f8:f663:921d with SMTP id q13-20020a1ce90d000000b003f8f663921dmr9124407wmc.41.1687164940235;
+        Mon, 19 Jun 2023 01:55:40 -0700 (PDT)
+Received: from [192.168.7.189] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id q19-20020a1cf313000000b003f7361ca753sm9873228wmq.24.2023.06.19.01.55.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 19 Jun 2023 01:55:39 -0700 (PDT)
+Message-ID: <613aa197-62c7-5a4d-2495-b77d9fc902d8@linaro.org>
+Date:   Mon, 19 Jun 2023 10:55:38 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS
+ TLMM
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Fabien Parent <fparent@baylibre.com>,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: [PATCH v5 8/8] soc: mediatek: pm-domains: Add support for MT8365
-Date:   Mon, 19 Jun 2023 10:53:44 +0200
-Message-Id: <20230619085344.2885311-9-msp@baylibre.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230619085344.2885311-1-msp@baylibre.com>
-References: <20230619085344.2885311-1-msp@baylibre.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75 autolearn=no autolearn_force=no
-        version=3.4.6
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230616185742.2250452-1-krzysztof.kozlowski@linaro.org>
+ <20230616185742.2250452-2-krzysztof.kozlowski@linaro.org>
+Content-Language: en-US
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <20230616185742.2250452-2-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fabien Parent <fparent@baylibre.com>
+On 16/06/2023 20:57, Krzysztof Kozlowski wrote:
+> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
+> driver is similar to SM8450 LPASS pin controller, with difference in one
+> new pin (gpio14).
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>   drivers/pinctrl/qcom/Kconfig                  |  10 ++
+>   drivers/pinctrl/qcom/Makefile                 |   1 +
+>   .../pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c   | 167 ++++++++++++++++++
+>   3 files changed, 178 insertions(+)
+>   create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c
+> 
+> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
+> index 634c75336983..9c43bc05c447 100644
+> --- a/drivers/pinctrl/qcom/Kconfig
+> +++ b/drivers/pinctrl/qcom/Kconfig
+> @@ -77,6 +77,16 @@ config PINCTRL_SM8250_LPASS_LPI
+>   	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
+>   	  (Low Power Island) found on the Qualcomm Technologies Inc SM8250 platform.
+>   
+> +config PINCTRL_SM3550_LPASS_LPI
 
-Add the needed board data to support MT8365 SoC.
+s/PINCTRL_SM3550_LPASS_LPI/PINCTRL_SM8350_LPASS_LPI/g
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
-Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
----
- drivers/soc/mediatek/mt8365-pm-domains.h | 197 +++++++++++++++++++++++
- drivers/soc/mediatek/mtk-pm-domains.c    |   5 +
- include/linux/soc/mediatek/infracfg.h    |  41 +++++
- 3 files changed, 243 insertions(+)
- create mode 100644 drivers/soc/mediatek/mt8365-pm-domains.h
 
-diff --git a/drivers/soc/mediatek/mt8365-pm-domains.h b/drivers/soc/mediatek/mt8365-pm-domains.h
-new file mode 100644
-index 000000000000..02f789e1c65a
---- /dev/null
-+++ b/drivers/soc/mediatek/mt8365-pm-domains.h
-@@ -0,0 +1,197 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+
-+#ifndef __SOC_MEDIATEK_MT8365_PM_DOMAINS_H
-+#define __SOC_MEDIATEK_MT8365_PM_DOMAINS_H
-+
-+#include "mtk-pm-domains.h"
-+#include <dt-bindings/power/mediatek,mt8365-power.h>
-+
-+/*
-+ * MT8365 power domain support
-+ */
-+
-+#define MT8365_BUS_PROT_INFRA_WR_TOPAXI(_mask)				\
-+		BUS_PROT_INFRA_WR(_mask,				\
-+				  MT8365_INFRA_TOPAXI_PROTECTEN_SET,	\
-+				  MT8365_INFRA_TOPAXI_PROTECTEN_CLR,	\
-+				  MT8365_INFRA_TOPAXI_PROTECTEN_STA1)
-+
-+#define MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(_mask)			\
-+		BUS_PROT_INFRA_WR(_mask,				\
-+				  MT8365_INFRA_TOPAXI_PROTECTEN_1_SET,	\
-+				  MT8365_INFRA_TOPAXI_PROTECTEN_1_CLR,	\
-+				  MT8365_INFRA_TOPAXI_PROTECTEN_1_STA1)
-+
-+#define MT8365_BUS_PROT_SMI_WR_CLAMP_EN_PORT(port)			\
-+		BUS_PROT_SMI_WR(BIT(port),				\
-+				MT8365_SMI_COMMON_CLAMP_EN_SET,		\
-+				MT8365_SMI_COMMON_CLAMP_EN_CLR,		\
-+				MT8365_SMI_COMMON_CLAMP_EN)
-+
-+#define MT8365_BUS_PROT_WAY_EN(_set_mask, _set, _sta_mask, _sta)	\
-+		_BUS_PROT(_set_mask, _set, _set, _sta_mask, _sta,	\
-+			  BUS_PROT_COMPONENT_INFRA |			\
-+			  BUS_PROT_STA_COMPONENT_INFRA_NAO |		\
-+			  BUS_PROT_INVERTED |				\
-+			  BUS_PROT_REG_UPDATE)
-+
-+static const struct scpsys_domain_data scpsys_domain_data_mt8365[] = {
-+	[MT8365_POWER_DOMAIN_MM] = {
-+		.name = "mm",
-+		.sta_mask = PWR_STATUS_DISP,
-+		.ctl_offs = 0x30c,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_MM2INFRA_AXI_GALS_MST_0 |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_MM2INFRA_AXI_GALS_MST_1),
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_MM_M0 |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_MDMCU_M1 |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_MM2INFRA_AXI_GALS_SLV_0 |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_MM2INFRA_AXI_GALS_SLV_1),
-+			MT8365_BUS_PROT_WAY_EN(
-+				MT8365_INFRA_TOPAXI_SI0_WAY_EN_MMAPB_S,
-+				MT8365_INFRA_TOPAXI_SI0_CTL,
-+				MT8365_INFRA_NAO_TOPAXI_SI0_CTRL_UPDATED,
-+				MT8365_INFRA_NAO_TOPAXI_SI0_STA),
-+			MT8365_BUS_PROT_WAY_EN(
-+				MT8365_INFRA_TOPAXI_SI2_WAY_EN_PERI_M1,
-+				MT8365_INFRA_TOPAXI_SI2_CTL,
-+				MT8365_INFRA_NAO_TOPAXI_SI2_CTRL_UPDATED,
-+				MT8365_INFRA_NAO_TOPAXI_SI2_STA),
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_MMAPB_S),
-+		},
-+		.caps = MTK_SCPD_STRICT_BUS_PROTECTION | MTK_SCPD_HAS_INFRA_NAO,
-+	},
-+	[MT8365_POWER_DOMAIN_VENC] = {
-+		.name = "venc",
-+		.sta_mask = PWR_STATUS_VENC,
-+		.ctl_offs = 0x0304,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_SMI_WR_CLAMP_EN_PORT(1),
-+		},
-+	},
-+	[MT8365_POWER_DOMAIN_AUDIO] = {
-+		.name = "audio",
-+		.sta_mask = PWR_STATUS_AUDIO,
-+		.ctl_offs = 0x0314,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(12, 8),
-+		.sram_pdn_ack_bits = GENMASK(17, 13),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_PWRDNREQ_MP1_L2C_AFIFO |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_AUDIO_BUS_AUDIO_M),
-+		},
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+	[MT8365_POWER_DOMAIN_CONN] = {
-+		.name = "conn",
-+		.sta_mask = PWR_STATUS_CONN,
-+		.ctl_offs = 0x032c,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = 0,
-+		.sram_pdn_ack_bits = 0,
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_AP2CONN_AHB),
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_CONN2INFRA_AXI_GALS_MST),
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_CONN2INFRA_AHB),
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_INFRA2CONN_AHB_GALS_SLV),
-+		},
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP | MTK_SCPD_KEEP_DEFAULT_OFF,
-+	},
-+	[MT8365_POWER_DOMAIN_MFG] = {
-+		.name = "mfg",
-+		.sta_mask = PWR_STATUS_MFG,
-+		.ctl_offs = 0x0338,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(9, 8),
-+		.sram_pdn_ack_bits = GENMASK(13, 12),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI(BIT(25)),
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_MFG_M0 |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_INFRA2MFG),
-+		},
-+	},
-+	[MT8365_POWER_DOMAIN_CAM] = {
-+		.name = "cam",
-+		.sta_mask = BIT(25),
-+		.ctl_offs = 0x0344,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(9, 8),
-+		.sram_pdn_ack_bits = GENMASK(13, 12),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_CAM2MM_AXI_GALS_MST),
-+			MT8365_BUS_PROT_SMI_WR_CLAMP_EN_PORT(2),
-+		},
-+	},
-+	[MT8365_POWER_DOMAIN_VDEC] = {
-+		.name = "vdec",
-+		.sta_mask = BIT(31),
-+		.ctl_offs = 0x0370,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(8, 8),
-+		.sram_pdn_ack_bits = GENMASK(12, 12),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_SMI_WR_CLAMP_EN_PORT(3),
-+		},
-+	},
-+	[MT8365_POWER_DOMAIN_APU] = {
-+		.name = "apu",
-+		.sta_mask = BIT(16),
-+		.ctl_offs = 0x0378,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(14, 8),
-+		.sram_pdn_ack_bits = GENMASK(21, 15),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_APU2AP |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_APU_CBIP_GALS_MST),
-+			MT8365_BUS_PROT_SMI_WR_CLAMP_EN_PORT(4),
-+		},
-+	},
-+	[MT8365_POWER_DOMAIN_DSP] = {
-+		.name = "dsp",
-+		.sta_mask = BIT(17),
-+		.ctl_offs = 0x037C,
-+		.pwr_sta_offs = 0x0180,
-+		.pwr_sta2nd_offs = 0x0184,
-+		.sram_pdn_bits = GENMASK(11, 8),
-+		.sram_pdn_ack_bits = GENMASK(15, 12),
-+		.bp_cfg = {
-+			MT8365_BUS_PROT_INFRA_WR_TOPAXI_1(
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_PWRDNREQ_INFRA_GALS_ADB |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_AUDIO_BUS_DSP_M |
-+				MT8365_INFRA_TOPAXI_PROTECTEN_1_AUDIO_BUS_DSP_S),
-+		},
-+		.caps = MTK_SCPD_ACTIVE_WAKEUP,
-+	},
-+};
-+
-+static const struct scpsys_soc_data mt8365_scpsys_data = {
-+	.domains_data = scpsys_domain_data_mt8365,
-+	.num_domains = ARRAY_SIZE(scpsys_domain_data_mt8365),
-+};
-+
-+#endif /* __SOC_MEDIATEK_MT8365_PM_DOMAINS_H */
-diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-index 5c458aa2ddbe..576d90c3f049 100644
---- a/drivers/soc/mediatek/mtk-pm-domains.c
-+++ b/drivers/soc/mediatek/mtk-pm-domains.c
-@@ -24,6 +24,7 @@
- #include "mt8188-pm-domains.h"
- #include "mt8192-pm-domains.h"
- #include "mt8195-pm-domains.h"
-+#include "mt8365-pm-domains.h"
- 
- #define MTK_POLL_DELAY_US		10
- #define MTK_POLL_TIMEOUT		USEC_PER_SEC
-@@ -652,6 +653,10 @@ static const struct of_device_id scpsys_of_match[] = {
- 		.compatible = "mediatek,mt8195-power-controller",
- 		.data = &mt8195_scpsys_data,
- 	},
-+	{
-+		.compatible = "mediatek,mt8365-power-controller",
-+		.data = &mt8365_scpsys_data,
-+	},
- 	{ }
- };
- 
-diff --git a/include/linux/soc/mediatek/infracfg.h b/include/linux/soc/mediatek/infracfg.h
-index 07f67b3d8e97..f853397697b5 100644
---- a/include/linux/soc/mediatek/infracfg.h
-+++ b/include/linux/soc/mediatek/infracfg.h
-@@ -2,6 +2,47 @@
- #ifndef __SOC_MEDIATEK_INFRACFG_H
- #define __SOC_MEDIATEK_INFRACFG_H
- 
-+#define MT8365_INFRA_TOPAXI_PROTECTEN_STA1				0x228
-+#define MT8365_INFRA_TOPAXI_PROTECTEN_SET				0x2a0
-+#define MT8365_INFRA_TOPAXI_PROTECTEN_CLR				0x2a4
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_MM_M0				BIT(1)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_MDMCU_M1				BIT(2)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_MMAPB_S				BIT(6)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_MM2INFRA_AXI_GALS_SLV_0		BIT(10)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_MM2INFRA_AXI_GALS_SLV_1		BIT(11)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_AP2CONN_AHB			BIT(13)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_CONN2INFRA_AHB			BIT(14)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_MFG_M0				BIT(21)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_INFRA2MFG			BIT(22)
-+#define MT8365_INFRA_TOPAXI_PROTECTEN_1_STA1				0x258
-+#define MT8365_INFRA_TOPAXI_PROTECTEN_1_SET				0x2a8
-+#define MT8365_INFRA_TOPAXI_PROTECTEN_1_CLR				0x2ac
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_APU2AP				BIT(2)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_MM2INFRA_AXI_GALS_MST_0	BIT(16)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_MM2INFRA_AXI_GALS_MST_1	BIT(17)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_CONN2INFRA_AXI_GALS_MST	BIT(18)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_CAM2MM_AXI_GALS_MST		BIT(19)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_APU_CBIP_GALS_MST		BIT(20)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_INFRA2CONN_AHB_GALS_SLV	BIT(21)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_PWRDNREQ_INFRA_GALS_ADB	BIT(24)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_PWRDNREQ_MP1_L2C_AFIFO		BIT(27)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_AUDIO_BUS_AUDIO_M		BIT(28)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_AUDIO_BUS_DSP_M		BIT(30)
-+# define MT8365_INFRA_TOPAXI_PROTECTEN_1_AUDIO_BUS_DSP_S		BIT(31)
-+
-+#define MT8365_INFRA_NAO_TOPAXI_SI0_STA					0x0
-+# define MT8365_INFRA_NAO_TOPAXI_SI0_CTRL_UPDATED			BIT(24)
-+#define MT8365_INFRA_NAO_TOPAXI_SI2_STA					0x28
-+# define MT8365_INFRA_NAO_TOPAXI_SI2_CTRL_UPDATED			BIT(14)
-+#define MT8365_INFRA_TOPAXI_SI0_CTL					0x200
-+# define MT8365_INFRA_TOPAXI_SI0_WAY_EN_MMAPB_S				BIT(6)
-+#define MT8365_INFRA_TOPAXI_SI2_CTL					0x234
-+# define MT8365_INFRA_TOPAXI_SI2_WAY_EN_PERI_M1				BIT(5)
-+
-+#define MT8365_SMI_COMMON_CLAMP_EN			0x3c0
-+#define MT8365_SMI_COMMON_CLAMP_EN_SET			0x3c4
-+#define MT8365_SMI_COMMON_CLAMP_EN_CLR			0x3c8
-+
- #define MT8195_TOP_AXI_PROT_EN_STA1                     0x228
- #define MT8195_TOP_AXI_PROT_EN_1_STA1                   0x258
- #define MT8195_TOP_AXI_PROT_EN_SET			0x2a0
--- 
-2.40.1
+
+<snip>
 
