@@ -2,127 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73624735EAD
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 22:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 595D2735EDB
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 23:16:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjFSUrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 16:47:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42266 "EHLO
+        id S229570AbjFSVQn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 17:16:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229489AbjFSUrJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 16:47:09 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 621701A3;
-        Mon, 19 Jun 2023 13:47:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687207628; x=1718743628;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ycKjZzBsCwN//CAhRyctU2g6YIaDxzvCXqjhNY5zko8=;
-  b=bOKlz9WZ2C5zDPx+Haav0WkJDTpeT4KXwwzIV8eNqpDrJ834u5HSA57g
-   J0EQIPTluFTSqtrMNBcaZfEsiLekBSCxQBdh7+wZC8EGry2ESjma29bCv
-   ZL1lRoef/9hnDVD7oKyNbjY1siu1epsAjhWHThGIsDvBcZntoxxQVhWHa
-   tnV4Yo5dRr+rzaXAssCVgPvWp4hKzH93Cptvofee3j8A3kALE6W5sQNto
-   27mxmRRsYcFsSiTE6T9aqXXGwO/6vSlFQNRAiPA0OaXf/lf/Z9tbS8qik
-   rFr36PnbHuMQ1Wl13N1AdtkRwH//fZ1N//ObULG0w3VibF547KnyCPSFU
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="349437114"
-X-IronPort-AV: E=Sophos;i="6.00,255,1681196400"; 
-   d="scan'208";a="349437114"
-Received: from orsmga006.jf.intel.com ([10.7.209.51])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 19 Jun 2023 13:47:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="691194551"
-X-IronPort-AV: E=Sophos;i="6.00,255,1681196400"; 
-   d="scan'208";a="691194551"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
-  by orsmga006.jf.intel.com with ESMTP; 19 Jun 2023 13:47:04 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qBLmB-00057c-2J;
-        Mon, 19 Jun 2023 20:47:03 +0000
-Date:   Tue, 20 Jun 2023 04:47:00 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        with ESMTP id S229448AbjFSVQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 17:16:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A8A4DC;
+        Mon, 19 Jun 2023 14:16:42 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id C06E560EAE;
+        Mon, 19 Jun 2023 21:16:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 91A1DC433C0;
+        Mon, 19 Jun 2023 21:16:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687209401;
+        bh=JBTWR99Q1eDNuEVibhcmNlst4vu0Z56hRZJoZoOhNwg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ntsWACbUMlnuW5BSnHsZG2TTKeBnqu9hsRTu2DIbaC85MZo+lGwm6tnlfJ8J+7HM9
+         elm8G1GjrejFg+VwKxcuqiQFN37K7ae5J7lxLKIBz39nVf4tA40IPNiVmFDP2LdOGS
+         J9HwwI7Ci9S3Xp6IJuDchl8Nyj3BhSr3D+O0zRSBAIBUnB5E8uW4ZqzfbGmp6nW5AM
+         2Wr4XOsUqqPhLxfvwTFsrrj098Qspkf3uPElDBmFpjQttojz2GxLSn0LO2897pFljV
+         6tGr0YE4Nu5z+wbRNotqfHjARq6tLaliXmpnC2ONRZ4eHtpFBh3l84C+hEOwW+WqJR
+         Bc8rxLL7U4PJQ==
+Date:   Mon, 19 Jun 2023 22:16:37 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lee Jones <lee@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     oe-kbuild-all@lists.linux.dev,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Markus Schneider-Pargmann <msp@baylibre.com>
-Subject: Re: [PATCH v5 8/8] soc: mediatek: pm-domains: Add support for MT8365
-Message-ID: <202306200439.julbXDpI-lkp@intel.com>
-References: <20230619085344.2885311-9-msp@baylibre.com>
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: samsung,s5m8767: Simplify excluding
+ properties
+Message-ID: <20230619-rejoin-brook-f878220ba872@spud>
+References: <20230619101424.25897-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="hmlYTsCCInqqIcWl"
 Content-Disposition: inline
-In-Reply-To: <20230619085344.2885311-9-msp@baylibre.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230619101424.25897-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Markus,
 
-kernel test robot noticed the following build warnings:
+--hmlYTsCCInqqIcWl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-[auto build test WARNING on robh/for-next]
-[also build test WARNING on krzk-dt/for-next linus/master v6.4-rc7 next-20230619]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+On Mon, Jun 19, 2023 at 12:14:24PM +0200, Krzysztof Kozlowski wrote:
+> Mutually exclusive s5m8767,pmic-buck[234]-uses-gpio-dvs properties can
+> be written simpler, with half of the lines of code.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Markus-Schneider-Pargmann/dt-bindings-power-Add-MT8365-power-domains/20230619-165759
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-patch link:    https://lore.kernel.org/r/20230619085344.2885311-9-msp%40baylibre.com
-patch subject: [PATCH v5 8/8] soc: mediatek: pm-domains: Add support for MT8365
-config: arm-allmodconfig (https://download.01.org/0day-ci/archive/20230620/202306200439.julbXDpI-lkp@intel.com/config)
-compiler: arm-linux-gnueabi-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230620/202306200439.julbXDpI-lkp@intel.com/reproduce)
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306200439.julbXDpI-lkp@intel.com/
+Cheers,
+Conor.
 
-All warnings (new ones prefixed by >>):
+--hmlYTsCCInqqIcWl
+Content-Type: application/pgp-signature; name="signature.asc"
 
-   In file included from include/linux/bits.h:6,
-                    from include/linux/bitops.h:6,
-                    from include/linux/kernel.h:22,
-                    from include/linux/clk.h:13,
-                    from drivers/soc/mediatek/mtk-pm-domains.c:5:
->> include/vdso/bits.h:7:33: warning: conversion from 'long unsigned int' to 'unsigned char' changes value from '384' to '128' [-Woverflow]
-       7 | #define BIT(nr)                 (UL(1) << (nr))
-         |                                 ^
-   drivers/soc/mediatek/mtk-pm-domains.h:15:41: note: in expansion of macro 'BIT'
-      15 | #define MTK_SCPD_STRICT_BUS_PROTECTION  BIT(8)
-         |                                         ^~~
-   drivers/soc/mediatek/mt8365-pm-domains.h:69:25: note: in expansion of macro 'MTK_SCPD_STRICT_BUS_PROTECTION'
-      69 |                 .caps = MTK_SCPD_STRICT_BUS_PROTECTION | MTK_SCPD_HAS_INFRA_NAO,
-         |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJDFtQAKCRB4tDGHoIJi
+0iUCAP4i1Kjk0wc2dj0ZaaIq8QmB9iocPvRDHthhZumZnr0ePgD9Hqb8IWG9I42G
+VOFA7KootLNN1/cXoX+wPZIFqtB0bwE=
+=o6Lb
+-----END PGP SIGNATURE-----
 
-vim +7 include/vdso/bits.h
-
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  6  
-3945ff37d2f48d Vincenzo Frascino 2020-03-20 @7  #define BIT(nr)			(UL(1) << (nr))
-cbdb1f163af2bb Andy Shevchenko   2022-11-28  8  #define BIT_ULL(nr)		(ULL(1) << (nr))
-3945ff37d2f48d Vincenzo Frascino 2020-03-20  9  
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+--hmlYTsCCInqqIcWl--
