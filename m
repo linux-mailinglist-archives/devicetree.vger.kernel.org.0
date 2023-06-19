@@ -2,76 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 673B7734CFA
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 977EC734CFE
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:04:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230214AbjFSIEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:04:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45160 "EHLO
+        id S230221AbjFSIET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 04:04:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230129AbjFSIDn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:03:43 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F20091991
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:02:35 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-987c932883bso323915266b.0
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:02:35 -0700 (PDT)
+        with ESMTP id S230191AbjFSIDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:03:51 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD3C8E7D
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:03:09 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-9875c2d949eso364093866b.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 01:03:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687161754; x=1689753754;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1687161788; x=1689753788;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=OGo8sNIcWdwlye/Tjma0GcxA7jjrG7wyO5+aiw9b3wA=;
-        b=um+kjDu7qlbBwzw1ImLyQ+5W2xlJnQ7OJwm6Ox1TBquBCWDQ4Um/vsrtRc4B6SRUwW
-         ikAyyeVE4eZr6FjGVZrMpTy2AE5QC7vVYP0L4qG+345cv84WFDJ395sUD2R8BQ2fDQie
-         b3AZCWaDjERn8diHkHAXlyuANBLwQ79ytCJPkuxxCdTf/LSCp545K5lhNyMXkCYSWM4t
-         lCYYq6wh+A0Rigj+h8w+H2yKHmEgGEqkEMKTsUUcv1ONX2PjD8RoTcjLYAxBSv2x06pC
-         AWvIqBoyTdbKr1V3eshbeLQy5yP/FMK1Gi5a2GUl9kjuQG90o2SBRq59LgzkgijqQG/9
-         UYjQ==
+        bh=7MsnoYz0hP2V8CBehrpeQPUT+76r/6pTB7F31k/oTqQ=;
+        b=R5lm2JEoN1Dap5ewRuzod70/svJW4Tpp+Jf/ugmj1Yk7OL5KSTGTc2+KLFvXEYZtts
+         ByDbXZoZ7c6jDHRXmdIpI2Ml/CJ5/87e+a/DcPAG4qe/3X/dS3mR/WK4HcxKs5G54pUp
+         k3US0FIJ7DwVVZDtHqibOsRlTx7HuZTzO5NocTyCsvoO0L2t+Nb4MTpHWCpzfkFAzYLW
+         W8fprdmu60ugR/QdbVDPQtR5R20Jvp9cCsX76SdJ2g4o9MfkcRTPivLh64I9A68Mq1Uc
+         VXKXFrmYX1ZqL+v+ALMzoK3FotlHqeR19D35Fi1kZwhwCLSy8CvBHZMSKbipZsiKSQif
+         KoDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687161754; x=1689753754;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687161788; x=1689753788;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OGo8sNIcWdwlye/Tjma0GcxA7jjrG7wyO5+aiw9b3wA=;
-        b=Ih+NN5nXdbcDqDYlDyCOLwIn16N4gHwgxohfuMazEYHdPIvlpZTKEnaHF5ZJRWRHgW
-         N8xFTQKpBR9l0PBOomNXGLAPRsNl49VKlkw2pLo9ET7P72apClA5Xu9PyYxokEVh6fwG
-         iBPZcFJEHmtQfEIcm+4ygu32+A41puu3LtWLQBqiuBVkjk6ECeclv8pSLLcilmIadNM5
-         GPAPgskhg8IuNbZPdMPHBQ+FBQeRyIBv7PHVh4VnNMq9gxwxbBJ83xlRu3wE9uFxe/Im
-         xS2oIAihRyQqtSv+y3DSP0VaoEnooVFL7w3dv8RjCwuYMms5O9TOvold8eEOURYavFvM
-         G+Qg==
-X-Gm-Message-State: AC+VfDzX85kRTWDZf7C4vs0OkZru0QXzvnMRoMmACUARZzSUd8DcS9XA
-        154GuvHmJjVKrmeohyFc0JxkgCwJPXEvYWR+OxE=
-X-Google-Smtp-Source: ACHHUZ7VLYObAYEXOpmyo7L55eHtpCgSxMS8A7slj/hRoh53KjjXvu+sAw04xOSaq2eaN5UvqtjH5w==
-X-Received: by 2002:a17:906:974d:b0:953:37eb:7727 with SMTP id o13-20020a170906974d00b0095337eb7727mr9082180ejy.43.1687161754462;
-        Mon, 19 Jun 2023 01:02:34 -0700 (PDT)
+        bh=7MsnoYz0hP2V8CBehrpeQPUT+76r/6pTB7F31k/oTqQ=;
+        b=AOYI5OcmlAcxRKC30RBb+hQOGcNOoIO1mReltmSO/GyisHGVBXKXkzfO4ihaMtesdA
+         MCn72flqZ83Wwn82qpu+5lXGpMFh3sGzcuAfvLOF6O1y+CbhEltUDLsETKRrDtEC3D0O
+         QsAdg4jMtWU9I61kBY+AZvNATlFMGwuMGT7tc+TRWDfUOcYuXWkwnsk5jBiOFjbQ8KTg
+         QU+1qALEIs+isM9/V+YYxLDAreQM7mAWIE6IW+W6xblQnaPF+I5Vsncj1zUVH8waRxiG
+         OZX+j6gZccB/X4INY3rS7VMGVS86rwJev3P9IqriPo9I1l2cq4ipsUIANaMkxhhTc8yK
+         vVvg==
+X-Gm-Message-State: AC+VfDwunhm2UTMt40p6DRzFVGcgxL1g8gFNlQOB1MAMqIRd+BncEIa4
+        1phACc5GxiQZgZVEltcim2eGVQ==
+X-Google-Smtp-Source: ACHHUZ4G6sKfA1qmngTmVTdImZtQIJooHKrYQsNUpw4ekWRnZ6ieoPMK8rs9BRGC1ccyE688NqDM8Q==
+X-Received: by 2002:a17:907:31c2:b0:974:c32c:b484 with SMTP id xf2-20020a17090731c200b00974c32cb484mr9045597ejb.72.1687161788200;
+        Mon, 19 Jun 2023 01:03:08 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id w19-20020a1709064a1300b00988955f7b5esm1412804eju.157.2023.06.19.01.02.31
+        by smtp.gmail.com with ESMTPSA id q2-20020a170906360200b0096a27dbb5b2sm14113007ejb.209.2023.06.19.01.03.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 01:02:34 -0700 (PDT)
-Message-ID: <f687638e-1c62-ee39-4c09-5783d98ca8f0@linaro.org>
-Date:   Mon, 19 Jun 2023 10:02:29 +0200
+        Mon, 19 Jun 2023 01:03:07 -0700 (PDT)
+Message-ID: <68262eba-c9b7-5c3c-acb1-1c651931e959@linaro.org>
+Date:   Mon, 19 Jun 2023 10:03:06 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v4 5/6] arm64: dts: qcom: sm8550-mtp: add pmic glink
- port/endpoints
-To:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+Subject: Re: [PATCH v5 1/2] dt-bindings: arm: aspeed: add Inventec
+ starscream-bmc
+Content-Language: en-US
+To:     =?UTF-8?B?Q2hlbi5QSiDpmbPmn4/ku7sgVEFP?= <Chen.PJ@inventec.com>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        "soc@kernel.org" <soc@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230601-topic-sm8550-upstream-type-c-v4-0-eb2ae960b8dc@linaro.org>
- <20230601-topic-sm8550-upstream-type-c-v4-5-eb2ae960b8dc@linaro.org>
-Content-Language: en-US
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>
+Cc:     =?UTF-8?B?WWUuVmljIOiRieWuh+a4hSBUQU8=?= <ye.vic@inventec.com>,
+        =?UTF-8?B?SHVhbmcuQWxhbmcg6buD6Iux6YOOIFRBTw==?= 
+        <Huang.Alang@inventec.com>
+References: <20230619064249.3623-1-chen.pj@inventec.com>
+ <2a9e503b-7a5b-3b1e-a912-5d54a23c1ca1@linaro.org>
+ <832a9af9c9024ed3b7bee0d36a482837@inventec.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230601-topic-sm8550-upstream-type-c-v4-5-eb2ae960b8dc@linaro.org>
+In-Reply-To: <832a9af9c9024ed3b7bee0d36a482837@inventec.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -82,42 +89,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 09:58, Neil Armstrong wrote:
-> Add nodes to support Type-C USB/DP functionality.
+On 19/06/2023 09:47, Chen.PJ 陳柏任 TAO wrote:
+> Hi Krzysztof,
 > 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+> Sorry for brothering you and thanks for your patience.
+> 
+> I use "git imap send" and can only send two patch separately.
+> After your instruction, we setup the smtp server and now send two patch together.
+> 
+> But it seems still not enough.
+> Did you mean we need to combine two patch that modify the document and dts in "one" patch?
 
-...
-
-> +&i2c_hub_2 {
-> +	status = "okay";
-> +
-> +	typec-mux@42 {
-> +		compatible = "fcs,fsa4480";
-> +		reg = <0x42>;
-> +
-> +		vcc-supply = <&vreg_bob1>;
-> +
-> +		mode-switch;
-> +		orientation-switch;
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-
-The node fsa4480 not take ports, but port according to bindings.
-
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +
-> +				fsa4480_sbu_mux: endpoint {
-> +					remote-endpoint = <&pmic_glink_sbu>;
-> +				};
-> +			};
-
-
+No, I meant the second part of my message. The long one, explaining in
+details what you should do.
 
 Best regards,
 Krzysztof
