@@ -2,56 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C962734DBF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:32:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BFD8734E6E
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbjFSIcJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:32:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36014 "EHLO
+        id S230333AbjFSIrL convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 19 Jun 2023 04:47:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47754 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229921AbjFSIcI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:32:08 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04B0697;
-        Mon, 19 Jun 2023 01:32:05 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 37A9A547;
-        Mon, 19 Jun 2023 10:31:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687163490;
-        bh=iTBmgvKkm/RP71iegbPwrVucLcjIHJ7plxMSPCw6Oc0=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=glwrKMUxVkqwUz9nEFWGj2T80a1Nvk35ivf6ESWzFTV80mALHg32mrqOsX0OHUfJI
-         0JzSGTjDS/IfNG9jAtaHje1/xD713o0LNc9w66Bvko18xFBtXqGa4zRuwyU6t4aBAL
-         2pU790FLQgq7aru38ImrjZSG5qod94QbDxZqlLrE=
-Message-ID: <ac326ebe-4d99-e73d-27bf-c21b532f3c4b@ideasonboard.com>
-Date:   Mon, 19 Jun 2023 11:31:59 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v9 0/2] Add DSS support for AM625 SoC
-To:     Aradhya Bhatia <a-bhatia1@ti.com>, Jyri Sarha <jyri.sarha@iki.fi>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231348AbjFSIqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:46:30 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 75E93173F;
+        Mon, 19 Jun 2023 01:45:06 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 8FC3824E264;
+        Mon, 19 Jun 2023 16:35:18 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 19 Jun
+ 2023 16:35:18 +0800
+Received: from williamqiu-virtual-machine.starfivetech.com (171.223.208.138)
+ by EXMBX068.cuchost.com (172.16.6.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.42; Mon, 19 Jun 2023 16:35:17 +0800
+From:   William Qiu <william.qiu@starfivetech.com>
+To:     <devicetree@vger.kernel.org>, <linux-spi@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+CC:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     DRI Development List <dri-devel@lists.freedesktop.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel List <linux-kernel@vger.kernel.org>,
-        Nishanth Menon <nm@ti.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rahul T R <r-ravikumar@ti.com>,
-        Devarsh Thakkar <devarsht@ti.com>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-References: <20230616150900.6617-1-a-bhatia1@ti.com>
-Content-Language: en-US
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20230616150900.6617-1-a-bhatia1@ti.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>
+Subject: [PATCH v3 0/3] Add initialization of clock for StarFive JH7110 SoC
+Date:   Mon, 19 Jun 2023 16:35:14 +0800
+Message-ID: <20230619083517.415597-1-william.qiu@starfivetech.com>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -60,102 +54,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 18:08, Aradhya Bhatia wrote:
-> This patch series adds a new compatible for the Display SubSystem (DSS)
-> controller on TI's AM625 SoC. It further adds the required support for
-> the same in the tidss driver.
-> 
-> The AM625-DSS is a newer version of the DSS from the AM65X version with
-> the major change being the addition of another OLDI TX. With the help of
-> 2 OLDI TXes, the AM625 DSS can support dual-linked OLDI displays with a
-> resolution of up-to 2K or WUXGA (1920x1200@60fps) at half the OLDI clock
-> frequency or even cloned video outputs on each of the TXes.
-> 
-> This patch series acts as a continuation of the patches posted in v3[1].
-> The OLDI support patches combined from v5 onwards are now separated
-> again. The OLDI support will be added subsequently with a separte patch
-> series.
-> 
-> I have tested these patches on AM625 SK-EVM and AM625 based Beagle Play.
-> To test this series on AM625 based platforms, basic display support
-> patches (for driver + devicetree) can be found in the
-> "next_am62-base_support-V2" branch on my github fork[2].
+Hi,
 
-Looks good to me. I'll pick these up to drm-misc.
+This patchset adds initial rudimentary support for the StarFive
+Quad SPI controller driver. And this driver will be used in
+StarFive's VisionFive 2 board. In 6.4, the QSPI_AHB and QSPI_APB
+clocks changed from the default ON state to the default OFF state,
+so these clocks need to be enabled in the driver.At the same time,
+dts patch is added to this series.
 
-  Tomi
+Changes v1->v2:
+- Rebaed to v6.4rc6.
+- Renamed the clock names.
+- Changed the variable definition type.
 
-> 
-> [1]: V3: https://patchwork.freedesktop.org/series/105373/
-> [2]: https://github.com/aradhya07/linux-ab/tree/next_am62-base_support-V2
-> 
-> Previous versions:
-> - V8: https://patchwork.freedesktop.org/series/119088/
-> - V7: https://patchwork.freedesktop.org/series/113328/
-> - V6: https://patchwork.freedesktop.org/series/111106/
-> - V5: https://patchwork.freedesktop.org/series/109194/
-> 
-> Changelog:
-> V9:
->    - Edit the commit message for Patch 2/2.
->    - Add Krzysztof Kozlowski's and Tomi Valkeinen's tags.
-> 
-> V8:
->    - Rebase for current merge window.
->    - Drop all the OLDI support patches.
->    - Update the binding to remove the 2nd OLDI port instances.
->    - Drop the Reviewed-by tags of Krzysztof Kozlowski and Rahul T R
->      because of the changes.
-> 
-> V7:
->    - Rebase to current linux-next.
->    - Address Tomi Valkeinen's comments.
->      1. Separate the DSS VP and output port coupling.
->         v6 introduced 'output_port_bus_type' in addition to 'vp_bus_type'
->         but having both of the variables was redundant. Hence, in v7
->         the 'output_port_bus_type' essentially replaces 'vp_bus_type'.
->      2. Break Patch v6 2/5 into 2 separate patches (v7 1/6 and v7 3/6).
->      3. Change in name and addition of OLDI mode macros.
->      4. Other minor changes.
-> 
-> V6:
->    - Rebase for current merge window.
->    - Add 'allOf:' condition in the DT binding.
->    - Address Tomi Valkeinen's comments.
->      1. Combine DT binding patches for new compatible and 3rd DSS port.
->      2. Further separate DSS VPs and output ports.
->      3. Separate OLDI mode discovery logic from the panel/bridge
->         discovery (which allowed support for OLDI bridges as well.)
->      4. Organize OLDI IO control register macros platform wise.
-> 
-> V5:
->    - Rebase for current merge window.
->    - Add max DT ports in DSS features.
->    - Combine the OLDI support series.
-> 
-> (Changes from OLDI support series v1)
->    - Address Tomi Valkeinen's comments.
->      1. Update the OLDI link detection approach.
->      2. Add port #3 for 2nd OLDI TX.
->      3. Configure 2 panel-bridges for cloned panels.
->      4. Drop the OLDI clock set patch.
->      5. Drop rgb565-to-888 patch.
-> 
-> V3:
->    - Change yaml enum in alphabetical order.
->    - Correct a typo.
-> 
-> V2:
->    - Remove redundant register array.
-> 
-> Aradhya Bhatia (2):
->    dt-bindings: display: ti,am65x-dss: Add am625 dss compatible
->    drm/tidss: Add support for AM625 DSS
-> 
->   .../bindings/display/ti/ti,am65x-dss.yaml     | 18 ++++--
->   drivers/gpu/drm/tidss/tidss_dispc.c           | 57 ++++++++++++++++++-
->   drivers/gpu/drm/tidss/tidss_dispc.h           |  2 +
->   drivers/gpu/drm/tidss/tidss_drv.c             |  1 +
->   4 files changed, 71 insertions(+), 7 deletions(-)
-> 
+Changes v1->v2:
+- Renamed the clock names.
+- Specified a different array of clocks.
+- Used clk_bulk_ APIs.
+
+The patch series is based on v6.4rc6.
+
+William Qiu (3):
+  dt-bindings: qspi: cdns,qspi-nor: Add clocks for StarFive JH7110 SoC
+  spi: cadence-quadspi: Add clock configuration for StarFive JH7110 QSPI
+  riscv: dts: starfive: Add QSPI controller node for StarFive JH7110 SoC
+
+ .../bindings/spi/cdns,qspi-nor.yaml           | 20 +++++++++++-
+ .../jh7110-starfive-visionfive-2.dtsi         | 32 +++++++++++++++++++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      | 18 +++++++++++
+ drivers/spi/spi-cadence-quadspi.c             | 20 ++++++++++++
+ 4 files changed, 89 insertions(+), 1 deletion(-)
+
+--
+2.34.1
 
