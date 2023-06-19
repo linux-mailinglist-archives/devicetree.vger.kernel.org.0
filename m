@@ -2,119 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEEA7734F90
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8FBA734FAA
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231271AbjFSJWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 05:22:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48866 "EHLO
+        id S231351AbjFSJYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:24:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50058 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231293AbjFSJWo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:22:44 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58BDA128
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:22:41 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-988e6fc41ccso29380566b.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:22:41 -0700 (PDT)
+        with ESMTP id S231315AbjFSJYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:24:16 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D17EF188
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:24:13 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f8ff5fe50aso15370605e9.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 02:24:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687166560; x=1689758560;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MdC/fMIPx6UA3s+DVlDK7Rnv9jD9kePiwHfMZxA0SPk=;
-        b=f9ppezhmE9Pi/JXsCnVn+ji6HUVnzvck23GDW+NClY3hv86VkJfOdTZliBovaYc+bg
-         lve8A18TaQV2VvAI+G8Gyu0QB115aWyNstmw4TP4XDnGQ7M38xh7ON3SAppxwWcsOtgT
-         uX9yl54AQo5bvwM/N9UWauhMZw1elnZl0SDIYvcVry2rQJ/ZBHU1QzAX1HeYmRSNqA9R
-         OOjxigEVjutT7R8xmF0nbtAr5KyVarT5G80r+2ctkrXmjONKzpvYqUlvEcJJXD1zXImS
-         KCZ0k8pPDGYizsw3id7mWJLQxn/GSMYKr/W4stNsG6zMxiayuRHeXrCB2ofMFZZcXBGx
-         ceZA==
+        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1687166652; x=1689758652;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NQTveEsgflRe93KWoqKfVrG8nlhmeJM2igknKYDTnhc=;
+        b=IZtOngQUj48lgG6+O3gJagYiNPDkkKMc7uI2DjMmiXkaARrGWmmQvNwSiNHfP3KdKp
+         dozz3gHy+RHYrFV4qgVZ4vtDPnXGAc6pOR2sGowPourxz9omYODemTCa+hKq73BSuP2z
+         /5ofFH/d5yWb38OupfrR1VIsUG6BQo/lqQ1xM5wyudFSS3eLfyNoPFf46zx2e1b+1EL1
+         m+BqoUq0JHODu5HlzPhPNlzttRHatazImjhorjexyLFNbBl+zm1TGmtAOqGWl716j3p/
+         v/JchKmSDWZdtsDfqTTEvnuUZ8VRMyQN/ge0sJShHNNYEs5HbTC5moAI3pTv7UFzbP3h
+         f+Cw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687166560; x=1689758560;
-        h=content-transfer-encoding:in-reply-to:from:references:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MdC/fMIPx6UA3s+DVlDK7Rnv9jD9kePiwHfMZxA0SPk=;
-        b=UG5icp6CJ2dZ3pMTmT0KO8haQrGyKyJyiifd2GLZoeLKnyoJzuSpxeb0iReseQQIPy
-         HXez/HkTApmEhXKlm5Ac2RnPwSCzaOmdU65NsLtKo68r03ve6wZO1V2jkHFpcuHKx8p+
-         HPO0xz2eW6WdkJYbfEonpAn5/Oat1R1NidTvhNXy3Y6EoJgmDhuaA+sAWh4dQbp6i6B6
-         mXJhFnG2waZ0PPXN6ONWpXA2gg0gIUtnNbkpFDl3wp/RW2+BJxhPhihOfa1fxfWkeJdm
-         ePbkmVu8Xj5S8IN54nu0HoPVPhygTQ54QFJbOGpuCI8L6ML0Y+kqgCW6Ql8SXAbi9bK7
-         Q6sw==
-X-Gm-Message-State: AC+VfDx38n+JiBNlbhjx1QADYwF6lyNSs7ccu4PRf5PtcxcjUK2w0TOB
-        vN9AjsiUY+ZaczMXKtOK5swFSA==
-X-Google-Smtp-Source: ACHHUZ5oYBZDGcwLs5tXjzLOJ8wzi3FM5x+RriKV/eKNwxSYs11Uf3t1Fpw/w2jGBQykH6hGXQ5lgQ==
-X-Received: by 2002:a17:906:974a:b0:94e:1764:b09b with SMTP id o10-20020a170906974a00b0094e1764b09bmr7786108ejy.45.1687166559810;
-        Mon, 19 Jun 2023 02:22:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id bg23-20020a170906a05700b0094e7d196aa4sm14309382ejb.160.2023.06.19.02.22.37
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 02:22:39 -0700 (PDT)
-Message-ID: <c664a9c8-fe32-1c1b-cfe6-22dee4b7b803@linaro.org>
-Date:   Mon, 19 Jun 2023 11:22:37 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 2/3] pinctrl: qcom: sm8350-lpass-lpi: add SM8350 LPASS
- TLMM
-Content-Language: en-US
-To:     neil.armstrong@linaro.org, Bjorn Andersson <andersson@kernel.org>,
+        d=1e100.net; s=20221208; t=1687166652; x=1689758652;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NQTveEsgflRe93KWoqKfVrG8nlhmeJM2igknKYDTnhc=;
+        b=Dw79STg4OxUyHxsM9sIeo8jPDCY7QLiNA6zhD1mptU76XiLXCSZKwUz1DX50Tyr+uJ
+         glHcp9meMzvsm29ROWdXTaZK7z0TtBstOI4oUR6VhIevBVgjc7etyTHlRbCA1Ap6glRD
+         D2qls9pDSTsNzAQqX6VuNMJnQ3kg8T0TQFVHxFoogu4q310anzKdL04CMeYN95fC1m+f
+         nb+OXugnANkd7U/I/UjP+duYxW+lreLNYe7eWstemkeMS/t1Vpcp2TCbvSdB4rDZHRaC
+         AgeqvCUWgpbzaKYGpQOguvsUxgkfxb9XZcGly9EF0C53xyfwnS4dUfzbHygGujSSfzj3
+         MbNw==
+X-Gm-Message-State: AC+VfDznnAa8nTLTLu6NdTs4TWfzETvJ3wKhSzFcJyDkc+TOVuyaPUec
+        wJfRvDqYYq/p4RcDpCVOd4R+QQ==
+X-Google-Smtp-Source: ACHHUZ5TX/nrqYHgNnCprkhTEFlW0oqAmEf9RibG7Vs2uuQjjjYsYzduC9TIQoszFHG3eJiYems05Q==
+X-Received: by 2002:a05:600c:4f96:b0:3f7:f302:161 with SMTP id n22-20020a05600c4f9600b003f7f3020161mr13122941wmq.8.1687166651986;
+        Mon, 19 Jun 2023 02:24:11 -0700 (PDT)
+Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d9e8:ddbf:7391:a0b0])
+        by smtp.gmail.com with ESMTPSA id q9-20020a7bce89000000b003f7cb42fa20sm10045229wmj.42.2023.06.19.02.24.10
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jun 2023 02:24:11 -0700 (PDT)
+From:   Bartosz Golaszewski <brgl@bgdev.pl>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
         Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Andrew Halaney <ahalaney@redhat.com>
+Cc:     netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230616185742.2250452-1-krzysztof.kozlowski@linaro.org>
- <20230616185742.2250452-2-krzysztof.kozlowski@linaro.org>
- <613aa197-62c7-5a4d-2495-b77d9fc902d8@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <613aa197-62c7-5a4d-2495-b77d9fc902d8@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: [RESEND PATCH net-next v2 00/14] net: stmmac: dwmac-qcom-ethqos: add support for EMAC4
+Date:   Mon, 19 Jun 2023 11:23:48 +0200
+Message-Id: <20230619092402.195578-1-brgl@bgdev.pl>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 10:55, Neil Armstrong wrote:
-> On 16/06/2023 20:57, Krzysztof Kozlowski wrote:
->> Add driver for pin controller in Low Power Audio SubSystem (LPASS).  The
->> driver is similar to SM8450 LPASS pin controller, with difference in one
->> new pin (gpio14).
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>   drivers/pinctrl/qcom/Kconfig                  |  10 ++
->>   drivers/pinctrl/qcom/Makefile                 |   1 +
->>   .../pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c   | 167 ++++++++++++++++++
->>   3 files changed, 178 insertions(+)
->>   create mode 100644 drivers/pinctrl/qcom/pinctrl-sm8350-lpass-lpi.c
->>
->> diff --git a/drivers/pinctrl/qcom/Kconfig b/drivers/pinctrl/qcom/Kconfig
->> index 634c75336983..9c43bc05c447 100644
->> --- a/drivers/pinctrl/qcom/Kconfig
->> +++ b/drivers/pinctrl/qcom/Kconfig
->> @@ -77,6 +77,16 @@ config PINCTRL_SM8250_LPASS_LPI
->>   	  Qualcomm Technologies Inc LPASS (Low Power Audio SubSystem) LPI
->>   	  (Low Power Island) found on the Qualcomm Technologies Inc SM8250 platform.
->>   
->> +config PINCTRL_SM3550_LPASS_LPI
-> 
-> s/PINCTRL_SM3550_LPASS_LPI/PINCTRL_SM8350_LPASS_LPI/g
+From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Indeed, thanks.
+Extend the dwmac-qcom-ethqos driver to support EMAC4. While at it: rework the
+code somewhat. The bindings have been reviewed by DT maintainers.
 
-Best regards,
-Krzysztof
+This is a sub-series of [1] with only the patches targetting the net subsystem
+as they can go in independently.
+
+[1] https://lore.kernel.org/lkml/20230617001644.4e093326@kernel.org/T/
+
+Bartosz Golaszewski (14):
+  net: stmmac: dwmac-qcom-ethqos: shrink clock code with devres
+  net: stmmac: dwmac-qcom-ethqos: rename a label in probe()
+  net: stmmac: dwmac-qcom-ethqos: tweak the order of local variables
+  net: stmmac: dwmac-qcom-ethqos: use a helper variable for &pdev->dev
+  net: stmmac: dwmac-qcom-ethqos: add missing include
+  net: stmmac: dwmac-qcom-ethqos: add a newline between headers
+  net: stmmac: dwmac-qcom-ethqos: remove stray space
+  net: stmmac: dwmac-qcom-ethqos: add support for the optional serdes
+    phy
+  net: stmmac: dwmac-qcom-ethqos: add support for the phyaux clock
+  net: stmmac: dwmac-qcom-ethqos: prepare the driver for more PHY modes
+  net: stmmac: dwmac-qcom-ethqos: add support for SGMII
+  net: stmmac: add new switch to struct plat_stmmacenet_data
+  dt-bindings: net: qcom,ethqos: add description for sa8775p
+  net: stmmac: dwmac-qcom-ethqos: add support for emac4 on sa8775p
+    platforms
+
+ .../devicetree/bindings/net/qcom,ethqos.yaml  |  12 +-
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   3 +
+ .../stmicro/stmmac/dwmac-qcom-ethqos.c        | 284 +++++++++++++-----
+ .../net/ethernet/stmicro/stmmac/stmmac_main.c |   2 +-
+ include/linux/stmmac.h                        |   1 +
+ 5 files changed, 226 insertions(+), 76 deletions(-)
+
+-- 
+2.39.2
 
