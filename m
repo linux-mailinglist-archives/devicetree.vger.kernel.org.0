@@ -2,111 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29B88734F72
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:16:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A900734F8C
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229916AbjFSJQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 05:16:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46798 "EHLO
+        id S230514AbjFSJW3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:22:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231336AbjFSJQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:16:42 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 329401A3;
-        Mon, 19 Jun 2023 02:16:39 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-3424372d22fso7785645ab.1;
-        Mon, 19 Jun 2023 02:16:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687166198; x=1689758198;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=za65m95xf70IuUPWVqHELJbJ+80G8bzYVUTAvtx8c1Q=;
-        b=Kl18WajTJ3X7A9j+mScJC5rMDh0Xr4zgBQKrND+caCp5tBolIzz4iL7dwe8ehG5BOs
-         LT1bMn9Wvq2+Vjpu461Ky5aFLLza0wlDOuk2MPjOVLjSfkmF3xehCG5Ywbf/arnflO95
-         JJ+KZQxwCMxbst840/jOgnTOQyyMl6bOE/nQPdvCg1qaOtCiMNznOf0/mmiLaMgupfx/
-         UaYILx5WpwLJXhdH2tohHeoB9VDtaA3/LZDhDrMOea1wHvqJ5QpMfjRWG3+WYh8qXNvW
-         NPQBO3qAq16qrZVC8L5nUwkJ11vgaqlaGsq6LFIkyOTmkemBCH/zTIQOzQvmh7C3krqs
-         B69A==
-X-Gm-Message-State: AC+VfDzTvptCDr3gAlGJjnSol30KzmDWptIS5UyHnZmvclvh6kIS17fl
-        gkvzGWBGASq9EYlfKhRGIw==
-X-Google-Smtp-Source: ACHHUZ5+0qQjdkxM1+PZiQ17yggh0SpYAW17VbtorAscrXLA/VL31u4kjPfTxcJ4dTW+T253XUrb7A==
-X-Received: by 2002:a92:4b02:0:b0:340:6c4f:d311 with SMTP id m2-20020a924b02000000b003406c4fd311mr5077397ilg.28.1687166198076;
-        Mon, 19 Jun 2023 02:16:38 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id s5-20020a02cf25000000b0041f62ba9a37sm8089692jar.104.2023.06.19.02.16.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jun 2023 02:16:37 -0700 (PDT)
-Received: (nullmailer pid 242871 invoked by uid 1000);
-        Mon, 19 Jun 2023 09:16:35 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S230507AbjFSJW2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:22:28 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 572A783;
+        Mon, 19 Jun 2023 02:22:23 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 496AA6606E98;
+        Mon, 19 Jun 2023 10:22:21 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1687166541;
+        bh=zLjRj3WSaKuGlgYqMVIfTgOq1QN75uhZ6wvkJa/Q7Qs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=ZJOMen5BsHbC1Ttsc7jEs0Hcu1i6qj94S7y7pJ6V/tj/7koAow+7kEuCE9xnuIEvq
+         frMhvKMaAfm7Kyew0p0Ghl9uSsmn39uVyOPMzs2znWeD4l8brOIz4OU3Y4oJzerrF/
+         GX1BfXBcTuhn49WHCVuprl095Uw0rsoa7HwkTeBlEHjNmAFFYMWTIGI81vsoknrkXo
+         46S6B/19DFTecx09ZIDraL3G1Oc8xkG5lSunSw/+/f1B8j2Ub8ZFa+zVCgAhktDEY4
+         clwIWzODessFWR8689aBf1wExPsiFf89HBi2Bjab3Pgl6vvyuoP5SHQof3uNIb1PBU
+         1Xal7SVVMpy5g==
+Message-ID: <b53d201d-6906-12f4-2f72-506fb742c585@collabora.com>
+Date:   Mon, 19 Jun 2023 11:22:18 +0200
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     William Qiu <william.qiu@starfivetech.com>
-Cc:     devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-spi@vger.kernel.org, linux-kernel@vger.kernel.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v5 5/8] soc: mediatek: pm-domains: Unify configuration for
+ infracfg and smi
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-In-Reply-To: <20230619083517.415597-2-william.qiu@starfivetech.com>
-References: <20230619083517.415597-1-william.qiu@starfivetech.com>
- <20230619083517.415597-2-william.qiu@starfivetech.com>
-Message-Id: <168716619573.242780.12121020614995223090.robh@kernel.org>
-Subject: Re: [PATCH v3 1/3] dt-bindings: qspi: cdns,qspi-nor: Add clocks
- for StarFive JH7110 SoC
-Date:   Mon, 19 Jun 2023 03:16:35 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230619085344.2885311-1-msp@baylibre.com>
+ <20230619085344.2885311-6-msp@baylibre.com>
+Content-Language: en-US
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230619085344.2885311-6-msp@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Mon, 19 Jun 2023 16:35:15 +0800, William Qiu wrote:
-> The QSPI controller needs three clock items to work properly on StarFive
-> JH7110 SoC, so there is need to change the maxItems's value to 3. Other
-> platforms do not have this constraint.
+Il 19/06/23 10:53, Markus Schneider-Pargmann ha scritto:
+> Use flags to distinguish between infracfg and smi subsystem for a bus
+> protection configuration. It simplifies enabling/disabling and prepares
+> the driver for the use of another regmap for mt8365.
 > 
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
 > ---
->  .../bindings/spi/cdns,qspi-nor.yaml           | 20 ++++++++++++++++++-
->  1 file changed, 19 insertions(+), 1 deletion(-)
+>   drivers/soc/mediatek/mt6795-pm-domains.h |  16 +-
+>   drivers/soc/mediatek/mt8167-pm-domains.h |  20 +-
+>   drivers/soc/mediatek/mt8173-pm-domains.h |  16 +-
+>   drivers/soc/mediatek/mt8183-pm-domains.h | 198 ++++-----
+>   drivers/soc/mediatek/mt8186-pm-domains.h | 212 +++++-----
+>   drivers/soc/mediatek/mt8188-pm-domains.h | 518 +++++++++++------------
+>   drivers/soc/mediatek/mt8192-pm-domains.h | 262 ++++++------
+>   drivers/soc/mediatek/mt8195-pm-domains.h | 464 ++++++++++----------
+>   drivers/soc/mediatek/mtk-pm-domains.c    |  64 ++-
+>   drivers/soc/mediatek/mtk-pm-domains.h    |  37 +-
+>   10 files changed, 908 insertions(+), 899 deletions(-)
 > 
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+..snip..
 
-yamllint warnings/errors:
+> diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
+> index 4b6ae56e7c95..356788263db2 100644
+> --- a/drivers/soc/mediatek/mtk-pm-domains.h
+> +++ b/drivers/soc/mediatek/mtk-pm-domains.h
+> @@ -45,6 +45,8 @@
+>   enum scpsys_bus_prot_flags {
+>   	BUS_PROT_REG_UPDATE = BIT(1),
+>   	BUS_PROT_IGNORE_CLR_ACK = BIT(2),
+> +	BUS_PROT_COMPONENT_INFRA = BIT(3),
+> +	BUS_PROT_COMPONENT_SMI = BIT(4),
+>   };
+>   
+>   #define _BUS_PROT(_set_clr_mask, _set, _clr, _sta_mask, _sta, _flags) {	\
+> @@ -56,17 +58,30 @@ enum scpsys_bus_prot_flags {
+>   		.flags = _flags					\
+>   	}
+>   
+> -#define BUS_PROT_WR(_mask, _set, _clr, _sta)			\
+> -		_BUS_PROT(_mask, _set, _clr, _mask, _sta, 0)
+> +#define BUS_PROT_INFRA_WR(_mask, _set, _clr, _sta) \
+> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_COMPONENT_INFRA)
+>   
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/spi/cdns,qspi-nor.example.dtb: spi@ff705000: clocks: [[4294967295]] is too short
-	from schema $id: http://devicetree.org/schemas/spi/cdns,qspi-nor.yaml#
+What about doing that like
 
-doc reference errors (make refcheckdocs):
+#define BUS_PROT_WR(_hwip, _mask, _set, _clr, _sta)
+	_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_COMPONENT_##_hwip)
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230619083517.415597-2-william.qiu@starfivetech.com
+...so that instead of defining BUS_PROT_INFRA_WR, BUS_PROT_SMI_WR and
+BUS_PROT_ANOTHERIP_WR, we keep just one macro?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+That'd be then like:
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+	.bp_cfg = {
+		BUS_PROT_WR(INFRA, MT8183_TOP_AXI_PROT_EN_1_DISP,
+			    MT8183_TOP_AXI_PROT_EN_....
+			    ....),
+		BUS_PROT_WR(SMI, MT8183_SMI_COMMON_SMI_CLAMP_DISP,
+			    .....),
+	}
 
-pip3 install dtschema --upgrade
+IMO, that's cleaner, less lines of code and more flexible for eventual
+future new variations of that.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Cheers,
+Angelo
+
+> -#define BUS_PROT_WR_IGN(_mask, _set, _clr, _sta)		\
+> -		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_IGNORE_CLR_ACK)
+> +#define BUS_PROT_INFRA_WR_IGN(_mask, _set, _clr, _sta) \
+> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
+> +			  BUS_PROT_COMPONENT_INFRA | BUS_PROT_IGNORE_CLR_ACK)
+>   
+> -#define BUS_PROT_UPDATE(_mask, _set, _clr, _sta)		\
+> -		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_REG_UPDATE)
+> +#define BUS_PROT_INFRA_UPDATE(_mask, _set, _clr, _sta) \
+> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
+> +			  BUS_PROT_COMPONENT_INFRA | BUS_PROT_REG_UPDATE)
+>   
+> -#define BUS_PROT_UPDATE_TOPAXI(_mask)				\
+> -		BUS_PROT_UPDATE(_mask,				\
+> +#define BUS_PROT_SMI_WR(_mask, _set, _clr, _sta) \
+> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, BUS_PROT_COMPONENT_SMI)
+> +
+> +#define BUS_PROT_SMI_WR_IGN(_mask, _set, _clr, _sta) \
+> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
+> +			  BUS_PROT_COMPONENT_SMI | BUS_PROT_IGNORE_CLR_ACK)
+> +
+> +#define BUS_PROT_SMI_UPDATE(_mask, _set, _clr, _sta) \
+> +		_BUS_PROT(_mask, _set, _clr, _mask, _sta, \
+> +			  BUS_PROT_COMPONENT_SMI | BUS_PROT_REG_UPDATE)
+> +
+> +#define BUS_PROT_INFRA_UPDATE_TOPAXI(_mask)				\
+> +		BUS_PROT_INFRA_UPDATE(_mask,				\
+>   				INFRA_TOPAXI_PROTECTEN,		\
+>   				INFRA_TOPAXI_PROTECTEN,		\
+>   				INFRA_TOPAXI_PROTECTSTA1)
+> @@ -90,8 +105,7 @@ struct scpsys_bus_prot_data {
+>    * @ext_buck_iso_offs: The offset for external buck isolation
+>    * @ext_buck_iso_mask: The mask for external buck isolation
+>    * @caps: The flag for active wake-up action.
+> - * @bp_infracfg: bus protection for infracfg subsystem
+> - * @bp_smi: bus protection for smi subsystem
+> + * @bp_cfg: bus protection configuration for any subsystem
+>    */
+>   struct scpsys_domain_data {
+>   	const char *name;
+> @@ -102,8 +116,7 @@ struct scpsys_domain_data {
+>   	int ext_buck_iso_offs;
+>   	u32 ext_buck_iso_mask;
+>   	u8 caps;
+> -	const struct scpsys_bus_prot_data bp_infracfg[SPM_MAX_BUS_PROT_DATA];
+> -	const struct scpsys_bus_prot_data bp_smi[SPM_MAX_BUS_PROT_DATA];
+> +	const struct scpsys_bus_prot_data bp_cfg[SPM_MAX_BUS_PROT_DATA];
+>   	int pwr_sta_offs;
+>   	int pwr_sta2nd_offs;
+>   };
 
