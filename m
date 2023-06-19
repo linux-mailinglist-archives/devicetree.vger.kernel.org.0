@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DCDFE73583D
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 15:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AAA1735839
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 15:15:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230083AbjFSNPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 09:15:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54628 "EHLO
+        id S229728AbjFSNPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 09:15:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231878AbjFSNPA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 09:15:00 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BC39137
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:14:59 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b47a15ca10so13813201fa.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:14:59 -0700 (PDT)
+        with ESMTP id S231972AbjFSNPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 09:15:10 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36B810C
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:15:08 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f8777caaa1so20388e87.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 06:15:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687180498; x=1689772498;
+        d=linaro.org; s=google; t=1687180507; x=1689772507;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=NAKfLnG4L/FkIRCtZlL0hEXhowH/BrSCiSNuhsp0iFI=;
-        b=JWXj27WC/ITLWeswOJjal+rtKh+b15ZWDA08A1kpuJHPONEPBZXgXaKsdfvIYeA9tK
-         QIY9EuQBl/m5P/QAJUVrNHm7vSQi3W0TVSj9Q79QTRe45R5xQqGY6Nbjozvv9OMWQRqS
-         lV2sb0LAbfOoTZMdX4OiubOv8eQR+1CUvh/rzIzuCmUoYemPz2+HcOgkfQvAWmGaAPS1
-         jeVOTy0s1JTWszhtreuP8bCTvaHFrS6sFc0rKXq4uCHwPG2z03DKRvi0iGGnD3JZHdDi
-         8mtXmn0ziV8CLLTZX4jf8Q0a/oS8AilMC6jRCtOKxwPiS+js3BMR7pqAUE8iFQrs30uy
-         P7PA==
+        bh=N3Nv7B3Qg3Xe973droWZwY/lOIiMV+BRI3szL7iuJqg=;
+        b=k8Ihk7GciJxHk5NVOG/EiKexz9l/a/J2Ud7WvDZe9pu2g1E+Pi1vz569r1TajCx/Go
+         FVZbjdaaWUwCtTMe+6sCMBjpKo4MZvu3yfIXgwHf56ZU2e8FcVm4UtgqEt1WHzC9SS4z
+         y2u9tlWx+FvE0GCxhWtQfCCLsvN0phZp8v/vexQbJHJMiKTCV0ko1aQBGsqaxyWy6nrV
+         2TwVechmXvo8p2gaUqBwVwIC+RDf6xZxE+X/o5TPXEoTLVWVVWp53eUvKWXqYjH3Tu+O
+         sFrr4EZu6laRh+qS0WBJ6pbKt0yElaxq9n7GCbb4RE2b+qNyhiww/NLEEyx59gHYG3KX
+         bTlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687180498; x=1689772498;
+        d=1e100.net; s=20221208; t=1687180507; x=1689772507;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=NAKfLnG4L/FkIRCtZlL0hEXhowH/BrSCiSNuhsp0iFI=;
-        b=J7oqsZ73en5nu9LhHPpjEarmVXBcEMNfEe8mzbchUfkcAfkgSQE6KWPDihcg3YLIZ1
-         VCTIisZXzX8wr83qpNgyKiQvrHt89MeHHzRhKZudA7x7QGzTGshK/q7rtGA++kfFzUWM
-         zLiR8DWLpEYlktZzLuaS5kdZV+q9GLy2441i8oOCzUbjqzaXzEfjTq9rhaa9N7rgcsjH
-         C2ydqI8fmTGcR22BVVmKYRo3aWHoaQiJyF4S8c8keqMiJQlp8F/CMLPo0ODWDMfJfYr+
-         z6dm2K6uhAbVRgkCtxh61RQi8yp3mm/FjqCt91g79SBLpCdPbio+opSM2WO/9EflTrja
-         UW1g==
-X-Gm-Message-State: AC+VfDwAJmm5328efk7eWQrJIyVFs9fqN56t6mzE8bc+qqHb8NfNzKq4
-        Hs/wfS5r634aICqRNPGR+2Vinw==
-X-Google-Smtp-Source: ACHHUZ4Jswcy8MJAfNQljxKoT1H2yExNyhctHP8PdVXFLjfqiyAQYoYgqa2hNfDvWTOd5jaeSC2hoA==
-X-Received: by 2002:a2e:7e0e:0:b0:2b4:5e6d:a9e9 with SMTP id z14-20020a2e7e0e000000b002b45e6da9e9mr3868313ljc.37.1687180497906;
-        Mon, 19 Jun 2023 06:14:57 -0700 (PDT)
+        bh=N3Nv7B3Qg3Xe973droWZwY/lOIiMV+BRI3szL7iuJqg=;
+        b=Oi8qnvAHExYQ0ip0MkYXluXpRl48dTwqZK3r6AIL+GBiG6TPkJhcrqLM4MmS+oODGA
+         /G4feKmcSBxB+j4BA+8hIqe7cJtQ/etna+D60rHqj+6mvRwOu9rCtuECWxcSRU22IG5z
+         v5KX7afgArEXuTIcPMKq1clqaTgrqO53OKoF5ZsYPlPbooZqtYYsEp3wrO67YOl7/UpZ
+         sym2z6vqxbgOd2roA14zTeGlnjlqzWgtJ40EahvCCtnA5ShZO4AZXhUSgGeirq/g0HRC
+         THZ2Su5tQRNk230CHGDJbJPq/xHKR3tM4cG5qS0nR83IAFhhtbCWcP6h4i2h6TdJV1M1
+         K5JQ==
+X-Gm-Message-State: AC+VfDyVTeuWUSV5iE5RfoW1tnGy02Q4+qyzTDUqby5d4G1F4wAVJ8yD
+        pu71VXH2sKw6fy3F2G0ghSJSBw==
+X-Google-Smtp-Source: ACHHUZ74Q9+sEkd+kU8ffIrcv/w0txQxTg2j3GBTh9jTgDieC1mJMYFSQ3oXDkAIbrjqPrT2JW4+YQ==
+X-Received: by 2002:a19:4302:0:b0:4f8:6ac4:85 with SMTP id q2-20020a194302000000b004f86ac40085mr1846321lfa.19.1687180507266;
+        Mon, 19 Jun 2023 06:15:07 -0700 (PDT)
 Received: from [192.168.1.101] (abyl242.neoplus.adsl.tpnet.pl. [83.9.31.242])
-        by smtp.gmail.com with ESMTPSA id j6-20020a2eb706000000b002b34f9cfc7asm2681289ljo.90.2023.06.19.06.14.56
+        by smtp.gmail.com with ESMTPSA id d14-20020ac2544e000000b004f2532cfbc1sm1339713lfn.81.2023.06.19.06.15.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 06:14:57 -0700 (PDT)
-Message-ID: <4beedb80-f07c-d868-711a-a0e791d50fa7@linaro.org>
-Date:   Mon, 19 Jun 2023 15:14:56 +0200
+        Mon, 19 Jun 2023 06:15:06 -0700 (PDT)
+Message-ID: <22492cdc-8dc1-4c61-f07d-2788c15ab384@linaro.org>
+Date:   Mon, 19 Jun 2023 15:15:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 11/15] arm64: dts: qcom: sc8180x: align thermal node name
- with bindings
+Subject: Re: [PATCH 12/15] arm64: dts: qcom: sc8180x-flex-5g: correct panel
+ ports
 Content-Language: en-US
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -69,9 +69,9 @@ To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230617171541.286957-1-krzysztof.kozlowski@linaro.org>
- <20230617171541.286957-11-krzysztof.kozlowski@linaro.org>
+ <20230617171541.286957-12-krzysztof.kozlowski@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230617171541.286957-11-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230617171541.286957-12-krzysztof.kozlowski@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -85,37 +85,34 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 17.06.2023 19:15, Krzysztof Kozlowski wrote:
-> Bindings expect thermal node names to end with 'thermal':
+> Panel takes only one port:
 > 
->   sc8180x-lenovo-flex-5g.dtb: thermal-zones: 'gpu-thermal-bottom', 'gpu-thermal-top' do not match any of the regexes: '^[a-zA-Z][a-zA-Z0-9\\-]{1,12}-thermal$', 'pinctrl-[0-9]+'
+>   sc8180x-lenovo-flex-5g.dtb: panel: 'ports' does not match any of the regexes: 'pinctrl-[0-9]+'
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sc8180x.dtsi | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> index d3ae18535636..576180451491 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> @@ -3856,7 +3856,7 @@ cluster-crit {
+> diff --git a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+> index b12e0a61b3c0..39c6ef0802aa 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+> +++ b/arch/arm64/boot/dts/qcom/sc8180x-lenovo-flex-5g.dts
+> @@ -298,11 +298,9 @@ panel {
+>  
+>  			backlight = <&backlight>;
+>  
+> -			ports {
+> -				port {
+> -					auo_b140han06_in: endpoint {
+> -						remote-endpoint = <&mdss_edp_out>;
+> -					};
+> +			port {
+> +				auo_b140han06_in: endpoint {
+> +					remote-endpoint = <&mdss_edp_out>;
+>  				};
 >  			};
 >  		};
->  
-> -		gpu-thermal-top {
-> +		gpu-top-thermal {
->  			polling-delay-passive = <250>;
->  			polling-delay = <1000>;
->  
-> @@ -4006,7 +4006,7 @@ trip-point0 {
->  			};
->  		};
->  
-> -		gpu-thermal-bottom {
-> +		gpu-bottom-thermal {
->  			polling-delay-passive = <250>;
->  			polling-delay = <1000>;
->  
