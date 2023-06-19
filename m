@@ -2,76 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EA06735FC8
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 00:11:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F01F735FD7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 00:29:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229906AbjFSWLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 18:11:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32902 "EHLO
+        id S229925AbjFSW3W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 18:29:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229818AbjFSWLR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 18:11:17 -0400
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51E44187;
-        Mon, 19 Jun 2023 15:11:17 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3422161e53bso8158865ab.1;
-        Mon, 19 Jun 2023 15:11:17 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687212676; x=1689804676;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=2GzJl3YIufx24rrPPBjiGHwcJLGJVUI+UoKbrhxXg1M=;
-        b=eomirQcs7pb2q2stKCz+ZVrYK5fGAj7cMs0tgYixkxoYbjACJD4AZaT1VmVCmnrBUC
-         SijCGD2xukzPHXUalO9NiZE61ondsCEE8b8qVefCDywgiOBaL7OKyUZLQp3XYC6AbNQL
-         LHe4Av5L4gfeF3282FgK4CfMAEK0mBpLAaswI0LqjLt1/HDTKMKei6z7TOLv6PVeVR0M
-         x+TuoqnPDv5IZ+18PayIU8/IIkkdWio0p53z5a/F64tnEF0FGJTWzN042/nR0GRPwkIa
-         m0n9l9uNsRDG7np6gulvZCBNejC5oWfPnQhFvkIHYLYlF7x1irjUeRaEcKCzcuWEd60B
-         Ir9Q==
-X-Gm-Message-State: AC+VfDzVAFv4qE3lcRKM+I4gnUmyu7RQUg2tHHRXDSjytivznYPBh1uF
-        7HcplAoyBTWUQpRBv0KFfhJtGLCo1w==
-X-Google-Smtp-Source: ACHHUZ6YHBtLREVH2RBkLmpN6iF2iPKgeZP7XF9P82sV7Y/BeGqT4CuDM3LoXhiiKoMP9nbsocyEXQ==
-X-Received: by 2002:a92:c60a:0:b0:33e:6d37:ce76 with SMTP id p10-20020a92c60a000000b0033e6d37ce76mr6318463ilm.12.1687212676512;
-        Mon, 19 Jun 2023 15:11:16 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id v2-20020a92c6c2000000b0033bc3a3ea39sm170537ilm.70.2023.06.19.15.11.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 19 Jun 2023 15:11:15 -0700 (PDT)
-Received: (nullmailer pid 1611621 invoked by uid 1000);
-        Mon, 19 Jun 2023 22:11:13 -0000
-Date:   Mon, 19 Jun 2023 16:11:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        linux-kernel@vger.kernel.org,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        michael@amarulasolutions.com,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Yannick Fertre <yannick.fertre@foss.st.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH v4 4/6] dt-bindings: display: stm32-ltdc: add optional
- st,fb-bpp property
-Message-ID: <20230619221113.GA1608794-robh@kernel.org>
-References: <20230619165525.1035243-1-dario.binacchi@amarulasolutions.com>
- <20230619165525.1035243-5-dario.binacchi@amarulasolutions.com>
- <20230619-ion-decree-c63d2eb11e83@spud>
+        with ESMTP id S229931AbjFSW3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 18:29:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1B93E4A;
+        Mon, 19 Jun 2023 15:29:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2BB5D60F28;
+        Mon, 19 Jun 2023 22:29:18 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 32074C433CA;
+        Mon, 19 Jun 2023 22:29:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687213757;
+        bh=1Fai1c9PqtR1nbAseq/sPKVMxOFXSch7MmBt+o0w9SE=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=W7bI+Z4RXdoKnSAQfVmWdPXZIz6ju2OLKJyLf75gQ3sLjh1VUnG4zk+WskfVUk4j7
+         vowDxMBzOLKs5fPcVMXgXrdyacOdwhtb9q3OCK2rYE3BuAP1iD3OSrTpqHu4t7M07k
+         bOsbtyvti6RUptBz1ITex243pDdP0LED/em/IHfz1WIgs45P3e2Q8lraGG/pXNoKxW
+         fKeGSkC8YtsX+7THc2ljZeTLsxCzJuAaDjcqs2tfyTZ4VJ7qBhUGh9dCGpQyFffuJH
+         bN8VzmlNpCYqwYR4gG9UY8CYe/mpo/4fxtqh1ZnYcCRDqOafZJRTTJfLnwsubokOKh
+         XmjGSeEKybNyA==
+From:   Mark Brown <broonie@kernel.org>
+To:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        robh+dt@kernel.org, lgirdwood@gmail.com, perex@perex.cz,
+        pierre-louis.bossart@linux.intel.com,
+        Shenghao Ding <13916275206@139.com>
+Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, x1077012@ti.com, peeyush@ti.com,
+        navada@ti.com, gentuser@gmail.com, Ryan_Chu@wistron.com,
+        Sam_Wu@wistron.com, tiwai@suse.de
+In-Reply-To: <20230618122819.23143-1-13916275206@139.com>
+References: <20230618122819.23143-1-13916275206@139.com>
+Subject: Re: [PATCH v6 1/4] ASoC: tas2781: Add Header file for tas2781
+ driver
+Message-Id: <168721375392.200161.3235917580792681848.b4-ty@kernel.org>
+Date:   Mon, 19 Jun 2023 23:29:13 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230619-ion-decree-c63d2eb11e83@spud>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-c6835
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,18 +61,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 19, 2023 at 09:18:25PM +0100, Conor Dooley wrote:
-> Hey,
+On Sun, 18 Jun 2023 20:28:16 +0800, Shenghao Ding wrote:
+> Create Header file for  tas2781 driver.
 > 
-> On Mon, Jun 19, 2023 at 06:55:23PM +0200, Dario Binacchi wrote:
-> > Boards that use the STM32F{4,7} series have limited amounts of RAM. The
-> > added property allows to size, within certain limits, the memory footprint
-> > required by the framebuffer.
 > 
-> Hmm, this sounds quite a lot like "software policy", since the actual
-> display doesn't have these limitations. Rob, Krzysztof?
 
-Indeed. This doesn't belong in DT.
+Applied to
 
-Rob
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+
+Thanks!
+
+[1/4] ASoC: tas2781: Add Header file for tas2781 driver
+      commit: 678f38eba1f2fe33ff700e85390ac98393e609ef
+[2/4] ASoC: tas2781: firmware lib
+      commit: 915f5eadebd29ba185ac506766a90120153b7e14
+[3/4] ASoC: tas2781: Add tas2781 driver
+      commit: ef3bcde75d06d65f78ba38a30d5a87fb83a5cdae
+[4/4] ASoC: dt-bindings: Add tas2781 amplifier
+      commit: 3e4ecd6c4e14e1eff8f52bd89240399e7dac881c
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
