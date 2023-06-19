@@ -2,133 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E4E734E2E
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 10:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9199D734F46
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 11:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229896AbjFSInP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 04:43:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43266 "EHLO
+        id S231240AbjFSJMu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 05:12:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43252 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229674AbjFSImz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 04:42:55 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 265D03A92;
-        Mon, 19 Jun 2023 01:40:48 -0700 (PDT)
-Received: from [192.168.88.20] (91-154-35-171.elisa-laajakaista.fi [91.154.35.171])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 18098547;
-        Mon, 19 Jun 2023 10:39:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687163998;
-        bh=6NJRwC5Dr2vzbjlVl+AeJg6cppAZ6p7cGxmaf/F5s+A=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=PaMdwDVelUCr2Bpl2OTfDXcqBa72Fpqc3Hu/XO7d+sfRqTSba/rZCj1lwsB+RT3uR
-         gIs59uF6Vc5B3SJS4habkckkrntXpSc/YOZGagGbM0stbTIGIvGlg/AkMT1KEKFO5J
-         +4E8WyJYBT0wdbv/Q2lI9F6NGyDLy4rYgedF8/Wg=
-Message-ID: <fa3f72a1-8f69-e3f1-96c3-5e53c612afe7@ideasonboard.com>
-Date:   Mon, 19 Jun 2023 11:40:28 +0300
+        with ESMTP id S231225AbjFSJMp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 05:12:45 -0400
+Received: from mx0b-001ae601.pphosted.com (mx0b-001ae601.pphosted.com [67.231.152.168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2F21102;
+        Mon, 19 Jun 2023 02:12:43 -0700 (PDT)
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35J80iW9017479;
+        Mon, 19 Jun 2023 03:43:27 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=YMRw7TpzL0COzz9yr9CYVV7IRxhEoZZRsZPOw+0tAws=;
+ b=iwcqhKGt90qIQyGpvNr0edrqXoodtC6ViVYX/O9BlHR1snsCnId6uRx9pWKSQ55eVdsG
+ T1G8Q5dTOwCZVb+juXI/+bJU48yiGRznwr/sKj91pF9c4CxWZ84gBEgdNsieAgPdXpHb
+ oUVTspX//JY3Li5axM5CAl94q0IG2Yn/cKXofl2xQdKkWUeV/5xbG6FFUm10MmzGhGGV
+ Y4CrFtFC/4Zhn9LsA5O/eGOGT8Bbv/Nojx7bXXtWOAybtpU/S/tKfMWAEfEVKJWRytRX
+ n1a+jDyXknHww0Y8K5LuI1F8TZA7GV0fpSwGbf+wylKH2ZLGT1qyAospHjeYrvz2md7k uA== 
+Received: from ediex02.ad.cirrus.com ([84.19.233.68])
+        by mx0b-001ae601.pphosted.com (PPS) with ESMTPS id 3r998mhrr2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 19 Jun 2023 03:43:26 -0500
+Received: from ediex02.ad.cirrus.com (198.61.84.81) by ediex02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.26; Mon, 19 Jun
+ 2023 09:43:25 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by
+ anon-ediex02.ad.cirrus.com (198.61.84.81) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Mon, 19 Jun 2023 09:43:25 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 3331946B;
+        Mon, 19 Jun 2023 08:43:25 +0000 (UTC)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <lee@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <linus.walleij@linaro.org>,
+        <vkoul@kernel.org>
+CC:     <robh+dt@kernel.org>, <conor+dt@kernel.org>, <lgirdwood@gmail.com>,
+        <yung-chuan.liao@linux.intel.com>, <sanyog.r.kale@intel.com>,
+        <pierre-louis.bossart@linux.intel.com>,
+        <alsa-devel@alsa-project.org>, <patches@opensource.cirrus.com>,
+        <devicetree@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v4 0/6] Add cs42l43 PC focused SoundWire CODEC
+Date:   Mon, 19 Jun 2023 09:43:19 +0100
+Message-ID: <20230619084325.1721501-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v14 11/18] media: i2c: ds90ub9xx: Select GPIOLIB rather
- than OF_GPIO
-Content-Language: en-US
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-i2c@vger.kernel.org,
-        Luca Ceresoli <luca.ceresoli@bootlin.com>,
-        Matti Vaittinen <Matti.Vaittinen@fi.rohmeurope.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Wolfram Sang <wsa@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Peter Rosin <peda@axentia.se>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Mike Pagano <mpagano@gentoo.org>,
-        =?UTF-8?Q?Krzysztof_Ha=c5=82asa?= <khalasa@piap.pl>,
-        Marek Vasut <marex@denx.de>,
-        Satish Nagireddy <satish.nagireddy@getcruise.com>
-References: <20230616135922.442979-1-tomi.valkeinen@ideasonboard.com>
- <20230616135922.442979-12-tomi.valkeinen@ideasonboard.com>
- <ZIxu+IvTSaFW3erU@smile.fi.intel.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <ZIxu+IvTSaFW3erU@smile.fi.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-GUID: ToI6sQVpL4LKWrtTaQ_4XY0MkL6PMpwV
+X-Proofpoint-ORIG-GUID: ToI6sQVpL4LKWrtTaQ_4XY0MkL6PMpwV
+X-Proofpoint-Spam-Reason: safe
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 17:17, Andy Shevchenko wrote:
-> On Fri, Jun 16, 2023 at 04:59:15PM +0300, Tomi Valkeinen wrote:
->> Select GPIOLIB rather than OF_GPIO, as the drivers use gpiolib
->> functionality, but no of_gpio (directly).
-> 
-> This is useful change, but has to be folded in the original code.
-> We do not want even a trace of newly added OF_GPIO.
+This patch chain adds support for the Cirrus Logic cs42l43 PC focused
+SoundWire CODEC. The chain is currently based of Lee's for-mfd-next
+branch.
 
-Yes, I think the first three new patches should be squashed:
+Thanks,
+Charles
 
-   media: i2c: ds90ub960: Fix use of UB960_SR_FWD_CTL1
-   media: i2c: ds90ub9xx: Add COMMON_CLK kconfig dependency
-   media: i2c: ds90ub9xx: Select GPIOLIB rather than OF_GPIO
+Charles Keepax (4):
+  dt-bindings: mfd: cirrus,cs42l43: Add initial DT binding
+  mfd: cs42l43: Add support for cs42l43 core driver
+  pinctrl: cs42l43: Add support for the cs42l43
+  ASoC: cs42l43: Add support for the cs42l43
 
-The rest... Thinking about it now, I should have perhaps left them out, 
-as they're not fixing issues, and perhaps they just confuse the merging 
-process.
+Lucas Tanure (2):
+  soundwire: bus: Allow SoundWire peripherals to register IRQ handlers
+  spi: cs42l43: Add SPI controller support
 
-  Tomi
+ .../bindings/sound/cirrus,cs42l43.yaml        |  313 +++
+ MAINTAINERS                                   |    4 +
+ drivers/mfd/Kconfig                           |   23 +
+ drivers/mfd/Makefile                          |    3 +
+ drivers/mfd/cs42l43-i2c.c                     |   87 +
+ drivers/mfd/cs42l43-sdw.c                     |  222 ++
+ drivers/mfd/cs42l43.c                         | 1262 +++++++++
+ drivers/mfd/cs42l43.h                         |   23 +
+ drivers/pinctrl/cirrus/Kconfig                |   11 +
+ drivers/pinctrl/cirrus/Makefile               |    2 +
+ drivers/pinctrl/cirrus/pinctrl-cs42l43.c      |  609 +++++
+ drivers/soundwire/bus.c                       |   32 +
+ drivers/soundwire/bus_type.c                  |   12 +
+ drivers/spi/Kconfig                           |    7 +
+ drivers/spi/Makefile                          |    1 +
+ drivers/spi/spi-cs42l43.c                     |  281 ++
+ include/linux/mfd/cs42l43-regs.h              | 1184 +++++++++
+ include/linux/mfd/cs42l43.h                   |  102 +
+ include/linux/soundwire/sdw.h                 |    9 +
+ include/sound/cs42l43.h                       |   17 +
+ sound/soc/codecs/Kconfig                      |   16 +
+ sound/soc/codecs/Makefile                     |    4 +
+ sound/soc/codecs/cs42l43-jack.c               |  969 +++++++
+ sound/soc/codecs/cs42l43-sdw.c                |   74 +
+ sound/soc/codecs/cs42l43.c                    | 2278 +++++++++++++++++
+ sound/soc/codecs/cs42l43.h                    |  131 +
+ 26 files changed, 7676 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs42l43.yaml
+ create mode 100644 drivers/mfd/cs42l43-i2c.c
+ create mode 100644 drivers/mfd/cs42l43-sdw.c
+ create mode 100644 drivers/mfd/cs42l43.c
+ create mode 100644 drivers/mfd/cs42l43.h
+ create mode 100644 drivers/pinctrl/cirrus/pinctrl-cs42l43.c
+ create mode 100644 drivers/spi/spi-cs42l43.c
+ create mode 100644 include/linux/mfd/cs42l43-regs.h
+ create mode 100644 include/linux/mfd/cs42l43.h
+ create mode 100644 include/sound/cs42l43.h
+ create mode 100644 sound/soc/codecs/cs42l43-jack.c
+ create mode 100644 sound/soc/codecs/cs42l43-sdw.c
+ create mode 100644 sound/soc/codecs/cs42l43.c
+ create mode 100644 sound/soc/codecs/cs42l43.h
 
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-> 
->> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
->> ---
->>   drivers/media/i2c/Kconfig | 6 +++---
->>   1 file changed, 3 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
->> index 8a5f09a3de6c..29fc00e30d8b 100644
->> --- a/drivers/media/i2c/Kconfig
->> +++ b/drivers/media/i2c/Kconfig
->> @@ -1622,7 +1622,7 @@ config VIDEO_DS90UB913
->>   	depends on OF && I2C && VIDEO_DEV && COMMON_CLK
->>   	select I2C_ATR
->>   	select MEDIA_CONTROLLER
->> -	select OF_GPIO
->> +	select GPIOLIB
->>   	select REGMAP_I2C
->>   	select V4L2_FWNODE
->>   	select VIDEO_V4L2_SUBDEV_API
->> @@ -1635,7 +1635,7 @@ config VIDEO_DS90UB953
->>   	depends on OF && I2C && VIDEO_DEV && COMMON_CLK
->>   	select I2C_ATR
->>   	select MEDIA_CONTROLLER
->> -	select OF_GPIO
->> +	select GPIOLIB
->>   	select REGMAP_I2C
->>   	select V4L2_FWNODE
->>   	select VIDEO_V4L2_SUBDEV_API
->> @@ -1648,7 +1648,7 @@ config VIDEO_DS90UB960
->>   	depends on OF && I2C && VIDEO_DEV && COMMON_CLK
->>   	select I2C_ATR
->>   	select MEDIA_CONTROLLER
->> -	select OF_GPIO
->> +	select GPIOLIB
->>   	select REGMAP_I2C
->>   	select V4L2_FWNODE
->>   	select VIDEO_V4L2_SUBDEV_API
->> -- 
->> 2.34.1
->>
-> 
+-- 
+2.30.2
 
