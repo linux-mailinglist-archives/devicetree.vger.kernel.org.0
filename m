@@ -2,154 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38B57735AFF
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 17:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C5B735B33
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 17:37:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229711AbjFSPU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 11:20:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38414 "EHLO
+        id S231130AbjFSPhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 11:37:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43674 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229669AbjFSPU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 11:20:59 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F40139B;
-        Mon, 19 Jun 2023 08:20:57 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f900cd3f69so21031995e9.0;
-        Mon, 19 Jun 2023 08:20:57 -0700 (PDT)
+        with ESMTP id S230130AbjFSPhu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 11:37:50 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70E72113;
+        Mon, 19 Jun 2023 08:37:49 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-5186a157b85so5195439a12.0;
+        Mon, 19 Jun 2023 08:37:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687188056; x=1689780056;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XwN3PZ1wjLMk6buIa7toS1K6WytwdNPBNwxi1r1rCEk=;
-        b=Aqig/3zOeQpdRTYZiGfg/KlTCq7ZXkYHPTrUprvJkAcnmhrvzkYndc+actcCZn8v9X
-         2jAgfZ6+j2LQzbI2KMlkW9zc67wP+Njjj5WXT/fcUor7xSfh2iImMe9rveB45lqKXZz6
-         NCI+PbbRlVniN/zbRnUizZFl2zg//nhlmmsTVWYs3BmgF4/pWaEGLIY4f9+OMfYYKNs5
-         QloNDZMMfkX9Iei7tQIObiHFujbZROhRshzptvE2g55nO6W+F0n9KrSGja3F62W3tJGJ
-         uDTXS/RZrYmtqU+mS5tivEkNnfpK7Y7dWtM1mqnLOgG5XxnDIGy/Hr7uMf/4Sqt52Sst
-         LL1Q==
+        d=gmail.com; s=20221208; t=1687189068; x=1689781068;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=LfbivNkUyRqUuO2dy5Pvjng0AOI0erWsssVVox7EkxU=;
+        b=U7IA9um402pom7Vfn68x9rYJsi5G8Gc8DyRp7c3g9NxHbf+4915W3HlmFO0crI5Sex
+         3KjLWzfA7L34zuOC/xgrHke6+1+fi7LLIa+/PUaI6ASm0rXCcfW3tqvcLpZlnMmwkXc6
+         s1fJHLGzn/SGlyTS52Awfld0dMKBdUu83FgeGoAOFKWwPelwi/MlAfA2DuQrzNGAWHWw
+         yOytdQtU6cfzT+nXU+QDom6cYHvXskXmzXJH9NSG5r4dFHFqu7oOM30sWY8dnOlYncoK
+         I24JGwvtRTwUXASmOcddfhkCh0pFxwdoknAg7QZ62ejvzJIOa6l7rNx8ICUUx+tk2ovP
+         YqmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687188056; x=1689780056;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XwN3PZ1wjLMk6buIa7toS1K6WytwdNPBNwxi1r1rCEk=;
-        b=StLVjwpMd4oarpe1XJnU5oyfgupHdP/2tO+nuK7Tz8QtqCBaHZRZhQqEtH8BEaiYNH
-         G/h5WHSRHCQR41zDi6NXNKnAIIRrbD3V5AhekyYOEncCnV8KGcj8UuarDHqcgib5njxN
-         L8FMdasNCgHBoKqUepsw/dMpKqkuCJEuH3VsqnASCIXYvD+4gBwEfiiYjGJurmcJjNot
-         JmeBftgyk6ouMT12D2casdmAyOQVIzE4TbqYzxBI05fe3BHAOACgi5qwBazQ4NhSjtzt
-         aBGElUOt294c9A9tNvEK6btQc6XJHbSOpPnRVZifh6/VBDnnyDFOn8b+Bpuon/sOfDxm
-         J3/A==
-X-Gm-Message-State: AC+VfDzusIt6QwI/bk4cBeolYGcbXpPQuGzkfhQ4Y2oxDaB8Yz3X8vVM
-        AM4/XWtn9sFz+rituQ8Qwr6cWRE+x+w=
-X-Google-Smtp-Source: ACHHUZ774LceIVSslgnYV3/ERRNDOqTQzWZEwR884PFc6smp+4gyLIISFnLGepomdZBG7RtA4dOo3A==
-X-Received: by 2002:a05:6000:151:b0:312:74a9:8267 with SMTP id r17-20020a056000015100b0031274a98267mr1127094wrx.9.1687188056191;
-        Mon, 19 Jun 2023 08:20:56 -0700 (PDT)
-Received: from [192.168.2.177] ([207.188.167.132])
-        by smtp.gmail.com with ESMTPSA id n13-20020a5d67cd000000b003111fd2e33dsm9946792wrw.30.2023.06.19.08.20.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 08:20:55 -0700 (PDT)
-Message-ID: <91e84965-f44c-e5a5-67a8-e6d286a6ad99@gmail.com>
-Date:   Mon, 19 Jun 2023 17:20:53 +0200
+        d=1e100.net; s=20221208; t=1687189068; x=1689781068;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=LfbivNkUyRqUuO2dy5Pvjng0AOI0erWsssVVox7EkxU=;
+        b=PIHv5SCgWOYrFA6wxmMG1Wv7wkquaI2WaPSgKJwH/Tn5Ef/uChu8P6gg4Y46s4yGKO
+         SRH3S0WZ4CeAJ4rnuE6pnYkoCRrBJK/BWKdYA+oNkbJpMfZqgYqKWnZdZPF0plnCpn5G
+         o0ysrenIGMjNwphnRneVOtzJ2qiirjikvoL7cV29JBdQh559cYPdmZm9PPCLYP3Usan4
+         NF1knHy8e8xx7br25FDVNgrb3wWw0NDF3rAq5N0Kx64cIFHiglf3vSpvM3eYS/t9REmM
+         n43em3Q3j5PwHv+d8CBje8PD6yZaeme8UygJryUX/MwTYQioYgWKlm5l9yu00HadD9EQ
+         hJ+g==
+X-Gm-Message-State: AC+VfDxmQVPzvx+VlclVScPNybF45mj6A/7x39qCcRRA+tYSajPZSPDI
+        EXq+XE1PnwmNp3dkWYWvvZg=
+X-Google-Smtp-Source: ACHHUZ7I63Psrd0vceBOOgWfqVCcsOm9i/fBn9QmXuZWND45VGoFOumg+WpOBAF0aYBOxlXHDcCEUg==
+X-Received: by 2002:a05:6402:1245:b0:51b:52fa:4448 with SMTP id l5-20020a056402124500b0051b52fa4448mr890931edw.6.1687189067841;
+        Mon, 19 Jun 2023 08:37:47 -0700 (PDT)
+Received: from xeon.. ([188.163.112.79])
+        by smtp.gmail.com with ESMTPSA id l8-20020a056402344800b005187a42b44fsm7469043edc.58.2023.06.19.08.37.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 19 Jun 2023 08:37:47 -0700 (PDT)
+From:   Svyatoslav Ryhel <clamor95@gmail.com>
+To:     Andi Shyti <andi.shyti@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>,
+        Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] GPIO-based hotplug i2c bus
+Date:   Mon, 19 Jun 2023 18:37:30 +0300
+Message-Id: <20230619153732.46258-1-clamor95@gmail.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH v2,3/3] drm/mediatek: dsi: Add dsi cmdq_ctl to send panel
- initial code
-Content-Language: en-US, ca-ES, es-ES
-To:     Shuijing Li <shuijing.li@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        angelogioacchino.delregno@collabora.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        jitao.shi@mediatek.com
-References: <20230616073659.26536-1-shuijing.li@mediatek.com>
- <20230616073659.26536-4-shuijing.li@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-In-Reply-To: <20230616073659.26536-4-shuijing.li@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+ASUS Transformers require this driver for proper work with their dock.
+Dock is controlled by EC and its presence is detected by a GPIO.
 
+---
+Changes in v2:
+- adjusted documentation
+---
 
-On 16/06/2023 09:36, Shuijing Li wrote:
-> For mt8188, add dsi cmdq reg control to send long packets to panel
-> initialization.
-> 
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Michał Mirosław (1):
+  i2c: Add GPIO-based hotplug gate
 
-Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
+Svyatoslav Ryhel (1):
+  dt-bindings: i2c: add binding for i2c-hotplug-gpio
 
-> ---
-> Changes in v2:
-> use mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE_SEL, CMDQ_SIZE_SEL); directly,
-> per suggestion from the previous thread:
-> https://lore.kernel.org/lkml/015f4c60-ed77-9e1f-8a6b-cda6e4f6ac93@gmail.com/
-> ---
->   drivers/gpu/drm/mediatek/mtk_dsi.c | 7 +++++++
->   1 file changed, 7 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> index 500a3054282d..8b43d9f48178 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -86,6 +86,7 @@
->   
->   #define DSI_CMDQ_SIZE		0x60
->   #define CMDQ_SIZE			0x3f
-> +#define CMDQ_SIZE_SEL			BIT(15)
->   
->   #define DSI_HSTX_CKL_WC		0x64
->   
-> @@ -178,6 +179,7 @@ struct mtk_dsi_driver_data {
->   	const u32 reg_cmdq_off;
->   	bool has_shadow_ctl;
->   	bool has_size_ctl;
-> +	bool cmdq_long_packet_ctl;
->   };
->   
->   struct mtk_dsi {
-> @@ -996,6 +998,8 @@ static void mtk_dsi_cmdq(struct mtk_dsi *dsi, const struct mipi_dsi_msg *msg)
->   
->   	mtk_dsi_mask(dsi, reg_cmdq_off, cmdq_mask, reg_val);
->   	mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE, cmdq_size);
-> +	if (dsi->driver_data->cmdq_long_packet_ctl)
-> +		mtk_dsi_mask(dsi, DSI_CMDQ_SIZE, CMDQ_SIZE_SEL, CMDQ_SIZE_SEL);
->   }
->   
->   static ssize_t mtk_dsi_host_send_cmd(struct mtk_dsi *dsi,
-> @@ -1200,18 +1204,21 @@ static const struct mtk_dsi_driver_data mt8183_dsi_driver_data = {
->   	.reg_cmdq_off = 0x200,
->   	.has_shadow_ctl = true,
->   	.has_size_ctl = true,
-> +	.cmdq_long_packet_ctl = false,
->   };
->   
->   static const struct mtk_dsi_driver_data mt8186_dsi_driver_data = {
->   	.reg_cmdq_off = 0xd00,
->   	.has_shadow_ctl = true,
->   	.has_size_ctl = true,
-> +	.cmdq_long_packet_ctl = false,
->   };
->   
->   static const struct mtk_dsi_driver_data mt8188_dsi_driver_data = {
->   	.reg_cmdq_off = 0xd00,
->   	.has_shadow_ctl = true,
->   	.has_size_ctl = true,
-> +	.cmdq_long_packet_ctl = true,
->   };
->   
->   static const struct of_device_id mtk_dsi_of_match[] = {
+ .../bindings/i2c/i2c-hotplug-gpio.yaml        |  65 +++++
+ drivers/i2c/Kconfig                           |  11 +
+ drivers/i2c/Makefile                          |   1 +
+ drivers/i2c/i2c-hotplug-gpio.c                | 266 ++++++++++++++++++
+ 4 files changed, 343 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+ create mode 100644 drivers/i2c/i2c-hotplug-gpio.c
+
+-- 
+2.39.2
+
