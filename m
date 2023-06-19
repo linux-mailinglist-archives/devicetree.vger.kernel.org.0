@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B33227359FC
-	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 16:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5517359FF
+	for <lists+devicetree@lfdr.de>; Mon, 19 Jun 2023 16:46:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232182AbjFSOqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 10:46:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43708 "EHLO
+        id S232105AbjFSOqG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 10:46:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43472 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbjFSOqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 10:46:02 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2FB7E65
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:45:55 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f86e1bdce5so1777442e87.3
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:45:55 -0700 (PDT)
+        with ESMTP id S231569AbjFSOqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 10:46:04 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C833810D4
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:45:56 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-988a5383fd4so206456866b.0
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 07:45:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687185954; x=1689777954;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1687185955; x=1689777955;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=JGh6q8YX2/fWXkHg5338c1JuUfqVUfeIziiaO9CuRyA=;
-        b=TMZberxgZEP/PuQu10gXIwK7DBYB0ixRdQQLw/TmK400FmYVO9qRtMwj6HGRz5Z7RU
-         vqFApHi2qsnNfC+tJFWbIiCxRsLCKaCrr3KOPuC9teq2sB+iJYRIn6Sn4bjVQ5Deu8rg
-         ACg3yOGdFSxE48tZD5SiCinEXwtFqkpqDlZ2qzhZU5yTPTY2PGaKqmo1E3H9c5G5fmaw
-         IvWRXha6TOCRJC5V+h7pvKj5jHJqBEbNmdrEBVP/JBsGUClnbgkabMqpFcoZZIjAE8Y+
-         dzu5cbNLQMU1eaCGZjDQGp9kbax0mtNw2rbeUxDNGxrTFZU/K3m/uLwr0CF8PFbhfDvE
-         eisg==
+        bh=cdvdZc1XBtu7GSZPktQLdJjAq5f8weyxwcqQX3iLhs0=;
+        b=OkdaLAj4ZOWqderFYyGn4GoPZk6dcmqg1xpJun/ubGVnxaswXXGCm7C4KS2hJlN7Hi
+         k+44vxUz9fBlE58wSc6uHaF28GOVFyNTt1+0Waxorzscoipv9LhjexVL13uDV8oFHuEL
+         viSawuIT5SC92ofY1pzJG9AWv6t0l3OsUlQ02WSSgIhwupbrcOhJ6Od/VsVoyxO3KhhR
+         p9xSjoprmJjNtJ4//2L/gdv0RTUN0+s3JKYwOEP77Kc/aexGSpnoOpDu+g3cto4qMrH6
+         CIdXAGRYFYluC3vYHVyaH2TOAX/YbmSdM+Xc59o261TgbOReyuQORccGmB8eAE3U7xsV
+         jLog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687185954; x=1689777954;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1687185955; x=1689777955;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JGh6q8YX2/fWXkHg5338c1JuUfqVUfeIziiaO9CuRyA=;
-        b=QplTUhCcIjQ5vGpZImZQTYjSiwOUYiHrz5tiMmUvJXYa6qYkVd90upsHDVU5SnW5Jg
-         EGjmypbNv6QeibT/GwVz7QkrKG2gy1Te7XNYhuAg+GDqHdbUgtKVsa7UhsCHV8suN7OT
-         vRzIZo9vIFP1lQQSpN4N8Z16rUExAYfjY1+5MesXneWPB6XnV6ovbLNo7pEEHElIsfWz
-         8rbJO8hjfQEff+QtNFehOl6B/oazWS+uo5gD8v+mqDnbgcn5k7emJ5ZF0XrEjWGqUq7J
-         PMzeWINDE/U0gYPwAk8orETitud9Ws0e5D1KsyPEB+3+C59HMUlJmwHYO3KRuWOIIKQM
-         rZWg==
-X-Gm-Message-State: AC+VfDwRDUrVLDnmZu5f7cdYsMpfdPo4pn8CZWYtAFgg3ShrrvlFai6O
-        djaSKQVOXORsViGH5OtzfuHO4A==
-X-Google-Smtp-Source: ACHHUZ58xFLtIpptHAM69KQBzXtTb2dYEYCsNT4yppezElKLNkx81i5BNudAdsvN6Sa6fvflLxceWw==
-X-Received: by 2002:a19:7b02:0:b0:4f8:83f:babe with SMTP id w2-20020a197b02000000b004f8083fbabemr5268988lfc.62.1687185954010;
-        Mon, 19 Jun 2023 07:45:54 -0700 (PDT)
-Received: from [192.168.1.101] (abyl242.neoplus.adsl.tpnet.pl. [83.9.31.242])
-        by smtp.gmail.com with ESMTPSA id y18-20020ac255b2000000b004eb12850c40sm4294426lfg.14.2023.06.19.07.45.52
+        bh=cdvdZc1XBtu7GSZPktQLdJjAq5f8weyxwcqQX3iLhs0=;
+        b=K75oymgPkxva9XdueZraSmy5yEW6yV+c4xwl54h0j6JWIpP6cfZRqBbNXztkMwrgow
+         epTI/L1TVMnVUo0EooIp7IycuhS+vRo+x2TA2wmAghCTNV0nbqHqBRGJcHoWVHWIEVqU
+         FMlglP/q913SwYNl8e3wPyaTkRoUybgfspESifvnMUC4VhdkbGqW3usNzglbYB4EjRUB
+         Ce4UdOIwE9q7rQkLegnT/hFu6SYgkV8wyl2obtTV5QvHFAIHCXMK/u57a8v+3ZrKx0Zv
+         w+cbANxr8FybVCV3oOUpF0EFDR2p7+H28x6MCS2rIL7Tu8LBKOWoM6Fg2WFLVw0oOGrs
+         bf9A==
+X-Gm-Message-State: AC+VfDyxvyVBcbPvXR0MWM22dX4N0hMP++LXpJ3pnpIoMMqd7t3CoU4n
+        Uj0p8mWVfTa2yzozuNnEd3tirA==
+X-Google-Smtp-Source: ACHHUZ6YO8OQMADgWFX7R93c5JysxCsxQBxKxyhuNEMc/bIRFU5Nbo0+vk4rzag0LVlzo+wU7flj+Q==
+X-Received: by 2002:a17:907:3e27:b0:978:8685:71d5 with SMTP id hp39-20020a1709073e2700b00978868571d5mr9076379ejc.30.1687185955295;
+        Mon, 19 Jun 2023 07:45:55 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id gq19-20020a170906e25300b009884b9da1f7sm2849226ejb.106.2023.06.19.07.45.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 07:45:53 -0700 (PDT)
-Message-ID: <7d85389e-3066-b031-437a-0c0b800f57ad@linaro.org>
-Date:   Mon, 19 Jun 2023 16:45:52 +0200
+        Mon, 19 Jun 2023 07:45:54 -0700 (PDT)
+Message-ID: <f26edf98-617f-cb37-d34d-497fce5e0867@linaro.org>
+Date:   Mon, 19 Jun 2023 16:45:53 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sm8350: add APR and LPASS TLMM
+Subject: Re: [PATCH v1 1/2] dt-bindings: i2c: add binding for i2c-hotplug-gpio
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Svyatoslav Ryhel <clamor95@gmail.com>,
+        Andi Shyti <andi.shyti@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Wolfram Sang <wsa@kernel.org>,
+        =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230616190222.2251186-1-krzysztof.kozlowski@linaro.org>
- <20230616190222.2251186-3-krzysztof.kozlowski@linaro.org>
- <4e558ea5-84cf-c7d4-19c2-f6e72f497c74@linaro.org>
- <1dfcc1cd-3e71-8d02-5d5e-4b501d7ada50@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <1dfcc1cd-3e71-8d02-5d5e-4b501d7ada50@linaro.org>
+References: <20230619143611.24482-1-clamor95@gmail.com>
+ <20230619143611.24482-2-clamor95@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230619143611.24482-2-clamor95@gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -82,92 +81,114 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.06.2023 16:37, Krzysztof Kozlowski wrote:
-> On 19/06/2023 15:24, Konrad Dybcio wrote:
->> On 16.06.2023 21:02, Krzysztof Kozlowski wrote:
->>> Add audio-related nodes: the APR in the ADSP (same as on SM8250) and
->>> LPASS TLMM pin controller.
->>>
->>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>>
->>> ---
->>>
->>> Bindings for SM8350:
->>> https://lore.kernel.org/linux-arm-msm/20230616185742.2250452-1-krzysztof.kozlowski@linaro.org/T/#t
->>> ---
->>>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 82 ++++++++++++++++++++++++++++
->>>  1 file changed, 82 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>> index 33b7ef8fd78a..9650cecb1370 100644
->>> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
->>> @@ -15,7 +15,9 @@
->>>  #include <dt-bindings/mailbox/qcom-ipcc.h>
->>>  #include <dt-bindings/phy/phy-qcom-qmp.h>
->>>  #include <dt-bindings/power/qcom-rpmpd.h>
->>> +#include <dt-bindings/soc/qcom,apr.h>
->>>  #include <dt-bindings/soc/qcom,rpmh-rsc.h>
->>> +#include <dt-bindings/sound/qcom,q6afe.h>
->>>  #include <dt-bindings/thermal/thermal.h>
->>>  #include <dt-bindings/interconnect/qcom,sm8350.h>
->>>  
->>> @@ -1780,6 +1782,20 @@ tcsr_mutex: hwlock@1f40000 {
->>>  			#hwlock-cells = <1>;
->>>  		};
->>>  
->>> +		lpass_tlmm: pinctrl@33c0000 {
->>> +			compatible = "qcom,sm8350-lpass-lpi-pinctrl";
->>> +			reg = <0 0x033c0000 0x0 0x20000>,
->> '0' for addr, '0x0' for size :/
->>
->> The rest of the file uses '0', please do that
-> It's a mixture but mostly 0x0 in both places. I don't mind switching to 0.
-0x0 would be preferred (dec makes no sense for registers) but I don't
-think anybody wants to do (or handle) the mess of replacing that
+On 19/06/2023 16:36, Svyatoslav Ryhel wrote:
+> Document device tree schema which describes hot-pluggable via GPIO
+> i2c bus.
+> 
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  .../bindings/i2c/i2c-hotplug-gpio.yaml        | 68 +++++++++++++++++++
+>  1 file changed, 68 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+> new file mode 100644
+> index 000000000000..74544687a2b8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/i2c-hotplug-gpio.yaml
+> @@ -0,0 +1,68 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/i2c/i2c-hotplug-gpio.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: GPIO detected hot-plugged I2C bus
+> +
+> +maintainers:
+> +  - Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> +
+> +description: |
 
-Konrad
-> 
->>
->>> +			      <0 0x03550000 0x0 0x10000>;
->>> +
->>> +			clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
->>> +				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
->>> +			clock-names = "core", "audio";
->>> +
->>> +			gpio-controller;
->>> +			#gpio-cells = <2>;
->>> +			gpio-ranges = <&lpass_tlmm 0 0 15>;
->>> +		};
->>> +
->>>  		gpu: gpu@3d00000 {
->>>  			compatible = "qcom,adreno-660.1", "qcom,adreno";
->>>  
->>> @@ -3189,6 +3205,72 @@ IPCC_MPROC_SIGNAL_GLINK_QMP
->>>  				label = "lpass";
->>>  				qcom,remote-pid = <2>;
->>>  
->>> +				apr {
->>> +					compatible = "qcom,apr-v2";
->>> +					qcom,glink-channels = "apr_audio_svc";
->>> +					qcom,domain = <APR_DOMAIN_ADSP>;
->>> +					#address-cells = <1>;
->>> +					#size-cells = <0>;
->>> +
->>> +					service@3 {
->>> +						reg = <APR_SVC_ADSP_CORE>;
->>> +						compatible = "qcom,q6core";
->>> +						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
->>> +					};
->>> +
->>> +					q6afe: service@4 {
->>> +						compatible = "qcom,q6afe";
->>> +						reg = <APR_SVC_AFE>;
->>> +						qcom,protection-domain = "avs/audio", "msm/adsp/audio_pd";
->> Missing newline before subnodes
-> 
-> acks
-> 
-> Best regards,
-> Krzysztof
-> 
+Do not need '|' unless you need to preserve formatting.
+
+> +  Driver for hot-plugged I2C busses, where some devices on a bus
+> +  are hot-pluggable and their presence is indicated by GPIO line.
+> +
+> +properties:
+> +  $nodename:
+> +    pattern: "^i2c-(.*)?"
+
+Drop
+
+> +
+> +  compatible:
+> +    items:
+> +      - const: i2c-hotplug-gpio
+> +
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+> +  interrupts-extended:
+> +    minItems: 1
+> +
+> +  detect-gpios:
+> +    maxItems: 1
+> +
+> +  i2c-parent:
+> +    maxItems: 1
+
+I don't understand this part. You built it as a complimentary device to
+the I2C controller, but there is no such device as "hotplug I2C", right?
+The GPIO is part of the controller and this is imaginary (virtual) device?
+
+Otherwise, where does the "detect-gpios" go? To the SoC? Then it is not
+a real device...
+
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+
+Use consistent quotes (' or ").
+
+> +  - interrupts-extended
+> +  - detect-gpios
+> +  - i2c-parent
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    /*
+> +     * Asus Transformers use I2C hotplug for attachable dock keyboard
+> +     */
+> +    #include <dt-bindings/gpio/gpio.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c-dock {
+> +        compatible = "i2c-hotplug-gpio";
+> +
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        interrupts-extended = <&gpio 164 IRQ_TYPE_EDGE_BOTH>;
+> +        detect-gpios = <&gpio 164 1>;
+
+You forgot define.
+
+> +
+> +        i2c-parent = <&{/i2c@7000c400}>;
+
+Use normal phandles/labels like entire DTS, not full paths or node names.
+
+> +    };
+> +...
+
+Best regards,
+Krzysztof
+
