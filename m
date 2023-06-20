@@ -2,119 +2,206 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D92797370DC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB9677370E0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:49:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbjFTPsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 11:48:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37234 "EHLO
+        id S230469AbjFTPtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 11:49:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231262AbjFTPsE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:48:04 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7E48E7D
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:48:02 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b44d77e56bso59366871fa.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:48:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687276080; x=1689868080;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=CB7I5deqvfRAsDiKv3nBAxEGbRsq3QHGkVHFD9w89QE=;
-        b=ToCBgX6Gtm3xbJorZrR6x03ESc42glw+gGVOIaZIna9QBCB8GDn0MpoH5E79OIciwA
-         Ri2nyCOLVKjuSBgzpGq6H2EY9wOTVz+XWiiN13e3iVGmBda8PgwMOFjfT33Hi6anHAkn
-         P1xO+T01Coh1eFvpbhmtPDY5/SoUHwVkji2jVBBNUO1VSxmTaFS/T9jx8Ii6cZNmjwM7
-         8O2RxPY39bIJaEb//AipTYGBGfkqKkVhdlfpX7ublLomaxoYdyYiH/02hueVIf/3wC1Z
-         WmD0Qs71jHa2FpMVku8CwilQrRaarc+b9XbitUzjoc43j2AV20FXZLzI1uYXr/CxYqZp
-         I2gA==
+        with ESMTP id S231955AbjFTPtB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:49:01 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4B84F4;
+        Tue, 20 Jun 2023 08:49:00 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-77e4126badcso48502339f.0;
+        Tue, 20 Jun 2023 08:49:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687276080; x=1689868080;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CB7I5deqvfRAsDiKv3nBAxEGbRsq3QHGkVHFD9w89QE=;
-        b=a60tVcDNEnXcJ26a/OatVUMWycy+MHIvba5yxNp2O2M/n/JNCyYgNUQ6UFFs3ZYjbx
-         YysRyM+7z4JCCDy8oGGUAwpt/jaehIt0fkmBuES2GjtYp3hjTmVXpXCutIGTi99KnDVm
-         5/tDqIDsspJvHffHyNjVVH1FDqR9NTjL2pBFzfNdI+m7973JCBaj5stwf+0HjzylMF/w
-         BlKnDcB8Nzo+QtLk5WoEqnLhqQebx7y/rU/mi7yDTi2YE4M38016nE7CLsFL2LvP7EZh
-         w45h9z5Go1aqvl2rydwmWkxoK7NVTpPl7sWr/M4k6phZi1jKMhvA2Ix3CbCbHLXcA6Xc
-         RqHw==
-X-Gm-Message-State: AC+VfDzlXNuhgi9/fW/h9+kAhZy7IiUpMsIAb5ZEzcibjdEU7PSdsR5z
-        eimYfshGm90biWWnKxpB89AcCnNwsatTXL0ZlBk=
-X-Google-Smtp-Source: ACHHUZ6wv7m1p8YHOSnAWAjZyy/J3gu0hGgkbFPMicTp1pe03t8A1xeBhnfUhWqy5zxMk1P/hNBmSQ==
-X-Received: by 2002:a2e:9b01:0:b0:2a2:ac00:4de4 with SMTP id u1-20020a2e9b01000000b002a2ac004de4mr4480035lji.22.1687276080309;
-        Tue, 20 Jun 2023 08:48:00 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id x9-20020a2e3109000000b00295a3a64816sm468549ljx.2.2023.06.20.08.47.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 08:47:59 -0700 (PDT)
-Message-ID: <30cfddfb-fabb-a65e-6bb6-c0efdbd92fd7@linaro.org>
-Date:   Tue, 20 Jun 2023 18:47:59 +0300
+        d=1e100.net; s=20221208; t=1687276140; x=1689868140;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=f+0ykOBJR6ph5fJ8NMKMPGXouH5kisW0kpvuVSufTKw=;
+        b=QGDuJU8LlDf/SKiUArDtiyEDfWtHq4CeGRQs9ByszH/tVrvvokd7ARoScid+XkKigG
+         XyX7dM9QEbUYCKvU8+ojy2bRE+zX0kKCbYrei7Oc+IjaIQLeSXJwqRANTsfuggtMHdLG
+         lHaJKNSQwiDj9kCXbGhRXqdQxNwnPM/G2VKjw2sFsmB8WX8ujujH1ZixK0VqIKq/f6AP
+         1S0PK2FNX4zFsTh+izMD8V66Tz85AE57VqwLEpJ1cw/i0XCqCrwYnLlMhnGtRZ2eYb+3
+         hHQkdTiOURgCWlrKOryubzizbUr9p9c6jLwurUAXATvtE4o+aN5MrQ5r8cNGFCuQKBIt
+         5cag==
+X-Gm-Message-State: AC+VfDwPT14RaqLzxIUi2ZQYcLkUcWwpPVQY/GPOTG4+xHpyw/lj5kPP
+        pMotmZsin8q3VcNXazRAwg==
+X-Google-Smtp-Source: ACHHUZ4JlCQgBFv4N8BMZuj7200KFd3rbLgtWgjlVsH/bI15MOlDE4V78j/2LXyWh0HIt2u6z6aoxQ==
+X-Received: by 2002:a05:6e02:927:b0:33c:2a80:3721 with SMTP id o7-20020a056e02092700b0033c2a803721mr7722596ilt.4.1687276139985;
+        Tue, 20 Jun 2023 08:48:59 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id x19-20020a029713000000b004161fafff97sm701453jai.136.2023.06.20.08.48.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jun 2023 08:48:59 -0700 (PDT)
+Received: (nullmailer pid 3655727 invoked by uid 1000);
+        Tue, 20 Jun 2023 15:48:56 -0000
+Date:   Tue, 20 Jun 2023 09:48:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sandor Yu <Sandor.yu@nxp.com>
+Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
+        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
+        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
+        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        vkoul@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
+        kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com
+Subject: Re: [PATCH v6 2/8] dt-bindings: display: bridge: Add Cadence
+ MHDP8501 HDMI and DP
+Message-ID: <20230620154856.GB3637514-robh@kernel.org>
+References: <cover.1686729444.git.Sandor.yu@nxp.com>
+ <8687f2221299b120e12f29fdccf264e120227bd7.1686729444.git.Sandor.yu@nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: qrb4210-rb2: Enable GPU
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230620-topic-gpu_tablet_disp-v1-0-7bb02bec8dc0@linaro.org>
- <20230620-topic-gpu_tablet_disp-v1-4-7bb02bec8dc0@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230620-topic-gpu_tablet_disp-v1-4-7bb02bec8dc0@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <8687f2221299b120e12f29fdccf264e120227bd7.1686729444.git.Sandor.yu@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 16:17, Konrad Dybcio wrote:
-> Enable the A610 GPU and provide a firmware path to the ZAP blob.
+On Thu, Jun 15, 2023 at 09:38:12AM +0800, Sandor Yu wrote:
+> Add bindings for Cadence MHDP8501 DisplayPort and HDMI driver.
+
+Bindings are for h/w, not a driver.
+
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
 > ---
->   arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
+>  .../display/bridge/cdns,mhdp8501.yaml         | 105 ++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> index e23a0406eacc..a7278a9472ed 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
-> @@ -179,6 +179,14 @@ &gpi_dma0 {
->   	status = "okay";
->   };
->   
-> +&gpu {
-> +	status = "okay";
+> diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
+> new file mode 100644
+> index 000000000000..a54756815e6f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
+> @@ -0,0 +1,105 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp8501.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +	zap-shader {
-> +		firmware-name = "qcom/qrb4210/a610_zap.mbn";
-
-Should this be qrb4210 or sm4250? Previously we did not use special 
-subdirs for IOT versions. See qrb5165-rb5.dts.
-
-> +	};
-> +};
+> +title: Cadence MHDP8501 Displayport bridge
 > +
->   &i2c2 {
->   	clock-frequency = <400000>;
->   	status = "okay";
+> +maintainers:
+> +  - Sandor Yu <Sandor.yu@nxp.com>
+> +
+> +description:
+> +  The Cadence MHDP8501 Displayport/HDMI TX interface.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - cdns,mhdp8501-dp
+> +      - cdns,mhdp8501-hdmi
+> +      - fsl,imx8mq-mhdp8501-dp
+> +      - fsl,imx8mq-mhdp8501-hdmi
+
+Is DP vs. HDMI fixed for a particular SoC implementation or it's a board 
+level decision. In the latter case, the type of connector should 
+determine the mode, not compatible.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +    description: MHDP8501 DP/HDMI APB clock.
+
+Seems odd there's no clock tied to the pixel/serdes clock.
+
+> +
+> +  phys:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    items:
+> +      - description: Hotplug cable plugin.
+> +      - description: Hotplug cable plugout.
+> +
+> +  interrupt-names:
+> +    items:
+> +      - const: plug_in
+> +      - const: plug_out
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Input port from display controller output.
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port to DP/HDMI connector.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - interrupts
+> +  - interrupt-names
+> +  - phys
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx8mq-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    mhdp_dp: dp-bridge@32c00000 {
+> +        compatible = "fsl,imx8mq-mhdp8501-dp";
+> +        reg = <0x32c00000 0x100000>;
+> +        interrupts = <GIC_SPI 16 IRQ_TYPE_LEVEL_HIGH>,
+> +                     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> +        interrupt-names = "plug_in", "plug_out";
+> +        clocks = <&clk IMX8MQ_CLK_DISP_APB_ROOT>;
+> +        phys = <&dp_phy>;
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +
+> +                mhdp_in: endpoint {
+> +                    remote-endpoint = <&dcss_out>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg = <1>;
+> +
+> +                mhdp_out: endpoint {
+> +                    remote-endpoint = <&dp_con>;
+> +                };
+> +            };
+> +        };
+> +    };
+> -- 
+> 2.34.1
 > 
-
--- 
-With best wishes
-Dmitry
-
