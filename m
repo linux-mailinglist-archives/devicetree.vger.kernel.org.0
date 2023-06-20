@@ -2,122 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 93DCA737247
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 19:07:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 407B573724C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 19:08:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229788AbjFTRHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 13:07:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48786 "EHLO
+        id S230215AbjFTRI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 13:08:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjFTRHb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 13:07:31 -0400
-Received: from mail-ua1-x930.google.com (mail-ua1-x930.google.com [IPv6:2607:f8b0:4864:20::930])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A3E910E2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 10:07:30 -0700 (PDT)
-Received: by mail-ua1-x930.google.com with SMTP id a1e0cc1a2514c-78a1e095508so1338592241.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 10:07:30 -0700 (PDT)
+        with ESMTP id S229975AbjFTRI1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 13:08:27 -0400
+Received: from mail-oa1-x30.google.com (mail-oa1-x30.google.com [IPv6:2001:4860:4864:20::30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5E1710DC
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 10:08:26 -0700 (PDT)
+Received: by mail-oa1-x30.google.com with SMTP id 586e51a60fabf-1a2c85ef3c2so4998473fac.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 10:08:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687280849; x=1689872849;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=1KD/qvxJOc3b4KgS6sdlf1So0mk1/jsrGWQamnUQ/Qk=;
-        b=VP5bdClvPlybw7aor+YaCPJnNF7rxyDbY2AUMA4Sd8REXUfOq3H2Toy3dhRaO3y2gg
-         jC7M4iFwq3HEsirmo6qFnq4Gp5Ydi5YVUgnEUQOfJKOKs5B3+t6ttVJyC5y4GIyBptz0
-         q6yTL4D4e57FdDnbX21X1NVu1QzJC9EVZGDRfu+a/qHcBfW8pJo/VYlfo7w8mndN40Lh
-         KjBHXI9hNnH+6dVW3XkO2uzEX0qYSrzq+1hnNI2u3fVnqNtdqJ19N1PZLixyEjHQC8FH
-         1Vbk/Y2Nt/cBXkuCDJMgspVZo9hJHhyEBmQoui87+vWdVvPcu/+Z1FnjAlqlxMyN/oA3
-         OU5Q==
+        d=linaro.org; s=google; t=1687280906; x=1689872906;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=BPlUpaESmFXmAV66+b1zbSLli4Uazi7WstGyzYnlL8Q=;
+        b=evyhWqxMmaFSN4XuTAFRQEtpaufofDUDF/BnAJGZgSN3JIRiQOdj6YwRDBU8a/VjdY
+         kuAXp1WiBdRnWXrKNqA+21Hb86pePqUHt4zQ1cp54Vl278noNJ9eDttgLLZ/Tfi4Z+kM
+         iMMnQu4hO8ocKqWOYFOX17upmg9fUB3udIHipM/IVLJOU6OMQpPXuj09Hr7ZGvONJGXM
+         tQ+srGQ5rYHpeIL7Ib4ZVpxIoEUs/18S4+L6tIIQxizl7zbVnE6jYQz8vMmAEE96s6w+
+         YOxllz80fnEqi4p8vflN1LeRLh1JfomVc1w8301UCFFErbe74Kxj9Cr1tC2JtQwIxDXJ
+         ftlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687280849; x=1689872849;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=1KD/qvxJOc3b4KgS6sdlf1So0mk1/jsrGWQamnUQ/Qk=;
-        b=E5BatKFgeVuSEfDc3+BMH/oZdapfoc/W7ta/DuFAz4auOnKAjJ6DQRKlv7vddmjLwh
-         gQyjUBVuNLWdnAhDt/BsYxae/VY71CzIyQ0S438HtahHYUVezOKCGvx8U/jO2dWcbiDa
-         QhpOoWIQrCvriGsl0LTk0DqHl4NSp6Raf+mTiEwQ+QerVG5cz8X3XFwFWPT1SZe1cxcG
-         zvMDdDN5DL6pjrXIFNwYTmEvGufY4QQPoDDWgjqnXNJ4lgom+Yz5QAdITxKnvZLHORq9
-         1yb8k8sQrfLQTodN9wI8c3D/txgJqsykj+jUKpfxOGnyrdpWWBn8OmufNzPjFQZrWYb/
-         x9+Q==
-X-Gm-Message-State: AC+VfDzWVM4KiX5hh1xfe6ljXXjL8Gr/5DG8J6wyD1rqs5Mc6vATHOzM
-        pASfxnBwuuTpzxchFhTQLU8DtX19krjCtCzeLKk=
-X-Google-Smtp-Source: ACHHUZ6WoDeirwgdHBEytEMjfupCjGvK1KdKZCdmgtbK8JRrohidVrJDX9lb0R7kEPKmxzvnPVjVAg==
-X-Received: by 2002:a05:6102:4ae:b0:440:cf20:3f90 with SMTP id r14-20020a05610204ae00b00440cf203f90mr386481vsa.18.1687280849073;
-        Tue, 20 Jun 2023 10:07:29 -0700 (PDT)
-Received: from jassi-Alienware-x17-R2.. (wnpgmb0311w-ds01-45-177-228.dynamic.bellmts.net. [206.45.177.228])
-        by smtp.gmail.com with ESMTPSA id i10-20020ac860ca000000b003f9cca00552sm1288795qtm.93.2023.06.20.10.07.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jun 2023 10:07:28 -0700 (PDT)
-From:   jaswinder.singh@linaro.org
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-        ilias.apalodimas@linaro.org, masahisa.kojima@linaro.org,
-        Jassi Brar <jaswinder.singh@linaro.org>
-Subject: [PATCHv2] dt-bindings: arm: socionext: add Synquacer platforms
-Date:   Tue, 20 Jun 2023 12:07:25 -0500
-Message-Id: <20230620170725.13794-1-jaswinder.singh@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230616035813.255062-1-jaswinder.singh@linaro.org>
-References: <20230616035813.255062-1-jaswinder.singh@linaro.org>
+        d=1e100.net; s=20221208; t=1687280906; x=1689872906;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=BPlUpaESmFXmAV66+b1zbSLli4Uazi7WstGyzYnlL8Q=;
+        b=OcK3v0/ZW0jT1Lryt1cTBxbTQ2gYNBrj7MrAEWThjYtWmgx+MHJf9Rro4u3FU+ykUt
+         UAMg3KD9VK5uwp3afdd6alQOXSLXgXsI7sQ0TOIptR7/CpUS9QrbCL/Ht8fbLWvcSk2t
+         Kyw/0pGi1/ov9x9iSSDoHZ1Y8ps+I2X9KBO0jZ2r8sgk6hrPzDY+wSeHmI46Daf6e/0I
+         zetoDa3z0RkG2Mq2XKyPTxjDtnom6fbGpQYvgujzW8WyQjEjvjCIvSEW0uroZ/VeZlAo
+         M7MRQtSutZgTek/xNf6VTTQ5AYHUCHvLtmMiGJCHxFRjbuF2d2vbZ9HYsrir+oIqagJ2
+         T9ow==
+X-Gm-Message-State: AC+VfDySjI/+rMf4xbxoSaASf4DrPH/apBRLEFCRaSBGKhVyHlPM86Fy
+        GmVTjRgwYlHwHqTxw+ZlUMX4sjxPS4OQ8SzHkDoIwA==
+X-Google-Smtp-Source: ACHHUZ4RFHPGUZU1HKDnnXGV3LuEfxMOZ6TY2ggl/uGIjn7aYRfweo73+LErL1NW11Sm/GbAkOb45mZgSAFkhjVteBw=
+X-Received: by 2002:a05:6870:d897:b0:1a6:d702:f03e with SMTP id
+ dv23-20020a056870d89700b001a6d702f03emr9703837oab.1.1687280906189; Tue, 20
+ Jun 2023 10:08:26 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230616035813.255062-1-jaswinder.singh@linaro.org> <20230620165028.GA3805350-robh@kernel.org>
+In-Reply-To: <20230620165028.GA3805350-robh@kernel.org>
+From:   Jassi Brar <jaswinder.singh@linaro.org>
+Date:   Tue, 20 Jun 2023 12:08:15 -0500
+Message-ID: <CAJe_ZhdEgucXJk0B3uRqsEaQ4r3AiixL1H0PBYZTX8rfpTgkbA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
+ Synquacer platform
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, ilias.apalodimas@linaro.org,
+        masahisa.kojima@linaro.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Jassi Brar <jaswinder.singh@linaro.org>
+On Tue, 20 Jun 2023 at 11:50, Rob Herring <robh@kernel.org> wrote:
+>
+> On Thu, Jun 15, 2023 at 10:58:13PM -0500, jaswinder.singh@linaro.org wrote:
+> > From: Jassi Brar <jaswinder.singh@linaro.org>
+> >
+> > Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
+> > Specify bindings for the platform and boards based on that.
+> >
+> > Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
+> > ---
+> >  .../bindings/arm/socionext/synquacer.yaml     | 28 +++++++++++++++++++
+> >  1 file changed, 28 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
+>
+> Should I pick this up or Socionext maintainers will?
+>
+Please consider Patch-v2 that changes the subject line and specifies
+the SoC compatible 'sc2a11b' (Synquacer is the brand name).
 
-Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
-Specify bindings for the platform and boards based on that.
+Thanks
 
-Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
----
- .../bindings/arm/socionext/synquacer.yaml     | 29 +++++++++++++++++++
- 1 file changed, 29 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
-
-diff --git a/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
-new file mode 100644
-index 000000000000..c582d9c31213
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
-@@ -0,0 +1,29 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/socionext/synquacer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Socionext Synquacer platform
-+
-+maintainers:
-+  - Masahisa Kojima <masahisa.kojima@linaro.org>
-+  - Jassi Brar <jaswinder.singh@linaro.org>
-+
-+description:
-+  Socionext SC2A11B (Synquacer) SoC based boards
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - socionext,developer-box
-+              - socionext,synquacer
-+          - const: socionext,sc2a11b
-+
-+additionalProperties: true
-+
-+...
--- 
-2.34.1
-
+-jassi
