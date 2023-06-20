@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04FAC736EDD
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 16:39:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48EC0736EEE
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 16:42:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233066AbjFTOj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 10:39:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46598 "EHLO
+        id S231750AbjFTOmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 10:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233427AbjFTOjs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 10:39:48 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F9E71BCF;
-        Tue, 20 Jun 2023 07:39:29 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-77e3a44dae3so104203839f.0;
-        Tue, 20 Jun 2023 07:39:29 -0700 (PDT)
+        with ESMTP id S231246AbjFTOmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 10:42:04 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DDDF1738;
+        Tue, 20 Jun 2023 07:42:02 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-77797beb42dso171151239f.2;
+        Tue, 20 Jun 2023 07:42:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687271947; x=1689863947;
+        d=1e100.net; s=20221208; t=1687272121; x=1689864121;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=I010nMgK8kG45jUUX05j2M4inOliG1MEyiqePq5AePw=;
-        b=KeDLaIaeHsI313We9glGLv2yUC/LuOMBhTaOUiLUIGE0sVt8l4fltvpB6Su2QCnCMJ
-         wLpKKJWNXcsryNqAnYIM9bAq2KN+ctY0rA+csn8/QG79e3n6Jg5xIZciSrQNeY4aq0Kj
-         ggTaOqv27aUFzR+Wvx40PsMXaTSOEbvVI1CdQsSPzPGJ/3KJw9UI3fF9dnQ0F7+jMgvk
-         m0xpAY+lzuiBC7ba9DJz3C1OccJWM0dZ/4IlBUnI7ZcYZAVE4ivsUfdDe9fPkeDHGoUn
-         PzVm+PLZnnS132nOXluRP++kT/OCxR+sbPqBFB8UbXnVRoNi1lxt9kCoZIPPh46e/wtg
-         nlmg==
-X-Gm-Message-State: AC+VfDy86S0B1/pl28KFV/xEmE0ocdm2XtfZEUQRC6l7sdkJJMKdwme/
-        l5K7l7ntzYRBBpFV87C+wQ==
-X-Google-Smtp-Source: ACHHUZ6uRnQAz9zY56zQa7xBNoYaLlKDsBB4HSYnSPp6s4hYW875BiTaMxSTTgH1xzL0OErdZO57AQ==
-X-Received: by 2002:a5e:8f09:0:b0:774:84b5:cb77 with SMTP id c9-20020a5e8f09000000b0077484b5cb77mr11934684iok.18.1687271947188;
-        Tue, 20 Jun 2023 07:39:07 -0700 (PDT)
+        bh=Wn93qMspQemea9YhXaQZljSR2Ed4VY8kRFqzKyHo9fc=;
+        b=SRFqb3eA9AQq94sv8Zhy+QksLAi8TVAwV8M8pw7ZZBgS9J9nIPRXfwxvrPRKoGrraZ
+         qsEcMzRNr4KBEAfo1pbuGWi44iCh+np8k6TYmtd5N6gyppCycN5SZglUwqovKmJu/dCp
+         jI8m96pyjxSVJfvLd7u9FGiUMUJPSLBuSCRdPVGdW747yipOet82jPQLW/HdT2g/zi6y
+         IPUEFZx3atXmaL4UkasX/KNqcXDvFURG1YMxcE4RRrY5Ba9/5jAT6l2t3Ri9bo07ro23
+         565C2GnOvKC8Nzzm7+vJOO81XR3xu6Qe8RB+bTIX8eKt/wYDlwBytqZsAEmnDeFCuh9H
+         CH4w==
+X-Gm-Message-State: AC+VfDwvR5iPd9F2MsW4OBez6P/w2CAZs9mDAWtJvOY8cEAkfsJddKRl
+        Q56AY0Rf1KGq0HRB49Z7m7GXRFRODg==
+X-Google-Smtp-Source: ACHHUZ6rbJILuh3J5fBffSGZ6A7UKWkr0D2mSMMgy83pJeLFSCQKsOo/gCKTQ53n9i89G+XAxemxZw==
+X-Received: by 2002:a92:c10e:0:b0:33f:f183:f9c4 with SMTP id p14-20020a92c10e000000b0033ff183f9c4mr4010729ile.23.1687272121544;
+        Tue, 20 Jun 2023 07:42:01 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id b9-20020a02a589000000b00426750059e1sm687386jam.26.2023.06.20.07.39.05
+        by smtp.gmail.com with ESMTPSA id t13-20020a056e02010d00b00341e955a541sm653188ilm.16.2023.06.20.07.41.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jun 2023 07:39:06 -0700 (PDT)
-Received: (nullmailer pid 3559325 invoked by uid 1000);
-        Tue, 20 Jun 2023 14:39:04 -0000
-Date:   Tue, 20 Jun 2023 08:39:04 -0600
+        Tue, 20 Jun 2023 07:42:00 -0700 (PDT)
+Received: (nullmailer pid 3563950 invoked by uid 1000);
+        Tue, 20 Jun 2023 14:41:59 -0000
+Date:   Tue, 20 Jun 2023 08:41:59 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stefan Wahren <stefan.wahren@i2se.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-pwm@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Ray Jui <rjui@broadcom.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Florian Fainelli <florian.fainelli@broadcom.com>,
-        linux-mmc@vger.kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Rob Herring <robh+dt@kernel.org>, dmaengine@vger.kernel.org,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Scott Branden <sbranden@broadcom.com>
-Subject: Re: [PATCH V2 6/7] dt-bindings: mailbox: convert bcm2835-mbox
- bindings to YAML
-Message-ID: <168727194116.3559200.9557415679850510683.robh@kernel.org>
-References: <20230617133620.53129-1-stefan.wahren@i2se.com>
- <20230617133620.53129-7-stefan.wahren@i2se.com>
+        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        linux-mediatek@lists.infradead.org,
+        Stephen Boyd <sboyd@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: spmi: mtk,spmi-mtk-pmif: drop unneeded
+ quotes
+Message-ID: <168727211697.3563865.3536184415967824360.robh@kernel.org>
+References: <20230609140655.64529-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230617133620.53129-7-stefan.wahren@i2se.com>
+In-Reply-To: <20230609140655.64529-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -79,17 +73,15 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sat, 17 Jun 2023 15:36:19 +0200, Stefan Wahren wrote:
-> Convert the DT binding document for bcm2835-mbox from .txt to YAML.
+On Fri, 09 Jun 2023 16:06:54 +0200, Krzysztof Kozlowski wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 > 
-> Signed-off-by: Stefan Wahren <stefan.wahren@i2se.com>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 > ---
->  .../bindings/mailbox/brcm,bcm2835-mbox.txt    | 26 ------------
->  .../bindings/mailbox/brcm,bcm2835-mbox.yaml   | 40 +++++++++++++++++++
->  2 files changed, 40 insertions(+), 26 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mailbox/brcm,bcm2835-mbox.txt
->  create mode 100644 Documentation/devicetree/bindings/mailbox/brcm,bcm2835-mbox.yaml
+>  Documentation/devicetree/bindings/spmi/mtk,spmi-mtk-pmif.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks!
 
