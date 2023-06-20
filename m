@@ -2,332 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C97DE73715B
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 18:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E42D7371A9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 18:32:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229693AbjFTQXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 12:23:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51518 "EHLO
+        id S232218AbjFTQcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 12:32:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229678AbjFTQXu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 12:23:50 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F826E2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 09:23:48 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1qBe8m-000206-7H; Tue, 20 Jun 2023 18:23:36 +0200
-Message-ID: <cde41b2e-629f-25ce-5adf-74b2e7bae75b@pengutronix.de>
-Date:   Tue, 20 Jun 2023 18:23:33 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Subject: Re: [Linux-stm32] [PATCH v1 7/7] ARM: dts: stm32: Add Octavo
- OSD32MP1-RED board
-To:     Sean Nyekjaer <sean@geanix.com>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S231948AbjFTQb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 12:31:57 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0DBB1FE7;
+        Tue, 20 Jun 2023 09:31:11 -0700 (PDT)
+Received: from notapiano (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 2D5FD6600873;
+        Tue, 20 Jun 2023 17:31:06 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1687278669;
+        bh=Y9tvPReig8gmKXdmzgK1D+yZ0bHJi1pX+/SYM0CaaCQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Vf3K1+F7Y1XW2cVGXJmAn9KJj9mP5Epmo3LI1I5+xTE73Yqh5QgptpZv5v2f/lGZf
+         xh74/x7jKjp0g06k3QYw7oDfGwJT0WmnC1aPXCuXaiolPKDVbZTbaqpLv9ku/nyV5a
+         Dkh3fNuZlWN872H4KcidPxRI6iufj1fBDptlXqh6lBGsRvlOzM0u9cTxN2OA5R2iFM
+         eT5iL/l8x2UE3TiF++xHqLYwHgGX2iJDPp4yAcSX2RPt6IQiL9EAh3J0O2bdvgvn/v
+         RF/ArBZ3zEEjzdZJPQ6jzPdzVDNB0HkYKRcXmgTwzft5LrbfGn3s04WCRclDh7Nwv5
+         EwO5rEpF3MoRw==
+Date:   Tue, 20 Jun 2023 12:31:02 -0400
+From:   =?utf-8?B?TsOtY29sYXMgRi4gUi4gQS4=?= Prado 
+        <nfraprado@collabora.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dantuguf14105@gmail.com, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org
-References: <20230620151312.1064629-1-sean@geanix.com>
- <20230620151312.1064629-7-sean@geanix.com>
-Content-Language: en-US
-In-Reply-To: <20230620151312.1064629-7-sean@geanix.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v3 3/6] media: dt-bindings: mediatek,vcodec: Remove
+ VDEC_SYS for mt8183
+Message-ID: <6b41c5e4-bae9-4c99-8a28-7272c8a598a3@notapiano>
+References: <20230620000349.2122191-1-nfraprado@collabora.com>
+ <20230620000349.2122191-4-nfraprado@collabora.com>
+ <8b5e4a9b-7496-02a1-d3b6-a0be8ea85798@linaro.org>
+ <a82b7f2d-04d4-4ac0-9a72-ad1c17118e19@notapiano>
+ <cb2dd67a-d3df-f194-6595-789d12b38f3d@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <cb2dd67a-d3df-f194-6595-789d12b38f3d@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.06.23 17:13, Sean Nyekjaer wrote:
-> Add support for the Octavo OSD32MP1-RED development board.
+On Tue, Jun 20, 2023 at 03:00:00PM +0200, Krzysztof Kozlowski wrote:
+> On 20/06/2023 14:46, Nícolas F. R. A. Prado wrote:
+> > On Tue, Jun 20, 2023 at 10:12:14AM +0200, Krzysztof Kozlowski wrote:
+> >> On 20/06/2023 02:03, Nícolas F. R. A. Prado wrote:
+> >>> The binding expects the first register space to be VDEC_SYS. But on
+> >>> mt8183, which uses the stateless decoders, this space is used only for
+> >>> controlling clocks and resets, which are better described as separate
+> >>> clock-controller and reset-controller nodes.
+> >>>
+> >>> In fact, in mt8173's devicetree there are already such separate
+> >>> clock-controller nodes, which cause duplicate addresses between the
+> >>> vdecsys node and the vcodec node. But for this SoC, since the stateful
+> >>> decoder code makes other uses of the VDEC_SYS register space, it's not
+> >>> straightforward to remove it.
+> >>>
+> >>> In order to avoid the same address conflict to happen on mt8183,
+> >>> since the only current use of the VDEC_SYS register space in
+> >>> the driver is to read the status of a hardware controlled clock, remove
+> >>> the VDEC_SYS register space from the binding and describe an extra
+> >>> syscon that will be used to directly check the hardware status.
+> >>>
+> >>> Also add reg-names to be able to tell that this new register schema is
+> >>> used, so the driver can keep backward compatibility.
+> >>>
+> >>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> >>>
+> >>> ---
+> >>> I dropped the tags from this commit since a syscon is now used instead
+> >>> of an extra clock.
+> >>>
+> >>> Changes in v3:
+> >>> - Removed the active clock
+> >>> - Added a mediatek,vdecsys syscon property
+> >>>
+> >>> Changes in v2:
+> >>> - Merged with patch 1 (media: dt-bindings: mediatek,vcodec: Allow single
+> >>>   clock for mt8183) to avoid changing number of clocks twice
+> >>> - Added maxItems to reg-names
+> >>> - Constrained clocks for each compatible
+> >>> - Reordered properties for each compatible
+> >>>
+> >>>  .../media/mediatek,vcodec-decoder.yaml        | 30 +++++++++++++++++++
+> >>>  1 file changed, 30 insertions(+)
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> >>> index 1e56ece44aee..2f625c50bbfe 100644
+> >>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> >>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+> >>> @@ -21,8 +21,13 @@ properties:
+> >>>        - mediatek,mt8183-vcodec-dec
+> >>>  
+> >>>    reg:
+> >>> +    minItems: 11
+> >>>      maxItems: 12
+> >>>  
+> >>> +  reg-names:
+> >>> +    minItems: 11
+> >>> +    maxItems: 11
+> >>
+> >> maxItems: 12
+> >>
+> >>> +
+> >>>    interrupts:
+> >>>      maxItems: 1
+> >>>  
+> >>> @@ -60,6 +65,10 @@ properties:
+> >>>      description:
+> >>>        Describes point to scp.
+> >>>  
+> >>> +  mediatek,vdecsys:
+> >>> +    $ref: /schemas/types.yaml#/definitions/phandle
+> >>> +    description: Phandle to the vdecsys syscon node.
+> >>> +
+> >>>  required:
+> >>>    - compatible
+> >>>    - reg
+> >>> @@ -79,8 +88,26 @@ allOf:
+> >>>      then:
+> >>>        required:
+> >>>          - mediatek,scp
+> >>> +        - mediatek,vdecsys
+> >>>  
+> >>>        properties:
+> >>> +        reg:
+> >>> +          maxItems: 11
+> >>> +
+> >>> +        reg-names:
+> >>> +          items:
+> >>> +            - const: misc
+> >>> +            - const: ld
+> >>> +            - const: top
+> >>> +            - const: cm
+> >>> +            - const: ad
+> >>> +            - const: av
+> >>> +            - const: pp
+> >>> +            - const: hwd
+> >>> +            - const: hwq
+> >>> +            - const: hwb
+> >>> +            - const: hwg
+> >>> +
+> >>>          clocks:
+> >>>            minItems: 1
+> >>>            maxItems: 1
+> >>> @@ -101,6 +128,9 @@ allOf:
+> >>>          - mediatek,vpu
+> >>>  
+> >>>        properties:
+> >>> +        reg:
+> >>> +          minItems: 12
+> >>
+> >>
+> >> What about reg-names here? They should be also defined and in sync with
+> >> regs.
+> > 
+> > That's intentional. As described in the commit message, mt8173 will keep having
+> > the VDEC_SYS iospace, while mt8183 won't. And we use the presence of reg-names
+> > to tell them apart.
+> > 
+> > So, mt8173 has 12 regs, no reg-names and no syscon, while mt8183 has 11 regs,
+> > with reg-names and the syscon.
 > 
-> General features:
->  - STM32MP157C
->  - 512MB DDR3
->  - CAN-FD
->  - HDMI
->  - USB-C OTG
->  - UART
-> 
-> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-> Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
-> ---
-> Changes since v0:
->  - Adapted to use stm32mp15xx-osd32.dtsi
-> 
->  .../arm/boot/dts/stm32mp157c-osd32mp1-red.dts | 226 ++++++++++++++++++
->  1 file changed, 226 insertions(+)
->  create mode 100644 arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-> new file mode 100644
-> index 000000000000..2823857900de
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-> @@ -0,0 +1,226 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-> +/*
-> + * Copyright (C) Geanix ApS 2023 - All Rights Reserved
-> + * Author: Sean Nyekjaer <sean@geanix.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "stm32mp157.dtsi"
-> +#include "stm32mp15xc.dtsi"
-> +#include "stm32mp15xx-osd32.dtsi"
-> +#include "stm32mp15xxac-pinctrl.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-> +
-> +/ {
-> +	model = "Octavo OSD32MP1 RED board";
-> +	compatible = "octavo,stm32mp157c-osd32mp1-red", "st,stm32mp157";
+> reg-names is not the way to tell apart variants. Compatible is. If you
+> add reg-names for one variant, it's expected to have it defined for
+> other as well, because the order of items in reg is always fixed.
 
-Add extra compatible For OSD32 SiP in the middle here.
+But differentiating with compatible in this case would be wrong, since it's not
+not something inherent to the SoC. We really just want to be able to tell
+whether the vdecsys iospace is supplied as a reg or as a syscon.
 
-> +
-> +	aliases {
-> +		serial0 = &uart4;
-> +	};
-> +
-> +	chosen {
-> +		stdout-path = "serial0:115200n8";
-> +	};
-> +
-> +	led {
-> +		compatible = "gpio-leds";
-> +
-> +		blue {
+This series focuses on getting the mt8183 decoder working, and as part of that
+introduces the binding and DT node for mt8183 with vdecsys as a syscon instead
+of a reg, to avoid introducing new 'duplicate unit-address' DT warnings.
 
-I think binding checker will complain about this node name.
+But in a separate series we could drop vdecsys from mt8173's reg as well,
+passing it as a syscon instead, which would solve the warning on that platform,
+though some more driver changes would be needed to be able to handle it for that
+SoC. The newer SoCs like mt8192, mt8195, etc, should also get vdecsys dropped
+from their regs to have a correct memory description.
 
-> +			label = "heartbeat";
-> +			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +			default-state = "off";
-
-Does it make sense to have a heartbeat that's off by default?
-
-> +		};
-> +	};
-> +};
-> +
-> +&ethernet0 {
-> +	status = "okay";
-> +	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-> +	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
-> +	pinctrl-names = "default", "sleep";
-> +	phy-mode = "rgmii-id";
-> +	max-speed = <1000>;
-> +	phy-handle = <&phy0>;
-> +	st,eth-clk-sel;
-> +
-> +	mdio0 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-
-Nitpick: place after compatible (Interesting stuff first).
-
-> +		compatible = "snps,dwmac-mdio";
-
-new line.
-
-> +		phy0: ethernet-phy@0 {
-
-@3
-
-> +			reg = <3>;
-> +		};
-> +	};
-> +};
-> +
-> +
-> +&i2s2 {
-> +	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
-> +	clock-names = "pclk", "i2sclk", "x8k", "x11k";
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&i2s2_pins_b>;
-> +	pinctrl-1 = <&i2s2_sleep_pins_b>;
-> +	status = "okay";
-> +
-> +	i2s2_port: port {
-> +		i2s2_endpoint: endpoint {
-> +			remote-endpoint = <&sii9022_tx_endpoint>;
-> +			format = "i2s";
-> +			mclk-fs = <256>;
-> +		};
-> +	};
-> +};
-> +
-> +&iwdg2 {
-> +	timeout-sec = <32>;
-> +	status = "okay";
-> +};
-> +
-> +&pwr_regulators {
-> +	vdd-supply = <&vdd>;
-> +	vdd_3v3_usbfs-supply = <&vdd_usb>;
-> +};
-> +
-> +&ltdc {
-> +	status = "okay";
-> +
-> +	port {
-> +		ltdc_ep0_out: endpoint@0 {
-> +			reg = <0>;
-> +			remote-endpoint = <&sii9022_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&i2c1_pins_a>;
-> +	pinctrl-1 = <&i2c1_sleep_pins_a>;
-> +	status = "okay";
-> +	i2c-scl-rising-time-ns = <100>;
-> +	i2c-scl-falling-time-ns = <7>;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
-> +
-> +	hdmi-transmitter@39 {
-> +		compatible = "sil,sii9022";
-> +		reg = <0x39>;
-> +		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
-> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-> +		interrupt-parent = <&gpiog>;
-> +		pinctrl-names = "default", "sleep";
-> +		pinctrl-0 = <&ltdc_pins_e>;
-> +		pinctrl-1 = <&ltdc_sleep_pins_e>;
-> +		status = "okay";
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +				sii9022_in: endpoint {
-> +					remote-endpoint = <&ltdc_ep0_out>;
-> +				};
-> +			};
-> +
-> +			port@1 {
-> +				reg = <1>;
-> +				sii9022_tx_endpoint: endpoint {
-> +					remote-endpoint = <&i2s2_endpoint>;
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&sdmmc1 {
-> +	pinctrl-names = "default", "opendrain", "sleep";
-> +	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-> +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-> +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-> +	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-> +	disable-wp;
-> +	st,neg-edge;
-> +	bus-width = <4>;
-> +	vmmc-supply = <&v3v3>;
-> +	status = "okay";
-> +};
-> +
-> +&sdmmc2 {
-> +	pinctrl-names = "default", "opendrain", "sleep";
-> +	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
-> +	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
-> +	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
-> +	non-removable;
-> +	no-sd;
-> +	no-sdio;
-> +	st,neg-edge;
-> +	bus-width = <8>;
-> +	vmmc-supply = <&v3v3>;
-> +	vqmmc-supply = <&vdd>;
-> +	mmc-ddr-3_3v;
-> +	status = "okay";
-> +};
-> +
-> +&uart4 {
-> +	pinctrl-names = "default", "sleep", "idle";
-> +	pinctrl-0 = <&uart4_pins_a>;
-> +	pinctrl-1 = <&uart4_sleep_pins_a>;
-> +	pinctrl-2 = <&uart4_idle_pins_a>;
-> +	/delete-property/dmas;
-> +	/delete-property/dma-names;
-> +	status = "okay";
-> +};
-> +
-> +&m_can1 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&m_can1_pins_d>;
-> +	pinctrl-1 = <&m_can1_sleep_pins_d>;
-> +	status = "okay";
-> +};
-> +
-> +&usbh_ehci {
-> +	phys = <&usbphyc_port0>;
-> +	phy-names = "usb";
-> +	status = "okay";
-> +};
-> +
-> +&usbh_ohci {
-> +	phys = <&usbphyc_port0>;
-> +	phy-names = "usb";
-> +	status = "okay";
-> +};
-> +
-> +&usbotg_hs {
-> +	vbus-supply = <&vbus_otg>;
-> +};
-> +
-> +&usbphyc {
-> +	status = "okay";
-> +};
-> +
-> +&usbphyc_port0 {
-> +	phy-supply = <&vdd_usb>;
-> +};
-> +
-> +&usbphyc_port1 {
-> +	phy-supply = <&vdd_usb>;
-> +};
-> +
-> +&rtc {
-> +	status = "okay";
-> +};
-> +
-> +&crc1 {
-> +	status = "okay";
-> +};
-> +
-> +&dts {
-> +	status = "okay";
-> +};
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
+Thanks,
+Nícolas
