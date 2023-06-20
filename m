@@ -2,128 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 970F6736AE5
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CD39736B33
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:42:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231828AbjFTLZM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 20 Jun 2023 07:25:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
+        id S231358AbjFTLmD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 07:42:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231330AbjFTLZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:25:10 -0400
-Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 726B7CF;
-        Tue, 20 Jun 2023 04:25:09 -0700 (PDT)
-Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-57028539aadso52160407b3.2;
-        Tue, 20 Jun 2023 04:25:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687260308; x=1689852308;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uyZC6CHxxs4kO9Cxfd3i2rfWTchHKU3nAYuKkt1T5XY=;
-        b=iIBOi/r3JIB5QzEe23cF/zMX2xL6JsYGNBMnc4H/v4Z/Ry8Q6WAuPXy5A4DBP3AYxo
-         pOCC11quZkpKWG3kx3iVErMXXVV86x3Pg8EXp0QdMellwQkD6TUdEaWLg5R93COORJpu
-         byHLJ8LO0ZFcql7w+si87Km6Gq/gTctiLmZv+4Gmvnw5isayH2qkmULztPzJNLqyI1ku
-         ocd1I38Ew2953efoWuYdpCvbdeg2p7ze5azda0p8Y9qfagIMYOMAaOi2yKpY859uPf3h
-         S5epZBp6kAL427zWYyezNahR4JGLxoOiIRXLuiWbkRbSJp1P6lEyXu3pv+H5qQMOcCBT
-         TxNw==
-X-Gm-Message-State: AC+VfDxhsUtXGoD2MbrrTZcDvGq70uUjzvTa0BzMUFxvm4uYz6C0MPFM
-        nhSdyXSvwCgL18UExxeCo9uOcpI0H9zIpA==
-X-Google-Smtp-Source: ACHHUZ6ttl7Sozhi+OBRKFkuZ1Xahxqz0OOHSwzerXeVacBdbq+KcFIJr8WeRbhqamDIkF4ktBwlng==
-X-Received: by 2002:a81:91c1:0:b0:55a:6430:e8fb with SMTP id i184-20020a8191c1000000b0055a6430e8fbmr14003229ywg.8.1687260308486;
-        Tue, 20 Jun 2023 04:25:08 -0700 (PDT)
-Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
-        by smtp.gmail.com with ESMTPSA id a133-20020a81668b000000b00569ff2d94f6sm450431ywc.19.2023.06.20.04.25.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 04:25:05 -0700 (PDT)
-Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-bd5f59fb71dso4850768276.3;
-        Tue, 20 Jun 2023 04:25:05 -0700 (PDT)
-X-Received: by 2002:a25:ab89:0:b0:ba8:7015:36df with SMTP id
- v9-20020a25ab89000000b00ba8701536dfmr10319681ybi.26.1687260304774; Tue, 20
- Jun 2023 04:25:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230620103909.37582-1-wsa+renesas@sang-engineering.com> <20230620103909.37582-4-wsa+renesas@sang-engineering.com>
-In-Reply-To: <20230620103909.37582-4-wsa+renesas@sang-engineering.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 20 Jun 2023 13:24:53 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXbpBeKNL6QC_vYTrocf7xPcvUBQmoV9vboqVt_ciio+g@mail.gmail.com>
-Message-ID: <CAMuHMdXbpBeKNL6QC_vYTrocf7xPcvUBQmoV9vboqVt_ciio+g@mail.gmail.com>
-Subject: Re: [RFC PATCH v2 3/3] arm64: dts: renesas: ulcb-kf: add node for GPS
-To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
-Cc:     linux-renesas-soc@vger.kernel.org, Johan Hovold <johan@kernel.org>,
-        Wolfram Sang <wsa@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232430AbjFTLmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:42:01 -0400
+Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12157132;
+        Tue, 20 Jun 2023 04:41:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
+        s=default2211; h=Content-Transfer-Encoding:MIME-Version:Message-Id:Date:
+        Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References;
+        bh=T0dcoPCLaDYQMrHuXNE7wQ+1ki8yqQNoSM6auWBUDjc=; b=BkaeQa1E1ONMNWypH+DuEDeO2Z
+        KZvjsR8RJ1Wym7TT0dFNjnJtdQ/uEQbsR4OzvjQSiZVDziKYDeEq6hwdVyP4xe0+9KZczlV3uGiF2
+        wOctPygUW7qlr33uidWKQJ19yWWiCYnmGHnY2jue/wNYRUUjoJz+Y9TZ3UxO0d3k/wdMdxClB4wPV
+        fs3ZsGDnWywuY8nR8bd4DPfeAfkkoq239k3ZqJz8yBlEPZT+pZx0wmjeKhUCui+7/dyYFLCintVQJ
+        w46MGcn5zZ18PZtajYjfGpRKzgCEzkajSlytKtfx10IKQtFyWU9iRwQC9JNZyBker4hFlZ9iZHI/V
+        8ThvNOUQ==;
+Received: from sslproxy01.your-server.de ([78.46.139.224])
+        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <sean@geanix.com>)
+        id 1qBZkB-000NAg-IT; Tue, 20 Jun 2023 13:41:55 +0200
+Received: from [185.17.218.86] (helo=zen..)
+        by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sean@geanix.com>)
+        id 1qBZkB-000ATD-15; Tue, 20 Jun 2023 13:41:55 +0200
+From:   Sean Nyekjaer <sean@geanix.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     Sean Nyekjaer <sean@geanix.com>, dantuguf14105@gmail.com,
+        Olivier Moysan <olivier.moysan@foss.st.com>,
+        devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/5] ARM: dts: stm32: Add alternate pinmux for i2s pins
+Date:   Tue, 20 Jun 2023 13:41:34 +0200
+Message-Id: <20230620114138.959812-1-sean@geanix.com>
+X-Mailer: git-send-email 2.40.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Authenticated-Sender: sean@geanix.com
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26945/Tue Jun 20 09:30:24 2023)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Wolfram,
+Add another mux option for i2s pins, this is used on Octavo OSD32MP1-RED board.
 
-On Tue, Jun 20, 2023 at 12:39 PM Wolfram Sang
-<wsa+renesas@sang-engineering.com> wrote:
-> From: Wolfram Sang <wsa@kernel.org>
->
-> Add the node for the GPS receiver and its VCC supply.
->
-> Signed-off-by: Wolfram Sang <wsa@kernel.org>
-> ---
-> Changes since RFC v1:
-> * rebased because of patches dropped and refactored
-> * added static vcc-suplly
+Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
+---
+ arch/arm/boot/dts/stm32mp15-pinctrl.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Thanks for the update!
+diff --git a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+index e86d989dd351..d79f89f37bc7 100644
+--- a/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp15-pinctrl.dtsi
+@@ -686,6 +686,25 @@ pins {
+ 		};
+ 	};
+ 
++	i2s2_pins_b: i2s2-1 {
++		pins {
++			pinmux = <STM32_PINMUX('C',  3, AF5)>, /* I2S2_SDO */
++				 <STM32_PINMUX('B', 12, AF5)>, /* I2S2_WS */
++				 <STM32_PINMUX('B', 13, AF5)>; /* I2S2_CK */
++			bias-disable;
++			drive-push-pull;
++			slew-rate = <1>;
++		};
++	};
++
++	i2s2_sleep_pins_b: i2s2-sleep-1 {
++		pins {
++			pinmux = <STM32_PINMUX('C', 3, ANALOG)>, /* I2S2_SDO */
++				 <STM32_PINMUX('B', 12, ANALOG)>, /* I2S2_WS */
++				 <STM32_PINMUX('B', 13, ANALOG)>; /* I2S2_CK */
++		};
++	};
++
+ 	ltdc_pins_a: ltdc-0 {
+ 		pins {
+ 			pinmux = <STM32_PINMUX('G',  7, AF14)>, /* LCD_CLK */
+-- 
+2.40.0
 
-> @Geert: Not sure if we need so many fixed 3v3 regulators. Most of the
-> other ones more or less directly derive from d_3v3. Or do you prefer it
-> this way?
-
-Probably all of them should refer to &reg_3p3v instead...
-
-> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-> @@ -39,6 +39,13 @@ accel_3v3: regulator-acc-3v3 {
->                 regulator-max-microvolt = <3300000>;
->         };
->
-> +       d_3v3: regulator-d-3v3 {
-
-... but if you want to keep it like this for now, please name
-it appropriately (s/d/gnss/g).
-
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "d-3v3";
-> +               regulator-min-microvolt = <3300000>;
-> +               regulator-max-microvolt = <3300000>;
-> +       };
-> +
->         hdmi_1v8: regulator-hdmi-1v8 {
->                 compatible = "regulator-fixed";
->                 regulator-name = "hdmi-1v8";
-
-The rest LGTM.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
