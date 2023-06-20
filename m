@@ -2,97 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F9C7736A5C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:07:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 970F6736AE5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:25:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230422AbjFTLH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 07:07:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
+        id S231828AbjFTLZM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 20 Jun 2023 07:25:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231282AbjFTLHz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:07:55 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5001BC8
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:07:32 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-311275efaf8so3133493f8f.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:07:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687259251; x=1689851251;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=31B9pqB8vRnug10MaF2Io91zkmp6nn8VslLqz0FB/Tg=;
-        b=snYY4bMApZkjDb6gqrpEpmVJAf6+HpUxcO7AyM9Fb3VDcM0a/mSdpO6wDiFuJ+TZzw
-         3hTsgN9VnEEglKv5xbyrCSQ8io7vKI4tMLkD38U1Gf9Ir1RrACAI+z/oltL5TMb57hBC
-         WQOyooFa/b1og6syieWp8znlW1EG61eJx0ydWAOOxq2OSmnxqWGDNy0iTsgz6jxOvXsx
-         v7cUiJVK9dA6w2XoZtyDr6aFg9f5ve+kghyUNHZ3KHJxsXMbHPB+Apu/UlYmrsoySbX8
-         whMJP8q4a+mxpP5y/7PmU4BFCveLx3ek5rWKrvdn9M1vJWeyMSq3Rmaj1FVShIVMBypr
-         tplw==
+        with ESMTP id S231330AbjFTLZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:25:10 -0400
+Received: from mail-yw1-f170.google.com (mail-yw1-f170.google.com [209.85.128.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 726B7CF;
+        Tue, 20 Jun 2023 04:25:09 -0700 (PDT)
+Received: by mail-yw1-f170.google.com with SMTP id 00721157ae682-57028539aadso52160407b3.2;
+        Tue, 20 Jun 2023 04:25:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687259251; x=1689851251;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=31B9pqB8vRnug10MaF2Io91zkmp6nn8VslLqz0FB/Tg=;
-        b=hzEAFo4J6xroz34eyNWsHDHPxmaIBxss2gKfgPxeg8wEsZGo1prz8BzoCSooOFq8sk
-         CH0KJak76upW6SLIum5K90wXEcsX3jjXYvbNTSksbV0VQ/VfTO0c6UAige31+YK/UmPr
-         FFECCXPRekoGhkg1vLdAj3Z5szWKmk98qIBBWEmNxfvyqJeZlvugUe9fQLf9+SjffK6L
-         QVKgNx1xDWzNBkFi9fCBYvtDKf/jOipRmnzuE1E9EkLb6o3ESDiiBuKZr2qmHvmi0gkj
-         5WCZ7g64OJwHkpMBWpVL+Xh2SCUcDUXVWwgVrHpUzRe9nxT1VYuZI+Ptd8Q7Dm8K3KQd
-         FZcQ==
-X-Gm-Message-State: AC+VfDxjtT6mXbrpE5oOGTVXWZGpNe0/s/bw73x+HvF6ss3SUag2qsdS
-        JOGyk73a91gkbtvM0IAuhR3DSIod/x9aO2RR3RY=
-X-Google-Smtp-Source: ACHHUZ7W3gnSjeAx+t65v+uU3ts3GPCpdYcjg54dllXHR7QqpGoiBZs18uEf2cVlxBsS5Gl4fADUAw==
-X-Received: by 2002:a5d:6441:0:b0:30a:a478:f559 with SMTP id d1-20020a5d6441000000b0030aa478f559mr8971908wrw.2.1687259251000;
-        Tue, 20 Jun 2023 04:07:31 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id p7-20020adff207000000b00307acec258esm1799074wro.3.2023.06.20.04.07.29
+        d=1e100.net; s=20221208; t=1687260308; x=1689852308;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uyZC6CHxxs4kO9Cxfd3i2rfWTchHKU3nAYuKkt1T5XY=;
+        b=iIBOi/r3JIB5QzEe23cF/zMX2xL6JsYGNBMnc4H/v4Z/Ry8Q6WAuPXy5A4DBP3AYxo
+         pOCC11quZkpKWG3kx3iVErMXXVV86x3Pg8EXp0QdMellwQkD6TUdEaWLg5R93COORJpu
+         byHLJ8LO0ZFcql7w+si87Km6Gq/gTctiLmZv+4Gmvnw5isayH2qkmULztPzJNLqyI1ku
+         ocd1I38Ew2953efoWuYdpCvbdeg2p7ze5azda0p8Y9qfagIMYOMAaOi2yKpY859uPf3h
+         S5epZBp6kAL427zWYyezNahR4JGLxoOiIRXLuiWbkRbSJp1P6lEyXu3pv+H5qQMOcCBT
+         TxNw==
+X-Gm-Message-State: AC+VfDxhsUtXGoD2MbrrTZcDvGq70uUjzvTa0BzMUFxvm4uYz6C0MPFM
+        nhSdyXSvwCgL18UExxeCo9uOcpI0H9zIpA==
+X-Google-Smtp-Source: ACHHUZ6ttl7Sozhi+OBRKFkuZ1Xahxqz0OOHSwzerXeVacBdbq+KcFIJr8WeRbhqamDIkF4ktBwlng==
+X-Received: by 2002:a81:91c1:0:b0:55a:6430:e8fb with SMTP id i184-20020a8191c1000000b0055a6430e8fbmr14003229ywg.8.1687260308486;
+        Tue, 20 Jun 2023 04:25:08 -0700 (PDT)
+Received: from mail-yb1-f180.google.com (mail-yb1-f180.google.com. [209.85.219.180])
+        by smtp.gmail.com with ESMTPSA id a133-20020a81668b000000b00569ff2d94f6sm450431ywc.19.2023.06.20.04.25.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 04:07:30 -0700 (PDT)
-Message-ID: <eb18f90f-df40-ed01-b080-57ba48ac957e@linaro.org>
-Date:   Tue, 20 Jun 2023 13:07:28 +0200
+        Tue, 20 Jun 2023 04:25:05 -0700 (PDT)
+Received: by mail-yb1-f180.google.com with SMTP id 3f1490d57ef6-bd5f59fb71dso4850768276.3;
+        Tue, 20 Jun 2023 04:25:05 -0700 (PDT)
+X-Received: by 2002:a25:ab89:0:b0:ba8:7015:36df with SMTP id
+ v9-20020a25ab89000000b00ba8701536dfmr10319681ybi.26.1687260304774; Tue, 20
+ Jun 2023 04:25:04 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v4] dt-bindings: clock: versal: Add versal-net compatible
- string
-Content-Language: en-US
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
-        devicetree@vger.kernel.org
-Cc:     git@amd.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-clk@vger.kernel.org
-References: <20230620110137.5701-1-shubhrajyoti.datta@amd.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230620110137.5701-1-shubhrajyoti.datta@amd.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230620103909.37582-1-wsa+renesas@sang-engineering.com> <20230620103909.37582-4-wsa+renesas@sang-engineering.com>
+In-Reply-To: <20230620103909.37582-4-wsa+renesas@sang-engineering.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 20 Jun 2023 13:24:53 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXbpBeKNL6QC_vYTrocf7xPcvUBQmoV9vboqVt_ciio+g@mail.gmail.com>
+Message-ID: <CAMuHMdXbpBeKNL6QC_vYTrocf7xPcvUBQmoV9vboqVt_ciio+g@mail.gmail.com>
+Subject: Re: [RFC PATCH v2 3/3] arm64: dts: renesas: ulcb-kf: add node for GPS
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>
+Cc:     linux-renesas-soc@vger.kernel.org, Johan Hovold <johan@kernel.org>,
+        Wolfram Sang <wsa@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 13:01, Shubhrajyoti Datta wrote:
-> Add dt-binding documentation for Versal NET platforms.
-> Versal Net is a new AMD/Xilinx  SoC.
-> 
-> The SoC and its architecture is based on the Versal ACAP device.
-> The Versal Net  device includes more security features in the
-> platform management controller (PMC) and increases the number of
-> CPUs in the application processing unit (APU) and the real-time
-> processing unit (RPU).
-> 
-> Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
-> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+Hi Wolfram,
+
+On Tue, Jun 20, 2023 at 12:39 PM Wolfram Sang
+<wsa+renesas@sang-engineering.com> wrote:
+> From: Wolfram Sang <wsa@kernel.org>
+>
+> Add the node for the GPS receiver and its VCC supply.
+>
+> Signed-off-by: Wolfram Sang <wsa@kernel.org>
+> ---
+> Changes since RFC v1:
+> * rebased because of patches dropped and refactored
+> * added static vcc-suplly
+
+Thanks for the update!
+
+> @Geert: Not sure if we need so many fixed 3v3 regulators. Most of the
+> other ones more or less directly derive from d_3v3. Or do you prefer it
+> this way?
+
+Probably all of them should refer to &reg_3p3v instead...
+
+> --- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+> @@ -39,6 +39,13 @@ accel_3v3: regulator-acc-3v3 {
+>                 regulator-max-microvolt = <3300000>;
+>         };
+>
+> +       d_3v3: regulator-d-3v3 {
+
+... but if you want to keep it like this for now, please name
+it appropriately (s/d/gnss/g).
+
+> +               compatible = "regulator-fixed";
+> +               regulator-name = "d-3v3";
+> +               regulator-min-microvolt = <3300000>;
+> +               regulator-max-microvolt = <3300000>;
+> +       };
+> +
+>         hdmi_1v8: regulator-hdmi-1v8 {
+>                 compatible = "regulator-fixed";
+>                 regulator-name = "hdmi-1v8";
+
+The rest LGTM.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Best regards,
-Krzysztof
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
