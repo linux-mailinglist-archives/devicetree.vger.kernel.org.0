@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 442357370F1
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEE0C7370F9
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232773AbjFTPu6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 11:50:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39218 "EHLO
+        id S232519AbjFTPwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 11:52:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232846AbjFTPus (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:50:48 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B333F4
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:50:47 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f875b267d9so2718836e87.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:50:47 -0700 (PDT)
+        with ESMTP id S230469AbjFTPwH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:52:07 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 201B7183
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:52:05 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f849a0e371so6387287e87.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:52:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687276243; x=1689868243;
+        d=linaro.org; s=google; t=1687276324; x=1689868324;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=skGRnWXbaDAmxSHLLNOUSIFxKxnOiD0CNtHSEWtxfdI=;
-        b=d4mEUkeoY/NnvUZXnubpdarO/uMzKhmVAFiMQbasHk+/hjGoeLoT7utpA00IDdOaoA
-         fMkfoPfCBWWG9pExdb+3TLMdtbIIyy46n7Fc/oIZge7F1c9MRbVUitRIeKH8DZHT7KNY
-         QXgMCvqG5cXvcaqeTlomEtbqHYIm567PAGRKP6Rbr2IGDjg80P/oJISsZ/AnBMy+CCf3
-         zzBIwhfcbeG1Yayw3KG1upHrYgkf9f/94QGwtDB/2ThjgdVpkTHMYxkYKNiVF7ZIUgYw
-         TrNaKusELPXuo1jVchHAMmH9UFlhwbA3v6fqtuHAeX19jPbFtE6UlQvqF3l5Ws9MeLQz
-         wUiQ==
+        bh=3kqQLayyp0ekBn2vte4HJlKBavPA41nDcbx1XhdpDCo=;
+        b=Mdb6M6SDaBuaZMRf12wlCdjVJLNb2pdnwKwjQ5qDHEwGsoonQgaLpaArK260d1/UOr
+         PK4Xcy9BjLUysjrgAjRbXaeMhzNBlVM5plfebvzjjX3dg60FcncLgSP4Ul1nWOtMQ5U/
+         hIrtYtzcYwtoXJJopSSxEkTph0LduPn52h7ZWoBNsC1CRR6k9HTwT7N+5VTHt0yoKNgu
+         XhLJfo1zUJDwVn9yyoSwnRtb80/Rzry7mvY8ZYJ6e2jvKFPxstohgv7PcVc8UU8GdDIM
+         DkbGI6ypxzDi0KFzpJgstMEzgZVtqB4scMom1nYqgssKo67MNmktB5tk5sN7YU+ygucZ
+         LGrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687276243; x=1689868243;
+        d=1e100.net; s=20221208; t=1687276324; x=1689868324;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=skGRnWXbaDAmxSHLLNOUSIFxKxnOiD0CNtHSEWtxfdI=;
-        b=YYuvUWa2jGU+JVcv1SGbcK0LNKRm3ig2DSNLw5xFJtKmazAfaUrN+mvUnJGukvyvkX
-         NgqAbtgD3LiPcR0n2h0qLUsGuypExaxcaZAq8crCs9mEarX3Bv5dWhrv7ltTa6SZTyOc
-         8BvsP+78vA92cB7pDZl8ANm9EDoZe+EFtiEoM6+Akw5HCJkP5M+tWOdng9GVE1t2ckBE
-         oIK0YmQih7cPA0WPVG4I72+JCA/rXgpjdIetXs2NefZClH24JQBdBXCLBzMeYnrJ92BS
-         2cWw/VNj6g6KxtA79bL7B46NXWJ9OOfYo3l7hkQZiHnt6vlWk9Ok3nJ3fVJAXzhI0+TV
-         /+Zg==
-X-Gm-Message-State: AC+VfDxKfSIcJ7rr8tnlh2jjJ41dQDjVBLLPOR+CUaruozOaJ/tfG15B
-        lYRt5svV0NKKaeq9YB1TVBWwcw==
-X-Google-Smtp-Source: ACHHUZ55fJimkB+yVIu5K0zMbf5nDTzXCwdNjDvgXHIkQnZK4eMJnlsOF+ipp7ITrLJO/iB/M241kg==
-X-Received: by 2002:a05:6512:532:b0:4f8:770f:1b04 with SMTP id o18-20020a056512053200b004f8770f1b04mr2690492lfc.0.1687276243367;
-        Tue, 20 Jun 2023 08:50:43 -0700 (PDT)
+        bh=3kqQLayyp0ekBn2vte4HJlKBavPA41nDcbx1XhdpDCo=;
+        b=aBfUFNrn6NX5KULf64T7PbhpFcf6Or3Ndi328YjoHVfgGfgpSa6Qs2XSaeWphZp8gm
+         CRrMkBtLP9ibfOmyk3xPYtwDeBfB0pxOG5pe+vywZwe3grFSdbmkH0AlmGsjjwnpOpLG
+         PzbU6BppSdGTZ6QwvJHQC+SNLG+gjxMk8lrCCcFQWkQd74nBE4Tv3ZIKVOGHNPGXHrZs
+         xDV6TeY4S/QEwImnZGCPPM+Nklt+7SkKtbyujR1NNLDRQ9K4TfGs+QOg9oMKrsIy8izU
+         P3L90fHtX2A+ofQ9V2fp2uK4eii82IBjazl2AlS1njfQLLD/Sa/smlVcadlpXGj2rUXK
+         FBHw==
+X-Gm-Message-State: AC+VfDw6bQ3BUbh0NQERBJL5vqVv5gZIuml60xS6SqRIVgz97lGgQVf7
+        GG5zoLgyA3V+w7PdvMWjYt6DHw==
+X-Google-Smtp-Source: ACHHUZ647+DYGIPYNqAHZ20/rgSckz2mRZXNFu7jQytXmCGw3zadTvKk4Ts6M7/kYn2iP26edB7+4g==
+X-Received: by 2002:a19:e003:0:b0:4f8:7325:bcd4 with SMTP id x3-20020a19e003000000b004f87325bcd4mr3491321lfg.0.1687276324026;
+        Tue, 20 Jun 2023 08:52:04 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id y11-20020a19750b000000b004f4cabba7desm418853lfe.74.2023.06.20.08.50.42
+        by smtp.gmail.com with ESMTPSA id f6-20020ac251a6000000b004f768d70241sm407314lfk.233.2023.06.20.08.52.03
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 08:50:42 -0700 (PDT)
-Message-ID: <049f55ed-7531-224a-9d15-14f6c359bb92@linaro.org>
-Date:   Tue, 20 Jun 2023 18:50:41 +0300
+        Tue, 20 Jun 2023 08:52:03 -0700 (PDT)
+Message-ID: <c9ed9e06-3a94-e8ee-7fb6-8ff66c41a32e@linaro.org>
+Date:   Tue, 20 Jun 2023 18:52:02 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 3/4] arm64: dts: qcom: sm6115p-j606f: Enable GPU
+Subject: Re: [PATCH 2/4] arm64: dts: qcom: sm6115p-j606f: Hook up display
 Content-Language: en-GB
 To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -66,15 +66,15 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 References: <20230620-topic-gpu_tablet_disp-v1-0-7bb02bec8dc0@linaro.org>
- <20230620-topic-gpu_tablet_disp-v1-3-7bb02bec8dc0@linaro.org>
+ <20230620-topic-gpu_tablet_disp-v1-2-7bb02bec8dc0@linaro.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230620-topic-gpu_tablet_disp-v1-3-7bb02bec8dc0@linaro.org>
+In-Reply-To: <20230620-topic-gpu_tablet_disp-v1-2-7bb02bec8dc0@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -82,15 +82,104 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 20/06/2023 16:17, Konrad Dybcio wrote:
-> Enable the A610 GPU and provide a firmware path to the ZAP blob.
+> Enable the required nodes, add the required pins and tweak a
+> regulator to enable non-simplefb display on the Tab P11.
+> 
+> Do note that there exists a second SKU with a different panel+touch
+> combo, but due to insufficient information, that will need to be
+> handled separately.
 > 
 > Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->   arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts | 8 ++++++++
->   1 file changed, 8 insertions(+)
+>   arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts | 57 +++++++++++++++++++++--
+>   1 file changed, 52 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> index 81fdcaf48926..a10ce676bd44 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts
+> @@ -65,9 +65,41 @@ ramoops@ffc00000 {
+>   	};
+>   };
+>   
+> -&dispcc {
+> -	/* HACK: disable until a panel driver is ready to retain simplefb */
+> -	status = "disabled";
+> +&mdss {
+> +	status = "okay";
+> +};
+> +
+> +&mdss_dsi0 {
+> +	vdda-supply = <&pm6125_l18>;
+> +	status = "okay";
+> +
+> +	panel: panel@0 {
+> +		compatible = "lenovo,j606f-boe-nt36523w", "novatek,nt36523w";
+> +		reg = <0>;
+> +
+> +		reset-gpios = <&tlmm 82 GPIO_ACTIVE_LOW>;
+> +		vddio-supply = <&pm6125_l9>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&te_active &sde_dsi_active>;
+> +
+> +		rotation = <180>; /* Yep, it's mounted upside down! */
+> +
+> +		port {
+> +			panel_in: endpoint {
+> +				remote-endpoint = <&mdss_dsi0_out>;
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&mdss_dsi0_out {
+> +	data-lanes = <0 1 2 3>;
+> +	remote-endpoint = <&panel_in>;
+> +};
+> +
+> +&mdss_dsi0_phy {
+> +	status = "okay";
+>   };
+>   
+>   &pm6125_gpios {
+> @@ -212,8 +244,9 @@ pm6125_l17: l17 {
+>   		};
+>   
+>   		pm6125_l18: l18 {
+> -			regulator-min-microvolt = <1104000>;
+> -			regulator-max-microvolt = <1312000>;
+> +			/* 1.104V-1.312V fixed @ 1.232V for DSIPHY */
+> +			regulator-min-microvolt = <1232000>;
+> +			regulator-max-microvolt = <1232000>;
+>   		};
+>   
+>   		pm6125_l19: l19 {
+> @@ -282,6 +315,20 @@ sdc2_gate_pin: sdc2-gate-state {
+>   		bias-pull-up;
+>   		output-high;
+>   	};
+> +
+> +	te_active: te-active-state {
+> +		pins = "gpio81";
+> +		function = "mdp_vsync";
+> +		drive-strength = <2>;
+> +		bias-pull-down;
+> +	};
+> +
+> +	sde_dsi_active: te-active-state {
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+mdss_dsi_active? Or just dsi_active?
 
+> +		pins = "gpio82";
+> +		function = "gpio";
+> +		drive-strength = <8>;
+> +		bias-disable;
+> +	};
+>   };
+>   
+>   &ufs_mem_hc {
+> 
 
 -- 
 With best wishes
