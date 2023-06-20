@@ -2,131 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1ED49736060
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 02:04:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93D5C7360ED
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 03:00:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229934AbjFTAEm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 20:04:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57500 "EHLO
+        id S230013AbjFTBA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 21:00:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229929AbjFTAEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 20:04:25 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64DEF10FF;
-        Mon, 19 Jun 2023 17:04:18 -0700 (PDT)
-Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
+        with ESMTP id S229980AbjFTBA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 21:00:26 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BF1B10C1;
+        Mon, 19 Jun 2023 18:00:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id F20856606EEE;
-        Tue, 20 Jun 2023 01:04:14 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1687219457;
-        bh=6ATRDxpWwig7hs2izlUcfXHh022ClevxNi5+pW49c5o=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=gdkTnWe7EPdZV3Ex0X/89hfVYFf8wjg/7j2bhi/M2/cPEe1uFSdURA4G/FwGQq4sK
-         0GvzNCTtduir6CK40KruY72Fk9Ky9ugf09L/Hkd4XICtpcq+uqg60bnRyWelCwp9dY
-         ZxOqHkAV6cccHLjBb5Ufeh0KjIaAtHh2rZZbNcXGswnPS5ujhxOTC8NY+4hhtgj4iY
-         aZpoMfLyjkebPwYSrIRT4ekFKpb72JV6E60ypFT19Gbm1vRhwVXUvKCdQxwGHBkZ2U
-         GmkgFkUkQP+0VaITJcRHr3r1aI1JX2jSt3gDBvzXyJaYNmdu2K32/gzpK6VKfyQcsS
-         m9dErKbBTlC7A==
-From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        =?UTF-8?q?N=C3=ADcolas=20F=20=2E=20R=20=2E=20A=20=2E=20Prado?= 
-        <nfraprado@collabora.com>, Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 6/6] arm64: dts: mediatek: mt8183: Add decoder
-Date:   Mon, 19 Jun 2023 20:03:39 -0400
-Message-ID: <20230620000349.2122191-7-nfraprado@collabora.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230620000349.2122191-1-nfraprado@collabora.com>
-References: <20230620000349.2122191-1-nfraprado@collabora.com>
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2C3BC60F78;
+        Tue, 20 Jun 2023 01:00:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 36611C43397;
+        Tue, 20 Jun 2023 01:00:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687222824;
+        bh=1K/RwqRdMYJGRKsnWfWIH8ffoYXhVtc1mk70JJe5yAU=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=gaqmmP8xDtHDOiiYN65ZnBfMdFvJckUrWL5/Z/GSz/2aXvP+tMjIOZBCeQ1ijHL1W
+         0um/OnflXn/EGAepY1auJCwMjUy2g1khY5vnrsWUxmbFlKBpX+wFAnThEeB2l6zYXD
+         8aJiUvJtCg4f/DyErXry6mX6n0rE9qIrKTaefhhsJkd2qQfaKm7reaP43pAW8mhjnY
+         1Qy53hjdG4Rr58viVeWo/eAAneJtzdqOzrDoKapD8lhQJxvg7uZqoiLPAgGru6bTHo
+         YR/mmFtRTo3y8Nm3A4tBT7WKWBAFKi2oYzr5i1Ntdb3KbHfBv99+ZJ7xaSY4wsuvoS
+         H3Alh9F54GoJQ==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 1A0C6E21EDC;
+        Tue, 20 Jun 2023 01:00:24 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Subject: Re: [PATCH] dt-bindings: riscv: cpus: drop unneeded quotes
+From:   patchwork-bot+linux-riscv@kernel.org
+Message-Id: <168722282410.22807.12971210295327480570.git-patchwork-notify@kernel.org>
+Date:   Tue, 20 Jun 2023 01:00:24 +0000
+References: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230609140706.64623-1-krzysztof.kozlowski@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-riscv@lists.infradead.org, conor@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yunfei Dong <yunfei.dong@mediatek.com>
+Hello:
 
-Add node for the hardware decoder present on the MT8183 SoC.
+This patch was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@rivosinc.com>:
 
-Signed-off-by: Yunfei Dong <yunfei.dong@mediatek.com>
-Signed-off-by: Qianqian Yan <qianqian.yan@mediatek.com>
-Signed-off-by: Frederic Chen <frederic.chen@mediatek.com>
-Signed-off-by: Alexandre Courbot <acourbot@chromium.org>
-Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+On Fri,  9 Jun 2023 16:07:06 +0200 you wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
 
----
+Here is the summary with links:
+  - dt-bindings: riscv: cpus: drop unneeded quotes
+    https://git.kernel.org/riscv/c/f20233852ae2
 
-Changes in v3:
-- Dropped 'active' clock and added the 'mediatek,vdecsys' syscon phandle
-  property instead
-
-Changes in v2:
-- Reformatted reg-names to fit in fewer lines
-
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 30 ++++++++++++++++++++++++
- 1 file changed, 30 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 5169779d01df..4144f1ed3ff0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -2019,6 +2019,36 @@ vdecsys: syscon@16000000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		vcodec_dec: video-codec@16020000 {
-+			compatible = "mediatek,mt8183-vcodec-dec";
-+			reg = <0 0x16020000 0 0x1000>,		/* VDEC_MISC */
-+			      <0 0x16021000 0 0x800>,		/* VDEC_VLD */
-+			      <0 0x16021800 0 0x800>,		/* VDEC_TOP */
-+			      <0 0x16022000 0 0x1000>,		/* VDEC_MC */
-+			      <0 0x16023000 0 0x1000>,		/* VDEC_AVCVLD */
-+			      <0 0x16024000 0 0x1000>,		/* VDEC_AVCMV */
-+			      <0 0x16025000 0 0x1000>,		/* VDEC_PP */
-+			      <0 0x16026800 0 0x800>,		/* VP8_VD */
-+			      <0 0x16027000 0 0x800>,		/* VP6_VD */
-+			      <0 0x16027800 0 0x800>,		/* VP8_VL */
-+			      <0 0x16028400 0 0x400>;		/* VP9_VD */
-+			reg-names = "misc", "ld", "top", "cm", "ad", "av", "pp",
-+				    "hwd", "hwq", "hwb", "hwg";
-+			interrupts = <GIC_SPI 250 IRQ_TYPE_LEVEL_LOW>;
-+			iommus = <&iommu M4U_PORT_HW_VDEC_MC_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PP_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_VLD_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_AVC_MV_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PRED_RD_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PRED_WR_EXT>,
-+				 <&iommu M4U_PORT_HW_VDEC_PPWRAP_EXT>;
-+			mediatek,scp = <&scp>;
-+			mediatek,vdecsys = <&vdecsys>;
-+			power-domains = <&spm MT8183_POWER_DOMAIN_VDEC>;
-+			clocks = <&vdecsys CLK_VDEC_VDEC>;
-+			clock-names = "vdec";
-+		};
-+
- 		larb1: larb@16010000 {
- 			compatible = "mediatek,mt8183-smi-larb";
- 			reg = <0 0x16010000 0 0x1000>;
+You are awesome, thank you!
 -- 
-2.41.0
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
