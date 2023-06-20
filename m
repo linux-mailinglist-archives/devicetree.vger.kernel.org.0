@@ -2,124 +2,332 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 52689737149
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 18:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C97DE73715B
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 18:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232936AbjFTQQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 12:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49448 "EHLO
+        id S229693AbjFTQXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 12:23:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230020AbjFTQQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 12:16:56 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B40695;
-        Tue, 20 Jun 2023 09:16:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=AeL+ePUG2U+gtbaPVRNCeIftvITy04qZEoWPXivPMGM=; b=gSvQNHy5jmJwaB8fkE8RCWcVzk
-        awSwFgQ72MtyCwUP4Dt2Rs+U5WnsTVmsOT6G9l2RkOoIIRZO4rtnEuCKa3EhPMJ3GrVLAWZp/pasI
-        xk8m3QGZP1vUmPW1ovtBts1TiQchVrP/l2gkZjUpwaoUipbyRHWM8eroglEx3wWmT4Vk=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:49610 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qBe29-0001IH-PZ; Tue, 20 Jun 2023 12:16:46 -0400
-Date:   Tue, 20 Jun 2023 12:16:45 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        jirislaby@kernel.org, jringle@gridpoint.com,
-        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
-        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        stable@vger.kernel.org
-Message-Id: <20230620121645.512b31a872306b43a276bbac@hugovil.com>
-In-Reply-To: <CAHp75VcieuYqxWrO7rknx2ROYz=rnWnKV6s9eXZ5Zd1BKc6YMg@mail.gmail.com>
-References: <20230602152626.284324-1-hugo@hugovil.com>
-        <20230602152626.284324-6-hugo@hugovil.com>
-        <2023060454-cotton-paramount-e33e@gregkh>
-        <CAHp75Ve6W-hcB4YAeKukgv-uOEzBY7Tx5Sdf3doTRYKzNPcVGw@mail.gmail.com>
-        <20230604134459.3c3844012e9714fa2a61e642@hugovil.com>
-        <CAHp75VeWFPBmsD8zsSAaQGNNXtfgLtQuM9AMGfLPk-6p0VW=Pg@mail.gmail.com>
-        <20230620100846.d58436efc061fb91074fa7e5@hugovil.com>
-        <CAHp75VcWSVgA8LFLo0-b5TfKWdHb2GfLpXV-V3PZvthTv1Xc4A@mail.gmail.com>
-        <20230620113312.882d8f0c7d5603b1c93f33fb@hugovil.com>
-        <CAHp75VfGm6=ULW6kMjsg2OgB1z1T0YdmzvCTa3DFXXX-q_RnfA@mail.gmail.com>
-        <20230620114209.fb5272ad8cf5c5e2895d68b1@hugovil.com>
-        <CAHp75VcieuYqxWrO7rknx2ROYz=rnWnKV6s9eXZ5Zd1BKc6YMg@mail.gmail.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
+        with ESMTP id S229678AbjFTQXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 12:23:50 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F826E2
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 09:23:48 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1qBe8m-000206-7H; Tue, 20 Jun 2023 18:23:36 +0200
+Message-ID: <cde41b2e-629f-25ce-5adf-74b2e7bae75b@pengutronix.de>
+Date:   Tue, 20 Jun 2023 18:23:33 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [Linux-stm32] [PATCH v1 7/7] ARM: dts: stm32: Add Octavo
+ OSD32MP1-RED board
+To:     Sean Nyekjaer <sean@geanix.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dantuguf14105@gmail.com, linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org
+References: <20230620151312.1064629-1-sean@geanix.com>
+ <20230620151312.1064629-7-sean@geanix.com>
+Content-Language: en-US
+In-Reply-To: <20230620151312.1064629-7-sean@geanix.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
- configuration
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 20 Jun 2023 18:45:51 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-
-> On Tue, Jun 20, 2023 at 6:42 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > On Tue, 20 Jun 2023 18:35:48 +0300
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > On Tue, Jun 20, 2023 at 6:33 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > > On Tue, 20 Jun 2023 18:18:12 +0300
-> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
-> > > > > On Tue, Jun 20, 2023 at 5:08 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
-> > > > > > On Sun, 4 Jun 2023 22:31:04 +0300
-> > > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+On 20.06.23 17:13, Sean Nyekjaer wrote:
+> Add support for the Octavo OSD32MP1-RED development board.
 > 
-> ...
+> General features:
+>  - STM32MP157C
+>  - 512MB DDR3
+>  - CAN-FD
+>  - HDMI
+>  - USB-C OTG
+>  - UART
 > 
-> > > > > > did you have a chance to look at V8 (sent two weks ago) which fixed all
-> > > > > > of what we discussed?
-> > > > >
-> > > > > The patch 6 already has my tag, anything specific you want me to do?
-> > > >
-> > > > Hi Andy,
-> > > > I forgot to remove your "Reviewed-by: Andy..." tag before sending V8
-> > > > since there were some changes involved in patch 6 and I wanted you to
-> > > > review them. Can you confirm if the changes are correct?
-> > > >
-> > > > I also added a new patch "remove obsolete out_thread label". It has no
-> > > > real impact on the code generation itself, but maybe you can review and
-> > > > confirm if tags are ok or not, based on commit message and also
-> > > > additional commit message.
-> > >
-> > > Both are fine to me.
-> >
-> > Hi,
-> > Ok, thank you for reviewing this.
-> >
-> > I guess now we are good to go with this series if the stable tags and
-> > patches order are good after Greg's review?
+> Signed-off-by: Sean Nyekjaer <sean@geanix.com>
+> Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
+> ---
+> Changes since v0:
+>  - Adapted to use stm32mp15xx-osd32.dtsi
 > 
-> Taking into account that we are at rc7, and even with Fixes tags in
-> your series I think Greg might take this after v6.5-0rc1 is out. It's
-> up to him how to proceed with that. Note, he usually has thousands of
-> patches in backlog, you might need to respin it after the above
-> mentioned rc1.
+>  .../arm/boot/dts/stm32mp157c-osd32mp1-red.dts | 226 ++++++++++++++++++
+>  1 file changed, 226 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> new file mode 100644
+> index 000000000000..2823857900de
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> @@ -0,0 +1,226 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+> +/*
+> + * Copyright (C) Geanix ApS 2023 - All Rights Reserved
+> + * Author: Sean Nyekjaer <sean@geanix.com>
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "stm32mp157.dtsi"
+> +#include "stm32mp15xc.dtsi"
+> +#include "stm32mp15xx-osd32.dtsi"
+> +#include "stm32mp15xxac-pinctrl.dtsi"
+> +
+> +#include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/pinctrl/stm32-pinfunc.h>
+> +
+> +/ {
+> +	model = "Octavo OSD32MP1 RED board";
+> +	compatible = "octavo,stm32mp157c-osd32mp1-red", "st,stm32mp157";
 
-Ok, understood.
+Add extra compatible For OSD32 SiP in the middle here.
 
-Let's wait then.
+> +
+> +	aliases {
+> +		serial0 = &uart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	led {
+> +		compatible = "gpio-leds";
+> +
+> +		blue {
 
-Thank you.
-Hugo.
+I think binding checker will complain about this node name.
+
+> +			label = "heartbeat";
+> +			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +			default-state = "off";
+
+Does it make sense to have a heartbeat that's off by default?
+
+> +		};
+> +	};
+> +};
+> +
+> +&ethernet0 {
+> +	status = "okay";
+> +	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
+> +	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
+> +	pinctrl-names = "default", "sleep";
+> +	phy-mode = "rgmii-id";
+> +	max-speed = <1000>;
+> +	phy-handle = <&phy0>;
+> +	st,eth-clk-sel;
+> +
+> +	mdio0 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+
+Nitpick: place after compatible (Interesting stuff first).
+
+> +		compatible = "snps,dwmac-mdio";
+
+new line.
+
+> +		phy0: ethernet-phy@0 {
+
+@3
+
+> +			reg = <3>;
+> +		};
+> +	};
+> +};
+> +
+> +
+> +&i2s2 {
+> +	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
+> +	clock-names = "pclk", "i2sclk", "x8k", "x11k";
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2s2_pins_b>;
+> +	pinctrl-1 = <&i2s2_sleep_pins_b>;
+> +	status = "okay";
+> +
+> +	i2s2_port: port {
+> +		i2s2_endpoint: endpoint {
+> +			remote-endpoint = <&sii9022_tx_endpoint>;
+> +			format = "i2s";
+> +			mclk-fs = <256>;
+> +		};
+> +	};
+> +};
+> +
+> +&iwdg2 {
+> +	timeout-sec = <32>;
+> +	status = "okay";
+> +};
+> +
+> +&pwr_regulators {
+> +	vdd-supply = <&vdd>;
+> +	vdd_3v3_usbfs-supply = <&vdd_usb>;
+> +};
+> +
+> +&ltdc {
+> +	status = "okay";
+> +
+> +	port {
+> +		ltdc_ep0_out: endpoint@0 {
+> +			reg = <0>;
+> +			remote-endpoint = <&sii9022_in>;
+> +		};
+> +	};
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&i2c1_pins_a>;
+> +	pinctrl-1 = <&i2c1_sleep_pins_a>;
+> +	status = "okay";
+> +	i2c-scl-rising-time-ns = <100>;
+> +	i2c-scl-falling-time-ns = <7>;
+> +	/delete-property/dmas;
+> +	/delete-property/dma-names;
+> +
+> +	hdmi-transmitter@39 {
+> +		compatible = "sil,sii9022";
+> +		reg = <0x39>;
+> +		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
+> +		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+> +		interrupt-parent = <&gpiog>;
+> +		pinctrl-names = "default", "sleep";
+> +		pinctrl-0 = <&ltdc_pins_e>;
+> +		pinctrl-1 = <&ltdc_sleep_pins_e>;
+> +		status = "okay";
+> +
+> +		ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +
+> +			port@0 {
+> +				reg = <0>;
+> +				sii9022_in: endpoint {
+> +					remote-endpoint = <&ltdc_ep0_out>;
+> +				};
+> +			};
+> +
+> +			port@1 {
+> +				reg = <1>;
+> +				sii9022_tx_endpoint: endpoint {
+> +					remote-endpoint = <&i2s2_endpoint>;
+> +				};
+> +			};
+> +		};
+> +	};
+> +};
+> +
+> +&sdmmc1 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+> +	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
+> +	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+> +	disable-wp;
+> +	st,neg-edge;
+> +	bus-width = <4>;
+> +	vmmc-supply = <&v3v3>;
+> +	status = "okay";
+> +};
+> +
+> +&sdmmc2 {
+> +	pinctrl-names = "default", "opendrain", "sleep";
+> +	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
+> +	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
+> +	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
+> +	non-removable;
+> +	no-sd;
+> +	no-sdio;
+> +	st,neg-edge;
+> +	bus-width = <8>;
+> +	vmmc-supply = <&v3v3>;
+> +	vqmmc-supply = <&vdd>;
+> +	mmc-ddr-3_3v;
+> +	status = "okay";
+> +};
+> +
+> +&uart4 {
+> +	pinctrl-names = "default", "sleep", "idle";
+> +	pinctrl-0 = <&uart4_pins_a>;
+> +	pinctrl-1 = <&uart4_sleep_pins_a>;
+> +	pinctrl-2 = <&uart4_idle_pins_a>;
+> +	/delete-property/dmas;
+> +	/delete-property/dma-names;
+> +	status = "okay";
+> +};
+> +
+> +&m_can1 {
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&m_can1_pins_d>;
+> +	pinctrl-1 = <&m_can1_sleep_pins_d>;
+> +	status = "okay";
+> +};
+> +
+> +&usbh_ehci {
+> +	phys = <&usbphyc_port0>;
+> +	phy-names = "usb";
+> +	status = "okay";
+> +};
+> +
+> +&usbh_ohci {
+> +	phys = <&usbphyc_port0>;
+> +	phy-names = "usb";
+> +	status = "okay";
+> +};
+> +
+> +&usbotg_hs {
+> +	vbus-supply = <&vbus_otg>;
+> +};
+> +
+> +&usbphyc {
+> +	status = "okay";
+> +};
+> +
+> +&usbphyc_port0 {
+> +	phy-supply = <&vdd_usb>;
+> +};
+> +
+> +&usbphyc_port1 {
+> +	phy-supply = <&vdd_usb>;
+> +};
+> +
+> +&rtc {
+> +	status = "okay";
+> +};
+> +
+> +&crc1 {
+> +	status = "okay";
+> +};
+> +
+> +&dts {
+> +	status = "okay";
+> +};
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+
