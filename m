@@ -2,143 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1DAD737638
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 22:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9FA873772B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 00:00:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230076AbjFTUmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 16:42:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39202 "EHLO
+        id S230017AbjFTWAg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 18:00:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbjFTUmR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 16:42:17 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32FB6EA
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 13:42:15 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b46cfde592so51806131fa.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 13:42:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687293733; x=1689885733;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=1SlNItgKMhxIdAJOyMCl7jBbGZ0tV9Ya6lDxNumxzlQ=;
-        b=Y6AWHH0TkQ75vfiwY0rg/MSSYtxn7ib7YMZcD99L3albtELrMpDTam2dD23cNyByht
-         45i3DbjCMBuv74OkCr6LmkzYYnffllxo4V+ensnvdSlZBJDeyDaN+gh0ha3tA6PogyN+
-         DUlK8IocoTO5eh1Bg79jQZJ3M44w9h8mkNHsQ505bcn8K7gQvSb4mliyqwcV6xqWTSHL
-         VpfFx12nDQcSqiApPzDzVMsPULA/REIu9Q013cJ4WtVa/al0U4rGLXf4JoJyqazTnjk9
-         WoMAajf/M7NlMoS9/18ZxieFfYzkBqpm98dLrl7gpzG9EpEqzTp9iGDZxE4+eZjgucTj
-         axSw==
+        with ESMTP id S229567AbjFTWAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 18:00:35 -0400
+Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1DC85E69;
+        Tue, 20 Jun 2023 15:00:34 -0700 (PDT)
+Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-77e2df49a91so156510239f.2;
+        Tue, 20 Jun 2023 15:00:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687293733; x=1689885733;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=1SlNItgKMhxIdAJOyMCl7jBbGZ0tV9Ya6lDxNumxzlQ=;
-        b=JA/SwykgSWIdjjD2gwPgRFYeLjvIEHcHiRA9jwVnxTffNHAyxGcDYIzfvyLgejDKTt
-         +BOukTIMhgSpkGrOPTEYkZvA5ZZnvv/Sifsz4Ow8L7yYEKT8tlJ37es0XDcPpUefd7jf
-         hmvtCRaNV+a8B6eTznOZ4aiVCm6Zydit8eGGZrRWlQxML8NvAhg1F8UscD26sPUl3+8J
-         MBihRGDyRHzG0go1AEE+FJVS/6I92YdaBxBBAkTVGOlLLbQVwUvdjywaVvnxpJfVhQot
-         QqWGZ/V+/AFBpUzIxb7qF5vg6J6S8k/UOwPGZPWBIoUYEafSlDiCsgmSRRpqb6lfZphD
-         Gw/Q==
-X-Gm-Message-State: AC+VfDx1utUdJrKo3eXJZkXLBgujZnCVt0NE7/2FIL6/MJKeIOcSuzfy
-        HWH6CNmsFSUSPSni5bSWygv+bg==
-X-Google-Smtp-Source: ACHHUZ6OR2bE6aOh0tQ6O8bGGdQg3XbqttHOm2XmDVyaVqQ4iYMwYBHZlLiNoaFlmGkOdraxczsxMw==
-X-Received: by 2002:a2e:9cd1:0:b0:2b4:70c1:b484 with SMTP id g17-20020a2e9cd1000000b002b470c1b484mr5688644ljj.38.1687293733589;
-        Tue, 20 Jun 2023 13:42:13 -0700 (PDT)
-Received: from [192.168.1.101] (abxj193.neoplus.adsl.tpnet.pl. [83.9.3.193])
-        by smtp.gmail.com with ESMTPSA id v20-20020a2e9254000000b002b46c473d0bsm573976ljg.20.2023.06.20.13.42.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 13:42:13 -0700 (PDT)
-Message-ID: <8b8c35ba-e495-6363-e8fd-65e60bc6e879@linaro.org>
-Date:   Tue, 20 Jun 2023 22:42:12 +0200
+        d=1e100.net; s=20221208; t=1687298433; x=1689890433;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=WkvWnaNInIKYQwmLtqQyrYXWIuuVDNI4W1xbI4+bKeE=;
+        b=JXaILNa3MoZWrR2rHXGWFk7wOxPf9eZ+0vZMHyKPlHOdMdDipmtR+3XhttyoFRzONa
+         G22V+BukJaaGnOKAnS1kqsJn+ZhUuE1HaEKl8xr79hhvEKDrXFG6Qb92W3FfllUq4zxb
+         d0KE/6COb581HlV8RZPaT/l5h8tS2i4rOIhMWtM/b7wzZ2+ZsVl67YXcmDVozAm0bteG
+         jyqr8+tWh4oi6xPwQerVr1Fe9sjOLZD97LVq7RLSP2nFhdu33jmnoQ/TBBCsgWDpdEg6
+         /WcT6V47/lGhWZDC/Q6YO0TV0rIdxPSEyQ2HP5VKam/Idv5spDtriM7nddpLY4vzWqX6
+         c27g==
+X-Gm-Message-State: AC+VfDxddViKlJbTvAyZlz9OPZEZvAnc+aY9QnxjBOsaX61ZaddkfNZ6
+        L811xtu/3wYWt3Hdl4pRYs/SJZaxaA==
+X-Google-Smtp-Source: ACHHUZ5at612OHC/BW9tJh9UamKyFCTk9abmHhxBPb2vcmMYzrmfS2mUTOYPzxEKk1eBHFvqM95i7A==
+X-Received: by 2002:a6b:a14:0:b0:777:aa2c:c2ab with SMTP id z20-20020a6b0a14000000b00777aa2cc2abmr10535634ioi.12.1687298433323;
+        Tue, 20 Jun 2023 15:00:33 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h13-20020a02cd2d000000b0041a9022c3dasm853702jaq.118.2023.06.20.15.00.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jun 2023 15:00:32 -0700 (PDT)
+Received: (nullmailer pid 411428 invoked by uid 1000);
+        Tue, 20 Jun 2023 22:00:31 -0000
+Date:   Tue, 20 Jun 2023 16:00:31 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Lizhi Hou <lizhi.hou@amd.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, stefano.stabellini@xilinx.com
+Subject: Re: [PATCH V9 4/6] PCI: Add ranges property for pci endpoint
+Message-ID: <20230620220031.GA384833-robh@kernel.org>
+References: <1686847842-33780-1-git-send-email-lizhi.hou@amd.com>
+ <1686847842-33780-5-git-send-email-lizhi.hou@amd.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 2/2] arm64: dts: qcom: sc8280xp-crd: Fix naming of
- regulators
-Content-Language: en-US
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230620203915.141337-1-quic_bjorande@quicinc.com>
- <20230620203915.141337-2-quic_bjorande@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230620203915.141337-2-quic_bjorande@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1686847842-33780-5-git-send-email-lizhi.hou@amd.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.06.2023 22:39, Bjorn Andersson wrote:
-> The external regulators in the CRD seems to have inherited their names
-> from the X13s DeviceTree, correct them.
-> 
-> Signed-off-by: Bjorn Andersson <quic_bjorande@quicinc.com>
-> ---
-Please also update the node names to match.
+On Thu, Jun 15, 2023 at 09:50:40AM -0700, Lizhi Hou wrote:
+> For PCI endpoint defined quirks to generate device tree node, it requires
+> 'ranges' property to translate iomem addresses for its downstream devices.
 
-Konrad
->  arch/arm64/boot/dts/qcom/sc8280xp-crd.dts | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
+I'm not following why this patch is separate from patch 2 nor how patch 
+3 would function without it.
+
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> index b21b41a066b6..678cdf253f2e 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-crd.dts
-> @@ -133,7 +133,7 @@ vreg_edp_3p3: regulator-edp-3p3 {
->  	vreg_edp_bl: regulator-edp-bl {
->  		compatible = "regulator-fixed";
+> Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+> ---
+>  drivers/pci/of_property.c | 33 ++++++++++++++++++++++-----------
+>  drivers/pci/quirks.c      |  1 +
+>  2 files changed, 23 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/pci/of_property.c b/drivers/pci/of_property.c
+> index bdd756c8d7de..08654740f314 100644
+> --- a/drivers/pci/of_property.c
+> +++ b/drivers/pci/of_property.c
+> @@ -84,15 +84,22 @@ static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
+>  	struct of_pci_range *rp;
+>  	struct resource *res;
+>  	int i = 0, j, ret;
+> +	u32 flags, num;
+>  	u64 val64;
+> -	u32 flags;
 >  
-> -		regulator-name = "VBL9";
-> +		regulator-name = "VREG_EDP_BL";
->  		regulator-min-microvolt = <3600000>;
->  		regulator-max-microvolt = <3600000>;
+> -	rp = kcalloc(PCI_BRIDGE_RESOURCE_NUM, sizeof(*rp), GFP_KERNEL);
+> +	if (pci_is_bridge(pdev)) {
+> +		num = PCI_BRIDGE_RESOURCE_NUM;
+> +		res = &pdev->resource[PCI_BRIDGE_RESOURCES];
+> +	} else {
+> +		num = PCI_STD_NUM_BARS;
+> +		res = &pdev->resource[PCI_STD_RESOURCES];
+> +	}
+> +
+> +	rp = kcalloc(num, sizeof(*rp), GFP_KERNEL);
+>  	if (!rp)
+>  		return -ENOMEM;
 >  
-> @@ -149,7 +149,7 @@ vreg_edp_bl: regulator-edp-bl {
->  	vreg_nvme: regulator-nvme {
->  		compatible = "regulator-fixed";
+> -	res = &pdev->resource[PCI_BRIDGE_RESOURCES];
+> -	for (j = 0; j < PCI_BRIDGE_RESOURCE_NUM; j++) {
+> +	for (j = 0; j < num; j++) {
+>  		if (!resource_size(&res[j]))
+>  			continue;
 >  
-> -		regulator-name = "VCC3_SSD";
-> +		regulator-name = "VREG_NVME_3P3";
->  		regulator-min-microvolt = <3300000>;
->  		regulator-max-microvolt = <3300000>;
+> @@ -102,8 +109,12 @@ static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
+>  		val64 = res[j].start;
+>  		of_pci_set_address(pdev, rp[i].parent_addr, val64, 0, flags,
+>  				   false);
+> -		memcpy(rp[i].child_addr, rp[i].parent_addr,
+> -		       sizeof(rp[i].child_addr));
+> +		if (pci_is_bridge(pdev)) {
+> +			memcpy(rp[i].child_addr, rp[i].parent_addr,
+> +			       sizeof(rp[i].child_addr));
+> +		} else {
+> +			rp[i].child_addr[0] = j;
+
+A comment that child address lower 64-bits is always 0x0 would be 
+helpful here.
+
+> +		}
 >  
-> @@ -163,7 +163,7 @@ vreg_nvme: regulator-nvme {
->  	vreg_misc_3p3: regulator-misc-3p3 {
->  		compatible = "regulator-fixed";
+>  		val64 = resource_size(&res[j]);
+>  		rp[i].size[0] = upper_32_bits(val64);
+> @@ -161,13 +172,13 @@ int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
+>  	if (pci_is_bridge(pdev)) {
+>  		ret |= of_changeset_add_prop_string(ocs, np, "device_type",
+>  						    "pci");
+> -		ret |= of_changeset_add_prop_u32(ocs, np, "#address-cells",
+> -						 OF_PCI_ADDRESS_CELLS);
+> -		ret |= of_changeset_add_prop_u32(ocs, np, "#size-cells",
+> -						 OF_PCI_SIZE_CELLS);
+> -		ret |= of_pci_prop_ranges(pdev, ocs, np);
+>  	}
 >  
-> -		regulator-name = "VCC3B";
-> +		regulator-name = "VREG_MISC_3P3";
->  		regulator-min-microvolt = <3300000>;
->  		regulator-max-microvolt = <3300000>;
+> +	ret |= of_pci_prop_ranges(pdev, ocs, np);
+> +	ret |= of_changeset_add_prop_u32(ocs, np, "#address-cells",
+> +					 OF_PCI_ADDRESS_CELLS);
+> +	ret |= of_changeset_add_prop_u32(ocs, np, "#size-cells",
+> +					 OF_PCI_SIZE_CELLS);
+>  	ret |= of_pci_prop_reg(pdev, ocs, np);
+>  	ret |= of_pci_prop_compatible(pdev, ocs, np);
 >  
-> @@ -180,7 +180,7 @@ vreg_misc_3p3: regulator-misc-3p3 {
->  	vreg_wlan: regulator-wlan {
->  		compatible = "regulator-fixed";
->  
-> -		regulator-name = "VCC_WLAN_3R9";
-> +		regulator-name = "VPH_PWR_WLAN";
->  		regulator-min-microvolt = <3900000>;
->  		regulator-max-microvolt = <3900000>;
->  
-> @@ -196,7 +196,7 @@ vreg_wlan: regulator-wlan {
->  	vreg_wwan: regulator-wwan {
->  		compatible = "regulator-fixed";
->  
-> -		regulator-name = "VCC3B_WAN";
-> +		regulator-name = "SDX_VPH_PWR";
->  		regulator-min-microvolt = <3300000>;
->  		regulator-max-microvolt = <3300000>;
->  
+> diff --git a/drivers/pci/quirks.c b/drivers/pci/quirks.c
+> index c8f3acea752d..51945b631628 100644
+> --- a/drivers/pci/quirks.c
+> +++ b/drivers/pci/quirks.c
+> @@ -6052,3 +6052,4 @@ DECLARE_PCI_FIXUP_HEADER(PCI_VENDOR_ID_INTEL, 0x9a31, dpc_log_size);
+>   */
+>  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5020, of_pci_make_dev_node);
+>  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_XILINX, 0x5021, of_pci_make_dev_node);
+> +DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_REDHAT, 0x0005, of_pci_make_dev_node);
+> -- 
+> 2.34.1
+> 
