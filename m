@@ -2,219 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E464E736C8E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 15:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC3E736CFF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 15:18:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232324AbjFTNAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 09:00:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41408 "EHLO
+        id S232901AbjFTNSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 09:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231429AbjFTNAO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 09:00:14 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082A9199E
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:00:04 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-307d58b3efbso3709182f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:00:04 -0700 (PDT)
+        with ESMTP id S231750AbjFTNSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 09:18:32 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7ED8E1735
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:18:07 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b46b11051aso44435961fa.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:18:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687266003; x=1689858003;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=X+elCcDfXZKuzDxi8bk9krk/t0/AVdCFoDUPSesylM0=;
-        b=x9OMHTeXkE4gRObSwizT9qOmCj7avu5YFmrDEXhpwXqGRkRBCVAx9PGebZ+qEM3RDZ
-         OvOgc7z0BeNlQdEsytlaLHZKwfmTP33fsNW6PJw8ZqAyFkXv18FMyk1DAut2nMN5JH/I
-         zfNgBTR87OXG+4VydFkH32FlNYPGw9iKUJbAMWzHhTvNAEn3gwq/DajenzDfMflyfTCr
-         AOsXZKoNUwCX8BN+56D093RNgyDZdDrRkC4hv61wAltfIvdCZ5Mh5YrI2UvFRcQoobA7
-         e8UauKvf12qTrcdQ58msGnWJb8Vtb4sowzs/nKPy83OCl/aHK9PsYoALzgKcL/mQWVAb
-         7yRA==
+        d=linaro.org; s=google; t=1687267082; x=1689859082;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EVOdNiEd3QtveZDzDg3FsMJG7kxU4f80fKhWvEhaEaM=;
+        b=vaXlCq4mGEiZSlvEza4Habx9SP/IfH2ZIfp57+w94uElLSArC5U2D5cVcE1HNVadKp
+         NsoYpFT/T2SfnFNlbyqoEGaxgMZmpT6Mx+rDQ1MX1Jb+q8cFTFo20YCwxOl76kse0pCD
+         Q1J/+sO/KVGTLLHiS1PuCr7Siy6NwN9cZm/gy8EmFDmtVDKpZJnwAy0htnUTez+pPd3Y
+         8c3rNl/uAt3HxtXW/GtsxdP6lUI21W8Too/JDKyTH3et4WPJROVSFhnwSe0PP5eUFj9N
+         GgSTvBJ10W6WUKC5icGx6OnVh2ruLkFET/VqkjVm/KTaXoCoI2cd9zsnAx5b6aPPmRgE
+         JZOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687266003; x=1689858003;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X+elCcDfXZKuzDxi8bk9krk/t0/AVdCFoDUPSesylM0=;
-        b=VCn/6LF3OHQrgU9hsUfsu3HgnGNKyjeR6H2E6s7HfmWCHsCplrUBZG4wYaAI8Dscoq
-         FCspRU5KJiLpETI3jLHxyLMGQ446J+mPyJ7TMK92Vx0tXjDiyVp526LDGeaS6tZ07aJW
-         l4jea82YSMh/GkPR5N+yL576EbfxNgsxPuAkJcygYA6x3kCwjYtIrTQ/YAbDDnhYWJGZ
-         OqveaWwgGwuRc2wLiNu/QOddXeQ2L3Q6gA5O8lExGEw2LAaY08BhK7jmFzxTAFUdKaFy
-         +Ev9B+UGFuHPJLFp6gYgp0YbNI1TK5oSVDd7wTO8rEflMRR/gzTXhLIruZRbnCMQpgqk
-         U6rg==
-X-Gm-Message-State: AC+VfDxLTwI7U5ehiq2hUa7rKIF6f7059KIUjyrd+TlKf6V3i58/NyaP
-        a761ZqOpyU7uxyMa6Pb3SUfCag==
-X-Google-Smtp-Source: ACHHUZ7+RTCp6Fqh2DGFZd4QI8q4rCVwvR1dP1d4BsM+sEN9iT/ExN2dSH4aidrmOPnQaMslTcJQwg==
-X-Received: by 2002:adf:df12:0:b0:30d:af7c:5046 with SMTP id y18-20020adfdf12000000b0030daf7c5046mr7667598wrl.60.1687266003293;
-        Tue, 20 Jun 2023 06:00:03 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id e14-20020adfef0e000000b0030c2e3c7fb3sm1930310wro.101.2023.06.20.06.00.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 06:00:02 -0700 (PDT)
-Message-ID: <cb2dd67a-d3df-f194-6595-789d12b38f3d@linaro.org>
-Date:   Tue, 20 Jun 2023 15:00:00 +0200
+        d=1e100.net; s=20221208; t=1687267082; x=1689859082;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EVOdNiEd3QtveZDzDg3FsMJG7kxU4f80fKhWvEhaEaM=;
+        b=if8uhX7tApBZd5IaXvIDqML65TbmOt31Dgysi2DOoJpoCCcac0IKMReZEhvCDexspE
+         VHGgZ+/BAnIOs/d8ZfVjavRSzFaHTbtKGmI9/OgUPfvxQwJ3dCFG7v9+GGeKwpRvvF6Z
+         zPHvO9w6chHTSQCj0GypjZTkyJD+xNtk7xNObStjT9nH0+8Za9EyFcCgdq7EV0bNMvz1
+         gyEHABaMhTWVuWRaUeb6BAwDB+FgGXDdpoE3oV6TMI9T8wYDB712PGQnlSS/mAOSldNQ
+         LWtoC9UHO6xGA2F9xqOair8C8YIF9IFcPoVbKGb3FC87SX0OjvAbu9kMcvvTBTF0f39K
+         CNLg==
+X-Gm-Message-State: AC+VfDzOs5T9I2v9SGpQswxRODVOVjMHyCANRlb+1tofEvPFMLrhyDe3
+        03eHR32CgpLH1TtbdX1oa7Fh4lQnVJIMIz3m8Cc=
+X-Google-Smtp-Source: ACHHUZ79ZlCn0m4GZ9VNXHrUz7bP9VIrjrMLch6qLGBufeZH5e0N65/dSWFpYQgWpd3LgCZnu0t9Mg==
+X-Received: by 2002:a2e:b0f0:0:b0:2b4:8251:7c89 with SMTP id h16-20020a2eb0f0000000b002b482517c89mr3028384ljl.28.1687267080873;
+        Tue, 20 Jun 2023 06:18:00 -0700 (PDT)
+Received: from [192.168.1.101] (abxj193.neoplus.adsl.tpnet.pl. [83.9.3.193])
+        by smtp.gmail.com with ESMTPSA id h19-20020a2eb0f3000000b002b3318c8d6fsm414433ljl.28.2023.06.20.06.17.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jun 2023 06:18:00 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/4] A610 enablement, J606F display
+Date:   Tue, 20 Jun 2023 15:17:44 +0200
+Message-Id: <20230620-topic-gpu_tablet_disp-v1-0-7bb02bec8dc0@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 3/6] media: dt-bindings: mediatek,vcodec: Remove
- VDEC_SYS for mt8183
-Content-Language: en-US
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAPimkWQC/x2N0QqDMAwAf0XyvELtVNh+ZQxJ00wDpZa2joH47
+ ws+3sFxB1QuwhWe3QGFv1JlSwr9rQNaMS1sJCiDs+5uJ2dN27KQWfI+N/SR2xykZkOBJsLxMfQ
+ 0gLYeKxtfMNGqddpjVJkLf+R3zV7v8/wDgOGlM3wAAAA=
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20230620000349.2122191-1-nfraprado@collabora.com>
- <20230620000349.2122191-4-nfraprado@collabora.com>
- <8b5e4a9b-7496-02a1-d3b6-a0be8ea85798@linaro.org>
- <a82b7f2d-04d4-4ac0-9a72-ad1c17118e19@notapiano>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <a82b7f2d-04d4-4ac0-9a72-ad1c17118e19@notapiano>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1687267079; l=846;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=zivfHVW7lha8lc01hiAsybuK9fAUZIvzRT5Lhvc+9EQ=;
+ b=vcPPYNv0dOWEXpk3byHiurjBTlH7DgDagTMg5Dw8ar23lf3hZhW/NS+ORSay13wqPOOzf/kXN
+ UxEpUwQ8Oh2Cr3i68027Usz7Og5UgW04e59NBtxmC9rujiFz8/K006N
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 14:46, Nícolas F. R. A. Prado wrote:
-> On Tue, Jun 20, 2023 at 10:12:14AM +0200, Krzysztof Kozlowski wrote:
->> On 20/06/2023 02:03, Nícolas F. R. A. Prado wrote:
->>> The binding expects the first register space to be VDEC_SYS. But on
->>> mt8183, which uses the stateless decoders, this space is used only for
->>> controlling clocks and resets, which are better described as separate
->>> clock-controller and reset-controller nodes.
->>>
->>> In fact, in mt8173's devicetree there are already such separate
->>> clock-controller nodes, which cause duplicate addresses between the
->>> vdecsys node and the vcodec node. But for this SoC, since the stateful
->>> decoder code makes other uses of the VDEC_SYS register space, it's not
->>> straightforward to remove it.
->>>
->>> In order to avoid the same address conflict to happen on mt8183,
->>> since the only current use of the VDEC_SYS register space in
->>> the driver is to read the status of a hardware controlled clock, remove
->>> the VDEC_SYS register space from the binding and describe an extra
->>> syscon that will be used to directly check the hardware status.
->>>
->>> Also add reg-names to be able to tell that this new register schema is
->>> used, so the driver can keep backward compatibility.
->>>
->>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
->>>
->>> ---
->>> I dropped the tags from this commit since a syscon is now used instead
->>> of an extra clock.
->>>
->>> Changes in v3:
->>> - Removed the active clock
->>> - Added a mediatek,vdecsys syscon property
->>>
->>> Changes in v2:
->>> - Merged with patch 1 (media: dt-bindings: mediatek,vcodec: Allow single
->>>   clock for mt8183) to avoid changing number of clocks twice
->>> - Added maxItems to reg-names
->>> - Constrained clocks for each compatible
->>> - Reordered properties for each compatible
->>>
->>>  .../media/mediatek,vcodec-decoder.yaml        | 30 +++++++++++++++++++
->>>  1 file changed, 30 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
->>> index 1e56ece44aee..2f625c50bbfe 100644
->>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
->>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
->>> @@ -21,8 +21,13 @@ properties:
->>>        - mediatek,mt8183-vcodec-dec
->>>  
->>>    reg:
->>> +    minItems: 11
->>>      maxItems: 12
->>>  
->>> +  reg-names:
->>> +    minItems: 11
->>> +    maxItems: 11
->>
->> maxItems: 12
->>
->>> +
->>>    interrupts:
->>>      maxItems: 1
->>>  
->>> @@ -60,6 +65,10 @@ properties:
->>>      description:
->>>        Describes point to scp.
->>>  
->>> +  mediatek,vdecsys:
->>> +    $ref: /schemas/types.yaml#/definitions/phandle
->>> +    description: Phandle to the vdecsys syscon node.
->>> +
->>>  required:
->>>    - compatible
->>>    - reg
->>> @@ -79,8 +88,26 @@ allOf:
->>>      then:
->>>        required:
->>>          - mediatek,scp
->>> +        - mediatek,vdecsys
->>>  
->>>        properties:
->>> +        reg:
->>> +          maxItems: 11
->>> +
->>> +        reg-names:
->>> +          items:
->>> +            - const: misc
->>> +            - const: ld
->>> +            - const: top
->>> +            - const: cm
->>> +            - const: ad
->>> +            - const: av
->>> +            - const: pp
->>> +            - const: hwd
->>> +            - const: hwq
->>> +            - const: hwb
->>> +            - const: hwg
->>> +
->>>          clocks:
->>>            minItems: 1
->>>            maxItems: 1
->>> @@ -101,6 +128,9 @@ allOf:
->>>          - mediatek,vpu
->>>  
->>>        properties:
->>> +        reg:
->>> +          minItems: 12
->>
->>
->> What about reg-names here? They should be also defined and in sync with
->> regs.
-> 
-> That's intentional. As described in the commit message, mt8173 will keep having
-> the VDEC_SYS iospace, while mt8183 won't. And we use the presence of reg-names
-> to tell them apart.
-> 
-> So, mt8173 has 12 regs, no reg-names and no syscon, while mt8183 has 11 regs,
-> with reg-names and the syscon.
+Enable the A610 GPU on SM6115, as well as on the RB2 and J606F boards.
+Add display support for the latter.
 
-reg-names is not the way to tell apart variants. Compatible is. If you
-add reg-names for one variant, it's expected to have it defined for
-other as well, because the order of items in reg is always fixed.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (4):
+      arm64: dts: qcom: sm6115: Add GPU nodes
+      arm64: dts: qcom: sm6115p-j606f: Hook up display
+      arm64: dts: qcom: sm6115p-j606f: Enable GPU
+      arm64: dts: qcom: qrb4210-rb2: Enable GPU
+
+ arch/arm64/boot/dts/qcom/qrb4210-rb2.dts          |   8 ++
+ arch/arm64/boot/dts/qcom/sm6115.dtsi              | 103 ++++++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm6115p-lenovo-j606f.dts |  65 ++++++++++++--
+ 3 files changed, 171 insertions(+), 5 deletions(-)
+---
+base-commit: 9dbf40840551df336c95ce2a3adbdd25ed53c0ef
+change-id: 20230620-topic-gpu_tablet_disp-cdc6ca5941c4
 
 Best regards,
-Krzysztof
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
