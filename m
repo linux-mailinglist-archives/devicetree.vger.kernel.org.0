@@ -2,191 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 84C4E737048
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95528737071
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:29:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233378AbjFTPUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 11:20:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49544 "EHLO
+        id S233663AbjFTP30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 11:29:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54416 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233705AbjFTPTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:19:49 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52BF4E4D
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:19:47 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f7deee339dso6014109e87.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 08:19:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687274385; x=1689866385;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=p40Myde1fQD0UIg2pdHi3GBfZvAX9ZMU2rMN96RSnz4=;
-        b=VSRrMFVzm/tx2+tgs2b4f0TfMWuYR3WoPN5QYWDSkc57hO4M2TqfzIGSC6Fh3KDw+9
-         FLmbhgaqQYm2JPlLDFDyHfL1zdyTnKPECn/fwVAD3NMIRlMEDxJo63B7Mmjr0gylLqAk
-         BAz5rMcZ7xImS8HPaEYZcrMahkzysVugY8M2gCT+97DChTgK3p1a/W8XB/zaApuqgsxO
-         7k3BYpIr7G8G0Po7c7E2laloyjTo8cootFClULrM7V3rW6gT1M9x8WTbei8n5BsuQvgu
-         msuz731EToSmMI4M/g1uq8u5B5TV0iv5TRX2FaVMD20Zd69nY2BEWQ4WzGs0reCuDOvg
-         grWg==
+        with ESMTP id S232954AbjFTP3Z (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:29:25 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84447C7;
+        Tue, 20 Jun 2023 08:29:24 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-77e35128efdso102075039f.1;
+        Tue, 20 Jun 2023 08:29:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687274385; x=1689866385;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=p40Myde1fQD0UIg2pdHi3GBfZvAX9ZMU2rMN96RSnz4=;
-        b=RmJyBvIOiweHwO9FcA6SLQ+04FM5Z07156LEY9YyY0GaJKKnLfUX1UWrBRfIWg6xy2
-         PHwjLFLGyexeC56aw2+x32IyUWFuM8mQEyRleRo/wK4YNsHHlWP+E+BVG1vLvfRwFD61
-         iiboJSaEsu+ASox3GGXhQ/uVA9dR7QCuIbtmTA6N62RYi1AqI+9tgwVDfwXCBWshN8xZ
-         m5bM+P6jFvudhEIOGbNxPMAEPUyww6bnxG4oHBUgkTNIj5+na8euKzWKJEs6eemcxf89
-         B6AuQC8mfL5zb7iZZPHKoX/3tDOREYjS3IZ6zVbYgqa7xTTquXPh2hiDav82mUDTeRXB
-         9eaQ==
-X-Gm-Message-State: AC+VfDzNI7QGK0LFZ/JjTsfnjyqCM8bUuqRgYIgSrnkwxXVWoygcopkh
-        rqL6soBJ6tB2MPTX0mvGo26AlA==
-X-Google-Smtp-Source: ACHHUZ6RxrplvWpSP7VbXbCbvL7neIz92yh4McApWcsTpRoLERfQlJKoITO+aNX5plLeHzFdWqKEtg==
-X-Received: by 2002:a19:6702:0:b0:4f8:770d:6d7d with SMTP id b2-20020a196702000000b004f8770d6d7dmr2526971lfc.6.1687274385376;
-        Tue, 20 Jun 2023 08:19:45 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id x23-20020a05600c21d700b003f427687ba7sm2518659wmj.41.2023.06.20.08.19.44
+        d=1e100.net; s=20221208; t=1687274964; x=1689866964;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aqJZkvuzvPgo2scZXFsGYob4H+PHCpMScUqNkfyiy4o=;
+        b=XJEaa7E/5JOVa/9Zwh7ez5/u3XoAmfoJCQP+w9U//wXbv3GzAm3iIC9iGnlmtmvjSZ
+         nNLA933GeWnn58QFL1XZk9hLkiAKyPLQERllD9dUZLLGk2UHCjOVLZkVJQs7oHestiWF
+         WAQwZqkyXmw4tOmZwbtQoxoBI4OjQuLDE1JKf4LR6H4Th6+5QjoSUMLFeCTdfm+ohuBg
+         HZ8dxBxQSrH5n9YU7+tszefr7uRYIsrWPMB6OSU6ThrcK7TrjFoOgF+Bnscl9GRK39dp
+         HUJ3I8KsJpYeYwcmy6JPsDoDn01NOBAJ4E5Wew+fohuis+bb1cRXRnwBLh93IpvZF5Qu
+         nTzw==
+X-Gm-Message-State: AC+VfDw2hLtCnFUh9HCCuS/43yos7VWVSfNvQhP5Rh9qJGNcrI8i3d3M
+        XgKOgOFNvhTdsKmdcV7tJg==
+X-Google-Smtp-Source: ACHHUZ5nSRRKkIdQG/Zz+onC/2Filko74KvoJC06NM12cPl40tsZXvJx7rIbZCzo7blL68IYeqs8FA==
+X-Received: by 2002:a05:6e02:14c:b0:33b:848:378b with SMTP id j12-20020a056e02014c00b0033b0848378bmr4106998ilr.8.1687274963697;
+        Tue, 20 Jun 2023 08:29:23 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id p7-20020a0566380e8700b0042673fd54c0sm685365jas.134.2023.06.20.08.29.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jun 2023 08:19:45 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Tue, 20 Jun 2023 17:19:39 +0200
-Subject: [PATCH 4/4] arm64: dts: qcom: sm8550-qrd: add bluetooth support
+        Tue, 20 Jun 2023 08:29:22 -0700 (PDT)
+Received: (nullmailer pid 3628745 invoked by uid 1000);
+        Tue, 20 Jun 2023 15:29:21 -0000
+Date:   Tue, 20 Jun 2023 09:29:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-usb@vger.kernel.org,
+        jun.li@nxp.com
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: mxs-usb-phy: convert to DT
+ schema format
+Message-ID: <20230620152921.GA3626802-robh@kernel.org>
+References: <20230613083445.1129137-1-xu.yang_2@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230620-topic-sm8550-upstream-bt-v1-4-4728564f8872@linaro.org>
-References: <20230620-topic-sm8550-upstream-bt-v1-0-4728564f8872@linaro.org>
-In-Reply-To: <20230620-topic-sm8550-upstream-bt-v1-0-4728564f8872@linaro.org>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
-        Rocky Liao <rjliao@codeaurora.org>,
-        Marcel Holtmann <marcel@holtmann.org>,
-        Johan Hedberg <johan.hedberg@gmail.com>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-bluetooth@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1926;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=iuWV9Gxv674pEfpCf7eMGZhLUcpDiyM3q/JmNOeS3JU=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkkcOKO49c819U+yoUkl35AaT8tcGr+8GX71phwray
- VPP+SsSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJHDigAKCRB33NvayMhJ0bHuD/
- 40xu1H6nRY7N1Zg0Kd7N9u1eCPUqKqATg+pxuDEwcgP56uQ/znYyJZgny2ON/DAk+nKn4SKWJ+pXp8
- PZ/XH1Few0oNPvudL+WnFDfN2UiKqcAaMDNtrBCNNK1J5Ibg+Z9iUtfFCnS6M+HPXJk0hbFZLtVTPp
- 11toSYOuMJVTLmk7CF/Y1qKlLY14RR2I+g1CJWloAebyk8//BT6cIOjuOrkUAHq5JaSSqTFLfr9CNb
- NijJ/TGHqhkx+WZoNQTFMRsiaGUNwPmeLvXXT3/QHEVmHSePBXao5yA35xv1n9fLOLYNBaXfGp+tFT
- Ifdb75J/duHHRyni7OnNrfQbXSfePSwwHlY1LCPztqCjPHvkt/Spoe9+CC+eKEEIsWYBlBrzuwFmYe
- aJVNuDBpWJI30+qs0ltmryJNDOu6ENJ6vmyBgCBKHVvvjTkEbPcmgU+j9DAD0gb4aDN34blkH33MiW
- 0qPX4Muc7lXXqSiihb7w28sG4Ns9oylHzkLeMrlbTWJssKVny/kN0T5TjuSiT4QIrnwqlWEU4brhHf
- uT2p5xgCwUr6/Al4MChMI94NF9rYHAgh9FHs+qa3QV97zp3H4VY+SMFvfXqhlUz00vd3sp7mSJqMDs
- BpgvuZ1HO/L9OchmUWN/PdDN9KPl2MAaUqBH44Yn2KPijZEEZYyEyZ1SGpIQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230613083445.1129137-1-xu.yang_2@nxp.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable the WCN7850 bluetooth over the UART14 link.
+On Tue, Jun 13, 2023 at 04:34:44PM +0800, Xu Yang wrote:
+> Convert the binding to DT schema format. Besides, this also add clocks,
+> '#phy-cells', phy-3p0-supply and power-domains properties which are not
+> contained in txt file due to txt file lack updates.
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> 
+> ---
+> Changes in v2:
+>  - change filename to fsl,mxs-usbphy.yaml
+>  - add other optional properties
+>  - narrow fsl,anatop to imx6
+>  - use additionalProperties
+> Changes in v3:
+>  - fix indentation
+>  - add clocks property to example
+> Changes in v4:
+>  - remove [fsl,imx7ulp-usbphy, fsl,imx6ul-usbphy]
+>  - limit item of reg and interrupts to 1
+>  - sort enum items
+>  - modify commit message
+> ---
+>  .../bindings/phy/fsl,mxs-usbphy.yaml          | 125 ++++++++++++++++++
+>  .../devicetree/bindings/phy/mxs-usb-phy.txt   |  33 -----
+>  2 files changed, 125 insertions(+), 33 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8550-qrd.dts | 43 +++++++++++++++++++++++++++++++++
- 1 file changed, 43 insertions(+)
+This should be applied by the PHY maintainers, but they weren't Cc'ed.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-index ec4feee6837d..5191fdbe72cb 100644
---- a/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8550-qrd.dts
-@@ -22,6 +22,7 @@ / {
- 
- 	aliases {
- 		serial0 = &uart7;
-+		serial1 = &uart14;
- 	};
- 
- 	wcd938x: audio-codec {
-@@ -691,6 +692,10 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&qupv3_id_1 {
-+	status = "okay";
-+};
-+
- &remoteproc_adsp {
- 	firmware-name = "qcom/sm8550/adsp.mbn",
- 			"qcom/sm8550/adsp_dtb.mbn";
-@@ -768,6 +773,21 @@ wcd_tx: codec@0,3 {
- &tlmm {
- 	gpio-reserved-ranges = <32 8>;
- 
-+	bt_default: bt-default-state {
-+		bt-en-pins {
-+			pins = "gpio81";
-+			function = "gpio";
-+			drive-strength = <16>;
-+			bias-disable;
-+		};
-+
-+		sw-ctrl-pins {
-+			pins = "gpio82";
-+			function = "gpio";
-+			bias-pull-down;
-+		};
-+	};
-+
- 	sde_dsi_active: sde-dsi-active-state {
- 		pins = "gpio133";
- 		function = "gpio";
-@@ -809,6 +829,29 @@ &uart7 {
- 	status = "okay";
- };
- 
-+&uart14 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "qcom,wcn7850-bt";
-+
-+		vddio-supply = <&vreg_l15b_1p8>;
-+		vddaon-supply = <&vreg_s4e_0p95>;
-+		vdddig-supply = <&vreg_s4e_0p95>;
-+		vddrfa0p8-supply = <&vreg_s4e_0p95>;
-+		vddrfa1p2-supply = <&vreg_s4g_1p25>;
-+		vddrfa1p9-supply = <&vreg_s6g_1p86>;
-+
-+		max-speed = <3200000>;
-+
-+		enable-gpios = <&tlmm 81 GPIO_ACTIVE_HIGH>;
-+		swctrl-gpios = <&tlmm 82 GPIO_ACTIVE_HIGH>;
-+
-+		pinctrl-0 = <&bt_default>;
-+		pinctrl-names = "default";
-+	};
-+};
-+
- &ufs_mem_hc {
- 	reset-gpios = <&tlmm 210 GPIO_ACTIVE_LOW>;
- 	vcc-supply = <&vreg_l17b_2p5>;
-
--- 
-2.34.1
-
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> new file mode 100644
+> index 000000000000..cc9f2bc7e6fb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> @@ -0,0 +1,125 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/fsl,mxs-usbphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Freescale MXS USB Phy Device
+> +
+> +maintainers:
+> +  - Xu Yang <xu.yang_2@nxp.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - enum:
+> +          - fsl,imx23-usbphy
+> +          - fsl,imx7ulp-usbphy
+> +          - fsl,vf610-usbphy
+> +      - items:
+> +          - enum:
+> +              - fsl,imx28-usbphy
+> +              - fsl,imx6ul-usbphy
+> +              - fsl,imx6sl-usbphy
+> +              - fsl,imx6sx-usbphy
+> +              - fsl,imx6q-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - const: fsl,imx6sll-usbphy
+> +          - const: fsl,imx6ul-usbphy
+> +          - const: fsl,imx23-usbphy
+> +      - items:
+> +          - const: fsl,imx8dxl-usbphy
+> +          - const: fsl,imx7ulp-usbphy
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  '#phy-cells':
+> +    const: 0
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  fsl,anatop:
+> +    description:
+> +      phandle for anatop register, it is only for imx6 SoC series.
+> +    $ref: /schemas/types.yaml#/definitions/phandle
+> +
+> +  phy-3p0-supply:
+> +    description:
+> +      One of USB PHY's power supply. Can be used to keep a good signal
+> +      quality.
+> +
+> +  fsl,tx-cal-45-dn-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DN output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-cal-45-dp-ohms:
+> +    description:
+> +      Resistance (in ohms) of switchable high-speed trimming resistor
+> +      connected in parallel with the 45 ohm resistor that terminates
+> +      the DP output signal.
+> +    minimum: 35
+> +    maximum: 54
+> +    default: 45
+> +
+> +  fsl,tx-d-cal:
+> +    description:
+> +      Current trimming value (as a percentage) of the 17.78 mA TX
+> +      reference current.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 79
+> +    maximum: 119
+> +    default: 100
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          oneOf:
+> +            - enum:
+> +                - fsl,imx6q-usbphy
+> +                - fsl,imx6sl-usbphy
+> +                - fsl,imx6sx-usbphy
+> +                - fsl,imx6sll-usbphy
+> +                - fsl,vf610-usbphy
+> +            - items:
+> +                - const: fsl,imx6ul-usbphy
+> +                - const: fsl,imx23-usbphy
+> +    then:
+> +      required:
+> +        - fsl,anatop
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/imx6qdl-clock.h>
+> +
+> +    usbphy1: usb-phy@20c9000 {
+> +        compatible = "fsl,imx6q-usbphy", "fsl,imx23-usbphy";
+> +        reg = <0x020c9000 0x1000>;
+> +        clocks = <&clks IMX6QDL_CLK_USBPHY1>;
+> +        interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
+> +        fsl,anatop = <&anatop>;
+> +    };
+> +
+> +...
+> diff --git a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt b/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> deleted file mode 100644
+> index 70c813b0755f..000000000000
+> --- a/Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> +++ /dev/null
+> @@ -1,33 +0,0 @@
+> -* Freescale MXS USB Phy Device
+> -
+> -Required properties:
+> -- compatible: should contain:
+> -	* "fsl,imx23-usbphy" for imx23 and imx28
+> -	* "fsl,imx6q-usbphy" for imx6dq and imx6dl
+> -	* "fsl,imx6sl-usbphy" for imx6sl
+> -	* "fsl,vf610-usbphy" for Vybrid vf610
+> -	* "fsl,imx6sx-usbphy" for imx6sx
+> -	* "fsl,imx7ulp-usbphy" for imx7ulp
+> -	* "fsl,imx8dxl-usbphy" for imx8dxl
+> -  "fsl,imx23-usbphy" is still a fallback for other strings
+> -- reg: Should contain registers location and length
+> -- interrupts: Should contain phy interrupt
+> -- fsl,anatop: phandle for anatop register, it is only for imx6 SoC series
+> -
+> -Optional properties:
+> -- fsl,tx-cal-45-dn-ohms: Integer [35-54]. Resistance (in ohms) of switchable
+> -  high-speed trimming resistor connected in parallel with the 45 ohm resistor
+> -  that terminates the DN output signal. Default: 45
+> -- fsl,tx-cal-45-dp-ohms: Integer [35-54]. Resistance (in ohms) of switchable
+> -  high-speed trimming resistor connected in parallel with the 45 ohm resistor
+> -  that terminates the DP output signal. Default: 45
+> -- fsl,tx-d-cal: Integer [79-119]. Current trimming value (as a percentage) of
+> -  the 17.78mA TX reference current. Default: 100
+> -
+> -Example:
+> -usbphy1: usb-phy@20c9000 {
+> -	compatible = "fsl,imx6q-usbphy", "fsl,imx23-usbphy";
+> -	reg = <0x020c9000 0x1000>;
+> -	interrupts = <0 44 0x04>;
+> -	fsl,anatop = <&anatop>;
+> -};
+> -- 
+> 2.34.1
+> 
