@@ -2,322 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C330D737001
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF6B9737021
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233613AbjFTPNg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 11:13:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43994 "EHLO
+        id S231244AbjFTPQy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 11:16:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233632AbjFTPNc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:13:32 -0400
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5569D10E2;
-        Tue, 20 Jun 2023 08:13:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-        s=default2211; h=Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=AAUJ3xkymtwR/hNvg5HF3mD3pxuud8yl+zY7HV+rgic=; b=ErDwt+ZL5M72wX7eVqGKyX76pD
-        XtF7H3Dddabs3ePxZ/6Ww9o8z85TGKyrK7sbA/uhjgDdGb237Z76tmRSGEgfoI1PnFPo/l7X7TQus
-        jjYotXp995vLBw/AvoCV82gNN9Wedag7vMKnnueyHx2YwBVBy5cKTq+gDMc6kVj56WqfRNXtYXant
-        M1umxpDwctfkLQAOBikf+TpgMmZwbHoH+P/UPeVh5oUpGXIrmHTAXHdH7uoML3T1VZTS2z/JSK0LM
-        1D1DPMznKUhTi2HroJqooe0Md+8NnFvdOb1L95NTl3BsFzSj0X++LrPG6IQ9caaeA6pky67fRoiKn
-        /axT9T8g==;
-Received: from sslproxy02.your-server.de ([78.47.166.47])
-        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <sean@geanix.com>)
-        id 1qBd2v-0001Zo-LH; Tue, 20 Jun 2023 17:13:29 +0200
-Received: from [185.17.218.86] (helo=zen..)
-        by sslproxy02.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sean@geanix.com>)
-        id 1qBd2v-0003u6-4E; Tue, 20 Jun 2023 17:13:29 +0200
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Sean Nyekjaer <sean@geanix.com>, dantuguf14105@gmail.com,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v1 7/7] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
-Date:   Tue, 20 Jun 2023 17:13:12 +0200
-Message-Id: <20230620151312.1064629-7-sean@geanix.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230620151312.1064629-1-sean@geanix.com>
-References: <20230620151312.1064629-1-sean@geanix.com>
+        with ESMTP id S233766AbjFTPQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:16:29 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD4A2682;
+        Tue, 20 Jun 2023 08:15:56 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-986d8332f50so570923066b.0;
+        Tue, 20 Jun 2023 08:15:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687274154; x=1689866154;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=R4Kq1I196iP4lZi3ISIkw776HYiqmA+o0cxAPhM15Go=;
+        b=b8dwpCP5mTlZb2Z5quNWb3Xk5Lb4ZFqB56ArCu4H35U6JqtjYedTgL9chdCMHSYZgT
+         1cOUe+09GickZtnE0JA7ELRNQsKty8aZXLrjitNkJBH8tMzh2qxd9PY1qObnUYZhP4hv
+         cjnoHlNuRlXay9XPug0Mmd7HTG1xcFj3dFry+hS8F/rQNPNBbrO5euKut+YLlxX0vzO8
+         FmtWqzi+JEx6UTPF/wrO6qxiwn/uJT7PBY0GCQ+Mw9EUm92a6vRHUaGusjQDQf7kv0N2
+         4vZwWStZk0JOu15qU1oKo4JAaPPr9RMeKqw+rQA/V8/kJtnK9kquseputV+RIQjYjcf+
+         Zx+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687274154; x=1689866154;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=R4Kq1I196iP4lZi3ISIkw776HYiqmA+o0cxAPhM15Go=;
+        b=TFv+AVR2yL3SqRB5oQFWQcf099vcg5TxkruZJ/4uHUIAOPNxF2C7fifAb3LoNSZCPO
+         yt1LQ/4A7ma9lxrBoqiRNNzP1lhj8nPC0qeoAiJx+pIkT43hl94Q2k4ONb5Xco5JuIX8
+         DgOrYnEvl/yxRjfj+opoHs9MXJ/SCPuk14tlDXeFq8ikY0N8aJvd6kxEPBJBI1QcR4vh
+         TKXWk+5r62uMyh8Zq+zLo7bvFBL9U0/YMUKc34QvVwphRXjWlLeXbQ1ffjbFvb6x61yQ
+         HWJO/3G295hwcIIpChYQ79cQNweJcRai8jLwnXi50qglVtz6W1TdLPo1Ff3m/+xfP8BV
+         CIkg==
+X-Gm-Message-State: AC+VfDwz3Zr8L1b5W2ZOFyT9XI0InqtiEW8xC+s2+BlTcMKP5xgmK6HF
+        s5d5ufoUEdW2/sOZamLQqtxA44UldnbX0lHaZ5o=
+X-Google-Smtp-Source: ACHHUZ7zVdF44u8WGxoDTuzM5o+pFRLnIIzjKMLxgEqG+GT0G40mJh40pf2CGhYMPzoAUr39Z4dHXjP3Iu+npMaXu8M=
+X-Received: by 2002:a17:907:9812:b0:96a:1c2a:5a38 with SMTP id
+ ji18-20020a170907981200b0096a1c2a5a38mr11776524ejc.11.1687274154360; Tue, 20
+ Jun 2023 08:15:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26945/Tue Jun 20 09:30:24 2023)
+References: <20230620132641.256307-1-kimseer.paller@analog.com> <20230620132641.256307-2-kimseer.paller@analog.com>
+In-Reply-To: <20230620132641.256307-2-kimseer.paller@analog.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Tue, 20 Jun 2023 18:15:17 +0300
+Message-ID: <CAHp75VdR9W8U9VmP5WZntzB9qW3fM6qy1Q2-yeBSAG5PJimkaw@mail.gmail.com>
+Subject: Re: [PATCH v7 2/2] iio: adc: max14001: New driver
+To:     Kim Seer Paller <kimseer.paller@analog.com>
+Cc:     jic23@kernel.org, lars@metafoo.de, lgirdwood@gmail.com,
+        broonie@kernel.org, Michael.Hennerich@analog.com, robh@kernel.org,
+        krzysztof.kozlowski@linaro.org, conor+dt@kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Octavo OSD32MP1-RED development board.
+On Tue, Jun 20, 2023 at 4:27=E2=80=AFPM Kim Seer Paller
+<kimseer.paller@analog.com> wrote:
+>
+> The MAX14001 is configurable, isolated 10-bit ADCs for multi-range
+> binary inputs.
 
-General features:
- - STM32MP157C
- - 512MB DDR3
- - CAN-FD
- - HDMI
- - USB-C OTG
- - UART
+...
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
-Changes since v0:
- - Adapted to use stm32mp15xx-osd32.dtsi
+> +       /*
+> +        * Align received data from the receive buffer, reversing and reo=
+rdering
+> +        * it to match the expected MSB-first format.
+> +        */
+> +       *data =3D (__force u16)(be16_to_cpu(bitrev16(st->spi_rx_buffer)))=
+ &
+> +                                                       MAX14001_DATA_MAS=
+K;
 
- .../arm/boot/dts/stm32mp157c-osd32mp1-red.dts | 226 ++++++++++++++++++
- 1 file changed, 226 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+Using __force in the C files is somehow stinky.
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-new file mode 100644
-index 000000000000..2823857900de
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-@@ -0,0 +1,226 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Geanix ApS 2023 - All Rights Reserved
-+ * Author: Sean Nyekjaer <sean@geanix.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15xx-osd32.dtsi"
-+#include "stm32mp15xxac-pinctrl.dtsi"
-+
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/pinctrl/stm32-pinfunc.h>
-+
-+/ {
-+	model = "Octavo OSD32MP1 RED board";
-+	compatible = "octavo,stm32mp157c-osd32mp1-red", "st,stm32mp157";
-+
-+	aliases {
-+		serial0 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	led {
-+		compatible = "gpio-leds";
-+
-+		blue {
-+			label = "heartbeat";
-+			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&ethernet0 {
-+	status = "okay";
-+	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-+	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
-+	pinctrl-names = "default", "sleep";
-+	phy-mode = "rgmii-id";
-+	max-speed = <1000>;
-+	phy-handle = <&phy0>;
-+	st,eth-clk-sel;
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy0: ethernet-phy@0 {
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+
-+&i2s2 {
-+	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
-+	clock-names = "pclk", "i2sclk", "x8k", "x11k";
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2s2_pins_b>;
-+	pinctrl-1 = <&i2s2_sleep_pins_b>;
-+	status = "okay";
-+
-+	i2s2_port: port {
-+		i2s2_endpoint: endpoint {
-+			remote-endpoint = <&sii9022_tx_endpoint>;
-+			format = "i2s";
-+			mclk-fs = <256>;
-+		};
-+	};
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&pwr_regulators {
-+	vdd-supply = <&vdd>;
-+	vdd_3v3_usbfs-supply = <&vdd_usb>;
-+};
-+
-+&ltdc {
-+	status = "okay";
-+
-+	port {
-+		ltdc_ep0_out: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&sii9022_in>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_pins_a>;
-+	pinctrl-1 = <&i2c1_sleep_pins_a>;
-+	status = "okay";
-+	i2c-scl-rising-time-ns = <100>;
-+	i2c-scl-falling-time-ns = <7>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	hdmi-transmitter@39 {
-+		compatible = "sil,sii9022";
-+		reg = <0x39>;
-+		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
-+		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-parent = <&gpiog>;
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&ltdc_pins_e>;
-+		pinctrl-1 = <&ltdc_sleep_pins_e>;
-+		status = "okay";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				sii9022_in: endpoint {
-+					remote-endpoint = <&ltdc_ep0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				sii9022_tx_endpoint: endpoint {
-+					remote-endpoint = <&i2s2_endpoint>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+	disable-wp;
-+	st,neg-edge;
-+	bus-width = <4>;
-+	vmmc-supply = <&v3v3>;
-+	status = "okay";
-+};
-+
-+&sdmmc2 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
-+	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	st,neg-edge;
-+	bus-width = <8>;
-+	vmmc-supply = <&v3v3>;
-+	vqmmc-supply = <&vdd>;
-+	mmc-ddr-3_3v;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart4_pins_a>;
-+	pinctrl-1 = <&uart4_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_idle_pins_a>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+};
-+
-+&m_can1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&m_can1_pins_d>;
-+	pinctrl-1 = <&m_can1_sleep_pins_d>;
-+	status = "okay";
-+};
-+
-+&usbh_ehci {
-+	phys = <&usbphyc_port0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
-+&usbh_ohci {
-+	phys = <&usbphyc_port0>;
-+	phy-names = "usb";
-+	status = "okay";
-+};
-+
-+&usbotg_hs {
-+	vbus-supply = <&vbus_otg>;
-+};
-+
-+&usbphyc {
-+	status = "okay";
-+};
-+
-+&usbphyc_port0 {
-+	phy-supply = <&vdd_usb>;
-+};
-+
-+&usbphyc_port1 {
-+	phy-supply = <&vdd_usb>;
-+};
-+
-+&rtc {
-+	status = "okay";
-+};
-+
-+&crc1 {
-+	status = "okay";
-+};
-+
-+&dts {
-+	status = "okay";
-+};
--- 
-2.40.0
+...
 
+> +       /*
+> +        * Convert transmit buffer to big-endian format and reverse trans=
+mit
+> +        * buffer to align with the LSB-first input on SDI port.
+> +        */
+> +       st->spi_tx_buffer =3D (__force u16)(cpu_to_be16(bitrev16(
+
+You have a different type of spi_tx_buffer than u16, don't you?
+
+> +                               FIELD_PREP(MAX14001_ADDR_MASK, reg_addr) =
+|
+> +                               FIELD_PREP(MAX14001_SET_WRITE_BIT, 1) |
+> +                               FIELD_PREP(MAX14001_DATA_MASK, data))));
+
+...
+
+> +       vref =3D devm_regulator_get_optional(dev, "vref");
+> +       if (IS_ERR(vref)) {
+> +               if (PTR_ERR(vref) !=3D -ENODEV)
+> +                       return dev_err_probe(dev, PTR_ERR(vref),
+> +                                            "Failed to get vref regulato=
+r");
+> +
+> +               /* internal reference */
+> +               st->vref_mv =3D 1250;
+> +       } else {
+> +               ret =3D regulator_enable(vref);
+> +               if (ret)
+> +                       return dev_err_probe(dev, ret,
+> +                                       "Failed to enable vref regulators=
+\n");
+> +
+> +               ret =3D devm_add_action_or_reset(dev, max14001_regulator_=
+disable,
+> +                                              vref);
+> +               if (ret)
+> +                       return ret;
+> +
+> +               ret =3D regulator_get_voltage(vref);
+> +               if (ret < 0)
+> +                       return dev_err_probe(dev, ret,
+> +                                            "Failed to get vref\n");
+> +
+> +               st->vref_mv =3D ret / 1000;
+> +
+> +               /* select external voltage reference source for the ADC *=
+/
+> +               ret =3D max14001_reg_update(st, MAX14001_CFG,
+> +                                         MAX14001_CFG_EXRF, 1);
+> +               if (ret < 0)
+> +                       return ret;
+> +       }
+
+Now, looking at this code I'm wondering if we may have something like
+devm_regulator_get_enable_and_voltage_optional()
+
+But it's another story.
+
+
+--=20
+With Best Regards,
+Andy Shevchenko
