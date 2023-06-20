@@ -2,109 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0047B736626
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 10:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C8D8736647
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 10:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231775AbjFTI2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 04:28:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42686 "EHLO
+        id S231959AbjFTIdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 04:33:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45124 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231911AbjFTI2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 04:28:30 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDD91132;
-        Tue, 20 Jun 2023 01:28:25 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35K8SKWq131024;
-        Tue, 20 Jun 2023 03:28:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1687249700;
-        bh=mKtCUPgaud8pjCzNSvAn4kZizjOxNjiafARqukJWj+8=;
-        h=From:Date:Subject:References:In-Reply-To:To:CC;
-        b=h2EEn6uY2RoBnI1oT1TfviGf+MRBU2R/DzBpna36nkXQua/s2JSW/UF9SfyHwsWlh
-         wM9RAmXTrVsT0eQKLfEDsUsatvgnUx2NxyiAoRapOt5hVBmeMBrOhjLo256FqLvWlj
-         GPpTg1v+JllHNViI3c70QpfT6i53aljGm9JnA/0E=
-Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35K8SKmR005164
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Jun 2023 03:28:20 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Jun 2023 03:28:19 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Tue, 20 Jun 2023 03:28:19 -0500
-Received: from localhost (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35K8SJdb010857;
-        Tue, 20 Jun 2023 03:28:19 -0500
-From:   Kamlesh Gurudasani <kamlesh@ti.com>
-Date:   Tue, 20 Jun 2023 13:57:00 +0530
-Subject: [PATCH v4 2/2] arm64: dts: ti: k3-am62-main: Remove power-domains
- from crypto node
+        with ESMTP id S231938AbjFTIdF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 04:33:05 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45349F1;
+        Tue, 20 Jun 2023 01:33:03 -0700 (PDT)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35K4S9tO005757;
+        Tue, 20 Jun 2023 08:32:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=1kz35WRo1fgZnq5bgc7/ykcVOvYvpVgXQJGD0NpIdVw=;
+ b=FUgU6BqpKkMJ6YEQPAA95G4BAompScuTRAe1ebb6SkV1bXAPuACEBlbLPH4bOhsioBX5
+ JkekRIZ36XWebaGLiudwMBclI9Wu9yriHMUMwwNG5w3cuLOKpZn7MClgtQBzrPJilpMs
+ WrPh2aZ3OseSvQTAk5o2LImjhr/n9O0/DuhdyaAlFgSLarK4KkeIcZ2VTHeJZQK44GD6
+ hgC1+j8Jx30HUHMrJBX73JoSixMxYsERnuxdOManxJgYPJOvVbXW1+iohEGB50w5bF7Z
+ I2HMTOcvAwVodA7C7lmk0UUPjjZWrpSMfNb7RShrC5SfIUZ+Qqp2XD1iyEQAr+o973Ei ag== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rb543re8h-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Jun 2023 08:32:07 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35K8W5B4011949
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Jun 2023 08:32:05 GMT
+Received: from [10.253.79.58] (10.80.80.8) by nalasex01c.na.qualcomm.com
+ (10.47.97.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 20 Jun
+ 2023 01:32:01 -0700
+Message-ID: <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
+Date:   Tue, 20 Jun 2023 16:31:59 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-ID: <20230614-sa3ul-v4-2-7c969f626796@ti.com>
-References: <20230614-sa3ul-v4-0-7c969f626796@ti.com>
-In-Reply-To: <20230614-sa3ul-v4-0-7c969f626796@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v6 09/13] Add nodes for dsb edge control
+Content-Language: en-US
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jayesh Choudhary <j-choudhary@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Kamlesh Gurudasani <kamlesh@ti.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687249695; l=1080;
- i=kamlesh@ti.com; s=20230614; h=from:subject:message-id;
- bh=twkydDeRPS5AYQfyYZRmDOCh79DoQ65SqFyXWQK4qeQ=;
- b=PWS4JU8LX+bhAAPFR2oK0F1v7ZN3UN+EkLVNzavYEs9wBVqkaZD+O6BX9A1jRo1BCrfQjx2zn
- X82SXIz/6mwBnv60B1UpApxJUTiCHxk5s3EZDNqnn+qtb0+4pJRT1SV
-X-Developer-Key: i=kamlesh@ti.com; a=ed25519;
- pk=db9XKPVWDGJVqj2jDqgnPQd6uQf3GZ3oaQa4bq1odGo=
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-3.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_PASS,TVD_SUBJ_WIPE_DEBT,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>, <coresight@lists.linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <andersson@kernel.org>
+References: <1687246361-23607-1-git-send-email-quic_taozha@quicinc.com>
+ <1687246361-23607-10-git-send-email-quic_taozha@quicinc.com>
+ <2023062024-sincere-tripod-95dc@gregkh>
+From:   Tao Zhang <quic_taozha@quicinc.com>
+In-Reply-To: <2023062024-sincere-tripod-95dc@gregkh>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: jprLVjHfoa5YbYnZDI546XedAnap4oVA
+X-Proofpoint-ORIG-GUID: jprLVjHfoa5YbYnZDI546XedAnap4oVA
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-20_05,2023-06-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ bulkscore=0 impostorscore=0 adultscore=0 spamscore=0 lowpriorityscore=0
+ mlxscore=0 phishscore=0 suspectscore=0 mlxlogscore=999 clxscore=1015
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306200075
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Only SYSFW has control of SA3UL power.
-From SYSFW 08.04.00.002, for security reasons, device ID for power
-management of SA3UL has been removed.
 
-"power-domains" property in crypto node tries to access
-the SA3UL, for which it gets NACK and hence, SA3UL driver doesn't
-probe properly.
+On 6/20/2023 3:37 PM, Greg Kroah-Hartman wrote:
+> On Tue, Jun 20, 2023 at 03:32:37PM +0800, Tao Zhang wrote:
+>> Add the nodes to set value for DSB edge control and DSB edge
+>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
+>> resgisters to configure edge control. DSB edge detection control
+>> 00: Rising edge detection
+>> 01: Falling edge detection
+>> 10: Rising and falling edge detection (toggle detection)
+>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
+>> configure mask. Eight 32 bit registers providing DSB interface
+>> edge detection mask control.
+>>
+>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>> ---
+>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
+>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 143 ++++++++++++++++++++-
+>>   drivers/hwtracing/coresight/coresight-tpdm.h       |  22 ++++
+>>   3 files changed, 196 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> index 2a82cd0..34189e4a 100644
+>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>> @@ -60,3 +60,35 @@ Description:
+>>   		Bit[3] : Set to 0 for low performance mode.
+>>   				 Set to 1 for high performance mode.
+>>   		Bit[4:8] : Select byte lane for high performance mode.
+>> +
+>> +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
+>> +Date:		March 2023
+>> +KernelVersion	6.5
+>> +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
+>> +Description:
+>> +		Read/Write a set of the edge control registers of the DSB
+>> +		in TPDM.
+>> +
+>> +		Expected format is the following:
+>> +		<integer1> <integer2> <integer3>
+> sysfs is "one value", not 3.  Please never have to parse a sysfs file.
 
-Fixes: 8af893654c02 ("arm64: dts: ti: k3-am62-main: Enable crypto accelerator")
+Do you mean sysfs file can only accept "one value"?
 
-Signed-off-by: Kamlesh Gurudasani <kamlesh@ti.com>
----
- arch/arm64/boot/dts/ti/k3-am62-main.dtsi | 1 -
- 1 file changed, 1 deletion(-)
+I see that more than one value are written to the sysfs file 
+"trigout_attach".
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-index b3e4857bbbe4..18a6e9ffaf58 100644
---- a/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am62-main.dtsi
-@@ -174,7 +174,6 @@ k3_reset: reset-controller {
- 	crypto: crypto@40900000 {
- 		compatible = "ti,am62-sa3ul";
- 		reg = <0x00 0x40900000 0x00 0x1200>;
--		power-domains = <&k3_pds 70 TI_SCI_PD_SHARED>;
- 		#address-cells = <2>;
- 		#size-cells = <2>;
- 		ranges = <0x00 0x40900000 0x00 0x40900000 0x00 0x30000>;
+>
+>> +static ssize_t dsb_edge_ctrl_show(struct device *dev,
+>> +				       struct device_attribute *attr,
+>> +				       char *buf)
+>> +{
+>> +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>> +	ssize_t size = 0;
+>> +	unsigned long bytes;
+>> +	int i;
+>> +
+>> +	spin_lock(&drvdata->spinlock);
+>> +	for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
+>> +		bytes = sysfs_emit_at(buf, size,
+>> +				  "Index:0x%x Val:0x%x\n", i,
+> Again, no, one value, no "string" needed to parse anything.
 
--- 
-2.34.1
+I also see other sysfs files can be read more than one value in other 
+drivers.
 
+Is this "one value" limitation the usage rule of Linux sysfs system?
+
+Or am I misunderstanding what you mean?
+
+
+Best,
+
+Tao
+
+>
+> greg k-h
