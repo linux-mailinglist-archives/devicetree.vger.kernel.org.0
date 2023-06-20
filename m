@@ -2,73 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C20736A58
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F9C7736A5C
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:07:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231535AbjFTLHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 07:07:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43434 "EHLO
+        id S230422AbjFTLH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 07:07:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232086AbjFTLHJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:07:09 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5978A19AA
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:06:42 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-307d20548adso3544920f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:06:42 -0700 (PDT)
+        with ESMTP id S231282AbjFTLHz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:07:55 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A5001BC8
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:07:32 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-311275efaf8so3133493f8f.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:07:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687259192; x=1689851192;
+        d=linaro.org; s=google; t=1687259251; x=1689851251;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=KT1ofLh67QbHzizNPx+KKb1VFMOfDe7sYVySqlC78CE=;
-        b=vvm0o8KzU8OoT0ntmU/pUfSjvvC49nx3S7FTzzzPJlvAsWtAy6C6brLF7Fj8PxM9Vm
-         iGC8sMJ6tPeDfy0IDEWUsiphrnvQA8IhuYzbZX1MbbiyWQ1n/sZ+wlaH+H3tmnb/c7WG
-         pJIMNsJt3IGpTFv66jR2x9SerfmU5dZ3LUWwZf2Msd0woFy6XDpNLwqU/LsrJFUcx5S8
-         iyBUv0b7tRkFhw4IUxKEAly8O1hMCTXgp6CFW4hgfNYjDpcSvVlqL+KPeqm+xBPkXQlJ
-         NkBOYSx9XUg48T5aVY2n3+TPRbIrwYE61DNNYSt5HeoqTIlQuBVHsLNYBqUSaUfdQYEk
-         BTbQ==
+        bh=31B9pqB8vRnug10MaF2Io91zkmp6nn8VslLqz0FB/Tg=;
+        b=snYY4bMApZkjDb6gqrpEpmVJAf6+HpUxcO7AyM9Fb3VDcM0a/mSdpO6wDiFuJ+TZzw
+         3hTsgN9VnEEglKv5xbyrCSQ8io7vKI4tMLkD38U1Gf9Ir1RrACAI+z/oltL5TMb57hBC
+         WQOyooFa/b1og6syieWp8znlW1EG61eJx0ydWAOOxq2OSmnxqWGDNy0iTsgz6jxOvXsx
+         v7cUiJVK9dA6w2XoZtyDr6aFg9f5ve+kghyUNHZ3KHJxsXMbHPB+Apu/UlYmrsoySbX8
+         whMJP8q4a+mxpP5y/7PmU4BFCveLx3ek5rWKrvdn9M1vJWeyMSq3Rmaj1FVShIVMBypr
+         tplw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687259192; x=1689851192;
+        d=1e100.net; s=20221208; t=1687259251; x=1689851251;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=KT1ofLh67QbHzizNPx+KKb1VFMOfDe7sYVySqlC78CE=;
-        b=k1Js7sIfWpU5wByBRTmFUjya5bGKhyU5zmls53gU1NhkXiCQ/Et0JIRWaa4JFumXSZ
-         iaVdQ4kkkkC9x1uj0GE0U/vJDLgRKzpBnXp5eGKD0/8O8LDi9oTkBYREGW1Xq4zah7ZZ
-         53XHNhypmAm87mylxtNOVzIvicvwhcjnHbLETtUpV3qi+SZAe6Zt+ey2KfT97txjha3M
-         Q6i0i5LP6Wfq7JMttzEilqOh8Y60POFIeI6XgcrolaHKtyqSo578De7SA5fD9WG5rHsl
-         xJEyifrhQhIeqR//YruFxfynYeANknKzJV/TM7NhqZTkGtpCCbGxgfoosIjP+amsGquv
-         Pifg==
-X-Gm-Message-State: AC+VfDwuXyOu/tQNsO+2+5MPWhTJRFMPWiis+3pN+eb4fgmgUFNVcibA
-        SgtfA1Q/QvZnNJlSAvfoKnA+PQ==
-X-Google-Smtp-Source: ACHHUZ4duUXd2dKsPPFa5YwcAu5daqLG6JvhFde9VZTF4QDI938552Au7e9Zc7cCpSzLkMqrSxXzUg==
-X-Received: by 2002:a5d:4fc1:0:b0:30f:c1ab:a039 with SMTP id h1-20020a5d4fc1000000b0030fc1aba039mr7735138wrw.40.1687259192356;
-        Tue, 20 Jun 2023 04:06:32 -0700 (PDT)
+        bh=31B9pqB8vRnug10MaF2Io91zkmp6nn8VslLqz0FB/Tg=;
+        b=hzEAFo4J6xroz34eyNWsHDHPxmaIBxss2gKfgPxeg8wEsZGo1prz8BzoCSooOFq8sk
+         CH0KJak76upW6SLIum5K90wXEcsX3jjXYvbNTSksbV0VQ/VfTO0c6UAige31+YK/UmPr
+         FFECCXPRekoGhkg1vLdAj3Z5szWKmk98qIBBWEmNxfvyqJeZlvugUe9fQLf9+SjffK6L
+         QVKgNx1xDWzNBkFi9fCBYvtDKf/jOipRmnzuE1E9EkLb6o3ESDiiBuKZr2qmHvmi0gkj
+         5WCZ7g64OJwHkpMBWpVL+Xh2SCUcDUXVWwgVrHpUzRe9nxT1VYuZI+Ptd8Q7Dm8K3KQd
+         FZcQ==
+X-Gm-Message-State: AC+VfDxjtT6mXbrpE5oOGTVXWZGpNe0/s/bw73x+HvF6ss3SUag2qsdS
+        JOGyk73a91gkbtvM0IAuhR3DSIod/x9aO2RR3RY=
+X-Google-Smtp-Source: ACHHUZ7W3gnSjeAx+t65v+uU3ts3GPCpdYcjg54dllXHR7QqpGoiBZs18uEf2cVlxBsS5Gl4fADUAw==
+X-Received: by 2002:a5d:6441:0:b0:30a:a478:f559 with SMTP id d1-20020a5d6441000000b0030aa478f559mr8971908wrw.2.1687259251000;
+        Tue, 20 Jun 2023 04:07:31 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id o16-20020a5d6850000000b003047ae72b14sm1736958wrw.82.2023.06.20.04.06.30
+        by smtp.gmail.com with ESMTPSA id p7-20020adff207000000b00307acec258esm1799074wro.3.2023.06.20.04.07.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 04:06:31 -0700 (PDT)
-Message-ID: <ed6f9ab8-9c4e-ec9f-efb7-81974d75f074@linaro.org>
-Date:   Tue, 20 Jun 2023 13:06:29 +0200
+        Tue, 20 Jun 2023 04:07:30 -0700 (PDT)
+Message-ID: <eb18f90f-df40-ed01-b080-57ba48ac957e@linaro.org>
+Date:   Tue, 20 Jun 2023 13:07:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 2/4] dt-bindings: clock: Add Intel Agilex5 clocks and
- resets
+Subject: Re: [PATCH v4] dt-bindings: clock: versal: Add versal-net compatible
+ string
 Content-Language: en-US
-To:     wen.ping.teh@intel.com
-Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, dinguyen@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
-        netdev@vger.kernel.org, niravkumar.l.rabara@intel.com,
-        p.zabel@pengutronix.de, richardcochran@gmail.com,
-        robh+dt@kernel.org, sboyd@kernel.org
-References: <8d5f38e6-2ca6-2c61-da29-1d4d2a3df569@linaro.org>
- <20230620103930.2451721-1-wen.ping.teh@intel.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>,
+        devicetree@vger.kernel.org
+Cc:     git@amd.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-clk@vger.kernel.org
+References: <20230620110137.5701-1-shubhrajyoti.datta@amd.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230620103930.2451721-1-wen.ping.teh@intel.com>
+In-Reply-To: <20230620110137.5701-1-shubhrajyoti.datta@amd.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -81,86 +77,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 12:39, wen.ping.teh@intel.com wrote:
->>
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: intel,agilex5-clkmgr
->>
->>
->> Why "clkmgr", not "clk"? You did not call it Clock manager anywhere in
->> the description or title.
->>
+On 20/06/2023 13:01, Shubhrajyoti Datta wrote:
+> Add dt-binding documentation for Versal NET platforms.
+> Versal Net is a new AMD/Xilinx  SoC.
 > 
-> The register in Agilex5 handling the clock is named clock_mgr.
-> Previous IntelSocFPGA, Agilex and Stratix10, are also named clkmgr.
+> The SoC and its architecture is based on the Versal ACAP device.
+> The Versal Net  device includes more security features in the
+> platform management controller (PMC) and increases the number of
+> CPUs in the application processing unit (APU) and the real-time
+> processing unit (RPU).
+> 
+> Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
+> Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-So use it in description.
 
-> 
->>> +
->>> +  '#clock-cells':
->>> +    const: 1
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +  - '#clock-cells'
->>
->> Keep the same order as in properties:
->>
-> 
-> Will update in V2 patch.
-> 
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  # Clock controller node:
->>> +  - |
->>> +    clkmgr: clock-controller@10d10000 {
->>> +      compatible = "intel,agilex5-clkmgr";
->>> +      reg = <0x10d10000 0x1000>;
->>> +      #clock-cells = <1>;
->>> +    };
->>> +...
->>> diff --git a/include/dt-bindings/clock/agilex5-clock.h b/include/dt-bindings/clock/agilex5-clock.h
->>> new file mode 100644
->>> index 000000000000..4505b352cd83
->>> --- /dev/null
->>> +++ b/include/dt-bindings/clock/agilex5-clock.h
->>
->> Filename the same as binding. Missing vendor prefix, entirely different
->> device name.
->>
-> 
-> Will change filename to intel,agilex5-clock.h in V2.
-
-Read the comment - same as binding. You did not call binding that way...
-unless you rename the binding.
-
->>
->>> +
->>> +#endif	/* __AGILEX5_CLOCK_H */
->>> diff --git a/include/dt-bindings/reset/altr,rst-mgr-agilex5.h b/include/dt-bindings/reset/altr,rst-mgr-agilex5.h
->>> new file mode 100644
->>> index 000000000000..81e5e8c89893
->>> --- /dev/null
->>> +++ b/include/dt-bindings/reset/altr,rst-mgr-agilex5.h
->>
->> Same filename as binding.
->>
->> But why do you need this file? Your device is not a reset controller.
-> 
-> Because Agilex5 device tree uses the reset definition from this file.
-
-That's not the correct reason. The binding header has nothing to do with
-this device. You miss another patch adding support for your device
-(compatible) with this header.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
