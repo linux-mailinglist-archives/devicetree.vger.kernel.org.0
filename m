@@ -2,74 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B615A736D5F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 15:29:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ED36736D88
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 15:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232531AbjFTN36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 09:29:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33902 "EHLO
+        id S231974AbjFTNlP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 09:41:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233059AbjFTN3x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 09:29:53 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5676BB4
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:29:52 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f8f3786f20so55105835e9.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:29:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687267791; x=1689859791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=gWrMoQPOsfdbXahuo0wOAVZIQAu1IlrQkW9ZVz4aRA0=;
-        b=glprJFDNQbXHT0agNC/POBD/5HM2VqnSceAfS7P3A+GNFxjOkUcs7S5r90SL+idNkq
-         HoZJHsS4JP5YW674u0jp1idJ5SpXZI0GwD0EbFArunUFErYsO2k3JT91FaP04mhSUWMd
-         ArOAFfVA7tX3Bq85ynqesYRH9Jc674CxRO6WxtF8r26Gkla+HyzbopzzhhnFqFg0tzqR
-         W/wwCTYPsxfpgUC2lTJ48WHNnuO+g59oxKwf3yy37jx+BztGpdKaYtsX0gu9IlycgkUx
-         X5nt1OOxJhI2wvXGjgtk5y6EwaMWRRw/hn8DZFytfvOSuds0POU6grHpjr8NiOSwA9nU
-         b2wQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687267791; x=1689859791;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gWrMoQPOsfdbXahuo0wOAVZIQAu1IlrQkW9ZVz4aRA0=;
-        b=QYo6V45C/HW7tOQmFDjOLIwke6aA6oWCMYmWncGdDlm0cC3ibkjbMesXdW4+5d63qy
-         PDPYdL4Hvk1W4v2RUWoS0hLcyW7Q4j8cBaBUFk716AHMZPAdx1rDEZajw1p0XGxLbQPK
-         4Oy2mokAmfcSsNCYmLYa4A5GZ1M2in6z/qFqFhLDE+G2iVHewCcN5GvSHfZ8vXtv9ZZl
-         dbOpFG28FT1UqDP7igdff37iqsQr+YXbm2YUZcJWhePoaIoJXCY4cjxVp/BsrsL1hhG0
-         ek5mUWlAwiHLyoLgojOsbKTsywuSWY5nMLJKwFgR/dkn0Z/lVHh4SHWYRyT+uNj/y/q+
-         yUAg==
-X-Gm-Message-State: AC+VfDyblDcfp+ZogF5cTEVmX91julxajLo/x73umWleeSIfODytenYT
-        qO/cMo6Uc1nwrw6jAI3+/OUlRw==
-X-Google-Smtp-Source: ACHHUZ5BrKxZy+zUHtFd9PrqBn9xqMrRAkTqMlRoZKdsCHfV0+f7w3W6uHfoVlYLQJoZrngZ+kXFRg==
-X-Received: by 2002:a5d:4390:0:b0:311:1f6d:ddc5 with SMTP id i16-20020a5d4390000000b003111f6dddc5mr9727569wrq.24.1687267790790;
-        Tue, 20 Jun 2023 06:29:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id z5-20020adfd0c5000000b0030796e103a1sm2068294wrh.5.2023.06.20.06.29.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 06:29:50 -0700 (PDT)
-Message-ID: <027a0d86-704e-32e3-63eb-ee610daf194e@linaro.org>
-Date:   Tue, 20 Jun 2023 15:29:48 +0200
+        with ESMTP id S229966AbjFTNlO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 09:41:14 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 49E42E7D;
+        Tue, 20 Jun 2023 06:41:12 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 5AA7B1063;
+        Tue, 20 Jun 2023 06:41:56 -0700 (PDT)
+Received: from [10.1.197.1] (ewhatever.cambridge.arm.com [10.1.197.1])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2EBD63F71E;
+        Tue, 20 Jun 2023 06:41:10 -0700 (PDT)
+Message-ID: <e82385f1-de55-4c70-5c5c-35b93a5b2488@arm.com>
+Date:   Tue, 20 Jun 2023 14:41:08 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7 1/2] dt-bindings: iio: adc: add max14001
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 09/13] Add nodes for dsb edge control
 Content-Language: en-US
-To:     Kim Seer Paller <kimseer.paller@analog.com>
-Cc:     jic23@kernel.org, lars@metafoo.de, lgirdwood@gmail.com,
-        broonie@kernel.org, Michael.Hennerich@analog.com,
-        andy.shevchenko@gmail.com, robh@kernel.org, conor+dt@kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230620132641.256307-1-kimseer.paller@analog.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230620132641.256307-1-kimseer.paller@analog.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+To:     Tao Zhang <quic_taozha@quicinc.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        Mike Leach <mike.leach@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jinlong Mao <quic_jinlmao@quicinc.com>,
+        Leo Yan <leo.yan@linaro.org>, coresight@lists.linaro.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Tingwei Zhang <quic_tingweiz@quicinc.com>,
+        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
+        Trilok Soni <quic_tsoni@quicinc.com>,
+        Hao Zhang <quic_hazha@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, andersson@kernel.org
+References: <1687246361-23607-1-git-send-email-quic_taozha@quicinc.com>
+ <1687246361-23607-10-git-send-email-quic_taozha@quicinc.com>
+ <2023062024-sincere-tripod-95dc@gregkh>
+ <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,29 +61,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 15:26, Kim Seer Paller wrote:
-> The MAX14001 is a configurable, isolated 10-bit ADC for multi-range
-> binary inputs.
+On 20/06/2023 09:31, Tao Zhang wrote:
 > 
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> ---
-> V6 -> V7: No changes.
+> On 6/20/2023 3:37 PM, Greg Kroah-Hartman wrote:
+>> On Tue, Jun 20, 2023 at 03:32:37PM +0800, Tao Zhang wrote:
+>>> Add the nodes to set value for DSB edge control and DSB edge
+>>> control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
+>>> resgisters to configure edge control. DSB edge detection control
+>>> 00: Rising edge detection
+>>> 01: Falling edge detection
+>>> 10: Rising and falling edge detection (toggle detection)
+>>> And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
+>>> configure mask. Eight 32 bit registers providing DSB interface
+>>> edge detection mask control.
+>>>
+>>> Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
+>>> ---
+>>>   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
+>>>   drivers/hwtracing/coresight/coresight-tpdm.c       | 143 
+>>> ++++++++++++++++++++-
+>>>   drivers/hwtracing/coresight/coresight-tpdm.h       |  22 ++++
+>>>   3 files changed, 196 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git 
+>>> a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm 
+>>> b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>> index 2a82cd0..34189e4a 100644
+>>> --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>> +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
+>>> @@ -60,3 +60,35 @@ Description:
+>>>           Bit[3] : Set to 0 for low performance mode.
+>>>                    Set to 1 for high performance mode.
+>>>           Bit[4:8] : Select byte lane for high performance mode.
+>>> +
+>>> +What:        /sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
+>>> +Date:        March 2023
+>>> +KernelVersion    6.5
+>>> +Contact:    Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang 
+>>> (QUIC) <quic_taozha@quicinc.com>
+>>> +Description:
+>>> +        Read/Write a set of the edge control registers of the DSB
+>>> +        in TPDM.
+>>> +
+>>> +        Expected format is the following:
+>>> +        <integer1> <integer2> <integer3>
+>> sysfs is "one value", not 3.  Please never have to parse a sysfs file.
+> 
+> Do you mean sysfs file can only accept "one value"?
+> 
+> I see that more than one value are written to the sysfs file 
+> "trigout_attach".
+> 
+>>
+>>> +static ssize_t dsb_edge_ctrl_show(struct device *dev,
+>>> +                       struct device_attribute *attr,
+>>> +                       char *buf)
+>>> +{
+>>> +    struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
+>>> +    ssize_t size = 0;
+>>> +    unsigned long bytes;
+>>> +    int i;
+>>> +
+>>> +    spin_lock(&drvdata->spinlock);
+>>> +    for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
+>>> +        bytes = sysfs_emit_at(buf, size,
+>>> +                  "Index:0x%x Val:0x%x\n", i,
+>> Again, no, one value, no "string" needed to parse anything.
+> 
+> I also see other sysfs files can be read more than one value in other 
+> drivers.
+> 
+> Is this "one value" limitation the usage rule of Linux sysfs system?
+> 
+> Or am I misunderstanding what you mean?
 
-This is a friendly reminder during the review process.
+Please fix the other sysfs tunables in the following patches.
 
-It looks like you received a tag and forgot to add it.
+Kind regards
+Suzuki
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-If a tag was not added on purpose, please state why and what changed.\
-
-
-Best regards,
-Krzysztof
 
