@@ -2,162 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F11277370A3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE2717370BB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232704AbjFTPhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 11:37:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59198 "EHLO
+        id S229849AbjFTPmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 11:42:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33162 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232030AbjFTPhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:37:53 -0400
-Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38FAFE65;
-        Tue, 20 Jun 2023 08:37:48 -0700 (PDT)
-Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-340be77ff6fso24070315ab.3;
-        Tue, 20 Jun 2023 08:37:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687275467; x=1689867467;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0sJbkvA8psBZvCbiZz79+0aLmkyZYgwDhRQ2jJ0L/Xc=;
-        b=lnwDZyYysglr2h6cqSfEq5bjL0ZWjTl1Aipe3FGrexZDt6L5C9tVTLNV8rvURtC8ie
-         3UCK2Q7pGs8DLUuFX7kG2FUPQWKmbrgSgfM1F9ZHE71eBTXk7qF0S5SHn6sqVgZZr8M1
-         opnXF3scTgvTZvklM/Uz7o38jScY/1LjRyh1FRndegh1INiEoVerlyWu39JY/HT7s3hD
-         vtHo2sh+g9malZgLg6wNL44lfvO3tnLebFxnN34gP3h3lfhjSJFS0IPIts2gvBk5xPwg
-         SEGFf8p5TSbhzfSempC6p+v/Rj7IsETGGxXjFGEQUJT/RKVqwXlUKz5cGeXDQimbA6ul
-         O7Rw==
-X-Gm-Message-State: AC+VfDxiebX1Is/tHptBm0K9+/j1AqQ5ElkQ6Av6ZULlc/n6JlNWOwDD
-        oVZIsUNM2FKv7IGrUNqTJA==
-X-Google-Smtp-Source: ACHHUZ5u+D4bbGxsP6bC+gdajHPXjGwM+AGf0+Hh4eLKoobenWPCJtpJM8Pm4EeQsdQZBZHPQ2GHEg==
-X-Received: by 2002:a92:a30e:0:b0:33d:1735:fd79 with SMTP id a14-20020a92a30e000000b0033d1735fd79mr8830286ili.20.1687275467410;
-        Tue, 20 Jun 2023 08:37:47 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id n13-20020a92d9cd000000b0033b2a123254sm656797ilq.61.2023.06.20.08.37.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jun 2023 08:37:46 -0700 (PDT)
-Received: (nullmailer pid 3641003 invoked by uid 1000);
-        Tue, 20 Jun 2023 15:37:43 -0000
-Date:   Tue, 20 Jun 2023 09:37:43 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     andrzej.hajda@intel.com, neil.armstrong@linaro.org,
-        robert.foss@linaro.org, Laurent.pinchart@ideasonboard.com,
-        jonas@kwiboo.se, jernej.skrabec@gmail.com, airlied@gmail.com,
-        daniel@ffwll.ch, krzysztof.kozlowski+dt@linaro.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        vkoul@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        oliver.brown@nxp.com, Sandor.yu@nxp.com, linux-imx@nxp.com,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v6 2/8] dt-bindings: display: bridge: Add Cadence
- MHDP8501 HDMI and DP
-Message-ID: <20230620153743.GA3637514-robh@kernel.org>
-References: <cover.1686729444.git.Sandor.yu@nxp.com>
- <8687f2221299b120e12f29fdccf264e120227bd7.1686729444.git.Sandor.yu@nxp.com>
- <3439354.PYKUYFuaPT@steina-w>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3439354.PYKUYFuaPT@steina-w>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S229638AbjFTPmT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:42:19 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B415197;
+        Tue, 20 Jun 2023 08:42:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=XZoVwu4hIqDQzHqV+Gj1W6GnEQAv2Ed0+LCbMmaFexA=; b=H6yl6MkDNEPSxcb2QhHCiUtO7F
+        xyzSZ59xIWcpJGbkIgbYWMWtaLDYjneHOFyAHW/kHQ/OzBHrZaxh/rICBW9Ngi7dMq6ugnH+TCPNA
+        3/fIYNMwWI9E+ICf0XoHRbbgwIcNLCDV1y9c7+GdG9OU/V2QmpkTpYeLW306S3pE+FlA=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:51064 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qBdUg-000117-Et; Tue, 20 Jun 2023 11:42:10 -0400
+Date:   Tue, 20 Jun 2023 11:42:09 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org
+Message-Id: <20230620114209.fb5272ad8cf5c5e2895d68b1@hugovil.com>
+In-Reply-To: <CAHp75VfGm6=ULW6kMjsg2OgB1z1T0YdmzvCTa3DFXXX-q_RnfA@mail.gmail.com>
+References: <20230602152626.284324-1-hugo@hugovil.com>
+        <20230602152626.284324-6-hugo@hugovil.com>
+        <2023060454-cotton-paramount-e33e@gregkh>
+        <CAHp75Ve6W-hcB4YAeKukgv-uOEzBY7Tx5Sdf3doTRYKzNPcVGw@mail.gmail.com>
+        <20230604134459.3c3844012e9714fa2a61e642@hugovil.com>
+        <CAHp75VeWFPBmsD8zsSAaQGNNXtfgLtQuM9AMGfLPk-6p0VW=Pg@mail.gmail.com>
+        <20230620100846.d58436efc061fb91074fa7e5@hugovil.com>
+        <CAHp75VcWSVgA8LFLo0-b5TfKWdHb2GfLpXV-V3PZvthTv1Xc4A@mail.gmail.com>
+        <20230620113312.882d8f0c7d5603b1c93f33fb@hugovil.com>
+        <CAHp75VfGm6=ULW6kMjsg2OgB1z1T0YdmzvCTa3DFXXX-q_RnfA@mail.gmail.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
+ configuration
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 11:31:43AM +0200, Alexander Stein wrote:
-> Hi Sandor,
-> 
-> Am Donnerstag, 15. Juni 2023, 03:38:12 CEST schrieb Sandor Yu:
-> > Add bindings for Cadence MHDP8501 DisplayPort and HDMI driver.
-> > 
-> > Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> > ---
-> >  .../display/bridge/cdns,mhdp8501.yaml         | 105 ++++++++++++++++++
-> >  1 file changed, 105 insertions(+)
-> >  create mode 100644
-> > Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
-> > 
-> > diff --git
-> > a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
-> > b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml new
-> > file mode 100644
-> > index 000000000000..a54756815e6f
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8501.yaml
-> > @@ -0,0 +1,105 @@
-> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/display/bridge/cdns,mhdp8501.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Cadence MHDP8501 Displayport bridge
-> > +
-> > +maintainers:
-> > +  - Sandor Yu <Sandor.yu@nxp.com>
-> > +
-> > +description:
-> > +  The Cadence MHDP8501 Displayport/HDMI TX interface.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - cdns,mhdp8501-dp
-> > +      - cdns,mhdp8501-hdmi
-> > +      - fsl,imx8mq-mhdp8501-dp
-> > +      - fsl,imx8mq-mhdp8501-hdmi
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  clocks:
-> > +    maxItems: 1
-> > +    description: MHDP8501 DP/HDMI APB clock.
-> > +
-> > +  phys:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    items:
-> > +      - description: Hotplug cable plugin.
-> > +      - description: Hotplug cable plugout.
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: plug_in
-> > +      - const: plug_out
-> > +
-> > +  ports:
-> > +    $ref: /schemas/graph.yaml#/properties/ports
-> > +
-> > +    properties:
-> > +      port@0:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Input port from display controller output.
-> > +      port@1:
-> > +        $ref: /schemas/graph.yaml#/properties/port
-> > +        description:
-> > +          Output port to DP/HDMI connector.
-> > +
-> > +    required:
-> > +      - port@0
-> > +      - port@1
-> 
-> You mark these ports as required, but apparently the drivers do not use them, 
-> AFAICT. E.g. missing port@1 is not resulting in an error, at lease for HDMI 
-> one.
+On Tue, 20 Jun 2023 18:35:48 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-A connector node should be required whether a particular OS requires it 
-or not. The bindings without predate defining a connector node.
+> On Tue, Jun 20, 2023 at 6:33 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > On Tue, 20 Jun 2023 18:18:12 +0300
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > On Tue, Jun 20, 2023 at 5:08 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > > > On Sun, 4 Jun 2023 22:31:04 +0300
+> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> 
+> ...
+> 
+> > > > did you have a chance to look at V8 (sent two weks ago) which fixed all
+> > > > of what we discussed?
+> > >
+> > > The patch 6 already has my tag, anything specific you want me to do?
+> >
+> > Hi Andy,
+> > I forgot to remove your "Reviewed-by: Andy..." tag before sending V8
+> > since there were some changes involved in patch 6 and I wanted you to
+> > review them. Can you confirm if the changes are correct?
+> >
+> > I also added a new patch "remove obsolete out_thread label". It has no
+> > real impact on the code generation itself, but maybe you can review and
+> > confirm if tags are ok or not, based on commit message and also
+> > additional commit message.
+> 
+> Both are fine to me.
 
-Rob
+Hi,
+Ok, thank you for reviewing this.
+
+I guess now we are good to go with this series if the stable tags and
+patches order are good after Greg's review?
+
+Hugo.
