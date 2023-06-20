@@ -2,154 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 39C97737105
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 17:55:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52689737149
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 18:16:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232856AbjFTPzw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 11:55:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
+        id S232936AbjFTQQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 12:16:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjFTPzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 11:55:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 447F0E6E;
-        Tue, 20 Jun 2023 08:55:50 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C2226612FF;
-        Tue, 20 Jun 2023 15:55:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2AFB9C433C8;
-        Tue, 20 Jun 2023 15:55:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687276549;
-        bh=ZKPHxEnSu+t4Ow41QVyBNgZ7aWHN6jZsT83hXkppoig=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kkZSjN+RB5K4RrVgDbyYdR0uGWYdE+0CEqmZd3AFdHO0rOZyJYWI1w5rKZOqsMS+r
-         jPfpBGLLGg6plRC5o8b0Y7C48hXJkXtXyHyggalNHYeIg9D/EHEDcovKPliZ3Y1L2W
-         ozq9z7ert0fEM6zU4jhrBxC/ctp9GKrMMeLbebWTQZ6MmOt0spZm6bi1XWDhRMDODj
-         vZi613LD4+xdZNlIowKvPWteH6STHkGnCylKpMPSreNNeOfqQkz3CW9eVVcVkwwfu9
-         iPiyxT0mGWaPf5cHmcYZJJCRVv6FXasjpLhrBldgpEktQOHB7vDgZLCCNO5d2jsf0e
-         BOBFZwzgh5DcA==
-Date:   Tue, 20 Jun 2023 08:59:02 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Linux regressions mailing list <regressions@lists.linux.dev>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        dt <devicetree@vger.kernel.org>,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] arm64: dts: qcom: sdm845-db845c: Move LVS regulator
- nodes up
-Message-ID: <20230620155902.clspxncyvpodixft@ripper>
-References: <20230602161246.1855448-1-amit.pundir@linaro.org>
- <358c69ad-fa8a-7386-fe75-92369883ee48@leemhuis.info>
- <0f6c9dcb-b7f6-fff9-6bed-f4585ea8e487@linaro.org>
- <CAD=FV=Xt2KYGY15+f+nHxkzKnwhHzw1A7=o+5kgCDWvHDv0DNg@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+        with ESMTP id S230020AbjFTQQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 12:16:56 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B40695;
+        Tue, 20 Jun 2023 09:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=AeL+ePUG2U+gtbaPVRNCeIftvITy04qZEoWPXivPMGM=; b=gSvQNHy5jmJwaB8fkE8RCWcVzk
+        awSwFgQ72MtyCwUP4Dt2Rs+U5WnsTVmsOT6G9l2RkOoIIRZO4rtnEuCKa3EhPMJ3GrVLAWZp/pasI
+        xk8m3QGZP1vUmPW1ovtBts1TiQchVrP/l2gkZjUpwaoUipbyRHWM8eroglEx3wWmT4Vk=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:49610 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qBe29-0001IH-PZ; Tue, 20 Jun 2023 12:16:46 -0400
+Date:   Tue, 20 Jun 2023 12:16:45 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Greg KH <gregkh@linuxfoundation.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        jirislaby@kernel.org, jringle@gridpoint.com,
+        tomasz.mon@camlingroup.com, l.perczak@camlintechnologies.com,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        stable@vger.kernel.org
+Message-Id: <20230620121645.512b31a872306b43a276bbac@hugovil.com>
+In-Reply-To: <CAHp75VcieuYqxWrO7rknx2ROYz=rnWnKV6s9eXZ5Zd1BKc6YMg@mail.gmail.com>
+References: <20230602152626.284324-1-hugo@hugovil.com>
+        <20230602152626.284324-6-hugo@hugovil.com>
+        <2023060454-cotton-paramount-e33e@gregkh>
+        <CAHp75Ve6W-hcB4YAeKukgv-uOEzBY7Tx5Sdf3doTRYKzNPcVGw@mail.gmail.com>
+        <20230604134459.3c3844012e9714fa2a61e642@hugovil.com>
+        <CAHp75VeWFPBmsD8zsSAaQGNNXtfgLtQuM9AMGfLPk-6p0VW=Pg@mail.gmail.com>
+        <20230620100846.d58436efc061fb91074fa7e5@hugovil.com>
+        <CAHp75VcWSVgA8LFLo0-b5TfKWdHb2GfLpXV-V3PZvthTv1Xc4A@mail.gmail.com>
+        <20230620113312.882d8f0c7d5603b1c93f33fb@hugovil.com>
+        <CAHp75VfGm6=ULW6kMjsg2OgB1z1T0YdmzvCTa3DFXXX-q_RnfA@mail.gmail.com>
+        <20230620114209.fb5272ad8cf5c5e2895d68b1@hugovil.com>
+        <CAHp75VcieuYqxWrO7rknx2ROYz=rnWnKV6s9eXZ5Zd1BKc6YMg@mail.gmail.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=Xt2KYGY15+f+nHxkzKnwhHzw1A7=o+5kgCDWvHDv0DNg@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v7 5/9] serial: sc16is7xx: fix regression with GPIO
+ configuration
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 14, 2023 at 12:44:15PM -0700, Doug Anderson wrote:
-> Hi,
+On Tue, 20 Jun 2023 18:45:51 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+
+> On Tue, Jun 20, 2023 at 6:42 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > On Tue, 20 Jun 2023 18:35:48 +0300
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > On Tue, Jun 20, 2023 at 6:33 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > > > On Tue, 20 Jun 2023 18:18:12 +0300
+> > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+> > > > > On Tue, Jun 20, 2023 at 5:08 PM Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > > > > > On Sun, 4 Jun 2023 22:31:04 +0300
+> > > > > > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 > 
-> On Wed, Jun 14, 2023 at 11:47 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
+> ...
+> 
+> > > > > > did you have a chance to look at V8 (sent two weks ago) which fixed all
+> > > > > > of what we discussed?
+> > > > >
+> > > > > The patch 6 already has my tag, anything specific you want me to do?
+> > > >
+> > > > Hi Andy,
+> > > > I forgot to remove your "Reviewed-by: Andy..." tag before sending V8
+> > > > since there were some changes involved in patch 6 and I wanted you to
+> > > > review them. Can you confirm if the changes are correct?
+> > > >
+> > > > I also added a new patch "remove obsolete out_thread label". It has no
+> > > > real impact on the code generation itself, but maybe you can review and
+> > > > confirm if tags are ok or not, based on commit message and also
+> > > > additional commit message.
+> > >
+> > > Both are fine to me.
 > >
-> > On 14/06/2023 20:18, Linux regression tracking (Thorsten Leemhuis) wrote:
-> > > On 02.06.23 18:12, Amit Pundir wrote:
-> > >> Move lvs1 and lvs2 regulator nodes up in the rpmh-regulators
-> > >> list to workaround a boot regression uncovered by the upstream
-> > >> commit ad44ac082fdf ("regulator: qcom-rpmh: Revert "regulator:
-> > >> qcom-rpmh: Use PROBE_FORCE_SYNCHRONOUS"").
-> > >>
-> > >> Without this fix DB845c fail to boot at times because one of the
-> > >> lvs1 or lvs2 regulators fail to turn ON in time.
-> > >
-> > > /me waves friendly
-> > >
-> > > FWIW, as it's not obvious: this...
-> > >
-> > >> Link: https://lore.kernel.org/all/CAMi1Hd1avQDcDQf137m2auz2znov4XL8YGrLZsw5edb-NtRJRw@mail.gmail.com/
-> > >
-> > > ...is a report about a regression. One that we could still solve before
-> > > 6.4 is out. One I'll likely will point Linus to, unless a fix comes into
-> > > sight.
-> > >
-> > > When I noticed the reluctant replies to this patch I earlier today asked
-> > > in the thread with the report what the plan forward was:
-> > > https://lore.kernel.org/all/CAD%3DFV%3DV-h4EUKHCM9UivsFHRsJPY5sAiwXV3a1hUX9DUMkkxdg@mail.gmail.com/
-> > >
-> > > Dough there replied:
-> > >
-> > > ```
-> > > Of the two proposals made (the revert vs. the reordering of the dts),
-> > > the reordering of the dts seems better. It only affects the one buggy
-> > > board (rather than preventing us to move to async probe for everyone)
-> > > and it also has a chance of actually fixing something (changing the
-> > > order that regulators probe in rpmh-regulator might legitimately work
-> > > around the problem). That being said, just like the revert the dts
-> > > reordering is still just papering over the problem and is fragile /
-> > > not guaranteed to work forever.
-> > > ```
-> > >
-> > > Papering over obviously is not good, but has anyone a better idea to fix
-> > > this? Or is "not fixing" for some reason an viable option here?
-> > >
+> > Hi,
+> > Ok, thank you for reviewing this.
 > >
-> > I understand there is a regression, although kernel is not mainline
-> > (hash df7443a96851 is unknown) and the only solutions were papering the
-> > problem. Reverting commit is a temporary workaround. Moving nodes in DTS
-> > is not acceptable because it hides actual problem and only solves this
-> > one particular observed problem, while actual issue is still there. It
-> > would be nice to be able to reproduce it on real mainline with normal
-> > operating system (not AOSP) - with ramdiks/without/whatever. So far no
-> > one did it, right?
+> > I guess now we are good to go with this series if the stable tags and
+> > patches order are good after Greg's review?
 > 
-> The worry I have about the revert here is that it will never be able
-> to be undone and that doesn't seem great long term. I'm all for a
-> temporary revert to fix a problem while the root cause is understood,
-> but in this case I have a hard time believing that we'll make more
-> progress towards a root cause once the revert lands. All the
-> investigation we've done so far seems to indicate that the revert only
-> fixes the problem by luck...
-> 
-> I completely agree that moving the nodes in the DTS is a hack and just
-> hides the problem. However, it also at least limits the workaround to
-> the one board showing the problem and doesn't mean we're stuck with
-> synchronous probe for rpmh-regulator for all eternity because nobody
-> can understand this timing issue on db845c.
-> 
+> Taking into account that we are at rc7, and even with Fixes tags in
+> your series I think Greg might take this after v6.5-0rc1 is out. It's
+> up to him how to proceed with that. Note, he usually has thousands of
+> patches in backlog, you might need to respin it after the above
+> mentioned rc1.
 
-I agree that we shouldn't hide this by reverting the regulator change.
+Ok, understood.
 
+Let's wait then.
 
-And as has been stated a few times already, the symptom indicates that
-we have a misconfigured system.
-
-Before accepting a patch just shuffling the bricks, I'd like to see some
-more analysis of what happens wrt the rpmh right before the timeout.
-Perhaps the landing team can assist here?
-
-Regards,
-Bjorn
+Thank you.
+Hugo.
