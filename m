@@ -2,64 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 223E3736209
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 05:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A68C736276
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 06:01:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229462AbjFTDKM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 19 Jun 2023 23:10:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52516 "EHLO
+        id S229471AbjFTEBz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 00:01:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230293AbjFTDKJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 23:10:09 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61050119;
-        Mon, 19 Jun 2023 20:10:03 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 1DB288109;
-        Tue, 20 Jun 2023 11:09:56 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 20 Jun
- 2023 11:09:56 +0800
-Received: from [192.168.120.43] (171.223.208.138) by EXMBX062.cuchost.com
- (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 20 Jun
- 2023 11:09:55 +0800
-Message-ID: <15eb4ffe-ea12-9a2c-ae9d-c34860384b60@starfivetech.com>
-Date:   Tue, 20 Jun 2023 11:09:52 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver
- strength cfg
-Content-Language: en-US
-From:   Guo Samin <samin.guo@starfivetech.com>
-To:     Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <netdev@vger.kernel.org>, Peter Geis <pgwipeout@gmail.com>,
-        Frank <Frank.Sae@motor-comm.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Eric Dumazet" <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S229462AbjFTEBy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 00:01:54 -0400
+Received: from mo-csw-fb.securemx.jp (mo-csw-fb1514.securemx.jp [210.130.202.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8046E1A7;
+        Mon, 19 Jun 2023 21:01:50 -0700 (PDT)
+Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1514) id 35K3HOOH027548; Tue, 20 Jun 2023 12:17:24 +0900
+Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 35K3GcAM002896; Tue, 20 Jun 2023 12:16:38 +0900
+X-Iguazu-Qid: 34trpHMSnXmTjlxbug
+X-Iguazu-QSIG: v=2; s=0; t=1687230997; q=34trpHMSnXmTjlxbug; m=VijdW/1VVpKTosARkiGIGWKaDbgPs1ppw5zTgecCyaQ=
+Received: from imx12-a.toshiba.co.jp ([38.106.60.135])
+        by relay.securemx.jp (mx-mr1511) id 35K3GZcJ025779
+        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 20 Jun 2023 12:16:35 +0900
+X-SA-MID: 2172042
+From:   Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        "Heiner Kallweit" <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-References: <20230526090502.29835-1-samin.guo@starfivetech.com>
- <20230526090502.29835-2-samin.guo@starfivetech.com>
- <20230526-glutinous-pristine-fed571235b80@spud>
- <1dbf113c-7592-68bd-6aaf-05ff1d8c538c@starfivetech.com>
-In-Reply-To: <1dbf113c-7592-68bd-6aaf-05ff1d8c538c@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX062.cuchost.com
- (172.16.6.62)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v6 0/5] Add Toshiba Visconti Video Input Interface driver
+Date:   Tue, 20 Jun 2023 12:11:06 +0900
+X-TSB-HOP2: ON
+Message-Id: <20230620031111.3776-1-yuji2.ishikawa@toshiba.co.jp>
+X-Mailer: git-send-email 2.17.1
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,195 +49,117 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series is the Video Input Interface driver
+for Toshiba's ARM SoC, Visconti[0].
+This provides DT binding documentation,
+device driver, documentation and MAINTAINER files.
 
-Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver strength cfg
-From: Guo Samin <samin.guo@starfivetech.com>
-to: Conor Dooley <conor@kernel.org>; Andrew Lunn <andrew@lunn.ch>
-data: 2023/5/29
+A visconti VIIF driver instance exposes
+1 media control device file and 3 video device files
+for a VIIF hardware.
+Detailed HW/SW are described in documentation directory.
+The VIIF hardware has CSI2 receiver,
+image signal processor and DMAC inside.
+The subdevice for image signal processor provides
+vendor specific V4L2 controls.
 
-> Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver strength cfg
-> From: Conor Dooley <conor@kernel.org>
-> to: Samin Guo <samin.guo@starfivetech.com>
-> data: 2023/5/27
-> 
->> On Fri, May 26, 2023 at 05:05:01PM +0800, Samin Guo wrote:
->>> The motorcomm phy (YT8531) supports the ability to adjust the drive
->>> strength of the rx_clk/rx_data, the value range of pad driver
->>> strength is 0 to 7.
->>>
->>> Signed-off-by: Samin Guo <samin.guo@starfivetech.com>
->>> ---
->>>  .../devicetree/bindings/net/motorcomm,yt8xxx.yaml    | 12 ++++++++++++
->>>  1 file changed, 12 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
->>> index 157e3bbcaf6f..29a1997a1577 100644
->>> --- a/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
->>> +++ b/Documentation/devicetree/bindings/net/motorcomm,yt8xxx.yaml
->>> @@ -52,6 +52,18 @@ properties:
->>>        for a timer.
->>>      type: boolean
->>>  
->>> +  motorcomm,rx-clk-driver-strength:
->>> +    description: drive strength of rx_clk pad.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
->>
->> I think you should use minimum & maximum instead of these listed out
->> enums.
-> 
-> Thanks Conor, This can be improved in the next version.
-> 
->  You have also had this comment since v1 & were reminded of it on
->> v2 by Krzysztof: "What do the numbers mean? What are the units? mA?"
->>
-> 
-> 
-> The good news is that we just got some data about units from Motorcomm. 
-> Maybe I can post the data show of the unit later after I get the complete data.
->
-
-Hi Andrew & Conor,
-
-Sorry, haven't updated in a while.
-I just got the detailed data of Driver Strength(DS) from Motorcomm , which applies to both rx_clk and rx_data.
-
-|----------------------|
-|     ds map table     |
-|----------------------|
-| DS(3b) | Current (mA)|
-|--------|-------------|
-|   000  |     1.20    |
-|   001  |     2.10    |
-|   010  |     2.70    |
-|   011  |     2.91    |
-|   100  |     3.11    |
-|   101  |     3.60    |
-|   110  |     3.97    |
-|   111  |     4.35    |
-|--------|-------------|
-
-Since these currents are not integer values and have no regularity, it is not very good to use in the drive/dts in my opinion.
-
-Therefore, I tend to continue to use DS(0-7) in dts/driver, and adding a description of the current value corresponding to DS in dt-bindings. 
-
-Like This:
-
-+  motorcomm,rx-clk-driver-strength:
-+    description: drive strength of rx_clk pad.
-+      |----------------------|
-+      | rx_clk ds map table  |
-+      |----------------------|
-+      | DS(3b) | Current (mA)|
-+      |   000  |     1.20    |
-+      |   001  |     2.10    |
-+      |   010  |     2.70    |
-+      |   011  |     2.91    |
-+      |   100  |     3.11    |
-+      |   101  |     3.60    |
-+      |   110  |     3.97    |
-+      |   111  |     4.35    |
-+      |--------|-------------|
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+    default: 3
-+
-+  motorcomm,rx-data-driver-strength:
-+    description: drive strength of rx_data/rx_ctl rgmii pad.
-+      |----------------------|
-+      | rx_data ds map table |
-+      |----------------------|
-+      | DS(3b) | Current (mA)|
-+      |   000  |     1.20    |
-+      |   001  |     2.10    |
-+      |   010  |     2.70    |
-+      |   011  |     2.91    |
-+      |   100  |     3.11    |
-+      |   101  |     3.60    |
-+      |   110  |     3.97    |
-+      |   111  |     4.35    |
-+      |--------|-------------|
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
-+    default: 3
-+
-
-
-Or use minimum & maximum instead of these listed out enums(Suggested by Conor)
-
-+  motorcomm,rx-clk-driver-strength:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 3
-+    minimum: 0
-+    maximum: 7
-+    description: drive strength of rx_clk pad.
-+      |----------------------|
-+      | rx_clk ds map table  |
-+      |----------------------|
-+      | DS(3b) | Current (mA)|
-+      |   000  |     1.20    |
-+      |   001  |     2.10    |
-+      |   010  |     2.70    |
-+      |   011  |     2.91    |
-+      |   100  |     3.11    |
-+      |   101  |     3.60    |
-+      |   110  |     3.97    |
-+      |   111  |     4.35    |
-+      |--------|-------------|
-+
-+  motorcomm,rx-data-driver-strength:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 3
-+    minimum: 0
-+    maximum: 7
-+    description: drive strength of rx_data/rx_ctl rgmii pad.
-+      |----------------------|
-+      | rx_data ds map table |
-+      |----------------------|
-+      | DS(3b) | Current (mA)|
-+      |   000  |     1.20    |
-+      |   001  |     2.10    |
-+      |   010  |     2.70    |
-+      |   011  |     2.91    |
-+      |   100  |     3.11    |
-+      |   101  |     3.60    |
-+      |   110  |     3.97    |
-+      |   111  |     4.35    |
-+      |--------|-------------|
-+
-
-
-Looking forward to your suggestions.
-
+The device driver depends on two other drivers under development;
+clock framework driver and IOMMU driver.
+Corresponding features will be added later.
 
 Best regards,
-Samin
+Yuji
 
-> 
-> 
->> This information should go into the binding, not sit in a thread on a
->> mailing list that noone will look at when trying to write a DT :(
->>
->> Thanks,
->> Conor.
->>
-> 
-> Yes，when we have the complete 'unit' data, it will be placed in DT.
-> 
-> Best regards,
-> Samin
->  
->>> +    default: 3
->>> +
->>> +  motorcomm,rx-data-driver-strength:
->>> +    description: drive strength of rx_data/rx_ctl rgmii pad.
->>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
->>> +    default: 3
->>> +
->>>    motorcomm,tx-clk-adj-enabled:
->>>      description: |
->>>        This configuration is mainly to adapt to VF2 with JH7110 SoC.
->>> -- 
->>> 2.17.1
->>>
+Changelog v2:
+- Resend v1 because a patch exceeds size limit.
+
+Changelog v3:
+- Add documentation to describe SW and HW
+- Adapted to media control framework
+- Introduced ISP subdevice, capture device
+- Remove private IOCTLs and add vendor specific V4L2 controls
+- Change function name avoiding camelcase and uppercase letters
+
+Changelog v4:
+- Split patches because a patch exceeds size limit
+- fix dt-bindings document
+- stop specifying ID numbers for driver instance explicitly at device tree
+- use pm_runtime to trigger initialization of HW
+  along with open/close of device files.
+- add a entry for a header file at MAINTAINERS file
+
+Changelog v5:
+- Fix coding style problem in viif.c (patch 2/6)
+
+Changelog v6:
+- add register definition of BUS-IF and MPU in dt-bindings
+- add CSI2RX subdevice (separeted from ISP subdevice)
+- change directory layout (moved to media/platform/toshiba/visconti)
+- change source file layout (removed hwd_xxxx.c)
+- pointer to userland memory is removed from uAPI parameters
+- change register access (from struct style to macro style)
+- remove unused macros
+
+Yuji Ishikawa (5):
+  dt-bindings: media: platform: visconti: Add Toshiba Visconti Video
+    Input Interface bindings
+  media: platform: visconti: Add Toshiba Visconti Video Input Interface
+    driver
+  media: add V4L2 vendor specific control handlers
+  documentation: media: add documentation for Toshiba Visconti Video
+    Input Interface driver
+  MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
+
+ .../bindings/media/toshiba,visconti-viif.yaml |  102 +
+ .../driver-api/media/drivers/index.rst        |    1 +
+ .../media/drivers/visconti-viif.rst           |  462 +++
+ MAINTAINERS                                   |    4 +
+ drivers/media/platform/Kconfig                |    1 +
+ drivers/media/platform/Makefile               |    1 +
+ drivers/media/platform/toshiba/Kconfig        |    6 +
+ drivers/media/platform/toshiba/Makefile       |    2 +
+ .../media/platform/toshiba/visconti/Kconfig   |   18 +
+ .../media/platform/toshiba/visconti/Makefile  |    8 +
+ .../media/platform/toshiba/visconti/viif.c    |  714 ++++
+ .../media/platform/toshiba/visconti/viif.h    |  375 ++
+ .../platform/toshiba/visconti/viif_capture.c  | 1481 +++++++
+ .../platform/toshiba/visconti/viif_capture.h  |   22 +
+ .../platform/toshiba/visconti/viif_common.c   |  191 +
+ .../platform/toshiba/visconti/viif_common.h   |   38 +
+ .../platform/toshiba/visconti/viif_controls.c | 3411 +++++++++++++++++
+ .../platform/toshiba/visconti/viif_controls.h |   18 +
+ .../platform/toshiba/visconti/viif_csi2rx.c   |  687 ++++
+ .../platform/toshiba/visconti/viif_csi2rx.h   |   24 +
+ .../toshiba/visconti/viif_csi2rx_regs.h       |  102 +
+ .../platform/toshiba/visconti/viif_isp.c      | 1264 ++++++
+ .../platform/toshiba/visconti/viif_isp.h      |   24 +
+ .../platform/toshiba/visconti/viif_regs.h     |  714 ++++
+ include/uapi/linux/v4l2-controls.h            |    6 +
+ include/uapi/linux/visconti_viif.h            | 1800 +++++++++
+ 26 files changed, 11476 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
+ create mode 100644 Documentation/driver-api/media/drivers/visconti-viif.rst
+ create mode 100644 drivers/media/platform/toshiba/Kconfig
+ create mode 100644 drivers/media/platform/toshiba/Makefile
+ create mode 100644 drivers/media/platform/toshiba/visconti/Kconfig
+ create mode 100644 drivers/media/platform/toshiba/visconti/Makefile
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_capture.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_common.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_controls.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_csi2rx_regs.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.c
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_isp.h
+ create mode 100644 drivers/media/platform/toshiba/visconti/viif_regs.h
+ create mode 100644 include/uapi/linux/visconti_viif.h
+
+-- 
+2.25.1
+
+
