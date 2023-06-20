@@ -2,266 +2,330 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 035F573773B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 00:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AE4E737744
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 00:10:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229574AbjFTWIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 18:08:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34808 "EHLO
+        id S229769AbjFTWKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 18:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36200 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229567AbjFTWIW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 18:08:22 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 384331A3;
-        Tue, 20 Jun 2023 15:08:21 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-77e4126badcso58703239f.0;
-        Tue, 20 Jun 2023 15:08:21 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687298900; x=1689890900;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8xKzKR2Jor9yZCbhpw4RdY2UISdl+Ggxh4g2WL/oLeg=;
-        b=WtJlr+dupl9DWA+Wh18J+J4B9GNAft1925aNh0bC8odvMg6yQmSC/uJGUQNvAy4xv/
-         BJlFmq6Lw57BE9S/VJUt+NwSKqG/SEVq/jc1tLUremLeu331gHThCScxpuQHONCgbx56
-         lRl71AWQeHepbXqo48RssRBxEU/wA03u66eN8rsveh4OCIdklGpAwMtVBafiy1/WKMag
-         2zSexwoQ6mhgrRRx7ruhpBHsJ9NvJDRUFujRWLwU4ziti1d7eB3s5sgUUfJzbNc2cOe2
-         6JXuyVil5PQ5MPFrPebM8ECOw+6CoxZDec7RN+AlqPToVI+BZ7Z0j4UJNzUE8SrlnROc
-         KD9A==
-X-Gm-Message-State: AC+VfDwXC+gs1rZoCA3AMMipIvv4yr/c7f1JvfZ6qHujmVi/Ez16btMO
-        0HUkOlaveZ4NkKyh5K2BWA==
-X-Google-Smtp-Source: ACHHUZ6unWPBNLKgchBLuE7qgRlqFSbqyeauk8e+P+n4dec4D7VMgpColOqNBilDMBuemoSIDpRgKw==
-X-Received: by 2002:a5d:9e58:0:b0:774:871d:6a06 with SMTP id i24-20020a5d9e58000000b00774871d6a06mr8353213ioi.2.1687298900431;
-        Tue, 20 Jun 2023 15:08:20 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id i25-20020a02ca59000000b0041d759c451asm876162jal.166.2023.06.20.15.08.18
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jun 2023 15:08:19 -0700 (PDT)
-Received: (nullmailer pid 424551 invoked by uid 1000);
-        Tue, 20 Jun 2023 22:08:18 -0000
-Date:   Tue, 20 Jun 2023 16:08:18 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lizhi Hou <lizhi.hou@amd.com>, Bjorn Helgaas <bhelgaas@google.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, max.zhen@amd.com,
-        sonal.santan@amd.com, stefano.stabellini@xilinx.com
-Subject: Re: [PATCH V9 0/6] Generate device tree node for pci devices
-Message-ID: <20230620220818.GA418170-robh@kernel.org>
-References: <1686847842-33780-1-git-send-email-lizhi.hou@amd.com>
+        with ESMTP id S229520AbjFTWKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 18:10:12 -0400
+Received: from smtp.gentoo.org (woodpecker.gentoo.org [140.211.166.183])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31AE1A3;
+        Tue, 20 Jun 2023 15:10:10 -0700 (PDT)
+Date:   Wed, 21 Jun 2023 06:09:58 +0800
+From:   Yixun Lan <dlan@gentoo.org>
+To:     Lucas Tanure <tanure@linux.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] arm64: dts: meson-t7-a311d2-khadas-vim4: add
+ initial device-tree
+Message-ID: <ZJIjtphyKdC48JrN@ofant>
+References: <20230620134857.238941-1-tanure@linux.com>
+ <20230620134857.238941-3-tanure@linux.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1686847842-33780-1-git-send-email-lizhi.hou@amd.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230620134857.238941-3-tanure@linux.com>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 09:50:36AM -0700, Lizhi Hou wrote:
-> This patch series introduces OF overlay support for PCI devices which
-> primarily addresses two use cases. First, it provides a data driven method
-> to describe hardware peripherals that are present in a PCI endpoint and
-> hence can be accessed by the PCI host. Second, it allows reuse of a OF
-> compatible driver -- often used in SoC platforms -- in a PCI host based
-> system.
-> 
-> There are 2 series devices rely on this patch:
-> 
->   1) Xilinx Alveo Accelerator cards (FPGA based device)
->   2) Microchip LAN9662 Ethernet Controller
-> 
->      Please see: https://lore.kernel.org/lkml/20220427094502.456111-1-clement.leger@bootlin.com/
-> 
-> Normally, the PCI core discovers PCI devices and their BARs using the
-> PCI enumeration process. However, the process does not provide a way to
-> discover the hardware peripherals that are present in a PCI device, and
-> which can be accessed through the PCI BARs. Also, the enumeration process
-> does not provide a way to associate MSI-X vectors of a PCI device with the
-> hardware peripherals that are present in the device. PCI device drivers
-> often use header files to describe the hardware peripherals and their
-> resources as there is no standard data driven way to do so. This patch
-> series proposes to use flattened device tree blob to describe the
-> peripherals in a data driven way. Based on previous discussion, using
-> device tree overlay is the best way to unflatten the blob and populate
-> platform devices. To use device tree overlay, there are three obvious
-> problems that need to be resolved.
-> 
-> First, we need to create a base tree for non-DT system such as x86_64. A
-> patch series has been submitted for this:
-> https://lore.kernel.org/lkml/20220624034327.2542112-1-frowand.list@gmail.com/
-> https://lore.kernel.org/lkml/20220216050056.311496-1-lizhi.hou@xilinx.com/
-> 
-> Second, a device tree node corresponding to the PCI endpoint is required
-> for overlaying the flattened device tree blob for that PCI endpoint.
-> Because PCI is a self-discoverable bus, a device tree node is usually not
-> created for PCI devices. This series adds support to generate a device
-> tree node for a PCI device which advertises itself using PCI quirks
-> infrastructure.
-> 
-> Third, we need to generate device tree nodes for PCI bridges since a child
-> PCI endpoint may choose to have a device tree node created.
-> 
-> This patch series is made up of three patches.
-> 
-> The first patch is adding OF interface to create or destroy OF node
-> dynamically.
-> 
-> The second patch introduces a kernel option, CONFIG_DYNAMIC_PCI_OF_NODEX.
-> When the option is turned on, the kernel will generate device tree nodes
-> for all PCI bridges unconditionally. The patch also shows how to use the
-> PCI quirks infrastructure, DECLARE_PCI_FIXUP_FINAL to generate a device
-> tree node for a device. Specifically, the patch generates a device tree
-> node for Xilinx Alveo U50 PCIe accelerator device. The generated device
-> tree nodes do not have any property.
-> 
-> The third patch adds basic properties ('reg', 'compatible' and
-> 'device_type') to the dynamically generated device tree nodes. More
-> properties can be added in the future.
-> 
-> Here is the example of device tree nodes generated within the ARM64 QEMU.
-> # lspci -t
-> -[0000:00]-+-00.0
->            +-01.0
->            +-03.0-[01-03]----00.0-[02-03]----00.0-[03]----00.0
->            +-03.1-[04]--
->            \-04.0-[05-06]----00.0-[06]--
-> # tree /sys/firmware/devicetree/base/pcie\@10000000
-> /sys/firmware/devicetree/base/pcie@10000000
-> |-- #address-cells
-> |-- #interrupt-cells
-> |-- #size-cells
-> |-- bus-range
-> |-- compatible
-> |-- device_type
-> |-- dma-coherent
-> |-- interrupt-map
-> |-- interrupt-map-mask
-> |-- linux,pci-domain
-> |-- msi-map
-> |-- name
-> |-- pci@3,0
-> |   |-- #address-cells
-> |   |-- #size-cells
-> |   |-- compatible
-> |   |-- device_type
-> |   |-- pci@0,0
-> |   |   |-- #address-cells
-> |   |   |-- #size-cells
-> |   |   |-- compatible
-> |   |   |-- device_type
-> |   |   |-- pci@0,0
-> |   |   |   |-- #address-cells
-> |   |   |   |-- #size-cells
-> |   |   |   |-- compatible
-> |   |   |   |-- dev@0,0
-> |   |   |   |   |-- #address-cells
-> |   |   |   |   |-- #size-cells
-> |   |   |   |   |-- compatible
-> |   |   |   |   |-- ranges
-> |   |   |   |   `-- reg
-> |   |   |   |-- device_type
-> |   |   |   |-- ranges
-> |   |   |   `-- reg
-> |   |   |-- ranges
-> |   |   `-- reg
-> |   |-- ranges
-> |   `-- reg
-> |-- pci@3,1
-> |   |-- #address-cells
-> |   |-- #size-cells
-> |   |-- compatible
-> |   |-- device_type
-> |   |-- ranges
-> |   `-- reg
-> |-- pci@4,0
-> |   |-- #address-cells
-> |   |-- #size-cells
-> |   |-- compatible
-> |   |-- device_type
-> |   |-- pci@0,0
-> |   |   |-- #address-cells
-> |   |   |-- #size-cells
-> |   |   |-- compatible
-> |   |   |-- device_type
-> |   |   |-- ranges
-> |   |   `-- reg
-> |   |-- ranges
-> |   `-- reg
-> |-- ranges
-> `-- reg
-> 
-> Changes since v8:
-> - Added patches to create unit test to verifying address translation
->     The test relies on QEMU PCI Test Device, please see
->         https://github.com/houlz0507/xoclv2/blob/pci-dt-0329/pci-dt-patch-0329/README
->     for test setup
-> - Minor code review fixes
-> 
-> Changes since v7:
-> - Modified dynamic node creation interfaces
-> - Added unittest for new added interfaces
-> 
-> Changes since v6:
-> - Removed single line wrapper functions
-> - Added Signed-off-by Clément Léger <clement.leger@bootlin.com>
-> 
-> Changes since v5:
-> - Fixed code review comments
-> - Fixed incorrect 'ranges' and 'reg' properties
-> 
-> Changes since RFC v4:
-> - Fixed code review comments
-> 
-> Changes since RFC v3:
-> - Split the Xilinx Alveo U50 PCI quirk to a separate patch
-> - Minor changes in commit description and code comment
-> 
-> Changes since RFC v2:
-> - Merged patch 3 with patch 2
-> - Added OF interfaces of_changeset_add_prop_* and use them to create
->   properties.
-> - Added '#address-cells', '#size-cells' and 'ranges' properties.
-> 
-> Changes since RFC v1:
-> - Added one patch to create basic properties.
-> - To move DT related code out of PCI subsystem, replaced of_node_alloc()
->   with of_create_node()/of_destroy_node()
-> 
-> Lizhi Hou (6):
->   of: dynamic: Add interfaces for creating device node dynamically
->   PCI: Create device tree node for selected devices
->   PCI: Add PCI quirks to generate device tree node for Xilinx Alveo U50
->   PCI: Add ranges property for pci endpoint
->   of: overlay: Extend of_overlay_fdt_apply() to specify the target node
->   of: unittest: Add pci_dt_testdrv pci driver
-> 
->  drivers/of/dynamic.c                          | 164 ++++++++++++++
->  drivers/of/overlay.c                          |  42 +++-
->  drivers/of/unittest-data/Makefile             |   3 +-
->  .../of/unittest-data/overlay_pci_node.dtso    |  22 ++
->  drivers/of/unittest.c                         | 210 +++++++++++++++++-
->  drivers/pci/Kconfig                           |  12 +
->  drivers/pci/Makefile                          |   1 +
->  drivers/pci/bus.c                             |   2 +
->  drivers/pci/of.c                              |  81 ++++++-
->  drivers/pci/of_property.c                     | 190 ++++++++++++++++
->  drivers/pci/pci.h                             |  19 ++
->  drivers/pci/quirks.c                          |  12 +
->  drivers/pci/remove.c                          |   1 +
->  include/linux/of.h                            |  25 ++-
->  14 files changed, 768 insertions(+), 16 deletions(-)
->  create mode 100644 drivers/of/unittest-data/overlay_pci_node.dtso
->  create mode 100644 drivers/pci/of_property.c
+Hi Lucas:
 
-Bjorn, I think this is pretty close to being in shape for merging. Do 
-you have any comments on the PCI bits? Would you prefer that I ack the 
-DT bit and you take it or vice-versa?
+On 14:48 Tue 20 Jun     , Lucas Tanure wrote:
+> The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 SoC
+> family, on a board with the same form factor as the VIM3 models.
+> 
+> - 8GB LPDDR4X 2016MHz
+> - 32GB eMMC 5.1 storage
+> - 32MB SPI flash
+> - 10/100/1000 Base-T Ethernet
+> - AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
+> - HDMI 2.1 video
+> - HDMI Input
+> - 1x USB 2.0 + 1x USB 3.0 ports
+> - 1x USB-C (power) with USB 2.0 OTG
+> - 3x LED's (1x red, 1x blue, 1x white)
+> - 3x buttons (power, function, reset)
+> - M2 socket with PCIe, USB, ADC & I2C
+> - 40pin GPIO Header
+> - 1x micro SD card slot
+> 
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+>  .../amlogic/meson-t7-a311d2-khadas-vim4.dts   |  52 ++++++
+>  arch/arm64/boot/dts/amlogic/meson-t7.dtsi     | 158 ++++++++++++++++++
+>  3 files changed, 211 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
+>  create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index cd1c5b04890a..1c5846bd1ca0 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
+>  dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += meson-t7-a311d2-khadas-vim4.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
+> new file mode 100644
+> index 000000000000..04cc8b0dfd8c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
+> @@ -0,0 +1,52 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2022 Wesion, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "meson-t7.dtsi"
+> +
+> +/ {
+> +	model = "Khadas vim4";
+> +	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
+> +
+> +	aliases {
+> +		serial0 = &uart_A;
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x2 0x0>; /* 8 GB */
+> +	};
+> +
+> +	reserved-memory {
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		/* 3 MiB reserved for ARM Trusted Firmware (BL31) */
+> +		secmon_reserved: secmon@5000000 {
+> +			reg = <0x0 0x05000000 0x0 0x300000>;
+> +			no-map;
+> +		};
+> +
+> +		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
+> +		secmon_reserved_bl32: secmon@5300000 {
+> +			reg = <0x0 0x05300000 0x0 0x2000000>;
+> +			no-map;
+> +		};
+> +	};
+> +
+> +	xtal: xtal-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xtal";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +};
+> +
+> +&uart_A {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-t7.dtsi b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+> new file mode 100644
+> index 000000000000..b268889bf8ea
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+> @@ -0,0 +1,158 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +/ {
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	cpus {
+> +		#address-cells = <0x2>;
+> +		#size-cells = <0x0>;
+> +
+> +		cpu-map {
+> +			cluster0 {
+> +				core0 {
+> +					cpu = <&cpu100>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu101>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu102>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu103>;
+> +				};
+> +			};
+> +
+> +			cluster1 {
+> +				core0 {
+> +					cpu = <&cpu0>;
+> +				};
+> +				core1 {
+> +					cpu = <&cpu1>;
+> +				};
+> +				core2 {
+> +					cpu = <&cpu2>;
+> +				};
+> +				core3 {
+> +					cpu = <&cpu3>;
+> +				};
+> +			};
+> +		};
+> +
+> +		cpu100: cpu@100 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x0 0x100>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu101: cpu@101{
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x0 0x101>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu102: cpu@102 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x0 0x102>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu103: cpu@103 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x0 0x103>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73";
+> +			reg = <0x0 0x0>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73";
+> +			reg = <0x0 0x1>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73";
+> +			reg = <0x0 0x2>;
+> +			enable-method = "psci";
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a73";
+> +			reg = <0x0 0x3>;
+> +			enable-method = "psci";
+> +		};
+> +	};
+> +
+> +	timer {
+> +		compatible = "arm,armv8-timer";
+> +		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
+> +			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
+> +	};
+> +
+> +	psci {
+> +		compatible = "arm,psci-1.0";
+> +		method = "smc";
+> +	};
+> +
+> +	sm: secure-monitor {
+> +		compatible = "amlogic,meson-gxbb-sm";
+> +	};
+> +
+> +	soc {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges;
+> +
+> +		gic: interrupt-controller@fff01000 {
+> +			compatible = "arm,gic-400";
+> +			#interrupt-cells = <3>;
+> +			#address-cells = <0>;
+> +			interrupt-controller;
+> +			reg = <0x0 0xfff01000 0 0x1000>,
+> +			      <0x0 0xfff02000 0 0x0100>;
+> +			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
+> +		};
+> +
+> +		apb4: bus@fe000000 {
+> +			compatible = "simple-bus";
+> +			reg = <0x0 0xfe000000 0x0 0x480000>;
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
+> +
+> +			uart_A: serial@78000 {
+> +				compatible = "amlogic,meson-t7-uart",
+                                              ~~~~~~~~~~~~~~~~~
+if you introduce new compatible string, then at least you need to document it
+so Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml need to be updated
 
-Rob
+but my qeustion here, why bother introducing new compatible string if nothing
+changed with the compatible data? given the uart is same IP with g12a, can't we just
+use "amlogic,meson-g12-uart" for this? no only it will reduce the structure length of
+meson_uart_dt_match[], but also relieve maintainer's review burden?
+
+> +					     "amlogic,meson-s4-uart";
+
+> +				reg = <0x0 0x78000 0x0 0x18>;
+> +				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+> +				status = "disabled";
+> +				clocks = <&xtal>, <&xtal>, <&xtal>;
+> +				clock-names = "xtal", "pclk", "baud";
+> +			};
+> +		};
+> +
+> +	};
+> +};
+> --
+> 2.41.0
+> 
+> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+-- 
+Yixun Lan (dlan)
+Gentoo Linux Developer
+GPG Key ID AABEFD55
