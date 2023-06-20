@@ -2,118 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4197364A4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 09:34:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F17A7364D8
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 09:37:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229683AbjFTHeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 03:34:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36656 "EHLO
+        id S231425AbjFTHhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 03:37:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37198 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229680AbjFTHeC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 03:34:02 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D24AA119
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:34:00 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f9b4bf99c2so10752295e9.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:34:00 -0700 (PDT)
+        with ESMTP id S231377AbjFTHgk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 03:36:40 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33512115
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:35:36 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-988c495f35fso209306666b.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:35:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687246439; x=1689838439;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=LJZvVnPb+GmVidOHlK5a7n33xKvssaTUl9azRgx5rNc=;
-        b=M6jFWHWDhQMBcFwr1oWwZR9s1SVFu87rSYyx/G1DaoprPTjZZLak5RK7GCVjOG4vEg
-         wlhhHB27AaJtyXrSz/9yOd2QPiTn9zj1wySF6BIj8qR68OBP/1kChb0S0H448Bs/sK0+
-         pUxzsQoeXm3XDoVIF0PtPvYKFo0S4I5rk5nf5qn9CSBn3Q9rX7OcI2ekf6dLY5BBrcpA
-         uzBTkf1IRVBdUxQMW55jZS0jBrfsfHxE4RKIiKYHp+by4NCi6rEToLywTHa/Wd28Gj+7
-         4VGYAzOPHMDeZ1zanzGIrW1khe+UDAQs5zilpH62zNUn8HP1E5UxznEoC1Wf2EmW6cBG
-         xbgg==
+        d=linaro.org; s=google; t=1687246517; x=1689838517;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=J6fqHgVGTvAGEge4slHeahAPuPVrMwSOfozTjAKGa0Y=;
+        b=Yji/pgBZN7d++Sid+HcEIidtRXT0Fb6QIzrEUFmRX0qd74h2FSoWudHPjf9s+ifBS8
+         wZnxIn6zEZ+niUv1s+WCDxAUGGAPRO0/7Y7waFkw8X4NnMJbzXfd+5E1xz+tFItjrp+v
+         ZO9+rKbq7ZViNuWPDClur+ZoZZTiE/xPNjKdwPi/FY1k5xKQIp6rkEqULJMmxY+SHtb+
+         gF5Ppj3fyddf++DUjfRttZyFAP4f24EUniMk4WdlpPP5nkvRio2tZOgJ2Zh/7Baf7bf5
+         IxUV+UkqxYIm29rq/BOa8aoxzWBUVe1liiKSC2umDeOEZV6bEAw13TixXZCaaMBnQdfu
+         QX3Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687246439; x=1689838439;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LJZvVnPb+GmVidOHlK5a7n33xKvssaTUl9azRgx5rNc=;
-        b=StwddAoIaMWXKidLHqBAql94sB5jDNmyY6Y0HMLcc+fNuLcOZBUrzJn8UHrhj/wS0A
-         IMQHldIY+ntOuQqCN6h4zIUWehvEB3b/v4TvO80RGpIa9H2GptDvH644SXK064Iuabaf
-         W5MoJF5sEkClzTWpuzOcZv30uqSklI/NMrGRmCTE7p7ai2Cl5Q7NFVKvcL8mBycVdsrC
-         W+JD1lt+srZUGuIsd5F4XGn7B4m97aQtH1iOx190VSrzoOXi75zlD0hhZ0zYVQeppPLV
-         c55rBMZ8o/flItFyuqhUlF50YCoLhDM4QG/s3iN6omfKm+M/lksdHqmJtyOCVT3wSgTb
-         tIwA==
-X-Gm-Message-State: AC+VfDztqjRWwGr5mI8Mg9irFDPRpQZ056gx2w0CSQCxjBdQtJMiiP0h
-        jcdJfZpaaxZCFs0PlaOEWnuPBw==
-X-Google-Smtp-Source: ACHHUZ538LZx30+T3U70ZFTps+oJApLiDfsaLcxBhtsqhONStoage5d7m32DwMxRaqw1CrVe6oeuZA==
-X-Received: by 2002:a7b:cbd0:0:b0:3f8:a56:e9f2 with SMTP id n16-20020a7bcbd0000000b003f80a56e9f2mr8506115wmi.1.1687246439251;
-        Tue, 20 Jun 2023 00:33:59 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:496f:4432:b5b2:1b3b? ([2a01:e0a:982:cbb0:496f:4432:b5b2:1b3b])
-        by smtp.gmail.com with ESMTPSA id k4-20020a05600c0b4400b003f727764b10sm1644587wmr.4.2023.06.20.00.33.58
+        d=1e100.net; s=20221208; t=1687246517; x=1689838517;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=J6fqHgVGTvAGEge4slHeahAPuPVrMwSOfozTjAKGa0Y=;
+        b=Bscu+Uzz+EEO+CU+kyZkS/a549OW50PZqJdjCuw43eGKYHarPGnMER0curukVn5zFX
+         SzOel4OaHMxrTNY+qthUV3+i2kKHr7H69xlo/C0a6WcjBbT0HSawNZ+y4AxppXmpkFQv
+         hS+c/TuPUrmtuHYelfwDM7Y8+FhdQ7xDSMNEVYb16VTbJq2loUpHKkJAU6wHE6/xD9iq
+         8el26NORxLQF4jHTp5K/wpcpFIDDaOtTu+loguqVv/hzzFEdUfrYYlgZUvJrNbQIz3pM
+         5iJfqBhHZS4s3K+GwsPDRgjYqpbrxLNILYwlg859LqK6SGnaL9BZkh162aKq36kc9+1D
+         7EQw==
+X-Gm-Message-State: AC+VfDwysssIRrk14jYAkJPJgBT6soKpcIkqG/eJX2Ec9p3VoTKi0DCs
+        YkC4Qn7f65droaXM/8u/WMfspw==
+X-Google-Smtp-Source: ACHHUZ6IGq0LH6ffc+9WenmwXXDz0VXornUzZFY4Y2O4BUaSbVbU6In+6roCGuExwy1p2OlGDdY8Xw==
+X-Received: by 2002:a17:907:7ea6:b0:988:dfdc:5a33 with SMTP id qb38-20020a1709077ea600b00988dfdc5a33mr2947774ejc.64.1687246517174;
+        Tue, 20 Jun 2023 00:35:17 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id u23-20020a170906125700b0098733a40bb7sm851867eja.155.2023.06.20.00.35.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 00:33:58 -0700 (PDT)
-Message-ID: <777cf5df-6358-fa46-66cd-153d29763f77@linaro.org>
-Date:   Tue, 20 Jun 2023 09:33:57 +0200
+        Tue, 20 Jun 2023 00:35:16 -0700 (PDT)
+Message-ID: <2e762290-46f1-0f0c-48b1-b399812f9ac1@linaro.org>
+Date:   Tue, 20 Jun 2023 09:34:56 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic
- Meson GPIO interrupt controller binding
+Subject: Re: [PATCH] dt-bindings: interrupt-controller: New binding for
+ Meson-C3 SoCs
+To:     Huqiang Qin <huqiang.qin@amlogic.com>, tglx@linutronix.de,
+        maz@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+References: <20230620070849.2059451-1-huqiang.qin@amlogic.com>
 Content-Language: en-US
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
-Organization: Linaro Developer Services
-In-Reply-To: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230620070849.2059451-1-huqiang.qin@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 12/03/2023 22:29, Heiner Kallweit wrote:
-> Convert Amlogic Meson GPIO interrupt controller binding to yaml.
+On 20/06/2023 09:08, Huqiang Qin wrote:
+> Update dt-binding document for GPIO interrupt controller of Meson-C3 SoCs
 > 
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 > ---
-> - consider that more than one compatible may be set
-> - remove bus part from example
-> - remove minItem/maxItem properties for compatible
-> - reduce compatible fallback complexity
-> - add that 8 or 12 GIC interrupts can be used
-> - fix typo
-> ---
->   .../amlogic,meson-gpio-intc.txt               | 38 ----------
->   .../amlogic,meson-gpio-intc.yaml              | 72 +++++++++++++++++++
->   2 files changed, 72 insertions(+), 38 deletions(-)
->   delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
->   create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.txt    | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+> index bde63f8f090e..fdea0488a98c 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+> @@ -19,6 +19,7 @@ Required properties:
+>      "amlogic,meson-sm1-gpio-intc" for SM1 SoCs (S905D3, S905X3, S905Y3)
+>      "amlogic,meson-a1-gpio-intc" for A1 SoCs (A113L)
+>      "amlogic,meson-s4-gpio-intc" for S4 SoCs (S802X2, S905Y4, S805X2G, S905W2)
+> +    "amlogic,meson-c3-gpio-intc" for C3 SoCs (C308L, C302X)
 
-Gentle ping, this patch is fully reviewed and is lying on the list for the last 3 months.
+Where is the user?
 
-Thanks,
-Neil
+If there is going to be resend/new version:
+A nit, subject: drop second/last, redundant "New binding for". The
+"dt-bindings" prefix is already stating that these are bindings.
+"Add Meson C3 SoC interrupt controller"
 
-
-<snip>
+Best regards,
+Krzysztof
 
