@@ -2,105 +2,200 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C19B5736982
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 12:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3AC373698E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 12:40:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232209AbjFTKjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 06:39:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56656 "EHLO
+        id S231501AbjFTKku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 06:40:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232191AbjFTKjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 06:39:39 -0400
-Received: from mail.zeus03.de (www.zeus03.de [194.117.254.33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC67710C1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 03:39:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        from:to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=k1; bh=tQR0dWwr8w4Ycm
-        Bt80qqUYFnqdWmFqmB5wVjdVTNQGI=; b=aX0RyTv49uKNK1StgC86X7o4GVifF5
-        L1mkoGXFqymtcBtohUJjjWCnnlZPBNgNnsRLpzdc10oWI5GQ2cri41QRyBQPGjmP
-        k01F1OCQs90sV/YH9oKq+J1R7LC2UYulzv/Lqnt6h6MzXnm9ikbax6IyCldyG7SA
-        sRo+apN62cWow=
-Received: (qmail 601116 invoked from network); 20 Jun 2023 12:39:27 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 20 Jun 2023 12:39:27 +0200
-X-UD-Smtp-Session: l3s3148p1@QoLpQ43+vIxehhtC
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-renesas-soc@vger.kernel.org
-Cc:     Johan Hovold <johan@kernel.org>, Wolfram Sang <wsa@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [RFC PATCH v2 3/3] arm64: dts: renesas: ulcb-kf: add node for GPS
-Date:   Tue, 20 Jun 2023 12:39:08 +0200
-Message-Id: <20230620103909.37582-4-wsa+renesas@sang-engineering.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230620103909.37582-1-wsa+renesas@sang-engineering.com>
-References: <20230620103909.37582-1-wsa+renesas@sang-engineering.com>
+        with ESMTP id S231602AbjFTKkr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 06:40:47 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09B0119A5;
+        Tue, 20 Jun 2023 03:40:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1687257627; x=1718793627;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=yWHHRSpdzEQ+3edWjDGQ6AGaIlHfxAaH16a+AM9cVZY=;
+  b=ehKI0vvAXo0tkPs2jhXwpKYf38amsofkaTtNV0DCVlGFqEGy1y39qN+A
+   niAUVmKsLpN5juvvx0qINCKiWP4uvy4LPyQ6E/syGR94nVKYiwMrNXt/Z
+   42pN7yO+I9cPj92bGCTmOLBjG+41jBz2CkFpTEQXZTJSHNHrx3yC5Ykk0
+   XByncU39t7/I82u/u9qHvn3YJH7phktlHFzCmXzhckwe8RQS08LwvdwSe
+   +kK0HGSuKjOg4CU6KYGVQn/GR+G6U6aQiwoabLj7zH6esuoVuOc7S2UbT
+   HQJqO0Wa+W8SXdOqIwlt+ESzfJshuVxwsYC667/2k41PiyTGao9o6cV/P
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="363247657"
+X-IronPort-AV: E=Sophos;i="6.00,256,1681196400"; 
+   d="scan'208";a="363247657"
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2023 03:40:26 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="691380744"
+X-IronPort-AV: E=Sophos;i="6.00,256,1681196400"; 
+   d="scan'208";a="691380744"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by orsmga006.jf.intel.com with ESMTP; 20 Jun 2023 03:40:22 -0700
+From:   wen.ping.teh@intel.com
+To:     krzysztof.kozlowski@linaro.org
+Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, dinguyen@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        netdev@vger.kernel.org, niravkumar.l.rabara@intel.com,
+        p.zabel@pengutronix.de, richardcochran@gmail.com,
+        robh+dt@kernel.org, sboyd@kernel.org, wen.ping.teh@intel.com
+Subject: Re: [PATCH 2/4] dt-bindings: clock: Add Intel Agilex5 clocks and resets
+Date:   Tue, 20 Jun 2023 18:39:30 +0800
+Message-Id: <20230620103930.2451721-1-wen.ping.teh@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <8d5f38e6-2ca6-2c61-da29-1d4d2a3df569@linaro.org>
+References: <8d5f38e6-2ca6-2c61-da29-1d4d2a3df569@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Wolfram Sang <wsa@kernel.org>
+>From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> From: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>> 
+>> Add clock and reset ID definitions for Intel Agilex5 SoCFPGA
+>> 
+>> Co-developed-by: Teh Wen Ping <wen.ping.teh@intel.com>
+>> Signed-off-by: Teh Wen Ping <wen.ping.teh@intel.com>
+>> Signed-off-by: Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>> ---
+>>  .../bindings/clock/intel,agilex5.yaml         |  42 ++++++++
+>>  include/dt-bindings/clock/agilex5-clock.h     | 100 ++++++++++++++++++
+>>  .../dt-bindings/reset/altr,rst-mgr-agilex5.h  |  79 ++++++++++++++
+>>  3 files changed, 221 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/clock/intel,agilex5.yaml
+>>  create mode 100644 include/dt-bindings/clock/agilex5-clock.h
+>>  create mode 100644 include/dt-bindings/reset/altr,rst-mgr-agilex5.h
+>> 
+>> diff --git a/Documentation/devicetree/bindings/clock/intel,agilex5.yaml b/Documentation/devicetree/bindings/clock/intel,agilex5.yaml
+>> new file mode 100644
+>> index 000000000000..e408c52deefa
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/clock/intel,agilex5.yaml
+>
+>Filename matching compatible, so missing "clk"
+>
 
-Add the node for the GPS receiver and its VCC supply.
+Will update in V2 patch, rename file to intel,agilex5-clk.yaml
 
-Signed-off-by: Wolfram Sang <wsa@kernel.org>
----
-Changes since RFC v1:
-* rebased because of patches dropped and refactored
-* added static vcc-suplly
+>> @@ -0,0 +1,42 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/clock/intel,agilex5.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Intel SoCFPGA Agilex5 platform clock controller binding
+>
+>Drop "binding"
+>
 
-@Geert: Not sure if we need so many fixed 3v3 regulators. Most of the
-other ones more or less directly derive from d_3v3. Or do you prefer it
-this way?
+Will update in V2 patch.
 
- arch/arm64/boot/dts/renesas/ulcb-kf.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
+>> +
+>> +maintainers:
+>> +  - Teh Wen Ping <wen.ping.teh@intel.com>
+>> +  - Niravkumar L Rabara <niravkumar.l.rabara@intel.com>
+>> +
+>> +description:
+>> +  The Intel Agilex5 Clock controller is an integrated clock controller, which
+>> +  generates and supplies to all modules.
+>
+>"generates and supplies" what?
 
-diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-index e62f5359f64b..dd1ffc31c874 100644
---- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-@@ -39,6 +39,13 @@ accel_3v3: regulator-acc-3v3 {
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
-+	d_3v3: regulator-d-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "d-3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
- 	hdmi_1v8: regulator-hdmi-1v8 {
- 		compatible = "regulator-fixed";
- 		regulator-name = "hdmi-1v8";
-@@ -434,6 +441,13 @@ &scif1 {
- 	pinctrl-names = "default";
- 
- 	status = "okay";
-+
-+	gnss {
-+		compatible = "u-blox,neo-m8";
-+		reset-gpios = <&gpio_exp_75 6 GPIO_ACTIVE_LOW>;
-+		vcc-supply = <&d_3v3>;
-+		current-speed = <9600>;
-+	};
- };
- 
- &sdhi3 {
--- 
-2.30.2
+Will change to "generates and supplies clock" in V2 patch.
 
+>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: intel,agilex5-clkmgr
+>
+>
+>Why "clkmgr", not "clk"? You did not call it Clock manager anywhere in
+>the description or title.
+>
+
+The register in Agilex5 handling the clock is named clock_mgr.
+Previous IntelSocFPGA, Agilex and Stratix10, are also named clkmgr.
+
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#clock-cells'
+>
+>Keep the same order as in properties:
+>
+
+Will update in V2 patch.
+
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  # Clock controller node:
+>> +  - |
+>> +    clkmgr: clock-controller@10d10000 {
+>> +      compatible = "intel,agilex5-clkmgr";
+>> +      reg = <0x10d10000 0x1000>;
+>> +      #clock-cells = <1>;
+>> +    };
+>> +...
+>> diff --git a/include/dt-bindings/clock/agilex5-clock.h b/include/dt-bindings/clock/agilex5-clock.h
+>> new file mode 100644
+>> index 000000000000..4505b352cd83
+>> --- /dev/null
+>> +++ b/include/dt-bindings/clock/agilex5-clock.h
+>
+>Filename the same as binding. Missing vendor prefix, entirely different
+>device name.
+>
+
+Will change filename to intel,agilex5-clock.h in V2.
+
+>> @@ -0,0 +1,100 @@
+>> +/* SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause */
+>> +/*
+>> + * Copyright (C) 2022, Intel Corporation
+>> + */
+>
+>...
+>
+>> +
+>> +#endif	/* __AGILEX5_CLOCK_H */
+>> diff --git a/include/dt-bindings/reset/altr,rst-mgr-agilex5.h b/include/dt-bindings/reset/altr,rst-mgr-agilex5.h
+>> new file mode 100644
+>> index 000000000000..81e5e8c89893
+>> --- /dev/null
+>> +++ b/include/dt-bindings/reset/altr,rst-mgr-agilex5.h
+>
+>Same filename as binding.
+>
+>But why do you need this file? Your device is not a reset controller.
+
+Because Agilex5 device tree uses the reset definition from this file.
+
+Best Regards,
+Wen Ping
