@@ -2,118 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1B217374DB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 21:03:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 261BB737528
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 21:36:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230332AbjFTTDp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 15:03:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50342 "EHLO
+        id S229830AbjFTTgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 15:36:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230328AbjFTTDp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 15:03:45 -0400
-Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B70B210DA
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 12:03:43 -0700 (PDT)
-Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f883420152so1997900e87.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 12:03:43 -0700 (PDT)
+        with ESMTP id S229574AbjFTTf7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 15:35:59 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2080.outbound.protection.outlook.com [40.107.243.80])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46C0DE58;
+        Tue, 20 Jun 2023 12:35:58 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=hj/ARfgXqHnOoog901fNHp+59OlNUB16o6f4j+KZWVJfUE9gtzaQ1B8IkoUrVw7Nv7dlhC2GWF3+WmHlid5LHeshO09tb01xxED3QAnOJ4EQWVxYm0PyvSL2H47u6komni/kI/yobuaME8TebtQgjqXQYNdmztJZYhCVXjFGcby4E2AUzy1rgix+Wdm9BHjQP4KnEkWj8h9Oi2I5Cs4ns+reGJhtGL1BsujDuTBvbWAWrWu7orF2pFVr4768JOzbmItsSAMs5Cr6dMvXZ+iGGyFfJFKZRx45zb0v2xD9vY7EpngTarcCwDAyLq5YSXOGsuyE3GcC2q+SclR9FZxgaQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=2C/xiWvbyJUCUowY6eJwd1U1/qgcepfIdLTM9OHUdbw=;
+ b=QtlaXHxiKwcq8JmFMU3frjoT4ULNtcZhhzmZqQ4GEGm71+AhELbInvwJE6vD0fvdwVFSguZaZXcMVAsb32Uj2sIp/I++SLpo0xqYvLzAmxtkwlJQ3iHwCsVBFBxt8fbSBlxj8UrbMK6ylU3AyMcO559Tf+TCdXcVzdZzBL2ApjRNGZLjLrznKgTtqNin1lHYZ6omRwaoTepH0ydwAl8HfcNJY5hjXn4YTEv/WMQ7Qc/BG74/u8a2yveSHnWWKuxr57LNKzC35sOeY/68QFCFBTEJnYwoFeKifrkHpmZ7Jk34cZspU4sge/K/L2bN0PlW/L2YYX2LdPvrN/HNDMq0+Q==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687287822; x=1689879822;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yhFl7csls6VbQpRJBHh5j2tQyC8b07HNJS4qfJGgohA=;
-        b=iF4yTNc77O+N4+MMq+HnSFJ+btZOf3ve7xLf2SUYea8xR10c1zDtlhYSHqueI7hvRe
-         ATX2a9A2xzy0AaWGiazqKlKzk2lstSUC7Miro+Le0oTgy/ZEGjdkfGRsU99ETnTrwVG9
-         1nk5dAuyF3kh+Z6IcE3s5oIet1a8YlhiD32E3GdkaIAMjerBZJqa6U+XYws06GNsUvIX
-         Iaqu/oyGpeN7NpBSF8rASuSaJ7saJgTwzH9JXgw2kDJpI49ILh3Ife+w8L4cn45MFqjd
-         CyCkO+hiYI9KJlLpdih0eWnRpT22+dREjZo9upVBMeAxqrdI+2Q172HRBGyn/kgKBA9i
-         bVjw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687287822; x=1689879822;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yhFl7csls6VbQpRJBHh5j2tQyC8b07HNJS4qfJGgohA=;
-        b=l2Mu2zEl6InIRnj3RfcKDmd2IZOlBVYC2ehnGvOCZkTgGnCg8xu46XUXtZr0i/qAj7
-         js+NULXBMPJag7exjuEgw2imDrHix8WH9hQMitQxuHILnLXPw39EfgHsB5QaYT87jz14
-         An3UEAbCViYatwVAwkHUbPDC/GaOS1z1Ss0spA5BCSqE1qBtpAJUQZNLhpqoUkYm2dvf
-         1J5pVQ/B4GxksmHG5J5t3/9RwE56OYMFQvqiPvq3P17hGMb0sbXqOO2COUbFTpIvHp4L
-         45SWj0TrxmpKGWbXhTwC06uvVdelSqdiueBfS1AJlS9ksFxSAHqRuwgt57Hm0z+h+/3e
-         e2cA==
-X-Gm-Message-State: AC+VfDxjtnYefts3cYmOx6N0rMWhrgheV+C2H32rv/w6vIXptjD6ySMv
-        bOcNetvROcyxae4okUZrqMdn70DSP+UHmTCBtE4=
-X-Google-Smtp-Source: ACHHUZ5JeTANAG/P0Z/5Ude0RuprBA3s6XiRGOPpGOLVemNka9J+vhmKajP+GrfY3D4g3b74f8GDww==
-X-Received: by 2002:a05:6512:3288:b0:4f6:29b2:f92a with SMTP id p8-20020a056512328800b004f629b2f92amr7475693lfe.21.1687287822003;
-        Tue, 20 Jun 2023 12:03:42 -0700 (PDT)
-Received: from [192.168.1.101] (abxj193.neoplus.adsl.tpnet.pl. [83.9.3.193])
-        by smtp.gmail.com with ESMTPSA id p2-20020a19f002000000b004f85885cff1sm456176lfc.134.2023.06.20.12.03.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 12:03:41 -0700 (PDT)
-Message-ID: <72b34fea-70c1-8d80-ef3a-15e82678c757@linaro.org>
-Date:   Tue, 20 Jun 2023 21:03:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 4/4] arm64: dts: qcom: qrb4210-rb2: Enable GPU
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2C/xiWvbyJUCUowY6eJwd1U1/qgcepfIdLTM9OHUdbw=;
+ b=I+2cobgJghPo9cFKJUEeEB8cjMm+auT+T/WcVsnZlzYMuh+rB8vmDVz26RI2WxeqwxJLC/zRf2nsLKGGqWmkxziIzuse5E7YmL3iBu0xfyuCC94vXVUZOSOuIgqYkQei8e5xdInyfOrXYgOHEzBFEZDEEViI6UDhNgOvEq8f0go=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=labundy.com;
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21) by SA1PR08MB7165.namprd08.prod.outlook.com
+ (2603:10b6:806:184::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37; Tue, 20 Jun
+ 2023 19:35:55 +0000
+Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::b94e:6032:56d4:35b2]) by SN4PR0801MB3774.namprd08.prod.outlook.com
+ ([fe80::b94e:6032:56d4:35b2%6]) with mapi id 15.20.6500.036; Tue, 20 Jun 2023
+ 19:35:54 +0000
+Date:   Tue, 20 Jun 2023 14:35:49 -0500
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230620-topic-gpu_tablet_disp-v1-0-7bb02bec8dc0@linaro.org>
- <20230620-topic-gpu_tablet_disp-v1-4-7bb02bec8dc0@linaro.org>
- <30cfddfb-fabb-a65e-6bb6-c0efdbd92fd7@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <30cfddfb-fabb-a65e-6bb6-c0efdbd92fd7@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] input: touchscreen: add core support for Goodix
+ Berlin Touchscreen IC
+Message-ID: <ZJH/lTA0TWmdEfJN@nixie71>
+References: <20230606-topic-goodix-berlin-upstream-initial-v2-0-26bc8fe1e90e@linaro.org>
+ <20230606-topic-goodix-berlin-upstream-initial-v2-2-26bc8fe1e90e@linaro.org>
+ <ZIvTfE5O31NKnywd@nixie71>
+ <a4f36bef-7c2c-08f4-bf93-fe1f0f1d315e@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a4f36bef-7c2c-08f4-bf93-fe1f0f1d315e@linaro.org>
+X-ClientProxiedBy: SA9PR13CA0179.namprd13.prod.outlook.com
+ (2603:10b6:806:28::34) To SN4PR0801MB3774.namprd08.prod.outlook.com
+ (2603:10b6:803:43::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|SA1PR08MB7165:EE_
+X-MS-Office365-Filtering-Correlation-Id: 371c3e5f-8c36-47d9-1acd-08db71c5905a
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LAGMLPmhtCPur0Dn8EML0CusWRDmKiszAYOqlzYyrR29ulwzAgkmA5YUy7ozupUZ+Jlj7tSyBFnUHikN0kNNxJlXQA4He3ODse9opJvM0M7YbqG5iL+9CFN4TqMFjTivbtvJjSUlnvy7GMeZt119h8lR8/dW+oJI9yqg8om2e7QsZlcoWgBx2OIVi3VqbTOCoXfIVt4OTrHWph6+DiBZFPpuvN+FegSsKnWmIaHY+NeUvLKgQcj3y8kTlF0FL29aLKHJn/LOa7sogWSGf1usum9+RfpYPqDCQR5qRQOW+D6BUyEZk6T970mu5gIsjJJCzYcl0UNhl5Rz2fbgL0k5A6uNt7he3XnaAY+zEGVZ560BePI9dmMJWs1ranPGnIhmF2wjtCjKAGPiKsjwjxOUGlrVwVEIEkknD6unCXJvGyyJdTWgkeUOASexPYilNI7HlqvQj+l/A3t/awzjEJLL7whMK9f6TNwca+5TA12kczvo5sSXAsqlOUmv7//veAuaJKMwJ9h+g385fjHSmCtkl/PWPh/d1nURJbPa3ToWWvx+nB3AI/N7/sTjGXCMP6D+
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(366004)(136003)(396003)(376002)(39830400003)(346002)(451199021)(7416002)(33716001)(86362001)(83380400001)(38100700002)(41300700001)(8936002)(8676002)(66946007)(5660300002)(6916009)(66556008)(66476007)(316002)(26005)(6506007)(6512007)(9686003)(6666004)(186003)(6486002)(478600001)(54906003)(4326008)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?b9aSmzld9UHsNN5wjdMR4Ug8bXDPDK0QNpeKZh98hktJhtxK3BUBXdDoQd6/?=
+ =?us-ascii?Q?plN8jLM1TQL912Kkb/zF088Sq9SCW49qtXEUy04b9/61fP/Co6qdqdQbFYb/?=
+ =?us-ascii?Q?cli24GDc67ML6RQD9grl3WSDqhRsN9HkxqVq6NwBvKMG3wB2s15jcj7rYRyf?=
+ =?us-ascii?Q?maTgrsWMP7li7hv0xtCt6PvHXMU2XuInp1dPXnNG0MHWH005saH88qnLSryQ?=
+ =?us-ascii?Q?r51k3gkeB1BoOhXeQpMD0rrd/0LVWupN6Xx9pLrearglnwx8PVS1rFeQWGOj?=
+ =?us-ascii?Q?GpHTBZ1DLSEPEzitflvJoGWhAYZl2SsKWo5Va+SBOwjR3sojmPHZyExzO4/r?=
+ =?us-ascii?Q?wf9I7h/8pxkMUuV7GmkfUpZM+5KzrfijqwYLxEJMnSVLEF8iRRAAwpiS5r2P?=
+ =?us-ascii?Q?StuduK6RYUgE1XfmxQx+zEQ8WFH7PhcuWDTUbMkYG0ArUC7CgGoIW9IF7c8i?=
+ =?us-ascii?Q?3bgTKvkUODu3TgAJSQ4vDEimjWT1MGb0ExT2vxg5yPOwW4zSiOK3L3Khrete?=
+ =?us-ascii?Q?d0XXf6vTsqCsCALY9x5gWiS5ZUo+xNwt6UPPYEPLiWPZAC3gh5KtHV5IPbT6?=
+ =?us-ascii?Q?qodo/6/TcYq2DWnE3Z+bniVP/D8pPJkbOTjcdghOYESI8lmB6CrykUnThsHM?=
+ =?us-ascii?Q?wb6erD7LihiAGTF7cQBBzDaEjcEk7CKdwwiAWNSTa3z2E1c8lc1DssE9DLOZ?=
+ =?us-ascii?Q?axxYAupYslfN+eEm4fSafF9PKkwszrNx/y5E11w52nrogKM7sNhgwHPm4TZV?=
+ =?us-ascii?Q?V3iQtyypvQ1AIn4H69DO1hbRO/2VjZQn0SHwpLs7qA9f7hui8XO9gGXEennm?=
+ =?us-ascii?Q?1HXOV7hMM2W6K9zQtEIDLvOIoUefV3GK1sYU+j2NXprchFLhLjRl8mhX3zFE?=
+ =?us-ascii?Q?xJtd7Yd0hJsIcmEdHAHXNlAsXDrKNLulY58By1YxLaCnH+2gDr4s2IAuRODY?=
+ =?us-ascii?Q?546+QPwAYnWexiImY8KuYT8Eg7akt/e2DuVEz1JmAC/m35ABcTAicA2Fsx6V?=
+ =?us-ascii?Q?GKrKjDhF1qLzRHtyPpnqlGo5RP2ItlkGuNdt7AhUUXkpXZ1QfaGndMzvXxiI?=
+ =?us-ascii?Q?/IXkK/d7sFDc0lcsovC48F39+HeUyhMykjKiwYWsx3DirBZUFK7ZvKtTeCXM?=
+ =?us-ascii?Q?ZnpDr9K30BP2E7by6tFCSFK36N3P78wfSybu9h3MKHUAlvlapJoa8TdGyoB/?=
+ =?us-ascii?Q?pcp7KeyJAsCYu2GG5UFs5PbFsq4Yq0ZY1+FfocfDSMHO7eKM9yzdNiF4RzlR?=
+ =?us-ascii?Q?EoA7Py3O2hwG9MOlH6b/AFGqECJPy1BwRbH6z7eNVTH+O2+v7VVjpakXItjj?=
+ =?us-ascii?Q?DUqoVYIWa57kP9P2W1xtuX72bvB0d9eZ5IC2MjXDqdZXiP6RlPQ9AR2Kwl+x?=
+ =?us-ascii?Q?GrOn+y03rcuhoIg5Cx+w8JnerdwSdUS5bQ8GeH0iwxrjSSyx7+jpxIXDMKZL?=
+ =?us-ascii?Q?MLM+toESI7xtKax63UNXEVBhsroVhn1345PoORH1tz50ZfxEM+gJcrJBUz1h?=
+ =?us-ascii?Q?Gph/+T9N9pZcPOaovC7OiGNH9G4omV/8c2pGRm1xVC7200DlOMQFqTYpm28/?=
+ =?us-ascii?Q?XMqZOMsT7Ry7wprNeE+mXp/u4r5ecikML+VpTm9i?=
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 371c3e5f-8c36-47d9-1acd-08db71c5905a
+X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2023 19:35:54.8840
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: addZM3+N6KehIuBPSgBLBg1P2eEYo4aWg4i5uk2S5aK3hgFleGVwIravsRYWiDEICm+orSkLIrTjduIDlEZohQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR08MB7165
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20.06.2023 17:47, Dmitry Baryshkov wrote:
-> On 20/06/2023 16:17, Konrad Dybcio wrote:
->> Enable the A610 GPU and provide a firmware path to the ZAP blob.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>   arch/arm64/boot/dts/qcom/qrb4210-rb2.dts | 8 ++++++++
->>   1 file changed, 8 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> index e23a0406eacc..a7278a9472ed 100644
->> --- a/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> +++ b/arch/arm64/boot/dts/qcom/qrb4210-rb2.dts
->> @@ -179,6 +179,14 @@ &gpi_dma0 {
->>       status = "okay";
->>   };
->>   +&gpu {
->> +    status = "okay";
->> +
->> +    zap-shader {
->> +        firmware-name = "qcom/qrb4210/a610_zap.mbn";
-> 
-> Should this be qrb4210 or sm4250? Previously we did not use special subdirs for IOT versions. See qrb5165-rb5.dts.
-https://lore.kernel.org/linux-arm-msm/CAH=2NtwVtLdE5hg8Qhd_MLCPJTqXvus8+qW_uj4O7hnOy7PVUA@mail.gmail.com/
+Hi Neil,
 
-Konrad
+On Tue, Jun 20, 2023 at 08:38:20PM +0200, Neil Armstrong wrote:
+
+[...]
+
+> > > +static int goodix_berlin_power_on(struct goodix_berlin_core *cd, bool on)
+> > > +{
+> > > +	int error = 0;
+> > 
+> > No need to initialize 'error' here.
 > 
->> +    };
->> +};
->> +
->>   &i2c2 {
->>       clock-frequency = <400000>;
->>       status = "okay";
->>
+> Th refactor I did needs it to be initialized at 0 because the if() always calls return,
+> but yeah it's kind of ugly.
+
+Ah, you're correct; I see now.
+
 > 
+> > 
+> > > +
+> > > +	if (on) {
+> > > +		error = regulator_enable(cd->iovdd);
+> > > +		if (error < 0) {
+> > > +			dev_err(cd->dev, "Failed to enable iovdd: %d\n", error);
+> > > +			return error;
+> > > +		}
+> > > +
+> > > +		/* Vendor waits 3ms for IOVDD to settle */
+> > > +		usleep_range(3000, 3100);
+> > > +
+> > > +		error = regulator_enable(cd->avdd);
+> > > +		if (error < 0) {
+> > > +			dev_err(cd->dev, "Failed to enable avdd: %d\n", error);
+> > > +			goto power_off_iovdd;
+> > > +		}
+> > > +
+> > > +		/* Vendor waits 15ms for IOVDD to settle */
+> > > +		usleep_range(15000, 15100);
+> > > +
+> > > +		gpiod_set_value(cd->reset_gpio, 0);
+> > > +
+> > > +		/* Vendor waits 4ms for Firmware to initialize */
+> > > +		usleep_range(4000, 4100);
+> > > +
+> > > +		error = goodix_berlin_dev_confirm(cd);
+> > > +		if (error < 0)
+> > > +			goto power_off_gpio;
+> > 
+> > All of this cleaned up nicely. The following comment is idiomatic, but I feel
+> > the goto can be easily eliminated as follows:
+> > 
+> > 		error = goodix_berlin_dev_confirm(cd);
+> > 		if (error)
+> > 			break;
+> 
+> Break ? in an if ?
+
+Ignore my comment; I lost my place and thought we were inside a loop :)
+
+Kind regards,
+Jeff LaBundy
