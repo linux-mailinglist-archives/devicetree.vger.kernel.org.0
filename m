@@ -2,109 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E7C773688F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 12:00:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78CE57368AC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 12:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbjFTKAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 06:00:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34104 "EHLO
+        id S231259AbjFTKD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 06:03:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232650AbjFTJ75 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 05:59:57 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5675D1FCF
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 02:57:41 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3f9b4a71623so12290375e9.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 02:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687255060; x=1689847060;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=MH9D+mQhZm8PpudHO85Ayb+hsCyNy+fsukwFMssT1jI=;
-        b=vVFuXtdrWAOVCYVlh/T1biiu2EDnmZi6ZdzmmPrM4VpaIEv3V6LvStP5vbjR/cnlK4
-         4hUPiNVznI4kQPuX3DQVoN5+ksJFv3O/qBBiga7L+Vq7pYNQzu1ey9jr3Rh4khrDXjK4
-         9WWDdvMWP8UFlh0hwwKQ104VDOz6BkaMQe/gVYabj9zdzL880NrwejRrYQGkpohWZrsf
-         stsYgM3Hcvs8EcYjRkih0LVnhAO8JNWDkQ1xGRs95trF4A091e1e5rAhTrv30o27P8e2
-         CQ+1T+LNZ0g8d5NsaRWZJJWD8kj2/18SFTQDpwRonKjiJDJ/av/QGYYInpTQBYzyQSCC
-         E/Jw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687255060; x=1689847060;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MH9D+mQhZm8PpudHO85Ayb+hsCyNy+fsukwFMssT1jI=;
-        b=U32Vx1/yo3VSFS1uecsklorLz/Fk/f6MsP6mYNFJXB208Fl7fhsrzGaTdo6Y9P98JD
-         AFtaPQWHZNOaCNa11f4BDhNF01dTt0Yk9bHJQGx4Yxnr7qylmizhPp/jcA7ag8q4oZFU
-         7ClxF7xaiw7fL25NO7ipZ69IF3paeJ0Rdr6ELW+bZvBOt9MyUEAzi3W2nhOTK9G+mIS5
-         knM9PYM8modCAXjD0tbJJ1AbWSklaNYvCi9KBD2dpwRVYYkuZijFJ8/P/QpKqGwiNNzb
-         cCne0zDfqueRCO1SP/KqJDW69YuByDYZ+vW1jrAaiCt9tm5Syxk5+EY1X/NqQn3P5htY
-         l5bw==
-X-Gm-Message-State: AC+VfDzJtkEIl/dFl+uesEZBCa9kfwGrqfYjzhJfJ+YQbIhsL3OvPmQp
-        fDDjPPhKAzslgBRMDLwR4sx5oA==
-X-Google-Smtp-Source: ACHHUZ762RAzC9Zhy1FUQOwLjOUTafH1ivbIetKFDtyJbGDF2V9t3hMAhBThFgMKlIInHnH19/41EA==
-X-Received: by 2002:a05:600c:2189:b0:3f6:7e6:44ea with SMTP id e9-20020a05600c218900b003f607e644eamr8251250wme.18.1687255059776;
-        Tue, 20 Jun 2023 02:57:39 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id m12-20020a7bcb8c000000b003f9b66a9376sm1804286wmi.42.2023.06.20.02.57.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 02:57:39 -0700 (PDT)
-Message-ID: <f068e601-52ec-2dbf-d117-4164863d58ab@linaro.org>
-Date:   Tue, 20 Jun 2023 11:57:37 +0200
+        with ESMTP id S231144AbjFTKDD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 06:03:03 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5F1019BD;
+        Tue, 20 Jun 2023 03:02:21 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 756F06606F23;
+        Tue, 20 Jun 2023 11:02:19 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1687255340;
+        bh=RLHVI/wjjEu7tgaFY7P5mxMUKibf2l0LJy6KXwWfTcA=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=MNBGt+PAu1mufc3pOtgjMZsDRsZVkBktZDjH9Dz7Uj7xuARm3UE1Hp+m1EuAIkv1B
+         wsq6HxhL47hyFqG48h1AfLyEMdcZsEm0/sSi/U9RmHlRp92TaYQ+I/IBQ1CRI0TpL0
+         UZH2wsHoxlN5X0vH2NahxbvGryTduWB+/Bu5n9jlo8uFISCOE69AArOmnuKga363U4
+         ZTLQKgeyWz4WLy76ZsYBMetcLMh9wOugHPNULDaww5W4x8zAMemG0KQnL3cz74M+vs
+         +LflWzhOmPJXhdCE4lDo68BVQwnIOdTiPxnHCKfh/uElBlSBNNhpyMR/xEPikge/JQ
+         t4n5olsHSPtmA==
+Message-ID: <491fab1f-e1fe-4388-52a7-05adb17c2c36@collabora.com>
+Date:   Tue, 20 Jun 2023 12:02:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH] dt-bindings: timer: add Ralink SoCs timer documentation
+Subject: Re: [PATCH v3 0/6] Add support for Qualcomm's legacy IOMMU v2
 Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     devicetree@vger.kernel.org, daniel.lezcano@linaro.org,
-        tglx@linutronix.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org
-References: <20230620093409.1411399-1-sergio.paracuellos@gmail.com>
- <9b0d5439-24dd-2c32-f13a-110f758591fb@linaro.org>
- <CAMhs-H9L0GybDOdmx5_RCw-=PaO3DYUOZPswiRErRRg5Fi57tQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H9L0GybDOdmx5_RCw-=PaO3DYUOZPswiRErRRg5Fi57tQ@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Luca Weiss <luca@z3ntu.xyz>, agross@kernel.org
+Cc:     andersson@kernel.org, konrad.dybcio@linaro.org, joro@8bytes.org,
+        will@kernel.org, robin.murphy@arm.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robdclark@gmail.com,
+        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        marijn.suijten@somainline.org, kernel@collabora.com,
+        a39.skl@gmail.com, phone-devel@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        =?UTF-8?Q?Matti_Lehtim=c3=a4ki?= <matti.lehtimaki@gmail.com>
+References: <20221115101122.155440-1-angelogioacchino.delregno@collabora.com>
+ <254cfbb5-c8b8-0abc-e6bc-5007fe757004@collabora.com>
+ <2759637.mvXUDI8C0e@z3ntu.xyz>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <2759637.mvXUDI8C0e@z3ntu.xyz>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 11:51, Sergio Paracuellos wrote:
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +  clocks:
->>> +    maxItems: 1
->>> +
->>> +  clock-names:
->>> +    const: timer
+Il 19/06/23 23:42, Luca Weiss ha scritto:
+> On Mittwoch, 22. Februar 2023 10:57:47 CEST AngeloGioacchino Del Regno wrote:
+>> Il 15/11/22 11:11, AngeloGioacchino Del Regno ha scritto:
+>>> This series adds support for handling "v2" firmware's IOMMU, found
+>>> on at least MSM8956 and MSM8976 (some other SoCs also need the same
+>>> but I honestly don't remember which ones precisely).
+>>>
+>>> This is strictly required to get functional IOMMUs on these SoCs.
+>>>
+>>> I'm sorry for not performing a much needed schema conversion on
+>>> qcom,iommu.txt, but I really didn't have time to do that :-(
+>>>
+>>> This series was tested on Sony Xperia X and X Compact (MSM8956):
+>>> ADSP, LPASS, Venus, MSS, MDP and GPU are happy :-)
 >>
->> Names matching the module name are not really helpful, so drop it,
->> unless any existing user needs it.
+>> Hello,
+>> this series is really old and got sent and resent many times.
+>> The first time I've sent this one was .. I think in 2019, then, at the
+>> end of 2022, I had some time to actually respin it and send another
+>> three versions. It's been 3 long years :-)
+>> The third version got the last comments addressed.
+>>
+>> Since this didn't get any more feedback for 3 months, I'm worried that it
+>> will be forgotten again, hence:
+>>
+>> Is there any more feedback? Anything else to fix?
+>> If not, can this be picked, please?
 > 
-> I am ok with dropping this. If you meant with an existing user
-> something that is already mainlined in the kernel tree then I would
+> Hi Angelo,
+> 
+> there's some open review comments since March now on this series. Since some
+> of these patches are also needed for msm8953 and msm8974 IOMMU it would be
+> nice if you could respin :)
+> 
 
-Yes.
+Hello Luca,
 
-> say there is no need for this 'clock-names'. I don't know about other
-> places since these SoCs are pretty old and almost with nothing
-> documented. I am doing the effort of trying to document all the stuff
-> before porting some openWRT device tree files to the kernel (this
-> timer driver is already included in 'arch/mips/ralink' so I am
-> documenting already in-tree things). So I guess I should send v2
-> removing this?
+I've just sent a v4, but I'm sorry I forgot to Cc you. Please find it at [1].
 
-Yes, please.
+[1]: 
+https://lore.kernel.org/all/20230620095127.96600-1-angelogioacchino.delregno@collabora.com/
 
-Best regards,
-Krzysztof
+Cheers,
+Angelo
 
+> Regards
+> Luca
+> 
+>>
+>> Thank you.
+>>
+>> Best regards,
+>> Angelo
+>>
+>>> Changes in v3:
+>>>    - Removed useless FSRRESTORE reset and definition as pointed
+>>>    
+>>>      out in Robin Murphy's review
+>>>    
+>>>    - Fixed qcom,iommu.txt changes: squashed MSM8976 compatible
+>>>    
+>>>      string addition with msm-iommu-v2 generics addition
+>>>
+>>> Changes in v2:
+>>>    - Added back Marijn's notes (sorry man!)
+>>>    - Added ARM_SMMU_CB_FSRRESTORE definition
+>>>    - Changed context bank reset to properly set FSR and FSRRESTORE
+>>>
+>>> AngeloGioacchino Del Regno (6):
+>>>     dt-bindings: iommu: qcom,iommu: Document qcom,ctx-num property
+>>>     iommu/qcom: Use the asid read from device-tree if specified
+>>>     iommu/qcom: Properly reset the IOMMU context
+>>>     iommu/qcom: Index contexts by asid number to allow asid 0
+>>>     dt-bindings: iommu: qcom,iommu: Document QSMMUv2 and MSM8976
+>>>     
+>>>       compatibles
+>>>     
+>>>     iommu/qcom: Add support for QSMMUv2 and QSMMU-500 secured contexts
+>>>    
+>>>    .../devicetree/bindings/iommu/qcom,iommu.txt  |  9 +++
+>>>    drivers/iommu/arm/arm-smmu/qcom_iommu.c       | 78 +++++++++++++++----
+>>>    2 files changed, 70 insertions(+), 17 deletions(-)
+> 
+> 
+> 
+> 
+> 
