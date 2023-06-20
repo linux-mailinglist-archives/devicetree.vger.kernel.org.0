@@ -2,61 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECFBB73720E
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 18:49:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE615737218
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 18:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231365AbjFTQtE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 12:49:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40342 "EHLO
+        id S229966AbjFTQud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 12:50:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231260AbjFTQtC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 12:49:02 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 977A619F;
-        Tue, 20 Jun 2023 09:49:01 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-77ac2eb07a3so182186239f.2;
-        Tue, 20 Jun 2023 09:49:01 -0700 (PDT)
+        with ESMTP id S231736AbjFTQuc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 12:50:32 -0400
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B33451726;
+        Tue, 20 Jun 2023 09:50:31 -0700 (PDT)
+Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3416b5df9b3so24759085ab.3;
+        Tue, 20 Jun 2023 09:50:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687279741; x=1689871741;
+        d=1e100.net; s=20221208; t=1687279831; x=1689871831;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KlSdhQ3eCYV+z1Kptfv3vGGIgHEt5bvqs3RHbJX+pe0=;
-        b=Z2W8PeNwHzGC0GEmoo0hl9lZ/bovxLgUOhQcCa39X40/6YDrnv0MKZOAFHOIO+Ycn6
-         klMgt/D35zp5eRSyGu0t/rnDi8pGrhUi0rnyx8ZadwyQ+57XzPBXGajA/Jc0wAvdJtai
-         ohN3khDrdz5o0Y+WCmm/DxC0SX3cOe2bcpQY48pu2vbv2Tpz6OAk0mo+lylHsX79t9TY
-         LhonkuIVAL5DwzWYglE/EzrJgXkGGdhhgymqgLH3YshO2RFsxdnxGK9DvfpTDqtCM2Iw
-         zngR25NBHmo2bUGJOXripun0L1POJnz263OEENxv62A6UGX+m6qMYTPAui83zkmHaZQv
-         TQvQ==
-X-Gm-Message-State: AC+VfDy8YDIjTholXEdB3ySvQCdAnAtYwL5fIeR0UxJvsJR2HtJifCnV
-        oP1nuj4hLThAQDt4WeganA==
-X-Google-Smtp-Source: ACHHUZ5Oj0ipQS5YeJFc0dfgU05kiRIXolESi5d8MHZS7nV/rS8I4VVMxAxZWMRFY5ZK1rzNNHy4Rw==
-X-Received: by 2002:a6b:7103:0:b0:774:934c:d178 with SMTP id q3-20020a6b7103000000b00774934cd178mr8559968iog.20.1687279740792;
-        Tue, 20 Jun 2023 09:49:00 -0700 (PDT)
+        bh=3J+twO/vjQM/qWkeIhcjjpl1ciXpaPP0MAnGxmiVji8=;
+        b=f3HFScl/wxXBMJuWdyyi+4CoJoucPCDPf16feLtNyj8cwdgNRUP2TDlb522nrn64hZ
+         Cl6HliuBOONmhTLqdx1pbJeigrd9D05xfhUob4hC7BGkK3FLC9f0YFTYPNpwY7P3+nRS
+         JGdmmvRrJboq2NLisf9f+aLUMaGcEVVBZxtTTvL4LyW4QD+LMeld7vU7DG+xNlnGHB2z
+         5f8zTiVbuWrZhA4sjBb7FBhST+EP+RmvlXZv3LHFYnTuXfNNT+O2UMR/jDtG7uXEzTdJ
+         TLdG7ZAlaCGQ4j93BKgR+Y3mvTmwj338e+aq7WBq1xv0wA3pHT4VjUdMQoqNv6TZyZ+u
+         p4VQ==
+X-Gm-Message-State: AC+VfDzP+8f4weyCfEM7jSAGfLAqtyOsWdl9MagEA52po53uP6xYW0IB
+        6RlemfQX8JywmyxDKNqvgBTlZFimZA==
+X-Google-Smtp-Source: ACHHUZ7kWXURanD12QIIx+0GBD7ocA/PUqlmXY+3EM7bAaEKXip+6jUcuL1koF4S5eHi+04b0fdzHA==
+X-Received: by 2002:a92:de08:0:b0:342:28f1:75ae with SMTP id x8-20020a92de08000000b0034228f175aemr9154292ilm.12.1687279830895;
+        Tue, 20 Jun 2023 09:50:30 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id c11-20020a02c9cb000000b00411bdcdc488sm693665jap.173.2023.06.20.09.48.59
+        by smtp.gmail.com with ESMTPSA id r27-20020a056638101b00b0041627abe120sm543091jab.160.2023.06.20.09.50.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jun 2023 09:49:00 -0700 (PDT)
-Received: (nullmailer pid 3804095 invoked by uid 1000);
-        Tue, 20 Jun 2023 16:48:58 -0000
-Date:   Tue, 20 Jun 2023 10:48:58 -0600
+        Tue, 20 Jun 2023 09:50:30 -0700 (PDT)
+Received: (nullmailer pid 3806154 invoked by uid 1000);
+        Tue, 20 Jun 2023 16:50:28 -0000
+Date:   Tue, 20 Jun 2023 10:50:28 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>, palmer@dabbelt.com,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: riscv: cpus: switch to
- unevaluatedProperties: false
-Message-ID: <168727973778.3804036.16013455064916997231.robh@kernel.org>
-References: <20230615-creamer-emu-ade0fa0bdb68@spud>
- <20230615-viper-stoic-1ff8efd7d51d@spud>
+To:     jaswinder.singh@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, ilias.apalodimas@linaro.org,
+        masahisa.kojima@linaro.org
+Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
+ Synquacer platform
+Message-ID: <20230620165028.GA3805350-robh@kernel.org>
+References: <20230616035813.255062-1-jaswinder.singh@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230615-viper-stoic-1ff8efd7d51d@spud>
+In-Reply-To: <20230616035813.255062-1-jaswinder.singh@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,18 +64,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 15 Jun 2023 23:50:15 +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
+On Thu, Jun 15, 2023 at 10:58:13PM -0500, jaswinder.singh@linaro.org wrote:
+> From: Jassi Brar <jaswinder.singh@linaro.org>
 > 
-> To permit validation of cpu nodes, swap "additionalProperties: true"
-> out for "unevaluatedProperties: false".
+> Socionext's DeveloperBox is based on the SC2A11B SoC (Synquacer).
+> Specify bindings for the platform and boards based on that.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
 > ---
->  Documentation/devicetree/bindings/riscv/cpus.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+>  .../bindings/arm/socionext/synquacer.yaml     | 28 +++++++++++++++++++
+>  1 file changed, 28 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/socionext/synquacer.yaml
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
+Should I pick this up or Socionext maintainers will?
