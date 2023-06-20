@@ -2,72 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 154447364E7
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 09:40:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22FE17364FC
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 09:42:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230259AbjFTHkG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 03:40:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37558 "EHLO
+        id S229651AbjFTHmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 03:42:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231486AbjFTHjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 03:39:46 -0400
-Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B8642962;
-        Tue, 20 Jun 2023 00:38:30 -0700 (PDT)
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35K7brR8064405;
-        Tue, 20 Jun 2023 02:37:53 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1687246673;
-        bh=ZvCyq7/W8ycUHove8q30aFGyD3uYlA4u4OzFvw/X5MI=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To;
-        b=zWOQm+UqAai0fAgApsrUsIqpJWqW8V4XVh1jhG0D0M6YjZSQuEuVLoado6Z4Rw3XS
-         jYZv7FVBnJrMmJ8ELy/96IaetBd9ShIrnSj676vR9PL5giwWDOSfsoNJCA30QN4dVA
-         KNHWKNbpNTvaD3b2eXmNmmcSBPcIhtJXOo5HVBeE=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35K7brNo120386
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 20 Jun 2023 02:37:53 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Tue, 20
- Jun 2023 02:37:52 -0500
-Received: from DLEE107.ent.ti.com ([fe80::1c91:43d:d71:d7b6]) by
- DLEE107.ent.ti.com ([fe80::1c91:43d:d71:d7b6%17]) with mapi id
- 15.01.2507.023; Tue, 20 Jun 2023 02:37:52 -0500
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-To:     "Kapoor, Bhavya" <b-kapoor@ti.com>,
+        with ESMTP id S231516AbjFTHmZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 03:42:25 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00F5F19AE
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:41:56 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f8fcaa31c7so46737695e9.3
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:41:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687246915; x=1689838915;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=24xEFzXasuSMDhm3QYCFsb56SV2SbSTBKcssry+4iMc=;
+        b=kb2Ypew2JVaako1bcGbMeyMtw9rEyS3MjlXeVSa1rzdFaA0tb+zNuv3yd75CnSlrX0
+         RAUeEPJs1Scs2WXVSqX+DVaMRlosLlmxMkjByobLz5vH4W41Lv6nSVNyRPV2FzKgi7kb
+         jtFQ2dJZCwargVV9qCPGrfRj+WCrl6kEtaG1uofaTKh6fLvRPlbfq6e0DI6wdB1mvqe9
+         2juetvnY3DQqslLlmyW+zWVyZu6A6zSb7gonuzRhRQEncpFCuLF4Meo3AdPgUjIMxcWx
+         50ZoMlX/wMV2y8pFtlkYfzUmbHv8DU/pDX7iuy7XL8OGZZRKjlpznBN65wMseNwVVkbO
+         +bcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687246915; x=1689838915;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=24xEFzXasuSMDhm3QYCFsb56SV2SbSTBKcssry+4iMc=;
+        b=FQtktGOuKvcBDizEIA86UECmepriggZS/DOxBKbuijMTruKqsRN4Gf/wzBcwzChKYq
+         BqP0zI49/+X8hoxaDkY49IJjpOh7zZUQF+oxeUhckIZj2C/+6RPqRnSoRunoE9sTDbZU
+         Wzx7y4UeqDGbBnCsdk87Z6IHyOtGC2Ac0V6SrmKRa2yZVMM5o3bCyLI1D0/xIZqUcanP
+         5U0svx05UiG5iPGORm9peUqUCKdnyEhCeHIt8yhhLjkwwIffiozXSnueBnrsyVeElqw+
+         bZzNEI7UJz8H5qYrWkX39SXSSVrSeI7dswgEyOb6qtZFw9F+Z5xFYSGCLNNxRHJNPaVA
+         wFaA==
+X-Gm-Message-State: AC+VfDzjm+xmgyJf2oiU9Ue5K6j63gl9pTbfHfCYVMLZ1hojvtgVZdMN
+        KJ/w/XzbO+I+EyTXTnDgChhIyQ==
+X-Google-Smtp-Source: ACHHUZ6+HLWLmZt8VX1LnCyvr9HhxBusnuGgdSUtNZapl9clhiozcWy6ilLj2fVMlbDOsLulBpAENA==
+X-Received: by 2002:a05:600c:ac5:b0:3f9:ac7:6ccd with SMTP id c5-20020a05600c0ac500b003f90ac76ccdmr7273784wmr.26.1687246915248;
+        Tue, 20 Jun 2023 00:41:55 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:496f:4432:b5b2:1b3b? ([2a01:e0a:982:cbb0:496f:4432:b5b2:1b3b])
+        by smtp.gmail.com with ESMTPSA id p8-20020adfe608000000b0030ae849c70csm1348077wrm.37.2023.06.20.00.41.54
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jun 2023 00:41:54 -0700 (PDT)
+Message-ID: <3d0d568f-8b94-9057-6acc-8e0ff773cf4c@linaro.org>
+Date:   Tue, 20 Jun 2023 09:41:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic
+ Meson GPIO interrupt controller binding
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     "Menon, Nishanth" <nm@ti.com>,
-        "Raghavendra, Vignesh" <vigneshr@ti.com>,
-        "kristo@kernel.org" <kristo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>, "Mendez, Judith" <jm@ti.com>
-Subject: RE: [PATCH v3] arm64: dts: ti: k3-j721s2: Add support for CAN
- instances 3 and 5 in main domain
-Thread-Topic: [PATCH v3] arm64: dts: ti: k3-j721s2: Add support for CAN
- instances 3 and 5 in main domain
-Thread-Index: AQHZj/LUO184AbL1h0u86Ksjam53dq+Tc6Kw
-Date:   Tue, 20 Jun 2023 07:37:52 +0000
-Message-ID: <7699edaaa4be4b08bede1b1913ac1020@ti.com>
-References: <20230526165505.45172-1-b-kapoor@ti.com>
-In-Reply-To: <20230526165505.45172-1-b-kapoor@ti.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.24.217.12]
-x-exclaimer-md-config: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
+ <777cf5df-6358-fa46-66cd-153d29763f77@linaro.org>
+ <a895bdba-a48e-17e9-043e-9b950bbc1a85@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <a895bdba-a48e-17e9-043e-9b950bbc1a85@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -75,39 +90,41 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhavya,=20
+On 20/06/2023 09:36, Krzysztof Kozlowski wrote:
+> On 20/06/2023 09:33, Neil Armstrong wrote:
+>> Hi,
+>>
+>> On 12/03/2023 22:29, Heiner Kallweit wrote:
+>>> Convert Amlogic Meson GPIO interrupt controller binding to yaml.
+>>>
+>>> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+>>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
+>>> ---
+>>> - consider that more than one compatible may be set
+>>> - remove bus part from example
+>>> - remove minItem/maxItem properties for compatible
+>>> - reduce compatible fallback complexity
+>>> - add that 8 or 12 GIC interrupts can be used
+>>> - fix typo
+>>> ---
+>>>    .../amlogic,meson-gpio-intc.txt               | 38 ----------
+>>>    .../amlogic,meson-gpio-intc.yaml              | 72 +++++++++++++++++++
+>>>    2 files changed, 72 insertions(+), 38 deletions(-)
+>>>    delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
+>>>    create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
+>>
+>> Gentle ping, this patch is fully reviewed and is lying on the list for the last 3 months.
+> 
+> Maybe just take it through your Amlogic SoC tree in such case? It's less
+> preferred than subsystem, but still what matters is to get this merged.
 
-> [...]=20
->+	mux0: mux-controller0 {
->+		compatible =3D "gpio-mux";
->+		#mux-state-cells =3D <1>;
->+		mux-gpios =3D <&exp_som 1 GPIO_ACTIVE_HIGH>;
->+	};
->+
->+	mux1: mux-controller1 {
->+		compatible =3D "gpio-mux";
->+		#mux-state-cells =3D <1>;
->+		mux-gpios =3D <&exp_som 2 GPIO_ACTIVE_HIGH>;
->+	};
->+
 
-/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: mux-controller0: $=
-nodename:0: 'mux-controller0' does not match '^mux-controller(@.*|-[0-9a-f]=
-+)?$'
-Documentation/devicetree/bindings/mux/mux-controller.yaml
-arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: mux-controller1: $n=
-odename:0: 'mux-controller1' does not match '^mux-controller(@.*|-[0-9a-f]+=
-)?$'
+Yep I'll send it via the amlogic tree this week if Marc or Thomas doesn't object,
 
-Please fix above dtbs_check warning=20
+Neil
 
-For rest=20
-Reviewed-by: Udit Kumar <u-kumar1@ti.com>=20
-
-
-> 	transceiver0: can-phy0 {
-> 		/* standby pin has been grounded by default */
-> 		compatible =3D "ti,tcan1042";
->--
->2.39.2
-
+ >
+ > Best regards,
+ > Krzysztof
+ >
