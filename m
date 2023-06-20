@@ -2,146 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADBA4736396
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 08:27:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C8607363AB
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 08:36:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229966AbjFTG1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 02:27:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41720 "EHLO
+        id S230129AbjFTGgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 02:36:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229830AbjFTG1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 02:27:23 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC13CE7E
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 23:27:21 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9881b9d8cbdso500724366b.1
-        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 23:27:21 -0700 (PDT)
+        with ESMTP id S230015AbjFTGgl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 02:36:41 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62DBDE6E;
+        Mon, 19 Jun 2023 23:36:40 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b50e309602so35311265ad.0;
+        Mon, 19 Jun 2023 23:36:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687242440; x=1689834440;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=gmail.com; s=20221208; t=1687243000; x=1689835000;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=h1yE8tz9H3rEN65rD4mY8DHlzDlGjHODVIcSxoMimnI=;
-        b=ZPJi/Kd8F8hNT7+d3OGHtmgUCgnk8jfwgxxWk09roHyJkt/t9yEroDiRyhb6JRE/Fa
-         fN4DuvRahmWtV1VmKxACMtLenHSFBcLLxH5BmgkCga0zgKoaVDCLh52QHn9Kq19SLpGU
-         A0vn85Csof6gFk6JPEIqfqIM7OXhop76NXvE9FcI7I6dS7aT4Tr59+eilfRmvw3QB1DT
-         DaAO7vzbTAn+YcbvrmDf8QUpnZIokra5J5FU502BPWo5JUAB5t+5+mrNpfrT6cz/HEvD
-         5Wof5pKJe/Yn2HDJZzg25OcmhW01bHmsE7Z8fDEQeA7RQ2Uf80Z983ajon1mdoKdC1Rr
-         uBlw==
+        bh=ZGEmrwD87vPFZUFP2nZhIGYTM3YLut9ycTQ9fNJPTvM=;
+        b=nBYjkIB7Fl5l9oZIti5KfGcFEFHV7nBN3fW7O1ANniaQgyfDO+/hk7i8PTgRYQ7kdP
+         sP8SoY8l5R5nxBFMt9nhD7Q7MfYoKaz/AOF/rnS4ZEdMb59NA39JwadA511mdG4rBaD6
+         N9rZDoet1bKBS30VQZNfqi9oBdB9nlGydX2WybtUCwsdvR3GpzljdgwQXgfDBBWuS7rt
+         evvZ/+rnb8V99NrOrlTU1FZkIdO29Of+VAi2iuIhaVO+ZeVxm/T+PvTak+QU9JLtSLch
+         VIrmItN/GxQXiuyXOetquNt3Wp51mEw7EL+FDjhCnJ/K1mofwiTN2X00MsWpRNpyq1v0
+         Ibhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687242440; x=1689834440;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687243000; x=1689835000;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=h1yE8tz9H3rEN65rD4mY8DHlzDlGjHODVIcSxoMimnI=;
-        b=ioXOpLlOTzl9gWQrSHQPIUBPQw9XKEDzcJegrynBjwps8zPuWAQ8kBUyE52YNbvgmX
-         6F3xxKUcJsUhPLXY2PWCbh6BCcVnK3Fjle4Rees8txbIHEcB+P8IOakrNHAv5WhAtl51
-         tIEHgi2iQEdV2LnKrckbnX7DcZdy2HpzwGaiKXM6JqVFHYhM17NK4w5lUiq/G6tV06yY
-         ZCkC6OYq+oV1KDb+1eI0yAfiTohTjlSvYD789cmdwWxElguNiA1Gw3AuZLEWmgvSKZFK
-         0xL4d+Fhr3iADLQA6+CXZW2WQr73OCMfwhngAFQKy+VBuPJmMqTeOo5xTaFwjUIUV0x0
-         qH3w==
-X-Gm-Message-State: AC+VfDwpnzCJxRYhFkZ8WzfLMHrdHs4A/zA6yG3dBcYG2cUACdEfuOXF
-        GkC7Fm3H6GG/w7qYK/FRE4K70Q==
-X-Google-Smtp-Source: ACHHUZ63jQcKGHNuHANtSDzad8/JzE/X9SIEeQppC0X7BXLvG+L9jzx38DYjtshNsaf3p2+y3M2Sbw==
-X-Received: by 2002:a17:907:1c2a:b0:988:84a9:bd64 with SMTP id nc42-20020a1709071c2a00b0098884a9bd64mr4625151ejc.0.1687242440232;
-        Mon, 19 Jun 2023 23:27:20 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id le15-20020a170907170f00b00985bdb7dd5fsm723077ejc.201.2023.06.19.23.27.18
+        bh=ZGEmrwD87vPFZUFP2nZhIGYTM3YLut9ycTQ9fNJPTvM=;
+        b=BDT4uGMK6ubiMvub/aMhB0euXqb74Y8vqBdz+t/SET8Q0AeAKE9nj4fNLN1sN/lgL+
+         AceSEHDVUGv/Fug56Im1apHa+dDssCHAIDE5Nce9kD0ZaX2ID9dzlm2k0mvN9OWOavDY
+         LFRgIcIGzCgHgkw2pUbA/Bs7TGqIVdGWElpX5pwppBxctYVJ4z9U0EW4KN5bLWOYBMQy
+         gGPmI1w8wz0ZigDLgKyd4T6qCHMMZwalM9b4KvwV7NbJNbkyv6VYa0CTRypq1xcKyorI
+         Znu4SF0+svf6z0foNLkHoHw+24KyhdVqnEedIwEZSDHly7L+C7oYvCPJgPiwv9w77pSY
+         a1Cw==
+X-Gm-Message-State: AC+VfDxRNBitD6xt+898AB+WaEYAXaQD55noIUMzN2sQ2u4b5+rEcRp2
+        uJMvOJ0YYkWAEZncTUeqvIA=
+X-Google-Smtp-Source: ACHHUZ4/AFBPIzSfplimyzKmDs1iXEkO4b1qEdNgAdAIuPilnx/NFiqQYyVkMBt5HwtM38RTfL8b5A==
+X-Received: by 2002:a17:903:2284:b0:1b6:66f1:358f with SMTP id b4-20020a170903228400b001b666f1358fmr4576736plh.24.1687242999526;
+        Mon, 19 Jun 2023 23:36:39 -0700 (PDT)
+Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
+        by smtp.gmail.com with ESMTPSA id q21-20020a170902b11500b001b414fae374sm787522plr.291.2023.06.19.23.36.35
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 23:27:19 -0700 (PDT)
-Message-ID: <544a723b-20de-563b-6cc3-5efdeec0aef7@linaro.org>
-Date:   Tue, 20 Jun 2023 08:27:17 +0200
+        Mon, 19 Jun 2023 23:36:39 -0700 (PDT)
+Message-ID: <c229876f-5a0f-fab9-c006-adf42bfd892d@gmail.com>
+Date:   Tue, 20 Jun 2023 14:36:34 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH] dt-bindings: arm: socionext: add bindings for the
- Synquacer platform
+Subject: Re: [PATCH v16 1/1] clk: nuvoton: Use clk_parent_data instead and add
+ a header file
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
+        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
+        jirislaby@kernel.org, tmaimon77@gmail.com, catalin.marinas@arm.com,
+        will@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-serial@vger.kernel.org, arnd@arndb.de, soc@kernel.org,
+        schung@nuvoton.com, mjchen@nuvoton.com,
+        Jacky Huang <ychuang3@nuvoton.com>
+References: <20230620015120.234041-1-ychuang570808@gmail.com>
+ <20230620015120.234041-2-ychuang570808@gmail.com>
+ <e847c114-224b-fb69-e2b1-7881b8f8ec90@linaro.org>
 Content-Language: en-US
-To:     Jassi Brar <jaswinder.singh@linaro.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh@kernel.org,
-        ilias.apalodimas@linaro.org, masahisa.kojima@linaro.org
-References: <20230616035813.255062-1-jaswinder.singh@linaro.org>
- <165dd295-1b3a-5062-772a-613a7bf6fd45@linaro.org>
- <CAJe_ZhdV3yaKUVD43duO4hkGMByJhq7x9bN+eBXJdBXdxgDneg@mail.gmail.com>
- <e2b98d80-8e9a-6083-3bc5-677bef0d3263@linaro.org>
- <CAJe_ZhfeYmxjR7Hcht0F9rc97VG2JCFEEFB+S5kUhSCmsut3Cg@mail.gmail.com>
- <661800ab-c363-49f2-4889-c458a7b298c4@linaro.org>
- <CAJe_Zhe9CKNC_B6y_YxEY_Nz765GQghg1ivYSOROJH8A7FKcnA@mail.gmail.com>
- <1531062a-ce5f-8af0-b569-1b9eac3e7eac@linaro.org>
- <CAJe_Zhct9KGVD1t9CTaFhL05oxa9Rawf5g1OVmWOd-NYVNAErA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJe_Zhct9KGVD1t9CTaFhL05oxa9Rawf5g1OVmWOd-NYVNAErA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Jacky Huang <ychuang570808@gmail.com>
+In-Reply-To: <e847c114-224b-fb69-e2b1-7881b8f8ec90@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/06/2023 21:17, Jassi Brar wrote:
->>>>>> Can we fix them as well?
->>>>>>
->>>>> ??
->>>> What else I can say to such argument?
->>>>
->>> It was not an argument, I agreed to remove it. I just observed that
->>> the nit-pick was arbitrary.
->>> And frankly
->>>    "dt-bindings: arm: socionext: add Synquacer"   is as misleading as
->>>    "dt-bindings: arm: socionext: add bindings for the Synquacer"   is improper.
+
+
+On 2023/6/20 下午 02:22, Krzysztof Kozlowski wrote:
+> On 20/06/2023 03:51, Jacky Huang wrote:
+>> From: Jacky Huang <ychuang3@nuvoton.com>
 >>
->> "add Synquacer boards"
->> it is both precise and correct. No misleading.
->>
-> Ok. I am going to do that. Are you going to enforce this practice for
-> all submissions in future?
+>> 1. Update all parent clock string arrays with clk_parent_data structure,
+>>     and replace the usage of clk_hw_register_mux() with
+>>     clk_hw_register_mux_parent_data().
+>> 2. Introduce the header file clk-ma35d1.h to include shared external
+>>     functions.
+> These are two things thus commits.
+>
+> This is not v16. It's your first version of this patch.
+>
+> Best regards,
+> Krzysztof
+>
+Dear Krzysztof,
 
-How many cases can you find that I did not enforce it? That I provided a
-review and accepted other subject? It's nothing new...
-
-> 
-> 
->>>>
->>>> Bindings without user (so no DTSI and no driver)? Just few, not countless.
->>>>
->>> I disagree. But I don't have time to write a script to find
->>> compatibles/enums and properties in yaml/txt files that are not in any
->>> dts/dtsi file.
->>>  By that logic synquacer's spi/netsec/i2c/exiu bindings and drivers in
->>> kernel are illegit too?
->>
->> Don't know which one you talk about.
->>
-> Documentation/devicetree/bindings/
->   {
->      i2c/socionext,synquacer-i2c.yaml
-
-There is a user. What do you want to prove with this one?
-
->      interrupt-controller/socionext,synquacer-exiu.yaml
->      net/socionext,synquacer-netsec.yaml
->      spi/socionext,synquacer-spi.yaml
->    }
-> and corresponding code in drivers/
-> 
-> 
->>> The synquacer dts/dtsi are in u-boot upstream. SR testsuite looks up
->>
->> Sure, can you point it? U-Boot upstream is a valid project. Just like
->> many other upstream ones.
->>
-> Location of dts/dtsi in u-boot upstream is
->      https://elixir.bootlin.com/u-boot/latest/source/arch/arm/dts
+Thanks for your advice.
+Okay, this is the first version, and I will split it into two separate
+commits and resubmit it as v2.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Best Regards,
+Jacky Huang
