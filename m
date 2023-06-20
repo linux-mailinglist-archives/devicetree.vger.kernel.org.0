@@ -2,147 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 939437366A3
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 10:49:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25E9B7366B4
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 10:55:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjFTItz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 04:49:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52254 "EHLO
+        id S230465AbjFTIzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 04:55:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232079AbjFTItq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 04:49:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE01510F2;
-        Tue, 20 Jun 2023 01:49:41 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 41A6161003;
-        Tue, 20 Jun 2023 08:49:41 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C407C433C0;
-        Tue, 20 Jun 2023 08:49:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1687250980;
-        bh=ucG/+ss/pgC/7tMCNrpUOJF6gSvhna+8dtVR7W1ctZw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EEOjgHqfZNWkYSLHPMwCDt4D4JO00O+4WUOtb5ofmnZ/T8WEi7zUFS5NYoqWAOXSn
-         tKCmAKpqKYSh99q3jqJ+ae6X/z+5pXPOUALi+lkUWajeD69Grp0WptTE/UMJSDY1bf
-         9PGTY1Fj4p7PVO2UvzBRLNZXEh0ZWbLO34he4Rmc=
-Date:   Tue, 20 Jun 2023 10:49:38 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Tao Zhang <quic_taozha@quicinc.com>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        Mike Leach <mike.leach@linaro.org>,
+        with ESMTP id S229849AbjFTIzN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 04:55:13 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA7B10DB
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 01:55:11 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f9b627c1b8so8999855e9.1
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 01:55:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687251310; x=1689843310;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4iS2y1OnqzJKxw2HMxOkBjHX6AOsUPw+JImGbUMIxFg=;
+        b=f4JsLlCxHec5vVldrlb1HMkH9i7QC2zxrPMaYwzIjp/HDDLN1HRV4NwopXumEmW9C/
+         xOS/eeLg/uR9ir61is14Ve0SJfuJu3t+W7/nMTrKWjCOOAQ96LZwDvQYMZoFe73ImJgd
+         clCa7NDVHHM6/RGf2ROZIgO/PGPvjq++0F+F8JSPDFXeLszY/Qnw9cVlr7U8srL2ALFo
+         bbMVAkGEwQ6p26WLPXh9kTa8W/qDvZ97c5rEnHDVCJXU55Ud9vmCcss8IGI08NhztPl8
+         4xZNHlvQHigdA1YalBiEAd0jW36yzTHjQr9U+aazJzXB3+Qp3L2Sa9ygBtokYzT3u0dS
+         TjHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687251310; x=1689843310;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4iS2y1OnqzJKxw2HMxOkBjHX6AOsUPw+JImGbUMIxFg=;
+        b=PnnPTKHVBcVSxlim4jzpslyit9kMygA7eJ6sUTf9ml8PC87XkKlftqOBBRfoNl7xMC
+         zn1m2/qkaAXlyxBWnpeLVf2bVWKotKa8GwxVYNGvCre035HXP79gXTjW2FYniHEAHmfl
+         JnifM3exzM1hbVgKi3MNM4AZzICn6FI4AxvVDW1qVxM80Y0iZHR6iZt+9Kd8jjMT2XMM
+         Y+YLqjv3S49FWSVUWumK3g3S7GdwEHCWVWtbV/MvmSzgNp+IYdboj1cYGOCVLuXQYjp+
+         Kvi151sf/pqS1anGvdxdYKFAtaIuzAuyv1ckPZYh14c5eda0ouFvkLmMJ30M0wbDSvbY
+         F+Cw==
+X-Gm-Message-State: AC+VfDyGBpeekkE4A1izcy+h/4+6woR5RMFG3ILXsJyPRtFa1XCwJyqh
+        J+pxStNLNtbM401kuO8Z6rar1w==
+X-Google-Smtp-Source: ACHHUZ5VCu5k4nHF4t4LkDOSbvpBchpWq0tIlTiaANTgj8U6JwAarF7fg48kO+5pn74BlAToa9pfzw==
+X-Received: by 2002:a7b:cc99:0:b0:3f9:b88a:f9aa with SMTP id p25-20020a7bcc99000000b003f9b88af9aamr831636wma.11.1687251310048;
+        Tue, 20 Jun 2023 01:55:10 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id i2-20020a05600c290200b003f42d8dd7d1sm12932116wmd.7.2023.06.20.01.55.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jun 2023 01:55:09 -0700 (PDT)
+Message-ID: <1a5c39d8-812f-4a8d-bc65-205695661973@linaro.org>
+Date:   Tue, 20 Jun 2023 10:55:06 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver
+ strength cfg
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Guo Samin <samin.guo@starfivetech.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor@kernel.org>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
+        Frank <Frank.Sae@motor-comm.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Jinlong Mao <quic_jinlmao@quicinc.com>,
-        Leo Yan <leo.yan@linaro.org>, coresight@lists.linaro.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Tingwei Zhang <quic_tingweiz@quicinc.com>,
-        Yuanfang Zhang <quic_yuanfang@quicinc.com>,
-        Trilok Soni <quic_tsoni@quicinc.com>,
-        Hao Zhang <quic_hazha@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, andersson@kernel.org
-Subject: Re: [PATCH v6 09/13] Add nodes for dsb edge control
-Message-ID: <2023062000-jaws-extortion-f782@gregkh>
-References: <1687246361-23607-1-git-send-email-quic_taozha@quicinc.com>
- <1687246361-23607-10-git-send-email-quic_taozha@quicinc.com>
- <2023062024-sincere-tripod-95dc@gregkh>
- <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3aca4a55-0dc7-b34c-d2c0-111a96c33ec3@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Yanhong Wang <yanhong.wang@starfivetech.com>
+References: <20230526090502.29835-1-samin.guo@starfivetech.com>
+ <20230526090502.29835-2-samin.guo@starfivetech.com>
+ <20230526-glutinous-pristine-fed571235b80@spud>
+ <1dbf113c-7592-68bd-6aaf-05ff1d8c538c@starfivetech.com>
+ <15eb4ffe-ea12-9a2c-ae9d-c34860384b60@starfivetech.com>
+ <20230620-clicker-antivirus-99e24a06954e@wendy>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230620-clicker-antivirus-99e24a06954e@wendy>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 20, 2023 at 04:31:59PM +0800, Tao Zhang wrote:
+On 20/06/2023 10:26, Conor Dooley wrote:
+> Hey,
 > 
-> On 6/20/2023 3:37 PM, Greg Kroah-Hartman wrote:
-> > On Tue, Jun 20, 2023 at 03:32:37PM +0800, Tao Zhang wrote:
-> > > Add the nodes to set value for DSB edge control and DSB edge
-> > > control mask. Each DSB subunit TPDM has maximum of n(n<16) EDCR
-> > > resgisters to configure edge control. DSB edge detection control
-> > > 00: Rising edge detection
-> > > 01: Falling edge detection
-> > > 10: Rising and falling edge detection (toggle detection)
-> > > And each DSB subunit TPDM has maximum of m(m<8) ECDMR registers to
-> > > configure mask. Eight 32 bit registers providing DSB interface
-> > > edge detection mask control.
-> > > 
-> > > Signed-off-by: Tao Zhang <quic_taozha@quicinc.com>
-> > > ---
-> > >   .../ABI/testing/sysfs-bus-coresight-devices-tpdm   |  32 +++++
-> > >   drivers/hwtracing/coresight/coresight-tpdm.c       | 143 ++++++++++++++++++++-
-> > >   drivers/hwtracing/coresight/coresight-tpdm.h       |  22 ++++
-> > >   3 files changed, 196 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> > > index 2a82cd0..34189e4a 100644
-> > > --- a/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> > > +++ b/Documentation/ABI/testing/sysfs-bus-coresight-devices-tpdm
-> > > @@ -60,3 +60,35 @@ Description:
-> > >   		Bit[3] : Set to 0 for low performance mode.
-> > >   				 Set to 1 for high performance mode.
-> > >   		Bit[4:8] : Select byte lane for high performance mode.
-> > > +
-> > > +What:		/sys/bus/coresight/devices/<tpdm-name>/dsb_edge_ctrl
-> > > +Date:		March 2023
-> > > +KernelVersion	6.5
-> > > +Contact:	Jinlong Mao (QUIC) <quic_jinlmao@quicinc.com>, Tao Zhang (QUIC) <quic_taozha@quicinc.com>
-> > > +Description:
-> > > +		Read/Write a set of the edge control registers of the DSB
-> > > +		in TPDM.
-> > > +
-> > > +		Expected format is the following:
-> > > +		<integer1> <integer2> <integer3>
-> > sysfs is "one value", not 3.  Please never have to parse a sysfs file.
+> On Tue, Jun 20, 2023 at 11:09:52AM +0800, Guo Samin wrote:
+>> From: Guo Samin <samin.guo@starfivetech.com>
+>>> From: Conor Dooley <conor@kernel.org>
+>>>> On Fri, May 26, 2023 at 05:05:01PM +0800, Samin Guo wrote:
+>>>>> The motorcomm phy (YT8531) supports the ability to adjust the drive
+>>>>> strength of the rx_clk/rx_data, the value range of pad driver
+>>>>> strength is 0 to 7.
 > 
-> Do you mean sysfs file can only accept "one value"?
-
-Yes.
-
-> I see that more than one value are written to the sysfs file
-> "trigout_attach".
-
-Then someone missed that and it needs to be fixed.
-
-> > > +static ssize_t dsb_edge_ctrl_show(struct device *dev,
-> > > +				       struct device_attribute *attr,
-> > > +				       char *buf)
-> > > +{
-> > > +	struct tpdm_drvdata *drvdata = dev_get_drvdata(dev->parent);
-> > > +	ssize_t size = 0;
-> > > +	unsigned long bytes;
-> > > +	int i;
-> > > +
-> > > +	spin_lock(&drvdata->spinlock);
-> > > +	for (i = 0; i < TPDM_DSB_MAX_EDCR; i++) {
-> > > +		bytes = sysfs_emit_at(buf, size,
-> > > +				  "Index:0x%x Val:0x%x\n", i,
-> > Again, no, one value, no "string" needed to parse anything.
+>>>>> +  motorcomm,rx-clk-driver-strength:
+>>>>> +    description: drive strength of rx_clk pad.
+>>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>>>> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+>>>>
+>>>> I think you should use minimum & maximum instead of these listed out
+>>>> enums.
 > 
-> I also see other sysfs files can be read more than one value in other
-> drivers.
+>>>  You have also had this comment since v1 & were reminded of it on
+>>>> v2 by Krzysztof: "What do the numbers mean? What are the units? mA?"
+> 
+>>> The good news is that we just got some data about units from Motorcomm. 
+>>> Maybe I can post the data show of the unit later after I get the complete data.
+> 
+>> Sorry, haven't updated in a while.
+> 
+> NW chief.
+> 
+>> I just got the detailed data of Driver Strength(DS) from Motorcomm , which applies to both rx_clk and rx_data.
+>>
+>> |----------------------|
+>> |     ds map table     |
+>> |----------------------|
+>> | DS(3b) | Current (mA)|
+>> |--------|-------------|
+>> |   000  |     1.20    |
+>> |   001  |     2.10    |
+>> |   010  |     2.70    |
+>> |   011  |     2.91    |
+>> |   100  |     3.11    |
+>> |   101  |     3.60    |
+>> |   110  |     3.97    |
+>> |   111  |     4.35    |
+>> |--------|-------------|
+>>
+>> Since these currents are not integer values and have no regularity,
 
-Again, they are broken, please send patches to fix them.
+There is no mA unit in DT schema, so I don't see what by "not integer
+values". 1200 uA is an integer.
 
-> Is this "one value" limitation the usage rule of Linux sysfs system?
+>> it is not very good to use in the drive/dts in my opinion.
+> 
+> Who says you have to use mA? What about uA?
 
-Yes.
+Yep
 
-thanks,
+> 
+>> Therefore, I tend to continue to use DS(0-7) in dts/driver, and adding
+>> a description of the current value corresponding to DS in dt-bindings. 
+> 
+> I think this goes against not putting register values into the dts &
+> that the accurate description of the hardware are the currents.
 
-greg k-h
+For vendor properties register values are often accepted, but logical
+unit is much more readable in the DTS. Also allows further customization
+or extending when new variant appears. You cannot do extend a property
+easily when it holds a register value, without changing the meaning per
+variant.
+
+> 
+>> Like This:
+>>
+>> +  motorcomm,rx-clk-driver-strength:
+>> +    description: drive strength of rx_clk pad.
+> 
+> You need "description: |" to preserve the formatting if you add tables,
+> but I don't think that this is a good idea. Put the values in here that
+> describe the hardware (IOW the currents) and then you don't need to have
+> this table.
+> 
+>> +      |----------------------|
+>> +      | rx_clk ds map table  |
+>> +      |----------------------|
+>> +      | DS(3b) | Current (mA)|
+>> +      |   000  |     1.20    |
+>> +      |   001  |     2.10    |
+>> +      |   010  |     2.70    |
+>> +      |   011  |     2.91    |
+>> +      |   100  |     3.11    |
+>> +      |   101  |     3.60    |
+>> +      |   110  |     3.97    |
+>> +      |   111  |     4.35    |
+>> +      |--------|-------------|
+>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
+>> +    default: 3
+>> +
+> 
+>> Or use minimum & maximum instead of these listed out enums
+> 
+> With the actual current values, enum rather than min + max.
+
+
+
+Best regards,
+Krzysztof
+
