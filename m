@@ -2,87 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22FE17364FC
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 09:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10CC57365A0
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 10:03:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229651AbjFTHmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 03:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41414 "EHLO
+        id S229519AbjFTIDY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 04:03:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231516AbjFTHmZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 03:42:25 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00F5F19AE
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:41:56 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3f8fcaa31c7so46737695e9.3
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 00:41:56 -0700 (PDT)
+        with ESMTP id S230032AbjFTIDX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 04:03:23 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AA20CE;
+        Tue, 20 Jun 2023 01:03:20 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b46cad2fd9so37933551fa.1;
+        Tue, 20 Jun 2023 01:03:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687246915; x=1689838915;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=24xEFzXasuSMDhm3QYCFsb56SV2SbSTBKcssry+4iMc=;
-        b=kb2Ypew2JVaako1bcGbMeyMtw9rEyS3MjlXeVSa1rzdFaA0tb+zNuv3yd75CnSlrX0
-         RAUeEPJs1Scs2WXVSqX+DVaMRlosLlmxMkjByobLz5vH4W41Lv6nSVNyRPV2FzKgi7kb
-         jtFQ2dJZCwargVV9qCPGrfRj+WCrl6kEtaG1uofaTKh6fLvRPlbfq6e0DI6wdB1mvqe9
-         2juetvnY3DQqslLlmyW+zWVyZu6A6zSb7gonuzRhRQEncpFCuLF4Meo3AdPgUjIMxcWx
-         50ZoMlX/wMV2y8pFtlkYfzUmbHv8DU/pDX7iuy7XL8OGZZRKjlpznBN65wMseNwVVkbO
-         +bcg==
+        d=gmail.com; s=20221208; t=1687248198; x=1689840198;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=5OLrQlH9MsDar1FT4tekGAwUtALcq34/akUziS4Ojsc=;
+        b=IlH6m7gn39zFotP60aajztX4z0/AWMYGTEwYWdf4r7QCbFBCG++Z51oXguqbBQ2ghF
+         cX/h5Mzt1LGMP+PxSgWkXvrzXaCFV8Nr2dZyj2dZTXk2fy5hN18l4WnPNCYoz2uzJAnR
+         Mo8teqbxJ9Fjyv8NPP1dZkWu6L9NjP17qNjIL6jJgGyOaaQU/14X+L6DXfiM1FtIYGaP
+         oXFWz3WrOv3juJujaNwbpAPiaXs9/86AgDoglsZAqxLmLn5DXejJ64kn+HsbgUq4dPd2
+         8wqWOgVJvx9hDjm8kvAS6h5M+6ec8PQXI06rd5dfFXJbBA1yGgr5SF3M2ZRoxGKL8dv6
+         bOJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687246915; x=1689838915;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=24xEFzXasuSMDhm3QYCFsb56SV2SbSTBKcssry+4iMc=;
-        b=FQtktGOuKvcBDizEIA86UECmepriggZS/DOxBKbuijMTruKqsRN4Gf/wzBcwzChKYq
-         BqP0zI49/+X8hoxaDkY49IJjpOh7zZUQF+oxeUhckIZj2C/+6RPqRnSoRunoE9sTDbZU
-         Wzx7y4UeqDGbBnCsdk87Z6IHyOtGC2Ac0V6SrmKRa2yZVMM5o3bCyLI1D0/xIZqUcanP
-         5U0svx05UiG5iPGORm9peUqUCKdnyEhCeHIt8yhhLjkwwIffiozXSnueBnrsyVeElqw+
-         bZzNEI7UJz8H5qYrWkX39SXSSVrSeI7dswgEyOb6qtZFw9F+Z5xFYSGCLNNxRHJNPaVA
-         wFaA==
-X-Gm-Message-State: AC+VfDzjm+xmgyJf2oiU9Ue5K6j63gl9pTbfHfCYVMLZ1hojvtgVZdMN
-        KJ/w/XzbO+I+EyTXTnDgChhIyQ==
-X-Google-Smtp-Source: ACHHUZ6+HLWLmZt8VX1LnCyvr9HhxBusnuGgdSUtNZapl9clhiozcWy6ilLj2fVMlbDOsLulBpAENA==
-X-Received: by 2002:a05:600c:ac5:b0:3f9:ac7:6ccd with SMTP id c5-20020a05600c0ac500b003f90ac76ccdmr7273784wmr.26.1687246915248;
-        Tue, 20 Jun 2023 00:41:55 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:496f:4432:b5b2:1b3b? ([2a01:e0a:982:cbb0:496f:4432:b5b2:1b3b])
-        by smtp.gmail.com with ESMTPSA id p8-20020adfe608000000b0030ae849c70csm1348077wrm.37.2023.06.20.00.41.54
+        d=1e100.net; s=20221208; t=1687248198; x=1689840198;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=5OLrQlH9MsDar1FT4tekGAwUtALcq34/akUziS4Ojsc=;
+        b=RtmhyYBMeM3jeqSxAdWOWWsTL9KgaLDgi8jOBEvv6YwI26SzCDuOVPRtv/5YOSBYul
+         8KaTrRrO6I7qDH37YZHTv939RG3NS4CAjyKtDYR1ouSfbC49Z9+HUfe/xIPfp6QJtv10
+         xcw61Adqu05PYakHfKBcE/yY+/8jq6UG0Ys2uUleNuNRjpl0AYjdiZ9r+3cu6kTGLx7C
+         BALiKDolzRV7flYpuV26/qH7aB79QC4gp1qWOQTAQ8cKB2sXb7tbt94aPeT/YLSgi46M
+         kaJ7QdeooPHUkEcjld/37h6RbwCq3mIVgxnzrN6Ox7zuIVsTdTOU3wcf8WxJKvDd5229
+         i50A==
+X-Gm-Message-State: AC+VfDx3ZwgJzf7kjM9a0C2jhBtcU43wzRlFLwrj7aXuwyoBrkItmhEB
+        IYvNnnkRB7f9g/h2sTtrLIQ=
+X-Google-Smtp-Source: ACHHUZ54+v06cL6k4ixXiI7qwV6BSTIs1JdcOnHBwI5F4MMAL5JgdM39z/SSLQslq5ZM8i6Z6kJsaA==
+X-Received: by 2002:a2e:b70d:0:b0:2b4:3faf:c3d3 with SMTP id j13-20020a2eb70d000000b002b43fafc3d3mr7429501ljo.31.1687248198141;
+        Tue, 20 Jun 2023 01:03:18 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:16f8:1500::1? (dc78bmyyyyyyyyyyyyyyt-3.rev.dnainternet.fi. [2001:14ba:16f8:1500::1])
+        by smtp.gmail.com with ESMTPSA id h19-20020a2eb0f3000000b002b3318c8d6fsm288460ljl.28.2023.06.20.01.03.17
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 00:41:54 -0700 (PDT)
-Message-ID: <3d0d568f-8b94-9057-6acc-8e0ff773cf4c@linaro.org>
-Date:   Tue, 20 Jun 2023 09:41:53 +0200
+        Tue, 20 Jun 2023 01:03:17 -0700 (PDT)
+Message-ID: <4ce177c1-fe94-c523-6597-7ca7183a955a@gmail.com>
+Date:   Tue, 20 Jun 2023 11:03:16 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   neil.armstrong@linaro.org
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: Convert Amlogic
- Meson GPIO interrupt controller binding
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Marc Zyngier <marc.zyngier@arm.com>,
+ Thunderbird/102.10.0
+Content-Language: en-US, en-GB
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Heiner Kallweit <hkallweit1@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        "open list:ARM/Amlogic Meson..." <linux-amlogic@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-References: <e06e9f26-cf55-5596-c799-d698e9d7b409@gmail.com>
- <777cf5df-6358-fa46-66cd-153d29763f77@linaro.org>
- <a895bdba-a48e-17e9-043e-9b950bbc1a85@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <a895bdba-a48e-17e9-043e-9b950bbc1a85@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <cover.1686650184.git.mazziesaccount@gmail.com>
+ <e898bb74afdbc9aa030932e82c36b4ce6d13bab7.1686651445.git.mazziesaccount@gmail.com>
+ <20230617204824.6f3d9b20@jic23-huawei>
+From:   Matti Vaittinen <mazziesaccount@gmail.com>
+Subject: Re: [PATCH 2/3] iio: light: bu27008: add chip info
+In-Reply-To: <20230617204824.6f3d9b20@jic23-huawei>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,41 +80,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 09:36, Krzysztof Kozlowski wrote:
-> On 20/06/2023 09:33, Neil Armstrong wrote:
->> Hi,
->>
->> On 12/03/2023 22:29, Heiner Kallweit wrote:
->>> Convert Amlogic Meson GPIO interrupt controller binding to yaml.
->>>
->>> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
->>> Reviewed-by: Rob Herring <robh@kernel.org>
->>> Signed-off-by: Heiner Kallweit <hkallweit1@gmail.com>
->>> ---
->>> - consider that more than one compatible may be set
->>> - remove bus part from example
->>> - remove minItem/maxItem properties for compatible
->>> - reduce compatible fallback complexity
->>> - add that 8 or 12 GIC interrupts can be used
->>> - fix typo
->>> ---
->>>    .../amlogic,meson-gpio-intc.txt               | 38 ----------
->>>    .../amlogic,meson-gpio-intc.yaml              | 72 +++++++++++++++++++
->>>    2 files changed, 72 insertions(+), 38 deletions(-)
->>>    delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.txt
->>>    create mode 100644 Documentation/devicetree/bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml
->>
->> Gentle ping, this patch is fully reviewed and is lying on the list for the last 3 months.
+Thanks for the reviews Jonathan!
+
+I am a bit of overloaded right now so it may be reworking this series 
+will be postponed. Let's see. I will in any case take your feedback with 
+me and come back with the V2 of this series - later if not sooner :)
+
+On 6/17/23 22:48, Jonathan Cameron wrote:
+> On Tue, 13 Jun 2023 13:20:07 +0300
+> Matti Vaittinen <mazziesaccount@gmail.com> wrote:
 > 
-> Maybe just take it through your Amlogic SoC tree in such case? It's less
-> preferred than subsystem, but still what matters is to get this merged.
+>> The ROHM BU27010 RGB + flickering sensor is in many regards similar to
+>> the BU27008. Prepare for adding support for BU27010 by allowing
+>> chip-specific properties to be brought from the of_device_id data.
+>>
+>> Signed-off-by: Matti Vaittinen <mazziesaccount@gmail.com>
+> A few things inline - including some commented out code you missed
+> when tidying up before sending.
+
+Ouch. I must've done some of the tidying in latter patches. I'll do the 
+necessary cleanups and re-spin.
+
+> 
+> Jonathan
+> 
+>> ---
+>>   drivers/iio/light/rohm-bu27008.c | 185 +++++++++++++++++++++++--------
+>>   1 file changed, 138 insertions(+), 47 deletions(-)
+>>
+>> diff --git a/drivers/iio/light/rohm-bu27008.c b/drivers/iio/light/rohm-bu27008.c
+>> index b50bf8973d9a..8c7f6f20a523 100644
+>> --- a/drivers/iio/light/rohm-bu27008.c
+>> +++ b/drivers/iio/light/rohm-bu27008.c
+>> @@ -211,7 +211,33 @@ static const struct iio_chan_spec bu27008_channels[] = {
+>>   	IIO_CHAN_SOFT_TIMESTAMP(BU27008_NUM_CHANS),
+>>   };
+>>   
+>> +struct bu27008_data;
+>> +
+>> +struct bu27_chip_data {
+>> +	const char *name;
+>> +	int (*chip_init)(struct bu27008_data *data);
+>> +	int (*get_gain_sel)(struct bu27008_data *data, int *sel);
+>> +	int (*write_gain_sel)(struct bu27008_data *data, int sel);
+>> +	const struct regmap_config *regmap_cfg;
+>> +	const struct iio_gain_sel_pair *gains;
+>> +	const struct iio_gain_sel_pair *gains_ir;
+>> +	int num_gains;
+>> +	int num_gains_ir;
+>> +	int scale1x;
+>> +
+>> +	int drdy_en_reg;
+>> +	int drdy_en_mask;
+>> +	int meas_en_reg;
+>> +	int meas_en_mask;
+>> +	int valid_reg;
+>> +	int chan_sel_reg;
+>> +	int chan_sel_mask;
+>> +	int int_time_mask;
+>> +	u8 part_id;
+>> +};
+>> +
+>>   struct bu27008_data {
+>> +	const struct bu27_chip_data *cd;
+>>   	struct regmap *regmap;
+>>   	struct iio_trigger *trig;
+>>   	struct device *dev;
+>> @@ -282,6 +308,32 @@ static const struct regmap_config bu27008_regmap = {
+>>   	.disable_locking = true,
+>>   };
+>>   
+>> +static int bu27008_chip_init(struct bu27008_data *data);
+>> +static int bu27008_write_gain_sel(struct bu27008_data *data, int sel);
+>> +static int bu27008_get_gain_sel(struct bu27008_data *data, int *sel);
+>> +
+>> +static const struct bu27_chip_data bu27008_chip = {
+>> +	.name = "bu27008",
+>> +	.chip_init = bu27008_chip_init,
+>> +	.scale1x = BU27008_SCALE_1X,
+> 
+> I'd keep this in same order as the definition unless there is a
+> strong reason for a different ordering (perhaps the structure
+> is ordered for packing purposes or something like that 
+
+I tried avoid adding much of padding. Didn't go through the embedded 
+structs to see alignment though.
+
+I don't think this is a strong reason though. I don't expect many copies 
+of these structs being instantiated.
+
+> and assigning
+> can be done in an order that groups things better?)
+
+Yes. I do like having some grouping there.
+
+> Cost of out of order is that it's hard to check if everything is assigned.
+
+I'll revise the order. Thanks for pointing this out.
+
+>> +	.get_gain_sel = bu27008_get_gain_sel,
+>> +	.write_gain_sel = bu27008_write_gain_sel,
+>> +	.part_id = BU27008_ID,
+>> +	.regmap_cfg = &bu27008_regmap,
+>> +	.drdy_en_reg = BU27008_REG_MODE_CONTROL3,
+>> +	.drdy_en_mask = BU27008_MASK_INT_EN,
+>> +	.valid_reg = BU27008_REG_MODE_CONTROL3,
+>> +	.meas_en_reg = BU27008_REG_MODE_CONTROL3,
+>> +	.meas_en_mask = BU27008_MASK_MEAS_EN,
+>> +	.chan_sel_reg = BU27008_REG_MODE_CONTROL3,
+>> +	.chan_sel_mask = BU27008_MASK_CHAN_SEL,
+>> +	.int_time_mask = BU27008_MASK_MEAS_MODE,
+>> +	.gains = &bu27008_gains[0],
+>> +	.num_gains = ARRAY_SIZE(bu27008_gains),
+>> +	.gains_ir = &bu27008_gains_ir[0],
+>> +	.num_gains_ir = ARRAY_SIZE(bu27008_gains_ir),
+>> +};
+> 
+> Could you move this down to below all the callbacks so that no need for forward
+> definitions of the functions?
+
+Well, I will see how it works. I think there were some dependency - 
+chip_info is probably embedded in struct bu27008_data - which is needed 
+in these functions - but I'll check this.
 
 
-Yep I'll send it via the amlogic tree this week if Marc or Thomas doesn't object,
+Yours,
+	-- Matti
 
-Neil
+-- 
+Matti Vaittinen
+Linux kernel developer at ROHM Semiconductors
+Oulu Finland
 
- >
- > Best regards,
- > Krzysztof
- >
+~~ When things go utterly wrong vim users can always type :help! ~~
+
