@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5889773779A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 00:52:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2A917377A9
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 00:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229671AbjFTWwz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 18:52:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48564 "EHLO
+        id S229490AbjFTWzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 18:55:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbjFTWwy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 18:52:54 -0400
+        with ESMTP id S229769AbjFTWzy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 18:55:54 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FCE21703;
-        Tue, 20 Jun 2023 15:52:53 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00AFB1988;
+        Tue, 20 Jun 2023 15:55:46 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2DFB461325;
-        Tue, 20 Jun 2023 22:52:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3B4EBC433C0;
-        Tue, 20 Jun 2023 22:52:49 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8904261408;
+        Tue, 20 Jun 2023 22:55:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A6428C433C8;
+        Tue, 20 Jun 2023 22:55:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687301572;
-        bh=J3EgEpt+Xo4EHMGQ9rhqqELAOOLQCNRzgg8Uw4ATbsY=;
+        s=k20201202; t=1687301745;
+        bh=sL+llKy6MBaR/eUwxdHscc21DlU/nNSX6MzdvmC4oY8=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kk0IVbQCO1hQAYvvcGZOX/qt/Ut3MYFzLr4WYYWwH0rHw5gkHtq/I8YlFvjXLk8ff
-         7HAS0qSNdDVRq8kNnYBmPzqgp8b8vHD0ZQywmMh8Tup/neufSHq3NoYz8+36uOpd7f
-         +LgolFNRpXxW6zr/JqjQaCjuJTy/KtDc1w6FX3eedfZjWWv1Kow4F/UaIDz+3f+U1w
-         RwLbZFv6FseqNWOZgYCemsbP8TgECCJngAepp76Y5kLzCtmfhkFyu9kEc9N3Tpi3hV
-         JQModJag9LexqiMOHXHVWe1eLC+u5aW40y1cjaB9mp977ZLI6WsJDUHnynPEdAc/ug
-         eDdA249kPhXfQ==
-Date:   Tue, 20 Jun 2023 23:52:46 +0100
+        b=jVlIZxgXZNEK+cyS+H5mIux7i+ZFZSDB7YnVOooKYOD54Bggg2CzFIOjUGRo/aZdJ
+         N7XCkCXp9huYAamUL6hCY4qj9Yy5dMQM7aPM5ru6yhZTLhXYzOyGm4VEY3lHe2/BYV
+         FZCslF7LBNHTJQpNhEs7x1oUBBxcCNBL7M0BoFouDotQGROLvj56erdA0zf5iKFIgg
+         6Va+nhGx3sr90oh5viVpniYs3peM6xy315cQ7Xi1oJr5LkqQsHQmRAd4TDphbvgId+
+         e5TXfD7wwAS1JvCRjLQiwhmu0D2hX6walnWrRWW0JV6mtVaKSMx/KlcTy3rGL0FBYM
+         wkGEmHEVQNU3Q==
+Date:   Tue, 20 Jun 2023 23:55:40 +0100
 From:   Conor Dooley <conor@kernel.org>
 To:     Jisheng Zhang <jszhang@kernel.org>
 Cc:     Thomas Gleixner <tglx@linutronix.de>,
@@ -49,15 +49,16 @@ Cc:     Thomas Gleixner <tglx@linutronix.de>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
         linux-riscv@lists.infradead.org, arnd@arndb.de
 Subject: Re: [PATCH v3 0/8] Add Sipeed Lichee Pi 4A RISC-V board support
-Message-ID: <20230620-catcher-jaybird-945d26a4f642@spud>
+Message-ID: <20230620-google-powdery-640c8d03d864@spud>
 References: <20230617161529.2092-1-jszhang@kernel.org>
  <20230617-duress-phantom-3da79e33f204@spud>
  <ZI8wEp52bpqaCHAl@xhacker>
+ <20230620-catcher-jaybird-945d26a4f642@spud>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2oHa4guy7ghistNk"
+        protocol="application/pgp-signature"; boundary="+Jk+U6Iaw+rqo4Jv"
 Content-Disposition: inline
-In-Reply-To: <ZI8wEp52bpqaCHAl@xhacker>
+In-Reply-To: <20230620-catcher-jaybird-945d26a4f642@spud>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,35 +70,44 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---2oHa4guy7ghistNk
+--+Jk+U6Iaw+rqo4Jv
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 19, 2023 at 12:25:54AM +0800, Jisheng Zhang wrote:
-> On Sat, Jun 17, 2023 at 07:20:43PM +0100, Conor Dooley wrote:
-> > From: Conor Dooley <conor.dooley@microchip.com>
-
-> > I'll send it to Arnd as a "RISC-V Devicetrees for v6.5 Part 2" once it
-> > has been in linux-next for a day or two.
+On Tue, Jun 20, 2023 at 11:52:46PM +0100, Conor Dooley wrote:
+> On Mon, Jun 19, 2023 at 12:25:54AM +0800, Jisheng Zhang wrote:
+> > On Sat, Jun 17, 2023 at 07:20:43PM +0100, Conor Dooley wrote:
+> > > From: Conor Dooley <conor.dooley@microchip.com>
 >=20
-> Thank you so much for helping the PR this time.
+> > > I'll send it to Arnd as a "RISC-V Devicetrees for v6.5 Part 2" once it
+> > > has been in linux-next for a day or two.
+> >=20
+> > Thank you so much for helping the PR this time.
+>=20
+> Just FYI, since I think only I get the notif emails, Arnd has merged it:
+> https://git.kernel.org/soc/soc/c/c9a5aa0e53d0
 
-Just FYI, since I think only I get the notif emails, Arnd has merged it:
-https://git.kernel.org/soc/soc/c/c9a5aa0e53d0
+Bah, wrong link - that's the one that pw bot told me it was, but I guess
+it got confused by the fact that I had sent 2 PRs. Correct commit is:
+https://git.kernel.org/pub/scm/linux/kernel/git/soc/soc.git/commit/?h=3Dsoc=
+/dt&id=3Dd8ece8b832276756d32c310fdd76835f8046071a
 
-Cheers,
-Conor.
+>=20
+> Cheers,
+> Conor.
 
---2oHa4guy7ghistNk
+
+
+--+Jk+U6Iaw+rqo4Jv
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJItvgAKCRB4tDGHoIJi
-0q5oAQD0U2WdmDEwFxLUHGeOYdSuiPCZnmm81xEa3Njmye//qQD/QZh5UdvnVUp5
-Yw1KIPNM2IkrNs5apM9qSmiwTzQSfgs=
-=BlB5
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJIubAAKCRB4tDGHoIJi
+0gs7AQCzsN6FosuWDw5ccsUpVbY/OJRy2E6qhPCpvuQuRxRNoAEA019WavBu8+m2
+874m+pwDmhD3vGOrngQrKR/Qhnoy0As=
+=RSDy
 -----END PGP SIGNATURE-----
 
---2oHa4guy7ghistNk--
+--+Jk+U6Iaw+rqo4Jv--
