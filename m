@@ -2,82 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE40E736A47
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:05:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99C20736A58
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230490AbjFTLFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 07:05:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43114 "EHLO
+        id S231535AbjFTLHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 07:07:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232507AbjFTLFp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:05:45 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0621100
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:05:43 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b475b54253so33660531fa.2
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:05:43 -0700 (PDT)
+        with ESMTP id S232086AbjFTLHJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:07:09 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5978A19AA
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:06:42 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-307d20548adso3544920f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:06:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687259141; x=1689851141;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VnfEhtDDR79cB+JFtObt/sWNnZM5L1YdVH546wXBYs8=;
-        b=wU/8UQ6nXqxYFGp68FTCKcSnWpb/gYUxxrIcc9aDr0TNcWJ77k8M0UvXKKLLAYHxEP
-         3+c7TZaiHOynszRfHfpALcvykypFvwaWo7ycXt9/Uy4G6xH54leb/97SsImTBfG60dXl
-         QC9f89iF4xo4zfECxO9lOmdeIAHXG6cTJZvyOHQNe9hv/Q0We+RVWmigN9TU5r5J064g
-         KzpOZzj0QuPwkLZzfwuHz3IXsLJerYg4kYlykkR22dkIYmZeFT0RSD0xB6Wo3arQLPTI
-         R9AaGI9sqELUsOtF8F/zBneiPZqz9l4P0GTzZGXmIDaocBGCt4Z0GtxnUjK3yMdSO14L
-         QOKA==
+        d=linaro.org; s=google; t=1687259192; x=1689851192;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KT1ofLh67QbHzizNPx+KKb1VFMOfDe7sYVySqlC78CE=;
+        b=vvm0o8KzU8OoT0ntmU/pUfSjvvC49nx3S7FTzzzPJlvAsWtAy6C6brLF7Fj8PxM9Vm
+         iGC8sMJ6tPeDfy0IDEWUsiphrnvQA8IhuYzbZX1MbbiyWQ1n/sZ+wlaH+H3tmnb/c7WG
+         pJIMNsJt3IGpTFv66jR2x9SerfmU5dZ3LUWwZf2Msd0woFy6XDpNLwqU/LsrJFUcx5S8
+         iyBUv0b7tRkFhw4IUxKEAly8O1hMCTXgp6CFW4hgfNYjDpcSvVlqL+KPeqm+xBPkXQlJ
+         NkBOYSx9XUg48T5aVY2n3+TPRbIrwYE61DNNYSt5HeoqTIlQuBVHsLNYBqUSaUfdQYEk
+         BTbQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687259141; x=1689851141;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VnfEhtDDR79cB+JFtObt/sWNnZM5L1YdVH546wXBYs8=;
-        b=ShUW5uFLeLO+5u/XuA2RWkH/oE6ybrghlfAqa675QumudWZexPPzICWbrixaCNsYsO
-         JGpEuYpD5qvV/qh/K7Fdi7GIyn6TH5RfbgKyEfyuFBQu5Sp1gse5TZQ7/hgii5P3bmZu
-         hD61mCryBmLNszm7CWuwuK0qTo8w69inJr2YXoabD+J9cwrpWJic6iFyQp2CXOMXbXrK
-         MTBJ+m1FSFiaJTDAHlrkJSQP7fyLR4UuH65BoDp5oEWVOA1Vcp/VrrYqq+gc3jJEfsHX
-         RJg4gco5xhT9ofMCcFbXsBu0C8Hcw81J/uMEQncAseOmKUoR8DCDnjKMNmFT5YbyZ7qh
-         FEPQ==
-X-Gm-Message-State: AC+VfDyT+949GOWk5M7O/X9imbiat5e9xSpaT5UFKWCX86F+AqXas9Wk
-        E7m1t+5ne++E8y4irQvfa1keIA==
-X-Google-Smtp-Source: ACHHUZ5z0plB70c5G+uV6as3l0ESzn6YBCngAMY2mllmoSMD9KtsOE7+Low5QUJYp2bDbucXoMEmZA==
-X-Received: by 2002:a2e:b1c7:0:b0:2af:c9d8:87b4 with SMTP id e7-20020a2eb1c7000000b002afc9d887b4mr7761776lja.29.1687259141664;
-        Tue, 20 Jun 2023 04:05:41 -0700 (PDT)
-Received: from [192.168.1.101] (abxj193.neoplus.adsl.tpnet.pl. [83.9.3.193])
-        by smtp.gmail.com with ESMTPSA id 11-20020a05651c008b00b002ac7b0fc473sm369047ljq.38.2023.06.20.04.05.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 20 Jun 2023 04:05:41 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 20 Jun 2023 13:05:37 +0200
-Subject: [PATCH v2 4/4] arm64: dts: qcom: sm8250-edo: Rectify gpio-keys
+        d=1e100.net; s=20221208; t=1687259192; x=1689851192;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KT1ofLh67QbHzizNPx+KKb1VFMOfDe7sYVySqlC78CE=;
+        b=k1Js7sIfWpU5wByBRTmFUjya5bGKhyU5zmls53gU1NhkXiCQ/Et0JIRWaa4JFumXSZ
+         iaVdQ4kkkkC9x1uj0GE0U/vJDLgRKzpBnXp5eGKD0/8O8LDi9oTkBYREGW1Xq4zah7ZZ
+         53XHNhypmAm87mylxtNOVzIvicvwhcjnHbLETtUpV3qi+SZAe6Zt+ey2KfT97txjha3M
+         Q6i0i5LP6Wfq7JMttzEilqOh8Y60POFIeI6XgcrolaHKtyqSo578De7SA5fD9WG5rHsl
+         xJEyifrhQhIeqR//YruFxfynYeANknKzJV/TM7NhqZTkGtpCCbGxgfoosIjP+amsGquv
+         Pifg==
+X-Gm-Message-State: AC+VfDwuXyOu/tQNsO+2+5MPWhTJRFMPWiis+3pN+eb4fgmgUFNVcibA
+        SgtfA1Q/QvZnNJlSAvfoKnA+PQ==
+X-Google-Smtp-Source: ACHHUZ4duUXd2dKsPPFa5YwcAu5daqLG6JvhFde9VZTF4QDI938552Au7e9Zc7cCpSzLkMqrSxXzUg==
+X-Received: by 2002:a5d:4fc1:0:b0:30f:c1ab:a039 with SMTP id h1-20020a5d4fc1000000b0030fc1aba039mr7735138wrw.40.1687259192356;
+        Tue, 20 Jun 2023 04:06:32 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id o16-20020a5d6850000000b003047ae72b14sm1736958wrw.82.2023.06.20.04.06.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jun 2023 04:06:31 -0700 (PDT)
+Message-ID: <ed6f9ab8-9c4e-ec9f-efb7-81974d75f074@linaro.org>
+Date:   Tue, 20 Jun 2023 13:06:29 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 2/4] dt-bindings: clock: Add Intel Agilex5 clocks and
+ resets
+Content-Language: en-US
+To:     wen.ping.teh@intel.com
+Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, dinguyen@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        netdev@vger.kernel.org, niravkumar.l.rabara@intel.com,
+        p.zabel@pengutronix.de, richardcochran@gmail.com,
+        robh+dt@kernel.org, sboyd@kernel.org
+References: <8d5f38e6-2ca6-2c61-da29-1d4d2a3df569@linaro.org>
+ <20230620103930.2451721-1-wen.ping.teh@intel.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230620103930.2451721-1-wen.ping.teh@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230614-topic-edo_pinsgpiopmic-v2-4-6f90bba54c53@linaro.org>
-References: <20230614-topic-edo_pinsgpiopmic-v2-0-6f90bba54c53@linaro.org>
-In-Reply-To: <20230614-topic-edo_pinsgpiopmic-v2-0-6f90bba54c53@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687259134; l=3233;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=0Nd+IdxLUHksSzQLBMfzn4JECl7I9SIpO0+ZAvt3EYc=;
- b=bc2ot/iKUegdQZ8gQDU/jocKCigfCb/6ZURQiAG07ACxdMU4T15qYmbOuuNKWjmy/XIFsODcA
- WcfqRF27u7BCtu9Rhtu6rAvMEfD7VIxpBUkWObGlF/QBdR888aZWlFr
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,118 +81,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set up the corresponding GPIOs properly and add the leftover hardware
-buttons to mark this piece of the puzzle complete.
+On 20/06/2023 12:39, wen.ping.teh@intel.com wrote:
+>>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: intel,agilex5-clkmgr
+>>
+>>
+>> Why "clkmgr", not "clk"? You did not call it Clock manager anywhere in
+>> the description or title.
+>>
+> 
+> The register in Agilex5 handling the clock is named clock_mgr.
+> Previous IntelSocFPGA, Agilex and Stratix10, are also named clkmgr.
 
-Fixes: 46e14907c716 ("arm64: dts: qcom: sm8250-edo: Add hardware keys")
-Reviewed-by: Marijn Suijten <marijn.suijten@somainline.org>
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- .../dts/qcom/sm8250-sony-xperia-edo-pdx206.dts     | 10 ++++
- .../boot/dts/qcom/sm8250-sony-xperia-edo.dtsi      | 54 +++++++++++++++++++---
- 2 files changed, 58 insertions(+), 6 deletions(-)
+So use it in description.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
-index ea4571bf4fbf..58a521046f5f 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo-pdx206.dts
-@@ -20,6 +20,8 @@ &framebuffer {
- };
- 
- &gpio_keys {
-+	pinctrl-0 = <&focus_n &snapshot_n &vol_down_n &g_assist_n>;
-+
- 	g-assist-key {
- 		label = "Google Assistant Key";
- 		linux,code = <KEY_LEFTMETA>;
-@@ -48,6 +50,14 @@ &pm8150_gpios {
- 			  "SP_ARI_PWR_ALARM",
- 			  "NC",
- 			  "NC"; /* GPIO_10 */
-+
-+	g_assist_n: g-assist-n-state {
-+		pins = "gpio6";
-+		function = "normal";
-+		power-source = <1>;
-+		bias-pull-up;
-+		input-enable;
-+	};
- };
- 
- &pm8150b_gpios {
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-index 70da10fb9d9d..897b97db819e 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-sony-xperia-edo.dtsi
-@@ -51,12 +51,26 @@ framebuffer: framebuffer@9c000000 {
- 	gpio_keys: gpio-keys {
- 		compatible = "gpio-keys";
- 
--		/*
--		 * Camera focus (light press) and camera snapshot (full press)
--		 * seem not to work properly.. Adding the former one stalls the CPU
--		 * and the latter kills the volume down key for whatever reason. In any
--		 * case, they are both on &pm8150b_gpios: camera focus(2), camera snapshot(1).
--		 */
-+		pinctrl-0 = <&focus_n &snapshot_n &vol_down_n>;
-+		pinctrl-names = "default";
-+
-+		key-camera-focus {
-+			label = "Camera Focus";
-+			linux,code = <KEY_CAMERA_FOCUS>;
-+			gpios = <&pm8150b_gpios 2 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			gpio-key,wakeup;
-+		};
-+
-+		key-camera-snapshot {
-+			label = "Camera Snapshot";
-+			linux,code = <KEY_CAMERA>;
-+			gpios = <&pm8150b_gpios 1 GPIO_ACTIVE_LOW>;
-+			debounce-interval = <15>;
-+			linux,can-disable;
-+			gpio-key,wakeup;
-+		};
- 
- 		key-vol-down {
- 			label = "Volume Down";
-@@ -544,6 +558,34 @@ &pcie2_phy {
- 	vdda-pll-supply = <&vreg_l9a_1p2>;
- };
- 
-+&pm8150_gpios {
-+	vol_down_n: vol-down-n-state {
-+		pins = "gpio1";
-+		function = "normal";
-+		power-source = <0>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
-+&pm8150b_gpios {
-+	snapshot_n: snapshot-n-state {
-+		pins = "gpio1";
-+		function = "normal";
-+		power-source = <0>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+
-+	focus_n: focus-n-state {
-+		pins = "gpio2";
-+		function = "normal";
-+		power-source = <0>;
-+		bias-pull-up;
-+		input-enable;
-+	};
-+};
-+
- &pon_pwrkey {
- 	status = "okay";
- };
+> 
+>>> +
+>>> +  '#clock-cells':
+>>> +    const: 1
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +  - '#clock-cells'
+>>
+>> Keep the same order as in properties:
+>>
+> 
+> Will update in V2 patch.
+> 
+>>> +
+>>> +additionalProperties: false
+>>> +
+>>> +examples:
+>>> +  # Clock controller node:
+>>> +  - |
+>>> +    clkmgr: clock-controller@10d10000 {
+>>> +      compatible = "intel,agilex5-clkmgr";
+>>> +      reg = <0x10d10000 0x1000>;
+>>> +      #clock-cells = <1>;
+>>> +    };
+>>> +...
+>>> diff --git a/include/dt-bindings/clock/agilex5-clock.h b/include/dt-bindings/clock/agilex5-clock.h
+>>> new file mode 100644
+>>> index 000000000000..4505b352cd83
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/clock/agilex5-clock.h
+>>
+>> Filename the same as binding. Missing vendor prefix, entirely different
+>> device name.
+>>
+> 
+> Will change filename to intel,agilex5-clock.h in V2.
 
--- 
-2.41.0
+Read the comment - same as binding. You did not call binding that way...
+unless you rename the binding.
+
+>>
+>>> +
+>>> +#endif	/* __AGILEX5_CLOCK_H */
+>>> diff --git a/include/dt-bindings/reset/altr,rst-mgr-agilex5.h b/include/dt-bindings/reset/altr,rst-mgr-agilex5.h
+>>> new file mode 100644
+>>> index 000000000000..81e5e8c89893
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/reset/altr,rst-mgr-agilex5.h
+>>
+>> Same filename as binding.
+>>
+>> But why do you need this file? Your device is not a reset controller.
+> 
+> Because Agilex5 device tree uses the reset definition from this file.
+
+That's not the correct reason. The binding header has nothing to do with
+this device. You miss another patch adding support for your device
+(compatible) with this header.
+
+Best regards,
+Krzysztof
 
