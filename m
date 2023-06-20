@@ -2,201 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 25E9B7366B4
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 10:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 268EE7366BF
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 10:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230465AbjFTIzO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 04:55:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54166 "EHLO
+        id S229731AbjFTI5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 04:57:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbjFTIzN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 04:55:13 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EA7B10DB
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 01:55:11 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f9b627c1b8so8999855e9.1
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 01:55:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687251310; x=1689843310;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=4iS2y1OnqzJKxw2HMxOkBjHX6AOsUPw+JImGbUMIxFg=;
-        b=f4JsLlCxHec5vVldrlb1HMkH9i7QC2zxrPMaYwzIjp/HDDLN1HRV4NwopXumEmW9C/
-         xOS/eeLg/uR9ir61is14Ve0SJfuJu3t+W7/nMTrKWjCOOAQ96LZwDvQYMZoFe73ImJgd
-         clCa7NDVHHM6/RGf2ROZIgO/PGPvjq++0F+F8JSPDFXeLszY/Qnw9cVlr7U8srL2ALFo
-         bbMVAkGEwQ6p26WLPXh9kTa8W/qDvZ97c5rEnHDVCJXU55Ud9vmCcss8IGI08NhztPl8
-         4xZNHlvQHigdA1YalBiEAd0jW36yzTHjQr9U+aazJzXB3+Qp3L2Sa9ygBtokYzT3u0dS
-         TjHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687251310; x=1689843310;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4iS2y1OnqzJKxw2HMxOkBjHX6AOsUPw+JImGbUMIxFg=;
-        b=PnnPTKHVBcVSxlim4jzpslyit9kMygA7eJ6sUTf9ml8PC87XkKlftqOBBRfoNl7xMC
-         zn1m2/qkaAXlyxBWnpeLVf2bVWKotKa8GwxVYNGvCre035HXP79gXTjW2FYniHEAHmfl
-         JnifM3exzM1hbVgKi3MNM4AZzICn6FI4AxvVDW1qVxM80Y0iZHR6iZt+9Kd8jjMT2XMM
-         Y+YLqjv3S49FWSVUWumK3g3S7GdwEHCWVWtbV/MvmSzgNp+IYdboj1cYGOCVLuXQYjp+
-         Kvi151sf/pqS1anGvdxdYKFAtaIuzAuyv1ckPZYh14c5eda0ouFvkLmMJ30M0wbDSvbY
-         F+Cw==
-X-Gm-Message-State: AC+VfDyGBpeekkE4A1izcy+h/4+6woR5RMFG3ILXsJyPRtFa1XCwJyqh
-        J+pxStNLNtbM401kuO8Z6rar1w==
-X-Google-Smtp-Source: ACHHUZ5VCu5k4nHF4t4LkDOSbvpBchpWq0tIlTiaANTgj8U6JwAarF7fg48kO+5pn74BlAToa9pfzw==
-X-Received: by 2002:a7b:cc99:0:b0:3f9:b88a:f9aa with SMTP id p25-20020a7bcc99000000b003f9b88af9aamr831636wma.11.1687251310048;
-        Tue, 20 Jun 2023 01:55:10 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id i2-20020a05600c290200b003f42d8dd7d1sm12932116wmd.7.2023.06.20.01.55.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 01:55:09 -0700 (PDT)
-Message-ID: <1a5c39d8-812f-4a8d-bc65-205695661973@linaro.org>
-Date:   Tue, 20 Jun 2023 10:55:06 +0200
+        with ESMTP id S229522AbjFTI5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 04:57:22 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62118C2;
+        Tue, 20 Jun 2023 01:57:21 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35K8P91s025129;
+        Tue, 20 Jun 2023 10:57:14 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=selector1;
+ bh=BuuKOnOm8Z2Mpwb61kJNl/g5ahSF1GNjc4okmHDiako=;
+ b=kbubHx1UunA+l0URDgzF0o9PpjLHDIFohkzMiEddTEKjbZD/bHDmdx8G0eLqhIVmuQVi
+ q88N7F8T/gtD/XRTXZIPnFfiIsq5J81pqbV4vgHKmWq0T/l5P54JLWNGBIuVtk/TzW64
+ 16jhxl8R5jZ5AfdMIX+cVBad1EHBqAc0uIRwnZBcSic35XHEmdBrsrw0WsHU5pT5nLPt
+ zCJUn1TvzSs+UNsciTOPZxVl0RO3bV+vEvSegN7XCxiHABihI8s6zj7l8QSdqMRWmvFE
+ BVfFOHMxWTepu24+7iHcVVhY23TVCCxSdw2Br3aOwEE1Y5e1+x8UIJ5MDG4FsRnwtdM3 CQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rb8k8r83r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 20 Jun 2023 10:57:14 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 45D79100071;
+        Tue, 20 Jun 2023 10:57:13 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2EA6621A22B;
+        Tue, 20 Jun 2023 10:57:13 +0200 (CEST)
+Received: from localhost (10.48.1.102) by SHFDAG1NODE2.st.com (10.75.129.70)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Tue, 20 Jun
+ 2023 10:57:12 +0200
+From:   Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <alexandre.torgue@foss.st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <fabrice.gasnier@foss.st.com>
+Subject: [PATCH] dt-bindings: connector: usb: allow a single HS port
+Date:   Tue, 20 Jun 2023 10:56:33 +0200
+Message-ID: <20230620085633.533187-1-fabrice.gasnier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver
- strength cfg
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Guo Samin <samin.guo@starfivetech.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, Conor Dooley <conor@kernel.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
-        Frank <Frank.Sae@motor-comm.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-References: <20230526090502.29835-1-samin.guo@starfivetech.com>
- <20230526090502.29835-2-samin.guo@starfivetech.com>
- <20230526-glutinous-pristine-fed571235b80@spud>
- <1dbf113c-7592-68bd-6aaf-05ff1d8c538c@starfivetech.com>
- <15eb4ffe-ea12-9a2c-ae9d-c34860384b60@starfivetech.com>
- <20230620-clicker-antivirus-99e24a06954e@wendy>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230620-clicker-antivirus-99e24a06954e@wendy>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.48.1.102]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-20_05,2023-06-16_01,2023-05-22_02
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,RCVD_IN_MSPIKE_H2,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 10:26, Conor Dooley wrote:
-> Hey,
-> 
-> On Tue, Jun 20, 2023 at 11:09:52AM +0800, Guo Samin wrote:
->> From: Guo Samin <samin.guo@starfivetech.com>
->>> From: Conor Dooley <conor@kernel.org>
->>>> On Fri, May 26, 2023 at 05:05:01PM +0800, Samin Guo wrote:
->>>>> The motorcomm phy (YT8531) supports the ability to adjust the drive
->>>>> strength of the rx_clk/rx_data, the value range of pad driver
->>>>> strength is 0 to 7.
-> 
->>>>> +  motorcomm,rx-clk-driver-strength:
->>>>> +    description: drive strength of rx_clk pad.
->>>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>>> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
->>>>
->>>> I think you should use minimum & maximum instead of these listed out
->>>> enums.
-> 
->>>  You have also had this comment since v1 & were reminded of it on
->>>> v2 by Krzysztof: "What do the numbers mean? What are the units? mA?"
-> 
->>> The good news is that we just got some data about units from Motorcomm. 
->>> Maybe I can post the data show of the unit later after I get the complete data.
-> 
->> Sorry, haven't updated in a while.
-> 
-> NW chief.
-> 
->> I just got the detailed data of Driver Strength(DS) from Motorcomm , which applies to both rx_clk and rx_data.
->>
->> |----------------------|
->> |     ds map table     |
->> |----------------------|
->> | DS(3b) | Current (mA)|
->> |--------|-------------|
->> |   000  |     1.20    |
->> |   001  |     2.10    |
->> |   010  |     2.70    |
->> |   011  |     2.91    |
->> |   100  |     3.11    |
->> |   101  |     3.60    |
->> |   110  |     3.97    |
->> |   111  |     4.35    |
->> |--------|-------------|
->>
->> Since these currents are not integer values and have no regularity,
+Allow a single HS port to be used e.g. without reg property and a unit
+address. OF graph allows a single port node, without 'reg' property.
 
-There is no mA unit in DT schema, so I don't see what by "not integer
-values". 1200 uA is an integer.
+This removes a couple of Warnings or errors on STM32MP boards.
+When using single HS port currently, when doing building with W=1:
+arch/arm/boot/dts/stm32mp157c-dk2.dtb: stusb1600@28: connector:
+Unevaluated properties are not allowed ('port' was unexpected)
 
->> it is not very good to use in the drive/dts in my opinion.
-> 
-> Who says you have to use mA? What about uA?
+Signed-off-by: Fabrice Gasnier <fabrice.gasnier@foss.st.com>
+---
+Notes: Other attempts seem to lead to a dead end. Ex: by updating the
+relevant dts files, to use ports, and port@0, make W=1 shows
+...connector/ports: graph node has single child node
+'port@0', #address-cells/#size-cells are not necessary.
+But not adding them lead to another "Warning (avoid_default_addr_size)"
+---
+ .../bindings/connector/usb-connector.yaml     | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-Yep
-
-> 
->> Therefore, I tend to continue to use DS(0-7) in dts/driver, and adding
->> a description of the current value corresponding to DS in dt-bindings. 
-> 
-> I think this goes against not putting register values into the dts &
-> that the accurate description of the hardware are the currents.
-
-For vendor properties register values are often accepted, but logical
-unit is much more readable in the DTS. Also allows further customization
-or extending when new variant appears. You cannot do extend a property
-easily when it holds a register value, without changing the meaning per
-variant.
-
-> 
->> Like This:
->>
->> +  motorcomm,rx-clk-driver-strength:
->> +    description: drive strength of rx_clk pad.
-> 
-> You need "description: |" to preserve the formatting if you add tables,
-> but I don't think that this is a good idea. Put the values in here that
-> describe the hardware (IOW the currents) and then you don't need to have
-> this table.
-> 
->> +      |----------------------|
->> +      | rx_clk ds map table  |
->> +      |----------------------|
->> +      | DS(3b) | Current (mA)|
->> +      |   000  |     1.20    |
->> +      |   001  |     2.10    |
->> +      |   010  |     2.70    |
->> +      |   011  |     2.91    |
->> +      |   100  |     3.11    |
->> +      |   101  |     3.60    |
->> +      |   110  |     3.97    |
->> +      |   111  |     4.35    |
->> +      |--------|-------------|
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    enum: [ 0, 1, 2, 3, 4, 5, 6, 7 ]
->> +    default: 3
->> +
-> 
->> Or use minimum & maximum instead of these listed out enums
-> 
-> With the actual current values, enum rather than min + max.
-
-
-
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/connector/usb-connector.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+index ae515651fc6b..1c4d3eb87763 100644
+--- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
++++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+@@ -168,6 +168,13 @@ properties:
+       offer the power, Capability Mismatch is set. Required for power sink and
+       power dual role.
+ 
++  port:
++    $ref: /schemas/graph.yaml#/properties/port
++    description: OF graph bindings modeling a data bus to the connector, e.g.
++      there is a single High Speed (HS) port present in this connector. If there
++      is more than one bus (several port, with 'reg' property), they can be grouped
++      under 'ports'.
++
+   ports:
+     $ref: /schemas/graph.yaml#/properties/ports
+     description: OF graph bindings modeling any data bus to the connector
+@@ -322,6 +329,19 @@ examples:
+         };
+     };
+ 
++  # USB-C connector attached to SoC with a single High-Speed controller
++  - |
++    connector {
++        compatible = "usb-c-connector";
++        label = "USB-C";
++
++        port {
++            high_speed_ep: endpoint {
++                remote-endpoint = <&usb_hs_ep>;
++            };
++        };
++    };
++
+   # USB-C connector attached to SoC and USB3 typec port controller(hd3ss3220)
+   # with SS 2:1 MUX. HS lines routed to SoC, SS lines routed to the MUX and
+   # the output of MUX is connected to the SoC.
+-- 
+2.25.1
 
