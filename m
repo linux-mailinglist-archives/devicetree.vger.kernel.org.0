@@ -2,90 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04A3E736C8C
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 14:59:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E464E736C8E
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 15:00:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbjFTM7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 08:59:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40840 "EHLO
+        id S232324AbjFTNAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 09:00:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41408 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232614AbjFTM7m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 08:59:42 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B867199E;
-        Tue, 20 Jun 2023 05:59:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687265977; x=1718801977;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=Ppz5GRSz8+PUi7YOQuxhF2hz7S1cp4ihR/22egVfqhA=;
-  b=Oz/3mEIPyqr4wT3n2wOgi7P0OFbst0GUnx/uP3I+RHEd6+1Ct7hyIAzr
-   hI96JSOXt9Od44yLoD8IbbrSRsG1IEvRg+xaMeEZgp15oCgo+g8R0r/2T
-   xSyGcwDgbfG/v88OME2SQgcUES3BBXw3m+NKKgbHGDaLcYE2cT2IykeCX
-   xdS5TLfgoNmt7gP26x6Gm/JftQNqvkxwz2qci9GmvfJ1T+3j9ER22JXQd
-   PI2iWfoD0Qxg2hHgkzIIXB2iQ2PR2fcMkax9G1UV1lEjMxsGkwtZiH+5a
-   a8jK2rFOPg3Km9f5buwHRsr/9uJRdtwyjLStrJXwQXjB3uI+xOolCpMO7
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="349582721"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; 
-   d="scan'208";a="349582721"
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2023 05:59:36 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="708256245"
-X-IronPort-AV: E=Sophos;i="6.00,257,1681196400"; 
-   d="scan'208";a="708256245"
-Received: from mylly.fi.intel.com (HELO [10.237.72.161]) ([10.237.72.161])
-  by orsmga007.jf.intel.com with ESMTP; 20 Jun 2023 05:59:32 -0700
-Message-ID: <daffc540-3b99-f71d-538b-84c897730208@linux.intel.com>
-Date:   Tue, 20 Jun 2023 15:59:32 +0300
+        with ESMTP id S231429AbjFTNAO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 09:00:14 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082A9199E
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:00:04 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-307d58b3efbso3709182f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 06:00:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687266003; x=1689858003;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=X+elCcDfXZKuzDxi8bk9krk/t0/AVdCFoDUPSesylM0=;
+        b=x9OMHTeXkE4gRObSwizT9qOmCj7avu5YFmrDEXhpwXqGRkRBCVAx9PGebZ+qEM3RDZ
+         OvOgc7z0BeNlQdEsytlaLHZKwfmTP33fsNW6PJw8ZqAyFkXv18FMyk1DAut2nMN5JH/I
+         zfNgBTR87OXG+4VydFkH32FlNYPGw9iKUJbAMWzHhTvNAEn3gwq/DajenzDfMflyfTCr
+         AOsXZKoNUwCX8BN+56D093RNgyDZdDrRkC4hv61wAltfIvdCZ5Mh5YrI2UvFRcQoobA7
+         e8UauKvf12qTrcdQ58msGnWJb8Vtb4sowzs/nKPy83OCl/aHK9PsYoALzgKcL/mQWVAb
+         7yRA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687266003; x=1689858003;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=X+elCcDfXZKuzDxi8bk9krk/t0/AVdCFoDUPSesylM0=;
+        b=VCn/6LF3OHQrgU9hsUfsu3HgnGNKyjeR6H2E6s7HfmWCHsCplrUBZG4wYaAI8Dscoq
+         FCspRU5KJiLpETI3jLHxyLMGQ446J+mPyJ7TMK92Vx0tXjDiyVp526LDGeaS6tZ07aJW
+         l4jea82YSMh/GkPR5N+yL576EbfxNgsxPuAkJcygYA6x3kCwjYtIrTQ/YAbDDnhYWJGZ
+         OqveaWwgGwuRc2wLiNu/QOddXeQ2L3Q6gA5O8lExGEw2LAaY08BhK7jmFzxTAFUdKaFy
+         +Ev9B+UGFuHPJLFp6gYgp0YbNI1TK5oSVDd7wTO8rEflMRR/gzTXhLIruZRbnCMQpgqk
+         U6rg==
+X-Gm-Message-State: AC+VfDxLTwI7U5ehiq2hUa7rKIF6f7059KIUjyrd+TlKf6V3i58/NyaP
+        a761ZqOpyU7uxyMa6Pb3SUfCag==
+X-Google-Smtp-Source: ACHHUZ7+RTCp6Fqh2DGFZd4QI8q4rCVwvR1dP1d4BsM+sEN9iT/ExN2dSH4aidrmOPnQaMslTcJQwg==
+X-Received: by 2002:adf:df12:0:b0:30d:af7c:5046 with SMTP id y18-20020adfdf12000000b0030daf7c5046mr7667598wrl.60.1687266003293;
+        Tue, 20 Jun 2023 06:00:03 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e14-20020adfef0e000000b0030c2e3c7fb3sm1930310wro.101.2023.06.20.06.00.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 20 Jun 2023 06:00:02 -0700 (PDT)
+Message-ID: <cb2dd67a-d3df-f194-6595-789d12b38f3d@linaro.org>
+Date:   Tue, 20 Jun 2023 15:00:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Firefox/102.0 Thunderbird/102.12.0
-Subject: Re: [PATCH v8 0/5] DesignWare PWM driver updates
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v3 3/6] media: dt-bindings: mediatek,vcodec: Remove
+ VDEC_SYS for mt8183
 Content-Language: en-US
-To:     Ben Dooks <ben.dooks@sifive.com>, linux-pwm@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ben.dooks@codethink.co.uk, u.kleine-koenig@pengutronix.de,
-        Thierry Reding <thierry.reding@gmail.com>,
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        William Salmon <william.salmon@sifive.com>,
-        Jude Onyenegecha <jude.onyenegecha@sifive.com>
-References: <20230614171457.69191-1-ben.dooks@sifive.com>
-From:   Jarkko Nikula <jarkko.nikula@linux.intel.com>
-In-Reply-To: <20230614171457.69191-1-ben.dooks@sifive.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20230620000349.2122191-1-nfraprado@collabora.com>
+ <20230620000349.2122191-4-nfraprado@collabora.com>
+ <8b5e4a9b-7496-02a1-d3b6-a0be8ea85798@linaro.org>
+ <a82b7f2d-04d4-4ac0-9a72-ad1c17118e19@notapiano>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <a82b7f2d-04d4-4ac0-9a72-ad1c17118e19@notapiano>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/14/23 20:14, Ben Dooks wrote:
-> This series is an update for the DesignWare PWM driver to add support for
-> OF (and split the PCI bits out if aynone else wants them). This is mostly
-> the same as the v7 series, but with code moved around and module-namespace
-> added, plus review comments processed.
+On 20/06/2023 14:46, Nícolas F. R. A. Prado wrote:
+> On Tue, Jun 20, 2023 at 10:12:14AM +0200, Krzysztof Kozlowski wrote:
+>> On 20/06/2023 02:03, Nícolas F. R. A. Prado wrote:
+>>> The binding expects the first register space to be VDEC_SYS. But on
+>>> mt8183, which uses the stateless decoders, this space is used only for
+>>> controlling clocks and resets, which are better described as separate
+>>> clock-controller and reset-controller nodes.
+>>>
+>>> In fact, in mt8173's devicetree there are already such separate
+>>> clock-controller nodes, which cause duplicate addresses between the
+>>> vdecsys node and the vcodec node. But for this SoC, since the stateful
+>>> decoder code makes other uses of the VDEC_SYS register space, it's not
+>>> straightforward to remove it.
+>>>
+>>> In order to avoid the same address conflict to happen on mt8183,
+>>> since the only current use of the VDEC_SYS register space in
+>>> the driver is to read the status of a hardware controlled clock, remove
+>>> the VDEC_SYS register space from the binding and describe an extra
+>>> syscon that will be used to directly check the hardware status.
+>>>
+>>> Also add reg-names to be able to tell that this new register schema is
+>>> used, so the driver can keep backward compatibility.
+>>>
+>>> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+>>>
+>>> ---
+>>> I dropped the tags from this commit since a syscon is now used instead
+>>> of an extra clock.
+>>>
+>>> Changes in v3:
+>>> - Removed the active clock
+>>> - Added a mediatek,vdecsys syscon property
+>>>
+>>> Changes in v2:
+>>> - Merged with patch 1 (media: dt-bindings: mediatek,vcodec: Allow single
+>>>   clock for mt8183) to avoid changing number of clocks twice
+>>> - Added maxItems to reg-names
+>>> - Constrained clocks for each compatible
+>>> - Reordered properties for each compatible
+>>>
+>>>  .../media/mediatek,vcodec-decoder.yaml        | 30 +++++++++++++++++++
+>>>  1 file changed, 30 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+>>> index 1e56ece44aee..2f625c50bbfe 100644
+>>> --- a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+>>> +++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
+>>> @@ -21,8 +21,13 @@ properties:
+>>>        - mediatek,mt8183-vcodec-dec
+>>>  
+>>>    reg:
+>>> +    minItems: 11
+>>>      maxItems: 12
+>>>  
+>>> +  reg-names:
+>>> +    minItems: 11
+>>> +    maxItems: 11
+>>
+>> maxItems: 12
+>>
+>>> +
+>>>    interrupts:
+>>>      maxItems: 1
+>>>  
+>>> @@ -60,6 +65,10 @@ properties:
+>>>      description:
+>>>        Describes point to scp.
+>>>  
+>>> +  mediatek,vdecsys:
+>>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>>> +    description: Phandle to the vdecsys syscon node.
+>>> +
+>>>  required:
+>>>    - compatible
+>>>    - reg
+>>> @@ -79,8 +88,26 @@ allOf:
+>>>      then:
+>>>        required:
+>>>          - mediatek,scp
+>>> +        - mediatek,vdecsys
+>>>  
+>>>        properties:
+>>> +        reg:
+>>> +          maxItems: 11
+>>> +
+>>> +        reg-names:
+>>> +          items:
+>>> +            - const: misc
+>>> +            - const: ld
+>>> +            - const: top
+>>> +            - const: cm
+>>> +            - const: ad
+>>> +            - const: av
+>>> +            - const: pp
+>>> +            - const: hwd
+>>> +            - const: hwq
+>>> +            - const: hwb
+>>> +            - const: hwg
+>>> +
+>>>          clocks:
+>>>            minItems: 1
+>>>            maxItems: 1
+>>> @@ -101,6 +128,9 @@ allOf:
+>>>          - mediatek,vpu
+>>>  
+>>>        properties:
+>>> +        reg:
+>>> +          minItems: 12
+>>
+>>
+>> What about reg-names here? They should be also defined and in sync with
+>> regs.
 > 
-> Since we no longer have the hardware, the clock code hasn't been changed to
-> either lock the rate whilst the PWM is running, or to deal with any sort
-> of change callback. This is left to future work (and I would rather get
-> something in that does currently work) (second note, the hardware we did
-> use had a fixed clock tree anyway)
+> That's intentional. As described in the commit message, mt8173 will keep having
+> the VDEC_SYS iospace, while mt8183 won't. And we use the presence of reg-names
+> to tell them apart.
 > 
-> This account is probably going away soon, I have cc'd my main work
-> email to catch any responses.
-> 
-> Thank you all for the reviews.
-> 
-I tested the patchset on Intel Elkhart Lake and didn't see issues.
+> So, mt8173 has 12 regs, no reg-names and no syscon, while mt8183 has 11 regs,
+> with reg-names and the syscon.
 
-Tested-by: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+reg-names is not the way to tell apart variants. Compatible is. If you
+add reg-names for one variant, it's expected to have it defined for
+other as well, because the order of items in reg is always fixed.
+
+Best regards,
+Krzysztof
+
