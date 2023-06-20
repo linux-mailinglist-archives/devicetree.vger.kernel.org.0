@@ -2,113 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C8607363AB
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 08:36:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2FE37363D7
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 08:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230129AbjFTGgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 02:36:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44410 "EHLO
+        id S230033AbjFTGyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 02:54:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230015AbjFTGgl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 02:36:41 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 62DBDE6E;
-        Mon, 19 Jun 2023 23:36:40 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b50e309602so35311265ad.0;
-        Mon, 19 Jun 2023 23:36:40 -0700 (PDT)
+        with ESMTP id S229651AbjFTGyi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 02:54:38 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 788C0E7F
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 23:54:36 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51a4d215e09so2483590a12.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 23:54:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687243000; x=1689835000;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1687244075; x=1689836075;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ZGEmrwD87vPFZUFP2nZhIGYTM3YLut9ycTQ9fNJPTvM=;
-        b=nBYjkIB7Fl5l9oZIti5KfGcFEFHV7nBN3fW7O1ANniaQgyfDO+/hk7i8PTgRYQ7kdP
-         sP8SoY8l5R5nxBFMt9nhD7Q7MfYoKaz/AOF/rnS4ZEdMb59NA39JwadA511mdG4rBaD6
-         N9rZDoet1bKBS30VQZNfqi9oBdB9nlGydX2WybtUCwsdvR3GpzljdgwQXgfDBBWuS7rt
-         evvZ/+rnb8V99NrOrlTU1FZkIdO29Of+VAi2iuIhaVO+ZeVxm/T+PvTak+QU9JLtSLch
-         VIrmItN/GxQXiuyXOetquNt3Wp51mEw7EL+FDjhCnJ/K1mofwiTN2X00MsWpRNpyq1v0
-         Ibhg==
+        bh=RHu+NkMzqrH0464bp3H0UR8X3Xh2cwMlvvEyc29F4/o=;
+        b=hvXhMlsaDSHljn/iQL+wAUIsXvYnFkURkgRmpZmprSNHQQ1jvuglXK347aHmP2eM/Q
+         WonOw43LoXkH7ahUb+QX9Xs8uquo+gqLt8AzkGhL0CZUVF8VDc4V1G30KZmO+z1ngnSH
+         J6ybJmYAmIxAGSNOWmz9uJj1hHjkrXICVb4pNCNcPdgLWPHBYhkjBlRQjA14IiUuy9ms
+         7aKe1THGVBHJ+u1sPq5a5ypgx7wGVDYYGdK1a7IUazW1+tWnIm/a5zZMXz3RGojXAIQq
+         UOR0zdRyquXYLcHB09TQldGpIJ/aPA/oSDKord7ri1NhnuJ9VJRs6KxtPVFSf/qEFqpT
+         OqdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687243000; x=1689835000;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687244075; x=1689836075;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ZGEmrwD87vPFZUFP2nZhIGYTM3YLut9ycTQ9fNJPTvM=;
-        b=BDT4uGMK6ubiMvub/aMhB0euXqb74Y8vqBdz+t/SET8Q0AeAKE9nj4fNLN1sN/lgL+
-         AceSEHDVUGv/Fug56Im1apHa+dDssCHAIDE5Nce9kD0ZaX2ID9dzlm2k0mvN9OWOavDY
-         LFRgIcIGzCgHgkw2pUbA/Bs7TGqIVdGWElpX5pwppBxctYVJ4z9U0EW4KN5bLWOYBMQy
-         gGPmI1w8wz0ZigDLgKyd4T6qCHMMZwalM9b4KvwV7NbJNbkyv6VYa0CTRypq1xcKyorI
-         Znu4SF0+svf6z0foNLkHoHw+24KyhdVqnEedIwEZSDHly7L+C7oYvCPJgPiwv9w77pSY
-         a1Cw==
-X-Gm-Message-State: AC+VfDxRNBitD6xt+898AB+WaEYAXaQD55noIUMzN2sQ2u4b5+rEcRp2
-        uJMvOJ0YYkWAEZncTUeqvIA=
-X-Google-Smtp-Source: ACHHUZ4/AFBPIzSfplimyzKmDs1iXEkO4b1qEdNgAdAIuPilnx/NFiqQYyVkMBt5HwtM38RTfL8b5A==
-X-Received: by 2002:a17:903:2284:b0:1b6:66f1:358f with SMTP id b4-20020a170903228400b001b666f1358fmr4576736plh.24.1687242999526;
-        Mon, 19 Jun 2023 23:36:39 -0700 (PDT)
-Received: from [172.19.1.47] (60-250-192-107.hinet-ip.hinet.net. [60.250.192.107])
-        by smtp.gmail.com with ESMTPSA id q21-20020a170902b11500b001b414fae374sm787522plr.291.2023.06.19.23.36.35
+        bh=RHu+NkMzqrH0464bp3H0UR8X3Xh2cwMlvvEyc29F4/o=;
+        b=Musr6MLnHjn1/2x1eC6WmiXOjzF/hV3OQAKLH/QLkuYNE+n4Yv29qylbldFcaOV9Wu
+         T3ob3ovCf594CLGlarHodrzcefBlbdsnDoQLmDB0Gxi1RwkzEveE/SjvbKAn8InLRuZE
+         ivRFbq2gAtAKaorpXsoG6IH7auxuDquHh4y2NGKjCMLDLjqrO75f9TAG9JaLbnQ9HKin
+         FSV6U6flfzbzH7SNoPP6frftVJpKMfEaHwohVseR4YBaQe24iVCdy2jjEuv6R8NGRgvk
+         EA1a0/cRaoKO857nMXI3fnCj1p2+3ijw5/RpuKtyUmB8PrzMjqXwFV/UBF5DteqB9W97
+         I6wA==
+X-Gm-Message-State: AC+VfDw1uVcrUzA2TCTyrphNMGsmD8/gtjcKsuga/ncaJOe2sikbHkyP
+        LiCg4nbdYkn9htblmrW7ur7b3g==
+X-Google-Smtp-Source: ACHHUZ43B2VPU7TMOZvj2PX+FF53M27z8ouHa2MimhQa1X8PJqcPLyCiANbz4hVvB6Hhc1wNfX/bug==
+X-Received: by 2002:aa7:d6c3:0:b0:51a:4ac3:b7e2 with SMTP id x3-20020aa7d6c3000000b0051a4ac3b7e2mr5083958edr.19.1687244074846;
+        Mon, 19 Jun 2023 23:54:34 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id l13-20020a056402344d00b0051879c4f598sm627907edc.66.2023.06.19.23.54.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 19 Jun 2023 23:36:39 -0700 (PDT)
-Message-ID: <c229876f-5a0f-fab9-c006-adf42bfd892d@gmail.com>
-Date:   Tue, 20 Jun 2023 14:36:34 +0800
+        Mon, 19 Jun 2023 23:54:34 -0700 (PDT)
+Message-ID: <eea945ce-9b9e-42d6-0387-48ec0c88cc89@linaro.org>
+Date:   Tue, 20 Jun 2023 08:54:31 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v16 1/1] clk: nuvoton: Use clk_parent_data instead and add
- a header file
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        lee@kernel.org, mturquette@baylibre.com, sboyd@kernel.org,
-        p.zabel@pengutronix.de, gregkh@linuxfoundation.org,
-        jirislaby@kernel.org, tmaimon77@gmail.com, catalin.marinas@arm.com,
-        will@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-serial@vger.kernel.org, arnd@arndb.de, soc@kernel.org,
-        schung@nuvoton.com, mjchen@nuvoton.com,
-        Jacky Huang <ychuang3@nuvoton.com>
-References: <20230620015120.234041-1-ychuang570808@gmail.com>
- <20230620015120.234041-2-ychuang570808@gmail.com>
- <e847c114-224b-fb69-e2b1-7881b8f8ec90@linaro.org>
+Subject: Re: [PATCH v6 1/5] dt-bindings: media: platform: visconti: Add
+ Toshiba Visconti Video Input Interface bindings
 Content-Language: en-US
-From:   Jacky Huang <ychuang570808@gmail.com>
-In-Reply-To: <e847c114-224b-fb69-e2b1-7881b8f8ec90@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+To:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Sakari Ailus <sakari.ailus@iki.fi>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230620031111.3776-1-yuji2.ishikawa@toshiba.co.jp>
+ <20230620031111.3776-2-yuji2.ishikawa@toshiba.co.jp>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230620031111.3776-2-yuji2.ishikawa@toshiba.co.jp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 20/06/2023 05:11, Yuji Ishikawa wrote:
+> Adds the Device Tree binding documentation that allows to describe
+> the Video Input Interface found in Toshiba Visconti SoCs.
+> 
+> Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
+> Reviewed-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> ---
+> Changelog v2:
+> - no change
+> 
+> Changelog v3:
+> - no change
+> 
+> Changelog v4:
+> - fix style problems at the v3 patch
+> - remove "index" member
+> - update example
+> 
+> Changelog v5:
+> - no change
+> 
+> Changelog v6:
+> - add register definition of BUS-IF and MPU
 
+You ignored the comments from v4->v5. I pointed this out. You still
+ignored them.
 
-On 2023/6/20 下午 02:22, Krzysztof Kozlowski wrote:
-> On 20/06/2023 03:51, Jacky Huang wrote:
->> From: Jacky Huang <ychuang3@nuvoton.com>
->>
->> 1. Update all parent clock string arrays with clk_parent_data structure,
->>     and replace the usage of clk_hw_register_mux() with
->>     clk_hw_register_mux_parent_data().
->> 2. Introduce the header file clk-ma35d1.h to include shared external
->>     functions.
-> These are two things thus commits.
->
-> This is not v16. It's your first version of this patch.
->
-> Best regards,
-> Krzysztof
->
-Dear Krzysztof,
+You keep sending the same wrong patch ignoring review. This is not
+acceptable.
 
-Thanks for your advice.
-Okay, this is the first version, and I will split it into two separate
-commits and resubmit it as v2.
+NAK
 
+Best regards,
+Krzysztof
 
-Best Regards,
-Jacky Huang
