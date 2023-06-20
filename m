@@ -2,279 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA3BF736B3A
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 429E8736B50
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:45:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232711AbjFTLmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 07:42:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33768 "EHLO
+        id S232221AbjFTLpJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 20 Jun 2023 07:45:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232340AbjFTLmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:42:03 -0400
-Received: from www530.your-server.de (www530.your-server.de [188.40.30.78])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CFD1709;
-        Tue, 20 Jun 2023 04:42:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=geanix.com;
-        s=default2211; h=Content-Transfer-Encoding:MIME-Version:References:
-        In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID;
-        bh=0aSVsiqkjqM1tnInXfBmXTp0ViDu7CFao2y740QmDEY=; b=RV4TYTS/LJs1BMwWg+BLYwX+KE
-        KJlSuhzkTA0BYYYMoaR3qalrxNLWlYjSXk8w2H1r0Vv1qXymNXMC0O5HsIDWVjRvlR/W2e2tHzb5F
-        kHkkZG9TIe5Qo2z8sC5CwYeCp9kvU3/nbO4VN5qUHQB3ESLAuX9CXltMdFBK3M9mWBxSZj6hyFxRP
-        vkVbndRWjlyTCn5LofitIBJ3Sxwm6oW0p28LhmVr/oaay3GnNj6bglSV+UQ0d5J56VOoJop1gyI6e
-        93n+w1fyQuGg/dSBvwKD3ywMxaOs9IlVXQbt8/JEXMr66NmNEnxUyar4I4SBKMFey3BqecB9Wqo/1
-        6aU3OhTw==;
-Received: from sslproxy01.your-server.de ([78.46.139.224])
-        by www530.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <sean@geanix.com>)
-        id 1qBZkE-000NCQ-Ky; Tue, 20 Jun 2023 13:41:58 +0200
-Received: from [185.17.218.86] (helo=zen..)
-        by sslproxy01.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sean@geanix.com>)
-        id 1qBZkE-000ATD-1H; Tue, 20 Jun 2023 13:41:58 +0200
-From:   Sean Nyekjaer <sean@geanix.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231890AbjFTLpI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:45:08 -0400
+Received: from eu-smtp-delivery-151.mimecast.com (eu-smtp-delivery-151.mimecast.com [185.58.86.151])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90A2B102
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 04:45:07 -0700 (PDT)
+Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
+ relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ uk-mta-183-CwR9mL0JPti0FE6q9jlz4w-1; Tue, 20 Jun 2023 12:45:04 +0100
+X-MC-Unique: CwR9mL0JPti0FE6q9jlz4w-1
+Received: from AcuMS.Aculab.com (10.202.163.4) by AcuMS.aculab.com
+ (10.202.163.4) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Tue, 20 Jun
+ 2023 12:45:02 +0100
+Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
+ id 15.00.1497.048; Tue, 20 Jun 2023 12:45:02 +0100
+From:   David Laight <David.Laight@ACULAB.COM>
+To:     'Herve Codina' <herve.codina@bootlin.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     Sean Nyekjaer <sean@geanix.com>, dantuguf14105@gmail.com,
-        Olivier Moysan <olivier.moysan@foss.st.com>,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 5/5] ARM: dts: stm32: Add Octavo OSD32MP1-RED board
-Date:   Tue, 20 Jun 2023 13:41:38 +0200
-Message-Id: <20230620114138.959812-5-sean@geanix.com>
-X-Mailer: git-send-email 2.40.0
-In-Reply-To: <20230620114138.959812-1-sean@geanix.com>
-References: <20230620114138.959812-1-sean@geanix.com>
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "Kuninori Morimoto" <kuninori.morimoto.gx@renesas.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Subject: RE: [PATCH v5 07/13] minmax: Introduce {min,max}_array()
+Thread-Topic: [PATCH v5 07/13] minmax: Introduce {min,max}_array()
+Thread-Index: AQHZn535xpz9i2gsDE6nNaGlDsvHDa+TlXFw
+Date:   Tue, 20 Jun 2023 11:45:01 +0000
+Message-ID: <70697b976107473b8779eea7d6c8a189@AcuMS.aculab.com>
+References: <20230615152631.224529-1-herve.codina@bootlin.com>
+ <20230615152631.224529-8-herve.codina@bootlin.com>
+In-Reply-To: <20230615152631.224529-8-herve.codina@bootlin.com>
+Accept-Language: en-GB, en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.202.205.107]
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Authenticated-Sender: sean@geanix.com
-X-Virus-Scanned: Clear (ClamAV 0.103.8/26945/Tue Jun 20 09:30:24 2023)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: aculab.com
+Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Octavo OSD32MP1-RED development board.
+From: Herve Codina
+> Sent: 15 June 2023 16:26
+> 
+> Introduce min_array() (resp max_array()) in order to get the
+> minimal (resp maximum) of values present in an array.
+> 
+> Signed-off-by: Herve Codina <herve.codina@bootlin.com>
+> Reviewed-by: Andy Shevchenko <andy.shevchenko@gmail.com>
+> ---
+>  include/linux/minmax.h | 64 ++++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 64 insertions(+)
+> 
+> diff --git a/include/linux/minmax.h b/include/linux/minmax.h
+> index 396df1121bff..1672985b02a3 100644
+> --- a/include/linux/minmax.h
+> +++ b/include/linux/minmax.h
+> @@ -133,6 +133,70 @@
+>   */
+>  #define max_t(type, x, y)	__careful_cmp((type)(x), (type)(y), >)
+> 
+> +/*
+> + * Remove a const qualifier from integer types
+> + * _Generic(foo, type-name: association, ..., default: association) performs a
+> + * comparison against the foo type (not the qualified type).
+> + * Do not use the const keyword in the type-name as it will not match the
+> + * unqualified type of foo.
+> + */
+> +#define __unconst_integer_type_cases(type)	\
+> +	unsigned type:  (unsigned type)0,	\
+> +	signed type:    (signed type)0
+> +
+> +#define __unconst_integer_typeof(x) typeof(			\
+> +	_Generic((x),						\
+> +		char: (char)0,					\
+> +		__unconst_integer_type_cases(char),		\
+> +		__unconst_integer_type_cases(short),		\
+> +		__unconst_integer_type_cases(int),		\
+> +		__unconst_integer_type_cases(long),		\
+> +		__unconst_integer_type_cases(long long),	\
+> +		default: (x)))
 
-General features:
- - STM32MP157C
- - 512MB DDR3
- - CAN-FD
- - HDMI
- - USB-C OTG
- - UART
+Those are probably more generally useful and belong elsewhere.
 
-Signed-off-by: Sean Nyekjaer <sean@geanix.com>
-Reviewed-by: Olivier Moysan <olivier.moysan@foss.st.com>
----
- .../arm/boot/dts/stm32mp157c-osd32mp1-red.dts | 186 ++++++++++++++++++
- 1 file changed, 186 insertions(+)
- create mode 100644 arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
+> +
+> +/*
+> + * Do not check the array parameter using __must_be_array().
+> + * In the following legit use-case where the "array" passed is a simple pointer,
+> + * __must_be_array() will return a failure.
+> + * --- 8< ---
+> + * int *buff
+> + * ...
+> + * min = min_array(buff, nb_items);
+> + * --- 8< ---
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-new file mode 100644
-index 000000000000..11e232211be6
---- /dev/null
-+++ b/arch/arm/boot/dts/stm32mp157c-osd32mp1-red.dts
-@@ -0,0 +1,186 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
-+/*
-+ * Copyright (C) Geanix ApS 2023 - All Rights Reserved
-+ * Author: Sean Nyekjaer <sean@geanix.com>
-+ */
-+
-+/dts-v1/;
-+
-+#include "stm32mp157.dtsi"
-+#include "stm32mp15xc.dtsi"
-+#include "stm32mp15xx-osd32mp1.dtsi"
-+
-+/ {
-+	model = "Octavo OSD32MP1 RED board";
-+	compatible = "octavo,stm32mp157c-osd32mp1-red", "st,stm32mp157";
-+
-+	aliases {
-+		serial0 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	memory@c0000000 {
-+		device_type = "memory";
-+		reg = <0xc0000000 0x20000000>;
-+	};
-+
-+	led {
-+		compatible = "gpio-leds";
-+
-+		blue {
-+			label = "heartbeat";
-+			gpios = <&gpiod 11 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+			default-state = "off";
-+		};
-+	};
-+};
-+
-+&ethernet0 {
-+	status = "okay";
-+	pinctrl-0 = <&ethernet0_rgmii_pins_a>;
-+	pinctrl-1 = <&ethernet0_rgmii_sleep_pins_a>;
-+	pinctrl-names = "default", "sleep";
-+	phy-mode = "rgmii-id";
-+	max-speed = <1000>;
-+	phy-handle = <&phy0>;
-+	st,eth-clk-sel;
-+
-+	mdio0 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "snps,dwmac-mdio";
-+		phy0: ethernet-phy@0 {
-+			reg = <3>;
-+		};
-+	};
-+};
-+
-+
-+&i2s2 {
-+	clocks = <&rcc SPI2>, <&rcc SPI2_K>, <&rcc CK_PER>, <&rcc PLL3_R>;
-+	clock-names = "pclk", "i2sclk", "x8k", "x11k";
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2s2_pins_b>;
-+	pinctrl-1 = <&i2s2_sleep_pins_b>;
-+	status = "okay";
-+
-+	i2s2_port: port {
-+		i2s2_endpoint: endpoint {
-+			remote-endpoint = <&sii9022_tx_endpoint>;
-+			format = "i2s";
-+			mclk-fs = <256>;
-+		};
-+	};
-+};
-+
-+&iwdg2 {
-+	timeout-sec = <32>;
-+	status = "okay";
-+};
-+
-+&ltdc {
-+	status = "okay";
-+
-+	port {
-+		ltdc_ep0_out: endpoint@0 {
-+			reg = <0>;
-+			remote-endpoint = <&sii9022_in>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&i2c1_pins_a>;
-+	pinctrl-1 = <&i2c1_sleep_pins_a>;
-+	status = "okay";
-+	i2c-scl-rising-time-ns = <100>;
-+	i2c-scl-falling-time-ns = <7>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+
-+	hdmi-transmitter@39 {
-+		compatible = "sil,sii9022";
-+		reg = <0x39>;
-+		reset-gpios = <&gpiog 0 GPIO_ACTIVE_LOW>;
-+		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
-+		interrupt-parent = <&gpiog>;
-+		pinctrl-names = "default", "sleep";
-+		pinctrl-0 = <&ltdc_pins_e>;
-+		pinctrl-1 = <&ltdc_sleep_pins_e>;
-+		status = "okay";
-+
-+		ports {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			port@0 {
-+				reg = <0>;
-+				sii9022_in: endpoint {
-+					remote-endpoint = <&ltdc_ep0_out>;
-+				};
-+			};
-+
-+			port@1 {
-+				reg = <1>;
-+				sii9022_tx_endpoint: endpoint {
-+					remote-endpoint = <&i2s2_endpoint>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&tamp {
-+	status = "okay";
-+};
-+
-+&sdmmc1 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc1_b4_pins_a>;
-+	pinctrl-1 = <&sdmmc1_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc1_b4_sleep_pins_a>;
-+	cd-gpios = <&gpioe 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-+	disable-wp;
-+	st,neg-edge;
-+	bus-width = <4>;
-+	vmmc-supply = <&v3v3>;
-+	status = "okay";
-+};
-+
-+&sdmmc2 {
-+	pinctrl-names = "default", "opendrain", "sleep";
-+	pinctrl-0 = <&sdmmc2_b4_pins_a &sdmmc2_d47_pins_d>;
-+	pinctrl-1 = <&sdmmc2_b4_od_pins_a>;
-+	pinctrl-2 = <&sdmmc2_b4_sleep_pins_a &sdmmc2_d47_sleep_pins_d>;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	st,neg-edge;
-+	bus-width = <8>;
-+	vmmc-supply = <&v3v3>;
-+	vqmmc-supply = <&vdd>;
-+	mmc-ddr-3_3v;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default", "sleep", "idle";
-+	pinctrl-0 = <&uart4_pins_a>;
-+	pinctrl-1 = <&uart4_sleep_pins_a>;
-+	pinctrl-2 = <&uart4_idle_pins_a>;
-+	/delete-property/dmas;
-+	/delete-property/dma-names;
-+	status = "okay";
-+};
-+
-+&m_can1 {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&m_can1_pins_d>;
-+	pinctrl-1 = <&m_can1_sleep_pins_d>;
-+	status = "okay";
-+};
--- 
-2.40.0
+Is that needed in the .h file?
+
+> + *
+> + * The first typeof(&(array)[0]) is needed in order to support arrays of both
+> + * 'int *buff' and 'int buf[N]' types.
+> + *
+> + * The array can be an array of const items.
+> + * typeof() keeps the const qualifier. Use __unconst_typeof() in order to
+> + * discard the const qualifier for the __element variable.
+> + */
+> +#define __minmax_array(op, array, len) ({				\
+> +	typeof(&(array)[0]) __array = (array);				\
+> +	typeof(len) __len = (len);					\
+> +	__unconst_integer_typeof(__array[0]) __element = __array[--__len]; \
+
+s/__element/__bound/
+
+> +	while (__len--)							\
+> +		__element = op(__element, __array[__len]);		\
+> +	__element; })
+
+I'm not all sure that all the shenanigans required to use min()
+is really needed here.
+
+It would also be generally better to process the array forwards.
+So something like:
+	typeof (&array[0]) __ptr = array, __limit = array + len;
+	typeof (array[0] + 0) __element, __bound = *__ptr++;
+	while (ptr < __limit) {
+		__element = *__ptr++;
+		if (__element > __bound)
+			__bound = __element;
+	}
+	(typeof (array[0]))__bound; })
+seems fine to me.
+The final cast is there to convert 'int' back to un/signed char|short.
+Not really needed and might generate worse code.
+
+But if you insist on using min/max ignore this bit.
+
+	David
+
+-
+Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
+Registration No: 1397386 (Wales)
 
