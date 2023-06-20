@@ -2,185 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D3D117369F6
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 12:54:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62400736A28
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 13:01:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232348AbjFTKyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 06:54:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37368 "EHLO
+        id S230146AbjFTLBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 07:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231351AbjFTKyR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 06:54:17 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 701F1EB;
-        Tue, 20 Jun 2023 03:54:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687258456; x=1718794456;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=HgZTP1ifqliGLcrDZAPslIVfdfmKgsYp1Imd3aU1icU=;
-  b=IcHQvsxwSUeK1jhQ4XGC4RNssuP1cFpT90s08bho+9rjBi5Bkb1g12SD
-   khsoYztA+EC4k4UH7UsLMz1h//0wOlhyXbOwY4yPsPdEyPj2qgzkRI2Zd
-   2vYgEzbc+ZKsH70E+A+Jn7Fb5KEzj8/Skj4JmVN76YVkrGQaNuZlt/2MG
-   hezQ5e8FcvSqYMPlayQdHE6ho5Nomgmx1ixBKvjKxNVc6LlNDNIPARhdj
-   EOz4BL2rZOK3VDE7nfxRkSI5ZByyYfXE2DYLvq7Lvl+07MUesJMzNj3ub
-   pg5N3eYyi2tGJse/6nt6JblR0Z39kuEVCQcZrPmKhAH01kAVsXv2tz6Df
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="339438046"
-X-IronPort-AV: E=Sophos;i="6.00,256,1681196400"; 
-   d="scan'208";a="339438046"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Jun 2023 03:54:16 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10746"; a="784028380"
-X-IronPort-AV: E=Sophos;i="6.00,256,1681196400"; 
-   d="scan'208";a="784028380"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
-  by fmsmga004.fm.intel.com with ESMTP; 20 Jun 2023 03:54:12 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qBYzz-0005pI-3D;
-        Tue, 20 Jun 2023 10:54:11 +0000
-Date:   Tue, 20 Jun 2023 18:53:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v6 2/5] media: platform: visconti: Add Toshiba Visconti
- Video Input Interface driver
-Message-ID: <202306201839.92EOK4H7-lkp@intel.com>
-References: <20230620031111.3776-3-yuji2.ishikawa@toshiba.co.jp>
+        with ESMTP id S232144AbjFTLBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 07:01:46 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2050.outbound.protection.outlook.com [40.107.244.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD059100;
+        Tue, 20 Jun 2023 04:01:44 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LW2eqS4WsUlMW6/Vqxhk2nBbtueQ0KrfxHOD/FxhLwrTw6gr/z3zmpBlKNxJlvCfMn4BsboUV2AIL6w36SbApQ1sP8LAPpBBIvmalMP7XVOJXNNRZSmTtVXGv+eQavHUDPkluFxPdCx89rBmvVkJ/AJArXiNT940fcSUFfZlBsxwd8lq3JZfeTjtMqzO1gmbYyb19RdmMLQTzM40Ozcexv98Tk0RHgcBAdFyPhDeUrekkYAJNpfdH2WxECF1QgsYdlzaAmslGZlaNP6GV6P58RKLzgtxQPyYvHYD5jI99XrA8PRKqe0irBBhZYVLIGLQfn59LTw8+qVqqGD/Iwb3ng==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=aM3DP78bM7vEhECavH4gl5tfkG/m3UlIk6CC7ww6Y0M=;
+ b=ersy5OfRZfZUFCSKr9q/0/fVDt1m6Hk8oCLetKVwGWObA0JyVVeksV40fnmk02phdMLe7EkdHR9bL0lKiW6hqXS6s96r6Cznk5nEWOArBV7O9MoAzG2Drza0OhaJ/EhLMUAxUOEOfoj8HoiwxSANRuf+sREX7Yd4nuCCCJZzP45ebtZdSMkcZn+q/9g20bkYyy59GwZE5cOqm+tVM4gUKMGHrkoEZwBKdsiTs3QWSWdqcMMIwPFDkrbqb8NRE3cxQ2GWFxpLJv/8zKvLzcUsglQwpqsKsbjTvsist3IDAuVJHxj02k92hJwXixGMbe7Un35nGHz8AC6kzh6pBnk0iA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=amd.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=amd.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=aM3DP78bM7vEhECavH4gl5tfkG/m3UlIk6CC7ww6Y0M=;
+ b=UPSCetC2jTThjoW1R7eF7oBZWPIq/+22VQfuryMPvFUiknOarEjLve2oVdabCn3YLtbSRu75pMjl+mT6XJBijwkQE0GKGebs55T4MYsiqdWVwMUVOSkc4c75n4/f9Pv0SJTo0LxTZgndh0qHocrhs8rtND6WjC+ZTEpKykJ7ZfI=
+Received: from DM6PR12CA0008.namprd12.prod.outlook.com (2603:10b6:5:1c0::21)
+ by BL1PR12MB5364.namprd12.prod.outlook.com (2603:10b6:208:314::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.21; Tue, 20 Jun
+ 2023 11:01:42 +0000
+Received: from CY4PEPF0000EE3E.namprd03.prod.outlook.com
+ (2603:10b6:5:1c0:cafe::7e) by DM6PR12CA0008.outlook.office365.com
+ (2603:10b6:5:1c0::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37 via Frontend
+ Transport; Tue, 20 Jun 2023 11:01:41 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CY4PEPF0000EE3E.mail.protection.outlook.com (10.167.242.18) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6521.19 via Frontend Transport; Tue, 20 Jun 2023 11:01:41 +0000
+Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Tue, 20 Jun
+ 2023 06:01:40 -0500
+Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
+ (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Tue, 20 Jun
+ 2023 04:01:40 -0700
+Received: from xhdshubhraj40.xilinx.com (10.180.168.240) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
+ Transport; Tue, 20 Jun 2023 06:01:38 -0500
+From:   Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
+To:     <devicetree@vger.kernel.org>
+CC:     <git@amd.com>, <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v4] dt-bindings: clock: versal: Add versal-net compatible string
+Date:   Tue, 20 Jun 2023 16:31:37 +0530
+Message-ID: <20230620110137.5701-1-shubhrajyoti.datta@amd.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230620031111.3776-3-yuji2.ishikawa@toshiba.co.jp>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CY4PEPF0000EE3E:EE_|BL1PR12MB5364:EE_
+X-MS-Office365-Filtering-Correlation-Id: 52429f92-bc71-4be4-c0d6-08db717dba93
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pRqwQUrkIGGo49c5vW8MNXw8/syKfkgsiK2HxSsnTp7j8V6SF9CXOZlcmDsLUSBEcZanUJeZFDylgBkPBsMLUpdVTFrxBNKgzis+Qg0A1PSE/CvZoSky3povEDfSyvPbjWVP6QwIBq4PsAB2o3ta9cqtIzkL63ojb2RirIqpEsQe962M0s/D8odz8UGVn4IwL5qW8vgsk/JsAadfoeVjvKVJx1NKmjG6FnkYH0WruzRJ85Hw8EE75qB7Z8wUvwiRz+WG1oregyGNPJBsvF3RwnFyRCE1GYntIqEUieYJXFQrbHhbKcydGSmIFOe6Ze5/yYKTcPMOCMX0gcp16YCG38qzky8lzDpTu3RRcUm/X3zwbzr410RJebSRgpZeSORzaqf7l0GcJf5n6KR24JIte2NC19FqKU80R9DlKJXrPn3QlJkodUkkiD1h4GY5gUdD/tPPtQXqi3TGTlQFsORxtLIaOmkBwf9Ia+prjCuIv7n3fRnmfN3srW6sSJ/Q9y8i0pgUc/WCzJ2KCwB+6ENLEYihZptq6TTZAZcad2lm2yeNko4O6xZc8JNlhK7zjL2Gwgtphcgig3RcbIZ1BZMZV01/nVh0D1HalWCxJQ055BmoXId6j5kNKTMWGVCR2z80QGYsJaWIqQdKmjJoLkXitrZEg4Mkh/ioMtxUL7Uj1Bm8dml6FQRQ35H43qzxMJwyF21lB415aGgOb+ADK0XN85SzQYd/efIIHCdKreViRTr8tleUX996nKgT45TLoHHnYPHhnfH+beLbljjPYH1G3w==
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(346002)(136003)(39860400002)(376002)(396003)(451199021)(36840700001)(46966006)(40470700004)(36860700001)(82310400005)(47076005)(966005)(478600001)(54906003)(83380400001)(336012)(1076003)(426003)(26005)(2616005)(186003)(2906002)(5660300002)(44832011)(70206006)(40460700003)(36756003)(356005)(81166007)(4326008)(70586007)(82740400003)(40480700001)(316002)(8936002)(8676002)(41300700001)(86362001)(6916009)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2023 11:01:41.6903
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 52429f92-bc71-4be4-c0d6-08db717dba93
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CY4PEPF0000EE3E.namprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5364
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yuji,
+Add dt-binding documentation for Versal NET platforms.
+Versal Net is a new AMD/Xilinx  SoC.
 
-kernel test robot noticed the following build warnings:
+The SoC and its architecture is based on the Versal ACAP device.
+The Versal Net  device includes more security features in the
+platform management controller (PMC) and increases the number of
+CPUs in the application processing unit (APU) and the real-time
+processing unit (RPU).
 
-[auto build test WARNING on media-tree/master]
-[also build test WARNING on linus/master]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Signed-off-by: Jay Buddhabhatti <jay.buddhabhatti@xilinx.com>
+Signed-off-by: Shubhrajyoti Datta <shubhrajyoti.datta@amd.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Yuji-Ishikawa/dt-bindings-media-platform-visconti-Add-Toshiba-Visconti-Video-Input-Interface-bindings/20230620-120839
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20230620031111.3776-3-yuji2.ishikawa%40toshiba.co.jp
-patch subject: [PATCH v6 2/5] media: platform: visconti: Add Toshiba Visconti Video Input Interface driver
-config: arm64-allyesconfig (https://download.01.org/0day-ci/archive/20230620/202306201839.92EOK4H7-lkp@intel.com/config)
-compiler: aarch64-linux-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230620/202306201839.92EOK4H7-lkp@intel.com/reproduce)
+---
+For the list of peripherals  please check 
+https://github.com/Xilinx/u-boot-xlnx/blob/master/arch/arm/dts/versal-net.dtsi
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306201839.92EOK4H7-lkp@intel.com/
+Changes in v4:
+Add description for for versal net
 
-All warnings (new ones prefixed by >>):
+Changes in v3:
+Add the compatible for versal net
+the usage will new compatible string followed by old one
 
->> drivers/media/platform/toshiba/visconti/viif.c:182:6: warning: no previous prototype for 'visconti_viif_hw_on' [-Wmissing-prototypes]
-     182 | void visconti_viif_hw_on(struct viif_device *viif_dev)
-         |      ^~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif.c:190:6: warning: no previous prototype for 'visconti_viif_hw_off' [-Wmissing-prototypes]
-     190 | void visconti_viif_hw_off(struct viif_device *viif_dev)
-         |      ^~~~~~~~~~~~~~~~~~~~
-   drivers/media/platform/toshiba/visconti/viif.c: In function 'visconti_viif_probe':
->> drivers/media/platform/toshiba/visconti/viif.c:500:36: warning: variable 'of_id' set but not used [-Wunused-but-set-variable]
-     500 |         const struct of_device_id *of_id;
-         |                                    ^~~~~
---
->> drivers/media/platform/toshiba/visconti/viif_capture.c:604:6: warning: no previous prototype for 'visconti_viif_capture_switch_buffer' [-Wmissing-prototypes]
-     604 | void visconti_viif_capture_switch_buffer(struct cap_dev *cap_dev, u32 status_err,
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_capture.c:1325:5: warning: no previous prototype for 'visconti_viif_capture_register_ctrl_handlers' [-Wmissing-prototypes]
-    1325 | int visconti_viif_capture_register_ctrl_handlers(struct viif_device *viif_dev)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_capture.c:1434:5: warning: no previous prototype for 'visconti_viif_capture_register' [-Wmissing-prototypes]
-    1434 | int visconti_viif_capture_register(struct viif_device *viif_dev)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_capture.c:1476:6: warning: no previous prototype for 'visconti_viif_capture_unregister' [-Wmissing-prototypes]
-    1476 | void visconti_viif_capture_unregister(struct viif_device *viif_dev)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
---
->> drivers/media/platform/toshiba/visconti/viif_isp.c:243:6: warning: no previous prototype for 'visconti_viif_l2_set_roi_path' [-Wmissing-prototypes]
-     243 | void visconti_viif_l2_set_roi_path(struct viif_device *viif_dev)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_isp.c:254:6: warning: no previous prototype for 'visconti_viif_l2_set_roi' [-Wmissing-prototypes]
-     254 | void visconti_viif_l2_set_roi(struct viif_device *viif_dev, const struct viif_l2_roi_config *param)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_isp.c:699:5: warning: no previous prototype for 'visconti_viif_isp_main_set_unit' [-Wmissing-prototypes]
-     699 | int visconti_viif_isp_main_set_unit(struct viif_device *viif_dev)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_isp.c:773:5: warning: no previous prototype for 'visconti_viif_isp_sub_set_unit' [-Wmissing-prototypes]
-     773 | int visconti_viif_isp_sub_set_unit(struct viif_device *viif_dev)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_isp.c:1177:6: warning: no previous prototype for 'visconti_viif_isp_set_compose_rect' [-Wmissing-prototypes]
-    1177 | void visconti_viif_isp_set_compose_rect(struct viif_device *viif_dev,
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_isp.c:1214:5: warning: no previous prototype for 'visconti_viif_isp_register' [-Wmissing-prototypes]
-    1214 | int visconti_viif_isp_register(struct viif_device *viif_dev)
-         |     ^~~~~~~~~~~~~~~~~~~~~~~~~~
->> drivers/media/platform/toshiba/visconti/viif_isp.c:1265:6: warning: no previous prototype for 'visconti_viif_isp_unregister' [-Wmissing-prototypes]
-    1265 | void visconti_viif_isp_unregister(struct viif_device *viif_dev)
-         |      ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
---
-   drivers/media/platform/toshiba/visconti/viif_isp.c:162: warning: Function parameter or member 'viif_dev' not described in 'viif_l2_set_roi_num_2'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:192: warning: Function parameter or member 'viif_dev' not described in 'viif_l2_set_roi_num_1'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:244: warning: Function parameter or member 'viif_dev' not described in 'visconti_viif_l2_set_roi_path'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:255: warning: Function parameter or member 'viif_dev' not described in 'visconti_viif_l2_set_roi'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:255: warning: Function parameter or member 'param' not described in 'visconti_viif_l2_set_roi'
->> drivers/media/platform/toshiba/visconti/viif_isp.c:255: warning: expecting prototype for viif_l2_set_roi(). Prototype was for visconti_viif_l2_set_roi() instead
-   drivers/media/platform/toshiba/visconti/viif_isp.c:287: warning: duplicate section name 'Return'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:290: warning: Function parameter or member 'viif_dev' not described in 'viif_main_set_unit'
->> drivers/media/platform/toshiba/visconti/viif_isp.c:290: warning: expecting prototype for hwd_viif_main_set_unit(). Prototype was for viif_main_set_unit() instead
-   drivers/media/platform/toshiba/visconti/viif_isp.c:482: warning: duplicate section name 'Return'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:485: warning: Function parameter or member 'viif_dev' not described in 'viif_sub_set_unit'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:538: warning: Function parameter or member 'viif_dev' not described in 'viif_mux_start'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:568: warning: duplicate section name 'Return'
-   drivers/media/platform/toshiba/visconti/viif_isp.c:570: warning: Function parameter or member 'viif_dev' not described in 'viif_mux_stop'
+ .../devicetree/bindings/clock/xlnx,versal-clk.yaml         | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-
-vim +/visconti_viif_hw_on +182 drivers/media/platform/toshiba/visconti/viif.c
-
-   178	
-   179	/*=============================================*/
-   180	/* handling V4L2 framework */
-   181	/*=============================================*/
- > 182	void visconti_viif_hw_on(struct viif_device *viif_dev)
-   183	{
-   184		/* Disable MPU */
-   185		viif_mpu_disable(viif_dev);
-   186		/* Enable HWAIF */
-   187		viif_hwaif_enable(viif_dev);
-   188	}
-   189	
- > 190	void visconti_viif_hw_off(struct viif_device *viif_dev)
-   191	{
-   192		/* Uninitialize HWD driver */
-   193	}
-   194	
-
+diff --git a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+index 229af98b1d30..b90aa064a6d3 100644
+--- a/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
++++ b/Documentation/devicetree/bindings/clock/xlnx,versal-clk.yaml
+@@ -20,7 +20,12 @@ select: false
+ 
+ properties:
+   compatible:
+-    const: xlnx,versal-clk
++    oneOf:
++      - const: xlnx,versal-clk
++      - items:
++          - enum:
++              - xlnx,versal-net-clk
++          - const: xlnx,versal-clk
+ 
+   "#clock-cells":
+     const: 1
 -- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+2.17.1
+
