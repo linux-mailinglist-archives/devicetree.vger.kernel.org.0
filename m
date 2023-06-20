@@ -2,107 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0A4873626F
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 05:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B779736218
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 05:15:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230320AbjFTD6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 19 Jun 2023 23:58:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37778 "EHLO
+        id S230144AbjFTDPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 19 Jun 2023 23:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230163AbjFTD6c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 23:58:32 -0400
-Received: from mo-csw-fb.securemx.jp (mo-csw-fb1514.securemx.jp [210.130.202.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 4BB971A7;
-        Mon, 19 Jun 2023 20:58:30 -0700 (PDT)
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1514) id 35K3HaR0027553; Tue, 20 Jun 2023 12:17:36 +0900
-Received: by mo-csw.securemx.jp (mx-mo-csw1515) id 35K3H0NN007271; Tue, 20 Jun 2023 12:17:01 +0900
-X-Iguazu-Qid: 34trY2IxWanTrAOr0j
-X-Iguazu-QSIG: v=2; s=0; t=1687231020; q=34trY2IxWanTrAOr0j; m=uPfg4gTq+4w8KdHfdGDYGPgWvBdyDLW7FEhIV6vhsMc=
-Received: from imx2-a.toshiba.co.jp (imx2-a.toshiba.co.jp [106.186.93.35])
-        by relay.securemx.jp (mx-mr1513) id 35K3Gvl1013553
-        (version=TLSv1.2 cipher=AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 20 Jun 2023 12:16:57 +0900
-X-SA-MID: 2939651
-From:   Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-To:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Sakari Ailus <sakari.ailus@iki.fi>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
-        Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v6 5/5] MAINTAINERS: Add entries for Toshiba Visconti Video Input Interface
-Date:   Tue, 20 Jun 2023 12:11:11 +0900
-X-TSB-HOP2: ON
-Message-Id: <20230620031111.3776-6-yuji2.ishikawa@toshiba.co.jp>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230620031111.3776-1-yuji2.ishikawa@toshiba.co.jp>
-References: <20230620031111.3776-1-yuji2.ishikawa@toshiba.co.jp>
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230185AbjFTDOs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 19 Jun 2023 23:14:48 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A20FEE4A
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 20:14:46 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f849605df4so5460576e87.3
+        for <devicetree@vger.kernel.org>; Mon, 19 Jun 2023 20:14:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1687230885; x=1689822885;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uqyo5lF4AwdBTzGc1HNFwSE64aWc0p6L5cBBmEt7Tpc=;
+        b=i/EUqGMyUXa9aG6pPFn0r02UAFn+MavJrb9ApbyAaak83jn+3pyNYz6C6vhJkpZjGl
+         STArlSqWxB6SCQPvMmZM2ej3jZJt9X8DVNtSnmSdfRBpDYqJal4rpP6m+nEQYDdm3JaT
+         N/yZzr52RjN1EeaHz38psuMSshz1wuHsGW6jCczk7dxhcod3789zhFvqHKGMiMigZ9tJ
+         //XtKOTbeDzYg2SB7kmgfB7rKx+vG7HJFyCEB8852iMc9bZKj6MK6hN7Z9AjzIlzhjS2
+         KgpZkQKOopwysEcRKJRNSDMtqZd1dDW2vaEIcF6IURyh5ja3LbVF87Rbg5GwaT9HR9Bn
+         8kKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687230885; x=1689822885;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uqyo5lF4AwdBTzGc1HNFwSE64aWc0p6L5cBBmEt7Tpc=;
+        b=M00+/bIg7aIr1Zv2BcWty95qBcyI3i86Kz07NggPt327pAhij/6QkeEI8oy+EpvJ2w
+         8CZbpK516P4ZDF8yz1co6Nq6X2+OB2x1kXR5bFtR9UsxKG/tLkjq2vz69lGWchhAbkB0
+         RV2mwrdg3THlemLH7zlCWcd/dk2DnUNT0k0L9TkxdFiI1ST43PmGz6EO6sachtMN86MW
+         hdZNb5e5qOYwX4qLtheVFn+/Oni7oFDBmXcdUl9dIA7YjVED3iBm5uNrlGUgTpwlwL38
+         t1Mo1RB6ZiPOzuv39lvXDwsqz6Tosy+nO93i8NjFkF4I7hotHBDxBpYjcl9cfB5ctYOu
+         uIAw==
+X-Gm-Message-State: AC+VfDyMaYyZP5TyiJex6HwGZtQQrwBMx3SpO2nWAZ/YiOx/cPmRERbL
+        DCv/78CewUB5xh7WeDXlcEEbYR0XnkvwO/VI/EtUEQ==
+X-Google-Smtp-Source: ACHHUZ6vqEjLRW4QLCzyiLQ48x1Nfy69MYGkWlDCTNK0yoj1tcpO2ZxAZS7wqqWmeiELbNh5hu82AcEGOEWj4D1qOzs=
+X-Received: by 2002:a05:6512:554:b0:4f8:66db:8235 with SMTP id
+ h20-20020a056512055400b004f866db8235mr3417503lfl.39.1687230884819; Mon, 19
+ Jun 2023 20:14:44 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-3-eric.lin@sifive.com>
+ <20230616-revision-speed-a83dc926b334@wendy>
+In-Reply-To: <20230616-revision-speed-a83dc926b334@wendy>
+From:   Eric Lin <eric.lin@sifive.com>
+Date:   Tue, 20 Jun 2023 11:14:32 +0800
+Message-ID: <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
+Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     conor@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
+        chenhuacai@kernel.org, baolu.lu@linux.intel.com, will@kernel.org,
+        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
+        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
+        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dslin1010@gmail.com, Greentime Hu <greentime.hu@sifive.com>,
+        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Added entries for visconti Video Input Interface driver, including;
-* device tree bindings
-* source files
-* documentation files
+On Fri, Jun 16, 2023 at 6:13=E2=80=AFPM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
+>
+> On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
+> > From: Greentime Hu <greentime.hu@sifive.com>
+> >
+> > This adds SiFive private L2 cache PMU driver. User
+> > can use perf tool to profile by event name and event id.
+> >
+> > Example:
+> > $ perf stat -C 0 -e /sifive_pl2_pmu/inner_acquire_block_btot/
+> >                 -e /sifive_pl2_pmu/inner_acquire_block_ntob/
+> >                 -e /sifive_pl2_pmu/inner_acquire_block_ntot/ ls
+> >
+> >  Performance counter stats for 'CPU(s) 0':
+> >
+> >                300      sifive_pl2_pmu/inner_acquire_block_btot/
+> >              17801      sifive_pl2_pmu/inner_acquire_block_ntob/
+> >               5253      sifive_pl2_pmu/inner_acquire_block_ntot/
+> >
+> >        0.088917326 seconds time elapsed
+> >
+> > $ perf stat -C 0 -e /sifive_pl2_pmu/event=3D0x10001/
+> >                 -e /sifive_pl2_pmu/event=3D0x4001/
+> >                 -e /sifive_pl2_pmu/event=3D0x8001/ ls
+> >
+> >  Performance counter stats for 'CPU(s) 0':
+> >
+> >                251      sifive_pl2_pmu/event=3D0x10001/
+> >               2620      sifive_pl2_pmu/event=3D0x4001/
+> >                644      sifive_pl2_pmu/event=3D0x8001/
+> >
+> >        0.092827110 seconds time elapsed
+> >
+> > Signed-off-by: Greentime Hu <greentime.hu@sifive.com>
+> > Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> > Reviewed-by: Zong Li <zong.li@sifive.com>
+> > Reviewed-by: Nick Hu <nick.hu@sifive.com>
+> > ---
+> >  drivers/soc/sifive/Kconfig            |   9 +
+> >  drivers/soc/sifive/Makefile           |   1 +
+> >  drivers/soc/sifive/sifive_pl2.h       |  20 +
+> >  drivers/soc/sifive/sifive_pl2_cache.c |  16 +
+> >  drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++++++++
+>
+> Perf drivers should be in drivers/perf, no?
+>
 
-Signed-off-by: Yuji Ishikawa <yuji2.ishikawa@toshiba.co.jp>
----
-Changelog v2:
-- no change
+Hi Conor,
 
-Changelog v3:
-- added entry for driver API documentation
+Yes, I see most of the drivers are in the drivers/perf.
 
-Changelog v4:
-- added entry for header file
+But I grep perf_pmu_register(), it seems not all the pmu drivers are
+in drivers/perf as below:
 
-Changelog v5:
-- no change
+arch/arm/mach-imx/mmdc.c:517:   ret =3D
+perf_pmu_register(&(pmu_mmdc->pmu), name, -1);
+arch/arm/mm/cache-l2x0-pmu.c:552:       ret =3D
+perf_pmu_register(l2x0_pmu, l2x0_name, -1);
+...
+drivers/dma/idxd/perfmon.c:627: rc =3D perf_pmu_register(&idxd_pmu->pmu,
+idxd_pmu->name, -1);
+drivers/fpga/dfl-fme-perf.c:904:static int
+fme_perf_pmu_register(struct platform_device *pdev,
+drivers/fpga/dfl-fme-perf.c:929:        ret =3D perf_pmu_register(pmu, name=
+, -1);
+...
+drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:549:    ret =3D
+perf_pmu_register(&pmu_entry->pmu, pmu_name, -1);
+drivers/gpu/drm/i915/i915_pmu.c:1190:   ret =3D
+perf_pmu_register(&pmu->base, pmu->name, -1);
+drivers/hwtracing/coresight/coresight-etm-perf.c:907:   ret =3D
+perf_pmu_register(&etm_pmu, CORESIGHT_ETM_PMU_NAME, -1);
+drivers/hwtracing/ptt/hisi_ptt.c:895:   ret =3D
+perf_pmu_register(&hisi_ptt->hisi_ptt_pmu, pmu_name, -1);
+drivers/iommu/intel/perfmon.c:570:      return
+perf_pmu_register(&iommu_pmu->pmu, iommu_pmu->pmu.name, -1);
+drivers/nvdimm/nd_perf.c:309:   rc =3D perf_pmu_register(&nd_pmu->pmu,
+nd_pmu->pmu.name, -1);
+...
 
-Changelog v6:
- - update path to VIIF driver source files
-
- MAINTAINERS | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f794002a1..4673bca45 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2957,17 +2957,21 @@ F:	Documentation/devicetree/bindings/arm/toshiba.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pipllct.yaml
- F:	Documentation/devicetree/bindings/clock/toshiba,tmpv770x-pismu.yaml
- F:	Documentation/devicetree/bindings/gpio/toshiba,gpio-visconti.yaml
-+F:	Documentation/devicetree/bindings/media/toshiba,visconti-viif.yaml
- F:	Documentation/devicetree/bindings/net/toshiba,visconti-dwmac.yaml
- F:	Documentation/devicetree/bindings/pci/toshiba,visconti-pcie.yaml
- F:	Documentation/devicetree/bindings/pinctrl/toshiba,visconti-pinctrl.yaml
- F:	Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
-+F:	Documentation/driver-api/media/drivers/visconti-viif.rst
- F:	arch/arm64/boot/dts/toshiba/
- F:	drivers/clk/visconti/
- F:	drivers/gpio/gpio-visconti.c
-+F:	drivers/media/platform/toshiba/visconti/
- F:	drivers/net/ethernet/stmicro/stmmac/dwmac-visconti.c
- F:	drivers/pci/controller/dwc/pcie-visconti.c
- F:	drivers/pinctrl/visconti/
- F:	drivers/watchdog/visconti_wdt.c
-+F:	include/uapi/linux/visconti_viif.h
- N:	visconti
- 
- ARM/UNIPHIER ARCHITECTURE
--- 
-2.25.1
+I just wondering what kind of pmu drivers should be in drivers/perf
+and what kind of pmu drivers should not be in drivers/perf.
+Thanks.
 
 
+Best regards,
+Eric Lin
+
+> Cheers,
+> Conor.
