@@ -2,335 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 191DD7366FF
-	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 11:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 868E47367A5
+	for <lists+devicetree@lfdr.de>; Tue, 20 Jun 2023 11:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231464AbjFTJIa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 20 Jun 2023 05:08:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33330 "EHLO
+        id S232271AbjFTJ0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 05:26:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231518AbjFTJIY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 05:08:24 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 852B01A1;
-        Tue, 20 Jun 2023 02:08:22 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8DxQuiFbJFkmyMHAA--.598S3;
-        Tue, 20 Jun 2023 17:08:21 +0800 (CST)
-Received: from user-pc.202.106.0.20 (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8BxTMp8bJFkG30hAA--.19516S4;
-        Tue, 20 Jun 2023 17:08:20 +0800 (CST)
-From:   Yinbo Zhu <zhuyinbo@loongson.cn>
-To:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232295AbjFTJ0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 05:26:14 -0400
+Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2122.outbound.protection.outlook.com [40.107.243.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C6A199;
+        Tue, 20 Jun 2023 02:26:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WnTnfZNLwthokGa7fiXEZio/V+INtLOX48RI/Gw6gVTCZYUAqZ+/6dgxFmQeLWCp32EvuGlKCM9vC34VRRcb/nJQXmlXYt3vg8BFquk7wmRFZJZBkJNW2u7pp1ZbXy4NKZC+NfbmM7lchqJRzEVMT73H5LHpQP2Lba1QG5N2jv0XxZ1UH7hGZMuQxXXlX/RetBLW2y2HboPcsLF/mSIInwUBqGJ7P9YXTYt3J6v73B/vWRsvF/Lt4eYqJTNfkmfS4s6mudoSsk9syLx2C3ykOmv7R+OBQzk+k9SIsGz+5WogqVmN2Q6HS5zLQYnfzgyQhQS4V0K/R+yzY/JVsNjm0w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=UYfC0l4wvtFoQONPNJyShqIhpgoXsSKVft5TGLg+Olg=;
+ b=NTcp2xfM/3gKXjyX4uPilYkFb2LXxRYfGocxvTBg8BHDdQOWKDecjox792xqhCOCfHh8NODtWDp1mTQQ5MpYwAcZ62N7oAFr10Lnrhq76i3xaQdwRnmydKbM9t7V+1LoUiRwdgvOSJJrTlvddKMh2m0fIyiX+5AIctthSnabEGlIMalnYOgcRCX7OBYf3ULiUSy7FO5UjY3epxgLPXqyqWAba33mPleINF2PfgakooD2n0GKThdxQYSvyWqsbngOb/Hd2z55az1XkeScEVd/hJ9c/FtSmk5skTDodIAxk7KE7/354zFNH2ePRXnxg5NxIYpPhgC0txHygt8tn5psSQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=os.amperecomputing.com; dmarc=pass action=none
+ header.from=os.amperecomputing.com; dkim=pass
+ header.d=os.amperecomputing.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=os.amperecomputing.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=UYfC0l4wvtFoQONPNJyShqIhpgoXsSKVft5TGLg+Olg=;
+ b=KjZLrXPCdTldpdIxBjQplq4aAdg+Jb/X/Mogs3/7UMSrqUBwZOVFF/jvUeNfph4x7edOaXcDDu022DlQNE/jKAXLpXlM+WM+crjuDe5oAT7WW8JqqhKqHZ3EXoQz1LBVEpusZqK/qUFfFsg+tRMJ17NsbwPvsGybyI7ZSuGACEs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=os.amperecomputing.com;
+Received: from DS0PR01MB8010.prod.exchangelabs.com (2603:10b6:8:151::19) by
+ IA0PR01MB8237.prod.exchangelabs.com (2603:10b6:208:48d::20) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6500.35; Tue, 20 Jun 2023 09:26:03 +0000
+Received: from DS0PR01MB8010.prod.exchangelabs.com
+ ([fe80::e439:70c2:7d19:45e]) by DS0PR01MB8010.prod.exchangelabs.com
+ ([fe80::e439:70c2:7d19:45e%6]) with mapi id 15.20.6521.020; Tue, 20 Jun 2023
+ 09:26:03 +0000
+From:   Chanh Nguyen <chanh@os.amperecomputing.com>
+To:     OpenBMC Maillist <openbmc@lists.ozlabs.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Liu Yun <liuyun@loongson.cn>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, Yinbo Zhu <zhuyinbo@loongson.cn>
-Subject: [PATCH v4 2/2] soc: loongson2_pm: add power management support
-Date:   Tue, 20 Jun 2023 17:08:11 +0800
-Message-Id: <20230620090811.721-3-zhuyinbo@loongson.cn>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230620090811.721-1-zhuyinbo@loongson.cn>
-References: <20230620090811.721-1-zhuyinbo@loongson.cn>
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     Chanh Nguyen <chanh@os.amperecomputing.com>
+Subject: [PATCH v3 0/3] Update the device tree for Ampere's Mt.Mitchell BMC
+Date:   Tue, 20 Jun 2023 16:25:34 +0700
+Message-Id: <20230620092537.20007-1-chanh@os.amperecomputing.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0023.apcprd02.prod.outlook.com
+ (2603:1096:4:195::11) To DS0PR01MB8010.prod.exchangelabs.com
+ (2603:10b6:8:151::19)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8BxTMp8bJFkG30hAA--.19516S4
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR01MB8010:EE_|IA0PR01MB8237:EE_
+X-MS-Office365-Filtering-Correlation-Id: cdc517cc-0d46-44b5-217a-08db71705de8
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: unUWF2uqtrPj8IlHcX2CYu2zrzA2P5Ssaj2gT8NO0W6MXtLsPH5aLbJ2zmMVu/u/XEYLz4XFSf6uziw8oU8+4fp/ddeT+OHfZg84nVx/XjfNVhLxAtEorGThWpsR8Rs+UtjtcnJ7GFr1F+Luyeef++V2KOx9NURox7Ig+HEWbzKXpIw92YzuyIZZUNjJAIktVaTPo2AskGeA4QAGDNXFDq5zJWze9l5bQzaRo/gWTT+MevTJztIdyfY6iXcD3cONaOLgriT6zsI6ozyJMU66bsslvb6QXCCixM/Sy57IYIZHXtueQwivQvaIyGMGnpaSaOxkcPKTfjPPkP0CADUlgNOxteuSW4uOAMBF8l81G0SyaXyfW9lrN/jpDCmsKofp6WffffHU1UAZA/Li1SvxnKysmiOrzm+i29ftLxd7Bc3/KijSfiBuZ/znJmtiA0WS66fozyA/nUcgSwvC7LXXfb5kElOIbY4QvCQLZwBFaixiW1anBoOJsHh8YTIUyx8UWLv9ZYctFy/EHPnYLvm6lehxRZK6A/0v+kmhH7NEo5gKatPLtY0RyPZIeaI21OItV+Ee4xhPBxVFM9ZSEgZfn0f+Mhld1EJ5a1VVC2ZmBJSi7NyD0BMNuFZU3kPajquq
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DS0PR01MB8010.prod.exchangelabs.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(451199021)(6666004)(6486002)(478600001)(107886003)(1076003)(6506007)(52116002)(5660300002)(86362001)(15650500001)(4744005)(2906002)(110136005)(19627235002)(8676002)(41300700001)(8936002)(66476007)(66556008)(66946007)(316002)(2616005)(38100700002)(38350700002)(83380400001)(4326008)(26005)(6512007)(186003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?XXUZ4qsQPe5YFBdQOlLUaY9C2UGZIY8pIMcu/QweR/CJyH0YZqp4phNAgDfF?=
+ =?us-ascii?Q?WBJl064H+oujBT7+xn4jmNOyPc8j6ojpofZXcoGIy4tsXPedlBn3MofaqBmJ?=
+ =?us-ascii?Q?G+kaqanb6ygUy5gq2s+kokyerociBrVHYHnPDvVuw67yf46AvBVDgI1JN1rL?=
+ =?us-ascii?Q?BmCgAxm3UKl0BPhjjY/jbEQLJjeO9a/m9wdw/AwMr2bdu9L6CLtdmYrOgrAg?=
+ =?us-ascii?Q?eTqP+qphNn/GpgAi+OE75c4DXcPFATbBc8VTGU7Ee4Ou0GSpkCyBgnnoxwFH?=
+ =?us-ascii?Q?sVCwuV1+GipvPFMhBYATV/YyX/aRU2BTwxsld1wGjzJOOs1hbvuc8ScVaxKz?=
+ =?us-ascii?Q?tP4eCNdaRO4WQWGdDZ0QmV5a/WJFEEHgjwFA3nC30uSYiLB57zEjC0TWxDMR?=
+ =?us-ascii?Q?5Y4yipdP3GKSWQvQ0/YgFC/pZSTJ9K48u27L8G1hGN51Zv+gdXLpNpFeXuiq?=
+ =?us-ascii?Q?tDeN/zzpekpYAxonyRC09shqdPBszJ+jXQZxOTniynY48EUCYfxFQFYWrre9?=
+ =?us-ascii?Q?5UO2MtmnWdN4ix5y4cA2pfnrpMdF4Bt0IR0HzUyGo/6U1wNdLdz7xU8IgFzu?=
+ =?us-ascii?Q?HmsWqzEOQlFrzD186Lgj3NjX5bfpXrOAonwGKELX4vpBFw5E/BZv4LsOgkjr?=
+ =?us-ascii?Q?6h8G/MG1Q3yUyjOBJQQJPLIPeVamy9sfbNf4ju7PfmM2xxPIecmgvM3aH/Pg?=
+ =?us-ascii?Q?bDBVoorbRhvfESS8o18ttGnsRhPzroBfs5ckQEoGru1+/sUPN9BoAOOcpy6l?=
+ =?us-ascii?Q?HgOmY1sTHHyDvBz5u7J0Yqtf0TQeye4sz938ctMdd/LRoeOEYun4k7qsP0E5?=
+ =?us-ascii?Q?Ha2eCkTa1MU+F1INZwRryj0wPEjmw8DYtgDYBw/XBOaS+lBxOgfbnZagD5jW?=
+ =?us-ascii?Q?PK4seajuKQZGOoWRQ1LqOf3gwdDYiV4gxyEzw9hDHet2RlYUewa3EQz68uq4?=
+ =?us-ascii?Q?JXUlv9GVV7U9Z5sxQH7V9qf5EIbyDT27QCFk2RdEcgUz0REMQkSK3YbZH/ET?=
+ =?us-ascii?Q?9Rka4Y6KH8A0AFv3NwzP+m+8QUaUIAk3UyV3y77c28gXGQOWaHiM4HnfgjCk?=
+ =?us-ascii?Q?UGq64XrU31CHe34V/0pgxpIcvI3XBitC5uuiLCKsBJoIC7Q5pcA3/xAaGvpn?=
+ =?us-ascii?Q?6G5cZk60vAX/zLlPuMxzq+Fc3THG3HfD1Q/SuUE8G2NSWePq9eumSaf0omWj?=
+ =?us-ascii?Q?VA0uJjm6Znr6XKEPRz6VqfjWDol23s/HOiYoGrUO/RCbPTbu0Ceq5UF7j7Rn?=
+ =?us-ascii?Q?4L6zU1wKGWR9+ahqWIH7AheYXXPZL0PnwF2+FOLvhrRwMICEqyvlLEXA/+n/?=
+ =?us-ascii?Q?iOV5CO9qqFThLSRgf8bgc7gSewXckWwkrddqtV3vusvT8pKuLOXbb0GRPsED?=
+ =?us-ascii?Q?5nVMwGXbiD9MuEi0C4Z1Sl9X9FMU74926jeTQeSb7WmL47Y68kA8C+8AJeNk?=
+ =?us-ascii?Q?RjtNoAsZ5E/OmyrvcLfdoAwfRqkjezsVnY5F8f7PfJgoCCRxx6gAkDDMydRK?=
+ =?us-ascii?Q?58KLHozcJBmY8xrpUZ6GR1MuHtLxm1M2HVLJM4f0x+82ZpBAB8rMyfw7YErK?=
+ =?us-ascii?Q?KJWp2b1gXVSkRAW/OWozIKXYdjbcu2EV3+o3pAAV9LNKJkTJJhCO8hTMKkKG?=
+ =?us-ascii?Q?RX62gwX4VyUkNOdXR8pwqqI=3D?=
+X-OriginatorOrg: os.amperecomputing.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cdc517cc-0d46-44b5-217a-08db71705de8
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR01MB8010.prod.exchangelabs.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Jun 2023 09:26:03.3188
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3bc2b170-fd94-476d-b0ce-4229bdc904a7
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Y8dbft0csw+ZwKsxrQ6ylELgiNlJKZCM7BeQDKo51acLTp4K5mARJOEjyNSXrH/7UCMZiv0KUWk8+eLld61gwCArXPTz93ln6PWvODJT+zJtlGqDu1il7wSFNNzExbL4
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR01MB8237
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Loongson-2's power management controller was ACPI, supports ACPI
-S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
-Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
-(USB, GMAC, PWRBTN, etc.). This driver was to add power management
-controller support that base on dts for Loongson-2 series SoCs.
+Updates the device tree to support some features on Ampere's
+Mt.Mitchell BMC.
 
-Co-developed-by: Liu Yun <liuyun@loongson.cn>
-Signed-off-by: Liu Yun <liuyun@loongson.cn>
-Co-developed-by: Liu Peibao <liupeibao@loongson.cn>
-Signed-off-by: Liu Peibao <liupeibao@loongson.cn>
-Signed-off-by: Yinbo Zhu <zhuyinbo@loongson.cn>
----
- MAINTAINERS                         |   1 +
- drivers/soc/loongson/Kconfig        |  10 ++
- drivers/soc/loongson/Makefile       |   1 +
- drivers/soc/loongson/loongson2_pm.c | 215 ++++++++++++++++++++++++++++
- 4 files changed, 227 insertions(+)
- create mode 100644 drivers/soc/loongson/loongson2_pm.c
+v3:
+  - Fix build error.                                  [kernel test robot]
+v2:
+  - Drop 0002-ARM-dts-aspeed-mtmitchell-Add-I2C-Fan.patch because
+    "maxim,max31790" is undocumented.                 [Krzysztof]
+  - Update reg for mctp node.                         [Andrew]
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index bcd05f1fa5c1..7c4ad0cbaeff 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12195,6 +12195,7 @@ M:	Yinbo Zhu <zhuyinbo@loongson.cn>
- L:	linux-pm@vger.kernel.org
- S:	Maintained
- F:	Documentation/devicetree/bindings/soc/loongson/loongson,ls2k-pmc.yaml
-+F:	drivers/soc/loongson/loongson2_pm.c
- 
- LOONGSON-2 SOC SERIES PINCTRL DRIVER
- M:	zhanghongchen <zhanghongchen@loongson.cn>
-diff --git a/drivers/soc/loongson/Kconfig b/drivers/soc/loongson/Kconfig
-index 707f56358dc4..4f3ce9eb7520 100644
---- a/drivers/soc/loongson/Kconfig
-+++ b/drivers/soc/loongson/Kconfig
-@@ -16,3 +16,13 @@ config LOONGSON2_GUTS
- 	 SoCs. Initially only reading SVR and registering soc device are
- 	 supported. Other guts accesses, such as reading firmware configuration
- 	 by default, should eventually be added into this driver as well.
-+
-+config LOONGSON2_PM
-+	bool "Loongson-2 SoC Power Management Controller Driver"
-+	depends on LOONGARCH && OF
-+	help
-+	 The Loongson-2's power management controller was ACPI, supports ACPI
-+	 S2Idle (Suspend To Idle), ACPI S3 (Suspend To RAM), ACPI S4 (Suspend To
-+	 Disk), ACPI S5 (Soft Shutdown) and supports multiple wake-up methods
-+	 (USB, GMAC, PWRBTN, etc.). This driver was to add power management
-+	 controller support that base on dts for Loongson-2 series SoCs.
-diff --git a/drivers/soc/loongson/Makefile b/drivers/soc/loongson/Makefile
-index 263c486df638..4118f50f55e2 100644
---- a/drivers/soc/loongson/Makefile
-+++ b/drivers/soc/loongson/Makefile
-@@ -4,3 +4,4 @@
- #
- 
- obj-$(CONFIG_LOONGSON2_GUTS)		+= loongson2_guts.o
-+obj-$(CONFIG_LOONGSON2_PM)		+= loongson2_pm.o
-diff --git a/drivers/soc/loongson/loongson2_pm.c b/drivers/soc/loongson/loongson2_pm.c
-new file mode 100644
-index 000000000000..cd022a1d5b33
---- /dev/null
-+++ b/drivers/soc/loongson/loongson2_pm.c
-@@ -0,0 +1,215 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Loongson-2 PM Support
-+ *
-+ * Copyright (C) 2023 Loongson Technology Corporation Limited
-+ */
-+
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/init.h>
-+#include <linux/input.h>
-+#include <linux/suspend.h>
-+#include <linux/interrupt.h>
-+#include <linux/pm_wakeirq.h>
-+#include <linux/platform_device.h>
-+#include <asm/bootinfo.h>
-+#include <asm/suspend.h>
-+
-+#define LOONGSON2_PM1_CNT_REG		0x14
-+#define LOONGSON2_PM1_STS_REG		0x0c
-+#define LOONGSON2_PM1_ENA_REG		0x10
-+#define LOONGSON2_GPE0_STS_REG		0x28
-+#define LOONGSON2_GPE0_ENA_REG		0x2c
-+
-+#define LOONGSON2_PM1_PWRBTN_STS	BIT(8)
-+#define LOONGSON2_PM1_PCIEXP_WAKE_STS	BIT(14)
-+#define LOONGSON2_PM1_WAKE_STS		BIT(15)
-+#define LOONGSON2_PM1_CNT_INT_EN	BIT(0)
-+#define LOONGSON2_PM1_PWRBTN_EN		LOONGSON2_PM1_PWRBTN_STS
-+
-+static struct loongson2_pm {
-+	void __iomem			*base;
-+	struct input_dev		*dev;
-+	bool				suspended;
-+} loongson2_pm;
-+
-+#define loongson2_pm_readw(reg)		readw(loongson2_pm.base + reg)
-+#define loongson2_pm_readl(reg)		readl(loongson2_pm.base + reg)
-+#define loongson2_pm_writew(val, reg)	writew(val, loongson2_pm.base + reg)
-+#define loongson2_pm_writel(val, reg)	writel(val, loongson2_pm.base + reg)
-+
-+static void loongson2_pm_status_clear(void)
-+{
-+	u16 value;
-+
-+	value = loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
-+	value |= (LOONGSON2_PM1_PWRBTN_STS | LOONGSON2_PM1_PCIEXP_WAKE_STS |
-+		  LOONGSON2_PM1_WAKE_STS);
-+	loongson2_pm_writew(value, LOONGSON2_PM1_STS_REG);
-+	loongson2_pm_writel(loongson2_pm_readl(LOONGSON2_GPE0_STS_REG), LOONGSON2_GPE0_STS_REG);
-+}
-+
-+static void loongson2_pm_irq_enable(void)
-+{
-+	u16 value;
-+
-+	value = loongson2_pm_readw(LOONGSON2_PM1_CNT_REG);
-+	value |= LOONGSON2_PM1_CNT_INT_EN;
-+	loongson2_pm_writew(value, LOONGSON2_PM1_CNT_REG);
-+
-+	value = loongson2_pm_readw(LOONGSON2_PM1_ENA_REG);
-+	value |= LOONGSON2_PM1_PWRBTN_EN;
-+	loongson2_pm_writew(value, LOONGSON2_PM1_ENA_REG);
-+}
-+
-+static int loongson2_suspend_enter(suspend_state_t state)
-+{
-+	loongson2_pm_status_clear();
-+	loongarch_common_suspend();
-+	loongarch_suspend_enter();
-+	loongarch_common_resume();
-+	loongson2_pm_irq_enable();
-+	pm_set_resume_via_firmware();
-+
-+	return 0;
-+}
-+
-+static int loongson2_suspend_begin(suspend_state_t state)
-+{
-+	pm_set_suspend_via_firmware();
-+
-+	return 0;
-+}
-+
-+static int loongson2_suspend_valid_state(suspend_state_t state)
-+{
-+	return (state == PM_SUSPEND_MEM);
-+}
-+
-+static const struct platform_suspend_ops loongson2_suspend_ops = {
-+	.valid	= loongson2_suspend_valid_state,
-+	.begin	= loongson2_suspend_begin,
-+	.enter	= loongson2_suspend_enter,
-+};
-+
-+static int loongson2_power_button_init(struct device *dev, int irq)
-+{
-+	int ret;
-+	struct input_dev *button;
-+
-+	button = input_allocate_device();
-+	if (!dev)
-+		return -ENOMEM;
-+
-+	button->name = "Power Button";
-+	button->phys = "pm/button/input0";
-+	button->id.bustype = BUS_HOST;
-+	button->dev.parent = NULL;
-+	input_set_capability(button, EV_KEY, KEY_POWER);
-+
-+	ret = input_register_device(button);
-+	if (ret)
-+		goto free_dev;
-+
-+	dev_pm_set_wake_irq(&button->dev, irq);
-+	device_set_wakeup_capable(&button->dev, true);
-+	device_set_wakeup_enable(&button->dev, true);
-+
-+	loongson2_pm.dev = button;
-+	dev_info(dev, "Power Button: Init successful!\n");
-+
-+	return 0;
-+
-+free_dev:
-+	input_free_device(button);
-+
-+	return ret;
-+}
-+
-+static irqreturn_t loongson2_pm_irq_handler(int irq, void *dev_id)
-+{
-+	u16 status = loongson2_pm_readw(LOONGSON2_PM1_STS_REG);
-+
-+	if (!loongson2_pm.suspended && (status & LOONGSON2_PM1_PWRBTN_STS)) {
-+		pr_info("Power Button pressed...\n");
-+		input_report_key(loongson2_pm.dev, KEY_POWER, 1);
-+		input_sync(loongson2_pm.dev);
-+		input_report_key(loongson2_pm.dev, KEY_POWER, 0);
-+		input_sync(loongson2_pm.dev);
-+	}
-+
-+	loongson2_pm_status_clear();
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static int __maybe_unused loongson2_pm_suspend(struct device *dev)
-+{
-+	loongson2_pm.suspended = true;
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused loongson2_pm_resume(struct device *dev)
-+{
-+	loongson2_pm.suspended = false;
-+
-+	return 0;
-+}
-+static SIMPLE_DEV_PM_OPS(loongson2_pm_ops, loongson2_pm_suspend, loongson2_pm_resume);
-+
-+static int loongson2_pm_probe(struct platform_device *pdev)
-+{
-+	int irq, retval;
-+	u64 suspend_addr;
-+	struct device *dev = &pdev->dev;
-+
-+	loongson2_pm.base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(loongson2_pm.base))
-+		return PTR_ERR(loongson2_pm.base);
-+
-+	irq = platform_get_irq(pdev, 0);
-+	if (irq < 0)
-+		return irq;
-+
-+	if (!device_property_read_u64(dev, "loongson,suspend-address", &suspend_addr))
-+		loongson_sysconf.suspend_addr = (u64)phys_to_virt(suspend_addr);
-+	else
-+		dev_err(dev, "No loongson,suspend-address, could not support S3!\n");
-+
-+	if (loongson2_power_button_init(dev, irq))
-+		return -EINVAL;
-+
-+	retval = devm_request_irq(&pdev->dev, irq, loongson2_pm_irq_handler,
-+				  IRQF_SHARED, "pm_irq", &loongson2_pm);
-+	if (retval)
-+		return retval;
-+
-+	loongson2_pm_irq_enable();
-+	loongson2_pm_status_clear();
-+
-+	if (loongson_sysconf.suspend_addr)
-+		suspend_set_ops(&loongson2_suspend_ops);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id loongson2_pm_match[] = {
-+	{ .compatible = "loongson,ls2k1000-pmc", },
-+	{ .compatible = "loongson,ls2k0500-pmc", },
-+	{},
-+};
-+
-+static struct platform_driver loongson2_pm_driver = {
-+	.driver = {
-+		.name = "ls2k-pm",
-+		.pm = &loongson2_pm_ops,
-+		.of_match_table = loongson2_pm_match,
-+	},
-+	.probe = loongson2_pm_probe,
-+};
-+module_platform_driver(loongson2_pm_driver);
-+
-+MODULE_DESCRIPTION("Loongson-2 PM driver");
-+MODULE_LICENSE("GPL");
+Chanh Nguyen (3):
+  ARM: dts: aspeed: mtmitchell: Enable the BMC UART8 and UART9
+  ARM: dts: aspeed: mtmitchell: Update ADC sensors for Mt.Mitchell DVT
+    systems
+  ARM: dts: aspeed: mtmitchell: Add MCTP
+
+ .../boot/dts/aspeed-bmc-ampere-mtmitchell.dts | 127 ++++++++++++------
+ 1 file changed, 86 insertions(+), 41 deletions(-)
+
 -- 
-2.20.1
+2.17.1
 
