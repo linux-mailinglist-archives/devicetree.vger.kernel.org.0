@@ -2,203 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03CC573868C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 16:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62EE6738692
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 16:16:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232892AbjFUOPt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 10:15:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33644 "EHLO
+        id S232905AbjFUOQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 10:16:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33934 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233195AbjFUOPP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 10:15:15 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A82401BFD;
-        Wed, 21 Jun 2023 07:14:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=olkfJFJHmdPF0qnYYe5wpm6Uq97XftMPhiu1DWdUHp4=; b=SEPaIvjbiZ9lxdf4JKSWf9/muM
-        7kpEvyox/R5SDvyjmv/ZatjeZ7FozBPEWRPKKYJ9+BTuorwCPKdcJjBjKgkKbnwo3XtjnIlXzumwh
-        FP5fKODdLvTMBnXLbx9Fmz+wJKLVjfd2BWAiDc2ImCrYNwiOHDNub9X5dpiH5vt3WmJY=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:45778 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qBybN-0004sm-Vk; Wed, 21 Jun 2023 10:14:30 -0400
-Date:   Wed, 21 Jun 2023 10:14:29 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Message-Id: <20230621101429.7f86490aa7590f0d978834ce@hugovil.com>
-In-Reply-To: <Y8rl452Xm1FrnFfF@mail.local>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
-        <Y8rl452Xm1FrnFfF@mail.local>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        with ESMTP id S232910AbjFUOPu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 10:15:50 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCFF1FF6
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:15:29 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f875b267d9so4376640e87.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:15:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687356928; x=1689948928;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WO0wRiGvwvFFxc6ddvmc2hEJ6Af99eLgH/iA0sVZGJI=;
+        b=WwFu6VlAr2SlRovLrSh6EFSE2IYpH6tY701z5wzbbVvoP0YIoZX5Ntj4y4tDHau4ld
+         np4r2NKmcObhZV2pf6z2ifzK53z1TUtUSqBGou0hZiXzExjgQT55JBuIOhQpLTIgVrHq
+         W1fLy6Mjrv5xL4aO4eWXe4ElQeOonxTnx7d00Y+cNL9V0e/6MAUeXIHjHAmXWuHOSA/h
+         HR17SfTbhE5a9eqjkP15ZWgw7jIaRR/HD1syWw7WaoD2fvuHwxZStwuwuKkDED9I7pf9
+         kOuV2w6ugcNN9+nX4Gdr76FdocrNEK1i6gJ1dn+4+mO3xc7ZJggHMroy9C3JZhmsWEca
+         I/7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687356928; x=1689948928;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WO0wRiGvwvFFxc6ddvmc2hEJ6Af99eLgH/iA0sVZGJI=;
+        b=PQPRPM6EQ8PkLt2o/ch53FVFh4iyuL1ltGTRi1V/m+4Gny2BhialuXObD7HyyiG0gP
+         5trwoR+006Y3gMZxqgJkYbw7vut7dzdrpjlCe3wYoFUH2EwIeNyYNfbAL+XKmjsTyrNv
+         I2t+E34oVZ2QiPeEQ4wuoSdE91V5Q/I6Ce+2RQkdPO3s80p+zo8a82MFZpCAZaiWdVQo
+         G4SmftUr4UgbH2vgfD+Ax1JGguF9vxpw30LZhAB8A7CSLbKj7qJOWtXFZdmuccRsApdN
+         Npy5P2tTu8bzU1448JkJ+yx/j39eDVjrQHI/iKL35HaTxfc1akDU9K3PVuQCVrDdvRDh
+         Izeg==
+X-Gm-Message-State: AC+VfDxoUO80bnqHtZtzoFezNdFUTuDSp/YIMpknV+/0AY6kRp8zqUA+
+        ugngPYJMXQua8wl5R6WmffAKSRNKzvhzO2w5Noo=
+X-Google-Smtp-Source: ACHHUZ6mkH/Gyz2cXYdyzimv0/bg1Z67dEVNVGZbDw89bpZv7w/IKri2Jz1t1xJik3NTF2w8OJd1Ag==
+X-Received: by 2002:a19:3807:0:b0:4f7:6775:2a66 with SMTP id f7-20020a193807000000b004f767752a66mr8453628lfa.53.1687356927422;
+        Wed, 21 Jun 2023 07:15:27 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id u27-20020ac248bb000000b004f64fb058f7sm795002lfg.225.2023.06.21.07.15.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jun 2023 07:15:26 -0700 (PDT)
+Message-ID: <372f776d-6d98-5438-2a13-0aeac4182a31@linaro.org>
+Date:   Wed, 21 Jun 2023 17:15:26 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 08/10] clk: qcom: gcc-mdm9615: drop the cxo clock
+Content-Language: en-GB
+To:     Bjorn Andersson <andersson@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+References: <20230512211727.3445575-1-dmitry.baryshkov@linaro.org>
+ <20230512211727.3445575-9-dmitry.baryshkov@linaro.org>
+ <20230613234113.tnzjgfbyhj5zokgl@ripper>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230613234113.tnzjgfbyhj5zokgl@ripper>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH v3 00/14] rtc: pcf2127: add PCF2131 driver
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 20 Jan 2023 20:05:07 +0100
-Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+On 14/06/2023 02:41, Bjorn Andersson wrote:
+> On Sat, May 13, 2023 at 12:17:25AM +0300, Dmitry Baryshkov wrote:
+>> The gcc and lcc devices have been switched to the DT-defined cxo_board
+>> clock. Now we can drop the manually defined cxo clock.
+>>
+> 
+> Perhaps I'm reading this incorrectly, but don't you introduce that clock
+> in DT in the next commit? It would be nice to allow for at least some
+> overlap between existing dtb and the new scheme.
 
-> Hello,
-> 
-> I know I've been holding off on the review of this series for a while
-> and I'm sorry for that.
-> 
-> One of the main issue that is remaining is that the driver ends up being
-> 53% bigger and generaly less efficient for no added functionality for
-> the existing RTCs.
-> 
-> I know performance is not a concern however, having more code in the
-> set/read time and irq paths means that it is more difficult to set an
-> get the time precisely.
+No, this clock existed in DT for some time, I'm just removing the 
+necessity for an intermediate clock in the gcc driver.
 
-Hi Alexandre,
-one way to keep rtc_read_time() as efficient as before, and even more
-efficient by reading 7 instead of 10 registers, would be to drop reading
-the CTRL3 register, which is only used to detect and display an info
-message for the low battery condition. This low battery check could be
-moved to an ioctl call, like it is done in the PCF8523 driver.
-
-Hugo.
-
-
-> I guess I'll take it as a merged driver but I took a different decision
-> for other RTCs.
 > 
-> On 15/12/2022 10:02:01-0500, Hugo Villeneuve wrote:
-> > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > 
-> > Hello,
-> > this patch series adds the driver for the PCF2131 real-time clock.
-> > 
-> > This RTC is very similar in functionality to the PCF2127/29 with the
-> > following differences:
-> >   -supports two new control registers at offsets 4 and 5
-> >   -supports a new reset register
-> >   -supports 4 tamper detection functions instead of 1
-> >   -has no nvmem (like the PCF2129)
-> >   -has two output interrupt pins instead of one
-> >   -has 1/100th seconds capabilities (not supported in this driver)
-> >   -pcf2127 has watchdog clock sources: 1/60,   1, 64 and 4096Hz
-> >    pcf2131 has watchdog clock sources: 1/64, 1/4,  4 and   64Hz
-> >   -watchdog value register cannot be read after being set
-> > 
-> > Most of the register addresses are very different, although they still
-> > follow the same layout. For example, the time/date and tamper registers
-> > have a different base address, but the offsets are all the same.
-> > Consequently, the source code of the PCF2127 driver can be easily adapted
-> > to support this new device.
-> > 
-> > Patches 1 to 6 modify the existing pcf2127 driver to make it more generic
-> > and able to support multiple variants, like the PCF2131. This is done
-> > mostly by using offsets instead of absolute hardcoded register addresses.
-> > 
-> > Patch 7 add actual support for the PCF2131.
-> > 
-> > Patch 8 configures all interrupt sources to go through the INT A pin.
-> > 
-> > Patch 9 changes the PWRMNG bits to be the same with the PCF2131 as they
-> >       are with the PCF2127/29 (different default values).
-> > 
-> > Patch 10 allow to confirm PCF2131 device presence by reading the reset
-> >       register fixed pattern.
-> > 
-> > Patch 11 adapt the time/date registers write sequence for PCF2131 (STOP and
-> >       CPR bits).
-> > 
-> > Patch 12 add support for generic watchdog timing configuration.
-> > 
-> > Patch 13 add a new flag to identify if device has read support for reading
-> >       watchdog register value.
-> >       Since the watchdog value register cannot be read on the PCF2131 after
-> >       being set, it seems that we cannot detect if watchdog timer was
-> >       started by bootloader. I am not sure what is the best way to handle
-> >       this situation, suggestions are welcomed.
-> > 
-> > Patch 14 add the dt-bindings for the PCF2131.
-> > 
-> > I have tested the driver using a PCF2131-ARD evaluation board connected to
-> > an NXP imx8mp evaluation board:
-> >   - Time get/set ok;
-> >   - Alarms get/set ok
-> >   - Timestamp 1 to 4 ok
-> >   - IRQ alarm ok
-> >   - Watchdog ok
-> >   - Also tested successfully with "RTC Driver Test Example" from
-> >     Documentation/rtc.txt
-> > 
-> > I have also tested the driver on a custom PCF2129 adapter board connected to a
-> > beaglebone black.
-> > 
-> > Thank you.
-> > 
-> > Link: [v1] https://patchwork.ozlabs.org/project/rtc-linux/patch/20220125200009.900660-2-hugo@hugovil.com/
-> > Link: [v2] https://patchwork.ozlabs.org/project/rtc-linux/list/?series=285734
-> > 
-> > Changes for V3:
-> > - Rebased for kernel v6.1
-> > 
-> > Changes for V2:
-> > - In general, fix and improvements after I have tested on real hardware
-> > - Fix alarm interrupt A/B mask setting for PCF2131:
-> >   PCF2131_BIT_INT_AIE must be cleared, not set, to enable interrupt.
-> > - Remove low_reg validation: only check if TS interrupt flag is
-> >   defined, as low_reg is defined at address 0 for PCF2127/29.
-> > - Change PWRMNG value for PCF2131: default is different than PCF2127/29.
-> > - Adapt time/date registers write sequence for PCF2131 (STOP and CPR bits).
-> > - Map all interrupt sources to INT A pin
-> > - Read and validate PCF2131 device presence from RESET register
-> > - Adapt watchdog configuration for PCF2131
-> > 
-> > Hugo Villeneuve (14):
-> >   rtc: pcf2127: add variant-specific configuration structure
-> >   rtc: pcf2127: adapt for time/date registers at any offset
-> >   rtc: pcf2127: adapt for alarm registers at any offset
-> >   rtc: pcf2127: adapt for WD registers at any offset
-> >   rtc: pcf2127: adapt for CLKOUT register at any offset
-> >   rtc: pcf2127: add support for multiple TS functions
-> >   rtc: pcf2127: add support for PCF2131 RTC
-> >   rtc: pcf2127: add support for PCF2131 interrupts on output INT_A
-> >   rtc: pcf2127: set PWRMNG value for PCF2131
-> >   rtc: pcf2127: read and validate PCF2131 device signature
-> >   rtc: pcf2127: adapt time/date registers write sequence for PCF2131
-> >   rtc: pcf2127: support generic watchdog timing configuration
-> >   rtc: pcf2127: add flag for watchdog register value read support
-> >   dt-bindings: rtc: pcf2127: add PCF2131
-> > 
-> >  .../devicetree/bindings/rtc/nxp,pcf2127.yaml  |   4 +-
-> >  drivers/rtc/Kconfig                           |   4 +-
-> >  drivers/rtc/rtc-pcf2127.c                     | 939 ++++++++++++++----
-> >  3 files changed, 752 insertions(+), 195 deletions(-)
-> > 
-> > -- 
-> > 2.30.2
-> > 
+> Regards,
+> Bjorn
 > 
-> -- 
-> Alexandre Belloni, co-owner and COO, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-> 
+>> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/clk/qcom/gcc-mdm9615.c | 17 -----------------
+>>   1 file changed, 17 deletions(-)
+>>
+>> diff --git a/drivers/clk/qcom/gcc-mdm9615.c b/drivers/clk/qcom/gcc-mdm9615.c
+>> index 458c18b639db..64d4f508e43a 100644
+>> --- a/drivers/clk/qcom/gcc-mdm9615.c
+>> +++ b/drivers/clk/qcom/gcc-mdm9615.c
+>> @@ -26,17 +26,6 @@
+>>   #include "clk-branch.h"
+>>   #include "reset.h"
+>>   
+>> -static struct clk_fixed_factor cxo = {
+>> -	.mult = 1,
+>> -	.div = 1,
+>> -	.hw.init = &(struct clk_init_data){
+>> -		.name = "cxo",
+>> -		.parent_names = (const char *[]){ "cxo_board" },
+>> -		.num_parents = 1,
+>> -		.ops = &clk_fixed_factor_ops,
+>> -	},
+>> -};
+>> -
+>>   enum {
+>>   	DT_CXO,
+>>   	DT_PLL4,
+>> @@ -1623,10 +1612,6 @@ static struct clk_branch ebi2_aon_clk = {
+>>   	},
+>>   };
+>>   
+>> -static struct clk_hw *gcc_mdm9615_hws[] = {
+>> -	&cxo.hw,
+>> -};
+>> -
+>>   static struct clk_regmap *gcc_mdm9615_clks[] = {
+>>   	[PLL0] = &pll0.clkr,
+>>   	[PLL0_VOTE] = &pll0_vote,
+>> @@ -1736,8 +1721,6 @@ static const struct qcom_cc_desc gcc_mdm9615_desc = {
+>>   	.num_clks = ARRAY_SIZE(gcc_mdm9615_clks),
+>>   	.resets = gcc_mdm9615_resets,
+>>   	.num_resets = ARRAY_SIZE(gcc_mdm9615_resets),
+>> -	.clk_hws = gcc_mdm9615_hws,
+>> -	.num_clk_hws = ARRAY_SIZE(gcc_mdm9615_hws),
+>>   };
+>>   
+>>   static const struct of_device_id gcc_mdm9615_match_table[] = {
+>> -- 
+>> 2.39.2
+>>
+
+-- 
+With best wishes
+Dmitry
+
