@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CFE2738892
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 17:14:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 67C0573889D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 17:16:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233268AbjFUPOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 11:14:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51382 "EHLO
+        id S233237AbjFUPQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 11:16:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233218AbjFUPOY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 11:14:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF0E4C0B;
-        Wed, 21 Jun 2023 08:10:14 -0700 (PDT)
+        with ESMTP id S233278AbjFUPQQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 11:16:16 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3EBC5264;
+        Wed, 21 Jun 2023 08:11:56 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E49216125F;
-        Wed, 21 Jun 2023 15:09:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id CECBCC433C9;
-        Wed, 21 Jun 2023 15:09:42 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id CDA4D61530;
+        Wed, 21 Jun 2023 15:11:55 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1C3BC433C0;
+        Wed, 21 Jun 2023 15:11:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687360184;
+        s=k20201202; t=1687360315;
         bh=mh+c5UMuL5b1NTfaIBy/rmvu4Fvz360qptnoRyZTj8Y=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZMAZkPtAU8/Ay2qwh0rrdlbtf0o1OWxUx+Tq9GvgHO/VvHA75gmreAA30FYA/56J7
-         UFeIyKEtFbZeWmDBH1UrQxi2PKOC3rpbtjUL8F72YxmNXPvSDweQoCV0E8zHS9oOFv
-         fAFcvE8BMMv4fPi6nZO/U8bndRHcsSmThKh9RRIlI+eWz4FWkNauQ9awscpamA0Q8j
-         Iei8djIhJW66d9E1kRi4T82f9YdPmu+SgZTT/gicwkRY4H6mVTJwLvKpOFudEOc20f
-         tm1aT5hyHDscYX6FL3uXf4BaPovrJfZfROPAT7eEyOZYOykJ8ldcTnGjV4mdLGUI1u
-         hH2zoiGle/XDg==
-Date:   Wed, 21 Jun 2023 16:09:39 +0100
+        b=J23ct56ALIzFBAF7pxsIC8p8EPIALt2uaXKp5M3pPNX+d1Zh/cGY8Y+qj06Kin2DA
+         odoFG72y1zA8qplq+kuJlFzz/cndY08uKyrzW7ShLE0D73GSKtZgjojx8obJSuQGbX
+         sW1rWXQRxeIlL1a4zpAJodhxHfDZbcEy8BTyZ8EvmZQ784WThU8Wgg2IScxKDjcndb
+         u1tgzY3EoxABricqXHi9gTEbxr6IU+qGIUrdCkWM8rnwyYX3WkqoAonQAeQT95o14e
+         4yLmNuK7wVD7MANcUGtwqvKCeHGprK0GAis7VVwh5NVHvpUX5cCAZnr6f83e3FJR9a
+         O/mH3a36T3kqw==
+Date:   Wed, 21 Jun 2023 16:11:50 +0100
 From:   Lee Jones <lee@kernel.org>
 To:     Tim Harvey <tharvey@gateworks.com>
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
@@ -42,15 +42,15 @@ Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Subject: Re: [PATCH RESEND v2] dt-bindings: mfd: gateworks-gsc: remove
  unnecessary fan-controller nodes
-Message-ID: <20230621150939.GH10378@google.com>
+Message-ID: <20230621151150.GI10378@google.com>
 References: <20230612162444.3936302-1-tharvey@gateworks.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 In-Reply-To: <20230612162444.3936302-1-tharvey@gateworks.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
