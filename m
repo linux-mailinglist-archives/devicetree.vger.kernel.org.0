@@ -2,114 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50C57738083
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:10:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B20BD738089
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230247AbjFUKak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 06:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46080 "EHLO
+        id S229699AbjFUKfV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 06:35:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49698 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232527AbjFUKaA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:30:00 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77BF41FCA
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 03:29:45 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51bdc87feb1so586993a12.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 03:29:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687343384; x=1689935384;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=nDF4ZVTkAzYPtnHRop0HswLHr6IvSB28yMxQNxguC9g=;
-        b=fp1r6E+tfo7FVlQyhEXURJigokj81sj1D4rtTtDD3YB14KJ8jWIGs+PDtj9E5BQcjV
-         OK7A4AqrvtrKmAMeSxzvLVrIAIClPOlgVnRIJOhFWYqVEpWMD9cRdTT+rtGsovxdGjrK
-         Ey5N96aQtfw1INmOVYMQh7p2Oa85m2JumX1GgHzZPwS7vvFP6F3XSipWnbWl6FRlSr6K
-         aPJHq2vNlqrL4ZDIPIR+G6YBuHwpHaPW/mlCt5sXZ2Xv4naXxhDyrVvW7Nrl46u+nACc
-         BbyVUU9pxo759TYtyS1F4LUqNUQANug+zd683NX4b37crEf7cCNQ7/3nDtUzwmHkM7Sc
-         Bgqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687343384; x=1689935384;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nDF4ZVTkAzYPtnHRop0HswLHr6IvSB28yMxQNxguC9g=;
-        b=copVrknJHrzHpakqC5xg3MRv+zmgT9aHmRO9jWh6YOxxTA5+ycg8xm90VFRUFItxlV
-         JDvvw6YPfLKSb5lRCn2DSKWInQoPlZ6wpBv5uXZ5nrvenUJq6+RrRqOH+AOAAagr9YIy
-         PG6uVDwxKGDyC+yVmMLIAkytiezL93Mj0HCr/ZaLLFc33bbr9ujzZESNQGsnxZqTnk+L
-         BOEZXWlyUikVsiyhtFNdvf/VKWPoq1YTAH5eHhBFh5tF81daQQ48t3KFxZL7xfVwsmZY
-         SwHmzaus3b0d1BnHf7hagR6uRNHqjbdNfHnvr/QQLsraJoJvmEIjtAr3ox9DjNle3BAr
-         SURg==
-X-Gm-Message-State: AC+VfDxPhc+JZelg5hr23X/3ItDHALmOsRw47Sb1kvE0CqMsz3rmXdQL
-        YGQ+jN5FNKb6J99U7YF5s925KQ==
-X-Google-Smtp-Source: ACHHUZ55pNfRxYE5an/hqYprIWtu5+GhxW3NMHuilP6X5Tq3Kzy5cOi31xrX0IjMRYdy6lFdJ5rbUA==
-X-Received: by 2002:a17:907:728b:b0:988:e0cd:99c4 with SMTP id dt11-20020a170907728b00b00988e0cd99c4mr6080249ejc.31.1687343383877;
-        Wed, 21 Jun 2023 03:29:43 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id bq26-20020a170906d0da00b0096f5b48fe43sm2854069ejb.47.2023.06.21.03.29.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 03:29:43 -0700 (PDT)
-Message-ID: <315991a3-c825-5df8-2e68-40f24c524df1@linaro.org>
-Date:   Wed, 21 Jun 2023 12:29:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 1/6] dt-bindings: can: tcan4x5x: Add tcan4552 and
- tcan4553 variants
-Content-Language: en-US
-To:     Markus Schneider-Pargmann <msp@baylibre.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
+        with ESMTP id S232217AbjFUKet (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:34:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 244AF30DD;
+        Wed, 21 Jun 2023 03:32:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AE070614F5;
+        Wed, 21 Jun 2023 10:32:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64D93C433C9;
+        Wed, 21 Jun 2023 10:32:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687343543;
+        bh=hMshcCHgU6cWWCxkVJqWVDGfY9Sv/m+TXQzv8roldis=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cD8Zn/rmoMj91WfJF9JmRD9SPPLMGqDsihW2Ka0iMznqO15dcSOIVkFbICpPi9/d0
+         jAVmz1c1JZGYCX8wKPAF0CYeOjE2JS0DpYCSBWhZ3hFz5myDu7I482/iAamiOF3uMx
+         GJHbFGPI+tKUDjsDEygZy20/2elB2hkD14KkJ2v5vqvDT5TYf9m7+Wu8+Ssb9iPQLO
+         Me7jph3l6LFizlqV3aNZGhh0m4Cf9CTPpU6Xegl2jxEMRiYS5QELAtNE9AyAs6NPmE
+         zyEPXpiFi3u+wJ6dRCIoXsmTGw29oHf33thELRlX/pvXdWT6F0tF2b3CG7pQbzogLO
+         +2hsNhmrJCgyQ==
+Date:   Wed, 21 Jun 2023 12:32:19 +0200
+From:   Andi Shyti <andi.shyti@kernel.org>
+To:     Svyatoslav Ryhel <clamor95@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-References: <20230621093103.3134655-1-msp@baylibre.com>
- <20230621093103.3134655-2-msp@baylibre.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230621093103.3134655-2-msp@baylibre.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Wolfram Sang <wsa@kernel.org>,
+        =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] i2c: Add GPIO-based hotplug gate
+Message-ID: <20230621103219.o2u33nsok7zngikf@intel.intel>
+References: <20230619153732.46258-1-clamor95@gmail.com>
+ <20230619153732.46258-3-clamor95@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230619153732.46258-3-clamor95@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2023 11:30, Markus Schneider-Pargmann wrote:
-> These two new chips do not have state or wake pins.
+Hi,
+
+On Mon, Jun 19, 2023 at 06:37:32PM +0300, Svyatoslav Ryhel wrote:
+> From: Michał Mirosław <mirq-linux@rere.qmqm.pl>
 > 
-> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> Implement driver for hot-plugged I2C busses, where some devices on
+> a bus are hot-pluggable and their presence is indicated by GPIO line.
+> 
+> Co-developed-by: Ion Agorria <ion@agorria.com>
+> Signed-off-by: Ion Agorria <ion@agorria.com>
+> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> Signed-off-by: Svyatoslav Ryhel <clamor95@gmail.com>
+> ---
+>  drivers/i2c/Kconfig            |  11 ++
+>  drivers/i2c/Makefile           |   1 +
+>  drivers/i2c/i2c-hotplug-gpio.c | 266 +++++++++++++++++++++++++++++++++
+>  3 files changed, 278 insertions(+)
+>  create mode 100644 drivers/i2c/i2c-hotplug-gpio.c
 
-BTW, why did you ignore the tag?
+without going through the code I am missing the big picture here.
 
-This is a friendly reminder during the review process.
+What is this actually doing? Is this a new bus driver support? Is
+this a feature to existing drivers? Is the GPIO an irq line for
+signalling hoplugging and can be used by any driver or just this
+one?
 
-It looks like you received a tag and forgot to add it.
+Without further discussing technicalities, can you please explain
+better and more in detail what is the scope of this patch, why
+there is a need for such a patch, how this new driver/feature
+has been implemented and finally how it can be used.
 
-If you do not know the process, here is a short explanation:
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions. However, there's no need to repost patches *only* to add the
-tags. The upstream maintainer will do that for acks received on the
-version they apply.
+This would help a lot so that I know already beforehand what I am
+going to read without figuring it out.
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+Thanks,
+Andi
 
-If a tag was not added on purpose, please state why and what changed.
-
-Best regards,
-Krzysztof
-
+PS Please notice that my set of questions is even longer than
+your commit log :)
