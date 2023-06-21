@@ -2,76 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEAC2738385
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EFCA738387
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:21:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231883AbjFUMPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 08:15:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41746 "EHLO
+        id S230037AbjFUMUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 08:20:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45344 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231217AbjFUMPY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 08:15:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABCF41721;
-        Wed, 21 Jun 2023 05:15:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1BCF46154D;
-        Wed, 21 Jun 2023 12:15:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B528AC433C9;
-        Wed, 21 Jun 2023 12:15:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687349722;
-        bh=EG5iUSsfn8L9pIBnxfzaaIw74ssf8U24lAZVXDLQ1f8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sGbz0dzhwtKzjxDxcMTkB2BXGIeQ6H75D/OcGk3xUHPx1s6+/l2phthvC0I2IxC1R
-         4gdyKHSA0fUBk4hTsr1+P8aQyFx2D/M2yHs2ZW63sMBN9iDvbZbLjqGdGXr6BBLVbV
-         Z4vngki/CMLXxdXtgq919R9KSI2jXxS/F/58OBWtHb16RoUDS2sb8xYgJFQsZIjqnk
-         5QaekNmYFaapRjXIFRbGBDfz+aNJaXKsUztisxqX3KYL/n7cZLrIqusuuqOWNQazCl
-         ZSwvoBCS/+GtqspMu/iGbpEqn+I+1wajTd1zuGkpv+ur78Md/JhCXpxr4ByaJPvOZb
-         biy87sjX8Zk6Q==
-Date:   Wed, 21 Jun 2023 17:45:18 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S229818AbjFUMUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 08:20:33 -0400
+Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 472B61717
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:20:31 -0700 (PDT)
+Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3110ab7110aso5906772f8f.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:20:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687350030; x=1689942030;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=7f4alMY8gg7nfg1Gs0Kc2GVyxt35f+NA4guvssPWclU=;
+        b=lKs5cUXYYqaa4f16tHzfNJrPFCCzhJtaAztXqUE097kYOmtiJjOaABWyrKAXCPONOk
+         HCEzDPXkRUoREd2xL8pmoswCagNNEGkNC1E8vamxQwKhfmNnXldOhoxOGeyyEErPffZD
+         eDvnqcG4devpqAZsJJaU8cjFEgW17P2mFV4so9NP0m9VnGXq5aeqy6jPe8XgeBsIflPD
+         vqqRa5Lasgy059HIWcH6n4rXIz5EPVDBQ0P/P6/u3aqLoCPzC+O4jbyziDsJ2RxX2uOk
+         LS5Av3YXeWfaE+eluRGJiSyKuSmynFV/M2cUgxxW5tMsjjyjrhqwjmWjGteCyqEH3HLQ
+         D/uQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687350030; x=1689942030;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7f4alMY8gg7nfg1Gs0Kc2GVyxt35f+NA4guvssPWclU=;
+        b=DljKR/V1tZxfzyCDJmIE8EVZ5YTaiOoIUtL9w/B24WktENg4uiCA84CS2UH1I94jgP
+         UAmIaGQLGcY4VeS2LsWqyJU7pcuWutt+sZw97dM1NyuaoWvbiojzgiD2+YGf8LsYX9zK
+         DGcuoGxwosYNaz/db9rdCo1eAUwHRvoe1NeLlRq/MOA3rwvESNjx4TGrVTp+40PJLoAb
+         HM9EsldclTvWsVqbGruJJc8tWHnuCZq+obScafnjpQIGUa42SGp0j02C54dSmO5WZaWx
+         NJvUACpA3xt9B5XUnQabnH5Ep4m8HFMAjzerazL8fmHvmm7G/yORv6O2vjLmgQCZrc4i
+         5e9Q==
+X-Gm-Message-State: AC+VfDwzv34v7mcVJNzpaVh6/v5KxaFNDkEv0P+vefmgOQDkABLUyjlC
+        IB7WAPmuvDlo+fSbyDyI5C8piQ==
+X-Google-Smtp-Source: ACHHUZ5t8NdTvEtIeoot5tiyijkCTUsXj5AqSCoheunglvmVvDncsNH8SuDZ8Z83VLfjYw/YHWh/ug==
+X-Received: by 2002:adf:f488:0:b0:311:1b0b:2ec8 with SMTP id l8-20020adff488000000b003111b0b2ec8mr13851189wro.52.1687350029774;
+        Wed, 21 Jun 2023 05:20:29 -0700 (PDT)
+Received: from blmsp ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
+        by smtp.gmail.com with ESMTPSA id w18-20020a5d4b52000000b003127a21e986sm4314528wrs.104.2023.06.21.05.20.28
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 05:20:29 -0700 (PDT)
+Date:   Wed, 21 Jun 2023 14:20:27 +0200
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Michal Kubiak <michal.kubiak@intel.com>,
+        Vivek Yadav <vivek.2311@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RESEND PATCH v2 0/3] phy: add the SerDes/SGMII driver for
- Qualcomm SoCs
-Message-ID: <ZJLp1uPklyG+EWbK@matsya>
-References: <20230619091336.194914-1-brgl@bgdev.pl>
+        Simon Horman <simon.horman@corigine.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: can: tcan4x5x: Add tcan4552 and
+ tcan4553 variants
+Message-ID: <20230621122027.k37n23yn62ygi6cq@blmsp>
+References: <20230621093103.3134655-1-msp@baylibre.com>
+ <20230621093103.3134655-2-msp@baylibre.com>
+ <315991a3-c825-5df8-2e68-40f24c524df1@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230619091336.194914-1-brgl@bgdev.pl>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <315991a3-c825-5df8-2e68-40f24c524df1@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-06-23, 11:13, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> 
-> Add a new PHY driver and its DT bindings (reviewed by DT maintainers).
-> 
-> This is a sub-series of [1] with only the patches targetting the PHY subsystem
-> as they can go in independently.
+Hi Krzysztof,
 
-Applied, thanks
+On Wed, Jun 21, 2023 at 12:29:40PM +0200, Krzysztof Kozlowski wrote:
+> On 21/06/2023 11:30, Markus Schneider-Pargmann wrote:
+> > These two new chips do not have state or wake pins.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> 
+> BTW, why did you ignore the tag?
 
--- 
-~Vinod
+Thanks for your Acked-by.
+
+I did not add it from v1 because:
+- We had a long discussion after you sent your tag
+- I changed the binding documentation according to the discussion on v1
+  as stated in the cover letter:
+    "- Update the binding documentation to specify tcan4552 and tcan4553 with
+       the tcan4x5x as fallback"
+
+Thanks,
+Markus
