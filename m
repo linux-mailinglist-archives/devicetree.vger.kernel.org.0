@@ -2,362 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F3F27383CE
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:30:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779307383D8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229718AbjFUMaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 08:30:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52174 "EHLO
+        id S229567AbjFUMcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 08:32:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230098AbjFUMaY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 08:30:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 916CC19B6;
-        Wed, 21 Jun 2023 05:30:20 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E7C3161563;
-        Wed, 21 Jun 2023 12:30:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 67AFCC433C8;
-        Wed, 21 Jun 2023 12:30:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687350619;
-        bh=8dPovHMHlki7kCvPUQn+9+NuCRp2YZT6fwDXNmnuMtk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=SeQyL3t93QDnUk4F+UWMFfXbUp1aVhceLJWbCVxpPOVsfKPv0ZB4RD8GeB7xFIHaD
-         yT1jZBa/Zy52BNF6frfMMWdnIk1YnBJEFkA5w64lHqmLgqaYRih/P6JLK6NCvCDgf0
-         Xrxr18Gv/zhmRT598/IWPJ4VbZalwniAqA2i+Q75uGzMZhtmOoElVhDFfNUtt6dJ5D
-         AJ1ctpeUGdeUiuDxuXsKUMf/lnIxvzGZ3RT5BSxcjKTv383xJiDPANrpm9W3WHHVIo
-         9fKX3FbALDwlHQtuRk+H9CBBgj/hjXTWfEkjMGf4MeAUFuD4YMklr9e4DZ98tEvOpq
-         2QoHA4aUHnaQg==
-Date:   Wed, 21 Jun 2023 18:00:14 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Changhuang Liang <changhuang.liang@starfivetech.com>
-Cc:     Kishon Vijay Abraham I <kishon@kernel.org>,
+        with ESMTP id S231952AbjFUMcG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 08:32:06 -0400
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27CA019AC
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:32:02 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3f9c0abc876so4477575e9.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:32:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687350720; x=1689942720;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YzmtLOP7oc0tzQzkG240IPHIjmF5+AVL1tQJX0AniZE=;
+        b=t0MfzdapmYbvx4BeFguQWa3HWQjpRz+5fQYExp1X3ihFsm+dRN6suYDI00ZJ4rB8qn
+         X/iYsYk9AMmd36uyii2GYuUks47TPm3k3mAX6GbfUjGV840CvGvNOe1/0IiLBe3Eb5fO
+         kA7nArvXSjMpdkGwYUdekfSymBqHatorZ8gO8oq23K9Ihjm0ZoWtGESJNuNPydCOmTat
+         mGOfUKLUrKpmyRmI/IZW9noSw6waJUsxg/fxB9OEmm97NIdXNolw8S7NjKyZow8guHls
+         Bko5Nq9aJn9OZiqcJHZUFDroBcZxe0/08Byti6/wpsCc6buTfpKYBh5LyEIksIFHjC50
+         Uluw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687350720; x=1689942720;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YzmtLOP7oc0tzQzkG240IPHIjmF5+AVL1tQJX0AniZE=;
+        b=AOmo4e6ic/Cp4Tu2gafPhm5rwppQLW8krc9Axgl+c8cRdMYIuSUG2+/9yAVLI2zlgp
+         jIknNc02jWzxwsYus2cWkf2RqyIvn3fL+c1xIK9X082F3U+DDoGsdZXFOCHYizOE8npB
+         IjqFO/of5ySObD8aLvmmcrGk6qKf+MvR6DsuGaRpujgEgm3buqsbxiSwDZRaM9As4izv
+         1XdCucSSoGxdujqoYQnzBFOGeKepPwKO8Z7mywKIExhpW1m/2ASMIwaTG1c70UJFSdJY
+         5e8onzJxiPtW19luDCPjXnSgSzLSNYivQ97vmV40mXr+4nB0rRxJQBiBAHuX6de6Hh6+
+         /b1Q==
+X-Gm-Message-State: AC+VfDxkZy8HJIKhvNunfz4s8obmNZuRgZhkxBrL3c8fKdl5RVdUPoyl
+        giepWY5+1wsAJa4p+wob032wLA==
+X-Google-Smtp-Source: ACHHUZ4Vt/DXBCbpC79d+F7Gxz4ssIFP+pZFUveEp3RHBDcx3TTeI+y2mnOP8Y9byDYF7iDjiKlBvg==
+X-Received: by 2002:a05:600c:3799:b0:3f9:b540:862d with SMTP id o25-20020a05600c379900b003f9b540862dmr4300764wmr.28.1687350720552;
+        Wed, 21 Jun 2023 05:32:00 -0700 (PDT)
+Received: from blmsp ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
+        by smtp.gmail.com with ESMTPSA id j2-20020adfe502000000b002ca864b807csm4518345wrm.0.2023.06.21.05.31.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 05:32:00 -0700 (PDT)
+Date:   Wed, 21 Jun 2023 14:31:58 +0200
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 2/3] phy: starfive: Add mipi dphy rx support
-Message-ID: <ZJLtVoi2qpKOR1l6@matsya>
-References: <20230529121503.3544-1-changhuang.liang@starfivetech.com>
- <20230529121503.3544-3-changhuang.liang@starfivetech.com>
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Michal Kubiak <michal.kubiak@intel.com>,
+        Vivek Yadav <vivek.2311@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Simon Horman <simon.horman@corigine.com>
+Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
+Message-ID: <20230621123158.fd3pd6i7aefawobf@blmsp>
+References: <20230621093103.3134655-1-msp@baylibre.com>
+ <20230621093103.3134655-6-msp@baylibre.com>
+ <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230529121503.3544-3-changhuang.liang@starfivetech.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-05-23, 05:15, Changhuang Liang wrote:
-> Add mipi dphy rx support for the StarFive JH7110 SoC. It is used to
-> transfer CSI camera data.
+Hi Krzysztof,
+
+On Wed, Jun 21, 2023 at 12:28:34PM +0200, Krzysztof Kozlowski wrote:
+> On 21/06/2023 11:31, Markus Schneider-Pargmann wrote:
+> > tcan4552 and tcan4553 do not have wake or state pins, so they are
+> > currently not compatible with the generic driver. The generic driver
+> > uses tcan4x5x_disable_state() and tcan4x5x_disable_wake() if the gpios
+> > are not defined. These functions use register bits that are not
+> > available in tcan4552/4553.
+> > 
+> > This patch adds support by introducing version information to reflect if
+> > the chip has wake and state pins. Also the version is now checked.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > ---
+> >  drivers/net/can/m_can/tcan4x5x-core.c | 128 +++++++++++++++++++++-----
+> >  1 file changed, 104 insertions(+), 24 deletions(-)
+> > 
+> > diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
+> > index fb9375fa20ec..756acd122075 100644
+> > --- a/drivers/net/can/m_can/tcan4x5x-core.c
+> > +++ b/drivers/net/can/m_can/tcan4x5x-core.c
+> > @@ -7,6 +7,7 @@
+> >  #define TCAN4X5X_EXT_CLK_DEF 40000000
+> >  
+> >  #define TCAN4X5X_DEV_ID1 0x00
+> > +#define TCAN4X5X_DEV_ID1_TCAN 0x4e414354 /* ASCII TCAN */
+> >  #define TCAN4X5X_DEV_ID2 0x04
+> >  #define TCAN4X5X_REV 0x08
+> >  #define TCAN4X5X_STATUS 0x0C
+> > @@ -103,6 +104,13 @@
+> >  #define TCAN4X5X_WD_3_S_TIMER BIT(29)
+> >  #define TCAN4X5X_WD_6_S_TIMER (BIT(28) | BIT(29))
+> >  
+> > +struct tcan4x5x_version_info {
+> > +	u32 id2_register;
+> > +
+> > +	bool has_wake_pin;
+> > +	bool has_state_pin;
+> > +};
+> > +
+> >  static inline struct tcan4x5x_priv *cdev_to_priv(struct m_can_classdev *cdev)
+> >  {
+> >  	return container_of(cdev, struct tcan4x5x_priv, cdev);
+> > @@ -254,18 +262,68 @@ static int tcan4x5x_disable_state(struct m_can_classdev *cdev)
+> >  				  TCAN4X5X_DISABLE_INH_MSK, 0x01);
+> >  }
+> >  
+> > -static int tcan4x5x_get_gpios(struct m_can_classdev *cdev)
+> > +static const struct tcan4x5x_version_info tcan4x5x_generic;
+> > +static const struct of_device_id tcan4x5x_of_match[];
+> > +
+> > +static const struct tcan4x5x_version_info
+> > +*tcan4x5x_find_version_info(struct tcan4x5x_priv *priv, u32 id2_value)
+> > +{
+> > +	for (int i = 0; tcan4x5x_of_match[i].data; ++i) {
+> > +		const struct tcan4x5x_version_info *vinfo =
+> > +			tcan4x5x_of_match[i].data;
+> > +		if (!vinfo->id2_register || id2_value == vinfo->id2_register) {
+> > +			dev_warn(&priv->spi->dev, "TCAN device is %s, please use it in DT\n",
+> > +				 tcan4x5x_of_match[i].compatible);
+> > +			return vinfo;
+> > +		}
+> > +	}
+> > +
+> > +	return &tcan4x5x_generic;
 > 
-> Signed-off-by: Changhuang Liang <changhuang.liang@starfivetech.com>
-> ---
->  MAINTAINERS                                 |   7 +
->  drivers/phy/Kconfig                         |   1 +
->  drivers/phy/Makefile                        |   1 +
->  drivers/phy/starfive/Kconfig                |  13 +
->  drivers/phy/starfive/Makefile               |   2 +
->  drivers/phy/starfive/phy-starfive-dphy-rx.c | 300 ++++++++++++++++++++
->  6 files changed, 324 insertions(+)
->  create mode 100644 drivers/phy/starfive/Kconfig
->  create mode 100644 drivers/phy/starfive/Makefile
->  create mode 100644 drivers/phy/starfive/phy-starfive-dphy-rx.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 92c7076c4fed..a5fac3f015b4 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20092,6 +20092,13 @@ S:	Maintained
->  F:	Documentation/devicetree/bindings/net/starfive,jh7110-dwmac.yaml
->  F:	drivers/net/ethernet/stmicro/stmmac/dwmac-starfive.c
->  
-> +STARFIVE JH7110 DPHY RX DRIVER
-> +M:	Jack Zhu <jack.zhu@starfivetech.com>
-> +M:	Changhuang Liang <changhuang.liang@starfivetech.com>
-> +S:	Supported
-> +F:	Documentation/devicetree/bindings/phy/starfive,jh7110-dphy-rx.yaml
-> +F:	drivers/phy/starfive/phy-starfive-dphy-rx.c
-> +
->  STARFIVE JH7110 MMC/SD/SDIO DRIVER
->  M:	William Qiu <william.qiu@starfivetech.com>
->  S:	Supported
-> diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-> index f46e3148d286..0000149edbc4 100644
-> --- a/drivers/phy/Kconfig
-> +++ b/drivers/phy/Kconfig
-> @@ -91,6 +91,7 @@ source "drivers/phy/rockchip/Kconfig"
->  source "drivers/phy/samsung/Kconfig"
->  source "drivers/phy/socionext/Kconfig"
->  source "drivers/phy/st/Kconfig"
-> +source "drivers/phy/starfive/Kconfig"
->  source "drivers/phy/sunplus/Kconfig"
->  source "drivers/phy/tegra/Kconfig"
->  source "drivers/phy/ti/Kconfig"
-> diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-> index 54f312c10a40..fb3dc9de6111 100644
-> --- a/drivers/phy/Makefile
-> +++ b/drivers/phy/Makefile
-> @@ -31,6 +31,7 @@ obj-y					+= allwinner/	\
->  					   samsung/	\
->  					   socionext/	\
->  					   st/		\
-> +					   starfive/	\
->  					   sunplus/	\
->  					   tegra/	\
->  					   ti/		\
-> diff --git a/drivers/phy/starfive/Kconfig b/drivers/phy/starfive/Kconfig
-> new file mode 100644
-> index 000000000000..f989b8ff8bcb
-> --- /dev/null
-> +++ b/drivers/phy/starfive/Kconfig
-> @@ -0,0 +1,13 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
-> +#
-> +# Phy drivers for StarFive platforms
-> +#
-> +
-> +config PHY_STARFIVE_DPHY_RX
-> +	tristate "StarFive D-PHY RX Support"
-> +	select GENERIC_PHY
-> +	select GENERIC_PHY_MIPI_DPHY
-> +	help
-> +	  Choose this option if you have a StarFive D-PHY in your
-> +	  system. If M is selected, the module will be called
-> +	  phy-starfive-dphy-rx.
-> diff --git a/drivers/phy/starfive/Makefile b/drivers/phy/starfive/Makefile
-> new file mode 100644
-> index 000000000000..7ec576cb30ae
-> --- /dev/null
-> +++ b/drivers/phy/starfive/Makefile
-> @@ -0,0 +1,2 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +obj-$(CONFIG_PHY_STARFIVE_DPHY_RX)      += phy-starfive-dphy-rx.o
-> diff --git a/drivers/phy/starfive/phy-starfive-dphy-rx.c b/drivers/phy/starfive/phy-starfive-dphy-rx.c
-> new file mode 100644
-> index 000000000000..6974ed904d0d
-> --- /dev/null
-> +++ b/drivers/phy/starfive/phy-starfive-dphy-rx.c
-> @@ -0,0 +1,300 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * DPHY driver for the StarFive JH7110 SoC
-> + *
-> + * Copyright (C) 2023 StarFive Technology Co., Ltd.
-> + */
-> +
-> +#include <linux/bitfield.h>
-> +#include <linux/bitops.h>
-> +#include <linux/clk.h>
-> +#include <linux/io.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/phy/phy.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/reset.h>
-> +
-> +#define STF_DPHY_APBCFGSAIF_SYSCFG(x)		(x)
-> +
-> +#define STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_EN BIT(6)
-> +#define STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_IN GENMASK(12, 7)
-> +#define STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_EN BIT(19)
-> +#define STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_IN GENMASK(25, 20)
-> +
-> +#define STF_DPHY_DATA_BUS16_8			BIT(8)
-> +#define STF_DPHY_DEBUG_MODE_SEL			GENMASK(15, 9)
-> +
-> +#define STF_DPHY_ENABLE_CLK			BIT(6)
-> +#define STF_DPHY_ENABLE_CLK1			BIT(7)
-> +#define STF_DPHY_ENABLE_LAN0			BIT(8)
-> +#define STF_DPHY_ENABLE_LAN1			BIT(9)
-> +#define STF_DPHY_ENABLE_LAN2			BIT(10)
-> +#define STF_DPHY_ENABLE_LAN3			BIT(11)
-> +#define STF_DPHY_GPI_EN				GENMASK(17, 12)
-> +#define STF_DPHY_HS_FREQ_CHANGE_CLK		BIT(18)
-> +#define STF_DPHY_HS_FREQ_CHANGE_CLK1		BIT(19)
-> +#define STF_DPHY_LANE_SWAP_CLK			GENMASK(22, 20)
-> +#define STF_DPHY_LANE_SWAP_CLK1			GENMASK(25, 23)
-> +#define STF_DPHY_LANE_SWAP_LAN0			GENMASK(28, 26)
-> +#define STF_DPHY_LANE_SWAP_LAN1			GENMASK(31, 29)
-> +
-> +#define STF_DPHY_LANE_SWAP_LAN2			GENMASK(2, 0)
-> +#define STF_DPHY_LANE_SWAP_LAN3			GENMASK(5, 3)
-> +#define STF_DPHY_MP_TEST_EN			BIT(6)
-> +#define STF_DPHY_MP_TEST_MODE_SEL		GENMASK(11, 7)
-> +#define STF_DPHY_PLL_CLK_SEL			GENMASK(21, 12)
-> +#define STF_DPHY_PRECOUNTER_IN_CLK		GENMASK(29, 22)
-> +
-> +#define STF_DPHY_PRECOUNTER_IN_CLK1		GENMASK(7, 0)
-> +#define STF_DPHY_PRECOUNTER_IN_LAN0		GENMASK(15, 8)
-> +#define STF_DPHY_PRECOUNTER_IN_LAN1		GENMASK(23, 16)
-> +#define STF_DPHY_PRECOUNTER_IN_LAN2		GENMASK(31, 24)
-> +
-> +#define STF_DPHY_PRECOUNTER_IN_LAN3		GENMASK(7, 0)
-> +#define STF_DPHY_RX_1C2C_SEL			BIT(8)
-> +
-> +#define STF_MAP_LANES_NUM			6
-> +
-> +struct regval {
-> +	u32 addr;
-> +	u32 val;
-> +};
-> +
-> +struct stf_dphy_info {
-> +	/**
-> +	 * @maps:
-> +	 *
-> +	 * Physical lanes and logic lanes mapping table.
-> +	 *
-> +	 * The default order is:
-> +	 * [clk lane0, data lane 0, data lane 1, data lane 2, date lane 3, clk lane 1]
-> +	 */
-> +	u8 maps[STF_MAP_LANES_NUM];
-> +};
-> +
-> +struct stf_dphy {
-> +	struct device *dev;
-> +	void __iomem *regs;
-> +	struct clk *cfg_clk;
-> +	struct clk *ref_clk;
-> +	struct clk *tx_clk;
-> +	struct reset_control *rstc;
-> +	struct regulator *mipi_0p9;
-> +	struct phy *phy;
-> +	const struct stf_dphy_info *info;
-> +};
-> +
-> +static const struct regval stf_dphy_init_list[] = {
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(4), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(8), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(12), 0x0000fff0 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(16), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(20), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(24), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(28), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(32), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(36), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(40), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(40), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(48), 0x24000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(52), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(56), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(60), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(64), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(68), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(72), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(76), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(80), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(84), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(88), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(92), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(96), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(100), 0x02000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(104), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(108), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(112), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(116), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(120), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(124), 0x0000000c },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(128), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(132), 0xcc500000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(136), 0x000000cc },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(140), 0x00000000 },
-> +	{ STF_DPHY_APBCFGSAIF_SYSCFG(144), 0x00000000 },
-> +};
-> +
-> +static int stf_dphy_configure(struct phy *phy, union phy_configure_opts *opts)
-> +{
-> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
-> +	const struct stf_dphy_info *info = dphy->info;
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(stf_dphy_init_list); i++)
-> +		writel(stf_dphy_init_list[i].val,
-> +		       dphy->regs + stf_dphy_init_list[i].addr);
-> +
-> +	writel(FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_EN, 1) |
-> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL0_2D1C_EFUSE_IN, 0x1b) |
-> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_EN, 1) |
-> +	       FIELD_PREP(STF_DPHY_DA_CDPHY_R100_CTRL1_2D1C_EFUSE_IN, 0x1b),
-> +	       dphy->regs + STF_DPHY_APBCFGSAIF_SYSCFG(0));
-> +
-> +	writel(FIELD_PREP(STF_DPHY_DATA_BUS16_8, 0) |
-> +	       FIELD_PREP(STF_DPHY_DEBUG_MODE_SEL, 0x5a),
-> +	       dphy->regs + STF_DPHY_APBCFGSAIF_SYSCFG(184));
+> I don't understand what do you want to achieve here. Kernel job is not
+> to validate DTB, so if DTB says you have 4552, there is no need to
+> double check. On the other hand, you have Id register so entire idea of
+> custom compatibles can be dropped and instead you should detect the
+> variant based on the ID.
 
-bunch of magic numbers here and previous one..?
+I can read the ID register but tcan4552 and 4553 do not have two
+devicetree properties that tcan4550 has, namely state and wake gpios.
+See v1 discussion about that [1].
 
-> +
-> +	writel(FIELD_PREP(STF_DPHY_ENABLE_CLK, 1) |
-> +	       FIELD_PREP(STF_DPHY_ENABLE_CLK1, 1) |
-> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN0, 1) |
-> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN1, 1) |
-> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN2, 1) |
-> +	       FIELD_PREP(STF_DPHY_ENABLE_LAN3, 1) |
-> +	       FIELD_PREP(STF_DPHY_GPI_EN, 0) |
-> +	       FIELD_PREP(STF_DPHY_HS_FREQ_CHANGE_CLK, 0) |
-> +	       FIELD_PREP(STF_DPHY_HS_FREQ_CHANGE_CLK1, 0) |
-> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_CLK, info->maps[0]) |
-> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_CLK1, info->maps[5]) |
-> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_LAN0, info->maps[1]) |
-> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_LAN1, info->maps[2]),
-> +	       dphy->regs + STF_DPHY_APBCFGSAIF_SYSCFG(188));
-> +
-> +	writel(FIELD_PREP(STF_DPHY_LANE_SWAP_LAN2, info->maps[3]) |
-> +	       FIELD_PREP(STF_DPHY_LANE_SWAP_LAN3, info->maps[4]) |
-> +	       FIELD_PREP(STF_DPHY_MP_TEST_EN, 0) |
-> +	       FIELD_PREP(STF_DPHY_MP_TEST_MODE_SEL, 0) |
-> +	       FIELD_PREP(STF_DPHY_PLL_CLK_SEL, 0x37c) |
-> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_CLK, 8),
-> +	       dphy->regs + STF_DPHY_APBCFGSAIF_SYSCFG(192));
-> +
-> +	writel(FIELD_PREP(STF_DPHY_PRECOUNTER_IN_CLK1, 8) |
-> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN0, 7) |
-> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN1, 7) |
-> +	       FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN2, 7),
-> +	       dphy->regs + STF_DPHY_APBCFGSAIF_SYSCFG(196));
-> +
-> +	writel(FIELD_PREP(STF_DPHY_PRECOUNTER_IN_LAN3, 7) |
-> +	       FIELD_PREP(STF_DPHY_RX_1C2C_SEL, 0),
-> +	       dphy->regs + STF_DPHY_APBCFGSAIF_SYSCFG(200));
-> +
-> +	return 0;
-> +}
-> +
-> +static int stf_dphy_power_on(struct phy *phy)
-> +{
-> +	struct stf_dphy *dphy = phy_get_drvdata(phy);
-> +	int ret;
-> +
-> +	pm_runtime_get_sync(dphy->dev);
+In v1 Marc pointed out that mcp251xfd is using an autodetection and warn
+mechanism which I implemented here as well. [2]
 
-no error check?
+Best,
+Markus
 
-> +
-> +	ret = regulator_enable(dphy->mipi_0p9);
-> +	if (ret)
-> +		return ret;
 
-should you not drop the pm reference on error here?
-
--- 
-~Vinod
+[1] https://lore.kernel.org/lkml/5f9fe7fb-9483-7dee-82c8-bd6564abcaab@linaro.org/
+[2] https://lore.kernel.org/lkml/20230315112905.qutggrdnpsttbase@pengutronix.de/
