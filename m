@@ -2,156 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A59807379B7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 05:29:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03EB47379E6
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 05:50:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229829AbjFUD3O convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 20 Jun 2023 23:29:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37448 "EHLO
+        id S229448AbjFUDue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 20 Jun 2023 23:50:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43138 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230143AbjFUD3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 23:29:09 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D80E31985;
-        Tue, 20 Jun 2023 20:29:03 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 93F4C7FC9;
-        Wed, 21 Jun 2023 11:29:01 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Jun
- 2023 11:29:01 +0800
-Received: from [192.168.120.43] (171.223.208.138) by EXMBX062.cuchost.com
- (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Jun
- 2023 11:29:00 +0800
-Message-ID: <8e2a50b2-a9ab-e164-a3c2-b7bc11ccdb53@starfivetech.com>
-Date:   Wed, 21 Jun 2023 11:28:59 +0800
+        with ESMTP id S229709AbjFUDud (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 20 Jun 2023 23:50:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF37F1A1;
+        Tue, 20 Jun 2023 20:50:26 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 645EB61466;
+        Wed, 21 Jun 2023 03:50:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id B514DC433C0;
+        Wed, 21 Jun 2023 03:50:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687319425;
+        bh=D35HmKlZtJ5h1JeXspSb0lCLLuaJdO/xC8NRMTwz20s=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=r82mCGXv0GiHbdJSJF0qAiJiiz1KqxFHmFrncm65vQrSZwFmyyLV5bNQL0J5zs2Sr
+         +Is7zkoBtJE18tCoMEnIVSIx8A2kQPrGFbcIOSLDqTCGSBv5ZxR1doJslEKc9TXYGa
+         qhEBJ453ewI1hcGemB6a/gEqFk8L3ylZPC5Oz5V95FIkbSgG7yuPTHsUA32nvqin10
+         ODyUSf9x/lADdDnqS4CX10IBkAztrdM5L/Ndd5PexQOw7utT33lpL+Tme4jUaJAoAk
+         i6BKEqYQt5jwpvox8FWyUc/i/RojYk+DtYNr9bE5W9vBbUqFG+kd1HGGSGYs76IqA+
+         JwZpznrNuR2Rw==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 8F2C3C4166E;
+        Wed, 21 Jun 2023 03:50:25 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver
- strength cfg
-Content-Language: en-US
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     Conor Dooley <conor@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Frank <Frank.Sae@motor-comm.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-References: <20230526090502.29835-1-samin.guo@starfivetech.com>
- <20230526090502.29835-2-samin.guo@starfivetech.com>
- <20230526-glutinous-pristine-fed571235b80@spud>
- <1dbf113c-7592-68bd-6aaf-05ff1d8c538c@starfivetech.com>
- <15eb4ffe-ea12-9a2c-ae9d-c34860384b60@starfivetech.com>
- <b0a61cf4-adb1-4261-b6a5-aeb1e3c1b1aa@lunn.ch>
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <b0a61cf4-adb1-4261-b6a5-aeb1e3c1b1aa@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX062.cuchost.com
- (172.16.6.62)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [RESEND PATCH net-next v2 00/14] net: stmmac: dwmac-qcom-ethqos: add
+ support for EMAC4
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168731942557.12823.16246597315060099180.git-patchwork-notify@kernel.org>
+Date:   Wed, 21 Jun 2023 03:50:25 +0000
+References: <20230619092402.195578-1-brgl@bgdev.pl>
+In-Reply-To: <20230619092402.195578-1-brgl@bgdev.pl>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     vkoul@kernel.org, bhupesh.sharma@linaro.org, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org,
+        davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        peppe.cavallaro@st.com, alexandre.torgue@foss.st.com,
+        joabreu@synopsys.com, mcoquelin.stm32@gmail.com,
+        ahalaney@redhat.com, netdev@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        bartosz.golaszewski@linaro.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Re: [PATCH v3 1/2] dt-bindings: net: motorcomm: Add pad driver strength cfg
-From: Andrew Lunn <andrew@lunn.ch>
-to: Guo Samin <samin.guo@starfivetech.com>
-data: 2023/6/20
+Hello:
 
->> I just got the detailed data of Driver Strength(DS) from Motorcomm ,
->> which applies to both rx_clk and rx_data.
->>
->> |----------------------|
->> |     ds map table     |
->> |----------------------|
->> | DS(3b) | Current (mA)|
->> |--------|-------------|
->> |   000  |     1.20    |
->> |   001  |     2.10    |
->> |   010  |     2.70    |
->> |   011  |     2.91    |
->> |   100  |     3.11    |
->> |   101  |     3.60    |
->> |   110  |     3.97    |
->> |   111  |     4.35    |
->> |--------|-------------|
->>
->> Since these currents are not integer values
+This series was applied to netdev/net-next.git (main)
+by Jakub Kicinski <kuba@kernel.org>:
+
+On Mon, 19 Jun 2023 11:23:48 +0200 you wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> Integers is not a problem. Simply use uA.
+> Extend the dwmac-qcom-ethqos driver to support EMAC4. While at it: rework the
+> code somewhat. The bindings have been reviewed by DT maintainers.
 > 
->> and have no regularity, it is not very good to use in the drive/dts
->> in my opinion.
+> This is a sub-series of [1] with only the patches targetting the net subsystem
+> as they can go in independently.
 > 
-> I think they are fine to use. Add a lookup table, microamps to
-> register value. Return -EINVAL if the requested value is not in the
-> table. List the valid values in the schema, so the checker tool might
-> point out problems.
-> 
->       Andrew
+> [...]
 
-Thanks Andrew,
-I'll use a lookup table to try.
-Another thing we need to deal with DS under different IO voltages(1.8V/2.5V/3.3V).
+Here is the summary with links:
+  - [RESEND,v2,01/14] net: stmmac: dwmac-qcom-ethqos: shrink clock code with devres
+    https://git.kernel.org/netdev/net-next/c/9fc68f23a6d3
+  - [RESEND,v2,02/14] net: stmmac: dwmac-qcom-ethqos: rename a label in probe()
+    https://git.kernel.org/netdev/net-next/c/9bc580609139
+  - [RESEND,v2,03/14] net: stmmac: dwmac-qcom-ethqos: tweak the order of local variables
+    https://git.kernel.org/netdev/net-next/c/7b5e64a93825
+  - [RESEND,v2,04/14] net: stmmac: dwmac-qcom-ethqos: use a helper variable for &pdev->dev
+    https://git.kernel.org/netdev/net-next/c/302555a0ae33
+  - [RESEND,v2,05/14] net: stmmac: dwmac-qcom-ethqos: add missing include
+    https://git.kernel.org/netdev/net-next/c/ee8dacca2fd3
+  - [RESEND,v2,06/14] net: stmmac: dwmac-qcom-ethqos: add a newline between headers
+    https://git.kernel.org/netdev/net-next/c/97f73bc59e16
+  - [RESEND,v2,07/14] net: stmmac: dwmac-qcom-ethqos: remove stray space
+    https://git.kernel.org/netdev/net-next/c/f2b1758554eb
+  - [RESEND,v2,08/14] net: stmmac: dwmac-qcom-ethqos: add support for the optional serdes phy
+    https://git.kernel.org/netdev/net-next/c/0dec3b48aa4e
+  - [RESEND,v2,09/14] net: stmmac: dwmac-qcom-ethqos: add support for the phyaux clock
+    https://git.kernel.org/netdev/net-next/c/feeb27165c46
+  - [RESEND,v2,10/14] net: stmmac: dwmac-qcom-ethqos: prepare the driver for more PHY modes
+    https://git.kernel.org/netdev/net-next/c/25c4a0769443
+  - [RESEND,v2,11/14] net: stmmac: dwmac-qcom-ethqos: add support for SGMII
+    https://git.kernel.org/netdev/net-next/c/463120c31c58
+  - [RESEND,v2,12/14] net: stmmac: add new switch to struct plat_stmmacenet_data
+    https://git.kernel.org/netdev/net-next/c/aa571b6275fb
+  - [RESEND,v2,13/14] dt-bindings: net: qcom,ethqos: add description for sa8775p
+    https://git.kernel.org/netdev/net-next/c/d0e3d29f8771
+  - [RESEND,v2,14/14] net: stmmac: dwmac-qcom-ethqos: add support for emac4 on sa8775p platforms
+    https://git.kernel.org/netdev/net-next/c/8c4d92e82d50
 
-The IO voltage can be configured via a hardware pull-up resistor (visionfive 2 is configured to 1.8V by default), 
-and then the IO voltage can be obtained or set through the register（0xA001）
-
-Chip_Config (EXT_0xA001)
-|Bit  |Symbol  |Access  |Default  |Description |
-|5:4  |Cfg_ldo |RW      |0x0      |Rgmii ldo voltage and RGMII/MDC/MDIO PAD's level shifter control. Depends on strapping.|
-                                  |2'b11: 1.8v   2'b10: 1.8v    2'b01: 2.5v    2'b00: 3.3v                                |
-
-      |----------------------|            
-      | ds map table(1.8V)   |
-      |----------------------|
-      | DS(3b) | Current (mA)|
-      |   000  |     1.20    |
-      |   001  |     2.10    |
-      |   010  |     2.70    |
-      |   011  |     2.91    |
-      |   100  |     3.11    |
-      |   101  |     3.60    |
-      |   110  |     3.97    |
-      |   111  |     4.35    |
-      |--------|-------------|
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
 
-      |----------------------|
-      | ds map table(3.3V)   |
-      |----------------------|
-      | DS(3b) | Current (mA)|
-      |   000  |     3.07    |
-      |   001  |     4.08    |
-      |   010  |     4.37    |
-      |   011  |     4.68    |
-      |   100  |     5.02    |
-      |   101  |     5.45    |
-      |   110  |     5.74    |
-      |   111  |     6.14    |
-      |--------|-------------|
- 
-(The current value of 2.5V is not available to us now)
-
-When we need to deal with current values at different voltages, using register values in drives may be simpler, comparing the current value.
-Of course, I will also follow your suggestion and use the current value + lookup table to implement a solution. Thanks!
-
-Best regards,
-Samin
