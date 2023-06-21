@@ -2,99 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C277F738D8E
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 19:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB32738E03
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 20:02:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230502AbjFURsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 13:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50342 "EHLO
+        id S230516AbjFUSCg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 14:02:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229955AbjFURr7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 13:47:59 -0400
-Received: from mail-4027.protonmail.ch (mail-4027.protonmail.ch [185.70.40.27])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44BD1E41;
-        Wed, 21 Jun 2023 10:47:58 -0700 (PDT)
-Date:   Wed, 21 Jun 2023 17:47:48 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1687369676; x=1687628876;
-        bh=8wOHeVh8ASp47LbruLjcoxPj0RWoySUx98rYNUG5rns=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=SYii8ho0XGyfqCNuwG/oM+9hEVubfi+O/ds5Uo160ej92Hj0GASJshaRdzDWPvi8n
-         O1B8jG8XXWN2awTZbZlWhAvYPKt0t654Se5EEQoessoAA/prD8Rxc+x5CO29ihKxEJ
-         /JxglePMyzNecSRfqUn7DFgqFNduVasE/c6JSO824p9UdeKHn4e87Jv7Y2S97+Jk8y
-         ESR0FH9eFK7L2cNngnt3zLVmBdwkv2MqHpCMbwS5kNfm+374i97iSO3btn9q9zdBAi
-         juplSdmMY4dbvNqcIrUWl+x/KzCtDxZfvx3JT4zYfW8CVVxHr1q9To2t4H+zkR9IvI
-         3qVxCO/cnoBxA==
-To:     lee@kernel.org
-From:   Raymond Hackley <raymondhackley@protonmail.com>
-Cc:     devicetree@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        luca@z3ntu.xyz, pavel@ucw.cz, raymondhackley@protonmail.com,
-        robh+dt@kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: leds: sgm3140: Document richtek,rt5033 compatible
-Message-ID: <20230621174735.1161-1-raymondhackley@protonmail.com>
-In-Reply-To: <20230621150141.GE10378@google.com>
-References: <20230602130644.259933-1-raymondhackley@protonmail.com> <20230602131009.260239-1-raymondhackley@protonmail.com> <20230621150141.GE10378@google.com>
-Feedback-ID: 49437091:user:proton
+        with ESMTP id S231146AbjFUSCf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 14:02:35 -0400
+Received: from proxmox1.postmarketos.org (proxmox1.postmarketos.org [213.239.216.189])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 42ED9173F;
+        Wed, 21 Jun 2023 11:02:29 -0700 (PDT)
+Received: from lexxgentoo.devos.club (unknown [77.239.252.99])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by proxmox1.postmarketos.org (Postfix) with ESMTPSA id 1AA4014077E;
+        Wed, 21 Jun 2023 17:52:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=postmarketos.org;
+        s=donut; t=1687369934;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=d3oc9wyPXtC9CgyzWqubRp9/AD3soSg8F+ca20KMsmU=;
+        b=bwe2BKlk0a7rvdtN2Ou7xHYCGeVopXBOzfv0QNxJVnX9pBwEZvkqRyNTZPy9Oi89D5hoxc
+        5i3+Kb6vmQDD6WAtCTcrL2kkJJTmSc5nv+KYgF/gdNOpImOzkh6QNELrx7AnKBnjIvlb0C
+        ArNcxl3W4g1esMD7SL8nhGm3yJhilUk=
+From:   Alexey Minnekhanov <alexeymin@postmarketos.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Alexey Minnekhanov <alexeymin@postmarketos.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH v2 1/3] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Add SDM660 compatible
+Date:   Wed, 21 Jun 2023 20:50:44 +0300
+Message-Id: <20230621175046.61521-1-alexeymin@postmarketos.org>
+X-Mailer: git-send-email 2.39.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Mention sdm660-mss-pil in compatibles list.
 
-On Wednesday, June 21st, 2023 at 3:01 PM, Lee Jones <lee@kernel.org> wrote:
+Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ .../devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-
-> On Fri, 02 Jun 2023, Raymond Hackley wrote:
->=20
-> > Add devicetree binding for Richtek RT5033 Flash LED charge pump used fo=
-r
-> > camera flash LEDs.
-> >=20
-> > Signed-off-by: Raymond Hackley raymondhackley@protonmail.com
-> > ---
-> > Documentation/devicetree/bindings/leds/leds-sgm3140.yaml | 1 +
-> > 1 file changed, 1 insertion(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml b=
-/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
-> > index 4d2ffe5fcfc7..37d2a93780ab 100644
-> > --- a/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
-> > +++ b/Documentation/devicetree/bindings/leds/leds-sgm3140.yaml
-> > @@ -20,6 +20,7 @@ properties:
-> > compatible:
-> > enum:
-> > - ocs,ocp8110
-> > + - richtek,rt5033-led
->=20
->=20
-> Why is "-led" appended on to this one and not the others?
->=20
-
-"richtek,rt5033" has already been taken by a MFD device, and this LED is
-a part of rt5033 MFD, so "-led" is appended here.
-
-> > - sgmicro,sgm3140
-> >=20
-> > enable-gpios:
-> > --
-> >=20
-> > 2.30.2
-
-I tried to configure protonmail not to send encrypted mails.
-Hope that it works for you.
-
-Regards,
-Raymond
+diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+index c1ac6ca1e759..09da5616e1e5 100644
+--- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
+@@ -19,6 +19,7 @@ properties:
+     enum:
+       - qcom,msm8996-mss-pil
+       - qcom,msm8998-mss-pil
++      - qcom,sdm660-mss-pil
+       - qcom,sdm845-mss-pil
+ 
+   reg:
+@@ -245,7 +246,9 @@ allOf:
+   - if:
+       properties:
+         compatible:
+-          const: qcom,msm8998-mss-pil
++          enum:
++            - qcom,msm8998-mss-pil
++            - qcom,sdm660-mss-pil
+     then:
+       properties:
+         clocks:
+-- 
+2.39.3
 
