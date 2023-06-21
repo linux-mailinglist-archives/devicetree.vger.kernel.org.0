@@ -2,345 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 507037391C0
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 23:45:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A5F97391D5
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 23:55:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230488AbjFUVpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 17:45:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
+        id S230506AbjFUVzK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 17:55:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57118 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230061AbjFUVpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 17:45:30 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB75E7D
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 14:45:27 -0700 (PDT)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1E6993F88A;
-        Wed, 21 Jun 2023 23:45:24 +0200 (CEST)
-Date:   Wed, 21 Jun 2023 23:45:22 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
-        sean@poorly.run, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, dianders@chromium.org, david@ixit.cz,
-        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
-        konrad.dybcio@somainline.org, agross@kernel.org,
-        andersson@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH v9 2/2] dt-bindings: msm: dsi-controller-main: Document
- clocks on a per compatible basis
-Message-ID: <qew6nd3jqnasb3mivvdxcwugfrvxdeafilaxk35v7uihagk2qi@oxe3oqdgfwpe>
-References: <20230118171621.102694-1-bryan.odonoghue@linaro.org>
- <20230118171621.102694-3-bryan.odonoghue@linaro.org>
+        with ESMTP id S229935AbjFUVzJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 17:55:09 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A03861997
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 14:55:06 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51bdc87feb1so1301470a12.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 14:55:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1687384505; x=1689976505;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Jn/Beteqm9A/LN1S7WLvnvRia249hgTE4o7LFlD5jW8=;
+        b=npbSrNQ6pLZxRDO4iQBtGYduK/HsPHl+AGKV9spEmgzGe0BpEo+C3nRotLaWy5cKU2
+         VpuVo+RZWhplXLWA9+t6OXb5TqnmIofJayaBIISKDeuIovO2ASqIwHJiRnT1gz9/w7tL
+         nYmMtq+gWD7SopokiNjxfwbSnVIo1hWxLUGjw1+Iz4hb6anmNCrEutXimGHEapRdFbXG
+         1GIuA0MMS/g9fvDFsIZxGIqADMyO2Fgmuh3Pm2X6dr4eq6IyBKusoHNU+vA9KXodvBFp
+         Lscod8GaAQkGDsdJWsu2ruEcOls1KzAzn/HoDe9dd6+Y4UNQyBmD2XjnoxtwzyzcyBAo
+         f4rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687384505; x=1689976505;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jn/Beteqm9A/LN1S7WLvnvRia249hgTE4o7LFlD5jW8=;
+        b=D7bKIzBfMOXDBmQeQaSB9PG5jTqne0Uh7HX0tv4St9v9QfzVRTZ/qYXBD4Gna2AI3N
+         h8n8BexmiYVGEjajNLswB6wZwxEMu3pLq9WMEE2laLqQ3lJA0aEPczgdGc7i9zmJc4GK
+         6corkOxl/6AbxZ1m0kfiuSYHoOrSe7IjDP1YjQJFreAi39XA3wptizwDEhgaRNGm36np
+         QMU1tXUd51L5PAi+Zw9b3kEB4AxgsTApmeKxkvdxNTd0q95/pDsueky9wDBNv5raG3vm
+         0Jnh1GEQimnfba0vp+EH99tcDTagJvJjhWf/iRqOVeOSqPRQYfB30aL8aJhaowhJ1VeA
+         S8pw==
+X-Gm-Message-State: AC+VfDyqIF4QcECsRNkFdEx3U6eDQL/Z6K1jCrPqdcGRc9eI/j5CTymO
+        jtWL37D4I6Bgz1Ani1Rz1vnC0SvOs8e2hvJaxWwImA==
+X-Google-Smtp-Source: ACHHUZ6A/T43INsBruKaaE+va76RJMnbtzFL7HfR52IyaTewoA0XaNKUwjNnTX5qkrnskkylIa+1vw==
+X-Received: by 2002:aa7:d404:0:b0:51b:dcb7:9b45 with SMTP id z4-20020aa7d404000000b0051bdcb79b45mr2164807edq.10.1687384504976;
+        Wed, 21 Jun 2023 14:55:04 -0700 (PDT)
+Received: from localhost.localdomain ([188.27.132.2])
+        by smtp.gmail.com with ESMTPSA id d16-20020aa7d5d0000000b0051a358a76c9sm3115417eds.72.2023.06.21.14.55.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 14:55:04 -0700 (PDT)
+From:   Alexandru Ardelean <alex@shruggie.ro>
+To:     dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-fbdev@vger.kernel.org
+Cc:     lee@kernel.org, daniel.thompson@linaro.org, jingoohan1@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        deller@gmx.de, Yannick Fertre <yannick.fertre@foss.st.com>,
+        Alexandru Ardelean <alex@shruggie.ro>
+Subject: [PATCH v2 1/2] dt-bindings: backlight: document new property default-brightness-level
+Date:   Thu, 22 Jun 2023 00:54:56 +0300
+Message-Id: <20230621215457.11297-1-alex@shruggie.ro>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230118171621.102694-3-bryan.odonoghue@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+From: Yannick Fertre <yannick.fertre@foss.st.com>
 
-On 2023-01-18 17:16:21, Bryan O'Donoghue wrote:
-> Each compatible has a different set of clocks which are associated with it.
-> Add in the list of clocks for each compatible.
+Add documentation for new default-brightness-level property.
 
-So if each set of compatibles have their own unique set of clocks, is
-there a reason to have so many duplicate then: blocks?  I ran into this
-while preparing for submitting SM6125 DPU and having no clue where to
-add it.
+Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
+Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+---
 
-> Acked-by: Rob Herring <robh@kernel.org>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->  .../display/msm/dsi-controller-main.yaml      | 218 ++++++++++++++++--
->  1 file changed, 201 insertions(+), 17 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> index 35668caa190c4..ad1ba15b74c19 100644
-> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-> @@ -9,9 +9,6 @@ title: Qualcomm Display DSI controller
->  maintainers:
->    - Krishna Manikandan <quic_mkrishn@quicinc.com>
->  
-> -allOf:
-> -  - $ref: "../dsi-controller.yaml#"
-> -
->  properties:
->    compatible:
->      oneOf:
-> @@ -50,22 +47,23 @@ properties:
->      maxItems: 1
->  
->    clocks:
-> -    items:
-> -      - description: Display byte clock
-> -      - description: Display byte interface clock
-> -      - description: Display pixel clock
-> -      - description: Display core clock
-> -      - description: Display AHB clock
-> -      - description: Display AXI clock
-> +    description: |
-> +      Several clocks are used, depending on the variant. Typical ones are::
-> +       - bus:: Display AHB clock.
-> +       - byte:: Display byte clock.
-> +       - byte_intf:: Display byte interface clock.
-> +       - core:: Display core clock.
-> +       - core_mss:: Core MultiMedia SubSystem clock.
+Link to original patch:
+  https://github.com/STMicroelectronics/linux/commit/c4067d7bd883c6fa14ffd49892c4ce663cdafe98
 
-mm*??
+Changelog v1 -> v2:
+* https://lore.kernel.org/dri-devel/20230519200520.10657-2-alex@shruggie.ro/
+* removed 'brightness-levels' reference
+* updated doc-text for 'default-brightness-level'
+* updated doc-text for 'default-on'
+* added 'minimum' & 'maximum' to 'default-brightness-level' property
+* removed 'Reviewed-by: Philippe CORNU <philippe.cornu@foss.st.com>' as
+  requested
+* patch is first in series of 2 patches (was second patch)
 
-> +       - iface:: Display AXI clock.
-> +       - mdp_core:: MDP Core clock.
-> +       - mnoc:: MNOC clock
-> +       - pixel:: Display pixel clock.
-> +    minItems: 3
-> +    maxItems: 9
->  
->    clock-names:
-> -    items:
-> -      - const: byte
-> -      - const: byte_intf
-> -      - const: pixel
-> -      - const: core
-> -      - const: iface
-> -      - const: bus
-> +    minItems: 3
-> +    maxItems: 9
->  
->    phys:
->      maxItems: 1
-> @@ -161,6 +159,192 @@ required:
->    - assigned-clock-parents
->    - ports
->  
-> +allOf:
-> +  - $ref: ../dsi-controller.yaml#
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,apq8064-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: src
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8916-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: iface
-> +            - const: bus
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
+ .../bindings/leds/backlight/gpio-backlight.yaml    | 14 +++++++++++++-
+ 1 file changed, 13 insertions(+), 1 deletion(-)
 
-So this...
+diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+index 584030b6b0b9..2da6552a207c 100644
+--- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
++++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
+@@ -20,9 +20,21 @@ properties:
+     maxItems: 1
+ 
+   default-on:
+-    description: enable the backlight at boot.
++    description:
++      The default power state of the backlight at boot.
+     type: boolean
+ 
++  default-brightness-level:
++    description:
++      The default brightness level on device init. The value can be 0 or 1.
++      If omitted, the value is 1. In the context of the "gpio-backlight" driver
++      the effect of this setting will be that the backlight is on/off.
++      The difference between this setting and "default-on" is that this handles
++      brightness, while "default-on" handles the power setting of the device.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 0
++    maximum: 1
++
+ required:
+   - compatible
+   - gpios
+-- 
+2.40.1
 
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8953-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: iface
-> +            - const: bus
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-
-Is the same as the above.  Can we merge msm8953 into msm8916 or do you
-expect differences down the line?
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8974-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: iface
-> +            - const: bus
-> +            - const: byte
-> +            - const: pixel
-> +            - const: core
-> +            - const: core_mmss
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8996-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 7
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: byte
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: pixel
-> +            - const: core
-
-This could be the same as msm8226/msm8974 if we reorder the entries.
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,msm8998-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-
-Then, here...
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sc7180-dsi-ctrl
-> +              - qcom,sc7280-dsi-ctrl
-> +              - qcom,sm8250-dsi-ctrl
-> +              - qcom,sm8150-dsi-ctrl
-> +              - qcom,sm8250-dsi-ctrl
-> +              - qcom,sm8350-dsi-ctrl
-> +              - qcom,sm8450-dsi-ctrl
-> +              - qcom,sm8550-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-
-... and here ...
-
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sdm660-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 9
-> +        clock-names:
-> +          items:
-> +            - const: mdp_core
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: mnoc
-> +            - const: iface
-> +            - const: bus
-> +            - const: core_mmss
-> +            - const: pixel
-> +            - const: core
-> +
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            enum:
-> +              - qcom,sdm845-dsi-ctrl
-> +    then:
-> +      properties:
-> +        clocks:
-> +          maxItems: 6
-> +        clock-names:
-> +          items:
-> +            - const: byte
-> +            - const: byte_intf
-> +            - const: pixel
-> +            - const: core
-> +            - const: iface
-> +            - const: bus
-
-and here, we have *three* identical lists of clocks.  Should they (have
-been) combined?
-
-I can send a patch fixing these all if desired!
-
-- Marijn
-
-> +
->  additionalProperties: false
->  
->  examples:
-> -- 
-> 2.38.1
-> 
