@@ -2,166 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9147391E5
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 23:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C10A873925F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 00:18:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229748AbjFUV6c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 17:58:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58280 "EHLO
+        id S229680AbjFUWSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 18:18:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbjFUV6b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 17:58:31 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE7D1AC;
-        Wed, 21 Jun 2023 14:58:30 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-780bd47ef93so36139239f.2;
-        Wed, 21 Jun 2023 14:58:30 -0700 (PDT)
+        with ESMTP id S229453AbjFUWSR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 18:18:17 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133711739
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 15:18:16 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f867700f36so6672351e87.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 15:18:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687385894; x=1689977894;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zyWuSVMXh2Y/fSXjuElkXOGDHtemipt9fq/ZZgliCDQ=;
+        b=y8vrACxzMcCef2j1eZMvyDCcR4g1WySOtRYSYJyZqwUKM4+gk+I3LPSGmrGtyQtqtw
+         MvYjd6Ib3r6rZHSZMSh2yH4aFQ2E5lARS+WYZhB25P8fxa7ICZ4Qgkd4Pp8w9bXLnyho
+         +ar+OFjHQwc86zWWpU8XRSIiyeaCC4yhtSx+qG3huWbBmuVl8wB9vQhzdp1pbIiG7gFR
+         TNBjkEBdyO4mDXxeWtkUcajbdQUpSFA5Ry9I0WU8whd+wL7QnnRihow0MxwPSsiGzE4E
+         u55FKvTNWFZz8Mtwv8f/FtYsbWr82ukB4r4QkAHYfcfIxQRRWxoxf58G1LJNcR1LfFcG
+         4hFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687384709; x=1689976709;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
+        d=1e100.net; s=20221208; t=1687385894; x=1689977894;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=4h3svhbv7w/46gguZ6sS+epoOSJySQs0s/cQe2gdmzk=;
-        b=lyJblzlQJHQlF5Z89pF/WTn5W9qw3HcgpRCKrtz8IJFEJ6A+hvznb7Kas7eO3YHL4V
-         TQVmxHY0TW+h7z77IZPnB4BUme3sD0niHgHiYzxuxiUcSVArHmem04GrgqV9XNsC8ru9
-         tL5/AQOuq9mMyAHnIsmvMgNWtxwKiexJpbHRVY4h7/f7kPP6EouT8qLhIxO8bM4nIQ6w
-         IHy9TDHg4MESpdXCCyT16mq/ZmKGTkLue8Qz7RKxikW18bb1HyKDrS/n38O3M45ceCiz
-         gWjTGX0Ujpuf43S85cIMgdU9k4915Vs5+iyfs5MrUK3K+7XMdyh4bkM6QWs1hKoZxu6d
-         uFBg==
-X-Gm-Message-State: AC+VfDw9HHc1o0v2HAfFF2vFvazDV3Ygk/tu9X/fjAkxwfC3vBg3EJRS
-        QV8tA7JTaF+UOvT1aNJAQg==
-X-Google-Smtp-Source: ACHHUZ5+48Fo0SEsH+h5+n6acLLXkTwrIXm++OtwqQjj7KfADfIN5Novp3bamaoEEaBTIxcwcbUeWA==
-X-Received: by 2002:a05:6e02:806:b0:343:9a7e:9f1a with SMTP id u6-20020a056e02080600b003439a7e9f1amr6811814ilm.1.1687384709256;
-        Wed, 21 Jun 2023 14:58:29 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id f16-20020a92cb50000000b00341e5cde68dsm1597781ilq.78.2023.06.21.14.58.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 14:58:28 -0700 (PDT)
-Received: (nullmailer pid 3614634 invoked by uid 1000);
-        Wed, 21 Jun 2023 21:58:26 -0000
-Date:   Wed, 21 Jun 2023 15:58:26 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: pwm: drop unneeded quotes
-Message-ID: <20230621215826.GA3555109-robh@kernel.org>
-References: <20230609140709.64655-1-krzysztof.kozlowski@linaro.org>
- <20230612093315.gbabepl5qg44xf5d@pengutronix.de>
- <20230621205317.GA3493078-robh@kernel.org>
+        bh=zyWuSVMXh2Y/fSXjuElkXOGDHtemipt9fq/ZZgliCDQ=;
+        b=Qz2upqPR3gbnd3EDW+WIAR5atoUwL9AKzIazBbqq7x5vi+reJftEIrHTMxurp0iC2p
+         ydadOTIqYwfx7mpAHW8YvzN4H7IkvPLtlOnNuYXI5xL/YaY5c5pBrIw+jIZPWCxI1B0m
+         TzJjaiPn8bTZXIEH7S0yym/+dLPgFv/pk3ermq5PJ5Vrr2ja+g/q4uAaUKVVs21xCFHz
+         6I9TzAYDR3aYV1ITfbiZEB0Kv+IPT7MA1vfR38Z4ARnn/z1FZBsl+GoSDzAP12AIO4uM
+         ChV+fc5sJvxmNNil85W/RO5qrxx1Rd0sgiq5Aj7HmZyBPwklijyJMzqIaoxQVJwmT9jR
+         nwvA==
+X-Gm-Message-State: AC+VfDwDbNYRZma69JoBz9kFXArIVB+Zt6q3dK4efENrtGvzofsq0dGo
+        Gxw5Q0qbtC2EGndAAEopilqwXQ==
+X-Google-Smtp-Source: ACHHUZ5Si4dCWNPr03XUSarW8gCPbkN/erz8YhdBHCibOFkHWzUSZhPV12IA2841vnOqzTcqJaHntg==
+X-Received: by 2002:ac2:4988:0:b0:4f9:535e:cdca with SMTP id f8-20020ac24988000000b004f9535ecdcamr4407924lfl.7.1687385894197;
+        Wed, 21 Jun 2023 15:18:14 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id h16-20020ac25970000000b004f85858e52dsm893503lfp.138.2023.06.21.15.18.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jun 2023 15:18:13 -0700 (PDT)
+Message-ID: <c05a9a02-0a33-6160-9072-717efe30031a@linaro.org>
+Date:   Thu, 22 Jun 2023 01:18:13 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230621205317.GA3493078-robh@kernel.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v9 2/2] dt-bindings: msm: dsi-controller-main: Document
+ clocks on a per compatible basis
+Content-Language: en-GB
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, sean@poorly.run, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
+        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
+        swboyd@chromium.org, konrad.dybcio@somainline.org,
+        agross@kernel.org, andersson@kernel.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+References: <20230118171621.102694-1-bryan.odonoghue@linaro.org>
+ <20230118171621.102694-3-bryan.odonoghue@linaro.org>
+ <qew6nd3jqnasb3mivvdxcwugfrvxdeafilaxk35v7uihagk2qi@oxe3oqdgfwpe>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <qew6nd3jqnasb3mivvdxcwugfrvxdeafilaxk35v7uihagk2qi@oxe3oqdgfwpe>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 21, 2023 at 02:53:17PM -0600, Rob Herring wrote:
-> On Mon, Jun 12, 2023 at 11:33:15AM +0200, Uwe Kleine-König wrote:
-> > Hello,
-> > 
-> > On Fri, Jun 09, 2023 at 04:07:09PM +0200, Krzysztof Kozlowski wrote:
-> > > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> > > checking for this can be enabled in yamllint.
-> > 
-> > in my book quoting everything instead of dropping quotes is the better
-> > option. While that policy adds more quotes, it prevents surprises like:
-> > 
-> > 	$ yaml2json << EOF
-> > 	> countrycodes:
-> > 	>  - de
-> > 	>  - fr
-> > 	>  - no
-> > 	>  - pl
-> > 	> EOF
-> > 	{
-> > 	  "countrycodes": [
-> > 	    "de",
-> > 	    "fr",
-> > 	    false,
-> > 	    "pl"
-> > 	  ]
-> > 	}
-> > 
-> > And if you use the "only-when-needed" rule of yamllint you have to write
-> > the above list as:
-> > 
-> > 	countrycodes:
-> > 	 - de
-> > 	 - fr
-> > 	 - "no"
-> > 	 - pl
-> > 
-> > which is IMHO really ugly.
+On 22/06/2023 00:45, Marijn Suijten wrote:
+> Hi!
 > 
-> Agreed, but "no" and "yes" are unlikely values in DT.
+> On 2023-01-18 17:16:21, Bryan O'Donoghue wrote:
+>> Each compatible has a different set of clocks which are associated with it.
+>> Add in the list of clocks for each compatible.
 > 
-> > 
-> > Another culprit is "on" (which is used e.g. in github action workflows),
-> > so yamllint tells for example for
-> > https://github.com/pengutronix/microcom/blob/main/.github/workflows/build.yml:
-> > 
-> > 	  3:1       warning  truthy value should be one of [false, true]  (truthy)
-> > 
-> > and there are still more surprises (e.g. version numbers might be
-> > subject to conversion to float).
+> So if each set of compatibles have their own unique set of clocks, is
+> there a reason to have so many duplicate then: blocks?  I ran into this
+> while preparing for submitting SM6125 DPU and having no clue where to
+> add it.
 > 
-> I'll add a meta-schema check for this. 'const' is already limited to 
-> string or integer. That's missing from 'enum'. I think we can also check 
-> that all items are the same type as well.
+>> Acked-by: Rob Herring <robh@kernel.org>
+>> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+>> ---
+>>   .../display/msm/dsi-controller-main.yaml      | 218 ++++++++++++++++--
+>>   1 file changed, 201 insertions(+), 17 deletions(-)
+>>
 
-And of course, like every meta-schema addition, we find new errors in 
-schemas:
+[skipped most of the comments]
 
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml: allOf:0:if:properties:compatible:contains:enum: 'oneOf' conditional failed, one must be fixed:
-        {'const': 'brcm,bcm4908-usb-phy'} is not of type 'integer'
-        {'const': 'brcm,bcm4908-usb-phy'} is not of type 'string'
-        {'const': 'brcm,brcmstb-usb-phy'} is not of type 'integer'
-        {'const': 'brcm,brcmstb-usb-phy'} is not of type 'string'
-        hint: "enum" must be an array with the same type for all items
-        from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml: properties:microchip,mic-pos:items: 'oneOf' conditional failed, one must be fixed:
-        {'items': [{'description': 'value for DS line'}, {'description': 'value for sampling edge'}], 'anyOf': [{'enum': [[0, 0], [0, 1], [1, 0], [1, 1]]}]} is not of type 'array'
-        /home/rob/proj/linux-dt/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml: properties:microchip,mic-pos:items:anyOf:0:enum: 'oneOf' conditional failed, one must be fixed:
-                [0, 0] is not of type 'integer'
-                [0, 0] is not of type 'string'
-                [0, 1] is not of type 'integer'
-                [0, 1] is not of type 'string'
-                [1, 0] is not of type 'integer'
-                [1, 0] is not of type 'string'
-                [1, 1] is not of type 'integer'
-                [1, 1] is not of type 'string'
-                hint: "enum" must be an array with the same type for all items
-                from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-        from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-/home/rob/proj/linux-dt/Documentation/devicetree/bindings/net/altr,tse.yaml: allOf:1:if:properties:compatible:contains:enum: 'oneOf' conditional failed, one must be fixed:
-        {'const': 'altr,tse-1.0'} is not of type 'integer'
-        {'const': 'altr,tse-1.0'} is not of type 'string'
-        {'const': 'ALTR,tse-1.0'} is not of type 'integer'
-        {'const': 'ALTR,tse-1.0'} is not of type 'string'
-        hint: "enum" must be an array with the same type for all items
-        from schema $id: http://devicetree.org/meta-schemas/core.yaml#
+> 
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,sc7180-dsi-ctrl
+>> +              - qcom,sc7280-dsi-ctrl
+>> +              - qcom,sm8250-dsi-ctrl
+>> +              - qcom,sm8150-dsi-ctrl
+>> +              - qcom,sm8250-dsi-ctrl
+>> +              - qcom,sm8350-dsi-ctrl
+>> +              - qcom,sm8450-dsi-ctrl
+>> +              - qcom,sm8550-dsi-ctrl
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          maxItems: 6
+>> +        clock-names:
+>> +          items:
+>> +            - const: byte
+>> +            - const: byte_intf
+>> +            - const: pixel
+>> +            - const: core
+>> +            - const: iface
+>> +            - const: bus
+> 
+> ... and here ...
+> 
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,sdm660-dsi-ctrl
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          maxItems: 9
+>> +        clock-names:
+>> +          items:
+>> +            - const: mdp_core
+>> +            - const: byte
+>> +            - const: byte_intf
+>> +            - const: mnoc
+>> +            - const: iface
+>> +            - const: bus
+>> +            - const: core_mmss
+>> +            - const: pixel
+>> +            - const: core
+>> +
+>> +  - if:
+>> +      properties:
+>> +        compatible:
+>> +          contains:
+>> +            enum:
+>> +              - qcom,sdm845-dsi-ctrl
+>> +    then:
+>> +      properties:
+>> +        clocks:
+>> +          maxItems: 6
+>> +        clock-names:
+>> +          items:
+>> +            - const: byte
+>> +            - const: byte_intf
+>> +            - const: pixel
+>> +            - const: core
+>> +            - const: iface
+>> +            - const: bus
+> 
+> and here, we have *three* identical lists of clocks.  Should they (have
+> been) combined?
+> 
+> I can send a patch fixing these all if desired!
+
+Probably it would be logical to split follow DPU and MDSS schema and 
+split this file into per-SoC compatibles and a generic file. Then it 
+would be easier to review different SoC parts.
+
+Regarding reordering of clocks. I think we have 5 different 
+configurations in dsi_cfg.c, but we definitely can optimize the schema.
+
+> 
+> - Marijn
+> 
+>> +
+>>   additionalProperties: false
+>>   
+>>   examples:
+>> -- 
+>> 2.38.1
+>>
+
+-- 
+With best wishes
+Dmitry
 
