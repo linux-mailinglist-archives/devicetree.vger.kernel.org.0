@@ -2,87 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D5F3073801C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79343737FFB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:09:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232592AbjFUKq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 06:46:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56272 "EHLO
+        id S232310AbjFUKrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 06:47:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55468 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230125AbjFUKqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:46:03 -0400
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA8F6E41;
-        Wed, 21 Jun 2023 03:44:30 -0700 (PDT)
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by smtp-out2.suse.de (Postfix) with ESMTPS id 6D7BC1FDAD;
-        Wed, 21 Jun 2023 10:44:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
-        t=1687344269; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=uKfVaC6JkeFcL/06eIzho6xSCCes9hNDXUsaPx8dW6k=;
-        b=ojRLit9kPFy1zm5wZ/Jh0wxoR+XNjhCPsbX77o6gAfw5wL4WBB2xBH4bCRO31XNHReqqVb
-        uaYC7UGMLTYlOVPhRvYM2gacvPib1bliuQPfgclqdunjhGG4BYerwhuFliljLM9SkuHOgk
-        960FqrOR7kGKL8Wp5gbYvSL3sQ/A+Ew=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
-        s=susede2_ed25519; t=1687344269;
-        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
-         mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=uKfVaC6JkeFcL/06eIzho6xSCCes9hNDXUsaPx8dW6k=;
-        b=xff3U+YrR7TIGuaHffuc4XBvk1VA2WLAVoNHMNpE9xHS6NJkGtwAL28gnfkawrTsw9IN2/
-        lZ4eGDxRqPkWO4Dw==
-Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
-        (No client certificate requested)
-        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 050B8134B1;
-        Wed, 21 Jun 2023 10:44:29 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([192.168.254.65])
-        by imap2.suse-dmz.suse.de with ESMTPSA
-        id R05fAI3UkmQXFgAAMHmgww
-        (envelope-from <tzimmermann@suse.de>); Wed, 21 Jun 2023 10:44:29 +0000
-Message-ID: <5b87fb5c-2f23-47c9-b6a8-623472115876@suse.de>
-Date:   Wed, 21 Jun 2023 12:44:28 +0200
+        with ESMTP id S232312AbjFUKrV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:47:21 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36BF272E;
+        Wed, 21 Jun 2023 03:45:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1687344352; x=1718880352;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=P32W9AfKeVxcvQoVXSO2hVKT1bX+1GIInDGt+g7kzUA=;
+  b=Tik79gtRICZJ/e6yWuGptEes4Uf6Ys1haKc4XzL+KzNx62sLPB5mzmaj
+   zWa566YoI71TDWmdh+qJYJADnYDYg1Mh8m4azTwAXnkw6ykQy90nrDeq8
+   oO7KTtxmj/2dF8Y5ov7Yd2u/Ux50qQhYMsvU11pYENdHpuurXHoWIwctz
+   HkJyHrT0LvH8zWqobpaFyLxbl1MYFYiObFEcvCLT1FCF/51z7qDvaDYYU
+   j2QZoAemndju9vMhn8Tdttj+mEPHsscSjPHG/tmsoSdPS5rgcP43NltIT
+   kLgsr92dV6l8yBB/WV6I92zYst2VvOuBgM6e5zhm2sqhXcuORqIEIWbi4
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="359004744"
+X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; 
+   d="scan'208";a="359004744"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2023 03:45:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="858926048"
+X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; 
+   d="scan'208";a="858926048"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
+  by fmsmga001.fm.intel.com with ESMTP; 21 Jun 2023 03:45:48 -0700
+From:   wen.ping.teh@intel.com
+To:     krzysztof.kozlowski@linaro.org
+Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, dinguyen@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
+        netdev@vger.kernel.org, niravkumar.l.rabara@intel.com,
+        p.zabel@pengutronix.de, richardcochran@gmail.com,
+        robh+dt@kernel.org, sboyd@kernel.org, wen.ping.teh@intel.com
+Subject: Re: [PATCH 2/4] dt-bindings: clock: Add Intel Agilex5 clocks and resets
+Date:   Wed, 21 Jun 2023 18:45:25 +0800
+Message-Id: <20230621104525.2522714-1-wen.ping.teh@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <ed6f9ab8-9c4e-ec9f-efb7-81974d75f074@linaro.org>
+References: <ed6f9ab8-9c4e-ec9f-efb7-81974d75f074@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 4/9] drm/verisilicon: Add gem driver for JH7110 SoC
-Content-Language: en-US
-From:   Thomas Zimmermann <tzimmermann@suse.de>
-To:     Keith Zhao <keith.zhao@starfivetech.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Cc:     Conor Dooley <conor+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Changhuang Liang <changhuang.liang@starfivetech.com>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Jack Zhu <jack.zhu@starfivetech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Shengyang Chen <shengyang.chen@starfivetech.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602074043.33872-5-keith.zhao@starfivetech.com>
- <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
-In-Reply-To: <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="------------E3lpJV3O3OclE0b68k1BcyGT"
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,139 +65,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---------------E3lpJV3O3OclE0b68k1BcyGT
-Content-Type: multipart/mixed; boundary="------------0TLCl8mGu0c1FRx96iB0uY6u";
- protected-headers="v1"
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Keith Zhao <keith.zhao@starfivetech.com>,
- dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
- linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
-Cc: Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
- Emil Renner Berthing <kernel@esmil.dk>, christian.koenig@amd.com,
- Bjorn Andersson <andersson@kernel.org>,
- Chris Morgan <macromorgan@hotmail.com>,
- Changhuang Liang <changhuang.liang@starfivetech.com>,
- Jagan Teki <jagan@edgeble.ai>, Jack Zhu <jack.zhu@starfivetech.com>,
- Rob Herring <robh+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
- Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
- Paul Walmsley <paul.walmsley@sifive.com>,
- Shengyang Chen <shengyang.chen@starfivetech.com>,
- Shawn Guo <shawnguo@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>
-Message-ID: <5b87fb5c-2f23-47c9-b6a8-623472115876@suse.de>
-Subject: Re: [PATCH 4/9] drm/verisilicon: Add gem driver for JH7110 SoC
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <20230602074043.33872-5-keith.zhao@starfivetech.com>
- <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
-In-Reply-To: <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
+>From: Krzysztof Kozlowski @ 2023-06-20 11:06 UTC (permalink / raw)
+>>>
+>>>> +
+>>>> +properties:
+>>>> +  compatible:
+>>>> +    const: intel,agilex5-clkmgr
+>>>
+>>>
+>>> Why "clkmgr", not "clk"? You did not call it Clock manager anywhere in
+>>> the description or title.
+>>>
+>> 
+>> The register in Agilex5 handling the clock is named clock_mgr.
+>> Previous IntelSocFPGA, Agilex and Stratix10, are also named clkmgr.
+>
+>So use it in description.
 
---------------0TLCl8mGu0c1FRx96iB0uY6u
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: base64
+Noted. Will update the description in V2.
 
-SGkNCg0KQW0gMTkuMDYuMjMgdW0gMTY6MjIgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoN
-Cj4gSGkNCj4gDQo+IEFtIDAyLjA2LjIzIHVtIDA5OjQwIHNjaHJpZWIgS2VpdGggWmhhbzoN
-Cj4+IFRoaXMgcGF0Y2ggaW1wbGVtZW50cyBnZW0gcmVsYXRlZCBBUElzIGZvciBKSDcxMDAg
-U29DLg0KPiANCj4gcGxlYXNlIGFsc28gc2VlIG15IG90aGVyIHJlcGx5IHRvIHRoaXMgcGF0
-Y2guIE15IG1haWwgY2xpZW50IGhhZCBhIGJ1ZyANCj4gYmVmb3JlIEkgY291bGQgZmluaXNo
-IGl0LiBCZWxvdyBhcmUgc29tZSBtb3JlIGNvbW1lbnRzLg0KPiANCj4+DQo+PiBTaWduZWQt
-b2ZmLWJ5OiBLZWl0aCBaaGFvIDxrZWl0aC56aGFvQHN0YXJmaXZldGVjaC5jb20+DQo+PiAt
-LS0NCj4gWy4uLl0NCj4+ICsjaWZuZGVmIF9fVlNfR0VNX0hfXw0KPj4gKyNkZWZpbmUgX19W
-U19HRU1fSF9fDQo+PiArDQo+PiArI2luY2x1ZGUgPGxpbnV4L2RtYS1idWYuaD4NCj4+ICsN
-Cj4+ICsjaW5jbHVkZSA8ZHJtL2RybV9nZW0uaD4NCj4+ICsjaW5jbHVkZSA8ZHJtL2RybV9w
-cmltZS5oPg0KPj4gKw0KPj4gKyNpbmNsdWRlICJ2c19kcnYuaCINCj4+ICsvKg0KPj4gKyAq
-DQo+PiArICogQGJhc2U6IGRybSBnZW0gb2JqZWN0Lg0KPj4gKyAqIEBzaXplOiBzaXplIHJl
-cXVlc3RlZCBmcm9tIHVzZXINCj4+ICsgKiBAY29va2llOiBjb29raWUgcmV0dXJuZWQgYnkg
-ZG1hX2FsbG9jX2F0dHJzDQo+PiArICrCoMKgwqAgLSBub3Qga2VybmVsIHZpcnR1YWwgYWRk
-cmVzcyB3aXRoIERNQV9BVFRSX05PX0tFUk5FTF9NQVBQSU5HDQo+PiArICogQGRtYV9hZGRy
-OiBidXMgYWRkcmVzcyhhY2Nlc3NlZCBieSBkbWEpIHRvIGFsbG9jYXRlZCBtZW1vcnkgcmVn
-aW9uLg0KPj4gKyAqwqDCoMKgIC0gdGhpcyBhZGRyZXNzIGNvdWxkIGJlIHBoeXNpY2FsIGFk
-ZHJlc3Mgd2l0aG91dCBJT01NVSBhbmQNCj4+ICsgKsKgwqDCoCBkZXZpY2UgYWRkcmVzcyB3
-aXRoIElPTU1VLg0KPj4gKyAqIEBkbWFfYXR0cnM6IGF0dHJpYnV0ZSBmb3IgRE1BIEFQSQ0K
-Pj4gKyAqIEBnZXRfcGFnZXM6IGZsYWcgZm9yIG1hbnVhbGx5IGFwcGx5aW5nIGZvciBub24t
-Y29udGlndW91cyBtZW1vcnkuDQo+PiArICogQHBhZ2VzOiBBcnJheSBvZiBiYWNraW5nIHBh
-Z2VzLg0KPj4gKyAqIEBzZ3Q6IEltcG9ydGVkIHNnX3RhYmxlLg0KPj4gKyAqDQo+PiArICov
-DQo+PiArc3RydWN0IHZzX2dlbV9vYmplY3Qgew0KPj4gK8KgwqDCoCBzdHJ1Y3QgZHJtX2dl
-bV9vYmplY3TCoMKgwqAgYmFzZTsNCj4+ICvCoMKgwqAgc2l6ZV90wqDCoMKgwqDCoMKgwqDC
-oMKgwqDCoCBzaXplOw0KPj4gK8KgwqDCoCB2b2lkwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAq
-Y29va2llOw0KPj4gK8KgwqDCoCBkbWFfYWRkcl90wqDCoMKgwqDCoMKgwqAgZG1hX2FkZHI7
-DQo+PiArwqDCoMKgIHUzMsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpb3ZhOw0K
-Pj4gK8KgwqDCoCB1bnNpZ25lZCBsb25nwqDCoMKgIGRtYV9hdHRyczsNCj4+ICvCoMKgwqAg
-Ym9vbMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ2V0X3BhZ2VzOw0KPj4gK8KgwqDCoCBzdHJ1
-Y3QgcGFnZcKgwqDCoMKgwqDCoMKgICoqcGFnZXM7DQo+PiArwqDCoMKgIHN0cnVjdCBzZ190
-YWJsZSAqc2d0Ow0KPj4gK307DQo+PiArDQo+PiArc3RhdGljIGlubGluZQ0KPj4gK3N0cnVj
-dCB2c19nZW1fb2JqZWN0ICp0b192c19nZW1fb2JqZWN0KHN0cnVjdCBkcm1fZ2VtX29iamVj
-dCAqb2JqKQ0KPj4gK3sNCj4+ICvCoMKgwqAgcmV0dXJuIGNvbnRhaW5lcl9vZihvYmosIHN0
-cnVjdCB2c19nZW1fb2JqZWN0LCBiYXNlKTsNCj4+ICt9DQo+PiArDQo+PiArc3RydWN0IHZz
-X2dlbV9vYmplY3QgKnZzX2dlbV9jcmVhdGVfb2JqZWN0KHN0cnVjdCBkcm1fZGV2aWNlICpk
-ZXYsDQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
-c2l6ZV90IHNpemUpOw0KPj4gKw0KPj4gK2ludCB2c19nZW1fcHJpbWVfdm1hcChzdHJ1Y3Qg
-ZHJtX2dlbV9vYmplY3QgKm9iaiwgc3RydWN0IGlvc3lzX21hcCANCj4+ICptYXApOw0KPj4g
-K3ZvaWQgdnNfZ2VtX3ByaW1lX3Z1bm1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwg
-c3RydWN0IGlvc3lzX21hcCANCj4+ICptYXApOw0KPiANCj4gSSdkIGNvbnNpZGVyIHRoaXMg
-YmFkIHN0eWxlLiBZb3VyIGZ1bmN0aW9ucyBhcmUgaW4gdGhlIHZzXyBuYW1lc3BhY2UsIHNv
-IA0KPiB0aGV5IHNob3VsZCB0YWtlIGEgdnNfZ2VtX29iamVjdCBhcyBmaXJzdCBhcmd1bWVu
-dC4gUmF0aGVyIGltcGxlbWVudCANCj4gdnNfZ2VtX3ByaW1lX3ZtYXAoc3RydWN0IHZzX2dl
-bV9vYmplY3QgKnZzX29iaiwgc3RydWN0IGlvc3lzX21hcCAqbWFwKQ0KPiBhbmQgX3Z1bm1h
-cCgpIGFuZCBfbW1hcCgpLg0KPiANCj4gRm9yIHRoZSBjYWxsYmFja3MgaW4gc3RydWN0IGRy
-bV9nZW1vYmplY3RfZnVuY3MsIHlvdSBjYW4gd3JpdGUgc21hbGwgDQo+IHdyYXBwZXJzIGFy
-b3VuZCB0aGUgaGVscGVycyB0byBkbyB0aGUgdHlwZSBjYXN0aW5nLiBTZWUgDQo+IGRybV9n
-ZW1fc2htZW1fb2JqZWN0X21tYXAoKSBhbmQgZHJtX2dlbV9zaG1lbV9tbWFwKCkgZm9yIGFu
-IGV4YW1wbGUuDQo+IA0KPiBodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC9sYXRl
-c3Qvc291cmNlL2luY2x1ZGUvZHJtL2RybV9nZW1fc2htZW1faGVscGVyLmgjTDIzMw0KDQpJ
-IHdhcyB0aGlua2luZyBhYm91dCBteSBhZHZpc2Ugd2l0aCB0aGUgd3JhcHBlcnMsIGJ1dCBp
-dCBkb2Vzbid0IHNlZW0gc28gDQpnb29kIGFmdGVyIGFsbC4gTWF5YmUganVzdCBpZ25vcmUg
-aXQuIEkgdGhpbmsgeW91IHNob3VsZCBzdGlsbCByZW5hbWUgDQp0aGUgZnVuY3Rpb24gdG8g
-c29tZXRoaW5nIGxpa2UgdnNfZ2VtX29iamVjdF92bWFwKCksIGV0Yy4gIFNvIHRoZXkgbmFt
-ZSANCnJlZmxlY3RzIHRoYXQgdGhleSBvcGVyYXRlIG9uIGEgc3RydWN0IGRybV9nZW1fb2Jq
-ZWN0Lg0KDQpCdXQgbWFueSBvZiB0aGUgaGVscGVycyBpbiB0aGlzIGZpbGUgYXJlIG9ubHkg
-ZXZlciB1c2VkIGluIHZzX2dlbS5jLiANCllvdSBzaG91bGQgZGVjbGFyZSB0aGVtIHN0YXRp
-YyBpbiB0aGUgQyBmaWxlIGFuZCByZW1vdmUgdGhlbSBmcm9tIHRoaXMgDQpoZWFkZXIuDQoN
-CkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4gDQo+IA0KPiANCj4+ICsNCj4+ICtpbnQgdnNf
-Z2VtX3ByaW1lX21tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosDQo+PiArwqDCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEpOw0KPj4g
-Kw0KPj4gK2ludCB2c19nZW1fZHVtYl9jcmVhdGUoc3RydWN0IGRybV9maWxlICpmaWxlX3By
-aXYsDQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZHJtX2Rldmlj
-ZSAqZHJtLA0KPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9t
-b2RlX2NyZWF0ZV9kdW1iICphcmdzKTsNCj4+ICsNCj4+ICtpbnQgdnNfZ2VtX21tYXAoc3Ry
-dWN0IGZpbGUgKmZpbHAsIHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hKTsNCj4+ICsNCj4+
-ICtzdHJ1Y3Qgc2dfdGFibGUgKnZzX2dlbV9wcmltZV9nZXRfc2dfdGFibGUoc3RydWN0IGRy
-bV9nZW1fb2JqZWN0ICpvYmopOw0KPj4gKw0KPj4gK3N0cnVjdCBkcm1fZ2VtX29iamVjdCAq
-dnNfZ2VtX3ByaW1lX2ltcG9ydChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LA0KPj4gK8KgwqDC
-oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBkbWFfYnVm
-ICpkbWFfYnVmKTsNCj4+ICtzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKg0KPj4gK3ZzX2dlbV9w
-cmltZV9pbXBvcnRfc2dfdGFibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwNCj4+ICvCoMKg
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50
-ICphdHRhY2gsDQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0
-IHNnX3RhYmxlICpzZ3QpOw0KPj4gKw0KPj4gKyNlbmRpZiAvKiBfX1ZTX0dFTV9IX18gKi8N
-Cj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9w
-ZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KRnJhbmtlbnN0cmFz
-c2UgMTQ2LCA5MDQ2MSBOdWVybmJlcmcsIEdlcm1hbnkNCkdGOiBJdm8gVG90ZXYsIEFuZHJl
-dyBNeWVycywgQW5kcmV3IE1jRG9uYWxkLCBCb3VkaWVuIE1vZXJtYW4NCkhSQiAzNjgwOSAo
-QUcgTnVlcm5iZXJnKQ0K
+>>>> +
+>>>> +additionalProperties: false
+>>>> +
+>>>> +examples:
+>>>> +  # Clock controller node:
+>>>> +  - |
+>>>> +    clkmgr: clock-controller@10d10000 {
+>>>> +      compatible = "intel,agilex5-clkmgr";
+>>>> +      reg = <0x10d10000 0x1000>;
+>>>> +      #clock-cells = <1>;
+>>>> +    };
+>>>> +...
+>>>> diff --git a/include/dt-bindings/clock/agilex5-clock.h b/include/dt-bindings/clock/agilex5-clock.h
+>>>> new file mode 100644
+>>>> index 000000000000..4505b352cd83
+>>>> --- /dev/null
+>>>> +++ b/include/dt-bindings/clock/agilex5-clock.h
+>>>
+>>> Filename the same as binding. Missing vendor prefix, entirely different
+>>> device name.
+>>>
+>> 
+>> Will change filename to intel,agilex5-clock.h in V2.
+>
+>Read the comment - same as binding. You did not call binding that way...
+>unless you rename the binding.
 
---------------0TLCl8mGu0c1FRx96iB0uY6u--
+Just to confirm, the binding name you are referring to is "intel,agilex5-clkmgr"?
+I will change the filename to intel,agilex5-clkmgr.h in V2.
 
---------------E3lpJV3O3OclE0b68k1BcyGT
-Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="OpenPGP_signature"
+Best Regards,
+Wen Ping
 
------BEGIN PGP SIGNATURE-----
-
-wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmSS1IwFAwAAAAAACgkQlh/E3EQov+BU
-DxAAvNFbqmuRl+8x0Gbhtssj4+R3z3D+Ai8rXjZ2JPfd6/4LSoy5YyM5WX3HLD1U5nLAenDka2ke
-drQRj6kzf3pJHD8ZsJhUKVgQSe5V3PDq4sB6YdIIpcEqpwZy8HABwOXhALnpbm25uypskQQ2hR7P
-OPZnIdLGoRJcgipBpja7AXhylhBvz9A7o8DlLUeUOlF3Ymd2F0uAiSCcoXxbq5cE11EV8ml3Aejc
-gmatc/K/6AKhDw/+SST0b8Gj28WGUov+uYVziNH9UKm35uM29zPWbLc2SdApRy073D7K82k5sLDM
-LxKecNWwPl1wUBZtcgdqnPOP7W3ZDrpv49GVmRNZWSCRicf+r+58iPYZSIBotqsmV7Z4zfRvYBeg
-dAIv7kYxQtd/8EnhXLeYs2aT5d3WSo0hXMMVTHGX+z24y8f2zgsL92sgSHhEVzfP2D6OVbG/iwJq
-lGbvzfRYtdsKBG8s3LwALdCNST/Guxvy8K1s0rxH7VVlwYQ+THD0eRbRmtBwZVIzznLkbM5YQ9Me
-nURdvkIoaD2zz7xtuu7WrifXr5dBlNlp8KBgV0vn+PqVx5zlH5094pHij9AByCIlVre4PLgjxyFl
-GU97AGB+0t5r5doJ1btnsVDBe+j963TvrekRTDZNfTZGBUTSuVWq1ToeWEfIR7oYiADutizlo5de
-M9o=
-=Dna4
------END PGP SIGNATURE-----
-
---------------E3lpJV3O3OclE0b68k1BcyGT--
