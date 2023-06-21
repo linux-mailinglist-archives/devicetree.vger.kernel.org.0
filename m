@@ -2,77 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1887C738E3A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 20:09:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D9D2738E42
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 20:12:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230448AbjFUSJj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 14:09:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40902 "EHLO
+        id S230481AbjFUSMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 14:12:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbjFUSJb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 14:09:31 -0400
+        with ESMTP id S230199AbjFUSMA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 14:12:00 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B821BEF;
-        Wed, 21 Jun 2023 11:09:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B66E4107;
+        Wed, 21 Jun 2023 11:11:58 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1FA226157D;
-        Wed, 21 Jun 2023 18:09:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D568CC433C8;
-        Wed, 21 Jun 2023 18:09:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4C05C6167F;
+        Wed, 21 Jun 2023 18:11:58 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D0855C433C9;
+        Wed, 21 Jun 2023 18:11:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687370958;
-        bh=PlIasYKsQ5UvEaRDORwyujyoektYVWvqdQghCpADg04=;
+        s=k20201202; t=1687371117;
+        bh=9v9goyvtQUiL0Qdj2HtwIciXoTyai42W0bpnzYLHHkI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=i6Vgh1/aK4fRzJPkXw4ZESR7yNMJPTkjUHEAEgvBAcABQCXTNXcam/KqLa2GaIPx5
-         2dpHk2PlLITXDx6+Dq6Y/qo4vMPRGH0dSSfsQzJo1eAhUu2Z0uG1443w4ExNNP3WpA
-         g1dNgEnsLTvCsLLY33fN5ptubv3JLuUkgJZ73JbAoGz+r9ldfDcvC9zaoRozMkVHSN
-         3m94LiJEq/mx7YLWvEafCexjXov+bVQk9PeEjssZ5EIzpX3W9MUc5DePDGaIDAHm/6
-         1IioQDCOgnZNqzObJs155htf1Hxp/pJROkTGNMhhxTcd5EcsRAPWijVqJGH7vX0U0B
-         6hItlgwNaB08Q==
-Date:   Wed, 21 Jun 2023 19:09:13 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Raymond Hackley <raymondhackley@protonmail.com>
-Cc:     linux-kernel@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=H8nvt6561PKdO78SQ+P57VegX3c96Wp41o6Tq8Tk6RevjXUQWE8bfi3ctVIQFDAMK
+         qc0IjZuN4cp1FKeRaQqXlK9YUnqNhI4XfVUIelqM9yZaem4eSns9Oi49tupElZQfhM
+         BzhaHaF8O9evPM9SBODc072i/R58IDA2rimLsZsAPMv7RHmb5jDSvqN7zsFgdiNwiZ
+         hMHrXaOgDEhBzEhJkgcQTHeOZ+xkQBY50is2I1serBNhBE9UjQg46sNuSlV+4eW0Ly
+         wbXVIaxYS7CT8gVkmPm0IUF8qZ7t9+SQoG30EwdBFw4baw/UnedoyowohvBnfGfGFt
+         xBHppij4HnNZQ==
+Date:   Wed, 21 Jun 2023 19:11:52 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Lucas Tanure <tanure@linux.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>,
-        "open list:LED SUBSYSTEM" <linux-leds@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: leds: sgm3140: Document richtek,rt5033
- compatible
-Message-ID: <20230621180913.GS10378@google.com>
-References: <20230602130644.259933-1-raymondhackley@protonmail.com>
- <20230602131009.260239-1-raymondhackley@protonmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for T7
+Message-ID: <20230621-uncaring-impeding-15cfbe8e0e7c@spud>
+References: <20230621133215.109254-1-tanure@linux.com>
+ <20230621133215.109254-3-tanure@linux.com>
+ <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="r8ifSacFha/D1Rvk"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230602131009.260239-1-raymondhackley@protonmail.com>
+In-Reply-To: <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 02 Jun 2023, Raymond Hackley wrote:
 
-> Add devicetree binding for Richtek RT5033 Flash LED charge pump used for
-> camera flash LEDs.
-> 
-> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
-> ---
->  Documentation/devicetree/bindings/leds/leds-sgm3140.yaml | 1 +
->  1 file changed, 1 insertion(+)
+--r8ifSacFha/D1Rvk
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks
+Lucas,
 
--- 
-Lee Jones [李琼斯]
+On Wed, Jun 21, 2023 at 03:53:04PM +0200, Krzysztof Kozlowski wrote:
+> On 21/06/2023 15:32, Lucas Tanure wrote:
+> > Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+> > There is no need for an extra compatible line in the driver, but
+> > add T7 compatible line for documentation.
+> >=20
+> > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > ---
+> >  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uar=
+t.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > index 01ec45b3b406..860ab58d87b0 100644
+> > --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > @@ -33,6 +33,7 @@ properties:
+> >                - amlogic,meson8b-uart
+> >                - amlogic,meson-gx-uart
+> >                - amlogic,meson-s4-uart
+> > +              - amlogic,meson-t7-uart
+> >            - const: amlogic,meson-ao-uart
+> >        - description: Always-on power domain UART controller on G12A So=
+Cs
+> >          items:
+> > @@ -46,6 +47,7 @@ properties:
+> >            - amlogic,meson8b-uart
+> >            - amlogic,meson-gx-uart
+> >            - amlogic,meson-s4-uart
+> > +          - amlogic,meson-t7-uart
+>=20
+> It does not look like you tested the DTS against bindings. Please run
+> `make dtbs_check` (see
+> Documentation/devicetree/bindings/writing-schema.rst or
+> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sou=
+rces-with-the-devicetree-schema/
+> for instructions).
+
+Check back on the previous version, I should've posted an untested
+version of what you need to add.
+
+Cheers,
+Conor.
+
+--r8ifSacFha/D1Rvk
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJM9aAAKCRB4tDGHoIJi
+0iPmAQCB2/L7TXDqGzhLNnWtm2aGh/w/O0jkMMU06UwMv1mW7wD+IiKLI9x7+bbA
+i66ElkRSOzKYf154fLEAit0ALQC0cQY=
+=QmUG
+-----END PGP SIGNATURE-----
+
+--r8ifSacFha/D1Rvk--
