@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D79547383AB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:24:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62B157383B0
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229803AbjFUMYH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 08:24:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47994 "EHLO
+        id S231708AbjFUM0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 08:26:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231742AbjFUMYF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 08:24:05 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29C8919AC
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:24:01 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3f9b4a715d9so24327635e9.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:24:01 -0700 (PDT)
+        with ESMTP id S230428AbjFUM0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 08:26:02 -0400
+Received: from mail-ed1-x52f.google.com (mail-ed1-x52f.google.com [IPv6:2a00:1450:4864:20::52f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22AF61712
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:26:01 -0700 (PDT)
+Received: by mail-ed1-x52f.google.com with SMTP id 4fb4d7f45d1cf-51bdc87feb1so718941a12.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 05:26:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687350239; x=1689942239;
+        d=linaro.org; s=google; t=1687350359; x=1689942359;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=HyrN9ABo7D1rMAlVWp90E4oDQOUS70PYpdgdCcfeHQs=;
-        b=GJMQOelCjgjeElOgF/yRWW/zmO45PI4Z4cqDmYnmNbJkmD+s9SIl7CvuFMxKx1tp65
-         XsSiqjvxOgs1pBN3DLPy7Voxvpwa+tfV70z9MQm3GBmUiZGmjBr38brOWf1KNvokVkr2
-         co1v+fyyCXhUYsd5I0Z+aHXPCJFvScUZ3c2K4Nrma9KR9yNFbECsnahIXRs5iEnuWyyd
-         nIAzoSHdP7oNSxm3cNol4d7nYfah0PqjY/qL9jqmWLfSheZ/Q6hx7mkPFuwnWZOiQY6y
-         2Ze9c0hZ4IN+GNLPgQZSDl5ZiL2eRmZTILgO9qIM7219PTbnEfLfN2Qktntl2C3esxWd
-         mGxQ==
+        bh=EGk3oqjnNfHNIndAjqYr6Ubn4S+JmM/i7wpQCzmK7X0=;
+        b=TDon5/PIbqBy/Ab2NWNtGLR3goBGa2sjDUeYrPM6Y0qhvkUsZvHTyLzdA/WDGtECes
+         yCyjL6jjAvC/LjB/kFAJbwnMCoROQcEmZv/prrMeRcx/BZURkbsd9ZYDnDCXBSeYWbPJ
+         r8V/n3ZyWu1A3YIzyLV0o/J+vc6eCC5hsrSuAAa4zgz3MF9LSPoBeiVvvXF24X2f1FNU
+         49mfSD2inLZwX78ar8Vj1WVxTJj2Q3PX/tSUU3KVHqKuyv6/JtF7+AfsVUoRYDaEhDO+
+         KH/J2H9HaRckvJSHXcNT/s7OCtkSrwZCeztjPTFrk1Ao6ebmI1/5gDGB2pY356aEyUSA
+         4tFg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687350239; x=1689942239;
+        d=1e100.net; s=20221208; t=1687350359; x=1689942359;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=HyrN9ABo7D1rMAlVWp90E4oDQOUS70PYpdgdCcfeHQs=;
-        b=RHXA3fk5LnSkZLAG+7/2+e34ATRmq7EYlvOOaEy2Zr/XBWmf2vj76Z74H3UDDp9Kpw
-         BE+tQLrIDyQeWaGvdoRVAtJyZV1arkhaMvbd1xO55n22lCzlI8w5KyKX5VW2n0Ne5HL2
-         vJ7mukUhMllSbzADDEuhu2TMZvYhp242LYpcTOdKmSsqdCesmhPLimiRXT7qCeNtjLSs
-         2oz155PdqhsrEocQ443hRK6LNYRHCdyOfvgQi4zDtqC8ZT7/3p4OwzypIDs698IqAhVO
-         +XwVnN4WWxcclK8h9DRiHWw64rqfOMMU9oXBo0ilMwzNEsG/8DydBJBGID59PZcUiOrz
-         aKzg==
-X-Gm-Message-State: AC+VfDw2euG16terVJp+fTCrMKAYOSuFdGifA/Yl4rI+umiQYs8dt/Wg
-        1v3LEO2tm5I5Lp9Og4J/8lFfJg==
-X-Google-Smtp-Source: ACHHUZ7255jwlQugIpETOZOq8b8AyBKGM97MqOJ58i/4Ig868aZxMEtz1PGHvaVgiHV435PiSRz48w==
-X-Received: by 2002:a05:600c:b59:b0:3f9:b3e3:bc9b with SMTP id k25-20020a05600c0b5900b003f9b3e3bc9bmr6461662wmr.4.1687350239519;
-        Wed, 21 Jun 2023 05:23:59 -0700 (PDT)
+        bh=EGk3oqjnNfHNIndAjqYr6Ubn4S+JmM/i7wpQCzmK7X0=;
+        b=PPl/y5eHZujHvTNsw06b/VFZbrqwhoQI6j0FKw34JR8OFWSP+9+o+lQootPY2KPasU
+         avVqzi6r84WmFpL36xBbfcbh/3+CU1mXLOU1brk/+QuRw4hUxHKZzGazWH5SP5Vh9XjR
+         iLydB2m6hQOYooW1jAEphlRQ9AR4sdwCTamfGBZLan7nBos9fxBaEek+Rcr1hjB6zGnm
+         zl5ipgb3lvBfaQTJAfmg3fqVrw5ZP9I0+Tv0iG47ZNG5ZcL0WtWv+zuVpiLV7hgldzx0
+         9LrW/EYjbS0BS0dtqE5YKqcid3Ewl8V0CzRTDP/bVyayrDBEX0G6o7/DwcbrTyZBKOGs
+         OdNg==
+X-Gm-Message-State: AC+VfDzS/kr9omEz/qQjC/hZ5jxYkyBVn5GQTPl3+tBrGWXa+RbuM1a+
+        qieCoxEwMw1gdHQc7CGHUNJZNQ==
+X-Google-Smtp-Source: ACHHUZ45ul/F6dXXQy/jtZVfcMApc1r5PDXrdq2EaA1pSCoE6yOWuKq1vxIO7aPtxItfkHTVcxfmOQ==
+X-Received: by 2002:a05:6402:2cd:b0:51a:2125:74d5 with SMTP id b13-20020a05640202cd00b0051a212574d5mr10619396edx.20.1687350359644;
+        Wed, 21 Jun 2023 05:25:59 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h25-20020a1ccc19000000b003f42158288dsm15939950wmb.20.2023.06.21.05.23.57
+        by smtp.gmail.com with ESMTPSA id k22-20020a056402049600b0051bc58b8dbcsm2512156edv.59.2023.06.21.05.25.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 05:23:58 -0700 (PDT)
-Message-ID: <819ae31d-7837-105d-6781-c5c48765c919@linaro.org>
-Date:   Wed, 21 Jun 2023 14:23:57 +0200
+        Wed, 21 Jun 2023 05:25:59 -0700 (PDT)
+Message-ID: <29666c1f-c670-b38c-8555-e606771b480b@linaro.org>
+Date:   Wed, 21 Jun 2023 14:25:57 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 2/2] spi: dt-bindings: stm32: do not disable spi-slave
- property for stm32f4-f7
+Subject: Re: [PATCH 1/2] spi: stm32: disable device mode with st,stm32f4-spi
+ compatible
 Content-Language: en-US
 To:     Valentin Caron <valentin.caron@foss.st.com>,
         Mark Brown <broonie@kernel.org>,
@@ -68,9 +68,9 @@ Cc:     Alexandre Torgue <alexandre.torgue@foss.st.com>,
         linux-stm32@st-md-mailman.stormreply.com,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 References: <20230621115523.923176-1-valentin.caron@foss.st.com>
- <20230621115523.923176-3-valentin.caron@foss.st.com>
+ <20230621115523.923176-2-valentin.caron@foss.st.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230621115523.923176-3-valentin.caron@foss.st.com>
+In-Reply-To: <20230621115523.923176-2-valentin.caron@foss.st.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -84,12 +84,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 21/06/2023 13:55, Valentin Caron wrote:
-> STM32F4-F7 are, from hardware point of view, capable to handle device mode.
-> So this property should not be forced at false in dt-bindings.
+> STM32 SPI driver is not capable to handle device mode with stm32f4/f7 soc.
+> Stop probing if this case happens.
 > 
 > Signed-off-by: Valentin Caron <valentin.caron@foss.st.com>
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+...
+
+>  
+>  static const struct of_device_id stm32_spi_of_match[] = {
+> @@ -1798,8 +1802,15 @@ static int stm32_spi_probe(struct platform_device *pdev)
+>  	struct device_node *np = pdev->dev.of_node;
+>  	bool device_mode;
+>  	int ret;
+> +	const struct of_device_id *of_match =
+> +		of_match_device(pdev->dev.driver->of_match_table, &pdev->dev);
+> +	const struct stm32_spi_cfg *cfg = (const struct stm32_spi_cfg *)of_match->data;
+
+It seems you open-coded of_device_get_match_data().
 
 Best regards,
 Krzysztof
