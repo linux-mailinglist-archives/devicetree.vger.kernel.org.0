@@ -2,279 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6936738E7B
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 20:21:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CDE0738ECD
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 20:30:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229692AbjFUSVE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 14:21:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48574 "EHLO
+        id S231300AbjFUS35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 14:29:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229564AbjFUSU7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 14:20:59 -0400
-Received: from comms.puri.sm (comms.puri.sm [159.203.221.185])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CCB1BE6;
-        Wed, 21 Jun 2023 11:20:43 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 43677EB7B8;
-        Wed, 21 Jun 2023 11:20:13 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id P9NW0B-v-ump; Wed, 21 Jun 2023 11:20:12 -0700 (PDT)
-Message-ID: <1dec928bee02d46688a7041d64f2d951a44f8a9e.camel@puri.sm>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=puri.sm; s=comms;
-        t=1687371612; bh=hogFmiQ6zlNCopb6QR0O5U1FyvV79n//bSPz0BhS3Gw=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=SwYMtcS5iybTRzfxIDZ9jWi4hRPFHNf6znD8CCy3CRVfCL+4y9uH2hnlAnjmTUL4+
-         zRcjMP3B2wxWGCXyb3Cxey8sy1FcosrO3YDjYqUwSYciu/bVMJJrlwya0D5emag4Wb
-         OyssbFhTL2dvauDZxaV1Rz3sgWcEr++ssXxDkqJgEjcb37w81FvzGgz20xXniIiLjF
-         ATmb94h9EsSTCfm6PvNdopatMxUfWNQOtudi9EtAZLgPrTfJpLO1kHauOMEgS0hA08
-         V5XrxfW82+pHJGot8B9+0Pgg/Yf3SRpixq8JjS6ubbYTcCH4Xaor8X7a8lEVkDwuWV
-         TfnWhFTM/jWBA==
-Subject: Re: [PATCH v6 1/2] power: domain: handle genpd correctly when
- needing interrupts
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-To:     Ulf Hansson <ulf.hansson@linaro.org>
-Cc:     rafael@kernel.org, khilman@kernel.org, robh@kernel.org,
-        krzysztof.kozlowski@linaro.org, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, festevam@gmail.com, pavel@ucw.cz,
-        kernel@puri.sm, linux-imx@nxp.com, broonie@kernel.org,
-        l.stach@pengutronix.de, aford173@gmail.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Date:   Wed, 21 Jun 2023 20:20:06 +0200
-In-Reply-To: <CAPDyKFqRAo+r0kW3H1ipu0trX0FC6EnG-PpFvXD7c1WmfPhtSA@mail.gmail.com>
-References: <20220726083257.1730630-1-martin.kepplinger@puri.sm>
-         <20220726083257.1730630-2-martin.kepplinger@puri.sm>
-         <CAPDyKFrLLw=y9+t3f_bOH2mw2NVDGJxKE5=+XHY7C6SUzLzUDg@mail.gmail.com>
-         <d1db07c8ca57c72b4f0820fcb6832dd7e4501055.camel@puri.sm>
-         <CAPDyKFpz0HG_AzCkj8LkyisO1fjJiiyX2QjKTWDTLng2O7PDgA@mail.gmail.com>
-         <77baacb930bf2ba1a65cb1515e6795b48d2d4ed5.camel@puri.sm>
-         <CAPDyKFoS=E3c9XWWCaG2byMm-3nvvW5jXS0X7Bh-NK_msTUykQ@mail.gmail.com>
-         <3bbba64dc4fd9ef37fb937f5176b1ef50b8b2d73.camel@puri.sm>
-         <CAPDyKFqRAo+r0kW3H1ipu0trX0FC6EnG-PpFvXD7c1WmfPhtSA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.38.3-1+deb11u2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S231688AbjFUS3m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 14:29:42 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6BD3270E;
+        Wed, 21 Jun 2023 11:29:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=j1CsjD1T9Eu3Vl2uYZSXNfp6lfyOHNdhhCP0yVD27E8=; b=TypqpFe1aJ1+2iiT9WiHsCV2py
+        2l0h08Q9AMKQHV41pdKjansTTOsoRs4C7l5QfVVIVZdGVmoNMFpFMNE1HiE8qQDKfPUzEEt+WW7cP
+        LfZYiqVNvCbls9lGujPGuZB3K1qFSwFd3DPgx7JpuTgXwt4dhqjBD9hqmfpuT9v2vA8w=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:33230 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qC2ZZ-0007Ko-BK; Wed, 21 Jun 2023 14:28:54 -0400
+Date:   Wed, 21 Jun 2023 14:28:52 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230621142852.07c5f4940e5a9920039bf4d1@hugovil.com>
+In-Reply-To: <20230621181441cd214f99@mail.local>
+References: <20221215150214.1109074-1-hugo@hugovil.com>
+        <Y8rl452Xm1FrnFfF@mail.local>
+        <20230621101429.7f86490aa7590f0d978834ce@hugovil.com>
+        <20230621125945.1f10b66832d0d1c61e21f78d@hugovil.com>
+        <20230621181441cd214f99@mail.local>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3 00/14] rtc: pcf2127: add PCF2131 driver
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, dem 23.09.2022 um 15:55 +0200 schrieb Ulf Hansson:
-> On Thu, 25 Aug 2022 at 09:06, Martin Kepplinger
-> <martin.kepplinger@puri.sm> wrote:
+On Wed, 21 Jun 2023 20:14:41 +0200
+Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+
+> On 21/06/2023 12:59:45-0400, Hugo Villeneuve wrote:
+> > On Wed, 21 Jun 2023 10:14:29 -0400
+> > Hugo Villeneuve <hugo@hugovil.com> wrote:
 > > 
-> > Am Mittwoch, dem 24.08.2022 um 15:30 +0200 schrieb Ulf Hansson:
-> > > On Mon, 22 Aug 2022 at 10:38, Martin Kepplinger
-> > > <martin.kepplinger@puri.sm> wrote:
+> > > On Fri, 20 Jan 2023 20:05:07 +0100
+> > > Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+> > > 
+> > > > Hello,
 > > > > 
-> > > > Am Freitag, dem 19.08.2022 um 16:53 +0200 schrieb Ulf Hansson:
-> > > > > On Fri, 19 Aug 2022 at 11:17, Martin Kepplinger
-> > > > > <martin.kepplinger@puri.sm> wrote:
-> > > > > > 
-> > > > > > Am Dienstag, dem 26.07.2022 um 17:07 +0200 schrieb Ulf
-> > > > > > Hansson:
-> > > > > > > On Tue, 26 Jul 2022 at 10:33, Martin Kepplinger
-> > > > > > > <martin.kepplinger@puri.sm> wrote:
-> > > > > > > > 
-> > > > > > > > If for example the power-domains' power-supply node
-> > > > > > > > (regulator)
-> > > > > > > > needs
-> > > > > > > > interrupts to work, the current setup with noirq
-> > > > > > > > callbacks
-> > > > > > > > cannot
-> > > > > > > > work; for example a pmic regulator on i2c, when
-> > > > > > > > suspending,
-> > > > > > > > usually
-> > > > > > > > already
-> > > > > > > > times out during suspend_noirq:
-> > > > > > > > 
-> > > > > > > > [   41.024193] buck4: failed to disable: -ETIMEDOUT
-> > > > > > > > 
-> > > > > > > > So fix system suspend and resume for these power-
-> > > > > > > > domains by
-> > > > > > > > using
-> > > > > > > > the
-> > > > > > > > "outer" suspend/resume callbacks instead. Tested on the
-> > > > > > > > imx8mq-
-> > > > > > > > librem5 board,
-> > > > > > > > but by looking at the dts, this will fix imx8mq-evk and
-> > > > > > > > possibly
-> > > > > > > > many other
-> > > > > > > > boards too.
-> > > > > > > > 
-> > > > > > > > This is designed so that genpd providers just say "this
-> > > > > > > > genpd
-> > > > > > > > needs
-> > > > > > > > interrupts" (by setting the flag) - without implying an
-> > > > > > > > implementation.
-> > > > > > > > 
-> > > > > > > > Initially system suspend problems had been discussed at
-> > > > > > > > https://lore.kernel.org/linux-arm-kernel/20211002005954.1367653-8-l.stach@pengutronix.de/
-> > > > > > > > which led to discussing the pmic that contains the
-> > > > > > > > regulators
-> > > > > > > > which
-> > > > > > > > serve as power-domain power-supplies:
-> > > > > > > > https://lore.kernel.org/linux-pm/573166b75e524517782471c2b7f96e03fd93d175.camel@puri.sm/T/
-> > > > > > > > 
-> > > > > > > > Signed-off-by: Martin Kepplinger
-> > > > > > > > <martin.kepplinger@puri.sm>
-> > > > > > > > ---
-> > > > > > > >  drivers/base/power/domain.c | 13 +++++++++++--
-> > > > > > > >  include/linux/pm_domain.h   |  5 +++++
-> > > > > > > >  2 files changed, 16 insertions(+), 2 deletions(-)
-> > > > > > > > 
-> > > > > > > > diff --git a/drivers/base/power/domain.c
-> > > > > > > > b/drivers/base/power/domain.c
-> > > > > > > > index 5a2e0232862e..58376752a4de 100644
-> > > > > > > > --- a/drivers/base/power/domain.c
-> > > > > > > > +++ b/drivers/base/power/domain.c
-> > > > > > > > @@ -130,6 +130,7 @@ static const struct genpd_lock_ops
-> > > > > > > > genpd_spin_ops = {
-> > > > > > > >  #define genpd_is_active_wakeup(genpd)  (genpd->flags &
-> > > > > > > > GENPD_FLAG_ACTIVE_WAKEUP)
-> > > > > > > >  #define genpd_is_cpu_domain(genpd)     (genpd->flags &
-> > > > > > > > GENPD_FLAG_CPU_DOMAIN)
-> > > > > > > >  #define genpd_is_rpm_always_on(genpd)  (genpd->flags &
-> > > > > > > > GENPD_FLAG_RPM_ALWAYS_ON)
-> > > > > > > > +#define genpd_irq_on(genpd)            (genpd->flags &
-> > > > > > > > GENPD_FLAG_IRQ_ON)
-> > > > > > > > 
-> > > > > > > >  static inline bool irq_safe_dev_in_sleep_domain(struct
-> > > > > > > > device
-> > > > > > > > *dev,
-> > > > > > > >                 const struct generic_pm_domain *genpd)
-> > > > > > > > @@ -2065,8 +2066,15 @@ int pm_genpd_init(struct
-> > > > > > > > generic_pm_domain
-> > > > > > > > *genpd,
-> > > > > > > >         genpd->domain.ops.runtime_suspend =
-> > > > > > > > genpd_runtime_suspend;
-> > > > > > > >         genpd->domain.ops.runtime_resume =
-> > > > > > > > genpd_runtime_resume;
-> > > > > > > >         genpd->domain.ops.prepare = genpd_prepare;
-> > > > > > > > -       genpd->domain.ops.suspend_noirq =
-> > > > > > > > genpd_suspend_noirq;
-> > > > > > > > -       genpd->domain.ops.resume_noirq =
-> > > > > > > > genpd_resume_noirq;
-> > > > > > > > +
-> > > > > > > > +       if (genpd_irq_on(genpd)) {
-> > > > > > > > +               genpd->domain.ops.suspend =
-> > > > > > > > genpd_suspend_noirq;
-> > > > > > > > +               genpd->domain.ops.resume =
-> > > > > > > > genpd_resume_noirq;
-> > > > > > > > +       } else {
-> > > > > > > > +               genpd->domain.ops.suspend_noirq =
-> > > > > > > > genpd_suspend_noirq;
-> > > > > > > > +               genpd->domain.ops.resume_noirq =
-> > > > > > > > genpd_resume_noirq;
-> > > > > > > 
-> > > > > > > As we discussed previously, I am thinking that it may be
-> > > > > > > better
-> > > > > > > to
-> > > > > > > move to using genpd->domain.ops.suspend_late and
-> > > > > > > genpd->domain.ops.resume_early instead.
-> > > > > > 
-> > > > > > Wouldn't that better be a separate patch (on top)? Do you
-> > > > > > really
-> > > > > > want
-> > > > > > me to change the current behaviour (default case) to from
-> > > > > > noirq
-> > > > > > to
-> > > > > > late? Then I'll resend this series with such a patch added.
-> > > > > 
-> > > > > Sorry, I wasn't clear enough, the default behaviour should
-> > > > > remain
-> > > > > as
-> > > > > is.
-> > > > > 
-> > > > > What I meant was, when genpd_irq_on() is true, we should use
-> > > > > the
-> > > > > genpd->domain.ops.suspend_late and genpd-
-> > > > > > domain.ops.resume_early.
+> > > > I know I've been holding off on the review of this series for a while
+> > > > and I'm sorry for that.
 > > > > 
-> > > > Testing that shows that this isn't working. I can provide the
-> > > > logs
-> > > > later, but suspend fails and I think it makes sense:
-> > > > "suspend_late"
-> > > > is
-> > > > simply already too late when i2c (or any needed driver) uses
-> > > > "suspend".
+> > > > One of the main issue that is remaining is that the driver ends up being
+> > > > 53% bigger and generaly less efficient for no added functionality for
+> > > > the existing RTCs.
+> > > > 
+> > > > I know performance is not a concern however, having more code in the
+> > > > set/read time and irq paths means that it is more difficult to set an
+> > > > get the time precisely.
 > > > 
-> > > Okay, I see.
+> > > Hi Alexandre,
+> > > one way to keep rtc_read_time() as efficient as before, and even more
+> > > efficient by reading 7 instead of 10 registers, would be to drop reading
+> > > the CTRL3 register, which is only used to detect and display an info
+> > > message for the low battery condition. This low battery check could be
+> > > moved to an ioctl call, like it is done in the PCF8523 driver.
 > > > 
-> > > The reason why I suggested moving the callbacks to
-> > > "suspend_late",
-> > > was
-> > > that I was worried that some of the attached devices to genpd
-> > > could
-> > > use "suspend_late" themselves. This is the case for some drivers
-> > > for
-> > > DMA/clock/gpio/pinctrl-controllers, for example. That said, I am
-> > > curious to look at the DT files for the platform you are running,
-> > > would you mind giving me a pointer?
+> > > Hugo.
 > > 
-> > I'm running
-> > https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-> > with these (small) patches on top:
-> > https://source.puri.sm/martin.kepplinger/linux-next/-/commits/5.19.3/librem5
-> 
-> Thanks for sharing the information!
-> 
+> > Hi,
+> > in fact it is already part of the ioctl, so it is even simpler...
 > > 
-> > > 
-> > > So, this made me think about this a bit more. In the end, just
-> > > using
-> > > different levels (suspend, suspend_late, suspend_noirq) of
-> > > callbacks
-> > > are just papering over the real *dependency* problem.
-> > 
-> > true, it doesn't feel like a stable solution.
-> > 
-> > > 
-> > > What we need for the genpd provider driver, is to be asked to be
-> > > suspended under the following conditions:
-> > > 1. All consumer devices (and child-domains) for its corresponding
-> > > PM
-> > > domain have been suspended.
-> > > 2. All its supplier devices supplies must remain resumed, until
-> > > the
-> > > genpd provider has been suspended.
-> > > 
-> > > Please allow me a few more days to think in more detail about
-> > > this.
-> > 
-> > Thanks a lot for thinking about this!
 > 
-> I have made some more thinking, but it's been a busy period for me,
-> so
-> unfortunately I need some additional time (another week). It seems
-> like I also need to do some prototyping, to convince myself about the
-> approach.
+> Yes, the dev_info can be removed.
+
+Hi,
+great, I will integrate that patch to improve rtc_read_time()
+performance, and resubmit V4 soon with the requested changes mentioned
+during V3 review.
+
+Thank you, Hugo.
+
+
+> > > > I guess I'll take it as a merged driver but I took a different decision
+> > > > for other RTCs.
+> > > > 
+> > > > On 15/12/2022 10:02:01-0500, Hugo Villeneuve wrote:
+> > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > 
+> > > > > Hello,
+> > > > > this patch series adds the driver for the PCF2131 real-time clock.
+> > > > > 
+> > > > > This RTC is very similar in functionality to the PCF2127/29 with the
+> > > > > following differences:
+> > > > >   -supports two new control registers at offsets 4 and 5
+> > > > >   -supports a new reset register
+> > > > >   -supports 4 tamper detection functions instead of 1
+> > > > >   -has no nvmem (like the PCF2129)
+> > > > >   -has two output interrupt pins instead of one
+> > > > >   -has 1/100th seconds capabilities (not supported in this driver)
+> > > > >   -pcf2127 has watchdog clock sources: 1/60,   1, 64 and 4096Hz
+> > > > >    pcf2131 has watchdog clock sources: 1/64, 1/4,  4 and   64Hz
+> > > > >   -watchdog value register cannot be read after being set
+> > > > > 
+> > > > > Most of the register addresses are very different, although they still
+> > > > > follow the same layout. For example, the time/date and tamper registers
+> > > > > have a different base address, but the offsets are all the same.
+> > > > > Consequently, the source code of the PCF2127 driver can be easily adapted
+> > > > > to support this new device.
+> > > > > 
+> > > > > Patches 1 to 6 modify the existing pcf2127 driver to make it more generic
+> > > > > and able to support multiple variants, like the PCF2131. This is done
+> > > > > mostly by using offsets instead of absolute hardcoded register addresses.
+> > > > > 
+> > > > > Patch 7 add actual support for the PCF2131.
+> > > > > 
+> > > > > Patch 8 configures all interrupt sources to go through the INT A pin.
+> > > > > 
+> > > > > Patch 9 changes the PWRMNG bits to be the same with the PCF2131 as they
+> > > > >       are with the PCF2127/29 (different default values).
+> > > > > 
+> > > > > Patch 10 allow to confirm PCF2131 device presence by reading the reset
+> > > > >       register fixed pattern.
+> > > > > 
+> > > > > Patch 11 adapt the time/date registers write sequence for PCF2131 (STOP and
+> > > > >       CPR bits).
+> > > > > 
+> > > > > Patch 12 add support for generic watchdog timing configuration.
+> > > > > 
+> > > > > Patch 13 add a new flag to identify if device has read support for reading
+> > > > >       watchdog register value.
+> > > > >       Since the watchdog value register cannot be read on the PCF2131 after
+> > > > >       being set, it seems that we cannot detect if watchdog timer was
+> > > > >       started by bootloader. I am not sure what is the best way to handle
+> > > > >       this situation, suggestions are welcomed.
+> > > > > 
+> > > > > Patch 14 add the dt-bindings for the PCF2131.
+> > > > > 
+> > > > > I have tested the driver using a PCF2131-ARD evaluation board connected to
+> > > > > an NXP imx8mp evaluation board:
+> > > > >   - Time get/set ok;
+> > > > >   - Alarms get/set ok
+> > > > >   - Timestamp 1 to 4 ok
+> > > > >   - IRQ alarm ok
+> > > > >   - Watchdog ok
+> > > > >   - Also tested successfully with "RTC Driver Test Example" from
+> > > > >     Documentation/rtc.txt
+> > > > > 
+> > > > > I have also tested the driver on a custom PCF2129 adapter board connected to a
+> > > > > beaglebone black.
+> > > > > 
+> > > > > Thank you.
+> > > > > 
+> > > > > Link: [v1] https://patchwork.ozlabs.org/project/rtc-linux/patch/20220125200009.900660-2-hugo@hugovil.com/
+> > > > > Link: [v2] https://patchwork.ozlabs.org/project/rtc-linux/list/?series=285734
+> > > > > 
+> > > > > Changes for V3:
+> > > > > - Rebased for kernel v6.1
+> > > > > 
+> > > > > Changes for V2:
+> > > > > - In general, fix and improvements after I have tested on real hardware
+> > > > > - Fix alarm interrupt A/B mask setting for PCF2131:
+> > > > >   PCF2131_BIT_INT_AIE must be cleared, not set, to enable interrupt.
+> > > > > - Remove low_reg validation: only check if TS interrupt flag is
+> > > > >   defined, as low_reg is defined at address 0 for PCF2127/29.
+> > > > > - Change PWRMNG value for PCF2131: default is different than PCF2127/29.
+> > > > > - Adapt time/date registers write sequence for PCF2131 (STOP and CPR bits).
+> > > > > - Map all interrupt sources to INT A pin
+> > > > > - Read and validate PCF2131 device presence from RESET register
+> > > > > - Adapt watchdog configuration for PCF2131
+> > > > > 
+> > > > > Hugo Villeneuve (14):
+> > > > >   rtc: pcf2127: add variant-specific configuration structure
+> > > > >   rtc: pcf2127: adapt for time/date registers at any offset
+> > > > >   rtc: pcf2127: adapt for alarm registers at any offset
+> > > > >   rtc: pcf2127: adapt for WD registers at any offset
+> > > > >   rtc: pcf2127: adapt for CLKOUT register at any offset
+> > > > >   rtc: pcf2127: add support for multiple TS functions
+> > > > >   rtc: pcf2127: add support for PCF2131 RTC
+> > > > >   rtc: pcf2127: add support for PCF2131 interrupts on output INT_A
+> > > > >   rtc: pcf2127: set PWRMNG value for PCF2131
+> > > > >   rtc: pcf2127: read and validate PCF2131 device signature
+> > > > >   rtc: pcf2127: adapt time/date registers write sequence for PCF2131
+> > > > >   rtc: pcf2127: support generic watchdog timing configuration
+> > > > >   rtc: pcf2127: add flag for watchdog register value read support
+> > > > >   dt-bindings: rtc: pcf2127: add PCF2131
+> > > > > 
+> > > > >  .../devicetree/bindings/rtc/nxp,pcf2127.yaml  |   4 +-
+> > > > >  drivers/rtc/Kconfig                           |   4 +-
+> > > > >  drivers/rtc/rtc-pcf2127.c                     | 939 ++++++++++++++----
+> > > > >  3 files changed, 752 insertions(+), 195 deletions(-)
+> > > > > 
+> > > > > -- 
+> > > > > 2.30.2
+> > > > > 
+> > > > 
+> > > > -- 
+> > > > Alexandre Belloni, co-owner and COO, Bootlin
+> > > > Embedded Linux and Kernel engineering
+> > > > https://bootlin.com
+> > > > 
 > 
-> So, my apologies for the delay!
+> -- 
+> Alexandre Belloni, co-owner and COO, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
 > 
-> Kind regards
-> Uffe
-
-Hi Ulf and all interested,
-
-Has there been any development regarding this bug? - genpd that needs
-interrupts for power-on/off being run in noirq phases - you remember
-it? it's been a while :)
-
-Anyway I still run these patches and while it's a reasonable workaround
-IMO, I wanted to check whether you are aware of anything that might
-solve this. (or maybe it *is* solved and I simply overlooked because my
-patches still apply?)
-
-thanks!
-
-                               martin
-
-
