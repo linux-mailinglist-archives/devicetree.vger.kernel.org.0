@@ -2,72 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90340738B4D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54572738B5A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:33:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232597AbjFUQcr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 12:32:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55834 "EHLO
+        id S232702AbjFUQdi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 12:33:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232271AbjFUQcl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:32:41 -0400
-Received: from mail-io1-xd2b.google.com (mail-io1-xd2b.google.com [IPv6:2607:f8b0:4864:20::d2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEC241FCA
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:32:12 -0700 (PDT)
-Received: by mail-io1-xd2b.google.com with SMTP id ca18e2360f4ac-77e3267477cso207972639f.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:32:12 -0700 (PDT)
+        with ESMTP id S231890AbjFUQdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:33:22 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2EB22682
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:33:00 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f8ff5fe50aso41878265e9.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:33:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google; t=1687365131; x=1689957131;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=C7pFl36cnLq4fFT5cdeGMvVdtf+qKMYcr21cnnh8m+Q=;
-        b=TyG9oIfW7IowrwGtJwtyFqIpihC6xEfN+bZafKvwPBDjH56sxuBPjtmrALTXUFSTmZ
-         +Q3Cz+AxcPCSzurTncGwWC0WReIwES0yfNbiUwIt+7Ek12IATNaEYVaUykVfPBSrqkGl
-         iSyW6GRyRNadsSeNHyvDKhdWtmoyG3bxKBERo=
+        d=linaro.org; s=google; t=1687365176; x=1689957176;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HLGr90Ct6YiiWYZK3C/9ohPmOziEp9WBnHBSoxvZVKg=;
+        b=CdOcoVkfqUF7yQFTakDIkkGOhpaulKgfWZ9V+c0O0STLC3VXDnnY/fsTI1UbU3oLwR
+         YxIFdJ1cmh2qnq9KgzpxEXcmTwDBNmJy/wq/35qxLUGbHc+331EwP5AcT+ptSmjlAPvy
+         dGWBDIZHyCECOH2s5r6UzmVvhVB+0K4TXmjdP3jJxPEqu59z6eg3IcLAj39EbG7eau1L
+         Fn7wTPrNmIHb2cq8djegYjzjxw0VOgcOiNruftBF1eeXF+1YtvAS4l05B5vPK3UW+ZoM
+         rZT0g+tLtSHcu6T7ru/lSwPlxvIXjPScVxO23osmrJHETsTLCopV30woDua/MshQNBwS
+         7uTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687365131; x=1689957131;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C7pFl36cnLq4fFT5cdeGMvVdtf+qKMYcr21cnnh8m+Q=;
-        b=XzLi2mnmvaicIoHcyFu6R2QhHBRfOl+nDbCgOeC2eZW7sb+9zvzt+wKsUu+3Jp8YQC
-         24Uws01l1NRcopUnOgLecDmG8RU8yCVyDolkEoCYwHdXJIp4mn0wP0Vr0H9VdKLs5EXw
-         XNWiL666tAvxFd1/XHf8/LPAzobVkoI8m6siS1GlPnnpoG3/DHnPNqjeTrTb7R3UJSTg
-         WcqowuoUjtkMrVzPzsFEZYMVDZTJfp82a/h0Oef3h7mzaZoJRl61aIhAnkOE1uZMRdpk
-         BzT/3HvySWhTqVwic3OHAeML2bEZwK0ZmlcLtTVjymNruqRblILEWNkLJLPoycSniiHj
-         k0gg==
-X-Gm-Message-State: AC+VfDxf1kjT8trA3z2wz4rGDAC3Jhwpw1RJbwWvpEbNf7O7BzKxPa51
-        bqmf08O47/AaE6AK4UfUDPGUsg==
-X-Google-Smtp-Source: ACHHUZ6vAbdVHdaVsHMCYz48nxDtgsSVMt46K8W12QUi/Yzyo17zqkMtUwhasa5qPqJ9ZXfIRXIkpg==
-X-Received: by 2002:a05:6602:38e:b0:77e:3267:ca96 with SMTP id f14-20020a056602038e00b0077e3267ca96mr10533653iov.4.1687365131158;
-        Wed, 21 Jun 2023 09:32:11 -0700 (PDT)
-Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
-        by smtp.gmail.com with UTF8SMTPSA id n3-20020a02a903000000b0040f91a65669sm1465572jam.21.2023.06.21.09.32.10
+        d=1e100.net; s=20221208; t=1687365176; x=1689957176;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HLGr90Ct6YiiWYZK3C/9ohPmOziEp9WBnHBSoxvZVKg=;
+        b=R/6mFetifRtKoQ3oyEnXuPswG2k51Afg5dEb1qwRdQH2KBYlRfpMVhjjSvQJNBDax6
+         HMqCJVH5tnmutorGrmpG7E2b+Qlj/wRhr7ZUm9My5w3jkk8+7YJHj5xQqg372PkTiEjP
+         yHRa4qhpjR3Pl0sCaosTOYnKrKjEdWrSPwr3dWfm1A2/Q1NjJbhLGsqgehl/pjo/bVa8
+         T7xlkSiRBY/v2ewOmqEJ7Z4owC1QrlaMxF61l+NUVkG05CzLd2ryImAtEGtZpffM0QZD
+         hIcx32K3CpVUPwdKSbxKYE7oCkgVENKJwVGRji2Z4HjFZgiEAMKeTTVVxc0Y5FEZ6bKI
+         PTyw==
+X-Gm-Message-State: AC+VfDwnJ6yzTlCOzqI+DO8j9BcSTwavsw+xDhS6VNQvshlO+jYLKSAE
+        NMTNTehb1evw2LTfydzjfnJoqg==
+X-Google-Smtp-Source: ACHHUZ7xXM1RwY58kyvXjTjJcIvjnaCnAMjZVA66OVbtjFywGkQrMDgpxkkyuFFk/+F5RpQxRl5/WA==
+X-Received: by 2002:a05:600c:230c:b0:3f8:f1db:d1f5 with SMTP id 12-20020a05600c230c00b003f8f1dbd1f5mr14997447wmo.5.1687365175902;
+        Wed, 21 Jun 2023 09:32:55 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a21-20020a05600c225500b003f7f4dc6d14sm5405348wmm.14.2023.06.21.09.32.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 09:32:10 -0700 (PDT)
-Date:   Wed, 21 Jun 2023 16:32:10 +0000
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Benjamin Bara <bbara93@gmail.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wed, 21 Jun 2023 09:32:55 -0700 (PDT)
+Message-ID: <e6ae26d6-dec4-d9c2-0d9e-31e80c8d58f5@linaro.org>
+Date:   Wed, 21 Jun 2023 18:32:53 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: vendor-prefixes: Add Mitsumi Electric
+ Co., Ltd.
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/3] usb: misc: onboard-hub: support multiple power
- supplies
-Message-ID: <ZJMmCrrEkz4E9Dog@google.com>
-References: <20230620-hx3-v3-0-2acbc03ca949@skidata.com>
- <20230620-hx3-v3-1-2acbc03ca949@skidata.com>
- <2023062102-booth-glorify-2b09@gregkh>
- <CAJpcXm6fRsonH+ZsA7YTpJGBW348r4ZCVSc1XGyhwajqTnn-Dw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAJpcXm6fRsonH+ZsA7YTpJGBW348r4ZCVSc1XGyhwajqTnn-Dw@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        Sebastian Reichel <sre@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230621-topic-mm8013-v1-0-4407c6260053@linaro.org>
+ <20230621-topic-mm8013-v1-1-4407c6260053@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230621-topic-mm8013-v1-1-4407c6260053@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,72 +82,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 21, 2023 at 06:22:41PM +0200, Benjamin Bara wrote:
-> On Wed, 21 Jun 2023 at 18:07, Greg Kroah-Hartman
-> <gregkh@linuxfoundation.org> wrote:
-> > On Wed, Jun 21, 2023 at 05:58:30PM +0200, Benjamin Bara wrote:
-> > > From: Benjamin Bara <benjamin.bara@skidata.com>
-> > >
-> > > As some of the onboard hubs require multiple power supplies, provide the
-> > > environment to support them.
-> > >
-> > > Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
-> > > ---
-> > > v3:
-> > > - fix nits mentioned in v2
-> > >
-> > > v2:
-> > > - replace (err != 0) with (err)
-> > > ---
-> > >  drivers/usb/misc/onboard_usb_hub.c | 39 ++++++++++++++++++++++++++++++--------
-> > >  drivers/usb/misc/onboard_usb_hub.h |  1 +
-> > >  2 files changed, 32 insertions(+), 8 deletions(-)
-> > >
-> > > diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
-> > > index 12fc6eb67c3b..a56e712d3a45 100644
-> > > --- a/drivers/usb/misc/onboard_usb_hub.c
-> > > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > > @@ -27,6 +27,13 @@
-> > >
-> > >  #include "onboard_usb_hub.h"
-> > >
-> > > +#define MAX_SUPPLIES 2
-> >
-> > Why 2?
+On 21/06/2023 17:39, Konrad Dybcio wrote:
+> Mitsumi was [1] a Japanese company making various electronics devices
+> and components. They've merged into a new entity, MinebeaMitsumi in 2017.
 > 
-> I picked 2 because with 3/3, this is the maximum of "required" supplies. The
-> currently implemented ones require only one (up to now just named "vdd"). The
-> new one added in 3/3 requires 2, therefore I tried to be generic if some future
-> hub might require 3 or more.
+> Their current main page is available at [2]
 > 
-> > > +
-> > > +static const char * const supply_names[] = {
-> > > +     "vdd",
-> > > +     "vdd2",
-> > > +};
-> >
-> > Do those names have anything to do with the number above?  If so, please
-> > document it!
-> 
-> I picked "vdd" for the first to be compatible with the existing device-trees. As
-> the actual names differ between hubs, I thought it might be generic to just use
-> "vdd2" here. If I should add some comment like "if you increase MAX_SUPPLIES,
-> please also add a supply_name below", I can do that. I could also implement
-> "vdd${i+1}" for i>0 instead.
-> 
-> >
-> > >  struct onboard_hub_pdata {
-> > >       unsigned long reset_us;         /* reset pulse width in us */
-> > > +     unsigned int num_supplies;      /* number of supplies: 0 considered as 1 */
-> >
-> > I can not understand that comment at all :(
-> 
-> This should just indicate that leaving the field empty means one supply is
-> required. Maybe "defaults to 1" is better?
+> [1] https://en.wikipedia.org/wiki/Mitsumi_Electric
 
-Whatever the comment, I suggest to put it in parentheses, rather than after a
-colon. If you keep the current style maybe s/considered/is interpreted/.
 
-Another option would be to initialize all existing hubs to num_supplies = 1,
-then there is no need for a comment and the check in _probe(). That might
-be the clearest thing to do, even though it adds a few extra lines.
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
+
