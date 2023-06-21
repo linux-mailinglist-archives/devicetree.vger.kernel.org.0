@@ -2,168 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D0795737D8D
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:40:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29FE4737D75
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230243AbjFUIK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 04:10:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49674 "EHLO
+        id S230306AbjFUIMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 04:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229951AbjFUIKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 04:10:55 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D93A10F0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 01:10:53 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-988883b0d8fso529584366b.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 01:10:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687335052; x=1689927052;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=bALinTqbF/qOXgwdMyTFwrJC13kjvO/KOdsOe67RJS8=;
-        b=HvemXir9m0Vmr9h4OBYoksSM7VKxai/edGasJTbOJ7/sO+PBuAydA2ohrP9V7/ypLF
-         D6AvAbW9XbDUk0QdCUWjo2dDR/MN9r4K5ZpVdCH7DEoM2Zl3JW6sP6PLUb/Ms+FEnlXm
-         rE2ayCc01rk9rdYDVHofbosWCgr9nhiwIWy7vF+6C/78ZNe/OdlmdXFXf0oHXmO4DKcr
-         pkFSsEGrJj1NuNWML9lkNGQ2rWAtb42GVbmFatGwz4SGstSJadpFHv96DHuHof1rnhal
-         tDPxfWIOWxLTisQ4NBapL8vqP0G31R+jYV/koiz6bsVCXJZQumjnShW7cImMOhBfqM9r
-         bVsw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687335052; x=1689927052;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bALinTqbF/qOXgwdMyTFwrJC13kjvO/KOdsOe67RJS8=;
-        b=NNbMvF+PsgYJrt3bkTUjbknu8DHchzA6NqDEUKLQZ/kZmz8f1FzkX2Dc715Hlxt3pX
-         V30AyR/1HJovd0jiCKFkw+/nZ8ZskQs0H8ggr39tf5/zX5PnRWyZzQOXVJSu/CcUIduH
-         Gg6qviHBr6L4wK1YAhhc3bAYXvcN0C6MGJKjwa5+ut9xGrNtQ4An8Nri6cHLL/sxmafh
-         xns82N41GMvP72f5gdCI/yFzS9kUg3YsUEFCqFQmm6HZA7nOYZHmVJ6Nty+ggeK6b9dU
-         LnJZspaZjLto1aw1mklLTKAnLDPFny9r6/mpyPGohZ02Ql3jWOKJ5nGO6yJ7c1JNlmh7
-         s9Kg==
-X-Gm-Message-State: AC+VfDyBHnpiSSbi1WF7XjLxPW37zTXGcTF+/BprMZXL1R+T61eEm6rk
-        GorbLE1DMlFz19rsA8BEbfBppw==
-X-Google-Smtp-Source: ACHHUZ7wPyUWkTtvUQZCVeRO6eUm0VUxn3oehvqnzgwJIhLbSMEEEEDcfYDRdNFuKMIdlGMw1Tcd5g==
-X-Received: by 2002:a17:907:a41e:b0:989:2368:20d9 with SMTP id sg30-20020a170907a41e00b00989236820d9mr4221444ejc.75.1687335051832;
-        Wed, 21 Jun 2023 01:10:51 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id ox4-20020a170907100400b00987316d1585sm2738614ejb.145.2023.06.21.01.10.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 01:10:51 -0700 (PDT)
-Message-ID: <adc4d83e-5bec-b925-b55e-43ad441ad8ee@linaro.org>
-Date:   Wed, 21 Jun 2023 10:10:49 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 1/3] dt-bindings: qspi: cdns,qspi-nor: Add clocks for
- StarFive JH7110 SoC
-Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229657AbjFUIMS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 04:12:18 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0412DE;
+        Wed, 21 Jun 2023 01:12:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1687335137; x=1718871137;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=DM/VZm23k+KBPD9Z2nm/p/7AvFdl8laDmWGgyYJzjtQ=;
+  b=v8s7LsvTYflOpQOo6WLwodXmWQK/hEDj2cNFKpjheUzLy5Zp1KNFsVY4
+   QPv+FTwzuhA3rI/8WrxbPUUmnB8itKC3bJkA7dcA0/FYn3BgW4sEr4VCx
+   T8N7pwGfXnFsSuwnds/P0D7LFOZR3MOD8910skIkgSzj8OINpYK4NvE1Y
+   Q3SVnuCAdNZ00YY7t2/1+ml6W5ptHzAJe/dirZhXU6zoGiKNSbCwhYFVI
+   MjwB5BDTU9hhZ9w0ovP+Kp6wSWAyp230J4gOeq6fNldHvCpB6dTNQlChr
+   +RbQDgLIxJS397SD4+gRcPMyfaDEb0ruuvDpMAinuA3R9+3AhfyUCbb4f
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; 
+   d="asc'?scan'208";a="231308487"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Jun 2023 01:12:17 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 21 Jun 2023 01:12:16 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 21 Jun 2023 01:12:14 -0700
+Date:   Wed, 21 Jun 2023 09:11:47 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+CC:     Lucas Tanure <tanure@linux.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yixun Lan <dlan@gentoo.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230619083517.415597-1-william.qiu@starfivetech.com>
- <20230619083517.415597-2-william.qiu@starfivetech.com>
- <4937f9c4-a0e0-fd37-d71b-e7488b2a1062@linaro.org>
- <fb608232-f44d-21cf-7e0e-28829196e677@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <fb608232-f44d-21cf-7e0e-28829196e677@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: meson-t7-a311d2-khadas-vim4: add
+ initial device-tree
+Message-ID: <20230621-sloppy-lisp-d6569b907c41@wendy>
+References: <20230620134857.238941-1-tanure@linux.com>
+ <20230620134857.238941-3-tanure@linux.com>
+ <ZJIjtphyKdC48JrN@ofant>
+ <76a7f819-f3d2-d39d-1bc9-f1e7f837fd22@linaro.org>
+ <CAJX_Q+3im20qphOXzn-=58Kx4--ajbaF4P8BVvRcDcPXn1Qheg@mail.gmail.com>
+ <20230621-barber-enjoyably-04806271daea@wendy>
+ <6fe5dfb6-5f18-feca-a2e7-8cfb78627e01@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="SUGtz7gnd9H8ZpfO"
+Content-Disposition: inline
+In-Reply-To: <6fe5dfb6-5f18-feca-a2e7-8cfb78627e01@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2023 08:45, William Qiu wrote:
-> 
-> 
-> On 2023/6/19 20:17, Krzysztof Kozlowski wrote:
->> On 19/06/2023 10:35, William Qiu wrote:
->>> The QSPI controller needs three clock items to work properly on StarFive
->>> JH7110 SoC, so there is need to change the maxItems's value to 3. Other
->>> platforms do not have this constraint.
->>>
->>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
->>> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
->>> ---
->>>  .../bindings/spi/cdns,qspi-nor.yaml           | 20 ++++++++++++++++++-
->>>  1 file changed, 19 insertions(+), 1 deletion(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
->>> index b310069762dd..1b83cbb9a086 100644
->>> --- a/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
->>> +++ b/Documentation/devicetree/bindings/spi/cdns,qspi-nor.yaml
->>> @@ -26,6 +26,15 @@ allOf:
->>>              const: starfive,jh7110-qspi
->>>      then:
->>>        properties:
->>> +        clocks:
->>> +          maxItems: 3
->>> +
->>> +        clock-names:
->>> +          items:
->>> +            - const: ref
->>> +            - const: ahb
->>> +            - const: apb
->>
->> You are duplicating top-level property. Define the items only in one
->> place. If this list is applicable to everything, then in top-level property.
->>
-> Only in JH7110 SoC need there clocks, other platforms do not have this constraint.
-> So I need to duplicating top-level property.
+--SUGtz7gnd9H8ZpfO
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You don't need, why? Why writing something twice is an answer to "JH7110
-needs 3 clocks"? It's not related.
+On Wed, Jun 21, 2023 at 10:04:28AM +0200, Neil Armstrong wrote:
+> On 21/06/2023 10:01, Conor Dooley wrote:
 
-What is the clock for all other variants?
+> > Aye, but we do not want to propagate that. New stuff should not be
+> > adding undocumented compatibles, and those that are undocumented should
+> > be documented.
+>=20
+> Documentation is ongoing, it takes time !
 
->>> +
->>>          resets:
->>>            minItems: 2
->>>            maxItems: 3
->>> @@ -38,6 +47,9 @@ allOf:
->>>  
->>>      else:
->>>        properties:
->>> +        clocks:
->>> +          maxItems: 1
->>
->> clock-names is missing. They must be in sync with clocks. What is the
->> first clock?
->>
-> But there are no clock-names before, should I add it?
+Don't worry, I wasn't trying to criticise, just pointing out the ideal
+situation.
 
-Then let's just disallow it. Either you define it or you not allow it.
+--SUGtz7gnd9H8ZpfO
+Content-Type: application/pgp-signature; name="signature.asc"
 
->>> +
->>>          resets:
->>>            maxItems: 2
->>>  
->>> @@ -70,7 +82,13 @@ properties:
->>>      maxItems: 1
->>>  
->>>    clocks:
->>> -    maxItems: 1
->>> +    maxItems: 3
->>
->>
->> You did not test it before sending. minItems is missing.
->>
-> I will add it.
-> As for other platforms, should I use enum to constraint the clocks?
+-----BEGIN PGP SIGNATURE-----
 
-What is the clock on other platforms?
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJKwwwAKCRB4tDGHoIJi
+0mZ7AP9gCvbPnfk6sA39u0KwkV3NaFictZl7I0Mlsst3rLNtEQEA0Q9A9IX6pcj0
+HEsgPVBiC5EVDdVuA9PbNMdVCd/qGwk=
+=Rcr8
+-----END PGP SIGNATURE-----
 
-Best regards,
-Krzysztof
-
+--SUGtz7gnd9H8ZpfO--
