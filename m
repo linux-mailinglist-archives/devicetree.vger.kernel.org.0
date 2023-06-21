@@ -2,104 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D938737B16
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 08:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01513737B0C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 08:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230075AbjFUGGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 02:06:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50206 "EHLO
+        id S230173AbjFUGKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 02:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51536 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229875AbjFUGF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 02:05:58 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0DB791739
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 23:05:55 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-5187aa18410so5884220a12.0
-        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 23:05:54 -0700 (PDT)
+        with ESMTP id S230078AbjFUGJ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 02:09:58 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2957172C
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 23:09:54 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-982a88ca610so663417966b.2
+        for <devicetree@vger.kernel.org>; Tue, 20 Jun 2023 23:09:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687327553; x=1689919553;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rl1Qby0u21Iv2rmR9JLr9d/ig7PQZex8yz2AvojYw5k=;
-        b=f6cTeKkXAVR90n3ajc6KdT0AvLuCf7rE8O5SWg5HYFe4r6daBoExzrCHY4k9VjtLne
-         35eHIix5pq4cczk28QvhmMRZJFIdJjVFFA+fbTmqniBmYr/JJkSTMDFiIiIvjgImKzjw
-         ipRLeCzskx28qwtDx+IYK8qMVOm55oORpv9rjj5k5RMH15WVHkOPbpCWXX2sOFcskKLH
-         AJ+IKcPSB1ft1XunPFSYCwEo15fDILZw0mmOOEP9V3o+vh/Op91jtrB/s0I5TKgOUbwu
-         TUBxhNZIvJbFnJF1WwjWwXb7PGxhaxpvQFmv4JkQfF15/GnSDkg+0bJXgnZaDhlsKPjf
-         grXg==
+        d=linaro.org; s=google; t=1687327793; x=1689919793;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=5KQyTonkUooBZsCr5w5RfeTc4RupKUs9CBjpkXfe2Zk=;
+        b=ZO7zbGSnjCubhNA1aJxOIocol/slpspgaFBAu8h+g0kOo+kkW1gC1geXWAhvpJdqgP
+         fIm7mM239zNKuVAAab7maoqlMR82pr3JLqsCBNEg37JsM6oOwB5XDBZqLDHPVn/rHVSu
+         U7zOz2IzamWLBM7jeuDa5YYnjcnccPnMkETFmO/pXVqAxYp/IIVKCJWj9FuRfJKqtgkR
+         Z760a/ZsctTmvN7IJHN/rOklNWIghh18ThTV2frxr4YtUMWv9w/l0vStw0znN7UG57H2
+         pIlUaYrlvco4xsp2Gw40UOS9xJxeDGMCfDYJjGJZsPkj4d5/PLK9AOslTCV0kZkUG40G
+         T4yQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687327553; x=1689919553;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rl1Qby0u21Iv2rmR9JLr9d/ig7PQZex8yz2AvojYw5k=;
-        b=T0MlPs8kOJBgcawktVCyv03qiMXoyQ6vbaRtFHq1FbjrVK2EtAxF1rxWdnqqRJb0T9
-         WPQ1pFv52HKdDXTPwWY76pnyhFkrtPjotLP6WVkhDkS9l1Atq5FQUSeeYTFtDaFC1r74
-         937Jin1869eLqRyyDtcW6TVpUWnaa9Qv8nxmkLO4lfOlkZDWyG+qfJ9VNADjkk0y+yfq
-         JrJgNfWMVWKpYTFzHs8Djyy1ryaQyE3pw+tOGOIlEsIn5lnULUVGd6qLNBLElENdN4ob
-         sKAgHeWrTuVnNCESqZX7YmRoNq3sMMDA6iJF/5vdOm7mXEyDM1EiBufpKwgUYw7Q8MPj
-         nkiQ==
-X-Gm-Message-State: AC+VfDxflrvEpSo5anq0cNecH+Oh7m8CQ/PAdeRTtLBfM+AADB5/hX9r
-        q0qOME07CpYoZX9CsL58/XogmA==
-X-Google-Smtp-Source: ACHHUZ5LvRIbZZcBlOt6s5zzU9Jeyo74a4+RXayHEeu5KUpcAefp32b6yjQerwjo87A40cQ8FOnSwA==
-X-Received: by 2002:aa7:db89:0:b0:51a:265a:8fca with SMTP id u9-20020aa7db89000000b0051a265a8fcamr8538702edt.27.1687327553420;
-        Tue, 20 Jun 2023 23:05:53 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id g25-20020a056402181900b00515c8024cb9sm2074751edy.55.2023.06.20.23.05.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 20 Jun 2023 23:05:52 -0700 (PDT)
-Message-ID: <74788626-231c-ccfb-ecc8-87dbc6a4ecea@linaro.org>
-Date:   Wed, 21 Jun 2023 08:05:50 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH net-next] dt-bindings: net: bluetooth: qualcomm: document
- VDD_CH1
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>,
-        Luiz Augusto von Dentz <luiz.dentz@gmail.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
+        d=1e100.net; s=20221208; t=1687327793; x=1689919793;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5KQyTonkUooBZsCr5w5RfeTc4RupKUs9CBjpkXfe2Zk=;
+        b=TOxMLrATWxwWVphXvlGm4gVlFlG0X2712LlF9apurwW028P5jvXgBlbMEn8Os7tfrD
+         X7FmTl4CwPFD46QYxSQ3LIVt1o93C/NpHJXsveDjqan9II8I3+egXxKerZlcXa/FqXu+
+         pR7CNY/gwB1sUknG1vOtF8sHJxI5ZnpgGNf0CLLgof5yYjGAx2zOmXjvcBOlZVOaG06j
+         pbliY0kPXSTHa4KL6qB21+S/Xh+us+aPik/wyqtD2F+uSfR92VxjvLPLAZt/nahblSeJ
+         EB5WDiyEWTNtDunWRUl5VxbvT6gvyGW1OMHCPs3keDwiKHB8bq9Y7ZZaPqyQ/3p4YaWL
+         8J4A==
+X-Gm-Message-State: AC+VfDxvZ+QCXkB49sXfY2HjF0Wsr55BfXQMw+uMlwflsusM4bxsf/fN
+        M/RtDrp4ytYc4NplPMPsLDxJ2w==
+X-Google-Smtp-Source: ACHHUZ73bgT3/h24wRR46mzrJ4jW1YcuFSwCdWXXjZ+Pi4NbX0uCX3RQQ5dOf848Fn01ctCLdRnUog==
+X-Received: by 2002:a17:906:974f:b0:989:21e4:6c6e with SMTP id o15-20020a170906974f00b0098921e46c6emr3288108ejy.53.1687327793394;
+        Tue, 20 Jun 2023 23:09:53 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id i10-20020a170906698a00b00988dbbd1f7esm2509815ejr.213.2023.06.20.23.09.51
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 20 Jun 2023 23:09:52 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Marcel Holtmann <marcel@holtmann.org>,
+        Johan Hedberg <johan.hedberg@gmail.com>,
+        Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
         Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Balakrishna Godavarthi <bgodavar@codeaurora.org>,
-        Rocky Liao <rjliao@codeaurora.org>, netdev@vger.kernel.org,
+        linux-bluetooth@vger.kernel.org, netdev@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230617165716.279857-1-krzysztof.kozlowski@linaro.org>
- <20230620111456.48aae53c@kernel.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230620111456.48aae53c@kernel.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] Bluetooth: MAINTAINERS: add Devicetree bindings to Bluetooth drivers
+Date:   Wed, 21 Jun 2023 08:09:49 +0200
+Message-Id: <20230621060949.5760-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20/06/2023 20:14, Jakub Kicinski wrote:
-> On Sat, 17 Jun 2023 18:57:16 +0200 Krzysztof Kozlowski wrote:
->> WCN3990 comes with two chains - CH0 and CH1 - where each takes VDD
->> regulator.  It seems VDD_CH1 is optional (Linux driver does not care
->> about it), so document it to fix dtbs_check warnings like:
->>
->>   sdm850-lenovo-yoga-c630.dtb: bluetooth: 'vddch1-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
->>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> Hi Luiz, I don't see you CCed here, should we take it directly 
-> to net-next?
+The Devicetree bindings should be picked up by subsystem maintainers,
+but respective pattern for Bluetooth drivers was missing.
 
-Bluetooth bindings are not part of BLUETOOTH entry, so obviously no Cc
-for bluetooth maintainers. I'll send a patch to update maintainers.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-Best regards,
-Krzysztof
+diff --git a/MAINTAINERS b/MAINTAINERS
+index ea9d87f39345..3d5e378b3f13 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -3637,6 +3637,7 @@ S:	Supported
+ W:	http://www.bluez.org/
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth.git
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git
++F:	Documentation/devicetree/bindings/net/bluetooth/
+ F:	drivers/bluetooth/
+ 
+ BLUETOOTH SUBSYSTEM
+-- 
+2.34.1
 
