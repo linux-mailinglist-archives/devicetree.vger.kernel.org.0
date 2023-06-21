@@ -2,60 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EF1A3739028
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 21:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B14A673902C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 21:37:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230373AbjFUTgV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 15:36:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
+        id S230212AbjFUThE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 15:37:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230267AbjFUTgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 15:36:19 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 129B71989;
-        Wed, 21 Jun 2023 12:36:15 -0700 (PDT)
-X-GND-Sasl: alexandre.belloni@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687376174;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=t2IbrcNzQNr/fmkdLl77sKepHEuqtDNp0dRZtoi2jnM=;
-        b=Je/33w7wN8peztYmhMOKG59d4LYTqq9ZW6pXS5GVcPdtjGF596LGjli5jIjbW+5wTS7tM1
-        n4ExkXx2NkcsmkBnlicRXMFp7QydUJ3fTUOQPY36vtUpY3NNTQ4iH2NQCuUI2Fp4CnOTB5
-        UPDuvfZYRHB+xVaTnj3lKZEMzGT2LoRp/HZ/bRYSI0l3tsiVilZg8ANY/39JZ2Zk8jLtqZ
-        wocgzy0mF7IZkSV/BH306ZpZE0zJWURZ8hHr8Lc/VwsDLBexUT+81LVl2esJ1uhdcMfMOj
-        YErVFYxSUCgAzxGVbvDUVxqM1LGPbfSuNeiwPf6LybkkRn9DazvOqKeXtrI7WA==
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id CCE3C1BF204;
-        Wed, 21 Jun 2023 19:36:13 +0000 (UTC)
-Date:   Wed, 21 Jun 2023 21:36:13 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     a.zummo@towertech.it, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>
-Subject: Re: [PATCH v3 11/14] rtc: pcf2127: adapt time/date registers write
- sequence for PCF2131
-Message-ID: <20230621193613d25ceb92@mail.local>
-References: <20221215150214.1109074-1-hugo@hugovil.com>
- <20221215150214.1109074-12-hugo@hugovil.com>
- <Y8rK1dgpNJaSy/Gb@mail.local>
- <20230123165741.b7c93d439841860f4ab9b0c8@hugovil.com>
+        with ESMTP id S229951AbjFUThE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 15:37:04 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 469E81726;
+        Wed, 21 Jun 2023 12:37:03 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-77e3f25446bso104462839f.1;
+        Wed, 21 Jun 2023 12:37:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687376222; x=1689968222;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=yXwTNcT3p5TlhcI5K0peTsLgCwCNEi2f6S+CEMJ2sTo=;
+        b=j4P99z3bcxv6rjRgStscMh+spK8HpN4FARSzKG+kEp/zJ3gVdH6zgUhT5nZEqndXEp
+         TSgc76dJVliW5FrFgpqJV8QUOcjpfCQZXhK/GKjUXNj5Qbrf4wdi/LnFuWRmbqIoWz1x
+         5tzE4sHJDYeYYgdBrDQOtb81SRI5Hl6lOpPtae40kY1R+aIjnsRgHbJe7rrNCAkYxV63
+         eksMlftmZVVzcfkBC769wenM/5bkFksXDBVAaiCPnLA2ACVnGtoek0NMT/3iz2VEQmZX
+         eKSUNORV/+XhnJbCRv+zXGd+txcPIHa4glocXa5yLAqlmuq+krfUN40eoLGAS4QnXloq
+         buVw==
+X-Gm-Message-State: AC+VfDxmy1fuod8G9WCfZeIMtmm+jvYnlyNQyYBsmZ718eHY19Mm0uOr
+        UEV+8pfBFJAdxWo7UPZJ6g==
+X-Google-Smtp-Source: ACHHUZ7pZNivx0IhDNQ9nDhjzEyELHZSbzYnnRqjMifeP5v8EyJiXJcFjsNioffrMb2HtT/wGPcrgA==
+X-Received: by 2002:a05:6602:1613:b0:780:ba85:f475 with SMTP id x19-20020a056602161300b00780ba85f475mr1696474iow.3.1687376221384;
+        Wed, 21 Jun 2023 12:37:01 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id dq35-20020a0566384d2300b0040fad79ac08sm1526742jab.89.2023.06.21.12.36.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 12:37:00 -0700 (PDT)
+Received: (nullmailer pid 3403581 invoked by uid 1000);
+        Wed, 21 Jun 2023 19:36:57 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230123165741.b7c93d439841860f4ab9b0c8@hugovil.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+From:   Rob Herring <robh@kernel.org>
+To:     Anjelique Melendez <quic_amelende@quicinc.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        thierry.reding@gmail.com, linux-arm-msm@vger.kernel.org,
+        robh+dt@kernel.org, lee@kernel.org, pavel@ucw.cz,
+        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, agross@kernel.org,
+        u.kleine-koenig@pengutronix.de, devicetree@vger.kernel.org,
+        konrad.dybcio@linaro.org, conor+dt@kernel.org
+In-Reply-To: <20230621185949.2068-2-quic_amelende@quicinc.com>
+References: <20230621185949.2068-1-quic_amelende@quicinc.com>
+ <20230621185949.2068-2-quic_amelende@quicinc.com>
+Message-Id: <168737621686.3403500.14671930652655583051.robh@kernel.org>
+Subject: Re: [PATCH 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
+Date:   Wed, 21 Jun 2023 13:36:57 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,152 +68,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/01/2023 16:57:41-0500, Hugo Villeneuve wrote:
-> On Fri, 20 Jan 2023 18:09:41 +0100
-> Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+
+On Wed, 21 Jun 2023 11:59:45 -0700, Anjelique Melendez wrote:
+> Add binding for the Qualcomm Programmable Boot Sequencer device.
 > 
-> > On 15/12/2022 10:02:12-0500, Hugo Villeneuve wrote:
-> > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > 
-> > > The sequence for updating the time/date registers is slightly
-> > > different between PCF2127/29 and PCF2131.
-> > > 
-> > > For PCF2127/29, during write operations, the time counting
-> > > circuits (memory locations 03h through 09h) are automatically blocked.
-> > > 
-> > > For PCF2131, time/date registers write access requires setting the
-> > > STOP bit and sending the clear prescaler instruction (CPR). STOP then
-> > > needs to be released once write operation is completed.
-> > > 
-> > > Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > > ---
-> > >  drivers/rtc/rtc-pcf2127.c | 38 +++++++++++++++++++++++++++++++++++++-
-> > >  1 file changed, 37 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> > > index e4b78b9c03f9..11fbdab6bf01 100644
-> > > --- a/drivers/rtc/rtc-pcf2127.c
-> > > +++ b/drivers/rtc/rtc-pcf2127.c
-> > > @@ -39,6 +39,7 @@
-> > >  #define PCF2127_REG_CTRL1		0x00
-> > >  #define PCF2127_BIT_CTRL1_POR_OVRD		BIT(3)
-> > >  #define PCF2127_BIT_CTRL1_TSF1			BIT(4)
-> > > +#define PCF2127_BIT_CTRL1_STOP			BIT(5)
-> > >  /* Control register 2 */
-> > >  #define PCF2127_REG_CTRL2		0x01
-> > >  #define PCF2127_BIT_CTRL2_AIE			BIT(1)
-> > > @@ -70,6 +71,7 @@
-> > >  #define PCF2131_REG_SR_RESET		0x05
-> > >  #define PCF2131_SR_RESET_READ_PATTERN	0b00100100 /* Fixed pattern. */
-> > >  #define PCF2131_SR_RESET_RESET_CMD	0x2C /* SR is bit 3. */
-> > > +#define PCF2131_SR_RESET_CPR_CMD	0xA4 /* CPR is bit 7. */
-> > >  /* Time and date registers */
-> > >  #define PCF2127_REG_TIME_DATE_BASE	0x03
-> > >  #define PCF2131_REG_TIME_DATE_BASE	0x07 /* Register 0x06 is 100th seconds,
-> > > @@ -307,7 +309,31 @@ static int pcf2127_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> > >  	/* year */
-> > >  	buf[i++] = bin2bcd(tm->tm_year - 100);
-> > >  
-> > > -	/* write register's data */
-> > > +	/* Write access to time registers:
-> > > +	 * PCF2127/29: no special action required.
-> > > +	 * PCF2131:    requires setting the STOP bit. STOP bit needs to
-> > > +	 *             be cleared after time registers are updated.
-> > > +	 *             It is also recommended to set CPR bit, although
-> > > +	 *             write access will work without it.
-> > > +	 */
-> > > +	if (pcf2127->cfg->has_reset_reg) {
-> > 
-> > This should probably be tied to the actual rtc model rather than the
-> > presence of the reset register.
-> > You MUST clear CPR to be able to set the time precisely.
-> 
-> In fact you must actually SET the CPR bit to clear the prescaler, confusing!
-> 
-> I was already setting the CPR bit (clearing prescaler), so I modified the confusing comment.
-> 
-> The CPR bit is only present IF the reset register is also present, that is why I simply used the presence of the reset register to take the correct action. This avoids to define a new bit or matching on a device model for that functionality (adding newer models could potentially mean modifying the model match).
-> 
-> But if you absolutely want to match on the model, I would like to know how you would like to practically do it (maybe an example)?
+> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
+> ---
+>  .../bindings/soc/qcom/qcom-pbs.yaml           | 41 +++++++++++++++++++
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml
 > 
 
-You can keep pcf21xx_type around, in pcf21xx_config for example.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> 
-> 
-> > 
-> > > +		err = regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL1,
-> > > +					 PCF2127_BIT_CTRL1_STOP,
-> > > +					 PCF2127_BIT_CTRL1_STOP);
-> > > +		if (err) {
-> > > +			dev_err(dev, "setting STOP bit failed\n");
-> > 
-> > This really needs to be less verbose. There is nothing a user can really
-> > do after having seen this message. Having an error in userspace will
-> > anyway prompt the user to retry the operation which is the only action
-> > it can do.
-> 
-> I converted the dev_err messages to dev_dbg.
-> 
-> In the original driver and in the same function, there is also a dev_err to handle regmap_bulk_write() failure. Do you suggest that we also make it less verbose:
-> 
-> err = regmap_bulk_write(pcf2127->regmap, pcf2127->cfg->reg_time_base, buf, i);
->  	if (err) {
->  		dev_err(dev,
-> 
-> ???
+yamllint warnings/errors:
+./Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml:26:2: [warning] wrong indentation: expected 2 but found 1 (indentation)
 
-yes, you can remove it as part of your previous patches.
+dtschema/dtc warnings/errors:
 
-> 
-> 
-> > > +			return err;
-> > > +		}
-> > > +
-> > > +		err = regmap_write(pcf2127->regmap, pcf2127->cfg->reg_reset,
-> > > +				   PCF2131_SR_RESET_CPR_CMD);
-> > > +		if (err) {
-> > > +			dev_err(dev, "sending CPR cmd failed\n");
-> > > +			return err;
-> > > +		}
-> > > +	}
-> > > +
-> > > +	/* write time register's data */
-> > >  	err = regmap_bulk_write(pcf2127->regmap, pcf2127->cfg->regs_td_base, buf, i);
-> > >  	if (err) {
-> > >  		dev_err(dev,
-> > > @@ -315,6 +341,16 @@ static int pcf2127_rtc_set_time(struct device *dev, struct rtc_time *tm)
-> > >  		return err;
-> > >  	}
-> > >  
-> > > +	if (pcf2127->cfg->has_reset_reg) {
-> > > +		/* Clear STOP bit (PCF2131 only) after write is completed. */
-> > > +		err = regmap_update_bits(pcf2127->regmap, PCF2127_REG_CTRL1,
-> > > +					 PCF2127_BIT_CTRL1_STOP, 0);
-> > > +		if (err) {
-> > > +			dev_err(dev, "clearing STOP bit failed\n");
-> > > +			return err;
-> > > +		}
-> > > +	}
-> > > +
-> > >  	return 0;
-> > >  }
-> > >  
-> > > -- 
-> > > 2.30.2
-> > > 
-> > 
-> > -- 
-> > Alexandre Belloni, co-owner and COO, Bootlin
-> > Embedded Linux and Kernel engineering
-> > https://bootlin.com
-> > 
-> 
-> 
-> -- 
-> Hugo Villeneuve <hugo@hugovil.com>
+doc reference errors (make refcheckdocs):
 
--- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230621185949.2068-2-quic_amelende@quicinc.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
+
