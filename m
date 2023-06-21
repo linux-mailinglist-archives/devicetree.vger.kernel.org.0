@@ -2,134 +2,323 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F72D738AEA
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAE22738B4B
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231244AbjFUQW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 12:22:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48498 "EHLO
+        id S232094AbjFUQco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 12:32:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230360AbjFUQW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:22:57 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97706E6E;
-        Wed, 21 Jun 2023 09:22:56 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b479d53d48so52618831fa.1;
-        Wed, 21 Jun 2023 09:22:56 -0700 (PDT)
+        with ESMTP id S231799AbjFUQck (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:32:40 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4A411BE8
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:32:05 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9889952ed18so567709066b.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:32:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687364575; x=1689956575;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=mbUIsseJQLcD56nUexXAQssleBbFXq9HDLFNTK6540U=;
-        b=sge27uCvgXX/8Df62gKTk54cBqLn4j59/BfRkIX1rNPVXbh5aEauw0V9ewkL4F09SB
-         JPsONs3ildeURV0CHLSyqHnZomdLlDvOdn1EaMCfrYO4Ax0bVLL89pDzRlkYfW3+k4xb
-         Bd7DvbmpQygGS4YkTEsC5G+8iGlapHW36eqKCgXVhzvigVxspDrQqdDxtnuW9XBpXbj3
-         1639Z2m9a59PATglcKzvobinmb6TntuC8pSEUFNouhgR7nq5ryW++aHaOf7xeOYsRoBn
-         zLvB8iGOEyTTyVeEMJ/5D6Poudd3KlUthPef7N4UZHNpzsutyApzzvFOAdet1wS0vCEw
-         K7rA==
+        d=chromium.org; s=google; t=1687365123; x=1689957123;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=nUR14yvWhA8hLAvpHabjnwRobvun0SbNNcqEoPzoLYM=;
+        b=FB+WxQrtn22pWkBaYz3afcjpEEoYdikv3PizQ/owDe234uBt9XSIbgX2FxDAu7Oh9+
+         EhrfJ1NUx75ohxEZxkBY+eBd4DLQOrOdwp1viVkFe4cY/U+Qfw6ZLdGczH8HyB6Qfhlo
+         m3ezYeOUydWBg7NvYMsjxpegsdcNpL/b5cf64=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687364575; x=1689956575;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=mbUIsseJQLcD56nUexXAQssleBbFXq9HDLFNTK6540U=;
-        b=R7/U+LHmJtZ72EctVZTroNC+9QLEtVaWnKrrot/VclETambkdMXv619e6o1IdA2rng
-         rjscKDu06huFgG/orcJ5aochwGbfcNAHL7Lg6zqthcxHXSHwBmwzYHNxV9joab75gsg0
-         Us6VwygjbqhDlfs8XCIoPyyqoF6nSTAot4k+2lf47A142bjzJizW6BQlW5i1XN6G/VzR
-         Q2WH9aisB2B4q9ANNvLrTGfezCjplXM8kFNpovHXwCeeJaLOnjwuFQ+UNk3Y0Krj9whH
-         n/Rq802vVwVXBj89v9Wg1QcqiLk09q57NuRUUE08p7aDyiU+SNlkollqqI2qVPl1wU66
-         +XeQ==
-X-Gm-Message-State: AC+VfDxwCgb1I7WmnnsTH/wROq4S6pbcAcGV/9Dq/TYxSR3ZubolSlBA
-        wlWCyF9NuxTQ+CzdnrhbWpXUC6cfvWR4Cyh5F0I=
-X-Google-Smtp-Source: ACHHUZ76EEUwUN3hooyIHI/bSiXV0MfinoZMsCJXcKF26s7jAh7kKSz/R3mjelpjU2Fl35/yLc8YoklRAez3ZrVkWnE=
-X-Received: by 2002:a05:651c:1045:b0:2b5:8204:ec9b with SMTP id
- x5-20020a05651c104500b002b58204ec9bmr2454212ljm.43.1687364574666; Wed, 21 Jun
- 2023 09:22:54 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687365123; x=1689957123;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nUR14yvWhA8hLAvpHabjnwRobvun0SbNNcqEoPzoLYM=;
+        b=QiZnQ2bX0Cr6V5QXtcAX/2Z8nrzflAxqqMwWQeuBNYb/iCqWKLau/g5Bw4UatKuF3e
+         YkPXzrRAks1iTk80PhirKrcE1HJPSmylHTDe9Y+hFExKjexbvByNObEaO2DvjYLhSDNG
+         nJdzWYe4witji2Xku+G7Wi052W7thQNIwuODzYwSEAAv2mciRYAYuULQFyADgsYEM1gZ
+         ykka0RZQUuYVneRymNDMJHDXJ0dSU/r9bl/GH+nFG/Kbel9ew1F4QSE47tH8TMeRDgLR
+         5akrKPAciWQqq//y2pcFhGEEOs/pCCF+1vCoTyFwe3owYlXRw09aKpXv/0Gml0B7Vnn+
+         oUfg==
+X-Gm-Message-State: AC+VfDyDHcH9+J7n5kJX6Q5/C80YxXOwi26drXA6ps5KIF24pePE+zbc
+        W+MgtAd+uOxmMGwZFZCQZTHyVdAH1y1PIV53yhqpcnxs
+X-Google-Smtp-Source: ACHHUZ6QY+hUABMhxBlvhy1gx0N/BoCRauMWGZ46BhXkavgigtX9ipwpZMglp4kjrpq0bZAlvNmAPw==
+X-Received: by 2002:a17:907:8a07:b0:988:acb4:f6f with SMTP id sc7-20020a1709078a0700b00988acb40f6fmr8851077ejc.47.1687365123456;
+        Wed, 21 Jun 2023 09:32:03 -0700 (PDT)
+Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com. [209.85.128.50])
+        by smtp.gmail.com with ESMTPSA id q15-20020a170906770f00b00989257be620sm3060205ejm.200.2023.06.21.09.32.03
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jun 2023 09:32:03 -0700 (PDT)
+Received: by mail-wm1-f50.google.com with SMTP id 5b1f17b1804b1-3f9b4b286aaso835e9.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:32:03 -0700 (PDT)
+X-Received: by 2002:a50:d79a:0:b0:506:b280:4993 with SMTP id
+ w26-20020a50d79a000000b00506b2804993mr35434edi.2.1687365102841; Wed, 21 Jun
+ 2023 09:31:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230620-hx3-v3-0-2acbc03ca949@skidata.com> <20230620-hx3-v3-1-2acbc03ca949@skidata.com>
- <2023062102-booth-glorify-2b09@gregkh>
-In-Reply-To: <2023062102-booth-glorify-2b09@gregkh>
-From:   Benjamin Bara <bbara93@gmail.com>
-Date:   Wed, 21 Jun 2023 18:22:41 +0200
-Message-ID: <CAJpcXm6fRsonH+ZsA7YTpJGBW348r4ZCVSc1XGyhwajqTnn-Dw@mail.gmail.com>
-Subject: Re: [PATCH v3 1/3] usb: misc: onboard-hub: support multiple power supplies
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
+References: <20230607215224.2067679-1-dianders@chromium.org>
+ <jehxiy3z4aieop5qgzmlon4u76n7gvt3kc6knxhb5yqkiz3rsp@mx27m75sx43r>
+ <CAD=FV=Wr7Xatw1LsofiZ5Xx7WBvAuMMdq4D5Po1yJUC1VdtZdg@mail.gmail.com>
+ <z7wi4z4lxpkhvooqhihlkpubyvueb37gvrpmwk6v7xwj2lm6jn@b7rwyr5ic5x5>
+ <CAD=FV=XnANRM=+2D9+DzcXx9Gw6iKKQsgkAiq8=izNEN-91f_Q@mail.gmail.com>
+ <boqzlmbrp5rvepmckkqht4h5auspjlbt5leam4xivy7a4bqxnj@iuxxhooxcphk> <CAD=FV=VO=GE5BEw6kKK19Qj9tcia509Pb-bvMcq0uA05sVLvHw@mail.gmail.com>
+In-Reply-To: <CAD=FV=VO=GE5BEw6kKK19Qj9tcia509Pb-bvMcq0uA05sVLvHw@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 21 Jun 2023 09:31:30 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=W4Cy1OiQj0JmQEJS4wFqJXSoYXna1-PUi6xL9+fwuq8Q@mail.gmail.com>
+Message-ID: <CAD=FV=W4Cy1OiQj0JmQEJS4wFqJXSoYXna1-PUi6xL9+fwuq8Q@mail.gmail.com>
+Subject: Re: [PATCH v2 00/10] drm/panel and i2c-hid: Allow panels and
+ touchscreens to power sequence together
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Jiri Kosina <jikos@kernel.org>,
+        Benjamin Tissoires <benjamin.tissoires@redhat.com>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        dri-devel@lists.freedesktop.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        linux-input@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        linux-kernel@vger.kernel.org, hsinyi@google.com,
+        cros-qcom-dts-watchers@chromium.org, devicetree@vger.kernel.org,
+        yangcong5@huaqin.corp-partner.google.com,
+        linux-arm-msm@vger.kernel.org,
+        Chris Morgan <macroalpha82@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Jun 2023 at 18:07, Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
-> On Wed, Jun 21, 2023 at 05:58:30PM +0200, Benjamin Bara wrote:
-> > From: Benjamin Bara <benjamin.bara@skidata.com>
-> >
-> > As some of the onboard hubs require multiple power supplies, provide the
-> > environment to support them.
-> >
-> > Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
-> > ---
-> > v3:
-> > - fix nits mentioned in v2
-> >
-> > v2:
-> > - replace (err != 0) with (err)
-> > ---
-> >  drivers/usb/misc/onboard_usb_hub.c | 39 ++++++++++++++++++++++++++++++--------
-> >  drivers/usb/misc/onboard_usb_hub.h |  1 +
-> >  2 files changed, 32 insertions(+), 8 deletions(-)
-> >
-> > diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
-> > index 12fc6eb67c3b..a56e712d3a45 100644
-> > --- a/drivers/usb/misc/onboard_usb_hub.c
-> > +++ b/drivers/usb/misc/onboard_usb_hub.c
-> > @@ -27,6 +27,13 @@
-> >
-> >  #include "onboard_usb_hub.h"
-> >
-> > +#define MAX_SUPPLIES 2
+Maxime,
+
+On Tue, Jun 13, 2023 at 8:56=E2=80=AFAM Doug Anderson <dianders@chromium.or=
+g> wrote:
 >
-> Why 2?
-
-I picked 2 because with 3/3, this is the maximum of "required" supplies. The
-currently implemented ones require only one (up to now just named "vdd"). The
-new one added in 3/3 requires 2, therefore I tried to be generic if some future
-hub might require 3 or more.
-
-> > +
-> > +static const char * const supply_names[] = {
-> > +     "vdd",
-> > +     "vdd2",
-> > +};
+> Hi,
 >
-> Do those names have anything to do with the number above?  If so, please
-> document it!
-
-I picked "vdd" for the first to be compatible with the existing device-trees. As
-the actual names differ between hubs, I thought it might be generic to just use
-"vdd2" here. If I should add some comment like "if you increase MAX_SUPPLIES,
-please also add a supply_name below", I can do that. I could also implement
-"vdd${i+1}" for i>0 instead.
-
+> On Tue, Jun 13, 2023 at 5:06=E2=80=AFAM Maxime Ripard <mripard@kernel.org=
+> wrote:
+> >
+> > > > What I'm trying to say is: could we just make it work by passing a =
+bunch
+> > > > of platform_data, 2-3 callbacks and a device registration from the =
+panel
+> > > > driver directly?
+> > >
+> > > I think I'm still confused about what you're proposing. Sorry! :( Let
+> > > me try rephrasing why I'm confused and perhaps we can get on the same
+> > > page. :-)
+> > >
+> > > First, I guess I'm confused about how you have one of these devices
+> > > "register" the other device.
+> > >
+> > > I can understand how one device might "register" its sub-devices in
+> > > the MFD case. To make it concrete, we can look at a PMIC like
+> > > max77686.c. The parent MFD device gets probed and then it's in charge
+> > > of creating all of its sub-devices. These sub-devices are intimately
+> > > tied to one another. They have shared data structures and can
+> > > coordinate power sequencing and whatnot. All good.
+> >
+> > We don't necessarily need to use MFD, but yeah, we could just register =
+a
+> > device for the i2c-hid driver to probe from (using
+> > i2c_new_client_device?)
 >
-> >  struct onboard_hub_pdata {
-> >       unsigned long reset_us;         /* reset pulse width in us */
-> > +     unsigned int num_supplies;      /* number of supplies: 0 considered as 1 */
+> I think this can work for devices where the panel and touchscreen are
+> truly integrated where the panel driver knows enough about the related
+> touchscreen to fully describe and instantiate it. It doesn't work
+> quite as well for cases where the power and reset lines are shared
+> just because of what a given board designer did. To handle that, each
+> panel driver would need to get enough DT properties added to it so
+> that it could fully describe any arbitrary touchscreen, right?
 >
-> I can not understand that comment at all :(
+> Let's think about the generic panel-edp driver. This driver runs the
+> panel on many sc7180-trogdor laptops, including coachz, lazor, and
+> pompom. All three of those boards have a shared power rail for the
+> touchscreen and panel. If you look at "sc7180-trogdor-coachz.dtsi",
+> you can see the touchscreen currently looks like this:
+>
+> ap_ts: touchscreen@5d {
+>     compatible =3D "goodix,gt7375p";
+>     reg =3D <0x5d>;
+>     pinctrl-names =3D "default";
+>     pinctrl-0 =3D <&ts_int_l>, <&ts_reset_l>;
+>
+>     interrupt-parent =3D <&tlmm>;
+>     interrupts =3D <9 IRQ_TYPE_LEVEL_LOW>;
+>
+>     reset-gpios =3D <&tlmm 8 GPIO_ACTIVE_LOW>;
+>
+>     vdd-supply =3D <&pp3300_ts>;
+> };
+>
+> In "sc7180-trogdor-lazor.dtsi" we have:
+>
+> ap_ts: touchscreen@10 {
+>     compatible =3D "hid-over-i2c";
+>     reg =3D <0x10>;
+>     pinctrl-names =3D "default";
+>     pinctrl-0 =3D <&ts_int_l>, <&ts_reset_l>;
+>
+>     interrupt-parent =3D <&tlmm>;
+>     interrupts =3D <9 IRQ_TYPE_LEVEL_LOW>;
+>
+>     post-power-on-delay-ms =3D <20>;
+>     hid-descr-addr =3D <0x0001>;
+>
+>     vdd-supply =3D <&pp3300_ts>;
+> };
+>
+> In both cases "pp3300_ts" is simply another name for "pp3300_dx_edp"
+>
+> So I think to do what you propose, we need to add this information to
+> the panel-edp DT node so that it could dynamically construct the i2c
+> device for the touchscreen:
+>
+> a) Which touchscreen is actually connected (generic hid-over-i2c,
+> goodix, ...). I guess this would be a "compatible" string?
+>
+> b) Which i2c bus that device is hooked up to.
+>
+> c) Which i2c address that device is hooked up to.
+>
+> d) What the touchscreen interrupt GPIO is.
+>
+> e) Possibly what the "hid-descr-addr" for the touchscreen is.
+>
+> f) Any extra timing information needed to be passed to the touchscreen
+> driver, like "post-power-on-delay-ms"
+>
+> The "pinctrl" stuff would be easy to subsume into the panel's DT node,
+> at least. ...and, in this case, we could skip the "vdd-supply" since
+> the panel and eDP are sharing power rails (which is what got us into
+> this situation). ...but, the above is still a lot. At this point, it
+> would make sense to have a sub-node under the panel to describe it,
+> which we could do but it starts to feel weird. We'd essentially be
+> describing an i2c device but not under the i2c controller it belongs
+> to.
+>
+> I guess I'd also say that the above design also need additional code
+> if/when someone had a touchscreen that used a different communication
+> method, like SPI.
+>
+>
+> So I guess the tl;dr of all the above is that I think it could all work i=
+f:
+>
+> 1. We described the touchscreen in a sub-node of the panel.
+>
+> 2. We added a property to the panel saying what the true parent of the
+> touchscreen was (an I2C controller, a SPI controller, ...) and what
+> type of controller it was ("SPI" vs "I2C").
+>
+> 3. We added some generic helpers that panels could call that would
+> understand how to instantiate the touchscreen under the appropriate
+> controller.
+>
+> 4. From there, we added a new private / generic API between panels and
+> touchscreens letting them know that the panel was turning on/off.
+>
+> That seems much more complex to me, though. It also seems like an
+> awkward way to describe it in DT.
+>
+>
+> > > In any case, is there any chance that we're in violent agreement
+> >
+> > Is it even violent? Sorry if it came across that way, it's really isn't
+> > on my end.
+>
+> Sorry, maybe a poor choice of words on my end. I've heard that term
+> thrown about when two people spend a lot of time discussing something
+> / trying to persuade the other person only to find out in the end that
+> they were both on the same side of the issue. ;-)
+>
+>
+> > > and that if you dig into my design more you might like it? Other than
+> > > the fact that the panel doesn't "register" the touchscreen device, it
+> > > kinda sounds as if what my patches are already doing is roughly what
+> > > you're describing. The touchscreen and panel driver are really just
+> > > coordinating with each other through a shared data structure (struct
+> > > drm_panel_follower) that has a few callback functions. Just like with
+> > > "hdmi-codec", the devices probe separately but find each other throug=
+h
+> > > a phandle. The coordination between the two happens through a few
+> > > simple helper functions.
+> >
+> > I guess we very much agree on the end-goal, and I'd really like to get
+> > this addressed somehow. There's a couple of things I'm not really
+> > sold on with your proposal though:
+> >
+> >  - It creates a ad-hoc KMS API for some problem that looks fairly
+> >    generic. It's also redundant with the notifier mechanism without
+> >    using it (probably for the best though).
+> >
+> >  - MIPI-DSI panel probe sequence is already fairly complex and fragile
+> >    (See https://www.kernel.org/doc/html/latest/gpu/drm-kms-helpers.html=
+#special-care-with-mipi-dsi-bridges).
+> >    I'd rather avoid creating a new dependency in that graph.
+> >
+> >  - And yeah, to some extent it's inconsistent with how we dealt with
+> >    secondary devices in KMS so far.
+>
+> Hmmmm. To a large extent, my current implementation actually has no
+> impact on the DRM probe sequence. The panel itself never looks for the
+> touchscreen code and everything DRM-related can register without a
+> care in the world. From reading your bullet points, I guess that's
+> both a strength and a weakness of my current proposal. It's really
+> outside the world of bridge chains and DRM components which makes it a
+> special snowflake that people need to understand on its own. ...but,
+> at the same time, the fact that it is outside all the rest of that
+> stuff means it doesn't add complexity to an already complex system.
+>
+> I guess I'd point to the panel backlight as a preexisting design
+> that's not totally unlike what I'm doing. The backlight is not part of
+> the DRM bridge chain and doesn't fit in like other components. This
+> actually makes sense since the backlight doesn't take in or put out
+> video data and it's simply something associated with the panel. The
+> backlight also has a loose connection to the panel driver and a given
+> panel could be associated with any number of different backlight
+> drivers depending on the board design. I guess one difference between
+> the backlight and what I'm doing with "panel follower" is that we
+> typically don't let the panel probe until after the backlight has
+> probed. In the case of my "panel follower" proposal it's the opposite.
+> As per above, from a DRM probe point of view this actually makes my
+> proposal less intrusive. I guess also a difference between backlight
+> and "panel follower" is that I allow an arbitrary number of followers
+> but there's only one backlight.
+>
+> One additional note: if I actually make the panel probe function start
+> registering the touchscreen, that actually _does_ add more complexity
+> to the already complex DRM probe ordering. It's yet another thing that
+> could fail and/or defer...
+>
+> Also, I'm curious: would my proposal be more or less palatable if I
+> made it less generic? Instead of "panel follower", I could hardcode it
+> to "touchscreen" and then remove all the list management. From a DRM
+> point of view this would make it even more like the preexisting
+> "backlight" except for the ordering difference.
 
-This should just indicate that leaving the field empty means one supply is
-required. Maybe "defaults to 1" is better?
+I'm trying to figure out what the next steps are here. I can send a v3
+and address Benjamin's comments on the i2c-hid side, but I'd like to
+get some resolution on our conversation here, too. Did my thoughts
+above make sense? I know that "panel follower" isn't a
+beautiful/elegant framework, but IMO it isn't not too bad. It
+accomplishes the goal and mostly stays out of the way.
+
+If you don't have time to dig into all of this now, would you object
+if I can find someone else willing to review my series from a drm
+perspective?
+
+Thanks!
+
+-Doug
