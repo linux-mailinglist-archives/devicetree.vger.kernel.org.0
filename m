@@ -2,184 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B5E2737D0F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01BAA737CD8
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:07:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230512AbjFUHu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 03:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40102 "EHLO
+        id S231376AbjFUICR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 04:02:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43816 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230309AbjFUHuZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 03:50:25 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB80C11D;
-        Wed, 21 Jun 2023 00:50:24 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35L7hSs1014726;
-        Wed, 21 Jun 2023 07:50:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=wv5CoZxQoqrZ84iHmXKjcGNtSsQ32uywpidEB510fuY=;
- b=HD7byKPhrGqThA06eFdC+AlZCcvRaSwroKZwAfQoNHb2wc2NxIUymrBSO8W5RKTW/p/E
- heg+OOaxK9T3Pnsp2j4tz4s2QXbDozXjZReBhuAjhaQJ3o1nWwLWWLpRXdZ7jwP6OmBs
- qgi0neXeV7NQcnluHFwVUVz5ZNnKXder5+QCso5w9qY+xgWy6gW3TSBK7LtELuGK1zst
- 4KJDZQWocD0wvPq/3smgJmhS6gHx7JK0oboIcD9s+6PR4JDBs+vGKKXLA3UhcXklWP22
- 18YKPC0BOZ22hZco9H7wA7c6Xpc/yfYl6yy+ZbjOfYqw9NbmxIKrdo4z35U5dj3XZwC0 +A== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rb8f6jr01-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 21 Jun 2023 07:50:19 +0000
-Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35L7oI54032195
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 21 Jun 2023 07:50:18 GMT
-Received: from varda-linux.qualcomm.com (10.80.80.8) by
- nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 21 Jun 2023 00:50:13 -0700
-Date:   Wed, 21 Jun 2023 13:20:07 +0530
-From:   Varadarajan Narayanan <quic_varada@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <gregkh@linuxfoundation.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <quic_wcheng@quicinc.com>,
-        <linux-arm-msm@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-clk@vger.kernel.org>
-Subject: Re: [PATCH v15 5/5] arm64: dts: qcom: ipq9574: Enable USB
-Message-ID: <20230621075006.GA3533@varda-linux.qualcomm.com>
-References: <cover.1686289721.git.quic_varada@quicinc.com>
- <5021dbf3a28ee073795e7580bfa019df465e16ed.1686289721.git.quic_varada@quicinc.com>
+        with ESMTP id S231348AbjFUICP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 04:02:15 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E84C0170C;
+        Wed, 21 Jun 2023 01:02:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1687334535; x=1718870535;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=2TQu/oPINqyAhXMvFfjq4krM1J8lJ1HeueobGZSxnsg=;
+  b=FhX3suz9bUq5bBwE/MKa8VdHP2yJylwzReGCNz8mskDvU0xAsF9wflcH
+   J3/LX5dAenwqacB8yai7TsB0VT+8F2F7o75m4K+o9TZBXJQOWySPZVyoa
+   RHtk/5zIrzbrjpdzcL5RQCfCfBXlE6iuvguBu2THAH3tnRMJUp6tCBnfJ
+   Q1D72d8AeMii3ll3hOkQunWXq/mE4Di3hSSuZ771ixVs+942TL8ScJFkJ
+   hshM+1R3hksb3UKqLH8PToRGae3n2JpGZMNEnf6fa/GnTmb0j3oGi049s
+   f+RWzrvcbzNLRcrUMkj7IBir7b1nOPp512j00jsC4AH5pOadDH25jl3H+
+   A==;
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; 
+   d="asc'?scan'208";a="219662347"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Jun 2023 01:02:14 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 21 Jun 2023 01:02:08 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Wed, 21 Jun 2023 01:02:06 -0700
+Date:   Wed, 21 Jun 2023 09:01:39 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Lucas Tanure <tanure@linux.com>
+CC:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Yixun Lan <dlan@gentoo.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/2] arm64: dts: meson-t7-a311d2-khadas-vim4: add
+ initial device-tree
+Message-ID: <20230621-barber-enjoyably-04806271daea@wendy>
+References: <20230620134857.238941-1-tanure@linux.com>
+ <20230620134857.238941-3-tanure@linux.com>
+ <ZJIjtphyKdC48JrN@ofant>
+ <76a7f819-f3d2-d39d-1bc9-f1e7f837fd22@linaro.org>
+ <CAJX_Q+3im20qphOXzn-=58Kx4--ajbaF4P8BVvRcDcPXn1Qheg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="5aSeY0QXlyq92qaE"
 Content-Disposition: inline
-In-Reply-To: <5021dbf3a28ee073795e7580bfa019df465e16ed.1686289721.git.quic_varada@quicinc.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01a.na.qualcomm.com (10.52.223.231)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nKKAnxE7QjMoak78u1hHtkY8aPJTDIwj
-X-Proofpoint-ORIG-GUID: nKKAnxE7QjMoak78u1hHtkY8aPJTDIwj
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-21_04,2023-06-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 malwarescore=0
- mlxlogscore=854 mlxscore=0 lowpriorityscore=0 suspectscore=0
- priorityscore=1501 impostorscore=0 adultscore=0 clxscore=1015 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306210064
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+In-Reply-To: <CAJX_Q+3im20qphOXzn-=58Kx4--ajbaF4P8BVvRcDcPXn1Qheg@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 09, 2023 at 11:26:34AM +0530, Varadarajan Narayanan wrote:
-> Add regulator defines
-> Turn on USB related nodes
-> Provide vdd info
-> 
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Signed-off-by: Varadarajan Narayanan <quic_varada@quicinc.com>
-> ---
->  Changes in v15:
-> 	- Move fixed regulator defines from 'arm64: dts: qcom: ipq9574: Add USB related nodes' to this patch
-> 
->  Changes in v13:
-> 	- s/fixed_/regulator_fixed_/
-> 
->  Changes in v11:
-> 	- Rename dwc_0 -> usb_0_dwc3
-> 	- Maintain sorted order for the usb nodes
-> 
->  Changes in v10:
-> 	- Provide vdd info
-> 
->  Changes in v5:
-> 	- Move "host" mode specification to board dts
-> 	- Due to dependency with earlier patches board dts
-> 	  filename changed ipq9574-al02-c7.dts -> ipq9574-rdp433.dts
-> 
->  Changes in v2:
-> 	- Fix node placement and coding style
-> 	- "ok" -> "okay"
-> ---
->  arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts | 41 +++++++++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> index 8c2451c..877026c 100644
-> --- a/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> +++ b/arch/arm64/boot/dts/qcom/ipq9574-rdp433.dts
-> @@ -21,6 +21,24 @@
->  	chosen {
->  		stdout-path = "serial0:115200n8";
->  	};
-> +
-> +	regulator_fixed_3p3: s3300 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		regulator-name = "fixed_3p3";
-> +	};
-> +
-> +	regulator_fixed_0p925: s0925 {
-> +		compatible = "regulator-fixed";
-> +		regulator-min-microvolt = <925000>;
-> +		regulator-max-microvolt = <925000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +		regulator-name = "fixed_0p925";
-> +	};
->  };
->  
->  &blsp1_uart2 {
-> @@ -105,6 +123,29 @@
->  	};
->  };
->  
-> +&usb_0_dwc3 {
-> +	dr_mode = "host";
-> +};
-> +
-> +&usb_0_qmpphy {
-> +	vdda-pll-supply = <&mp5496_l2>;
-> +	vdda-phy-supply = <&regulator_fixed_0p925>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb_0_qusbphy {
-> +	vdd-supply = <&regulator_fixed_0p925>;
-> +	vdda-pll-supply = <&mp5496_l2>;
-> +	vdda-phy-dpdm-supply = <&regulator_fixed_3p3>;
-> +
-> +	status = "okay";
-> +};
-> +
-> +&usb3 {
-> +	status = "okay";
-> +};
-> +
->  &xo_board_clk {
->  	clock-frequency = <24000000>;
->  };
-> -- 
-> 2.7.4
-> 
+--5aSeY0QXlyq92qaE
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Bjorn,
+On Wed, Jun 21, 2023 at 08:37:02AM +0100, Lucas Tanure wrote:
+> On Wed, Jun 21, 2023 at 7:02=E2=80=AFAM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+> >
+> > On 21/06/2023 00:09, Yixun Lan wrote:
+> > >> +            apb4: bus@fe000000 {
+> > >> +                    compatible =3D "simple-bus";
+> > >> +                    reg =3D <0x0 0xfe000000 0x0 0x480000>;
+> > >> +                    #address-cells =3D <2>;
+> > >> +                    #size-cells =3D <2>;
+> > >> +                    ranges =3D <0x0 0x0 0x0 0xfe000000 0x0 0x480000=
+>;
+> > >> +
+> > >> +                    uart_A: serial@78000 {
+> > >> +                            compatible =3D "amlogic,meson-t7-uart",
+> > >                                               ~~~~~~~~~~~~~~~~~
+> > > if you introduce new compatible string, then at least you need to doc=
+ument it
+> > > so Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml n=
+eed to be updated
+> > >
+> > > but my qeustion here, why bother introducing new compatible string if=
+ nothing
+> > > changed with the compatible data? given the uart is same IP with g12a=
+, can't we just
+> > > use "amlogic,meson-g12-uart" for this? no only it will reduce the str=
+ucture length of
+> > > meson_uart_dt_match[], but also relieve maintainer's review burden?
+> >
+> > https://elixir.bootlin.com/linux/v6.1-rc1/source/Documentation/devicetr=
+ee/bindings/writing-bindings.rst#L42
+> >
+> > Best regards,
+> > Krzysztof
+> >
+> Hi, I did not understand the recommendation here.
+> Can I add "amlogic,meson-t7-uart" without Documentation changes?
 
-Can this be pulled for 6.5?
+No, you can't.
 
-Thanks
-Varada
+> I think Yes, as I can see a few compatible strings in dts that don't
+> exist anywhere else.
+
+Aye, but we do not want to propagate that. New stuff should not be
+adding undocumented compatibles, and those that are undocumented should
+be documented.
+
+> My idea here is to add "amlogic,meson-t7-uart" for future use if ever
+> created, like if we find a bug in the future that is only relevant to
+> T7 soc.
+> But for now, fallback to s4 uart, as it seems to be the same controller.
+>=20
+> >From Krzysztof said in the writing-bindings.rst, I am following the rule=
+s.
+>=20
+> So, what's the path forward here?
+
+You are following the rules from the dts point of view, you just need a
+3rd patch in which you document the pattern you have added here in
+amlogic,meson-uart.yaml. It is probably something like:
++      - items:
++          - const: amlogic,meson-t7-uart
++          - const: amlogic,meson-s4-uart
+But I have not tested that, I just wrote that in my mail client.
+
+Cheers,
+Conor.
+
+--5aSeY0QXlyq92qaE
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJKuWAAKCRB4tDGHoIJi
+0sz1AQDTbSImMPfj3eXZkkbJgedEV9mFN5eDBAD9G8HavB9hSwEAiOLWCw7Qt7yU
+nkxVT6Dtv3r2MiNA45lN8/HWxgTfZwk=
+=Xw6R
+-----END PGP SIGNATURE-----
+
+--5aSeY0QXlyq92qaE--
