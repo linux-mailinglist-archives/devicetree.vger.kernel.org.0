@@ -2,208 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C10A873925F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 00:18:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B16D7392DB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 01:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229680AbjFUWSS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 18:18:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36054 "EHLO
+        id S230097AbjFUXKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 19:10:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54110 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjFUWSR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 18:18:17 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 133711739
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 15:18:16 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f867700f36so6672351e87.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 15:18:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687385894; x=1689977894;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zyWuSVMXh2Y/fSXjuElkXOGDHtemipt9fq/ZZgliCDQ=;
-        b=y8vrACxzMcCef2j1eZMvyDCcR4g1WySOtRYSYJyZqwUKM4+gk+I3LPSGmrGtyQtqtw
-         MvYjd6Ib3r6rZHSZMSh2yH4aFQ2E5lARS+WYZhB25P8fxa7ICZ4Qgkd4Pp8w9bXLnyho
-         +ar+OFjHQwc86zWWpU8XRSIiyeaCC4yhtSx+qG3huWbBmuVl8wB9vQhzdp1pbIiG7gFR
-         TNBjkEBdyO4mDXxeWtkUcajbdQUpSFA5Ry9I0WU8whd+wL7QnnRihow0MxwPSsiGzE4E
-         u55FKvTNWFZz8Mtwv8f/FtYsbWr82ukB4r4QkAHYfcfIxQRRWxoxf58G1LJNcR1LfFcG
-         4hFw==
+        with ESMTP id S229762AbjFUXKM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 19:10:12 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A66E51997;
+        Wed, 21 Jun 2023 16:10:07 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-77e3f25446bso1371039f.1;
+        Wed, 21 Jun 2023 16:10:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687385894; x=1689977894;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zyWuSVMXh2Y/fSXjuElkXOGDHtemipt9fq/ZZgliCDQ=;
-        b=Qz2upqPR3gbnd3EDW+WIAR5atoUwL9AKzIazBbqq7x5vi+reJftEIrHTMxurp0iC2p
-         ydadOTIqYwfx7mpAHW8YvzN4H7IkvPLtlOnNuYXI5xL/YaY5c5pBrIw+jIZPWCxI1B0m
-         TzJjaiPn8bTZXIEH7S0yym/+dLPgFv/pk3ermq5PJ5Vrr2ja+g/q4uAaUKVVs21xCFHz
-         6I9TzAYDR3aYV1ITfbiZEB0Kv+IPT7MA1vfR38Z4ARnn/z1FZBsl+GoSDzAP12AIO4uM
-         ChV+fc5sJvxmNNil85W/RO5qrxx1Rd0sgiq5Aj7HmZyBPwklijyJMzqIaoxQVJwmT9jR
-         nwvA==
-X-Gm-Message-State: AC+VfDwDbNYRZma69JoBz9kFXArIVB+Zt6q3dK4efENrtGvzofsq0dGo
-        Gxw5Q0qbtC2EGndAAEopilqwXQ==
-X-Google-Smtp-Source: ACHHUZ5Si4dCWNPr03XUSarW8gCPbkN/erz8YhdBHCibOFkHWzUSZhPV12IA2841vnOqzTcqJaHntg==
-X-Received: by 2002:ac2:4988:0:b0:4f9:535e:cdca with SMTP id f8-20020ac24988000000b004f9535ecdcamr4407924lfl.7.1687385894197;
-        Wed, 21 Jun 2023 15:18:14 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id h16-20020ac25970000000b004f85858e52dsm893503lfp.138.2023.06.21.15.18.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 15:18:13 -0700 (PDT)
-Message-ID: <c05a9a02-0a33-6160-9072-717efe30031a@linaro.org>
-Date:   Thu, 22 Jun 2023 01:18:13 +0300
+        d=1e100.net; s=20221208; t=1687389007; x=1689981007;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=uZ5k4Dp/46/3VEiWRW3fgGgoJsPLZRDZDhLXzW7k1Jo=;
+        b=Nzy4h8ly5RoJoTJt1Vd3YBaQTNoM1if9vw64XdWxuE2O5PCIXA/QoRx+8FVrkfosvw
+         qj2DH/w02t2kUQdO8y3n5TPp7PRmxlxKkhsTTV39xLOJ5rj15Dj9Ri3RtQkR9k7W1raN
+         9nHoDkeNOCGPbNHeLGluDoDEl10AQ54pUkkh4jSGiZL+UQkalwYt11iDxF9qw5W+wl4T
+         oBvGv67Mr/iwlQunovMEUzvqU0kIGSq35ZkXV1pGEzG1bZ05Ktmc9H7F2sIHvkXUfEjz
+         akFQ59Fnb4FEOwkVAnUQBpjpFfyPeygUDS0QJmFgKyvpYxTL6TAgtxLgiGJcGIfpxTkW
+         YL5Q==
+X-Gm-Message-State: AC+VfDwzx8RODIjrei27ne9Jy6fEkvEvYGVB30UuRryiNZiNH42wRbyy
+        vAv2xPWfLRjs4qYWTP15BA==
+X-Google-Smtp-Source: ACHHUZ6xSF+H5lFNbNWgsiKD9LxRhFRCqXetCy8jY2budOoUKjxD1V+o68khuqMZ/FJzH7C+s93T7A==
+X-Received: by 2002:a6b:d906:0:b0:777:a6a7:e83d with SMTP id r6-20020a6bd906000000b00777a6a7e83dmr11343275ioc.4.1687389006760;
+        Wed, 21 Jun 2023 16:10:06 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id t4-20020a6b0904000000b00760e7a343c1sm1697035ioi.30.2023.06.21.16.10.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 16:10:05 -0700 (PDT)
+Received: (nullmailer pid 3815982 invoked by uid 1000);
+        Wed, 21 Jun 2023 23:10:04 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Al Cooper <alcooperx@gmail.com>
+Cc:     linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: phy: brcm,brcmstb-usb-phy: Fix error in "compatible" conditional schema
+Date:   Wed, 21 Jun 2023 17:09:58 -0600
+Message-Id: <20230621230958.3815818-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v9 2/2] dt-bindings: msm: dsi-controller-main: Document
- clocks on a per compatible basis
-Content-Language: en-GB
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, robdclark@gmail.com,
-        quic_abhinavk@quicinc.com, sean@poorly.run, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org, dianders@chromium.org,
-        david@ixit.cz, krzysztof.kozlowski+dt@linaro.org,
-        swboyd@chromium.org, konrad.dybcio@somainline.org,
-        agross@kernel.org, andersson@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230118171621.102694-1-bryan.odonoghue@linaro.org>
- <20230118171621.102694-3-bryan.odonoghue@linaro.org>
- <qew6nd3jqnasb3mivvdxcwugfrvxdeafilaxk35v7uihagk2qi@oxe3oqdgfwpe>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <qew6nd3jqnasb3mivvdxcwugfrvxdeafilaxk35v7uihagk2qi@oxe3oqdgfwpe>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2023 00:45, Marijn Suijten wrote:
-> Hi!
-> 
-> On 2023-01-18 17:16:21, Bryan O'Donoghue wrote:
->> Each compatible has a different set of clocks which are associated with it.
->> Add in the list of clocks for each compatible.
-> 
-> So if each set of compatibles have their own unique set of clocks, is
-> there a reason to have so many duplicate then: blocks?  I ran into this
-> while preparing for submitting SM6125 DPU and having no clue where to
-> add it.
-> 
->> Acked-by: Rob Herring <robh@kernel.org>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
->> ---
->>   .../display/msm/dsi-controller-main.yaml      | 218 ++++++++++++++++--
->>   1 file changed, 201 insertions(+), 17 deletions(-)
->>
+The conditional if/then schema has an error as the "enum" values have
+"const" in them. Drop the "const".
 
-[skipped most of the comments]
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml         | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sc7180-dsi-ctrl
->> +              - qcom,sc7280-dsi-ctrl
->> +              - qcom,sm8250-dsi-ctrl
->> +              - qcom,sm8150-dsi-ctrl
->> +              - qcom,sm8250-dsi-ctrl
->> +              - qcom,sm8350-dsi-ctrl
->> +              - qcom,sm8450-dsi-ctrl
->> +              - qcom,sm8550-dsi-ctrl
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 6
->> +        clock-names:
->> +          items:
->> +            - const: byte
->> +            - const: byte_intf
->> +            - const: pixel
->> +            - const: core
->> +            - const: iface
->> +            - const: bus
-> 
-> ... and here ...
-> 
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sdm660-dsi-ctrl
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 9
->> +        clock-names:
->> +          items:
->> +            - const: mdp_core
->> +            - const: byte
->> +            - const: byte_intf
->> +            - const: mnoc
->> +            - const: iface
->> +            - const: bus
->> +            - const: core_mmss
->> +            - const: pixel
->> +            - const: core
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          contains:
->> +            enum:
->> +              - qcom,sdm845-dsi-ctrl
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 6
->> +        clock-names:
->> +          items:
->> +            - const: byte
->> +            - const: byte_intf
->> +            - const: pixel
->> +            - const: core
->> +            - const: iface
->> +            - const: bus
-> 
-> and here, we have *three* identical lists of clocks.  Should they (have
-> been) combined?
-> 
-> I can send a patch fixing these all if desired!
-
-Probably it would be logical to split follow DPU and MDSS schema and 
-split this file into per-SoC compatibles and a generic file. Then it 
-would be easier to review different SoC parts.
-
-Regarding reordering of clocks. I think we have 5 different 
-configurations in dsi_cfg.c, but we definitely can optimize the schema.
-
-> 
-> - Marijn
-> 
->> +
->>   additionalProperties: false
->>   
->>   examples:
->> -- 
->> 2.38.1
->>
-
+diff --git a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
+index 43a4b880534c..580fbe37b37f 100644
+--- a/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/brcm,brcmstb-usb-phy.yaml
+@@ -115,8 +115,8 @@ allOf:
+         compatible:
+           contains:
+             enum:
+-              - const: brcm,bcm4908-usb-phy
+-              - const: brcm,brcmstb-usb-phy
++              - brcm,bcm4908-usb-phy
++              - brcm,brcmstb-usb-phy
+     then:
+       properties:
+         reg:
 -- 
-With best wishes
-Dmitry
+2.40.1
 
