@@ -2,131 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4519C738187
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5F3073801C
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:09:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbjFUKmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 06:42:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52776 "EHLO
+        id S232592AbjFUKq2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 06:46:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232505AbjFUKlc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:41:32 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E04F42717
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 03:39:46 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f8f3786f20so67518185e9.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 03:39:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687343982; x=1689935982;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=zjtcCvh/hkoBltrfU6NoFvQZYkuiZLIu53RCREg7WZw=;
-        b=mXhMgbB1MsHck7ny5a1FnIAq+fWGafe1++qTd+8X22rBjJFQB3IgHS48dPwRFu7vA4
-         pi9Ks05Ds2TzsFGk+jqNIwy4tudFOZY7L5qAggjG1THREyJNIsEPjiBktTD0I7VjS7kf
-         1RkBy6iEZFuh1Um034PNvnfZ6GqnckcBQRjNbXtGLrwt4997j1zSpBUSmUcMAIfmO22H
-         0tsSlfRJkr4rgr4Ko/2S+ZR+djyDMaVSfi9OKLDvd4eI1FsBEuF1cNqFqsh3biK/v6xt
-         qgWCjSX8k+NUmjux5oieo41sZ86BcojL0xl5XkIDDep/GfR9porxROBOfQ/HyI4R2Mgc
-         fpHQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687343982; x=1689935982;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=zjtcCvh/hkoBltrfU6NoFvQZYkuiZLIu53RCREg7WZw=;
-        b=Mt/DbvNK7Y+rbx6lvKqt+fJZnFCcka9JSNg/Q0Dg3B89WmoG/28BWvvsOqnalkrVtU
-         IIEzq0UIjltHdCNPO1c6notMH2TeMOnZoFQg3SwpcJnRVXXYZvBH1o/vkse0QRBZN97H
-         GZy+MUYl/g5Fevz22qxmDvFs9gVXY9/02eI0CAGNHaZ+eThzvwaZmHpCegrIUtLiYJQy
-         9lAwp+/xYBSoPM6VHP9cl+wDRskkxDeNCqo41jRfKUuHWnFIiHUMuWhRvd5GZvjwf07F
-         9eGUmge7bGbwGN3/WsOw8ATHQu8RdeQEQXcQ23BkhuYUKKGuMENI6XN+R3p+esYHHekr
-         fq8w==
-X-Gm-Message-State: AC+VfDwBfAK38eL0tajEIvx09LOFmjNSU5kzMI7RvNTqe96YbaTbEnl4
-        PQc/+RcKbAd/z6Kp1iDwLZRYpQ==
-X-Google-Smtp-Source: ACHHUZ6144jGWYuXU2HYG173odFCPZn8Vd5kd4ZQTpTk5z0gomsiMDLlsH3tL5i2EGA2RtmCdjBN/g==
-X-Received: by 2002:a1c:4b08:0:b0:3f9:c2f6:344 with SMTP id y8-20020a1c4b08000000b003f9c2f60344mr856644wma.16.1687343981984;
-        Wed, 21 Jun 2023 03:39:41 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b158:3e69:8736:455d? ([2a01:e0a:982:cbb0:b158:3e69:8736:455d])
-        by smtp.gmail.com with ESMTPSA id x23-20020a1c7c17000000b003f72468833esm4632219wmc.26.2023.06.21.03.39.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 03:39:41 -0700 (PDT)
-Message-ID: <6180134a-2919-0f13-e37c-bb64b6403692@linaro.org>
-Date:   Wed, 21 Jun 2023 12:39:40 +0200
+        with ESMTP id S230125AbjFUKqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:46:03 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [IPv6:2001:67c:2178:6::1d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA8F6E41;
+        Wed, 21 Jun 2023 03:44:30 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 6D7BC1FDAD;
+        Wed, 21 Jun 2023 10:44:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1687344269; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=uKfVaC6JkeFcL/06eIzho6xSCCes9hNDXUsaPx8dW6k=;
+        b=ojRLit9kPFy1zm5wZ/Jh0wxoR+XNjhCPsbX77o6gAfw5wL4WBB2xBH4bCRO31XNHReqqVb
+        uaYC7UGMLTYlOVPhRvYM2gacvPib1bliuQPfgclqdunjhGG4BYerwhuFliljLM9SkuHOgk
+        960FqrOR7kGKL8Wp5gbYvSL3sQ/A+Ew=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1687344269;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=uKfVaC6JkeFcL/06eIzho6xSCCes9hNDXUsaPx8dW6k=;
+        b=xff3U+YrR7TIGuaHffuc4XBvk1VA2WLAVoNHMNpE9xHS6NJkGtwAL28gnfkawrTsw9IN2/
+        lZ4eGDxRqPkWO4Dw==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 050B8134B1;
+        Wed, 21 Jun 2023 10:44:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id R05fAI3UkmQXFgAAMHmgww
+        (envelope-from <tzimmermann@suse.de>); Wed, 21 Jun 2023 10:44:29 +0000
+Message-ID: <5b87fb5c-2f23-47c9-b6a8-623472115876@suse.de>
+Date:   Wed, 21 Jun 2023 12:44:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH] arm64: dts: qcom: sm8450: add missing power-domains
- property to usb qmpphy node
+Subject: Re: [PATCH 4/9] drm/verisilicon: Add gem driver for JH7110 SoC
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+From:   Thomas Zimmermann <tzimmermann@suse.de>
+To:     Keith Zhao <keith.zhao@starfivetech.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Cc:     Conor Dooley <conor+dt@kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        christian.koenig@amd.com, Bjorn Andersson <andersson@kernel.org>,
+        Chris Morgan <macromorgan@hotmail.com>,
+        Changhuang Liang <changhuang.liang@starfivetech.com>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Jack Zhu <jack.zhu@starfivetech.com>,
         Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230621-topic-sm8450-upstream-usb-phy-missing-power-domains-v1-1-d850c086c43c@linaro.org>
- <e31ad5ac-77ab-cf04-2e3e-d0857ccfdecf@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <e31ad5ac-77ab-cf04-2e3e-d0857ccfdecf@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Shengyang Chen <shengyang.chen@starfivetech.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>
+References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
+ <20230602074043.33872-5-keith.zhao@starfivetech.com>
+ <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
+In-Reply-To: <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ protocol="application/pgp-signature";
+ boundary="------------E3lpJV3O3OclE0b68k1BcyGT"
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--------------E3lpJV3O3OclE0b68k1BcyGT
+Content-Type: multipart/mixed; boundary="------------0TLCl8mGu0c1FRx96iB0uY6u";
+ protected-headers="v1"
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Keith Zhao <keith.zhao@starfivetech.com>,
+ dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+ linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org
+Cc: Conor Dooley <conor+dt@kernel.org>, Albert Ou <aou@eecs.berkeley.edu>,
+ Emil Renner Berthing <kernel@esmil.dk>, christian.koenig@amd.com,
+ Bjorn Andersson <andersson@kernel.org>,
+ Chris Morgan <macromorgan@hotmail.com>,
+ Changhuang Liang <changhuang.liang@starfivetech.com>,
+ Jagan Teki <jagan@edgeble.ai>, Jack Zhu <jack.zhu@starfivetech.com>,
+ Rob Herring <robh+dt@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+ Paul Walmsley <paul.walmsley@sifive.com>,
+ Shengyang Chen <shengyang.chen@starfivetech.com>,
+ Shawn Guo <shawnguo@kernel.org>, Sumit Semwal <sumit.semwal@linaro.org>
+Message-ID: <5b87fb5c-2f23-47c9-b6a8-623472115876@suse.de>
+Subject: Re: [PATCH 4/9] drm/verisilicon: Add gem driver for JH7110 SoC
+References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
+ <20230602074043.33872-5-keith.zhao@starfivetech.com>
+ <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
+In-Reply-To: <f7ded369-e384-db01-dc8c-6a5183f20409@suse.de>
 
-On 21/06/2023 12:01, Konrad Dybcio wrote:
-> On 21.06.2023 11:55, Neil Armstrong wrote:
->> Add the missing property to fix the bindings check error:
->> arch/arm64/boot/dts/qcom/sm8450-hdk.dtb: phy@88e8000: 'power-domains' is a required property
->>      From schema: Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
-> Are you sure about this one? Historically PHYs have had their own GDSCs.
-> 
-> May just be a wrong binding fwiw
+--------------0TLCl8mGu0c1FRx96iB0uY6u
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: base64
 
-Indeed you're right, forget this patch USB30_PRIM_GDSC id for the controller
-and starting from SM8550 a new one is used USB3_PHY_GDSC.
+SGkNCg0KQW0gMTkuMDYuMjMgdW0gMTY6MjIgc2NocmllYiBUaG9tYXMgWmltbWVybWFubjoN
+Cj4gSGkNCj4gDQo+IEFtIDAyLjA2LjIzIHVtIDA5OjQwIHNjaHJpZWIgS2VpdGggWmhhbzoN
+Cj4+IFRoaXMgcGF0Y2ggaW1wbGVtZW50cyBnZW0gcmVsYXRlZCBBUElzIGZvciBKSDcxMDAg
+U29DLg0KPiANCj4gcGxlYXNlIGFsc28gc2VlIG15IG90aGVyIHJlcGx5IHRvIHRoaXMgcGF0
+Y2guIE15IG1haWwgY2xpZW50IGhhZCBhIGJ1ZyANCj4gYmVmb3JlIEkgY291bGQgZmluaXNo
+IGl0LiBCZWxvdyBhcmUgc29tZSBtb3JlIGNvbW1lbnRzLg0KPiANCj4+DQo+PiBTaWduZWQt
+b2ZmLWJ5OiBLZWl0aCBaaGFvIDxrZWl0aC56aGFvQHN0YXJmaXZldGVjaC5jb20+DQo+PiAt
+LS0NCj4gWy4uLl0NCj4+ICsjaWZuZGVmIF9fVlNfR0VNX0hfXw0KPj4gKyNkZWZpbmUgX19W
+U19HRU1fSF9fDQo+PiArDQo+PiArI2luY2x1ZGUgPGxpbnV4L2RtYS1idWYuaD4NCj4+ICsN
+Cj4+ICsjaW5jbHVkZSA8ZHJtL2RybV9nZW0uaD4NCj4+ICsjaW5jbHVkZSA8ZHJtL2RybV9w
+cmltZS5oPg0KPj4gKw0KPj4gKyNpbmNsdWRlICJ2c19kcnYuaCINCj4+ICsvKg0KPj4gKyAq
+DQo+PiArICogQGJhc2U6IGRybSBnZW0gb2JqZWN0Lg0KPj4gKyAqIEBzaXplOiBzaXplIHJl
+cXVlc3RlZCBmcm9tIHVzZXINCj4+ICsgKiBAY29va2llOiBjb29raWUgcmV0dXJuZWQgYnkg
+ZG1hX2FsbG9jX2F0dHJzDQo+PiArICrCoMKgwqAgLSBub3Qga2VybmVsIHZpcnR1YWwgYWRk
+cmVzcyB3aXRoIERNQV9BVFRSX05PX0tFUk5FTF9NQVBQSU5HDQo+PiArICogQGRtYV9hZGRy
+OiBidXMgYWRkcmVzcyhhY2Nlc3NlZCBieSBkbWEpIHRvIGFsbG9jYXRlZCBtZW1vcnkgcmVn
+aW9uLg0KPj4gKyAqwqDCoMKgIC0gdGhpcyBhZGRyZXNzIGNvdWxkIGJlIHBoeXNpY2FsIGFk
+ZHJlc3Mgd2l0aG91dCBJT01NVSBhbmQNCj4+ICsgKsKgwqDCoCBkZXZpY2UgYWRkcmVzcyB3
+aXRoIElPTU1VLg0KPj4gKyAqIEBkbWFfYXR0cnM6IGF0dHJpYnV0ZSBmb3IgRE1BIEFQSQ0K
+Pj4gKyAqIEBnZXRfcGFnZXM6IGZsYWcgZm9yIG1hbnVhbGx5IGFwcGx5aW5nIGZvciBub24t
+Y29udGlndW91cyBtZW1vcnkuDQo+PiArICogQHBhZ2VzOiBBcnJheSBvZiBiYWNraW5nIHBh
+Z2VzLg0KPj4gKyAqIEBzZ3Q6IEltcG9ydGVkIHNnX3RhYmxlLg0KPj4gKyAqDQo+PiArICov
+DQo+PiArc3RydWN0IHZzX2dlbV9vYmplY3Qgew0KPj4gK8KgwqDCoCBzdHJ1Y3QgZHJtX2dl
+bV9vYmplY3TCoMKgwqAgYmFzZTsNCj4+ICvCoMKgwqAgc2l6ZV90wqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoCBzaXplOw0KPj4gK8KgwqDCoCB2b2lkwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCAq
+Y29va2llOw0KPj4gK8KgwqDCoCBkbWFfYWRkcl90wqDCoMKgwqDCoMKgwqAgZG1hX2FkZHI7
+DQo+PiArwqDCoMKgIHUzMsKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpb3ZhOw0K
+Pj4gK8KgwqDCoCB1bnNpZ25lZCBsb25nwqDCoMKgIGRtYV9hdHRyczsNCj4+ICvCoMKgwqAg
+Ym9vbMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgZ2V0X3BhZ2VzOw0KPj4gK8KgwqDCoCBzdHJ1
+Y3QgcGFnZcKgwqDCoMKgwqDCoMKgICoqcGFnZXM7DQo+PiArwqDCoMKgIHN0cnVjdCBzZ190
+YWJsZSAqc2d0Ow0KPj4gK307DQo+PiArDQo+PiArc3RhdGljIGlubGluZQ0KPj4gK3N0cnVj
+dCB2c19nZW1fb2JqZWN0ICp0b192c19nZW1fb2JqZWN0KHN0cnVjdCBkcm1fZ2VtX29iamVj
+dCAqb2JqKQ0KPj4gK3sNCj4+ICvCoMKgwqAgcmV0dXJuIGNvbnRhaW5lcl9vZihvYmosIHN0
+cnVjdCB2c19nZW1fb2JqZWN0LCBiYXNlKTsNCj4+ICt9DQo+PiArDQo+PiArc3RydWN0IHZz
+X2dlbV9vYmplY3QgKnZzX2dlbV9jcmVhdGVfb2JqZWN0KHN0cnVjdCBkcm1fZGV2aWNlICpk
+ZXYsDQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAg
+c2l6ZV90IHNpemUpOw0KPj4gKw0KPj4gK2ludCB2c19nZW1fcHJpbWVfdm1hcChzdHJ1Y3Qg
+ZHJtX2dlbV9vYmplY3QgKm9iaiwgc3RydWN0IGlvc3lzX21hcCANCj4+ICptYXApOw0KPj4g
+K3ZvaWQgdnNfZ2VtX3ByaW1lX3Z1bm1hcChzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKm9iaiwg
+c3RydWN0IGlvc3lzX21hcCANCj4+ICptYXApOw0KPiANCj4gSSdkIGNvbnNpZGVyIHRoaXMg
+YmFkIHN0eWxlLiBZb3VyIGZ1bmN0aW9ucyBhcmUgaW4gdGhlIHZzXyBuYW1lc3BhY2UsIHNv
+IA0KPiB0aGV5IHNob3VsZCB0YWtlIGEgdnNfZ2VtX29iamVjdCBhcyBmaXJzdCBhcmd1bWVu
+dC4gUmF0aGVyIGltcGxlbWVudCANCj4gdnNfZ2VtX3ByaW1lX3ZtYXAoc3RydWN0IHZzX2dl
+bV9vYmplY3QgKnZzX29iaiwgc3RydWN0IGlvc3lzX21hcCAqbWFwKQ0KPiBhbmQgX3Z1bm1h
+cCgpIGFuZCBfbW1hcCgpLg0KPiANCj4gRm9yIHRoZSBjYWxsYmFja3MgaW4gc3RydWN0IGRy
+bV9nZW1vYmplY3RfZnVuY3MsIHlvdSBjYW4gd3JpdGUgc21hbGwgDQo+IHdyYXBwZXJzIGFy
+b3VuZCB0aGUgaGVscGVycyB0byBkbyB0aGUgdHlwZSBjYXN0aW5nLiBTZWUgDQo+IGRybV9n
+ZW1fc2htZW1fb2JqZWN0X21tYXAoKSBhbmQgZHJtX2dlbV9zaG1lbV9tbWFwKCkgZm9yIGFu
+IGV4YW1wbGUuDQo+IA0KPiBodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC9sYXRl
+c3Qvc291cmNlL2luY2x1ZGUvZHJtL2RybV9nZW1fc2htZW1faGVscGVyLmgjTDIzMw0KDQpJ
+IHdhcyB0aGlua2luZyBhYm91dCBteSBhZHZpc2Ugd2l0aCB0aGUgd3JhcHBlcnMsIGJ1dCBp
+dCBkb2Vzbid0IHNlZW0gc28gDQpnb29kIGFmdGVyIGFsbC4gTWF5YmUganVzdCBpZ25vcmUg
+aXQuIEkgdGhpbmsgeW91IHNob3VsZCBzdGlsbCByZW5hbWUgDQp0aGUgZnVuY3Rpb24gdG8g
+c29tZXRoaW5nIGxpa2UgdnNfZ2VtX29iamVjdF92bWFwKCksIGV0Yy4gIFNvIHRoZXkgbmFt
+ZSANCnJlZmxlY3RzIHRoYXQgdGhleSBvcGVyYXRlIG9uIGEgc3RydWN0IGRybV9nZW1fb2Jq
+ZWN0Lg0KDQpCdXQgbWFueSBvZiB0aGUgaGVscGVycyBpbiB0aGlzIGZpbGUgYXJlIG9ubHkg
+ZXZlciB1c2VkIGluIHZzX2dlbS5jLiANCllvdSBzaG91bGQgZGVjbGFyZSB0aGVtIHN0YXRp
+YyBpbiB0aGUgQyBmaWxlIGFuZCByZW1vdmUgdGhlbSBmcm9tIHRoaXMgDQpoZWFkZXIuDQoN
+CkJlc3QgcmVnYXJkcw0KVGhvbWFzDQoNCj4gDQo+IA0KPiANCj4+ICsNCj4+ICtpbnQgdnNf
+Z2VtX3ByaW1lX21tYXAoc3RydWN0IGRybV9nZW1fb2JqZWN0ICpvYmosDQo+PiArwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IHZtX2FyZWFfc3RydWN0ICp2bWEpOw0KPj4g
+Kw0KPj4gK2ludCB2c19nZW1fZHVtYl9jcmVhdGUoc3RydWN0IGRybV9maWxlICpmaWxlX3By
+aXYsDQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZHJtX2Rldmlj
+ZSAqZHJtLA0KPj4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0IGRybV9t
+b2RlX2NyZWF0ZV9kdW1iICphcmdzKTsNCj4+ICsNCj4+ICtpbnQgdnNfZ2VtX21tYXAoc3Ry
+dWN0IGZpbGUgKmZpbHAsIHN0cnVjdCB2bV9hcmVhX3N0cnVjdCAqdm1hKTsNCj4+ICsNCj4+
+ICtzdHJ1Y3Qgc2dfdGFibGUgKnZzX2dlbV9wcmltZV9nZXRfc2dfdGFibGUoc3RydWN0IGRy
+bV9nZW1fb2JqZWN0ICpvYmopOw0KPj4gKw0KPj4gK3N0cnVjdCBkcm1fZ2VtX29iamVjdCAq
+dnNfZ2VtX3ByaW1lX2ltcG9ydChzdHJ1Y3QgZHJtX2RldmljZSAqZGV2LA0KPj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN0cnVjdCBkbWFfYnVm
+ICpkbWFfYnVmKTsNCj4+ICtzdHJ1Y3QgZHJtX2dlbV9vYmplY3QgKg0KPj4gK3ZzX2dlbV9w
+cmltZV9pbXBvcnRfc2dfdGFibGUoc3RydWN0IGRybV9kZXZpY2UgKmRldiwNCj4+ICvCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBzdHJ1Y3QgZG1hX2J1Zl9hdHRhY2htZW50
+ICphdHRhY2gsDQo+PiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgc3RydWN0
+IHNnX3RhYmxlICpzZ3QpOw0KPj4gKw0KPj4gKyNlbmRpZiAvKiBfX1ZTX0dFTV9IX18gKi8N
+Cj4gDQoNCi0tIA0KVGhvbWFzIFppbW1lcm1hbm4NCkdyYXBoaWNzIERyaXZlciBEZXZlbG9w
+ZXINClNVU0UgU29mdHdhcmUgU29sdXRpb25zIEdlcm1hbnkgR21iSA0KRnJhbmtlbnN0cmFz
+c2UgMTQ2LCA5MDQ2MSBOdWVybmJlcmcsIEdlcm1hbnkNCkdGOiBJdm8gVG90ZXYsIEFuZHJl
+dyBNeWVycywgQW5kcmV3IE1jRG9uYWxkLCBCb3VkaWVuIE1vZXJtYW4NCkhSQiAzNjgwOSAo
+QUcgTnVlcm5iZXJnKQ0K
 
-I'll fix the bindings.
+--------------0TLCl8mGu0c1FRx96iB0uY6u--
 
-Neil
+--------------E3lpJV3O3OclE0b68k1BcyGT
+Content-Type: application/pgp-signature; name="OpenPGP_signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="OpenPGP_signature"
 
-> 
-> Konrad
->>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> index 5cd7296c7660..f921bd520e40 100644
->> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
->> @@ -2046,6 +2046,8 @@ usb_1_qmpphy: phy@88e8000 {
->>   				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
->>   			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
->>   
->> +			power-domains = <&gcc USB30_PRIM_GDSC>;
->> +
->>   			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
->>   				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
->>   			reset-names = "phy", "common";
->>
->> ---
->> base-commit: 15e71592dbae49a674429c618a10401d7f992ac3
->> change-id: 20230621-topic-sm8450-upstream-usb-phy-missing-power-domains-499a3d6c725f
->>
->> Best regards,
+-----BEGIN PGP SIGNATURE-----
 
+wsF5BAABCAAjFiEExndm/fpuMUdwYFFolh/E3EQov+AFAmSS1IwFAwAAAAAACgkQlh/E3EQov+BU
+DxAAvNFbqmuRl+8x0Gbhtssj4+R3z3D+Ai8rXjZ2JPfd6/4LSoy5YyM5WX3HLD1U5nLAenDka2ke
+drQRj6kzf3pJHD8ZsJhUKVgQSe5V3PDq4sB6YdIIpcEqpwZy8HABwOXhALnpbm25uypskQQ2hR7P
+OPZnIdLGoRJcgipBpja7AXhylhBvz9A7o8DlLUeUOlF3Ymd2F0uAiSCcoXxbq5cE11EV8ml3Aejc
+gmatc/K/6AKhDw/+SST0b8Gj28WGUov+uYVziNH9UKm35uM29zPWbLc2SdApRy073D7K82k5sLDM
+LxKecNWwPl1wUBZtcgdqnPOP7W3ZDrpv49GVmRNZWSCRicf+r+58iPYZSIBotqsmV7Z4zfRvYBeg
+dAIv7kYxQtd/8EnhXLeYs2aT5d3WSo0hXMMVTHGX+z24y8f2zgsL92sgSHhEVzfP2D6OVbG/iwJq
+lGbvzfRYtdsKBG8s3LwALdCNST/Guxvy8K1s0rxH7VVlwYQ+THD0eRbRmtBwZVIzznLkbM5YQ9Me
+nURdvkIoaD2zz7xtuu7WrifXr5dBlNlp8KBgV0vn+PqVx5zlH5094pHij9AByCIlVre4PLgjxyFl
+GU97AGB+0t5r5doJ1btnsVDBe+j963TvrekRTDZNfTZGBUTSuVWq1ToeWEfIR7oYiADutizlo5de
+M9o=
+=Dna4
+-----END PGP SIGNATURE-----
+
+--------------E3lpJV3O3OclE0b68k1BcyGT--
