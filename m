@@ -2,114 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF35738168
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:11:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0EB7737FDB
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231831AbjFUJbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 05:31:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34766 "EHLO
+        id S231807AbjFUJcS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 05:32:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232295AbjFUJao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 05:30:44 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31CE19AF;
-        Wed, 21 Jun 2023 02:29:40 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id D3D1824E208;
-        Wed, 21 Jun 2023 17:29:37 +0800 (CST)
-Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Jun
- 2023 17:29:37 +0800
-Received: from [192.168.125.127] (113.72.145.217) by EXMBX171.cuchost.com
- (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Jun
- 2023 17:29:36 +0800
-Message-ID: <d4824941-85dd-d378-be5b-072907b1169d@starfivetech.com>
-Date:   Wed, 21 Jun 2023 17:29:34 +0800
+        with ESMTP id S231860AbjFUJbP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 05:31:15 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF0CC1996
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:31:09 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f901f87195so35641975e9.1
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:31:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687339868; x=1689931868;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=FnoYzlqcpbqIFDX/QCzP0DM0XYhA9I/O0wRSd0b2d80=;
+        b=OKCgz0VaMI1Fv6yd2XldHp/3Alw1/cS1VYDm4ECvg32UV+E10/b7GlASd5Luv4QTDe
+         gl7+Y2+pMX7ebU1ik0S+/Bfjt+amyNuaVDzBp9q1dQm8nFS470hJzdR7tZXyr6Q4x5fN
+         yy4l8FtsayAy/qYIK/O4ngS4Z8pBog+1eRV8Um2eyVNWrMK0IbXKS858U0IWVV4eTRw9
+         sr7aBZXPzwDkEI7pzvxZQqaGXD45sobVdOJ+U7xJMGNTAwX13i+wjEefT/9ctkCN8KjB
+         7ZStrac+Cl8yc2N9adH9Rcz9ni7eoCebFDY12q/U9V52Id688qhVzmdepEW+oLWS+tbE
+         n0OQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687339868; x=1689931868;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=FnoYzlqcpbqIFDX/QCzP0DM0XYhA9I/O0wRSd0b2d80=;
+        b=UB2IbVdOQr+ysWEsFislb4BstOgjIFYYrMyH5c9jJz+N4eIy3WxpZ8UMmXcqFQaj0e
+         jjL+wcMVdVNPtu5kfbzXkob9cyDE2JTC4G11ocQDRwq13pn373d0bUkmlYaY5XnBXQGo
+         DRaSZX4HB8T7fV1CzlOm94XFvetQniDEBfgk56gFDEbQJMRlwwRCSeQcD3P7xzJsSjBs
+         /fnmMg9kJ5hoGfwZ41qUHyh2wG5G2xBBku+85sKWzzsQkMZ58RzUPkcPj4nmPL/UKfO8
+         WiwcBB4D/+dmvDHhgGTpMCW3+9r7yBSNYUPyCdgO7FVjwlYd1WvJ6fLZe3kOKbdtJmjJ
+         ZPLA==
+X-Gm-Message-State: AC+VfDwsM7ekbKnWfDURpZLR8gaTKLhmW8bV7QVdAIKvn87RoKrBsHVc
+        unUcWHPp4soDgSxysXGzTQ0Ikw==
+X-Google-Smtp-Source: ACHHUZ6wNggPJlaWNtBCFb85tB2zyBb3w5c/2/L22CBkW3973Qtp0kgzE6fLsZu8EOuufjAe/NANWQ==
+X-Received: by 2002:a5d:4203:0:b0:311:1107:9aba with SMTP id n3-20020a5d4203000000b0031111079abamr13408111wrq.19.1687339868152;
+        Wed, 21 Jun 2023 02:31:08 -0700 (PDT)
+Received: from blmsp.fritz.box ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
+        by smtp.gmail.com with ESMTPSA id t10-20020a5d49ca000000b002fe96f0b3acsm3977344wrs.63.2023.06.21.02.31.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 02:31:07 -0700 (PDT)
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Michal Kubiak <michal.kubiak@intel.com>,
+        Vivek Yadav <vivek.2311@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Simon Horman <simon.horman@corigine.com>,
+        Markus Schneider-Pargmann <msp@baylibre.com>
+Subject: [PATCH v2 0/6] can: tcan4x5x: Introduce tcan4552/4553
+Date:   Wed, 21 Jun 2023 11:30:57 +0200
+Message-Id: <20230621093103.3134655-1-msp@baylibre.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v7 4/5] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
-Content-Language: en-US
-To:     kernel test robot <lkp@intel.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        "Vinod Koul" <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "Roger Quadros" <rogerq@kernel.org>
-CC:     <oe-kbuild-all@lists.linux.dev>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
-        <linux-riscv@lists.infradead.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Mason Huo" <mason.huo@starfivetech.com>
-References: <20230619094759.21013-5-minda.chen@starfivetech.com>
- <202306192215.TvQco9m6-lkp@intel.com>
-From:   Minda Chen <minda.chen@starfivetech.com>
-In-Reply-To: <202306192215.TvQco9m6-lkp@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.217]
-X-ClientProxiedBy: EXCAS065.cuchost.com (172.16.6.25) To EXMBX171.cuchost.com
- (172.16.6.91)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi everyone,
+
+This series introduces two new chips tcan-4552 and tcan-4553. The
+generic driver works in general but needs a few small changes. These are
+caused by the removal of wake and state pins.
+
+In v2 I updated the bindings to use tcan4x5x always as a fallback. The
+driver now uses the first more specific binding if available. If the
+given binding does not match the chip that is present, a warning is
+printed and the correct driver data is loaded instead.
+
+Based on v6.4-rc1.
+
+Best,
+Markus
+
+Changes in v2:
+- Update the binding documentation to specify tcan4552 and tcan4553 with
+  the tcan4x5x as fallback
+- Update the driver to use auto detection as well. If compatible differs
+  from the ID2 register, use the ID2 register and print a warning.
+- Small style changes
+
+Previous versions:
+v1 - https://lore.kernel.org/lkml/20230314151201.2317134-1-msp@baylibre.com
+
+Markus Schneider-Pargmann (6):
+  dt-bindings: can: tcan4x5x: Add tcan4552 and tcan4553 variants
+  can: tcan4x5x: Remove reserved register 0x814 from writable table
+  can: tcan4x5x: Check size of mram configuration
+  can: tcan4x5x: Rename ID registers to match datasheet
+  can: tcan4x5x: Add support for tcan4552/4553
+  can: tcan4x5x: Add error messages in probe
+
+ .../devicetree/bindings/net/can/tcan4x5x.txt  |  11 +-
+ drivers/net/can/m_can/m_can.c                 |  16 ++
+ drivers/net/can/m_can/m_can.h                 |   1 +
+ drivers/net/can/m_can/tcan4x5x-core.c         | 161 ++++++++++++++----
+ drivers/net/can/m_can/tcan4x5x-regmap.c       |   1 -
+ 5 files changed, 155 insertions(+), 35 deletions(-)
 
 
-On 2023/6/19 22:45, kernel test robot wrote:
-> Hi Minda,
-> 
-> kernel test robot noticed the following build errors:
-> 
-> [auto build test ERROR on robh/for-next]
-> [also build test ERROR on linus/master v6.4-rc7 next-20230619]
-> [If your patch is applied to the wrong git tree, kindly drop us a note.
-> And when submitting patch, we suggest to use '--base' as documented in
-> https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> 
-> url:    https://github.com/intel-lab-lkp/linux/commits/Minda-Chen/dt-bindings-phy-Add-StarFive-JH7110-PCIe-PHY/20230619-184756
-> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> patch link:    https://lore.kernel.org/r/20230619094759.21013-5-minda.chen%40starfivetech.com
-> patch subject: [PATCH v7 4/5] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
-> config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20230619/202306192215.TvQco9m6-lkp@intel.com/config)
-> compiler: s390-linux-gcc (GCC) 12.3.0
-> reproduce: (https://download.01.org/0day-ci/archive/20230619/202306192215.TvQco9m6-lkp@intel.com/reproduce)
-> 
-> If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> the same patch/commit), kindly add following tags
-> | Reported-by: kernel test robot <lkp@intel.com>
-> | Closes: https://lore.kernel.org/oe-kbuild-all/202306192215.TvQco9m6-lkp@intel.com/
-> 
-> All errors (new ones prefixed by >>, old ones prefixed by <<):
-> 
->>> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/phy/starfive/phy-jh7110-pcie.ko] undefined!
-I can not find this error. devm_platform_ioremap_resource is an exported symbol
-> ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma.ko] undefined!
-> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
-> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
-> ERROR: modpost: "iounmap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
-> ERROR: modpost: "ioremap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
-> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/char/xillybus/xillybus_of.ko] undefined!
-> ERROR: modpost: "devm_memremap" [drivers/misc/open-dice.ko] undefined!
-> ERROR: modpost: "devm_memunmap" [drivers/misc/open-dice.ko] undefined!
-> ERROR: modpost: "iounmap" [drivers/net/ethernet/8390/pcnet_cs.ko] undefined!
-> WARNING: modpost: suppressed 19 unresolved symbol warnings because there were too many)
->> Kconfig warnings: (for reference only)
->    WARNING: unmet direct dependencies detected for USB_PHY
->    Depends on [n]: USB_SUPPORT [=n]
->    Selected by [m]:
->    - PHY_STARFIVE_JH7110_PCIE [=m]
-> 
-I will fix it.
+base-commit: ac9a78681b921877518763ba0e89202254349d1b
+-- 
+2.40.1
+
