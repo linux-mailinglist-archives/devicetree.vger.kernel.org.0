@@ -2,72 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 05F7B738CDB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 19:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E11A6738CE7
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 19:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229659AbjFUROx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 13:14:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55562 "EHLO
+        id S229887AbjFURTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 13:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230519AbjFUROv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 13:14:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C531B10C;
-        Wed, 21 Jun 2023 10:14:50 -0700 (PDT)
+        with ESMTP id S229502AbjFURTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 13:19:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79EBB10C;
+        Wed, 21 Jun 2023 10:19:10 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5D80B6160E;
-        Wed, 21 Jun 2023 17:14:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3EFFEC433C0;
-        Wed, 21 Jun 2023 17:14:45 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0EFAF61601;
+        Wed, 21 Jun 2023 17:19:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4535DC433C8;
+        Wed, 21 Jun 2023 17:19:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687367689;
-        bh=Ig7h1rTYEsmEV7G81Nmb1HvjJThz1FZiBSw0DAESgX0=;
+        s=k20201202; t=1687367949;
+        bh=ohs90axjGL2P+Qq4eDlVdKf2VcnUUb1Drl3OZZKM5rw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EA+TkeH1zdh3UTzsbnvhz/ioWY5n7H6RjkWnD00fHvi4+stRfuZX+x9vMwniFILUg
-         FhZYFFhMluHx6AVq3fKebL794/lTV/x8JXQNlJMe81XN5iUUQm5S/5k3uK6RVohenq
-         dGGH51ZmKV7Kx/s2T1JHAMbRYat2EnDvdIhKuFHUUzQEk3oU9xhDtNlda1PnVVgLMa
-         d52J84klyVwN7tqYzNREAlOT+vKV5iPb4SZ8cOyXXtEc/GcNmI0JpFBCEUITDZdBgB
-         O97hxJZRYunt0QBh4OWakgEY3rFFt69DtwA4GSGBMySSt9XuNtywsNZag8t2um5Twp
-         /114G7uIe7Xkg==
-Date:   Wed, 21 Jun 2023 18:14:41 +0100
+        b=mo3yHvfUGXMmPm7yRXI9pIucRki7M1yHZyZQc5gQ+uaZ96t0LWOg8+/XnVmdiqQxI
+         vCm9wkQw5xmBeNMAg4zIj9xwmieebtgET7eiwmdsWfY/3YMVF0ojERE1hUr+AlLwdb
+         YXzM2wKoHkaD8ud+keYPNpBti7HFH/dZ0fjAFQJc+E0pG50G8scBMr+ZuOLmLoi1pO
+         r1+KJGXglZRxFCENeax8jC7DkDYuQHy4EOlIdQlimmdIjddU85MEuLVwHczZTrf2k+
+         +xjxNw8Ck2YeDaAJKYheb1YMXhECLrMFnB5J6SEowhlz3LWqjfBgVkwx3ZdhYloaOE
+         j4U48zkCBANvg==
+Date:   Wed, 21 Jun 2023 18:19:04 +0100
 From:   Lee Jones <lee@kernel.org>
-To:     Okan Sahin <okan.sahin@analog.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jianhua Lu <lujianhua000@gmail.com>,
+        Daniel Thompson <daniel.thompson@linaro.org>,
+        Jingoo Han <jingoohan1@gmail.com>, Pavel Machek <pavel@ucw.cz>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <20230621171441.GM10378@google.com>
-References: <20230412111256.40013-1-okan.sahin@analog.com>
- <20230412111256.40013-6-okan.sahin@analog.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: backlight: kinetic,ktz8866: Add missing
+ type for "current-num-sinks"
+Message-ID: <20230621171904.GO10378@google.com>
+References: <20230613201022.2823392-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230412111256.40013-6-okan.sahin@analog.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230613201022.2823392-1-robh@kernel.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -76,28 +61,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 12 Apr 2023, Okan Sahin wrote:
+On Tue, 13 Jun 2023, Rob Herring wrote:
 
-> MFD driver for MAX77541/MAX77540 to enable its sub
-> devices.
+> "current-num-sinks" is missing a type, add it.
 > 
-> The MAX77541 is a multi-function devices. It includes
-> buck converter and ADC.
-> 
-> The MAX77540 is a high-efficiency buck converter
-> with two 3A switching phases.
-> 
-> They have same regmap except for ADC part of MAX77541.
-> 
-> Signed-off-by: Okan Sahin <okan.sahin@analog.com>
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  drivers/mfd/Kconfig          |  13 ++
->  drivers/mfd/Makefile         |   1 +
->  drivers/mfd/max77541.c       | 224 +++++++++++++++++++++++++++++++++++
->  include/linux/mfd/max77541.h |  91 ++++++++++++++
->  4 files changed, 329 insertions(+)
->  create mode 100644 drivers/mfd/max77541.c
->  create mode 100644 include/linux/mfd/max77541.h
+>  .../devicetree/bindings/leds/backlight/kinetic,ktz8866.yaml      | 1 +
+>  1 file changed, 1 insertion(+)
 
 Applied, thanks
 
