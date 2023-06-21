@@ -2,127 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E61DB73818C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4685F737FD3
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:09:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjFUJzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 05:55:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51864 "EHLO
+        id S230220AbjFUKAR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 06:00:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52936 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229983AbjFUJzq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 05:55:46 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7CF8E9
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:55:44 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f76a0a19d4so7785600e87.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:55:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687341343; x=1689933343;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cHDeuA0BCZm9Mf3LuBjPH47HJ3bTPiRckRvN89KzLZQ=;
-        b=GqxXjRwWaKH4O2DIYiZYa4yeoO13DgadXj5p6HDOiVCwg5X/WCjbpkmykwSDzr37ER
-         c9GfxdRyKM3RA5P5Fn+J96qsC2KtorE3uf9w13Fx0vAbM6RygQqqphRttyrnFRNaeP9q
-         qr+H135irn5iTAR7DrkYSuZEf461cRwp8qPhOSbABIy/tC8Cvfz236NdJWKDR9bGKoGi
-         d5AJoz222DyW5kzKBlN8NGu3ThEiN2pu3pUG3yubHDXMJ7Eye84Sdlb9jeoTBmsKO1mv
-         T5NR3uTgrV3RgMDJMnlj/8q2U0iR9xtQP69R/GFEzxOt6lmJ5L/0IBeX1A7mYw3DWAVb
-         vfNw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687341343; x=1689933343;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cHDeuA0BCZm9Mf3LuBjPH47HJ3bTPiRckRvN89KzLZQ=;
-        b=XLWKy+orQdeMTdO2jmdPmLvlLRRSRxPinbrjcZZJFytzzXZeb/+88MGhtpFrABu01G
-         ykc7wI5+oYcyVgm9IU+5yPOxPbUNg7z7hMMCGlTXRk6Yl12z7MSQhSt1UP0VXPkFEOw/
-         u/kXmHPH0RcLnlbmX5LzJzgPBWBEXUAxp18IjpK2NPcu60WqpB2Ng010Uj8+wrSNq1oM
-         tIXrVHUhIZ5dKhaid+j3f4HxMhSBLFj6y4VahPf7g7NoFedc8ufPoOW64OtKozTEzpwP
-         sCMY73IEyocx1tj2/QZp0GBi1sRX8LcybCE48U6pPaWEMg2Wd2VXx5q+LvfgPW5N2VEz
-         nJRA==
-X-Gm-Message-State: AC+VfDycLAT74oPaystznFZRD/y5+KAZMC1VRVJg6moqkuyxIk4x3iiG
-        jNQFlhBtQnzhGV4L8yMx6E1iLA==
-X-Google-Smtp-Source: ACHHUZ6ySlB8AFsYGsXPJVpD0AgAwtSuQaMhMapnyz6G8Bzm0NrHJE5ekHdsoPJNi/tg12hykfhv7A==
-X-Received: by 2002:a05:6512:224d:b0:4f9:5d3b:6a3a with SMTP id i13-20020a056512224d00b004f95d3b6a3amr552225lfu.31.1687341343175;
-        Wed, 21 Jun 2023 02:55:43 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id x23-20020a05600c21d700b003f427687ba7sm4437478wmj.41.2023.06.21.02.55.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 02:55:42 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 21 Jun 2023 11:55:41 +0200
-Subject: [PATCH] arm64: dts: qcom: sm8450: add missing power-domains
- property to usb qmpphy node
+        with ESMTP id S229733AbjFUKAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:00:15 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03B54A3;
+        Wed, 21 Jun 2023 03:00:13 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 8F92B6606F79;
+        Wed, 21 Jun 2023 11:00:11 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1687341612;
+        bh=Ph+03Fr42BlVtzH5wEcKX5Csb0mSfoQbYcHJJGg40Co=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=LdF3IBH5a+ErxRKXcSUPN/bn2oVRx9YsFx819NnpZ+OttiUJlbAQmlG/QWfLdZ1VP
+         SE5ffSB3+1dzjgbEYMPJ/rUBrgNXN/jobAuXHBpgkHfZ4EmYJ0Mixi4hYwUeIzbQgC
+         GRXixwt/aYI+/dPbwq/fyYL5iP1lFD7wtHkd5gDmR5QHyT8MmTOT/z+OrCjx/8/L50
+         Pm48v7YpdyQtHd8PKJnRJT6UGZaK1vlxzCoz6Amulsu3ZrB/9Y77sPk045E+f+lGU+
+         WFERUIxJSmoGIkqCkywo/ibKy+5sZEpSRITgWZRe9sFNmbqyuKbJ8rL7H/1sw5jgHj
+         cQa1LXSJeFqNg==
+Message-ID: <0db4a705-10d0-93ce-df61-1a20d6d09959@collabora.com>
+Date:   Wed, 21 Jun 2023 12:00:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230621-topic-sm8450-upstream-usb-phy-missing-power-domains-v1-1-d850c086c43c@linaro.org>
-X-B4-Tracking: v=1; b=H4sIABzJkmQC/x2OOQrDMBAAv2JUZ0GWj8T5SkihY20vWAdaKwfGf
- 49IOVMMcwjGTMji3hwi44uYYqjQXhphVx0WBHKVhZKqk6NqYY+JLLC/9YOEknjPqD0UNpDWL3h
- iprBAim/M4KLXFBj6adKdG+1VDbOoZaMZwWQd7FrboWxblSnjTJ//yuN5nj9coSUbmgAAAA==
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1146;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=G6+Bov5hTBJLt1e/L02QrltMcTDY6r7pkw3usfxiqi0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkkskd9J3VdkwZe0ldVUWqjgPTYH5wY2JZ/GYHBulI
- bLEyOe+JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJLJHQAKCRB33NvayMhJ0ZhmEA
- CFfVZtcjJjWw5KkarOluj/ZgCKpyZTRfb389AmdzXKesFcLr0RgKLoqMWfutoeCTgGGyvS4V+IUkbU
- xTY5WuB65T3LLCZJmzMKCLl8DriVs5KTyBqUDYQ8dVTaEi6ZEwbp9Pi07NMCt9ZWgJVqUxIQlCZRYv
- SnXDy7UVHDmh4QiLmQ4b/wavM2cxoLHi++xNOlR2gl0Zso9SV0w+E4kyhW4NhtQOgLeTD7xFH8Kk6n
- UbEsgT0fA5XlTDOcQqH6ULKMr9xjPwj2Fo+0DgRE0FH7VDQ1KC/oY7Lax3UOTks+XRqDt38o0thQzc
- hKI8HedC/mzJ/FdqP4HoXPzPHczTtORUYnIq1zd7nw/oeHp2savvtoysjRUGCiQvpLyNsLUqe0H8d6
- IDoWSd5DooQop+0eHO8/qT1UGCRL5j08laQ/xLCIlAHLaQQDWYwbAo2c2Lf7NgrB7TifluPOorxwEN
- X6e/heObZ5XSLqr6h440/Lm2Nh3Zth7bl1VeoAH6rkbfu43U4NsYqJgN7AZE8ShR3uDoMUi2ClDUSA
- o90yjK1DWTxflbWGDUcmfsj0znC2yR+6AXZxaMbH7lipgiqydFwbYhZRhf5TnB5leDD43Lqa/pSqFl
- eJrWXy+pyk3yjS5fzeFx6uJ2Wq8ZESGGZp9oHf6MGxn30ofUgqXZcFfywxsg==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 13/14] drm/mediatek: Sort OVL adaptor components in
+ alphabetical order
+Content-Language: en-US
+To:     =?UTF-8?B?U2hhd24gU3VuZyAo5a6L5a2d6KyZKQ==?= 
+        <Shawn.Sung@mediatek.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "chunkuang.hu@kernel.org" <chunkuang.hu@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        =?UTF-8?B?U2luZ28gQ2hhbmcgKOW8teiIiOWciyk=?= 
+        <Singo.Chang@mediatek.com>,
+        =?UTF-8?B?SmFzb24tSkggTGluICjmnpfnnb/npaUp?= 
+        <Jason-JH.Lin@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?TmFuY3kgTGluICjmnpfmrKPonqIp?= <Nancy.Lin@mediatek.com>,
+        Project_Global_Chrome_Upstream_Group 
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20230621031938.5884-1-shawn.sung@mediatek.com>
+ <20230621031938.5884-14-shawn.sung@mediatek.com>
+ <8442c6a4-14a7-e3b3-0a82-0797ef3ddd77@collabora.com>
+ <9a2acfe13a22ddb1caace1fb58089f5c8a5f8b07.camel@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <9a2acfe13a22ddb1caace1fb58089f5c8a5f8b07.camel@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing property to fix the bindings check error:
-arch/arm64/boot/dts/qcom/sm8450-hdk.dtb: phy@88e8000: 'power-domains' is a required property
-    From schema: Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
+Il 21/06/23 11:16, Shawn Sung (宋孝謙) ha scritto:
+> On Wed, 2023-06-21 at 10:16 +0200, AngeloGioacchino Del Regno wrote:
+>>   	
+>> External email : Please do not click links or open attachments until
+>> you have verified the sender or the content.
+>>   Il 21/06/23 05:19, Hsiao Chien Sung ha scritto:
+>>> - Rename OVL_ADAPTOR_TYPE_RDMA to OVL_ADAPTOR_TYPE_MDP_RDMA
+>>>     to align the naming rule of mtk_ovl_adaptor_comp_id.
+>>> - Sort components' names in alphabetical order
+>>> - Sort device table in alphabetical order
+>>> - Add sentinel to device table
+>>>
+>>> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+>>
+>> I agree, but this commit should come before [12/14] of this series.
+> 
+> Got it. Since [12/14] removed many lines that use component ID/type
+> (for example, in mtk_ovl_adaptor_clk_enable() or
+> mtk_ovl_adaptor_add_comp()), if this commit has to move before that,
+> should I still modify them and delete them in [12/14]? Thanks.
+> 
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Every commit has to work on its own, so you first perform the renaming in
+one commit, then you modify and delete.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-index 5cd7296c7660..f921bd520e40 100644
---- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
-@@ -2046,6 +2046,8 @@ usb_1_qmpphy: phy@88e8000 {
- 				 <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
- 			clock-names = "aux", "ref", "com_aux", "usb3_pipe";
- 
-+			power-domains = <&gcc USB30_PRIM_GDSC>;
-+
- 			resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
- 				 <&gcc GCC_USB3_PHY_PRIM_BCR>;
- 			reset-names = "phy", "common";
 
----
-base-commit: 15e71592dbae49a674429c618a10401d7f992ac3
-change-id: 20230621-topic-sm8450-upstream-usb-phy-missing-power-domains-499a3d6c725f
-
-Best regards,
--- 
-Neil Armstrong <neil.armstrong@linaro.org>
+>>
+>> Regards,
+>> Angelo
+>>
+> 
+> Best regards,
+> Hsiao Chien Sung
 
