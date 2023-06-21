@@ -2,102 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EB416737D05
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:08:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AA7E737CF4
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:08:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231510AbjFUHis (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 03:38:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34536 "EHLO
+        id S231646AbjFUHm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 03:42:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231529AbjFUHiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 03:38:08 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C54A21712;
-        Wed, 21 Jun 2023 00:38:02 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 61748614A0;
-        Wed, 21 Jun 2023 07:38:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B07F7C433C8;
-        Wed, 21 Jun 2023 07:38:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687333081;
-        bh=4q+VNAx3/4U3dPS2cJ39WDmzQvKH+mXBlgtx4JJ17xo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=K7FhuYzboUErUWHkLjY0OGBN3srKFDw0COCk4eCwfEG7xTLbLLwSYaa40N0fAAieY
-         zax19uhTlt5Sgk2Sla4nLOpW2toqGY1ndCRzJyqXAQx7BmMnYWUQMFbDzAtqlyNfgu
-         x2bv+voPh2KkATLRVXOC32kaIU91h4IoagdSRtOYp7Lx9qEKTtrVCiJXXTJBeUw2dY
-         w6eoC9U+PjtGgqc0Cuoa/f8PwBGsLbdyqT6F3PvyIDN8WqmFkktrhqq8KDty+M23pp
-         fUuMEwD5ZauYeu1rmo1xT89fZln2gqb0a1hkr0N1zzjKbzLBw2knhk7IyatUWp0BbJ
-         8GEB/86MUYzLg==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1qBsPk-0005mQ-9F; Wed, 21 Jun 2023 09:38:04 +0200
-Date:   Wed, 21 Jun 2023 09:38:04 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Cc:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230263AbjFUHmH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 03:42:07 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF522B4
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 00:42:05 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1qBsTa-0004Rj-9Y; Wed, 21 Jun 2023 09:42:02 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1qBsTX-0003Jg-KN; Wed, 21 Jun 2023 09:41:59 +0200
+Date:   Wed, 21 Jun 2023 09:41:59 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "quic_pkondeti@quicinc.com" <quic_pkondeti@quicinc.com>,
-        "quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
-        "quic_wcheng@quicinc.com" <quic_wcheng@quicinc.com>,
-        "quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
-        "quic_harshq@quicinc.com" <quic_harshq@quicinc.com>,
-        "ahalaney@redhat.com" <ahalaney@redhat.com>
-Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
- for qcom wrapper
-Message-ID: <ZJKo3LyIMD1xr2ru@hovoldconsulting.com>
-References: <82553597-ce0e-48f4-44d4-9eeaaf4cb1c4@quicinc.com>
- <ZIBsDQJtgDZRe7MG@hovoldconsulting.com>
- <99cded6f-6a71-ffce-8479-c7c0726bfb8e@quicinc.com>
- <ZIGihYS5EacISEFm@hovoldconsulting.com>
- <279fff8b-57e2-cfc8-cd6d-c69d00e71799@quicinc.com>
- <20230608175705.2ajrteztdeqdrkzg@synopsys.com>
- <ZILgW5CwfSlBxzNB@hovoldconsulting.com>
- <20230609181602.ljxdchgzl7kzk73n@synopsys.com>
- <acd46bb7-0708-d095-c3c6-53653f9e47d6@quicinc.com>
- <20230615210800.lvmekpvxjiszkrh4@synopsys.com>
+        linux-pm@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        linux-rockchip@lists.infradead.org,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Michael Riesch <michael.riesch@wolfvision.net>,
+        kernel@pengutronix.de, Vincent Legoll <vincent.legoll@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v6 22/26] dt-bindings: devfreq: event: rockchip,dfi: Add
+ rk3588 support
+Message-ID: <20230621074159.GN18491@pengutronix.de>
+References: <20230616062101.601837-1-s.hauer@pengutronix.de>
+ <20230616062101.601837-23-s.hauer@pengutronix.de>
+ <20230616-swimwear-prewar-f9dce761d2ec@spud>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230615210800.lvmekpvxjiszkrh4@synopsys.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230616-swimwear-prewar-f9dce761d2ec@spud>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 15, 2023 at 09:08:01PM +0000, Thinh Nguyen wrote:
-> On Thu, Jun 15, 2023, Krishna Kurapati PSSNV wrote:
-
-> >  How about we add compatible data indicating the number of usb2/usb3 ports.
-> > That way we needn't parse the DT or read xhci registers atleast as a
-> > temporary solution to unblock other patches. Once this series is merged, we
-> > can get back to fixing the port count calculation. Does it seem fine ?
+On Fri, Jun 16, 2023 at 08:05:33PM +0100, Conor Dooley wrote:
+> On Fri, Jun 16, 2023 at 08:20:57AM +0200, Sascha Hauer wrote:
+> > This adds rockchip,rk3588-dfi to the list of compatibles. Unlike ealier
+> > SoCs the rk3588 has four interrupts (one for each channel) instead of
+> > only one, so increase the number of allowed interrupts to four.
 > > 
+> > Link: https://lore.kernel.org/r/20230524083153.2046084-23-s.hauer@pengutronix.de
 > 
-> Temporary solution should not involve DT as it's not easily reverted or
-> changed. Just include xhci-ext-caps.h and use the inline function. I
-> think Johan is fine with that. If not, he can provide more feedback.
+> It's unclear what the point of this link is.
 
-Yes, I already suggested that as a quick way forward since it is already
-used this way by the xhci debug driver.
+The link was added automatically by b4. I re-applied the series from the
+last one I sent just to be sure that I base my work for the new series
+on the one I sent last time. I didn't remember that b4 adds these links,
+I should have disabled that option.
 
-Johan
+> My comment still stands about whether only the new compatible should be
+> permitted to have more than one interrupt. I don't recall a response to
+> that question on the last version.
+
+My personal take on this is that such additions make the bindings more
+readable by machines, but less by humans. That's why I don't have enough
+intrinsic motivation to make this change. Anyway, if you insist then
+I'll make it for the next round.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
