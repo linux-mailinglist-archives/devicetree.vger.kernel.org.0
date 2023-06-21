@@ -2,158 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62EE6738692
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 16:16:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AA7C7386EC
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 16:27:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232905AbjFUOQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 10:16:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33934 "EHLO
+        id S230486AbjFUO1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 10:27:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232910AbjFUOPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 10:15:50 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BCFF1FF6
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:15:29 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f875b267d9so4376640e87.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:15:29 -0700 (PDT)
+        with ESMTP id S231853AbjFUO1O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 10:27:14 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DE7110CE;
+        Wed, 21 Jun 2023 07:26:41 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-9875c2d949eso754521566b.0;
+        Wed, 21 Jun 2023 07:26:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687356928; x=1689948928;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WO0wRiGvwvFFxc6ddvmc2hEJ6Af99eLgH/iA0sVZGJI=;
-        b=WwFu6VlAr2SlRovLrSh6EFSE2IYpH6tY701z5wzbbVvoP0YIoZX5Ntj4y4tDHau4ld
-         np4r2NKmcObhZV2pf6z2ifzK53z1TUtUSqBGou0hZiXzExjgQT55JBuIOhQpLTIgVrHq
-         W1fLy6Mjrv5xL4aO4eWXe4ElQeOonxTnx7d00Y+cNL9V0e/6MAUeXIHjHAmXWuHOSA/h
-         HR17SfTbhE5a9eqjkP15ZWgw7jIaRR/HD1syWw7WaoD2fvuHwxZStwuwuKkDED9I7pf9
-         kOuV2w6ugcNN9+nX4Gdr76FdocrNEK1i6gJ1dn+4+mO3xc7ZJggHMroy9C3JZhmsWEca
-         I/7w==
+        d=gmail.com; s=20221208; t=1687357600; x=1689949600;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c5rPM0WguDAMwCA5XqQogz3H0yEU1YB8VWluN4BWIeQ=;
+        b=jBSAStfU4lku5pBMpH3sWLC+Ujqmcu9+Nd5nhm3hGiKuj6mX45h1QgUQuwKLib0UAN
+         4MLqlu1IlOpcMWqD/y+5NwNjUESAbJfNfnip4FYg32QkDEGpgy7ebj1nS41zdCZfc0Hx
+         dxVK50WtLdgqj8f4slqSN37YjzauGF7t+2inHbWKpZs29DsKTqJWn7v9L9PMvHp6JokZ
+         9u71sILkXlogaGZ0wqvD05qal9022qQKCdiFIaF/v0zwcO3ni8CmeCigCDMaPiQ0CfWX
+         pqXNnpyB29sdZnmY30gtW5+b0XB2uz0OEMrFnX7lOYRcLr8mxBV591in9OLvT5jEzUNY
+         hYDA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687356928; x=1689948928;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WO0wRiGvwvFFxc6ddvmc2hEJ6Af99eLgH/iA0sVZGJI=;
-        b=PQPRPM6EQ8PkLt2o/ch53FVFh4iyuL1ltGTRi1V/m+4Gny2BhialuXObD7HyyiG0gP
-         5trwoR+006Y3gMZxqgJkYbw7vut7dzdrpjlCe3wYoFUH2EwIeNyYNfbAL+XKmjsTyrNv
-         I2t+E34oVZ2QiPeEQ4wuoSdE91V5Q/I6Ce+2RQkdPO3s80p+zo8a82MFZpCAZaiWdVQo
-         G4SmftUr4UgbH2vgfD+Ax1JGguF9vxpw30LZhAB8A7CSLbKj7qJOWtXFZdmuccRsApdN
-         Npy5P2tTu8bzU1448JkJ+yx/j39eDVjrQHI/iKL35HaTxfc1akDU9K3PVuQCVrDdvRDh
-         Izeg==
-X-Gm-Message-State: AC+VfDxoUO80bnqHtZtzoFezNdFUTuDSp/YIMpknV+/0AY6kRp8zqUA+
-        ugngPYJMXQua8wl5R6WmffAKSRNKzvhzO2w5Noo=
-X-Google-Smtp-Source: ACHHUZ6mkH/Gyz2cXYdyzimv0/bg1Z67dEVNVGZbDw89bpZv7w/IKri2Jz1t1xJik3NTF2w8OJd1Ag==
-X-Received: by 2002:a19:3807:0:b0:4f7:6775:2a66 with SMTP id f7-20020a193807000000b004f767752a66mr8453628lfa.53.1687356927422;
-        Wed, 21 Jun 2023 07:15:27 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id u27-20020ac248bb000000b004f64fb058f7sm795002lfg.225.2023.06.21.07.15.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 07:15:26 -0700 (PDT)
-Message-ID: <372f776d-6d98-5438-2a13-0aeac4182a31@linaro.org>
-Date:   Wed, 21 Jun 2023 17:15:26 +0300
+        d=1e100.net; s=20221208; t=1687357600; x=1689949600;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c5rPM0WguDAMwCA5XqQogz3H0yEU1YB8VWluN4BWIeQ=;
+        b=MMDSz3ZRJobGyYTvj2USdGwT1mxIODgLuEvd6lgf9NN0u+KzNs4pmuAWe9jwVb72CP
+         JbE9JQTcunK0Hufa2JOnPrUO4hPZPMo4pes6lZ1iqiEyI4WzNd7IGdcYVTQ/Kt7PIBFB
+         cqJi01OioRev95dajxFZxiEqDAAAMXjllTSETvwm0GeSlgTqjeijyKEFqVU7T0+0vRfa
+         tvJ3HBrPHuQSIR9PCDxDJGtp/0KY0PUlbp82834Q9eZx+a4WtVv8gJ2LSu7ucdUUcd2g
+         w6LRkSqx967go4oEy6NMtqmyUp9zgTTYwxJAscVhsYzEppEIzfFFeJUoZUrP8cgaJHhN
+         P1OQ==
+X-Gm-Message-State: AC+VfDwNccNXghQFXBeqdAng+v5OgVw3kTw8ovY1stSPHI1vQudFmLOc
+        QmcD0aytU0lJA+4Vg5QQNEA=
+X-Google-Smtp-Source: ACHHUZ5DSv7pLmI/Ye7LenYpCm1tMd5gPnrocg9qtG5kyJ8ODEUJjMunRTn43j4cj7w0DnK0QGnctA==
+X-Received: by 2002:a17:906:eec1:b0:974:1e0e:91ee with SMTP id wu1-20020a170906eec100b009741e0e91eemr15114334ejb.13.1687357599691;
+        Wed, 21 Jun 2023 07:26:39 -0700 (PDT)
+Received: from [127.0.1.1] ([91.230.2.244])
+        by smtp.gmail.com with ESMTPSA id l11-20020a170906644b00b00988956f244csm3266156ejn.6.2023.06.21.07.26.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 07:26:39 -0700 (PDT)
+From:   Benjamin Bara <bbara93@gmail.com>
+Subject: [PATCH v2 0/3] usb: misc: onboard_usb_hub: add support for Cypress
+ HX3 USB 3.0 family
+Date:   Wed, 21 Jun 2023 16:26:26 +0200
+Message-Id: <20230620-hx3-v2-0-76a53434c713@skidata.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 08/10] clk: qcom: gcc-mdm9615: drop the cxo clock
-Content-Language: en-GB
-To:     Bjorn Andersson <andersson@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJIIk2QC/1WNyw7CIBQFf6W5azEUKFpX/ofpglflxgoGalPT8
+ O9idy5ncjJng+wSugyXZoPkFswYQwV2aMB4Fe6OoK0MjDJOJaPEr5wY3fNOi9Hak4S61Co7opM
+ KxtdteE9Tla/kRlz39G2o7DHPMX32p6X92f/o0hJKuJKi11yYc6ev+YFWzepo4hOGUsoXN0SaY
+ 60AAAA=
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-References: <20230512211727.3445575-1-dmitry.baryshkov@linaro.org>
- <20230512211727.3445575-9-dmitry.baryshkov@linaro.org>
- <20230613234113.tnzjgfbyhj5zokgl@ripper>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230613234113.tnzjgfbyhj5zokgl@ripper>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Benjamin Bara <benjamin.bara@skidata.com>
+Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+X-Mailer: b4 0.12.2
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14/06/2023 02:41, Bjorn Andersson wrote:
-> On Sat, May 13, 2023 at 12:17:25AM +0300, Dmitry Baryshkov wrote:
->> The gcc and lcc devices have been switched to the DT-defined cxo_board
->> clock. Now we can drop the manually defined cxo clock.
->>
-> 
-> Perhaps I'm reading this incorrectly, but don't you introduce that clock
-> in DT in the next commit? It would be nice to allow for at least some
-> overlap between existing dtb and the new scheme.
+Hi!
 
-No, this clock existed in DT for some time, I'm just removing the 
-necessity for an intermediate clock in the gcc driver.
+This series adds support for the Cypress HX3 USB 3.0 family (2/3). For
+now, it just contains the USB-related aspects and ignores the option to
+connect it via i2c (3/3).
 
-> 
-> Regards,
-> Bjorn
-> 
->> Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> ---
->>   drivers/clk/qcom/gcc-mdm9615.c | 17 -----------------
->>   1 file changed, 17 deletions(-)
->>
->> diff --git a/drivers/clk/qcom/gcc-mdm9615.c b/drivers/clk/qcom/gcc-mdm9615.c
->> index 458c18b639db..64d4f508e43a 100644
->> --- a/drivers/clk/qcom/gcc-mdm9615.c
->> +++ b/drivers/clk/qcom/gcc-mdm9615.c
->> @@ -26,17 +26,6 @@
->>   #include "clk-branch.h"
->>   #include "reset.h"
->>   
->> -static struct clk_fixed_factor cxo = {
->> -	.mult = 1,
->> -	.div = 1,
->> -	.hw.init = &(struct clk_init_data){
->> -		.name = "cxo",
->> -		.parent_names = (const char *[]){ "cxo_board" },
->> -		.num_parents = 1,
->> -		.ops = &clk_fixed_factor_ops,
->> -	},
->> -};
->> -
->>   enum {
->>   	DT_CXO,
->>   	DT_PLL4,
->> @@ -1623,10 +1612,6 @@ static struct clk_branch ebi2_aon_clk = {
->>   	},
->>   };
->>   
->> -static struct clk_hw *gcc_mdm9615_hws[] = {
->> -	&cxo.hw,
->> -};
->> -
->>   static struct clk_regmap *gcc_mdm9615_clks[] = {
->>   	[PLL0] = &pll0.clkr,
->>   	[PLL0_VOTE] = &pll0_vote,
->> @@ -1736,8 +1721,6 @@ static const struct qcom_cc_desc gcc_mdm9615_desc = {
->>   	.num_clks = ARRAY_SIZE(gcc_mdm9615_clks),
->>   	.resets = gcc_mdm9615_resets,
->>   	.num_resets = ARRAY_SIZE(gcc_mdm9615_resets),
->> -	.clk_hws = gcc_mdm9615_hws,
->> -	.num_clk_hws = ARRAY_SIZE(gcc_mdm9615_hws),
->>   };
->>   
->>   static const struct of_device_id gcc_mdm9615_match_table[] = {
->> -- 
->> 2.39.2
->>
+As the HX3 family operates with two power supplies, multiple power
+supply support is implemented (1/3).
 
+Thanks & best regards,
+Benjamin
+
+---
+Changes in v2:
+- don't re-order by VID/PID
+- 1/3: replace (err != 0) with (err)
+- Link to v1: https://lore.kernel.org/r/20230620-hx3-v1-0-3a649b34c85b@skidata.com
+
+---
+Benjamin Bara (3):
+      usb: misc: onboard-hub: support multiple power supplies
+      usb: misc: onboard-hub: add support for Cypress HX3 USB 3.0 family
+      dt-bindings: usb: Add binding for Cypress HX3 USB 3.0 family
+
+ .../devicetree/bindings/usb/cypress,hx3.yaml       | 77 ++++++++++++++++++++++
+ drivers/usb/misc/onboard_usb_hub.c                 | 39 ++++++++---
+ drivers/usb/misc/onboard_usb_hub.h                 |  8 +++
+ 3 files changed, 116 insertions(+), 8 deletions(-)
+---
+base-commit: 45a3e24f65e90a047bef86f927ebdc4c710edaa1
+change-id: 20230620-hx3-cb935b4fdd76
+
+Best regards,
 -- 
-With best wishes
-Dmitry
+Benjamin Bara <benjamin.bara@skidata.com>
 
