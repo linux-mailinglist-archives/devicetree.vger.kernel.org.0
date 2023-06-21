@@ -2,134 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A921739189
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 23:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 507037391C0
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 23:45:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229638AbjFUVba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 17:31:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49262 "EHLO
+        id S230488AbjFUVpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 17:45:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229472AbjFUVb3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 17:31:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4041E1BC;
-        Wed, 21 Jun 2023 14:31:28 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        with ESMTP id S230061AbjFUVpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 17:45:30 -0400
+Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EAB75E7D
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 14:45:27 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D0E78616D8;
-        Wed, 21 Jun 2023 21:31:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5B7DDC433C0;
-        Wed, 21 Jun 2023 21:31:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687383087;
-        bh=HY2/KPCQv+TNb8BEUoFS/75P2bkM0JsT+gXSpFBNCJA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=inJljWazMcccbQVlONx/s92wacqeR1e65s1uXDfzP8ddik+z5pUlpBQKE5kSFyfME
-         VAkZAODssc039oYcAHlCKCTi7j5WiJy6YESntQDym3N5YRUSPeuy5YL94ZdxMxeQXY
-         I7VWEg9/4cM2agT4V2XhXpmeGxdg3TP/ZxnQBvntnfC4J8xFGdJd0exvsJgIfFpIus
-         EKy2GZ5bK/cvf4Ghg3/KblBZTk3EclqnYSzKcKxBTHU0px6Hh+9emJD9cCxfwT1E5Y
-         UvEEE8BNXEncBVjoeaw0CDY9o7wB13lrmROFp0Mowsyxs2LbLrqR35UnHU4/pCCslh
-         BOXqTkjIVAM1A==
-Date:   Wed, 21 Jun 2023 21:31:24 +0000
-From:   Nathan Chancellor <nathan@kernel.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     pavel@ucw.cz, lee@kernel.org, sean.wang@mediatek.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        matthias.bgg@gmail.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com, llvm@lists.linux.dev
-Subject: Re: [PATCH v3 8/8] leds: leds-mt6323: Add support for WLEDs and
- MT6332
-Message-ID: <20230621213124.GA2689001@dev-arch.thelio-3990X>
-References: <20230601110813.2373764-1-angelogioacchino.delregno@collabora.com>
- <20230601110813.2373764-9-angelogioacchino.delregno@collabora.com>
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1E6993F88A;
+        Wed, 21 Jun 2023 23:45:24 +0200 (CEST)
+Date:   Wed, 21 Jun 2023 23:45:22 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, robdclark@gmail.com,
+        quic_abhinavk@quicinc.com, dmitry.baryshkov@linaro.org,
+        sean@poorly.run, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, dianders@chromium.org, david@ixit.cz,
+        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
+        konrad.dybcio@somainline.org, agross@kernel.org,
+        andersson@kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: Re: [PATCH v9 2/2] dt-bindings: msm: dsi-controller-main: Document
+ clocks on a per compatible basis
+Message-ID: <qew6nd3jqnasb3mivvdxcwugfrvxdeafilaxk35v7uihagk2qi@oxe3oqdgfwpe>
+References: <20230118171621.102694-1-bryan.odonoghue@linaro.org>
+ <20230118171621.102694-3-bryan.odonoghue@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230601110813.2373764-9-angelogioacchino.delregno@collabora.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230118171621.102694-3-bryan.odonoghue@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Angelo,
+Hi!
 
-On Thu, Jun 01, 2023 at 01:08:13PM +0200, AngeloGioacchino Del Regno wrote:
-> Add basic code to turn on and off WLEDs and wire up MT6332 support
-> to take advantage of it.
-> This is a simple approach due to the aforementioned PMIC supporting
-> only on/off status so, at the time of writing, it is impossible for me
-> to validate more advanced functionality due to lack of hardware.
+On 2023-01-18 17:16:21, Bryan O'Donoghue wrote:
+> Each compatible has a different set of clocks which are associated with it.
+> Add in the list of clocks for each compatible.
+
+So if each set of compatibles have their own unique set of clocks, is
+there a reason to have so many duplicate then: blocks?  I ran into this
+while preparing for submitting SM6125 DPU and having no clue where to
+add it.
+
+> Acked-by: Rob Herring <robh@kernel.org>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+> ---
+>  .../display/msm/dsi-controller-main.yaml      | 218 ++++++++++++++++--
+>  1 file changed, 201 insertions(+), 17 deletions(-)
 > 
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> index 35668caa190c4..ad1ba15b74c19 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
+> @@ -9,9 +9,6 @@ title: Qualcomm Display DSI controller
+>  maintainers:
+>    - Krishna Manikandan <quic_mkrishn@quicinc.com>
+>  
+> -allOf:
+> -  - $ref: "../dsi-controller.yaml#"
+> -
+>  properties:
+>    compatible:
+>      oneOf:
+> @@ -50,22 +47,23 @@ properties:
+>      maxItems: 1
+>  
+>    clocks:
+> -    items:
+> -      - description: Display byte clock
+> -      - description: Display byte interface clock
+> -      - description: Display pixel clock
+> -      - description: Display core clock
+> -      - description: Display AHB clock
+> -      - description: Display AXI clock
+> +    description: |
+> +      Several clocks are used, depending on the variant. Typical ones are::
+> +       - bus:: Display AHB clock.
+> +       - byte:: Display byte clock.
+> +       - byte_intf:: Display byte interface clock.
+> +       - core:: Display core clock.
+> +       - core_mss:: Core MultiMedia SubSystem clock.
 
-After this patch as commit 9bb0a9e0626c ("leds: leds-mt6323: Add support
-for WLEDs and MT6332") in -next, I see the following warnings from
-clang, which are basically flagging potential kernel Control Flow
-Integrity [1] violations that will be visible at runtime (this warning
-is not enabled for the kernel yet but we would like it to be):
+mm*??
 
-  drivers/leds/leds-mt6323.c:598:49: error: incompatible function pointer types assigning to 'int (*)(struct led_classdev *, enum led_brightness)' from 'int (struct led_classdev *, unsigned int)' [-Werror,-Wincompatible-function-pointer-types-strict]
-    598 |                         leds->led[reg]->cdev.brightness_set_blocking =
-        |                                                                      ^
-    599 |                                                 mt6323_wled_set_brightness;
-        |                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-  drivers/leds/leds-mt6323.c:600:40: error: incompatible function pointer types assigning to 'enum led_brightness (*)(struct led_classdev *)' from 'unsigned int (struct led_classdev *)' [-Werror,-Wincompatible-function-pointer-types-strict]
-    600 |                         leds->led[reg]->cdev.brightness_get =
-        |                                                             ^
-    601 |                                                 mt6323_get_wled_brightness;
-        |                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~~
-  2 errors generated.
+> +       - iface:: Display AXI clock.
+> +       - mdp_core:: MDP Core clock.
+> +       - mnoc:: MNOC clock
+> +       - pixel:: Display pixel clock.
+> +    minItems: 3
+> +    maxItems: 9
+>  
+>    clock-names:
+> -    items:
+> -      - const: byte
+> -      - const: byte_intf
+> -      - const: pixel
+> -      - const: core
+> -      - const: iface
+> -      - const: bus
+> +    minItems: 3
+> +    maxItems: 9
+>  
+>    phys:
+>      maxItems: 1
+> @@ -161,6 +159,192 @@ required:
+>    - assigned-clock-parents
+>    - ports
+>  
+> +allOf:
+> +  - $ref: ../dsi-controller.yaml#
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,apq8064-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 7
+> +        clock-names:
+> +          items:
+> +            - const: iface
+> +            - const: bus
+> +            - const: core_mmss
+> +            - const: src
+> +            - const: byte
+> +            - const: pixel
+> +            - const: core
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,msm8916-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: mdp_core
+> +            - const: iface
+> +            - const: bus
+> +            - const: byte
+> +            - const: pixel
+> +            - const: core
 
-From what I can tell/understand, 'enum led_brightness' is obsolete and
-the value that is passed via ->brightness_set_blocking() is an 'unsigned
-int' as well but it seems 'enum led_brightness' is used as the parameter
-in a lot of different callback implementations, so the prototype cannot
-be easily updated without a lot of extra work. Is there any reason not
-to just do something like this to avoid this issue?
+So this...
 
-[1]: https://lwn.net/Articles/898040/
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,msm8953-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: mdp_core
+> +            - const: iface
+> +            - const: bus
+> +            - const: byte
+> +            - const: pixel
+> +            - const: core
 
-Cheers,
-Nathan
+Is the same as the above.  Can we merge msm8953 into msm8916 or do you
+expect differences down the line?
 
-diff --git a/drivers/leds/leds-mt6323.c b/drivers/leds/leds-mt6323.c
-index e8fecfc2e90a..24f35bdb55fb 100644
---- a/drivers/leds/leds-mt6323.c
-+++ b/drivers/leds/leds-mt6323.c
-@@ -76,7 +76,7 @@ struct mt6323_led {
- 	int			id;
- 	struct mt6323_leds	*parent;
- 	struct led_classdev	cdev;
--	unsigned int		current_brightness;
-+	enum led_brightness	current_brightness;
- };
- 
- /**
-@@ -451,7 +451,7 @@ static int mtk_wled_hw_off(struct led_classdev *cdev)
- 	return 0;
- }
- 
--static unsigned int mt6323_get_wled_brightness(struct led_classdev *cdev)
-+static enum led_brightness mt6323_get_wled_brightness(struct led_classdev *cdev)
- {
- 	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
- 	struct mt6323_leds *leds = led->parent;
-@@ -471,7 +471,7 @@ static unsigned int mt6323_get_wled_brightness(struct led_classdev *cdev)
- }
- 
- static int mt6323_wled_set_brightness(struct led_classdev *cdev,
--				      unsigned int brightness)
-+				      enum led_brightness brightness)
- {
- 	struct mt6323_led *led = container_of(cdev, struct mt6323_led, cdev);
- 	struct mt6323_leds *leds = led->parent;
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,msm8974-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 7
+> +        clock-names:
+> +          items:
+> +            - const: mdp_core
+> +            - const: iface
+> +            - const: bus
+> +            - const: byte
+> +            - const: pixel
+> +            - const: core
+> +            - const: core_mmss
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,msm8996-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 7
+> +        clock-names:
+> +          items:
+> +            - const: mdp_core
+> +            - const: byte
+> +            - const: iface
+> +            - const: bus
+> +            - const: core_mmss
+> +            - const: pixel
+> +            - const: core
+
+This could be the same as msm8226/msm8974 if we reorder the entries.
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,msm8998-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: byte
+> +            - const: byte_intf
+> +            - const: pixel
+> +            - const: core
+> +            - const: iface
+> +            - const: bus
+
+Then, here...
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sc7180-dsi-ctrl
+> +              - qcom,sc7280-dsi-ctrl
+> +              - qcom,sm8250-dsi-ctrl
+> +              - qcom,sm8150-dsi-ctrl
+> +              - qcom,sm8250-dsi-ctrl
+> +              - qcom,sm8350-dsi-ctrl
+> +              - qcom,sm8450-dsi-ctrl
+> +              - qcom,sm8550-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: byte
+> +            - const: byte_intf
+> +            - const: pixel
+> +            - const: core
+> +            - const: iface
+> +            - const: bus
+
+... and here ...
+
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sdm660-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 9
+> +        clock-names:
+> +          items:
+> +            - const: mdp_core
+> +            - const: byte
+> +            - const: byte_intf
+> +            - const: mnoc
+> +            - const: iface
+> +            - const: bus
+> +            - const: core_mmss
+> +            - const: pixel
+> +            - const: core
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - qcom,sdm845-dsi-ctrl
+> +    then:
+> +      properties:
+> +        clocks:
+> +          maxItems: 6
+> +        clock-names:
+> +          items:
+> +            - const: byte
+> +            - const: byte_intf
+> +            - const: pixel
+> +            - const: core
+> +            - const: iface
+> +            - const: bus
+
+and here, we have *three* identical lists of clocks.  Should they (have
+been) combined?
+
+I can send a patch fixing these all if desired!
+
+- Marijn
+
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> -- 
+> 2.38.1
+> 
