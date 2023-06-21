@@ -2,118 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79343737FFB
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C778B73815A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:11:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232310AbjFUKrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 06:47:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55468 "EHLO
+        id S232622AbjFUKur (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 06:50:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232312AbjFUKrV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:47:21 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E36BF272E;
-        Wed, 21 Jun 2023 03:45:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687344352; x=1718880352;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=P32W9AfKeVxcvQoVXSO2hVKT1bX+1GIInDGt+g7kzUA=;
-  b=Tik79gtRICZJ/e6yWuGptEes4Uf6Ys1haKc4XzL+KzNx62sLPB5mzmaj
-   zWa566YoI71TDWmdh+qJYJADnYDYg1Mh8m4azTwAXnkw6ykQy90nrDeq8
-   oO7KTtxmj/2dF8Y5ov7Yd2u/Ux50qQhYMsvU11pYENdHpuurXHoWIwctz
-   HkJyHrT0LvH8zWqobpaFyLxbl1MYFYiObFEcvCLT1FCF/51z7qDvaDYYU
-   j2QZoAemndju9vMhn8Tdttj+mEPHsscSjPHG/tmsoSdPS5rgcP43NltIT
-   kLgsr92dV6l8yBB/WV6I92zYst2VvOuBgM6e5zhm2sqhXcuORqIEIWbi4
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="359004744"
-X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; 
-   d="scan'208";a="359004744"
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2023 03:45:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10747"; a="858926048"
-X-IronPort-AV: E=Sophos;i="6.00,260,1681196400"; 
-   d="scan'208";a="858926048"
-Received: from unknown (HELO localhost.localdomain) ([10.226.216.116])
-  by fmsmga001.fm.intel.com with ESMTP; 21 Jun 2023 03:45:48 -0700
-From:   wen.ping.teh@intel.com
-To:     krzysztof.kozlowski@linaro.org
-Cc:     adrian.ho.yin.ng@intel.com, andrew@lunn.ch, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, dinguyen@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-clk@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mturquette@baylibre.com,
-        netdev@vger.kernel.org, niravkumar.l.rabara@intel.com,
-        p.zabel@pengutronix.de, richardcochran@gmail.com,
-        robh+dt@kernel.org, sboyd@kernel.org, wen.ping.teh@intel.com
-Subject: Re: [PATCH 2/4] dt-bindings: clock: Add Intel Agilex5 clocks and resets
-Date:   Wed, 21 Jun 2023 18:45:25 +0800
-Message-Id: <20230621104525.2522714-1-wen.ping.teh@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <ed6f9ab8-9c4e-ec9f-efb7-81974d75f074@linaro.org>
-References: <ed6f9ab8-9c4e-ec9f-efb7-81974d75f074@linaro.org>
+        with ESMTP id S230397AbjFUKuD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 06:50:03 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8911718
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 03:49:06 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-311367a3e12so4817703f8f.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 03:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687344544; x=1689936544;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :from:content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=kSSvabUBUnXeW9LfB4PKIgvF+V3qK0e4kNQdRRELKjA=;
+        b=VnYvCVAYHVO4VMS0djbImAQXbjrqyZMzOmTeIIayX+axyG2E9igfSWNdduR8gFx1N+
+         nOxfDXwLaGPhDv731jTSngcXJOg8hz8cBbRMoKWdrWpMQbEVfTH7qReo5BtD9ImUZQ7p
+         /xohRgmdFoctFvSUXgv/69gMY0KdeUi3qA+ygBTOeYH26H/M68dWhM9394ZsekjQFKWe
+         Y8orW7lf+ybuNmzTu7Q9tg7YipJfCo/+KRdi4B0R+oH+6Us6S0p7UJMKa+tR5ZOUQEZY
+         SiTPlQUbzhpdU1XTH6Kpya753S9uEh7GAfJqu5p/wrKVJ7FukOtbLa5WUJPgdheHimCH
+         +rFg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687344544; x=1689936544;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :from:content-language:subject:reply-to:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kSSvabUBUnXeW9LfB4PKIgvF+V3qK0e4kNQdRRELKjA=;
+        b=agO8KOA16XuH5mxw5XAekPOdY/PVErHTJwAlMceyqNSRBcqDxUWr1zZSVyFo3C8uEN
+         3TRbQUuxXj+y6zv4QBiwwFpOyaJovf6DRdz1FDtJFLrOYXCFyqw0QsfIpFQPbuh2XB6l
+         X53zE2Lgd5h0zHCqcv2Z76Ei706SLoG+bpCZhvZjVBhJlzyK2WUZulkXbpZkKWw9NUqW
+         A2krXvyZ5c++xFNOfwXWhpC8ndF/NByLEZCX/Jyw9Py+WKcP20aJU1J2MDVDyuvVz1SI
+         5yGgS6/i7WzQMOr+stzaKwDL7pNWmhc74b/9Q3lyYBxKJdMCeeKW5rD6sEGUuz03Kvuw
+         gQvw==
+X-Gm-Message-State: AC+VfDyzjQQcCtNxC0ms4J8xtAlvQdJwm5gRrbtSqMFrLDIepq6nCD0b
+        PVBpQ3zQMnLDBxotnxjiIq6oIA==
+X-Google-Smtp-Source: ACHHUZ4LBWYDkzkeR1AqOSommXpvfp5YhZJhqqvtatLLunDO6StzKCxv2iCqegxqAJQUU1YxIFgX4A==
+X-Received: by 2002:a5d:6ad1:0:b0:30a:e69d:7219 with SMTP id u17-20020a5d6ad1000000b0030ae69d7219mr12095130wrw.65.1687344544457;
+        Wed, 21 Jun 2023 03:49:04 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b158:3e69:8736:455d? ([2a01:e0a:982:cbb0:b158:3e69:8736:455d])
+        by smtp.gmail.com with ESMTPSA id a7-20020adfed07000000b003112ab916cdsm4155821wro.73.2023.06.21.03.49.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jun 2023 03:49:03 -0700 (PDT)
+Message-ID: <2f0ddd6d-4099-fdaa-c8f5-95dba7fe87fd@linaro.org>
+Date:   Wed, 21 Jun 2023 12:49:03 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8450: add missing power-domains
+ property to usb qmpphy node
+Content-Language: en-US
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230621-topic-sm8450-upstream-usb-phy-missing-power-domains-v1-1-d850c086c43c@linaro.org>
+ <e31ad5ac-77ab-cf04-2e3e-d0857ccfdecf@linaro.org>
+ <6180134a-2919-0f13-e37c-bb64b6403692@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <6180134a-2919-0f13-e37c-bb64b6403692@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->From: Krzysztof Kozlowski @ 2023-06-20 11:06 UTC (permalink / raw)
+On 21/06/2023 12:39, Neil Armstrong wrote:
+> Hi,
+> 
+> On 21/06/2023 12:01, Konrad Dybcio wrote:
+>> On 21.06.2023 11:55, Neil Armstrong wrote:
+>>> Add the missing property to fix the bindings check error:
+>>> arch/arm64/boot/dts/qcom/sm8450-hdk.dtb: phy@88e8000: 'power-domains' is a required property
+>>>      From schema: Documentation/devicetree/bindings/phy/qcom,sc8280xp-qmp-usb43dp-phy.yaml
 >>>
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    const: intel,agilex5-clkmgr
->>>
->>>
->>> Why "clkmgr", not "clk"? You did not call it Clock manager anywhere in
->>> the description or title.
->>>
->> 
->> The register in Agilex5 handling the clock is named clock_mgr.
->> Previous IntelSocFPGA, Agilex and Stratix10, are also named clkmgr.
->
->So use it in description.
+>>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>>> ---
+>> Are you sure about this one? Historically PHYs have had their own GDSCs.
+>>
+>> May just be a wrong binding fwiw
+> 
+> Indeed you're right, forget this patch USB30_PRIM_GDSC id for the controller
+> and starting from SM8550 a new one is used USB3_PHY_GDSC.
+> 
+> I'll fix the bindings.
 
-Noted. Will update the description in V2.
+https://lore.kernel.org/all/20230521202321.19778-2-dmitry.baryshkov@linaro.org/ does exactly that,
+so no need to fix anything.
 
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  # Clock controller node:
->>>> +  - |
->>>> +    clkmgr: clock-controller@10d10000 {
->>>> +      compatible = "intel,agilex5-clkmgr";
->>>> +      reg = <0x10d10000 0x1000>;
->>>> +      #clock-cells = <1>;
->>>> +    };
->>>> +...
->>>> diff --git a/include/dt-bindings/clock/agilex5-clock.h b/include/dt-bindings/clock/agilex5-clock.h
->>>> new file mode 100644
->>>> index 000000000000..4505b352cd83
->>>> --- /dev/null
->>>> +++ b/include/dt-bindings/clock/agilex5-clock.h
+Neil
+
+> 
+> Neil
+> 
+>>
+>> Konrad
+>>>   arch/arm64/boot/dts/qcom/sm8450.dtsi | 2 ++
+>>>   1 file changed, 2 insertions(+)
 >>>
->>> Filename the same as binding. Missing vendor prefix, entirely different
->>> device name.
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm8450.dtsi b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>> index 5cd7296c7660..f921bd520e40 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sm8450.dtsi
+>>> @@ -2046,6 +2046,8 @@ usb_1_qmpphy: phy@88e8000 {
+>>>                    <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+>>>               clock-names = "aux", "ref", "com_aux", "usb3_pipe";
+>>> +            power-domains = <&gcc USB30_PRIM_GDSC>;
+>>> +
+>>>               resets = <&gcc GCC_USB3_DP_PHY_PRIM_BCR>,
+>>>                    <&gcc GCC_USB3_PHY_PRIM_BCR>;
+>>>               reset-names = "phy", "common";
 >>>
->> 
->> Will change filename to intel,agilex5-clock.h in V2.
->
->Read the comment - same as binding. You did not call binding that way...
->unless you rename the binding.
-
-Just to confirm, the binding name you are referring to is "intel,agilex5-clkmgr"?
-I will change the filename to intel,agilex5-clkmgr.h in V2.
-
-Best Regards,
-Wen Ping
+>>> ---
+>>> base-commit: 15e71592dbae49a674429c618a10401d7f992ac3
+>>> change-id: 20230621-topic-sm8450-upstream-usb-phy-missing-power-domains-499a3d6c725f
+>>>
+>>> Best regards,
+> 
 
