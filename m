@@ -2,133 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9D00273821F
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:12:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEF35738168
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjFUJ20 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 05:28:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58580 "EHLO
+        id S231831AbjFUJbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 05:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231680AbjFUJ2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 05:28:03 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 249E630D3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:26:35 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3f9b4bf99c2so24663995e9.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:26:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687339592; x=1689931592;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=VG9qCKvekYoYgR4Fl0peORs6WrpDzePjez0ReZU/eVI=;
-        b=xQESYjL4gW6Io7gbTKsEXRQ8/CpdNIXOBuDG3JUhaOFlzoppGV+5OdFgHiwAJC3epk
-         ZHClsNRFnRbabFhaovMpFfMaBODei/Isc4Bpt68KnQoTK42nsknP3LICATYnMfHC+UQ5
-         7wzMu7dSfMet++/e5wqPTh+orUNzicgV3xnJxXVbheQcZT1I3EDXf8m87cTKDRIOdBoD
-         uCIgcxWtNLh1kWF/qcro/TeVoH+n27IIiI3V54NrEigBZqsM3FWhPwdOVm64chuI0jGm
-         acdqDhZD3yiL5KWfr9krEO0ubp+bTruMLn+fm/Qn+QUTOXllvx3AS2dZ21uUTpoUWrWf
-         VosQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687339592; x=1689931592;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=VG9qCKvekYoYgR4Fl0peORs6WrpDzePjez0ReZU/eVI=;
-        b=bsGnJv2GQZVma/eM9f0c9FH4cKPwXombssrpCAWBqTt7ZgwsKYC+Vbczmi4CeHh3bG
-         AVJeIVsuByhICyy4DbhYJBVtw9S0hsYCJu1fHa62XQmDTjseG8Atf582UWh5/sFL6G44
-         3E3XlzQwHO/MOtQfL6u6utaeiyQ0pRqf+VqChtR4Mt1DAP9hJRIkICijl5jrw+LAvMVK
-         8uBoFiZ8AL637OpGL98q7juSHzfWZeB84NYa2rcdq5eWDGR7jloAPQ+ss5pwcp1mU5Ax
-         IjuDdB6DOpXzJKKslujWs3k80a14L1o+3AU8eu/vNWQ/u3hkTnCIaJGwUOO5fvlLvZm+
-         9KuQ==
-X-Gm-Message-State: AC+VfDxIXhofYCcAIyK9nMk7a7GMP+wSC6FA6PRL1/9KRbVP2G/P8Pxz
-        PEydkakR5ckMoaRw108uJvus5Q==
-X-Google-Smtp-Source: ACHHUZ76qDL0JPGb4BAfepy4QIinWf6vA5aG9heOM2nB+6kfh7t7vrhlEdyUFRtNteZskvZUuQkciw==
-X-Received: by 2002:a7b:c045:0:b0:3f7:b1dd:9553 with SMTP id u5-20020a7bc045000000b003f7b1dd9553mr10904437wmc.14.1687339592026;
-        Wed, 21 Jun 2023 02:26:32 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n8-20020a05600c294800b003f90a604885sm4435068wmd.34.2023.06.21.02.26.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 02:26:31 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 21 Jun 2023 11:26:27 +0200
-Subject: [PATCH 3/3] dt-bindings: display: msm: sm8550-mdss: document
- displayport controller subnode
+        with ESMTP id S232295AbjFUJao (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 05:30:44 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A31CE19AF;
+        Wed, 21 Jun 2023 02:29:40 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id D3D1824E208;
+        Wed, 21 Jun 2023 17:29:37 +0800 (CST)
+Received: from EXMBX171.cuchost.com (172.16.6.91) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Jun
+ 2023 17:29:37 +0800
+Received: from [192.168.125.127] (113.72.145.217) by EXMBX171.cuchost.com
+ (172.16.6.91) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Wed, 21 Jun
+ 2023 17:29:36 +0800
+Message-ID: <d4824941-85dd-d378-be5b-072907b1169d@starfivetech.com>
+Date:   Wed, 21 Jun 2023 17:29:34 +0800
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v7 4/5] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
+Content-Language: en-US
+To:     kernel test robot <lkp@intel.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Conor Dooley <conor@kernel.org>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "Roger Quadros" <rogerq@kernel.org>
+CC:     <oe-kbuild-all@lists.linux.dev>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <linux-riscv@lists.infradead.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        "Mason Huo" <mason.huo@starfivetech.com>
+References: <20230619094759.21013-5-minda.chen@starfivetech.com>
+ <202306192215.TvQco9m6-lkp@intel.com>
+From:   Minda Chen <minda.chen@starfivetech.com>
+In-Reply-To: <202306192215.TvQco9m6-lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-3-8bf386b373eb@linaro.org>
-References: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-0-8bf386b373eb@linaro.org>
-In-Reply-To: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-0-8bf386b373eb@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Robert Foss <rfoss@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=971;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=OJLy9BOcYtfmScZM3DtWEAFi/hUxNEeYncZLHm7ar6U=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkksJD6P8+2DIjZZuy4odgtDdmcuanRr0RVltXqACF
- 3dixsyaJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJLCQwAKCRB33NvayMhJ0aasEA
- CIw1on1qij6mV/QegVshdcgWDNEBHwXCtfLomZ9fxodct2WSOziNhiAn7o7fUP2U2CXS57K7h3JD/b
- 5DdWW1OYk3hLVZgFOoKQ0/RqxzIKulddUnaCA49ScYAvCrghj8iOn8abGBrEYseXJmZoKCkVRKJ6Qd
- m02qXNfrPtHYm++FfR3NB0z3zuboKzncbnf7DbSUD2cUGIOOIdYHCZNKQopgZW3VpHOHvro8lC3zjX
- CijhwuMCyZoqDYkRXHulx+pSnTvykNCaNqQe6At+qQ0Jvx55tkdO0xr7lo+UEzBt2Y1tuKjfandjrJ
- O1dKxzkrOdVN7f6FG0zqLrp3hx8iQe/8y+WTcGevIdew5V5Zpe7g9nXAOV6q+hdwFDBM4ZImVvtpN0
- 8xp0Jp5Bk60xAhsQluHYpqlkp53227XSGKuP+4SoQ9Hq/3/dTErV3dC60dtzFji71oLvBiiY5RNh5A
- q2Ag7aDw5HEaECHvgYGnf+4F5MDhMFw4XxPUk2hRcg1qf8eb50iAq1COfMspp5cjPJYUdsc7iCBMfd
- dWY6f7HclsSO08vRySXDhRqqlQk5E1JQxGIGz6fxk6tCxR4En4F42+929J9OAUJuIfa6b8/mIzJia8
- iWc6gfCvRVtjQa/hKZpnz20oVG8I/AZAc3vrHgFyJofaST2TPyaj2uSVQT+g==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Originating-IP: [113.72.145.217]
+X-ClientProxiedBy: EXCAS065.cuchost.com (172.16.6.25) To EXMBX171.cuchost.com
+ (172.16.6.91)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the optional document displayport controller subnode
-of the SM8550 MDSS.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml         | 8 ++++++++
- 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
-index 887be33ba108..70ce7cb7a80d 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8550-mdss.yaml
-@@ -42,6 +42,14 @@ patternProperties:
-       compatible:
-         const: qcom,sm8550-dpu
- 
-+  "^displayport-controller@[0-9a-f]+$":
-+    type: object
-+    properties:
-+      compatible:
-+        items:
-+          - const: qcom,sm8550-dp
-+          - const: qcom,sm8350-dp
-+
-   "^dsi@[0-9a-f]+$":
-     type: object
-     properties:
-
--- 
-2.34.1
-
+On 2023/6/19 22:45, kernel test robot wrote:
+> Hi Minda,
+> 
+> kernel test robot noticed the following build errors:
+> 
+> [auto build test ERROR on robh/for-next]
+> [also build test ERROR on linus/master v6.4-rc7 next-20230619]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch#_base_tree_information]
+> 
+> url:    https://github.com/intel-lab-lkp/linux/commits/Minda-Chen/dt-bindings-phy-Add-StarFive-JH7110-PCIe-PHY/20230619-184756
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
+> patch link:    https://lore.kernel.org/r/20230619094759.21013-5-minda.chen%40starfivetech.com
+> patch subject: [PATCH v7 4/5] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
+> config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20230619/202306192215.TvQco9m6-lkp@intel.com/config)
+> compiler: s390-linux-gcc (GCC) 12.3.0
+> reproduce: (https://download.01.org/0day-ci/archive/20230619/202306192215.TvQco9m6-lkp@intel.com/reproduce)
+> 
+> If you fix the issue in a separate patch/commit (i.e. not just a new version of
+> the same patch/commit), kindly add following tags
+> | Reported-by: kernel test robot <lkp@intel.com>
+> | Closes: https://lore.kernel.org/oe-kbuild-all/202306192215.TvQco9m6-lkp@intel.com/
+> 
+> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+>>> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/phy/starfive/phy-jh7110-pcie.ko] undefined!
+I can not find this error. devm_platform_ioremap_resource is an exported symbol
+> ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma.ko] undefined!
+> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
+> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
+> ERROR: modpost: "iounmap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
+> ERROR: modpost: "ioremap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
+> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/char/xillybus/xillybus_of.ko] undefined!
+> ERROR: modpost: "devm_memremap" [drivers/misc/open-dice.ko] undefined!
+> ERROR: modpost: "devm_memunmap" [drivers/misc/open-dice.ko] undefined!
+> ERROR: modpost: "iounmap" [drivers/net/ethernet/8390/pcnet_cs.ko] undefined!
+> WARNING: modpost: suppressed 19 unresolved symbol warnings because there were too many)
+>> Kconfig warnings: (for reference only)
+>    WARNING: unmet direct dependencies detected for USB_PHY
+>    Depends on [n]: USB_SUPPORT [=n]
+>    Selected by [m]:
+>    - PHY_STARFIVE_JH7110_PCIE [=m]
+> 
+I will fix it.
