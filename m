@@ -2,181 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF7A17386F7
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 16:27:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02AB373872A
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 16:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232314AbjFUO1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 10:27:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40634 "EHLO
+        id S232426AbjFUOgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 10:36:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232272AbjFUO1P (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 10:27:15 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0716610D5;
-        Wed, 21 Jun 2023 07:26:44 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b4745834f3so54991031fa.2;
-        Wed, 21 Jun 2023 07:26:43 -0700 (PDT)
+        with ESMTP id S230011AbjFUOgj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 10:36:39 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 894061BD2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:36:32 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f90a1aa204so54178785e9.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:36:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687357602; x=1689949602;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cXp+vDAywJj5cJVg/DGBbIIG0LrSwQcuzIbyxZXKO/k=;
-        b=UP3OyWN+5ecr1xlIb7pHYBadTYZQly/kIMPmuS9kujYlNimputz+zZOzKhPlZmJBuF
-         aG1lwHGq6a2UZc4oRSj0chrcqOv2F5UzWHFfOhfLEdOHa5Knynk5rKni1va7viwNhzkP
-         tdlNVksai/R6T1u9cUsT7fyRR2Rg/ebjSzJTAq68how2dfz+PipYdYaNWIZ/6ZGcmtqS
-         /GZOhk5sQ58FhqzmeDOd8GomVZNTt0ZYjhXhfnEyADpJD8U05nXZjYqGjbEdYMbjQ+kA
-         SGJveeESLeQJ7ACg/4N6bHWXDxbdMOhq0V/fUtpBc267r6SH3T04VRmCNUPCk1EJoiy4
-         W0rQ==
+        d=linaro.org; s=google; t=1687358191; x=1689950191;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Q267PzQvbc4qiFwzCDZZB6FJw0yi1HjyAE+qzfNhuaE=;
+        b=rctvtICKF4lpjMQ4GFaTKRkNEYiwDdBGk+QsCrkbDIvg2uKEXYwGN3Wa0p+Vkp04Qu
+         Mc+CJdKQoGg2fnW3O2noq9sVKVt1r2fp4uGqKX8clqnunM31HC2FP78fjWw16TzOIJze
+         yG6G9rpvpMV9bVY1CxNBf0JbNnSU0ACalWYnWbsOh7tSZ59syXRaQMYxm8kaLiZJ4MSF
+         qj3FILCAHpak5gHHfuP5rLYG1uJK3fBWnr9xLRiyalNDbRc6nYwRPLLMImk0Ijf+iTCS
+         K3StGdsijCQgTHT9Tm0nDauIz4fR8T0CZr4wVVEaCfCkc1CnkrnQHCoX6wlYLQLEYsfW
+         65Uw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687357602; x=1689949602;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cXp+vDAywJj5cJVg/DGBbIIG0LrSwQcuzIbyxZXKO/k=;
-        b=lpTmzDglVJhIVgPGyPUwcIZ+vcwZNmBnhk3F+5Ig/MgjspKu5OGmxE4kR4h0wRWOS9
-         5siO3wwVfgG1JvDgWJWMUZzckKGYobgwdL9/mPOiChrJTc5L4G3KRYbZwZHwXy4Oh7K7
-         vqoTlE2/sWP8XWvmG5xBM9m9eatdoLFm/ZddZDjXQb7DaL6EKdSAmjlTB3qT88q4C3C1
-         2rslhtXe/cDAG1T0ruEeTzvmoBf0JgF5c5mosrPBddZHwkQS+K83dP5JAYj29GefJDAl
-         TI1+U2/5ILUo1NTFMVjP9AhQMGB+YQgl683+6nFL5vOMwUx96xktUFg+7W7RSCfbrm9L
-         RqFA==
-X-Gm-Message-State: AC+VfDwApdcYKv+BzzHCWbYCH6DkL2q9Wl3Um7o/+TiRgMpvSWNlJQ7D
-        M1Jg4y/oZKobm9mZxUFYLto=
-X-Google-Smtp-Source: ACHHUZ41bK7GbPj4Q4/ms1CfUJQsjI2LU88qpxC0XJoGOKFGgJiDpf8tUoe6KWqbHNCdOEkRJxqEKA==
-X-Received: by 2002:a2e:6e07:0:b0:2b4:4a68:a95 with SMTP id j7-20020a2e6e07000000b002b44a680a95mr10759042ljc.8.1687357601846;
-        Wed, 21 Jun 2023 07:26:41 -0700 (PDT)
-Received: from [127.0.1.1] ([91.230.2.244])
-        by smtp.gmail.com with ESMTPSA id l11-20020a170906644b00b00988956f244csm3266156ejn.6.2023.06.21.07.26.41
+        d=1e100.net; s=20221208; t=1687358191; x=1689950191;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Q267PzQvbc4qiFwzCDZZB6FJw0yi1HjyAE+qzfNhuaE=;
+        b=Bk4rWEFqMxPipwI1oi35iuRsxPO8ygVTOZ2ufWqk+Ev9LEfLZq0hxi/5njrrm6NnQb
+         IN4ARPBiKPb/S/jF2mPCKY0NdWDuo5O8WPgVjSiwN7/40LuaebfTOR8YQ/xtg1aejyQZ
+         /fejO6tQtTdNmOOFsjZbngwOw4EzAbuhS83vN+iDaHRnDNx4Ls7AWTPmIpNrN3uCbRm5
+         7OwA1Lr1RdOX8z+/cmDaKGRf15njfaYtLxIj4G7ZN2O9H6ljYkGQ6t6vQ0O25FFHCiRL
+         Z98csQ3IDxuqGL1wMdl/op2Vx+InSU9zA6NdScie3whcVecJG5GuZeW7YY8mD6nUkU3w
+         fybw==
+X-Gm-Message-State: AC+VfDzDWQ1mDywbp8vitj4HHBUKn6HIDeH53uCTqh19crngZtL8U+j8
+        V6T4Qen+uQtOUW/01zX4OEAzFA==
+X-Google-Smtp-Source: ACHHUZ5ZhzIpeWIh4DikrGJcv3Fx3/cxAiObvcEZly48e8AIamOEO6BA+6S4z/LW5iad5YqDZNOJlw==
+X-Received: by 2002:a05:600c:281:b0:3f9:960:2bb7 with SMTP id 1-20020a05600c028100b003f909602bb7mr11643793wmk.23.1687358190927;
+        Wed, 21 Jun 2023 07:36:30 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id y9-20020adfdf09000000b0031122bd3c82sm4642396wrl.17.2023.06.21.07.36.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 07:26:41 -0700 (PDT)
-From:   Benjamin Bara <bbara93@gmail.com>
-Date:   Wed, 21 Jun 2023 16:26:29 +0200
-Subject: [PATCH v2 3/3] dt-bindings: usb: Add binding for Cypress HX3 USB
- 3.0 family
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230620-hx3-v2-3-76a53434c713@skidata.com>
-References: <20230620-hx3-v2-0-76a53434c713@skidata.com>
-In-Reply-To: <20230620-hx3-v2-0-76a53434c713@skidata.com>
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Wed, 21 Jun 2023 07:36:30 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>
-Cc:     linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-X-Mailer: b4 0.12.2
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH] arm64: dts: qcom: sm8350: fix BAM DMA crash and reboot
+Date:   Wed, 21 Jun 2023 16:36:27 +0200
+Message-Id: <20230621143627.189134-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Benjamin Bara <benjamin.bara@skidata.com>
+SM8350 HDK and MTP boards were silently dying and rebooting during BAM
+DMA probe:
 
-The HX3 family comes in different variants (up to 4 USB 3.0 ports;
-multi-TT), e.g. CYUSB330x/CYUSB331x/CYUSB332x/CYUSB230x.
+  [    1.574304] vreg_bob: Setting 3008000-3960000uV
+  [    1.576918] bam-dFormat: Log Type - Time(microsec) - Message -
+  Optional Info
+  Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+  S - QC_IMAGE_VERSION_STRING=BOOT.MXF.1.0-00637.1-LAHAINA-1
+  S - IMAGE_VARIANT_STRING=SocLahainaLAA
+  S - OEM_IMAGE_VERSION_STRING=crm-ubuntu77
+  S - Boot Interface: UFS
 
-This initial version of the binding only describes USB related aspects
-of the HX3 family, it does not cover the option of connecting the
-controller as an i2c slave.
+It seems that BAM DMA is locally controller (not by firmware) and
+requires proper initialization by the driver prior to use, at least on
+HDK8350 and MTP8350, but probably on all boards.
 
-Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
+Fixes: f1040a7fe8f0 ("arm64: dts: qcom: sm8350: Add Crypto Engine support")
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 ---
- .../devicetree/bindings/usb/cypress,hx3.yaml       | 77 ++++++++++++++++++++++
- 1 file changed, 77 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/usb/cypress,hx3.yaml b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-new file mode 100644
-index 000000000000..47add0d85fb8
---- /dev/null
-+++ b/Documentation/devicetree/bindings/usb/cypress,hx3.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/usb/cypress,hx3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Cypress HX3 USB 3.0 hub controller family
-+
-+maintainers:
-+  - Benjamin Bara <benjamin.bara@skidata.com>
-+
-+allOf:
-+  - $ref: usb-device.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - usb4b4,6504
-+      - usb4b4,6506
-+
-+  reg: true
-+
-+  reset-gpios:
-+    items:
-+      - description: GPIO specifier for RESETN pin.
-+
-+  vdd-supply:
-+    description:
-+      1V2 power supply (VDD_EFUSE, AVDD12, DVDD12).
-+
-+  vdd2-supply:
-+    description:
-+      3V3 power supply (AVDD33, VDD_IO).
-+
-+  peer-hub:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description:
-+      phandle to the peer hub on the controller.
-+
-+required:
-+  - compatible
-+  - reg
-+  - peer-hub
-+  - vdd-supply
-+  - vdd2-supply
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    usb {
-+        dr_mode = "host";
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        /* 2.0 hub on port 1 */
-+        hub_2_0: hub@1 {
-+          compatible = "usb4b4,6504";
-+          reg = <1>;
-+          peer-hub = <&hub_3_0>;
-+          reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-+          vdd-supply = <&reg_1v2_usb>;
-+          vdd2-supply = <&reg_3v3_usb>;
-+        };
-+
-+        /* 3.0 hub on port 2 */
-+        hub_3_0: hub@2 {
-+          compatible = "usb4b4,6506";
-+          reg = <2>;
-+          peer-hub = <&hub_2_0>;
-+          reset-gpios = <&gpio1 11 GPIO_ACTIVE_LOW>;
-+          vdd-supply = <&reg_1v2_usb>;
-+          vdd2-supply = <&reg_3v3_usb>;
-+        };
-+    };
+Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 -
+ 1 file changed, 1 deletion(-)
 
+diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+index 88ef478cb5cc..b382ce66387e 100644
+--- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+@@ -1741,7 +1741,6 @@ cryptobam: dma-controller@1dc4000 {
+ 			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+ 			#dma-cells = <1>;
+ 			qcom,ee = <0>;
+-			qcom,controlled-remotely;
+ 			iommus = <&apps_smmu 0x594 0x0011>,
+ 				 <&apps_smmu 0x596 0x0011>;
+ 		};
 -- 
 2.34.1
 
