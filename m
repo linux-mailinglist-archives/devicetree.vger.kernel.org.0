@@ -2,76 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ACB573910A
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 22:48:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 625D4739118
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 22:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229893AbjFUUsa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 16:48:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60740 "EHLO
+        id S229755AbjFUUxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 16:53:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229740AbjFUUs3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 16:48:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8E0710D2;
-        Wed, 21 Jun 2023 13:48:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4C414616C9;
-        Wed, 21 Jun 2023 20:48:27 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 201D1C433C8;
-        Wed, 21 Jun 2023 20:48:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687380506;
-        bh=x/FU7pTH02A/OJPh+r4Bb3ys608yccmPQe4IL9IqKvs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DanPLswI9+BpMshF3wm24UDTKIb+rxNjf3B8AGGAJ38uhda+PoVApZrxioMUt7mnQ
-         zjYU1ORGDTt/11TTt2SPFL3tbEaOPPz1FBGrGaTTnlKLzzc1si2hHt2vNlnNhBaFi8
-         1z4Ed7JLPNR5hr4e83cYeMU+I3qOyVrUDdV4AF75GBi7mohMxc1ghwZW7HGm+YYN+N
-         qhmX2BA32vwSNMvC+LNg0zqoZc/8GshmqljDh69yqYhiUn71+z7o+ABdg1W3rEc0fv
-         C7PC/dfNhB2sgphwYtoVDileXNiic63kgu/Je2JWCB5TRDIXCMEgBHY9tA0u7WtYPK
-         sELT2Bc+IsRVg==
-Date:   Wed, 21 Jun 2023 21:48:18 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229564AbjFUUxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 16:53:22 -0400
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 949FF10F2;
+        Wed, 21 Jun 2023 13:53:21 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-341c14e495fso30952925ab.0;
+        Wed, 21 Jun 2023 13:53:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687380801; x=1689972801;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2T1b/Oa5DrhnOGEKjXXQHTZCgVCz59Fkwvf59NrZRwU=;
+        b=NVNJWxHykTk060VodNnUiFnoKyo0p7x+8tGG7NCP003MPAPf+1amZyi1p6wD8OS6sf
+         aSbQB7/jlCiLUsbeNuzUjAt4NTyV4ivcSUygJ533JAHaaprI2DIb7uRa7Yk/IDRM9jGX
+         EiugaUBHc5LEPvsS4A5ElHF97tMQ9HP4YZha93wjk/X5i4uIHH9tanrfKBRn6R/EICEH
+         KLXtHGwenHyH9YEtucHXoODyE/CfZwgm67QwnDgTM7Mh+LvGVdOtjSUWjqaATTztDAo9
+         UV3cCPPJQyVAiF/hLsodiaEqW9RLK113VPgzQB0w9GP4mrmCBTxQqsy2ERoZqBOTgtZg
+         mFlw==
+X-Gm-Message-State: AC+VfDxU/AUz81obURwZZhsKKGHQdfJD2xKjqnC/YPvLbtBB5f5+/B/1
+        aohTgqYKKTZRTOrj48XPIw==
+X-Google-Smtp-Source: ACHHUZ5H150mSa88b4xttNu7JSRWw4BPqTiRV+I+rs10PLxMr8Er0uReqJbPmLW+bHZBCSLxxHMGdQ==
+X-Received: by 2002:a92:4b02:0:b0:33a:adaa:d6d1 with SMTP id m2-20020a924b02000000b0033aadaad6d1mr15210307ilg.15.1687380800779;
+        Wed, 21 Jun 2023 13:53:20 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id r1-20020a92d981000000b0033ce0ef231bsm1578002iln.23.2023.06.21.13.53.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 13:53:19 -0700 (PDT)
+Received: (nullmailer pid 3515661 invoked by uid 1000);
+        Wed, 21 Jun 2023 20:53:17 -0000
+Date:   Wed, 21 Jun 2023 14:53:17 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>, kernel@pengutronix.de,
-        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-mmc@vger.kernel.org
-Subject: Re: [PATCH v2 3/5] dt-bindings: timer: gpt: Support 3rd clock for
- i.MX6DL
-Message-ID: <20230621-reunion-unusual-7905860c9b14@spud>
-References: <20230621093245.78130-1-o.rempel@pengutronix.de>
- <20230621093245.78130-4-o.rempel@pengutronix.de>
+        Anson Huang <anson.huang@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: drop unneeded quotes
+Message-ID: <20230621205317.GA3493078-robh@kernel.org>
+References: <20230609140709.64655-1-krzysztof.kozlowski@linaro.org>
+ <20230612093315.gbabepl5qg44xf5d@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="AX1gljKbRPqQ/JuA"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20230621093245.78130-4-o.rempel@pengutronix.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230612093315.gbabepl5qg44xf5d@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,36 +78,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jun 12, 2023 at 11:33:15AM +0200, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Fri, Jun 09, 2023 at 04:07:09PM +0200, Krzysztof Kozlowski wrote:
+> > Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> > checking for this can be enabled in yamllint.
+> 
+> in my book quoting everything instead of dropping quotes is the better
+> option. While that policy adds more quotes, it prevents surprises like:
+> 
+> 	$ yaml2json << EOF
+> 	> countrycodes:
+> 	>  - de
+> 	>  - fr
+> 	>  - no
+> 	>  - pl
+> 	> EOF
+> 	{
+> 	  "countrycodes": [
+> 	    "de",
+> 	    "fr",
+> 	    false,
+> 	    "pl"
+> 	  ]
+> 	}
+> 
+> And if you use the "only-when-needed" rule of yamllint you have to write
+> the above list as:
+> 
+> 	countrycodes:
+> 	 - de
+> 	 - fr
+> 	 - "no"
+> 	 - pl
+> 
+> which is IMHO really ugly.
 
---AX1gljKbRPqQ/JuA
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Agreed, but "no" and "yes" are unlikely values in DT.
 
-On Wed, Jun 21, 2023 at 11:32:43AM +0200, Oleksij Rempel wrote:
-> Add support for a 3rd clock, 'osc_per', for i.MX6DL to the 'fsl,imxgpt'
-> binding to resolve the following dtbs_check warning:
-> imx6dl-alti6p.dtb: timer@2098000: clocks: [[2, 119], [2, 120], [2, 237]] =
-is too long
-> imx6dl-alti6p.dtb: timer@2098000: clock-names: ['ipg', 'per', 'osc_per'] =
-is too long
->=20
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> 
+> Another culprit is "on" (which is used e.g. in github action workflows),
+> so yamllint tells for example for
+> https://github.com/pengutronix/microcom/blob/main/.github/workflows/build.yml:
+> 
+> 	  3:1       warning  truthy value should be one of [false, true]  (truthy)
+> 
+> and there are still more surprises (e.g. version numbers might be
+> subject to conversion to float).
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+I'll add a meta-schema check for this. 'const' is already limited to 
+string or integer. That's missing from 'enum'. I think we can also check 
+that all items are the same type as well.
 
-Cheers,
-Conor.
+> So at least in my bubble the general
+> hint is to *always* quote strings. Note that required: true is also the
+> default for yamllint's quoted-strings setting, proably for pitfalls like
+> these.
 
---AX1gljKbRPqQ/JuA
-Content-Type: application/pgp-signature; name="signature.asc"
+We're so far gone the other direction from quoting everything, that's 
+not going to happen. Plus, if I liked everything quoted, I would have 
+used JSON.
 
------BEGIN PGP SIGNATURE-----
+My preference here is I don't want to care about this in reviews. I want 
+yamllint to check it and not have to think about it again.
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJNiEgAKCRB4tDGHoIJi
-0ryPAQCIjKC9cEDRCqtFXCvRypza5RV7Z/2hT5yHVs/S4vdrigEAjx+v6VO3+K57
-LQu6u2ng9rECgETGDrHZESQ8LSz6MAk=
-=Qoem
------END PGP SIGNATURE-----
-
---AX1gljKbRPqQ/JuA--
+Rob
