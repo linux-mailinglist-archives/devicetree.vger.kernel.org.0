@@ -2,62 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 746D3738FB2
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 21:12:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5046738FBA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 21:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230241AbjFUTMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 15:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50816 "EHLO
+        id S229680AbjFUTN2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 15:13:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51424 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229624AbjFUTMd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 15:12:33 -0400
+        with ESMTP id S231357AbjFUTNT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 15:13:19 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 25BCA1AC;
-        Wed, 21 Jun 2023 12:12:32 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D161D19AC;
+        Wed, 21 Jun 2023 12:13:11 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A735A6148F;
-        Wed, 21 Jun 2023 19:12:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A7BBCC433C0;
-        Wed, 21 Jun 2023 19:12:26 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 65AD3616A1;
+        Wed, 21 Jun 2023 19:13:11 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6DB1BC433C8;
+        Wed, 21 Jun 2023 19:13:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687374751;
-        bh=pvCW0ClizpVygxK7cLsFvnijZg0ttHOEE9V2jUKQpgk=;
+        s=k20201202; t=1687374790;
+        bh=5OJ7PjnlmhDlV9hG0fI5rCj/uuaQFZRsYGwvFMGaNM4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oHL9+XIgNaaOilNmMrifzgvsqMAt/28ocdOB2oS9N75pxCDkggkVGFVcp5CObbkkP
-         NbwVU7rrIPvSYFWHFpuOKBGp56aOE30dPo7wGq+KLJzMXRq6R25Ra9UClqYyb+3KYr
-         AwCzyup08Mpeo4vw0G/b2iZpv97eKWfZBarkjrOoJd72LjmGOJ5+4zbnY9lfWRwZUZ
-         00SAkjcmvY++1Vi0cbSFj7GrVB40e6CnWKKDXT9TxnqGWNehXMH1OMsK8h0kM4wh5D
-         w0DMeItYBJD68kX4TYgu6DUK4oxYrbdK61Rl+Ji2FRGAQMpEOE/qQH407qWB951RmN
-         yh/lXrNNDJg/w==
-Date:   Wed, 21 Jun 2023 20:12:24 +0100
+        b=oFzVam4xfeCFvgQDEQznaCebTKZ3nPTBCYbYMXvRLSV77FRpOpakatq8LCKg74Lmz
+         DvBaRoY4R6n1mecKBSGKQ5SNlrwq+U1RbecDdD+XFxhm3znt0T9Ydx3lYFl6zUQseF
+         bI1HydeXmY3fi1WDA+mrd5AVOUy6KpfwzqAGn5qYIqU91AlecTc6RvP7Ef8bkP3lBF
+         jB3GMPzr2RnsCEwU9zvWIxXIshleCyIvlYm9XrFrRHkl3iD+HPAqzY5AbE55zJUfZD
+         dkmwuq8yf6Ko/7w11cFXNuzLsRIr5zWpq3l6mCVmZkbhs4kZTmw/L20kWhO0j63h+p
+         YdJnGp/A5A3Pg==
+Date:   Wed, 21 Jun 2023 20:13:06 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Manikandan Muralidharan <manikandan.m@microchip.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        sam@ravnborg.org, bbrezillon@kernel.org, airlied@gmail.com,
-        daniel@ffwll.ch, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, Hari.PrasathGE@microchip.com,
-        Balamanikandan.Gunasundar@microchip.com,
-        Durai.ManickamKR@microchip.com, Nayabbasha.Sayed@microchip.com,
-        Dharma.B@microchip.com, Varshini.Rajendran@microchip.com,
-        Balakrishnan.S@microchip.com
-Subject: Re: [PATCH 2/9] mfd: atmel-hlcdc: Add compatible for SAM9X7 HLCD
- controller
-Message-ID: <20230621-pampers-dial-07b6c3e7602a@spud>
-References: <20230613070426.467389-1-manikandan.m@microchip.com>
- <20230613070426.467389-3-manikandan.m@microchip.com>
- <20230621175645.GR10378@google.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Corentin Labbe <clabbe@baylibre.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-crypto@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3] dt-bindings: crypto: drop unneeded quotes
+Message-ID: <20230621-mongoose-trance-2d0b2bc7c8b2@spud>
+References: <20230621064403.9221-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zsZwVK0nRU6jEjva"
+        protocol="application/pgp-signature"; boundary="kMX+ppCtr/sMbNir"
 Content-Disposition: inline
-In-Reply-To: <20230621175645.GR10378@google.com>
+In-Reply-To: <20230621064403.9221-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -69,43 +63,32 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---zsZwVK0nRU6jEjva
+--kMX+ppCtr/sMbNir
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 21, 2023 at 06:56:45PM +0100, Lee Jones wrote:
-> On Tue, 13 Jun 2023, Manikandan Muralidharan wrote:
+On Wed, Jun 21, 2023 at 08:44:03AM +0200, Krzysztof Kozlowski wrote:
+> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
+> checking for this can be enabled in yamllint.
 >=20
-> > Add compatible for SAM9X7 HLCD controller.
-> >=20
-> > Signed-off-by: Manikandan Muralidharan <manikandan.m@microchip.com>
-> > ---
-> >  drivers/mfd/atmel-hlcdc.c | 1 +
-> >  1 file changed, 1 insertion(+)
->=20
-> Applied, thanks
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Hmm, Nicolas pointed out that this compatible is likely insufficient,
-and it'll likely need to be sam9x70 & sam9x75 as there are differences
-between what each of these SoCs support.
-https://lore.kernel.org/all/ef09246c-9220-4c71-4ac2-2792d9ca519d@microchip.=
-com/
-I guess it doesn't really matter, since the binding didn't get applied
-and what's in the driver can be arbitrarily changed?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
 Cheers,
 Conor.
 
---zsZwVK0nRU6jEjva
+--kMX+ppCtr/sMbNir
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJNLmAAKCRB4tDGHoIJi
-0vYDAQCrn4A14yblpV2uYnp7eJiwUWDuCmKo5+fc3VkNOrvitQEA5QIV7hQdQCRR
-lzZK9jhg9rQhq32EGUiTjXEFKLzAKQw=
-=/8eC
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJNLwgAKCRB4tDGHoIJi
+0nT0AP45U0MfyYBuBPROCFXmA1qKilOd/vpoavf+9UeUW+2mfwEA3h4J95HX9zJk
+n94VGpFRzO8GMY8MxF4qeY8esYgfDww=
+=v52S
 -----END PGP SIGNATURE-----
 
---zsZwVK0nRU6jEjva--
+--kMX+ppCtr/sMbNir--
