@@ -2,95 +2,192 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E104C738435
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 15:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AC93738444
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 15:01:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229789AbjFUNAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 09:00:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37510 "EHLO
+        id S232140AbjFUNBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 09:01:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230108AbjFUNAN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 09:00:13 -0400
-Received: from mail.manjaro.org (mail.manjaro.org [116.203.91.91])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3358B1AC;
-        Wed, 21 Jun 2023 06:00:12 -0700 (PDT)
-Content-Type: text/plain; charset=utf-8; format=flowed
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=manjaro.org; s=2021;
-        t=1687352410;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=t4MW0GvBawLQtktDB4ATGKjd0pHPqZSaP4yASsVpW/s=;
-        b=ml1R80Q1Pym5yMPXk0q9o2l3NPk4lQqYzZlZYLBJGxr5WvEF1raRg8vq4AJ/8EvPoF5sbW
-        y9i219H6i9fWYiwCDW+pYWotG+j8GfMdHslwR3AKGuCf6Sm2VZpAxdncOlyYlcW/hPJFcE
-        ACyeIjK97TGsFUADw1ojYSv6sEIONU95ENyYTefULn6BEkplOspN3e5z1rmHUUYKcBwTAu
-        WsBiPT3efLRihgM7D0TT4sninBjelsXukNE/tWKQU8qiu2vYPH1KVut/FCSS9eKUjA03q8
-        42WdymLr5ZkZyKWEywPiHtseS++sRoQn6uCLMFyn9rVg6MeeTz//2TJ1eDTiNw==
-Message-Id: <1687352320815.1257416493.3087155415@manjaro.org>
-From:   Furkan Kardame <f.kardame@manjaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        robh+dt@kernel.org
-Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        heiko@sntech.de, broonie@kernel.org, deller@gmx.de,
-        dsterba@suse.com, arnd@arndb.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCHv4 1/2] dt-bindings: arm: rockchip: Add Firefly Station
- P2
-Date:   Wed, 21 Jun 2023 13:00:05 +0000
-In-Reply-To: <66d5a117-abc7-e147-f416-5366706b5f26@linaro.org>
-References: <66d5a117-abc7-e147-f416-5366706b5f26@linaro.org>
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S232135AbjFUNA6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 09:00:58 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30FA10D2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 06:00:56 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-311099fac92so6840835f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 06:00:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687352455; x=1689944455;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sKfFOA2VQNsIqUQ1flZDf0bxDWmVBHZhAudfMdk56p0=;
+        b=HWV31ax/NO65WpLHfIYRSaZG6yjRk9QNUXB+xA5HDAe9pfonOfYq5aly5BHQsGJ41N
+         gLbbLh2iUJO63XfOji067mFyQSm0CabxHJW1fprMrXNo0ORUe19uirV+KHs9np78ztV4
+         Rd3o4G8ZprBSE6j3jhLRwlLKb/gZvRezPqXtt0uWvbEvZeHdPPf1JIOIi7/EY6sdPc2b
+         XNAng8v5xYnTgGQO07o78tLXBvxg3rZjs5PkAzuB2UdDCd+Sv0a5Sl/F9nx3fBnNMY5L
+         7aXHvJyTtZswns6dUP1OiuyqRunxMqy+IGJuNiF+XSqcaK5cqvL1HR9lWxHFwEsRRfRj
+         z2rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687352455; x=1689944455;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=sKfFOA2VQNsIqUQ1flZDf0bxDWmVBHZhAudfMdk56p0=;
+        b=R839UlhyCuwq5dcl42ScurY2LYD3htauQ3cf4dU/JbXHx2MzjbzEzfIUQ119skcaA2
+         N40pqWLLMUbSwf9MHqupx/EDsxsrgbNFrVB41M6MQP2DasmYf0qPpO/6o7vf6M7tqQYb
+         kPqgWbfc5VEIB0R3opeyEhguTeylTIcpcZysfrRJGuRwBVubrLJSWBAW8d2HAKXyVlph
+         J7Gcg8OThfL0+anSNr+yBv6fkyB4svFsTCpIwSFMaLwXnjAbmfyMPgxSaeRVxkQo2eIg
+         Ul6AqSxKo/fbnmNVBK/H99ulA2OINCP67kEoagKaJbPEs7ngdQTqzmennaybpjZ3fUk9
+         E9Rg==
+X-Gm-Message-State: AC+VfDwx4V/uumjfJ2Tcq/m3f7FHyk2JYgMTvDGWFy18L1SS0vWkd/fC
+        WN42T31oDI7/qSgBMlXazp6Fkw==
+X-Google-Smtp-Source: ACHHUZ6JKqWTaaZfAwNeGlMyFJwUZ4r0dshdn49b3nRktAmqVPae+sEM6nHr+tXoRT63f9YhRex0EA==
+X-Received: by 2002:adf:e8c2:0:b0:30f:cf67:5658 with SMTP id k2-20020adfe8c2000000b0030fcf675658mr13179240wrn.9.1687352442778;
+        Wed, 21 Jun 2023 06:00:42 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e10-20020a5d65ca000000b002f28de9f73bsm4420499wrw.55.2023.06.21.06.00.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 21 Jun 2023 06:00:42 -0700 (PDT)
+Message-ID: <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
+Date:   Wed, 21 Jun 2023 15:00:39 +0200
 MIME-Version: 1.0
-Authentication-Results: ORIGINATING;
-        auth=pass smtp.auth=f.kardame@manjaro.org smtp.mailfrom=f.kardame@manjaro.org
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
+Content-Language: en-US
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Michal Kubiak <michal.kubiak@intel.com>,
+        Vivek Yadav <vivek.2311@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Simon Horman <simon.horman@corigine.com>
+References: <20230621093103.3134655-1-msp@baylibre.com>
+ <20230621093103.3134655-6-msp@baylibre.com>
+ <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
+ <20230621123158.fd3pd6i7aefawobf@blmsp>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230621123158.fd3pd6i7aefawobf@blmsp>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-
-On Wednesday 21 June 2023 09:22:31 (+03:00), Krzysztof Kozlowski wrote:
-
- > On 20/06/2023 20:47, Furkan Kardame wrote:
- > > Station P2 is a single board computer by firefly based
- > > on rk3568 soc
- > > 
- > > Signed-off-by: Furkan Kardame 
- > > ---
- > 
- > This is a friendly reminder during the review process.
- > 
- > It looks like you received a tag and forgot to add it.
- > 
- > If you do not know the process, here is a short explanation:
- > Please add Acked-by/Reviewed-by/Tested-by tags when posting new
- > versions. However, there's no need to repost patches *only* to add the
- > tags. The upstream maintainer will do that for acks received on the
- > version they apply.
- > 
-Noted, will take care of this in the future. 
-
- > 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
- 
+On 21/06/2023 14:31, Markus Schneider-Pargmann wrote:
+> Hi Krzysztof,
 > 
- > If a tag was not added on purpose, please state why and what changed.
- > 
- > Best regards,
- > Krzysztof
- > 
- > 
+> On Wed, Jun 21, 2023 at 12:28:34PM +0200, Krzysztof Kozlowski wrote:
+>> On 21/06/2023 11:31, Markus Schneider-Pargmann wrote:
+>>> tcan4552 and tcan4553 do not have wake or state pins, so they are
+>>> currently not compatible with the generic driver. The generic driver
+>>> uses tcan4x5x_disable_state() and tcan4x5x_disable_wake() if the gpios
+>>> are not defined. These functions use register bits that are not
+>>> available in tcan4552/4553.
+>>>
+>>> This patch adds support by introducing version information to reflect if
+>>> the chip has wake and state pins. Also the version is now checked.
+>>>
+>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>>> ---
+>>>  drivers/net/can/m_can/tcan4x5x-core.c | 128 +++++++++++++++++++++-----
+>>>  1 file changed, 104 insertions(+), 24 deletions(-)
+>>>
+>>> diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
+>>> index fb9375fa20ec..756acd122075 100644
+>>> --- a/drivers/net/can/m_can/tcan4x5x-core.c
+>>> +++ b/drivers/net/can/m_can/tcan4x5x-core.c
+>>> @@ -7,6 +7,7 @@
+>>>  #define TCAN4X5X_EXT_CLK_DEF 40000000
+>>>  
+>>>  #define TCAN4X5X_DEV_ID1 0x00
+>>> +#define TCAN4X5X_DEV_ID1_TCAN 0x4e414354 /* ASCII TCAN */
+>>>  #define TCAN4X5X_DEV_ID2 0x04
+>>>  #define TCAN4X5X_REV 0x08
+>>>  #define TCAN4X5X_STATUS 0x0C
+>>> @@ -103,6 +104,13 @@
+>>>  #define TCAN4X5X_WD_3_S_TIMER BIT(29)
+>>>  #define TCAN4X5X_WD_6_S_TIMER (BIT(28) | BIT(29))
+>>>  
+>>> +struct tcan4x5x_version_info {
+>>> +	u32 id2_register;
+>>> +
+>>> +	bool has_wake_pin;
+>>> +	bool has_state_pin;
+>>> +};
+>>> +
+>>>  static inline struct tcan4x5x_priv *cdev_to_priv(struct m_can_classdev *cdev)
+>>>  {
+>>>  	return container_of(cdev, struct tcan4x5x_priv, cdev);
+>>> @@ -254,18 +262,68 @@ static int tcan4x5x_disable_state(struct m_can_classdev *cdev)
+>>>  				  TCAN4X5X_DISABLE_INH_MSK, 0x01);
+>>>  }
+>>>  
+>>> -static int tcan4x5x_get_gpios(struct m_can_classdev *cdev)
+>>> +static const struct tcan4x5x_version_info tcan4x5x_generic;
+>>> +static const struct of_device_id tcan4x5x_of_match[];
+>>> +
+>>> +static const struct tcan4x5x_version_info
+>>> +*tcan4x5x_find_version_info(struct tcan4x5x_priv *priv, u32 id2_value)
+>>> +{
+>>> +	for (int i = 0; tcan4x5x_of_match[i].data; ++i) {
+>>> +		const struct tcan4x5x_version_info *vinfo =
+>>> +			tcan4x5x_of_match[i].data;
+>>> +		if (!vinfo->id2_register || id2_value == vinfo->id2_register) {
+>>> +			dev_warn(&priv->spi->dev, "TCAN device is %s, please use it in DT\n",
+>>> +				 tcan4x5x_of_match[i].compatible);
+>>> +			return vinfo;
+>>> +		}
+>>> +	}
+>>> +
+>>> +	return &tcan4x5x_generic;
+>>
+>> I don't understand what do you want to achieve here. Kernel job is not
+>> to validate DTB, so if DTB says you have 4552, there is no need to
+>> double check. On the other hand, you have Id register so entire idea of
+>> custom compatibles can be dropped and instead you should detect the
+>> variant based on the ID.
+> 
+> I can read the ID register but tcan4552 and 4553 do not have two
+> devicetree properties that tcan4550 has, namely state and wake gpios.
 
--- 
--- 
-With best regards
-Furkan Kardame
+Does not matter, you don't use OF matching to then differentiate
+handling of GPIOs to then read the register. You first read registers,
+so everything is auto-detectable.
+
+> See v1 discussion about that [1].
+
+Yeah, but your code is different, although maybe we just misunderstood
+each other. You wrote that you cannot use the GPIOs, so I assumed you
+need to know the variant before using the GPIOs. Then you need
+compatibles. It's not the case here. You can read the variant and based
+on this skip entirely GPIOs as they are entirely missing.
+
+> 
+> In v1 Marc pointed out that mcp251xfd is using an autodetection and warn
+> mechanism which I implemented here as well. [2]
+
+But why? Just read the ID and detect the variant based on this. Your DT
+still can have separate compatibles followed by fallback, that's not a
+problem.
+
+
+Best regards,
+Krzysztof
+
