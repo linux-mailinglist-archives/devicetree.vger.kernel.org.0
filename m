@@ -2,126 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FED6738A8C
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F72D738AEA
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:23:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230196AbjFUQMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 12:12:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41604 "EHLO
+        id S231244AbjFUQW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 12:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231201AbjFUQMc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:12:32 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A8741981;
-        Wed, 21 Jun 2023 09:12:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EEE35615D4;
-        Wed, 21 Jun 2023 16:12:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B4F9BC433C8;
-        Wed, 21 Jun 2023 16:12:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687363946;
-        bh=F6AWTtJIxksfHftPRfXL8xSdr4W3uoaros+jmqwGdq0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HYwWn4Yej83L0Ozvd2Lkm4OKqpaUV5ILjyBa57r0tigAcNRaod1vQaTBv/5Qu2vdV
-         H2KuOAbcz4v1xfjU0S6nXg+WcMPr5N6pPDsOnWotoM2yTqAqIe7IaXryPbI3S5Keg6
-         g+OiQGHvh2t07cRjUfgsT14zlyghI6hr3XTAU2wvaT3qXHHXCVrI5tBmWwuw1wCw2R
-         xlJwXqIsBWcO9kvBOZXWFRLFXClJ/S3e/2Qf2fqG5RJZXaJeaCut3vUen9xmzrON4h
-         Fl6uKmH52wx+Sin+NrmApBVm+w1U3GrTVv5D05qCbDIunnd8Bxi+W/OeyYBPCmgbDO
-         6TtTVB41yCT9Q==
-Date:   Wed, 21 Jun 2023 17:12:20 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Sascha Hauer <s.hauer@pengutronix.de>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        linux-rockchip@lists.infradead.org,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Vincent Legoll <vincent.legoll@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 22/26] dt-bindings: devfreq: event: rockchip,dfi: Add
- rk3588 support
-Message-ID: <20230621-poach-amniotic-2eeb858356c8@spud>
-References: <20230616062101.601837-1-s.hauer@pengutronix.de>
- <20230616062101.601837-23-s.hauer@pengutronix.de>
- <20230616-swimwear-prewar-f9dce761d2ec@spud>
- <20230621074159.GN18491@pengutronix.de>
+        with ESMTP id S230360AbjFUQW5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:22:57 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97706E6E;
+        Wed, 21 Jun 2023 09:22:56 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b479d53d48so52618831fa.1;
+        Wed, 21 Jun 2023 09:22:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687364575; x=1689956575;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=mbUIsseJQLcD56nUexXAQssleBbFXq9HDLFNTK6540U=;
+        b=sge27uCvgXX/8Df62gKTk54cBqLn4j59/BfRkIX1rNPVXbh5aEauw0V9ewkL4F09SB
+         JPsONs3ildeURV0CHLSyqHnZomdLlDvOdn1EaMCfrYO4Ax0bVLL89pDzRlkYfW3+k4xb
+         Bd7DvbmpQygGS4YkTEsC5G+8iGlapHW36eqKCgXVhzvigVxspDrQqdDxtnuW9XBpXbj3
+         1639Z2m9a59PATglcKzvobinmb6TntuC8pSEUFNouhgR7nq5ryW++aHaOf7xeOYsRoBn
+         zLvB8iGOEyTTyVeEMJ/5D6Poudd3KlUthPef7N4UZHNpzsutyApzzvFOAdet1wS0vCEw
+         K7rA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687364575; x=1689956575;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=mbUIsseJQLcD56nUexXAQssleBbFXq9HDLFNTK6540U=;
+        b=R7/U+LHmJtZ72EctVZTroNC+9QLEtVaWnKrrot/VclETambkdMXv619e6o1IdA2rng
+         rjscKDu06huFgG/orcJ5aochwGbfcNAHL7Lg6zqthcxHXSHwBmwzYHNxV9joab75gsg0
+         Us6VwygjbqhDlfs8XCIoPyyqoF6nSTAot4k+2lf47A142bjzJizW6BQlW5i1XN6G/VzR
+         Q2WH9aisB2B4q9ANNvLrTGfezCjplXM8kFNpovHXwCeeJaLOnjwuFQ+UNk3Y0Krj9whH
+         n/Rq802vVwVXBj89v9Wg1QcqiLk09q57NuRUUE08p7aDyiU+SNlkollqqI2qVPl1wU66
+         +XeQ==
+X-Gm-Message-State: AC+VfDxwCgb1I7WmnnsTH/wROq4S6pbcAcGV/9Dq/TYxSR3ZubolSlBA
+        wlWCyF9NuxTQ+CzdnrhbWpXUC6cfvWR4Cyh5F0I=
+X-Google-Smtp-Source: ACHHUZ76EEUwUN3hooyIHI/bSiXV0MfinoZMsCJXcKF26s7jAh7kKSz/R3mjelpjU2Fl35/yLc8YoklRAez3ZrVkWnE=
+X-Received: by 2002:a05:651c:1045:b0:2b5:8204:ec9b with SMTP id
+ x5-20020a05651c104500b002b58204ec9bmr2454212ljm.43.1687364574666; Wed, 21 Jun
+ 2023 09:22:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="qqJ18BUnkd3ehpaa"
-Content-Disposition: inline
-In-Reply-To: <20230621074159.GN18491@pengutronix.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230620-hx3-v3-0-2acbc03ca949@skidata.com> <20230620-hx3-v3-1-2acbc03ca949@skidata.com>
+ <2023062102-booth-glorify-2b09@gregkh>
+In-Reply-To: <2023062102-booth-glorify-2b09@gregkh>
+From:   Benjamin Bara <bbara93@gmail.com>
+Date:   Wed, 21 Jun 2023 18:22:41 +0200
+Message-ID: <CAJpcXm6fRsonH+ZsA7YTpJGBW348r4ZCVSc1XGyhwajqTnn-Dw@mail.gmail.com>
+Subject: Re: [PATCH v3 1/3] usb: misc: onboard-hub: support multiple power supplies
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Benjamin Bara <benjamin.bara@skidata.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 21 Jun 2023 at 18:07, Greg Kroah-Hartman
+<gregkh@linuxfoundation.org> wrote:
+> On Wed, Jun 21, 2023 at 05:58:30PM +0200, Benjamin Bara wrote:
+> > From: Benjamin Bara <benjamin.bara@skidata.com>
+> >
+> > As some of the onboard hubs require multiple power supplies, provide the
+> > environment to support them.
+> >
+> > Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
+> > ---
+> > v3:
+> > - fix nits mentioned in v2
+> >
+> > v2:
+> > - replace (err != 0) with (err)
+> > ---
+> >  drivers/usb/misc/onboard_usb_hub.c | 39 ++++++++++++++++++++++++++++++--------
+> >  drivers/usb/misc/onboard_usb_hub.h |  1 +
+> >  2 files changed, 32 insertions(+), 8 deletions(-)
+> >
+> > diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> > index 12fc6eb67c3b..a56e712d3a45 100644
+> > --- a/drivers/usb/misc/onboard_usb_hub.c
+> > +++ b/drivers/usb/misc/onboard_usb_hub.c
+> > @@ -27,6 +27,13 @@
+> >
+> >  #include "onboard_usb_hub.h"
+> >
+> > +#define MAX_SUPPLIES 2
+>
+> Why 2?
 
---qqJ18BUnkd3ehpaa
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I picked 2 because with 3/3, this is the maximum of "required" supplies. The
+currently implemented ones require only one (up to now just named "vdd"). The
+new one added in 3/3 requires 2, therefore I tried to be generic if some future
+hub might require 3 or more.
 
-On Wed, Jun 21, 2023 at 09:41:59AM +0200, Sascha Hauer wrote:
-> On Fri, Jun 16, 2023 at 08:05:33PM +0100, Conor Dooley wrote:
-> > On Fri, Jun 16, 2023 at 08:20:57AM +0200, Sascha Hauer wrote:
-> > > This adds rockchip,rk3588-dfi to the list of compatibles. Unlike eali=
-er
-> > > SoCs the rk3588 has four interrupts (one for each channel) instead of
-> > > only one, so increase the number of allowed interrupts to four.
-> > >=20
-> > > Link: https://lore.kernel.org/r/20230524083153.2046084-23-s.hauer@pen=
-gutronix.de
-> >=20
-> > It's unclear what the point of this link is.
->=20
-> The link was added automatically by b4. I re-applied the series from the
-> last one I sent just to be sure that I base my work for the new series
-> on the one I sent last time. I didn't remember that b4 adds these links,
-> I should have disabled that option.
+> > +
+> > +static const char * const supply_names[] = {
+> > +     "vdd",
+> > +     "vdd2",
+> > +};
+>
+> Do those names have anything to do with the number above?  If so, please
+> document it!
 
-Ah, I see.
+I picked "vdd" for the first to be compatible with the existing device-trees. As
+the actual names differ between hubs, I thought it might be generic to just use
+"vdd2" here. If I should add some comment like "if you increase MAX_SUPPLIES,
+please also add a supply_name below", I can do that. I could also implement
+"vdd${i+1}" for i>0 instead.
 
-> > My comment still stands about whether only the new compatible should be
-> > permitted to have more than one interrupt. I don't recall a response to
-> > that question on the last version.
->=20
-> My personal take on this is that such additions make the bindings more
-> readable by machines, but less by humans. That's why I don't have enough
-> intrinsic motivation to make this change.
+>
+> >  struct onboard_hub_pdata {
+> >       unsigned long reset_us;         /* reset pulse width in us */
+> > +     unsigned int num_supplies;      /* number of supplies: 0 considered as 1 */
+>
+> I can not understand that comment at all :(
 
-> Anyway, if you insist then I'll make it for the next round.
-
-No, I don't insist. I just wanted to not be ignored.
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---qqJ18BUnkd3ehpaa
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJMhZAAKCRB4tDGHoIJi
-0glxAP95A4qpgG0Kx3VK40STEaGwGLEnpx8i+Bqq6PpR06Bp+AD/VUNaT9byFCmy
-eld/0kBNSGMr59V6XwdGhIG5VMo5ZQk=
-=FJnF
------END PGP SIGNATURE-----
-
---qqJ18BUnkd3ehpaa--
+This should just indicate that leaving the field empty means one supply is
+required. Maybe "defaults to 1" is better?
