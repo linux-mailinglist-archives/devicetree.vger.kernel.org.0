@@ -2,77 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DB26738733
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 16:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1089A73887D
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 17:10:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232161AbjFUOhk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 10:37:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48830 "EHLO
+        id S232927AbjFUPKx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 11:10:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50696 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232364AbjFUOhe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 10:37:34 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4E131BC1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:37:22 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3f9b4a71623so26858425e9.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 07:37:22 -0700 (PDT)
+        with ESMTP id S233096AbjFUPKa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 11:10:30 -0400
+Received: from mail-yw1-x1133.google.com (mail-yw1-x1133.google.com [IPv6:2607:f8b0:4864:20::1133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3085262
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 08:05:55 -0700 (PDT)
+Received: by mail-yw1-x1133.google.com with SMTP id 00721157ae682-57059626276so66658857b3.3
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 08:05:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687358241; x=1689950241;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E2nzgFJ0UcKKhFdBcJW4Qki5Cr7fODwtX2iLYSvqDVI=;
-        b=ccwzO4T+YWCh07XgozjTsTDf6U+GyCB6iEINFXDkJru7rGYxyzEC83v6QXMbpJL4zb
-         rjG2sP4D8l4afWsa3EDe7SahZUfGIFOljh9IREcgP8KD7orEyFnpwrsBwjpa3xrDseRC
-         ulYIKU6IU7JF1Z8+5ohONTZ6y+/X/Nfq9snF3ryjM2sEHaOrUVc7o5lCA+nlTahwnKZ+
-         QWrP8rJgbyObPYW8V73KMWdBu9PopvzORu8aKcxnsUVYu2kG4KE9IBZltppkhi67+imn
-         xVLd5BJrRIfDhrkMhya0DYFnGGlnPzwlOmbs1kdXvLmZAfsj2iTnRStXH2yxKYtPPO3a
-         gRZA==
+        d=chromium.org; s=google; t=1687359940; x=1689951940;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=71z8LhgGLO2daEYFxMvnjOv3P6R9bwnVjy2+4M+RqPE=;
+        b=d1xygi3ixDxKKey0eq8olUuPJSsUaPU0kyW56buZMIEN2kM6opSC8su4XmuliTobzx
+         3PIir9q9uxV/Isb9+aJqPiasE2uTiD4n5B8wg7H8ONCQ2o632LqTke4NuhmZyc7xYxpm
+         ARkINEWTIuFegaOtNmYLx/yhd1yS/FElhX7H4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687358241; x=1689950241;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E2nzgFJ0UcKKhFdBcJW4Qki5Cr7fODwtX2iLYSvqDVI=;
-        b=io1ctyqx/j8S0hrrH1jD/Ro3R1QPqmcs1/KhGVTXtRs3/ImYHEHS3pHraSE929pWt7
-         6XbDdMXCadVL9qvW1zcH1c1ikVrTzZSvsHAKJV/1DEehEjA5VDx3waYp1q5gRkhKGAYJ
-         +lDmGlk1sAVxdcsO/RJpFxK0gMP/0p9/A9tpBr530V27yeZN3iPl8d6rhnm5sqK/apBx
-         NerkuNtTT5xyxFkSHyKGVL3iPWNK40onMejiHc0sM2coNk3dO/5lhIFqkR+VWXO7IBwv
-         6lJmydcII+Qll2+S0FldtOih3d9aLD+A7mk2LGqfjz1hdzHEJ3U/ElNSFVV8rvUUjdCK
-         IaUg==
-X-Gm-Message-State: AC+VfDzefyN7QtCygI+9r2wd3ISKrNSv891PhXuJ4QQheLvC6SpkHYYN
-        LiI34NJ6noq8LDYbE0ltkHv98A==
-X-Google-Smtp-Source: ACHHUZ5Vmh48i0hExJ+5VdjCgnuo8egMvW9ckVo9v1TF1zTT3rT8zTjlJPeKKjV/+tC426+MW5Wi8g==
-X-Received: by 2002:a05:600c:22c6:b0:3f9:b1e7:8a4b with SMTP id 6-20020a05600c22c600b003f9b1e78a4bmr5652292wmg.21.1687358241393;
-        Wed, 21 Jun 2023 07:37:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id r19-20020a05600c285300b003f605566610sm16131212wmb.13.2023.06.21.07.37.20
+        d=1e100.net; s=20221208; t=1687359940; x=1689951940;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=71z8LhgGLO2daEYFxMvnjOv3P6R9bwnVjy2+4M+RqPE=;
+        b=hjxBGqxI16m6KILE7plR6aqop0KbiaOUmpYE9Y07FExpuY4DvcQj8uL1SXpHHs0Sb8
+         DumXgLe//n4ZinEKVRAmk3wGIydsukrXyorFvXI9NPWY0se4Z31owGUY+V2NCp3zl0a5
+         uiHnG9/+NzDhxG2ZsFBVQzPjD8aRrx3cz330UM/sLxgk14qUan+rJmXtbE9z4qm1ghP6
+         iKLXdr/AaTn2kLzQd5Ngn3yUWUKm4A8MvDV9+oJCGjWrd1Fyd57XQ8S8skOgSg6iedH3
+         VA5FxL58ETi0kNc8K/prP68VzK+5hLxTPaF30K/fT+nS3B0vVS8fi1QnbevWKo7RaGWD
+         cuXA==
+X-Gm-Message-State: AC+VfDzZ1FrV/y7ievMu6BMiLW942qlb25E4jS7XXOPQtI+zU/CZcWfH
+        lObhSMqhMdugV+qCke6uRsvUB4bEgE10qqWyjBE=
+X-Google-Smtp-Source: ACHHUZ40pm00cx+5QtNSdK+p1nl1iGTlL8sdLUPf0anon/otCr2jk9289Avlf7F6IwoMeQOYIoCJzQ==
+X-Received: by 2002:a05:6602:91:b0:780:c787:637b with SMTP id h17-20020a056602009100b00780c787637bmr56097iob.0.1687359425648;
+        Wed, 21 Jun 2023 07:57:05 -0700 (PDT)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id p7-20020a0566380e8700b0042674500f87sm308659jas.123.2023.06.21.07.57.04
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 07:37:20 -0700 (PDT)
-Message-ID: <fce2d704-6801-afd9-ea9d-607c7ff8f46c@linaro.org>
-Date:   Wed, 21 Jun 2023 16:37:19 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: sm8350: fix BAM DMA crash and reboot
-Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Wed, 21 Jun 2023 07:57:04 -0700 (PDT)
+Date:   Wed, 21 Jun 2023 14:57:03 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Benjamin Bara <bbara93@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20230621143627.189134-1-krzysztof.kozlowski@linaro.org>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230621143627.189134-1-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Benjamin Bara <benjamin.bara@skidata.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] usb: misc: onboard-hub: support multiple power
+ supplies
+Message-ID: <ZJMPv6Fm3On0ITFi@google.com>
+References: <20230620-hx3-v2-0-76a53434c713@skidata.com>
+ <20230620-hx3-v2-1-76a53434c713@skidata.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230620-hx3-v2-1-76a53434c713@skidata.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -81,33 +74,138 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2023 16:36, Krzysztof Kozlowski wrote:
-> SM8350 HDK and MTP boards were silently dying and rebooting during BAM
-> DMA probe:
+Hi,
+
+On Wed, Jun 21, 2023 at 04:26:27PM +0200, Benjamin Bara wrote:
+> From: Benjamin Bara <benjamin.bara@skidata.com>
+>
+> As some of the onboard hubs require multiple power supplies, provide the
+> environment to support them.
 > 
->   [    1.574304] vreg_bob: Setting 3008000-3960000uV
->   [    1.576918] bam-dFormat: Log Type - Time(microsec) - Message -
->   Optional Info
->   Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
->   S - QC_IMAGE_VERSION_STRING=BOOT.MXF.1.0-00637.1-LAHAINA-1
->   S - IMAGE_VARIANT_STRING=SocLahainaLAA
->   S - OEM_IMAGE_VERSION_STRING=crm-ubuntu77
->   S - Boot Interface: UFS
-> 
-> It seems that BAM DMA is locally controller (not by firmware) and
-> requires proper initialization by the driver prior to use, at least on
-> HDK8350 and MTP8350, but probably on all boards.
-> 
-> Fixes: f1040a7fe8f0 ("arm64: dts: qcom: sm8350: Add Crypto Engine support")
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
+> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
+
+Overall this looks good to me, a few nits inside.
+
 > ---
-> 
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> v2:
+> - replace (err != 0) with (err)
 > ---
+>  drivers/usb/misc/onboard_usb_hub.c | 36 ++++++++++++++++++++++++++++--------
+>  drivers/usb/misc/onboard_usb_hub.h |  1 +
+>  2 files changed, 29 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/usb/misc/onboard_usb_hub.c b/drivers/usb/misc/onboard_usb_hub.c
+> index 12fc6eb67c3b..3de30356a684 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.c
+> +++ b/drivers/usb/misc/onboard_usb_hub.c
+> @@ -27,6 +27,12 @@
+>  
+>  #include "onboard_usb_hub.h"
+>  
+> +#define SUPPLIES_NUM_MAX 2
 
-#regzbot fix: f1040a7fe8f069d2259ab3dab9190210005ceb33
+MAX_SUPPLIES?
 
-Best regards,
-Krzysztof
+add empty line
 
+> +static const char * const supply_names[] = {
+> +	"vdd",
+> +	"vdd2",
+> +};
+> +
+>  static void onboard_hub_attach_usb_driver(struct work_struct *work);
+>  
+>  static struct usb_device_driver onboard_hub_usbdev_driver;
+> @@ -40,7 +46,8 @@ struct usbdev_node {
+>  };
+>  
+>  struct onboard_hub {
+> -	struct regulator *vdd;
+> +	struct regulator_bulk_data supplies[SUPPLIES_NUM_MAX];
+> +	unsigned int supplies_num;
+
+num_supplies?
+
+>  	struct device *dev;
+>  	const struct onboard_hub_pdata *pdata;
+>  	struct gpio_desc *reset_gpio;
+> @@ -55,9 +62,9 @@ static int onboard_hub_power_on(struct onboard_hub *hub)
+>  {
+>  	int err;
+>  
+> -	err = regulator_enable(hub->vdd);
+> +	err = regulator_bulk_enable(hub->supplies_num, hub->supplies);
+>  	if (err) {
+> -		dev_err(hub->dev, "failed to enable regulator: %d\n", err);
+> +		dev_err(hub->dev, "failed to enable supplies: %d\n", err);
+>  		return err;
+>  	}
+>  
+> @@ -75,9 +82,9 @@ static int onboard_hub_power_off(struct onboard_hub *hub)
+>  
+>  	gpiod_set_value_cansleep(hub->reset_gpio, 1);
+>  
+> -	err = regulator_disable(hub->vdd);
+> +	err = regulator_bulk_disable(hub->supplies_num, hub->supplies);
+>  	if (err) {
+> -		dev_err(hub->dev, "failed to disable regulator: %d\n", err);
+> +		dev_err(hub->dev, "failed to disable supplies: %d\n", err);
+>  		return err;
+>  	}
+>  
+> @@ -232,6 +239,7 @@ static int onboard_hub_probe(struct platform_device *pdev)
+>  	const struct of_device_id *of_id;
+>  	struct device *dev = &pdev->dev;
+>  	struct onboard_hub *hub;
+> +	unsigned int i;
+>  	int err;
+>  
+>  	hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
+> @@ -246,9 +254,21 @@ static int onboard_hub_probe(struct platform_device *pdev)
+>  	if (!hub->pdata)
+>  		return -EINVAL;
+>  
+> -	hub->vdd = devm_regulator_get(dev, "vdd");
+> -	if (IS_ERR(hub->vdd))
+> -		return PTR_ERR(hub->vdd);
+> +	if (hub->pdata->supplies_num > SUPPLIES_NUM_MAX)
+> +		return dev_err_probe(dev, -EINVAL, "max %d supplies supported!\n",
+> +				     SUPPLIES_NUM_MAX);
+> +	hub->supplies_num = 1;
+> +	if (hub->pdata->supplies_num > 1)
+> +		hub->supplies_num = hub->pdata->supplies_num;
+
+Please change the above to:
+
+	if (hub->pdata->supplies_num != 0)
+		hub->supplies_num = hub->pdata->supplies_num;
+	else
+		hub->supplies_num = 1;
+
+> +
+> +	for (i = 0; i < SUPPLIES_NUM_MAX; i++)
+> +		hub->supplies[i].supply = supply_names[i];
+> +
+> +	err = devm_regulator_bulk_get(dev, hub->supplies_num, hub->supplies);
+> +	if (err) {
+> +		dev_err(dev, "Failed to get regulator supplies: %d\n", err);
+> +		return err;
+> +	}
+>  
+>  	hub->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+>  						  GPIOD_OUT_HIGH);
+> diff --git a/drivers/usb/misc/onboard_usb_hub.h b/drivers/usb/misc/onboard_usb_hub.h
+> index aca5f50eb0da..657190bf1799 100644
+> --- a/drivers/usb/misc/onboard_usb_hub.h
+> +++ b/drivers/usb/misc/onboard_usb_hub.h
+> @@ -8,6 +8,7 @@
+>  
+>  struct onboard_hub_pdata {
+>  	unsigned long reset_us;		/* reset pulse width in us */
+> +	unsigned int supplies_num;	/* num of supplies: 0 considered as 1 */
+
+num_supplies?
+
+s/num of/number of/
+
+>  };
