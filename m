@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E2F44738215
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:12:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D65C73807F
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 13:10:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231124AbjFUJ2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 05:28:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58742 "EHLO
+        id S231799AbjFUJ2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 05:28:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231768AbjFUJ2B (ORCPT
+        with ESMTP id S231634AbjFUJ2B (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 05:28:01 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BFAF19BE
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:26:32 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b479d53d48so45948341fa.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:26:32 -0700 (PDT)
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B4652D76
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:26:33 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f640e48bc3so7557553e87.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 02:26:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687339590; x=1689931590;
+        d=linaro.org; s=google; t=1687339591; x=1689931591;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=re9WCz4H13D40XSzeAyHx5fCix8Cg4J0Ee8QgOUQuT0=;
-        b=GMmxJ1YCaiXF5kZ2Ja+WePNK+ZIPDbA8ZHsemdGIrpwEFnmT1WHuaXvutqE9vnmhjo
-         bDnx3HipilReckxTSkm8W95QkhLqvNTQv3g6gg4LeovCqUScmS4Dm0s2qjJjZM5wF0eN
-         Av1gSMmyTEEoK9Z2L0JffcJ9Civ/wjf4nnDCmLlgKof1SCkZg3A4PouFbI9Fc0Gw/uyW
-         4kvOVYwMt+NEhYr5F1Wn/dgV2B044j0rp7QAyD0NAkL9YcM6n0C/Fu4p/vXJJcEtEJ7E
-         6m8uXzA6b0Qs8PWArD5H+zIT9Oo9ekILLrC7bpqnOa1pY5KxBWBtRqm3dhBn3lzg/628
-         F1Dg==
+        bh=642ISV1RQy/4IBT8/0RpTRDp8l7iezX4cLvPXZIq6U4=;
+        b=E7tvsPdFsOoE6UyrPeJBhP23t0NKFMbURh4PWkEEPcZo7kUUD6aYD5hs4ZzN+hVSi5
+         wQ9NBCXrfgtynVg1CxEBf1VNraUXW6MuA58OaIxOJzC1nkpym7gYYzMlctR23S24dnoR
+         4TbdlbA1fhgys4XLTaCmrs8lsTew6+UGq2vOxZ31nyL+ElkaMJkhumcC1ACb8VEX86EG
+         3cIjNaedAnDY58NRRNUb8f+1pTN01XD2mf9SDXZUe9+GU9ijwArviKW6grLatJTV2oyS
+         tq0dM9TveIoGqf7IAdyxPX5s7GBNIIyaftMAjT0jtyGLaiGIooUmYWR0aDv5S6gqkB4i
+         DiWw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687339590; x=1689931590;
+        d=1e100.net; s=20221208; t=1687339591; x=1689931591;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=re9WCz4H13D40XSzeAyHx5fCix8Cg4J0Ee8QgOUQuT0=;
-        b=FNFBwYA15GtYVs5FodXA6XQ8I5DqvIIr49nnUZmlzb36GXMNupYpiN8hh9m4CPeTws
-         XPS6rpHXiT33A5ruE5r6N0Y8hNO7AVw037blOlSYx/VGeP9+5RP+JHWBpbzsRHXRpW+O
-         gLNpjEv2Qa25Dm6IeA+j/yu+ahZMvOBQ/9TVP5PYfQfiWdTpqW+rIVkViC6Sw4sbo3/e
-         7uMQmyw1Rd8P9fI3GfRFXF35HdDk1gFmMdWZEePbFFvqOIGnSaHCzlX/xFa0Lj5gew6i
-         Gq6SJ2WrDaD1Mz9mIjCGEB49ai9XUofSp1OEBuxKzGmjhY0u9VlT8eNRlOsveKuqhxGj
-         /9Ng==
-X-Gm-Message-State: AC+VfDzdfmeVRmX5awSiR3mQA4R3UQErW//0prImoerDdVfvj5r7BpAp
-        LhGtbTyNyZAClY5DBI5YdoAMeQ==
-X-Google-Smtp-Source: ACHHUZ58tV60/jf+wRQdI/GcTTGcfiQe77Op6a4yhZwgerhTLga/xGCChPbIhBe1AM+r0dXuBtNmFg==
-X-Received: by 2002:a2e:91c7:0:b0:2b4:6f70:c396 with SMTP id u7-20020a2e91c7000000b002b46f70c396mr6131206ljg.44.1687339589956;
-        Wed, 21 Jun 2023 02:26:29 -0700 (PDT)
+        bh=642ISV1RQy/4IBT8/0RpTRDp8l7iezX4cLvPXZIq6U4=;
+        b=hHbNuUpEtKiq/8BOMjwOtkcBA0/c4+3mrHcQj7fLnHkO1P8MxkfEaVYAOzsT7rmlt9
+         TIDb8hQQ3xIzhFpaIKPv38R5UVWFodj6BpTJRVWV6SRfM5FVD66MTv8rRVrDCJr1FIwR
+         nITXyTPt1t3c0oewE7LkcpHUn8dJINHIA0OnOWOYNCbZe8sr3zuS1rCsU6CES/wwk2/I
+         jLS4/y9yFKRdPyHXcXOSA+PYCJo6rRuWU3Q9pwdZLTPWBEq+CI/5k08FTDSHMPIirzkS
+         Kx9bcBBJt/2QPPt5S5Pad9BNGvc+GSstxeHE+D4E8AJAxpSjOGGBG3C0K0N0kP+NBZHc
+         pwmw==
+X-Gm-Message-State: AC+VfDxxxn1gWwH7ZcZHcmvnJYzGMUZ2IxLWWwqbyVnRGGz1i8mgGpAI
+        5MVzywmKJKWSpvsqW9Hz3cmg8Q==
+X-Google-Smtp-Source: ACHHUZ43PNwh9qBHoy2NPqJ2yxuPsyJNn7hgHjdashlCxbxzPvkgt4I1jXnsO93ioq7CzqaOVKtT8w==
+X-Received: by 2002:ac2:499e:0:b0:4f8:6f40:4776 with SMTP id f30-20020ac2499e000000b004f86f404776mr5395944lfl.46.1687339591023;
+        Wed, 21 Jun 2023 02:26:31 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id n8-20020a05600c294800b003f90a604885sm4435068wmd.34.2023.06.21.02.26.28
+        by smtp.gmail.com with ESMTPSA id n8-20020a05600c294800b003f90a604885sm4435068wmd.34.2023.06.21.02.26.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 02:26:29 -0700 (PDT)
+        Wed, 21 Jun 2023 02:26:30 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 21 Jun 2023 11:26:25 +0200
-Subject: [PATCH 1/3] dt-bindings: display: msm: sm8350-mdss: document
+Date:   Wed, 21 Jun 2023 11:26:26 +0200
+Subject: [PATCH 2/3] dt-bindings: display: msm: sm8450-mdss: document
  displayport controller subnode
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-1-8bf386b373eb@linaro.org>
+Message-Id: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-2-8bf386b373eb@linaro.org>
 References: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-0-8bf386b373eb@linaro.org>
 In-Reply-To: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-0-8bf386b373eb@linaro.org>
 To:     Rob Clark <robdclark@gmail.com>,
@@ -75,26 +75,26 @@ Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
         linux-kernel@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=914;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=971;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=TjGzGqa7j6xVxSr3WjxySjU5IBZ7vg9i0xPyCqvFJi0=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkksJCb2CsPo8fWtFtkNdnkOj1Cj90XZDCp0vGBqUi
- 89CoPx2JAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJLCQgAKCRB33NvayMhJ0ey6D/
- 4p0mvBdmW6d4uPRJz6Lj+ohsDtEXzF3RC7piur4ugP57SqZuR15Wx9eucM4cYwfQsQ7mJvu6MMFsba
- 3ICwQLcY++kSZYwDawFC7Wcg3681LZUbhr6JGZCzaZ7+HT7hy9/kd7lCmgh79XNR7WkgyMMqR8O2Iw
- AIgWAW5AEfqTz1dOmF5hddGTEDR6qBLh2dFjVZFzq/bxobPf/TTtv/ERpTd5T6j0GAbYRjztVyxlS+
- 4/2txB6UZMVbFJoRuUb2fnyRO9AfPz2G3RT6B1tzChcnrq3kl2YXHmWXg/2FlSWsEaa2BnVtqIe75u
- z7f8WXgMkQybIa0XUHYm3GYjuED+EvSIHt/raQSdQw2xxiX2WicMC7UZbOkrNIoq7fVoKf52PFzPAH
- ihuvy/r0ISSwyyYoeDfgqINxSzymRQniOKGTUSiGUWhZor2KCzf/r3auK3PkCYjE8orgcre5pwGB86
- bGOD/4oVuyvSCahjePs7EqxKBIlzWR6agpXAORMg1OLv7nYYSCgyk9wdn0KZNvNKk/aSA0UFkv7mIg
- nxKuwjWfDzKpsgHAFOuot4LNYdUj4E6+gKAAQyDC1EtAZbKuNrnrj5KfkH5A06qgvh4w3X7miElfNb
- Vbj63mzWr1zE6hHflOtG8v2V8r4NtleYfXKfwaTwACYdN0azrtdzQAIMknHw==
+ bh=wPfgKQUhZZtw05L3W0c8I0GpGZe+nDRcUCZuCoZr/P8=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkksJCp+RZNgRoPbvq04JWliglIwxR8rwxQMWq0M9X
+ yigbExWJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJLCQgAKCRB33NvayMhJ0cteEA
+ DIFxnsOMAmYlnwSoF1sW3z9JpJk+/OmdLaHBvCZtjfSbdIbqIhN7fQR433hoBCI4YoBxY9CvyoL+AW
+ gxTQ2mVkRkVSmwNejx7BCOoxxHZxGpsk+u5tSQpsq5of8cu87vAAwFtkmdB1ZzYmG3DnrvIgNK+gmu
+ GpHjhyhmzfEZzCW0CRmjJQL5PxpEdGw5BITf0sq6zz/c00wwwL77UfYKzJtqwOotZW1AqRsaR06UXV
+ tcQyY0Tu69cokKDrWBXbA6tVQbAcdg6XTyQuuDQxYH/raKodfTCN0sNuANHPB6v6JRiCCswJbIUwnd
+ tnP8On+7YSrqnpxAdCJYxrJk2OBBEN59ilWqf+DsSj/X/8s0NPOBaZ7l1M2rug6+k7/AbxZ1jRDOtf
+ USq7aTyCCA0tp22kTl7IY+b3x6SteVuKFvfMMeRsbRTAVroxADAiMW1tx7xAotTLSjNtYbba7qx8BN
+ 7XSQUng3asbn14nnR3QaPIHj1XjQfXWGDFk2NY6Er/GjoExFngZMBYTwNTF1KGTc41RSLX3UADe2wW
+ zhYQ3J5CqcljrPqPU6Id1sCboMls18wCnxuwwUDgRKezXLVmqrXry5zaOfK3M99RkuKa0DXV+c1rTH
+ ThfCnsyxU3wsXlPIdxktf9HHl+oV5gY5LjctbSVBCnL6VsR6pTDLhJk3JF3Q==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -102,26 +102,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Document the optional document displayport controller subnode
-of the SM8350 MDSS.
+of the SM8450 MDSS.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml | 6 ++++++
- 1 file changed, 6 insertions(+)
+ .../devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml         | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
-index 79a226e4cc6a..f2cbeb435f1b 100644
---- a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
-@@ -52,6 +52,12 @@ patternProperties:
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+index f26eb5643aed..494e2a080e99 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8450-mdss.yaml
+@@ -42,6 +42,14 @@ patternProperties:
        compatible:
-         const: qcom,sm8350-dpu
+         const: qcom,sm8450-dpu
  
 +  "^displayport-controller@[0-9a-f]+$":
 +    type: object
 +    properties:
 +      compatible:
-+        const: qcom,sm8350-dp
++        items:
++          - const: qcom,sm8450-dp
++          - const: qcom,sm8350-dp
 +
    "^dsi@[0-9a-f]+$":
      type: object
