@@ -2,137 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 00F7C7382E8
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:13:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B08717382FE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 14:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231366AbjFUL6q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 07:58:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34994 "EHLO
+        id S231491AbjFUMBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 08:01:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231398AbjFUL6o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 07:58:44 -0400
+        with ESMTP id S231127AbjFUMBQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 08:01:16 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAE8ADE;
-        Wed, 21 Jun 2023 04:58:38 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B421C1A8;
+        Wed, 21 Jun 2023 05:01:15 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 20F966154C;
-        Wed, 21 Jun 2023 11:58:38 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A5208C433C8;
-        Wed, 21 Jun 2023 11:58:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4A0D46154E;
+        Wed, 21 Jun 2023 12:01:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7BC0C433C8;
+        Wed, 21 Jun 2023 12:01:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687348717;
-        bh=zjlaqUJd/M2XG3eUFn4mMZVwk591aoxerwCGAG/o7Kg=;
+        s=k20201202; t=1687348874;
+        bh=dnsuzZWarW86jSlrptZska9lIeReMhuRGOg2gsQvupc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HH2K6wz1VGKLKMLtvE0b4Iv/nxoeEKa+38PupxaUY2AxourukKfqZ9jcB5o7NUqyw
-         sb+dYFkRi/KB8EEzEstq04IWUTuzAkCRgJ1Vpj020oEco12DfL5Vy+jkKP9N6GPTl0
-         cDwiVvpDXeIrdLKynX8Gr4oK2fgKEgZSm2rgE/enKb2aKwT9g9LEU2psDIynmFi3zF
-         Ir2vR09ejfeBzfKSlNzrkC5dvheSUOjbydClg5C+39yFx5MWfF2cVt5j5EMAGiOBam
-         WPT3jZVD2gqpgXkwrAvQ9BsoDIryMXF2yoygQ9liWRBn0GScDDRYB+KD63NxNMOWpJ
-         0TDFJnZAaENww==
-Date:   Wed, 21 Jun 2023 17:28:33 +0530
+        b=o+Tg1ZfF22nx36RE30p158t2kjt2B5u+y+r4zdxUjvL2CwhuhwrRRgnG7Suunmn+P
+         D9iejU+u34St1g1IoqHprqdT/3ZnMl0fT+83zgfd9/yUAHMUmsC2/M09Z3XFkOkImY
+         kRssyBkJbIQ0h7C85NBS+kc4TPm0zn1U/gyHcTyn3z3XIpw++r/bx3XNG5bqwOI4Jb
+         BBzMk4E8kEyVnO0+dr5v2ElK41pcGhtTNv8RVerykpElLCxpvm0oqe398QICjGZ8A/
+         3JqDOiU7lLugJwk1HlvT5lgLk5+Mbcvio151bQXuRlKOyBdShO4MG+FUeonT0lpBji
+         Q44nN94bYQp+w==
+Date:   Wed, 21 Jun 2023 17:31:10 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Minda Chen <minda.chen@starfivetech.com>,
-        kernel test robot <lkp@intel.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Conor Dooley <conor@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Roger Quadros <rogerq@kernel.org>,
-        oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org,
-        linux-riscv@lists.infradead.org,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Mason Huo <mason.huo@starfivetech.com>
-Subject: Re: [PATCH v7 4/5] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
-Message-ID: <ZJLl6Sb0hPdYUGC0@matsya>
-References: <20230619094759.21013-5-minda.chen@starfivetech.com>
- <202306192215.TvQco9m6-lkp@intel.com>
- <d4824941-85dd-d378-be5b-072907b1169d@starfivetech.com>
- <20230621-duckbill-scarf-fa79744cd42d@wendy>
+To:     Xu Yang <xu.yang_2@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Jun Li <jun.li@nxp.com>
+Subject: Re: [EXT] Re: [PATCH v4 1/2] dt-bindings: phy: mxs-usb-phy: convert
+ to DT schema format
+Message-ID: <ZJLmhqHOPrBauJDn@matsya>
+References: <20230613083445.1129137-1-xu.yang_2@nxp.com>
+ <20230620152921.GA3626802-robh@kernel.org>
+ <DB7PR04MB450532123A20DBDB0059B6718C5DA@DB7PR04MB4505.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230621-duckbill-scarf-fa79744cd42d@wendy>
+In-Reply-To: <DB7PR04MB450532123A20DBDB0059B6718C5DA@DB7PR04MB4505.eurprd04.prod.outlook.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21-06-23, 12:44, Conor Dooley wrote:
-> Hey,
+On 21-06-23, 02:16, Xu Yang wrote:
+> ++ Vinod Koul
 > 
-> On Wed, Jun 21, 2023 at 05:29:34PM +0800, Minda Chen wrote:
-> > On 2023/6/19 22:45, kernel test robot wrote:
-> > > kernel test robot noticed the following build errors:
-> > > 
-> > > [auto build test ERROR on robh/for-next]
-> > > [also build test ERROR on linus/master v6.4-rc7 next-20230619]
-> > > [If your patch is applied to the wrong git tree, kindly drop us a note.
-> > > And when submitting patch, we suggest to use '--base' as documented in
-> > > https://git-scm.com/docs/git-format-patch#_base_tree_information]
-> > > 
-> > > url:    https://github.com/intel-lab-lkp/linux/commits/Minda-Chen/dt-bindings-phy-Add-StarFive-JH7110-PCIe-PHY/20230619-184756
-> > > base:   https://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git for-next
-> > > patch link:    https://lore.kernel.org/r/20230619094759.21013-5-minda.chen%40starfivetech.com
-> > > patch subject: [PATCH v7 4/5] phy: starfive: Add JH7110 PCIE 2.0 PHY driver
-> > > config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20230619/202306192215.TvQco9m6-lkp@intel.com/config)
-> > > compiler: s390-linux-gcc (GCC) 12.3.0
-> > > reproduce: (https://download.01.org/0day-ci/archive/20230619/202306192215.TvQco9m6-lkp@intel.com/reproduce)
-> > > 
-> > > If you fix the issue in a separate patch/commit (i.e. not just a new version of
-> > > the same patch/commit), kindly add following tags
-> > > | Reported-by: kernel test robot <lkp@intel.com>
-> > > | Closes: https://lore.kernel.org/oe-kbuild-all/202306192215.TvQco9m6-lkp@intel.com/
-> > > 
-> > > All errors (new ones prefixed by >>, old ones prefixed by <<):
-> > > 
-> > >>> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/phy/starfive/phy-jh7110-pcie.ko] undefined!
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Tuesday, June 20, 2023 11:29 PM
+> > To: Xu Yang <xu.yang_2@nxp.com>
+> > Cc: krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
+> > kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx <linux-imx@nxp.com>; linux-phy@lists.infradead.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-usb@vger.kernel.org; Jun Li <jun.li@nxp.com>
+> > Subject: [EXT] Re: [PATCH v4 1/2] dt-bindings: phy: mxs-usb-phy: convert to DT schema format
+> >
+> > Caution: This is an external email. Please take care when clicking links or opening attachments. When in doubt, report the
+> > message using the 'Report this email' button
+> >
+> >
+> > On Tue, Jun 13, 2023 at 04:34:44PM +0800, Xu Yang wrote:
+> > > Convert the binding to DT schema format. Besides, this also add clocks,
+> > > '#phy-cells', phy-3p0-supply and power-domains properties which are not
+> > > contained in txt file due to txt file lack updates.
+> > >
+> > > Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+> > >
+> > > ---
+> > > Changes in v2:
+> > >  - change filename to fsl,mxs-usbphy.yaml
+> > >  - add other optional properties
+> > >  - narrow fsl,anatop to imx6
+> > >  - use additionalProperties
+> > > Changes in v3:
+> > >  - fix indentation
+> > >  - add clocks property to example
+> > > Changes in v4:
+> > >  - remove [fsl,imx7ulp-usbphy, fsl,imx6ul-usbphy]
+> > >  - limit item of reg and interrupts to 1
+> > >  - sort enum items
+> > >  - modify commit message
+> > > ---
+> > >  .../bindings/phy/fsl,mxs-usbphy.yaml          | 125 ++++++++++++++++++
+> > >  .../devicetree/bindings/phy/mxs-usb-phy.txt   |  33 -----
+> > >  2 files changed, 125 insertions(+), 33 deletions(-)
+> > >  create mode 100644 Documentation/devicetree/bindings/phy/fsl,mxs-usbphy.yaml
+> > >  delete mode 100644 Documentation/devicetree/bindings/phy/mxs-usb-phy.txt
+> >
+> > This should be applied by the PHY maintainers, but they weren't Cc'ed.
 > 
-> > I can not find this error. devm_platform_ioremap_resource is an exported symbol
+> I see. Thanks for reminding.
 > 
-> I asked Arnd about this since the error confused me too. Arnd pointed
-> out that this "allmodconfig" isn't really allmodconfig as PCI is
-> disabled. On s390, CONFIG_HAS_IOMEM depends on PCI and thus none of
-> this devres stuff is usable without it. He suggested that you make the
-> driver depend on USB_SUPPORT, which in turn depends on HAS_IOMEM.
+> Hi Vinod,
+> 
+> Could you please help to apply below two patches:
+>     - [v4 1/2] dt-bindings: phy: mxs-usb-phy: convert to DT schema format
+>     - [v4,2/2] dt-bindings: phy: mxs-usb-phy: add imx8ulp and imx8qm compatible
+> The review process has been completed.
+> Many thanks in advance.
 
-Or add HAS_IOMEM as few drivers already do :-)
-
-> 
-> Cheers,
-> Conor.
-> 
-> > > ERROR: modpost: "devm_ioremap_resource" [drivers/dma/qcom/hdma.ko] undefined!
-> > > ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
-> > > ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
-> > > ERROR: modpost: "iounmap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
-> > > ERROR: modpost: "ioremap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
-> > > ERROR: modpost: "devm_platform_ioremap_resource" [drivers/char/xillybus/xillybus_of.ko] undefined!
-> > > ERROR: modpost: "devm_memremap" [drivers/misc/open-dice.ko] undefined!
-> > > ERROR: modpost: "devm_memunmap" [drivers/misc/open-dice.ko] undefined!
-> > > ERROR: modpost: "iounmap" [drivers/net/ethernet/8390/pcnet_cs.ko] undefined!
-> > > WARNING: modpost: suppressed 19 unresolved symbol warnings because there were too many)
-> > >> Kconfig warnings: (for reference only)
-> > >    WARNING: unmet direct dependencies detected for USB_PHY
-> > >    Depends on [n]: USB_SUPPORT [=n]
-> > >    Selected by [m]:
-> > >    - PHY_STARFIVE_JH7110_PCIE [=m]
-> > > 
-> > I will fix it.
-
-
+Applied now, please use get_maintainer.pl to find whom the patches
+should be copied to
 
 -- 
 ~Vinod
