@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043D97389DF
+	by mail.lfdr.de (Postfix) with ESMTP id EA6A67389E2
 	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 17:40:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233758AbjFUPkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 11:40:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45646 "EHLO
+        id S233681AbjFUPkx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 11:40:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233650AbjFUPka (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 11:40:30 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D06D2111
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 08:40:06 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b475b54253so56423261fa.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 08:40:06 -0700 (PDT)
+        with ESMTP id S233684AbjFUPkc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 11:40:32 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77D4B211D
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 08:40:09 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f7677a94d1so8372056e87.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 08:40:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687361957; x=1689953957;
+        d=linaro.org; s=google; t=1687361958; x=1689953958;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=OxhYDMzYM3sPoTVA7uKX6gjc+krbn/LNyC5c2Sai7r8=;
-        b=pH0YCAKrr2Ilk8uZMoViPdbMe2hTeu1cOp/RxPqCdL3N8y7hlCJ8eJb7IKZNyCVMr4
-         UrxXlFwlyn9a5Knc97r0MVz/NSU+KL5Ot12YmuHwW/uqIy9BJFNfmGJ/+iXyy+yFN6z1
-         g2MqV3FGdVe1aA1syKiBIclRl5U0XUbg5IqnWJCpYrjkiDuag7CNYlxRuGSAdXNniuvQ
-         MK8JifNPe9RYWhh0uhtEMLGySqUWM5osVXTe/2YYtt+yRTqBqUTpaBm+Qo8JM0P18zKz
-         MS17MIvCTIllBv9tNeXNI+s4O/hlruv9X2UqXQwsim0rwYvSIqOpw3EUH79sfN9CdwVi
-         wiaQ==
+        bh=fb9J9GvWBYe5VRYUcNYFbGxYkIOx3Dvj9V9F/TGODfo=;
+        b=n4SOthY/ihHplEiJUth7V8qjZkEA1aQD7zGgq4QikrGv45pqBzufOiXNIRtvjnVU0n
+         Jwku86pkC/4f/m7LXto4uquICt0d87Q9ILogfO54iR6AA5H2bhS7rRMZrjltzVxCIU0s
+         bZmu3HslsV3EUpqYvmm2ZcWQjxn1B9jjQEUOqIXrnbZIEaUef6YZXe0Kgw4IBY66nCHF
+         92qjIHuUcNSGwfMR54bhm9iXdNiTX2SyyvG3U+qnrzGuOW1/7eXvGX1qX9ARyaV1MMu1
+         CL/Whwg4uq8IFfLVIAd0N1Ow9Q/2qdKZub3gU2j+VROcQ9/uPglU5Yhq5A0VMzGd4M6Z
+         vK5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687361957; x=1689953957;
+        d=1e100.net; s=20221208; t=1687361958; x=1689953958;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=OxhYDMzYM3sPoTVA7uKX6gjc+krbn/LNyC5c2Sai7r8=;
-        b=bSP13eL0I3D0oZ7QEmLY1DVQkXacum+iimdWrHng4aBmByt/QGms+aFYIEuuZMJWQW
-         Cq4x/e5ihNOsdEMyYlv70cG2Ziz0uY1gXjqMTwk1hiYw2LKmTQxGiXy5XXMAdetPe5n0
-         3O3mFpno87sJWkhStQEFhhBOhikR+rCEGLaa6jwk5IXM1tuGOJY0fBKEdC12vTAPGc/p
-         GiFuzvitegzzCWU/+12c4ex5lWfuqkH64FVKgo3RRABuoi3dnR2kJOoFj7IxzrOXP7l/
-         hA2d/T+yZ4+olRyeQHWEGEt4MdzdgXNM8buL9QYNBirhn0jB8CH3/+8W73Qs1WMTIX1D
-         AZdw==
-X-Gm-Message-State: AC+VfDw/Zp+qzsxwn/fWN9P6wiUCF0IGjvjXZmOaTxQrow3zl5h7Pcuw
-        OQMaZrVUHeRtJKt0gk+fz/sU3w==
-X-Google-Smtp-Source: ACHHUZ7AJXCZjbtdBiJklc9jnweQoRwN/Hpp0Shrlr0OIdc3i0l2lI8GSXSBIihfNDfa6dVHjKMS+w==
-X-Received: by 2002:a19:4f0a:0:b0:4f4:aea9:2a2f with SMTP id d10-20020a194f0a000000b004f4aea92a2fmr9476076lfb.57.1687361956801;
-        Wed, 21 Jun 2023 08:39:16 -0700 (PDT)
+        bh=fb9J9GvWBYe5VRYUcNYFbGxYkIOx3Dvj9V9F/TGODfo=;
+        b=ApfEHccyqC6+s8W+iPRoScZZrZjHBu7xek1MT71WnVoyksR6xFRJU6ivAZdeS5AXeM
+         rb/nbNGW5nfU7cN7tIM3miuqvlwnAwPTTJsrHcm3sJg4HKf+8fG87/+Z5MLGgh2gAvUa
+         ElweqzZ9+Em9DcwF91ro0FaLzsxiaMDjPFv2uDBevDVSlPoL9y4YwlkqMg622ipP00gZ
+         cY1caYBYGpUiOPUZ5bQ1OBjuylPnOU+fdNppyapyRzSMzchXA8+Sd+ObAKvTleKivMGS
+         v4FXL9u6ZwB0Qna2B1mO0/n3qwIfc5NSiEOIJFCe18gND3kG6yASZf57vvFGMDylSTUi
+         eIXA==
+X-Gm-Message-State: AC+VfDxxaaPNEyWZUYHPq5A1tRO2RT5WUgiiHxiyBDVBZtPAPpMRwXiC
+        wr+NBZKyZIFJBtGpsdMTMxfQ8w==
+X-Google-Smtp-Source: ACHHUZ6ubVZcqD9XQFE2e4TLaXaz5czx4mbFJ7Vbyb+2EFonXk0p05QpPpFwIZY9bCCRcialGfiwxQ==
+X-Received: by 2002:a19:7914:0:b0:4e8:c5d:42a5 with SMTP id u20-20020a197914000000b004e80c5d42a5mr9671940lfc.24.1687361958073;
+        Wed, 21 Jun 2023 08:39:18 -0700 (PDT)
 Received: from [192.168.1.101] (abxj193.neoplus.adsl.tpnet.pl. [83.9.3.193])
-        by smtp.gmail.com with ESMTPSA id l15-20020a19c20f000000b004f73eac0308sm821078lfc.183.2023.06.21.08.39.15
+        by smtp.gmail.com with ESMTPSA id l15-20020a19c20f000000b004f73eac0308sm821078lfc.183.2023.06.21.08.39.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 08:39:16 -0700 (PDT)
+        Wed, 21 Jun 2023 08:39:17 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 21 Jun 2023 17:39:11 +0200
-Subject: [PATCH 2/3] dt-bindings: power: supply: Document Mitsumi MM8013
- fuel gauge
+Date:   Wed, 21 Jun 2023 17:39:12 +0200
+Subject: [PATCH 3/3] power: supply: Introduce MM8013 fuel gauge driver
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230621-topic-mm8013-v1-2-4407c6260053@linaro.org>
+Message-Id: <20230621-topic-mm8013-v1-3-4407c6260053@linaro.org>
 References: <20230621-topic-mm8013-v1-0-4407c6260053@linaro.org>
 In-Reply-To: <20230621-topic-mm8013-v1-0-4407c6260053@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -69,11 +68,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687361953; l=1391;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1687361953; l=9964;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=swzJmejAdfZgsQElhxxdYG2Ii9/w0S0UDH09ZiwSv+o=;
- b=ciCb46lVCab3XUdD/PhBmPJGPR46nh4nvwoQSmQZGnJtrhdJOVezWE3UGwGPjFuSBeJ2F6Ift
- VkavK/7dyNQAn3RdbZk7uDckOtCpJPzTwAtnGzt/Y8bOpncF72Tu4bf
+ bh=ZEuJ8+X/qdfI2sOGh4SbbX/ldR75MGx5vuNAtp88VUg=;
+ b=NpktR2cC8ZCUBVmPP0K5jmkVUApup/30ys4XfcV1lwiuqekJeZWNnDNsuESfIpKNZnIhEC2r3
+ J+YvQS3GtvaASvoZmwyMnkhDCsP5bfpPawL2EPIADsNfg4qCIvQk5JZ
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -86,56 +85,350 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Mitsumie MM8013 is an I2C fuel gauge for Li-Ion cells. The partial
-datasheet is available at [1]. Add bindings for this chip.
+Add a driver for the Mitsumi MM8013 fuel gauge. The driver is a vastly
+cleaned up and improved version of the one that shipped in some obscure
+Lenovo downstream kernel [1], with some register definitions borrowed from
+ChromeOS EC platform code [2].
 
-[1] https://www.mitsumi.co.jp/latest-M/Catalog/pdf/battery_mm_8013_e.pdf
+[1] https://github.com/adazem009/kernel_lenovo_bengal/commit/b6b346427a871715709bd22aae449b9383f3b66b
+[2] https://chromium.googlesource.com/chromiumos/platform/ec/+/master/driver/battery/mm8013.h
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- .../bindings/power/supply/mitsumi,mm8013.yaml      | 35 ++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+ MAINTAINERS                   |   5 +
+ drivers/power/supply/Kconfig  |   9 ++
+ drivers/power/supply/Makefile |   1 +
+ drivers/power/supply/mm8013.c | 280 ++++++++++++++++++++++++++++++++++++++++++
+ 4 files changed, 295 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 210285042dcd..17aff9762091 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -14300,6 +14300,11 @@ W:	https://linuxtv.org
+ T:	git git://linuxtv.org/media_tree.git
+ F:	drivers/media/radio/radio-miropcm20*
+ 
++MITSUMI MM8013 FG DRIVER
++M:	Konrad Dybcio <konradybcio@kernel.org>
++F:	Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
++F:	drivers/power/supply/mm8013.c
++
+ MMP SUPPORT
+ R:	Lubomir Rintel <lkundrak@v3.sk>
+ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
+index 663a1c423806..c19e8287d80f 100644
+--- a/drivers/power/supply/Kconfig
++++ b/drivers/power/supply/Kconfig
+@@ -951,4 +951,13 @@ config CHARGER_QCOM_SMB2
+ 	  adds support for the SMB2 switch mode battery charger found
+ 	  in PMI8998 and related PMICs.
+ 
++config FUEL_GAUGE_MM8013
++	tristate "Mitsumi MM8013 fuel gauge driver"
++	depends on I2C
++	help
++	  Say Y here to enable the Mitsumi MM8013 fuel gauge driver.
++	  It enables the monitoring of many battery parameters, including
++	  the state of charge, temperature, cycle count, actual and design
++	  capacity, etc.
++
+ endif # POWER_SUPPLY
+diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
+index a8a9fa6de1e9..ba2c41f060be 100644
+--- a/drivers/power/supply/Makefile
++++ b/drivers/power/supply/Makefile
+@@ -111,3 +111,4 @@ obj-$(CONFIG_BATTERY_SURFACE)	+= surface_battery.o
+ obj-$(CONFIG_CHARGER_SURFACE)	+= surface_charger.o
+ obj-$(CONFIG_BATTERY_UG3105)	+= ug3105_battery.o
+ obj-$(CONFIG_CHARGER_QCOM_SMB2)	+= qcom_pmi8998_charger.o
++obj-$(CONFIG_FUEL_GAUGE_MM8013)	+= mm8013.o
+diff --git a/drivers/power/supply/mm8013.c b/drivers/power/supply/mm8013.c
 new file mode 100644
-index 000000000000..080fd44083ac
+index 000000000000..1aea06456d03
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
-@@ -0,0 +1,35 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/supply/mitsumi,mm8013.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
++++ b/drivers/power/supply/mm8013.c
+@@ -0,0 +1,280 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright (c) 2016-2019 The Linux Foundation. All rights reserved.
++ * Copyright (c) 2023, Linaro Limited
++ */
++#include <linux/delay.h>
++#include <linux/i2c.h>
++#include <linux/power_supply.h>
 +
-+title: Mitsumi MM8013 fuel gauge
++#define REG_BATID			0x00 /* This one is very unclear */
++ #define BATID_101			0x0101 /* 107kOhm */
++ #define BATID_102			0x0102 /* 10kOhm */
++#define REG_TEMPERATURE			0x06
++#define REG_VOLTAGE			0x08
++#define REG_FLAGS			0x0a
++ #define MM8013_FLAG_OTC		BIT(15)
++ #define MM8013_FLAG_OTD		BIT(14)
++ #define MM8013_FLAG_BATHI		BIT(13)
++ #define MM8013_FLAG_FC			BIT(9)
++ #define MM8013_FLAG_CHG		BIT(8)
++ #define MM8013_FLAG_DSG		BIT(0)
++#define REG_FULL_CHARGE_CAPACITY	0x0e
++#define REG_AVERAGE_CURRENT		0x14
++#define REG_AVERAGE_TIME_TO_EMPTY	0x16
++#define REG_AVERAGE_TIME_TO_FULL	0x18
++#define REG_CYCLE_COUNT			0x2a
++#define REG_STATE_OF_CHARGE		0x2c
++#define REG_DESIGN_CAPACITY		0x3c
++/* TODO: 0x62-0x68 seem to contain 'MM8013C' in a length-prefixed, non-terminated string */
 +
-+maintainers:
-+  - Konrad Dybcio <konradybcio@kernel.org>
++#define DECIKELVIN_TO_DECIDEGC(t)	(t - 2731)
 +
-+properties:
-+  compatible:
-+    const: mitsumi,mm8013
++struct mm8013_chip {
++	struct i2c_client *client;
++};
 +
-+  reg:
-+    maxItems: 1
++static int mm8013_write_reg(struct i2c_client *client, u8 reg, u16 value)
++{
++	int ret;
 +
-+required:
-+  - compatible
-+  - reg
++	ret = i2c_smbus_write_word_data(client, reg, value);
++	if (ret < 0)
++		dev_err(&client->dev, "%s: err %d\n", __func__, ret);
 +
-+additionalProperties: false
++	usleep_range(4000, 5000);
++	return ret;
++}
 +
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
++static int mm8013_read_reg(struct i2c_client *client, u8 reg)
++{
++	int ret;
 +
-+      fuel-gauge@55 {
-+        compatible = "mitsumi,mm8013";
-+        reg = <0x55>;
-+      };
-+    };
++	ret = i2c_smbus_read_word_data(client, reg);
++	if (ret < 0)
++		dev_err(&client->dev, "%s: err %d\n", __func__, ret);
++
++	usleep_range(4000, 5000);
++	return ret;
++}
++
++static int mm8013_checkdevice(struct mm8013_chip *chip)
++{
++	int battery_id, ret;
++
++	ret = mm8013_write_reg(chip->client, REG_BATID, 0x0008);
++	if (ret < 0)
++		return ret;
++
++	ret = mm8013_read_reg(chip->client, REG_BATID);
++	if (ret < 0)
++		return ret;
++
++	if (ret == BATID_102)
++		battery_id = 2;
++	else if (ret == BATID_101)
++		battery_id = 1;
++	else
++		return -EINVAL;
++
++	dev_dbg(&chip->client->dev, "battery_id: %d\n", battery_id);
++
++	return 0;
++}
++
++static enum power_supply_property mm8013_battery_props[] = {
++	POWER_SUPPLY_PROP_CAPACITY,
++	POWER_SUPPLY_PROP_CHARGE_FULL,
++	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
++	POWER_SUPPLY_PROP_CURRENT_NOW,
++	POWER_SUPPLY_PROP_CYCLE_COUNT,
++	POWER_SUPPLY_PROP_HEALTH,
++	POWER_SUPPLY_PROP_STATUS,
++	POWER_SUPPLY_PROP_TEMP,
++	POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG,
++	POWER_SUPPLY_PROP_TIME_TO_FULL_AVG,
++	POWER_SUPPLY_PROP_VOLTAGE_NOW,
++};
++
++static int mm8013_get_property(struct power_supply *psy,
++			       enum power_supply_property psp,
++			       union power_supply_propval *val)
++{
++	struct mm8013_chip *chip = psy->drv_data;
++	struct i2c_client *client = chip->client;
++	int ret = 0;
++
++	switch (psp) {
++	case POWER_SUPPLY_PROP_CAPACITY:
++		ret = mm8013_read_reg(client, REG_STATE_OF_CHARGE);
++		if (ret < 0)
++			return ret;
++
++		val->intval = ret;
++		break;
++	case POWER_SUPPLY_PROP_CHARGE_FULL:
++		ret = mm8013_read_reg(client, REG_FULL_CHARGE_CAPACITY);
++		if (ret < 0)
++			return ret;
++
++		val->intval = ret;
++		break;
++	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
++		ret = mm8013_read_reg(client, REG_DESIGN_CAPACITY);
++		if (ret < 0)
++			return ret;
++
++		val->intval = ret;
++		break;
++	case POWER_SUPPLY_PROP_CURRENT_NOW:
++		ret = mm8013_read_reg(client, REG_AVERAGE_CURRENT);
++		if (ret < 0)
++			return ret;
++
++		if (ret > S16_MAX)
++			val->intval -= (1 << 16);
++		else
++			val->intval = ret;
++
++		val->intval *= -1000;
++		break;
++	case POWER_SUPPLY_PROP_CYCLE_COUNT:
++		ret = mm8013_read_reg(client, REG_CYCLE_COUNT);
++		if (ret < 0)
++			return ret;
++
++		val->intval = ret;
++		break;
++	case POWER_SUPPLY_PROP_HEALTH:
++		ret = mm8013_read_reg(client, REG_FLAGS);
++		if (ret < 0)
++			return ret;
++
++		if (ret & MM8013_FLAG_BATHI)
++			val->intval = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
++		else if (ret & (MM8013_FLAG_OTD | MM8013_FLAG_OTC))
++			val->intval = POWER_SUPPLY_HEALTH_OVERHEAT;
++		else
++			val->intval = POWER_SUPPLY_HEALTH_GOOD;
++		break;
++	case POWER_SUPPLY_PROP_STATUS:
++		ret = mm8013_read_reg(client, REG_FLAGS);
++		if (ret < 0)
++			return ret;
++
++		if (ret & MM8013_FLAG_DSG)
++			val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
++		else if (ret & MM8013_FLAG_CHG)
++			val->intval = POWER_SUPPLY_STATUS_CHARGING;
++		else if (ret & MM8013_FLAG_FC)
++			val->intval = POWER_SUPPLY_STATUS_FULL;
++		else
++			val->intval = POWER_SUPPLY_STATUS_UNKNOWN;
++		break;
++	case POWER_SUPPLY_PROP_TEMP:
++		ret = mm8013_read_reg(client, REG_TEMPERATURE);
++		if (ret < 0)
++			return ret;
++
++		val->intval = DECIKELVIN_TO_DECIDEGC(ret);
++		break;
++	case POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG:
++		ret = mm8013_read_reg(client, REG_AVERAGE_TIME_TO_EMPTY);
++		if (ret < 0)
++			return ret;
++
++		/* The estimation is not yet ready */
++		if (ret == U16_MAX)
++			return -ENODATA;
++
++		val->intval = ret;
++		break;
++	case POWER_SUPPLY_PROP_TIME_TO_FULL_AVG:
++		ret = mm8013_read_reg(client, REG_AVERAGE_TIME_TO_FULL);
++		if (ret < 0)
++			return ret;
++
++		/* The estimation is not yet ready */
++		if (ret == U16_MAX)
++			return -ENODATA;
++
++		val->intval = ret;
++		break;
++	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
++		ret = mm8013_read_reg(client, REG_VOLTAGE);
++		if (ret < 0)
++			return ret;
++
++		val->intval = ret;
++		break;
++	default:
++		return -EINVAL;
++	}
++
++	return 0;
++}
++
++static const struct power_supply_desc mm8013_desc = {
++	.name			= "mm8013",
++	.type			= POWER_SUPPLY_TYPE_BATTERY,
++	.properties		= mm8013_battery_props,
++	.num_properties		= ARRAY_SIZE(mm8013_battery_props),
++	.get_property		= mm8013_get_property,
++};
++
++static int mm8013_probe(struct i2c_client *client)
++{
++	struct power_supply_config psy_cfg = {};
++	struct device *dev = &client->dev;
++	struct power_supply *psy;
++	struct mm8013_chip *chip;
++	int ret = 0;
++
++	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
++		return dev_err_probe(dev, -EIO,
++				     "I2C_FUNC_SMBUS_WORD_DATA not supported\n");
++
++	chip = devm_kzalloc(dev, sizeof(struct mm8013_chip), GFP_KERNEL);
++	if (!chip)
++		return -ENOMEM;
++
++	chip->client = client;
++
++	ret = mm8013_checkdevice(chip);
++	if (ret)
++		return dev_err_probe(dev, -ENODEV, "MM8013 not found\n");
++
++	psy_cfg.drv_data = chip;
++	psy_cfg.of_node = dev->of_node;
++
++	psy = devm_power_supply_register(dev, &mm8013_desc, &psy_cfg);
++	if (IS_ERR(psy))
++		return PTR_ERR(psy);
++
++	return 0;
++}
++
++static const struct i2c_device_id mm8013_id_table[] = {
++	{ "mm8013", 0 },
++	{},
++};
++MODULE_DEVICE_TABLE(i2c, mm8013_id_table);
++
++static const struct of_device_id mm8013_match_table[] = {
++	{ .compatible = "mitsumi,mm8013" },
++	{ },
++};
++
++static struct i2c_driver mm8013_i2c_driver = {
++	.probe = mm8013_probe,
++	.id_table = mm8013_id_table,
++	.driver = {
++		.name = "mm8013",
++		.owner = THIS_MODULE,
++		.of_match_table = mm8013_match_table,
++	},
++};
++module_i2c_driver(mm8013_i2c_driver);
++
++MODULE_DESCRIPTION("MM8013 fuel gauge driver");
++MODULE_LICENSE("GPL");
 
 -- 
 2.41.0
