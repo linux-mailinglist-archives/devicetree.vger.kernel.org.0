@@ -2,99 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AA7E737CF4
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5684737CFE
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 10:08:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231646AbjFUHm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 03:42:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35166 "EHLO
+        id S230247AbjFUHsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 03:48:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230263AbjFUHmH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 03:42:07 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF522B4
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 00:42:05 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1qBsTa-0004Rj-9Y; Wed, 21 Jun 2023 09:42:02 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1qBsTX-0003Jg-KN; Wed, 21 Jun 2023 09:41:59 +0200
-Date:   Wed, 21 Jun 2023 09:41:59 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-pm@vger.kernel.org, Robin Murphy <robin.murphy@arm.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        linux-rockchip@lists.infradead.org,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        kernel@pengutronix.de, Vincent Legoll <vincent.legoll@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 22/26] dt-bindings: devfreq: event: rockchip,dfi: Add
- rk3588 support
-Message-ID: <20230621074159.GN18491@pengutronix.de>
-References: <20230616062101.601837-1-s.hauer@pengutronix.de>
- <20230616062101.601837-23-s.hauer@pengutronix.de>
- <20230616-swimwear-prewar-f9dce761d2ec@spud>
+        with ESMTP id S231573AbjFUHsQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 03:48:16 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD7E811D;
+        Wed, 21 Jun 2023 00:48:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1687333695; x=1718869695;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=4elCiOXAO/1skXbd8OBCX9scHIUqUf+kd1BiTdR6iKw=;
+  b=SZ5bqnKK1tp0U4lWUj9/NqnWCc3e5h3/TH6YBQnhXyK/Yr3nNk6nOgMb
+   PZjLiegr9vVSdXlpT+esN6768AiK4f+gxjGvTfKIkbuFhHCYqfJ1Ni58M
+   HwyJVFeXquHmDhrooXkhCjCtg1Rn1dUlSXj2NgneI9LRDuzB8TfII2EOE
+   owNUbF+qFoRQbRXnUSpjhrmgSlCoWO8xaOrW8wNYW44/Ez+V/LNQvmbXq
+   I0s7ZuTugwKq0yrhY+7KY8coP1F2L/QYcFX1oOQHRvPBaQ4JaWiTj9ouh
+   IEAW5BwmPa3EfKcUp/clRl6pDE9SPGDYY9nUScAnvVVSHhG3SJlnl33eh
+   w==;
+X-IronPort-AV: E=Sophos;i="6.00,259,1681196400"; 
+   d="scan'208";a="231305443"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa1.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 21 Jun 2023 00:48:14 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Wed, 21 Jun 2023 00:48:14 -0700
+Received: from [10.159.245.112] (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
+ Transport; Wed, 21 Jun 2023 00:48:10 -0700
+Message-ID: <ef09246c-9220-4c71-4ac2-2792d9ca519d@microchip.com>
+Date:   Wed, 21 Jun 2023 09:47:47 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230616-swimwear-prewar-f9dce761d2ec@spud>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 1/9] dt-bindings: mfd: Add bindings for SAM9X7 LCD
+ controller
+Content-Language: en-US
+To:     Manikandan M - I67131 <Manikandan.M@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     "lee@kernel.org" <lee@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea - M18063 <Claudiu.Beznea@microchip.com>,
+        "sam@ravnborg.org" <sam@ravnborg.org>,
+        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
+        "airlied@gmail.com" <airlied@gmail.com>,
+        "daniel@ffwll.ch" <daniel@ffwll.ch>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        Hari Prasath G E - I63539 <Hari.PrasathGE@microchip.com>,
+        Balamanikandan Gunasundar - I64410 
+        <Balamanikandan.Gunasundar@microchip.com>,
+        Durai Manickam KR - I66125 <Durai.ManickamKR@microchip.com>,
+        Nayab basha Sayed - I73920 <Nayabbasha.Sayed@microchip.com>,
+        Dharma B - I70843 <Dharma.B@microchip.com>,
+        Varshini Rajendran - I67070 
+        <Varshini.Rajendran@microchip.com>,
+        "Balakrishnan S - I71840" <Balakrishnan.S@microchip.com>
+References: <20230613070426.467389-1-manikandan.m@microchip.com>
+ <20230613070426.467389-2-manikandan.m@microchip.com>
+ <a0b059d1-df4d-10ce-fb7c-7acea0a20793@linaro.org>
+ <20230613-slider-coherent-d508d67afc91@spud>
+ <423eef3c-54f0-5c88-9bc9-82c0198b6da6@microchip.com>
+ <3a3f4463-981a-e8d8-8ec4-06f2abfa3b4d@microchip.com>
+From:   Nicolas Ferre <nicolas.ferre@microchip.com>
+Organization: microchip
+In-Reply-To: <3a3f4463-981a-e8d8-8ec4-06f2abfa3b4d@microchip.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 08:05:33PM +0100, Conor Dooley wrote:
-> On Fri, Jun 16, 2023 at 08:20:57AM +0200, Sascha Hauer wrote:
-> > This adds rockchip,rk3588-dfi to the list of compatibles. Unlike ealier
-> > SoCs the rk3588 has four interrupts (one for each channel) instead of
-> > only one, so increase the number of allowed interrupts to four.
-> > 
-> > Link: https://lore.kernel.org/r/20230524083153.2046084-23-s.hauer@pengutronix.de
-> 
-> It's unclear what the point of this link is.
+On 16/06/2023 at 08:44, Manikandan M - I67131 wrote:
+> On 14/06/23 20:10, Nicolas Ferre wrote:
+>> On 13/06/2023 at 20:21, Conor Dooley wrote:
+>>> On Tue, Jun 13, 2023 at 08:17:13PM +0200, Krzysztof Kozlowski wrote:
+>>>> On 13/06/2023 09:04, Manikandan Muralidharan wrote:
+>>>>> Add new compatible string for the XLCD controller on SAM9X7 SoC.
+>>>>>
+>>>>> Signed-off-by: Manikandan Muralidharan<manikandan.m@microchip.com>
+>>>>> ---
+>>>>>    Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt | 1 +
+>>>>>    1 file changed, 1 insertion(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+>>>>> b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+>>>>> index 5f8880cc757e..7c77b6bf4adb 100644
+>>>>> --- a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+>>>>> +++ b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+>>>>> @@ -8,6 +8,7 @@ Required properties:
+>>>>>       "atmel,sama5d3-hlcdc"
+>>>>>       "atmel,sama5d4-hlcdc"
+>>>>>       "microchip,sam9x60-hlcdc"
+>>>>> +   "microchip,sam9x7-xlcdc"
+>>>> Google says sam9x7 is a series, not a SoC. Please add compatibles for
+>>>> specific SoCs, not for series.
+>>> We had this one a few weeks ago, see
+>>> https://lore.kernel.org/all/add5e49e-8416-ba9f-819a-da944938c05f@microchip.com/
+>>> and its parents. Outcome of that seemed to be that using "sam9x7" was
+>>> fine.
+>>
+>> And it's where it begins to be funny, as the LCD is precisely one aspect
+>> where we differentiate between sam9x75, sam9x72 and sam9x70...
+>> So please Manikandan sort this out if difference between these chips
+>> will be better handled with different compatibility string, in
+>> particular about //, LVDS and MIPI-DSI variants!
+> Yes Sure, I will replace the compatible as s/sam9x7/sam9x75/g to handle
+> the different variants of sam9x7 better.
 
-The link was added automatically by b4. I re-applied the series from the
-last one I sent just to be sure that I base my work for the new series
-on the one I sent last time. I didn't remember that b4 adds these links,
-I should have disabled that option.
+Moving to sam9x75 is probably good. But what is your plan for 
+differentiating parallel and LVDS (on sam9x72) and precisely this 
+sam9x75 variant which in addition has MIPI-DSI?
 
-> My comment still stands about whether only the new compatible should be
-> permitted to have more than one interrupt. I don't recall a response to
-> that question on the last version.
+Regards,
+  Nicolas
 
-My personal take on this is that such additions make the bindings more
-readable by machines, but less by humans. That's why I don't have enough
-intrinsic motivation to make this change. Anyway, if you insist then
-I'll make it for the next round.
-
-Sascha
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Nicolas Ferre
+
