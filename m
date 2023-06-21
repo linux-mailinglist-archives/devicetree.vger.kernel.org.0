@@ -2,68 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AACB738A74
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4E6738A83
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 18:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232468AbjFUQHq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 12:07:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37958 "EHLO
+        id S230201AbjFUQJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 12:09:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39470 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232511AbjFUQHp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:07:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51CD2F1;
-        Wed, 21 Jun 2023 09:07:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DA0D1615CC;
-        Wed, 21 Jun 2023 16:07:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BE429C433C0;
-        Wed, 21 Jun 2023 16:07:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1687363664;
-        bh=ERzS/9EtJluGhGcJa2DP3Mj+yfrWqRBwMQOcEA4WFUw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PAjJ0QPQmEIelxZLY/kjfpvurBaki40RDTOlGXPAAJ41lrAtWvd4W1SJmeDEGCwpq
-         o6wVIdhPpColJ8JAwdHCU1nu+6g3SwpL0GLYOELohtxmEp2qKdai+K3I6x+kVu93/N
-         beXj4GUdYZ62gZ2K4gl/TOtHXscoYEalrIOoQonY=
-Date:   Wed, 21 Jun 2023 18:07:26 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Benjamin Bara <bbara93@gmail.com>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/3] usb: misc: onboard-hub: add support for Cypress
- HX3 USB 3.0 family
-Message-ID: <2023062105-chief-obstacle-ce0e@gregkh>
-References: <20230620-hx3-v3-0-2acbc03ca949@skidata.com>
- <20230620-hx3-v3-2-2acbc03ca949@skidata.com>
+        with ESMTP id S232388AbjFUQJZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 12:09:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 273F31B4
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 09:09:25 -0700 (PDT)
+Received: from dude02.red.stw.pengutronix.de ([2a0a:edc0:0:1101:1d::28])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <m.felsch@pengutronix.de>)
+        id 1qC0OJ-0007At-3g; Wed, 21 Jun 2023 18:09:07 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     jic23@kernel.org, lars@metafoo.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        alazar@startmail.com, daniel.baluta@nxp.com
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: [PATCH] dt-bindings: iio: adc: ti,ads1015: fix datarate max value and meaning
+Date:   Wed, 21 Jun 2023 18:08:57 +0200
+Message-Id: <20230621160857.3400747-1-m.felsch@pengutronix.de>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230620-hx3-v3-2-2acbc03ca949@skidata.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::28
+X-SA-Exim-Mail-From: m.felsch@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 21, 2023 at 05:58:31PM +0200, Benjamin Bara wrote:
-> +static const struct onboard_hub_pdata cypress_hx3_data = {
-> +	.reset_us = 10000,
-> +	.num_supplies = 2,
+Datarate (dr) is a 3-bit wide register field. Values from 0 to 7 are
+allowed for all devices but only for the ADS1115 devices a value of 7
+does make a difference.
 
-So 0 is 1, but 2 is 2?
+While on it fix the description of the datarate for ADS1115 devices as
+well.
 
-Still confused :(
+Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+---
+ .../devicetree/bindings/iio/adc/ti,ads1015.yaml   | 15 +++++++++++++--
+ 1 file changed, 13 insertions(+), 2 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+index 2127d639a7683..e004659099c19 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
++++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+@@ -78,9 +78,9 @@ patternProperties:
+       ti,datarate:
+         $ref: /schemas/types.yaml#/definitions/uint32
+         minimum: 0
+-        maximum: 6
++        maximum: 7
+         description: |
+-          Data acquisition rate in samples per second
++          Data acquisition rate in samples per second for ADS1015, TLA2024
+           0: 128
+           1: 250
+           2: 490
+@@ -88,6 +88,17 @@ patternProperties:
+           4: 1600 (default)
+           5: 2400
+           6: 3300
++          7: 3300
++
++          Data acquisition rate in samples per second for ADS1115
++          0: 8
++          1: 16
++          2: 32
++          3: 64
++          4: 128 (default)
++          5: 250
++          6: 475
++          7: 860
+ 
+     required:
+       - reg
+-- 
+2.39.2
 
