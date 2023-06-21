@@ -2,192 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AC93738444
-	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 15:01:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0E3C738534
+	for <lists+devicetree@lfdr.de>; Wed, 21 Jun 2023 15:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232140AbjFUNBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 09:01:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37996 "EHLO
+        id S230147AbjFUNcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 09:32:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232135AbjFUNA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 09:00:58 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C30FA10D2
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 06:00:56 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-311099fac92so6840835f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 06:00:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687352455; x=1689944455;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=sKfFOA2VQNsIqUQ1flZDf0bxDWmVBHZhAudfMdk56p0=;
-        b=HWV31ax/NO65WpLHfIYRSaZG6yjRk9QNUXB+xA5HDAe9pfonOfYq5aly5BHQsGJ41N
-         gLbbLh2iUJO63XfOji067mFyQSm0CabxHJW1fprMrXNo0ORUe19uirV+KHs9np78ztV4
-         Rd3o4G8ZprBSE6j3jhLRwlLKb/gZvRezPqXtt0uWvbEvZeHdPPf1JIOIi7/EY6sdPc2b
-         XNAng8v5xYnTgGQO07o78tLXBvxg3rZjs5PkAzuB2UdDCd+Sv0a5Sl/F9nx3fBnNMY5L
-         7aXHvJyTtZswns6dUP1OiuyqRunxMqy+IGJuNiF+XSqcaK5cqvL1HR9lWxHFwEsRRfRj
-         z2rw==
+        with ESMTP id S229602AbjFUNcX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 09:32:23 -0400
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com [209.85.167.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF2531981;
+        Wed, 21 Jun 2023 06:32:22 -0700 (PDT)
+Received: by mail-oi1-f180.google.com with SMTP id 5614622812f47-3a03ff70c1aso1095470b6e.1;
+        Wed, 21 Jun 2023 06:32:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687352455; x=1689944455;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=sKfFOA2VQNsIqUQ1flZDf0bxDWmVBHZhAudfMdk56p0=;
-        b=R839UlhyCuwq5dcl42ScurY2LYD3htauQ3cf4dU/JbXHx2MzjbzEzfIUQ119skcaA2
-         N40pqWLLMUbSwf9MHqupx/EDsxsrgbNFrVB41M6MQP2DasmYf0qPpO/6o7vf6M7tqQYb
-         kPqgWbfc5VEIB0R3opeyEhguTeylTIcpcZysfrRJGuRwBVubrLJSWBAW8d2HAKXyVlph
-         J7Gcg8OThfL0+anSNr+yBv6fkyB4svFsTCpIwSFMaLwXnjAbmfyMPgxSaeRVxkQo2eIg
-         Ul6AqSxKo/fbnmNVBK/H99ulA2OINCP67kEoagKaJbPEs7ngdQTqzmennaybpjZ3fUk9
-         E9Rg==
-X-Gm-Message-State: AC+VfDwx4V/uumjfJ2Tcq/m3f7FHyk2JYgMTvDGWFy18L1SS0vWkd/fC
-        WN42T31oDI7/qSgBMlXazp6Fkw==
-X-Google-Smtp-Source: ACHHUZ6JKqWTaaZfAwNeGlMyFJwUZ4r0dshdn49b3nRktAmqVPae+sEM6nHr+tXoRT63f9YhRex0EA==
-X-Received: by 2002:adf:e8c2:0:b0:30f:cf67:5658 with SMTP id k2-20020adfe8c2000000b0030fcf675658mr13179240wrn.9.1687352442778;
-        Wed, 21 Jun 2023 06:00:42 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id e10-20020a5d65ca000000b002f28de9f73bsm4420499wrw.55.2023.06.21.06.00.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 06:00:42 -0700 (PDT)
-Message-ID: <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
-Date:   Wed, 21 Jun 2023 15:00:39 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
-Content-Language: en-US
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1687354342; x=1689946342;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=/IJMn0/zhbPXvpTVANrT1cs8Ypc7FJHdchkV1z/m0Hg=;
+        b=hgPhc6i1L+dMuKShv/QYYl14XtrwkypfPbagW42p++z6j8bK9EOl6KjPQ8gq7xkhGO
+         wTh9cHXL3W8vi59H0WX7APoHx6jmMwX/f0JlhKpF2LU16XQo4zi6b4Foxfau95wZPbo2
+         vYIP6TziUUhrRqBTZo8V44K1rwZgqCNlHmoh4WB15PObLT3QHjE1IfphPk0M2BFh9cml
+         BOX9+58fAQdwVxasNfnOCouqZoq6hhVO0IiIKSKUFETEi6Rfnutxs8wkPuZ8NqOj9aWG
+         ZH7VPLdNJOTZSfqJpeKVdwWdPeFccIfg6rNXZIingyQKHkYPUwlbTcDQppeEY62lOC1e
+         AKJA==
+X-Gm-Message-State: AC+VfDx2r1fOFQP6Grx8L0GA62jSa4lPQAtML2ywnfrHKtd696+wAKdi
+        dgh01A+hlpeYuzsCZ6VQPcw=
+X-Google-Smtp-Source: ACHHUZ5ZaK8fBszARbtNRNohDQBzuxdQlCR3hu8a/EPENE6dcfIxTIt6R1TGNUF4Cdy+76NkOdPjuA==
+X-Received: by 2002:aca:d0a:0:b0:3a0:30e8:f069 with SMTP id 10-20020aca0d0a000000b003a030e8f069mr6942247oin.30.1687354341857;
+        Wed, 21 Jun 2023 06:32:21 -0700 (PDT)
+Received: from localhost.localdomain (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id bf24-20020a056808191800b00395f2c84b81sm2114206oib.54.2023.06.21.06.32.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 06:32:21 -0700 (PDT)
+From:   Lucas Tanure <tanure@linux.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Nick <nick@khadas.com>, Artem <art@khadas.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-References: <20230621093103.3134655-1-msp@baylibre.com>
- <20230621093103.3134655-6-msp@baylibre.com>
- <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
- <20230621123158.fd3pd6i7aefawobf@blmsp>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230621123158.fd3pd6i7aefawobf@blmsp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lucas Tanure <tanure@linux.com>
+Subject: [PATCH v3 0/3] Add Amlogic A311D2 and Khadas Vim4 Board Support
+Date:   Wed, 21 Jun 2023 14:32:12 +0100
+Message-ID: <20230621133215.109254-1-tanure@linux.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2023 14:31, Markus Schneider-Pargmann wrote:
-> Hi Krzysztof,
-> 
-> On Wed, Jun 21, 2023 at 12:28:34PM +0200, Krzysztof Kozlowski wrote:
->> On 21/06/2023 11:31, Markus Schneider-Pargmann wrote:
->>> tcan4552 and tcan4553 do not have wake or state pins, so they are
->>> currently not compatible with the generic driver. The generic driver
->>> uses tcan4x5x_disable_state() and tcan4x5x_disable_wake() if the gpios
->>> are not defined. These functions use register bits that are not
->>> available in tcan4552/4553.
->>>
->>> This patch adds support by introducing version information to reflect if
->>> the chip has wake and state pins. Also the version is now checked.
->>>
->>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
->>> ---
->>>  drivers/net/can/m_can/tcan4x5x-core.c | 128 +++++++++++++++++++++-----
->>>  1 file changed, 104 insertions(+), 24 deletions(-)
->>>
->>> diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
->>> index fb9375fa20ec..756acd122075 100644
->>> --- a/drivers/net/can/m_can/tcan4x5x-core.c
->>> +++ b/drivers/net/can/m_can/tcan4x5x-core.c
->>> @@ -7,6 +7,7 @@
->>>  #define TCAN4X5X_EXT_CLK_DEF 40000000
->>>  
->>>  #define TCAN4X5X_DEV_ID1 0x00
->>> +#define TCAN4X5X_DEV_ID1_TCAN 0x4e414354 /* ASCII TCAN */
->>>  #define TCAN4X5X_DEV_ID2 0x04
->>>  #define TCAN4X5X_REV 0x08
->>>  #define TCAN4X5X_STATUS 0x0C
->>> @@ -103,6 +104,13 @@
->>>  #define TCAN4X5X_WD_3_S_TIMER BIT(29)
->>>  #define TCAN4X5X_WD_6_S_TIMER (BIT(28) | BIT(29))
->>>  
->>> +struct tcan4x5x_version_info {
->>> +	u32 id2_register;
->>> +
->>> +	bool has_wake_pin;
->>> +	bool has_state_pin;
->>> +};
->>> +
->>>  static inline struct tcan4x5x_priv *cdev_to_priv(struct m_can_classdev *cdev)
->>>  {
->>>  	return container_of(cdev, struct tcan4x5x_priv, cdev);
->>> @@ -254,18 +262,68 @@ static int tcan4x5x_disable_state(struct m_can_classdev *cdev)
->>>  				  TCAN4X5X_DISABLE_INH_MSK, 0x01);
->>>  }
->>>  
->>> -static int tcan4x5x_get_gpios(struct m_can_classdev *cdev)
->>> +static const struct tcan4x5x_version_info tcan4x5x_generic;
->>> +static const struct of_device_id tcan4x5x_of_match[];
->>> +
->>> +static const struct tcan4x5x_version_info
->>> +*tcan4x5x_find_version_info(struct tcan4x5x_priv *priv, u32 id2_value)
->>> +{
->>> +	for (int i = 0; tcan4x5x_of_match[i].data; ++i) {
->>> +		const struct tcan4x5x_version_info *vinfo =
->>> +			tcan4x5x_of_match[i].data;
->>> +		if (!vinfo->id2_register || id2_value == vinfo->id2_register) {
->>> +			dev_warn(&priv->spi->dev, "TCAN device is %s, please use it in DT\n",
->>> +				 tcan4x5x_of_match[i].compatible);
->>> +			return vinfo;
->>> +		}
->>> +	}
->>> +
->>> +	return &tcan4x5x_generic;
->>
->> I don't understand what do you want to achieve here. Kernel job is not
->> to validate DTB, so if DTB says you have 4552, there is no need to
->> double check. On the other hand, you have Id register so entire idea of
->> custom compatibles can be dropped and instead you should detect the
->> variant based on the ID.
-> 
-> I can read the ID register but tcan4552 and 4553 do not have two
-> devicetree properties that tcan4550 has, namely state and wake gpios.
+The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic
+Meson T7 family. This chip is not the same as A311D used in Vim3
+board.
 
-Does not matter, you don't use OF matching to then differentiate
-handling of GPIOs to then read the register. You first read registers,
-so everything is auto-detectable.
+Work based on Khadas 5.4 branch:
+https://github.com/khadas/linux/tree/khadas-vims-5.4.y
 
-> See v1 discussion about that [1].
+The current status is Vim4 board booting to emergency shell via uart.
 
-Yeah, but your code is different, although maybe we just misunderstood
-each other. You wrote that you cannot use the GPIOs, so I assumed you
-need to know the variant before using the GPIOs. Then you need
-compatibles. It's not the case here. You can read the variant and based
-on this skip entirely GPIOs as they are entirely missing.
+Board Features:
+- 8GB LPDDR4X 2016MHz
+- 32GB eMMC 5.1 storage
+- 32MB SPI flash
+- 10/100/1000 Base-T Ethernet
+- AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
+- HDMI 2.1 video
+- HDMI Input
+- 1x USB 2.0 + 1x USB 3.0 ports
+- 1x USB-C (power) with USB 2.0 OTG
+- 3x LED's (1x red, 1x blue, 1x white)
+- 3x buttons (power, function, reset)
+- M2 socket with PCIe, USB, ADC & I2C
+- 40pin GPIO Header
+- 1x micro SD card slot
 
-> 
-> In v1 Marc pointed out that mcp251xfd is using an autodetection and warn
-> mechanism which I implemented here as well. [2]
+Changes Since v2:
+ - Add "amlogic,meson-t7-uart" documentation
 
-But why? Just read the ID and detect the variant based on this. Your DT
-still can have separate compatibles followed by fallback, that's not a
-problem.
+Changes Since v1:
+ - Drop the T7 clock driver as it is not needed for serial boot. It will
+ later use the S4 clock
+ driver as S4 and  T7 seems to be similar chips.
+ - Use "arm,gic-400" for interrupt controller to fix dtb_check
+ - Remove CPU node properties not needed for serial boot
+ - Move UART node to apb4 node
+ - Drop T7 UART compatible line and use S4 uart
+ - Use psci V1 instead of 0.2, it works, but I can't verify is correct
+ as the datasheet I have
+ doesn't contain that information.
+ - Remove compatible from meson-t7.dtsi, move it to vim4 board dts
+ - Add memory node with 8GB. Not sure about this one, works without,
+ but doesn't detect 8GB
+ - Use defines for GIC_CPU_MASK_SIMPLE, IRQ_TYPE_LEVEL_LOW,
+ IRQ_TYPE_LEVEL_HIGH instead of hardcoded values
 
+Lucas Tanure (3):
+  dt-bindings: arm: amlogic: add Amlogic A311D2 bindings
+  dt-bindings: serial: amlogic,meson-uart: Add compatible string for T7
+  arm64: dts: meson-t7-a311d2-khadas-vim4: add initial device-tree
 
-Best regards,
-Krzysztof
+ .../devicetree/bindings/arm/amlogic.yaml      |   7 +
+ .../bindings/serial/amlogic,meson-uart.yaml   |   2 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-t7-a311d2-khadas-vim4.dts   |  52 ++++++
+ arch/arm64/boot/dts/amlogic/meson-t7.dtsi     | 158 ++++++++++++++++++
+ 5 files changed, 220 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+
+--
+2.41.0
 
