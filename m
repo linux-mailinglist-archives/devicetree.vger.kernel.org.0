@@ -2,104 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D066073A09E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 14:13:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A12073A0C4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 14:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229618AbjFVMNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 08:13:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33814 "EHLO
+        id S230513AbjFVMXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 08:23:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36986 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbjFVMNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 08:13:30 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA66199E;
-        Thu, 22 Jun 2023 05:13:30 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9E2DD61807;
-        Thu, 22 Jun 2023 12:13:29 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 05272C433C0;
-        Thu, 22 Jun 2023 12:13:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687436009;
-        bh=PGOGQGOXTZziMMV8nEYl3izDXzKlD36UBk87Cs8a5Jw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Qg8ETrRo6Fh49qASL295/66y1yxMWmP5rwPmEcppgEw6EIyO+evpneQl9i88UGlR3
-         2Ry0++2IJkFPcosKI0xsQpQSNT8azxSK+YhwsX8Qrq78D2qLvywdWrn6VN2vCvdOVc
-         vrodZg7mIRCwLL0ulQ3C2OjxyS9ooPWrgvEdy93TX0Eiw4SRWb4R01u1jWDtkX/MCR
-         aGiBiBs4WXUS+Q5LBEWfR/W7RVHez0U2O/U/NV7GhCnU/65Jd6t+kf4BKFh90KBEcV
-         NES4r+wJN1X44Bwkgfh8UOknDwNXHA/lp67xpOf2eA5v0jhHFQ2mtydvxniXqWweIx
-         3HfFsXNUcOrrQ==
-Date:   Thu, 22 Jun 2023 13:13:23 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, thierry.reding@gmail.com,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        jonathanh@nvidia.com, mkumard@nvidia.com, sheetal@nvidia.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: Re: [PATCH 7/8] arm64: tegra: Update AHUB clock parent and rate on
- Tegra234
-Message-ID: <410e46f1-11ab-4775-9328-48aa45906b48@sirena.org.uk>
-References: <1687433656-7892-1-git-send-email-spujar@nvidia.com>
- <1687433656-7892-8-git-send-email-spujar@nvidia.com>
+        with ESMTP id S229618AbjFVMXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 08:23:46 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC07171C
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:23:44 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f9c2913133so18262205e9.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:23:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687436622; x=1690028622;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=IZTvColTzRsoYYuXx98QVc9rgM+Sp5furEz7cmDxQqk=;
+        b=FrdrBAh1oY9rhtVQjUyUaFAaGqRpbvPQjKnSFRgHkGPfttcKiwR+y/3oj436ntxKTD
+         akF4OCyeqLPrY7j5rbRe2fiEkXmNPxKauFkmwgwqZeMjpiF5n5YJqff1Q6TZhOOVLufZ
+         JepgQ/bIl1KkLeJWfzYlgsMk4BvnDZqp6fC1hLEVn4+8SKF94e+LSm3LhepY8fUQRc7q
+         lGUC/S/Nj1OHp766ZJBxQxTdF5Nf/uRZ7jhrKyPyiVlH0u1Z3LWflIhvxkuZdqxJJYXe
+         8qMkkWX2jB9wG1MEBKsvnOlSsV/eYQNUlxHECwjqMJiWC+/gTV4X0NyH70KlVJKfTDCG
+         aepQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687436622; x=1690028622;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=IZTvColTzRsoYYuXx98QVc9rgM+Sp5furEz7cmDxQqk=;
+        b=Nhuczp/t3gn0c41IsnCmtBeTzeJKrThAyLhMZ42/yTNgDfXOtLLETQwFymzTpXeaeE
+         jHf+MFLkCXhyv5iPlYbsErt1Q1jj0YMn1BAr0rdQNiKUcQcmT6RnBwULEQTKiy5tm9yM
+         odJ1uWr7cPwtJDhGH5LjNvT+hEIl9vRnhQpNy/FgMnkBBPrTvF8c5tsln1fmtnUGBo16
+         XQcBzOCGpvk1IDc4R8oVsxCuwTDqu7xyCdASKwi2yasVpfIESOxMw8uBiC0e1BaUZOKx
+         Gzzoszo+hFhhOG7iPuPUKvWgP+wZavbEPOgK1vSjE35Hw5Wcw7T2qCIENUrmG5y2hhOU
+         DBuA==
+X-Gm-Message-State: AC+VfDx9pV0o3SSjYxn2xYh89sC70VqPJS/MfmENefoeyMpJfjQOR8JL
+        7lLJNaWndSEkMgXnIbFLuamXYw==
+X-Google-Smtp-Source: ACHHUZ49yPhRB3Bsa6UwNftE5A3qbasCqFJ2m3h6OWnmPw2gcLquyHRYJ35Gq1sHi5pE0z7HxWfdwg==
+X-Received: by 2002:a1c:7209:0:b0:3f9:a10:10d0 with SMTP id n9-20020a1c7209000000b003f90a1010d0mr10666150wmc.17.1687436621924;
+        Thu, 22 Jun 2023 05:23:41 -0700 (PDT)
+Received: from blmsp ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
+        by smtp.gmail.com with ESMTPSA id c25-20020a7bc859000000b003f90ab2fff9sm7600746wml.9.2023.06.22.05.23.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jun 2023 05:23:41 -0700 (PDT)
+Date:   Thu, 22 Jun 2023 14:23:39 +0200
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Michal Kubiak <michal.kubiak@intel.com>,
+        Vivek Yadav <vivek.2311@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Simon Horman <simon.horman@corigine.com>
+Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
+Message-ID: <20230622122339.6tkajdcenj5r3vdm@blmsp>
+References: <20230621093103.3134655-1-msp@baylibre.com>
+ <20230621093103.3134655-6-msp@baylibre.com>
+ <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
+ <20230621123158.fd3pd6i7aefawobf@blmsp>
+ <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="MhoiR7vHGfkcD/ZI"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1687433656-7892-8-git-send-email-spujar@nvidia.com>
-X-Cookie: Please ignore previous fortune.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
---MhoiR7vHGfkcD/ZI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Jun 21, 2023 at 03:00:39PM +0200, Krzysztof Kozlowski wrote:
+> On 21/06/2023 14:31, Markus Schneider-Pargmann wrote:
+> > Hi Krzysztof,
+> > 
+> > On Wed, Jun 21, 2023 at 12:28:34PM +0200, Krzysztof Kozlowski wrote:
+> >> On 21/06/2023 11:31, Markus Schneider-Pargmann wrote:
+> >>> tcan4552 and tcan4553 do not have wake or state pins, so they are
+> >>> currently not compatible with the generic driver. The generic driver
+> >>> uses tcan4x5x_disable_state() and tcan4x5x_disable_wake() if the gpios
+> >>> are not defined. These functions use register bits that are not
+> >>> available in tcan4552/4553.
+> >>>
+> >>> This patch adds support by introducing version information to reflect if
+> >>> the chip has wake and state pins. Also the version is now checked.
+> >>>
+> >>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> >>> ---
+> >>>  drivers/net/can/m_can/tcan4x5x-core.c | 128 +++++++++++++++++++++-----
+> >>>  1 file changed, 104 insertions(+), 24 deletions(-)
+> >>>
+> >>> diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
+> >>> index fb9375fa20ec..756acd122075 100644
+> >>> --- a/drivers/net/can/m_can/tcan4x5x-core.c
+> >>> +++ b/drivers/net/can/m_can/tcan4x5x-core.c
+> >>> @@ -7,6 +7,7 @@
+> >>>  #define TCAN4X5X_EXT_CLK_DEF 40000000
+> >>>  
+> >>>  #define TCAN4X5X_DEV_ID1 0x00
+> >>> +#define TCAN4X5X_DEV_ID1_TCAN 0x4e414354 /* ASCII TCAN */
+> >>>  #define TCAN4X5X_DEV_ID2 0x04
+> >>>  #define TCAN4X5X_REV 0x08
+> >>>  #define TCAN4X5X_STATUS 0x0C
+> >>> @@ -103,6 +104,13 @@
+> >>>  #define TCAN4X5X_WD_3_S_TIMER BIT(29)
+> >>>  #define TCAN4X5X_WD_6_S_TIMER (BIT(28) | BIT(29))
+> >>>  
+> >>> +struct tcan4x5x_version_info {
+> >>> +	u32 id2_register;
+> >>> +
+> >>> +	bool has_wake_pin;
+> >>> +	bool has_state_pin;
+> >>> +};
+> >>> +
+> >>>  static inline struct tcan4x5x_priv *cdev_to_priv(struct m_can_classdev *cdev)
+> >>>  {
+> >>>  	return container_of(cdev, struct tcan4x5x_priv, cdev);
+> >>> @@ -254,18 +262,68 @@ static int tcan4x5x_disable_state(struct m_can_classdev *cdev)
+> >>>  				  TCAN4X5X_DISABLE_INH_MSK, 0x01);
+> >>>  }
+> >>>  
+> >>> -static int tcan4x5x_get_gpios(struct m_can_classdev *cdev)
+> >>> +static const struct tcan4x5x_version_info tcan4x5x_generic;
+> >>> +static const struct of_device_id tcan4x5x_of_match[];
+> >>> +
+> >>> +static const struct tcan4x5x_version_info
+> >>> +*tcan4x5x_find_version_info(struct tcan4x5x_priv *priv, u32 id2_value)
+> >>> +{
+> >>> +	for (int i = 0; tcan4x5x_of_match[i].data; ++i) {
+> >>> +		const struct tcan4x5x_version_info *vinfo =
+> >>> +			tcan4x5x_of_match[i].data;
+> >>> +		if (!vinfo->id2_register || id2_value == vinfo->id2_register) {
+> >>> +			dev_warn(&priv->spi->dev, "TCAN device is %s, please use it in DT\n",
+> >>> +				 tcan4x5x_of_match[i].compatible);
+> >>> +			return vinfo;
+> >>> +		}
+> >>> +	}
+> >>> +
+> >>> +	return &tcan4x5x_generic;
+> >>
+> >> I don't understand what do you want to achieve here. Kernel job is not
+> >> to validate DTB, so if DTB says you have 4552, there is no need to
+> >> double check. On the other hand, you have Id register so entire idea of
+> >> custom compatibles can be dropped and instead you should detect the
+> >> variant based on the ID.
+> > 
+> > I can read the ID register but tcan4552 and 4553 do not have two
+> > devicetree properties that tcan4550 has, namely state and wake gpios.
+> 
+> Does not matter, you don't use OF matching to then differentiate
+> handling of GPIOs to then read the register. You first read registers,
+> so everything is auto-detectable.
+> 
+> > See v1 discussion about that [1].
+> 
+> Yeah, but your code is different, although maybe we just misunderstood
+> each other. You wrote that you cannot use the GPIOs, so I assumed you
+> need to know the variant before using the GPIOs. Then you need
+> compatibles. It's not the case here. You can read the variant and based
+> on this skip entirely GPIOs as they are entirely missing.
 
-On Thu, Jun 22, 2023 at 05:04:15PM +0530, Sameer Pujar wrote:
-> From: Sheetal <sheetal@nvidia.com>
->=20
-> I2S data sanity tests fail beyond a bit clock frequency of 6.144MHz.
-> This happens because the AHUB clock rate is too low and it shows
-> 9.83MHz on boot.
->=20
-> The maximum rate of PLLA_OUT0 is 49.152MHz and is used to serve I/O
-> clocks. It is recommended that AHUB clock operates higher than this.
-> Thus fix this by using PLLP_OUT0 as parent clock for AHUB instead of
-> PLLA_OUT0 and fix the rate to 81.6MHz.
->=20
-> Fixes: dc94a94daa39 ("arm64: tegra: Add audio devices on Tegra234")
-> Cc: stable@vger.kernel.org
-> Signed-off-by: Sheetal <sheetal@nvidia.com>
+The version information is always readable for that chip, regardless of
+state and wake GPIOs as far as I know. So yes it is possible to setup
+the GPIOs based on the content of the ID register.
 
-Fixes should come before cleanups in a patch series to ensure that they
-can be applied and sent as fixes without dependencies on non-fixes.
+I personally would prefer separate compatibles. The binding
+documentation needs to address that wake and state GPIOs are not
+available for tcan4552/4553. I think having compatibles that are for
+these chips would make sense then. However this is my opinion, you are
+the maintainer.
 
---MhoiR7vHGfkcD/ZI
-Content-Type: application/pgp-signature; name="signature.asc"
+Best,
+Markus
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSUOuIACgkQJNaLcl1U
-h9BQ/wf6A4ZIp6SU+zUdNVkskOaaEKPYmqfrTPDbpRk/OjSwjwUkjhFHjTHRqgru
-XB1GbDE8bpF3kcHit/PkdtdrUmYNyfrZ5PNmv+56UlyObu4TBSr6hkAieHg9HDF4
-Oa9hQ0CxfK/IOmUKPG+uSZtXcpk1orWMzx/Q1Yg5RpikhgodSsBwUXlkw79Q68FY
-ybogyto/jHAUshuJ9PsP9T9SEs2hQKKybh0ckaXIXI4XYjXkX/D2Ds91YAGxmKnz
-DOhIpH8tASXpujxD2mdYoX62sIKrUdtirlgAMUYH8RUbPL7+NiZrL+9H5J/vPLmZ
-zxRtzlYRZN88Vt8t9ah8dI8kFm/56w==
-=bQo1
------END PGP SIGNATURE-----
-
---MhoiR7vHGfkcD/ZI--
+> 
+> > 
+> > In v1 Marc pointed out that mcp251xfd is using an autodetection and warn
+> > mechanism which I implemented here as well. [2]
+> 
+> But why? Just read the ID and detect the variant based on this. Your DT
+> still can have separate compatibles followed by fallback, that's not a
+> problem.
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
