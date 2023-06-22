@@ -2,188 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 36A5273A70D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 19:17:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4826D73A7A4
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 19:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjFVRRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 13:17:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51388 "EHLO
+        id S230428AbjFVRte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 13:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229747AbjFVRR3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 13:17:29 -0400
-Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10617199B
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 10:17:27 -0700 (PDT)
-Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6687446eaccso4241170b3a.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 10:17:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687454246; x=1690046246;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=+caNylAFJnS4RfDuuqPQ5kEyaoWMVveGgJSagPXpK3E=;
-        b=eWwIE86gJ1vNE6oGTJapOZQFT46TllCzUn6zfU2GJowNtlE4ccaAhmjBf1y6GkqZMQ
-         Jav+kIow91KofjqIfAO67sRRofF5Lc3/t38LsiHYAXUYTAxQLN7SFoAttjh96+DhY+FA
-         TxusneS92lYEmaAbHSGHOV5jRmE2njvUR81kooDRK6RS2zHGqhaTZJL5L/TJB3gWpNYs
-         ZRYJ1C/Z1HtyufIbMTq6CSXbOkYWLaSfZEDR1aMWR7EcQKcxtXegPTtDIWhI86ZZ3PEG
-         iaRxBCeSN3cuCMYJsP7PBCYE5qfoQ0qHuUeuhpYPaUmvk9TVOMXrp2Ps+OKItL5slb+c
-         UA/w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687454246; x=1690046246;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+caNylAFJnS4RfDuuqPQ5kEyaoWMVveGgJSagPXpK3E=;
-        b=Zywpsc7+ZsRp014y7Zssy6QNop4SpqJzWPj97y5TaT4ZAM8zg/y1WBVAUImHmQMRTH
-         L6y0vSY1duS9KYSXZaHOXBWwgk6xJ8UcBn9VcWPX6dZXfE8nhJ1DkW2u1zO9wsRTsqml
-         uiq/H8llhbyGyzKtXKTseE6T4FcjTmQ299EhB3Xgj48vYacCJh6eNcsZMsM7kUFkbazX
-         GFZRy0XAiWnQrJRClFdIYZUIKRDPFzj82NCZWu/Y8LyLRGYFB7SrILs9lcHpHaW8O8Xb
-         2y7KbKgzyxLtUufIMuJgB6UXFiPvqRiuUkg+CfUGvD2++Gk77L3tInkk4YvFNT6PmzvR
-         QCrw==
-X-Gm-Message-State: AC+VfDyPuWMhLLI4yCHKH6hMUp7pG2AV0jOpQ5b4o3oMC8GwQ4aRMROh
-        G+tf7+c9emp3L47yZoO7HR6esw==
-X-Google-Smtp-Source: ACHHUZ7q4CWIXONGO3DtA6c8gq+2V5G73vpjcuVPbpvkFAZ173Ft2Wc6ltykzzv7Oo0mrdOFGu+tYA==
-X-Received: by 2002:a05:6a20:7d8b:b0:122:7e50:f71b with SMTP id v11-20020a056a207d8b00b001227e50f71bmr11414744pzj.34.1687454246493;
-        Thu, 22 Jun 2023 10:17:26 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:2d81:4abe:75da:eae])
-        by smtp.gmail.com with ESMTPSA id c11-20020a62e80b000000b00649ac17779csm4780000pfi.160.2023.06.22.10.17.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 10:17:25 -0700 (PDT)
-Date:   Thu, 22 Jun 2023 11:17:22 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-Subject: Re: [PATCH v13 00/11] Add support for MT8195 SCP 2nd core
-Message-ID: <ZJSCIhhLTv/pP/HA@p14s>
-References: <20230607072222.8628-1-tinghan.shen@mediatek.com>
- <5a9beeec-5762-c469-6e03-b71babb5f7ed@collabora.com>
+        with ESMTP id S231318AbjFVRtX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 13:49:23 -0400
+Received: from 8.mo563.mail-out.ovh.net (8.mo563.mail-out.ovh.net [46.105.60.197])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 358B21BF6
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 10:49:15 -0700 (PDT)
+Received: from director4.derp.mail-out.ovh.net (director4.derp.mail-out.ovh.net [79.137.60.37])
+        by mo563.mail-out.ovh.net (Postfix) with ESMTPS id 32F02239B6;
+        Thu, 22 Jun 2023 17:49:13 +0000 (UTC)
+Received: from director4.derp.mail-out.ovh.net (director4.derp.mail-out.ovh.net. [127.0.0.1])
+        by director4.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+        for <conor+dt@kernel.org>; Thu, 22 Jun 2023 17:49:13 +0000 (UTC)
+Received: from pro2.mail.ovh.net (unknown [10.108.20.246])
+        by director4.derp.mail-out.ovh.net (Postfix) with ESMTPS id 1D0591FE6D;
+        Thu, 22 Jun 2023 17:49:13 +0000 (UTC)
+Received: from [192.168.1.41] (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 22 Jun
+ 2023 19:49:12 +0200
+Message-ID: <e9d23080-3916-f8ff-e179-4572d02c57b0@traphandler.com>
+Date:   Thu, 22 Jun 2023 19:49:12 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <5a9beeec-5762-c469-6e03-b71babb5f7ed@collabora.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v9 5/5] leds: Add a multicolor LED driver to group
+ monochromatic LEDs
+To:     Lee Jones <lee@kernel.org>
+CC:     <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20230616095746.872220-1-jjhiblot@traphandler.com>
+ <20230616095746.872220-6-jjhiblot@traphandler.com>
+ <20230621193321.GU10378@google.com>
+Content-Language: en-US
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+In-Reply-To: <20230621193321.GU10378@google.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG3EX1.emp2.local (172.16.2.21) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 9914956058122861019
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrgeeguddgudduiecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecunecujfgurhepkfffgggfuffvvehfhfgjtgfgihesthejredttdefjeenucfhrhhomheplfgvrghnqdflrggtqhhuvghsucfjihgslhhothcuoehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomheqnecuggftrfgrthhtvghrnhepieejfedukeevudfghfetudevhffhhfekjeeiudegtdehueevgfdvgeeivdeifedvnecukfhppedtrddtrddtrddtpdekkedrudeiuddrvdehrddvfeefnecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmohguvgepshhmthhpohhuthdphhgvlhhopeguihhrvggtthhorhegrdguvghrphdrmhgrihhlqdhouhhtrdhovhhhrdhnvghtpdhinhgvtheptddrtddrtddrtddpmhgrihhlfhhrohhmpehjjhhhihgslhhothesthhrrghphhgrnhgulhgvrhdrtghomhdpnhgspghrtghpthhtohepuddprhgtphhtthhopehlihhnuhigqdhlvggushesvhhgvghrrdhkvghrnhgvlhdrohhrghdpoffvtefjohhsthepmhhoheeife
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 22, 2023 at 12:00:08PM +0200, AngeloGioacchino Del Regno wrote:
-> Il 07/06/23 09:22, Tinghan Shen ha scritto:
-> > The mediatek remoteproc driver currently only allows bringing up a
-> > single core SCP, e.g. MT8183. It also only bringing up the 1st
-> > core in SoCs with a dual-core SCP, e.g. MT8195. This series support
-> > to bring-up the 2nd core of the dual-core SCP.
-> > 
+
+
+On 21/06/2023 21:33, Lee Jones wrote:
+> On Fri, 16 Jun 2023, Jean-Jacques Hiblot wrote:
 > 
-> Hello TingHan,
+>>   create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
 > 
-> Can you please address the comments on patch [05/11] and send a new version ASAP?
-> That's the only remaining issue, so after that the series should be ready.
+> Sorry to do this too you, but there are too many nits that I can't pass by.
+That's alright. I'll fix them in the next (hopefully last) round
+> 
+>> +		/* Restore sysfs access when the multicolor LED is released */
 > 
 
-There is also the refactoring work in patch 07, and I expect that to take a
-while.
-
-> Thanks,
-> Angelo
+> Out of interest, why are we doing this?
+To prevent the user to play with the individual LEDs of the group, their 
+sysfs interface is disabled (read-only). The interface must be 
+re-enabled when the group is destroyed.
 > 
-> > v12 -> v13:
-> > 1. replace subdevice with new mediatek scp operations in patchset 7
-> > 2. add review tag to patchset 3
-> > 3. modify mediatek,scp phandle name of video-codec@18000000 at patchset 11
-> > 
-> > v11 -> v12:
-> > 1. add scp_add_single/multi_core() to patchset 6
-> > 2. remove unused comment in patchset 6
-> > 3. rename list name from mtk_scp_cluster to mtk_scp_list
-> > 4. rewrite the multi-core probe flow
-> > 5. disable rproc->autoboot and boot rproc by request_firmware_nowait at patchset 7
-> > 6. remove patchset 7 review tag
-> > 
-> > v10 -> v11:
-> > 1. rewrite patchset 5 to probe single-core SCP with the cluster list
-> > 2. Also in patchset 5, move the pointer of mtk_scp object from the
-> >     platform data property to the driver data property
-> > 3. move the appearance of mtk_scp cluster property to patcheset 7
-> > 
-> > v9 -> v10:
-> > 1. move the global mtk_scp list into the platform device driver data structure
-> > 2. remove an unnecessary if() condition
-> > 
-> > v8 -> v9:
-> > 1. initialize l1tcm_size/l1tcm_phys at patchset 05/11
-> > 2. rewrite patchset 06/11 to unify the flow and remove hacks
-> > 
-> > v7 -> v8:
-> > 1. update the node name of mt8192 asurada SCP rpmsg subnode
-> > 2. squash register definitions into driver patches
-> > 3. initialize local variables on the declaration at patch v8 06/11
-> > 
-> > v6 -> v7:
-> > 1. merge the mtk_scp_cluster struct into the mtk_scp structure
-> >     at the "Probe multi-core SCP" patch
-> > 
-> > v5 -> v6:
-> > 1. move the mtk_scp_of_regs structure from mtk_common.h to mtk_scp.c
-> > 2. rename the SCP core 0 label from 'scp' to 'scp_c0'
-> > 
-> > v4 -> v5:
-> > 1. move resource release actions to the platform driver remove operation
-> > 2. fix dual-core watchdog handling
-> > 
-> > v3 -> v4:
-> > 1. change the representation of dual-core SCP in dts file and update SCP yaml
-> > 2. rewrite SCP driver to reflect the change of dts node
-> > 3. drop 'remove redundant call of rproc_boot for SCP' in v3 for further investigation
-> > 
-> > v2 -> v3:
-> > 1. change the representation of dual-core SCP in dts file and update SCP yaml
-> > 2. rewrite SCP driver to reflect the change of dts node
-> > 3. add SCP core 1 node to mt8195.dtsi
-> > 4. remove redundant call of rproc_boot for SCP
-> > 5. refine IPI error message
-> > 
-> > v1 -> v2:
-> > 1. update dt-binding property description
-> > 2. remove kconfig for scp dual driver
-> > 3. merge mtk_scp_dual.c and mtk_scp_subdev.c to mtk_scp.c
-> > 
-> > 
-> > Tinghan Shen (11):
-> >    dt-bindings: remoteproc: mediatek: Improve the rpmsg subnode
-> >      definition
-> >    arm64: dts: mediatek: Update the node name of SCP rpmsg subnode
-> >    dt-bindings: remoteproc: mediatek: Support MT8195 dual-core SCP
-> >    remoteproc: mediatek: Add MT8195 SCP core 1 operations
-> >    remoteproc: mediatek: Introduce cluster on single-core SCP
-> >    remoteproc: mediatek: Probe multi-core SCP
-> >    remoteproc: mediatek: Add scp_boot_peers and scp_shutdown_peers
-> >      operations
-> >    remoteproc: mediatek: Setup MT8195 SCP core 1 SRAM offset
-> >    remoteproc: mediatek: Handle MT8195 SCP core 1 watchdog timeout
-> >    remoteproc: mediatek: Refine ipi handler error message
-> >    arm64: dts: mediatek: mt8195: Add SCP 2nd core
-> > 
-> >   .../bindings/remoteproc/mtk,scp.yaml          | 176 +++++++-
-> >   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   2 +-
-> >   .../boot/dts/mediatek/mt8192-asurada.dtsi     |   2 +-
-> >   .../boot/dts/mediatek/mt8195-cherry.dtsi      |   6 +-
-> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  32 +-
-> >   drivers/remoteproc/mtk_common.h               |  26 ++
-> >   drivers/remoteproc/mtk_scp.c                  | 425 ++++++++++++++++--
-> >   7 files changed, 594 insertions(+), 75 deletions(-)
-> > 
+>> +		devm_add_action_or_reset(dev, restore_sysfs_access, led_cdev);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct of_device_id of_led_group_multicolor_match[] = {
+> 
+> "leds"
+> 
+>> +	{ .compatible = "leds-group-multicolor" },
+>> +	{}
+>> +};
+>> +MODULE_DEVICE_TABLE(of, of_led_group_multicolor_match);
+>> +
+>> +static struct platform_driver led_group_multicolor_driver = {
+> 
+> "leds"
+> 
+>> +	.probe		= led_mcg_probe,
+>> +	.driver		= {
+>> +		.name	= "leds_group_multicolor",
+>> +		.of_match_table = of_led_group_multicolor_match,
+>> +	}
+>> +};
+>> +module_platform_driver(led_group_multicolor_driver);
+>> +
+>> +MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
+>> +MODULE_DESCRIPTION("LEDs group multicolor driver");
+>> +MODULE_LICENSE("GPL");
+>> +MODULE_ALIAS("platform:leds-group-multicolor");
+>> -- 
+>> 2.34.1
+>>
 > 
