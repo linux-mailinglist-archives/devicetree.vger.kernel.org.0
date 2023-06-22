@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC48873953C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 04:07:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C17673954B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 04:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230317AbjFVCHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 22:07:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37670 "EHLO
+        id S229837AbjFVCLf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 22:11:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230319AbjFVCHw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 22:07:52 -0400
-Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F5361BD8;
-        Wed, 21 Jun 2023 19:07:42 -0700 (PDT)
-Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-341c362a851so25841685ab.2;
-        Wed, 21 Jun 2023 19:07:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687399662; x=1689991662;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nX4L8ejzBqvRUr9f62UT6M7EQgUf9/KqzPDQhJBYawU=;
-        b=aXePOFL9OvqiG6cIDeGr6SQANqkqilMshy02oVeNj5BNVDfsbpHBwCp0nUU+8YkKVV
-         ZpmbkhWdFrpRx4D/VxaMSfz+XvVHesuCg1umbatMEukePHwtEcJNLi1+NKki6U69cb9D
-         POjOvdlqtMp836OulpNgM5bXGqGnOo6lYZRGrbU9DJslwPw+33L0w7cJ6eCr3GfZ8M/U
-         GekRiRLrmEQmfzZublqCO5gsXYJ++Bp3ZGBdg5XKpBLKnHdCYPuvghQrHrziUDIoAFV2
-         Qi1MfcwapE+mqH4OTg960AJPbmz198vRPeAPwDdBUJzuNgyFwKbOheE0+7/9lQVekNoj
-         M6PQ==
-X-Gm-Message-State: AC+VfDz5Z98yPOGQWhkqBJQjf2q0iA5kVvBrnu2/93oS3UrpqnL5olYU
-        miJTYIveJblHLpQqbMSriQ==
-X-Google-Smtp-Source: ACHHUZ7tPd0zVOkisTOC6GV02QUpZy9KMeMbVVC0nbsj9YGKPDZv+3VOVws/Inlptwbj9LyRxwCEWg==
-X-Received: by 2002:a05:6e02:610:b0:331:9c03:dada with SMTP id t16-20020a056e02061000b003319c03dadamr13558953ils.13.1687399662203;
-        Wed, 21 Jun 2023 19:07:42 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id s14-20020a92cb0e000000b0034267d3fcc5sm1680494ilo.55.2023.06.21.19.07.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 19:07:41 -0700 (PDT)
-Received: (nullmailer pid 67903 invoked by uid 1000);
-        Thu, 22 Jun 2023 02:07:39 -0000
-Date:   Wed, 21 Jun 2023 20:07:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Benjamin Bara <bbara93@gmail.com>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229618AbjFVCLe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 22:11:34 -0400
+Received: from mail-4318.protonmail.ch (mail-4318.protonmail.ch [185.70.43.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03E97AC;
+        Wed, 21 Jun 2023 19:11:34 -0700 (PDT)
+Date:   Thu, 22 Jun 2023 02:11:14 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1687399892; x=1687659092;
+        bh=S6fvHVWpgJ+++RTt92EIUdud4rBfU1qdLx0ipdC4tuM=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=ovs6Q24BdUyYfxH2Q8/cYNP2kar46JJiwhNcZSzQkEiAUyo/c6kZDSQsv0U0Y3CRk
+         CDA4iHzppsH9xvvuaer0ePGi5xhCAxWQ6fdhTE7gxA0xTBkmbUcAgsnZx6Tf+InncY
+         Fxz0FY5JMmHKnHazudjQJhg2nzH9JPWY7/HJ8+7U8WMTspMPPXcu2AMX0tUx96lAaB
+         qeYw6kUUPx/oiMX/KDTvFuqSzmoD41+0NigZo7czmPXPq0PSUF065Fk+vVT7/r8xoD
+         WRIb0mdPst1GgJquRDdIYu2DFUI6614EcFHVZuHbIM+pd3rfJDPC9JDvHJpDp0VHwG
+         D5hdnaOLAcyeg==
+To:     linux-kernel@vger.kernel.org
+From:   Raymond Hackley <raymondhackley@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>
-Subject: Re: [PATCH v4 3/3] dt-bindings: usb: Add binding for Cypress HX3 USB
- 3.0 family
-Message-ID: <168739965923.67844.7517249183491573877.robh@kernel.org>
-References: <20230620-hx3-v4-0-e56b3c6db60b@skidata.com>
- <20230620-hx3-v4-3-e56b3c6db60b@skidata.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH] arm64: dts: qcom: msm8939-sony-xperia-kanuti-tulip: Add missing 'chassis-type'
+Message-ID: <20230622021105.66015-1-raymondhackley@protonmail.com>
+Feedback-ID: 49437091:user:proton
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230620-hx3-v4-3-e56b3c6db60b@skidata.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Sony Xperia M4 Aqua is a handset. Add the chassis-type =3D "handset"; to it=
+.
 
-On Wed, 21 Jun 2023 20:04:05 +0200, Benjamin Bara wrote:
-> From: Benjamin Bara <benjamin.bara@skidata.com>
-> 
-> The HX3 family comes in different variants (up to 4 USB 3.0 ports;
-> multi-TT), e.g. CYUSB330x/CYUSB331x/CYUSB332x/CYUSB230x.
-> 
-> This initial version of the binding only describes USB related aspects
-> of the HX3 family, it does not cover the option of connecting the
-> controller as an i2c slave.
-> 
-> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
-> ---
->  .../devicetree/bindings/usb/cypress,hx3.yaml       | 77 ++++++++++++++++++++++
->  1 file changed, 77 insertions(+)
-> 
+Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+---
+ arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts =
+b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+index 8613cf93dac5..0633e3006f17 100644
+--- a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
++++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+@@ -16,6 +16,7 @@
+ / {
+ =09model =3D "Sony Xperia M4 Aqua";
+ =09compatible =3D "sony,kanuti-tulip", "qcom,msm8939";
++=09chassis-type =3D "handset";
+=20
+ =09qcom,board-id =3D <QCOM_BOARD_ID_MTP 0>;
+ =09qcom,msm-id =3D <QCOM_ID_MSM8939 0>, <QCOM_ID_MSM8939 0x30000>;
+--=20
+2.39.2
+
 
