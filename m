@@ -2,570 +2,671 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C1573A17B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 15:07:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D02573A253
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 15:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231548AbjFVNHR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 09:07:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57536 "EHLO
+        id S231266AbjFVN4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 09:56:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50638 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231543AbjFVNHP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 09:07:15 -0400
-Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C55241FD8;
-        Thu, 22 Jun 2023 06:07:02 -0700 (PDT)
-Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
-        by mx.sberdevices.ru (Postfix) with ESMTP id 0A9465FDA9;
-        Thu, 22 Jun 2023 16:07:01 +0300 (MSK)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1687439221;
-        bh=tbqnmvyCMy46X3ECZJNrxE/52bM9hZeHzRqzBrMsIso=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
-        b=cEPnvDVJWuQIWZRzbswzi4B2Cz84+9c3/Tx8tv93a4Tyob1A02c+zGYR49nXtp5yB
-         8RrZl3jOmekdAQXJKMMLZ5ITgHqoEVKU7j2j2bzRc0EoooOad3Gxl32sVq9YrB7XMX
-         PM6FXQsv6M4c9WUb4cbwjL1IRhJZ3PJQ8JN2/FqHQ8kdgIhMKKrsNSc5F24E0KnVVC
-         zNvShibv7DPyLZtpnmm4iflRRVnjnCPbzDt26z0XpyTwGa6ZSIioe3LknzWtW+dTpm
-         WsTXH5mMCOhzwyk8Md/tsJ1zyA6tjK29fRKn/vvFW7TL2Puf/Nyb7W3of+dmfVIkbm
-         4c4wtvQa9rDpg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        by mx.sberdevices.ru (Postfix) with ESMTP;
-        Thu, 22 Jun 2023 16:07:00 +0300 (MSK)
-Date:   Thu, 22 Jun 2023 16:07:00 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-CC:     Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <kernel@sberdevices.ru>
-Subject: Re: [PATCH v2 04/19] clk: meson: migrate a1 clock drivers out of
- hw_onecell_data to drop NR_CLKS
-Message-ID: <20230622130700.d3jxv5hj7i22obgq@CAB-WSD-L081021>
-References: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
- <20230607-topic-amlogic-upstream-clkid-public-migration-v2-4-38172d17c27a@linaro.org>
+        with ESMTP id S231181AbjFVN4r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 09:56:47 -0400
+Received: from mga06.intel.com (mga06b.intel.com [134.134.136.31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AD721BE1;
+        Thu, 22 Jun 2023 06:56:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1687442198; x=1718978198;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=guLBCHNagrSF/PabhYlAKf6SjWH5LPbx5tv63g5hvE4=;
+  b=DuhHf5T+mTZfzmJBcYUYWoPsvSVzYFcD4TOYTkn5GUBWshbsW8VQx+Gx
+   z3LhPl733CI+l1wFAra0pZRIOYsC6LPJuUEIYZ9x2Nf6oKfb/LNsPbJlt
+   obMoIeXC/Ga6bMYxBOk13ZZhtgHy5gDQ7YwLHg1Zt/3op3uMe/Cwcr9Kw
+   9wA84HEDWuuyRGQfOGI37BOkdwOZs0erlV5LTSxzenoxbnT5o7xlZNrVH
+   r93pfa49nsJEsvK5Q+VFSlZDenYCk+f7ZjDBRz5KCnuWZj0izxNtwSCMM
+   F8wNscfBur7FyJT4lMMMm0sllJiBeLzs4wyrc322pl3BJYVJrcEuY3EC9
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="424164558"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; 
+   d="scan'208";a="424164558"
+Received: from fmsmga007.fm.intel.com ([10.253.24.52])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2023 06:20:37 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="718085080"
+X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; 
+   d="scan'208";a="718085080"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga007.fm.intel.com with ESMTP; 22 Jun 2023 06:20:32 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1qCKEf-005lu5-2q;
+        Thu, 22 Jun 2023 16:20:29 +0300
+Date:   Thu, 22 Jun 2023 16:20:29 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, beanhuo@micron.com,
+        nipun.gupta@amd.com, linus.walleij@linaro.org, mwen@igalia.com,
+        bvanassche@acm.org, arnd@arndb.de, ogabbay@kernel.org,
+        linux@zary.sk, jacek.lawrynowicz@linux.intel.com,
+        geert+renesas@glider.be, benjamin.tissoires@redhat.com,
+        masahiroy@kernel.org, yangyicong@hisilicon.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCHv4 2/4] wiegand: add Wiegand bus driver
+Message-ID: <ZJRKndTB4HEz/Ztf@smile.fi.intel.com>
+References: <20230510162243.95820-1-m.zatovic1@gmail.com>
+ <20230510162243.95820-3-m.zatovic1@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-4-38172d17c27a@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 4
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Status: not scanned, disabled by settings
-X-KSMG-AntiSpam-Interceptor-Info: not scanned
-X-KSMG-AntiPhishing: not scanned, disabled by settings
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/22 09:26:00 #21554371
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230510162243.95820-3-m.zatovic1@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 11:57:21AM +0200, Neil Armstrong wrote:
-> The way hw_onecell_data is declared:
-> struct clk_hw_onecell_data {
-> 	unsigned int num;
-> 	struct clk_hw *hws[];
-> };
-> 
-> makes it impossible to have the clk_hw table declared outside while
-> using ARRAY_SIZE() to determine ".num" due to ".hws" being a flexible
-> array member.
-> 
-> Completely move out of hw_onecell_data and add a custom
-> devm_of_clk_add_hw_provider() "get" callback to retrieve the clk_hw
-> in order to finally get rid on the NR_CLKS define.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  drivers/clk/meson/Kconfig          |   2 +
->  drivers/clk/meson/a1-peripherals.c | 323 +++++++++++++++++++------------------
->  drivers/clk/meson/a1-peripherals.h |   1 -
->  drivers/clk/meson/a1-pll.c         |  36 +++--
->  drivers/clk/meson/a1-pll.h         |   1 -
->  5 files changed, 183 insertions(+), 180 deletions(-)
-> 
-> diff --git a/drivers/clk/meson/Kconfig b/drivers/clk/meson/Kconfig
-> index caadaf973317..7ae076cd9645 100644
-> --- a/drivers/clk/meson/Kconfig
-> +++ b/drivers/clk/meson/Kconfig
-> @@ -108,6 +108,7 @@ config COMMON_CLK_A1_PLL
->  	tristate "Amlogic A1 SoC PLL controller support"
->  	depends on ARM64
->  	select COMMON_CLK_MESON_REGMAP
-> +	select COMMON_CLK_MESON_CLKC_UTILS
->  	select COMMON_CLK_MESON_PLL
->  	help
->  	  Support for the PLL clock controller on Amlogic A113L based
-> @@ -119,6 +120,7 @@ config COMMON_CLK_A1_PERIPHERALS
->  	depends on ARM64
->  	select COMMON_CLK_MESON_DUALDIV
->  	select COMMON_CLK_MESON_REGMAP
-> +	select COMMON_CLK_MESON_CLKC_UTILS
->  	help
->  	  Support for the Peripherals clock controller on Amlogic A113L based
->  	  device, A1 SoC Family. Say Y if you want A1 Peripherals clock
-> diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
-> index b320134fefeb..a5cab418736a 100644
-> --- a/drivers/clk/meson/a1-peripherals.c
-> +++ b/drivers/clk/meson/a1-peripherals.c
-> @@ -13,6 +13,7 @@
->  #include "a1-peripherals.h"
->  #include "clk-dualdiv.h"
->  #include "clk-regmap.h"
-> +#include "meson-clkc-utils.h"
->  
->  static struct clk_regmap xtal_in = {
->  	.data = &(struct clk_regmap_gate_data){
-> @@ -1866,165 +1867,161 @@ static MESON_GATE(rom,		AXI_CLK_EN,	11);
->  static MESON_GATE(prod_i2c,	AXI_CLK_EN,	12);
->  
->  /* Array of all clocks registered by this provider */
-> -static struct clk_hw_onecell_data a1_periphs_clks = {
-> -	.hws = {
-> -		[CLKID_XTAL_IN]			= &xtal_in.hw,
-> -		[CLKID_FIXPLL_IN]		= &fixpll_in.hw,
-> -		[CLKID_USB_PHY_IN]		= &usb_phy_in.hw,
-> -		[CLKID_USB_CTRL_IN]		= &usb_ctrl_in.hw,
-> -		[CLKID_HIFIPLL_IN]		= &hifipll_in.hw,
-> -		[CLKID_SYSPLL_IN]		= &syspll_in.hw,
-> -		[CLKID_DDS_IN]			= &dds_in.hw,
-> -		[CLKID_SYS]			= &sys.hw,
-> -		[CLKID_CLKTREE]			= &clktree.hw,
-> -		[CLKID_RESET_CTRL]		= &reset_ctrl.hw,
-> -		[CLKID_ANALOG_CTRL]		= &analog_ctrl.hw,
-> -		[CLKID_PWR_CTRL]		= &pwr_ctrl.hw,
-> -		[CLKID_PAD_CTRL]		= &pad_ctrl.hw,
-> -		[CLKID_SYS_CTRL]		= &sys_ctrl.hw,
-> -		[CLKID_TEMP_SENSOR]		= &temp_sensor.hw,
-> -		[CLKID_AM2AXI_DIV]		= &am2axi_dev.hw,
-> -		[CLKID_SPICC_B]			= &spicc_b.hw,
-> -		[CLKID_SPICC_A]			= &spicc_a.hw,
-> -		[CLKID_MSR]			= &msr.hw,
-> -		[CLKID_AUDIO]			= &audio.hw,
-> -		[CLKID_JTAG_CTRL]		= &jtag_ctrl.hw,
-> -		[CLKID_SARADC_EN]		= &saradc_en.hw,
-> -		[CLKID_PWM_EF]			= &pwm_ef.hw,
-> -		[CLKID_PWM_CD]			= &pwm_cd.hw,
-> -		[CLKID_PWM_AB]			= &pwm_ab.hw,
-> -		[CLKID_CEC]			= &cec.hw,
-> -		[CLKID_I2C_S]			= &i2c_s.hw,
-> -		[CLKID_IR_CTRL]			= &ir_ctrl.hw,
-> -		[CLKID_I2C_M_D]			= &i2c_m_d.hw,
-> -		[CLKID_I2C_M_C]			= &i2c_m_c.hw,
-> -		[CLKID_I2C_M_B]			= &i2c_m_b.hw,
-> -		[CLKID_I2C_M_A]			= &i2c_m_a.hw,
-> -		[CLKID_ACODEC]			= &acodec.hw,
-> -		[CLKID_OTP]			= &otp.hw,
-> -		[CLKID_SD_EMMC_A]		= &sd_emmc_a.hw,
-> -		[CLKID_USB_PHY]			= &usb_phy.hw,
-> -		[CLKID_USB_CTRL]		= &usb_ctrl.hw,
-> -		[CLKID_SYS_DSPB]		= &sys_dspb.hw,
-> -		[CLKID_SYS_DSPA]		= &sys_dspa.hw,
-> -		[CLKID_DMA]			= &dma.hw,
-> -		[CLKID_IRQ_CTRL]		= &irq_ctrl.hw,
-> -		[CLKID_NIC]			= &nic.hw,
-> -		[CLKID_GIC]			= &gic.hw,
-> -		[CLKID_UART_C]			= &uart_c.hw,
-> -		[CLKID_UART_B]			= &uart_b.hw,
-> -		[CLKID_UART_A]			= &uart_a.hw,
-> -		[CLKID_SYS_PSRAM]		= &sys_psram.hw,
-> -		[CLKID_RSA]			= &rsa.hw,
-> -		[CLKID_CORESIGHT]		= &coresight.hw,
-> -		[CLKID_AM2AXI_VAD]		= &am2axi_vad.hw,
-> -		[CLKID_AUDIO_VAD]		= &audio_vad.hw,
-> -		[CLKID_AXI_DMC]			= &axi_dmc.hw,
-> -		[CLKID_AXI_PSRAM]		= &axi_psram.hw,
-> -		[CLKID_RAMB]			= &ramb.hw,
-> -		[CLKID_RAMA]			= &rama.hw,
-> -		[CLKID_AXI_SPIFC]		= &axi_spifc.hw,
-> -		[CLKID_AXI_NIC]			= &axi_nic.hw,
-> -		[CLKID_AXI_DMA]			= &axi_dma.hw,
-> -		[CLKID_CPU_CTRL]		= &cpu_ctrl.hw,
-> -		[CLKID_ROM]			= &rom.hw,
-> -		[CLKID_PROC_I2C]		= &prod_i2c.hw,
-> -		[CLKID_DSPA_SEL]		= &dspa_sel.hw,
-> -		[CLKID_DSPB_SEL]		= &dspb_sel.hw,
-> -		[CLKID_DSPA_EN]			= &dspa_en.hw,
-> -		[CLKID_DSPA_EN_NIC]		= &dspa_en_nic.hw,
-> -		[CLKID_DSPB_EN]			= &dspb_en.hw,
-> -		[CLKID_DSPB_EN_NIC]		= &dspb_en_nic.hw,
-> -		[CLKID_RTC]			= &rtc.hw,
-> -		[CLKID_CECA_32K]		= &ceca_32k_out.hw,
-> -		[CLKID_CECB_32K]		= &cecb_32k_out.hw,
-> -		[CLKID_24M]			= &clk_24m.hw,
-> -		[CLKID_12M]			= &clk_12m.hw,
-> -		[CLKID_FCLK_DIV2_DIVN]		= &fclk_div2_divn.hw,
-> -		[CLKID_GEN]			= &gen.hw,
-> -		[CLKID_SARADC_SEL]		= &saradc_sel.hw,
-> -		[CLKID_SARADC]			= &saradc.hw,
-> -		[CLKID_PWM_A]			= &pwm_a.hw,
-> -		[CLKID_PWM_B]			= &pwm_b.hw,
-> -		[CLKID_PWM_C]			= &pwm_c.hw,
-> -		[CLKID_PWM_D]			= &pwm_d.hw,
-> -		[CLKID_PWM_E]			= &pwm_e.hw,
-> -		[CLKID_PWM_F]			= &pwm_f.hw,
-> -		[CLKID_SPICC]			= &spicc.hw,
-> -		[CLKID_TS]			= &ts.hw,
-> -		[CLKID_SPIFC]			= &spifc.hw,
-> -		[CLKID_USB_BUS]			= &usb_bus.hw,
-> -		[CLKID_SD_EMMC]			= &sd_emmc.hw,
-> -		[CLKID_PSRAM]			= &psram.hw,
-> -		[CLKID_DMC]			= &dmc.hw,
-> -		[CLKID_SYS_A_SEL]		= &sys_a_sel.hw,
-> -		[CLKID_SYS_A_DIV]		= &sys_a_div.hw,
-> -		[CLKID_SYS_A]			= &sys_a.hw,
-> -		[CLKID_SYS_B_SEL]		= &sys_b_sel.hw,
-> -		[CLKID_SYS_B_DIV]		= &sys_b_div.hw,
-> -		[CLKID_SYS_B]			= &sys_b.hw,
-> -		[CLKID_DSPA_A_SEL]		= &dspa_a_sel.hw,
-> -		[CLKID_DSPA_A_DIV]		= &dspa_a_div.hw,
-> -		[CLKID_DSPA_A]			= &dspa_a.hw,
-> -		[CLKID_DSPA_B_SEL]		= &dspa_b_sel.hw,
-> -		[CLKID_DSPA_B_DIV]		= &dspa_b_div.hw,
-> -		[CLKID_DSPA_B]			= &dspa_b.hw,
-> -		[CLKID_DSPB_A_SEL]		= &dspb_a_sel.hw,
-> -		[CLKID_DSPB_A_DIV]		= &dspb_a_div.hw,
-> -		[CLKID_DSPB_A]			= &dspb_a.hw,
-> -		[CLKID_DSPB_B_SEL]		= &dspb_b_sel.hw,
-> -		[CLKID_DSPB_B_DIV]		= &dspb_b_div.hw,
-> -		[CLKID_DSPB_B]			= &dspb_b.hw,
-> -		[CLKID_RTC_32K_IN]		= &rtc_32k_in.hw,
-> -		[CLKID_RTC_32K_DIV]		= &rtc_32k_div.hw,
-> -		[CLKID_RTC_32K_XTAL]		= &rtc_32k_xtal.hw,
-> -		[CLKID_RTC_32K_SEL]		= &rtc_32k_sel.hw,
-> -		[CLKID_CECB_32K_IN]		= &cecb_32k_in.hw,
-> -		[CLKID_CECB_32K_DIV]		= &cecb_32k_div.hw,
-> -		[CLKID_CECB_32K_SEL_PRE]	= &cecb_32k_sel_pre.hw,
-> -		[CLKID_CECB_32K_SEL]		= &cecb_32k_sel.hw,
-> -		[CLKID_CECA_32K_IN]		= &ceca_32k_in.hw,
-> -		[CLKID_CECA_32K_DIV]		= &ceca_32k_div.hw,
-> -		[CLKID_CECA_32K_SEL_PRE]	= &ceca_32k_sel_pre.hw,
-> -		[CLKID_CECA_32K_SEL]		= &ceca_32k_sel.hw,
-> -		[CLKID_DIV2_PRE]		= &fclk_div2_divn_pre.hw,
-> -		[CLKID_24M_DIV2]		= &clk_24m_div2.hw,
-> -		[CLKID_GEN_SEL]			= &gen_sel.hw,
-> -		[CLKID_GEN_DIV]			= &gen_div.hw,
-> -		[CLKID_SARADC_DIV]		= &saradc_div.hw,
-> -		[CLKID_PWM_A_SEL]		= &pwm_a_sel.hw,
-> -		[CLKID_PWM_A_DIV]		= &pwm_a_div.hw,
-> -		[CLKID_PWM_B_SEL]		= &pwm_b_sel.hw,
-> -		[CLKID_PWM_B_DIV]		= &pwm_b_div.hw,
-> -		[CLKID_PWM_C_SEL]		= &pwm_c_sel.hw,
-> -		[CLKID_PWM_C_DIV]		= &pwm_c_div.hw,
-> -		[CLKID_PWM_D_SEL]		= &pwm_d_sel.hw,
-> -		[CLKID_PWM_D_DIV]		= &pwm_d_div.hw,
-> -		[CLKID_PWM_E_SEL]		= &pwm_e_sel.hw,
-> -		[CLKID_PWM_E_DIV]		= &pwm_e_div.hw,
-> -		[CLKID_PWM_F_SEL]		= &pwm_f_sel.hw,
-> -		[CLKID_PWM_F_DIV]		= &pwm_f_div.hw,
-> -		[CLKID_SPICC_SEL]		= &spicc_sel.hw,
-> -		[CLKID_SPICC_DIV]		= &spicc_div.hw,
-> -		[CLKID_SPICC_SEL2]		= &spicc_sel2.hw,
-> -		[CLKID_TS_DIV]			= &ts_div.hw,
-> -		[CLKID_SPIFC_SEL]		= &spifc_sel.hw,
-> -		[CLKID_SPIFC_DIV]		= &spifc_div.hw,
-> -		[CLKID_SPIFC_SEL2]		= &spifc_sel2.hw,
-> -		[CLKID_USB_BUS_SEL]		= &usb_bus_sel.hw,
-> -		[CLKID_USB_BUS_DIV]		= &usb_bus_div.hw,
-> -		[CLKID_SD_EMMC_SEL]		= &sd_emmc_sel.hw,
-> -		[CLKID_SD_EMMC_DIV]		= &sd_emmc_div.hw,
-> -		[CLKID_SD_EMMC_SEL2]		= &sd_emmc_sel2.hw,
-> -		[CLKID_PSRAM_SEL]		= &psram_sel.hw,
-> -		[CLKID_PSRAM_DIV]		= &psram_div.hw,
-> -		[CLKID_PSRAM_SEL2]		= &psram_sel2.hw,
-> -		[CLKID_DMC_SEL]			= &dmc_sel.hw,
-> -		[CLKID_DMC_DIV]			= &dmc_div.hw,
-> -		[CLKID_DMC_SEL2]		= &dmc_sel2.hw,
-> -		[NR_CLKS]			= NULL,
-> -	},
-> -	.num = NR_CLKS,
-> +static struct clk_hw *a1_periphs_hw_clks[] = {
-> +	[CLKID_XTAL_IN]			= &xtal_in.hw,
-> +	[CLKID_FIXPLL_IN]		= &fixpll_in.hw,
-> +	[CLKID_USB_PHY_IN]		= &usb_phy_in.hw,
-> +	[CLKID_USB_CTRL_IN]		= &usb_ctrl_in.hw,
-> +	[CLKID_HIFIPLL_IN]		= &hifipll_in.hw,
-> +	[CLKID_SYSPLL_IN]		= &syspll_in.hw,
-> +	[CLKID_DDS_IN]			= &dds_in.hw,
-> +	[CLKID_SYS]			= &sys.hw,
-> +	[CLKID_CLKTREE]			= &clktree.hw,
-> +	[CLKID_RESET_CTRL]		= &reset_ctrl.hw,
-> +	[CLKID_ANALOG_CTRL]		= &analog_ctrl.hw,
-> +	[CLKID_PWR_CTRL]		= &pwr_ctrl.hw,
-> +	[CLKID_PAD_CTRL]		= &pad_ctrl.hw,
-> +	[CLKID_SYS_CTRL]		= &sys_ctrl.hw,
-> +	[CLKID_TEMP_SENSOR]		= &temp_sensor.hw,
-> +	[CLKID_AM2AXI_DIV]		= &am2axi_dev.hw,
-> +	[CLKID_SPICC_B]			= &spicc_b.hw,
-> +	[CLKID_SPICC_A]			= &spicc_a.hw,
-> +	[CLKID_MSR]			= &msr.hw,
-> +	[CLKID_AUDIO]			= &audio.hw,
-> +	[CLKID_JTAG_CTRL]		= &jtag_ctrl.hw,
-> +	[CLKID_SARADC_EN]		= &saradc_en.hw,
-> +	[CLKID_PWM_EF]			= &pwm_ef.hw,
-> +	[CLKID_PWM_CD]			= &pwm_cd.hw,
-> +	[CLKID_PWM_AB]			= &pwm_ab.hw,
-> +	[CLKID_CEC]			= &cec.hw,
-> +	[CLKID_I2C_S]			= &i2c_s.hw,
-> +	[CLKID_IR_CTRL]			= &ir_ctrl.hw,
-> +	[CLKID_I2C_M_D]			= &i2c_m_d.hw,
-> +	[CLKID_I2C_M_C]			= &i2c_m_c.hw,
-> +	[CLKID_I2C_M_B]			= &i2c_m_b.hw,
-> +	[CLKID_I2C_M_A]			= &i2c_m_a.hw,
-> +	[CLKID_ACODEC]			= &acodec.hw,
-> +	[CLKID_OTP]			= &otp.hw,
-> +	[CLKID_SD_EMMC_A]		= &sd_emmc_a.hw,
-> +	[CLKID_USB_PHY]			= &usb_phy.hw,
-> +	[CLKID_USB_CTRL]		= &usb_ctrl.hw,
-> +	[CLKID_SYS_DSPB]		= &sys_dspb.hw,
-> +	[CLKID_SYS_DSPA]		= &sys_dspa.hw,
-> +	[CLKID_DMA]			= &dma.hw,
-> +	[CLKID_IRQ_CTRL]		= &irq_ctrl.hw,
-> +	[CLKID_NIC]			= &nic.hw,
-> +	[CLKID_GIC]			= &gic.hw,
-> +	[CLKID_UART_C]			= &uart_c.hw,
-> +	[CLKID_UART_B]			= &uart_b.hw,
-> +	[CLKID_UART_A]			= &uart_a.hw,
-> +	[CLKID_SYS_PSRAM]		= &sys_psram.hw,
-> +	[CLKID_RSA]			= &rsa.hw,
-> +	[CLKID_CORESIGHT]		= &coresight.hw,
-> +	[CLKID_AM2AXI_VAD]		= &am2axi_vad.hw,
-> +	[CLKID_AUDIO_VAD]		= &audio_vad.hw,
-> +	[CLKID_AXI_DMC]			= &axi_dmc.hw,
-> +	[CLKID_AXI_PSRAM]		= &axi_psram.hw,
-> +	[CLKID_RAMB]			= &ramb.hw,
-> +	[CLKID_RAMA]			= &rama.hw,
-> +	[CLKID_AXI_SPIFC]		= &axi_spifc.hw,
-> +	[CLKID_AXI_NIC]			= &axi_nic.hw,
-> +	[CLKID_AXI_DMA]			= &axi_dma.hw,
-> +	[CLKID_CPU_CTRL]		= &cpu_ctrl.hw,
-> +	[CLKID_ROM]			= &rom.hw,
-> +	[CLKID_PROC_I2C]		= &prod_i2c.hw,
-> +	[CLKID_DSPA_SEL]		= &dspa_sel.hw,
-> +	[CLKID_DSPB_SEL]		= &dspb_sel.hw,
-> +	[CLKID_DSPA_EN]			= &dspa_en.hw,
-> +	[CLKID_DSPA_EN_NIC]		= &dspa_en_nic.hw,
-> +	[CLKID_DSPB_EN]			= &dspb_en.hw,
-> +	[CLKID_DSPB_EN_NIC]		= &dspb_en_nic.hw,
-> +	[CLKID_RTC]			= &rtc.hw,
-> +	[CLKID_CECA_32K]		= &ceca_32k_out.hw,
-> +	[CLKID_CECB_32K]		= &cecb_32k_out.hw,
-> +	[CLKID_24M]			= &clk_24m.hw,
-> +	[CLKID_12M]			= &clk_12m.hw,
-> +	[CLKID_FCLK_DIV2_DIVN]		= &fclk_div2_divn.hw,
-> +	[CLKID_GEN]			= &gen.hw,
-> +	[CLKID_SARADC_SEL]		= &saradc_sel.hw,
-> +	[CLKID_SARADC]			= &saradc.hw,
-> +	[CLKID_PWM_A]			= &pwm_a.hw,
-> +	[CLKID_PWM_B]			= &pwm_b.hw,
-> +	[CLKID_PWM_C]			= &pwm_c.hw,
-> +	[CLKID_PWM_D]			= &pwm_d.hw,
-> +	[CLKID_PWM_E]			= &pwm_e.hw,
-> +	[CLKID_PWM_F]			= &pwm_f.hw,
-> +	[CLKID_SPICC]			= &spicc.hw,
-> +	[CLKID_TS]			= &ts.hw,
-> +	[CLKID_SPIFC]			= &spifc.hw,
-> +	[CLKID_USB_BUS]			= &usb_bus.hw,
-> +	[CLKID_SD_EMMC]			= &sd_emmc.hw,
-> +	[CLKID_PSRAM]			= &psram.hw,
-> +	[CLKID_DMC]			= &dmc.hw,
-> +	[CLKID_SYS_A_SEL]		= &sys_a_sel.hw,
-> +	[CLKID_SYS_A_DIV]		= &sys_a_div.hw,
-> +	[CLKID_SYS_A]			= &sys_a.hw,
-> +	[CLKID_SYS_B_SEL]		= &sys_b_sel.hw,
-> +	[CLKID_SYS_B_DIV]		= &sys_b_div.hw,
-> +	[CLKID_SYS_B]			= &sys_b.hw,
-> +	[CLKID_DSPA_A_SEL]		= &dspa_a_sel.hw,
-> +	[CLKID_DSPA_A_DIV]		= &dspa_a_div.hw,
-> +	[CLKID_DSPA_A]			= &dspa_a.hw,
-> +	[CLKID_DSPA_B_SEL]		= &dspa_b_sel.hw,
-> +	[CLKID_DSPA_B_DIV]		= &dspa_b_div.hw,
-> +	[CLKID_DSPA_B]			= &dspa_b.hw,
-> +	[CLKID_DSPB_A_SEL]		= &dspb_a_sel.hw,
-> +	[CLKID_DSPB_A_DIV]		= &dspb_a_div.hw,
-> +	[CLKID_DSPB_A]			= &dspb_a.hw,
-> +	[CLKID_DSPB_B_SEL]		= &dspb_b_sel.hw,
-> +	[CLKID_DSPB_B_DIV]		= &dspb_b_div.hw,
-> +	[CLKID_DSPB_B]			= &dspb_b.hw,
-> +	[CLKID_RTC_32K_IN]		= &rtc_32k_in.hw,
-> +	[CLKID_RTC_32K_DIV]		= &rtc_32k_div.hw,
-> +	[CLKID_RTC_32K_XTAL]		= &rtc_32k_xtal.hw,
-> +	[CLKID_RTC_32K_SEL]		= &rtc_32k_sel.hw,
-> +	[CLKID_CECB_32K_IN]		= &cecb_32k_in.hw,
-> +	[CLKID_CECB_32K_DIV]		= &cecb_32k_div.hw,
-> +	[CLKID_CECB_32K_SEL_PRE]	= &cecb_32k_sel_pre.hw,
-> +	[CLKID_CECB_32K_SEL]		= &cecb_32k_sel.hw,
-> +	[CLKID_CECA_32K_IN]		= &ceca_32k_in.hw,
-> +	[CLKID_CECA_32K_DIV]		= &ceca_32k_div.hw,
-> +	[CLKID_CECA_32K_SEL_PRE]	= &ceca_32k_sel_pre.hw,
-> +	[CLKID_CECA_32K_SEL]		= &ceca_32k_sel.hw,
-> +	[CLKID_DIV2_PRE]		= &fclk_div2_divn_pre.hw,
-> +	[CLKID_24M_DIV2]		= &clk_24m_div2.hw,
-> +	[CLKID_GEN_SEL]			= &gen_sel.hw,
-> +	[CLKID_GEN_DIV]			= &gen_div.hw,
-> +	[CLKID_SARADC_DIV]		= &saradc_div.hw,
-> +	[CLKID_PWM_A_SEL]		= &pwm_a_sel.hw,
-> +	[CLKID_PWM_A_DIV]		= &pwm_a_div.hw,
-> +	[CLKID_PWM_B_SEL]		= &pwm_b_sel.hw,
-> +	[CLKID_PWM_B_DIV]		= &pwm_b_div.hw,
-> +	[CLKID_PWM_C_SEL]		= &pwm_c_sel.hw,
-> +	[CLKID_PWM_C_DIV]		= &pwm_c_div.hw,
-> +	[CLKID_PWM_D_SEL]		= &pwm_d_sel.hw,
-> +	[CLKID_PWM_D_DIV]		= &pwm_d_div.hw,
-> +	[CLKID_PWM_E_SEL]		= &pwm_e_sel.hw,
-> +	[CLKID_PWM_E_DIV]		= &pwm_e_div.hw,
-> +	[CLKID_PWM_F_SEL]		= &pwm_f_sel.hw,
-> +	[CLKID_PWM_F_DIV]		= &pwm_f_div.hw,
-> +	[CLKID_SPICC_SEL]		= &spicc_sel.hw,
-> +	[CLKID_SPICC_DIV]		= &spicc_div.hw,
-> +	[CLKID_SPICC_SEL2]		= &spicc_sel2.hw,
-> +	[CLKID_TS_DIV]			= &ts_div.hw,
-> +	[CLKID_SPIFC_SEL]		= &spifc_sel.hw,
-> +	[CLKID_SPIFC_DIV]		= &spifc_div.hw,
-> +	[CLKID_SPIFC_SEL2]		= &spifc_sel2.hw,
-> +	[CLKID_USB_BUS_SEL]		= &usb_bus_sel.hw,
-> +	[CLKID_USB_BUS_DIV]		= &usb_bus_div.hw,
-> +	[CLKID_SD_EMMC_SEL]		= &sd_emmc_sel.hw,
-> +	[CLKID_SD_EMMC_DIV]		= &sd_emmc_div.hw,
-> +	[CLKID_SD_EMMC_SEL2]		= &sd_emmc_sel2.hw,
-> +	[CLKID_PSRAM_SEL]		= &psram_sel.hw,
-> +	[CLKID_PSRAM_DIV]		= &psram_div.hw,
-> +	[CLKID_PSRAM_SEL2]		= &psram_sel2.hw,
-> +	[CLKID_DMC_SEL]			= &dmc_sel.hw,
-> +	[CLKID_DMC_DIV]			= &dmc_div.hw,
-> +	[CLKID_DMC_SEL2]		= &dmc_sel2.hw,
->  };
->  
->  /* Convenience table to populate regmap in .probe */
-> @@ -2190,6 +2187,11 @@ static struct regmap_config a1_periphs_regmap_cfg = {
->  	.reg_stride = 4,
->  };
->  
-> +static struct meson_clk_hw_data a1_periphs_clks = {
-> +	.hws = a1_periphs_hw_clks,
-> +	.num = ARRAY_SIZE(a1_periphs_hw_clks),
-> +};
-> +
->  static int meson_a1_periphs_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -2219,8 +2221,7 @@ static int meson_a1_periphs_probe(struct platform_device *pdev)
->  					     clkid);
->  	}
->  
-> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> -					   &a1_periphs_clks);
-> +	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get, &a1_periphs_clks);
->  }
->  
->  static const struct of_device_id a1_periphs_clkc_match_table[] = {
-> diff --git a/drivers/clk/meson/a1-peripherals.h b/drivers/clk/meson/a1-peripherals.h
-> index 526fc9ba5c9f..4d60456a95a9 100644
-> --- a/drivers/clk/meson/a1-peripherals.h
-> +++ b/drivers/clk/meson/a1-peripherals.h
-> @@ -108,6 +108,5 @@
->  #define CLKID_DMC_SEL		151
->  #define CLKID_DMC_DIV		152
->  #define CLKID_DMC_SEL2		153
-> -#define NR_CLKS			154
->  
->  #endif /* __A1_PERIPHERALS_H */
-> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
-> index bd2f1d1ec6e4..25e6b567afd5 100644
-> --- a/drivers/clk/meson/a1-pll.c
-> +++ b/drivers/clk/meson/a1-pll.c
-> @@ -12,6 +12,7 @@
->  #include <linux/platform_device.h>
->  #include "a1-pll.h"
->  #include "clk-regmap.h"
-> +#include "meson-clkc-utils.h"
->  
->  static struct clk_regmap fixed_pll_dco = {
->  	.data = &(struct meson_clk_pll_data){
-> @@ -268,22 +269,18 @@ static struct clk_regmap fclk_div7 = {
->  };
->  
->  /* Array of all clocks registered by this provider */
-> -static struct clk_hw_onecell_data a1_pll_clks = {
-> -	.hws = {
-> -		[CLKID_FIXED_PLL_DCO]	= &fixed_pll_dco.hw,
-> -		[CLKID_FIXED_PLL]	= &fixed_pll.hw,
-> -		[CLKID_FCLK_DIV2_DIV]	= &fclk_div2_div.hw,
-> -		[CLKID_FCLK_DIV3_DIV]	= &fclk_div3_div.hw,
-> -		[CLKID_FCLK_DIV5_DIV]	= &fclk_div5_div.hw,
-> -		[CLKID_FCLK_DIV7_DIV]	= &fclk_div7_div.hw,
-> -		[CLKID_FCLK_DIV2]	= &fclk_div2.hw,
-> -		[CLKID_FCLK_DIV3]	= &fclk_div3.hw,
-> -		[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
-> -		[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
-> -		[CLKID_HIFI_PLL]	= &hifi_pll.hw,
-> -		[NR_PLL_CLKS]		= NULL,
-> -	},
-> -	.num = NR_PLL_CLKS,
-> +static struct clk_hw *a1_pll_hw_clks[] = {
-> +	[CLKID_FIXED_PLL_DCO]	= &fixed_pll_dco.hw,
-> +	[CLKID_FIXED_PLL]	= &fixed_pll.hw,
-> +	[CLKID_FCLK_DIV2_DIV]	= &fclk_div2_div.hw,
-> +	[CLKID_FCLK_DIV3_DIV]	= &fclk_div3_div.hw,
-> +	[CLKID_FCLK_DIV5_DIV]	= &fclk_div5_div.hw,
-> +	[CLKID_FCLK_DIV7_DIV]	= &fclk_div7_div.hw,
-> +	[CLKID_FCLK_DIV2]	= &fclk_div2.hw,
-> +	[CLKID_FCLK_DIV3]	= &fclk_div3.hw,
-> +	[CLKID_FCLK_DIV5]	= &fclk_div5.hw,
-> +	[CLKID_FCLK_DIV7]	= &fclk_div7.hw,
-> +	[CLKID_HIFI_PLL]	= &hifi_pll.hw,
->  };
->  
->  static struct clk_regmap *const a1_pll_regmaps[] = {
-> @@ -302,6 +299,11 @@ static struct regmap_config a1_pll_regmap_cfg = {
->  	.reg_stride = 4,
->  };
->  
-> +static struct meson_clk_hw_data a1_pll_clks = {
-> +	.hws = a1_pll_hw_clks,
-> +	.num = ARRAY_SIZE(a1_pll_hw_clks),
-> +};
-> +
->  static int meson_a1_pll_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -332,7 +334,7 @@ static int meson_a1_pll_probe(struct platform_device *pdev)
->  					     clkid);
->  	}
->  
-> -	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
-> +	return devm_of_clk_add_hw_provider(dev, meson_clk_hw_get,
->  					   &a1_pll_clks);
->  }
->  
-> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
-> index 29726651b056..82570759e6a2 100644
-> --- a/drivers/clk/meson/a1-pll.h
-> +++ b/drivers/clk/meson/a1-pll.h
-> @@ -42,6 +42,5 @@
->  #define CLKID_FCLK_DIV3_DIV	3
->  #define CLKID_FCLK_DIV5_DIV	4
->  #define CLKID_FCLK_DIV7_DIV	5
-> -#define NR_PLL_CLKS		11
->  
->  #endif /* __A1_PLL_H */
+On Wed, May 10, 2023 at 06:22:41PM +0200, Martin Zaťovič wrote:
 
-Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+This needs much more work. See my comments below.
+
+> Add a bus driver for Wiegand protocol. The bus driver handles
+> Wiegand controller and Wiegand device managemement and driver
+> matching. The bus driver defines the structures for Wiegand
+> controllers and Wiegand devices.
+> 
+> Wiegand controller structure represents a master and contains
+> attributes such as the payload_len for configuring the size
+> of a single Wiegand message in bits. It also stores the
+> controller attributes defined in the devicetree.
+> 
+> Each Wiegand controller should be associated with one Wiegand
+> device, as Wiegand is typically a point-to-point bus.
+
+Any chance to have a Datasheet: (or Link:) tag to point to the protocol
+specifications?
+
+...
+
+> +config WIEGAND
+> +        tristate "Wiegand Bus driver"
+> +        help
+> +	  The "Wiegand Interface" is an asynchronous low-level protocol
+> +	  or wiring standard. It is typically used for point-to-point
+> +	  communication. The data length of Wiegand messages is not defined,
+> +	  so the devices usually default to 26, 36 or 37 bits per message.
+> +	  The throughput of Wiegand depends on the selected pulse length and
+> +	  the intervals between pulses, in comparison to other busses it
+> +	  is generally rather slow.
+> +
+> +	  Despite its higher age, Wiegand remains widely used in access
+> +	  control systems to connect a card swipe mechanism. Such mechanisms
+> +	  utilize the Wiegand effect to transfer data from the card to
+> +	  the reader.
+> +
+> +	  Wiegand uses two wires to transmit the data D0 and D1. Both lines
+> +	  are initially pulled up. When a bit of value 0 is being transmitted,
+> +	  the D0 line is pulled down. Similarly, when a bit of value 1 is being
+> +	  transmitted, the D1 line is pulled down.
+
+&You have an indentation issues in all lines above, except the first one.
+
+Should be
+
+config ...
+<TAB>tristate
+<TAB>help
+<TAB><sp><sp>help text
+
+<TAB> — tabulation
+<sp> — space
+
+...
+
+> +#include <linux/cdev.h>
+
++ container_of.h
+
+> +#include <linux/device.h>
+> +#include <linux/dmaengine.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/property.h>
+> +#include <linux/slab.h>
+
++ types.h
+
+> +#include <linux/wiegand.h>
+
+...
+
+> +/**
+> + * struct wiegand_device - Wiegand listener device
+> + * @dev - drivers structure of the device
+> + * @id - unique device id
+> + * @controller - Wiegand controller associated with the device
+> + * @modalias - Name of the driver to use with this device, or its alias.
+> + */
+> +struct wiegand_device {
+> +	struct device dev;
+> +	u8 id;
+> +	struct wiegand_controller *controller;
+> +	char modalias[WIEGAND_NAME_SIZE];
+> +};
+
+> +DEFINE_IDA(wiegand_controller_ida);
+
+Why not static?
+
+> +static inline void wiegand_device_put(struct wiegand_device *wiegand);
+> +static inline struct wiegand_device *to_wiegand_device(struct device *dev);
+> +
+> +static int wiegand_fopen(struct inode *ino, struct file *filp);
+> +static int wiegand_frelease(struct inode *ino, struct file *filp);
+> +static ssize_t wiegand_fwrite(struct file *filp, char __user const *buf, size_t len,
+> +				loff_t *offset);
+
+Why do you need forward declarations?
+
+...
+
+> +struct wiegand_controller *wiegand_alloc_controller(struct device *dev, unsigned int size,
+> +						bool secondary)
+> +{
+> +	struct wiegand_controller *ctlr;
+> +	size_t ctlr_size = ALIGN(sizeof(*ctlr), dma_get_cache_alignment());
+
+> +	if (!dev)
+> +		return NULL;
+
+Hmm... Why this check is needed?
+
+> +	ctlr = kzalloc(size + ctlr_size, GFP_KERNEL);
+
+Perhaps you need to use one of the macros from overflow.h.
+
+> +	if (!ctlr)
+> +		return NULL;
+> +
+> +	device_initialize(&ctlr->dev);
+> +
+> +	ctlr->bus_num = -1;
+> +	ctlr->secondary = secondary;
+> +	ctlr->dev.parent = dev;
+> +	ctlr->dev.release = wiegand_controller_release;
+> +
+> +	wiegand_controller_set_devdata(ctlr, (void *)ctlr + ctlr_size);
+> +
+> +	return ctlr;
+> +}
+
+...
+
+> +EXPORT_SYMBOL_GPL(wiegand_alloc_controller);
+
+Can we have it namespaced from day 1, please?
+
+...
+
+> +struct wiegand_controller *devm_wiegand_alloc_controller(struct device *dev, unsigned int size,
+> +							bool secondary)
+> +{
+> +	struct wiegand_controller *ctlr, **ptr;
+> +
+> +	ptr = devres_alloc(devm_wiegand_release_controller, sizeof(*ptr), GFP_KERNEL);
+> +	if (!ptr)
+> +		return NULL;
+> +
+> +	ctlr = wiegand_alloc_controller(dev, size, secondary);
+> +	if (ctlr) {
+> +		ctlr->devm_allocated = true;
+> +		*ptr = ctlr;
+> +		devres_add(dev, ptr);
+> +	} else {
+> +		devres_free(ptr);
+> +	}
+
+Please, use devm_add_action_or_reset().
+
+> +	return ctlr;
+> +}
+
+> +/**
+> + * register_wiegand_device - allocates and registers a new Wiegand device
+> + * @ctlr: controller structure to attach device to
+> + * @nc: devicetree node for the device
+
+Have you run kernel doc validator?
+And it's not device tree only anymore, use word "firmware" instead.
+
+> + */
+
+...
+
+> +	wiegand = wiegand_alloc_device(ctlr);
+> +	if (!wiegand) {
+
+> +		dev_err(&ctlr->dev, "wiegad_device alloc error for %pOF\n", fwnode);
+
+We don't print an error messages for -ENOMEM.
+
+> +		ret = -ENOMEM;
+> +		goto err_out;
+
+Are you sure we need to put the device in this case? When it will be not NULL here?
+
+> +	}
+
+> +	fwnode_handle_get(fwnode);
+> +	wiegand->dev.fwnode = fwnode;
+
+Not sure why you need a bumped reference, but in any case the problematic
+is the second line. Please, avoid dereferencing fwnode in struct device.
+Use respective APIs, here is device_set_node().
+
+> +	ret = wiegand_add_device(wiegand);
+> +	if (ret) {
+> +		dev_err(&ctlr->dev, "wiegand_device register error %pOF\n", fwnode);
+> +		goto err_node_put;
+> +	}
+> +
+> +	/* check if more devices are connected to the bus */
+> +	if (ctlr->device_count > 1)
+> +		dev_warn(&ctlr->dev, "Wiegand is a point-to-point bus, it is advised to only connect one device per Wiegand bus. The devices may not communicate using the same pulse length, format or else.\n");
+> +
+> +	return wiegand;
+> +
+> +err_node_put:
+> +	fwnode_handle_put(fwnode);
+> +err_out:
+> +	wiegand_device_put(wiegand);
+> +	return ERR_PTR(ret);
+
+...
+
+> +static void register_wiegand_devices(struct wiegand_controller *ctlr)
+> +{
+> +	struct wiegand_device *wiegand;
+> +	struct fwnode_handle *fwnode;
+
+> +	if (!ctlr->dev.fwnode)
+> +		return;
+
+This is a dup, which is implied already by the below for_each call.
+
+> +	fwnode_for_each_available_child_node(ctlr->dev.fwnode, fwnode) {
+> +		wiegand = register_wiegand_device(ctlr, fwnode);
+> +		if (IS_ERR(wiegand))
+> +			dev_warn(&ctlr->dev, "failed to create wiegand device for %pOF\n", fwnode);
+
+You are using wrong specifier for fwnode. PLease, fix it everywhere.
+
+> +	}
+> +}
+
+...
+
+> +static void wiegand_controller_parse_property(struct device *dev, const char *prop_name,
+> +				       u32 *cur_val_p, u32 def_val, bool use_def)
+> +{
+> +	int ret;
+> +
+> +	ret = device_property_read_u32(dev, prop_name, cur_val_p);
+> +	if ((ret && use_def) || *cur_val_p == 0)
+> +		*cur_val_p = def_val;
+> +
+> +	dev_dbg(dev, "%s: %u\n", prop_name, *cur_val_p);
+
+Why do we need this message? What for?
+
+> +}
+
+> +#define USE_DEFAULT_VAL 1
+
+Redundant. hence redundant second parameter to the above call.
+
+...
+
+> +static void wiegand_controller_parse_properties(struct wiegand_controller *ctlr)
+> +{
+> +	wiegand_controller_parse_property(&ctlr->dev, "pulse-len-us", &ctlr->pulse_len,
+> +					  50, USE_DEFAULT_VAL);
+> +	wiegand_controller_parse_property(&ctlr->dev, "interval-len-us", &ctlr->interval_len,
+> +					  2000, USE_DEFAULT_VAL);
+> +	wiegand_controller_parse_property(&ctlr->dev, "frame-gap-us", &ctlr->frame_gap,
+> +					  2000, USE_DEFAULT_VAL);
+
+Default make more sense from group parsing, like I²C core does for timings.
+
+> +}
+
+...
+
+> +int wiegand_register_controller(struct wiegand_controller *ctlr)
+> +{
+> +	struct device *dev = ctlr->dev.parent;
+> +	int status, id;
+
+> +	if (!dev)
+> +		return -ENODEV;
+
+Why?
+
+> +	status = wiegand_controller_check_ops(ctlr);
+> +	if (status)
+> +		return status;
+> +
+> +	id = ida_alloc(&wiegand_controller_ida, GFP_KERNEL);
+> +	if (WARN(id < 0, "couldn't get an id\n"))
+
+Is it really needs to be WARN()?
+
+> +		return id;
+> +	ctlr->bus_num = id;
+
+> +	dev_set_name(&ctlr->dev, "wiegand%u", ctlr->bus_num);
+
+No check?
+
+> +	ctlr->miscdev.name = kasprintf(GFP_KERNEL, "wiegand1");
+> +	if (!ctlr->miscdev.name)
+> +		return -ENOMEM;
+
+...
+
+> +free_bus_id:
+
+out_free_bus_id:
+
+> +	ida_free(&wiegand_controller_ida, ctlr->bus_num);
+> +	misc_deregister(&ctlr->miscdev);
+> +	kfree(ctlr->miscdev.name);
+> +	return status;
+> +}
+
+...
+
+> +static inline void wiegand_device_put(struct wiegand_device *wiegand)
+
+And where is the corresponding get()?
+
+> +{
+> +	if (wiegand)
+> +		put_device(&wiegand->dev);
+
+> +	if (wiegand->controller->cleanup)
+> +		wiegand->controller->cleanup(wiegand);
+
+Dup of wiegand_cleanup().
+
+> +}
+
+...
+
+> +static int wiegand_dev_set_name(struct wiegand_device *wiegand, u8 id)
+> +{
+> +	int ret = dev_set_name(&wiegand->dev, "%s.%u", dev_name(&wiegand->controller->dev), id);
+> +	return ret;
+
+	return dev_set_name(...); ?
+
+> +}
+
+...
+
+> +int wiegand_setup(struct wiegand_device *wiegand)
+> +{
+> +	int status = 0;
+
+Redundant assignment, see below.
+
+> +	if (wiegand->controller->setup) {
+> +		status = wiegand->controller->setup(wiegand);
+> +		if (status) {
+> +			dev_err(&wiegand->controller->dev, "failed to setup device: %d\n", status);
+
+In all such cases you may make the code neater with
+
+	struct device *ctrl_dev = &wiegand->controller->dev;
+
+Also consider
+
+	struct ... *ctrl = wiegand->controller;
+	struct device *ctrl_dev = &controller->dev;
+
+> +			return status;
+> +		}
+> +	}
+
+> +	return status;
+
+Here it's always 0, right?
+
+	return 0;
+
+> +}
+
+...
+
+> +void wiegand_unregister_device(struct wiegand_device *wiegand)
+> +{
+> +	if (!wiegand)
+> +		return;
+
+> +	if (wiegand->dev.fwnode)
+
+Yet another dup conditional, implied by fwnode API.
+
+> +		fwnode_handle_put(wiegand->dev.fwnode);
+
+> +	fwnode_remove_software_node(wiegand->dev.fwnode);
+
+Where this has come from? Leftover from some copy'n'paste?
+
+> +	device_del(&wiegand->dev);
+> +	wiegand_cleanup(wiegand);
+> +	put_device(&wiegand->dev);
+> +}
+
+...
+
+> +static ssize_t wiegand_get_user_data(struct wiegand_controller *ctlr, char __user const *buf,
+> +					  size_t len)
+> +{
+> +	int i;
+> +	char data_buffer[WIEGAND_MAX_PAYLEN_BYTES];
+> +
+> +	if (len > WIEGAND_MAX_PAYLEN_BYTES)
+> +		return -EBADMSG;
+> +
+> +	if (copy_from_user(&data_buffer[0], buf, WIEGAND_MAX_PAYLEN_BYTES))
+
+&data_buffer[0] --> data_buffer
+
+> +		return -EFAULT;
+> +
+> +	for (i = 0; i < len; i++)
+> +		bitmap_set_value8(ctlr->data_bitmap, data_buffer[i], i * 8);
+> +
+> +	return len;
+> +}
+
+I'm wondering why you can't use bitmap_parse_user() with the respective format?
+Or even bitmap_parselist_user() (if you feel like this would be better, I feel
+like not really, but who knows).
+
+...
+
+> +static ssize_t wiegand_fwrite(struct file *filp, char __user const *buf, size_t len,
+> +				loff_t *offset)
+> +{
+> +	int ret;
+> +	struct wiegand_controller *ctlr = filp->private_data;
+> +	u32 msg_length = ctlr->payload_len;
+> +
+> +	if (!buf || len == 0 || DIV_ROUND_UP(msg_length, 8) > len)
+
+BITS_TO_BYTES()
+
+> +		return -EINVAL;
+> +
+> +	ret = wiegand_get_user_data(ctlr, buf, len);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ctlr->transfer_message(ctlr);
+> +
+> +	return len;
+> +}
+
+...
+
+> +static int wiegand_fopen(struct inode *ino, struct file *filp)
+> +{
+> +	int ret;
+> +	struct wiegand_controller *ctlr = container_of(filp->f_op, struct wiegand_controller, fops);
+> +
+> +	filp->private_data = ctlr;
+> +
+> +	mutex_lock(&ctlr->file_lock);
+> +
+> +	if ((filp->f_flags & O_ACCMODE) == O_RDONLY || (filp->f_flags & O_ACCMODE) == O_RDWR) {
+> +		dev_err(ctlr->miscdev.this_device, "device is write only\n");
+> +		ret = -EIO;
+> +		goto err;
+> +	}
+> +
+> +	mutex_unlock(&ctlr->file_lock);
+> +
+> +	return 0;
+> +err:
+
+err_unlock:
+
+> +	mutex_unlock(&ctlr->file_lock);
+
+> +	mutex_destroy(&ctlr->file_lock);
+
+Huh?!
+
+> +	return ret;
+> +}
+
+...
+
+> +	return (strcmp(wiegand_dev->modalias, drv->name) == 0);
+
+Outer parentheses are redundant.
+
+...
+
+> +static int wiegand_probe(struct device *dev)
+> +{
+> +	struct wiegand_device *wiegand = to_wiegand_device(dev);
+> +	const struct wiegand_driver *wdrv = to_wiegand_driver(dev->driver);
+
+> +	if (wdrv->probe)
+
+Shouldn't this be a mandatory callback? Or i.o.w. can you elaborate the use
+case with probe == NULL?
+
+> +		return wdrv->probe(wiegand);
+> +
+> +	return 0;
+> +}
+
+...
+
+> +static int __init wiegand_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = bus_register(&wiegand_bus_type);
+> +	if (ret < 0) {
+> +		pr_err("Wiegand bus registration failed: %d\n", ret);
+
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+
+	return ret;
+
+> +}
+
+...
+
+> +postcore_initcall_sync(wiegand_init);
+
+Move it closer to the callback itself.
+
+...
+
+
+> +#ifndef H_LINUX_INCLUDE_LINUX_WIEGAND_H
+> +#define H_LINUX_INCLUDE_LINUX_WIEGAND_H
+
+container_of.h
+
+> +#include <linux/device.h>
+> +#include <linux/miscdevice.h>
+
+> +#include <linux/mod_devicetable.h>
+
+Not sure it's in use.
+
+> +#include <linux/mutex.h>
+
+types.h
+
+> +#define WIEGAND_NAME_SIZE 32
+> +#define WIEGAND_MAX_PAYLEN_BYTES 256
+
+> +extern struct bus_type wiegand_type;
+
+So, extern or static? Please, be consistent.
+
+...
+
+> +	struct file_operations fops;
+
+Missing header for this data type.
+
+...
+
+> +#define wiegand_primary_get_devdata(_ctlr) wiegand_controller_get_devdata(_ctlr)
+> +#define wiegand_primary_set_devdata(_ctlr, _data) wiegand_controller_set_devdata(_ctlr, _data)
+
+Why not _data --> data?
+
+...
+
+> +extern void wiegand_unregister_device(struct wiegand_device *wiegand);
+> +extern struct wiegand_controller *wiegand_device_get_controller(struct wiegand_device *dev);
+> +
+> +extern int wiegand_send_message(struct wiegand_device *wiegand, unsigned long *msg_bmp, u8 bitlen);
+
+...and so on...
+
+Drop extern from the function declarations.
+
+...
+
+> +/* Wiegand driver section  */
+
+Single space is enough.
 
 -- 
-Thank you,
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
+
