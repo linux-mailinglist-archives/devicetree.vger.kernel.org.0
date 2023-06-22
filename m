@@ -2,245 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EE31739A0F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64C60739A32
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:41:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230256AbjFVIj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 04:39:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54766 "EHLO
+        id S231251AbjFVIle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 04:41:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230324AbjFVIj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:39:26 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF8301735
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:39:24 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f9c532f9e3so15007435e9.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:39:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687423163; x=1690015163;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=k0QqmAQxOCR9WmyA23FO0tDkyVaDJkVOchcGpmQ0H/8=;
-        b=XMaCJjKqW64Yy/LmmNWkpqgOj2SUtVYd3epL2r3fO0e0ME7TIk+5jjo0YshG/cuL2u
-         tG0j4wXaDWG4o1RJSVVJ9rZP95Lojji79Hd2LIIAdM1EFhizse5pJ4yIfLGIm1JKefF9
-         Jb5o/pIP5JHLuMtj3gflBmdX6gcSSk+KQhDWAuCnE9yl7dEc/StdNxmFNppJA6vZKBJ5
-         TMYfF0WqihTmrqsG1UFFD3aYi+QQ3QjNuyK8VZtCnImehzgd/SMi7MH47vPJ9IKpYupl
-         +SuIw+C8gKIK95jV+z6mFX0PEOh/KW39qTClmuIbETjlz2mRPsh55XSKUfjTWz7qmmFp
-         3QZw==
+        with ESMTP id S230462AbjFVIlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:41:11 -0400
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4216A2705;
+        Thu, 22 Jun 2023 01:40:50 -0700 (PDT)
+Received: by mail-lj1-f169.google.com with SMTP id 38308e7fff4ca-2b46b11051aso75837931fa.3;
+        Thu, 22 Jun 2023 01:40:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687423163; x=1690015163;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=k0QqmAQxOCR9WmyA23FO0tDkyVaDJkVOchcGpmQ0H/8=;
-        b=A+65mUTSoUXfRTiEmERA9t08nqVc9fvlRA26zWEt7ZaQYqEXtR2c4hvFmkUSGIWr4u
-         x++rDh/O/R+Txk39qbO5BlxdmQKF953YX3/Ekp4NJKT6I6DMjWqNoRDSvXkG4c6D2k1s
-         F9ab4O0vzOTP5xSZrsIziaVn+PHbNOV/PlchowaMvShm31ZTCnrmnTnnfD+WO1X32ME3
-         3l69w97RvMAauH3TiOfzDXclwiSb1h13qthfiLh+UFUHwwA02+0NJ+xVnw3pf78oI4jV
-         7bBSjRUoK1X5kMaasSrYGuJbn4+g4mUZcDPyZCg1LuMe4UPXQ647UUbAIfyOvCdXvb46
-         JEnQ==
-X-Gm-Message-State: AC+VfDyqz7z+QUDnS91/z83rcRpuzvn5NPWj9/LG4jGcLiqwBdZtEU7h
-        n6DaQbjzPFTQm1bWrhdJXq8T9Q==
-X-Google-Smtp-Source: ACHHUZ7mpwDUJPJ7OoyLIcf/xBMWHPZvalvdPraKrRy+zIL4pkaLJvM3fuZBbBMIi1AxFGcjtxYj1Q==
-X-Received: by 2002:a7b:cd89:0:b0:3fa:77f2:e255 with SMTP id y9-20020a7bcd89000000b003fa77f2e255mr141451wmj.5.1687423163274;
-        Thu, 22 Jun 2023 01:39:23 -0700 (PDT)
-Received: from blmsp ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
-        by smtp.gmail.com with ESMTPSA id hn10-20020a05600ca38a00b003f60eb72cf5sm18433877wmb.2.2023.06.22.01.39.22
+        d=1e100.net; s=20221208; t=1687423248; x=1690015248;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=N9YCzbE3BtCbYZxorE+VgLmJ94PqcGOmK4iEO6z1Lc4=;
+        b=U+XDv9j44Urv89V4dIndyN4gbXilizz/07MzUBu/Vaw921KGA5OWwW1Gbn3+shQRd4
+         UvIbjadU+thPrtWxOhZaTTakfwRWAZymW4O5bugArmi3BRW0Za4oi2TbQYAZjcKoxBSh
+         ajcoFgwDyTWRHvwZ0wHl1aJn1zWqpEnJqBzOu5VOzyxU2oBqyAH+HTgy1ftOZ/S3z36e
+         QRoseKv1xr8CNFo4XOqto2o3sJjELcln4lXyJ8AYwX6U7VBH7DoKS/SPdoN4RIytTPn/
+         2rxPdUTwdnwzKAV4LwF0w0egBkBJg85x/3dyXmIbaILjuuO/6LEfQbR9H5Z0h/DUQanH
+         zqEg==
+X-Gm-Message-State: AC+VfDysPoKhlWg5DcXe/5i/Nr+yFIGCz1Ka84Hokbe+2OPsWMLcwiih
+        uUnzwbaeZ0Ci9y5CDS2U4cw=
+X-Google-Smtp-Source: ACHHUZ5N2r8BP6GAJSnJNPvHsWDjZfu+BRhku7SGsnPX5jaHsvXUVTjRzeDcGOayRShnS5fqe83ilw==
+X-Received: by 2002:a2e:7a17:0:b0:2b5:1b80:2637 with SMTP id v23-20020a2e7a17000000b002b51b802637mr5498710ljc.25.1687423248013;
+        Thu, 22 Jun 2023 01:40:48 -0700 (PDT)
+Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id v5-20020a05600c214500b003f7f87ba116sm15441277wml.19.2023.06.22.01.40.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 01:39:22 -0700 (PDT)
-Date:   Thu, 22 Jun 2023 10:39:21 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thu, 22 Jun 2023 01:40:47 -0700 (PDT)
+From:   Lucas Tanure <tanure@linux.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
-        Tinghan Shen <tinghan.shen@mediatek.com>,
-        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Alexandre Bailon <abailon@baylibre.com>,
-        Fabien Parent <fparent@baylibre.com>
-Subject: Re: [PATCH v5 6/8] soc: mediatek: Add support for WAY_EN operations
-Message-ID: <20230622083921.tc3wsl6jyluenmru@blmsp>
-References: <20230619085344.2885311-1-msp@baylibre.com>
- <20230619085344.2885311-7-msp@baylibre.com>
- <590f9a11-a153-abaf-0f99-9496882ee929@collabora.com>
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Nick <nick@khadas.com>, Artem <art@khadas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lucas Tanure <tanure@linux.com>
+Subject: [PATCH v4 0/3] Add Amlogic A311D2 and Khadas Vim4 Board Support
+Date:   Thu, 22 Jun 2023 09:40:42 +0100
+Message-ID: <20230622084045.519203-1-tanure@linux.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <590f9a11-a153-abaf-0f99-9496882ee929@collabora.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 19, 2023 at 11:29:18AM +0200, AngeloGioacchino Del Regno wrote:
-> Il 19/06/23 10:53, Markus Schneider-Pargmann ha scritto:
-> > From: Alexandre Bailon <abailon@baylibre.com>
-> > 
-> > This updates the power domain to support WAY_EN operations. WAY_EN
-> > operations on mt8365 are using a different component to check for the
-> > acknowledgment, namely the infracfg-nao component. Also to enable a way
-> > it the bit needs to be cleared while disabling a way needs a bit to be
-> > set. To support these two operations two flags are added,
-> > BUS_PROT_INVERTED and BUS_PROT_STA_COMPONENT_INFRA_NAO. Additionally
-> > another regmap is created if the INFRA_NAO capability is set.
-> > 
-> > This operation is required by the mt8365 for the MM power domain.
-> > 
-> > Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-> > Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> > ---
-> >   drivers/soc/mediatek/mtk-pm-domains.c | 39 +++++++++++++++++++++++----
-> >   drivers/soc/mediatek/mtk-pm-domains.h |  7 +++--
-> >   2 files changed, 39 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
-> > index 3cdf62c0b6bd..4659f0a0aa08 100644
-> > --- a/drivers/soc/mediatek/mtk-pm-domains.c
-> > +++ b/drivers/soc/mediatek/mtk-pm-domains.c
-> > @@ -44,6 +44,7 @@ struct scpsys_domain {
-> >   	struct clk_bulk_data *clks;
-> >   	int num_subsys_clks;
-> >   	struct clk_bulk_data *subsys_clks;
-> > +	struct regmap *infracfg_nao;
-> >   	struct regmap *infracfg;
-> >   	struct regmap *smi;
-> >   	struct regulator *supply;
-> > @@ -127,13 +128,26 @@ static struct regmap *scpsys_bus_protect_get_regmap(struct scpsys_domain *pd,
-> >   		return pd->infracfg;
-> >   }
-> > +static struct regmap *scpsys_bus_protect_get_sta_regmap(struct scpsys_domain *pd,
-> > +							const struct scpsys_bus_prot_data *bpd)
-> > +{
-> > +	if (bpd->flags & BUS_PROT_STA_COMPONENT_INFRA_NAO)
-> > +		return pd->infracfg_nao;
-> > +	else
-> > +		return scpsys_bus_protect_get_regmap(pd, bpd);
-> > +}
-> > +
-> >   static int scpsys_bus_protect_clear(struct scpsys_domain *pd,
-> >   				    const struct scpsys_bus_prot_data *bpd)
-> >   {
-> > +	struct regmap *sta_regmap = scpsys_bus_protect_get_sta_regmap(pd, bpd);
-> >   	struct regmap *regmap = scpsys_bus_protect_get_regmap(pd, bpd);
-> > +	u32 expected_ack;
-> >   	u32 val;
-> >   	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > +	expected_ack = (bpd->flags & BUS_PROT_STA_COMPONENT_INFRA_NAO ? sta_mask : 0);
-> > +
-> >   	if (bpd->flags & BUS_PROT_REG_UPDATE)
-> >   		regmap_clear_bits(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
-> >   	else
-> > @@ -142,14 +156,15 @@ static int scpsys_bus_protect_clear(struct scpsys_domain *pd,
-> >   	if (bpd->flags & BUS_PROT_IGNORE_CLR_ACK)
-> >   		return 0;
-> > -	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> > -					val, !(val & sta_mask),
-> > +	return regmap_read_poll_timeout(sta_regmap, bpd->bus_prot_sta,
-> > +					val, (val & sta_mask) == expected_ack,
-> >   					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> >   }
-> >   static int scpsys_bus_protect_set(struct scpsys_domain *pd,
-> >   				  const struct scpsys_bus_prot_data *bpd)
-> >   {
-> > +	struct regmap *sta_regmap = scpsys_bus_protect_get_sta_regmap(pd, bpd);
-> >   	struct regmap *regmap = scpsys_bus_protect_get_regmap(pd, bpd);
-> >   	u32 val;
-> >   	u32 sta_mask = bpd->bus_prot_sta_mask;
-> > @@ -159,7 +174,7 @@ static int scpsys_bus_protect_set(struct scpsys_domain *pd,
-> >   	else
-> >   		regmap_write(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
-> > -	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
-> > +	return regmap_read_poll_timeout(sta_regmap, bpd->bus_prot_sta,
-> >   					val, (val & sta_mask) == sta_mask,
-> >   					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
-> >   }
-> > @@ -173,7 +188,10 @@ static int scpsys_bus_protect_enable(struct scpsys_domain *pd)
-> >   		if (!bpd->bus_prot_set_clr_mask)
-> >   			break;
-> > -		ret = scpsys_bus_protect_set(pd, bpd);
-> > +		if (bpd->flags & BUS_PROT_INVERTED)
-> > +			ret = scpsys_bus_protect_clear(pd, bpd);
-> > +		else
-> > +			ret = scpsys_bus_protect_set(pd, bpd);
-> >   		if (ret)
-> >   			return ret;
-> >   	}
-> > @@ -190,7 +208,10 @@ static int scpsys_bus_protect_disable(struct scpsys_domain *pd)
-> >   		if (!bpd->bus_prot_set_clr_mask)
-> >   			continue;
-> > -		ret = scpsys_bus_protect_clear(pd, bpd);
-> > +		if (bpd->flags & BUS_PROT_INVERTED)
-> > +			ret = scpsys_bus_protect_set(pd, bpd);
-> > +		else
-> > +			ret = scpsys_bus_protect_clear(pd, bpd);
-> >   		if (ret)
-> >   			return ret;
-> >   	}
-> > @@ -377,6 +398,14 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_no
-> >   			return ERR_CAST(pd->smi);
-> >   	}
-> > +	pd->infracfg_nao = syscon_regmap_lookup_by_phandle(node, "mediatek,infracfg-nao");
-> 
-> If we don't expect infracfg-nao to be present, what's the point about trying to
-> get a regmap handle and then failing only if we do expect it to be there?
-> 
-> At this point you can just do...
-> 
-> 	if (MTK_SCPD_CAPS(pd, MTK_SCPD_HAS_INFRA_NAO)) {
-> 		pd->infracfg_nao = syscon_regmap_lookup_by_phandle(...);
-> 		if (IS_ERR(....))
-> 			return ....
-> 	}
+The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic
+Meson T7 family. This chip is not the same as A311D used in Vim3
+board.
 
-Yes! My code looks stupid. Thanks!
+Work based on Khadas 5.4 branch:
+https://github.com/khadas/linux/tree/khadas-vims-5.4.y
 
-> 
-> > +	if (IS_ERR(pd->infracfg_nao)) {
-> > +		if (MTK_SCPD_CAPS(pd, MTK_SCPD_HAS_INFRA_NAO))
-> > +			return ERR_CAST(pd->infracfg_nao);
-> > +
-> > +		pd->infracfg_nao = NULL;
-> > +	}
-> > +
-> >   	num_clks = of_clk_get_parent_count(node);
-> >   	if (num_clks > 0) {
-> >   		/* Calculate number of subsys_clks */
-> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
-> > index 356788263db2..562d4e92ce16 100644
-> > --- a/drivers/soc/mediatek/mtk-pm-domains.h
-> > +++ b/drivers/soc/mediatek/mtk-pm-domains.h
-> > @@ -11,6 +11,7 @@
-> >   /* can't set MTK_SCPD_KEEP_DEFAULT_OFF at the same time */
-> >   #define MTK_SCPD_ALWAYS_ON		BIT(5)
-> >   #define MTK_SCPD_EXT_BUCK_ISO		BIT(6)
-> > +#define MTK_SCPD_HAS_INFRA_NAO		BIT(7)
-> >   #define MTK_SCPD_CAPS(_scpd, _x)	((_scpd)->data->caps & (_x))
-> >   #define SPM_VDE_PWR_CON			0x0210
-> > @@ -45,8 +46,10 @@
-> >   enum scpsys_bus_prot_flags {
-> >   	BUS_PROT_REG_UPDATE = BIT(1),
-> >   	BUS_PROT_IGNORE_CLR_ACK = BIT(2),
-> > -	BUS_PROT_COMPONENT_INFRA = BIT(3),
-> > -	BUS_PROT_COMPONENT_SMI = BIT(4),
-> > +	BUS_PROT_INVERTED = BIT(3),
-> 
-> I get the reason why you're setting inverted as bit 3, but at that point you can
-> just set BUS_PROT_COMPONENT_INFRA to bit 4 from the very beginning, instead of
-> using bit 3 for that and then changing them all in a subsequent commit (this one).
+The current status is Vim4 board booting to emergency shell via uart.
 
-Yes, I was torn between making the commits independent and avoiding this
-move later on. I decided for the first. If you prefer I can set it to
-the correct bits right from the beginning.
+Board Features:
+- 8GB LPDDR4X 2016MHz
+- 32GB eMMC 5.1 storage
+- 32MB SPI flash
+- 10/100/1000 Base-T Ethernet
+- AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
+- HDMI 2.1 video
+- HDMI Input
+- 1x USB 2.0 + 1x USB 3.0 ports
+- 1x USB-C (power) with USB 2.0 OTG
+- 3x LED's (1x red, 1x blue, 1x white)
+- 3x buttons (power, function, reset)
+- M2 socket with PCIe, USB, ADC & I2C
+- 40pin GPIO Header
+- 1x micro SD card slot
 
-Best,
-Markus
+Changes Since v3:
+ - Fix issues with "amlogic,meson-t7-uart" documentation
+
+Changes Since v2:
+ - Add "amlogic,meson-t7-uart" documentation
+
+Changes Since v1:
+ - Drop the T7 clock driver as it is not needed for serial boot. It will
+ later use the S4 clock
+ driver as S4 and  T7 seems to be similar chips.
+ - Use "arm,gic-400" for interrupt controller to fix dtb_check
+ - Remove CPU node properties not needed for serial boot
+ - Move UART node to apb4 node
+ - Drop T7 UART compatible line and use S4 uart
+ - Use psci V1 instead of 0.2, it works, but I can't verify is correct
+ as the datasheet I have
+ doesn't contain that information.
+ - Remove compatible from meson-t7.dtsi, move it to vim4 board dts
+ - Add memory node with 8GB. Not sure about this one, works without,
+ but doesn't detect 8GB
+ - Use defines for GIC_CPU_MASK_SIMPLE, IRQ_TYPE_LEVEL_LOW,
+ IRQ_TYPE_LEVEL_HIGH instead of hardcoded values
+
+Lucas Tanure (3):
+  dt-bindings: arm: amlogic: add Amlogic A311D2 bindings
+  dt-bindings: serial: amlogic,meson-uart: Add compatible string for T7
+  arm64: dts: meson-t7-a311d2-khadas-vim4: add initial device-tree
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   7 +
+ .../bindings/serial/amlogic,meson-uart.yaml   |   6 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/meson-t7-a311d2-khadas-vim4.dts   |  52 ++++++
+ arch/arm64/boot/dts/amlogic/meson-t7.dtsi     | 159 ++++++++++++++++++
+ 5 files changed, 225 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+
+-- 
+2.41.0
+
