@@ -2,144 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 11C73739F40
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 13:05:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37F82739F51
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 13:16:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231520AbjFVLFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 07:05:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56970 "EHLO
+        id S230484AbjFVLQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 07:16:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231657AbjFVLFG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 07:05:06 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6612D2105;
-        Thu, 22 Jun 2023 04:04:55 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-312824aa384so2687822f8f.1;
-        Thu, 22 Jun 2023 04:04:55 -0700 (PDT)
+        with ESMTP id S230286AbjFVLQW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 07:16:22 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F02711BDF
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 04:16:20 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-311099fac92so8106491f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 04:16:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687431893; x=1690023893;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=cD2IBQ3gllS/hNv9a8DJi4PWdalaNeoSJkKF5Grc1bE=;
-        b=nvxWHbTtQVgOa7Tr0IuekEY+8zoy8HJJWJh8LEXJOgUw3FAtyaH+OYNFIbZItGkFqw
-         N1AoUSjwlCVIcHPVsjpOhesoIFviK0w8hcmPmyfMoVT1hg1yA7yF76QUUWLd/QnF4Jmh
-         UzJVaKNykZeNynBJWv/f2okpfKmzWybjwqohMPb5xe1mWhr9IMjGTulZ5aoM7osOcQQf
-         fuKZ6gUkK1eqhbFLd70Y0rCxAsNWHYOIiaeIq3ZAWxl1yLWo/GgK/z5RWjI2ByIwM8Wt
-         9Er8YosVejJME/jd6kMobtvlInPjAImj96Tx1yfT/SuO6qz53mJyldzRc7SThfiSc+ss
-         sF/Q==
+        d=linaro.org; s=google; t=1687432579; x=1690024579;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=gkuJbui1TrFk7WnIn5Q46aI6dYF0X8Z64txw2ibvVmI=;
+        b=ahafXNRY3jyMyKboVgYIAAB1IJz3gEICHNJxy6sG1yZPI7R07+y7fANWear+IWlQwI
+         ZRLyoBdmHCPSccVCNbfvZPz5K7DGqnWSOAM+ZJIc7Lf5kryoi9AdBMWxrOOnGHhOYXkB
+         t8knDk3pwAPG5wXg+J4ZoMXTv3RbKL0e+bdyqatnNLOJd6RHe09TR+jgcc2bIDOc1XNj
+         S4LZiIw+uMMDio/PI7ggO64y3vn3oPzxVFTGwpBjGFy0Fb1QrHjWprvUrjWe4Yq1nw0Z
+         qwROrtVcBZfkhS0pnEfTmg13sdU0LkiWq1zaQCvoXCDt6vQwl5bO0on/pT4GWKvuofMM
+         KXzQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687431893; x=1690023893;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=cD2IBQ3gllS/hNv9a8DJi4PWdalaNeoSJkKF5Grc1bE=;
-        b=BGIBwuMV2dFUIVyFZ1jkvb0PiqZrD1d+REZaE7rZHyxLuNq/S3kMdM91XkhMZvjbSP
-         5aIyQX4dpvNZReWyJYMos1Gj7/1kMIphMCZJX5WNK31KIyFHNOEGHKQDsu7YN5cvd5Yk
-         MI0R3cYZdVueJa+UWQkidsjvipkVglf/rEc8CNkHsIISEhn65yH39mkPFigOo6TIwgq+
-         aIbEZmoVWVgu6ZufmcZIEs0zN3MVhpibgQVBcN6gunV9uYFeYNrWmQpBg/vEK9MEYU/R
-         0Cz19mxZfG5pfZwlWw/6MVP+y9EB8z/G61WJ/mt1sI4qZ+rWp7sH8kkhnI8H9Sx0SjwR
-         VvEA==
-X-Gm-Message-State: AC+VfDxwvI7VvICybYkpXZlEu3TYSYS+i/T63NmHyW9du1qeIf60gkdR
-        OB788v22Nn/nnyTTUePxofqjpTpd/JI=
-X-Google-Smtp-Source: ACHHUZ5bINkxxH24XYUaYNOiQ7GTOWsBVdUhZawiCNWlNns0nKL4ZKOtbnWKE+eH+RsT+bRLzVOj+Q==
-X-Received: by 2002:adf:fd82:0:b0:30e:19a8:4b15 with SMTP id d2-20020adffd82000000b0030e19a84b15mr13326159wrr.30.1687431893200;
-        Thu, 22 Jun 2023 04:04:53 -0700 (PDT)
-Received: from localhost.localdomain (61.red-88-10-54.dynamicip.rima-tde.net. [88.10.54.61])
-        by smtp.gmail.com with ESMTPSA id h9-20020a5d4fc9000000b0031134bcdacdsm6751766wrw.42.2023.06.22.04.04.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 04:04:52 -0700 (PDT)
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-To:     devicetree@vger.kernel.org
-Cc:     tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2] dt-bindings: interrupt-controller: add Ralink SoCs interrupt controller
-Date:   Thu, 22 Jun 2023 13:04:51 +0200
-Message-Id: <20230622110451.1504823-1-sergio.paracuellos@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        d=1e100.net; s=20221208; t=1687432579; x=1690024579;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=gkuJbui1TrFk7WnIn5Q46aI6dYF0X8Z64txw2ibvVmI=;
+        b=VRURvSCb11+ZRPHricZlIIlH53g2NrqtLy+OVSdULGrXGW9UFutz9QCbOA57plj4SW
+         H+745pi9VS0HVelxCk05bNyBWcPLf1aW1LfwWs35BqCNWbRfq28UhGrjNm7K/hkaCE5g
+         +AUOVp/dCIVcok66M0kX64w9OTyJ9ObOQKhjiiTplzwPZ54Rpraa43ZVliOy+b87OL+p
+         2n9TbGhdPxmcYanynYQxBlSUoN8Vap5v4cRZu0NcJjuRdIjdlLvwj5tdw4N5aIDi8YQg
+         jmwYaBlZD1qy710lEISGl+VU1M3LfAvYmAk0Ox4KeBqlf3mzy4vp82ZCW//5VrpbWREk
+         SMLg==
+X-Gm-Message-State: AC+VfDwuAaFxFTK5QDARDUalpcEodMbVGxagEK/t8iT/PqAzLqpKULAZ
+        jlwCgVQ02Hxt9qp9oBhOMbalmw==
+X-Google-Smtp-Source: ACHHUZ7G90x1rlqtJDABY4jL6gqVyqinf07WM6SQZgZLaL3Ya2Rqsfug/LwHGfUfmAl3cPo0pNwPiQ==
+X-Received: by 2002:adf:f34f:0:b0:30f:b1ee:5cd0 with SMTP id e15-20020adff34f000000b0030fb1ee5cd0mr15821068wrp.50.1687432579278;
+        Thu, 22 Jun 2023 04:16:19 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id j11-20020a5d604b000000b003078681a1e8sm6819888wrt.54.2023.06.22.04.16.17
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Jun 2023 04:16:18 -0700 (PDT)
+Message-ID: <2300d479-2384-745a-7d45-19744c17a3ce@linaro.org>
+Date:   Thu, 22 Jun 2023 13:16:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-mtp: add chassis-type
+ property
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230622-topic-sm8x50-upstream-chassis-type-v1-0-13f676eb71f3@linaro.org>
+ <20230622-topic-sm8x50-upstream-chassis-type-v1-5-13f676eb71f3@linaro.org>
+ <CAA8EJpphEZa1Vfs1ipm+1x7MvYgF7HMiW-GfNzYi37YPoMzKVw@mail.gmail.com>
+ <091a281f-b4c3-39e5-6d9c-5df903a020f5@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <091a281f-b4c3-39e5-6d9c-5df903a020f5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML doc for the interrupt controller which is present on Ralink SoCs.
+On 22/06/2023 12:49, Konrad Dybcio wrote:
+> On 22.06.2023 12:48, Dmitry Baryshkov wrote:
+>> On Thu, 22 Jun 2023 at 12:06, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+>>>
+>>> Qualcomm's Mobile Test Platforms devices are handsets, set the
+>>> chassis-type property to 'handset'.
+>>
+>> Is it really a device that you can take into your hand and put close
+>> to the head?
+> If you don't mind getting a bit microwavey, yes
 
-Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
----
-Changes in v2:
- - Drop label from the example.
+Handset should not poke your brain, so the chassis is not really
+handset. Maybe it is just embedded?
 
- .../ralink,rt2880-intc.yaml                   | 54 +++++++++++++++++++
- 1 file changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml
-new file mode 100644
-index 000000000000..533d6d03aa75
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml
-@@ -0,0 +1,54 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interrupt-controller/ralink,rt2880-intc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Ralink SoCs Interrupt Controller
-+
-+maintainers:
-+  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-+
-+allOf:
-+  - $ref: /schemas/interrupt-controller.yaml#
-+
-+description: |
-+  This interrupt controller support a central point for interrupt aggregation
-+  for platform related blocks.
-+
-+properties:
-+  compatible:
-+    const: ralink,rt2880-intc
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    interrupt-controller@200 {
-+      compatible = "ralink,rt2880-intc";
-+      reg = <0x200 0x100>;
-+      interrupt-controller;
-+      #interrupt-cells = <1>;
-+
-+      interrupt-parent = <&cpuintc>;
-+      interrupts = <2>;
-+    };
-+...
--- 
-2.25.1
+Best regards,
+Krzysztof
 
