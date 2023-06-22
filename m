@@ -2,118 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB3F573A141
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 14:52:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD3D873A15F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 15:02:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231472AbjFVMw4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 08:52:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51554 "EHLO
+        id S229733AbjFVNCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 09:02:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231467AbjFVMwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 08:52:55 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 720841BD7
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:52:52 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51be527628fso1248987a12.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:52:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687438371; x=1690030371;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vJn4qK5D0/zBLT8ePA8blzrHlwW1q+g3bf+ZWr4iToU=;
-        b=n8kXF96Ou8tJCUZABlfYEiawtFnTorpd6T6wVvKKTS9oU8/wRhv59tqvt+uvAkNr/I
-         0wmEqgx6EfnyZV9KUDTjS0YydCVrbGsC1dsZRImLRa0O9dsqeT1RrbG+YDObVXyStten
-         2Xhwa00KD+H3SaTiQevquHYXLwCcP3kvSULg2frdOi1Q0l54/zm0MMd0cJ/KIAIYANOT
-         obZpyacfm+blrmEvwXYTTtE1u016ho2iADX/o0dl1VV5apDMd0oqmeSxNa2PnnhR4iJY
-         bg0mi6k6XBpbTiBjnEU3NiJhMzbwcoeRn3WyNinJdFigx5QvQQ9G0E/z0jLJsSOfvmZC
-         NdoQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687438371; x=1690030371;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vJn4qK5D0/zBLT8ePA8blzrHlwW1q+g3bf+ZWr4iToU=;
-        b=B4xUJxGSk46AWQ6Y4fQKn8lW2MLy300i1Su697ciM2P+nENbnuDPcSNNbRDkikeL8W
-         J/d0+eSXhCDevdsTciAP6ni7plE8wCs2LoEAjuMew/rL1yGfUw4AmtkrT3m+b+oQsVbv
-         RZiNF06tX+5SPKGOWHeS8dQd4C56oxgo4tadp/XflhF3BLDBallWAXNYxnRncilOM0Td
-         JWCXp5mv/CgH974t7T2DVHlrQmplTO+22PiPNfllgh068ALqg1ZPvjWyLCDdWImtTPZT
-         uumdhoD++xjkZfHSYplgkK3PnVYV45cEbazzvdI+eKoWIaCHK0gaTXPZN+BSfJZelgK2
-         3X5g==
-X-Gm-Message-State: AC+VfDztn+OtVc/4SsA7cG3xlyBQ9jEGzTrTMV/2jppOmrVABmJ+ypJ9
-        ppHEKg6TiSEB8MnU2BQnIKW7FQ==
-X-Google-Smtp-Source: ACHHUZ6BL7cV1ab79Z1DXqI3js9EbbIJO29PsCcID0NCQKXDLIPdAJcdnDuaLOt1M2ocx9LetkrqQg==
-X-Received: by 2002:a17:906:9b88:b0:988:91cb:afd1 with SMTP id dd8-20020a1709069b8800b0098891cbafd1mr12407657ejc.29.1687438370948;
-        Thu, 22 Jun 2023 05:52:50 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id x14-20020a170906134e00b009828e26e519sm4559218ejb.122.2023.06.22.05.52.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jun 2023 05:52:50 -0700 (PDT)
-Message-ID: <e2cc150b-49e3-7f2f-ce7f-a5982d129346@linaro.org>
-Date:   Thu, 22 Jun 2023 14:52:48 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
-Content-Language: en-US
-To:     Markus Schneider-Pargmann <msp@baylibre.com>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
+        with ESMTP id S229762AbjFVNC3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 09:02:29 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4DD810F8;
+        Thu, 22 Jun 2023 06:02:23 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id D60DE5FDAD;
+        Thu, 22 Jun 2023 16:02:19 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1687438939;
+        bh=w4D8j20IdblRYzBMBoVQwAQ0UD3FpLpcfi4gJumrTeQ=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=lv8HX8NapO5+UDMYVLqguE7sxm2Tq1ry6+DzAv7NHpkG1lbdpUGx3FRZt8AvWIVyU
+         bXlhMfSnZ1z6Vyz95+3AY7nWP3NqAs4swTi7ktrVNHFFVFj0dWUS4X9fvH+sWGJ6bs
+         naEnAWTJj9TJq+p9N0JDEyX50wlx+kxiQ1n3aEtVsSV/blwOVEq2sdRjhPxSH5ZwkZ
+         smy0ZCTZ4psYPdyENpZ7PGdO/PUOClbRKxCL5iW2jbuUBwiaSMxOap1I+tL81DSB1x
+         0yMn4XFxjCv2DQ6Hf0546pe/5qm+6/H1swrBWgA34TrFCjx6c9pB0RCUJUqjddG9+5
+         ikfD5iWHAxmVA==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Thu, 22 Jun 2023 16:02:16 +0300 (MSK)
+Date:   Thu, 22 Jun 2023 16:02:16 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+CC:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-References: <20230621093103.3134655-1-msp@baylibre.com>
- <20230621093103.3134655-6-msp@baylibre.com>
- <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
- <20230621123158.fd3pd6i7aefawobf@blmsp>
- <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
- <20230622122339.6tkajdcenj5r3vdm@blmsp>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230622122339.6tkajdcenj5r3vdm@blmsp>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2 17/19] clk: meson: a1: move bindings include to main
+ driver
+Message-ID: <20230622130216.ocfvwfnad7amex65@CAB-WSD-L081021>
+References: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org>
+ <20230607-topic-amlogic-upstream-clkid-public-migration-v2-17-38172d17c27a@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230607-topic-amlogic-upstream-clkid-public-migration-v2-17-38172d17c27a@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/22 09:26:00 #21554371
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2023 14:23, Markus Schneider-Pargmann wrote:
->>
->> Yeah, but your code is different, although maybe we just misunderstood
->> each other. You wrote that you cannot use the GPIOs, so I assumed you
->> need to know the variant before using the GPIOs. Then you need
->> compatibles. It's not the case here. You can read the variant and based
->> on this skip entirely GPIOs as they are entirely missing.
+On Mon, Jun 12, 2023 at 11:57:34AM +0200, Neil Armstrong wrote:
+> Now the clock ids are no more defined in private headers,
+> cleanup and include the dt-bindings headers from the main
+> driver file.
 > 
-> The version information is always readable for that chip, regardless of
-> state and wake GPIOs as far as I know. So yes it is possible to setup
-> the GPIOs based on the content of the ID register.
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  drivers/clk/meson/a1-peripherals.c | 2 ++
+>  drivers/clk/meson/a1-peripherals.h | 3 ---
+>  drivers/clk/meson/a1-pll.c         | 2 ++
+>  drivers/clk/meson/a1-pll.h         | 3 ---
+>  4 files changed, 4 insertions(+), 6 deletions(-)
 > 
-> I personally would prefer separate compatibles. The binding
-> documentation needs to address that wake and state GPIOs are not
-> available for tcan4552/4553. I think having compatibles that are for
-> these chips would make sense then. However this is my opinion, you are
-> the maintainer.
+> diff --git a/drivers/clk/meson/a1-peripherals.c b/drivers/clk/meson/a1-peripherals.c
+> index a5cab418736a..070ea1427d73 100644
+> --- a/drivers/clk/meson/a1-peripherals.c
+> +++ b/drivers/clk/meson/a1-peripherals.c
+> @@ -15,6 +15,8 @@
+>  #include "clk-regmap.h"
+>  #include "meson-clkc-utils.h"
+>  
+> +#include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+> +
+>  static struct clk_regmap xtal_in = {
+>  	.data = &(struct clk_regmap_gate_data){
+>  		.offset = SYS_OSCIN_CTRL,
+> diff --git a/drivers/clk/meson/a1-peripherals.h b/drivers/clk/meson/a1-peripherals.h
+> index 842b52634ed0..26de8530184a 100644
+> --- a/drivers/clk/meson/a1-peripherals.h
+> +++ b/drivers/clk/meson/a1-peripherals.h
+> @@ -43,7 +43,4 @@
+>  #define PSRAM_CLK_CTRL		0xf4
+>  #define DMC_CLK_CTRL		0xf8
+>  
+> -/* include the CLKIDs that have been made part of the DT binding */
+> -#include <dt-bindings/clock/amlogic,a1-peripherals-clkc.h>
+> -
+>  #endif /* __A1_PERIPHERALS_H */
+> diff --git a/drivers/clk/meson/a1-pll.c b/drivers/clk/meson/a1-pll.c
+> index 25e6b567afd5..7de7d78c3813 100644
+> --- a/drivers/clk/meson/a1-pll.c
+> +++ b/drivers/clk/meson/a1-pll.c
+> @@ -14,6 +14,8 @@
+>  #include "clk-regmap.h"
+>  #include "meson-clkc-utils.h"
+>  
+> +#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+> +
+>  static struct clk_regmap fixed_pll_dco = {
+>  	.data = &(struct meson_clk_pll_data){
+>  		.en = {
+> diff --git a/drivers/clk/meson/a1-pll.h b/drivers/clk/meson/a1-pll.h
+> index 0add1c7ea9f5..4be17b2bf383 100644
+> --- a/drivers/clk/meson/a1-pll.h
+> +++ b/drivers/clk/meson/a1-pll.h
+> @@ -25,7 +25,4 @@
+>  #define ANACTRL_HIFIPLL_CTRL4	0xd0
+>  #define ANACTRL_HIFIPLL_STS	0xd4
+>  
+> -/* include the CLKIDs that have been made part of the DT binding */
+> -#include <dt-bindings/clock/amlogic,a1-pll-clkc.h>
+> -
+>  #endif /* __A1_PLL_H */
 
-We do not talk about compatibles in the bindings here. This is
-discussion about your driver. The entire logic of validating DTB is
-flawed and not needed. Detect the variant and act based on this.
+Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 
-Best regards,
-Krzysztof
-
+-- 
+Thank you,
+Dmitry
