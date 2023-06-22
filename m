@@ -2,99 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 395F573A919
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 21:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A31A73A927
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 21:52:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230426AbjFVTnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 15:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56402 "EHLO
+        id S230042AbjFVTw0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 15:52:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230380AbjFVTnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 15:43:21 -0400
-Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAFF1FE3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 12:43:15 -0700 (PDT)
-Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-1a9d57f8f9fso7079302fac.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 12:43:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1687462994; x=1690054994;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=3T11uxBhIjGWzq3ibADFPBxygIm6nnj3hVsi3PNKGSA=;
-        b=xo1/ZwUQaNDkC4rDA90YGndxKNvE0D28jIdXnxVPwuvLsh34JQk/FeE5HsUcSbQC3f
-         3WCHDoFRWiV1D229OnTV/wcoeRyigg8efklJh0pkajVzuEcSff3qf9yWkbWcFonOBrCV
-         OJM2AQ9VfHH1rVjVNO7MFICuRP1ee3yZpppZweUpiVx2ru21r3+tl0J6Lx/lHrbaeTI2
-         7L+DClFsnYxO0/fD2aMargKtjMqSJV9R0hn0l/kJI4quI4qt7hW0OmmT+wcI/nReY5MJ
-         22EizoFPM2b1r+jyIYyfPrkiiXo/PfQGmoLVy1oEqB3K9eT9GCMk1nPLCFA6+xn1dMxW
-         gkuQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687462994; x=1690054994;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=3T11uxBhIjGWzq3ibADFPBxygIm6nnj3hVsi3PNKGSA=;
-        b=KPJpukFdrR2i3baXfMwTyayue1bJgy8lEm6pIg45fvestsOyPTzKPuSCyNE+JUNOJK
-         4TxG7XRQ2ypcb7LF31srAYt/v8RMUcqya9k16GoV4tGST3NjNHb2/n4+yUr34yRkfMlL
-         ysKkoSOvXzfMpjRI7L5Fn63uxH2cyLl7P8+I+jJgZ2HqEsu07kGWkEn88M9gzohhYKHw
-         JTc8a4W/vYbwNDuUPOKFTdBqxuyR5rlLEZMiT84MqgxyTTfUFsJ+t7ECkp3R7y8jOpwO
-         Y07r9AgagmjlBUSvGTafHP14xb9lK4Ce4JdMRn0VtxgrerKPThXM7vsHA8fl2/EmYSlX
-         r1Vg==
-X-Gm-Message-State: AC+VfDxvbcMvNKDriPwvxXLO36Ubfr9HYBXWJ+iEgPekWicSTVDsjlsD
-        zWhbUtXrFBOJyhbCIE/OxZkkJg==
-X-Google-Smtp-Source: ACHHUZ5WaibaXi8GDeiG3MswMLiamw5o+dUTYjXfQhHtuaUX2w3ZX/M/khKv/POfy1MNBzVRFwyCaw==
-X-Received: by 2002:a05:6808:20f:b0:3a0:5596:efe8 with SMTP id l15-20020a056808020f00b003a05596efe8mr4046410oie.54.1687462994158;
-        Thu, 22 Jun 2023 12:43:14 -0700 (PDT)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id q23-20020a635057000000b0054fd1723554sm5075167pgl.21.2023.06.22.12.43.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 12:43:13 -0700 (PDT)
-Date:   Thu, 22 Jun 2023 12:43:13 -0700 (PDT)
-X-Google-Original-Date: Thu, 22 Jun 2023 12:42:32 PDT (-0700)
-Subject:     Re: [PATCH v2] dt-bindings: riscv: deprecate riscv,isa
-In-Reply-To: <20230622-stipend-flashily-97917469f39b@spud>
-CC:     Conor Dooley <conor.dooley@microchip.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org,
-        Alistair Francis <Alistair.Francis@wdc.com>,
-        ajones@ventanamicro.com, apatel@ventanamicro.com,
-        atishp@atishpatra.org, jrtc27@jrtc27.com, rick@andestech.com,
-        ycliang@andestech.com, oleksii.kurochko@gmail.com,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        with ESMTP id S229743AbjFVTwZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 15:52:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C5C1BE2;
+        Thu, 22 Jun 2023 12:52:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 175E9618D6;
+        Thu, 22 Jun 2023 19:52:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55980C433C0;
+        Thu, 22 Jun 2023 19:52:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687463543;
+        bh=u4wC2MP/wnpLGHUQkJFrwP8XuOUu58tNqjkBvYub6ME=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aiqq28phaJExGJ/x9UQFe9tl/8igdeT1V/D2ju/k/Niv4oq1JBbFEBuCfBnkh5fNT
+         xB9k+jNCD6P84dhabLaQVZQ9jKhI/6HzO6urSxVD1y/PjIs+/prJxloYWgcoq51HN0
+         2Sg8tlALTby+8ccX1QJOgqt46s72Fd7O64TH/a7NtFKE3h3+siXuGy7YjmutlntE1T
+         s/uTihycVrZVnqxl8XFrY3cQiDE/sOSuMXgzjdCYpZviNlFlsuWfCzhK365B3Wnd0b
+         957tkIWAv3WhaFjvr9/h2tabrWYLGoBOuvQX053Z9I4ycv0dM6SenCSaZBaLw6wU3u
+         F32PR6H31NL1Q==
+Date:   Thu, 22 Jun 2023 20:52:19 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-9e03f021-961d-44f3-81c1-9c09abd3662b@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: Re: [PATCH] ASoC: dt-bindings: microchip,sama7g5-pdmc: Simplify
+ "microchip,mic-pos" constraints
+Message-ID: <20230622-canary-hull-0bbce1bb5fe2@spud>
+References: <20230621231044.3816914-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="n5Hq6IEtyp/Vfwcf"
+Content-Disposition: inline
+In-Reply-To: <20230621231044.3816914-1-robh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Jun 2023 11:59:32 PDT (-0700), Conor Dooley wrote:
-> On Thu, Jun 22, 2023 at 11:25:35AM -0700, Palmer Dabbelt wrote:
->
->> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
->> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
->> 
->> I'm not wed to any particular encoding for the properties, IMO that's more
->> of a decision for the DT folks.  IMO the important bit is to just get away
->> from ISA strings and move towards some tightly-specified properties that
->> indicate how the HW actually behaves.
->
-> I'm going to resubmit with Rob's list of strings. I'll keep your tags,
-> since the spirit of the patch will be the same, with enforced meanings
-> for each extension.
 
-Works for me, thanks.
+--n5Hq6IEtyp/Vfwcf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->
-> Cheers,
-> Conor.
+On Wed, Jun 21, 2023 at 05:10:44PM -0600, Rob Herring wrote:
+> "enum" values should be integers or strings, not arrays (though json-sche=
+ma
+> does allow arrays, we do not). In this case, all possible combinations are
+> allowed anyways, so there's little point in expressing as an array.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
+
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+
+Cheers,
+Conor.
+
+> ---
+>  .../devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml | 8 ++------
+>  1 file changed, 2 insertions(+), 6 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/sound/microchip,sama7g5-pd=
+mc.yaml b/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.ya=
+ml
+> index 9b40268537cb..9aa65c975c4e 100644
+> --- a/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
+> +++ b/Documentation/devicetree/bindings/sound/microchip,sama7g5-pdmc.yaml
+> @@ -56,13 +56,9 @@ properties:
+>      items:
+>        items:
+>          - description: value for DS line
+> +          enum: [0, 1]
+>          - description: value for sampling edge
+> -      anyOf:
+> -        - enum:
+> -            - [0, 0]
+> -            - [0, 1]
+> -            - [1, 0]
+> -            - [1, 1]
+> +          enum: [0, 1]
+>      minItems: 1
+>      maxItems: 4
+>      uniqueItems: true
+> --=20
+> 2.40.1
+>=20
+
+--n5Hq6IEtyp/Vfwcf
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJSmcgAKCRB4tDGHoIJi
+0h+1AQDWLZ2+pN5p+5p3PIsPYI5oFDt7Ss2qa5ERr4sm355wlAEAjghMkJ5HE9Ne
+vIGqP1DEh9LawMW96u8DCm1mEtVA6g8=
+=JDj9
+-----END PGP SIGNATURE-----
+
+--n5Hq6IEtyp/Vfwcf--
