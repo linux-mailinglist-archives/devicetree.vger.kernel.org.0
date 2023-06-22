@@ -2,128 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ADDA73A8AC
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 20:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCC7473A8AD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 20:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjFVS7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 14:59:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42588 "EHLO
+        id S230294AbjFVS7l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 14:59:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230280AbjFVS7f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 14:59:35 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.133.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECA551BD7
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 11:59:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1687460340;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=Pa+oZK/sS3e2gfb7B5cDcIjFykC7j8FP/PxBLFuYWZ4=;
-        b=BWrSGxUCTbEOKX0atpo0y8+5jk6/UCrEECF0YdPYdg0j50bKIgxE9CeJWUSnIE3IXcNDFt
-        ru7uGDLwcKXnnKbLFi0f+DnTRpXj6PBZFyGT6g21+5joj7+/QW8wyOjkdRZjA9Pkf7QrcX
-        RGKPxakyEbLynRhwjjBq+dzt9E1MuAw=
-Received: from mail-ot1-f70.google.com (mail-ot1-f70.google.com
- [209.85.210.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-478--8zr0DOoP7iIJOmnm_Exkg-1; Thu, 22 Jun 2023 14:58:59 -0400
-X-MC-Unique: -8zr0DOoP7iIJOmnm_Exkg-1
-Received: by mail-ot1-f70.google.com with SMTP id 46e09a7af769-6b5d41d2f6bso1583685a34.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 11:58:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687460338; x=1690052338;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Pa+oZK/sS3e2gfb7B5cDcIjFykC7j8FP/PxBLFuYWZ4=;
-        b=UuoM/aqAxNiQvdFrJe2u34bn74s+x2ETn2BO2U8QNiqeK6N+TxR1an7xE9d3Wus6aG
-         An/bOVNwUBiWJCiAB7zULQw9nrjXkhFqgm1cEKfDF6KCfea815u24Xq3NGhq8ayrM1gS
-         fnU36zetCSqlUedXPpOxDDFHcartaABgMaQuBsO+6PfQqYNUYTQbCUMExe9Nk/Bqg3Tm
-         /fYP+5S1U1Rd6JK52xqexg3l7SohIrB3pkMsPLSfLqqDm3EVK1KhtA5g+ad31gMnJn3g
-         XX4mHN9q4L648AXlS8nnmDL7Fi+LGWo0lJJTWD2Z+y4C3yOY//d0g7p9LhevfPac5cda
-         murA==
-X-Gm-Message-State: AC+VfDzww6TL7x1TzXjDoU24VwwoenVN7DRXouyumKXYOwG5hgIVY1zj
-        WJzy4jC0kK6xGAHcI4uR35Gho09gopC2TpPZLJ1eS3O25/KOEJ+unardDRt0cbnJAigJuP81FRm
-        OmPJfJgsjksHTszDM6biC4A==
-X-Received: by 2002:a05:6830:104e:b0:6b5:eaeb:63ba with SMTP id b14-20020a056830104e00b006b5eaeb63bamr3193857otp.27.1687460338355;
-        Thu, 22 Jun 2023 11:58:58 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ4xtiYm1AlCWg8QeHKLFR3de2AQr2M0emZBuj2HLlTxb3l4GMDPlkysba03FRcXQD9vQEGY2A==
-X-Received: by 2002:a05:6830:104e:b0:6b5:eaeb:63ba with SMTP id b14-20020a056830104e00b006b5eaeb63bamr3193839otp.27.1687460338161;
-        Thu, 22 Jun 2023 11:58:58 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::f])
-        by smtp.gmail.com with ESMTPSA id t15-20020a9d66cf000000b006b71d22be29sm363209otm.18.2023.06.22.11.58.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 11:58:57 -0700 (PDT)
-Date:   Thu, 22 Jun 2023 13:58:54 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RESEND PATCH v2 0/5] arm64: dts: qcom: enable ethernet on
- sa8775p-ride
-Message-ID: <20230622185854.57f7qem5w3ds5nzi@halaney-x13s>
-References: <20230622120142.218055-1-brgl@bgdev.pl>
- <20230622184422.4e72vtqk53nnx42g@halaney-x13s>
+        with ESMTP id S231264AbjFVS7k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 14:59:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C622FE7D;
+        Thu, 22 Jun 2023 11:59:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 63744618D6;
+        Thu, 22 Jun 2023 18:59:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4E127C433C0;
+        Thu, 22 Jun 2023 18:59:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687460378;
+        bh=NV9aTfcB04hyaA/wBUYwR/eWp1snE1/lwhMpdPWU8zE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=DJDv0M49XxR7xapPfqyDpyau9GCb+JU7gfceKdSrjxnku2eDn6Yi10Rdm7RbTgGJp
+         kZ/GA5PD8qX492Qf9yQ4FG3JiymJ5omsdksYTg3Lv3tuPkV4TivY3Up00cBanE/IvZ
+         VVcBqY7VZXd03W/yLJqos7ps1HijN1ZQAXFiuWUggdwx9dVVuRI8td3MzYRC0EraZn
+         ddQxdMsljEv3T7nAu3kh5spV2aCgwicGzwmsDyrcY1QrsGzDN1f9FDsDkmzuxJLk30
+         8RZG8gqMOB8HSFmLHDK960sBCoBuN7kcaok7FVd/AyT8MwdBmls5iBW+U96BaeA6Ku
+         29wqvCkpK3vTQ==
+Date:   Thu, 22 Jun 2023 19:59:32 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        ajones@ventanamicro.com, apatel@ventanamicro.com,
+        atishp@atishpatra.org, jrtc27@jrtc27.com, rick@andestech.com,
+        ycliang@andestech.com, oleksii.kurochko@gmail.com,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230622-stipend-flashily-97917469f39b@spud>
+References: <20230608-sitting-bath-31eddc03c5a5@spud>
+ <mhng-aa00c037-6201-4548-9036-1d6dbbfc9343@palmer-ri-x1c9a>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="zHw74JTtVBfhm0Fq"
 Content-Disposition: inline
-In-Reply-To: <20230622184422.4e72vtqk53nnx42g@halaney-x13s>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <mhng-aa00c037-6201-4548-9036-1d6dbbfc9343@palmer-ri-x1c9a>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 22, 2023 at 01:44:22PM -0500, Andrew Halaney wrote:
-> On Thu, Jun 22, 2023 at 02:01:37PM +0200, Bartosz Golaszewski wrote:
-> > From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-> > 
-> > Bjorn,
-> > 
-> > Now that all other bits and pieces are in next, I'm resending the reviewed
-> > DTS patches for pick up. This enables one of the 1Gb ethernet ports on
-> > sa8775p-ride.
-> > 
-> > Bartosz Golaszewski (5):
-> >   arm64: dts: qcom: sa8775p: add the SGMII PHY node
-> >   arm64: dts: qcom: sa8775p: add the first 1Gb ethernet interface
-> >   arm64: dts: qcom: sa8775p-ride: enable the SerDes PHY
-> >   arm64: dts: qcom: sa8775p-ride: add pin functions for ethernet0
-> >   arm64: dts: qcom: sa8775p-ride: enable ethernet0
-> > 
-> >  arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 109 ++++++++++++++++++++++
-> >  arch/arm64/boot/dts/qcom/sa8775p.dtsi     |  42 +++++++++
-> >  2 files changed, 151 insertions(+)
-> > 
-> > -- 
-> > 2.39.2
-> > 
-> 
-> Tested-by: Andrew Halaney <ahalaney@redhat.com>
-> 
-> note, I did uncover a bug in stmmac (imo) wrt unbalanced calls to
-> serdes_powerup/serdes_powerdown() which I plan on trying to fix shortly.
-> 
-> Not really related to any of the Qualcomm specific bits though. This
-> looks good to me.
-> 
 
-Bart already sent a fix!
+--zHw74JTtVBfhm0Fq
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://lore.kernel.org/netdev/20230621135537.376649-1-brgl@bgdev.pl/
+On Thu, Jun 22, 2023 at 11:25:35AM -0700, Palmer Dabbelt wrote:
 
-Thanks,
-Andrew
+> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>=20
+> I'm not wed to any particular encoding for the properties, IMO that's more
+> of a decision for the DT folks.  IMO the important bit is to just get away
+> from ISA strings and move towards some tightly-specified properties that
+> indicate how the HW actually behaves.
 
+I'm going to resubmit with Rob's list of strings. I'll keep your tags,
+since the spirit of the patch will be the same, with enforced meanings
+for each extension.
+
+Cheers,
+Conor.
+
+
+--zHw74JTtVBfhm0Fq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJSaFAAKCRB4tDGHoIJi
+0nLsAP9kIuB4WQ2zaDQIzZJDUmQQv0dwtsHhgVoBlQDxIsLhOwD/RSmCg2YNJLDn
+bReL/deUbjlXqTBNq+D6jzJQm7r6VQ8=
+=eP0v
+-----END PGP SIGNATURE-----
+
+--zHw74JTtVBfhm0Fq--
