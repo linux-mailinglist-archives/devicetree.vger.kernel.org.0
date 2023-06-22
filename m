@@ -2,83 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B528F739DAD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 11:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FE8C739DE7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 11:59:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230060AbjFVJty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 05:49:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50178 "EHLO
+        id S230314AbjFVJ7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 05:59:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231734AbjFVJtY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 05:49:24 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA0C420A
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:39:08 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f9bdb01ec0so18677435e9.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:39:08 -0700 (PDT)
+        with ESMTP id S230250AbjFVJ7u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 05:59:50 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74140B4
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:59:48 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fa0253b9e7so4490815e9.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:59:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687426731; x=1690018731;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=y1j31YwGJInJp0uzBca00KMvrBtU/vucRfvT/lc8M/k=;
-        b=r31WHGpDwAnxyUVyweo5c3+lMARcpIsEl6qSJ0JpMHq68mEoGcJ2eEf9pqIPOWrPjF
-         uPAhY9IbZC7NTawDk4C0h2B0lnMFNZnLfWVDQ7HMEm+0Kf5AdCUUGwlXOBxxBD3yhzbD
-         hT1/aQg8RdtrLi0XNEU5f7uNLWbJeV19nO2KDyf5f+Oufd5SR+i2CEXXlt/eBk12yGpz
-         U/OGVGV4DtpgrrWpw9K2TIUjlAcHkuLpmzBx/SmIevMGqbH9aDQ+xEH0WBoJ6P32b9VX
-         e6hsxfhI7WgmronTZTpGimp52hUP4w1oCaODpbjeaU+qYmnDpCIXAQRS49lKFRmCUDKc
-         eMnw==
+        d=linaro.org; s=google; t=1687427987; x=1690019987;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=C6pQ9FpvxDVX1g0MNwvNzHtJN36Y8n2j+gwBOp+Pp4Y=;
+        b=uMqxY0xz5A8U2guUUe8tJ14kPybDedlDVjPVDekHQu/6ri9VgzqgDU2J8FUk6qS3tq
+         ZlW27si/h6o2lA6rU0rrybvv6VvghIQAvGjLMtWZqNQ8OGJUqLXldrWwjFooHBjbm3FB
+         Z812Vp1oybGvbqtbs/g8wYoamiroaGQxrZ5UgXcptLpqaHy/EScdiUwgwlIxVEOoEX+g
+         9Ij0cSTv/U/4wZ8anjbdhVFa3az9VPHOa7i5Rn4elrfoPXrnD2+1TDdKq5++9fsJh/zQ
+         rv4DqkqhjbTtgZxtGAolr3ZjNgClvjZ8teGMwEYXHeaDPkGBrF4OmDvR2NZ+kFeKhVSA
+         Nvuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687426731; x=1690018731;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=y1j31YwGJInJp0uzBca00KMvrBtU/vucRfvT/lc8M/k=;
-        b=XxwnHcKlZLjohO3Gl5Kbr6hcC9wG5ZgctMItsxMwYlupZgibFuzldm+fY8ZtDUjD9z
-         IxK3kjVB2NxprNe1vokENxvz6+5tW09ySL+3CWLuSXtIQ4daaocATPRM3DCXxZMXgFaj
-         sIhGTFYFgx7IPdWgsFW8gJsSK9OP5BV9c4nQ3g7mfCekQryLyCoyBLWNgOP8dkkvO/XY
-         1DSm+WwQ3CabhceBv0QyvVP3fpCnfnvYzr2yGXEVelDxy8Zo06JdJtiTjCnq2dkkTdJt
-         6M8eX/XPGAopB/Wb+gnwZp2Gjdmen+86+oX9xdidUI7k6bRiXZb6o01VKR723PpdM+3u
-         7DKQ==
-X-Gm-Message-State: AC+VfDxtMAkUX/CMnRF7pTVMNcWo9iFi6L3ULGpVVmp7sq9e1IhA+4p9
-        gyw+vdHEVjpw528R2qVCgBhyhzOF7ZHw0+02xFf1+A==
-X-Google-Smtp-Source: ACHHUZ6o5KJy6XmDPYy+gz9tcwBxBrnmssvKZ+GzsUV9aZ03hz6SJ4PS8LJmpLVIWGc0+MREh27jvA==
-X-Received: by 2002:a05:600c:2211:b0:3f7:e655:a498 with SMTP id z17-20020a05600c221100b003f7e655a498mr14748565wml.14.1687426731505;
-        Thu, 22 Jun 2023 02:38:51 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:f692:a800:4794:385? ([2a01:e0a:982:cbb0:f692:a800:4794:385])
-        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003f9c8c6bf53sm3102092wmk.13.2023.06.22.02.38.50
+        d=1e100.net; s=20221208; t=1687427987; x=1690019987;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=C6pQ9FpvxDVX1g0MNwvNzHtJN36Y8n2j+gwBOp+Pp4Y=;
+        b=FgzUVU3aqpXXjDZ5ochaLHpAQH0nf9sxcp8ewHN/G2atFCECkHbnVm11wnhn+2fUJa
+         jL48m43Uul69nsQIGNSMXtVYTnVJb1t/jBDqD9QqwoccQmOS+baoUtGpWJTuDGr0bSCi
+         l00rdj7KO0wqg3q8rSZn8qT/erGH41zDMWegI/9GfX5ddvxUgoL/hR258Jdu4DQoaH4j
+         qEwNOQYSak9zGqkZjzDqH06e/i7x29wpT6ZcruiBySHbQ51g3tYR9sd7eal51UoePO9Z
+         VYUGV+fluq5ji+ttu3It9XpPajMve3qrG3cOE016uCU/DeHXINq2yJQQp+AVSX2aitGF
+         vajA==
+X-Gm-Message-State: AC+VfDwRhhBke8iXFQOhHVpMpUau0GZnH8CkKkX6t2SNz+XwEvXwQQKu
+        KAzkuupulO/BnklV0jfQV+4vBg==
+X-Google-Smtp-Source: ACHHUZ4SJBB8N/+OU2LnrtXVj+lIZOoOLdOI45uJZlm5D1WR1VjmrNMBtYfO6lLRC9HQhFBj7EXwdQ==
+X-Received: by 2002:a1c:cc07:0:b0:3f7:c92:57a0 with SMTP id h7-20020a1ccc07000000b003f70c9257a0mr16368487wmb.14.1687427986903;
+        Thu, 22 Jun 2023 02:59:46 -0700 (PDT)
+Received: from [192.168.10.46] (146725694.box.freepro.com. [130.180.211.218])
+        by smtp.googlemail.com with ESMTPSA id s25-20020a1cf219000000b003f41bb52834sm18373999wmc.38.2023.06.22.02.59.46
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jun 2023 02:38:50 -0700 (PDT)
-Message-ID: <4a2a2f0c-f9dd-d5c4-1e7e-5852970f87a7@linaro.org>
-Date:   Thu, 22 Jun 2023 11:38:49 +0200
+        Thu, 22 Jun 2023 02:59:46 -0700 (PDT)
+Message-ID: <6bc6a3f4-11d2-df4b-4631-96063e762667@linaro.org>
+Date:   Thu, 22 Jun 2023 11:59:45 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2] dt-bindings: timer: add Ralink SoCs timer
 Content-Language: en-US
-To:     Conor Dooley <conor.dooley@microchip.com>,
-        Lucas Tanure <tanure@linux.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
-        Artem <art@khadas.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor@kernel.org>
-References: <20230622084045.519203-1-tanure@linux.com>
- <20230622084045.519203-3-tanure@linux.com>
- <20230622-unsent-willing-574906af5e1a@wendy>
-Organization: Linaro Developer Services
-Subject: Re: [PATCH v4 2/3] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for T7
-In-Reply-To: <20230622-unsent-willing-574906af5e1a@wendy>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        devicetree@vger.kernel.org
+Cc:     tglx@linutronix.de, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org
+References: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+In-Reply-To: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -89,77 +75,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2023 11:26, Conor Dooley wrote:
-> Hey Lucas,
+On 20/06/2023 12:02, Sergio Paracuellos wrote:
+> Add YAML documentation for the timer which is present on Ralink SoCs.
 > 
-> On Thu, Jun 22, 2023 at 09:40:44AM +0100, Lucas Tanure wrote:
->> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
->> There is no need for an extra compatible line in the driver, but
->> add T7 compatible line for documentation.
->>
->> Co-developed-by: Conor Dooley <conor@kernel.org>
+> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> ---
+> Changes in v2:
+> - Remove redundant 'documentation' word from subject.
+> - Drop clock-names property.
 > 
-> You can delete this, I don't need a Co-developed-by tag for review
-> feedback.
+>   .../bindings/timer/ralink,rt2880-timer.yaml   | 44 +++++++++++++++++++
+>   1 file changed, 44 insertions(+)
+>   create mode 100644 Documentation/devicetree/bindings/timer/ralink,rt2880-timer.yaml
 > 
->> Signed-off-by: Lucas Tanure <tanure@linux.com>
->> ---
->>   .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
->> index 01ec45b3b406..4ca4673169aa 100644
->> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
->> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
->> @@ -46,6 +46,12 @@ properties:
->>             - amlogic,meson8b-uart
->>             - amlogic,meson-gx-uart
->>             - amlogic,meson-s4-uart
->> +      - description: Everything-Else power domain UART controller on G12A compatible SoCs
-> 
-> s/Everything-Else/Always-on/
+> diff --git a/Documentation/devicetree/bindings/timer/ralink,rt2880-timer.yaml b/Documentation/devicetree/bindings/timer/ralink,rt2880-timer.yaml
+> new file mode 100644
+> index 000000000000..daa7832babe3
+> --- /dev/null
+
+Applied, thanks
 
 
-"Everything-Else" was the amlogic naming for the non-always-on power domain, but it seems
-it's no more something used on new SoCs like the T7 family.
+-- 
+<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
 
-Anyway, the description is wrong, and it's a mess because we used "amlogic,meson-ao-uart"
-for uarts on the Always-On domain, but here it's described as Everything-Else...
-
-Lucas, is there AO_uarts on T7 ? if not drop this amlogic,meson-ao-uart for the T7 UARTs.
-
-But if there's no more AO uart controller, you'll need to change drivers/tty/serial/meson_uart.c
-and add a OF_EARLYCON_DECLARE() for amlogic,meson-t7-uart.
-
-But still, why don't you use the amlogic,meson-s4-uart as fallback instead ?
-
-+      - description: UART controller on T7 compatible SoCs
-+        items:
-+          - const: amlogic,meson-t7-uart
-+          - const: amlogic,meson-s4-uart
-
-and update meson_uart.c if there's no AO uarts anymore....
-
-Neil
-
-> Otherwise,
-> Acked-by: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Perhaps it can be fixed on application, I don't know how the amlogic
-> maintainers operate.
-> 
-> Cheers,
-> Conor.
-> 
->> +        items:
->> +          - enum:
->> +              - amlogic,meson-t7-uart
->> +          - const: amlogic,meson-g12a-uart
->> +          - const: amlogic,meson-ao-uart
->>         - description: Everything-Else power domain UART controller on G12A SoCs
->>           items:
->>             - const: amlogic,meson-g12a-uart
->> -- 
->> 2.41.0
->>
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
 
