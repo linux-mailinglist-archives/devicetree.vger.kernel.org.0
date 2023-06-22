@@ -2,138 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 78D5873978F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6FF873979B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:47:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbjFVGnq convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Jun 2023 02:43:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53050 "EHLO
+        id S229657AbjFVGrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 02:47:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229673AbjFVGnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:43:45 -0400
-Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com [209.85.219.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31E219AF;
-        Wed, 21 Jun 2023 23:43:44 -0700 (PDT)
-Received: by mail-qv1-f53.google.com with SMTP id 6a1803df08f44-62ff0e0c5d7so54101346d6.1;
-        Wed, 21 Jun 2023 23:43:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687416223; x=1690008223;
+        with ESMTP id S230080AbjFVGrr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:47:47 -0400
+Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7697A10DB;
+        Wed, 21 Jun 2023 23:47:46 -0700 (PDT)
+Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-1aa291b3fc4so3883727fac.0;
+        Wed, 21 Jun 2023 23:47:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687416465; x=1690008465;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=zjc9cUsPT2z8mtJnNxRhataxf2ELf1AJBFW6JAfUMCg=;
-        b=YHI5pBikhL4qXwmB68yuvb3ap3m3IeS06bbfnkGtvhItPIhq0VNT1+XQar+RRTJBy9
-         Ue3wwxiub3EefN0xqJ0KwnMJGLIt6rc8JhjHSW4FJVPMMBPZvTdUT49HLlSIFapGmo9Z
-         422TnQksrmtOq9utuEulg/xOFGOPxUnJ96EQ6P0VfL4N4liblqAPHOnCkqfpRzvytJFB
-         SoIRZYrMs852/6LcyK9P9ayV7ndhb/2PHMcrOKEkbNPTydFyre+4/EniK2+HRwdgmkqK
-         B3qU9lMjk/2IriuVVw6Fge7nol/tjiF+8QOQ97nBpRS1hp5+nJKgahQKqzB7p4Sdjo63
-         iuJA==
-X-Gm-Message-State: AC+VfDxGEwG7dyxI4SmBNo2goCPvaa/d1NRKYuG1bPBSZo8Mc0g1qOhg
-        wuWq7Sp5bjhKyiLNkzw4AoAI/ZP68d5xgB8M
-X-Google-Smtp-Source: ACHHUZ52FiDMzlySJe7XsQnC5bhFu0nH/2stLO6ZD0reY/sgm+dfAWuhDDWC2+IwmxixSFUjyVpDiw==
-X-Received: by 2002:a05:6214:2029:b0:630:f5d:49c1 with SMTP id 9-20020a056214202900b006300f5d49c1mr19632506qvf.12.1687416223274;
-        Wed, 21 Jun 2023 23:43:43 -0700 (PDT)
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com. [209.85.160.169])
-        by smtp.gmail.com with ESMTPSA id p18-20020a0ccb92000000b00621268e14efsm3466016qvk.55.2023.06.21.23.43.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 23:43:42 -0700 (PDT)
-Received: by mail-qt1-f169.google.com with SMTP id d75a77b69052e-3f9cf20da51so58180791cf.2;
-        Wed, 21 Jun 2023 23:43:42 -0700 (PDT)
-X-Received: by 2002:a05:622a:1002:b0:3f6:b923:b58d with SMTP id
- d2-20020a05622a100200b003f6b923b58dmr22749027qte.27.1687416222287; Wed, 21
- Jun 2023 23:43:42 -0700 (PDT)
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=qm05e4OjfSKirTmXzup6QLFGhueq90/W0vX/QkT2XU0=;
+        b=iii1AVAsQ/V4oYfgaI9L/CUTtLUg0Rd1TaLO+IBJ7KJZ7TI+clJ7gSF0oVmPzdVUCj
+         vD23+plFWJz52pUwerUjO0BRaj7RBRHgKQhnSnzI7a+Is5wzV8CBYSSqjrPzQ24QY3Z4
+         0Ch/6MTBDgCzS8zpPx+GkPfMYbgi+KIEQFCUQ6WK2vRWpckjboMe/aK/0/VmzNeeWZzn
+         AixJChElko8SUE2Mf+Dv7ELmaisklHAi3WD20VAERF1rjWLX0ucOih+Fm/uFEM4kGCJh
+         Jc31CsHD13U8GZPpoLeX+1RiFWNNfmGSogiW71Url4PLnLhy7kFC8w7EGv3q5INH5sMR
+         ME+w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687416465; x=1690008465;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=qm05e4OjfSKirTmXzup6QLFGhueq90/W0vX/QkT2XU0=;
+        b=UkKpAAtFtk6h6nxK62fGH6Fi84U7BLQ84tAzT/OioWioVUazlkHnddLPjqpFxsj4Wh
+         XtXI/IhBG1FLcmG7eP7rmb1r4BtzQch3g+x++Cma+Q2CkQJ9DD2DYS+xzvywKUfITj/I
+         qUheeST7BKJyFM8xK0MeOxILT4K0OxUnJJvaaYhh9hyab8JHb+u7NTfp3VSRV00ejPOD
+         1FOlyZBKFzm0EwoAji/UWYFvx+srmTRDionME4gG12xdUGE/Jp8RvPGKQAqiQaHabqvP
+         Nfb1mU3TnOvSIUGkYZPILGPENXeuB2LwTFj2I2cII4GHmFVBiBXiFtBB2TvlgGzhR+eh
+         dRDg==
+X-Gm-Message-State: AC+VfDz+tFh/dB5t2/IxrOP/ve+wrJ94PFrRFgGltwpYemRtCHY3c1p2
+        Uf5R50F2DBz8GpDwf6OkMLx0hmimmfSL81aFbS0=
+X-Google-Smtp-Source: ACHHUZ6pYQ2K/dd0joq1B6c+l/mP/Q3M90DEW+Qz8EIw3MdKrhSkrLcYTA+AK7m8sAZ2vE5s6kBLDFniEYhS5NceT/Y=
+X-Received: by 2002:a05:6870:1846:b0:1a6:9788:c8dc with SMTP id
+ u6-20020a056870184600b001a69788c8dcmr7972164oaf.47.1687416464850; Wed, 21 Jun
+ 2023 23:47:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230621133215.109254-1-tanure@linux.com> <20230621133215.109254-3-tanure@linux.com>
- <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org> <20230621-uncaring-impeding-15cfbe8e0e7c@spud>
- <CAJX_Q+342dx9S4C2C814uQgOj_QR3EBKhETH9eVZOm7PtzFAVQ@mail.gmail.com> <e4c993e1-8409-1ec0-c1b2-175603052e46@linaro.org>
-In-Reply-To: <e4c993e1-8409-1ec0-c1b2-175603052e46@linaro.org>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Thu, 22 Jun 2023 07:43:31 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+09WLqmnWwOL7QESEuDzwZvVVzbtg9Upd5j2LOAYs=vmA@mail.gmail.com>
-Message-ID: <CAJX_Q+09WLqmnWwOL7QESEuDzwZvVVzbtg9Upd5j2LOAYs=vmA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for T7
+References: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
+ <168739869603.42044.12383139966264039986.robh@kernel.org> <CAMhs-H_fUSnXHgO0ZXuGOX7gkuM98HXm+Y_jq1DxCv5Az=3Rag@mail.gmail.com>
+ <50f75267-492f-d36b-f977-da2fb3a3fd1f@linaro.org>
+In-Reply-To: <50f75267-492f-d36b-f977-da2fb3a3fd1f@linaro.org>
+From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
+Date:   Thu, 22 Jun 2023 08:47:33 +0200
+Message-ID: <CAMhs-H_QU+wXt=GWEOiBmYEGKf8=mA2yUCZk5ALtegve60OtWw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: timer: add Ralink SoCs timer
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
-        Artem <art@khadas.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
+Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de,
+        robh+dt@kernel.org, daniel.lezcano@linaro.org,
+        devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 22, 2023 at 7:05 AM Krzysztof Kozlowski
+On Thu, Jun 22, 2023 at 8:16=E2=80=AFAM Krzysztof Kozlowski
 <krzysztof.kozlowski@linaro.org> wrote:
 >
-> On 22/06/2023 07:32, Lucas Tanure wrote:
-> > On Wed, Jun 21, 2023 at 7:12 PM Conor Dooley <conor@kernel.org> wrote:
+> On 22/06/2023 07:14, Sergio Paracuellos wrote:
+> > On Thu, Jun 22, 2023 at 3:51=E2=80=AFAM Rob Herring <robh@kernel.org> w=
+rote:
 > >>
-> >> Lucas,
 > >>
-> >> On Wed, Jun 21, 2023 at 03:53:04PM +0200, Krzysztof Kozlowski wrote:
-> >>> On 21/06/2023 15:32, Lucas Tanure wrote:
-> >>>> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
-> >>>> There is no need for an extra compatible line in the driver, but
-> >>>> add T7 compatible line for documentation.
-> >>>>
-> >>>> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> >>>> ---
-> >>>>  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
-> >>>>  1 file changed, 2 insertions(+)
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >>>> index 01ec45b3b406..860ab58d87b0 100644
-> >>>> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >>>> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >>>> @@ -33,6 +33,7 @@ properties:
-> >>>>                - amlogic,meson8b-uart
-> >>>>                - amlogic,meson-gx-uart
-> >>>>                - amlogic,meson-s4-uart
-> >>>> +              - amlogic,meson-t7-uart
-> >>>>            - const: amlogic,meson-ao-uart
-> >>>>        - description: Always-on power domain UART controller on G12A SoCs
-> >>>>          items:
-> >>>> @@ -46,6 +47,7 @@ properties:
-> >>>>            - amlogic,meson8b-uart
-> >>>>            - amlogic,meson-gx-uart
-> >>>>            - amlogic,meson-s4-uart
-> >>>> +          - amlogic,meson-t7-uart
+> >> On Tue, 20 Jun 2023 12:02:31 +0200, Sergio Paracuellos wrote:
+> >>> Add YAML documentation for the timer which is present on Ralink SoCs.
 > >>>
-> >>> It does not look like you tested the DTS against bindings. Please run
-> >>> `make dtbs_check` (see
-> >>> Documentation/devicetree/bindings/writing-schema.rst or
-> >>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> >>> for instructions).
+> >>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> >>> ---
+> >>> Changes in v2:
+> >>> - Remove redundant 'documentation' word from subject.
+> >>> - Drop clock-names property.
+> >>>
+> >>>  .../bindings/timer/ralink,rt2880-timer.yaml   | 44 +++++++++++++++++=
+++
+> >>>  1 file changed, 44 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/timer/ralink,rt=
+2880-timer.yaml
+> >>>
 > >>
-> >> Check back on the previous version, I should've posted an untested
-> >> version of what you need to add.
-> > I saw that, but adding a S4 doesn't make sense to me. And you didn't
-> > show the entire change, so I can't understand what you want there.
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >>
+> >
+> > Thanks! Which tree is this supposed to go through?
 >
-> For sure you need something which does not trigger errors. If you claim
-> adding S4 as fallback does not make sense, then why did you use it?
-> Sending a code which is clearly incorrect does not make sense.
->
-Sorry, I think we are talking about different things. It does not make
-sense to me to add an S4 line in the documentation when it is already
-there. So I could not understand or make sense of the patch Conor sent
-in reply to my V2.
+> Preferably clocksource/clockevents/timer drivers tree/
 
-Krzysztof, I will check again with dtbs_check and re-send.
+Thanks for letting me know :)
+
+Best regards,
+    Sergio Paracuellos
 
 >
 > Best regards,
