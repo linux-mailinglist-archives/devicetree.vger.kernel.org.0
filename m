@@ -2,31 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DB30B73AB57
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 23:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B5C73AB58
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 23:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230260AbjFVVPI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 17:15:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60948 "EHLO
+        id S230425AbjFVVPL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 17:15:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32830 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231504AbjFVVO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 17:14:57 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 316E2F1
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 14:14:55 -0700 (PDT)
+        with ESMTP id S230397AbjFVVPK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 17:15:10 -0400
+Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A528719AB
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 14:15:09 -0700 (PDT)
 X-GND-Sasl: miquel.raynal@bootlin.com
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687468493;
+        t=1687468508;
         h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
          to:to:cc:cc:mime-version:mime-version:
          content-transfer-encoding:content-transfer-encoding:
          in-reply-to:in-reply-to:references:references;
-        bh=nXPKmx8WVT5bXuRLxBqyTO8Nel+8k42DRpIHfwB9bRk=;
-        b=NfjsB+KE2lZ64ipFmTirXh8gQkzG+F2H+FfTxArjWzIUG2DPnztrKlPqqq20/wHlPHiRoZ
-        /MFYo6mFfwCdTtg/TVYFmLZaE9zY1Iw2t3nr4vwr2NFI6wGUXJbkrnkyaSKzvjk22cbNRR
-        geqRoB/A2ICk77rZgit17GrIZpKZZ6LRnilnZEdQ0YXAvUecsLxhPx5S+5nNANQEVOZRov
-        zEidOx+/U7SDc5mhUQhOw1EUlWbBD0yvDb9gTSz463u+xAiC/JNzmR96QwNKF/z+KIlIAu
-        ok+AElBlLMhJAOMFk9G+xguhg6k27PMuJbQ9a+N+tjRc70K+0OL1iOcn+Vc+5g==
+        bh=94gitttN9rQF7Ija26fdThSBLjBY3CodgQnT8Xorylg=;
+        b=Dtw7wAYNiUwxZxJ7xmQsTEOdz9SJ8s9MeFJwWnHfH0OnSMse3CiLLh8naxSpZZNMDEucr1
+        dEDujFPPALm9OgXShz+zzgCnQdUNg/ccOXVTrAtu5oUlM+0N5yGeYU5/F6gmexUEoYXoRK
+        /Te0WBTsv4uuRaCmjpeYzkofH0x2EWHOKBcQDBU6FdUgXkMBgINDwdrnJr32SX5vySpaSo
+        SKsSZwkrqwGdKN2NkSHQAPyf3uE33/gz5ItZzNrLKLelum9HL07ElgeHO9tPjmbvkTaEgH
+        FV5TzZ6G5TMjUvzF5aMCmJ+pR9bbhtn9Yzyv4rR/QR1sDK2ydMBokfccxUdbAw==
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
@@ -39,8 +39,11 @@ X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
 X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 4ED8240004;
-        Thu, 22 Jun 2023 21:14:52 +0000 (UTC)
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E0EB21BF207;
+        Thu, 22 Jun 2023 21:15:03 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Miquel Raynal <miquel.raynal@bootlin.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -54,16 +57,20 @@ Cc:     Richard Weinberger <richard@nod.at>,
         linux-mtd@lists.infradead.org,
         Chris Packham <Chris.Packham@alliedtelesis.co.nz>,
         Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Xiangsheng Hou <xiangsheng.hou@mediatek.com>,
         Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v3 17/17] dt-bindings: mtd: ti,am654: Prevent unevaluated properties
-Date:   Thu, 22 Jun 2023 23:14:49 +0200
-Message-Id: <20230622211450.3581531-1-miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v3 16/17] dt-bindings: mtd: mediatek: Prevent NAND chip unevaluated properties
+Date:   Thu, 22 Jun 2023 23:14:59 +0200
+Message-Id: <20230622211500.3581569-1-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230619092916.3028470-18-miquel.raynal@bootlin.com>
+In-Reply-To: <20230619092916.3028470-17-miquel.raynal@bootlin.com>
 References: 
 MIME-Version: 1.0
 X-linux-mtd-patch-notification: thanks
-X-linux-mtd-patch-commit: b'bae825ccfd4b49695466c81eed5bb51c00eebd54'
+X-linux-mtd-patch-commit: b'2beb46f04bd7a857f4994dd1085a49254d6c6602'
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
@@ -75,12 +82,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 2023-06-19 at 09:29:16 UTC, Miquel Raynal wrote:
-> Reference mtd-physmap.yaml which contains all the relevant properties
-> for this device. Add "unevaluatedProperties: false" to avoid any
-> spurious addition of random properties.
+On Mon, 2023-06-19 at 09:29:15 UTC, Miquel Raynal wrote:
+> nand-on-flash-bbt is a generic property which may apply to any raw NAND
+> chip, it does not need to be listed in each controller
+> description. The raw NAND chip description file which contains the
+> property is already referenced, so no need to mention the property here
+> again.
 > 
-> Cc: Vignesh Raghavendra <vigneshr@ti.com>
+> Cc: Matthias Brugger <matthias.bgg@gmail.com>
+> Cc: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> Cc: Xiangsheng Hou <xiangsheng.hou@mediatek.com>
 > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > Reviewed-by: Rob Herring <robh@kernel.org>
 
