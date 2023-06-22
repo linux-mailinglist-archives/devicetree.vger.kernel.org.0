@@ -2,138 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BE1E73941E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 02:51:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E322373942C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 02:57:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229645AbjFVAv5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 20:51:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36312 "EHLO
+        id S229650AbjFVA5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 20:57:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229453AbjFVAvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 20:51:55 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4FB83186
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 17:51:54 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f004cc54f4so9029810e87.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 17:51:54 -0700 (PDT)
+        with ESMTP id S229605AbjFVA5Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 20:57:24 -0400
+Received: from mail-pf1-x42d.google.com (mail-pf1-x42d.google.com [IPv6:2607:f8b0:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7706A197;
+        Wed, 21 Jun 2023 17:57:23 -0700 (PDT)
+Received: by mail-pf1-x42d.google.com with SMTP id d2e1a72fcca58-668711086f4so84378b3a.1;
+        Wed, 21 Jun 2023 17:57:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687395112; x=1689987112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=JpH450RlcCBag58hjq7lxrqN2fInkuZLNQWzOYqCTD4=;
-        b=hcMVMZxr3AZmAsjOEMtaDKs1BAyffyed833lUzAWODc+ovtjuJnYZLxkY+42oIEZAk
-         g7m5ght45cAE4HpsEarBfPkPQbTJA9Y7bzRNolCz6i7SggEG8MbRygrwARgUjIziYFxN
-         BILDyzX2sAoY7G+BYa5TDmWs1iQsT0QXuUWg3lSCkT/2VIDvyX7ONLGCsPyqVA2NuhK4
-         QN/mz+GDeeu/aNQyIoyx9VsWTl/RYGVmXQd/5SQaqS3aZ2mmNtEyLsty/VQ63xd5tkrj
-         X9o0ixOlKvzjsLJ3XR2lZPoGCJjt4msI6+T82At5mC++svcB7bgLFDrTLKDSufzRizzM
-         YuFg==
+        d=gmail.com; s=20221208; t=1687395443; x=1689987443;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TRHIPcIYRAsemBQXSugqu1HmfZ2F6V2nohZmaYh7iX8=;
+        b=bNJZdch2OwwbnqDEK2vJWSbZAhzVy+lJNFjojoaYtGBHQ42zzJE9uP0xQXAKcHVwJy
+         zWrH1177G7B/nu196zLwqmr4/gOwUm9R/vLT/prTcANUa4BN1xisyNtrMMQo5YUqEy+W
+         8/a8c0RrrmFyTfSfkmX4Dw9tbioOB2nPfhnowk/g6KcKhHm6R47BweJBTxVB3nQHsPt4
+         v7hd/i1tZiCVgQNRvqw859uOQbiIk02jSIJ97h+vCQokQaLhMriKc7QXpfEyh5iuK8oF
+         vSX6ofjVC1G2M9D1q1HzM0YtKHOTH3Hf4d3AbSzuFFNYZBeIGYt4HlASt9FzXuXJwO23
+         S9aQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687395112; x=1689987112;
-        h=content-transfer-encoding:in-reply-to:subject:from:content-language
-         :references:cc:to:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=JpH450RlcCBag58hjq7lxrqN2fInkuZLNQWzOYqCTD4=;
-        b=JpF5tbrZ267rjXoGyHe1Eljh9TnpBf/0+23I0R9zTT9sRyoexJXZyEfqZQa4x2lg6d
-         pKQtIBp0hg71D24wAnkNaOqup34WM9Ybu7IGTPPYgzGynPTytldVJlfDxqxR6sisVrbN
-         s+Q0XWLDJsPyVZlz6XeOEEMnSX2DTFzTTx2AdW5dyFZnhiCNeSAUbD/FdhgUOv3/JFkw
-         /Z5S3jk1j9bfGkAIzHeylH5ubSjpxuOvYUl2jSYATiT2xj2DwovLkm1NHeAMoLgq0C4H
-         5Abh4eMnS3wtMhekGFh9GuYNzVmAIizUlN8Vp/U8s22RB6G7MpVibObkalro4L0y3TfS
-         ezeQ==
-X-Gm-Message-State: AC+VfDwZuntVbUneNDqzACi4R1bon3QCAScRsDo7V6xlPizm62NP9fT9
-        fzW+NvGz+DLk2aGmUaXNUbaBbw==
-X-Google-Smtp-Source: ACHHUZ65QyPqBn4GlqwjOoSz+PSJNfvplML9UAIrdeTW08mFQ/X0fteOjnBCdjYy51tpPWPIo4EPKQ==
-X-Received: by 2002:a05:6512:3f0c:b0:4f9:58ed:7bba with SMTP id y12-20020a0565123f0c00b004f958ed7bbamr2736659lfa.16.1687395112337;
-        Wed, 21 Jun 2023 17:51:52 -0700 (PDT)
-Received: from [192.168.1.101] (abxj193.neoplus.adsl.tpnet.pl. [83.9.3.193])
-        by smtp.gmail.com with ESMTPSA id a9-20020a19f809000000b004f3a71a9e72sm928156lff.102.2023.06.21.17.51.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 17:51:51 -0700 (PDT)
-Message-ID: <dc5ffed0-555b-18e5-cf96-d6a4263357af@linaro.org>
-Date:   Thu, 22 Jun 2023 02:51:50 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        d=1e100.net; s=20221208; t=1687395443; x=1689987443;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:sender:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=TRHIPcIYRAsemBQXSugqu1HmfZ2F6V2nohZmaYh7iX8=;
+        b=WtttNffqYv6uZRI1yf4J6idXBPda+INQwg/qlBTNP7d8iZU8noIfw62Jrc0WEnLpbT
+         4jUBlUyLlB6YIjOuNZoY9qlD89XVwpuYEINXPVPmYOprm8+lH+PYyCXZiTV1BC2XYwdl
+         xIuwRWZrMapEjDFu+7xP5GuLEv2CQll2EG2mMKCoMz6jEHmEFlUWbeDRSd2WIJXlQvTW
+         cpy0tmJMpz+Tp9psfz6KdQvKa2wxr9CVmL6ceZt9UjS3vRG8OV7TADPDGkWjGmA0yDH7
+         w9TDSRUfQnzMMUTeH7q/bAP33w4iPAcbfgnUy1mIjabuhWixvm0iK1H99s4ljCJly9h4
+         Rhng==
+X-Gm-Message-State: AC+VfDxZvamWxsZe5N2p8/cWf68RH/fqK0P3ewL6jm1QRWx6bbJEg+M1
+        tnP23LsuDt1HEbBhhlqF194=
+X-Google-Smtp-Source: ACHHUZ6iMp+OYqownUXjVdBdLJssPnWKXdDhAMDRONi/XOCG8SypV1kVE1GgB0nIJZDzI0bj35KRhw==
+X-Received: by 2002:a05:6a00:13a0:b0:668:9f95:b518 with SMTP id t32-20020a056a0013a000b006689f95b518mr9140094pfg.9.1687395442837;
+        Wed, 21 Jun 2023 17:57:22 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id t12-20020a62ea0c000000b00657fbf81ffbsm1420690pfh.80.2023.06.21.17.57.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 17:57:22 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Date:   Wed, 21 Jun 2023 17:57:20 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-References: <20230621-topic-mm8013-v1-0-4407c6260053@linaro.org>
- <20230621-topic-mm8013-v1-2-4407c6260053@linaro.org>
- <da300402-d417-5646-d4c9-7c100c351db1@linaro.org>
-Content-Language: en-US
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Subject: Re: [PATCH 2/3] dt-bindings: power: supply: Document Mitsumi MM8013
- fuel gauge
-In-Reply-To: <da300402-d417-5646-d4c9-7c100c351db1@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, soc@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2 04/10] arm64: introduce STM32 family on Armv8
+ architecture
+Message-ID: <24e9c526-4128-4e63-8d28-c4ef1647f886@roeck-us.net>
+References: <20230602132859.16442-1-alexandre.torgue@foss.st.com>
+ <20230602132859.16442-5-alexandre.torgue@foss.st.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230602132859.16442-5-alexandre.torgue@foss.st.com>
+X-Spam-Status: No, score=-1.3 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21.06.2023 18:38, Krzysztof Kozlowski wrote:
-> On 21/06/2023 17:39, Konrad Dybcio wrote:
->> The Mitsumie MM8013 is an I2C fuel gauge for Li-Ion cells. The partial
-> 
-> Mitsumi
-> 
->> datasheet is available at [1]. Add bindings for this chip.
->>
->> [1] https://www.mitsumi.co.jp/latest-M/Catalog/pdf/battery_mm_8013_e.pdf
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> ---
->>  .../bindings/power/supply/mitsumi,mm8013.yaml      | 35 ++++++++++++++++++++++
->>  1 file changed, 35 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
->> new file mode 100644
->> index 000000000000..080fd44083ac
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
->> @@ -0,0 +1,35 @@
->> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/power/supply/mitsumi,mm8013.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Mitsumi MM8013 fuel gauge
->> +
->> +maintainers:
->> +  - Konrad Dybcio <konradybcio@kernel.org>
->> +
->> +properties:
->> +  compatible:
->> +    const: mitsumi,mm8013
->> +
->> +  reg:
->> +    maxItems: 1
-> 
-> 
-> I think you miss several properties: three power supplies (although not
-> all might be needed) and most likely monitored-battery. One regulator
-> output and output GPIO probably can be skipped.
-Looking at the example circuit, it seems like the chip's power lines are
-hardwired to the battery cell.
+Hi,
 
-monitored-battery does not seem useful today, as we don't have any
-information about writing values onto the chip :/ And I'm not willing
-to experiment with that! :P
+On Fri, Jun 02, 2023 at 03:28:53PM +0200, Alexandre Torgue wrote:
+> Add a dedicated ARCH_STM32 for STM32 SoCs config. First STM32 Armv8 SoC
+> family is the STM32MP25 which is composed of STM32MP251, STM32MP253,
+> STM32MP255, STM32MP257 SoCs.
+> 
+> Signed-off-by: Alexandre Torgue <alexandre.torgue@foss.st.com>
+> 
 
-Konrad
-> 
-> Best regards,
-> Krzysztof
-> 
+This patch (or patch series) results in the following build error when
+trying to build arm64:allmodconfig.
+
+Building arm64:allmodconfig ... failed
+--------------
+Error log:
+In file included from include/linux/printk.h:564,
+                 from include/asm-generic/bug.h:22,
+                 from arch/arm64/include/asm/bug.h:26,
+                 from include/linux/bug.h:5,
+                 from include/linux/fortify-string.h:5,
+                 from include/linux/string.h:254,
+                 from include/linux/dma-mapping.h:7,
+                 from drivers/remoteproc/stm32_rproc.c:9:
+drivers/remoteproc/stm32_rproc.c: In function 'stm32_rproc_mem_alloc':
+drivers/remoteproc/stm32_rproc.c:122:22: error: format '%x' expects argument of type 'unsigned int', but argument 5 has type 'size_t'
+
+Bisect log attached.
+
+Guenter
+
+---
+# bad: [15e71592dbae49a674429c618a10401d7f992ac3] Add linux-next specific files for 20230621
+# good: [45a3e24f65e90a047bef86f927ebdc4c710edaa1] Linux 6.4-rc7
+git bisect start 'HEAD' 'v6.4-rc7'
+# bad: [e867e67cd55ae460c860ffd896c7fc96add2821c] Merge branch 'master' of git://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git
+git bisect bad e867e67cd55ae460c860ffd896c7fc96add2821c
+# bad: [57b289d5b1005a9c39d6d6567e0ef6115bd59cea] Merge branch 'for-next' of git://git.kernel.org/pub/scm/linux/kernel/git/riscv/linux.git
+git bisect bad 57b289d5b1005a9c39d6d6567e0ef6115bd59cea
+# good: [dc6399fc9ae6d2530fc38fb3ae96bcc8393bd66f] Merge branch 'for-next/perf' of git://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git
+git bisect good dc6399fc9ae6d2530fc38fb3ae96bcc8393bd66f
+# good: [5bfea833dd8f972ce3435359f12f61bdbf01b147] Merge tag 'v6.4-next-dts64' of https://git.kernel.org/pub/scm/linux/kernel/git/matthias.bgg/linux into soc/dt
+git bisect good 5bfea833dd8f972ce3435359f12f61bdbf01b147
+# bad: [6f8f9120fd588b28edb0a9c6b9ae9ca6c261d9f6] Merge branch 'for-linux-next' of git://git.kernel.org/pub/scm/linux/kernel/git/sudeep.holla/linux.git
+git bisect bad 6f8f9120fd588b28edb0a9c6b9ae9ca6c261d9f6
+# bad: [fe16e4b5e7fa1badc2fa69d85f7b13926cce8fe2] Merge branch 'at91-next' of git://git.kernel.org/pub/scm/linux/kernel/git/at91/linux.git
+git bisect bad fe16e4b5e7fa1badc2fa69d85f7b13926cce8fe2
+# good: [0e4ad579ef10d4e9eca86eb33fb4cd87de7c05c4] soc: document merges
+git bisect good 0e4ad579ef10d4e9eca86eb33fb4cd87de7c05c4
+# good: [d704f1fe9f4a4ae9c9f1f9fac1e4194c34dd035b] Merge tag 'arm-soc/for-6.5/devicetree-arm64' of https://github.com/Broadcom/stblinux into soc/dt
+git bisect good d704f1fe9f4a4ae9c9f1f9fac1e4194c34dd035b
+# bad: [26588df4e5a385e5b7751997d48bdeef042cf736] Merge branch 'soc/newsoc' into for-next
+git bisect bad 26588df4e5a385e5b7751997d48bdeef042cf736
+# good: [6bce45197c25c99612a3c5e0cf041d18aa28fbf3] Merge branch 'soc/dt' into for-next
+git bisect good 6bce45197c25c99612a3c5e0cf041d18aa28fbf3
+# bad: [3b170e1653c05b067ea6ef616ece961b07714f48] arm64: dts: st: introduce stm32mp25 pinctrl files
+git bisect bad 3b170e1653c05b067ea6ef616ece961b07714f48
+# good: [c3053382574a5a829c93fb5ab0bb52d20456e745] dt-bindings: stm32: add st,stm32mp25-syscfg compatible for syscon
+git bisect good c3053382574a5a829c93fb5ab0bb52d20456e745
+# bad: [5d30d03aaf78586c37100006ba271d045f730bb5] arm64: dts: st: introduce stm32mp25 SoCs family
+git bisect bad 5d30d03aaf78586c37100006ba271d045f730bb5
+# bad: [9e4e24414cc6b45bd887d746a59691e295431ddf] arm64: introduce STM32 family on Armv8 architecture
+git bisect bad 9e4e24414cc6b45bd887d746a59691e295431ddf
+# first bad commit: [9e4e24414cc6b45bd887d746a59691e295431ddf] arm64: introduce STM32 family on Armv8 architecture
