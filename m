@@ -2,60 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F1BF6739ADD
+	by mail.lfdr.de (Postfix) with ESMTP id 57586739ADB
 	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230072AbjFVIyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 04:54:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38326 "EHLO
+        id S229994AbjFVIyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 04:54:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230230AbjFVIyH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:54:07 -0400
-Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D93D41BE2;
-        Thu, 22 Jun 2023 01:54:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687424040; x=1718960040;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=Xt7+0eDhZXluZqNtcuchvFSf+T60q4HXLuXvNh01QUs=;
-  b=fiu+KPyH7LORA2Y4kuZIPZHw9Wf11WsziPnUKX76uhnDdHdHOXCzEPRG
-   zTTrEdQbsSFiLPu2xAVi2RYZZFam08PYSGI18GEIfP7sLQtwcZyG/jTIc
-   QvC9sHh/TOQAKeVDWH9/h+8Smkpnku+X+y3zoHZQRxsPf73msE2zLyEXX
-   Vp/poUciBRFw1WjF1LU4+LFC6Ps1olu4CmG9fBE5uv4qZZpQ/mqadZdBT
-   sWxFxBekirUWIxUXPHEFbubcD+zhVFw4qx5kVTEkYdM0aJM9O3P2LBkd1
-   fmxXTgWBHDC3il1re5JbcHNplFc2UuPb+xPmwvcuzraWp2CPcXiHrntL4
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="363853587"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
-   d="scan'208";a="363853587"
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2023 01:54:00 -0700
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="749170677"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
-   d="scan'208";a="749170677"
-Received: from unknown (HELO localhost.localdomain) ([10.226.216.117])
-  by orsmga001.jf.intel.com with ESMTP; 22 Jun 2023 01:53:57 -0700
-From:   kah.jing.lee@intel.com
-To:     Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Alif Zakuan Yuslaimi <alif.zakuan.yuslaimi@intel.com>,
-        Kah Jing Lee <kah.jing.lee@intel.com>
-Subject: [PATCH 1/2] arch: arm64: boot: dts: Updated QSPI Flash layout for UBIFS
-Date:   Thu, 22 Jun 2023 16:53:19 +0800
-Message-Id: <20230622085319.562868-1-kah.jing.lee@intel.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S231510AbjFVIxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:53:47 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC68C210C
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:53:27 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b477e9d396so63494781fa.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:53:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687424006; x=1690016006;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=EOud5yiCf9vuKq5jIo/hllLQZNDjLVHZzylOU65GmJI=;
+        b=rPDqi0R0+g8TBX9UA0smbbXRrnzrS3JCy/uN6yGpEPSuTzhD7prfpcIAPQ6cEe4RYN
+         VG1yyUmw5VsK1Ea/D5hU9GgK0fUuVbbcEnqXLltVCpStAfg0ysfOdQJjMraKRMqKzgfN
+         83pWFbYaDl+3HXgiV/67k/9zqkdIKK2/7wfQulv5SHg7QGbSGnGsCJjHqu1hq/K54cRR
+         toRbVQEtJO3+r8ZqA06HGiLjYOHzftCvKtyHpIy7MfXifw0POjKTIpEmmn0SGWZ+Nv7X
+         si30P2tJAHGyFlIC+rTlhq63xxu2m3pwZHMSm+0sU2vdqo6hs96AAalZhtDwGhLblsYa
+         ZJ0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687424006; x=1690016006;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=EOud5yiCf9vuKq5jIo/hllLQZNDjLVHZzylOU65GmJI=;
+        b=PjcSXcer1hGBOsgvovHayk50RUzVcuTFVjfT7lKviT1G9ybveHW53ca4P0arrDfELG
+         VX0z0p73PGV0CSEXkKhUBvQ49PHdpQY76F5Sxh3yYFnm6toq/vcU46wtmD3mfSwCBArw
+         MCL104Jgt9/AdAWJRh4BEdrXnnJChrKSP82I3HbtQj/NpGGINOBsoIvlM1HeyHRF6DWI
+         YblBgvqZCFFB5RhOswox2U5Urs7yEFx47BL6RpamvehCYFqEzvPh3TH/YcCvRmYFRMNf
+         BfuIV/OZu/VXmLlipWnuTBNxm/BKUF9sDU78Gt9SVDflCvr5mp/IP7KcCWWiBb+H+21P
+         z9mg==
+X-Gm-Message-State: AC+VfDw1SM0b+JrQwp9xLcl1s3cogEhzt5Aq6U3Q6KhIf1RY60LLUoFu
+        vYCvtEzE6+73zRrcGGz3ESiDcA==
+X-Google-Smtp-Source: ACHHUZ7B+URHvhGO5p5GI/nngSr4VyHHJZ/u5wLllsgAdajbEtUs+ag81KiCAsrL6pqfP4Z7hNxwSA==
+X-Received: by 2002:a2e:8349:0:b0:2b2:104d:8f89 with SMTP id l9-20020a2e8349000000b002b2104d8f89mr11357862ljh.0.1687424006145;
+        Thu, 22 Jun 2023 01:53:26 -0700 (PDT)
+Received: from [192.168.1.101] (abyl165.neoplus.adsl.tpnet.pl. [83.9.31.165])
+        by smtp.gmail.com with ESMTPSA id n20-20020a2eb794000000b002b47dabaaa5sm1209035ljo.121.2023.06.22.01.53.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Jun 2023 01:53:25 -0700 (PDT)
+Message-ID: <7b614cd8-1b6e-519b-cc2a-acc1fa5f24b3@linaro.org>
+Date:   Thu, 22 Jun 2023 10:53:24 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: Use assigned-clock-rates for
+ QUP I2C core clks
+To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_kathirav@quicinc.com, quic_anusha@quicinc.com
+References: <20230615084841.12375-1-quic_devipriy@quicinc.com>
+ <1ab63d4b-6358-ce08-818a-b5751f88cdde@linaro.org>
+ <d05c7b0e-6edb-bc0f-5875-fc5cb8ea6b8a@quicinc.com>
+Content-Language: en-US
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <d05c7b0e-6edb-bc0f-5875-fc5cb8ea6b8a@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -63,60 +81,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Alif Zakuan Yuslaimi <alif.zakuan.yuslaimi@intel.com>
+On 22.06.2023 08:25, Devi Priya wrote:
+> 
+> 
+> On 6/15/2023 2:21 PM, Konrad Dybcio wrote:
+>> On 15.06.2023 10:48, Devi Priya wrote:
+>>> Use assigned-clock-rates property for configuring the QUP I2C core clocks
+>>> to operate at nominal frequency.
+>>>
+>>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
+>>> ---
+>> There's probably some logic behind this, and it almost sounds like
+>> it'd be fitting to introduce an OPP table for I2C hosts, especially
+>> given the voltage requirements.
+>>
+>> Konrad
+> The qup i2c core clocks are not scalable and operate at fixed frequency.
+> The assigned-clock-rates are used to configure the clock frequency
+> if it is not done by the bootloaders.
+OPP tables with a single entry are totally fine.
 
-This patch is to update the QSPI flash layout to support UBIFS in mtd
-root partition.
-
-Signed-off-by: Alif Zakuan Yuslaimi <alif.zakuan.yuslaimi@intel.com>
-Signed-off-by: Kah Jing Lee <kah.jing.lee@intel.com>
----
- arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 8 ++++----
- arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts     | 8 ++++----
- 2 files changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-index 38ae674f2f02..12b960b9183c 100644
---- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-+++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-@@ -202,12 +202,12 @@ partitions {
- 
- 			qspi_boot: partition@0 {
- 				label = "Boot and fpga data";
--				reg = <0x0 0x03FE0000>;
-+				reg = <0x0 0x04200000>;
- 			};
- 
--			qspi_rootfs: partition@3FE0000 {
--				label = "Root Filesystem - JFFS2";
--				reg = <0x03FE0000 0x0C020000>;
-+			root: partition@4200000 {
-+				label = "Root Filesystem - UBIFS";
-+				reg = <0x04200000 0x0BE00000>;
- 			};
- 		};
- 	};
-diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-index 07c3f8876613..608017e6e36a 100644
---- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-+++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-@@ -128,12 +128,12 @@ partitions {
- 
- 			qspi_boot: partition@0 {
- 				label = "Boot and fpga data";
--				reg = <0x0 0x03FE0000>;
-+				reg = <0x0 0x04200000>;
- 			};
- 
--			qspi_rootfs: partition@3FE0000 {
--				label = "Root Filesystem - JFFS2";
--				reg = <0x03FE0000 0x0C020000>;
-+			root: partition@4200000 {
-+				label = "Root Filesystem - UBIFS";
-+				reg = <0x04200000 0x0BE00000>;
- 			};
- 		};
- 	};
--- 
-2.25.1
-
+Konrad
+> 
+> Thanks,
+> Devi Priya
+>>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 8 ++++++++
+>>>   1 file changed, 8 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> index 0baeb10bbdae..78bf7f9c455a 100644
+>>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
+>>> @@ -361,6 +361,8 @@
+>>>               clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>,
+>>>                    <&gcc GCC_BLSP1_AHB_CLK>;
+>>>               clock-names = "core", "iface";
+>>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>;
+>>> +            assigned-clock-rates = <50000000>;
+>>>               dmas = <&blsp_dma 14>, <&blsp_dma 15>;
+>>>               dma-names = "tx", "rx";
+>>>               status = "disabled";
+>>> @@ -389,6 +391,8 @@
+>>>               clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>,
+>>>                    <&gcc GCC_BLSP1_AHB_CLK>;
+>>>               clock-names = "core", "iface";
+>>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>;
+>>> +            assigned-clock-rates = <50000000>;
+>>>               dmas = <&blsp_dma 16>, <&blsp_dma 17>;
+>>>               dma-names = "tx", "rx";
+>>>               status = "disabled";
+>>> @@ -417,6 +421,8 @@
+>>>               clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
+>>>                    <&gcc GCC_BLSP1_AHB_CLK>;
+>>>               clock-names = "core", "iface";
+>>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>;
+>>> +            assigned-clock-rates = <50000000>;
+>>>               dmas = <&blsp_dma 18>, <&blsp_dma 19>;
+>>>               dma-names = "tx", "rx";
+>>>               status = "disabled";
+>>> @@ -446,6 +452,8 @@
+>>>               clocks = <&gcc GCC_BLSP1_QUP5_I2C_APPS_CLK>,
+>>>                    <&gcc GCC_BLSP1_AHB_CLK>;
+>>>               clock-names = "core", "iface";
+>>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP5_I2C_APPS_CLK>;
+>>> +            assigned-clock-rates = <50000000>;
+>>>               dmas = <&blsp_dma 20>, <&blsp_dma 21>;
+>>>               dma-names = "tx", "rx";
+>>>               status = "disabled";
