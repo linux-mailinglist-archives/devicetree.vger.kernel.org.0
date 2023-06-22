@@ -2,75 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57586739ADB
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:55:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11D5C739BFB
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 11:08:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbjFVIyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 04:54:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36730 "EHLO
+        id S231609AbjFVJGD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 05:06:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231510AbjFVIxr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:53:47 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC68C210C
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:53:27 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b477e9d396so63494781fa.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:53:27 -0700 (PDT)
+        with ESMTP id S231962AbjFVJDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 05:03:51 -0400
+Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C53D846BD
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:57:57 -0700 (PDT)
+Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4f86e1bdce5so6793885e87.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:57:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687424006; x=1690016006;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1687424237; x=1690016237;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EOud5yiCf9vuKq5jIo/hllLQZNDjLVHZzylOU65GmJI=;
-        b=rPDqi0R0+g8TBX9UA0smbbXRrnzrS3JCy/uN6yGpEPSuTzhD7prfpcIAPQ6cEe4RYN
-         VG1yyUmw5VsK1Ea/D5hU9GgK0fUuVbbcEnqXLltVCpStAfg0ysfOdQJjMraKRMqKzgfN
-         83pWFbYaDl+3HXgiV/67k/9zqkdIKK2/7wfQulv5SHg7QGbSGnGsCJjHqu1hq/K54cRR
-         toRbVQEtJO3+r8ZqA06HGiLjYOHzftCvKtyHpIy7MfXifw0POjKTIpEmmn0SGWZ+Nv7X
-         si30P2tJAHGyFlIC+rTlhq63xxu2m3pwZHMSm+0sU2vdqo6hs96AAalZhtDwGhLblsYa
-         ZJ0w==
+        bh=h8JJC5MbeRl35Lgr29rOxqKueNcHatWfOiyxtFqQ4VU=;
+        b=YNd7aH2hMxKS2KCUtXwaAUgKiMN4JBd9cDEIZIwu742lvpetQ6CeP96xaB8S3Bk8in
+         Ux4yDHQbhOlv3wxDjiYBP3ggNiR1pwV+WxWsrsqMoMVC0WNNcculLOlsVh0WxskbwWDG
+         m3p8xjCRXVhPCiV67mtW1nnaGObKFwOWePkGW4wDI7oY1EsRkFWHB0lkAeGDn877PArU
+         8tEDfYKoeI6btiK+V/R8b3V8g6NfEH7MDJKHETKywIapXqXSsjMy364E59qTj1K5Eq2X
+         RIYt9MOUVp5nab6DquEQtfDaSYs15/kbrLj4FfkZoLaE99hqED8lJfyoA2Oq4vafnzvZ
+         SBrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687424006; x=1690016006;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687424237; x=1690016237;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EOud5yiCf9vuKq5jIo/hllLQZNDjLVHZzylOU65GmJI=;
-        b=PjcSXcer1hGBOsgvovHayk50RUzVcuTFVjfT7lKviT1G9ybveHW53ca4P0arrDfELG
-         VX0z0p73PGV0CSEXkKhUBvQ49PHdpQY76F5Sxh3yYFnm6toq/vcU46wtmD3mfSwCBArw
-         MCL104Jgt9/AdAWJRh4BEdrXnnJChrKSP82I3HbtQj/NpGGINOBsoIvlM1HeyHRF6DWI
-         YblBgvqZCFFB5RhOswox2U5Urs7yEFx47BL6RpamvehCYFqEzvPh3TH/YcCvRmYFRMNf
-         BfuIV/OZu/VXmLlipWnuTBNxm/BKUF9sDU78Gt9SVDflCvr5mp/IP7KcCWWiBb+H+21P
-         z9mg==
-X-Gm-Message-State: AC+VfDw1SM0b+JrQwp9xLcl1s3cogEhzt5Aq6U3Q6KhIf1RY60LLUoFu
-        vYCvtEzE6+73zRrcGGz3ESiDcA==
-X-Google-Smtp-Source: ACHHUZ7B+URHvhGO5p5GI/nngSr4VyHHJZ/u5wLllsgAdajbEtUs+ag81KiCAsrL6pqfP4Z7hNxwSA==
-X-Received: by 2002:a2e:8349:0:b0:2b2:104d:8f89 with SMTP id l9-20020a2e8349000000b002b2104d8f89mr11357862ljh.0.1687424006145;
-        Thu, 22 Jun 2023 01:53:26 -0700 (PDT)
+        bh=h8JJC5MbeRl35Lgr29rOxqKueNcHatWfOiyxtFqQ4VU=;
+        b=YFaOxLrvmDDn5aY4aD2l5FDttBLPZD/Ga/fovg+4OxNscFhbB9XoWQkwLZjtN3UKwX
+         KqpE5W4W5u8KsOu1tQ4sT9XDXW2YFDRPNxJp4jEEY6k54hO4I2jEN3Ac6ma2YaH6z0JE
+         dJDPEipLsVd8LjxMVob8wcjkxet2LC3mbiy5VFw5/MGFUiS/T3txjz3qNr8PMYozQkMy
+         ZBOzf44Esl90mV6vdPunZz178sQzc1rGGCLkiPNqIZoSByB98tUQeWpjzVcyWhoGAvDk
+         NsXWR8pISxidY3MELz0CyT4ncHYBmhu+l/zeNf9uxbLMhLFOYZpkjAc6HqLbLB4hY/nK
+         XHLg==
+X-Gm-Message-State: AC+VfDwnACTvR8wMTzNsVoq9IkbmM8ph6cXjDz/jIiDEd5DEBimYWdwU
+        HauotKiXu4yg+2gqU3cXCg8EpQ==
+X-Google-Smtp-Source: ACHHUZ5DtqCuLkszK5asTi0X5yVeZC+RRCrK/xxXcA0FCKadOHbmfMInI+WR3WuoBg1nFonFGVf8NQ==
+X-Received: by 2002:a05:6512:447:b0:4f8:5fce:3683 with SMTP id y7-20020a056512044700b004f85fce3683mr8532131lfk.20.1687424237104;
+        Thu, 22 Jun 2023 01:57:17 -0700 (PDT)
 Received: from [192.168.1.101] (abyl165.neoplus.adsl.tpnet.pl. [83.9.31.165])
-        by smtp.gmail.com with ESMTPSA id n20-20020a2eb794000000b002b47dabaaa5sm1209035ljo.121.2023.06.22.01.53.24
+        by smtp.gmail.com with ESMTPSA id d8-20020ac244c8000000b004f85a24d2basm1041560lfm.105.2023.06.22.01.57.15
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jun 2023 01:53:25 -0700 (PDT)
-Message-ID: <7b614cd8-1b6e-519b-cc2a-acc1fa5f24b3@linaro.org>
-Date:   Thu, 22 Jun 2023 10:53:24 +0200
+        Thu, 22 Jun 2023 01:57:16 -0700 (PDT)
+Message-ID: <6b1cbaf4-53c1-1b99-e781-c11261a1f4df@linaro.org>
+Date:   Thu, 22 Jun 2023 10:57:15 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: ipq9574: Use assigned-clock-rates for
- QUP I2C core clks
-To:     Devi Priya <quic_devipriy@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
-        quic_kathirav@quicinc.com, quic_anusha@quicinc.com
-References: <20230615084841.12375-1-quic_devipriy@quicinc.com>
- <1ab63d4b-6358-ce08-818a-b5751f88cdde@linaro.org>
- <d05c7b0e-6edb-bc0f-5875-fc5cb8ea6b8a@quicinc.com>
+Subject: Re: [PATCH] arm64: dts: qcom: msm8939-sony-xperia-kanuti-tulip: Add
+ missing 'chassis-type'
 Content-Language: en-US
+To:     Raymond Hackley <raymondhackley@protonmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230622021105.66015-1-raymondhackley@protonmail.com>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <d05c7b0e-6edb-bc0f-5875-fc5cb8ea6b8a@quicinc.com>
+In-Reply-To: <20230622021105.66015-1-raymondhackley@protonmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -81,70 +80,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22.06.2023 08:25, Devi Priya wrote:
+On 22.06.2023 04:11, Raymond Hackley wrote:
+> Sony Xperia M4 Aqua is a handset. Add the chassis-type = "handset"; to it.
 > 
-> 
-> On 6/15/2023 2:21 PM, Konrad Dybcio wrote:
->> On 15.06.2023 10:48, Devi Priya wrote:
->>> Use assigned-clock-rates property for configuring the QUP I2C core clocks
->>> to operate at nominal frequency.
->>>
->>> Signed-off-by: Devi Priya <quic_devipriy@quicinc.com>
->>> ---
->> There's probably some logic behind this, and it almost sounds like
->> it'd be fitting to introduce an OPP table for I2C hosts, especially
->> given the voltage requirements.
->>
->> Konrad
-> The qup i2c core clocks are not scalable and operate at fixed frequency.
-> The assigned-clock-rates are used to configure the clock frequency
-> if it is not done by the bootloaders.
-OPP tables with a single entry are totally fine.
+> Signed-off-by: Raymond Hackley <raymondhackley@protonmail.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
+>  arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> Thanks,
-> Devi Priya
->>>   arch/arm64/boot/dts/qcom/ipq9574.dtsi | 8 ++++++++
->>>   1 file changed, 8 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/ipq9574.dtsi b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> index 0baeb10bbdae..78bf7f9c455a 100644
->>> --- a/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> +++ b/arch/arm64/boot/dts/qcom/ipq9574.dtsi
->>> @@ -361,6 +361,8 @@
->>>               clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>,
->>>                    <&gcc GCC_BLSP1_AHB_CLK>;
->>>               clock-names = "core", "iface";
->>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP2_I2C_APPS_CLK>;
->>> +            assigned-clock-rates = <50000000>;
->>>               dmas = <&blsp_dma 14>, <&blsp_dma 15>;
->>>               dma-names = "tx", "rx";
->>>               status = "disabled";
->>> @@ -389,6 +391,8 @@
->>>               clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>,
->>>                    <&gcc GCC_BLSP1_AHB_CLK>;
->>>               clock-names = "core", "iface";
->>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP3_I2C_APPS_CLK>;
->>> +            assigned-clock-rates = <50000000>;
->>>               dmas = <&blsp_dma 16>, <&blsp_dma 17>;
->>>               dma-names = "tx", "rx";
->>>               status = "disabled";
->>> @@ -417,6 +421,8 @@
->>>               clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>,
->>>                    <&gcc GCC_BLSP1_AHB_CLK>;
->>>               clock-names = "core", "iface";
->>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP4_I2C_APPS_CLK>;
->>> +            assigned-clock-rates = <50000000>;
->>>               dmas = <&blsp_dma 18>, <&blsp_dma 19>;
->>>               dma-names = "tx", "rx";
->>>               status = "disabled";
->>> @@ -446,6 +452,8 @@
->>>               clocks = <&gcc GCC_BLSP1_QUP5_I2C_APPS_CLK>,
->>>                    <&gcc GCC_BLSP1_AHB_CLK>;
->>>               clock-names = "core", "iface";
->>> +            assigned-clocks = <&gcc GCC_BLSP1_QUP5_I2C_APPS_CLK>;
->>> +            assigned-clock-rates = <50000000>;
->>>               dmas = <&blsp_dma 20>, <&blsp_dma 21>;
->>>               dma-names = "tx", "rx";
->>>               status = "disabled";
+> diff --git a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> index 8613cf93dac5..0633e3006f17 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> +++ b/arch/arm64/boot/dts/qcom/msm8939-sony-xperia-kanuti-tulip.dts
+> @@ -16,6 +16,7 @@
+>  / {
+>  	model = "Sony Xperia M4 Aqua";
+>  	compatible = "sony,kanuti-tulip", "qcom,msm8939";
+> +	chassis-type = "handset";
+>  
+>  	qcom,board-id = <QCOM_BOARD_ID_MTP 0>;
+>  	qcom,msm-id = <QCOM_ID_MSM8939 0>, <QCOM_ID_MSM8939 0x30000>;
