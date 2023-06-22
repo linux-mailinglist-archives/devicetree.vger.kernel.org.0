@@ -2,159 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AED473A65C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 18:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36A5273A70D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 19:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231347AbjFVQqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 12:46:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39362 "EHLO
+        id S229960AbjFVRRa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 13:17:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231239AbjFVQqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 12:46:38 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 786622105
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 09:45:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1687452351;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=q6LLoDXAD0fPuc6AsW0BAVbjdcqFGmumwyZ+jo/wBt4=;
-        b=FsS4QY9O3zfR806NVGA+msl+gkFdmh0AbDRJBI/jGgTQO8N4WuptDJEbsogmU9gTVoACF4
-        L8X1KXaKuLAzVehKfHdFov2SrQttZGU0eVUeODWe0S0m/D48rMhrzxvkkoXDxcrvX1TP+I
-        i/EFgIdNx0AFio3XpWbyV2ffbFCstIs=
-Received: from mail-ot1-f69.google.com (mail-ot1-f69.google.com
- [209.85.210.69]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-183-Y2_CzGakO4-XJZsgiY0CeQ-1; Thu, 22 Jun 2023 12:45:49 -0400
-X-MC-Unique: Y2_CzGakO4-XJZsgiY0CeQ-1
-Received: by mail-ot1-f69.google.com with SMTP id 46e09a7af769-6b5d654cd9dso1817362a34.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 09:45:49 -0700 (PDT)
+        with ESMTP id S229747AbjFVRR3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 13:17:29 -0400
+Received: from mail-pf1-x431.google.com (mail-pf1-x431.google.com [IPv6:2607:f8b0:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10617199B
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 10:17:27 -0700 (PDT)
+Received: by mail-pf1-x431.google.com with SMTP id d2e1a72fcca58-6687446eaccso4241170b3a.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 10:17:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687454246; x=1690046246;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=+caNylAFJnS4RfDuuqPQ5kEyaoWMVveGgJSagPXpK3E=;
+        b=eWwIE86gJ1vNE6oGTJapOZQFT46TllCzUn6zfU2GJowNtlE4ccaAhmjBf1y6GkqZMQ
+         Jav+kIow91KofjqIfAO67sRRofF5Lc3/t38LsiHYAXUYTAxQLN7SFoAttjh96+DhY+FA
+         TxusneS92lYEmaAbHSGHOV5jRmE2njvUR81kooDRK6RS2zHGqhaTZJL5L/TJB3gWpNYs
+         ZRYJ1C/Z1HtyufIbMTq6CSXbOkYWLaSfZEDR1aMWR7EcQKcxtXegPTtDIWhI86ZZ3PEG
+         iaRxBCeSN3cuCMYJsP7PBCYE5qfoQ0qHuUeuhpYPaUmvk9TVOMXrp2Ps+OKItL5slb+c
+         UA/w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687452348; x=1690044348;
+        d=1e100.net; s=20221208; t=1687454246; x=1690046246;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=q6LLoDXAD0fPuc6AsW0BAVbjdcqFGmumwyZ+jo/wBt4=;
-        b=QeyvKsMGOa28XBXFCPguNaIFZ9nhLDbU4ZB04E1CeK7i+e6W6gx2ieX4p7OFo+2b+O
-         S6uOBZvaCamlyx4PpA5rgFvG3UefRQDujf8djFk0klcC72kZyz9GRca2MncU3hAa2of6
-         E+MWDgd5cfXCfgmyiL6XOyR9CiVT/Gc9p+Zs53RVyC8Rdw43ZJbqJVNLGJ9QlbqAs+PX
-         mdzw7a9G6+ueHSYjA8x3Die03uXPVstgxd7FYJ0UGMfzbJkJbY+r+En/kzbuEPYj32yB
-         3FQsfv3Go7Xufu7yg/SAJnDYzpUf1P9B+ulM7yAkL+CDYo1+19qk7qW+4RFeGISyaQfa
-         y6Qw==
-X-Gm-Message-State: AC+VfDz/jXVWqJiMNS0+i5e/oUueqviNYDI8FNNrVnZERMtwm9Gw56YX
-        VcPSbmiUOSlbfp/Jop1kBUDT52GMppQedIfm2gGsbbuQgzDCaenIjCB+oVpa6XtizbOhB5SXKgc
-        7g5hRlo3oqHT32ygGcYT5Xzh8Whbk0w==
-X-Received: by 2002:a9d:7cc9:0:b0:6b5:b654:6d52 with SMTP id r9-20020a9d7cc9000000b006b5b6546d52mr5972041otn.8.1687452348486;
-        Thu, 22 Jun 2023 09:45:48 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ58fV++PhlPXYEECuy/QGlkeVFyp9FOiUQFioQbIDyJnts066atIqJRXo+P+fhPbGGa+c0vZw==
-X-Received: by 2002:a9d:7cc9:0:b0:6b5:b654:6d52 with SMTP id r9-20020a9d7cc9000000b006b5b6546d52mr5972023otn.8.1687452348243;
-        Thu, 22 Jun 2023 09:45:48 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::f])
-        by smtp.gmail.com with ESMTPSA id p13-20020a056830130d00b006b469ace1b1sm3007058otq.22.2023.06.22.09.45.46
+        bh=+caNylAFJnS4RfDuuqPQ5kEyaoWMVveGgJSagPXpK3E=;
+        b=Zywpsc7+ZsRp014y7Zssy6QNop4SpqJzWPj97y5TaT4ZAM8zg/y1WBVAUImHmQMRTH
+         L6y0vSY1duS9KYSXZaHOXBWwgk6xJ8UcBn9VcWPX6dZXfE8nhJ1DkW2u1zO9wsRTsqml
+         uiq/H8llhbyGyzKtXKTseE6T4FcjTmQ299EhB3Xgj48vYacCJh6eNcsZMsM7kUFkbazX
+         GFZRy0XAiWnQrJRClFdIYZUIKRDPFzj82NCZWu/Y8LyLRGYFB7SrILs9lcHpHaW8O8Xb
+         2y7KbKgzyxLtUufIMuJgB6UXFiPvqRiuUkg+CfUGvD2++Gk77L3tInkk4YvFNT6PmzvR
+         QCrw==
+X-Gm-Message-State: AC+VfDyPuWMhLLI4yCHKH6hMUp7pG2AV0jOpQ5b4o3oMC8GwQ4aRMROh
+        G+tf7+c9emp3L47yZoO7HR6esw==
+X-Google-Smtp-Source: ACHHUZ7q4CWIXONGO3DtA6c8gq+2V5G73vpjcuVPbpvkFAZ173Ft2Wc6ltykzzv7Oo0mrdOFGu+tYA==
+X-Received: by 2002:a05:6a20:7d8b:b0:122:7e50:f71b with SMTP id v11-20020a056a207d8b00b001227e50f71bmr11414744pzj.34.1687454246493;
+        Thu, 22 Jun 2023 10:17:26 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:2d81:4abe:75da:eae])
+        by smtp.gmail.com with ESMTPSA id c11-20020a62e80b000000b00649ac17779csm4780000pfi.160.2023.06.22.10.17.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 09:45:47 -0700 (PDT)
-Date:   Thu, 22 Jun 2023 11:45:44 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Thu, 22 Jun 2023 10:17:25 -0700 (PDT)
+Date:   Thu, 22 Jun 2023 11:17:22 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Tinghan Shen <tinghan.shen@mediatek.com>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Biggers <ebiggers@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [RESEND v7 2/3] scsi: ufs: ufs-qcom: Switch to the new ICE API
-Message-ID: <20230622164544.4exzdv2hoptgitdx@halaney-x13s>
-References: <20230612192847.1599416-1-abel.vesa@linaro.org>
- <20230612192847.1599416-3-abel.vesa@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com
+Subject: Re: [PATCH v13 00/11] Add support for MT8195 SCP 2nd core
+Message-ID: <ZJSCIhhLTv/pP/HA@p14s>
+References: <20230607072222.8628-1-tinghan.shen@mediatek.com>
+ <5a9beeec-5762-c469-6e03-b71babb5f7ed@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230612192847.1599416-3-abel.vesa@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <5a9beeec-5762-c469-6e03-b71babb5f7ed@collabora.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 12, 2023 at 10:28:46PM +0300, Abel Vesa wrote:
-> Now that there is a new dedicated ICE driver, drop the ufs-qcom-ice and
-> use the new ICE api provided by the Qualcomm soc driver ice. The platforms
-> that already have ICE support will use the API as library since there will
-> not be a devicetree node, but instead they have reg range. In this case,
-> the of_qcom_ice_get will return an ICE instance created for the consumer's
-> device. But if there are platforms that do not have ice reg in the
-> consumer devicetree node and instead provide a dedicated ICE devicetree
-> node, the of_qcom_ice_get will look up the device based on qcom,ice
-> property and will get the ICE instance registered by the probe function
-> of the ice driver.
+On Thu, Jun 22, 2023 at 12:00:08PM +0200, AngeloGioacchino Del Regno wrote:
+> Il 07/06/23 09:22, Tinghan Shen ha scritto:
+> > The mediatek remoteproc driver currently only allows bringing up a
+> > single core SCP, e.g. MT8183. It also only bringing up the 1st
+> > core in SoCs with a dual-core SCP, e.g. MT8195. This series support
+> > to bring-up the 2nd core of the dual-core SCP.
+> > 
 > 
-> The ICE clock is now handle by the new driver. This is done by enabling
-> it on the creation of the ICE instance and then enabling/disabling it on
-> UFS runtime resume/suspend.
+> Hello TingHan,
 > 
-> Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
-> ---
->  drivers/ufs/host/Kconfig        |   2 +-
->  drivers/ufs/host/Makefile       |   4 +-
->  drivers/ufs/host/ufs-qcom-ice.c | 244 --------------------------------
->  drivers/ufs/host/ufs-qcom.c     |  99 ++++++++++++-
->  drivers/ufs/host/ufs-qcom.h     |  32 +----
->  5 files changed, 104 insertions(+), 277 deletions(-)
->  delete mode 100644 drivers/ufs/host/ufs-qcom-ice.c
+> Can you please address the comments on patch [05/11] and send a new version ASAP?
+> That's the only remaining issue, so after that the series should be ready.
 > 
-> diff --git a/drivers/ufs/host/Kconfig b/drivers/ufs/host/Kconfig
-> index 8793e3433580..16624ba08050 100644
-> --- a/drivers/ufs/host/Kconfig
-> +++ b/drivers/ufs/host/Kconfig
-> @@ -59,7 +59,7 @@ config SCSI_UFS_QCOM
->  	depends on SCSI_UFSHCD_PLATFORM && ARCH_QCOM
->  	depends on GENERIC_MSI_IRQ
->  	depends on RESET_CONTROLLER
-> -	select QCOM_SCM if SCSI_UFS_CRYPTO
-> +	select QCOM_INLINE_CRYPTO_ENGINE if SCSI_UFS_CRYPTO
->  	help
->  	  This selects the QCOM specific additions to UFSHCD platform driver.
->  	  UFS host on QCOM needs some vendor specific configuration before
-> diff --git a/drivers/ufs/host/Makefile b/drivers/ufs/host/Makefile
-> index d7c5bf7fa512..4573aead02eb 100644
-> --- a/drivers/ufs/host/Makefile
-> +++ b/drivers/ufs/host/Makefile
-> @@ -3,9 +3,7 @@
->  obj-$(CONFIG_SCSI_UFS_DWC_TC_PCI) += tc-dwc-g210-pci.o ufshcd-dwc.o tc-dwc-g210.o
->  obj-$(CONFIG_SCSI_UFS_DWC_TC_PLATFORM) += tc-dwc-g210-pltfrm.o ufshcd-dwc.o tc-dwc-g210.o
->  obj-$(CONFIG_SCSI_UFS_CDNS_PLATFORM) += cdns-pltfrm.o
-> -obj-$(CONFIG_SCSI_UFS_QCOM) += ufs_qcom.o
-> -ufs_qcom-y += ufs-qcom.o
-> -ufs_qcom-$(CONFIG_SCSI_UFS_CRYPTO) += ufs-qcom-ice.o
-> +obj-$(CONFIG_SCSI_UFS_QCOM) += ufs-qcom.o
 
-The change from ufs_qcom.o to ufs-qcom.o here makes ufs_qcom.ko turn
-into ufs-qcom.ko.
+There is also the refactoring work in patch 07, and I expect that to take a
+while.
 
-That broke a (fragile :P ) initramfs development script I play with. Not
-sure if that's any sort of contract with userspace or not, but thought
-I'd report it at least in case someone has a strong opinion.
-
-Thanks,
-Andrew
-
+> Thanks,
+> Angelo
+> 
+> > v12 -> v13:
+> > 1. replace subdevice with new mediatek scp operations in patchset 7
+> > 2. add review tag to patchset 3
+> > 3. modify mediatek,scp phandle name of video-codec@18000000 at patchset 11
+> > 
+> > v11 -> v12:
+> > 1. add scp_add_single/multi_core() to patchset 6
+> > 2. remove unused comment in patchset 6
+> > 3. rename list name from mtk_scp_cluster to mtk_scp_list
+> > 4. rewrite the multi-core probe flow
+> > 5. disable rproc->autoboot and boot rproc by request_firmware_nowait at patchset 7
+> > 6. remove patchset 7 review tag
+> > 
+> > v10 -> v11:
+> > 1. rewrite patchset 5 to probe single-core SCP with the cluster list
+> > 2. Also in patchset 5, move the pointer of mtk_scp object from the
+> >     platform data property to the driver data property
+> > 3. move the appearance of mtk_scp cluster property to patcheset 7
+> > 
+> > v9 -> v10:
+> > 1. move the global mtk_scp list into the platform device driver data structure
+> > 2. remove an unnecessary if() condition
+> > 
+> > v8 -> v9:
+> > 1. initialize l1tcm_size/l1tcm_phys at patchset 05/11
+> > 2. rewrite patchset 06/11 to unify the flow and remove hacks
+> > 
+> > v7 -> v8:
+> > 1. update the node name of mt8192 asurada SCP rpmsg subnode
+> > 2. squash register definitions into driver patches
+> > 3. initialize local variables on the declaration at patch v8 06/11
+> > 
+> > v6 -> v7:
+> > 1. merge the mtk_scp_cluster struct into the mtk_scp structure
+> >     at the "Probe multi-core SCP" patch
+> > 
+> > v5 -> v6:
+> > 1. move the mtk_scp_of_regs structure from mtk_common.h to mtk_scp.c
+> > 2. rename the SCP core 0 label from 'scp' to 'scp_c0'
+> > 
+> > v4 -> v5:
+> > 1. move resource release actions to the platform driver remove operation
+> > 2. fix dual-core watchdog handling
+> > 
+> > v3 -> v4:
+> > 1. change the representation of dual-core SCP in dts file and update SCP yaml
+> > 2. rewrite SCP driver to reflect the change of dts node
+> > 3. drop 'remove redundant call of rproc_boot for SCP' in v3 for further investigation
+> > 
+> > v2 -> v3:
+> > 1. change the representation of dual-core SCP in dts file and update SCP yaml
+> > 2. rewrite SCP driver to reflect the change of dts node
+> > 3. add SCP core 1 node to mt8195.dtsi
+> > 4. remove redundant call of rproc_boot for SCP
+> > 5. refine IPI error message
+> > 
+> > v1 -> v2:
+> > 1. update dt-binding property description
+> > 2. remove kconfig for scp dual driver
+> > 3. merge mtk_scp_dual.c and mtk_scp_subdev.c to mtk_scp.c
+> > 
+> > 
+> > Tinghan Shen (11):
+> >    dt-bindings: remoteproc: mediatek: Improve the rpmsg subnode
+> >      definition
+> >    arm64: dts: mediatek: Update the node name of SCP rpmsg subnode
+> >    dt-bindings: remoteproc: mediatek: Support MT8195 dual-core SCP
+> >    remoteproc: mediatek: Add MT8195 SCP core 1 operations
+> >    remoteproc: mediatek: Introduce cluster on single-core SCP
+> >    remoteproc: mediatek: Probe multi-core SCP
+> >    remoteproc: mediatek: Add scp_boot_peers and scp_shutdown_peers
+> >      operations
+> >    remoteproc: mediatek: Setup MT8195 SCP core 1 SRAM offset
+> >    remoteproc: mediatek: Handle MT8195 SCP core 1 watchdog timeout
+> >    remoteproc: mediatek: Refine ipi handler error message
+> >    arm64: dts: mediatek: mt8195: Add SCP 2nd core
+> > 
+> >   .../bindings/remoteproc/mtk,scp.yaml          | 176 +++++++-
+> >   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   2 +-
+> >   .../boot/dts/mediatek/mt8192-asurada.dtsi     |   2 +-
+> >   .../boot/dts/mediatek/mt8195-cherry.dtsi      |   6 +-
+> >   arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  32 +-
+> >   drivers/remoteproc/mtk_common.h               |  26 ++
+> >   drivers/remoteproc/mtk_scp.c                  | 425 ++++++++++++++++--
+> >   7 files changed, 594 insertions(+), 75 deletions(-)
+> > 
+> 
