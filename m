@@ -2,89 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 335F4739737
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:08:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A07A739748
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:16:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229746AbjFVGIA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 02:08:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41562 "EHLO
+        id S230331AbjFVGQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 02:16:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229854AbjFVGH6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:07:58 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B79D11721
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:07:56 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b4769a2ee5so65459971fa.3
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:07:56 -0700 (PDT)
+        with ESMTP id S230314AbjFVGQO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:16:14 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058D61981
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:16:13 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f640e48bc3so9063840e87.2
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:16:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687414075; x=1690006075;
+        d=linaro.org; s=google; t=1687414571; x=1690006571;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=42WBoV9nvhGVfUL97mST3SZ90VrS3Nxy3thM265lKf4=;
-        b=V4oIr2JjcN7zS6KKE1l2Vf16GI3VsP8o0UfB7Gkwzv9ph4LbLCqbZPGoxHmpaiXVbn
-         Z5olqhr5H1abgfr50b4N4SpOiP/gGhdwIjZt0/vRa87fThcR5yWaDN6mluRlMPCBfG4a
-         Ajm6lNKotdKSAtNij++Qr+4T0SW1nytFJdUUTDauYsvFyYkWmGVS8YLmnGo/LDQlL/pc
-         yQ6yIoPOu5u7FSZMTt4oILXBpOAJ6f+uf4eZk75xCUcJcsDWBmXs/phVg7ipxFkHYBaA
-         0Gt4Fejy1LcJUIIZpgNHHWodkO60cPX6/qgr2rkBpLlYOTK6Y36T588PIrrTXoJj+gZV
-         vNbw==
+        bh=poTMBpsW2wjpyMUwrhE2d7/bK8bYKWDZ9t9qjQY+Y4g=;
+        b=aJlL+DetePj5uZjoDbapcd13KqWhVsZrwU+VPpEDwjOV1kDukNItKeN3wZF63mhL4s
+         +RcPrC9BpbPB83mD23fmdfNXhEYzGib9/+d4KAVM5Zol/WXlayFcZlPVR3HjTLjovPpH
+         bgkG9Bty1HEpPsvV0YURLos4rP9IFVwo2rQaEcAZMGXGVjIRq1bzDrgEHxA1RhAsL/Hj
+         ID1M/42xD73l8D8t6/Dgj5inpy2u4U46KJdcVjzsDZ1kuvuuMIeo6dcFagkCcv/us//m
+         JPlR8B7x67SCzn9VkwZ48OO8LkS6VC0bWvkV1NEawjKPjAKbB/NADjYiUHQsaJSGiAdv
+         fnZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687414075; x=1690006075;
+        d=1e100.net; s=20221208; t=1687414571; x=1690006571;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=42WBoV9nvhGVfUL97mST3SZ90VrS3Nxy3thM265lKf4=;
-        b=SDCfgCi6GeOzLCMgBH4Fb80RlajyPovDteS/zFtI/qC2aJncieza2AHsi7pdmVkfVA
-         Q/uKtwuv6PjnnxxxDVK7SrKYLPK8EPLvDissW9tN4wAne6lPd2BCY756Kh1CN4V0QJJr
-         CQKLikvMY2GvVt8SXIMCQBcrYqorBk9+zcKLfl5bWj0p686Sb+90UOooof8QCFINEVfH
-         4SdOBjXPXVmvAvNFsiV8TiI4gLA0rZNOtOjrPSbq+/lB8j/U/Cypo82tRanXfEQpMcdt
-         K//lJ32njFDOEa409HUpI1EN64JdBqmhPaxJVzMssuZ61qrwvnxDDujv1XupuUzzkkao
-         jybg==
-X-Gm-Message-State: AC+VfDxJ/H5etiakiSzdwDeEsxKjEY9PmIaE1ijYfzTqAQru3toLINlb
-        zgn/f/OeyUQVuO1cEQQ5H6mxow==
-X-Google-Smtp-Source: ACHHUZ44/dBU5JQciwFC/zC9afOtRvdAyg2U902n97s5dynw933e4XvREw3eHG52sOonDsrwU9HxWw==
-X-Received: by 2002:a2e:b601:0:b0:2b4:8623:cf74 with SMTP id r1-20020a2eb601000000b002b48623cf74mr5829296ljn.18.1687414074964;
-        Wed, 21 Jun 2023 23:07:54 -0700 (PDT)
+        bh=poTMBpsW2wjpyMUwrhE2d7/bK8bYKWDZ9t9qjQY+Y4g=;
+        b=guzdWCVrzBigL1UFqdg2Os1QXucNNpk+4aSjPrDJ9uKpAyTibPEMzhKDFVPqGV4AkC
+         wNwBlqTZ9Y27m9HaNT6GPwXoAKTGWIxepWGtPAWSVpYW65+aKodx5rwXfvX8DgvRcmYv
+         /QNi5YJYevzDGdM/BGo3NDTfrP4KVnRa4KIalZYrhu4IvsKY9QmsRDLDo1R7Df5O2mWC
+         v8znuwCp76Ar6B2NIDt7SVJkOZXkVoJIVarNJNY0NIkUyrFE9f2zvx+bwgz94JZJtuSW
+         JdIZVywCeygxxdT2IOa6ewpZvUM69KxrBqSbW7rndVmby3UL8Ay3N4FODuXPW+RAFE9z
+         ulyA==
+X-Gm-Message-State: AC+VfDwlzOC5f4DvKmXm/KRaCtKYVISAwOgb+OOygud9NgyhL8RPX0W/
+        RM01iDei+QgQiWGAdst5t6vNjw==
+X-Google-Smtp-Source: ACHHUZ4CY/suwusuVWwIE87HUXkOkuSg/a1kVHwJ9Ov3EQI9ZE1tPyqLKwnRzZ6C5oOunra4MGmpRQ==
+X-Received: by 2002:a05:6512:310b:b0:4f8:66da:228a with SMTP id n11-20020a056512310b00b004f866da228amr6856659lfb.4.1687414571068;
+        Wed, 21 Jun 2023 23:16:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h4-20020a1ccc04000000b003f8d0308616sm6760823wmb.32.2023.06.21.23.07.52
+        by smtp.gmail.com with ESMTPSA id h25-20020a1ccc19000000b003f42158288dsm17838993wmb.20.2023.06.21.23.16.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 23:07:54 -0700 (PDT)
-Message-ID: <80ca0da4-5243-9771-0c4c-62b956e97b2f@linaro.org>
-Date:   Thu, 22 Jun 2023 08:07:51 +0200
+        Wed, 21 Jun 2023 23:16:10 -0700 (PDT)
+Message-ID: <50f75267-492f-d36b-f977-da2fb3a3fd1f@linaro.org>
+Date:   Thu, 22 Jun 2023 08:16:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v7 1/3] dt-bindings: ufs: qcom: Add ICE phandle
+Subject: Re: [PATCH v2] dt-bindings: timer: add Ralink SoCs timer
 Content-Language: en-US
-To:     "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Abel Vesa <abel.vesa@linaro.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        "James E . J . Bottomley" <jejb@linux.ibm.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Biggers <ebiggers@kernel.org>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-References: <20230408214041.533749-1-abel.vesa@linaro.org>
- <20230408214041.533749-2-abel.vesa@linaro.org>
- <4aadaf24-11f6-5cc1-4fbd-addbef4f891b@linaro.org>
- <yq1ilbgqoq6.fsf@ca-mkp.ca.oracle.com>
+To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        tglx@linutronix.de, robh+dt@kernel.org, daniel.lezcano@linaro.org,
+        devicetree@vger.kernel.org
+References: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
+ <168739869603.42044.12383139966264039986.robh@kernel.org>
+ <CAMhs-H_fUSnXHgO0ZXuGOX7gkuM98HXm+Y_jq1DxCv5Az=3Rag@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <yq1ilbgqoq6.fsf@ca-mkp.ca.oracle.com>
+In-Reply-To: <CAMhs-H_fUSnXHgO0ZXuGOX7gkuM98HXm+Y_jq1DxCv5Az=3Rag@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -95,23 +78,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2023 03:19, Martin K. Petersen wrote:
-> 
-> Abel,
-> 
->> Un-reviewed. This is broken and was never tested. After applying this
->> patch, I can see many new warnings in all DTBs (so it is easy to spot
->> that it was not actually tested).
+On 22/06/2023 07:14, Sergio Paracuellos wrote:
+> On Thu, Jun 22, 2023 at 3:51 AM Rob Herring <robh@kernel.org> wrote:
 >>
->> Your probably meant here:
->>   if:
->>     required:
+>>
+>> On Tue, 20 Jun 2023 12:02:31 +0200, Sergio Paracuellos wrote:
+>>> Add YAML documentation for the timer which is present on Ralink SoCs.
+>>>
+>>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+>>> ---
+>>> Changes in v2:
+>>> - Remove redundant 'documentation' word from subject.
+>>> - Drop clock-names property.
+>>>
+>>>  .../bindings/timer/ralink,rt2880-timer.yaml   | 44 +++++++++++++++++++
+>>>  1 file changed, 44 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/timer/ralink,rt2880-timer.yaml
+>>>
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
+>>
 > 
-> Please provide a fix for this. I don't want to rebase this late in the
-> cycle.
+> Thanks! Which tree is this supposed to go through?
 
-AFAIK, this was not applied. At least as of next 20210621 and I
-commented on this few days ago. Anything changed here?
+Preferably clocksource/clockevents/timer drivers tree/
 
 Best regards,
 Krzysztof
