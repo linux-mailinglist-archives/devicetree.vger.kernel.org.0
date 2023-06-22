@@ -2,83 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A12073A0C4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 14:23:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9A7773A0E8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 14:29:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230513AbjFVMXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 08:23:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36986 "EHLO
+        id S230036AbjFVM3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 08:29:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39954 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229618AbjFVMXq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 08:23:46 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BC07171C
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:23:44 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f9c2913133so18262205e9.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:23:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687436622; x=1690028622;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=IZTvColTzRsoYYuXx98QVc9rgM+Sp5furEz7cmDxQqk=;
-        b=FrdrBAh1oY9rhtVQjUyUaFAaGqRpbvPQjKnSFRgHkGPfttcKiwR+y/3oj436ntxKTD
-         akF4OCyeqLPrY7j5rbRe2fiEkXmNPxKauFkmwgwqZeMjpiF5n5YJqff1Q6TZhOOVLufZ
-         JepgQ/bIl1KkLeJWfzYlgsMk4BvnDZqp6fC1hLEVn4+8SKF94e+LSm3LhepY8fUQRc7q
-         lGUC/S/Nj1OHp766ZJBxQxTdF5Nf/uRZ7jhrKyPyiVlH0u1Z3LWflIhvxkuZdqxJJYXe
-         8qMkkWX2jB9wG1MEBKsvnOlSsV/eYQNUlxHECwjqMJiWC+/gTV4X0NyH70KlVJKfTDCG
-         aepQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687436622; x=1690028622;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=IZTvColTzRsoYYuXx98QVc9rgM+Sp5furEz7cmDxQqk=;
-        b=Nhuczp/t3gn0c41IsnCmtBeTzeJKrThAyLhMZ42/yTNgDfXOtLLETQwFymzTpXeaeE
-         jHf+MFLkCXhyv5iPlYbsErt1Q1jj0YMn1BAr0rdQNiKUcQcmT6RnBwULEQTKiy5tm9yM
-         odJ1uWr7cPwtJDhGH5LjNvT+hEIl9vRnhQpNy/FgMnkBBPrTvF8c5tsln1fmtnUGBo16
-         XQcBzOCGpvk1IDc4R8oVsxCuwTDqu7xyCdASKwi2yasVpfIESOxMw8uBiC0e1BaUZOKx
-         Gzzoszo+hFhhOG7iPuPUKvWgP+wZavbEPOgK1vSjE35Hw5Wcw7T2qCIENUrmG5y2hhOU
-         DBuA==
-X-Gm-Message-State: AC+VfDx9pV0o3SSjYxn2xYh89sC70VqPJS/MfmENefoeyMpJfjQOR8JL
-        7lLJNaWndSEkMgXnIbFLuamXYw==
-X-Google-Smtp-Source: ACHHUZ49yPhRB3Bsa6UwNftE5A3qbasCqFJ2m3h6OWnmPw2gcLquyHRYJ35Gq1sHi5pE0z7HxWfdwg==
-X-Received: by 2002:a1c:7209:0:b0:3f9:a10:10d0 with SMTP id n9-20020a1c7209000000b003f90a1010d0mr10666150wmc.17.1687436621924;
-        Thu, 22 Jun 2023 05:23:41 -0700 (PDT)
-Received: from blmsp ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
-        by smtp.gmail.com with ESMTPSA id c25-20020a7bc859000000b003f90ab2fff9sm7600746wml.9.2023.06.22.05.23.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 05:23:41 -0700 (PDT)
-Date:   Thu, 22 Jun 2023 14:23:39 +0200
-From:   Markus Schneider-Pargmann <msp@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
+        with ESMTP id S231226AbjFVM33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 08:29:29 -0400
+Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DF7AB4;
+        Thu, 22 Jun 2023 05:29:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1687436969; x=1718972969;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=DUgGotXhMv1WrSS/NSFaFGHTb5xR4LxoJgck4Fh0kTY=;
+  b=K5PR+D9rySeBahdjDWyWrOJYLOmsJDDxGv4shHPL9aOpuOvglv+iDSK3
+   FPQZxxnWkxW8nQEfU0hFv1uEnN2gK20+xOM1kmig1cf33DNZLXcNLyko/
+   lsSw98nLHqjLiugobW+QFoxZgvCz5t/rfV7eo/VFvITat5nsIJ0E/qTqo
+   iWjtOoExKvtIipFFI7Vkvl1igyl6CG/729uExJ78O+D3ot8N0WbKt0D0F
+   3MgvT1pGVNF0bhqddzhBQj1HTsisU4pr+5KmM9KzuFSXzFKTqJk5OaN71
+   DMTVsayy5VxIOcIs11NxMCMuZf8BFk7GN7oYIMJ2n2QE201OexWZiQ2dK
+   w==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="390192392"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
+   d="scan'208";a="390192392"
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2023 05:29:11 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="709077606"
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
+   d="scan'208";a="709077606"
+Received: from unknown (HELO localhost.localdomain) ([10.226.216.117])
+  by orsmga007.jf.intel.com with ESMTP; 22 Jun 2023 05:29:08 -0700
+From:   kah.jing.lee@intel.com
+To:     Dinh Nguyen <dinguyen@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Michal Kubiak <michal.kubiak@intel.com>,
-        Vivek Yadav <vivek.2311@samsung.com>,
-        linux-can@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
-Message-ID: <20230622122339.6tkajdcenj5r3vdm@blmsp>
-References: <20230621093103.3134655-1-msp@baylibre.com>
- <20230621093103.3134655-6-msp@baylibre.com>
- <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
- <20230621123158.fd3pd6i7aefawobf@blmsp>
- <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        kah.jing.lee@intel.com
+Subject: Re: [PATCH 0/2]: Enable UBIFS support
+Date:   Thu, 22 Jun 2023 20:27:21 +0800
+Message-Id: <20230622122719.593138-1-kah.jing.lee@intel.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <b7ffa43c-3dee-b0cf-2672-6b56fcbcd0e6@linaro.org>
+References: <b7ffa43c-3dee-b0cf-2672-6b56fcbcd0e6@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,121 +65,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Wed, Jun 21, 2023 at 03:00:39PM +0200, Krzysztof Kozlowski wrote:
-> On 21/06/2023 14:31, Markus Schneider-Pargmann wrote:
-> > Hi Krzysztof,
-> > 
-> > On Wed, Jun 21, 2023 at 12:28:34PM +0200, Krzysztof Kozlowski wrote:
-> >> On 21/06/2023 11:31, Markus Schneider-Pargmann wrote:
-> >>> tcan4552 and tcan4553 do not have wake or state pins, so they are
-> >>> currently not compatible with the generic driver. The generic driver
-> >>> uses tcan4x5x_disable_state() and tcan4x5x_disable_wake() if the gpios
-> >>> are not defined. These functions use register bits that are not
-> >>> available in tcan4552/4553.
-> >>>
-> >>> This patch adds support by introducing version information to reflect if
-> >>> the chip has wake and state pins. Also the version is now checked.
-> >>>
-> >>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
-> >>> ---
-> >>>  drivers/net/can/m_can/tcan4x5x-core.c | 128 +++++++++++++++++++++-----
-> >>>  1 file changed, 104 insertions(+), 24 deletions(-)
-> >>>
-> >>> diff --git a/drivers/net/can/m_can/tcan4x5x-core.c b/drivers/net/can/m_can/tcan4x5x-core.c
-> >>> index fb9375fa20ec..756acd122075 100644
-> >>> --- a/drivers/net/can/m_can/tcan4x5x-core.c
-> >>> +++ b/drivers/net/can/m_can/tcan4x5x-core.c
-> >>> @@ -7,6 +7,7 @@
-> >>>  #define TCAN4X5X_EXT_CLK_DEF 40000000
-> >>>  
-> >>>  #define TCAN4X5X_DEV_ID1 0x00
-> >>> +#define TCAN4X5X_DEV_ID1_TCAN 0x4e414354 /* ASCII TCAN */
-> >>>  #define TCAN4X5X_DEV_ID2 0x04
-> >>>  #define TCAN4X5X_REV 0x08
-> >>>  #define TCAN4X5X_STATUS 0x0C
-> >>> @@ -103,6 +104,13 @@
-> >>>  #define TCAN4X5X_WD_3_S_TIMER BIT(29)
-> >>>  #define TCAN4X5X_WD_6_S_TIMER (BIT(28) | BIT(29))
-> >>>  
-> >>> +struct tcan4x5x_version_info {
-> >>> +	u32 id2_register;
-> >>> +
-> >>> +	bool has_wake_pin;
-> >>> +	bool has_state_pin;
-> >>> +};
-> >>> +
-> >>>  static inline struct tcan4x5x_priv *cdev_to_priv(struct m_can_classdev *cdev)
-> >>>  {
-> >>>  	return container_of(cdev, struct tcan4x5x_priv, cdev);
-> >>> @@ -254,18 +262,68 @@ static int tcan4x5x_disable_state(struct m_can_classdev *cdev)
-> >>>  				  TCAN4X5X_DISABLE_INH_MSK, 0x01);
-> >>>  }
-> >>>  
-> >>> -static int tcan4x5x_get_gpios(struct m_can_classdev *cdev)
-> >>> +static const struct tcan4x5x_version_info tcan4x5x_generic;
-> >>> +static const struct of_device_id tcan4x5x_of_match[];
-> >>> +
-> >>> +static const struct tcan4x5x_version_info
-> >>> +*tcan4x5x_find_version_info(struct tcan4x5x_priv *priv, u32 id2_value)
-> >>> +{
-> >>> +	for (int i = 0; tcan4x5x_of_match[i].data; ++i) {
-> >>> +		const struct tcan4x5x_version_info *vinfo =
-> >>> +			tcan4x5x_of_match[i].data;
-> >>> +		if (!vinfo->id2_register || id2_value == vinfo->id2_register) {
-> >>> +			dev_warn(&priv->spi->dev, "TCAN device is %s, please use it in DT\n",
-> >>> +				 tcan4x5x_of_match[i].compatible);
-> >>> +			return vinfo;
-> >>> +		}
-> >>> +	}
-> >>> +
-> >>> +	return &tcan4x5x_generic;
-> >>
-> >> I don't understand what do you want to achieve here. Kernel job is not
-> >> to validate DTB, so if DTB says you have 4552, there is no need to
-> >> double check. On the other hand, you have Id register so entire idea of
-> >> custom compatibles can be dropped and instead you should detect the
-> >> variant based on the ID.
-> > 
-> > I can read the ID register but tcan4552 and 4553 do not have two
-> > devicetree properties that tcan4550 has, namely state and wake gpios.
-> 
-> Does not matter, you don't use OF matching to then differentiate
-> handling of GPIOs to then read the register. You first read registers,
-> so everything is auto-detectable.
-> 
-> > See v1 discussion about that [1].
-> 
-> Yeah, but your code is different, although maybe we just misunderstood
-> each other. You wrote that you cannot use the GPIOs, so I assumed you
-> need to know the variant before using the GPIOs. Then you need
-> compatibles. It's not the case here. You can read the variant and based
-> on this skip entirely GPIOs as they are entirely missing.
-
-The version information is always readable for that chip, regardless of
-state and wake GPIOs as far as I know. So yes it is possible to setup
-the GPIOs based on the content of the ID register.
-
-I personally would prefer separate compatibles. The binding
-documentation needs to address that wake and state GPIOs are not
-available for tcan4552/4553. I think having compatibles that are for
-these chips would make sense then. However this is my opinion, you are
-the maintainer.
-
-Best,
-Markus
+From: <kah.jing.lee@intel.com>
 
 > 
-> > 
-> > In v1 Marc pointed out that mcp251xfd is using an autodetection and warn
-> > mechanism which I implemented here as well. [2]
-> 
-> But why? Just read the ID and detect the variant based on this. Your DT
-> still can have separate compatibles followed by fallback, that's not a
-> problem.
-> 
-> 
+> Your patchset has also broken/missing threading. Read carefully submitting
+> patches and rest of documentation.
+Updated in v2.
+
+>
 > Best regards,
 > Krzysztof
-> 
+
+Thanks for quick reply.
+
+Regards,
+Kah Jing
