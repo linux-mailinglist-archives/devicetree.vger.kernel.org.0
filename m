@@ -2,123 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EEE76739C98
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 11:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F320739CE8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 11:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232288AbjFVJWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 05:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60864 "EHLO
+        id S232039AbjFVJ1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 05:27:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbjFVJVn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 05:21:43 -0400
-Received: from mail-vk1-xa2f.google.com (mail-vk1-xa2f.google.com [IPv6:2607:f8b0:4864:20::a2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9876365AE
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:12:11 -0700 (PDT)
-Received: by mail-vk1-xa2f.google.com with SMTP id 71dfb90a1353d-47151ee3fe6so2231779e0c.2
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:12:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687425130; x=1690017130;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=LAUOQODzdCeUTcrDvoPMBORZt9+ufR2Q6MlQ8V9HqcA=;
-        b=mXPKXfCQ5AqfGGN7eLis7zio/LUO4dolZMn9tGoBWo9lQ/0YSYOantIpV+5Aknn1uh
-         3J4AAW5FwrtrCjPqExngKvRZGdsEMMnXiWLjxSlxcZ4Z4hrIKAqnf3JGXGjDgW9P3bL1
-         pFNgcMjEIcXauA2TF31JXquLUpbL+xqhM2fQ9hmTnukCcFG1Mle2eakMHU8X4YmkO6LO
-         bAhMo5m/gWYLFCsmeuIdoTLd4aVKzBQXkX6znVpbHzzsNtQEyUyVQaAV7jfwZ4Hpde4C
-         pcPlmHg9x/K3XVnBI0Byou5ihxHLvg+InoKTxxb2YQ/iI8WDHTP84M7mjcSJauXDobPV
-         PPNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687425130; x=1690017130;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LAUOQODzdCeUTcrDvoPMBORZt9+ufR2Q6MlQ8V9HqcA=;
-        b=UFq3ndKpWukaiQ2JPwe6Fq4qWFlUdj+6EtldDLbRBHnFl9WGd6eu1T+sg+YK0r8RBx
-         D49Lzjq2qPmqGZ9PEtTcrkBznGspUNPYRbEsBmtqakbiEcZhCXMDeRHJK1+OJoLdu9AX
-         IPmnO2a/ZV6bB6evdN74EnNog1RHUfvedLz5zm+pOVivODZqx7CSKWrnxzXwQ/kOvXjM
-         wwuzQ+mOQxtx06VEDapJDdZ7LpodqwwK2s3yvLQIh8AO235IV7qgwMUCxFjjK+rqIecB
-         BmWIEvWMRezCeBYSXQIGfVMGN1ALAR3PdzJpkLllH0+LjdBxNDg5p1Zb51mv+4sRTSEj
-         dcAA==
-X-Gm-Message-State: AC+VfDyNVazn3NrWw9xaUjYgDTUz/oeTW44tSfshR4I69PEO9RYyRjSl
-        mvvoITPKFieo0y/wjJjU2GGGdxj4JzahwblAO8cuHw==
-X-Google-Smtp-Source: ACHHUZ7Jjoae1j3de5QaDkn+NVntLKV6op75KhbpCaUpXW852Raha07Xg8nXWZ9iLhTkIRdAW16BPNsvDSHUyHVrFYM=
-X-Received: by 2002:a1f:4801:0:b0:471:cfa1:5065 with SMTP id
- v1-20020a1f4801000000b00471cfa15065mr4808788vka.3.1687425130628; Thu, 22 Jun
- 2023 02:12:10 -0700 (PDT)
+        with ESMTP id S232367AbjFVJ1S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 05:27:18 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55F262D57;
+        Thu, 22 Jun 2023 02:17:35 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 308F3660706D;
+        Thu, 22 Jun 2023 10:17:33 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1687425454;
+        bh=IuIUzfBhqxhEujnKE3pRGX/RsY3huBnGBBoAUWN0ozU=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Rs2HEyvtAnTvvHWbc2BHol0XYFnvPTCd0X/e4JlUGz7Hnbth73eQpoEtyLdtCeRHB
+         S9XwoQTsIYtfsFjTH1c4QdEvaH1/Fo1Ibb8ri+lpQsKHeH3FJ4xroeE8APTMoEWlpT
+         4EH+O2dJBzAULp0dXBJSFeKh+8BdisbE3kScvPeEudG8jEKvgRNwbp6/hUkYejpQok
+         MZuYas5JLqo27S5drZvFdo4FeWNNTxhovSXSc8Nwv5KgP1aESWXCZkLV6SZTDOAAbG
+         XwFehcNSEOLRN8i77QcTDZ8c6IUb8K8gqBAqBQAP4hMpeG/WciIAHIe4Ap4O3R1+LD
+         3NLAHF6Z2AmlQ==
+Message-ID: <5f82829a-829a-c8f6-ed73-6ee2a8e05151@collabora.com>
+Date:   Thu, 22 Jun 2023 11:17:31 +0200
 MIME-Version: 1.0
-References: <20230621093245.78130-1-o.rempel@pengutronix.de> <20230621093245.78130-2-o.rempel@pengutronix.de>
-In-Reply-To: <20230621093245.78130-2-o.rempel@pengutronix.de>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 22 Jun 2023 11:11:33 +0200
-Message-ID: <CAPDyKFqYfuQNCTPiEM56jrzUBe2jevY+MuTOj6K-7OkpO0_daA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] dt-bindings: mmc: fsl-imx-esdhc: Add imx6ul support
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Abel Vesa <abelvesa@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v5 6/8] soc: mediatek: Add support for WAY_EN operations
+Content-Language: en-US
+To:     Markus Schneider-Pargmann <msp@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S. Miller" <davem@davemloft.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        kernel@pengutronix.de, Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Trimarchi <michael@amarulasolutions.com>,
-        Mark Brown <broonie@kernel.org>,
-        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        Marek Vasut <marex@denx.de>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
-        linux-input@vger.kernel.org, linux-mmc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Fabien Parent <fparent@baylibre.com>
+References: <20230619085344.2885311-1-msp@baylibre.com>
+ <20230619085344.2885311-7-msp@baylibre.com>
+ <590f9a11-a153-abaf-0f99-9496882ee929@collabora.com>
+ <20230622083921.tc3wsl6jyluenmru@blmsp>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230622083921.tc3wsl6jyluenmru@blmsp>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 21 Jun 2023 at 11:32, Oleksij Rempel <o.rempel@pengutronix.de> wrote:
->
-> Add the 'fsl,imx6ul-usdhc' value to the compatible properties list in
-> the fsl-imx-esdhc.yaml file. This is required to match the compatible
-> strings present in the 'mmc@2190000' node of 'imx6ul-prti6g.dtb'. This
-> commit addresses the following dtbs_check warning:
-> imx6ul-prti6g.dtb:0:0: /soc/bus@2100000/mmc@2190000: failed to match any schema with compatible: ['fsl,imx6ul-usdhc', 'fsl,imx6sx-usdhc']
->
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+Il 22/06/23 10:39, Markus Schneider-Pargmann ha scritto:
+> On Mon, Jun 19, 2023 at 11:29:18AM +0200, AngeloGioacchino Del Regno wrote:
+>> Il 19/06/23 10:53, Markus Schneider-Pargmann ha scritto:
+>>> From: Alexandre Bailon <abailon@baylibre.com>
+>>>
+>>> This updates the power domain to support WAY_EN operations. WAY_EN
+>>> operations on mt8365 are using a different component to check for the
+>>> acknowledgment, namely the infracfg-nao component. Also to enable a way
+>>> it the bit needs to be cleared while disabling a way needs a bit to be
+>>> set. To support these two operations two flags are added,
+>>> BUS_PROT_INVERTED and BUS_PROT_STA_COMPONENT_INFRA_NAO. Additionally
+>>> another regmap is created if the INFRA_NAO capability is set.
+>>>
+>>> This operation is required by the mt8365 for the MM power domain.
+>>>
+>>> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+>>> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+>>> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+>>> ---
+>>>    drivers/soc/mediatek/mtk-pm-domains.c | 39 +++++++++++++++++++++++----
+>>>    drivers/soc/mediatek/mtk-pm-domains.h |  7 +++--
+>>>    2 files changed, 39 insertions(+), 7 deletions(-)
+>>>
+>>> diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
+>>> index 3cdf62c0b6bd..4659f0a0aa08 100644
+>>> --- a/drivers/soc/mediatek/mtk-pm-domains.c
+>>> +++ b/drivers/soc/mediatek/mtk-pm-domains.c
+>>> @@ -44,6 +44,7 @@ struct scpsys_domain {
+>>>    	struct clk_bulk_data *clks;
+>>>    	int num_subsys_clks;
+>>>    	struct clk_bulk_data *subsys_clks;
+>>> +	struct regmap *infracfg_nao;
+>>>    	struct regmap *infracfg;
+>>>    	struct regmap *smi;
+>>>    	struct regulator *supply;
+>>> @@ -127,13 +128,26 @@ static struct regmap *scpsys_bus_protect_get_regmap(struct scpsys_domain *pd,
+>>>    		return pd->infracfg;
+>>>    }
+>>> +static struct regmap *scpsys_bus_protect_get_sta_regmap(struct scpsys_domain *pd,
+>>> +							const struct scpsys_bus_prot_data *bpd)
+>>> +{
+>>> +	if (bpd->flags & BUS_PROT_STA_COMPONENT_INFRA_NAO)
+>>> +		return pd->infracfg_nao;
+>>> +	else
+>>> +		return scpsys_bus_protect_get_regmap(pd, bpd);
+>>> +}
+>>> +
+>>>    static int scpsys_bus_protect_clear(struct scpsys_domain *pd,
+>>>    				    const struct scpsys_bus_prot_data *bpd)
+>>>    {
+>>> +	struct regmap *sta_regmap = scpsys_bus_protect_get_sta_regmap(pd, bpd);
+>>>    	struct regmap *regmap = scpsys_bus_protect_get_regmap(pd, bpd);
+>>> +	u32 expected_ack;
+>>>    	u32 val;
+>>>    	u32 sta_mask = bpd->bus_prot_sta_mask;
+>>> +	expected_ack = (bpd->flags & BUS_PROT_STA_COMPONENT_INFRA_NAO ? sta_mask : 0);
+>>> +
+>>>    	if (bpd->flags & BUS_PROT_REG_UPDATE)
+>>>    		regmap_clear_bits(regmap, bpd->bus_prot_clr, bpd->bus_prot_set_clr_mask);
+>>>    	else
+>>> @@ -142,14 +156,15 @@ static int scpsys_bus_protect_clear(struct scpsys_domain *pd,
+>>>    	if (bpd->flags & BUS_PROT_IGNORE_CLR_ACK)
+>>>    		return 0;
+>>> -	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
+>>> -					val, !(val & sta_mask),
+>>> +	return regmap_read_poll_timeout(sta_regmap, bpd->bus_prot_sta,
+>>> +					val, (val & sta_mask) == expected_ack,
+>>>    					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+>>>    }
+>>>    static int scpsys_bus_protect_set(struct scpsys_domain *pd,
+>>>    				  const struct scpsys_bus_prot_data *bpd)
+>>>    {
+>>> +	struct regmap *sta_regmap = scpsys_bus_protect_get_sta_regmap(pd, bpd);
+>>>    	struct regmap *regmap = scpsys_bus_protect_get_regmap(pd, bpd);
+>>>    	u32 val;
+>>>    	u32 sta_mask = bpd->bus_prot_sta_mask;
+>>> @@ -159,7 +174,7 @@ static int scpsys_bus_protect_set(struct scpsys_domain *pd,
+>>>    	else
+>>>    		regmap_write(regmap, bpd->bus_prot_set, bpd->bus_prot_set_clr_mask);
+>>> -	return regmap_read_poll_timeout(regmap, bpd->bus_prot_sta,
+>>> +	return regmap_read_poll_timeout(sta_regmap, bpd->bus_prot_sta,
+>>>    					val, (val & sta_mask) == sta_mask,
+>>>    					MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+>>>    }
+>>> @@ -173,7 +188,10 @@ static int scpsys_bus_protect_enable(struct scpsys_domain *pd)
+>>>    		if (!bpd->bus_prot_set_clr_mask)
+>>>    			break;
+>>> -		ret = scpsys_bus_protect_set(pd, bpd);
+>>> +		if (bpd->flags & BUS_PROT_INVERTED)
+>>> +			ret = scpsys_bus_protect_clear(pd, bpd);
+>>> +		else
+>>> +			ret = scpsys_bus_protect_set(pd, bpd);
+>>>    		if (ret)
+>>>    			return ret;
+>>>    	}
+>>> @@ -190,7 +208,10 @@ static int scpsys_bus_protect_disable(struct scpsys_domain *pd)
+>>>    		if (!bpd->bus_prot_set_clr_mask)
+>>>    			continue;
+>>> -		ret = scpsys_bus_protect_clear(pd, bpd);
+>>> +		if (bpd->flags & BUS_PROT_INVERTED)
+>>> +			ret = scpsys_bus_protect_set(pd, bpd);
+>>> +		else
+>>> +			ret = scpsys_bus_protect_clear(pd, bpd);
+>>>    		if (ret)
+>>>    			return ret;
+>>>    	}
+>>> @@ -377,6 +398,14 @@ generic_pm_domain *scpsys_add_one_domain(struct scpsys *scpsys, struct device_no
+>>>    			return ERR_CAST(pd->smi);
+>>>    	}
+>>> +	pd->infracfg_nao = syscon_regmap_lookup_by_phandle(node, "mediatek,infracfg-nao");
+>>
+>> If we don't expect infracfg-nao to be present, what's the point about trying to
+>> get a regmap handle and then failing only if we do expect it to be there?
+>>
+>> At this point you can just do...
+>>
+>> 	if (MTK_SCPD_CAPS(pd, MTK_SCPD_HAS_INFRA_NAO)) {
+>> 		pd->infracfg_nao = syscon_regmap_lookup_by_phandle(...);
+>> 		if (IS_ERR(....))
+>> 			return ....
+>> 	}
+> 
+> Yes! My code looks stupid. Thanks!
+> 
 
-Applied for next, thanks!
+Hahaha, no worries!
 
-Kind regards
-Uffe
+>>
+>>> +	if (IS_ERR(pd->infracfg_nao)) {
+>>> +		if (MTK_SCPD_CAPS(pd, MTK_SCPD_HAS_INFRA_NAO))
+>>> +			return ERR_CAST(pd->infracfg_nao);
+>>> +
+>>> +		pd->infracfg_nao = NULL;
+>>> +	}
+>>> +
+>>>    	num_clks = of_clk_get_parent_count(node);
+>>>    	if (num_clks > 0) {
+>>>    		/* Calculate number of subsys_clks */
+>>> diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
+>>> index 356788263db2..562d4e92ce16 100644
+>>> --- a/drivers/soc/mediatek/mtk-pm-domains.h
+>>> +++ b/drivers/soc/mediatek/mtk-pm-domains.h
+>>> @@ -11,6 +11,7 @@
+>>>    /* can't set MTK_SCPD_KEEP_DEFAULT_OFF at the same time */
+>>>    #define MTK_SCPD_ALWAYS_ON		BIT(5)
+>>>    #define MTK_SCPD_EXT_BUCK_ISO		BIT(6)
+>>> +#define MTK_SCPD_HAS_INFRA_NAO		BIT(7)
+>>>    #define MTK_SCPD_CAPS(_scpd, _x)	((_scpd)->data->caps & (_x))
+>>>    #define SPM_VDE_PWR_CON			0x0210
+>>> @@ -45,8 +46,10 @@
+>>>    enum scpsys_bus_prot_flags {
+>>>    	BUS_PROT_REG_UPDATE = BIT(1),
+>>>    	BUS_PROT_IGNORE_CLR_ACK = BIT(2),
+>>> -	BUS_PROT_COMPONENT_INFRA = BIT(3),
+>>> -	BUS_PROT_COMPONENT_SMI = BIT(4),
+>>> +	BUS_PROT_INVERTED = BIT(3),
+>>
+>> I get the reason why you're setting inverted as bit 3, but at that point you can
+>> just set BUS_PROT_COMPONENT_INFRA to bit 4 from the very beginning, instead of
+>> using bit 3 for that and then changing them all in a subsequent commit (this one).
+> 
+> Yes, I was torn between making the commits independent and avoiding this
+> move later on. I decided for the first. If you prefer I can set it to
+> the correct bits right from the beginning.
+> 
+
+I don't see how setting BUS_PROT_COMPONENT_INFRA to bit(4) from the beginning
+would add dependencies between commits. The first commit alone will still work,
+with the added benefit of less noise in this commit.
+
+You should, at that point, mention in the commit message that you're setting
+INFRA to BIT(4) because BIT(3) "is going to be populated in a later commit".
+
+That, unless anyone else has strong opinions against.
+
+Cheers,
+Angelo
 
 
-> ---
->  Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> index fbfd822b92707..82eb7a24c8578 100644
-> --- a/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/fsl-imx-esdhc.yaml
-> @@ -42,6 +42,7 @@ properties:
->            - enum:
->                - fsl,imx6sll-usdhc
->                - fsl,imx6ull-usdhc
-> +              - fsl,imx6ul-usdhc
->            - const: fsl,imx6sx-usdhc
->        - items:
->            - const: fsl,imx7d-usdhc
-> --
-> 2.39.2
->
