@@ -2,173 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B5E7395D7
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 05:30:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44AB073966F
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 06:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229437AbjFVDag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 23:30:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51506 "EHLO
+        id S230342AbjFVEjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 00:39:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229704AbjFVDae (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 23:30:34 -0400
-Received: from mga11.intel.com (mga11.intel.com [192.55.52.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63A111BCD;
-        Wed, 21 Jun 2023 20:30:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687404633; x=1718940633;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=AZvU9ZeEZYTZ0Y5lwWUlf/o2NDHD8zNYuhg9CSqAe5k=;
-  b=S7N4uPTuEfnhAyiyKuqGsGbcgYt6BwO4m0sdQtjfTKZmn02lAJybrm/I
-   VSse/psOBbPu/hL8/OB3LROWp4Z2qfOYJ4MGxvZ0EzSZyksqeJkMctpSg
-   pfN+88f0Zoi0ExQXW5OYvqqG2bG+1IYfq3HbUix1K8ExaiD+y7BkJJYdk
-   YgFo/E5f1eN+n8pR13e3l+4YOJAZHDfhR6JGTpDbUVi+5T9549mQGmySc
-   bcTijXW0cikqhvjesN5WE79MtJZkUOXHTfeXVSI1OTiDpKQG5xn3wofwp
-   Fl86pdGBBIKBj0Gx0LfmHztllJsUWeSCdRGm1BomOzC46QjE3FOEemQES
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="357869008"
-X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; 
-   d="scan'208";a="357869008"
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Jun 2023 20:30:32 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="827727304"
-X-IronPort-AV: E=Sophos;i="6.00,262,1681196400"; 
-   d="scan'208";a="827727304"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
-  by fmsmga002.fm.intel.com with ESMTP; 21 Jun 2023 20:30:28 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qCB1f-0007In-31;
-        Thu, 22 Jun 2023 03:30:27 +0000
-Date:   Thu, 22 Jun 2023 11:29:43 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Jack Zhu <jack.zhu@starfivetech.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Robert Foss <rfoss@kernel.org>,
-        Todor Tomov <todor.too@gmail.com>, bryan.odonoghue@linaro.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Hans Verkuil <hverkuil@xs4all.nl>,
-        Eugen Hristev <eugen.hristev@collabora.com>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, jack.zhu@starfivetech.com,
-        changhuang.liang@starfivetech.com
-Subject: Re: [PATCH v7 5/6] media: starfive: camss: Add ISP driver
-Message-ID: <202306221112.MnLtMzRo-lkp@intel.com>
-References: <20230619112838.19797-6-jack.zhu@starfivetech.com>
+        with ESMTP id S229694AbjFVEjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 00:39:39 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B280EE69;
+        Wed, 21 Jun 2023 21:39:38 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35M3rpGN000655;
+        Thu, 22 Jun 2023 04:39:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=b3QY04BaXwdxDByWW6IPZPiZMwPBhZgi2RIteR6pKGQ=;
+ b=B6nso4tg9DmX7jyXWouafFaVpAEiIY2tdnU+3G5xsWjW3PeB26xFPXkLLrCC1bdxB1Gl
+ /93vpMZW3lcuIGHKLS+Wp9zisRDaXWesWpEZfSUzAq8kj4TbpuFmOcUsiPqZb/9XFRBc
+ v8kN3nQnLOPlhpW9vao8MDvuvtlY9ALvgXSdvOMv5doMwnhOAKGHneX4gMVb9rTOo8xm
+ QFx320XvRmxDNypu2uf7TfhQMs4xoM12qKploqQU7xjQF+S813ZWTWTMVr1jI6K/JvKj
+ cOGcThqo2lvZ8HsD4pUwQPQpASjqRSqZyBN2psXAn5R2nd8UwDAX4fI7OEy/ob34x/gH tw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rbqjbaxfe-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Jun 2023 04:39:23 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35M4dL2n000851
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Jun 2023 04:39:21 GMT
+Received: from [10.216.6.225] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 21 Jun
+ 2023 21:39:16 -0700
+Message-ID: <3f9957ad-cc73-2a4b-f11c-98b0b79f829c@quicinc.com>
+Date:   Thu, 22 Jun 2023 10:09:13 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230619112838.19797-6-jack.zhu@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.1
+Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
+ for qcom wrapper
+To:     Johan Hovold <johan@kernel.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>
+CC:     Bjorn Andersson <andersson@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Andy Gross" <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "quic_pkondeti@quicinc.com" <quic_pkondeti@quicinc.com>,
+        "quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
+        "quic_wcheng@quicinc.com" <quic_wcheng@quicinc.com>,
+        "quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
+        "quic_harshq@quicinc.com" <quic_harshq@quicinc.com>,
+        "ahalaney@redhat.com" <ahalaney@redhat.com>
+References: <82553597-ce0e-48f4-44d4-9eeaaf4cb1c4@quicinc.com>
+ <ZIBsDQJtgDZRe7MG@hovoldconsulting.com>
+ <99cded6f-6a71-ffce-8479-c7c0726bfb8e@quicinc.com>
+ <ZIGihYS5EacISEFm@hovoldconsulting.com>
+ <279fff8b-57e2-cfc8-cd6d-c69d00e71799@quicinc.com>
+ <20230608175705.2ajrteztdeqdrkzg@synopsys.com>
+ <ZILgW5CwfSlBxzNB@hovoldconsulting.com>
+ <20230609181602.ljxdchgzl7kzk73n@synopsys.com>
+ <acd46bb7-0708-d095-c3c6-53653f9e47d6@quicinc.com>
+ <20230615210800.lvmekpvxjiszkrh4@synopsys.com>
+ <ZJKo3LyIMD1xr2ru@hovoldconsulting.com>
+Content-Language: en-US
+From:   Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+In-Reply-To: <ZJKo3LyIMD1xr2ru@hovoldconsulting.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: E9IEAhF4tL47Moo3iCf2rcMMLYffulG6
+X-Proofpoint-GUID: E9IEAhF4tL47Moo3iCf2rcMMLYffulG6
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-22_02,2023-06-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 mlxscore=0
+ adultscore=0 suspectscore=0 bulkscore=0 impostorscore=0 priorityscore=1501
+ phishscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0 mlxlogscore=659
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306220036
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jack,
-
-kernel test robot noticed the following build warnings:
-
-[auto build test WARNING on media-tree/master]
-[also build test WARNING on robh/for-next linus/master v6.4-rc7 next-20230621]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Jack-Zhu/media-dt-bindings-Add-JH7110-Camera-Subsystem/20230619-193105
-base:   git://linuxtv.org/media_tree.git master
-patch link:    https://lore.kernel.org/r/20230619112838.19797-6-jack.zhu%40starfivetech.com
-patch subject: [PATCH v7 5/6] media: starfive: camss: Add ISP driver
-config: x86_64-allyesconfig (https://download.01.org/0day-ci/archive/20230622/202306221112.MnLtMzRo-lkp@intel.com/config)
-compiler: clang version 15.0.7 (https://github.com/llvm/llvm-project.git 8dfdcc7b7bf66834a761bd8de445840ef68e4d1a)
-reproduce: (https://download.01.org/0day-ci/archive/20230622/202306221112.MnLtMzRo-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306221112.MnLtMzRo-lkp@intel.com/
-
-All warnings (new ones prefixed by >>):
-
->> drivers/media/platform/starfive/camss/stf_camss.c:173:13: warning: variable 'pad_num' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           } else if (port == STF_PORT_DVP) {
-                      ^~~~~~~~~~~~~~~~~~~~
-   drivers/media/platform/starfive/camss/stf_camss.c:178:18: note: uninitialized use occurs here
-           for (i = 0; i < pad_num; ++i) {
-                           ^~~~~~~
-   drivers/media/platform/starfive/camss/stf_camss.c:173:9: note: remove the 'if' if its condition is always true
-           } else if (port == STF_PORT_DVP) {
-                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/media/platform/starfive/camss/stf_camss.c:168:25: note: initialize the variable 'pad_num' to silence this warning
-           unsigned int i, pad_num;
-                                  ^
-                                   = 0
-   1 warning generated.
---
->> drivers/media/platform/starfive/camss/stf_isp.c:113:13: warning: variable 'formats' is used uninitialized whenever 'if' condition is false [-Wsometimes-uninitialized]
-           } else if (pad == STF_ISP_PAD_SRC) {
-                      ^~~~~~~~~~~~~~~~~~~~~~
-   drivers/media/platform/starfive/camss/stf_isp.c:127:18: note: uninitialized use occurs here
-           for (i = 0; i < formats->nfmts; i++) {
-                           ^~~~~~~
-   drivers/media/platform/starfive/camss/stf_isp.c:113:9: note: remove the 'if' if its condition is always true
-           } else if (pad == STF_ISP_PAD_SRC) {
-                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   drivers/media/platform/starfive/camss/stf_isp.c:105:40: note: initialize the variable 'formats' to silence this warning
-           const struct isp_format_table *formats;
-                                                 ^
-                                                  = NULL
-   1 warning generated.
 
 
-vim +173 drivers/media/platform/starfive/camss/stf_camss.c
+On 6/21/2023 1:08 PM, Johan Hovold wrote:
+> On Thu, Jun 15, 2023 at 09:08:01PM +0000, Thinh Nguyen wrote:
+>> On Thu, Jun 15, 2023, Krishna Kurapati PSSNV wrote:
+> 
+>>>   How about we add compatible data indicating the number of usb2/usb3 ports.
+>>> That way we needn't parse the DT or read xhci registers atleast as a
+>>> temporary solution to unblock other patches. Once this series is merged, we
+>>> can get back to fixing the port count calculation. Does it seem fine ?
+>>>
+>>
+>> Temporary solution should not involve DT as it's not easily reverted or
+>> changed. Just include xhci-ext-caps.h and use the inline function. I
+>> think Johan is fine with that. If not, he can provide more feedback.
+> 
+> Yes, I already suggested that as a quick way forward since it is already
+> used this way by the xhci debug driver.
+> 
+> Johan
 
-   156	
-   157	static int stfcamss_subdev_notifier_bound(struct v4l2_async_notifier *async,
-   158						  struct v4l2_subdev *subdev,
-   159						  struct v4l2_async_subdev *asd)
-   160	{
-   161		struct stfcamss *stfcamss =
-   162			container_of(async, struct stfcamss, notifier);
-   163		struct stfcamss_async_subdev *csd =
-   164			container_of(asd, struct stfcamss_async_subdev, asd);
-   165		enum stf_port_num port = csd->port;
-   166		struct stf_isp_dev *isp_dev = &stfcamss->isp_dev;
-   167		struct media_pad *pad[STF_PADS_NUM];
-   168		unsigned int i, pad_num;
-   169	
-   170		if (port == STF_PORT_CSI2RX) {
-   171			pad[0] = &isp_dev->pads[STF_PAD_SINK];
-   172			pad_num = 1;
- > 173		} else if (port == STF_PORT_DVP) {
-   174			dev_err(stfcamss->dev, "Not support DVP sensor\n");
-   175			return -EPERM;
-   176		}
-   177	
-   178		for (i = 0; i < pad_num; ++i) {
-   179			int ret;
-   180	
-   181			ret = v4l2_create_fwnode_links_to_pad(subdev, pad[i], 0);
-   182			if (ret < 0)
-   183				return ret;
-   184		}
-   185	
-   186		return 0;
-   187	}
-   188	
+Hi Johan, Thinh,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  Pushed a v9 following the above suggestion.
+
+Thanks,
+Krishna,
