@@ -2,107 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A07A739748
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:16:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38C2A739755
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:23:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230331AbjFVGQU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 02:16:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43694 "EHLO
+        id S230273AbjFVGXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 02:23:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230314AbjFVGQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:16:14 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 058D61981
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:16:13 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f640e48bc3so9063840e87.2
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:16:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687414571; x=1690006571;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=poTMBpsW2wjpyMUwrhE2d7/bK8bYKWDZ9t9qjQY+Y4g=;
-        b=aJlL+DetePj5uZjoDbapcd13KqWhVsZrwU+VPpEDwjOV1kDukNItKeN3wZF63mhL4s
-         +RcPrC9BpbPB83mD23fmdfNXhEYzGib9/+d4KAVM5Zol/WXlayFcZlPVR3HjTLjovPpH
-         bgkG9Bty1HEpPsvV0YURLos4rP9IFVwo2rQaEcAZMGXGVjIRq1bzDrgEHxA1RhAsL/Hj
-         ID1M/42xD73l8D8t6/Dgj5inpy2u4U46KJdcVjzsDZ1kuvuuMIeo6dcFagkCcv/us//m
-         JPlR8B7x67SCzn9VkwZ48OO8LkS6VC0bWvkV1NEawjKPjAKbB/NADjYiUHQsaJSGiAdv
-         fnZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687414571; x=1690006571;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=poTMBpsW2wjpyMUwrhE2d7/bK8bYKWDZ9t9qjQY+Y4g=;
-        b=guzdWCVrzBigL1UFqdg2Os1QXucNNpk+4aSjPrDJ9uKpAyTibPEMzhKDFVPqGV4AkC
-         wNwBlqTZ9Y27m9HaNT6GPwXoAKTGWIxepWGtPAWSVpYW65+aKodx5rwXfvX8DgvRcmYv
-         /QNi5YJYevzDGdM/BGo3NDTfrP4KVnRa4KIalZYrhu4IvsKY9QmsRDLDo1R7Df5O2mWC
-         v8znuwCp76Ar6B2NIDt7SVJkOZXkVoJIVarNJNY0NIkUyrFE9f2zvx+bwgz94JZJtuSW
-         JdIZVywCeygxxdT2IOa6ewpZvUM69KxrBqSbW7rndVmby3UL8Ay3N4FODuXPW+RAFE9z
-         ulyA==
-X-Gm-Message-State: AC+VfDwlzOC5f4DvKmXm/KRaCtKYVISAwOgb+OOygud9NgyhL8RPX0W/
-        RM01iDei+QgQiWGAdst5t6vNjw==
-X-Google-Smtp-Source: ACHHUZ4CY/suwusuVWwIE87HUXkOkuSg/a1kVHwJ9Ov3EQI9ZE1tPyqLKwnRzZ6C5oOunra4MGmpRQ==
-X-Received: by 2002:a05:6512:310b:b0:4f8:66da:228a with SMTP id n11-20020a056512310b00b004f866da228amr6856659lfb.4.1687414571068;
-        Wed, 21 Jun 2023 23:16:11 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id h25-20020a1ccc19000000b003f42158288dsm17838993wmb.20.2023.06.21.23.16.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 23:16:10 -0700 (PDT)
-Message-ID: <50f75267-492f-d36b-f977-da2fb3a3fd1f@linaro.org>
-Date:   Thu, 22 Jun 2023 08:16:08 +0200
+        with ESMTP id S230332AbjFVGXI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:23:08 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E30199B;
+        Wed, 21 Jun 2023 23:23:05 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35M5JP8q008624;
+        Thu, 22 Jun 2023 06:22:32 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=m3zHEh2b7/18I0LitdotbRP8xQaHPG+L9wdwhrOByLU=;
+ b=o9+MiikF37FbtSMU5vbipeLuiPs3AIcGFG1Ce0kJCSDuz8TWJtayGooVpXTejL+tsiVo
+ ZK9zHaDV4U127At3lw7U8x6MgdlMo0/PHMl3TVDPXW4CJ3rfNZXm/2BLXx2YaVkTVvis
+ haP+iNO+bIV4Hnw+w72PvFcHN6MKrNtmIFAK5BLULJNcNJNwoZ5s+0j0k/GJbZ/ZGqwI
+ 5vkKiG4cTo4SRWozIj9fXe7dxZEp5vGt5E3YdqblqeyjVEMNuEud8UJhZpGMlVoqY2nj
+ nEEKU4FqjKKpRqVfIAW9EJIsPBplsMRgObjpZfniFrQZHw2Cn1K6GHfTuUHZrslG/beM XQ== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rc2rchm1s-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Jun 2023 06:22:32 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35M6MV59009910
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Jun 2023 06:22:31 GMT
+Received: from varda-linux.qualcomm.com (10.80.80.8) by
+ nasanex01a.na.qualcomm.com (10.52.223.231) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Wed, 21 Jun 2023 23:22:23 -0700
+From:   Varadarajan Narayanan <quic_varada@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <vkoul@kernel.org>,
+        <kishon@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <gregkh@linuxfoundation.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <p.zabel@pengutronix.de>, <arnd@arndb.de>,
+        <geert+renesas@glider.be>, <neil.armstrong@linaro.org>,
+        <nfraprado@collabora.com>, <broonie@kernel.org>,
+        <rafal@milecki.pl>, <quic_srichara@quicinc.com>,
+        <quic_varada@quicinc.org>, <quic_wcheng@quicinc.com>,
+        <linux-arm-msm@vger.kernel.org>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC:     Varadarajan Narayanan <quic_varada@quicinc.com>
+Subject: [PATCH v1 0/6] Enable IPQ5332 USB2
+Date:   Thu, 22 Jun 2023 11:52:07 +0530
+Message-ID: <cover.1687414716.git.quic_varada@quicinc.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2] dt-bindings: timer: add Ralink SoCs timer
-Content-Language: en-US
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tglx@linutronix.de, robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org
-References: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
- <168739869603.42044.12383139966264039986.robh@kernel.org>
- <CAMhs-H_fUSnXHgO0ZXuGOX7gkuM98HXm+Y_jq1DxCv5Az=3Rag@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAMhs-H_fUSnXHgO0ZXuGOX7gkuM98HXm+Y_jq1DxCv5Az=3Rag@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: J52DkDK8DY471akN3ZNWizbbsnJo9VtL
+X-Proofpoint-GUID: J52DkDK8DY471akN3ZNWizbbsnJo9VtL
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-22_03,2023-06-16_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=1 malwarescore=0 bulkscore=0
+ priorityscore=1501 mlxscore=1 spamscore=1 impostorscore=0 adultscore=0
+ suspectscore=0 clxscore=1015 lowpriorityscore=0 mlxlogscore=188
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306220052
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2023 07:14, Sergio Paracuellos wrote:
-> On Thu, Jun 22, 2023 at 3:51 AM Rob Herring <robh@kernel.org> wrote:
->>
->>
->> On Tue, 20 Jun 2023 12:02:31 +0200, Sergio Paracuellos wrote:
->>> Add YAML documentation for the timer which is present on Ralink SoCs.
->>>
->>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
->>> ---
->>> Changes in v2:
->>> - Remove redundant 'documentation' word from subject.
->>> - Drop clock-names property.
->>>
->>>  .../bindings/timer/ralink,rt2880-timer.yaml   | 44 +++++++++++++++++++
->>>  1 file changed, 44 insertions(+)
->>>  create mode 100644 Documentation/devicetree/bindings/timer/ralink,rt2880-timer.yaml
->>>
->>
->> Reviewed-by: Rob Herring <robh@kernel.org>
->>
-> 
-> Thanks! Which tree is this supposed to go through?
+This patch series adds the relevant phy and controller
+configurations for enabling USB2 on IPQ5332.
 
-Preferably clocksource/clockevents/timer drivers tree/
+v1:
+	Cleanup DTS
+	Combine driver, kconfig and makefile patches
+	Remove unused functions from M31 driver
+	Drop the clock driver changes
 
-Best regards,
-Krzysztof
+Varadarajan Narayanan (6):
+  dt-bindings: usb: dwc3: Add IPQ5332 compatible
+  dt-bindings: phy: qcom,m31: Document qcom,m31 USB phy
+  phy: qcom-m31: Introduce qcom,m31 USB phy driver
+  arm64: dts: qcom: ipq5332: Add USB related nodes
+  arm64: dts: qcom: ipq5332: Enable USB
+  arm64: defconfig: Enable M31 USB phy driver
+
+ .../bindings/phy/qcom,ipq5332-usb-hsphy.yaml       |  51 ++++
+ .../devicetree/bindings/usb/qcom,dwc3.yaml         |   3 +
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts        |  12 +
+ arch/arm64/boot/dts/qcom/ipq5332.dtsi              |  54 +++++
+ arch/arm64/configs/defconfig                       |   1 +
+ drivers/phy/qualcomm/Kconfig                       |  11 +
+ drivers/phy/qualcomm/Makefile                      |   1 +
+ drivers/phy/qualcomm/phy-qcom-m31.c                | 256 +++++++++++++++++++++
+ 8 files changed, 389 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/qcom,ipq5332-usb-hsphy.yaml
+ create mode 100644 drivers/phy/qualcomm/phy-qcom-m31.c
+
+-- 
+2.7.4
 
