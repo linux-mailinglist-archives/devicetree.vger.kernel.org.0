@@ -2,87 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C1F273A21F
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 15:45:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0383F73A230
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 15:51:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbjFVNpz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 09:45:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46358 "EHLO
+        id S229921AbjFVNvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 09:51:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231134AbjFVNpk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 09:45:40 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 731B0199F
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 06:45:38 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9741caaf9d4so852585766b.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 06:45:38 -0700 (PDT)
+        with ESMTP id S229813AbjFVNvJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 09:51:09 -0400
+Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A7D81994
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 06:51:07 -0700 (PDT)
+Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b46cad2fd9so79916771fa.1
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 06:51:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687441537; x=1690033537;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=uiwdHAe6XoqoXDrL1lEWT9oP4RFFDYjXsF6c8ZBYpVA=;
-        b=guQ6fscEqrT0MeMEO+/YsKj/R6bKOyLEHlAgCzpWsoLXxyka/KQPrDT0AlTSkv7n9a
-         PXE0d+E2mxo7r6EMIrw2m0ueUOxjZNjNKonOONozKtwPscTuyc/ueJxDCSCPpghuTA4s
-         yahxU3PtsdL7zZeI15C1Ms/dJF/TKoRV68YvZ7cJHUJ3W/daVgP7TFzZHdVhOs8e4Vh5
-         xW2UD2sSHud3Zy60ffd1zWwoGQI3VLyUpm/E6v4uq/Y8KzCgnlCznwUJ2voR6dYhpzwm
-         PGzo9+SyLyxh3Jd53T+oSnBOp9LhGozwQZ8JYSJZZpawD+mHCKuOWLCA8Zrf+SLvwclC
-         BC9A==
+        d=linaro.org; s=google; t=1687441866; x=1690033866;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=IeSbPg4ZIVu85Aig3buKlFPPdDBd8bIr1LgjNoNCfVk=;
+        b=cltVl1bLV6D0wwr/IhxvmEkAVZ0UkptHZRIIhZrDKqR88upROqWz0lTQy1FY+SFwl6
+         Z7JJvbeBn84dbj6E/gbdBj+sivPejDW9OeRikMtenMWMOpFSP0WCiBFjjczDLzfysFBC
+         q8c8++3BYSuqz5IwxOOnMac6WTn97wNcPYvggFLv3iDVB0/tjbcR2pBAIxIhAxZCRd1s
+         +0Caf70RkQUzUSj0mPxsIQNUlfdVpXRcV3a2HzT0XF+AuC5+aD6LmO4wSBnvzrFW9dE/
+         6DYWGWgHUNc+l6Sd8hzp87i1Qsb0x/w7WxNlb6eQzmIMyJfX3cdnbTi9JNF13SUPo0wm
+         eu6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687441537; x=1690033537;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687441866; x=1690033866;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=uiwdHAe6XoqoXDrL1lEWT9oP4RFFDYjXsF6c8ZBYpVA=;
-        b=Z48OY+tXV1CpVhDLQPhzrvdwXS2WEAFZPSrbBgupNgcYP7EEQyQ4fZ4u2skGdL427T
-         cXGHxaBHRLUubbkTIzR8TOsWuw/DPsdON2rJOW04oNjOFKDVN6vLs9h5cDHITMH+vyy6
-         pH9sJma76jq0SW8P3sN2Tv3LhOzKAyZ9Ntk9/UL5hpqBPeSoxLPnXaoUFO+ujq+Wz2J5
-         VkFmuryIbthVbtyzUQgRLy0dCwFiHTc1OuY/UytE+v9yKIcuQwXpE1bNmTiTkc7ZU0NN
-         hPN0aYKLWDIfToRyoeHN+Tu3FKxqDtxxXuKlvpEhYLnBsloKntFkru+G/W4dp0zOHVR1
-         eIQw==
-X-Gm-Message-State: AC+VfDzhjCRBuZ5QraiNuQ2+bwGuQQr3hiA9S0OtfDsPnkl4SnKmn3SZ
-        8wVZ7XXaxHZDKS/1ZKydZjEgAA==
-X-Google-Smtp-Source: ACHHUZ5BlBnF2IwMkzv3RLlBauiQZEUUcLcTFIeCXZzbfWdyBpihwjbIzdrwR3RRplsFAzSjSSLY0g==
-X-Received: by 2002:a17:907:16a9:b0:98c:e3a1:dbb4 with SMTP id hc41-20020a17090716a900b0098ce3a1dbb4mr3884866ejc.68.1687441536920;
-        Thu, 22 Jun 2023 06:45:36 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id jw8-20020a17090776a800b0098866a94f14sm4714518ejc.125.2023.06.22.06.45.34
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jun 2023 06:45:36 -0700 (PDT)
-Message-ID: <fe3b02e4-9f01-eb36-bf99-6bc3b15b28c2@linaro.org>
-Date:   Thu, 22 Jun 2023 15:45:34 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: clock: Update GCC clocks for QDU1000 and
- QRU1000 SoCs
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Imran Shaik <quic_imrashai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+        bh=IeSbPg4ZIVu85Aig3buKlFPPdDBd8bIr1LgjNoNCfVk=;
+        b=WcUY08jbRAze+26w1cwsct1dXx+kKDHrZZg8xIvnkafj9MVo84IF55Ic+p6l9I/hFT
+         bKh5r1+7kBo6rsnMdB8Q8EFkzi7kWvGfLseVSYzVbdfe79a2bw9WzHCI/4XANcv2h0nc
+         9W9NB2i5Y8zzQ/vWEEC8MvbQqirmtvEfz0SY1r3Busiy0+txdapVsLw282BEFOjEYYx1
+         vsfIEByvont+kVyTsE/4p8NW2TfEFahnfNbm4JlpdDs9D7Vw0GgmkOaP8Mvk0to8f/ii
+         nFWQrJ4a1LFXu3asEgq36DlxTcPXJc01kt8adK0637WqTU1ntfI3PNgFllZs6/jqLzmP
+         N9Zg==
+X-Gm-Message-State: AC+VfDzNR1ZhhNZUpUim0NKZNEk6qO6j5xm2RyonZ1PSW75Fo8q9201u
+        qijp6khpjKf88nkIl7v9iZHG
+X-Google-Smtp-Source: ACHHUZ7JOp4XzRU7Tu08nNDLkjzkmR9cW6tj2MYtZ4uxvW09KgxaFEH4yAsowrkNCrMvjaKqyOViWA==
+X-Received: by 2002:a05:6512:3d90:b0:4f8:58ae:8ea8 with SMTP id k16-20020a0565123d9000b004f858ae8ea8mr11196655lfv.58.1687441865729;
+        Thu, 22 Jun 2023 06:51:05 -0700 (PDT)
+Received: from thinkpad ([117.217.178.216])
+        by smtp.gmail.com with ESMTPSA id q16-20020aa7d450000000b0051a409e752asm4034616edr.17.2023.06.22.06.50.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jun 2023 06:51:05 -0700 (PDT)
+Date:   Thu, 22 Jun 2023 19:20:54 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Melody Olvera <quic_molvera@quicinc.com>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jagadeesh Kona <quic_jkona@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230616104941.921555-1-quic_imrashai@quicinc.com>
- <20230616104941.921555-2-quic_imrashai@quicinc.com>
- <cee56c57-060a-2fce-a2af-25404b9afe48@linaro.org>
-In-Reply-To: <cee56c57-060a-2fce-a2af-25404b9afe48@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: qcom: sm8350: fix BAM DMA crash and reboot
+Message-ID: <20230622135054.GA69564@thinkpad>
+References: <20230621143627.189134-1-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230621143627.189134-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,50 +79,53 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16/06/2023 13:33, Krzysztof Kozlowski wrote:
-> On 16/06/2023 12:49, Imran Shaik wrote:
->> Update the qcom GCC clock bindings and add v2 compatible string for QDU1000
->> and QRU1000 SoCs.
->>
->> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
->> ---
->>  .../devicetree/bindings/clock/qcom,qdu1000-gcc.yaml         | 6 +++++-
->>  include/dt-bindings/clock/qcom,qdu1000-gcc.h                | 4 +++-
->>  2 files changed, 8 insertions(+), 2 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/clock/qcom,qdu1000-gcc.yaml b/Documentation/devicetree/bindings/clock/qcom,qdu1000-gcc.yaml
->> index 767a9d03aa32..030953d258c1 100644
->> --- a/Documentation/devicetree/bindings/clock/qcom,qdu1000-gcc.yaml
->> +++ b/Documentation/devicetree/bindings/clock/qcom,qdu1000-gcc.yaml
->> @@ -8,6 +8,8 @@ title: Qualcomm Global Clock & Reset Controller for QDU1000 and QRU1000
->>  
->>  maintainers:
->>    - Melody Olvera <quic_molvera@quicinc.com>
->> +  - Taniya Das <quic_tdas@quicinc.com>
->> +  - Imran Shaik <quic_imrashai@quicinc.com>
+On Wed, Jun 21, 2023 at 04:36:27PM +0200, Krzysztof Kozlowski wrote:
+> SM8350 HDK and MTP boards were silently dying and rebooting during BAM
+> DMA probe:
 > 
-> I appreciate adding more maintainers, it is welcomed and needed.
+>   [    1.574304] vreg_bob: Setting 3008000-3960000uV
+>   [    1.576918] bam-dFormat: Log Type - Time(microsec) - Message -
+>   Optional Info
+>   Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+>   S - QC_IMAGE_VERSION_STRING=BOOT.MXF.1.0-00637.1-LAHAINA-1
+>   S - IMAGE_VARIANT_STRING=SocLahainaLAA
+>   S - OEM_IMAGE_VERSION_STRING=crm-ubuntu77
+>   S - Boot Interface: UFS
 > 
-> However many of Qualcomm folks, including some of you, did not care
-> enough to fix their old/incorrect email in existing entries, thus we
-> have hundreds of wrong addresses and email bounces.
+> It seems that BAM DMA is locally controller (not by firmware) and
+> requires proper initialization by the driver prior to use, at least on
+> HDK8350 and MTP8350, but probably on all boards.
 > 
-> We already raised this internally and publicly, with just small effect,
-> so I am not sure what to do more. For me, allowing to have outdated
-> email in maintainers is an easiest proof that maintainer does not care.
-> Adding more maintainer entries, while maintainer does not care, would
-> not feel right. Maybe let's start with fixing existing entries?
+> Fixes: f1040a7fe8f0 ("arm64: dts: qcom: sm8350: Add Crypto Engine support")
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-+Cc Alex,
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-Let me emphasize more, because I did not see any follow up patches since
-my previous email - there are many, many stale maintainer entries from
-Qualcomm. Several of them have codeaurora.org email. Some have just old
-emails of folks who left.
+- Mani
 
-Can we expect fixing these?
+> 
+> ---
+> 
+> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sm8350.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> index 88ef478cb5cc..b382ce66387e 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
+> @@ -1741,7 +1741,6 @@ cryptobam: dma-controller@1dc4000 {
+>  			interrupts = <GIC_SPI 272 IRQ_TYPE_LEVEL_HIGH>;
+>  			#dma-cells = <1>;
+>  			qcom,ee = <0>;
+> -			qcom,controlled-remotely;
+>  			iommus = <&apps_smmu 0x594 0x0011>,
+>  				 <&apps_smmu 0x596 0x0011>;
+>  		};
+> -- 
+> 2.34.1
+> 
 
-Best regards,
-Krzysztof
-
+-- 
+மணிவண்ணன் சதாசிவம்
