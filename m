@@ -2,82 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C9037398F8
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE0F3739919
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:14:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjFVIFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 04:05:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60676 "EHLO
+        id S229468AbjFVIN6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 04:13:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35796 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjFVIFN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:05:13 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99118E57;
-        Thu, 22 Jun 2023 01:05:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687421112; x=1718957112;
-  h=from:to:cc:subject:date:message-id:mime-version:
-   content-transfer-encoding;
-  bh=JWCUKpf0KP37qTSf6RCX5zqUGN/1rszFQcUfaea30M0=;
-  b=IkdfnP4svBAYLkUTQeG06zY83nTneLQYHaPzdBnsSijh1H2Gs2Npyw0R
-   7M3j0mbUFWmfhjsHFh0xQtWtX7jpX2Vv4+6tCiI9ZMP/6s8GWXn2cMEA8
-   ucGPjVWsR4mOhG6NeIr1RLL1Nrnrba1oalafXuipiCVU8wpmBGopzoLzP
-   eCUFWKuVZOQNSV6O1z8LxfWk7E47AgFhAlGrH1Czy9C1LIYFYkfuLCj9W
-   rjtb6HLPajDW1iK2HaLcqbu4VWib4yTTzbpMoSrjHhwvoHy8G+gsNR2yv
-   UDHIsukSV2QPJppxgK7fvXnS18s7trerYO7y8ijAXSZaTX2P6JOdmJTo+
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="390091984"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
-   d="scan'208";a="390091984"
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2023 01:05:12 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="888991362"
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
-   d="scan'208";a="888991362"
-Received: from unknown (HELO localhost.localdomain) ([10.226.216.117])
-  by orsmga005.jf.intel.com with ESMTP; 22 Jun 2023 01:05:09 -0700
-From:   kah.jing.lee@intel.com
-To:     Dinh Nguyen <dinguyen@kernel.org>,
+        with ESMTP id S229881AbjFVINv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:13:51 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB1A31BCB
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:13:46 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f9ede60140so7729855e9.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:13:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687421625; x=1690013625;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=xBt2ekqJ0sia2Hb53NunP8E+iWHCyIXmjcNKrTqEDs0=;
+        b=vXOpyrXgdc0xTE+YD7sbBTCml+Y7FYfUb5kKe6yGOZ+9fCW1pfzc0uJ4t797yaiUz0
+         2EcVUfIXaSSfZnGHph1InDSAXeKyh6mCvSYUevjm0E4ZM0Z2gZ9v1jHrveof4pcebirh
+         tzxX1HPwwNK8uPLVSOeVwTvLKWVLsQiEo/1EANbeC7kDci655dsHmDye99J4WFL/Rtyo
+         WPDbg2J28IKCkFDzf2J2GUs6c3+YXrOJ8nrRM+6x0h8Nn2KZVILHNu56t5O8Ik9ZtqjU
+         EMe+mChVF9ddkvlMVwdJIgyFEDPo9kh9P0dLSAUCkTZJJ8uqbCCG/dzNCMihAjgeKh+J
+         +3mA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687421625; x=1690013625;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xBt2ekqJ0sia2Hb53NunP8E+iWHCyIXmjcNKrTqEDs0=;
+        b=IpGXl9dZ4gssqjIilkoeRbn1yDDcJ4GJH1O6Enc3sdhi2TVYN11Qs/2ikg/XaKJ86D
+         osgQdPgZ1KFnPN+bbd9rlkHC2JJYgwMHjvgxUXNM4L1ngwuUSplylnpNAeSWAMWx1goP
+         jLP2s2gl/2vXr6LeM3SfslkMuNKQL1H5DIY5wIMUQes5V8raPByIxByiGISO3zrxaFzi
+         dywHKOe45jjizs4OWyhwykYoHM7xw/p0SEs2bH5FCrCc1UTz3oEK0GuW84VlbPAu0N77
+         mZ+czVtXH5eSa8VtqiARxoumsGt3pHz0n43OZ09eiGTvSidV4Fnj/QddW5SvaR8ylokT
+         cOqA==
+X-Gm-Message-State: AC+VfDz9nYUGHp9Y95rZUUbDVxp+GV9KTuU9OZXEC6wjCEWHe0Q5QjZq
+        qPd7pB97d/BZGRmwoHJqkcx+YA==
+X-Google-Smtp-Source: ACHHUZ475XXZXU/6F2syTDxBr5VRodl+0PPu8YxpHRhgZXoJQaySn7JsPy29tk9ZpN3gB14L12m/0A==
+X-Received: by 2002:a05:600c:2945:b0:3f9:b31d:5689 with SMTP id n5-20020a05600c294500b003f9b31d5689mr6828378wmd.36.1687421625062;
+        Thu, 22 Jun 2023 01:13:45 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f692:a800:4794:385? ([2a01:e0a:982:cbb0:f692:a800:4794:385])
+        by smtp.gmail.com with ESMTPSA id r19-20020a05600c285300b003f605566610sm17944436wmb.13.2023.06.22.01.13.44
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 22 Jun 2023 01:13:44 -0700 (PDT)
+Message-ID: <2fe41e89-9a26-e7ba-6ef6-2c9262bda43d@linaro.org>
+Date:   Thu, 22 Jun 2023 10:13:43 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for T7
+Content-Language: en-US
+To:     tanure@linux.com, Conor Dooley <conor.dooley@microchip.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Kah Jing Lee <kah.jing.lee@intel.com>
-Subject: [PATCH 0/2]: Enable UBIFS support
-Date:   Thu, 22 Jun 2023 16:04:35 +0800
-Message-Id: <20230622080435.471363-1-kah.jing.lee@intel.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230621133215.109254-1-tanure@linux.com>
+ <20230621133215.109254-3-tanure@linux.com>
+ <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org>
+ <20230621-uncaring-impeding-15cfbe8e0e7c@spud>
+ <CAJX_Q+342dx9S4C2C814uQgOj_QR3EBKhETH9eVZOm7PtzFAVQ@mail.gmail.com>
+ <e4c993e1-8409-1ec0-c1b2-175603052e46@linaro.org>
+ <CAJX_Q+09WLqmnWwOL7QESEuDzwZvVVzbtg9Upd5j2LOAYs=vmA@mail.gmail.com>
+ <20230622-hardhat-elitism-26f0d0df204f@wendy>
+ <CAJX_Q+3+bdXd-NrsQymXerpWZuj3zb8CKHcZRNM_iLSZcp2Mfg@mail.gmail.com>
+Organization: Linaro Developer Services
+In-Reply-To: <CAJX_Q+3+bdXd-NrsQymXerpWZuj3zb8CKHcZRNM_iLSZcp2Mfg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kah Jing Lee <kah.jing.lee@intel.com>
+On 22/06/2023 09:36, Lucas Tanure wrote:
+> On Thu, Jun 22, 2023 at 8:12 AM Conor Dooley <conor.dooley@microchip.com> wrote:
+>>
+>> On Thu, Jun 22, 2023 at 07:43:31AM +0100, Lucas Tanure wrote:
+>>> On Thu, Jun 22, 2023 at 7:05 AM Krzysztof Kozlowski
+>>> <krzysztof.kozlowski@linaro.org> wrote:
+>>>> On 22/06/2023 07:32, Lucas Tanure wrote:
+>>>>> On Wed, Jun 21, 2023 at 7:12 PM Conor Dooley <conor@kernel.org> wrote:
+>>>>>> On Wed, Jun 21, 2023 at 03:53:04PM +0200, Krzysztof Kozlowski wrote:
+>>>>>>> On 21/06/2023 15:32, Lucas Tanure wrote:
+>>>>>>>> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+>>>>>>>> There is no need for an extra compatible line in the driver, but
+>>>>>>>> add T7 compatible line for documentation.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Lucas Tanure <tanure@linux.com>
+>>>>>>>> ---
+>>>>>>>>   .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
+>>>>>>>>   1 file changed, 2 insertions(+)
+>>>>>>>>
+>>>>>>>> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>>>>>>>> index 01ec45b3b406..860ab58d87b0 100644
+>>>>>>>> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>>>>>>>> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>>>>>>>> @@ -33,6 +33,7 @@ properties:
+>>>>>>>>                 - amlogic,meson8b-uart
+>>>>>>>>                 - amlogic,meson-gx-uart
+>>>>>>>>                 - amlogic,meson-s4-uart
+>>>>>>>> +              - amlogic,meson-t7-uart
+>>>>>>>>             - const: amlogic,meson-ao-uart
+>>>>>>>>         - description: Always-on power domain UART controller on G12A SoCs
+>>>>>>>>           items:
+>>>>>>>> @@ -46,6 +47,7 @@ properties:
+>>>>>>>>             - amlogic,meson8b-uart
+>>>>>>>>             - amlogic,meson-gx-uart
+>>>>>>>>             - amlogic,meson-s4-uart
+>>>>>>>> +          - amlogic,meson-t7-uart
+>>>>>>>
+>>>>>>> It does not look like you tested the DTS against bindings. Please run
+>>>>>>> `make dtbs_check` (see
+>>>>>>> Documentation/devicetree/bindings/writing-schema.rst or
+>>>>>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+>>>>>>> for instructions).
+>>>>>>
+>>>>>> Check back on the previous version, I should've posted an untested
+>>>>>> version of what you need to add.
+>>>>> I saw that, but adding a S4 doesn't make sense to me. And you didn't
+>>>>> show the entire change, so I can't understand what you want there.
+>>>>
+>>>> For sure you need something which does not trigger errors. If you claim
+>>>> adding S4 as fallback does not make sense, then why did you use it?
+>>>> Sending a code which is clearly incorrect does not make sense.
+>>>>
+>>> Sorry, I think we are talking about different things. It does not make
+>>> sense to me to add an S4 line in the documentation when it is already
+>>> there. So I could not understand or make sense of the patch Conor sent
+>>> in reply to my V2.
+>>
+>> That is just how it works. You need to spell out exactly which
+>> combinations are permitted. The current entry for s4 says that s4 is
+>> only permitted in isolation.
+>> Since you are adding "amlogic,meson-t7-uart", "amlogic,meson-s4-uart"
+>> you need to explicitly allow that combination. You'll notice if you look
+>> at the file that the gx uart appears more than once.
+>>
+>> Given the g12a was the most recently added compatible, it might make
+>> sense to follow the pattern that it had set, given the thing your
+>> original patch copied the match data from was the g12a. That change to
+>> the dt-binding would look like:
+>> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>> index 01ec45b3b406..eae11e87b88a 100644
+>> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>> @@ -50,6 +50,13 @@ properties:
+>>           items:
+>>             - const: amlogic,meson-g12a-uart
+>>             - const: amlogic,meson-gx-uart
+>> +      - description:
+>> +          Everything-Else power domain UART controller on G12A compatible SoCs
+>> +        items:
+>> +          - enum:
+>> +              - amlogic,meson-t7-uart
+>> +          - const: amlogic,meson-g12a-uart
+>> +          - const: amlogic,meson-gx-uart
+>>
+>>     reg:
+>>       maxItems: 1
+>>
+>> /I/ don't really care whether you do that, or do the s4 version of it,
+>> but following the most recent pattern might make more sense. When I
+>> suggested s4, it was because I only looked at the driver patch rather
+>> than the code itself.
+>>
+>>> Krzysztof, I will check again with dtbs_check and re-send.
+>>
+>> Cheers,
+>> Conor.
+> I am struggling to understand this. Everything I try fails the check.
 
-Hi,
-The patchset is to update the qspi mtd partition range for UBIFS on
-socfpga platform. The subsequent patch is enable the UBIFS in defconfig.
+I just applied Conor's change on top of v6.4-rc1 and ran:
+make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
 
-Alif Zakuan Yuslaimi (2):
-  arch: arm64: boot: dts: Updated QSPI Flash layout for UBIFS
-  arch: arm64: configs: Enable UBI and UBIFS
+and the check was successful.
 
- arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 8 ++++----
- arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts     | 8 ++++----
- arch/arm64/configs/defconfig                           | 2 ++
- 3 files changed, 10 insertions(+), 8 deletions(-)
+Neil
 
--- 
-2.25.1
 
