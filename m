@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B17F739751
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D74D739770
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230171AbjFVGWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 02:22:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45204 "EHLO
+        id S230060AbjFVGYk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 02:24:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46948 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229948AbjFVGWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:22:51 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8424F199D
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:22:49 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3f9c88ac077so12700925e9.1
-        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:22:49 -0700 (PDT)
+        with ESMTP id S231251AbjFVGYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:24:32 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42834199B
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:24:10 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f900cd3f69so51332315e9.0
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 23:24:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687414968; x=1690006968;
+        d=linaro.org; s=google; t=1687415044; x=1690007044;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gmobDT7+8aP4aCITE+/y9FPE9+vYWQGY04+aUMJ3l7w=;
-        b=lID62h52Vg7jFEFKKGfYC1kkLFKjhrmEaN54va3c25gVRp2g2G2LKNjA5jU36CP/FM
-         EfbeCTtZ0jFAIPb6YIKzWuxc33dMDC068Dmdje4pOUrNa7RqiaHdJfceWAyu39ky3b2/
-         uhu0yXSogwt0krlQbGwRiKptmJh4XVy+BBwM3VTBzHNPY1zThzMoLOrBPEuxLJEbxf1c
-         KBd6X7MCFiXtbd9mkazy+H7pM+4XzNNsn7eY0hsEg/x+pvQHa2UiV3euzouZ3GLf8vZ/
-         uLCU1BqXhm6agprvaXHTCgJi7jzqht+Oyrm2KKpiYG6R4s/XRKsqWcU8PyHDfHRWY2rg
-         VNXg==
+        bh=eH8Jr142ntLel/7gLS1oZ1Nz56TZasAa577P+okAIvw=;
+        b=Qhk4+G/vUb59EiStnxM1IvO/IzZ51ii4b1HymApYEhCeaBxA0YMbxE5YsVsF6c8Q3z
+         pWeKr5HYwG3KzFEl4hK686UK8L7u9lAEkU+HbqwyXsrlsv1x5KVchS4TjwhoCqWEKZFn
+         i4Ro0mEocafLppA3jOsRtFLu+eDg4XaaZxLBVkLtldbHDtorhe8oZoto2E2GW2Ks5NP+
+         VpV4ZYk7YpZHfJl3EMpMHW2LjuMuowug3IJ8WZXtNDkH3/miXK7mSR+cG/uRlGeEFZan
+         2GTd0L9isK+frNFvjSNT5M6EOTz539wYjDxf+8CqNHDehMTGRUNYprcsBhzK850D07lF
+         BBLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687414968; x=1690006968;
+        d=1e100.net; s=20221208; t=1687415044; x=1690007044;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gmobDT7+8aP4aCITE+/y9FPE9+vYWQGY04+aUMJ3l7w=;
-        b=ckxY2cKnO3pB8zsZiMXCYrj5l4qsNPz3B6opWUP11U0hYqA2REHCBeizLGufO4k99T
-         66Xo2djEBZsoOkuTu2YFMWKHor0zCO3ewX3Fi98hnrX00plEvkWPyEBuUeKIOwhYWrvw
-         fe4teV5oFmL6rCaJ6OPLGb7O2289Co6e9h2lePdCdbrvJcEJXp1EvILlnP5dGaaVVriA
-         KhDZcmLCS7P6VuD/x7NyYjNxKTy67PAvYzZ/fhuv+v8cGjVpcxn/5Llvz3SOzN1YSFIu
-         emqDrg6S7e91TP3odsq6O5iRYa4O9SXaz606I0JpPY+djbBbMIowOc6FqRZ3Ttpw+tJ0
-         gdyA==
-X-Gm-Message-State: AC+VfDztwXQEe3XdcmNTNR/Eyu5O9asM7FRwVQ7EgYRnQFwSDnx7jWOw
-        IshQzMO10YCpc7lfZIm+nHWa7w==
-X-Google-Smtp-Source: ACHHUZ6+nD3/452NS4FRuKF9FIbtua9FwfR8JwTgiR4FpTZ6V0c9K02Q1pSxdZdLn4/hpcjiNbVA3g==
-X-Received: by 2002:a1c:7211:0:b0:3f9:206:c3a6 with SMTP id n17-20020a1c7211000000b003f90206c3a6mr12041497wmc.20.1687414967617;
-        Wed, 21 Jun 2023 23:22:47 -0700 (PDT)
+        bh=eH8Jr142ntLel/7gLS1oZ1Nz56TZasAa577P+okAIvw=;
+        b=NNWkStLlMWnlYieKKcmZ/G/bowE8NsTtu8VHAy5SXPKvHZKCtC9rlkEwz7hRm0epL5
+         C3Wztva6HHYdzx5bg/EavCyuvVK0cREboNwkNYY3yaPOa9ntzQwVr7+FxB54S8FBXn84
+         80CbXbQiMLasriD6ZVE/8PlPplTLi8QchTvrhs6iXgpLomWcoQIHenEKFVti4BFuwxnB
+         K/7PMDrbZwW0YHoM3ePpasRKUgoqdcalkeavLNtJPlwoJS0dMP/Zy/C2EBGWwqVrKuSf
+         0z/bdpEOy8/ZtE7pucz2SW9Js19An/+oirctYX87wg/Une5EyIl7VoD7LF7sR4vxMhoa
+         5Y+A==
+X-Gm-Message-State: AC+VfDyDSripLEcEF3nCgbf45jWbpwIqq+Aiu9eMe0sU3dtZ/nGitrTU
+        dXIM9deXtP2KMLCR0a2+21wKpQ==
+X-Google-Smtp-Source: ACHHUZ4N2Wiu5Bmd+kn66yQlZpQggnM3k8bZUERZzs+mFFPuLF88JjPdu4yXxaJygw9d8Q1tFcz9gA==
+X-Received: by 2002:a1c:750a:0:b0:3f5:878:c0c2 with SMTP id o10-20020a1c750a000000b003f50878c0c2mr12326628wmc.3.1687415044072;
+        Wed, 21 Jun 2023 23:24:04 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id b8-20020adff248000000b003063772a55bsm6183782wrp.61.2023.06.21.23.22.45
+        by smtp.gmail.com with ESMTPSA id n6-20020a05600c294600b003f7e4639aabsm17920533wmd.10.2023.06.21.23.24.02
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 21 Jun 2023 23:22:46 -0700 (PDT)
-Message-ID: <5e381133-969f-943a-a7a1-1243d7b105b2@linaro.org>
-Date:   Thu, 22 Jun 2023 08:22:44 +0200
+        Wed, 21 Jun 2023 23:24:03 -0700 (PDT)
+Message-ID: <3e4840e0-adb6-010b-8186-0b3e38b4a374@linaro.org>
+Date:   Thu, 22 Jun 2023 08:24:01 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 3/3] arm64: dts: qcom: sdm630: Add support for modem
- remoteproc
+Subject: Re: [PATCH 2/3] dt-bindings: power: supply: Document Mitsumi MM8013
+ fuel gauge
 Content-Language: en-US
-To:     Alexey Minnekhanov <alexeymin@postmarketos.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230621175046.61521-1-alexeymin@postmarketos.org>
- <20230621175046.61521-3-alexeymin@postmarketos.org>
+        Sebastian Reichel <sre@kernel.org>,
+        Konrad Dybcio <konradybcio@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+References: <20230621-topic-mm8013-v1-0-4407c6260053@linaro.org>
+ <20230621-topic-mm8013-v1-2-4407c6260053@linaro.org>
+ <da300402-d417-5646-d4c9-7c100c351db1@linaro.org>
+ <dc5ffed0-555b-18e5-cf96-d6a4263357af@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230621175046.61521-3-alexeymin@postmarketos.org>
+In-Reply-To: <dc5ffed0-555b-18e5-cf96-d6a4263357af@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,36 +84,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/2023 19:50, Alexey Minnekhanov wrote:
-> Modem subsystem in SDM630/660 is similar to MSM8998 and
-> device tree node for it is based on the one from msm8998.dtsi.
-> 
-> Signed-off-by: Alexey Minnekhanov <alexeymin@postmarketos.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm630.dtsi | 65 ++++++++++++++++++++++++++++
->  1 file changed, 65 insertions(+)
-> 
+On 22/06/2023 02:51, Konrad Dybcio wrote:
+> On 21.06.2023 18:38, Krzysztof Kozlowski wrote:
+>> On 21/06/2023 17:39, Konrad Dybcio wrote:
+>>> The Mitsumie MM8013 is an I2C fuel gauge for Li-Ion cells. The partial
+>>
+>> Mitsumi
 
 ...
-> +
-> +			qcom,halt-regs = <&tcsr_regs_1 0x3000 0x5000 0x4000>;
-> +
-> +			power-domains = <&rpmpd SDM660_VDDCX>,
-> +					<&rpmpd SDM660_VDDMX>;
-> +			power-domain-names = "cx", "mx";
-> +
-> +			status = "disabled";
-> +
-> +			mba {
-> +				memory-region = <&mba_region>;
-> +			};
-> +
-> +			mpss {
-> +				memory-region = <&mpss_region>;
-> +			};
 
-mba and mpss are deprecated. I think this was changed to memory-regions
-in remoteproc node.
+>>
+>>
+>> I think you miss several properties: three power supplies (although not
+>> all might be needed) and most likely monitored-battery. One regulator
+>> output and output GPIO probably can be skipped.
+> Looking at the example circuit, it seems like the chip's power lines are
+> hardwired to the battery cell.
+> 
+> monitored-battery does not seem useful today, as we don't have any
+> information about writing values onto the chip :/ And I'm not w
+
+OK. With the typo in commit msg:
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
