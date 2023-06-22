@@ -2,84 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DCB273A4AA
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 17:21:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1683E73A56B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 17:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232118AbjFVPVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 11:21:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53836 "EHLO
+        id S231684AbjFVP4V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 11:56:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231873AbjFVPVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 11:21:01 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE90910F4
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 08:20:59 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f87592ecaeso6433718e87.0
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 08:20:59 -0700 (PDT)
+        with ESMTP id S231599AbjFVP4U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 11:56:20 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04413199B
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 08:56:19 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b477e9d396so70971281fa.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 08:56:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687447258; x=1690039258;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=c9Nib1mjQ7HUVslIx9EtURK9z/yS/7mpl1B4Ox7/c/s=;
-        b=g15tA4+CNcniYf/OcLJKZt2ymRKzXESCDfPItGGf4pXM5u5X0DdAweQxDe+YuHymKN
-         HCYHcv4nhoMVPTvohDVk/2XxmWYeXhzfneaiKr082wMmGHZ2GKygtvUPPAEA524UAtxy
-         bmcqY6FuJBxlZe8TchhILJkH1GYMoqDZZEBGqK2JPaVajS3v2KvZYyenL/6VbHYFgEeg
-         VFfCihnzU9iwpvPRInH6mOxO8kkOUvkprS1mAxdvP3NFkz4XNjgeI9L8lqcM7R8ApVzi
-         DdPjtgvLR6ALfJQsKO6aF4PCymSNHzbj+dW7iimcPMQfrmOhBVn6daWWPgAUTd+M+PGG
-         6g3Q==
+        d=linaro.org; s=google; t=1687449377; x=1690041377;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=znbfd2xCee88YdgNKMrXKidpIDwcYeqJYjkjML37kUs=;
+        b=Jl8sA2H2N6xEpPLAfJMdYne8O1GMT4DQAz0HuYpnztSZ6AH6yA5TfBNpzEZMeoiWU+
+         IF7bD2inU3xfOGuN/5AdzPyI3BkcSEaEpkm/INLIM5Nhpp4SmRnU9ibfVyxtmvkK4DHI
+         9nDHf8ejOhPbN2F2paMPK5DqM6WUEhW4I4Rf3xUfRtZmTn2pwQHlK5oiemdH0IyjW+uO
+         EI2LGQNwdBr59DfPAW2VP7clT9ESNnSRMlK8V/hnjeckuYlWaEsaQ7FFmVybYR1gidpl
+         Ds0ISDWFWN6qbp0zU+wlKhGE2wfSSVWYhyxkVDr5SBgWCskIX0+5H2Zl8c5fgYGS/oej
+         8/5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687447258; x=1690039258;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=c9Nib1mjQ7HUVslIx9EtURK9z/yS/7mpl1B4Ox7/c/s=;
-        b=D0mBEDcawGqn/YE4oQ9npOyByt6F67nSjVMx9ddYUCPeUEB0ycknjPbtegZd+z7KCm
-         jer9MOygZZfyNdDCrETaUmPPJKY5XCP+ZmVu4BL+lM+kUILQBlyZPADj7ZJ+8Rz8fhkj
-         DYl6+/ND03/W+dbFQSxrP0Y1p2cPNAz07nlfZhX8DLkx10gElesHIBCc0jO3MIwWqLQt
-         DpJlb9IDoIvy+VtI7JsRA5Mgo7n/KlHN10CNF6cH2wWQPeMhJZQkpfxxVfrMn3AYh8Dd
-         F95RrR2EfMhSfDmOfCIg7FIK94g4z4XRipii9aI7Ed9KvwdJjLVqOrtD/rX8LQ4OHpK1
-         nEfg==
-X-Gm-Message-State: AC+VfDyVtaRDBQihpNSeCm74L/aqH13VDERCSW0S4gnT3c9y4jmzdzvy
-        ZLAmrYTP4Ot8JzFGJ/k0M+1hPg==
-X-Google-Smtp-Source: ACHHUZ65em47HxJ5uP2ScMq4wC1WUQ8IS3y4pSQ5ePJuf0EI86kFZ1IXZW0p0liht+sUtKhW1HKrpA==
-X-Received: by 2002:a19:6446:0:b0:4e9:bafc:88d0 with SMTP id b6-20020a196446000000b004e9bafc88d0mr11095123lfj.23.1687447257858;
-        Thu, 22 Jun 2023 08:20:57 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id d7-20020a056402516700b00514bcbfd9e0sm4134273ede.46.2023.06.22.08.20.56
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jun 2023 08:20:57 -0700 (PDT)
-Message-ID: <218a76d9-d00b-3856-80b1-7d2f11b4ff1f@linaro.org>
-Date:   Thu, 22 Jun 2023 17:20:55 +0200
+        d=1e100.net; s=20221208; t=1687449377; x=1690041377;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=znbfd2xCee88YdgNKMrXKidpIDwcYeqJYjkjML37kUs=;
+        b=OHgmtB/7llmvu3dLMtOoaQfP8vRAAa/M0x3/34k6+dntzApU2EV4pZVbiy9o+36rpe
+         ZnXrM80Gy+D7uP+9U23ovbgLmcr6spdXbkHkWzKDJlu8zATtQvupd62P6Fjox2bKPlwf
+         irESL58joGmIB9gmNe1OA4UH/JObk9OhWfU22NoJwYJZH6X06W2k9CbsvzUOf0M7C8Vf
+         OeupMzeA5eDndbrfVcDTlciAce83Aw7h4GoBAxJ1GFamHxQZ3STa8NCztFWJXeTVw0V3
+         N+DgSfIvQlYmMHIbpl9ohEH2+oSDvbhv5OLaD4wUt/Aahby+VMvy6mbiC+8DsU2FsiZt
+         avhQ==
+X-Gm-Message-State: AC+VfDw6NSXYGHnJqBuHj0d1fGiPjm+pK5htM8tK90oeJxPLVuH6Kbme
+        Ej06rC6JQ7EcWawmAm1yuS2qOQ==
+X-Google-Smtp-Source: ACHHUZ7gHI3Ym/l712eWpcpACbY1KSyeARpNpHP8ldZLdPbWsB+/WgRnC5YmBCjkAvtI/ELEya3mdw==
+X-Received: by 2002:a19:6409:0:b0:4f8:7781:9875 with SMTP id y9-20020a196409000000b004f877819875mr7130473lfb.60.1687449377155;
+        Thu, 22 Jun 2023 08:56:17 -0700 (PDT)
+Received: from [192.168.1.101] (abyl165.neoplus.adsl.tpnet.pl. [83.9.31.165])
+        by smtp.gmail.com with ESMTPSA id h25-20020ac25979000000b004f8747e519bsm1146876lfp.125.2023.06.22.08.56.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jun 2023 08:56:16 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/2] Hook up 8280 SCM icc
+Date:   Thu, 22 Jun 2023 17:56:14 +0200
+Message-Id: <20230622-topic-8280scmicc-v1-0-6ef318919ea5@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: msm8916-samsung-fortuna: Add NFC
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAB9vlGQC/x2NQQqDQAwAvyI5N7BGWGy/UjzsxlgDdpVNWwTx7
+ 4YeZ2CYA0yqisGjOaDKT03X4tDeGuA5lZegjs5AgboQifCzbsrYUx+M38qMEtN0JyGKOYNnOZl
+ grqnw7GH5LovLrcqk+//zHM7zAu5xIzh3AAAA
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, soc@kernel.org,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Joe Mason <buddyjojo06@outlook.com>
-References: <20230622000007.48219-1-linmengbo0689@protonmail.com>
- <20230622000437.48367-1-linmengbo0689@protonmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230622000437.48367-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1687449375; l=614;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=7gsI8qHufrl5sqmyv5QgxVvJHPbBfQ5Kso3+5N5mNaM=;
+ b=Bcsu9pilCwH0a3I2Nr3hjwd1RSTN+HlTKMB36UxuS2pey+DxFOYwuDNg8XDsh3I0kY76ASFGs
+ upHy0Ldh9usC9gIvzDemR+rI7FH99U9VPAakSBan3XNz5S2qjAVgfwW
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,81 +90,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2023 02:05, Lin, Meng-Bo wrote:
-> From: Joe Mason <buddyjojo06@outlook.com>
-> 
-> The Samsung Galaxy Ace 4, Core Prime and some Grand Prime have a
-> Samsung S3FWRN5 NFC chip that works quite well with the s3fwrn5 driver
-> in the Linux NFC subsystem.
-> 
-> The clock setup for the NFC chip is a bit special (although this
-> seems to be a common approach used for Qualcomm devices with NFC):
-> 
-> The NFC chip has an output GPIO that is asserted whenever the clock
-> is needed to function properly. On the A3/A5 this is wired up to
-> PM8916 GPIO2, which is then configured with a special function
-> (NFC_CLK_REQ or BB_CLK2_REQ).
-> 
-> Enabling the rpmcc RPM_SMD_BB_CLK2_PIN clock will then instruct
-> PM8916 to automatically enable the clock whenever the NFC chip
-> requests it. The advantage is that the clock is only enabled when
-> needed and we don't need to manage it ourselves from the NFC driver.
-> 
-> Grand Prime SM-G530Y (fortunaltezt) has a NXP PN547, which is supported
-> by the nxp-nci-i2c driver in mainline.
-> 
-> It seems to detect NFC tags using "nfctool" just fine, although more
-> testing is difficult given there seem to be very few useful applications
-> making use of the Linux NFC subsystem.
-> 
-> Signed-off-by: Joe Mason <buddyjojo06@outlook.com>
-> [Put i2c-nfc and NFC pinctrl into fortuna.dtsi to share it with other variants]
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+The icc handle for SCM was missing on 8280. Add it.
 
-This and other SoB chains look like missing Co-developed-by.
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (2):
+      dt-bindings: firmware: qcom,scm: Allow interconnect on SC8280XP
+      arm64: dts: qcom: sc8280xp: Add missing SCM interconnect
 
-> [Add pn547_nfc]
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> ---
-
-
-> +		/* Available NFC chip varies depending on model variant */
-> +		pn547_nfc: nfc@2b {
-> +			compatible = "nxp,pn547", "nxp,nxp-nci-i2c";
-> +			reg = <0x2b>;
-> +
-> +			interrupt-parent = <&tlmm>;
-> +			interrupts = <21 IRQ_TYPE_EDGE_RISING>;
-> +
-> +			enable-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> +			firmware-gpios = <&tlmm 49 GPIO_ACTIVE_HIGH>;
-> +
-> +			pinctrl-0 = <&nfc_default>;
-> +			pinctrl-names = "default";
-> +
-> +			status = "disabled";
-> +		};
-> +
-> +		s3fwrn5_nfc: nfc@27 {
-> +			compatible = "samsung,s3fwrn5-i2c";
-> +			reg = <0x27>;
-> +
-> +			interrupt-parent = <&tlmm>;
-> +			interrupts = <21 IRQ_TYPE_EDGE_RISING>;
-> +
-> +			en-gpios = <&tlmm 20 GPIO_ACTIVE_HIGH>;
-> +			wake-gpios = <&tlmm 49 GPIO_ACTIVE_HIGH>;
-> +
-> +			clocks = <&rpmcc RPM_SMD_BB_CLK2_PIN>;
-> +
-> +			pinctrl-0 = <&nfc_default>, <&nfc_clk_req>;
-> +			pinctrl-names = "default";
-> +
-> +			status = "disabled";
-
-Common part does not have two NFCs. It seems common part has zero
-NFCs... or should be put into different file.
+ Documentation/devicetree/bindings/firmware/qcom,scm.yaml | 1 +
+ arch/arm64/boot/dts/qcom/sc8280xp.dtsi                   | 1 +
+ 2 files changed, 2 insertions(+)
+---
+base-commit: c87d46a9e8ebd2f2c3960927b1d21687096d1109
+change-id: 20230622-topic-8280scmicc-e6af92e226bb
 
 Best regards,
-Krzysztof
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
