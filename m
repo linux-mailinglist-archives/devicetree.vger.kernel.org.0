@@ -2,149 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 24CC573A313
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 16:31:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2677A73A31C
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 16:33:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229840AbjFVObp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 10:31:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40664 "EHLO
+        id S231244AbjFVOdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 10:33:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229647AbjFVObp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 10:31:45 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BA6E1738;
-        Thu, 22 Jun 2023 07:31:44 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-780bd47ef93so61973539f.2;
-        Thu, 22 Jun 2023 07:31:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687444303; x=1690036303;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=eNFS3vm6kC5W9sNmMv1a/vs78lFXzuLxWXC2teSXAwc=;
-        b=FNKxjbj5i/DIlJNS4jkLNglEDm1wq5L97QjsVYRCmJcG6OgrKX4kIYl57cJmbF+ySL
-         pfOp6hRuHEFeAVL2lFfH9bg95ft54dQRT3sHJQWcPwJyMMLn6pRP78/ythnQeXJFQ55Z
-         fG7/MBlM8bxjkMhqQNW+CDqgRo+HlLXETi771ft309perPxNFstsxLcsmtTu49HI2769
-         7hSGyedML96CYDExx7OGsSfTLuYS+lKaqLPRDJES0q4rG+tBSShGax9bvUXOTII/lp08
-         Vvt2mM0KFyu6yyMoQ/XrgjLCRwKfqKHkelXAfHS6N62wly9fK/sz1bsq1ILmNKPn3xeU
-         a/Yw==
-X-Gm-Message-State: AC+VfDxZQonr+knGc314wzAO9ylW7nqHjeOY+aTHDbZcwodw8FGwpMey
-        fuH9ULQEwaFToDNDTCFgbA==
-X-Google-Smtp-Source: ACHHUZ7Nz4ISv38/X0NPG83JDoYB3aNBNpw/wKDugP83+Mf3QVAzemrTn06s8xXkrpqqM1oE7q9v8g==
-X-Received: by 2002:a05:6602:218a:b0:76c:2759:5cbe with SMTP id b10-20020a056602218a00b0076c27595cbemr14962748iob.4.1687444303248;
-        Thu, 22 Jun 2023 07:31:43 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id y8-20020a6bd808000000b0077ac2261248sm2143034iob.5.2023.06.22.07.31.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 07:31:42 -0700 (PDT)
-Received: (nullmailer pid 1657355 invoked by uid 1000);
-        Thu, 22 Jun 2023 14:31:40 -0000
-Date:   Thu, 22 Jun 2023 08:31:40 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mikko Perttunen <mperttunen@nvidia.com>,
-        dri-devel@lists.freedesktop.org,
-        Krzysztof Kozlowski <krzk+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-tegra@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>
-Subject: Re: [PATCH v2 2/2] gpu: host1x: Stop open-coding of_device_uevent()
-Message-ID: <20230622143140.GA1638531-robh@kernel.org>
-References: <20230609155634.1495338-1-miquel.raynal@bootlin.com>
- <20230609155634.1495338-3-miquel.raynal@bootlin.com>
+        with ESMTP id S231178AbjFVOdd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 10:33:33 -0400
+Received: from mx0a-00128a01.pphosted.com (mx0a-00128a01.pphosted.com [148.163.135.77])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64BEB1BD1;
+        Thu, 22 Jun 2023 07:33:19 -0700 (PDT)
+Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
+        by mx0a-00128a01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35MBs6Be022907;
+        Thu, 22 Jun 2023 10:32:58 -0400
+Received: from nwd2mta3.analog.com ([137.71.173.56])
+        by mx0a-00128a01.pphosted.com (PPS) with ESMTPS id 3rbvr2t86v-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 22 Jun 2023 10:32:58 -0400
+Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
+        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 35MEWu4U046723
+        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 22 Jun 2023 10:32:56 -0400
+Received: from ASHBCASHYB4.ad.analog.com (10.64.17.132) by
+ ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 22 Jun 2023 10:32:56 -0400
+Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
+ ASHBCASHYB4.ad.analog.com (10.64.17.132) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.14; Thu, 22 Jun 2023 10:32:55 -0400
+Received: from zeus.spd.analog.com (10.66.68.11) by ashbmbx8.ad.analog.com
+ (10.64.17.5) with Microsoft SMTP Server id 15.2.986.14 via Frontend
+ Transport; Thu, 22 Jun 2023 10:32:55 -0400
+Received: from kimedia-VirtualBox.ad.analog.com (KPALLER2-L02.ad.analog.com [10.116.242.96])
+        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 35MEWcZM030643;
+        Thu, 22 Jun 2023 10:32:41 -0400
+From:   Kim Seer Paller <kimseer.paller@analog.com>
+CC:     <jic23@kernel.org>, <lars@metafoo.de>, <lgirdwood@gmail.com>,
+        <broonie@kernel.org>, <Michael.Hennerich@analog.com>,
+        <andy.shevchenko@gmail.com>, <robh@kernel.org>,
+        <krzysztof.kozlowski@linaro.org>, <conor+dt@kernel.org>,
+        <kimseer.paller@analog.com>, <linux-iio@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+Subject: [PATCH v8 1/2] dt-bindings: iio: adc: add max14001
+Date:   Thu, 22 Jun 2023 22:32:26 +0800
+Message-ID: <20230622143227.30147-1-kimseer.paller@analog.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230609155634.1495338-3-miquel.raynal@bootlin.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ADIRuleOP-NewSCL: Rule Triggered
+X-Proofpoint-GUID: hKqowHUP6re9g13lKHmKZ1uQcWgs2ecN
+X-Proofpoint-ORIG-GUID: hKqowHUP6re9g13lKHmKZ1uQcWgs2ecN
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-22_09,2023-06-22_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0 adultscore=0
+ mlxscore=0 priorityscore=1501 lowpriorityscore=0 mlxlogscore=999
+ spamscore=0 phishscore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306220122
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 09, 2023 at 05:56:34PM +0200, Miquel Raynal wrote:
-> There is apparently no reasons to open-code of_device_uevent() besides:
-> - The helper receives a struct device while we want to use the of_node
->   member of the struct device *parent*.
-> - of_device_uevent() could not be called by modules because of a missing
->   EXPORT_SYMBOL*().
-> 
-> In practice, the former point is not very constraining, just calling
-> of_device_uevent(dev->parent, ...) would have made the trick.
-> 
-> The latter point is more an observation rather than a real blocking
-> point because nothing prevented of_uevent() (called by the inline
-> function of_device_uevent()) to be exported to modules. In practice,
-> this helper is now exported, so nothing prevent us from using
-> of_device_uevent() anymore.
-> 
-> Let's use the core helper directly instead of open-coding it.
-> 
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: David Airlie <airlied@gmail.com>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: Mikko Perttunen <mperttunen@nvidia.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> 
-> ---
-> 
-> This patch depends on the changes performed earlier in the series under
-> the drivers/of/ folder.
-> ---
->  drivers/gpu/host1x/bus.c | 29 ++++++-----------------------
->  1 file changed, 6 insertions(+), 23 deletions(-)
-> 
-> diff --git a/drivers/gpu/host1x/bus.c b/drivers/gpu/host1x/bus.c
-> index 4d16a3396c4a..dae589b83be1 100644
-> --- a/drivers/gpu/host1x/bus.c
-> +++ b/drivers/gpu/host1x/bus.c
-> @@ -338,32 +338,15 @@ static int host1x_device_match(struct device *dev, struct device_driver *drv)
->  	return strcmp(dev_name(dev), drv->name) == 0;
->  }
->  
-> +/*
-> + * Note that this is really only needed for backwards compatibility
-> + * with libdrm, which parses this information from sysfs and will
-> + * fail if it can't find the OF_FULLNAME, specifically.
-> + */
->  static int host1x_device_uevent(const struct device *dev,
->  				struct kobj_uevent_env *env)
->  {
-> -	struct device_node *np = dev->parent->of_node;
-> -	unsigned int count = 0;
-> -	struct property *p;
-> -	const char *compat;
-> -
-> -	/*
-> -	 * This duplicates most of of_device_uevent(), but the latter cannot
-> -	 * be called from modules and operates on dev->of_node, which is not
-> -	 * available in this case.
-> -	 *
-> -	 * Note that this is really only needed for backwards compatibility
-> -	 * with libdrm, which parses this information from sysfs and will
-> -	 * fail if it can't find the OF_FULLNAME, specifically.
-> -	 */
-> -	add_uevent_var(env, "OF_NAME=%pOFn", np);
-> -	add_uevent_var(env, "OF_FULLNAME=%pOF", np);
-> -
-> -	of_property_for_each_string(np, "compatible", p, compat) {
-> -		add_uevent_var(env, "OF_COMPATIBLE_%u=%s", count, compat);
-> -		count++;
-> -	}
-> -
-> -	add_uevent_var(env, "OF_COMPATIBLE_N=%u", count);
-> +	of_device_uevent((const struct device *)&dev->parent, env);
+The MAX14001 is a configurable, isolated 10-bit ADC for multi-range
+binary inputs.
 
-Why do you have the cast and the "&"?
+Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+V7 -> V8: Added "Reviewed-by" tag.
+V6 -> V7: No changes.
+V5 -> V6: Removed tags.
+V3 -> V5: Added spaces between prefixes in subject. Fixed MAINTAINERS reference.
 
-Rob
+ .../bindings/iio/adc/adi,max14001.yaml        | 54 +++++++++++++++++++
+ MAINTAINERS                                   |  7 +++
+ 2 files changed, 61 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+
+diff --git a/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+new file mode 100644
+index 000000000000..9d03c611fca3
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2023 Analog Devices Inc.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/adc/adi,max14001.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Analog Devices MAX14001 ADC
++
++maintainers:
++  - Kim Seer Paller <kimseer.paller@analog.com>
++
++description: |
++    Single channel 10 bit ADC with SPI interface. Datasheet
++    can be found here:
++      https://www.analog.com/media/en/technical-documentation/data-sheets/MAX14001-MAX14002.pdf
++
++properties:
++  compatible:
++    enum:
++      - adi,max14001
++
++  reg:
++    maxItems: 1
++
++  spi-max-frequency:
++    maximum: 5000000
++
++  vref-supply:
++    description: Voltage reference to establish input scaling.
++
++required:
++  - compatible
++  - reg
++
++allOf:
++  - $ref: /schemas/spi/spi-peripheral-props.yaml#
++
++unevaluatedProperties: false
++
++examples:
++  - |
++    spi {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        adc@0 {
++            compatible = "adi,max14001";
++            reg = <0>;
++            spi-max-frequency = <5000000>;
++            vref-supply = <&vref_reg>;
++        };
++    };
++...
+diff --git a/MAINTAINERS b/MAINTAINERS
+index f794002a192e..dcea2c31f920 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -12670,6 +12670,13 @@ S:	Maintained
+ F:	Documentation/devicetree/bindings/sound/max9860.txt
+ F:	sound/soc/codecs/max9860.*
+ 
++MAX14001 IIO ADC DRIVER
++M:	Kim Seer Paller <kimseer.paller@analog.com>
++L:	linux-iio@vger.kernel.org
++S:	Supported
++W:	https://ez.analog.com/linux-software-drivers
++F:	Documentation/devicetree/bindings/iio/adc/adi,max14001.yaml
++
+ MAXBOTIX ULTRASONIC RANGER IIO DRIVER
+ M:	Andreas Klinger <ak@it-klinger.de>
+ L:	linux-iio@vger.kernel.org
+
+base-commit: 6f449d52b90fdd927fcf9df0388701de6d5381c6
+-- 
+2.34.1
+
