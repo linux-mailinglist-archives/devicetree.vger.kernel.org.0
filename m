@@ -2,267 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5156573A2DE
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 16:18:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34AD173A2A7
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 16:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231312AbjFVOSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 10:18:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33382 "EHLO
+        id S231324AbjFVOJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 10:09:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231164AbjFVOSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 10:18:04 -0400
-Received: from mga07.intel.com (mga07.intel.com [134.134.136.100])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A738110DB;
-        Thu, 22 Jun 2023 07:18:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687443483; x=1718979483;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:content-transfer-encoding:in-reply-to;
-  bh=R0x1kGgRBAiX0MBDpMw39z+3SDAqRPIhl5FHKL2PhLg=;
-  b=Nf+BPwDtUBJMFjMMfijR5rrHKyKoCB3ozJVrUGdXZl9MSq1IggfbGC24
-   uY31CO8HRXeYy3eH9NlRazz3rdxYRqeHC4F4X4xfFZEWbsgiQRFPMj4q/
-   vGSFqWNy/PwDqiqyjG2E0PqW/o7twG9Il03JQCubVjy5oBR0TYYxUofDr
-   2i7gVHYEaJ7fogSHt5edjXlUdQQ9Dh0T28XE/pyP4zNxznQUwQg3+qt81
-   BCd1iLCL1VJ0VG4116zSXUh6PJFAhrQbA0E08D9d9bKehCbv7MPYDn5RB
-   ywbuZkEpIiNWiXgt5YGF1RdvpeuiKNO8mE1DtXnb+qmQvDCCF57KH4zQf
-   Q==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10749"; a="426464209"
-X-IronPort-AV: E=Sophos;i="6.01,149,1684825200"; 
-   d="scan'208";a="426464209"
-Received: from fmsmga004.fm.intel.com ([10.253.24.48])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Jun 2023 06:39:52 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10748"; a="784913762"
-X-IronPort-AV: E=Sophos;i="6.01,263,1684825200"; 
-   d="scan'208";a="784913762"
-Received: from smile.fi.intel.com ([10.237.72.54])
-  by fmsmga004.fm.intel.com with ESMTP; 22 Jun 2023 06:39:47 -0700
-Received: from andy by smile.fi.intel.com with local (Exim 4.96)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1qCKXI-005m6t-0c;
-        Thu, 22 Jun 2023 16:39:44 +0300
-Date:   Thu, 22 Jun 2023 16:39:43 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Martin =?utf-8?B?WmHFpW92acSN?= <m.zatovic1@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        gregkh@linuxfoundation.org, beanhuo@micron.com,
-        nipun.gupta@amd.com, linus.walleij@linaro.org, mwen@igalia.com,
-        bvanassche@acm.org, arnd@arndb.de, ogabbay@kernel.org,
-        linux@zary.sk, jacek.lawrynowicz@linux.intel.com,
-        geert+renesas@glider.be, benjamin.tissoires@redhat.com,
-        masahiroy@kernel.org, yangyicong@hisilicon.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCHv4 4/4] wiegand: add Wiegand GPIO bitbanged controller
- driver
-Message-ID: <ZJRPH8YFV0ieCxHi@smile.fi.intel.com>
-References: <20230510162243.95820-1-m.zatovic1@gmail.com>
- <20230510162243.95820-5-m.zatovic1@gmail.com>
+        with ESMTP id S229995AbjFVOJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 10:09:19 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46604E2;
+        Thu, 22 Jun 2023 07:09:18 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-988b204ce5fso584519466b.3;
+        Thu, 22 Jun 2023 07:09:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687442957; x=1690034957;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bAtPTyoV3UhGL+5nkAK0G/poQIs7q3wI78CdBfj2Pgc=;
+        b=JTLG41Ac/dzcege4isOrjYrzeaRKZUIGevjdcyPM/ypROXoxCNvPhxgyEmmpxKWQh6
+         v1Kz4TMyJgI9ERmsXewOUzibglaWyWCx8MMGh1krnU+I9Z8B1VmxUzDU7cNcY3//fH79
+         kakxVxAIak+hA9+UPnQQythBaEhUB0MJ0w65mZQiRcLl8OMryN4vyjzh9WnhQVWplKsT
+         DzjUvka8R/33H12jho5SqV17Fzqxvd/A8nf76Z3PFk5T68ByhT8G2tm60JHY0UQnbCg/
+         +zbJpX/947puBDenS2opHNCnjtWdrVWjjvUHm3AH9Km0f14sLVSGBXcPU3EpCcI3BRSj
+         7CZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687442957; x=1690034957;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=bAtPTyoV3UhGL+5nkAK0G/poQIs7q3wI78CdBfj2Pgc=;
+        b=bg5R8TGYfa0OIDEiqaMs5EaIl2s8/UkV3wffLsn3sQVIt8y9vSTZEwtcgD5aPAcZD1
+         acPssN6FiG1X3tKshRLZLAq4LzpRA4hJNBffvqyr9FvzOi7gGzfp+ePZFYCDMPQFoExF
+         u3NppGjjdUl7/9RrYt+TsQFT52RxKjD32JmZTtHq+XRyRLNElwsdMkKyKK+w10kQYC19
+         8gPJqRWZEUV6QlbNUkryBK0Isvxi8PUYnOfVHdhJIrc1AkkuK6ui0+/3R5HJ0oSOcxgm
+         JTGmCqziRTXZv7BXYOWyMSvT46mYj4m4Xmt/BVAVzgSpB+gR9LNrACzGXtPyDymhhzn6
+         ZQ7g==
+X-Gm-Message-State: AC+VfDzfGZVQtL8y/xVbA9xu/zenC2HcQ2pkhxpz2x1a00iIzJkkJBVh
+        fg+hJ2Uc5ewn9FywHHJMoVUOztUmj+CtKWL7zII=
+X-Google-Smtp-Source: ACHHUZ5pzjeQRJqs/lr8FYXwqoFgoRFaBJky8QvaNPcbryNKOQtG5+vu148+3/ZqjIPWF2Qvr6fC4rt3h7fCW6Ov3t0=
+X-Received: by 2002:a17:907:2d88:b0:988:56d1:10ca with SMTP id
+ gt8-20020a1709072d8800b0098856d110camr13336128ejc.66.1687442956463; Thu, 22
+ Jun 2023 07:09:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230510162243.95820-5-m.zatovic1@gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230615152631.224529-1-herve.codina@bootlin.com>
+ <20230615152631.224529-8-herve.codina@bootlin.com> <70697b976107473b8779eea7d6c8a189@AcuMS.aculab.com>
+ <20230622143233.7300a813@bootlin.com>
+In-Reply-To: <20230622143233.7300a813@bootlin.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 22 Jun 2023 17:08:40 +0300
+Message-ID: <CAHp75VfNdTwQ3Y5Q=uUaaJuFAm4iqj6cQZ-axOfLkfv9NoAqHw@mail.gmail.com>
+Subject: Re: [PATCH v5 07/13] minmax: Introduce {min,max}_array()
+To:     Herve Codina <herve.codina@bootlin.com>
+Cc:     David Laight <David.Laight@aculab.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        Christophe Leroy <christophe.leroy@csgroup.eu>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, May 10, 2023 at 06:22:43PM +0200, Martin Zaťovič wrote:
-> This controller formats the data to a Wiegand format and bit-bangs
-> the message on devicetree defined GPIO lines.
-> 
-> Several attributes need to be defined in the devicetree in order
-> for this driver to work, namely the data-hi-gpios, data-lo-gpios,
-> pulse-len, frame-gap and interval-len. These attributes are
-> documented in the devicetree bindings documentation files.
-> 
-> The driver creates a dev file for writing messages on the bus.
-> It also creates a sysfs file to control the payload length of
-> messages(in bits). If a message is shorter than the set payload
-> length, it will be discarded. On the other hand, if a message is
-> longer, the additional bits will be stripped off.
+On Thu, Jun 22, 2023 at 3:32=E2=80=AFPM Herve Codina <herve.codina@bootlin.=
+com> wrote:
+> On Tue, 20 Jun 2023 11:45:01 +0000
+> David Laight <David.Laight@ACULAB.COM> wrote:
+> > From: Herve Codina
+> > > Sent: 15 June 2023 16:26
 
-...
+> I didn't plan to change the {min,max}_array() macros in this series as yo=
+u
+> suggest.
+>
+> Maybe min()/max() is too strict but it's a way to be sure about the type
+> used. Also the current version doesn't need any extra cast to get rid of
+> the integer promotion as the integer promotion doesn't occur.
+>
+> Is it ok for you if we keep as it ?
 
-> +Date:		May 2023
+I think the current verison is good enough, and as Mark said we may
+update incrementally if ever needed.
 
-Taking into account the estimated release date I think this should be changed
-to Aug 2023.
-
-...
-
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/poll.h>
-> +#include <linux/slab.h>
-> +#include <linux/wiegand.h>
-
-...
-
-> +#define UP_TO_100_USEC_DEVIATION 1
-> +#define MORE_THAN_100_USEC_DEVIATION 3
-
-These require some comments. And maybe better naming (depending on the content
-of those comments).
-
-...
-
-> +static ssize_t store_ulong(u32 *val, const char *buf, size_t size, unsigned long max)
-> +{
-> +	int rc;
-> +	u32 new;
-> +
-> +	rc = kstrtou32(buf, 0, &new);
-> +	if (rc)
-> +		return rc;
-> +
-> +	if (new > max)
-> +		return -EINVAL;
-
-ERANGE?
-
-> +	*val = new;
-> +	return size;
-> +}
-
-...
-
-> +	if (sleep_len < 10)
-> +		udelay(sleep_len);
-> +	else if (sleep_len < 100)
-> +		usleep_range(sleep_len - UP_TO_100_USEC_DEVIATION,
-> +			     sleep_len + UP_TO_100_USEC_DEVIATION);
-> +	else
-> +		usleep_range(sleep_len - MORE_THAN_100_USEC_DEVIATION,
-> +			     sleep_len + MORE_THAN_100_USEC_DEVIATION);
-
-NIH fsleep()
-
-...
-
-> +static int wiegand_gpio_write_by_bits(struct wiegand_gpio *wiegand_gpio, u16 bitlen)
-> +{
-> +	size_t i;
-> +	bool bit_value, is_last_bit;
-> +
-> +	for (i = 0; i < bitlen; i++) {
-> +		bit_value = test_bit(i, wiegand_gpio->ctlr->data_bitmap);
-
-> +		is_last_bit = (i + 1) == bitlen;
-
-This is idempotent from for-loop, so...
-
-> +		wiegand_gpio_send_bit(wiegand_gpio, bit_value, is_last_bit);
-> +	}
-
-	unsigned int i;
-	bool value;
-
-	if (bitlen == 0)
-		return 0;
-
-	for (i = 0; i < bitlen - 1; i++) {
-		value = test_bit(i, wiegand_gpio->ctlr->data_bitmap);
-		wiegand_gpio_send_bit(wiegand_gpio, value, false);
-	}
-
-	value = test_bit(bitlen - 1, wiegand_gpio->ctlr->data_bitmap);
-	wiegand_gpio_send_bit(wiegand_gpio, value, true);
-
-> +	return 0;
-> +}
-
-...
-
-> +static int wiegand_gpio_request(struct device *dev, struct wiegand_gpio *wiegand_gpio)
-> +{
-> +	wiegand_gpio->data0_gpio = devm_gpiod_get(dev, "data-lo", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(wiegand_gpio->data0_gpio))
-> +		return PTR_ERR(wiegand_gpio->data0_gpio);
-> +
-> +	wiegand_gpio->data1_gpio = devm_gpiod_get(dev, "data-hi", GPIOD_OUT_HIGH);
-> +	return PTR_ERR_OR_ZERO(wiegand_gpio->data1_gpio);
-
-Maybe you can use devm_gpiod_get_array()?
-
-> +}
-
-...
-
-> +static int wiegand_gpio_probe(struct platform_device *device)
-> +{
-
-> +	int status = 0;
-
-Redundant assignment.
-
-> +	struct wiegand_controller *primary;
-> +	struct wiegand_gpio *wiegand_gpio;
-> +	struct device *dev = &device->dev;
-
-...
-
-> +	primary->payload_len = 26; // set standard 26-bit format
-
-Instead of comment, make a self-explanatory definition?
-
-...
-
-> +	status = wiegand_register_controller(primary);
-> +	if (status)
-> +		dev_err_probe(wiegand_gpio->dev, status, "failed to register primary\n");
-
-Why out of a sudden it uses this device and not real one?
-
-> +	return status;
-
-With above
-
-		return dev_err_probe(dev, status, "failed to register primary\n");
-
-	return 0;
-
-> +}
-
-...
-
-> +static const struct of_device_id wiegand_gpio_dt_idtable[] = {
-> +	{ .compatible = "wiegand-gpio", },
-
-Inner comma is not needed.
-
-> +	{}
-> +};
-
-...
-
-> +static struct platform_driver wiegand_gpio_driver = {
-> +	.driver = {
-> +		.name	= "wiegand-gpio",
-> +		.of_match_table = wiegand_gpio_dt_idtable,
-> +		.dev_groups = wiegand_gpio_groups
-
-Leave trailing comma when it's not about termination.
-
-> +	},
-> +	.probe		= wiegand_gpio_probe
-
-Ditto.
-
-> +};
-
--- 
+--=20
 With Best Regards,
 Andy Shevchenko
-
-
