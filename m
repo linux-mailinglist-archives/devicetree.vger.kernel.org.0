@@ -2,113 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6FF873979B
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 08:47:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C3B797397BE
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 09:03:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjFVGrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 02:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54322 "EHLO
+        id S229894AbjFVHDF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 03:03:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60422 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230080AbjFVGrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 02:47:47 -0400
-Received: from mail-oa1-x31.google.com (mail-oa1-x31.google.com [IPv6:2001:4860:4864:20::31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7697A10DB;
-        Wed, 21 Jun 2023 23:47:46 -0700 (PDT)
-Received: by mail-oa1-x31.google.com with SMTP id 586e51a60fabf-1aa291b3fc4so3883727fac.0;
-        Wed, 21 Jun 2023 23:47:46 -0700 (PDT)
+        with ESMTP id S230063AbjFVHDE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 03:03:04 -0400
+Received: from mail-yw1-x1131.google.com (mail-yw1-x1131.google.com [IPv6:2607:f8b0:4864:20::1131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3EFF1BD6
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 00:03:02 -0700 (PDT)
+Received: by mail-yw1-x1131.google.com with SMTP id 00721157ae682-5701e8f2b79so73048587b3.0
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 00:03:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687416465; x=1690008465;
+        d=linaro.org; s=google; t=1687417382; x=1690009382;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=qm05e4OjfSKirTmXzup6QLFGhueq90/W0vX/QkT2XU0=;
-        b=iii1AVAsQ/V4oYfgaI9L/CUTtLUg0Rd1TaLO+IBJ7KJZ7TI+clJ7gSF0oVmPzdVUCj
-         vD23+plFWJz52pUwerUjO0BRaj7RBRHgKQhnSnzI7a+Is5wzV8CBYSSqjrPzQ24QY3Z4
-         0Ch/6MTBDgCzS8zpPx+GkPfMYbgi+KIEQFCUQ6WK2vRWpckjboMe/aK/0/VmzNeeWZzn
-         AixJChElko8SUE2Mf+Dv7ELmaisklHAi3WD20VAERF1rjWLX0ucOih+Fm/uFEM4kGCJh
-         Jc31CsHD13U8GZPpoLeX+1RiFWNNfmGSogiW71Url4PLnLhy7kFC8w7EGv3q5INH5sMR
-         ME+w==
+        bh=647VdAKDpiR62O7WDkRN3aETIMIb4i2xmi3nL3BvZto=;
+        b=RVypG5l/+pSwcJe4iq5GSYPU1Tat/StR/KO1GhkSLWWYu+cyIxl+EpaJLQllNj+1op
+         xyOrQeX+w8dhn2BsZ2yLWofTlCFxGmPmKJ5Pl6tzFipb1ALOtXvlz7f7P04/WNENqfOL
+         hkummsfw+y8fwhg1ADdUUZjiuN4xfjdvJFpyGKpxMnW+S/Uy4RAGIa+RZc680NA4DPf8
+         +4tN0EqMKMI5CCUIHg8w51tAmqej3LccIPw+Ss7L6tHDCuIfLLoOC5SFpEDI7l8szWnf
+         b0FgC8uDKFg8IX47ebiBAuOsBwplnylgqlYnfyIlgwVX202bV3J5R+pS25cRG+6IpW6E
+         //ZA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687416465; x=1690008465;
+        d=1e100.net; s=20221208; t=1687417382; x=1690009382;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=qm05e4OjfSKirTmXzup6QLFGhueq90/W0vX/QkT2XU0=;
-        b=UkKpAAtFtk6h6nxK62fGH6Fi84U7BLQ84tAzT/OioWioVUazlkHnddLPjqpFxsj4Wh
-         XtXI/IhBG1FLcmG7eP7rmb1r4BtzQch3g+x++Cma+Q2CkQJ9DD2DYS+xzvywKUfITj/I
-         qUheeST7BKJyFM8xK0MeOxILT4K0OxUnJJvaaYhh9hyab8JHb+u7NTfp3VSRV00ejPOD
-         1FOlyZBKFzm0EwoAji/UWYFvx+srmTRDionME4gG12xdUGE/Jp8RvPGKQAqiQaHabqvP
-         Nfb1mU3TnOvSIUGkYZPILGPENXeuB2LwTFj2I2cII4GHmFVBiBXiFtBB2TvlgGzhR+eh
-         dRDg==
-X-Gm-Message-State: AC+VfDz+tFh/dB5t2/IxrOP/ve+wrJ94PFrRFgGltwpYemRtCHY3c1p2
-        Uf5R50F2DBz8GpDwf6OkMLx0hmimmfSL81aFbS0=
-X-Google-Smtp-Source: ACHHUZ6pYQ2K/dd0joq1B6c+l/mP/Q3M90DEW+Qz8EIw3MdKrhSkrLcYTA+AK7m8sAZ2vE5s6kBLDFniEYhS5NceT/Y=
-X-Received: by 2002:a05:6870:1846:b0:1a6:9788:c8dc with SMTP id
- u6-20020a056870184600b001a69788c8dcmr7972164oaf.47.1687416464850; Wed, 21 Jun
- 2023 23:47:44 -0700 (PDT)
+        bh=647VdAKDpiR62O7WDkRN3aETIMIb4i2xmi3nL3BvZto=;
+        b=Bg1xfy94Uw2cdC0AFonDpcilqDslfzJMOJR0hJryfsZzmI4RnLVE4tOWkPD76uKdzc
+         MC97ENhxuW4Y6hkdUNtW3PrZwRBOjdoZd5PcauEFozdAH+jgIuBygBFf2yBhJSEVsQsT
+         T+46o4dUzo/Qtaxw3dY0U+EpyoVuL17XuALq1UIOX3nAQmt4CVrZTmbbUVyFfI7F1LFm
+         dsNUnIDZyUM+32pnao2EjqXWYR8LfA4Dh5jX3fPUckg3zVf3kXI6sohImT2PNZof5JDa
+         j51CWny7KDfO9yigOGCgkGHK2iaInG5UhbVKr36DwTkCScWNTCp1PFTgofdwvaKYrwGg
+         ZADA==
+X-Gm-Message-State: AC+VfDzMumEyQmQtWhl25m5NyhxQlHCXKEPi7+VRSv1BAbOWvHIMQz/d
+        3Rc6fYrwYCs3q/gzXfE6MvTlj26k+T6bn8nJGgsC0A==
+X-Google-Smtp-Source: ACHHUZ4KGoQu28j4ID5gDP1LVIyD9hPsoIPftVlCHbQKZr+7vKPoUgMzwrC6cjVNBrf24OS1HSUSy3zCaymoMBEqv5M=
+X-Received: by 2002:a25:b325:0:b0:bfe:ade3:e59c with SMTP id
+ l37-20020a25b325000000b00bfeade3e59cmr4044136ybj.64.1687417381797; Thu, 22
+ Jun 2023 00:03:01 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
- <168739869603.42044.12383139966264039986.robh@kernel.org> <CAMhs-H_fUSnXHgO0ZXuGOX7gkuM98HXm+Y_jq1DxCv5Az=3Rag@mail.gmail.com>
- <50f75267-492f-d36b-f977-da2fb3a3fd1f@linaro.org>
-In-Reply-To: <50f75267-492f-d36b-f977-da2fb3a3fd1f@linaro.org>
-From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Thu, 22 Jun 2023 08:47:33 +0200
-Message-ID: <CAMhs-H_QU+wXt=GWEOiBmYEGKf8=mA2yUCZk5ALtegve60OtWw@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: timer: add Ralink SoCs timer
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, tglx@linutronix.de,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org
+References: <20230621213115.113266-1-nick.hawkins@hpe.com> <20230621213115.113266-3-nick.hawkins@hpe.com>
+In-Reply-To: <20230621213115.113266-3-nick.hawkins@hpe.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 22 Jun 2023 09:02:49 +0200
+Message-ID: <CACRpkdaGLBiYhMYcnVaaVi2GYZ+MawB4GWPL=B_N-qQ8+frbdQ@mail.gmail.com>
+Subject: Re: [PATCH v4 2/5] gpio: gxp: Add HPE GXP GPIO PL
+To:     nick.hawkins@hpe.com
+Cc:     verdun@hpe.com, brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
+        linux@roeck-us.net, andy.shevchenko@gmail.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 22, 2023 at 8:16=E2=80=AFAM Krzysztof Kozlowski
-<krzysztof.kozlowski@linaro.org> wrote:
->
-> On 22/06/2023 07:14, Sergio Paracuellos wrote:
-> > On Thu, Jun 22, 2023 at 3:51=E2=80=AFAM Rob Herring <robh@kernel.org> w=
-rote:
-> >>
-> >>
-> >> On Tue, 20 Jun 2023 12:02:31 +0200, Sergio Paracuellos wrote:
-> >>> Add YAML documentation for the timer which is present on Ralink SoCs.
-> >>>
-> >>> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> >>> ---
-> >>> Changes in v2:
-> >>> - Remove redundant 'documentation' word from subject.
-> >>> - Drop clock-names property.
-> >>>
-> >>>  .../bindings/timer/ralink,rt2880-timer.yaml   | 44 +++++++++++++++++=
-++
-> >>>  1 file changed, 44 insertions(+)
-> >>>  create mode 100644 Documentation/devicetree/bindings/timer/ralink,rt=
-2880-timer.yaml
-> >>>
-> >>
-> >> Reviewed-by: Rob Herring <robh@kernel.org>
-> >>
-> >
-> > Thanks! Which tree is this supposed to go through?
->
-> Preferably clocksource/clockevents/timer drivers tree/
+Hi Nick,
 
-Thanks for letting me know :)
+thanks for your patch!
 
-Best regards,
-    Sergio Paracuellos
+This is looking pretty good, I have some minor questions.
 
+On Wed, Jun 21, 2023 at 11:35=E2=80=AFPM <nick.hawkins@hpe.com> wrote:
+
+> From: Nick Hawkins <nick.hawkins@hpe.com>
 >
-> Best regards,
-> Krzysztof
+> The GXP SoC supports GPIO on multiple interfaces. The interfaces are
+> CPLD and Host. The gpio-gxp-pl driver covers the CPLD which takes
+> physical I/O from the board and shares it with GXP via a proprietary
+> interface that maps the I/O onto a specific register area of the GXP.
+> This driver supports interrupts from the CPLD.
 >
+> Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+
+(...)
+> +enum pl_gpio_pn {
+> +       IOP_LED1 =3D 0,
+> +       IOP_LED2 =3D 1,
+> +       IOP_LED3 =3D 2,
+> +       IOP_LED4 =3D 3,
+(...)
+
+The confusing bit here is that GPIO means
+*generic purpose input/output*
+and these use cases are hardcoded into the driver and
+do not look very generic purpose at all.
+
+But I understand that it is convenient. I would add some
+comment saying that if there is a new version with a
+different layout of the pins, we need to make this kind
+of stuff go away and just use the numbers.
+
+> +static const struct gpio_chip template_chip =3D {
+> +       .label                  =3D "gxp_gpio_plreg",
+> +       .owner                  =3D THIS_MODULE,
+> +       .get                    =3D gxp_gpio_pl_get,
+> +       .set                    =3D gxp_gpio_pl_set,
+> +       .get_direction =3D gxp_gpio_pl_get_direction,
+> +       .direction_input =3D gxp_gpio_pl_direction_input,
+> +       .direction_output =3D gxp_gpio_pl_direction_output,
+> +       .base =3D -1,
+> +};
+
+Neat! Since you so explicitly have assigned a meaning to each
+GPIO line, you can go ahead and assign the .names property as
+well. Check in the kernel tree for other drivers doing this.
+
+> +       drvdata->chip =3D template_chip;
+> +       drvdata->chip.ngpio =3D 80;
+
+If you're always assigning 80 to this you can just put that in the
+template as well.
+
+Other than that I think it looks good!
+
+Yours,
+Linus Walleij
