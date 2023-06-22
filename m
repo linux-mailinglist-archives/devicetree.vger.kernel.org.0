@@ -2,149 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 871AC73A8E2
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 21:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 395F573A919
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 21:43:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbjFVTTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 15:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50150 "EHLO
+        id S230426AbjFVTnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 15:43:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230214AbjFVTTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 15:19:00 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D78CEA;
-        Thu, 22 Jun 2023 12:18:59 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2952B618E3;
-        Thu, 22 Jun 2023 19:18:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6573EC433C8;
-        Thu, 22 Jun 2023 19:18:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687461538;
-        bh=ybabzQEiU1jUWVXW9BBypST+YvZoqUjQP5qCTQf4nps=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QPJxKIhMSMfwvH5DktiLadi8u7k0A+Ej12hAhFdGWPeqKOv0+Ta6oMpATVq1PxRIY
-         3dTFgq46Wj9JvG0A8Zkr0UigN/3+PSTsoooRb2IfQ0IG7+3yhyCy9Vyv/n0GaGTAQK
-         DBvVLV/7jjKucLr7Jr+GMC/0kHn1CenHUL02OBZk1h7LL5y+vhp64C3jhcHAFiJsFO
-         T2kfOubKEBGSoEDtmCBNc4sINJp/wb9rD1f3f9j+HDoghsNRTgULoWChyBFzRhget0
-         Sm2je1TXP9q4Ob/MppIrYXlAH8VOJMsLV8mbMR8wOF6oTsbZoR2Nx60Tg8oiSiR3q3
-         3dWnmlBbM3DPA==
-Date:   Thu, 22 Jun 2023 20:18:54 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     kah.jing.lee@intel.com
-Cc:     Dinh Nguyen <dinguyen@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Alif Zakuan Yuslaimi <alif.zakuan.yuslaimi@intel.com>
-Subject: Re: [PATCH 1/2] arch: arm64: boot: dts: Updated QSPI Flash layout
- for UBIFS
-Message-ID: <20230622-campsite-uncloak-37c292c37862@spud>
-References: <20230622085319.562868-1-kah.jing.lee@intel.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="NOZVfU//uCalvVia"
-Content-Disposition: inline
-In-Reply-To: <20230622085319.562868-1-kah.jing.lee@intel.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230380AbjFVTnV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 15:43:21 -0400
+Received: from mail-oa1-x2c.google.com (mail-oa1-x2c.google.com [IPv6:2001:4860:4864:20::2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AAFF1FE3
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 12:43:15 -0700 (PDT)
+Received: by mail-oa1-x2c.google.com with SMTP id 586e51a60fabf-1a9d57f8f9fso7079302fac.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 12:43:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1687462994; x=1690054994;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3T11uxBhIjGWzq3ibADFPBxygIm6nnj3hVsi3PNKGSA=;
+        b=xo1/ZwUQaNDkC4rDA90YGndxKNvE0D28jIdXnxVPwuvLsh34JQk/FeE5HsUcSbQC3f
+         3WCHDoFRWiV1D229OnTV/wcoeRyigg8efklJh0pkajVzuEcSff3qf9yWkbWcFonOBrCV
+         OJM2AQ9VfHH1rVjVNO7MFICuRP1ee3yZpppZweUpiVx2ru21r3+tl0J6Lx/lHrbaeTI2
+         7L+DClFsnYxO0/fD2aMargKtjMqSJV9R0hn0l/kJI4quI4qt7hW0OmmT+wcI/nReY5MJ
+         22EizoFPM2b1r+jyIYyfPrkiiXo/PfQGmoLVy1oEqB3K9eT9GCMk1nPLCFA6+xn1dMxW
+         gkuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687462994; x=1690054994;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=3T11uxBhIjGWzq3ibADFPBxygIm6nnj3hVsi3PNKGSA=;
+        b=KPJpukFdrR2i3baXfMwTyayue1bJgy8lEm6pIg45fvestsOyPTzKPuSCyNE+JUNOJK
+         4TxG7XRQ2ypcb7LF31srAYt/v8RMUcqya9k16GoV4tGST3NjNHb2/n4+yUr34yRkfMlL
+         ysKkoSOvXzfMpjRI7L5Fn63uxH2cyLl7P8+I+jJgZ2HqEsu07kGWkEn88M9gzohhYKHw
+         JTc8a4W/vYbwNDuUPOKFTdBqxuyR5rlLEZMiT84MqgxyTTfUFsJ+t7ECkp3R7y8jOpwO
+         Y07r9AgagmjlBUSvGTafHP14xb9lK4Ce4JdMRn0VtxgrerKPThXM7vsHA8fl2/EmYSlX
+         r1Vg==
+X-Gm-Message-State: AC+VfDxvbcMvNKDriPwvxXLO36Ubfr9HYBXWJ+iEgPekWicSTVDsjlsD
+        zWhbUtXrFBOJyhbCIE/OxZkkJg==
+X-Google-Smtp-Source: ACHHUZ5WaibaXi8GDeiG3MswMLiamw5o+dUTYjXfQhHtuaUX2w3ZX/M/khKv/POfy1MNBzVRFwyCaw==
+X-Received: by 2002:a05:6808:20f:b0:3a0:5596:efe8 with SMTP id l15-20020a056808020f00b003a05596efe8mr4046410oie.54.1687462994158;
+        Thu, 22 Jun 2023 12:43:14 -0700 (PDT)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id q23-20020a635057000000b0054fd1723554sm5075167pgl.21.2023.06.22.12.43.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jun 2023 12:43:13 -0700 (PDT)
+Date:   Thu, 22 Jun 2023 12:43:13 -0700 (PDT)
+X-Google-Original-Date: Thu, 22 Jun 2023 12:42:32 PDT (-0700)
+Subject:     Re: [PATCH v2] dt-bindings: riscv: deprecate riscv,isa
+In-Reply-To: <20230622-stipend-flashily-97917469f39b@spud>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        ajones@ventanamicro.com, apatel@ventanamicro.com,
+        atishp@atishpatra.org, jrtc27@jrtc27.com, rick@andestech.com,
+        ycliang@andestech.com, oleksii.kurochko@gmail.com,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor Dooley <conor@kernel.org>
+Message-ID: <mhng-9e03f021-961d-44f3-81c1-9c09abd3662b@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 22 Jun 2023 11:59:32 PDT (-0700), Conor Dooley wrote:
+> On Thu, Jun 22, 2023 at 11:25:35AM -0700, Palmer Dabbelt wrote:
+>
+>> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>> 
+>> I'm not wed to any particular encoding for the properties, IMO that's more
+>> of a decision for the DT folks.  IMO the important bit is to just get away
+>> from ISA strings and move towards some tightly-specified properties that
+>> indicate how the HW actually behaves.
+>
+> I'm going to resubmit with Rob's list of strings. I'll keep your tags,
+> since the spirit of the patch will be the same, with enforced meanings
+> for each extension.
 
---NOZVfU//uCalvVia
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Works for me, thanks.
 
-On Thu, Jun 22, 2023 at 04:53:19PM +0800, kah.jing.lee@intel.com wrote:
-> From: Alif Zakuan Yuslaimi <alif.zakuan.yuslaimi@intel.com>
->=20
-> This patch is to update the QSPI flash layout to support UBIFS in mtd
-> root partition.
-
-That much is clear from the diff. Surely it'd be better to explain *why*
-this change is being made, no?
-
-Thanks,
-Conor.
-
->=20
-> Signed-off-by: Alif Zakuan Yuslaimi <alif.zakuan.yuslaimi@intel.com>
-> Signed-off-by: Kah Jing Lee <kah.jing.lee@intel.com>
-> ---
->  arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts | 8 ++++----
->  arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts     | 8 ++++----
->  2 files changed, 8 insertions(+), 8 deletions(-)
->=20
-> diff --git a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts b/arc=
-h/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> index 38ae674f2f02..12b960b9183c 100644
-> --- a/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> +++ b/arch/arm64/boot/dts/altera/socfpga_stratix10_socdk.dts
-> @@ -202,12 +202,12 @@ partitions {
-> =20
->  			qspi_boot: partition@0 {
->  				label =3D "Boot and fpga data";
-> -				reg =3D <0x0 0x03FE0000>;
-> +				reg =3D <0x0 0x04200000>;
->  			};
-> =20
-> -			qspi_rootfs: partition@3FE0000 {
-> -				label =3D "Root Filesystem - JFFS2";
-> -				reg =3D <0x03FE0000 0x0C020000>;
-> +			root: partition@4200000 {
-> +				label =3D "Root Filesystem - UBIFS";
-> +				reg =3D <0x04200000 0x0BE00000>;
->  			};
->  		};
->  	};
-> diff --git a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts b/arch/ar=
-m64/boot/dts/intel/socfpga_agilex_socdk.dts
-> index 07c3f8876613..608017e6e36a 100644
-> --- a/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-> +++ b/arch/arm64/boot/dts/intel/socfpga_agilex_socdk.dts
-> @@ -128,12 +128,12 @@ partitions {
-> =20
->  			qspi_boot: partition@0 {
->  				label =3D "Boot and fpga data";
-> -				reg =3D <0x0 0x03FE0000>;
-> +				reg =3D <0x0 0x04200000>;
->  			};
-> =20
-> -			qspi_rootfs: partition@3FE0000 {
-> -				label =3D "Root Filesystem - JFFS2";
-> -				reg =3D <0x03FE0000 0x0C020000>;
-> +			root: partition@4200000 {
-> +				label =3D "Root Filesystem - UBIFS";
-> +				reg =3D <0x04200000 0x0BE00000>;
->  			};
->  		};
->  	};
-> --=20
-> 2.25.1
->=20
-
---NOZVfU//uCalvVia
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJSengAKCRB4tDGHoIJi
-0iIHAQDqf/4QTbMLRWbau04J+oH+gmsUEGjqswKbSS1iRPgujQD/WYs72WN7X8cQ
-Kyh5apQuOAG+A15BRctp0ltJ/65I+Ac=
-=vLev
------END PGP SIGNATURE-----
-
---NOZVfU//uCalvVia--
+>
+> Cheers,
+> Conor.
