@@ -2,76 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F356739DA4
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 11:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B528F739DAD
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 11:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231515AbjFVJsU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 05:48:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51062 "EHLO
+        id S230060AbjFVJty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 05:49:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230519AbjFVJsG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 05:48:06 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3AB619037
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:37:32 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b47a15ca10so64922371fa.1
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:37:32 -0700 (PDT)
+        with ESMTP id S231734AbjFVJtY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 05:49:24 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAA0C420A
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:39:08 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3f9bdb01ec0so18677435e9.2
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 02:39:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687426604; x=1690018604;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tNkV9xAtMniIcjJ9HwdT1bLznh1eJZZcSsFGcqOzrhQ=;
-        b=UsK03MOaYaOQ3HgcTdNopysn7bz+2NhG7PUdGIT2G7+OO+U3YpmhjQP5Zwv5hvbWBS
-         h38/tZZwzc8jy5NhMTu/1wqAZN39bVOL8cFpwE64Vr+nOLxrQxEF077Up1h0w5Q84CXD
-         VnbVJc9peKFaLGhQTRWKDjTEG4WDQBB5teXoKF/2UEke2ms+24qjPXCjIo7dDIqiyN9l
-         vXTnc/A9pntZ6qkurXialJ1DoXse1GMedPSDcDGAaaJARbBTdGqRgqRThvx/7OAfk4H6
-         pOiPNVOKLtWmhGg5vyJjH5NMRP+rqtf4cQUbiQ4dAPo0r5Rr0eXfuuyjs96My6y+x4b4
-         2Bcw==
+        d=linaro.org; s=google; t=1687426731; x=1690018731;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=y1j31YwGJInJp0uzBca00KMvrBtU/vucRfvT/lc8M/k=;
+        b=r31WHGpDwAnxyUVyweo5c3+lMARcpIsEl6qSJ0JpMHq68mEoGcJ2eEf9pqIPOWrPjF
+         uPAhY9IbZC7NTawDk4C0h2B0lnMFNZnLfWVDQ7HMEm+0Kf5AdCUUGwlXOBxxBD3yhzbD
+         hT1/aQg8RdtrLi0XNEU5f7uNLWbJeV19nO2KDyf5f+Oufd5SR+i2CEXXlt/eBk12yGpz
+         U/OGVGV4DtpgrrWpw9K2TIUjlAcHkuLpmzBx/SmIevMGqbH9aDQ+xEH0WBoJ6P32b9VX
+         e6hsxfhI7WgmronTZTpGimp52hUP4w1oCaODpbjeaU+qYmnDpCIXAQRS49lKFRmCUDKc
+         eMnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687426604; x=1690018604;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tNkV9xAtMniIcjJ9HwdT1bLznh1eJZZcSsFGcqOzrhQ=;
-        b=dALZViUYu6+d0U5NzdcQIc/KM24MxAK2h+j8jPjwrBq31J7RUokRrJPMZ9GKQvlTua
-         9gkL8eK8005soxzYZaiK+ESjtHL5We9J+WeoachVnv0ztnNPoQFI55bRIP87DiWfCGIZ
-         aYfyQQkxnBhhwNcj9hdONy7DnqiGpYjYfChWPF3fC/0RVZd0y9IEmvImR/VWplmjeU3V
-         nB7hhFkEB+vwnh3ty0Y5KFI6bsyOTDMMcIhJqAeW5+lJVL7lamdklXbjhV2Cy0j/HHGS
-         F9fZ5CZ5AajntzU63GW7cclkLZFgjBg05Hjrc6PLXy+I9K6uX4bylwSvG2IHZx9xbF1m
-         Keug==
-X-Gm-Message-State: AC+VfDzo3Z2qyBFi3nmbokfLLHDvhJ7zk7Y2B5rDKNcrNCYIbfA+amPE
-        67rexB3NWoDkwGAoZqANpfC57g==
-X-Google-Smtp-Source: ACHHUZ7oME0q+/73a/ckmmmGjXtpmVy3hhaghu6ttoRXj2kLaocap0Vh1OZNUNakyMXv8HXG+bt1CQ==
-X-Received: by 2002:a2e:a307:0:b0:2b4:5afc:fe0c with SMTP id l7-20020a2ea307000000b002b45afcfe0cmr11588750lje.7.1687426604342;
-        Thu, 22 Jun 2023 02:36:44 -0700 (PDT)
-Received: from [192.168.1.101] (abyl165.neoplus.adsl.tpnet.pl. [83.9.31.165])
-        by smtp.gmail.com with ESMTPSA id l11-20020a2e99cb000000b002adb10a6620sm1192869ljj.107.2023.06.22.02.36.42
+        d=1e100.net; s=20221208; t=1687426731; x=1690018731;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=y1j31YwGJInJp0uzBca00KMvrBtU/vucRfvT/lc8M/k=;
+        b=XxwnHcKlZLjohO3Gl5Kbr6hcC9wG5ZgctMItsxMwYlupZgibFuzldm+fY8ZtDUjD9z
+         IxK3kjVB2NxprNe1vokENxvz6+5tW09ySL+3CWLuSXtIQ4daaocATPRM3DCXxZMXgFaj
+         sIhGTFYFgx7IPdWgsFW8gJsSK9OP5BV9c4nQ3g7mfCekQryLyCoyBLWNgOP8dkkvO/XY
+         1DSm+WwQ3CabhceBv0QyvVP3fpCnfnvYzr2yGXEVelDxy8Zo06JdJtiTjCnq2dkkTdJt
+         6M8eX/XPGAopB/Wb+gnwZp2Gjdmen+86+oX9xdidUI7k6bRiXZb6o01VKR723PpdM+3u
+         7DKQ==
+X-Gm-Message-State: AC+VfDxtMAkUX/CMnRF7pTVMNcWo9iFi6L3ULGpVVmp7sq9e1IhA+4p9
+        gyw+vdHEVjpw528R2qVCgBhyhzOF7ZHw0+02xFf1+A==
+X-Google-Smtp-Source: ACHHUZ6o5KJy6XmDPYy+gz9tcwBxBrnmssvKZ+GzsUV9aZ03hz6SJ4PS8LJmpLVIWGc0+MREh27jvA==
+X-Received: by 2002:a05:600c:2211:b0:3f7:e655:a498 with SMTP id z17-20020a05600c221100b003f7e655a498mr14748565wml.14.1687426731505;
+        Thu, 22 Jun 2023 02:38:51 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:f692:a800:4794:385? ([2a01:e0a:982:cbb0:f692:a800:4794:385])
+        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003f9c8c6bf53sm3102092wmk.13.2023.06.22.02.38.50
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jun 2023 02:36:44 -0700 (PDT)
-Message-ID: <bd27fc27-70d4-dfff-22d1-2e632ac7a868@linaro.org>
-Date:   Thu, 22 Jun 2023 11:36:42 +0200
+        Thu, 22 Jun 2023 02:38:50 -0700 (PDT)
+Message-ID: <4a2a2f0c-f9dd-d5c4-1e7e-5852970f87a7@linaro.org>
+Date:   Thu, 22 Jun 2023 11:38:49 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v5 6/6] iommu/qcom: Add support for QSMMUv2 and QSMMU-500
- secured contexts
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
 Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, agross@kernel.org
-Cc:     andersson@kernel.org, luca@z3ntu.xyz, dmitry.baryshkov@linaro.org,
-        joro@8bytes.org, will@kernel.org, robin.murphy@arm.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, robdclark@gmail.com,
-        linux-arm-msm@vger.kernel.org, iommu@lists.linux.dev,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, kernel@collabora.com,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230622092742.74819-1-angelogioacchino.delregno@collabora.com>
- <20230622092742.74819-7-angelogioacchino.delregno@collabora.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230622092742.74819-7-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8
+To:     Conor Dooley <conor.dooley@microchip.com>,
+        Lucas Tanure <tanure@linux.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Conor Dooley <conor@kernel.org>
+References: <20230622084045.519203-1-tanure@linux.com>
+ <20230622084045.519203-3-tanure@linux.com>
+ <20230622-unsent-willing-574906af5e1a@wendy>
+Organization: Linaro Developer Services
+Subject: Re: [PATCH v4 2/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for T7
+In-Reply-To: <20230622-unsent-willing-574906af5e1a@wendy>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -83,96 +89,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22.06.2023 11:27, AngeloGioacchino Del Regno wrote:
-> On some SoCs like MSM8956, MSM8976 and others, secure contexts are
-> also secured: these get programmed by the bootloader or TZ (as usual)
-> but their "interesting" registers are locked out by the hypervisor,
-> disallowing direct register writes from Linux and, in many cases,
-> completely disallowing the reprogramming of TTBR, TCR, MAIR and other
-> registers including, but not limited to, resetting contexts.
-> This is referred downstream as a "v2" IOMMU but this is effectively
-> a "v2 firmware configuration" instead.
+On 22/06/2023 11:26, Conor Dooley wrote:
+> Hey Lucas,
 > 
-> Luckily, the described behavior of version 2 is effective only on
-> secure contexts and not on non-secure ones: add support for that,
-> finally getting a completely working IOMMU on at least MSM8956/76.
+> On Thu, Jun 22, 2023 at 09:40:44AM +0100, Lucas Tanure wrote:
+>> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+>> There is no need for an extra compatible line in the driver, but
+>> add T7 compatible line for documentation.
+>>
+>> Co-developed-by: Conor Dooley <conor@kernel.org>
 > 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> [Marijn: Rebased over next-20221111]
-> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
-> Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> You can delete this, I don't need a Co-developed-by tag for review
+> feedback.
+> 
+>> Signed-off-by: Lucas Tanure <tanure@linux.com>
+>> ---
+>>   .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 ++++++
+>>   1 file changed, 6 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>> index 01ec45b3b406..4ca4673169aa 100644
+>> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+>> @@ -46,6 +46,12 @@ properties:
+>>             - amlogic,meson8b-uart
+>>             - amlogic,meson-gx-uart
+>>             - amlogic,meson-s4-uart
+>> +      - description: Everything-Else power domain UART controller on G12A compatible SoCs
+> 
+> s/Everything-Else/Always-on/
 
-Konrad
->  drivers/iommu/arm/arm-smmu/qcom_iommu.c | 19 +++++++++++++++++--
->  1 file changed, 17 insertions(+), 2 deletions(-)
+
+"Everything-Else" was the amlogic naming for the non-always-on power domain, but it seems
+it's no more something used on new SoCs like the T7 family.
+
+Anyway, the description is wrong, and it's a mess because we used "amlogic,meson-ao-uart"
+for uarts on the Always-On domain, but here it's described as Everything-Else...
+
+Lucas, is there AO_uarts on T7 ? if not drop this amlogic,meson-ao-uart for the T7 UARTs.
+
+But if there's no more AO uart controller, you'll need to change drivers/tty/serial/meson_uart.c
+and add a OF_EARLYCON_DECLARE() for amlogic,meson-t7-uart.
+
+But still, why don't you use the amlogic,meson-s4-uart as fallback instead ?
+
++      - description: UART controller on T7 compatible SoCs
++        items:
++          - const: amlogic,meson-t7-uart
++          - const: amlogic,meson-s4-uart
+
+and update meson_uart.c if there's no AO uarts anymore....
+
+Neil
+
+> Otherwise,
+> Acked-by: Conor Dooley <conor.dooley@microchip.com>
 > 
-> diff --git a/drivers/iommu/arm/arm-smmu/qcom_iommu.c b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-> index 9786fd094e7d..7b6241f36698 100644
-> --- a/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-> +++ b/drivers/iommu/arm/arm-smmu/qcom_iommu.c
-> @@ -59,6 +59,7 @@ struct qcom_iommu_ctx {
->  	struct device		*dev;
->  	void __iomem		*base;
->  	bool			 secure_init;
-> +	bool			 secured_ctx;
->  	u8			 asid;      /* asid and ctx bank # are 1:1 */
->  	struct iommu_domain	*domain;
->  };
-> @@ -273,6 +274,12 @@ static int qcom_iommu_init_domain(struct iommu_domain *domain,
->  			ctx->secure_init = true;
->  		}
->  
-> +		/* Secured QSMMU-500/QSMMU-v2 contexts cannot be programmed */
-> +		if (ctx->secured_ctx) {
-> +			ctx->domain = domain;
-> +			continue;
-> +		}
-> +
->  		/* Disable context bank before programming */
->  		iommu_writel(ctx, ARM_SMMU_CB_SCTLR, 0);
->  
-> @@ -669,10 +676,14 @@ static int qcom_iommu_ctx_probe(struct platform_device *pdev)
->  	if (irq < 0)
->  		return -ENODEV;
->  
-> +	if (of_device_is_compatible(dev->of_node, "qcom,msm-iommu-v2-sec"))
-> +		ctx->secured_ctx = true;
-> +
->  	/* clear IRQs before registering fault handler, just in case the
->  	 * boot-loader left us a surprise:
->  	 */
-> -	iommu_writel(ctx, ARM_SMMU_CB_FSR, iommu_readl(ctx, ARM_SMMU_CB_FSR));
-> +	if (!ctx->secured_ctx)
-> +		iommu_writel(ctx, ARM_SMMU_CB_FSR, iommu_readl(ctx, ARM_SMMU_CB_FSR));
->  
->  	ret = devm_request_irq(dev, irq,
->  			       qcom_iommu_fault,
-> @@ -712,6 +723,8 @@ static void qcom_iommu_ctx_remove(struct platform_device *pdev)
->  static const struct of_device_id ctx_of_match[] = {
->  	{ .compatible = "qcom,msm-iommu-v1-ns" },
->  	{ .compatible = "qcom,msm-iommu-v1-sec" },
-> +	{ .compatible = "qcom,msm-iommu-v2-ns" },
-> +	{ .compatible = "qcom,msm-iommu-v2-sec" },
->  	{ /* sentinel */ }
->  };
->  
-> @@ -729,7 +742,8 @@ static bool qcom_iommu_has_secure_context(struct qcom_iommu_dev *qcom_iommu)
->  	struct device_node *child;
->  
->  	for_each_child_of_node(qcom_iommu->dev->of_node, child) {
-> -		if (of_device_is_compatible(child, "qcom,msm-iommu-v1-sec")) {
-> +		if (of_device_is_compatible(child, "qcom,msm-iommu-v1-sec") ||
-> +		    of_device_is_compatible(child, "qcom,msm-iommu-v2-sec")) {
->  			of_node_put(child);
->  			return true;
->  		}
-> @@ -873,6 +887,7 @@ static const struct dev_pm_ops qcom_iommu_pm_ops = {
->  
->  static const struct of_device_id qcom_iommu_of_match[] = {
->  	{ .compatible = "qcom,msm-iommu-v1" },
-> +	{ .compatible = "qcom,msm-iommu-v2" },
->  	{ /* sentinel */ }
->  };
->  
+> Perhaps it can be fixed on application, I don't know how the amlogic
+> maintainers operate.
+> 
+> Cheers,
+> Conor.
+> 
+>> +        items:
+>> +          - enum:
+>> +              - amlogic,meson-t7-uart
+>> +          - const: amlogic,meson-g12a-uart
+>> +          - const: amlogic,meson-ao-uart
+>>         - description: Everything-Else power domain UART controller on G12A SoCs
+>>           items:
+>>             - const: amlogic,meson-g12a-uart
+>> -- 
+>> 2.41.0
+>>
+
