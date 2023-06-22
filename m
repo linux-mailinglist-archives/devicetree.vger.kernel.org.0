@@ -2,168 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A584739DF3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 12:00:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7FEE739E02
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 12:05:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231249AbjFVKAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 06:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59016 "EHLO
+        id S230317AbjFVKFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 06:05:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230125AbjFVKAX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 06:00:23 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3055118;
-        Thu, 22 Jun 2023 03:00:12 -0700 (PDT)
-Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 19E83660704A;
-        Thu, 22 Jun 2023 11:00:11 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1687428011;
-        bh=gpCgJrBqi/2Xavz4ppF0dv3Ye/36nrT5W9Yjh2qoe0c=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=dmxEV7AKk6Fn2OONdeYVF5RAlqjAorSfESIYtHjPtfiWP4ItjKBQz9N4u8rrRBtr9
-         Y8xvfIbyQjSXUun1o3912RrISFNu3EdQyNL58h7HIMKA89INioEaxhbdIvhUtSOSz6
-         WyITPwvDU9zX+O6AZ6EP5sGZICKCR1BZ98HGExiTe2Oh/142tmB5jUNJfyAMZ+d+80
-         eIv9PtiLrgp77MOrs4zqsHDiVK1E6pNPsDB5kmfWQBCkgtv0ps2N2NpzLWPSBUOiE/
-         ri4cxwbeAd5T6uuem/i7uSSadSJ9TdORN+LHKkWEBzjvbtrlScTB2ATpumT7uPjVva
-         6rj7m9XuqTeJw==
-Message-ID: <5a9beeec-5762-c469-6e03-b71babb5f7ed@collabora.com>
-Date:   Thu, 22 Jun 2023 12:00:08 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v13 00/11] Add support for MT8195 SCP 2nd core
-Content-Language: en-US
-To:     Tinghan Shen <tinghan.shen@mediatek.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230060AbjFVKFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 06:05:24 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F129B4;
+        Thu, 22 Jun 2023 03:05:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1687428323; x=1718964323;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=Cxl3Mx88pP5Y2quTc2VGzlQgURMYkhzFdmr6u9GzYN0=;
+  b=QspdcrtpsPMUVWruOWoNh3cJlTqYStypaVZSfZTKSHcXtTEjqla5rRPe
+   L5zFwhiYk7PlUh9KRoOQMdDoyi4R2Zq093ztWB6l7/mkISifS3b6usbV5
+   c/pYaxBheC/UgN8K7TFFEc1riJbbVG9bjdiW1u0kAFgbErPMUIPH0grF+
+   Rwy/wslB0s/kuLj4r8ZB8N/vpreZzkXkIzDx+nGbaVMIbFDYD4wW4iwAP
+   tKy3q7QQ9/gdXQFh4KOpht257QBD7rTy+//5c+/PICk1fPMoZtYB7bPoX
+   4scsLQaDbHld/JofGfEOgR6o4oiXgbL06eQwBeLy1NPKhMPn/Y6RvGhXt
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
+   d="asc'?scan'208";a="158097833"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jun 2023 03:05:22 -0700
+Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 22 Jun 2023 03:05:04 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
+ (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 22 Jun 2023 03:05:01 -0700
+Date:   Thu, 22 Jun 2023 11:04:34 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+CC:     Lucas Tanure <tanure@linux.com>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230607072222.8628-1-tinghan.shen@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230607072222.8628-1-tinghan.shen@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Conor Dooley <conor@kernel.org>
+Subject: Re: [PATCH v4 2/3] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for T7
+Message-ID: <20230622-bouncy-nebulizer-d4e487937c03@wendy>
+References: <20230622084045.519203-1-tanure@linux.com>
+ <20230622084045.519203-3-tanure@linux.com>
+ <20230622-unsent-willing-574906af5e1a@wendy>
+ <4a2a2f0c-f9dd-d5c4-1e7e-5852970f87a7@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="2DL/pp1ncOUXA4aY"
+Content-Disposition: inline
+In-Reply-To: <4a2a2f0c-f9dd-d5c4-1e7e-5852970f87a7@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/06/23 09:22, Tinghan Shen ha scritto:
-> The mediatek remoteproc driver currently only allows bringing up a
-> single core SCP, e.g. MT8183. It also only bringing up the 1st
-> core in SoCs with a dual-core SCP, e.g. MT8195. This series support
-> to bring-up the 2nd core of the dual-core SCP.
-> 
+--2DL/pp1ncOUXA4aY
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hello TingHan,
+On Thu, Jun 22, 2023 at 11:38:49AM +0200, Neil Armstrong wrote:
+> On 22/06/2023 11:26, Conor Dooley wrote:
+> > On Thu, Jun 22, 2023 at 09:40:44AM +0100, Lucas Tanure wrote:
+> > > Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+> > > There is no need for an extra compatible line in the driver, but
+> > > add T7 compatible line for documentation.
+> > >=20
+> > > Co-developed-by: Conor Dooley <conor@kernel.org>
+> >=20
+> > You can delete this, I don't need a Co-developed-by tag for review
+> > feedback.
+> >=20
+> > > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > > ---
+> > >   .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 +++=
++++
+> > >   1 file changed, 6 insertions(+)
+> > >=20
+> > > diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-u=
+art.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > > index 01ec45b3b406..4ca4673169aa 100644
+> > > --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > > +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > > @@ -46,6 +46,12 @@ properties:
+> > >             - amlogic,meson8b-uart
+> > >             - amlogic,meson-gx-uart
+> > >             - amlogic,meson-s4-uart
+> > > +      - description: Everything-Else power domain UART controller on=
+ G12A compatible SoCs
+> >=20
+> > s/Everything-Else/Always-on/
+>=20
+>=20
+> "Everything-Else" was the amlogic naming for the non-always-on power doma=
+in, but it seems
+> it's no more something used on new SoCs like the T7 family.
+>=20
+> Anyway, the description is wrong, and it's a mess because we used "amlogi=
+c,meson-ao-uart"
+> for uarts on the Always-On domain, but here it's described as Everything-=
+Else...
+>=20
+> Lucas, is there AO_uarts on T7 ? if not drop this amlogic,meson-ao-uart f=
+or the T7 UARTs.
+>=20
+> But if there's no more AO uart controller, you'll need to change drivers/=
+tty/serial/meson_uart.c
+> and add a OF_EARLYCON_DECLARE() for amlogic,meson-t7-uart.
+>=20
+> But still, why don't you use the amlogic,meson-s4-uart as fallback instea=
+d ?
 
-Can you please address the comments on patch [05/11] and send a new version ASAP?
-That's the only remaining issue, so after that the series should be ready.
+That's probably my fault, I suggested the g12a in my reply to v3,
+because that is the one from which the match data is being copied, so it
+seemed like it'd make the most sense to me as the fallback.
 
-Thanks,
-Angelo
+btw Neil, is the "meson-gx-uart" a wildcard? Dunno the hardware, so
+wasn't sure.
 
-> v12 -> v13:
-> 1. replace subdevice with new mediatek scp operations in patchset 7
-> 2. add review tag to patchset 3
-> 3. modify mediatek,scp phandle name of video-codec@18000000 at patchset 11
-> 
-> v11 -> v12:
-> 1. add scp_add_single/multi_core() to patchset 6
-> 2. remove unused comment in patchset 6
-> 3. rename list name from mtk_scp_cluster to mtk_scp_list
-> 4. rewrite the multi-core probe flow
-> 5. disable rproc->autoboot and boot rproc by request_firmware_nowait at patchset 7
-> 6. remove patchset 7 review tag
-> 
-> v10 -> v11:
-> 1. rewrite patchset 5 to probe single-core SCP with the cluster list
-> 2. Also in patchset 5, move the pointer of mtk_scp object from the
->     platform data property to the driver data property
-> 3. move the appearance of mtk_scp cluster property to patcheset 7
-> 
-> v9 -> v10:
-> 1. move the global mtk_scp list into the platform device driver data structure
-> 2. remove an unnecessary if() condition
-> 
-> v8 -> v9:
-> 1. initialize l1tcm_size/l1tcm_phys at patchset 05/11
-> 2. rewrite patchset 06/11 to unify the flow and remove hacks
-> 
-> v7 -> v8:
-> 1. update the node name of mt8192 asurada SCP rpmsg subnode
-> 2. squash register definitions into driver patches
-> 3. initialize local variables on the declaration at patch v8 06/11
-> 
-> v6 -> v7:
-> 1. merge the mtk_scp_cluster struct into the mtk_scp structure
->     at the "Probe multi-core SCP" patch
-> 
-> v5 -> v6:
-> 1. move the mtk_scp_of_regs structure from mtk_common.h to mtk_scp.c
-> 2. rename the SCP core 0 label from 'scp' to 'scp_c0'
-> 
-> v4 -> v5:
-> 1. move resource release actions to the platform driver remove operation
-> 2. fix dual-core watchdog handling
-> 
-> v3 -> v4:
-> 1. change the representation of dual-core SCP in dts file and update SCP yaml
-> 2. rewrite SCP driver to reflect the change of dts node
-> 3. drop 'remove redundant call of rproc_boot for SCP' in v3 for further investigation
-> 
-> v2 -> v3:
-> 1. change the representation of dual-core SCP in dts file and update SCP yaml
-> 2. rewrite SCP driver to reflect the change of dts node
-> 3. add SCP core 1 node to mt8195.dtsi
-> 4. remove redundant call of rproc_boot for SCP
-> 5. refine IPI error message
-> 
-> v1 -> v2:
-> 1. update dt-binding property description
-> 2. remove kconfig for scp dual driver
-> 3. merge mtk_scp_dual.c and mtk_scp_subdev.c to mtk_scp.c
-> 
-> 
-> Tinghan Shen (11):
->    dt-bindings: remoteproc: mediatek: Improve the rpmsg subnode
->      definition
->    arm64: dts: mediatek: Update the node name of SCP rpmsg subnode
->    dt-bindings: remoteproc: mediatek: Support MT8195 dual-core SCP
->    remoteproc: mediatek: Add MT8195 SCP core 1 operations
->    remoteproc: mediatek: Introduce cluster on single-core SCP
->    remoteproc: mediatek: Probe multi-core SCP
->    remoteproc: mediatek: Add scp_boot_peers and scp_shutdown_peers
->      operations
->    remoteproc: mediatek: Setup MT8195 SCP core 1 SRAM offset
->    remoteproc: mediatek: Handle MT8195 SCP core 1 watchdog timeout
->    remoteproc: mediatek: Refine ipi handler error message
->    arm64: dts: mediatek: mt8195: Add SCP 2nd core
-> 
->   .../bindings/remoteproc/mtk,scp.yaml          | 176 +++++++-
->   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   2 +-
->   .../boot/dts/mediatek/mt8192-asurada.dtsi     |   2 +-
->   .../boot/dts/mediatek/mt8195-cherry.dtsi      |   6 +-
->   arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  32 +-
->   drivers/remoteproc/mtk_common.h               |  26 ++
->   drivers/remoteproc/mtk_scp.c                  | 425 ++++++++++++++++--
->   7 files changed, 594 insertions(+), 75 deletions(-)
-> 
+> +      - description: UART controller on T7 compatible SoCs
+> +        items:
+> +          - const: amlogic,meson-t7-uart
+> +          - const: amlogic,meson-s4-uart
 
+As mentioned on v (N-1), I am fine with this either. You can keep the
+Ack Lucas with this change.
+
+> and update meson_uart.c if there's no AO uarts anymore....
+>=20
+> Neil
+>=20
+> > Otherwise,
+> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
+
+
+--2DL/pp1ncOUXA4aY
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJQcsgAKCRB4tDGHoIJi
+0vZeAPsHIYCp0zmida6xe7aOwCiiCzCLyknJ6y/URqM/SYCm5gD/dSRBiHN42psT
+HULI6939ud/hg6iv/iezBvJLBkDu8AA=
+=ew60
+-----END PGP SIGNATURE-----
+
+--2DL/pp1ncOUXA4aY--
