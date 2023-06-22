@@ -2,97 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90DE7739478
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 03:27:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 055B87394C9
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 03:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229782AbjFVB1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 21:27:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45170 "EHLO
+        id S229593AbjFVBm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 21:42:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52932 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229796AbjFVB1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 21:27:02 -0400
-Received: from mx0b-00069f02.pphosted.com (mx0b-00069f02.pphosted.com [205.220.177.32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 855881BD4;
-        Wed, 21 Jun 2023 18:27:01 -0700 (PDT)
-Received: from pps.filterd (m0246631.ppops.net [127.0.0.1])
-        by mx0b-00069f02.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35LKHFmL007951;
-        Thu, 22 Jun 2023 01:26:35 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type : content-transfer-encoding; s=corp-2023-03-30;
- bh=jX27C/oUUJtUmxJEH6sxeuA+0J19a7Fvbg033jVIPA0=;
- b=K/hqrwv1o/gFrefS58Fd5m5hdbrCmIWhQsb0AmMDlrmIBrp/4X6mHt6X7OkrhgDJq3jh
- l1aDJ+xeKBQhyUioxasoA2YCj++QNIL/9Se/uTSpeAmot7fv5DCj90/6v/GeJmmsBTd+
- dTG0BKFLIpyGBtgyiiJL0EYqpevFUP7iomeNYETKbWbHsCE+1kdjZMnpWFSEUqMy6AuL
- L2GJz/l63bVUpWjjpecQlSERRf8Nl11LVoTfeiG7+/fcc24eV7wuqJY/s1SmAg6h1A+0
- u0pbFhQClnsixkM6OgZzCHdGqHPX3OZPmixmEugEz9I69BDQ+urGcRn+iDJE4l1aVMJq sg== 
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.appoci.oracle.com [130.35.100.223])
-        by mx0b-00069f02.pphosted.com (PPS) with ESMTPS id 3r93m3rw3m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 22 Jun 2023 01:26:35 +0000
-Received: from pps.filterd (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (8.17.1.19/8.17.1.19) with ESMTP id 35M0f7oW038610;
-        Thu, 22 Jun 2023 01:26:35 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTPS id 3r9396thya-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 22 Jun 2023 01:26:34 +0000
-Received: from iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 35M1QXav038374;
-        Thu, 22 Jun 2023 01:26:34 GMT
-Received: from ca-mkp2.ca.oracle.com.com (mpeterse-ol9.allregionaliads.osdevelopmeniad.oraclevcn.com [100.100.251.135])
-        by iadpaimrmta01.imrmtpd1.prodappiadaev1.oraclevcn.com (PPS) with ESMTP id 3r9396thxp-4;
-        Thu, 22 Jun 2023 01:26:34 +0000
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-To:     Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229504AbjFVBm2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 21:42:28 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15ACA129;
+        Wed, 21 Jun 2023 18:42:26 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-77e2df49a91so217076139f.2;
+        Wed, 21 Jun 2023 18:42:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687398145; x=1689990145;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mYwve6hqLcxhq723ERB1a1o5pJtdB4TzWL3ZG3uBOdk=;
+        b=ld6UhAKO1Z9voPqSqiqPV1f+4narHPmNhBwa1lRt5kITAuAsoTvHATUTMzjPkjDnJp
+         RqupTrXLO12pg2Unfv3vBqk2GwKFqB5JWfD4xsvFPrnXwghdccRoBR9p5+DVhElPi6RC
+         XUE+q8/PLxfLKxCLcg0JbvBvJ1Nn44RdaGNKzuePv8C5I0CpFKFWPTBH4BGA2YZCNRU+
+         INfbFbjgqCX7yU+aEpjUEkOAgfewUTkmSoUUcyDZpmJvs7JeulGESvo2rnLd+Nw/jeWe
+         cCrPak9XSjqfNT2Fr9bMTdpktD3EBleVCr3aeb+fxjR3mqNl2Nx1DH7E2//f4ngjat33
+         pvKQ==
+X-Gm-Message-State: AC+VfDxcCEDIlmeaam8ZwrnnX3D6oykOWooA29v9zv8R1cOACmGPfvcc
+        tuMU4EYpNpGY5R79EGdtWw==
+X-Google-Smtp-Source: ACHHUZ5A5nXob6MqVQ1dpKVvOe1QBpovcfDXr5TldZBrmszKyL8555YE5803sFOTnKwkojHRXI+gJQ==
+X-Received: by 2002:a5d:9f1a:0:b0:780:bfc8:ad10 with SMTP id q26-20020a5d9f1a000000b00780bfc8ad10mr2154423iot.1.1687398145175;
+        Wed, 21 Jun 2023 18:42:25 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id 16-20020a5ea510000000b0077e3943aeb3sm1746545iog.54.2023.06.21.18.42.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 18:42:24 -0700 (PDT)
+Received: (nullmailer pid 28560 invoked by uid 1000);
+        Thu, 22 Jun 2023 01:42:21 -0000
+Date:   Wed, 21 Jun 2023 19:42:21 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Hsiao Chien Sung <shawn.sung@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-mediatek@lists.infradead.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>
-Subject: Re: [PATCH] dt-bindings: ufs: samsung,exynos: drop unneeded quotes
-Date:   Wed, 21 Jun 2023 21:26:22 -0400
-Message-Id: <168739587243.247655.8617428148720225678.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230609140651.64488-1-krzysztof.kozlowski@linaro.org>
-References: <20230609140651.64488-1-krzysztof.kozlowski@linaro.org>
+        linux-kernel@vger.kernel.org,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Nancy Lin <nancy.lin@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        devicetree@vger.kernel.org, Singo Chang <singo.chang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Jason-JH Lin <jason-jh.lin@mediatek.com>
+Subject: Re: [PATCH v2 06/15] dt-bindings: reset: mt8188: Add VDOSYS0 reset
+ control bits
+Message-ID: <168739814113.28500.13763614675316462646.robh@kernel.org>
+References: <20230614073125.17958-1-shawn.sung@mediatek.com>
+ <20230614073125.17958-7-shawn.sung@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-21_14,2023-06-16_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 bulkscore=0 suspectscore=0
- adultscore=0 mlxscore=0 mlxlogscore=756 malwarescore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306220009
-X-Proofpoint-GUID: Alecm8faq3WsiG8DyeQK7GyGLQt9i-66
-X-Proofpoint-ORIG-GUID: Alecm8faq3WsiG8DyeQK7GyGLQt9i-66
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230614073125.17958-7-shawn.sung@mediatek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 09 Jun 2023 16:06:51 +0200, Krzysztof Kozlowski wrote:
 
-> Cleanup bindings dropping unneeded quotes. Once all these are fixed,
-> checking for this can be enabled in yamllint.
+On Wed, 14 Jun 2023 15:31:16 +0800, Hsiao Chien Sung wrote:
+> Add MT8188 VDOSYS0 reset control bits.
 > 
+> Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
+> ---
+>  include/dt-bindings/reset/mt8188-resets.h | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 > 
 
-Applied to 6.5/scsi-queue, thanks!
+Acked-by: Rob Herring <robh@kernel.org>
 
-[1/1] dt-bindings: ufs: samsung,exynos: drop unneeded quotes
-      https://git.kernel.org/mkp/scsi/c/e246514ae698
-
--- 
-Martin K. Petersen	Oracle Linux Engineering
