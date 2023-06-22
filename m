@@ -2,89 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFAC73937D
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 02:02:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 306E4739393
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 02:11:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230099AbjFVACT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 20:02:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43230 "EHLO
+        id S229893AbjFVALE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 20:11:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbjFVACS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 20:02:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6266B1BE6;
-        Wed, 21 Jun 2023 17:01:37 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 09D556171B;
-        Thu, 22 Jun 2023 00:00:22 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 568A3C433CA;
-        Thu, 22 Jun 2023 00:00:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687392021;
-        bh=C5BkJXS6Vgw04VtsKDnyCQbmDTblMR1v9dWpWQr/0uY=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=cIHRsngolwud2asdbOkq6gslIDQe9iPWOypw3fAtQLCqFWdqdNo68S+7OWGJnOKoR
-         x0LyBxRkRNWjtot7fHzqXH+isRfhNVo4Dks19oWl42QpoKyv73sQSorNDwxRBFCwCi
-         AL1s132ehdOKABA4SRVCeSpjQWyyagcBnmVFxTPkXME4EFcENg4hrCyrceUAMHTI4V
-         UoMmOP5sk9Xlu8KyU4fq/freTy483x4B/gnPtDrg/7a1YgwShRvqHXkmzGb76fkKeT
-         FqLTnIy/A+024/3dBVUpvtEF8jIdjCOrGjuLxJs9OpbeMeL7bC5BJmpMH8SCgLd8tU
-         SpuQAbJn0rNvA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 34BA8C395F1;
-        Thu, 22 Jun 2023 00:00:21 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S230229AbjFVALD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 20:11:03 -0400
+X-Greylist: delayed 189 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 21 Jun 2023 17:10:55 PDT
+Received: from mail-4327.protonmail.ch (mail-4327.protonmail.ch [185.70.43.27])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7119E1730
+        for <devicetree@vger.kernel.org>; Wed, 21 Jun 2023 17:10:55 -0700 (PDT)
+Date:   Thu, 22 Jun 2023 00:00:30 +0000
+Authentication-Results: mail-4321.protonmail.ch;
+        dkim=pass (2048-bit key) header.d=protonmail.com header.i=@protonmail.com header.b="FNip5Xb7"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
+        s=protonmail3; t=1687392041; x=1687651241;
+        bh=woxRHx54bL276MtNal16PQ45VdaC3OFmLaUw4jNYEoc=;
+        h=Date:To:From:Cc:Subject:Message-ID:Feedback-ID:From:To:Cc:Date:
+         Subject:Reply-To:Feedback-ID:Message-ID:BIMI-Selector;
+        b=FNip5Xb7W0zfTA2gP5Bi9lkOSxNebYjJj31a7MzBfn4f6J2LzE+co4XObiO57+YJL
+         28c7CBVQkDOjDEZh1tEwa3NlvX8XuOr5/fTU4duXzlNFlYz5jbZAj7blcVwPdjkpmx
+         4Uv9wgnTfU124YQJcpdcNd293lJr9Yngt9gqH+EBCzibMHkkFF1GStQ50MWAbzwyH7
+         FBrRQDm/l3nTYXGBdyfVhhibOrZA7VU8XifGXcXtnEjI6QJ14GU9TWEh1z5o96a9Np
+         aMu1S1/LUOpkDTBeZMbmAvw+lpeS06elqBCVM+vli8WvDgvAsAjyyhDOm4ve/UpS/y
+         PX04P+SG037zQ==
+To:     linux-kernel@vger.kernel.org
+From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Nikita Travkin <nikita@trvn.ru>, soc@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: [PATCH 0/7] arm64: dts: qcom: msm8916-samsung-fortuna: Add initial device trees
+Message-ID: <20230622000007.48219-1-linmengbo0689@protonmail.com>
+Feedback-ID: 40467236:user:proton
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] dt-bindings: net: bluetooth: qualcomm: document
- VDD_CH1
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168739202121.22621.9813816851269923496.git-patchwork-notify@kernel.org>
-Date:   Thu, 22 Jun 2023 00:00:21 +0000
-References: <20230617165716.279857-1-krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230617165716.279857-1-krzysztof.kozlowski@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        bgodavar@codeaurora.org, rjliao@codeaurora.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Samsung Galaxy Core Prime, Grand Prime and Ace 4 are phones based on
+MSM8916. They are similar to the other Samsung devices based on MSM8916
+with only a few minor differences.
 
-This patch was applied to netdev/net-next.git (main)
-by Jakub Kicinski <kuba@kernel.org>:
+This initial commit adds support for:
+ - fortuna3g (SM-G530H)
+ - fortunaltezt (SM-G530Y)
+ - gprimeltecan (SM-G530W)
+ - grandprimelte (SM-G530FZ)
+ - heatqlte (SM-G357FZ)
+ - rossa (SM-G360G)
 
-On Sat, 17 Jun 2023 18:57:16 +0200 you wrote:
-> WCN3990 comes with two chains - CH0 and CH1 - where each takes VDD
-> regulator.  It seems VDD_CH1 is optional (Linux driver does not care
-> about it), so document it to fix dtbs_check warnings like:
-> 
->   sdm850-lenovo-yoga-c630.dtb: bluetooth: 'vddch1-supply' does not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> [...]
+The device trees contain initial support with:
+ - GPIO keys
+ - Regulator haptic
+ - SDHCI (internal and external storage)
+ - USB Device Mode
+ - UART (on USB connector via the SM5502/SM5504 MUIC)
+ - WCNSS (WiFi/BT)
+ - Regulators
+ - Fuelgauge
+ - Accelerometer and magnetometer
+ - NFC (except fortuna3g)
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: bluetooth: qualcomm: document VDD_CH1
-    https://git.kernel.org/netdev/net-next/c/6a0a6dd8df9b
-
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+There are different variants of Grand Prime, with some differences
+in accelerometer, NFC and panel.
+Core Prime and Grand Prime are similar, with some differences in MUIC,
+panel and touchscreen.
+Ace 4 and Core Prime are similar, with some differences in panel and
+touchscreen.
 
