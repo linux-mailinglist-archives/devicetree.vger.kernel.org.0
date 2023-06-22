@@ -2,169 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7FEE739E02
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 12:05:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD236739E3D
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 12:17:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230317AbjFVKFZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 06:05:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33074 "EHLO
+        id S230317AbjFVKRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 06:17:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230060AbjFVKFY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 06:05:24 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F129B4;
-        Thu, 22 Jun 2023 03:05:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1687428323; x=1718964323;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=Cxl3Mx88pP5Y2quTc2VGzlQgURMYkhzFdmr6u9GzYN0=;
-  b=QspdcrtpsPMUVWruOWoNh3cJlTqYStypaVZSfZTKSHcXtTEjqla5rRPe
-   L5zFwhiYk7PlUh9KRoOQMdDoyi4R2Zq093ztWB6l7/mkISifS3b6usbV5
-   c/pYaxBheC/UgN8K7TFFEc1riJbbVG9bjdiW1u0kAFgbErPMUIPH0grF+
-   Rwy/wslB0s/kuLj4r8ZB8N/vpreZzkXkIzDx+nGbaVMIbFDYD4wW4iwAP
-   tKy3q7QQ9/gdXQFh4KOpht257QBD7rTy+//5c+/PICk1fPMoZtYB7bPoX
-   4scsLQaDbHld/JofGfEOgR6o4oiXgbL06eQwBeLy1NPKhMPn/Y6RvGhXt
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.00,263,1681196400"; 
-   d="asc'?scan'208";a="158097833"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 22 Jun 2023 03:05:22 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 22 Jun 2023 03:05:04 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Thu, 22 Jun 2023 03:05:01 -0700
-Date:   Thu, 22 Jun 2023 11:04:34 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-CC:     Lucas Tanure <tanure@linux.com>, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229866AbjFVKRO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 06:17:14 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF72AFE
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 03:17:08 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1687429027;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=W9aUItMReoPpYIK/wz4UleCRCSlHvAr+ArgPv0wraAc=;
+        b=eUTMI/SAS2r/dpn4tNDOyXzSr/TQco8LvrghB2kuadPJPCl1TGXnGk51h6BjxCEhtwjvaR
+        OrFR50zRmdVnHxmPzXi4fJMY2JwYBgSVPioRASOm4h+i8mWqnK8z3gTBEbmEyrd4qHqA4R
+        4RuUYE6g2jCdzOfOyzoGNEdpARgEBZbU0DayIiknDT8uCILP8qmjhY1n0WYUfFY/OKnVPK
+        bSSdbtn0uEn+O+xVIo2ulCoiYyNnoOhRfxUt+mvhhGZTUFeIIAxRar/wyayUp+VmoM5qgr
+        GVcqIwwlZIRp1kerv8cOGayM7WveYvhhWifvyzKszlxeZLjiHUK3P0156lGD+g==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E2500FF80C;
+        Thu, 22 Jun 2023 10:17:05 +0000 (UTC)
+Date:   Thu, 22 Jun 2023 12:17:05 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        dri-devel@lists.freedesktop.org
+Cc:     Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
-        Artem <art@khadas.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Conor Dooley <conor@kernel.org>
-Subject: Re: [PATCH v4 2/3] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for T7
-Message-ID: <20230622-bouncy-nebulizer-d4e487937c03@wendy>
-References: <20230622084045.519203-1-tanure@linux.com>
- <20230622084045.519203-3-tanure@linux.com>
- <20230622-unsent-willing-574906af5e1a@wendy>
- <4a2a2f0c-f9dd-d5c4-1e7e-5852970f87a7@linaro.org>
+        devicetree@vger.kernel.org,
+        Thomas Weber <thomas.weber@corscience.de>
+Subject: Re: [PATCH v2 2/2] drm/panel: simple: Add support for Mitsubishi
+ AA084XE01
+Message-ID: <20230622121705.32dc3924@xps-13>
+In-Reply-To: <20230619074348.2893701-2-miquel.raynal@bootlin.com>
+References: <20230619074348.2893701-1-miquel.raynal@bootlin.com>
+        <20230619074348.2893701-2-miquel.raynal@bootlin.com>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="2DL/pp1ncOUXA4aY"
-Content-Disposition: inline
-In-Reply-To: <4a2a2f0c-f9dd-d5c4-1e7e-5852970f87a7@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---2DL/pp1ncOUXA4aY
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hello,
 
-On Thu, Jun 22, 2023 at 11:38:49AM +0200, Neil Armstrong wrote:
-> On 22/06/2023 11:26, Conor Dooley wrote:
-> > On Thu, Jun 22, 2023 at 09:40:44AM +0100, Lucas Tanure wrote:
-> > > Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
-> > > There is no need for an extra compatible line in the driver, but
-> > > add T7 compatible line for documentation.
-> > >=20
-> > > Co-developed-by: Conor Dooley <conor@kernel.org>
-> >=20
-> > You can delete this, I don't need a Co-developed-by tag for review
-> > feedback.
-> >=20
-> > > Signed-off-by: Lucas Tanure <tanure@linux.com>
-> > > ---
-> > >   .../devicetree/bindings/serial/amlogic,meson-uart.yaml      | 6 +++=
-+++
-> > >   1 file changed, 6 insertions(+)
-> > >=20
-> > > diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-u=
-art.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> > > index 01ec45b3b406..4ca4673169aa 100644
-> > > --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> > > +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> > > @@ -46,6 +46,12 @@ properties:
-> > >             - amlogic,meson8b-uart
-> > >             - amlogic,meson-gx-uart
-> > >             - amlogic,meson-s4-uart
-> > > +      - description: Everything-Else power domain UART controller on=
- G12A compatible SoCs
-> >=20
-> > s/Everything-Else/Always-on/
+miquel.raynal@bootlin.com wrote on Mon, 19 Jun 2023 09:43:48 +0200:
+
+> From: Thomas Weber <thomas.weber@corscience.de>
 >=20
+> Add support for the Mitsubishi AA084XE01 panel which is an 8.4 inch XGA
+> TFT-LCD module for industrial use.
 >=20
-> "Everything-Else" was the amlogic naming for the non-always-on power doma=
-in, but it seems
-> it's no more something used on new SoCs like the T7 family.
+> Link: https://www.mouser.fr/datasheet/2/274/aa084xe01_e-364171.pdf
+> Signed-off-by: Thomas Weber <thomas.weber@corscience.de>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
 >=20
-> Anyway, the description is wrong, and it's a mess because we used "amlogi=
-c,meson-ao-uart"
-> for uarts on the Always-On domain, but here it's described as Everything-=
-Else...
+> Changes in v2:
+> * Lowered the clock to match the typical 65MHz frequency.
+> * Added the connector type and the missing bus flags.
+> * Collected an A-by tag.
 >=20
-> Lucas, is there AO_uarts on T7 ? if not drop this amlogic,meson-ao-uart f=
-or the T7 UARTs.
+>  drivers/gpu/drm/panel/panel-simple.c | 29 ++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
 >=20
-> But if there's no more AO uart controller, you'll need to change drivers/=
-tty/serial/meson_uart.c
-> and add a OF_EARLYCON_DECLARE() for amlogic,meson-t7-uart.
->=20
-> But still, why don't you use the amlogic,meson-s4-uart as fallback instea=
-d ?
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel=
+/panel-simple.c
+> index 8a3b685c2fcc..963f3223c985 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -2670,6 +2670,32 @@ static const struct panel_desc mitsubishi_aa070mc0=
+1 =3D {
+>  	.bus_flags =3D DRM_BUS_FLAG_DE_HIGH,
+>  };
+> =20
+> +static const struct drm_display_mode mitsubishi_aa084xe01_mode =3D {
+> +	.clock =3D 56234,
+> +	.hdisplay =3D 1024,
+> +	.hsync_start =3D 1024 + 24,
+> +	.hsync_end =3D 1024 + 24 + 63,
+> +	.htotal =3D 1024 + 24 + 63 + 1,
+> +	.vdisplay =3D 768,
+> +	.vsync_start =3D 768 + 3,
+> +	.vsync_end =3D 768 + 3 + 6,
+> +	.vtotal =3D 768 + 3 + 6 + 1,
+> +	.flags =3D DRM_MODE_FLAG_PHSYNC | DRM_MODE_FLAG_PVSYNC,
+> +};
+> +
+> +static const struct panel_desc mitsubishi_aa084xe01 =3D {
+> +	.modes =3D &mitsubishi_aa084xe01_mode,
+> +	.num_modes =3D 1,
+> +	.bpc =3D 8,
+> +	.size =3D {
+> +		.width =3D 1024,
+> +		.height =3D 768,
+> +	},
+> +	.bus_format =3D MEDIA_BUS_FMT_RGB565_1X16,
+> +	.connector_type =3D DRM_MODE_CONNECTOR_LVDS,
 
-That's probably my fault, I suggested the g12a in my reply to v3,
-because that is the one from which the match data is being copied, so it
-seemed like it'd make the most sense to me as the fallback.
+I've got confused, the connector is a DPI connector. On my board there
+are two RGB-LVDS and LVDS-RGB connectors, but this is not relevant
+here. I'll send an update using the right connector type.
 
-btw Neil, is the "meson-gx-uart" a wildcard? Dunno the hardware, so
-wasn't sure.
+> +	.bus_flags =3D DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_SAMPLE_NEGED=
+GE,
+> +};
+> +
+>  static const struct display_timing multi_inno_mi0700s4t_6_timing =3D {
+>  	.pixelclock =3D { 29000000, 33000000, 38000000 },
+>  	.hactive =3D { 800, 800, 800 },
+> @@ -4158,6 +4184,9 @@ static const struct of_device_id platform_of_match[=
+] =3D {
+>  	}, {
+>  		.compatible =3D "mitsubishi,aa070mc01-ca1",
+>  		.data =3D &mitsubishi_aa070mc01,
+> +	}, {
+> +		.compatible =3D "mitsubishi,aa084xe01",
+> +		.data =3D &mitsubishi_aa084xe01,
+>  	}, {
+>  		.compatible =3D "multi-inno,mi0700s4t-6",
+>  		.data =3D &multi_inno_mi0700s4t_6,
 
-> +      - description: UART controller on T7 compatible SoCs
-> +        items:
-> +          - const: amlogic,meson-t7-uart
-> +          - const: amlogic,meson-s4-uart
 
-As mentioned on v (N-1), I am fine with this either. You can keep the
-Ack Lucas with this change.
-
-> and update meson_uart.c if there's no AO uarts anymore....
->=20
-> Neil
->=20
-> > Otherwise,
-> > Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-
---2DL/pp1ncOUXA4aY
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJQcsgAKCRB4tDGHoIJi
-0vZeAPsHIYCp0zmida6xe7aOwCiiCzCLyknJ6y/URqM/SYCm5gD/dSRBiHN42psT
-HULI6939ud/hg6iv/iezBvJLBkDu8AA=
-=ew60
------END PGP SIGNATURE-----
-
---2DL/pp1ncOUXA4aY--
+Thanks,
+Miqu=C3=A8l
