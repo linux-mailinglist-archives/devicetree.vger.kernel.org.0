@@ -2,199 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C8DD873A3CD
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 16:57:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D85C73A3D8
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 16:58:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231422AbjFVO5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 10:57:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34066 "EHLO
+        id S231784AbjFVO6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 10:58:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230062AbjFVO5V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 10:57:21 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E0BDE9;
-        Thu, 22 Jun 2023 07:57:20 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35MBmrCI025928;
-        Thu, 22 Jun 2023 14:56:51 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=TObwiHTb4XM5wqihoSvZlLhvS03t5wiD+Y1C/4bCTaA=;
- b=HzBXOAy4Hore4Y+K4YQgLmMbFzF9v7d2PApdXZclw2emZAe3yN7ptaWuha4sBP6wfThP
- xaWEBZ0lstOd1+0oC+XPo4eCoByP9bdMiKNXBSXSaiDm5pQXHar8WOu9asWPBP1/FAl1
- 1aumJ0fDP13/31CdiDcaD5PEFXA1v0o+96WH2VinYA00mPv4pnZOKnUIv+jQJ5c2uK0E
- Ndyn4X2Bg8f9aGbp44XEW01lLWfOFC2uUdTSa7d/jaOc7KdnbzuJ5eZuwXKq2YUJkBBA
- 1+nVxBDSuPQez/8Dbbv4moj3SwKSvj0+FvkE9UVkiB6s2t2GgXrc2ChLwAI9w0KMTld+ hA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rcj6n94yx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 22 Jun 2023 14:56:50 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35MEun9x024619
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 22 Jun 2023 14:56:49 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Thu, 22 Jun
- 2023 07:55:51 -0700
-Message-ID: <e880bad8-4fcb-97c1-ec9c-9122e1b550e6@quicinc.com>
-Date:   Thu, 22 Jun 2023 08:55:50 -0600
+        with ESMTP id S231384AbjFVO6N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 10:58:13 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97245E42;
+        Thu, 22 Jun 2023 07:58:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=OdPMqDWgVDt0x793WxRc09L+unPTlnGwL75MUH9aCYo=; b=W
+        Np8UN7yYhJ+zqJkYdQB7NEibtid48PpIySKChx0CWnZsoKOMBdifWkF/F7NMyMH8p3ktKmUq3vDVB
+        2H0Q4KfPDlf9457nIE7TFqHeYTDGFpW2ixrW7E2dzRlwcBFgVC/7fT4SptKGYkxT8XhW39QG/ZeqM
+        nKvXhJX2ZbqOJ0wE=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:55382 helo=localhost.localdomain)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qCLl5-0002fr-Dz; Thu, 22 Jun 2023 10:58:04 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, hugo@hugovil.com,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Date:   Thu, 22 Jun 2023 10:57:43 -0400
+Message-Id: <20230622145800.2442116-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 3/9] clk: qcom: gcc-msm8998: Control MMSS and GPUSS GPLL0
- outputs properly
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>
-CC:     Marijn Suijten <marijn.suijten@somainline.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20230622-topic-8998clk-v1-0-5b7a0d6e98b1@linaro.org>
- <20230622-topic-8998clk-v1-3-5b7a0d6e98b1@linaro.org>
-From:   Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20230622-topic-8998clk-v1-3-5b7a0d6e98b1@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 8OS5IFA_EKdROOwi-ecRBXqnDKYve9MH
-X-Proofpoint-ORIG-GUID: 8OS5IFA_EKdROOwi-ecRBXqnDKYve9MH
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-22_10,2023-06-22_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501 mlxscore=0
- bulkscore=0 suspectscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- clxscore=1015 spamscore=0 phishscore=0 malwarescore=0 lowpriorityscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306220126
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH v4 00/17] rtc: pcf2127: add PCF2131 driver
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/22/2023 5:57 AM, Konrad Dybcio wrote:
-> Up until now, we've been relying on some non-descript hardware magic
-> to pinkypromise turn the clocks on for us. While new SoCs shine with
-> that feature, MSM8998 can not always be fully trusted.
-> 
-> Register the MMSS and GPUSS GPLL0 legs with the CCF to allow for manual
-> enable voting.
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->   drivers/clk/qcom/gcc-msm8998.c | 58 ++++++++++++++++++++++++++++++++++++++++++
->   1 file changed, 58 insertions(+)
-> 
-> diff --git a/drivers/clk/qcom/gcc-msm8998.c b/drivers/clk/qcom/gcc-msm8998.c
-> index be024f8093c5..cccb19cae481 100644
-> --- a/drivers/clk/qcom/gcc-msm8998.c
-> +++ b/drivers/clk/qcom/gcc-msm8998.c
-> @@ -25,6 +25,9 @@
->   #include "reset.h"
->   #include "gdsc.h"
->   
-> +#define GCC_MMSS_MISC	0x0902C
-> +#define GCC_GPU_MISC	0x71028
-> +
->   static struct pll_vco fabia_vco[] = {
->   	{ 250000000, 2000000000, 0 },
->   	{ 125000000, 1000000000, 1 },
-> @@ -1367,6 +1370,22 @@ static struct clk_branch gcc_boot_rom_ahb_clk = {
->   	},
->   };
->   
-> +static struct clk_branch gcc_mmss_gpll0_div_clk = {
-> +	.halt_check = BRANCH_HALT_DELAY,
-> +	.clkr = {
-> +		.enable_reg = 0x5200c,
-> +		.enable_mask = BIT(0),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gcc_mmss_gpll0_div_clk",
-> +			.parent_hws = (const struct clk_hw *[]) {
-> +				&gpll0_out_main.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
->   static struct clk_branch gcc_mmss_gpll0_clk = {
->   	.halt_check = BRANCH_HALT_DELAY,
->   	.clkr = {
-> @@ -1395,6 +1414,38 @@ static struct clk_branch gcc_mss_gpll0_div_clk_src = {
->   	},
->   };
->   
-> +static struct clk_branch gcc_gpu_gpll0_div_clk = {
-> +	.halt_check = BRANCH_HALT_DELAY,
-> +	.clkr = {
-> +		.enable_reg = 0x5200c,
-> +		.enable_mask = BIT(3),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gcc_gpu_gpll0_div_clk",
-> +			.parent_hws = (const struct clk_hw *[]) {
-> +				&gpll0_out_main.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
-> +static struct clk_branch gcc_gpu_gpll0_clk = {
-> +	.halt_check = BRANCH_HALT_DELAY,
-> +	.clkr = {
-> +		.enable_reg = 0x5200c,
-> +		.enable_mask = BIT(4),
-> +		.hw.init = &(struct clk_init_data){
-> +			.name = "gcc_gpu_gpll0_clk",
-> +			.parent_hws = (const struct clk_hw *[]) {
-> +				&gpll0_out_main.clkr.hw,
-> +			},
-> +			.num_parents = 1,
-> +			.ops = &clk_branch2_ops,
-> +		},
-> +	},
-> +};
-> +
->   static struct clk_branch gcc_blsp1_ahb_clk = {
->   	.halt_reg = 0x17004,
->   	.halt_check = BRANCH_HALT_VOTED,
-> @@ -3080,6 +3131,9 @@ static struct clk_regmap *gcc_msm8998_clocks[] = {
->   	[AGGRE2_SNOC_NORTH_AXI] = &aggre2_snoc_north_axi_clk.clkr,
->   	[SSC_XO] = &ssc_xo_clk.clkr,
->   	[SSC_CNOC_AHBS_CLK] = &ssc_cnoc_ahbs_clk.clkr,
-> +	[GCC_MMSS_GPLL0_DIV_CLK] = &gcc_mmss_gpll0_div_clk.clkr,
-> +	[GCC_GPU_GPLL0_DIV_CLK] = &gcc_gpu_gpll0_div_clk.clkr,
-> +	[GCC_GPU_GPLL0_CLK] = &gcc_gpu_gpll0_clk.clkr,
->   };
->   
->   static struct gdsc *gcc_msm8998_gdscs[] = {
-> @@ -3235,6 +3289,10 @@ static int gcc_msm8998_probe(struct platform_device *pdev)
->   	if (ret)
->   		return ret;
->   
-> +	/* Disable the GPLL0 active input to MMSS and GPU via MISC registers */
-> +	regmap_write(regmap, GCC_MMSS_MISC, 0x10003);
-> +	regmap_write(regmap, GCC_GPU_MISC, 0x10003);
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-I wonder, does this disrupt a handoff of an active display from the 
-bootloader to Linux?
+Hello,
+this patch series adds the driver for the PCF2131 real-time clock.
+
+This RTC is very similar in functionality to the PCF2127/29 with the
+following differences:
+  -supports two new control registers at offsets 4 and 5
+  -supports a new reset register
+  -supports 4 tamper detection functions instead of 1
+  -has no nvmem (like the PCF2129)
+  -has two output interrupt pins instead of one
+  -has 1/100th seconds capabilities (not supported in this driver)
+  -pcf2127 has watchdog clock sources: 1/60,   1, 64 and 4096Hz
+   pcf2131 has watchdog clock sources: 1/64, 1/4,  4 and   64Hz
+  -watchdog value register cannot be read after being set
+
+Most of the register addresses are very different, although they still
+follow the same layout. For example, the time/date and tamper registers
+have a different base address, but the offsets are all the same.
+Consequently, the source code of the PCF2127 driver can be easily adapted
+to support this new device.
+
+Patch 1 improves rtc_read_time() performance
+
+Patch 2 improve timestamp reading performance
+
+Patch 3 lowers error message severity
+
+Patch 4 remove superfluous comments.
+
+Patches 5 to 10 modify the existing pcf2127 driver to make it more generic
+and able to support multiple variants, like the PCF2131. This is done
+mostly by using offsets instead of absolute hardcoded register addresses.
+
+Patch 11 add actual support for the PCF2131.
+
+Patch 12 configures all interrupt sources to go through the INT A pin.
+
+Patch 13 adapt the time/date registers write sequence for PCF2131 (STOP and
+      CPR bits).
+
+Patch 14 add support for generic watchdog timing configuration.
+
+Patch 15 add a new flag to identify if device has read support for reading
+      watchdog register value.
+      Since the watchdog value register cannot be read on the PCF2131 after
+      being set, it seems that we cannot detect if watchdog timer was
+      started by bootloader. I am not sure what is the best way to handle
+      this situation, suggestions are welcomed.
+
+Patch 16 add UIE support for PCF2131
+
+Patch 17 add the dt-bindings for the PCF2131.
+
+I have tested the driver using a PCF2131-ARD evaluation board connected to
+a Variscite imx8mn NANO SOM evaluation board:
+  - Time get/set ok;
+  - Alarms get/set ok
+  - Timestamp 1 to 4 ok
+  - IRQ alarm ok
+  - Watchdog ok
+  - Also tested successfully with "RTC Driver Test Example" from
+    Documentation/rtc.txt
+
+I have also tested the driver on a custom PCF2129 adapter board connected to
+a Variscite imx8mn NANO SOM evaluation board.
+
+Thank you.
+
+Link: [v1] https://patchwork.ozlabs.org/project/rtc-linux/patch/20220125200009.900660-2-hugo@hugovil.com/
+Link: [v2] https://patchwork.ozlabs.org/project/rtc-linux/list/?series=285734
+Link: [v3] https://patchwork.ozlabs.org/project/rtc-linux/list/?series=332888
+
+Changes for V2:
+- In general, fix and improvements after I have tested on real hardware
+- Fix alarm interrupt A/B mask setting for PCF2131:
+  PCF2131_BIT_INT_AIE must be cleared, not set, to enable interrupt.
+- Remove low_reg validation: only check if TS interrupt flag is
+  defined, as low_reg is defined at address 0 for PCF2127/29.
+- Change PWRMNG value for PCF2131: default is different than PCF2127/29.
+- Adapt time/date registers write sequence for PCF2131 (STOP and CPR bits).
+- Map all interrupt sources to INT A pin
+- Read and validate PCF2131 device presence from RESET register
+- Adapt watchdog configuration for PCF2131
+
+Changes for V3:
+- Rebase for kernel v6.1
+
+Changes for V4:
+- Rebase for kernel v6.4-rc7
+- Add base-commit infos (git format-patch with --base= option)
+- Rename regs_td_base -> reg_time_base
+- Rename PCF2127_REG_TIME_DATE_BASE -> PCF2127_REG_TIME_BASE
+- Remove/update comments
+- Remove PCF2127_OFFSET_ALARM_* defines
+- Remove PCF2127_OFFSET_TD_* defines
+- Rename regs_base -> reg_base in struct pcf21xx_ts_config
+- Remove identity string changes to not break userspace
+- Explicitely set .inter_detect_bit to 0
+- Replace hardcoded bit values with BIT() macros
+- Remove reset register signature read
+- Remove patch to set PWRMNG bits
+- Rework to keep watchdog value store/computed inside the structure wdd
+  (struct watchdog_device) to be in seconds.
+- Rename confusing structure members
+- Create separate patch for optimization of timestamp and time reading.
+- Add UIE support for PCF2131
+
+Hugo Villeneuve (17):
+  rtc: pcf2127: improve rtc_read_time() performance
+  rtc: pcf2127: improve timestamp reading performance
+  rtc: pcf2127: lower message severity if setting time fails
+  rtc: pcf2127: remove superfluous comments
+  rtc: pcf2127: add variant-specific configuration structure
+  rtc: pcf2127: adapt for time/date registers at any offset
+  rtc: pcf2127: adapt for alarm registers at any offset
+  rtc: pcf2127: adapt for WD registers at any offset
+  rtc: pcf2127: adapt for CLKOUT register at any offset
+  rtc: pcf2127: add support for multiple TS functions
+  rtc: pcf2127: add support for PCF2131 RTC
+  rtc: pcf2127: add support for PCF2131 interrupts on output INT_A
+  rtc: pcf2127: adapt time/date registers write sequence for PCF2131
+  rtc: pcf2127: support generic watchdog timing configuration
+  rtc: pcf2127: add flag for watchdog register value read support
+  rtc: pcf2127: add UIE support for PCF2131
+  dt-bindings: rtc: pcf2127: add PCF2131
+
+ .../devicetree/bindings/rtc/nxp,pcf2127.yaml  |   1 +
+ drivers/rtc/Kconfig                           |   4 +-
+ drivers/rtc/rtc-pcf2127.c                     | 874 ++++++++++++++----
+ 3 files changed, 691 insertions(+), 188 deletions(-)
+
+
+base-commit: dad9774deaf1cf8e8f7483310dfb2690310193d2
+-- 
+2.30.2
+
