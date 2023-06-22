@@ -2,82 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A399273951E
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 04:04:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6089673951B
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 04:04:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230252AbjFVCEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 22:04:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34234 "EHLO
+        id S229746AbjFVCEo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 22:04:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34222 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230218AbjFVCEp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 22:04:45 -0400
-Received: from mail-0201.mail-europe.com (mail-0201.mail-europe.com [51.77.79.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1A654E69;
-        Wed, 21 Jun 2023 19:04:45 -0700 (PDT)
-Date:   Thu, 22 Jun 2023 02:04:30 +0000
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=protonmail.com;
-        s=protonmail3; t=1687399481; x=1687658681;
-        bh=/vDYUh5McZs3N8YCkpc89lkm19R833ueuUBmkB8Qv9Y=;
-        h=Date:To:From:Cc:Subject:Message-ID:In-Reply-To:References:
-         Feedback-ID:From:To:Cc:Date:Subject:Reply-To:Feedback-ID:
-         Message-ID:BIMI-Selector;
-        b=jkrNLS2LURlB3pszCs7wlzZif5xGk03NmgxL8xCeZ8lJodALrSfa1XXzl2R+tvKCI
-         ouZ1AZYK85m0al3gRliV48jUDNnxIEZm++Et5swSgRbUBycWqE5/y/MECudQXqyvjT
-         FZx7GHOqyOrsukY8dsFkybtIgsCQQCTnLwINlDwSqW1FM7E5IAqUWeBR7YS7/4ymPs
-         f48m8i+wh3u9Fi4ZQpRzog6Zd+crmHE8T8N032R/S+U/JS7hNZJurC0PfSMuHpJ+oe
-         3Wm02nnv3eAjTcPODFHga8PBuB+DNirNL3tHLZ9jilT2O0rPjZIFucPyz1lPgOMmkd
-         SbMZOTsek8ZwQ==
-To:     linux-kernel@vger.kernel.org
-From:   "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-Subject: [PATCH 1/8] dt-bindings: qcom: Document msm8939,a7
-Message-ID: <20230622020419.65760-1-linmengbo0689@protonmail.com>
-In-Reply-To: <20230622020344.65745-1-linmengbo0689@protonmail.com>
-References: <20230622020344.65745-1-linmengbo0689@protonmail.com>
-Feedback-ID: 40467236:user:proton
+        with ESMTP id S229504AbjFVCEn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 22:04:43 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE0121B2;
+        Wed, 21 Jun 2023 19:04:42 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-77e43ec5e0eso144228839f.3;
+        Wed, 21 Jun 2023 19:04:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687399482; x=1689991482;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=I8pPKLg70fficersjkVy7mRZC504grE7nwpNa/9wr48=;
+        b=Xtd81PJ7CXeb7gWiTZEM7K9yV+XRNA1al1FmH1P/TVwClNKqqroDm3CohEOuQzGaoo
+         oNVKIf5R6YxpvM4t4ooBE9A/v6bDEMEYBv13I/GF1J3Ae7FqDzHOVwOPLAbuyebZAhxg
+         J33FrzGRMzfBf1vpdyfqrCOnOGrSYRbcWt5nDjN9fJJnvyhFdBZfOKpDX/+XgCVweAam
+         PaJrW10FC8J6qJOPrEmMu9kqsJLwJ4N2HdK7Mis/y4fH1bTAzy3v2qM8sRHdomtQUwnf
+         1XpV8KOI0wltsBz8i/IXtr/RHhpSHahlnqFTcsP/2AvVuro+cFhVuqgpotBYbRoGzL2C
+         G88w==
+X-Gm-Message-State: AC+VfDx/thdjBCactGEgIS/RCaqBTiEpO6+UMeQ5oLleEqI++Mv2VShH
+        LXeN7D1JjEshF/xvwA4skQ==
+X-Google-Smtp-Source: ACHHUZ41feipjCJIdWq0RZgRL7fxauSaOQuwv40KYo0fwQYG90tPDjI+19MP3M/e9J1d9Fed2Az6yA==
+X-Received: by 2002:a05:6602:19:b0:77b:865:5532 with SMTP id b25-20020a056602001900b0077b08655532mr15701573ioa.12.1687399482114;
+        Wed, 21 Jun 2023 19:04:42 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id q4-20020a02a304000000b00428857e6213sm276575jai.82.2023.06.21.19.04.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 21 Jun 2023 19:04:41 -0700 (PDT)
+Received: (nullmailer pid 63635 invoked by uid 1000);
+        Thu, 22 Jun 2023 02:04:39 -0000
+Date:   Wed, 21 Jun 2023 20:04:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     daniel.baluta@nxp.com, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, alazar@startmail.com,
+        kernel@pengutronix.de, linux-iio@vger.kernel.org, lars@metafoo.de,
+        robh+dt@kernel.org, conor+dt@kernel.org, jic23@kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: adc: ti,ads1015: fix datarate max
+ value and meaning
+Message-ID: <168739947869.63465.3640581768539136376.robh@kernel.org>
+References: <20230621160857.3400747-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230621160857.3400747-1-m.felsch@pengutronix.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document samsung,a7 bindings used in its device tree.
 
-Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
----
- Documentation/devicetree/bindings/arm/qcom.yaml | 1 +
- 1 file changed, 1 insertion(+)
+On Wed, 21 Jun 2023 18:08:57 +0200, Marco Felsch wrote:
+> Datarate (dr) is a 3-bit wide register field. Values from 0 to 7 are
+> allowed for all devices but only for the ADS1115 devices a value of 7
+> does make a difference.
+> 
+> While on it fix the description of the datarate for ADS1115 devices as
+> well.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> ---
+>  .../devicetree/bindings/iio/adc/ti,ads1015.yaml   | 15 +++++++++++++--
+>  1 file changed, 13 insertions(+), 2 deletions(-)
+> 
 
-diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentatio=
-n/devicetree/bindings/arm/qcom.yaml
-index 450f616774e0..a6f7ef4f0830 100644
---- a/Documentation/devicetree/bindings/arm/qcom.yaml
-+++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-@@ -186,6 +186,7 @@ properties:
-=20
-       - items:
-           - enum:
-+              - samsung,a7
-               - sony,kanuti-tulip
-               - square,apq8039-t2
-           - const: qcom,msm8939
---=20
-2.39.2
-
+Reviewed-by: Rob Herring <robh@kernel.org>
 
