@@ -2,192 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76337739978
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C647399B6
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 10:29:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229889AbjFVI03 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 22 Jun 2023 04:26:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43380 "EHLO
+        id S230331AbjFVI3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 04:29:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47608 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230216AbjFVI0T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:26:19 -0400
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com [209.85.219.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF19D1FF7;
-        Thu, 22 Jun 2023 01:26:15 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-bf3934ee767so589825276.0;
-        Thu, 22 Jun 2023 01:26:15 -0700 (PDT)
+        with ESMTP id S230117AbjFVI3r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 04:29:47 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CC04212A
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:29:12 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f954d78bf8so4005495e87.3
+        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 01:29:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687422537; x=1690014537;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=aUNHcEJG07SoCQaxwPGNbUW0t5R9cbW41hlRYoBzaus=;
+        b=YOAd/JaQq9is9qjebHkTUkyQPTUOb+1259V/wKR2Ogpv/U3PqfIPnudJZlaS7SKngv
+         SXFRLXHa/Kz19kxI9SQ64VN73I4YSfyi7ga10dg4GXZ9B4aRDVA4fzMeVGpphaiWXfWK
+         CO9hBMnu89Jk01z4COz77oY3HInwcJUFecCO5HYvlWEade0SNxFhYYMjE6S4YUkCtsd+
+         taMrYZkj2OMezaU90R+km5yRttOtZm+nRUYHthwmOJjtX9fq5aOoRyXtfZY4XmA8YbwX
+         T8F3HtA6xdrZcWv5kJbkcvcibTOQtOEnUajfRJ4lSjw7MCCu7YZvVD7hdGUEwzNTe5rv
+         xYJQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687422374; x=1690014374;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=JD5wRAEZM58Yir8EBgxb+4GGarUcKUmd8dxXVjzMK/E=;
-        b=W9yGimMgXRAYWS1GtE6U6rzfzJDBE/aL5zHA4IzKllhrDS74VIxfnrtgEcRFLwv2Hh
-         z6hPojLzH0csmR6BeJzGLuiQP4O0iMQLsQG4kywHX5cqzQ1sdbLJ4cnO4C+UHHrP444J
-         mApB+7sGliruu3+ZoW4jrCekqSs9iF7cl7JEH3yrU9UluE+dtvYPHrcS/G5gIMXBSnJx
-         JY1JwoOuiFZXbVdAn/Hm9dDnqtXeLcjYYBU1M2654LGrqGCtwHGX26lc+07Kzi+hXRTx
-         hT4Gk+9IQSaj985/Dz+B3kNcGQYQJhgVw5/fsYclGqUQ2bZ0vG4GmBC4+S9iR4qf9DbV
-         /hBw==
-X-Gm-Message-State: AC+VfDy4b/JUnpdboEf4Suelv5rb5DrzCS5VgOKwDLOkpg/Qdy4f/k6V
-        OvOrRaWfb79zvNI0AByDLMGW47GTD3UcZB4q
-X-Google-Smtp-Source: ACHHUZ5kECN6Y/OwnZ49SIbe8f1k8x9HWspeDR16B5aFI9EAyJ+jC8w4LkWDUkm8GY8AmuqV+uYIqQ==
-X-Received: by 2002:a25:50cd:0:b0:c00:8fa5:7633 with SMTP id e196-20020a2550cd000000b00c008fa57633mr3477913ybb.28.1687422374267;
-        Thu, 22 Jun 2023 01:26:14 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id a36-20020a25ae24000000b00bcd5e12fb20sm1449996ybj.8.2023.06.22.01.26.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 22 Jun 2023 01:26:13 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-57040e313c5so5980167b3.0;
-        Thu, 22 Jun 2023 01:26:13 -0700 (PDT)
-X-Received: by 2002:a0d:dd05:0:b0:56d:1a06:8ba0 with SMTP id
- g5-20020a0ddd05000000b0056d1a068ba0mr27215280ywe.9.1687422373700; Thu, 22 Jun
- 2023 01:26:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230621133215.109254-1-tanure@linux.com> <20230621133215.109254-3-tanure@linux.com>
- <20f25e98-d02e-f914-c4e7-72bb9ddb1ae5@linaro.org> <20230621-uncaring-impeding-15cfbe8e0e7c@spud>
- <CAJX_Q+342dx9S4C2C814uQgOj_QR3EBKhETH9eVZOm7PtzFAVQ@mail.gmail.com>
- <e4c993e1-8409-1ec0-c1b2-175603052e46@linaro.org> <CAJX_Q+09WLqmnWwOL7QESEuDzwZvVVzbtg9Upd5j2LOAYs=vmA@mail.gmail.com>
- <20230622-hardhat-elitism-26f0d0df204f@wendy> <CAJX_Q+3+bdXd-NrsQymXerpWZuj3zb8CKHcZRNM_iLSZcp2Mfg@mail.gmail.com>
- <2fe41e89-9a26-e7ba-6ef6-2c9262bda43d@linaro.org>
-In-Reply-To: <2fe41e89-9a26-e7ba-6ef6-2c9262bda43d@linaro.org>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Thu, 22 Jun 2023 09:26:02 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+2Fc5sdp-0kHp99UEo_oiqTeO-LA95+Ak+aW0HMqDgtPw@mail.gmail.com>
-Message-ID: <CAJX_Q+2Fc5sdp-0kHp99UEo_oiqTeO-LA95+Ak+aW0HMqDgtPw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for T7
-To:     neil.armstrong@linaro.org
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1687422537; x=1690014537;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=aUNHcEJG07SoCQaxwPGNbUW0t5R9cbW41hlRYoBzaus=;
+        b=W3T9txWsUAXbiOvaaLG7/tXEN08n00m3reTK4h9hcla/7q5kHKTt0jL1GuRCixa+LR
+         EvLA2SUmd3LrBa1FScNeO3gwb7tRlteSI0xpUX/eClSa1AqlZE9dDHLUS16lPGQYHMc8
+         eAWxQV6cS0fYscm0dCOWxYJPtED6c33wToA9gugdFJekGJjgWesDgUabSPPRrLrH5dwf
+         jnpRl96/7E8OVECupt78nEFV2rB2thi37g8e7HMo/TjpURNyNl2aduMPOvowtp7occe6
+         RQEz59XRgwQ5tvusOW7aLXsD99rSvQ8ICgGX8H5P2B3IWHG2R+agdedBlWBpZqUqHqS/
+         QumA==
+X-Gm-Message-State: AC+VfDxIZPGFeeM/Ot5Ef7bsgVlGch9t6v0OVr5pfPG6rJ0nwCJtabQp
+        DFA0u2OvciiA0m6pS+HIS4nv6A==
+X-Google-Smtp-Source: ACHHUZ6ZhpjSmKGXscMdJ//8nPVkrLvdVZxes3XVpiJJmbryfmvcI2I5PLTcJA5Qu4NbEDIS55hb6g==
+X-Received: by 2002:a19:2d58:0:b0:4f8:5755:5b22 with SMTP id t24-20020a192d58000000b004f857555b22mr10234981lft.27.1687422536244;
+        Thu, 22 Jun 2023 01:28:56 -0700 (PDT)
+Received: from blmsp ([2001:4091:a247:82fa:b762:4f68:e1ed:5041])
+        by smtp.gmail.com with ESMTPSA id u2-20020a5d5142000000b003113dc327fbsm6464461wrt.22.2023.06.22.01.28.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jun 2023 01:28:55 -0700 (PDT)
+Date:   Thu, 22 Jun 2023 10:28:54 +0200
+From:   Markus Schneider-Pargmann <msp@baylibre.com>
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
-        Artem <art@khadas.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH v5 2/8] soc: mediatek: pm-domains: Move bools to a flags
+ field
+Message-ID: <20230622082854.2767ujlhpzgejqn2@blmsp>
+References: <20230619085344.2885311-1-msp@baylibre.com>
+ <20230619085344.2885311-3-msp@baylibre.com>
+ <3404135b-a893-523d-c776-3b6d10227049@collabora.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3404135b-a893-523d-c776-3b6d10227049@collabora.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 22, 2023 at 9:13 AM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> On 22/06/2023 09:36, Lucas Tanure wrote:
-> > On Thu, Jun 22, 2023 at 8:12 AM Conor Dooley <conor.dooley@microchip.com> wrote:
-> >>
-> >> On Thu, Jun 22, 2023 at 07:43:31AM +0100, Lucas Tanure wrote:
-> >>> On Thu, Jun 22, 2023 at 7:05 AM Krzysztof Kozlowski
-> >>> <krzysztof.kozlowski@linaro.org> wrote:
-> >>>> On 22/06/2023 07:32, Lucas Tanure wrote:
-> >>>>> On Wed, Jun 21, 2023 at 7:12 PM Conor Dooley <conor@kernel.org> wrote:
-> >>>>>> On Wed, Jun 21, 2023 at 03:53:04PM +0200, Krzysztof Kozlowski wrote:
-> >>>>>>> On 21/06/2023 15:32, Lucas Tanure wrote:
-> >>>>>>>> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
-> >>>>>>>> There is no need for an extra compatible line in the driver, but
-> >>>>>>>> add T7 compatible line for documentation.
-> >>>>>>>>
-> >>>>>>>> Signed-off-by: Lucas Tanure <tanure@linux.com>
-> >>>>>>>> ---
-> >>>>>>>>   .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
-> >>>>>>>>   1 file changed, 2 insertions(+)
-> >>>>>>>>
-> >>>>>>>> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >>>>>>>> index 01ec45b3b406..860ab58d87b0 100644
-> >>>>>>>> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >>>>>>>> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >>>>>>>> @@ -33,6 +33,7 @@ properties:
-> >>>>>>>>                 - amlogic,meson8b-uart
-> >>>>>>>>                 - amlogic,meson-gx-uart
-> >>>>>>>>                 - amlogic,meson-s4-uart
-> >>>>>>>> +              - amlogic,meson-t7-uart
-> >>>>>>>>             - const: amlogic,meson-ao-uart
-> >>>>>>>>         - description: Always-on power domain UART controller on G12A SoCs
-> >>>>>>>>           items:
-> >>>>>>>> @@ -46,6 +47,7 @@ properties:
-> >>>>>>>>             - amlogic,meson8b-uart
-> >>>>>>>>             - amlogic,meson-gx-uart
-> >>>>>>>>             - amlogic,meson-s4-uart
-> >>>>>>>> +          - amlogic,meson-t7-uart
-> >>>>>>>
-> >>>>>>> It does not look like you tested the DTS against bindings. Please run
-> >>>>>>> `make dtbs_check` (see
-> >>>>>>> Documentation/devicetree/bindings/writing-schema.rst or
-> >>>>>>> https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
-> >>>>>>> for instructions).
-> >>>>>>
-> >>>>>> Check back on the previous version, I should've posted an untested
-> >>>>>> version of what you need to add.
-> >>>>> I saw that, but adding a S4 doesn't make sense to me. And you didn't
-> >>>>> show the entire change, so I can't understand what you want there.
-> >>>>
-> >>>> For sure you need something which does not trigger errors. If you claim
-> >>>> adding S4 as fallback does not make sense, then why did you use it?
-> >>>> Sending a code which is clearly incorrect does not make sense.
-> >>>>
-> >>> Sorry, I think we are talking about different things. It does not make
-> >>> sense to me to add an S4 line in the documentation when it is already
-> >>> there. So I could not understand or make sense of the patch Conor sent
-> >>> in reply to my V2.
-> >>
-> >> That is just how it works. You need to spell out exactly which
-> >> combinations are permitted. The current entry for s4 says that s4 is
-> >> only permitted in isolation.
-> >> Since you are adding "amlogic,meson-t7-uart", "amlogic,meson-s4-uart"
-> >> you need to explicitly allow that combination. You'll notice if you look
-> >> at the file that the gx uart appears more than once.
-> >>
-> >> Given the g12a was the most recently added compatible, it might make
-> >> sense to follow the pattern that it had set, given the thing your
-> >> original patch copied the match data from was the g12a. That change to
-> >> the dt-binding would look like:
-> >> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >> index 01ec45b3b406..eae11e87b88a 100644
-> >> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-> >> @@ -50,6 +50,13 @@ properties:
-> >>           items:
-> >>             - const: amlogic,meson-g12a-uart
-> >>             - const: amlogic,meson-gx-uart
-> >> +      - description:
-> >> +          Everything-Else power domain UART controller on G12A compatible SoCs
-> >> +        items:
-> >> +          - enum:
-> >> +              - amlogic,meson-t7-uart
-> >> +          - const: amlogic,meson-g12a-uart
-> >> +          - const: amlogic,meson-gx-uart
-> >>
-> >>     reg:
-> >>       maxItems: 1
-> >>
-> >> /I/ don't really care whether you do that, or do the s4 version of it,
-> >> but following the most recent pattern might make more sense. When I
-> >> suggested s4, it was because I only looked at the driver patch rather
-> >> than the code itself.
-> >>
-> >>> Krzysztof, I will check again with dtbs_check and re-send.
-> >>
-> >> Cheers,
-> >> Conor.
-> > I am struggling to understand this. Everything I try fails the check.
->
-> I just applied Conor's change on top of v6.4-rc1 and ran:
-> make dt_binding_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
->
-> and the check was successful.
->
-> Neil
->
->
-I am sending v4 in a few minutes
+Hi Angelo,
+
+On Mon, Jun 19, 2023 at 11:32:18AM +0200, AngeloGioacchino Del Regno wrote:
+> Il 19/06/23 10:53, Markus Schneider-Pargmann ha scritto:
+> > To simplify the macros, use a flags field for simple bools. This is in
+> > preparation for more flags.
+> > 
+> > Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> > ---
+> >   drivers/soc/mediatek/mtk-pm-domains.c |  6 +++---
+> >   drivers/soc/mediatek/mtk-pm-domains.h | 19 +++++++++++--------
+> >   2 files changed, 14 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
+> > index 354249cc1b12..aa9ab413479e 100644
+> > --- a/drivers/soc/mediatek/mtk-pm-domains.c
+> > +++ b/drivers/soc/mediatek/mtk-pm-domains.c
+> > @@ -128,7 +128,7 @@ static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, st
+> >   		if (!mask)
+> >   			break;
+> > -		if (bpd[i].bus_prot_reg_update)
+> > +		if (bpd[i].flags & BUS_PROT_REG_UPDATE)
+> >   			regmap_set_bits(regmap, bpd[i].bus_prot_set, mask);
+> >   		else
+> >   			regmap_write(regmap, bpd[i].bus_prot_set, mask);
+> > @@ -165,12 +165,12 @@ static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
+> >   		if (!mask)
+> >   			continue;
+> > -		if (bpd[i].bus_prot_reg_update)
+> > +		if (bpd[i].flags & BUS_PROT_REG_UPDATE)
+> >   			regmap_clear_bits(regmap, bpd[i].bus_prot_clr, mask);
+> >   		else
+> >   			regmap_write(regmap, bpd[i].bus_prot_clr, mask);
+> > -		if (bpd[i].ignore_clr_ack)
+> > +		if (bpd[i].flags & BUS_PROT_IGNORE_CLR_ACK)
+> >   			continue;
+> >   		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
+> > diff --git a/drivers/soc/mediatek/mtk-pm-domains.h b/drivers/soc/mediatek/mtk-pm-domains.h
+> > index 5ec53ee073c4..e26c8c317a6b 100644
+> > --- a/drivers/soc/mediatek/mtk-pm-domains.h
+> > +++ b/drivers/soc/mediatek/mtk-pm-domains.h
+> > @@ -42,23 +42,27 @@
+> >   #define SPM_MAX_BUS_PROT_DATA		6
+> > -#define _BUS_PROT(_mask, _set, _clr, _sta, _update, _ignore) {	\
+> > +enum scpsys_bus_prot_flags {
+> > +	BUS_PROT_REG_UPDATE = BIT(1),
+> > +	BUS_PROT_IGNORE_CLR_ACK = BIT(2),
+> > +};
+> > +
+> > +#define _BUS_PROT(_mask, _set, _clr, _sta, _flags) {		\
+> >   		.bus_prot_mask = (_mask),			\
+> >   		.bus_prot_set = _set,				\
+> >   		.bus_prot_clr = _clr,				\
+> >   		.bus_prot_sta = _sta,				\
+> > -		.bus_prot_reg_update = _update,			\
+> > -		.ignore_clr_ack = _ignore,			\
+> > +		.flags = _flags					\
+> >   	}
+> >   #define BUS_PROT_WR(_mask, _set, _clr, _sta)			\
+> > -		_BUS_PROT(_mask, _set, _clr, _sta, false, false)
+> > +		_BUS_PROT(_mask, _set, _clr, _sta, 0)
+> >   #define BUS_PROT_WR_IGN(_mask, _set, _clr, _sta)		\
+> > -		_BUS_PROT(_mask, _set, _clr, _sta, false, true)
+> > +		_BUS_PROT(_mask, _set, _clr, _sta, BUS_PROT_IGNORE_CLR_ACK)
+> >   #define BUS_PROT_UPDATE(_mask, _set, _clr, _sta)		\
+> > -		_BUS_PROT(_mask, _set, _clr, _sta, true, false)
+> > +		_BUS_PROT(_mask, _set, _clr, _sta, BUS_PROT_REG_UPDATE)
+> >   #define BUS_PROT_UPDATE_TOPAXI(_mask)				\
+> >   		BUS_PROT_UPDATE(_mask,				\
+> > @@ -71,8 +75,7 @@ struct scpsys_bus_prot_data {
+> >   	u32 bus_prot_set;
+> >   	u32 bus_prot_clr;
+> >   	u32 bus_prot_sta;
+> > -	bool bus_prot_reg_update;
+> > -	bool ignore_clr_ack;
+> > +	u32 flags;
+> 
+> As far as I understand, we don't expect more than six bits to be populated as bus
+> protection flags, so we can save some memory by changing that to u8...
+
+Thank you. Yes, also we can change it later if we need more flags at
+some point. I will change it. But I guess it won't save any memory as
+the compiler probably aligns the struct.
+
+Best,
+Markus
+
+> 
+> ...after which:
+> 
+> Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+> 
+> Regards,
+> Angelo
