@@ -2,190 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BC3073A06C
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 14:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B1DB73A087
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 14:08:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231273AbjFVMCt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 08:02:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55038 "EHLO
+        id S229726AbjFVMIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 08:08:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230358AbjFVMCZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 08:02:25 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 844372105
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:02:05 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3f8fcaa31c7so78551935e9.3
-        for <devicetree@vger.kernel.org>; Thu, 22 Jun 2023 05:02:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1687435316; x=1690027316;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ehfVzvQExF8A0HC8WC/ILIhv/WTmHbal1y8W4TeN1es=;
-        b=ZpJlE94aIfdZ9blu2+e25WvPl8E39qqcqv4OIVo9dcwtr02ZZPnabvhB6ySYT1BSvw
-         ETcVMk0WKIXLkk2VIzg4qbrJ5ibZ0fZa367vc1GgCC2cP/rWtmaNWjRI5u+bLebeKm6D
-         jEj1SShT6AdDF4NUSmVUOv8yXLBUk4AiuBnwehuZn0aNh4sEveOJv7IcHdjNEoQnj4Zl
-         q4D7hHxRwyfBpFCZWPtjeGYQDUxbQq92/eFlHwXdCD0Ib7HWc1iU6sjyf7/8Q5/1OGgl
-         BjR9e4xabZljgBBLYoAQ2L3IRq/cLZhktBx91P1TxVnJJIeatGpjdV6rCC/gGya1WxWk
-         QGIw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687435316; x=1690027316;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ehfVzvQExF8A0HC8WC/ILIhv/WTmHbal1y8W4TeN1es=;
-        b=PlkLVmmqY5IxAhbhZQr7XldkG/9lNKR01b3vX6Ieph71Hw0eUbPTPmHvdZHp6nvKR6
-         3bsjqykbmj4lbZtcYuLg0n2g0CaORtzOCN5OHtZke+qFXtJ7DiLNOCDIfMtPf7B1Biso
-         dAhIWtILNPjH/yKwKmOOepbrcI7qpX82jbRL6RGG1L6t4bkmI7ZsWKEB8SL1gzZRpJpo
-         bd5cp9v7w58swqqenbsW0Rx2kzJksKHm8oO+mhnSU15YAmR3y6MP3tCKRNhBXQBF1hZT
-         e0OomkW8onx0M8lr9oLAOLF9HY6fBiuBlSLwwEBMf8Pbn2Gd/gSUzBng+0lVrwSI4h1+
-         iEwg==
-X-Gm-Message-State: AC+VfDzQc2enSg4vMUeT1y/qBC0NGo7mV/kUIBGYCyJ9JkDA0x7BneVm
-        xErKgha643iZqfGOlHmsKHiIWg==
-X-Google-Smtp-Source: ACHHUZ7FpEJIjzvQwxNwPUBwmllXRykV33/rRLw9bzvXYHni/kpzPOKVm3FCkT6F91vdGlY1pyzwxg==
-X-Received: by 2002:a05:600c:2206:b0:3f9:515:ccfb with SMTP id z6-20020a05600c220600b003f90515ccfbmr16742469wml.12.1687435316511;
-        Thu, 22 Jun 2023 05:01:56 -0700 (PDT)
-Received: from brgl-uxlite.home ([2a01:cb1d:334:ac00:d785:af3e:3bf5:7f36])
-        by smtp.gmail.com with ESMTPSA id 17-20020a05600c231100b003f8ec58995fsm7594296wmo.6.2023.06.22.05.01.55
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 22 Jun 2023 05:01:56 -0700 (PDT)
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: [RESEND PATCH v2 5/5] arm64: dts: qcom: sa8775p-ride: enable ethernet0
-Date:   Thu, 22 Jun 2023 14:01:42 +0200
-Message-Id: <20230622120142.218055-6-brgl@bgdev.pl>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230622120142.218055-1-brgl@bgdev.pl>
-References: <20230622120142.218055-1-brgl@bgdev.pl>
+        with ESMTP id S229548AbjFVMIE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 08:08:04 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0311728;
+        Thu, 22 Jun 2023 05:08:04 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id B1451617FB;
+        Thu, 22 Jun 2023 12:08:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 01029C433C0;
+        Thu, 22 Jun 2023 12:07:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687435683;
+        bh=AhyNDGJmhhola/QmWkU/88kjnQn/z/ZY1Yo42GWMUA4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=beCwEaRwAnDmL4ncqLaEpgpdOtYbsqDnFdQIbh+XurazBXC0dhink0Ef9CAZjeaP6
+         Jx/WQogSNCVQsQxvqyPRilrxafXr7enJ8qFJVTjmdCl6FEhkOXATocRC9Z6/g+15gA
+         /CW1e3ai7tiuOwzl4dyBXKGNtQYQ+VKdG1eA9em7Q80WTH1yVZeCI2suGay03XAQag
+         PKznyOzwvaRUbr4gWQRi4dixavuMJ9/DnE1rIeU8y5mssFxjRRnYLu1C0jmXKP7IE8
+         wqYXzEJIIf5hyqh0biVRq36JEBX+i30tltZMiuMKnU9wyqGslwJAYkcnCrtDgwwNm8
+         crsoeNfRxKShA==
+Date:   Thu, 22 Jun 2023 13:07:56 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Sameer Pujar <spujar@nvidia.com>
+Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, thierry.reding@gmail.com,
+        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        jonathanh@nvidia.com, mkumard@nvidia.com, sheetal@nvidia.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+Subject: Re: [PATCH 2/8] ASoC: tegra: Fix AMX byte map
+Message-ID: <ad4b4dc9-7466-45a9-a008-c2301a7485dd@sirena.org.uk>
+References: <1687433656-7892-1-git-send-email-spujar@nvidia.com>
+ <1687433656-7892-3-git-send-email-spujar@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Hvr/i48Dzsk3Qmc8"
+Content-Disposition: inline
+In-Reply-To: <1687433656-7892-3-git-send-email-spujar@nvidia.com>
+X-Cookie: Please ignore previous fortune.
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 
-Enable the first 1Gb ethernet port on sa8775p-ride development board.
+--Hvr/i48Dzsk3Qmc8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sa8775p-ride.dts | 88 +++++++++++++++++++++++
- 1 file changed, 88 insertions(+)
+On Thu, Jun 22, 2023 at 05:04:10PM +0530, Sameer Pujar wrote:
+> From: Sheetal <sheetal@nvidia.com>
+>=20
+> Byte mask for channel-1 of stream-1 is not getting enabled and this
+> causes failures during AMX use cases. The enable bit is not set during
+> put() callback of byte map mixer control.
+>=20
+> This happens because the byte map value 0 matches the initial state
+> of byte map array and put() callback returns without doing anything.
+>=20
+> Fix the put() callback by actually looking at the byte mask array
+> to identify if any change is needed and update the fields accordingly.
 
-diff --git a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-index bf90f825ff67..b2aa16037707 100644
---- a/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-+++ b/arch/arm64/boot/dts/qcom/sa8775p-ride.dts
-@@ -261,6 +261,94 @@ vreg_l8e: ldo8 {
- 	};
- };
- 
-+&ethernet0 {
-+	phy-mode = "sgmii";
-+	phy-handle = <&sgmii_phy>;
-+
-+	pinctrl-0 = <&ethernet0_default>;
-+	pinctrl-names = "default";
-+
-+	snps,mtl-rx-config = <&mtl_rx_setup>;
-+	snps,mtl-tx-config = <&mtl_tx_setup>;
-+	snps,ps-speed = <1000>;
-+
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		reset-gpios = <&pmm8654au_2_gpios 8 GPIO_ACTIVE_LOW>;
-+		reset-delay-us = <11000>;
-+		reset-post-delay-us = <70000>;
-+
-+		sgmii_phy: phy@8 {
-+			reg = <0x8>;
-+			device_type = "ethernet-phy";
-+		};
-+	};
-+
-+	mtl_rx_setup: rx-queues-config {
-+		snps,rx-queues-to-use = <4>;
-+		snps,rx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x0>;
-+			snps,route-up;
-+			snps,priority = <0x1>;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+			snps,map-to-dma-channel = <0x1>;
-+			snps,route-ptp;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x2>;
-+			snps,route-avcp;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,map-to-dma-channel = <0x3>;
-+			snps,priority = <0xc>;
-+		};
-+	};
-+
-+	mtl_tx_setup: tx-queues-config {
-+		snps,tx-queues-to-use = <4>;
-+		snps,tx-sched-sp;
-+
-+		queue0 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue1 {
-+			snps,dcb-algorithm;
-+		};
-+
-+		queue2 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+
-+		queue3 {
-+			snps,avb-algorithm;
-+			snps,send_slope = <0x1000>;
-+			snps,idle_slope = <0x1000>;
-+			snps,high_credit = <0x3e800>;
-+			snps,low_credit = <0xffc18000>;
-+		};
-+	};
-+};
-+
- &i2c11 {
- 	clock-frequency = <400000>;
- 	pinctrl-0 = <&qup_i2c11_default>;
--- 
-2.39.2
+I'm not quite sure I follow the logic here - I'd have expected this to
+mean that there's a bootstrapping issue and that we should be doing some
+more initialisation during startup such that the existing code which
+checks if there is a change will be doing the right thing?
 
+> Also update get() callback to return 256 if the byte map is disabled.
+
+This will be a user visible change.  It's not clear to me why it's
+needed - it seems like it's a hack to push users to do an update in the
+case where they want to use channel 1 stream 1?
+
+--Hvr/i48Dzsk3Qmc8
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSUOZsACgkQJNaLcl1U
+h9DHhAf/WefGD9yvCmEhMJLKKlodJrVPiVYeL9PQs1d2i8BgdWrneVmZJdrx1hkW
+4ZWCYKwK3UcuNjes6c/oKuhJswe8nHUgdyH21fnoagm/pC0Ofb9x1spklUvUkhlD
+sVD1UjM7EyKX+io2TI0GcK+Gq6PF1kdejPTG0G8rDRz0xVWcQmt/ik6v7oRPCHsI
+HVXMIiPYGeP3EGAps4oyD+jUeSIyc/3+7yOZdxE7sHs6+iNY6wmDKgwdQ9XrexcW
+2hrfIcStW1dIcMSTqxR33p6BF51q9ao0CuAMWIKc5cPB+5+CK7fuQNz9A9iaNxUR
+JjcnjMponglfk0gg0VuJ0rVMwAnYYQ==
+=/vui
+-----END PGP SIGNATURE-----
+
+--Hvr/i48Dzsk3Qmc8--
