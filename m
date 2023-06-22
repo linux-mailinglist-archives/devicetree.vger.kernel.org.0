@@ -2,56 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1FB07394E5
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 03:51:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A31C17394EC
+	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 03:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbjFVBvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 21 Jun 2023 21:51:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57050 "EHLO
+        id S230151AbjFVBxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 21 Jun 2023 21:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229544AbjFVBvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 21:51:40 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C45E135;
-        Wed, 21 Jun 2023 18:51:39 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3421aca52d7so22769875ab.0;
-        Wed, 21 Jun 2023 18:51:39 -0700 (PDT)
+        with ESMTP id S230168AbjFVBxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 21 Jun 2023 21:53:05 -0400
+Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BD751BF9;
+        Wed, 21 Jun 2023 18:53:00 -0700 (PDT)
+Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-341d62e78d3so30480765ab.3;
+        Wed, 21 Jun 2023 18:53:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687398699; x=1689990699;
+        d=1e100.net; s=20221208; t=1687398779; x=1689990779;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=KqNAIzv/uNtsV9O6jc6Oz8TD3XgRRw0C3IYBOxeNxyo=;
-        b=CuHZhhaDp7my17qI9mmKiMJO8RnL7WTmy6U9Kn/eQryDJIydo0YJZ3JeaLO7iMAV9S
-         jeeoKijPe5ZWRZkEUDVtxDJzZoXzqCvbRJeYOF1Y6+0fZVfBYYjEW1a/+RwZG4Ae4PHy
-         LRszepRtzL8Pxpp9E/978DUbwwBwApZlAh2bMpbyswmwsp6XWt2bveueLa6zdT1fX4Nc
-         IVGqcGCHUUBItMeg3yymVvb8jTIomLI/ygQuyv3mHqzwvt6G7ZpC6k/Q4eJY3g32huA3
-         s1PS4Mj7moVmiSLaTBs1Ra+NDS+/+cm82/9gRZUzv6ojiMbwE/+pcrifa8LV+/IaRW01
-         DVhQ==
-X-Gm-Message-State: AC+VfDxbKlpesO3dBiQMQ41wi2RfNX/eeMXPlzKtHqemCBnsXIQsgM0c
-        xWWeiTjr5p3FOn2ffNAZtQ==
-X-Google-Smtp-Source: ACHHUZ6ippvvmRX5lvNCZgnYpaMsLBRgyjicaYTC2g7GnCnVtty+Y+Qoll9Z1WNRrITfnOopVKrSPw==
-X-Received: by 2002:a92:d6d2:0:b0:341:c8db:c8d6 with SMTP id z18-20020a92d6d2000000b00341c8dbc8d6mr7017214ilp.22.1687398698767;
-        Wed, 21 Jun 2023 18:51:38 -0700 (PDT)
+        bh=EPyXNWV+5Rq0jnNZMv1kqGws0ng4nexiCuZNtuQKCfc=;
+        b=aQwymo28h/4vUt1FbTvLbNnvgptiEvwxgkvqaqnd6OklROHmTyWlLxxJ0MmB8CqT7r
+         nRnSpMEg5gKj+L8W7E7C0khPikKSqU1XYavNdzL7wTcOz5FeH2y5fQTyXADjr0tZ4MDx
+         0tGWCexujtgFT1/UzDEsP6hl/Jd5oGhmJr0p2cTC2qoENPIIClV8w1Twq3kpWS0w6F33
+         D4lDCU5D8tl98PPCkAJy0yoWTFKgAJRj0z+4tNCTDImunqALyX9tYizN6h+jz9kEU/Bi
+         jxeuRiBflzlw/CRHE8yiaYWfiFGl9qfRZYufZkDifDmJ0MgTVJKnjG/wBoansnzwYyNg
+         3/0w==
+X-Gm-Message-State: AC+VfDxpwX7AaXEZYgDV4SL4J7FfwZCg6cW7ifU2GGSuaDGxOrrVdie4
+        +y0NFpcHRtSphnlOs/5RYw==
+X-Google-Smtp-Source: ACHHUZ5bXaNVYRvyVfg2gIqLORoZrPaNazGxcaU4nmHT1DBtkRs7fLnJxGeZccaoiFIquwjsd5yHWQ==
+X-Received: by 2002:a92:d486:0:b0:340:d836:1f64 with SMTP id p6-20020a92d486000000b00340d8361f64mr16631899ilg.29.1687398779402;
+        Wed, 21 Jun 2023 18:52:59 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id z25-20020a02ceb9000000b00418af04e405sm1617696jaq.116.2023.06.21.18.51.37
+        by smtp.gmail.com with ESMTPSA id d18-20020a92d5d2000000b0033e23a5c730sm1672193ilq.88.2023.06.21.18.52.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 21 Jun 2023 18:51:38 -0700 (PDT)
-Received: (nullmailer pid 42103 invoked by uid 1000);
-        Thu, 22 Jun 2023 01:51:36 -0000
-Date:   Wed, 21 Jun 2023 19:51:36 -0600
+        Wed, 21 Jun 2023 18:52:58 -0700 (PDT)
+Received: (nullmailer pid 43975 invoked by uid 1000);
+        Thu, 22 Jun 2023 01:52:56 -0000
+Date:   Wed, 21 Jun 2023 19:52:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        tglx@linutronix.de, robh+dt@kernel.org, daniel.lezcano@linaro.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: timer: add Ralink SoCs timer
-Message-ID: <168739869603.42044.12383139966264039986.robh@kernel.org>
-References: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
+To:     Julien Stephan <jstephan@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-phy@lists.infradead.org,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        linux-kernel@vger.kernel.org, pnguyen@baylibre.com,
+        linux-arm-kernel@lists.infradead.org, fsylvestre@baylibre.com,
+        Philipp Zabel <p.zabel@pengutronix.de>, louis.kuo@mediatek.com,
+        Andy Hsieh <andy.hsieh@mediatek.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: phy: add mediatek MIPI CD-PHY module
+ v0.5
+Message-ID: <168739877539.43891.4753109019939618528.robh@kernel.org>
+References: <20230620121928.1231745-1-jstephan@baylibre.com>
+ <20230620121928.1231745-2-jstephan@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230620100231.1412582-1-sergio.paracuellos@gmail.com>
+In-Reply-To: <20230620121928.1231745-2-jstephan@baylibre.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -64,18 +79,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 20 Jun 2023 12:02:31 +0200, Sergio Paracuellos wrote:
-> Add YAML documentation for the timer which is present on Ralink SoCs.
+On Tue, 20 Jun 2023 14:18:46 +0200, Julien Stephan wrote:
+> From: Florian Sylvestre <fsylvestre@baylibre.com>
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> This adds the bindings, for the MIPI CD-PHY module v0.5 embedded in
+> some Mediatek soc, such as the mt8365
+> 
+> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
 > ---
-> Changes in v2:
-> - Remove redundant 'documentation' word from subject.
-> - Drop clock-names property.
-> 
->  .../bindings/timer/ralink,rt2880-timer.yaml   | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/ralink,rt2880-timer.yaml
+>  .../bindings/phy/mediatek,mt8365-csi-rx.yaml  | 79 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++
+>  2 files changed, 85 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,mt8365-csi-rx.yaml
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
