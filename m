@@ -2,142 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E782C73ABA3
-	for <lists+devicetree@lfdr.de>; Thu, 22 Jun 2023 23:32:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0FA873AC8C
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 00:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229916AbjFVVcX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 17:32:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38866 "EHLO
+        id S231293AbjFVWdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 18:33:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230188AbjFVVcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 17:32:21 -0400
-Received: from relay8-d.mail.gandi.net (relay8-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::228])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC6FA1FCB;
-        Thu, 22 Jun 2023 14:32:19 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687469538;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oBJxrt4i+LGbBD4mfrNY1AHWEbUyplXBhUqOZFUszxU=;
-        b=XienpFfNhC63YHZ+S/Fx+4DGtTlTsqVyWMH3tsLqTkagaycqRyv8C1MZzudWZb+RfSPxsv
-        qBzFgczekwDrWBaE3B8OghKq3ciYsPzy4ZqKdJncZBE/PD2DjKaa1s2wCTsZeALZNWl87C
-        in2DTs+xSyCdryfI9yKhWPKD3vsw2IeiPeX29n/8zE5Z/hwXKlERiEvyQRLohrQh0Q0Kmx
-        WrG5Sm1ZvfhAJ6bW44IWd78CJcdW9oD83ABrBRHSopa7Lmeq9JAaFtdw3X91z1u/yOPpbO
-        y0enAVd8Yy264z6A6QpnSnlbff/MCMKHoR1ui5jx+ojzM+XJXHopDp/f4hFYMw==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 617C81BF206;
-        Thu, 22 Jun 2023 21:32:17 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     David Airlie <airlied@gmail.com>, Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Mikko Perttunen <mperttunen@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-tegra@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v3 2/2] gpu: host1x: Stop open-coding of_device_uevent()
-Date:   Thu, 22 Jun 2023 23:32:14 +0200
-Message-Id: <20230622213214.3586530-3-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230622213214.3586530-1-miquel.raynal@bootlin.com>
-References: <20230622213214.3586530-1-miquel.raynal@bootlin.com>
+        with ESMTP id S231253AbjFVWdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 18:33:49 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17B881997;
+        Thu, 22 Jun 2023 15:33:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id A1A356191C;
+        Thu, 22 Jun 2023 22:33:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0F27CC433CA;
+        Thu, 22 Jun 2023 22:33:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687473224;
+        bh=Fx3v4G/Q/qRPvxtg3Mgx/rYdfAvEoHue1uehMtXOhZQ=;
+        h=From:To:Cc:In-Reply-To:References:Subject:Date:From;
+        b=Jk5peD++dJDfFdJZnWbVzS3MvLCy9R+jOHoXLYovKYM9fB5hizu5axPGxPBWRYp2e
+         dX0fTz91H0BC3BlqDJOwEfeyO426zb9qctjpO/37mf+5DxLAPSBRHWhPxGpcsvdQsa
+         GdqM3W4TfHjLqT39SAm6sGe8RoPD97ISunnC3sB0x3cKqyvDLzy/VVhf23wG5fzb1h
+         KWi8bVxAUlXv1rtUV5dEWxsS4Vf0Yl0gSBVla+pdgqD/lrCqRxhPofk/huDYpbw7Mw
+         xbK3hE8R009lLxgJ0IexZNUluF/7g+av++i9JRk+WFzCkBIFdDdfvk2BhgOYmeTPTG
+         sfc6hflfW85Ww==
+From:   Mark Brown <broonie@kernel.org>
+To:     Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Codrin Ciubotariu <codrin.ciubotariu@microchip.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <20230621231044.3816914-1-robh@kernel.org>
+References: <20230621231044.3816914-1-robh@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: microchip,sama7g5-pdmc: Simplify
+ "microchip,mic-pos" constraints
+Message-Id: <168747322064.318849.2286093832255639633.b4-ty@kernel.org>
+Date:   Thu, 22 Jun 2023 23:33:40 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-c6835
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is apparently no reasons to open-code of_device_uevent() besides:
-- The helper receives a struct device while we want to use the of_node
-  member of the struct device *parent*.
-- of_device_uevent() could not be called by modules because of a missing
-  EXPORT_SYMBOL*().
+On Wed, 21 Jun 2023 17:10:44 -0600, Rob Herring wrote:
+> "enum" values should be integers or strings, not arrays (though json-schema
+> does allow arrays, we do not). In this case, all possible combinations are
+> allowed anyways, so there's little point in expressing as an array.
+> 
+> 
 
-In practice, the former point is not very constraining, just calling
-of_device_uevent(dev->parent, ...) would have made the trick.
+Applied to
 
-The latter point is more an observation rather than a real blocking
-point because nothing prevented of_uevent() (called by the inline
-function of_device_uevent()) to be exported to modules. In practice,
-this helper is now exported, so nothing prevent us from using
-of_device_uevent() anymore.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-Let's use the core helper directly instead of open-coding it.
+Thanks!
 
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: David Airlie <airlied@gmail.com>
-Cc: Daniel Vetter <daniel@ffwll.ch>
-Cc: Mikko Perttunen <mperttunen@nvidia.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Frank Rowand <frowand.list@gmail.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/gpu/host1x/bus.c | 29 ++++++-----------------------
- 1 file changed, 6 insertions(+), 23 deletions(-)
+[1/1] ASoC: dt-bindings: microchip,sama7g5-pdmc: Simplify "microchip,mic-pos" constraints
+      commit: b2c28785b125acb28a681462510297410cbbabd7
 
-diff --git a/drivers/gpu/host1x/bus.c b/drivers/gpu/host1x/bus.c
-index 4d16a3396c4a..84d042796d2e 100644
---- a/drivers/gpu/host1x/bus.c
-+++ b/drivers/gpu/host1x/bus.c
-@@ -338,32 +338,15 @@ static int host1x_device_match(struct device *dev, struct device_driver *drv)
- 	return strcmp(dev_name(dev), drv->name) == 0;
- }
- 
-+/*
-+ * Note that this is really only needed for backwards compatibility
-+ * with libdrm, which parses this information from sysfs and will
-+ * fail if it can't find the OF_FULLNAME, specifically.
-+ */
- static int host1x_device_uevent(const struct device *dev,
- 				struct kobj_uevent_env *env)
- {
--	struct device_node *np = dev->parent->of_node;
--	unsigned int count = 0;
--	struct property *p;
--	const char *compat;
--
--	/*
--	 * This duplicates most of of_device_uevent(), but the latter cannot
--	 * be called from modules and operates on dev->of_node, which is not
--	 * available in this case.
--	 *
--	 * Note that this is really only needed for backwards compatibility
--	 * with libdrm, which parses this information from sysfs and will
--	 * fail if it can't find the OF_FULLNAME, specifically.
--	 */
--	add_uevent_var(env, "OF_NAME=%pOFn", np);
--	add_uevent_var(env, "OF_FULLNAME=%pOF", np);
--
--	of_property_for_each_string(np, "compatible", p, compat) {
--		add_uevent_var(env, "OF_COMPATIBLE_%u=%s", count, compat);
--		count++;
--	}
--
--	add_uevent_var(env, "OF_COMPATIBLE_N=%u", count);
-+	of_device_uevent(dev->parent, env);
- 
- 	return 0;
- }
--- 
-2.34.1
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
 
