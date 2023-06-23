@@ -2,110 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC15273B840
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 14:54:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C55F473B868
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 15:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231841AbjFWMyI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 08:54:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41538 "EHLO
+        id S231466AbjFWNHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 09:07:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231835AbjFWMyG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 08:54:06 -0400
-Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 841962133
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 05:53:50 -0700 (PDT)
-Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3f8fb0e7709so7733935e9.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 05:53:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687524829; x=1690116829;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ANudvaWzKociGmeQc/Hjbj55D7g4D5N/1vRViCm6qwo=;
-        b=iM15FSmBc4l2w2InncDGMQZLLlCk4y4CdgRqe/uD2EFb3FAwHLjz+ELDCjYY+CGXEz
-         HYtPLq+B9P0Ak4dzVlaZF+vlGaIYfjT6X504bk98lm8qaMR0cpfWISyJHvmd1mGx3TN7
-         Tedvr5AqajDzl9xCtHCZXWji1vTVRZP7GKs4JuPB5ZQF7x0OsSnASCOyA3tHS8lO6nqq
-         yqRbx8RBvy3zuaGN8xhhB7zD+lxUqcmngQOpiopHYAXOWR1YJtdtdGNvL2BrdfMR1LwI
-         e/1gTThgnItFYfKdL4q65cuMXRBolKgpt5NYvwCLzCMbA+9y1vrUeOQjZsAYb1m6cM4V
-         yyQA==
+        with ESMTP id S229484AbjFWNHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 09:07:41 -0400
+Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D8C4213A
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+        s=mimecast20190719; t=1687525617;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=+nlw8o0x9EmBbnewRBB9FOcSf2qgr1xezY4CpDaC89M=;
+        b=dqGqlyik+K7vpvkYhcae8Oa26XEXAhC97ZeW0zP97e409/aneI/ePk2O+0Kxy/GavajD1e
+        cPuWemHIah0KsgrlNjiX0Ycrn4i1Uaz0cQOSdeSuqzygSwsb9Is9CFCglNsslJiH+oMgM/
+        SMqP33xJYP0xjv3WQztdrtzjdfQ6cc0=
+Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com
+ [209.85.167.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-645-RpQ6agdhNUuNccWceHMdkw-1; Fri, 23 Jun 2023 09:06:56 -0400
+X-MC-Unique: RpQ6agdhNUuNccWceHMdkw-1
+Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-3a044f9104dso553399b6e.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:06:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687524829; x=1690116829;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ANudvaWzKociGmeQc/Hjbj55D7g4D5N/1vRViCm6qwo=;
-        b=hypocRYydLXVuJwTwED72T81Kt6C57rbij2VyXgbWEz7hsalOPTD7FTm+hw+NwZ+ko
-         BetDsL/xKam4M0t0VGhgEBsOlm8mTxrMzV+9sTGLEpGjHL9kCtQijvUHV+BnQVNvPm69
-         APBXD06YgE33sVU2sBAx5+KOm45Of6MvahKxfFvaRMt1jc/vVB82dhcAPEouK+NFLtbu
-         vaqzjlpy3IWHE0qfXisv67fdjTaQtYSDc54vufkcOrMMF7pmpysTSj1qbie6Xw5G8mNX
-         AWyiOrXEJtJdamAvjzA2g+kH6Xi9YCZM6Cws+dMG31Mo2c/3PeuQtcOOkci0l+uo/DzQ
-         rLMA==
-X-Gm-Message-State: AC+VfDxlzOcxEvhJwATxEknFI2AYoLu/SecCAWStlhQHMMZNt8wQ+WEr
-        16A4986TX7i5S8mz4BwNnhEyCQ==
-X-Google-Smtp-Source: ACHHUZ4lM0hS9LoQWbVrzEU7Ux8cRPL7TId8Ngjq8cDakd+c79pbBTpR63tRY6dauxYKb6u9GfM32g==
-X-Received: by 2002:a05:600c:231a:b0:3f9:b430:199b with SMTP id 26-20020a05600c231a00b003f9b430199bmr10028918wmo.15.1687524828997;
-        Fri, 23 Jun 2023 05:53:48 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id m6-20020a7bcb86000000b003f80946116dsm2219346wmi.45.2023.06.23.05.53.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 05:53:48 -0700 (PDT)
-Message-ID: <7ceba3df-bee8-9f1d-a27d-85e0b5f35d83@linaro.org>
-Date:   Fri, 23 Jun 2023 14:53:45 +0200
+        d=1e100.net; s=20221208; t=1687525616; x=1690117616;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+nlw8o0x9EmBbnewRBB9FOcSf2qgr1xezY4CpDaC89M=;
+        b=GATNJDQdtBTQ+KJa+tBGoEEN4nZ6TL8JIyDYKXHTVPA3x0bGJP2yLTMjJ4vdfzA40h
+         iqUKCBXYTtbUI/UaoTI2zSiQGSYlj/vR4S1014jl37nAcapn3wnuTem/RyW3Az1GuxJY
+         q2QUnoG36Y+BL7FpaN5c9/njCJitQsXLsxizzEsUzM9YBV1gUG4HYc9gZeDc+JdSb9Ic
+         nfu9w7HmRmzir9h2+ixfTRyWn9bfP2w1sBqLXnWy/Uef2iCbaaHWYvShmn0v32WoZjXd
+         7EkDAIF6xodwwivG1VG1zQNWYUCYeUgNuCBnhXhqoXoM9jbVk/cKdyvuN/g+RjCYUj3G
+         b0Rg==
+X-Gm-Message-State: AC+VfDw0TsPVYRja8Ef9OO539PsHpT1prm7bmcS+mGVFtWhfdq3lyHy2
+        feKyZR56g3Kz9Y6sWEZThIeiki38i2Y13Dz5q02JAUzjYOW0F6M8NDbvcnhAMj6a/Q/1hXe9wGF
+        HLmdktdIOM0tlmhO1uQGh6g==
+X-Received: by 2002:a05:6808:1386:b0:39e:b84b:4786 with SMTP id c6-20020a056808138600b0039eb84b4786mr20204461oiw.27.1687525616009;
+        Fri, 23 Jun 2023 06:06:56 -0700 (PDT)
+X-Google-Smtp-Source: ACHHUZ73eFqk8vQn5O2qswhndAQq+yzi1FAVd85HKmLTe2wlqJ6VQg6y5tF3WlSHMlgK/pA6NSAzsQ==
+X-Received: by 2002:a05:6808:1386:b0:39e:b84b:4786 with SMTP id c6-20020a056808138600b0039eb84b4786mr20204357oiw.27.1687525614823;
+        Fri, 23 Jun 2023 06:06:54 -0700 (PDT)
+Received: from halaney-x13s ([2600:1700:1ff0:d0e0::f])
+        by smtp.gmail.com with ESMTPSA id be18-20020a056808219200b003a05636f4a8sm2061949oib.29.2023.06.23.06.06.53
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jun 2023 06:06:54 -0700 (PDT)
+Date:   Fri, 23 Jun 2023 08:06:51 -0500
+From:   Andrew Halaney <ahalaney@redhat.com>
+To:     Bartosz Golaszewski <brgl@bgdev.pl>
+Cc:     Vinod Koul <vkoul@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+Subject: Re: [PATCH net-next v2 00/12] net: stmmac: replace boolean fields in
+ plat_stmmacenet_data with flags
+Message-ID: <20230623130651.a36qensnjwx6j4ea@halaney-x13s>
+References: <20230623100845.114085-1-brgl@bgdev.pl>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH V4 3/4] dt-bindings: qcom-qce: add SoC compatible string
- for ipq9574
-Content-Language: en-US
-To:     Anusha Rao <quic_anusha@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, bhupesh.sharma@linaro.org,
-        conor+dt@kernel.org, davem@davemloft.net,
-        devicetree@vger.kernel.org, herbert@gondor.apana.org.au,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-crypto@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mturquette@baylibre.com, p.zabel@pengutronix.de,
-        quic_arajkuma@quicinc.com, quic_gokulsri@quicinc.com,
-        quic_kathirav@quicinc.com, quic_poovendh@quicinc.com,
-        quic_sjaganat@quicinc.com, quic_srichara@quicinc.com,
-        robh+dt@kernel.org, sboyd@kernel.org, thara.gopinath@gmail.com
-References: <20230526161129.1454-4-quic_anusha@quicinc.com>
- <20230623115525.7300-1-quic_anusha@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230623115525.7300-1-quic_anusha@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230623100845.114085-1-brgl@bgdev.pl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 13:55, Anusha Rao wrote:
->> Document the compatible string for ipq9574.
->>
->> Acked-by: Conor Dooley <conor.dooley@microchip.com>
->> Reviewed-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
->> Signed-off-by: Anusha Rao <quic_anusha@quicinc.com>
->> ---
->>  Changes in V4:
->> 	- Picked up Reviewed-by tag.
+On Fri, Jun 23, 2023 at 12:08:33PM +0200, Bartosz Golaszewski wrote:
+> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
 > 
-> A gentle reminder to pick the dt-binding patch.
-> As the dts change is picked, this patch is required to resolve dt-bindings check issues.
+> As suggested by Jose Abreu: let's drop all 12 boolean fields in
+> plat_stmmacenet_data and replace them with a common bitfield.
+> 
+> v1 -> v2:
+> - fix build on intel platforms
+> 
+> Bartosz Golaszewski (12):
+>   net: stmmac: replace the has_integrated_pcs field with a flag
+>   net: stmmac: replace the sph_disable field with a flag
+>   net: stmmac: replace the use_phy_wol field with a flag
+>   net: stmmac: replace the has_sun8i field with a flag
+>   net: stmmac: replace the tso_en field with a flag
+>   net: stmmac: replace the serdes_up_after_phy_linkup field with a flag
+>   net: stmmac: replace the vlan_fail_q_en field with a flag
+>   net: stmmac: replace the multi_msi_en field with a flag
+>   net: stmmac: replace the ext_snapshot_en field with a flag
+>   net: stmmac: replace the int_snapshot_en field with a flag
+>   net: stmmac: replace the rx_clk_runs_in_lpi field with a flag
+>   net: stmmac: replace the en_tx_lpi_clockgating field with a flag
+> 
+>  .../stmicro/stmmac/dwmac-dwc-qos-eth.c        |  4 +-
+>  .../net/ethernet/stmicro/stmmac/dwmac-intel.c | 23 +++++------
+>  .../ethernet/stmicro/stmmac/dwmac-mediatek.c  |  5 ++-
+>  .../stmicro/stmmac/dwmac-qcom-ethqos.c        |  8 ++--
+>  .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c |  2 +-
+>  .../net/ethernet/stmicro/stmmac/dwmac-tegra.c |  4 +-
+>  .../ethernet/stmicro/stmmac/stmmac_hwtstamp.c |  4 +-
+>  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 40 +++++++++++--------
+>  .../net/ethernet/stmicro/stmmac/stmmac_pci.c  |  2 +-
+>  .../ethernet/stmicro/stmmac/stmmac_platform.c | 10 +++--
+>  .../net/ethernet/stmicro/stmmac/stmmac_ptp.c  |  5 ++-
+>  include/linux/stmmac.h                        | 26 ++++++------
+>  12 files changed, 76 insertions(+), 57 deletions(-)
+> 
+> -- 
+> 2.39.2
+> 
 
-One patchset with four patches targeting three different subsystems, so
-no wonder it gets missed. You will usually receive better results with
-splitting such patchsets per subsystems.
+The series looks proper to me:
 
-One more thing is lack of proper subject prefix which indicates the
-subsystem. Without it why anyone would pick it up? For example me, I
-would just ignore it for my subsystem...
-
-Best regards,
-Krzysztof
+Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
 
