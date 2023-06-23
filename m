@@ -2,462 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EEAC73C2B6
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 23:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68CD473C0A9
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 22:42:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232492AbjFWVYX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 17:24:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57130 "EHLO
+        id S232324AbjFWUmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 16:42:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232975AbjFWVX6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 17:23:58 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 174BB2727;
-        Fri, 23 Jun 2023 14:23:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1687555414; x=1719091414;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=xGfpaAWl8R4dQq8aTwhQbc9JaUMdQXtgHMiT4gghfgE=;
-  b=i1hCY247AvSFVemOpLofOpT8imf4xbubZbe0f6QMjbSQ7xcqXM8ws11G
-   P9CQHmPXB3Pzk6PbBogpz+wEVjJ06wVegOviBRDzNbcinpeNipXCztdzU
-   2duRwC7BoZRrwIDwORGr5qLQXNUW6IqTyhEYCTVGbjZB0GfnHdgndmbr5
-   Bii8xeYJtF4g5Whmiyvjl5NtbX8T73yhhs5g6RdUOzERsdxTOMepLN2V9
-   h4tKODnAgrchtiTpMsEdaHossr3cwmcdNcP7ThHpLSLbqzDUxZFHXiZZr
-   PF9spGBWscuBs51fpXpWLvXZkjBf1XZ8cMCI4YWyZagl9+hZ41XWtXi1Q
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,153,1684825200"; 
-   d="scan'208";a="219557463"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 23 Jun 2023 14:23:32 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Fri, 23 Jun 2023 13:53:26 -0700
-Received: from che-lt-i67070.amer.actel.com (10.10.115.15) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server id
- 15.1.2507.21 via Frontend Transport; Fri, 23 Jun 2023 13:52:57 -0700
-From:   Varshini Rajendran <varshini.rajendran@microchip.com>
-To:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <nicolas.ferre@microchip.com>,
-        <alexandre.belloni@bootlin.com>, <claudiu.beznea@microchip.com>,
-        <mturquette@baylibre.com>, <sboyd@kernel.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <vkoul@kernel.org>, <tglx@linutronix.de>, <maz@kernel.org>,
-        <lee@kernel.org>, <ulf.hansson@linaro.org>,
-        <tudor.ambarus@linaro.org>, <miquel.raynal@bootlin.com>,
-        <richard@nod.at>, <vigneshr@ti.com>, <edumazet@google.com>,
-        <kuba@kernel.org>, <pabeni@redhat.com>, <linus.walleij@linaro.org>,
-        <p.zabel@pengutronix.de>, <olivia@selenic.com>,
-        <a.zummo@towertech.it>, <radu_nicolae.pirea@upb.ro>,
-        <richard.genoud@gmail.com>, <gregkh@linuxfoundation.org>,
-        <lgirdwood@gmail.com>, <broonie@kernel.org>,
-        <wim@linux-watchdog.org>, <linux@roeck-us.net>, <arnd@arndb.de>,
-        <olof@lixom.net>, <soc@kernel.org>, <linux@armlinux.org.uk>,
-        <sre@kernel.org>, <jerry.ray@microchip.com>,
-        <horatiu.vultur@microchip.com>, <durai.manickamkr@microchip.com>,
-        <varshini.rajendran@microchip.com>, <andrew@lunn.ch>,
-        <alain.volmat@foss.st.com>, <neil.armstrong@linaro.org>,
-        <mihai.sain@microchip.com>, <eugen.hristev@collabora.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-crypto@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
-        <linux-mtd@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-serial@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-usb@vger.kernel.org>,
-        <linux-watchdog@vger.kernel.org>, <linux-pm@vger.kernel.org>
-CC:     <Hari.PrasathGE@microchip.com>, <cristian.birsan@microchip.com>,
-        <balamanikandan.gunasundar@microchip.com>,
-        <manikandan.m@microchip.com>, <dharma.b@microchip.com>,
-        <nayabbasha.sayed@microchip.com>, <balakrishnan.s@microchip.com>
-Subject: [PATCH v2 45/45] ARM: dts: at91: sam9x75_curiosity: add device tree for sam9x75 curiosity board
-Date:   Sat, 24 Jun 2023 02:00:56 +0530
-Message-ID: <20230623203056.689705-46-varshini.rajendran@microchip.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230623203056.689705-1-varshini.rajendran@microchip.com>
-References: <20230623203056.689705-1-varshini.rajendran@microchip.com>
+        with ESMTP id S232468AbjFWUmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 16:42:05 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 872C235AE;
+        Fri, 23 Jun 2023 13:41:23 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-780d179ffddso38386139f.1;
+        Fri, 23 Jun 2023 13:41:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687552818; x=1690144818;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ot8TQl0fG1cRM0UPfyPtiV0P85KVORof9aumFFE+MAo=;
+        b=S5oVMK7IxFpLzCkUt5LuyzDIMo/VIl9BURGW29Yklrzbpyk787VoGRmiDctgvvj3qs
+         RmM0SayT+a/xg6jYO4ArNXouwU5/+yCymyggUHzpotmUP2l7O/5vi0kqmov22IQruyKw
+         x82+1MoizaWoQQvol8Jk/ZukfzdTJlgKB0eZTAvULITmgzoN/pvAdAfrWDHNwc4lUJw5
+         Nk4CQyqkbqb3j/qMkqT0rZ9zgmsx3bToG4VhB+7mTNgwV9+6UgOzOLu4HiFJVROw9F74
+         G8b0DHAcqlYTsaGLQnu2L2BoJLyZfQPC12MlT4m12/U7EAvqYp/cOAT05uUQ+5mCtauk
+         U3jA==
+X-Gm-Message-State: AC+VfDzUPOoflS63qmL63RLkXY2WttbWtMLoVCI+yZGyJGdTK6U6vxKd
+        8JQgxXEZGM7nULZ99GFdiA==
+X-Google-Smtp-Source: ACHHUZ4ySz/gaJTt2dhyNcDp+w1NwFoIO+PkHghv/0UHyNCmJBxMCEOz3chGGoIVtZ2bUXQIPwCg5Q==
+X-Received: by 2002:a5d:96c1:0:b0:76f:1664:672 with SMTP id r1-20020a5d96c1000000b0076f16640672mr20422866iol.13.1687552818624;
+        Fri, 23 Jun 2023 13:40:18 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id ep22-20020a0566384e1600b00411b8c1813asm2809539jab.159.2023.06.23.13.40.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jun 2023 13:40:17 -0700 (PDT)
+Received: (nullmailer pid 1082374 invoked by uid 1000);
+        Fri, 23 Jun 2023 20:40:16 -0000
+Date:   Fri, 23 Jun 2023 14:40:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
+Subject: Re: [PATCH] dt-bindings: nvmem: fixed-cell: add compatibles for MAC
+ cells
+Message-ID: <20230623204016.GA1060715-robh@kernel.org>
+References: <20230616213033.8451-1-zajec5@gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230616213033.8451-1-zajec5@gmail.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree file for sam9x75 curiosity board.
+On Fri, Jun 16, 2023 at 11:30:33PM +0200, Rafał Miłecki wrote:
+> From: Rafał Miłecki <rafal@milecki.pl>
+> 
+> A lot of home routers have NVMEM fixed cells containing MAC address that
+> need some further processing. In ~99% cases MAC needs to be:
+> 1. Optionally parsed from ASCII format
+> 2. Increased by a vendor-picked value
+> 
+> There was already an attempt to design a binding for that at NVMEM
+> device level in the past. It wasn't accepted though as it didn't really
+> fit NVMEM device layer.
+> 
+> The introduction of NVMEM fixed-cells layout seems to be an opportunity
+> to provide a relevant binding in a clean way.
+> 
+> This commit adds two *generic* compatible strings: "mac-base" and
+> "mac-ascii". As always those need to be carefully reviewed.
+> 
+> OpenWrt project currently supports ~300 home routers that would benefit
+> from the "mac-base" binding. Those devices are manufactured by multiple
+> vendors. There are TP-Link devices (76 of them), Netgear (19),
+> D-Link (11), OpenMesh (9), EnGenius (8), GL.iNet (8), ZTE (7),
+> Xiaomi (5), Ubiquiti (6) and more. Those devices don't share an
+> architecture or SoC.
+> 
+> Amount of devices to benefit from the "mac-ascii" is hard to determine
+> as not all of them were converted to DT yet. There are at least 200 of
+> such devices.
+> 
+> It would be impractical to provide unique "compatible" strings for NVMEM
+> layouts of all those devices. It seems like a valid case for allowing a
+> generic binding instead. Even if this binding will not be sufficient for
+> some further devices it seems to be useful enough as it is.
 
-Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
----
- arch/arm/boot/dts/Makefile                   |   2 +
- arch/arm/boot/dts/at91-sam9x75_curiosity.dts | 336 +++++++++++++++++++
- 2 files changed, 338 insertions(+)
- create mode 100644 arch/arm/boot/dts/at91-sam9x75_curiosity.dts
+I'm generally okay with this approach as it's not trying to handle all 
+permutations with properties. Anything odd can have a specific 
+compatible easily.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 59829fc90315..31f357f8e947 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -53,6 +53,8 @@ dtb-$(CONFIG_SOC_AT91SAM9) += \
- dtb-$(CONFIG_SOC_SAM9X60) += \
- 	at91-sam9x60_curiosity.dtb \
- 	at91-sam9x60ek.dtb
-+dtb-$(CONFIG_SOC_SAM9X7) += \
-+	at91-sam9x75_curiosity.dtb
- dtb-$(CONFIG_SOC_SAM_V7) += \
- 	at91-kizbox2-2.dtb \
- 	at91-kizbox3-hs.dtb \
-diff --git a/arch/arm/boot/dts/at91-sam9x75_curiosity.dts b/arch/arm/boot/dts/at91-sam9x75_curiosity.dts
-new file mode 100644
-index 000000000000..56d3af549201
---- /dev/null
-+++ b/arch/arm/boot/dts/at91-sam9x75_curiosity.dts
-@@ -0,0 +1,336 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * at91-sam9x75_curiosity.dts - Device Tree file for Microchip SAM9X75 Curiosity board
-+ *
-+ * Copyright (C) 2023 Microchip Technology Inc. and its subsidiaries
-+ *
-+ * Author: Varshini Rajendran <varshini.rajendran@microchip.com>
-+ */
-+/dts-v1/;
-+#include "sam9x7.dtsi"
-+#include <dt-bindings/input/input.h>
-+
-+/ {
-+	model = "Microchip SAM9X75 Curiosity";
-+	compatible = "microchip,sam9x75-curiosity", "microchip,sam9x7", "atmel,at91sam9";
-+
-+	aliases {
-+		i2c0 = &i2c6;
-+		i2c1 = &i2c7;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	clocks {
-+		clock-slowxtal {
-+			clock-frequency = <32768>;
-+		};
-+
-+		clock-mainxtal {
-+			clock-frequency = <24000000>;
-+		};
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_key_gpio_default>;
-+		status = "okay";
-+
-+		button-user {
-+			label = "USER";
-+			gpios = <&pioC 9 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_PROG1>;
-+			wakeup-source;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_led_gpio_default>;
-+		status = "okay";
-+
-+		led-0 {
-+			label = "red";
-+			gpios = <&pioC 19 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-1 {
-+			label = "green";
-+			gpios = <&pioC 21 GPIO_ACTIVE_HIGH>;
-+		};
-+
-+		led-2 {
-+			label = "blue";
-+			gpios = <&pioC 20 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	memory@20000000 {
-+		device_type = "memory";
-+		reg = <0x20000000 0x10000000>;
-+	};
-+};
-+
-+&dbgu {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_dbgu>;
-+	status = "okay";
-+};
-+
-+&dma0 {
-+	status = "okay";
-+};
-+
-+&ehci0 {
-+	status = "okay";
-+};
-+
-+&flx6 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+
-+	i2c6: i2c@600 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flx6_default>;
-+		i2c-analog-filter;
-+		i2c-digital-filter;
-+		i2c-digital-filter-width-ns = <35>;
-+		status = "okay";
-+
-+		mcp16502@5b {
-+			compatible = "microchip,mcp16502";
-+			reg = <0x5b>;
-+			status = "okay";
-+
-+			regulators {
-+				vdd_3v3: VDD_IO {
-+					regulator-name = "VDD_IO";
-+					regulator-min-microvolt = <3000000>;
-+					regulator-max-microvolt = <3600000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vddioddr: VDD_DDR {
-+					regulator-name = "VDD_DDR";
-+					regulator-min-microvolt = <1283000>;
-+					regulator-max-microvolt = <1450000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vddcore: VDD_CORE {
-+					regulator-name = "VDD_CORE";
-+					regulator-min-microvolt = <500000>;
-+					regulator-max-microvolt = <1210000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vddcpu: VDD_OTHER {
-+					regulator-name = "VDD_OTHER";
-+					regulator-min-microvolt = <1700000>;
-+					regulator-max-microvolt = <3600000>;
-+					regulator-initial-mode = <2>;
-+					regulator-allowed-modes = <2>, <4>;
-+					regulator-ramp-delay = <3125>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+						regulator-mode = <4>;
-+					};
-+
-+					regulator-state-mem {
-+						regulator-mode = <4>;
-+					};
-+				};
-+
-+				vldo1: LDO1 {
-+					regulator-name = "LDO1";
-+					regulator-min-microvolt = <1200000>;
-+					regulator-max-microvolt = <3700000>;
-+					regulator-always-on;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+					};
-+				};
-+
-+				vldo2: LDO2 {
-+					regulator-name = "LDO2";
-+					regulator-min-microvolt = <1200000>;
-+					regulator-max-microvolt = <3700000>;
-+
-+					regulator-state-standby {
-+						regulator-on-in-suspend;
-+					};
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&flx7 {
-+	atmel,flexcom-mode = <ATMEL_FLEXCOM_MODE_TWI>;
-+	status = "okay";
-+
-+	i2c7: i2c@600 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_flx7_default>;
-+		i2c-analog-filter;
-+		i2c-digital-filter;
-+		i2c-digital-filter-width-ns = <35>;
-+		status = "okay";
-+	};
-+};
-+
-+&ohci0 {
-+	num-ports = <3>;
-+	atmel,vbus-gpio = <0
-+			   &pioC 27 GPIO_ACTIVE_HIGH
-+			   &pioB 18 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb_default>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+
-+	dbgu {
-+		pinctrl_dbgu: dbgu-0 {
-+			atmel,pins = <AT91_PIOA 26 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				      AT91_PIOA 27 AT91_PERIPH_A AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	flexcom {
-+		pinctrl_flx6_default: flx6_twi {
-+			atmel,pins =
-+				<AT91_PIOA 24 AT91_PERIPH_A AT91_PINCTRL_PULL_UP
-+				 AT91_PIOA 25 AT91_PERIPH_A AT91_PINCTRL_PULL_UP>;
-+		};
-+
-+		pinctrl_flx7_default: flx7_twi {
-+			atmel,pins =
-+				<AT91_PIOC 0 AT91_PERIPH_C AT91_PINCTRL_PULL_UP
-+				 AT91_PIOC 1 AT91_PERIPH_C AT91_PINCTRL_PULL_UP>;
-+		};
-+	};
-+
-+	gpio_keys {
-+		pinctrl_key_gpio_default: pinctrl_key_gpio {
-+			atmel,pins = <AT91_PIOC 9 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	leds {
-+		pinctrl_led_gpio_default: pinctrl_led_gpio {
-+			atmel,pins = <AT91_PIOC 19 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOC 21 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOC 20 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	ohci0 {
-+		pinctrl_usb_default: usb_default {
-+			atmel,pins = <AT91_PIOC 27 AT91_PERIPH_GPIO AT91_PINCTRL_NONE
-+				      AT91_PIOB 18 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+
-+	sdmmc0 {
-+		pinctrl_sdmmc0_default: sdmmc0 {
-+			atmel,pins =
-+				<AT91_PIOA 2 AT91_PERIPH_A (AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)					/* PA2 CK  periph A with pullup */
-+				 AT91_PIOA 1 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA1 CMD periph A with pullup */
-+				 AT91_PIOA 0 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA0 DAT0 periph A */
-+				 AT91_PIOA 3 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA3 DAT1 periph A with pullup */
-+				 AT91_PIOA 4 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)		/* PA4 DAT2 periph A with pullup */
-+				 AT91_PIOA 5 AT91_PERIPH_A (AT91_PINCTRL_PULL_UP | AT91_PINCTRL_DRIVE_STRENGTH_HI | AT91_PINCTRL_SLEWRATE_DIS)>;	/* PA5 DAT3 periph A with pullup */
-+		};
-+	};
-+
-+	usb0 {
-+		pinctrl_usba_vbus: usba_vbus {
-+			atmel,pins = <AT91_PIOC 8 AT91_PERIPH_GPIO AT91_PINCTRL_NONE>;
-+		};
-+	};
-+}; /* pinctrl */
-+
-+&rtt {
-+	atmel,rtt-rtc-time-reg = <&gpbr 0x0>;
-+};
-+
-+&sdmmc0 {
-+	bus-width = <4>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_sdmmc0_default>;
-+	cd-gpios = <&pioA 23 GPIO_ACTIVE_LOW>;
-+	disable-wp;
-+	status = "okay";
-+};
-+
-+&shutdown_controller {
-+	atmel,shdwc-debouncer = <976>;
-+	status = "okay";
-+
-+	input@0 {
-+		reg = <0>;
-+	};
-+};
-+
-+&trng {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	atmel,vbus-gpio = <&pioC 8 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usba_vbus>;
-+	status = "okay";
-+};
-+
-+&watchdog {
-+	status = "okay";
-+};
--- 
-2.25.1
+> 
+> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> ---
+> If this binding gets approved I will still need a minor help with YAML.
+> 
+> For some reason my conditions in fixed-cell.yaml don't seem to work as
+> expected. I tried to make "#nvmem-cell-cells" required only for the
+> "mac-base" but it seems it got required for all cells:
 
+Answer below.
+
+>   DTC_CHK Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.example.dtb
+> Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.example.dtb: nvmem-layout: calibration@4000: '#nvmem-cell-cells' is a required property
+>         From schema: Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+> 
+> Cell "calibration" doesn't have any "compatible" so it shouldn't require
+> "#nvmem-cell-cells".
+> Can someone hint me what I did wrong, please?
+> ---
+>  .../bindings/nvmem/layouts/fixed-cell.yaml    | 35 +++++++++++++++++++
+>  .../bindings/nvmem/layouts/fixed-layout.yaml  | 12 +++++++
+>  .../devicetree/bindings/nvmem/nvmem.yaml      |  5 ++-
+>  3 files changed, 51 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
+> index e698098450e1..047e42438a4f 100644
+> --- a/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
+> @@ -11,6 +11,17 @@ maintainers:
+>    - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>  
+>  properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: mac-base
+> +        description: >
+> +          Cell with base MAC address to be used for calculating extra relative
+> +          addresses.
+> +      - const: mac-ascii
+> +        description: >
+> +          Cell with base MAC address stored in an ASCII format (like
+> +          "00:11:22:33:44:55").
+
+Isn't ASCII detectable? Just look at the length or that all values are 
+0x3?. Though I can't make sense of the lengths your examples have.
+
+> +
+>    reg:
+>      maxItems: 1
+>  
+> @@ -25,6 +36,30 @@ properties:
+>          description:
+>            Size in bit within the address range specified by reg.
+>  
+> +allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mac-base
+
+This will be true with no compatible property. You need 'required: [ 
+compatible ]' in addition.
+
+> +    then:
+> +      properties:
+> +        "#nvmem-cell-cells":
+> +          description: The first argument is a MAC address offset.
+> +          const: 1
+> +      required:
+> +        - "#nvmem-cell-cells"
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: mac-ascii
+> +    then:
+> +      properties:
+> +        "#nvmem-cell-cells":
+> +          description: The first argument is a MAC address offset.
+> +          const: 1
+> +
+>  required:
+>    - reg
+>  
+> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+> index c271537d0714..05b8230cd18c 100644
+> --- a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
+> @@ -44,6 +44,18 @@ examples:
+>          #address-cells = <1>;
+>          #size-cells = <1>;
+>  
+> +        mac@100 {
+> +            compatible = "mac-base";
+> +            reg = <0x100 0xc>;
+> +            #nvmem-cell-cells = <1>;
+> +        };
+> +
+> +        mac@110 {
+> +            compatible = "mac-ascii";
+> +            reg = <0x110 0x11>;
+> +            #nvmem-cell-cells = <1>;
+> +        };
+> +
+>          calibration@4000 {
+>              reg = <0x4000 0x100>;
+>          };
+> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> index 980244100690..9f921d940142 100644
+> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
+> @@ -49,7 +49,10 @@ properties:
+>  patternProperties:
+>    "@[0-9a-f]+(,[0-7])?$":
+>      type: object
+> -    $ref: layouts/fixed-cell.yaml
+> +    allOf:
+> +      - $ref: layouts/fixed-cell.yaml
+> +      - properties:
+> +          compatible: false
+>      deprecated: true
+>  
+>  additionalProperties: true
+> -- 
+> 2.35.3
+> 
