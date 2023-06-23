@@ -2,98 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7A9C73B222
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 09:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED01573B243
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:01:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231773AbjFWHyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 03:54:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46254 "EHLO
+        id S230481AbjFWIBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 04:01:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231758AbjFWHyr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 03:54:47 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99990AC;
-        Fri, 23 Jun 2023 00:54:46 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-9741caaf9d4so23883966b.0;
-        Fri, 23 Jun 2023 00:54:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687506885; x=1690098885;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z4/3vh8wlFrqZZ6Gpx9hGTulu5hIdl5c6zJ1UoXsOoc=;
-        b=np5JJnmZBZ80YaKiV6lEVkZQHRUTNi3zuZgCW3aYXoqpi+gJjgiw6vPWv+QkyL4Ln7
-         S4kohoXICMcxW+/aV1nnnbQueoU0kceTDiucoK/OnI87O4bZjFVDY7+K652ZaSB4ZDXF
-         0tqhprS02sWEuhRrjWTCItyyW8fIORRx0Jq/+qt8jutRkFTZQ5Z3mIMcRULALP+gTgIB
-         hhK2ij8bjyri5OFt3fDDZmSomWpgIpavzKjCyHJ398hQHGv0hI8jB7qs5HTgTGgKWhJA
-         FiHUOeE9ICEQk6QL4X1MWQX/fvFchndcRVLtvTUI4BPMh1sKvRWowUfABWtnpwjl05bC
-         5g3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687506885; x=1690098885;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z4/3vh8wlFrqZZ6Gpx9hGTulu5hIdl5c6zJ1UoXsOoc=;
-        b=YexU5rXpSgWHOvAgdz/6raMuXg9aFftRI70wrubquxwqPeih9Ajo5p1XkDAFzp1/CN
-         Kn7TuDEsCj946Hi3MKe4fkqo7yDzsT28mNyyiRzn6ZL/IEiE6sJm/iDXfaitex9BTwO9
-         0jLK2Tve1jT5UBPkH9Dbio0nVhDzWt9F5dweoMqxKA8JM90PRNlulBL/dP6LxO8Tshov
-         IQ3kFC8585TwGlsM8hHZ5W9mjoIBjLaEeoBR97HdKlESN68RFoNBGZd6SkPSYQh2btCL
-         AduvoPQzI7LPO0yk+B1bbf/00gPuI7/AK6U0yVVFTp3Zxw84h6WqwBm7Jiof+nsOVj3P
-         66OQ==
-X-Gm-Message-State: AC+VfDxCP1JY5VujNFTrwbzPmQAC/6Gmu+ZbLGXmUZnS1xOH1G/sGR1L
-        TEwXnE8Ffk52pp8G8p5gB3g=
-X-Google-Smtp-Source: ACHHUZ5lHZJ8TfyCSOsnWtoMkzRdAG2p1ngYQKBV0Jhf9TjloyTYG2zCx6BDVohXCDi1QntkKFdXtw==
-X-Received: by 2002:a17:907:989:b0:98d:9655:3fac with SMTP id bf9-20020a170907098900b0098d96553facmr610786ejc.71.1687506884914;
-        Fri, 23 Jun 2023 00:54:44 -0700 (PDT)
-Received: from PCBABN.skidata.net ([91.230.2.244])
-        by smtp.gmail.com with ESMTPSA id w17-20020a1709060a1100b0096f6a131b9fsm5653095ejf.23.2023.06.23.00.54.44
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 00:54:44 -0700 (PDT)
-From:   Benjamin Bara <bbara93@gmail.com>
-To:     gregkh@linuxfoundation.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     alexander.stein@ew.tq-group.com, bbara93@gmail.com,
-        benjamin.bara@skidata.com, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, mka@chromium.org, robh+dt@kernel.org,
-        robh@kernel.org
-Subject: Re: [PATCH v7 0/3] usb: misc: onboard_usb_hub: add support for Cypress HX3 USB 3.0 family
-Date:   Fri, 23 Jun 2023 09:54:37 +0200
-Message-Id: <20230623075437.2698899-1-bbara93@gmail.com>
+        with ESMTP id S230170AbjFWIBr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:01:47 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5DC4E1BE2;
+        Fri, 23 Jun 2023 01:01:45 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,151,1684767600"; 
+   d="scan'208";a="168666974"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 23 Jun 2023 17:01:44 +0900
+Received: from mulinux.home (unknown [10.226.93.17])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 838C4400B9F5;
+        Fri, 23 Jun 2023 17:01:40 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rzv2mevk2: Fix eMMC/SDHI pinctrl names
+Date:   Fri, 23 Jun 2023 09:01:35 +0100
+Message-Id: <20230623080135.15696-1-fabrizio.castro.jz@renesas.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <2023062339-cold-turret-dacf@gregkh>
-References: <2023062339-cold-turret-dacf@gregkh>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        LOTS_OF_MONEY,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi greg and Krysztof,
+The original commit uses the same names ("data" and "ctrl")
+for the subnodes of pinctrl definitions for both eMMC and
+SDHI0 (emmc_pins, sdhi0_pins, and sdhi0_pins_uhs) leading to
+the below issue:
 
-On Fri, 23 Jun 2023 at 09:41, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> Please give some time before resending bigger (non-trivial) patches. One
-> per day is usually enough. I still see some kbuild robot reports - from
-> this or previous patchset, so are you sure you compile tested it on few
-> different platforms?
+pinctrl-rzv2m b6250000.pinctrl: pin P8_2 already requested by 85000000.mmc; cannot claim for 85020000.mmc
+pinctrl-rzv2m b6250000.pinctrl: pin-130 (85020000.mmc) status -22
+renesas_sdhi_internal_dmac 85020000.mmc: Error applying setting, reverse things back
 
-On Fri, 23 Jun 2023 at 09:46, Greg Kroah-Hartman <gregkh@linuxfoundation.org> wrote:
-> Wow, that's a lot of respins so quickly, please relax and take your time
-> and wait a few days before resending patch series as it causes
-> cross-reviews of old versions, which has happened many times here
-> already.
->
-> I'll wait for 6.5-rc1 to come out before looking at this again to give
-> everything some time to settle down.
+This commit fixes the problem by making the names for the
+pinctrl subnodes of eMMC and SDHI0 unique.
 
-Sorry for the spam, was a little stressed and wanted to get it done
-before driving to Prague. Obviously was a stupid idea I will remember
-for the future.
+Fixes: b6c0be722b0c ("arm64: dts: renesas: rzv2mevk2: Add uSD card and eMMC support")
+Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+---
+ .../arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-Best regards and please excuse the inconveniences. Won't happen again.
-Benjamin
+diff --git a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+index 39fe3f94991e..11c5cffea5a5 100644
+--- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
++++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+@@ -167,7 +167,7 @@ &i2c2 {
+ 
+ &pinctrl {
+ 	emmc_pins: emmc {
+-		data {
++		emmc_data {
+ 			pinmux = <RZV2M_PORT_PINMUX(0, 0, 2)>, /* MMDAT0 */
+ 				 <RZV2M_PORT_PINMUX(0, 1, 2)>, /* MMDAT1 */
+ 				 <RZV2M_PORT_PINMUX(0, 2, 2)>, /* MMDAT2 */
+@@ -179,7 +179,7 @@ data {
+ 			power-source = <1800>;
+ 		};
+ 
+-		ctrl {
++		emmc_ctrl {
+ 			pinmux = <RZV2M_PORT_PINMUX(0, 10, 2)>, /* MMCMD */
+ 				 <RZV2M_PORT_PINMUX(0, 11, 2)>; /* MMCLK */
+ 			power-source = <1800>;
+@@ -197,7 +197,7 @@ i2c2_pins: i2c2 {
+ 	};
+ 
+ 	sdhi0_pins: sd0 {
+-		data {
++		sd0_data {
+ 			pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
+ 				 <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
+ 				 <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
+@@ -205,20 +205,20 @@ data {
+ 			power-source = <3300>;
+ 		};
+ 
+-		ctrl {
++		sd0_ctrl {
+ 			pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
+ 				 <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
+ 			power-source = <3300>;
+ 		};
+ 
+-		cd {
++		sd0_cd {
+ 			pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
+ 			power-source = <3300>;
+ 		};
+ 	};
+ 
+ 	sdhi0_pins_uhs: sd0-uhs {
+-		data {
++		sd0_uhs_data {
+ 			pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
+ 				 <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
+ 				 <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
+@@ -226,13 +226,13 @@ data {
+ 			power-source = <1800>;
+ 		};
+ 
+-		ctrl {
++		sd0_uhs_ctrl {
+ 			pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
+ 				 <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
+ 			power-source = <1800>;
+ 		};
+ 
+-		cd {
++		sd0_uhs_cd {
+ 			pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
+ 			power-source = <1800>;
+ 		};
+-- 
+2.34.1
+
