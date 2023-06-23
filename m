@@ -2,159 +2,354 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5613273B350
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 11:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EEB773B337
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 11:06:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjFWJPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 05:15:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
+        id S230186AbjFWJGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 05:06:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46518 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229561AbjFWJP3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 05:15:29 -0400
-Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F19C2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 02:15:23 -0700 (PDT)
-X-AuditID: ac14000a-923ff70000007ecb-f8-64955f02026d
-Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
-        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 47.60.32459.20F55946; Fri, 23 Jun 2023 10:59:46 +0200 (CEST)
-Received: from Berlix.phytec.de (172.25.0.12) by Florix.phytec.de
- (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 23 Jun
- 2023 10:59:45 +0200
-Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
- berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
- Fri, 23 Jun 2023 10:59:45 +0200
-From:   Christophe Parant <C.Parant@phytec.fr>
-To:     "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "s.trumtrar@pengutronix.de" <s.trumtrar@pengutronix.de>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "upstream@lists.phytec.de" <upstream@lists.phytec.de>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
-        "alexandre.torgue@foss.st.com" <alexandre.torgue@foss.st.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
-Thread-Topic: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec
- board
-Thread-Index: AQHZjYZ7ReKcSf+hNU6XArRy/wB/9q9n0WyAgDBUHIA=
-Date:   Fri, 23 Jun 2023 08:59:45 +0000
-Message-ID: <9163ad315278dbedd6c31993a3dafad62a731b5e.camel@phytec.fr>
-References: <20230505060158.16516-1-s.trumtrar@pengutronix.de>
-         <20230505060158.16516-11-s.trumtrar@pengutronix.de>
-         <e5b4ef445160ac0ddbaa25f12118a253ad21542a.camel@phytec.fr>
-In-Reply-To: <e5b4ef445160ac0ddbaa25f12118a253ad21542a.camel@phytec.fr>
-Accept-Language: fr-FR, de-DE, en-US
-Content-Language: de-DE
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [172.25.0.11]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <C4DB8B8AEF0528439B22FAC57DCCE88C@phytec.de>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229607AbjFWJF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 05:05:58 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B153C2;
+        Fri, 23 Jun 2023 02:05:57 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35N8GiHt032613;
+        Fri, 23 Jun 2023 09:00:40 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=Fm5WFiqSZHdC/UrdhohLSKLZlG54PTroJ44BuZr+u6U=;
+ b=LX6mfpHZXrs3Q627kt8an3VIGa8wUd+caUXHxoWqew4/C9o+MpxGFWDHzNAcd9e1FTLm
+ S4GTth/GAgBeEia8IRK5UaEAnohzCjvFmA2qSwm+q9yZ/M+GPSzZom/SSKZIWdYioLjb
+ L9WR9FEt1wg0mhN9Pc1+ElUa8HBA2lwEg6YVN6cQdsKimCxNHIg7h8zeNCIQYFh+2au/
+ sQXVqSaOfHGO0nqOXgA6tkkx/I1P3MsH1Fvc51ixdl7vCesWpYxdmChbmxXGDBwnjyec
+ N+9JYD4ozxM9Q55/kVVhaR64MSDsRld1ZtwtMg1LI6uLRRz7eHaevMUyhdiLQ4XklXim PA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rc6b2c9vf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 23 Jun 2023 09:00:40 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35N90dVW006713
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 23 Jun 2023 09:00:39 GMT
+Received: from sridsn-linux.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.986.42; Fri, 23 Jun 2023 02:00:34 -0700
+From:   Sridharan S N <quic_sridsn@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <quic_saahtoma@quicinc.com>,
+        Sridharan S N <quic_sridsn@quicinc.com>
+Subject: [PATCH V2] arm64: dts: qcom: ipq5332: Add common RDP dtsi file
+Date:   Fri, 23 Jun 2023 14:30:01 +0530
+Message-ID: <20230623090001.27778-1-quic_sridsn@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrKIsWRmVeSWpSXmKPExsWyRpKBV5cpfmqKwaxnAhY/X05jtJh/5Byr
-        Rd+Lh8wWmx5fY7XouvaE1WLe37WsFp8+LmSx6H6n7sDh8bR/K7vHzll32T3uXNvD5rF5Sb1H
-        f3cLq0f/XwOPg/sMPT5vkgvgiOKySUnNySxLLdK3S+DKmDwvouCafsXxo4cZGxh36HUxcnJI
-        CJhI7Px+m72LkYtDSGAJk8S7+1NYIJwHjBJ7uxrYIJyNjBKXX71gBGlhE9CRuHP8AjNIQkRg
-        GqPE0tYFTCAJZoEJzBIzZjuB2MICfhI/Z29lAbFFBAIl+s/vYISwrSR6TrezgdgsAqoSm3b/
-        ZwWxeQXcJJpvHmKE2LaZUeLb0nNgzZwC7hI3jnwAa2YUUJG4/nIXC8QycYlNz76zQjwhILFk
-        z3lmCFtU4uXjf1BxeYkTt6YBHccBVK8psX6XPoRpIbGmzR9iiqLElO6H7BAnCEqcnPmEZQKj
-        +CwkC2YhNM9CaJ6FpHkWkuYFjKyrGIVyM5OzU4sys/UKMipLUpP1UlI3MYKiWoSBawdj3xyP
-        Q4xMHIyHGCU4mJVEeGU3TUoR4k1JrKxKLcqPLyrNSS0+xCjNwaIkznu/hylRSCA9sSQ1OzW1
-        ILUIJsvEwSnVwGj7/An/S5nS9T+y67beO/JZI6rBsevdruPxFUevy+7IfG2Rf9DtKtvqR491
-        3L5/j068tH5djZLRW3fxBZ+ny9t+rZQ6LROydWL01fxPniGV1WIWdtzz9xa+ipiirRO8eV+C
-        7N+DJR/rghSkHc8cWPWO6WXPPza96utaC59wLfjazZ219rTg9eVKLMUZiYZazEXFiQDWATSP
-        2AIAAA==
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vsGIW8WS23mkWAq_PN0_bECZ3xpC8tyy
+X-Proofpoint-GUID: vsGIW8WS23mkWAq_PN0_bECZ3xpC8tyy
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-23_03,2023-06-22_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 bulkscore=0
+ malwarescore=0 spamscore=0 phishscore=0 suspectscore=0 priorityscore=1501
+ mlxlogscore=999 lowpriorityscore=0 impostorscore=0 mlxscore=0 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306230079
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGVsbG8gbWFpbnRhaW5lcnMsDQoNCkkgd291bGQgbGlrZSB0byBrbm93IGlmIHlvdSBoYXZlIHNl
-ZW4gbXkgcmVxdWVzdCBiZWxvdyA/DQoNClRoYW5rIHlvdS4NCg0KQmVzdCByZWdhcmRzLA0KQ2hy
-aXN0b3BoZQ0KDQpMZSBtYXJkaSAyMyBtYWkgMjAyMyDDoCAxNjo1OCArMDIwMCwgQ2hyaXN0b3Bo
-ZSBQYXJhbnQgYSDDqWNyaXTCoDoNCj4gSGkgU3RlZmZlbiwNCj4gDQo+IFRoYW5rIHlvdSBmb3Ig
-dXBzdHJlYW1pbmcgb3VyIHBoeUJPQVJELVNhcmdhcyBkZXZpY2UgdHJlZS4gV2Ugd2VyZQ0KPiBh
-bHNvDQo+IHBsYW5pbmcgdG8gd29yayBvbiB0aGF0IHRvby4NCj4gSWYgdGhpcyBwYXRjaCBpcyBu
-b3QgYXBwbGllZCB1cHN0cmVhbSB5ZXQsIHdvdWxkIGl0IGJlIHBvc3NpYmxlIHRvDQo+IHJlbmFt
-ZSB0aGUgLmR0cyBmaWxlID8NCj4gDQo+IEluIHRoZSBiZWdpbm5pbmcsIHdlIG5hbWVkIHRoZSBk
-dHMgZmlsZXMgYWZ0ZXIgb3VyIFlvY3RvIG1hY2hpbmVzLA0KPiB3aGljaCBpcyBwcm9iYWJseSB0
-aGUgdmVyc2lvbiB5b3UgZ290LiBCdXQgbm93IHdlIHJlbmFtZWQgdGhlbSBhZnRlcg0KPiBvdXIg
-YmFzZWJvYXJkIG5hbWVzLCBsaWtlIHdpdGggb3VyIG90aGVyIHBsYXRmb3Jtcy4NCj4gU28gaXQg
-d291bGQgbWFrZSBzZW5zZSB0byBoYXZlIHRoZSBzdG0zMiBiYXNlYm9hcmQgbmFtZWQgdGhlIHNh
-bWUNCj4gd2F5LA0KPiBjaGFuZ2luZyAic3RtMzJtcDE1N2MtcGh5Y29yZS1zdG0zMm1wMS0zLmR0
-cyIgdG8gInN0bTMybXAxNTdjLQ0KPiBwaHlib2FyZC0NCj4gc2FyZ2FzLXJkay1lbW1jLmR0cyIu
-DQo+IA0KPiAibW9kZWwiIGFuZCAiY29tcGF0aWJsZSIgY2FuIGFsc28gYmUgbW9kaWZpZWQgdGhp
-cyB3YXkgd2l0aCB0aGlzDQo+IG5hbWluZw0KPiBjb252ZW50aW9uIDoNCj4gDQo+IC8gew0KPiDC
-oMKgwqAgbW9kZWwgPSAiUEhZVEVDIHBoeUJPQVJELVNhcmdhcyBTVE0zMk1QMTU3QyB3aXRoIGVN
-TUMiOw0KPiDCoMKgwqAgY29tcGF0aWJsZSA9ICJwaHl0ZWMsc3RtMzJtcDE1N2MtcGh5Ym9hcmQt
-c2FyZ2FzLXJkay1lbW1jIiwNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJwaHl0ZWMsc3Rt
-MzJtcDE1N2MtcGh5Y29yZS1zb20iLCAic3Qsc3RtMzJtcDE1NyI7DQo+IH07DQo+IA0KPiBUaGFu
-a3MuDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IENocmlzdG9waGUgUGFyYW50DQo+IA0KPiBMZSB2
-ZW5kcmVkaSAwNSBtYWkgMjAyMyDDoCAwODowMSArMDIwMCwgU3RlZmZlbiBUcnVtdHJhciBhIMOp
-Y3JpdMKgOg0KPiA+IEFkZCB0aGUgUGh5dGVjIFNUTTMyTVAxLTMgRGV2IGJvYXJkLiBUaGUgZGV2
-Ym9hcmQgdXNlcyBhIFBoeXRlYw0KPiA+IHN0bTMybTE1N2Mtc29tLg0KPiA+IA0KPiA+IFNpZ25l
-ZC1vZmYtYnk6IFN0ZWZmZW4gVHJ1bXRyYXIgPHMudHJ1bXRyYXJAcGVuZ3V0cm9uaXguZGU+DQo+
-ID4gLS0tDQo+ID4gDQo+ID4gTm90ZXM6DQo+ID4gwqDCoMKgIENoYW5nZXMgc2luY2Ugdjc6DQo+
-ID4gwqDCoMKgwqDCoMKgIC0gcmVtb3ZlIHNlY3VyZS1zdGF0dXMgZm9yIHNkbW1jDQo+ID4gDQo+
-ID4gwqBhcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
-wqDCoMKgwqDCoMKgIHzCoCAzICstDQo+ID4gwqAuLi4vZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUt
-c3RtMzJtcDEtMy5kdHPCoMKgwqAgfCA2MA0KPiA+ICsrKysrKysrKysrKysrKysrKysNCj4gPiDC
-oDIgZmlsZXMgY2hhbmdlZCwgNjIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+IMKg
-Y3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUt
-c3RtMzJtcDEtDQo+ID4gMy5kdHMNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9v
-dC9kdHMvTWFrZWZpbGUNCj4gPiBiL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlDQo+ID4gaW5k
-ZXggZWZlNDE1MmU1ODQ2Li5kZmE5YTc0NzdjODIgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm0v
-Ym9vdC9kdHMvTWFrZWZpbGUNCj4gPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZQ0K
-PiA+IEBAIC0xMjUyLDcgKzEyNTIsOCBAQCBkdGItJChDT05GSUdfQVJDSF9TVE0zMikgKz0gXA0K
-PiA+IMKgwqDCoMKgwqDCoMKgwqBzdG0zMm1wMTU3Yy1ldjEuZHRiIFwNCj4gPiDCoMKgwqDCoMKg
-wqDCoMKgc3RtMzJtcDE1N2MtZXYxLXNjbWkuZHRiIFwNCj4gPiDCoMKgwqDCoMKgwqDCoMKgc3Rt
-MzJtcDE1N2MtbHhhLW1jMS5kdGIgXA0KPiA+IC3CoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLW9k
-eXNzZXkuZHRiDQo+ID4gK8KgwqDCoMKgwqDCoMKgc3RtMzJtcDE1N2Mtb2R5c3NleS5kdGIgXA0K
-PiA+ICvCoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtMy5kdGINCj4g
-PiDCoGR0Yi0kKENPTkZJR19NQUNIX1NVTjRJKSArPSBcDQo+ID4gwqDCoMKgwqDCoMKgwqDCoHN1
-bjRpLWExMC1hMTAwMC5kdGIgXA0KPiA+IMKgwqDCoMKgwqDCoMKgwqBzdW40aS1hMTAtYmExMC10
-dmJveC5kdGIgXA0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3
-Yy1waHljb3JlLXN0bTMybXAxLTMuZHRzDQo+ID4gYi9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1w
-MTU3Yy1waHljb3JlLXN0bTMybXAxLTMuZHRzDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4g
-PiBpbmRleCAwMDAwMDAwMDAwMDAuLjI4ZDcyMDMyNjRjZQ0KPiA+IC0tLSAvZGV2L251bGwNCj4g
-PiArKysgYi9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3Yy1waHljb3JlLXN0bTMybXAxLTMu
-ZHRzDQo+ID4gQEAgLTAsMCArMSw2MCBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
-cjogKEdQTC0yLjArIE9SIEJTRC0zLUNsYXVzZSkNCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0
-IChDKSBQaHl0ZWMgR21iSCAyMDE5LTIwMjAgLSBBbGwgUmlnaHRzIFJlc2VydmVkDQo+ID4gKyAq
-IEF1dGhvcjogRG9tIFZPVkFSRCA8ZG9tLnZvdmFyZEBsaW5ydC5jb20+Lg0KPiA+ICsgKi8NCj4g
-PiArDQo+ID4gKy9kdHMtdjEvOw0KPiA+ICsNCj4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Bp
-bmN0cmwvc3RtMzItcGluZnVuYy5oPg0KPiA+ICsjaW5jbHVkZSAic3RtMzJtcDE1Ny5kdHNpIg0K
-PiA+ICsjaW5jbHVkZSAic3RtMzJtcDE1eGMuZHRzaSINCj4gPiArI2luY2x1ZGUgInN0bTMybXAx
-NXh4YWMtcGluY3RybC5kdHNpIg0KPiA+ICsjaW5jbHVkZSAic3RtMzJtcDE1N2MtcGh5Y29yZS1z
-dG0zMm1wMTUtc29tLmR0c2kiDQo+ID4gKw0KPiA+ICsvIHsNCj4gPiArwqDCoMKgwqDCoMKgwqBt
-b2RlbCA9ICJQSFlURUMgcGh5Q09SRS1TVE0zMk1QMS0zIERldiBCb2FyZCI7DQo+ID4gK8KgwqDC
-oMKgwqDCoMKgY29tcGF0aWJsZSA9ICJwaHl0ZWMscGh5Y29yZS1zdG0zMm1wMS0zIiwNCj4gPiAr
-wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInBoeXRlYyxwaHljb3JlLXN0
-bTMybXAxNTdjLXNvbSIsDQo+ID4gInN0LHN0bTMybXAxNTciOw0KPiA+ICsNCj4gPiArwqDCoMKg
-wqDCoMKgwqBhbGlhc2VzIHsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbW1j
-MCA9ICZzZG1tYzE7DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1tYzEgPSAm
-c2RtbWMyOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtbWMyID0gJnNkbW1j
-MzsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc2VyaWFsMCA9ICZ1YXJ0NDsN
-Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc2VyaWFsMSA9ICZ1c2FydDM7DQo+
-ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNlcmlhbDIgPSAmdXNhcnQxOw0KPiA+
-ICvCoMKgwqDCoMKgwqDCoH07DQo+ID4gK307DQo+ID4gKw0KPiA+ICsmY3J5cDEgew0KPiA+ICvC
-oMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4gPiArDQo+ID4gKyZkdHMg
-ew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4gPiArDQo+
-ID4gKyZmbWMgew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ID4g
-K307DQo+ID4gKw0KPiA+ICsmZ3B1IHsNCj4gPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2th
-eSI7DQo+ID4gK307DQo+ID4gKw0KPiA+ICsmaTJjNF9lZXByb20gew0KPiA+ICvCoMKgwqDCoMKg
-wqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4gPiArDQo+ID4gKyZpMmM0X3J0YyB7DQo+
-ID4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOw0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAr
-JnFzcGkgew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4g
-PiArDQo+ID4gKyZzZG1tYzIgew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsN
-Cj4gPiArfTsNCg==
+Add a dtsi file to include interfaces that are common
+across IPQ5332 RDPs.
+
+Signed-off-by: Sridharan S N <quic_sridsn@quicinc.com>
+---
+
+Changes in V2:
+	- removed blsp1_i2c1 and sdhc nodes from common.dtsi file
+	  and added in board dts file since it is board specific
+ 
+ .../boot/dts/qcom/ipq5332-rdp-common.dtsi     | 36 ++++++++++++++
+ arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts   | 26 +---------
+ arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts   | 26 +---------
+ arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts   | 24 +---------
+ arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts   | 47 +------------------
+ 5 files changed, 40 insertions(+), 119 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+new file mode 100644
+index 000000000000..f13dea7d67fe
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp-common.dtsi
+@@ -0,0 +1,36 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * IPQ5332 RDP board common device tree source
++ *
++ * Copyright (c) 2022-2023 Qualcomm Innovation Center, Inc. All rights reserved.
++ */
++
++/dts-v1/;
++
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++#include "ipq5332.dtsi"
++
++/ {
++	aliases {
++		serial0 = &blsp1_uart0;
++	};
++
++	chosen {
++		stdout-path = "serial0";
++	};
++};
++
++&blsp1_uart0 {
++	pinctrl-0 = <&serial_0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
++&sleep_clk {
++	clock-frequency = <32000>;
++};
++
++&xo_board {
++	clock-frequency = <24000000>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
+index 3af1d5556950..e89e2e948603 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
++++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp441.dts
+@@ -7,25 +7,11 @@
+ 
+ /dts-v1/;
+ 
+-#include "ipq5332.dtsi"
++#include "ipq5332-rdp-common.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.2";
+ 	compatible = "qcom,ipq5332-ap-mi01.2", "qcom,ipq5332";
+-
+-	aliases {
+-		serial0 = &blsp1_uart0;
+-	};
+-
+-	chosen {
+-		stdout-path = "serial0";
+-	};
+-};
+-
+-&blsp1_uart0 {
+-	pinctrl-0 = <&serial_0_pins>;
+-	pinctrl-names = "default";
+-	status = "okay";
+ };
+ 
+ &blsp1_i2c1 {
+@@ -46,16 +32,6 @@
+ 	status = "okay";
+ };
+ 
+-&sleep_clk {
+-	clock-frequency = <32000>;
+-};
+-
+-&xo_board {
+-	clock-frequency = <24000000>;
+-};
+-
+-/* PINCTRL */
+-
+ &tlmm {
+ 	i2c_1_pins: i2c-1-state {
+ 		pins = "gpio29", "gpio30";
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
+index bcf3b31c20e3..efd480a7afdf 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
++++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp442.dts
+@@ -7,25 +7,11 @@
+ 
+ /dts-v1/;
+ 
+-#include "ipq5332.dtsi"
++#include "ipq5332-rdp-common.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.3";
+ 	compatible = "qcom,ipq5332-ap-mi01.3", "qcom,ipq5332";
+-
+-	aliases {
+-		serial0 = &blsp1_uart0;
+-	};
+-
+-	chosen {
+-		stdout-path = "serial0";
+-	};
+-};
+-
+-&blsp1_uart0 {
+-	pinctrl-0 = <&serial_0_pins>;
+-	pinctrl-names = "default";
+-	status = "okay";
+ };
+ 
+ &blsp1_i2c1 {
+@@ -60,16 +46,6 @@
+ 	status = "okay";
+ };
+ 
+-&sleep_clk {
+-	clock-frequency = <32000>;
+-};
+-
+-&xo_board {
+-	clock-frequency = <24000000>;
+-};
+-
+-/* PINCTRL */
+-
+ &tlmm {
+ 	i2c_1_pins: i2c-1-state {
+ 		pins = "gpio29", "gpio30";
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+index 3b6a5cb8bf07..f96b0c8c908b 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
++++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp468.dts
+@@ -7,25 +7,11 @@
+ 
+ /dts-v1/;
+ 
+-#include "ipq5332.dtsi"
++#include "ipq5332-rdp-common.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.6";
+ 	compatible = "qcom,ipq5332-ap-mi01.6", "qcom,ipq5332";
+-
+-	aliases {
+-		serial0 = &blsp1_uart0;
+-	};
+-
+-	chosen {
+-		stdout-path = "serial0";
+-	};
+-};
+-
+-&blsp1_uart0 {
+-	pinctrl-0 = <&serial_0_pins>;
+-	pinctrl-names = "default";
+-	status = "okay";
+ };
+ 
+ &blsp1_spi0 {
+@@ -53,14 +39,6 @@
+ 	status = "okay";
+ };
+ 
+-&sleep_clk {
+-	clock-frequency = <32000>;
+-};
+-
+-&xo_board {
+-	clock-frequency = <24000000>;
+-};
+-
+ /* PINCTRL */
+ 
+ &tlmm {
+diff --git a/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
+index 53c68d8c5e5d..eb1fa33d6fe4 100644
+--- a/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
++++ b/arch/arm64/boot/dts/qcom/ipq5332-rdp474.dts
+@@ -7,41 +7,11 @@
+ 
+ /dts-v1/;
+ 
+-#include <dt-bindings/gpio/gpio.h>
+-#include <dt-bindings/input/input.h>
+-#include "ipq5332.dtsi"
++#include "ipq5332-rdp-common.dtsi"
+ 
+ / {
+ 	model = "Qualcomm Technologies, Inc. IPQ5332 MI01.9";
+ 	compatible = "qcom,ipq5332-ap-mi01.9", "qcom,ipq5332";
+-
+-	aliases {
+-		serial0 = &blsp1_uart0;
+-	};
+-
+-	chosen {
+-		stdout-path = "serial0";
+-	};
+-
+-	gpio-keys {
+-		compatible = "gpio-keys";
+-		pinctrl-0 = <&gpio_keys_default_state>;
+-		pinctrl-names = "default";
+-
+-		button-wps {
+-			label = "wps";
+-			linux,code = <KEY_WPS_BUTTON>;
+-			gpios = <&tlmm 35 GPIO_ACTIVE_LOW>;
+-			linux,input-type = <1>;
+-			debounce-interval = <60>;
+-		};
+-	};
+-};
+-
+-&blsp1_uart0 {
+-	pinctrl-0 = <&serial_0_pins>;
+-	pinctrl-names = "default";
+-	status = "okay";
+ };
+ 
+ &blsp1_i2c1 {
+@@ -62,24 +32,9 @@
+ 	status = "okay";
+ };
+ 
+-&sleep_clk {
+-	clock-frequency = <32000>;
+-};
+-
+-&xo_board {
+-	clock-frequency = <24000000>;
+-};
+-
+ /* PINCTRL */
+ 
+ &tlmm {
+-	gpio_keys_default_state: gpio-keys-default-state {
+-		pins = "gpio35";
+-		function = "gpio";
+-		drive-strength = <8>;
+-		bias-pull-up;
+-	};
+-
+ 	i2c_1_pins: i2c-1-state {
+ 		pins = "gpio29", "gpio30";
+ 		function = "blsp1_i2c0";
+-- 
+2.17.1
+
