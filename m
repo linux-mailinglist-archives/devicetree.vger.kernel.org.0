@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F2C8A73C2B2
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 23:24:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F72E73C360
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 23:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233019AbjFWVX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 17:23:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57116 "EHLO
+        id S229775AbjFWV5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 17:57:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233053AbjFWVXa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 17:23:30 -0400
-Received: from mail-il1-f180.google.com (mail-il1-f180.google.com [209.85.166.180])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30B2D2951;
-        Fri, 23 Jun 2023 14:22:33 -0700 (PDT)
-Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-34220bb6a80so4000825ab.0;
-        Fri, 23 Jun 2023 14:22:33 -0700 (PDT)
+        with ESMTP id S229488AbjFWV5Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 17:57:16 -0400
+Received: from mail-il1-f174.google.com (mail-il1-f174.google.com [209.85.166.174])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 324CD26AD;
+        Fri, 23 Jun 2023 14:57:15 -0700 (PDT)
+Received: by mail-il1-f174.google.com with SMTP id e9e14a558f8ab-3422b2554e1so4435445ab.1;
+        Fri, 23 Jun 2023 14:57:15 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687555352; x=1690147352;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=X0GqmW/KiAv+jGYqZqTQZIrHhvVtdIco5t4/NhQsM7A=;
-        b=iWB8rAh+VRuZ//pkO8BrPvobEcv/u8u75s356nVF/AEfNSZLvNRv16WAEnIdLuqCPu
-         rBgpdw8JtYEdTsMs1YBfLIhjjAtvfbzS8bns4ZhEltRc56yfJpCr2M9HbeLabAJpRLr8
-         n6MUgRAQK+PeZ+4RSd8S+m/dd5G4L8ARHzMwCwypoFYdpqPLRzGpPq59ojVv6VL18A+T
-         /V7gRXZP5cqMgwF/6Nf7gnHgjcw9smQsNGnTIi71Dcs4TZ7dI4Ivr9r/SyA425mowcGs
-         M13hRzuHeCM/9jXyls9a67VErRHL5fvmKGXW0k/IIYMjd4q3WFyWEGNDz5KhEaWrZSmN
-         pT4g==
-X-Gm-Message-State: AC+VfDw6MIuCwrK8mDpmhCUzJSaVgrrYphyIMq6k4pLHl3u/L044f90P
-        WuhxE7HDlAoZpHj4kD0vQw==
-X-Google-Smtp-Source: ACHHUZ7to7Wz432gqoGE6X6X+bOK8zEInf2fqDeW/L3y0SuGvSi75QMTRYsjjfKDvAi+lBdV6sJfZg==
-X-Received: by 2002:a05:6e02:610:b0:331:9c03:dada with SMTP id t16-20020a056e02061000b003319c03dadamr18736468ils.13.1687555352277;
-        Fri, 23 Jun 2023 14:22:32 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687557434; x=1690149434;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XfdlMJkoa4SrzUsc/lvDXncIHjzQ/uTbhcwby8Z+w8c=;
+        b=SA5uzcSqliMEK/YR9I7vIwQS1GreR8Gq+B7vQGOY2QtwYRhuu19bzPCp2MlShTwIWK
+         +hwA+qtNXQox3og/eNiqiq06OEv4/KBrCBaD+HVEmGQQHTnBvOi5bnxtiYEFlqPr5hRJ
+         0Te9yu1GvrS5056wMRjUQo5w4XXQAFvKIM2O+Qp5i31smojmH0SV2V7sGUr4EyXcnF3V
+         HjP4h3kqLITFWdvo3WwHAE7fgNx2isIDJUMbAK0GClVBtj1ojkMvTce0a37d2wzB8qQ5
+         IzdgYiJ6TZDGf6aOy0/p5JtxkxiGOPll7cbVmxGsDJaTD5qDKKrceMyRiUTUpBYejXx+
+         va8Q==
+X-Gm-Message-State: AC+VfDxVTRgNCNo4SRRansZrSfxdmE3Iyj1bhDDiyLTfmyZSbDkW2aOS
+        TLJYP4Cl09vzide6/MLztQ==
+X-Google-Smtp-Source: ACHHUZ6dvF4FMpy79teGrp0bTWDiN9Iqy4rfyKrWRT8QGWAYY7dIBTwswOpioxETqKFqFe6TN+ZZ9w==
+X-Received: by 2002:a92:dc85:0:b0:33e:7c8d:3cc with SMTP id c5-20020a92dc85000000b0033e7c8d03ccmr18268708iln.22.1687557434407;
+        Fri, 23 Jun 2023 14:57:14 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id u1-20020a056e02080100b00342a1941daesm74587ilm.81.2023.06.23.14.22.30
+        by smtp.gmail.com with ESMTPSA id l13-20020a92d8cd000000b0034124f13f87sm98704ilo.42.2023.06.23.14.57.12
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 14:22:31 -0700 (PDT)
-Received: (nullmailer pid 1191189 invoked by uid 1000);
-        Fri, 23 Jun 2023 21:22:29 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
+        Fri, 23 Jun 2023 14:57:13 -0700 (PDT)
+Received: (nullmailer pid 1266682 invoked by uid 1000);
+        Fri, 23 Jun 2023 21:57:11 -0000
+Date:   Fri, 23 Jun 2023 15:57:11 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Andrew Davis <afd@ti.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-        Stephen Boyd <sboyd@kernel.org>
-In-Reply-To: <20230623201519.194269-1-afd@ti.com>
-References: <20230623201519.194269-1-afd@ti.com>
-Message-Id: <168755534990.1191151.8134039099017913355.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mfd: ti,j721e-system-controller: Remove
- syscon from example
-Date:   Fri, 23 Jun 2023 15:22:29 -0600
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Cc:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: iio: ad74413r: add binding for digital
+ input threshold
+Message-ID: <20230623215711.GA1216324-robh@kernel.org>
+References: <20230623113327.1062170-1-linux@rasmusvillemoes.dk>
+ <20230623113327.1062170-2-linux@rasmusvillemoes.dk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230623113327.1062170-2-linux@rasmusvillemoes.dk>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,42 +69,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Fri, 23 Jun 2023 15:15:19 -0500, Andrew Davis wrote:
-> The binding for ti,am654-ehrpwm-tbclk was updated to remove the syscon
-> compatible hint. Remove the same from the example in this binding.
+On Fri, Jun 23, 2023 at 01:33:25PM +0200, Rasmus Villemoes wrote:
+> Allow specifying the threshold for which the channels configured as
+> digital input change state.
 > 
-> Signed-off-by: Andrew Davis <afd@ti.com>
+> Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
 > ---
->  .../devicetree/bindings/mfd/ti,j721e-system-controller.yaml     | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
+> Running dt_binding_check on this with a too small or large value in
+> the example does give me an error, but the multipleOf does not seem to
+> be enforced; the value 1234567 is not flagged. I don't know if that's
+> expected (maybe I have too old versions of something).
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Thanks for the report. Indeed, 'multipleOf' was not handled correctly. 
+I'll push a fix to dtschema shortly.
 
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dtb: scm-conf@100000: clock-controller@4140:compatible: ['ti,am654-ehrpwm-tbclk'] is too short
-	from schema $id: http://devicetree.org/schemas/mfd/ti,j721e-system-controller.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/mfd/ti,j721e-system-controller.example.dtb: clock-controller@4140: compatible: ['ti,am654-ehrpwm-tbclk'] is too short
-	from schema $id: http://devicetree.org/schemas/clock/ti,am654-ehrpwm-tbclk.yaml#
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230623201519.194269-1-afd@ti.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+Rob
