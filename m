@@ -2,141 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C927573B5BC
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 12:52:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C61C973B5F7
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:20:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231169AbjFWKwa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 06:52:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49148 "EHLO
+        id S229686AbjFWLUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 07:20:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57314 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230504AbjFWKw3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 06:52:29 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8524170B
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:52:28 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-311394406d0so483145f8f.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:52:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687517547; x=1690109547;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=eWEOidUJqp0aLghw7rI6ZPiFar30CL1k7BWpWzIKSaQ=;
-        b=fEPfYpNpM+kOWFETP5HHPhwsrhU96CN7hlkvNOZApJD0sTbef+VnuLpfGgpatZzsTf
-         ZtxzyO9aFCzREXLWdLBdqQuanuSe1p27au1LN9G9cGvQ0Y+dMFPZZdeRbB1+iKVVHul3
-         1fm4Exe6wgpVgPUHPK3P0TTRmVqs5wgtgilmk38LxwUsoGmb9DO/ju3cWLIZiXriTu/b
-         YxP0Nu/SIcfqJQpptgkW4u9fQaMbaE/VxH7QXGmTk0KzNxfAUh5AZopwReyIFL7qtgZ4
-         UbOgmove+bah38iGaNDz/ffdIjg9enWzqvhp06Yqts//HtHFf/CjtG4PYGgLfJsdnGLm
-         UECg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687517547; x=1690109547;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eWEOidUJqp0aLghw7rI6ZPiFar30CL1k7BWpWzIKSaQ=;
-        b=Z5d4JLneYpWAYRdUbV2y1ktkaRZJBjxZ1kEmJ1jSdyeVtRrQYJOzQdemUxKmRmLk/h
-         nq+ixOBsqVC9d0MH4d+EYo7BXBWCCyEZ6ynhIblYWZsC3eo53AaCw3UEAqyzbsea5Lfi
-         pspvl6Mqip1t/JZ27H3TTWehWCNO/xVg+y+bxveuc2yaKhNetejHhuvG+P4XkbK2ub4G
-         /D7xy7oFD2ue0QVRYlVrMC6MYn78vQo/cAbOG74+VTveukYmd+w6p1loCKefXQ8m3K8M
-         shFsKwKACusTdu2vBUuJYa9EwnHCqKDNROTrJyO7YjGCGtlgAJYsRzFLXGBlva/DzyrA
-         2X9Q==
-X-Gm-Message-State: AC+VfDwl3FUhyjJB3g0frW3UknynFSogHHAxHvFm8KlZrmIlS634DDFr
-        3j2cXtfyuVKtmTjjvREKXEAUBA==
-X-Google-Smtp-Source: ACHHUZ5NzN+KrJhCPGgb27SRp4H+bicuOgMOfPu6WiCpbEXbCfrOYSaqJFBUF7vf7wxFZQPT+lx+Tw==
-X-Received: by 2002:adf:f203:0:b0:311:19df:dac7 with SMTP id p3-20020adff203000000b0031119dfdac7mr15248678wro.28.1687517546863;
-        Fri, 23 Jun 2023 03:52:26 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id e14-20020adfef0e000000b0030c2e3c7fb3sm9223908wro.101.2023.06.23.03.52.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 03:52:26 -0700 (PDT)
-Message-ID: <71ae3799-4668-891c-c32d-d36da655d56d@linaro.org>
-Date:   Fri, 23 Jun 2023 11:52:25 +0100
+        with ESMTP id S229501AbjFWLUW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:20:22 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C715B7;
+        Fri, 23 Jun 2023 04:20:21 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id ED58061A2D;
+        Fri, 23 Jun 2023 11:20:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id 3F0ABC433C9;
+        Fri, 23 Jun 2023 11:20:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687519220;
+        bh=HE9jkOtOoyDv0Q75oB+XoqEDHM4V4Xs9EiPT4vC6Om8=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=RZCSBXHo8Y7px28LcuhKSF2i2zvdLL25rGbmWQw8k4HTrkRgXmtC4mcKyHv6LY1Mi
+         JynCQ3M6h0qgbHSQJl6LWlq9Q0qUT3GZawHLeVzHrJZMFMJxVn93Nci7xLlCW1LHp0
+         VP/zwkclE+Bk0gKZYXKOSSInCAbUg3o2UPGk00m63+8Ah2QVpcVcdzSXODpWBHvgLw
+         vZmp16UN3NLFebnuvDqy7TaRZyJev0mV2jkHp7IyG6fs8Bsz98Mky4fEY9nfLQRQYl
+         61RxxhVDXb1nCgspRFAHJTocJp/I2cReOcO21/FraJfkNH2+ApEyBhkc1Cz2r23TwE
+         FU3n07sFA7/Tg==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 13A6BC43169;
+        Fri, 23 Jun 2023 11:20:20 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: msm8939-samsung-a7: Add initial
- dts
-Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>
-Cc:     agross@kernel.org, andersson@kernel.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, nikita@trvn.ru, robh+dt@kernel.org,
-        stephan@gerhold.net, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230623100135.5269-1-linmengbo0689@protonmail.com>
- <20230623100237.5299-1-linmengbo0689@protonmail.com>
- <5fbba4e8-a8d9-0e99-e112-31b5781c1648@linaro.org>
- <20230623104647.5501-1-linmengbo0689@protonmail.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230623104647.5501-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH net-next] dt-bindings: net: altr,tse: Fix error in
+ "compatible" conditional schema
+From:   patchwork-bot+netdevbpf@kernel.org
+Message-Id: <168751922007.31575.12644715744862183773.git-patchwork-notify@kernel.org>
+Date:   Fri, 23 Jun 2023 11:20:20 +0000
+References: <20230621231012.3816139-1-robh@kernel.org>
+In-Reply-To: <20230621231012.3816139-1-robh@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, maxime.chevallier@bootlin.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 11:47, Lin, Meng-Bo wrote:
-> Hi Bryan,
+Hello:
+
+This patch was applied to netdev/net-next.git (main)
+by Paolo Abeni <pabeni@redhat.com>:
+
+On Wed, 21 Jun 2023 17:10:12 -0600 you wrote:
+> The conditional if/then schema has an error as the "enum" values have
+> "const" in them. Drop the "const".
 > 
-> On Friday, June 23rd, 2023 at 10:27 AM, Bryan O'Donoghue <bryan.odonoghue@linaro.org> wrote:
-> 
->>> +++ b/arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts
->>> @@ -0,0 +1,495 @@
->>> +// SPDX-License-Identifier: GPL-2.0-only
->>> +
->>> +/dts-v1/;
->>> +
->>> +#include "msm8939-pm8916.dtsi"
->>> +
->>> +#include <dt-bindings/gpio/gpio.h>
->>> +#include <dt-bindings/input/input.h>
->>> +#include <dt-bindings/interrupt-controller/irq.h>
->>> +
->>> +/ {
->>> + model = "Samsung Galaxy A7 (2015)";
->>> + compatible = "samsung,a7", "qcom,msm8939";
->>> + chassis-type = "handset";
->>
->>
->> Will the downstream bootloader accept this dts without
->>
->> // This is used by the bootloader to find the correct DTB
->> qcom,msm-id = <239 0>;
->>
->> qcom,board-id = <0xEF08FF1 1>;
->>
->>
->> ?
->>
->> https://github.com/msm8916-mainline/lk2nd/blob/master/dts/msm8916/msm8939-samsung-r01.dts#L10
->>
-> 
-> Similar to A3 and A5, and the other msm8916 devices, with lk2nd,
-> "qcom,msm-id" or "qcom,board-id" are not required in mainline to boot
-> this dts.
-> If I understand correctly, lk2nd will attempt to boot an image with any
-> qcdt appended.
-> 
-> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/msm8916-samsung-a3u-eur.dts
-> https://github.com/torvalds/linux/blob/master/arch/arm64/boot/dts/qcom/msm8916-samsung-a5u-eur.dts
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/net/altr,tse.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-I understand.
+Here is the summary with links:
+  - [net-next] dt-bindings: net: altr,tse: Fix error in "compatible" conditional schema
+    https://git.kernel.org/netdev/net-next/c/faaa5fd30344
 
-IMO the upstream DTS should work without depending on lk2nd.
+You are awesome, thank you!
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
 
-I'd add the board and msm id to the DTS for that reason.
-
-If not then I'd put a comment into the DTS explaining the dependency.
-
-For preference the upstream dts should *just work* as much as possible 
-without requiring churning of bootloader.
-
----
-bod
 
