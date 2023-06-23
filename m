@@ -2,128 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB8E573B4F9
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 12:15:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A18273B515
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 12:20:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230217AbjFWKPs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 06:15:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55428 "EHLO
+        id S230348AbjFWKUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 06:20:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231646AbjFWKPo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 06:15:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ACE772949;
-        Fri, 23 Jun 2023 03:15:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id D8E9F61A05;
-        Fri, 23 Jun 2023 10:15:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 65B31C433C0;
-        Fri, 23 Jun 2023 10:15:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687515305;
-        bh=/aSXCSqv/VKsWuNl5ddGk7ozs2KUpTx2lvAt2RmeF3M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JxkTY8Enhzt7H27iMQEXUf2PbJWEQa9lEfZ17TkIvKUN9+8mC5+mr9/dMY5EOktns
-         Tfb9ZnNv22yKQxYJaWgiamaEs1vSkxDUl+6OvJLo/lrtl6ElygDBccyFm7ENPT8EGT
-         FSa8cooDxj5QGu37PCaBw/gjYbp/buOMZ1r9hvXaMG7CQL84zO8amPpc6tGI7ZFGEw
-         onNGQfXEZ5IoxPAOT3Kq3FrlFZaA6KGgqWtHxoqhkCYwfU8Hys/l7pPQcrYU+rVzIj
-         2xec7N955iYgAeLM8plG5wNLEI9B0KBZapjgi1dpAbnbCXPhoFNFRoD+BG6hlVGFW7
-         EKRG1WR2lHbIA==
-Date:   Fri, 23 Jun 2023 11:15:00 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     robh+dt@kernel.org, krzk+dt@kernel.org, thierry.reding@gmail.com,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        jonathanh@nvidia.com, mkumard@nvidia.com, sheetal@nvidia.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org
-Subject: Re: [PATCH 2/8] ASoC: tegra: Fix AMX byte map
-Message-ID: <ZJVwpE5KeL8rgvB9@finisterre.sirena.org.uk>
-References: <1687433656-7892-1-git-send-email-spujar@nvidia.com>
- <1687433656-7892-3-git-send-email-spujar@nvidia.com>
- <ad4b4dc9-7466-45a9-a008-c2301a7485dd@sirena.org.uk>
- <7893c366-e6aa-d606-c3d6-e85f73a345e0@nvidia.com>
+        with ESMTP id S232487AbjFWKUU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 06:20:20 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01642D49
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:19:46 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f957a45b10so513970e87.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:19:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687515585; x=1690107585;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7T1/8qwRLUJOFJgmgWkh3qjUlbwxF0UTYDL3naXAKSE=;
+        b=pgb2Ei2xtCNhsIGI4tXrFQjnDqiaXJU5/n0oeGSn26yvDnU9rr4r2gOyfMxIzjWbsT
+         BfV+ydO89L2YxCqxONikhIakbGo3AfblNfX2x9DNb49SwVLKwqrdhxAJp4S1fxitrs3M
+         QYN21QsCuF3FIskxzLVa72pATt0wioRp2uXxZsFub49fSVi5G89aCllT9kgdRb/xmPKO
+         ZZnhf3Qkox+lBXOc29J7+2+gW1ajGltSZAzq0P3pdSJSBvuPHnzsjTyrKutq9VBPyRoK
+         T/eKqOqnXESXOp+Ewz733G7SPKf2BCAZy8CMv+W+/60y6PY4Bxa6LkZN7i+Quh2KGtbg
+         +NIg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687515585; x=1690107585;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7T1/8qwRLUJOFJgmgWkh3qjUlbwxF0UTYDL3naXAKSE=;
+        b=iZcRpboGuZ5ZGxmDHa8VuAL1+scxBq5+jdeC4vXIBdXkju54SNzQcxLUfFb2t97PHP
+         LR38mc5tDuZxzE3KN1Z9LTKFSQ/lPrBVIwi26zaLGSmcilHpaOQdVH9Tx4JKWKo+dNU4
+         xZu3WkUPB7Be7+zypkIFzWMUjY//gRXBTzBVsqDxIe40Npmxm1smj+EeMZ5NA5cYUcXf
+         pFFG3anjZHHDHZEqrPn+L/iqRXx1K97aUHcL7DP9nP02rKCPwKANKCxDAliPnCN+HYsy
+         XnWOqtAH1DB+xpV4bbg3ub7S8H19X3+Ua+x76xDTc5TeM8lQ0YNKVHsEnaz5+vwkQJ4F
+         j7Iw==
+X-Gm-Message-State: AC+VfDymL4kn4wrFrCXTEAGouCYJaPnHcQU+bR0QODH5dLWSzBLuu9uH
+        BvVcaLYNv9kwIJst9fTYki3/4A==
+X-Google-Smtp-Source: ACHHUZ7wbU24D/YULWZfJBML/nWOcPnoboRPtX4OtPhvyyY7xnsAasPjPadNWyhO8e6i/IrnmC6rgA==
+X-Received: by 2002:a19:e343:0:b0:4f5:bc19:68e8 with SMTP id c3-20020a19e343000000b004f5bc1968e8mr11951089lfk.54.1687515585133;
+        Fri, 23 Jun 2023 03:19:45 -0700 (PDT)
+Received: from [192.168.1.101] (abxh63.neoplus.adsl.tpnet.pl. [83.9.1.63])
+        by smtp.gmail.com with ESMTPSA id y11-20020ac2446b000000b004f8792c5c75sm1396918lfl.24.2023.06.23.03.19.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jun 2023 03:19:44 -0700 (PDT)
+Message-ID: <d411cce3-aea5-8c88-179c-23506b18b41a@linaro.org>
+Date:   Fri, 23 Jun 2023 12:19:43 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vnl+KoOKISxFJemC"
-Content-Disposition: inline
-In-Reply-To: <7893c366-e6aa-d606-c3d6-e85f73a345e0@nvidia.com>
-X-Cookie: Slow day.  Practice crawling.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 0/4] IPQ8074 pcie/wcss fixes
+Content-Language: en-US
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        sboyd@kernel.org, mturquette@baylibre.com, mani@kernel.org,
+        lpieralisi@kernel.org, bhelgaas@google.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pci@vger.kernel.org
+References: <20230623094403.3978838-1-quic_srichara@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230623094403.3978838-1-quic_srichara@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 23.06.2023 11:43, Sricharan Ramabadhran wrote:
+> These are required to have pcie/wcss working on IPQ8074 based
+> boards. Pcie was broken recently, first patch fixes that and
+> next 2 are for adding WCSS reset and 1 for adding reserved region
+> for NSS.
+> 
+> Will be following this up with few more dts updates and pcie
+> fixes.
+I got this patch series twice, once without patch 4. This one should
+have contained the word RESEND after PATCH and the reasoning for resending
+should have been put into the cover letter.
 
---vnl+KoOKISxFJemC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Fri, Jun 23, 2023 at 11:09:32AM +0530, Sameer Pujar wrote:
-> On 22-06-2023 17:37, Mark Brown wrote:
-> > On Thu, Jun 22, 2023 at 05:04:10PM +0530, Sameer Pujar wrote:
-
-> > > Byte mask for channel-1 of stream-1 is not getting enabled and this
-> > > causes failures during AMX use cases. The enable bit is not set during
-> > > put() callback of byte map mixer control.
-
-> > > This happens because the byte map value 0 matches the initial state
-> > > of byte map array and put() callback returns without doing anything.
-
-> > > Fix the put() callback by actually looking at the byte mask array
-> > > to identify if any change is needed and update the fields accordingly.
-
-> > I'm not quite sure I follow the logic here - I'd have expected this to
-> > mean that there's a bootstrapping issue and that we should be doing some
-> > more initialisation during startup such that the existing code which
-> > checks if there is a change will be doing the right thing?
-
-> The issue can happen in subsequent cycles as well if once the user disables
-> the byte map by putting 256. It happens because of following reason where
-> 256 value is reset to 0 since the byte map array is tightly packed and it
-> can't store 256 value.
-
-...
-
-> > > Also update get() callback to return 256 if the byte map is disabled.
-> > This will be a user visible change.  It's not clear to me why it's
-> > needed - it seems like it's a hack to push users to do an update in the
-> > case where they want to use channel 1 stream 1?
-
-> Though it looks like 256 value is forced, but actually the user sees
-> whatever value is set before. The 256 value storage is linked to byte mask
-> value.
-
-> I must admit that this is not easily readable. If you suggest to simplify
-> this, I can check if storage space increase for byte map value can make it
-> more readable. Thanks for your feedback.
-
-This could definitely use more clarification I think.  It's not obvious
-that storing 256 won't actually hold (and that should trigger a
-complaint from mixer-test if that's what happens).
-
---vnl+KoOKISxFJemC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSVcKQACgkQJNaLcl1U
-h9ChNAf8Dc9guHHicnKRVmRXvQ/BAUbK3nW/Sj1OA5p9qg7p+/GYuii6LDx6P9Ot
-Is7FImWjHZSLY9pG2ym1CvV022stiZ54g4B/Wqmh7MTerAOrdu0RddPMo9zn/dP6
-mTQLPLwYKcd/p+3DFvDQIjJPsik21pCP/p/6nwNIyJvabevapr9bPEpbU6e+4gYb
-BE7RDSx/sen2JbDP9a5RjDt/SgGVinAaEUVtDxcOyPXYN0IZ1JawmJd7NG7mLJg7
-yZauxzEyW0sEPPFcG0tjnLGcmOfQOhm28dsG0T+05fUBS+SPArut78CmDeyxXsHz
-BV2BrsupkV3HVoa2IaGFb8jyms2lng==
-=BPLR
------END PGP SIGNATURE-----
-
---vnl+KoOKISxFJemC--
+Konrad
+> 
+> Sricharan Ramabadhran (4):
+>   pcie: qcom: Fix the macro PARF_SLV_ADDR_SPACE_SIZE_2_3_3
+>   dt-bindings: clock: qcom: Add reset for WCSSAON
+>   clk: qcom: Add WCSSAON reset
+>   dts: Reserve memory region for NSS and TZ
+> 
+>  arch/arm64/boot/dts/qcom/ipq8074.dtsi        | 7 ++++++-
+>  drivers/clk/qcom/gcc-ipq8074.c               | 1 +
+>  drivers/pci/controller/dwc/pcie-qcom.c       | 2 +-
+>  include/dt-bindings/clock/qcom,gcc-ipq8074.h | 1 +
+>  4 files changed, 9 insertions(+), 2 deletions(-)
+> 
