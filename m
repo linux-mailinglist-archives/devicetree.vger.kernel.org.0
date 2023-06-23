@@ -2,106 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A18273B515
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 12:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5A073B51D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 12:21:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230348AbjFWKUc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 06:20:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57436 "EHLO
+        id S232034AbjFWKVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 06:21:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60074 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232487AbjFWKUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 06:20:20 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F01642D49
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:19:46 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f957a45b10so513970e87.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:19:46 -0700 (PDT)
+        with ESMTP id S232156AbjFWKUo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 06:20:44 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E1AC1731
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:20:43 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b479d53d48so8191241fa.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:20:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687515585; x=1690107585;
+        d=linaro.org; s=google; t=1687515641; x=1690107641;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=7T1/8qwRLUJOFJgmgWkh3qjUlbwxF0UTYDL3naXAKSE=;
-        b=pgb2Ei2xtCNhsIGI4tXrFQjnDqiaXJU5/n0oeGSn26yvDnU9rr4r2gOyfMxIzjWbsT
-         BfV+ydO89L2YxCqxONikhIakbGo3AfblNfX2x9DNb49SwVLKwqrdhxAJp4S1fxitrs3M
-         QYN21QsCuF3FIskxzLVa72pATt0wioRp2uXxZsFub49fSVi5G89aCllT9kgdRb/xmPKO
-         ZZnhf3Qkox+lBXOc29J7+2+gW1ajGltSZAzq0P3pdSJSBvuPHnzsjTyrKutq9VBPyRoK
-         T/eKqOqnXESXOp+Ewz733G7SPKf2BCAZy8CMv+W+/60y6PY4Bxa6LkZN7i+Quh2KGtbg
-         +NIg==
+        bh=PWp1zxtH+buOdb032YdtigRP7aafNTMfo7Ltr/ZhNzI=;
+        b=oeuI9YPTtN1lYkYab32hud10Qcnzf9q7grzOdIBQhL3pRJ7iE2FTa7XuOVBVMnNpm6
+         0vxUJxDkJMkxI/bId/yrL+ojK+8nznwDFSYItE2m4YAWoE7SvHbxX+iW5TCPxhbihxYh
+         FSAuL7gAwju84x2tzu2a2loYi6yMf5qBeghCa7d6UlDRbS3v+9bvWzFifeAFukYJMDd4
+         OcuQF/R+buNVSpo+xqdQaPDsEgQ6lE1mavIv+eEf6cIzrNKq/6RnWMX3zctIoziPMJXp
+         EWS1OSWd1YSoDKgdV2QRRvc975Sgtvicdl407chMFjqztgTY6xLgs6QL3pPn2CfX8fO8
+         dzAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687515585; x=1690107585;
+        d=1e100.net; s=20221208; t=1687515641; x=1690107641;
         h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7T1/8qwRLUJOFJgmgWkh3qjUlbwxF0UTYDL3naXAKSE=;
-        b=iZcRpboGuZ5ZGxmDHa8VuAL1+scxBq5+jdeC4vXIBdXkju54SNzQcxLUfFb2t97PHP
-         LR38mc5tDuZxzE3KN1Z9LTKFSQ/lPrBVIwi26zaLGSmcilHpaOQdVH9Tx4JKWKo+dNU4
-         xZu3WkUPB7Be7+zypkIFzWMUjY//gRXBTzBVsqDxIe40Npmxm1smj+EeMZ5NA5cYUcXf
-         pFFG3anjZHHDHZEqrPn+L/iqRXx1K97aUHcL7DP9nP02rKCPwKANKCxDAliPnCN+HYsy
-         XnWOqtAH1DB+xpV4bbg3ub7S8H19X3+Ua+x76xDTc5TeM8lQ0YNKVHsEnaz5+vwkQJ4F
-         j7Iw==
-X-Gm-Message-State: AC+VfDymL4kn4wrFrCXTEAGouCYJaPnHcQU+bR0QODH5dLWSzBLuu9uH
-        BvVcaLYNv9kwIJst9fTYki3/4A==
-X-Google-Smtp-Source: ACHHUZ7wbU24D/YULWZfJBML/nWOcPnoboRPtX4OtPhvyyY7xnsAasPjPadNWyhO8e6i/IrnmC6rgA==
-X-Received: by 2002:a19:e343:0:b0:4f5:bc19:68e8 with SMTP id c3-20020a19e343000000b004f5bc1968e8mr11951089lfk.54.1687515585133;
-        Fri, 23 Jun 2023 03:19:45 -0700 (PDT)
-Received: from [192.168.1.101] (abxh63.neoplus.adsl.tpnet.pl. [83.9.1.63])
-        by smtp.gmail.com with ESMTPSA id y11-20020ac2446b000000b004f8792c5c75sm1396918lfl.24.2023.06.23.03.19.43
+        bh=PWp1zxtH+buOdb032YdtigRP7aafNTMfo7Ltr/ZhNzI=;
+        b=eofoZND2jHosA1Ue1GHnUlWw4Z9Ok6IZPzIO0Ksw82LVGv5N/fhqnSpNwz7meqEeJ7
+         STEYQUJmOMCWsYX8G0q4xDYngkEZCwuDrRMwLRnS6IiSSeRBCW9pJ8EfIPWUxQumzUbB
+         UiolpU/8Gbk1shqDUccX9dtuKqSy0NOWpwt1L7kbBh6z9OMmcZ3taNhSDL5y6xNIaiBR
+         Y2fWGLhgBK6lUXDu8levq65F6I2ags2wnKqerWYVm5StLXUUpudvA6xbRzbvYAZZPfag
+         CjN19xFPQEssr7Gj/3WMOF7sBb487roYlqM7X9FVHCwH1g3aYyGoUBk78PQ8Gn4507Lx
+         Oywg==
+X-Gm-Message-State: AC+VfDz6JB8JN0vhmGoOcz2c0J93uD6uGLsIfhXiQg/6zFUN9ncsHCHF
+        6iFm+vL2jOsruVv1T1Zp8+UZLw==
+X-Google-Smtp-Source: ACHHUZ5OJnHDk+ZWi6FaII3fB/i3ouoFr+Y5PEToST4GasncqvwzhDalEHGcKLWNgujrxpcZQXtxsQ==
+X-Received: by 2002:a2e:834b:0:b0:2af:25cf:92ae with SMTP id l11-20020a2e834b000000b002af25cf92aemr13558846ljh.22.1687515641475;
+        Fri, 23 Jun 2023 03:20:41 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id s20-20020a056402165400b0051a4c1dc813sm4959397edx.82.2023.06.23.03.20.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 03:19:44 -0700 (PDT)
-Message-ID: <d411cce3-aea5-8c88-179c-23506b18b41a@linaro.org>
-Date:   Fri, 23 Jun 2023 12:19:43 +0200
+        Fri, 23 Jun 2023 03:20:40 -0700 (PDT)
+Message-ID: <bd4946d9-a768-bee3-71a3-3339efa6643e@linaro.org>
+Date:   Fri, 23 Jun 2023 12:20:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 0/4] IPQ8074 pcie/wcss fixes
+Subject: Re: [PATCH 4/4] dts: Reserve memory region for NSS and TZ
 Content-Language: en-US
 To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
-        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        sboyd@kernel.org, mturquette@baylibre.com, mani@kernel.org,
-        lpieralisi@kernel.org, bhelgaas@google.com,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        mani@kernel.org, lpieralisi@kernel.org, bhelgaas@google.com,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
         linux-pci@vger.kernel.org
 References: <20230623094403.3978838-1-quic_srichara@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230623094403.3978838-1-quic_srichara@quicinc.com>
+ <20230623094403.3978838-5-quic_srichara@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230623094403.3978838-5-quic_srichara@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23.06.2023 11:43, Sricharan Ramabadhran wrote:
-> These are required to have pcie/wcss working on IPQ8074 based
-> boards. Pcie was broken recently, first patch fixes that and
-> next 2 are for adding WCSS reset and 1 for adding reserved region
-> for NSS.
+On 23/06/2023 11:44, Sricharan Ramabadhran wrote:
+> Add reserved memory region for NSS and fix the name
+> for tz region explicitly.
 > 
-> Will be following this up with few more dts updates and pcie
-> fixes.
-I got this patch series twice, once without patch 4. This one should
-have contained the word RESEND after PATCH and the reasoning for resending
-should have been put into the cover letter.
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
 
-Konrad
-> 
-> Sricharan Ramabadhran (4):
->   pcie: qcom: Fix the macro PARF_SLV_ADDR_SPACE_SIZE_2_3_3
->   dt-bindings: clock: qcom: Add reset for WCSSAON
->   clk: qcom: Add WCSSAON reset
->   dts: Reserve memory region for NSS and TZ
-> 
->  arch/arm64/boot/dts/qcom/ipq8074.dtsi        | 7 ++++++-
->  drivers/clk/qcom/gcc-ipq8074.c               | 1 +
->  drivers/pci/controller/dwc/pcie-qcom.c       | 2 +-
->  include/dt-bindings/clock/qcom,gcc-ipq8074.h | 1 +
->  4 files changed, 9 insertions(+), 2 deletions(-)
-> 
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
+
+Best regards,
+Krzysztof
+
