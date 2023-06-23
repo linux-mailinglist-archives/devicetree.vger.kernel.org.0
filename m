@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43A5B73BA9F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 16:51:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B001773BAAA
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 16:51:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232120AbjFWOvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 10:51:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44772 "EHLO
+        id S232303AbjFWOvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 10:51:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230348AbjFWOvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 10:51:48 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE19DE42;
-        Fri, 23 Jun 2023 07:51:47 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-311367a3e12so841301f8f.2;
-        Fri, 23 Jun 2023 07:51:47 -0700 (PDT)
+        with ESMTP id S232295AbjFWOvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 10:51:54 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDF9DE42;
+        Fri, 23 Jun 2023 07:51:52 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3f9c2913133so9128135e9.1;
+        Fri, 23 Jun 2023 07:51:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687531906; x=1690123906;
+        d=gmail.com; s=20221208; t=1687531911; x=1690123911;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=l+3LHeauprJMFrQd0+jQkGFlCp8ECRd37XuNslV2KI4=;
-        b=MinrleaBYcgn0SmOruI2S1QUSW3aFfm+GZoBJAolHuG58GBKj27ZOIKHri8o9uoLg/
-         VdUBW87sjF9wyCnBloDKdw/QhZMECJgrnfbrmW3qe/9LgiZbuC1BUD8WLZ73ydzrVSqZ
-         65SRi6chDkKWKA7RU+hbwtdET3d6uL+OHyPNdA48//dLy4uXi7cBh6qQ1zk2u3oKobSY
-         4f4LMcHU4o3t1TNyW1xHUKUsnyf/VSXVu+3zb4Spv9uqLpmjuage8Of5qOm4IbOYZopd
-         Bk/c48Vsnye3NluNaA5L3SACMQHf4bskHdSvjJxY5vbFF0Mnjnnr5rPEsvXBBX1O9CXQ
-         kePQ==
+         :message-id:date:subject:to:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hC4ep1+h59om4yauA1VwwcEbv3QwCe9F10dzdxhuHQU=;
+        b=YfbjPq9z6gFIGNRuz+ReAScxPdPSebNU5HVlEND/mu2ZnwtAT604YYQLMJZFLx2/me
+         SK4p0hat9LiqoaVhKfK09nhdZF7XF9yVboJKxXZ4ikk1380AxIvH3qtLelifgi9P7skV
+         d5akFbBbrm23hp3IEg5TgsoothfdN6NG9ZUK+7jpP6Npy8DccrS7Jq1qgbF2rmVQAPdr
+         kU7w7QGYgeusZuEOlhXL/a3jGJ5iSgSSh5HTeQO8JGVKITSpdlTaV7BYYbQIM5TbHfqZ
+         AUy/G1KszZbSr1KrNv9wIUSsw3oyTGB1zYl+ux/Knn7C16EAE2QVBRYDpcTX9sI45ca0
+         t9/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687531906; x=1690123906;
+        d=1e100.net; s=20221208; t=1687531911; x=1690123911;
         h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :message-id:date:subject:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=l+3LHeauprJMFrQd0+jQkGFlCp8ECRd37XuNslV2KI4=;
-        b=AyJu3J7uvqR/I26SkfqzfFefk9A1reeXHhlzMKVuRmq4g5GBjQjHg232y8vEXLmRUy
-         IwFYNxH5BQdsn6LWgcwZQJpLlOKxpJ/UuVcCiFaHI4JRAKXOc9ORw7Q8W+F6sNHJss8U
-         RJZaSiFH4Q7P9eVmq0qzSwqZ43miIIdXGRD4EJsRni2tWfMHD6PrscVAOrejjGZWSc//
-         QJVQ0upBtx26SttHXg9tyj07okQN1JUMDKuWIJnSX14S0tY2sm9nBhaCaHSZkzxU8B5d
-         xvQgn6WB1VhP+3tOS6oJQ3SbOkYYg3XariHNXMjtL5nMfk0Sa8qoa+VSahfLBPwxapig
-         kEjA==
-X-Gm-Message-State: AC+VfDzymDvP4GrMEBvyQanU99pGb59dkBuOnvu8f0bTyJy8wUaWeuFN
-        Cau9ye2gVVYRXcSVzCW33aM=
-X-Google-Smtp-Source: ACHHUZ60FNRlfUmIFP0b/3cM1TztC5mpMI+ckxGr2qi0N2TeLVaraRnzeYWpPjtELUaJeTm17tpo5Q==
-X-Received: by 2002:a5d:570b:0:b0:309:4da8:7713 with SMTP id a11-20020a5d570b000000b003094da87713mr17290741wrv.64.1687531905993;
-        Fri, 23 Jun 2023 07:51:45 -0700 (PDT)
+        bh=hC4ep1+h59om4yauA1VwwcEbv3QwCe9F10dzdxhuHQU=;
+        b=WF5lLpl4lpG/BvYN4uaTsCKTKVwccCYn7bZYXmnPWTXRu0/QQpXWMtWosl2RY7vCzb
+         lDdnAzTZ3pEagcQN2MVD8frVlQTE4l5xcAZjHRPVVjzZCKJL+TWYjdSFUjfgBg4d8r6l
+         LuTO1Cr4Q5LQ7k2X4HHR0ZcgIOLRzhmdH4w+glTcyofoZIbMpPgV3XiahgKngMYZFCKZ
+         ZeHTsT9ae5pqQXc8oV5SgOuhs+r1cvEevS0unuiGbNkh6foB1Iujk9WscIhMGTpINh/x
+         L61wgMyR+pma9l/xpOJt201d8yiGMb0HbFaY1kD2hi2MRbCMYtalhMtMdQYGbg6Qob6A
+         gEdA==
+X-Gm-Message-State: AC+VfDylFuX50bR8ehHLIMNhyt7B2q3pXQNjamjf1aPrmwomDxHZNJC+
+        dgx+VmUe+MBdxZ9S796NIT2Smvpnkkg=
+X-Google-Smtp-Source: ACHHUZ6Dk4pM+se4xyfHwCmBYL3MyJh75PkWBKlN4YAmeSKs1UOdNhra3R0MVHuhaYCvWBw9i8QldQ==
+X-Received: by 2002:a05:600c:cb:b0:3f9:b4a0:6061 with SMTP id u11-20020a05600c00cb00b003f9b4a06061mr3980562wmm.34.1687531911041;
+        Fri, 23 Jun 2023 07:51:51 -0700 (PDT)
 Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id f12-20020a5d58ec000000b00309382eb047sm9654388wrd.112.2023.06.23.07.51.45
+        by smtp.gmail.com with ESMTPSA id r19-20020a05600c285300b003f8ec58995fsm2606046wmb.6.2023.06.23.07.51.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 07:51:45 -0700 (PDT)
+        Fri, 23 Jun 2023 07:51:50 -0700 (PDT)
 From:   Thierry Reding <thierry.reding@gmail.com>
-To:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+To:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: pwm: imx: add i.MX8QXP compatible
-Date:   Fri, 23 Jun 2023 16:51:29 +0200
-Message-ID: <168753171957.1191890.13776090502738387691.b4-ty@gmail.com>
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        John Crispin <john@phrozen.org>,
+        Daniel Golle <daniel@makrotopia.org>
+Subject: Re: [PATCH v3 0/2] Support PWM on MediaTek MT7981
+Date:   Fri, 23 Jun 2023 16:51:34 +0200
+Message-ID: <168753171954.1191890.17208643012944908213.b4-ty@gmail.com>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
-References: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <cover.1682007088.git.daniel@makrotopia.org>
+References: <cover.1682007088.git.daniel@makrotopia.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -82,15 +82,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 24 Apr 2023 10:21:07 +0200, Alexander Stein wrote:
-> i.MX8QXP compatible is missing in the list, add it.
+On Fri, 21 Apr 2023 00:22:20 +0100, Daniel Golle wrote:
+> Add support for PWM on the MediaTek MT7981 to pwm-mediatek.c as well
+> as new mediatek,mt7981-pwm compatible string to the existing bindings.
 > 
+> Changes since v2:
+>  * improve commit message, adding that alphabetic order is restored
 > 
+> Changes since v1:
+>  * use pointer to reg_offset instead of u8 reg_ver and if-else
+> 
+> [...]
 
 Applied, thanks!
 
-[1/2] dt-bindings: pwm: imx: add i.MX8QXP compatible
-      commit: c799ad062a75858e10a7626e20233e6e94dbf554
+[1/2] dt-bindings: pwm: mediatek: Add mediatek,mt7981 compatible
+      commit: 88c66e018aa8b5a15d7fdba9908c01260c657bff
+[2/2] pwm: mediatek: Add support for MT7981
+      commit: 967da67a745fb73fd0fc7aa61fd197b76fceb273
 
 Best regards,
 -- 
