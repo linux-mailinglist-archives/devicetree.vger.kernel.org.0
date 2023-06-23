@@ -2,156 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B65C673B53A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 12:28:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DA8B73B598
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 12:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231358AbjFWK17 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 06:27:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35432 "EHLO
+        id S229451AbjFWKky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 06:40:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231284AbjFWK15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 06:27:57 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 98DAFE75
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:27:55 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fa23c3e618so6394775e9.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:27:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687516074; x=1690108074;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=susFV57im5tSf3WGR3zOStFyG2/oJd0dt6Ch9Sc5R/Q=;
-        b=CQ26+r7KjbMFIgFsXrZx03f5Ypz1JJ10KyMGQBCHYHCEHCPdHnSVif7EgPDUedT7JQ
-         yZDsqUQgH/CoPO+aq2wggZXdnqjBLdwYujJWjdQ042c8arIcP2JLN5AiR8HxhrHxG887
-         Sq/3F6oHNMe8XGCPg6Lmpj/x64rWHKoI8TuTe66EA0kzSDkbRilJa8NDZTetBWQ6nOmH
-         lqJSTJ9W/bJJAju8/QsBopiubfaA6ZWWZyfXTFsOlFJcVtAHlNvUGNLXqunQ4oZFkhWA
-         8bJvzMlZw5ThOQccm8phIt0IkxOg1RG/mut3d2GaU5jfi4vlz+MM77ELcYRRiBu6l4gh
-         kimw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687516074; x=1690108074;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=susFV57im5tSf3WGR3zOStFyG2/oJd0dt6Ch9Sc5R/Q=;
-        b=NupwcCHjX8IL9jWZvnmM8OG0FfturhzxAqiDBvA3UEXGi9kisi7M+jc0OtwFMJiMuK
-         S7oPQG/p1LiQk6WorJYH+OiB9z33kj/UgV+7yxP8jJ6K7KCqjUpRhmJXe75UBbpSpKIG
-         35AMr1JNJfFnDyk/USffzdBioBWYMHoSzpcQZGFGKGnQIkK5Es5pXWcfE0L/iCAl3vrq
-         CxLLjNMeQ3G1E1wFlCOBzi8Z/hfB2iEYcZygnzsblwVKif3b/C3sl84hmF6NCCxISTcz
-         BBQEDLqPIMWUmXPZ4CCoOumbUHzXrRQY9ua/X3bbSozX1qpRuMk10Nb5BvL31ecQV/JW
-         T0qA==
-X-Gm-Message-State: AC+VfDzg1G8N97gZj33gvivNzJNY5yCRSSZesFtMaySXDy4g64p8ZSYA
-        7wNZAaJfYvaJ0mMMTRSwv7YOOw==
-X-Google-Smtp-Source: ACHHUZ6zbSDzHqUUOp6uJk47EIyk+W/ESkxUmRwqpu4U8tTf86ZaJNkr4kooSftOtxD+8aLz2UNHlw==
-X-Received: by 2002:adf:dcc3:0:b0:309:54b6:33b0 with SMTP id x3-20020adfdcc3000000b0030954b633b0mr19128922wrm.44.1687516074065;
-        Fri, 23 Jun 2023 03:27:54 -0700 (PDT)
-Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
-        by smtp.gmail.com with ESMTPSA id q6-20020adff506000000b00307c8d6b4a0sm9180899wro.26.2023.06.23.03.27.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 03:27:53 -0700 (PDT)
-Message-ID: <5fbba4e8-a8d9-0e99-e112-31b5781c1648@linaro.org>
-Date:   Fri, 23 Jun 2023 11:27:52 +0100
+        with ESMTP id S230474AbjFWKkx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 06:40:53 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 639202113
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 03:40:30 -0700 (PDT)
+Received: from pps.filterd (m0288072.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35N7ENtP032070;
+        Fri, 23 Jun 2023 12:39:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=Wsm1r+YZb6njhXuYuKqAF8bSuYHp/iwjxFKK1C+IEZI=;
+ b=jZUto3MxDGvYiZkC9wghuPPG4WdXwRDO/KlLoeANpEnuJ7X8IYQYFbJvJvQ2ksP+Xuq2
+ FXIUgr0NfgKtuM5fV0QwHrYCuAkt9MiW36ku/7yHfC5t6mv75eZNUPVzEHlPCg+Zp/hc
+ 3Y+99G0hBq3bXBZIerHVE/IVdnyWMgdNcOaWTHs9n8VMDDEiSBBpD/HSVJAq9skySrbG
+ AbdtHFcmPgZzSP8T6AuFN3u5M/VOXcL4Kk6FzYBZn/hfFFuyuQa+nULuPM0q4Yex/iya
+ 1WkljfLRb+hPPqDpG2HpXvVePiwJ9DsDg8JlagRN9/m1L3ChyVq9wGPBo+YP8WQ0Cqjr Hw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rd6ma9eup-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 23 Jun 2023 12:39:48 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 803AB10007B;
+        Fri, 23 Jun 2023 12:39:47 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 7805E21BF4E;
+        Fri, 23 Jun 2023 12:39:47 +0200 (CEST)
+Received: from [10.201.21.93] (10.201.21.93) by SHFDAG1NODE1.st.com
+ (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 23 Jun
+ 2023 12:39:47 +0200
+Message-ID: <6551be49-7957-a208-9cd8-6a7a41000880@foss.st.com>
+Date:   Fri, 23 Jun 2023 12:39:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.8.0
-Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: msm8939-samsung-a7: Add initial
- dts
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
 Content-Language: en-US
-To:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>,
-        linux-kernel@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Nikita Travkin <nikita@trvn.ru>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ~postmarketos/upstreaming@lists.sr.ht
-References: <20230623100135.5269-1-linmengbo0689@protonmail.com>
- <20230623100237.5299-1-linmengbo0689@protonmail.com>
-From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-In-Reply-To: <20230623100237.5299-1-linmengbo0689@protonmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+To:     Christophe Parant <C.Parant@phytec.fr>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "s.trumtrar@pengutronix.de" <s.trumtrar@pengutronix.de>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "upstream@lists.phytec.de" <upstream@lists.phytec.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+References: <20230505060158.16516-1-s.trumtrar@pengutronix.de>
+ <20230505060158.16516-11-s.trumtrar@pengutronix.de>
+ <e5b4ef445160ac0ddbaa25f12118a253ad21542a.camel@phytec.fr>
+ <9163ad315278dbedd6c31993a3dafad62a731b5e.camel@phytec.fr>
+From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
+In-Reply-To: <9163ad315278dbedd6c31993a3dafad62a731b5e.camel@phytec.fr>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.21.93]
+X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-23_04,2023-06-22_02,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 11:02, Lin, Meng-Bo wrote:
-> This dts adds support for Samsung Galaxy A7 smartphone released in 2015.
+Hi Christophe
+
+On 6/23/23 10:59, Christophe Parant wrote:
+> Hello maintainers,
 > 
-> Add a device tree for A7 with initial support for:
+> I would like to know if you have seen my request below ?
 > 
-> - GPIO keys
-> - Hall Sensor
-> - SDHCI (internal and external storage)
-> - USB Device Mode
-> - UART (on USB connector via the SM5502 MUIC)
-> - WCNSS (WiFi/BT)
-> - Regulators
-> - Touch key
-> - Accelerometer/Magnetometer
-> - Fuelgauge
-> - NFC
-> - Vibrator
-> - Touchscreen
+> Thank you.
 > 
-> Signed-off-by: Lin, Meng-Bo <linmengbo0689@protonmail.com>
-> ---
->   arch/arm64/boot/dts/qcom/Makefile             |   1 +
->   .../boot/dts/qcom/msm8939-samsung-a7.dts      | 495 ++++++++++++++++++
->   2 files changed, 496 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts
+> Best regards,
+> Christophe
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 337abc4ceb17..23fd31d4bf5a 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -39,6 +39,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-uf896.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-thwc-ufi001c.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-wingtech-wt88047.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-yiming-uz801v3.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-samsung-a7.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8939-sony-xperia-kanuti-tulip.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-motorola-potter.dtb
->   dtb-$(CONFIG_ARCH_QCOM)	+= msm8953-xiaomi-daisy.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts b/arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts
-> new file mode 100644
-> index 000000000000..66e56ac59998
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/msm8939-samsung-a7.dts
-> @@ -0,0 +1,495 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-> +
-> +/dts-v1/;
-> +
-> +#include "msm8939-pm8916.dtsi"
-> +
-> +#include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +/ {
-> +	model = "Samsung Galaxy A7 (2015)";
-> +	compatible = "samsung,a7", "qcom,msm8939";
-> +	chassis-type = "handset";
+> Le mardi 23 mai 2023 à 16:58 +0200, Christophe Parant a écrit :
+>> Hi Steffen,
+>>
+>> Thank you for upstreaming our phyBOARD-Sargas device tree. We were
+>> also
+>> planing to work on that too.
+>> If this patch is not applied upstream yet, would it be possible to
+>> rename the .dts file ?
+>>
+>> In the beginning, we named the dts files after our Yocto machines,
+>> which is probably the version you got. But now we renamed them after
+>> our baseboard names, like with our other platforms.
+>> So it would make sense to have the stm32 baseboard named the same
+>> way,
+>> changing "stm32mp157c-phycore-stm32mp1-3.dts" to "stm32mp157c-
+>> phyboard-
+>> sargas-rdk-emmc.dts".
+>>
 
-Will the downstream bootloader accept this dts without
+It has been sent with the old name. If it is really needed you need to 
+send a patch (yaml + DT update) with a fixes tag. I'll send it to 
+arm-soc during v6.5 rc cycle.
 
-         // This is used by the bootloader to find the correct DTB
-         qcom,msm-id = <239 0>;
-         qcom,board-id = <0xEF08FF1 1>;
+Alex
 
-?
+>> "model" and "compatible" can also be modified this way with this
+>> naming
+>> convention :
+>>
+>> / {
+>>      model = "PHYTEC phyBOARD-Sargas STM32MP157C with eMMC";
+>>      compatible = "phytec,stm32mp157c-phyboard-sargas-rdk-emmc",
+>>               "phytec,stm32mp157c-phycore-som", "st,stm32mp157";
+>> };
+>>
+>> Thanks.
+>>
+>> Best regards,
+>> Christophe Parant
+>>
+>> Le vendredi 05 mai 2023 à 08:01 +0200, Steffen Trumtrar a écrit :
+>>> Add the Phytec STM32MP1-3 Dev board. The devboard uses a Phytec
+>>> stm32m157c-som.
+>>>
+>>> Signed-off-by: Steffen Trumtrar <s.trumtrar@pengutronix.de>
+>>> ---
+>>>
+>>> Notes:
+>>>      Changes since v7:
+>>>         - remove secure-status for sdmmc
+>>>
+>>>   arch/arm/boot/dts/Makefile                    |  3 +-
+>>>   .../dts/stm32mp157c-phycore-stm32mp1-3.dts    | 60
+>>> +++++++++++++++++++
+>>>   2 files changed, 62 insertions(+), 1 deletion(-)
+>>>   create mode 100644 arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-
+>>> 3.dts
+>>>
+>>> diff --git a/arch/arm/boot/dts/Makefile
+>>> b/arch/arm/boot/dts/Makefile
+>>> index efe4152e5846..dfa9a7477c82 100644
+>>> --- a/arch/arm/boot/dts/Makefile
+>>> +++ b/arch/arm/boot/dts/Makefile
+>>> @@ -1252,7 +1252,8 @@ dtb-$(CONFIG_ARCH_STM32) += \
+>>>          stm32mp157c-ev1.dtb \
+>>>          stm32mp157c-ev1-scmi.dtb \
+>>>          stm32mp157c-lxa-mc1.dtb \
+>>> -       stm32mp157c-odyssey.dtb
+>>> +       stm32mp157c-odyssey.dtb \
+>>> +       stm32mp157c-phycore-stm32mp1-3.dtb
+>>>   dtb-$(CONFIG_MACH_SUN4I) += \
+>>>          sun4i-a10-a1000.dtb \
+>>>          sun4i-a10-ba10-tvbox.dtb \
+>>> diff --git a/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+>>> b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+>>> new file mode 100644
+>>> index 000000000000..28d7203264ce
+>>> --- /dev/null
+>>> +++ b/arch/arm/boot/dts/stm32mp157c-phycore-stm32mp1-3.dts
+>>> @@ -0,0 +1,60 @@
+>>> +// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+>>> +/*
+>>> + * Copyright (C) Phytec GmbH 2019-2020 - All Rights Reserved
+>>> + * Author: Dom VOVARD <dom.vovard@linrt.com>.
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include <dt-bindings/pinctrl/stm32-pinfunc.h>
+>>> +#include "stm32mp157.dtsi"
+>>> +#include "stm32mp15xc.dtsi"
+>>> +#include "stm32mp15xxac-pinctrl.dtsi"
+>>> +#include "stm32mp157c-phycore-stm32mp15-som.dtsi"
+>>> +
+>>> +/ {
+>>> +       model = "PHYTEC phyCORE-STM32MP1-3 Dev Board";
+>>> +       compatible = "phytec,phycore-stm32mp1-3",
+>>> +                    "phytec,phycore-stm32mp157c-som",
+>>> "st,stm32mp157";
+>>> +
+>>> +       aliases {
+>>> +               mmc0 = &sdmmc1;
+>>> +               mmc1 = &sdmmc2;
+>>> +               mmc2 = &sdmmc3;
+>>> +               serial0 = &uart4;
+>>> +               serial1 = &usart3;
+>>> +               serial2 = &usart1;
+>>> +       };
+>>> +};
+>>> +
+>>> +&cryp1 {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&dts {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&fmc {
+>>> +       status = "disabled";
+>>> +};
+>>> +
+>>> +&gpu {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&i2c4_eeprom {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&i2c4_rtc {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&qspi {
+>>> +       status = "okay";
+>>> +};
+>>> +
+>>> +&sdmmc2 {
+>>> +       status = "okay";
+>>> +};
 
-https://github.com/msm8916-mainline/lk2nd/blob/master/dts/msm8916/msm8939-samsung-r01.dts#L10
-
----
-bod
