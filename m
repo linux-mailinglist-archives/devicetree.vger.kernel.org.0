@@ -2,123 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFA2D73B24A
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:04:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 828F373B251
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229999AbjFWIEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 04:04:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48604 "EHLO
+        id S231449AbjFWIId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 04:08:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49540 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230149AbjFWIEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:04:36 -0400
-Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964AC1BE4
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:04:34 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f900cd3f96so4608235e9.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:04:34 -0700 (PDT)
+        with ESMTP id S230038AbjFWIIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:08:32 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E84FA1FE9
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:08:30 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-98802908fedso35705966b.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:08:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687507473; x=1690099473;
+        d=linaro.org; s=google; t=1687507709; x=1690099709;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=rEReHr6Km4uN96K+wzhhty6cNh29m54e0wS7gro4H10=;
-        b=A3aqmfSLf0+s3oHaDs4NnVRaPvNc7l3UD4C1xuEjSkXwRfjpgxbi6zo161jl6P+5YM
-         q8PCxl66ia8uePPy0keCXXfnwRKnfZtrLHifucMmxHMfhHIL9Qfmh0D7AflBSIUsxCil
-         +6iSGs3ek/3DB1EHTsx6Iwc1lUwZr8obAx1rUIcRwJhl68ZBevWIqKCmhQUWJd3FTNop
-         AnkY2ol+hk1MXzMf9REkgxo7irRiGI+/5pvZHAhDEzJdoCHBFCNGOyFMSGMGYegv4Nvb
-         mJqnlgxzKpsc6V7DjRtIwtHc0tEORUDu87IvLPFeV0HjUBsKg6G4L7mFI2tiDyQPdEcj
-         JjoA==
+        bh=Mp20BGhs0XvV3lIs6JOjcLuOy8WK9QGNJZoe3Xf5rIg=;
+        b=ZuX9fp5CkoOW74bUtib5WMACzLBOIBzsjYDxwjXU9I9gGQqNRjKE38M5lnhJntWefh
+         iHTW1LRaKgQ2du1Jbi66pq4vcvKnBuNcsXRBMvdcBXCTOSZjIbsJNrtaBPuhZfN8ZDz3
+         LvklX67c+DTQe3DcZI8w+f6dM+bLJhR1bD+wBG7iFTYrtAkdYPKEIRnuLOYDnOBU7+tB
+         S/on9kE6OXNvIPDFffB5vFdiUtFs09S7bgv8obp4eCrdXakQ3CcPNXY19FK38f3LvBI0
+         b1nocMlVWGiU0I+dsTwIwrRd2TSy9YYhIEQNadlqrfOpu22Zm6Y84j9xnvABM1814kPb
+         3oJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687507473; x=1690099473;
+        d=1e100.net; s=20221208; t=1687507709; x=1690099709;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rEReHr6Km4uN96K+wzhhty6cNh29m54e0wS7gro4H10=;
-        b=mG8mdQ0ZlfRIEn9feAlc9GWJKe0Gjtwm6SsIf4D7afaqYLIkRSqgaER7mnS5yfFu+Z
-         Dj7juuy1eInk5fv7vYKssi1IQqfxlfQ5iZNUgGrLcHfab1+4xLny67EziQpBP5rhLBTU
-         b+5D5NDw8El6xhaa9goyrgtuiKZzb5mysxf4JXx08J4/7IZ9j6G7qOt0JG+Pr80liyhC
-         vkkmqBmGgdB6Zw3W36g+4YPiNRhNkYID8mMNdFkXAbKu9i5+Y+FCwNwGpFPhE3LfzFJ1
-         HeP3Bv19FjQiWq5IgUnOdmhyM/2CsoE7Ak4QBOpRFRzR/J99hRiF+GaYbaNXjsnQHWe8
-         VPTw==
-X-Gm-Message-State: AC+VfDy7vU7ebzGT7wPDW60S07ulTS9tDRFgBEYlp6ZjzluMKmJCU13n
-        IrMfVGjTKqNYe/0ChNCgdyks6g==
-X-Google-Smtp-Source: ACHHUZ7cgpUkcsoYszSVTliMuHU6qE3Pdf0ElKfLVvzNYbP1Sqr6LjHdJ7G1N/5x0CcVyM8Yo6cDKQ==
-X-Received: by 2002:a1c:e90d:0:b0:3f8:fc2a:c7eb with SMTP id q13-20020a1ce90d000000b003f8fc2ac7ebmr14131597wmc.5.1687507473021;
-        Fri, 23 Jun 2023 01:04:33 -0700 (PDT)
+        bh=Mp20BGhs0XvV3lIs6JOjcLuOy8WK9QGNJZoe3Xf5rIg=;
+        b=L63vkoItbI9JhIewkjhxOmGZafKruMeUrIfJjBk3Hf6kjmcVkZfoBWexjdJwUgHjKG
+         wzVSUzDBkCjYQYLx+abKLFOAncM5HnxrsTPv/YSx8C1vjWDDA92wZibj+MitC9DDYLsh
+         ACgBaYClK9pyIkX1+sVOyNg3LV2FkgK1q459rjmjHdi+dX26gKSwY3AuG4jRW8WaAb1S
+         bk4pD+NRkm4wkhNd59n/Ey4Ydm3sbnSy/Qcotawy1htF9P0ITIMKlUgJ/F0WZXXEJDpK
+         +yYX7pthge/0hNSIxbQHyvV39n52R/mPrqcMDOPlvQG5qGDJam0bdj5gzgulNSAOJMOw
+         lD8w==
+X-Gm-Message-State: AC+VfDx8kt0BVx9+1igbgWirMKVBV3HX0C8jRvQbctWvFZ8JDYRxdFMA
+        hWnQMIr2z81r2OgckHc+UPnxuA==
+X-Google-Smtp-Source: ACHHUZ4bdgTVBJHUBS8Eb40jSpl9xmaCaFpPY+WUFySk47we5BeGwuNXlRZGzFalcblrjeyGrqaorA==
+X-Received: by 2002:a17:907:8a08:b0:987:ae30:4b8c with SMTP id sc8-20020a1709078a0800b00987ae304b8cmr16007348ejc.70.1687507709385;
+        Fri, 23 Jun 2023 01:08:29 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id v14-20020a1cf70e000000b003f9b2c602c0sm1588349wmh.37.2023.06.23.01.04.31
+        by smtp.gmail.com with ESMTPSA id r16-20020a1709062cd000b00982c5bc1e8asm5644025ejr.114.2023.06.23.01.08.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 01:04:32 -0700 (PDT)
-Message-ID: <20b480d8-087c-d5fe-08ca-7d2b684f4f96@linaro.org>
-Date:   Fri, 23 Jun 2023 10:04:30 +0200
+        Fri, 23 Jun 2023 01:08:28 -0700 (PDT)
+Message-ID: <fffa4486-1f76-f7e3-2bc9-21dbe40a606e@linaro.org>
+Date:   Fri, 23 Jun 2023 10:08:26 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v4] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0 boards
+Subject: Re: [PATCH v2 2/6] dt-bindings: phy: qcom,m31: Document qcom,m31 USB
+ phy
 Content-Language: en-US
-To:     Artur Weber <aweber.kernel@gmail.com>,
-        Olof Johansson <olof@lixom.net>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230604165627.16963-1-aweber.kernel@gmail.com>
- <aae10e8f-b4f2-7417-ab08-41d6ec9ab8fc@linaro.org>
- <72af054e-e82b-917c-1f9b-fe231dcfa5bf@gmail.com>
+To:     Varadarajan Narayanan <quic_varada@quicinc.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        vkoul@kernel.org, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        gregkh@linuxfoundation.org, catalin.marinas@arm.com,
+        will@kernel.org, p.zabel@pengutronix.de, arnd@arndb.de,
+        geert+renesas@glider.be, neil.armstrong@linaro.org,
+        nfraprado@collabora.com, broonie@kernel.org, rafal@milecki.pl,
+        quic_srichara@quicinc.com, quic_varada@quicinc.org,
+        quic_wcheng@quicinc.com, linux-arm-msm@vger.kernel.org,
+        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <cover.1687414716.git.quic_varada@quicinc.com>
+ <4f4136a91b24d3ad35fa12bd19fe14b83da9affe.1687414716.git.quic_varada@quicinc.com>
+ <20230622144627.GA1672260-robh@kernel.org>
+ <20230623054508.GA13261@varda-linux.qualcomm.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <72af054e-e82b-917c-1f9b-fe231dcfa5bf@gmail.com>
+In-Reply-To: <20230623054508.GA13261@varda-linux.qualcomm.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/06/2023 14:52, Artur Weber wrote:
-> On 04/06/2023 21:15, Krzysztof Kozlowski wrote:
->> On 04/06/2023 18:56, Artur Weber wrote:
->>> +/*
->>> + * This device does not use the built-in RTC; instead, the RTC in the
->>> + * S5M8786 PMIC is used instead. Remove the unused node to avoid DTB check
->>> + * warnings.
->>> + */
->>> +/delete-node/ &rtc;
+On 23/06/2023 07:45, Varadarajan Narayanan wrote:
+> 
+>>> +
+>>> +description:
+>>> +  USB M31 PHY found in Qualcomm IPQ5018, IPQ5332 SoCs.
 >>
->> This is not the solution. The S3C RTC is there. Just like all other
->> boards we have two RTCs and DTS should be complete. Definitely you
->> should not remove something just because there were warnings. Instead
->> warnings should be fixed.
+>> Where's the IPQ5018 compatible?
 > 
-> The problem is that the built-in RTC does not seem to work on this
-> device. I attempted to add it, using the same clocks as other devices
-> in mainline using the S5M8676 PMIC:
-> 
-> &rtc {
-> 	status = "okay";
-> 	clocks = <&clock CLK_RTC>, <&s5m8767_osc S2MPS11_CLK_AP>;
-> 	clock-names = "rtc", "rtc_src";
-> };
-> 
-> However, it just prints the following on startup:
-> 
->  s3c-rtc 10070000.rtc: rtc disabled, re-enabling
->  s3c-rtc 10070000.rtc: registered as rtc0
->  s3c-rtc 10070000.rtc: hctosys: unable to read the hardware clock
+> In the previous version had a default and IPQ5332 specific
+> compatible. IPQ5018 would have used the default compatible.
+> However, in the review was asked to drop the default compatible.
+> Hence planned to include ipq5018 compatible and post it in
+> separate patchset while enabling IPQ5018 USB. IPQ5018 init is
+> also diffferent from the init used here.
 
-This should be debugged then... but with explanation is fine to leave
-the node disabled.
-
-Removal of nodes is almost never correct.
-
+Your previous patch did not have ipq5018 compatible. There was nothing
+indicating that some default means ipq5018...
 
 Best regards,
 Krzysztof
