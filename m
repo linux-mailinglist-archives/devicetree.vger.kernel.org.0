@@ -2,143 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C55F473B868
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 15:07:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C7BA73B88D
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 15:16:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231466AbjFWNHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 09:07:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44862 "EHLO
+        id S230264AbjFWNQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 09:16:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48746 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjFWNHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 09:07:41 -0400
-Received: from us-smtp-delivery-124.mimecast.com (us-smtp-delivery-124.mimecast.com [170.10.129.124])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D8C4213A
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:06:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
-        s=mimecast20190719; t=1687525617;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=+nlw8o0x9EmBbnewRBB9FOcSf2qgr1xezY4CpDaC89M=;
-        b=dqGqlyik+K7vpvkYhcae8Oa26XEXAhC97ZeW0zP97e409/aneI/ePk2O+0Kxy/GavajD1e
-        cPuWemHIah0KsgrlNjiX0Ycrn4i1Uaz0cQOSdeSuqzygSwsb9Is9CFCglNsslJiH+oMgM/
-        SMqP33xJYP0xjv3WQztdrtzjdfQ6cc0=
-Received: from mail-oi1-f197.google.com (mail-oi1-f197.google.com
- [209.85.167.197]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-645-RpQ6agdhNUuNccWceHMdkw-1; Fri, 23 Jun 2023 09:06:56 -0400
-X-MC-Unique: RpQ6agdhNUuNccWceHMdkw-1
-Received: by mail-oi1-f197.google.com with SMTP id 5614622812f47-3a044f9104dso553399b6e.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:06:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687525616; x=1690117616;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=+nlw8o0x9EmBbnewRBB9FOcSf2qgr1xezY4CpDaC89M=;
-        b=GATNJDQdtBTQ+KJa+tBGoEEN4nZ6TL8JIyDYKXHTVPA3x0bGJP2yLTMjJ4vdfzA40h
-         iqUKCBXYTtbUI/UaoTI2zSiQGSYlj/vR4S1014jl37nAcapn3wnuTem/RyW3Az1GuxJY
-         q2QUnoG36Y+BL7FpaN5c9/njCJitQsXLsxizzEsUzM9YBV1gUG4HYc9gZeDc+JdSb9Ic
-         nfu9w7HmRmzir9h2+ixfTRyWn9bfP2w1sBqLXnWy/Uef2iCbaaHWYvShmn0v32WoZjXd
-         7EkDAIF6xodwwivG1VG1zQNWYUCYeUgNuCBnhXhqoXoM9jbVk/cKdyvuN/g+RjCYUj3G
-         b0Rg==
-X-Gm-Message-State: AC+VfDw0TsPVYRja8Ef9OO539PsHpT1prm7bmcS+mGVFtWhfdq3lyHy2
-        feKyZR56g3Kz9Y6sWEZThIeiki38i2Y13Dz5q02JAUzjYOW0F6M8NDbvcnhAMj6a/Q/1hXe9wGF
-        HLmdktdIOM0tlmhO1uQGh6g==
-X-Received: by 2002:a05:6808:1386:b0:39e:b84b:4786 with SMTP id c6-20020a056808138600b0039eb84b4786mr20204461oiw.27.1687525616009;
-        Fri, 23 Jun 2023 06:06:56 -0700 (PDT)
-X-Google-Smtp-Source: ACHHUZ73eFqk8vQn5O2qswhndAQq+yzi1FAVd85HKmLTe2wlqJ6VQg6y5tF3WlSHMlgK/pA6NSAzsQ==
-X-Received: by 2002:a05:6808:1386:b0:39e:b84b:4786 with SMTP id c6-20020a056808138600b0039eb84b4786mr20204357oiw.27.1687525614823;
-        Fri, 23 Jun 2023 06:06:54 -0700 (PDT)
-Received: from halaney-x13s ([2600:1700:1ff0:d0e0::f])
-        by smtp.gmail.com with ESMTPSA id be18-20020a056808219200b003a05636f4a8sm2061949oib.29.2023.06.23.06.06.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 06:06:54 -0700 (PDT)
-Date:   Fri, 23 Jun 2023 08:06:51 -0500
-From:   Andrew Halaney <ahalaney@redhat.com>
-To:     Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231181AbjFWNQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 09:16:42 -0400
+Received: from elvis.franken.de (elvis.franken.de [193.175.24.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id EEF059D;
+        Fri, 23 Jun 2023 06:16:40 -0700 (PDT)
+Received: from uucp by elvis.franken.de with local-rmail (Exim 3.36 #1)
+        id 1qCgeU-0002sl-00; Fri, 23 Jun 2023 15:16:38 +0200
+Received: by alpha.franken.de (Postfix, from userid 1000)
+        id D8D90C0346; Fri, 23 Jun 2023 15:09:38 +0200 (CEST)
+Date:   Fri, 23 Jun 2023 15:09:38 +0200
+From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        netdev@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>, linux-mips@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [PATCH net-next v2 00/12] net: stmmac: replace boolean fields in
- plat_stmmacenet_data with flags
-Message-ID: <20230623130651.a36qensnjwx6j4ea@halaney-x13s>
-References: <20230623100845.114085-1-brgl@bgdev.pl>
+        list@opendingux.net, "H . Nikolaus Schaller" <hns@goldelico.com>
+Subject: Re: [PATCH] MIPS: DTS: CI20: Raise VDDCORE voltage to 1.125 volts
+Message-ID: <20230623130938.GC11636@alpha.franken.de>
+References: <20230622175934.71601-1-paul@crapouillou.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230623100845.114085-1-brgl@bgdev.pl>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230622175934.71601-1-paul@crapouillou.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Spam-Status: No, score=-2.6 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 23, 2023 at 12:08:33PM +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Thu, Jun 22, 2023 at 07:59:34PM +0200, Paul Cercueil wrote:
+> Commit 08384e80a70f ("MIPS: DTS: CI20: Fix ACT8600 regulator node
+> names") caused the VDDCORE power supply (regulated by the ACT8600's
+> DCDC1 output) to drop from a voltage of 1.2V configured by the
+> bootloader, to the 1.1V set in the Device Tree.
 > 
-> As suggested by Jose Abreu: let's drop all 12 boolean fields in
-> plat_stmmacenet_data and replace them with a common bitfield.
+> According to the documentation, the VDDCORE supply should be between
+> 0.99V and 1.21V; both values are therefore within the supported range.
 > 
-> v1 -> v2:
-> - fix build on intel platforms
+> However, VDDCORE being 1.1V results in the CI20 being very unstable,
+> with corrupted memory, failures to boot, or reboots at random. The
+> reason might be succint drops of the voltage below the minimum required.
 > 
-> Bartosz Golaszewski (12):
->   net: stmmac: replace the has_integrated_pcs field with a flag
->   net: stmmac: replace the sph_disable field with a flag
->   net: stmmac: replace the use_phy_wol field with a flag
->   net: stmmac: replace the has_sun8i field with a flag
->   net: stmmac: replace the tso_en field with a flag
->   net: stmmac: replace the serdes_up_after_phy_linkup field with a flag
->   net: stmmac: replace the vlan_fail_q_en field with a flag
->   net: stmmac: replace the multi_msi_en field with a flag
->   net: stmmac: replace the ext_snapshot_en field with a flag
->   net: stmmac: replace the int_snapshot_en field with a flag
->   net: stmmac: replace the rx_clk_runs_in_lpi field with a flag
->   net: stmmac: replace the en_tx_lpi_clockgating field with a flag
+> Raising the minimum voltage to 1.125 volts seems to be enough to address
+> this issue, while still keeping a relatively low core voltage which
+> helps for power consumption and thermals.
 > 
->  .../stmicro/stmmac/dwmac-dwc-qos-eth.c        |  4 +-
->  .../net/ethernet/stmicro/stmmac/dwmac-intel.c | 23 +++++------
->  .../ethernet/stmicro/stmmac/dwmac-mediatek.c  |  5 ++-
->  .../stmicro/stmmac/dwmac-qcom-ethqos.c        |  8 ++--
->  .../net/ethernet/stmicro/stmmac/dwmac-sun8i.c |  2 +-
->  .../net/ethernet/stmicro/stmmac/dwmac-tegra.c |  4 +-
->  .../ethernet/stmicro/stmmac/stmmac_hwtstamp.c |  4 +-
->  .../net/ethernet/stmicro/stmmac/stmmac_main.c | 40 +++++++++++--------
->  .../net/ethernet/stmicro/stmmac/stmmac_pci.c  |  2 +-
->  .../ethernet/stmicro/stmmac/stmmac_platform.c | 10 +++--
->  .../net/ethernet/stmicro/stmmac/stmmac_ptp.c  |  5 ++-
->  include/linux/stmmac.h                        | 26 ++++++------
->  12 files changed, 76 insertions(+), 57 deletions(-)
+> Fixes: 08384e80a70f ("MIPS: DTS: CI20: Fix ACT8600 regulator node names")
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 > 
+> ---
+> Cc: H. Nikolaus Schaller <hns@goldelico.com>
+> ---
+>  arch/mips/boot/dts/ingenic/ci20.dts | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/mips/boot/dts/ingenic/ci20.dts b/arch/mips/boot/dts/ingenic/ci20.dts
+> index cec0caa2350c..a141a699b790 100644
+> --- a/arch/mips/boot/dts/ingenic/ci20.dts
+> +++ b/arch/mips/boot/dts/ingenic/ci20.dts
+> @@ -298,8 +298,8 @@ act8600: act8600@5a {
+>  
+>  		regulators {
+>  			vddcore: DCDC1 {
+> -				regulator-min-microvolt = <1100000>;
+> -				regulator-max-microvolt = <1100000>;
+> +				regulator-min-microvolt = <1125000>;
+> +				regulator-max-microvolt = <1125000>;
+>  				vp1-supply = <&vcc_33v>;
+>  				regulator-always-on;
+>  			};
 > -- 
-> 2.39.2
-> 
+> 2.40.1
 
-The series looks proper to me:
+applied to mips-next.
 
-Reviewed-by: Andrew Halaney <ahalaney@redhat.com>
+Thomas.
 
+-- 
+Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
+good idea.                                                [ RFC1925, 2.3 ]
