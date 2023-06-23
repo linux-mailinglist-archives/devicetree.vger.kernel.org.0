@@ -2,202 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D33873B31C
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 11:00:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5613273B350
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 11:15:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbjFWJAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 05:00:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42866 "EHLO
+        id S229657AbjFWJPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 05:15:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232082AbjFWI7l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:59:41 -0400
-Received: from relay4-d.mail.gandi.net (relay4-d.mail.gandi.net [217.70.183.196])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBF0A2680;
-        Fri, 23 Jun 2023 01:59:11 -0700 (PDT)
-X-GND-Sasl: herve.codina@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687510746;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=WiCubefUJT8lqguruRQEQMdku90oEPaE9zL5TkFrvME=;
-        b=Er+F9DMUoyhxCT4e3wLHeMsS1VAU8PNH1Bul8bZKuE7b9UDWdIF+nl22bVCY4NHvZ9+3Xy
-        vnwe1qxOxH/XHl1klPoHe3AQjzL2rg2JKRWm9yPuf4iKAfdVFHAjeN5ojCxCEvtaNopi5e
-        WIpPlPZxrioUfayxbqdutoHsTZz+naztAStXu/QGtC7en9ibj7HvS9gznvcv9nqGW1rPS5
-        11Anc5P4V8bc6IpMlrf3gLKvD2d8Snf5O+TyQ/TBc8U6ZKAryVv1rRNFW5S7ANa8WTu1fd
-        38yb7/Tbgo2tth/LaCfHJC9M9i2KM33OLVDwtohEKTAWWkKjVCqC3D29bF9h5g==
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-X-GND-Sasl: herve.codina@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPA id 52723E000B;
-        Fri, 23 Jun 2023 08:59:04 +0000 (UTC)
-From:   Herve Codina <herve.codina@bootlin.com>
-To:     Herve Codina <herve.codina@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        Wojciech Ziemba <wojciech.ziemba@intel.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: [PATCH v6 13/13] ASoC: simple-card: Handle additional devices
-Date:   Fri, 23 Jun 2023 10:58:30 +0200
-Message-Id: <20230623085830.749991-14-herve.codina@bootlin.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230623085830.749991-1-herve.codina@bootlin.com>
-References: <20230623085830.749991-1-herve.codina@bootlin.com>
+        with ESMTP id S229561AbjFWJP3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 05:15:29 -0400
+Received: from mickerik.phytec.de (mickerik.phytec.de [91.26.50.163])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14F19C2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 02:15:23 -0700 (PDT)
+X-AuditID: ac14000a-923ff70000007ecb-f8-64955f02026d
+Received: from florix.phytec.de (Unknown_Domain [172.25.0.13])
+        (using TLS with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (Client did not present a certificate)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 47.60.32459.20F55946; Fri, 23 Jun 2023 10:59:46 +0200 (CEST)
+Received: from Berlix.phytec.de (172.25.0.12) by Florix.phytec.de
+ (172.25.0.13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2375.18; Fri, 23 Jun
+ 2023 10:59:45 +0200
+Received: from Berlix.phytec.de ([fe80::61cc:ebf0:7375:8768]) by
+ berlix.phytec.de ([fe80::197e:d26b:2ca:c7b4%4]) with mapi id 15.01.2375.018;
+ Fri, 23 Jun 2023 10:59:45 +0200
+From:   Christophe Parant <C.Parant@phytec.fr>
+To:     "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "s.trumtrar@pengutronix.de" <s.trumtrar@pengutronix.de>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "upstream@lists.phytec.de" <upstream@lists.phytec.de>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "mcoquelin.stm32@gmail.com" <mcoquelin.stm32@gmail.com>,
+        "alexandre.torgue@foss.st.com" <alexandre.torgue@foss.st.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec board
+Thread-Topic: [PATCH v9 10/10] ARM: dts: stm32: add STM32MP1-based Phytec
+ board
+Thread-Index: AQHZjYZ7ReKcSf+hNU6XArRy/wB/9q9n0WyAgDBUHIA=
+Date:   Fri, 23 Jun 2023 08:59:45 +0000
+Message-ID: <9163ad315278dbedd6c31993a3dafad62a731b5e.camel@phytec.fr>
+References: <20230505060158.16516-1-s.trumtrar@pengutronix.de>
+         <20230505060158.16516-11-s.trumtrar@pengutronix.de>
+         <e5b4ef445160ac0ddbaa25f12118a253ad21542a.camel@phytec.fr>
+In-Reply-To: <e5b4ef445160ac0ddbaa25f12118a253ad21542a.camel@phytec.fr>
+Accept-Language: fr-FR, de-DE, en-US
+Content-Language: de-DE
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.0.11]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <C4DB8B8AEF0528439B22FAC57DCCE88C@phytec.de>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrKIsWRmVeSWpSXmKPExsWyRpKBV5cpfmqKwaxnAhY/X05jtJh/5Byr
+        Rd+Lh8wWmx5fY7XouvaE1WLe37WsFp8+LmSx6H6n7sDh8bR/K7vHzll32T3uXNvD5rF5Sb1H
+        f3cLq0f/XwOPg/sMPT5vkgvgiOKySUnNySxLLdK3S+DKmDwvouCafsXxo4cZGxh36HUxcnJI
+        CJhI7Px+m72LkYtDSGAJk8S7+1NYIJwHjBJ7uxrYIJyNjBKXX71gBGlhE9CRuHP8AjNIQkRg
+        GqPE0tYFTCAJZoEJzBIzZjuB2MICfhI/Z29lAbFFBAIl+s/vYISwrSR6TrezgdgsAqoSm3b/
+        ZwWxeQXcJJpvHmKE2LaZUeLb0nNgzZwC7hI3jnwAa2YUUJG4/nIXC8QycYlNz76zQjwhILFk
+        z3lmCFtU4uXjf1BxeYkTt6YBHccBVK8psX6XPoRpIbGmzR9iiqLElO6H7BAnCEqcnPmEZQKj
+        +CwkC2YhNM9CaJ6FpHkWkuYFjKyrGIVyM5OzU4sys/UKMipLUpP1UlI3MYKiWoSBawdj3xyP
+        Q4xMHIyHGCU4mJVEeGU3TUoR4k1JrKxKLcqPLyrNSS0+xCjNwaIkznu/hylRSCA9sSQ1OzW1
+        ILUIJsvEwSnVwGj7/An/S5nS9T+y67beO/JZI6rBsevdruPxFUevy+7IfG2Rf9DtKtvqR491
+        3L5/j068tH5djZLRW3fxBZ+ny9t+rZQ6LROydWL01fxPniGV1WIWdtzz9xa+ipiirRO8eV+C
+        7N+DJR/rghSkHc8cWPWO6WXPPza96utaC59wLfjazZ219rTg9eVKLMUZiYZazEXFiQDWATSP
+        2AIAAA==
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-An additional-devs subnode can be present in the simple-card top node.
-This subnode is used to declared some "virtual" additional devices.
-
-Create related devices from this subnode and avoid this subnode presence
-to interfere with the already supported subnodes analysis.
-
-Signed-off-by: Herve Codina <herve.codina@bootlin.com>
----
- sound/soc/generic/simple-card.c | 46 +++++++++++++++++++++++++++++++--
- 1 file changed, 44 insertions(+), 2 deletions(-)
-
-diff --git a/sound/soc/generic/simple-card.c b/sound/soc/generic/simple-card.c
-index 6f044cc8357e..ae4a47018278 100644
---- a/sound/soc/generic/simple-card.c
-+++ b/sound/soc/generic/simple-card.c
-@@ -348,6 +348,7 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 	struct device *dev = simple_priv_to_dev(priv);
- 	struct device_node *top = dev->of_node;
- 	struct device_node *node;
-+	struct device_node *add_devs;
- 	uintptr_t dpcm_selectable = (uintptr_t)of_device_get_match_data(dev);
- 	bool is_top = 0;
- 	int ret = 0;
-@@ -359,6 +360,8 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 		is_top = 1;
- 	}
- 
-+	add_devs = of_get_child_by_name(top, PREFIX "additional-devs");
-+
- 	/* loop for all dai-link */
- 	do {
- 		struct asoc_simple_data adata;
-@@ -367,6 +370,12 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 		struct device_node *np;
- 		int num = of_get_child_count(node);
- 
-+		/* Skip additional-devs node */
-+		if (node == add_devs) {
-+			node = of_get_next_child(top, node);
-+			continue;
-+		}
-+
- 		/* get codec */
- 		codec = of_get_child_by_name(node, is_top ?
- 					     PREFIX "codec" : "codec");
-@@ -380,12 +389,15 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 
- 		/* get convert-xxx property */
- 		memset(&adata, 0, sizeof(adata));
--		for_each_child_of_node(node, np)
-+		for_each_child_of_node(node, np) {
-+			if (np == add_devs)
-+				continue;
- 			simple_parse_convert(dev, np, &adata);
-+		}
- 
- 		/* loop for all CPU/Codec node */
- 		for_each_child_of_node(node, np) {
--			if (plat == np)
-+			if (plat == np || add_devs == np)
- 				continue;
- 			/*
- 			 * It is DPCM
-@@ -427,6 +439,7 @@ static int __simple_for_each_link(struct asoc_simple_priv *priv,
- 	} while (!is_top && node);
- 
-  error:
-+	of_node_put(add_devs);
- 	of_node_put(node);
- 	return ret;
- }
-@@ -464,6 +477,31 @@ static int simple_for_each_link(struct asoc_simple_priv *priv,
- 	return ret;
- }
- 
-+static void simple_depopulate_aux(void *data)
-+{
-+	struct asoc_simple_priv *priv = data;
-+
-+	of_platform_depopulate(simple_priv_to_dev(priv));
-+}
-+
-+static int simple_populate_aux(struct asoc_simple_priv *priv)
-+{
-+	struct device *dev = simple_priv_to_dev(priv);
-+	struct device_node *node;
-+	int ret;
-+
-+	node = of_get_child_by_name(dev->of_node, PREFIX "additional-devs");
-+	if (!node)
-+		return 0;
-+
-+	ret = of_platform_populate(node, NULL, NULL, dev);
-+	of_node_put(node);
-+	if (ret)
-+		return ret;
-+
-+	return devm_add_action_or_reset(dev, simple_depopulate_aux, priv);
-+}
-+
- static int simple_parse_of(struct asoc_simple_priv *priv, struct link_info *li)
- {
- 	struct snd_soc_card *card = simple_priv_to_card(priv);
-@@ -493,6 +531,10 @@ static int simple_parse_of(struct asoc_simple_priv *priv, struct link_info *li)
- 	if (ret < 0)
- 		return ret;
- 
-+	ret = simple_populate_aux(priv);
-+	if (ret < 0)
-+		return ret;
-+
- 	ret = snd_soc_of_parse_aux_devs(card, PREFIX "aux-devs");
- 
- 	return ret;
--- 
-2.40.1
-
+SGVsbG8gbWFpbnRhaW5lcnMsDQoNCkkgd291bGQgbGlrZSB0byBrbm93IGlmIHlvdSBoYXZlIHNl
+ZW4gbXkgcmVxdWVzdCBiZWxvdyA/DQoNClRoYW5rIHlvdS4NCg0KQmVzdCByZWdhcmRzLA0KQ2hy
+aXN0b3BoZQ0KDQpMZSBtYXJkaSAyMyBtYWkgMjAyMyDDoCAxNjo1OCArMDIwMCwgQ2hyaXN0b3Bo
+ZSBQYXJhbnQgYSDDqWNyaXTCoDoNCj4gSGkgU3RlZmZlbiwNCj4gDQo+IFRoYW5rIHlvdSBmb3Ig
+dXBzdHJlYW1pbmcgb3VyIHBoeUJPQVJELVNhcmdhcyBkZXZpY2UgdHJlZS4gV2Ugd2VyZQ0KPiBh
+bHNvDQo+IHBsYW5pbmcgdG8gd29yayBvbiB0aGF0IHRvby4NCj4gSWYgdGhpcyBwYXRjaCBpcyBu
+b3QgYXBwbGllZCB1cHN0cmVhbSB5ZXQsIHdvdWxkIGl0IGJlIHBvc3NpYmxlIHRvDQo+IHJlbmFt
+ZSB0aGUgLmR0cyBmaWxlID8NCj4gDQo+IEluIHRoZSBiZWdpbm5pbmcsIHdlIG5hbWVkIHRoZSBk
+dHMgZmlsZXMgYWZ0ZXIgb3VyIFlvY3RvIG1hY2hpbmVzLA0KPiB3aGljaCBpcyBwcm9iYWJseSB0
+aGUgdmVyc2lvbiB5b3UgZ290LiBCdXQgbm93IHdlIHJlbmFtZWQgdGhlbSBhZnRlcg0KPiBvdXIg
+YmFzZWJvYXJkIG5hbWVzLCBsaWtlIHdpdGggb3VyIG90aGVyIHBsYXRmb3Jtcy4NCj4gU28gaXQg
+d291bGQgbWFrZSBzZW5zZSB0byBoYXZlIHRoZSBzdG0zMiBiYXNlYm9hcmQgbmFtZWQgdGhlIHNh
+bWUNCj4gd2F5LA0KPiBjaGFuZ2luZyAic3RtMzJtcDE1N2MtcGh5Y29yZS1zdG0zMm1wMS0zLmR0
+cyIgdG8gInN0bTMybXAxNTdjLQ0KPiBwaHlib2FyZC0NCj4gc2FyZ2FzLXJkay1lbW1jLmR0cyIu
+DQo+IA0KPiAibW9kZWwiIGFuZCAiY29tcGF0aWJsZSIgY2FuIGFsc28gYmUgbW9kaWZpZWQgdGhp
+cyB3YXkgd2l0aCB0aGlzDQo+IG5hbWluZw0KPiBjb252ZW50aW9uIDoNCj4gDQo+IC8gew0KPiDC
+oMKgwqAgbW9kZWwgPSAiUEhZVEVDIHBoeUJPQVJELVNhcmdhcyBTVE0zMk1QMTU3QyB3aXRoIGVN
+TUMiOw0KPiDCoMKgwqAgY29tcGF0aWJsZSA9ICJwaHl0ZWMsc3RtMzJtcDE1N2MtcGh5Ym9hcmQt
+c2FyZ2FzLXJkay1lbW1jIiwNCj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgICJwaHl0ZWMsc3Rt
+MzJtcDE1N2MtcGh5Y29yZS1zb20iLCAic3Qsc3RtMzJtcDE1NyI7DQo+IH07DQo+IA0KPiBUaGFu
+a3MuDQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IENocmlzdG9waGUgUGFyYW50DQo+IA0KPiBMZSB2
+ZW5kcmVkaSAwNSBtYWkgMjAyMyDDoCAwODowMSArMDIwMCwgU3RlZmZlbiBUcnVtdHJhciBhIMOp
+Y3JpdMKgOg0KPiA+IEFkZCB0aGUgUGh5dGVjIFNUTTMyTVAxLTMgRGV2IGJvYXJkLiBUaGUgZGV2
+Ym9hcmQgdXNlcyBhIFBoeXRlYw0KPiA+IHN0bTMybTE1N2Mtc29tLg0KPiA+IA0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IFN0ZWZmZW4gVHJ1bXRyYXIgPHMudHJ1bXRyYXJAcGVuZ3V0cm9uaXguZGU+DQo+
+ID4gLS0tDQo+ID4gDQo+ID4gTm90ZXM6DQo+ID4gwqDCoMKgIENoYW5nZXMgc2luY2Ugdjc6DQo+
+ID4gwqDCoMKgwqDCoMKgIC0gcmVtb3ZlIHNlY3VyZS1zdGF0dXMgZm9yIHNkbW1jDQo+ID4gDQo+
+ID4gwqBhcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZcKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgIHzCoCAzICstDQo+ID4gwqAuLi4vZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUt
+c3RtMzJtcDEtMy5kdHPCoMKgwqAgfCA2MA0KPiA+ICsrKysrKysrKysrKysrKysrKysNCj4gPiDC
+oDIgZmlsZXMgY2hhbmdlZCwgNjIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+IMKg
+Y3JlYXRlIG1vZGUgMTAwNjQ0IGFyY2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTdjLXBoeWNvcmUt
+c3RtMzJtcDEtDQo+ID4gMy5kdHMNCj4gPiANCj4gPiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0vYm9v
+dC9kdHMvTWFrZWZpbGUNCj4gPiBiL2FyY2gvYXJtL2Jvb3QvZHRzL01ha2VmaWxlDQo+ID4gaW5k
+ZXggZWZlNDE1MmU1ODQ2Li5kZmE5YTc0NzdjODIgMTAwNjQ0DQo+ID4gLS0tIGEvYXJjaC9hcm0v
+Ym9vdC9kdHMvTWFrZWZpbGUNCj4gPiArKysgYi9hcmNoL2FybS9ib290L2R0cy9NYWtlZmlsZQ0K
+PiA+IEBAIC0xMjUyLDcgKzEyNTIsOCBAQCBkdGItJChDT05GSUdfQVJDSF9TVE0zMikgKz0gXA0K
+PiA+IMKgwqDCoMKgwqDCoMKgwqBzdG0zMm1wMTU3Yy1ldjEuZHRiIFwNCj4gPiDCoMKgwqDCoMKg
+wqDCoMKgc3RtMzJtcDE1N2MtZXYxLXNjbWkuZHRiIFwNCj4gPiDCoMKgwqDCoMKgwqDCoMKgc3Rt
+MzJtcDE1N2MtbHhhLW1jMS5kdGIgXA0KPiA+IC3CoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLW9k
+eXNzZXkuZHRiDQo+ID4gK8KgwqDCoMKgwqDCoMKgc3RtMzJtcDE1N2Mtb2R5c3NleS5kdGIgXA0K
+PiA+ICvCoMKgwqDCoMKgwqDCoHN0bTMybXAxNTdjLXBoeWNvcmUtc3RtMzJtcDEtMy5kdGINCj4g
+PiDCoGR0Yi0kKENPTkZJR19NQUNIX1NVTjRJKSArPSBcDQo+ID4gwqDCoMKgwqDCoMKgwqDCoHN1
+bjRpLWExMC1hMTAwMC5kdGIgXA0KPiA+IMKgwqDCoMKgwqDCoMKgwqBzdW40aS1hMTAtYmExMC10
+dmJveC5kdGIgXA0KPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3
+Yy1waHljb3JlLXN0bTMybXAxLTMuZHRzDQo+ID4gYi9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1w
+MTU3Yy1waHljb3JlLXN0bTMybXAxLTMuZHRzDQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4g
+PiBpbmRleCAwMDAwMDAwMDAwMDAuLjI4ZDcyMDMyNjRjZQ0KPiA+IC0tLSAvZGV2L251bGwNCj4g
+PiArKysgYi9hcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3Yy1waHljb3JlLXN0bTMybXAxLTMu
+ZHRzDQo+ID4gQEAgLTAsMCArMSw2MCBAQA0KPiA+ICsvLyBTUERYLUxpY2Vuc2UtSWRlbnRpZmll
+cjogKEdQTC0yLjArIE9SIEJTRC0zLUNsYXVzZSkNCj4gPiArLyoNCj4gPiArICogQ29weXJpZ2h0
+IChDKSBQaHl0ZWMgR21iSCAyMDE5LTIwMjAgLSBBbGwgUmlnaHRzIFJlc2VydmVkDQo+ID4gKyAq
+IEF1dGhvcjogRG9tIFZPVkFSRCA8ZG9tLnZvdmFyZEBsaW5ydC5jb20+Lg0KPiA+ICsgKi8NCj4g
+PiArDQo+ID4gKy9kdHMtdjEvOw0KPiA+ICsNCj4gPiArI2luY2x1ZGUgPGR0LWJpbmRpbmdzL3Bp
+bmN0cmwvc3RtMzItcGluZnVuYy5oPg0KPiA+ICsjaW5jbHVkZSAic3RtMzJtcDE1Ny5kdHNpIg0K
+PiA+ICsjaW5jbHVkZSAic3RtMzJtcDE1eGMuZHRzaSINCj4gPiArI2luY2x1ZGUgInN0bTMybXAx
+NXh4YWMtcGluY3RybC5kdHNpIg0KPiA+ICsjaW5jbHVkZSAic3RtMzJtcDE1N2MtcGh5Y29yZS1z
+dG0zMm1wMTUtc29tLmR0c2kiDQo+ID4gKw0KPiA+ICsvIHsNCj4gPiArwqDCoMKgwqDCoMKgwqBt
+b2RlbCA9ICJQSFlURUMgcGh5Q09SRS1TVE0zMk1QMS0zIERldiBCb2FyZCI7DQo+ID4gK8KgwqDC
+oMKgwqDCoMKgY29tcGF0aWJsZSA9ICJwaHl0ZWMscGh5Y29yZS1zdG0zMm1wMS0zIiwNCj4gPiAr
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgInBoeXRlYyxwaHljb3JlLXN0
+bTMybXAxNTdjLXNvbSIsDQo+ID4gInN0LHN0bTMybXAxNTciOw0KPiA+ICsNCj4gPiArwqDCoMKg
+wqDCoMKgwqBhbGlhc2VzIHsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgbW1j
+MCA9ICZzZG1tYzE7DQo+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoG1tYzEgPSAm
+c2RtbWMyOw0KPiA+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqBtbWMyID0gJnNkbW1j
+MzsNCj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc2VyaWFsMCA9ICZ1YXJ0NDsN
+Cj4gPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgc2VyaWFsMSA9ICZ1c2FydDM7DQo+
+ID4gK8KgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoHNlcmlhbDIgPSAmdXNhcnQxOw0KPiA+
+ICvCoMKgwqDCoMKgwqDCoH07DQo+ID4gK307DQo+ID4gKw0KPiA+ICsmY3J5cDEgew0KPiA+ICvC
+oMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4gPiArDQo+ID4gKyZkdHMg
+ew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4gPiArDQo+
+ID4gKyZmbWMgew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJkaXNhYmxlZCI7DQo+ID4g
+K307DQo+ID4gKw0KPiA+ICsmZ3B1IHsNCj4gPiArwqDCoMKgwqDCoMKgwqBzdGF0dXMgPSAib2th
+eSI7DQo+ID4gK307DQo+ID4gKw0KPiA+ICsmaTJjNF9lZXByb20gew0KPiA+ICvCoMKgwqDCoMKg
+wqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4gPiArDQo+ID4gKyZpMmM0X3J0YyB7DQo+
+ID4gK8KgwqDCoMKgwqDCoMKgc3RhdHVzID0gIm9rYXkiOw0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAr
+JnFzcGkgew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsNCj4gPiArfTsNCj4g
+PiArDQo+ID4gKyZzZG1tYzIgew0KPiA+ICvCoMKgwqDCoMKgwqDCoHN0YXR1cyA9ICJva2F5IjsN
+Cj4gPiArfTsNCg==
