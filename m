@@ -2,198 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 560F373B925
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 15:52:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 790A373B95B
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 16:07:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231159AbjFWNwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 09:52:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38156 "EHLO
+        id S230504AbjFWOHO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 10:07:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42382 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231866AbjFWNwk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 09:52:40 -0400
-Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DC32699
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:52:29 -0700 (PDT)
-Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51a3e6a952aso687350a12.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:52:29 -0700 (PDT)
+        with ESMTP id S230010AbjFWOHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 10:07:11 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1562173F
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 07:07:09 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-c01e1c066c3so573962276.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 07:07:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20221208.gappssmtp.com; s=20221208; t=1687528348; x=1690120348;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9S6OHdItsTA1JwEPFdtVcZWMFJNNUsFlvqd8wRr+OUY=;
-        b=nAce8ga+PROGouUoidmVoa9MzzT4VKceza4OhOuRIrN+5JqaA3WkDPC5LeYqt3YuZl
-         2HDMZKlnXxn1GxbdtDj4lyz50v9F7oC2oDzNaI6940PB7TEop0jMQqAauMiaJIXqaIsi
-         y/bLhiO9HDfI4+5QFBjf6fqhm03lni+3xdGXkzzxj3UrbrdjWks+kde/XVOEiw4kiQSV
-         QhKvRfLnp0ekeVOI4extHqhCHK2JjEhKR6dCf5EvjVCuMe9mhUaWBqhHt+3X2csIE2au
-         oaAovgYAxbXS4YbjQqIKfJUEYQGiMGXYyrzj6FCFF8rURCWTujhqLNueJ4wQjUXI0t+8
-         N/tw==
+        d=linaro.org; s=google; t=1687529229; x=1690121229;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=RiTsI118hafq6i7nvtRJQvtGzINzF3YoXOeY8ZJPq3A=;
+        b=I73lpsaBMc0XCR6IVKEAqO9BTMv4WIAHysjUU3hEuxBO4wItAaE29RcseaPW/qLmtU
+         D9OArOCZ/fjcEvxjmKeKeaPMmD6sElsbLNWBrYGtUywFe0Za4UsOHARyAp3MVTaKdD4L
+         ZV9ZzOYlc17QmrRTHaTAoQRA7VHCC6s3y2qQEbC/NRfuliJE7c87Bw/xJKI/1Ng4hm11
+         +U5VbUst/Rn/5yv0zI2mKrSk3pYz9lTU32a0udN5aPcqX3nlFUbAq4ZAPIK5BfU0Mrhh
+         8QTMmTSTsBxuHP3kVnpl+7Kv+G586s84HV3y8bRulyMIvAA4Di+neNPL9jEpNjwDl5CN
+         mz4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687528348; x=1690120348;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=9S6OHdItsTA1JwEPFdtVcZWMFJNNUsFlvqd8wRr+OUY=;
-        b=drwDfs6lTBEhI5nBko8xEGZ7u2yY9g1BjMmI2Yfv8gI+zH/noCn7azLLfjIsl7Mzvo
-         DYis9TdC/vI9lc/c7+wlsXOd8cuuy1s0DUxy0l8bP3jDS9wmHWC16klk2rs9uBs+kCGp
-         xibtEVCg+2P97Pfr/gyxj6tNMFDRxs1bah7pWBJXvS45pImpzQKMfVNV9EWBM7D0/nAn
-         1pBE0ctcGnK324bOcStHhiKE+Vm1LESwYtVgIu4xrH5IL/Jub2WcQxkpRW9I2socMDGr
-         dW1T8bGIAfTsucuzBstaI7cyOVAjbgDDBksq+fcitAYTCFakUo7NrdrD2S7vj2uRjkrh
-         qEuw==
-X-Gm-Message-State: AC+VfDwc0gv3bmXBrq+X1TulJCk41Wo29C3blnu5RuVFd6eWKI9a7DEZ
-        0vkSAQQmSEGjePcIU6edf9tDrTGtFbAThvTolTsgIuoLuMjneLMPh64=
-X-Google-Smtp-Source: ACHHUZ5paNz1Cy14U0D10w5MW6F/Bi3rLn0+7A272F60E7dMKSk92KbX4Dy3Ud9Nb1GD+xk5zK+AHrmxfK2LTcZejxw=
-X-Received: by 2002:aa7:d1d4:0:b0:51a:5ae1:b6e5 with SMTP id
- g20-20020aa7d1d4000000b0051a5ae1b6e5mr9949319edp.10.1687528347990; Fri, 23
- Jun 2023 06:52:27 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687529229; x=1690121229;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=RiTsI118hafq6i7nvtRJQvtGzINzF3YoXOeY8ZJPq3A=;
+        b=CSSH7WMudo+tdiQmHz0ZjuSVcBoGeo0fl/08j8o2MaZtiL6Vlm5qTP2EY9X7XAdjiF
+         ABGNNhojgW9Np+rIp5DT0BXdiFy8Odmogo7ekgQXv+elUQNan46eSflxzTaEnCaSP5s/
+         D/2KA1ax5cMLCwu5Lc7Y5cc846BVCrIsoU0rphX+TqggeYGlEBMnaIYfr0a4zyb9xGPn
+         y1llt6+xhuWJV/6d8Xn8sqmvfzVn/XjGbLL/MPKJdXRPewHuxB73WQD4w4PyAKA78FAx
+         QqqSPo1FByo31jOypjvOd1XlIsTkMsJBeIIuHytnaLdjDADMj6iGsKV/CvAdDvdfCcem
+         Smhw==
+X-Gm-Message-State: AC+VfDzY3S/GM/TrI/Yo03xOxkQtOwV4enGBTKmuS4G+UjVHZwIVYfGK
+        A6bW4W6UIkPYER6hfELbL3miTpf7h5mc457c6HiLnQ==
+X-Google-Smtp-Source: ACHHUZ5jvJ6GmqvtQsOQTLLuQkFQ6bbuFf78sByUgFT/7MU80lXUpNxJtuz6gFslpjENxjQ4EgbwL15CIaoB/AnF1DQ=
+X-Received: by 2002:a25:4183:0:b0:bcc:571d:a300 with SMTP id
+ o125-20020a254183000000b00bcc571da300mr15312465yba.20.1687529229088; Fri, 23
+ Jun 2023 07:07:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230613153415.350528-1-apatel@ventanamicro.com>
- <20230613153415.350528-9-apatel@ventanamicro.com> <CAGETcx-hoPNanAwe4++6roqBXwSdc7z6Ei=-r9z6qFG1U7xVXg@mail.gmail.com>
- <CAAhSdy3WH_nrKC-3AC4RHn9=crh6mPzaKO8jmAeo2j8-VJnT5g@mail.gmail.com>
- <CAGETcx_DkuyZ+c50QmA7eu8vUByfVosABugZpd7R8NgR8Wc-FA@mail.gmail.com>
- <CAK9=C2X4+aTs=+WdE0ba1qPDu67TiAKgE2Rx-qqD5+TJwYCKOQ@mail.gmail.com>
- <CAGETcx_KJURkxEuZOgPZR=fA4CaHnAwwRfU_JLJ28absFWAtzg@mail.gmail.com>
- <CAK9=C2XNAXaorxeNAB02o3_mYe3fsDSHS7rj=5+=q=d67Od60A@mail.gmail.com> <86mt0qbaxg.wl-maz@kernel.org>
-In-Reply-To: <86mt0qbaxg.wl-maz@kernel.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Fri, 23 Jun 2023 19:22:15 +0530
-Message-ID: <CAAhSdy3eW_urQ_716DdBp8SN2zFN3oMMOt695cW4EQbejraVhw@mail.gmail.com>
-Subject: Re: [PATCH v4 08/10] irqchip: Add RISC-V advanced PLIC driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Anup Patel <apatel@ventanamicro.com>,
-        Saravana Kannan <saravanak@google.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
+References: <20230616104941.921555-1-quic_imrashai@quicinc.com>
+ <20230616104941.921555-3-quic_imrashai@quicinc.com> <acc8d1e4-e899-2ea4-947f-2bdcef7b7263@linaro.org>
+ <66da39ad-33bf-2de8-949d-9f2f93e915e3@quicinc.com>
+In-Reply-To: <66da39ad-33bf-2de8-949d-9f2f93e915e3@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 23 Jun 2023 17:06:57 +0300
+Message-ID: <CAA8EJpqynBfuoxnVMc5yG9qYgZO3sKMssjAz-REt2umYqe2_8w@mail.gmail.com>
+Subject: Re: [PATCH 2/2] clk: qcom: gcc-qdu1000: Update GCC clocks and add
+ support for GDSCs
+To:     Imran Shaik <quic_imrashai@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Conor Dooley <conor@kernel.org>,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, iommu@lists.linux.dev,
-        Android Kernel Team <kernel-team@android.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 23, 2023 at 6:19=E2=80=AFPM Marc Zyngier <maz@kernel.org> wrote=
-:
+On Fri, 23 Jun 2023 at 13:08, Imran Shaik <quic_imrashai@quicinc.com> wrote:
 >
-> [here, let me trim all of this nonsense...]
 >
-> On Fri, 23 Jun 2023 12:47:00 +0100,
-> Anup Patel <apatel@ventanamicro.com> wrote:
-> > > No. My previous email asking you to NOT use IRQCHIP_DECLARE() and
-> > > instead use IRQCHIP_PLATFORM_DRIVER_BEGIN/END() macros.
+>
+> On 6/16/2023 4:50 PM, Dmitry Baryshkov wrote:
+> > On 16/06/2023 13:49, Imran Shaik wrote:
+> >> Update the GCC clocks and add support for GDSCs for QDU1000 and
+> >> QRU1000 SoCs. While at it, fix the PCIe pipe clock handling and
+> >> add support for v2 variant.
 > >
-> > I tried IRQCHIP_PLATFORM_DRIVER_BEGIN/END() macros but these
-> > macros are not suitable for APLIC driver because we need platform devic=
-e
-> > pointer in the APLIC probe() to create platform MSI device domain (refe=
-r,
-> > platform_msi_create_device_domain()).
+> > Please split this into individual chunks instead of squashing everything
+> > together. For each change please describe the logic behind the change in
+> > the commit message. Please describe why, not what is changed.
+> >
 >
-> Oh come on. How hard have you tried? Have you even looked at the other
-> drivers in the tree to see how they solve this insurmountable problem
-> with a *single* line of code?
+> Sure, will split this patch and post the next series.
 >
->         pdev =3D of_find_device_by_node(node);
+> >>
+> >> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+> >> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+> >
+> > This doesn't look fully logical. Who is the author of the patch? If
+> > there are two authors, please add Co-developed-by tag.
+> >
 >
-> That's it.
-
-Please see the below diff. I tried the same thing but still the APLIC does
-not get probed without the FWNODE_FLAG_BEST_EFFORT flag. Please
-note that the current APLIC driver works unmodified for both DT and ACPI
-but using of_find_device_by_node() here breaks ACPI support.
-
-diff --git a/drivers/irqchip/irq-riscv-aplic.c
-b/drivers/irqchip/irq-riscv-aplic.c
-index 1e710fdf5608..9ae9e7fb905f 100644
---- a/drivers/irqchip/irq-riscv-aplic.c
-+++ b/drivers/irqchip/irq-riscv-aplic.c
-@@ -17,6 +17,7 @@
- #include <linux/irqdomain.h>
- #include <linux/module.h>
- #include <linux/msi.h>
-+#include <linux/of_platform.h>
- #include <linux/platform_device.h>
- #include <linux/smp.h>
-
-@@ -730,36 +731,12 @@ static int aplic_probe(struct platform_device *pdev)
-     return 0;
- }
-
--static const struct of_device_id aplic_match[] =3D {
--    { .compatible =3D "riscv,aplic" },
--    {}
--};
--
--static struct platform_driver aplic_driver =3D {
--    .driver =3D {
--        .name        =3D "riscv-aplic",
--        .of_match_table    =3D aplic_match,
--    },
--    .probe =3D aplic_probe,
--};
--builtin_platform_driver(aplic_driver);
--
--static int __init aplic_dt_init(struct device_node *node,
-+static int __init aplic_of_init(struct device_node *dn,
-                 struct device_node *parent)
- {
--    /*
--     * The APLIC platform driver needs to be probed early
--     * so for device tree:
--     *
--     * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnode which
--     *    provides a hint to the device driver core to probe the
--     *    platform driver early.
--     * 2) Clear the OF_POPULATED flag in device_node because
--     *    of_irq_init() sets it which prevents creation of
--     *    platform device.
--     */
--    node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
--    of_node_clear_flag(node, OF_POPULATED);
--    return 0;
-+    return aplic_probe(of_find_device_by_node(dn));
- }
--IRQCHIP_DECLARE(riscv_aplic, "riscv,aplic", aplic_dt_init);
-+
-+IRQCHIP_PLATFORM_DRIVER_BEGIN(aplic)
-+IRQCHIP_MATCH("riscv,aplic", aplic_of_init)
-+IRQCHIP_PLATFORM_DRIVER_END(aplic)
-
+> Yes, will use Co-developed-by tag in the next patch series.
 >
-> > Further, I tried setting the "suppress_bind_attrs" flag in "struct
-> > platform_driver aplic_driver" just like the
-> > IRQCHIP_PLATFORM_DRIVER_END() macro but this did not work.
+> >> ---
+> >>   drivers/clk/qcom/gcc-qdu1000.c | 162 ++++++++++++++++++++++-----------
+> >>   1 file changed, 110 insertions(+), 52 deletions(-)
+> >>
+> >> diff --git a/drivers/clk/qcom/gcc-qdu1000.c
+> >> b/drivers/clk/qcom/gcc-qdu1000.c
+> >> index 5051769ad90c..5d8125c0eacc 100644
+> >> --- a/drivers/clk/qcom/gcc-qdu1000.c
+> >> +++ b/drivers/clk/qcom/gcc-qdu1000.c
+> >> @@ -1,6 +1,6 @@
+> >>   // SPDX-License-Identifier: GPL-2.0-only
+> >>   /*
+> >> - * Copyright (c) 2022, Qualcomm Innovation Center, Inc. All rights
+> >> reserved.
+> >> + * Copyright (c) 2022-2023, Qualcomm Innovation Center, Inc. All
+> >> rights reserved.
+> >>    */
+> >>   #include <linux/clk-provider.h>
+> >> @@ -17,6 +17,7 @@
+> >>   #include "clk-regmap-divider.h"
+> >>   #include "clk-regmap-mux.h"
+> >>   #include "clk-regmap-phy-mux.h"
+> >> +#include "gdsc.h"
+> >>   #include "reset.h"
+> >>   enum {
+> >> @@ -370,16 +371,6 @@ static const struct clk_parent_data
+> >> gcc_parent_data_6[] = {
+> >>       { .index = DT_TCXO_IDX },
+> >>   };
+> >> -static const struct parent_map gcc_parent_map_7[] = {
+> >> -    { P_PCIE_0_PIPE_CLK, 0 },
+> >> -    { P_BI_TCXO, 2 },
+> >> -};
+> >> -
+> >> -static const struct clk_parent_data gcc_parent_data_7[] = {
+> >> -    { .index = DT_PCIE_0_PIPE_CLK_IDX },
+> >> -    { .index = DT_TCXO_IDX },
+> >> -};
+> >> -
+> >>   static const struct parent_map gcc_parent_map_8[] = {
+> >>       { P_BI_TCXO, 0 },
+> >>       { P_GCC_GPLL0_OUT_MAIN, 1 },
+> >> @@ -439,16 +430,15 @@ static struct clk_regmap_mux
+> >> gcc_pcie_0_phy_aux_clk_src = {
+> >>       },
+> >>   };
+> >> -static struct clk_regmap_mux gcc_pcie_0_pipe_clk_src = {
+> >> +static struct clk_regmap_phy_mux gcc_pcie_0_pipe_clk_src = {
+> >>       .reg = 0x9d064,
+> >> -    .shift = 0,
+> >> -    .width = 2,
+> >> -    .parent_map = gcc_parent_map_7,
+> >>       .clkr = {
+> >>           .hw.init = &(const struct clk_init_data) {
+> >>               .name = "gcc_pcie_0_pipe_clk_src",
+> >> -            .parent_data = gcc_parent_data_7,
+> >> -            .num_parents = ARRAY_SIZE(gcc_parent_data_7),
+> >> +            .parent_data = &(const struct clk_parent_data){
+> >> +                .index = DT_PCIE_0_PIPE_CLK_IDX,
+> >> +            },
+> >> +            .num_parents = 1,
+> >>               .ops = &clk_regmap_phy_mux_ops,
+> >>           },
+> >>       },
+> >> @@ -485,7 +475,7 @@ static struct clk_rcg2
+> >> gcc_aggre_noc_ecpri_dma_clk_src = {
+> >>           .name = "gcc_aggre_noc_ecpri_dma_clk_src",
+> >>           .parent_data = gcc_parent_data_4,
+> >>           .num_parents = ARRAY_SIZE(gcc_parent_data_4),
+> >> -        .ops = &clk_rcg2_ops,
+> >> +        .ops = &clk_rcg2_shared_ops,
+> >>       },
+> >>   };
+> >> @@ -505,7 +495,7 @@ static struct clk_rcg2
+> >> gcc_aggre_noc_ecpri_gsi_clk_src = {
+> >>           .name = "gcc_aggre_noc_ecpri_gsi_clk_src",
+> >>           .parent_data = gcc_parent_data_5,
+> >>           .num_parents = ARRAY_SIZE(gcc_parent_data_5),
+> >> -        .ops = &clk_rcg2_ops,
+> >> +        .ops = &clk_rcg2_shared_ops,
+> >
+> > This is probably some kind of NoC or NIU clock. If it is not to be
+> > touched by Linux, the recent clk_rcg2_ro_ops patch looks promising here.
+> >
 >
-> I'm not sure how relevant this is to the conversation.
+> This is not a NoC or NIU clock and Linux will use this clock.
 
-It's relevant because the only difference in the platform_driver
-registered by IRQCHIP_PLATFORM_DRIVER_END() and
-"struct platform_driver aplic_driver" is the "suppress_bind_attrs" flag.
+The clock name ("gcc_aggre_noc_ecpri_gsi_clk_src") seems to disagree with you.
 
-Unfortunately, setting the "suppress_bind_attrs" flag does not
-help as well.
-
+> >>       },
+> >>   };
+> >> @@ -524,7 +514,7 @@ static struct clk_rcg2 gcc_gp1_clk_src = {
+> >>           .name = "gcc_gp1_clk_src",
+> >>           .parent_data = gcc_parent_data_1,
+> >>           .num_parents = ARRAY_SIZE(gcc_parent_data_1),
+> >> -        .ops = &clk_rcg2_ops,
+> >> +        .ops = &clk_rcg2_shared_ops,
+> >
+> > But why? GP clocks are not shared.
+> > The 'why?' question applies to all such changes. As I wrote, please
+> > split & describe the reason.
+> >
 >
->         M.
+> We want to park all the RCGs at safe clock source (XO) during disable.
+> Hence using the clk_rcg2_shared_ops for all the RCGs.
 >
-> --
-> Without deviation from the norm, progress is not possible.
+> Will split and post the next patch series.
 
-Regards,
-Anup
+For this (and for all other changes) please describe the reason behind
+the change in the commit message.
+For example, for GP clocks there seems to be no reason to park them.
+On other platforms it was perfectly fine to disable them instead.
+
+
+-- 
+With best wishes
+Dmitry
