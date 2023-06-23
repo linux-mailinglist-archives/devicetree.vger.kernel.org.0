@@ -2,241 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06FFC73BA73
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 16:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43A5B73BA9F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 16:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231734AbjFWOnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 10:43:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39862 "EHLO
+        id S232120AbjFWOvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 10:51:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231769AbjFWOni (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 10:43:38 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88821BF2;
-        Fri, 23 Jun 2023 07:43:15 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E0DEBC;
-        Fri, 23 Jun 2023 16:42:37 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687531357;
-        bh=wdihR9kOfvIQ6G8MVle6NFFv5LJO2T8O0WCVNoKqb1c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VbcvcnwV642L1NkucKgXc8YtBoftMHpYjSn6AayKFnjm9KWOdNTZIwBoOh8YRg7Cr
-         rItp4abJJNREMYeDz1RHehAffaXManymW8Mn/eeMPNizWKR+4GbM8yOIIl23orQKMW
-         k9Emk67/9E9hMZ1YjHAAqDoJXQQ9lQpQL3d0DrS8=
-Date:   Fri, 23 Jun 2023 17:43:12 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230348AbjFWOvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 10:51:48 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE19DE42;
+        Fri, 23 Jun 2023 07:51:47 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-311367a3e12so841301f8f.2;
+        Fri, 23 Jun 2023 07:51:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687531906; x=1690123906;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=l+3LHeauprJMFrQd0+jQkGFlCp8ECRd37XuNslV2KI4=;
+        b=MinrleaBYcgn0SmOruI2S1QUSW3aFfm+GZoBJAolHuG58GBKj27ZOIKHri8o9uoLg/
+         VdUBW87sjF9wyCnBloDKdw/QhZMECJgrnfbrmW3qe/9LgiZbuC1BUD8WLZ73ydzrVSqZ
+         65SRi6chDkKWKA7RU+hbwtdET3d6uL+OHyPNdA48//dLy4uXi7cBh6qQ1zk2u3oKobSY
+         4f4LMcHU4o3t1TNyW1xHUKUsnyf/VSXVu+3zb4Spv9uqLpmjuage8Of5qOm4IbOYZopd
+         Bk/c48Vsnye3NluNaA5L3SACMQHf4bskHdSvjJxY5vbFF0Mnjnnr5rPEsvXBBX1O9CXQ
+         kePQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687531906; x=1690123906;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=l+3LHeauprJMFrQd0+jQkGFlCp8ECRd37XuNslV2KI4=;
+        b=AyJu3J7uvqR/I26SkfqzfFefk9A1reeXHhlzMKVuRmq4g5GBjQjHg232y8vEXLmRUy
+         IwFYNxH5BQdsn6LWgcwZQJpLlOKxpJ/UuVcCiFaHI4JRAKXOc9ORw7Q8W+F6sNHJss8U
+         RJZaSiFH4Q7P9eVmq0qzSwqZ43miIIdXGRD4EJsRni2tWfMHD6PrscVAOrejjGZWSc//
+         QJVQ0upBtx26SttHXg9tyj07okQN1JUMDKuWIJnSX14S0tY2sm9nBhaCaHSZkzxU8B5d
+         xvQgn6WB1VhP+3tOS6oJQ3SbOkYYg3XariHNXMjtL5nMfk0Sa8qoa+VSahfLBPwxapig
+         kEjA==
+X-Gm-Message-State: AC+VfDzymDvP4GrMEBvyQanU99pGb59dkBuOnvu8f0bTyJy8wUaWeuFN
+        Cau9ye2gVVYRXcSVzCW33aM=
+X-Google-Smtp-Source: ACHHUZ60FNRlfUmIFP0b/3cM1TztC5mpMI+ckxGr2qi0N2TeLVaraRnzeYWpPjtELUaJeTm17tpo5Q==
+X-Received: by 2002:a5d:570b:0:b0:309:4da8:7713 with SMTP id a11-20020a5d570b000000b003094da87713mr17290741wrv.64.1687531905993;
+        Fri, 23 Jun 2023 07:51:45 -0700 (PDT)
+Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f12-20020a5d58ec000000b00309382eb047sm9654388wrd.112.2023.06.23.07.51.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 23 Jun 2023 07:51:45 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 01/39] dt-bindings: display: Add Renesas SH-Mobile LCDC
- bindings
-Message-ID: <20230623144312.GE2112@pendragon.ideasonboard.com>
-References: <cover.1687423204.git.geert+renesas@glider.be>
- <2259ff548f007afcb5a315a4c95c83a0ee4b7e03.1687423204.git.geert+renesas@glider.be>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: (subset) [PATCH v2 1/2] dt-bindings: pwm: imx: add i.MX8QXP compatible
+Date:   Fri, 23 Jun 2023 16:51:29 +0200
+Message-ID: <168753171957.1191890.13776090502738387691.b4-ty@gmail.com>
+X-Mailer: git-send-email 2.41.0
+In-Reply-To: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
+References: <20230424082108.26512-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2259ff548f007afcb5a315a4c95c83a0ee4b7e03.1687423204.git.geert+renesas@glider.be>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-Thank you for the patch.
-
-On Thu, Jun 22, 2023 at 11:21:13AM +0200, Geert Uytterhoeven wrote:
-> Add device tree bindings for the LCD Controller (LCDC) found in Renesas
-> SuperH SH-Mobile and ARM SH/R-Mobile SOCs.
+On Mon, 24 Apr 2023 10:21:07 +0200, Alexander Stein wrote:
+> i.MX8QXP compatible is missing in the list, add it.
 > 
-> Based on a plain text prototype by Laurent Pinchart.
 > 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
-> Changes compared to Laurent's original:
->   - Convert to json-schema,
->   - Rename compatible values from "renesas,lcdc-<SoC>" to
->     "renesas,<SoC>-lcdc",
->   - Add power-domains property,
->   - Add MIPI-DSI port on SH-Mobile AG5,
->   - Update example to reflect reality,
->   - Add to MAINTAINERS.
-> ---
->  .../display/renesas,shmobile-lcdc.yaml        | 108 ++++++++++++++++++
->  MAINTAINERS                                   |   1 +
->  2 files changed, 109 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
-> new file mode 100644
-> index 0000000000000000..72a39fce7294d56d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
-> @@ -0,0 +1,108 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/renesas,shmobile-lcdc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Renesas SH-Mobile LCD Controller (LCDC)
-> +
-> +maintainers:
-> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-I'd be happy if you co-maintained this with me :-) Or even took
-ownership completely.
+Applied, thanks!
 
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - renesas,r8a7740-lcdc # R-Mobile A1
-> +      - renesas,sh73a0-lcdc  # SH-Mobile AG5
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 1
-> +    maxItems: 5
-> +    description:
-> +      Only the functional clock is mandatory.
-> +      Some of the optional clocks are model-dependent (e.g. "video" (a.k.a.
-> +      "vou" or "dv_clk") is available on R-Mobile A1 only).
-> +
-> +  clock-names:
-> +    minItems: 1
-> +    maxItems: 5
-> +    items:
-> +      enum: [ fck, media, lclk, hdmi, video ]
+[1/2] dt-bindings: pwm: imx: add i.MX8QXP compatible
+      commit: c799ad062a75858e10a7626e20233e6e94dbf554
 
-Switching to per-item descriptions would allow documenting which clock
-applies to which SoC.
-
-Are enum items unique by default ?
-
-This would allow a combination of clocks that doesn't include the fck
-clock, that's not right.
-
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  ports:
-> +    $ref: /schemas/graph.yaml#/properties/ports
-> +    description: |
-> +      The connections to the output video ports are modeled using the OF graph
-> +      bindings specified in Documentation/devicetree/bindings/graph.txt.
-
-it's available in YAML form now. I'd just drop the "specified in ...".
-
-> +      The number of ports and their assignment are model-dependent.
-> +      Each port shall have a single endpoint.
-> +
-> +    properties:
-> +      port@0:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: LCD port (R-Mobile A1 and SH-Mobile AG5)
-> +        unevaluatedProperties: false
-> +
-> +      port@1:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: HDMI port (R-Mobile A1 LCDC1 and SH-Mobile AG5)
-> +        unevaluatedProperties: false
-> +
-> +      port@2:
-> +        $ref: /schemas/graph.yaml#/properties/port
-> +        description: MIPI-DSI port (SH-Mobile AG5)
-> +        unevaluatedProperties: false
-
-Let's condition the ports on the compatible value to enable automatic
-validation.
-
-> +
-> +    required:
-> +      - port@0
-
-Based on the above, port@1 is required too as it's present on all
-supported SoCs. Let's condition this on the compatible value too.
-
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - power-domains
-> +  - ports
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/r8a7740-clock.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +
-> +    lcdc0: lcd-controller@fe940000 {
-> +        compatible = "renesas,r8a7740-lcdc";
-> +        reg = <0xfe940000 0x4000>;
-> +        interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&mstp1_clks R8A7740_CLK_LCDC0>,
-> +                 <&cpg_clocks R8A7740_CLK_M3>, <&lcdlclk0_clk>,
-> +                 <&vou_clk>;
-> +        clock-names = "fck", "media", "lclk", "video";
-> +        power-domains = <&pd_a4lc>;
-> +        status = "disabled";
-> +
-> +        ports {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            port@0 {
-> +                reg = <0>;
-> +
-> +                lcdc0_rgb: endpoint {
-> +                };
-> +            };
-> +        };
-> +    };
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 83e9f4ac6bedaa9f..dc1935c196cb0e0b 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -7023,6 +7023,7 @@ F:	Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
->  F:	Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
->  F:	Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
->  F:	Documentation/devicetree/bindings/display/renesas,du.yaml
-> +F:	Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
->  F:	drivers/gpu/drm/renesas/
->  F:	include/linux/platform_data/shmob_drm.h
->  
-
+Best regards,
 -- 
-Regards,
-
-Laurent Pinchart
+Thierry Reding <thierry.reding@gmail.com>
