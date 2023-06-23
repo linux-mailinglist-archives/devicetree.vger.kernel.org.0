@@ -2,221 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E0A873BA62
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 16:41:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06FFC73BA73
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 16:43:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231915AbjFWOlU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 10:41:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37638 "EHLO
+        id S231734AbjFWOnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 10:43:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229449AbjFWOlO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 10:41:14 -0400
-Received: from mail-qk1-x733.google.com (mail-qk1-x733.google.com [IPv6:2607:f8b0:4864:20::733])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7573F2136
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 07:41:09 -0700 (PDT)
-Received: by mail-qk1-x733.google.com with SMTP id af79cd13be357-76246351f0cso60447085a.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 07:41:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google; t=1687531268; x=1690123268;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=CaqGi/pl4tYInM0/qBRfmp4WntBipFyRXJXE/evdUNY=;
-        b=D1me3dv101ChaEnpf7hVpI2niLxCIGLW9Ctl4v+zOtzPxjCrcBrFafYYNvkQJfZ7XW
-         qZ+gsb5DqecdcyCJ0Pqhj/uB6kI8N2nS9UiMct8sKJVY6UP0K9aqYNzKxaNlXFo0B2WQ
-         LnJQPA6mAd7wKRNcrA9whgX9vzr+TT1Y+hWe8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687531268; x=1690123268;
-        h=references:in-reply-to:message-id:date:subject:cc:to:from
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CaqGi/pl4tYInM0/qBRfmp4WntBipFyRXJXE/evdUNY=;
-        b=JENNUu7cX8hyEP6QHlzMDsgK1193EXIuVF53fSL9FY61zTKehvdTLxKYrLKwdlO2o1
-         fbPI7u3pt92AYcMpIn7+Qwn5A8IwectL9iPjFYdC0VFVOIScc66IHG5gtQKZTpMPk1VN
-         LbJfAf0FIJBr/Ogp12/3QANc8rSPqWg0YpTyZet99fBtFfp+GybPF0imuoFU5xCtvhd1
-         Q4MQOXNTQOAbvTDyFb0DExGQ8K7MITrLTHNCGbbRXNLQmtdKwxB2NCohHn+XLobffuF/
-         WEJInD58E/hOxTi0FNM+Ic7rqPDkqQe80FJ/51TL9b6deY2k7D1ewkslQE8NkDI9mwjE
-         ybrw==
-X-Gm-Message-State: AC+VfDwZ06t0wwO5OtCDBMO590+xGTcZsgz7AvtYzcvuupfekQPu3YgX
-        2qGFtbb0Ym188HGagwxZw8ej9A==
-X-Google-Smtp-Source: ACHHUZ6VEUGWHyC6gT/qBlxdtFs8HESOkMiVWwwv0lzZBtEqaLYNovEbLqSls92mOSWoka1L+bDJrg==
-X-Received: by 2002:a05:620a:424d:b0:75b:23a1:3606 with SMTP id w13-20020a05620a424d00b0075b23a13606mr15726420qko.23.1687531268377;
-        Fri, 23 Jun 2023 07:41:08 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.144.250])
-        by smtp.gmail.com with ESMTPSA id i18-20020a05620a145200b007625382f4ccsm4564613qkl.69.2023.06.23.07.41.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 07:41:07 -0700 (PDT)
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Cyril Brulebois <kibi@debian.org>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Jim Quinlan <jim2101024@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
+        with ESMTP id S231769AbjFWOni (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 10:43:38 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A88821BF2;
+        Fri, 23 Jun 2023 07:43:15 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1E0DEBC;
+        Fri, 23 Jun 2023 16:42:37 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687531357;
+        bh=wdihR9kOfvIQ6G8MVle6NFFv5LJO2T8O0WCVNoKqb1c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VbcvcnwV642L1NkucKgXc8YtBoftMHpYjSn6AayKFnjm9KWOdNTZIwBoOh8YRg7Cr
+         rItp4abJJNREMYeDz1RHehAffaXManymW8Mn/eeMPNizWKR+4GbM8yOIIl23orQKMW
+         k9Emk67/9E9hMZ1YjHAAqDoJXQQ9lQpQL3d0DrS8=
+Date:   Fri, 23 Jun 2023 17:43:12 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE),
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v6 1/5] dt-bindings: PCI: brcmstb: Add brcm,enable-l1ss property
-Date:   Fri, 23 Jun 2023 10:40:54 -0400
-Message-Id: <20230623144100.34196-2-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230623144100.34196-1-james.quinlan@broadcom.com>
-References: <20230623144100.34196-1-james.quinlan@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000d1262805feccfd95"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        MIME_HEADER_CTYPE_ONLY,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_TVD_MIME_NO_HEADERS,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 01/39] dt-bindings: display: Add Renesas SH-Mobile LCDC
+ bindings
+Message-ID: <20230623144312.GE2112@pendragon.ideasonboard.com>
+References: <cover.1687423204.git.geert+renesas@glider.be>
+ <2259ff548f007afcb5a315a4c95c83a0ee4b7e03.1687423204.git.geert+renesas@glider.be>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <2259ff548f007afcb5a315a4c95c83a0ee4b7e03.1687423204.git.geert+renesas@glider.be>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000d1262805feccfd95
+Hi Geert,
 
-This commit adds the boolean "brcm,enable-l1ss" property:
+Thank you for the patch.
 
-  The Broadcom STB/CM PCIe HW -- a core that is also used by RPi SOCs --
-  requires the driver probe() to deliberately place the HW one of three
-  CLKREQ# modes:
+On Thu, Jun 22, 2023 at 11:21:13AM +0200, Geert Uytterhoeven wrote:
+> Add device tree bindings for the LCD Controller (LCDC) found in Renesas
+> SuperH SH-Mobile and ARM SH/R-Mobile SOCs.
+> 
+> Based on a plain text prototype by Laurent Pinchart.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> ---
+> Changes compared to Laurent's original:
+>   - Convert to json-schema,
+>   - Rename compatible values from "renesas,lcdc-<SoC>" to
+>     "renesas,<SoC>-lcdc",
+>   - Add power-domains property,
+>   - Add MIPI-DSI port on SH-Mobile AG5,
+>   - Update example to reflect reality,
+>   - Add to MAINTAINERS.
+> ---
+>  .../display/renesas,shmobile-lcdc.yaml        | 108 ++++++++++++++++++
+>  MAINTAINERS                                   |   1 +
+>  2 files changed, 109 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+> new file mode 100644
+> index 0000000000000000..72a39fce7294d56d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+> @@ -0,0 +1,108 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/renesas,shmobile-lcdc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Renesas SH-Mobile LCD Controller (LCDC)
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-  (a) CLKREQ# driven by the RC unconditionally
-  (b) CLKREQ# driven by the EP for ASPM L0s, L1
-  (c) Bidirectional CLKREQ#, as used for L1 Substates (L1SS).
+I'd be happy if you co-maintained this with me :-) Or even took
+ownership completely.
 
-  The HW+driver can tell the difference between downstream devices that
-  need (a) and (b), but does not know when to configure (c).  All devices
-  should work fine when the driver chooses (a) or (b), but (c) may be
-  desired to realize the extra power savings that L1SS offers.  So we
-  introduce the boolean "brcm,enable-l1ss" property to inform the driver
-  that (c) is desired.  Setting this property only makes sense when the
-  downstream device is L1SS-capable and the OS is configured to activate
-  this mode (e.g. policy==powersupersave).
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - renesas,r8a7740-lcdc # R-Mobile A1
+> +      - renesas,sh73a0-lcdc  # SH-Mobile AG5
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    minItems: 1
+> +    maxItems: 5
+> +    description:
+> +      Only the functional clock is mandatory.
+> +      Some of the optional clocks are model-dependent (e.g. "video" (a.k.a.
+> +      "vou" or "dv_clk") is available on R-Mobile A1 only).
+> +
+> +  clock-names:
+> +    minItems: 1
+> +    maxItems: 5
+> +    items:
+> +      enum: [ fck, media, lclk, hdmi, video ]
 
-  This property is already present in the Raspian version of Linux, but the
-  upstream driver implementation that follows adds more details and
-  discerns between (a) and (b).
+Switching to per-item descriptions would allow documenting which clock
+applies to which SoC.
 
-Signed-off-by: Jim Quinlan <james.quinlan@broadcom.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml | 9 +++++++++
- 1 file changed, 9 insertions(+)
+Are enum items unique by default ?
 
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 7e15aae7d69e..8b61c2179608 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -64,6 +64,15 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  brcm,enable-l1ss:
-+    description: Indicates that PCIe L1SS power savings
-+      are desired, the downstream device is L1SS-capable, and the
-+      OS has been configured to enable this mode.  For boards
-+      using a mini-card connector, this mode may not meet the
-+      TCRLon maximum time of 400ns, as specified in 3.2.5.2.2
-+      of the PCI Express Mini CEM 2.0 specification.
-+    type: boolean
-+
-   brcm,scb-sizes:
-     description: u64 giving the 64bit PCIe memory
-       viewport size of a memory controller.  There may be up to
+This would allow a combination of clocks that doesn't include the fck
+clock, that's not right.
+
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +    description: |
+> +      The connections to the output video ports are modeled using the OF graph
+> +      bindings specified in Documentation/devicetree/bindings/graph.txt.
+
+it's available in YAML form now. I'd just drop the "specified in ...".
+
+> +      The number of ports and their assignment are model-dependent.
+> +      Each port shall have a single endpoint.
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: LCD port (R-Mobile A1 and SH-Mobile AG5)
+> +        unevaluatedProperties: false
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: HDMI port (R-Mobile A1 LCDC1 and SH-Mobile AG5)
+> +        unevaluatedProperties: false
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description: MIPI-DSI port (SH-Mobile AG5)
+> +        unevaluatedProperties: false
+
+Let's condition the ports on the compatible value to enable automatic
+validation.
+
+> +
+> +    required:
+> +      - port@0
+
+Based on the above, port@1 is required too as it's present on all
+supported SoCs. Let's condition this on the compatible value too.
+
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/r8a7740-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +
+> +    lcdc0: lcd-controller@fe940000 {
+> +        compatible = "renesas,r8a7740-lcdc";
+> +        reg = <0xfe940000 0x4000>;
+> +        interrupts = <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks = <&mstp1_clks R8A7740_CLK_LCDC0>,
+> +                 <&cpg_clocks R8A7740_CLK_M3>, <&lcdlclk0_clk>,
+> +                 <&vou_clk>;
+> +        clock-names = "fck", "media", "lclk", "video";
+> +        power-domains = <&pd_a4lc>;
+> +        status = "disabled";
+> +
+> +        ports {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            port@0 {
+> +                reg = <0>;
+> +
+> +                lcdc0_rgb: endpoint {
+> +                };
+> +            };
+> +        };
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 83e9f4ac6bedaa9f..dc1935c196cb0e0b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -7023,6 +7023,7 @@ F:	Documentation/devicetree/bindings/display/bridge/renesas,dsi-csi2-tx.yaml
+>  F:	Documentation/devicetree/bindings/display/bridge/renesas,dw-hdmi.yaml
+>  F:	Documentation/devicetree/bindings/display/bridge/renesas,lvds.yaml
+>  F:	Documentation/devicetree/bindings/display/renesas,du.yaml
+> +F:	Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
+>  F:	drivers/gpu/drm/renesas/
+>  F:	include/linux/platform_data/shmob_drm.h
+>  
+
 -- 
-2.17.1
+Regards,
 
-
---000000000000d1262805feccfd95
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-mOAplh6h3nMZUZxBguxG3g2p3iD4EgibUYneEzqOQafIQB/naf2uetKb8y9jKgWJxq2Y4y8Jqg2u
-uVIO1AyOJjWwqdgN+QhuIlat+qZd03P48Gim9ZPEMDUCAwEAAaOCAdswggHXMA4GA1UdDwEB/wQE
-AwIFoDCBowYIKwYBBQUHAQEEgZYwgZMwTgYIKwYBBQUHMAKGQmh0dHA6Ly9zZWN1cmUuZ2xvYmFs
-c2lnbi5jb20vY2FjZXJ0L2dzZ2NjcjNwZXJzb25hbHNpZ24yY2EyMDIwLmNydDBBBggrBgEFBQcw
-AYY1aHR0cDovL29jc3AuZ2xvYmFsc2lnbi5jb20vZ3NnY2NyM3BlcnNvbmFsc2lnbjJjYTIwMjAw
-TQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2Jh
-bHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwSQYDVR0fBEIwQDA+oDygOoY4aHR0cDov
-L2NybC5nbG9iYWxzaWduLmNvbS9nc2djY3IzcGVyc29uYWxzaWduMmNhMjAyMC5jcmwwJQYDVR0R
-BB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYIKwYBBQUHAwQwHwYD
-VR0jBBgwFoAUljPR5lgXWzR1ioFWZNW+SN6hj88wHQYDVR0OBBYEFGx/E27aeGBP2eJktrILxlhK
-z8f6MA0GCSqGSIb3DQEBCwUAA4IBAQBdQQukiELsPfse49X4QNy/UN43dPUw0I1asiQ8wye3nAuD
-b3GFmf3SZKlgxBTdWJoaNmmUFW2H3HWOoQBnTeedLtV9M2Tb9vOKMncQD1f9hvWZR6LnZpjBIlKe
-+R+v6CLF07qYmBI6olvOY/Rsv9QpW9W8qZYk+2RkWHz/fR5N5YldKlJHP0NDT4Wjc5fEzV+mZC8A
-AlT80qiuCVv+IQP08ovEVSLPhUp8i1pwsHT9atbWOfXQjbq1B/ditFIbPzwmwJPuGUc7n7vpmtxB
-75sSFMj27j4JXl5W9vORgHR2YzuPBzfzDJU1ul0DIofSWVF6E1dx4tZohRED1Yl/T/ZGMYICbTCC
-AmkCAQEwazBbMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTExMC8GA1UE
-AxMoR2xvYmFsU2lnbiBHQ0MgUjMgUGVyc29uYWxTaWduIDIgQ0EgMjAyMAIMSO43VW7D5NP1X/KD
-MA0GCWCGSAFlAwQCAQUAoIHUMC8GCSqGSIb3DQEJBDEiBCA+R79zwEo1TTjgEuK7Tu6CpT5LY9mu
-tXGLDLZq53bPfjAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqGSIb3DQEJBTEPFw0yMzA2
-MjMxNDQxMDhaMGkGCSqGSIb3DQEJDzFcMFowCwYJYIZIAWUDBAEqMAsGCWCGSAFlAwQBFjALBglg
-hkgBZQMEAQIwCgYIKoZIhvcNAwcwCwYJKoZIhvcNAQEKMAsGCSqGSIb3DQEBBzALBglghkgBZQME
-AgEwDQYJKoZIhvcNAQEBBQAEggEAMwyLN4aXqwczYWj6+riLfRMGj0zyPGcy83G7nz6TApFHk4cF
-+Uh0xw08Idqh5Rg2RafQY44jPqT2CEPkchTPBrfxfXUEznAYqJafZo38sHoPI8CTUsdyjp1AVFBo
-2K9X1SnOgVZ/XSnFZKGhTXESMJuNaHtr/RX1yWFZEY6vdzz+b7Ym7ESQZATG5rLN46RQtuN7Nlyf
-r4njpEIzozeBUUxVsdVDubZb8U+g3PAPm6kaXq5dyVKjIdy0WnkxinLsje0itJtzxK/M9MEcUDkU
-BsREzmRD5IFkiL7s0c7Q5eZFJvpGvH3n7hnQlDGpRzjfgiBfhE73sl9vTW5k4482Gw==
---000000000000d1262805feccfd95--
+Laurent Pinchart
