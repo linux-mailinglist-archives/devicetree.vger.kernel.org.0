@@ -2,191 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EED4A73BBAF
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 17:33:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D58F773BC43
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 18:03:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231765AbjFWPdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 11:33:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45054 "EHLO
+        id S230168AbjFWQDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 12:03:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33240 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231145AbjFWPdJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 11:33:09 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B94F1FC0;
-        Fri, 23 Jun 2023 08:33:07 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id C7EDD838;
-        Fri, 23 Jun 2023 17:32:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687534349;
-        bh=JVfaRnSbQrHYAiCZDbY1FbYcUglLgSKy8UvL0wg76zA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oJCnEOictwO7hF4WDKxK6MuAgbsat9u11YHP21PXR1yOm2n9jY3vC4anqMKGi6pSY
-         8I4XxSDgAB7vh2ZxaOhWRLw+2yU2LclTG7174+e4Q4vyYUYYOuTQ65XrCODSWZiXJE
-         cn4KLlsr5buLI9ri6RfIMEncOP2sQnYnj1JX+Wjs=
-Date:   Fri, 23 Jun 2023 18:33:04 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 01/39] dt-bindings: display: Add Renesas SH-Mobile LCDC
- bindings
-Message-ID: <20230623153304.GP2112@pendragon.ideasonboard.com>
-References: <cover.1687423204.git.geert+renesas@glider.be>
- <2259ff548f007afcb5a315a4c95c83a0ee4b7e03.1687423204.git.geert+renesas@glider.be>
- <20230623144312.GE2112@pendragon.ideasonboard.com>
- <CAMuHMdXdknNczxXod7b6znBHSgXVEb9oNZCAajKCc0Spm1SrYQ@mail.gmail.com>
+        with ESMTP id S229469AbjFWQDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 12:03:21 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5532113
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 09:03:19 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b45e6e1b73so14028861fa.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 09:03:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1687536198; x=1690128198;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=0UUUtE/gOtOOjIJp13FnV3LETjhgWLdpmIzdJhfUTGs=;
+        b=bgpuJMih2D6iVGs9Xa5gO+96mNDc14lvDPz0FcXhPj6i+71o9Y8XOK1/4zunB6U0ES
+         pVIkfpaQlP/oavJ7LNyDxzlF81wUlZXStHvDxEQOsBHvoN792/suVDOQGNUu1K0CC2ej
+         H4QhvVNvWhHzPd+DcvvBM0l/QezfgErqLTCHl2XL9WJmQUOllhryfx9fEDC5nNCBwNnP
+         aeCN46z/bUoQnVEoWCQ3ZZWGVzhVAaKLLe/PUB5CRcGramM9GW7nl6j8Gddi7Xuajgir
+         StLAN6Q1FZQIm/Tp/vC9rNlzbPpsQ/ukLlIN2tihbfr0PkjksUDK4wHDf4UicPwRsZmx
+         JcUg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687536198; x=1690128198;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=0UUUtE/gOtOOjIJp13FnV3LETjhgWLdpmIzdJhfUTGs=;
+        b=ZeRT1OAoIwLOWNp2+ji9znH5BZPOmLLUAtnQhjvketuJbrVomvFIgN+pNyyx3Febpg
+         Xmg7yzNV5mBh8bFZPTggD+MLDRE5vQbAk4hPn7TtVdKu5i0U3UiGFxNwiSrXw3u5CVlA
+         qTq0hHXGHcuulT4AQvRBe6s0x6c7k7t555eLFVUiJVGdU/o/fZ2YUGGaBhIQw5uf3D+W
+         nhi7PwkzYP2Ciq4sYubZHE9iSuELJRpkiuJ++G1sDGvPoWlwArp9Cet1t+6Al38xzuMp
+         wPqo0pK54DjtZ4xjuJeoumICTZwFLZvjX7/9hacxo1zs7pgv00rx/OCLaAgUOZkma+62
+         RsEg==
+X-Gm-Message-State: AC+VfDxPmzQqaQqTo2KTrJQ0YB1ERzJ6Iy1ZXM1Rjmfm3QsPTtzIz21h
+        B/7jU8FS2GdIbm+DaXyFIfqCpSq9yQG8nNaZGBlDtw==
+X-Google-Smtp-Source: ACHHUZ5gs63B4OgKe4Z9bhc9XG9nQHRewAACqLwt9yH/6emVAQY9Sd7+t/U547Rfa15qOqIHkxiE83q7UsHMNWYeVOk=
+X-Received: by 2002:a2e:96d0:0:b0:2b4:7965:419f with SMTP id
+ d16-20020a2e96d0000000b002b47965419fmr10755146ljj.40.1687536197874; Fri, 23
+ Jun 2023 09:03:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdXdknNczxXod7b6znBHSgXVEb9oNZCAajKCc0Spm1SrYQ@mail.gmail.com>
+References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-3-eric.lin@sifive.com>
+ <20230616-revision-speed-a83dc926b334@wendy> <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
+ <20230621-stupor-violin-930ccc7d7593@spud> <20230623132402.GA17369@willie-the-truck>
+In-Reply-To: <20230623132402.GA17369@willie-the-truck>
+From:   Eric Lin <eric.lin@sifive.com>
+Date:   Sat, 24 Jun 2023 00:03:05 +0800
+Message-ID: <CAPqJEFp0r5tZJZ48nLakRd92zNf1D93hbTeGUsTyVuF+JAsJEw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
+To:     Will Deacon <will@kernel.org>
+Cc:     Conor Dooley <conor@kernel.org>,
+        Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
+        chenhuacai@kernel.org, baolu.lu@linux.intel.com,
+        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
+        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
+        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dslin1010@gmail.com, Greentime Hu <greentime.hu@sifive.com>,
+        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>,
+        mark.rutland@arm.com, arnd@arndb.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 23, 2023 at 05:19:45PM +0200, Geert Uytterhoeven wrote:
-> On Fri, Jun 23, 2023 at 4:43 PM Laurent Pinchart wrote:
-> > On Thu, Jun 22, 2023 at 11:21:13AM +0200, Geert Uytterhoeven wrote:
-> > > Add device tree bindings for the LCD Controller (LCDC) found in Renesas
-> > > SuperH SH-Mobile and ARM SH/R-Mobile SOCs.
+Hi Will,
+
+On Fri, Jun 23, 2023 at 9:24=E2=80=AFPM Will Deacon <will@kernel.org> wrote=
+:
+>
+> Hi folks,
+>
+> On Wed, Jun 21, 2023 at 04:17:24PM +0100, Conor Dooley wrote:
+> > On Tue, Jun 20, 2023 at 11:14:32AM +0800, Eric Lin wrote:
+> > > On Fri, Jun 16, 2023 at 6:13=E2=80=AFPM Conor Dooley <conor.dooley@mi=
+crochip.com> wrote:
+> > > > On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
+> > > > >  drivers/soc/sifive/Kconfig            |   9 +
+> > > > >  drivers/soc/sifive/Makefile           |   1 +
+> > > > >  drivers/soc/sifive/sifive_pl2.h       |  20 +
+> > > > >  drivers/soc/sifive/sifive_pl2_cache.c |  16 +
+> > > > >  drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++=
+++++++
+> > > >
+> > > > Perf drivers should be in drivers/perf, no?
+> > > >
 > > >
-> > > Based on a plain text prototype by Laurent Pinchart.
+> > > But I grep perf_pmu_register(), it seems not all the pmu drivers are
+> > > in drivers/perf as below:
 > > >
-> > > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> 
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/display/renesas,shmobile-lcdc.yaml
-> > > @@ -0,0 +1,108 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/display/renesas,shmobile-lcdc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Renesas SH-Mobile LCD Controller (LCDC)
-> > > +
-> > > +maintainers:
-> > > +  - Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> > > arch/arm/mach-imx/mmdc.c:517:   ret =3D
+> > > perf_pmu_register(&(pmu_mmdc->pmu), name, -1);
+> > > arch/arm/mm/cache-l2x0-pmu.c:552:       ret =3D
+> > > perf_pmu_register(l2x0_pmu, l2x0_name, -1);
+> > > ...
+> > > drivers/dma/idxd/perfmon.c:627: rc =3D perf_pmu_register(&idxd_pmu->p=
+mu,
+> > > idxd_pmu->name, -1);
+> > > drivers/fpga/dfl-fme-perf.c:904:static int
+> > > fme_perf_pmu_register(struct platform_device *pdev,
+> > > drivers/fpga/dfl-fme-perf.c:929:        ret =3D perf_pmu_register(pmu=
+, name, -1);
+> > > ...
+> > > drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:549:    ret =3D
+> > > perf_pmu_register(&pmu_entry->pmu, pmu_name, -1);
+> > > drivers/gpu/drm/i915/i915_pmu.c:1190:   ret =3D
+> > > perf_pmu_register(&pmu->base, pmu->name, -1);
+> > > drivers/hwtracing/coresight/coresight-etm-perf.c:907:   ret =3D
+> > > perf_pmu_register(&etm_pmu, CORESIGHT_ETM_PMU_NAME, -1);
+> > > drivers/hwtracing/ptt/hisi_ptt.c:895:   ret =3D
+> > > perf_pmu_register(&hisi_ptt->hisi_ptt_pmu, pmu_name, -1);
+> > > drivers/iommu/intel/perfmon.c:570:      return
+> > > perf_pmu_register(&iommu_pmu->pmu, iommu_pmu->pmu.name, -1);
+> > > drivers/nvdimm/nd_perf.c:309:   rc =3D perf_pmu_register(&nd_pmu->pmu=
+,
+> > > nd_pmu->pmu.name, -1);
+> > > ...
+> > >
+> > > I just wondering what kind of pmu drivers should be in drivers/perf
+> > > and what kind of pmu drivers should not be in drivers/perf.
+> > > Thanks.
 > >
-> > I'd be happy if you co-maintained this with me :-) Or even took
-> > ownership completely.
-> 
-> OK. Thinking about it ;-)
-> 
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - renesas,r8a7740-lcdc # R-Mobile A1
-> > > +      - renesas,sh73a0-lcdc  # SH-Mobile AG5
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    minItems: 1
-> > > +    maxItems: 5
-> > > +    description:
-> > > +      Only the functional clock is mandatory.
-> > > +      Some of the optional clocks are model-dependent (e.g. "video" (a.k.a.
-> > > +      "vou" or "dv_clk") is available on R-Mobile A1 only).
-> > > +
-> > > +  clock-names:
-> > > +    minItems: 1
-> > > +    maxItems: 5
-> > > +    items:
-> > > +      enum: [ fck, media, lclk, hdmi, video ]
-> >
-> > Switching to per-item descriptions would allow documenting which clock
-> > applies to which SoC.
-> >
-> > Are enum items unique by default ?
-> 
-> Given how about all clocks but fck are optional, it's a bit hard
-> to handle this in a perfect way.
-> Note that "pattern: '^dclkin\.[0123]$'" in renesas,du.yaml has the same issue.
-> 
-> > This would allow a combination of clocks that doesn't include the fck
-> > clock, that's not right.
-> 
-> Right. But when fixing the first to "fck", you have to duplicate all others.
-> So it should become something like:
-> 
->   - const: fck
->   - enum: [ media, lclk, hdmi, video ]
->   - enum: [ media, lclk, hdmi, video ]
->   - enum: [ media, lclk, hdmi, video ]
->   - enum: [ media, lclk, hdmi, video ]
+> > To be quite honest, I have no idea.
+> > I'm just a wee bit wary of taking anything that appears to have another
+> > home via drivers/soc. I'd rather break drivers out, using the aux bus o=
+r
+> > similar if need be, so that people who are knowledgeable in an area are
+> > CCed on patches.
+> > Hopefully Arnd or the Perf people can offer some guidance here. If it
+> > does go into drivers/soc, it'll need a review from someone knowledgeabl=
+e
+> > of perf anyway.
+>
+> I'm not territorial about the perf drivers at all, but L2CC PMUs like thi=
+s
+> one probably fit pretty well in drivers/perf. The usual reason for puttin=
+g
+> drivers elsewhere is if the PMU is tightly coupled with some other IP whi=
+ch
+> is handled by another subsystem (e.g. GPU).
+>
+Thanks for the explanation. OK, I'll put the pl2 cache PMU driver in
+drivers/perf.
 
-It's not great. Any input from the DT maintainers ?
+Best Regards,
+Eric Lin.
 
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +    description: |
-> > > +      The connections to the output video ports are modeled using the OF graph
-> > > +      bindings specified in Documentation/devicetree/bindings/graph.txt.
-> >
-> > it's available in YAML form now. I'd just drop the "specified in ...".
-> 
-> OK.
-> 
-> > > +      The number of ports and their assignment are model-dependent.
-> > > +      Each port shall have a single endpoint.
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: LCD port (R-Mobile A1 and SH-Mobile AG5)
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: HDMI port (R-Mobile A1 LCDC1 and SH-Mobile AG5)
-> > > +        unevaluatedProperties: false
-> > > +
-> > > +      port@2:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description: MIPI-DSI port (SH-Mobile AG5)
-> > > +        unevaluatedProperties: false
-> >
-> > Let's condition the ports on the compatible value to enable automatic
-> > validation.
-> >
-> > > +
-> > > +    required:
-> > > +      - port@0
-> >
-> > Based on the above, port@1 is required too as it's present on all
-> > supported SoCs. Let's condition this on the compatible value too.
-> 
-> It does not depend solely on the SoC, but also on the LCDC instance.
-> port@1 is not available on R-Mobile A1 LCDC0, only on LCDC1.
-
-Ah, my bad. It can't be mandatory indeed. I'd still prefer conditioning
-ports to the compatible string for proper validation.
-
--- 
-Regards,
-
-Laurent Pinchart
+> Will
