@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA3D773B2E3
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:49:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E49173B2F2
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:51:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231528AbjFWIt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 04:49:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39624 "EHLO
+        id S231831AbjFWIvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 04:51:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40450 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231578AbjFWIt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:49:27 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAD411FCC
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:49:24 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b45e6e1b73so6667551fa.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:49:24 -0700 (PDT)
+        with ESMTP id S231871AbjFWIvs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:51:48 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB9AD2134
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:51:45 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51bec86b9c9so357157a12.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:51:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687510163; x=1690102163;
+        d=linaro.org; s=google; t=1687510304; x=1690102304;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=/IzfcYheaY+2C+iIc318Id9jWD6NV9kWYTmaOaEJS2M=;
-        b=zzEUF2UF3JFf8oHM+EKmxuv5eKaSXKD8Qi+k7j6+qovaDPyFIqhU3QO5PK87uU5oHn
-         YSvH5mqaaGibj81PaPDlxCxqp6y+yC8fJShSXFD/IdpULUX90KlZV40Nb02yxw9v+B17
-         E6nXeMxwUZ+riq/kQ33uEX9BZn1XMGB7xOqlzacRiX8C+OD+sBbXS3Rf+ehF1nBRs1fv
-         freuuzcN0HfXJ1vVSAVaeM7yTLcqIC1zxivfrdHmpFqQFX7EUfhlBCGihbbKZCXWqjP5
-         v7EYftAP1rLOuUw0xr5xVFFfGEJQ8FgU005wtw5ttTUKFZCJlGyNePfMtNZhVrwUnN+R
-         EVLw==
+        bh=zKPx96b2HZf8v4/X7YdtJWbMwp53QOhswyd3lmkmMOc=;
+        b=J8QWPFI/vzn/TVspSQXNG3xeXjiV9Lmfa7RJqKvCru8It60AItpxgDQfHHA1SpFEuR
+         HTVjgaMKUANmhntyw0uFMpLM0Iv47gNxMtcFKXzGftMN7UxsvWkdWY9Pj/b67PHTALmV
+         gDPNBTWnj80olZpfDDQ6cZE2YIieIp1q8o0kk4pi3YDMehlgOiK2xCDjjTUDELgbejuF
+         +ArhdGBpQVo5AElVHXWxA3xJS93MAE+oAMXnJcZw8Ez9tr0mVv6LsGCXchAMf4jAfH3u
+         1h6QDW9WZP6JbrQFLzGU4LcvvwNMe0LRVnXh0fUFldHuVvjQiE8bweDvxbScv1nX0lhw
+         NRxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687510163; x=1690102163;
+        d=1e100.net; s=20221208; t=1687510304; x=1690102304;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/IzfcYheaY+2C+iIc318Id9jWD6NV9kWYTmaOaEJS2M=;
-        b=hD2/Y707zuy9MKcaQ9BgSG2WGzazvBlI/xTSrrOSSUnQlryxn124anELE0xr8bzOnX
-         +vmCN2t/AZtW00xZgz6wD+DTLhdpgHBo4YNfQ352dAxNMOL4UhztMkF4T8jytK6JcHVB
-         Mb9uvc3Ud8ka27kTlKN5iwysGAMHdwMVs0Awqo8sIX8dhBnz2ZGH8n2lUavHTK13SjMX
-         XKv2aZRi4DeqpCoSit7ghrRsWCeVA2YUVllon2tzvH0E++0OzHXaxTdqJe3zrb1ZZ1tX
-         amjhTOeYKqGZdjnNv5dVgdD4YI/ch/87UE/rwkGWUjq84rvJTiKtDHHBUc5326aoTiu/
-         OInw==
-X-Gm-Message-State: AC+VfDyA5DtbWrQd/TpXDly4DtLTZmFsIQDto/9QOEu+jFLfQtTL5JkZ
-        Ib3W8EGIhsqzNIQmzjJg0FwJnw==
-X-Google-Smtp-Source: ACHHUZ6mnR6rzsfYwn2q0DIgVHx/H1L3imwZXf3H/3i+ulHmEW0dBIa+wPeJj3bXztcczdpDWmJQYw==
-X-Received: by 2002:a05:651c:14e:b0:2b4:7559:f240 with SMTP id c14-20020a05651c014e00b002b47559f240mr9906581ljd.6.1687510162992;
-        Fri, 23 Jun 2023 01:49:22 -0700 (PDT)
+        bh=zKPx96b2HZf8v4/X7YdtJWbMwp53QOhswyd3lmkmMOc=;
+        b=Odp9oZrQ3vYScUic2P0fKLa5H+r6tUUgA0kPx6fag6mkQw0Vyr3e2xvSdtog0+AyzX
+         kXqg2Ly1ITamsTUiZ2bWJGPj7hIbsIgkc9Xphcqxpw/Y1hS2C21YfeVU6qlURx0J/6US
+         9B9LwzLOqRUhPX0DK6AhehpGcZMlqO/f47czNbUp7S1gt6Xxg1Tz5kE9vfPOSvPT0/wP
+         8Rvurhn2+t9Co5za/vSJUVqduhyp6ikPc+A1hHVYsFiqnIC0RMS1LbuhmCtPW5UH2d3t
+         bDqcqZ/ieSlXYtYrvkh9GHlFBSOeLA8w/OdtpGYqxc6rFcfPFkJLdtr8jrRPJbYIBgnx
+         6ooQ==
+X-Gm-Message-State: AC+VfDw8yhkGyZukLbgJJHWJMkHSsl4ypgv/yo6L4xBwLVJIOpUN94pv
+        BKUCDUnXJ93kv1lgfZMed/b2OQ==
+X-Google-Smtp-Source: ACHHUZ4uT69UHrkrbEuBvO117wkeSQNiX5LmpwsS9GS3Skq8ALjvAC8d3Ly5sriXb6rbxZpG8THuQQ==
+X-Received: by 2002:aa7:cb0c:0:b0:514:8fdd:fc41 with SMTP id s12-20020aa7cb0c000000b005148fddfc41mr13121292edt.15.1687510304159;
+        Fri, 23 Jun 2023 01:51:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id c17-20020a056402121100b005158563be4asm5006927edw.33.2023.06.23.01.49.20
+        by smtp.gmail.com with ESMTPSA id r24-20020a056402019800b0051bed090703sm1405740edv.12.2023.06.23.01.51.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 01:49:22 -0700 (PDT)
-Message-ID: <dd5d7bc8-5ded-ebfe-48a2-55e330cd7544@linaro.org>
-Date:   Fri, 23 Jun 2023 10:49:19 +0200
+        Fri, 23 Jun 2023 01:51:43 -0700 (PDT)
+Message-ID: <a885b97e-aaf0-cb72-f25b-71054d6d3fe2@linaro.org>
+Date:   Fri, 23 Jun 2023 10:51:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v1 0/6] arm64: dts: meson: a1: introduce several
- peripheral IPs
+Subject: Re: [PATCH v5 2/4] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for T7
 Content-Language: en-US
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
-        neil.armstrong@linaro.org, jbrunet@baylibre.com,
-        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com, conor+dt@kernel.org
-Cc:     kernel@sberdevices.ru, sdfw_system_team@sberdevices.ru,
-        rockosov@gmail.com, linux-amlogic@lists.infradead.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
- <20230623082201.7tfnpjvwi22omleq@CAB-WSD-L081021>
+To:     Lucas Tanure <tanure@linux.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Nick <nick@khadas.com>, Artem <art@khadas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230623081242.109131-1-tanure@linux.com>
+ <20230623081242.109131-3-tanure@linux.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230623082201.7tfnpjvwi22omleq@CAB-WSD-L081021>
+In-Reply-To: <20230623081242.109131-3-tanure@linux.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -82,14 +83,33 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 10:22, Dmitry Rokosov wrote:
-> Hello Neil, Krzysztof, Jerome, Martin, Rob and Conor,
+On 23/06/2023 10:12, Lucas Tanure wrote:
+> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+> There is no need for an extra compatible line in the driver, but
+> add T7 compatible line for documentation.
 > 
-> Would you please review this patch? The latest modifications enable CLK,
-> EFUSE, USB, SDIO (WiFi), and UART (BT) functionality on A1 boards.
+> Signed-off-by: Lucas Tanure <tanure@linux.com>
+> ---
+>  .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> index 01ec45b3b406..ad970c9ed1c7 100644
+> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> @@ -50,6 +50,10 @@ properties:
+>          items:
+>            - const: amlogic,meson-g12a-uart
+>            - const: amlogic,meson-gx-uart
+> +      - description: UART controller on T7 compatible SoCs
 
-It's not a binding...
+Your description is rather incorrect. This is UART on SoCs compatible
+with S4, not with T7. Otherwise what do you expect to grow later when
+adding more compatible devices? Just drop the description, it's kind of
+obvious when done correctly (but can be misleading if done wrong).
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
 
 Best regards,
 Krzysztof
