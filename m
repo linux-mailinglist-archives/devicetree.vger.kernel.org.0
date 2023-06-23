@@ -2,63 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6D8C73B654
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:33:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B009A73B65A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230387AbjFWLdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 07:33:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34874 "EHLO
+        id S230262AbjFWLdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 07:33:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34890 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjFWLde (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:33:34 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D9AC6
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:33:33 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b47742de92so9580831fa.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:33:33 -0700 (PDT)
+        with ESMTP id S231271AbjFWLdg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:33:36 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CDB3AC
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:33:35 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b466066950so9295321fa.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:33:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rasmusvillemoes.dk; s=google; t=1687520012; x=1690112012;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=KL5Es5yoKODcRM+6rC2Tw/Cdo+3M+IOhet0H/IGNQNk=;
-        b=Q/qy0dXyCmDSnYgzmdOwO5Rps42C2f9Dvp3GrgNQJfFcyu3WWQ/1KOPZoLZLKfy87s
-         iWPasAdoPG4K/dz8/jA/OqpXCK+uAdOyykRWtxx7T8MtcALA7E9U8kL4kkk8qIw81pet
-         iKISr4gQQXEevNoLmM185WwvtmZDRMGD8TfpI=
+        d=rasmusvillemoes.dk; s=google; t=1687520014; x=1690112014;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ItH4Pg7jxqco9mS/zUwcLIsvKjoWsb65kGsf9QvB3Qs=;
+        b=UOJiSnXVBXDwtiw7hkY3RS495zKUvrRo3305RzR5u/Ea5HWCNy8TZb6T2DYp45BYc1
+         7Eli8yLXnwF7pmC4Cm253Z1VzQId5Xov5p6hhPu/OO5TXM5rg7pmqSzogWxG5pO0rDs3
+         RdqUvzIoMuw1zQDKcNCcu2d7pZKca19joPPcs=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687520012; x=1690112012;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KL5Es5yoKODcRM+6rC2Tw/Cdo+3M+IOhet0H/IGNQNk=;
-        b=C7cQkAcGrMzJJRiwI3CM+17pOUOzeFqs0IfLI+sIceTKJmG5xa7+LQyC0YLO+cTFxO
-         nuY6nFG/zr+uHRSFEups+uU0UZ4ETjbUY9A41SXrxOmYg7A5PzGhwsoITtzsSlpXfnVs
-         4XbebVODRrxkyl+szce/JVkk1PAVkwTEVe7yuEBE3JlXNUbYZ95K4PXSYmGD6CeRZUQw
-         7CQ6M3KK5/Jd1Njf4zrpFYNA7yFbUvQRnolWl11jHkvouNw5V/oOfWM64jZdXgTtwjqg
-         Z/I9euSp2uDbP4on+mHrcoJ+hhJYs85lRLklI35WQkDqmd2JF8lVe4guuFxgEDnGiw7R
-         Bn5g==
-X-Gm-Message-State: AC+VfDwbwFIGC5mY3cHlNmjWK5I1l2M68Cikr8/in94D8OBSdcsSNHgR
-        v4cJWmPpSVrdIakLgtN5HixbJw==
-X-Google-Smtp-Source: ACHHUZ7BUw7tqddVi82XfXFElJrN5r7xeUFrxWqsoaePUeB6rPEEAmG8j++sT6mIUJmh/Jah5qMZEw==
-X-Received: by 2002:a2e:9e44:0:b0:2b3:4cff:60ce with SMTP id g4-20020a2e9e44000000b002b34cff60cemr12557049ljk.0.1687520011672;
-        Fri, 23 Jun 2023 04:33:31 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687520014; x=1690112014;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ItH4Pg7jxqco9mS/zUwcLIsvKjoWsb65kGsf9QvB3Qs=;
+        b=i3eOSTFn7c/cJsL6sh1rVWM5XL3U4rLZh6R5v4mT7KyjpPThL/ALQvID4VjID7yuml
+         3ls/qS09e8EkgzExlobx9opbsTqvzDHrKnId2nrYOlsoIJO4S+ftlNe8mbWyaudYOjfo
+         73pgvslzfZN+t2jdWuamclr06nISSm13fZyjcnx+/Lr3oEpbRehzu+ZUreyZ5JUAURfm
+         3JKE/Ub5poJfjUUWLUbMRHu3vaQ2CPelTQl+Ogfw+QzjWoGKnlZULWYIPjhaOn4ontwN
+         Ie55cCklS4ZwwxSf6rI/If+Caecdb2w+uxdnDvB/1GNPHNVBWNeZiOkj+46C9zyNE/dR
+         pUVw==
+X-Gm-Message-State: AC+VfDxeORDXBCLCzbU/0IjB2wrKEGn4f+RPKuH8jUj69iKthoeD6JnY
+        z2pAOv/eOsjj6cep/NdgqAw87Q==
+X-Google-Smtp-Source: ACHHUZ7qO4OC1EC6XyojwSPlB9l6hMdD419uyQ/ieDUyzzt51BVNpsgYqiGk9wLIVRh9KzDWj6AWow==
+X-Received: by 2002:a2e:961a:0:b0:2b5:7af9:f390 with SMTP id v26-20020a2e961a000000b002b57af9f390mr7940759ljh.47.1687520014000;
+        Fri, 23 Jun 2023 04:33:34 -0700 (PDT)
 Received: from prevas-ravi.prevas.se ([81.216.59.226])
-        by smtp.gmail.com with ESMTPSA id n10-20020a2e720a000000b002b471efb253sm1711605ljc.46.2023.06.23.04.33.30
+        by smtp.gmail.com with ESMTPSA id n10-20020a2e720a000000b002b471efb253sm1711605ljc.46.2023.06.23.04.33.33
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 04:33:31 -0700 (PDT)
+        Fri, 23 Jun 2023 04:33:33 -0700 (PDT)
 From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
 To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Rasmus Villemoes <linux@rasmusvillemoes.dk>
-Subject: [PATCH 0/2] iio: ad74413r: allow configuring digital input threshold
-Date:   Fri, 23 Jun 2023 13:33:24 +0200
-Message-Id: <20230623113327.1062170-1-linux@rasmusvillemoes.dk>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/2] dt-bindings: iio: ad74413r: add binding for digital input threshold
+Date:   Fri, 23 Jun 2023 13:33:25 +0200
+Message-Id: <20230623113327.1062170-2-linux@rasmusvillemoes.dk>
 X-Mailer: git-send-email 2.37.2
+In-Reply-To: <20230623113327.1062170-1-linux@rasmusvillemoes.dk>
+References: <20230623113327.1062170-1-linux@rasmusvillemoes.dk>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -71,30 +75,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The reset default value of the DIN_THRESH register is 0x0, meaning
-that the threshold for the digital input channels is 1/60 of AVDD. In
-most applications, that value is way too low and susceptible to noise.
+Allow specifying the threshold for which the channels configured as
+digital input change state.
 
-These patches introduce a new DT property,
-digital-input-threshold-microvolt, which if present will be used as
-the threshold in "16V" mode, i.e. as an absolute threshold, not
-proportional to AVDD.
+Signed-off-by: Rasmus Villemoes <linux@rasmusvillemoes.dk>
+---
 
-If someone needs the threshold to be proportional to AVDD, but being
-say 15/60, another DT property (mutually exclusive with this one)
-could be introduced. But since I don't need that and can't come up
-with a good name ('digital-input-threshold-60ths-avdd' ?) I punt that
-problem to whoever needs it.
+Running dt_binding_check on this with a too small or large value in
+the example does give me an error, but the multipleOf does not seem to
+be enforced; the value 1234567 is not flagged. I don't know if that's
+expected (maybe I have too old versions of something).
 
-Rasmus Villemoes (2):
-  dt-bindings: iio: ad74413r: add binding for digital input threshold
-  iio: addac: ad74413r: wire up digital-input-threshold-microvolt DT
-    property
 
- .../bindings/iio/addac/adi,ad74413r.yaml      | 10 ++++++++++
- drivers/iio/addac/ad74413r.c                  | 20 +++++++++++++++++++
- 2 files changed, 30 insertions(+)
+ .../devicetree/bindings/iio/addac/adi,ad74413r.yaml    | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+index 590ea7936ad7..1f90ce3c7932 100644
+--- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
++++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+@@ -51,6 +51,14 @@ properties:
+       Shunt (sense) resistor value in micro-Ohms.
+     default: 100000000
+ 
++  digital-input-threshold-microvolt:
++    description:
++      Comparator threshold used by the channels configured to use the
++      digital input function.
++    minimum: 500000
++    maximum: 16000000
++    multipleOf: 500000
++
+   reset-gpios:
+     maxItems: 1
+ 
+@@ -143,6 +151,8 @@ examples:
+         refin-supply = <&ad74413r_refin>;
+         reset-gpios = <&gpio2 6 GPIO_ACTIVE_LOW>;
+ 
++        digital-input-threshold-microvolt = <4000000>;
++
+         channel@0 {
+           reg = <0>;
+ 
 -- 
 2.37.2
 
