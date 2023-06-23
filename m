@@ -2,116 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E47B73C214
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 23:10:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC9373C278
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 23:20:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232174AbjFWVKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 17:10:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47616 "EHLO
+        id S231290AbjFWVUA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 17:20:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51334 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231855AbjFWVKd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 17:10:33 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E4F41993
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 14:10:31 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4f122ff663eso1483600e87.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 14:10:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687554630; x=1690146630;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=eF9BO1+sTgEflyYG3uBq3qZ3S2MP3BOMyGGS7irakRI=;
-        b=kQ8U3YflCUL1YQG0wCknGb3zbFndvhRju34td346VC7+OHp+RGQpg2ClzY5ukSetrT
-         XpHh+MZP66vyyFf5ng1/i+/QcdXAvcCqahGxyPwna3QW5Sw6EKejVh+5CfJw5J9XiYMP
-         OY8xMmvzTBTpEgmSE3/8Ecr+rbEN0rTAIrwBwxi9YPf5dOBW+2c8+MlkogyUmGEoJdJb
-         34o2qDjXIK12xAD7ABog4QEdcnRfNHQGsWhKmyLy2hXefaHMZCBBg4ISjET5ztHIu1cO
-         7el2PzfyLaJ5ByeAVb/24E6YRcj+NPzkjFqgzmIYlLV+VdTtuQuhqCDGxjzQG2X72Pui
-         3/jg==
+        with ESMTP id S231905AbjFWVTe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 17:19:34 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7A9735B0;
+        Fri, 23 Jun 2023 14:18:41 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-780cf728871so37907639f.0;
+        Fri, 23 Jun 2023 14:18:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687554630; x=1690146630;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=eF9BO1+sTgEflyYG3uBq3qZ3S2MP3BOMyGGS7irakRI=;
-        b=CbX1k78gvWF/v6aeFH1sNmBeym1SEDXSO6ipk/uJaq317uDUYlYwTzgvIOC8Sh29gi
-         sgv0euVAM66iUgt5U/EwPLr+fk8iiJ+WKo0N3x68n+NCb1VmtTigK/a9qU9zF9xgrHLs
-         9Src3uuQb0y2BGw1Khk8RzPI8U+Odvj+qz4D6uHLf08whRliHCSnaAnc5c4t5d/9v6qB
-         eNC3wxNTQEdFopf9kPN6FQ4OerVIhGqkJKqjvh3yXJpn0oUNYls9mWkKbIuXVhyfCfKy
-         iCgCK8J6BXraNZZNYqtStaNxzYa9ollOfdSWGg5MQn6cy6MujBiUBPB5AP1GHdvJEXVb
-         sQcw==
-X-Gm-Message-State: AC+VfDzpZCTHVm+OVqy/KV4f3H3xryhkSnQdG3fT0/ujpYz3iOmU+0eU
-        8SHIMaiTsQ7DOtR1r0YAfpzYSxhsjw7tAN7n4W0=
-X-Google-Smtp-Source: ACHHUZ5fhQQi3b0Jxv75nyWacBFXiBcDJ9zw04ejXME8JmcPnLBZ0cvTRnSUjmKvpRVn82eMXo8kbA==
-X-Received: by 2002:ac2:4d84:0:b0:4f8:5ede:d457 with SMTP id g4-20020ac24d84000000b004f85eded457mr11379421lfe.55.1687554629820;
-        Fri, 23 Jun 2023 14:10:29 -0700 (PDT)
-Received: from [192.168.1.101] (abyk30.neoplus.adsl.tpnet.pl. [83.9.30.30])
-        by smtp.gmail.com with ESMTPSA id q1-20020ac25101000000b004f858249932sm28551lfb.90.2023.06.23.14.10.28
+        d=1e100.net; s=20221208; t=1687555069; x=1690147069;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=2d0xE7WeZx0J7vyX+ZnXckx5ALfCSXiGwPgMNPbbP/s=;
+        b=SpLuoOSqoTdq6hZRDTuYjGiAaC+i54OPRIivosjaWbVl1+V/9hBkyo2OIzfgloFZRK
+         90EvQNDZF5nbLYtDDM2+SQzs/Eoi0qm6RQROTBJxUqKFPXRU6iwksM1ofdEkF3BU6bSv
+         R25x9smtyuK9qs051xAq3F2SfCgC32CYpwR2XDMLWMF9ik2jk1N+l3KGASKbcYZNau1U
+         Vc7barntPFC5f4GJcrYBpugWZOBWqACQHeE7vMHc08zzo8hzVej8ARdtSFBSIhs6je13
+         0UpAjhQA79KWgIh9eGWlv3OrIuowJym7RulNwgTAnfNw1k8KSuPtkHqETYHnkh3Z2o1m
+         mluA==
+X-Gm-Message-State: AC+VfDwZoeMaJzKsu87kNOVd75BaBxY+nZ1TJ4AwpdjCUIhu1qZ8jSiw
+        5M27vWGdTiZIFdaFoWjBaw==
+X-Google-Smtp-Source: ACHHUZ7x8bUxBiuFunsGd3zwd4WPP95Xgx0A+AYEC6nfAv2fiEQDI6WoYJQmBSMH22y/gbHjU45PDw==
+X-Received: by 2002:a5e:dd46:0:b0:780:c536:d98a with SMTP id u6-20020a5edd46000000b00780c536d98amr7567776iop.9.1687555068951;
+        Fri, 23 Jun 2023 14:17:48 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id 15-20020a0566380a4f00b0041d89b79fdasm20860jap.20.2023.06.23.14.17.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 14:10:29 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Fri, 23 Jun 2023 23:10:22 +0200
-Subject: [PATCH] arm64: dts: qcom: msm8998: Provide XO to RPMCC
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230623-topic-8998xorpm-v1-1-aa13edc51d7e@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAD0KlmQC/x2NQQqDMBAAvyJ77oKJKKZfKT0kcVMXbBI2bRHEv
- 3fxOAPDHNBImBrcuwOEfty4ZAVz6yCuPr8IeVEG29uhn+yAn1I54uzcvBepbzTOpTGFuJjJgVb
- BN8IgPsdVu/zdNpVVKPF+bR7P8/wDrGNpw3YAAAA=
-To:     Andy Gross <agross@kernel.org>,
+        Fri, 23 Jun 2023 14:17:48 -0700 (PDT)
+Received: (nullmailer pid 1185043 invoked by uid 1000);
+        Fri, 23 Jun 2023 21:17:46 -0000
+Date:   Fri, 23 Jun 2023 15:17:46 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Luca Weiss <luca.weiss@fairphone.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Abel Vesa <abel.vesa@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687554628; l=843;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=lH6Jm41r0mdMcgUy6XjNmzH96J0Qtanj71lp+seNSqE=;
- b=XyPpE8qZzw5CA/d0v7SUDrgykCPjHkrDJ9eDl2rw8jbwKKapkoyFvG8sdCsUfUhYaJ4MgziQD
- e3ZQU0sHhFKACcQSOsDLSsSi/JGnKKGJWrzrjYMviXnfbifIRGUF+h2
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        "Martin K . Petersen" <martin.petersen@oracle.com>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
+        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 5/5] scsi: dt-bindings: ufs: qcom: Fix warning for sdm845
+ by adding reg-names
+Message-ID: <20230623211746.GA1128583-robh@kernel.org>
+References: <20230623113009.2512206-1-abel.vesa@linaro.org>
+ <20230623113009.2512206-6-abel.vesa@linaro.org>
+ <cd84b8c6-fac7-ecef-26be-792a1b04a102@linaro.org>
+ <CTK1AI4TVYRZ.F77OZB62YYC0@otso>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CTK1AI4TVYRZ.F77OZB62YYC0@otso>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The RPMCC node should be fed a reference to the XO fixed clock.
-Do so.
+On Fri, Jun 23, 2023 at 02:38:04PM +0200, Luca Weiss wrote:
+> On Fri Jun 23, 2023 at 2:31 PM CEST, Krzysztof Kozlowski wrote:
+> > On 23/06/2023 13:30, Abel Vesa wrote:
+> > > There is a warning on dtbs check for sdm845, amongst other platforms,
+> > > about the reg-names being unevaluated. Fix that by adding reg-names to
+> > > the clocks and reg properties check for such platforms.
+> > > 
+> > > Fixes: 462c5c0aa798 ("dt-bindings: ufs: qcom,ufs: convert to dtschema")
+> > > Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
+> > > ---
+> > >  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 4 ++++
+> > >  1 file changed, 4 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> > > index 0209713d1f88..894b57117314 100644
+> > > --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> > > +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
+> > > @@ -166,6 +166,10 @@ allOf:
+> > >          reg:
+> > >            minItems: 2
+> > >            maxItems: 2
+> > > +        reg-names:
+> > > +          items:
+> > > +            - const: std
+> > > +            - const: ice
+> >
+> > reg-names looks like a new property, so it should be defined in
+> > top-level and just constrained per-variant.
+> >
+> > Also there was similar approach:
+> > https://lore.kernel.org/all/20221209-dt-binding-ufs-v2-2-dc7a04699579@fairphone.com/
+> >
+> > but I guess no resends and it can be superseded.
+> 
+> Right, the patches got reviews but was never applied... I really need to
+> find a strategy to keep track of sent patches until they're applied with
+> my work mailbox, it's not the first time that a patch has gotten
+> forgotten.
 
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+There was an error reported on the above series. Why would it be 
+applied?
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index f0e943ff0046..171f2e21d80a 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -334,6 +334,8 @@ rpm_requests: rpm-requests {
- 
- 			rpmcc: clock-controller {
- 				compatible = "qcom,rpmcc-msm8998", "qcom,rpmcc";
-+				clocks = <&xo>;
-+				clock-names = "xo";
- 				#clock-cells = <1>;
- 			};
- 
+That said, I'm not sure SCSI maintainers consistently apply DT only 
+patch series.
 
----
-base-commit: c87d46a9e8ebd2f2c3960927b1d21687096d1109
-change-id: 20230623-topic-8998xorpm-199f5fbcd169
+> With my private mailbox I just have a different folder for patches that
+> have been sent which I archive once they're applied, but with work GMail
+> I don't see how I can easily replicate this since it's also not grouping
+> threads properly.
 
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
+Yeah, GMail sucks for that. I use 'lei' to get all my patches and 
+replies to them (though its caching will miss replies). Then I delete 
+them from the mbox when they are applied or otherwise finished. lei 
+updates won't re-add them to the mbox.
 
+Rob
