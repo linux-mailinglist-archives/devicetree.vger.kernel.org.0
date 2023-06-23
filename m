@@ -2,132 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 70B0373B1A5
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 09:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEF6A73B1D4
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 09:41:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230009AbjFWH3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 03:29:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59242 "EHLO
+        id S231415AbjFWHlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 03:41:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229847AbjFWH3p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 03:29:45 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BE7D2683
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:29:15 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3110ab7110aso367716f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:29:15 -0700 (PDT)
+        with ESMTP id S231147AbjFWHli (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 03:41:38 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C13A1988
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:41:37 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-98802908fedso32922166b.1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:41:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687505343; x=1690097343;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=74Pt8y9BLYayYvuaPPOjFJX++4vBERPSGc1K1bOgfPc=;
-        b=Y4LcbyKKH4D6Sc646yqtnsdFR8fsUfhWH/1ZHEzwtdsJ2yk8zc1Id8XVlOltQkHnRw
-         QOEMIZF8lARJZ6DwtHrkXJUM5ppaxzuno9eMOajvNiVVRauJQjgfI5z77h+YaaWHm0Pb
-         LIT/8+VGo1gkux9Gm0eWNJy5t2FQLi4gwjAy+/ASpPay5cTlS+kJA/Is381aaoo+z1TY
-         Bbq4uJmoUVRTHpOROfa+YIir1CtWiCJQBPgcqnIhQ42xSvYK2+2KRJtNbVv+Aq6b7+c/
-         7MqkFZv+o4R2+ucZPy/9fmXkuqzADq6kWRKTrQ5dkRxIZZPM8eJLdvaj6Ooo80jPhybu
-         VN7Q==
+        d=linaro.org; s=google; t=1687506096; x=1690098096;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=t85IrXe5Gy1UtuYRgufXU6wb2wKm+nFKsdS4DPhPVgQ=;
+        b=RrNp3eAmEYHDnaS+qaGXeUSRDgZ6ochaH6qth2Ja2jmqqB3zX08crrrvAswX44Qkgf
+         3SUR+1Pc1obhjfbWjsEeUcjLcxUEvUZ9aibS0721fa/mNadEYSE/cwpERvUSv1jtOLyf
+         FuCWUG8wek1fLfS0umoBT60W7cU4PYCqRQ0B2Wh83AgUK2HiZ+1QHv0bHkCzOk1EfMDV
+         i+/S4dSLP5vp9O3HgxLNogBbvEeh8M+ibtIjCkVU5Qy8blujmDCOOucCdnxgvJcbCPuf
+         qorE3GWuIChtjboDAGcwbWA5FvpbE5MIDgLTVLRpnc7e/WF2Xu7mdUiTFGFIiDlzpI5X
+         kGRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687505343; x=1690097343;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=74Pt8y9BLYayYvuaPPOjFJX++4vBERPSGc1K1bOgfPc=;
-        b=EaKQBxlT2nllMzXTc5+gogy0jatIODaRBt+IcSurYa+6MelWAxPYJszS6kSdwevChZ
-         pdxBWCceGyEmFJA1wmvZ/xYSv6cAo6jJ+fT4i/XgW1TC39cyJx3EegdwkAbhKw5zGn6k
-         e+E0PgXova+5P4WX3x7KCNS66LC1/raLulGw4SRGQJknwVUp88aXmJTeng2FbcK4yQUQ
-         7dRzi8kfbO+dRiK/8xf9vcihVT4yKgcN9bf8WBQGm7h+1hty13dh1qAsk+CbZDM8Nd3b
-         KCfvpCTDN37nFtNzmTtyDbkELHw69BTMDb6ytseO3BEaeEAXql2cSN634l+Yc40tWdLj
-         MUIQ==
-X-Gm-Message-State: AC+VfDwJdCtYu+pMiNMwYMdztbj9Q9yAPjgnFWcoQMU+MKCg7s1h0Vtb
-        RJI5Nn3J0rPjw5+WI1gxI/5XdQ==
-X-Google-Smtp-Source: ACHHUZ5R9hJ3wXhPhvbJVcGIHlACR3cX0dSORBCPRA3xKj+G+lmLhEIxWe2HnM4i26WPrqPkabi7bA==
-X-Received: by 2002:adf:f6c8:0:b0:311:d7d:e831 with SMTP id y8-20020adff6c8000000b003110d7de831mr15478208wrp.48.1687505343048;
-        Fri, 23 Jun 2023 00:29:03 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id p9-20020adfcc89000000b003113f0ba414sm8822488wrj.65.2023.06.23.00.29.01
+        d=1e100.net; s=20221208; t=1687506096; x=1690098096;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=t85IrXe5Gy1UtuYRgufXU6wb2wKm+nFKsdS4DPhPVgQ=;
+        b=GHE+03VdSybC9KZYkO75rfXI0OMHeGsfg0ThlsDGN7PAwMSI3izgMal3bMKSZh6wmb
+         YNTWaRjK721NTVrONK9OpvL0D3/EWYG9Dh8pGCaGULaXP+hlW6MhrkE/jO8Qp4R1/MMi
+         SEhdTpGIEkzS27/LylLn5Pt2qGf6EJSrK2oPLbiz4QDifYEU9cmXv4T11xOvHlzpmKwa
+         iHTmjPL4DWSA5GCYMk7ErYlcpwGto10LLBbq80WNsl2DD686mB+BxhyqOf1kZ3zGC5Yc
+         H05O6/Katotc11BlescnVWOp7NnO+JZFIvnDdlHdftAlxNyZm4YSD+D6mi8lfiWLoWkM
+         94vw==
+X-Gm-Message-State: AC+VfDxPj0s/1bPKwz43vqJdev6zHlmf9LnC/IgXajN2IDaMswCEqphV
+        xWrPpw+eLIUfKXiYsCe2nnJ+Zw==
+X-Google-Smtp-Source: ACHHUZ7qmEzE5D18lr5WtPTSeFpa7/HaK75FX9sQiuH3eg93b2tgRs9jBlqBpuHolbtweB+TLOmIVg==
+X-Received: by 2002:a17:907:7ea6:b0:988:dfdc:5a29 with SMTP id qb38-20020a1709077ea600b00988dfdc5a29mr10368758ejc.5.1687506095911;
+        Fri, 23 Jun 2023 00:41:35 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a26-20020a1709063a5a00b00988c93c85a5sm5620290ejf.183.2023.06.23.00.41.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 00:29:02 -0700 (PDT)
-Message-ID: <b4b1552d-67ab-3ab4-641a-1e190ed4a707@linaro.org>
-Date:   Fri, 23 Jun 2023 09:29:00 +0200
+        Fri, 23 Jun 2023 00:41:34 -0700 (PDT)
+Message-ID: <cdc19e56-54eb-5476-4e79-28b9dd7372a1@linaro.org>
+Date:   Fri, 23 Jun 2023 09:41:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 1/3] dt-bindings: display: msm: sm8350-mdss: document
- displayport controller subnode
+Subject: Re: [PATCH v7 0/3] usb: misc: onboard_usb_hub: add support for
+ Cypress HX3 USB 3.0 family
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Benjamin Bara <bbara93@gmail.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Robert Foss <rfoss@kernel.org>, linux-arm-msm@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-0-8bf386b373eb@linaro.org>
- <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-1-8bf386b373eb@linaro.org>
- <xlr3rmz7wy5o3ka6cxo2tzl3hqbnk4vkm7jsgjdhyimiyyqnfr@pjjwjg37675s>
-Organization: Linaro Developer Services
-In-Reply-To: <xlr3rmz7wy5o3ka6cxo2tzl3hqbnk4vkm7jsgjdhyimiyyqnfr@pjjwjg37675s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Benjamin Bara <benjamin.bara@skidata.com>
+Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20230620-hx3-v7-0-f79b4b22a1bf@skidata.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230620-hx3-v7-0-f79b4b22a1bf@skidata.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 09:27, Marijn Suijten wrote:
-> On 2023-06-21 11:26:25, Neil Armstrong wrote:
->> Document the optional document displayport controller subnode
+On 23/06/2023 09:28, Benjamin Bara wrote:
+> Hi!
 > 
-> document the optional *document*?  Same in the other patches IIRC.
-
-oops, will re-spin with this fixed
-
-thanks!
-
+> This series adds support for the Cypress HX3 USB 3.0 family (2/3). For
+> now, it just contains the USB-related aspects and ignores the option to
+> connect it via i2c (3/3).
 > 
-> - Marijn
+> As the HX3 family operates with two power supplies, multiple power
+> supply support is implemented (1/3).
 > 
->> of the SM8350 MDSS.
->>
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml | 6 ++++++
->>   1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
->> index 79a226e4cc6a..f2cbeb435f1b 100644
->> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
->> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
->> @@ -52,6 +52,12 @@ patternProperties:
->>         compatible:
->>           const: qcom,sm8350-dpu
->>   
->> +  "^displayport-controller@[0-9a-f]+$":
->> +    type: object
->> +    properties:
->> +      compatible:
->> +        const: qcom,sm8350-dp
->> +
->>     "^dsi@[0-9a-f]+$":
->>       type: object
->>       properties:
->>
->> -- 
->> 2.34.1
->>
+> Thanks & best regards,
+> Benjamin
+> 
+> ---
+> Changes in v7:
+> - 1/3: %ld -> %zu (thanks to lkp)
+> - Link to v6: https://lore.kernel.org/r/20230620-hx3-v6-0-6a1d6f8ce689@skidata.com
+
+Please give some time before resending bigger (non-trivial) patches. One
+per day is usually enough. I still see some kbuild robot reports - from
+this or previous patchset, so are you sure you compile tested it on few
+different platforms?
+
+Best regards,
+Krzysztof
 
