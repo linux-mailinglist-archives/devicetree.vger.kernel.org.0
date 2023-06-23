@@ -2,86 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C61C973B5F7
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:20:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0984673B608
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:24:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229686AbjFWLUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 07:20:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57314 "EHLO
+        id S230506AbjFWLXy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 07:23:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjFWLUW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:20:22 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C715B7;
-        Fri, 23 Jun 2023 04:20:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id ED58061A2D;
-        Fri, 23 Jun 2023 11:20:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id 3F0ABC433C9;
-        Fri, 23 Jun 2023 11:20:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687519220;
-        bh=HE9jkOtOoyDv0Q75oB+XoqEDHM4V4Xs9EiPT4vC6Om8=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=RZCSBXHo8Y7px28LcuhKSF2i2zvdLL25rGbmWQw8k4HTrkRgXmtC4mcKyHv6LY1Mi
-         JynCQ3M6h0qgbHSQJl6LWlq9Q0qUT3GZawHLeVzHrJZMFMJxVn93Nci7xLlCW1LHp0
-         VP/zwkclE+Bk0gKZYXKOSSInCAbUg3o2UPGk00m63+8Ah2QVpcVcdzSXODpWBHvgLw
-         vZmp16UN3NLFebnuvDqy7TaRZyJev0mV2jkHp7IyG6fs8Bsz98Mky4fEY9nfLQRQYl
-         61RxxhVDXb1nCgspRFAHJTocJp/I2cReOcO21/FraJfkNH2+ApEyBhkc1Cz2r23TwE
-         FU3n07sFA7/Tg==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 13A6BC43169;
-        Fri, 23 Jun 2023 11:20:20 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229501AbjFWLXx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:23:53 -0400
+Received: from mx.sberdevices.ru (mx.sberdevices.ru [45.89.227.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 262641739;
+        Fri, 23 Jun 2023 04:23:52 -0700 (PDT)
+Received: from s-lin-edge02.sberdevices.ru (localhost [127.0.0.1])
+        by mx.sberdevices.ru (Postfix) with ESMTP id 033445FDBC;
+        Fri, 23 Jun 2023 14:23:50 +0300 (MSK)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1687519430;
+        bh=40WKuG5jN7u47rR1N8bQt7QB0nFmgHe9lhfPp15dYpQ=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type;
+        b=grZYGVHuEo09bhs0QV2CoZlhgAcNo1pykB++zdadokLwQ7AwngjQ9RFJF2JzN5vpJ
+         EhVb10NH41aE0B2sKDKn6gRacu3jqTLmtWAQqrO9n2pP6AmUtzHP8es2tWy7zU8VGQ
+         DE7jvKw19sQ99fz9D6u/enc9YqI3tIHYU9BzlET32ojVhE5XWKsZ0ncPLJW8vD+4sK
+         5VZ9hDFQOc16K+J4qjN9hsCdWrUZOhRU68U8QXsvSWNQbLBzG8TJGWB6UyoHwhwlsB
+         ixIuscjLDVSZ5HDTpnpBHEKndULQfOncjImDvjDGY2tKmjf+3h60lmHmj29FV+8BQq
+         vOlG80yaV1Qww==
+Received: from S-MS-EXCH01.sberdevices.ru (S-MS-EXCH01.sberdevices.ru [172.16.1.4])
+        by mx.sberdevices.ru (Postfix) with ESMTP;
+        Fri, 23 Jun 2023 14:23:49 +0300 (MSK)
+Date:   Fri, 23 Jun 2023 14:23:49 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <khilman@baylibre.com>, <martin.blumenstingl@googlemail.com>,
+        <conor+dt@kernel.org>, <kernel@sberdevices.ru>,
+        <sdfw_system_team@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v1 0/6] arm64: dts: meson: a1: introduce several
+ peripheral IPs
+Message-ID: <20230623112349.reyls6um3dccrkl3@CAB-WSD-L081021>
+References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
+ <20230623082201.7tfnpjvwi22omleq@CAB-WSD-L081021>
+ <dd5d7bc8-5ded-ebfe-48a2-55e330cd7544@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH net-next] dt-bindings: net: altr,tse: Fix error in
- "compatible" conditional schema
-From:   patchwork-bot+netdevbpf@kernel.org
-Message-Id: <168751922007.31575.12644715744862183773.git-patchwork-notify@kernel.org>
-Date:   Fri, 23 Jun 2023 11:20:20 +0000
-References: <20230621231012.3816139-1-robh@kernel.org>
-In-Reply-To: <20230621231012.3816139-1-robh@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, maxime.chevallier@bootlin.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <dd5d7bc8-5ded-ebfe-48a2-55e330cd7544@linaro.org>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ S-MS-EXCH01.sberdevices.ru (172.16.1.4)
+X-KSMG-Rule-ID: 4
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Status: not scanned, disabled by settings
+X-KSMG-AntiSpam-Interceptor-Info: not scanned
+X-KSMG-AntiPhishing: not scanned, disabled by settings
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 1.1.2.30, bases: 2023/06/23 08:45:00 #21561595
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Krzysztof,
 
-This patch was applied to netdev/net-next.git (main)
-by Paolo Abeni <pabeni@redhat.com>:
-
-On Wed, 21 Jun 2023 17:10:12 -0600 you wrote:
-> The conditional if/then schema has an error as the "enum" values have
-> "const" in them. Drop the "const".
+On Fri, Jun 23, 2023 at 10:49:19AM +0200, Krzysztof Kozlowski wrote:
+> On 23/06/2023 10:22, Dmitry Rokosov wrote:
+> > Hello Neil, Krzysztof, Jerome, Martin, Rob and Conor,
+> > 
+> > Would you please review this patch? The latest modifications enable CLK,
+> > EFUSE, USB, SDIO (WiFi), and UART (BT) functionality on A1 boards.
+> > 
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  Documentation/devicetree/bindings/net/altr,tse.yaml | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> It's not a binding...
+> 
+> Best regards,
+> Krzysztof
+> 
 
-Here is the summary with links:
-  - [net-next] dt-bindings: net: altr,tse: Fix error in "compatible" conditional schema
-    https://git.kernel.org/netdev/net-next/c/faaa5fd30344
+Ah, I was thinking that you could also review the changes made to the
+device tree board files. I apologize for any inconvenience caused by
+additional notifications.
 
-You are awesome, thank you!
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+Thank you,
+Dmitry
