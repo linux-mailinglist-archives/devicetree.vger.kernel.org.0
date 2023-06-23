@@ -2,143 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECF6373B2BA
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F53B73B2D1
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231617AbjFWI3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 04:29:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34216 "EHLO
+        id S230094AbjFWIlA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Jun 2023 04:41:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37426 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231504AbjFWI3I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:29:08 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CEC7210A
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:29:04 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b4619ef079so6323351fa.2
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:29:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1687508942; x=1690100942;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=m2qUpj8yKbysFhO4bnXlgIHrtaxdQPNhbEyv05xDcP4=;
-        b=cfvo9uHn77Ekx/CS61uXo0whMu3wP1K2SIlBfy8FYGr6t7g7NZX8HtGkK9TVxvRxNx
-         T0jDJxHDpSUaBa+JGqOmb7Htfs6i/330ZKZ4H1eq0ya5BSkd5BYTMexkPewGjhjeq3Jr
-         TxiUX5AEMqVNInCE4FdX2T8PI1czEvhFf+DLRHbH1e+5MGrSErc2xgn92tR/6umcpvvv
-         3k03oQ7qBVwTd8B/6G7rqMTX/bhAUySOQCgKVAOj4fHa7XLUDqL96Te6+jO3awqvPCgU
-         uJak6Q5KUclI7DcPaebbC44BdwbEMP941BbRyPN2oU5qrybEVF6gmjxVIEAfrHxDCy8o
-         Aqew==
+        with ESMTP id S230170AbjFWIk7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:40:59 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC6801B4;
+        Fri, 23 Jun 2023 01:40:57 -0700 (PDT)
+Received: by mail-qt1-f173.google.com with SMTP id d75a77b69052e-3ff274778feso4520591cf.1;
+        Fri, 23 Jun 2023 01:40:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687508942; x=1690100942;
+        d=1e100.net; s=20221208; t=1687509657; x=1690101657;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=m2qUpj8yKbysFhO4bnXlgIHrtaxdQPNhbEyv05xDcP4=;
-        b=J0yLc8wtRRdlkaB+SUmUMGRPMhGHCw0s6nsET4O9kb3A+5PqYw7ceCSVoJgL1sVw2V
-         KXX/Od4gKgUDBNQK3dh7wXvA+vlx6XWtgjW4l9gNmyngQRo7e8p4RzVaWNeX2JqNmuhM
-         3WxdodazR4weZ4JAzwRbD9XakOVO0MkE8gtSNd4gryQkAn+9yxSMGUXtMYb6km3nqKnK
-         FkZxpXu5leZeVODvAtYnhv58tqqeHY+MoJpEVqqjGYSeWBpDhysrTTAU7ZN6Nlrhshq8
-         RTqqGByPVP3RyQKrVAlDAs8aPq0DBk5mGXim8Tj4ywK15ZQe4/ATyAJZ57V/5Cez+XqR
-         XN7g==
-X-Gm-Message-State: AC+VfDw9ORA5C6qMVAPvdYczKFaHJWpsyC6T/SNl002LjyQpenNnBsn6
-        4hCIgt0jONfIeAgSfEmQJirTc0Bf7gKo+mPTyT2v0A==
-X-Google-Smtp-Source: ACHHUZ4BUf6QLe/480ZnADtDZ3BsgW3Dx80XUi22/n3hNVBpPJNAvvf6XSo9CghqQ6ErRL1v+G5cvDWrcfa4/KbxM2E=
-X-Received: by 2002:a2e:2e0a:0:b0:2b4:5978:c13 with SMTP id
- u10-20020a2e2e0a000000b002b459780c13mr14878649lju.21.1687508942384; Fri, 23
- Jun 2023 01:29:02 -0700 (PDT)
+        bh=s3YbNGYLQjiL7Y5daSRoiDrXijuvl42Jh6Pko97orUI=;
+        b=FZOT9MzloR5f0rp1HVmPr3Ug1nyKl8xD9dclFAlBq+J/SZXjgAQfVYV5mXiMTdOmIy
+         Lmxn7QAmXzMnkNVhlDVUlF61o9at/3k8WwxvQgEmn/u/8chVt9sUCPK1g9Rf6n8mSggM
+         Fc6Stq97z34jknN+ZwD+6E+dyw6OHhXnNLjEzVc6E5VPvqA2FbyHc6aZaSvC3qScgZ1l
+         r1OsRbvtPlKZpr4Uqc9jJpjslh6YBeXhPneuiu59C6QSJTpKa8GkZ/V5p/vZ3KLO5C6f
+         om5GBnGalJ4eGzP7ulWyWoUW2VBrL+Iv/j42TXWkbD6EibwDjI+hQZoOFKTNfM7Itm0y
+         KVRQ==
+X-Gm-Message-State: AC+VfDz6pQmVvMQ/wI9VMfb6lCe0PCoHlzpmErhEBkFTK6m8KpzYGR2c
+        QBKGDjCTRQFFNfI7+xkkVrAreAmkrewJQg==
+X-Google-Smtp-Source: ACHHUZ4Q76RfxRS8IlEllxF68HdYht9dYb31qqmp9NGHxi1qDkU8TOsy+tGIrrFLojzKkonwhXjDmw==
+X-Received: by 2002:a05:622a:20f:b0:3f9:c539:c9d5 with SMTP id b15-20020a05622a020f00b003f9c539c9d5mr28207811qtx.68.1687509656750;
+        Fri, 23 Jun 2023 01:40:56 -0700 (PDT)
+Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
+        by smtp.gmail.com with ESMTPSA id v15-20020a2583cf000000b00bfee65aff13sm1382807ybm.40.2023.06.23.01.40.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jun 2023 01:40:56 -0700 (PDT)
+Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-bd77424c886so448269276.0;
+        Fri, 23 Jun 2023 01:40:56 -0700 (PDT)
+X-Received: by 2002:a25:c746:0:b0:b9e:889:420f with SMTP id
+ w67-20020a25c746000000b00b9e0889420fmr20362043ybe.12.1687509655921; Fri, 23
+ Jun 2023 01:40:55 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-2-eric.lin@sifive.com>
- <28f511f2-ffbb-2ef7-c47c-caf9f5164512@wanadoo.fr>
-In-Reply-To: <28f511f2-ffbb-2ef7-c47c-caf9f5164512@wanadoo.fr>
-From:   Eric Lin <eric.lin@sifive.com>
-Date:   Fri, 23 Jun 2023 16:28:50 +0800
-Message-ID: <CAPqJEFqV6O4he14R1=_appLnFVPWKG1k3bdKDuPKhX0EjxwBtQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] soc: sifive: Add SiFive private L2 cache support
-To:     Christophe JAILLET <christophe.jaillet@wanadoo.fr>
-Cc:     conor@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
-        chenhuacai@kernel.org, baolu.lu@linux.intel.com, will@kernel.org,
-        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
-        pierre.gondois@arm.com, huangguangbin2@huawei.com, jgross@suse.com,
-        chao.gao@intel.com, maobibo@loongson.cn,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>
+References: <20230623080135.15696-1-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20230623080135.15696-1-fabrizio.castro.jz@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 23 Jun 2023 10:40:43 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVNG_LENbU_nu-W+x_snXxbz3vbs=Yb-__FF3DBR2JEUA@mail.gmail.com>
+Message-ID: <CAMuHMdVNG_LENbU_nu-W+x_snXxbz3vbs=Yb-__FF3DBR2JEUA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzv2mevk2: Fix eMMC/SDHI pinctrl names
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        LOTS_OF_MONEY,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
+Hi Fabrizio,
 
-On Sat, Jun 17, 2023 at 3:02=E2=80=AFAM Christophe JAILLET
-<christophe.jaillet@wanadoo.fr> wrote:
->
-> Le 16/06/2023 =C3=A0 08:32, Eric Lin a =C3=A9crit :
-> > This adds SiFive private L2 cache driver which will show
-> > cache config information when booting and add cpu hotplug
-> > callback functions.
-> >
-> > Signed-off-by: Eric Lin <eric.lin-SpMDHPYPyPbQT0dZR+AlfA@public.gmane.o=
-rg>
-> > Signed-off-by: Nick Hu <nick.hu-SpMDHPYPyPbQT0dZR+AlfA@public.gmane.org=
->
-> > Reviewed-by: Zong Li <zong.li-SpMDHPYPyPbQT0dZR+AlfA@public.gmane.org>
->
-> [...]
->
-> > +static int __init sifive_pl2_cache_init(void)
-> > +{
-> > +     int ret;
-> > +
-> > +     ret =3D cpuhp_setup_state(CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE,
-> > +                             "soc/sifive/pl2:online",
-> > +                                   sifive_pl2_online_cpu,
-> > +                                   sifive_pl2_offline_cpu);
-> > +     if (ret < 0) {
-> > +             pr_err("Failed to register CPU hotplug notifier %d\n", re=
-t);
-> > +             return ret;
-> > +     }
-> > +
-> > +     ret =3D platform_driver_register(&sifive_pl2_cache_driver);
-> > +     if (ret) {
-> > +             pr_err("Failed to register sifive_pl2_cache_driver: %d\n"=
-, ret);
->
-> Blind guess: does cpuhp_remove_state() needs to be called?
->
+CC pinctrl
 
-Yes, I'll fix this in v2. Thanks.
+Thanks for your patch!
 
-> > +             return ret;
-> > +     }
-> > +
-> > +     sifive_pl2_pm_init();
-> > +
-> > +     return ret;
->
-> If you send a v2, return 0; would be slighly nicer here.
->
+On Fri, Jun 23, 2023 at 10:01 AM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> The original commit uses the same names ("data" and "ctrl")
+> for the subnodes of pinctrl definitions for both eMMC and
+> SDHI0 (emmc_pins, sdhi0_pins, and sdhi0_pins_uhs) leading to
 
-OK, I'll fix it in v2.
-Thanks for the review.
+That should be fine, as the parents of these subnodes do have different
+names?
 
-Best regards,
-Eric Lin
+> the below issue:
+>
+> pinctrl-rzv2m b6250000.pinctrl: pin P8_2 already requested by 85000000.mmc; cannot claim for 85020000.mmc
+> pinctrl-rzv2m b6250000.pinctrl: pin-130 (85020000.mmc) status -22
+> renesas_sdhi_internal_dmac 85020000.mmc: Error applying setting, reverse things back
 
-> CJ
+To me, that sounds like a bug in the pinctrl core.
+Or am I missing something?
+
+> This commit fixes the problem by making the names for the
+> pinctrl subnodes of eMMC and SDHI0 unique.
 >
-> > +}
+> Fixes: b6c0be722b0c ("arm64: dts: renesas: rzv2mevk2: Add uSD card and eMMC support")
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> ---
+>  .../arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
 >
-> [...]
+> diff --git a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+> index 39fe3f94991e..11c5cffea5a5 100644
+> --- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+> +++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
+> @@ -167,7 +167,7 @@ &i2c2 {
 >
+>  &pinctrl {
+>         emmc_pins: emmc {
+> -               data {
+> +               emmc_data {
+>                         pinmux = <RZV2M_PORT_PINMUX(0, 0, 2)>, /* MMDAT0 */
+>                                  <RZV2M_PORT_PINMUX(0, 1, 2)>, /* MMDAT1 */
+>                                  <RZV2M_PORT_PINMUX(0, 2, 2)>, /* MMDAT2 */
+> @@ -179,7 +179,7 @@ data {
+>                         power-source = <1800>;
+>                 };
+>
+> -               ctrl {
+> +               emmc_ctrl {
+>                         pinmux = <RZV2M_PORT_PINMUX(0, 10, 2)>, /* MMCMD */
+>                                  <RZV2M_PORT_PINMUX(0, 11, 2)>; /* MMCLK */
+>                         power-source = <1800>;
+> @@ -197,7 +197,7 @@ i2c2_pins: i2c2 {
+>         };
+>
+>         sdhi0_pins: sd0 {
+> -               data {
+> +               sd0_data {
+>                         pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
+>                                  <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
+>                                  <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
+> @@ -205,20 +205,20 @@ data {
+>                         power-source = <3300>;
+>                 };
+>
+> -               ctrl {
+> +               sd0_ctrl {
+>                         pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
+>                                  <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
+>                         power-source = <3300>;
+>                 };
+>
+> -               cd {
+> +               sd0_cd {
+>                         pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
+>                         power-source = <3300>;
+>                 };
+>         };
+>
+>         sdhi0_pins_uhs: sd0-uhs {
+> -               data {
+> +               sd0_uhs_data {
+>                         pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
+>                                  <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
+>                                  <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
+> @@ -226,13 +226,13 @@ data {
+>                         power-source = <1800>;
+>                 };
+>
+> -               ctrl {
+> +               sd0_uhs_ctrl {
+>                         pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
+>                                  <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
+>                         power-source = <1800>;
+>                 };
+>
+> -               cd {
+> +               sd0_uhs_cd {
+>                         pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
+>                         power-source = <1800>;
+>                 };
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
