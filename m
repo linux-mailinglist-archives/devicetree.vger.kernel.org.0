@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D653873B632
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55E9B73B641
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:31:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231477AbjFWLac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 07:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60118 "EHLO
+        id S231761AbjFWLa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 07:30:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60146 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231659AbjFWLa2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:30:28 -0400
-Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C84D26B8
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:30:22 -0700 (PDT)
-Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-988b204ce5fso56633166b.3
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:30:22 -0700 (PDT)
+        with ESMTP id S231714AbjFWLa3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:30:29 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15FC5270B
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:30:23 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-988b204ce5fso56635866b.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:30:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687519821; x=1690111821;
+        d=linaro.org; s=google; t=1687519822; x=1690111822;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=CHaK7rdeki9lfbQ0L5n5XKF0tPcuK6yq3LmKlu+Ivww=;
-        b=fSaEd9srqlW02t5EJIQeM2hse3zR9gmx3WuT3NE1AjtZVL3CZf8n94Kn2z9ki1NMuI
-         sGOyQIBwsuc26lpQrl0mmIqU1IIXV9Dpf29zJOg++QsDvL28tShS00zdAchY5fMlZs0d
-         86tjC0uiX7U6ZwK+I0gqr5IVUo95JpdduZfL4hLIKJBYdt44ia7LHU6prA/Zz6i1zHtt
-         80o6z7SFxpvFyG6+pPmACxGS/zyDKdJ1XkLS8umQdOlGU8mJzFatDynZyqhBrGhNCQDB
-         BJPzQpStmicRGPzE9+w3ggL5myuXjxTA9KqMuBGDBlJv+F7tdmk33N/WnH85EgBLTNJd
-         oYyg==
+        bh=pNvuq6mkva9AEwJO9JM3pF+J3bkYwlLNxD1WUPaScDY=;
+        b=JyzgYeYGNAXiEO38g990qGezFImnyLJ1NctOgLVYfhN+FMGZDp/HilrsHhxCJZpjmH
+         nCBpKvS9F3ZF6idUmrS193Ui/0nlt4M/2OjUtXfjlrFTNme1BnHY+fNqcOBS1GCz2xd/
+         6r6vV2lrrZcKuUVc+ICPmjrckuoU/WU8rhpu/vKVuddYUfh5v+Me19Phemob4mtUZJLA
+         3wL6DR1hhWkmjp4/FcAhlVzMaYOPpGXPCD0AjAiZd/+Re1FkBordvtJxNB6+82ipo97d
+         TyfbwGNG9OPG6+2g0D1tQxKccI+juogcvLHXNjgMIkuw+N1mVN82BRcNM9c3pMgQOHKA
+         4i1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687519821; x=1690111821;
+        d=1e100.net; s=20221208; t=1687519822; x=1690111822;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=CHaK7rdeki9lfbQ0L5n5XKF0tPcuK6yq3LmKlu+Ivww=;
-        b=EPVPFGRMM5lfpmblt+wDfNFIQl6CYgQUgTWpKcSaG1p2EnEt9xF4vezXQ9e7/rX8aQ
-         igrQ5zRFgNjduMf5eRu3AmUswpM6IVLr3eAeaStaVRTFYcKO8O8+Ja11xpQd46PvYwm1
-         aT5hYc4yNb5wGbuoM4TVQ7OnTKuGCUGmNUB/rmjb58RC/CZmMigKWfWnodcXMllGBnm7
-         ZbpWP88ACRIK/Ear4+t5JODhWySslW+2d4OUmQ1AH4+Sohj6lekLQlinwaSEnv7Jz33h
-         gUGoLRIGHEdsHvFUck01lSyRHMs+BPZuhCaHkFSka3rz8eaeJmfXXJQ67+yZbXAhveBz
-         CBLQ==
-X-Gm-Message-State: AC+VfDwyje2sibryctX73YN/Y/RN8xTk19hJWEp83Pya6YLG7aFWG2mB
-        JA2WdQdqrQnc6d/aYUJMKk3o5w==
-X-Google-Smtp-Source: ACHHUZ50An5CQMTUNnqVpshyVZ/03Vud6u0iyBErDojjmGr50lXvYlkYcoJz9SbGBNAJCuaZE9/0XA==
-X-Received: by 2002:a17:907:7ba5:b0:973:fd02:a41f with SMTP id ne37-20020a1709077ba500b00973fd02a41fmr21528891ejc.40.1687519820927;
-        Fri, 23 Jun 2023 04:30:20 -0700 (PDT)
+        bh=pNvuq6mkva9AEwJO9JM3pF+J3bkYwlLNxD1WUPaScDY=;
+        b=ASUCOU2lBoqTcTyBS5NM94fahxKP/+09IBC938TDT5R+6GndvZB7du/3trAQjDgnqy
+         AGXKHPinAHe5W6tXVWiB9JGqFS3OYHFaoh0yFNHfv+Dc2mODG8+IsWNNlGeXk0JWoEky
+         ZQgJ/hyzoe1JUCHs4K9moICVL5dTx7k7kuJmcmc1aOnNT0rK8xfip6VUzCdlWEarsKXy
+         D9GlJJJczUiK6Fo35j5d7Y2uElZ7tyNS0zNCkJH2/Dqw7bkpJe7pBMkkTWub5mbQ1j4j
+         gVqgku4azNl9sz87aG7clJzFeKbwZO3o26RFz+pC1wwZqJKXpNLkYp/VLY8ufjY0vfQS
+         rg3g==
+X-Gm-Message-State: AC+VfDx7nQ0Puer9SORoDviuLW6p5IpC9tylX/kl7IL7OU7Q2XluZHZk
+        SHEdIKsFiHobdiR1lA1F34RH7Q==
+X-Google-Smtp-Source: ACHHUZ4fCA7KAKMZZcYPseVlCdJe079NwRS/tCOOQIdkW+evoYdAnQ9CHxOezcJFLlSf7FY9Jf/Xtg==
+X-Received: by 2002:a17:907:a421:b0:987:5761:285f with SMTP id sg33-20020a170907a42100b009875761285fmr15875704ejc.42.1687519822320;
+        Fri, 23 Jun 2023 04:30:22 -0700 (PDT)
 Received: from hackbox.lan ([62.231.110.100])
-        by smtp.gmail.com with ESMTPSA id z17-20020a1709063ad100b009821ce1ea33sm5908033ejd.7.2023.06.23.04.30.18
+        by smtp.gmail.com with ESMTPSA id z17-20020a1709063ad100b009821ce1ea33sm5908033ejd.7.2023.06.23.04.30.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 04:30:19 -0700 (PDT)
+        Fri, 23 Jun 2023 04:30:21 -0700 (PDT)
 From:   Abel Vesa <abel.vesa@linaro.org>
 To:     Manivannan Sadhasivam <mani@kernel.org>,
         Andy Gross <agross@kernel.org>,
@@ -64,9 +64,9 @@ To:     Manivannan Sadhasivam <mani@kernel.org>,
 Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
         devicetree@vger.kernel.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: [PATCH 4/5] scsi: dt-bindings: ufs: qcom: Fix sm8450 clocks
-Date:   Fri, 23 Jun 2023 14:30:08 +0300
-Message-Id: <20230623113009.2512206-5-abel.vesa@linaro.org>
+Subject: [PATCH 5/5] scsi: dt-bindings: ufs: qcom: Fix warning for sdm845 by adding reg-names
+Date:   Fri, 23 Jun 2023 14:30:09 +0300
+Message-Id: <20230623113009.2512206-6-abel.vesa@linaro.org>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20230623113009.2512206-1-abel.vesa@linaro.org>
 References: <20230623113009.2512206-1-abel.vesa@linaro.org>
@@ -82,35 +82,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The sm8450 has an ICE clock, so move the compatible to the proper
-clocks check.
+There is a warning on dtbs check for sdm845, amongst other platforms,
+about the reg-names being unevaluated. Fix that by adding reg-names to
+the clocks and reg properties check for such platforms.
 
 Fixes: 462c5c0aa798 ("dt-bindings: ufs: qcom,ufs: convert to dtschema")
 Signed-off-by: Abel Vesa <abel.vesa@linaro.org>
 ---
- Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-index 4dad3f9ba81f..0209713d1f88 100644
+index 0209713d1f88..894b57117314 100644
 --- a/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
 +++ b/Documentation/devicetree/bindings/ufs/qcom,ufs.yaml
-@@ -118,7 +118,6 @@ allOf:
-               - qcom,sc8280xp-ufshc
-               - qcom,sm8250-ufshc
-               - qcom,sm8350-ufshc
--              - qcom,sm8450-ufshc
-               - qcom,sm8550-ufshc
-     then:
+@@ -166,6 +166,10 @@ allOf:
+         reg:
+           minItems: 2
+           maxItems: 2
++        reg-names:
++          items:
++            - const: std
++            - const: ice
+ 
+   - if:
        properties:
-@@ -147,6 +146,7 @@ allOf:
-               - qcom,sdm845-ufshc
-               - qcom,sm6350-ufshc
-               - qcom,sm8150-ufshc
-+              - qcom,sm8450-ufshc
-     then:
-       properties:
-         clocks:
 -- 
 2.34.1
 
