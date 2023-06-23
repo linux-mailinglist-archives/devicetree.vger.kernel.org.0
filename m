@@ -2,142 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ED01573B243
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFA2D73B24A
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230481AbjFWIBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 04:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47768 "EHLO
+        id S229999AbjFWIEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 04:04:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48604 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230170AbjFWIBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:01:47 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 5DC4E1BE2;
-        Fri, 23 Jun 2023 01:01:45 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,151,1684767600"; 
-   d="scan'208";a="168666974"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 23 Jun 2023 17:01:44 +0900
-Received: from mulinux.home (unknown [10.226.93.17])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 838C4400B9F5;
-        Fri, 23 Jun 2023 17:01:40 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] arm64: dts: renesas: rzv2mevk2: Fix eMMC/SDHI pinctrl names
-Date:   Fri, 23 Jun 2023 09:01:35 +0100
-Message-Id: <20230623080135.15696-1-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.34.1
+        with ESMTP id S230149AbjFWIEg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:04:36 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 964AC1BE4
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:04:34 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f900cd3f96so4608235e9.2
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:04:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687507473; x=1690099473;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=rEReHr6Km4uN96K+wzhhty6cNh29m54e0wS7gro4H10=;
+        b=A3aqmfSLf0+s3oHaDs4NnVRaPvNc7l3UD4C1xuEjSkXwRfjpgxbi6zo161jl6P+5YM
+         q8PCxl66ia8uePPy0keCXXfnwRKnfZtrLHifucMmxHMfhHIL9Qfmh0D7AflBSIUsxCil
+         +6iSGs3ek/3DB1EHTsx6Iwc1lUwZr8obAx1rUIcRwJhl68ZBevWIqKCmhQUWJd3FTNop
+         AnkY2ol+hk1MXzMf9REkgxo7irRiGI+/5pvZHAhDEzJdoCHBFCNGOyFMSGMGYegv4Nvb
+         mJqnlgxzKpsc6V7DjRtIwtHc0tEORUDu87IvLPFeV0HjUBsKg6G4L7mFI2tiDyQPdEcj
+         JjoA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687507473; x=1690099473;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=rEReHr6Km4uN96K+wzhhty6cNh29m54e0wS7gro4H10=;
+        b=mG8mdQ0ZlfRIEn9feAlc9GWJKe0Gjtwm6SsIf4D7afaqYLIkRSqgaER7mnS5yfFu+Z
+         Dj7juuy1eInk5fv7vYKssi1IQqfxlfQ5iZNUgGrLcHfab1+4xLny67EziQpBP5rhLBTU
+         b+5D5NDw8El6xhaa9goyrgtuiKZzb5mysxf4JXx08J4/7IZ9j6G7qOt0JG+Pr80liyhC
+         vkkmqBmGgdB6Zw3W36g+4YPiNRhNkYID8mMNdFkXAbKu9i5+Y+FCwNwGpFPhE3LfzFJ1
+         HeP3Bv19FjQiWq5IgUnOdmhyM/2CsoE7Ak4QBOpRFRzR/J99hRiF+GaYbaNXjsnQHWe8
+         VPTw==
+X-Gm-Message-State: AC+VfDy7vU7ebzGT7wPDW60S07ulTS9tDRFgBEYlp6ZjzluMKmJCU13n
+        IrMfVGjTKqNYe/0ChNCgdyks6g==
+X-Google-Smtp-Source: ACHHUZ7cgpUkcsoYszSVTliMuHU6qE3Pdf0ElKfLVvzNYbP1Sqr6LjHdJ7G1N/5x0CcVyM8Yo6cDKQ==
+X-Received: by 2002:a1c:e90d:0:b0:3f8:fc2a:c7eb with SMTP id q13-20020a1ce90d000000b003f8fc2ac7ebmr14131597wmc.5.1687507473021;
+        Fri, 23 Jun 2023 01:04:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id v14-20020a1cf70e000000b003f9b2c602c0sm1588349wmh.37.2023.06.23.01.04.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jun 2023 01:04:32 -0700 (PDT)
+Message-ID: <20b480d8-087c-d5fe-08ca-7d2b684f4f96@linaro.org>
+Date:   Fri, 23 Jun 2023 10:04:30 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=1.1 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
-        LOTS_OF_MONEY,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: *
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4] ARM: dts: exynos: Add Samsung Galaxy Tab 3 8.0 boards
+Content-Language: en-US
+To:     Artur Weber <aweber.kernel@gmail.com>,
+        Olof Johansson <olof@lixom.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>, soc@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230604165627.16963-1-aweber.kernel@gmail.com>
+ <aae10e8f-b4f2-7417-ab08-41d6ec9ab8fc@linaro.org>
+ <72af054e-e82b-917c-1f9b-fe231dcfa5bf@gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <72af054e-e82b-917c-1f9b-fe231dcfa5bf@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The original commit uses the same names ("data" and "ctrl")
-for the subnodes of pinctrl definitions for both eMMC and
-SDHI0 (emmc_pins, sdhi0_pins, and sdhi0_pins_uhs) leading to
-the below issue:
+On 22/06/2023 14:52, Artur Weber wrote:
+> On 04/06/2023 21:15, Krzysztof Kozlowski wrote:
+>> On 04/06/2023 18:56, Artur Weber wrote:
+>>> +/*
+>>> + * This device does not use the built-in RTC; instead, the RTC in the
+>>> + * S5M8786 PMIC is used instead. Remove the unused node to avoid DTB check
+>>> + * warnings.
+>>> + */
+>>> +/delete-node/ &rtc;
+>>
+>> This is not the solution. The S3C RTC is there. Just like all other
+>> boards we have two RTCs and DTS should be complete. Definitely you
+>> should not remove something just because there were warnings. Instead
+>> warnings should be fixed.
+> 
+> The problem is that the built-in RTC does not seem to work on this
+> device. I attempted to add it, using the same clocks as other devices
+> in mainline using the S5M8676 PMIC:
+> 
+> &rtc {
+> 	status = "okay";
+> 	clocks = <&clock CLK_RTC>, <&s5m8767_osc S2MPS11_CLK_AP>;
+> 	clock-names = "rtc", "rtc_src";
+> };
+> 
+> However, it just prints the following on startup:
+> 
+>  s3c-rtc 10070000.rtc: rtc disabled, re-enabling
+>  s3c-rtc 10070000.rtc: registered as rtc0
+>  s3c-rtc 10070000.rtc: hctosys: unable to read the hardware clock
 
-pinctrl-rzv2m b6250000.pinctrl: pin P8_2 already requested by 85000000.mmc; cannot claim for 85020000.mmc
-pinctrl-rzv2m b6250000.pinctrl: pin-130 (85020000.mmc) status -22
-renesas_sdhi_internal_dmac 85020000.mmc: Error applying setting, reverse things back
+This should be debugged then... but with explanation is fine to leave
+the node disabled.
 
-This commit fixes the problem by making the names for the
-pinctrl subnodes of eMMC and SDHI0 unique.
+Removal of nodes is almost never correct.
 
-Fixes: b6c0be722b0c ("arm64: dts: renesas: rzv2mevk2: Add uSD card and eMMC support")
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- .../arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-index 39fe3f94991e..11c5cffea5a5 100644
---- a/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-+++ b/arch/arm64/boot/dts/renesas/r9a09g011-v2mevk2.dts
-@@ -167,7 +167,7 @@ &i2c2 {
- 
- &pinctrl {
- 	emmc_pins: emmc {
--		data {
-+		emmc_data {
- 			pinmux = <RZV2M_PORT_PINMUX(0, 0, 2)>, /* MMDAT0 */
- 				 <RZV2M_PORT_PINMUX(0, 1, 2)>, /* MMDAT1 */
- 				 <RZV2M_PORT_PINMUX(0, 2, 2)>, /* MMDAT2 */
-@@ -179,7 +179,7 @@ data {
- 			power-source = <1800>;
- 		};
- 
--		ctrl {
-+		emmc_ctrl {
- 			pinmux = <RZV2M_PORT_PINMUX(0, 10, 2)>, /* MMCMD */
- 				 <RZV2M_PORT_PINMUX(0, 11, 2)>; /* MMCLK */
- 			power-source = <1800>;
-@@ -197,7 +197,7 @@ i2c2_pins: i2c2 {
- 	};
- 
- 	sdhi0_pins: sd0 {
--		data {
-+		sd0_data {
- 			pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
- 				 <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
- 				 <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
-@@ -205,20 +205,20 @@ data {
- 			power-source = <3300>;
- 		};
- 
--		ctrl {
-+		sd0_ctrl {
- 			pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
- 				 <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
- 			power-source = <3300>;
- 		};
- 
--		cd {
-+		sd0_cd {
- 			pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
- 			power-source = <3300>;
- 		};
- 	};
- 
- 	sdhi0_pins_uhs: sd0-uhs {
--		data {
-+		sd0_uhs_data {
- 			pinmux = <RZV2M_PORT_PINMUX(8, 2, 1)>, /* SD0DAT0 */
- 				 <RZV2M_PORT_PINMUX(8, 3, 1)>, /* SD0DAT1 */
- 				 <RZV2M_PORT_PINMUX(8, 4, 1)>, /* SD0DAT2 */
-@@ -226,13 +226,13 @@ data {
- 			power-source = <1800>;
- 		};
- 
--		ctrl {
-+		sd0_uhs_ctrl {
- 			pinmux = <RZV2M_PORT_PINMUX(8, 0, 1)>, /* SD0CMD */
- 				 <RZV2M_PORT_PINMUX(8, 1, 1)>; /* SD0CLK */
- 			power-source = <1800>;
- 		};
- 
--		cd {
-+		sd0_uhs_cd {
- 			pinmux = <RZV2M_PORT_PINMUX(8, 7, 1)>; /* SD0CD */
- 			power-source = <1800>;
- 		};
--- 
-2.34.1
+Best regards,
+Krzysztof
 
