@@ -2,133 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC7273B8B0
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 15:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 560F373B925
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 15:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230010AbjFWNYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 09:24:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51280 "EHLO
+        id S231159AbjFWNwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 09:52:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbjFWNYT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 09:24:19 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E27C213A;
-        Fri, 23 Jun 2023 06:24:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id F11BD61A51;
-        Fri, 23 Jun 2023 13:24:16 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0EBD4C433C0;
-        Fri, 23 Jun 2023 13:24:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687526656;
-        bh=ya+979j6nW2ZkC3+qp94+q7c0uMnkw7U/dMO6m4wlqo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R1w28N72tr9K7DwVRXA1TYbu6gg+O3KhwX7tls3Oj3WVC535mHlV3dsi/ncKQcZH+
-         679ghZFTBqkiuUDpmf+DRI75z5FGlKQn+KBF6G0kHjQov2XnfU0AYTytOTHPtKjgxO
-         PFyK6qWdcig9q3FOpD2Z+jvGZkW6qJVojS1LO2XUNICnBPApsNmSkhWaxisg7mCW4Z
-         jdHb5rPLzZaaapN2SXxLJIqn2wbqSYGSe3DsuGFSyjWhIxhOaGJ0ms4C1BsSbEWU5O
-         P6pmHwuQeNM+lX1OINbFR4aGTZbH13HzJu3HXLQ6Bnnway10Qa22PkJD/hDJxMd5Xd
-         iW7DBAT/y1ESA==
-Date:   Fri, 23 Jun 2023 14:24:08 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Eric Lin <eric.lin@sifive.com>,
-        Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
-        chenhuacai@kernel.org, baolu.lu@linux.intel.com,
-        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
-        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
-        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dslin1010@gmail.com, Greentime Hu <greentime.hu@sifive.com>,
-        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>,
-        mark.rutland@arm.com, arnd@arndb.de
-Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
-Message-ID: <20230623132402.GA17369@willie-the-truck>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-3-eric.lin@sifive.com>
- <20230616-revision-speed-a83dc926b334@wendy>
- <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
- <20230621-stupor-violin-930ccc7d7593@spud>
+        with ESMTP id S231866AbjFWNwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 09:52:40 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6DC32699
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:52:29 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51a3e6a952aso687350a12.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 06:52:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20221208.gappssmtp.com; s=20221208; t=1687528348; x=1690120348;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=9S6OHdItsTA1JwEPFdtVcZWMFJNNUsFlvqd8wRr+OUY=;
+        b=nAce8ga+PROGouUoidmVoa9MzzT4VKceza4OhOuRIrN+5JqaA3WkDPC5LeYqt3YuZl
+         2HDMZKlnXxn1GxbdtDj4lyz50v9F7oC2oDzNaI6940PB7TEop0jMQqAauMiaJIXqaIsi
+         y/bLhiO9HDfI4+5QFBjf6fqhm03lni+3xdGXkzzxj3UrbrdjWks+kde/XVOEiw4kiQSV
+         QhKvRfLnp0ekeVOI4extHqhCHK2JjEhKR6dCf5EvjVCuMe9mhUaWBqhHt+3X2csIE2au
+         oaAovgYAxbXS4YbjQqIKfJUEYQGiMGXYyrzj6FCFF8rURCWTujhqLNueJ4wQjUXI0t+8
+         N/tw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687528348; x=1690120348;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9S6OHdItsTA1JwEPFdtVcZWMFJNNUsFlvqd8wRr+OUY=;
+        b=drwDfs6lTBEhI5nBko8xEGZ7u2yY9g1BjMmI2Yfv8gI+zH/noCn7azLLfjIsl7Mzvo
+         DYis9TdC/vI9lc/c7+wlsXOd8cuuy1s0DUxy0l8bP3jDS9wmHWC16klk2rs9uBs+kCGp
+         xibtEVCg+2P97Pfr/gyxj6tNMFDRxs1bah7pWBJXvS45pImpzQKMfVNV9EWBM7D0/nAn
+         1pBE0ctcGnK324bOcStHhiKE+Vm1LESwYtVgIu4xrH5IL/Jub2WcQxkpRW9I2socMDGr
+         dW1T8bGIAfTsucuzBstaI7cyOVAjbgDDBksq+fcitAYTCFakUo7NrdrD2S7vj2uRjkrh
+         qEuw==
+X-Gm-Message-State: AC+VfDwc0gv3bmXBrq+X1TulJCk41Wo29C3blnu5RuVFd6eWKI9a7DEZ
+        0vkSAQQmSEGjePcIU6edf9tDrTGtFbAThvTolTsgIuoLuMjneLMPh64=
+X-Google-Smtp-Source: ACHHUZ5paNz1Cy14U0D10w5MW6F/Bi3rLn0+7A272F60E7dMKSk92KbX4Dy3Ud9Nb1GD+xk5zK+AHrmxfK2LTcZejxw=
+X-Received: by 2002:aa7:d1d4:0:b0:51a:5ae1:b6e5 with SMTP id
+ g20-20020aa7d1d4000000b0051a5ae1b6e5mr9949319edp.10.1687528347990; Fri, 23
+ Jun 2023 06:52:27 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230621-stupor-violin-930ccc7d7593@spud>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230613153415.350528-1-apatel@ventanamicro.com>
+ <20230613153415.350528-9-apatel@ventanamicro.com> <CAGETcx-hoPNanAwe4++6roqBXwSdc7z6Ei=-r9z6qFG1U7xVXg@mail.gmail.com>
+ <CAAhSdy3WH_nrKC-3AC4RHn9=crh6mPzaKO8jmAeo2j8-VJnT5g@mail.gmail.com>
+ <CAGETcx_DkuyZ+c50QmA7eu8vUByfVosABugZpd7R8NgR8Wc-FA@mail.gmail.com>
+ <CAK9=C2X4+aTs=+WdE0ba1qPDu67TiAKgE2Rx-qqD5+TJwYCKOQ@mail.gmail.com>
+ <CAGETcx_KJURkxEuZOgPZR=fA4CaHnAwwRfU_JLJ28absFWAtzg@mail.gmail.com>
+ <CAK9=C2XNAXaorxeNAB02o3_mYe3fsDSHS7rj=5+=q=d67Od60A@mail.gmail.com> <86mt0qbaxg.wl-maz@kernel.org>
+In-Reply-To: <86mt0qbaxg.wl-maz@kernel.org>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Fri, 23 Jun 2023 19:22:15 +0530
+Message-ID: <CAAhSdy3eW_urQ_716DdBp8SN2zFN3oMMOt695cW4EQbejraVhw@mail.gmail.com>
+Subject: Re: [PATCH v4 08/10] irqchip: Add RISC-V advanced PLIC driver
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     Anup Patel <apatel@ventanamicro.com>,
+        Saravana Kannan <saravanak@google.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Conor Dooley <conor@kernel.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, iommu@lists.linux.dev,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi folks,
+On Fri, Jun 23, 2023 at 6:19=E2=80=AFPM Marc Zyngier <maz@kernel.org> wrote=
+:
+>
+> [here, let me trim all of this nonsense...]
+>
+> On Fri, 23 Jun 2023 12:47:00 +0100,
+> Anup Patel <apatel@ventanamicro.com> wrote:
+> > > No. My previous email asking you to NOT use IRQCHIP_DECLARE() and
+> > > instead use IRQCHIP_PLATFORM_DRIVER_BEGIN/END() macros.
+> >
+> > I tried IRQCHIP_PLATFORM_DRIVER_BEGIN/END() macros but these
+> > macros are not suitable for APLIC driver because we need platform devic=
+e
+> > pointer in the APLIC probe() to create platform MSI device domain (refe=
+r,
+> > platform_msi_create_device_domain()).
+>
+> Oh come on. How hard have you tried? Have you even looked at the other
+> drivers in the tree to see how they solve this insurmountable problem
+> with a *single* line of code?
+>
+>         pdev =3D of_find_device_by_node(node);
+>
+> That's it.
 
-On Wed, Jun 21, 2023 at 04:17:24PM +0100, Conor Dooley wrote:
-> On Tue, Jun 20, 2023 at 11:14:32AM +0800, Eric Lin wrote:
-> > On Fri, Jun 16, 2023 at 6:13 PM Conor Dooley <conor.dooley@microchip.com> wrote:
-> > > On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
-> > > >  drivers/soc/sifive/Kconfig            |   9 +
-> > > >  drivers/soc/sifive/Makefile           |   1 +
-> > > >  drivers/soc/sifive/sifive_pl2.h       |  20 +
-> > > >  drivers/soc/sifive/sifive_pl2_cache.c |  16 +
-> > > >  drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++++++++
-> > >
-> > > Perf drivers should be in drivers/perf, no?
-> > >
-> > 
-> > But I grep perf_pmu_register(), it seems not all the pmu drivers are
-> > in drivers/perf as below:
-> > 
-> > arch/arm/mach-imx/mmdc.c:517:   ret =
-> > perf_pmu_register(&(pmu_mmdc->pmu), name, -1);
-> > arch/arm/mm/cache-l2x0-pmu.c:552:       ret =
-> > perf_pmu_register(l2x0_pmu, l2x0_name, -1);
-> > ...
-> > drivers/dma/idxd/perfmon.c:627: rc = perf_pmu_register(&idxd_pmu->pmu,
-> > idxd_pmu->name, -1);
-> > drivers/fpga/dfl-fme-perf.c:904:static int
-> > fme_perf_pmu_register(struct platform_device *pdev,
-> > drivers/fpga/dfl-fme-perf.c:929:        ret = perf_pmu_register(pmu, name, -1);
-> > ...
-> > drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:549:    ret =
-> > perf_pmu_register(&pmu_entry->pmu, pmu_name, -1);
-> > drivers/gpu/drm/i915/i915_pmu.c:1190:   ret =
-> > perf_pmu_register(&pmu->base, pmu->name, -1);
-> > drivers/hwtracing/coresight/coresight-etm-perf.c:907:   ret =
-> > perf_pmu_register(&etm_pmu, CORESIGHT_ETM_PMU_NAME, -1);
-> > drivers/hwtracing/ptt/hisi_ptt.c:895:   ret =
-> > perf_pmu_register(&hisi_ptt->hisi_ptt_pmu, pmu_name, -1);
-> > drivers/iommu/intel/perfmon.c:570:      return
-> > perf_pmu_register(&iommu_pmu->pmu, iommu_pmu->pmu.name, -1);
-> > drivers/nvdimm/nd_perf.c:309:   rc = perf_pmu_register(&nd_pmu->pmu,
-> > nd_pmu->pmu.name, -1);
-> > ...
-> > 
-> > I just wondering what kind of pmu drivers should be in drivers/perf
-> > and what kind of pmu drivers should not be in drivers/perf.
-> > Thanks.
-> 
-> To be quite honest, I have no idea.
-> I'm just a wee bit wary of taking anything that appears to have another
-> home via drivers/soc. I'd rather break drivers out, using the aux bus or
-> similar if need be, so that people who are knowledgeable in an area are
-> CCed on patches.
-> Hopefully Arnd or the Perf people can offer some guidance here. If it
-> does go into drivers/soc, it'll need a review from someone knowledgeable
-> of perf anyway.
+Please see the below diff. I tried the same thing but still the APLIC does
+not get probed without the FWNODE_FLAG_BEST_EFFORT flag. Please
+note that the current APLIC driver works unmodified for both DT and ACPI
+but using of_find_device_by_node() here breaks ACPI support.
 
-I'm not territorial about the perf drivers at all, but L2CC PMUs like this
-one probably fit pretty well in drivers/perf. The usual reason for putting
-drivers elsewhere is if the PMU is tightly coupled with some other IP which
-is handled by another subsystem (e.g. GPU).
+diff --git a/drivers/irqchip/irq-riscv-aplic.c
+b/drivers/irqchip/irq-riscv-aplic.c
+index 1e710fdf5608..9ae9e7fb905f 100644
+--- a/drivers/irqchip/irq-riscv-aplic.c
++++ b/drivers/irqchip/irq-riscv-aplic.c
+@@ -17,6 +17,7 @@
+ #include <linux/irqdomain.h>
+ #include <linux/module.h>
+ #include <linux/msi.h>
++#include <linux/of_platform.h>
+ #include <linux/platform_device.h>
+ #include <linux/smp.h>
 
-Will
+@@ -730,36 +731,12 @@ static int aplic_probe(struct platform_device *pdev)
+     return 0;
+ }
+
+-static const struct of_device_id aplic_match[] =3D {
+-    { .compatible =3D "riscv,aplic" },
+-    {}
+-};
+-
+-static struct platform_driver aplic_driver =3D {
+-    .driver =3D {
+-        .name        =3D "riscv-aplic",
+-        .of_match_table    =3D aplic_match,
+-    },
+-    .probe =3D aplic_probe,
+-};
+-builtin_platform_driver(aplic_driver);
+-
+-static int __init aplic_dt_init(struct device_node *node,
++static int __init aplic_of_init(struct device_node *dn,
+                 struct device_node *parent)
+ {
+-    /*
+-     * The APLIC platform driver needs to be probed early
+-     * so for device tree:
+-     *
+-     * 1) Set the FWNODE_FLAG_BEST_EFFORT flag in fwnode which
+-     *    provides a hint to the device driver core to probe the
+-     *    platform driver early.
+-     * 2) Clear the OF_POPULATED flag in device_node because
+-     *    of_irq_init() sets it which prevents creation of
+-     *    platform device.
+-     */
+-    node->fwnode.flags |=3D FWNODE_FLAG_BEST_EFFORT;
+-    of_node_clear_flag(node, OF_POPULATED);
+-    return 0;
++    return aplic_probe(of_find_device_by_node(dn));
+ }
+-IRQCHIP_DECLARE(riscv_aplic, "riscv,aplic", aplic_dt_init);
++
++IRQCHIP_PLATFORM_DRIVER_BEGIN(aplic)
++IRQCHIP_MATCH("riscv,aplic", aplic_of_init)
++IRQCHIP_PLATFORM_DRIVER_END(aplic)
+
+>
+> > Further, I tried setting the "suppress_bind_attrs" flag in "struct
+> > platform_driver aplic_driver" just like the
+> > IRQCHIP_PLATFORM_DRIVER_END() macro but this did not work.
+>
+> I'm not sure how relevant this is to the conversation.
+
+It's relevant because the only difference in the platform_driver
+registered by IRQCHIP_PLATFORM_DRIVER_END() and
+"struct platform_driver aplic_driver" is the "suppress_bind_attrs" flag.
+
+Unfortunately, setting the "suppress_bind_attrs" flag does not
+help as well.
+
+>
+>         M.
+>
+> --
+> Without deviation from the norm, progress is not possible.
+
+Regards,
+Anup
