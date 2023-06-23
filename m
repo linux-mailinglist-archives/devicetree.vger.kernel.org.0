@@ -2,87 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DEF6A73B1D4
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 09:41:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B40AF73B200
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 09:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231415AbjFWHlk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 03:41:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36582 "EHLO
+        id S231464AbjFWHrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 03:47:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231147AbjFWHli (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 03:41:38 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C13A1988
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:41:37 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-98802908fedso32922166b.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:41:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687506096; x=1690098096;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=t85IrXe5Gy1UtuYRgufXU6wb2wKm+nFKsdS4DPhPVgQ=;
-        b=RrNp3eAmEYHDnaS+qaGXeUSRDgZ6ochaH6qth2Ja2jmqqB3zX08crrrvAswX44Qkgf
-         3SUR+1Pc1obhjfbWjsEeUcjLcxUEvUZ9aibS0721fa/mNadEYSE/cwpERvUSv1jtOLyf
-         FuCWUG8wek1fLfS0umoBT60W7cU4PYCqRQ0B2Wh83AgUK2HiZ+1QHv0bHkCzOk1EfMDV
-         i+/S4dSLP5vp9O3HgxLNogBbvEeh8M+ibtIjCkVU5Qy8blujmDCOOucCdnxgvJcbCPuf
-         qorE3GWuIChtjboDAGcwbWA5FvpbE5MIDgLTVLRpnc7e/WF2Xu7mdUiTFGFIiDlzpI5X
-         kGRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687506096; x=1690098096;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=t85IrXe5Gy1UtuYRgufXU6wb2wKm+nFKsdS4DPhPVgQ=;
-        b=GHE+03VdSybC9KZYkO75rfXI0OMHeGsfg0ThlsDGN7PAwMSI3izgMal3bMKSZh6wmb
-         YNTWaRjK721NTVrONK9OpvL0D3/EWYG9Dh8pGCaGULaXP+hlW6MhrkE/jO8Qp4R1/MMi
-         SEhdTpGIEkzS27/LylLn5Pt2qGf6EJSrK2oPLbiz4QDifYEU9cmXv4T11xOvHlzpmKwa
-         iHTmjPL4DWSA5GCYMk7ErYlcpwGto10LLBbq80WNsl2DD686mB+BxhyqOf1kZ3zGC5Yc
-         H05O6/Katotc11BlescnVWOp7NnO+JZFIvnDdlHdftAlxNyZm4YSD+D6mi8lfiWLoWkM
-         94vw==
-X-Gm-Message-State: AC+VfDxPj0s/1bPKwz43vqJdev6zHlmf9LnC/IgXajN2IDaMswCEqphV
-        xWrPpw+eLIUfKXiYsCe2nnJ+Zw==
-X-Google-Smtp-Source: ACHHUZ7qmEzE5D18lr5WtPTSeFpa7/HaK75FX9sQiuH3eg93b2tgRs9jBlqBpuHolbtweB+TLOmIVg==
-X-Received: by 2002:a17:907:7ea6:b0:988:dfdc:5a29 with SMTP id qb38-20020a1709077ea600b00988dfdc5a29mr10368758ejc.5.1687506095911;
-        Fri, 23 Jun 2023 00:41:35 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id a26-20020a1709063a5a00b00988c93c85a5sm5620290ejf.183.2023.06.23.00.41.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 00:41:34 -0700 (PDT)
-Message-ID: <cdc19e56-54eb-5476-4e79-28b9dd7372a1@linaro.org>
-Date:   Fri, 23 Jun 2023 09:41:32 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v7 0/3] usb: misc: onboard_usb_hub: add support for
- Cypress HX3 USB 3.0 family
-Content-Language: en-US
-To:     Benjamin Bara <bbara93@gmail.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        with ESMTP id S231518AbjFWHrF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 03:47:05 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 012EE1BD2;
+        Fri, 23 Jun 2023 00:46:44 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 92DD461993;
+        Fri, 23 Jun 2023 07:46:44 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56C19C433C8;
+        Fri, 23 Jun 2023 07:46:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1687506403;
+        bh=a0pOrEs6Dye9TJ7HD+Kc6XKMTmSR8btj5brihc5L7wE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Jd+2cdgsxLgHWPrn0sTd4IFIohuKY/kWJrmOVT+qvY334jH5/DwcsMoAgadIaP0kH
+         yZ9ws0dQ8t749qDMVtG4fI/9BYDubrGKdZfsgiC4NVgp8mTVlLzV3qEggGNQfrif0F
+         CgDD4ydQLYamWEosgzyv68qZ/+fSsdPvUpJTjDkY=
+Date:   Fri, 23 Jun 2023 09:46:41 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Benjamin Bara <bbara93@gmail.com>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Benjamin Bara <benjamin.bara@skidata.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        Benjamin Bara <benjamin.bara@skidata.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
         linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v7 0/3] usb: misc: onboard_usb_hub: add support for
+ Cypress HX3 USB 3.0 family
+Message-ID: <2023062339-cold-turret-dacf@gregkh>
 References: <20230620-hx3-v7-0-f79b4b22a1bf@skidata.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <20230620-hx3-v7-0-f79b4b22a1bf@skidata.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 09:28, Benjamin Bara wrote:
+On Fri, Jun 23, 2023 at 09:28:11AM +0200, Benjamin Bara wrote:
 > Hi!
 > 
 > This series adds support for the Cypress HX3 USB 3.0 family (2/3). For
@@ -100,11 +76,14 @@ On 23/06/2023 09:28, Benjamin Bara wrote:
 > - 1/3: %ld -> %zu (thanks to lkp)
 > - Link to v6: https://lore.kernel.org/r/20230620-hx3-v6-0-6a1d6f8ce689@skidata.com
 
-Please give some time before resending bigger (non-trivial) patches. One
-per day is usually enough. I still see some kbuild robot reports - from
-this or previous patchset, so are you sure you compile tested it on few
-different platforms?
+Wow, that's a lot of respins so quickly, please relax and take your time
+and wait a few days before resending patch series as it causes
+cross-reviews of old versions, which has happened many times here
+already.
 
-Best regards,
-Krzysztof
+I'll wait for 6.5-rc1 to come out before looking at this again to give
+everything some time to settle down.
 
+thanks,
+
+greg k-h
