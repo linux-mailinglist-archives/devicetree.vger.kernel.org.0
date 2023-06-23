@@ -2,172 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AA6D173B138
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 09:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71BAD73B174
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 09:27:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230260AbjFWHUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 03:20:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55700 "EHLO
+        id S230091AbjFWH14 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 03:27:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230042AbjFWHUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 03:20:18 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C583A2684
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:20:10 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f954d7309fso474835e87.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:20:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1687504809; x=1690096809;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ImZnIaT63i6HYM9TPUGnMEDuzzS3iTPlc0kdGdrlb5A=;
-        b=3Yhpu9WhcwMjEy5oQYEaH2RAw8HdPk8Sv/n2Q8JSF6EqCQEVVxXprA1frXJEgGN1U9
-         hVOp0nvyddcDIqhQ50PyHfp5iFb75PLHASG4IVuZCJ4BPUW2/hgLHtYRZokHtp6ol4lI
-         +G8YXJ22ryzI8Piz96B/lLyl2J0Nd44LIkFaMAAd3oKphqY+ZSFbEhJt1XzFVZlGZO/+
-         mGi5MoKNowW0VaLuUZnrEkoAUeVt2ccKfKi7aiTIU5hUYtQISqtl1oPMM7WPKTeWKfFd
-         s9J5O34Z2RnllHP+kfAoFIyyOoWvAD7s/rSkz4XT08y9TKiJbr/7fc72bOACPdS21NgY
-         KuTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687504809; x=1690096809;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ImZnIaT63i6HYM9TPUGnMEDuzzS3iTPlc0kdGdrlb5A=;
-        b=gCwDwkoWotd703WrxMvc9tLbpFXZNfwgcpNSQdgCX92Pyu2DizylcrQxOfnsoc86tU
-         tAiZVyLbI2vJBSG4gwFbK+RoRub5c8qw24/FRUDn3lW73YHGPPhI1G3qvfJA/JOmoIua
-         ohB1bc5va25huNrpGSR2sVxqWsU+gU6VvdOrgU59F2LC6+jNRUNjCOsOk/zMeEjNodOJ
-         w09f1RIu66bTfTGI2wJ42LDuKENXK24iV8CSs7tkGvFRT027Xzd1V5kCrCeQKumyy5Rj
-         RaCD75TeE5MuatNsFGYCMZaJoCUa+zi2cL4yI/pEx4Um9oLq5QU8veVIkmi8CtuNHwFb
-         7c7g==
-X-Gm-Message-State: AC+VfDwgt8+Yi7UJQY04YmXVQgyCQ/HamRRHVOQwAVU7GceOLDNQSwDk
-        Arc+gAXL0tt+b8VXBey8YE4ddc8jnt4oDpSYFGMGdPdeIhbTxycztnI=
-X-Google-Smtp-Source: ACHHUZ4bflw+9FBpnbPDHod6ikRPIK3fJONA4szxg89SYbr1d0RYYS1tjPE/1SywatKL1fnzbFURrYMfl8Iwm3F9A30=
-X-Received: by 2002:ac2:4e0a:0:b0:4f6:56ca:36fc with SMTP id
- e10-20020ac24e0a000000b004f656ca36fcmr9407801lfr.6.1687504808812; Fri, 23 Jun
- 2023 00:20:08 -0700 (PDT)
+        with ESMTP id S229647AbjFWH14 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 03:27:56 -0400
+Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 311301BC1
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 00:27:55 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 1A4063F663;
+        Fri, 23 Jun 2023 09:27:53 +0200 (CEST)
+Date:   Fri, 23 Jun 2023 09:27:51 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Robert Foss <rfoss@kernel.org>, linux-arm-msm@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/3] dt-bindings: display: msm: sm8350-mdss: document
+ displayport controller subnode
+Message-ID: <xlr3rmz7wy5o3ka6cxo2tzl3hqbnk4vkm7jsgjdhyimiyyqnfr@pjjwjg37675s>
+References: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-0-8bf386b373eb@linaro.org>
+ <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-1-8bf386b373eb@linaro.org>
 MIME-Version: 1.0
-References: <20230621215457.11297-1-alex@shruggie.ro> <20230622021303.GA68330-robh@kernel.org>
-In-Reply-To: <20230622021303.GA68330-robh@kernel.org>
-From:   Alexandru Ardelean <alex@shruggie.ro>
-Date:   Fri, 23 Jun 2023 10:19:57 +0300
-Message-ID: <CAH3L5Qp3q=K5w+LbccZBJqvkz98WgFLqg__y7Be_=-2GsWQs+Q@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: backlight: document new property default-brightness-level
-To:     Rob Herring <robh@kernel.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-fbdev@vger.kernel.org, lee@kernel.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        deller@gmx.de, Yannick Fertre <yannick.fertre@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230621-topic-sm8x50-upstream-mdss-bindings-dp-subnode-v1-1-8bf386b373eb@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 22, 2023 at 5:13=E2=80=AFAM Rob Herring <robh@kernel.org> wrote=
-:
->
-> On Thu, Jun 22, 2023 at 12:54:56AM +0300, Alexandru Ardelean wrote:
-> > From: Yannick Fertre <yannick.fertre@foss.st.com>
-> >
-> > Add documentation for new default-brightness-level property.
->
-> Why?
+On 2023-06-21 11:26:25, Neil Armstrong wrote:
+> Document the optional document displayport controller subnode
 
-I'll admit, I liked the fact that the "default-brightness-level" is
-more uniform in the space of backlights.
-The "default-on" property is more specific to the gpio-backlight driver.
-And then there's gpio hogging that could also work.
+document the optional *document*?  Same in the other patches IIRC.
 
->
-> >
-> > Signed-off-by: Yannick Fertre <yannick.fertre@foss.st.com>
-> > Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
-> > ---
-> >
-> > Link to original patch:
-> >   https://github.com/STMicroelectronics/linux/commit/c4067d7bd883c6fa14=
-ffd49892c4ce663cdafe98
-> >
-> > Changelog v1 -> v2:
-> > * https://lore.kernel.org/dri-devel/20230519200520.10657-2-alex@shruggi=
-e.ro/
-> > * removed 'brightness-levels' reference
-> > * updated doc-text for 'default-brightness-level'
-> > * updated doc-text for 'default-on'
-> > * added 'minimum' & 'maximum' to 'default-brightness-level' property
-> > * removed 'Reviewed-by: Philippe CORNU <philippe.cornu@foss.st.com>' as
-> >   requested
-> > * patch is first in series of 2 patches (was second patch)
-> >
-> >  .../bindings/leds/backlight/gpio-backlight.yaml    | 14 +++++++++++++-
-> >  1 file changed, 13 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/leds/backlight/gpio-back=
-light.yaml b/Documentation/devicetree/bindings/leds/backlight/gpio-backligh=
-t.yaml
-> > index 584030b6b0b9..2da6552a207c 100644
-> > --- a/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.y=
-aml
-> > +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.y=
-aml
-> > @@ -20,9 +20,21 @@ properties:
-> >      maxItems: 1
-> >
-> >    default-on:
-> > -    description: enable the backlight at boot.
-> > +    description:
-> > +      The default power state of the backlight at boot.
-> >      type: boolean
-> >
-> > +  default-brightness-level:
-> > +    description:
-> > +      The default brightness level on device init. The value can be 0 =
-or 1.
-> > +      If omitted, the value is 1. In the context of the "gpio-backligh=
-t" driver
-> > +      the effect of this setting will be that the backlight is on/off.
-> > +      The difference between this setting and "default-on" is that thi=
-s handles
-> > +      brightness, while "default-on" handles the power setting of the =
-device.
->
-> What power setting? You only have 1 GPIO to control here which is 2
-> states. I fail to see why you need 6 possible states with all the
-> combinations of 2 properties.
+- Marijn
 
-So, the "default-on" bool gets converted to backlight power settings,
-which eventually gets converted back to GPIO values (at some point).
-Which sounds quirky (when saying/writing it).
-
-But, yeah.
-That's one thing that also made me a bit undecided to send this.
-On the one hand I like the uniformity it brings.
-On the other hand, because there is the legacy behavior (the
-"default-on" property, and the fact that we can use the GPIO DT
-settings to control this) just explodes complexity/quirks.
-
-We can probably just drop this.
-I'll also admit that my doc-writing skills aren't too great.
-
-Thanks
-Alex
-
->
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    minimum: 0
-> > +    maximum: 1
-> > +
-> >  required:
-> >    - compatible
-> >    - gpios
-> > --
-> > 2.40.1
-> >
+> of the SM8350 MDSS.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+> index 79a226e4cc6a..f2cbeb435f1b 100644
+> --- a/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/qcom,sm8350-mdss.yaml
+> @@ -52,6 +52,12 @@ patternProperties:
+>        compatible:
+>          const: qcom,sm8350-dpu
+>  
+> +  "^displayport-controller@[0-9a-f]+$":
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        const: qcom,sm8350-dp
+> +
+>    "^dsi@[0-9a-f]+$":
+>      type: object
+>      properties:
+> 
+> -- 
+> 2.34.1
+> 
