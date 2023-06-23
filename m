@@ -2,76 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D58F773BC43
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 18:03:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D9B273BC53
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 18:06:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230168AbjFWQDW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 12:03:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33240 "EHLO
+        id S231636AbjFWQGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 12:06:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjFWQDV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 12:03:21 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE5532113
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 09:03:19 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b45e6e1b73so14028861fa.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 09:03:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google; t=1687536198; x=1690128198;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0UUUtE/gOtOOjIJp13FnV3LETjhgWLdpmIzdJhfUTGs=;
-        b=bgpuJMih2D6iVGs9Xa5gO+96mNDc14lvDPz0FcXhPj6i+71o9Y8XOK1/4zunB6U0ES
-         pVIkfpaQlP/oavJ7LNyDxzlF81wUlZXStHvDxEQOsBHvoN792/suVDOQGNUu1K0CC2ej
-         H4QhvVNvWhHzPd+DcvvBM0l/QezfgErqLTCHl2XL9WJmQUOllhryfx9fEDC5nNCBwNnP
-         aeCN46z/bUoQnVEoWCQ3ZZWGVzhVAaKLLe/PUB5CRcGramM9GW7nl6j8Gddi7Xuajgir
-         StLAN6Q1FZQIm/Tp/vC9rNlzbPpsQ/ukLlIN2tihbfr0PkjksUDK4wHDf4UicPwRsZmx
-         JcUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687536198; x=1690128198;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=0UUUtE/gOtOOjIJp13FnV3LETjhgWLdpmIzdJhfUTGs=;
-        b=ZeRT1OAoIwLOWNp2+ji9znH5BZPOmLLUAtnQhjvketuJbrVomvFIgN+pNyyx3Febpg
-         Xmg7yzNV5mBh8bFZPTggD+MLDRE5vQbAk4hPn7TtVdKu5i0U3UiGFxNwiSrXw3u5CVlA
-         qTq0hHXGHcuulT4AQvRBe6s0x6c7k7t555eLFVUiJVGdU/o/fZ2YUGGaBhIQw5uf3D+W
-         nhi7PwkzYP2Ciq4sYubZHE9iSuELJRpkiuJ++G1sDGvPoWlwArp9Cet1t+6Al38xzuMp
-         wPqo0pK54DjtZ4xjuJeoumICTZwFLZvjX7/9hacxo1zs7pgv00rx/OCLaAgUOZkma+62
-         RsEg==
-X-Gm-Message-State: AC+VfDxPmzQqaQqTo2KTrJQ0YB1ERzJ6Iy1ZXM1Rjmfm3QsPTtzIz21h
-        B/7jU8FS2GdIbm+DaXyFIfqCpSq9yQG8nNaZGBlDtw==
-X-Google-Smtp-Source: ACHHUZ5gs63B4OgKe4Z9bhc9XG9nQHRewAACqLwt9yH/6emVAQY9Sd7+t/U547Rfa15qOqIHkxiE83q7UsHMNWYeVOk=
-X-Received: by 2002:a2e:96d0:0:b0:2b4:7965:419f with SMTP id
- d16-20020a2e96d0000000b002b47965419fmr10755146ljj.40.1687536197874; Fri, 23
- Jun 2023 09:03:17 -0700 (PDT)
+        with ESMTP id S231415AbjFWQGN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 12:06:13 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC346210A;
+        Fri, 23 Jun 2023 09:06:12 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 578C661A8D;
+        Fri, 23 Jun 2023 16:06:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B9CC2C433C8;
+        Fri, 23 Jun 2023 16:06:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687536371;
+        bh=1E90KwmrUhKXNTTm2SbNNwpufeK6ASp2c6/zr7HTCik=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ANHlBmST7NSB15AbS9Oxi3q0Z5qE4FwhfC95Y2y4CKodA/+Nn8IYu3U3k4SQg06k1
+         9qTgb0jWNRiPV6iNmXdriKGMt6EeCVgUfGhkPt8zzBztvxX0OaMz/uRxH/qMEUhHmb
+         jETUspbKQvaafjLjOaXtjaskPp8vaCR7D1nvnjFKGOrw1PtmwmpZpS3MtnmyvIsnW8
+         7K5HwL6ZVy2VY4+x2VXjm8KDJQFuLUUxhSDfaFslgHGpuFiCtwjQUWms1Au89okW2D
+         gM8N2MS9iVmwzmVcs37ceavmRmpo6/jljPNNInCehw8A1cZ24UJp0OIYFrkvzJunsE
+         vsDzrK1yAv6SQ==
+Date:   Fri, 23 Jun 2023 17:06:05 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Aleksandr Shubin <privatesub2@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: pwm: Add binding for Allwinner
+ D1/T113-S3/R329 PWM controller
+Message-ID: <20230623-chrome-squishy-3b501a44eda9@spud>
+References: <20230623150012.1201552-1-privatesub2@gmail.com>
+ <20230623150012.1201552-2-privatesub2@gmail.com>
 MIME-Version: 1.0
-References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-3-eric.lin@sifive.com>
- <20230616-revision-speed-a83dc926b334@wendy> <CAPqJEFo5genyjY7qJBaESzeppbEnTiDe9qzv98ETLhWfMZeG4A@mail.gmail.com>
- <20230621-stupor-violin-930ccc7d7593@spud> <20230623132402.GA17369@willie-the-truck>
-In-Reply-To: <20230623132402.GA17369@willie-the-truck>
-From:   Eric Lin <eric.lin@sifive.com>
-Date:   Sat, 24 Jun 2023 00:03:05 +0800
-Message-ID: <CAPqJEFp0r5tZJZ48nLakRd92zNf1D93hbTeGUsTyVuF+JAsJEw@mail.gmail.com>
-Subject: Re: [PATCH 2/3] soc: sifive: Add SiFive private L2 cache PMU driver
-To:     Will Deacon <will@kernel.org>
-Cc:     Conor Dooley <conor@kernel.org>,
-        Conor Dooley <conor.dooley@microchip.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
-        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
-        chenhuacai@kernel.org, baolu.lu@linux.intel.com,
-        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
-        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
-        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dslin1010@gmail.com, Greentime Hu <greentime.hu@sifive.com>,
-        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>,
-        mark.rutland@arm.com, arnd@arndb.de
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="KULVfyZvgvI/nhWt"
+Content-Disposition: inline
+In-Reply-To: <20230623150012.1201552-2-privatesub2@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,86 +73,190 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Will,
 
-On Fri, Jun 23, 2023 at 9:24=E2=80=AFPM Will Deacon <will@kernel.org> wrote=
-:
->
-> Hi folks,
->
-> On Wed, Jun 21, 2023 at 04:17:24PM +0100, Conor Dooley wrote:
-> > On Tue, Jun 20, 2023 at 11:14:32AM +0800, Eric Lin wrote:
-> > > On Fri, Jun 16, 2023 at 6:13=E2=80=AFPM Conor Dooley <conor.dooley@mi=
-crochip.com> wrote:
-> > > > On Fri, Jun 16, 2023 at 02:32:09PM +0800, Eric Lin wrote:
-> > > > >  drivers/soc/sifive/Kconfig            |   9 +
-> > > > >  drivers/soc/sifive/Makefile           |   1 +
-> > > > >  drivers/soc/sifive/sifive_pl2.h       |  20 +
-> > > > >  drivers/soc/sifive/sifive_pl2_cache.c |  16 +
-> > > > >  drivers/soc/sifive/sifive_pl2_pmu.c   | 669 ++++++++++++++++++++=
-++++++
-> > > >
-> > > > Perf drivers should be in drivers/perf, no?
-> > > >
-> > >
-> > > But I grep perf_pmu_register(), it seems not all the pmu drivers are
-> > > in drivers/perf as below:
-> > >
-> > > arch/arm/mach-imx/mmdc.c:517:   ret =3D
-> > > perf_pmu_register(&(pmu_mmdc->pmu), name, -1);
-> > > arch/arm/mm/cache-l2x0-pmu.c:552:       ret =3D
-> > > perf_pmu_register(l2x0_pmu, l2x0_name, -1);
-> > > ...
-> > > drivers/dma/idxd/perfmon.c:627: rc =3D perf_pmu_register(&idxd_pmu->p=
-mu,
-> > > idxd_pmu->name, -1);
-> > > drivers/fpga/dfl-fme-perf.c:904:static int
-> > > fme_perf_pmu_register(struct platform_device *pdev,
-> > > drivers/fpga/dfl-fme-perf.c:929:        ret =3D perf_pmu_register(pmu=
-, name, -1);
-> > > ...
-> > > drivers/gpu/drm/amd/amdgpu/amdgpu_pmu.c:549:    ret =3D
-> > > perf_pmu_register(&pmu_entry->pmu, pmu_name, -1);
-> > > drivers/gpu/drm/i915/i915_pmu.c:1190:   ret =3D
-> > > perf_pmu_register(&pmu->base, pmu->name, -1);
-> > > drivers/hwtracing/coresight/coresight-etm-perf.c:907:   ret =3D
-> > > perf_pmu_register(&etm_pmu, CORESIGHT_ETM_PMU_NAME, -1);
-> > > drivers/hwtracing/ptt/hisi_ptt.c:895:   ret =3D
-> > > perf_pmu_register(&hisi_ptt->hisi_ptt_pmu, pmu_name, -1);
-> > > drivers/iommu/intel/perfmon.c:570:      return
-> > > perf_pmu_register(&iommu_pmu->pmu, iommu_pmu->pmu.name, -1);
-> > > drivers/nvdimm/nd_perf.c:309:   rc =3D perf_pmu_register(&nd_pmu->pmu=
-,
-> > > nd_pmu->pmu.name, -1);
-> > > ...
-> > >
-> > > I just wondering what kind of pmu drivers should be in drivers/perf
-> > > and what kind of pmu drivers should not be in drivers/perf.
-> > > Thanks.
-> >
-> > To be quite honest, I have no idea.
-> > I'm just a wee bit wary of taking anything that appears to have another
-> > home via drivers/soc. I'd rather break drivers out, using the aux bus o=
-r
-> > similar if need be, so that people who are knowledgeable in an area are
-> > CCed on patches.
-> > Hopefully Arnd or the Perf people can offer some guidance here. If it
-> > does go into drivers/soc, it'll need a review from someone knowledgeabl=
-e
-> > of perf anyway.
->
-> I'm not territorial about the perf drivers at all, but L2CC PMUs like thi=
-s
-> one probably fit pretty well in drivers/perf. The usual reason for puttin=
-g
-> drivers elsewhere is if the PMU is tightly coupled with some other IP whi=
-ch
-> is handled by another subsystem (e.g. GPU).
->
-Thanks for the explanation. OK, I'll put the pl2 cache PMU driver in
-drivers/perf.
+--KULVfyZvgvI/nhWt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best Regards,
-Eric Lin.
+Hey Alexksandr,
 
-> Will
+On Fri, Jun 23, 2023 at 05:59:59PM +0300, Aleksandr Shubin wrote:
+> Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
+> controller witch is different from the previous pwm-sun4i.
+>=20
+> The D1 and T113 are identical in terms of peripherals,
+> they differ only in the architecture of the CPU core, and
+> even share the majority of their DT. Because of that,
+> using the same compatible makes sense.
+> The R329 is a different SoC though, and should have
+> a different compatible string added, especially as there
+> is a difference in the number of channels.
+>=20
+> D1 and T113s SoCs have one PWM controller with 8 channels.
+> R329 SoC has two PWM controllers in both power domains, one of
+> them has 9 channels (CPUX one) and the other has 6 (CPUS one).
+>=20
+> Add a device tree binding for them.
+>=20
+> Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
+> ---
+>  .../bindings/pwm/allwinner,sun20i-pwm.yaml    | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20=
+i-pwm.yaml
+>=20
+> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.y=
+aml b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> new file mode 100644
+> index 000000000000..eec9d1dd67c2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/allwinner,sun20i-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Allwinner D1, T113-S3 and R329 PWM
+> +
+> +maintainers:
+> +  - Aleksandr Shubin <privatesub2@gmail.com>
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: allwinner,sun20i-d1-pwm
+> +      - items:
+> +          - const: allwinner,sun20i-r329-pwm
+> +          - const: allwinner,sun20i-d1-pwm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#pwm-cells":
+> +    const: 3
+> +
+> +  clocks:
+> +    items:
+> +      - description: 24 MHz oscillator
+> +      - description: Bus Clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: hosc
+> +      - const: bus
+> +
+> +  resets:
+> +    maxItems: 1
+> +    description: module reset
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: allwinner,sun20i-r329-pwm
+> +
+> +    then:
+> +      properties:
+> +        allwinner,pwm-channels:
+> +          $ref: /schemas/types.yaml#/definitions/uint32
+> +          description: The number of PWM channels configured for this in=
+stance
+> +          enum: [6, 9]
+
+Last time I acked something like this, Krzysztof complained about
+defining properties inside conditionals. This diff avoids the
+definition in the conditional, while also disallowing it on the D1.
+Thoughts?
+
+diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yam=
+l b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+index eec9d1dd67c2..6c04aaa5e9ab 100644
+--- a/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+@@ -37,6 +37,11 @@ properties:
+     maxItems: 1
+     description: module reset
+=20
++  allwinner,pwm-channels:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: The number of PWM channels configured for this instance
++    enum: [6, 9]
++
+ allOf:
+   - $ref: pwm.yaml#
+=20
+@@ -47,15 +52,14 @@ allOf:
+             const: allwinner,sun20i-r329-pwm
+=20
+     then:
+-      properties:
+-        allwinner,pwm-channels:
+-          $ref: /schemas/types.yaml#/definitions/uint32
+-          description: The number of PWM channels configured for this inst=
+ance
+-          enum: [6, 9]
+-
+       required:
+         - allwinner,pwm-channels
+=20
++    else:
++      not:
++        required:
++          - allwinner,pwm-channels
++
+ required:
+   - compatible
+   - reg
+
+
+> +
+> +      required:
+> +        - allwinner,pwm-channels
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#pwm-cells"
+> +  - clocks
+> +  - clock-names
+> +  - resets
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/sun20i-d1-ccu.h>
+> +    #include <dt-bindings/reset/sun20i-d1-ccu.h>
+> +
+> +    pwm: pwm@2000c00 {
+> +      compatible =3D "allwinner,sun20i-d1-pwm";
+> +      reg =3D <0x02000c00 0x400>;
+> +      clocks =3D <&dcxo>, <&ccu CLK_BUS_PWM>;
+> +      clock-names =3D "hosc", "bus";
+> +      resets =3D <&ccu RST_BUS_PWM>;
+> +      #pwm-cells =3D <0x3>;
+> +    };
+> +
+> +...
+> --=20
+> 2.25.1
+>=20
+
+--KULVfyZvgvI/nhWt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJXC7QAKCRB4tDGHoIJi
+0uBkAQCILXb1WLhuGxMe3N91d0Gdimyg2vHC9UVU2pxuqueUDQEApJu97z7JoBHd
+cVe5e774+GSm5eVJm9VFGf0vSj5BRw4=
+=1G5Q
+-----END PGP SIGNATURE-----
+
+--KULVfyZvgvI/nhWt--
