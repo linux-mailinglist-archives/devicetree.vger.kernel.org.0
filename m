@@ -2,154 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EFB7773B64F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6D8C73B654
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 13:33:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231274AbjFWLcq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 07:32:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34172 "EHLO
+        id S230387AbjFWLdf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 07:33:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229745AbjFWLcp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:32:45 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BB8295D
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:32:17 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-311099fac92so646290f8f.0
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:32:17 -0700 (PDT)
+        with ESMTP id S229745AbjFWLde (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 07:33:34 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91D9AC6
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:33:33 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b47742de92so9580831fa.0
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 04:33:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687519930; x=1690111930;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=P9ZwMVs40czKD5XDSrs3iEN9LA7uWnLI8CR5BnKA0UY=;
-        b=CBjeN7Yvl5QDbituklmqZYeodwleXYQass+yos6URLcHssixFhCMZxvF+jOiJBronY
-         TUc+FzMyHVmqqqWiV9V+k5l6twTk122i3RyDlVkNHI3MWhcxB6hJgbF81mldq2SB0/o4
-         +TSgcFT7VMD+sL+b8QR5RByGb5dEfhRF0t4C3w3BJBiJ2+UdO5VsrRvXs3LNp6ofdMjA
-         kDgPzaJc8xIdR8XyFaJuykoj1vS04qnfS239pyKpQrtH4itrndfzksqWEYdq6rF8AQq/
-         PhsCgdhin9pB5O5vUA8m9f+mNTumHP8dApeX+y6jtCT4yI/ogr8Conin9X3SJ2MG2PpU
-         0u9A==
+        d=rasmusvillemoes.dk; s=google; t=1687520012; x=1690112012;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=KL5Es5yoKODcRM+6rC2Tw/Cdo+3M+IOhet0H/IGNQNk=;
+        b=Q/qy0dXyCmDSnYgzmdOwO5Rps42C2f9Dvp3GrgNQJfFcyu3WWQ/1KOPZoLZLKfy87s
+         iWPasAdoPG4K/dz8/jA/OqpXCK+uAdOyykRWtxx7T8MtcALA7E9U8kL4kkk8qIw81pet
+         iKISr4gQQXEevNoLmM185WwvtmZDRMGD8TfpI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687519930; x=1690111930;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P9ZwMVs40czKD5XDSrs3iEN9LA7uWnLI8CR5BnKA0UY=;
-        b=Nx18AuNiPUSvSD8CDzI2tcu8m1c15oqkCH2iDAFUp7FCmaGCae96uNNy32ozsv4/3I
-         FeceYFV758suul3+sbDnLwh62ZPEB4VtFGEDYL4KKIhPAY9PwBjhHeyxxrrJX+C6CrbI
-         vN+DkQFM60ouucz6wt+0YV6DYYylBzQfT3paahh/TnS4NI24Dk4dAGv2/U5p5F1EtPPo
-         ow5WcBGjlVpKpDUDdojXZ3OU1BTUpyl2fBTpVFiQ9FypjPuHC07PpOZWUqiQrgj1/uJy
-         4lHcFv3A1ECxLMuV2pIwN+0YuIOUHFXbi7gRC1M9JoiBbkYXNBz6hKlIkXfftEBBFn1J
-         Z67Q==
-X-Gm-Message-State: AC+VfDzMKUXmcUcEhDoU+unrZd5J7S+0eSo5qjSgIkgI/80YYMDFO5pI
-        TcKSb66P9fyHRGd+9kGyuvPRww==
-X-Google-Smtp-Source: ACHHUZ4yGE7Jj/528UNR5dVYTd1jl6cieW71vsAHwRVCrwh0+5oIyPiflT16AwEbtFUCmIfx+HhwlQ==
-X-Received: by 2002:a5d:5751:0:b0:30f:c943:f925 with SMTP id q17-20020a5d5751000000b0030fc943f925mr16966957wrw.49.1687519929755;
-        Fri, 23 Jun 2023 04:32:09 -0700 (PDT)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id x7-20020a5d54c7000000b0031270cf1904sm9365570wrv.59.2023.06.23.04.32.08
+        d=1e100.net; s=20221208; t=1687520012; x=1690112012;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=KL5Es5yoKODcRM+6rC2Tw/Cdo+3M+IOhet0H/IGNQNk=;
+        b=C7cQkAcGrMzJJRiwI3CM+17pOUOzeFqs0IfLI+sIceTKJmG5xa7+LQyC0YLO+cTFxO
+         nuY6nFG/zr+uHRSFEups+uU0UZ4ETjbUY9A41SXrxOmYg7A5PzGhwsoITtzsSlpXfnVs
+         4XbebVODRrxkyl+szce/JVkk1PAVkwTEVe7yuEBE3JlXNUbYZ95K4PXSYmGD6CeRZUQw
+         7CQ6M3KK5/Jd1Njf4zrpFYNA7yFbUvQRnolWl11jHkvouNw5V/oOfWM64jZdXgTtwjqg
+         Z/I9euSp2uDbP4on+mHrcoJ+hhJYs85lRLklI35WQkDqmd2JF8lVe4guuFxgEDnGiw7R
+         Bn5g==
+X-Gm-Message-State: AC+VfDwbwFIGC5mY3cHlNmjWK5I1l2M68Cikr8/in94D8OBSdcsSNHgR
+        v4cJWmPpSVrdIakLgtN5HixbJw==
+X-Google-Smtp-Source: ACHHUZ7BUw7tqddVi82XfXFElJrN5r7xeUFrxWqsoaePUeB6rPEEAmG8j++sT6mIUJmh/Jah5qMZEw==
+X-Received: by 2002:a2e:9e44:0:b0:2b3:4cff:60ce with SMTP id g4-20020a2e9e44000000b002b34cff60cemr12557049ljk.0.1687520011672;
+        Fri, 23 Jun 2023 04:33:31 -0700 (PDT)
+Received: from prevas-ravi.prevas.se ([81.216.59.226])
+        by smtp.gmail.com with ESMTPSA id n10-20020a2e720a000000b002b471efb253sm1711605ljc.46.2023.06.23.04.33.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 04:32:09 -0700 (PDT)
-Date:   Fri, 23 Jun 2023 12:32:07 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Alexandru Ardelean <alex@shruggie.ro>
-Cc:     Rob Herring <robh@kernel.org>, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        lee@kernel.org, jingoohan1@gmail.com, pavel@ucw.cz,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        deller@gmx.de, Yannick Fertre <yannick.fertre@foss.st.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: backlight: document new property
- default-brightness-level
-Message-ID: <20230623113207.GB4426@aspen.lan>
-References: <20230621215457.11297-1-alex@shruggie.ro>
- <20230622021303.GA68330-robh@kernel.org>
- <CAH3L5Qp3q=K5w+LbccZBJqvkz98WgFLqg__y7Be_=-2GsWQs+Q@mail.gmail.com>
+        Fri, 23 Jun 2023 04:33:31 -0700 (PDT)
+From:   Rasmus Villemoes <linux@rasmusvillemoes.dk>
+To:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rasmus Villemoes <linux@rasmusvillemoes.dk>
+Subject: [PATCH 0/2] iio: ad74413r: allow configuring digital input threshold
+Date:   Fri, 23 Jun 2023 13:33:24 +0200
+Message-Id: <20230623113327.1062170-1-linux@rasmusvillemoes.dk>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAH3L5Qp3q=K5w+LbccZBJqvkz98WgFLqg__y7Be_=-2GsWQs+Q@mail.gmail.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 23, 2023 at 10:19:57AM +0300, Alexandru Ardelean wrote:
-> On Thu, Jun 22, 2023 at 5:13 AM Rob Herring <robh@kernel.org> wrote:
-> > > +++ b/Documentation/devicetree/bindings/leds/backlight/gpio-backlight.yaml
-> > >    default-on:
-> > > -    description: enable the backlight at boot.
-> > > +    description:
-> > > +      The default power state of the backlight at boot.
-> > >      type: boolean
-> > >
-> > > +  default-brightness-level:
-> > > +    description:
-> > > +      The default brightness level on device init. The value can be 0 or 1.
-> > > +      If omitted, the value is 1. In the context of the "gpio-backlight" driver
-> > > +      the effect of this setting will be that the backlight is on/off.
-> > > +      The difference between this setting and "default-on" is that this handles
-> > > +      brightness, while "default-on" handles the power setting of the device.
-> >
-> > What power setting? You only have 1 GPIO to control here which is 2
-> > states.
+The reset default value of the DIN_THRESH register is 0x0, meaning
+that the threshold for the digital input channels is 1/60 of AVDD. In
+most applications, that value is way too low and susceptible to noise.
 
-There are at least three states: On/Off/HiZ .
+These patches introduce a new DT property,
+digital-input-threshold-microvolt, which if present will be used as
+the threshold in "16V" mode, i.e. as an absolute threshold, not
+proportional to AVDD.
 
-Currently the DT description isn't acually rich enough to allow drivers
-to safely use the HiZ state so that is not why this change is potentially
-useful today (but does illustrate why it is not "wrong" to put it on the
-h/ware description).
+If someone needs the threshold to be proportional to AVDD, but being
+say 15/60, another DT property (mutually exclusive with this one)
+could be introduced. But since I don't need that and can't come up
+with a good name ('digital-input-threshold-60ths-avdd' ?) I punt that
+problem to whoever needs it.
 
+Rasmus Villemoes (2):
+  dt-bindings: iio: ad74413r: add binding for digital input threshold
+  iio: addac: ad74413r: wire up digital-input-threshold-microvolt DT
+    property
 
-> > I fail to see why you need 6 possible states with all the
-> > combinations of 2 properties.
->
-> So, the "default-on" bool gets converted to backlight power settings,
-> which eventually gets converted back to GPIO values (at some point).
-> Which sounds quirky (when saying/writing it).
+ .../bindings/iio/addac/adi,ad74413r.yaml      | 10 ++++++++++
+ drivers/iio/addac/ad74413r.c                  | 20 +++++++++++++++++++
+ 2 files changed, 30 insertions(+)
 
-Modern DT practice is to for the display to link to backlight. This
-gives display control over power state (so backlight automatically
-follows the display power state). On such systems the backlight will
-be turned "on" when the display hardware comes up (regardless of whether
-or not default-on is set).
+-- 
+2.37.2
 
-Thus this control covers the case where we have a display that is
-readable when the GPIO is off (e.g. transflexive LCD or epaper).
-A display that is readable with the GPIO off means the default
-brightness brightness at boot can meaningfully be zero. In this
-case the backlight is nominally on but the GPIO is off.
-
-In short, this becomes part of the hardware description, rather than
-merely being a driver feature, due to the effect of linking display
-to backlight in the DT.
-
-Note also that most backlights do expose on/off via DT for the same
-reasons (when the off and zero states both result in the backlight
-output pin doing physically the same thing).
-
-
-> But, yeah.
-> That's one thing that also made me a bit undecided to send this.
-> On the one hand I like the uniformity it brings.
-> On the other hand, because there is the legacy behavior (the
-> "default-on" property, and the fact that we can use the GPIO DT
-> settings to control this) just explodes complexity/quirks.
->
-> We can probably just drop this.
-> I'll also admit that my doc-writing skills aren't too great.
-
-It may be potentially useful for people building kit with sunlight
-readable displays and trivial backlights as a backup in the dark.
-
-Of course if the pin the backlight is connected to is PWM capable
-then the PWM backlight is probably a better bet ;-) .
-
-
-Daniel.
