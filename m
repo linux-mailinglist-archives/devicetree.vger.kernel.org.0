@@ -2,423 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E14A173BE0E
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 19:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A41E73BE19
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 19:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjFWRu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 13:50:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59138 "EHLO
+        id S231356AbjFWRxr convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 23 Jun 2023 13:53:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229666AbjFWRu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 13:50:26 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 525462710;
-        Fri, 23 Jun 2023 10:50:24 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (213-243-189-158.bb.dnainternet.fi [213.243.189.158])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AB6FD838;
-        Fri, 23 Jun 2023 19:49:44 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687542584;
-        bh=j3wTVnzjoXV2I65EnJr7FsW6GfRQuvO4SyLM1n82XPo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=NZQo5HltjI6J7I6rCx8gi5ze9PpE82muAFABziMPLWeGH+9GoGmD62EHIftOk5LMz
-         29GNeA07ZiRC9FEeDB/4loBxV76tVOXIVWJvoJk5rtH/bXer/lGHSMe8bGOjEUZZgz
-         YeAzBPvqG5yMuRu9jBi4qZBZRkSs5/PJjDGtcm9U=
-Date:   Fri, 23 Jun 2023 20:50:19 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 39/39] drm: renesas: shmobile: Add DT support
-Message-ID: <20230623175019.GO2112@pendragon.ideasonboard.com>
-References: <cover.1687423204.git.geert+renesas@glider.be>
- <2759075c94c011b0f15cb610f39f8fa9b3736600.1687423204.git.geert+renesas@glider.be>
+        with ESMTP id S231342AbjFWRxq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 13:53:46 -0400
+Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com [209.85.128.180])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF45E2136;
+        Fri, 23 Jun 2023 10:53:45 -0700 (PDT)
+Received: by mail-yw1-f180.google.com with SMTP id 00721157ae682-5728df0a7d9so8371437b3.1;
+        Fri, 23 Jun 2023 10:53:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687542825; x=1690134825;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mvsLdT639PCbMIODrmN1JmfHHDk3gCbxCBi4kyaJ9fk=;
+        b=cPC8oMX/iNTjnqqtlRw8ZkssLewcdWmf4d19+JCNwWXuKm3HoYGFkJat0YB0KS4oMF
+         FAf60dASGavmxdumXNW/cAmWQIEIHsmPiuz6BWDlZ0zPVSSoFa1Hlx1OacfT47zh0THN
+         bpJj8kinB/krZ5aTII8RWuFSwmrWhR5T7KtXUyJNI6JjbQDQn8SKXZe5cBL3eXZ1zaO8
+         I14iDxohnKDOQPbWzIilrJCw5qHk7PIoEbUBloJjYNWxx3lu4tmFtbE+l0shbbz4szbS
+         sKGwWWiIkWgU0Ri+ZWOS9kuoMMx4A6Ov4+FCaT5Jl/f5iadj0+7oj8uv9RrhTCBGpBRJ
+         ZcsQ==
+X-Gm-Message-State: AC+VfDwnecGhMYvq+8QVD7rQwzBNGwcfq4Gryrz0b3Y40Nu4KFSqQAgv
+        x72hkBLDWjdo9PxyqYgGsTVJROPPTJlYgdPm
+X-Google-Smtp-Source: ACHHUZ7HZpOiRR30jhKaLUjJRu/yiBEdFbrmQ9OVVmIviloPYphYHFGW1nqdqos7Tpgl+tmRUwgvYw==
+X-Received: by 2002:a0d:dd88:0:b0:561:9d66:e1a with SMTP id g130-20020a0ddd88000000b005619d660e1amr25139437ywe.34.1687542824639;
+        Fri, 23 Jun 2023 10:53:44 -0700 (PDT)
+Received: from mail-yb1-f172.google.com (mail-yb1-f172.google.com. [209.85.219.172])
+        by smtp.gmail.com with ESMTPSA id t62-20020a815f41000000b0057682d3f95fsm196889ywb.136.2023.06.23.10.53.43
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 23 Jun 2023 10:53:44 -0700 (PDT)
+Received: by mail-yb1-f172.google.com with SMTP id 3f1490d57ef6-bb2ffa1e235so752794276.0;
+        Fri, 23 Jun 2023 10:53:43 -0700 (PDT)
+X-Received: by 2002:a81:60d6:0:b0:570:7fcb:9506 with SMTP id
+ u205-20020a8160d6000000b005707fcb9506mr21842972ywb.37.1687542823789; Fri, 23
+ Jun 2023 10:53:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <2759075c94c011b0f15cb610f39f8fa9b3736600.1687423204.git.geert+renesas@glider.be>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230623081242.109131-1-tanure@linux.com> <20230623081242.109131-3-tanure@linux.com>
+ <a885b97e-aaf0-cb72-f25b-71054d6d3fe2@linaro.org>
+In-Reply-To: <a885b97e-aaf0-cb72-f25b-71054d6d3fe2@linaro.org>
+Reply-To: tanure@linux.com
+From:   Lucas Tanure <tanure@linux.com>
+Date:   Fri, 23 Jun 2023 18:53:32 +0100
+X-Gmail-Original-Message-ID: <CAJX_Q+2qZg+RuwxmnM3rzs_akt_UMJRx+=aMxf72P-sGNjm9uw@mail.gmail.com>
+Message-ID: <CAJX_Q+2qZg+RuwxmnM3rzs_akt_UMJRx+=aMxf72P-sGNjm9uw@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] dt-bindings: serial: amlogic,meson-uart: Add
+ compatible string for T7
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
+        Artem <art@khadas.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On Fri, Jun 23, 2023 at 9:51 AM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 23/06/2023 10:12, Lucas Tanure wrote:
+> > Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
+> > There is no need for an extra compatible line in the driver, but
+> > add T7 compatible line for documentation.
+> >
+> > Signed-off-by: Lucas Tanure <tanure@linux.com>
+> > ---
+> >  .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > index 01ec45b3b406..ad970c9ed1c7 100644
+> > --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> > @@ -50,6 +50,10 @@ properties:
+> >          items:
+> >            - const: amlogic,meson-g12a-uart
+> >            - const: amlogic,meson-gx-uart
+> > +      - description: UART controller on T7 compatible SoCs
+>
+> Your description is rather incorrect. This is UART on SoCs compatible
+> with S4, not with T7. Otherwise what do you expect to grow later when
+> adding more compatible devices? Just drop the description, it's kind of
+> obvious when done correctly (but can be misleading if done wrong).
+>
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>
+Sorry, but S4 is already added in another way, which accepts just an
+S4 compatible string.
+But for T7 we need a fallback.
+Could you let me know what you're asking here? Redo S4 and add T7? Or
+do T7 in another different way that I didn't get?
+Do you want a v6 patch series? If yes, could you be more clear about
+how you want it?
 
-Thank you for the patch.
-
-On Thu, Jun 22, 2023 at 11:21:51AM +0200, Geert Uytterhoeven wrote:
-> Add DT support, by:
->   1. Creating a panel bridge from DT, and attaching it to the encoder,
->   2. Replacing the custom connector with a bridge connector,
->   3. Obtaining clock configuration based on the compatible value.
-> 
-> Note that for now the driver uses a fixed clock configuration selecting
-> the bus clock, as the current code to select other clock inputs needs
-> changes to support any other SoCs than SH7724.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
-> SH-Mobile AG5 (SH73A0) support is untested.
-> 
-> Unbind crashes when drm_encoder_cleanup() calls drm_bridge_detach(), as
-> the bridge (allocated by devm_drm_panel_bridge_add()) has already been
-> freed by that time.
-> Should I allocate my encoder with devm_kzalloc(), instead of embedding
-> it inside struct shmob_drm_device?
-
-That shouldn't be needed, if you manage the memory for shmob_drm_device
-with the DRM managed helpers.
-
-Lifetime management of bridges is currently completely broken, there's
-nothing that prevents bridges from being freed while still in use.
-That's an issue in DRM, not in your driver.
-
-> ---
->  .../gpu/drm/renesas/shmobile/shmob_drm_crtc.c | 101 +++++++++++++++---
->  .../gpu/drm/renesas/shmobile/shmob_drm_crtc.h |   1 +
->  .../gpu/drm/renesas/shmobile/shmob_drm_drv.c  |  27 ++++-
->  .../gpu/drm/renesas/shmobile/shmob_drm_drv.h  |   6 ++
->  4 files changed, 118 insertions(+), 17 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c b/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c
-> index 17456dde57637ab8..1ec87841658de4f0 100644
-> --- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c
-> +++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.c
-> @@ -9,12 +9,16 @@
->  
->  #include <linux/clk.h>
->  #include <linux/media-bus-format.h>
-> +#include <linux/of.h>
-> +#include <linux/of_graph.h>
->  #include <linux/pm_runtime.h>
->  
->  #include <drm/drm_atomic.h>
->  #include <drm/drm_atomic_helper.h>
->  #include <drm/drm_atomic_state_helper.h>
->  #include <drm/drm_atomic_uapi.h>
-> +#include <drm/drm_bridge.h>
-> +#include <drm/drm_bridge_connector.h>
->  #include <drm/drm_crtc.h>
->  #include <drm/drm_crtc_helper.h>
->  #include <drm/drm_fb_dma_helper.h>
-> @@ -23,6 +27,7 @@
->  #include <drm/drm_gem_dma_helper.h>
->  #include <drm/drm_modeset_helper.h>
->  #include <drm/drm_modeset_helper_vtables.h>
-> +#include <drm/drm_panel.h>
->  #include <drm/drm_probe_helper.h>
->  #include <drm/drm_simple_kms_helper.h>
->  #include <drm/drm_vblank.h>
-> @@ -35,10 +40,6 @@
->  #include "shmob_drm_plane.h"
->  #include "shmob_drm_regs.h"
->  
-> -/*
-> - * TODO: panel support
-> - */
-> -
->  /* -----------------------------------------------------------------------------
->   * Clock management
->   */
-> @@ -129,7 +130,6 @@ static void shmob_drm_crtc_setup_geometry(struct shmob_drm_crtc *scrtc)
->  		value |= LDMT1R_VPOL;
->  	if (mode->flags & DRM_MODE_FLAG_NHSYNC)
->  		value |= LDMT1R_HPOL;
-> -
-
-This could be moved to one of the patches in the series that touch this
-code.
-
->  	lcdc_write(sdev, LDMT1R, value);
->  
->  	value = ((mode->hdisplay / 8) << 16)			/* HDCN */
-> @@ -191,7 +191,7 @@ static void shmob_drm_crtc_start(struct shmob_drm_crtc *scrtc)
->  {
->  	struct drm_crtc *crtc = &scrtc->base;
->  	struct shmob_drm_device *sdev = to_shmob_device(crtc->dev);
-> -	const struct shmob_drm_interface_data *idata = &sdev->pdata->iface;
-> +	unsigned int clk_div = sdev->config.clk_div;
->  	struct device *dev = sdev->dev;
->  	u32 value;
->  	int ret;
-> @@ -220,17 +220,17 @@ static void shmob_drm_crtc_start(struct shmob_drm_crtc *scrtc)
->  	lcdc_write(sdev, LDPMR, 0);
->  
->  	value = sdev->lddckr;
-> -	if (idata->clk_div) {
-> +	if (clk_div) {
->  		/* FIXME: sh7724 can only use 42, 48, 54 and 60 for the divider
->  		 * denominator.
->  		 */
->  		lcdc_write(sdev, LDDCKPAT1R, 0);
-> -		lcdc_write(sdev, LDDCKPAT2R, (1 << (idata->clk_div / 2)) - 1);
-> +		lcdc_write(sdev, LDDCKPAT2R, (1 << (clk_div / 2)) - 1);
->  
-> -		if (idata->clk_div == 1)
-> +		if (clk_div == 1)
->  			value |= LDDCKR_MOSEL;
->  		else
-> -			value |= idata->clk_div;
-> +			value |= clk_div;
->  	}
->  
->  	lcdc_write(sdev, LDDCKR, value);
-> @@ -479,7 +479,7 @@ int shmob_drm_crtc_create(struct shmob_drm_device *sdev)
->  }
->  
->  /* -----------------------------------------------------------------------------
-> - * Encoder
-> + * Legacy Encoder
->   */
->  
->  static bool shmob_drm_encoder_mode_fixup(struct drm_encoder *encoder,
-> @@ -508,9 +508,43 @@ static const struct drm_encoder_helper_funcs encoder_helper_funcs = {
->  	.mode_fixup = shmob_drm_encoder_mode_fixup,
->  };
->  
-> +/* -----------------------------------------------------------------------------
-> + * Encoder
-> + */
-> +
-> +static int shmob_drm_encoder_init(struct shmob_drm_device *sdev,
-> +				  struct device_node *enc_node)
-> +{
-> +	struct drm_bridge *bridge;
-> +	struct drm_panel *panel;
-> +	int ret;
-> +
-> +	/* Create a panel bridge */
-> +	panel = of_drm_find_panel(enc_node);
-
-Using drm_of_find_panel_or_bridge() would allow supporting platforms
-that connect a non-panel device to the SoC, in additional to the already
-supported panels.
-
-> +	if (IS_ERR(panel))
-> +		return PTR_ERR(panel);
-> +
-> +	bridge = devm_drm_panel_bridge_add(sdev->dev, panel);
-> +	if (IS_ERR(bridge))
-> +		return PTR_ERR(bridge);
-> +
-> +	/* Attach the bridge to the encoder */
-> +	ret = drm_bridge_attach(&sdev->encoder, bridge, NULL,
-> +				DRM_BRIDGE_ATTACH_NO_CONNECTOR);
-> +	if (ret) {
-> +		dev_err(sdev->dev, "failed to attach bridge %pOF: %pe\n",
-> +			bridge->of_node, ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  int shmob_drm_encoder_create(struct shmob_drm_device *sdev)
->  {
->  	struct drm_encoder *encoder = &sdev->encoder;
-> +	struct device_node *np = sdev->dev->of_node;
-> +	struct device_node *ep_node, *entity;
->  	int ret;
->  
->  	encoder->possible_crtcs = 1;
-> @@ -520,13 +554,45 @@ int shmob_drm_encoder_create(struct shmob_drm_device *sdev)
->  	if (ret < 0)
->  		return ret;
->  
-> -	drm_encoder_helper_add(encoder, &encoder_helper_funcs);
-> +	if (sdev->pdata) {
-> +		drm_encoder_helper_add(encoder, &encoder_helper_funcs);
-> +		return 0;
-> +	}
-> +
-> +	for_each_endpoint_of_node(np, ep_node) {
-> +		struct of_endpoint ep;
-> +
-> +		ret = of_graph_parse_endpoint(ep_node, &ep);
-> +		if (ret < 0) {
-> +			of_node_put(ep_node);
-> +			return ret;
-> +		}
-> +		/* Ignore all but the LCD port */
-> +		if (ep.port || ep.id)
-> +			continue;
-> +
-> +		entity = of_graph_get_remote_port_parent(ep.local_node);
-> +		if (!entity)
-> +			continue;
-> +
-> +		if (!of_device_is_available(entity)) {
-> +			of_node_put(entity);
-> +			continue;
-> +		}
-> +
-> +		ret = shmob_drm_encoder_init(sdev, entity);
-> +		if (ret < 0) {
-> +			of_node_put(entity);
-> +			of_node_put(ep_node);
-> +			return ret;
-> +		}
-> +	}
->  
->  	return 0;
->  }
->  
->  /* -----------------------------------------------------------------------------
-> - * Connector
-> + * Legacy Connector
->   */
->  
->  static inline struct shmob_drm_connector *to_shmob_connector(struct drm_connector *connector)
-> @@ -626,13 +692,20 @@ shmob_drm_connector_init(struct shmob_drm_device *sdev,
->  	return connector;
->  }
->  
-> +/* -----------------------------------------------------------------------------
-> + * Connector
-> + */
-> +
->  int shmob_drm_connector_create(struct shmob_drm_device *sdev,
->  			       struct drm_encoder *encoder)
->  {
->  	struct drm_connector *connector;
->  	int ret;
->  
-> -	connector = shmob_drm_connector_init(sdev, encoder);
-> +	if (sdev->pdata)
-> +		connector = shmob_drm_connector_init(sdev, encoder);
-> +	else
-> +		connector = drm_bridge_connector_init(&sdev->ddev, encoder);
->  	if (IS_ERR(connector)) {
->  		dev_err(sdev->dev, "failed to created connector: %pe\n",
->  			connector);
-> diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h b/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h
-> index 89a0746f9a35807d..16e1712dd04e0f2b 100644
-> --- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h
-> +++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_crtc.h
-> @@ -29,6 +29,7 @@ struct shmob_drm_crtc {
->  	wait_queue_head_t flip_wait;
->  };
->  
-> +/* Legacy connector */
->  struct shmob_drm_connector {
->  	struct drm_connector base;
->  	struct drm_encoder *encoder;
-> diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
-> index 576869164479ec6b..db72ca1c8b2f44c9 100644
-> --- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
-> +++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.c
-> @@ -11,6 +11,7 @@
->  #include <linux/io.h>
->  #include <linux/mm.h>
->  #include <linux/module.h>
-> +#include <linux/of.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm.h>
->  #include <linux/pm_runtime.h>
-> @@ -147,11 +148,13 @@ static int shmob_drm_remove(struct platform_device *pdev)
->  static int shmob_drm_probe(struct platform_device *pdev)
->  {
->  	struct shmob_drm_platform_data *pdata = pdev->dev.platform_data;
-
-How about dropping non-DT support ? That would simplify the driver.
-
-> +	const struct shmob_drm_config *config;
->  	struct shmob_drm_device *sdev;
->  	struct drm_device *ddev;
->  	int ret;
->  
-> -	if (pdata == NULL) {
-> +	config = of_device_get_match_data(&pdev->dev);
-> +	if (!config && !pdata) {
->  		dev_err(&pdev->dev, "no platform data\n");
->  		return -EINVAL;
->  	}
-> @@ -167,7 +170,13 @@ static int shmob_drm_probe(struct platform_device *pdev)
->  
->  	ddev = &sdev->ddev;
->  	sdev->dev = &pdev->dev;
-> -	sdev->pdata = pdata;
-> +	if (config) {
-> +		sdev->config = *config;
-> +	} else {
-> +		sdev->pdata = pdata;
-> +		sdev->config.clk_source = pdata->clk_source;
-> +		sdev->config.clk_div = pdata->iface.clk_div;
-> +	}
->  	spin_lock_init(&sdev->irq_lock);
->  
->  	platform_set_drvdata(pdev, sdev);
-> @@ -180,7 +189,7 @@ static int shmob_drm_probe(struct platform_device *pdev)
->  	if (ret)
->  		return ret;
->  
-> -	ret = shmob_drm_setup_clocks(sdev, pdata->clk_source);
-> +	ret = shmob_drm_setup_clocks(sdev, sdev->config.clk_source);
->  	if (ret < 0)
->  		return ret;
->  
-> @@ -224,11 +233,23 @@ static int shmob_drm_probe(struct platform_device *pdev)
->  	return ret;
->  }
->  
-> +static const struct shmob_drm_config shmob_arm_config = {
-> +	.clk_source = SHMOB_DRM_CLK_BUS,
-> +	.clk_div = 5,
-> +};
-> +
-> +static const struct of_device_id shmob_drm_of_table[] __maybe_unused = {
-> +	{ .compatible = "renesas,r8a7740-lcdc",	.data = &shmob_arm_config, },
-> +	{ .compatible = "renesas,sh73a0-lcdc",	.data = &shmob_arm_config, },
-> +	{ /* sentinel */ }
-> +};
-> +
->  static struct platform_driver shmob_drm_platform_driver = {
->  	.probe		= shmob_drm_probe,
->  	.remove		= shmob_drm_remove,
->  	.driver		= {
->  		.name	= "shmob-drm",
-> +		.of_match_table = of_match_ptr(shmob_drm_of_table),
->  		.pm	= pm_sleep_ptr(&shmob_drm_pm_ops),
->  	},
->  };
-> diff --git a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h
-> index 18907e5ace51c681..088ac5381e91e61a 100644
-> --- a/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h
-> +++ b/drivers/gpu/drm/renesas/shmobile/shmob_drm_drv.h
-> @@ -20,9 +20,15 @@ struct clk;
->  struct device;
->  struct drm_device;
->  
-> +struct shmob_drm_config {
-> +	enum shmob_drm_clk_source clk_source;
-> +	unsigned int clk_div;
-> +};
-> +
->  struct shmob_drm_device {
->  	struct device *dev;
->  	const struct shmob_drm_platform_data *pdata;
-> +	struct shmob_drm_config config;
->  
->  	void __iomem *mmio;
->  	struct clk *clock;
-
--- 
-Regards,
-
-Laurent Pinchart
+>
+> Best regards,
+> Krzysztof
+>
