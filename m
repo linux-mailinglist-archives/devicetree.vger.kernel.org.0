@@ -2,329 +2,441 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3248D73B26B
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:12:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DA6073B29F
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 10:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbjFWIMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 04:12:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51784 "EHLO
+        id S231618AbjFWIWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 04:22:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231752AbjFWIMv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:12:51 -0400
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F298A1FEF;
-        Fri, 23 Jun 2023 01:12:49 -0700 (PDT)
-Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2b46d4e1b0aso5952341fa.2;
-        Fri, 23 Jun 2023 01:12:49 -0700 (PDT)
+        with ESMTP id S231949AbjFWIVz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 04:21:55 -0400
+Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28128213A
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:21:53 -0700 (PDT)
+Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b470330145so6157051fa.3
+        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 01:21:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google; t=1687508511; x=1690100511;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7IZTTdyBUU6kATu3fUQ5nadTxHv+u++mh69pFEYTDLk=;
+        b=LNOkB7INXGOoecOv8+l3/Dgm+QBB5adKiCupWOi143QWjyhOwzBGuss99Mz5vCPYx3
+         C1fkGjXyhRvOlB7RI8Fsubo6LXvd4yZg6j5Bq4aWos82NuN26FMsUfSJaXItRoeRTIwI
+         XxZU1fLtyPArusmzylmK9xNt3NeVHfhGnL54iEgWf+nXK1n4rDc1qpLnNjhAfJC/t4Ho
+         5fkjdNxHDIFHyN7L9GE3Ao9+9W49PYh802bLx8Tj7CvJAgGR1KtMjTNxtii8Fn03uglu
+         gLV3ouBDEtQNlEaXS7cMfYX29bXew2v/vCXOlMu+d9TzwS8FT6n5NAcmy1FDIl92yS9K
+         SyoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687507968; x=1690099968;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1687508511; x=1690100511;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=97BZTwL+XGk6txP1+XwORBw5PdtQcH3A6RHbZTtRDIw=;
-        b=ExxOBew056nNxAf1N2OK7slVLIgebd52cKDxyqW+R99FjhGL0YIO+KhhtdebVzE/JY
-         KIg+FLPBhdS4/MGvG2NS1wtao4p7LZ/ZT2UmqBS0cYC3rj+K/iByURnScWoLGWUlCBWS
-         UEpY/03HGyKR6S9i8xGuiJdpSfp3Rd0F6LRMBe9vlBEN6OzuxwIID78iItdQdYA/vRL9
-         /wIcpuKeXsJ+xVOUDHlzYKJ5IcXVrg/FB36NqLCpFAMhCZrYiGodRxMwirGcgD0CoA8E
-         skN8832FIrIlePJNSYNMbtT2cQZc6jaWkNO8kPwLZ6Jj4n2VYxtDAIyULI70hB+V3HLS
-         7THA==
-X-Gm-Message-State: AC+VfDy2dTa6WSuPqAQGG0s11A7yDTMj3quCH8nSUsbF82zVg0gSPyMj
-        z6CMa7Y988Jw8b33m3PoY9khnRXgY7JYJ+KQ
-X-Google-Smtp-Source: ACHHUZ5sGb5iPEk9nldmuWxdkt4tP7qCrccPRjBqMVhZl9UKXwW+kPXxdqFbAKfaPwPIcrkeclyAlw==
-X-Received: by 2002:a2e:9053:0:b0:2b5:8f85:bf71 with SMTP id n19-20020a2e9053000000b002b58f85bf71mr3402061ljg.18.1687507968155;
-        Fri, 23 Jun 2023 01:12:48 -0700 (PDT)
-Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id l21-20020a7bc455000000b003f9b29ba838sm1594141wmi.35.2023.06.23.01.12.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 23 Jun 2023 01:12:47 -0700 (PDT)
-From:   Lucas Tanure <tanure@linux.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     Nick <nick@khadas.com>, Artem <art@khadas.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        Lucas Tanure <tanure@linux.com>
-Subject: [PATCH v5 4/4] arm64: dts: meson-t7-a311d2-khadas-vim4: add initial device-tree
-Date:   Fri, 23 Jun 2023 09:12:42 +0100
-Message-ID: <20230623081242.109131-5-tanure@linux.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230623081242.109131-1-tanure@linux.com>
-References: <20230623081242.109131-1-tanure@linux.com>
+        bh=7IZTTdyBUU6kATu3fUQ5nadTxHv+u++mh69pFEYTDLk=;
+        b=WWmC7DQRelSQkZXDp52N5PXGHYg3Y0zWLqjiyZ+q8HpkHLQt9hpMrp5GMVDTqjPZ/r
+         g46m3Ns7t4P3aJTA6rUAi7Ecrt6x7gqnpUltLaVl1/GGpZevA71K/iwJSjJzI8Eh1eyU
+         W2ubYzF/Up8d2655sT7ZZFTOB2XDL3nxYhjHtVaIeFmSwtHIu1X1VUignRiqmTdvxoMR
+         upk5dE51KMAKccpjrGiQb6F4sESw0lAQ7MkNRZzAUuDGtyCanWdk8lvzTBsyQUJddjrk
+         yjKM19Lf3Ljoh1F1q7d19MZg+ndsDI0AnuyscVTrzfHdo8p9ZrAnyppGo0oQzfknCekZ
+         JXzA==
+X-Gm-Message-State: AC+VfDwIfVkaXPY72C+4h1v9JaLr88wafG41vjX+1PeU9WzkHcpXDJkB
+        T2diz0iVkRfio1q87ulYyZVd/JU4tg2gCRhI0mWiUA==
+X-Google-Smtp-Source: ACHHUZ4njTd+hh7CL7SU3SYO3tZHVYQGGsQUr8SVZSERnrZKXx+YZ9aTJrEJG0Zi+XpjFViU8W4HTLh72Fb0WOCNaP8=
+X-Received: by 2002:a2e:a175:0:b0:2b1:fda8:e653 with SMTP id
+ u21-20020a2ea175000000b002b1fda8e653mr13641043ljl.27.1687508510953; Fri, 23
+ Jun 2023 01:21:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-2-eric.lin@sifive.com>
+ <3f264505-af11-b667-fc82-a5310982ef8b@codethink.co.uk>
+In-Reply-To: <3f264505-af11-b667-fc82-a5310982ef8b@codethink.co.uk>
+From:   Eric Lin <eric.lin@sifive.com>
+Date:   Fri, 23 Jun 2023 16:21:38 +0800
+Message-ID: <CAPqJEFp+4F3cjUUd6vse72zDa021wodtbvzxz41vvztGreLN6A@mail.gmail.com>
+Subject: Re: [PATCH 1/3] soc: sifive: Add SiFive private L2 cache support
+To:     Ben Dooks <ben.dooks@codethink.co.uk>
+Cc:     conor@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
+        chenhuacai@kernel.org, baolu.lu@linux.intel.com, will@kernel.org,
+        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
+        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
+        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dslin1010@gmail.com, Nick Hu <nick.hu@sifive.com>,
+        Zong Li <zong.li@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 SoC
-family, on a board with the same form factor as the VIM3 models.
+Hi Ben,
 
-- 8GB LPDDR4X 2016MHz
-- 32GB eMMC 5.1 storage
-- 32MB SPI flash
-- 10/100/1000 Base-T Ethernet
-- AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
-- HDMI 2.1 video
-- HDMI Input
-- 1x USB 2.0 + 1x USB 3.0 ports
-- 1x USB-C (power) with USB 2.0 OTG
-- 3x LED's (1x red, 1x blue, 1x white)
-- 3x buttons (power, function, reset)
-- M2 socket with PCIe, USB, ADC & I2C
-- 40pin GPIO Header
-- 1x micro SD card slot
+On Fri, Jun 16, 2023 at 4:30=E2=80=AFPM Ben Dooks <ben.dooks@codethink.co.u=
+k> wrote:
+>
+> On 16/06/2023 07:32, Eric Lin wrote:
+> > This adds SiFive private L2 cache driver which will show
+> > cache config information when booting and add cpu hotplug
+> > callback functions.
+> >
+> > Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> > Signed-off-by: Nick Hu <nick.hu@sifive.com>
+> > Reviewed-by: Zong Li <zong.li@sifive.com>
+> > ---
+> >   drivers/soc/sifive/Kconfig            |   8 +
+> >   drivers/soc/sifive/Makefile           |   1 +
+> >   drivers/soc/sifive/sifive_pl2.h       |  25 ++++
+> >   drivers/soc/sifive/sifive_pl2_cache.c | 202 +++++++++++++++++++++++++=
++
+> >   include/linux/cpuhotplug.h            |   1 +
+> >   5 files changed, 237 insertions(+)
+> >   create mode 100644 drivers/soc/sifive/sifive_pl2.h
+> >   create mode 100644 drivers/soc/sifive/sifive_pl2_cache.c
+> >
+> > diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
+> > index e86870be34c9..573564295058 100644
+> > --- a/drivers/soc/sifive/Kconfig
+> > +++ b/drivers/soc/sifive/Kconfig
+> > @@ -7,4 +7,12 @@ config SIFIVE_CCACHE
+> >       help
+> >         Support for the composable cache controller on SiFive platforms=
+.
+> >
+> > +config SIFIVE_PL2
+> > +     bool "Sifive private L2 Cache controller"
+> > +     help
+> > +       Support for the private L2 cache controller on SiFive platforms=
+.
+> > +       The SiFive Private L2 Cache Controller is per hart and communic=
+ates
+> > +       with both the upstream L1 caches and downstream L3 cache or mem=
+ory,
+> > +       enabling a high-performance cache subsystem.
+> > +
+> >   endif
+> > diff --git a/drivers/soc/sifive/Makefile b/drivers/soc/sifive/Makefile
+> > index 1f5dc339bf82..707493e1c691 100644
+> > --- a/drivers/soc/sifive/Makefile
+> > +++ b/drivers/soc/sifive/Makefile
+> > @@ -1,3 +1,4 @@
+> >   # SPDX-License-Identifier: GPL-2.0
+> >
+> >   obj-$(CONFIG_SIFIVE_CCACHE) +=3D sifive_ccache.o
+> > +obj-$(CONFIG_SIFIVE_PL2)     +=3D sifive_pl2_cache.o
+> > diff --git a/drivers/soc/sifive/sifive_pl2.h b/drivers/soc/sifive/sifiv=
+e_pl2.h
+> > new file mode 100644
+> > index 000000000000..57aa1019d5ed
+> > --- /dev/null
+> > +++ b/drivers/soc/sifive/sifive_pl2.h
+> > @@ -0,0 +1,25 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * Copyright (C) 2023 SiFive, Inc.
+> > + *
+> > + */
+> > +
+> > +#ifndef _SIFIVE_PL2_H
+> > +#define _SIFIVE_PL2_H
+> > +
+> > +#define SIFIVE_PL2_CONFIG1_OFFSET    0x1000
+> > +#define SIFIVE_PL2_CONFIG0_OFFSET    0x1008
+> > +#define SIFIVE_PL2_PMCLIENT_OFFSET   0x2800
+> > +
+> > +struct sifive_pl2_state {
+> > +     void __iomem *pl2_base;
+> > +     u32 config1;
+> > +     u32 config0;
+> > +     u64 pmclientfilter;
+> > +};
+> > +
+> > +int sifive_pl2_pmu_init(void);
+> > +int sifive_pl2_pmu_probe(struct device_node *pl2_node,
+> > +                      void __iomem *pl2_base, int cpu);
+> > +
+> > +#endif /*_SIFIVE_PL2_H */
+> > diff --git a/drivers/soc/sifive/sifive_pl2_cache.c b/drivers/soc/sifive=
+/sifive_pl2_cache.c
+> > new file mode 100644
+> > index 000000000000..aeb51d576af9
+> > --- /dev/null
+> > +++ b/drivers/soc/sifive/sifive_pl2_cache.c
+> > @@ -0,0 +1,202 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * SiFive private L2 cache controller Driver
+> > + *
+> > + * Copyright (C) 2018-2023 SiFive, Inc.
+> > + */
+> > +
+> > +#define pr_fmt(fmt) "pL2CACHE: " fmt
+> > +
+> > +#include <linux/of.h>
+> > +#include <linux/of_device.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/io.h>
+> > +#include <linux/cpu_pm.h>
+> > +#include <linux/cpuhotplug.h>
+> > +#include "sifive_pl2.h"
+> > +
+> > +static DEFINE_PER_CPU(struct sifive_pl2_state, sifive_pl2_state);
+> > +
+> > +static void sifive_pl2_state_save(struct sifive_pl2_state *pl2_state)
+> > +{
+> > +     void __iomem *pl2_base =3D pl2_state->pl2_base;
+> > +
+> > +     if (!pl2_base)
+> > +             return;
+>
+> is this test realy needed?
+>
 
-Signed-off-by: Lucas Tanure <tanure@linux.com>
----
- arch/arm64/boot/dts/amlogic/Makefile          |   1 +
- .../amlogic/meson-t7-a311d2-khadas-vim4.dts   |  52 ++++++
- arch/arm64/boot/dts/amlogic/meson-t7.dtsi     | 158 ++++++++++++++++++
- 3 files changed, 211 insertions(+)
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
- create mode 100644 arch/arm64/boot/dts/amlogic/meson-t7.dtsi
+Yes,
+The function cpuhp_setup_state() is called before sifive_pl2_cache_dev_prob=
+e().
+When registering the CPU hotplug state, the kernel will issue the pl2
+CPU hotplug callback.
+However, the pl2_base is not yet being ioremap in sifive_pl2_cache_dev_prob=
+e().
+Therefore, it is necessary to check pl2_base first to avoid such a scenario=
+.
 
-diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-index cd1c5b04890a..1c5846bd1ca0 100644
---- a/arch/arm64/boot/dts/amlogic/Makefile
-+++ b/arch/arm64/boot/dts/amlogic/Makefile
-@@ -74,3 +74,4 @@ dtb-$(CONFIG_ARCH_MESON) += meson-sm1-odroid-hc4.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-sei610.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air-gbit.dtb
- dtb-$(CONFIG_ARCH_MESON) += meson-sm1-x96-air.dtb
-+dtb-$(CONFIG_ARCH_MESON) += meson-t7-a311d2-khadas-vim4.dtb
-diff --git a/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
-new file mode 100644
-index 000000000000..04cc8b0dfd8c
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-t7-a311d2-khadas-vim4.dts
-@@ -0,0 +1,52 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2022 Wesion, Inc. All rights reserved.
-+ */
-+
-+/dts-v1/;
-+
-+#include "meson-t7.dtsi"
-+
-+/ {
-+	model = "Khadas vim4";
-+	compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
-+
-+	aliases {
-+		serial0 = &uart_A;
-+	};
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x0 0x2 0x0>; /* 8 GB */
-+	};
-+
-+	reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		/* 3 MiB reserved for ARM Trusted Firmware (BL31) */
-+		secmon_reserved: secmon@5000000 {
-+			reg = <0x0 0x05000000 0x0 0x300000>;
-+			no-map;
-+		};
-+
-+		/* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-+		secmon_reserved_bl32: secmon@5300000 {
-+			reg = <0x0 0x05300000 0x0 0x2000000>;
-+			no-map;
-+		};
-+	};
-+
-+	xtal: xtal-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <24000000>;
-+		clock-output-names = "xtal";
-+		#clock-cells = <0>;
-+	};
-+
-+};
-+
-+&uart_A {
-+	status = "okay";
-+};
-diff --git a/arch/arm64/boot/dts/amlogic/meson-t7.dtsi b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
-new file mode 100644
-index 000000000000..9b8c33708ecd
---- /dev/null
-+++ b/arch/arm64/boot/dts/amlogic/meson-t7.dtsi
-@@ -0,0 +1,158 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-+ */
-+
-+#include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+/ {
-+	interrupt-parent = <&gic>;
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+
-+	cpus {
-+		#address-cells = <0x2>;
-+		#size-cells = <0x0>;
-+
-+		cpu-map {
-+			cluster0 {
-+				core0 {
-+					cpu = <&cpu100>;
-+				};
-+				core1 {
-+					cpu = <&cpu101>;
-+				};
-+				core2 {
-+					cpu = <&cpu102>;
-+				};
-+				core3 {
-+					cpu = <&cpu103>;
-+				};
-+			};
-+
-+			cluster1 {
-+				core0 {
-+					cpu = <&cpu0>;
-+				};
-+				core1 {
-+					cpu = <&cpu1>;
-+				};
-+				core2 {
-+					cpu = <&cpu2>;
-+				};
-+				core3 {
-+					cpu = <&cpu3>;
-+				};
-+			};
-+		};
-+
-+		cpu100: cpu@100 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x100>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu101: cpu@101{
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x101>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu102: cpu@102 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x102>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu103: cpu@103 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a53";
-+			reg = <0x0 0x103>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu0: cpu@0 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x0>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu1: cpu@1 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x1>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu2: cpu@2 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x2>;
-+			enable-method = "psci";
-+		};
-+
-+		cpu3: cpu@3 {
-+			device_type = "cpu";
-+			compatible = "arm,cortex-a73";
-+			reg = <0x0 0x3>;
-+			enable-method = "psci";
-+		};
-+	};
-+
-+	timer {
-+		compatible = "arm,armv8-timer";
-+		interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-+			     <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-+	};
-+
-+	psci {
-+		compatible = "arm,psci-1.0";
-+		method = "smc";
-+	};
-+
-+	sm: secure-monitor {
-+		compatible = "amlogic,meson-gxbb-sm";
-+	};
-+
-+	soc {
-+		compatible = "simple-bus";
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		gic: interrupt-controller@fff01000 {
-+			compatible = "arm,gic-400";
-+			#interrupt-cells = <3>;
-+			#address-cells = <0>;
-+			interrupt-controller;
-+			reg = <0x0 0xfff01000 0 0x1000>,
-+			      <0x0 0xfff02000 0 0x0100>;
-+			interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-+		};
-+
-+		apb4: bus@fe000000 {
-+			compatible = "simple-bus";
-+			reg = <0x0 0xfe000000 0x0 0x480000>;
-+			#address-cells = <2>;
-+			#size-cells = <2>;
-+			ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-+
-+			uart_A: serial@78000 {
-+				compatible = "amlogic,meson-t7-uart",
-+					     "amlogic,meson-s4-uart";
-+				reg = <0x0 0x78000 0x0 0x18>;
-+				interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
-+				status = "disabled";
-+				clocks = <&xtal>, <&xtal>, <&xtal>;
-+				clock-names = "xtal", "pclk", "baud";
-+			};
-+		};
-+
-+	};
-+};
--- 
-2.41.0
+> > +
+> > +     pl2_state->config1 =3D readl(pl2_base + SIFIVE_PL2_CONFIG1_OFFSET=
+);
+> > +     pl2_state->config0 =3D readl(pl2_base + SIFIVE_PL2_CONFIG0_OFFSET=
+);
+> > +     pl2_state->pmclientfilter =3D readq(pl2_base + SIFIVE_PL2_PMCLIEN=
+T_OFFSET);
+> > +}
+> > +
+> > +static void sifive_pl2_state_restore(struct sifive_pl2_state *pl2_stat=
+e)
+> > +{
+> > +     void __iomem *pl2_base =3D pl2_state->pl2_base;
+> > +
+> > +     if (!pl2_base)
+> > +             return;
+> > +
+> > +     writel(pl2_state->config1, pl2_base + SIFIVE_PL2_CONFIG1_OFFSET);
+> > +     writel(pl2_state->config0, pl2_base + SIFIVE_PL2_CONFIG0_OFFSET);
+> > +     writeq(pl2_state->pmclientfilter, pl2_base + SIFIVE_PL2_PMCLIENT_=
+OFFSET);
+> > +}
+> > +
+> > +/*
+> > + * CPU Hotplug call back function
+> > + */
+> > +static int sifive_pl2_online_cpu(unsigned int cpu)
+> > +{
+> > +     struct sifive_pl2_state *pl2_state =3D this_cpu_ptr(&sifive_pl2_s=
+tate);
+> > +
+> > +     sifive_pl2_state_restore(pl2_state);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int sifive_pl2_offline_cpu(unsigned int cpu)
+> > +{
+> > +     struct sifive_pl2_state *pl2_state =3D this_cpu_ptr(&sifive_pl2_s=
+tate);
+> > +
+> > +     /* Save the pl2 state */
+> > +     sifive_pl2_state_save(pl2_state);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +/*
+> > + *  PM notifer for suspend to ram
+> > + */
+> > +#ifdef CONFIG_CPU_PM
+> > +static int sifive_pl2_pm_notify(struct notifier_block *b, unsigned lon=
+g cmd,
+> > +                             void *v)
+> > +{
+> > +     struct sifive_pl2_state *pl2_state =3D this_cpu_ptr(&sifive_pl2_s=
+tate);
+> > +
+> > +     switch (cmd) {
+> > +     case CPU_PM_ENTER:
+> > +             /* Save the pl2 state */
+> > +             sifive_pl2_state_save(pl2_state);
+> > +             break;
+> > +     case CPU_PM_ENTER_FAILED:
+> > +     case CPU_PM_EXIT:
+> > +             sifive_pl2_state_restore(pl2_state);
+> > +             break;
+> > +     default:
+> > +             break;
+> > +     }
+> > +
+> > +     return NOTIFY_OK;
+> > +}
+> > +
+> > +static struct notifier_block sifive_pl2_pm_notifier_block =3D {
+> > +     .notifier_call =3D sifive_pl2_pm_notify,
+> > +};
+> > +
+> > +static inline void sifive_pl2_pm_init(void)
+> > +{
+> > +     cpu_pm_register_notifier(&sifive_pl2_pm_notifier_block);
+> > +}
+> > +
+> > +#else
+> > +static inline void sifive_pl2_pm_init(void) { }
+> > +#endif /* CONFIG_CPU_PM */
+> > +
+> > +static const struct of_device_id sifive_pl2_cache_of_ids[] =3D {
+> > +     { .compatible =3D "sifive,pL2Cache0" },
+> > +     { .compatible =3D "sifive,pL2Cache1" },
+>
+> why the single cap here? I think that looks ugly.
+>
 
+OK, I'll fix it in v2.
+
+> > +     { /* sentinel value */ }
+> > +};
+> > +
+> > +static void pl2_config_read(void __iomem *pl2_base, int cpu)
+> > +{
+> > +     u32 regval, bank, way, set, cacheline;
+> > +
+> > +     regval =3D readl(pl2_base);
+> > +     bank =3D regval & 0xff;
+> > +     pr_info("in the CPU: %d\n", cpu);
+> > +     pr_info("No. of Banks in the cache: %d\n", bank);
+> > +     way =3D (regval & 0xff00) >> 8;
+> > +     pr_info("No. of ways per bank: %d\n", way);
+> > +     set =3D (regval & 0xff0000) >> 16;
+> > +     pr_info("Total sets: %llu\n", (uint64_t)1 << set);
+> > +     cacheline =3D (regval & 0xff000000) >> 24;
+> > +     pr_info("Bytes per cache block: %llu\n", (uint64_t)1 << cacheline=
+);
+> > +     pr_info("Size: %d\n", way << (set + cacheline));
+>
+>
+> please either remove this or make it a single line, this is just going
+> to spam the log with any system with more than one cpu core.
+>
+
+OK, I will make this log more simple in v2.
+Thanks for the review.
+
+Best Regards,
+Eric Lin.
+
+> > +}
+> > +
+> > +static int sifive_pl2_cache_dev_probe(struct platform_device *pdev)
+> > +{
+> > +     struct resource *res;
+> > +     int cpu, ret =3D -EINVAL;
+> > +     struct device_node *cpu_node, *pl2_node;
+> > +     struct sifive_pl2_state *pl2_state =3D NULL;
+> > +     void __iomem *pl2_base;
+> > +
+> > +     /* Traverse all cpu nodes to find the one mapping to its pl2 node=
+. */
+> > +     for_each_cpu(cpu, cpu_possible_mask) {
+> > +             cpu_node =3D of_cpu_device_node_get(cpu);
+> > +             pl2_node =3D of_parse_phandle(cpu_node, "next-level-cache=
+", 0);
+> > +
+> > +             /* Found it! */
+> > +             if (dev_of_node(&pdev->dev) =3D=3D pl2_node) {
+> > +                     /* Use cpu to get its percpu data sifive_pl2_stat=
+e. */
+> > +                     pl2_state =3D per_cpu_ptr(&sifive_pl2_state, cpu)=
+;
+> > +                     break;
+> > +             }
+> > +     }
+> > +
+> > +     if (!pl2_state) {
+> > +             pr_err("Not found the corresponding cpu_node in dts.\n");
+> > +             goto early_err;
+> > +     }
+> > +
+> > +     /* Set base address of select and counter registers. */
+> > +     pl2_base =3D devm_platform_get_and_ioremap_resource(pdev, 0, &res=
+);
+> > +     if (IS_ERR(pl2_base)) {
+> > +             ret =3D PTR_ERR(pl2_base);
+> > +             goto early_err;
+> > +     }
+> > +
+> > +     /* Print pL2 configs. */
+> > +     pl2_config_read(pl2_base, cpu);
+> > +     pl2_state->pl2_base =3D pl2_base;
+> > +
+> > +     return 0;
+> > +
+> > +early_err:
+> > +     return ret;
+> > +}
+> > +
+> > +static struct platform_driver sifive_pl2_cache_driver =3D {
+> > +     .driver =3D {
+> > +                .name =3D "SiFive-pL2-cache",
+> > +                .of_match_table =3D sifive_pl2_cache_of_ids,
+> > +                },
+> > +     .probe =3D sifive_pl2_cache_dev_probe,
+> > +};
+> > +
+> > +static int __init sifive_pl2_cache_init(void)
+> > +{
+> > +     int ret;
+> > +
+> > +     ret =3D cpuhp_setup_state(CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE,
+> > +                             "soc/sifive/pl2:online",
+> > +                                   sifive_pl2_online_cpu,
+> > +                                   sifive_pl2_offline_cpu);
+> > +     if (ret < 0) {
+> > +             pr_err("Failed to register CPU hotplug notifier %d\n", re=
+t);
+> > +             return ret;
+> > +     }
+> > +
+> > +     ret =3D platform_driver_register(&sifive_pl2_cache_driver);
+> > +     if (ret) {
+> > +             pr_err("Failed to register sifive_pl2_cache_driver: %d\n"=
+, ret);
+> > +             return ret;
+> > +     }
+> > +
+> > +     sifive_pl2_pm_init();
+> > +
+> > +     return ret;
+> > +}
+> > +
+> > +device_initcall(sifive_pl2_cache_init);
+> > diff --git a/include/linux/cpuhotplug.h b/include/linux/cpuhotplug.h
+> > index 0f1001dca0e0..35cd5ba0030b 100644
+> > --- a/include/linux/cpuhotplug.h
+> > +++ b/include/linux/cpuhotplug.h
+> > @@ -207,6 +207,7 @@ enum cpuhp_state {
+> >       CPUHP_AP_IRQ_AFFINITY_ONLINE,
+> >       CPUHP_AP_BLK_MQ_ONLINE,
+> >       CPUHP_AP_ARM_MVEBU_SYNC_CLOCKS,
+> > +     CPUHP_AP_RISCV_SIFIVE_PL2_ONLINE,
+> >       CPUHP_AP_X86_INTEL_EPB_ONLINE,
+> >       CPUHP_AP_PERF_ONLINE,
+> >       CPUHP_AP_PERF_X86_ONLINE,
+>
+> --
+> Ben Dooks                               http://www.codethink.co.uk/
+> Senior Engineer                         Codethink - Providing Genius
+>
+> https://www.codethink.co.uk/privacy.html
+>
