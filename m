@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BE10773AF2F
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 05:54:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB6B73AF35
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 05:59:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229445AbjFWDyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 22 Jun 2023 23:54:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37028 "EHLO
+        id S230459AbjFWD7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 22 Jun 2023 23:59:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37910 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229958AbjFWDyO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 23:54:14 -0400
-Received: from mail-oo1-xc2d.google.com (mail-oo1-xc2d.google.com [IPv6:2607:f8b0:4864:20::c2d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B144B1BFE;
-        Thu, 22 Jun 2023 20:54:13 -0700 (PDT)
-Received: by mail-oo1-xc2d.google.com with SMTP id 006d021491bc7-55e0706af99so162901eaf.1;
-        Thu, 22 Jun 2023 20:54:13 -0700 (PDT)
+        with ESMTP id S230062AbjFWD7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 22 Jun 2023 23:59:06 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA9D1210A;
+        Thu, 22 Jun 2023 20:59:04 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f870247d6aso139817e87.0;
+        Thu, 22 Jun 2023 20:59:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687492453; x=1690084453;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=nMQ4I0DPbaoK5gg0ZwtWWWfM9jrJt6TfeYfzew3l+nQ=;
-        b=chdBjQySJOLoZMasxb1tp0Vb3PyB+N1K6v+NFabCtndQKntAicSSc1YkvWTUyt6UWG
-         kNnu+qTmxU7xhTJpjNWayDvDrTZ0h3J2MUwUz02VCmUG7KKQd+DfiSzuaWAYmgSp5TVu
-         fcNbM5h2BnR/ggPUbzc41nI4Ch9V/xtjmED9RMV/fIoTLktdTQ76fOqV56Jdu8Y1gRT9
-         y/qbO+SnwXTl1moxeyqZWdcHFr301hIn/ElpmZzs1IdDiDo8/f6giqC+UwPOMV5UNElH
-         mjhAMsOQg9rajD2f9BIwMYeq9ErNDRY0S6KMjD7xd9HgkHdTr/hIdT+mMCNdPWeSr2wl
-         ztJA==
+        d=gmail.com; s=20221208; t=1687492743; x=1690084743;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Cwb2g7B61k6vJspUStt9gge0ov/hucFMMX2AqdAGRWc=;
+        b=qfMMKEz9rWN3iFXI6hJLAMQEkZCzoyTAbVytPhNYsw0e5f+Ci+tD7deuBjoMlCP0U2
+         wFloh5rrifNR0Mrn+byd9BnU76MJWVgIqMfCTSCoeuDfSRMBRXjJR8HIdkhDn4tBrJOk
+         cgUfjbwm0F6s9ZQyB1WnOMMsljFCaXGs+iRCnNSl2CKpX8BmLmWzMpqNVq+0kAa82arD
+         HT24nR3EOIhH+cB+85CljYCpnH5xP0Wxd1jF9+iAZjrKbXVOvaxfhGKHWCqP5MA5PEh1
+         JozxNrma1W5PjM80hZcXZnWlR/oJwNr0JWrjWf8/8M1o2Lhi48mfeFP20eWq23FgMbtM
+         s1rQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687492453; x=1690084453;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=nMQ4I0DPbaoK5gg0ZwtWWWfM9jrJt6TfeYfzew3l+nQ=;
-        b=ekjEZPBWy/rvsQeXAmmOjigDrAE1TfvcAZ+Ds3hHKCJVdvyNZLNhdDbpLbPJroktC0
-         yJYfwMRsL6YCMUnxPq2LujzOwghl5ZH7lnt5a3KC3Q3aa6F4EnZUG7xrWTbJ5qMl3+cz
-         ZBYXy5zgoSlyJbIWz2QbfFy4W7O8t9pe1yg5MqwnnG/hvcSnuDaOEFtquUyexfigGt/f
-         FxtFzhAeiEdXedLrUOS8eP6GkWneT8aNQHeWXG1qSQZwCFRl3lTGOTx9Eu3rQRsaSyTW
-         Zr8imlRlJwx0B9OQjGA43t8YwD77EyY3Q/yU1FmOUUVe2xtbEsJvQFk2xhOdC8KrPow2
-         umQg==
-X-Gm-Message-State: AC+VfDzUKUIszv3pgKbV9sn/sBJe89AhQ0/Q5XywyoNrQEAsVLHm2aX4
-        euVITmNlsrjN6C0gxUbYNdQklZBx4EdtCBTP6CBcYfVuiZY=
-X-Google-Smtp-Source: ACHHUZ5cWw+zEuG0xkJuOiWtlkfgOgI0PylnGDwgJm0fhEbj1WdlqdtFnG1hkX3DvpZ9MlaV9EQTfNCVZCEfCc6Ynzs=
-X-Received: by 2002:a4a:d8d7:0:b0:558:b4b6:7f8c with SMTP id
- c23-20020a4ad8d7000000b00558b4b67f8cmr8620834oov.6.1687492452657; Thu, 22 Jun
- 2023 20:54:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230622110451.1504823-1-sergio.paracuellos@gmail.com> <20230622-algebra-superglue-40955b223774@spud>
-In-Reply-To: <20230622-algebra-superglue-40955b223774@spud>
+        d=1e100.net; s=20221208; t=1687492743; x=1690084743;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Cwb2g7B61k6vJspUStt9gge0ov/hucFMMX2AqdAGRWc=;
+        b=cywXrUat8sBahh0Sv+xL12v18qcCaWLUlRrO7NPj7L3b1eUXBwEaPB4EoB7dvzoUwT
+         kRjxhXZMKvv1bW6A9IIpqGYbRmbn4dnr4aC4KDK3+PNUQpWIXAL8R/SfEMnVf3796QMu
+         ojVplJYQhqJRX/+vPGPgt3+DlT2Nspm86RJlYd1EvLpU6LWQrTVLE3oV+JeiEUiXAcrA
+         dSJH2FmRIddiYvh0BxPboU3slDAi7wXiUkHxGt0hdEpLHq627Cm4sRk4n9Dg0SeJhvXU
+         6suixeUqj4LKky/oT7d5goQ73U4o/jrARaNF60JbsPfo0LowDxRbIesQbb99pSLm4r01
+         Me/g==
+X-Gm-Message-State: AC+VfDyFGs9tvlOPEVe6BEKKVwbi91V1NTwsDwJL9e9fiRMwzH+rcZTY
+        QBFp5Jp4P0C3r7WOc81qFb2lcgj5c8k=
+X-Google-Smtp-Source: ACHHUZ7hqikoqe2viVcatb6vQlowOpWXVymWRD/SCzP1ZrMly+RRLmjaP8KdMBMMcYDbeItTQWYwVw==
+X-Received: by 2002:a05:6512:10c6:b0:4f9:70cc:fe77 with SMTP id k6-20020a05651210c600b004f970ccfe77mr279954lfg.1.1687492742447;
+        Thu, 22 Jun 2023 20:59:02 -0700 (PDT)
+Received: from localhost.localdomain (61.red-88-10-54.dynamicip.rima-tde.net. [88.10.54.61])
+        by smtp.gmail.com with ESMTPSA id f11-20020a1c6a0b000000b003f7f2a1484csm1111094wmc.5.2023.06.22.20.59.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 22 Jun 2023 20:59:01 -0700 (PDT)
 From:   Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Date:   Fri, 23 Jun 2023 05:54:02 +0200
-Message-ID: <CAMhs-H87rhn=8AdLgPFFbSq+=ngQW8n6NRcWKpqjXZ0wyaNiPg@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: interrupt-controller: add Ralink SoCs
- interrupt controller
-To:     Conor Dooley <conor@kernel.org>
-Cc:     devicetree@vger.kernel.org, tglx@linutronix.de, maz@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+To:     devicetree@vger.kernel.org
+Cc:     tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-kernel@vger.kernel.org,
+        Conor Dooley <conor.dooley@microchip.com>
+Subject: [PATCH v3] dt-bindings: interrupt-controller: add Ralink SoCs interrupt controller
+Date:   Fri, 23 Jun 2023 05:59:01 +0200
+Message-Id: <20230623035901.1514341-1-sergio.paracuellos@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
@@ -70,116 +70,83 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Conor,
+Add YAML doc for the interrupt controller which is present on Ralink SoCs.
 
-On Thu, Jun 22, 2023 at 9:14=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Thu, Jun 22, 2023 at 01:04:51PM +0200, Sergio Paracuellos wrote:
-> > Add YAML doc for the interrupt controller which is present on Ralink So=
-Cs.
-> >
-> > Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > ---
-> > Changes in v2:
-> >  - Drop label from the example.
-> >
-> >  .../ralink,rt2880-intc.yaml                   | 54 +++++++++++++++++++
-> >  1 file changed, 54 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-control=
-ler/ralink,rt2880-intc.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/ral=
-ink,rt2880-intc.yaml b/Documentation/devicetree/bindings/interrupt-controll=
-er/ralink,rt2880-intc.yaml
-> > new file mode 100644
-> > index 000000000000..533d6d03aa75
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/ralink,rt2=
-880-intc.yaml
-> > @@ -0,0 +1,54 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/interrupt-controller/ralink,rt2880-=
-intc.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Ralink SoCs Interrupt Controller
-> > +
-> > +maintainers:
-> > +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/interrupt-controller.yaml#
-> > +
-> > +description: |
->
-> FWIW, you don't need a | unless you have some formatting to preserve.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+---
+Changes in v3:
+ - Drop '|' from description.
+ - s/unevaluatedProperties/additionalProperties
+ - Add Conor's Reviewed-by tag.
 
-True. Will drop, then.
+Changes in v2:
+ - Drop label from the example.
 
->
-> > +  This interrupt controller support a central point for interrupt aggr=
-egation
-> > +  for platform related blocks.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: ralink,rt2880-intc
-> > +
-> > +  reg:
-> > +    maxItems: 1
-> > +
-> > +  interrupts:
-> > +    maxItems: 1
-> > +
-> > +  interrupt-controller: true
-> > +
-> > +  '#interrupt-cells':
-> > +    const: 1
-> > +
-> > +required:
-> > +  - compatible
-> > +  - reg
-> > +  - interrupts
-> > +  - interrupt-controller
-> > +  - '#interrupt-cells'
-> > +
-> > +unevaluatedProperties: false
->
-> You explicitly allow two properties from interrupt-controller.yaml, so
-> it seems like this should actually be additionalProperties: false to
-> block things like interrupt-map etc?
+ .../ralink,rt2880-intc.yaml                   | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml
 
-Yes, this should be additionalProperties.
->
-> If your intention was only to allow interrupt-controller, with
-> s/unevaluated/additional/ you can add
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml b/Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml
+new file mode 100644
+index 000000000000..0fa952a9edfd
+--- /dev/null
++++ b/Documentation/devicetree/bindings/interrupt-controller/ralink,rt2880-intc.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/interrupt-controller/ralink,rt2880-intc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Ralink SoCs Interrupt Controller
++
++maintainers:
++  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
++
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
++
++description:
++  This interrupt controller support a central point for interrupt aggregation
++  for platform related blocks.
++
++properties:
++  compatible:
++    const: ralink,rt2880-intc
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - interrupt-controller
++  - '#interrupt-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    interrupt-controller@200 {
++      compatible = "ralink,rt2880-intc";
++      reg = <0x200 0x100>;
++      interrupt-controller;
++      #interrupt-cells = <1>;
++
++      interrupt-parent = <&cpuintc>;
++      interrupts = <2>;
++    };
++...
+-- 
+2.25.1
 
-I will fix these two minor things and send v3 with your Reviewed-by
-added, thanks.
-
-Best regards,
-    Sergio Paracuellos
->
-> Cheers,
-> Conor.
->
-> > +
-> > +examples:
-> > +  - |
-> > +    interrupt-controller@200 {
-> > +      compatible =3D "ralink,rt2880-intc";
-> > +      reg =3D <0x200 0x100>;
-> > +      interrupt-controller;
-> > +      #interrupt-cells =3D <1>;
-> > +
-> > +      interrupt-parent =3D <&cpuintc>;
-> > +      interrupts =3D <2>;
-> > +    };
-> > +...
-> > --
-> > 2.25.1
-> >
