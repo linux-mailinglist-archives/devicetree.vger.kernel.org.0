@@ -2,149 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8108473BE27
-	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 19:56:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E524B73BE37
+	for <lists+devicetree@lfdr.de>; Fri, 23 Jun 2023 20:00:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232013AbjFWR4U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 23 Jun 2023 13:56:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34194 "EHLO
+        id S232241AbjFWSAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 23 Jun 2023 14:00:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231209AbjFWR4T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 13:56:19 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFF522133
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 10:56:16 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b46cad2fd9so15160371fa.1
-        for <devicetree@vger.kernel.org>; Fri, 23 Jun 2023 10:56:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687542975; x=1690134975;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Dqpntf/6Jri52Dcd19VIMHj5sv//Ye/CfucOhTnMjgU=;
-        b=Yj0UJFhh2g2V49OOG4n5Gda142ZxJ4dg235MQYhivc9d0ZojA3dKvfYOhxBujrF9QI
-         U4BTstcBKpe6uHtOYFF+W25IqepRYllfB/w9tYjAhM7uTCxl9/yr5plD/R6Lit+hFGmT
-         +jEV8l66VXQsCO+UXk+jU+tZl1o3rgu8HvvTzh0eD1n9/uHCn6h3Xn1wx5T3ckK3GCzr
-         eOr0wXf5u3FZdHmY2gYkQsBHuP+2xtzHU6w6ez03wHwx3JeJ5mxSAX2EhBASwKXh6aeD
-         LPewZFDqiWRhO9il6HKDANA87U9FjG7oTr2hV+wrrTHDgRDEYzARs/MDUSDiu7gqileL
-         VEwg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687542975; x=1690134975;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Dqpntf/6Jri52Dcd19VIMHj5sv//Ye/CfucOhTnMjgU=;
-        b=SjozMTdYSJC3/DHBPjnTN+tOsQPcY7QFpxoaPKg7/HYhaPmca4qNGniqFSde7r0RBk
-         Rj30pMJS0aSl8shNoN3DS6Z5OujS0xrfsgCYuut5PhOtCZnqh1SV0HLYnI08ij33xMT3
-         6yLKwL5+DxeiqTZSh8CTv+CJcmFrdGf0fdv7ymcVpBNIcIJ/yy3yVWPR+cjV/AGO8fKE
-         g3rX+66qJ6LfSik700zkrfRqBHzILZWsmfLPamIsyyXVlknnj8KoaSEIZcoNICMRUNKr
-         0MeU4szzrGAqzGOhNQyrYnuEnh7ZYLJXXqLCuRXDXQdwh1kXiZfYA+f6g+nKQsJPkUge
-         3qiA==
-X-Gm-Message-State: AC+VfDx/Ht2GLSg/sbLvnSw6MsL5wg+djgXuty18RMH5WLvLs4bv+ROW
-        GSkcfIiWEdwgklPA3rcdhP9P9A==
-X-Google-Smtp-Source: ACHHUZ5Rb1W0hIZd8jNjDreq5gpwDgx93jadu/h6j65zS2ADyQMD99TR5ZTtPVk0E+fLejpNAIB9BQ==
-X-Received: by 2002:a05:651c:1022:b0:2b4:636a:67f4 with SMTP id w2-20020a05651c102200b002b4636a67f4mr13763243ljm.20.1687542974817;
-        Fri, 23 Jun 2023 10:56:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id w20-20020a1709060a1400b00977eec7b7e8sm6279522ejf.68.2023.06.23.10.56.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 23 Jun 2023 10:56:14 -0700 (PDT)
-Message-ID: <4fba1603-5741-ec1b-122f-d6a92803f49a@linaro.org>
-Date:   Fri, 23 Jun 2023 19:56:12 +0200
+        with ESMTP id S232394AbjFWSAm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 23 Jun 2023 14:00:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F42012972;
+        Fri, 23 Jun 2023 11:00:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 235CF61AD2;
+        Fri, 23 Jun 2023 18:00:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4349BC433C8;
+        Fri, 23 Jun 2023 18:00:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687543228;
+        bh=Cn2sUYiOjjyWWuJD4BwJSjEx2Ctq4fd78+3P6xW8XM8=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=nHYn/PC9TtZ9C7lSJhUamJOXWttB3RwSqhh8z4Mh+sgFx+UXTjhPidBPtn0MVtvXQ
+         UNpn0e1DQdPQFdWJv49LMmSE11QE9qpxzdvNIu+/GNIVoHe/H/dB8utvL37cBKqrqI
+         ctB4drTLKFnbDckzayC6rtSBGQVtmWhYp2NthkC4Ig7Nx1UjNbjXEDtogHRHw+YWXq
+         YseIfF7WFYQn1obODSl0BWVqvjBOAB0xGrj4BnBan/jdhdErW4zDM93J9/uXD9WGwn
+         4eSNZy9nbpnHe8IZECHNz//2Udhw9231AJDd/zVavEpOK+D3SuB2hIOvEzJUKk/1fA
+         7lPK8pvyYVCSA==
+Date:   Fri, 23 Jun 2023 13:00:26 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, sboyd@kernel.org, mturquette@baylibre.com,
+        mani@kernel.org, lpieralisi@kernel.org, bhelgaas@google.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Subject: Re: [PATCH 1/4] pcie: qcom: Fix the macro
+ PARF_SLV_ADDR_SPACE_SIZE_2_3_3
+Message-ID: <20230623180026.GA181743@bhelgaas>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5 2/4] dt-bindings: serial: amlogic,meson-uart: Add
- compatible string for T7
-Content-Language: en-US
-To:     tanure@linux.com
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
-        Artem <art@khadas.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230623081242.109131-1-tanure@linux.com>
- <20230623081242.109131-3-tanure@linux.com>
- <a885b97e-aaf0-cb72-f25b-71054d6d3fe2@linaro.org>
- <CAJX_Q+2qZg+RuwxmnM3rzs_akt_UMJRx+=aMxf72P-sGNjm9uw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAJX_Q+2qZg+RuwxmnM3rzs_akt_UMJRx+=aMxf72P-sGNjm9uw@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230623093445.3977772-2-quic_srichara@quicinc.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 19:53, Lucas Tanure wrote:
-> On Fri, Jun 23, 2023 at 9:51 AM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
->>
->> On 23/06/2023 10:12, Lucas Tanure wrote:
->>> Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
->>> There is no need for an extra compatible line in the driver, but
->>> add T7 compatible line for documentation.
->>>
->>> Signed-off-by: Lucas Tanure <tanure@linux.com>
->>> ---
->>>  .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
->>> index 01ec45b3b406..ad970c9ed1c7 100644
->>> --- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
->>> +++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
->>> @@ -50,6 +50,10 @@ properties:
->>>          items:
->>>            - const: amlogic,meson-g12a-uart
->>>            - const: amlogic,meson-gx-uart
->>> +      - description: UART controller on T7 compatible SoCs
->>
->> Your description is rather incorrect. This is UART on SoCs compatible
->> with S4, not with T7. Otherwise what do you expect to grow later when
->> adding more compatible devices? Just drop the description, it's kind of
->> obvious when done correctly (but can be misleading if done wrong).
->>
->> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->>
-> Sorry, but S4 is already added in another way, which accepts just an
-> S4 compatible string.
-> But for T7 we need a fallback.
-> Could you let me know what you're asking here? Redo S4 and add T7? Or
-> do T7 in another different way that I didn't get?
+On Fri, Jun 23, 2023 at 03:04:42PM +0530, Sricharan Ramabadhran wrote:
+> PARF_SLV_ADDR_SPACE_SIZE_2_3_3 macro used for IPQ8074
+> pcie slave addr size was initially set to 0x358, but
+> was wrongly changed to 0x168 as a part of
+> 'PCI: qcom: Sort and group registers and bitfield definitions'
+> Fixing it back to right value here.
 
-I comment only about the description, so why touching anything else? You
-did not add here T7 compatible SoCs. You added here S4 compatible SoCs.
+1) Make your subject line match the history.  For example, you're
+fixing 769e49d87b15 ("PCI: qcom: Sort and group registers ..."), so
+your subject line should start with "PCI: qcom: ...".
 
-> Do you want a v6 patch series? If yes, could you be more clear about
-> how you want it?
+2) It doesn't look like 769e49d87b15 changed
+PARF_SLV_ADDR_SPACE_SIZE_2_3_3:
 
-No need. If you are going to send v6, you can as well drop the description.
+  $ git show 769e49d87b15 | grep PARF_SLV_ADDR_SPACE_SIZE_2_3_3
+  +#define PARF_SLV_ADDR_SPACE_SIZE_2_3_3		0x16C /* Register offset specific to IP ver 2.3.3 */
+  -#define PARF_SLV_ADDR_SPACE_SIZE_2_3_3		0x16C /* Register offset specific to IP rev 2.3.3 */
 
+What am I missing here?  Do you have another out-of-tree patch that
+broke this?
 
----
+Bjorn
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you do not know the process, here is a short
-explanation:
-
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for acks received on the version
-they apply.
-
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
-
-Best regards,
-Krzysztof
-
+> Without this pcie bring up on IPQ8074 is broken now.
+> 
+> Fixes: 769e49d87b15 ("PCI: qcom: Sort and group registers and bitfield definitions")
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-qcom.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 4ab30892f6ef..59823beed13f 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -43,7 +43,7 @@
+>  #define PARF_PHY_REFCLK				0x4c
+>  #define PARF_CONFIG_BITS			0x50
+>  #define PARF_DBI_BASE_ADDR			0x168
+> -#define PARF_SLV_ADDR_SPACE_SIZE_2_3_3		0x16c /* Register offset specific to IP ver 2.3.3 */
+> +#define PARF_SLV_ADDR_SPACE_SIZE_2_3_3		0x358 /* Register offset specific to IP ver 2.3.3 */
+>  #define PARF_MHI_CLOCK_RESET_CTRL		0x174
+>  #define PARF_AXI_MSTR_WR_ADDR_HALT		0x178
+>  #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+> -- 
+> 2.34.1
+> 
