@@ -2,283 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D934773C9BB
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 10:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2BAC73C9D5
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 11:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231802AbjFXImm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jun 2023 04:42:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42256 "EHLO
+        id S232901AbjFXJIi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jun 2023 05:08:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47800 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231911AbjFXImj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 04:42:39 -0400
-Received: from 7.mo563.mail-out.ovh.net (7.mo563.mail-out.ovh.net [46.105.59.58])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90683E5A
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 01:42:37 -0700 (PDT)
-Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net [51.68.80.175])
-        by mo563.mail-out.ovh.net (Postfix) with ESMTPS id 8CC8D22EFC;
-        Sat, 24 Jun 2023 08:42:35 +0000 (UTC)
-Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net. [127.0.0.1])
-        by director1.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
-        for <conor+dt@kernel.org>; Sat, 24 Jun 2023 08:42:35 +0000 (UTC)
-Received: from pro2.mail.ovh.net (unknown [10.108.4.220])
-        by director1.derp.mail-out.ovh.net (Postfix) with ESMTPS id 344422011E3;
-        Sat, 24 Jun 2023 08:42:35 +0000 (UTC)
-Received: from traphandler.com (88.161.25.233) by DAG1EX1.emp2.local
- (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sat, 24 Jun
- 2023 10:42:34 +0200
-From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-To:     <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Subject: [PATCH v10 5/5] leds: Add a multicolor LED driver to group monochromatic LEDs
-Date:   Sat, 24 Jun 2023 10:42:17 +0200
-Message-ID: <20230624084217.3079205-6-jjhiblot@traphandler.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230624084217.3079205-1-jjhiblot@traphandler.com>
-References: <20230624084217.3079205-1-jjhiblot@traphandler.com>
+        with ESMTP id S232856AbjFXJIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 05:08:36 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7881F19AB
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 02:08:35 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-98bcc533490so167490966b.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 02:08:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687597714; x=1690189714;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=n6JzkVRa8sMgqt4wOZNLb6V0TofrH1Kd7ev3kFxK2xc=;
+        b=Rh8pbD9W2/mmo4vpLwjYYWuICUk4g/xZiRykDWLdyyaNcYKkKFf6TC+hX59iPXhc7M
+         m5Mx927JbOZZSiDpI0jqZut6z0twtjvDu7+/APy5ALdjHKtkEAIoCzGHIdh/guaCxSMC
+         oPyZzW50fzbPIvzCUsmNlennD/6einpbBEDAudDYS6TPzm64u0db39jTTys5sUcDD/mL
+         TMGtGLgXaWbg3nboMjSS3FlLmT+dOSZrJUQvoW9EBQ4gC9m84otAZv1cC9I3IsPux4xg
+         Df8l8aR7Xz/s+tGAQMybg4+gRuO04k+gHoMl4TRnFb3c/JGOIJkgQSTQtfEuQo5+Z0bZ
+         xLVw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687597714; x=1690189714;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=n6JzkVRa8sMgqt4wOZNLb6V0TofrH1Kd7ev3kFxK2xc=;
+        b=Yqc1YLoMMwBJ3BUcT+JjLKHy9Q2uQgqairJrtut3WXHW8JOTu/VGxWCtd8R3dzQNh0
+         +P3osZI6eaQw1s5+vh8ntvVWgdB91vY70JDkUfkYBX4BsLjv9+32CdFC9ZXKi6mglyBL
+         OLVFqw0iZTjkXkiwFNL+EjiGCLnGFlvB0PXdn9YPnEWZVHBRjM/1MyQs++Oaat3zeptv
+         lZW9T5Yiyg+Wnks9/OP+0yDYGXlnxlb+eyic9StB6VRVYLJi+L8THk+tsorCR3iYAOm+
+         ej0NpVdHU0Ph0UTWDbenWhsOUqOnGDDYn/nakaRQ2flqLLaU+4bL5EE3sWnkKSytTevH
+         GMNQ==
+X-Gm-Message-State: AC+VfDw4RU3rf/VHqA5Puo3UMjz9ot/H8O+1z6oxNudzbsX4OEhuWoIm
+        bROCkTBxXEoYUNXegrHkRUuJCQ==
+X-Google-Smtp-Source: ACHHUZ6WDJEt8kVafAtj06USOxNi1vO5kwV8GgXL8AtGVdivZUyr0N1GgeF04ko574WKyptwyPK0cA==
+X-Received: by 2002:a17:907:a408:b0:98d:3ae:b683 with SMTP id sg8-20020a170907a40800b0098d03aeb683mr6395204ejc.19.1687597713874;
+        Sat, 24 Jun 2023 02:08:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id gv18-20020a170906f11200b0098e0a937a6asm108250ejb.69.2023.06.24.02.08.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Jun 2023 02:08:33 -0700 (PDT)
+Message-ID: <1d782241-f0ef-848b-9b42-a8a6234bbfae@linaro.org>
+Date:   Sat, 24 Jun 2023 11:08:30 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [88.161.25.233]
-X-ClientProxiedBy: DAG2EX1.emp2.local (172.16.2.11) To DAG1EX1.emp2.local
- (172.16.2.1)
-X-Ovh-Tracer-Id: 12428527598681602523
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: 0
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrgeegjedgtdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffojghfggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeduteevleevvefggfdvueffffejhfehheeuiedtgedtjeeghfehueduudegfeefueenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepughirhgvtghtohhruddruggvrhhprdhmrghilhdqohhuthdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqlhgvughssehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehieef
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 02/15] dt-bindings: clock: qcom,dispcc-sm6125: Remove
+ unused GCC_DISP_AHB_CLK
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
+References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
+ <20230624-sm6125-dpu-v1-2-1d5a638cebf2@somainline.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230624-sm6125-dpu-v1-2-1d5a638cebf2@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Grouping multiple monochrome LEDs into a multicolor LED device has a few
-benefits over handling the group in user-space:
-- The state of the LEDs relative to each other is consistent. In other
-  words, if 2 threads competes to set the LED to green and red, the
-  end-result cannot be black or yellow.
-- The multicolor LED as a whole can be driven through the sysfs LED
-  interface.
+On 24/06/2023 02:41, Marijn Suijten wrote:
+> The downsteam driver for dispcc only ever gets and puts this clock
+> without ever using it in the clocktree; this unnecessary workaround was
+> never ported to mainline, hence the driver doesn't consume this clock
+> and shouldn't be required by the bindings.
+> 
+> Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
 
-Signed-off-by: Jean-Jacques Hiblot <jjhiblot@traphandler.com>
----
- drivers/leds/rgb/Kconfig                 |  12 ++
- drivers/leds/rgb/Makefile                |   1 +
- drivers/leds/rgb/leds-group-multicolor.c | 165 +++++++++++++++++++++++
- 3 files changed, 178 insertions(+)
- create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+In perfect would we would like to know whether hardware needs this clock
+enabled/controlled, not whether some driver needs it. I understand
+though that with lack of proper docs we rely on drivers, so:
 
-diff --git a/drivers/leds/rgb/Kconfig b/drivers/leds/rgb/Kconfig
-index 360c8679c6e2..183bccc06cf3 100644
---- a/drivers/leds/rgb/Kconfig
-+++ b/drivers/leds/rgb/Kconfig
-@@ -2,6 +2,18 @@
- 
- if LEDS_CLASS_MULTICOLOR
- 
-+config LEDS_GROUP_MULTICOLOR
-+	tristate "LEDs group multi-color support"
-+	depends on OF || COMPILE_TEST
-+	help
-+	  This option enables support for monochrome LEDs that are grouped
-+	  into multicolor LEDs which is useful in the case where LEDs of
-+	  different colors are physically grouped in a single multi-color LED
-+	  and driven by a controller that doesn't have multi-color support.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called leds-group-multicolor.
-+
- config LEDS_PWM_MULTICOLOR
- 	tristate "PWM driven multi-color LED Support"
- 	depends on PWM
-diff --git a/drivers/leds/rgb/Makefile b/drivers/leds/rgb/Makefile
-index 8c01daf63f61..c11cc56384e7 100644
---- a/drivers/leds/rgb/Makefile
-+++ b/drivers/leds/rgb/Makefile
-@@ -1,5 +1,6 @@
- # SPDX-License-Identifier: GPL-2.0
- 
-+obj-$(CONFIG_LEDS_GROUP_MULTICOLOR)	+= leds-group-multicolor.o
- obj-$(CONFIG_LEDS_PWM_MULTICOLOR)	+= leds-pwm-multicolor.o
- obj-$(CONFIG_LEDS_QCOM_LPG)		+= leds-qcom-lpg.o
- obj-$(CONFIG_LEDS_MT6370_RGB)		+= leds-mt6370-rgb.o
-diff --git a/drivers/leds/rgb/leds-group-multicolor.c b/drivers/leds/rgb/leds-group-multicolor.c
-new file mode 100644
-index 000000000000..df3e41a6272b
---- /dev/null
-+++ b/drivers/leds/rgb/leds-group-multicolor.c
-@@ -0,0 +1,165 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Multi-color LED built with monochromatic LED devices
-+ *
-+ * This driver groups several monochromatic LED devices in a single multicolor LED device.
-+ *
-+ * Compared to handling this grouping in user-space, the benefits are:
-+ * - The state of the monochromatic LED relative to each other is always consistent.
-+ * - The sysfs interface of the LEDs can be used for the group as a whole.
-+ *
-+ * Copyright 2023 Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-+ */
-+
-+#include <linux/err.h>
-+#include <linux/leds.h>
-+#include <linux/led-class-multicolor.h>
-+#include <linux/math.h>
-+#include <linux/module.h>
-+#include <linux/mod_devicetable.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+
-+struct leds_multicolor {
-+	struct led_classdev_mc mc_cdev;
-+	struct led_classdev **monochromatics;
-+};
-+
-+static int leds_gmc_set(struct led_classdev *cdev, enum led_brightness brightness)
-+{
-+	struct led_classdev_mc *mc_cdev = lcdev_to_mccdev(cdev);
-+	struct leds_multicolor *priv = container_of(mc_cdev, struct leds_multicolor, mc_cdev);
-+	const unsigned int group_max_brightness = mc_cdev->led_cdev.max_brightness;
-+	int i;
-+
-+	for (i = 0; i < mc_cdev->num_colors; i++) {
-+		struct led_classdev *mono = priv->monochromatics[i];
-+		const unsigned int mono_max_brightness = mono->max_brightness;
-+		unsigned int intensity = mc_cdev->subled_info[i].intensity;
-+		int mono_brightness;
-+
-+		/*
-+		 * Scale the brightness according to relative intensity of the
-+		 * color AND the max brightness of the monochromatic LED.
-+		 */
-+		mono_brightness = DIV_ROUND_CLOSEST(brightness * intensity * mono_max_brightness,
-+						    group_max_brightness * group_max_brightness);
-+
-+		led_set_brightness(mono, mono_brightness);
-+	}
-+
-+	return 0;
-+}
-+
-+static void restore_sysfs_write_access(void *data)
-+{
-+	struct led_classdev *led_cdev = data;
-+
-+	mutex_lock(&led_cdev->led_access);
-+	led_sysfs_enable(led_cdev);
-+	mutex_unlock(&led_cdev->led_access);
-+}
-+
-+static int leds_gmc_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct led_init_data init_data = {};
-+	struct led_classdev *cdev;
-+	struct mc_subled *subled;
-+	struct leds_multicolor *priv;
-+	unsigned int max_brightness = 0;
-+	int i, ret, count = 0;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	for (;;) {
-+		struct led_classdev *led_cdev;
-+
-+		led_cdev = devm_of_led_get_optional(dev, count);
-+		if (IS_ERR(led_cdev))
-+			return dev_err_probe(dev, PTR_ERR(led_cdev), "Unable to get LED #%d",
-+					     count);
-+		if (!led_cdev)
-+			break;
-+
-+		priv->monochromatics = devm_krealloc_array(dev, priv->monochromatics,
-+					count + 1, sizeof(*priv->monochromatics),
-+					GFP_KERNEL);
-+		if (!priv->monochromatics)
-+			return -ENOMEM;
-+
-+		priv->monochromatics[count] = led_cdev;
-+
-+		max_brightness = max(max_brightness, led_cdev->max_brightness);
-+
-+		count++;
-+	}
-+
-+	subled = devm_kcalloc(dev, count, sizeof(*subled), GFP_KERNEL);
-+	if (!subled)
-+		return -ENOMEM;
-+	priv->mc_cdev.subled_info = subled;
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		subled[i].color_index = led_cdev->color;
-+
-+		/* Configure the LED intensity to its maximum */
-+		subled[i].intensity = max_brightness;
-+	}
-+
-+	/* Initialise the multicolor's LED class device */
-+	cdev = &priv->mc_cdev.led_cdev;
-+	cdev->flags = LED_CORE_SUSPENDRESUME;
-+	cdev->brightness_set_blocking = leds_gmc_set;
-+	cdev->max_brightness = max_brightness;
-+	cdev->color = LED_COLOR_ID_MULTI;
-+	priv->mc_cdev.num_colors = count;
-+
-+	init_data.fwnode = dev_fwnode(dev);
-+	ret = devm_led_classdev_multicolor_register_ext(dev, &priv->mc_cdev, &init_data);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to register multicolor LED for %s.\n",
-+				     cdev->name);
-+
-+	ret = leds_gmc_set(cdev, cdev->brightness);
-+	if (ret)
-+		return dev_err_probe(dev, ret, "failed to set LED value for %s.", cdev->name);
-+
-+	for (i = 0; i < count; i++) {
-+		struct led_classdev *led_cdev = priv->monochromatics[i];
-+
-+		/* Make monochromatic LED sysfs interface read-only */
-+		mutex_lock(&led_cdev->led_access);
-+		led_sysfs_disable(led_cdev);
-+		mutex_unlock(&led_cdev->led_access);
-+
-+		/* Restore sysfs access when the multicolor LED is released */
-+		devm_add_action_or_reset(dev, restore_sysfs_write_access, led_cdev);
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id of_leds_group_multicolor_match[] = {
-+	{ .compatible = "leds-group-multicolor" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, of_leds_group_multicolor_match);
-+
-+static struct platform_driver leds_group_multicolor_driver = {
-+	.probe		= leds_gmc_probe,
-+	.driver		= {
-+		.name	= "leds_group_multicolor",
-+		.of_match_table = of_leds_group_multicolor_match,
-+	}
-+};
-+module_platform_driver(leds_group_multicolor_driver);
-+
-+MODULE_AUTHOR("Jean-Jacques Hiblot <jjhiblot@traphandler.com>");
-+MODULE_DESCRIPTION("LEDs group multicolor driver");
-+MODULE_LICENSE("GPL");
-+MODULE_ALIAS("platform:leds-group-multicolor");
--- 
-2.34.1
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
