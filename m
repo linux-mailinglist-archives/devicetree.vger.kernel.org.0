@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF57B73CB1D
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 15:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9844A73CB25
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 15:52:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231230AbjFXNvo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jun 2023 09:51:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33708 "EHLO
+        id S233026AbjFXNwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jun 2023 09:52:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229584AbjFXNvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 09:51:42 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 713241FCC
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:51:40 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b4636bb22eso24911501fa.2
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:51:40 -0700 (PDT)
+        with ESMTP id S229941AbjFXNwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 09:52:37 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6E89E62
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:52:35 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b6985de215so2466941fa.2
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:52:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687614698; x=1690206698;
+        d=linaro.org; s=google; t=1687614754; x=1690206754;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=3Oi1lF/kkeimU7XmipbBvg8q7/HjZupz5o5jzKFagIM=;
-        b=IEz5Il4BczoOZSDNpKTWfxYQIXnw1PWYudJXZYKUh1P1aLgWGSoQgbgodcvqZI1clF
-         oWRhs1G4zYF+AoqU+SYfNPkiyC5q4INa0Mok0aP9M0heefBSXKJZ8zH/dVmo0mwR9sFJ
-         nl42A5o3UeS0BuJ+x0wvJ1ABU5GFzn1CHGJ/SI7XLNVqdPv9FVyOX3dIz1ON3qA2NzDx
-         UsAJjsq7/UPGAf1/nJsuZuls/3oCtLrrwZLgFw2TMmmIodteMqm1Ul1E2OClrhPqpfd/
-         D9XZAlZ6m029jawHWoHoTsl9VEhFikItbhwz6BGJ5rRb3CxTMq9KuqFvmULxl6zOFaMl
-         vFDg==
+        bh=mjiEZV4jeag6OJr2dpUfso60xJEHHcCh9NKqh9NcVoI=;
+        b=HIrUMg/1DiFIXr9Oxo/TxEkIN/SHzzu3j+KAkwb1dkBbJS18VkjhwY1eu3+wd4nz+Y
+         O4lqCmvud8HypQeJ6xLov05tSLHSncrPVVygkl12vKMpaZNgKiRNKD+Rps8EeBt4eyeb
+         oWOmFn4pGmCJNrGjsYKJMEHF8pUjvWL0cqZuJuDxRviBXBcHsxiaACc7YoBpcO6lcnOP
+         bcNQZV1kSS44z8IaFxEAShgwlD4smb8LIyDa4pqpo7dOzaA1iQtdeDuK9EM9spbyFG9F
+         d5eZHFAqyDpWRKwYdaKMR6bUUWQhPpbAuH32sxw5SYweV9o/02G8njD2oJWPs/uyblz6
+         l77w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687614698; x=1690206698;
+        d=1e100.net; s=20221208; t=1687614754; x=1690206754;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=3Oi1lF/kkeimU7XmipbBvg8q7/HjZupz5o5jzKFagIM=;
-        b=I+IknuQV9zwlb5hkVotkbJ3+u2Z3xoslW8w3JWRLIFQh8DwZeyIBfjdy6hKiDp1jXV
-         exJEyx49Ha6cKV3yejyTnEyE3m6VPhVePmBVwVJBX/ZHd7oSCGB1nJBFp+gmxGOMmIYB
-         XYoe/u46iOh/pW+jA5gsjqzdTB2smhiCdAexqfzQ+RDtZ9EibLt3Ei1bKR32B7/NhQdh
-         9R9P/jYGfdvwauVPu7befKCk3nYeP2sCjAiKQSHkM8iyJGPb4NShbnlFHG4FK0rgRgvk
-         F2mFtKbmnAEb3o3omARpYTlD88T4lTU/XlMLn6U5S+rjH2ijkgaFsOtz3rW3M4tZo2xb
-         Kaww==
-X-Gm-Message-State: AC+VfDxv+zgUX5o6Ajdpejy3EiWvAtd/jd/c3xtZyGZJ4jIPYNkCF3up
-        AwugxDoyC0rxy1SzjP4VHAmNOQ==
-X-Google-Smtp-Source: ACHHUZ5FCA1DOZju+00ypB3OMYq3OCOWTLOYqZr6LPhb+QsOvI4uav5IUweih4iBraBcA7xOnGeREg==
-X-Received: by 2002:a2e:83d0:0:b0:2b4:792d:a4ad with SMTP id s16-20020a2e83d0000000b002b4792da4admr10979503ljh.26.1687614698631;
-        Sat, 24 Jun 2023 06:51:38 -0700 (PDT)
+        bh=mjiEZV4jeag6OJr2dpUfso60xJEHHcCh9NKqh9NcVoI=;
+        b=VWgfidHCeVf6mISVe9tFF9VoxqPgyDPJYMhDToj8WuuAfB0eWIrBb3z0uaJDY+cN3S
+         BsEPWLcUTU+pT0nhrXKr/RLrJcGGN4rqjpIw8l1GV5EBeCCTYckSy5oDX55fGmvfM8vt
+         Nu/oKqrpGoVgUHJHVBPfU1G1kIOvAin+l/6OtgI3drtkDz9wPbDr47wI61zjGlmMpyD5
+         Ue2mAXQoqRyqFj/8CqrmiU/QenOugczZHJvCBMMfUJqz4RreGhhHto2TvOA13E+cn6ZD
+         cL1uHmfuSpqMAM7Re91uGZbFKRscDG39s5SGBvrMnT1Yp/8oKFBYukLkelkjs1mrdSGV
+         X/8g==
+X-Gm-Message-State: AC+VfDwrrhg3a/RrJFz3AzW+34F5vAsrgjwJsZrqwtST8jX6YWuf6lU1
+        xcx3rmUi9mdgbOmpZUP4iNT0Pw==
+X-Google-Smtp-Source: ACHHUZ5bwkJUdGqwvE2xmfPDoF40i6IPYZFeCYu7hP9FSE6SMtCynuxZSEvR63zxka+bMXifTFwmlw==
+X-Received: by 2002:a05:6512:3714:b0:4f8:5886:1868 with SMTP id z20-20020a056512371400b004f858861868mr233116lfr.24.1687614754001;
+        Sat, 24 Jun 2023 06:52:34 -0700 (PDT)
 Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id b21-20020a2e8955000000b002b1a872c826sm282414ljk.61.2023.06.24.06.51.37
+        by smtp.gmail.com with ESMTPSA id i7-20020a056512006700b004f76b40260esm285250lfo.146.2023.06.24.06.52.32
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Jun 2023 06:51:38 -0700 (PDT)
-Message-ID: <a91a9866-c31a-5136-02c0-78ab6e7bcd1d@linaro.org>
-Date:   Sat, 24 Jun 2023 16:51:37 +0300
+        Sat, 24 Jun 2023 06:52:33 -0700 (PDT)
+Message-ID: <dfbff674-ced9-9bc3-848d-91d5ecd4c1d5@linaro.org>
+Date:   Sat, 24 Jun 2023 16:52:32 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 11/15] drm/msm/dsi: Add 14nm phy configuration for SM6125
+Subject: Re: [PATCH 13/15] arm64: dts: qcom: sm6125: Add dispcc node
 Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -73,6 +72,7 @@ To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
 Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Martin Botka <martin.botka@somainline.org>,
         Jami Kettunen <jami.kettunen@somainline.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
@@ -81,10 +81,9 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
         freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
 References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
- <20230624-sm6125-dpu-v1-11-1d5a638cebf2@somainline.org>
- <18d969bb-69b5-0d42-1518-e8a3b92859b7@linaro.org>
+ <20230624-sm6125-dpu-v1-13-1d5a638cebf2@somainline.org>
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <18d969bb-69b5-0d42-1518-e8a3b92859b7@linaro.org>
+In-Reply-To: <20230624-sm6125-dpu-v1-13-1d5a638cebf2@somainline.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -97,81 +96,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/06/2023 04:49, Konrad Dybcio wrote:
-> On 24.06.2023 02:41, Marijn Suijten wrote:
->> SM6125 features only a single PHY (despite a secondary PHY PLL source
->> being available to the disp_cc_mdss_pclk0_clk_src clock), and downstream
->> sources for this "trinket" SoC do not define the typical "vcca"
->> regulator to be available nor used.
->>
->> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
->> ---
-> The introduced ops are identical to 2290, modulo regulator..
+On 24/06/2023 03:41, Marijn Suijten wrote:
+> Enable and configure the dispcc node on SM6125 for consumption by MDSS
+> later on.
 > 
-> But the regulator is absent on both (VDD_MX powers it instead), so
-> feel free to clean that up and reuse it ;)
-
-Could you please send a fix for qcm2290?
-
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm6125.dtsi | 23 +++++++++++++++++++++++
+>   1 file changed, 23 insertions(+)
 > 
-> Konrad
->>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.c      |  2 ++
->>   drivers/gpu/drm/msm/dsi/phy/dsi_phy.h      |  1 +
->>   drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 15 +++++++++++++++
->>   3 files changed, 18 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
->> index 9d5795c58a98..8688ed502dcf 100644
->> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
->> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.c
->> @@ -559,6 +559,8 @@ static const struct of_device_id dsi_phy_dt_match[] = {
->>   	  .data = &dsi_phy_14nm_2290_cfgs },
->>   	{ .compatible = "qcom,dsi-phy-14nm-660",
->>   	  .data = &dsi_phy_14nm_660_cfgs },
->> +	{ .compatible = "qcom,dsi-phy-14nm-6125",
->> +	  .data = &dsi_phy_14nm_6125_cfgs },
->>   	{ .compatible = "qcom,dsi-phy-14nm-8953",
->>   	  .data = &dsi_phy_14nm_8953_cfgs },
->>   #endif
->> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
->> index 8b640d174785..ebf915f5e6c6 100644
->> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
->> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy.h
->> @@ -52,6 +52,7 @@ extern const struct msm_dsi_phy_cfg dsi_phy_20nm_cfgs;
->>   extern const struct msm_dsi_phy_cfg dsi_phy_14nm_cfgs;
->>   extern const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs;
->>   extern const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs;
->> +extern const struct msm_dsi_phy_cfg dsi_phy_14nm_6125_cfgs;
->>   extern const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs;
->>   extern const struct msm_dsi_phy_cfg dsi_phy_10nm_cfgs;
->>   extern const struct msm_dsi_phy_cfg dsi_phy_10nm_8998_cfgs;
->> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
->> index 3ce45b023e63..5d43c9ec69ae 100644
->> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
->> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
->> @@ -1068,6 +1068,21 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_660_cfgs = {
->>   	.num_dsi_phy = 2,
->>   };
->>   
->> +const struct msm_dsi_phy_cfg dsi_phy_14nm_6125_cfgs = {
->> +	.has_phy_lane = true,
->> +	.ops = {
->> +		.enable = dsi_14nm_phy_enable,
->> +		.disable = dsi_14nm_phy_disable,
->> +		.pll_init = dsi_pll_14nm_init,
->> +		.save_pll_state = dsi_14nm_pll_save_state,
->> +		.restore_pll_state = dsi_14nm_pll_restore_state,
->> +	},
->> +	.min_pll_rate = VCO_MIN_RATE,
->> +	.max_pll_rate = VCO_MAX_RATE,
->> +	.io_start = { 0x5e94400 },
->> +	.num_dsi_phy = 1,
->> +};
->> +
->>   const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs = {
->>   	.has_phy_lane = true,
->>   	.regulator_data = dsi_phy_14nm_17mA_regulators,
->>
+> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> index edb03508dba3..7d78b4e48ebe 100644
+> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
+> @@ -3,6 +3,7 @@
+>    * Copyright (c) 2021, Martin Botka <martin.botka@somainline.org>
+>    */
+>   
+> +#include <dt-bindings/clock/qcom,dispcc-sm6125.h>
+>   #include <dt-bindings/clock/qcom,gcc-sm6125.h>
+>   #include <dt-bindings/clock/qcom,rpmcc.h>
+>   #include <dt-bindings/dma/qcom-gpi.h>
+> @@ -1203,6 +1204,28 @@ sram@4690000 {
+>   			reg = <0x04690000 0x10000>;
+>   		};
+>   
+> +		dispcc: clock-controller@5f00000 {
+> +			compatible = "qcom,sm6125-dispcc";
+> +			reg = <0x05f00000 0x20000>;
+> +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <0>,
+> +				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>;
+
+This clock is at the wrong position.
+
+> +			clock-names = "bi_tcxo",
+> +				      "gcc_disp_gpll0_div_clk_src",
+> +				      "dsi0_phy_pll_out_byteclk",
+> +				      "dsi0_phy_pll_out_dsiclk",
+> +				      "dsi1_phy_pll_out_dsiclk",
+> +				      "dp_phy_pll_link_clk",
+> +				      "dp_phy_pll_vco_div_clk";
+> +			power-domains = <&rpmpd SM6125_VDDCX>;
+> +			#clock-cells = <1>;
+> +			#power-domain-cells = <1>;
+> +		};
+> +
+>   		apps_smmu: iommu@c600000 {
+>   			compatible = "qcom,sm6125-smmu-500", "qcom,smmu-500", "arm,mmu-500";
+>   			reg = <0x0c600000 0x80000>;
+> 
 
 -- 
 With best wishes
