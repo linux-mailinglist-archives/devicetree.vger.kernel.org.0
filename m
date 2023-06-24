@@ -2,101 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1273A73CC14
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 19:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C75CE73CC4F
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 20:02:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232143AbjFXRky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jun 2023 13:40:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38316 "EHLO
+        id S233188AbjFXSCN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jun 2023 14:02:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229448AbjFXRkx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 13:40:53 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E95011BC2;
-        Sat, 24 Jun 2023 10:40:51 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 455126092A;
-        Sat, 24 Jun 2023 17:40:51 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 35BB2C433C0;
-        Sat, 24 Jun 2023 17:40:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687628450;
-        bh=5uw4ioxmxRm5FpJGvseBufZ9FdZrud/jDgdUzD+9qik=;
-        h=From:To:In-Reply-To:References:Subject:Date:From;
-        b=Ovfqjm6GzxlA1TkFD9ouzjwq5Imvzuk1oQSKZi/+QyZdLMLz+OvyJHt9Yk4PQMQmP
-         UtRnFwbTm2BjTUTxb1TVz63aRvJa+wZti0VFYPoRE77+HaEXNsKZ4v2tlcrhY3hCuc
-         oA5AdDb9TB9wBxSKLI8mUEwShELHxK1P6xr0+KYzMc3q8eiMpALeb2T5BaUNl4HhEC
-         c/TMxexsR0lj4tSFmTmDBvsJDXjpXrcHlRqYW6KbobLcrgRAH/Qn//S4Tmgmed0uqY
-         rCzsBooavxI6iS21lBOLh6dvtUnbaFzrusO9V6NY9secxq7uxdVgF4i3WITgYsgG7V
-         z0gYmFNGviS2w==
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Claudiu Beznea <claudiu.beznea@microchip.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Varshini Rajendran <varshini.rajendran@microchip.com>,
-        linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230624082054.37697-1-krzysztof.kozlowski@linaro.org>
-References: <20230624082054.37697-1-krzysztof.kozlowski@linaro.org>
-Subject: Re: [PATCH] spi: dt-bindings: atmel,at91rm9200-spi: fix broken
- sam9x7 compatible
-Message-Id: <168762843922.1328079.8328118275834289222.b4-ty@kernel.org>
-Date:   Sat, 24 Jun 2023 18:40:39 +0100
+        with ESMTP id S229662AbjFXSCM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 14:02:12 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38EB3B5
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 11:02:11 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4f973035d60so2163830e87.3
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 11:02:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687629729; x=1690221729;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=b8aXK79fA9FR8gAtXzWQUHnQm80+lmfMQEsV5inLFFs=;
+        b=HWf9+bLfsRsQ5gE5EplC6PQgmM/X18AmoRfH1ZpiWsNARJZdODjeXjJL4WSLHnirjP
+         tUXHS7lRPy8UB4ot23yvWGA5rmp8sX0moTPJYFCAaT1xNZOy08gHKgEbmI+J2RH6IXKO
+         0Rw+CGF2tc0EY3SmtGu4Sc0HuSTGwooqfVDjZ8bJUPgDSyFGheq5PDJ7DbeiUIqng3Kj
+         i2OUAeajWNEQjbdn3X5/Nvw8MO1k6YY/ssyfjvAxzllzn5RQ4Ib09vPQMUlXCzCrbLEK
+         KuDnSjuKBWtnX6Xl3FoX95oj0KZ5AQhft7FdRDTs4kQ8cLzCevkMsmOZgguTqloef1Fg
+         VDzQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687629729; x=1690221729;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=b8aXK79fA9FR8gAtXzWQUHnQm80+lmfMQEsV5inLFFs=;
+        b=BMnlcUjM8gxe1BqosqFa+/jNhOws2SrgxU1tyMvFLaYHpPVKueL+GdOKtmtEEn1qc2
+         qD8SoH8q4tmoOkf9vgcVojeF5fB/hZjLqWnU0FfBBE2PBvuHyQOxQ/oBxG01KTOy3b3H
+         NuZ2WSmtNHUwLu/Ont1cZ6R0KlTZW5P/6PYE02gwMnESKVxZZidM2wXLA81/wxrbta31
+         S71Z1nzXgRZGXwHeaYRgOL3iHayAdlApIP3eFsvdxdXoHV7OwtU/CIJ2ePUxNVbznkH7
+         AI8jZImnEC1tWkKEP0Zmx6G8rqd+IZeu4au8umwS6eaMrYaPLGRbXOAdj+g4+WGghc4Q
+         NmKA==
+X-Gm-Message-State: AC+VfDxnxZH74tb6PnsSn4q1eBuhy2H9IefQRQgxdGcJTFdHw5EXAas2
+        yYoCqwp1/i2diaRzsuQ5RW6B0Q==
+X-Google-Smtp-Source: ACHHUZ4AwY7UKYyZJUEu0YUv5C4sz9uG4mSL1/otAdmuKa0+0lafodbdvnsMQ8A0fkFvV5cdyGqgfw==
+X-Received: by 2002:a05:6512:3f05:b0:4fa:abe7:7c80 with SMTP id y5-20020a0565123f0500b004faabe77c80mr320140lfa.39.1687629729435;
+        Sat, 24 Jun 2023 11:02:09 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id m25-20020ac24ad9000000b004fad16596fasm61996lfp.21.2023.06.24.11.02.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Jun 2023 11:02:08 -0700 (PDT)
+Message-ID: <6f590bb6-7d17-3ae8-684d-2d4403d6ff55@linaro.org>
+Date:   Sat, 24 Jun 2023 21:02:06 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 4/8] phy: Add HDMI configuration options
+Content-Language: en-GB
+To:     Sandor Yu <Sandor.yu@nxp.com>, andrzej.hajda@intel.com,
+        neil.armstrong@linaro.org, robert.foss@linaro.org,
+        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
+        jernej.skrabec@gmail.com, airlied@gmail.com, daniel@ffwll.ch,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        vkoul@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-phy@lists.infradead.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, oliver.brown@nxp.com
+References: <cover.1686729444.git.Sandor.yu@nxp.com>
+ <cec469206a166c4b070fd7d7bbf89a8df656ccc6.1686729444.git.Sandor.yu@nxp.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <cec469206a166c4b070fd7d7bbf89a8df656ccc6.1686729444.git.Sandor.yu@nxp.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-c6835
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 24 Jun 2023 10:20:54 +0200, Krzysztof Kozlowski wrote:
-> Commit a3eb95484f27 ("spi: dt-bindings: atmel,at91rm9200-spi: add sam9x7
-> compatible") adding sam9x7 compatible did not make any sense as it added
-> new compatible into middle of existing compatible list.  The intention
-> was probably to add new set of compatibles with sam9x7 as first one.
+On 15/06/2023 04:38, Sandor Yu wrote:
+> Allow HDMI PHYs to be configured through the generic
+> functions through a custom structure added to the generic union.
 > 
+> The parameters added here are based on HDMI PHY
+> implementation practices.  The current set of parameters
+> should cover the potential users.
 > 
+> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
+> ---
+>   include/linux/phy/phy-hdmi.h | 38 ++++++++++++++++++++++++++++++++++++
+>   include/linux/phy/phy.h      |  7 ++++++-
+>   2 files changed, 44 insertions(+), 1 deletion(-)
+>   create mode 100644 include/linux/phy/phy-hdmi.h
+> 
+> diff --git a/include/linux/phy/phy-hdmi.h b/include/linux/phy/phy-hdmi.h
+> new file mode 100644
+> index 000000000000..5765aa5bc175
+> --- /dev/null
+> +++ b/include/linux/phy/phy-hdmi.h
+> @@ -0,0 +1,38 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Copyright 2022 NXP
+> + */
+> +
+> +#ifndef __PHY_HDMI_H_
+> +#define __PHY_HDMI_H_
+> +
+> +/**
+> + * Pixel Encoding as HDMI Specification
+> + * RGB, YUV422, YUV444:HDMI Specification 1.4a Section 6.5
+> + * YUV420: HDMI Specification 2.a Section 7.1
+> + */
+> +enum hdmi_phy_colorspace {
+> +	HDMI_PHY_COLORSPACE_RGB,        /* RGB 4:4:4 */
+> +	HDMI_PHY_COLORSPACE_YUV422,     /* YCbCr 4:2:2 */
+> +	HDMI_PHY_COLORSPACE_YUV444,     /* YCbCr 4:4:4 */
+> +	HDMI_PHY_COLORSPACE_YUV420,     /* YCbCr 4:2:0 */
+> +	HDMI_PHY_COLORSPACE_RESERVED4,
+> +	HDMI_PHY_COLORSPACE_RESERVED5,
+> +	HDMI_PHY_COLORSPACE_RESERVED6,
+> +};
 
-Applied to
+This enum duplicates enum hdmi_colorspace from <linux/hdmi.h>
+HDMI 2.0 defines '7' to be IDO-defined.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
+Would it be better to use that enum instead?
 
-Thanks!
+> +
+> +/**
+> + * struct phy_configure_opts_hdmi - HDMI configuration set
+> + * @pixel_clk_rate:	Pixel clock of video modes in KHz.
+> + * @bpc: Maximum bits per color channel.
+> + * @color_space: Colorspace in enum hdmi_phy_colorspace.
+> + *
+> + * This structure is used to represent the configuration state of a HDMI phy.
+> + */
+> +struct phy_configure_opts_hdmi {
+> +	unsigned int pixel_clk_rate;
+> +	unsigned int bpc;
+> +	enum hdmi_phy_colorspace color_space;
+> +};
+> +
+> +#endif /* __PHY_HDMI_H_ */
 
-[1/1] spi: dt-bindings: atmel,at91rm9200-spi: fix broken sam9x7 compatible
-      commit: e884a133340a470070b2c59833c9ff87aa6517ba
+[skipped the rest]
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+-- 
+With best wishes
+Dmitry
 
