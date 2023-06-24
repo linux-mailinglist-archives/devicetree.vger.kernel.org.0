@@ -2,83 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2364373C777
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 09:49:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 091CF73C782
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 09:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbjFXHtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jun 2023 03:49:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47568 "EHLO
+        id S230197AbjFXHxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jun 2023 03:53:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48178 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229727AbjFXHtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 03:49:18 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7EDC2685
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 00:49:16 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-98802908fedso161936166b.1
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 00:49:16 -0700 (PDT)
+        with ESMTP id S229534AbjFXHxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 03:53:15 -0400
+Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42BF826A5
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 00:53:14 -0700 (PDT)
+Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51bde6a8c20so1520240a12.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 00:53:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687592955; x=1690184955;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1687593192; x=1690185192;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=fobpxe2Vh3rTegR8aAILQO/aor/jN2XTUZh+y2BjRx8=;
-        b=p0vcB9NOqpDYcOFBUgjJtMCwF6u2j2jVYTScX1y2/6gMwv22HEnMNzigrsNRNvZbMY
-         fbmdwyutBRnJqkmZXJaWUm1xJ0c/uPYJslawKx77u4kN4PQwydalmy8slyP7J2De9dfl
-         N3t9pLZ7Nj7nARI6GTPETalZ3gx8ySvxsgSdz6o50H9bsdG4lI1I6pBTgtzbbqOK7VvP
-         c1KAp4StwpRAwDGi5bzdc3oiPOHaP5EQxwQMjq0vp7m2xUYcgzME0pa1Mig2T5tX30+d
-         fa4Eu8f6v8k9+JYXYw8Tt0Iqmsl3cFAZ5v4tQxHwqeQ/Czw4iXsHyL7Z8iAPcBsnJfsH
-         laIA==
+        bh=hr9nrGlYrxN00jEwRxs6PYBUQxgnGyvMLv6d+S+IyFk=;
+        b=LQEc0yoJm0GslpUZYCjcHtwoTCvu+59CHRYP/sGpmh7IIEWYyKbcmwOTWkHIAk5amo
+         GW/7Gpe870PqzwscCvwhvS2tRdD4lIO92N5a+9t0YvyTUExmCh3G/ey+cNZCCGzcBTPJ
+         6yPMwkjqsKsodsXDqWTZBNezjTKe+7X8fdEpM8mYCN9NPvWn/peXOWQ5kyvKsBiKcO44
+         1nn5gapVl7Ro8gQLfw1L+9piaUTX+p6FPVZZ1/ijnscvD92eH3mJCbstLfuZt0gY2UUX
+         +QldvphwJQ8glfg3JyKVOgSk3y2EQry5UIdVnMeV03t88wxPGoe0khhNc6S3VhqB4zja
+         Bt8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687592955; x=1690184955;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687593192; x=1690185192;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fobpxe2Vh3rTegR8aAILQO/aor/jN2XTUZh+y2BjRx8=;
-        b=SIcFGYHVr5AbUYGuP5OBG3lmwmvS9ijow9L7E/AZgFJP8o2+ELFVdeUcWzYKoOincM
-         oxATbNycpEkgcksWMZcyquDUn0QOEV/RNjDRMK3MxhVQ4Qnnx0BifN/5SDLdaSsAVK9B
-         NXp8bri88Yr7LdH0PPrEUADAbnI7MEl/GwYovh5NKmi1yv2zY6Xf/tlxgTV2FgJpdlkl
-         5xTPS4wX4/vzapOF7xAPmWdrc5W45RY3Re0OXvbpG7I2tHAj+r/79xtrwbi1HyNvghGU
-         FJOAGVVHatBDxA8n6a2wSjahXOn/T4X+kQt4hotNJY7kuseG8Ke2ozRl6+ip+P4IPP4s
-         kECw==
-X-Gm-Message-State: AC+VfDxGniPjTnBhv7ZvN5M+U2hvSz57liK4V3Bjh4XuT1slwSuI/tKt
-        Lrdc3xYNFtJLHPumtz6g7lak0w==
-X-Google-Smtp-Source: ACHHUZ5zxQNQmvecCWEX+T8SpICSGCyG7Q95vSIHvgEfe3ifIVl00Aelqo52kll7A4K7AbgmyvUGYg==
-X-Received: by 2002:a17:907:805:b0:989:450:e57d with SMTP id wv5-20020a170907080500b009890450e57dmr11352975ejb.73.1687592955055;
-        Sat, 24 Jun 2023 00:49:15 -0700 (PDT)
+        bh=hr9nrGlYrxN00jEwRxs6PYBUQxgnGyvMLv6d+S+IyFk=;
+        b=i72ekeS8aiiybEysh88ubhtUiKCTaAkKQtwQdSbDUJXUTulENmqO+en7RkOxEGqtKU
+         N5GgG1pmviWRmv9rZKE4S8uTtlrbg5kGk24BD9b2Lf4N+LVgtXuhvuv65C2LQF2Y05Wf
+         QtmyCJH+gb6WGBJoGWckTB+MNm1l1HNSl/rNm8wbXIIL/VxaQTdb4MTJxf2vhd1dtaGD
+         jvgdQbibgPODuelSnbX5SvcyPeOp3U7hLuhb+oKZiGJfnWlymPr7CLlwVs3w2p8kFK9Z
+         P7oVTnqUYLWGDPFLxq1jrfAQ5Fzde1vealEa8Uu8nU3T/j5HhGtLwzYdlbfXkk2RMoj1
+         qKbQ==
+X-Gm-Message-State: AC+VfDwFiTutMiLAxZ3Z8AMNH/DuEQry8bHFnTS/CA7s7N3mcWtla+5R
+        l5kZeowh7CC+iMmx56yJ2+QRoQ==
+X-Google-Smtp-Source: ACHHUZ522CJYVOfO8kVotsUuEt+wtHkNFHrIi0PS6ACNcKvYFOPHzOCYWLySAcxpXgHfsNodLNJqrA==
+X-Received: by 2002:a50:ef12:0:b0:51a:f6de:bb81 with SMTP id m18-20020a50ef12000000b0051af6debb81mr10804337eds.28.1687593192613;
+        Sat, 24 Jun 2023 00:53:12 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id bm4-20020a170906c04400b00973ca837a68sm574507ejb.217.2023.06.24.00.49.12
+        by smtp.gmail.com with ESMTPSA id m5-20020aa7d345000000b0051495ce23absm404938edr.10.2023.06.24.00.53.06
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Jun 2023 00:49:14 -0700 (PDT)
-Message-ID: <f1ff2c32-df2a-e349-1227-e5a93fe37c92@linaro.org>
-Date:   Sat, 24 Jun 2023 09:49:12 +0200
+        Sat, 24 Jun 2023 00:53:12 -0700 (PDT)
+Message-ID: <074048a2-5153-e013-3562-b5cad2ba0954@linaro.org>
+Date:   Sat, 24 Jun 2023 09:53:05 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 5/5] scsi: dt-bindings: ufs: qcom: Fix warning for sdm845
- by adding reg-names
-To:     Rob Herring <robh@kernel.org>,
-        Luca Weiss <luca.weiss@fairphone.com>
-Cc:     Abel Vesa <abel.vesa@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-References: <20230623113009.2512206-1-abel.vesa@linaro.org>
- <20230623113009.2512206-6-abel.vesa@linaro.org>
- <cd84b8c6-fac7-ecef-26be-792a1b04a102@linaro.org>
- <CTK1AI4TVYRZ.F77OZB62YYC0@otso> <20230623211746.GA1128583-robh@kernel.org>
+Subject: Re: [PATCH v2 01/45] dt-bindings: microchip: atmel,at91rm9200-tcb:
+ add sam9x60, sam9x7 compatible
 Content-Language: en-US
+To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, nicolas.ferre@microchip.com,
+        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
+        tglx@linutronix.de, maz@kernel.org, lee@kernel.org,
+        ulf.hansson@linaro.org, tudor.ambarus@linaro.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        linus.walleij@linaro.org, p.zabel@pengutronix.de,
+        olivia@selenic.com, a.zummo@towertech.it,
+        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
+        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
+        broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
+        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
+        linux@armlinux.org.uk, sre@kernel.org, jerry.ray@microchip.com,
+        horatiu.vultur@microchip.com, durai.manickamkr@microchip.com,
+        andrew@lunn.ch, alain.volmat@foss.st.com,
+        neil.armstrong@linaro.org, mihai.sain@microchip.com,
+        eugen.hristev@collabora.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
+        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
+        balamanikandan.gunasundar@microchip.com,
+        manikandan.m@microchip.com, dharma.b@microchip.com,
+        nayabbasha.sayed@microchip.com, balakrishnan.s@microchip.com
+References: <20230623203056.689705-1-varshini.rajendran@microchip.com>
+ <20230623203056.689705-2-varshini.rajendran@microchip.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230623211746.GA1128583-robh@kernel.org>
+In-Reply-To: <20230623203056.689705-2-varshini.rajendran@microchip.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -91,19 +107,15 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 23:17, Rob Herring wrote:
->> With my private mailbox I just have a different folder for patches that
->> have been sent which I archive once they're applied, but with work GMail
->> I don't see how I can easily replicate this since it's also not grouping
->> threads properly.
+On 23/06/2023 22:30, Varshini Rajendran wrote:
+> Add sam9x60, sam9x7 compatible string support in the schema file.
 > 
-> Yeah, GMail sucks for that. I use 'lei' to get all my patches and 
-> replies to them (though its caching will miss replies). Then I delete 
-> them from the mbox when they are applied or otherwise finished. lei 
-> updates won't re-add them to the mbox.
+> Signed-off-by: Varshini Rajendran <varshini.rajendran@microchip.com>
+> ---
+>  .../devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml | 
 
-That's interesting approach. What's your lei search query for getting
-your patches? "f:rob" would get all your threads you participated in.
+
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
