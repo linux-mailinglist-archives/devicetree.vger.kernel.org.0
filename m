@@ -2,82 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B79573CB31
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 15:57:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99E2473CB7D
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 16:57:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233095AbjFXN5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jun 2023 09:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35388 "EHLO
+        id S233182AbjFXO5F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jun 2023 10:57:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233085AbjFXN5M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 09:57:12 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B9E2118
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:57:11 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f76a0a19d4so2205653e87.2
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:57:11 -0700 (PDT)
+        with ESMTP id S232981AbjFXO5F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 10:57:05 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D56D1B4
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 07:57:03 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-307d58b3efbso1544009f8f.0
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 07:57:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687615029; x=1690207029;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1687618621; x=1690210621;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=9aKXFcPZYN71lVrD41n3tvciEk57GS1gmN4aKHDSr8k=;
-        b=nh7egyfbs9EQjNOJlyeC3lUbpEBELjaN9kojbnICztH1ZvUQrGYmxTNpJlbcMfTKhE
-         LeGMR3dTTFhyZSh5iRSA+56JNd+mJbwnugBeUxCJ+Re0JiC9wWxvz8NqUT5XugumCsa8
-         jW3KNXeuwCtcVAnUUCDv6GChuj2NPivSSNnEHUBgqS4D+viapIpsUAyHHe0qFEwz2MUE
-         yX0lZbuyJsa+HAc9/KiEvGjA2mOtoabDyz3fJy5Yq+Ynv5kwM4qucf6qNmMrBTo2JB+l
-         MvbIfmzsp5NaV4bg/USumfm2z/kDfyKUYH2P3ccB+PAZjSjjxMQLzpYwg0Yy7UjG9ZbL
-         GkNw==
+        bh=Sy7fPEGEDCMmwEn/3Ug5tuBvNGDyVHoAclBv/BnN2Ig=;
+        b=Ndq5blxSplU89R+Avk5O5MvybCqYfI1gw5eIb2obe6Jg3GHZ9JrvtSy+Ihb7hF5On2
+         iQ3B4RUJ59OiLZYTpLlGwd5Dx0M67Z/VkvLah5h1Ii8iU9FBCA3x0+eiDFbhsNismofv
+         ZKI0eFI27FCwkaTNa8/RTSuLU1KG+mxbkgWvou+obpWoDETsfzd1uHlz3W9K9HbgF7mB
+         d3eyIj3tI3vxqiwYRHzZUtW0wc/LiuY9/sLJPRGW6otnSz9+Vwk7VH6Eyw+InG+e3DfS
+         E7EiIcpeQ7N0S40LN1MGGOAhAEQsU3xUiEhBNjPECtQzvc6NJ7vXlscsSv1tKvlXVA+p
+         dg7A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687615029; x=1690207029;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1687618621; x=1690210621;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9aKXFcPZYN71lVrD41n3tvciEk57GS1gmN4aKHDSr8k=;
-        b=KWKBwqRrFBWNaMUFZ7Y7JS/Ssnw2lRK8bLXerj6C23WoDx5pEhNSEkpisA2gfHNkTv
-         yHE8dGDJSVWqg47PBWmsrjlbB5nfMgXjrKPvVVrLxOjLXvEdB6mBAiuJIyaCF08WbK3o
-         iI8GxNVmHnwfqaXRzzUWOnx7lL2FvWldWbj9MtdSAU38S0xkI1k/4XFFSoZmJw6tEFII
-         c7nYmr7gkX7spWV4l7fopyKWHnuzKvrWOozeBktPNcjgr/vtlImD/lD19YLt+rFn+BNg
-         3MPJWSP6XGJqFwwrmalvfpKHGg3p/VI0h4YgvmpSqsaBNXrpEjGEGjKsI0NE04kRAaB4
-         q24Q==
-X-Gm-Message-State: AC+VfDz9gtr8kuuszMMatEwbv1xpoXjfY0UcZjLXNSXKL5HNdHUSJrba
-        2oQdVh6iudai1Gi00Tq9DFpc5A==
-X-Google-Smtp-Source: ACHHUZ6k1LKKBFNt/EX0E7NN433j+xnsZspguI8URc9lAQkFAD13Q5b2hqPG6AkXMdmpgD7FDiPWcQ==
-X-Received: by 2002:a19:da02:0:b0:4f8:70d8:28f8 with SMTP id r2-20020a19da02000000b004f870d828f8mr11500375lfg.55.1687615029558;
-        Sat, 24 Jun 2023 06:57:09 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id x23-20020ac24897000000b004f643664882sm287279lfc.147.2023.06.24.06.57.08
+        bh=Sy7fPEGEDCMmwEn/3Ug5tuBvNGDyVHoAclBv/BnN2Ig=;
+        b=OUj57ifrGk/fi+teAH/xP6zd6avXzLjomxE2tzZwAQLZaP4P7qxlKZDenEoiPVV0gL
+         BgYIodxhljL3FtGY84a/tQO5tgMW1aanvIF88Lv8nAAJjiB2TNovnzUIW4MyJGXo11N3
+         t2O/g3ECha6Bx86DXCOusgovPRYe7Vb2c5Q3BtxWOsNmh03bR0x324sJQeVfuE8XON8W
+         Q8shWoa7lECzGtrr+y/uJMi/T3Yap7qqsal1KFIJ0oosRz8cSwXbWN9nKNRXCCtDn80J
+         gAZ6vt/jknv0QWehIiftuGh9tMrk1FpRkFXCLGODkTaHmdys4XFmeGSHIdB2RkmF36C/
+         saEg==
+X-Gm-Message-State: AC+VfDw9X92FW8Cxar2IgGATqRXFVzzhEiTR4gjpVw8Q5rvO9gFDniQB
+        C4xKWiuvPzzr8WmTpzxH9xdysQ==
+X-Google-Smtp-Source: ACHHUZ7qJnFn5fHS2T2L7g8GNkZHsZjBV7Yl9ZXHxPv+6wQkhJ/pSP9dVB8iDOuC1JzP8YkFz7S9yQ==
+X-Received: by 2002:a5d:6506:0:b0:313:e735:6d23 with SMTP id x6-20020a5d6506000000b00313e7356d23mr525786wru.22.1687618621094;
+        Sat, 24 Jun 2023 07:57:01 -0700 (PDT)
+Received: from [192.168.0.79] (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
+        by smtp.gmail.com with ESMTPSA id d10-20020adfe2ca000000b0031272fced4dsm2307084wrj.52.2023.06.24.07.57.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Jun 2023 06:57:08 -0700 (PDT)
-Message-ID: <5bdb02d7-74c3-2d54-28c5-eb5d33ddbdba@linaro.org>
-Date:   Sat, 24 Jun 2023 16:57:08 +0300
+        Sat, 24 Jun 2023 07:57:00 -0700 (PDT)
+Message-ID: <52dbabb2-8cc1-5579-8c83-adcc7a699222@linaro.org>
+Date:   Sat, 24 Jun 2023 14:56:59 +0000
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH V5 5/5] arm64: dts: qcom: sm8550: Add camera clock
- controller
-Content-Language: en-GB
-To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+ Thunderbird/102.12.0
+Subject: Re: [RFT PATCH] arm64: dts: qcom: sdm850-c630: add missing panel
+ supply
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Taniya Das <quic_tdas@quicinc.com>,
-        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230623164619.11464-1-quic_jkona@quicinc.com>
- <20230623164619.11464-6-quic_jkona@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230623164619.11464-6-quic_jkona@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230617171512.286795-1-krzysztof.kozlowski@linaro.org>
+From:   Caleb Connolly <caleb.connolly@linaro.org>
+In-Reply-To: <20230617171512.286795-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -89,27 +81,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 19:46, Jagadeesh Kona wrote:
-> Add device node for camera clock controller on Qualcomm
-> SM8550 platform.
-> 
-> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
-> ---
-> Changes since v4:
->   - No changes
-> Changes since v3:
->   - No changes
-> Changes since v2:
->   - No changes
-> Changes since v1:
->   - Padded non-zero address part to 8 hex digits
-> 
->   arch/arm64/boot/dts/qcom/sm8550.dtsi | 15 +++++++++++++++
->   1 file changed, 15 insertions(+)
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+
+On 17/06/2023 17:15, Krzysztof Kozlowski wrote:
+> Panel bindings (boe,nv133fhm-n61) require supply which here actually can
+> be turned on/off via GPIO control:
+> 
+>   sdm850-lenovo-yoga-c630.dtb: panel: 'power-supply' is a required property
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+I've been running an equivalent patch for a while, so
+
+Tested-by: Caleb Connolly <caleb.connolly@linaro.org>
+
+The dsi bridge vcc and vcca supplies are also missing, they're powered
+from vreg_l2a_1p2 and controlled by pm8998_gpio 9.
+> 
+> ---
+> 
+> Not tested on hardware
+> ---
+>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> index cfbc4fc1eba9..3d871567cf81 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+> @@ -87,6 +87,25 @@ sn65dsi86_refclk: sn65dsi86-refclk {
+>  		clock-frequency = <19200000>;
+>  	};
+>  
+> +	vph_pwr: regulator-vph-pwr {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-min-microvolt = <3700000>;
+> +		regulator-max-microvolt = <3700000>;
+> +	};
+> +
+> +	vlcm_3v3: regulator-vlcm-3v3 {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vlcm_3v3";
+> +
+> +		vin-supply = <&vph_pwr>;
+> +		regulator-min-microvolt = <3300000>;
+> +		regulator-max-microvolt = <3300000>;
+> +
+> +		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
+> +		enable-active-high;
+> +	};
+> +
+>  	backlight: backlight {
+>  		compatible = "pwm-backlight";
+>  		pwms = <&sn65dsi86 1000000>;
+> @@ -419,6 +438,7 @@ aux-bus {
+>  			panel: panel {
+>  				compatible = "boe,nv133fhm-n61";
+>  				backlight = <&backlight>;
+> +				power-supply = <&vlcm_3v3>;
+>  
+>  				port {
+>  					panel_in_edp: endpoint {
 
 -- 
-With best wishes
-Dmitry
-
+// Caleb (they/them)
