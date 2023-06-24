@@ -2,81 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2C073CB01
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 15:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C22073CB17
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 15:48:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbjFXNRV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jun 2023 09:17:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57086 "EHLO
+        id S232893AbjFXNsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jun 2023 09:48:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33214 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232981AbjFXNRT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 09:17:19 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE771FF0;
-        Sat, 24 Jun 2023 06:17:17 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fa71e253f2so25207285e9.0;
-        Sat, 24 Jun 2023 06:17:17 -0700 (PDT)
+        with ESMTP id S229552AbjFXNsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 09:48:46 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B6281BD2
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:48:45 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b44d77e56bso32989471fa.1
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 06:48:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687612636; x=1690204636;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KAYPGxSTFPjM3RqhwW9I/u0fjI7Fx45EUbdLcf3Fbbk=;
-        b=RTqZRv+kicZW7QzVJK3ZagJlTPPID3erCQjK8DbAaVPTMWw3b0mjuGV5SQVg3A7Hfp
-         kTP3MO1AV9lx1/fyLW3WpWXj4HmKkLq3zsShiKr+AZkRpIUvDHPemFoM8d6lYuJBkhVf
-         VwXLSS0PvzKxnzoIXhwxmKBAloifepGmC78ZDgEmk5MbVTY+UmUcnQs8jnP7jUKTgQ1t
-         ovA2xPB5nkCELrRww6By/LY2lIhiGufo89h+gKofzrfcx/6CnBLsCo++cVmYMzLAiVW3
-         P2v56HjmRyol/JePLMkvownV0cd+4jPAN3a3PkXbpyjqgTMgtriUwWMRfhDtyahMiisK
-         i7jw==
+        d=linaro.org; s=google; t=1687614523; x=1690206523;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=d9YJLCIpYToQE57X7+5G5EtcnZ1RMPAgUeTIP11pd3U=;
+        b=yHPJtC7Mp2cKx/Prulu7JGSmBR2bUP0DTFHIsXsdA5OrKiie2bdUh3DlzVcyickWop
+         BrP9M9h3zu3fXX2393zawF/mVYsSPomYUzmEnxwy5CSLSa35xCek3z8sovdA7k1cyaSt
+         95R8yiJ7phSb/skwB+BYeVTtus5kcH38LmZzGscMFWb0KIdWXrEDKZZOgr1LrVMCqqx0
+         nhGTvmDPk4L+zv4yxSbzGg1OrVpAS2waKKVPVwSeXe6PCUhzZ1TU6zWgoC5NrutHz4yg
+         5cpEvcNJVmDF2o+6GEjdfvsfarw2HIj7vS0HsSoTWELYkjYX7QwiXrvVsQ9GPsW8VTtO
+         B4sw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687612636; x=1690204636;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KAYPGxSTFPjM3RqhwW9I/u0fjI7Fx45EUbdLcf3Fbbk=;
-        b=QRKD+Pcjcox3UgNNFPsHHsErRw05pwQlA5aFgg2lrkjnHOaiW8jNI3epDvb+hbZIvR
-         mzn0HJVDjNnoEQ3M2wV/5ANgsp+BrDSzui9LnUvWkBH3vDqg4TKOS6/W/IUUjnLQjbpi
-         XWuApkkTQbTPnwqfbej4iQ+pcGZlc9fuC/Xc2VxVUEFNQ3UL6MhUpBnHsc3NQa4vvNUh
-         8QGjED63Ox8cspJ9uHgGNy5FUH77edXVPz2Lz2HJ5PyF+Uyh6aNM/8airSMBYk4tNXZp
-         rK7VrQ6hdFaW5eKALm0Eh6KdPR0cihUYX71IKepAYW3tiAIKJXupeou6cn0b0Vs7phhF
-         txAw==
-X-Gm-Message-State: AC+VfDwxtLs+KRi5Yb1csUX86kdX12gINmYMrA74eZvh1JE8poJSwM7d
-        gOwxfhwLovEEZ1BBArP74osk/Ucw+0tJDWW3
-X-Google-Smtp-Source: ACHHUZ6AxRD4qR+dRoN7S7SE01tpvdTdIi7AeyJugnitjFY045wLn75ojjvOMv78elsfe85Qmldkag==
-X-Received: by 2002:a05:600c:245:b0:3fa:838d:adbd with SMTP id 5-20020a05600c024500b003fa838dadbdmr1749644wmj.1.1687612635438;
-        Sat, 24 Jun 2023 06:17:15 -0700 (PDT)
-Received: from user-PC.. ([92.51.95.194])
-        by smtp.gmail.com with ESMTPSA id l1-20020a1ced01000000b003f9b0830107sm5107428wmh.41.2023.06.24.06.17.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 24 Jun 2023 06:17:15 -0700 (PDT)
-From:   Maksim Kiselev <bigunclemax@gmail.com>
-To:     linux-spi@vger.kernel.org
-Cc:     Maksim Kiselev <bigunclemax@gmail.com>,
+        d=1e100.net; s=20221208; t=1687614523; x=1690206523;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=d9YJLCIpYToQE57X7+5G5EtcnZ1RMPAgUeTIP11pd3U=;
+        b=cISIz5haTS6FtYG2PrLVnBfb1qE3+u/E3DHYTaX/4DUeQIKgJXJ5bRnJ/kPEtglJcq
+         ReDgT3OBeeEXZsPmIn9LNAqMeguea1XQyhUqV8QCKHzI+CH371l12KGBBLOltt4jw86R
+         qYRi5Ux+v+QFs6vgHZg9DKjiWtx8gIWmvdAq2MR+o5jdVAzfYOtqo9wKPGONORpPgTA3
+         y4WY0M6/J9C13bJlZUgqcUisUzbfjtg2mZ/9TEif2VfLPcELJr8mIdZGJO7NsvW3mcZP
+         BsTMRBXVqfcPq58aKRj9P+gOOnwPzz1rSa1Xrlf4BU+w1rcqBZH5kFORmgcBI0xnra3O
+         E8tg==
+X-Gm-Message-State: AC+VfDx5OYKpfboeCRNnYPLmwX/qFtn5hs9+3OkALIJblkULuRrxvngm
+        K8wyh8gz6TL8E218EAoDkvSWHA==
+X-Google-Smtp-Source: ACHHUZ42jKtX7W+P46oaiEZR1+/HWcRGkV+LXkEy7ADI+/OMe3SZiS9nVNJQHkJyEVtg3yvpJlSVwg==
+X-Received: by 2002:a19:5007:0:b0:4f8:52a8:d123 with SMTP id e7-20020a195007000000b004f852a8d123mr8242945lfb.12.1687614523211;
+        Sat, 24 Jun 2023 06:48:43 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id x11-20020ac259cb000000b004f873e3282asm284858lfn.63.2023.06.24.06.48.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 24 Jun 2023 06:48:42 -0700 (PDT)
+Message-ID: <1b40b16e-025a-c10b-e99b-404246de73fe@linaro.org>
+Date:   Sat, 24 Jun 2023 16:48:41 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 10/15] dt-bindings: msm: dsi-phy-14nm: Document SM6125
+ variant
+Content-Language: en-GB
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Mark Brown <broonie@kernel.org>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1 3/3] riscv: dts: allwinner: d1: Add QSPI pins node for pinmux PC port
-Date:   Sat, 24 Jun 2023 16:16:24 +0300
-Message-Id: <20230624131632.2972546-4-bigunclemax@gmail.com>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230624131632.2972546-1-bigunclemax@gmail.com>
-References: <20230624131632.2972546-1-bigunclemax@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
+References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
+ <20230624-sm6125-dpu-v1-10-1d5a638cebf2@somainline.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230624-sm6125-dpu-v1-10-1d5a638cebf2@somainline.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,32 +97,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pinmux node that describes pins on PC port which required for
-QSPI mode.
+On 24/06/2023 03:41, Marijn Suijten wrote:
+> Document availability of the 14nm DSI PHY on SM6125.
+> 
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+>   Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+> index a43e11d3b00d..60b590f21138 100644
+> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+> @@ -18,6 +18,7 @@ properties:
+>         - qcom,dsi-phy-14nm
+>         - qcom,dsi-phy-14nm-2290
+>         - qcom,dsi-phy-14nm-660
+> +      - qcom,dsi-phy-14nm-6125
 
-Signed-off-by: Maksim Kiselev <bigunclemax@gmail.com>
----
- arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi | 7 +++++++
- 1 file changed, 7 insertions(+)
+Should we start using standard scheme, so "qcom,sm6125-dsi-phy-14nm" ?
 
-diff --git a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-index 1bb1e5cae602..9f754dd03d85 100644
---- a/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-+++ b/arch/riscv/boot/dts/allwinner/sunxi-d1s-t113.dtsi
-@@ -131,6 +131,13 @@ uart3_pb_pins: uart3-pb-pins {
- 				pins = "PB6", "PB7";
- 				function = "uart3";
- 			};
-+
-+			/omit-if-no-ref/
-+			qspi0_pc_pins: qspi0-pc-pins {
-+				pins = "PC2", "PC3", "PC4", "PC5", "PC6",
-+				       "PC7";
-+				function = "spi0";
-+			};
- 		};
- 
- 		ccu: clock-controller@2001000 {
+>         - qcom,dsi-phy-14nm-8953
 -- 
-2.39.2
+With best wishes
+Dmitry
 
