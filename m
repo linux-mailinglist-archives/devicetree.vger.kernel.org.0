@@ -2,137 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E697073C99E
-	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 10:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1821F73C9B7
+	for <lists+devicetree@lfdr.de>; Sat, 24 Jun 2023 10:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229939AbjFXIdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 24 Jun 2023 04:33:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39320 "EHLO
+        id S231678AbjFXImj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 24 Jun 2023 04:42:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233134AbjFXIcX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 04:32:23 -0400
-Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91B04C08
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 01:28:19 -0700 (PDT)
-Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-986d8332f50so166069366b.0
-        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 01:28:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687595293; x=1690187293;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=/GIkG+tRxlPhRtm7YOpXeJRcJeLkXqLt09OeZ1Nh1Q4=;
-        b=DkiglpMjfjZCyxhWBqFcrR4RkmF6xYeIJhZq2bOE8/tpFTboyhHRBzqMweLVJwZdse
-         Po5v9VUAlVpzETIWlBeTSQ/MOOvNBADP10/6rUf8cTK/xsSxgq1hO5ZM9vc4292Kwd83
-         VTdWBdvUwwEOS+VqFVyBMZUM6hlNddUzTKFQc1w5NukZTFWumAXPj6zYaXxUMWoU/DSy
-         XQel7bucUiZ+Ngsaptd6xqTY94Y066kVJS9WhWDC0jZ5rzUsfBkGryZ36kc7qmVLWyeh
-         wthERO5PoF7uGlAF2OMarb6r+LyNXoKbb+5cj2mZ36KhHU2OJG0uneADkVzgtHgvzaZM
-         aiVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687595293; x=1690187293;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=/GIkG+tRxlPhRtm7YOpXeJRcJeLkXqLt09OeZ1Nh1Q4=;
-        b=WFJtTGprJ5gi8nRpsuBssu/gExG+xfHTPhXZ6Wypucxs0QkJTK/NS8X7X0MGFxSOON
-         H6Kr7NZDJ4YPqmilYWTw39q664vR/9tqUttOpi2pOi1RGk7Q0g8DA7zzckch1ryKaoqv
-         W5EWk4txkLVqK2f0ZKHU+f3zjBgdM/HSIGZlPczW4BihLnRTfKXonMJlQ5gHqnKO7uol
-         lptUKl1Bqc6vYjJvISEqOtqOqB3kjF548Dts3Yxv1JLQ/MMAM5QJMshZmF78uetqu5HQ
-         wVtkPZ4hVG1oOSCXYXRbuZ3qtn2Nzn+2eCR8CmFMTOCvkD5UCIhjvo934QxsO8oqJFQV
-         bJNw==
-X-Gm-Message-State: AC+VfDwPod2AGdws3eSjnTh5j2u3ZMWKBGblIU/RHot90OrVMr/K93x+
-        BgbNSwCOHVIoKMeM9826rzaTuw==
-X-Google-Smtp-Source: ACHHUZ4ujAlY65iLeyuRh50Ps6Pp7ng1jowk6gt0zzaeZKnGL1gJBg6GDgqsvIKWUupAOCVYBEqBCQ==
-X-Received: by 2002:a17:907:3e8e:b0:987:88eb:2416 with SMTP id hs14-20020a1709073e8e00b0098788eb2416mr19943130ejc.61.1687595293178;
-        Sat, 24 Jun 2023 01:28:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id kq2-20020a170906abc200b009887bb956e0sm620186ejb.103.2023.06.24.01.28.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 24 Jun 2023 01:28:12 -0700 (PDT)
-Message-ID: <36a6ba38-d01e-96ad-c89f-7e2c860e0a88@linaro.org>
-Date:   Sat, 24 Jun 2023 10:28:06 +0200
+        with ESMTP id S231258AbjFXImi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 24 Jun 2023 04:42:38 -0400
+Received: from 4.mo563.mail-out.ovh.net (4.mo563.mail-out.ovh.net [46.105.53.192])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DCBE810C
+        for <devicetree@vger.kernel.org>; Sat, 24 Jun 2023 01:42:36 -0700 (PDT)
+Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net [51.68.80.175])
+        by mo563.mail-out.ovh.net (Postfix) with ESMTPS id E1C1322EFF;
+        Sat, 24 Jun 2023 08:42:33 +0000 (UTC)
+Received: from director1.derp.mail-out.ovh.net (director1.derp.mail-out.ovh.net. [127.0.0.1])
+        by director1.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+        for <conor+dt@kernel.org>; Sat, 24 Jun 2023 08:42:33 +0000 (UTC)
+Received: from pro2.mail.ovh.net (unknown [10.109.143.168])
+        by director1.derp.mail-out.ovh.net (Postfix) with ESMTPS id 857EE2011E3;
+        Sat, 24 Jun 2023 08:42:33 +0000 (UTC)
+Received: from traphandler.com (88.161.25.233) by DAG1EX1.emp2.local
+ (172.16.2.1) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sat, 24 Jun
+ 2023 10:42:32 +0200
+From:   Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+To:     <lee@kernel.org>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@traphandler.com>
+Subject: [PATCH v10 0/5] Add a multicolor LED driver for groups of monochromatic LEDs
+Date:   Sat, 24 Jun 2023 10:42:12 +0200
+Message-ID: <20230624084217.3079205-1-jjhiblot@traphandler.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 00/45] Add support for sam9x7 SoC family
-Content-Language: en-US
-To:     Varshini Rajendran <varshini.rajendran@microchip.com>,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, nicolas.ferre@microchip.com,
-        alexandre.belloni@bootlin.com, claudiu.beznea@microchip.com,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        herbert@gondor.apana.org.au, davem@davemloft.net, vkoul@kernel.org,
-        tglx@linutronix.de, maz@kernel.org, lee@kernel.org,
-        ulf.hansson@linaro.org, tudor.ambarus@linaro.org,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        linus.walleij@linaro.org, p.zabel@pengutronix.de,
-        olivia@selenic.com, a.zummo@towertech.it,
-        radu_nicolae.pirea@upb.ro, richard.genoud@gmail.com,
-        gregkh@linuxfoundation.org, lgirdwood@gmail.com,
-        broonie@kernel.org, wim@linux-watchdog.org, linux@roeck-us.net,
-        arnd@arndb.de, olof@lixom.net, soc@kernel.org,
-        linux@armlinux.org.uk, sre@kernel.org, jerry.ray@microchip.com,
-        horatiu.vultur@microchip.com, durai.manickamkr@microchip.com,
-        andrew@lunn.ch, alain.volmat@foss.st.com,
-        neil.armstrong@linaro.org, mihai.sain@microchip.com,
-        eugen.hristev@collabora.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-crypto@vger.kernel.org,
-        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-usb@vger.kernel.org, linux-watchdog@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Cc:     Hari.PrasathGE@microchip.com, cristian.birsan@microchip.com,
-        balamanikandan.gunasundar@microchip.com,
-        manikandan.m@microchip.com, dharma.b@microchip.com,
-        nayabbasha.sayed@microchip.com, balakrishnan.s@microchip.com
-References: <20230623203056.689705-1-varshini.rajendran@microchip.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230623203056.689705-1-varshini.rajendran@microchip.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [88.161.25.233]
+X-ClientProxiedBy: DAG2EX1.emp2.local (172.16.2.11) To DAG1EX1.emp2.local
+ (172.16.2.1)
+X-Ovh-Tracer-Id: 12427964648445917659
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgedvhedrgeegjedgtdejucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucenucfjughrpefhvfevufffkffoggfgtghisehtkeertdertddtnecuhfhrohhmpeflvggrnhdqlfgrtghquhgvshcujfhisghlohhtuceojhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmqeenucggtffrrghtthgvrhhnpeejuefhkeelgffhlefhtefhgeektdevvdfgkeeltdehgeeujeeutdehkeeuhffftdenucfkpheptddrtddrtddrtddpkeekrdduiedurddvhedrvdeffeenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhhouggvpehsmhhtphhouhhtpdhhvghlohepughirhgvtghtohhruddruggvrhhprdhmrghilhdqohhuthdrohhvhhdrnhgvthdpihhnvghtpedtrddtrddtrddtpdhmrghilhhfrhhomhepjhhjhhhisghlohhtsehtrhgrphhhrghnughlvghrrdgtohhmpdhnsggprhgtphhtthhopedupdhrtghpthhtoheplhhinhhugidqlhgvughssehvghgvrhdrkhgvrhhnvghlrdhorhhgpdfovfetjfhoshhtpehmohehieef
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/06/2023 22:30, Varshini Rajendran wrote:
-> This patch series adds support for the new SoC family - sam9x7.
->  - The device tree, configs and drivers are added
->  - Clock driver for sam9x7 is added
->  - Support for basic peripherals is added
->  - Target board SAM9X75 Curiosity is added
-> 
->  Changes in v2:
->  --------------
-> 
->  - Added sam9x7 specific compatibles in DT with fallbacks
->  - Documented all the newly added DT compatible strings
->  - Added device tree for the target board sam9x75 curiosity and
->    documented the same in the DT bindings documentation
->  - Removed the dt nodes that are not supported at the moment
->  - Removed the configs added by previous version that are not supported
->    at the moment
->  - Fixed all the corrections in the commit message
->  - Changed all the instances of copyright year to 2023
->  - Added sam9x7 flag in PIT64B configuration
->  - Moved macro definitions to header file
->  - Added another divider in mck characteristics in the pmc driver
->  - Fixed the memory leak in the pmc driver
->  - Dropped patches that are no longer needed
->  - Picked up Acked-by and Reviewed-by tags
+Some HW design implement multicolor LEDs with several monochromatic LEDs.
+Grouping the monochromatic LEDs allows to configure them in sync and use
+the triggers.
+The PWM multicolor LED driver implements such grouping but only for
+PWM-based LEDs. As this feature is also desirable for the other types of
+LEDs, this series implements it for any kind of LED device.
 
-Where did you pick them up? Can you point me to the patches?
+changes v9->v10:
+  - updated comments and kconfig description
+  - renamed all 'led_mcg_xxx' into 'leds_gmc_xxx'
 
-Best regards,
-Krzysztof
+changes v8->v9:
+  - rebased on top of lee-leds/for-leds-next
+  - updated kernel version and date for /sys/class/leds/<led>/color in
+    Documentation/ABI/testing/sysfs-class-led
+  - dropped patch "leds: class: simplify the implementation of
+    devm_of_led_get()" because __devm_led_get() is now used by
+    devm_led_get()
+
+changes v7->v8:
+ - consistently use "LEDs group multicolor" throughout the code.
+ - rename some variables with more explicit names.
+ - improve comments.
+ - use the 100-characters per line limit.
+
+changes v6->v7:
+ - in led_mcg_probe() increment the counter at the end of the loop for
+   clarity.
+
+changes v5->v6:
+ - restore sysfs access to the leds when the device is removed
+
+changes v4->v5:
+ - Use "depends on COMPILE_TEST || OF" in Kconfig to indicate that OF
+   is a functional requirement, not just a requirement for the
+   compilation.
+ - in led_mcg_probe() check if devm_of_led_get_optional() returns an
+   error before testing for the end of the list.
+ - use sysfs_emit() instead of sprintf() in color_show().
+ - some grammar fixes in the comments and the commit logs.
+
+changes v2->v3, only minor changes:
+ - rephrased the Kconfig descritpion
+ - make the sysfs interface of underlying LEDs read-only only if the probe
+   is successful.
+ - sanitize the header files
+ - removed the useless call to dev_set_drvdata()
+ - use dev_fwnode() to get the fwnode to the device.
+
+changes v1->v2:
+ - Followed Rob Herrings's suggestion to make the dt binding much simpler.
+ - Added a patch to store the color property of a LED in its class
+   structure (struct led_classdev).
+
+Jean-Jacques Hiblot (5):
+  devres: provide devm_krealloc_array()
+  leds: provide devm_of_led_get_optional()
+  leds: class: store the color index in struct led_classdev
+  dt-bindings: leds: Add binding for a multicolor group of LEDs
+  leds: Add a multicolor LED driver to group monochromatic LEDs
+
+ Documentation/ABI/testing/sysfs-class-led     |   9 +
+ .../bindings/leds/leds-group-multicolor.yaml  |  64 +++++++
+ drivers/leds/led-class.c                      |  45 +++++
+ drivers/leds/rgb/Kconfig                      |  12 ++
+ drivers/leds/rgb/Makefile                     |   1 +
+ drivers/leds/rgb/leds-group-multicolor.c      | 165 ++++++++++++++++++
+ include/linux/device.h                        |  13 ++
+ include/linux/leds.h                          |   3 +
+ 8 files changed, 312 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-group-multicolor.yaml
+ create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
+
+-- 
+2.34.1
 
