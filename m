@@ -2,86 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF5B973D1CA
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 17:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E68F373D1D7
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 17:46:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229698AbjFYPki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 11:40:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
+        id S229998AbjFYPqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 11:46:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjFYPkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 11:40:37 -0400
-Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E906AB
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:40:35 -0700 (PDT)
-Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51d7e8dd118so2208567a12.1
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:40:35 -0700 (PDT)
+        with ESMTP id S229484AbjFYPqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 11:46:36 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CE1113
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:46:35 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98e39784a85so107466666b.1
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:46:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687707633; x=1690299633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1687707994; x=1690299994;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=MTQp0n2oXhJA5Ac6MISqa3fJgp7uxeLkw3KpR5ufcr4=;
-        b=Cd7SgRQi+l52dqC1OE/wwuXDAiJ2UhbVd/Rk9e8oWDT/tQ2l5Y+RBse4O6Q+9/k1Vq
-         GxgNDGaCbftz40WMfeIn3HFp5gmmsgbU55++OwSx7GF6WdTmg4FpE+x2+oWcfstFTDoJ
-         yNg9+bbXiKdiki/1OxgFJ8agJJvlKuz1mpF1nAbYlQKbgcja6Dk/wjBhO6k8NSOfMf3W
-         rgWPQDyHhJiCT/Hv0cjqDfAsWVGi5sZlXil1aw26LWyk3nyn/AioIvZ5ND3qX+/YGOil
-         lFUQi0QJRvYrTLSyp91wOopkX05fZcMHphVkkObo9KaXaaTsCcQO/b1W5uJ4NSJFw0Dy
-         yc/Q==
+        bh=CBfhQMoEipi5XAE7AqBqA8xkyhGnNfaeMZodBBrJBjA=;
+        b=QZhohzCXpsI7+DT4AL8Q4mQsrl8RruBJw/R4ZcD8XBnDoaozCNWlPj42b4qoQfco7q
+         jdLTMrwU3uocsZRWyANlo0UPrdThq8Q9AxYdA5QOC9X6I+PWRMa2FYGHVvR6BIGf0jrT
+         Ur/K/p94clSBtu7q6XsARj1PgJHxTe6QvJMKrb+As2A8sTXuaA7xiz8zbwi2ukxiplAa
+         vhlCi8b9lIoV1F0ErLZ/+45lIPV6jHZ1/xokihp1lvVMyeMkAGPloLNlEUWmQ2sXqbOu
+         2vtMBlvfMOnu1zcqgrv5UF34mX2SLYErtsvDX+LrkL+jKWwxsxaZRyWAJD27K7Qj7LOr
+         Pvxw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687707633; x=1690299633;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687707994; x=1690299994;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=MTQp0n2oXhJA5Ac6MISqa3fJgp7uxeLkw3KpR5ufcr4=;
-        b=T76pOkqlqsVhqlT3cQr8KtYQKHNmT56+kZOTKt3CR2fPBC89I/zhYXYSGQSpj82cq1
-         OGLapcqhzcBVQFzHzFgW7iciR38Mj3+sZypZxyDeh4mQBVhsdgD5KWa4psxeEl3zTCOn
-         6NuzNz545faqbxUvQXEzpmlaNfdaaevLvmY0/jhYXHE0BuLkY2Mw5K3oTzy8saQvrUYb
-         GlZOuOa0SSGQzbUkikARuh9FiYDHjXFR0dpqPZQqmmgGL0laBgqQewCL+1Yclgys9P9V
-         ydLOKLHn23tPiSfAjHRI0dIo7SRGnmskbP69MSPaCQnpJlpU6BwEG3ekzng6Unmg1k80
-         0uhg==
-X-Gm-Message-State: AC+VfDwRL/CL7tPPF6Bgkc6ChTUy7EHysKCPC1EWlaEmQwHOpYppipD/
-        Gy1U8W95biEDjFikh9J6fDJBtA==
-X-Google-Smtp-Source: ACHHUZ4//9aqSdHBFWBy31jPAOHqRPxQmt9OrkOsKtISKlC0LX1C6VDQqpf8tmcL9kDEKcIid6gu3Q==
-X-Received: by 2002:a17:906:c359:b0:98d:63c5:d135 with SMTP id ci25-20020a170906c35900b0098d63c5d135mr6987800ejb.54.1687707633619;
-        Sun, 25 Jun 2023 08:40:33 -0700 (PDT)
+        bh=CBfhQMoEipi5XAE7AqBqA8xkyhGnNfaeMZodBBrJBjA=;
+        b=aul93UgjNfPf2nxUhUVMGrxt2nurCoYwvGvzDnkkFRvc/O9V39eEhb7GXfSLiUbpq8
+         /0IlM4wcg8OzOXdoeQHA3P4hoXAXFPTt/y/0X4m95ha4yzFCyOqaOk13PbhYw+kyZtwa
+         Jg/XmuvpX4evG9wQVeNBwQ0id+wv9WFI4VDxuOcI7dMKEJHMCcCZ3uMWkg5eJn/Y2Lfw
+         gBNasa7Xl0t4wqY7L8H2GZyfl3GOA7NM9Cs2i6scM7aWobDk6wdoUh1woRWZWS0WC44Y
+         81hq2ZNAIV4HRZ0vn6MpwMB4Gy+9nQxeOCjlBVeAUGWqTfGZJUVc7xvchQUmK/rpwl2h
+         Y2qA==
+X-Gm-Message-State: AC+VfDwt7/c7IEan3n8LGohC152whE1By2zvdhnjiZ3zX8ukDks052Bi
+        4rjhmup89jWT8ZoXQgWnNpq7kw==
+X-Google-Smtp-Source: ACHHUZ4MamQOEwU6km9t2W1ycNEyUducjTZqX8Eaj1G0PpnDaxxXvhRQMhbv7UGxy6/5gUrP0D1k5g==
+X-Received: by 2002:a17:907:72d2:b0:98e:3935:60f4 with SMTP id du18-20020a17090772d200b0098e393560f4mr1752596ejc.1.1687707993534;
+        Sun, 25 Jun 2023 08:46:33 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id gr11-20020a170906e2cb00b009884035279bsm2209333ejb.33.2023.06.25.08.40.31
+        by smtp.gmail.com with ESMTPSA id b21-20020a170906491500b009828dac8425sm2206521ejq.105.2023.06.25.08.46.31
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Jun 2023 08:40:32 -0700 (PDT)
-Message-ID: <731db330-4a0f-2427-a0ab-318f2d8be73b@linaro.org>
-Date:   Sun, 25 Jun 2023 17:40:30 +0200
+        Sun, 25 Jun 2023 08:46:33 -0700 (PDT)
+Message-ID: <4244c92d-2079-e3d9-44c8-8e5593d093a5@linaro.org>
+Date:   Sun, 25 Jun 2023 17:46:30 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 4/4] dt-bindings: serial: fsl-lpuart: add imx8ulp
- compatible string
-To:     Sherry Sun <sherry.sun@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Shenwei Wang <shenwei.wang@nxp.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-References: <20230625094857.29644-1-sherry.sun@nxp.com>
- <20230625094857.29644-5-sherry.sun@nxp.com>
- <d990a281-b4a3-1e26-1fdf-dfd35ab9cd24@linaro.org>
- <AS8PR04MB84042EF903689014CC0C33809221A@AS8PR04MB8404.eurprd04.prod.outlook.com>
+Subject: Re: [PATCH 2/5] dt-bindings: pps: pps-gpio: introduce capture-clear
+ property
 Content-Language: en-US
+To:     Eliav Farber <farbere@amazon.com>, giometti@enneenne.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     ronenk@amazon.com, talel@amazon.com, hhhawa@amazon.com,
+        jonnyc@amazon.com, itamark@amazon.com, shellykz@amazon.com,
+        amitlavi@amazon.com, almogbs@amazon.com
+References: <20230625142134.33690-1-farbere@amazon.com>
+ <20230625142134.33690-3-farbere@amazon.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <AS8PR04MB84042EF903689014CC0C33809221A@AS8PR04MB8404.eurprd04.prod.outlook.com>
+In-Reply-To: <20230625142134.33690-3-farbere@amazon.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -92,41 +80,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2023 15:12, Sherry Sun wrote:
+On 25/06/2023 16:21, Eliav Farber wrote:
+> Add a new optional "capture-clear" boolean property.
+> When present, PPS clear events shall also be reported.
 > 
-> 
->> -----Original Message-----
->> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> Sent: 2023年6月25日 18:18
->> To: Sherry Sun <sherry.sun@nxp.com>; robh+dt@kernel.org;
->> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
->> shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
->> Shenwei Wang <shenwei.wang@nxp.com>; gregkh@linuxfoundation.org
->> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
->> kernel@pengutronix.de; linux-serial@vger.kernel.org; linux-
->> kernel@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>
->> Subject: Re: [PATCH 4/4] dt-bindings: serial: fsl-lpuart: add imx8ulp
->> compatible string
->>
->> On 25/06/2023 11:48, Sherry Sun wrote:
->>> LPUART driver adds a new compatible string for imx8ulp, and imx93 is
->>
->> What driver adds or not, is not really correct argument for compatibility.
->> There are plenty of compatible devices which have both device ID entries in
->> the driver. Why would you drop their compatibility between each other? It
->> does not work like that... Provide clear rationale for this.
-> 
-> Hi Krzysztof, 
-> We take imx7ulp lpuart as the basic version IP, then imx8ulp adds some improved features based on the imx7ulp lpuart IP.
-> Actually imx8ulp can also work with the imx7ulp version, we can say it is compatible with imx7ulp, but we need to enable those new features by default on imx8ulp, so we added the imx8ulp-lpuart compatible in lpuart driver. So for this case, maybe compatible = "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart" is correct for imx8ulp platform, right?
-> 
-> Then we have the imx93 family with the same lpuart version as imx8ulp, so how should we handle the compatible string for imx93 platform? Maybe compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart"? But three compatible strings looks too long for me, so I want to drop imx7ulp-lpuart and take imx8ulp-lpuart as the basic compatible string for imx93 and later others imx9 series, I am not sure if it is suitable, some suggestions here will be appreciate, thanks!
-> 
+> Signed-off-by: Eliav Farber <farbere@amazon.com>
+> ---
+>  Documentation/devicetree/bindings/pps/pps-gpio.txt | 4 ++++
 
-Wrap your responses.
+Please convert the bindings to DT schema first.
 
-So write that the reason of this change is because looks too long for
-you and we will judge that rationale. Three compatibles is still fine.
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.txt b/Documentation/devicetree/bindings/pps/pps-gpio.txt
+> index 9012a2a02e14..8d588e38c44e 100644
+> --- a/Documentation/devicetree/bindings/pps/pps-gpio.txt
+> +++ b/Documentation/devicetree/bindings/pps/pps-gpio.txt
+> @@ -14,6 +14,10 @@ Additional required properties for the PPS ECHO functionality:
+>  Optional properties:
+>  - assert-falling-edge: when present, assert is indicated by a falling edge
+>                         (instead of by a rising edge)
+> +- capture-clear: when present, report also PPS clear events, which is the
+> +                 opposite of the assert edge (if assert is rising-edge then
+> +                 clear is falling-edge and if assert is falling-edge then
+> +                 clear is rising-edge).
+
+Why this is board-dependant? Falling edge is happening anyway, so it is
+in the hardware all the time. DT describes the hardware, not Linux
+driver behavior.
+
+What's more, your property name sounds a lot like a driver property, so
+even if this is suitable for DT, you would need to name it properly to
+match hardware feature/characteristic.
 
 Best regards,
 Krzysztof
