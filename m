@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D681373D3FE
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 22:26:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C24D73D402
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 22:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230397AbjFYU0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 16:26:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60810 "EHLO
+        id S230434AbjFYU0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 16:26:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230411AbjFYU0R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 16:26:17 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D4F310C6
+        with ESMTP id S230459AbjFYU0V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 16:26:21 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0632AE75
         for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 13:26:09 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b466744368so36507191fa.0
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 13:26:08 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b699284ff4so12189011fa.2
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 13:26:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687724767; x=1690316767;
+        d=linaro.org; s=google; t=1687724768; x=1690316768;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=77d+d36KDkZJ6tRGLwEY2Ux3Xp+jyLxcEE3RlyjNnBw=;
-        b=MJGUwU4csWft8gwY9EJC4GHGrYyX/vKLSqxL3D927k67Pwk3efZvimrtJgIoXQYd8M
-         vBtGc6DejbION5Nl/fKaRox3bZ+Hop0MolxyeyerNtTS5aEGwh9VSklf9uvl1QV4exQn
-         Q2W3i0EfINlMMMNrUJ5HMtfg+/Zossia5RowRM+Zrl/S/jCmVQIuLgjLmr6Bn4c+yo6Q
-         bk0yoOTZtOyfzK8MDnARqlNdZHrO+UJukQbrIRneJ26h2tyY50L2/l4tVNGmV/5cjfc+
-         D1lQDtHRMTKh5/X/OB6OBYKxyy5J0hyw1n3LD2PC3Z8IAYaQDj5pUJoBQIdEA7nsjMa6
-         It3g==
+        bh=rsB0kVQqX4mQM7Q3aDO7WkdZMCIaYUHODUHDaiQmm24=;
+        b=rm7Pg0KmuGexdBAp36B8Gl2KIiLw78VIsMS5mILTXlIzw+V9xIZwQMkj+/7tcGJ2sZ
+         znYdWyLd4iJBljNtWoSFrgHf8/rqIkLzs6pFDMbmS9lDCeWbzJ9poAq7sJUX3iobGPpJ
+         JBjU772CnwXiz4jnwNjtauYqwekpxSp25TIs2OX//RQz7LRwfXdH7Zd5et9v68OAyUeT
+         dHqVAzvgYHUCcV8oS2CYPli1Va9P8QNJ+AiySIu2L3Iy9qHLtF/rkVxNXLYF4ByIPoVg
+         TsvCdzXGiyOH1o4lrb+JEIvHfDOlxd3pg8wIW3kZrq0O6y8iYo9Z/oJOD1Y4gpTMXVGe
+         2Dcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687724767; x=1690316767;
+        d=1e100.net; s=20221208; t=1687724768; x=1690316768;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=77d+d36KDkZJ6tRGLwEY2Ux3Xp+jyLxcEE3RlyjNnBw=;
-        b=YMXJvE23DFsBOkj7k/sK6tRB8vY5MI6Rlo5xnLQJ9c2ZAttztNd1BhDoS3o0GCofsf
-         edFuxq9STSJchDivGO5GLTBWWTyZF2hjBuM969aVgebixD4rvanHkMKepsDLfya1Wym6
-         Hwo7rZqCGxI8mnBXZy6bbT2Sxd7CqvT2nd7Tu7EJ6CL6E6J1s3D2jQuMi71wGjGmmn2h
-         JNOYt6FBTPCrmGIw/Yw4nVfd8QGF01pr6CWSSbAUR2gi1EYKQD3Zgs+c2KErCOr2l44e
-         N5/Ug8Zf0TFd1R8je/iZtulRV1H+Wnx8MCPVslEid9Cw129MVQbB4c2yFVeXy7j1aTsw
-         Cpng==
-X-Gm-Message-State: AC+VfDxrMFc9LoYm2mb0WBEmWeDffiYw6CsyuQYwk9+8uhvLOWEfslUl
-        q3+YMRFEJAEhigRToaq00dINXg==
-X-Google-Smtp-Source: ACHHUZ6UOX37vIQM2BQ6tIOcTtFsFUySwM68LzB8NeMFXoHNq8Fk5PRtssY25xmAChM3kT5Sdujpfg==
-X-Received: by 2002:a2e:740e:0:b0:2b5:86e4:558e with SMTP id p14-20020a2e740e000000b002b586e4558emr8355931ljc.38.1687724767234;
-        Sun, 25 Jun 2023 13:26:07 -0700 (PDT)
+        bh=rsB0kVQqX4mQM7Q3aDO7WkdZMCIaYUHODUHDaiQmm24=;
+        b=GgHJT8KTaM5Jg1a816LnZzJWZk2XxvLctBx+95NCi4p9UPJ3Gk2TmI8+oQEyBcLHxE
+         t/Hdj6XsHPmY8etyYslGlCIlePGtTkPmLVkyrni3A6QHINe8gt07rXd45RyhHTNwWKS9
+         TpnXZk66rZ6SFHl9JuR616DLmDcCLAtynhYynbLlQ3BcYqwS4/wZbW/LO53ns1RaX4XD
+         2h0gWp5W1iFJdYyk79pHtebmRQwqGZCX0PvkFHmevOEKPJiaZcuIFSovaqpYr9+wV9Rp
+         E8gABnqBkTMBo19L5anOLPYBoDSY3ndBkSq6YjjjyuI4OTj323U7RFkFY0KxIEROF/qN
+         E9Mw==
+X-Gm-Message-State: AC+VfDzr1nKUgxz7AJjyTc8WwkiYgsOmQbqKZzgjcpWr84IrQ60yIEKZ
+        valS1hJQLRp6DMrmbyKsB3uXmQ==
+X-Google-Smtp-Source: ACHHUZ7CHkogDyv44MiRPQkIPF8Zv0B5eSz5A9zcFea+knBkfFw+iSG6+3HjDMVst2VMERATa7MKcw==
+X-Received: by 2002:a2e:9650:0:b0:2b6:9d4a:d67b with SMTP id z16-20020a2e9650000000b002b69d4ad67bmr857533ljh.44.1687724768085;
+        Sun, 25 Jun 2023 13:26:08 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id m21-20020a195215000000b004f8427f8716sm787537lfb.262.2023.06.25.13.26.06
+        by smtp.gmail.com with ESMTPSA id m21-20020a195215000000b004f8427f8716sm787537lfb.262.2023.06.25.13.26.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jun 2023 13:26:06 -0700 (PDT)
+        Sun, 25 Jun 2023 13:26:07 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -66,9 +66,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
         Christian Marangi <ansuelsmth@gmail.com>,
         Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v2 20/26] ARM: dts: qcom: apq8064-asus-nexus7-flo: constraint cpufreq regulators
-Date:   Sun, 25 Jun 2023 23:25:41 +0300
-Message-Id: <20230625202547.174647-21-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 21/26] ARM: dts: qcom: apq8064-ifc6410: constraint cpufreq regulators
+Date:   Sun, 25 Jun 2023 23:25:42 +0300
+Message-Id: <20230625202547.174647-22-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
 References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
@@ -89,51 +89,52 @@ better be safe than sorry there.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- .../boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts | 14 ++++++++++++--
- 1 file changed, 12 insertions(+), 2 deletions(-)
+ .../arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-index c57c27cd8a20..9f5d72727356 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8064-asus-nexus7-flo.dts
-@@ -218,9 +218,9 @@ s1 {
- 			bias-pull-down;
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
+index 96307550523a..ad3cd45362df 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064-ifc6410.dts
+@@ -215,8 +215,8 @@ s1 {
  		};
  
--		/* msm otg HSUSB_VDDCX */
-+		/* msm otg HSUSB_VDDCX and VDD_DIG */
  		s3 {
--			regulator-min-microvolt = <500000>;
+-			regulator-min-microvolt = <1000000>;
+-			regulator-max-microvolt = <1400000>;
 +			regulator-min-microvolt = <950000>;
- 			regulator-max-microvolt = <1150000>;
++			regulator-max-microvolt = <1150000>;
  			qcom,switch-mode-frequency = <4800000>;
  		};
-@@ -301,6 +301,12 @@ l23 {
+ 
+@@ -262,6 +262,12 @@ l23 {
  			bias-pull-down;
  		};
  
-+		/* VDD_MEM */
 +		l24 {
 +			regulator-min-microvolt = <1050000>;
 +			regulator-max-microvolt = <1150000>;
++			bias-pull-down;
 +		};
 +
- 		/*
- 		 * tabla2x-slim-CDC_VDDA_A_1P2V
- 		 * tabla2x-slim-VDDD_CDC_D
-@@ -329,8 +335,12 @@ lvs6 {
- 		/*
- 		 * mipi_dsi.1-dsi1_vddio
- 		 * pil_riva-pll_vdd
-+		 * HFPLL regulator
- 		 */
- 		lvs7 {
+ 		lvs1 {
+ 			bias-pull-down;
+ 		};
+@@ -269,6 +275,14 @@ lvs1 {
+ 		lvs6 {
+ 			bias-pull-down;
+ 		};
++
++		/* HFPLL regulator */
++		lvs7 {
 +			regulator-min-microvolt = <1800000>;
 +			regulator-max-microvolt = <1800000>;
 +			regulator-boot-on;
- 			bias-pull-down;
- 		};
++			regulator-always-on;
++		};
  	};
+ };
+ 
 -- 
 2.39.2
 
