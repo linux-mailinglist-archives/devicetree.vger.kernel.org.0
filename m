@@ -2,164 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9ED6D73D50E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 00:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A03673D51E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 00:59:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229541AbjFYWgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 18:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54882 "EHLO
+        id S229510AbjFYW7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 18:59:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57516 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229452AbjFYWgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 18:36:09 -0400
-Received: from mail-pj1-x1034.google.com (mail-pj1-x1034.google.com [IPv6:2607:f8b0:4864:20::1034])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B10F51BD
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 15:36:07 -0700 (PDT)
-Received: by mail-pj1-x1034.google.com with SMTP id 98e67ed59e1d1-262e04a6f66so263022a91.0
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 15:36:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1687732567; x=1690324567;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lsqNhkE5oWlMgtIBUOkdhdib6xZtYP/JVM/Zsc0j+ts=;
-        b=cihVByItGc+eVG4fy+EISc6Bqco0E+A7e5FqMT8JF5b0t783oDa2N6FS+yHNR8JIZH
-         Zb4RiTZgIp+m8w+DIbKDSNXBgGxFnJnlcD2xDghKMQn8huuoRW5ueQCZzR9ZYLQsg6Fz
-         QC5rQL3JGLuVLms9u+yh2gdmlPirR8det57xQlpb/OHS6hZshppUKdVamBLmFEQZg27k
-         Sdgw+xPpf+Yxl0skzejaeB86m/eizwSpjvG6VCyZxllPmExoCPMo1Z7H3WZYw9DHU2GO
-         8RrNOsr94j4k/Bnn9v0xZzNgPCka5OuAiVcNqUIdnHEqEyQz7NzktKyTzda2C//Cfzn5
-         Rvbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687732567; x=1690324567;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lsqNhkE5oWlMgtIBUOkdhdib6xZtYP/JVM/Zsc0j+ts=;
-        b=ajx2ixYQ/nNSsXzEO7ma/Fr02AI/ZEv0hk+UFuCrlkiiJThn3YYgVUBjc6v+IgidCF
-         qEjntDg1qOQUQJRSI8ABeNHee3YaIFxwgSxE25kXYjBty9/SAW9+QQBhIfDoalp5qlbN
-         UxRgbecJMVEVvxI/kiv9Dz1sLJS3AdcBYg+ERDYbkM8JZT4sojH41UK9y/3IDqcYxktE
-         VKUB24aA4+8P8deKH8r+7aOJgaEcJDVWg3XpVTDv2aSxswzGoC12DC0Erc8Sl2vdV4ln
-         YwDsVV3qQWlI+k4UsEsHvnmLBaEU20w1orwdoUsi0t8n0iP/m9UacTnO9DiVZfkUDXl5
-         I8iA==
-X-Gm-Message-State: AC+VfDzZXHvoFBiW5L8isYWzfKlbe6D6Mujx7GRGfDGXlAqVT2XFAH5R
-        wdqqhCL+A8GxFZfRJl5DT+g7PQ==
-X-Google-Smtp-Source: ACHHUZ69BZVi1KJzS7hQaMLqlt1Sd5kzMCZwpAk6rFMb0eeKG+qy91PnYxOv+QVg7tosGmhPDxdWVw==
-X-Received: by 2002:a17:90a:1:b0:262:b3f8:6ae with SMTP id 1-20020a17090a000100b00262b3f806aemr3976171pja.46.1687732567008;
-        Sun, 25 Jun 2023 15:36:07 -0700 (PDT)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id ip4-20020a17090b314400b0025374fedab4sm4789374pjb.22.2023.06.25.15.36.06
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jun 2023 15:36:06 -0700 (PDT)
-Date:   Sun, 25 Jun 2023 15:36:06 -0700 (PDT)
-X-Google-Original-Date: Sun, 25 Jun 2023 15:35:24 PDT (-0700)
-Subject:     Re: [PATCH V1 1/3] Revert "RISC-V: mark hibernation as nonportable"
-In-Reply-To: <20230625-obstinate-grimy-b765a1d3d741@spud>
-CC:     suagrfillet@gmail.com, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com,
-        ajones@ventanamicro.com, alexghiti@rivosinc.com,
-        mpe@ellerman.id.au, Arnd Bergmann <arnd@arndb.de>, rppt@kernel.org,
-        samuel@sholland.org, panqinglin2020@iscas.ac.cn,
-        Conor Dooley <conor.dooley@microchip.com>, anup@brainfault.org,
-        xianting.tian@linux.alibaba.com, anshuman.khandual@arm.com,
-        heiko@sntech.de, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-57d088de-b527-4f19-89f5-fec31a6df475@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229447AbjFYW7S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 18:59:18 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF531A3;
+        Sun, 25 Jun 2023 15:59:16 -0700 (PDT)
+X-GND-Sasl: alexandre.belloni@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1687733954;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=KFR20bnGdcCIhIEUWg9VDBjzYhckIwBEXgB7df3zsmA=;
+        b=N7SNr1RhuigsLxZpkYrHUFUOScvsx13mafZFqh0eU1CvUdSpInau7LindICuvV729cvw/e
+        nPa8HEfI3RdTWMI5EQZ1D6vwYbGyWyKw1u7Jv6/WIqdx7qf1+Xb7DPvpl2lFJBexc+/kCI
+        yOVGvuYW8OtYlDl55rS6NvMJ7/uMkrmh0DhTGTjTlu/pTf6c1WArgGtefDtGVy/LWPu4jl
+        X9lbJ+tSLYt1Ak9OwLo2VMj1fY8uGt3Rluls4iR8yK+NghmCljMY2B3V1WS9CF1orb0SWd
+        xW8zSOJx4mv+t67xp3EQCWnL8n2WYhCiqv9iocy4Rd6pWNwDLPCVgqnGzJdRXA==
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+X-GND-Sasl: alexandre.belloni@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id E5DF540003;
+        Sun, 25 Jun 2023 22:59:12 +0000 (UTC)
+Date:   Mon, 26 Jun 2023 00:59:12 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Wolfram Sang <wsa@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>, devicetree@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Subject: Re: (subset) [PATCH v7 00/10] Add Renesas PMIC RAA215300 and
+ built-in RTC support
+Message-ID: <168773392610.111997.16021927718782550143.b4-ty@bootlin.com>
+References: <20230623140948.384762-1-biju.das.jz@bp.renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230623140948.384762-1-biju.das.jz@bp.renesas.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 25 Jun 2023 15:15:14 PDT (-0700), Conor Dooley wrote:
-> Hey,
->
-> On Sun, Jun 25, 2023 at 11:09:21PM +0800, Song Shuai wrote:
->
->> Sorry for the delayed reply,
->
-> It wasn't really delayed at all actually, you replied within an hour or
-> so, AFAICT.
->
->> My tinylab email went something wrong, I'll use gmail in this thread.
->> 
->> 在 2023/6/25 22:18, Conor Dooley 写道:
->> > On Sun, Jun 25, 2023 at 10:09:29PM +0800, Song Shuai wrote:
->> > > This reverts commit ed309ce522185583b163bd0c74f0d9f299fe1826.
->> > > 
->> > > With the commit 3335068f8721 ("riscv: Use PUD/P4D/PGD pages for the
->> > > linear mapping") reverted, the MIN_MEMBLOCK_ADDR points the kernel
->> > > load address which was placed at a PMD boundary.
->> > 
->> > > And firmware always
->> > > correctly mark resident memory, or memory protected with PMP as
->> > > per the devicetree specification and/or the UEFI specification.
->> > 
->> > But this is not true? The versions of OpenSBI that you mention in your
->> > cover letter do not do this.
->> > Please explain.
->> > 
->> 
->> At this time, OpenSbi [v0.8,v1.3) and edk2(RiscVVirt) indeed don't obey the
->> DT/UEFI spec. This statement is excerpted from "Reserved memory for resident
->> firmware" part from the upcoming riscv/boot.rst. It isn't accurate for now.
->> How about deleting this one?
->
-> It is incorrect, so it will need to be removed, yes.
-> Unfortunately writing a doc does not fix the existing implementations :(
->
->> Actually with 3335068f8721 reverted, the change of MIN_MEMBLOCK_ADDR can
->> avoid the mapping of firmware memory, I will make it clear in the next
->> version.
->
-> To be honest, I'd like to see this revert as the final commit in a
-> series that deals with the problem by actually reserving the regions,
-> rather than a set of reverts that go back to how we were.
-> I was hoping that someone who cares about hibernation support would be
-> interested in working on that - *cough* starfive *cough*, although maybe
-> they just fixed their OpenSBI and moved on.
-> If there were no volunteers, my intention was to add a firmware erratum
-> that would probe the SBI implementation & version IDs, and add a firmware
-> erratum that'd parse the DT for the offending regions and reserve them.
 
-Is there any actual use case for hibernation on these boards?  Maybe 
-it's simpler to just add a "reserved regions actually work" sort of 
-property and then have new firmware set it -- that way we can avoid 
-sorting through all the old stuff nobody cares about and just get on 
-with fixing the stuff people use.
+On Fri, 23 Jun 2023 15:09:38 +0100, Biju Das wrote:
+> This patch series aims to add support for Renesas PMIC RAA215300 and
+> built-in RTC found on this PMIC device.
+> 
+> The details of PMIC can be found here[1].
+> 
+> Renesas PMIC RAA215300 exposes two separate i2c devices, one for the main
+> device and another for rtc device.
+> 
+> [...]
 
->
-> Cheers,
-> Conor.
->
->> > > So those regions will not be mapped in the linear mapping and they
->> > > can be safely saved/restored by hibernation.
->> > > 
->> > > Signed-off-by: Song Shuai <songshuaishuai@tinylab.org>
->> > > ---
->> > >   arch/riscv/Kconfig | 5 +----
->> > >   1 file changed, 1 insertion(+), 4 deletions(-)
->> > > 
->> > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
->> > > index 5966ad97c30c..17b5fc7f54d4 100644
->> > > --- a/arch/riscv/Kconfig
->> > > +++ b/arch/riscv/Kconfig
->> > > @@ -800,11 +800,8 @@ menu "Power management options"
->> > >   source "kernel/power/Kconfig"
->> > > -# Hibernation is only possible on systems where the SBI implementation has
->> > > -# marked its reserved memory as not accessible from, or does not run
->> > > -# from the same memory as, Linux
->> > >   config ARCH_HIBERNATION_POSSIBLE
->> > > -	def_bool NONPORTABLE
->> > > +	def_bool y
->> > >   config ARCH_HIBERNATION_HEADER
->> > >   	def_bool HIBERNATION
->> > > -- 
->> > > 2.20.1
->>
+Applied, thanks!
+
+[04/10] dt-bindings: rtc: isl1208: Convert to json-schema
+        commit: ac739bac5201d4308cba2525dacb5da654b3ff31
+[05/10] dt-bindings: rtc: isil,isl1208: Document clock and clock-names properties
+        commit: 138f352556d791d7e0ca3ac9a4f4815123af8c82
+[06/10] rtc: isl1208: Drop name variable
+        commit: 380960c40a1d106bba3476c9a010eaf28195115d
+[07/10] rtc: isl1208: Make similar I2C and DT-based matching table
+        commit: fbc06a53561c64ec6d7f9a1b3bc04597de4cbb2d
+[08/10] rtc: isl1208: Drop enum isl1208_id and split isl1208_configs[]
+        commit: 5923fc75d0dfcebce53894ddada7e2440d756f8b
+[09/10] rtc: isl1208: Add isl1208_set_xtoscb()
+        commit: 262f72b4656e182eefaab91ab24a7575dda5524f
+[10/10] rtc: isl1208: Add support for the built-in RTC on the PMIC RAA215300
+        commit: fdd63f65ac25d0851dade4c7ba94a7a882b8d9c2
+
+Best regards,
+
+-- 
+Alexandre Belloni, co-owner and COO, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
