@@ -2,103 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AF09A73D06B
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 13:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E59A73D0DA
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 14:21:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230029AbjFYLZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 07:25:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38742 "EHLO
+        id S232113AbjFYMVI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 08:21:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231905AbjFYLZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 07:25:29 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D663AE7E
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 04:25:22 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-988c495f35fso280967866b.1
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 04:25:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687692321; x=1690284321;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hVINm/2LH1WEB9iHiOzwEPqPW/i0PdmGJzwlQt8KATk=;
-        b=DEZkzEXuaytD/9gTtjon3tQLqwTAxhHVUQIprvUqkk4FMjW4DYcx5ovDPM78fPuiyE
-         eVBopACY+8JRt4x7UAxuasCvIyAVgqfWbO2aIFRPvQPEIyWobLmhB2duhOZx40SIWGDW
-         pYucd4fnxK4z4VpagweyHTYMouf9Nmxr8S1lBEfRtVDsyqUz0tmdwHcez7I9zDC4kc1Z
-         8f7VEn8OvkJLwTR+LuNgeCMY09/voz3+iZXGE4RH06bd6iNOYkeDWjoM+D2ERcw0HMOj
-         lDmt3K7LKFWQGkKVmIVgHT69RZ5q12Omr753PwXFpVsg/tYP0fh9XVbtELj9xlE2Fwl1
-         LkZA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687692321; x=1690284321;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hVINm/2LH1WEB9iHiOzwEPqPW/i0PdmGJzwlQt8KATk=;
-        b=atsQRjA6eN7rde6Heee1GAFdo5NrqYUzYcICpLchDrPNyc6RwbC1WzgKDau08Hcg7X
-         d2ME8QOFJ35WHwsCwMU4NtQchNNu8BKJF/Q7ZFLwJE0cTUNBRDN3alRm76ArB4Dp/wor
-         CRprnqwyTDr36q1AEfXWeTvmVwp/LlNrte5o8XBBTqlgpI4wi/e2siZmP2sMaHag7uaA
-         eq0Um7snzy7lwPOUAxsJUrgmczsVG8Aeh7fUH3uIkqoKxuWCxR5O8UfxcrCCXqcAjBfM
-         Lp+f9TOH466WMOGCupkxJrfF16YDESf/TZU4/cs8sCb6MJ+NYuX8FdrRUuR9mdXuGr+a
-         HjkQ==
-X-Gm-Message-State: AC+VfDz9ergh8xVV2Pz0oKucfMUJu7qIHjJsob6zf6RLTUv9+khWxlw2
-        JaOcfTNfh8B3RXToiCwvnuSwAA==
-X-Google-Smtp-Source: ACHHUZ6pruJNlq2RYOm4Hp1J4J9xpDMuTNJmZA3cgmX1/SzqAlPVwWat60wZTGnfKx0/A1rypOX1VA==
-X-Received: by 2002:a17:906:55d4:b0:98e:a451:fac3 with SMTP id z20-20020a17090655d400b0098ea451fac3mr626212ejp.42.1687692321165;
-        Sun, 25 Jun 2023 04:25:21 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id f21-20020a170906561500b009888eda6b0asm2006594ejq.170.2023.06.25.04.25.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Jun 2023 04:25:20 -0700 (PDT)
-Message-ID: <19082486-2f19-897c-9e40-6f36a27c3bb1@linaro.org>
-Date:   Sun, 25 Jun 2023 13:25:18 +0200
+        with ESMTP id S232118AbjFYMVI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 08:21:08 -0400
+Received: from EUR05-AM6-obe.outbound.protection.outlook.com (mail-am6eur05on2043.outbound.protection.outlook.com [40.107.22.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 081FCE5F;
+        Sun, 25 Jun 2023 05:21:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=igOeL44TV0Blx0q+SZTLtqbbZX1XuqXj8AysIp4nMNtCxVqLdWx+imC0YZepBXSQuiQldoitEaNPX2/E0cezLI6yyldYGkXArsI46woCbMfmNcmHqe0T3CkrtqUFt+mujX++G6IwGotI9rxcDzvtD213exYl6w5bfS8Zf/IG7ucIGLzBEoCV0Ndtp7DoOMjAQt7buKaJkvI1j90fKpBDAT2nu3HXo4OmhFUsXlXINSyKY9hRFdWHNy5Gw0OgWxGEBAgA5TR6E98GqHXRbBH8ol/OMwVid1Z7yM0PkdCrpL1ARdEkDrlxjoKU8oRTfMjVWyGYgOBUe9SeoNv6a6j/EA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=cYkgR8EJDaTfQzFkO2VR6sIlvZED4fvCtbmOnA1D0og=;
+ b=OPSiUofG/TxHUNBOWv0r4ecu5qVuvsbwJGSv4G84mHFYGLQf+HPMd/C85HzDlY9J0VpzFtzHMg5u2vTboJcXavU7G7rIsJmCu1RpMlfNB0vfTDCh2kgEnf3mFnTplMN5EnHPjm0Hhr+ZEdO3pHKLmRXDl12vfdbfClec4GzU7JbJ7+wMw5BnsRL6dcN/oWo0Yjk2Jhj/8ktn/0gUQxGeE5D3/FaiBVqTfKbTXwNGRi64m9uh7BDlVQc4GQczLOndIiBPkGRUOlPrAO3/AiTO3Qfw14nzdEHvYZdx1ycIsgO93YObldfqjJuNcegHRR4etWp5riVckuUZuQKpv1wFdg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=cYkgR8EJDaTfQzFkO2VR6sIlvZED4fvCtbmOnA1D0og=;
+ b=SPJr8VDZTRA6J6ImW+1tbHlZALKKZRM1t4SULgukqQez4P1LZNH2GU4LpRRI32wTltiHCSGO2dwyomT41+r9RUrU45kHi2y/UZzMoglBBgzIljKH/HHoA7DpDZV9EQug47Np6W84RvfO87LwoQ2p9qWfBCrAmHSErytegAEffKs=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com (2603:10a6:10:358::11)
+ by DU2PR04MB9129.eurprd04.prod.outlook.com (2603:10a6:10:2f4::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Sun, 25 Jun
+ 2023 12:20:58 +0000
+Received: from DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::efff:43d6:6f46:eea]) by DU0PR04MB9417.eurprd04.prod.outlook.com
+ ([fe80::efff:43d6:6f46:eea%7]) with mapi id 15.20.6521.026; Sun, 25 Jun 2023
+ 12:20:57 +0000
+From:   "Peng Fan (OSS)" <peng.fan@oss.nxp.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2 0/4] arm64: dts: imx93: add thermal/cma/cm33 node
+Date:   Sun, 25 Jun 2023 20:25:45 +0800
+Message-Id: <20230625122549.4066027-1-peng.fan@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI1PR02CA0010.apcprd02.prod.outlook.com
+ (2603:1096:4:1f7::17) To DU0PR04MB9417.eurprd04.prod.outlook.com
+ (2603:10a6:10:358::11)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 4/4] arm64: dts: imx93: enable CM33 for 11x11 EVK
-Content-Language: en-US
-To:     Peng Fan <peng.fan@nxp.com>,
-        "Peng Fan (OSS)" <peng.fan@oss.nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20230625105528.4057850-1-peng.fan@oss.nxp.com>
- <20230625105528.4057850-5-peng.fan@oss.nxp.com>
- <60efe832-b982-7ea7-abd3-5e9bfd41d064@linaro.org>
- <DU0PR04MB9417A0C5546DFCB0F34516FA8821A@DU0PR04MB9417.eurprd04.prod.outlook.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DU0PR04MB9417A0C5546DFCB0F34516FA8821A@DU0PR04MB9417.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DU0PR04MB9417:EE_|DU2PR04MB9129:EE_
+X-MS-Office365-Filtering-Correlation-Id: 13f0d001-2101-49cd-d0b3-08db7576a135
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: LboHfC09GSPP/bGb/J/N1qmhFkHM1mGFftF81+0gP+CxGOdMU8/wpqBay0ld1xgBbiOtxo5PKyz49jLv81nqpkmgDphLkWpPT0ibfd/9yedbLaCU5zqXY8O2x1tJJ7HUwV3D4sAFJTbymK9bKkQ+3s0IZmmz+qNaUw90vLopog1QDlYj1FYyLZaH3SZ+Ckpio2uF2G02NBqSALWRsqFLW04nWR72fQeaulj1bgW2h8Pr0qm6K0hM6eUpqeSiQZTEX+a9kcbG2DAoO4KU06NujqPQlbGk74JeLCUjGiMfJ5GzavAJNDjs+gjIlZzhvKy1fRS4syeihOqoSS8fbKHHIVk3OkPCqSiOo3DNPbNXi0jtdQi4mvHW8X961rqzX4yRwyvHngqHTxbD9NP0Mb/C2Ar+Cs4X+7nTj2dUy+NFvfLAdyDIYMhxs0AqePFBjpG/ocK1r8BySNOU+G82LHHx/VOPTU8tDLGv8DrIUoZKowTWwBYZ4qXlTxbZYK/9vxXzqrJda3ikyPBEX1XXVVlhxrsI0lTzk/ka8lI8O4zmQ6kEWlG/faqYBWMTy/GMlxEFJ9bLyqAmAnRlJrp9OpGBPFR9pyRDQMNNzqt/NlVrhGT7qYTrKyn1QPXtKC7Cj9zU
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DU0PR04MB9417.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(376002)(346002)(396003)(366004)(39850400004)(136003)(451199021)(38100700002)(38350700002)(86362001)(478600001)(2616005)(6486002)(52116002)(6666004)(66946007)(316002)(41300700001)(8936002)(8676002)(66476007)(66556008)(4326008)(1076003)(6506007)(26005)(186003)(6512007)(4744005)(2906002)(5660300002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cF1EqIPPCl+Xwy8kd9p2c2LpATyG+/J8Mbl6MgiVEAhOLfLKY5PVSkUocjoC?=
+ =?us-ascii?Q?LrRpicQcQe6D2mfhqW4VyjGi6b5/Jsh/5Gs3xlf6XMQ6CXvgnkdQWj6FZ6ee?=
+ =?us-ascii?Q?zM1Whiq+08OPLKaY+zGqE4iwPLu6I5EFpuukAz7uWuKYK2X+yqksd3Oq6Fl7?=
+ =?us-ascii?Q?sbmJuJKmJqQ4sijVeGwJuYQO8RXmDoGSqLLeFtMy3ohZ+AKiiYKq3xtp5VRh?=
+ =?us-ascii?Q?rNJRZNFc6d5p9rjgUUBTFdKWevGL4+tLYWPWvWH42L+iMkD7yH4PZmgcOHfB?=
+ =?us-ascii?Q?s6dm1Pb3p4KjoL0cNshEOH7CBixOsYSyl0HgWMXi9ym0Gbntm0Wt1F+RUlh0?=
+ =?us-ascii?Q?eDyMFn8s+kbr8zIw09IOfz3bvy5Jz/onfOr+ktUC5GV+eQ0xnt8EmaZUZu79?=
+ =?us-ascii?Q?gQg0ryRz5AWmI3NMbC8HVvE3cdiQQ3lhxLn0gP+faP1l6sFxyw2NrcSo/zAc?=
+ =?us-ascii?Q?fBFpHeBVgw2XIo4fD7hQUE0FRsJCXn0W6uxRFH1ocGI66r4HjyGJUAEIotlz?=
+ =?us-ascii?Q?llJ45SUN9NQqdVQ2E2zxud3UY3L3taYHX9SPrIli/CwhGQxp05LHHKlxiciv?=
+ =?us-ascii?Q?3/Iu4rxnGLxGIQKx7AMJNhTn7HS7kyHnu0hTwBLgvVr3q1gYWy8JX0XnDvT3?=
+ =?us-ascii?Q?8YOYJEoREgnwchfCy1X8R148NadDlUf4Hq7DeGsyM/vACvQpAnEzfISqQR9G?=
+ =?us-ascii?Q?6LiqG1TL39EsoFrrbSvWRbH8boEiqWklh4UhHK3wACms9J2TUYH/TXt3j1kE?=
+ =?us-ascii?Q?AEif3SoIppvW4BTBCcvneRROUSE5O5Lv6EmU58EU5HfjZWIttZ1svRw6ZTX+?=
+ =?us-ascii?Q?pXzbMV1xdnmyaQXkHLsZX/SQsDOsOqMJSmH6LKMUSOn6iWdgayvx7zqOb4I8?=
+ =?us-ascii?Q?CO4J60kxrUGQsB/v4aSKyJSdrBVP9yGBQgrthuXSujnfbsaRyrEH/yjrUSBx?=
+ =?us-ascii?Q?jdmRk3bUTYrpDEoPrcqWtSxDqMmGZImMbg6/IUGU3FibtHIiGk8788l5MoZU?=
+ =?us-ascii?Q?7LHAwFoJ7uj4txUDVknULuLIwd474h6RE/DmSwc0LKyTSBnAHTImFBd7zsNX?=
+ =?us-ascii?Q?Q/D2a5qy3NByHMwT4Vrv0n6Jiks78KCb6G4XHpihcXC/PnxJLbRwpF4iJguk?=
+ =?us-ascii?Q?rcGkiqRh5Oyj6PYYimjxdiYqvD2w4dq61H78pmssQ23TKyDq4fhwTJR5P9UP?=
+ =?us-ascii?Q?sPNwOOYOvdEWZB+8HYk/GPY/59XQYf0zKDa82aZu8oBdQxQCduJ1pODGDcvZ?=
+ =?us-ascii?Q?h2rCrqzn/5Qk2tiBCf+uzFmdjNIdqEGDLcdWOP04bSpmtRT5LBXW6tpbrFwB?=
+ =?us-ascii?Q?I5KQAvQ70h1xlJ0QA4JQy515CLp7wNQIfagGy0QgqDKwjkx/7U0kGsFJz7Jl?=
+ =?us-ascii?Q?f8+maWxzDqYI1eLj3sgPAF4uBQbU+7bxDgN0rvOrOlMaTIeky+wAwQn+KLrO?=
+ =?us-ascii?Q?KP4au1MYmDnW+jIuNeduDOfgUg5X9ry9O1BZNdROpmI+Auf29i2f2ASKf8ru?=
+ =?us-ascii?Q?sJPIv1CE6ABhdu/ysBmcOa3nsGSHeS7PqtBlq9HM0DYKT6MMUrQ9+3up8XGt?=
+ =?us-ascii?Q?ONAk/IV0YOeIrpX7kCj+eAM+T7VnPAWPiP1hsxG/?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13f0d001-2101-49cd-d0b3-08db7576a135
+X-MS-Exchange-CrossTenant-AuthSource: DU0PR04MB9417.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2023 12:20:57.8163
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7uFR70QuExRdNrnO4F9r/ZlXVhLnQuF4TpPZ3bVQAZlH1oRhzkaHJsLkEAPMjNCXodU/CHq04ULLs/deu+miBw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB9129
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2023 13:23, Peng Fan wrote:
->>
->> Three entries, not one. Anyway, why mboxes depend on the board? This is
->> quite surprising.
-> 
-> The m33 firmware delivered by NXP use MU1 for doorbell, but others may
-> use other MUs, or even not use MUs. So I put it in board dts just for
-> NXP boards.
+From: Peng Fan <peng.fan@nxp.com>
 
-OK
+V2:
+ Add label for remoteproc-cm33 in patch 3
+ Use Three entries in patch 4
 
-Best regards,
-Krzysztof
+Add thermal, cma, cm33 node for i.MX93
+
+Peng Fan (4):
+  arm64: dts: imx93: add thermal support
+  arm64: dts: imx93: add cma area for i.MX93 11x11 EVK
+  arm64: dts: imx93: add cm33 node
+  arm64: dts: imx93: enable CM33 for 11x11 EVK
+
+ .../boot/dts/freescale/imx93-11x11-evk.dts    | 56 ++++++++++++++++++
+ arch/arm64/boot/dts/freescale/imx93.dtsi      | 59 +++++++++++++++++++
+ 2 files changed, 115 insertions(+)
+
+-- 
+2.37.1
 
