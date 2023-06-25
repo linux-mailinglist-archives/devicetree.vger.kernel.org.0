@@ -2,111 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EC2273CE7A
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 06:57:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC49573CEDB
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 09:16:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjFYE5h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 00:57:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58910 "EHLO
+        id S230363AbjFYHQb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 03:16:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43662 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229611AbjFYE5g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 00:57:36 -0400
-Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D64EFE5D;
-        Sat, 24 Jun 2023 21:57:34 -0700 (PDT)
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35P4vH4I019459;
-        Sat, 24 Jun 2023 23:57:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1687669037;
-        bh=f8R3tgkj1lB6IQ8lBtLZdh5ReA80XcOWgHrdyy8mSjw=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=gbmRW1jykXhifY/+UsMimcHY6RtDelSaaV/n7TaEyiJIIwz3H/iIo9W2SOqH2SFl3
-         FEdtBWr21Jb8PyqQg3o0nr1EudmJVFix+OveyMEXwSKvOJ/YNccmYUIin86rw6wU13
-         jDDDITuUBDg0aygO+Z1HhXymulvyIbvnwxlAKGew=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35P4vH19078089
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Sat, 24 Jun 2023 23:57:17 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Sat, 24
- Jun 2023 23:57:17 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Sat, 24 Jun 2023 23:57:17 -0500
-Received: from [10.249.141.75] (ileaxei01-snat2.itg.ti.com [10.180.69.6])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35P4vDSU105002;
-        Sat, 24 Jun 2023 23:57:14 -0500
-Message-ID: <0070e00a-89c0-9b2b-8753-e1835b5aad15@ti.com>
-Date:   Sun, 25 Jun 2023 10:27:13 +0530
+        with ESMTP id S230000AbjFYHQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 03:16:29 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A8FE8
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 00:16:28 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51d89664272so1301430a12.1
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 00:16:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687677386; x=1690269386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=uIrahwiJfRblkW3SQe71HLoNxiAeifXwVotzPF1COO8=;
+        b=SLN/+lBuA+L4hOibaG99ROPhT2q+4Zk1BkcUiRXl4SmMBXbIW7ZDZeuRWDY1cBg38Z
+         ds8IN6Tf2v7H77bI5N82BPsA6p+sb1Lj+PSR0P8pInIDV1RTT6vqMpSWO9KEJ0hHzfC9
+         PstfvAk+/fjKU2B0e7eYYEH2W3iBHla9soKb01tYlDCjDXbBy2hscxufKR4AS0Pqb0fw
+         xW/pU4+OdDUQISR5H5kuYf4bnneam72K/FNMC6qv8UwrAGSJsMpE/MizlpDV4DdZLRUJ
+         CLXPt0bN46dNwZB1ey2SqK6RPM+T8D3l2FMCfWMHk6CSE+YuPcm2jgpBH2tceoFZhhEK
+         CXig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687677386; x=1690269386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=uIrahwiJfRblkW3SQe71HLoNxiAeifXwVotzPF1COO8=;
+        b=DpDQIIDxHpFQ28oZv3LJVmOwHZVTQCytOnwv/R0NaYMcQvf6B1X1vw93O09+XqlQzA
+         8mlLqWK1KObpLx++K4fN2G4/AO9EuzaulhzjsTjVg6G1dI5oO0kHxtyZDey+pPEpgLsQ
+         GlkUFlPqXQZogi4TyljXoMFVj0rGxExi5/xoODNiC1Dn/+gEkOvo7daiusEcw4TMQV2P
+         dpSrEdYTZms7YjBLEf6VFgb5SVB+adkagRWkhfUI1Z6+iqc0xBhJXxvChr5PsUHQUX5K
+         nsSzb1iBGdWgMpPmxjpWRmJyxYBL5+r4NbDPND1q/ETBlxdyaNLuYDW5kbGLzmGGktJt
+         FlhQ==
+X-Gm-Message-State: AC+VfDwTr1+KF0V3oQ/DNwJ+Oi+lSzN4c5tyzFF1OsDg3cpRl10lxUJy
+        p5vbdnzwnzwavHv0Ev5ribKZWA==
+X-Google-Smtp-Source: ACHHUZ7yWmteCJ2ASXP6XlOddI/EKOWOLbTyVMMVtsIAE32VSvu1Ve67QKpbz2Drqglycme6vQHnYQ==
+X-Received: by 2002:a05:6402:517:b0:51a:53e0:843f with SMTP id m23-20020a056402051700b0051a53e0843fmr15138396edv.37.1687677386589;
+        Sun, 25 Jun 2023 00:16:26 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id k21-20020aa7d8d5000000b0051bf6318fd7sm1440765eds.97.2023.06.25.00.16.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Jun 2023 00:16:25 -0700 (PDT)
+Message-ID: <6be00ec7-2fab-7da0-ab47-fcaf3a1ce042@linaro.org>
+Date:   Sun, 25 Jun 2023 09:16:22 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v4] arm64: dts: ti: k3-j721s2: Add support for CAN
- instances 3 and 5 in main domain
-To:     Bhavya Kapoor <b-kapoor@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <nm@ti.com>, <vigneshr@ti.com>, <kristo@kernel.org>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>
-References: <20230622185100.12197-1-b-kapoor@ti.com>
+Subject: Re: [PATCH 10/15] dt-bindings: msm: dsi-phy-14nm: Document SM6125
+ variant
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
+References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
+ <20230624-sm6125-dpu-v1-10-1d5a638cebf2@somainline.org>
+ <1b40b16e-025a-c10b-e99b-404246de73fe@linaro.org>
 Content-Language: en-US
-From:   "Kumar, Udit" <u-kumar1@ti.com>
-In-Reply-To: <20230622185100.12197-1-b-kapoor@ti.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1b40b16e-025a-c10b-e99b-404246de73fe@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bhavya
+On 24/06/2023 15:48, Dmitry Baryshkov wrote:
+> On 24/06/2023 03:41, Marijn Suijten wrote:
+>> Document availability of the 14nm DSI PHY on SM6125.
+>>
+>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+>> ---
+>>   Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>> index a43e11d3b00d..60b590f21138 100644
+>> --- a/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>> +++ b/Documentation/devicetree/bindings/display/msm/dsi-phy-14nm.yaml
+>> @@ -18,6 +18,7 @@ properties:
+>>         - qcom,dsi-phy-14nm
+>>         - qcom,dsi-phy-14nm-2290
+>>         - qcom,dsi-phy-14nm-660
+>> +      - qcom,dsi-phy-14nm-6125
+> 
+> Should we start using standard scheme, so "qcom,sm6125-dsi-phy-14nm" ?
 
-On 6/23/2023 12:21 AM, Bhavya Kapoor wrote:
-> CAN instances 3 and 5 in the main domain are brought on the common
-> processor board through header J27 and J28. The CAN High and Low lines
-> from the SoC are routed through a mux on the SoM. The select lines need
-> to be set for the CAN signals to get connected to the transceivers on
-> the common processor board. Threfore, add respective mux, transceiver
-> dt nodes to add support for these CAN instances.
-> [...]
->   
-> +	mux0: mux-controller@0 {
-> +		compatible = "gpio-mux";
-> +		#mux-state-cells = <1>;
-> +		mux-gpios = <&exp_som 1 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
+I guess the earlier the better.
 
+Best regards,
+Krzysztof
 
-You will get more warning with @0 and @1
-
-   DTC_CHK arch/arm64/boot/dts/ti//k3-j721s2-common-proc-board.dtb
-/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: /: 
-mux-controller@0: 'anyOf' conditional failed, one must be fixed:
-         'reg' is a required property
-         'ranges' is a required property
-         From schema: 
-/home/udit/.local/lib/python3.10/site-packages/dtschema/schemas/root-node.yaml
-/arch/arm64/boot/dts/ti/k3-j721s2-common-proc-board.dtb: /: 
-mux-controller@1: 'anyOf' conditional failed, one must be fixed:
-         'reg' is a required property
-         'ranges' is a required property
-
-> +	mux1: mux-controller@1 {
-> +		compatible = "gpio-mux";
-> +		#mux-state-cells = <1>;
-> +		mux-gpios = <&exp_som 2 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
->   	transceiver0: can-phy0 {
->   		/* standby pin has been grounded by default */
->   		compatible = "ti,tcan1042";
