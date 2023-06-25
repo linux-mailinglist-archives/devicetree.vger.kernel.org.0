@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E68F373D1D7
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 17:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D4CE73D1D9
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 17:48:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229998AbjFYPqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 11:46:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44186 "EHLO
+        id S229558AbjFYPsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 11:48:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjFYPqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 11:46:36 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57CE1113
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:46:35 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98e39784a85so107466666b.1
-        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:46:35 -0700 (PDT)
+        with ESMTP id S229518AbjFYPsW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 11:48:22 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53DC191
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:48:21 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51d9850ef09so302955a12.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:48:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687707994; x=1690299994;
+        d=linaro.org; s=google; t=1687708100; x=1690300100;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=CBfhQMoEipi5XAE7AqBqA8xkyhGnNfaeMZodBBrJBjA=;
-        b=QZhohzCXpsI7+DT4AL8Q4mQsrl8RruBJw/R4ZcD8XBnDoaozCNWlPj42b4qoQfco7q
-         jdLTMrwU3uocsZRWyANlo0UPrdThq8Q9AxYdA5QOC9X6I+PWRMa2FYGHVvR6BIGf0jrT
-         Ur/K/p94clSBtu7q6XsARj1PgJHxTe6QvJMKrb+As2A8sTXuaA7xiz8zbwi2ukxiplAa
-         vhlCi8b9lIoV1F0ErLZ/+45lIPV6jHZ1/xokihp1lvVMyeMkAGPloLNlEUWmQ2sXqbOu
-         2vtMBlvfMOnu1zcqgrv5UF34mX2SLYErtsvDX+LrkL+jKWwxsxaZRyWAJD27K7Qj7LOr
-         Pvxw==
+        bh=6FHDF4JQDFMpiAmZ5U0BX7uerXMnjpIEAdOE5eTh2lk=;
+        b=XVy9W9Mnb1ZxcR/oXJXA71VriIHqlMWClr3UF6wVHCFWDJ6+GJfbuBGhQm0TSbRvVd
+         h3ji5fmc0B/ITHKfFG8tlFVJMgtM6Tt4QubZ4voOAhr1nUDLb8PDDtpltsN2ZaHULQ6P
+         KRozrgPs5asTDjdSbVsq7G5oxv6STdAtrHzT9CfsLOUQquVxIcBSCER8hQIHkQBdI+WB
+         ITUFPyPf9AO0VaOPz53HOGoswazzrF5DUczJkp3p4oRltlX2E4uC9ahoX/zBF5MYFDJM
+         NHJsZKMj0jCnTSr4fr4nMKdvnk4DXw9NhFYVB+tKqp5bLMxb9T8koVhSh9OgXz4XM951
+         eGPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687707994; x=1690299994;
+        d=1e100.net; s=20221208; t=1687708100; x=1690300100;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=CBfhQMoEipi5XAE7AqBqA8xkyhGnNfaeMZodBBrJBjA=;
-        b=aul93UgjNfPf2nxUhUVMGrxt2nurCoYwvGvzDnkkFRvc/O9V39eEhb7GXfSLiUbpq8
-         /0IlM4wcg8OzOXdoeQHA3P4hoXAXFPTt/y/0X4m95ha4yzFCyOqaOk13PbhYw+kyZtwa
-         Jg/XmuvpX4evG9wQVeNBwQ0id+wv9WFI4VDxuOcI7dMKEJHMCcCZ3uMWkg5eJn/Y2Lfw
-         gBNasa7Xl0t4wqY7L8H2GZyfl3GOA7NM9Cs2i6scM7aWobDk6wdoUh1woRWZWS0WC44Y
-         81hq2ZNAIV4HRZ0vn6MpwMB4Gy+9nQxeOCjlBVeAUGWqTfGZJUVc7xvchQUmK/rpwl2h
-         Y2qA==
-X-Gm-Message-State: AC+VfDwt7/c7IEan3n8LGohC152whE1By2zvdhnjiZ3zX8ukDks052Bi
-        4rjhmup89jWT8ZoXQgWnNpq7kw==
-X-Google-Smtp-Source: ACHHUZ4MamQOEwU6km9t2W1ycNEyUducjTZqX8Eaj1G0PpnDaxxXvhRQMhbv7UGxy6/5gUrP0D1k5g==
-X-Received: by 2002:a17:907:72d2:b0:98e:3935:60f4 with SMTP id du18-20020a17090772d200b0098e393560f4mr1752596ejc.1.1687707993534;
-        Sun, 25 Jun 2023 08:46:33 -0700 (PDT)
+        bh=6FHDF4JQDFMpiAmZ5U0BX7uerXMnjpIEAdOE5eTh2lk=;
+        b=gU4uXr63ZOXDLYwojndVrN6dxJXyLqudci8R5BGGRUqgDCNUUHQ/ApMWTtt/xFKvoR
+         +GNOIt4waqa31Xiv44CXWFDHC9S6cXrVad9NfC+8A3h2FIvBskWAxLNBXMNMZUAToVzW
+         8btvE69BrA/iEkmJ4avYPnuQ1Q+Rrfyp6e68lqConz8SaSTOZCTPCH6hh/Lblrw/eyoM
+         6xsGGB7sD8XUa4UHfxIs144ewTyCmZvcK39llcochnNDWvmNPyipLzWl5mwHZqaZa0bI
+         OV8iVr3X5QK0FUaD4CiJdF9iphzhLMqpDGoZS8tQ1XqZcK9grdjgL9vfmOZT8yasZOBI
+         OPVw==
+X-Gm-Message-State: AC+VfDxFJiWwhE2/wdCeXV8cFY3In7DShRXijNpdcvuVQsgo/1OEiAu8
+        2kSI7FLBZG2IIgRCyKVktuxQRQ==
+X-Google-Smtp-Source: ACHHUZ5dc/5i/DnUe0Qkl576dckEiI0C7tQ2Yw3h0oT4Y8zmPyjT546jAOEXeRG8O6KYrv56RAHLfw==
+X-Received: by 2002:a05:6402:1b0e:b0:514:9df0:e3f3 with SMTP id by14-20020a0564021b0e00b005149df0e3f3mr20374649edb.0.1687708099754;
+        Sun, 25 Jun 2023 08:48:19 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id b21-20020a170906491500b009828dac8425sm2206521ejq.105.2023.06.25.08.46.31
+        by smtp.gmail.com with ESMTPSA id n3-20020a05640206c300b0051d9246f963sm1007326edy.9.2023.06.25.08.48.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 25 Jun 2023 08:46:33 -0700 (PDT)
-Message-ID: <4244c92d-2079-e3d9-44c8-8e5593d093a5@linaro.org>
-Date:   Sun, 25 Jun 2023 17:46:30 +0200
+        Sun, 25 Jun 2023 08:48:19 -0700 (PDT)
+Message-ID: <43b5fd53-e67a-7d51-3f14-ecd7189ccd7e@linaro.org>
+Date:   Sun, 25 Jun 2023 17:48:17 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 2/5] dt-bindings: pps: pps-gpio: introduce capture-clear
- property
+Subject: Re: [PATCH 4/5] dt-bindings: pps: pps-gpio: introduce pulse-width
+ properties
 Content-Language: en-US
 To:     Eliav Farber <farbere@amazon.com>, giometti@enneenne.com,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
@@ -65,14 +65,14 @@ Cc:     ronenk@amazon.com, talel@amazon.com, hhhawa@amazon.com,
         jonnyc@amazon.com, itamark@amazon.com, shellykz@amazon.com,
         amitlavi@amazon.com, almogbs@amazon.com
 References: <20230625142134.33690-1-farbere@amazon.com>
- <20230625142134.33690-3-farbere@amazon.com>
+ <20230625142134.33690-5-farbere@amazon.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230625142134.33690-3-farbere@amazon.com>
+In-Reply-To: <20230625142134.33690-5-farbere@amazon.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,37 +81,38 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 25/06/2023 16:21, Eliav Farber wrote:
-> Add a new optional "capture-clear" boolean property.
-> When present, PPS clear events shall also be reported.
+> Add two new optional properties to calculate PPS pulse-width in nano
+> seconds:
+>  - assert-pulse-width
+>  - clear-pulse-width
 > 
 > Signed-off-by: Eliav Farber <farbere@amazon.com>
 > ---
->  Documentation/devicetree/bindings/pps/pps-gpio.txt | 4 ++++
+>  Documentation/devicetree/bindings/pps/pps-gpio.txt | 6 ++++++
 
-Please convert the bindings to DT schema first.
+No, no, one new property could sneak in, but three are a no go. DT schema.
 
->  1 file changed, 4 insertions(+)
+>  1 file changed, 6 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.txt b/Documentation/devicetree/bindings/pps/pps-gpio.txt
-> index 9012a2a02e14..8d588e38c44e 100644
+> index 8d588e38c44e..9ecfd5fb3b63 100644
 > --- a/Documentation/devicetree/bindings/pps/pps-gpio.txt
 > +++ b/Documentation/devicetree/bindings/pps/pps-gpio.txt
-> @@ -14,6 +14,10 @@ Additional required properties for the PPS ECHO functionality:
->  Optional properties:
->  - assert-falling-edge: when present, assert is indicated by a falling edge
->                         (instead of by a rising edge)
-> +- capture-clear: when present, report also PPS clear events, which is the
-> +                 opposite of the assert edge (if assert is rising-edge then
-> +                 clear is falling-edge and if assert is falling-edge then
-> +                 clear is rising-edge).
+> @@ -18,6 +18,12 @@ Optional properties:
+>                   opposite of the assert edge (if assert is rising-edge then
+>                   clear is falling-edge and if assert is falling-edge then
+>                   clear is rising-edge).
+> +- assert-pulse-width: when present, assert pulse width will be calculated in
+> +                      nano seconds.
+> +                      It should be enabled only if 'capture-clear' is enabled.
+> +- clear-pulse-width: when present, clear pulse width will be calculated in
+> +                     nano seconds.
+> +                     It should be enabled only if 'capture-clear' is enabled.
 
-Why this is board-dependant? Falling edge is happening anyway, so it is
-in the hardware all the time. DT describes the hardware, not Linux
-driver behavior.
 
-What's more, your property name sounds a lot like a driver property, so
-even if this is suitable for DT, you would need to name it properly to
-match hardware feature/characteristic.
+I don't understand the description. Property name suggests there is some
+units (so you need to use common property unit suffix), but description
+suggests that you change the units to nanoseconds. That's very confusing.
 
 Best regards,
 Krzysztof
