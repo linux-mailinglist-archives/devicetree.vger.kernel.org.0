@@ -2,272 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F28673D1B1
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 17:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF5B973D1CA
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 17:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229448AbjFYP3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 11:29:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37870 "EHLO
+        id S229698AbjFYPki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 11:40:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjFYP3H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 11:29:07 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC89F1AA;
-        Sun, 25 Jun 2023 08:29:05 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-6689430d803so1082740b3a.0;
-        Sun, 25 Jun 2023 08:29:05 -0700 (PDT)
+        with ESMTP id S229509AbjFYPkh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 11:40:37 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E906AB
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:40:35 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51d7e8dd118so2208567a12.1
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 08:40:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687706945; x=1690298945;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=J+WOYDIvLdd2NWRRa7PZxlpSE8oO3O/uffxAnfRWFTQ=;
-        b=M/P1iEtEmWvR4gNy5Xi0GhWXMDNv1iAV49eqjRiWX/SAZBBrZ4s/wFnFIiajnvMR4U
-         Cq1f9q3461N2I20MICOALV/oq3Y75DDRsxKW1LcN3YmT0VMpcBO192i2R/Tnray4uCLy
-         qlguMhROpd4O4D0+1D39cIOsXUNWM1KGSHyLzylZe4sBdvfCgnfcCkK1IUM3FALO35Xj
-         ESLoTOb/a6y+uu7bEc76FcwrssFtglHWWl1AsX9M1choSG87grsiErSmdrjGFyaW8M7I
-         5DGHbp/HmQuets+G9z+XnvhIyKsSjFiGne8NHRtO3iGjmISL0FDVioxo/FCmNlSMUbVn
-         DwjQ==
+        d=linaro.org; s=google; t=1687707633; x=1690299633;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=MTQp0n2oXhJA5Ac6MISqa3fJgp7uxeLkw3KpR5ufcr4=;
+        b=Cd7SgRQi+l52dqC1OE/wwuXDAiJ2UhbVd/Rk9e8oWDT/tQ2l5Y+RBse4O6Q+9/k1Vq
+         GxgNDGaCbftz40WMfeIn3HFp5gmmsgbU55++OwSx7GF6WdTmg4FpE+x2+oWcfstFTDoJ
+         yNg9+bbXiKdiki/1OxgFJ8agJJvlKuz1mpF1nAbYlQKbgcja6Dk/wjBhO6k8NSOfMf3W
+         rgWPQDyHhJiCT/Hv0cjqDfAsWVGi5sZlXil1aw26LWyk3nyn/AioIvZ5ND3qX+/YGOil
+         lFUQi0QJRvYrTLSyp91wOopkX05fZcMHphVkkObo9KaXaaTsCcQO/b1W5uJ4NSJFw0Dy
+         yc/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687706945; x=1690298945;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=J+WOYDIvLdd2NWRRa7PZxlpSE8oO3O/uffxAnfRWFTQ=;
-        b=i94Kg88Pb4xMJzNa65PqhuaTJrTSufF72ZXdK2wcVICM1CgMWkmrQ6nK7g9mdno9W8
-         0coFWHNrveyxycKkOhIbTKCWRLwPL/72CJDsthd7b1C050KzpteduKXTdUK4S6+7ffAI
-         TPDksOyqu+/ibm2/70DKUmmxeqyQVa1D35MXWgPmfjk62KYYuTNetLxLkfmhRpXVq6ol
-         4K2G75tiWpmd3PxQGm+rSd3pfkaFHw6U+mewi1nTgY0vrcDXW8zaVKyNK4iY9HmMWPae
-         5ebnEFQy3mT7u4cDdgeH2brFlpB5X+bPQrqVl1t7/W6tol4ntc1MxK6blbysMHRoB1Q3
-         5ABw==
-X-Gm-Message-State: AC+VfDy70/xGoZDT4y6XtT6ENwKO8a1ddGZjQkwpRnIKeo7OeO5DizUw
-        XXZPV4yUOBkhR1jzy5f5Gow=
-X-Google-Smtp-Source: ACHHUZ6mNVKRC/wAju5m3w9CI3n8kce2f6IYE2Xf6XLkhFJuxLumcPtstkhxjS+602cCUYMD2xfLoQ==
-X-Received: by 2002:a05:6a20:96db:b0:126:6c67:18bc with SMTP id hq27-20020a056a2096db00b001266c6718bcmr2001479pzc.38.1687706945039;
-        Sun, 25 Jun 2023 08:29:05 -0700 (PDT)
-Received: from localhost.localdomain ([112.2.230.41])
-        by smtp.gmail.com with ESMTPSA id e19-20020a62aa13000000b0062bc045bf4fsm1710619pff.19.2023.06.25.08.28.57
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jun 2023 08:29:04 -0700 (PDT)
-From:   Song Shuai <suagrfillet@gmail.com>
-To:     songshuaishuai@tinylab.org
-Cc:     ajones@ventanamicro.com, alexghiti@rivosinc.com,
-        anshuman.khandual@arm.com, anup@brainfault.org,
-        aou@eecs.berkeley.edu, arnd@arndb.de, conor.dooley@microchip.com,
-        devicetree@vger.kernel.org, frowand.list@gmail.com,
-        heiko@sntech.de, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, mpe@ellerman.id.au,
-        palmer@dabbelt.com, panqinglin2020@iscas.ac.cn,
-        paul.walmsley@sifive.com, robh+dt@kernel.org, rppt@kernel.org,
-        samuel@sholland.org, xianting.tian@linux.alibaba.com
-Subject: [PATCH V1 3/3] Revert "riscv: Use PUD/P4D/PGD pages for the linear mapping"
-Date:   Sun, 25 Jun 2023 23:28:41 +0800
-Message-Id: <20230625152841.1280937-1-suagrfillet@gmail.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20230625140931.1266216-1-songshuaishuai@tinylab.org>
-References: <20230625140931.1266216-1-songshuaishuai@tinylab.org>
+        d=1e100.net; s=20221208; t=1687707633; x=1690299633;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=MTQp0n2oXhJA5Ac6MISqa3fJgp7uxeLkw3KpR5ufcr4=;
+        b=T76pOkqlqsVhqlT3cQr8KtYQKHNmT56+kZOTKt3CR2fPBC89I/zhYXYSGQSpj82cq1
+         OGLapcqhzcBVQFzHzFgW7iciR38Mj3+sZypZxyDeh4mQBVhsdgD5KWa4psxeEl3zTCOn
+         6NuzNz545faqbxUvQXEzpmlaNfdaaevLvmY0/jhYXHE0BuLkY2Mw5K3oTzy8saQvrUYb
+         GlZOuOa0SSGQzbUkikARuh9FiYDHjXFR0dpqPZQqmmgGL0laBgqQewCL+1Yclgys9P9V
+         ydLOKLHn23tPiSfAjHRI0dIo7SRGnmskbP69MSPaCQnpJlpU6BwEG3ekzng6Unmg1k80
+         0uhg==
+X-Gm-Message-State: AC+VfDwRL/CL7tPPF6Bgkc6ChTUy7EHysKCPC1EWlaEmQwHOpYppipD/
+        Gy1U8W95biEDjFikh9J6fDJBtA==
+X-Google-Smtp-Source: ACHHUZ4//9aqSdHBFWBy31jPAOHqRPxQmt9OrkOsKtISKlC0LX1C6VDQqpf8tmcL9kDEKcIid6gu3Q==
+X-Received: by 2002:a17:906:c359:b0:98d:63c5:d135 with SMTP id ci25-20020a170906c35900b0098d63c5d135mr6987800ejb.54.1687707633619;
+        Sun, 25 Jun 2023 08:40:33 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id gr11-20020a170906e2cb00b009884035279bsm2209333ejb.33.2023.06.25.08.40.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Jun 2023 08:40:32 -0700 (PDT)
+Message-ID: <731db330-4a0f-2427-a0ab-318f2d8be73b@linaro.org>
+Date:   Sun, 25 Jun 2023 17:40:30 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 4/4] dt-bindings: serial: fsl-lpuart: add imx8ulp
+ compatible string
+To:     Sherry Sun <sherry.sun@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Shenwei Wang <shenwei.wang@nxp.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+References: <20230625094857.29644-1-sherry.sun@nxp.com>
+ <20230625094857.29644-5-sherry.sun@nxp.com>
+ <d990a281-b4a3-1e26-1fdf-dfd35ab9cd24@linaro.org>
+ <AS8PR04MB84042EF903689014CC0C33809221A@AS8PR04MB8404.eurprd04.prod.outlook.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <AS8PR04MB84042EF903689014CC0C33809221A@AS8PR04MB8404.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Song Shuai <songshuaishuai@tinylab.org>
+On 25/06/2023 15:12, Sherry Sun wrote:
+> 
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: 2023年6月25日 18:18
+>> To: Sherry Sun <sherry.sun@nxp.com>; robh+dt@kernel.org;
+>> krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
+>> shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
+>> Shenwei Wang <shenwei.wang@nxp.com>; gregkh@linuxfoundation.org
+>> Cc: devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
+>> kernel@pengutronix.de; linux-serial@vger.kernel.org; linux-
+>> kernel@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>
+>> Subject: Re: [PATCH 4/4] dt-bindings: serial: fsl-lpuart: add imx8ulp
+>> compatible string
+>>
+>> On 25/06/2023 11:48, Sherry Sun wrote:
+>>> LPUART driver adds a new compatible string for imx8ulp, and imx93 is
+>>
+>> What driver adds or not, is not really correct argument for compatibility.
+>> There are plenty of compatible devices which have both device ID entries in
+>> the driver. Why would you drop their compatibility between each other? It
+>> does not work like that... Provide clear rationale for this.
+> 
+> Hi Krzysztof, 
+> We take imx7ulp lpuart as the basic version IP, then imx8ulp adds some improved features based on the imx7ulp lpuart IP.
+> Actually imx8ulp can also work with the imx7ulp version, we can say it is compatible with imx7ulp, but we need to enable those new features by default on imx8ulp, so we added the imx8ulp-lpuart compatible in lpuart driver. So for this case, maybe compatible = "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart" is correct for imx8ulp platform, right?
+> 
+> Then we have the imx93 family with the same lpuart version as imx8ulp, so how should we handle the compatible string for imx93 platform? Maybe compatible = "fsl,imx93-lpuart", "fsl,imx8ulp-lpuart", "fsl,imx7ulp-lpuart"? But three compatible strings looks too long for me, so I want to drop imx7ulp-lpuart and take imx8ulp-lpuart as the basic compatible string for imx93 and later others imx9 series, I am not sure if it is suitable, some suggestions here will be appreciate, thanks!
+> 
 
-This reverts commit 3335068f87217ea59d08f462187dc856652eea15.
+Wrap your responses.
 
-This commit maps the PMP regions from some versions of OpenSbi in
-the linear mapping, that will lead to an access fault when doing
-hibernation[1] or some speculative accesses.
+So write that the reason of this change is because looks too long for
+you and we will judge that rationale. Three compatibles is still fine.
 
-The best_map_size() function from this commit doesn't check the
-virtual alignment before choosing a map size, that will cause a
-page fault[2]. We can let best_map_size() take the VA into
-consideration via commit 49a0a3731596 ("riscv: Check the virtual
-alignment before choosing a map size"), but that commit slows down
-the boot time and consumes some system memory when UEFI booting.
-
-This commit uses PUD/P4D/PGD pages for the linear mapping to improve
-the performance is marginal from a recent talk [3] from Mike Rapoport.
-OpenSbi had marked all the PMP-protected regions as "no-map" [4]
-to practice this talk.
-
-For all those reasons, let's revert this commit.
-
-[1] https://lore.kernel.org/linux-riscv/CAAYs2=gQvkhTeioMmqRDVGjdtNF_vhB+vm_1dHJxPNi75YDQ_Q@mail.gmail.com/
-[2] https://lore.kernel.org/linux-riscv/tencent_7C3B580B47C1B17C16488EC1@qq.com/
-[3] https://lwn.net/Articles/931406/
-[4] https://github.com/riscv-software-src/opensbi/commit/8153b2622b08802cc542f30a1fcba407a5667ab9
-
-Signed-off-by: Song Shuai <songshuaishuai@tinylab.org>
----
- arch/riscv/include/asm/page.h | 16 ---------------
- arch/riscv/mm/init.c          | 38 ++++++-----------------------------
- arch/riscv/mm/physaddr.c      | 16 ---------------
- drivers/of/fdt.c              | 11 +++++-----
- 4 files changed, 11 insertions(+), 70 deletions(-)
-
-diff --git a/arch/riscv/include/asm/page.h b/arch/riscv/include/asm/page.h
-index b55ba20903ec..21b346ab81c2 100644
---- a/arch/riscv/include/asm/page.h
-+++ b/arch/riscv/include/asm/page.h
-@@ -89,14 +89,6 @@ typedef struct page *pgtable_t;
- #define PTE_FMT "%08lx"
- #endif
- 
--#ifdef CONFIG_64BIT
--/*
-- * We override this value as its generic definition uses __pa too early in
-- * the boot process (before kernel_map.va_pa_offset is set).
-- */
--#define MIN_MEMBLOCK_ADDR      0
--#endif
--
- #ifdef CONFIG_MMU
- #define ARCH_PFN_OFFSET		(PFN_DOWN((unsigned long)phys_ram_base))
- #else
-@@ -128,11 +120,7 @@ extern phys_addr_t phys_ram_base;
- #define is_linear_mapping(x)	\
- 	((x) >= PAGE_OFFSET && (!IS_ENABLED(CONFIG_64BIT) || (x) < PAGE_OFFSET + KERN_VIRT_SIZE))
- 
--#ifndef CONFIG_DEBUG_VIRTUAL
- #define linear_mapping_pa_to_va(x)	((void *)((unsigned long)(x) + kernel_map.va_pa_offset))
--#else
--void *linear_mapping_pa_to_va(unsigned long x);
--#endif
- #define kernel_mapping_pa_to_va(y)	({					\
- 	unsigned long _y = (unsigned long)(y);					\
- 	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < phys_ram_base) ?			\
-@@ -141,11 +129,7 @@ void *linear_mapping_pa_to_va(unsigned long x);
- 	})
- #define __pa_to_va_nodebug(x)		linear_mapping_pa_to_va(x)
- 
--#ifndef CONFIG_DEBUG_VIRTUAL
- #define linear_mapping_va_to_pa(x)	((unsigned long)(x) - kernel_map.va_pa_offset)
--#else
--phys_addr_t linear_mapping_va_to_pa(unsigned long x);
--#endif
- #define kernel_mapping_va_to_pa(y) ({						\
- 	unsigned long _y = (unsigned long)(y);					\
- 	(IS_ENABLED(CONFIG_XIP_KERNEL) && _y < kernel_map.virt_addr + XIP_OFFSET) ? \
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 38c4b4d6b64f..4561781bcf60 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -216,14 +216,6 @@ static void __init setup_bootmem(void)
- 	phys_ram_end = memblock_end_of_DRAM();
- 	if (!IS_ENABLED(CONFIG_XIP_KERNEL))
- 		phys_ram_base = memblock_start_of_DRAM();
--
--	/*
--	 * In 64-bit, any use of __va/__pa before this point is wrong as we
--	 * did not know the start of DRAM before.
--	 */
--	if (IS_ENABLED(CONFIG_64BIT))
--		kernel_map.va_pa_offset = PAGE_OFFSET - phys_ram_base;
--
- 	/*
- 	 * memblock allocator is not aware of the fact that last 4K bytes of
- 	 * the addressable memory can not be mapped because of IS_ERR_VALUE
-@@ -662,16 +654,9 @@ void __init create_pgd_mapping(pgd_t *pgdp,
- 
- static uintptr_t __init best_map_size(phys_addr_t base, phys_addr_t size)
- {
--	if (!(base & (PGDIR_SIZE - 1)) && size >= PGDIR_SIZE)
--		return PGDIR_SIZE;
--
--	if (!(base & (P4D_SIZE - 1)) && size >= P4D_SIZE)
--		return P4D_SIZE;
--
--	if (!(base & (PUD_SIZE - 1)) && size >= PUD_SIZE)
--		return PUD_SIZE;
--
--	if (!(base & (PMD_SIZE - 1)) && size >= PMD_SIZE)
-+	/* Upgrade to PMD_SIZE mappings whenever possible */
-+	base &= PMD_SIZE - 1;
-+	if (!base && size >= PMD_SIZE)
- 		return PMD_SIZE;
- 
- 	return PAGE_SIZE;
-@@ -1037,22 +1022,11 @@ asmlinkage void __init setup_vm(uintptr_t dtb_pa)
- 	set_satp_mode(dtb_pa);
- #endif
- 
--	/*
--	 * In 64-bit, we defer the setup of va_pa_offset to setup_bootmem,
--	 * where we have the system memory layout: this allows us to align
--	 * the physical and virtual mappings and then make use of PUD/P4D/PGD
--	 * for the linear mapping. This is only possible because the kernel
--	 * mapping lies outside the linear mapping.
--	 * In 32-bit however, as the kernel resides in the linear mapping,
--	 * setup_vm_final can not change the mapping established here,
--	 * otherwise the same kernel addresses would get mapped to different
--	 * physical addresses (if the start of dram is different from the
--	 * kernel physical address start).
--	 */
--	kernel_map.va_pa_offset = IS_ENABLED(CONFIG_64BIT) ?
--				0UL : PAGE_OFFSET - kernel_map.phys_addr;
-+	kernel_map.va_pa_offset = PAGE_OFFSET - kernel_map.phys_addr;
- 	kernel_map.va_kernel_pa_offset = kernel_map.virt_addr - kernel_map.phys_addr;
- 
-+	phys_ram_base = kernel_map.phys_addr;
-+
- 	/*
- 	 * The default maximal physical memory size is KERN_VIRT_SIZE for 32-bit
- 	 * kernel, whereas for 64-bit kernel, the end of the virtual address
-diff --git a/arch/riscv/mm/physaddr.c b/arch/riscv/mm/physaddr.c
-index 18706f457da7..9b18bda74154 100644
---- a/arch/riscv/mm/physaddr.c
-+++ b/arch/riscv/mm/physaddr.c
-@@ -33,19 +33,3 @@ phys_addr_t __phys_addr_symbol(unsigned long x)
- 	return __va_to_pa_nodebug(x);
- }
- EXPORT_SYMBOL(__phys_addr_symbol);
--
--phys_addr_t linear_mapping_va_to_pa(unsigned long x)
--{
--	BUG_ON(!kernel_map.va_pa_offset);
--
--	return ((unsigned long)(x) - kernel_map.va_pa_offset);
--}
--EXPORT_SYMBOL(linear_mapping_va_to_pa);
--
--void *linear_mapping_pa_to_va(unsigned long x)
--{
--	BUG_ON(!kernel_map.va_pa_offset);
--
--	return ((void *)((unsigned long)(x) + kernel_map.va_pa_offset));
--}
--EXPORT_SYMBOL(linear_mapping_pa_to_va);
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index bf502ba8da95..c28aedd7ae1f 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -888,13 +888,12 @@ const void * __init of_flat_dt_match_machine(const void *default_match,
- static void __early_init_dt_declare_initrd(unsigned long start,
- 					   unsigned long end)
- {
--	/*
--	 * __va() is not yet available this early on some platforms. In that
--	 * case, the platform uses phys_initrd_start/phys_initrd_size instead
--	 * and does the VA conversion itself.
-+	/* ARM64 would cause a BUG to occur here when CONFIG_DEBUG_VM is
-+	 * enabled since __va() is called too early. ARM64 does make use
-+	 * of phys_initrd_start/phys_initrd_size so we can skip this
-+	 * conversion.
- 	 */
--	if (!IS_ENABLED(CONFIG_ARM64) &&
--	    !(IS_ENABLED(CONFIG_RISCV) && IS_ENABLED(CONFIG_64BIT))) {
-+	if (!IS_ENABLED(CONFIG_ARM64)) {
- 		initrd_start = (unsigned long)__va(start);
- 		initrd_end = (unsigned long)__va(end);
- 		initrd_below_start_ok = 1;
--- 
-2.20.1
+Best regards,
+Krzysztof
 
