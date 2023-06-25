@@ -2,169 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AC8673D001
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 12:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C36973D00D
+	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 12:14:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231860AbjFYKDM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 06:03:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51658 "EHLO
+        id S231482AbjFYKNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 06:13:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231720AbjFYKDL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 06:03:11 -0400
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (mail-dm6nam11on2052.outbound.protection.outlook.com [40.107.223.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC1E8F0;
-        Sun, 25 Jun 2023 03:03:10 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Q1BX6HY1K8spIjeWf+1ooQzFYKIaoh2ejfRJNAAcPeyEwAstDVKTI+/JlVC8S61YcU9iJuE/0kxxNKdFx1ASlv82GimaKL2586iuQ2CJlGvnDUzhRZRtq5pfI8v8Ec26RLh8Px9tkWuiyPFF+gmcP+DoSjq+5Vq9mp5cplIcFlewN6hW/8sJn91Z6R1tyTqmhZ70sRW4EY1VInbNL6a1eoLj6Li5q5MfTSpcdhfZoIUfJJfse6neuvjzjKXcncc4Db7REsI3Iv4LvZW9Wiw/RVdJheGjcPZQI4yW1gjYPOJZJLlm1OZYKYf36YYWGn8tGLyzIEX+PYjPhgDwU4Smsw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=e4uBAgCYxrsLXKWGHhrN5/X0JBm659Q8rBhmD2c7a4k=;
- b=NGeJfyGYjT8RenH52H/wGby1SdhBGThvNWy0Jz6Lc6sgBClHwrPIPKAiA1nKOQgM5Ftmo4KMsyxUidS/VnzydYhbk0Os8t3RMD1iS50Ab+H1TqYYQqvOZA3FrDeQW9Xm0BYtzdaQG/JOuS5kR+u+sWwLz+RkJ4a0BKV8+2Mfq9N6n9lYwNVzSTen0MSrDXi0oqagX0+g8IuIvze5RpiKGJXOA27kxMzxhAYaiD+L5cFke0MRFfonjbNjRcJzQNVi7pUhLar+cdTF3dO1+z2piyPLzDqYwpsRH0OOqn1UMDQrZJrqRlfDkHjfujk/5pw2hpYuJM4Csvc2LiGPisnv7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=e4uBAgCYxrsLXKWGHhrN5/X0JBm659Q8rBhmD2c7a4k=;
- b=E36D8Z4uvrZubB75tJdJ2tkpXjrBr+kqStV+ZV56QZzPMQO9nNpJ/rKxvhf1eK0oMnw4xslX9bpNSrKy5rJSObIlmdH4bq34ntJXqIO7AgTkTTIf6m8Rx7s5kXGZths/no2Yvh1nkKImKtu7vEDoECByiTkXjABFbOCOctsb0Uo=
-Received: from BYAPR06CA0059.namprd06.prod.outlook.com (2603:10b6:a03:14b::36)
- by PH8PR12MB7325.namprd12.prod.outlook.com (2603:10b6:510:217::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Sun, 25 Jun
- 2023 10:03:08 +0000
-Received: from CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
- (2603:10b6:a03:14b:cafe::f1) by BYAPR06CA0059.outlook.office365.com
- (2603:10b6:a03:14b::36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.32 via Frontend
- Transport; Sun, 25 Jun 2023 10:03:08 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT060.mail.protection.outlook.com (10.13.175.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.45 via Frontend Transport; Sun, 25 Jun 2023 10:03:07 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Sun, 25 Jun
- 2023 05:03:06 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Sun, 25 Jun
- 2023 03:03:05 -0700
-Received: from xhdakumarma40u.xilinx.com (10.180.168.240) by
- SATLEXMB04.amd.com (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23
- via Frontend Transport; Sun, 25 Jun 2023 05:03:01 -0500
-From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To:     <tudor.ambarus@linaro.org>, <pratyush@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <git@amd.com>, <michael@walle.cc>, <linux-mtd@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <amitrkcian2002@gmail.com>,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH v3 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP# signal not connected
-Date:   Sun, 25 Jun 2023 15:32:51 +0530
-Message-ID: <20230625100251.31589-3-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230625100251.31589-1-amit.kumar-mahapatra@amd.com>
-References: <20230625100251.31589-1-amit.kumar-mahapatra@amd.com>
+        with ESMTP id S231356AbjFYKNv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 06:13:51 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C5981B3
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 03:13:50 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51d93425853so594002a12.1
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 03:13:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687688029; x=1690280029;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=syq8wmqi5sxbhlG4LN2N7LL4Y7J7QS2HpSjUCteE4Go=;
+        b=cj3kWNllURT0OTH7YF0bMiyfeZtq66AVLq2miBl6vvw6h4OEYAlcRcVTlbWXgAPAXv
+         0C8xmW1ClUaBTaP0AfCgGu6A6ObdzuJucwt/nedD8JngLILtbQ9RUTYj9SaaPzvDK7rU
+         ozv7fVHFxeQGEFfT97L6uZd3JlrNjL/uUDvmbHbOd8dp7Hq9iJy/0qraVRXrISitKmao
+         FxhFF8Qx7JMCJH/3KFZBm6aoTunGqtEScQ3v1/WxYJ37RL1svytm5okfJTTkkatO5zPT
+         zSqOShQlndDpr4v5ETkxX5BX97gCeAI8TNDw0LKj01WGkhSD+4xcgaFpO4Gtdo2koskg
+         vSHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687688029; x=1690280029;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=syq8wmqi5sxbhlG4LN2N7LL4Y7J7QS2HpSjUCteE4Go=;
+        b=Pv6EdkRTCrzb/vwGc/3+zDIVZI90UwV2nUt0MxItp0fQxia8qCotXhSOpuv+XZn50S
+         VOlbEhduM4YJtxviS1f3S9Wzqz4w6juHwGUSe9aJRCc/tyWuR6nv5m/T4HNL3ckY4nfG
+         7GQo6wb7T4JwIHXgTMvyJBD+XqBq7QzIXhYy0PmOXjki/CtvCOulsYvssDlpjHOaveZ5
+         HnjhqKWFydCsoIF2nk/5TADjDZMGu+c8f3zIlISL0TYL+Ld6oxBL4worYdpdAHkD35j+
+         Gg1Iuo4jcdTpBzvin/h8XWr0QvLBYZQo1FyqRsh9ztw1NM8hQS6zZQaYDptELVnCQ4iU
+         KNKw==
+X-Gm-Message-State: AC+VfDwm9D0bG2O8EWItq2pZNQWDcqEyn7X6EJlcMi5zTS8nHXh5Uhe0
+        7e7ip3yIwdrMeDYXUYmsg+1KXA==
+X-Google-Smtp-Source: ACHHUZ6ue7nK+iXT+Gmb02ASDhOsmXu9P1FKk9ZoHujhTYqVKduxYzP5wOr0r58/UwUeL3oIS/UWxA==
+X-Received: by 2002:a17:907:6095:b0:989:1cc5:24a with SMTP id ht21-20020a170907609500b009891cc5024amr14860344ejc.13.1687688028779;
+        Sun, 25 Jun 2023 03:13:48 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id u12-20020a170906068c00b0098856d1470csm1903726ejb.75.2023.06.25.03.13.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Jun 2023 03:13:47 -0700 (PDT)
+Message-ID: <41d0313b-f791-b274-d5a2-fd40b4be0fea@linaro.org>
+Date:   Sun, 25 Jun 2023 12:13:45 +0200
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT060:EE_|PH8PR12MB7325:EE_
-X-MS-Office365-Filtering-Correlation-Id: b60f50be-09c7-4a6a-43e8-08db75636037
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ndAGr/MRvywHrXlHZDUbsRGbUs1paDHNQhWZYRFSVl1TIOu+eXY8ONnzlP3ZT57GoTSU9n5CJzZpcGddW2d72ClcMdLWxtJ1S1/NOwl0van4HhntJnXk77NXC7TxRQfYHlgFuxf81N+ayusP5T7tDMN47J3idAKDnR33CGg2dQQVCz0EZGAllum70tkSPux5FZkF4oKv9b4oIVbc191SOUClzZq0K9iWpin0l+MqsPn9m+7cfwc/Ht+WpfanTXU0toVr0KdZrpSH+3I+mv/eXoa//SNeYGoiF4A4aKWUaLmyOal53P7LPDpcSSWFNbyDANOy+/tkum/ai7DqVvyCq/mA0jXnkO20LnX/yKrt3eAQU8HMn4AFaMFoxhIpFwiuLlV1KZ6rsHzVa8Q6rtm2H+G3YR+aM7Eutq10WQLr+eMIrKo5WLosApkePG2hjtIUL7xovkrdwpWGt17h0EdulL2cCglAWH77aI4n55qwsja4TW8GyD75qMnUKMeCREIL0aNjjW3YpAVm/2gWwj0lOlADMzspQ80O4C6oY7LtoEMgJirZbkyIH3zZ3MjzqvwhD4+2fXueEayPyJAjYsQpvzZI++fEPnp+7xKTvoZQOeOFMU4ZrWOQxuMWLeHg0oUhNupysEDgqDvKxohSWaIu/f6qnoBrRQIazqPoHJdf9zihcl+wFZIcTUhi5ZCeen1HvAKLPtPqCrwwzuLkm4SW61cSjzXaaN9tYcdQCVWfXjCfYzKDPvg5zeetEaWOpyT0HzEQw2Dikq97Jmey75LqMQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(396003)(136003)(376002)(451199021)(40470700004)(36840700001)(46966006)(82310400005)(36860700001)(36756003)(40460700003)(70206006)(356005)(5660300002)(7416002)(86362001)(8936002)(8676002)(41300700001)(81166007)(4326008)(40480700001)(316002)(70586007)(82740400003)(47076005)(1076003)(26005)(2906002)(186003)(6666004)(478600001)(54906003)(110136005)(426003)(83380400001)(336012)(2616005)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Jun 2023 10:03:07.7941
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b60f50be-09c7-4a6a-43e8-08db75636037
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT060.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR12MB7325
-X-Spam-Status: No, score=-0.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 2/4] arm64: dts: imx8ulp: remove "fsl,imx7ulp-lpuart"
+ compatible for i.MX8ULP
+Content-Language: en-US
+To:     Sherry Sun <sherry.sun@nxp.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        shenwei.wang@nxp.com, gregkh@linuxfoundation.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        kernel@pengutronix.de, linux-serial@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+References: <20230625094857.29644-1-sherry.sun@nxp.com>
+ <20230625094857.29644-3-sherry.sun@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230625094857.29644-3-sherry.sun@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setting the status register write disable (SRWD) bit in the status
-register (SR) with WP# signal of the flash left floating or wrongly tied to
-GND (that includes internal pull-downs), will configure the SR permanently
-as read-only. If WP# signal is left floating or wrongly tied to GND, avoid
-setting SRWD bit while writing the SR during flash protection.
+On 25/06/2023 11:48, Sherry Sun wrote:
+> i.MX8ULP has specific "fsl,imx8ulp-lpuart" compatible in lpuart driver,
+> "fsl,imx7ulp-lpuart" compatible is no longer needed, and i.MX8ULP is not
+> fully compatible with i.MX7ULP, for example, i.MX8ulp can support
+> EOP(end-of-packet) function while i.MX7ulp doesn't, so remove
+> "fsl,imx7ulp-lpuart" compatible.
 
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
- drivers/mtd/spi-nor/core.c | 3 +++
- drivers/mtd/spi-nor/core.h | 1 +
- drivers/mtd/spi-nor/swp.c  | 9 +++++++--
- 3 files changed, 11 insertions(+), 2 deletions(-)
+That's not how compatibility works. Your commit msg says that new device
+comes with new features, but your code says they are incompatible. These
+are two different things.
 
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index 0bb0ad14a2fc..520f5ab86d2b 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor *nor)
- 	if (flags & NO_CHIP_ERASE)
- 		nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
- 
-+	if (of_property_read_bool(np, "no-wp"))
-+		nor->flags |= SNOR_F_NO_WP;
-+
- 	if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
- 	    !nor->controller_ops)
- 		nor->flags |= SNOR_F_RWW;
-diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
-index 4fb5ff09c63a..55b5e7abce6e 100644
---- a/drivers/mtd/spi-nor/core.h
-+++ b/drivers/mtd/spi-nor/core.h
-@@ -132,6 +132,7 @@ enum spi_nor_option_flags {
- 	SNOR_F_SWP_IS_VOLATILE	= BIT(13),
- 	SNOR_F_RWW		= BIT(14),
- 	SNOR_F_ECC		= BIT(15),
-+	SNOR_F_NO_WP		= BIT(16),
- };
- 
- struct spi_nor_read_command {
-diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
-index 0ba716e84377..cfaba41d74d6 100644
---- a/drivers/mtd/spi-nor/swp.c
-+++ b/drivers/mtd/spi-nor/swp.c
-@@ -214,8 +214,13 @@ static int spi_nor_sr_lock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- 
- 	status_new = (status_old & ~mask & ~tb_mask) | val;
- 
--	/* Disallow further writes if WP pin is asserted */
--	status_new |= SR_SRWD;
-+	/*
-+	 * Disallow further writes if WP# pin is neither left floating nor
-+	 * wrongly tied to GND(that includes internal pull-downs).
-+	 * WP# pin hard strapped to GND can be a valid use case.
-+	 */
-+	if (!(nor->flags & SNOR_F_NO_WP))
-+		status_new |= SR_SRWD;
- 
- 	if (!use_top)
- 		status_new |= tb_mask;
--- 
-2.17.1
+Either drop the patch or provide correct rationale.
+
+Best regards,
+Krzysztof
 
