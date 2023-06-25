@@ -2,72 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A03673D51E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 00:59:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4131E73D53A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 01:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbjFYW7S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 18:59:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57516 "EHLO
+        id S229538AbjFYXSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 19:18:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34500 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjFYW7S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 18:59:18 -0400
-Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::222])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8AF531A3;
-        Sun, 25 Jun 2023 15:59:16 -0700 (PDT)
-X-GND-Sasl: alexandre.belloni@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1687733954;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         in-reply-to:in-reply-to:references:references;
-        bh=KFR20bnGdcCIhIEUWg9VDBjzYhckIwBEXgB7df3zsmA=;
-        b=N7SNr1RhuigsLxZpkYrHUFUOScvsx13mafZFqh0eU1CvUdSpInau7LindICuvV729cvw/e
-        nPa8HEfI3RdTWMI5EQZ1D6vwYbGyWyKw1u7Jv6/WIqdx7qf1+Xb7DPvpl2lFJBexc+/kCI
-        yOVGvuYW8OtYlDl55rS6NvMJ7/uMkrmh0DhTGTjTlu/pTf6c1WArgGtefDtGVy/LWPu4jl
-        X9lbJ+tSLYt1Ak9OwLo2VMj1fY8uGt3Rluls4iR8yK+NghmCljMY2B3V1WS9CF1orb0SWd
-        xW8zSOJx4mv+t67xp3EQCWnL8n2WYhCiqv9iocy4Rd6pWNwDLPCVgqnGzJdRXA==
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-X-GND-Sasl: alexandre.belloni@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E5DF540003;
-        Sun, 25 Jun 2023 22:59:12 +0000 (UTC)
-Date:   Mon, 26 Jun 2023 00:59:12 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Wolfram Sang <wsa@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Mark Brown <broonie@kernel.org>,
+        with ESMTP id S229641AbjFYXSw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 19:18:52 -0400
+Received: from mail-pg1-x530.google.com (mail-pg1-x530.google.com [IPv6:2607:f8b0:4864:20::530])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B693E47
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 16:18:51 -0700 (PDT)
+Received: by mail-pg1-x530.google.com with SMTP id 41be03b00d2f7-55adfa61199so320595a12.2
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 16:18:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1687735130; x=1690327130;
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=PMyidyx6c8j5MqA0hxypdhWidgaRdQYvwuhrsrEdDAU=;
+        b=r1Kkob3K7eMRLpiJCBwt7BrIxDGHwLTSuYUVmbjdbsOi8X9tHT0HbkkGfxV3slmG8l
+         EzwED/43arOsSoKB9nj4ESxua/Hbje/cjt5LMkLfWp46F53MUwdwbUJdyOWoDddl5478
+         e727q3+cEBjKr0bUQ6/6hGDj4i9Prr3xElgEnq7TIGwWdwG6bQxv5uIecVqw9X9eBzzg
+         7Zn56LTIEJ4brd+tSYnMn0r3au4gw+mPdgZVMN84x0b0bmmzd2MfN8sJNTn0SScdytLc
+         LzfofWl5kLWv/pC18bq3c1nnfmK3aJp94VGDjlAYcKH8euJ6CAhdzjTICMV53FZ9OVfh
+         KoLw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687735130; x=1690327130;
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=PMyidyx6c8j5MqA0hxypdhWidgaRdQYvwuhrsrEdDAU=;
+        b=HO5LshX59QJAhxlBQNLLXPgtfvgbxSKIZP637UY5Bbg7gfPL//l6Vw9IAIkkfG5sZ1
+         gsnteNkfULxh2VwAw3xRiaBq4mRQYlXf7RE8AnGodVZV0J9sKLGP6tci2sMQ3BRbs4ya
+         SSkGkPClVu2TlJd4eug85h3rpbT0XnYFH2PBG1MOX3iQwrlEBToeOFKRT+ZaQPz+ayEc
+         ODmO3MaMNGFcKmn/S0Vm2wovbJ3E087KUydM5uxrOHiu/HP4C7pMyFgZ0j2FWChXzTar
+         93e37huzpWmIr0Cj1T5d9dgZpru3apqdLT2xe4zNMxZab0lm7fTN2lfefB7w9Ek99Sr5
+         S6vw==
+X-Gm-Message-State: AC+VfDyRmTY9O+FmL7SlCC3j+ls8KxKSS0fxIsSdNW2tLEIx6KBpnTfv
+        AjyiZHwA5MRbdHElK/4YsnEtUw==
+X-Google-Smtp-Source: ACHHUZ7chlK+14uMjyxEuWPh5cyB+olLpZYJstcYOjERPpCE49wWN2rz8PEjV9wVJ6+bT43Q5ElOog==
+X-Received: by 2002:a17:902:da8c:b0:1af:981b:eeff with SMTP id j12-20020a170902da8c00b001af981beeffmr6581208plx.64.1687735130591;
+        Sun, 25 Jun 2023 16:18:50 -0700 (PDT)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id y6-20020a1709029b8600b001b682336f66sm2873895plp.55.2023.06.25.16.18.50
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 25 Jun 2023 16:18:50 -0700 (PDT)
+In-Reply-To: <20230615-creamer-emu-ade0fa0bdb68@spud>
+References: <20230615-creamer-emu-ade0fa0bdb68@spud>
+Subject: Re: [PATCH v2 0/2] dt-bindings: riscv: cpus: switch to
+ unevaluatedProperties: false
+Message-Id: <168773507362.1389.2217273473354305328.b4-ty@rivosinc.com>
+Date:   Sun, 25 Jun 2023 16:17:53 -0700
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-901c5
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Trent Piepho <tpiepho@gmail.com>, devicetree@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Subject: Re: (subset) [PATCH v7 00/10] Add Renesas PMIC RAA215300 and
- built-in RTC support
-Message-ID: <168773392610.111997.16021927718782550143.b4-ty@bootlin.com>
-References: <20230623140948.384762-1-biju.das.jz@bp.renesas.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230623140948.384762-1-biju.das.jz@bp.renesas.com>
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@rivosinc.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor@kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -76,37 +79,26 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 23 Jun 2023 15:09:38 +0100, Biju Das wrote:
-> This patch series aims to add support for Renesas PMIC RAA215300 and
-> built-in RTC found on this PMIC device.
+On Thu, 15 Jun 2023 23:50:13 +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
 > 
-> The details of PMIC can be found here[1].
+> Do the various bits needed to drop the additionalProperties: true that
+> we currently have in riscv/cpu.yaml, to permit actually enforcing what
+> people put in cpus nodes.
 > 
-> Renesas PMIC RAA215300 exposes two separate i2c devices, one for the main
-> device and another for rtc device.
+> Changes in v2:
+> - drop patches 2 -> 5, they're now standard in dt-schema
 > 
 > [...]
 
 Applied, thanks!
 
-[04/10] dt-bindings: rtc: isl1208: Convert to json-schema
-        commit: ac739bac5201d4308cba2525dacb5da654b3ff31
-[05/10] dt-bindings: rtc: isil,isl1208: Document clock and clock-names properties
-        commit: 138f352556d791d7e0ca3ac9a4f4815123af8c82
-[06/10] rtc: isl1208: Drop name variable
-        commit: 380960c40a1d106bba3476c9a010eaf28195115d
-[07/10] rtc: isl1208: Make similar I2C and DT-based matching table
-        commit: fbc06a53561c64ec6d7f9a1b3bc04597de4cbb2d
-[08/10] rtc: isl1208: Drop enum isl1208_id and split isl1208_configs[]
-        commit: 5923fc75d0dfcebce53894ddada7e2440d756f8b
-[09/10] rtc: isl1208: Add isl1208_set_xtoscb()
-        commit: 262f72b4656e182eefaab91ab24a7575dda5524f
-[10/10] rtc: isl1208: Add support for the built-in RTC on the PMIC RAA215300
-        commit: fdd63f65ac25d0851dade4c7ba94a7a882b8d9c2
+[1/2] dt-bindings: riscv: cpus: add a ref the common cpu schema
+      https://git.kernel.org/palmer/c/3c1b4758a954
+[2/2] dt-bindings: riscv: cpus: switch to unevaluatedProperties: false
+      https://git.kernel.org/palmer/c/1ffe6ddc5c64
 
 Best regards,
-
 -- 
-Alexandre Belloni, co-owner and COO, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Palmer Dabbelt <palmer@rivosinc.com>
+
