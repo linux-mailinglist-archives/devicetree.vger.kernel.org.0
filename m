@@ -2,75 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB18573D4AD
-	for <lists+devicetree@lfdr.de>; Sun, 25 Jun 2023 23:48:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61E1273D504
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 00:15:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbjFYVsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 17:48:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51510 "EHLO
+        id S229447AbjFYWPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 18:15:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53036 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229509AbjFYVsk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 17:48:40 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24B17C6;
-        Sun, 25 Jun 2023 14:48:38 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-780ca92d8f5so154042239f.0;
-        Sun, 25 Jun 2023 14:48:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687729717; x=1690321717;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=dqIbZFmHB773z8GF+Mo4Z7g3WzNCRfvJQwoqNsoGcUU=;
-        b=IhwLpqXgzfm+EnOFRsW9C4w3eitYe9T8ImsssT/hhwXbYkvkroS0txkc54VbPzNa5L
-         yjMQFM4+pm6Cfj79r0gioWUNlDTa+UT9LyOmr4Q6bWreX29kkcnEBWwG1hOeFKyfNkDu
-         h6ncV15Cyw6mglVTqgxxURSZAWp+XGhnrbJXnS/x6qpGiHFjbWfjydVK1MsWlPBIi5gR
-         wSHnFoBFh/K34hnz+X1M+re6Z/f2rno2aL6rIWTe4kVuQa7UwTXgfewHcz5gmvnbZBDe
-         aXg0D5efePtZ63qANB7a0fsBXsSTCLYpTfxpporlf3DkSg1lMvPQqefiO4fEr8oNoFzn
-         2OVg==
-X-Gm-Message-State: AC+VfDwm9iH1t8/eRCU1HeBkG0aoCCrL7MCoK7S+QAfNE0okSY/wRWNj
-        2DWPWuoDKzOK0poQNv03og==
-X-Google-Smtp-Source: ACHHUZ6QS/ZKbgT9vjGZlmAIMn8s7rGDKi3jBPniFtaadVG6zZYRg/iYS8ATVGKrzFQT7bHaNNWnJQ==
-X-Received: by 2002:a05:6602:357:b0:783:3943:581e with SMTP id w23-20020a056602035700b007833943581emr4578052iou.7.1687729717242;
-        Sun, 25 Jun 2023 14:48:37 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id dq42-20020a0566384d2a00b00423230a3085sm1297927jab.99.2023.06.25.14.48.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 25 Jun 2023 14:48:36 -0700 (PDT)
-Received: (nullmailer pid 1364631 invoked by uid 1000);
-        Sun, 25 Jun 2023 21:48:34 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S229481AbjFYWPX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 18:15:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD5B1A5;
+        Sun, 25 Jun 2023 15:15:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id E425A60C36;
+        Sun, 25 Jun 2023 22:15:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4FB72C433C8;
+        Sun, 25 Jun 2023 22:15:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687731321;
+        bh=zFVqf7YtgUM3F6YoG2jfwFRTpf8aCuPZPnbOJyql7oI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=bQWu/HyKwTHQmtgf357NogYhBahDyKX/1Jq6bAgM+m5Zo0iIokkBH1XRXky1qGyTg
+         uhh/B3cij7HKHv6wOBpA1EIG7B7lJOwbtcF9DL+wB1dGlsyY0Y4KH2k3FMhDsD0Zdp
+         Pn8HmbNqw7tdCXJwlcpp8V93ig8iSQeuR+sLgGmvggdJin3HEI7nGX87enlMtneFYB
+         y/G6dMiGUgR+ur1R/E3W2GNtynrPGKnRxw2vgUCI3Wd2hQEH4nr9MThyP3fkw7MTL3
+         JSDxPlPcZr0FbpqthgqTPF0Scgq6omh6MWCAAVAQHMXae1H0A3BM9QG37PlVjR9k8p
+         KNqe3j4L3WizQ==
+Date:   Sun, 25 Jun 2023 23:15:14 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Song Shuai <suagrfillet@gmail.com>
+Cc:     paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com,
+        ajones@ventanamicro.com, alexghiti@rivosinc.com,
+        mpe@ellerman.id.au, arnd@arndb.de, rppt@kernel.org,
+        samuel@sholland.org, panqinglin2020@iscas.ac.cn,
+        conor.dooley@microchip.com, anup@brainfault.org,
+        xianting.tian@linux.alibaba.com, anshuman.khandual@arm.com,
+        heiko@sntech.de, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH V1 1/3] Revert "RISC-V: mark hibernation as nonportable"
+Message-ID: <20230625-obstinate-grimy-b765a1d3d741@spud>
+References: <20230625140931.1266216-1-songshuaishuai@tinylab.org>
+ <20230625140931.1266216-2-songshuaishuai@tinylab.org>
+ <20230625-multiple-diaper-1db88a75314e@spud>
+ <20281f01-2cc9-892e-beea-eb2bb91e3ca5@gmail.com>
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Viresh Kumar <vireshk@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Georgi Djakov <djakov@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Conor Dooley <conor+dt@kernel.org>
-In-Reply-To: <20230625202547.174647-6-dmitry.baryshkov@linaro.org>
-References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
- <20230625202547.174647-6-dmitry.baryshkov@linaro.org>
-Message-Id: <168772971459.1364605.3603930032942558144.robh@kernel.org>
-Subject: Re: [PATCH v2 05/26] dt-bindings: cache: describe L2 cache on
- Qualcomm Krait platforms
-Date:   Sun, 25 Jun 2023 15:48:34 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="6ZfynoZLMeCQs+ZJ"
+Content-Disposition: inline
+In-Reply-To: <20281f01-2cc9-892e-beea-eb2bb91e3ca5@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,179 +66,103 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Sun, 25 Jun 2023 23:25:26 +0300, Dmitry Baryshkov wrote:
-> The L2 cache device on Qualcomm Krait platforms controls the supplying
-> voltages and the cache frequency. Add corresponding bindings for this
-> device.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
->  .../bindings/cache/qcom,krait-l2-cache.yaml   | 75 +++++++++++++++++++
->  include/dt-bindings/soc/qcom,krait-l2-cache.h | 12 +++
->  2 files changed, 87 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/cache/qcom,krait-l2-cache.yaml
->  create mode 100644 include/dt-bindings/soc/qcom,krait-l2-cache.h
-> 
+--6ZfynoZLMeCQs+ZJ
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Hey,
 
-yamllint warnings/errors:
+On Sun, Jun 25, 2023 at 11:09:21PM +0800, Song Shuai wrote:
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cache/sifive,ccache0.example.dtb: cache-controller@2010000: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cache/sifive,ccache0.example.dtb: cache-controller@2010000: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cache/sifive,ccache0.example.dtb: cache-controller@2010000: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cache/sifive,ccache0.example.dtb: cache-controller@2010000: Unevaluated properties are not allowed ('compatible', 'interrupts', 'memory-region', 'reg' were unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/opp/opp-v2-kryo-cpu.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible', 'l3-cache' were unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l3-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l3-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l3-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l3-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/thermal/thermal-cooling-devices.example.dtb: l3-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible', 'l3-cache' were unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l3-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l3-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l3-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l3-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l3-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible:0: 'qcom,krait-l2-cache' was expected
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: compatible: ['cache'] is too short
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: 'clocks' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: '#interconnect-cells' is a required property
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.example.dtb: l2-cache: Unevaluated properties are not allowed ('compatible' was unexpected)
-	from schema $id: http://devicetree.org/schemas/cache/qcom,krait-l2-cache.yaml#
+> Sorry for the delayed reply,
 
-doc reference errors (make refcheckdocs):
+It wasn't really delayed at all actually, you replied within an hour or
+so, AFAICT.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230625202547.174647-6-dmitry.baryshkov@linaro.org
+> My tinylab email went something wrong, I'll use gmail in this thread.
+>=20
+> =E5=9C=A8 2023/6/25 22:18, Conor Dooley =E5=86=99=E9=81=93:
+> > On Sun, Jun 25, 2023 at 10:09:29PM +0800, Song Shuai wrote:
+> > > This reverts commit ed309ce522185583b163bd0c74f0d9f299fe1826.
+> > >=20
+> > > With the commit 3335068f8721 ("riscv: Use PUD/P4D/PGD pages for the
+> > > linear mapping") reverted, the MIN_MEMBLOCK_ADDR points the kernel
+> > > load address which was placed at a PMD boundary.
+> >=20
+> > > And firmware always
+> > > correctly mark resident memory, or memory protected with PMP as
+> > > per the devicetree specification and/or the UEFI specification.
+> >=20
+> > But this is not true? The versions of OpenSBI that you mention in your
+> > cover letter do not do this.
+> > Please explain.
+> >=20
+>=20
+> At this time, OpenSbi [v0.8,v1.3) and edk2(RiscVVirt) indeed don't obey t=
+he
+> DT/UEFI spec. This statement is excerpted from "Reserved memory for resid=
+ent
+> firmware" part from the upcoming riscv/boot.rst. It isn't accurate for no=
+w.
+> How about deleting this one?
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+It is incorrect, so it will need to be removed, yes.
+Unfortunately writing a doc does not fix the existing implementations :(
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+> Actually with 3335068f8721 reverted, the change of MIN_MEMBLOCK_ADDR can
+> avoid the mapping of firmware memory, I will make it clear in the next
+> version.
 
-pip3 install dtschema --upgrade
+To be honest, I'd like to see this revert as the final commit in a
+series that deals with the problem by actually reserving the regions,
+rather than a set of reverts that go back to how we were.
+I was hoping that someone who cares about hibernation support would be
+interested in working on that - *cough* starfive *cough*, although maybe
+they just fixed their OpenSBI and moved on.
+If there were no volunteers, my intention was to add a firmware erratum
+that would probe the SBI implementation & version IDs, and add a firmware
+erratum that'd parse the DT for the offending regions and reserve them.
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Cheers,
+Conor.
 
+> > > So those regions will not be mapped in the linear mapping and they
+> > > can be safely saved/restored by hibernation.
+> > >=20
+> > > Signed-off-by: Song Shuai <songshuaishuai@tinylab.org>
+> > > ---
+> > >   arch/riscv/Kconfig | 5 +----
+> > >   1 file changed, 1 insertion(+), 4 deletions(-)
+> > >=20
+> > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> > > index 5966ad97c30c..17b5fc7f54d4 100644
+> > > --- a/arch/riscv/Kconfig
+> > > +++ b/arch/riscv/Kconfig
+> > > @@ -800,11 +800,8 @@ menu "Power management options"
+> > >   source "kernel/power/Kconfig"
+> > > -# Hibernation is only possible on systems where the SBI implementati=
+on has
+> > > -# marked its reserved memory as not accessible from, or does not run
+> > > -# from the same memory as, Linux
+> > >   config ARCH_HIBERNATION_POSSIBLE
+> > > -	def_bool NONPORTABLE
+> > > +	def_bool y
+> > >   config ARCH_HIBERNATION_HEADER
+> > >   	def_bool HIBERNATION
+> > > --=20
+> > > 2.20.1
+>
+
+--6ZfynoZLMeCQs+ZJ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJi8cgAKCRB4tDGHoIJi
+0gQGAP4zFRf+mJ/qW1QVdbXhgxrDoXAjwnQiAGH8Qr85iJdixAEAoUq/DIivnRJ8
+mJWf9t+LoW93pFfGCZD7UXny7Skemgg=
+=Ztmn
+-----END PGP SIGNATURE-----
+
+--6ZfynoZLMeCQs+ZJ--
