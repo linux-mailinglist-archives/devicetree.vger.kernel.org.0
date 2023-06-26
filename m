@@ -2,177 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AAC673DE8D
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 14:12:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1A1473DEB8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 14:18:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229960AbjFZML7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 08:11:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48048 "EHLO
+        id S230109AbjFZMR7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 08:17:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229949AbjFZML4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 08:11:56 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1AAE74;
-        Mon, 26 Jun 2023 05:11:43 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id ABEF87F98;
-        Mon, 26 Jun 2023 20:11:36 +0800 (CST)
-Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
- 2023 20:11:36 +0800
-Received: from [192.168.125.124] (113.72.146.167) by EXMBX068.cuchost.com
- (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
- 2023 20:11:34 +0800
-Message-ID: <d7ec3f9a-ae9a-28cb-e511-21463a52b11b@starfivetech.com>
-Date:   Mon, 26 Jun 2023 20:11:34 +0800
+        with ESMTP id S230107AbjFZMR6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 08:17:58 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 990EFE7F
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 05:17:29 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b6a1245542so14101241fa.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 05:17:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687781836; x=1690373836;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2hW2XWePew0FaBfSk0kn2Xd1wwZNr5FFaq2x3qcrQ0E=;
+        b=XL4iiJYximrR10AfQw9NpMIuARprgWMdDcyUyu5GQVRIW2gWruK4ksuVWvdIYbtFjz
+         /L+nwmeQ7TCoWeWWLjRlSmD8J0L76h/4J9LPc2pI76IkEPQsYeMhV6WY10wzMcSmISoV
+         ZohmtMscdhJtmAU/e8FaGbKv9BSEOdGc6X9ku+fcOwUQSgVv8FBVaq+GUmOfLszJEF+J
+         Sq+zuctXU2H7GvrnO9zDIWfatqQv7sMETZn1VfHAXNH5x4T6F+OdT0cCEV1jAjwQx6+b
+         hvTe3Ijn3jrD6+yZHjuXC/lDkXwxT1O10pAr1CFmHkhvR6o4nmgDcBDqkB0zODeh6chk
+         YvGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687781836; x=1690373836;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2hW2XWePew0FaBfSk0kn2Xd1wwZNr5FFaq2x3qcrQ0E=;
+        b=HnnFeOKamJqF5vopzuO4pnMKqmRP+5r97pE8xbu+gLxxIyP/pvg3Jkje1+oMe3wzYk
+         pzzdSZiQwZxZC0TW+6OVw923XD15Ah0IqR2ai3cvZjlHTOuamkaJV26SE1SKI0gCzXLn
+         8G0mEAaeWPHVPhGMr3KK9vCretanT+gLEfpF3Tu7IfD4deU6clPKUak31tLv4fydHGXm
+         jjshznWZFhmj1qxGxYlocp90sknzYBW6LYCIb6UQPXsJ0IgbRgJ2r+b3TUDQC41U7HaN
+         ZkBF70owQ61zHKmwhZ9oG/Nh3XVqHTST6VHeSjT9Gt6kdjfF7nsTru0SI1Mr4ofDRODf
+         JO1A==
+X-Gm-Message-State: AC+VfDwJpc92+tIyqiZ2QxRdzT5u3LGBErz4YFwsl8eLj6pJTcoS/wDV
+        5fIxu6S/JegDqbOgFzhxRm9r9g==
+X-Google-Smtp-Source: ACHHUZ5kPqeOQ9eJEntrldey/V3FngkwLWOsWYDf43OIjheJBcwE8bJXaDoSROYBW84A7iqIku/WPg==
+X-Received: by 2002:a2e:96c3:0:b0:2b6:9909:79cb with SMTP id d3-20020a2e96c3000000b002b6990979cbmr3041934ljj.42.1687781836098;
+        Mon, 26 Jun 2023 05:17:16 -0700 (PDT)
+Received: from [192.168.1.101] (abyk179.neoplus.adsl.tpnet.pl. [83.9.30.179])
+        by smtp.gmail.com with ESMTPSA id a12-20020a2eb16c000000b002b69f64b08asm664247ljm.37.2023.06.26.05.17.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jun 2023 05:17:15 -0700 (PDT)
+Message-ID: <64ccb614-51e4-9b04-247a-4abc2b60d965@linaro.org>
+Date:   Mon, 26 Jun 2023 14:17:14 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v1 5/5] riscv: dts: starfive: Add JH7110 PWM-DAC support
+Subject: Re: [RESEND v6 5/8] arm64: dts: qcom: sc7280: Add LPASS PIL node
 Content-Language: en-US
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
-        Claudiu Beznea <Claudiu.Beznea@microchip.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230626110909.38718-1-hal.feng@starfivetech.com>
- <20230626110909.38718-6-hal.feng@starfivetech.com>
-From:   Walker Chen <walker.chen@starfivetech.com>
-In-Reply-To: <20230626110909.38718-6-hal.feng@starfivetech.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.146.167]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
- (172.16.6.68)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
+        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
+        andersson@kernel.org, broonie@kernel.org, agross@kernel.org
+Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, judyhsiao@chromium.org,
+        quic_visr@quicinc.com,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+References: <20230616103534.4031331-1-quic_mohs@quicinc.com>
+ <20230616103534.4031331-6-quic_mohs@quicinc.com>
+ <353fe482-62f7-6252-5123-6907f84762b9@linaro.org>
+ <c875c617-25d2-04d8-0ab7-f7e8380348c9@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <c875c617-25d2-04d8-0ab7-f7e8380348c9@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 2023/6/26 19:09, Hal Feng wrote:
-> Add PWM-DAC support for StarFive JH7110 SoC.
+On 26.06.2023 13:07, Mohammad Rafi Shaik wrote:
 > 
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
-
-Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
-
-> ---
->  .../jh7110-starfive-visionfive-2.dtsi         | 50 +++++++++++++++++++
->  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 13 +++++
->  2 files changed, 63 insertions(+)
+> On 6/16/2023 4:55 PM, Konrad Dybcio wrote:
+>> On 16.06.2023 12:35, Mohammad Rafi Shaik wrote:
+>>> From: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>>
+>>> Add LPASS PIL node for sc7280 based audioreach platforms.
+>>>
+>>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>>> ---
+>> The node should reside in the SoC DTSI, ideally the bindings should
+>> be compatible with the PAS setup to the point where only a compatible
+>> swap is needed..
+>>
+>> Konrad
+> Thanks for comment,
 > 
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> index 19b5954ee72d..5ca66a65e722 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-> @@ -36,6 +36,34 @@ gpio-restart {
->  		gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
->  		priority = <224>;
->  	};
-> +
-> +	pwmdac_dit: pwmdac-dit {
-> +		compatible = "starfive,jh7110-pwmdac-dit";
-> +		#sound-dai-cells = <0>;
-> +	};
-> +
-> +	sound {
-> +		compatible = "simple-audio-card";
-> +		simple-audio-card,name = "StarFive-PWMDAC-Sound-Card";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		simple-audio-card,dai-link@0 {
-> +			reg = <0>;
-> +			format = "left_j";
-> +			bitclock-master = <&sndcpu0>;
-> +			frame-master = <&sndcpu0>;
-> +			status = "okay";
-> +
-> +			sndcpu0: cpu {
-> +				sound-dai = <&pwmdac>;
-> +			};
-> +
-> +			codec {
-> +				sound-dai = <&pwmdac_dit>;
-> +			};
-> +		};
-> +	};
->  };
->  
->  &dvp_clk {
-> @@ -191,6 +219,22 @@ GPOEN_SYS_I2C6_DATA,
->  		};
->  	};
->  
-> +	pwmdac_pins: pwmdac-0 {
-> +		pwmdac-pins {
-> +			pinmux = <GPIOMUX(33, GPOUT_SYS_PWMDAC_LEFT,
-> +					      GPOEN_ENABLE,
-> +					      GPI_NONE)>,
-> +				 <GPIOMUX(34, GPOUT_SYS_PWMDAC_RIGHT,
-> +					      GPOEN_ENABLE,
-> +					      GPI_NONE)>;
-> +			bias-disable;
-> +			drive-strength = <2>;
-> +			input-disable;
-> +			input-schmitt-disable;
-> +			slew-rate = <0>;
-> +		};
-> +	};
-> +
->  	uart0_pins: uart0-0 {
->  		tx-pins {
->  			pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
-> @@ -250,6 +294,12 @@ GPOEN_DISABLE,
->  	};
->  };
->  
-> +&pwmdac {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pwmdac_pins>;
-> +	status = "okay";
-> +};
-> +
->  &uart0 {
->  	pinctrl-names = "default";
->  	pinctrl-0 = <&uart0_pins>;
-> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> index cfda6fb0d91b..bbb3f65e6f80 100644
-> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> @@ -387,6 +387,19 @@ tdm: tdm@10090000 {
->  			status = "disabled";
->  		};
->  
-> +		pwmdac: pwmdac@100b0000 {
-> +			compatible = "starfive,jh7110-pwmdac";
-> +			reg = <0x0 0x100b0000 0x0 0x1000>;
-> +			clocks = <&syscrg JH7110_SYSCLK_PWMDAC_APB>,
-> +				 <&syscrg JH7110_SYSCLK_PWMDAC_CORE>;
-> +			clock-names = "apb", "core";
-> +			resets = <&syscrg JH7110_SYSRST_PWMDAC_APB>;
-> +			dmas = <&dma 22>;
-> +			dma-names = "tx";
-> +			#sound-dai-cells = <0>;
-> +			status = "disabled";
-> +		};
-> +
->  		stgcrg: clock-controller@10230000 {
->  			compatible = "starfive,jh7110-stgcrg";
->  			reg = <0x0 0x10230000 0x0 0x10000>;
+> The base SOC DTSI file already has an entry with the same physical base address which is using for ADSP BYPASS solution.
+> For Audioreach solution required the same base address for the remoteproc device tree node.
+> 
+> Will create a new common dtsi file for Audioreach as suggested by you in previous patch and add this in that common dtsi file.
+> 
+> Please confirm is it okay ?
+Let me copypaste the same answer I gave you to your off-list reply because
+you seem to not have read it:
+
+
+Taking a closer look, the qdsp6ss region is only used in combination
+with PIL mode.. Perhaps it could be remodeled such that:
+
+lpasscc only maps the top_cc region and the single clock within
+(which lets us remove the pil-mode property)
+
+qcom_q6v5_adsp takes care of everything inside the qdsp6ss region
+(so, toggling the branches)
+
+
+This would prevent us from trying to map the block @ 0x03000000 twice.
+
+Konrad
+> 
+> Rafi.
+> 
+>>>   .../sc7280-herobrine-audioreach-wcd9385.dtsi  | 90 +++++++++++++++++++
+>>>   1 file changed, 90 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>> index 95d3aa08ebde..9daea1b25656 100644
+>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>> @@ -7,6 +7,8 @@
+>>>    */
+>>>     #include <dt-bindings/sound/qcom,q6afe.h>
+>>> +#include <dt-bindings/clock/qcom,lpass-sc7280.h>
+>>> +#include <dt-bindings/soc/qcom,gpr.h>
+>>>     /{
+>>>       /* BOARD-SPECIFIC TOP LEVEL NODES */
+>>> @@ -105,4 +107,92 @@ platform {
+>>>               };
+>>>           };
+>>>       };
+>>> +
+>>> +    remoteproc_adsp: remoteproc@3000000 {
+>>> +        compatible = "qcom,sc7280-adsp-pil";
+>>> +        reg = <0 0x03000000 0 0x5000>, <0 0x0355b000 0 0x10>;
+>>> +        reg-names = "qdsp6ss_base", "lpass_efuse";
+>>> +
+>>> +        interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
+>>> +                      <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
+>>> +                      <&adsp_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
+>>> +
+>>> +        interrupt-names = "wdog", "fatal", "ready",
+>>> +                  "handover", "stop-ack",
+>>> +                  "shutdown-ack";
+>>> +
+>>> +        qcom,qmp = <&aoss_qmp>;
+>>> +
+>>> +        clocks = <&rpmhcc RPMH_CXO_CLK>,
+>>> +             <&gcc GCC_CFG_NOC_LPASS_CLK>;
+>>> +        clock-names = "xo", "gcc_cfg_noc_lpass";
+>>> +
+>>> +        iommus = <&apps_smmu 0x1800 0x0>;
+>>> +
+>>> +        power-domains =    <&rpmhpd SC7280_CX>;
+>>> +        power-domain-names = "cx";
+>>> +
+>>> +        required-opps = <&rpmhpd_opp_nom>;
+>>> +
+>>> +        resets = <&pdc_reset PDC_AUDIO_SYNC_RESET>,
+>>> +             <&aoss_reset AOSS_CC_LPASS_RESTART>;
+>>> +        reset-names =  "pdc_sync", "cc_lpass";
+>>> +
+>>> +        qcom,halt-regs = <&tcsr_1 0x3000 0x5000 0x8000 0x13000>;
+>>> +
+>>> +        memory-region = <&adsp_mem>;
+>>> +
+>>> +        qcom,smem-states = <&adsp_smp2p_out 0>;
+>>> +        qcom,smem-state-names = "stop";
+>>> +
+>>> +        glink-edge {
+>>> +            interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
+>>> +                          IPCC_MPROC_SIGNAL_GLINK_QMP
+>>> +                          IRQ_TYPE_EDGE_RISING>;
+>>> +
+>>> +            mboxes = <&ipcc IPCC_CLIENT_LPASS
+>>> +                 IPCC_MPROC_SIGNAL_GLINK_QMP>;
+>>> +
+>>> +            label = "lpass";
+>>> +            qcom,remote-pid = <2>;
+>>> +
+>>> +            gpr {
+>>> +                compatible = "qcom,gpr";
+>>> +                qcom,glink-channels = "adsp_apps";
+>>> +                qcom,domain = <GPR_DOMAIN_ID_ADSP>;
+>>> +                qcom,intents = <512 20>;
+>>> +                #address-cells = <1>;
+>>> +                #size-cells = <0>;
+>>> +
+>>> +                q6apm: service@1 {
+>>> +                    compatible = "qcom,q6apm";
+>>> +                    reg = <GPR_APM_MODULE_IID>;
+>>> +                    #sound-dai-cells = <0>;
+>>> +
+>>> +                    q6apmdai: dais {
+>>> +                        compatible = "qcom,q6apm-dais";
+>>> +                        iommus = <&apps_smmu 0x1801 0x0>;
+>>> +                    };
+>>> +
+>>> +                    q6apmbedai: bedais {
+>>> +                        compatible = "qcom,q6apm-lpass-dais";
+>>> +                        #sound-dai-cells = <1>;
+>>> +                    };
+>>> +                };
+>>> +
+>>> +                q6prm: service@2 {
+>>> +                    compatible = "qcom,q6prm";
+>>> +                    reg = <GPR_PRM_MODULE_IID>;
+>>> +
+>>> +                    q6prmcc: clock-controller {
+>>> +                        compatible = "qcom,q6prm-lpass-clocks";
+>>> +                        #clock-cells = <2>;
+>>> +                    };
+>>> +                };
+>>> +            };
+>>> +        };
+>>> +    };
+>>>   };
