@@ -2,81 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 618BE73E08F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDF9873E0B4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:34:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230018AbjFZNYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 09:24:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36998 "EHLO
+        id S229762AbjFZNen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 09:34:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41452 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbjFZNYJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:24:09 -0400
+        with ESMTP id S229756AbjFZNen (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:34:43 -0400
 Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2799013D
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:24:08 -0700 (PDT)
-Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f9b0f139feso46914675e9.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:24:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E1BA81A2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:34:41 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fa8cd4a1f2so12580955e9.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:34:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687785846; x=1690377846;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=S/eB5w0T++roZBh+uzEzkt9zkvpr7sL54Saw0syelHU=;
-        b=fvGZjS0RQ5WOB7+EjfoCOjhk8WIu9tOqvgFmVBjAPWqv/RghY+6gvFf6SybO54KnSi
-         LyXjNyFHn+J7zHaoRS0kv7eFVeXhU6UfJ6Tu/3Is056P+MXQiJlwg1FVIfYfVY8XUHV9
-         pNS3eFFVHh+z2e1Ceqt8WwVfEVjkYIWcMR2TLEwJ98PEMwUG4vNcoWl6U6EUFxmL0eDd
-         u1slTx/prmSUr7G9iDdUJy+GN2zUmyLQcnI0CVqV+oDiO4Ae6Nd8AW9epIyW8RQ7uyz0
-         A1DyPD/a+6RxajK2HD6JMn0AmhrgkivISnwu4PuNJyOsg2aa4vtj5BNDNCsq0Om4QopJ
-         +TQA==
+        d=linaro.org; s=google; t=1687786480; x=1690378480;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XTy4+4mz1Xv+hO2QkRYCxGcmjBnoyskfZ70PBhrVWPg=;
+        b=X9FyjOr+9j9nF8uQ6LF0ueEWWm8rvM0Uxko0LNrCZEAVSngWkps7zOAhDW3QqNlzQK
+         tTlB97Xgffkm/MyQaHC3bM06xbeHGPCkfWQ4g5afHa0z7C0zWmD6iavKdq29BrlHROCZ
+         gwzrC7UzHVdHoYUeCC1b+7KK4pFllrOx5dh2EIWxgp/h2VtKqy4ItNB0q+6ER+iN8MJR
+         e4q9d1wuwCJod7asqts7SiN6CcJ27NPNiVwGEDjlqmmPDOcLh7bWF2VSUiJLpkyfc6Cd
+         UfOO4LTaBW1OO7peVsa4Rqc6lsTG+97uLymaa0/pBqhy7K9aDrNdRzGJU+dxCBnR8qht
+         9vOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687785846; x=1690377846;
-        h=content-transfer-encoding:in-reply-to:references:cc:to:from
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=S/eB5w0T++roZBh+uzEzkt9zkvpr7sL54Saw0syelHU=;
-        b=XTfaUYfcHMNczrG+71drIteGwMatZIA8yW+RM3G01G/M3CKu98BEFk7o33RxSXLH7D
-         eQRVBmTAVhdu6nTSi7aZ7rgS0+5HHbmbx8stBtM46xqawujMaz2hrlhX67HIDl/Z1N4s
-         hV6hAPfqdmt4pdOh2jNOV02xGhwgXgop1TRMc55m4Y61a7Zrd/iYWBiFPEFSLs0j9mkf
-         8IwEjl/HVJYFIGAT6oDjHYHC6WX2YEw24D8/JCBKNGSk8FBkIheDzd/xuG37InxBEYWe
-         vNt5g4xtDzgLzrJIKcfjXtH4MVdy08wRvDW598k/fBnJaQ305MdtwfRURGLWMAHxNDUc
-         ahPA==
-X-Gm-Message-State: AC+VfDyxvwlx41x4FcdUz9f5uffUQyDD8E76nzxU4eXKPoC85zdplrES
-        cZmiQWbAdOHuuZUsZubv20eM0g==
-X-Google-Smtp-Source: ACHHUZ4sPU7y01URWpreF9TFsqUuknCWlTyLtL2t0vKebDsyEz3U1hHoFGyXcoFTZ6qEXhUXVGf0QQ==
-X-Received: by 2002:a05:600c:2903:b0:3fa:7fa9:4f9a with SMTP id i3-20020a05600c290300b003fa7fa94f9amr7278546wmd.16.1687785846598;
-        Mon, 26 Jun 2023 06:24:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id c25-20020a7bc019000000b003f819faff24sm10654601wmb.40.2023.06.26.06.24.05
+        d=1e100.net; s=20221208; t=1687786480; x=1690378480;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=XTy4+4mz1Xv+hO2QkRYCxGcmjBnoyskfZ70PBhrVWPg=;
+        b=lLgQJDkkSyjjkEx8VCoYAXWq4q829FhFrwSbbSG0+8I98FqRHdBhK2BMzWlsV/VP6H
+         0Aswb3a7ppq1GG3Hpb0axnETS2f/V8pPMmZy7PRHYC+bAGhuFwVwaaYKEGNJwfNy9yy6
+         EpgJul4jwM6F7jAbf0YHsAVnvc7iB7ZAwj37r8bYG1tEfBHgJK7I5PXFQsBdbjIYhE8+
+         K7eWheXGJ+9VegrUOzBhJ/+FdXSw92MkV89Srv5NJpzXrHov88FYgxQmFSqqHXnyyhSW
+         eo314MbP797GsNSZZUPDSb3BStAxn86lOr2PW7FQXObSxOE1YzAfqwl3lNS19dTOnFlk
+         ROPA==
+X-Gm-Message-State: AC+VfDzROPRDbdDp6wyDEoIhkfJVI491ePqrukNpIVcGCw4nb0kYRZkM
+        ShBaInwWkCw4UNz/gg3IUiS88w==
+X-Google-Smtp-Source: ACHHUZ5xQtzeHOpw0ffYUZA/AnEmNgE4fRcdnyVlDsZmROa6fECRMPsqisOS2KcQnrRsrkW/fVqKig==
+X-Received: by 2002:a05:600c:24d:b0:3f9:c77c:a5f with SMTP id 13-20020a05600c024d00b003f9c77c0a5fmr10102981wmj.13.1687786480242;
+        Mon, 26 Jun 2023 06:34:40 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:b25a:b26e:71f3:870c? ([2a01:e0a:982:cbb0:b25a:b26e:71f3:870c])
+        by smtp.gmail.com with ESMTPSA id m21-20020a7bca55000000b003f4248dcfcbsm10667039wml.30.2023.06.26.06.34.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 06:24:06 -0700 (PDT)
-Message-ID: <593b3b3e-7613-734d-91a9-9a48bbe5a9da@linaro.org>
-Date:   Mon, 26 Jun 2023 15:24:04 +0200
+        Mon, 26 Jun 2023 06:34:39 -0700 (PDT)
+Message-ID: <c41d2d9f-7ddd-160d-d455-ba4fece7ff93@linaro.org>
+Date:   Mon, 26 Jun 2023 15:34:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: sm8350: fix BAM DMA crash and reboot
+From:   neil.armstrong@linaro.org
+Reply-To: neil.armstrong@linaro.org
 Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Luca Weiss <luca.weiss@fairphone.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-References: <20230621143627.189134-1-krzysztof.kozlowski@linaro.org>
- <CTMJRMN2K8AY.20TQJE584A453@otso>
- <7b909a56-1b3d-79fb-0286-b10117982dc3@linaro.org>
-In-Reply-To: <7b909a56-1b3d-79fb-0286-b10117982dc3@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     jbrunet@baylibre.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        khilman@baylibre.com, conor+dt@kernel.org, kernel@sberdevices.ru,
+        sdfw_system_team@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Oleg Lyovin <ovlevin@sberdevices.ru>
+References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
+ <20230607201641.20982-6-ddrokosov@sberdevices.ru>
+ <CAFBinCD-5RD_iszZZRg58XqTHDEHnipJkf2aAex8MdUyh=bVCw@mail.gmail.com>
+Organization: Linaro Developer Services
+Subject: Re: [PATCH v1 5/6] arm64: dts: meson: a1: introduce UART_AO mux
+ definitions
+In-Reply-To: <CAFBinCD-5RD_iszZZRg58XqTHDEHnipJkf2aAex8MdUyh=bVCw@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,45 +88,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2023 14:46, Krzysztof Kozlowski wrote:
-> On 26/06/2023 13:32, Luca Weiss wrote:
->> Hi Krzysztof,
+Hi,
+
+On 25/06/2023 23:07, Martin Blumenstingl wrote:
+> On Wed, Jun 7, 2023 at 10:16 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
 >>
->> On Wed Jun 21, 2023 at 4:36 PM CEST, Krzysztof Kozlowski wrote:
->>> SM8350 HDK and MTP boards were silently dying and rebooting during BAM
->>> DMA probe:
->>>
->>>   [    1.574304] vreg_bob: Setting 3008000-3960000uV
->>>   [    1.576918] bam-dFormat: Log Type - Time(microsec) - Message -
->>>   Optional Info
->>>   Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
->>>   S - QC_IMAGE_VERSION_STRING=BOOT.MXF.1.0-00637.1-LAHAINA-1
->>>   S - IMAGE_VARIANT_STRING=SocLahainaLAA
->>>   S - OEM_IMAGE_VERSION_STRING=crm-ubuntu77
->>>   S - Boot Interface: UFS
->>>
->>> It seems that BAM DMA is locally controller (not by firmware) and
->>> requires proper initialization by the driver prior to use, at least on
->>> HDK8350 and MTP8350, but probably on all boards.
+>> From: Oleg Lyovin <ovlevin@sberdevices.ru>
 >>
->> Are you sure that the bam (and subsequent the qce) actually probes with
->> this change? From reading the code I don't see how the bam should probe
->> without either qcom,controlled-remotely or qcom,powered-remotely but no
-> 
-> Why the binding does not require either this or that? Eh, buggy stuff...
-> 
-> 
->> clocks supplied. I think the probe just fails with this change, right?
-> 
-> I will need to double check. I was happy enough to be able to boot my
-> device instead of having crashes, but indeed it would be nice to fix it
-> fully.
+>> The Amlogic A1 has a UART_AO port, which can be used, for example, for
+>> BT HCI H4 connection.
+>>
+>> This patch adds mux definitions for it.
+> In the past we've only taken the pinctrl definitions if we have a
+> board that uses them.
+> Neil, do we still have the same policy in place? If so this patch
+> should be sent with the series that adds support for your A1 board.
 
-You were right and my patch is not correct. I checked downstream and
-there are no clocks there. Therefore I assume something else is wrong here.
+Yes and no, if the work is done I'll take it, but yeah since upstream linux
+hates dead code, let's only define what's necessary.
 
-I will send v2 disabling this.
+> 
+>> Signed-off-by: Oleg Lyovin <ovlevin@sberdevices.ru>
+>> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 16 ++++++++++++++++
+>>   1 file changed, 16 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> index 0efd922ca7e1..3eb6aa9c00e0 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+>> @@ -118,6 +118,22 @@ gpio: bank@400 {
+>>                                          gpio-ranges = <&periphs_pinctrl 0 0 62>;
+>>                                  };
+>>
+>> +                               uart_a_pins: uart_a {
+> Only our newer .dtsi (e.g. meson-g12-common.dtsi) are following the
+> pattern where node names should use dashes instead of underscores.
+> So please use: uart_a_pins: uart-a { ...
 
-Best regards,
-Krzysztof
+The new scheme which should be use should be:
+
+uart_a_pins: uart-a-pins-state {
+
+but it wasn't enforced in the pinctrl yaml pushed by heiner, but for sure
+no underscores in the node name.
+
+> 
+> [...]
+>> +                               uart_a_cts_rts_pins: uart_a_cts_rts {
+> similar to the comment from above:
+> uart_a_cts_rts_pins: uart-a-cts-rts { ...
+> 
+>> +                                       mux {
+>> +                                               groups = "uart_a_cts",
+>> +                                                        "uart_a_rts";
+>> +                                               function = "uart_a";
+>> +                                               bias-pull-down;
+> Out of curiosity: is this pull down needed on all boards or just specific ones?
+> It seems like all other SoCs use bias-disable for the RTS/CTS pins.
+> 
+> 
+> Best regards,
+> Martin
 
