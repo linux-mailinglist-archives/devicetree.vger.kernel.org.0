@@ -2,57 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BC4E73D544
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 01:20:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4738C73D559
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 02:06:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229750AbjFYXU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 25 Jun 2023 19:20:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36042 "EHLO
+        id S229720AbjFZAFa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 25 Jun 2023 20:05:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229639AbjFYXU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 19:20:27 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BAFE4C;
-        Sun, 25 Jun 2023 16:20:24 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7826F60C55;
-        Sun, 25 Jun 2023 23:20:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id D49F7C433CC;
-        Sun, 25 Jun 2023 23:20:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687735223;
-        bh=gagWmDDmJDWh5KRnFaIWUefc8TSh7VfmTp4h0BJ3A3U=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=BsqL/Cr2+wxAhY2pBMHaTW9gn1+N0Zxr7bERHmmV53dwdavZiipk26DK4BfGZfIXr
-         cDarj/r0hkn8qzbxsxzv6N5jp7rZwAaVcL/cd/OYkBAydLmVP79EpU+qXwiiKY2yFE
-         Lp16tS7WheKIeE0lqOg47Rf2FWQKQOuVWIwTqH2xxE+sNFxfV4UlJ0qjRFJf0e6U3I
-         GBZk9a5O0KoWG3PA6I0fnRLdC2uMAeTtwz2ZrDRH5R3YtKrD6wmCyYESL+Z+CaKtPZ
-         rqeko1UBt4EAb7F4epr7nakTJCZ0Nn9BMhVR40EUFqDXs+5BNdPJb6C9Y8YsQyh15y
-         fVDdifylmyKyQ==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id B3DE1C691EE;
-        Sun, 25 Jun 2023 23:20:23 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229742AbjFZAF3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 25 Jun 2023 20:05:29 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0212E1BB
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 17:05:25 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fa9850bfd9so1786665e9.0
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 17:05:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687737924; x=1690329924;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=V2ettOAspbQorf4bn+Ia/eRHWKdTUci+Mt3+wF2Edk0=;
+        b=EcMZw+YStZkBam9UpgQFHyULnJoGfBUBAgq8i0pyVWw1X3pN7ydpTacri6beZVAJ4q
+         y+ev3c51Re2ro3YT/tuoyejUC5FDfbdhtz91EDMwtlG/GkW4SBJO7vXMcWijJc3+895m
+         huXxuZOFztBkMKrqeQlxTYSfkCQoyAF6zPvuzTFtBAQ2zqz+sQUYWZC7CdRxeIvM+Sj0
+         JE9Ieh1E6av/KRwR1H6+0IbMYZT56xf/AbPxu//7HOOwEgeLux2yOAaZ90oN/crrJcQs
+         2xOPFHAescTDrOrjFONG/Lyh21DHrVXNo8WdV/HPtD2GLSt6Bq7fRiW6hJrVGbWUaQB5
+         H6PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687737924; x=1690329924;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=V2ettOAspbQorf4bn+Ia/eRHWKdTUci+Mt3+wF2Edk0=;
+        b=NaIBfCsEp5w0Z2ThoFhgE67t8/ozHDUJ0bv8AwPaEjhkMo/kTrfDfK/AUoUOeQNbK3
+         N2gWCnwBqkgxa+4JaPYOHRA5a1tev2KSFbFkihgldQepYWqhPU2wlMV2VWLWZtdW+qa1
+         3IDL95mRjWGrAi5Edp/oXcyhSCK8pGSx/tigCF7CKI9EtsQBAQl5Dor7bkV0a+sDgGYX
+         Y63K1RQD/3DLx7jVvkLjlWTtpA34ZqUZ2aV6vpJ0lPffpwLL1i2cL8RbHPRgnKs0r3LS
+         jJdxqtE/bNKVjMRiyY/lOS94SVgViCXM44u5KkywM4EkoyyzTs7gHiBMKqECUvfKQTbS
+         kPzw==
+X-Gm-Message-State: AC+VfDy0RhcJTd6F9ks/wT+9N9FxWYe+KT38CGi3Zbf8DhBhvhMpdd3b
+        tz+FvoSLUEl0IvB64SsCv9eSxA==
+X-Google-Smtp-Source: ACHHUZ47HRHZzNsG/QxT99vQVwwhxIXWh23ZM1VJgUJPwxOVpoGgc6uorN/ypD6nGsQFMjvnwr/bZA==
+X-Received: by 2002:a05:600c:a3a9:b0:3fa:79e4:600f with SMTP id hn41-20020a05600ca3a900b003fa79e4600fmr5409487wmb.4.1687737924391;
+        Sun, 25 Jun 2023 17:05:24 -0700 (PDT)
+Received: from [192.168.0.162] (188-141-3-169.dynamic.upc.ie. [188.141.3.169])
+        by smtp.gmail.com with ESMTPSA id r16-20020a05600c2c5000b003f78fd2cf5esm5922562wmg.40.2023.06.25.17.05.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Jun 2023 17:05:23 -0700 (PDT)
+Message-ID: <2e7b0647-b108-5364-a7cf-955cacf9b322@linaro.org>
+Date:   Mon, 26 Jun 2023 01:05:22 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v2 0/2] dt-bindings: riscv: cpus: switch to
- unevaluatedProperties: false
-From:   patchwork-bot+linux-riscv@kernel.org
-Message-Id: <168773522373.24181.11034691970216052141.git-patchwork-notify@kernel.org>
-Date:   Sun, 25 Jun 2023 23:20:23 +0000
-References: <20230615-creamer-emu-ade0fa0bdb68@spud>
-In-Reply-To: <20230615-creamer-emu-ade0fa0bdb68@spud>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, palmer@dabbelt.com,
-        conor.dooley@microchip.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, paul.walmsley@sifive.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.8.0
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: msm8939-samsung-a7: Add initial
+ dts
+Content-Language: en-US
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>, agross@kernel.org,
+        andersson@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, nikita@trvn.ru, robh+dt@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+References: <20230623100135.5269-1-linmengbo0689@protonmail.com>
+ <20230623100237.5299-1-linmengbo0689@protonmail.com>
+ <5fbba4e8-a8d9-0e99-e112-31b5781c1648@linaro.org>
+ <20230623104647.5501-1-linmengbo0689@protonmail.com>
+ <71ae3799-4668-891c-c32d-d36da655d56d@linaro.org>
+ <ZJiY1PYtfeIN13ZG@gerhold.net>
+From:   Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+In-Reply-To: <ZJiY1PYtfeIN13ZG@gerhold.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,32 +84,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+On 25/06/2023 20:43, Stephan Gerhold wrote:
+> Is it really worth it to support a half-working bootloader though?
 
-This series was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
+> No one will ever be able to use this properly without fixing the
+> bootloader. SMP doesn't work with the stock bootloader, many devices
+> need display panel selection in the bootloader and on some Samsung
+> devices there is not even USB and UART without special fixes in the
+> bootloader.
 
-On Thu, 15 Jun 2023 23:50:13 +0100 you wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> Do the various bits needed to drop the additionalProperties: true that
-> we currently have in riscv/cpu.yaml, to permit actually enforcing what
-> people put in cpus nodes.
-> 
-> Changes in v2:
-> - drop patches 2 -> 5, they're now standard in dt-schema
-> 
-> [...]
+Why set the bar higher than necessary to boot a kernel though ?
 
-Here is the summary with links:
-  - [v2,1/2] dt-bindings: riscv: cpus: add a ref the common cpu schema
-    https://git.kernel.org/riscv/c/3c1b4758a954
-  - [v2,2/2] dt-bindings: riscv: cpus: switch to unevaluatedProperties: false
-    https://git.kernel.org/riscv/c/1ffe6ddc5c64
+Its two lines in a dts.
 
-You are awesome, thank you!
--- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
-
+---
+bod
