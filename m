@@ -2,101 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0305073DE78
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 14:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AAC673DE8D
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 14:12:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjFZMHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 08:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46194 "EHLO
+        id S229960AbjFZML7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 08:11:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229643AbjFZMHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 08:07:36 -0400
-Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D671B7
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 05:07:35 -0700 (PDT)
-Received: by mail-pj1-x1032.google.com with SMTP id 98e67ed59e1d1-262fa79e9b3so234846a91.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 05:07:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=huaqin-corp-partner-google-com.20221208.gappssmtp.com; s=20221208; t=1687781254; x=1690373254;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=dsWwmk/RTc3MCrJdzjtuf6nawuzuNbHJKPGxRq8Ztoo=;
-        b=VjdPYhzkhXM3bRJ+9tVCTvwJrS6rzB7mH5eGuTvD2Vh0bA9Si8efDAFhm3BNUPvY/O
-         qAS0HGM5cMsULL9Fku+QCYiIDV6QiFtpPQfA8m3JQxO7quOf/jwxGbIjD1Rf25qz/TgD
-         TvBkEhak5g1o014HV595HoFzL3I4qSrA7QYwq7FGhJChqVFwq26xsg1X5AbTAey3QkEv
-         KlrMzkmA/Kp1CMHrgxO/mk4g5wBk9jixgE69m3RuQkmVxENu0xtMH4yqkPHEEorBxlsd
-         R9AJdYFBTqdmuFeHkVdCyozCCgxM4itmuoRQkyyJlpg6oRjuS7A+qqECK76sKtR2mPzn
-         luFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687781254; x=1690373254;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=dsWwmk/RTc3MCrJdzjtuf6nawuzuNbHJKPGxRq8Ztoo=;
-        b=k1yxiWABRCEcRNKRGaaeJdJRuoKxhKsMn/fbQzNMuyCOBjEQYsnikoPFSVcdT3P5Vp
-         QQ9tHsiQjIwQLU3pes2YJaxmB4qp7ZLGRLA4n+JLpXLaVvh81aAaR1MPJeLcbft6ncYB
-         xQTNo40iDiLyvbchLoNgYORdP5/GGkH1E5prjSlErvFgvK4YT4/8iklN5kXWMRIGTHfb
-         BH8GHM9j9fEeyy0dhnr/h30tpOokJMIMFPdcqxNAE23PAkANpOZe6og5ZvGk3LtjASZH
-         TCo3oNiY6KKybsoi/346ofRbH2vSJD/4MZjFoGnMsLHiG34mZHz3QUm3RWH7OUnwBHTr
-         ZbiQ==
-X-Gm-Message-State: AC+VfDwUGzg5JC21mUoNcKo7wfEplhn5dHQYysMoRSxpnZ384JUmALaa
-        eApq0jF5Vhtgik30kBXppmwyCg==
-X-Google-Smtp-Source: ACHHUZ6Lv+/DVcuw+jeotefNu+yXcBEbRRTnoBocuIPtCLcr2QrLO+/6BWN1wJO2vGsKNXh9ncDknA==
-X-Received: by 2002:a17:90a:1a03:b0:262:ce8f:a3e with SMTP id 3-20020a17090a1a0300b00262ce8f0a3emr2070091pjk.42.1687781254513;
-        Mon, 26 Jun 2023 05:07:34 -0700 (PDT)
-Received: from yc.huaqin.com ([101.78.151.205])
-        by smtp.gmail.com with ESMTPSA id w5-20020a17090aea0500b002532ddc3a00sm6010021pjy.15.2023.06.26.05.07.31
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 05:07:34 -0700 (PDT)
-From:   Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-To:     sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
-        airlied@gmail.com, dianders@google.com, hsinyi@google.com
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Subject: [PATCH] drm/panel: Fine tune Starry-ili9882t panel HFP and HBP
-Date:   Mon, 26 Jun 2023 20:07:24 +0800
-Message-Id: <20230626120724.161117-1-yangcong5@huaqin.corp-partner.google.com>
-X-Mailer: git-send-email 2.25.1
+        with ESMTP id S229949AbjFZML4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 08:11:56 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB1AAE74;
+        Mon, 26 Jun 2023 05:11:43 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id ABEF87F98;
+        Mon, 26 Jun 2023 20:11:36 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
+ 2023 20:11:36 +0800
+Received: from [192.168.125.124] (113.72.146.167) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
+ 2023 20:11:34 +0800
+Message-ID: <d7ec3f9a-ae9a-28cb-e511-21463a52b11b@starfivetech.com>
+Date:   Mon, 26 Jun 2023 20:11:34 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 5/5] riscv: dts: starfive: Add JH7110 PWM-DAC support
+Content-Language: en-US
+To:     Hal Feng <hal.feng@starfivetech.com>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        "Emil Renner Berthing" <emil.renner.berthing@canonical.com>,
+        Claudiu Beznea <Claudiu.Beznea@microchip.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230626110909.38718-1-hal.feng@starfivetech.com>
+ <20230626110909.38718-6-hal.feng@starfivetech.com>
+From:   Walker Chen <walker.chen@starfivetech.com>
+In-Reply-To: <20230626110909.38718-6-hal.feng@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.146.167]
+X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Because the setting of hproch is too small, there will be warning in
-kernel log[1]. After fine tune the HFP and HBP, this warning can be
-solved. The actual measurement frame rate is 60.1Hz.
 
-[1]: WARNING kernel:[drm] HFP + HBP less than d-phy, FPS will under 60Hz
+On 2023/6/26 19:09, Hal Feng wrote:
+> Add PWM-DAC support for StarFive JH7110 SoC.
+> 
+> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
 
-Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
----
- drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+Reviewed-by: Walker Chen <walker.chen@starfivetech.com>
 
-diff --git a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-index 3cc9fb0d4f5d..dc276c346fd1 100644
---- a/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-+++ b/drivers/gpu/drm/panel/panel-boe-tv101wum-nl6.c
-@@ -2139,9 +2139,9 @@ static const struct panel_desc starry_himax83102_j02_desc = {
- static const struct drm_display_mode starry_ili9882t_default_mode = {
- 	.clock = 165280,
- 	.hdisplay = 1200,
--	.hsync_start = 1200 + 32,
--	.hsync_end = 1200 + 32 + 30,
--	.htotal = 1200 + 32 + 30 + 32,
-+	.hsync_start = 1200 + 72,
-+	.hsync_end = 1200 + 72 + 30,
-+	.htotal = 1200 + 72 + 30 + 72,
- 	.vdisplay = 1920,
- 	.vsync_start = 1920 + 68,
- 	.vsync_end = 1920 + 68 + 2,
--- 
-2.25.1
-
+> ---
+>  .../jh7110-starfive-visionfive-2.dtsi         | 50 +++++++++++++++++++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      | 13 +++++
+>  2 files changed, 63 insertions(+)
+> 
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> index 19b5954ee72d..5ca66a65e722 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
+> @@ -36,6 +36,34 @@ gpio-restart {
+>  		gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
+>  		priority = <224>;
+>  	};
+> +
+> +	pwmdac_dit: pwmdac-dit {
+> +		compatible = "starfive,jh7110-pwmdac-dit";
+> +		#sound-dai-cells = <0>;
+> +	};
+> +
+> +	sound {
+> +		compatible = "simple-audio-card";
+> +		simple-audio-card,name = "StarFive-PWMDAC-Sound-Card";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		simple-audio-card,dai-link@0 {
+> +			reg = <0>;
+> +			format = "left_j";
+> +			bitclock-master = <&sndcpu0>;
+> +			frame-master = <&sndcpu0>;
+> +			status = "okay";
+> +
+> +			sndcpu0: cpu {
+> +				sound-dai = <&pwmdac>;
+> +			};
+> +
+> +			codec {
+> +				sound-dai = <&pwmdac_dit>;
+> +			};
+> +		};
+> +	};
+>  };
+>  
+>  &dvp_clk {
+> @@ -191,6 +219,22 @@ GPOEN_SYS_I2C6_DATA,
+>  		};
+>  	};
+>  
+> +	pwmdac_pins: pwmdac-0 {
+> +		pwmdac-pins {
+> +			pinmux = <GPIOMUX(33, GPOUT_SYS_PWMDAC_LEFT,
+> +					      GPOEN_ENABLE,
+> +					      GPI_NONE)>,
+> +				 <GPIOMUX(34, GPOUT_SYS_PWMDAC_RIGHT,
+> +					      GPOEN_ENABLE,
+> +					      GPI_NONE)>;
+> +			bias-disable;
+> +			drive-strength = <2>;
+> +			input-disable;
+> +			input-schmitt-disable;
+> +			slew-rate = <0>;
+> +		};
+> +	};
+> +
+>  	uart0_pins: uart0-0 {
+>  		tx-pins {
+>  			pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
+> @@ -250,6 +294,12 @@ GPOEN_DISABLE,
+>  	};
+>  };
+>  
+> +&pwmdac {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pwmdac_pins>;
+> +	status = "okay";
+> +};
+> +
+>  &uart0 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&uart0_pins>;
+> diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> index cfda6fb0d91b..bbb3f65e6f80 100644
+> --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+> @@ -387,6 +387,19 @@ tdm: tdm@10090000 {
+>  			status = "disabled";
+>  		};
+>  
+> +		pwmdac: pwmdac@100b0000 {
+> +			compatible = "starfive,jh7110-pwmdac";
+> +			reg = <0x0 0x100b0000 0x0 0x1000>;
+> +			clocks = <&syscrg JH7110_SYSCLK_PWMDAC_APB>,
+> +				 <&syscrg JH7110_SYSCLK_PWMDAC_CORE>;
+> +			clock-names = "apb", "core";
+> +			resets = <&syscrg JH7110_SYSRST_PWMDAC_APB>;
+> +			dmas = <&dma 22>;
+> +			dma-names = "tx";
+> +			#sound-dai-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>  		stgcrg: clock-controller@10230000 {
+>  			compatible = "starfive,jh7110-stgcrg";
+>  			reg = <0x0 0x10230000 0x0 0x10000>;
