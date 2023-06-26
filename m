@@ -2,172 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A71BF73DCE5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 13:09:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9CD873DCF9
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 13:11:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230126AbjFZLJU convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 26 Jun 2023 07:09:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49574 "EHLO
+        id S230179AbjFZLLh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 07:11:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230115AbjFZLJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 07:09:18 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91DF4D3;
-        Mon, 26 Jun 2023 04:09:16 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 20B5724DED7;
-        Mon, 26 Jun 2023 19:09:15 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
- 2023 19:09:15 +0800
-Received: from ubuntu.localdomain (113.72.146.167) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
- 2023 19:09:14 +0800
-From:   Hal Feng <hal.feng@starfivetech.com>
-To:     Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230290AbjFZLLf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 07:11:35 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB0DD2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 04:11:21 -0700 (PDT)
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1687777880;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=uQv3AS+HLUfFEazEC3SqY1OYzbSNG18VjDZHK3YjV+Y=;
+        b=UfKRyX3M9wmFG+dqZyLtdLzNfoyUWh/+3Oz7A9E2eGj1XLG4KWRl/A5JHEHZdMbjrzMY7Q
+        nInBAqUdyyypPc3pf57TQHrAtocRcu+zadSKlgdPmQpDwIV9PslFyUNRq/RSK5QPJElhT8
+        V+MdWTcjseXnAOUFDizupmj8MXC50wnctlkvYdrHaKYCnq+u8voWSPuDZyqx1Gb/gzyW3S
+        gjEYh3lTEKQUd4FtUqQlVTJD9yWVDZ7Q/OltNzz3cqwqMRC0xPmP/hOAvD9wdjE8k2pfJB
+        mbVLNuJnFCwfciBaNOXaFKBnb9lnhHqQy2b7E3RMnx7K7LY3S5qYGi/iX5XqwA==
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+X-GND-Sasl: thomas.petazzoni@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id B65A6FF80B;
+        Mon, 26 Jun 2023 11:11:18 +0000 (UTC)
+Date:   Mon, 26 Jun 2023 13:11:18 +0200
+From:   Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Maxime Ripard <mripard@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Walker Chen" <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Hal Feng <hal.feng@starfivetech.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH v1 5/5] riscv: dts: starfive: Add JH7110 PWM-DAC support
-Date:   Mon, 26 Jun 2023 19:09:09 +0800
-Message-ID: <20230626110909.38718-6-hal.feng@starfivetech.com>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230626110909.38718-1-hal.feng@starfivetech.com>
-References: <20230626110909.38718-1-hal.feng@starfivetech.com>
+        devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tudor Ambarus <tudor.ambarus@linaro.org>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH] dt-bindings: mtd: Fix nand-controller.yaml license
+Message-ID: <20230626131118.0f6fd166@windsurf>
+In-Reply-To: <20230623210508.GA1096125-robh@kernel.org>
+References: <20230622212415.3583886-1-miquel.raynal@bootlin.com>
+        <20230623210508.GA1096125-robh@kernel.org>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [113.72.146.167]
-X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PWM-DAC support for StarFive JH7110 SoC.
+Hello Rob,
 
-Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
----
- .../jh7110-starfive-visionfive-2.dtsi         | 50 +++++++++++++++++++
- arch/riscv/boot/dts/starfive/jh7110.dtsi      | 13 +++++
- 2 files changed, 63 insertions(+)
+On Fri, 23 Jun 2023 15:05:08 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-diff --git a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-index 19b5954ee72d..5ca66a65e722 100644
---- a/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110-starfive-visionfive-2.dtsi
-@@ -36,6 +36,34 @@ gpio-restart {
- 		gpios = <&sysgpio 35 GPIO_ACTIVE_HIGH>;
- 		priority = <224>;
- 	};
-+
-+	pwmdac_dit: pwmdac-dit {
-+		compatible = "starfive,jh7110-pwmdac-dit";
-+		#sound-dai-cells = <0>;
-+	};
-+
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "StarFive-PWMDAC-Sound-Card";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		simple-audio-card,dai-link@0 {
-+			reg = <0>;
-+			format = "left_j";
-+			bitclock-master = <&sndcpu0>;
-+			frame-master = <&sndcpu0>;
-+			status = "okay";
-+
-+			sndcpu0: cpu {
-+				sound-dai = <&pwmdac>;
-+			};
-+
-+			codec {
-+				sound-dai = <&pwmdac_dit>;
-+			};
-+		};
-+	};
- };
- 
- &dvp_clk {
-@@ -191,6 +219,22 @@ GPOEN_SYS_I2C6_DATA,
- 		};
- 	};
- 
-+	pwmdac_pins: pwmdac-0 {
-+		pwmdac-pins {
-+			pinmux = <GPIOMUX(33, GPOUT_SYS_PWMDAC_LEFT,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>,
-+				 <GPIOMUX(34, GPOUT_SYS_PWMDAC_RIGHT,
-+					      GPOEN_ENABLE,
-+					      GPI_NONE)>;
-+			bias-disable;
-+			drive-strength = <2>;
-+			input-disable;
-+			input-schmitt-disable;
-+			slew-rate = <0>;
-+		};
-+	};
-+
- 	uart0_pins: uart0-0 {
- 		tx-pins {
- 			pinmux = <GPIOMUX(5, GPOUT_SYS_UART0_TX,
-@@ -250,6 +294,12 @@ GPOEN_DISABLE,
- 	};
- };
- 
-+&pwmdac {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pwmdac_pins>;
-+	status = "okay";
-+};
-+
- &uart0 {
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&uart0_pins>;
-diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-index cfda6fb0d91b..bbb3f65e6f80 100644
---- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
-+++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-@@ -387,6 +387,19 @@ tdm: tdm@10090000 {
- 			status = "disabled";
- 		};
- 
-+		pwmdac: pwmdac@100b0000 {
-+			compatible = "starfive,jh7110-pwmdac";
-+			reg = <0x0 0x100b0000 0x0 0x1000>;
-+			clocks = <&syscrg JH7110_SYSCLK_PWMDAC_APB>,
-+				 <&syscrg JH7110_SYSCLK_PWMDAC_CORE>;
-+			clock-names = "apb", "core";
-+			resets = <&syscrg JH7110_SYSRST_PWMDAC_APB>;
-+			dmas = <&dma 22>;
-+			dma-names = "tx";
-+			#sound-dai-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 		stgcrg: clock-controller@10230000 {
- 			compatible = "starfive,jh7110-stgcrg";
- 			reg = <0x0 0x10230000 0x0 0x10000>;
+> Yes, we do want dual license, but things converted from txt bindings 
+> need those authors' permission as the txt bindings are all implicitly 
+> GPLv2. That didn't happen here, so we kept the default implicit license. 
+> Looks like this case is all Bootlin authors for significant parts of the 
+> original txt binding, so you should be good on that part (assuming your 
+> employer agrees). Maxime did the schema, so need his permission too.
+> 
+> Note I have blanket permission on dual licensing from several companies 
+> for DT files. It would be nice to get the same from Bootlin.
+
+I hereby allow the relicensing of all contributions from Bootlin
+employees on Device Tree binding documents in the Linux kernel from
+GPLv2 to GPLv2 or BSD-2-Clause.
+
+Let me know if this statement is sufficient or if you need anything
+more formal or specific.
+
+Best regards,
+
+Thomas Petazzoni
 -- 
-2.38.1
-
+Thomas Petazzoni, co-owner and CEO, Bootlin
+Embedded Linux and Kernel engineering and training
+https://bootlin.com
