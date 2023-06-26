@@ -2,704 +2,384 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F5D73E674
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:30:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F71973E682
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:34:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229910AbjFZRaq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 13:30:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33214 "EHLO
+        id S230311AbjFZReN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 13:34:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229866AbjFZRao (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:30:44 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5F7210CC
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 10:30:41 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fa99742bd1so10366885e9.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 10:30:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jrtc27.com; s=gmail.jrtc27.user; t=1687800640; x=1690392640;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Nmx0db1crcRgjgma3e5B5GeKtG3rycDx2u3Q7/TU4rE=;
-        b=pW10Z6KqJhQkuVxBnY5uV3FAa4eMtSi1YEoluA4sN25Kbc0BeKuendQEauwXZqm+PP
-         uLzwatJTCZpWLICXfP42Q6yn/nm+XXhb6ABcjkxRC7zlUegldVcl9udSDd4MCuelpz7X
-         EGtCEdzdwybSSATlck+mjKIhNsveTEC8l5VYBh3a+QqIm5vmm9k2bWy0oi7tXbYPh2z7
-         7eSWdV6Wl5yTSz+YGOgfbQMRbDzatdwS9LZ3iaFGX2FAQCpNfYt3KVp3WRfh0XE4rLn4
-         I/E1zsLGGch/j1UHyc+sfEEY98xup7veD4CWC9uJL3DKDQ2oVjuTDxKPav289mCQwHXB
-         1nMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687800640; x=1690392640;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Nmx0db1crcRgjgma3e5B5GeKtG3rycDx2u3Q7/TU4rE=;
-        b=Y2sCZAfAXdIsc2XJliGEFTVsAWvkLN+upRuaxzvknsE5lg40/yB04WA/bGSsmIODd+
-         s8p/EPJxv4TlY54jTfYgU1R6eOfrMHMkliapFjRTbWf2AEn62JXtPey3BOTYbt0IQohT
-         xI6QhTA5a0hwoBA4V6afDsZeTMu0snK7vJPeNUaBy8ZmDbJM/zFt7FX/alvvqXR5vKtw
-         tHqw96y5a/PFzGO9WX9zuHP4t36cDQGmutdXXwPFifpE6kBvXiW3i/EXUQF2LR2rW2Rt
-         Jn/+9XJsx4Wg3bxeLnNRCOcmT0sosZpNv3Lu879vqn63OE/G6HWjJVgGyipWalicGQ4u
-         V+aw==
-X-Gm-Message-State: AC+VfDywmHvLWWho4JLPbnunkcrDk7hofof1G4LD0hzMA6qIaOOSiwRe
-        6045NFwoko/bbTDfIeB1KVulbA==
-X-Google-Smtp-Source: ACHHUZ6XalO/c0csUtwv1sBR3ozDgZgT9trH/OOtveAuC6chzP9fzy3GzNkvWMtRaIbtvSafz8cRkQ==
-X-Received: by 2002:a1c:770f:0:b0:3f9:ad5:a6f4 with SMTP id t15-20020a1c770f000000b003f90ad5a6f4mr17210087wmi.8.1687800639988;
-        Mon, 26 Jun 2023 10:30:39 -0700 (PDT)
-Received: from smtpclient.apple ([131.111.5.246])
-        by smtp.gmail.com with ESMTPSA id b2-20020adfde02000000b0030c4d8930b1sm7922925wrm.91.2023.06.26.10.30.38
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 26 Jun 2023 10:30:39 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3731.600.7\))
-Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
-From:   Jessica Clarke <jrtc27@jrtc27.com>
-In-Reply-To: <20230626-unmarked-atom-70b4d624a386@wendy>
-Date:   Mon, 26 Jun 2023 18:30:28 +0100
-Cc:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
-        Oleksii <oleksii.kurochko@gmail.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        qemu-riscv@nongnu.org, u-boot@lists.denx.de,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <387003A1-00A8-4353-A6F5-733C2908A26F@jrtc27.com>
-References: <20230626-unmarked-atom-70b4d624a386@wendy>
-To:     Conor Dooley <conor.dooley@microchip.com>
-X-Mailer: Apple Mail (2.3731.600.7)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        with ESMTP id S230179AbjFZReL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:34:11 -0400
+Received: from NAM12-MW2-obe.outbound.protection.outlook.com (mail-mw2nam12on2053.outbound.protection.outlook.com [40.107.244.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12C2410CB;
+        Mon, 26 Jun 2023 10:34:10 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LPkGM64DRGDCN4tSlmzEOf7B5g21Ja1/8x6d1B5e0PzuMpwnynTpyRs4UA3ohv38+RGQy3LjQdgB/jFaQoKNBG4ldkAzBJSK8wckN2V4O+P7Sql8rhH+N6rGDHcv01j6VDHqGzWPH7CBghuWtk0Ee2+hr6SruO7dcSIU7BT6RrqDjYwIHsvNSO/Kw3FR44RAxLWuc+WAa0AbfejLyrskEegoxlC+j4fyRqQiCRvh5WnpaLUCwaQfhEfzOZ1lrAPsHBwFG8LbFhsdvm1DJsHs9r9whtehvxJm7ib+TnpVt+33uQrrEdtoUJXSYvyzVGifPIqXL3pZYcdGykz1JiRYOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SGKssyxg0Y4NHxjNQCJpC3vMQNBrpmY38gDBfPIYmyo=;
+ b=WMeXGLJTpGs5K+hNhIo1bDR2TsCYZW4l0U8034OUUzKpTSwtZ0SQmtpgSFskydh7dbtKFM5ow2VDe+MgJEBZLDfjqTg7nh8jViZj302gwUU1f56K5TfpN8L9vnmILvAg6JUVtK+5H5Ml08Ej5HGnc2jROZKpZaxQk+iI6NzoThc0XpobZZ4hroWvxsit0KFQpYfFQU02SVsKCTNRrNOpnt9RIIkJC92fLLMhlNy915qpf77q1kM6BxTQuEYckOGwoKvA4RKe30t4df+jpWbs2ChcuWysv6U4Z71Eto4i0nLYCaMx9q3UOrgVKO3kX5SwZURiDJCYe+03YCt6HL+ubA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SGKssyxg0Y4NHxjNQCJpC3vMQNBrpmY38gDBfPIYmyo=;
+ b=X2MAdNgZmgq7LPNN1Fx+te3D7UBEUDeWurRziT07gLWSi52+dmO1hSyEzaHsUrLFfgBY+acN+USGZ5iUySuGIg27esnHJU8ZRNWPRSGvm5/C7sgUqkuYvgvDnLTaE3uWH/bIqtrwoEtwedKFk5q7P8bYBjOSaEaZ/3zpxNFHsBo=
+Received: from MW4PR04CA0304.namprd04.prod.outlook.com (2603:10b6:303:82::9)
+ by DM4PR12MB5373.namprd12.prod.outlook.com (2603:10b6:5:39d::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Mon, 26 Jun
+ 2023 17:34:07 +0000
+Received: from CO1NAM11FT112.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:303:82:cafe::ba) by MW4PR04CA0304.outlook.office365.com
+ (2603:10b6:303:82::9) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.33 via Frontend
+ Transport; Mon, 26 Jun 2023 17:34:07 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
+Received: from SATLEXMB03.amd.com (165.204.84.17) by
+ CO1NAM11FT112.mail.protection.outlook.com (10.13.174.213) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6500.47 via Frontend Transport; Mon, 26 Jun 2023 17:34:07 +0000
+Received: from SATLEXMB08.amd.com (10.181.40.132) by SATLEXMB03.amd.com
+ (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 26 Jun
+ 2023 12:34:06 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB08.amd.com
+ (10.181.40.132) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Mon, 26 Jun
+ 2023 10:34:06 -0700
+Received: from [172.19.74.144] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
+ Transport; Mon, 26 Jun 2023 12:34:05 -0500
+Message-ID: <af9b6bb3-a98d-4fb6-b51e-b48bca61dada@amd.com>
+Date:   Mon, 26 Jun 2023 10:34:05 -0700
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH V9 2/5] PCI: Create device tree node for selected devices
+Content-Language: en-US
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <robh@kernel.org>,
+        <max.zhen@amd.com>, <sonal.santan@amd.com>,
+        <stefano.stabellini@xilinx.com>
+References: <20230621202233.GA115496@bhelgaas>
+From:   Lizhi Hou <lizhi.hou@amd.com>
+In-Reply-To: <20230621202233.GA115496@bhelgaas>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT112:EE_|DM4PR12MB5373:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2a466155-efce-4106-643f-08db766b8b61
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: GIjQcNoFKkMskaap/kP7IAQKN6XLlcrc6nTLPZDlI7n+4NkI22hbDiPS3NsutgKuAX+c1HGfvjNmWKAjMZKqO824E6kAH/cZ8z79QQ19kiZmvRELxgtPTnxgKvsY+jVAgijyTq+ZNhEXEyX2M/nPPnlz2w+HDzKi6//Jrkf6sezBulskYM/4UtzSS7sTS9QvseNxyITkRLqsi5yaMnUle20yd6aMY6Mztm4neOB0OKeqyf5VY6klQW9mlK6/pUDoE3qk83lSsf4qlIIW0HPfJoyVRXg0whOm8kKFblj5uLYxqbDSKN2E/fQThV4eRYYvOQrbFkKe0ZsgkiJocqFVHAUS2k6UM1vci3wwHuJbaB13CHg0I3Ipe03pc5Gz12RgW0j1hagvTOiRpJ2qbXUXaKgK4wAjzK0iBBRBYalLoYCdVSXdLvHhqD701xJ0qR5lj0rp5z6gIYaUs9xQg9U0P3cr+Fab8QEAj0iCEaQ/H//E2wFE6CJGppgi09I2r8zwQX1rL9I5ZLm7CU8/cTdaV9DWySc37z5/w/UdzGNGeU8VaBOOEljqMa/hgkC6LwY8kC6TQduwvRjRc2BWQcTA/M8vjKFjaS+y51pRsPJtPOP1+6drBV/O4l4AxYgzbCVAaQuJAVvziKixmPc1jB/OW8FLjf9NrULeiNwrshhSbPn3CPRCfh3vfUz71LhP7PPsA3m0iWHZcNoirBUbQrXS3fJ2cjOxfV7frQq8aHGrJa5XYq6PUWmfZXO6TsSRMHMl3o+yu8YmfoAMUal8odYSm45gea+1jk1ka8Dqj3jezrp23LjAfmnCvHQRIt6okM7r
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(136003)(346002)(376002)(39860400002)(451199021)(36840700001)(40470700004)(46966006)(31686004)(186003)(26005)(2906002)(5660300002)(31696002)(82740400003)(8676002)(36756003)(82310400005)(6916009)(316002)(16576012)(54906003)(86362001)(478600001)(4326008)(81166007)(336012)(47076005)(2616005)(426003)(40460700003)(83380400001)(44832011)(41300700001)(8936002)(70206006)(70586007)(356005)(53546011)(36860700001)(40480700001)(36900700001)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2023 17:34:07.3488
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2a466155-efce-4106-643f-08db766b8b61
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT112.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5373
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26 Jun 2023, at 11:10, Conor Dooley <conor.dooley@microchip.com> =
-wrote:
->=20
-> intro
-> =3D=3D=3D=3D=3D
->=20
-> When the RISC-V dt-bindings were accepted upstream in Linux, the base
-> ISA etc had yet to be ratified. By the ratification of the base ISA,
-> incompatible changes had snuck into the specifications - for example =
-the
-> Zicsr and Zifencei extensions were spun out of the base ISA.
->=20
-> Fast forward to today, and the reason for this patch.
-> Currently the riscv,isa dt property permits only a specific subset of
-> the ISA string - in particular it excludes version numbering.
-> With the current constraints, it is not possible to discern whether
-> "rv64i" means that the hart supports the fence.i instruction, for
-> example.
-> Future systems may choose to implement their own instruction fencing,
-> perhaps using a vendor extension, or they may not implement the =
-optional
-> counter extensions. Software needs a way to determine this.
->=20
-> versioning schemes
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> "Use the extension versions that are described in the ISA manual" you
-> may say, and it's not like this has not been considered.
-> Firstly, software that parses the riscv,isa property at runtime will
-> need to contain a lookup table of some sort that maps arbitrary =
-versions
-> to versions it understands. There is not a consistent application of
-> version number applied to extensions, with a higgledy-piggledy
-> collection of tags, "bare" and versioned documents awaiting the reader
-> on the "recently ratified extensions" page:
-> https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions
->=20
-> As an aside, and this is reflected in the patch too, since many
-> extensions have yet to appear in a release of the ISA specs,
-> they are defined by commits in their respective "working draft"
-> repositories.
->=20
-> Secondly, there is an issue of backwards compatibility, whereby =
-allowing
-> numbers in the ISA string, some parsers may be broken. This would
-> require an additional property to be created to even use the versions =
-in
-> this manner.
->=20
-> ~boolean properties~ string array property
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> If a new property is needed, the whole approach may as well be looked =
-at
-> from the bottom up. A string with limited character choices etc is
-> hardly the best approach for communicating extension information to
-> software.
->=20
-> Switching to using properties that are defined on a per extension =
-basis,
-> allows us to define explicit meanings for the DT representation of =
-each
-> extension - rather than the current situation where different =
-operating
-> systems or other bits of software may impart different meanings to
-> characters in the string.
-> Clearly the best source of meanings is the specifications themselves,
-> this just provides us the ability to choose at what point in time the
-> meaning is set. If an extension changes incompatibility in the future,
-> a new property will be required.
->=20
-> Off-list, some of the RVI folks have committed to shoring up the =
-wording
-> in either the ISA specifications, the riscv-isa-manual or
-> so that in the future, modifications to and additions or removals of
-> features will require a new extension. Codifying that assertion
-> somewhere would make it quite unlikely that compatibility would be
-> broken, but we have the tools required to deal with it, if & when it
-> crops up.
-> It is in our collective interest, as consumers of extension meanings, =
-to
-> define a scheme that enforces compatibility.
->=20
-> The use of individual properties, rather than elements in a single
-> string, will also permit validation that the properties have a =
-meaning,
-> as well as potentially reject mutually exclusive combinations, or
-> enforce dependencies between extensions. That would not have be =
-possible
-> with the current dt-schema infrastructure for arbitrary strings, as we
-> would need to add a riscv,isa parser to dt-validate!
-> That's not implemented in this patch, but rather left as future work =
-(for
-> the brave, or the foolish).
->=20
-> acpi
-> =3D=3D=3D=3D
->=20
-> The current ACPI ECR is based on having a single ISA string =
-unfortunately,
-> but ideally ACPI will move to another method, perhaps GUIDs, that give
-> explicit meaning to extensions.
 
-Who=E2=80=99s assigning GUIDs to extensions in that world? And I really =
-don=E2=80=99t
-want to see DT and ACPI diverge in basics like _describing what ISA
-your processor has_.
+On 6/21/23 13:22, Bjorn Helgaas wrote:
+> In subject, IIUC this patch does not actually create device tree nodes
+> for selected devices.  It looks like it:
+>
+>    - Adds an of_pci_make_dev_node() *interface* that can be used to
+>      create this node
+>
+>    - Creates such a node for *every* bridge
+>
+>    - Does nothing at all for "selected devices" or the Xilinx Alveo
+>
+> On Wed, Jun 21, 2023 at 10:34:06AM -0700, Lizhi Hou wrote:
+>> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
+>> spaces from multiple hardware peripherals to its PCI BAR. Normally,
+>> the PCI core discovers devices and BARs using the PCI enumeration process.
+>> There is no infrastructure to discover the hardware peripherals that are
+>> present in a PCI device, and which can be accessed through the PCI BARs.
+>>
+>> For Alveo PCI card, the card firmware provides a flattened device tree to
+>> describe the hardware peripherals on its BARs. The Alveo card driver can
+>> load this flattened device tree and leverage device tree framework to
+>> generate platform devices for the hardware peripherals eventually.
+> The Alveo details are relevant to the quirk patch but not to *this*
+> patch.
+>
+> But the reason for creating a node for every bridge device *is*
+> relevant and should be included here, since that change affects
+> everybody that uses OF.
+>
+>> Apparently, the device tree framework requires a device tree node for the
+>> PCI device. Thus, it can generate the device tree nodes for hardware
+>> peripherals underneath. Because PCI is self discoverable bus, there might
+>> not be a device tree node created for PCI devices. This patch is to add
+>> support to generate device tree node for PCI devices.
+> s/This patch is to add/Add/
+>
+>> Added a kernel option. When the option is turned on, the kernel will
+>> generate device tree nodes for PCI bridges unconditionally.
+> s/Added a kernel option/Add a PCI_DYNAMIC_OF_NODES config option/
+> (Be specific, and way what the patch does, not what you did.)
+>
+>> Initially, the basic properties are added for the dynamically generated
+>> device tree nodes.
+> Make this specific, e.g., list the specific properties added.
 
-As a non-Linux OS developer I am unhappy with this churn.
+I rewrote the description as below. Does it look better?
 
-Jess
+     PCI: Create device tree node for bridge
 
-> parser simplicity
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> Many systems that parse DT at runtime already implement an function =
-that
-> can check for the presence of a string in an array of string, as it is
-> similar to the process for parsing a list of compatible strings, so a
-> bunch of new, custom, DT parsing should not be needed.
-> Getting rid of "riscv,isa" parsing would be a nice simplification, but
-> unfortunately for backwards compatibility with old dtbs, existing
-> parsers may not be removable - which may greatly simplify
-> dt parsing code. In Linux, for example, checking for whether a hart
-> supports an extension becomes as simple as:
-> of_property_match_string(node, "riscv,isa-extensions", "zicbom")
->=20
-> vendor extensions
-> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
->=20
-> Compared to riscv,isa, this proposed scheme promotes vendor =
-extensions,
-> oft touted as the strength of RISC-V, to first-class citizens.
-> At present, extensions are defined as meaning what the RISC-V ISA
-> specifications say they do. There is no realistic way of using that
-> interface to provide cross-platform definitions for what vendor
-> extensions mean. Vendor extensions may also have even less consistency
-> than RVI do in terms of versioning, or no care about backwards
-> compatibility.
-> The new property allows us to assign explicit meanings on a per vendor
-> extension basis, backed up by a description of their meanings.
->=20
-> fin
-> =3D=3D=3D
->=20
-> Create a new file to store the extension meanings and a new
-> riscv,isa-base property to replace the aspect of riscv,isa that is
-> not represented by the new property - the base ISA implemented by a =
-hart.
->=20
-> As a starting point, add properties for extensions currently used in
-> Linux.
->=20
-> Finally, mark riscv,isa as deprecated, as removing support for it in
-> existing programs would be an ABI break.
->=20
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Alistair Francis <alistair.francis@wdc.com>
-> CC: Andrew Jones <ajones@ventanamicro.com>
-> CC: Anup Patel <apatel@ventanamicro.com>
-> CC: Atish Patra <atishp@atishpatra.org>
-> CC: Jessica Clarke <jrtc27@jrtc27.com>
-> CC: Rick Chen <rick@andestech.com>
-> CC: Leo <ycliang@andestech.com>
-> CC: Oleksii <oleksii.kurochko@gmail.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: qemu-riscv@nongnu.org
-> CC: u-boot@lists.denx.de
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes in v3:
-> - Per Rob's suggestion, switch to an array of strings. Cuts down on =
-the
->  size, compared to booleans. It has a standard mechanism for parsing
->  (you need to parse arrays of strings for compatibles). It still =
-allows
->  for having a limited set of explicitly defined properties - so the
->  advantages over a free-form string still apply.
-> - Pick up Palmer's Ack and Review (although I expect that he will be =
-the
->  one to apply this).
-> ---
-> .../devicetree/bindings/riscv/cpus.yaml       |  43 ++-
-> .../devicetree/bindings/riscv/extensions.yaml | 245 ++++++++++++++++++
-> 2 files changed, 265 insertions(+), 23 deletions(-)
-> create mode 100644 =
-Documentation/devicetree/bindings/riscv/extensions.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml =
-b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> index 67bd239ead0b..74bc92591086 100644
-> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-> @@ -25,6 +25,7 @@ description: |
->=20
-> allOf:
->   - $ref: /schemas/cpu.yaml#
-> +  - $ref: extensions.yaml
->=20
-> properties:
->   compatible:
-> @@ -82,25 +83,6 @@ properties:
->     description:
->       The blocksize in bytes for the Zicboz cache operations.
->=20
-> -  riscv,isa:
-> -    description:
-> -      Identifies the specific RISC-V instruction set architecture
-> -      supported by the hart.  These are documented in the RISC-V
-> -      User-Level ISA document, available from
-> -      https://riscv.org/specifications/
-> -
-> -      Due to revisions of the ISA specification, some deviations
-> -      have arisen over time.
-> -      Notably, riscv,isa was defined prior to the creation of the
-> -      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
-> -      implies "zicntr_zicsr_zifencei_zihpm".
-> -
-> -      While the isa strings in ISA specification are case
-> -      insensitive, letters in the riscv,isa string must be all
-> -      lowercase.
-> -    $ref: /schemas/types.yaml#/definitions/string
-> -    pattern: =
-^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z]=
-)+)*$
-> -
->   # RISC-V has multiple properties for cache op block sizes as the =
-sizes
->   # differ between individual CBO extensions
->   cache-op-block-size: false
-> @@ -139,8 +121,17 @@ properties:
->       DMIPS/MHz, relative to highest capacity-dmips-mhz
->       in the system.
->=20
-> +oneOf:
-> +  - required:
-> +      - riscv,isa
-> +  - required:
-> +      - riscv,isa-base
-> +
-> +dependencies:
-> +  riscv,isa-base: [ "riscv,isa-extensions" ]
-> +  riscv,isa-extensions: [ "riscv,isa-base" ]
-> +
-> required:
-> -  - riscv,isa
->   - interrupt-controller
->=20
-> unevaluatedProperties: false
-> @@ -160,7 +151,9 @@ examples:
->                 i-cache-sets =3D <128>;
->                 i-cache-size =3D <16384>;
->                 reg =3D <0>;
-> -                riscv,isa =3D "rv64imac";
-> +                riscv,isa-base =3D "rv64i";
-> +                riscv,isa-extensions =3D "i", "m", "a", "c";
-> +
->                 cpu_intc0: interrupt-controller {
->                         #interrupt-cells =3D <1>;
->                         compatible =3D "riscv,cpu-intc";
-> @@ -183,8 +176,10 @@ examples:
->                 i-tlb-size =3D <32>;
->                 mmu-type =3D "riscv,sv39";
->                 reg =3D <1>;
-> -                riscv,isa =3D "rv64imafdc";
->                 tlb-split;
-> +                riscv,isa-base =3D "rv64i";
-> +                riscv,isa-extensions =3D "i", "m", "a", "f", "d", =
-"c";
-> +
->                 cpu_intc1: interrupt-controller {
->                         #interrupt-cells =3D <1>;
->                         compatible =3D "riscv,cpu-intc";
-> @@ -202,8 +197,10 @@ examples:
->                 device_type =3D "cpu";
->                 reg =3D <0>;
->                 compatible =3D "riscv";
-> -                riscv,isa =3D "rv64imafdc";
->                 mmu-type =3D "riscv,sv48";
-> +                riscv,isa-base =3D "rv64i";
-> +                riscv,isa-extensions =3D "i", "m", "a", "f", "d", =
-"c";
-> +
->                 interrupt-controller {
->                         #interrupt-cells =3D <1>;
->                         interrupt-controller;
-> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml =
-b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> new file mode 100644
-> index 000000000000..af98307f2c2c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> @@ -0,0 +1,245 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/riscv/extensions.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RISC-V ISA extensions
-> +
-> +maintainers:
-> +  - Paul Walmsley <paul.walmsley@sifive.com>
-> +  - Palmer Dabbelt <palmer@sifive.com>
-> +  - Conor Dooley <conor@kernel.org>
-> +
-> +description: |
-> +  RISC-V has a large number of extensions, some of which are =
-"standard"
-> +  extensions, meaning they are ratified by RISC-V International, and =
-others
-> +  are "vendor" extensions.
-> +  This document defines properties that indicate whether a hart =
-supports a
-> +  given extension.
-> +
-> +  Once a standard extension has been ratified, no changes in =
-behaviour can be
-> +  made without the creation of a new extension.
-> +  The properties for standard extensions therefore map to their =
-originally
-> +  ratified states, with the exception of the I, Zicntr & Zihpm =
-extensions.
-> +  See the "i" property for more information.
-> +
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: riscv
-> +
-> +properties:
-> +  riscv,isa:
-> +    description:
-> +      Identifies the specific RISC-V instruction set architecture
-> +      supported by the hart.  These are documented in the RISC-V
-> +      User-Level ISA document, available from
-> +      https://riscv.org/specifications/
-> +
-> +      Due to revisions of the ISA specification, some deviations
-> +      have arisen over time.
-> +      Notably, riscv,isa was defined prior to the creation of the
-> +      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
-> +      implies "zicntr_zicsr_zifencei_zihpm".
-> +
-> +      While the isa strings in ISA specification are case
-> +      insensitive, letters in the riscv,isa string must be all
-> +      lowercase.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +    pattern: =
-^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z]=
-)+)*$
-> +    deprecated: true
-> +
-> +  riscv,isa-base:
-> +    description:
-> +      The base ISA implemented by this hart, as described by the =
-20191213
-> +      version of the unprivileged ISA specification.
-> +    enum:
-> +      - rv32i
-> +      - rv64i
-> +
-> +  riscv,isa-extensions:
-> +    $ref: /schemas/types.yaml#/definitions/string-array
-> +    minItems: 1
-> +    description: Extensions supported by the hart.
-> +    items:
-> +      anyOf:
-> +        # single letter extensions, in canonical order
-> +        - const: i
-> +          description: |
-> +            The base integer instruction set, as ratified in the =
-20191213
-> +            version of the unprivileged ISA specification, with the =
-exception of
-> +            counter access.
-> +            Counter access was removed after the ratification of the =
-20191213
-> +            version of the unprivileged specification and shunted =
-into the
-> +            Zicntr and Zihpm extensions.
-> +
-> +        - const: m
-> +          description:
-> +            The standard M extension for integer multiplication and =
-division, as
-> +            ratified in the 20191213 version of the unprivileged ISA
-> +            specification.
-> +
-> +        - const: a
-> +          description:
-> +            The standard A extension for atomic instructions, as =
-ratified in the
-> +            20191213 version of the unprivileged ISA specification.
-> +
-> +        - const: f
-> +          description:
-> +            The standard F extension for single-precision floating =
-point, as
-> +            ratified in the 20191213 version of the unprivileged ISA
-> +            specification.
-> +
-> +        - const: d
-> +          description:
-> +            The standard D extension for double-precision =
-floating-point, as
-> +            ratified in the 20191213 version of the unprivileged ISA
-> +            specification.
-> +
-> +        - const: q
-> +          description:
-> +            The standard Q extension for quad-precision =
-floating-point, as
-> +            ratified in the 20191213 version of the unprivileged ISA
-> +            specification.
-> +
-> +        - const: c
-> +          description:
-> +            The standard C extension for compressed instructions, as =
-ratified in
-> +            the 20191213 version of the unprivileged ISA =
-specification.
-> +
-> +        - const: v
-> +          description:
-> +            The standard V extension for vector operations, as =
-ratified
-> +            in-and-around commit 7a6c8ae ("Fix text that describes =
-vfmv.v.f
-> +            encoding") of the riscv-v-spec.
-> +
-> +        - const: h
-> +          description:
-> +            The standard H extension for hypervisors as ratified in =
-the 20191213
-> +            version of the privileged ISA specification.
-> +
-> +        # multi-letter extensions, sorted alphanumerically
-> +        - const: smaia
-> +          description: |
-> +            The standard Smaia supervisor-level extension for the =
-advanced
-> +            interrupt architecture for machine-mode-visible csr and =
-behavioural
-> +            changes to interrupts as frozen at commit ccbddab ("Merge =
-pull
-> +            request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
-> +
-> +        - const: ssaia
-> +          description: |
-> +            The standard Ssaia supervisor-level extension for the =
-advanced
-> +            interrupt architecture for supervisor-mode-visible csr =
-and
-> +            behavioural changes to interrupts as frozen at commit =
-ccbddab
-> +            ("Merge pull request #42 from riscv/jhauser-2023-RC4") of =
-riscv-aia.
-> +
-> +        - const: sscofpmf
-> +          description: |
-> +            The standard Sscofpmf supervisor-level extension for =
-count overflow
-> +            and mode-based filtering as ratified at commit 01d1df0 =
-("Add ability
-> +            to manually trigger workflow. (#2)") of =
-riscv-count-overflow.
-> +
-> +        - const: sstc
-> +          description: |
-> +            The standard Sstc supervisor-level extension for time =
-compare as
-> +            ratified at commit 3f9ed34 ("Add ability to manually =
-trigger
-> +            workflow. (#2)") of riscv-time-compare.
-> +
-> +        - const: svinval
-> +          description:
-> +            The standard Svinval supervisor-level extension for =
-fine-grained
-> +            address-translation cache invalidation as ratified in the =
-20191213
-> +            version of the privileged ISA specification.
-> +
-> +        - const: svnapot
-> +          description:
-> +            The standard Svnapot supervisor-level extensions for =
-napot
-> +            translation contiguity as ratified in the 20191213 =
-version of the
-> +            privileged ISA specification.
-> +
-> +        - const: svpbmt
-> +          description:
-> +            The standard Svpbmt supervisor-level extensions for =
-page-based
-> +            memory types as ratified in the 20191213 version of the =
-privileged
-> +            ISA specification.
-> +
-> +        - const: zba
-> +          description: |
-> +            The standard Zba bit-manipulation extension for address =
-generation
-> +            acceleration instructions as ratified at commit 6d33919 =
-("Merge pull
-> +            request #158 from hirooih/clmul-fix-loop-end-condition") =
-of
-> +            riscv-bitmanip.
-> +
-> +        - const: zbb
-> +          description: |
-> +            The standard Zbb bit-manipulation extension for basic =
-bit-manipulation
-> +            as ratified at commit 6d33919 ("Merge pull request #158 =
-from
-> +            hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
-> +
-> +        - const: zbc
-> +          description: |
-> +            The standard Zbc bit-manipulation extension for =
-carry-less
-> +            multiplication as ratified at commit 6d33919 ("Merge pull =
-request
-> +            #158 from hirooih/clmul-fix-loop-end-condition") of =
-riscv-bitmanip.
-> +
-> +        - const: zbs
-> +          description: |
-> +            The standard Zbs bit-manipulation extension for =
-single-bit
-> +            instructions as ratified at commit 6d33919 ("Merge pull =
-request #158
-> +            from hirooih/clmul-fix-loop-end-condition") of =
-riscv-bitmanip.
-> +
-> +        - const: zicbom
-> +          description:
-> +            The standard Zicbom extension for base cache management =
-operations as
-> +            ratified in commit 3dd606f ("Create cmobase-v1.0.pdf") of =
-riscv-CMOs.
-> +
-> +        - const: zicbop
-> +          description:
-> +            The standard Zicbop extension for cache-block prefetch =
-instructions
-> +            as ratified in commit 3dd606f ("Create cmobase-v1.0.pdf") =
-of
-> +            riscv-CMOs.
-> +
-> +        - const: zicboz
-> +          description:
-> +            The standard Zicboz extension for cache-block zeroing as =
-ratified
-> +            in commit 3dd606f ("Create cmobase-v1.0.pdf") of =
-riscv-CMOs.
-> +
-> +        - const: zicntr
-> +          description:
-> +            The standard Zicntr extension for base counters and =
-timers, as
-> +            ratified in the 20191213 version of the unprivileged ISA
-> +            specification.
-> +
-> +        - const: zicsr
-> +          description:
-> +            The standard Zicsr extension for control and status =
-register
-> +            instructions, as ratified in the 20191213 version of the
-> +            unprivileged ISA specification.
-> +
-> +        - const: zifencei
-> +          description:
-> +            The standard Zifencei extension for instruction-fetch =
-fence, as
-> +            ratified in the 20191213 version of the unprivileged ISA
-> +            specification.
-> +
-> +        - const: zihintpause
-> +          description:
-> +            The standard Zihintpause extension for pause hints, as =
-ratified in
-> +            commit d8ab5c7 ("Zihintpause is ratified") of the =
-riscv-isa-manual.
-> +
-> +        - const: zihpm
-> +          description:
-> +            The standard Zihpm extension for hardware performance =
-counters, as
-> +            ratified in the 20191213 version of the unprivileged ISA
-> +            specification.
-> +
-> +        - const: ztso
-> +          description:
-> +            The standard Ztso extension for total store ordering, as =
-ratified
-> +            in commit 2e5236 ("Ztso is now ratified.") of the
-> +            riscv-isa-manual.
-> +
-> +additionalProperties: true
-> +...
-> --=20
-> 2.40.1
->=20
+     The PCI endpoint device such as Xilinx Alveo PCI card maps the register
+     spaces from multiple hardware peripherals to its PCI BAR. Normally,
+     the PCI core discovers devices and BARs using the PCI enumeration 
+process.
+     There is no infrastructure to discover the hardware peripherals 
+that are
+     present in a PCI device, and which can be accessed through the PCI 
+BARs.
+
+     Apparently, the device tree framework requires a device tree node 
+for the
+     PCI device. Thus, it can generate the device tree nodes for hardware
+     peripherals underneath. Because PCI is self discoverable bus, there 
+might
+     not be a device tree node created for PCI devices. Furthermore, if 
+the PCI
+     device is hot pluggable, when it is plugged in, the device tree 
+nodes for
+     its parent bridges are required. Add support to generate device 
+tree node
+     for PCI bridges.
+
+     Added an of_pci_make_dev_node() interface that can be used to create
+     device tree node for PCI devices.
+
+     Added a PCI_DYNAMIC_OF_NODES config option. When the option is 
+turned on,
+     the kernel will generate device tree nodes for PCI bridges 
+unconditionally.
+
+     Initially, the basic properties are added for the dynamically generated
+     device tree nodes which include #address-cells, #size-cells, 
+device_type,
+     compatible, ranges, reg.
+
+>
+>> +config PCI_DYNAMIC_OF_NODES
+>> +	bool "Create Devicetree nodes for PCI devices"
+>> +	depends on OF
+>> +	select OF_DYNAMIC
+>> +	help
+>> +	  This option enables support for generating device tree nodes for some
+>> +	  PCI devices. Thus, the driver of this kind can load and overlay
+>> +	  flattened device tree for its downstream devices.
+>> +
+>> +	  Once this option is selected, the device tree nodes will be generated
+>> +	  for all PCI bridges.
+> Is there a convention for using "devicetree" vs "device tree"?  The
+> help message uses both and it would be nice to only use one or the
+> other.
+Ok. Will use "device tree".
+>
+>> @@ -501,8 +501,10 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
+>>   		 * to rely on this function (you ship a firmware that doesn't
+>>   		 * create device nodes for all PCI devices).
+>>   		 */
+>> -		if (ppnode)
+>> +		if (ppnode && of_property_present(ppnode, "interrupt-map"))
+> Maybe this deserves a comment?  The connection between "interrupt-map"
+> and the rest of this patch isn't obvious to me.
+>
+> Also, it looks like this happens for *everybody*, regardless of
+> PCI_DYNAMIC_OF_NODES, which seems a little suspect.  If it's an
+> unrelated bug fix it should be a different patch.
+
+This is not a bug fix. The check will distinguish between device tree 
+nodes automatically created for pci bridges by this patch with those 
+created by a DT based system. With this patch, device tree nodes are 
+created for pci bridges, thus ppnode here will be non-zero and we will 
+break out of the loop. In order to still use 
+pci_swizzle_interrupt_pin(), checking “interrupt-map” for ppnode is 
+added here.
+
+
+After thinking about this more, using “interrupt-map” property may not 
+be correct for the cases where ppnode is not dynamically generated and 
+it does not have “interrupt-map”. So, I would introduce a new property 
+“dynamic” for pci bridge nodes generated dynamically. And change the 
+code to: if (ppnode && of_property_present(ppnode, "dynamic")).
+
+
+Does this make sense?
+>
+>>   			break;
+>> +		else
+>> +			ppnode = NULL;
+>> +void of_pci_make_dev_node(struct pci_dev *pdev)
+>> +{
+>> +	struct device_node *ppnode, *np = NULL;
+>> +	const char *pci_type = "dev";
+>> +	struct of_changeset *cset;
+>> +	const char *name;
+>> +	int ret;
+>> +
+>> +	/*
+>> +	 * If there is already a device tree node linked to this device,
+>> +	 * return immediately.
+>> +	 */
+>> +	if (pci_device_to_OF_node(pdev))
+>> +		return;
+>> +
+>> +	/* Check if there is device tree node for parent device */
+>> +	if (!pdev->bus->self)
+>> +		ppnode = pdev->bus->dev.of_node;
+>> +	else
+>> +		ppnode = pdev->bus->self->dev.of_node;
+>> +	if (!ppnode)
+>> +		return;
+>> +
+>> +	if (pci_is_bridge(pdev))
+>> +		pci_type = "pci";
+> Initialize pci_type = "dev" here instead of way up top:
+>
+>    if (pci_is_bridge(pdev))
+>      pci_type = "pci";
+>    else
+>      pci_type = "dev";
+sure.
+>
+>> +	name = kasprintf(GFP_KERNEL, "%s@%x,%x", pci_type,
+>> +			 PCI_SLOT(pdev->devfn), PCI_FUNC(pdev->devfn));
+>> +static int of_pci_prop_ranges(struct pci_dev *pdev, struct of_changeset *ocs,
+>> +			      struct device_node *np)
+>> +{
+>> +	struct of_pci_range *rp;
+>> +	struct resource *res;
+>> +	int i = 0, j, ret;
+>> +	u32 flags, num;
+>> +	u64 val64;
+>> +
+>> +	if (pci_is_bridge(pdev)) {
+>> +		num = PCI_BRIDGE_RESOURCE_NUM;
+>> +		res = &pdev->resource[PCI_BRIDGE_RESOURCES];
+>> +	} else {
+>> +		num = PCI_STD_NUM_BARS;
+>> +		res = &pdev->resource[PCI_STD_RESOURCES];
+>> +	}
+>> +
+>> +	rp = kcalloc(num, sizeof(*rp), GFP_KERNEL);
+>> +	if (!rp)
+>> +		return -ENOMEM;
+>> +
+>> +	for (j = 0; j < num; j++) {
+> Initialize i = 0 here so it's connected with the use:
+>
+>    for (i = 0, j = 0; j < num; ...)
+ok.
+>
+>> +		if (!resource_size(&res[j]))
+>> +			continue;
+>> +
+>> +		if (of_pci_get_addr_flags(&res[j], &flags))
+>> +			continue;
+>> +
+>> +		val64 = res[j].start;
+>> +		of_pci_set_address(pdev, rp[i].parent_addr, val64, 0, flags,
+>> +				   false);
+>> +		if (pci_is_bridge(pdev)) {
+>> +			memcpy(rp[i].child_addr, rp[i].parent_addr,
+>> +			       sizeof(rp[i].child_addr));
+>> +		} else {
+>> +			/*
+>> +			 * For endpoint device, the lower 64-bits of child
+>> +			 * address is always zero.
+> For the non-OF folks (like me), can you say what the semantics of
+> parent_addr vs child_addr are?  I suppose maybe parent_addr is an
+> address on the primary side of a bridge and child_addr is the
+> corresponding address on the secondary side?
+>
+> And PCI bridges don't perform address translation, so they are
+> identical?
+I will add more comments here.
+>
+>> +			 */
+>> +			rp[i].child_addr[0] = j;
+>> +		}
+>> +int of_pci_add_properties(struct pci_dev *pdev, struct of_changeset *ocs,
+>> +			  struct device_node *np)
+>> +{
+>> +	int ret = 0;
+>> +
+>> +	if (pci_is_bridge(pdev)) {
+>> +		ret |= of_changeset_add_prop_string(ocs, np, "device_type",
+>> +						    "pci");
+>> +	}
+>> +
+>> +	ret |= of_pci_prop_ranges(pdev, ocs, np);
+>> +	ret |= of_changeset_add_prop_u32(ocs, np, "#address-cells",
+>> +					 OF_PCI_ADDRESS_CELLS);
+>> +	ret |= of_changeset_add_prop_u32(ocs, np, "#size-cells",
+>> +					 OF_PCI_SIZE_CELLS);
+>> +	ret |= of_pci_prop_reg(pdev, ocs, np);
+>> +	ret |= of_pci_prop_compatible(pdev, ocs, np);
+>> +
+>> +	/*
+>> +	 * The added properties will be released when the
+>> +	 * changeset is destroyed.
+>> +	 */
+> I don't think it's meaningful to OR together the "negative error
+> values" returned by all these functions.  Presumably those are things
+> like -EINVAL, -ENOMEM, etc.  ORing them together is admittedly
+> non-zero, but yields nonsense.
+ok. I will return for each failure.
+>
+>> +	return ret;
+>> +static inline void
+>> +of_pci_make_dev_node(struct pci_dev *pdev)
+>> +{
+>> +}
+>> +
+>> +static inline void
+>> +of_pci_remove_node(struct pci_dev *pdev)
+>> +{
+>> +}
+> Pull these functions all onto one line, like other similar stubs in
+> this file.
+Sure.
+>
+>> +#endif /* CONFIG_PCI_DYNAMIC_OF_NODES */
+> Unnecessary comment since this is all 10 lines.
+
+Will remove it.
+
+Thanks,
+
+Lizhi
 
