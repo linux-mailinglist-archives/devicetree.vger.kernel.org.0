@@ -2,161 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 16EEE73E25C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:43:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C787573E295
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbjFZOns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 10:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52670 "EHLO
+        id S230061AbjFZO4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 10:56:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229749AbjFZOnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:43:45 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73564E7E
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:43:43 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-668704a5b5bso3152536b3a.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:43:43 -0700 (PDT)
+        with ESMTP id S229658AbjFZO4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:56:52 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D209BBB
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:56:50 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fb5bcb9a28so1900920e87.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:56:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1687790623; x=1690382623;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=hLwVC7ihwJgCLNAPdbYZ1bRYjS7hN3YK9btRuGB162w=;
-        b=OiF+mqIEDLR+vsRfE9GqbFFYC38vHP5P012nTnSj3OP2PidFhBwtflPE0+0txPNHmv
-         LhnKSwTEMGSiV+A9BdWZ2tgdTmVjAF7Wr6K99AjtPjLcCBCsurGzM9Qzw6fdbFN+32hd
-         GgzIm71SA9INcIBFB8pHtvzScCYKqm7Fwmz6H97CIMM6UlJZsPJM+8nnZZep+0yYF4Mn
-         3eC5v6pUhKVptMWQd+jtB5r4MFz6vMNmOe2sDdeP6EZNegvTloNYDfYoo18as4K0MaER
-         YstNBClDRhUT7pqrLtA8nwt2SH3iDD3AjL6NZQQYfAhKFTDG9FvKVpqM2vuSkWB06gKz
-         BM6A==
+        d=linaro.org; s=google; t=1687791409; x=1690383409;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=27Hbm1nSTxidmaHo4Rsegreg1V1tH8Gk8PNfLl0C8PA=;
+        b=yP0c98lED55xbAKz8zbKU1ATE3K32QLBopwmRpSh8g1Y1Ojq8YClIoGm4+vYsfDFq8
+         ggIT1Qu2kJ0+KUNB0Me+LyObyRutbVBuRbfZXe1Jguah+T60OAoQWMA0O6w6HMP8HuU+
+         DGnxXZ2h1qqG4TCTgMeekRp0ORKF+L76Cskmrf3OLXIVoscwkY5hS4B0KrVo1euF3OJL
+         yH/VPdDAuhlD6fkNmMvX5xUSXioRpTjxEi7z/0ZwBJ2M8yEywwhWKdyE0ef7nsxE72lJ
+         C1dsPkqMDgcfrrjRJpVKxEnIMuFpI9EKvfl2KtTcoomhOyEv831f+hcbGqd/gC3k1XDp
+         rqLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687790623; x=1690382623;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=hLwVC7ihwJgCLNAPdbYZ1bRYjS7hN3YK9btRuGB162w=;
-        b=QxcICAsdJFUf1gFlpW2qY0x28djAV6ff6Ar5uIQ6MviqgKvHfRtTxQuB1dtRPCMv9n
-         5AHcOgFHbXybcguu6evvMTxa6+K+bsqRiW/PBkMLyDZMYhyOH9NDl8ZKvJ+AU/NkS7KZ
-         VGRFHys3jI5eD1+rEJx3pIIoK7Ue5JJm9CMGmsHc6lQAipHatrGOQpoRT82m6LmB6+ww
-         tMaN47OKqUH9H3Cwovk2IS/YfsYDYxmsqS4/wt9ghoIBKkTa06KtOiMuFJGAy+6snIfk
-         KlsTzU8Wn75gdX+gyig5iiOaxBIxOy3/gpwF+QKrDDxq8D+xTpOR3wOGqB8S8LMJ523r
-         ey9Q==
-X-Gm-Message-State: AC+VfDzX74Tn2h86l78K+o752lJqGZ3EATEZkFSAROln3OUQn1PcW7Ca
-        x1+ebsrHibY3d15J9V2vDNjC5w==
-X-Google-Smtp-Source: ACHHUZ7ozozA+9/vM7RpuhtbNja+Yppkp8D7Oz2+QNA1Rr+8637hn1QfzKDpsKeKamfqiVtfb83iAg==
-X-Received: by 2002:a05:6a00:10d5:b0:666:e42c:d5fb with SMTP id d21-20020a056a0010d500b00666e42cd5fbmr32869624pfu.32.1687790622785;
-        Mon, 26 Jun 2023 07:43:42 -0700 (PDT)
-Received: from localhost ([135.180.227.0])
-        by smtp.gmail.com with ESMTPSA id d6-20020aa78146000000b0066145d63b1asm3898769pfn.138.2023.06.26.07.43.42
+        d=1e100.net; s=20221208; t=1687791409; x=1690383409;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=27Hbm1nSTxidmaHo4Rsegreg1V1tH8Gk8PNfLl0C8PA=;
+        b=AvVi1iRalGBOpUt2JJonC049OxKoKpJ/nkOV02oFtImXEJnnCzgjeJFUpg0Dcy8i6J
+         ajaOnd3p7yPXsBL6LD7WTjZmP3JAlY8cJND+hFDHWi4stERhs0Hq3JDIw6cZxwJur/Nx
+         npVbFNTlol8pwAO3mLjDNzFl1m88iIzghmlXElgXug24eVZwiKxZJm1K2XBBhZOGkVEe
+         GIclnXRuU2vTpL+sQxmJte07U8Ka4UMbUIXoDMgCxAT3iPkQUhtHLgpDXeAgQ85hO3i3
+         LnhDud0s+IOY3h9kjPw/ocQDMfEJwW0bYzGB39tVDa72YHTvsjzE3DQn1k9lJ+xt3teL
+         265A==
+X-Gm-Message-State: AC+VfDz5gBvPiYpjjrZXPx+CWsxBtdzfPIx4p2q3vW3rDE7ygnCiQFqC
+        yQVffSQYveE01UyW0t+S8kuC8w==
+X-Google-Smtp-Source: ACHHUZ6P7QfhEqbtbj9aseFYQVWHwwnAwptFktv1oZjineiJeroop5wpb3fzQZhk2mVjtmuWOBq71Q==
+X-Received: by 2002:a05:6512:3b95:b0:4f9:5d2a:e0f5 with SMTP id g21-20020a0565123b9500b004f95d2ae0f5mr12270695lfv.19.1687791409014;
+        Mon, 26 Jun 2023 07:56:49 -0700 (PDT)
+Received: from krzk-bin.. ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id w10-20020a1cf60a000000b003f9bd9e3226sm7945737wmc.7.2023.06.26.07.56.47
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 07:43:42 -0700 (PDT)
-Date:   Mon, 26 Jun 2023 07:43:42 -0700 (PDT)
-X-Google-Original-Date: Mon, 26 Jun 2023 07:43:04 PDT (-0700)
-Subject:     Re: [PATCH V1 1/3] Revert "RISC-V: mark hibernation as nonportable"
-In-Reply-To: <20230626-mousy-latter-ad8088de089f@wendy>
-CC:     Conor Dooley <conor@kernel.org>, suagrfillet@gmail.com,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com,
-        ajones@ventanamicro.com, alexghiti@rivosinc.com,
-        mpe@ellerman.id.au, Arnd Bergmann <arnd@arndb.de>, rppt@kernel.org,
-        samuel@sholland.org, panqinglin2020@iscas.ac.cn,
-        anup@brainfault.org, xianting.tian@linux.alibaba.com,
-        anshuman.khandual@arm.com, heiko@sntech.de,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Message-ID: <mhng-f018e5e3-61f5-47ee-a2ae-95309bbdb208@palmer-ri-x1c9>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
+        Mon, 26 Jun 2023 07:56:48 -0700 (PDT)
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Subject: [PATCH] dt-bindings: dma: qcom,bam: require one of control methods
+Date:   Mon, 26 Jun 2023 16:56:45 +0200
+Message-Id: <20230626145645.646136-1-krzysztof.kozlowski@linaro.org>
+X-Mailer: git-send-email 2.34.1
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 26 Jun 2023 06:34:43 PDT (-0700), Conor Dooley wrote:
-> On Sun, Jun 25, 2023 at 03:36:06PM -0700, Palmer Dabbelt wrote:
->> On Sun, 25 Jun 2023 15:15:14 PDT (-0700), Conor Dooley wrote:
->> > On Sun, Jun 25, 2023 at 11:09:21PM +0800, Song Shuai wrote:
->> > > 在 2023/6/25 22:18, Conor Dooley 写道:
->> > > > On Sun, Jun 25, 2023 at 10:09:29PM +0800, Song Shuai wrote:
->> > > > > This reverts commit ed309ce522185583b163bd0c74f0d9f299fe1826.
->> > > > > > > With the commit 3335068f8721 ("riscv: Use PUD/P4D/PGD pages
->> > > for the
->> > > > > linear mapping") reverted, the MIN_MEMBLOCK_ADDR points the kernel
->> > > > > load address which was placed at a PMD boundary.
->> > > > > > And firmware always
->> > > > > correctly mark resident memory, or memory protected with PMP as
->> > > > > per the devicetree specification and/or the UEFI specification.
->> > > > > But this is not true? The versions of OpenSBI that you mention
->> > > in your
->> > > > cover letter do not do this.
->> > > > Please explain.
->> > > >
->> > > 
->> > > At this time, OpenSbi [v0.8,v1.3) and edk2(RiscVVirt) indeed don't obey the
->> > > DT/UEFI spec. This statement is excerpted from "Reserved memory for resident
->> > > firmware" part from the upcoming riscv/boot.rst. It isn't accurate for now.
->> > > How about deleting this one?
->> > 
->> > It is incorrect, so it will need to be removed, yes.
->> > Unfortunately writing a doc does not fix the existing implementations :(
->> > 
->> > > Actually with 3335068f8721 reverted, the change of MIN_MEMBLOCK_ADDR can
->> > > avoid the mapping of firmware memory, I will make it clear in the next
->> > > version.
->> > 
->> > To be honest, I'd like to see this revert as the final commit in a
->> > series that deals with the problem by actually reserving the regions,
->> > rather than a set of reverts that go back to how we were.
->> > I was hoping that someone who cares about hibernation support would be
->> > interested in working on that - *cough* starfive *cough*, although maybe
->> > they just fixed their OpenSBI and moved on.
->> > If there were no volunteers, my intention was to add a firmware erratum
->> > that would probe the SBI implementation & version IDs, and add a firmware
->> > erratum that'd parse the DT for the offending regions and reserve them.
->> 
->> Is there any actual use case for hibernation on these boards?  Maybe it's
->> simpler to just add a "reserved regions actually work" sort of property and
->> then have new firmware set it -- that way we can avoid sorting through all
->> the old stuff nobody cares about and just get on with fixing the stuff
->> people use.
->
-> What is "old stuff nobody cares about"? The first version of OpenSBI with
-> the fix shipped only the other day, so effectively all current stuff has
-> this problem. Certainly everything shipping from vendors at the moment
-> has the problem, and probably whatever downstream, custom versions of
-> OpenSBI also have it.
+The BAM DMA resources can be controlled remotely (e.g. by trusted
+environment; needs qcom,powered-remotely or qcom,controlled-remotely
+properties) or locally.  In the latter case we need to provide its
+clock.
 
-Ya, so "old stuff" is everything -- but that's all already broken, so 
-nothing we can do about it.  IIUC there's nothing shipping that 
-functions correctly here, so it's just a matter of detecting everything 
-before the bug.
+Require one of methods of such control to properly validate DTS.
 
-> Also, the problem isn't just limited to hibernation apparently. I
-> think it was mentioned in the cover letter that according to Rob,
-> without being marked as no-map we could also see speculative access &
-> potentially some of the memory debugging stuff walking these regions.
+Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-We've got a bunch of other problems around speculative accesses to these 
-regions in M-mode, so we'll have to deal with it at some point anyway.
+diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+index c9c34f7cdf5b..a0af90ec86f1 100644
+--- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
++++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
+@@ -95,6 +95,15 @@ required:
+   - qcom,ee
+   - reg
+ 
++anyOf:
++  - required:
++      - qcom,powered-remotely
++  - required:
++      - qcom,controlled-remotely
++  - required:
++      - clocks
++      - clock-names
++
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.34.1
 
-> I'm not sure how you'd intend communicating "reserved regions actually
-> work", I figure you mean via DT?
-
-Somewhere in DT.  I hadn't thought about it a ton, just adding some 
-property that says "this doesn't have the bug" was roughly the idea.
-
-> I don't really see the benefit of adding a property for those who are
-> behaving, if we can detect the versions of the one relevant SBI
-> implementation that are broken at runtime. DT hat on, even less so.
-> Perhaps I am missing your point, and there's another angle (like trying
-> to per firmware code)?
-
-If it's easy to figure out which versions are broken that seems fine to 
-me.  My worry was just that's hard to do (folks forking OpenSBI) and it 
-might be easier to just 
