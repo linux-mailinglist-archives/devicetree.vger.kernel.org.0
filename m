@@ -2,157 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D301373E21F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E23373E24E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:39:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbjFZO0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 10:26:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45272 "EHLO
+        id S230228AbjFZOjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 10:39:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51186 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230073AbjFZO0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:26:34 -0400
-Received: from m-r2.th.seeweb.it (m-r2.th.seeweb.it [IPv6:2001:4b7a:2000:18::171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8758810E7
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:26:29 -0700 (PDT)
-Received: from SoMainline.org (82-72-63-87.cable.dynamic.v4.ziggo.nl [82.72.63.87])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id DDFC63F494;
-        Mon, 26 Jun 2023 16:26:25 +0200 (CEST)
-Date:   Mon, 26 Jun 2023 16:26:24 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S230290AbjFZOjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:39:44 -0400
+Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63B0910CA
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:39:42 -0700 (PDT)
+Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-313f3a6db22so896481f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687790381; x=1690382381;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=GbmG/0Wb9nQ6z/PJEyshEPOBYP8Ve8ZuPqHoAlT0PBU=;
+        b=v+xGmGJ0qIKRU0aurzhYHzIhjNpseb32nFxtt0cVXyZgxRKLexvjA1I7WRCD30AJL5
+         Eh+qbIjAP4NQcnlNR1I/NzBsJKqid+podoDPCDocJl+LEfk/pJHXsu1L4EtQQNKsx5dP
+         fef50DtyMYVYCyHso5OggdKwQmH6wr7etq++Nio8hL9QiYjg2gVJtWMqiO7yErYgevzf
+         8IKienQinE4jICssw7dY926yyBUebZc/1seLsWOtDpNlnlmAc6/i5uAzbdv+jtLbsHnA
+         hNiVcwkKf/6G4yupLdqBQJX93vw8ruAa85Bj++UM8ySsTwFkZPPROGk10fcd/nOaXpWw
+         /H4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687790381; x=1690382381;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=GbmG/0Wb9nQ6z/PJEyshEPOBYP8Ve8ZuPqHoAlT0PBU=;
+        b=Js00uvszTIG88HjCj5uMVAoVHDv2a8TG7fMlzDl82KFJPpSZsUpqc7gtAuC+RG3jJg
+         /AvBfMrpxPpUcY3b4xcpfjjDlg4kjQmc+PulPzjtQTYeSTMs5bkGzntMHTUpV9BrB4q1
+         xexgTNKYA4j4zaW6tYrCx8BaBsxRDazEX2Sy45UJp0f2vd9kvyIHqsblk7Wya8q6JAK1
+         xnzp1x3axFwsWFQuoThk5Tvpw3uublE41ytpfpk4XKrSojXT1cpmlzNbOAv9W/WyZrad
+         z9nCg5gFJNlftZrQlwKjVYuryOWNsU1Iwkoou5sn2VfpQPiOEP0SqB3+uz8uC4WJ9BLW
+         68Kw==
+X-Gm-Message-State: AC+VfDzCGqznMULkH2n8ALonCWqjWYsOKWFSF4MzXAR62THKlNVMdpzm
+        WJ9cyCLKgR1Xq68sazv+rZfjIzO07BZMzOFvbzN2nQ==
+X-Google-Smtp-Source: ACHHUZ5u0xLo84AQuU8IWtL8/XKYwsSCcaLqPaN0OzwE1PROPfhND29UAU7NVe45aBYE+KDJ8dq3Jw==
+X-Received: by 2002:a5d:4250:0:b0:311:170e:8d with SMTP id s16-20020a5d4250000000b00311170e008dmr23526468wrr.26.1687790380687;
+        Mon, 26 Jun 2023 07:39:40 -0700 (PDT)
+Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
+        by smtp.gmail.com with ESMTPSA id u14-20020adfdb8e000000b003112ab916cdsm7675793wri.73.2023.06.26.07.39.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jun 2023 07:39:40 -0700 (PDT)
+Date:   Mon, 26 Jun 2023 15:39:38 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Maximilian Weigand <mweigand2017@gmail.com>
+Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
+        Helge Deller <deller@gmx.de>, Pavel Machek <pavel@ucw.cz>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
-Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom,dispcc-sm6125: Require
- GCC PLL0 DIV clock
-Message-ID: <dp2ucgmql2jff52nbxti2hwjchtgjkbrwcgpx3p7ruodz7adnj@635pcqr6fv4x>
-References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
- <20230624-sm6125-dpu-v1-3-1d5a638cebf2@somainline.org>
- <c9681bce-efa8-9b79-4bf6-837dd6a2dc12@linaro.org>
- <edrftxqhywiaxvbonyh25cmubrg77y4dryqoy7id4ndan2lfa7@rhvcoavtg5vl>
- <f62d750e-da73-fece-c3de-0dac1fbb9827@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Maximilian Weigand <mweigand@mweigand.net>
+Subject: Re: [PATCH 1/3] backlight: lm3630a: add support for changing the
+ boost frequency
+Message-ID: <20230626143938.GC95170@aspen.lan>
+References: <20230602-lm3630a_boost_frequency-v1-0-076472036d1a@mweigand.net>
+ <20230602-lm3630a_boost_frequency-v1-1-076472036d1a@mweigand.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f62d750e-da73-fece-c3de-0dac1fbb9827@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+In-Reply-To: <20230602-lm3630a_boost_frequency-v1-1-076472036d1a@mweigand.net>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-06-26 11:43:39, Konrad Dybcio wrote:
-> On 25.06.2023 21:48, Marijn Suijten wrote:
-> > On 2023-06-24 03:45:02, Konrad Dybcio wrote:
-> >> On 24.06.2023 02:41, Marijn Suijten wrote:
-> >>> The "gcc_disp_gpll0_div_clk_src" clock is consumed by the driver, will
-> >>> be passed from DT, and should be required by the bindings.
-> >>>
-> >>> Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
-> >>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> >>> ---
-> >> Ideally, you'd stick it at the bottom of the list, as the items: order
-> >> is part of the ABI
-> > 
-> > This isn't an ABI break, as this driver nor its bindings require/declare
-> > a fixed order: they declare a relation between clocks and clock-names.
-> Bindings describe the ABI, drivers implement compliant code flow.
+On Wed, Jun 14, 2023 at 09:08:52PM +0200, Maximilian Weigand wrote:
+> From: Maximilian Weigand <mweigand@mweigand.net>
+>
+> The led driver supports changing the switching frequency of the boost
+> converter by two means: the base switching frequency can be changed from
+> 500 kHz to 1 MHz, and a frequency shift can be activated, leading to
+> switching frequencies of 560 kHz or 1.12 Mhz, respectively.
+>
+> Add this functionality to the led driver by introducing two dts entries
+> that control the boost frequency (500 kHz by default) and the frequency
+> shift (no shift by default).
+>
+> Signed-off-by: Maximilian Weigand <mweigand@mweigand.net>
 
-That is how bindings are supposed to be...  However typically the driver
-is written/ported first and then the bindings are simply created to
-reflect this, and sometimes (as is the case with this patch)
-incorrectly.
+Driver changes look ok (or at least will be when the DT bindings are
+finalized).
 
-That, together with a lack of DTS and known-working device with it
-(which is why I'm submitting driver+bindings+dts in one series now!)
-makes us shoot ourselves in the foot by locking everyone into an ABI
-that makes no sense.
+However... I think patches 1 and 2 of this series are in the wrong
+order. See #5 in
+https://docs.kernel.org/devicetree/bindings/submitting-patches.html
+for details.
 
-> > This orders the GCC clock just like other dispccs.  And the previous
-> > patch dropped the unused cfg_ahb_clk from the bindings, so all bets are
-> > off anyway.
-> Thinking about it again, the binding has not been consumed by any upstream
-> DT to date, so it should (tm) be fine to let it slide..
 
-Exactly, I hope/doubt anyone was already using these incomplete
-bindings.  And again: the ABI here is the name->phandle mapping, the
-order Does Not Matter™.  So I hope we can let it slide (otherwise the
-previous patch shouldd have been NAK'ed as well??)
-
-(Unless you are SM6115 which uses index-based mapping and does not
- define clock-names at all)
-
-- Marijn
-
-> Konrad
-> > 
-> > - Marijn
-> > 
-> >>
-> >> Konrad
-> >>>  Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml | 4 ++++
-> >>>  1 file changed, 4 insertions(+)
-> >>>
-> >>> diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
-> >>> index 2acf487d8a2f..11ec154503a3 100644
-> >>> --- a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
-> >>> +++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm6125.yaml
-> >>> @@ -23,6 +23,7 @@ properties:
-> >>>    clocks:
-> >>>      items:
-> >>>        - description: Board XO source
-> >>> +      - description: GPLL0 div source from GCC
-> >>>        - description: Byte clock from DSI PHY0
-> >>>        - description: Pixel clock from DSI PHY0
-> >>>        - description: Pixel clock from DSI PHY1
-> >>> @@ -32,6 +33,7 @@ properties:
-> >>>    clock-names:
-> >>>      items:
-> >>>        - const: bi_tcxo
-> >>> +      - const: gcc_disp_gpll0_div_clk_src
-> >>>        - const: dsi0_phy_pll_out_byteclk
-> >>>        - const: dsi0_phy_pll_out_dsiclk
-> >>>        - const: dsi1_phy_pll_out_dsiclk
-> >>> @@ -65,12 +67,14 @@ examples:
-> >>>        compatible = "qcom,sm6125-dispcc";
-> >>>        reg = <0x5f00000 0x20000>;
-> >>>        clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-> >>> +               <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>,
-> >>>                 <&dsi0_phy 0>,
-> >>>                 <&dsi0_phy 1>,
-> >>>                 <&dsi1_phy 1>,
-> >>>                 <&dp_phy 0>,
-> >>>                 <&dp_phy 1>;
-> >>>        clock-names = "bi_tcxo",
-> >>> +                    "gcc_disp_gpll0_div_clk_src",
-> >>>                      "dsi0_phy_pll_out_byteclk",
-> >>>                      "dsi0_phy_pll_out_dsiclk",
-> >>>                      "dsi1_phy_pll_out_dsiclk",
-> >>>
+Daniel.
