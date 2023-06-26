@@ -2,134 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3D6173DBFC
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 12:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C70C173DC07
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 12:09:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbjFZKDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 06:03:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51708 "EHLO
+        id S229649AbjFZKJJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 06:09:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52718 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjFZKD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 06:03:29 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2202CF3;
-        Mon, 26 Jun 2023 03:03:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1687773808; x=1719309808;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=ndQQSMrh9qi21D5rzuuijKcs6vOrnsiA7XIKSTAl9wU=;
-  b=IGhCvnrkG8ARZjh1VnD8f6l8UEMzcv4+t48fUUuHiXceWmRqcyBmei7X
-   x67N3n7OC/6O6DR9r48CyntgZBpsg5itZKv3EdMPZgedomSAyGne59tar
-   et1dOMI9L5kEQ2aXuL9wAxuGCvgiW9I5JqoLfN4o3MkHmDdscgxMfYiqV
-   f3a8bdHxDoaHCsI6fm1byE7Sl31jI410idZvH9IPaH7EsJ50z5kR/Wesv
-   oo0/al/EYoia3JpwFfVhn4YhyC+q7BWzeM2fh3TyYhWCNAJqd9mU9AcMB
-   bFo6rFTSPdjxP18VF0cuxPCAU4R2X+Iymv14fRM3uqKO/PxjXxiHBZ0YO
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; 
-   d="asc'?scan'208";a="217659769"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jun 2023 03:03:27 -0700
-Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
- chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 26 Jun 2023 03:03:25 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
- (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 26 Jun 2023 03:03:23 -0700
-Date:   Mon, 26 Jun 2023 11:02:55 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S229501AbjFZKJI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 06:09:08 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B10211C;
+        Mon, 26 Jun 2023 03:09:06 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35Q8KZVg002100;
+        Mon, 26 Jun 2023 10:09:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=eOpCYF6zAWuabH0/d/IYnQA8vhrFtttjs0v+cTd4l6Q=;
+ b=OqXxbCuCZkhW78nXztG6+xOR+hxlTM6vTXJSqZhTVvyI/cIBPTFX1nA6yIbR/plKTz8x
+ 7NKVvCO7o1aI57nx9lM2b9wZlfWLAhx3MKpSHqlMC0kloO5L9+jzjRmBZCOJ38hEp0Ib
+ DAS3ebQ29g81JfYDunI95zll9ZZlKATtvTRYSp4uGu/KKDKokqX6qajv3FG8BOMJecNV
+ 8EgN1OPBYMY8/dsgwhA7Ac2KtmfKO7yfhmClSIL43Zwa3zQT/QGsdaq/8QqLHX66nj6E
+ MOT8BpiWSgzr48f5LdMdj361DkIZL6MHRi52NqadGJTMtAzJ0pJwzEjN6e3cks2w6Lxm aw== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rdqgdbquk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Jun 2023 10:09:02 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35QA8xQ9015589
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Jun 2023 10:08:59 GMT
+Received: from [10.214.67.128] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 26 Jun
+ 2023 03:08:55 -0700
+Message-ID: <23a7f281-ccd3-a00e-0667-dd86673d2f9f@quicinc.com>
+Date:   Mon, 26 Jun 2023 15:38:51 +0530
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v4 1/6] dt-bindings: nvmem: sec-qfprom: Add bindings for
+ secure qfprom
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Lucas Tanure <tanure@linux.com>
-Subject: Re: [PATCH 0/2] Baisc devicetree support for Amlogic T7
-Message-ID: <20230626-viewless-marrow-17838c2172f6@wendy>
-References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ubNKkfHy8zvqeN3N"
-Content-Disposition: inline
-In-Reply-To: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20230623141806.13388-1-quic_kbajaj@quicinc.com>
+ <20230623141806.13388-2-quic_kbajaj@quicinc.com>
+ <cea67754-6bc0-f8ee-3cba-8713b10b0c69@linaro.org>
+ <d9cde55b-fc96-b024-8048-1de1fa1bd89e@quicinc.com>
+ <d0b6f2c9-8e85-a38b-e2b1-14f197ca1ea0@linaro.org>
+ <c8909dcb-143c-c2d7-513d-625e9ce00c0c@quicinc.com>
+ <9f9afa24-ecfc-2fb2-3d47-80c250fcb8fe@linaro.org>
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <9f9afa24-ecfc-2fb2-3d47-80c250fcb8fe@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: aBFTNpPV875pUutWXteeG-pEG8KJj_DS
+X-Proofpoint-GUID: aBFTNpPV875pUutWXteeG-pEG8KJj_DS
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-26_06,2023-06-22_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
+ suspectscore=0 phishscore=0 priorityscore=1501 impostorscore=0
+ lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=674 bulkscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306260090
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---ubNKkfHy8zvqeN3N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hey,
 
-On Mon, Jun 26, 2023 at 05:52:21PM +0800, Xianwei Zhao wrote:
-> T7 is an advanced application processor designed for smart display.
->=20
-> Add the new T7 SoC/board device tree bindings.
->=20
-> Add basic support for the T7 based Amlogic AN400 board, which describes
-> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
-> booting up into the serial console.
+On 6/26/2023 3:16 PM, Krzysztof Kozlowski wrote:
+> On 26/06/2023 11:02, Komal Bajaj wrote:
+>>
+>> On 6/26/2023 2:00 PM, Krzysztof Kozlowski wrote:
+>>> On 26/06/2023 10:22, Komal Bajaj wrote:
+>>>>>> +
+>>>>>> +allOf:
+>>>>>> +  - $ref: nvmem.yaml#
+>>>>>> +
+>>>>>> +properties:
+>>>>>> +  compatible:
+>>>>>> +    items:
+>>>>>> +      - enum:
+>>>>>> +          - qcom,qdu1000-sec-qfprom
+>>>>>> +      - const: qcom,sec-qfprom
+>>>>>> +
+>>>>>> +  reg:
+>>>>>> +    items:
+>>>>>> +      - description: The secure qfprom corrected region.
+>>>>>> +
+>>>>>> +  # Needed if any child nodes are present.
+>>>>>> +  "#address-cells":
+>>>>>> +    const: 1
+>>>>>> +  "#size-cells":
+>>>>>> +    const: 1
+>>>>> Drop both, they are not needed.
+>>>> I didn't get it. Can you please explain why these are not needed as this
+>>>> node will have child nodes which will use single value for address and size.
+>>> I suspect they are already defined. Do other bindings (for cases with
+>>> children) have them? If not, why here it would be different?
+>> Yes, I see there are bindings that has these properties, listed a few of
+>> them below -
+>>
+>> [1]
+>> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/nvmem/qcom,qfprom.yaml
+> Please work on current development. It's a bit of waste of time to
+> review old code...
 
-Lucas has already sent patches for the T7 SoC & is at v5:
-https://lore.kernel.org/linux-devicetree/20230623081242.109131-1-tanure@lin=
-ux.com/
+Okay sorry for that, will work on this.
 
-There's been a bit of discussion there, and there serial stuff in
-particular is different in his series (it doesn't use always-on for
-examples).
-Could you please go and take a look at his series?
+Thanks
+Komal
+>
+> https://lore.kernel.org/all/20230611140330.154222-16-srinivas.kandagatla@linaro.org/
+>
+>> [2]
+>> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/firmware/arm,scmi.yaml
+> That's not a nvmem provider.
+>
+>> [3]
+>> https://github.com/torvalds/linux/blob/master/Documentation/devicetree/bindings/timer/arm,arch_timer_mmio.yaml
+> That's not a nvmem provider.
+>
+>
+> Best regards,
+> Krzysztof
+>
 
-Cheers,
-Conor.
-
->=20
-> Xianwei Zhao (2):
->   dt-bindings: arm: amlogic: add T7 based AN400 bindings
->   arm64: dts: add support for T7 based Amlogic AN400
->=20
->  .../devicetree/bindings/arm/amlogic.yaml      |   6 +
->  arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  .../dts/amlogic/amlogic-t7-a311d2-an400.dts   |  30 ++++
->  arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 156 ++++++++++++++++++
->  4 files changed, 193 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.d=
-ts
->  create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
->=20
->=20
-> base-commit: 057889cb4244096ea5abcbe76ffd4d311c3078fe
-> --=20
-> 2.37.1
->=20
-
---ubNKkfHy8zvqeN3N
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJliTwAKCRB4tDGHoIJi
-0r3GAPwN8BOPsz32j+YhMZbfTzQJ27DXHYrrA6ARa465C0tCIQD7B7wRgd2djDnj
-rRtZKb8Mgt3O6Pi8KuvDXh9pRwgqfQE=
-=9w1Y
------END PGP SIGNATURE-----
-
---ubNKkfHy8zvqeN3N--
