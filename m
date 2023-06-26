@@ -2,82 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 14EF673DC4B
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 12:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D505173DC6C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 12:46:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230310AbjFZKcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 06:32:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59202 "EHLO
+        id S229586AbjFZKqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 06:46:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36810 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230200AbjFZKcR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 06:32:17 -0400
-Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E2A9E60
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 03:32:15 -0700 (PDT)
-Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f865f0e16cso3901041e87.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 03:32:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687775533; x=1690367533;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=lNqCqk1p3DEAINdEzhEM0YGD2kICxrffp8EeTtdvows=;
-        b=lebYaEpJJsjMdw+fYTpvibU4apgZjTpqT73VB5kWTAlwSkNmL5pQhaK7OoXfjpqKp1
-         3TGRxMu8VVwmOErGfpGMLkNJ0uigSLvDt8fiQ34/6BPzo4l8ypBnse43eBnA3L2nQ3IG
-         z3af6ILONaZROVtX/EZ3mGOUBtYaJnIsqM2vjPawmAwX+l5fBv1iwqvcRIyx7hbU1lwK
-         QYbKnYp3AolNGtmYnLjIUA4PnhZ8pmz4b9cEuM0dIjwgQUqe8PdHmwjT84nhyLC0tZDR
-         AkfN1EJkua+HNegYY2IawTaMZoo3i9o6I3IO0zJI2vxjfHjKP9PAvS2skY1g9B7ALktN
-         Ayaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687775533; x=1690367533;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lNqCqk1p3DEAINdEzhEM0YGD2kICxrffp8EeTtdvows=;
-        b=bekkpy9B23XUv9aIVDNThn74O1vD15Syo6hynpWRMg+MP5A5EIcu1N6p/R9quBHBJZ
-         mCpRghp70MYy3oQIDFPgUgVQfCbCMEZP/iHoQns6i7/QnJXBspCPLh289g3p3WUNbizT
-         qHS6kh3rxPzAfL1XxOn5ngORoMJiyxOsu0R6fJswUel4p9pYYThfTZ81Hwj5DCMXhPVJ
-         kW1JHQAy7OlRDS91SMIg2MVBqQmDA3b9H0jtfTxR1S87UjT1mtx8ZvvEjfjQwdigQu6F
-         hR34LhJ+uc5yYkBjOQ6+gi8TIvt1RtmMJkZ7Wha8qX0+C4g4zcDylTODoCDrEGZ06SNq
-         Hjaw==
-X-Gm-Message-State: AC+VfDyHrA6NvzrxUeq5/2xKJgQmU8RI3L8nLJ97EwQRVHkZRyjmY2pv
-        fiOqr3mbhmk4AStrbMUM+55O1Q==
-X-Google-Smtp-Source: ACHHUZ5gMc6L10S73k98RJoWSJ8xS8aCYA639/iTopFJJkRLsdbNyN10KONPMofU6K16KISAsYYECw==
-X-Received: by 2002:a05:6512:b0e:b0:4f8:75cf:fdd7 with SMTP id w14-20020a0565120b0e00b004f875cffdd7mr12224933lfu.22.1687775532708;
-        Mon, 26 Jun 2023 03:32:12 -0700 (PDT)
-Received: from [192.168.1.101] (abyk179.neoplus.adsl.tpnet.pl. [83.9.30.179])
-        by smtp.gmail.com with ESMTPSA id c26-20020ac2531a000000b004f13ca69dc8sm1041655lfh.72.2023.06.26.03.32.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 03:32:12 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 26 Jun 2023 12:32:08 +0200
-Subject: [PATCH v2 3/3] power: supply: Introduce MM8013 fuel gauge driver
+        with ESMTP id S229569AbjFZKqf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 06:46:35 -0400
+Received: from APC01-SG2-obe.outbound.protection.outlook.com (mail-sgaapc01hn2220.outbound.protection.outlook.com [52.100.164.220])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E51E60;
+        Mon, 26 Jun 2023 03:46:32 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=lRLzQYRIeH8R1i0K0AKmxecqHHAMxlDPFIe82meHA+RRF7X71RlwbyWcUguDLEErS1HKJWJvmXDY6UFa73l228bzC7GwZVgHKnJXnCbeo5HgfdY3XdgO6EnzrQc/F1ROqjuSBHKZlM7hcQBzkRtkoxb9vY4VaX99E5b4X24S7XaqkQEW1t7XSnwY9C7VvG2rxdYaDZS5BhJCuuAm66NXiyYityPPU04aLTZdb3dswaQabB9dYnRVsC8ZzZukKD/OSddrEdDpA6dEgTXNGsCEhDT8oEYfYJAJyAOKzuYH6dD+CfmgCJ/A8h9R/e7FLuJfgSh6+koV18wQ6Rv98uybbg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Z5ej0lptjdV2CRtZEzkXS+Gb9EZSadzOdB/EyIUWQ6U=;
+ b=Ko/tMeW8MSflKnYpbvUul0npTKktCW57KjDzXWWTZijyL8wFVpSedhLDJ/9y4OnM4BYpTvPK+MLz/6Sm+ve9j7maXacQ4k8dalDhJ4EZPE0mIOJdAQcTaHedjZHMqwmY22eFXPYCKhvfQes8SmU/3nmq932Gy1NmG0T21q/UzkFDPsG3ORUeySMn3oxch6ZpKD4NUe2QzR5isai3d5Alpo2VjX+AuhSi4QF/xo2bYOByQf6dNKJ4ZhpnzcuQkboQ3Y8blsw4ERYfLVxGzCYzQxg74t7ioLlo9vSryv/e8uMYMniNamz5bi5W9H3mB+/d08c8ppn9WGEAakJEfiRdjA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
+ dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
+ header.from=nuvoton.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Z5ej0lptjdV2CRtZEzkXS+Gb9EZSadzOdB/EyIUWQ6U=;
+ b=WS9ZFLefmgWJlpzsYZ6uXRIEwhqBKYN0zUo9HgZw2mgZuMrqzms1uYpZ5cbVIJJaa6Og2nMxDdUIKjQE0J/j2V0Zly646Jh9rANpOLe5j7S16MM6Bc+n3CmNgV1A9JHsznp0gF8MbC7Nu4fyZh5tzKrgKHVKPAcGuwCCXKz8Shc=
+Received: from TY2PR02CA0006.apcprd02.prod.outlook.com (2603:1096:404:56::18)
+ by SEZPR03MB7615.apcprd03.prod.outlook.com (2603:1096:101:12c::10) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Mon, 26 Jun
+ 2023 10:46:25 +0000
+Received: from TYZAPC01FT044.eop-APC01.prod.protection.outlook.com
+ (2603:1096:404:56:cafe::89) by TY2PR02CA0006.outlook.office365.com
+ (2603:1096:404:56::18) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.33 via Frontend
+ Transport; Mon, 26 Jun 2023 10:46:25 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
+ smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nuvoton.com;
+Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
+ 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
+ client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
+Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
+ TYZAPC01FT044.mail.protection.outlook.com (10.118.152.91) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.20.6544.15 via Frontend Transport; Mon, 26 Jun 2023 10:46:24 +0000
+Received: from NTHCCAS03.nuvoton.com (10.1.20.28) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Mon, 26
+ Jun 2023 18:46:23 +0800
+Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCCAS03.nuvoton.com
+ (10.1.20.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1847.3; Mon, 26 Jun
+ 2023 18:46:23 +0800
+Received: from localhost.localdomain (10.11.36.27) by NTHCCAS04.nuvoton.com
+ (10.1.8.29) with Microsoft SMTP Server id 15.1.2176.2 via Frontend Transport;
+ Mon, 26 Jun 2023 18:46:23 +0800
+From:   Seven Lee <wtli@nuvoton.com>
+To:     <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <YHCHuang@nuvoton.com>,
+        <KCHSU0@nuvoton.com>, <CTLIN0@nuvoton.com>, <WTLI@nuvoton.com>,
+        <SJLIN0@nuvoton.com>, <scott6986@gmail.com>,
+        <supercraig0719@gmail.com>, <dardar923@gmail.com>,
+        Seven Lee <wtli@nuvoton.com>
+Subject: [PATCH] ASoC: dt-bindings: nau8821: Convert to dtschema
+Date:   Mon, 26 Jun 2023 18:46:19 +0800
+Message-ID: <20230626104619.1112588-1-wtli@nuvoton.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230621-topic-mm8013-v2-3-4be6223587ad@linaro.org>
-References: <20230621-topic-mm8013-v2-0-4be6223587ad@linaro.org>
-In-Reply-To: <20230621-topic-mm8013-v2-0-4be6223587ad@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Konrad Dybcio <konradybcio@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687775527; l=10078;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=FXajsw1B4OtWBdv0fbmYQgvV8Jhhw7n80XW8hUwq/0k=;
- b=g02M65fU+Ao2eFLMCgUmeZTQv9AlE3wEveJxffqgctITZOoN8/G9arUyZVH4m5cwshe6A6xPM
- gM14x3b9aFDDJle5O//cZexLBAqW6yJr5i9lnKir7T8yPQqapM52ytW
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-NotSetDelaration: True
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZAPC01FT044:EE_|SEZPR03MB7615:EE_
+X-MS-Office365-Filtering-Correlation-Id: fca53768-e698-43d0-63aa-08db7632968f
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sZfb1C8ikX8gkj3l8Nvbr+cx1GV2eI1+LEBH/EOHVR8o4Zg3C3P6ALCdrecI2Wf9HxFog6sTSShuqAdwFhTnGocrUXU86MB3tFzpx9pI7MN5HrhTTxTpHdSQeBZUSjUCXo0Z6ioiOukIVtVYRNL0sBN3rgTj8SrjDxpz0mF9kxJkHJ2/p1ep0BY3e/FTa7dz1WL3njq4ZU3qQNfirxJ2rxH/9nZFQVXapiJ5vAhh+MQVzcgTNDMiOtGzgzpPc9hnc1o0awBAQ3NhZr8+NqV9hljZ4sWQ3QsadEhqWzqyJKrxRrGrkNGirdDi2lLcg3KSv6YkxICpfXZDopbD2oox6Xcgeg+9IaR/bp4hHKNfhxr4gZ4olFE6K4V3t1v5iCHWXGpY2AIQVtuLRu01iZBwpu8k6cwDT6MnpEtUqwXZy4ubIAGAbiS92d/bPQ7DWhMy/LA4QeFSb8TaMORlYLPdSc7O3lBYvnc4DN+R6UHp3NfxHNHEsimqZHHzPnYhuGUe3+QbCzN99yQNTFqJKLfQJR+Q/nNRwiz6YgAqlVVsSr//Ek6eh+hpOLCNLScyr2eRfXs8o3zQssqt46nBS2RPpJihNBCWw6TxBzEIDvD4JXpKcB6a+dMGgTIEvlQ3kDdBGK50nzbWxkY+SncDiWsPby9sUn+xi+/KiviiAcmT0U17JsJeBCPqrg/IUSVEq1/zZDogRoBIIQ6cEsgasMiddfYuCY/eSG/s7eX5aj9mnmrQN562E8UULq0G8e2x/z0dCuOTpZZREu1CFzeYXBGji6zMmJhIGE32g1pxgC22ZFkOdK9tbcT4vsqJAf5mmCvErjOHRHHeyQE55nYa8B4a8Q==
+X-Forefront-Antispam-Report: CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(376002)(346002)(136003)(451199021)(5400799015)(40470700004)(46966006)(36840700001)(2906002)(186003)(26005)(1076003)(426003)(107886003)(47076005)(2616005)(81166007)(336012)(34020700004)(356005)(40480700001)(36860700001)(5660300002)(41300700001)(40460700003)(83380400001)(70586007)(70206006)(8936002)(7416002)(8676002)(36756003)(82740400003)(6666004)(54906003)(86362001)(478600001)(4326008)(966005)(6916009)(316002)(82310400005)(12100799033);DIR:OUT;SFP:1501;
+X-OriginatorOrg: nuvoton.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2023 10:46:24.8697
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: fca53768-e698-43d0-63aa-08db7632968f
+X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
+X-MS-Exchange-CrossTenant-AuthSource: TYZAPC01FT044.eop-APC01.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7615
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,354 +108,203 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a driver for the Mitsumi MM8013 fuel gauge. The driver is a vastly
-cleaned up and improved version of the one that shipped in some obscure
-Lenovo downstream kernel [1], with some register definitions borrowed from
-ChromeOS EC platform code [2].
+Convert the NAU8821 audio CODEC bindings to DT schema.
 
-[1] https://github.com/adazem009/kernel_lenovo_bengal/commit/b6b346427a871715709bd22aae449b9383f3b66b
-[2] https://chromium.googlesource.com/chromiumos/platform/ec/+/master/driver/battery/mm8013.h
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Seven Lee <wtli@nuvoton.com>
 ---
- MAINTAINERS                   |   5 +
- drivers/power/supply/Kconfig  |   9 ++
- drivers/power/supply/Makefile |   1 +
- drivers/power/supply/mm8013.c | 283 ++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 298 insertions(+)
+ .../devicetree/bindings/sound/nau8821.txt     |  55 --------
+ .../bindings/sound/nuvoton,nau8821.yaml       | 120 ++++++++++++++++++
+ 2 files changed, 120 insertions(+), 55 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/sound/nau8821.txt
+ create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 5ce188b58eaa..ba5f075a2ca8 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14296,6 +14296,11 @@ W:	https://linuxtv.org
- T:	git git://linuxtv.org/media_tree.git
- F:	drivers/media/radio/radio-miropcm20*
- 
-+MITSUMI MM8013 FG DRIVER
-+M:	Konrad Dybcio <konradybcio@kernel.org>
-+F:	Documentation/devicetree/bindings/power/supply/mitsumi,mm8013.yaml
-+F:	drivers/power/supply/mm8013.c
-+
- MMP SUPPORT
- R:	Lubomir Rintel <lkundrak@v3.sk>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
-diff --git a/drivers/power/supply/Kconfig b/drivers/power/supply/Kconfig
-index 663a1c423806..c19e8287d80f 100644
---- a/drivers/power/supply/Kconfig
-+++ b/drivers/power/supply/Kconfig
-@@ -951,4 +951,13 @@ config CHARGER_QCOM_SMB2
- 	  adds support for the SMB2 switch mode battery charger found
- 	  in PMI8998 and related PMICs.
- 
-+config FUEL_GAUGE_MM8013
-+	tristate "Mitsumi MM8013 fuel gauge driver"
-+	depends on I2C
-+	help
-+	  Say Y here to enable the Mitsumi MM8013 fuel gauge driver.
-+	  It enables the monitoring of many battery parameters, including
-+	  the state of charge, temperature, cycle count, actual and design
-+	  capacity, etc.
-+
- endif # POWER_SUPPLY
-diff --git a/drivers/power/supply/Makefile b/drivers/power/supply/Makefile
-index a8a9fa6de1e9..ba2c41f060be 100644
---- a/drivers/power/supply/Makefile
-+++ b/drivers/power/supply/Makefile
-@@ -111,3 +111,4 @@ obj-$(CONFIG_BATTERY_SURFACE)	+= surface_battery.o
- obj-$(CONFIG_CHARGER_SURFACE)	+= surface_charger.o
- obj-$(CONFIG_BATTERY_UG3105)	+= ug3105_battery.o
- obj-$(CONFIG_CHARGER_QCOM_SMB2)	+= qcom_pmi8998_charger.o
-+obj-$(CONFIG_FUEL_GAUGE_MM8013)	+= mm8013.o
-diff --git a/drivers/power/supply/mm8013.c b/drivers/power/supply/mm8013.c
+diff --git a/Documentation/devicetree/bindings/sound/nau8821.txt b/Documentation/devicetree/bindings/sound/nau8821.txt
+deleted file mode 100644
+index 7c84e7c7327a..000000000000
+--- a/Documentation/devicetree/bindings/sound/nau8821.txt
++++ /dev/null
+@@ -1,55 +0,0 @@
+-Nuvoton NAU88L21 audio codec
+-
+-This device supports I2C only.
+-
+-Required properties:
+-  - compatible : Must be "nuvoton,nau8821"
+-
+-  - reg : the I2C address of the device. This is either 0x1B (CSB=0) or 0x54 (CSB=1).
+-
+-Optional properties:
+-  - nuvoton,jkdet-enable: Enable jack detection via JKDET pin.
+-  - nuvoton,jkdet-pull-enable: Enable JKDET pin pull. If set - pin pull enabled,
+-      otherwise pin in high impedance state.
+-  - nuvoton,jkdet-pull-up: Pull-up JKDET pin. If set then JKDET pin is pull up, otherwise pull down.
+-  - nuvoton,jkdet-polarity: JKDET pin polarity. 0 - active high, 1 - active low.
+-
+-  - nuvoton,vref-impedance: VREF Impedance selection
+-      0 - Open
+-      1 - 25 kOhm
+-      2 - 125 kOhm
+-      3 - 2.5 kOhm
+-
+-  - nuvoton,micbias-voltage: Micbias voltage level.
+-      0 - VDDA
+-      1 - VDDA
+-      2 - VDDA * 1.1
+-      3 - VDDA * 1.2
+-      4 - VDDA * 1.3
+-      5 - VDDA * 1.4
+-      6 - VDDA * 1.53
+-      7 - VDDA * 1.53
+-
+-  - nuvoton,jack-insert-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
+-  - nuvoton,jack-eject-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
+-
+-  - nuvoton,dmic-clk-threshold: the ADC threshold of DMIC clock.
+-  - nuvoton,key_enable: Headset button detection switch.
+-
+-Example:
+-
+-  headset: nau8821@1b {
+-      compatible = "nuvoton,nau8821";
+-      reg = <0x1b>;
+-      interrupt-parent = <&gpio>;
+-      interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
+-      nuvoton,jkdet-enable;
+-      nuvoton,jkdet-pull-enable;
+-      nuvoton,jkdet-pull-up;
+-      nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
+-      nuvoton,vref-impedance = <2>;
+-      nuvoton,micbias-voltage = <6>;
+-      nuvoton,jack-insert-debounce = <7>;
+-      nuvoton,jack-eject-debounce = <7>;
+-      nuvoton,dmic-clk-threshold = 3072000;
+-  };
+diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
 new file mode 100644
-index 000000000000..ce20c6078116
+index 000000000000..728223d20876
 --- /dev/null
-+++ b/drivers/power/supply/mm8013.c
-@@ -0,0 +1,283 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2016-2019 The Linux Foundation. All rights reserved.
-+ * Copyright (c) 2023, Linaro Limited
-+ */
-+#include <linux/delay.h>
-+#include <linux/i2c.h>
-+#include <linux/power_supply.h>
++++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+@@ -0,0 +1,120 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/nuvoton,nau8821.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#define REG_BATID			0x00 /* This one is very unclear */
-+ #define BATID_101			0x0101 /* 107kOhm */
-+ #define BATID_102			0x0102 /* 10kOhm */
-+#define REG_TEMPERATURE			0x06
-+#define REG_VOLTAGE			0x08
-+#define REG_FLAGS			0x0a
-+ #define MM8013_FLAG_OTC		BIT(15)
-+ #define MM8013_FLAG_OTD		BIT(14)
-+ #define MM8013_FLAG_BATHI		BIT(13)
-+ #define MM8013_FLAG_FC			BIT(9)
-+ #define MM8013_FLAG_CHG		BIT(8)
-+ #define MM8013_FLAG_DSG		BIT(0)
-+#define REG_FULL_CHARGE_CAPACITY	0x0e
-+#define REG_AVERAGE_CURRENT		0x14
-+#define REG_AVERAGE_TIME_TO_EMPTY	0x16
-+#define REG_AVERAGE_TIME_TO_FULL	0x18
-+#define REG_CYCLE_COUNT			0x2a
-+#define REG_STATE_OF_CHARGE		0x2c
-+#define REG_DESIGN_CAPACITY		0x3c
-+/* TODO: 0x62-0x68 seem to contain 'MM8013C' in a length-prefixed, non-terminated string */
++title: NAU88L21 audio codec
 +
-+#define DECIKELVIN_TO_DECIDEGC(t)	(t - 2731)
++maintainers:
++  - Seven Lee <wtli@nuvoton.com>
 +
-+struct mm8013_chip {
-+	struct i2c_client *client;
-+};
++allOf:
++  - $ref: dai-common.yaml#
 +
-+static int mm8013_write_reg(struct i2c_client *client, u8 reg, u16 value)
-+{
-+	int ret;
++properties:
++  compatible:
++    const: nuvoton,nau8821
 +
-+	ret = i2c_smbus_write_word_data(client, reg, value);
-+	if (ret < 0)
-+		dev_err(&client->dev, "%s: err %d\n", __func__, ret);
++  reg:
++    maxItems: 1
 +
-+	usleep_range(4000, 5000);
-+	return ret;
-+}
++  interrupts:
++    maxItems: 1
 +
-+static int mm8013_read_reg(struct i2c_client *client, u8 reg)
-+{
-+	int ret;
++  nuvoton,jkdet-enable:
++    description: Enable jack detection via JKDET pin.
++    type: boolean
 +
-+	ret = i2c_smbus_read_word_data(client, reg);
-+	if (ret < 0)
-+		dev_err(&client->dev, "%s: err %d\n", __func__, ret);
++  nuvoton,jkdet-pull-enable:
++    description: Enable JKDET pin pull. If set - pin pull enabled,
++      otherwise pin in high impedance state.
++    type: boolean
 +
-+	usleep_range(4000, 5000);
-+	return ret;
-+}
++  nuvoton,jkdet-pull-up:
++    description: Pull-up JKDET pin. If set then JKDET pin is pull up,
++      otherwise pull down.
++    type: boolean
 +
-+static int mm8013_checkdevice(struct mm8013_chip *chip)
-+{
-+	int battery_id, ret;
++  nuvoton,jkdet-polarity:
++    description: JKDET pin polarity.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # active high
++      - 1 # active low
++    default: 1
 +
-+	ret = mm8013_write_reg(chip->client, REG_BATID, 0x0008);
-+	if (ret < 0)
-+		return ret;
++  nuvoton,micbias-voltage:
++    description: MICBIAS output level select.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # VDDA
++      - 1 # VDDA * 1
++      - 2 # VDDA * 1.1
++      - 3 # VDDA * 1.2
++      - 4 # VDDA * 1.3
++      - 5 # VDDA * 1.4
++      - 6 # VDDA * 1.53
++      - 7 # VDDA * 1.53
++    default: 6
 +
-+	ret = mm8013_read_reg(chip->client, REG_BATID);
-+	if (ret < 0)
-+		return ret;
++  nuvoton,vref-impedance:
++    description: VMID Tie-off impedance select.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    enum:
++      - 0 # open(default)
++      - 1 # 25KOhms
++      - 2 # 125KOhms
++      - 3 # 2.5KOhms
++    default: 2
 +
-+	if (ret == BATID_102)
-+		battery_id = 2;
-+	else if (ret == BATID_101)
-+		battery_id = 1;
-+	else
-+		return -EINVAL;
++  nuvoton,jack-insert-debounce:
++    description: number from 0 to 7 that sets debounce time to 2^(n+2)ms.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 7
++    default: 7
 +
-+	dev_dbg(&chip->client->dev, "battery_id: %d\n", battery_id);
++  nuvoton,jack-eject-debounce:
++    description: number from 0 to 7 that sets debounce time to 2^(n+2)ms.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    maximum: 7
++    default: 0
 +
-+	return 0;
-+}
++  nuvoton,dmic-clk-threshold:
++    description: DMIC clock speed expected value. Unit is Hz.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    default: 3072000
 +
-+static enum power_supply_property mm8013_battery_props[] = {
-+	POWER_SUPPLY_PROP_CAPACITY,
-+	POWER_SUPPLY_PROP_CHARGE_FULL,
-+	POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN,
-+	POWER_SUPPLY_PROP_CURRENT_NOW,
-+	POWER_SUPPLY_PROP_CYCLE_COUNT,
-+	POWER_SUPPLY_PROP_HEALTH,
-+	POWER_SUPPLY_PROP_PRESENT,
-+	POWER_SUPPLY_PROP_STATUS,
-+	POWER_SUPPLY_PROP_TEMP,
-+	POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG,
-+	POWER_SUPPLY_PROP_TIME_TO_FULL_AVG,
-+	POWER_SUPPLY_PROP_VOLTAGE_NOW,
-+};
++  '#sound-dai-cells':
++    const: 0
 +
-+static int mm8013_get_property(struct power_supply *psy,
-+			       enum power_supply_property psp,
-+			       union power_supply_propval *val)
-+{
-+	struct mm8013_chip *chip = psy->drv_data;
-+	struct i2c_client *client = chip->client;
-+	int ret = 0;
++required:
++  - compatible
++  - reg
 +
-+	switch (psp) {
-+	case POWER_SUPPLY_PROP_CAPACITY:
-+		ret = mm8013_read_reg(client, REG_STATE_OF_CHARGE);
-+		if (ret < 0)
-+			return ret;
++unevaluatedProperties: false
 +
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_FULL:
-+		ret = mm8013_read_reg(client, REG_FULL_CHARGE_CAPACITY);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_CHARGE_FULL_DESIGN:
-+		ret = mm8013_read_reg(client, REG_DESIGN_CAPACITY);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_CURRENT_NOW:
-+		ret = mm8013_read_reg(client, REG_AVERAGE_CURRENT);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret > S16_MAX)
-+			val->intval -= (1 << 16);
-+		else
-+			val->intval = ret;
-+
-+		val->intval *= -1000;
-+		break;
-+	case POWER_SUPPLY_PROP_CYCLE_COUNT:
-+		ret = mm8013_read_reg(client, REG_CYCLE_COUNT);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_HEALTH:
-+		ret = mm8013_read_reg(client, REG_FLAGS);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret & MM8013_FLAG_BATHI)
-+			val->intval = POWER_SUPPLY_HEALTH_OVERVOLTAGE;
-+		else if (ret & (MM8013_FLAG_OTD | MM8013_FLAG_OTC))
-+			val->intval = POWER_SUPPLY_HEALTH_OVERHEAT;
-+		else
-+			val->intval = POWER_SUPPLY_HEALTH_GOOD;
-+		break;
-+	case POWER_SUPPLY_PROP_PRESENT:
-+		val->intval = mm8013_read_reg(client, REG_TEMPERATURE) > 0;
-+		break;
-+	case POWER_SUPPLY_PROP_STATUS:
-+		ret = mm8013_read_reg(client, REG_FLAGS);
-+		if (ret < 0)
-+			return ret;
-+
-+		if (ret & MM8013_FLAG_DSG)
-+			val->intval = POWER_SUPPLY_STATUS_DISCHARGING;
-+		else if (ret & MM8013_FLAG_CHG)
-+			val->intval = POWER_SUPPLY_STATUS_CHARGING;
-+		else if (ret & MM8013_FLAG_FC)
-+			val->intval = POWER_SUPPLY_STATUS_FULL;
-+		else
-+			val->intval = POWER_SUPPLY_STATUS_UNKNOWN;
-+		break;
-+	case POWER_SUPPLY_PROP_TEMP:
-+		ret = mm8013_read_reg(client, REG_TEMPERATURE);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = DECIKELVIN_TO_DECIDEGC(ret);
-+		break;
-+	case POWER_SUPPLY_PROP_TIME_TO_EMPTY_AVG:
-+		ret = mm8013_read_reg(client, REG_AVERAGE_TIME_TO_EMPTY);
-+		if (ret < 0)
-+			return ret;
-+
-+		/* The estimation is not yet ready */
-+		if (ret == U16_MAX)
-+			return -ENODATA;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_TIME_TO_FULL_AVG:
-+		ret = mm8013_read_reg(client, REG_AVERAGE_TIME_TO_FULL);
-+		if (ret < 0)
-+			return ret;
-+
-+		/* The estimation is not yet ready */
-+		if (ret == U16_MAX)
-+			return -ENODATA;
-+
-+		val->intval = ret;
-+		break;
-+	case POWER_SUPPLY_PROP_VOLTAGE_NOW:
-+		ret = mm8013_read_reg(client, REG_VOLTAGE);
-+		if (ret < 0)
-+			return ret;
-+
-+		val->intval = ret;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
-+static const struct power_supply_desc mm8013_desc = {
-+	.name			= "mm8013",
-+	.type			= POWER_SUPPLY_TYPE_BATTERY,
-+	.properties		= mm8013_battery_props,
-+	.num_properties		= ARRAY_SIZE(mm8013_battery_props),
-+	.get_property		= mm8013_get_property,
-+};
-+
-+static int mm8013_probe(struct i2c_client *client)
-+{
-+	struct power_supply_config psy_cfg = {};
-+	struct device *dev = &client->dev;
-+	struct power_supply *psy;
-+	struct mm8013_chip *chip;
-+	int ret = 0;
-+
-+	if (!i2c_check_functionality(client->adapter, I2C_FUNC_SMBUS_WORD_DATA))
-+		return dev_err_probe(dev, -EIO,
-+				     "I2C_FUNC_SMBUS_WORD_DATA not supported\n");
-+
-+	chip = devm_kzalloc(dev, sizeof(struct mm8013_chip), GFP_KERNEL);
-+	if (!chip)
-+		return -ENOMEM;
-+
-+	chip->client = client;
-+
-+	ret = mm8013_checkdevice(chip);
-+	if (ret)
-+		return dev_err_probe(dev, -ENODEV, "MM8013 not found\n");
-+
-+	psy_cfg.drv_data = chip;
-+	psy_cfg.of_node = dev->of_node;
-+
-+	psy = devm_power_supply_register(dev, &mm8013_desc, &psy_cfg);
-+	if (IS_ERR(psy))
-+		return PTR_ERR(psy);
-+
-+	return 0;
-+}
-+
-+static const struct i2c_device_id mm8013_id_table[] = {
-+	{ "mm8013", 0 },
-+	{},
-+};
-+MODULE_DEVICE_TABLE(i2c, mm8013_id_table);
-+
-+static const struct of_device_id mm8013_match_table[] = {
-+	{ .compatible = "mitsumi,mm8013" },
-+	{ },
-+};
-+
-+static struct i2c_driver mm8013_i2c_driver = {
-+	.probe = mm8013_probe,
-+	.id_table = mm8013_id_table,
-+	.driver = {
-+		.name = "mm8013",
-+		.of_match_table = mm8013_match_table,
-+	},
-+};
-+module_i2c_driver(mm8013_i2c_driver);
-+
-+MODULE_DESCRIPTION("MM8013 fuel gauge driver");
-+MODULE_LICENSE("GPL");
-
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        codec@1b {
++            #sound-dai-cells = <0>;
++            compatible = "nuvoton,nau8821";
++            reg = <0x1b>;
++            interrupt-parent = <&gpio>;
++            interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
++            nuvoton,jkdet-enable;
++            nuvoton,jkdet-pull-enable;
++            nuvoton,jkdet-pull-up;
++            nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
++            nuvoton,micbias-voltage = <6>;
++            nuvoton,vref-impedance = <2>;
++            nuvoton,jack-insert-debounce = <7>;
++            nuvoton,jack-eject-debounce = <0>;
++            nuvoton,dmic-clk-threshold = <3072000>;
++        };
++    };
 -- 
-2.41.0
+2.25.1
 
