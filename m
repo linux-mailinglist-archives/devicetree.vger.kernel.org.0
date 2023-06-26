@@ -2,73 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76E8C73E5FD
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:07:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 779A673E646
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:19:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230121AbjFZRHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 13:07:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48634 "EHLO
+        id S230232AbjFZRTS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 13:19:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51354 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229666AbjFZRHW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:07:22 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5873AA;
-        Mon, 26 Jun 2023 10:07:20 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-783544a1c90so82836939f.1;
-        Mon, 26 Jun 2023 10:07:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687799240; x=1690391240;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=4R+rlufSGz/F2JIo7VcyU36DYxyYKPvMUd0AGJe/g5E=;
-        b=FLE3uqXs8uVHQIbk8hxuYwRBk+Kr0h9hGjlK8OftIpirmWy9GfIZbQNltg2eb2dJCw
-         qLPBra69vPC8/waX/h5Jwko98Cx8/IqcelGqGDKhIJdBdfbogL393P3gjmT5W0nqRFEr
-         UgCVdKzVIyQyzMfipRg84pgF3qSXp4kzg8GCmbxmcIFTt5jjUP1IjkKfzgML2PGc4UWK
-         ebYzD7W3DNG2gsDK0pgliYjX6xCodo3OCcqk3n9ZVXxCAMVUim6F6gJWi2Qt5iJEgUGB
-         EpCsziSCi8ROafOw7f1SjCb+6Am/oVfv1ff+JLyHpiTD+28wztGMjJLyGDZt9ScMadmR
-         Oo6A==
-X-Gm-Message-State: AC+VfDwu28EGT9Agh34SruSiGDtUg/v/q/y1lL8p9GeTl+77EYvU3Tgt
-        lXfsi8qQeN3hMsJAZ029qQ==
-X-Google-Smtp-Source: ACHHUZ6F6azxDsAdEVNZRMuQDFsJqEvja5LhkIHoFhNQcTE9cAwQTuGNtHwyJksq1Lysjy50hLmNuA==
-X-Received: by 2002:a6b:e903:0:b0:783:62a8:854f with SMTP id u3-20020a6be903000000b0078362a8854fmr2738656iof.3.1687799239975;
-        Mon, 26 Jun 2023 10:07:19 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id a22-20020a5d9ed6000000b0077e3566a801sm2318281ioe.29.2023.06.26.10.07.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 10:07:19 -0700 (PDT)
-Received: (nullmailer pid 3403295 invoked by uid 1000);
-        Mon, 26 Jun 2023 17:07:16 -0000
-Date:   Mon, 26 Jun 2023 11:07:16 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Andrew Jones <ajones@ventanamicro.com>,
-        linux-riscv@lists.infradead.org,
-        Atish Patra <atishp@atishpatra.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <apatel@ventanamicro.com>, conor@kernel.org,
-        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
-        palmer@dabbelt.com, Leo <ycliang@andestech.com>,
-        Palmer Dabbelt <palmer@rivosinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Oleksii <oleksii.kurochko@gmail.com>,
-        Rick Chen <rick@andestech.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        qemu-riscv@nongnu.org
-Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
-Message-ID: <168779923643.3403238.2898272674301984496.robh@kernel.org>
-References: <20230626-unmarked-atom-70b4d624a386@wendy>
+        with ESMTP id S231364AbjFZRSz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:18:55 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2D73AAE;
+        Mon, 26 Jun 2023 10:16:47 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 42C1960F0E;
+        Mon, 26 Jun 2023 17:16:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 126D4C433C8;
+        Mon, 26 Jun 2023 17:16:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687799805;
+        bh=8059eygYXUGESJrlTDcfhmLR43khYpXnsgBg/+/Am1Y=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WYi5nd0oIT09XyUPi7Ii818TZbuL+v152d/cmWR431S0REOjyDEaJ14zKrbDjm5gp
+         AVJtkXWllIMRTKqN5f+WTlqcBXfSM/N61vPRC2XCjClr0CDD8Kl7FCCdqzs1P0UMzK
+         2hYVOvIO+7OoKVv3CgLWsJvuYtsdaLQ/lBCKHL48xg3dVBJCIN2jL9+rjlwxhVth+F
+         uYjsrJLHRT2aODj+F7uS087TNgaHkRCdIaTXFmhN1ZAUnI8yNoV+C2YJHB68Xu4Tpc
+         KBq9n98Y6oGusx7eLPaHn/81li34Hlo84KooOcFaV6ZAIvLQ+/b3tABL33CKm09+iX
+         Ms+MJxroLigbA==
+Date:   Mon, 26 Jun 2023 18:16:38 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Manikandan.M@microchip.com
+Cc:     Nicolas.Ferre@microchip.com, krzysztof.kozlowski@linaro.org,
+        lee@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        alexandre.belloni@bootlin.com, Claudiu.Beznea@microchip.com,
+        sam@ravnborg.org, bbrezillon@kernel.org, airlied@gmail.com,
+        daniel@ffwll.ch, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, Hari.PrasathGE@microchip.com,
+        Balamanikandan.Gunasundar@microchip.com,
+        Durai.ManickamKR@microchip.com, Nayabbasha.Sayed@microchip.com,
+        Dharma.B@microchip.com, Varshini.Rajendran@microchip.com,
+        Balakrishnan.S@microchip.com
+Subject: Re: [PATCH 1/9] dt-bindings: mfd: Add bindings for SAM9X7 LCD
+ controller
+Message-ID: <20230626-coping-criteria-e5aa8b2ae212@spud>
+References: <20230613070426.467389-1-manikandan.m@microchip.com>
+ <20230613070426.467389-2-manikandan.m@microchip.com>
+ <a0b059d1-df4d-10ce-fb7c-7acea0a20793@linaro.org>
+ <20230613-slider-coherent-d508d67afc91@spud>
+ <423eef3c-54f0-5c88-9bc9-82c0198b6da6@microchip.com>
+ <3a3f4463-981a-e8d8-8ec4-06f2abfa3b4d@microchip.com>
+ <ef09246c-9220-4c71-4ac2-2792d9ca519d@microchip.com>
+ <1252fa40-dd8e-73f3-18b7-7010a7f8085e@microchip.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="1j/2jjguTlX+Xhnw"
 Content-Disposition: inline
-In-Reply-To: <20230626-unmarked-atom-70b4d624a386@wendy>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <1252fa40-dd8e-73f3-18b7-7010a7f8085e@microchip.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,168 +74,94 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Mon, 26 Jun 2023 11:10:46 +0100, Conor Dooley wrote:
-> intro
-> =====
-> 
-> When the RISC-V dt-bindings were accepted upstream in Linux, the base
-> ISA etc had yet to be ratified. By the ratification of the base ISA,
-> incompatible changes had snuck into the specifications - for example the
-> Zicsr and Zifencei extensions were spun out of the base ISA.
-> 
-> Fast forward to today, and the reason for this patch.
-> Currently the riscv,isa dt property permits only a specific subset of
-> the ISA string - in particular it excludes version numbering.
-> With the current constraints, it is not possible to discern whether
-> "rv64i" means that the hart supports the fence.i instruction, for
-> example.
-> Future systems may choose to implement their own instruction fencing,
-> perhaps using a vendor extension, or they may not implement the optional
-> counter extensions. Software needs a way to determine this.
-> 
-> versioning schemes
-> ==================
-> 
-> "Use the extension versions that are described in the ISA manual" you
-> may say, and it's not like this has not been considered.
-> Firstly, software that parses the riscv,isa property at runtime will
-> need to contain a lookup table of some sort that maps arbitrary versions
-> to versions it understands. There is not a consistent application of
-> version number applied to extensions, with a higgledy-piggledy
-> collection of tags, "bare" and versioned documents awaiting the reader
-> on the "recently ratified extensions" page:
-> https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions
-> 
-> 	As an aside, and this is reflected in the patch too, since many
-> 	extensions have yet to appear in a release of the ISA specs,
-> 	they are defined by commits in their respective "working draft"
-> 	repositories.
-> 
-> Secondly, there is an issue of backwards compatibility, whereby allowing
-> numbers in the ISA string, some parsers may be broken. This would
-> require an additional property to be created to even use the versions in
-> this manner.
-> 
-> ~boolean properties~ string array property
-> ==========================================
-> 
-> If a new property is needed, the whole approach may as well be looked at
-> from the bottom up. A string with limited character choices etc is
-> hardly the best approach for communicating extension information to
-> software.
-> 
-> Switching to using properties that are defined on a per extension basis,
-> allows us to define explicit meanings for the DT representation of each
-> extension - rather than the current situation where different operating
-> systems or other bits of software may impart different meanings to
-> characters in the string.
-> Clearly the best source of meanings is the specifications themselves,
-> this just provides us the ability to choose at what point in time the
-> meaning is set. If an extension changes incompatibility in the future,
-> a new property will be required.
-> 
-> Off-list, some of the RVI folks have committed to shoring up the wording
-> in either the ISA specifications, the riscv-isa-manual or
-> so that in the future, modifications to and additions or removals of
-> features will require a new extension. Codifying that assertion
-> somewhere would make it quite unlikely that compatibility would be
-> broken, but we have the tools required to deal with it, if & when it
-> crops up.
-> It is in our collective interest, as consumers of extension meanings, to
-> define a scheme that enforces compatibility.
-> 
-> The use of individual properties, rather than elements in a single
-> string, will also permit validation that the properties have a meaning,
-> as well as potentially reject mutually exclusive combinations, or
-> enforce dependencies between extensions. That would not have be possible
-> with the current dt-schema infrastructure for arbitrary strings, as we
-> would need to add a riscv,isa parser to dt-validate!
-> That's not implemented in this patch, but rather left as future work (for
-> the brave, or the foolish).
-> 
-> acpi
-> ====
-> 
-> The current ACPI ECR is based on having a single ISA string unfortunately,
-> but ideally ACPI will move to another method, perhaps GUIDs, that give
-> explicit meaning to extensions.
-> 
-> parser simplicity
-> =================
-> 
-> Many systems that parse DT at runtime already implement an function that
-> can check for the presence of a string in an array of string, as it is
-> similar to the process for parsing a list of compatible strings, so a
-> bunch of new, custom, DT parsing should not be needed.
-> Getting rid of "riscv,isa" parsing would be a nice simplification, but
-> unfortunately for backwards compatibility with old dtbs, existing
-> parsers may not be removable - which may greatly simplify
-> dt parsing code. In Linux, for example, checking for whether a hart
-> supports an extension becomes as simple as:
-> 	of_property_match_string(node, "riscv,isa-extensions", "zicbom")
-> 
-> vendor extensions
-> =================
-> 
-> Compared to riscv,isa, this proposed scheme promotes vendor extensions,
-> oft touted as the strength of RISC-V, to first-class citizens.
-> At present, extensions are defined as meaning what the RISC-V ISA
-> specifications say they do. There is no realistic way of using that
-> interface to provide cross-platform definitions for what vendor
-> extensions mean. Vendor extensions may also have even less consistency
-> than RVI do in terms of versioning, or no care about backwards
-> compatibility.
-> The new property allows us to assign explicit meanings on a per vendor
-> extension basis, backed up by a description of their meanings.
-> 
-> fin
-> ===
-> 
-> Create a new file to store the extension meanings and a new
-> riscv,isa-base property to replace the aspect of riscv,isa that is
-> not represented by the new property - the base ISA implemented by a hart.
-> 
-> As a starting point, add properties for extensions currently used in
-> Linux.
-> 
-> Finally, mark riscv,isa as deprecated, as removing support for it in
-> existing programs would be an ABI break.
-> 
-> CC: Palmer Dabbelt <palmer@dabbelt.com>
-> CC: Paul Walmsley <paul.walmsley@sifive.com>
-> CC: Rob Herring <robh+dt@kernel.org>
-> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> CC: Alistair Francis <alistair.francis@wdc.com>
-> CC: Andrew Jones <ajones@ventanamicro.com>
-> CC: Anup Patel <apatel@ventanamicro.com>
-> CC: Atish Patra <atishp@atishpatra.org>
-> CC: Jessica Clarke <jrtc27@jrtc27.com>
-> CC: Rick Chen <rick@andestech.com>
-> CC: Leo <ycliang@andestech.com>
-> CC: Oleksii <oleksii.kurochko@gmail.com>
-> CC: linux-riscv@lists.infradead.org
-> CC: qemu-riscv@nongnu.org
-> CC: u-boot@lists.denx.de
-> CC: devicetree@vger.kernel.org
-> CC: linux-kernel@vger.kernel.org
-> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes in v3:
-> - Per Rob's suggestion, switch to an array of strings. Cuts down on the
->   size, compared to booleans. It has a standard mechanism for parsing
->   (you need to parse arrays of strings for compatibles). It still allows
->   for having a limited set of explicitly defined properties - so the
->   advantages over a free-form string still apply.
-> - Pick up Palmer's Ack and Review (although I expect that he will be the
->   one to apply this).
-> ---
->  .../devicetree/bindings/riscv/cpus.yaml       |  43 ++-
->  .../devicetree/bindings/riscv/extensions.yaml | 245 ++++++++++++++++++
->  2 files changed, 265 insertions(+), 23 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/riscv/extensions.yaml
-> 
+--1j/2jjguTlX+Xhnw
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Jun 26, 2023 at 05:31:59AM +0000, Manikandan.M@microchip.com wrote:
+> On 21/06/23 13:17, Nicolas Ferre wrote:
+> > On 16/06/2023 at 08:44, Manikandan M - I67131 wrote:
+> >> On 14/06/23 20:10, Nicolas Ferre wrote:
+> >>> On 13/06/2023 at 20:21, Conor Dooley wrote:
+> >>>> On Tue, Jun 13, 2023 at 08:17:13PM +0200, Krzysztof Kozlowski wrote:
+> >>>>> On 13/06/2023 09:04, Manikandan Muralidharan wrote:
+> >>>>>> Add new compatible string for the XLCD controller on SAM9X7 SoC.
+> >>>>>>
+> >>>>>> Signed-off-by: Manikandan Muralidharan<manikandan.m@microchip.com>
+> >>>>>> ---
+> >>>>>> =A0=A0 Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt | 1 +
+> >>>>>> =A0=A0 1 file changed, 1 insertion(+)
+> >>>>>>
+> >>>>>> diff --git a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> >>>>>> b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> >>>>>> index 5f8880cc757e..7c77b6bf4adb 100644
+> >>>>>> --- a/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> >>>>>> +++ b/Documentation/devicetree/bindings/mfd/atmel-hlcdc.txt
+> >>>>>> @@ -8,6 +8,7 @@ Required properties:
+> >>>>>> =A0=A0=A0=A0=A0 "atmel,sama5d3-hlcdc"
+> >>>>>> =A0=A0=A0=A0=A0 "atmel,sama5d4-hlcdc"
+> >>>>>> =A0=A0=A0=A0=A0 "microchip,sam9x60-hlcdc"
+> >>>>>> +=A0=A0 "microchip,sam9x7-xlcdc"
+> >>>>> Google says sam9x7 is a series, not a SoC. Please add compatibles f=
+or
+> >>>>> specific SoCs, not for series.
+> >>>> We had this one a few weeks ago, see
+> >>>> https://lore.kernel.org/all/add5e49e-8416-ba9f-819a-da944938c05f@mic=
+rochip.com/
+> >>>> and its parents. Outcome of that seemed to be that using "sam9x7" was
+> >>>> fine.
+> >>>
+> >>> And it's where it begins to be funny, as the LCD is precisely one asp=
+ect
+> >>> where we differentiate between sam9x75, sam9x72 and sam9x70...
+> >>> So please Manikandan sort this out if difference between these chips
+> >>> will be better handled with different compatibility string, in
+> >>> particular about //, LVDS and MIPI-DSI variants!
+> >> Yes Sure, I will replace the compatible as s/sam9x7/sam9x75/g to handle
+> >> the different variants of sam9x7 better.
+> >=20
+> > Moving to sam9x75 is probably good. But what is your plan for=20
+> > differentiating parallel and LVDS (on sam9x72) and precisely this=20
+> > sam9x75 variant which in addition has MIPI-DSI?
+> In sam9x75 with support for LVDS and MIPI, Parallel interfacing=20
+> peripherals, the additions performed on the LCD controller driver is the=
+=20
+> same.Considering the LCDC IP used in sam9x75, there are no registers=20
+> sets that needs modification per connecting peripheral variants, only=20
+> the clock and DRM_ENCODER_MODE_XXX (set by connecting peripheral driver)=
+=20
+> differs, which can be handled in DT, atmel-lcdc MFD driver and=20
+> peripheral driver.
+>=20
+> In future, sam9x72 with XLCD controller can be differentiated with=20
+> sam9x72 compatible string and with a IP version flag(is_xlcdc_v2) in its=
+=20
+> driver data if an upgraded XLCD IP is used with difference in bits or=20
+> register set exist compared to current IP.
 
+Trying to covert that into what the binding will look like...
+sam9x72 & sam9x75 each get their own compatibles for the lcd controller.
+=46rom there, we permit `compatible =3D "microchip,sam9x75-foo"` in
+isolation. It *sounds* like the basic featureset of the sam9x75 is
+compatible with the sam9x72, so for that we permit
+`compatible =3D "microchip,sam9x72-foo", "microchip,sam9x75-foo"`.
+Although, if the hardware for the sam9x72 isn't set in stone yet, it
+might be best to hold off on documenting it until things settle down,
+and only add the sam9x75 for now.
+
+Cheers,
+Conor.
+
+--1j/2jjguTlX+Xhnw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJnH9gAKCRB4tDGHoIJi
+0vJeAQCKTNo8DxOHcmMtCltpTrHcnzIsZYChyQOAwNVVzXJhJwEAuZ+yPxkQmRc/
+3vViIUv3oFaK8ps5UbhrKrBYzz5BQA4=
+=3Eob
+-----END PGP SIGNATURE-----
+
+--1j/2jjguTlX+Xhnw--
