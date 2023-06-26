@@ -2,73 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE7B773D9AB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 10:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8636573D9B3
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 10:29:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229742AbjFZI21 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 04:28:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33158 "EHLO
+        id S230054AbjFZI3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 04:29:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229943AbjFZI2Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 04:28:25 -0400
-Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B50A81BB
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:28:23 -0700 (PDT)
-Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-991b7a4d2e8so93468166b.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:28:23 -0700 (PDT)
+        with ESMTP id S230063AbjFZI32 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 04:29:28 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BF4E4A
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:29:26 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-98934f000a5so359030666b.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:29:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1687768102; x=1690360102;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=/z2l2uTy/cBaqn0Tj/q1FNG0VhYAlt0fDLzRyz8E7k8=;
-        b=JK5Nbe7Dt4FaRC3i+ebjZ+e0vhMzQx2cFFP5o267c/8rnB6/rAqolMs+Y4JVh2qRCx
-         EkRV2ih17UcjtBT5pMKWqiDGo60x6hNYBCvyMqPxY3wV8O3z6gNzZFHJwG0BTJlIrIbT
-         m4+Kja0R+lw+EZMJp1et/dsUO+ZgUSEqr8qiPmpb4OTu1iMxZcs0smriM//JFJ834qPn
-         lwhRtgd0+CmMdp9gWVWEnM5jFhE3oWR7ywGIG5tX2UgyO6ZumUGh3xtfWekJLYCW3bY8
-         CA02vwhK0y1kB2qvp7smxHSy8EKSJEphhxtz4xANhkFN1iddgX0WEAI3Thre7JYtepuI
-         T1yA==
+        d=linaro.org; s=google; t=1687768165; x=1690360165;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2tsOG+nFR2GTTBc7CbDQFVvL4dzoth9iqIWwzfRS+A8=;
+        b=xEYr+NKaL1PDtn/k+qrg/HeUDCVALR8yL0jCtp0RqWdlCGUAMBxuD2yBaGSzIE/PEr
+         XL2/Ur6iJZBpZU1J8i5l2H34+5zm/CAL+Pa+KUd+iPG6x/3UlljUOtSDiKuI0Zv9P862
+         KoyT9x4JX9T9jyMS/mecUHnGSPEWLaRNK0B/bAfcADvM3iNpkwtaQYRhvjjDFmg2milq
+         K9wLlU+ZKCbuybSmvoKGl3ukZxcMvlfu1OnCH/7JZN/rrSWCm+HyprG7qYYSTqZeu90A
+         n7mJFeJr7QJzFusN8Cyd9ecvYW7yM2EBb4jvJQHW9/FERq7Ts8eJmqIKJ1biZZByapA3
+         7OTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687768102; x=1690360102;
-        h=in-reply-to:references:to:from:subject:cc:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=/z2l2uTy/cBaqn0Tj/q1FNG0VhYAlt0fDLzRyz8E7k8=;
-        b=Y/lXi8wPhwoa8h7AO+yrFusLgmihr4cHoT2CBTUUeb1EATlpNopmVnuhb4PHgrI8xE
-         /xj4334LVgp+8v+bGnEkk9NY+nr3SjcXOVHs9fdnLgUt2ezhGXukuaoyVbNIo0AaqYen
-         KbN16E6q6isI/zgpnDEQh7KOmoIUes5KcNR0HUITngNvJ/54cA0Yf+QqeBR9Q1yfS80t
-         1zl53gn75lIVg1VOidGu0/KoRzGOuJn+wjtNsh29+fFS5Nd3S4P7jMjpgtlj3k4AwdxW
-         pWfx3lxydalq/Ie1nDa8yoGvNMbq1Dv3dJxG3UOnUledYtaFB7a7xb2mJCwNJr5VkSUa
-         lYsQ==
-X-Gm-Message-State: AC+VfDyVulfdCfPQiaxXtHNuZe8qozW7IJod75voJD3NflB66PZ7yS5a
-        ebmN5G0UFIRoM1q71c3jwKpdIA==
-X-Google-Smtp-Source: ACHHUZ55jsXkC5JC4+uTvSts1tb2kV+vphkAvEWRrtvIWOryFAfdpEri5J0hl9YafwrnH52f1kpHBw==
-X-Received: by 2002:a17:907:9450:b0:989:3670:3696 with SMTP id dl16-20020a170907945000b0098936703696mr14285227ejc.58.1687768102200;
-        Mon, 26 Jun 2023 01:28:22 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id lc6-20020a170906f90600b0096637a19dccsm2956929ejb.210.2023.06.26.01.28.21
+        d=1e100.net; s=20221208; t=1687768165; x=1690360165;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2tsOG+nFR2GTTBc7CbDQFVvL4dzoth9iqIWwzfRS+A8=;
+        b=CZFBu+to+loM/xe2ND4dU/Z2AXo7dOXUMQIUomp/iSfRrQlf/2Rm7iPAzWZ+fJti29
+         IRTeGVDRzALW5f3ZCVYKQuMaWf3F6B0SNAy7s0UqxSs36OAaT7RuzBayh5Nb+pB2EfTe
+         nettNAOVtJambhTwPJx8dqXatYvSYrKtbWQnIDZutTHYYBWLaWkMcBNaLHXglMNgzSBQ
+         mi5xNHhNIXVIFhyD1/9oSpQ/7mfk5/OTriPSSjI3F69eAICDJqx5uLeS2A+SESC5YLn8
+         uXCFGIILAl7TlE2YsyEf8ziASDAZo+MjPtI1S075oTNxLWX1p2FUW8rKkSO/1mGGZgxK
+         X1mw==
+X-Gm-Message-State: AC+VfDwJLTCTwk+Jwf5Nia8Q/5sRkvXQe4NmAJxMTJhh//4MUkb41NNk
+        5PKd4JBvKbXmWPT3MEZNmpzAtA==
+X-Google-Smtp-Source: ACHHUZ4f6Zrvi3qOoV7NxupQNc5bFb/EuzGTSv79Os8497nPLMdIEfuSC2wmzdkpoAR9pkd2zt+iJg==
+X-Received: by 2002:a17:907:da2:b0:988:e8e1:6360 with SMTP id go34-20020a1709070da200b00988e8e16360mr17223589ejc.8.1687768164783;
+        Mon, 26 Jun 2023 01:29:24 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id lr9-20020a170906fb8900b00969f44bbef3sm3044396ejb.11.2023.06.26.01.29.23
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 01:28:21 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+        Mon, 26 Jun 2023 01:29:24 -0700 (PDT)
+Message-ID: <075c8d01-5788-a3c4-44e0-36cb9318fc6a@linaro.org>
+Date:   Mon, 26 Jun 2023 10:29:22 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/2] dt-bindings: iio: ad74413r: add binding for digital
+ input threshold
+Content-Language: en-US
+To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
+        Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>
+Cc:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Michael Hennerich <Michael.Hennerich@analog.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230623113327.1062170-1-linux@rasmusvillemoes.dk>
+ <20230623113327.1062170-2-linux@rasmusvillemoes.dk>
+ <20230623-casket-outer-2c9d2a0c4795@spud>
+ <20230623215731.GB1216324-robh@kernel.org>
+ <8176d552-9829-5442-3ce9-805744b8389e@rasmusvillemoes.dk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <8176d552-9829-5442-3ce9-805744b8389e@rasmusvillemoes.dk>
 Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 26 Jun 2023 10:28:21 +0200
-Message-Id: <CTMFUY0GPRNK.532E4O05LWKW@otso>
-Cc:     <konrad.dybcio@linaro.org>, <u.kleine-koenig@pengutronix.de>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <linux-pwm@vger.kernel.org>
-Subject: Re: [PATCH 0/7] Add support for LUT PPG
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Anjelique Melendez" <quic_amelende@quicinc.com>, <pavel@ucw.cz>,
-        <lee@kernel.org>, <thierry.reding@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <agross@kernel.org>, <andersson@kernel.org>
-X-Mailer: aerc 0.15.1
-References: <20230621185949.2068-1-quic_amelende@quicinc.com>
-In-Reply-To: <20230621185949.2068-1-quic_amelende@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -77,86 +85,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anjelique,
+On 26/06/2023 10:15, Rasmus Villemoes wrote:
+> On 23/06/2023 23.57, Rob Herring wrote:
+>> On Fri, Jun 23, 2023 at 05:44:50PM +0100, Conor Dooley wrote:
+>>> On Fri, Jun 23, 2023 at 01:33:25PM +0200, Rasmus Villemoes wrote:
+>>>> diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+>>>> index 590ea7936ad7..1f90ce3c7932 100644
+>>>> --- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+>>>> +++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
+>>>> @@ -51,6 +51,14 @@ properties:
+>>>>        Shunt (sense) resistor value in micro-Ohms.
+>>>>      default: 100000000
+>>>>  
+>>>> +  digital-input-threshold-microvolt:
+>>>
+>>> Should this not have an adi vendor prefix, similar to
+>>> "adi,digital-input-threshold-mode-fixed"?
+>>
+>> Yes.
+> 
+> OK. But I'm not really sure what the rules are for when such a prefix
+> must be added, so some guidance would be appreciated. There's
+> 
+> - DO use a vendor prefix on device specific property names. Consider if
+>   properties could be common among devices of the same class.
+> 
+> And my thinking was that a threshold for when a digital input should
+> count as high/low would be a rather generic thing, so not particularly
+> device specific.
 
-On Wed Jun 21, 2023 at 8:59 PM CEST, Anjelique Melendez wrote:
-> In certain PMICs, LUT pattern and LPG configuration can be stored in SDAM
-> modules instead of LUT peripheral. This feature is called PPG.
->
-> This change series adds support for PPG. Thanks!
+Then find some more users of it.
 
-Thanks for sending this series!
+> 
+> Also, this very binding has a shunt-resistor-micro-ohms, and the
+> individual channels have a drive-strength-microamp (granted, that latter
+> one is a recent one of mine and may have slipped through review?). I can
+> certainly understand that when a property specifies a raw value to put
+> into some register (or field), that's very specific to that chip (or
+> small family of chips) - the adi,ch-func properties fall into that category.
 
-I've tested this on SDM632 Fairphone 3 and everything appears to work
-fine with setting the pattern. Using fbcli from feedbackd[0] the pattern
-shows up correctly.
-
-The only thing missing really is the addition of the pbs node and adding
-the nvmem/nvmem-names & qcom,pbs-client to the lpg node in pmi632.dtsi -
-something like the patch below.
-
-Are you planning to include this in the next revision? Otherwise I can
-also send a patch for the pmi632.dtsi after this series has landed.
-
-Tested-by: Luca Weiss <luca.weiss@fairphone.com> # sdm632-fairphone-fp3 (pm=
-i632)
-
-[0] https://source.puri.sm/Librem5/feedbackd
-
-Regards
-Luca
-
-diff --git a/arch/arm64/boot/dts/qcom/pmi632.dtsi b/arch/arm64/boot/dts/qco=
-m/pmi632.dtsi
-index add206dee01d2e..92ddb7ac6bf311 100644
---- a/arch/arm64/boot/dts/qcom/pmi632.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmi632.dtsi
-@@ -127,6 +127,11 @@
- 			status =3D "disabled";
- 		};
-=20
-+		pmi632_pbs_client3: qcom,pbs@7400 { // TODO: generic node name
-+			compatible =3D "qcom,pbs";
-+			reg =3D <0x7400>;
-+		};
-+
- 		pmi632_sdam_7: nvram@b600 {
- 			compatible =3D "qcom,spmi-sdam";
- 			reg =3D <0xb600>;
-@@ -155,6 +160,10 @@
- 		pmi632_lpg: pwm {
- 			compatible =3D "qcom,pmi632-lpg";
-=20
-+			nvmem =3D <&pmi632_sdam_7>;
-+			nvmem-names =3D "lpg_chan_sdam";
-+			qcom,pbs-client =3D <&pmi632_pbs_client3>;
-+
- 			#address-cells =3D <1>;
- 			#size-cells =3D <0>;
- 			#pwm-cells =3D <2>;
-
->
-> Anjelique Melendez (7):
->   dt-bindings: soc: qcom: Add qcom-pbs bindings
->   dt-bindings: leds: leds-qcom-lpg: Add support for LUT through NVMEM
->     devices
->   soc: qcom: add QCOM PBS driver
->   leds: rgb: leds-qcom-lpg: Add support for LUT pattern through single
->     SDAM
->   leds: rgb: leds-qcom-lpg: Update PMI632 lpg_data to support PPG
->   leds: rgb: leds-qcom-lpg: Support two-nvmem PPG Scheme
->   leds: rgb: Update PM8350C lpg_data to support two-nvmem PPG Scheme
->
->  .../bindings/leds/leds-qcom-lpg.yaml          |  85 ++++
->  .../bindings/soc/qcom/qcom-pbs.yaml           |  41 ++
->  drivers/leds/rgb/leds-qcom-lpg.c              | 393 ++++++++++++++++--
->  drivers/soc/qcom/Kconfig                      |   9 +
->  drivers/soc/qcom/Makefile                     |   1 +
->  drivers/soc/qcom/qcom-pbs.c                   | 343 +++++++++++++++
->  include/linux/soc/qcom/qcom-pbs.h             |  36 ++
->  7 files changed, 877 insertions(+), 31 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-pbs.y=
-aml
->  create mode 100644 drivers/soc/qcom/qcom-pbs.c
->  create mode 100644 include/linux/soc/qcom/qcom-pbs.h
+Best regards,
+Krzysztof
 
