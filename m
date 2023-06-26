@@ -2,69 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D35C773EEBE
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 00:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72FB373EEC4
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 00:46:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229832AbjFZWpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 18:45:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44990 "EHLO
+        id S229715AbjFZWqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 18:46:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjFZWpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 18:45:49 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50BA412B
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 15:45:47 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b5e7dba43cso35580801fa.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 15:45:47 -0700 (PDT)
+        with ESMTP id S229738AbjFZWqd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 18:46:33 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 376B8131
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 15:46:32 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b6a0e36d42so18834091fa.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 15:46:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687819545; x=1690411545;
+        d=linaro.org; s=google; t=1687819590; x=1690411590;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=u5bCPFlR0nu3jWbwFkLqvSTjglnwST8IppmOFOBlz+8=;
-        b=qJaoDjzNpYqpEsQQchoys5kprXHinuZsVAbE7N7V/tlJf7exDUN9nXheqBQ3Wt5HZX
-         qLHbwWjeDphPHrkLxuJCXCOraN0phIUtTIJrqMu9VRDQgCyVDC2y5RcQIkkpKXEZT9cO
-         l0HDCIfP2hsnDGXj5vf5/7hYBcWcDPddrEoOo1m7AYUN2dDi2/8vJ4EwmK85Anpy+Bja
-         ivq+Z4hE8BVoQxwlFibrDQKyAl6Giwh2hdpyOyaQQR1HzirVjHQa6kA2Ar+GUOeFHGUN
-         cqQy3iqzLN/7Diix2rDuE3D9eGh6d5dWByWnv3Fwl04aCtuzNi0U7gMUVulLL6tw1yJ/
-         4b4g==
+        bh=g/HbI+tlHDdTUjnW9h4L8w2WP0zE6rcb9swUHefgPkU=;
+        b=SOpWDX2f3Sf5+j1ArGQZP/YJvY47JwcAoGYiM0PA4TdvZKjtFHVL7C79r1CKa+9sGP
+         HWgavLF/CMaFsyMfN/W86D/ZXSxdwaJPt/BrHnQNRwuGVfQ9/jBuaGtYqUajNZkySabX
+         QeMwlAvoCXvJvAXEFusyEhfl3n55Wma/kqU+EeGxJG40KTzI7GOWz59muJfsxcvOfjD5
+         8FH1S9PCEg3xvcgsRaT8fmXZUiL0qM/bwlOCfs/XSkg8CwXE40RPNLZXuEVlXskGIvm4
+         xjbAf79YnLLFuDnKELitkEf3Wq6RvTrYH9wrHb7Aml7w2g0wc0uwK6D0ty8zRu9pj0mE
+         HRuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687819545; x=1690411545;
+        d=1e100.net; s=20221208; t=1687819590; x=1690411590;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=u5bCPFlR0nu3jWbwFkLqvSTjglnwST8IppmOFOBlz+8=;
-        b=Dt8WVU/Rr1bKtLrZfPyRHvJgOyUrQhcLXP6aRnIvUUQIi81J1chHTgSeR5wWUGDMI6
-         gw5tdLdmXkPQnG4+bs+9gQ0ND2GX7JjVB/AUHROmy0/7nrX/sACSiXngSbM6z8lt0fv0
-         AO9U4ETTQ6akDgdPFYmgF9g1jpvvOYWOa9ahrKPCAetqeQXSmx51olLh0ynQj6a5rYwL
-         dBTdNB2gP7ohztR85V+lzZfWy9O/Gk+n6vuADQP6EXFBwTDQNns3fC36Yd3oKN3DHoIy
-         1Do7nGpkxyAhn4OgT84FsmPq6fzSotZPVLmT8qF2JyFgZvVWZ6q0aaFXa4vf74WbMgwc
-         /5AQ==
-X-Gm-Message-State: AC+VfDxhd+2jkzBYw9EyZPItR7/8Rzh1UuzgcfutnBDG7FOQu0Xd09Px
-        dXEHfS9f8PFgVSaq+anTESpKjw==
-X-Google-Smtp-Source: ACHHUZ4MkezrTg7Z9UArmCvbs17mEfFgUWI0FF/DGZkDKPVqQnLigk+6CZEVrjsFa5tbSdDqhTREeg==
-X-Received: by 2002:a2e:9107:0:b0:2b5:9b3b:f7ea with SMTP id m7-20020a2e9107000000b002b59b3bf7eamr6470282ljg.41.1687819545471;
-        Mon, 26 Jun 2023 15:45:45 -0700 (PDT)
+        bh=g/HbI+tlHDdTUjnW9h4L8w2WP0zE6rcb9swUHefgPkU=;
+        b=HQGT9BKxA397HI1Z4u3VJRmhEp1SZmm7pJSmLYcSHQw/qfkNQYpuHxxJG3ZJEmvBF/
+         zQyOfegklo0wCXLW08i58UuoVOgcRrud/MNEQQ+GwDcI/qejZ2zAxLNIpDPPiUvSTkGn
+         teIy4hTWBNwPsNWNWfpTtlari+IRYONgwT616GwkfcW0ZppK8qUbWSwiJqHAFPSv6Flb
+         9WwbA5F2mxYmUCo9RpA3FbTC2GaZ9d79S6zVRDfaZpxhtfjCpJYBK6rtWBCYDhRf71IG
+         9p4084LExplbkhf2XiUUBlTp4EIyVlqweJzffy5Du4so3zEaBsDsUE0SvUvmm+lvd44N
+         qs0w==
+X-Gm-Message-State: AC+VfDzLDRXDNp4VmqDu3aqLAiBsF5309EVI9r2gY3ePIbkVdb3I+YDu
+        mlffK+JzEVyxCMqNOQiDcu3DFQ==
+X-Google-Smtp-Source: ACHHUZ7orXO0/gHnY40bHHASzmg4vD9JU29mG9WnTHLbvrh5LxgCuKRDdOKL+vDSA5TiHT1i6pW4ZA==
+X-Received: by 2002:a05:6512:3088:b0:4f6:2d47:274c with SMTP id z8-20020a056512308800b004f62d47274cmr12489431lfd.15.1687819590412;
+        Mon, 26 Jun 2023 15:46:30 -0700 (PDT)
 Received: from [192.168.1.101] (abyk179.neoplus.adsl.tpnet.pl. [83.9.30.179])
-        by smtp.gmail.com with ESMTPSA id b6-20020a2e9886000000b002b69f44646bsm938501ljj.17.2023.06.26.15.45.44
+        by smtp.gmail.com with ESMTPSA id q1-20020ac25101000000b004f858249932sm1277950lfb.90.2023.06.26.15.46.28
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 15:45:45 -0700 (PDT)
-Message-ID: <ab41462a-330f-263d-718f-e449e9ca8c5c@linaro.org>
-Date:   Tue, 27 Jun 2023 00:45:43 +0200
+        Mon, 26 Jun 2023 15:46:30 -0700 (PDT)
+Message-ID: <1808f43b-5a76-d4e6-a36d-88779ecd3836@linaro.org>
+Date:   Tue, 27 Jun 2023 00:46:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: Fix "status" value
+Subject: Re: [PATCH 06/15] dt-bindings: display/msm: sc7180-dpu: Describe
+ SM6125
 Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20230626220957.3945972-1-robh@kernel.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
+References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
+ <20230624-sm6125-dpu-v1-6-1d5a638cebf2@somainline.org>
+ <6bbf239f-d530-2f1e-ff52-361f7c9cc951@linaro.org>
+ <75d64lixeawfoqbrctm4thzh73cxkvnlmnh5xgbpf277pmh3gz@zthnqvvuxmeq>
+ <a6f3906a-98a7-de7a-3e26-4b8c45fe93f7@linaro.org>
+ <w3bbdq72thnerbyglb4dyshzg4vu5go2wpsciprk27vah6w2ms@yc4eqclct24a>
+ <3daf9990-79da-9adf-af6a-d9007c186557@linaro.org>
+ <26pqxmuuyznb4qbi4wkiexr5excxenfmiuojrqgrz5k5t5palm@ttlk6m2zuokm>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230626220957.3945972-1-robh@kernel.org>
+In-Reply-To: <26pqxmuuyznb4qbi4wkiexr5excxenfmiuojrqgrz5k5t5palm@ttlk6m2zuokm>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -77,25 +104,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27.06.2023 00:09, Rob Herring wrote:
-> The defined value for "status" is "disabled", not "disable".
+On 26.06.2023 22:28, Marijn Suijten wrote:
+> On 2023-06-26 20:57:51, Konrad Dybcio wrote:
+>> On 26.06.2023 19:54, Marijn Suijten wrote:
+>>> On 2023-06-26 18:16:58, Krzysztof Kozlowski wrote:
+>>>> On 25/06/2023 21:52, Marijn Suijten wrote:
+>>>>> On 2023-06-24 11:12:52, Krzysztof Kozlowski wrote:
+>>>>>> On 24/06/2023 02:41, Marijn Suijten wrote:
+>>>>>>> SM6125 is identical to SM6375 except that while downstream also defines
+>>>>>>> a throttle clock, its presence results in timeouts whereas SM6375
+>>>>>>> requires it to not observe any timeouts.
+>>>>>>
+>>>>>> Then it should not be allowed, so you need either "else:" block or
+>>>>>> another "if: properties: compatible:" to disallow it. Because in current
+>>>>>> patch it would be allowed.
+>>>>>
+>>>>> That means this binding is wrong/incomplete for all other SoCs then.
+>>>>> clock(-name)s has 6 items, and sets `minItems: 6`.  Only for sm6375-dpu
+>>>
+>>> Of course meant to say that clock(-name)s has **7** items, not 6.
+>>>
+>>>>> does it set `minItems: 7`, but an else case is missing.
+>>>>
+>>>> Ask the author why it is done like this.
+>>>
+>>> Konrad, can you clarify why other 
 > 
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> (Looks like I forgot to complete this sentence before sending,
+> apologies)
+> 
+>> 6375 needs the throttle clk and the clock(-names) are strongly ordered
+>> so having minItems: 6 discards the last entry
+> 
+> The question is whether or not we should have maxItems: 6 to disallow
+> the clock from being passed: right now it is optional and either is
+> allowed for any !6375 SoC.
+That's a very good question. I don't have a 7180 to test, but for
+you it seems to cause inexplicable issues on 6125..
 
 Konrad
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index cfbc4fc1eba9..c6914db7dc6d 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -779,5 +779,5 @@ &wifi {
->  
->  &crypto {
->  	/* FIXME: qce_start triggers an SError */
-> -	status = "disable";
-> +	status = "disabled";
->  };
+> - Marijn
+> 
+>>
+>> Konrad
+>>>
+>>>>> Shall I send a Fixes: ed41005f5b7c ("dt-bindings: display/msm:
+>>>>> sc7180-dpu: Describe SM6350 and SM6375") for that, and should maxItems:
+>>>>> 6 be the default under clock(-name)s or in an else:?
+>>>>
+>>>> There is no bug to fix. Or at least it is not yet known. Whether other
+>>>> devices should be constrained as well - sure, sounds reasonable, but I
+>>>> did not check the code exactly.
+>>>
+>>> I don't know either, but we need this information to decide whether to
+>>> use `maxItems: 6`:
+>>>
+>>> 1. Directly on the property;
+>>> 2. In an `else:` case on the current `if: sm6375-dpu` (should have the
+>>>    same effect as 1., afaik);
+>>> 3. In a second `if:` case that lists all SoCS explicitly.
+>>>
+>>> Since we don't have this information, I think option 3. is the right way
+>>> to go, setting `maxItems: 6` for qcom,sm6125-dpu.
+>>>
+>>> However, it is not yet understood why downstream is able to use the
+>>> throttle clock without repercussions.
+>>>
+>>>> We talk here about this patch.
+>>>
+>>> We used this patch to discover that other SoCs are similarly
+>>> unconstrained.  But if you don't want me to look into it, by all means!
+>>> Saves me a lot of time.  So I will go with option 3.
+>>>
+>>> - Marijn
