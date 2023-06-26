@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AA6173E64A
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 926BD73E65B
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:24:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbjFZRUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 13:20:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51720 "EHLO
+        id S229604AbjFZRYF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 13:24:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231534AbjFZRT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:19:56 -0400
+        with ESMTP id S229456AbjFZRYE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:24:04 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7308E2700;
-        Mon, 26 Jun 2023 10:18:34 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC98891;
+        Mon, 26 Jun 2023 10:24:02 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E4E0F60F16;
-        Mon, 26 Jun 2023 17:18:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 59938C433C0;
-        Mon, 26 Jun 2023 17:18:30 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5260560F0E;
+        Mon, 26 Jun 2023 17:24:02 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C60BDC433C0;
+        Mon, 26 Jun 2023 17:23:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687799913;
-        bh=1aVA419Kc2rCasX63ROtSOVQwV4i2RV7ZXpObtGF3dA=;
+        s=k20201202; t=1687800241;
+        bh=J5IE0ZFd89PlUjMsyC5ZSSfbrAt4OkK3g5ZAb+NJ6cI=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FxUujNhgccvZMZWccetFHuXeo/D0zbw55BOtACrmFsYVHx7YMat0MmSj4UtuVsh87
-         sgdbL4QtyrpcwNfa6zUyYHQxoTygVXBBb2XBkP8RYTXAV6736s1OW0ASO6ejY5P2J7
-         /X7Ll/dAWy37SwGIaboKHtGt3hJhMQfNmnsgjNdMrONigzMyXMGuXWW/ksupoFgLCb
-         reFk7QZQgV6HONToyqBl4O/0PokwAEpFTtBHnyP2Z7NowlKFLTVJgOj/z2i0jdpjgM
-         vmuk8sz+ftzQkMhx6I5rvV0MF/x8PtINWE1Nro89AFRQnFJduCv77lYh5Zwq8EZypK
-         VJm7QMz1ThexA==
-Date:   Mon, 26 Jun 2023 18:18:28 +0100
+        b=s+67EIwv9mAa2V7iEVLKwGUPMnb38s1xTCeeadi1GdFveWAGuua0K6aWOGajDM8As
+         q+7TiNF4Hm5Yb+tgqpOXIzT8YDjIQiXMNi3fFmHg90gTplcy6mLes2qSQOp7exnhe1
+         KIapOq4nn+uMK38lXA/4aszTTNZmJTukNnDNVaydmE3kVw8vWOnTfvnKX3/sy7dkrq
+         G6JzqULi8qz6kgPd5gNIbxlMm3n1yLeXckEUR4Yxc7TXhbbUBJayXJZ6u9mpa2kG4U
+         /5QvQLmoeIAfS2CJIxFPWVnamCFxgPwbLeevfpASqhXXy3jjIbF+kxeEjHnflzTpBR
+         O4Wb5GrpJTfhg==
+Date:   Mon, 26 Jun 2023 18:23:56 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Chris Packham <chris.packham@alliedtelesis.co.nz>
-Cc:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, gregory.clement@bootlin.com,
-        pierre.gondois@arm.com, arnd@arndb.de, f.fainelli@gmail.com,
+        conor+dt@kernel.org, git@amd.com, michael@walle.cc,
         linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 1/3] dt-bindings: mtd: Add AC5 specific binding
-Message-ID: <20230626-immunity-lagged-eaae0182ad0c@spud>
-References: <20230626031217.870938-1-chris.packham@alliedtelesis.co.nz>
- <20230626031217.870938-2-chris.packham@alliedtelesis.co.nz>
+        linux-kernel@vger.kernel.org, amitrkcian2002@gmail.com
+Subject: Re: [PATCH v3 1/2] dt-bindings: mtd: jedec, spi-nor: Add DT property
+ to avoid setting SRWD bit in status register
+Message-ID: <20230626-stonework-freely-bec6f8bc83e6@spud>
+References: <20230625100251.31589-1-amit.kumar-mahapatra@amd.com>
+ <20230625100251.31589-2-amit.kumar-mahapatra@amd.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="mLtStHEbV2AzfZjM"
+        protocol="application/pgp-signature"; boundary="qjgSjtDERNYXQ8hA"
 Content-Disposition: inline
-In-Reply-To: <20230626031217.870938-2-chris.packham@alliedtelesis.co.nz>
+In-Reply-To: <20230625100251.31589-2-amit.kumar-mahapatra@amd.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -61,58 +62,87 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---mLtStHEbV2AzfZjM
+--qjgSjtDERNYXQ8hA
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jun 26, 2023 at 03:12:15PM +1200, Chris Packham wrote:
-> Add binding for AC5 SoC. This SoC only supports NAND SDR timings up to
-> mode 3 so a specific compatible value is needed.
+On Sun, Jun 25, 2023 at 03:32:50PM +0530, Amit Kumar Mahapatra wrote:
+> If the WP# signal of the flash device is either not connected or is wrong=
+ly
+> tied to GND (that includes internal pull-downs), and the software sets the
+> status register write disable (SRWD) bit in the status register then the
+> status register permanently becomes read-only. To avoid this added a new
+> boolean DT property "no-wp". If this property is set in the DT then the
+> software avoids setting the SRWD during status register write operation.
 >=20
-> Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> ---
+> As the DT property name has changed so, removed Reviewed-by tag.
+> @Cornor if possible, could you please review this updated patch.
 
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Rob was the one who objected to the property name.
+Old & new names are fine by me, it was the text I think I cared about.
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-Cheers,
+Thanks for actually explaining why you dropped the tag,
 Conor.
 
 > ---
+>  .../devicetree/bindings/mtd/jedec,spi-nor.yaml    | 15 +++++++++++++++
+>  1 file changed, 15 insertions(+)
 >=20
-> Notes:
->     Changes in v2:
->     - Keep compatibles in alphabetical order
->     - Explain AC5 limitations in commit message
->=20
->  .../devicetree/bindings/mtd/marvell,nand-controller.yaml         | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/mtd/marvell,nand-controlle=
-r.yaml b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> index a10729bb1840..1ecea848e8b9 100644
-> --- a/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/marvell,nand-controller.yaml
-> @@ -16,6 +16,7 @@ properties:
->            - const: marvell,armada-8k-nand-controller
->            - const: marvell,armada370-nand-controller
->        - enum:
-> +          - marvell,ac5-nand-controller
->            - marvell,armada370-nand-controller
->            - marvell,pxa3xx-nand-controller
->        - description: legacy bindings
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/D=
+ocumentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 89959e5c47ba..97344969b02d 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -70,6 +70,21 @@ properties:
+>        be used on such systems, to denote the absence of a reliable reset
+>        mechanism.
+> =20
+> +  no-wp:
+> +    type: boolean
+> +    description:
+> +      The status register write disable (SRWD) bit in status register, c=
+ombined
+> +      with the WP# signal, provides hardware data protection for the dev=
+ice. When
+> +      the SRWD bit is set to 1, and the WP# signal is either driven LOW =
+or hard
+> +      strapped to LOW, the status register nonvolatile bits become read-=
+only and
+> +      the WRITE STATUS REGISTER operation will not execute. The only way=
+ to exit
+> +      this hardware-protected mode is to drive WP# HIGH. If the WP# sign=
+al of the
+> +      flash device is not connected or is wrongly tied to GND (that incl=
+udes internal
+> +      pull-downs) then status register permanently becomes read-only as =
+the SRWD bit
+> +      cannot be reset. This boolean flag can be used on such systems to =
+avoid setting
+> +      the SRWD bit while writing the status register. WP# signal hard st=
+rapped to GND
+> +      can be a valid use case.
+> +
+>    reset-gpios:
+>      description:
+>        A GPIO line connected to the RESET (active low) signal of the devi=
+ce.
 > --=20
-> 2.41.0
+> 2.17.1
 >=20
 
---mLtStHEbV2AzfZjM
+--qjgSjtDERNYXQ8hA
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJnIYwAKCRB4tDGHoIJi
-0vp2APoC4meY0myxHCxXUVoBUzE6hpFknz/7nb15OFZQ1HwLqgD/Rky+73wm6Dho
-QHLhMpJPdRSVdSpYAUROy/uJUSklOAU=
-=CTKY
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJnJrAAKCRB4tDGHoIJi
+0ntuAQDVpae9PflF2Bc8e7EAKMWs4/x2R2zXS1I6cmwqsdqWJwD/SL5M96LQ13GW
+oDRx25XRP1+G6pAwWLHTEwIoub+Q9gc=
+=EFCF
 -----END PGP SIGNATURE-----
 
---mLtStHEbV2AzfZjM--
+--qjgSjtDERNYXQ8hA--
