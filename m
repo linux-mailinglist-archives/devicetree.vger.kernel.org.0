@@ -2,61 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 546B373EB62
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 22:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD53673EB7A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 22:05:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229806AbjFZUAv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 16:00:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51174 "EHLO
+        id S229973AbjFZUAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 16:00:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229768AbjFZUAp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 16:00:45 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0143F171F
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 13:00:43 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fb7589b187so2028829e87.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 13:00:43 -0700 (PDT)
+        with ESMTP id S229788AbjFZUAu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 16:00:50 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82170171A
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 13:00:45 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b6a0e36d42so17223971fa.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 13:00:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687809642; x=1690401642;
+        d=linaro.org; s=google; t=1687809644; x=1690401644;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=dZhC2Qk4+yJVkkmC8iX7qYnuk5bnEQ8L34QUHmXs8vw=;
-        b=U2aWaZtOHvhc/tKfTB+0SlQRqDY5QHhWsCbw2kMbONbX0OX8Gvpy7vNrcukYX3evN9
-         /N09KCeZaXV/iSnpawCT6lv6Mv45BnlEx2dkHVUjt0c6FxfLQlB9ysli1awgPAwOMRfZ
-         ttBzGhpIOW9XOoZGu4zq0MDqNSO81EC4GkTz2FmOG8hvgZE1dEEFTSolPFiHwKZPVJ1V
-         e7sZeKMrkWUlPTAneMAUTCq5E35LW1SKeYqz1UHdaa9lmskLDeLkhjLVNniIc+70phXx
-         hkcqZMPL7NibAdnP9m11jHH+cnCUAbt/tUYg7AvcWa5EllOs9ILwxpmrR0+3YOwJGH8G
-         lmQQ==
+        bh=cBd8zYmgXYIJEREOfSmC9QA82+fRkHgoZhhw+yecJog=;
+        b=jll4tYqzu7BMIfP4ApSYC6LZa4nDGYV1Nyq5BYckVuVw2SJIsTOPY7Kqyi+Dr1qQwg
+         siJPnAB8YCZs7/2JNlMAXEatIO090IWzSvod55RnTIHFUaJiNErQwSAvUR0H5jXh4XqG
+         fniW42lFDYAFzNFgl0PBTqgt9uFXz1hYv0N8i4JCIhYjC3WAPe8WrZinFk7lpNnqYFb2
+         R3IqSpaLjguqRY5CqQkSNJlzXgd2rH9I1nzy6FZaBFYL3t5ai9gwC60JhzCKMDCKlTqf
+         l6YPtkSxSgtCkkFNC58x3QRoHpM2NGGQ88R60ObwaO0cVttcKllqbhpG1cfmcyNwZgVy
+         hS/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687809642; x=1690401642;
+        d=1e100.net; s=20221208; t=1687809644; x=1690401644;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=dZhC2Qk4+yJVkkmC8iX7qYnuk5bnEQ8L34QUHmXs8vw=;
-        b=EZzn29QyprYETQt2GYuErX6nts1bHwB6bu/wH+oFS+K2xcbs8YGrIxmFgdUwqwTXun
-         netWSm2llq25fa/dtxhKO1ZkvW8aC/mHeyanEdEONnTQ6/6RdjyjyuuKkBZSb3Ynv7gt
-         /H3zrQd9VeoRvEqGDTyIzz7p3m4xpQTg1BPvGGlQzXczZNaB5YsSqrmJPMryKISZx6uP
-         K4KqHG2gBVnakhSwKPmztlUJ3nt8SRBwm3oye7ldQgvQz3lhl4lF/+AoavUCfEH20CAU
-         uoQYJxBlc0qIWMo6ZIgGpEjUAqqVhsDp/8Oqa+PKM9eA+RzYDpOFutamGks6Ed2GrbhZ
-         bKIw==
-X-Gm-Message-State: AC+VfDz7n6Zt7MaRb6R+gmVeYhOyyZvfHwuO20C1EvVeO1ptEpc8YZ6T
-        GEzwpld+AOAQnjMDq7uKCDkiqA==
-X-Google-Smtp-Source: ACHHUZ6b2hQMNtTLi1F+9X3vOIZprHgCOQOLawP7qUc5CtwhNvkTYGBI63YfknDA9064/FJoU2QL+g==
-X-Received: by 2002:a19:ab11:0:b0:4f8:75ac:c4e8 with SMTP id u17-20020a19ab11000000b004f875acc4e8mr6484561lfe.43.1687809642027;
-        Mon, 26 Jun 2023 13:00:42 -0700 (PDT)
+        bh=cBd8zYmgXYIJEREOfSmC9QA82+fRkHgoZhhw+yecJog=;
+        b=SHZ/zLYeqA8lqCmFIj1W3Qx1XXiwRNGVp4Sz9omrWokGttPgbIUhrx3/bSutuz9PpY
+         sP0in8nwE4MlWEcdH5LOlEcXTKV2jqDKtZXuZvKFhGeG0Eh/0U77dVI4PtB6LC+7sxE3
+         dujO2fAp3VzNdWKfhfbKuviKuengH09DRhEauW1Eo1rpxjefPDxIDDNvt6g0gv5ooOm7
+         1FKzi00C+7FJOp2IOK+Sj9CwDfIOHPxMgpR4bGGtGrAiou8a0vDmpIDr9hWmx9A79Y7v
+         NdZoQT8BMose9EbJU8DFlBrjiV1Sm18PDikVxqJnxkrtb8wBlz1EEeNsrLmNbeZSFA2T
+         5wIw==
+X-Gm-Message-State: AC+VfDyDCmW50xv6dwv3VKxUbkk5LPA18S/BgpPU6kAl7A2Nix/6N5mk
+        z1Y2OOia76CR4KbaN15OfgTtAQ==
+X-Google-Smtp-Source: ACHHUZ6n/y7KAJeGbOMz7+mh+y2vPDpUaiElzO4mf+ROXSrqj/nAWYSYK03jdE9sAaZ6NI5/aI3Yaw==
+X-Received: by 2002:a05:6512:3088:b0:4f6:2d47:274c with SMTP id z8-20020a056512308800b004f62d47274cmr12391004lfd.15.1687809643729;
+        Mon, 26 Jun 2023 13:00:43 -0700 (PDT)
 Received: from [192.168.1.101] (abyk179.neoplus.adsl.tpnet.pl. [83.9.30.179])
-        by smtp.gmail.com with ESMTPSA id o11-20020ac2494b000000b004fb74cb9670sm628082lfi.125.2023.06.26.13.00.40
+        by smtp.gmail.com with ESMTPSA id o11-20020ac2494b000000b004fb74cb9670sm628082lfi.125.2023.06.26.13.00.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 13:00:41 -0700 (PDT)
+        Mon, 26 Jun 2023 13:00:43 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Mon, 26 Jun 2023 22:00:24 +0200
-Subject: [PATCH 2/7] dt-bindings: remoteproc: qcom,msm8996-mss-pil: Fix
- 8996 clocks
+Date:   Mon, 26 Jun 2023 22:00:25 +0200
+Subject: [PATCH 3/7] arm64: dts: qcom: pm6150l: Add missing short interrupt
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230626-topic-bindingsfixups-v1-2-254ae8642e69@linaro.org>
+Message-Id: <20230626-topic-bindingsfixups-v1-3-254ae8642e69@linaro.org>
 References: <20230626-topic-bindingsfixups-v1-0-254ae8642e69@linaro.org>
 In-Reply-To: <20230626-topic-bindingsfixups-v1-0-254ae8642e69@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -81,11 +80,11 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         Konrad Dybcio <konrad.dybcio@somainline.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687809636; l=1513;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1687809636; l=1027;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=nOsZ7J30rWic3dHnzSrrbrvLqXr5jRF6S1BliJFP7HM=;
- b=xXNJCYMVsUEMs8T/YRxPTYogaCoAaGuG3UV4Oy/qRyyaaZBJ9v4crXyNyHdsJERbS2rDBIjMb
- UUAjZ7jB5QjC0M6yU/NbsUPgqyRiUcMXXmEdYthuNgQHllHIKmAy4Lo
+ bh=ujcheFLL/6qV12qqejjbZeIk898Ii1a50BTU4uUbDeY=;
+ b=NGVkEswwSUw3X5KijxbzS2TpVSNV+7El5Pf99qS9FEoTk3ICMAcsn62N018+OLx8A/O9/Rhy1
+ UDq6h9qiILRAUHLFbMxyhxQtOd4i6+UfK6BEnOlz0r8U493lH3wLFMP
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -98,37 +97,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Change RPMH to RPM (as RPMh was introduced 2 generations later) and drop
-the prng reference, which made ARRAY_SIZE(clocks) !=
-ARRAY_SIZE(clock-names).
+Add the missing short interrupt. This fixes the schema warning:
 
-Fixes: bdea142295ff ("dt-bindings: remoteproc: qcom,q6v5: Move MSM8996 to schema")
+wled@d800: interrupt-names: ['ovp'] is too short
+
+Fixes: fe508ced49dd ("arm64: dts: qcom: pm6150l: Add wled node")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- .../devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml       | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/pm6150l.dtsi | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-index c1ac6ca1e759..4e2358fea49e 100644
---- a/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-+++ b/Documentation/devicetree/bindings/remoteproc/qcom,msm8996-mss-pil.yaml
-@@ -215,13 +215,12 @@ allOf:
-             - description: GCC MSS IFACE clock
-             - description: GCC MSS BUS clock
-             - description: GCC MSS MEM clock
--            - description: RPMH XO clock
-+            - description: RPM XO clock
-             - description: GCC MSS GPLL0 clock
-             - description: GCC MSS SNOC_AXI clock
-             - description: GCC MSS MNOC_AXI clock
--            - description: RPMH PNOC clock
--            - description: GCC MSS PRNG clock
--            - description: RPMH QDSS clock
-+            - description: RPM PNOC clock
-+            - description: RPM QDSS clock
-         clock-names:
-           items:
-             - const: iface
+diff --git a/arch/arm64/boot/dts/qcom/pm6150l.dtsi b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
+index 6a7fe1e59f15..d13a1ab7c20b 100644
+--- a/arch/arm64/boot/dts/qcom/pm6150l.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm6150l.dtsi
+@@ -121,8 +121,9 @@ pm6150l_flash: led-controller@d300 {
+ 		pm6150l_wled: leds@d800 {
+ 			compatible = "qcom,pm6150l-wled";
+ 			reg = <0xd800>, <0xd900>;
+-			interrupts = <0x5 0xd8 0x1 IRQ_TYPE_EDGE_RISING>;
+-			interrupt-names = "ovp";
++			interrupts = <0x5 0xd8 0x1 IRQ_TYPE_EDGE_RISING>,
++				     <0x5 0xd8 0x2 IRQ_TYPE_EDGE_RISING>;
++			interrupt-names = "ovp", "short";
+ 			label = "backlight";
+ 
+ 			status = "disabled";
 
 -- 
 2.41.0
