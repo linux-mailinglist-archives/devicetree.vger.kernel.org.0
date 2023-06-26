@@ -2,82 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8636573D9B3
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 10:29:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20D2673D9C1
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 10:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230054AbjFZI3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 04:29:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33700 "EHLO
+        id S229502AbjFZIbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 04:31:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34590 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230063AbjFZI32 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 04:29:28 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60BF4E4A
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:29:26 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-98934f000a5so359030666b.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:29:26 -0700 (PDT)
+        with ESMTP id S230079AbjFZIa7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 04:30:59 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 871DFE7D
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:30:56 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-98e39784a85so212996266b.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 01:30:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687768165; x=1690360165;
+        d=linaro.org; s=google; t=1687768255; x=1690360255;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=2tsOG+nFR2GTTBc7CbDQFVvL4dzoth9iqIWwzfRS+A8=;
-        b=xEYr+NKaL1PDtn/k+qrg/HeUDCVALR8yL0jCtp0RqWdlCGUAMBxuD2yBaGSzIE/PEr
-         XL2/Ur6iJZBpZU1J8i5l2H34+5zm/CAL+Pa+KUd+iPG6x/3UlljUOtSDiKuI0Zv9P862
-         KoyT9x4JX9T9jyMS/mecUHnGSPEWLaRNK0B/bAfcADvM3iNpkwtaQYRhvjjDFmg2milq
-         K9wLlU+ZKCbuybSmvoKGl3ukZxcMvlfu1OnCH/7JZN/rrSWCm+HyprG7qYYSTqZeu90A
-         n7mJFeJr7QJzFusN8Cyd9ecvYW7yM2EBb4jvJQHW9/FERq7Ts8eJmqIKJ1biZZByapA3
-         7OTQ==
+        bh=Z6Q9XtGAe9pmT920uAOyU/UADbYVSu2ITB2+DxW4Lk8=;
+        b=SWpuU3MrBWg1VaE3Fr8Z0YRmYMhGlk9J9qdttbWilg6IB5RjkTOJY2u06kCQ+bfGe8
+         DJSrlakWQeo/fHUSy9zX1JzfROWovG39LUHZiipNakCc6n5StFwZ89CVCy7dco4J0A8h
+         3k3XoTfj1+97Mo9fZIufMJ7RUsLcT6SfWWGZVPNT6SuyAKuA2jZjScOcmZ6cXlJnguW3
+         oa7RFipoKK5qHVyYnpSgYjJe6wVuNVwHvDkBK3oGvlrH5462wxf9FDmphYzZhKTcSRvk
+         f7PoQpx3vPxp0DyWOVRaMGtM7SLmVuYOv7lDa7Ceb7/gkoXGCgxc97Q1/HoZMUztv9dI
+         mZhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687768165; x=1690360165;
+        d=1e100.net; s=20221208; t=1687768255; x=1690360255;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2tsOG+nFR2GTTBc7CbDQFVvL4dzoth9iqIWwzfRS+A8=;
-        b=CZFBu+to+loM/xe2ND4dU/Z2AXo7dOXUMQIUomp/iSfRrQlf/2Rm7iPAzWZ+fJti29
-         IRTeGVDRzALW5f3ZCVYKQuMaWf3F6B0SNAy7s0UqxSs36OAaT7RuzBayh5Nb+pB2EfTe
-         nettNAOVtJambhTwPJx8dqXatYvSYrKtbWQnIDZutTHYYBWLaWkMcBNaLHXglMNgzSBQ
-         mi5xNHhNIXVIFhyD1/9oSpQ/7mfk5/OTriPSSjI3F69eAICDJqx5uLeS2A+SESC5YLn8
-         uXCFGIILAl7TlE2YsyEf8ziASDAZo+MjPtI1S075oTNxLWX1p2FUW8rKkSO/1mGGZgxK
-         X1mw==
-X-Gm-Message-State: AC+VfDwJLTCTwk+Jwf5Nia8Q/5sRkvXQe4NmAJxMTJhh//4MUkb41NNk
-        5PKd4JBvKbXmWPT3MEZNmpzAtA==
-X-Google-Smtp-Source: ACHHUZ4f6Zrvi3qOoV7NxupQNc5bFb/EuzGTSv79Os8497nPLMdIEfuSC2wmzdkpoAR9pkd2zt+iJg==
-X-Received: by 2002:a17:907:da2:b0:988:e8e1:6360 with SMTP id go34-20020a1709070da200b00988e8e16360mr17223589ejc.8.1687768164783;
-        Mon, 26 Jun 2023 01:29:24 -0700 (PDT)
+        bh=Z6Q9XtGAe9pmT920uAOyU/UADbYVSu2ITB2+DxW4Lk8=;
+        b=cnnhz6r8VnjJYSp8q0ghl0KqUixZp5mJv4e+hGwVBqt79aX7rdmW+CklPomGR18TX+
+         Rbh03M9jfhZI1AqIxkWymX2yVmm0mabAfgIj6TYdS9i5lhv5zoCPb3w28dMaKsVTH7SU
+         qR7fAQ5VXyp2Fj4pNmamIjjFhIo9d1XI+8pGtYhxsJBpmSvqqrmHMaaGOLh+qQBvHll9
+         AMpCVYPg9FPzrBE+/FI16TS/A/iZc3r7YcZd+iw6hVCkTR3lvlvx/qpjvjEIeo0h24mT
+         abB80KxJzJXANDuOo0xfksVulxNU3G+Ko5Lg9C5kZwP2Zq+wDZZAlooq5rZwk5FIxpoP
+         DiEg==
+X-Gm-Message-State: AC+VfDyzSXCsYsGtyxpctMUEczgxU2NGC5DWoXOHGh6AI57DAOGpeBcC
+        t2oxOqoTJ9HPuoj2TzV1jTtAhw==
+X-Google-Smtp-Source: ACHHUZ7nn/1Fi/+3MWyVpG6zaAZrJEd0canSK2GOthmprJI4z4sBP6lCZi7wDvbASjZjDl/i30AO9Q==
+X-Received: by 2002:a17:907:7ba5:b0:982:4b35:c0b6 with SMTP id ne37-20020a1709077ba500b009824b35c0b6mr27532143ejc.1.1687768254853;
+        Mon, 26 Jun 2023 01:30:54 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id lr9-20020a170906fb8900b00969f44bbef3sm3044396ejb.11.2023.06.26.01.29.23
+        by smtp.gmail.com with ESMTPSA id r1-20020a1709064d0100b0098e0d1c1096sm2397810eju.136.2023.06.26.01.30.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 01:29:24 -0700 (PDT)
-Message-ID: <075c8d01-5788-a3c4-44e0-36cb9318fc6a@linaro.org>
-Date:   Mon, 26 Jun 2023 10:29:22 +0200
+        Mon, 26 Jun 2023 01:30:54 -0700 (PDT)
+Message-ID: <d0b6f2c9-8e85-a38b-e2b1-14f197ca1ea0@linaro.org>
+Date:   Mon, 26 Jun 2023 10:30:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/2] dt-bindings: iio: ad74413r: add binding for digital
- input threshold
+Subject: Re: [PATCH v4 1/6] dt-bindings: nvmem: sec-qfprom: Add bindings for
+ secure qfprom
 Content-Language: en-US
-To:     Rasmus Villemoes <linux@rasmusvillemoes.dk>,
-        Rob Herring <robh@kernel.org>, Conor Dooley <conor@kernel.org>
-Cc:     Cosmin Tanislav <cosmin.tanislav@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Michael Hennerich <Michael.Hennerich@analog.com>,
-        Jonathan Cameron <jic23@kernel.org>,
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230623113327.1062170-1-linux@rasmusvillemoes.dk>
- <20230623113327.1062170-2-linux@rasmusvillemoes.dk>
- <20230623-casket-outer-2c9d2a0c4795@spud>
- <20230623215731.GB1216324-robh@kernel.org>
- <8176d552-9829-5442-3ce9-805744b8389e@rasmusvillemoes.dk>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230623141806.13388-1-quic_kbajaj@quicinc.com>
+ <20230623141806.13388-2-quic_kbajaj@quicinc.com>
+ <cea67754-6bc0-f8ee-3cba-8713b10b0c69@linaro.org>
+ <d9cde55b-fc96-b024-8048-1de1fa1bd89e@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <8176d552-9829-5442-3ce9-805744b8389e@rasmusvillemoes.dk>
+In-Reply-To: <d9cde55b-fc96-b024-8048-1de1fa1bd89e@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -85,44 +85,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2023 10:15, Rasmus Villemoes wrote:
-> On 23/06/2023 23.57, Rob Herring wrote:
->> On Fri, Jun 23, 2023 at 05:44:50PM +0100, Conor Dooley wrote:
->>> On Fri, Jun 23, 2023 at 01:33:25PM +0200, Rasmus Villemoes wrote:
->>>> diff --git a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
->>>> index 590ea7936ad7..1f90ce3c7932 100644
->>>> --- a/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
->>>> +++ b/Documentation/devicetree/bindings/iio/addac/adi,ad74413r.yaml
->>>> @@ -51,6 +51,14 @@ properties:
->>>>        Shunt (sense) resistor value in micro-Ohms.
->>>>      default: 100000000
->>>>  
->>>> +  digital-input-threshold-microvolt:
->>>
->>> Should this not have an adi vendor prefix, similar to
->>> "adi,digital-input-threshold-mode-fixed"?
+On 26/06/2023 10:22, Komal Bajaj wrote:
 >>
->> Yes.
+>>> +
+>>> +allOf:
+>>> +  - $ref: nvmem.yaml#
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - enum:
+>>> +          - qcom,qdu1000-sec-qfprom
+>>> +      - const: qcom,sec-qfprom
+>>> +
+>>> +  reg:
+>>> +    items:
+>>> +      - description: The secure qfprom corrected region.
+>>> +
+>>> +  # Needed if any child nodes are present.
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +  "#size-cells":
+>>> +    const: 1
+>> Drop both, they are not needed.
 > 
-> OK. But I'm not really sure what the rules are for when such a prefix
-> must be added, so some guidance would be appreciated. There's
-> 
-> - DO use a vendor prefix on device specific property names. Consider if
->   properties could be common among devices of the same class.
-> 
-> And my thinking was that a threshold for when a digital input should
-> count as high/low would be a rather generic thing, so not particularly
-> device specific.
+> I didn't get it. Can you please explain why these are not needed as this
+> node will have child nodes which will use single value for address and size.
 
-Then find some more users of it.
+I suspect they are already defined. Do other bindings (for cases with
+children) have them? If not, why here it would be different?
 
-> 
-> Also, this very binding has a shunt-resistor-micro-ohms, and the
-> individual channels have a drive-strength-microamp (granted, that latter
-> one is a recent one of mine and may have slipped through review?). I can
-> certainly understand that when a property specifies a raw value to put
-> into some register (or field), that's very specific to that chip (or
-> small family of chips) - the adi,ch-func properties fall into that category.
 
 Best regards,
 Krzysztof
