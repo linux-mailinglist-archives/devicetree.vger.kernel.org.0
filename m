@@ -2,64 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AD09173E448
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEC5773E4C6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:18:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231658AbjFZQKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 12:10:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45288 "EHLO
+        id S231741AbjFZQSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 12:18:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231723AbjFZQKv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:10:51 -0400
+        with ESMTP id S231681AbjFZQRM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:17:12 -0400
 Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6621B7
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:10:49 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3113da5260dso3000084f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:10:49 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3B81985
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:15:18 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3112f256941so3144674f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:15:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687795848; x=1690387848;
+        d=linaro.org; s=google; t=1687796117; x=1690388117;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=zqAmLl/C5FNJIhv2Xt1PuXVNbepqgpYqVZ+raKQfDgo=;
-        b=Dk9D/qPMCY74SEye/8fNMTPEpEockgkVtKFNB5FpvJP6Z2NVSo47uRsb0CubNQMYKd
-         WtkUlVzRm0OstEhMn04c8lGSdVBSwfWues+6SYb8jxXGnITJ/3Kys7xO1aGHt0pWGOvM
-         aA8yIEBHWbJFPmP0UWx3SloZvu0U2PR48aUI4URctIkhwDtRpYz7uXYWH7BXxA+BUtGd
-         daPgIncZc5uHyrG7QxHLGDzN0ePEASN4hMWadW2r8fn/QIRPCMMWwCa5uoMgc6pxaZPl
-         +Eaa8YzSoZgMSGjoplFEYNvjPCOATV5BP/Pbk7lZXMiSx1VYsVB+XwniRCN8wfPc5YmI
-         LzLA==
+        bh=QXdcqnvtNLyYu0+DzoP64iL7BfxCUJXqKjjg/aEjYQI=;
+        b=BQyAxkXZ/Pm8o888uBT0Y2kNK2mhYizFhK3HVzRIdqmzuAn6Gs2D3LsYIOBLcl+svX
+         i9Wz2xn/4cYfe4gR0ISAEeUPFbRmu0pfQcC3OsUiNW5b+irGTbPSXOOYQ0NN0d+VAP4g
+         I9NtpShUSCTrVjXqUTS/qhaxNVIsW91WNpkYLkRKPw7HIIrkhx1zivzDNqClkkLCyjF9
+         mguDvcohXv41IN1B/trN9Nzi6S/Fa9cWQA0Qx29ANAysYN2Mqc8aHcbxCmXwdCdhsshu
+         1+mFtTnuFPIBZpps1BIJP/pMEEGSQLlF2xivddDPAd7v/kR8RYD1MbOF8Vw0vBp7YxlG
+         cuFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687795848; x=1690387848;
+        d=1e100.net; s=20221208; t=1687796117; x=1690388117;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=zqAmLl/C5FNJIhv2Xt1PuXVNbepqgpYqVZ+raKQfDgo=;
-        b=XouxlbxqCM5wW+ZIIAGqJ1BSYOIlRtCDdx6DY9IGpp/W2KHilNj05PFdti0PeB9zrE
-         Lg/Q1MHR/pHVg9lRpqrNiqHQqbcL+ZiT+j/yTsUSnLiNobML+4mx/L8m8pxlfZU72dCf
-         QqIyfAiohbBQR4B7ws3n3Nt9pEtzYh8c+M74apWpQF/8jIKeP4t1sWgtQmzTdC4edD8s
-         2pN6LQcsyS4kWgcrGkNNNRQMQjE4Y94Wqhqs5x4WOfD2D+VjatZJ+/rGsP/f6jjNCNAb
-         KEDNhDs3MtgyQKWoeZLX9oT/CUqUmPJMMN3bVTHjbwK0EOABYPFVzQgLbyuDPoDXyex6
-         6RmA==
-X-Gm-Message-State: AC+VfDzfL5jQq8pmtK1nwtlbPwbQYII9LD7n4wHAnfbN6je/egWXrV/7
-        DB9Szc7xmI3DXNfq3i+jQNmybNNCSR+Bh8hnP9w=
-X-Google-Smtp-Source: ACHHUZ7NhS/vlSmtNSKWHpB3xX654GhMOQ5yRJfZky0DhRpX0T7S8MJstbg9Aob3s7/xTaRbLNztbg==
-X-Received: by 2002:a05:6000:118f:b0:309:4620:e155 with SMTP id g15-20020a056000118f00b003094620e155mr8838545wrx.49.1687795847749;
-        Mon, 26 Jun 2023 09:10:47 -0700 (PDT)
+        bh=QXdcqnvtNLyYu0+DzoP64iL7BfxCUJXqKjjg/aEjYQI=;
+        b=WX27jUOV8Ie7OM29DsmI+2rQvFo4NYeKlgoOPj3lC7w/GknMh82Bq/cqCGHiqExHh1
+         Wm5eTEQwr8nQD5qSFRie8NDuxSUn4Fvxoa9+TVtcyV/x6jRTqauHNeqolet1w9fqPMBK
+         97y9LcTI+/sWayBspwY0rrVWT0/2LsUEL9F7TDKd2KsdF7PReKKIiVtuvHOH/tknP8Km
+         y5e7IyWh0OO9uH7tH4gVImmZ0gryJkMy9dG2oq0H2e3HtRzasGeAi4Kxm55HnL6l7YGO
+         xw1p7f2Or736EGafhvFxY8pWyN0I8AhrLDBGS9UtnYQsxUx/b0i+CuHuen/rSirkhsXO
+         NiCQ==
+X-Gm-Message-State: AC+VfDwdHAxxEerMGk+QjtUdFw7YoJzWQgnRTnKtpDymw4Q9ppMBpG9K
+        ktWrXS1llGkyQpA7I048jbt3tQ==
+X-Google-Smtp-Source: ACHHUZ6L7+dXpjqr2EV3aL4IlTsw7dGgISi6PqeOrudMedtpUkBoHht2nG3bZmc6aUVxu1ixi0dDDw==
+X-Received: by 2002:adf:e684:0:b0:30e:5284:cbc4 with SMTP id r4-20020adfe684000000b0030e5284cbc4mr20071341wrm.68.1687796116886;
+        Mon, 26 Jun 2023 09:15:16 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id r16-20020adfce90000000b00313f1f543b8sm3000758wrn.108.2023.06.26.09.10.45
+        by smtp.gmail.com with ESMTPSA id m16-20020a5d6250000000b003068f5cca8csm7755235wrv.94.2023.06.26.09.15.14
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 09:10:47 -0700 (PDT)
-Message-ID: <52c57cab-10cf-2e7e-2c1d-fa6506786d45@linaro.org>
-Date:   Mon, 26 Jun 2023 18:10:44 +0200
+        Mon, 26 Jun 2023 09:15:16 -0700 (PDT)
+Message-ID: <c3c79634-b4d3-84a4-4c41-8d74d8648313@linaro.org>
+Date:   Mon, 26 Jun 2023 18:15:13 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
 Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom,dispcc-sm6125: Require GCC
  PLL0 DIV clock
 Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -85,15 +85,16 @@ Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
 References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
  <20230624-sm6125-dpu-v1-3-1d5a638cebf2@somainline.org>
  <c9681bce-efa8-9b79-4bf6-837dd6a2dc12@linaro.org>
- <55b0ca89-8f2e-5383-59d4-6809e813abf8@linaro.org>
- <vnp263d43flny2ibt3n7fbloyi26enqrejnobogplfu5fcj6l3@s7zkxrsi2rde>
+ <edrftxqhywiaxvbonyh25cmubrg77y4dryqoy7id4ndan2lfa7@rhvcoavtg5vl>
+ <f62d750e-da73-fece-c3de-0dac1fbb9827@linaro.org>
+ <dp2ucgmql2jff52nbxti2hwjchtgjkbrwcgpx3p7ruodz7adnj@635pcqr6fv4x>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <vnp263d43flny2ibt3n7fbloyi26enqrejnobogplfu5fcj6l3@s7zkxrsi2rde>
+In-Reply-To: <dp2ucgmql2jff52nbxti2hwjchtgjkbrwcgpx3p7ruodz7adnj@635pcqr6fv4x>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,30 +102,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/06/2023 21:48, Marijn Suijten wrote:
-> On 2023-06-24 11:08:54, Krzysztof Kozlowski wrote:
->> On 24/06/2023 03:45, Konrad Dybcio wrote:
->>> On 24.06.2023 02:41, Marijn Suijten wrote:
->>>> The "gcc_disp_gpll0_div_clk_src" clock is consumed by the driver, will
->>>> be passed from DT, and should be required by the bindings.
->>>>
->>>> Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
->>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
->>>> ---
->>> Ideally, you'd stick it at the bottom of the list, as the items: order
->>> is part of the ABI
->>
->> Yes, please add them to the end. Order is fixed.
+On 26/06/2023 16:26, Marijn Suijten wrote:
+> On 2023-06-26 11:43:39, Konrad Dybcio wrote:
+>> On 25.06.2023 21:48, Marijn Suijten wrote:
+>>> On 2023-06-24 03:45:02, Konrad Dybcio wrote:
+>>>> On 24.06.2023 02:41, Marijn Suijten wrote:
+>>>>> The "gcc_disp_gpll0_div_clk_src" clock is consumed by the driver, will
+>>>>> be passed from DT, and should be required by the bindings.
+>>>>>
+>>>>> Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
+>>>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+>>>>> ---
+>>>> Ideally, you'd stick it at the bottom of the list, as the items: order
+>>>> is part of the ABI
+>>>
+>>> This isn't an ABI break, as this driver nor its bindings require/declare
+>>> a fixed order: they declare a relation between clocks and clock-names.
+>> Bindings describe the ABI, drivers implement compliant code flow.
 > 
-> Disagreed for bindings that declare clock-names and when the driver
-> adheres to it, see my reply to Konrad's message.
+> That is how bindings are supposed to be...  However typically the driver
+> is written/ported first and then the bindings are simply created to
 
-That's the generic rule, with some exceptions of course. Whether one
-chosen driver (chosen system and chosen version of that system) adheres
-or not, does not change it. Other driver behaves differently and ABI is
-for everyone, not only for your specific version of Linux driver.
+Your development process does not matter for the bindings. Whatever you
+decide to do "typically" is your choice, although of course I understand
+why you do it like that. You can argument the same that "I never create
+bindings in my process, so the driver defines the ABI".
 
-Follow the rule.
+> reflect this, and sometimes (as is the case with this patch)
+> incorrectly.
+> 
+> That, together with a lack of DTS and known-working device with it
+> (which is why I'm submitting driver+bindings+dts in one series now!)
+> makes us shoot ourselves in the foot by locking everyone into an ABI
+> that makes no sense.
+
+No one is locked into the ABI. SoC maintainer decides on this. However
+unjustified ABI breaking or not caring about it at all is not the way to
+go. It is not the correct process.
+
+> 
+>>> This orders the GCC clock just like other dispccs.  And the previous
+>>> patch dropped the unused cfg_ahb_clk from the bindings, so all bets are
+>>> off anyway.
+>> Thinking about it again, the binding has not been consumed by any upstream
+>> DT to date, so it should (tm) be fine to let it slide..
+> 
+> Exactly, I hope/doubt anyone was already using these incomplete
+> bindings.  And again: the ABI here is the name->phandle mapping, the
+> order Does Not Matter™.
+
+No, it's not. Your one driver does not define the ABI. There are many
+different drivers, many different operating systems and other software
+components.
 
 Best regards,
 Krzysztof
