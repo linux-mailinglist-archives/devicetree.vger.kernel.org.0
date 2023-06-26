@@ -2,195 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81FB673D732
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 07:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F00B173D7B2
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 08:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbjFZFfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 01:35:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56820 "EHLO
+        id S229658AbjFZGTe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 02:19:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjFZFfM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 01:35:12 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA91CE1;
-        Sun, 25 Jun 2023 22:35:05 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id CBF318139;
-        Mon, 26 Jun 2023 13:34:56 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
- 2023 13:34:56 +0800
-Received: from [192.168.1.115] (180.164.60.184) by EXMBX061.cuchost.com
- (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
- 2023 13:34:56 +0800
-Message-ID: <32d1db3e-be6a-5219-b886-14c5f5102a5f@starfivetech.com>
-Date:   Mon, 26 Jun 2023 13:34:55 +0800
+        with ESMTP id S229523AbjFZGTd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 02:19:33 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E8411A5
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 23:19:32 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-991e69499d1so9145666b.2
+        for <devicetree@vger.kernel.org>; Sun, 25 Jun 2023 23:19:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687760370; x=1690352370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=4pmC8wZXtYNTW6/LxLrgQoLPpYTxup5SGOO3PUWoNQs=;
+        b=rlW+Zt77COA20cJdXuNuF7ggNubDMstIwA5vm5NECHqd3WDi7xRuzeHwzUmy4YLa2S
+         TxPFb7pd2Nl/KKPBzP68mwqCxu9wMUmN8jnGdc2sCy+1Pak9GqU0ClHlZ7DBJ6/gPd0w
+         OacU+K+OM7ksc0tUIu7YpXQwNqD+SfZETIYoQ5JGBmMC8S2pFbQQ0PiMpTuTRRDbyJQj
+         3wzmgokWicYOrTNQ7wzQY2RXCbL/ed20OsC5Lw8moQRlQN0M2+wXaDMBKMF81RZi09PG
+         5Ja6YA+ClqLl2DWFQncTY3Z9tz7pJYsCKFr2fos2SEpvQqt5pipxXFlD3xNJbTcBdIV0
+         Evjg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687760370; x=1690352370;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4pmC8wZXtYNTW6/LxLrgQoLPpYTxup5SGOO3PUWoNQs=;
+        b=ZMI1N9COh0Ig+kxZTj53Uzxbxrfmohjccce9xC5T1bxYGxVYpAT6WKhHTyq1xScsfJ
+         jVAxFoczW964jFSv3Wo5leIJVYQSDE1/KE6Ay8FoVBA4ymGQeEEWEli3HMZJLGZBAxHP
+         Q8A/JNPj7F/ESGqisz1Kc6MHcJjy1SOm5dLt470kaVIqwDObrLqHa2zMYF+inxO6Ud7v
+         CEL7kNrcF4Ip9mWHcApDC5yBOWcH02nqP5Uxhi3IXZpPYQz+YEWM9+wRUXXxnBXORDI5
+         i9rDSTidBDbaSOb8HJLPwLeoFwpibish6RWx+ygt8G79hC1ROoOZVNnTPm+z9RekNOIF
+         3Yfg==
+X-Gm-Message-State: AC+VfDxoxp+IsSSgr4Q9Y1qNbS6s8xlaxI9lIu56SoCpcByK18IurlH/
+        iP9ReioPSvN1IRUo55Yj53nyPg==
+X-Google-Smtp-Source: ACHHUZ5jHs+wHRLwWTuvwMW7A1RL8o9mhMMeuhCDIHHhXY4HsUgGPXw2ay6r63vnJ66x2hVyymzlyg==
+X-Received: by 2002:a17:907:9305:b0:96f:8666:5fc4 with SMTP id bu5-20020a170907930500b0096f86665fc4mr25221452ejc.50.1687760370474;
+        Sun, 25 Jun 2023 23:19:30 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id i4-20020a170906a28400b00991e849dbd1sm104735ejz.63.2023.06.25.23.19.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 25 Jun 2023 23:19:29 -0700 (PDT)
+Message-ID: <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
+Date:   Mon, 26 Jun 2023 08:19:27 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 9/9] drm/verisilicon: Add starfive hdmi driver
+Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
 Content-Language: en-US
-References: <20230602074043.33872-1-keith.zhao@starfivetech.com>
- <CGME20230602081437epcas1p36b7961b1d3f01dbed3fe2672a92e9d92@epcas1p3.samsung.com>
- <20230602074043.33872-10-keith.zhao@starfivetech.com>
- <003a01d9a57b$c140f340$43c2d9c0$@samsung.com>
-From:   Keith Zhao <keith.zhao@starfivetech.com>
-To:     undisclosed-recipients:;
-In-Reply-To: <003a01d9a57b$c140f340$43c2d9c0$@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [180.164.60.184]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
- (172.16.6.61)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+To:     Eric Lin <eric.lin@sifive.com>
+Cc:     conor@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, palmer@dabbelt.com,
+        paul.walmsley@sifive.com, aou@eecs.berkeley.edu, maz@kernel.org,
+        chenhuacai@kernel.org, baolu.lu@linux.intel.com, will@kernel.org,
+        kan.liang@linux.intel.com, nnac123@linux.ibm.com,
+        pierre.gondois@arm.com, jgross@suse.com, chao.gao@intel.com,
+        maobibo@loongson.cn, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dslin1010@gmail.com, Zong Li <zong.li@sifive.com>,
+        Nick Hu <nick.hu@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>
+References: <20230616063210.19063-1-eric.lin@sifive.com>
+ <20230616063210.19063-4-eric.lin@sifive.com>
+ <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org>
+ <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-yes I tested 
-modetest -M starfive -D 0 -s 116@31:1280x720-59.94 -v
-modetest -M starfive -D 0 -s 116@31:1920x1080 -v
+On 26/06/2023 05:26, Eric Lin wrote:
+> Hi Krzysztof,
+> 
+> On Fri, Jun 16, 2023 at 6:45 PM Krzysztof Kozlowski
+> <krzysztof.kozlowski@linaro.org> wrote:
+>>
+>> On 16/06/2023 08:32, Eric Lin wrote:
+>>> This add YAML DT binding documentation for SiFive Private L2
+>>> cache controller
+>>>
+>>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+>>> Reviewed-by: Zong Li <zong.li@sifive.com>
+>>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+>>> ---
+>>>  .../bindings/riscv/sifive,pL2Cache0.yaml      | 81 +++++++++++++++++++
+>>>  1 file changed, 81 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml b/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml
+>>> new file mode 100644
+>>> index 000000000000..b5d8d4a39dde
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml
+>>> @@ -0,0 +1,81 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+>>> +# Copyright (C) 2023 SiFive, Inc.
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/riscv/sifive,pL2Cache0.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: SiFive Private L2 Cache Controller
+>>> +
+>>> +maintainers:
+>>> +  - Greentime Hu  <greentime.hu@sifive.com>
+>>> +  - Eric Lin      <eric.lin@sifive.com>
+>>> +
+>>> +description:
+>>> +  The SiFive Private L2 Cache Controller is per hart and communicates with both the upstream
+>>> +  L1 caches and downstream L3 cache or memory, enabling a high-performance cache subsystem.
+>>> +  All the properties in ePAPR/DeviceTree specification applies for this platform.
+>>
+>> Drop the last sentence. Why specification would not apply?
+>>
+> OK, I'll drop it in v2.
+> 
+>>> +
+>>> +allOf:
+>>> +  - $ref: /schemas/cache-controller.yaml#
+>>> +
+>>> +select:
+>>> +  properties:
+>>> +    compatible:
+>>> +      contains:
+>>> +        enum:
+>>> +          - sifive,pL2Cache0
+>>> +          - sifive,pL2Cache
+>>> +
+>>> +  required:
+>>> +    - compatible
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>
+>>
+>> You have only one item, so no need for items... unless you just missed
+>> proper fallback.
+> 
+> OK, I'll fix it in v2.
+> 
+>>
+>>> +      - enum:
+>>> +          - sifive,pL2Cache0
+>>> +          - sifive,pL2Cache1
+>>
+>> What is "0" and "1" here? What do these compatibles represent? Why they
+>> do not have any SoC related part?
+> 
+> The pL2Cache1 has minor changes in hardware, but it can use the same
+> pl2 cache driver.
 
-and the second command will repeat the problem
-as you advise at the beginning
-I call the "starfive_hdmi_setup"  function in the "starfive_hdmi_encoder_enable"
-instead of "starfive_hdmi_encoder_mode_set"
-resolve the problem
-i will add this modify in my next patch
+Then why aren't they compatible?
 
-Thank you Hoegeun
+> May I ask, what do you mean about the SoC-related part? Thanks.
 
-On 2023/6/23 10:38, Hoegeun Kwon wrote:
-> Hi Keith,
-> 
-> There is a problem with stopping when changing modes.
-> 
-> Below test log
-> 
-> root:~> modetest -Mstarfive -c
-> Connectors:
-> id      encoder status          name            size (mm)       modes
-> encoders
-> 116     115     connected       HDMI-A-1        320x180         51      115
->   modes:
->         index name refresh (Hz) hdisp hss hse htot vdisp vss vse vtot
->   #0 1280x800 59.91 1280 1328 1360 1440 800 803 809 823 71000 flags: phsync,
-> pvsync; type: preferred, driver
->   #1 1920x1080 60.00 1920 2008 2052 2200 1080 1084 1089 1125 148500 flags:
-> phsync, pvsync; type: driver
-> [...]
-> 
-> root:~> modetest -Mstarfive -s 116:#0 -v
-> setting mode 1280x800-59.91Hz on connectors 116, crtc 31
-> freq: 60.65Hz
-> freq: 59.91Hz
-> freq: 59.91Hz
-> 
-> root:~> modetest -Mstarfive -s 116:#1 -v
-> setting mode 1920x1080-60.00Hz on connectors 116, crtc 31
-> [   94.535626] rcu: INFO: rcu_sched detected stalls on CPUs/tasks:
-> [   94.560985] rcu:     1-...0: (20 ticks this GP)
-> idle=c9bc/1/0x4000000000000000 softirq=3869/3871 fqs=1120
-> [   94.589532] rcu:     (detected by 3, t=5264 jiffies, g=4645, q=63
-> ncpus=4)
-> [   94.615335] Task dump for CPU 1:
-> [   94.637723] task:modetest        state:R  running task     stack:0
-> pid:407   ppid:397    flags:0x00000008
-> [   94.667299] Call Trace:
-> [   94.689297] [<ffffffff80d1e8fc>] __schedule+0x2a8/0xa52
-> [   94.714221] [<ffffffff80d1f100>] schedule+0x5a/0xdc
-> [   94.738626] [<ffffffff80d25a14>] schedule_timeout+0x220/0x2a6
-> [   94.763762] [<ffffffff80d2037a>] wait_for_completion+0xfe/0x126
-> [   94.789073] [<ffffffff8002ffe4>] kthread_flush_worker+0x82/0xa0
-> 
-> 
->> -----Original Message-----
->> From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf Of
->> Keith Zhao
->> Sent: Friday, June 2, 2023 4:41 PM
->> To: dri-devel@lists.freedesktop.org; devicetree@vger.kernel.org; linux-
->> kernel@vger.kernel.org; linux-riscv@lists.infradead.org; linux-
->> media@vger.kernel.org; linaro-mm-sig@lists.linaro.org
->> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Sumit Semwal
->> <sumit.semwal@linaro.org>; Emil Renner Berthing <kernel@esmil.dk>;
->> Shengyang Chen <shengyang.chen@starfivetech.com>; Conor Dooley
->> <conor+dt@kernel.org>; Albert Ou <aou@eecs.berkeley.edu>; Thomas
->> Zimmermann <tzimmermann@suse.de>; Jagan Teki <jagan@edgeble.ai>; Rob
->> Herring <robh+dt@kernel.org>; Chris Morgan <macromorgan@hotmail.com>; Paul
->> Walmsley <paul.walmsley@sifive.com>; Keith Zhao
->> <keith.zhao@starfivetech.com>; Bjorn Andersson <andersson@kernel.org>;
->> Changhuang Liang <changhuang.liang@starfivetech.com>; Jack Zhu
->> <jack.zhu@starfivetech.com>; Palmer Dabbelt <palmer@dabbelt.com>; Shawn
->> Guo <shawnguo@kernel.org>; christian.koenig@amd.com
->> Subject: [PATCH 9/9] drm/verisilicon: Add starfive hdmi driver
->> 
->> Add HDMI dirver for StarFive SoC JH7110.
->> 
->> Signed-off-by: Keith Zhao <keith.zhao@starfivetech.com>
->> ---
->>  drivers/gpu/drm/verisilicon/Kconfig         |  11 +
->>  drivers/gpu/drm/verisilicon/Makefile        |   1 +
->>  drivers/gpu/drm/verisilicon/starfive_hdmi.c | 928 ++++++++++++++++++++
->> drivers/gpu/drm/verisilicon/starfive_hdmi.h | 296 +++++++
->>  drivers/gpu/drm/verisilicon/vs_drv.c        |   6 +
->>  drivers/gpu/drm/verisilicon/vs_drv.h        |   4 +
->>  6 files changed, 1246 insertions(+)
->>  create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.c
->>  create mode 100644 drivers/gpu/drm/verisilicon/starfive_hdmi.h
-> 
-> [...]
-> 
->> diff --git a/drivers/gpu/drm/verisilicon/starfive_hdmi.c
->> b/drivers/gpu/drm/verisilicon/starfive_hdmi.c
->> new file mode 100644
->> index 000000000000..128ecca03309
->> --- /dev/null
->> +++ b/drivers/gpu/drm/verisilicon/starfive_hdmi.c
->> @@ -0,0 +1,928 @@
-> 
-> [...]
-> 
->> +static int starfive_hdmi_setup(struct starfive_hdmi *hdmi,
->> +			       struct drm_display_mode *mode) {
-> 
-> [...]
-> 
->> +	return 0;
->> +}
->> +
->> +static void starfive_hdmi_encoder_mode_set(struct drm_encoder *encoder,
->> +					   struct drm_display_mode *mode,
->> +					   struct drm_display_mode
-> *adj_mode) {
->> +	struct starfive_hdmi *hdmi = encoder_to_hdmi(encoder);
->> +
->> +	starfive_hdmi_setup(hdmi, adj_mode);
-> 
-> When starfive_hdmi_setup runs here,
-> when changing the mode, a problem occurs because try to write a value to reg
-> in a state that is not resumed after suspend.
-> 
->> +
->> +	memcpy(&hdmi->previous_mode, adj_mode, sizeof(hdmi-
->> >previous_mode)); }
->> +
->> +static void starfive_hdmi_encoder_enable(struct drm_encoder *encoder) {
->> +	struct starfive_hdmi *hdmi = encoder_to_hdmi(encoder);
->> +
->> +	pm_runtime_get_sync(hdmi->dev);
-> 
-> So if move the call point of starfive_hdmi_setup here, it works normally.
-> 
->> +}
-> 
-> Best regards,
-> Hoegeun
-> 
-> 
+This is part of a SoC, right? We expect SoC blocks to have compatible
+based on the SoC.
+
+
+
+Best regards,
+Krzysztof
+
