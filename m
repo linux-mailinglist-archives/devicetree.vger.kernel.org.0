@@ -2,373 +2,600 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CF3A473EB4E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 21:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96B5973EB53
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 21:54:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230078AbjFZTte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 15:49:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48122 "EHLO
+        id S229628AbjFZTxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 15:53:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230052AbjFZTtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 15:49:32 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B401D172A
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 12:49:27 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b69e6d324aso25516641fa.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 12:49:27 -0700 (PDT)
+        with ESMTP id S229597AbjFZTxk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 15:53:40 -0400
+Received: from mail-pf1-x433.google.com (mail-pf1-x433.google.com [IPv6:2607:f8b0:4864:20::433])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EAD4E7E
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 12:53:38 -0700 (PDT)
+Received: by mail-pf1-x433.google.com with SMTP id d2e1a72fcca58-668711086f4so2415815b3a.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 12:53:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687808966; x=1690400966;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OxcFta/DvWzstkO+bX4qUH4lC0yv3Ria011e70aTaPY=;
-        b=VGk9wU8nDHqjWkK/NdSbFWeLsMj50IODxJ6it8eJKkV8hss+eNB9ncica1jzjoWryD
-         y0SrkYwScg5lYpXQCDd564OI5tx5QuEpWN+7G0J+5N5zwH6sMnPB15trrEarPkMQxrmf
-         q4gPDmTB/GReOXIQDXzNMjvOgpEdogaL6snVxWGvimD0qoeDjrLaVgTl5GBlHh6QinG7
-         NsbQaQsUKaQkaVkK4g1d+oY0p4/K6DvDEjyrlr08GdKWPQSWlaUb08F90DdNQK7kbvEv
-         nvTUDGtxV+gqurfUn4cNEfVtgq4Z4T1ZEQVx6Y1MwQ1zR2KQHFdGnzmSwsMb3Pb3xFC6
-         jlGA==
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1687809218; x=1690401218;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cL8BXcna8BW3aoC229f1MbDvosTfPKbxwD6g2S28sLo=;
+        b=gRC+l6o5cVSjsyM6UhBjSHW+qTQRc87Vxb7IJqGTGCS2RyofejoUCCLaH+Yh7E7VBc
+         sBN9+CnPR5WLkpnPDpRdRI/MdXQIoZsgj3v2nLzKjLABm+HxAoblRlATnkqxWe/Vfdqm
+         ceuu56XkHVqmQMs8wD+HAz40YdqHuTJ01hGGHXHaeoExMnNovz+x63VTy4OYA4MVpZMQ
+         3oH/74JSnjEsqKhERiUlf8C1ZI95ezZeBaEo8eeNpbR6JO9cm3tTq9/HB/Y/c0O4T8bm
+         5qWDY+HCNaNHYGqiJSkMXbQw29Z56+6U6qy9VLmaX792LKwAv1b0nbSD6neitQxEk1a6
+         87ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687808966; x=1690400966;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OxcFta/DvWzstkO+bX4qUH4lC0yv3Ria011e70aTaPY=;
-        b=LzgbyOn0Xt4Xfgz5wAKvUvQqXXSXBCbawDy1oCjdfS0oYZGTj8ufWc4wrOHyE0bAeV
-         uyvgmGyDT8ezRnC31CvkPxXBJ/OHLyUVJNI/UqSwawHB0pHSwWPb5VYWwzOgxkGmgk0D
-         sSl5MBFfQj0npwN+TpxY8YdX61aU9BCDjAzsazzv/je6bbFQghIwQifhuFfg53Fzsjqc
-         mv0D/BbBucLBgksMLKRhBUeinIib4LcSP1rpmAh/qy03nhCYalWsIMppW7BvlvBz+hQ+
-         uXrTszWPA96ESqlXzrw/v1T6HfGhCMrB5oIcdrhBbjP5mIz5m+3tQc4xOO0EeQ9341Wg
-         sLAw==
-X-Gm-Message-State: AC+VfDxKUJN0MEOBSrxKXjzesaGKSE10b2HeRL65H35jj+KTeMaN8ogM
-        eThVTCsnAVv3akvkZ1yOHpJxgw==
-X-Google-Smtp-Source: ACHHUZ4LONBxVN5MzN6lLLzQRC0oTvIPh5M17c1CoI2M6sPGOaC6gnYiJceTcCJQxHNm9gIeWirung==
-X-Received: by 2002:a2e:9c8f:0:b0:2b6:9c24:77a with SMTP id x15-20020a2e9c8f000000b002b69c24077amr2654459lji.46.1687808965834;
-        Mon, 26 Jun 2023 12:49:25 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id m10-20020a2e910a000000b002b32600ab9fsm1356340ljg.60.2023.06.26.12.49.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 12:49:25 -0700 (PDT)
-Message-ID: <2232c6e7-cbca-30c1-9ec5-1cea7f759daf@linaro.org>
-Date:   Mon, 26 Jun 2023 22:49:24 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 17/26] ARM: dts: qcom: apq8064: add simple CPUFreq
- support
-Content-Language: en-GB
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
- <20230625202547.174647-18-dmitry.baryshkov@linaro.org>
- <0f139da8-ae01-fc28-d14c-0ea207cf760e@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <0f139da8-ae01-fc28-d14c-0ea207cf760e@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        d=1e100.net; s=20221208; t=1687809218; x=1690401218;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cL8BXcna8BW3aoC229f1MbDvosTfPKbxwD6g2S28sLo=;
+        b=VszPDsHF5jad38ow9FMXQvt++heQU3HfKRkBqk5bfNRqk+7l1oE01izMfP8zLGeA32
+         MbBE+KC7AaZLUhX5TkxglwVjTkJes/9eDmchMExTSK9dgkx8jR7U6KqmStWFPEJpt+q6
+         EpUtMFyx4TreqI774I3CIWk9zcmc0YANQLs+97OPpS3S2nQKRlI9QZnC5zCcMaIL9bhd
+         8sRGxvChe98TzfGTt8/+Hjl1plYhaKEhHTP9CwqMMt5PEvUucw/2pZaiVc1OLwiRVf+Y
+         f8HthdJhDt2kpUoVHv7dk84rQyLuLif66anG7htyvnD56wy1g4uRcqcUffVMPbfxuGKs
+         q9cA==
+X-Gm-Message-State: AC+VfDwfmMxeafl7ekxCuWNP4l3pryfKP5G7zLWV/JLSl3XKwspDvl4L
+        Hd26VC9UFFdWoBhUBKTTExZ8Aw==
+X-Google-Smtp-Source: ACHHUZ5fdJ6tj8dh8BkhdsfcPeELjQZ7FWgFYOtgcamhueJI1UtMZ9v1j1hYUkMpVLHe3LiockSOqA==
+X-Received: by 2002:a17:90b:100e:b0:262:dc22:6ae3 with SMTP id gm14-20020a17090b100e00b00262dc226ae3mr7920537pjb.0.1687809217493;
+        Mon, 26 Jun 2023 12:53:37 -0700 (PDT)
+Received: from localhost ([135.180.227.0])
+        by smtp.gmail.com with ESMTPSA id 141-20020a630293000000b00514256c05c2sm4551345pgc.7.2023.06.26.12.53.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jun 2023 12:53:37 -0700 (PDT)
+Date:   Mon, 26 Jun 2023 12:53:37 -0700 (PDT)
+X-Google-Original-Date: Mon, 26 Jun 2023 12:53:35 PDT (-0700)
+Subject:     Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
+In-Reply-To: <CAK9=C2UesoUCeb8k0DSCHi7Zr+B5U26KQ9oCs9map3a2zzYqAw@mail.gmail.com>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        ajones@ventanamicro.com, atishp@atishpatra.org, jrtc27@jrtc27.com,
+        rick@andestech.com, ycliang@andestech.com,
+        oleksii.kurochko@gmail.com, linux-riscv@lists.infradead.org,
+        qemu-riscv@nongnu.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@rivosinc.com>
+To:     apatel@ventanamicro.com
+Message-ID: <mhng-5b997e5c-757d-4fe3-9da2-183a4b93a873@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2023 19:40, Konrad Dybcio wrote:
-> On 25.06.2023 22:25, Dmitry Baryshkov wrote:
->> Declare CPU frequency-scaling properties. Each CPU has its own clock,
->> how
-> however?
-
-yes
-
-> 
->> all CPUs have the same OPP table. Voltage scaling is not (yet)
->> enabled with this patch. It will be enabled later.
-> Risky business.
-
-But it works :D
-
-> 
+On Mon, 26 Jun 2023 10:38:43 PDT (-0700), apatel@ventanamicro.com wrote:
+> On Mon, Jun 26, 2023 at 3:42 PM Conor Dooley <conor.dooley@microchip.com> wrote:
 >>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> intro
+>> =====
+>>
+>> When the RISC-V dt-bindings were accepted upstream in Linux, the base
+>> ISA etc had yet to be ratified. By the ratification of the base ISA,
+>> incompatible changes had snuck into the specifications - for example the
+>> Zicsr and Zifencei extensions were spun out of the base ISA.
+>>
+>> Fast forward to today, and the reason for this patch.
+>> Currently the riscv,isa dt property permits only a specific subset of
+>> the ISA string - in particular it excludes version numbering.
+>> With the current constraints, it is not possible to discern whether
+>> "rv64i" means that the hart supports the fence.i instruction, for
+>> example.
+>> Future systems may choose to implement their own instruction fencing,
+>> perhaps using a vendor extension, or they may not implement the optional
+>> counter extensions. Software needs a way to determine this.
+>>
+>> versioning schemes
+>> ==================
+>>
+>> "Use the extension versions that are described in the ISA manual" you
+>> may say, and it's not like this has not been considered.
+>> Firstly, software that parses the riscv,isa property at runtime will
+>> need to contain a lookup table of some sort that maps arbitrary versions
+>> to versions it understands. There is not a consistent application of
+>> version number applied to extensions, with a higgledy-piggledy
+>> collection of tags, "bare" and versioned documents awaiting the reader
+>> on the "recently ratified extensions" page:
+>> https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions
+>>
+>>         As an aside, and this is reflected in the patch too, since many
+>>         extensions have yet to appear in a release of the ISA specs,
+>>         they are defined by commits in their respective "working draft"
+>>         repositories.
+>>
+>> Secondly, there is an issue of backwards compatibility, whereby allowing
+>> numbers in the ISA string, some parsers may be broken. This would
+>> require an additional property to be created to even use the versions in
+>> this manner.
+>>
+>> ~boolean properties~ string array property
+>> ==========================================
+>>
+>> If a new property is needed, the whole approach may as well be looked at
+>> from the bottom up. A string with limited character choices etc is
+>> hardly the best approach for communicating extension information to
+>> software.
+>>
+>> Switching to using properties that are defined on a per extension basis,
+>> allows us to define explicit meanings for the DT representation of each
+>> extension - rather than the current situation where different operating
+>> systems or other bits of software may impart different meanings to
+>> characters in the string.
+>> Clearly the best source of meanings is the specifications themselves,
+>> this just provides us the ability to choose at what point in time the
+>> meaning is set. If an extension changes incompatibility in the future,
+>> a new property will be required.
+>>
+>> Off-list, some of the RVI folks have committed to shoring up the wording
+>> in either the ISA specifications, the riscv-isa-manual or
+>> so that in the future, modifications to and additions or removals of
+>> features will require a new extension. Codifying that assertion
+>> somewhere would make it quite unlikely that compatibility would be
+>> broken, but we have the tools required to deal with it, if & when it
+>> crops up.
+>> It is in our collective interest, as consumers of extension meanings, to
+>> define a scheme that enforces compatibility.
+>>
+>> The use of individual properties, rather than elements in a single
+>> string, will also permit validation that the properties have a meaning,
+>> as well as potentially reject mutually exclusive combinations, or
+>> enforce dependencies between extensions. That would not have be possible
+>> with the current dt-schema infrastructure for arbitrary strings, as we
+>> would need to add a riscv,isa parser to dt-validate!
+>> That's not implemented in this patch, but rather left as future work (for
+>> the brave, or the foolish).
+>>
+>> acpi
+>> ====
+>>
+>> The current ACPI ECR is based on having a single ISA string unfortunately,
+>> but ideally ACPI will move to another method, perhaps GUIDs, that give
+>> explicit meaning to extensions.
+>
+> Drop this paragraph on ACPI.
+>
+> We clearly mentioned previously that ACPI will follow specs defined by RVI.
+> There are scalability issues in using GUIDs for each ISA extension.
+
+Which spec are we following for the ACPI ISA string?
+
+> Regards,
+> Anup
+>
+>>
+>> parser simplicity
+>> =================
+>>
+>> Many systems that parse DT at runtime already implement an function that
+>> can check for the presence of a string in an array of string, as it is
+>> similar to the process for parsing a list of compatible strings, so a
+>> bunch of new, custom, DT parsing should not be needed.
+>> Getting rid of "riscv,isa" parsing would be a nice simplification, but
+>> unfortunately for backwards compatibility with old dtbs, existing
+>> parsers may not be removable - which may greatly simplify
+>> dt parsing code. In Linux, for example, checking for whether a hart
+>> supports an extension becomes as simple as:
+>>         of_property_match_string(node, "riscv,isa-extensions", "zicbom")
+>>
+>> vendor extensions
+>> =================
+>>
+>> Compared to riscv,isa, this proposed scheme promotes vendor extensions,
+>> oft touted as the strength of RISC-V, to first-class citizens.
+>> At present, extensions are defined as meaning what the RISC-V ISA
+>> specifications say they do. There is no realistic way of using that
+>> interface to provide cross-platform definitions for what vendor
+>> extensions mean. Vendor extensions may also have even less consistency
+>> than RVI do in terms of versioning, or no care about backwards
+>> compatibility.
+>> The new property allows us to assign explicit meanings on a per vendor
+>> extension basis, backed up by a description of their meanings.
+>>
+>> fin
+>> ===
+>>
+>> Create a new file to store the extension meanings and a new
+>> riscv,isa-base property to replace the aspect of riscv,isa that is
+>> not represented by the new property - the base ISA implemented by a hart.
+>>
+>> As a starting point, add properties for extensions currently used in
+>> Linux.
+>>
+>> Finally, mark riscv,isa as deprecated, as removing support for it in
+>> existing programs would be an ABI break.
+>>
+>> CC: Palmer Dabbelt <palmer@dabbelt.com>
+>> CC: Paul Walmsley <paul.walmsley@sifive.com>
+>> CC: Rob Herring <robh+dt@kernel.org>
+>> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>> CC: Alistair Francis <alistair.francis@wdc.com>
+>> CC: Andrew Jones <ajones@ventanamicro.com>
+>> CC: Anup Patel <apatel@ventanamicro.com>
+>> CC: Atish Patra <atishp@atishpatra.org>
+>> CC: Jessica Clarke <jrtc27@jrtc27.com>
+>> CC: Rick Chen <rick@andestech.com>
+>> CC: Leo <ycliang@andestech.com>
+>> CC: Oleksii <oleksii.kurochko@gmail.com>
+>> CC: linux-riscv@lists.infradead.org
+>> CC: qemu-riscv@nongnu.org
+>> CC: u-boot@lists.denx.de
+>> CC: devicetree@vger.kernel.org
+>> CC: linux-kernel@vger.kernel.org
+>> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 >> ---
->>   arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 170 +++++++++++++++++++++++
->>   1 file changed, 170 insertions(+)
+>> Changes in v3:
+>> - Per Rob's suggestion, switch to an array of strings. Cuts down on the
+>>   size, compared to booleans. It has a standard mechanism for parsing
+>>   (you need to parse arrays of strings for compatibles). It still allows
+>>   for having a limited set of explicitly defined properties - so the
+>>   advantages over a free-form string still apply.
+>> - Pick up Palmer's Ack and Review (although I expect that he will be the
+>>   one to apply this).
+>> ---
+>>  .../devicetree/bindings/riscv/cpus.yaml       |  43 ++-
+>>  .../devicetree/bindings/riscv/extensions.yaml | 245 ++++++++++++++++++
+>>  2 files changed, 265 insertions(+), 23 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/riscv/extensions.yaml
 >>
->> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
->> index ac07170c702f..e4d2fd48d843 100644
->> --- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
->> +++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
->> @@ -2,11 +2,13 @@
->>   /dts-v1/;
->>   
->>   #include <dt-bindings/clock/qcom,gcc-msm8960.h>
->> +#include <dt-bindings/clock/qcom,krait-cc.h>
->>   #include <dt-bindings/clock/qcom,lcc-msm8960.h>
->>   #include <dt-bindings/reset/qcom,gcc-msm8960.h>
->>   #include <dt-bindings/clock/qcom,mmcc-msm8960.h>
->>   #include <dt-bindings/clock/qcom,rpmcc.h>
->>   #include <dt-bindings/soc/qcom,gsbi.h>
->> +#include <dt-bindings/soc/qcom,krait-l2-cache.h>
->>   #include <dt-bindings/interrupt-controller/irq.h>
->>   #include <dt-bindings/interrupt-controller/arm-gic.h>
->>   / {
->> @@ -45,6 +47,12 @@ CPU0: cpu@0 {
->>   			qcom,acc = <&acc0>;
->>   			qcom,saw = <&saw0>;
->>   			cpu-idle-states = <&CPU_SPC>;
->> +			clocks = <&kraitcc KRAIT_CPU_0>;
->> +			clock-names = "cpu";
->> +			clock-latency = <100000>;
->> +			interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		CPU1: cpu@1 {
->> @@ -56,6 +64,12 @@ CPU1: cpu@1 {
->>   			qcom,acc = <&acc1>;
->>   			qcom,saw = <&saw1>;
->>   			cpu-idle-states = <&CPU_SPC>;
->> +			clocks = <&kraitcc KRAIT_CPU_1>;
->> +			clock-names = "cpu";
->> +			clock-latency = <100000>;
->> +			interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		CPU2: cpu@2 {
->> @@ -67,6 +81,12 @@ CPU2: cpu@2 {
->>   			qcom,acc = <&acc2>;
->>   			qcom,saw = <&saw2>;
->>   			cpu-idle-states = <&CPU_SPC>;
->> +			clocks = <&kraitcc KRAIT_CPU_2>;
->> +			clock-names = "cpu";
->> +			clock-latency = <100000>;
->> +			interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		CPU3: cpu@3 {
->> @@ -78,6 +98,12 @@ CPU3: cpu@3 {
->>   			qcom,acc = <&acc3>;
->>   			qcom,saw = <&saw3>;
->>   			cpu-idle-states = <&CPU_SPC>;
->> +			clocks = <&kraitcc KRAIT_CPU_3>;
->> +			clock-names = "cpu";
->> +			clock-latency = <100000>;
->> +			interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
->> +			operating-points-v2 = <&cpu_opp_table>;
->> +			#cooling-cells = <2>;
->>   		};
->>   
->>   		L2: l2-cache {
->> @@ -196,6 +222,121 @@ CPU_SPC: spc {
->>   		};
->>   	};
->>   
->> +        cpu_opp_table: opp-table-cpu {
->> +		compatible = "operating-points-v2-krait-cpu";
->> +		nvmem-cells = <&speedbin_efuse>;
+>> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+>> index 67bd239ead0b..74bc92591086 100644
+>> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+>> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+>> @@ -25,6 +25,7 @@ description: |
+>>
+>>  allOf:
+>>    - $ref: /schemas/cpu.yaml#
+>> +  - $ref: extensions.yaml
+>>
+>>  properties:
+>>    compatible:
+>> @@ -82,25 +83,6 @@ properties:
+>>      description:
+>>        The blocksize in bytes for the Zicboz cache operations.
+>>
+>> -  riscv,isa:
+>> -    description:
+>> -      Identifies the specific RISC-V instruction set architecture
+>> -      supported by the hart.  These are documented in the RISC-V
+>> -      User-Level ISA document, available from
+>> -      https://riscv.org/specifications/
+>> -
+>> -      Due to revisions of the ISA specification, some deviations
+>> -      have arisen over time.
+>> -      Notably, riscv,isa was defined prior to the creation of the
+>> -      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
+>> -      implies "zicntr_zicsr_zifencei_zihpm".
+>> -
+>> -      While the isa strings in ISA specification are case
+>> -      insensitive, letters in the riscv,isa string must be all
+>> -      lowercase.
+>> -    $ref: /schemas/types.yaml#/definitions/string
+>> -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+>> -
+>>    # RISC-V has multiple properties for cache op block sizes as the sizes
+>>    # differ between individual CBO extensions
+>>    cache-op-block-size: false
+>> @@ -139,8 +121,17 @@ properties:
+>>        DMIPS/MHz, relative to highest capacity-dmips-mhz
+>>        in the system.
+>>
+>> +oneOf:
+>> +  - required:
+>> +      - riscv,isa
+>> +  - required:
+>> +      - riscv,isa-base
 >> +
->> +		/*
->> +		 * Voltage thresholds are <target min max>
->> +		 */
-> What voltage thresholds?
-
-Ack, should be moved to the next patch.
-
-> 
->> +		opp-384000000 {
->> +			opp-hz = /bits/ 64 <384000000>;
->> +			opp-peak-kBps = <384000>;
->> +			opp-supported-hw = <0x4007>;
->> +			/*
->> +			 * higher latency as it requires switching between
->> +			 * clock sources
->> +			 */
->> +			clock-latency-ns = <244144>;
->> +		};
+>> +dependencies:
+>> +  riscv,isa-base: [ "riscv,isa-extensions" ]
+>> +  riscv,isa-extensions: [ "riscv,isa-base" ]
 >> +
->> +		opp-486000000 {
->> +			opp-hz = /bits/ 64 <486000000>;
->> +			opp-peak-kBps = <648000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>>  required:
+>> -  - riscv,isa
+>>    - interrupt-controller
+>>
+>>  unevaluatedProperties: false
+>> @@ -160,7 +151,9 @@ examples:
+>>                  i-cache-sets = <128>;
+>>                  i-cache-size = <16384>;
+>>                  reg = <0>;
+>> -                riscv,isa = "rv64imac";
+>> +                riscv,isa-base = "rv64i";
+>> +                riscv,isa-extensions = "i", "m", "a", "c";
 >> +
->> +		opp-594000000 {
->> +			opp-hz = /bits/ 64 <594000000>;
->> +			opp-peak-kBps = <648000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>>                  cpu_intc0: interrupt-controller {
+>>                          #interrupt-cells = <1>;
+>>                          compatible = "riscv,cpu-intc";
+>> @@ -183,8 +176,10 @@ examples:
+>>                  i-tlb-size = <32>;
+>>                  mmu-type = "riscv,sv39";
+>>                  reg = <1>;
+>> -                riscv,isa = "rv64imafdc";
+>>                  tlb-split;
+>> +                riscv,isa-base = "rv64i";
+>> +                riscv,isa-extensions = "i", "m", "a", "f", "d", "c";
 >> +
->> +		opp-702000000 {
->> +			opp-hz = /bits/ 64 <702000000>;
->> +			opp-peak-kBps = <648000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>>                  cpu_intc1: interrupt-controller {
+>>                          #interrupt-cells = <1>;
+>>                          compatible = "riscv,cpu-intc";
+>> @@ -202,8 +197,10 @@ examples:
+>>                  device_type = "cpu";
+>>                  reg = <0>;
+>>                  compatible = "riscv";
+>> -                riscv,isa = "rv64imafdc";
+>>                  mmu-type = "riscv,sv48";
+>> +                riscv,isa-base = "rv64i";
+>> +                riscv,isa-extensions = "i", "m", "a", "f", "d", "c";
 >> +
->> +		opp-810000000 {
->> +			opp-hz = /bits/ 64 <810000000>;
->> +			opp-peak-kBps = <648000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>>                  interrupt-controller {
+>>                          #interrupt-cells = <1>;
+>>                          interrupt-controller;
+>> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> new file mode 100644
+>> index 000000000000..af98307f2c2c
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>> @@ -0,0 +1,245 @@
+>> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/riscv/extensions.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 >> +
->> +		opp-918000000 {
->> +			opp-hz = /bits/ 64 <918000000>;
->> +			opp-peak-kBps = <648000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>> +title: RISC-V ISA extensions
 >> +
->> +		opp-1026000000 {
->> +			opp-hz = /bits/ 64 <1026000000>;
->> +			opp-peak-kBps = <648000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>> +maintainers:
+>> +  - Paul Walmsley <paul.walmsley@sifive.com>
+>> +  - Palmer Dabbelt <palmer@sifive.com>
+>> +  - Conor Dooley <conor@kernel.org>
 >> +
->> +		opp-1134000000 {
->> +			opp-hz = /bits/ 64 <1134000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>> +description: |
+>> +  RISC-V has a large number of extensions, some of which are "standard"
+>> +  extensions, meaning they are ratified by RISC-V International, and others
+>> +  are "vendor" extensions.
+>> +  This document defines properties that indicate whether a hart supports a
+>> +  given extension.
 >> +
->> +		opp-1242000000 {
->> +			opp-hz = /bits/ 64 <1242000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>> +  Once a standard extension has been ratified, no changes in behaviour can be
+>> +  made without the creation of a new extension.
+>> +  The properties for standard extensions therefore map to their originally
+>> +  ratified states, with the exception of the I, Zicntr & Zihpm extensions.
+>> +  See the "i" property for more information.
 >> +
->> +		opp-1350000000 {
->> +			opp-hz = /bits/ 64 <1350000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>> +select:
+>> +  properties:
+>> +    compatible:
+>> +      contains:
+>> +        const: riscv
 >> +
->> +		opp-1458000000 {
->> +			opp-hz = /bits/ 64 <1458000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x4007>;
->> +		};
+>> +properties:
+>> +  riscv,isa:
+>> +    description:
+>> +      Identifies the specific RISC-V instruction set architecture
+>> +      supported by the hart.  These are documented in the RISC-V
+>> +      User-Level ISA document, available from
+>> +      https://riscv.org/specifications/
 >> +
->> +		opp-1512000000 {
->> +			opp-hz = /bits/ 64 <1512000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x4001>;
->> +		};
+>> +      Due to revisions of the ISA specification, some deviations
+>> +      have arisen over time.
+>> +      Notably, riscv,isa was defined prior to the creation of the
+>> +      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
+>> +      implies "zicntr_zicsr_zifencei_zihpm".
 >> +
->> +		opp-1566000000 {
->> +			opp-hz = /bits/ 64 <1566000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x06>;
->> +		};
+>> +      While the isa strings in ISA specification are case
+>> +      insensitive, letters in the riscv,isa string must be all
+>> +      lowercase.
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+>> +    deprecated: true
 >> +
->> +		opp-1674000000 {
->> +			opp-hz = /bits/ 64 <1674000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x06>;
->> +		};
+>> +  riscv,isa-base:
+>> +    description:
+>> +      The base ISA implemented by this hart, as described by the 20191213
+>> +      version of the unprivileged ISA specification.
+>> +    enum:
+>> +      - rv32i
+>> +      - rv64i
 >> +
->> +		opp-1728000000 {
->> +			opp-hz = /bits/ 64 <1728000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x02>;
->> +		};
+>> +  riscv,isa-extensions:
+>> +    $ref: /schemas/types.yaml#/definitions/string-array
+>> +    minItems: 1
+>> +    description: Extensions supported by the hart.
+>> +    items:
+>> +      anyOf:
+>> +        # single letter extensions, in canonical order
+>> +        - const: i
+>> +          description: |
+>> +            The base integer instruction set, as ratified in the 20191213
+>> +            version of the unprivileged ISA specification, with the exception of
+>> +            counter access.
+>> +            Counter access was removed after the ratification of the 20191213
+>> +            version of the unprivileged specification and shunted into the
+>> +            Zicntr and Zihpm extensions.
 >> +
->> +		opp-1782000000 {
->> +			opp-hz = /bits/ 64 <1782000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x04>;
->> +		};
+>> +        - const: m
+>> +          description:
+>> +            The standard M extension for integer multiplication and division, as
+>> +            ratified in the 20191213 version of the unprivileged ISA
+>> +            specification.
 >> +
->> +		opp-1890000000 {
->> +			opp-hz = /bits/ 64 <1890000000>;
->> +			opp-peak-kBps = <1134000>;
->> +			opp-supported-hw = <0x04>;
->> +		};
->> +	};
+>> +        - const: a
+>> +          description:
+>> +            The standard A extension for atomic instructions, as ratified in the
+>> +            20191213 version of the unprivileged ISA specification.
 >> +
->>   	memory@0 {
->>   		device_type = "memory";
->>   		reg = <0x0 0x0>;
->> @@ -312,6 +453,32 @@ sleep_clk: sleep_clk {
->>   		};
->>   	};
->>   
->> +	kraitcc: clock-controller {
->> +		compatible = "qcom,krait-cc-v1";
-> Are we sure we don't wanna rework this compatible? Check the comment in
-> drivers/clk/qcom/krait-cc.c : krait_add_sec_mux()
-
-I remember that comment. I'd rather not introduce another compat string 
-for such old hw. Would there be any direct benefits?
-
-> 
-> 
->> +		clocks = <&gcc PLL9>, /* hfpll0 */
->> +			 <&gcc PLL10>, /* hfpll1 */
->> +			 <&gcc PLL16>, /* hfpll2 */
->> +			 <&gcc PLL17>, /* hfpll3 */
->> +			 <&gcc PLL12>, /* hfpll_l2 */
->> +			 <&acc0>,
->> +			 <&acc1>,
->> +			 <&acc2>,
->> +			 <&acc3>,
->> +			 <&l2cc>;
->> +		clock-names = "hfpll0",
->> +			      "hfpll1",
->> +			      "hfpll2",
->> +			      "hfpll3",
->> +			      "hfpll_l2",
->> +			      "acpu0_aux",
->> +			      "acpu1_aux",
->> +			      "acpu2_aux",
->> +			      "acpu3_aux",
->> +			      "acpu_l2_aux";
->> +		#clock-cells = <1>;
->> +		#interconnect-cells = <1>;
->> +	};
+>> +        - const: f
+>> +          description:
+>> +            The standard F extension for single-precision floating point, as
+>> +            ratified in the 20191213 version of the unprivileged ISA
+>> +            specification.
 >> +
->>   	sfpb_mutex: hwmutex {
->>   		compatible = "qcom,sfpb-mutex";
->>   		syscon = <&sfpb_wrapper_mutex 0x604 0x4>;
->> @@ -933,6 +1100,9 @@ qfprom: qfprom@700000 {
->>   			#address-cells = <1>;
->>   			#size-cells = <1>;
->>   			ranges;
->> +			speedbin_efuse: speedbin@c0 {
->> +				reg = <0x0c0 0x4>;
->> +			};
-> Newline between properties and subnodes & between individual subnodes,
-> please
-
-ack.
-
-> 
-> Konrad
->>   			tsens_calib: calib@404 {
->>   				reg = <0x404 0x10>;
->>   			};
-
--- 
-With best wishes
-Dmitry
-
+>> +        - const: d
+>> +          description:
+>> +            The standard D extension for double-precision floating-point, as
+>> +            ratified in the 20191213 version of the unprivileged ISA
+>> +            specification.
+>> +
+>> +        - const: q
+>> +          description:
+>> +            The standard Q extension for quad-precision floating-point, as
+>> +            ratified in the 20191213 version of the unprivileged ISA
+>> +            specification.
+>> +
+>> +        - const: c
+>> +          description:
+>> +            The standard C extension for compressed instructions, as ratified in
+>> +            the 20191213 version of the unprivileged ISA specification.
+>> +
+>> +        - const: v
+>> +          description:
+>> +            The standard V extension for vector operations, as ratified
+>> +            in-and-around commit 7a6c8ae ("Fix text that describes vfmv.v.f
+>> +            encoding") of the riscv-v-spec.
+>> +
+>> +        - const: h
+>> +          description:
+>> +            The standard H extension for hypervisors as ratified in the 20191213
+>> +            version of the privileged ISA specification.
+>> +
+>> +        # multi-letter extensions, sorted alphanumerically
+>> +        - const: smaia
+>> +          description: |
+>> +            The standard Smaia supervisor-level extension for the advanced
+>> +            interrupt architecture for machine-mode-visible csr and behavioural
+>> +            changes to interrupts as frozen at commit ccbddab ("Merge pull
+>> +            request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
+>> +
+>> +        - const: ssaia
+>> +          description: |
+>> +            The standard Ssaia supervisor-level extension for the advanced
+>> +            interrupt architecture for supervisor-mode-visible csr and
+>> +            behavioural changes to interrupts as frozen at commit ccbddab
+>> +            ("Merge pull request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
+>> +
+>> +        - const: sscofpmf
+>> +          description: |
+>> +            The standard Sscofpmf supervisor-level extension for count overflow
+>> +            and mode-based filtering as ratified at commit 01d1df0 ("Add ability
+>> +            to manually trigger workflow. (#2)") of riscv-count-overflow.
+>> +
+>> +        - const: sstc
+>> +          description: |
+>> +            The standard Sstc supervisor-level extension for time compare as
+>> +            ratified at commit 3f9ed34 ("Add ability to manually trigger
+>> +            workflow. (#2)") of riscv-time-compare.
+>> +
+>> +        - const: svinval
+>> +          description:
+>> +            The standard Svinval supervisor-level extension for fine-grained
+>> +            address-translation cache invalidation as ratified in the 20191213
+>> +            version of the privileged ISA specification.
+>> +
+>> +        - const: svnapot
+>> +          description:
+>> +            The standard Svnapot supervisor-level extensions for napot
+>> +            translation contiguity as ratified in the 20191213 version of the
+>> +            privileged ISA specification.
+>> +
+>> +        - const: svpbmt
+>> +          description:
+>> +            The standard Svpbmt supervisor-level extensions for page-based
+>> +            memory types as ratified in the 20191213 version of the privileged
+>> +            ISA specification.
+>> +
+>> +        - const: zba
+>> +          description: |
+>> +            The standard Zba bit-manipulation extension for address generation
+>> +            acceleration instructions as ratified at commit 6d33919 ("Merge pull
+>> +            request #158 from hirooih/clmul-fix-loop-end-condition") of
+>> +            riscv-bitmanip.
+>> +
+>> +        - const: zbb
+>> +          description: |
+>> +            The standard Zbb bit-manipulation extension for basic bit-manipulation
+>> +            as ratified at commit 6d33919 ("Merge pull request #158 from
+>> +            hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>> +
+>> +        - const: zbc
+>> +          description: |
+>> +            The standard Zbc bit-manipulation extension for carry-less
+>> +            multiplication as ratified at commit 6d33919 ("Merge pull request
+>> +            #158 from hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>> +
+>> +        - const: zbs
+>> +          description: |
+>> +            The standard Zbs bit-manipulation extension for single-bit
+>> +            instructions as ratified at commit 6d33919 ("Merge pull request #158
+>> +            from hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>> +
+>> +        - const: zicbom
+>> +          description:
+>> +            The standard Zicbom extension for base cache management operations as
+>> +            ratified in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+>> +
+>> +        - const: zicbop
+>> +          description:
+>> +            The standard Zicbop extension for cache-block prefetch instructions
+>> +            as ratified in commit 3dd606f ("Create cmobase-v1.0.pdf") of
+>> +            riscv-CMOs.
+>> +
+>> +        - const: zicboz
+>> +          description:
+>> +            The standard Zicboz extension for cache-block zeroing as ratified
+>> +            in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+>> +
+>> +        - const: zicntr
+>> +          description:
+>> +            The standard Zicntr extension for base counters and timers, as
+>> +            ratified in the 20191213 version of the unprivileged ISA
+>> +            specification.
+>> +
+>> +        - const: zicsr
+>> +          description:
+>> +            The standard Zicsr extension for control and status register
+>> +            instructions, as ratified in the 20191213 version of the
+>> +            unprivileged ISA specification.
+>> +
+>> +        - const: zifencei
+>> +          description:
+>> +            The standard Zifencei extension for instruction-fetch fence, as
+>> +            ratified in the 20191213 version of the unprivileged ISA
+>> +            specification.
+>> +
+>> +        - const: zihintpause
+>> +          description:
+>> +            The standard Zihintpause extension for pause hints, as ratified in
+>> +            commit d8ab5c7 ("Zihintpause is ratified") of the riscv-isa-manual.
+>> +
+>> +        - const: zihpm
+>> +          description:
+>> +            The standard Zihpm extension for hardware performance counters, as
+>> +            ratified in the 20191213 version of the unprivileged ISA
+>> +            specification.
+>> +
+>> +        - const: ztso
+>> +          description:
+>> +            The standard Ztso extension for total store ordering, as ratified
+>> +            in commit 2e5236 ("Ztso is now ratified.") of the
+>> +            riscv-isa-manual.
+>> +
+>> +additionalProperties: true
+>> +...
+>> --
+>> 2.40.1
+>>
