@@ -2,82 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 009C973DCDB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 13:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17E4473DCE8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 13:09:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229786AbjFZLHU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 07:07:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49038 "EHLO
+        id S230192AbjFZLJX convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 26 Jun 2023 07:09:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49576 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjFZLHT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 07:07:19 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 05985B1;
-        Mon, 26 Jun 2023 04:07:17 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35QAXHkl006120;
-        Mon, 26 Jun 2023 11:07:13 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=02S7KVcuMIS6uq/1fBTS0MdWia7542ZJxd/Il/VqxyY=;
- b=Z4qXAvJJBGZRsWjwvIzo4Ju/3f/MIg6fAQcbml392XooVSrejiBL1nWmgw5qQmhdb3WV
- 14/EKfylqQC6cJdxZqpo2rv+Wbcde5g/Rnl0wW7a1nUjVZXUo/IOhSsCo0LMm6g4KJTu
- AL2HzHcUH0PpLsthiE8kZL4f8PhYjriWkYj0+wAawPsib2pb1CIJQNMXtkFl/JEh6YTg
- VH+SCJjQNqjxcXVLaifEY54J9dsBY+3/QjVfmKuHcwejUuutTJsVPyQpQTNM5ZsiGE/n
- RZ2DHJY5kuOXAAwWuW6pCx9gpgBq3BWp7aYr56982ui3cZ+yCrJEq0a98RsBN4HdH+2Q dw== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rdqgdbtyr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 26 Jun 2023 11:07:13 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35QB7CSp030385
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 26 Jun 2023 11:07:12 GMT
-Received: from [10.216.37.195] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 26 Jun
- 2023 04:07:07 -0700
-Message-ID: <c875c617-25d2-04d8-0ab7-f7e8380348c9@quicinc.com>
-Date:   Mon, 26 Jun 2023 16:37:04 +0530
+        with ESMTP id S230161AbjFZLJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 07:09:20 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9686DB1;
+        Mon, 26 Jun 2023 04:09:18 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 81E1024E199;
+        Mon, 26 Jun 2023 19:09:11 +0800 (CST)
+Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
+ 2023 19:09:11 +0800
+Received: from ubuntu.localdomain (113.72.146.167) by EXMBX172.cuchost.com
+ (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 26 Jun
+ 2023 19:09:10 +0800
+From:   Hal Feng <hal.feng@starfivetech.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor@kernel.org>,
+        "Walker Chen" <walker.chen@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Hal Feng <hal.feng@starfivetech.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 0/5] Add PWM-DAC audio support for StarFive JH7110 RISC-V SoC
+Date:   Mon, 26 Jun 2023 19:09:04 +0800
+Message-ID: <20230626110909.38718-1-hal.feng@starfivetech.com>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.9.1
-Subject: Re: [RESEND v6 5/8] arm64: dts: qcom: sc7280: Add LPASS PIL node
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <swboyd@chromium.org>,
-        <andersson@kernel.org>, <broonie@kernel.org>, <agross@kernel.org>
-CC:     <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
-        <dianders@chromium.org>, <judyhsiao@chromium.org>,
-        <quic_visr@quicinc.com>,
-        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
-References: <20230616103534.4031331-1-quic_mohs@quicinc.com>
- <20230616103534.4031331-6-quic_mohs@quicinc.com>
- <353fe482-62f7-6252-5123-6907f84762b9@linaro.org>
-From:   Mohammad Rafi Shaik <quic_mohs@quicinc.com>
-In-Reply-To: <353fe482-62f7-6252-5123-6907f84762b9@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ENHafY9QjUSafQ2FCxSPzIwrrjfNiI0B
-X-Proofpoint-GUID: ENHafY9QjUSafQ2FCxSPzIwrrjfNiI0B
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-26_06,2023-06-26_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 clxscore=1015
- suspectscore=0 phishscore=0 priorityscore=1501 impostorscore=0
- lowpriorityscore=0 adultscore=0 mlxscore=0 mlxlogscore=999 bulkscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306260101
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+Content-Type: text/plain
+X-Originating-IP: [113.72.146.167]
+X-ClientProxiedBy: EXCAS064.cuchost.com (172.16.6.24) To EXMBX172.cuchost.com
+ (172.16.6.92)
+X-YovoleRuleAgent: yovoleflag
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
         SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,141 +59,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patchset adds PWM-DAC audio support for the StarFive JH7110 SoC.
+The PWM-DAC module does not require a hardware codec, so add a dummy codec
+driver for it.
 
-On 6/16/2023 4:55 PM, Konrad Dybcio wrote:
-> On 16.06.2023 12:35, Mohammad Rafi Shaik wrote:
->> From: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->>
->> Add LPASS PIL node for sc7280 based audioreach platforms.
->>
->> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
->> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
->> ---
-> The node should reside in the SoC DTSI, ideally the bindings should
-> be compatible with the PAS setup to the point where only a compatible
-> swap is needed..
->
-> Konrad
-Thanks for comment,
+The fourth patch depends on the patch [1].
+The fifth patch depends on the patchset [2], patch [3].
 
-The base SOC DTSI file already has an entry with the same physical base 
-address which is using for ADSP BYPASS solution.
-For Audioreach solution required the same base address for the 
-remoteproc device tree node.
+[1] https://lore.kernel.org/all/20230526145402.450-3-walker.chen@starfivetech.com/
+[2] https://lore.kernel.org/all/20230518101234.143748-1-xingyu.wu@starfivetech.com/
+[3] https://lore.kernel.org/all/20230322094820.24738-5-walker.chen@starfivetech.com/
 
-Will create a new common dtsi file for Audioreach as suggested by you in 
-previous patch and add this in that common dtsi file.
+Hal Feng (5):
+  ASoC: dt-bindings: Add StarFive JH7110 dummy PWM-DAC transmitter
+  ASoC: codecs: Add StarFive JH7110 dummy PWM-DAC transmitter driver
+  ASoC: dt-bindings: Add StarFive JH7110 PWM-DAC controller
+  ASoC: starfive: Add JH7110 PWM-DAC driver
+  riscv: dts: starfive: Add JH7110 PWM-DAC support
 
-Please confirm is it okay ?
+ .../sound/starfive,jh7110-pwmdac-dit.yaml     |  38 +
+ .../sound/starfive,jh7110-pwmdac.yaml         |  76 ++
+ MAINTAINERS                                   |   8 +
+ .../jh7110-starfive-visionfive-2.dtsi         |  50 ++
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  13 +
+ sound/soc/codecs/Kconfig                      |   4 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/jh7110_pwmdac_transmitter.c  |  74 ++
+ sound/soc/starfive/Kconfig                    |   9 +
+ sound/soc/starfive/Makefile                   |   1 +
+ sound/soc/starfive/jh7110_pwmdac.c            | 787 ++++++++++++++++++
+ 11 files changed, 1062 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-pwmdac-dit.yaml
+ create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-pwmdac.yaml
+ create mode 100644 sound/soc/codecs/jh7110_pwmdac_transmitter.c
+ create mode 100644 sound/soc/starfive/jh7110_pwmdac.c
 
-Rafi.
 
->>   .../sc7280-herobrine-audioreach-wcd9385.dtsi  | 90 +++++++++++++++++++
->>   1 file changed, 90 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
->> index 95d3aa08ebde..9daea1b25656 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
->> @@ -7,6 +7,8 @@
->>    */
->>   
->>   #include <dt-bindings/sound/qcom,q6afe.h>
->> +#include <dt-bindings/clock/qcom,lpass-sc7280.h>
->> +#include <dt-bindings/soc/qcom,gpr.h>
->>   
->>   /{
->>   	/* BOARD-SPECIFIC TOP LEVEL NODES */
->> @@ -105,4 +107,92 @@ platform {
->>   			};
->>   		};
->>   	};
->> +
->> +	remoteproc_adsp: remoteproc@3000000 {
->> +		compatible = "qcom,sc7280-adsp-pil";
->> +		reg = <0 0x03000000 0 0x5000>, <0 0x0355b000 0 0x10>;
->> +		reg-names = "qdsp6ss_base", "lpass_efuse";
->> +
->> +		interrupts-extended = <&pdc 6 IRQ_TYPE_LEVEL_HIGH>,
->> +				      <&adsp_smp2p_in 0 IRQ_TYPE_EDGE_RISING>,
->> +				      <&adsp_smp2p_in 1 IRQ_TYPE_EDGE_RISING>,
->> +				      <&adsp_smp2p_in 2 IRQ_TYPE_EDGE_RISING>,
->> +				      <&adsp_smp2p_in 3 IRQ_TYPE_EDGE_RISING>,
->> +				      <&adsp_smp2p_in 7 IRQ_TYPE_EDGE_RISING>;
->> +
->> +		interrupt-names = "wdog", "fatal", "ready",
->> +				  "handover", "stop-ack",
->> +				  "shutdown-ack";
->> +
->> +		qcom,qmp = <&aoss_qmp>;
->> +
->> +		clocks = <&rpmhcc RPMH_CXO_CLK>,
->> +			 <&gcc GCC_CFG_NOC_LPASS_CLK>;
->> +		clock-names = "xo", "gcc_cfg_noc_lpass";
->> +
->> +		iommus = <&apps_smmu 0x1800 0x0>;
->> +
->> +		power-domains =	<&rpmhpd SC7280_CX>;
->> +		power-domain-names = "cx";
->> +
->> +		required-opps = <&rpmhpd_opp_nom>;
->> +
->> +		resets = <&pdc_reset PDC_AUDIO_SYNC_RESET>,
->> +			 <&aoss_reset AOSS_CC_LPASS_RESTART>;
->> +		reset-names =  "pdc_sync", "cc_lpass";
->> +
->> +		qcom,halt-regs = <&tcsr_1 0x3000 0x5000 0x8000 0x13000>;
->> +
->> +		memory-region = <&adsp_mem>;
->> +
->> +		qcom,smem-states = <&adsp_smp2p_out 0>;
->> +		qcom,smem-state-names = "stop";
->> +
->> +		glink-edge {
->> +			interrupts-extended = <&ipcc IPCC_CLIENT_LPASS
->> +					      IPCC_MPROC_SIGNAL_GLINK_QMP
->> +					      IRQ_TYPE_EDGE_RISING>;
->> +
->> +			mboxes = <&ipcc IPCC_CLIENT_LPASS
->> +				 IPCC_MPROC_SIGNAL_GLINK_QMP>;
->> +
->> +			label = "lpass";
->> +			qcom,remote-pid = <2>;
->> +
->> +			gpr {
->> +				compatible = "qcom,gpr";
->> +				qcom,glink-channels = "adsp_apps";
->> +				qcom,domain = <GPR_DOMAIN_ID_ADSP>;
->> +				qcom,intents = <512 20>;
->> +				#address-cells = <1>;
->> +				#size-cells = <0>;
->> +
->> +				q6apm: service@1 {
->> +					compatible = "qcom,q6apm";
->> +					reg = <GPR_APM_MODULE_IID>;
->> +					#sound-dai-cells = <0>;
->> +
->> +					q6apmdai: dais {
->> +						compatible = "qcom,q6apm-dais";
->> +						iommus = <&apps_smmu 0x1801 0x0>;
->> +					};
->> +
->> +					q6apmbedai: bedais {
->> +						compatible = "qcom,q6apm-lpass-dais";
->> +						#sound-dai-cells = <1>;
->> +					};
->> +				};
->> +
->> +				q6prm: service@2 {
->> +					compatible = "qcom,q6prm";
->> +					reg = <GPR_PRM_MODULE_IID>;
->> +
->> +					q6prmcc: clock-controller {
->> +						compatible = "qcom,q6prm-lpass-clocks";
->> +						#clock-cells = <2>;
->> +					};
->> +				};
->> +			};
->> +		};
->> +	};
->>   };
+base-commit: 45a3e24f65e90a047bef86f927ebdc4c710edaa1
+prerequisite-patch-id: 8c735dffc6d5388a35a76b16e914a2f9722ad979
+prerequisite-patch-id: ffa1f5831e75722c9f41603f009f762c9fd525e2
+prerequisite-patch-id: 36e69700dfc0375b950b0e23086ed3b722cb84a4
+prerequisite-patch-id: 0b49b996d7a404ea548e1734c12933ec749e92b9
+prerequisite-patch-id: 81f7c65712c4901a7a178ddcd98ffc55f3b473ff
+prerequisite-patch-id: f342fbf594014b072378528bea94c01fb2186e1a
+prerequisite-patch-id: 39e1be2a3d1593577ab997f55f59367cba665aa7
+prerequisite-patch-id: 0159f09bb0a1ff711a00ae17ef5b12662c9c7d3d
+prerequisite-patch-id: 2ddada18ab6ea5cd1da14212aaf59632f5203d40
+prerequisite-patch-id: d5abfba63fc07ff97b5023911513c260bb7a53e1
+prerequisite-patch-id: b37ac15032973e1fcd918f157c82a0606775c9e9
+prerequisite-patch-id: 6abf359fa445f4104432ddee27044dfbfb128417
+prerequisite-patch-id: 2f7aca99e714a4c590a91baa015080ac0902814d
+prerequisite-patch-id: 32cabbc4e7a97ec14d5c28a477fa483784f86709
+prerequisite-patch-id: d449b1957dd77c2537c38585daa75974c94c529a
+-- 
+2.38.1
+
