@@ -2,82 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF8C73E35C
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:32:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9780E73E364
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:33:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229970AbjFZPcT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 11:32:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49448 "EHLO
+        id S229777AbjFZPd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 11:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50216 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229939AbjFZPcL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:32:11 -0400
-Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F91210E0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:32:08 -0700 (PDT)
-Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fb4146e8ceso3653185e9.0
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:32:08 -0700 (PDT)
+        with ESMTP id S230112AbjFZPdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:33:24 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F31601A4
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:33:22 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-991fee3a6b1so10665666b.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:33:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687793527; x=1690385527;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UotEKVGu4UicdFRFt8vn+mqKSPhJyyY8erAKccSLFS8=;
-        b=OiVPY0SKcCbKeSILoHCmY/qT1E319c5b9eIcoYOSF8c1k8vSUoewSPFxtd2GMDUSEv
-         7qGqpG+l3PBAgiP4ckxQoCzKIvwXF4hlGeP8/yyCjrqZFc00KH1/HH4JMwxrZdC4V2qg
-         j333CfYYVQwgPNSX/ctAvOS118+Lrxb2KYg1Z5oPJFl3WSzUqKVvQDjimxbpRrdUg4TK
-         60Ly4FS50ydNH0ooiZm4eoSmwxmn9YxoCYyCHx/52wHZSCKaZ6aMFIxzO3HghTfGGuLi
-         iiQ3RB+WJZyxlAwMqw5RdxqQDku5fLPBVeLuZW2PwkFphHG0/rmutptD0oEBQbUY+/dh
-         l1hQ==
+        d=ventanamicro.com; s=google; t=1687793601; x=1690385601;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=e9Tqh+bgbzS0BvzbAVqiPRlSG90nmkGIpBCBAQqX0QQ=;
+        b=b96UvgNvzkbRYx0trBuQ5YMZtUpfdLwxWVUZLt/XsYHa+WF4aDTSAzAVcNZEHV1QVA
+         IxLy2YU/6Gvj3bHqrMvp1WtNIye4TQJmH7oJP+GBF7NYM4bewJ/kTqofouD+ibzp37an
+         GCacxYfy+O3WG4zt0C3ZLPHfC5X5fBsksrowiu3eoDyhy6eJiA2PRv4R1u6jKm8XXbR3
+         1c1f0iALjxO/fMn5OpBDWQATQFg/5BXaFSkNLwIQwHDttqvjNSwSM98UOdo7dkfwyYei
+         mqgxE5B0HxTu1cM4LK3KXQd2Q+XvMp3KFOBdRbckxWiFWi1OxCdDO3uv5J27/aRC/OtC
+         w4EQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687793527; x=1690385527;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UotEKVGu4UicdFRFt8vn+mqKSPhJyyY8erAKccSLFS8=;
-        b=AR8avENfvhk8oAwv3g/gzr6dwM1tIw+sONLEOtf4jbTMsntvejBVILsGe3ZA2zr19a
-         YhmuweCLyl3METqFa/EFqXvZiPqNgvC2jKOAo8t92BhU/jNPsSzqjSepzEMNW8yMr136
-         2kXe29645yYez1B2K+NYVqC94w9unjzBKNJYTNQ80BScEHi6feO3oxrQszd8X2WtNGCM
-         1tMG36/HUaIeNOfo0wikKXodOHKsgoYuBd8nMDOzGdp+QnUXTJrCjvR3GeDhT+9pPF6V
-         jsSYnXxzW8C6RZMuwUfKl8/z+prdychetm6AyjBF6BgiNVLT7/NLjB+Xh6PC71gA+bC1
-         g2mw==
-X-Gm-Message-State: AC+VfDzHn4VBWZmBth1xKIcl9b7/QXb+XCBJ4dmuJDhfwzKE+WoHHPDH
-        LGRTOo47rlRAUuLylLzjz8Ka+rZm32pXtc2lS8c=
-X-Google-Smtp-Source: ACHHUZ5Go2QzsyA7PJ5u3USfatgPyu7gSb79h4oB9qw8x8KLefKL4zc8Uq/5/48twyYJ9y10B561jQ==
-X-Received: by 2002:a7b:ce98:0:b0:3fa:7478:64be with SMTP id q24-20020a7bce98000000b003fa747864bemr10432370wmj.1.1687793526846;
-        Mon, 26 Jun 2023 08:32:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id f23-20020a1c6a17000000b003eddc6aa5fasm10864959wmc.39.2023.06.26.08.32.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 08:32:06 -0700 (PDT)
-Message-ID: <92171465-d2ba-c3ba-aa55-0f705e924a0f@linaro.org>
-Date:   Mon, 26 Jun 2023 17:32:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 1/5] ASoC: dt-bindings: Add StarFive JH7110 dummy
- PWM-DAC transmitter
-Content-Language: en-US
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
+        d=1e100.net; s=20221208; t=1687793601; x=1690385601;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e9Tqh+bgbzS0BvzbAVqiPRlSG90nmkGIpBCBAQqX0QQ=;
+        b=IsfaPOtKs04pF37rh0VK6lvnbdgrszdG9cOi+7e3fgjQei3FJZazH/cIqEeXmW3BU6
+         AoyKYl6AnWknBnYfUCUuAG40uMux0dchWRuG+9gvUwNYnu3XuPW/p8z9UiMU3gifBE6H
+         BBKNIBPKYJAvZAi5C8amycMSxUt/1bs5e/uyfClrBTTjSCYmDnkc59DtyEGGWoVQXEsT
+         woISfX+6bn63smlKcfYHXarob3IYyWhi4SdBxigEDzlDTZE1yp78sqjRZOm81aDth9E8
+         N4s34trGqdffipjcYmaET7XVOfDKWt0HWwOpIIjqK2Vm6OjPvsWUzN83hEe6sQKgygQF
+         Rsog==
+X-Gm-Message-State: AC+VfDx73Ew6LvqKB6dbkM38kF6WsnDSGJVsxWTHGPhlU/JrU3IMphLQ
+        0paRrxPdKuRhLd4IdVPBt4vgBA==
+X-Google-Smtp-Source: ACHHUZ6RGIY8Q5EYr8VS/MG5yhZySuR5xYGF1P7o3orytf0EAD7Xhd7VamRyzp2t7CMaPRzZHLL0RA==
+X-Received: by 2002:a17:907:2d88:b0:98d:4e03:1d55 with SMTP id gt8-20020a1709072d8800b0098d4e031d55mr11226240ejc.76.1687793601212;
+        Mon, 26 Jun 2023 08:33:21 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id hk8-20020a170906c9c800b00987316d1585sm3420624ejb.145.2023.06.26.08.33.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jun 2023 08:33:20 -0700 (PDT)
+Date:   Mon, 26 Jun 2023 17:33:19 +0200
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     palmer@dabbelt.com, conor@kernel.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230626110909.38718-1-hal.feng@starfivetech.com>
- <20230626110909.38718-2-hal.feng@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230626110909.38718-2-hal.feng@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Evan Green <evan@rivosinc.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 4/9] RISC-V: repurpose riscv_isa_ext array in
+ riscv_fill_hwcap()
+Message-ID: <20230626-2eca99968e20531752dea023@orel>
+References: <20230626-provable-angrily-81760e8c3cc6@wendy>
+ <20230626-thieving-jockstrap-d35d20b535c5@wendy>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230626-thieving-jockstrap-d35d20b535c5@wendy>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -86,61 +80,111 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2023 13:09, Hal Feng wrote:
-> Add bindings for StarFive JH7110 dummy PWM-DAC transmitter.
+On Mon, Jun 26, 2023 at 12:19:42PM +0100, Conor Dooley wrote:
+> In riscv_fill_hwcap() riscv_isa_ext array can be looped over, rather
+> than duplicating the list of extensions with individual
+> SET_ISA_EXT_MAP() usage. While at it, drop the statement-of-the-obvious
+> comments from the struct, rename uprop to something more suitable for
+> its new use & constify the members.
 > 
-> Signed-off-by: Hal Feng <hal.feng@starfivetech.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../sound/starfive,jh7110-pwmdac-dit.yaml     | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/starfive,jh7110-pwmdac-dit.yaml
+>  arch/riscv/include/asm/hwcap.h |  6 ++----
+>  arch/riscv/kernel/cpu.c        |  5 +++--
+>  arch/riscv/kernel/cpufeature.c | 26 +++++++-------------------
+>  3 files changed, 12 insertions(+), 25 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/starfive,jh7110-pwmdac-dit.yaml b/Documentation/devicetree/bindings/sound/starfive,jh7110-pwmdac-dit.yaml
-> new file mode 100644
-> index 000000000000..bc43e3b1e9d2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/starfive,jh7110-pwmdac-dit.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/starfive,jh7110-pwmdac-dit.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: StarFive JH7110 Dummy PWM-DAC Transmitter
-> +
-> +maintainers:
-> +  - Hal Feng <hal.feng@starfivetech.com>
-> +
-> +allOf:
-> +  - $ref: dai-common.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: starfive,jh7110-pwmdac-dit
-> +
-> +  "#sound-dai-cells":
-> +    const: 0
-> +
-> +  sound-name-prefix: true
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
+> index 7a57e6109aef..36f46dfd2b87 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -70,10 +70,8 @@
+>  unsigned long riscv_get_elf_hwcap(void);
+>  
+>  struct riscv_isa_ext_data {
+> -	/* Name of the extension displayed to userspace via /proc/cpuinfo */
+> -	char uprop[RISCV_ISA_EXT_NAME_LEN_MAX];
 
-Drop
+The RISCV_ISA_EXT_NAME_LEN_MAX define can now also be deleted.
 
+> -	/* The logical ISA extension ID */
+> -	unsigned int isa_ext_id;
+> +	const unsigned int id;
+> +	const char *name;
+>  };
+>  
+>  extern const struct riscv_isa_ext_data riscv_isa_ext[];
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index 61fb92e7d524..beb8b16bbf87 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -164,9 +164,10 @@ static void print_isa_ext(struct seq_file *f)
+>  {
+>  	for (int i = 0; i < riscv_isa_ext_count; i++) {
+>  		const struct riscv_isa_ext_data *edata = &riscv_isa_ext[i];
+> -		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
+> +		if (!__riscv_isa_extension_available(NULL, edata->id))
+>  			continue;
+> -		seq_printf(f, "_%s", edata->uprop);
 > +
-> +required:
-> +  - compatible
-> +  - "#sound-dai-cells"
-> +
-> +additionalProperties: false
+> +		seq_printf(f, "_%s", edata->name);
+>  	}
+>  }
+>  
+> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
+> index f0ae310006de..b5e23506c4f0 100644
+> --- a/arch/riscv/kernel/cpufeature.c
+> +++ b/arch/riscv/kernel/cpufeature.c
+> @@ -99,11 +99,10 @@ static bool riscv_isa_extension_check(int id)
+>  	return true;
+>  }
+>  
+> -#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
+> -	{							\
+> -		.uprop = #UPROP,				\
+> -		.isa_ext_id = EXTID,				\
+> -	}
+> +#define __RISCV_ISA_EXT_DATA(_name, _id) {	\
+> +	.name = #_name,				\
+> +	.id = _id,				\
+> +}
+>  
+>  /*
+>   * The canonical order of ISA extension names in the ISA string is defined in
+> @@ -367,20 +366,9 @@ void __init riscv_fill_hwcap(void)
+>  					set_bit(nr, isainfo->isa);
+>  				}
+>  			} else {
+> -				/* sorted alphabetically */
+> -				SET_ISA_EXT_MAP("smaia", RISCV_ISA_EXT_SMAIA);
+> -				SET_ISA_EXT_MAP("ssaia", RISCV_ISA_EXT_SSAIA);
+> -				SET_ISA_EXT_MAP("sscofpmf", RISCV_ISA_EXT_SSCOFPMF);
+> -				SET_ISA_EXT_MAP("sstc", RISCV_ISA_EXT_SSTC);
+> -				SET_ISA_EXT_MAP("svinval", RISCV_ISA_EXT_SVINVAL);
+> -				SET_ISA_EXT_MAP("svnapot", RISCV_ISA_EXT_SVNAPOT);
+> -				SET_ISA_EXT_MAP("svpbmt", RISCV_ISA_EXT_SVPBMT);
+> -				SET_ISA_EXT_MAP("zba", RISCV_ISA_EXT_ZBA);
+> -				SET_ISA_EXT_MAP("zbb", RISCV_ISA_EXT_ZBB);
+> -				SET_ISA_EXT_MAP("zbs", RISCV_ISA_EXT_ZBS);
+> -				SET_ISA_EXT_MAP("zicbom", RISCV_ISA_EXT_ZICBOM);
+> -				SET_ISA_EXT_MAP("zicboz", RISCV_ISA_EXT_ZICBOZ);
+> -				SET_ISA_EXT_MAP("zihintpause", RISCV_ISA_EXT_ZIHINTPAUSE);
+> +				for (int i = 0; i < riscv_isa_ext_count; i++)
+> +					SET_ISA_EXT_MAP(riscv_isa_ext[i].name,
+> +							riscv_isa_ext[i].id);
 
-Instead: unevaluatedProperties: false
-> +
-> +examples:
-> +  - |
-> +    pwmdac-dit {
+Three cheers for removing one list that needed to be maintained!
 
-pwmdac?
+>  			}
+>  #undef SET_ISA_EXT_MAP
+>  		}
+> -- 
+> 2.40.1
+>
 
-Best regards,
-Krzysztof
+Other than also dropping the define,
 
+Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+
+Thanks,
+drew
