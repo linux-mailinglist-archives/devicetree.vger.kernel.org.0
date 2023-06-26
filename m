@@ -2,56 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CB8F73E4F6
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B509B73E50C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:30:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229759AbjFZQ0d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 12:26:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56010 "EHLO
+        id S229457AbjFZQaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 12:30:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56012 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231241AbjFZQZc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:25:32 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC32910F3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:25:30 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-988a076a7d3so523426266b.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:25:30 -0700 (PDT)
+        with ESMTP id S230357AbjFZQ3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:29:43 -0400
+Received: from mail-ed1-x52b.google.com (mail-ed1-x52b.google.com [IPv6:2a00:1450:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9700DE4C
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:29:41 -0700 (PDT)
+Received: by mail-ed1-x52b.google.com with SMTP id 4fb4d7f45d1cf-51d9865b7bdso1337293a12.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:29:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1687796729; x=1690388729;
+        d=ventanamicro.com; s=google; t=1687796980; x=1690388980;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=4Gm0byWzIZvJKygPvrq4jnlftwE0Yo5FdjhxVJ4PNAE=;
-        b=Ne2KXk/Uoxjt97ZERJ/38f00T4yqTnRxlkmWt4VLueghpQYZEWTFslb+q07Ff90vnM
-         Q28N1PdFvy+/osrZTUDE7KeufuDp2ox5iC5oeuQXj34xy8pUMSbviwC6rk2/GXilOiUC
-         XKhcIQ6oCXUErTh+Piv/iQ3H++7KCUr8nka3/Fs071ly3b8u/2YfZNgOhW1pCNvBviMt
-         U4wxrS2I5C4a/uO6S528BRMugKGVIVVCx2WTVtk+PxPQ5q86xMR4UQsTTIo2aYEc/3k2
-         N3IalRFKkKRUcsC4/6jQlKke0T7sRrUYb7Drta4ykvBYgOJgrSzNkxfZnJVuuv/huCHT
-         dWYg==
+        bh=9CHrRqR2fSQ0++NtikS97CS9zylaxWqTRq+BBNV6q+Y=;
+        b=W8WrJGCEHXQnHtNsnm/hELx31f1i1QjnfVRY4u5Vf1FFj8+/sEyhRitqj48mUB8SZA
+         4CE2x6GicrJ+2hQgMxVd5+H6eUGkKo4a69xEh7oWA8SzHydEqqyftVYhCKylZf7LX8kH
+         NBFQDLuLfFkTEuOnTlbL5qVgMghQjlvWrz7/hrDMP4rvNFdcLU4um9Hr0BueEPVU12/V
+         H+m6QgR0tu33YW5cnykWyu2mcebU7bS3cVigbMuBcEZcPDDZZ+ChnudSsozvljPi1gju
+         KkIEwJoewwOYqKC4Rk1MYuYhR0y5z8tCkQIMR8fQomC3kIGJJmp7lf64OVdnSj7U/7EM
+         8tfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687796729; x=1690388729;
+        d=1e100.net; s=20221208; t=1687796980; x=1690388980;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=4Gm0byWzIZvJKygPvrq4jnlftwE0Yo5FdjhxVJ4PNAE=;
-        b=idq5ldUplU6TTjKLLMJV3LmrW05jtYtawImzxmxi0mWVXzqK52+JcA326nxqGQP2SP
-         CF3NkC+AgPvleGEIJLrseeBA8NynKVuT16Ynfd8a5HWDk4JPAlU4PLVE/RBWlQXLUQSQ
-         og76knXAUzxFYJtbhu+7QWib/X1k16WwPJDHkUUbeZWoKf30JBfZ1X7bci8uMQsA81kM
-         8IBMS3xa0J5sJMfc7hmnlulCH33HAXDxA4ZAhJ5uHL0lYy/NA4GSQBSp30XGj7io8WPr
-         gTBqVs5YrdOj7GdB594BCItzoJUkAoEkTxpY5Amw2Z/M5aQ4fb3L5IfRCLV75HAgWB00
-         +YEw==
-X-Gm-Message-State: AC+VfDxxSmB5LJNZavXm5p+w6PBEWBiOKuu3EoZ0rhtIX7A1I13hvExF
-        nBUdgqOr4uk8i/Izm450AM59Qy9AEyhFzksg39E=
-X-Google-Smtp-Source: ACHHUZ5aBiBeSUxla3z5EaON8Xp718BV5eWXZ6FB6tziHGOH3UN4WTuOXox8wp/dqsGVNjWJGveLrQ==
-X-Received: by 2002:a17:907:97cf:b0:991:e961:a5f4 with SMTP id js15-20020a17090797cf00b00991e961a5f4mr1361813ejc.20.1687796729364;
-        Mon, 26 Jun 2023 09:25:29 -0700 (PDT)
+        bh=9CHrRqR2fSQ0++NtikS97CS9zylaxWqTRq+BBNV6q+Y=;
+        b=DmNy98F4oTUaIc5PUVJZeAhIJ27wZ1TnWzbQ84crgezyk1xOZhDVIf7Xe3qXolbRzb
+         bey6ZujrMuZPmnMuYfJPEwkFRATIBGXWdeOI1nk4yDfZA2NhnsBs2FiMLyXJ0vjBBlLH
+         B04Sax8ZQtTxOCMyAB5wgyUxMPPhhk05UIKjMwVsBW+9eSpmgCPUOrNpwfbnWXQUp263
+         6QOVlxaluSM5L5bPxRm3/5b7UOWyvSHDW7t/NRrjW8zmVeS2k963OwsBCuE94ZNfExyh
+         kiNvRkl9gNFXsm1ztuOcJlPs14C0IHKpjnPjZUYgFlnM6ePVCukxGy5rLHFv80z/PtPo
+         sAGg==
+X-Gm-Message-State: AC+VfDwiBrYldWMWuwt+jH1wA/ONvhT9i48MuDRwMH4dNRYaAmct+fWU
+        dtaNnif7PnQPejwblc9VPcE67r9V6E4arugAG5g=
+X-Google-Smtp-Source: ACHHUZ6/O3Wkr5wbKrnbncEmhxHSeWiEksIyWcweInJx7/EUTGKrdhwfj47TMDyD3lIq1lzA4J9Mbw==
+X-Received: by 2002:a05:6402:4c9:b0:51a:327d:f065 with SMTP id n9-20020a05640204c900b0051a327df065mr20581604edw.13.1687796980030;
+        Mon, 26 Jun 2023 09:29:40 -0700 (PDT)
 Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id v8-20020a170906338800b0099027b40d85sm1716900eja.112.2023.06.26.09.25.28
+        by smtp.gmail.com with ESMTPSA id u12-20020a05640207cc00b0051bf998b25fsm2984500edy.44.2023.06.26.09.29.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 09:25:29 -0700 (PDT)
-Date:   Mon, 26 Jun 2023 18:25:28 +0200
+        Mon, 26 Jun 2023 09:29:39 -0700 (PDT)
+Date:   Mon, 26 Jun 2023 18:29:38 +0200
 From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     palmer@dabbelt.com, conor@kernel.org,
+To:     Conor Dooley <conor@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>, palmer@dabbelt.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Paul Walmsley <paul.walmsley@sifive.com>,
@@ -61,15 +61,16 @@ Cc:     palmer@dabbelt.com, conor@kernel.org,
         Sunil V L <sunilvl@ventanamicro.com>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 9/9] RISC-V: try new extension properties in
- of_early_processor_hartid()
-Message-ID: <20230626-9ed40a55c71d2fe50ed3b8da@orel>
+Subject: Re: [PATCH v1 2/9] RISC-V: drop a needless check in print_isa_ext()
+Message-ID: <20230626-285e425abaadb83dd37d97fd@orel>
 References: <20230626-provable-angrily-81760e8c3cc6@wendy>
- <20230626-ardently-caress-7c5886566ea6@wendy>
+ <20230626-skydiver-frown-659b982a43ad@wendy>
+ <20230626-67e571e6d9f02c28a09dab33@orel>
+ <20230626-jitters-spiral-68e941d0ad3f@spud>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230626-ardently-caress-7c5886566ea6@wendy>
+In-Reply-To: <20230626-jitters-spiral-68e941d0ad3f@spud>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -80,53 +81,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 26, 2023 at 12:19:47PM +0100, Conor Dooley wrote:
-> To fully deprecate the kernel's use of "riscv,isa",
-> of_early_processor_hartid() needs to first try using the new properties,
-> before falling back to "riscv,isa".
+On Mon, Jun 26, 2023 at 05:08:28PM +0100, Conor Dooley wrote:
+> On Mon, Jun 26, 2023 at 05:19:08PM +0200, Andrew Jones wrote:
+> > On Mon, Jun 26, 2023 at 12:19:40PM +0100, Conor Dooley wrote:
+> > > isa_ext_arr cannot be empty, as some of the extensions within it are
+> > > always built into the kernel.
+> > 
+> > This is only true since commit 07edc32779e3 ("RISC-V: always report
+> > presence of extensions formerly part of the base ISA"), right? If
+> > so, it might be nice to call that commit out in this commit message.
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/kernel/cpu.c | 23 ++++++++++++++++++++++-
->  1 file changed, 22 insertions(+), 1 deletion(-)
+> Per my last mail, where I commented on the origins of some of this code,
+> there were no multi-letter extensions when this code was first added.
+> When the first multi-letter ones did get added, it was Sscofpmf - that
+> doesn't have a Kconfig symbol to disable it, so I think this has been
+> redundant for a long time.
 > 
-> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> index 046d9d3dac16..332574f27c95 100644
-> --- a/arch/riscv/kernel/cpu.c
-> +++ b/arch/riscv/kernel/cpu.c
-> @@ -61,8 +61,29 @@ int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *har
->  		return -ENODEV;
->  	}
->  
-> +	if (of_property_read_string(node, "riscv,isa-base", &isa))
-> +		goto old_interface;
-> +
-> +	if (IS_ENABLED(CONFIG_32BIT) && strncasecmp(isa, "rv32i", 5))
-> +		return -ENODEV;
-> +
-> +	if (IS_ENABLED(CONFIG_64BIT) && strncasecmp(isa, "rv64i", 5))
-> +		return -ENODEV;
-> +
-> +	if (!of_property_present(node, "riscv,isa-extensions"))
-> +		return -ENODEV;
-> +
-> +	if (of_property_match_string(node, "riscv,isa-extensions", "i") < 0 ||
-> +	    of_property_match_string(node, "riscv,isa-extensions", "m") < 0 ||
-> +	    of_property_match_string(node, "riscv,isa-extensions", "a") < 0)
-> +		return -ENODEV;
-> +
-> +	return 0;
-> +
-> +old_interface:
->  	if (of_property_read_string(node, "riscv,isa", &isa)) {
-> -		pr_warn("CPU with hartid=%lu has no \"riscv,isa\" property\n", *hart);
-> +		pr_warn("CPU with hartid=%lu has no \"riscv,isa-base\" or \"riscv,isa\" property\n",
-> +			*hart);
->  		return -ENODEV;
->  	}
->  
-> -- 
-> 2.40.1
->
+> Apart from the ones I recently added, there's a fair few others that
+> are not gated & should always be present.
+> It's probably not clear from the comment, but this check is for whether
+> the kernel supports extensions, not whether the system it is running on
+> does. I guess I should expand on that in my commit message.
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+That part I understood, but I was thinking it'd be nice to call out when
+the first extension was added which cannot be disabled by a config to
+provide extra evidence that it's safe to remove the check.
+
+Thanks,
+drew
