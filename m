@@ -2,818 +2,480 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5221473E0FB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:48:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D99A73E11A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbjFZNr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 09:47:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47270 "EHLO
+        id S229454AbjFZNx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 09:53:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50292 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229653AbjFZNr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:47:56 -0400
-Received: from NAM11-CO1-obe.outbound.protection.outlook.com (mail-co1nam11on2063.outbound.protection.outlook.com [40.107.220.63])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DA5397;
-        Mon, 26 Jun 2023 06:47:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=HpowjqunLZeZLXHRVu++spx5nCA8g6BzXAjyJ4zB+DtUwPL75y5wUA0B9tnAa3w0SADg57hRhM9JagV5AvGiP8dRNupspMjy6RP8uXmZa37jotCKvAc+uHjgeqqgctKjN0IpdzhD6qSL1VT6a1bp5lE8rWxfZWbHycwzLa8W5wubn4S4lqtPANTbtRLmFE5dFs+ONFvwbihIwRQXEKsTGRSP+gcD7iAoY4AncircIReJv6j5G3X4KVjxBx0JHrO2wF2GD+01Vbl9TtAR0gxZFhm0/S3PWmL7q2lE1j99LEgJU2WzvctBdqHZSuhRa5CynAkfXPEx58ZZLFKdScQwLQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AdEwyepmhavtqgzfFdu+hnk15YgGmRIIZsWsVfvEf84=;
- b=EzOrRhDoU1Bvx1kpOoNCR2hffnNbMjSd4WTY8ArFJkCdkYNsHgKx1f2W/ekGn90C9bm2FTpK5yszjNIgTSi/yg+iYDY+xduDQuBLA41w94Q5Iq1Ym8qwfYDE/kroZq7ZlbUHBuaKxSCzLqev4XVvoDN5zNJYlxM+EF6B8K2kwrid9fiTfnF7g1i8iA1XvStgaxu3M8cS0xqQdl5SDDBh5JTeD6I/BB9HFDGJHauEzxCP9Yj+8JuPN4F6T3nm30gyyMgoR9M1W8PbrgQNgthbzMzYWp811NfkbwtZZe4M1Ry1rU4uQl8WtNNfuFPYbNQpyRDggJPNyjLbIOAYmLksug==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
- dkim=pass header.d=labundy.com; arc=none
+        with ESMTP id S229692AbjFZNx1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:53:27 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CBA110F
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:53:23 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4f954d78bf8so4565762e87.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:53:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=AdEwyepmhavtqgzfFdu+hnk15YgGmRIIZsWsVfvEf84=;
- b=CCM9q8NK/gdk3N6bNZEp+b7Y8IW1d+2044GqLeOjCJp0z+NVrVV+E6Aa0+cUgWpIKKft6K0AZGmfziHtwOJ9WHrlCMa3UaPD2a7+7G94gcht/Dvng1eXtRpWw3ytAfDoPlw6VsDsSfaMO0P8K6iWSy44J+xmg7UWApmoeGBYTeE=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=labundy.com;
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21) by MN2PR08MB6351.namprd08.prod.outlook.com
- (2603:10b6:208:1aa::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Mon, 26 Jun
- 2023 13:47:48 +0000
-Received: from SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::b94e:6032:56d4:35b2]) by SN4PR0801MB3774.namprd08.prod.outlook.com
- ([fe80::b94e:6032:56d4:35b2%6]) with mapi id 15.20.6521.024; Mon, 26 Jun 2023
- 13:47:48 +0000
-Date:   Mon, 26 Jun 2023 08:47:40 -0500
-From:   Jeff LaBundy <jeff@labundy.com>
-To:     Javier Carrasco <javier.carrasco@wolfvision.net>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        d=linaro.org; s=google; t=1687787601; x=1690379601;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=IsOuyfqxD2hkQd9l98gx2N0VqL+Mm3+2VjQhxdp0BJE=;
+        b=LHxcn2komNEMU0tdKypeYRTIWe9/HRXUEbn/mSmgnzKk/ZqqP60vLYC9C3oLY4ebnb
+         Jpo2dDf1GOzq+sEpW0cgc7nu35Tm8DhTjhGxL79ocQ6BVs1ojLyDH6QPq3+rmwD8jAi6
+         5lR9l48R6GkQTD2g07hNRrd8+AfXaiuJ5UtyaR/Ro7+bq8Ogc0LL/ERCLWcldMDk0tFp
+         6meB9y9DVOVUkFrRxpUZOH1Qt1RjR380vcqpXvxT/tFR9Q44U3yYrGI3LNR/PLxmp5ID
+         8cty5gKBOe4wQ/h3eBAqqGcQIN2T2AUmWuDdnhYxeqsO2mAyNKpvM8yy8O/2kWRi//Wi
+         axsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687787601; x=1690379601;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=IsOuyfqxD2hkQd9l98gx2N0VqL+Mm3+2VjQhxdp0BJE=;
+        b=ce/RdLT4yN+/fIVDv1v/QSouZ8NS5uV/1haeW7IvNZ6fa24FoCuXAiQQK8L0MN96FG
+         N5cfldribhQumMZSUeFdA8D07m/psjm44ulVYaF0WPYK8QIrHzYXF4IilXQm1pHUjJGq
+         HUd6U2GJPoW3qptxsqvzpC/9c/Q62r3NoBVkzy2YpLf3ILqHoINrRoIYxy8KYeUTDT1q
+         znjpt+Y5Sr8FLgbPK94HQMxXfTDE7NJb9+C87azyH3BqKxw0tT3XG6dqKsmyootiqNEr
+         1Pgl0JWPH0WQCNJLiOSKf3gEpNbiZEAqhb9ayFV5OnrnFIiGd7ERrDQqY7RiaKR6QD0k
+         CY4w==
+X-Gm-Message-State: AC+VfDwkcHv0d1KGe1pyc8qx85ThbZEjqTNEKLX3pMnajGxX5dsLG13r
+        NU+fTYp3zoCQAo0xYt1hm6CyiQ==
+X-Google-Smtp-Source: ACHHUZ49BjYYzAagdH4q9+WRHLx6p1XyW1FOwflpReu0kOytsjELJnc+qEuk0HRNTHAPJ7yXp3Kfrw==
+X-Received: by 2002:a05:6512:3d23:b0:4fa:79da:ca8a with SMTP id d35-20020a0565123d2300b004fa79daca8amr3606448lfv.7.1687787601214;
+        Mon, 26 Jun 2023 06:53:21 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id b8-20020ac25628000000b004fa5bfddabesm961015lff.296.2023.06.26.06.53.20
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jun 2023 06:53:20 -0700 (PDT)
+Message-ID: <87410e1b-24dc-c02b-e31c-99976d46b672@linaro.org>
+Date:   Mon, 26 Jun 2023 16:53:19 +0300
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 08/26] soc: qcom: spm: add support for voltage
+ regulator
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Bastian Hecht <hechtb@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 1/4] Input: ts-overlay - Add touchscreen overlay
- object handling
-Message-ID: <ZJmW/KOCJF25Z79t@nixie71>
-References: <20230510-feature-ts_virtobj_patch-v3-0-b4fb7fc4bab7@wolfvision.net>
- <20230510-feature-ts_virtobj_patch-v3-1-b4fb7fc4bab7@wolfvision.net>
- <ZJj5VcHvfMMWMRx8@nixie71>
- <89cbb534-9371-c2be-0bad-776b51476ce8@wolfvision.net>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <89cbb534-9371-c2be-0bad-776b51476ce8@wolfvision.net>
-X-ClientProxiedBy: SA9PR13CA0157.namprd13.prod.outlook.com
- (2603:10b6:806:28::12) To SN4PR0801MB3774.namprd08.prod.outlook.com
- (2603:10b6:803:43::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN4PR0801MB3774:EE_|MN2PR08MB6351:EE_
-X-MS-Office365-Filtering-Correlation-Id: dfbc596b-9c72-42b5-50f5-08db764bed55
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: z8kj9lxXoHL5P9rSiRCvdxrmeN7Q7VPATA7UrEqmHiIzQRJFYUPJERwtgUQz3wMkDhUK1CUshrNhTI9OrmGeflxQjBXh6dgRSv+tpuChSWiXxemqHkvca1V/Og76JaplAOx1/CSuJHwk/FeFoKMkfYNxEU0b7fiuGt22JrTE2+YfoD13VjHVal4TFyI7Cxw20T7+xh+N+I7rYzyipMwHdilok/jf1J4cbmcX9hKRumOqJfLSNMxPRVMEGL5qtXcaUS7z8Z0AISVHgGW5/FAaJc6kUOyOfoc2de5siIRH2WO6+Li2Xa7KVwvHrlJg2oDVlp5/dxyOV84b4BipnmpANKaP6cdUJDw4fofnY/kxBYdFLnkZArJg+n3h8VlfyGcNlB+L6xql9rr97hkg2qMA8Ipl6JCFdiWtR8xTR7B/H2qmAXJjQORxmkVUfnISKrTTVLGwQ5F4v7zqvyg6u+OzjtUHnNkGtnZOWwwBl1mjr9yR22zChKlFZqEzb0VT9o6Qv/zI/VonDAP6KoP95QavW1tlyPIWXdIcsDN73/W4occ=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN4PR0801MB3774.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(136003)(396003)(376002)(346002)(366004)(39830400003)(451199021)(966005)(6666004)(6486002)(478600001)(54906003)(53546011)(2906002)(9686003)(6512007)(26005)(186003)(30864003)(6506007)(33716001)(66476007)(66556008)(66946007)(7416002)(316002)(8676002)(41300700001)(5660300002)(8936002)(38100700002)(6916009)(4326008)(86362001)(83380400001)(66899021);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?UOEXJ8mcTwfhujT1sU+joSL6BArgkGUdnTaiSsyXchlIumGMvsWsepMyOKxr?=
- =?us-ascii?Q?6g7COOXWNGhqmFG8Z/0yMVCFRPXDBKvYB/zJJvIJkUDRzB00oN5m5eeVX/9x?=
- =?us-ascii?Q?gac7cK2VoOdOviX5etwG9DlOiZHgYKAU7iNNcLYImkShbb3m8u/5d7t/Ocm2?=
- =?us-ascii?Q?Z4e3N0pQoEsIQddb1ADq6xQlsOdWj283REcWWZnjR3Q1p36ngcdBTYVVhx2n?=
- =?us-ascii?Q?OtlmtVjZKGbha3vINjecTw515MYhy95Lt10ZZosRxITXRKwV7MI8jHx90gnp?=
- =?us-ascii?Q?1cvycHkYnIubtj2cWc7Yno2hX4OqP9kjZqn+7uJ8YVQUSP6mIH+QT35tSpVN?=
- =?us-ascii?Q?/X6vvdJR5pqF/b5iccxiSxx/koaNy7I64A7HLKeS1/ukMVuOXoeiCJVI0+pk?=
- =?us-ascii?Q?IxyR9jgz/G1+YqGWp7sopzDNRViEJPq3OCidVQh+tRWuPeafQuEe9BCnorp1?=
- =?us-ascii?Q?MorhHJhl5cWJwOfxJdVWXZg7VPmzhgFrSuHjEhRNgF+Irti4pCfnwEriHy9n?=
- =?us-ascii?Q?BAfsl6tmAPKIFFCYxydKybZJp9cQMeA/rWY+oVRDic/XhDYW2K7x0pyy5NMp?=
- =?us-ascii?Q?MGzRozgITxB5jDFqQBIaW+DuVTAxVCTInBpHnq4gY2axmDimcPFOOv5sKlJg?=
- =?us-ascii?Q?3JA1YgW4La866Zoybk8tLhApYuMnOXoV8L+GIgkiFgGBCePCAU8KeZ15/L+/?=
- =?us-ascii?Q?vZPEDG2lGsTZBpO9WKrv7fe/HRWeUL0vlCBabREefBSD+IOp3VGkpcCFwhB2?=
- =?us-ascii?Q?oWFNrne1Go8mhCjaE+bVqLfvRJfpa9Q4sg4Dn2gVe1DYaWTZRVreiDN0aq92?=
- =?us-ascii?Q?9XzMUUGGJxS6pgDGYoKjyUIHekwm2/K4zlp/A+9h29z8v/cdGssItUo4t//n?=
- =?us-ascii?Q?e9fU2glS3NwNIYX59ZcnrZfjL1U8/FJb+i6QWNCqMspkX2O993swf92QsEWh?=
- =?us-ascii?Q?AVYO+so8uNqrLREOYOtEXaPH28ICMatfObrZmAWqoATUj90gMxQIy/FgQmm6?=
- =?us-ascii?Q?snCJADh8F6GiFlgeYMCmM0ycMW5YYhShogoDcLzhgsi96EMKHsQ/CL7mryfY?=
- =?us-ascii?Q?pTz+X6MyuECP1ip6wiNJKEcdUABte1adjxryHcfkk+12emieoYt/IuR1f7LG?=
- =?us-ascii?Q?qENmP8EVJ+EkohU12XyUx+yynm5kp9VVuTmLde46L9YlxBOqZDJKZrdHf+M+?=
- =?us-ascii?Q?bjDwC4eFQNR7VGxE11P/YSQhfAUUAtWgD8V3VoOEmVAnBdxIefQ1Dtez+pKH?=
- =?us-ascii?Q?2NgPzsLNufPNqPZsTOSPAE/tGbL235jOu0aunXDBe0Ewo3Y2vYJttGdKNqYu?=
- =?us-ascii?Q?dfsm4MDxT6OHJI3I+TrRWMXijl8jHPxO2+k4xphUBsKmSnL9ldNwhPD8B1gp?=
- =?us-ascii?Q?MGNTE/PP5aJ4PVK57e2Mgf045DwZLB0Q8QjY+PB6gkuW+MwT80MUbhdMxL+y?=
- =?us-ascii?Q?6q7nAk+FG0Fubo3BE+15kJ32b8lVVnfYOumiyDJz0pCG50ajIYxuHzDf5UNT?=
- =?us-ascii?Q?3FoQvm0f8ZK/+PpKpFe5ozZ/jVwSb+odt/3yrL0Wdd5s/MDKJWixZrAHxQmQ?=
- =?us-ascii?Q?nFZq/dCM7B7SjVaHXcPDbLHqO4N6zZIBv6cM8HGU?=
-X-OriginatorOrg: labundy.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: dfbc596b-9c72-42b5-50f5-08db764bed55
-X-MS-Exchange-CrossTenant-AuthSource: SN4PR0801MB3774.namprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2023 13:47:48.2428
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: bZgcVYkuhzBO1Mm8NCrYELJx/0xuSMAewitbMWkjjruEJeBqRiLlVNQjBk1TOlJTo02qnTO0BkoZybaroV1DVQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR08MB6351
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
+ <20230625202547.174647-9-dmitry.baryshkov@linaro.org>
+ <22be223e-053b-44fb-ca01-0a4c88f02e8b@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <22be223e-053b-44fb-ca01-0a4c88f02e8b@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Javier,
+On 26/06/2023 14:47, Konrad Dybcio wrote:
+> On 25.06.2023 22:25, Dmitry Baryshkov wrote:
+>> The SPM / SAW2 device also provides a voltage regulator functionality
+>> with optional AVS (Adaptive Voltage Scaling) support. The exact register
+>> sequence and voltage ranges differs from device to device.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+>>   drivers/soc/qcom/spm.c | 205 ++++++++++++++++++++++++++++++++++++++++-
+>>   include/soc/qcom/spm.h |   9 ++
+>>   2 files changed, 212 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/spm.c b/drivers/soc/qcom/spm.c
+>> index a6cbeb40831b..3c16a7e1710c 100644
+>> --- a/drivers/soc/qcom/spm.c
+>> +++ b/drivers/soc/qcom/spm.c
+>> @@ -9,19 +9,31 @@
+>>   #include <linux/kernel.h>
+>>   #include <linux/init.h>
+>>   #include <linux/io.h>
+>> +#include <linux/iopoll.h>
+>> +#include <linux/linear_range.h>
+>>   #include <linux/module.h>
+>>   #include <linux/slab.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_address.h>
+>>   #include <linux/of_device.h>
+>> +#include <linux/bitfield.h>
+> This addition is very out-of-order
 
-On Mon, Jun 26, 2023 at 12:31:21PM +0200, Javier Carrasco wrote:
-> Hi Jeff,
-> 
-> On 26.06.23 04:35, Jeff LaBundy wrote:
-> > Hi Javier,
-> > 
-> > On Fri, Jun 16, 2023 at 09:28:51AM +0200, Javier Carrasco wrote:
-> >> Some touchscreens provide mechanical overlays with different objects
-> >> like buttons or clipped touchscreen surfaces.
-> >>
-> >> In order to support these objects, add a series of helper functions
-> >> to the input subsystem to transform them into overlay objects via
-> >> device tree nodes.
-> >>
-> >> These overlay objects consume the raw touch events and report the
-> >> expected input events depending on the object properties.
-> >>
-> >> Signed-off-by: Javier Carrasco <javier.carrasco@wolfvision.net>
-> >> ---
-> > 
-> > Excellent work; it's great to see this series move along.
-> > 
-> >>  MAINTAINERS                            |   7 +
-> >>  drivers/input/touchscreen/Kconfig      |   9 +
-> >>  drivers/input/touchscreen/Makefile     |   1 +
-> >>  drivers/input/touchscreen/ts-overlay.c | 356 +++++++++++++++++++++++++++++++++
-> >>  include/linux/input/ts-overlay.h       |  43 ++++
-> >>  5 files changed, 416 insertions(+)
-> >>
-> >> diff --git a/MAINTAINERS b/MAINTAINERS
-> >> index 7e0b87d5aa2e..db9427926a4c 100644
-> >> --- a/MAINTAINERS
-> >> +++ b/MAINTAINERS
-> >> @@ -21434,6 +21434,13 @@ W:	https://github.com/srcres258/linux-doc
-> >>  T:	git git://github.com/srcres258/linux-doc.git doc-zh-tw
-> >>  F:	Documentation/translations/zh_TW/
-> >>  
-> >> +TOUCHSCREEN OVERLAY OBJECTS
-> >> +M:	Javier Carrasco <javier.carrasco@wolfvision.net>
-> >> +L:	linux-input@vger.kernel.org
-> >> +S:	Maintained
-> >> +F:	drivers/input/touchscreen/ts-overlay.c
-> >> +F:	include/linux/input/ts-overlay.h
-> >> +
-> >>  TTY LAYER
-> >>  M:	Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> >>  M:	Jiri Slaby <jirislaby@kernel.org>
-> >> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
-> >> index 143ff43c67ae..8382a4d68326 100644
-> >> --- a/drivers/input/touchscreen/Kconfig
-> >> +++ b/drivers/input/touchscreen/Kconfig
-> >> @@ -1388,4 +1388,13 @@ config TOUCHSCREEN_HIMAX_HX83112B
-> >>  	  To compile this driver as a module, choose M here: the
-> >>  	  module will be called himax_hx83112b.
-> >>  
-> >> +config TOUCHSCREEN_TS_OVERLAY
-> >> +	bool "Touchscreen Overlay Objects"
-> >> +	help
-> >> +	  Say Y here if you are using a touchscreen driver that supports
-> >> +	  printed overlays with keys or a clipped touchscreen area.
-> >> +
-> >> +	  Should be selected by the touchscren drivers that support
-> >> +	  this feature.
-> >> +
-> >>  endif
-> >> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
-> >> index 159cd5136fdb..f554826706ff 100644
-> >> --- a/drivers/input/touchscreen/Makefile
-> >> +++ b/drivers/input/touchscreen/Makefile
-> >> @@ -117,3 +117,4 @@ obj-$(CONFIG_TOUCHSCREEN_RASPBERRYPI_FW)	+= raspberrypi-ts.o
-> >>  obj-$(CONFIG_TOUCHSCREEN_IQS5XX)	+= iqs5xx.o
-> >>  obj-$(CONFIG_TOUCHSCREEN_ZINITIX)	+= zinitix.o
-> >>  obj-$(CONFIG_TOUCHSCREEN_HIMAX_HX83112B)	+= himax_hx83112b.o
-> >> +obj-$(CONFIG_TOUCHSCREEN_TS_OVERLAY)	+= ts-overlay.o
-> > 
-> > It seems like this feature is useful for any two-dimensional touch surface
-> > (e.g. trackpads) and not just touchscreens. For that reason, the touchscreen
-> > helpers in touchscreen.c were moved out of input/touchscreen and into input/
-> > such that they are not guarded by CONFIG_INPUT_TOUCHSCREEN. A growing number
-> > of devices in input/misc are taking advantage of these.
-> > 
-> > Therefore, I think this feature should follow suit and be available to any
-> > input device as is the case for touchscreen.c. As written, the newly updated
-> > binding is misleading because one may believe that any device that includes
-> > touchscreen.yaml can define an overlay child, but the code does not currently
-> > support this.
-> > 
-> > To that end, it seems like touch-overlay would be a more descriptive name as
-> > well. I understand that the name has changed once already, so hopefully this
-> > feedback is not too annoying :)
-> > 
-> changing names is no problem at all as long as it makes the feature more
-> comprehensible and/or takes more suitable devices into account, which
-> would be the case. So I will move the code from touchscreen to input and
-> I will update the names and descriptions to make them more generic.
-> 
-> I guess then I will need to move the properties to a separate binding
-> for this feature because it will not be an addition to the touchscreen
-> bindings anymore, right?
-
-Technically this feature was never bound to touchscreen.yaml in the first place.
-touchscreen.yaml defines scalar properties under a parent input device; your new
-binding defines a child node and subsequent properties under the same, or another
-parent input device.
-
-That said, it is highly unlikely that one would use your feature without also
-using the properties from touchscreen.yaml. It is perfectly fine in my opinion,
-and perhaps more convenient, to define the overlay child in touchscreen.yaml as
-you have done so that binding authors need not reference two files.
-
-I do agree that it seems more natural for code living in input to be bound by
-bindings in dt-bindings/input and not dt-bindings/input/touchscreen/, but there
-was push back when the same question came up for touchscreen.yaml [1] some time
-ago.
-
-[1] https://patchwork.kernel.org/patch/12042037/
+The whole list is out of order. Proably I should sort it first
 
 > 
-> >> diff --git a/drivers/input/touchscreen/ts-overlay.c b/drivers/input/touchscreen/ts-overlay.c
-> >> new file mode 100644
-> >> index 000000000000..7afa77d86c1f
-> >> --- /dev/null
-> >> +++ b/drivers/input/touchscreen/ts-overlay.c
-> >> @@ -0,0 +1,356 @@
-> >> +// SPDX-License-Identifier: GPL-2.0-only
-> >> +/*
-> >> + *  Helper functions for overlay objects on touchscreens
-> >> + *
-> >> + *  Copyright (c) 2023 Javier Carrasco <javier.carrasco@wolfvision.net>
-> >> + */
-> >> +
-> >> +#include <linux/property.h>
-> >> +#include <linux/input.h>
-> >> +#include <linux/input/mt.h>
-> >> +#include <linux/module.h>
-> >> +#include <linux/input/ts-overlay.h>
-> >> +
-> >> +enum ts_overlay_valid_objects {
-> >> +	TOUCHSCREEN,
-> >> +	BUTTON,
-> > 
-> > Please namespace these, i.e. TOUCH_OVERLAY_*.
-> > 
-> >> +};
-> >> +
-> >> +static const char *const ts_overlay_names[] = {
-> >> +	[TOUCHSCREEN] = "overlay-touchscreen",
-> > 
-> > I'm a little confused why we need new code for this particular function; it's
-> > what touchscreen-min-x/y and touchscreen-size-x/y were meant to define. Why
-> > can't we keep using those?
-> > 
-> According to the bindings, touchscreen-min-x/y define the minimum
-> reported values, but the overlay-touchscreen is actually setting a new
-> origin. Therefore I might be misusing those properties. On the other
-> hand touchscreen-size-x/y would make more sense, but I also considered
-> the case where someone would like to describe the real size of the
-> touchscreen outside of the overlay node as well as the clipped size
-> inside the node. In that case using the same property twice would be
-> confusing.
-> So in the end I thought that the origin/size properties are more precise
-> and applicable for all objects and not only the overlay touchscreen.
-> These properties are needed for the buttons anyways and in the future
-> more overlay would use the same properties.
+>>   #include <linux/err.h>
+>>   #include <linux/platform_device.h>
+>> +#include <linux/regulator/driver.h>
+>> +#include <linux/smp.h>
+>>   #include <soc/qcom/spm.h>
+>>   
+>> +#define FIELD_SET(current, mask, val)	\
+>> +	(((current) & ~(mask)) | FIELD_PREP((mask), (val)))
+>> +
+>>   #define SPM_CTL_INDEX		0x7f
+>>   #define SPM_CTL_INDEX_SHIFT	4
+>>   #define SPM_CTL_EN		BIT(0)
+>>   
+>> +#define SPM_1_1_AVS_CTL_AVS_ENABLED BIT(27)
+>> +#define SPM_AVS_CTL_MIN_VLVL	(0x3f << 10)
+>> +#define SPM_AVS_CTL_MAX_VLVL	(0x3f << 17)
+> GENMASK
 
-Ah, I understand now. touchscreen-min-x/y define the lower limits of the axes
-reported to input but they don't move the origin. I'm aligned with the reason
-to introduce this function.
-
-This does beg the question as to whether we need two separate types of children
-and related parsing code. Can we not simply have one overlay definition, and
-make the decision as to whether we are dealing with a border or virtual button
-based on whether 'linux,code' is present?
+ack
 
 > 
-> >> +	[BUTTON] = "overlay-buttons",
-> >> +};
-> >> +
-> >> +struct ts_overlay_shape {
-> >> +	u32 x_origin;
-> >> +	u32 y_origin;
-> >> +	u32 x_size;
-> >> +	u32 y_size;
-> >> +};
-> >> +
-> >> +struct ts_overlay_button {
-> >> +	struct ts_overlay_shape shape;
-> >> +	u32 key;
-> >> +	bool pressed;
-> >> +	int slot;
-> >> +};
-> >> +
-> >> +static int ts_overlay_get_shape_properties(struct fwnode_handle *child_node,
-> >> +					   struct ts_overlay_shape *shape)
-> >> +{
-> >> +	int rc;
-> > 
-> > In input, the common practice is to use 'error' for return values that are either
-> > zero or negative. The reasoning is because the variable quite literally represents
-> > an error, or lack thereof. And then:
-> > 
-> > 	error = ...
-> > 	if (error)
-> > 		return error;
-> > 
-> >> +
-> >> +	rc = fwnode_property_read_u32(child_node, "x-origin", &shape->x_origin);
-> >> +	if (rc < 0)
-> >> +		return rc;
-> > 
-> > It seems like all of these properties are required; if so, please update the
-> > binding to make this clear.
-> > 
-> > If the binding is correct and these properties are in fact optional, then you
-> > must evaluate fwnode_property_read_u32() against -EINVAL.
-> > 
-> If I end up writing new bindings for this feature, it will be more clear
-> what is required and what not because I will not be part only of the
-> touchscreen anymore. These properties will be required.
-
-The question of whether to split the overlay child definition from touchscreen.yaml
-is orthogonal to this point. If the code fails in the absence of these properties,
-then you must add a "required:" heading within the overlay child node definition to
-call out these properties.
-
-> >> +
-> >> +	rc = fwnode_property_read_u32(child_node, "y-origin", &shape->y_origin);
-> >> +	if (rc < 0)
-> >> +		return rc;
-> >> +
-> >> +	rc = fwnode_property_read_u32(child_node, "x-size", &shape->x_size);
-> >> +	if (rc < 0)
-> >> +		return rc;
-> >> +
-> >> +	rc = fwnode_property_read_u32(child_node, "y-size", &shape->y_size);
-> >> +	if (rc < 0)
-> >> +		return rc;
-> >> +
-> >> +	return 0;
-> >> +}
-> >> +
-> >> +static int ts_overlay_get_button_properties(struct device *dev,
-> >> +					    struct fwnode_handle *child_node,
-> >> +					    struct ts_overlay_button *btn)
-> >> +{
-> >> +	struct fwnode_handle *child_btn;
-> >> +	int rc;
-> >> +	int j = 0;
-> >> +
-> >> +	fwnode_for_each_child_node(child_node, child_btn) {
-> >> +		rc = ts_overlay_get_shape_properties(child_btn, &btn[j].shape);
-> >> +		if (rc < 0)
-> >> +			goto button_prop_cleanup;
-> >> +
-> >> +		rc = fwnode_property_read_u32(child_btn, "linux,code",
-> >> +					      &btn[j].key);
-> >> +		if (rc < 0)
-> >> +			goto button_prop_cleanup;
-> > 
-> > The binding needs to list this property as required, too.
-> > 
-> Do you mean "linux,code"? It is already listed with the same pattern
-> that some other bindings use:
+>> +
+>>   enum spm_reg {
+>>   	SPM_REG_CFG,
+>>   	SPM_REG_SPM_CTL,
+>> @@ -31,10 +43,12 @@ enum spm_reg {
+>>   	SPM_REG_PMIC_DATA_1,
+>>   	SPM_REG_VCTL,
+>>   	SPM_REG_SEQ_ENTRY,
+>> -	SPM_REG_SPM_STS,
+>> +	SPM_REG_STS0,
+>> +	SPM_REG_STS1,
+>>   	SPM_REG_PMIC_STS,
+>>   	SPM_REG_AVS_CTL,
+>>   	SPM_REG_AVS_LIMIT,
+>> +	SPM_REG_RST,
+>>   	SPM_REG_NR,
+>>   };
+>>   
+>> @@ -171,6 +185,10 @@ static const struct spm_reg_data spm_reg_8226_cpu  = {
+>>   
+>>   static const u16 spm_reg_offset_v1_1[SPM_REG_NR] = {
+>>   	[SPM_REG_CFG]		= 0x08,
+>> +	[SPM_REG_STS0]		= 0x0c,
+>> +	[SPM_REG_STS1]		= 0x10,
+>> +	[SPM_REG_VCTL]		= 0x14,
+>> +	[SPM_REG_AVS_CTL]	= 0x18,
+>>   	[SPM_REG_SPM_CTL]	= 0x20,
+>>   	[SPM_REG_PMIC_DLY]	= 0x24,
+>>   	[SPM_REG_PMIC_DATA_0]	= 0x28,
+>> @@ -178,7 +196,12 @@ static const u16 spm_reg_offset_v1_1[SPM_REG_NR] = {
+>>   	[SPM_REG_SEQ_ENTRY]	= 0x80,
+>>   };
+>>   
+>> +static void smp_set_vdd_v1_1(void *data);
+>> +
+>>   /* SPM register data for 8064 */
+>> +static struct linear_range spm_v1_1_regulator_range =
+>> +	REGULATOR_LINEAR_RANGE(700000, 0, 56, 12500);
+>> +
+>>   static const struct spm_reg_data spm_reg_8064_cpu = {
+>>   	.reg_offset = spm_reg_offset_v1_1,
+>>   	.spm_cfg = 0x1F,
+>> @@ -189,6 +212,10 @@ static const struct spm_reg_data spm_reg_8064_cpu = {
+>>   		0x10, 0x54, 0x30, 0x0C, 0x24, 0x30, 0x0F },
+>>   	.start_index[PM_SLEEP_MODE_STBY] = 0,
+>>   	.start_index[PM_SLEEP_MODE_SPC] = 2,
+>> +	.set_vdd = smp_set_vdd_v1_1,
+>> +	.range = &spm_v1_1_regulator_range,
+>> +	.init_uV = 1300000,
+>> +	.ramp_delay = 1250,
+>>   };
+>>   
+>>   static inline void spm_register_write(struct spm_driver_data *drv,
+>> @@ -240,6 +267,179 @@ void spm_set_low_power_mode(struct spm_driver_data *drv,
+>>   	spm_register_write_sync(drv, SPM_REG_SPM_CTL, ctl_val);
+>>   }
+>>   
+>> +static int spm_set_voltage_sel(struct regulator_dev *rdev, unsigned int selector)
+>> +{
+>> +	struct spm_driver_data *drv = rdev_get_drvdata(rdev);
+>> +
+>> +	drv->volt_sel = selector;
+>> +
+>> +	/* Always do the SAW register writes on the corresponding CPU */
+>> +	return smp_call_function_single(drv->reg_cpu, drv->reg_data->set_vdd, drv, true);
+>> +}
+>> +
+>> +static int spm_get_voltage_sel(struct regulator_dev *rdev)
+>> +{
+>> +	struct spm_driver_data *drv = rdev_get_drvdata(rdev);
+>> +
+>> +	return drv->volt_sel;
+>> +}
+>> +
+>> +static const struct regulator_ops spm_reg_ops = {
+>> +	.set_voltage_sel	= spm_set_voltage_sel,
+>> +	.get_voltage_sel	= spm_get_voltage_sel,
+>> +	.list_voltage		= regulator_list_voltage_linear_range,
+>> +	.set_voltage_time_sel	= regulator_set_voltage_time_sel,
+>> +};
+>> +
+>> +static void smp_set_vdd_v1_1(void *data)
+>> +{
+>> +	struct spm_driver_data *drv = data;
+>> +	unsigned int vlevel = drv->volt_sel;
+>> +	unsigned int vctl, data0, data1, avs_ctl, sts;
+>> +	bool avs_enabled;
+> Reverse-Christmas-tree?
 > 
-> linux,code: true
-> 
-> Is that not right? I did not want to redefine an existing property that
-> other bindings already make use of.
+>> +
+>> +	vlevel |= 0x80; /* band */
+> That's conveniently 1<<7.. do we know if it's a significant number
+> or just a bit that does something within that field?
 
-These are separate things. You must additionally list 'linux,code' under a
-'required:' heading if the code fails without the property defined. If you
-adopt the idea above to decide whether we are dealing with a border or button
-based on the presence of this property, then it goes back to being optional
-of course.
-
-> >> +
-> >> +		dev_info(dev, "Added button at (%u, %u), size %ux%u, code=%u\n",
-> >> +			 btn[j].shape.x_origin, btn[j].shape.y_origin,
-> >> +			 btn[j].shape.x_size, btn[j].shape.y_size, btn[j].key);
-> > 
-> > This seems like a dev_dbg() to me.
-> > 
-> >> +		j++;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +
-> >> +button_prop_cleanup:
-> >> +	fwnode_handle_put(child_btn);
-> >> +	return rc;
-> >> +}
-> >> +
-> >> +void ts_overlay_set_button_caps(struct ts_overlay_map *map,
-> >> +				struct input_dev *dev)
-> >> +{
-> >> +	int i;
-> >> +
-> >> +	for (i = 0; i < map->button_count; i++)
-> >> +		input_set_capability(dev, EV_KEY, map->buttons[i].key);
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_set_button_caps);
-> > 
-> > I don't see a need to expose this function and require participating drivers
-> > to call it; we should just have one over-arching function for processing the
-> > overlay(s), akin to touchscreen_parse_properties but for the button input
-> > device in case the driver separates the button and touchscreen input devices.
-> > 
-> > That one function would then be responsible for parsing the overlay(s) and
-> > calling input_set_capability() on each button.
-> > 
-> >> +
-> >> +static int ts_overlay_count_buttons(struct device *dev)
-> >> +{
-> >> +	struct fwnode_handle *child_node;
-> >> +	struct fwnode_handle *child_button;
-> > 
-> > These names confused me; they're both children, but only the second is aptly
-> > named. How about child_overlay and child_button, or perhaps overlay_node and
-> > button_node?
-> > 
-> >> +	int count = 0;
-> >> +
-> >> +	child_node = device_get_named_child_node(dev, ts_overlay_names[BUTTON]);
-> >> +	if (!child_node)
-> >> +		return 0;
-> >> +
-> >> +	fwnode_for_each_child_node(child_node, child_button)
-> >> +		count++;
-> >> +	fwnode_handle_put(child_node);
-> >> +
-> >> +	return count;
-> >> +}
-> >> +
-> >> +static int ts_overlay_map_touchscreen(struct device *dev,
-> >> +				      struct ts_overlay_map *map)
-> >> +{
-> >> +	struct fwnode_handle *child;
-> > 
-> > Same here; there are two layers of children, so please use more descriptive
-> > variable names.
-> > 
-> >> +	int rc = 0;
-> >> +
-> >> +	child = device_get_named_child_node(dev, ts_overlay_names[TOUCHSCREEN]);
-> >> +	if (!child)
-> >> +		goto touchscreen_ret;
-> > 
-> > I don't think we need a label here; just return 0 directly.
-> > 
-> >> +
-> >> +	map->touchscreen =
-> >> +		devm_kzalloc(dev, sizeof(*map->touchscreen), GFP_KERNEL);
-> >> +	if (!map->touchscreen) {
-> >> +		rc = -ENOMEM;
-> >> +		goto touchscreen_handle;
-> >> +	}
-> >> +	rc = ts_overlay_get_shape_properties(child, map->touchscreen);
-> >> +	if (rc < 0)
-> >> +		goto touchscreen_free;
-> >> +
-> >> +	map->overlay_touchscreen = true;
-> >> +	dev_info(dev, "Added overlay touchscreen at (%u, %u), size %u x %u\n",
-> >> +		 map->touchscreen->x_origin, map->touchscreen->y_origin,
-> >> +		 map->touchscreen->x_size, map->touchscreen->y_size);
-> > 
-> > dev_dbg()
-> > 
-> >> +
-> >> +	rc = 0;
-> > 
-> > rc (error) can only be zero if we have gotten this far; I don't see a need
-> > to assign it here.
-> > 
-> >> +	goto touchscreen_handle;
-> > 
-> > Please think about whether this can be reorganized to prevent jumping over
-> > small bits of code; I found it hard to follow. Maybe one or more tasks can
-> > be offloaded to a helper function?
-> > 
-> >> +
-> >> +touchscreen_free:
-> >> +	devm_kfree(dev, map->touchscreen);
-> > 
-> > This set off a red flag; it's unclear that it's necessary. Regardless of
-> > whether the participating driver is smart enough to bail during probe()
-> > if the overlay parsing fails, or it happily continues, this memory will
-> > get freed when the driver tied to 'dev' is torn down.
-> > 
-> > Calling devm_kfree() is generally limited to special cases where you are
-> > dynamically reallocating memory at runtime. In case I have misunderstood
-> > the intent, please let me know.
-> > 
-> Would devm_kfree() not free the memory immediately if the parsing fails,
-> making it available for any process instead of waiting until the driver
-> is torn down, which might never happen? Otherwise that chunk of memory
-> will not be accessible even though it is useless because the operation
-> failed, right? Or am I missing something?
-
-If the participating driver does not immediately fail to probe (and hence
-free all of its device-managed resources) upon failure to parse this or any
-other required properties, that is a bug in that driver.
-
-> >> +touchscreen_handle:
-> >> +	fwnode_handle_put(child);
-> >> +touchscreen_ret:
-> >> +	return rc;
-> >> +}
-> >> +
-> >> +static int ts_overlay_map_buttons(struct device *dev,
-> >> +				  struct ts_overlay_map *map,
-> >> +				  struct input_dev *input)
-> >> +{
-> >> +	struct fwnode_handle *child;
-> >> +	u32 button_count;
-> >> +	int rc = 0;
-> >> +
-> >> +	button_count = ts_overlay_count_buttons(dev);
-> >> +	if (button_count) {
-> >> +		map->buttons = devm_kcalloc(dev, button_count,
-> >> +					    sizeof(*map->buttons), GFP_KERNEL);
-> >> +		if (!map->buttons) {
-> >> +			rc = -ENOMEM;
-> >> +			goto map_buttons_ret;
-> >> +		}
-> >> +		child = device_get_named_child_node(dev,
-> >> +						    ts_overlay_names[BUTTON]);
-> >> +		if (unlikely(!child))
-> >> +			goto map_buttons_free;
-> >> +
-> >> +		rc = ts_overlay_get_button_properties(dev, child, map->buttons);
-> >> +		if (rc < 0)
-> >> +			goto map_buttons_free;
-> >> +
-> >> +		map->button_count = button_count;
-> >> +	}
-> >> +
-> >> +	return 0;
-> >> +
-> >> +map_buttons_free:
-> >> +	devm_kfree(dev, map->buttons);
-> >> +map_buttons_ret:
-> >> +	return rc;
-> >> +}
-> >> +
-> >> +static bool ts_overlay_defined_objects(struct device *dev)
-> >> +{
-> >> +	struct fwnode_handle *child;
-> >> +	int i;
-> >> +
-> >> +	for (i = 0; i < ARRAY_SIZE(ts_overlay_names); i++) {
-> >> +		child = device_get_named_child_node(dev, ts_overlay_names[i]);
-> >> +		if (child) {
-> >> +			fwnode_handle_put(child);
-> >> +			return true;
-> >> +		}
-> >> +		fwnode_handle_put(child);
-> >> +	}
-> >> +
-> >> +	return false;
-> >> +}
-> >> +
-> >> +struct ts_overlay_map *ts_overlay_map_objects(struct device *dev,
-> >> +					      struct input_dev *input)
-> >> +{
-> >> +	struct ts_overlay_map *map = NULL;
-> >> +	int rc;
-> >> +
-> >> +	if (!ts_overlay_defined_objects(dev))
-> >> +		return NULL;
-> >> +
-> >> +	map = devm_kzalloc(dev, sizeof(*map), GFP_KERNEL);
-> >> +	if (!map) {
-> >> +		rc = -ENOMEM;
-> >> +		goto objects_err;
-> >> +	}
-> >> +	rc = ts_overlay_map_touchscreen(dev, map);
-> >> +	if (rc < 0)
-> >> +		goto objects_free;
-> >> +
-> >> +	rc = ts_overlay_map_buttons(dev, map, input);
-> >> +	if (rc < 0)
-> >> +		goto objects_free;
-> >> +
-> >> +	return map;
-> >> +
-> >> +objects_free:
-> >> +	devm_kfree(dev, map);
-> >> +objects_err:
-> >> +	return ERR_PTR(rc);
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_map_objects);
-> >> +
-> >> +void ts_overlay_get_touchscreen_abs(struct ts_overlay_map *map, u16 *x, u16 *y)
-> >> +{
-> >> +	*x = map->touchscreen->x_size - 1;
-> >> +	*y = map->touchscreen->y_size - 1;
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_get_touchscreen_abs);
-> >> +
-> >> +static bool ts_overlay_shape_event(struct ts_overlay_shape *shape, u32 x, u32 y)
-> >> +{
-> >> +	if (!shape)
-> >> +		return false;
-> >> +
-> >> +	if (x >= shape->x_origin && x < (shape->x_origin + shape->x_size) &&
-> >> +	    y >= shape->y_origin && y < (shape->y_origin + shape->y_size))
-> >> +		return true;
-> >> +
-> >> +	return false;
-> >> +}
-> >> +
-> >> +static bool ts_overlay_touchscreen_event(struct ts_overlay_shape *touchscreen,
-> >> +					 u32 *x, u32 *y)
-> >> +{
-> >> +	if (ts_overlay_shape_event(touchscreen, *x, *y)) {
-> >> +		*x -= touchscreen->x_origin;
-> >> +		*y -= touchscreen->y_origin;
-> >> +		return true;
-> >> +	}
-> >> +
-> >> +	return false;
-> >> +}
-> >> +
-> >> +bool ts_overlay_mapped_touchscreen(struct ts_overlay_map *map)
-> >> +{
-> >> +	if (!map || !map->overlay_touchscreen)
-> >> +		return false;
-> >> +
-> >> +	return true;
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_mapped_touchscreen);
-> >> +
-> >> +bool ts_overlay_mapped_buttons(struct ts_overlay_map *map)
-> >> +{
-> >> +	if (!map || !map->button_count)
-> >> +		return false;
-> >> +
-> >> +	return true;
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_mapped_buttons);
-> >> +
-> >> +bool ts_overlay_mt_on_touchscreen(struct ts_overlay_map *map, u32 *x, u32 *y)
-> >> +{
-> >> +	if (!ts_overlay_mapped_touchscreen(map))
-> >> +		return true;
-> >> +
-> >> +	if (!ts_overlay_touchscreen_event(map->touchscreen, x, y))
-> >> +		return false;
-> >> +
-> >> +	return true;
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_mt_on_touchscreen);
-> >> +
-> >> +bool ts_overlay_button_press(struct ts_overlay_map *map,
-> >> +			     struct input_dev *input, u32 x, u32 y, u32 slot)
-> >> +{
-> >> +	int i;
-> >> +
-> >> +	if (!ts_overlay_mapped_buttons(map))
-> >> +		return false;
-> >> +
-> >> +	for (i = 0; i < map->button_count; i++) {
-> >> +		if (ts_overlay_shape_event(&map->buttons[i].shape, x, y)) {
-> >> +			input_report_key(input, map->buttons[i].key, 1);
-> >> +			map->buttons[i].pressed = true;
-> >> +			map->buttons[i].slot = slot;
-> >> +			return true;
-> >> +		}
-> >> +	}
-> >> +
-> >> +	return false;
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_button_press);
-> > 
-> > The level of abstraction here does not seem quite right. Rather than force
-> > each participating driver to call a press and release function, I think it
-> > is better to expose something like touch_overlay_process_buttons() which
-> > then handles the press and release events internally.
-> > 
-> > You're also relying on each individual driver to decide whether a touch
-> > coordinate is inside or outside the overlay, and selectively call the press
-> > and release functions OR report coordinates which is non-optimal.
-> > 
-> > To me, this says we actually need one wrapper function that accepts handles
-> > to both the touchscreen and button input devices (which may be the same at
-> > the driver's discretion) as well as the coordinates. If the coordinate is
-> > within an overlay area, handle press/release; if not, call touchscreen_report_pos().
-> > 
-> >> +
-> >> +bool ts_overlay_is_button_slot(struct ts_overlay_map *map, int slot)
-> >> +{
-> >> +	int i;
-> >> +
-> >> +	if (!map || !map->button_count)
-> >> +		return false;
-> >> +
-> >> +	for (i = 0; i < map->button_count; i++) {
-> >> +		if (map->buttons[i].pressed && map->buttons[i].slot == slot)
-> >> +			return true;
-> >> +	}
-> >> +
-> >> +	return false;
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_is_button_slot);
-> >> +
-> >> +void ts_overlay_button_release(struct ts_overlay_map *map,
-> >> +			       struct input_dev *input, u32 slot)
-> >> +{
-> >> +	int i;
-> >> +
-> >> +	if (!map || !map->button_count)
-> >> +		return;
-> >> +
-> >> +	for (i = 0; i < map->button_count; i++) {
-> >> +		if (map->buttons[i].pressed && map->buttons[i].slot == slot) {
-> >> +			input_report_key(input, map->buttons[i].key, 0);
-> >> +			map->buttons[i].pressed = false;
-> >> +		}
-> >> +	}
-> >> +}
-> >> +EXPORT_SYMBOL(ts_overlay_button_release);
-> >> +
-> >> +MODULE_LICENSE("GPL");
-> >> +MODULE_DESCRIPTION("Helper functions for overlay objects on touchscreens");
-> >> diff --git a/include/linux/input/ts-overlay.h b/include/linux/input/ts-overlay.h
-> >> new file mode 100644
-> >> index 000000000000..b75df0dec3ab
-> >> --- /dev/null
-> >> +++ b/include/linux/input/ts-overlay.h
-> >> @@ -0,0 +1,43 @@
-> >> +/* SPDX-License-Identifier: GPL-2.0-only */
-> >> +/*
-> >> + * Copyright (c) 2023 Javier Carrasco <javier.carrasco@wolfvision.net>
-> >> + */
-> >> +
-> >> +#ifndef _TS_OVERLAY
-> >> +#define _TS_OVERLAY
-> >> +
-> >> +#include <linux/types.h>
-> >> +
-> >> +struct input_dev;
-> >> +struct device;
-> >> +
-> >> +struct ts_overlay_map {
-> >> +	struct ts_overlay_shape *touchscreen;
-> >> +	bool overlay_touchscreen;
-> >> +	struct ts_overlay_button *buttons;
-> >> +	u32 button_count;
-> >> +};
-> >> +
-> >> +struct ts_overlay_map *ts_overlay_map_objects(struct device *dev,
-> >> +					      struct input_dev *input);
-> >> +
-> >> +void ts_overlay_get_touchscreen_abs(struct ts_overlay_map *map, u16 *x, u16 *y);
-> >> +
-> >> +bool ts_overlay_mapped_touchscreen(struct ts_overlay_map *map);
-> >> +
-> >> +bool ts_overlay_mapped_buttons(struct ts_overlay_map *map);
-> >> +
-> >> +bool ts_overlay_mt_on_touchscreen(struct ts_overlay_map *map, u32 *x, u32 *y);
-> >> +
-> >> +bool ts_overlay_button_press(struct ts_overlay_map *map,
-> >> +			     struct input_dev *input, u32 x, u32 y, u32 slot);
-> >> +
-> >> +bool ts_overlay_is_button_slot(struct ts_overlay_map *map, int slot);
-> >> +
-> >> +void ts_overlay_button_release(struct ts_overlay_map *map,
-> >> +			       struct input_dev *input, u32 slot);
-> >> +
-> >> +void ts_overlay_set_button_caps(struct ts_overlay_map *map,
-> >> +				struct input_dev *dev);
-> >> +
-> >> +#endif
-> >>
-> >> -- 
-> >> 2.39.2
-> >>
-> > 
-> > Kind regards,
-> > Jeff LaBundy
-> 
-> Thanks again for your feedback, I really appreciate it. All the comments
-> without a reply can be taken as acknowledged and accepted as they are
-> without further discussion. I will work on them for the next version.
-
-Sure thing! Thank you for your efforts.
+More like 2 << 6. A bit of the issue is that PMIC_DATA_n format is 
+PMIC-specific. I'll see what I can do here.
 
 > 
-> Thank you for your time and best regards,
-> Javier Carrasco
+>> +
+>> +	avs_ctl = spm_register_read(drv, SPM_REG_AVS_CTL);
+>> +	vctl = spm_register_read(drv, SPM_REG_VCTL);
+>> +	data0 = spm_register_read(drv, SPM_REG_PMIC_DATA_0);
+>> +	data1 = spm_register_read(drv, SPM_REG_PMIC_DATA_1);
+>> +
+>> +	avs_enabled = avs_ctl & SPM_1_1_AVS_CTL_AVS_ENABLED;
+>> +
+>> +	/* If AVS is enabled, switch it off during the voltage change */
+>> +	if (avs_enabled) {
+>> +		avs_ctl &= ~SPM_1_1_AVS_CTL_AVS_ENABLED;
+>> +		spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+>> +	}
+>> +
+>> +	/* Kick the state machine back to idle */
+>> +	spm_register_write(drv, SPM_REG_RST, 1);
+>> +
+>> +	vctl = FIELD_SET(vctl, 0xff, vlevel);
+>> +	data0 = FIELD_SET(data0, 0xff, vlevel);
+>> +	data1 = FIELD_SET(data1, 0x3f, vlevel);
+>> +	data1 = FIELD_SET(data1, 0x3f << 16, vlevel);
+> GENMASK
+> 
+>> +
+>> +	spm_register_write(drv, SPM_REG_VCTL, vctl);
+>> +	spm_register_write(drv, SPM_REG_PMIC_DATA_0, data0);
+>> +	spm_register_write(drv, SPM_REG_PMIC_DATA_1, data1);
+>> +
+>> +	if (read_poll_timeout_atomic(spm_register_read,
+>> +				      sts, sts == vlevel,
+>> +				      1, 200, false,
+>> +				      drv, SPM_REG_STS1)) {
+> Not sure if misaligned or thunderfox is acting up again
 
-Kind regards,
-Jeff LaBundy
+off-by-one, I'll fix it.
+
+> 
+>> +		dev_err_ratelimited(drv->dev, "timeout setting the voltage (%x %x)!\n", sts, vlevel);
+>> +		goto enable_avs;
+>> +	}
+>> +
+>> +	if (avs_enabled) {
+>> +		unsigned int max_avs = vlevel & 0x3f;
+> GENMASK
+> 
+>> +		unsigned int min_avs = max(max_avs, 4U) - 4;
+> So it's 0 or >= (1<<31 - 4)?
+> 
+>> +		avs_ctl = FIELD_SET(avs_ctl, SPM_AVS_CTL_MIN_VLVL, min_avs);
+>> +		avs_ctl = FIELD_SET(avs_ctl, SPM_AVS_CTL_MAX_VLVL, max_avs);
+>> +		spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+>> +	}
+>> +
+>> +enable_avs:
+>> +	if (avs_enabled) {
+>> +		avs_ctl |= SPM_1_1_AVS_CTL_AVS_ENABLED;
+>> +		spm_register_write(drv, SPM_REG_AVS_CTL, avs_ctl);
+>> +	}
+>> +}
+>> +
+>> +static int spm_get_cpu(struct device *dev)
+>> +{
+>> +	int cpu;
+>> +	bool found;
+> Reverse-Christmas-tree?
+> 
+>> +
+>> +	for_each_possible_cpu(cpu) {
+>> +		struct device_node *cpu_node, *saw_node;
+> As long as Linux is running, there should be at least one CPU up,
+> so this always gets entered, perhaps the definitions could be moved
+> to the main function body
+
+Huh, I'm not sure that I got you correct here. Do you mean movign 
+cpu_node and saw_node to the top of spm_get_cpu()?
+
+> 
+>> +
+>> +		cpu_node = of_cpu_device_node_get(cpu);
+>> +		if (!cpu_node)
+>> +			continue;
+>> +
+>> +		saw_node = of_parse_phandle(cpu_node, "qcom,saw", 0);
+>> +		found = (saw_node == dev->of_node);
+> The error checking here works out, but it's a bit cryptic.. Though
+> I'm not opposed to saving 3 cycles on slow and old CPUs :D
+
+It's not the error checking per se. We have to put both nodes before 
+returning.
+
+So an alternative might me:
+
+saw_node = ...
+if (saw_node == cpu_node) {
+     of_node_put(saw_node);
+     of_node_put(cpu_node);
+     return cpu;
+}
+
+of_node_put(saw_node);
+of_node_put(cpu_node);
+
+But it looks worse to me. Did you mean this kind of code or was 
+something else on your mind?
+
+> 
+>> +		of_node_put(saw_node);
+>> +		of_node_put(cpu_node);
+>> +
+>> +		if (found)
+>> +			return cpu;
+>> +	}
+>> +
+>> +	/* L2 SPM is not bound to any CPU, tie it to CPU0 */
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +#ifdef CONFIG_REGULATOR
+>> +static int spm_register_regulator(struct device *dev, struct spm_driver_data *drv)
+>> +{
+>> +	struct regulator_config config = {
+>> +		.dev = dev,
+>> +		.driver_data = drv,
+>> +	};
+>> +	struct regulator_desc *rdesc;
+>> +	struct regulator_dev *rdev;
+>> +	int ret;
+>> +	bool found;
+> Reverse-Christmas-tree?
+> 
+> Konrad
+>> +
+>> +	if (!drv->reg_data->set_vdd)
+>> +		return 0;
+>> +
+>> +	rdesc = devm_kzalloc(dev, sizeof(*rdesc), GFP_KERNEL);
+>> +	if (!rdesc)
+>> +		return -ENOMEM;
+>> +
+>> +	rdesc->name = "spm";
+>> +	rdesc->of_match = of_match_ptr("regulator");
+>> +	rdesc->type = REGULATOR_VOLTAGE;
+>> +	rdesc->owner = THIS_MODULE;
+>> +	rdesc->ops = &spm_reg_ops;
+>> +
+>> +	rdesc->linear_ranges = drv->reg_data->range;
+>> +	rdesc->n_linear_ranges = 1;
+>> +	rdesc->n_voltages = rdesc->linear_ranges[rdesc->n_linear_ranges - 1].max_sel + 1;
+>> +	rdesc->ramp_delay = drv->reg_data->ramp_delay;
+>> +
+>> +	drv->reg_cpu = spm_get_cpu(dev);
+>> +	dev_dbg(dev, "SAW2 bound to CPU %d\n", drv->reg_cpu);
+>> +
+>> +	/*
+>> +	 * Program initial voltage, otherwise registration will also try
+>> +	 * setting the voltage, which might result in undervolting the CPU.
+>> +	 */
+>> +	drv->volt_sel = DIV_ROUND_UP(drv->reg_data->init_uV - rdesc->min_uV,
+>> +				     rdesc->uV_step);
+>> +	ret = linear_range_get_selector_high(drv->reg_data->range,
+>> +					     drv->reg_data->init_uV,
+>> +					     &drv->volt_sel,
+>> +					     &found);
+>> +	if (ret) {
+>> +		dev_err(dev, "Initial uV value out of bounds\n");
+>> +		return ret;
+>> +	}
+>> +
+>> +	/* Always do the SAW register writes on the corresponding CPU */
+>> +	smp_call_function_single(drv->reg_cpu, drv->reg_data->set_vdd, drv, true);
+>> +
+>> +	rdev = devm_regulator_register(dev, rdesc, &config);
+>> +	if (IS_ERR(rdev)) {
+>> +		dev_err(dev, "failed to register regulator\n");
+>> +		return PTR_ERR(rdev);
+>> +	}
+>> +
+>> +	return 0;
+>> +}
+>> +#else
+>> +static int spm_register_regulator(struct device *dev, struct spm_driver_data *drv)
+>> +{
+>> +	return 0;
+>> +}
+>> +#endif
+>> +
+>>   static const struct of_device_id spm_match_table[] = {
+>>   	{ .compatible = "qcom,sdm660-gold-saw2-v4.1-l2",
+>>   	  .data = &spm_reg_660_gold_l2 },
+>> @@ -292,6 +492,7 @@ static int spm_dev_probe(struct platform_device *pdev)
+>>   		return -ENODEV;
+>>   
+>>   	drv->reg_data = match_id->data;
+>> +	drv->dev = &pdev->dev;
+>>   	platform_set_drvdata(pdev, drv);
+>>   
+>>   	/* Write the SPM sequences first.. */
+>> @@ -319,7 +520,7 @@ static int spm_dev_probe(struct platform_device *pdev)
+>>   	if (drv->reg_data->reg_offset[SPM_REG_SPM_CTL])
+>>   		spm_set_low_power_mode(drv, PM_SLEEP_MODE_STBY);
+>>   
+>> -	return 0;
+>> +	return spm_register_regulator(&pdev->dev, drv);
+>>   }
+>>   
+>>   static struct platform_driver spm_driver = {
+>> diff --git a/include/soc/qcom/spm.h b/include/soc/qcom/spm.h
+>> index 4951f9d8b0bd..9859ebe42003 100644
+>> --- a/include/soc/qcom/spm.h
+>> +++ b/include/soc/qcom/spm.h
+>> @@ -30,11 +30,20 @@ struct spm_reg_data {
+>>   	u32 avs_limit;
+>>   	u8 seq[MAX_SEQ_DATA];
+>>   	u8 start_index[PM_SLEEP_MODE_NR];
+>> +
+>> +	smp_call_func_t set_vdd;
+>> +	/* for now we support only a single range */
+>> +	struct linear_range *range;
+>> +	unsigned int ramp_delay;
+>> +	unsigned int init_uV;
+>>   };
+>>   
+>>   struct spm_driver_data {
+>>   	void __iomem *reg_base;
+>>   	const struct spm_reg_data *reg_data;
+>> +	struct device *dev;
+>> +	unsigned int volt_sel;
+>> +	int reg_cpu;
+>>   };
+>>   
+>>   void spm_set_low_power_mode(struct spm_driver_data *drv,
+
+-- 
+With best wishes
+Dmitry
+
