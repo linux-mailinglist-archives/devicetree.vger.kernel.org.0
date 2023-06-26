@@ -2,64 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C15C73E5E7
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76E8C73E5FD
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:07:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229637AbjFZQ67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 12:58:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45654 "EHLO
+        id S230121AbjFZRHW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 13:07:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48634 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229631AbjFZQ64 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:58:56 -0400
-Received: from mail-io1-f47.google.com (mail-io1-f47.google.com [209.85.166.47])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44E43E6E;
-        Mon, 26 Jun 2023 09:58:55 -0700 (PDT)
-Received: by mail-io1-f47.google.com with SMTP id ca18e2360f4ac-780c8df59caso174674439f.3;
-        Mon, 26 Jun 2023 09:58:55 -0700 (PDT)
+        with ESMTP id S229666AbjFZRHW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:07:22 -0400
+Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5873AA;
+        Mon, 26 Jun 2023 10:07:20 -0700 (PDT)
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-783544a1c90so82836939f.1;
+        Mon, 26 Jun 2023 10:07:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687798734; x=1690390734;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=C68yqM+uQF5bxYAeEfhwAi+z+PT5sKlVa+KlpLAFqEs=;
-        b=domnIbquoD3pNJ2vhmmcQesAbWglDHmLcViXD2Bnr0Wbi6JpJ60a76who3SKMNGkRi
-         VDIcn/Czd5OkgWlPTQg3Y+US4K0RgnODdAn6pJncHaobQIcNQknmley2m+GYYI4v+DLY
-         TsNAFm3f8RgZ/XDDPtVftsYMMhTQuwiU/rdwyQ753t+/By04ybxX4CCv/WGGwM1tfCgJ
-         jyT+ddOjP//+hgAJ2/wTU3w1TRlGVVoOGniFp1KJIflBd7vuqO3+znLdR0RMl2XIMHAu
-         wJvO3O5HG0weOG86zVrcJPIOD6DWub9pWY8gP62H1WZaXyo27XjaUDtWAZWcKpz1bRfP
-         L13g==
-X-Gm-Message-State: AC+VfDynbynpDas5SY7k7Wmwt07cOe92ppdC9K9N8hqEjGOdVaJ1TFhh
-        1WEkmMlJ1VJZhGC4/9v43Q==
-X-Google-Smtp-Source: ACHHUZ5CEus2w7VnsWg2fQvqYZxwoYG1DHsqvjJsZhIQE0zdvVKxJF1eFuTYxc/ujTcghM0JMksElw==
-X-Received: by 2002:a05:6602:131e:b0:783:4c29:b978 with SMTP id h30-20020a056602131e00b007834c29b978mr6702809iov.12.1687798734371;
-        Mon, 26 Jun 2023 09:58:54 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687799240; x=1690391240;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4R+rlufSGz/F2JIo7VcyU36DYxyYKPvMUd0AGJe/g5E=;
+        b=FLE3uqXs8uVHQIbk8hxuYwRBk+Kr0h9hGjlK8OftIpirmWy9GfIZbQNltg2eb2dJCw
+         qLPBra69vPC8/waX/h5Jwko98Cx8/IqcelGqGDKhIJdBdfbogL393P3gjmT5W0nqRFEr
+         UgCVdKzVIyQyzMfipRg84pgF3qSXp4kzg8GCmbxmcIFTt5jjUP1IjkKfzgML2PGc4UWK
+         ebYzD7W3DNG2gsDK0pgliYjX6xCodo3OCcqk3n9ZVXxCAMVUim6F6gJWi2Qt5iJEgUGB
+         EpCsziSCi8ROafOw7f1SjCb+6Am/oVfv1ff+JLyHpiTD+28wztGMjJLyGDZt9ScMadmR
+         Oo6A==
+X-Gm-Message-State: AC+VfDwu28EGT9Agh34SruSiGDtUg/v/q/y1lL8p9GeTl+77EYvU3Tgt
+        lXfsi8qQeN3hMsJAZ029qQ==
+X-Google-Smtp-Source: ACHHUZ6F6azxDsAdEVNZRMuQDFsJqEvja5LhkIHoFhNQcTE9cAwQTuGNtHwyJksq1Lysjy50hLmNuA==
+X-Received: by 2002:a6b:e903:0:b0:783:62a8:854f with SMTP id u3-20020a6be903000000b0078362a8854fmr2738656iof.3.1687799239975;
+        Mon, 26 Jun 2023 10:07:19 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id dq42-20020a0566384d2a00b00423230a3085sm1841238jab.99.2023.06.26.09.58.52
+        by smtp.gmail.com with ESMTPSA id a22-20020a5d9ed6000000b0077e3566a801sm2318281ioe.29.2023.06.26.10.07.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 09:58:53 -0700 (PDT)
-Received: (nullmailer pid 3390691 invoked by uid 1000);
-        Mon, 26 Jun 2023 16:58:51 -0000
-Date:   Mon, 26 Jun 2023 10:58:51 -0600
+        Mon, 26 Jun 2023 10:07:19 -0700 (PDT)
+Received: (nullmailer pid 3403295 invoked by uid 1000);
+        Mon, 26 Jun 2023 17:07:16 -0000
+Date:   Mon, 26 Jun 2023 11:07:16 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Andrew Jones <ajones@ventanamicro.com>,
+        linux-riscv@lists.infradead.org,
+        Atish Patra <atishp@atishpatra.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>, conor@kernel.org,
+        u-boot@lists.denx.de, linux-kernel@vger.kernel.org,
+        palmer@dabbelt.com, Leo <ycliang@andestech.com>,
+        Palmer Dabbelt <palmer@rivosinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Oleksii <oleksii.kurochko@gmail.com>,
+        Rick Chen <rick@andestech.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        devicetree@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, netdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH V2] dt-bindings: nvmem: fixed-cell: add compatible for
- MAC cells
-Message-ID: <20230626165851.GA3387880-robh@kernel.org>
-References: <20230626113716.17674-1-zajec5@gmail.com>
+        qemu-riscv@nongnu.org
+Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <168779923643.3403238.2898272674301984496.robh@kernel.org>
+References: <20230626-unmarked-atom-70b4d624a386@wendy>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230626113716.17674-1-zajec5@gmail.com>
+In-Reply-To: <20230626-unmarked-atom-70b4d624a386@wendy>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -71,135 +76,169 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 26, 2023 at 01:37:16PM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> A lot of home routers have NVMEM fixed cells containing MAC address that
-> need some further processing. In ~99% cases MAC needs to be:
-> 1. Optionally parsed from ASCII format
-> 2. Increased by a vendor-picked value
-> 
-> There was already an attempt to design a binding for that at NVMEM
-> device level in the past. It wasn't accepted though as it didn't really
-> fit NVMEM device layer.
-> 
-> The introduction of NVMEM fixed-cells layout seems to be an opportunity
-> to provide a relevant binding in a clean way.
-> 
-> This commit adds a *generic* compatible string: "mac-base". As always it
-> needs to be carefully reviewed.
-> 
-> OpenWrt project currently supports ~300 home routers that have NVMEM
-> cell with binary-stored base MAC.T hose devices are manufactured by
-> multiple vendors. There are TP-Link devices (76 of them), Netgear (19),
-> D-Link (11), OpenMesh (9), EnGenius (8), GL.iNet (8), ZTE (7),
-> Xiaomi (5), Ubiquiti (6) and more. Those devices don't share an
-> architecture or SoC.
-> 
-> Another 200 devices have base MAC stored in an ASCII format (not all
-> those devices have been converted to DT though).
-> 
-> It would be impractical to provide unique "compatible" strings for NVMEM
-> layouts of all those devices. It seems like a valid case for allowing a
-> generic binding instead. Even if this binding will not be sufficient for
-> some further devices it seems to be useful enough as it is.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> V2: Drop "mac-ascii" as length can be checked instead
->     Fix "allOf" by adding required: [ compatible ]
-> ---
->  .../bindings/nvmem/layouts/fixed-cell.yaml    | 26 +++++++++++++++++++
->  .../bindings/nvmem/layouts/fixed-layout.yaml  | 12 +++++++++
->  .../devicetree/bindings/nvmem/nvmem.yaml      |  5 +++-
->  3 files changed, 42 insertions(+), 1 deletion(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
-> index e698098450e1..036a9ed88893 100644
-> --- a/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-cell.yaml
-> @@ -11,6 +11,15 @@ maintainers:
->    - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
->  
->  properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: mac-base
-> +        description: >
-> +          Cell with base MAC address to be used for calculating extra relative
-> +          addresses.
-> +          It can be stored in a plain binary format (cell length 12) or as an
 
-Don't you mean a length of 6?
-
-> +          ASCII text like "00:11:22:33:44:55" (cell length 17).
-> +
->    reg:
->      maxItems: 1
->  
-> @@ -25,6 +34,23 @@ properties:
->          description:
->            Size in bit within the address range specified by reg.
->  
-> +allOf:
-> +  - if:
-> +      required: [ compatible ]
-> +    then:
-> +      if:
-> +        properties:
-> +          compatible:
-> +            contains:
-> +              const: mac-base
-> +      then:
-> +        properties:
-> +          "#nvmem-cell-cells":
-> +            description: The first argument is a MAC address offset.
-> +            const: 1
-> +        required:
-> +          - "#nvmem-cell-cells"
-> +
->  required:
->    - reg
->  
-> diff --git a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
-> index c271537d0714..b3a09e8864f1 100644
-> --- a/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/layouts/fixed-layout.yaml
-> @@ -44,6 +44,18 @@ examples:
->          #address-cells = <1>;
->          #size-cells = <1>;
->  
-> +        mac@100 {
-> +            compatible = "mac-base";
-> +            reg = <0x100 0xc>;
-> +            #nvmem-cell-cells = <1>;
-> +        };
-> +
-> +        mac@110 {
-> +            compatible = "mac-base";
-> +            reg = <0x110 0x11>;
-> +            #nvmem-cell-cells = <1>;
-> +        };
-> +
->          calibration@4000 {
->              reg = <0x4000 0x100>;
->          };
-> diff --git a/Documentation/devicetree/bindings/nvmem/nvmem.yaml b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> index 980244100690..9f921d940142 100644
-> --- a/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> +++ b/Documentation/devicetree/bindings/nvmem/nvmem.yaml
-> @@ -49,7 +49,10 @@ properties:
->  patternProperties:
->    "@[0-9a-f]+(,[0-7])?$":
->      type: object
-> -    $ref: layouts/fixed-cell.yaml
-> +    allOf:
-> +      - $ref: layouts/fixed-cell.yaml
-> +      - properties:
-> +          compatible: false
->      deprecated: true
->  
->  additionalProperties: true
-> -- 
-> 2.35.3
+On Mon, 26 Jun 2023 11:10:46 +0100, Conor Dooley wrote:
+> intro
+> =====
 > 
+> When the RISC-V dt-bindings were accepted upstream in Linux, the base
+> ISA etc had yet to be ratified. By the ratification of the base ISA,
+> incompatible changes had snuck into the specifications - for example the
+> Zicsr and Zifencei extensions were spun out of the base ISA.
+> 
+> Fast forward to today, and the reason for this patch.
+> Currently the riscv,isa dt property permits only a specific subset of
+> the ISA string - in particular it excludes version numbering.
+> With the current constraints, it is not possible to discern whether
+> "rv64i" means that the hart supports the fence.i instruction, for
+> example.
+> Future systems may choose to implement their own instruction fencing,
+> perhaps using a vendor extension, or they may not implement the optional
+> counter extensions. Software needs a way to determine this.
+> 
+> versioning schemes
+> ==================
+> 
+> "Use the extension versions that are described in the ISA manual" you
+> may say, and it's not like this has not been considered.
+> Firstly, software that parses the riscv,isa property at runtime will
+> need to contain a lookup table of some sort that maps arbitrary versions
+> to versions it understands. There is not a consistent application of
+> version number applied to extensions, with a higgledy-piggledy
+> collection of tags, "bare" and versioned documents awaiting the reader
+> on the "recently ratified extensions" page:
+> https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions
+> 
+> 	As an aside, and this is reflected in the patch too, since many
+> 	extensions have yet to appear in a release of the ISA specs,
+> 	they are defined by commits in their respective "working draft"
+> 	repositories.
+> 
+> Secondly, there is an issue of backwards compatibility, whereby allowing
+> numbers in the ISA string, some parsers may be broken. This would
+> require an additional property to be created to even use the versions in
+> this manner.
+> 
+> ~boolean properties~ string array property
+> ==========================================
+> 
+> If a new property is needed, the whole approach may as well be looked at
+> from the bottom up. A string with limited character choices etc is
+> hardly the best approach for communicating extension information to
+> software.
+> 
+> Switching to using properties that are defined on a per extension basis,
+> allows us to define explicit meanings for the DT representation of each
+> extension - rather than the current situation where different operating
+> systems or other bits of software may impart different meanings to
+> characters in the string.
+> Clearly the best source of meanings is the specifications themselves,
+> this just provides us the ability to choose at what point in time the
+> meaning is set. If an extension changes incompatibility in the future,
+> a new property will be required.
+> 
+> Off-list, some of the RVI folks have committed to shoring up the wording
+> in either the ISA specifications, the riscv-isa-manual or
+> so that in the future, modifications to and additions or removals of
+> features will require a new extension. Codifying that assertion
+> somewhere would make it quite unlikely that compatibility would be
+> broken, but we have the tools required to deal with it, if & when it
+> crops up.
+> It is in our collective interest, as consumers of extension meanings, to
+> define a scheme that enforces compatibility.
+> 
+> The use of individual properties, rather than elements in a single
+> string, will also permit validation that the properties have a meaning,
+> as well as potentially reject mutually exclusive combinations, or
+> enforce dependencies between extensions. That would not have be possible
+> with the current dt-schema infrastructure for arbitrary strings, as we
+> would need to add a riscv,isa parser to dt-validate!
+> That's not implemented in this patch, but rather left as future work (for
+> the brave, or the foolish).
+> 
+> acpi
+> ====
+> 
+> The current ACPI ECR is based on having a single ISA string unfortunately,
+> but ideally ACPI will move to another method, perhaps GUIDs, that give
+> explicit meaning to extensions.
+> 
+> parser simplicity
+> =================
+> 
+> Many systems that parse DT at runtime already implement an function that
+> can check for the presence of a string in an array of string, as it is
+> similar to the process for parsing a list of compatible strings, so a
+> bunch of new, custom, DT parsing should not be needed.
+> Getting rid of "riscv,isa" parsing would be a nice simplification, but
+> unfortunately for backwards compatibility with old dtbs, existing
+> parsers may not be removable - which may greatly simplify
+> dt parsing code. In Linux, for example, checking for whether a hart
+> supports an extension becomes as simple as:
+> 	of_property_match_string(node, "riscv,isa-extensions", "zicbom")
+> 
+> vendor extensions
+> =================
+> 
+> Compared to riscv,isa, this proposed scheme promotes vendor extensions,
+> oft touted as the strength of RISC-V, to first-class citizens.
+> At present, extensions are defined as meaning what the RISC-V ISA
+> specifications say they do. There is no realistic way of using that
+> interface to provide cross-platform definitions for what vendor
+> extensions mean. Vendor extensions may also have even less consistency
+> than RVI do in terms of versioning, or no care about backwards
+> compatibility.
+> The new property allows us to assign explicit meanings on a per vendor
+> extension basis, backed up by a description of their meanings.
+> 
+> fin
+> ===
+> 
+> Create a new file to store the extension meanings and a new
+> riscv,isa-base property to replace the aspect of riscv,isa that is
+> not represented by the new property - the base ISA implemented by a hart.
+> 
+> As a starting point, add properties for extensions currently used in
+> Linux.
+> 
+> Finally, mark riscv,isa as deprecated, as removing support for it in
+> existing programs would be an ABI break.
+> 
+> CC: Palmer Dabbelt <palmer@dabbelt.com>
+> CC: Paul Walmsley <paul.walmsley@sifive.com>
+> CC: Rob Herring <robh+dt@kernel.org>
+> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> CC: Alistair Francis <alistair.francis@wdc.com>
+> CC: Andrew Jones <ajones@ventanamicro.com>
+> CC: Anup Patel <apatel@ventanamicro.com>
+> CC: Atish Patra <atishp@atishpatra.org>
+> CC: Jessica Clarke <jrtc27@jrtc27.com>
+> CC: Rick Chen <rick@andestech.com>
+> CC: Leo <ycliang@andestech.com>
+> CC: Oleksii <oleksii.kurochko@gmail.com>
+> CC: linux-riscv@lists.infradead.org
+> CC: qemu-riscv@nongnu.org
+> CC: u-boot@lists.denx.de
+> CC: devicetree@vger.kernel.org
+> CC: linux-kernel@vger.kernel.org
+> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes in v3:
+> - Per Rob's suggestion, switch to an array of strings. Cuts down on the
+>   size, compared to booleans. It has a standard mechanism for parsing
+>   (you need to parse arrays of strings for compatibles). It still allows
+>   for having a limited set of explicitly defined properties - so the
+>   advantages over a free-form string still apply.
+> - Pick up Palmer's Ack and Review (although I expect that he will be the
+>   one to apply this).
+> ---
+>  .../devicetree/bindings/riscv/cpus.yaml       |  43 ++-
+>  .../devicetree/bindings/riscv/extensions.yaml | 245 ++++++++++++++++++
+>  2 files changed, 265 insertions(+), 23 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/extensions.yaml
+> 
+
+Reviewed-by: Rob Herring <robh@kernel.org>
+
