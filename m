@@ -2,76 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4490373E30F
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:19:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3945173E33A
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:26:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229853AbjFZPTR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 11:19:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42124 "EHLO
+        id S229763AbjFZP0P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 11:26:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45784 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230503AbjFZPTN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:19:13 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3609E10CF
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:19:12 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b69f71a7easo19401661fa.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:19:12 -0700 (PDT)
+        with ESMTP id S229766AbjFZP0O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:26:14 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35E25E73
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:26:12 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3090d3e9c92so5045111f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:26:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1687792750; x=1690384750;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=Czk7x5n6Mrmu3uCgM3g0XObvviS7O6LtljfnSRp8Lu4=;
-        b=jtGX7siBQsyT+P/YzALMFWZBXNwz5KO8DiHH5xFg5dR7umyNG/JCelf8OHbIvwd00H
-         L5aYgm3pIsNnnksn6odR+lIoNlgt+sIY1PYazdO5A0j2lzeuyAspG64RLq9XgC/W6Io3
-         Q02ZhpuJPhZs8+voHoBl7lRYZK+fLMLd2z8QVg90dZkOaWXoBCeCOlGJillHy04rmWOU
-         VYLIQHkAuqo9ZTyXbkMpOB0JvezN9Up+nXHeOa21mmvl7LJV2BLbobdAzM4OpunDkBjW
-         7+kRGIyUAotwRjhGuwEjypdFfOl9JpAtQ58RxwTYW75+4M4ffp8qdUjjmbWhxKcvTq00
-         23CA==
+        d=linaro.org; s=google; t=1687793170; x=1690385170;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tw7C9oT93L7YXZBRkdfMrjtsff4cNqwiulutKWQ+2bQ=;
+        b=Q0llsL7nMjYyRXTFnc4KHHs37dL5UZzylqD2tSdpr2izHti3uC/DvUggBruaxbLKRq
+         jsAa4XfX40TBxFaqZ4MmofhupUyQIAK5p0F13TJ/rpF3UsQ0zVaNu2klNdcZrR76KKUy
+         f/l+70dW/Hu3ngSz4rVsUD1/y/1IKkZsAGnOpJcYE2IzNCSflSsZDxrk+XlUzDLtXd/X
+         09Yewg7ijV4zXIno4ba7y2681VXuIzu7Xl7DZklAsmh6g8lMu3k3x/NGK5G7DhfUzqBJ
+         3/6kE9mqnZAMZFe5UX7ICYyR4VE+6F6+1udRx6CcnJ2+ZmIsjz3ZoUO5vGZyoEZsnnx5
+         BViA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687792750; x=1690384750;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Czk7x5n6Mrmu3uCgM3g0XObvviS7O6LtljfnSRp8Lu4=;
-        b=DNr52Od2Q4fShBpFCSVkJOPN/B/zhMj+gVQkuJP5BL2p2ntpn5VYVHCW3sA3pQX9FK
-         i3bJ3tcuebf6bnLae756381kkxCg2WYq/lmnZJtqAaSQD8cRK6hB2xiTYfvJlPQMZbFv
-         k3DbP/MP2EmT9NnlMeA02Owv82xRV4R0YvUdwCIaCbjfbn6/pK02HIJzNaHGE2qMg0f7
-         n7lpNmKWr3QwPaQ/nq3v1jdy7q+DpGAFfZtVL38P7Jv2qyfTDu3pFoAFzQ5qxoI/YWy2
-         dmArvVroFuU2DXHY8PTyAIdT1bvYaxA0QuooJkuP7iouM8bBCxoHw5CSnwEVvRGYMGy+
-         GP+g==
-X-Gm-Message-State: AC+VfDzAGzndWCHyzq20eCFdc6AXQ9ZOIGuYmpTAwwDLp9fvsJefHuoX
-        F9+irk7Skxat/nQIim7SlORXTw==
-X-Google-Smtp-Source: ACHHUZ42zN9JaEPH6AXQSnwMo5S3K8EOoc3Rp6A8ANRQ0lo1K6rI0KDmb+Dk7IdBqVvVuuK/RweOWg==
-X-Received: by 2002:a2e:7306:0:b0:2b6:9930:871 with SMTP id o6-20020a2e7306000000b002b699300871mr2554964ljc.13.1687792750438;
-        Mon, 26 Jun 2023 08:19:10 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id p21-20020a170906499500b0097404f4a124sm3399047eju.2.2023.06.26.08.19.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 08:19:09 -0700 (PDT)
-Date:   Mon, 26 Jun 2023 17:19:08 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     palmer@dabbelt.com, conor@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/9] RISC-V: drop a needless check in print_isa_ext()
-Message-ID: <20230626-67e571e6d9f02c28a09dab33@orel>
-References: <20230626-provable-angrily-81760e8c3cc6@wendy>
- <20230626-skydiver-frown-659b982a43ad@wendy>
+        d=1e100.net; s=20221208; t=1687793170; x=1690385170;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tw7C9oT93L7YXZBRkdfMrjtsff4cNqwiulutKWQ+2bQ=;
+        b=HwgYhA8vtQ+bTBEZriCo2JSIycqloqL8AljTfqTodu+XCWXHXOpSpe9THglrltXc62
+         DUreKCx9U/Ar6YGPW1e2RVeYevybZwrT3r5NMvsOu/OIRsDE2yhVK019JSSuhUjIqfNe
+         UHCAerblOhqzm2XZJls8BNeN7Ty9Netv2w8XW40iIdiUTpkAfRpxE6loeCbH9rs48IS/
+         qg7XDqC4XK6RSo9amBfjh/1ipg5KyZvb6SysCAEX4Nl7rOvnxWwlB9SzLOex3lQzF1K2
+         GByNxmUA8Mfpl7BGU9l8CGEOyEcHbvYA19XJcAIN2JFNtL6EXQ/b4tym9rj7E3o2fJ7E
+         Lliw==
+X-Gm-Message-State: AC+VfDxGAhU5ar/fWqSNjj9zWk5HKzKsH+MiN7kqwSnmsKHRcc6h2GkB
+        6tNdvrk0W/fxbOfxadMFFVPQWg==
+X-Google-Smtp-Source: ACHHUZ7ubpwYvu7BiTPrQiruSbiDo19so9jcb0VpAKJaifwruU8APvyge2msFRwCDdPj5kwb46Y6Bg==
+X-Received: by 2002:adf:f389:0:b0:313:f551:b037 with SMTP id m9-20020adff389000000b00313f551b037mr2426683wro.68.1687793170609;
+        Mon, 26 Jun 2023 08:26:10 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id cw8-20020a056000090800b00311d8c2561bsm7645463wrb.60.2023.06.26.08.26.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jun 2023 08:26:10 -0700 (PDT)
+Message-ID: <f0f9d4d5-4603-7f62-ea18-ea7e120200c3@linaro.org>
+Date:   Mon, 26 Jun 2023 17:26:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230626-skydiver-frown-659b982a43ad@wendy>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [RESEND v6 6/8] arm64: dts: qcom: sc7280: Modify VA/RX/TX macro
+ clock nodes for audioreach solution
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Mohammad Rafi Shaik <quic_mohs@quicinc.com>,
+        krzysztof.kozlowski+dt@linaro.org, swboyd@chromium.org,
+        andersson@kernel.org, broonie@kernel.org, agross@kernel.org
+Cc:     robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_rohkumar@quicinc.com, srinivas.kandagatla@linaro.org,
+        dianders@chromium.org, judyhsiao@chromium.org,
+        quic_visr@quicinc.com,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+References: <20230616103534.4031331-1-quic_mohs@quicinc.com>
+ <20230616103534.4031331-7-quic_mohs@quicinc.com>
+ <7d2e580e-1861-d22f-e67d-726a2a69043e@linaro.org>
+ <3441b3cb-29dd-691c-1e95-5bddd66c684a@quicinc.com>
+ <af148e01-4026-a086-af78-a1e252fcc724@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <af148e01-4026-a086-af78-a1e252fcc724@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,42 +86,66 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 26, 2023 at 12:19:40PM +0100, Conor Dooley wrote:
-> isa_ext_arr cannot be empty, as some of the extensions within it are
-> always built into the kernel.
-
-This is only true since commit 07edc32779e3 ("RISC-V: always report
-presence of extensions formerly part of the base ISA"), right? If
-so, it might be nice to call that commit out in this commit message.
-
+On 26/06/2023 14:24, Konrad Dybcio wrote:
+> On 26.06.2023 13:13, Mohammad Rafi Shaik wrote:
+>>
+>> On 6/16/2023 4:59 PM, Konrad Dybcio wrote:
+>>> On 16.06.2023 12:35, Mohammad Rafi Shaik wrote:
+>>>> From: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>>>
+>>>> Modify VA, RX and TX macro and lpass_tlmm clock properties and
+>>>> enable them. For audioreach solution mclk, npl and fsgen clocks
+>>>> are enabled through the q6prm clock driver.
+>>>>
+>>>> Delete the power domain properties from VA, RX and TX macro,
+>>>> for audioreach solution the macro, dcodec power domains enabled
+>>>> through the q6prm clock driver.
+>>>>
+>>>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>>>> ---
+>>> Maybe sc7280-audioreach.dtsi containing all these changes that could be
+>>> reused by others would be in order?
+>> Thanks for comment,
+>>
+>> yes, will create a common sc7280-audioreach.dtsi file, which will contain common audioreach changes
+>> and could be reused by others.
+>>>>   .../sc7280-herobrine-audioreach-wcd9385.dtsi  | 43 +++++++++++++++++++
+>>>>   1 file changed, 43 insertions(+)
+>>>>
+>>>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>>> index 9daea1b25656..c02ca393378f 100644
+>>>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>>>> @@ -196,3 +196,46 @@ q6prmcc: clock-controller {
+>>>>           };
+>>>>       };
+>>>>   };
+>>>> +
+>>>> +&lpass_rx_macro {
+>>>> +    /delete-property/ power-domains;
+>>>> +    /delete-property/ power-domain-names;
+>>> Surely they shouldn't cause issues, even if the vote would be
+>>> superfluous? They are still powered by these power domains, I'd assume?
+>> No, In Audioreach case this macro and decodec clocks are not power by power domains,
+>> this macro and decodec hw clocks are enrolled by q6prmcc clock voting.
+> So the same piece of hardware is modeled differently twice?
 > 
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/kernel/cpu.c | 4 ----
->  1 file changed, 4 deletions(-)
+> i.e. the same GDSCs are reached once with register accesses and once
+> registered as "Q6 vote clocks"?
 > 
-> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> index 742bb42e7e86..01f7e5c62997 100644
-> --- a/arch/riscv/kernel/cpu.c
-> +++ b/arch/riscv/kernel/cpu.c
-> @@ -233,10 +233,6 @@ static void print_isa_ext(struct seq_file *f)
->  
->  	arr_sz = ARRAY_SIZE(isa_ext_arr) - 1;
->  
-> -	/* No extension support available */
-> -	if (arr_sz <= 0)
-> -		return;
-> -
->  	for (i = 0; i <= arr_sz; i++) {
->  		edata = &isa_ext_arr[i];
->  		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
-> -- 
-> 2.40.1
->
+> that sounds like a bit of an overstep to register them with genpd and CCF
+> depending on what entity controls them.. perhaps the "q6 vote clocks" could
+> be remodeled as power domains as that's what they're ultimately seem to
+> be referencing.. Krzysztof should have an opinion.
 
-Otherwise,
+I think on SM8450 and newer these were already modeled as clocks, not
+power domains. Anyway, for me, the previous/existing/coming code looks
+like done by coincidence or copying some downstream choices, not with
+any design in mind. Unfortunately, I don't know what to do with it now,
+because the bindings were merged like that.
 
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
 
-Thanks,
-drew
+Best regards,
+Krzysztof
+
