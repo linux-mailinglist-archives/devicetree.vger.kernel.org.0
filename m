@@ -2,71 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 60F4F73E0BA
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:35:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43C6473E0C4
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:36:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229479AbjFZNfT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 09:35:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41816 "EHLO
+        id S229828AbjFZNgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 09:36:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbjFZNfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:35:18 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0DC41B7;
-        Mon, 26 Jun 2023 06:35:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1687786519; x=1719322519;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=gAk31+J9YDPOueH0IlItj567Vy4tDOh+GRCSBbZlyFo=;
-  b=rLBdiBM7WS8aFvP2Yt86aZGioFnyTTrHpKNzhvonecILns4mxcz3Tm1E
-   hS1/AfFrYCl4xMvHtPiMHzJPErIDbKPBnbBzR+fZRHIF1zCJZjLRgUbgf
-   KdyBB8OkPxF3kYdT+Y4WePRCbmMQBWKpRa/BSCz/5HzCp3X5x0whUmmOf
-   adavmal1wdsmt6tA/YYE3kZhaOO+OG9MNBSouvfvLzKTCv6SwmasKbbnH
-   UOG0mcgZZeFVvdE6iKtmdiQHEie3+Q2SdWpXR2ixGTPhYsWvaKo2jqM8U
-   ybtt6G0MUgfuWpk/hbJM4Gy5mm9zcUjmhS9+nDewykocgC6n0vklSqn46
-   w==;
-X-IronPort-AV: E=Sophos;i="6.01,159,1684825200"; 
-   d="asc'?scan'208";a="220545498"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 26 Jun 2023 06:35:17 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 26 Jun 2023 06:35:15 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Mon, 26 Jun 2023 06:35:11 -0700
-Date:   Mon, 26 Jun 2023 14:34:43 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>
-CC:     Conor Dooley <conor@kernel.org>, <suagrfillet@gmail.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        <aou@eecs.berkeley.edu>, <robh+dt@kernel.org>,
-        <frowand.list@gmail.com>, <ajones@ventanamicro.com>,
-        <alexghiti@rivosinc.com>, <mpe@ellerman.id.au>,
-        Arnd Bergmann <arnd@arndb.de>, <rppt@kernel.org>,
-        <samuel@sholland.org>, <panqinglin2020@iscas.ac.cn>,
-        <anup@brainfault.org>, <xianting.tian@linux.alibaba.com>,
-        <anshuman.khandual@arm.com>, <heiko@sntech.de>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH V1 1/3] Revert "RISC-V: mark hibernation as nonportable"
-Message-ID: <20230626-mousy-latter-ad8088de089f@wendy>
-References: <20230625-obstinate-grimy-b765a1d3d741@spud>
- <mhng-57d088de-b527-4f19-89f5-fec31a6df475@palmer-ri-x1c9a>
+        with ESMTP id S229778AbjFZNgR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:36:17 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92C33E7B
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:36:15 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fb761efa7aso1252467e87.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:36:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687786574; x=1690378574;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=CUaOVbGrLmUdKtbdRSelS8yeyVs/S2d4eFpINDGmx+s=;
+        b=VPdYu1/kNJQEDNNFz/pDyAWlF+Hr7rG/NFFgvctw1MMosXDz3aYEunah1cgAGYpS2o
+         B5IDZ8/1WfrRmAfmXzrhnZuHOnwUyzKpenc6/S+u+H7Lvor8KbFZB1hfqYlF0xkA8OQ+
+         QHf4luiEKgP3L5ZZ8h4PfynG30jXovv3483jWuENaTNJrzbjiKLdzQKCSFGG/w4kH4v0
+         Y4ezLsQc1g5R5ZKg6mv6rHeH5p7f3So2PKOiF121+9CmTYVUBivuyqqObnWgk2Ask6fj
+         Gq2RQM4MAILH676BIPG2POZwC8E4jfMG431pf8UMtmHRdzD3BthdGn2d4dw+UnWp5N4d
+         jvsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687786574; x=1690378574;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=CUaOVbGrLmUdKtbdRSelS8yeyVs/S2d4eFpINDGmx+s=;
+        b=fa/I5NLzi030YK/Ww/QJ+3f24zhNQ4mnV3jhir70C9lWNPP7LrjVmjPlW2CY+I9noQ
+         e9boXO0w4IeJGSaxmcI4r+zFZqSSVCGfXwAks2KVIOTF87azm/xz+7NwhN9JN+wh3cvi
+         Pv7/FYIrq6h7CeHQL3bBdsw1BiQNl6Tb9rAgKb0PLzKcZRcUjqBBGZIKeuYwOEg0oGRZ
+         UtHGu6URhhCrueqV7MnQY9M7303mXUyjIqZL68vXvltEv6v4AFapiUi0Uc8uyLWy5CGd
+         NS18tYuQQC7CwUILxsvkq6dfMbjJJXlfP6tPyksjMHGm8TUsBqSBdIWD3XGPHolV4g9y
+         9kEg==
+X-Gm-Message-State: AC+VfDyTCN23hIY5BubXxzyisRnBGaGSf1ECu+n+oG+cQH/q7hRInBLs
+        1wj4DLYYtBptwRKFAXQf4mogHA==
+X-Google-Smtp-Source: ACHHUZ6+l1Qzmq7jLH9MIL0J4iG3m5HOKc0Yu2i2BkiHU3OsTZNqfFo17ZAAHXXbDuZnwOPaVZNzSw==
+X-Received: by 2002:a19:434a:0:b0:4f8:6e1d:cf98 with SMTP id m10-20020a19434a000000b004f86e1dcf98mr12315894lfj.66.1687786573678;
+        Mon, 26 Jun 2023 06:36:13 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id u26-20020ac2519a000000b004f4b42e2d7dsm1109822lfi.230.2023.06.26.06.36.12
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jun 2023 06:36:13 -0700 (PDT)
+Message-ID: <ad2244a3-20b6-e126-c427-d535382d7d79@linaro.org>
+Date:   Mon, 26 Jun 2023 16:36:12 +0300
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7iJUOqLUsa8DucKl"
-Content-Disposition: inline
-In-Reply-To: <mhng-57d088de-b527-4f19-89f5-fec31a6df475@palmer-ri-x1c9a>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v2 09/26] cpufreq: qcom-nvmem: create L2 cache device
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
+ <20230625202547.174647-10-dmitry.baryshkov@linaro.org>
+ <a15a2564-3b48-4592-1e40-2187ee89af1c@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <a15a2564-3b48-4592-1e40-2187ee89af1c@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,93 +89,68 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---7iJUOqLUsa8DucKl
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 26/06/2023 14:50, Konrad Dybcio wrote:
+> On 25.06.2023 22:25, Dmitry Baryshkov wrote:
+>> Scaling the frequencies on some of Qualcomm Krait platforms (e.g.
+>> APQ8064) also requires scaling of the L2 cache frequency. As the
+>> l2-cache device node is places under /cpus/ path, it is not created by
+>> default by the OF code. Create corresponding device here.
+>>
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+> I think a generic solution (i.e. for each cpu node call
+> of_platform_populate in drivers/of/platform.c :
+> of_platform_default_populate_init) could be beneficial
 
-On Sun, Jun 25, 2023 at 03:36:06PM -0700, Palmer Dabbelt wrote:
-> On Sun, 25 Jun 2023 15:15:14 PDT (-0700), Conor Dooley wrote:
-> > On Sun, Jun 25, 2023 at 11:09:21PM +0800, Song Shuai wrote:
-> > > =E5=9C=A8 2023/6/25 22:18, Conor Dooley =E5=86=99=E9=81=93:
-> > > > On Sun, Jun 25, 2023 at 10:09:29PM +0800, Song Shuai wrote:
-> > > > > This reverts commit ed309ce522185583b163bd0c74f0d9f299fe1826.
-> > > > > > > With the commit 3335068f8721 ("riscv: Use PUD/P4D/PGD pages
-> > > for the
-> > > > > linear mapping") reverted, the MIN_MEMBLOCK_ADDR points the kernel
-> > > > > load address which was placed at a PMD boundary.
-> > > > > > And firmware always
-> > > > > correctly mark resident memory, or memory protected with PMP as
-> > > > > per the devicetree specification and/or the UEFI specification.
-> > > > > But this is not true? The versions of OpenSBI that you mention
-> > > in your
-> > > > cover letter do not do this.
-> > > > Please explain.
-> > > >
-> > >=20
-> > > At this time, OpenSbi [v0.8,v1.3) and edk2(RiscVVirt) indeed don't ob=
-ey the
-> > > DT/UEFI spec. This statement is excerpted from "Reserved memory for r=
-esident
-> > > firmware" part from the upcoming riscv/boot.rst. It isn't accurate fo=
-r now.
-> > > How about deleting this one?
-> >=20
-> > It is incorrect, so it will need to be removed, yes.
-> > Unfortunately writing a doc does not fix the existing implementations :(
-> >=20
-> > > Actually with 3335068f8721 reverted, the change of MIN_MEMBLOCK_ADDR =
-can
-> > > avoid the mapping of firmware memory, I will make it clear in the next
-> > > version.
-> >=20
-> > To be honest, I'd like to see this revert as the final commit in a
-> > series that deals with the problem by actually reserving the regions,
-> > rather than a set of reverts that go back to how we were.
-> > I was hoping that someone who cares about hibernation support would be
-> > interested in working on that - *cough* starfive *cough*, although maybe
-> > they just fixed their OpenSBI and moved on.
-> > If there were no volunteers, my intention was to add a firmware erratum
-> > that would probe the SBI implementation & version IDs, and add a firmwa=
-re
-> > erratum that'd parse the DT for the offending regions and reserve them.
->=20
-> Is there any actual use case for hibernation on these boards?  Maybe it's
-> simpler to just add a "reserved regions actually work" sort of property a=
-nd
-> then have new firmware set it -- that way we can avoid sorting through all
-> the old stuff nobody cares about and just get on with fixing the stuff
-> people use.
+Yep. I thought about it, but I saw no direct benefit for it. Note, that 
+we do not instantiate cpu devices directly. But, maybe something like 
+/devices/system/cache/foo would make sense.
 
-What is "old stuff nobody cares about"? The first version of OpenSBI with
-the fix shipped only the other day, so effectively all current stuff has
-this problem. Certainly everything shipping from vendors at the moment
-has the problem, and probably whatever downstream, custom versions of
-OpenSBI also have it.
+> 
+> Konrad
+>>   drivers/cpufreq/qcom-cpufreq-nvmem.c | 20 ++++++++++++++++++++
+>>   1 file changed, 20 insertions(+)
+>>
+>> diff --git a/drivers/cpufreq/qcom-cpufreq-nvmem.c b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+>> index a88b6fe5db50..ab78ef1531d0 100644
+>> --- a/drivers/cpufreq/qcom-cpufreq-nvmem.c
+>> +++ b/drivers/cpufreq/qcom-cpufreq-nvmem.c
+>> @@ -380,6 +380,7 @@ static int __init qcom_cpufreq_init(void)
+>>   {
+>>   	struct device_node *np = of_find_node_by_path("/");
+>>   	const struct of_device_id *match;
+>> +	unsigned int cpu;
+>>   	int ret;
+>>   
+>>   	if (!np)
+>> @@ -390,6 +391,25 @@ static int __init qcom_cpufreq_init(void)
+>>   	if (!match)
+>>   		return -ENODEV;
+>>   
+>> +	for_each_possible_cpu(cpu) {
+>> +		struct device *dev = get_cpu_device(cpu);
+>> +		struct device_node *cache;
+>> +		struct platform_device *pdev;
+>> +
+>> +		cache = of_find_next_cache_node(dev->of_node);
+>> +		if (!cache)
+>> +			continue;
+>> +
+>> +		if (of_device_is_compatible(cache, "qcom,krait-l2-cache")) {
+>> +			pdev = of_platform_device_create(cache, NULL, NULL);
+>> +			if (IS_ERR(pdev))
+>> +				pr_err("%s: %pe, failed to create L2 cache node\n", __func__, pdev);
+>> +			/* the error is not fatal */
+>> +		}
+>> +
+>> +		of_node_put(cache);
+>> +	}
+>> +
+>>   	ret = platform_driver_register(&qcom_cpufreq_driver);
+>>   	if (unlikely(ret < 0))
+>>   		return ret;
 
-Also, the problem isn't just limited to hibernation apparently. I
-think it was mentioned in the cover letter that according to Rob,
-without being marked as no-map we could also see speculative access &
-potentially some of the memory debugging stuff walking these regions.
+-- 
+With best wishes
+Dmitry
 
-I'm not sure how you'd intend communicating "reserved regions actually
-work", I figure you mean via DT?
-I don't really see the benefit of adding a property for those who are
-behaving, if we can detect the versions of the one relevant SBI
-implementation that are broken at runtime. DT hat on, even less so.
-Perhaps I am missing your point, and there's another angle (like trying
-to per firmware code)?
-
-
---7iJUOqLUsa8DucKl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJmT8wAKCRB4tDGHoIJi
-0nbBAQDsaa4oVZHw4/VcABPnn1PmcHFVf2ixtBkkcs7MEQgihAEA9G41AYagonFJ
-Rw49Is8T58eY/wNITs9UkwFkoh+Khw4=
-=Vgxt
------END PGP SIGNATURE-----
-
---7iJUOqLUsa8DucKl--
