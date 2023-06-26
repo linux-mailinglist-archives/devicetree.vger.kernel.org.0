@@ -2,62 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3894273E435
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD09173E448
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:10:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjFZQI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 12:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43922 "EHLO
+        id S231658AbjFZQKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 12:10:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231715AbjFZQIw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:08:52 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5194DE56;
-        Mon, 26 Jun 2023 09:08:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id E15E760EE6;
-        Mon, 26 Jun 2023 16:08:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BFD41C433C8;
-        Mon, 26 Jun 2023 16:08:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687795713;
-        bh=YtBxDgCSo52EnCezN1xP/GLTHgcQBQ/UTGIq1c7iU7s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=d0cu9j7LYBWo5mX66CE2FbV41OSFcVyDdRYJkFWjFGvX1J6J8QUyCspssz5N0nwf5
-         mslVgIguao52pzHAfLvCU0FkwJlMksclNp7nQcnSN+uoYw3WnslJOZjQ496MkISJrs
-         wy/xylfHyjouzqpPt0pOEMR4rsomvo2Z1sY49fZiAPa+3BCMS6sbtiUnKq2OWkYqo8
-         dXDZeeLXB1gPenQ5jECRySGGd0u/JdEWoZ3wzbtdu0k1PKDX0F87HG/cAByLK7z/mR
-         KcIFOI/5ej+B7rbdlliOhOTLAXlb9TZ4l3yKQhwe8QVSptwIkTzjuELeK+ylxb/bcX
-         +r5e2ulfWVpTg==
-Date:   Mon, 26 Jun 2023 17:08:28 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Andrew Jones <ajones@ventanamicro.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>, palmer@dabbelt.com,
+        with ESMTP id S231723AbjFZQKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:10:51 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F6621B7
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:10:49 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3113da5260dso3000084f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:10:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687795848; x=1690387848;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=zqAmLl/C5FNJIhv2Xt1PuXVNbepqgpYqVZ+raKQfDgo=;
+        b=Dk9D/qPMCY74SEye/8fNMTPEpEockgkVtKFNB5FpvJP6Z2NVSo47uRsb0CubNQMYKd
+         WtkUlVzRm0OstEhMn04c8lGSdVBSwfWues+6SYb8jxXGnITJ/3Kys7xO1aGHt0pWGOvM
+         aA8yIEBHWbJFPmP0UWx3SloZvu0U2PR48aUI4URctIkhwDtRpYz7uXYWH7BXxA+BUtGd
+         daPgIncZc5uHyrG7QxHLGDzN0ePEASN4hMWadW2r8fn/QIRPCMMWwCa5uoMgc6pxaZPl
+         +Eaa8YzSoZgMSGjoplFEYNvjPCOATV5BP/Pbk7lZXMiSx1VYsVB+XwniRCN8wfPc5YmI
+         LzLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687795848; x=1690387848;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=zqAmLl/C5FNJIhv2Xt1PuXVNbepqgpYqVZ+raKQfDgo=;
+        b=XouxlbxqCM5wW+ZIIAGqJ1BSYOIlRtCDdx6DY9IGpp/W2KHilNj05PFdti0PeB9zrE
+         Lg/Q1MHR/pHVg9lRpqrNiqHQqbcL+ZiT+j/yTsUSnLiNobML+4mx/L8m8pxlfZU72dCf
+         QqIyfAiohbBQR4B7ws3n3Nt9pEtzYh8c+M74apWpQF/8jIKeP4t1sWgtQmzTdC4edD8s
+         2pN6LQcsyS4kWgcrGkNNNRQMQjE4Y94Wqhqs5x4WOfD2D+VjatZJ+/rGsP/f6jjNCNAb
+         KEDNhDs3MtgyQKWoeZLX9oT/CUqUmPJMMN3bVTHjbwK0EOABYPFVzQgLbyuDPoDXyex6
+         6RmA==
+X-Gm-Message-State: AC+VfDzfL5jQq8pmtK1nwtlbPwbQYII9LD7n4wHAnfbN6je/egWXrV/7
+        DB9Szc7xmI3DXNfq3i+jQNmybNNCSR+Bh8hnP9w=
+X-Google-Smtp-Source: ACHHUZ7NhS/vlSmtNSKWHpB3xX654GhMOQ5yRJfZky0DhRpX0T7S8MJstbg9Aob3s7/xTaRbLNztbg==
+X-Received: by 2002:a05:6000:118f:b0:309:4620:e155 with SMTP id g15-20020a056000118f00b003094620e155mr8838545wrx.49.1687795847749;
+        Mon, 26 Jun 2023 09:10:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id r16-20020adfce90000000b00313f1f543b8sm3000758wrn.108.2023.06.26.09.10.45
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jun 2023 09:10:47 -0700 (PDT)
+Message-ID: <52c57cab-10cf-2e7e-2c1d-fa6506786d45@linaro.org>
+Date:   Mon, 26 Jun 2023 18:10:44 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom,dispcc-sm6125: Require GCC
+ PLL0 DIV clock
+Content-Language: en-US
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 2/9] RISC-V: drop a needless check in print_isa_ext()
-Message-ID: <20230626-jitters-spiral-68e941d0ad3f@spud>
-References: <20230626-provable-angrily-81760e8c3cc6@wendy>
- <20230626-skydiver-frown-659b982a43ad@wendy>
- <20230626-67e571e6d9f02c28a09dab33@orel>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="UAbBwUXwcEUwpL43"
-Content-Disposition: inline
-In-Reply-To: <20230626-67e571e6d9f02c28a09dab33@orel>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
+References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
+ <20230624-sm6125-dpu-v1-3-1d5a638cebf2@somainline.org>
+ <c9681bce-efa8-9b79-4bf6-837dd6a2dc12@linaro.org>
+ <55b0ca89-8f2e-5383-59d4-6809e813abf8@linaro.org>
+ <vnp263d43flny2ibt3n7fbloyi26enqrejnobogplfu5fcj6l3@s7zkxrsi2rde>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <vnp263d43flny2ibt3n7fbloyi26enqrejnobogplfu5fcj6l3@s7zkxrsi2rde>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -65,76 +101,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 25/06/2023 21:48, Marijn Suijten wrote:
+> On 2023-06-24 11:08:54, Krzysztof Kozlowski wrote:
+>> On 24/06/2023 03:45, Konrad Dybcio wrote:
+>>> On 24.06.2023 02:41, Marijn Suijten wrote:
+>>>> The "gcc_disp_gpll0_div_clk_src" clock is consumed by the driver, will
+>>>> be passed from DT, and should be required by the bindings.
+>>>>
+>>>> Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
+>>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+>>>> ---
+>>> Ideally, you'd stick it at the bottom of the list, as the items: order
+>>> is part of the ABI
+>>
+>> Yes, please add them to the end. Order is fixed.
+> 
+> Disagreed for bindings that declare clock-names and when the driver
+> adheres to it, see my reply to Konrad's message.
 
---UAbBwUXwcEUwpL43
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+That's the generic rule, with some exceptions of course. Whether one
+chosen driver (chosen system and chosen version of that system) adheres
+or not, does not change it. Other driver behaves differently and ABI is
+for everyone, not only for your specific version of Linux driver.
 
-On Mon, Jun 26, 2023 at 05:19:08PM +0200, Andrew Jones wrote:
-> On Mon, Jun 26, 2023 at 12:19:40PM +0100, Conor Dooley wrote:
-> > isa_ext_arr cannot be empty, as some of the extensions within it are
-> > always built into the kernel.
->=20
-> This is only true since commit 07edc32779e3 ("RISC-V: always report
-> presence of extensions formerly part of the base ISA"), right? If
-> so, it might be nice to call that commit out in this commit message.
+Follow the rule.
 
-Per my last mail, where I commented on the origins of some of this code,
-there were no multi-letter extensions when this code was first added.
-When the first multi-letter ones did get added, it was Sscofpmf - that
-doesn't have a Kconfig symbol to disable it, so I think this has been
-redundant for a long time.
+Best regards,
+Krzysztof
 
-Apart from the ones I recently added, there's a fair few others that
-are not gated & should always be present.
-It's probably not clear from the comment, but this check is for whether
-the kernel supports extensions, not whether the system it is running on
-does. I guess I should expand on that in my commit message.
-
-Thanks,
-Conor.
-
-> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > ---
-> >  arch/riscv/kernel/cpu.c | 4 ----
-> >  1 file changed, 4 deletions(-)
-> >=20
-> > diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> > index 742bb42e7e86..01f7e5c62997 100644
-> > --- a/arch/riscv/kernel/cpu.c
-> > +++ b/arch/riscv/kernel/cpu.c
-> > @@ -233,10 +233,6 @@ static void print_isa_ext(struct seq_file *f)
-> > =20
-> >  	arr_sz =3D ARRAY_SIZE(isa_ext_arr) - 1;
-> > =20
-> > -	/* No extension support available */
-> > -	if (arr_sz <=3D 0)
-> > -		return;
-> > -
-> >  	for (i =3D 0; i <=3D arr_sz; i++) {
-> >  		edata =3D &isa_ext_arr[i];
-> >  		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
-> > --=20
-> > 2.40.1
-> >
->=20
-> Otherwise,
->=20
-> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
->=20
-> Thanks,
-> drew
-
---UAbBwUXwcEUwpL43
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJm3/AAKCRB4tDGHoIJi
-0lvuAP9Wwmh7CDmYVwCrwm2QnFlvh2auna7EZPvP8MVubcvyMgD+JhXPQyKqs2g1
-Myse48aBIwDuIggV5cCfMWtC7cfUJgY=
-=KSGS
------END PGP SIGNATURE-----
-
---UAbBwUXwcEUwpL43--
