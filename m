@@ -2,136 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9512073E737
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 20:09:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F169773E73E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 20:12:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231222AbjFZSJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 14:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55910 "EHLO
+        id S231483AbjFZSMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 14:12:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57190 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230096AbjFZSJ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 14:09:56 -0400
-Received: from NAM10-MW2-obe.outbound.protection.outlook.com (mail-mw2nam10on2081.outbound.protection.outlook.com [40.107.94.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D026A106;
-        Mon, 26 Jun 2023 11:09:55 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Mg2ilAEVVdUcB3qoFbn6NoChJg6UX9zqq5jK7MRfXnHkb75l1dV8fu5//sJaQfQnpJNfzOrDnpg10iMvMzao5J08IB6yFH8b9Jt4MWix2XXqi4L5zwjfSm/XTlXoxHw68ZvWhDbRzT8ekmQ9XyLpSzMA821MX8/RzSPj9L6t7D60HUwEmg0jPow9nRsTn+TeWDKKCZeqNyjxtjnifysS3K/UDoknOMeZnIPg64Bnkt07dant0i6SI906bnwhq/fGkxvtxZ8a660eCMXm1PJvJExuAV5ZDk+a/jUTpnERDkM8IIrg4zCSw6QuJBSSD+5ES/gTTsKZGKXMVP6n0F3/Fw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Mnwzi6X5RK1i3rYqmBUKKk1wPuxLkmF3O/lrNd3b/3M=;
- b=KHVRUytzhhHteunCLHE3kOHb7S/KFJ87tDYlL2YbYJjxE2pdHIRsZ39EuMGgmSClTOiE5Re7eZhb7BCdNOIw2IjK88VB+SrLN9XDXBjfupOMmkeJXRs9FPM0uQQY0e5A1bMbOSHnLVPHHRABt6W6/EYZCQsGDOPR8Zu5R8pVCafZjoX0eksduVbULDbnszL7WBYHLmLcIx2g7eFb9brA9ZSQc2sUPDxDzvO6az084O4IV4XjtPL4B3hsot4FCheW5pp80StG1z9Rq6x21lUONu4s7Dkofhae/bBX8M4N09id5xee1zkgdM97lu9GzuXPGRHATj4NBwt8Aok8RUWqXw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Mnwzi6X5RK1i3rYqmBUKKk1wPuxLkmF3O/lrNd3b/3M=;
- b=TVoudgr+SYr3Mw/PtIvc8mXnqs5fk32JClB9H8PNoWxXVXdrBfjkE4gnAMsKvtHCRQ8Lw3TBAsP9Laz33hZopybs1zMkxCxHjUnc9dvoxBNdx9d2E4pOuLhcFhDhCYew/9C8v5GkerVw52ph2hKjQRwWi6J/q6U217uX3BRto/pexKYvRZ5YskjGXesDLmblshQFpDdP5yt3nwxsVUHIj9Eu0pakepbp6xvW7dpNLJ9skYo+E88kT+f6jHJgRIOKF6yxBfjrZ8KK/7/HcKCBqgughhcwOlKtrbES9AovUgyOoj43TFFSeUyHDuN0wP0CMBwmi+g1ZVN+lJAtaf8u0A==
-Received: from MW4PR04CA0035.namprd04.prod.outlook.com (2603:10b6:303:6a::10)
- by IA0PR12MB8973.namprd12.prod.outlook.com (2603:10b6:208:48e::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Mon, 26 Jun
- 2023 18:09:53 +0000
-Received: from CO1NAM11FT025.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:6a:cafe::ef) by MW4PR04CA0035.outlook.office365.com
- (2603:10b6:303:6a::10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.33 via Frontend
- Transport; Mon, 26 Jun 2023 18:09:53 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CO1NAM11FT025.mail.protection.outlook.com (10.13.175.232) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6500.47 via Frontend Transport; Mon, 26 Jun 2023 18:09:53 +0000
-Received: from rnnvmail203.nvidia.com (10.129.68.9) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Mon, 26 Jun 2023
- 11:09:37 -0700
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by rnnvmail203.nvidia.com
- (10.129.68.9) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Mon, 26 Jun
- 2023 11:09:37 -0700
-Received: from build-bgriffis-20230515T220707639.internal (10.127.8.9) by
- mail.nvidia.com (10.129.68.6) with Microsoft SMTP Server id 15.2.986.37 via
- Frontend Transport; Mon, 26 Jun 2023 11:09:37 -0700
-From:   Brad Griffis <bgriffis@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-CC:     Brad Griffis <bgriffis@nvidia.com>
-Subject: [PATCH 2/2] arm64: tegra: fix p3767 QSPI speed
-Date:   Mon, 26 Jun 2023 18:09:20 +0000
-Message-ID: <20230626180920.318774-2-bgriffis@nvidia.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230626180920.318774-1-bgriffis@nvidia.com>
-References: <20230626180920.318774-1-bgriffis@nvidia.com>
+        with ESMTP id S231487AbjFZSMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 14:12:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22669198C;
+        Mon, 26 Jun 2023 11:11:58 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9142D60F45;
+        Mon, 26 Jun 2023 18:11:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1084C433C0;
+        Mon, 26 Jun 2023 18:11:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687803117;
+        bh=JPG51f1XhFtULkQDerp9DiZGlQrVYSlsBSy1mxXedhk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=TAa2ZQ44xVZDJRseHq5MiELnPsQmGcB90Yc0SE/38Ad7TsU4cGXMoq4oGNwa739bI
+         6AGlr2U7O1A/RU30Wbt0TZngj1QBShlQTKHChgCBu2dRhx170CQi6ijDhxBGN88hSR
+         uYUlr2CHQ5/dcMwRParzc5CORFzn/RQPQGLw5V09HZJVlTvOwWrLkdiiCm+Y9INMzj
+         hnhjxauWWYmdr5VsCJEHWvGfd60z5ft4MMfTylFCXGC54JbDnSmViPjwy6Gc0m9Bpb
+         Jvkv2tSQbHWh7VoCZCsdXPrqMbU5nHv649GivNBvvBxflLE/DLarxBeVP9kXwZj6q5
+         YstjsLwePj7OQ==
+Date:   Mon, 26 Jun 2023 13:11:55 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Lizhi Hou <lizhi.hou@amd.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh@kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, stefano.stabellini@xilinx.com
+Subject: Re: [PATCH V9 2/5] PCI: Create device tree node for selected devices
+Message-ID: <20230626181155.GA250405@bhelgaas>
 MIME-Version: 1.0
-X-NVConfidentiality: public
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT025:EE_|IA0PR12MB8973:EE_
-X-MS-Office365-Filtering-Correlation-Id: dd2f0276-ed21-4ae3-0f64-08db76708a49
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: dqgtxjAEELRqZva+FrgMoxpcdMEnQcBxxj3MO9ZFXNs550dgEV7QKGZdVKxa0b/5F25tYMCqAgoGu7dejAEqqJS0EInFcypcCISGNVqMJT5MNC6iAOZkWTjIIttJnoex59N0VK+WGehgK4nCgBDXxcuecHWh0Sepz5epZ3DG1Wd/72MPdlo+8yanfLv9ByDpSnAGY17I+0rkwTNofbFSelyL1ToHVy2O+MS8eMFDNfLSw7nIurkWfDY+0JDTRzgszoboljho8M+6YB/ZoojRc8II4W43dB+Edix4K7v2msemxATefiauohCOCD+RIhNQy0Ez55s+OpECUO8Ceq05b2wz/dhnhxprNoFRgZY4r7OQINXQg4/n9mfiCohGhHXqjR9HBxC50NnGiQZ0sJe5tDTlqHzeDKAY9XmWTmiBzK4sZHJp4LDtsl6g6XFsi0i8v9gja3lEgMS7gaQ4XmfYS25K6VEYZ+tXJmwWfpSzDX0SftzuKMABqMqOaT5vcKMH2pupKv72RIP/vxd7/+HKhutQD+gTNMR5GP0uCYqdN+5wKSFQUArG0/Ioyt8yfN3xBHz2WlhWym1LDM41IVVYIQdnkcwhnjU+s0JBNDctkEhW/fuD0e81KtwdcpN/1RJeu2+HGgwewVGphHOlI1pcp6+bh2bLdZifsH24nZdi9P1ro76F7StPHl5KsLPNScD5VFTHJoFaYDU1rm5fiXKxiJ+UJ+9uCJe6xyTXO7gNWGqBioAxPitdKithg0eL/CNK
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(396003)(39860400002)(376002)(346002)(136003)(451199021)(36840700001)(46966006)(40470700004)(4744005)(2906002)(40460700003)(478600001)(82740400003)(36756003)(82310400005)(336012)(47076005)(426003)(110136005)(70206006)(83380400001)(5660300002)(2616005)(316002)(356005)(4326008)(70586007)(6666004)(40480700001)(36860700001)(41300700001)(86362001)(8936002)(7636003)(8676002)(1076003)(26005)(107886003)(186003);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2023 18:09:53.0578
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dd2f0276-ed21-4ae3-0f64-08db76708a49
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT025.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR12MB8973
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+In-Reply-To: <af9b6bb3-a98d-4fb6-b51e-b48bca61dada@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The QSPI device used in Jetson Orin NX and Nano modules (p3767) is
-the same as Jetson AGX Orin (p3701) and should have a max speed of
-102 MHz.
+On Mon, Jun 26, 2023 at 10:34:05AM -0700, Lizhi Hou wrote:
+> On 6/21/23 13:22, Bjorn Helgaas wrote:
 
-Fixes: 13b0aca303e9 ("arm64: tegra: Support Jetson Orin NX")
-Signed-off-by: Brad Griffis <bgriffis@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+>     Added an of_pci_make_dev_node() interface that can be used to create
+>     device tree node for PCI devices.
+> 
+>     Added a PCI_DYNAMIC_OF_NODES config option. When the option is turned
+> on,
+>     the kernel will generate device tree nodes for PCI bridges
+> unconditionally.
+> 
+>     Initially, the basic properties are added for the dynamically generated
+>     device tree nodes which include #address-cells, #size-cells,
+> device_type,
+>     compatible, ranges, reg.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-index 831a553ec387..980f15ac674d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-@@ -28,7 +28,7 @@ spi@3270000 {
- 			flash@0 {
- 				compatible = "jedec,spi-nor";
- 				reg = <0>;
--				spi-max-frequency = <136000000>;
-+				spi-max-frequency = <102000000>;
- 				spi-tx-bus-width = <4>;
- 				spi-rx-bus-width = <4>;
- 			};
--- 
-2.25.1
+s/Added/Add/ (twice, mentioned before).
 
+The commit log should say what the *patch* does, not what *you* did.
+
+> > > @@ -501,8 +501,10 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
+> > >   		 * to rely on this function (you ship a firmware that doesn't
+> > >   		 * create device nodes for all PCI devices).
+> > >   		 */
+> > > -		if (ppnode)
+> > > +		if (ppnode && of_property_present(ppnode, "interrupt-map"))
+> >
+> > Maybe this deserves a comment?  The connection between "interrupt-map"
+> > and the rest of this patch isn't obvious to me.
+> > 
+> > Also, it looks like this happens for *everybody*, regardless of
+> > PCI_DYNAMIC_OF_NODES, which seems a little suspect.  If it's an
+> > unrelated bug fix it should be a different patch.
+> 
+> This is not a bug fix. The check will distinguish between device tree nodes
+> automatically created for pci bridges by this patch with those created by a
+> DT based system. With this patch, device tree nodes are created for pci
+> bridges, thus ppnode here will be non-zero and we will break out of the
+> loop. In order to still use pci_swizzle_interrupt_pin(), checking
+> “interrupt-map” for ppnode is added here.
+> 
+> After thinking about this more, using “interrupt-map” property may not be
+> correct for the cases where ppnode is not dynamically generated and it does
+> not have “interrupt-map”. So, I would introduce a new property “dynamic” for
+> pci bridge nodes generated dynamically. And change the code to: if (ppnode
+> && of_property_present(ppnode, "dynamic")).
+> 
+> Does this make sense?
+
+Makes a lot more sense to me than relying on some unrelated and
+undocumented property.  Probably still would benefit from an #ifdef.
+
+Rob might have an opinion on whether "dynamic" makes sense from a
+DT perspective.
+
+Bjorn
