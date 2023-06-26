@@ -2,303 +2,1171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 703F573EF6E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 01:47:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79A2473EF85
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 01:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229566AbjFZXq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 19:46:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36194 "EHLO
+        id S229851AbjFZX7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 19:59:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229527AbjFZXq4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 19:46:56 -0400
-Received: from mx0b-00230701.pphosted.com (mx0b-00230701.pphosted.com [148.163.158.9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 019F71998;
-        Mon, 26 Jun 2023 16:46:54 -0700 (PDT)
-Received: from pps.filterd (m0098572.ppops.net [127.0.0.1])
-        by mx0b-00230701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35QNAsFq001541;
-        Mon, 26 Jun 2023 16:46:39 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com; h=from : to : cc :
- subject : date : message-id : references : in-reply-to : content-type :
- content-id : content-transfer-encoding : mime-version; s=pfptdkimsnps;
- bh=7yrVF0zqD7Iv6ZUNRlrb7rUv+DNkI3nYi54va6Nv6eU=;
- b=oSvh/BkVypgaSeWm3MWqhd2Ja4v06qZatFYe4Dnl6CGhDKblsDuf9lD+V0gPe6Jj6xYK
- dZfFcEWa4z+1SwDyWHJdQJy/B1bpv2mBT8LgKzFCjNdkltmmBYKBpejX1g+kRiCkxvY7
- ddXQ1r6/OAWfKYkyok0aDz/gjhaA3NxmkhiM4/PAzhG8bt0QSG/NXFDSS49i5tTQgGw/
- Y/o1m9IWg699LY5tUZ0SRz4NlMR542v0DWUeSroswph6/nmDULPwzR/wIaPOukPLB3+G
- ATX/UsNJ9E1VX1xLszIYfDZ9ZW5i6M4FwFiG69LiLBs4PvLANprBu8Lslgy1fNyl8f4B Mw== 
-Received: from smtprelay-out1.synopsys.com (smtprelay-out1.synopsys.com [149.117.87.133])
-        by mx0b-00230701.pphosted.com (PPS) with ESMTPS id 3rdy4e3g4w-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 26 Jun 2023 16:46:38 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1687823197; bh=7yrVF0zqD7Iv6ZUNRlrb7rUv+DNkI3nYi54va6Nv6eU=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=evEHOECM1/b2JwLc4i7+vjliVA7hDYW5qUFJZQbddu5htcx9DucW2cL6c7iNHLY5r
-         ixjUnq9qCKvdkiDMzbUaEMJ+bSLFSXp1/Cfe/hQvAmzi5qx3+uAeYLCBBTcgi0zL6D
-         m3nzagOwLxCNJyWHmbHTraeg5b9p7LbOjgULnNkbbMiYMT7+BAoWFLZWskRwmPlBDO
-         zRLzzJsvN3x2AL0oDJJZzHg6ONpYbkxlSmfCNa+uGAkVEgwc3nqgbrhcGMy+o+C+ur
-         NPjtofHLriFOlUHBagKv9kTtEGOddkI5KLV79o/LHI0hMjs+smtxPVnBQrH8aHCDvA
-         AIT9044vGf8mg==
-Received: from mailhost.synopsys.com (badc-mailhost3.synopsys.com [10.192.0.81])
+        with ESMTP id S229459AbjFZX7d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 19:59:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81F45E5A;
+        Mon, 26 Jun 2023 16:59:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits)
-         client-signature RSA-PSS (2048 bits))
-        (Client CN "mailhost.synopsys.com", Issuer "SNPSica2" (verified OK))
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 95C3B4011F;
-        Mon, 26 Jun 2023 23:46:36 +0000 (UTC)
-Received: from o365relay-in.synopsys.com (us03-o365relay1.synopsys.com [10.4.161.137])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client CN "o365relay-in.synopsys.com", Issuer "Entrust Certification Authority - L1K" (verified OK))
-        by mailhost.synopsys.com (Postfix) with ESMTPS id 46FECA007A;
-        Mon, 26 Jun 2023 23:46:35 +0000 (UTC)
-Authentication-Results: o365relay-in.synopsys.com; dmarc=pass (p=reject dis=none) header.from=synopsys.com
-Authentication-Results: o365relay-in.synopsys.com; spf=pass smtp.mailfrom=synopsys.com
-Authentication-Results: o365relay-in.synopsys.com;
-        dkim=pass (1024-bit key; unprotected) header.d=synopsys.com header.i=@synopsys.com header.a=rsa-sha256 header.s=selector1 header.b=hKsBO41x;
-        dkim-atps=neutral
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11lp2168.outbound.protection.outlook.com [104.47.58.168])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (Client CN "mail.protection.outlook.com", Issuer "DigiCert Cloud Services CA-1" (verified OK))
-        by o365relay-in.synopsys.com (Postfix) with ESMTPS id EAB3A40407;
-        Mon, 26 Jun 2023 23:46:33 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nyPceeIAaJzyAndYd8l7SOSXzHP5FYIvKB1GlYzd+l9YFNUUBg5usvZ/5DDgWv/ls6VOMd/kEo20+LIOpV2DFwy2AZlci88pIvWKz7m/3M0pFDZTVYFGtb5TkkydAwSz8p9H1Sv1I0sAJ4UW6Vm0iNFK6PUbV/exffgkr5TXU2PnSQSJNu8zfqE+vIrGuJQT30+EBrmQYM2bDmwCV2JA663X0wqtZxP+O5/jLclsBkCwQVbY5D1/zWYpWg3efi3ZxlZSRyp8Vjbq00vRcb7VlZyHI+TERwCC1NC7Umgu4BXSRsa4Ox8Iqf/Y+YyneLzUCphH0X2ldWHGPOchDCRgBQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7yrVF0zqD7Iv6ZUNRlrb7rUv+DNkI3nYi54va6Nv6eU=;
- b=MgoXEChFKAM6rGL1vEemnivTZxnbbOuTNx0xggYkV2Me5daEON3Re+x5orXiMzu5qM7IvO5gNaAC3DiaVoe9Ghlf8WfIdJKnMoead3n3qv5CiwQLEHWQ91q0KfJaoi1lauXQC/+4KRMpn/SdIZRD8P6s7q2o0frjexwjkRE4K9eewyugBUAHZugvu+LpM6t/QPStQzeIB2FQZjSQnRC827FR0GKiMHn9TTAZrZGLVegiRYVMScd0iwSqhTk/UCT62ZG4BF1f9pMISlQnQ1uIPXE8h8ljDr8FsjnXTSd2rpy0nQretcpY7aPbdCjvbvpJkRWmMsnf9cORui4fizDdDg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=synopsys.com; dmarc=pass action=none header.from=synopsys.com;
- dkim=pass header.d=synopsys.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=synopsys.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7yrVF0zqD7Iv6ZUNRlrb7rUv+DNkI3nYi54va6Nv6eU=;
- b=hKsBO41x97QItyAj6oAqYenkYrAmOk6kmsXFyrw4loH4D3T0gCJvjFcAZySVh6LMv1RKSqGX9kVjTiNiinnB3o6I3t5TIBQ07M21ynpvt9e5Ozkljqf8qEjMKZYyjW9VkPkEKGX93AjzxeK6ewusR+kJMAKf+y/LY4V6S/YYAds=
-Received: from BYAPR12MB4791.namprd12.prod.outlook.com (2603:10b6:a03:10a::12)
- by DM4PR12MB5087.namprd12.prod.outlook.com (2603:10b6:5:38a::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Mon, 26 Jun
- 2023 23:46:31 +0000
-Received: from BYAPR12MB4791.namprd12.prod.outlook.com
- ([fe80::b1a4:d803:b2ff:cc6b]) by BYAPR12MB4791.namprd12.prod.outlook.com
- ([fe80::b1a4:d803:b2ff:cc6b%3]) with mapi id 15.20.6521.024; Mon, 26 Jun 2023
- 23:46:31 +0000
-X-SNPS-Relay: synopsys.com
-From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Johan Hovold <johan@kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-msm@vger.kernel.org" <linux-arm-msm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "quic_pkondeti@quicinc.com" <quic_pkondeti@quicinc.com>,
-        "quic_ppratap@quicinc.com" <quic_ppratap@quicinc.com>,
-        "quic_jackp@quicinc.com" <quic_jackp@quicinc.com>,
-        "quic_harshq@quicinc.com" <quic_harshq@quicinc.com>,
-        "ahalaney@redhat.com" <ahalaney@redhat.com>,
-        "quic_shazhuss@quicinc.com" <quic_shazhuss@quicinc.com>
-Subject: Re: [PATCH v9 04/10] usb: dwc3: core: Skip setting event buffers for
- host only controllers
-Thread-Topic: [PATCH v9 04/10] usb: dwc3: core: Skip setting event buffers for
- host only controllers
-Thread-Index: AQHZo/oUWyyJ3lQGykedS+ST62GFCK+Y+/MAgACUuQCABDTaAIAAA10A
-Date:   Mon, 26 Jun 2023 23:46:31 +0000
-Message-ID: <20230626234626.aqhaluh6wnat6gxx@synopsys.com>
-References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
- <20230621043628.21485-5-quic_kriskura@quicinc.com>
- <20230623222754.auuce7y6c2e7ymvw@synopsys.com>
- <19932a93-4fc8-f177-8cd6-b6ecd5e163c2@quicinc.com>
- <20230626233424.2flncnsvfzb2ccbt@synopsys.com>
-In-Reply-To: <20230626233424.2flncnsvfzb2ccbt@synopsys.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: BYAPR12MB4791:EE_|DM4PR12MB5087:EE_
-x-ms-office365-filtering-correlation-id: bd52a7ec-e705-4355-7475-08db769f9132
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 5oLRmS3QSTP7EvA0O4yDpncodjKc7IpDCKtcvscRUPI5pkeWb4kO+/YuRdpu3H5/Hj/2R62mUZUvXLsRL4QiU0pSZ6dXq2GfEG+WI9q+JBLFVNSoRjioHl/DphtLj15RGuUJ7JND5g5NHWxwl3i4wA12e7V6CdhEqd+79g9M9NC7G5xtRpzc1MPSwlmAp9/H7hQckEPgf60mSHQ8uNZhL0y4EhXdI23cMYMTl+SD20/AGrgKEbQQIQbx622OLVB6/dPmDulvUr24QFMOjgqk/zs0C4esqUP1FDPbh3CHrB/dkuzzJxoqFTdK5bO8y+Rs6aIVPWZGdVsu8Q7YQMQ114sMa/G/0UClPo6KR4Hm4qXyK2u+gnxYURCqkvp7yF4FxYbS3wCzgHuc7IlSuODXjPJQuTPgBMwemL8f9wUZSRCh1DYa6Ao4wPZQgbtMVrJrsbQX+7DEoZgDafsrZMGKrTEHW0o76y4g0WDk/CPpZKDwcwGSxvptAdnwEZQFXeWEH3FXJawz6Z5L7z+8taJ0TT9Gh9wHIXJYZysGhyDkJvD1BRzyONLQk35490GnSbRVIpO6smPL9FSB0O0SaHAbXEBz7P2wRq+388Rz3ZXga4vJWiwze0bDjMWNeFOgCO97
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR12MB4791.namprd12.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(346002)(376002)(39860400002)(366004)(396003)(136003)(451199021)(66556008)(36756003)(6506007)(6486002)(54906003)(478600001)(2616005)(83380400001)(66446008)(26005)(186003)(53546011)(1076003)(71200400001)(2906002)(5660300002)(7416002)(122000001)(316002)(64756008)(38100700002)(66946007)(76116006)(91956017)(8676002)(41300700001)(6916009)(86362001)(8936002)(4326008)(66476007)(38070700005)(6512007);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?eWhkdEllWWNRWWJaa01kK2p1RUtPcFNhdGlBZzUwOUNZdEh1bzZpcWVPTG5N?=
- =?utf-8?B?MTNadmVwL2hKODdod0p6ais5eTB3Zk1LbTduY3VqRndpbUJ5L1o5M1NFZW5T?=
- =?utf-8?B?RDFPK0xGSEhUb1YwL1RYOXVReUgzc1U2K0Q1citkRHFZejFsK09BaFFlRlli?=
- =?utf-8?B?QXdncG8rbURqK3FHNlYzbjhuQytKaW1xTUZRUzZUaU9xQ3BDMS9XQ0FHTE5Z?=
- =?utf-8?B?MXFkM0Z5dWhOaHpZY2RsYUtsaTgvOHFrU0VPWDNwTDdUQ0FqZGN6Z2Fidkxp?=
- =?utf-8?B?MFZXTWhkUkFtVVZWVHlsNk1kY1l3NU1DcUVQQ3BIV2VtWSt3Zmp0S3U5TEVk?=
- =?utf-8?B?N1FCcmhYbUlCV2djcU5sdnNLR1ErTElCOUh2dG9HMW9KUVFQRzkvY2pRQVlF?=
- =?utf-8?B?Mnh5Q3p0WnhmU3hWSXFvWlJBUHk3ME44SkU0NytKMXo5eFhSdzdZQ3EzWmJa?=
- =?utf-8?B?TG9BUlJuRmtIR0hldXE0ekN0ZEg0Z0VoYVRNQ2Ztd1JLK05NMFI5VzJoU2xt?=
- =?utf-8?B?dFlWNnRvQ2FUc1ZqZXlWVytUNlVxSEVpS0pTRFJ5MWVYWGMreDdkV2ZVRXFY?=
- =?utf-8?B?VTNFck1maEgvWkRhL2xSdEZhNmg3dll5OGY2dXEwcGVVUzBIQ0NkU3JzeEtL?=
- =?utf-8?B?MHRtQUl0VzA5R0hrQ1I2aktoSDlMcWxqMGRDQjBDQUMzWXV5dDBQalNoYTRU?=
- =?utf-8?B?S3VtUkxRWllRM2hHejV6UWFjaUc5TzV1UWh6cFZEVEV5ODkvRDhQaFFLZU0v?=
- =?utf-8?B?RjNmamt0TFZDcG1oR0h2NWJ1aytmT2ZPanRxc0RWaTEzV1dEOVI2SERvcmkx?=
- =?utf-8?B?SHNrVSt0ZEJlTjlISWlWS3Q1ZkRiV0tlMk15QWx3cTE3NXQxb0UrTlZhajNI?=
- =?utf-8?B?WGIweEcyT3J0akJnU1VrbHJOZHZlMU5yK1JDclNpSXZ4dG1kdXFrTFVJeHhH?=
- =?utf-8?B?Szh6VUpraDFtY01NMVk1QStWK0NJWEZxZHRybURaMllFZDlMdUZxL3p3QktI?=
- =?utf-8?B?NDkxWktmM2tVWkE3NWgzVGNaNUhPMS84cVhvUDlWN1N6UVMzVjNZRFVaTlYz?=
- =?utf-8?B?VHE0d2E0WGJzUTNaYUVBSWc5VElGUWdUeUJORjJyLzVzTnR1UWh3UHpFbTky?=
- =?utf-8?B?bTAvS3NTcjZCaVB6ZTE1QlYxYTFsOFVEUFplMnNFbTNPejNzYUduQm1pZ1VM?=
- =?utf-8?B?VkQwdWVxbC9VTitOME1ZUCtGVjZNYWdOZXJTWkhaOGR2OUtDUEdhOWlWRmVF?=
- =?utf-8?B?cEIxbE0rcVdVRnF0Sm5nUnJ3NSsxQmhOTzR5a0ZOUW5CM1JFQTZYZm1Sc0lG?=
- =?utf-8?B?MzJiOXBmYk81Wk9Sb3prOHIwS1F5UXBMVURYa1poanJtYzM5NndnSFk3amRo?=
- =?utf-8?B?N29IbXFRTVlrZkpmYXdVK2RqS01FSjZWcG5WeTR3Q3ZtNHFxVGNJUFBtSW5U?=
- =?utf-8?B?b3FUZjJLK3FwK2dQZUdsbXYzL1BMWUVDZDB0SHZtQWlsZXE5aGh2dEhSZmRT?=
- =?utf-8?B?eW9RcUNtWWpiNDZXd1R6Nk5mbzFtUnVsQTk4Nm5BRjFLRDdHMnhpR093eEFZ?=
- =?utf-8?B?ZHB3RWIyS09VSS9URExjTEN4d0pUOUhZUDd4U2xiMGJqeE84OEovSThsL3Mz?=
- =?utf-8?B?RjA3UGdBYTYyU2NJWjVxaUdla2ZaRko1TktkQ09IM1BYeWVKZ3hKZXRoYXVH?=
- =?utf-8?B?WnBlMWorbmRLR3Q2dGZrUDVkdnRtRElzRHRMYlhBNE5sbHg0eTh6SWlJRXdk?=
- =?utf-8?B?RmRtaGZxMHFodjBlNHViRjNDeXE1VU13bUlNT0gyOVBISWpiM0ZiV3lJTlk5?=
- =?utf-8?B?ZkRWNC8xQ1ZNL3hOa0NDK2grbXVpQmpkN0FvcnNQQnZUMUVrS3h4NTUraWZr?=
- =?utf-8?B?Sm1ZNlVCcjUvMytvQVpjYXdTd1ZzWWVIRit3TnQ3TVVuWndKM2xGUDQ1U3Nv?=
- =?utf-8?B?ODhWdHc0NTd0YjJaSUpCdi9QY28xcVNrSnNzcDFUL2ViQ0ZyeWdwb1M0Q2ZL?=
- =?utf-8?B?TTc3aEJUTWN4cnVVQWtmN0JBdzVwTkRPREdJQS95bm1tWFpxeVhnclM5NnJL?=
- =?utf-8?B?am1jMTA3d3UwU202eEgrRUo1aFJweHNRMUsvenE3aUNaTXY4RGlaQzRMak13?=
- =?utf-8?Q?aR+8iuSKLNKn93Zg2DloHzFVz?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <D89C281E2FC94B478C08E06C813613B0@namprd12.prod.outlook.com>
-Content-Transfer-Encoding: base64
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id F253F60F77;
+        Mon, 26 Jun 2023 23:59:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAA65C433C8;
+        Mon, 26 Jun 2023 23:59:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687823969;
+        bh=H4rhj2+2cTpAOPLW4e85Gj411ii0GGcoqCnuiTpjnLM=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=hANgrdzvIVnCDvlQ1mjA4PMWkejgGrTM6pPIB62Be/23xEoto+WYGm6pNOjGpsDNv
+         NqhZ2hvcbPqmbQ4GLKv2tKsF3cPlwlGtHpOymbrV1HD49+Nsa/eIsf8gT5DvjZGm+y
+         YonNqPTIFHrAkMijrEJ2yi9Oy62adPejT41PQHq2EzoruDB/UqcDDRKHF0KfSNpi4F
+         KWmgTLsu+iZCxxCYvQ/ftPdQkomKEhw0KuLEOPXJ4NG8DI/35xGx5C4wvpz8A+Wsws
+         9HZyb25pkS9YFLbEbtN4AUrtoquSlPiFRQPcYHHEzXQARICma/HqeuNQDj+N22sbvH
+         TgaZVwyjFSMpA==
+Message-ID: <4a62437d-02b7-d061-0a40-127c56b553b9@kernel.org>
+Date:   Tue, 27 Jun 2023 01:59:23 +0200
 MIME-Version: 1.0
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-ExternalHop-MessageData-0: =?utf-8?B?cHB1V2FPL2ZvY1hqaUVuSjgvbTZLb1FsOHNHdnQvTE1jVFBKbXFXL2JFVWlP?=
- =?utf-8?B?M0VyTVlsSU13a1lvZ3J4dzRuQUpkRDJrRFhJMkdYQ0pIcmZDQzFOWCtlMC84?=
- =?utf-8?B?L2lDLzRmNFdHREoxaXUvc3FCQVdYd2JlVDNJMWwxQTUxUlBjSE5ucG5teGty?=
- =?utf-8?B?clI1dTl2UnlMM0d4eWpIZE42Y1ZkN1QrTWJKM0hCWm0zbmxXclRST2Q1QXlw?=
- =?utf-8?B?QnhoS1hFQ1RlUzZzeFAzS1hRUmtvVkNXT25KK0V6T25nako1bkN6UTVOcEls?=
- =?utf-8?B?RHQwakI4elkzcHpwYXRnYldQeFRGNWJXTUwwU1ZTN0ZOUnRnZk5FME16Wks4?=
- =?utf-8?B?VGpValZqUGFqQzc1cnVOK1lYVmxGZnZMMW9zQ2gxQjBvSnNuM3RPcldRUmlY?=
- =?utf-8?B?bEZTREZYb0VUSndJMDY5U2Vid3o5dHRHSCs0Z3RpWUtmRStTSTlZbTNTT0dh?=
- =?utf-8?B?TkhsajgwZEVkaVR1ZWN5NmJxZ1ZaTEZTZWluUjdDNG85UFFyZkQzM1lYdTZ4?=
- =?utf-8?B?cStvSmU4WXJrVFl4SmprdlJKS2VNU2FSN1Zzc3BvaHdObHFQOXh6clVKZHRB?=
- =?utf-8?B?RjR1SU1QWGZ6T2YrM3dlT1BZZ2R6SDhXVk51cjhuVy9iOUFSVXA0RTVmelVN?=
- =?utf-8?B?VTJiRTVNVng3ejlsdDdJM0FLYVlsR1B1aHRIUG11ZHYzbHVlOW5JVWc3VC9r?=
- =?utf-8?B?Nmp6RkNUdGEwV2ZOcXZKUThYSWFxNGo5d1oxNUpVVXVhU2YwMldYSWpKN1JE?=
- =?utf-8?B?dk5RRThLd0tnS1RRRFE3N1NIdmZ0S3N6RThYV05rWDNIYkxwMDBoRW5vSWlJ?=
- =?utf-8?B?dlU4VzFadHVZSHZzaGVwa2ZVRXBrSko3bFNoZG1HcDF1NFNQNHF3WWh4MHNt?=
- =?utf-8?B?WlJsc0J2UnMvR21XR3JJalVWWW5FV0RXS1g4Q1llZFZZVGtPVjVkZGZkNk83?=
- =?utf-8?B?bTNLUkw3U3V0d05QRTIrbG55Z2JsVk9mZFdjbU5IUldXWTBJUWhUQ21rYUVO?=
- =?utf-8?B?UlBjdm5LZnhVVndiYjIxemZ6NXlkdHVDdkp1cVJpVmZIWndwd0p3dU5XdEdq?=
- =?utf-8?B?Wm1aYjc3YmlQczFvSzg0QjMxaGFhb2UvbmRzblBkdytKdkh3QnJtbWU4eU5L?=
- =?utf-8?B?cmFVbnhKcXpNZEN6eW9qcFlQTW4zMjBkUzd2VDQwYnFRK1NVaWNUZm0yY0FZ?=
- =?utf-8?B?RDdCU0FJenNXVWNhclZidmVzM2dUR2VCLzJmcEZpQ2RORHZxTUQyNEQ5NEkx?=
- =?utf-8?B?WXhGZVc2T2hoYm9JM050S3NMRjhOUHFmMnVXQ2ZGWktGZGZKVjRJU015RTVj?=
- =?utf-8?B?SHNBSjhqSlRyRXJFRWpmTkliRGJxQUhkUWlLOXNtR0xKUjdaMXVUclArcjkz?=
- =?utf-8?B?Q0p2U24xWjJoZ2c9PQ==?=
-X-OriginatorOrg: synopsys.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR12MB4791.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd52a7ec-e705-4355-7475-08db769f9132
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jun 2023 23:46:31.0920
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +lHNRlPLZgMqhfeBOk1ALRkUuTQ/ecHpVnnCPd8DcXghPcH4pvMUsSpEK9aGE9ywI5AwwHyKDxfWf3wfVGiB2A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5087
-X-Proofpoint-GUID: ujWgZHqnZVkjsW06rBKJAvvbjUvm-J7t
-X-Proofpoint-ORIG-GUID: ujWgZHqnZVkjsW06rBKJAvvbjUvm-J7t
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-26_19,2023-06-26_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_active_cloned_notspam policy=outbound_active_cloned score=0
- adultscore=0 phishscore=0 clxscore=1015 lowpriorityscore=0
- priorityscore=1501 suspectscore=0 mlxscore=0 mlxlogscore=999
- impostorscore=0 malwarescore=0 spamscore=0 bulkscore=0 classifier=spam
- adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306260220
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v9 2/3] Input: Add Novatek NT36xxx touchscreen driver
+Content-Language: en-US
+To:     kholk11@gmail.com, dmitry.torokhov@gmail.com,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+Cc:     robh+dt@kernel.org, rydberg@bitmath.org, priv.luk@gmail.com,
+        linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+        marijns95@gmail.com, martin.botka1@gmail.com,
+        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
+        krzk@kernel.org, andy.shevchenko@gmail.com
+References: <20201028221302.66583-1-kholk11@gmail.com>
+ <20201028221302.66583-3-kholk11@gmail.com>
+From:   Konrad Dybcio <konradybcio@kernel.org>
+In-Reply-To: <20201028221302.66583-3-kholk11@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCBKdW4gMjYsIDIwMjMsIFRoaW5oIE5ndXllbiB3cm90ZToNCj4gT24gU2F0LCBKdW4g
-MjQsIDIwMjMsIEtyaXNobmEgS3VyYXBhdGkgUFNTTlYgd3JvdGU6DQo+ID4gDQo+ID4gDQo+ID4g
-T24gNi8yNC8yMDIzIDM6NTcgQU0sIFRoaW5oIE5ndXllbiB3cm90ZToNCj4gPiA+IE9uIFdlZCwg
-SnVuIDIxLCAyMDIzLCBLcmlzaG5hIEt1cmFwYXRpIHdyb3RlOg0KPiA+ID4gPiBPbiBzb21lIFNv
-QydzIGxpa2UgU0E4Mjk1UCB3aGVyZSB0aGUgdGVydGlhcnkgY29udHJvbGxlciBpcyBob3N0LW9u
-bHkNCj4gPiA+ID4gY2FwYWJsZSwgR0VWVEFERFJISS9MTywgR0VWVFNJWiwgR0VWVENPVU5UIHJl
-Z2lzdGVycyBhcmUgbm90IGFjY2Vzc2libGUuDQo+ID4gPiA+IFRyeWluZyB0byBhY2Nlc3MgdGhl
-bSBsZWFkcyB0byBhIGNyYXNoLg0KPiA+ID4gPiANCj4gPiA+ID4gRm9yIERSRC9QZXJpcGhlcmFs
-IHN1cHBvcnRlZCBjb250cm9sbGVycywgZXZlbnQgYnVmZmVyIHNldHVwIGlzIGRvbmUNCj4gPiA+
-ID4gYWdhaW4gaW4gZ2FkZ2V0X3B1bGx1cC4gU2tpcCBzZXR1cCBvciBjbGVhbnVwIG9mIGV2ZW50
-IGJ1ZmZlcnMgaWYNCj4gPiA+ID4gY29udHJvbGxlciBpcyBob3N0LW9ubHkgY2FwYWJsZS4NCj4g
-PiA+ID4gDQo+ID4gPiA+IFN1Z2dlc3RlZC1ieTogSm9oYW4gSG92b2xkIDxqb2hhbkBrZXJuZWwu
-b3JnPg0KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBLcmlzaG5hIEt1cmFwYXRpIDxxdWljX2tyaXNr
-dXJhQHF1aWNpbmMuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+ID4gICBkcml2ZXJzL3VzYi9kd2Mz
-L2NvcmUuYyB8IDExICsrKysrKysrKysrDQo+ID4gPiA+ICAgMSBmaWxlIGNoYW5nZWQsIDExIGlu
-c2VydGlvbnMoKykNCj4gPiA+ID4gDQo+ID4gPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3VzYi9k
-d2MzL2NvcmUuYyBiL2RyaXZlcnMvdXNiL2R3YzMvY29yZS5jDQo+ID4gPiA+IGluZGV4IDMyZWMw
-NWZjMjQyYi4uZTFlYmFlNTQ0NTRmIDEwMDY0NA0KPiA+ID4gPiAtLS0gYS9kcml2ZXJzL3VzYi9k
-d2MzL2NvcmUuYw0KPiA+ID4gPiArKysgYi9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuYw0KPiA+ID4g
-PiBAQCAtNDg2LDYgKzQ4NiwxMSBAQCBzdGF0aWMgdm9pZCBkd2MzX2ZyZWVfZXZlbnRfYnVmZmVy
-cyhzdHJ1Y3QgZHdjMyAqZHdjKQ0KPiA+ID4gPiAgIHN0YXRpYyBpbnQgZHdjM19hbGxvY19ldmVu
-dF9idWZmZXJzKHN0cnVjdCBkd2MzICpkd2MsIHVuc2lnbmVkIGludCBsZW5ndGgpDQo+ID4gPiA+
-ICAgew0KPiA+ID4gPiAgIAlzdHJ1Y3QgZHdjM19ldmVudF9idWZmZXIgKmV2dDsNCj4gPiA+ID4g
-Kwl1bnNpZ25lZCBpbnQgaHdfbW9kZTsNCj4gPiA+ID4gKw0KPiA+ID4gPiArCWh3X21vZGUgPSBE
-V0MzX0dIV1BBUkFNUzBfTU9ERShkd2MtPmh3cGFyYW1zLmh3cGFyYW1zMCk7DQo+ID4gPiA+ICsJ
-aWYgKGh3X21vZGUgPT0gRFdDM19HSFdQQVJBTVMwX01PREVfSE9TVCkNCj4gPiA+ID4gKwkJcmV0
-dXJuIDA7DQo+ID4gPiANCj4gPiA+IFRoaXMgaXMgYSBsaXR0bGUgYXdrd2FyZC4gUmV0dXJuaW5n
-IDAgaGVyZSBpbmRpY2F0ZXMgdGhhdCB0aGlzIGZ1bmN0aW9uDQo+ID4gPiB3YXMgc3VjY2Vzc2Z1
-bCwgYW5kIHRoZSBldmVudCBidWZmZXJzIHdlcmUgYWxsb2NhdGVkIGJhc2VkIG9uIHRoZQ0KPiA+
-ID4gZnVuY3Rpb24gbmFtZS4gRG8gdGhpcyBjaGVjayBvdXRzaWRlIG9mIGR3YzNfYWxsb2Nfb25l
-X2V2ZW50X2J1ZmZlcigpDQo+ID4gPiBhbmQgc3BlY2lmaWNhbGx5IHNldCBkd2MtPmV2X2J1ZiA9
-IE5VTEwgaWYgdGhhdCdzIHRoZSBjYXNlLg0KPiA+ID4gDQo+ID4gSGkgVGhpbmgsDQo+ID4gDQo+
-ID4gICBBcG9sb2dpZXMsIEkgZGlkbid0IHVuZGVyc3RhbmQgdGhlIGNvbW1lbnQgcHJvcGVybHku
-DQo+ID4gDQo+ID4gICBJIHRob3VnaHQgd2Ugd2VyZSBzdXBwb3NlZCB0byByZXR1cm4gMCBoZXJl
-IGlmIHdlIGZ1bGZpbGwgdGhlIGdvYWwgb2YgdGhpcw0KPiA+IGZ1bmN0aW9uIChhbGxvY2F0ZSBp
-ZiB3ZSBhcmUgZHJkL2dhZGdldCBhbmQgZG9uJ3QgYWxsb2NhdGUgaWYgd2UgYXJlIGhvc3QNCj4g
-PiBtb2RlIG9ubHkpLg0KPiANCj4gVGhlIG5hbWUgb2YgdGhlIGZ1bmN0aW9uIGltcGxpZXMgdGhh
-dCBpdCByZXR1cm5zIDAgaWYgaXQgYWxsb2NhdGVkIHRoZQ0KPiBldmVudCBidWZmZXIuIElmIHRo
-ZXJlIGFyZSBtdWx0aXBsZSBjb25kaXRpb25zIHRvIHRoZSBmdW5jdGlvbiByZXR1cm5pbmcNCj4g
-MCBoZXJlLCB0aGVuIHdlIHNob3VsZCBkb2N1bWVudCBpdC4NCj4gDQo+ID4gDQo+ID4gICBJZiB3
-ZSByZXR1cm4gYSBub24gemVybyBlcnJvciBoZXJlLCBwcm9iZSB3b3VsZCBmYWlsIGFzIHRoaXMg
-Y2FsbCB3aWxsIGJlDQo+ID4gZG9uZSBvbmx5IGZvciBob3N0IG9ubHkgY29udHJvbGxlcnMgZHVy
-aW5nIHByb2JlIGFuZCBub3doZXJlIGVsc2UuDQo+ID4gDQo+ID4gICBBcmUgeW91IHN1Z2dlc3Rp
-bmcgd2UgbW92ZSB0aGlzIGNoZWNrIHRvIGR3YzNfYWxsb2Nfb25lX2V2ZW50X2J1ZmZlciBjYWxs
-DQo+ID4gPw0KPiA+IA0KPiA+IFJlZ2FyZHMsDQo+ID4gS3Jpc2huYSwNCj4gPiANCj4gDQo+IEkn
-bSBzdWdnZXN0aW5nIHRvIG1vdmUgdGhlIGNoZWNrIHRvIHRoZSBjYWxsZXIgb2YNCj4gZHdjM19h
-bGxvY19vbmVfZXZlbnRfYnVmZmVyKCkuIFNvbWV0aGluZyBsaWtlIHRoaXMgc28gdGhhdCBpdCdz
-DQo+IHNlbGYtZG9jdW1lbnRlZDoNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3VzYi9kd2Mz
-L2NvcmUuYyBiL2RyaXZlcnMvdXNiL2R3YzMvY29yZS5jDQo+IGluZGV4IDBiZWFhYjkzMmU3ZC4u
-YmJhODI3OTJiZjZmIDEwMDY0NA0KPiAtLS0gYS9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuYw0KPiAr
-KysgYi9kcml2ZXJzL3VzYi9kd2MzL2NvcmUuYw0KPiBAQCAtMTc3Myw2ICsxNzczLDcgQEAgc3Rh
-dGljIGludCBkd2MzX3Byb2JlKHN0cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYpDQo+ICAJc3Ry
-dWN0IHJlc291cmNlCQkqcmVzLCBkd2NfcmVzOw0KPiAgCXZvaWQgX19pb21lbQkJKnJlZ3M7DQo+
-ICAJc3RydWN0IGR3YzMJCSpkd2M7DQo+ICsJdW5zaWduZWQgaW50CQlod19tb2RlOw0KPiAgCWlu
-dAkJCXJldDsNCj4gIA0KPiAgCWR3YyA9IGRldm1fa3phbGxvYyhkZXYsIHNpemVvZigqZHdjKSwg
-R0ZQX0tFUk5FTCk7DQo+IEBAIC0xODU0LDExICsxODU1LDE2IEBAIHN0YXRpYyBpbnQgZHdjM19w
-cm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNlICpwZGV2KQ0KPiAgDQo+ICAJcG1fcnVudGltZV9m
-b3JiaWQoZGV2KTsNCj4gIA0KPiAtCXJldCA9IGR3YzNfYWxsb2NfZXZlbnRfYnVmZmVycyhkd2Ms
-IERXQzNfRVZFTlRfQlVGRkVSU19TSVpFKTsNCj4gLQlpZiAocmV0KSB7DQo+IC0JCWRldl9lcnIo
-ZHdjLT5kZXYsICJmYWlsZWQgdG8gYWxsb2NhdGUgZXZlbnQgYnVmZmVyc1xuIik7DQo+IC0JCXJl
-dCA9IC1FTk9NRU07DQo+IC0JCWdvdG8gZXJyX2FsbG93X3JwbTsNCj4gKwlod19tb2RlID0gRFdD
-M19HSFdQQVJBTVMwX01PREUoZHdjLT5od3BhcmFtcy5od3BhcmFtczApOw0KPiArCWlmIChod19t
-b2RlID09IERXQzNfR0hXUEFSQU1TMF9NT0RFX0hPU1QpIHsNCj4gKwkJZHdjLT5ldl9idWYgPSBO
-VUxMOw0KPiArCX0gZWxzZSB7DQo+ICsJCXJldCA9IGR3YzNfYWxsb2NfZXZlbnRfYnVmZmVycyhk
-d2MsIERXQzNfRVZFTlRfQlVGRkVSU19TSVpFKTsNCj4gKwkJaWYgKHJldCkgew0KPiArCQkJZGV2
-X2Vycihkd2MtPmRldiwgImZhaWxlZCB0byBhbGxvY2F0ZSBldmVudCBidWZmZXJzXG4iKTsNCj4g
-KwkJCXJldCA9IC1FTk9NRU07DQo+ICsJCQlnb3RvIGVycl9hbGxvd19ycG07DQo+ICsJCX0NCj4g
-IAl9DQo+ICANCj4gIAlkd2MtPmVkZXYgPSBkd2MzX2dldF9leHRjb24oZHdjKTsNCj4gDQoNCkFj
-dHVhbGx5LCBwbGVhc2UgaWdub3JlLiB0aGVyZSdzIGFscmVhZHkgYSBkb2N1bWVudCB0aGVyZSwg
-SSBtaXNzZWQgdGhhdA0KZm9yIHNvbWUgcmVhc29uLiBXaGF0IHlvdSBkaWQgaXMgZmluZS4gVGhv
-dWdoLCBJIGRvbid0IHNlZSB0aGUgY29uZGl0aW9uDQpmb3IgZXZfYnVmID0gTlVMTCBhbnl3aGVy
-ZS4gQ2FuIHlvdSBhZGQgdGhhdCBmb3IgY2xhcml0eT8NCg0KVGhhbmtzLA0KVGhpbmgNCg==
+On 28.10.2020 23:13, kholk11@gmail.com wrote:
+
+> This is a driver for the Novatek in-cell touch controller and
+> supports various chips from the NT36xxx family, currently
+> including NT36525, NT36672A, NT36676F, NT36772 and NT36870.
+> 
+> Functionality like wake gestures and firmware flashing is not
+> included: I am not aware of any of these DrIC+Touch combo
+> chips not including a non-volatile memory and it should be
+> highly unlikely to find one, since the touch firmware is
+> embedded into the DriverIC one, which is obviously necessary
+> to drive the display unit.
+> 
+> However, the necessary address for the firmware update
+> procedure was included into the address table in this driver
+> so, in the event that someone finds the need to implement it
+> for a reason or another, it will be pretty straightforward to.
+> 
+> This driver is lightly based on the downstream implementation [1].
+> [1] https://github.com/Rasenkai/caf-tsoft-Novatek-nt36xxx
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
+> ---
+So.. this patchset has gone stale for.. a bit.. hopefully to age like
+fine wine!
+
+Dmitry, are there any other major outstanding issues you see with it?
+I'd be happy to pick it up, fix them up and resubmit. Quite some recent
+-ish phones use this touchpanel. And tablets. And other smart rocks!
+
+FWIW there was some discussion regarding regmap usage:
+
+https://patchwork.kernel.org/project/linux-input/patch/20201028221302.66583-3-kholk11@gmail.com/
+
+Konrad
+>  drivers/input/touchscreen/Kconfig   |  12 +
+>  drivers/input/touchscreen/Makefile  |   1 +
+>  drivers/input/touchscreen/nt36xxx.c | 894 ++++++++++++++++++++++++++++
+>  drivers/input/touchscreen/nt36xxx.h | 122 ++++
+>  4 files changed, 1029 insertions(+)
+>  create mode 100644 drivers/input/touchscreen/nt36xxx.c
+>  create mode 100644 drivers/input/touchscreen/nt36xxx.h
+> 
+> diff --git a/drivers/input/touchscreen/Kconfig b/drivers/input/touchscreen/Kconfig
+> index 35c867b2d9a7..6d118b967021 100644
+> --- a/drivers/input/touchscreen/Kconfig
+> +++ b/drivers/input/touchscreen/Kconfig
+> @@ -605,6 +605,18 @@ config TOUCHSCREEN_MTOUCH
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called mtouch.
+>  
+> +config TOUCHSCREEN_NT36XXX
+> +	tristate "Novatek NT36XXX In-Cell I2C touchscreen controller"
+> +	depends on I2C
+> +	help
+> +	  Say Y here if you have a Novatek NT36xxx series In-Cell
+> +	  touchscreen connected to your system over I2C.
+> +
+> +	  If unsure, say N.
+> +
+> +	  To compile this driver as a module, choose M here: the
+> +	  module will be called nt36xxx.
+> +
+>  config TOUCHSCREEN_IMX6UL_TSC
+>  	tristate "Freescale i.MX6UL touchscreen controller"
+>  	depends on (OF && GPIOLIB) || COMPILE_TEST
+> diff --git a/drivers/input/touchscreen/Makefile b/drivers/input/touchscreen/Makefile
+> index 30d1e1b42492..424a555e03d5 100644
+> --- a/drivers/input/touchscreen/Makefile
+> +++ b/drivers/input/touchscreen/Makefile
+> @@ -61,6 +61,7 @@ obj-$(CONFIG_TOUCHSCREEN_MIGOR)		+= migor_ts.o
+>  obj-$(CONFIG_TOUCHSCREEN_MMS114)	+= mms114.o
+>  obj-$(CONFIG_TOUCHSCREEN_MTOUCH)	+= mtouch.o
+>  obj-$(CONFIG_TOUCHSCREEN_MK712)		+= mk712.o
+> +obj-$(CONFIG_TOUCHSCREEN_NT36XXX)	+= nt36xxx.o
+>  obj-$(CONFIG_TOUCHSCREEN_HP600)		+= hp680_ts_input.o
+>  obj-$(CONFIG_TOUCHSCREEN_HP7XX)		+= jornada720_ts.o
+>  obj-$(CONFIG_TOUCHSCREEN_IPAQ_MICRO)	+= ipaq-micro-ts.o
+> diff --git a/drivers/input/touchscreen/nt36xxx.c b/drivers/input/touchscreen/nt36xxx.c
+> new file mode 100644
+> index 000000000000..a572d2b87464
+> --- /dev/null
+> +++ b/drivers/input/touchscreen/nt36xxx.c
+> @@ -0,0 +1,894 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Driver for Novatek NT36xxx series touchscreens
+> + *
+> + * Copyright (C) 2010 - 2017 Novatek, Inc.
+> + * Copyright (C) 2020 AngeloGioacchino Del Regno <kholk11@gmail.com>
+> + */
+> +
+> +#include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+> +#include <linux/i2c.h>
+> +#include <linux/input/mt.h>
+> +#include <linux/input/touchscreen.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/regmap.h>
+> +#include <linux/regulator/consumer.h>
+> +#include <asm/unaligned.h>
+> +
+> +/* FW Param address */
+> +#define NT36XXX_FW_ADDR 0x01
+> +
+> +/* Number of bytes for chip identification */
+> +#define NT36XXX_ID_LEN_MAX	6
+> +
+> +/* Touch info */
+> +#define TOUCH_DEFAULT_MAX_WIDTH  1080
+> +#define TOUCH_DEFAULT_MAX_HEIGHT 2246
+> +#define TOUCH_MAX_FINGER_NUM	 10
+> +#define TOUCH_MAX_PRESSURE	 1000
+> +
+> +/* Point data length */
+> +#define POINT_DATA_LEN		65
+> +
+> +/* Global pages */
+> +#define NT36XXX_PAGE_CHIP_INFO	0x0001f64e
+> +#define NT36XXX_PAGE_CRC	0x0003f135
+> +
+> +/* Misc */
+> +#define NT36XXX_NUM_SUPPLIES	 2
+> +#define NT36XXX_MAX_RETRIES	 5
+> +#define NT36XXX_MAX_FW_RST_RETRY 50
+> +
+> +struct nt36xxx_abs_object {
+> +	u16 x;
+> +	u16 y;
+> +	u16 z;
+> +	u8 tm;
+> +};
+> +
+> +struct nt36xxx_fw_info {
+> +	u8 fw_ver;
+> +	u8 x_num;
+> +	u8 y_num;
+> +	u8 max_buttons;
+> +	u16 abs_x_max;
+> +	u16 abs_y_max;
+> +	u16 nvt_pid;
+> +};
+> +
+> +struct nt36xxx_mem_map {
+> +	u32 evtbuf_addr;
+> +	u32 pipe0_addr;
+> +	u32 pipe1_addr;
+> +	u32 flash_csum_addr;
+> +	u32 flash_data_addr;
+> +};
+> +
+> +struct nt36xxx_i2c {
+> +	struct i2c_client *hw_client;
+> +	struct i2c_client *fw_client;
+> +	struct regmap *regmap;
+> +	struct regmap *fw_regmap;
+> +	struct input_dev *input;
+> +	struct regulator_bulk_data *supplies;
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	struct mutex lock;
+> +
+> +	struct touchscreen_properties prop;
+> +	struct nt36xxx_fw_info fw_info;
+> +	struct nt36xxx_abs_object abs_obj;
+> +
+> +	const struct nt36xxx_mem_map *mmap;
+> +};
+> +
+> +enum nt36xxx_chips {
+> +	NT36525_IC = 0,
+> +	NT36672A_IC,
+> +	NT36676F_IC,
+> +	NT36772_IC,
+> +	NT36870_IC,
+> +	NTMAX_IC,
+> +};
+> +
+> +struct nt36xxx_trim_table {
+> +	u8 id[NT36XXX_ID_LEN_MAX];
+> +	u8 mask[NT36XXX_ID_LEN_MAX];
+> +	enum nt36xxx_chips mapid;
+> +};
+> +
+> +enum nt36xxx_cmds {
+> +	NT36XXX_CMD_ENTER_SLEEP = 0x11,
+> +	NT36XXX_CMD_ENTER_WKUP_GESTURE = 0x13,
+> +	NT36XXX_CMD_UNLOCK = 0x35,
+> +	NT36XXX_CMD_BOOTLOADER_RESET = 0x69,
+> +	NT36XXX_CMD_SW_RESET = 0xa5,
+> +	NT36XXX_CMD_SET_PAGE = 0xff,
+> +};
+> +
+> +/**
+> + * enum nt36xxx_fw_state - Firmware state
+> + * @NT36XXX_STATE_INIT: IC Reset
+> + * @NT36XXX_STATE_REK: ReK baseline
+> + * @NT36XXX_STATE_REK_FINISH: Baseline is ready
+> + * @NT36XXX_STATE_NORMAL_RUN: Firmware is running
+> + */
+> +enum nt36xxx_fw_state {
+> +	NT36XXX_STATE_INIT = 0xa0,
+> +	NT36XXX_STATE_REK,
+> +	NT36XXX_STATE_REK_FINISH,
+> +	NT36XXX_STATE_NORMAL_RUN,
+> +	NT36XXX_STATE_MAX = 0xaf
+> +};
+> +
+> +enum nt36xxx_i2c_events {
+> +	NT36XXX_EVT_REPORT = 0x00,
+> +	NT36XXX_EVT_CRC = 0x35,
+> +	NT36XXX_EVT_CHIPID = 0x4e,
+> +	NT36XXX_EVT_HOST_CMD = 0x50,
+> +	NT36XXX_EVT_HS_OR_SUBCMD = 0x51,   /* Handshake or subcommand byte */
+> +	NT36XXX_EVT_RESET_COMPLETE = 0x60,
+> +	NT36XXX_EVT_FWINFO = 0x78,
+> +	NT36XXX_EVT_PROJECTID = 0x9a,
+> +};
+> +
+> +static const struct nt36xxx_mem_map nt36xxx_memory_maps[] = {
+> +	[NT36525_IC]  = { 0x11a00, 0x10000, 0x12000, 0x14000, 0x14002 },
+> +	[NT36672A_IC] = { 0x21c00, 0x20000, 0x23000, 0x24000, 0x24002 },
+> +	[NT36676F_IC] = { 0x11a00, 0x10000, 0x12000, 0x14000, 0x14002 },
+> +	[NT36772_IC]  = { 0x11e00, 0x10000, 0x12000, 0x14000, 0x14002 },
+> +	[NT36870_IC]  = { 0x25000, 0x20000, 0x23000, 0x24000, 0x24002 },
+> +};
+> +
+> +static const struct nt36xxx_trim_table trim_id_table[] = {
+> +	{
+> +	 .id = { 0x0A, 0xFF, 0xFF, 0x72, 0x66, 0x03 },
+> +	 .mask = { 1, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36672A_IC,
+> +	},
+> +	{
+> +	 .id = { 0x55, 0x00, 0xFF, 0x00, 0x00, 0x00 },
+> +	 .mask = { 1, 1, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0x55, 0x72, 0xFF, 0x00, 0x00, 0x00 },
+> +	 .mask = { 1, 1, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xAA, 0x00, 0xFF, 0x00, 0x00, 0x00 },
+> +	 .mask = { 1, 1, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xAA, 0x72, 0xFF, 0x00, 0x00, 0x00 },
+> +	 .mask = { 1, 1, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xFF, 0xFF, 0xFF, 0x72, 0x67, 0x03 },
+> +	 .mask = { 0, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xFF, 0xFF, 0xFF, 0x70, 0x66, 0x03 },
+> +	 .mask = { 0, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xFF, 0xFF, 0xFF, 0x70, 0x67, 0x03 },
+> +	 .mask = { 0, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xFF, 0xFF, 0xFF, 0x72, 0x66, 0x03 },
+> +	 .mask = { 0, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xFF, 0xFF, 0xFF, 0x25, 0x65, 0x03 },
+> +	 .mask = { 0, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xFF, 0xFF, 0xFF, 0x70, 0x68, 0x03 },
+> +	 .mask = { 0, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36772_IC,
+> +	},
+> +	{
+> +	 .id = { 0xFF, 0xFF, 0xFF, 0x76, 0x66, 0x03 },
+> +	 .mask = { 0, 0, 0, 1, 1, 1 },
+> +	 .mapid = NT36676F_IC,
+> +	},
+> +};
+> +
+> +/**
+> + * nt36xxx_set_page - Set page number for read/write
+> + * @ts: Main driver structure
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int nt36xxx_set_page(struct nt36xxx_i2c *ts, u32 pageaddr)
+> +{
+> +	u32 data = cpu_to_be32(pageaddr) >> 8;
+> +	int ret;
+> +
+> +	ret = regmap_noinc_write(ts->fw_regmap, NT36XXX_CMD_SET_PAGE,
+> +				 &data, sizeof(data));
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(100, 200);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * nt36xxx_sw_reset_idle - Warm restart the firmware
+> + * @ts: Main driver structure
+> + *
+> + * This function restarts the running firmware without rebooting to
+> + * the bootloader (warm restart)
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int nt36xxx_sw_reset_idle(struct nt36xxx_i2c *ts)
+> +{
+> +	int ret;
+> +
+> +	ret = regmap_write(ts->regmap, ts->hw_client->addr,
+> +			   NT36XXX_CMD_SW_RESET);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* Wait until the MCU resets the fw state */
+> +	usleep_range(15000, 16000);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * nt36xxx_bootloader_reset - Reset MCU to bootloader
+> + * @ts: Main driver structure
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int nt36xxx_bootloader_reset(struct nt36xxx_i2c *ts)
+> +{
+> +	int ret;
+> +
+> +	ret = regmap_write(ts->regmap, ts->hw_client->addr,
+> +			   NT36XXX_CMD_BOOTLOADER_RESET);
+> +	if (ret)
+> +		return ret;
+> +
+> +	/* MCU has to reboot from bootloader: this is the typical boot time */
+> +	msleep(35);
+> +	return ret;
+> +}
+> +
+> +/**
+> + * nt36xxx_check_reset_state - Check the boot state during reset
+> + * @ts: Main driver structure
+> + * @fw_state: Enumeration containing firmware states
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int nt36xxx_check_reset_state(struct nt36xxx_i2c *ts,
+> +				     enum nt36xxx_fw_state fw_state)
+> +{
+> +	u8 buf[2] = { 0 };
+> +	int ret, retry = NT36XXX_MAX_FW_RST_RETRY;
+> +
+> +	do {
+> +		ret = regmap_noinc_read(ts->fw_regmap,
+> +					NT36XXX_EVT_RESET_COMPLETE,
+> +					buf, sizeof(buf));
+> +		if (likely(ret == 0) &&
+> +		    (buf[0] >= fw_state) &&
+> +		    (buf[0] <= NT36XXX_STATE_MAX)) {
+> +			ret = 0;
+> +			break;
+> +		}
+> +		usleep_range(10000, 11000);
+> +	} while (--retry);
+> +
+> +	if (!retry) {
+> +		dev_err(&ts->hw_client->dev, "Firmware reset failed.\n");
+> +		ret = -EBUSY;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * nt36xxx_read_pid - Read Novatek Project ID
+> + * @ts: Main driver structure
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int nt36xxx_read_pid(struct nt36xxx_i2c *ts)
+> +{
+> +	__be16 pid;
+> +	int ret;
+> +
+> +	ret = nt36xxx_set_page(ts, ts->mmap->evtbuf_addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_PROJECTID,
+> +				&pid, sizeof(pid));
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	ts->fw_info.nvt_pid = be16_to_cpu(pid);
+> +	return 0;
+> +}
+> +
+> +/**
+> + * __nt36xxx_get_fw_info - Get working params from firmware
+> + * @ts: Main driver structure
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int __nt36xxx_get_fw_info(struct nt36xxx_i2c *ts)
+> +{
+> +	struct nt36xxx_fw_info *fwi = &ts->fw_info;
+> +	u8 buf[11] = { 0 };
+> +	int ret = 0;
+> +
+> +	ret = nt36xxx_set_page(ts, ts->mmap->evtbuf_addr);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_FWINFO,
+> +				buf, sizeof(buf));
+> +	if (ret)
+> +		return ret;
+> +
+> +	fwi->fw_ver = buf[0];
+> +	fwi->x_num = buf[2];
+> +	fwi->y_num = buf[3];
+> +	fwi->abs_x_max = get_unaligned_be16(&buf[4]);
+> +	fwi->abs_y_max = get_unaligned_be16(&buf[6]);
+> +	fwi->max_buttons = buf[10];
+> +
+> +	/* Check fw info integrity and clear x_num, y_num if broken */
+> +	if ((buf[0] + buf[1]) != 0xFF) {
+> +		dev_err(&ts->hw_client->dev,
+> +			"FW info is broken! fw_ver=0x%02X, ~fw_ver=0x%02X\n",
+> +			buf[0], buf[1]);
+> +		fwi->fw_ver = 0;
+> +		fwi->x_num = 18;
+> +		fwi->y_num = 32;
+> +		fwi->abs_x_max = TOUCH_DEFAULT_MAX_WIDTH;
+> +		fwi->abs_y_max = TOUCH_DEFAULT_MAX_HEIGHT;
+> +		fwi->max_buttons = 0;
+> +		return -EINVAL;
+> +	}
+> +
+> +	/* Get Novatek ProjectID */
+> +	return nt36xxx_read_pid(ts);
+> +}
+> +
+> +static int nt36xxx_get_fw_info(struct nt36xxx_i2c *ts)
+> +{
+> +	struct nt36xxx_fw_info *fwi = &ts->fw_info;
+> +	int i, ret = 0;
+> +
+> +	for (i = 0; i < NT36XXX_MAX_RETRIES; i++) {
+> +		ret = __nt36xxx_get_fw_info(ts);
+> +		if (ret == 0)
+> +			break;
+> +	}
+> +
+> +	dev_dbg(&ts->hw_client->dev,
+> +		"FW Info: PID=0x%x, ver=0x%x res=%ux%u max=%ux%u buttons=%u",
+> +		fwi->nvt_pid, fwi->fw_ver, fwi->x_num, fwi->y_num,
+> +		fwi->abs_x_max, fwi->abs_y_max, fwi->max_buttons);
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * nt36xxx_report - Report touch events
+> + * @ts: Main driver structure
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static void nt36xxx_report(struct nt36xxx_i2c *ts)
+> +{
+> +	struct nt36xxx_abs_object *obj = &ts->abs_obj;
+> +	struct input_dev *input = ts->input;
+> +	u8 input_id = 0;
+> +	u8 point[POINT_DATA_LEN + 1] = { 0 };
+> +	unsigned int ppos = 0;
+> +	int i, ret, finger_cnt = 0;
+> +
+> +	mutex_lock(&ts->lock);
+> +
+> +	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_REPORT,
+> +				point, sizeof(point));
+> +	if (ret < 0) {
+> +		dev_err(&ts->hw_client->dev,
+> +			"Cannot read touch point data: %d\n", ret);
+> +		goto xfer_error;
+> +	}
+> +
+> +	for (i = 0; i < TOUCH_MAX_FINGER_NUM; i++) {
+> +		ppos = 6 * i;
+> +		input_id = point[ppos + 0] >> 3;
+> +		if ((input_id == 0) || (input_id > TOUCH_MAX_FINGER_NUM))
+> +			continue;
+> +
+> +		if (((point[ppos] & 0x07) == 0x01) ||
+> +		    ((point[ppos] & 0x07) == 0x02)) {
+> +			obj->x = (point[ppos + 1] << 4) +
+> +				 (point[ppos + 3] >> 4);
+> +			obj->y = (point[ppos + 2] << 4) +
+> +				 (point[ppos + 3] & 0xf);
+> +			if ((obj->x > ts->prop.max_x) ||
+> +			    (obj->y > ts->prop.max_y))
+> +				continue;
+> +
+> +			obj->tm = point[ppos + 4];
+> +			if (obj->tm == 0)
+> +				obj->tm = 1;
+> +
+> +			obj->z = point[ppos + 5];
+> +			if (i < 2) {
+> +				obj->z += point[i + 63] << 8;
+> +				if (obj->z > TOUCH_MAX_PRESSURE)
+> +					obj->z = TOUCH_MAX_PRESSURE;
+> +			}
+> +
+> +			if (obj->z == 0)
+> +				obj->z = 1;
+> +
+> +			input_mt_slot(input, input_id - 1);
+> +			input_mt_report_slot_state(input,
+> +						   MT_TOOL_FINGER, true);
+> +			touchscreen_report_pos(input, &ts->prop, obj->x,
+> +					       obj->y, true);
+> +
+> +			input_report_abs(input, ABS_MT_TOUCH_MAJOR, obj->tm);
+> +			input_report_abs(input, ABS_MT_PRESSURE, obj->z);
+> +
+> +			finger_cnt++;
+> +		}
+> +	}
+> +	input_mt_sync_frame(input);
+> +	input_sync(input);
+> +
+> +xfer_error:
+> +	enable_irq(ts->hw_client->irq);
+> +
+> +	mutex_unlock(&ts->lock);
+> +}
+> +
+> +static irqreturn_t nt36xxx_i2c_irq_handler(int irq, void *dev_id)
+> +{
+> +	struct nt36xxx_i2c *ts = dev_id;
+> +
+> +	disable_irq_nosync(ts->hw_client->irq);
+> +	nt36xxx_report(ts);
+> +
+> +	return IRQ_HANDLED;
+> +}
+> +
+> +static bool nt36xxx_in_crc_reboot_loop(u8 *buf)
+> +{
+> +	return ((buf[0] == 0xFC) && (buf[1] == 0xFC) && (buf[2] == 0xFC)) ||
+> +	       ((buf[0] == 0xFF) && (buf[1] == 0xFF) && (buf[2] == 0xFF));
+> +}
+> +
+> +/**
+> + * nt36xxx_stop_crc_reboot - Stop CRC reboot loop and warm-reboot the firmware
+> + * @ts: Main driver structure
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int nt36xxx_stop_crc_reboot(struct nt36xxx_i2c *ts)
+> +{
+> +	u8 buf[3] = { 0 };
+> +	u8 val;
+> +	int ret, retry = NT36XXX_MAX_RETRIES;
+> +
+> +	/* Read dummy buffer to check CRC fail reboot is happening or not */
+> +
+> +	/* Change I2C index to prevent getting 0xFF, but not 0xFC */
+> +	ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CHIP_INFO);
+> +	if (ret) {
+> +		dev_dbg(&ts->hw_client->dev,
+> +			"CRC reset failed: Cannot select page.\n");
+> +		return ret;
+> +	}
+> +
+> +	/* If ChipID command returns 0xFC or 0xFF, the MCU is in CRC reboot */
+> +	ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_CHIPID,
+> +				buf, sizeof(buf));
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (!nt36xxx_in_crc_reboot_loop(buf))
+> +		return 0;
+> +
+> +	/* IC is in CRC fail reboot loop, needs to be stopped! */
+> +	do {
+> +		/* Special reset-idle sequence for CRC failure */
+> +		ret = regmap_write(ts->regmap, ts->hw_client->addr,
+> +				   NT36XXX_CMD_SW_RESET);
+> +		if (ret)
+> +			dev_dbg(&ts->hw_client->dev,
+> +				"SW Reset 1 failed: may not recover\n");
+> +
+> +		ret = regmap_write(ts->regmap, ts->hw_client->addr,
+> +				   NT36XXX_CMD_SW_RESET);
+> +		if (ret)
+> +			dev_dbg(&ts->hw_client->dev,
+> +				"SW Reset 2 failed: may not recover\n");
+> +		usleep_range(1000, 1100);
+> +
+> +		/* Clear CRC_ERR_FLAG */
+> +		ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CRC);
+> +		if (ret)
+> +			continue;
+> +
+> +		val = 0xA5;
+> +		ret = regmap_raw_write(ts->fw_regmap, NT36XXX_EVT_CRC,
+> +				       &val, sizeof(val));
+> +		if (ret)
+> +			continue;
+> +
+> +		/* Check CRC_ERR_FLAG */
+> +		ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CRC);
+> +		if (ret)
+> +			continue;
+> +
+> +		ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_CRC,
+> +					&buf, sizeof(buf));
+> +		if (ret)
+> +			continue;
+> +
+> +		if (buf[0] == 0xA5)
+> +			break;
+> +	} while (--retry);
+> +
+> +	if (retry == 0) {
+> +		dev_err(&ts->hw_client->dev,
+> +			"CRC reset failed: buf=0x%2ph\n", buf);
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +/**
+> + * nt36xxx_i2c_chip_version_init - Detect Novatek NT36xxx family IC
+> + * @ts: Main driver structure
+> + *
+> + * This function reads the ChipID from the IC and sets the right
+> + * memory map for the detected chip.
+> + *
+> + * Return: Always zero for success, negative number for error
+> + */
+> +static int nt36xxx_i2c_chip_version_init(struct nt36xxx_i2c *ts)
+> +{
+> +	u8 buf[7] = { 0 };
+> +	int retry = NT36XXX_MAX_RETRIES;
+> +	int sz = sizeof(trim_id_table) / sizeof(struct nt36xxx_trim_table);
+> +	int i, list, mapid, ret;
+> +
+> +	ret = nt36xxx_bootloader_reset(ts);
+> +	if (ret) {
+> +		dev_err(&ts->hw_client->dev, "Can't reset the nvt IC\n");
+> +		return ret;
+> +	}
+> +
+> +	do {
+> +		ret = nt36xxx_sw_reset_idle(ts);
+> +		if (ret)
+> +			continue;
+> +
+> +		ret = regmap_write(ts->regmap, ts->hw_client->addr, NT36XXX_CMD_UNLOCK);
+> +		if (ret)
+> +			continue;
+> +		usleep_range(10000, 11000);
+> +
+> +		ret = nt36xxx_set_page(ts, NT36XXX_PAGE_CHIP_INFO);
+> +		if (ret)
+> +			continue;
+> +
+> +		memset(buf, 0, ARRAY_SIZE(buf));
+> +		ret = regmap_noinc_read(ts->fw_regmap, NT36XXX_EVT_CHIPID,
+> +					buf, sizeof(buf));
+> +		if (ret)
+> +			continue;
+> +
+> +		/* Compare read chip id with trim list */
+> +		for (list = 0; list < sz; list++) {
+> +			/* Compare each not masked byte */
+> +			for (i = 0; i < NT36XXX_ID_LEN_MAX; i++) {
+> +				if (trim_id_table[list].mask[i] &&
+> +				    buf[i] != trim_id_table[list].id[i])
+> +					break;
+> +			}
+> +
+> +			if (i == NT36XXX_ID_LEN_MAX) {
+> +				mapid = trim_id_table[list].mapid;
+> +				ts->mmap = &nt36xxx_memory_maps[mapid];
+> +				return 0;
+> +			}
+> +
+> +			ts->mmap = NULL;
+> +			ret = -ENOENT;
+> +		}
+> +
+> +		/* Stop CRC check to prevent IC auto reboot */
+> +		if (nt36xxx_in_crc_reboot_loop(buf)) {
+> +			ret = nt36xxx_stop_crc_reboot(ts);
+> +			if (ret)
+> +				continue;
+> +		}
+> +
+> +		usleep_range(10000, 11000);
+> +	} while (--retry);
+> +
+> +	return ret;
+> +}
+> +
+> +static const struct regmap_config nt36xxx_i2c_regmap_hw_config = {
+> +	.name = "nt36xxx_i2c_hw",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.cache_type = REGCACHE_NONE,
+> +};
+> +
+> +static const struct regmap_config nt36xxx_i2c_regmap_fw_config = {
+> +	.name = "nt36xxx_i2c_fw",
+> +	.reg_bits = 8,
+> +	.val_bits = 8,
+> +	.cache_type = REGCACHE_NONE,
+> +};
+> +
+> +static void nt36xxx_disable_regulators(void *data)
+> +{
+> +	struct nt36xxx_i2c *ts = data;
+> +
+> +	regulator_bulk_disable(NT36XXX_NUM_SUPPLIES, ts->supplies);
+> +}
+> +
+> +static int nt36xxx_i2c_probe(struct i2c_client *hw_client,
+> +			     const struct i2c_device_id *id)
+> +{
+> +	struct nt36xxx_i2c *ts;
+> +	struct input_dev *input;
+> +	int ret;
+> +
+> +	if (!i2c_check_functionality(hw_client->adapter, I2C_FUNC_I2C)) {
+> +		dev_err(&hw_client->dev, "i2c_check_functionality error\n");
+> +		return -EIO;
+> +	}
+> +
+> +	if (!hw_client->irq) {
+> +		dev_err(&hw_client->dev, "No irq specified\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ts = devm_kzalloc(&hw_client->dev, sizeof(*ts), GFP_KERNEL);
+> +	if (!ts)
+> +		return -ENOMEM;
+> +
+> +	ts->supplies = devm_kcalloc(&hw_client->dev,
+> +				    NT36XXX_NUM_SUPPLIES,
+> +				    sizeof(*ts->supplies),
+> +				    GFP_KERNEL);
+> +	if (!ts->supplies)
+> +		return -ENOMEM;
+> +
+> +	input = devm_input_allocate_device(&hw_client->dev);
+> +	if (!input)
+> +		return -ENOMEM;
+> +
+> +	ts->fw_client = i2c_new_dummy_device(hw_client->adapter,
+> +					     NT36XXX_FW_ADDR);
+> +	if (IS_ERR(ts->fw_client)) {
+> +		dev_err(&hw_client->dev, "Cannot add FW I2C device\n");
+> +		return PTR_ERR(ts->fw_client);
+> +	}
+> +
+> +	ts->hw_client = hw_client;
+> +	ts->input = input;
+> +	i2c_set_clientdata(ts->hw_client, ts);
+> +	i2c_set_clientdata(ts->fw_client, ts);
+> +
+> +	ts->reset_gpio = devm_gpiod_get_optional(&hw_client->dev, "reset",
+> +						 GPIOD_OUT_HIGH);
+> +	if (IS_ERR(ts->reset_gpio))
+> +		return PTR_ERR(ts->reset_gpio);
+> +	gpiod_set_consumer_name(ts->reset_gpio, "nt36xxx reset");
+> +
+> +	/* These supplies are optional */
+> +	ts->supplies[0].supply = "vdd";
+> +	ts->supplies[1].supply = "vio";
+> +	ret = devm_regulator_bulk_get(&hw_client->dev,
+> +				      NT36XXX_NUM_SUPPLIES,
+> +				      ts->supplies);
+> +	if (ret)
+> +		return dev_err_probe(&hw_client->dev, ret,
+> +				     "Cannot get supplies: %d\n", ret);
+> +
+> +	ts->regmap = devm_regmap_init_i2c(ts->hw_client,
+> +					  &nt36xxx_i2c_regmap_hw_config);
+> +	if (IS_ERR(ts->regmap)) {
+> +		dev_err(&hw_client->dev, "regmap (hw-addr) init failed\n");
+> +		return PTR_ERR(ts->regmap);
+> +	}
+> +
+> +	ts->fw_regmap = devm_regmap_init_i2c(ts->fw_client,
+> +					     &nt36xxx_i2c_regmap_fw_config);
+> +	if (IS_ERR(ts->fw_regmap)) {
+> +		dev_err(&hw_client->dev, "regmap (fw-addr) init failed\n");
+> +		return PTR_ERR(ts->fw_regmap);
+> +	}
+> +
+> +	ret = regulator_bulk_enable(NT36XXX_NUM_SUPPLIES, ts->supplies);
+> +	if (ret)
+> +		return ret;
+> +
+> +	usleep_range(10000, 11000);
+> +
+> +	ret = devm_add_action_or_reset(&hw_client->dev,
+> +				       nt36xxx_disable_regulators, ts);
+> +	if (ret)
+> +		return ret;
+> +
+> +	mutex_init(&ts->lock);
+> +
+> +	/* Set memory maps for the specific chip version */
+> +	ret = nt36xxx_i2c_chip_version_init(ts);
+> +	if (ret) {
+> +		dev_err(&hw_client->dev, "Failed to check chip version\n");
+> +		return ret;
+> +	}
+> +
+> +	/* Reset the MCU */
+> +	ret = nt36xxx_bootloader_reset(ts);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Check and eventually wait until the MCU goes in reset state */
+> +	ret = nt36xxx_check_reset_state(ts, NT36XXX_STATE_INIT);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	/* Get informations from the TS firmware */
+> +	ret = nt36xxx_get_fw_info(ts);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	input->phys = devm_kasprintf(&hw_client->dev, GFP_KERNEL,
+> +				     "%s/input0", dev_name(&hw_client->dev));
+> +	if (!input->phys)
+> +		return -ENOMEM;
+> +
+> +	input->name = "Novatek NT36XXX Touchscreen";
+> +	input->id.bustype = BUS_I2C;
+> +	input->dev.parent = &hw_client->dev;
+> +
+> +	__set_bit(EV_KEY, input->evbit);
+> +	__set_bit(EV_ABS, input->evbit);
+> +	input_set_capability(input, EV_KEY, BTN_TOUCH);
+> +
+> +	ret = input_mt_init_slots(input, TOUCH_MAX_FINGER_NUM,
+> +				  INPUT_MT_DIRECT | INPUT_MT_DROP_UNUSED);
+> +	if (ret) {
+> +		dev_err(&hw_client->dev, "Cannot init MT slots (%d)\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	input_set_abs_params(input, ABS_MT_PRESSURE, 0,
+> +			     TOUCH_MAX_PRESSURE, 0, 0);
+> +	input_set_abs_params(input, ABS_MT_TOUCH_MAJOR, 0, 255, 0, 0);
+> +
+> +	input_set_abs_params(input, ABS_MT_POSITION_X, 0,
+> +			     ts->fw_info.abs_x_max - 1, 0, 0);
+> +	input_set_abs_params(input, ABS_MT_POSITION_Y, 0,
+> +			     ts->fw_info.abs_y_max - 1, 0, 0);
+> +
+> +	/* Override the firmware defaults, if needed */
+> +	touchscreen_parse_properties(input, true, &ts->prop);
+> +
+> +	input_set_drvdata(input, ts);
+> +
+> +	ret = input_register_device(ts->input);
+> +	if (ret) {
+> +		dev_err(&hw_client->dev, "Failed to register input device: %d\n",
+> +			ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = devm_request_threaded_irq(&hw_client->dev, hw_client->irq, NULL,
+> +					nt36xxx_i2c_irq_handler, IRQF_ONESHOT,
+> +					hw_client->name, ts);
+> +	if (ret) {
+> +		dev_err(&hw_client->dev, "request irq failed: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return ret;
+> +}
+> +
+> +static int __maybe_unused nt36xxx_i2c_suspend(struct device *dev)
+> +{
+> +	struct nt36xxx_i2c *ts = i2c_get_clientdata(to_i2c_client(dev));
+> +	int ret;
+> +
+> +	disable_irq(ts->hw_client->irq);
+> +
+> +	ret = regmap_write(ts->fw_regmap, NT36XXX_EVT_HOST_CMD,
+> +			   NT36XXX_CMD_ENTER_SLEEP);
+> +	if (ret) {
+> +		dev_err(&ts->hw_client->dev, "Cannot enter suspend!!\n");
+> +		return ret;
+> +	}
+> +
+> +	gpiod_set_value(ts->reset_gpio, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static int __maybe_unused nt36xxx_i2c_resume(struct device *dev)
+> +{
+> +	struct nt36xxx_i2c *ts = i2c_get_clientdata(to_i2c_client(dev));
+> +	int ret;
+> +
+> +	mutex_lock(&ts->lock);
+> +
+> +	gpiod_set_value(ts->reset_gpio, 0);
+> +
+> +	/* Reboot the MCU (also recalibrates the TS) */
+> +	ret = nt36xxx_bootloader_reset(ts);
+> +	if (ret < 0)
+> +		goto end;
+> +
+> +	ret = nt36xxx_check_reset_state(ts, NT36XXX_STATE_REK);
+> +	if (ret < 0)
+> +		goto end;
+> +
+> +	enable_irq(ts->hw_client->irq);
+> +end:
+> +	mutex_unlock(&ts->lock);
+> +	return ret;
+> +}
+> +
+> +static SIMPLE_DEV_PM_OPS(nt36xxx_i2c_pm,
+> +			 nt36xxx_i2c_suspend, nt36xxx_i2c_resume);
+> +
+> +static const struct of_device_id nt36xxx_of_match[] = {
+> +	{ .compatible = "novatek,nt36525" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, nt36xxx_of_match);
+> +
+> +static const struct i2c_device_id nt36xxx_i2c_ts_id[] = {
+> +	{ "NVT-ts", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, nt36xxx_i2c_ts_id);
+> +
+> +static struct i2c_driver nt36xxx_i2c_ts_driver = {
+> +	.driver = {
+> +		.name	= "nt36xxx_ts",
+> +		.pm	= &nt36xxx_i2c_pm,
+> +		.of_match_table = nt36xxx_of_match,
+> +	},
+> +	.id_table	= nt36xxx_i2c_ts_id,
+> +	.probe		= nt36xxx_i2c_probe,
+> +};
+> +module_i2c_driver(nt36xxx_i2c_ts_driver);
+> +
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_DESCRIPTION("Novatek NT36XXX Touchscreen Driver");
+> +MODULE_AUTHOR("AngeloGioacchino Del Regno <kholk11@gmail.com>");
+> diff --git a/drivers/input/touchscreen/nt36xxx.h b/drivers/input/touchscreen/nt36xxx.h
+> new file mode 100644
+> index 000000000000..6f03dfb45656
+> --- /dev/null
+> +++ b/drivers/input/touchscreen/nt36xxx.h
+> @@ -0,0 +1,122 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +/*
+> + * Copyright (C) 2010 - 2017 Novatek, Inc.
+> + * Copyright (C) 2020 AngeloGioacchino Del Regno <kholk11@gmail.com>
+> + */
+> +
+> +#ifndef NT36XXX_H
+> +#define NT36XXX_H
+> +
+> +#define NT36XXX_INPUT_DEVICE_NAME	"Novatek NT36XXX Touch Sensor"
+> +
+> +/* These chips have this fixed address when in bootloader 🙁 */
+> +#define NT36XXX_BLDR_ADDR 0x01
+> +
+> +/* Input device info */
+> +#define NVT_TS_NAME "NVTCapacitiveTouchScreen"
+> +
+> +/* Number of bytes for chip identification */
+> +#define NT36XXX_ID_LEN_MAX	6
+> +
+> +/* Touch info */
+> +#define TOUCH_DEFAULT_MAX_WIDTH  1080
+> +#define TOUCH_DEFAULT_MAX_HEIGHT 2246
+> +#define TOUCH_MAX_FINGER_NUM	 10
+> +#define TOUCH_MAX_PRESSURE	 1000
+> +
+> +/* Point data length */
+> +#define POINT_DATA_LEN		65
+> +
+> +/* Global pages */
+> +#define NT36XXX_PAGE_CHIP_INFO	0x0001f64e
+> +#define NT36XXX_PAGE_CRC	0x0003f135
+> +
+> +/* Misc */
+> +#define NT36XXX_NUM_SUPPLIES	 2
+> +#define NT36XXX_MAX_RETRIES	 5
+> +#define NT36XXX_MAX_FW_RST_RETRY 50
+> +
+> +struct nt36xxx_abs_object {
+> +	u16 x;
+> +	u16 y;
+> +	u16 z;
+> +	u8 tm;
+> +};
+> +
+> +struct nt36xxx_fw_info {
+> +	u8 fw_ver;
+> +	u8 x_num;
+> +	u8 y_num;
+> +	u8 max_buttons;
+> +	u16 abs_x_max;
+> +	u16 abs_y_max;
+> +	u16 nvt_pid;
+> +};
+> +
+> +struct nt36xxx_mem_map {
+> +	u32 evtbuf_addr;
+> +	u32 pipe0_addr;
+> +	u32 pipe1_addr;
+> +	u32 flash_csum_addr;
+> +	u32 flash_data_addr;
+> +};
+> +
+> +struct nt36xxx_i2c {
+> +	struct i2c_client *client;
+> +	struct input_dev *input;
+> +	struct regulator_bulk_data *supplies;
+> +	struct gpio_desc *reset_gpio;
+> +
+> +	struct work_struct ts_work;
+> +	struct workqueue_struct *ts_workq;
+> +	struct mutex lock;
+> +
+> +	struct nt36xxx_fw_info fw_info;
+> +	struct nt36xxx_abs_object abs_obj;
+> +
+> +	const struct nt36xxx_mem_map *mmap;
+> +	u8 max_fingers;
+> +};
+> +
+> +enum nt36xxx_chips {
+> +	NT36525_IC = 0,
+> +	NT36672A_IC,
+> +	NT36676F_IC,
+> +	NT36772_IC,
+> +	NT36870_IC,
+> +	NTMAX_IC,
+> +};
+> +
+> +struct nt36xxx_trim_table {
+> +	u8 id[NT36XXX_ID_LEN_MAX];
+> +	u8 mask[NT36XXX_ID_LEN_MAX];
+> +	enum nt36xxx_chips mapid;
+> +};
+> +
+> +enum nt36xxx_cmds {
+> +	NT36XXX_CMD_ENTER_SLEEP = 0x11,
+> +	NT36XXX_CMD_ENTER_WKUP_GESTURE = 0x13,
+> +	NT36XXX_CMD_UNLOCK = 0x35,
+> +	NT36XXX_CMD_BOOTLOADER_RESET = 0x69,
+> +	NT36XXX_CMD_SW_RESET = 0xa5,
+> +	NT36XXX_CMD_SET_PAGE = 0xff,
+> +};
+> +
+> +enum nt36xxx_fw_state {
+> +	NT36XXX_STATE_INIT = 0xa0,	/* IC reset */
+> +	NT36XXX_STATE_REK,		/* ReK baseline */
+> +	NT36XXX_STATE_REK_FINISH,	/* Baseline is ready */
+> +	NT36XXX_STATE_NORMAL_RUN,	/* Normal run */
+> +	NT36XXX_STATE_MAX = 0xaf
+> +};
+> +
+> +enum nt36xxx_i2c_events {
+> +	NT36XXX_EVT_CHIPID = 0x4e,
+> +	NT36XXX_EVT_HOST_CMD = 0x50,
+> +	NT36XXX_EVT_HS_OR_SUBCMD = 0x51,   /* Handshake or subcommand byte */
+> +	NT36XXX_EVT_RESET_COMPLETE = 0x60,
+> +	NT36XXX_EVT_FWINFO = 0x78,
+> +	NT36XXX_EVT_PROJECTID = 0x9a,
+> +};
+> +
+> +#endif
+> 
