@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECCDA73E166
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:02:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACA2273E16C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230351AbjFZOCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 10:02:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56026 "EHLO
+        id S230396AbjFZOCy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 10:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230409AbjFZOCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:02:44 -0400
+        with ESMTP id S229679AbjFZOCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:02:52 -0400
 Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08F0B1710
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:02:39 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b5e7dba43cso27066121fa.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:02:38 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F250B10DD
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:02:46 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b466744368so49349371fa.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:02:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687788157; x=1690380157;
+        d=linaro.org; s=google; t=1687788165; x=1690380165;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=P95F46FHFtUvfecutBQEk+GjvQcOHcyS1bOsu5lMsVg=;
-        b=aBHNP30nnAeqLGs3J7jiucFm0/sxptH2wV5ts7YECBVbMNY0+iVlf0SXa8+Jn+WyEC
-         rILcZzkOdOymLNCZ+LvbIfnvQAVNAKSZrR3pj0oHgcrH7Z9KJ6kkdGfK0zBwYfFiCebL
-         xtp97fR5MQotO8YeUsZDj1bWgpdqDIn+eVPYuB+OCIMZlh/UsVctMbjdoIp1tf+ylHa4
-         G95gWsLmGoF9qqGdh3SqJrgTuCtbZ7ew6RjfH9n9GTiwkeQRimd5tRU4KpmWsK4kbLnN
-         IqxRpAkwdDHErDtbIDiyqjMHRfRrfzfg1RM9I6UX8d+w7I6jhEk0mpLI/1ku3Uk4Z5lu
-         9Zfw==
+        bh=KwTeJb5rlu1F3icPpirusX7UnLyhDrrYtsrRQQcTXJM=;
+        b=VJTbwz/Cn0vLxM4y+28IpN/gMNd4zV6qg3cXBGPHLjvPfMaGugncCiJ8SU/1lche1X
+         vAHi6l4H72Q5FhX5soS1kf4xYRnDmHJHbUB7i43VrdS7SdbLkQUH5VzJfgHlz0gu5Gy2
+         yfcVsMU8/f4bKsAzkffob9nW4t5YGoavTrnb58luhkHBVXmw1+tWvE1Q3Ysa8BxLtNfs
+         tSdo1K07iYqoSW2vrBCwKLzjQlNEHbKh6GYDcc1YSGx0UAPd3DqDrnTrLl8KKXYeY6Wo
+         Zc7D7ssMBk7kWrIOJDhfhGHHFTreUr0p7sTTR517s1Pw4pJbWmQfTVQ8YS/wihXjFaA4
+         XrcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687788157; x=1690380157;
+        d=1e100.net; s=20221208; t=1687788165; x=1690380165;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=P95F46FHFtUvfecutBQEk+GjvQcOHcyS1bOsu5lMsVg=;
-        b=S/UWZY5q+J4jPJxYiOIcrPv1e0JIo/IOsbTcMB0KrsCj6LbqvsWrjnA/z6l4qrXrRw
-         befei9H3HrFCi8TYb0d7SA/yiylJVe8qU74NLJ5BBYCbsX8BCh1aO83NN5VXMJOdqFb8
-         kNC/gP5SNsvoKKdz8IhMOwU41MgZw2QTmvNsTNBfPkdFxNj8kFqiFsEPr4bXtW+SelL8
-         a8a+Kmqsm6MqE9S2Bg1d1NjyZL6YPHqEE4c7HTQ8HKr21xphxrS5tKQ7IFu+0Ixy3t2v
-         kreSEc1AYeu4aXudinR+Z0NMWOGHLN5FyDEZtHOEKAFadEu0CcK2loHnYNTtNa7UbwqU
-         bCfw==
-X-Gm-Message-State: AC+VfDwM0f9dv2mHI1khH/naK+vWctu1RRg+56PUDy87wEzd9cytBBAA
-        jVTjbWW2P9ClpZ1cJ9FPk3uBKw==
-X-Google-Smtp-Source: ACHHUZ5PmXhjDhTMOmYe/Hfn35SnfeoMBX29BBtSZx9DeeOSEq/rumQKvpa2h+4aol0xpdew/s/hQw==
-X-Received: by 2002:a2e:9d4e:0:b0:2b4:67e0:4ce0 with SMTP id y14-20020a2e9d4e000000b002b467e04ce0mr13945422ljj.44.1687788157204;
-        Mon, 26 Jun 2023 07:02:37 -0700 (PDT)
+        bh=KwTeJb5rlu1F3icPpirusX7UnLyhDrrYtsrRQQcTXJM=;
+        b=bZ65cMP9zgOPrhqbzJ+xINhtHN0eGiNUwHbAPFFuZm2DmIzZIUBltsyB5STeThG4OE
+         Xwk9YKaFNkDDDkqtvjYHmXBcqFG/9mhcfe3GPGU22EPcPZC1L9lgEo+3rRHk1WJD//4F
+         B+H5NIkm4gZbwHnRQvjDuoQHs4BjY5IPn31vlDiydZ7WEmMcesF8wtd4S68kEGJBOzpP
+         Vs1bVwijcdvSZa7Q774FRfd232vBIK+SCjVCANiYlUA0HfWIWuxL3eQ+xkZGyrVuvR2C
+         1U/knJgE+C1wEcV1b+ecVM+Su7ZbaPvPZkCVspzehgG5KbL1MLczbMrqSf+rZakF2oys
+         Zyaw==
+X-Gm-Message-State: AC+VfDzu7IX25L+Hf7oZpWxoKtloNmbi8UcEUNeKHN/bc4h9okQa8wbY
+        4lM4faBjfQpND7cv8a50nQL/Rg==
+X-Google-Smtp-Source: ACHHUZ5DMl2r4sZdyz2vFP/VeGpG4L9YtKgOJWn90Ul/asn2Gwu/ZC2sVgtH6xZn/NJC2u9WlhI8TQ==
+X-Received: by 2002:a2e:9106:0:b0:2b4:6d59:785f with SMTP id m6-20020a2e9106000000b002b46d59785fmr15774919ljg.43.1687788165237;
+        Mon, 26 Jun 2023 07:02:45 -0700 (PDT)
 Received: from [192.168.1.101] (abyk179.neoplus.adsl.tpnet.pl. [83.9.30.179])
-        by smtp.gmail.com with ESMTPSA id g11-20020a2e938b000000b002b22a1a21easm1250810ljh.110.2023.06.26.07.02.35
+        by smtp.gmail.com with ESMTPSA id g7-20020a2e9e47000000b002b1b92910c8sm1242593ljk.86.2023.06.26.07.02.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 07:02:36 -0700 (PDT)
-Message-ID: <95226bfe-d019-6b00-0f3b-d252a2988ab0@linaro.org>
-Date:   Mon, 26 Jun 2023 16:02:34 +0200
+        Mon, 26 Jun 2023 07:02:44 -0700 (PDT)
+Message-ID: <9d829b96-d6f0-b551-8312-c6d71bfaa3cd@linaro.org>
+Date:   Mon, 26 Jun 2023 16:02:43 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 25/26] ARM: dts: qcom: ipq4019: drop 'regulator'
+Subject: Re: [PATCH v2 26/26] ARM: dts: qcom: ipq8064: drop 'regulator'
  property from SAW2 devices
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
@@ -74,14 +74,14 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         Christian Marangi <ansuelsmth@gmail.com>,
         Stephan Gerhold <stephan@gerhold.net>
 References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
- <20230625202547.174647-26-dmitry.baryshkov@linaro.org>
+ <20230625202547.174647-27-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230625202547.174647-26-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230625202547.174647-27-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -102,42 +102,26 @@ On 25.06.2023 22:25, Dmitry Baryshkov wrote:
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi | 5 -----
->  1 file changed, 5 deletions(-)
+>  arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi | 2 --
+>  1 file changed, 2 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-> index f0ef86fadc9d..ad3c922843c7 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-> @@ -350,31 +350,26 @@ acc3: power-manager@b0b8000 {
->  		saw0: regulator@b089000 {
+> diff --git a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
+> index 6198f42f6a9c..ecb99e104de0 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-ipq8064.dtsi
+> @@ -589,7 +589,6 @@ acc0: clock-controller@2088000 {
+>  		saw0: regulator@2089000 {
 >  			compatible = "qcom,saw2";
->  			reg = <0x0b089000 0x1000>, <0x0b009000 0x1000>;
+>  			reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
 > -			regulator;
 >  		};
 >  
->  		saw1: regulator@b099000 {
+>  		acc1: clock-controller@2098000 {
+> @@ -604,7 +603,6 @@ acc1: clock-controller@2098000 {
+>  		saw1: regulator@2099000 {
 >  			compatible = "qcom,saw2";
->  			reg = <0x0b099000 0x1000>, <0x0b009000 0x1000>;
+>  			reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
 > -			regulator;
 >  		};
 >  
->  		saw2: regulator@b0a9000 {
->  			compatible = "qcom,saw2";
->  			reg = <0x0b0a9000 0x1000>, <0x0b009000 0x1000>;
-> -			regulator;
->  		};
->  
->  		saw3: regulator@b0b9000 {
->  			compatible = "qcom,saw2";
->  			reg = <0x0b0b9000 0x1000>, <0x0b009000 0x1000>;
-> -			regulator;
->  		};
->  
->  		saw_l2: regulator@b012000 {
->  			compatible = "qcom,saw2";
->  			reg = <0xb012000 0x1000>;
-> -			regulator;
->  		};
->  
->  		blsp1_uart1: serial@78af000 {
+>  		nss_common: syscon@3000000 {
