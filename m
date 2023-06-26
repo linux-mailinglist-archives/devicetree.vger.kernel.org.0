@@ -2,74 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E70D173D8A5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 09:36:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8198173D8AA
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 09:39:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229612AbjFZHgy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 03:36:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34550 "EHLO
+        id S229661AbjFZHjt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 03:39:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35088 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229578AbjFZHgs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 03:36:48 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D360EE
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 00:36:47 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51d804c7d14so2126179a12.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 00:36:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687765005; x=1690357005;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=g32nP1QLfDJeYDMctwmCGM9lFurdMtNiOQvgUHmW7j4=;
-        b=t+edhplh/zMSi0p3lIjlGet/TZI20VTCuGlHDId4JMBSXoEIAsIJokUNoFSdsoY6So
-         uDoddZZ5HCc+4sxK6A6duuXzb1KdyomjPtmINErHzNABwk3PMCb6rjOx3Sqb9oXvHrG5
-         StR7eTLuySakEs4UbfeXEOUyXObHJSKnxyfwtyXSxOxkqpt+t/0M1I8yRXGuKyUdQEPh
-         bOF6zQDS9Cas77cSjCvMbThO5zdvy/CilRombhJ0A5Ndf4M+3W88nBaYDtHCvgQOIWEj
-         xB6Kc3/xTh2B/YiKECd2K99AzyU8WdVP/wFnMQfR0dF4vvoAzXiiBVwO0j9PJQ5FPb7N
-         /1Sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687765005; x=1690357005;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=g32nP1QLfDJeYDMctwmCGM9lFurdMtNiOQvgUHmW7j4=;
-        b=l7VFrHFIUYmIA30FX+aWNsfsh82SBL3hc/f1RuiWc2FyaVzDSpKKP1iQ6KZLMrD5et
-         WY52BneUj4eDVwL4h96TuLdCLFjTxq6zOvHa+CKSwq8Y6269heqbECQCHN7/Vu/oO/vr
-         68WNUNzp0QZ/KOqbsad+2zTz0ilV+ab9IxM5KxfXUmHfM2ayYOF4qncnkCxjLZEtTeps
-         0Ve6bckZoG++lhIdaTpmj+GwcDPkPWoA0mx3nGDXTKLIj4KAhBPR9sDjjZ76J9Rk4JdS
-         LmS1EP9icCubZMm/o+3XyzA7yuhXSR3Z+KuXVLlTEoiEWVEdiC9J6bOcg1PnV+IQlI4K
-         j9Dw==
-X-Gm-Message-State: AC+VfDzGmtahzr7+z4qDfY+H7FpU69xzYLa2+GPpJrrVWedyXcupHlIW
-        R0cichlvP0meu2vxVgLEzGSCAQ==
-X-Google-Smtp-Source: ACHHUZ48yMwg7cIFAuy5JolwNOf5XDoT9UCulIRCuSVDeD0QgeXytMtaWsMR7rKPSIlKf9bngOQExw==
-X-Received: by 2002:aa7:d9d7:0:b0:51d:914a:9f43 with SMTP id v23-20020aa7d9d7000000b0051d914a9f43mr2896633eds.36.1687765005473;
-        Mon, 26 Jun 2023 00:36:45 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id l4-20020aa7c3c4000000b0051879e2505bsm2511680edr.40.2023.06.26.00.36.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 00:36:44 -0700 (PDT)
-Message-ID: <326cc8a4-3366-e8af-8051-7284bfb6dfaa@linaro.org>
-Date:   Mon, 26 Jun 2023 09:36:42 +0200
+        with ESMTP id S229457AbjFZHjs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 03:39:48 -0400
+Received: from mo4-p01-ob.smtp.rzone.de (mo4-p01-ob.smtp.rzone.de [85.215.255.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDCB91AC;
+        Mon, 26 Jun 2023 00:39:45 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1687765178; cv=none;
+    d=strato.com; s=strato-dkim-0002;
+    b=qwiiciZ8V1OOz8uzIc80dYdpDQz6tLDfTRJu1yMtxft/0P1frrNGocgjZbx/335ZR1
+    LbuEvA1YqZJTWy6QRAYweEqFS4FKClBB5iw4bAueQHKSOh5u67jZrfk8KCcNWQZgbFcq
+    yZNQcusn/A5T74F8x+cGK0n5/SvvY8+PTqwpy1aaHnXAdu+Ydgws4jhTIlUiOYwGaqIH
+    7b20CpzUNEPOWFIXiib2rtjw711lahlhwT6UTC6p2f2hz7zTnrIdSjInCmTdqj6W8lpY
+    yfTbT3HnUkim3/JzPkgDeB+7P+62pbX9uSYMw3YkHdRR1wR1T1PbBfj/ZclLSqSCSayU
+    /zGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; t=1687765178;
+    s=strato-dkim-0002; d=strato.com;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=nxfxj675BKDRAzZ8yMzfvuth9ryuoohsZaASpKwPFw8=;
+    b=dyvO8bV/OTy7TOSISeGtzqX/mi7T4FItWk5NV0xsYteI0Fb0PZGoKOoVUjX0epjb8A
+    4MjEQ6lygvGbh58WufmPBI0UF0kBuyvuDaZYrgCLD5EsV3RH7+4k/aTqgS8iMG6Tw7hJ
+    rvGZmp2L2z0RirKQ/tHvu+PSLPAuu/W5KNGpXTClSPxpMepCKQwWdFBn+mFbVQvqmimx
+    d6dIQmIGSnSV6jr5y8EYY/dbmQKXiwTutOmmd6ADU0mfnjej1vuyx9YJEPSfMam9VKMn
+    dBuLFDoZZxplgFh6OzRKsRhjfEdjvM+/J4Pi5m40Yqy44SzL6yVwydRT6/VdedvlN+vl
+    tMxA==
+ARC-Authentication-Results: i=1; strato.com;
+    arc=none;
+    dkim=none
+X-RZG-CLASS-ID: mo01
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1687765178;
+    s=strato-dkim-0002; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=nxfxj675BKDRAzZ8yMzfvuth9ryuoohsZaASpKwPFw8=;
+    b=fanEPfZ20ZwDWx11ndH/A2c5RZ1xwUdeXZn2T8hM3ASsWVbk3J3c/DYIzApa0OB9YX
+    EXWtkiCSQUwkrgBzETCuW9MpjvI6iM1dhsR0nOYoMeY4ZsXZ827i3hr+9umQem+NOMeS
+    Hgpv1wWDw6o59LK1ZGz2sZTftxSTEL/zweQnI7xPO0HMMN5Qv/q43fhn/t2MOqaruVwb
+    /mjt/RfU2HUIWu+ES2P6DMzA/R9Ee8f6OM4FhPIietqaVyhtIe7NJgLMWX05L0fFB50g
+    ocaDBEGLu58yuEnS6ev/UoVBiweHAjeXJ11hmEpAMSRoYs9QxxgCMRMVLaIzKji6GEdm
+    +lCg==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; t=1687765178;
+    s=strato-dkim-0003; d=gerhold.net;
+    h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:Cc:Date:
+    From:Subject:Sender;
+    bh=nxfxj675BKDRAzZ8yMzfvuth9ryuoohsZaASpKwPFw8=;
+    b=Vv9yKO1i0iSKS5vl6NMcDdIWUO23D1zUP9BI0w4JUBvij5RFOh1eUv3l+5aNNYNRkU
+    9d6kPPzWbOTK0JrCAGAw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u266H5F2OxJAdLOdLjE="
+Received: from gerhold.net
+    by smtp.strato.de (RZmta 49.6.0 AUTH)
+    with ESMTPSA id D0d0a8z5Q7daWsX
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+    Mon, 26 Jun 2023 09:39:36 +0200 (CEST)
+Date:   Mon, 26 Jun 2023 09:39:31 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>
+Cc:     "Lin, Meng-Bo" <linmengbo0689@protonmail.com>, agross@kernel.org,
+        andersson@kernel.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, nikita@trvn.ru, robh+dt@kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: msm8939-samsung-a7: Add initial
+ dts
+Message-ID: <ZJlAs768g_lj0QuQ@gerhold.net>
+References: <20230623100135.5269-1-linmengbo0689@protonmail.com>
+ <20230623100237.5299-1-linmengbo0689@protonmail.com>
+ <5fbba4e8-a8d9-0e99-e112-31b5781c1648@linaro.org>
+ <20230623104647.5501-1-linmengbo0689@protonmail.com>
+ <71ae3799-4668-891c-c32d-d36da655d56d@linaro.org>
+ <ZJiY1PYtfeIN13ZG@gerhold.net>
+ <2e7b0647-b108-5364-a7cf-955cacf9b322@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 3/3] dt-bindings: hwmon: add sht3x devicetree binding
-To:     JuenKit_Yip@hotmail.com, jdelvare@suse.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        corbet@lwn.net
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-doc@vger.kernel.org
-References: <20230626072923.340544-1-JuenKit_Yip@hotmail.com>
- <DB4PR10MB6261859DA1087597DDC3CCB39226A@DB4PR10MB6261.EURPRD10.PROD.OUTLOOK.COM>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <DB4PR10MB6261859DA1087597DDC3CCB39226A@DB4PR10MB6261.EURPRD10.PROD.OUTLOOK.COM>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <2e7b0647-b108-5364-a7cf-955cacf9b322@linaro.org>
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,76 +96,62 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2023 09:29, JuenKit_Yip@hotmail.com wrote:
-> From: JuenKit Yip <JuenKit_Yip@hotmail.com>
+On Mon, Jun 26, 2023 at 01:05:22AM +0100, Bryan O'Donoghue wrote:
+> On 25/06/2023 20:43, Stephan Gerhold wrote:
+> > Is it really worth it to support a half-working bootloader though?
 > 
-> add sht3x devicetree binding files
+> > No one will ever be able to use this properly without fixing the
+> > bootloader. SMP doesn't work with the stock bootloader, many devices
+> > need display panel selection in the bootloader and on some Samsung
+> > devices there is not even USB and UART without special fixes in the
+> > bootloader.
 > 
-> Signed-off-by: JuenKit Yip <JuenKit_Yip@hotmail.com>
-> ---
-> v1:
->   - fix semantics error
-
-How first release can have already fixes? Against what? Is it truly v1?
-
-What is a "semantics error"?
-
-A nit, subject: drop second/last, redundant "devicetree binding". The
-"dt-bindings" prefix is already stating that these are bindings.
-
-
+> Why set the bar higher than necessary to boot a kernel though ?
 > 
->  .../bindings/hwmon/sensirion,sht3x.yaml       | 35 +++++++++++++++++++
->  1 file changed, 35 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/sensirion,sht3x.yaml
+> Its two lines in a dts.
 > 
-> diff --git a/Documentation/devicetree/bindings/hwmon/sensirion,sht3x.yaml b/Documentation/devicetree/bindings/hwmon/sensirion,sht3x.yaml
-> new file mode 100644
-> index 000000000000..71a50bd57af2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/sensirion,sht3x.yaml
-> @@ -0,0 +1,35 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/hwmon/sensirion,sht3x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Sensirion SHT3x-DIS humidity and temperature sensor
-> +
-> +maintainers:
-> +  - JuenKit Yip <JuenKit_Yip@hotmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - sensirion,sht3x
 
-The actual devices are SHT30, 31 and 35. I understand they don't differ
-in programming interface, but still don't use wildcard, so just
-sensirion,sht30
+I see your point but after adding some really weird workarounds for
+various devices in lk2nd I can't help seeing it more complicated.
 
-> +      - sensirion,sts3x
+Adding "just two lines in a dts" is the general case, but I can also
+give plenty other examples where one has to:
 
-Similarly - no wildcards.
+  - Duplicate the entire downstream MDSS/MDP/display DT nodes because
+    the bootloader uses them to initialize the display (older Sony
+    MSM8974 devices) [1]
 
-Missing blank line.
+  - Add random DT nodes because the stock bootloader insists on updating
+    random DT properties in them [2]
 
+  - Use a custom bootloader anyway to boot 64-bit Linux, because the
+    stock bootloader doesn't implement the 32-bit -> 64-bit switch
+    (most of these devices used ARM32 on the stock Android)
+    [I don't have a full overview which devices need this because
+     we have never tested booting mainline Linux with the stock
+     bootloader on most devices]
 
-> +  reg:
-> +    maxItems: 1
+You also need to be really careful when building the Android boot
+images. qcom,msm-id/board-ids are not unique, so when you use the
+typical "dtbTool" building process which bundles all DTBs in
+arch/arm64/boot/dts you risk device damage. Chances are good that the
+bootloader will pick the wrong DTB, potentially with wrong regulator
+voltages or anything like that.
 
-Missing vdd-supply (required) and reset-gpios (optional).
+When qcom,msm-id/board-id are missing such mistakes cannot happen
+because the stock bootloader will just refuse to boot it. Personally I
+actually consider that to be a good thing because booting with the stock
+bootloader is almost always a naive mistake made by end users that have
+no experience with the whole complicated DTB selection story.
 
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
+I won't object to adding the properties but I also don't really see a
+use case for them. People porting devices can easily add them when
+building a custom kernel. End users want the full functionality
+(including SMP) so if they boot through the stock bootloader it's most
+likely accidental.
 
+Thanks,
+Stephan
 
-Best regards,
-Krzysztof
-
+[1]: https://github.com/msm8916-mainline/lk2nd/tree/master/dts/msm8974/sony
+[2]: https://github.com/msm8916-mainline/lk2nd/blob/dd850aeb0c348cea085db8013f578615715cdd7f/dts/msm8916/msm8916-motorola-surnia.dts#L21-L32
