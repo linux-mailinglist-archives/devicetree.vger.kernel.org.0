@@ -2,76 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 12D6573E3C8
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:45:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 235C373E3DB
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230194AbjFZPpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 11:45:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59572 "EHLO
+        id S231129AbjFZPr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 11:47:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33552 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjFZPpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:45:08 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BF51737
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:44:50 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3112c11fdc9so2967305f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:44:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687794288; x=1690386288;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=UrxXEvatNL5MUfAwzDvwxvX1r/I0ElFELnqWIQmCbcc=;
-        b=XkuLF5VFHIYw+9DNJxiGi8PkAKiyD7fIBCjdXmLenBb4SK3SYPUS0dW/5NDKZzLFWM
-         2Sd4JQaxzgs4s6GFUYR6UsPXdt363q5vJBEUaYDSTRDsV9gKWEWP8Bte5pVB+SwCpvDT
-         1inpgwVEZYQtspqGGUoIZEg9R/NW2Y5nK3Nh3fHxRhLKLUuXQQujpMSYknaYfy3mi4GQ
-         bUwk21diV3N9uVtojV++PfRgqML6qFWd/MjgfAK4JguG7wVu/P4GnsNJFdLAiwEOGIdr
-         ww6iGt7Sww1dhOYxGByPovC+cuwgFwwX3yn/WggII8iB4i5/0no5h3RMVThPZ0bMEixt
-         VfsQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687794288; x=1690386288;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=UrxXEvatNL5MUfAwzDvwxvX1r/I0ElFELnqWIQmCbcc=;
-        b=TI3Y6GnLNeAfw089eLbHyJ0NEd8MpHrNybnxtTUcQHnWnI/eTVNy5DBAU3Xow7HKgu
-         N9I/wpOqRuXQqRzz/QV085vnZtVLnb0hGMypRwp7lUMxOFozlcFAGCbvbIw2zYY5sHm1
-         YdxKJ7ABgSVq6FJqRYmj8f8rYzdceRhjGMhktecuj4CFUPpL4yci/ylT2cuw/4ZpG9bc
-         yu74SfWDTvAIiTJdjJ5LOAcfiw5hI2lcM/paH+LNcvB/ES/4LpWGFwwjcYY5Un8QKeIE
-         xnrk8RCUtaPQxy+bswPnmGSKR/RtcEbNmQNIW8WnIfywz5ZrqRWSXYmQI0Yf0ZhGR0mW
-         57QA==
-X-Gm-Message-State: AC+VfDxHEywKGiNa0b1z5eLDPUEohNbK+PjveZv7wrADBf/7ZeBLzVVy
-        SQZKKkGD4/ONfmmLro2PGJww2rVaEOI9G5e6sBE=
-X-Google-Smtp-Source: ACHHUZ42CLhgk+7E/Osrdko45QPD2ragNDfnVh4audo9Vam953slWEl7qgMXhdVnhv6HxHDxlMYAhg==
-X-Received: by 2002:a1c:f310:0:b0:3f8:f382:8e1f with SMTP id q16-20020a1cf310000000b003f8f3828e1fmr8247952wmq.24.1687794288529;
-        Mon, 26 Jun 2023 08:44:48 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id 24-20020a05600c029800b003fa52928fcbsm8094691wmk.19.2023.06.26.08.44.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 08:44:48 -0700 (PDT)
-Message-ID: <f7bca54b-9de1-be9a-ad46-3502df58289f@linaro.org>
-Date:   Mon, 26 Jun 2023 17:44:46 +0200
+        with ESMTP id S229704AbjFZPr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:47:28 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39791AB;
+        Mon, 26 Jun 2023 08:47:27 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35QFBvAh020572;
+        Mon, 26 Jun 2023 15:46:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : from : to : cc : references : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=SoQTNj83C7VuNv1nJV6jGQflCqRMpGE8o+3UN91EGUw=;
+ b=N8uP4F+pnAofVywLPS8BWyWRnVEc8mzPgcIijZ1oPbRdKS8OWOfDUzH9iAKNxsBsB5r9
+ +vRV2P8EZrEWrW1qxV3zlGYNHbEHGJzB8Hl8/JvLs8Dktdqku+95sp9kgRg7ryKs6VMt
+ VGq2I4tOvtZ8q2q488TlAJG9PbjNXYb4Hqtw4QpuY3L7izxuK9SmiZAKirFKjQZ2rMco
+ A0+iDvUf42dIYODqhsM1i4Y6Y6qWOTARMidSFL5t+6dvJHDs37P0jAkYYxPqzG6Z0CSW
+ FZuf2NCY/DxG/8IWYuTaJBqTcVC0x/pLaxAry4tGSfmrFOBZbpiEDvqZF3nqyDKXxCzY nQ== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rfarq8er9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Jun 2023 15:46:45 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35QFkiaS013954
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Jun 2023 15:46:44 GMT
+Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 26 Jun
+ 2023 08:46:42 -0700
+Message-ID: <537ffe05-1759-bf37-3a0c-a29ccd2e9d6d@quicinc.com>
+Date:   Mon, 26 Jun 2023 09:46:42 -0600
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 2/3] dt-bindings: usb: ci-hdrc-usb2: add
- samsung,picophy-rise-fall-time-adjust property
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 3/9] clk: qcom: gcc-msm8998: Control MMSS and GPUSS GPLL0
+ outputs properly
 Content-Language: en-US
-To:     Xu Yang <xu.yang_2@nxp.com>, peter.chen@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        gregkh@linuxfoundation.org
-Cc:     conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        linux-imx@nxp.com, peng.fan@nxp.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, jun.li@nxp.com
-References: <20230626092952.1115834-1-xu.yang_2@nxp.com>
- <20230626092952.1115834-2-xu.yang_2@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230626092952.1115834-2-xu.yang_2@nxp.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+From:   Jeffrey Hugo <quic_jhugo@quicinc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>
+CC:     Marijn Suijten <marijn.suijten@somainline.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Jami Kettunen <jami.kettunen@somainline.org>
+References: <20230622-topic-8998clk-v1-0-5b7a0d6e98b1@linaro.org>
+ <20230622-topic-8998clk-v1-3-5b7a0d6e98b1@linaro.org>
+ <e880bad8-4fcb-97c1-ec9c-9122e1b550e6@quicinc.com>
+ <18f508e7-8a7e-162b-4bed-eaef45147a22@linaro.org>
+ <f2ca0d67-25e7-1313-9cea-fddb1ad28c9b@quicinc.com>
+In-Reply-To: <f2ca0d67-25e7-1313-9cea-fddb1ad28c9b@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: 0ygC3cSHz_1LfR-5gX1Txb1bEc4uyoHx
+X-Proofpoint-GUID: 0ygC3cSHz_1LfR-5gX1Txb1bEc4uyoHx
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-26_13,2023-06-26_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
+ malwarescore=0 mlxscore=0 lowpriorityscore=0 suspectscore=0 phishscore=0
+ clxscore=1015 spamscore=0 bulkscore=0 mlxlogscore=999 adultscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306260143
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -79,48 +95,128 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/06/2023 11:29, Xu Yang wrote:
-> The samsung,picophy-rise-fall-time-adjust property can help to adjust the
-> rise/fall times of the high-speed transmitter waveform. The value can be
-> 0~3.
+On 6/22/2023 9:19 AM, Jeffrey Hugo wrote:
+> On 6/22/2023 9:05 AM, Konrad Dybcio wrote:
+>> On 22.06.2023 16:55, Jeffrey Hugo wrote:
+>>> On 6/22/2023 5:57 AM, Konrad Dybcio wrote:
+>>>> Up until now, we've been relying on some non-descript hardware magic
+>>>> to pinkypromise turn the clocks on for us. While new SoCs shine with
+>>>> that feature, MSM8998 can not always be fully trusted.
+>>>>
+>>>> Register the MMSS and GPUSS GPLL0 legs with the CCF to allow for manual
+>>>> enable voting.
+>>>>
+>>>> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>>>> ---
+>>>>    drivers/clk/qcom/gcc-msm8998.c | 58 
+>>>> ++++++++++++++++++++++++++++++++++++++++++
+>>>>    1 file changed, 58 insertions(+)
+>>>>
+>>>> diff --git a/drivers/clk/qcom/gcc-msm8998.c 
+>>>> b/drivers/clk/qcom/gcc-msm8998.c
+>>>> index be024f8093c5..cccb19cae481 100644
+>>>> --- a/drivers/clk/qcom/gcc-msm8998.c
+>>>> +++ b/drivers/clk/qcom/gcc-msm8998.c
+>>>> @@ -25,6 +25,9 @@
+>>>>    #include "reset.h"
+>>>>    #include "gdsc.h"
+>>>>    +#define GCC_MMSS_MISC    0x0902C
+>>>> +#define GCC_GPU_MISC    0x71028
+>>>> +
+>>>>    static struct pll_vco fabia_vco[] = {
+>>>>        { 250000000, 2000000000, 0 },
+>>>>        { 125000000, 1000000000, 1 },
+>>>> @@ -1367,6 +1370,22 @@ static struct clk_branch gcc_boot_rom_ahb_clk 
+>>>> = {
+>>>>        },
+>>>>    };
+>>>>    +static struct clk_branch gcc_mmss_gpll0_div_clk = {
+>>>> +    .halt_check = BRANCH_HALT_DELAY,
+>>>> +    .clkr = {
+>>>> +        .enable_reg = 0x5200c,
+>>>> +        .enable_mask = BIT(0),
+>>>> +        .hw.init = &(struct clk_init_data){
+>>>> +            .name = "gcc_mmss_gpll0_div_clk",
+>>>> +            .parent_hws = (const struct clk_hw *[]) {
+>>>> +                &gpll0_out_main.clkr.hw,
+>>>> +            },
+>>>> +            .num_parents = 1,
+>>>> +            .ops = &clk_branch2_ops,
+>>>> +        },
+>>>> +    },
+>>>> +};
+>>>> +
+>>>>    static struct clk_branch gcc_mmss_gpll0_clk = {
+>>>>        .halt_check = BRANCH_HALT_DELAY,
+>>>>        .clkr = {
+>>>> @@ -1395,6 +1414,38 @@ static struct clk_branch 
+>>>> gcc_mss_gpll0_div_clk_src = {
+>>>>        },
+>>>>    };
+>>>>    +static struct clk_branch gcc_gpu_gpll0_div_clk = {
+>>>> +    .halt_check = BRANCH_HALT_DELAY,
+>>>> +    .clkr = {
+>>>> +        .enable_reg = 0x5200c,
+>>>> +        .enable_mask = BIT(3),
+>>>> +        .hw.init = &(struct clk_init_data){
+>>>> +            .name = "gcc_gpu_gpll0_div_clk",
+>>>> +            .parent_hws = (const struct clk_hw *[]) {
+>>>> +                &gpll0_out_main.clkr.hw,
+>>>> +            },
+>>>> +            .num_parents = 1,
+>>>> +            .ops = &clk_branch2_ops,
+>>>> +        },
+>>>> +    },
+>>>> +};
+>>>> +
+>>>> +static struct clk_branch gcc_gpu_gpll0_clk = {
+>>>> +    .halt_check = BRANCH_HALT_DELAY,
+>>>> +    .clkr = {
+>>>> +        .enable_reg = 0x5200c,
+>>>> +        .enable_mask = BIT(4),
+>>>> +        .hw.init = &(struct clk_init_data){
+>>>> +            .name = "gcc_gpu_gpll0_clk",
+>>>> +            .parent_hws = (const struct clk_hw *[]) {
+>>>> +                &gpll0_out_main.clkr.hw,
+>>>> +            },
+>>>> +            .num_parents = 1,
+>>>> +            .ops = &clk_branch2_ops,
+>>>> +        },
+>>>> +    },
+>>>> +};
+>>>> +
+>>>>    static struct clk_branch gcc_blsp1_ahb_clk = {
+>>>>        .halt_reg = 0x17004,
+>>>>        .halt_check = BRANCH_HALT_VOTED,
+>>>> @@ -3080,6 +3131,9 @@ static struct clk_regmap *gcc_msm8998_clocks[] 
+>>>> = {
+>>>>        [AGGRE2_SNOC_NORTH_AXI] = &aggre2_snoc_north_axi_clk.clkr,
+>>>>        [SSC_XO] = &ssc_xo_clk.clkr,
+>>>>        [SSC_CNOC_AHBS_CLK] = &ssc_cnoc_ahbs_clk.clkr,
+>>>> +    [GCC_MMSS_GPLL0_DIV_CLK] = &gcc_mmss_gpll0_div_clk.clkr,
+>>>> +    [GCC_GPU_GPLL0_DIV_CLK] = &gcc_gpu_gpll0_div_clk.clkr,
+>>>> +    [GCC_GPU_GPLL0_CLK] = &gcc_gpu_gpll0_clk.clkr,
+>>>>    };
+>>>>      static struct gdsc *gcc_msm8998_gdscs[] = {
+>>>> @@ -3235,6 +3289,10 @@ static int gcc_msm8998_probe(struct 
+>>>> platform_device *pdev)
+>>>>        if (ret)
+>>>>            return ret;
+>>>>    +    /* Disable the GPLL0 active input to MMSS and GPU via MISC 
+>>>> registers */
+>>>> +    regmap_write(regmap, GCC_MMSS_MISC, 0x10003);
+>>>> +    regmap_write(regmap, GCC_GPU_MISC, 0x10003);
+>>>
+>>> I wonder, does this disrupt a handoff of an active display from the 
+>>> bootloader to Linux?
+>> My phone's bootloader doesn't initialize the display, if you (or Angelo
+>> or Jami, +CC) could test this, it'd be wonderful.
 > 
-> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
-> ---
->  .../devicetree/bindings/usb/ci-hdrc-usb2.yaml          | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> index 782402800d4a..d84c66c342ac 100644
-> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
-> @@ -292,6 +292,16 @@ properties:
->      minimum: 0x0
->      maximum: 0xf
->  
-> +  samsung,picophy-rise-fall-time-adjust:
-> +    description:
-> +      HS Transmitter Rise/Fall Time Adjustment. Adjust the rise/fall times
+> Let me carve out some time to try it on the laptop.
 
-Adjust with/by what? What are the units?
+Tested on the Lenovo Miix 630, and observed no issues.
 
-> +      of the high-speed transmitter waveform. The range is from 0x0 to 0x3,
-> +      the default value is 0x1. Details can refer to TXRISETUNE0 bit of
+Reviewed-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
 
-default: 1
-
-Don't repeat constraints in free form text.
-
-> +      USBNC_n_PHY_CFG1.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    minimum: 0x0
-> +    maximum: 0x3
-
-Why "samsung" prefix? If this is specific to samsung, make it
-specific/narrowed like other properties.
-
-There are no Samsung compatibles here, so what is exactly here made by
-Samsung? Which device?
-
-Best regards,
-Krzysztof
-
+For patches 3-6 inclusive
+Tested-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
