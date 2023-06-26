@@ -2,88 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E6073E5AB
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:47:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFB7F73E5CF
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 18:51:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229892AbjFZQrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 12:47:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39886 "EHLO
+        id S230005AbjFZQvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 12:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230449AbjFZQrQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:47:16 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD9918E
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:47:14 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4faaaa476a9so2501448e87.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 09:47:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687798032; x=1690390032;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GJHRCqbPQl3JXucRV3xxhvcZkkYuFqIldcmWxCebc90=;
-        b=MoJKCGuIm1R9wp/YsJ8kR6VDcvEsqk91+YIBYg6vwBD56U6MmXtWdprFSqSmAXQqB9
-         FX/FvU/DFBxvl8//Ar+p934THx2BPt/grS+J5ZZbINCSWweJfRhR1Hq6LinfcY2alkFs
-         rLRJLEtyVmV1RE2lNYbc4tU0qBjLEriPle4vuDC8TZSHqcskQEM1kyh/10h5AYjci3uy
-         1DP2yxZiuBNJyDaaOt2eIn81pGX6uFCcOrhXK29MVIvOSYesCQ0LUP+royE6VRoUKZJi
-         jYEfe/LogE8LAoJmKEWfdj/jX6FGvwzI2+kvM4cmJn2tJgZnGKVz4OK+Qe+jTPwMeyQc
-         dxBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687798032; x=1690390032;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GJHRCqbPQl3JXucRV3xxhvcZkkYuFqIldcmWxCebc90=;
-        b=aCGojnmKsnyxsNtYQ5RjXo/KmGee9ZD3oX8IW7Rid3ee48C409b5gQaeocEtSNf71t
-         ttHCcvkqL3OoOlsSB3Bks1Hl0wsRU7SQn3z6v+hJKs49VAhueur9mkOuVwKjtsnRhxcF
-         4pD7QCkx36xJDsdRjH44pUfY6QQ/vgTdN29iSBaXnHZifTEERVKmlik7HMuHLLW4TCLV
-         MfL/jUUH144WZGBdlRfAigdeuVYgVC6WEJrr9AM23bJ7WP7dKISE1+s/UOw/Hw/WkOuU
-         X79G5ybl795I5aJIyQZ2Q1sWi6tsBoY6/J0MJ83xACe3mxuAg3KOqfbT6RHjNOjSXxQz
-         nTXQ==
-X-Gm-Message-State: AC+VfDwrS85O5yzHenO0GuNu/du5E1dqX/dWmszHzOAe3yMb7csLLeo5
-        VGMsSzCecmLwi2Fuwc99GGSIxQ==
-X-Google-Smtp-Source: ACHHUZ57sFI0hqUuY6mKNExqPzLRhumqKwnyqMeR14dftScyrbGTcK3poygc/sfyxNkxDOhzLApa/A==
-X-Received: by 2002:a05:6512:3d16:b0:4f8:7325:bcd4 with SMTP id d22-20020a0565123d1600b004f87325bcd4mr3493071lfv.0.1687798032700;
-        Mon, 26 Jun 2023 09:47:12 -0700 (PDT)
-Received: from [192.168.1.101] (abyk179.neoplus.adsl.tpnet.pl. [83.9.30.179])
-        by smtp.gmail.com with ESMTPSA id t24-20020ac243b8000000b004f625831d85sm1177503lfl.126.2023.06.26.09.47.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 09:47:12 -0700 (PDT)
-Message-ID: <4eaecc96-2d54-f6f2-8034-0c83ea1d1504@linaro.org>
-Date:   Mon, 26 Jun 2023 18:47:10 +0200
+        with ESMTP id S229947AbjFZQvm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 12:51:42 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E27D2E53;
+        Mon, 26 Jun 2023 09:51:40 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7924460EA5;
+        Mon, 26 Jun 2023 16:51:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D619DC433BA;
+        Mon, 26 Jun 2023 16:51:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687798299;
+        bh=qIUv4Fe+3WugCwIM1o3REC8yj3q1DXIElw4pe0hsbUs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Bbq3fEukXVqtCwxMNaTsFsz6mjT6vkG/i5TkDXhYxOSB7H0CKtw3CygtSjvCM+/Zl
+         m2sB6Zj7vROASggyXPb6g1zznnRyyq/1V9ml3TdJ5Ynle493UbdxbqXgjBpouwmreb
+         BacmKDMgIfWV96IjNN5v4Tp4tj8wnyFTbBFUKWAkNcYBvzsFMY1MYbIuP6Xb3ZRzr4
+         0157gTulF63YNzWY/Ztqj/VKdzLPnrMZHBrqN+jgWj3NT76SaMj6+PB7ewUrmWq2Ms
+         vd9jxbVqmBwqh2pBtTZSvF6JCKMZvykQrb7n1W+54/fzfK+ab0/TD3kd2MpwRvM9Te
+         HMtbzZxc78lkw==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b69a48368fso27071731fa.0;
+        Mon, 26 Jun 2023 09:51:39 -0700 (PDT)
+X-Gm-Message-State: AC+VfDyqwdfwJgdsZ8HXDwB8V6AetKjYWvCtsPugIIMseFrA/a36KDPl
+        T+Nv5XmWMo/ZRiNB9Q8esIPCZAgHSwboo95uIQ==
+X-Google-Smtp-Source: ACHHUZ6lj2aMlI2b0GlWuJAeCaXXp/x3AoWj41EMlST4hTYj9y8SSHwszu+D4w6NFOEutOWZC9gvpFKRQ3sk/XdWO60=
+X-Received: by 2002:a2e:8443:0:b0:2b1:edfe:8171 with SMTP id
+ u3-20020a2e8443000000b002b1edfe8171mr17644357ljh.36.1687798297868; Mon, 26
+ Jun 2023 09:51:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 06/26] interconnect: icc-clk: add support for scaling
- using OPP
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
- <20230625202547.174647-7-dmitry.baryshkov@linaro.org>
- <b5ff346b-cbde-68fe-a08a-3b3331439309@linaro.org>
- <d9e4fd75-310a-7fe8-879e-651011873199@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <d9e4fd75-310a-7fe8-879e-651011873199@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+References: <1687368849-36722-1-git-send-email-lizhi.hou@amd.com>
+ <1687368849-36722-6-git-send-email-lizhi.hou@amd.com> <20230622122742.379a34d2@bootlin.com>
+In-Reply-To: <20230622122742.379a34d2@bootlin.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 26 Jun 2023 10:51:25 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKnShsngeq+9_Y24rQSCmAJ3uqP0kKB3UoG4+2TT8MOsQ@mail.gmail.com>
+Message-ID: <CAL_JsqKnShsngeq+9_Y24rQSCmAJ3uqP0kKB3UoG4+2TT8MOsQ@mail.gmail.com>
+Subject: Re: [PATCH V9 5/5] of: unittest: Add pci_dt_testdrv pci driver
+To:     Herve Codina <herve.codina@bootlin.com>,
+        Lizhi Hou <lizhi.hou@amd.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, max.zhen@amd.com,
+        sonal.santan@amd.com, stefano.stabellini@xilinx.com,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -91,93 +67,121 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.06.2023 15:44, Dmitry Baryshkov wrote:
-> On 26/06/2023 14:28, Konrad Dybcio wrote:
->> On 25.06.2023 22:25, Dmitry Baryshkov wrote:
->>> Sometimes it might be required to scale the clock using the OPP
->>> framework (e.g. to scale regulators following the required clock rate).
->>> Extend the interconnec
->> 't'
->>
->>> -clk framework to handle OPP case in addition to
->>> scaling the clock.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->> I think we should check for OPP at the icc-clk registration time,
->> instead of passing it as a parameter, e.g.:
->>
->> qn.opp = IS_ERR(dev_pm_opp_get_opp_count)
->>
->> Not sure if there's a more idiomatic way.
-> 
-> No. icc-clk is not limited to a single clock->icc conversion. So it is possible to create several interconnect links, only one of which should be the OPP-based one.
-Ugh. Right.
+On Thu, Jun 22, 2023 at 4:27=E2=80=AFAM Herve Codina <herve.codina@bootlin.=
+com> wrote:
+>
+> Hi all,
+>
+> On Wed, 21 Jun 2023 10:34:09 -0700
+> Lizhi Hou <lizhi.hou@amd.com> wrote:
+>
+> > pci_dt_testdrv is bound to QEMU PCI Test Device. It reads
+> > overlay_pci_node fdt fragment and apply it to Test Device. Then it
+> > calls of_platform_default_populate() to populate the platform
+> > devices.
+> >
+> > Signed-off-by: Lizhi Hou <lizhi.hou@amd.com>
+> > ---
+> >  drivers/of/unittest-data/Makefile             |   3 +-
+> >  .../of/unittest-data/overlay_pci_node.dtso    |  22 ++
+> >  drivers/of/unittest.c                         | 188 ++++++++++++++++++
+> >  drivers/pci/quirks.c                          |   1 +
+> >  4 files changed, 213 insertions(+), 1 deletion(-)
+> >  create mode 100644 drivers/of/unittest-data/overlay_pci_node.dtso
+>
+> Did the test under QEMU with the instructions that Lizhi provided at
+>   https://github.com/houlz0507/xoclv2/blob/pci-dt-0329/pci-dt-patch-0329/=
+README
 
-Konrad
-> 
->>
->> Konrad
->>>   drivers/interconnect/icc-clk.c   | 13 +++++++++++--
->>>   include/linux/interconnect-clk.h |  1 +
->>>   2 files changed, 12 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/interconnect/icc-clk.c b/drivers/interconnect/icc-clk.c
->>> index 4d43ebff4257..c7962acdcee7 100644
->>> --- a/drivers/interconnect/icc-clk.c
->>> +++ b/drivers/interconnect/icc-clk.c
->>> @@ -7,10 +7,13 @@
->>>   #include <linux/device.h>
->>>   #include <linux/interconnect-clk.h>
->>>   #include <linux/interconnect-provider.h>
->>> +#include <linux/pm_opp.h>
->>>     struct icc_clk_node {
->>> +    struct device *dev;
->>>       struct clk *clk;
->>>       bool enabled;
->>> +    bool opp;
->>>   };
->>>     struct icc_clk_provider {
->>> @@ -25,12 +28,16 @@ struct icc_clk_provider {
->>>   static int icc_clk_set(struct icc_node *src, struct icc_node *dst)
->>>   {
->>>       struct icc_clk_node *qn = src->data;
->>> +    unsigned long rate = icc_units_to_bps(src->peak_bw);
->>>       int ret;
->>>         if (!qn || !qn->clk)
->>>           return 0;
->>>   -    if (!src->peak_bw) {
->>> +    if (qn->opp)
->>> +        return dev_pm_opp_set_rate(qn->dev, rate);
->>> +
->>> +    if (!rate) {
->>>           if (qn->enabled)
->>>               clk_disable_unprepare(qn->clk);
->>>           qn->enabled = false;
->>> @@ -45,7 +52,7 @@ static int icc_clk_set(struct icc_node *src, struct icc_node *dst)
->>>           qn->enabled = true;
->>>       }
->>>   -    return clk_set_rate(qn->clk, icc_units_to_bps(src->peak_bw));
->>> +    return clk_set_rate(qn->clk, rate);
->>>   }
->>>     static int icc_clk_get_bw(struct icc_node *node, u32 *avg, u32 *peak)
->>> @@ -106,7 +113,9 @@ struct icc_provider *icc_clk_register(struct device *dev,
->>>       icc_provider_init(provider);
->>>         for (i = 0, j = 0; i < num_clocks; i++) {
->>> +        qp->clocks[i].dev = dev;
->>>           qp->clocks[i].clk = data[i].clk;
->>> +        qp->clocks[i].opp = data[i].opp;
->>>             node = icc_node_create(first_id + j);
->>>           if (IS_ERR(node)) {
->>> diff --git a/include/linux/interconnect-clk.h b/include/linux/interconnect-clk.h
->>> index 0cd80112bea5..c695e5099901 100644
->>> --- a/include/linux/interconnect-clk.h
->>> +++ b/include/linux/interconnect-clk.h
->>> @@ -11,6 +11,7 @@ struct device;
->>>   struct icc_clk_data {
->>>       struct clk *clk;
->>>       const char *name;
->>> +    bool opp;
->>>   };
->>>     struct icc_provider *icc_clk_register(struct device *dev,
-> 
+Instructions need to be in the tree, not living somewhere else. Don't
+need the full QEMU setup, but just stating 'add "-device pci-testdev"'
+somewhere. Probably in the test failure messages would be the most
+helpful location.
+
+>
+> The unittest results were:
+> --- 8< ---
+> [    1.107378] ### dt-test ### pass of_unittest_lifecycle():3273
+> [    1.110068] ### dt-test ### pass of_unittest_pci_node():3909
+> [    1.110401] ### dt-test ### pass unittest_pci_probe():3840
+> [    1.110618] ### dt-test ### pass of_unittest_pci_node():3914
+> [    1.110759] ### dt-test ### pass of_unittest_pci_node_verify():3870
+> [    1.110894] ### dt-test ### pass of_unittest_pci_node_verify():3877
+> [    1.110985] ### dt-test ### pass of_unittest_pci_node_verify():3884
+> [    1.111088] ### dt-test ### pass of_unittest_pci_node():3926
+> [    1.111171] ### dt-test ### pass of_unittest_pci_node():3927
+> [    1.112056] ### dt-test ### pass of_unittest_pci_node_verify():3870
+> [    1.112201] ### dt-test ### pass of_unittest_pci_node_verify():3890
+> [    1.112326] ### dt-test ### pass of_unittest_pci_node_verify():3892
+> [    1.112489] ### dt-test ### pass of_unittest_check_tree_linkage():271
+> --- 8< ---
+>
+> Based on the test provided, no failure detected.
+>
+> Tested-by: Herve Codina <herve.codina@bootlin.com>
+>
+> Further more, I dumped the dt (PCI related nodes) available on the target=
+.
+> If someone needs to look at it:
+
+Thanks!
+
+> --- 8< ---
+> # cat /tmp/dt.dts
+> /dts-v1/;
+>
+> / {
+>         #address-cells =3D <0x02>;
+>         #size-cells =3D <0x02>;
+>         interrupt-parent =3D <0x8002>;
+>         compatible =3D "linux,dummy-virt";
+>         name =3D [00];
+> [...]
+>         pcie@10000000 {
+>                 #address-cells =3D <0x03>;
+>                 dma-coherent;
+>                 bus-range =3D <0x00 0xff>;
+>                 interrupt-map =3D <0x00 0x00 0x00 0x01 0x8002 0x00 0x00 0=
+x00 0x03 0x04 0x00 0x00 0x00 0x02 0x8002 0x00 0x00 0x00 0x04 0x04 0x00 0x00=
+ 0x00 0x03 0x8002 0x00 0x00 0x00 0x05 0x04 0x00 0x00 0x00 0x04 0x8002 0x00 =
+0x00 0x00 0x06 0x04 0x800 0x00 0x00 0x01 0x8002 0x00 0x00 0x00 0x04 0x04 0x=
+800 0x00 0x00 0x02 0x8002 0x00 0x00 0x00 0x05 0x04 0x800 0x00 0x00 0x03 0x8=
+002 0x00 0x00 0x00 0x06 0x04 0x800 0x00 0x00 0x04 0x8002 0x00 0x00 0x00 0x0=
+3 0x04 0x1000 0x00 0x00 0x01 0x8002 0x00 0x00 0x00 0x05 0x04 0x1000 0x00 0x=
+00 0x02 0x8002 0x00 0x00 0x00 0x06 0x04 0x1000 0x00 0x00 0x03 0x8002 0x00 0=
+x00 0x00 0x03 0x04 0x1000 0x00 0x00 0x04 0x8002 0x00 0x00 0x00 0x04 0x04 0x=
+1800 0x00 0x00 0x01 0x8002 0x00 0x00 0x00 0x06 0x04 0x1800 0x00 0x00 0x02 0=
+x8002 0x00 0x00 0x00 0x03 0x04 0x1800 0x00 0x00 0x03 0x8002 0x00 0x00 0x00 =
+0x04 0x04 0x1800 0x00 0x00 0x04 0x8002 0x00 0x00 0x00 0x05 0x04>;
+>                 #size-cells =3D <0x02>;
+>                 device_type =3D "pci";
+>                 interrupt-map-mask =3D <0x1800 0x00 0x00 0x07>;
+>                 compatible =3D "pci-host-ecam-generic";
+>                 ranges =3D <0x1000000 0x00 0x00 0x00 0x3eff0000 0x00 0x10=
+000 0x2000000 0x00 0x10000000 0x00 0x10000000 0x00 0x2eff0000 0x3000000 0x8=
+0 0x00 0x80 0x00 0x80 0x00>;
+>                 #interrupt-cells =3D <0x01>;
+>                 reg =3D <0x40 0x10000000 0x00 0x10000000>;
+>                 linux,pci-domain =3D <0x00>;
+>                 msi-parent =3D <0x8003>;
+>                 name =3D "pcie";
+>
+>                 pci@3,0 {
+>                         #address-cells =3D <0x03>;
+>                         #size-cells =3D <0x02>;
+>                         device_type =3D "pci";
+>                         compatible =3D "pci1b36,c\0pciclass,060400\0pcicl=
+ass,0604";
+>                         ranges =3D <0x81001800 0x00 0x1000 0x81001800 0x0=
+0 0x1000 0x00 0x2000 0x82001800 0x00 0x10000000 0x82001800 0x00 0x10000000 =
+0x00 0x200000 0xc3001800 0x80 0x00 0xc3001800 0x80 0x00 0x00 0x200000>;
+>                         reg =3D <0x1800 0xffff6d76 0xc2b23600 0xffff6d76 =
+0x3fbf63a0>;
+
+Something looks wrong with the values here. I found this running it thru dt=
+c.
+
+<stdout>: Warning (pci_device_reg): /pcie@10000000/pci@3,0:reg: PCI
+reg config space address cells 2 and 3 must be 0
+
+Rob
