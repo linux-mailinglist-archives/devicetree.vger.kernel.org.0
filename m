@@ -2,81 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E524E73E070
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:20:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 618BE73E08F
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 15:24:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229724AbjFZNUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 09:20:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35140 "EHLO
+        id S230018AbjFZNYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 09:24:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36998 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjFZNUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:20:44 -0400
-Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 706ED1A2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:20:39 -0700 (PDT)
-Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fa96fd79f0so14496255e9.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:20:39 -0700 (PDT)
+        with ESMTP id S229989AbjFZNYJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 09:24:09 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2799013D
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:24:08 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3f9b0f139feso46914675e9.3
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 06:24:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687785638; x=1690377638;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=rzH/phEV5FFH4VJebivIaHv6IvSXO334jauJCGgoVNw=;
-        b=OjeVPFBYXxz83MG1Y+zMagxiBHQuuC88K7CNfaQno7uAPvU9HqktQRw2j1LEQHSv6L
-         38uRhT7/oOdOmRi6A3bL4g0b/dLSJOxJXjBQE1grKu4GECEyB9gmmooY1yT5WX0qppAR
-         uTNn91nF7UNQPqutWSt4gqF0mc/qWOW/lTpSoTXy5fyyWjr/QBMzpc9f/0h17AzonFat
-         TZuMsPB+Ybb0FVhLV0pHnsIpTxrysJtseV6BY8giitGb6XFpm6Y1D10EdgXFX9sCo6Yi
-         LFkDWfkSpAKFod7hyoiFcLMYB3X8Ov6tAOuz42LLJ06EWWhS2KdJTI/mErXIbCuRuJiU
-         UUjg==
+        d=linaro.org; s=google; t=1687785846; x=1690377846;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=S/eB5w0T++roZBh+uzEzkt9zkvpr7sL54Saw0syelHU=;
+        b=fvGZjS0RQ5WOB7+EjfoCOjhk8WIu9tOqvgFmVBjAPWqv/RghY+6gvFf6SybO54KnSi
+         LyXjNyFHn+J7zHaoRS0kv7eFVeXhU6UfJ6Tu/3Is056P+MXQiJlwg1FVIfYfVY8XUHV9
+         pNS3eFFVHh+z2e1Ceqt8WwVfEVjkYIWcMR2TLEwJ98PEMwUG4vNcoWl6U6EUFxmL0eDd
+         u1slTx/prmSUr7G9iDdUJy+GN2zUmyLQcnI0CVqV+oDiO4Ae6Nd8AW9epIyW8RQ7uyz0
+         A1DyPD/a+6RxajK2HD6JMn0AmhrgkivISnwu4PuNJyOsg2aa4vtj5BNDNCsq0Om4QopJ
+         +TQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687785638; x=1690377638;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=rzH/phEV5FFH4VJebivIaHv6IvSXO334jauJCGgoVNw=;
-        b=igwEwX0yNTu+Ti8KMccphBadKsmY6whwZhS9Xhem/JUxCXWzT5g0C7dnZSkHiXOvao
-         t4fvhE2pQSALGP+zSy8a9iHMnPdfHfiA7slqnIfM9+vtwOifEY4hUplNEb3wEKecdoKw
-         4ChsB3OAHZABti8PIjeb9Y1VoYvyiixzLHE8uvrmwVbggvy7XBtRLUTUH8tVpgH6Ihh0
-         HwleSe/eOz3NoSe/KTQGpREty5Dkvi8BRVZoImQrjwUG1n4Sz5CtDGRgjlkwnf3fgrAZ
-         YpyhhruxL4qm5LN0Z3eBvWduNUSnuzl+YpceQbw4yQGRbR7BArELTWEpho6MWYJABhEB
-         XKqg==
-X-Gm-Message-State: AC+VfDwyLq/Tu2ckNqUREpH8T4yG1wNiio+jU97G2IjYPG3UJ0Yxx37/
-        D07Wj6GNncZdEqpBo08IOG7MoA==
-X-Google-Smtp-Source: ACHHUZ6VAv9Ii8BNvTiNZE1BmxRf1Dmrc1N5HfUif3fDB6cBlSktml54K6be0NfHwO3e1lny1iG1+g==
-X-Received: by 2002:a05:600c:3645:b0:3f9:255e:ee3b with SMTP id y5-20020a05600c364500b003f9255eee3bmr27690199wmq.30.1687785637888;
-        Mon, 26 Jun 2023 06:20:37 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:b25a:b26e:71f3:870c? ([2a01:e0a:982:cbb0:b25a:b26e:71f3:870c])
-        by smtp.gmail.com with ESMTPSA id 21-20020a05600c22d500b003f9cb3c8958sm10755952wmg.3.2023.06.26.06.20.36
+        d=1e100.net; s=20221208; t=1687785846; x=1690377846;
+        h=content-transfer-encoding:in-reply-to:references:cc:to:from
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=S/eB5w0T++roZBh+uzEzkt9zkvpr7sL54Saw0syelHU=;
+        b=XTfaUYfcHMNczrG+71drIteGwMatZIA8yW+RM3G01G/M3CKu98BEFk7o33RxSXLH7D
+         eQRVBmTAVhdu6nTSi7aZ7rgS0+5HHbmbx8stBtM46xqawujMaz2hrlhX67HIDl/Z1N4s
+         hV6hAPfqdmt4pdOh2jNOV02xGhwgXgop1TRMc55m4Y61a7Zrd/iYWBiFPEFSLs0j9mkf
+         8IwEjl/HVJYFIGAT6oDjHYHC6WX2YEw24D8/JCBKNGSk8FBkIheDzd/xuG37InxBEYWe
+         vNt5g4xtDzgLzrJIKcfjXtH4MVdy08wRvDW598k/fBnJaQ305MdtwfRURGLWMAHxNDUc
+         ahPA==
+X-Gm-Message-State: AC+VfDyxvwlx41x4FcdUz9f5uffUQyDD8E76nzxU4eXKPoC85zdplrES
+        cZmiQWbAdOHuuZUsZubv20eM0g==
+X-Google-Smtp-Source: ACHHUZ4sPU7y01URWpreF9TFsqUuknCWlTyLtL2t0vKebDsyEz3U1hHoFGyXcoFTZ6qEXhUXVGf0QQ==
+X-Received: by 2002:a05:600c:2903:b0:3fa:7fa9:4f9a with SMTP id i3-20020a05600c290300b003fa7fa94f9amr7278546wmd.16.1687785846598;
+        Mon, 26 Jun 2023 06:24:06 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id c25-20020a7bc019000000b003f819faff24sm10654601wmb.40.2023.06.26.06.24.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 06:20:37 -0700 (PDT)
-Message-ID: <94e80a49-11ae-e5b0-7eea-6ed4ec6d2ac8@linaro.org>
-Date:   Mon, 26 Jun 2023 15:20:35 +0200
+        Mon, 26 Jun 2023 06:24:06 -0700 (PDT)
+Message-ID: <593b3b3e-7613-734d-91a9-9a48bbe5a9da@linaro.org>
+Date:   Mon, 26 Jun 2023 15:24:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v3 4/4] input: touchscreen: add SPI support for Goodix
- Berlin Touchscreen IC
+Subject: Re: [PATCH] arm64: dts: qcom: sm8350: fix BAM DMA crash and reboot
 Content-Language: en-US
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        linux-input@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230606-topic-goodix-berlin-upstream-initial-v3-0-f0577cead709@linaro.org>
- <20230606-topic-goodix-berlin-upstream-initial-v3-4-f0577cead709@linaro.org>
- <ZJiXopmFr4dPbqll@nixie71> <e36a697f-a54d-7bdf-1e18-38f72ec2966c@linaro.org>
- <ZJmMJxXxLrC9Xevi@nixie71>
-Organization: Linaro Developer Services
-In-Reply-To: <ZJmMJxXxLrC9Xevi@nixie71>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+References: <20230621143627.189134-1-krzysztof.kozlowski@linaro.org>
+ <CTMJRMN2K8AY.20TQJE584A453@otso>
+ <7b909a56-1b3d-79fb-0286-b10117982dc3@linaro.org>
+In-Reply-To: <7b909a56-1b3d-79fb-0286-b10117982dc3@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -88,51 +84,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 26/06/2023 15:01, Jeff LaBundy wrote:
-> Hi Neil,
-> 
-> On Mon, Jun 26, 2023 at 09:02:16AM +0200, Neil Armstrong wrote:
-> 
-> [...]
-> 
->>>> +static int goodix_berlin_spi_probe(struct spi_device *spi)
->>>> +{
->>>> +	struct regmap_config *regmap_config;
->>>> +	struct regmap *regmap;
->>>> +	size_t max_size;
->>>> +	int error = 0;
->>>> +
->>>> +	regmap_config = devm_kmemdup(&spi->dev, &goodix_berlin_spi_regmap_conf,
->>>> +				     sizeof(*regmap_config), GFP_KERNEL);
->>>> +	if (!regmap_config)
->>>> +		return -ENOMEM;
->>>
->>> Is there any reason we cannot simply pass goodix_berlin_spi_regmap_conf to
->>> devm_regmap_init() below? Why to duplicate and pass the copy?
->>>
->>> For reference, BMP280 in IIO is a similar example of a device with regmap
->>> sitting atop a bespoke SPI protocol; it does not seem to take this extra
->>> step.
+On 26/06/2023 14:46, Krzysztof Kozlowski wrote:
+> On 26/06/2023 13:32, Luca Weiss wrote:
+>> Hi Krzysztof,
 >>
->> The goodix_berlin_spi_regmap_conf copy is modified after with the correct
->> max raw read/write size, and I'm not a fan of modifying a global structure
->> that could be use for multiple probes, I can make a copy in a stack variable
->> if it feels simpler.
+>> On Wed Jun 21, 2023 at 4:36 PM CEST, Krzysztof Kozlowski wrote:
+>>> SM8350 HDK and MTP boards were silently dying and rebooting during BAM
+>>> DMA probe:
+>>>
+>>>   [    1.574304] vreg_bob: Setting 3008000-3960000uV
+>>>   [    1.576918] bam-dFormat: Log Type - Time(microsec) - Message -
+>>>   Optional Info
+>>>   Log Type: B - Since Boot(Power On Reset),  D - Delta,  S - Statistic
+>>>   S - QC_IMAGE_VERSION_STRING=BOOT.MXF.1.0-00637.1-LAHAINA-1
+>>>   S - IMAGE_VARIANT_STRING=SocLahainaLAA
+>>>   S - OEM_IMAGE_VERSION_STRING=crm-ubuntu77
+>>>   S - Boot Interface: UFS
+>>>
+>>> It seems that BAM DMA is locally controller (not by firmware) and
+>>> requires proper initialization by the driver prior to use, at least on
+>>> HDK8350 and MTP8350, but probably on all boards.
+>>
+>> Are you sure that the bam (and subsequent the qce) actually probes with
+>> this change? From reading the code I don't see how the bam should probe
+>> without either qcom,controlled-remotely or qcom,powered-remotely but no
 > 
-> Ah, that makes sense; in that case, the existing implementation seems fine
-> to me. No changes necessary.
+> Why the binding does not require either this or that? Eh, buggy stuff...
 > 
-> Correct me if I'm wrong, but the stack variable method wouldn't work since
-> that memory is gone after goodix_berlin_spi_probe() returns.
-
-The config is only needed for the devm_regmap_init() duration, so keeping
-the memory allocated for the whole lifetime of the device seems useless.
-
-Neil
-
 > 
-> Kind regards,
-> Jeff LaBundy
+>> clocks supplied. I think the probe just fails with this change, right?
+> 
+> I will need to double check. I was happy enough to be able to boot my
+> device instead of having crashes, but indeed it would be nice to fix it
+> fully.
+
+You were right and my patch is not correct. I checked downstream and
+there are no clocks there. Therefore I assume something else is wrong here.
+
+I will send v2 disabling this.
+
+Best regards,
+Krzysztof
 
