@@ -2,65 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AFB6473E6E5
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3116373E6E8
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 19:50:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229954AbjFZRtj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 13:49:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45636 "EHLO
+        id S229803AbjFZRuU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 13:50:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230318AbjFZRt3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:49:29 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [IPv6:2001:4b7a:2000:18::169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B611134;
-        Mon, 26 Jun 2023 10:49:28 -0700 (PDT)
-Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        with ESMTP id S229670AbjFZRuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 13:50:18 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D713134;
+        Mon, 26 Jun 2023 10:50:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 8A2613F4E6;
-        Mon, 26 Jun 2023 19:49:24 +0200 (CEST)
-Date:   Mon, 26 Jun 2023 19:49:23 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AC4CD60F01;
+        Mon, 26 Jun 2023 17:50:17 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 80599C433C8;
+        Mon, 26 Jun 2023 17:50:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687801817;
+        bh=s4nqEhUfqmqOPxDNx5EU+3Otzr9YMuFYasx7vWRTl7E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BUi3o0EUGax7OuYJDS2t1keD6ocU7m+LNpkHxmMX6C+bs9JlOACvcRkXqAxfYgb7P
+         JK7UHHt8lcVq+ADNCujsH5eo4qhfWCQufbWhtJW7Zojw7WrQbZIt9Zzw7RT4CIpCl2
+         sa1IN70Xv9F8Qpl2Gdw9U7ZfsE3dNjRtCe3tZx9XnBWI2eZQI0F4Gdy9DvIbS80RGd
+         HKBUm4qzDoUr0JvVZey1UqzJgF4czdWf33ArnasCpYhtNp0V9Uh1ZnM5YHh63tDdE7
+         oEFqynFE7kHhsW1acYcfSxYSa1jT8fZZA+WTziE89DucFONUqEwsBuCt5mqwVnhR0V
+         0sx0FDWtERGfQ==
+Date:   Mon, 26 Jun 2023 18:50:11 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Anup Patel <apatel@ventanamicro.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>, palmer@dabbelt.com,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
-Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom,dispcc-sm6125: Require
- GCC PLL0 DIV clock
-Message-ID: <jmtjuya4c423rmdlo4ubvvqndbxvgapal5otjqnejdpdd25izp@kewbjmqdu2xs>
-References: <20230624-sm6125-dpu-v1-0-1d5a638cebf2@somainline.org>
- <20230624-sm6125-dpu-v1-3-1d5a638cebf2@somainline.org>
- <c9681bce-efa8-9b79-4bf6-837dd6a2dc12@linaro.org>
- <55b0ca89-8f2e-5383-59d4-6809e813abf8@linaro.org>
- <vnp263d43flny2ibt3n7fbloyi26enqrejnobogplfu5fcj6l3@s7zkxrsi2rde>
- <52c57cab-10cf-2e7e-2c1d-fa6506786d45@linaro.org>
+        Alistair Francis <alistair.francis@wdc.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        Oleksii <oleksii.kurochko@gmail.com>,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>
+Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230626-eliminate-grimy-b229724dc830@spud>
+References: <20230626-unmarked-atom-70b4d624a386@wendy>
+ <CAK9=C2UesoUCeb8k0DSCHi7Zr+B5U26KQ9oCs9map3a2zzYqAw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="m57Jtotn9Env+EUp"
 Content-Disposition: inline
-In-Reply-To: <52c57cab-10cf-2e7e-2c1d-fa6506786d45@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <CAK9=C2UesoUCeb8k0DSCHi7Zr+B5U26KQ9oCs9map3a2zzYqAw@mail.gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,35 +67,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-06-26 18:10:44, Krzysztof Kozlowski wrote:
-> On 25/06/2023 21:48, Marijn Suijten wrote:
-> > On 2023-06-24 11:08:54, Krzysztof Kozlowski wrote:
-> >> On 24/06/2023 03:45, Konrad Dybcio wrote:
-> >>> On 24.06.2023 02:41, Marijn Suijten wrote:
-> >>>> The "gcc_disp_gpll0_div_clk_src" clock is consumed by the driver, will
-> >>>> be passed from DT, and should be required by the bindings.
-> >>>>
-> >>>> Fixes: 8397c9c0c26b ("dt-bindings: clock: add QCOM SM6125 display clock bindings")
-> >>>> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> >>>> ---
-> >>> Ideally, you'd stick it at the bottom of the list, as the items: order
-> >>> is part of the ABI
-> >>
-> >> Yes, please add them to the end. Order is fixed.
-> > 
-> > Disagreed for bindings that declare clock-names and when the driver
-> > adheres to it, see my reply to Konrad's message.
-> 
-> That's the generic rule, with some exceptions of course. Whether one
-> chosen driver (chosen system and chosen version of that system) adheres
-> or not, does not change it. Other driver behaves differently and ABI is
-> for everyone, not only for your specific version of Linux driver.
-> 
-> Follow the rule.
 
-This has no relation to the driver (just that our driver adheres to the
-bindings, as it is supposed to be).  The bindings define a mapping from
-a clock-names=<> entry to a clock on the same index in the clocks=<>
-array.  That relation remains the same with this change.
+--m57Jtotn9Env+EUp
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-- Marijn
+On Mon, Jun 26, 2023 at 11:08:43PM +0530, Anup Patel wrote:
+> On Mon, Jun 26, 2023 at 3:42=E2=80=AFPM Conor Dooley <conor.dooley@microc=
+hip.com> wrote:
+
+> > acpi
+> > =3D=3D=3D=3D
+> >
+> > The current ACPI ECR is based on having a single ISA string unfortunate=
+ly,
+> > but ideally ACPI will move to another method, perhaps GUIDs, that give
+> > explicit meaning to extensions.
+>=20
+> Drop this paragraph on ACPI.
+
+Sure.
+
+--m57Jtotn9Env+EUp
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJnP0wAKCRB4tDGHoIJi
+0s8VAQCUTZ2Haqv+3bKnIWj5oQn4AdHRibKGwI2p8ygrlmJ+1gD8CvNs5ZjWLL3X
+2Qo1nAeXl/D8F50sG29i3UXpjYBj5wM=
+=7wbM
+-----END PGP SIGNATURE-----
+
+--m57Jtotn9Env+EUp--
