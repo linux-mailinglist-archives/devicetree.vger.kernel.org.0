@@ -2,106 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E23373E24E
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:39:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EEE73E25C
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 16:43:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230228AbjFZOjv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 10:39:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51186 "EHLO
+        id S229658AbjFZOns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 10:43:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbjFZOjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:39:44 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63B0910CA
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:39:42 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-313f3a6db22so896481f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:39:42 -0700 (PDT)
+        with ESMTP id S229749AbjFZOnp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 10:43:45 -0400
+Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73564E7E
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:43:43 -0700 (PDT)
+Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-668704a5b5bso3152536b3a.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 07:43:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687790381; x=1690382381;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=GbmG/0Wb9nQ6z/PJEyshEPOBYP8Ve8ZuPqHoAlT0PBU=;
-        b=v+xGmGJ0qIKRU0aurzhYHzIhjNpseb32nFxtt0cVXyZgxRKLexvjA1I7WRCD30AJL5
-         Eh+qbIjAP4NQcnlNR1I/NzBsJKqid+podoDPCDocJl+LEfk/pJHXsu1L4EtQQNKsx5dP
-         fef50DtyMYVYCyHso5OggdKwQmH6wr7etq++Nio8hL9QiYjg2gVJtWMqiO7yErYgevzf
-         8IKienQinE4jICssw7dY926yyBUebZc/1seLsWOtDpNlnlmAc6/i5uAzbdv+jtLbsHnA
-         hNiVcwkKf/6G4yupLdqBQJX93vw8ruAa85Bj++UM8ySsTwFkZPPROGk10fcd/nOaXpWw
-         /H4A==
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1687790623; x=1690382623;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=hLwVC7ihwJgCLNAPdbYZ1bRYjS7hN3YK9btRuGB162w=;
+        b=OiF+mqIEDLR+vsRfE9GqbFFYC38vHP5P012nTnSj3OP2PidFhBwtflPE0+0txPNHmv
+         LhnKSwTEMGSiV+A9BdWZ2tgdTmVjAF7Wr6K99AjtPjLcCBCsurGzM9Qzw6fdbFN+32hd
+         GgzIm71SA9INcIBFB8pHtvzScCYKqm7Fwmz6H97CIMM6UlJZsPJM+8nnZZep+0yYF4Mn
+         3eC5v6pUhKVptMWQd+jtB5r4MFz6vMNmOe2sDdeP6EZNegvTloNYDfYoo18as4K0MaER
+         YstNBClDRhUT7pqrLtA8nwt2SH3iDD3AjL6NZQQYfAhKFTDG9FvKVpqM2vuSkWB06gKz
+         BM6A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687790381; x=1690382381;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20221208; t=1687790623; x=1690382623;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GbmG/0Wb9nQ6z/PJEyshEPOBYP8Ve8ZuPqHoAlT0PBU=;
-        b=Js00uvszTIG88HjCj5uMVAoVHDv2a8TG7fMlzDl82KFJPpSZsUpqc7gtAuC+RG3jJg
-         /AvBfMrpxPpUcY3b4xcpfjjDlg4kjQmc+PulPzjtQTYeSTMs5bkGzntMHTUpV9BrB4q1
-         xexgTNKYA4j4zaW6tYrCx8BaBsxRDazEX2Sy45UJp0f2vd9kvyIHqsblk7Wya8q6JAK1
-         xnzp1x3axFwsWFQuoThk5Tvpw3uublE41ytpfpk4XKrSojXT1cpmlzNbOAv9W/WyZrad
-         z9nCg5gFJNlftZrQlwKjVYuryOWNsU1Iwkoou5sn2VfpQPiOEP0SqB3+uz8uC4WJ9BLW
-         68Kw==
-X-Gm-Message-State: AC+VfDzCGqznMULkH2n8ALonCWqjWYsOKWFSF4MzXAR62THKlNVMdpzm
-        WJ9cyCLKgR1Xq68sazv+rZfjIzO07BZMzOFvbzN2nQ==
-X-Google-Smtp-Source: ACHHUZ5u0xLo84AQuU8IWtL8/XKYwsSCcaLqPaN0OzwE1PROPfhND29UAU7NVe45aBYE+KDJ8dq3Jw==
-X-Received: by 2002:a5d:4250:0:b0:311:170e:8d with SMTP id s16-20020a5d4250000000b00311170e008dmr23526468wrr.26.1687790380687;
-        Mon, 26 Jun 2023 07:39:40 -0700 (PDT)
-Received: from aspen.lan (aztw-34-b2-v4wan-166919-cust780.vm26.cable.virginm.net. [82.37.195.13])
-        by smtp.gmail.com with ESMTPSA id u14-20020adfdb8e000000b003112ab916cdsm7675793wri.73.2023.06.26.07.39.39
+        bh=hLwVC7ihwJgCLNAPdbYZ1bRYjS7hN3YK9btRuGB162w=;
+        b=QxcICAsdJFUf1gFlpW2qY0x28djAV6ff6Ar5uIQ6MviqgKvHfRtTxQuB1dtRPCMv9n
+         5AHcOgFHbXybcguu6evvMTxa6+K+bsqRiW/PBkMLyDZMYhyOH9NDl8ZKvJ+AU/NkS7KZ
+         VGRFHys3jI5eD1+rEJx3pIIoK7Ue5JJm9CMGmsHc6lQAipHatrGOQpoRT82m6LmB6+ww
+         tMaN47OKqUH9H3Cwovk2IS/YfsYDYxmsqS4/wt9ghoIBKkTa06KtOiMuFJGAy+6snIfk
+         KlsTzU8Wn75gdX+gyig5iiOaxBIxOy3/gpwF+QKrDDxq8D+xTpOR3wOGqB8S8LMJ523r
+         ey9Q==
+X-Gm-Message-State: AC+VfDzX74Tn2h86l78K+o752lJqGZ3EATEZkFSAROln3OUQn1PcW7Ca
+        x1+ebsrHibY3d15J9V2vDNjC5w==
+X-Google-Smtp-Source: ACHHUZ7ozozA+9/vM7RpuhtbNja+Yppkp8D7Oz2+QNA1Rr+8637hn1QfzKDpsKeKamfqiVtfb83iAg==
+X-Received: by 2002:a05:6a00:10d5:b0:666:e42c:d5fb with SMTP id d21-20020a056a0010d500b00666e42cd5fbmr32869624pfu.32.1687790622785;
+        Mon, 26 Jun 2023 07:43:42 -0700 (PDT)
+Received: from localhost ([135.180.227.0])
+        by smtp.gmail.com with ESMTPSA id d6-20020aa78146000000b0066145d63b1asm3898769pfn.138.2023.06.26.07.43.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 07:39:40 -0700 (PDT)
-Date:   Mon, 26 Jun 2023 15:39:38 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Maximilian Weigand <mweigand2017@gmail.com>
-Cc:     Lee Jones <lee@kernel.org>, Jingoo Han <jingoohan1@gmail.com>,
-        Helge Deller <deller@gmx.de>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Maximilian Weigand <mweigand@mweigand.net>
-Subject: Re: [PATCH 1/3] backlight: lm3630a: add support for changing the
- boost frequency
-Message-ID: <20230626143938.GC95170@aspen.lan>
-References: <20230602-lm3630a_boost_frequency-v1-0-076472036d1a@mweigand.net>
- <20230602-lm3630a_boost_frequency-v1-1-076472036d1a@mweigand.net>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230602-lm3630a_boost_frequency-v1-1-076472036d1a@mweigand.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Mon, 26 Jun 2023 07:43:42 -0700 (PDT)
+Date:   Mon, 26 Jun 2023 07:43:42 -0700 (PDT)
+X-Google-Original-Date: Mon, 26 Jun 2023 07:43:04 PDT (-0700)
+Subject:     Re: [PATCH V1 1/3] Revert "RISC-V: mark hibernation as nonportable"
+In-Reply-To: <20230626-mousy-latter-ad8088de089f@wendy>
+CC:     Conor Dooley <conor@kernel.org>, suagrfillet@gmail.com,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com,
+        ajones@ventanamicro.com, alexghiti@rivosinc.com,
+        mpe@ellerman.id.au, Arnd Bergmann <arnd@arndb.de>, rppt@kernel.org,
+        samuel@sholland.org, panqinglin2020@iscas.ac.cn,
+        anup@brainfault.org, xianting.tian@linux.alibaba.com,
+        anshuman.khandual@arm.com, heiko@sntech.de,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Message-ID: <mhng-f018e5e3-61f5-47ee-a2ae-95309bbdb208@palmer-ri-x1c9>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 14, 2023 at 09:08:52PM +0200, Maximilian Weigand wrote:
-> From: Maximilian Weigand <mweigand@mweigand.net>
+On Mon, 26 Jun 2023 06:34:43 PDT (-0700), Conor Dooley wrote:
+> On Sun, Jun 25, 2023 at 03:36:06PM -0700, Palmer Dabbelt wrote:
+>> On Sun, 25 Jun 2023 15:15:14 PDT (-0700), Conor Dooley wrote:
+>> > On Sun, Jun 25, 2023 at 11:09:21PM +0800, Song Shuai wrote:
+>> > > 在 2023/6/25 22:18, Conor Dooley 写道:
+>> > > > On Sun, Jun 25, 2023 at 10:09:29PM +0800, Song Shuai wrote:
+>> > > > > This reverts commit ed309ce522185583b163bd0c74f0d9f299fe1826.
+>> > > > > > > With the commit 3335068f8721 ("riscv: Use PUD/P4D/PGD pages
+>> > > for the
+>> > > > > linear mapping") reverted, the MIN_MEMBLOCK_ADDR points the kernel
+>> > > > > load address which was placed at a PMD boundary.
+>> > > > > > And firmware always
+>> > > > > correctly mark resident memory, or memory protected with PMP as
+>> > > > > per the devicetree specification and/or the UEFI specification.
+>> > > > > But this is not true? The versions of OpenSBI that you mention
+>> > > in your
+>> > > > cover letter do not do this.
+>> > > > Please explain.
+>> > > >
+>> > > 
+>> > > At this time, OpenSbi [v0.8,v1.3) and edk2(RiscVVirt) indeed don't obey the
+>> > > DT/UEFI spec. This statement is excerpted from "Reserved memory for resident
+>> > > firmware" part from the upcoming riscv/boot.rst. It isn't accurate for now.
+>> > > How about deleting this one?
+>> > 
+>> > It is incorrect, so it will need to be removed, yes.
+>> > Unfortunately writing a doc does not fix the existing implementations :(
+>> > 
+>> > > Actually with 3335068f8721 reverted, the change of MIN_MEMBLOCK_ADDR can
+>> > > avoid the mapping of firmware memory, I will make it clear in the next
+>> > > version.
+>> > 
+>> > To be honest, I'd like to see this revert as the final commit in a
+>> > series that deals with the problem by actually reserving the regions,
+>> > rather than a set of reverts that go back to how we were.
+>> > I was hoping that someone who cares about hibernation support would be
+>> > interested in working on that - *cough* starfive *cough*, although maybe
+>> > they just fixed their OpenSBI and moved on.
+>> > If there were no volunteers, my intention was to add a firmware erratum
+>> > that would probe the SBI implementation & version IDs, and add a firmware
+>> > erratum that'd parse the DT for the offending regions and reserve them.
+>> 
+>> Is there any actual use case for hibernation on these boards?  Maybe it's
+>> simpler to just add a "reserved regions actually work" sort of property and
+>> then have new firmware set it -- that way we can avoid sorting through all
+>> the old stuff nobody cares about and just get on with fixing the stuff
+>> people use.
 >
-> The led driver supports changing the switching frequency of the boost
-> converter by two means: the base switching frequency can be changed from
-> 500 kHz to 1 MHz, and a frequency shift can be activated, leading to
-> switching frequencies of 560 kHz or 1.12 Mhz, respectively.
->
-> Add this functionality to the led driver by introducing two dts entries
-> that control the boost frequency (500 kHz by default) and the frequency
-> shift (no shift by default).
->
-> Signed-off-by: Maximilian Weigand <mweigand@mweigand.net>
+> What is "old stuff nobody cares about"? The first version of OpenSBI with
+> the fix shipped only the other day, so effectively all current stuff has
+> this problem. Certainly everything shipping from vendors at the moment
+> has the problem, and probably whatever downstream, custom versions of
+> OpenSBI also have it.
 
-Driver changes look ok (or at least will be when the DT bindings are
-finalized).
+Ya, so "old stuff" is everything -- but that's all already broken, so 
+nothing we can do about it.  IIUC there's nothing shipping that 
+functions correctly here, so it's just a matter of detecting everything 
+before the bug.
 
-However... I think patches 1 and 2 of this series are in the wrong
-order. See #5 in
-https://docs.kernel.org/devicetree/bindings/submitting-patches.html
-for details.
+> Also, the problem isn't just limited to hibernation apparently. I
+> think it was mentioned in the cover letter that according to Rob,
+> without being marked as no-map we could also see speculative access &
+> potentially some of the memory debugging stuff walking these regions.
 
+We've got a bunch of other problems around speculative accesses to these 
+regions in M-mode, so we'll have to deal with it at some point anyway.
 
-Daniel.
+> I'm not sure how you'd intend communicating "reserved regions actually
+> work", I figure you mean via DT?
+
+Somewhere in DT.  I hadn't thought about it a ton, just adding some 
+property that says "this doesn't have the bug" was roughly the idea.
+
+> I don't really see the benefit of adding a property for those who are
+> behaving, if we can detect the versions of the one relevant SBI
+> implementation that are broken at runtime. DT hat on, even less so.
+> Perhaps I am missing your point, and there's another angle (like trying
+> to per firmware code)?
+
+If it's easy to figure out which versions are broken that seems fine to 
+me.  My worry was just that's hard to do (folks forking OpenSBI) and it 
+might be easier to just 
