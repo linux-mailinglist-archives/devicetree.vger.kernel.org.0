@@ -2,59 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CDB473DD15
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 13:16:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A8BE73DD1E
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 13:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229828AbjFZLQ0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 07:16:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54838 "EHLO
+        id S229523AbjFZLRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 07:17:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55008 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjFZLQ0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 07:16:26 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F60B1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 04:16:25 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DFADA60DE5
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 11:16:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C12A7C433C8;
-        Mon, 26 Jun 2023 11:16:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687778184;
-        bh=9ayFCBj3MQtyKAKoLoTqh0KbhdeaXWiq1Cdbv5W5AVc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bwR9SI1mPvpmw1/mlLt3jvVOiaQj8T+wFQ0AP1YxHhtKdHbI5towmlwY58Olc4dLo
-         RRFjgTsgxQcbry37GnCqXNV2ITSDzzzJ/g3Yq30LnEE8cV5Ph9HXR6thlWSLjXryDC
-         61XZrChya6l80f6mjKvjNVXIM1qWtOSAJkOYHkjQu1/Bkrj5B2Th4e8/NXbB+axdfz
-         dPxVJH/TGX3wZDJspn6ZPruIVqMk8w2IYQ+1UQgvqpNhq+RIE4ngDUteqzKjnSdNMK
-         odgRPK5pnyqTxgXsXs9tihC6DkHd8DjTJWpMbmhgmqOW5ZL7/39BNsWx5e05wry/XY
-         cIiCwZ1csxa9Q==
-Date:   Mon, 26 Jun 2023 13:16:20 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Tudor Ambarus <tudor.ambarus@linaro.org>,
-        Pratyush Yadav <pratyush@kernel.org>,
-        Michael Walle <michael@walle.cc>,
-        linux-mtd@lists.infradead.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH] dt-bindings: mtd: Fix nand-controller.yaml license
-Message-ID: <5rup662p25xia6r2pdiaitqoubs66n4tyok4gklilk7aqebmvm@mw7ekpf5654w>
-References: <20230622212415.3583886-1-miquel.raynal@bootlin.com>
- <20230623210508.GA1096125-robh@kernel.org>
+        with ESMTP id S229488AbjFZLRc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 07:17:32 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 816B5101;
+        Mon, 26 Jun 2023 04:17:31 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35QAYZKt031238;
+        Mon, 26 Jun 2023 11:17:27 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=qap+wPmI/4+wGpj6QeslGGidlg50iUr9wMK2Z0CGYrI=;
+ b=iaGbtV6avyOP9diL5BtFS+vazmz20s8owQUZ3fsi8cdmLwbmBpSdc2hQyZeSZyTAhr+7
+ TyatBb1KKh/9KJ17GwbUpIbTyiqWopSd7crwl68+2cnlF7YfclnNF15ylCJxLuwTJtPm
+ 5+EAbRY+wEc6TEovpa997v6g56qnDjGqFQ8DBJiyMZ0MEu8JzxNiqYgBhSlmT2ztJgCT
+ /BXRIWl1X97ehaV0SaEUURFYJbxMdl0sSCinEzAzXXZK2tl5080pi6jpDDhq3vE3Tx/Z
+ SqpFdv9nW/Dg/7a6XcsQIeF6MavwH5+ZZKFsTao3r2r/KfW7GLyD48A/DAHfnix75p7p Ng== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rdqew3uwc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Jun 2023 11:17:27 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35QBHQcw010406
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 26 Jun 2023 11:17:26 GMT
+Received: from [10.216.37.195] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Mon, 26 Jun
+ 2023 04:17:21 -0700
+Message-ID: <20ec31b3-667a-0617-71d4-586789e2c2a4@quicinc.com>
+Date:   Mon, 26 Jun 2023 16:47:18 +0530
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ayqqxbdxc6tslgyl"
-Content-Disposition: inline
-In-Reply-To: <20230623210508.GA1096125-robh@kernel.org>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.9.1
+Subject: Re: [RESEND v6 8/8] arm64: dts: qcom: sc7280: Add qcom,adsp-pil-mode
+ property in clock nodes
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <swboyd@chromium.org>,
+        <andersson@kernel.org>, <broonie@kernel.org>, <agross@kernel.org>
+CC:     <robh+dt@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_rohkumar@quicinc.com>, <srinivas.kandagatla@linaro.org>,
+        <dianders@chromium.org>, <judyhsiao@chromium.org>,
+        <quic_visr@quicinc.com>,
+        Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+References: <20230616103534.4031331-1-quic_mohs@quicinc.com>
+ <20230616103534.4031331-9-quic_mohs@quicinc.com>
+ <b2553058-bd78-6d9f-dcd0-d1c086b4fc3b@linaro.org>
+From:   Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+In-Reply-To: <b2553058-bd78-6d9f-dcd0-d1c086b4fc3b@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: RkwcKsH3F9QMLdzy3Oms6uVj14Hr-Cp3
+X-Proofpoint-GUID: RkwcKsH3F9QMLdzy3Oms6uVj14Hr-Cp3
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-26_08,2023-06-26_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
+ malwarescore=0 bulkscore=0 mlxscore=0 lowpriorityscore=0 impostorscore=0
+ spamscore=0 mlxlogscore=999 adultscore=0 phishscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306260101
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,44 +88,71 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---ayqqxbdxc6tslgyl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 6/16/2023 5:06 PM, Konrad Dybcio wrote:
+> On 16.06.2023 12:35, Mohammad Rafi Shaik wrote:
+>> From: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>>
+>> Add "qcom,adsp-pil-mode" property in clock nodes for herobrine
+>> crd revision 3 board specific device tree.
+>> This is to register clocks conditionally by differentiating ADSP
+>> based platforms and legacy path platforms.
+>> Also disable lpass_core clock, as it is creating conflict
+>> with ADSP clocks and it is not required for ADSP based platforms.
+>>
+>> Signed-off-by: Srinivasa Rao Mandadapu <quic_srivasam@quicinc.com>
+>> Signed-off-by: Mohammad Rafi Shaik <quic_mohs@quicinc.com>
+>> ---
+>>   .../qcom/sc7280-herobrine-audioreach-wcd9385.dtsi    | 12 ++++++++++++
+>>   1 file changed, 12 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>> index c02ca393378f..876a29178d46 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7280-herobrine-audioreach-wcd9385.dtsi
+>> @@ -197,6 +197,14 @@ q6prmcc: clock-controller {
+>>   	};
+>>   };
+>>   
+>> +&lpass_aon {
+>> +	qcom,adsp-pil-mode;
+> That's a whole bunch of hacky bindings that makes no sense..
+>
+> What should have been done from the beginning is:
+>
+> - all clocks should be registered inside the clock driver, unconditionally
+>    as far as .c code is concerned
+>
+> - the regmap properties within should reflect the actual max register
+>    range within the hardware block
+>
+> - device-tree should contain protected-clocks, which omits registering
+>    specified clks (I guess in the ADSP-less case you could probably even
+>    register all of them and it wouldn't hurt)
+>
+For AR solution, it is required to add "qcom,adsp-pil-mode" flag to 
+enable ahbm and ahbs clocks.
+Please refer: 
+https://elixir.bootlin.com/linux/v6.4-rc7/source/drivers/clk/qcom/lpassaudiocc-sc7280.c
+>> +};
+>> +
+>> +&lpass_core {
+>> +	status = "disabled";
+> status = "reserved";
+>
+> Konrad
+Okay, will change status flag.
 
-On Fri, Jun 23, 2023 at 03:05:08PM -0600, Rob Herring wrote:
-> On Thu, Jun 22, 2023 at 11:24:15PM +0200, Miquel Raynal wrote:
-> > Binding files should be dual licensed, this file was writtent with the
-> > idea in mind of following the rules, but the SPDX tag did not reflect
-> > that correctly. Fix the tag so we are sure this file is licensed
-> > correctly.
->=20
-> Yes, we do want dual license, but things converted from txt bindings=20
-> need those authors' permission as the txt bindings are all implicitly=20
-> GPLv2. That didn't happen here, so we kept the default implicit license.=
-=20
-> Looks like this case is all Bootlin authors for significant parts of the=
-=20
-> original txt binding, so you should be good on that part (assuming your=
-=20
-> employer agrees). Maxime did the schema, so need his permission too.
-
-I'm not sure how redundant it is with what Thomas just said, but for
-that patch and any license change from GPL to GPL+BSD-2-Clause:
-
-Acked-by: Maxime Ripard <mripard@kernel.org>
-
-Maxime
-
---ayqqxbdxc6tslgyl
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZJlzhAAKCRDj7w1vZxhR
-xdPAAP9p8kRc0j7S1e3EdWoZuCXO69Xvcs5qDnmzkbkcC2TdfwEA4kJf6AoMzR7I
-bxwxTtp7zkU0GlykL+Jd/TDnXL7uwwg=
-=UziJ
------END PGP SIGNATURE-----
-
---ayqqxbdxc6tslgyl--
+Rafi
+>> +};
+>> +
+>>   &lpass_rx_macro {
+>>   	/delete-property/ power-domains;
+>>   	/delete-property/ power-domain-names;
+>> @@ -239,3 +247,7 @@ &lpass_va_macro {
+>>   
+>>   	status = "okay";
+>>   };
+>> +
+>> +&lpasscc {
+>> +	qcom,adsp-pil-mode;
+>> +};
