@@ -2,71 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E482073DBB1
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 11:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62FE573DBB6
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 11:47:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229989AbjFZJqf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 05:46:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45832 "EHLO
+        id S230043AbjFZJry (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 05:47:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46704 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjFZJqe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 05:46:34 -0400
-Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 84343D9
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 02:46:31 -0700 (PDT)
-Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b69ed7d050so14263391fa.2
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 02:46:31 -0700 (PDT)
+        with ESMTP id S229570AbjFZJrx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 05:47:53 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30628D9
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 02:47:51 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4f122ff663eso3821365e87.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 02:47:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687772790; x=1690364790;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1687772869; x=1690364869;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AALGroa+oxrQ4QAJxx6E4/UMQk8ojzz4Y2q62IP4vFI=;
-        b=meGT7R2tRZt+cvxEidV5mPxrhTtG+1180rEwRUdYShJHuvVDZgaszHDKGTSGmepGun
-         GUfUHJkmfh2UxiKhuk1/Jq8t0Cc6pZFOslyOrCGC/PwvM0UhtlHdMBQBfts7GXou0Juo
-         SnbBQqp417VGhxsIxE4+rst1V3YaZ9GDL2Rf2E5LFHBh06AK/8NLLTCRqd9lzvaDdbPn
-         l+UF2AMuhD/v725R+sbLY+evphljTz8qfB1dQV0GzduYmdmGY7//qHkBXzC4qeQfjFDM
-         yDAeQ78AOomqFH3443ArtMhunOcyVptq2QF69TN2AWI/QJ2lFVgHtsiP7nr9/GSUfYDh
-         b6uw==
+        bh=FL2w3500sIslMCHjh74BxBfG9msGNmWLpgO8tAAcfcI=;
+        b=IpGFfzmRPNNLymcJjxeMhezDqYfxivyGGAzIj7wGdCaoEpQCgUsUFdTar0gVG72y5W
+         S0rfK+siR5sRdmxukIQ7GWUtJFds/eHGFzW3p4hicLiZppEvUcIWtR/51WMXA7IE7h0I
+         jnHR2/POnbhZ1wpP2eIu8o+k3dFa3ldov1HxZV/PF0/e9oV7MzuUmdM92SKa08QIuvaT
+         ypyZ9Uw8gZ4qZvD16VVuX4/KgmqxqYqbN2lqDb9Kg5+rcdpgRWZHDPsED23ckMWJqFAI
+         a2si5U4IQanSmDD5Br+Oq+y4Tti/7FX75PHYCBzqr5s+xaQLggLGB/ZTMZV0dDKjFyKu
+         aV0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687772790; x=1690364790;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1687772869; x=1690364869;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AALGroa+oxrQ4QAJxx6E4/UMQk8ojzz4Y2q62IP4vFI=;
-        b=XkHZ4koKQOPFElUepqF5n855QzbU7+zDtFq8JC0CXf+eUcBgLstS/e3fitcJ8LCn3k
-         NDY11p9GiHKHL+nsL/jYaoW6KdR7+GmOe7/VoyEvk6p3KAkjQsw3lldtjtCyXbApLDVS
-         M2mr3RHzvrHDU1kuo7V84NThm/2cQTA9DdVhNFkkD6H3C4DRnBj5voyh69RY6MadyPku
-         d6jN4YnEnO4Pn/5NboJ+oOFSlsryKxX67DRAgyrrdhF8N+y6Mx1Tap0jU/zyWMRcN8mD
-         C/m+cbuv//pRwlUQxYzwwCdwaGGUMsIjffLe8OCf6itbitsL8hvylU8WK+/Co5Jf7N56
-         VOMA==
-X-Gm-Message-State: AC+VfDzg8cAcMZtG561Iytz7ZyC5mYHfw6WUDBB7S22asm1PgSSGIo0C
-        ydlzlsHsVZk5c+5mgLljODVvCQ==
-X-Google-Smtp-Source: ACHHUZ5KPZnllce2bChpYblFlyi/WUt304k5xmFjzG6Ny9pe88sqe7XeDP4dm9DtG/uaJGBpFlxfYA==
-X-Received: by 2002:a05:6512:2513:b0:4f9:608b:1e58 with SMTP id be19-20020a056512251300b004f9608b1e58mr8026993lfb.20.1687772789751;
-        Mon, 26 Jun 2023 02:46:29 -0700 (PDT)
+        bh=FL2w3500sIslMCHjh74BxBfG9msGNmWLpgO8tAAcfcI=;
+        b=M2h9jt1fRDsn/SznbDsECwBHYvBfe3OEljH6O1n5GW21tZJRblnZ0dr1fEPoeO1qQb
+         JioDcSCcqg8p5FOrisgrX5ZzYdxnIMmm+oAf+Uh9CjVAF5v8Ex6CAV2b3aakGwy6QCmZ
+         fg7fqu2e9xTZCLqWPSp97k6PRHKxcbXDo9T+QqwvIq6pY2gJ2ixl0Ky1vISiImzTPz6i
+         7P/pXdUt1kfifwuGUWslLNkUX8id8pPTy3YaQXqW+3Kc3iufzV6sHVrkR7Flye1PElUl
+         BttS0x9MlnFBQ1ktJzIxqv6Px4T0Hs3IQ6pPTqSw0wvprX1K/A0qPBluYTn2f9pSWDdh
+         3NHA==
+X-Gm-Message-State: AC+VfDxzyJooB04ldgSRZyT7K0lUeSHEl7tzePmPPYck42ewfWnmTeAC
+        QdQ+smEnbN7yNc/9Pbdbc9dnHA==
+X-Google-Smtp-Source: ACHHUZ5rZsKDrCepmuT9s/sabNf4DTSFXD6dlVhcagGc7ZJz0fxvXb7tpjWKJRXQTQbqS6gKnHcWHA==
+X-Received: by 2002:a19:9106:0:b0:4f9:54f0:b6db with SMTP id t6-20020a199106000000b004f954f0b6dbmr9983688lfd.13.1687772869510;
+        Mon, 26 Jun 2023 02:47:49 -0700 (PDT)
 Received: from [192.168.1.101] (abyk179.neoplus.adsl.tpnet.pl. [83.9.30.179])
-        by smtp.gmail.com with ESMTPSA id j23-20020a19f517000000b004f842e58d08sm1024860lfb.84.2023.06.26.02.46.27
+        by smtp.gmail.com with ESMTPSA id q12-20020ac24a6c000000b004fb7b4c803esm54882lfp.180.2023.06.26.02.47.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 02:46:28 -0700 (PDT)
-Message-ID: <aae76828-fcc8-506b-e68b-775f864fd159@linaro.org>
-Date:   Mon, 26 Jun 2023 11:46:27 +0200
+        Mon, 26 Jun 2023 02:47:49 -0700 (PDT)
+Message-ID: <863e04e8-3e14-d8bc-f9b4-8e184b545767@linaro.org>
+Date:   Mon, 26 Jun 2023 11:47:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: qcom: pm8953: Add thermal zone
+Subject: Re: [RFT PATCH] arm64: dts: qcom: sdm850-c630: add missing panel
+ supply
 Content-Language: en-US
-To:     Luca Weiss <luca@z3ntu.xyz>, ~postmarketos/upstreaming@lists.sr.ht,
-        phone-devel@vger.kernel.org, Andy Gross <agross@kernel.org>,
+To:     Caleb Connolly <caleb.connolly@linaro.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-References: <20230625-pm8953-thermal-v1-1-2b4247d2f769@z3ntu.xyz>
+References: <20230617171512.286795-1-krzysztof.kozlowski@linaro.org>
+ <52dbabb2-8cc1-5579-8c83-adcc7a699222@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230625-pm8953-thermal-v1-1-2b4247d2f769@z3ntu.xyz>
+In-Reply-To: <52dbabb2-8cc1-5579-8c83-adcc7a699222@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,73 +82,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25.06.2023 13:13, Luca Weiss wrote:
-> Define the themal zones using the temperature values found in the
-> downstream 4.9 sources so that the spmi-temp-alarm driver becomes
-> active.
+On 24.06.2023 16:56, Caleb Connolly wrote:
 > 
-> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> 
+> On 17/06/2023 17:15, Krzysztof Kozlowski wrote:
+>> Panel bindings (boe,nv133fhm-n61) require supply which here actually can
+>> be turned on/off via GPIO control:
+>>
+>>   sdm850-lenovo-yoga-c630.dtb: panel: 'power-supply' is a required property
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> I've been running an equivalent patch for a while, so
+> 
+> Tested-by: Caleb Connolly <caleb.connolly@linaro.org>
+> 
+> The dsi bridge vcc and vcca supplies are also missing, they're powered
+> from vreg_l2a_1p2 and controlled by pm8998_gpio 9.
+Mind submitting an incremental patch?
 
 Konrad
->  arch/arm64/boot/dts/qcom/pm8953.dtsi | 33 ++++++++++++++++++++++++++++++++-
->  1 file changed, 32 insertions(+), 1 deletion(-)
+>>
+>> ---
+>>
+>> Not tested on hardware
+>> ---
+>>  .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 20 +++++++++++++++++++
+>>  1 file changed, 20 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+>> index cfbc4fc1eba9..3d871567cf81 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+>> @@ -87,6 +87,25 @@ sn65dsi86_refclk: sn65dsi86-refclk {
+>>  		clock-frequency = <19200000>;
+>>  	};
+>>  
+>> +	vph_pwr: regulator-vph-pwr {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vph_pwr";
+>> +		regulator-min-microvolt = <3700000>;
+>> +		regulator-max-microvolt = <3700000>;
+>> +	};
+>> +
+>> +	vlcm_3v3: regulator-vlcm-3v3 {
+>> +		compatible = "regulator-fixed";
+>> +		regulator-name = "vlcm_3v3";
+>> +
+>> +		vin-supply = <&vph_pwr>;
+>> +		regulator-min-microvolt = <3300000>;
+>> +		regulator-max-microvolt = <3300000>;
+>> +
+>> +		gpio = <&tlmm 88 GPIO_ACTIVE_HIGH>;
+>> +		enable-active-high;
+>> +	};
+>> +
+>>  	backlight: backlight {
+>>  		compatible = "pwm-backlight";
+>>  		pwms = <&sn65dsi86 1000000>;
+>> @@ -419,6 +438,7 @@ aux-bus {
+>>  			panel: panel {
+>>  				compatible = "boe,nv133fhm-n61";
+>>  				backlight = <&backlight>;
+>> +				power-supply = <&vlcm_3v3>;
+>>  
+>>  				port {
+>>  					panel_in_edp: endpoint {
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8953.dtsi b/arch/arm64/boot/dts/qcom/pm8953.dtsi
-> index 2268daf27fa7..d2dfc1699174 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8953.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8953.dtsi
-> @@ -6,6 +6,37 @@
->  #include <dt-bindings/input/linux-event-codes.h>
->  #include <dt-bindings/spmi/spmi.h>
->  
-> +/ {
-> +	thermal-zones {
-> +		pm8953-thermal {
-> +			polling-delay-passive = <0>;
-> +			polling-delay = <0>;
-> +
-> +			thermal-sensors = <&pm8953_temp>;
-> +
-> +			trips {
-> +				trip0 {
-> +					temperature = <105000>;
-> +					hysteresis = <0>;
-> +					type = "passive";
-> +				};
-> +
-> +				trip1 {
-> +					temperature = <125000>;
-> +					hysteresis = <0>;
-> +					type = "hot";
-> +				};
-> +
-> +				trip2 {
-> +					temperature = <145000>;
-> +					hysteresis = <0>;
-> +					type = "critical";
-> +				};
-> +			};
-> +		};
-> +	};
-> +};
-> +
->  &spmi_bus {
->  	pmic@0 {
->  		compatible = "qcom,pm8953", "qcom,spmi-pmic";
-> @@ -36,7 +67,7 @@ pm8953_resin: resin {
->  			};
->  		};
->  
-> -		temp-alarm@2400 {
-> +		pm8953_temp: temp-alarm@2400 {
->  			compatible = "qcom,spmi-temp-alarm";
->  			reg = <0x2400>;
->  			interrupts = <0x0 0x24 0x0 IRQ_TYPE_EDGE_RISING>;
-> 
-> ---
-> base-commit: 8d2be868b42c08290509c60515865f4de24ea704
-> change-id: 20230625-pm8953-thermal-fc3b2deeeb7b
-> 
-> Best regards,
