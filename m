@@ -2,86 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7742873E3B2
-	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:42:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BC5A73E3C0
+	for <lists+devicetree@lfdr.de>; Mon, 26 Jun 2023 17:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230203AbjFZPmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 11:42:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57924 "EHLO
+        id S231316AbjFZPoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 11:44:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229729AbjFZPml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:42:41 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA5AA1700;
-        Mon, 26 Jun 2023 08:42:33 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1B29260ECA;
-        Mon, 26 Jun 2023 15:42:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46D61C433C8;
-        Mon, 26 Jun 2023 15:42:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687794152;
-        bh=qsIVCEqiEsiNMulMN2stI2PtbXCDoJyDQrPp/INSwFs=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lKP0x47v5GAaPD7ycZO0BDsDgmwrgyEW2lBLCOh96m2iMPNRyIirkukHIEpucy6bi
-         7GBxZtAH1DOswixyxC/fYfxl2hTAM610dP7DANiFjYjwvez5qnxw6OCdgPVXwd1YtP
-         jt2IT303/+Xrw9nflWnqp2B8nooiebuw1ekKbLCDp9xMI079PcK91bzZI/uFuGGY+9
-         FKuLMfgtJoeUAOIQAoTcCw0C4EDeXN5hARyx0J4wejLG8nSGUjSWjUHNr15M5Usm/0
-         Ao4Tx79klY8RBJmYAS5tfEkLN94d9k1PfPuC8yyq9EZO9L7yw8Gpe63+T4zrHKzk2J
-         H1D6/SqSu35QA==
-Date:   Mon, 26 Jun 2023 16:42:26 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Jean-Jacques Hiblot <jjhiblot@traphandler.com>
-Cc:     pavel@ucw.cz, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        with ESMTP id S229756AbjFZPoW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 11:44:22 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FEC51A4
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:44:21 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-98e109525d6so364010066b.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 08:44:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1687794260; x=1690386260;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=YnGKBUnRl+54y+0sQxUUlidbsYRaM5LpOGTqtDz4nVQ=;
+        b=M9Tsn1Tzu+mNEA7nnAsQvg1Z5/LByzdzlMl+RHI7ziSvtJYcASi+ZIUPA7nvKXKkGH
+         FIjN2xZvgNpkBU+0ZO8LO7y8pkIx3Yw8fGBt5WsNZUdHaA8HcLZb5n5z75C6LpwLfFjE
+         B2vM7feLwgFywkB8bkAdJ0gkOmTj2340k4jZbwzaECx4KVPOK+ZgAJpCcc7BHFVlgLk6
+         WsZjFwFrLAN5YkAFYOwn/1A65rRXLkfNBubWeBrO/zqtbkd8tYAbwpqs7Ix4VOE9kyg+
+         wjWzCNfopV0iZKN2ERVAp/aAr7pyDUr210MlLfHTPqtIylLYimoOOVyMjNDrXe1rLwY6
+         KHjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687794260; x=1690386260;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=YnGKBUnRl+54y+0sQxUUlidbsYRaM5LpOGTqtDz4nVQ=;
+        b=EdQ9fDyQS364msRQRXgj6fZlWslIN/gVVVv3MRbdgKwGhopWCIW0yX2+Z5x3Sb7XnE
+         03zcGf32u6ao/rMHS8T/ZC/G7Pcvn70XETuhuaIDGXVksDR0PVOS3LacY2HfK9GDHLJ/
+         VSOtri8038quImQ7K6mZT7O5paPm2mm2nk4IkbHwBurGOWom7En9rH7yKG7fnHNBIXhW
+         LSJFWLYvicR7gRVDP0z9rHyokAVXfKwmUc/Lq1dC6mFJ98P0/3p6MPvp8AQDGEPr+TZi
+         1L1tcW76M+1PpcFlKwf7/3SfaNOTWK9bqR4eb7x3ai6yeInAC0MrDEPOUtgKgqRIS5uK
+         pgBg==
+X-Gm-Message-State: AC+VfDwRgokXjx64gFkdOW0OAa2fKPzEldvsn70M9gQpOvkSokj8CdOv
+        aaJKkZXrNr2ZuA3bA2JD2ME50A==
+X-Google-Smtp-Source: ACHHUZ7m80psrFn/+MZPNhekKTjOon7CjlWS/Mw7tUoEfScBbDLcEaFAESaC9Xf5szD4tRWaGLfGjw==
+X-Received: by 2002:a17:906:ee8c:b0:988:8efc:54fa with SMTP id wt12-20020a170906ee8c00b009888efc54famr17250712ejb.37.1687794260001;
+        Mon, 26 Jun 2023 08:44:20 -0700 (PDT)
+Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
+        by smtp.gmail.com with ESMTPSA id pj4-20020a170906d78400b009885a03467csm3388573ejb.31.2023.06.26.08.44.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jun 2023 08:44:19 -0700 (PDT)
+Date:   Mon, 26 Jun 2023 17:44:18 +0200
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     palmer@dabbelt.com, conor@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Evan Green <evan@rivosinc.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 5/5] leds: Add a multicolor LED driver to group
- monochromatic LEDs
-Message-ID: <20230626154226.GE10378@google.com>
-References: <20230616095746.872220-1-jjhiblot@traphandler.com>
- <20230616095746.872220-6-jjhiblot@traphandler.com>
- <20230621193321.GU10378@google.com>
- <e9d23080-3916-f8ff-e179-4572d02c57b0@traphandler.com>
+Subject: Re: [PATCH v1 3/9] RISC-V: shunt isa_ext_arr to cpufeature.c
+Message-ID: <20230626-2b8f42ace039368c8e917393@orel>
+References: <20230626-provable-angrily-81760e8c3cc6@wendy>
+ <20230626-endowment-crave-d72f9423c5b3@wendy>
+ <20230626-79b06f642aa2996098c9353d@orel>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e9d23080-3916-f8ff-e179-4572d02c57b0@traphandler.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230626-79b06f642aa2996098c9353d@orel>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,UPPERCASE_50_75
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Jun 2023, Jean-Jacques Hiblot wrote:
-
+On Mon, Jun 26, 2023 at 05:29:04PM +0200, Andrew Jones wrote:
+> On Mon, Jun 26, 2023 at 12:19:41PM +0100, Conor Dooley wrote:
+...
+> > +const struct riscv_isa_ext_data riscv_isa_ext[] = {
+> > +	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
+> > +	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
+> > +	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
+> > +	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
+> > +	__RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
+> > +	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
+> > +	__RISCV_ISA_EXT_DATA(zihpm, RISCV_ISA_EXT_ZIHPM),
+> > +	__RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
+> > +	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
+> > +	__RISCV_ISA_EXT_DATA(zbs, RISCV_ISA_EXT_ZBS),
+> > +	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
+> > +	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
+> > +	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
+> > +	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
+> > +	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
+> > +	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
+> > +	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
+> > +	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
 > 
-> 
-> On 21/06/2023 21:33, Lee Jones wrote:
-> > On Fri, 16 Jun 2023, Jean-Jacques Hiblot wrote:
-> > 
-> > >   create mode 100644 drivers/leds/rgb/leds-group-multicolor.c
-> > 
-> > Sorry to do this too you, but there are too many nits that I can't pass by.
-> That's alright. I'll fix them in the next (hopefully last) round
-> > 
-> > > +		/* Restore sysfs access when the multicolor LED is released */
-> > 
-> 
-> > Out of interest, why are we doing this?
-> To prevent the user to play with the individual LEDs of the group, their
-> sysfs interface is disabled (read-only). The interface must be re-enabled
-> when the group is destroyed.
+> I think we can either drop this null entry or drop the count variable
+> below. My preference would be to drop the count variable, and always
+> loop to the null.
 
-Please make that very clear in the code.
+Eh, never mind, the entry isn't null, it's "". Why do we have that entry
+though? I guess it can be dropped?
 
--- 
-Lee Jones [李琼斯]
+Thanks,
+drew
