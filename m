@@ -2,246 +2,374 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5006C73FD66
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:08:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB2F773FD67
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229867AbjF0OIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 10:08:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53242 "EHLO
+        id S229884AbjF0OJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 10:09:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230058AbjF0OIp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:08:45 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B489C30DF
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:08:31 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-307d58b3efbso4068051f8f.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:08:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687874910; x=1690466910;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=BAc/hkkt4MGceXCskuJJ2M2wZrdjzN2VaeA5KmvNMbU=;
-        b=YR4Nk2SdOpkklxr/Wuv2Ta00MjSeVguU80TK076+fHMy988kaEdMJiD6t/40+tHnmM
-         QQBrynHNu/91tDX1NmgeDiOLQFW1zVuzaFF3OOMMP1kGFX99o+mx5LPepLSWD7OrofyW
-         CTfuGM4lSTCsQbYrQlmvPvVizKWCoWY4N2iuMye6anZ2BBeqJwqEa2ksE6wPLzv3xn6d
-         VOEQ2/200fv2dytTp8+YNjKIatm8hyfkST78I5GnK3xXIFPs6IHwfg5sIKCTgM2pMJR3
-         jDqppjCzwOGfoHaooitrttGCtahdSqww0pU/l5dW/+5Br0iYrrmlykhuGcjQzZTlpzhS
-         i6pA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687874910; x=1690466910;
-        h=content-transfer-encoding:in-reply-to:organization:from:references
-         :cc:to:content-language:subject:reply-to:user-agent:mime-version
-         :date:message-id:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=BAc/hkkt4MGceXCskuJJ2M2wZrdjzN2VaeA5KmvNMbU=;
-        b=gSHWso9/hcxucfYvI98CEv5wLEfYvPjPU6KrZPFuLJRBZQaZL45pKziGVyDQa1p3gA
-         +XY/3oidV5ZLW9JdJghXbBw+6kc7N+Ey0QRxd/rz5B80Jglpfash58MDYwoCj4xCuCaj
-         +Us0cSqNlnBPxir1dC/jPpJ+o4Fg9bdLERtGkp239ZpSSmPw6k3lvCC68ryNiEorhd34
-         E/HWosBGCkBjYqcu+YoJbcNBsS9H2LzF0t7SS6eioOl1FQ8KQePRP1KiVbppHShDGnun
-         FfKOs4XRFkmOXEHYaXw0hpKCV9hYn6JJnyGiig1+nVVQcDHZxBRjj4LSMik9QGBY/nPa
-         HJMw==
-X-Gm-Message-State: AC+VfDzwELAemK/ur9n182xtlUUzHojnGLS4o8SisfWlMCiBURsQGN+8
-        /jBD+q7/PUVYwMQvbcxEqo/WHg==
-X-Google-Smtp-Source: ACHHUZ4r+OHok1szuS/TYzNzqUULOILscOxN6x3OV6V+9sY5zmkWk3YeTHCtatZ14YKuQMseY63cfQ==
-X-Received: by 2002:a5d:4ad0:0:b0:313:f98a:1fd3 with SMTP id y16-20020a5d4ad0000000b00313f98a1fd3mr2571971wrs.27.1687874910010;
-        Tue, 27 Jun 2023 07:08:30 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:cec9:2929:7a19:7afa? ([2a01:e0a:982:cbb0:cec9:2929:7a19:7afa])
-        by smtp.gmail.com with ESMTPSA id b3-20020a056000054300b002c70ce264bfsm10623578wrf.76.2023.06.27.07.08.28
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 07:08:29 -0700 (PDT)
-Message-ID: <37c647d8-8957-e6d4-f1bb-7e6de4c9df34@linaro.org>
-Date:   Tue, 27 Jun 2023 16:08:28 +0200
+        with ESMTP id S230019AbjF0OJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:09:19 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE9295B;
+        Tue, 27 Jun 2023 07:09:16 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (unknown [193.85.242.128])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D032410A;
+        Tue, 27 Jun 2023 16:08:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687874915;
+        bh=2tLjFqR85/HNN1FGdzp8MdToBL0lJRcR06dzOH5Xg14=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=CUbmfKBytBrklO5QRbwgDzTGo1xgRnEcHoU9PO+aHfLUcUy8eWRYElrTaQkyh4nMf
+         4QwIaAhYpI0W1vCK0v/PG8Oi41zc1wKSUZNr3Jwr4Ih6VE794RuGST2VXeqlSvGrnI
+         HvZ+Nw0LNVfKDXyDQfceZqP+wXxVNHAeiR57AdSM=
+Date:   Tue, 27 Jun 2023 17:09:13 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     guoniu.zhou@oss.nxp.com
+Cc:     linux-media@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        xavier.roumegue@oss.nxp.com, kernel@pengutronix.de,
+        jacopo.mondi@ideasonboard.com, sakari.ailus@linux.intel.com
+Subject: Re: [PATCH v3 2/3] media: nxp: imx8-isi: move i.MX8 gasket
+ configuration to an ops structure
+Message-ID: <20230627140913.GB14185@pendragon.ideasonboard.com>
+References: <20230627062017.1135114-1-guoniu.zhou@oss.nxp.com>
+ <20230627062017.1135114-3-guoniu.zhou@oss.nxp.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 08/15] ARM: dts: qcom: mdm9615: split PMIC to separate
- dtsi files
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230627012422.206077-1-dmitry.baryshkov@linaro.org>
- <20230627012422.206077-9-dmitry.baryshkov@linaro.org>
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Organization: Linaro Developer Services
-In-Reply-To: <20230627012422.206077-9-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230627062017.1135114-3-guoniu.zhou@oss.nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 03:24, Dmitry Baryshkov wrote:
-> The PMIC is not a part of the SoC, so move PMIC to a separate file and
-> include it from the board files.
+Hi Guoniu,
+
+Thank you for the patch.
+
+On Tue, Jun 27, 2023 at 02:20:16PM +0800, guoniu.zhou@oss.nxp.com wrote:
+> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
 > 
-> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Move i.MX8MN and i.MX8MP gasket configuration to an ops structure.
+
+Commit messages should explain the reason behind the change, not just
+what the change does. The *why* is considered even more important than
+the *what*, as it's (usually) possible to understand what a patch does
+by reading it, while the reason is much more difficult to get from just
+looking at the code.
+
+In this case, the commit message could be
+
+"The i.MX93 includes an ISI instance compatible with the imx8-isi
+driver, but with a different gasket. To prepare for this, make the
+gasket configuration modular by moving the code to an ops structure."
+
+> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
 > ---
->   arch/arm/boot/dts/qcom/pm8018.dtsi            | 57 +++++++++++++++++++
->   .../boot/dts/qcom/qcom-mdm9615-wp8548.dtsi    |  3 +-
->   arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi      | 46 +--------------
->   3 files changed, 61 insertions(+), 45 deletions(-)
->   create mode 100644 arch/arm/boot/dts/qcom/pm8018.dtsi
+>  drivers/media/platform/nxp/imx8-isi/Makefile  |  2 +-
+>  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 12 ++++--
+>  .../platform/nxp/imx8-isi/imx8-isi-core.h     | 30 ++++++++++++-
+>  .../platform/nxp/imx8-isi/imx8-isi-crossbar.c | 42 +++++++------------
+>  .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 32 ++++++++++++++
+>  5 files changed, 85 insertions(+), 33 deletions(-)
 > 
-> diff --git a/arch/arm/boot/dts/qcom/pm8018.dtsi b/arch/arm/boot/dts/qcom/pm8018.dtsi
+> diff --git a/drivers/media/platform/nxp/imx8-isi/Makefile b/drivers/media/platform/nxp/imx8-isi/Makefile
+> index 9bff9297686d..4376e8e0c962 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/Makefile
+> +++ b/drivers/media/platform/nxp/imx8-isi/Makefile
+> @@ -1,7 +1,7 @@
+>  # SPDX-License-Identifier: GPL-2.0-only
+>  
+>  imx8-isi-y := imx8-isi-core.o imx8-isi-crossbar.o imx8-isi-hw.o \
+> -	imx8-isi-pipe.o imx8-isi-video.o
+> +	imx8-isi-pipe.o imx8-isi-video.o imx8-isi-gasket.o
+
+Please use alphabetical order.
+
+>  imx8-isi-$(CONFIG_DEBUG_FS) += imx8-isi-debug.o
+>  imx8-isi-$(CONFIG_VIDEO_IMX8_ISI_M2M) += imx8-isi-m2m.o
+>  
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> index 253e77189b69..d645b2f6fa5a 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> @@ -279,6 +279,12 @@ static const struct clk_bulk_data mxc_imx8mn_clks[] = {
+>  	{ .id = "apb" },
+>  };
+>  
+> +/* Gasket operations for i.MX8MN and i.MX8MP */
+> +static const struct mxc_gasket_ops mxc_imx8_gasket_ops = {
+> +	.enable = mxc_imx8_gasket_enable,
+> +	.disable = mxc_imx8_gasket_disable,
+> +};
+> +
+
+This can be moved to imx8-isi-gasket.c. You will need to add an
+
+extern const struct mxc_gasket_ops mxc_imx8_gasket_ops;
+
+to imx8-isi-core.h, and remove the declarations of the
+mxc_imx8_gasket_enable() and mxc_imx8_gasket_disable() disable from the
+header (and make those functions static).
+
+>  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
+>  	.model			= MXC_ISI_IMX8MN,
+>  	.num_ports		= 1,
+> @@ -289,7 +295,7 @@ static const struct mxc_isi_plat_data mxc_imx8mn_data = {
+>  	.clks			= mxc_imx8mn_clks,
+>  	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+>  	.buf_active_reverse	= false,
+> -	.has_gasket		= true,
+> +	.gasket_ops		= &mxc_imx8_gasket_ops,
+>  	.has_36bit_dma		= false,
+>  };
+>  
+> @@ -303,7 +309,7 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
+>  	.clks			= mxc_imx8mn_clks,
+>  	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+>  	.buf_active_reverse	= true,
+> -	.has_gasket		= true,
+> +	.gasket_ops		= &mxc_imx8_gasket_ops,
+>  	.has_36bit_dma		= true,
+>  };
+>  
+> @@ -443,7 +449,7 @@ static int mxc_isi_probe(struct platform_device *pdev)
+>  		return PTR_ERR(isi->regs);
+>  	}
+>  
+> -	if (isi->pdata->has_gasket) {
+> +	if (isi->pdata->gasket_ops) {
+>  		isi->gasket = syscon_regmap_lookup_by_phandle(dev->of_node,
+>  							      "fsl,blk-ctrl");
+>  		if (IS_ERR(isi->gasket)) {
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> index e469788a9e6c..4f920d650153 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> @@ -12,12 +12,14 @@
+>  
+>  #include <linux/list.h>
+>  #include <linux/mutex.h>
+> +#include <linux/regmap.h>
+
+This isn't needed here.
+
+>  #include <linux/spinlock.h>
+>  #include <linux/types.h>
+>  #include <linux/videodev2.h>
+>  
+>  #include <media/media-device.h>
+>  #include <media/media-entity.h>
+> +#include <media/mipi-csi2.h>
+
+Not needed either.
+
+>  #include <media/v4l2-async.h>
+>  #include <media/v4l2-ctrls.h>
+>  #include <media/v4l2-dev.h>
+> @@ -59,6 +61,18 @@ struct v4l2_m2m_dev;
+>  #define MXC_ISI_M2M			"mxc-isi-m2m"
+>  #define MXC_MAX_PLANES			3
+>  
+> +/* GASKET (i.MX8MN and i.MX8MP only) */
+> +#define GASKET_BASE(n)				(0x0060 + (n) * 0x30)
+> +
+> +#define GASKET_CTRL				0x0000
+> +#define GASKET_CTRL_DATA_TYPE(dt)		((dt) << 8)
+> +#define GASKET_CTRL_DATA_TYPE_MASK		(0x3f << 8)
+> +#define GASKET_CTRL_DUAL_COMP_ENABLE		BIT(1)
+> +#define GASKET_CTRL_ENABLE			BIT(0)
+> +
+> +#define GASKET_HSIZE				0x0004
+> +#define GASKET_VSIZE				0x0008
+> +
+
+Those macros can be moved to imx8-isi-gasket.c.
+
+>  struct mxc_isi_dev;
+>  struct mxc_isi_m2m_ctx;
+>  
+> @@ -147,6 +161,14 @@ struct mxc_isi_set_thd {
+>  	struct mxc_isi_panic_thd panic_set_thd_v;
+>  };
+>  
+> +struct mxc_gasket_ops {
+> +	int (*enable)(struct mxc_isi_dev *isi,
+> +		      const struct v4l2_mbus_frame_desc *fd,
+> +		      const struct v4l2_mbus_framefmt *fmt,
+> +		      const unsigned int port);
+> +	void (*disable)(struct mxc_isi_dev *isi, const unsigned int port);
+> +};
+> +
+>  enum model {
+>  	MXC_ISI_IMX8MN,
+>  	MXC_ISI_IMX8MP,
+> @@ -159,10 +181,10 @@ struct mxc_isi_plat_data {
+>  	unsigned int reg_offset;
+>  	const struct mxc_isi_ier_reg  *ier_reg;
+>  	const struct mxc_isi_set_thd *set_thd;
+> +	const struct mxc_gasket_ops *gasket_ops;
+>  	const struct clk_bulk_data *clks;
+>  	unsigned int num_clks;
+>  	bool buf_active_reverse;
+> -	bool has_gasket;
+>  	bool has_36bit_dma;
+>  };
+>  
+> @@ -379,6 +401,12 @@ void mxc_isi_channel_set_outbuf(struct mxc_isi_pipe *pipe,
+>  u32 mxc_isi_channel_irq_status(struct mxc_isi_pipe *pipe, bool clear);
+>  void mxc_isi_channel_irq_clear(struct mxc_isi_pipe *pipe);
+>  
+> +int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
+> +			   const struct v4l2_mbus_frame_desc *fd,
+> +			   const struct v4l2_mbus_framefmt *fmt,
+> +			   const unsigned int port);
+> +void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
+> +
+>  #if IS_ENABLED(CONFIG_DEBUG_FS)
+>  void mxc_isi_debug_init(struct mxc_isi_dev *isi);
+>  void mxc_isi_debug_cleanup(struct mxc_isi_dev *isi);
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
+> index f7447b2f4d77..d803fda3fdaf 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
+> @@ -25,32 +25,18 @@ static inline struct mxc_isi_crossbar *to_isi_crossbar(struct v4l2_subdev *sd)
+>  	return container_of(sd, struct mxc_isi_crossbar, sd);
+>  }
+>  
+> -/* -----------------------------------------------------------------------------
+> - * Media block control (i.MX8MN and i.MX8MP only)
+> - */
+> -#define GASKET_BASE(n)				(0x0060 + (n) * 0x30)
+> -
+> -#define GASKET_CTRL				0x0000
+> -#define GASKET_CTRL_DATA_TYPE(dt)		((dt) << 8)
+> -#define GASKET_CTRL_DATA_TYPE_MASK		(0x3f << 8)
+> -#define GASKET_CTRL_DUAL_COMP_ENABLE		BIT(1)
+> -#define GASKET_CTRL_ENABLE			BIT(0)
+> -
+> -#define GASKET_HSIZE				0x0004
+> -#define GASKET_VSIZE				0x0008
+> -
+>  static int mxc_isi_crossbar_gasket_enable(struct mxc_isi_crossbar *xbar,
+>  					  struct v4l2_subdev_state *state,
+>  					  struct v4l2_subdev *remote_sd,
+>  					  u32 remote_pad, unsigned int port)
+>  {
+>  	struct mxc_isi_dev *isi = xbar->isi;
+> +	const struct mxc_gasket_ops *gasket_ops = isi->pdata->gasket_ops;
+>  	const struct v4l2_mbus_framefmt *fmt;
+>  	struct v4l2_mbus_frame_desc fd;
+> -	u32 val;
+>  	int ret;
+>  
+> -	if (!isi->pdata->has_gasket)
+> +	if (!gasket_ops)
+>  		return 0;
+>  
+>  	/*
+> @@ -77,16 +63,14 @@ static int mxc_isi_crossbar_gasket_enable(struct mxc_isi_crossbar *xbar,
+>  	if (!fmt)
+>  		return -EINVAL;
+>  
+> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_HSIZE, fmt->width);
+> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_VSIZE, fmt->height);
+> -
+> -	val = GASKET_CTRL_DATA_TYPE(fd.entry[0].bus.csi2.dt)
+> -	    | GASKET_CTRL_ENABLE;
+> -
+> -	if (fd.entry[0].bus.csi2.dt == MIPI_CSI2_DT_YUV422_8B)
+> -		val |= GASKET_CTRL_DUAL_COMP_ENABLE;
+> -
+> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, val);
+> +	if (gasket_ops->enable) {
+
+I would drop this check. Both gasket ops are mandatory, we don't need to
+support situations where only enable or disable are provided.
+
+> +		ret = gasket_ops->enable(isi, &fd, fmt, port);
+> +		if (ret) {
+> +			dev_err(isi->dev,
+> +				"failed to enable gasket%d\n", port);
+> +			return ret;
+> +		}
+> +	}
+>  
+>  	return 0;
+>  }
+> @@ -95,11 +79,13 @@ static void mxc_isi_crossbar_gasket_disable(struct mxc_isi_crossbar *xbar,
+>  					    unsigned int port)
+>  {
+>  	struct mxc_isi_dev *isi = xbar->isi;
+> +	const struct mxc_gasket_ops *gasket_ops = isi->pdata->gasket_ops;
+>  
+> -	if (!isi->pdata->has_gasket)
+> +	if (!gasket_ops)
+>  		return;
+>  
+> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
+> +	if (gasket_ops->disable)
+
+Same here, you can drop this check.
+
+> +		gasket_ops->disable(isi, port);
+>  }
+>  
+>  /* -----------------------------------------------------------------------------
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
 > new file mode 100644
-> index 000000000000..81c0ad29fe60
+> index 000000000000..39f8d0e8b15d
 > --- /dev/null
-> +++ b/arch/arm/boot/dts/qcom/pm8018.dtsi
-> @@ -0,0 +1,57 @@
-> +// SPDX-License-Identifier: GPL-2.0+ OR MIT
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
+> @@ -0,0 +1,32 @@
+> +// SPDX-License-Identifier: GPL-2.0
 > +/*
-> + * Device Tree Source for Qualcomm PM8018
-> + *
-> + * Copyright (C) 2016 BayLibre, SAS.
-> + * Author : Neil Armstrong <narmstrong@baylibre.com>
+> + * Copyright 2019-2023 NXP
 > + */
 > +
-> +&ssbi {
-> +	pm8018: pmic {
-> +		compatible = "qcom,pm8018", "qcom,pm8921";
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		pwrkey@1c {
-> +			compatible = "qcom,pm8018-pwrkey",
-> +				     "qcom,pm8921-pwrkey";
-> +			reg = <0x1c>;
-> +			interrupt-parent = <&pm8018>;
-> +			interrupts = <50 IRQ_TYPE_EDGE_RISING>,
-> +				     <51 IRQ_TYPE_EDGE_RISING>;
-> +			debounce = <15625>;
-> +			pull-up;
-> +		};
-> +
-> +		pm8018_mpps: mpps@50 {
-> +			compatible = "qcom,pm8018-mpp", "qcom,ssbi-mpp";
-> +			reg = <0x50>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&pm8018_mpps 0 0 6>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +
-> +		rtc@11d {
-> +			compatible = "qcom,pm8018-rtc", "qcom,pm8921-rtc";
-> +			reg = <0x11d>;
-> +			interrupt-parent = <&pm8018>;
-> +			interrupts = <39 IRQ_TYPE_EDGE_RISING>;
-> +			allow-set-time;
-> +		};
-> +
-> +		pm8018_gpio: gpio@150 {
-> +			compatible = "qcom,pm8058-gpio",
-> +				     "qcom,ssbi-gpio";
-> +			reg = <0x150>;
-> +			gpio-controller;
-> +			#gpio-cells = <2>;
-> +			gpio-ranges = <&pm8018_gpio 0 0 6>;
-> +			interrupt-controller;
-> +			#interrupt-cells = <2>;
-> +		};
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
-> index 92c8003dac25..cc264861afe5 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
-> @@ -7,6 +7,7 @@
->    */
->   
->   #include "qcom-mdm9615.dtsi"
-> +#include "pm8018.dtsi"
->   
->   / {
->   	model = "Sierra Wireless WP8548 Module";
-> @@ -76,7 +77,7 @@ reset-out-pins {
->   	};
->   };
->   
-> -&pmicgpio {
-> +&pm8018_gpio {
->   	usb_vbus_5v_pins: usb-vbus-5v-state {
->   		pins = "gpio4";
->   		function = "normal";
-> diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-> index b40c52ddf9b4..ac2327bc4ec5 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-> @@ -241,56 +241,14 @@ gsbi5_serial: serial@16440000 {
->   			};
->   		};
->   
-> -		qcom,ssbi@500000 {
-> +		ssbi: qcom,ssbi@500000 {
->   			compatible = "qcom,ssbi";
->   			reg = <0x500000 0x1000>;
->   			qcom,controller-type = "pmic-arbiter";
->   
-> -			pmicintc: pmic {
-> -				compatible = "qcom,pm8018", "qcom,pm8921";
-> +			pmic {
->   				interrupts = <GIC_PPI 226 IRQ_TYPE_LEVEL_HIGH>;
->   				#interrupt-cells = <2>;
-> -				interrupt-controller;
-> -				#address-cells = <1>;
-> -				#size-cells = <0>;
-> -
-> -				pwrkey@1c {
-> -					compatible = "qcom,pm8018-pwrkey", "qcom,pm8921-pwrkey";
-> -					reg = <0x1c>;
-> -					interrupt-parent = <&pmicintc>;
-> -					interrupts = <50 IRQ_TYPE_EDGE_RISING>,
-> -						     <51 IRQ_TYPE_EDGE_RISING>;
-> -					debounce = <15625>;
-> -					pull-up;
-> -				};
-> -
-> -				pmicmpp: mpps@50 {
-> -					compatible = "qcom,pm8018-mpp", "qcom,ssbi-mpp";
-> -					interrupt-controller;
-> -					#interrupt-cells = <2>;
-> -					reg = <0x50>;
-> -					gpio-controller;
-> -					#gpio-cells = <2>;
-> -					gpio-ranges = <&pmicmpp 0 0 6>;
-> -				};
-> -
-> -				rtc@11d {
-> -					compatible = "qcom,pm8018-rtc", "qcom,pm8921-rtc";
-> -					interrupt-parent = <&pmicintc>;
-> -					interrupts = <39 IRQ_TYPE_EDGE_RISING>;
-> -					reg = <0x11d>;
-> -					allow-set-time;
-> -				};
-> -
-> -				pmicgpio: gpio@150 {
-> -					compatible = "qcom,pm8018-gpio", "qcom,ssbi-gpio";
-> -					reg = <0x150>;
-> -					interrupt-controller;
-> -					#interrupt-cells = <2>;
-> -					gpio-controller;
-> -					gpio-ranges = <&pmicgpio 0 0 6>;
-> -					#gpio-cells = <2>;
-> -				};
->   			};
->   		};
->   
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+You'll need
+
+#include <linux/regmap.h>
+#include <media/mipi-csi2.h>
+
+> +#include "imx8-isi-core.h"
+> +
+> +/* Configure and enable gasket for i.MX8MN and i.MX8P */
+> +int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
+> +			   const struct v4l2_mbus_frame_desc *fd,
+> +			   const struct v4l2_mbus_framefmt *fmt,
+> +			   const unsigned int port)
+> +{
+> +	u32 val;
+> +
+> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_HSIZE, fmt->width);
+> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_VSIZE, fmt->height);
+> +
+> +	val = GASKET_CTRL_DATA_TYPE(fd->entry[0].bus.csi2.dt);
+> +	if (fd->entry[0].bus.csi2.dt == MIPI_CSI2_DT_YUV422_8B)
+> +		val |= GASKET_CTRL_DUAL_COMP_ENABLE;
+> +
+> +	val |= GASKET_CTRL_ENABLE;
+> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, val);
+> +	return 0;
+> +}
+> +
+> +/* Disable gasket for i.MX8MN and i.MX8P */
+> +void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port)
+> +{
+> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
+> +}
+
+-- 
+Regards,
+
+Laurent Pinchart
