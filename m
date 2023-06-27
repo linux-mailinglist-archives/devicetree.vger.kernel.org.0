@@ -2,169 +2,494 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D103E73FBD0
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 14:13:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4664073FBE3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 14:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229926AbjF0MNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 08:13:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37812 "EHLO
+        id S229468AbjF0MUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 08:20:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229710AbjF0MNU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 08:13:20 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F1A19B6
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 05:13:18 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so906611e87.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 05:13:18 -0700 (PDT)
+        with ESMTP id S229790AbjF0MUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 08:20:51 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D981BE9;
+        Tue, 27 Jun 2023 05:20:49 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51cb40f13f6so5063392a12.2;
+        Tue, 27 Jun 2023 05:20:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687867996; x=1690459996;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=FR5rzArc9VADnvY1rG5yKtlG15Q5l959I+GAPWhUE9c=;
-        b=gLvNtTPACbA5Bl4vEPMFbdQW/4hvOyF3pp/00a3lZqzewn6UU2dmOwuvdB7efmlGTY
-         6gi1ETMvzUb2Y4ey8rr+8cARws6uq/1S/06Ee73HjWwQ1tw95DQwI9i7CpCoIUULajbC
-         4PXRm/qbEzGYJzLBTOWm2hlb5+QbKrquQsJzWBs3e6YtpSowtaH8NfJCV39V6FiRvAyK
-         q+1654Gp4FlP+qoJ8kF0uaK6CEfcz4l3t7DDYA79nm7/4KAgouG1JmibpnZ/Gjy69tae
-         dn+N46NnrP8iXGIgiwg+rC3aWnMefH2ysCGdEBoQpX5XthsUr3beSathItyVEy0NUN8b
-         a2Hw==
+        d=gmail.com; s=20221208; t=1687868448; x=1690460448;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=RLhIp/pKblYCq8Z/0RSAslFybt/LfZcoIPvdcGDoMpk=;
+        b=flbm6TRoDVojlqN7l0s6LEYFKmxnei69l4l8GSC9Pq97k0ZQAb6WhFck8Xgl444r5W
+         wyASCFd7fTNqKp/nDo2UARFPSa6yhyIvxzsD7VXMnfWtblSVUoZ3xDRmgHqS/pyTbeR+
+         +Ki1QqZm8V68HkYZLSVMOEHaFN0QfX60EMMI6OaoFWON7eIO3i0uzXRm4t60vEeDNFNo
+         4vD0ddBrfd0BhRMHRAHwFh7kaX9PVeSPpiyiLBD6LP/ip+62XkD0sEuFgdPEubktZPBn
+         o7T02wfZH9oksc2h3afugrvFP9S/M2tKk4z+v2DSAoSA7mKPsLmzCh6Sisq7WXAd9Qs4
+         mHPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687867996; x=1690459996;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687868448; x=1690460448;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=FR5rzArc9VADnvY1rG5yKtlG15Q5l959I+GAPWhUE9c=;
-        b=EEY2WTeEtzGMcb5GavFKzfBGySfP9yBHdGLVAzvFlep1vXied/dtnCRmWlLPbeWhA4
-         gbg2m5oTniU9kBdKlqLpUimaDkO0biPRGfB3urU1mf5OOS8iRm6ZBdpoo68gjV7cxSru
-         rEn7wUUf1dqYUCbkVQvjz2EnwYR8iU9YceI9IihluhZdQg+bpbG8QUTBJEsQmUf/KuEw
-         Gb97mDBGB/OhgQ3YeNEbFI+LzKjH9uPB4GjVQ1/Dd6HAnh6Cu+Z8SKz+3psJrVQC7Q5f
-         IxlqsEfJjdTr6UYqfwer94WxMV58PNQ0V/tdXxew0gVH5wVT+nhVOiMO6koqu6Sj4M3t
-         EW+w==
-X-Gm-Message-State: AC+VfDzcDZ2RGKXrKeWQyH0ouzn5jslBKGrbanoQYQ47vvqdUSJL51fg
-        OJU667gDNe3jwY33lyIY4JzNtQ==
-X-Google-Smtp-Source: ACHHUZ4q34rv+txfjWN8Rc7eKRSQSIsPu5VMHaAfloViYeJaxh5TBKafuQ+6KBcliQ7vPgFAQWYwvQ==
-X-Received: by 2002:a19:4409:0:b0:4f8:7556:23e6 with SMTP id r9-20020a194409000000b004f8755623e6mr13534815lfa.54.1687867996549;
-        Tue, 27 Jun 2023 05:13:16 -0700 (PDT)
-Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
-        by smtp.gmail.com with ESMTPSA id j2-20020ac253a2000000b004fb2c1e33b3sm1119853lfh.243.2023.06.27.05.13.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 05:13:16 -0700 (PDT)
-Message-ID: <8217b8db-cd27-185d-c6b5-e32009202c21@linaro.org>
-Date:   Tue, 27 Jun 2023 14:13:14 +0200
+        bh=RLhIp/pKblYCq8Z/0RSAslFybt/LfZcoIPvdcGDoMpk=;
+        b=Dn20t7P1Za0LU83Y2fXnrqyBsjWjRv7132tIwYx+L2Ll7u4WVsd8eVas2P95bFSMzt
+         JIN8sWyNqeL8jYEvS0pacnWIoSbuYimGKlVHCstvYz3i1a6ngpODzvO4khx+jjKRKYws
+         0UBXqd5v/toEfw6yjpCU9U6FlwfSR6e+l/vIdKJwLjbdk/3p88WQAoZ5jEZKwLvuiCuz
+         9Grs/bymvGBLd6ZeQYWmFAZyZNkv7qX/CrU5FxWLnViZ5QWeEKh5CfFPAc3T+JgWePUe
+         T/VPZTFknxhqvEKlq0b3fe3j5Lec4fjgPuf1BkD9iEM6EgnFxddI/jioXy8Zcy0bz3aM
+         8tfQ==
+X-Gm-Message-State: AC+VfDww2QoC6UfuAG1uLqvJKLj3+qTOiNg5tOgW0fKHGuI3gci7UQps
+        WtE4BV8faVmPw1bcLvdj8bs=
+X-Google-Smtp-Source: ACHHUZ45BZed4mOgnT5dQMTL1q6n+B53W0ug6v4wsgkPi7kSuc99I6BO9tsvGSx+y2bzhFjEZrhrwg==
+X-Received: by 2002:aa7:c558:0:b0:51d:955f:9e17 with SMTP id s24-20020aa7c558000000b0051d955f9e17mr5048296edr.16.1687868447446;
+        Tue, 27 Jun 2023 05:20:47 -0700 (PDT)
+Received: from tom-HP-ZBook-Fury-15-G7-Mobile-Workstation ([193.85.242.128])
+        by smtp.gmail.com with ESMTPSA id s19-20020a056402165300b0051d9df5dd2fsm1621138edx.72.2023.06.27.05.20.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jun 2023 05:20:46 -0700 (PDT)
+Date:   Tue, 27 Jun 2023 14:20:45 +0200
+From:   Tommaso Merciai <tomm.merciai@gmail.com>
+To:     "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>
+Cc:     "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "laurent.pinchart@ideasonboard.com" 
+        <laurent.pinchart@ideasonboard.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Xavier Roumegue (OSS)" <xavier.roumegue@oss.nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>,
+        "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
+Subject: Re: [PATCH v2 2/2] media: nxp: imx-isi: add ISI support for i.MX93
+Message-ID: <ZJrUHUucp2lRZ7Rv@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+References: <20230626032735.49500-1-guoniu.zhou@oss.nxp.com>
+ <20230626032735.49500-3-guoniu.zhou@oss.nxp.com>
+ <ZJqdGeMCMzWJcQv/@tom-HP-ZBook-Fury-15-G7-Mobile-Workstation>
+ <AS8PR04MB9080A3CB605161966A7898B0FA27A@AS8PR04MB9080.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 17/26] ARM: dts: qcom: apq8064: add simple CPUFreq
- support
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
- <20230625202547.174647-18-dmitry.baryshkov@linaro.org>
- <0f139da8-ae01-fc28-d14c-0ea207cf760e@linaro.org>
- <2232c6e7-cbca-30c1-9ec5-1cea7f759daf@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <2232c6e7-cbca-30c1-9ec5-1cea7f759daf@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+In-Reply-To: <AS8PR04MB9080A3CB605161966A7898B0FA27A@AS8PR04MB9080.eurprd04.prod.outlook.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.06.2023 21:49, Dmitry Baryshkov wrote:
-> On 26/06/2023 19:40, Konrad Dybcio wrote:
->> On 25.06.2023 22:25, Dmitry Baryshkov wrote:
->>> Declare CPU frequency-scaling properties. Each CPU has its own clock,
->>> how
->> however?
-> 
-> yes
-> 
->>
->>> all CPUs have the same OPP table. Voltage scaling is not (yet)
->>> enabled with this patch. It will be enabled later.
->> Risky business.
-> 
-> But it works :D
-On your machine ;)
+Hi Guoniu,
 
-[...]
+On Tue, Jun 27, 2023 at 08:39:37AM +0000, G.N. Zhou (OSS) wrote:
+> Hi Tommaso,
+> 
+> Thanks for your comments. I have updated version 3 and your comments have been handled in the new version patches
 
->>>   +    kraitcc: clock-controller {
->>> +        compatible = "qcom,krait-cc-v1";
->> Are we sure we don't wanna rework this compatible? Check the comment in
->> drivers/clk/qcom/krait-cc.c : krait_add_sec_mux()
-> 
-> I remember that comment. I'd rather not introduce another compat string for such old hw. Would there be any direct benefits?
-> 
-I'd say that the one we have here never made much sense.. Perhaps (since
-nobody used it for 10 years) it would make sense to remodel it..
+Thanks for let me know.
+I'll check v3 :)
 
-Konrad
->>
->>
->>> +        clocks = <&gcc PLL9>, /* hfpll0 */
->>> +             <&gcc PLL10>, /* hfpll1 */
->>> +             <&gcc PLL16>, /* hfpll2 */
->>> +             <&gcc PLL17>, /* hfpll3 */
->>> +             <&gcc PLL12>, /* hfpll_l2 */
->>> +             <&acc0>,
->>> +             <&acc1>,
->>> +             <&acc2>,
->>> +             <&acc3>,
->>> +             <&l2cc>;
->>> +        clock-names = "hfpll0",
->>> +                  "hfpll1",
->>> +                  "hfpll2",
->>> +                  "hfpll3",
->>> +                  "hfpll_l2",
->>> +                  "acpu0_aux",
->>> +                  "acpu1_aux",
->>> +                  "acpu2_aux",
->>> +                  "acpu3_aux",
->>> +                  "acpu_l2_aux";
->>> +        #clock-cells = <1>;
->>> +        #interconnect-cells = <1>;
->>> +    };
->>> +
->>>       sfpb_mutex: hwmutex {
->>>           compatible = "qcom,sfpb-mutex";
->>>           syscon = <&sfpb_wrapper_mutex 0x604 0x4>;
->>> @@ -933,6 +1100,9 @@ qfprom: qfprom@700000 {
->>>               #address-cells = <1>;
->>>               #size-cells = <1>;
->>>               ranges;
->>> +            speedbin_efuse: speedbin@c0 {
->>> +                reg = <0x0c0 0x4>;
->>> +            };
->> Newline between properties and subnodes & between individual subnodes,
->> please
+Regards,
+Tommaso
+
+
 > 
-> ack.
+> > -----Original Message-----
+> > From: Tommaso Merciai <tomm.merciai@gmail.com>
+> > Sent: 2023年6月27日 16:26
+> > To: G.N. Zhou (OSS) <guoniu.zhou@oss.nxp.com>
+> > Cc: linux-media@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>;
+> > devicetree@vger.kernel.org; laurent.pinchart@ideasonboard.com;
+> > mchehab@kernel.org; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > conor+dt@kernel.org; Xavier Roumegue (OSS)
+> > <xavier.roumegue@oss.nxp.com>; kernel@pengutronix.de;
+> > jacopo.mondi@ideasonboard.com; sakari.ailus@linux.intel.com
+> > Subject: Re: [PATCH v2 2/2] media: nxp: imx-isi: add ISI support for i.MX93
+> > 
+> > Caution: This is an external email. Please take care when clicking links or opening
+> > attachments. When in doubt, report the message using the 'Report this email'
+> > button
+> > 
+> > 
+> > Hi Guoniu,
+> > 
+> > On Mon, Jun 26, 2023 at 11:27:35AM +0800, guoniu.zhou@oss.nxp.com wrote:
+> > > From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+> > >
+> > > Abstract gasket operation and driver should implement them for SoC
+> > > which support gasket.
+> > >
+> > > i.MX93 use a different gasket which has different register definition
+> > > compared with i.MX8. Hence implement the gasket callbacks in order to
+> > > add ISI support for i.MX93.
+> > >
+> > > Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
+> > > ---
+> > >  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 110 ++++++++++++++++++
+> > >  .../platform/nxp/imx8-isi/imx8-isi-core.h     |  33 ++++++
+> > >  .../platform/nxp/imx8-isi/imx8-isi-crossbar.c |  51 ++++----
+> > >  3 files changed, 169 insertions(+), 25 deletions(-)
+> > >
+> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > index 253e77189b69..d37145fb7f14 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > @@ -14,6 +14,7 @@
+> > >  #include <linux/pm.h>
+> > >  #include <linux/pm_runtime.h>
+> > >  #include <linux/property.h>
+> > > +#include <linux/regmap.h>
+> > >  #include <linux/slab.h>
+> > >  #include <linux/string.h>
+> > >  #include <linux/types.h>
+> > > @@ -279,6 +280,54 @@ static const struct clk_bulk_data mxc_imx8mn_clks[]
+> > = {
+> > >       { .id = "apb" },
+> > >  };
+> > >
+> > > +static int mxc_imx8_gasket_config(struct mxc_isi_dev *isi,
+> > > +                               const struct v4l2_mbus_frame_desc *fd,
+> > > +                               const struct v4l2_mbus_framefmt *fmt,
+> > > +                               const unsigned int port) {
+> > > +     u32 val;
+> > > +
+> > > +     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_HSIZE,
+> > fmt->width);
+> > > +     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_VSIZE,
+> > > + fmt->height);
+> > > +
+> > > +     val = GASKET_CTRL_DATA_TYPE(fd->entry[0].bus.csi2.dt);
+> > > +     if (fd->entry[0].bus.csi2.dt == MIPI_CSI2_DT_YUV422_8B)
+> > > +             val |= GASKET_CTRL_DUAL_COMP_ENABLE;
+> > > +
+> > > +     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, val);
+> > > +
+> > > +     dev_dbg(isi->dev, "w/h=(%d, %d), data type=0x%x\n",
+> > > +                       fmt->width, fmt->height,
+> > > +                       fd->entry[0].bus.csi2.dt);
+> > 
+> > Receive warning from checkpatch.pl:
 > 
->>
->> Konrad
->>>               tsens_calib: calib@404 {
->>>                   reg = <0x404 0x10>;
->>>               };
+> Drop the debug message in v3
 > 
+> > 
+> > CHECK: Alignment should match open parenthesis
+> > #49: FILE: drivers/media/platform/nx
+> p/imx8-isi/imx8-isi-core.c:300:
+> > +       dev_dbg(isi->dev, "w/h=(%d, %d), data type=0x%x\n",
+> > +                         fmt->width, fmt->height,
+> > 
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
+> > > +                               const unsigned int port) {
+> > > +     u32 val;
+> > > +
+> > > +     regmap_read(isi->gasket, GASKET_BASE(port), &val);
+> > > +     val |= GASKET_CTRL_ENABLE;
+> > > +
+> > > +     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, val);
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi,
+> > > +                                 const unsigned int port) {
+> > > +     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0); }
+> > > +
+> > > +static const struct mxc_gasket_ops mxc_imx8_gasket_ops = {
+> > > +     .config = mxc_imx8_gasket_config,
+> > > +     .enable = mxc_imx8_gasket_enable,
+> > > +     .disable = mxc_imx8_gasket_disable, };
+> > > +
+> > >  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
+> > >       .model                  = MXC_ISI_IMX8MN,
+> > >       .num_ports              = 1,
+> > > @@ -290,6 +339,7 @@ static const struct mxc_isi_plat_data
+> > mxc_imx8mn_data = {
+> > >       .num_clks               = ARRAY_SIZE(mxc_imx8mn_clks),
+> > >       .buf_active_reverse     = false,
+> > >       .has_gasket             = true,
+> > > +     .gasket_ops             = &mxc_imx8_gasket_ops,
+> > >       .has_36bit_dma          = false,
+> > >  };
+> > >
+> > > @@ -304,6 +354,65 @@ static const struct mxc_isi_plat_data
+> > mxc_imx8mp_data = {
+> > >       .num_clks               = ARRAY_SIZE(mxc_imx8mn_clks),
+> > >       .buf_active_reverse     = true,
+> > >       .has_gasket             = true,
+> > > +     .gasket_ops             = &mxc_imx8_gasket_ops,
+> > > +     .has_36bit_dma          = true,
+> > > +};
+> > > +
+> > > +static int mxc_imx93_gasket_config(struct mxc_isi_dev *isi,
+> > > +                                const struct v4l2_mbus_frame_desc
+> > *fd,
+> > > +                                const struct v4l2_mbus_framefmt
+> > *fmt,
+> > > +                                const unsigned int port) {
+> > > +     u32 val;
+> > > +
+> > > +     val = DISP_MIX_CAMERA_MUX_DATA_TYPE(fd->entry[0].bus.csi2.dt);
+> > > +     regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val);
+> > > +
+> > > +     dev_dbg(isi->dev, "data type=0x%x\n", fd->entry[0].bus.csi2.dt);
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static int mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
+> > > +                                const unsigned int port) {
+> > > +     u32 val;
+> > > +
+> > > +     regmap_read(isi->gasket, DISP_MIX_CAMERA_MUX, &val);
+> > > +     val |= DISP_MIX_CAMERA_MUX_GASKET_ENABLE;
+> > > +     regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val);
+> > > +
+> > > +     return 0;
+> > > +}
+> > > +
+> > > +static void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi,
+> > > +                                  unsigned int port) {
+> > > +     u32 val;
+> > > +
+> > > +     regmap_read(isi->gasket, DISP_MIX_CAMERA_MUX, &val);
+> > > +     val &= ~DISP_MIX_CAMERA_MUX_GASKET_ENABLE;
+> > > +     regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val); }
+> > > +
+> > > +static const struct mxc_gasket_ops mxc_imx93_gasket_ops = {
+> > > +     .config = mxc_imx93_gasket_config,
+> > > +     .enable = mxc_imx93_gasket_enable,
+> > > +     .disable = mxc_imx93_gasket_disable, };
+> > > +
+> > > +static const struct mxc_isi_plat_data mxc_imx93_data = {
+> > > +     .model                  = MXC_ISI_IMX93,
+> > > +     .num_ports              = 1,
+> > > +     .num_channels           = 1,
+> > > +     .reg_offset             = 0,
+> > > +     .ier_reg                = &mxc_imx8_isi_ier_v2,
+> > > +     .set_thd                = &mxc_imx8_isi_thd_v1,
+> > > +     .clks                   = mxc_imx8mn_clks,
+> > > +     .num_clks               = ARRAY_SIZE(mxc_imx8mn_clks),
+> > > +     .buf_active_reverse     = true,
+> > > +     .has_gasket             = true,
+> > > +     .gasket_ops             = &mxc_imx93_gasket_ops,
+> > >       .has_36bit_dma          = true,
+> > >  };
+> > >
+> > > @@ -518,6 +627,7 @@ static int mxc_isi_remove(struct platform_device
+> > > *pdev)  static const struct of_device_id mxc_isi_of_match[] = {
+> > >       { .compatible = "fsl,imx8mn-isi", .data = &mxc_imx8mn_data },
+> > >       { .compatible = "fsl,imx8mp-isi", .data = &mxc_imx8mp_data },
+> > > +     { .compatible = "fsl,imx93-isi", .data = &mxc_imx93_data },
+> > >       { /* sentinel */ },
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, mxc_isi_of_match); diff --git
+> > > a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > index e469788a9e6c..c425edb6fbea 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > @@ -18,6 +18,7 @@
+> > >
+> > >  #include <media/media-device.h>
+> > >  #include <media/media-entity.h>
+> > > +#include <media/mipi-csi2.h>
+> > >  #include <media/v4l2-async.h>
+> > >  #include <media/v4l2-ctrls.h>
+> > >  #include <media/v4l2-dev.h>
+> > > @@ -59,6 +60,27 @@ struct v4l2_m2m_dev;
+> > >  #define MXC_ISI_M2M                  "mxc-isi-m2m"
+> > >  #define MXC_MAX_PLANES                       3
+> > >
+> > > +/* GASKET (i.MX8MN and i.MX8MP only) */
+> > > +#define GASKET_BASE(n)                               (0x0060 + (n) *
+> > 0x30)
+> > > +
+> > > +#define GASKET_CTRL                          0x0000
+> > > +#define GASKET_CTRL_DATA_TYPE(dt)            ((dt) << 8)
+> > > +#define GASKET_CTRL_DATA_TYPE_MASK           (0x3f << 8)
+> > > +#define GASKET_CTRL_DUAL_COMP_ENABLE         BIT(1)
+> > > +#define GASKET_CTRL_ENABLE                   BIT(0)
+> > > +
+> > > +#define GASKET_HSIZE                         0x0004
+> > > +#define GASKET_VSIZE                         0x0008
+> > > +
+> > > +/* dispmix_GPR register (i.MX93 only) */
+> > > +#define DISP_MIX_CAMERA_MUX                     0x30
+> > > +#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)        (((x) & 0x3f) << 3)
+> > > +#define DISP_MIX_CAMERA_MUX_GASKET_ENABLE       BIT(16)
+> > > +
+> > > +#define DISP_MIX_CSI_REG                        0x48
+> > > +#define DISP_MIX_CSI_REG_CFGFREQRANGE(x)        ((x)  & 0x3f)
+> > > +#define DISP_MIX_CSI_REG_HSFREQRANGE(x)         (((x) & 0x7f) << 8)
+> > > +
+> > 
+> > ^Can you use tabs instead of space here?
+> 
+> Done in v3
+> 
+> > 
+> > 
+> > >  struct mxc_isi_dev;
+> > >  struct mxc_isi_m2m_ctx;
+> > >
+> > > @@ -147,9 +169,19 @@ struct mxc_isi_set_thd {
+> > >       struct mxc_isi_panic_thd panic_set_thd_v;  };
+> > >
+> > > +struct mxc_gasket_ops {
+> > > +     int (*enable)(struct mxc_isi_dev *isi, const unsigned int port);
+> > > +     int (*config)(struct mxc_isi_dev *isi,
+> > > +                   const struct v4l2_mbus_frame_desc *fd,
+> > > +                   const struct v4l2_mbus_framefmt *fmt,
+> > > +                   const unsigned int port);
+> > > +     void (*disable)(struct mxc_isi_dev *isi, const unsigned int
+> > > +port); };
+> > > +
+> > >  enum model {
+> > >       MXC_ISI_IMX8MN,
+> > >       MXC_ISI_IMX8MP,
+> > > +     MXC_ISI_IMX93,
+> > >  };
+> > >
+> > >  struct mxc_isi_plat_data {
+> > > @@ -160,6 +192,7 @@ struct mxc_isi_plat_data {
+> > >       const struct mxc_isi_ier_reg  *ier_reg;
+> > >       const struct mxc_isi_set_thd *set_thd;
+> > >       const struct clk_bulk_data *clks;
+> > > +     const struct mxc_gasket_ops *gasket_ops;
+> > >       unsigned int num_clks;
+> > >       bool buf_active_reverse;
+> > >       bool has_gasket;
+> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
+> > > b/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
+> > > index f7447b2f4d77..855b31e3dade 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
+> > > @@ -25,20 +25,6 @@ static inline struct mxc_isi_crossbar
+> > *to_isi_crossbar(struct v4l2_subdev *sd)
+> > >       return container_of(sd, struct mxc_isi_crossbar, sd);  }
+> > >
+> > > -/*
+> > > ----------------------------------------------------------------------
+> > > -------
+> > > - * Media block control (i.MX8MN and i.MX8MP only)
+> > > - */
+> > > -#define GASKET_BASE(n)                               (0x0060 + (n) *
+> > 0x30)
+> > > -
+> > > -#define GASKET_CTRL                          0x0000
+> > > -#define GASKET_CTRL_DATA_TYPE(dt)            ((dt) << 8)
+> > > -#define GASKET_CTRL_DATA_TYPE_MASK           (0x3f << 8)
+> > > -#define GASKET_CTRL_DUAL_COMP_ENABLE         BIT(1)
+> > > -#define GASKET_CTRL_ENABLE                   BIT(0)
+> > > -
+> > > -#define GASKET_HSIZE                         0x0004
+> > > -#define GASKET_VSIZE                         0x0008
+> > > -
+> > >  static int mxc_isi_crossbar_gasket_enable(struct mxc_isi_crossbar *xbar,
+> > >                                         struct v4l2_subdev_state
+> > *state,
+> > >                                         struct v4l2_subdev
+> > *remote_sd,
+> > > @@ -46,13 +32,16 @@ static int mxc_isi_crossbar_gasket_enable(struct
+> > > mxc_isi_crossbar *xbar,  {
+> > >       struct mxc_isi_dev *isi = xbar->isi;
+> > >       const struct v4l2_mbus_framefmt *fmt;
+> > > +     const struct mxc_gasket_ops *gasket_ops = NULL;
+> > >       struct v4l2_mbus_frame_desc fd;
+> > > -     u32 val;
+> > >       int ret;
+> > >
+> > >       if (!isi->pdata->has_gasket)
+> > >               return 0;
+> > >
+> > > +     if (isi->pdata->gasket_ops)
+> > > +             gasket_ops = isi->pdata->gasket_ops;
+> > > +
+> > >       /*
+> > >        * Configure and enable the gasket with the frame size and CSI-2 data
+> > >        * type. For YUV422 8-bit, enable dual component mode
+> > > unconditionally, @@ -77,16 +66,23 @@ static int
+> > mxc_isi_crossbar_gasket_enable(struct mxc_isi_crossbar *xbar,
+> > >       if (!fmt)
+> > >               return -EINVAL;
+> > >
+> > > -     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_HSIZE,
+> > fmt->width);
+> > > -     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_VSIZE,
+> > fmt->height);
+> > > -
+> > > -     val = GASKET_CTRL_DATA_TYPE(fd.entry[0].bus.csi2.dt)
+> > > -         | GASKET_CTRL_ENABLE;
+> > > -
+> > > -     if (fd.entry[0].bus.csi2.dt == MIPI_CSI2_DT_YUV422_8B)
+> > > -             val |= GASKET_CTRL_DUAL_COMP_ENABLE;
+> > > +     if (gasket_ops && gasket_ops->config) {
+> > > +             ret = gasket_ops->config(isi, &fd, fmt, port);
+> > > +             if (ret) {
+> > > +                     dev_err(isi->dev,
+> > > +                             "failed to configure gasket%d\n", port);
+> > 
+> > What about keep this print on the same line?
+> 
+> Ok, I will update when handle comments in v3 if have. If no, I will send a new version if it's necessary.
+> 
+> > 
+> > > +                     return ret;
+> > > +             }
+> > > +     }
+> > >
+> > > -     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, val);
+> > > +     if (gasket_ops && gasket_ops->enable) {
+> > > +             ret = gasket_ops->enable(isi, port);
+> > > +             if (ret) {
+> > > +                     dev_err(isi->dev,
+> > > +                             "failed to enable gasket%d\n", port);
+> > 
+> > Same here :)
+> > 
+> > > +                     return ret;
+> > > +             }
+> > > +     }
+> > >
+> > >       return 0;
+> > >  }
+> > > @@ -95,11 +91,16 @@ static void mxc_isi_crossbar_gasket_disable(struct
+> > mxc_isi_crossbar *xbar,
+> > >                                           unsigned int port)  {
+> > >       struct mxc_isi_dev *isi = xbar->isi;
+> > > +     const struct mxc_gasket_ops *gasket_ops = NULL;
+> > >
+> > >       if (!isi->pdata->has_gasket)
+> > >               return;
+> > >
+> > > -     regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
+> > > +     if (isi->pdata->gasket_ops)
+> > > +             gasket_ops = isi->pdata->gasket_ops;
+> > > +
+> > > +     if (gasket_ops && gasket_ops->disable)
+> > > +             gasket_ops->disable(isi, port);
+> > >  }
+> > 
+> > 
+> > Thanks & Regards,
+> > Tommaso
+> > 
+> > >
+> > >  /* -----------------------------------------------------------------------------
+> > > --
+> > > 2.37.1
+> > >
