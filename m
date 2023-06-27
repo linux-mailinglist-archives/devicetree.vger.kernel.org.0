@@ -2,68 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4985973FFF3
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 17:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0513B740000
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 17:47:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231352AbjF0Pnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 11:43:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53384 "EHLO
+        id S229629AbjF0PrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 11:47:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231395AbjF0Pnk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 11:43:40 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF1B31708;
-        Tue, 27 Jun 2023 08:43:37 -0700 (PDT)
+        with ESMTP id S230161AbjF0PrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 11:47:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AA4FFC;
+        Tue, 27 Jun 2023 08:47:17 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A2F7611D8;
-        Tue, 27 Jun 2023 15:43:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id A87BFC433C0;
-        Tue, 27 Jun 2023 15:43:36 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9EE5C6113C;
+        Tue, 27 Jun 2023 15:47:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 140DDC433C0;
+        Tue, 27 Jun 2023 15:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687880616;
-        bh=0fBukbKw42+OuKPjJbx21dnFmVOG7Y0lihmjoL0ewuA=;
+        s=k20201202; t=1687880836;
+        bh=ml4C6EnGknzfMzPTZoEo67LgKgml43zDDrvSXOnzXBc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bTl8QjErWT1K1J87W8py6flm8zjHzWbeY1vmREGIGAr2nWVtmBRg7ZpIWDYiVeJAo
-         /5X8XyvwK/Rakh9oQScdaPOLiFXFVQYAhNygfLGDIgJRe53GaBaddWG7sQmKwS+Y+p
-         7brm146EPtVCmAerDaWHdq69W/62GmsGSTppb8xzWpz29KXXzXQ7gluAx9rsjtYCvj
-         JV33Y8zwaZ1vNDo5G2a82hL1HzbHS77Ctq0EeLeQFzk4ZCuwT56gURx+W2prK6ZoKn
-         3rcPazOkVo3e2Nczgtyk4qiEzka9CkIDjDI59YCX38ey/UwUr945E6aTbvvLFc/so5
-         NkSrXOzmOSkKA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1qEAqs-0004FT-CZ; Tue, 27 Jun 2023 17:43:34 +0200
-Date:   Tue, 27 Jun 2023 17:43:34 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        b=jo0Rs9Cd50M7ikygAnByCUIyz8xw/PidC+UpvtsNzX24REd0L/74TkfhTtibCQCp1
+         FUNvRYPuQTz7vJFJS/wEKQvW+NLEnKYl++uWRTXlHDxbtE3kxl7eTDp9HUv3AWEjH8
+         DUe6MQpdyCAhZoktplmaWJHZRGK6Qm3Pkoj+iWo1A48RdRaaNAzlf86IxQunpfoo33
+         8WK/jSm3QV7vXV4f1uHHsAmwhPpaY+ohEKBiEvlnG6BqyjAQjjI+xQ5etGycW2bwqD
+         TiBI01q9UpML6K67M/ROnx/is7/vdhoBt6yn3Qa76Ek1WGyOJ97N5ePDurMlKmn8E1
+         klUMrQIQf4dxA==
+Date:   Tue, 27 Jun 2023 16:47:09 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Aleksandr Shubin <privatesub2@gmail.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>, linux-usb@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, quic_pkondeti@quicinc.com,
-        quic_ppratap@quicinc.com, quic_wcheng@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com
-Subject: Re: [PATCH v8 6/9] usb: dwc3: qcom: Add multiport controller support
- for qcom wrapper
-Message-ID: <ZJsDpqttBYtbQ0yg@hovoldconsulting.com>
-References: <20230514054917.21318-1-quic_kriskura@quicinc.com>
- <20230514054917.21318-7-quic_kriskura@quicinc.com>
- <ZIB1JEmLCw41v_4e@hovoldconsulting.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: pwm: Add binding for Allwinner
+ D1/T113-S3/R329 PWM controller
+Message-ID: <20230627-zestfully-unskilled-970e81550621@spud>
+References: <20230627082334.1253020-1-privatesub2@gmail.com>
+ <20230627082334.1253020-2-privatesub2@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="NYllrFxPnpdY7/Ib"
 Content-Disposition: inline
-In-Reply-To: <ZIB1JEmLCw41v_4e@hovoldconsulting.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230627082334.1253020-2-privatesub2@gmail.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -72,49 +73,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krishna,
 
-On Wed, Jun 07, 2023 at 02:16:37PM +0200, Johan Hovold wrote:
-> On Sun, May 14, 2023 at 11:19:14AM +0530, Krishna Kurapati wrote:
+--NYllrFxPnpdY7/Ib
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> >  static inline void dwc3_qcom_setbits(void __iomem *base, u32 offset, u32 val)
-> >  {
-> >  	u32 reg;
-> > @@ -413,13 +423,16 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom, bool wakeup)
-> >  {
-> >  	u32 val;
-> >  	int i, ret;
-> > +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
-> >  
-> >  	if (qcom->is_suspended)
-> >  		return 0;
-> >  
-> > -	val = readl(qcom->qscratch_base + PWR_EVNT_IRQ_STAT_REG);
-> > -	if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> > -		dev_err(qcom->dev, "HS-PHY not in L2\n");
-> > +	for (i = 0; i < dwc->num_usb2_ports; i++) {
-> > +		val = readl(qcom->qscratch_base + pwr_evnt_irq_stat_reg_offset[i]);
-> > +		if (!(val & PWR_EVNT_LPM_IN_L2_MASK))
-> > +			dev_err(qcom->dev, "HS-PHY%d not in L2\n", i);
-> > +	}
+On Tue, Jun 27, 2023 at 11:23:24AM +0300, Aleksandr Shubin wrote:
+> Allwinner's D1, T113-S3 and R329 SoCs have a new pwm
+> controller witch is different from the previous pwm-sun4i.
+>=20
+> The D1 and T113 are identical in terms of peripherals,
+> they differ only in the architecture of the CPU core, and
+> even share the majority of their DT. Because of that,
+> using the same compatible makes sense.
+> The R329 is a different SoC though, and should have
+> a different compatible string added, especially as there
+> is a difference in the number of channels.
+>=20
+> D1 and T113s SoCs have one PWM controller with 8 channels.
+> R329 SoC has two PWM controllers in both power domains, one of
+> them has 9 channels (CPUX one) and the other has 6 (CPUS one).
+>=20
+> Add a device tree binding for them.
+>=20
+> Signed-off-by: Aleksandr Shubin <privatesub2@gmail.com>
 
-> When testing this on the X13s I get:
-> 
-> 	dwc3-qcom a4f8800.usb: HS-PHY2 not in L2
-> 
-> for the third port, whose status registers always seems to return zero
-> (e.g. as if we're checking the wrong register?):
-> 
-> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 0, pwr_event_stat = 38103c
-> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 1, pwr_event_stat = 38103c
-> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 2, pwr_event_stat = 00
-> dwc3-qcom a4f8800.usb: dwc3_qcom_suspend - phy 3, pwr_event_stat = 140030
-> 
-> I verified that everything appears to work as expected on sa8295p-adp.
-> 
-> Do you have any idea of what may be causing this?
+Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
 
-You never replied to this; do you have any idea why the status register
-for the second port seemingly always read back as 0 on the X13s?
+Cheers,
+Conor.
 
-Johan
+--NYllrFxPnpdY7/Ib
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJsEfQAKCRB4tDGHoIJi
+0juTAQC42GZyWY8pE8qWzDE82yIgW0XYwxY/lFvJ/QGGvKog9wD/X843uIT5YTU0
+TZzhqTOUmU9iMVxgDlhIq2zh0+p3JQc=
+=SsPs
+-----END PGP SIGNATURE-----
+
+--NYllrFxPnpdY7/Ib--
