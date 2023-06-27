@@ -2,168 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B52A173FBC9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 14:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D103E73FBD0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 14:13:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231936AbjF0MKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 08:10:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36154 "EHLO
+        id S229926AbjF0MNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 08:13:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231948AbjF0MKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 08:10:14 -0400
-Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A36F8297D;
-        Tue, 27 Jun 2023 05:09:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
- s=s31663417; t=1687867773; x=1688472573; i=frank-w@public-files.de;
- bh=xdHcE/whBthd94x/WQ7c8IRXdm3DaEqEahfNDdPrpiU=;
- h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
- b=JmKeWK/e5/gzkD/IRpkToKxv1UBRL7tsoQHCofzr3RalwasG16QZvtK7pAypP5iRlk6CuvX
- N9eofKYrfIePUidNMaeJIvHRHU5VuBmkXx6ECrc6/gLtf6gnid8+BoGaVt6vDmElB9hrmMd2H
- 0e3n5PPcARzaIKPbXMjLMROE6vhCPGglKAi4EkQ8GA5GJkG4vjli2FTDIjPBe6vvmnh9yHmpY
- qL6rzGcciTo+/BmHb1HmOWsBtiz8rP6gJIv7b/A3Jf6OK+6n0BQgo2Ov+TuzJxE5IbQbcnkaF
- 3WjnV/0La8xhS3T6kuILNuwQr5nruV80bzvogqzuSl8g8UXwm7tA==
-X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
-Received: from [217.61.148.1] ([217.61.148.1]) by web-mail.gmx.net
- (3c-app-gmx-bs07.server.lan [172.19.170.56]) (via HTTP); Tue, 27 Jun 2023
- 14:09:33 +0200
+        with ESMTP id S229710AbjF0MNU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 08:13:20 -0400
+Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72F1A19B6
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 05:13:18 -0700 (PDT)
+Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so906611e87.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 05:13:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687867996; x=1690459996;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FR5rzArc9VADnvY1rG5yKtlG15Q5l959I+GAPWhUE9c=;
+        b=gLvNtTPACbA5Bl4vEPMFbdQW/4hvOyF3pp/00a3lZqzewn6UU2dmOwuvdB7efmlGTY
+         6gi1ETMvzUb2Y4ey8rr+8cARws6uq/1S/06Ee73HjWwQ1tw95DQwI9i7CpCoIUULajbC
+         4PXRm/qbEzGYJzLBTOWm2hlb5+QbKrquQsJzWBs3e6YtpSowtaH8NfJCV39V6FiRvAyK
+         q+1654Gp4FlP+qoJ8kF0uaK6CEfcz4l3t7DDYA79nm7/4KAgouG1JmibpnZ/Gjy69tae
+         dn+N46NnrP8iXGIgiwg+rC3aWnMefH2ysCGdEBoQpX5XthsUr3beSathItyVEy0NUN8b
+         a2Hw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687867996; x=1690459996;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FR5rzArc9VADnvY1rG5yKtlG15Q5l959I+GAPWhUE9c=;
+        b=EEY2WTeEtzGMcb5GavFKzfBGySfP9yBHdGLVAzvFlep1vXied/dtnCRmWlLPbeWhA4
+         gbg2m5oTniU9kBdKlqLpUimaDkO0biPRGfB3urU1mf5OOS8iRm6ZBdpoo68gjV7cxSru
+         rEn7wUUf1dqYUCbkVQvjz2EnwYR8iU9YceI9IihluhZdQg+bpbG8QUTBJEsQmUf/KuEw
+         Gb97mDBGB/OhgQ3YeNEbFI+LzKjH9uPB4GjVQ1/Dd6HAnh6Cu+Z8SKz+3psJrVQC7Q5f
+         IxlqsEfJjdTr6UYqfwer94WxMV58PNQ0V/tdXxew0gVH5wVT+nhVOiMO6koqu6Sj4M3t
+         EW+w==
+X-Gm-Message-State: AC+VfDzcDZ2RGKXrKeWQyH0ouzn5jslBKGrbanoQYQ47vvqdUSJL51fg
+        OJU667gDNe3jwY33lyIY4JzNtQ==
+X-Google-Smtp-Source: ACHHUZ4q34rv+txfjWN8Rc7eKRSQSIsPu5VMHaAfloViYeJaxh5TBKafuQ+6KBcliQ7vPgFAQWYwvQ==
+X-Received: by 2002:a19:4409:0:b0:4f8:7556:23e6 with SMTP id r9-20020a194409000000b004f8755623e6mr13534815lfa.54.1687867996549;
+        Tue, 27 Jun 2023 05:13:16 -0700 (PDT)
+Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
+        by smtp.gmail.com with ESMTPSA id j2-20020ac253a2000000b004fb2c1e33b3sm1119853lfh.243.2023.06.27.05.13.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jun 2023 05:13:16 -0700 (PDT)
+Message-ID: <8217b8db-cd27-185d-c6b5-e32009202c21@linaro.org>
+Date:   Tue, 27 Jun 2023 14:13:14 +0200
 MIME-Version: 1.0
-Message-ID: <trinity-28cad1dc-f8e0-4f65-874f-a2392c2e878e-1687867773444@3c-app-gmx-bs07>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 17/26] ARM: dts: qcom: apq8064: add simple CPUFreq
+ support
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>, linux-mmc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Aw: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update
- assigned-clocks/clock-parents for mt7986
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
+ <20230625202547.174647-18-dmitry.baryshkov@linaro.org>
+ <0f139da8-ae01-fc28-d14c-0ea207cf760e@linaro.org>
+ <2232c6e7-cbca-30c1-9ec5-1cea7f759daf@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <2232c6e7-cbca-30c1-9ec5-1cea7f759daf@linaro.org>
 Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 27 Jun 2023 14:09:33 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <91411797-18b4-f515-d6c0-ca0f8ff39696@linaro.org>
-References: <20230625191151.7808-1-linux@fw-web.de>
- <20230625191151.7808-2-linux@fw-web.de>
- <91411797-18b4-f515-d6c0-ca0f8ff39696@linaro.org>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:Wpl0QMXvRlo9cxJewy5JaUWnr3ady4smJq8j0V87WwVmOV7RyXc5ezzcldaYktrMBQXIN
- M2AOETkDUZJUHzes3VfgSYybEjGnoPUCpIeWvAMoBoGMxxTO6vbT9JBjO4T8LzS1YyGdnfuCMPD7
- mPl96k7q+ZTRmXa3JaCTMNVLbPKHsUdgpO0ArJEBBwB7k54GmejHfiGofLoRfLFZUNoMZ2uwEHgk
- uXH/aexMV4YqmmgN79H+oNhvY6N9Hgm7flPjhLL6h9zQaY8LQxbjUO/c0pPJO6EMXAHG+TmsaxOB
- q0=
-UI-OutboundReport: notjunk:1;M01:P0:1Z0a4tyvnkQ=;VpvzeAEl8Inn7LOHKtEQJ0APbGE
- wy5+uDfKeYInwKGfypBdqzAg9pUYSbYz7oMsrjbCMJi5fd8+wV/WcIfoSLLRDIvm3Qfhdcsc1
- 0xa9V+3ku8De6Lgs49f8KJvcbGl5dkhbx9NlgeMhUuPwf14pBSnxBAi+4NZYJ9x5o/90o6A36
- p0BjPMUoBM/i4wvQNGCPO794wB5h/jXK0EhRd0nRKppL9cwlmK6K2Nml+84dNWu7mpnrsCHz/
- neZS6vAAcEf8bN5/iJmgOCWlsasvRZm+5o/W8JOuyu6CXclUItv1nID5eXFWILp8W+5LiEyVZ
- ChUzxQdfGqBu/7KYpyQhNTL4nkkIcYktsG/ew+5/evblJLGV+YKb8pzvuHDyihQg/RzyasjBo
- gvfbVlaj5fRklbqqykrhEkInlAD459IVzxNRYcuPJQRXrucNJVgfrLEwM+5RuL79Wq2k+q6gp
- vJhlEZ18Ff3c5E0gmQPQaNhUtpuWv5QW9YGlGZ2Vm726DLt2GGYD1oS6kEqxpBT2x3uKQpWqD
- 2t99KWVBZ6IhMq7kUpHXD4c+hgFN6ssthuJSqUHxzO2QN+VqzNax4J4Vlpf98gFNAYp3/JGkj
- D/20IRbgGwHgErmWYCmvQK3Xmx0FK+rBjM3Vv+EFnYZLCWJf48ETRgiSOryV7CZGOGC9P7N8c
- TDRFEBND0/nlkOMx5tY/tZ0iV0+SFDp00IZnRMPlslvWVpy8VkF1/HclqnDjfw6jQmROuAakk
- QvFYP4JHDjO8iq8XJXgvNqZRjSIwKjP4OBEfJqN83tP52IlR+LScMFKaLklJAXqmxlJUSnO6w
- /s8tCekdcyvxO5kJv89YeZBg==
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Dienstag, 27. Juni 2023 um 12:44 Uhr
-> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
-> Betreff: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update assigned-cl=
-ocks/clock-parents for mt7986
->
-> On 25/06/2023 21:11, Frank Wunderlich wrote:
-> > From: Frank Wunderlich <frank-w@public-files.de>
-> >
-> > MT7986 has 2 clock-parents so update the binding for it.
->
-> You didn't test it, I think. If you do, then you will see errors from
-> other trees.
+On 26.06.2023 21:49, Dmitry Baryshkov wrote:
+> On 26/06/2023 19:40, Konrad Dybcio wrote:
+>> On 25.06.2023 22:25, Dmitry Baryshkov wrote:
+>>> Declare CPU frequency-scaling properties. Each CPU has its own clock,
+>>> how
+>> however?
+> 
+> yes
+> 
+>>
+>>> all CPUs have the same OPP table. Voltage scaling is not (yet)
+>>> enabled with this patch. It will be enabled later.
+>> Risky business.
+> 
+> But it works :D
+On your machine ;)
 
-Hi,
+[...]
 
-i tested it of course...which errors do you see?
+>>>   +    kraitcc: clock-controller {
+>>> +        compatible = "qcom,krait-cc-v1";
+>> Are we sure we don't wanna rework this compatible? Check the comment in
+>> drivers/clk/qcom/krait-cc.c : krait_add_sec_mux()
+> 
+> I remember that comment. I'd rather not introduce another compat string for such old hw. Would there be any direct benefits?
+> 
+I'd say that the one we have here never made much sense.. Perhaps (since
+nobody used it for 10 years) it would make sense to remodel it..
 
-this is basicly how i tested it (in case anything has changed):
-
-        logfile=3Ddtbs_arm64.log
-        exec 3> >(tee $logfile)
-        ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make DT_CHECKER_FL=
-AGS=3D-m dt_binding_check 2>&3
-        if [[ $? -ne 0 ]];then echo "arm64 binding check failed!";cat $log=
-file;exit 1;fi
-        ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make defconfig #dt=
-bs_check need kernel-config
-        ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make -j8 DT_CHECKE=
-R_FLAGS=3D-m dtbs_check 2>&3
-        if [[ $? -ne 0 ]];then echo "arm64 dtbs_check failed!";cat $logfil=
-e;exit 1;fi
-
-and looked into the resulting logfile for keywords like mmc like mtk-sd
-
-i tried running dtbs_check with passing the yaml-file, but of course all c=
-ompatibles not matching this file were reported.
-
-ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make -j6 DT_CHECKER_FLAGS=
-=3D-m dtbs_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mmc/m=
-tk-sd.yaml
-
-but this spits out many errors "failed to match any schema with compatible=
-" because i defined only the changed one...
-
-maybe there is another way to check only one yaml file against all dtbs wi=
-thout these unrelated errors.
-
-pipeline in dt-bindings-patchwork is clean too
-https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230625191=
-151.7808-2-linux@fw-web.de/
-
-> Anyway, I don't understand why defining it in the first place. Just drop
-> the assigned-clock* from the binding.
-
-as it was defined (not looked where it was used) i only used the soc-speci=
-fic branch to update the MaxItems...just to not break anything. After that=
- the message i got before was fixed
-
-arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000: as=
-signed-clocks: [[4, 35], [4, 34]] is too long
-arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000: as=
-signed-clock-parents: [[5, 6], [4, 18]] is too long
-
-but if the right way is to drop the MaxItems from generic (or the property=
- itself - where is it taken from then?). The only
-include i see is Documentation/devicetree/bindings/mmc/mmc-controller.yaml=
- and there the assigned-clock* is not defined. And the
-
-unevaluatedProperties: false
-
-tells me that removing the generic one will result in unevaluated propety =
-error.
-
-regards Frank
-
-
-> Best regards,
-> Krzysztof
->
->
+Konrad
+>>
+>>
+>>> +        clocks = <&gcc PLL9>, /* hfpll0 */
+>>> +             <&gcc PLL10>, /* hfpll1 */
+>>> +             <&gcc PLL16>, /* hfpll2 */
+>>> +             <&gcc PLL17>, /* hfpll3 */
+>>> +             <&gcc PLL12>, /* hfpll_l2 */
+>>> +             <&acc0>,
+>>> +             <&acc1>,
+>>> +             <&acc2>,
+>>> +             <&acc3>,
+>>> +             <&l2cc>;
+>>> +        clock-names = "hfpll0",
+>>> +                  "hfpll1",
+>>> +                  "hfpll2",
+>>> +                  "hfpll3",
+>>> +                  "hfpll_l2",
+>>> +                  "acpu0_aux",
+>>> +                  "acpu1_aux",
+>>> +                  "acpu2_aux",
+>>> +                  "acpu3_aux",
+>>> +                  "acpu_l2_aux";
+>>> +        #clock-cells = <1>;
+>>> +        #interconnect-cells = <1>;
+>>> +    };
+>>> +
+>>>       sfpb_mutex: hwmutex {
+>>>           compatible = "qcom,sfpb-mutex";
+>>>           syscon = <&sfpb_wrapper_mutex 0x604 0x4>;
+>>> @@ -933,6 +1100,9 @@ qfprom: qfprom@700000 {
+>>>               #address-cells = <1>;
+>>>               #size-cells = <1>;
+>>>               ranges;
+>>> +            speedbin_efuse: speedbin@c0 {
+>>> +                reg = <0x0c0 0x4>;
+>>> +            };
+>> Newline between properties and subnodes & between individual subnodes,
+>> please
+> 
+> ack.
+> 
+>>
+>> Konrad
+>>>               tsens_calib: calib@404 {
+>>>                   reg = <0x404 0x10>;
+>>>               };
+> 
