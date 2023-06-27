@@ -2,153 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0808B73FAF9
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 13:21:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DAAA73FAE9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 13:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230515AbjF0LVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 07:21:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39578 "EHLO
+        id S230152AbjF0LSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 07:18:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231264AbjF0LVY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 07:21:24 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8DB832942
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 04:21:18 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-977e0fbd742so535622466b.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 04:21:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=fairphone.com; s=fair; t=1687864876; x=1690456876;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=9xUCZlFod1gFIQWmLgn2mr25s7m8GFrqoNi5bt+JZdA=;
-        b=Fpvq6FzYjDUwnZuR/6hC50SsztpIKEOpSFfl+3rQ5kylgDP+xh8c3FdLy69HFzmd06
-         TgilgJCR0oTnzcA+KZBA5PFjmMze7blXMrsQlwZD6F6fHQB1kvJgkP0xBcXibM90AtYY
-         uroCYlM52w2btVeLUz5UN5dr0XKrKhDLT7o5+QmjADYVkaNMWEQewaqF85b3lvv98Z7J
-         TYPUAjsMs4Y2U2LwpnLu6Z1Hy9Td6TR5lbVwPKQdMnijqNfe9EKtNt7QnhuP2HA87Ire
-         rEqdGgbNsaWqd6tLjET19LlM267UyW7T+BJUVAXGeRUH5bJ5okp607LHADMzcYXULHci
-         g4OQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687864876; x=1690456876;
-        h=in-reply-to:references:subject:cc:to:from:message-id:date
-         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=9xUCZlFod1gFIQWmLgn2mr25s7m8GFrqoNi5bt+JZdA=;
-        b=Eo7RmTENm2+2hf3dbJri4anjyhoXb5Ha9idwDgZPJw0SHgNn9H4kLwNnthXB6x6S2f
-         r1BYitshf0O6VEy4rcFdEAmNINAEZLFs/4HNS6dJ+0FmLQ4XYxQuVUFtr3MHJaPQ1d5m
-         HVGZjQBIK7qflpmd0J0kqfz8XO28hONWAdBzGoW7cY7Lkl4JPGsBP0SEK0U3oJ1s/ZxI
-         2fFwqtFuG9m76x9wPgcOrZ30E1V3l9QzuUALu56y+QwJ36Gd08M/icmFhTX8NJ6cpZkZ
-         SrYpdEGnegMDpM+pS73bHRD4/IlLpQDlyHyH8pVA4otPvsmmIoOeSD3CqDHQFgpNlmG7
-         mCcA==
-X-Gm-Message-State: AC+VfDxRl45pa/iJWgvo8sri9OjBLZ2UT51UuJ9WAn7yr4Nomj7geV7O
-        BBH4K2T5DUjkuFcn9hDXldTrIA==
-X-Google-Smtp-Source: ACHHUZ5m6Y1OOMJb0fGLWzPJIHuIjLljczo/77S4FcS2sEnrI3e8bDRG9eDJFOFwLvOEDqxEF7QQuQ==
-X-Received: by 2002:a17:907:26cb:b0:96f:e5af:ac5f with SMTP id bp11-20020a17090726cb00b0096fe5afac5fmr26590904ejc.47.1687864876657;
-        Tue, 27 Jun 2023 04:21:16 -0700 (PDT)
-Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
-        by smtp.gmail.com with ESMTPSA id jt24-20020a170906dfd800b00988b8ff849csm4402034ejc.108.2023.06.27.04.21.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 04:21:16 -0700 (PDT)
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date:   Tue, 27 Jun 2023 13:21:15 +0200
-Message-Id: <CTNE5VJF78AJ.37DA4CKP3E6K6@otso>
-From:   "Luca Weiss" <luca.weiss@fairphone.com>
-To:     "Luca Weiss" <luca.weiss@fairphone.com>,
-        "Rob Herring" <robh@kernel.org>
-Cc:     "Conor Dooley" <conor+dt@kernel.org>,
-        "Andy Gross" <agross@kernel.org>,
-        "Alim Akhtar" <alim.akhtar@samsung.com>,
-        <devicetree@vger.kernel.org>,
-        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
-        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Iskren Chernev" <me@iskren.info>,
-        "Manivannan Sadhasivam" <mani@kernel.org>,
-        "Avri Altman" <avri.altman@wdc.com>, <linux-scsi@vger.kernel.org>,
-        <~postmarketos/upstreaming@lists.sr.ht>,
-        <linux-arm-msm@vger.kernel.org>, <phone-devel@vger.kernel.org>,
-        "Bjorn Andersson" <andersson@kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        "Bart Van Assche" <bvanassche@acm.org>
-Subject: Re: [PATCH v5 3/5] dt-bindings: ufs: qcom: Add ICE to sm8450
- example
-X-Mailer: aerc 0.15.1
-References: <20221209-dt-binding-ufs-v5-0-c9a58c0a53f5@fairphone.com>
- <20221209-dt-binding-ufs-v5-3-c9a58c0a53f5@fairphone.com>
- <168785971145.1233664.7985274899454909326.robh@kernel.org>
- <CTNCLCWEUWJO.19I1NW2GL7QMZ@otso>
-In-Reply-To: <CTNCLCWEUWJO.19I1NW2GL7QMZ@otso>
+        with ESMTP id S231562AbjF0LS3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 07:18:29 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2048.outbound.protection.outlook.com [40.107.20.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FF852950;
+        Tue, 27 Jun 2023 04:18:24 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=E/d62S2R1uS2aTJiCAp0sb+Y0vGBxpF0vZuUCV7/qfL2ud8QKruu4r7IbYvsSQDVFP4fCv75c+HhEAy3wWh/4gdJleyoGG1IodVuA21KfkaOQKYuAqzpdNB3r/CCBQHuZb67ZfHxc8emWGA06v+wHQ4Wu/FiVQm3itTruGkPRMIBmFYyBvq3UjLbCkZ5XtCneL7RdOhVy9ABOy/A9Z+P5BWrt/XxaApdpec6yaZdKwSbueeARJVeNjFyV9uP4iL9xG965sczr8yCJityLIByCpLZX3WP5/wvSly22PioHBhMZRymIlhQBMAKapywH0n6pO9RBtfB0em2GJ5md1lAXw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=wxGd8OUN+ZqgX6qyvp+GP1PUjDByFVShYObY321Krnw=;
+ b=Ul7pyWa7M2+6v5C6O1LdJtUxWcHEZjTTTtoEVfZ0Oq/Iffpgfxcq0RD4X3dlKrtWQgbBpZG9WidqoS6KlnVx02dQScGjQdtF6BCY5/mRdmj5JuFecBGygbxwIhaeLQHIK5Yw+gnoZu8F0s5nmrXpOpDYuZiWEGL4o5BlLA5W7Yy0OBMM/BF3/5Z6w6K7PVnWzhLVoyNYhyzxtRNI/FbK3SHQmvm15fiNaJHycPWOxlQvwj9shOFxG+G/6ekGHdZ2b+X9ENCQT5PNXX2G1rDUz9VAKGWzMC20IVJKbRspg4rPy1Vo8AkZPbEv8YwlT7UjAcG19S2c3lOckVA4wP2/DQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wxGd8OUN+ZqgX6qyvp+GP1PUjDByFVShYObY321Krnw=;
+ b=oZ96VNeFk/Pw0kI/Zyzre/pPmhqKkvdn7SXPR2bRS8KLiLBryGLZgatEzzm7d4lk1x4j8kbaoOlcHEm8oxxgdoU0UbJyvnBdjbxJMAqtV/sDljwv2ozI+U+189KP16C2fU0VEG1iH/a82BZLBTTb5zKu2EbDfn1LPUwvXjHfh5o=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com (2603:10a6:5:39::26) by
+ DB9PR04MB9332.eurprd04.prod.outlook.com (2603:10a6:10:36c::6) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6521.26; Tue, 27 Jun 2023 11:18:22 +0000
+Received: from DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::f9b0:8c34:e57:92a4]) by DB7PR04MB4505.eurprd04.prod.outlook.com
+ ([fe80::f9b0:8c34:e57:92a4%7]) with mapi id 15.20.6521.024; Tue, 27 Jun 2023
+ 11:18:22 +0000
+From:   Xu Yang <xu.yang_2@nxp.com>
+To:     peter.chen@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, gregkh@linuxfoundation.org
+Cc:     conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, peng.fan@nxp.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, jun.li@nxp.com, xu.yang_2@nxp.com
+Subject: [PATCH v2 1/3] usb: chipidea: imx: improve logic if samsung,picophy-* parameter is 0
+Date:   Tue, 27 Jun 2023 19:21:24 +0800
+Message-Id: <20230627112126.1882666-1-xu.yang_2@nxp.com>
+X-Mailer: git-send-email 2.34.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR02CA0002.apcprd02.prod.outlook.com
+ (2603:1096:4:194::22) To DB7PR04MB4505.eurprd04.prod.outlook.com
+ (2603:10a6:5:39::26)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DB7PR04MB4505:EE_|DB9PR04MB9332:EE_
+X-MS-Office365-Filtering-Correlation-Id: 05a5f38f-8505-4eaf-fac1-08db77003781
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 9Ee0g56X3GPJJjN8ifdMfyn+B2vc6t51x1jeiO0SVWVGyix3exhqdgUmhOEdNOE9eBjAUBaebd7HsVzV8wu/lo/OZwccVI+UtrGI6TkZ2cU/Vr1rIxwf0WU3FZEAS0XbL9AP3nOTuTEjM2RRjShbcAojVHKOL5AzPgP566BWoT8V4c/2vcUqomgRm/yLnLE9cDKxvJBibBezAFHnH+fVbEGVUxUemT4Krc9O0lI7COsOtYj7hTtjQzyW3ZDMzAHoau+ClW+ZGa3Y6OQUh6xRnpGEi4B747XlyBF9ZErKrQmcMtCQsqXViEkxCRHrjtcaz448LClYHfSkUCYurZj+W3JLTmwFBvU4vVFttFnqRFhoTVLk34WvEhe+uHLP10gs6SMpGO2ZbYI1HqnPIcLM2/eLrh7yPgBN/kv89/EQa/FRBWBHYWxx6EEWNQuEBNUusO4wWyODlkalaxrmDMwTuUnOVTH5NnDBIq8PmrvQOa/sOJU44gsONVRKoaOJxhdacJcd3IPLuQ+dD3Kl7hH46BSk8z/p0iyRWHTESzilv0ZPQbfbNORZHXkpsTUY16bNBNQxz3PRNTIWLVJ2LsbXTuqM8E7bX850g4EgmMi7jD1lpiJEKEURxqRPI+EJURgY
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB7PR04MB4505.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(366004)(376002)(396003)(346002)(39860400002)(451199021)(2906002)(186003)(38350700002)(52116002)(6486002)(38100700002)(2616005)(83380400001)(6506007)(6512007)(26005)(1076003)(41300700001)(86362001)(316002)(478600001)(36756003)(66556008)(4326008)(66946007)(66476007)(5660300002)(8676002)(8936002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?X2/jTHs675XU0rVULdVSUCkW78rvx4Vpy7VJJp1Nlq4Krna/23hxxqdNFaW5?=
+ =?us-ascii?Q?KYiJjJ7zT4NtuLZ5xe9xFN4XnVJhmSo5KUbryqgt7cuFColnzZs+1sXhZcqV?=
+ =?us-ascii?Q?HGciN70F4msdLPOLE2ewu1dJETUOW6bGL547YvcQDrEmkVrRnC42/Zkz35yg?=
+ =?us-ascii?Q?igW8qNT7j3Oj9JXUmGj8RDO0XjFxfB+soRB6LtdID1F0bzZyE0gRcng7AfBH?=
+ =?us-ascii?Q?ZnyMxeZzaxryauqIa1Ydj6WY1yT54yRk52QDKdgpKVIFesugUXi1TT1eOTB2?=
+ =?us-ascii?Q?EAARc2ohAnskmA0MURqOs3Qa+A7DOW/lI+3qAkCUEnU+iYtDgzgJ/U8I+zor?=
+ =?us-ascii?Q?p31O4X9iKCO287jj8CtXX095Ut8vQ/2juDyCqYCdNTQwXWe7dvq3sZ2p0cwI?=
+ =?us-ascii?Q?fumH0fWNkX7R/bvOI3fb1A91wxvpYDH+U2XtTVgOaqxEEvrNh8MF3gaZHQBQ?=
+ =?us-ascii?Q?WPopVlUtLuS2uRIWON3MtKdmysFjqJHBEMUGOFw5JkQ+GQF4mKTk5CzIAmon?=
+ =?us-ascii?Q?9ocS0zZ6+BberDIS3A/ifMwrJOu7pLHhzNyu+lyNyc/neA5lTg3kgjmOLuQ2?=
+ =?us-ascii?Q?l60MKopGgjnw3rLivJEI5GSq3PGQwv9h8PNMa4t1l2F+VBCeioRd+yoC8zy7?=
+ =?us-ascii?Q?yYIWBfcGQ/zZP0f+kKrjHdwTG+FX5D9krWj9MN2hq1b/fwWg7qN17UhtVvz6?=
+ =?us-ascii?Q?L5Jqh9YOHXTUF82UsGQ9R3omc2skV5Kk8dkZUEqStwuOV9bmvRks+XkqVD/s?=
+ =?us-ascii?Q?1XbHInIqI5NGdTPVok7fmWzthuq/h4pYwV5tLjpb2HXy6v6z3LE33i4j4b8U?=
+ =?us-ascii?Q?ZtTwwRuCy4m83b1ACuYj1Pa6qfuUcDPmxMhxj0ljO5TAQMyf4tEiuxCBXX9F?=
+ =?us-ascii?Q?ZlNr7dJ0zTht+nwPMQqgsGNJmONUXddCTFmqcaAcIf3RC+tFXk1Lv33AbwAc?=
+ =?us-ascii?Q?K4pBUMpnMoxzC5JMpqhRAmYEcDFj7wT1m37M0MmknmmhP/GqdjZJruHhR5+a?=
+ =?us-ascii?Q?FMPTs/io3K3HMF5JX4fzalrS+7MY1Dps3eruVvBJbq8wAoyF1fUPvZOWHhIL?=
+ =?us-ascii?Q?7O70DF8Q0pd4Ydn6OWrhaZjfsuJG3iLpNJLe7VPF3GJblC67J3HmmLQwjvMW?=
+ =?us-ascii?Q?3fd7msYPkuwLiJIK+VfBiATQRHwHm58rB1cFj06s6t/9BKjWQAvkhvmBauUx?=
+ =?us-ascii?Q?IPre4lUIbLPN0EHYTgFVQ5m4/dp79LqWJbIrMtBRi9cqviHN4iL3501N9uCE?=
+ =?us-ascii?Q?AcsYutC8LgdZItpY3uv0wiWyFYAXEV3gseB8YLL7PbxB8pfMTBixqxhnUMbC?=
+ =?us-ascii?Q?LRhuO6vlTPv32T5MScMBpndAlq+CnWIOb32qu97C3D0EO5bNpzq17aBvBqv6?=
+ =?us-ascii?Q?x/Sncv10MODhfKzMbKph7lc6st+e4GkueJr8P/sWT0DXIbBHyOifp3WnYPSv?=
+ =?us-ascii?Q?kafECf9ZVYajJMRYBrh70TJdV338iTe6xqhXXUVKP4gDghYzMpX1kVG+5F1T?=
+ =?us-ascii?Q?AdfHQDqSsf1tMRg2yzlYlmEuRH+pOoZoWNoeEWDmqJJi2cpVgkxOZLh1gBnt?=
+ =?us-ascii?Q?+GzhAMbs1zZJvXzx8kPaAXw3lhkIotLzcZr7j7w/?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 05a5f38f-8505-4eaf-fac1-08db77003781
+X-MS-Exchange-CrossTenant-AuthSource: DB7PR04MB4505.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2023 11:18:22.0614
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ks64lWdk3XdDMUt7SotVZUIEs3cd4zAOCoz1R3rhYsJ8xwO0S8KavHHcQRzrCvkhH4Vd4ndDkKj961Qb8BKe9Q==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB9PR04MB9332
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue Jun 27, 2023 at 12:07 PM CEST, Luca Weiss wrote:
-> On Tue Jun 27, 2023 at 11:55 AM CEST, Rob Herring wrote:
-> >
-> > On Tue, 27 Jun 2023 10:28:03 +0200, Luca Weiss wrote:
-> > > SM8450 actually supports ICE (Inline Crypto Engine) so adjust the
-> > > example to match.
-> > >=20
-> > > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/ufs/qcom,ufs.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >=20
-> >
-> > My bot found errors running 'make DT_CHECKER_FLAGS=3D-m dt_binding_chec=
-k'
-> > on your patch (DT_CHECKER_FLAGS is new in v5.13):
-> >
-> > yamllint warnings/errors:
-> >
-> > dtschema/dtc warnings/errors:
-> > /builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings=
-/ufs/qcom,ufs.example.dtb: ufs@1d84000: Unevaluated properties are not allo=
-wed ('qcom,ice' was unexpected)
-> > 	from schema $id: http://devicetree.org/schemas/ufs/qcom,ufs.yaml#
->
-> qcom,ice should land with v5.4
+In current driver, the value of tuning parameter will not take effect
+if samsung,picophy-* is assigned as 0. Because 0 is also a valid value
+acccording to the description of USB_PHY_CFG1 register, this will improve
+the logic to let it work.
 
-Sorry, obviously wrong version: I meant v6.5
+Fixes: 58a3cefb3840 ("usb: chipidea: imx: add two samsung picophy parameters tuning implementation")
+cc: <stable@vger.kernel.org>
+Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
->
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commi=
-t/?id=3D29a6d1215b7cd5fdff9c3c31ea26076a694ee0a3
->
-> And as mentioned in the cover letter, validation will still fail with
-> without the extra patch linked there (which is not in -next yet).
->
-> Regards
-> Luca
->
-> >
-> > doc reference errors (make refcheckdocs):
-> >
-> > See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2022=
-1209-dt-binding-ufs-v5-3-c9a58c0a53f5@fairphone.com
-> >
-> > The base for the series is generally the latest rc1. A different depend=
-ency
-> > should be noted in *this* patch.
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure 'yamllint' is installed and dt-schema is up to
-> > date:
-> >
-> > pip3 install dtschema --upgrade
-> >
-> > Please check and re-submit after running the above command yourself. No=
-te
-> > that DT_SCHEMA_FILES can be set to your schema file to speed up checkin=
-g
-> > your schema. However, it must be unset to test all examples with your s=
-chema.
+---
+Changes in v2:
+ - no change
+---
+ drivers/usb/chipidea/ci_hdrc_imx.c | 10 ++++++----
+ drivers/usb/chipidea/usbmisc_imx.c |  6 ++++--
+ 2 files changed, 10 insertions(+), 6 deletions(-)
+
+diff --git a/drivers/usb/chipidea/ci_hdrc_imx.c b/drivers/usb/chipidea/ci_hdrc_imx.c
+index 336ef6dd8e7d..873539f9a2c0 100644
+--- a/drivers/usb/chipidea/ci_hdrc_imx.c
++++ b/drivers/usb/chipidea/ci_hdrc_imx.c
+@@ -175,10 +175,12 @@ static struct imx_usbmisc_data *usbmisc_get_init_data(struct device *dev)
+ 	if (of_usb_get_phy_mode(np) == USBPHY_INTERFACE_MODE_ULPI)
+ 		data->ulpi = 1;
+ 
+-	of_property_read_u32(np, "samsung,picophy-pre-emp-curr-control",
+-			&data->emp_curr_control);
+-	of_property_read_u32(np, "samsung,picophy-dc-vol-level-adjust",
+-			&data->dc_vol_level_adjust);
++	if (of_property_read_u32(np, "samsung,picophy-pre-emp-curr-control",
++			&data->emp_curr_control))
++		data->emp_curr_control = -1;
++	if (of_property_read_u32(np, "samsung,picophy-dc-vol-level-adjust",
++			&data->dc_vol_level_adjust))
++		data->dc_vol_level_adjust = -1;
+ 
+ 	return data;
+ }
+diff --git a/drivers/usb/chipidea/usbmisc_imx.c b/drivers/usb/chipidea/usbmisc_imx.c
+index 9ee9621e2ccc..1c7932f22218 100644
+--- a/drivers/usb/chipidea/usbmisc_imx.c
++++ b/drivers/usb/chipidea/usbmisc_imx.c
+@@ -659,13 +659,15 @@ static int usbmisc_imx7d_init(struct imx_usbmisc_data *data)
+ 			usbmisc->base + MX7D_USBNC_USB_CTRL2);
+ 		/* PHY tuning for signal quality */
+ 		reg = readl(usbmisc->base + MX7D_USB_OTG_PHY_CFG1);
+-		if (data->emp_curr_control && data->emp_curr_control <=
++		if (data->emp_curr_control >= 0 &&
++			data->emp_curr_control <=
+ 			(TXPREEMPAMPTUNE0_MASK >> TXPREEMPAMPTUNE0_BIT)) {
+ 			reg &= ~TXPREEMPAMPTUNE0_MASK;
+ 			reg |= (data->emp_curr_control << TXPREEMPAMPTUNE0_BIT);
+ 		}
+ 
+-		if (data->dc_vol_level_adjust && data->dc_vol_level_adjust <=
++		if (data->dc_vol_level_adjust >= 0 &&
++			data->dc_vol_level_adjust <=
+ 			(TXVREFTUNE0_MASK >> TXVREFTUNE0_BIT)) {
+ 			reg &= ~TXVREFTUNE0_MASK;
+ 			reg |= (data->dc_vol_level_adjust << TXVREFTUNE0_BIT);
+-- 
+2.34.1
 
