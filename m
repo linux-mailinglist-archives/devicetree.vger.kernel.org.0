@@ -2,124 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 178D67404CC
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 22:16:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 44F9B740514
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 22:45:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231430AbjF0UQ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 16:16:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36592 "EHLO
+        id S229777AbjF0UpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 16:45:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231307AbjF0UQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 16:16:37 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 181C4295B;
-        Tue, 27 Jun 2023 13:16:08 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35RJJTPL014439;
-        Tue, 27 Jun 2023 20:15:12 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=2CCHtuv2h6RPc7xyDAV09O/VTb/DZHoqqtDJwiZkPzc=;
- b=o2lp6rjLbcSWuD2XBbWqz41Ho9UbimY2FGAxixjDzEHnkDwwPI9IV7YAvniyRr/KNwI4
- DvN1qucfPZm0oFrdbgIYWCzXe/+RtBZWvtxFrbA/H20i52hQhPLKkDn8QU82RJ6ZsreX
- C4yzN2+n+E2z4ZvZPYJv2w+0f+YrkVFnyD3ImLI+nifkJI3LAm9zjvPy5TYWUyxBTW0m
- ADEmTxDPdxIQ4JJYNN6ArXIUg/TG6bHsZeKaD7DILt1953Amy82vCXuyfhGj4l/e/rgr
- ssAVOOm5xXywo7MRxzj4z7Nu1gStHVWtKyG+CHYENg5ohqiLTWmgp3yfsoOceV/Me6wi jA== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rfpd8aaen-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Jun 2023 20:15:12 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35RKFAta021198
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Jun 2023 20:15:11 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Tue, 27 Jun
- 2023 13:15:10 -0700
-Message-ID: <2e11a98a-3e44-7164-84cc-7bbd519b608a@quicinc.com>
-Date:   Tue, 27 Jun 2023 14:15:09 -0600
+        with ESMTP id S230152AbjF0UpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 16:45:23 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A248219A9
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 13:45:20 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f86dbce369so6877570e87.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 13:45:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687898719; x=1690490719;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=D9ru+T8nqazYLMXoRwumR/NEoX/XtATe6EB1G8ho0j8=;
+        b=I1sqwLXpbcEnd1wwXIyCuZmDCkWngc0WHqtkEX7lhATSOCkzGZPyXXudHbRlj6S4Tm
+         dgqboRx9azvvaCgIhKJO7CSJ9rKiKRNSOt1WoSgyxgpMBOzlFvuFP7uU7FmyKbrAW0e8
+         3iAwaZ7l+Wf7tPHmP50bHVOcEdoFfUrlIgaidJ5Q/eQI/PK7ZheDATT77ObZPIYMSEeG
+         afk86XXovYzh7fxatbtNUKRJKaIMDEM/94X4FTpNfq/pHPHJX0UkZX8Zaw1ahP9jcl+O
+         Kfrm1hggGP/Obj41qCM6qxK7MmTdXR/lSNjgsrdm7pH50GwWRwT1nA2dS/9nVO3SUxzF
+         hJTw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687898719; x=1690490719;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=D9ru+T8nqazYLMXoRwumR/NEoX/XtATe6EB1G8ho0j8=;
+        b=UpqnK0HuHptXTQUzFgevbjyJugPrPp7Bb80mEqG0nvyR6uJkepaWUnPGs7uhqUiVuc
+         1c5mw7e3ReavgU5+dISgpBf9ecTocaIcdh+BvmvaqCc8yEiqE57q07dKowlsfr5eeWRx
+         xlkt/gx8Feeo5Z1kb+Oaf8njX18YFmAPmqXKpmlpmteoAolzN/Ed9Kt5WMI4p8K4QrpH
+         NHfCt1cUi1o2vannLVShglPu/blyqScJ0MeIYXE8GD8Hr5SCc45xcx9E7qpnBsVDtBTq
+         Vyl8hO6e64YSidnBTF7vUCchnntEdesI8+Fiwn3NPmpXkr4lmTuX6PCR0afQG1fKXJR6
+         VUhg==
+X-Gm-Message-State: AC+VfDxCJLyNNuV6dNOhvtJHNbpqZly4+FLe+ONMfMW3dczOZmlVmCBs
+        eUWnqgqlfhxzbR04MLqfbiFvcw==
+X-Google-Smtp-Source: ACHHUZ6qN2iNek8NXD76EZBE61ieXN9cwzO56UAAW6jMnswfTYAqk4dn5HUYqWPvmwhAL5P3u7hIAw==
+X-Received: by 2002:a05:6512:4029:b0:4f9:6b94:3cb9 with SMTP id br41-20020a056512402900b004f96b943cb9mr10197467lfb.16.1687898718760;
+        Tue, 27 Jun 2023 13:45:18 -0700 (PDT)
+Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
+        by smtp.gmail.com with ESMTPSA id eo27-20020a056512481b00b004f874e12e72sm1663888lfb.224.2023.06.27.13.45.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jun 2023 13:45:17 -0700 (PDT)
+Message-ID: <4ba0cd62-e629-581c-e332-01c068901ca4@linaro.org>
+Date:   Tue, 27 Jun 2023 22:45:15 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v11 6/9] soc: qcom: cpr: Use u64 for frequency
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 01/15] drm/msm/dsi: Drop unused regulators from QCM2290
+ 14nm DSI PHY config
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
+To:     Marijn Suijten <marijn.suijten@somainline.org>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Robert Marko <robimarko@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230217-topic-cpr3h-v11-0-ba22b4daa5d6@linaro.org>
- <20230217-topic-cpr3h-v11-6-ba22b4daa5d6@linaro.org>
-From:   Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20230217-topic-cpr3h-v11-6-ba22b4daa5d6@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 2PzFoOEPkv9f_AtAEEWMbxga3q8X1a21
-X-Proofpoint-GUID: 2PzFoOEPkv9f_AtAEEWMbxga3q8X1a21
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-27_14,2023-06-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 mlxscore=0 mlxlogscore=936 phishscore=0 impostorscore=0
- bulkscore=0 suspectscore=0 clxscore=1011 spamscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306270184
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Loic Poulain <loic.poulain@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
+References: <20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org>
+ <20230627-sm6125-dpu-v2-1-03e430a2078c@somainline.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230627-sm6125-dpu-v2-1-03e430a2078c@somainline.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/27/2023 12:30 PM, Konrad Dybcio wrote:
-> 32 bits is not enough for over-2.changeGHz frequencies. Move all variables
-> that operate on Hz to u64 to avoid overflows.
+On 27.06.2023 22:14, Marijn Suijten wrote:
+> The regulator setup was likely copied from other SoCs by mistake.  Just
+> like SM6125 the DSI PHY on this platform is not getting power from a
+> regulator but from the MX power domain.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> Fixes: 572e9fd6d14a ("drm/msm/dsi: Add phy configuration for QCM2290")
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-
-I get the following warning when building this -
-
-   CC      drivers/soc/qcom/cpr-common.o
-In file included from ./include/linux/device.h:15:0,
-                  from ./include/linux/platform_device.h:13,
-                  from ./include/linux/of_device.h:5,
-                  from drivers/soc/qcom/cpr.c:18:
-drivers/soc/qcom/cpr.c: In function ‘cpr_corner_init’:
-drivers/soc/qcom/cpr.c:870:21: warning: format ‘%lu’ expects argument of 
-type ‘long unsigned int’, but argument 4 has type ‘u64 {aka long long 
-unsigned int}’ [-Wformat=]
-    dev_dbg(drv->dev, "freq: %lu level: %u fuse level: %u\n",
-                      ^
-./include/linux/dev_printk.h:129:27: note: in definition of macro 
-‘dev_printk’
-    _dev_printk(level, dev, fmt, ##__VA_ARGS__);  \
-                            ^~~
-./include/linux/dev_printk.h:163:31: note: in expansion of macro ‘dev_fmt’
-    dev_printk(KERN_DEBUG, dev, dev_fmt(fmt), ##__VA_ARGS__); \
-                                ^~~~~~~
-drivers/soc/qcom/cpr.c:870:3: note: in expansion of macro ‘dev_dbg’
-    dev_dbg(drv->dev, "freq: %lu level: %u fuse level: %u\n",
-    ^~~~~~~
+Konrad
+>  drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c | 2 --
+>  1 file changed, 2 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> index 3ce45b023e63..31deda1c664a 100644
+> --- a/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> +++ b/drivers/gpu/drm/msm/dsi/phy/dsi_phy_14nm.c
+> @@ -1087,8 +1087,6 @@ const struct msm_dsi_phy_cfg dsi_phy_14nm_8953_cfgs = {
+>  
+>  const struct msm_dsi_phy_cfg dsi_phy_14nm_2290_cfgs = {
+>  	.has_phy_lane = true,
+> -	.regulator_data = dsi_phy_14nm_17mA_regulators,
+> -	.num_regulators = ARRAY_SIZE(dsi_phy_14nm_17mA_regulators),
+>  	.ops = {
+>  		.enable = dsi_14nm_phy_enable,
+>  		.disable = dsi_14nm_phy_disable,
+> 
