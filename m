@@ -2,239 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A7ED973F45D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:16:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DFDB73F470
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229487AbjF0GQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 02:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59266 "EHLO
+        id S230146AbjF0GXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 02:23:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33870 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230169AbjF0GQG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:16:06 -0400
-Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2044.outbound.protection.outlook.com [40.107.20.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C861268C;
-        Mon, 26 Jun 2023 23:16:04 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dpDljuC3E7fjTQvVonYBvnT/FLkCnbBtw5Voe+yAxUTEcx582yRGVxCOpxXZA6DsWOUqAq8IqSTxC4tZqiGTroe/82mm0prYzBb1eK1WfGz3n8ga+9+klXaiihFkT8nvpyt0zG9yXBRCfVsoz45a2gaoQFVdB/Az8Q37yazUXLDBClJwi2Hb3CGGdcQ18lKu9ZJGVD0Q2qkf8lFdn9sJbrpQuryoSQH1MQvxarNFtB/4OIkE69fmPFgZbxp7ESqQu9AepPbKLbqxb9fYj9gWOb1MRLP60lgXnge2Wv1kGavsClWGTqk1Zfu2M4FbYxOkXc9xIuGdyfHy7M7sjbK0IA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=sZpoGdRnoWhneV4unAKGgHeoe9cmbYW5fpYmySgPXWk=;
- b=CdlSLE9v1E0SDCStEKQUuQkCkZgDOkTZVx+pzZLvBFsv1PDMHT5A9OBYvElErgcW/oVfD5jmC4HgS4roWvoBWN56neWWv4M0dBn1DS3qPanR6S9JcaAbFulncOwzbQV8TNVwOZYft1N/2ljo5J9mYNX3FKEvsoUDeoVsHEWo57RGo/pRgIj5UxJJzRRRXHWTCqt1ZBTaD8JMnsPAIOKMtcmhIm+lz/EVgS/e2gGkScdF8iyCYW2GbKlwWSEXD2WMv9DSWxHdUY7zfF7VPmF7OAMQ2yJQJGK0J4M6EIIs/NdhJ7KA54gq2n3znTbMA88oCNjEV3Cih7Uaxe0xPSvQZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=sZpoGdRnoWhneV4unAKGgHeoe9cmbYW5fpYmySgPXWk=;
- b=AA/Bux/ws+hMB+4s8lAEQj+jWqn+jqXE3SljLqUJ0Nhqt3c3mwAy7vHD9ESQwhiQM08kX5VCN7XoSOIxIW8M2RZtFI534Y42q60NRirwTysYamNkGl6tcZ5EVrvspPD9hVZb2D4yM919JOd2ipCkf7fSl0SEY66Zyv822p0ucAo=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=oss.nxp.com;
-Received: from AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
- by DB8PR04MB7004.eurprd04.prod.outlook.com (2603:10a6:10:11c::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.26; Tue, 27 Jun
- 2023 06:15:46 +0000
-Received: from AS8PR04MB9080.eurprd04.prod.outlook.com
- ([fe80::1a0c:99b1:603a:e219]) by AS8PR04MB9080.eurprd04.prod.outlook.com
- ([fe80::1a0c:99b1:603a:e219%3]) with mapi id 15.20.6521.023; Tue, 27 Jun 2023
- 06:15:46 +0000
-From:   guoniu.zhou@oss.nxp.com
-To:     linux-media@vger.kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org
-Cc:     laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, xavier.roumegue@oss.nxp.com,
-        kernel@pengutronix.de, jacopo.mondi@ideasonboard.com,
-        sakari.ailus@linux.intel.com
-Subject: [PATCH v3 3/3] media: nxp: imx8-isi: add ISI support for i.MX93
-Date:   Tue, 27 Jun 2023 14:20:17 +0800
-Message-Id: <20230627062017.1135114-4-guoniu.zhou@oss.nxp.com>
-X-Mailer: git-send-email 2.37.1
-In-Reply-To: <20230627062017.1135114-1-guoniu.zhou@oss.nxp.com>
-References: <20230627062017.1135114-1-guoniu.zhou@oss.nxp.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: SI2PR01CA0032.apcprd01.prod.exchangelabs.com
- (2603:1096:4:192::18) To AS8PR04MB9080.eurprd04.prod.outlook.com
- (2603:10a6:20b:447::16)
+        with ESMTP id S229562AbjF0GXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:23:51 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52655E52
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:23:50 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-313fb7f0f80so516150f8f.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:23:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687847029; x=1690439029;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=OqR2Bde7fgFZFfqx9wKscXdAyIjVnqS4blsqmK6ypzU=;
+        b=AcmzkJ/g1c26P23mJhuAkBl86X58muZGFK71lAR26FHzUzu+VkpBqKZwJhlpzUlDH9
+         D0HdUXIyyfcfsQE7k4VMFz3inbbi8dXU0JSFSAU9n1q98JqM+mh5Q9Ib/aWJqGXYfcDL
+         x7a3rL26rkxUJfLx0dpU17Tusgsh1r8RQ/NB2/G850vxVOw7z+s7aj74tQpgQWbsHQGu
+         ikM6qeQ5rk8gS8XzQ6XjKJvHqcbr6b3J7bmUwYIYFjfF87Bq0kqpu6wnx3ZHzXgdxZ5L
+         lGJo2oLZqpAYSBRg8T+tB5UsJz10arEX2G+NYZVnBAW+kZZveqLjB6PUkDHTbbU7+jBi
+         IxZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687847029; x=1690439029;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=OqR2Bde7fgFZFfqx9wKscXdAyIjVnqS4blsqmK6ypzU=;
+        b=FW+g6oZZin8oGeMZDYpWh5PM+SgoGVPP44Mak/rek4CIjYde9qc5GgNMK/LP2beWqo
+         iYfFIYSr1ZOqP7grJOeyAwysfieEb7yOb0prtwjz65JIamu7C1yEHi7dmKu/WaVbvi1c
+         YwL+fFI8+j93k7KCRt7xKGV43Gu7ajjVvb4xllDA5mvSS+dsk4056UK1Sd5OkiuFs0Ax
+         qcXGAYHuFooC/Merblv3CPvpVHtRXVKmX1CWKJD4hoVu3aE1iA8qNI6WalAiRf3zdzCm
+         MsFZmrO62cU2qvQqEccfct/k9kXx6HcYOZhpgwUXjYOq8tLUGeqFV6SabOdPeF8LopTd
+         C2og==
+X-Gm-Message-State: AC+VfDxzJ6Svra8KI5oHP8gGlIh97ZVU6z26v2VspEX/Jq8HB1tD6nON
+        1G6KGezH926ViVf+5F+OaFEjA3CEDL14j1eUGzU=
+X-Google-Smtp-Source: ACHHUZ6yzCvgzdX2Y/g3bD2+TrI4wajnQCV07TKGG2zgI7H/hQkuiyoX9o7t7FH4X5RDQ6Ulefrdvg==
+X-Received: by 2002:a05:6000:1cb:b0:313:efd5:f294 with SMTP id t11-20020a05600001cb00b00313efd5f294mr3766666wrx.10.1687847028573;
+        Mon, 26 Jun 2023 23:23:48 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id c15-20020adffb4f000000b00313e4d02be8sm8429048wrs.55.2023.06.26.23.23.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jun 2023 23:23:48 -0700 (PDT)
+Message-ID: <10e356c6-81fa-f127-8263-0fdf8a512aa6@linaro.org>
+Date:   Tue, 27 Jun 2023 08:23:45 +0200
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AS8PR04MB9080:EE_|DB8PR04MB7004:EE_
-X-MS-Office365-Filtering-Correlation-Id: c40dc138-882c-45e9-9000-08db76d5f215
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: pVa6f77nxhuGPKIW3VsvpxS1GGK89WgUb30CFGfz3KsLU/LGWyGQvt9aGpcA32R09DVJqtsB3a4PqLggFbhxnO1HMFDqJdYNeAIwo+BqqPtgWISK44iSZngq+vp8FJ38OIew5OAOZ9ii4xWC3xfBxBsuWCZG06RL3lJZdQOxiE+pqGk9Caj1YX1UgplMlWqNMsh3uas5KtZ8jDO7cYL0unTaczLj6N3doJK/j5XKMO2YxbEsbx3PECrq8gStBOvLknhHPaJmLntULO84EIwD2+q0hpiXtg5BNWyDseK1XkeO9fQsaxOYrRqnH8JnNvPCwwB2kBQ03JoFNDBOznV4R/VtPmKH8kGMq8k13vDs873lP7pm+NzYy6n06qiTxjjLdcV9kD4kqy042oQW0p7S4W7yZDQoTF6zNm37ICc620LNl/FVGc8k4nu79AVmW31/YhYOWX8idUDhPwqCrOOB5dU1SM/l6YJN+yeZ8wTcqPbKgej54Ebcal1dfbkxtK6kY1R7cLgWfKwth8bByyx3dmD0UeIJavr/2ld6Rsz7guPBymC+MVY7JCuir5hSuhk3E3laUpUw9vY68KfgTg4zF4CAE0OkE8PSUmhQCK444kxN74gTKn7CGTAkdCSerol4
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9080.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(366004)(376002)(346002)(136003)(396003)(451199021)(186003)(2906002)(26005)(1076003)(52116002)(38350700002)(2616005)(38100700002)(6512007)(6506007)(5660300002)(41300700001)(9686003)(66556008)(83380400001)(66476007)(66946007)(8936002)(8676002)(6666004)(7416002)(316002)(478600001)(86362001)(6486002)(4326008);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?asPZjbOM9PpAuqUON3aQ8v3ON3DDPe9qdIImyVX9SA4BD3+fC3gVglGB5yb0?=
- =?us-ascii?Q?/45++7crz8AcVOrG1bawCCJPp87JLHnt1/Z0IqcBXFHkGtGIa9ZNPiwKnU1J?=
- =?us-ascii?Q?OcanodF1YHOVoRE3zqQIAlH3RHrnILZzhaKJq5qVURPvcUix0NudrU/uVuPt?=
- =?us-ascii?Q?JxOBRqCf0R2lqQvGNVrf8pOurCfdNzBKAVQvf9MvoogqxV9zmzXTh7q3KyYC?=
- =?us-ascii?Q?RJE2rofBnN29vt+QvqyJLvWEP+R4bWqF5EyJQjym5j01+VFRBmH0kPC1cyCg?=
- =?us-ascii?Q?LNjxHVI7aYsEJRqQVqfkQd3N63s52rQ99Zmnjgsp9LcW+KFIJJ2VysXLeLb/?=
- =?us-ascii?Q?TAEnqXE0YlQ2EjLMRh6wEp1RZp1yLcprLeufpwnmZalPiwOmPmc1zpNt8Mz0?=
- =?us-ascii?Q?uJ85Qu4igmIjzR4Usu6M92aSaWKaa5/5kyz0d2NpEahAbkZzvZNArUiKRyZW?=
- =?us-ascii?Q?sCGeiS7U6EpseipznYH4nlHTy4iqqgdHOIIBqAt/JoII228AZJ1ezEzp4ao7?=
- =?us-ascii?Q?5Pmy3uJeQhwhDKqwHEYXy7c3ZBTC2rTbw2A66abPojoEghOmg8hqFgqaFI/J?=
- =?us-ascii?Q?QYyARLQ82qPeP5LCpKTvGGv8N8DeMSh1kZ0FqkT+48DsHhLV2rMv02w3FXsK?=
- =?us-ascii?Q?m3/tr2FMYHXtWfTC0WGdMT+HRHH2HjxYh/tc+tSWSqVoQ0Km22F0k3abJqS4?=
- =?us-ascii?Q?om1BtD2Fa/E+Ps2rI3/QZSYATVtoYm0YYuwanK8m5BDAOu4J4wsWO8pgLqGr?=
- =?us-ascii?Q?eYI+RJhFpGkOJe0y6q0HItlMGeYX5ADHKCKS7LxVL/djaknyt5avpssRD3fS?=
- =?us-ascii?Q?1N+sdd6sB78h0FwcFWlfbqKGY8lA9I44c+1bWYd5WzWN7NEV9W5Xfy3hXbGn?=
- =?us-ascii?Q?TPiE+vxItz/ddRTz3cFzt2cKSesCBw62V3libcu7iuYT1XQtE73Ek322fkRm?=
- =?us-ascii?Q?27cwWkbs4I2Har4K1R9T35myxLMVApo/FRgTh7zM9AXC14/3NTe85dqgnroA?=
- =?us-ascii?Q?U4z4xTH1Lc0WYMmi2SJOLoq95DCx9zyvrfozQ4IWj87z7Vpy5fdi++L0qaKm?=
- =?us-ascii?Q?c4B7xGmotTFVSgDDAUfybI7gsxEK27g9oe474gKwVIH6mTzuh5574/q2Njdl?=
- =?us-ascii?Q?GUX8TSeHIpSmWMxcUShOvxsOvKWw1fyU4Hdu+bcotHwsC21RpgS1UTliIoJF?=
- =?us-ascii?Q?guRZIlKu2pPGKIVRgzoI771t8gr9kJoUU5ANoRYd9heDc97pHpkHabN3RRG3?=
- =?us-ascii?Q?Dta+jGUAWd9YIit3QX9Ag8UAQqzZTWDCHK7SUGpyoPISMzG4ANVAX87q4Cl8?=
- =?us-ascii?Q?kwaG+0tJu+yqYDoH2Z40JiOukbf7CqA+1WSlUuznP0+Ur22Dk3ENQSI+Os05?=
- =?us-ascii?Q?3fObYy7VzqP/muuCOEISAP8rqhJF/CujhW4KNHgLDk06tH/GDxZkwxwjfTMg?=
- =?us-ascii?Q?c5ak5M93vMwFJ1SJWTOXC+fJnPhNVGTzLEGFBrXUG/9FKg4sWrDqGOw46ZMl?=
- =?us-ascii?Q?vmVoFiWRpC1IUz6Yi++9/Av5MLLh9mWnDoGyKm0iAMyMlYJhyJphHKDjEmUr?=
- =?us-ascii?Q?0xW90JzMeJmaIbGZrpOxNtk2XtdpKY6DLKMhPkP7?=
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c40dc138-882c-45e9-9000-08db76d5f215
-X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9080.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2023 06:15:46.6350
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: RWtqh0D7DWiax9iig6DEkoRDPqJe+qhl6C12ugRTCza91QePEreTQGkbj4OFqZlyukwTSO5HpjQ11S7bFf6RWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7004
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [EXT] Re: [PATCH 2/3] dt-bindings: usb: ci-hdrc-usb2: add
+ samsung,picophy-rise-fall-time-adjust property
+Content-Language: en-US
+To:     Xu Yang <xu.yang_2@nxp.com>,
+        "peter.chen@kernel.org" <peter.chen@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
+Cc:     "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Jun Li <jun.li@nxp.com>
+References: <20230626092952.1115834-1-xu.yang_2@nxp.com>
+ <20230626092952.1115834-2-xu.yang_2@nxp.com>
+ <f7bca54b-9de1-be9a-ad46-3502df58289f@linaro.org>
+ <DB7PR04MB4505F485E48DE667D62602748C27A@DB7PR04MB4505.eurprd04.prod.outlook.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <DB7PR04MB4505F485E48DE667D62602748C27A@DB7PR04MB4505.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+On 27/06/2023 05:10, Xu Yang wrote:
+> Hi Krzysztof,
+> 
+>> -----Original Message-----
+>> From: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> Sent: Monday, June 26, 2023 11:45 PM
+>> To: Xu Yang <xu.yang_2@nxp.com>; peter.chen@kernel.org; robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+>> gregkh@linuxfoundation.org
+>> Cc: conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de; dl-linux-imx <linux-imx@nxp.com>; Peng Fan
+>> <peng.fan@nxp.com>; linux-usb@vger.kernel.org; devicetree@vger.kernel.org; Jun Li <jun.li@nxp.com>
+>> Subject: [EXT] Re: [PATCH 2/3] dt-bindings: usb: ci-hdrc-usb2: add samsung,picophy-rise-fall-time-adjust property
+>>
+>> Caution: This is an external email. Please take care when clicking links or opening attachments. When in doubt, report the
+>> message using the 'Report this email' button
+>>
+>>
+>> On 26/06/2023 11:29, Xu Yang wrote:
+>>> The samsung,picophy-rise-fall-time-adjust property can help to adjust the
+>>> rise/fall times of the high-speed transmitter waveform. The value can be
+>>> 0~3.
+>>>
+>>> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
+>>> ---
+>>>  .../devicetree/bindings/usb/ci-hdrc-usb2.yaml          | 10 ++++++++++
+>>>  1 file changed, 10 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml b/Documentation/devicetree/bindings/usb/ci-
+>> hdrc-usb2.yaml
+>>> index 782402800d4a..d84c66c342ac 100644
+>>> --- a/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+>>> +++ b/Documentation/devicetree/bindings/usb/ci-hdrc-usb2.yaml
+>>> @@ -292,6 +292,16 @@ properties:
+>>>      minimum: 0x0
+>>>      maximum: 0xf
+>>>
+>>> +  samsung,picophy-rise-fall-time-adjust:
+>>> +    description:
+>>> +      HS Transmitter Rise/Fall Time Adjustment. Adjust the rise/fall times
+>>
+>> Adjust with/by what? What are the units?
+> 
+> This property is used to adjust the rise/fall time of the high-speed
+> transmitter waveform. It has no unit. According to the description of
+> USBNC_n_PHY_CFG1 register, the rise/fall time will be increased or
+> decreased by a certain percentage relative to design default time if
+> a value is given to this property.
+> 
+> The actions as below:
+>   - 0: -10%
+>   - 1: design default 
+>   - 2: +15%
+>   - 3: +20%
 
-i.MX93 use a different gasket which has different register definition
-compared with i.MX8. Hence implement the gasket callbacks in order to
-add ISI support for i.MX93.
+Include it then in the description or even make the property -percent:
+https://github.com/devicetree-org/dt-schema/blob/main/dtschema/schemas/property-units.yaml
 
-Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
----
- .../platform/nxp/imx8-isi/imx8-isi-core.c     | 20 ++++++++++++++++++
- .../platform/nxp/imx8-isi/imx8-isi-core.h     | 12 +++++++++++
- .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 21 +++++++++++++++++++
- 3 files changed, 53 insertions(+)
 
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-index d645b2f6fa5a..24c40e4cfef5 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-@@ -313,6 +313,25 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
- 	.has_36bit_dma		= true,
- };
- 
-+static const struct mxc_gasket_ops mxc_imx93_gasket_ops = {
-+	.enable = mxc_imx93_gasket_enable,
-+	.disable = mxc_imx93_gasket_disable,
-+};
-+
-+static const struct mxc_isi_plat_data mxc_imx93_data = {
-+	.model			= MXC_ISI_IMX93,
-+	.num_ports		= 1,
-+	.num_channels		= 1,
-+	.reg_offset		= 0,
-+	.ier_reg		= &mxc_imx8_isi_ier_v2,
-+	.set_thd		= &mxc_imx8_isi_thd_v1,
-+	.clks			= mxc_imx8mn_clks,
-+	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-+	.buf_active_reverse	= true,
-+	.gasket_ops		= &mxc_imx93_gasket_ops,
-+	.has_36bit_dma		= false,
-+};
-+
- /* -----------------------------------------------------------------------------
-  * Power management
-  */
-@@ -524,6 +543,7 @@ static int mxc_isi_remove(struct platform_device *pdev)
- static const struct of_device_id mxc_isi_of_match[] = {
- 	{ .compatible = "fsl,imx8mn-isi", .data = &mxc_imx8mn_data },
- 	{ .compatible = "fsl,imx8mp-isi", .data = &mxc_imx8mp_data },
-+	{ .compatible = "fsl,imx93-isi", .data = &mxc_imx93_data },
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, mxc_isi_of_match);
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-index 4f920d650153..f5be5394981e 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-@@ -73,6 +73,11 @@ struct v4l2_m2m_dev;
- #define GASKET_HSIZE				0x0004
- #define GASKET_VSIZE				0x0008
- 
-+/* dispmix_GPR register (i.MX93 only) */
-+#define DISP_MIX_CAMERA_MUX                     0x30
-+#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)        (((x) & 0x3f) << 3)
-+#define DISP_MIX_CAMERA_MUX_GASKET_ENABLE       BIT(16)
-+
- struct mxc_isi_dev;
- struct mxc_isi_m2m_ctx;
- 
-@@ -172,6 +177,7 @@ struct mxc_gasket_ops {
- enum model {
- 	MXC_ISI_IMX8MN,
- 	MXC_ISI_IMX8MP,
-+	MXC_ISI_IMX93,
- };
- 
- struct mxc_isi_plat_data {
-@@ -407,6 +413,12 @@ int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
- 			   const unsigned int port);
- void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
- 
-+int mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
-+			    const struct v4l2_mbus_frame_desc *fd,
-+			    const struct v4l2_mbus_framefmt *fmt,
-+			    const unsigned int port);
-+void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
-+
- #if IS_ENABLED(CONFIG_DEBUG_FS)
- void mxc_isi_debug_init(struct mxc_isi_dev *isi);
- void mxc_isi_debug_cleanup(struct mxc_isi_dev *isi);
-diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-index 39f8d0e8b15d..a81c4249a26f 100644
---- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-+++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-@@ -30,3 +30,24 @@ void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port)
- {
- 	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
- }
-+
-+/* Configure and enable gasket for i.MX93 */
-+int mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
-+			    const struct v4l2_mbus_frame_desc *fd,
-+			    const struct v4l2_mbus_framefmt *fmt,
-+			    const unsigned int port)
-+{
-+	u32 val;
-+
-+	val = DISP_MIX_CAMERA_MUX_DATA_TYPE(fd->entry[0].bus.csi2.dt);
-+	val |= DISP_MIX_CAMERA_MUX_GASKET_ENABLE;
-+	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val);
-+
-+	return 0;
-+}
-+
-+void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi,
-+			      unsigned int port)
-+{
-+	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, 0);
-+}
--- 
-2.37.1
+Best regards,
+Krzysztof
 
