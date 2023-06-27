@@ -2,140 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D8EA73F653
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 10:02:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FBB473F679
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 10:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231268AbjF0ICq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 04:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49274 "EHLO
+        id S230356AbjF0IIr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 04:08:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230250AbjF0ICi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 04:02:38 -0400
-Received: from mail-pl1-x635.google.com (mail-pl1-x635.google.com [IPv6:2607:f8b0:4864:20::635])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67D8A2698
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 01:02:32 -0700 (PDT)
-Received: by mail-pl1-x635.google.com with SMTP id d9443c01a7336-1b80f2e6c17so11259505ad.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 01:02:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1687852952; x=1690444952;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=vwSOaaqXQuvrI4/1ZVdn4pZtlCvLtoOyfkYIM95Gkyg=;
-        b=n61emth7MMMXsUyQZTn2mvezxo+aS/47NEiAR+fmv6JvaSIm1xaV9iIiQKlKFMYleg
-         BACfQCvCCzvlz8m8pVn1T9s+9Xu52SSldssZvwFIOq+jOtUDEP3qWT8tSCLDsQUZhEJq
-         lOBRo5s2ocWihk9SIQqEYtqeoSXTZkC4p7BBaSdojtvy+rnqnmy/ffBo5XhDjzM4RhGx
-         pHx/gEbuUEibvf2NfoCq1WL512mVKT1bVCkfIHNIMAFTsTl7XUaBb4ZSP7vWOUcc4r54
-         Y6GzvgMPO7rcsYBLdeeKYsui+8erpFQ8Kbx4MiwOvKUKMLBFCQaB9lGyPHSsZZTAejeH
-         qYUQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687852952; x=1690444952;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=vwSOaaqXQuvrI4/1ZVdn4pZtlCvLtoOyfkYIM95Gkyg=;
-        b=HJLM7r3VX/wFsPI11njTIFUzkTrhaKejLyPbbET5CRpYG8Kvt724RSijW2EvGr5LbC
-         bpBYBah7vgKP7EckbpymMK8ESu19wEbesA9LClob/zc88YlZN3HsBZSXA9wsZgd+o/BF
-         ltwNefDM2IJixXcZwBzudFJ6suhUdE1JXcu7FOSuNmOtZqKHm2QcHsEhoRSMqVliUVo2
-         MsIs7CFlJ7LC8wMNOeZHgMfA9Jb/wbSv8kITK5tyXaN81EdEfUXe3fBhMZRfrLao5m2w
-         6TicXg2I3YfQXPP9EwY8dQgRWbpKGg1G18Lj+JHaVGojELNDCq5sXSRmLJ80yOiycwpa
-         AfXw==
-X-Gm-Message-State: AC+VfDyLA5456qjy/5xK+m2WfEnkpxWKhSpWLEgObT5XcrvwraRBCapx
-        nJ+II/kHhkxzKsFVMWKjMXTW6A==
-X-Google-Smtp-Source: ACHHUZ6UZNXZmsJzaB9zcJo7pIb8wVgihAnTAOaXihsbTnFUpv6o9tz42ExvLlFerm1GhPq/VvjP2w==
-X-Received: by 2002:a17:902:be11:b0:1af:b92d:b5fe with SMTP id r17-20020a170902be1100b001afb92db5femr10036126pls.0.1687852951788;
-        Tue, 27 Jun 2023 01:02:31 -0700 (PDT)
-Received: from sunil-laptop ([106.51.184.72])
-        by smtp.gmail.com with ESMTPSA id y22-20020a1709029b9600b001ac40488620sm5380340plp.92.2023.06.27.01.02.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jun 2023 01:02:31 -0700 (PDT)
-Date:   Tue, 27 Jun 2023 13:32:23 +0530
-From:   Sunil V L <sunilvl@ventanamicro.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Andrew Jones <ajones@ventanamicro.com>,
-        Conor Dooley <conor.dooley@microchip.com>, palmer@dabbelt.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
+        with ESMTP id S229910AbjF0IIq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 04:08:46 -0400
+X-Greylist: delayed 72 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 27 Jun 2023 01:08:43 PDT
+Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F7501FCA
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 01:08:43 -0700 (PDT)
+Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 2023062708072866a62f77f05caf5d04
+        for <devicetree@vger.kernel.org>;
+        Tue, 27 Jun 2023 10:07:28 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=felix.moessbauer@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
+ bh=lhHygCuH5pZN5/X93OS/Oo5FJ9iukKAx9xcVfBzbV34=;
+ b=UiJggPzYIrLpAEHsgKmyKwOmO4Tm2GrMNFvXsHV3PK2w2jDMpS9iFowPpyvfQljGBdOeSn
+ t7UB1jqk9qRHRnr2WN23m/609bWTWmVIrHppiBp8BQzhaY6WQpoy68SaTnPIplrsnK3jW6Ph
+ 5pQ6DMqOGpqd4Fll33Ts9hD5b4bEs=;
+From:   Felix Moessbauer <felix.moessbauer@siemens.com>
+To:     Emil Renner Berthing <kernel@esmil.dk>
+Cc:     Conor Dooley <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
+        Jan Kiszka <jan.kiszka@siemens.com>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v1 1/9] RISC-V: don't parse dt/acpi isa string to get
- rv32/rv64
-Message-ID: <ZJqXj7UdegnRP4mI@sunil-laptop>
-References: <20230626-provable-angrily-81760e8c3cc6@wendy>
- <20230626-silk-colonize-824390303994@wendy>
- <20230626-e3ea7beb39c584bfbf7ee836@orel>
- <20230626-dragonish-romp-9acf4846ae01@spud>
- <20230626-4fb963235f3ab08383a6d9ab@orel>
- <20230626-ragweed-whenever-5b22e180dcd1@spud>
+        Felix Moessbauer <felix.moessbauer@siemens.com>
+Subject: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for starfive devices
+Date:   Tue, 27 Jun 2023 16:06:20 +0800
+Message-Id: <20230627080620.329873-1-felix.moessbauer@siemens.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230626-ragweed-whenever-5b22e180dcd1@spud>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-72506:519-21489:flowmailer
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 26, 2023 at 05:16:09PM +0100, Conor Dooley wrote:
-> On Mon, Jun 26, 2023 at 06:05:40PM +0200, Andrew Jones wrote:
-> > On Mon, Jun 26, 2023 at 04:51:29PM +0100, Conor Dooley wrote:
-> > > On Mon, Jun 26, 2023 at 05:14:15PM +0200, Andrew Jones wrote:
-> > > > On Mon, Jun 26, 2023 at 12:19:39PM +0100, Conor Dooley wrote:
-> > > > > From: Heiko Stuebner <heiko.stuebner@vrull.eu>
-> > > > > @@ -333,8 +335,6 @@ static int c_show(struct seq_file *m, void *v)
-> > > > >  
-> > > > >  		of_node_put(node);
-> > > > >  	} else {
-> > > > > -		if (!acpi_get_riscv_isa(NULL, cpu_id, &isa))
-> > > > > -			print_isa(m, isa);
-> > > > >  
-> > > > 
-> > > > Extra blank line here to remove. Actually the whole 'else' can be removed
-> > > > because the print_mmu() call can be brought up above the
-> > > > 'if (acpi_disabled)'
-> > > 
-> > > Can it be? I intentionally did not make that change - wasn't sure
-> > > whether re-ordering the fields in there was permissible.
-> > 
-> > I agree we shouldn't change the order, but moving print_mmu() up won't,
-> > afaict.
-> 
-> D'oh, I'm an eejit. Sure, I'll do that for v2. Thanks!
-> 
-> > > One of the few things I know does parsing of /proc/cpuinfo is:
-> > > https://github.com/google/cpu_features/blob/main/src/impl_riscv_linux.c
-> > > and that doesn't seem to care about the mmu, but does rely on
-> > > vendor/uarch ordering.
-> > > 
-> > > Makes me wonder, does ACPI break things by leaving out uarch/vendor
-> > > fields, if there is something that expects them to exist? We should
-> > > not intentionally break stuff in /proc/cpuinfo, but can't say I feel any
-> > > sympathy for naively parsing it.
-> > 
-> > Yes, it would be nice for ACPI to be consistent. I'm not sure what can be
-> > done about that.
-> 
-> Print "unknown", until there's a way of passing the info?
-> Speaking of being an eejit, adding new fields to the file would probably
-> break some really naive parsers & quite frankly that sort of thing can
-> keep the pieces IMO. Ditto if adding more extensions breaks someone that
-> expects _zicbom_zicboz that breaks when _zicbop is slid into the middle.
+Add the '-@' DTC option for the starfive devices. This option
+populates the '__symbols__' node that contains all the necessary symbols
+for supporting device-tree overlays (for instance from the firmware or
+the bootloader) on these devices.
 
-Hi Conor,
+The starfive devices allow various modules to be connected and this
+enables users to create out-of-tree device-tree overlays for these modules.
 
-Instead of unknown, could you print "risc-v" or "riscv"? There is nothing
-equivalent to compatible property in ACPI. Using mvendorid,
-marchid and mimpid, people can determine the exact processor
-<manufacturer>,<model>.
+Please note that this change does increase the size of the resulting DTB
+by ~20%. For example, with v6.4 increase in size is as follows:
 
-Thanks!
-Sunil
+jh7100-beaglev-starlight.dtb 6192 -> 7339
+jh7100-starfive-visionfive-v1.dtb 6281 -> 7428
+jh7110-starfive-visionfive-2-v1.2a.dtb 11101 -> 13447
+jh7110-starfive-visionfive-2-v1.3b.dtb 11101 -> 13447
+
+Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
+---
+ arch/riscv/boot/dts/starfive/Makefile | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+index 170956846d49..0141504c0f5c 100644
+--- a/arch/riscv/boot/dts/starfive/Makefile
++++ b/arch/riscv/boot/dts/starfive/Makefile
+@@ -1,4 +1,10 @@
+ # SPDX-License-Identifier: GPL-2.0
++# Enables support for device-tree overlays
++DTC_FLAGS_jh7100-beaglev-starlight := -@
++DTC_FLAGS_jh7100-starfive-visionfive-v1 := -@
++DTC_FLAGS_jh7110-starfive-visionfive-2-v1.2a := -@
++DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b := -@
++
+ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
+ dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+ 
+-- 
+2.39.2
 
