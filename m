@@ -2,127 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E2973F438
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:08:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E820B73F43E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:10:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229647AbjF0GIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 02:08:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55286 "EHLO
+        id S229943AbjF0GKA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 02:10:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjF0GIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:08:15 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [159.69.201.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC4C812B;
-        Mon, 26 Jun 2023 23:08:12 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id CA9BFBF3;
-        Tue, 27 Jun 2023 08:08:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1687846089;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=AZI7i8mJ6vzWRz8q5uNF1QNgSOG0ThKzt12UTgm9PcA=;
-        b=L3mZn4f2JH8rxdmXJX1Bz1uoCvsHRZd943LAmn3EvSI0Ydsk7RPFzNom2Tcp/7NwvUUt4g
-        qIV6Ri6QXBAe8hfdgdZD0D9L/mgBxCIAe2E0CZNYkfm9e3L/N3X+BHaZSCfNvv00fHNwPP
-        hd7NAZdNQO4YLhif+8qul7M2no3blLa2IDU8M+b0Ri5vPdKgVdmL3cfqQ07x7ekrmFTj2F
-        TPD5I/3rHyVaMq5u9b2zM/Vps3E8egvNoszEIQxnTylJ3liO1wiO9Kg80FMbUN41/xaGwk
-        rnSQ815ESwq35W70Aqj1NIMy6dgqnKI0v63Kh8Gj2rjuJ21Fzh5CZef5C6DUMA==
+        with ESMTP id S229777AbjF0GJ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:09:57 -0400
+Received: from mail-wm1-x336.google.com (mail-wm1-x336.google.com [IPv6:2a00:1450:4864:20::336])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13FAE12B
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:09:56 -0700 (PDT)
+Received: by mail-wm1-x336.google.com with SMTP id 5b1f17b1804b1-3fa9850bfd9so16865325e9.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:09:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687846194; x=1690438194;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7EFGbGxcbcRQrdCl8YEQZLIbGz3WyPlJ80GYj0RMRRk=;
+        b=IVBmz1n1H90Ne9ExpoJWqX4UnRWGAQN/Ii9CQmrsVbIL2UNjFd/Ksv8D0b2iNvBHfV
+         E2is+C1sEzeGQnV4KnTxc5PO3fh3oPdpUsfjAh1KYiG6G/HgXr7d07v6KbVG4uIP6lpz
+         ACowe9iGOI0IBw0ZJqiLCJ2YAUpl0Daak/rd2Rt94jBLDefB/qbmyrl7eBnkor6RKt1u
+         eylTCdIE/PWUBHrEYY/ctkcG7/+uKJaalh0PEEJ2VNtgIeOXla3MNoxbTZtCbLj07cLQ
+         i3/FN5V8v24Q2RNAxuQueZ0lHaGjedR/KLeYcSWQhMxM4vl8ih/mDsNZMjzz8n5HBfRJ
+         5tkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687846194; x=1690438194;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7EFGbGxcbcRQrdCl8YEQZLIbGz3WyPlJ80GYj0RMRRk=;
+        b=eUXOE/ZpPwMM8ZeiKilL1YLZJoXbdgjhh9r7+T2lk+YlrAiGmkytx5AW29jW24K3wC
+         ghwfBm9qZY7fq9n6udn4OqqMI9rRakUVp4VyXyXlwKDNONHz6yAag2tnt6OdZ0fGzQVF
+         +0ygYJKK/hQ92AsfhPmq4BX3Jk/Iovpo0B0WkMFqEN4rEC/w6BFxXJVdVo7HXZIdwegp
+         EGJ5I1wbPekjn+swO+wLUM9IjtIJRUI6cX7oQmtaoJOJPA/oVXO2jc7Tfbys2awHe47n
+         ClpPKcOHS5fGZq4Yq8lscluUsHwrSeDpRsnZ5d+fkWMvGAHcistL1Avb5iHa8+e5GFsm
+         ZzZg==
+X-Gm-Message-State: AC+VfDwPuQY17O1oRzbGJtoqyoIs3aKM8efzlmBAxXgP3y73dIAHRP74
+        A3/R/3xSjY/7xvdlR80Rvu8CVg==
+X-Google-Smtp-Source: ACHHUZ6dA4Hj0erbr3brn0zc8qKEJp71t3gpnCs5gtioG8Jwc+sN7pXHdL9xmc+xrWyAcuWkhh2TWA==
+X-Received: by 2002:a05:600c:2241:b0:3fb:31b:d516 with SMTP id a1-20020a05600c224100b003fb031bd516mr2389354wmm.29.1687846194453;
+        Mon, 26 Jun 2023 23:09:54 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id z26-20020a1c4c1a000000b003f91e32b1ebsm268131wmf.17.2023.06.26.23.09.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 26 Jun 2023 23:09:53 -0700 (PDT)
+Message-ID: <f289f008-d1fd-5a78-22eb-d3a21589f20a@linaro.org>
+Date:   Tue, 27 Jun 2023 08:09:51 +0200
 MIME-Version: 1.0
-Date:   Tue, 27 Jun 2023 08:08:09 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, git@amd.com, linux-mtd@lists.infradead.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sc8180x: Add missing
+ 'cache-unified' to L3
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Bhupesh Sharma <bhupesh.sharma@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Luca Weiss <luca.weiss@fairphone.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Luca Weiss <luca@z3ntu.xyz>, Vinod Koul <vkoul@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh@kernel.org>, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        amitrkcian2002@gmail.com,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: mtd: jedec, spi-nor: Add DT property
- to avoid setting SRWD bit in status register
-In-Reply-To: <20230625100251.31589-2-amit.kumar-mahapatra@amd.com>
-References: <20230625100251.31589-1-amit.kumar-mahapatra@amd.com>
- <20230625100251.31589-2-amit.kumar-mahapatra@amd.com>
-Message-ID: <0e76360e43c411424e361911adbe1e0c@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
+        linux-remoteproc@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+References: <20230626-topic-bindingsfixups-v1-0-254ae8642e69@linaro.org>
+ <20230626-topic-bindingsfixups-v1-7-254ae8642e69@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230626-topic-bindingsfixups-v1-7-254ae8642e69@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2023-06-25 12:02, schrieb Amit Kumar Mahapatra:
-> If the WP# signal of the flash device is either not connected or is 
-> wrongly
-> tied to GND (that includes internal pull-downs), and the software sets 
-> the
-> status register write disable (SRWD) bit in the status register then 
-> the
-> status register permanently becomes read-only. To avoid this added a 
-> new
-> boolean DT property "no-wp". If this property is set in the DT then the
-> software avoids setting the SRWD during status register write 
-> operation.
+On 26/06/2023 22:00, Konrad Dybcio wrote:
+> Add the missing property to fix the dt checker warning:
 > 
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+> qcom/sc8180x-primus.dtb: l3-cache: 'cache-unified' is a required property
+> 
+> Fixes: 8575f197b077 ("arm64: dts: qcom: Introduce the SC8180x platform")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-> As the DT property name has changed so, removed Reviewed-by tag.
-> @Cornor if possible, could you please review this updated patch.
-> ---
->  .../devicetree/bindings/mtd/jedec,spi-nor.yaml    | 15 +++++++++++++++
->  1 file changed, 15 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml 
-> b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> index 89959e5c47ba..97344969b02d 100644
-> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
-> @@ -70,6 +70,21 @@ properties:
->        be used on such systems, to denote the absence of a reliable 
-> reset
->        mechanism.
-> 
-> +  no-wp:
-> +    type: boolean
-> +    description:
-> +      The status register write disable (SRWD) bit in status register, 
-> combined
-> +      with the WP# signal, provides hardware data protection for the 
-> device. When
-> +      the SRWD bit is set to 1, and the WP# signal is either driven 
-> LOW or hard
-> +      strapped to LOW, the status register nonvolatile bits become 
-> read-only and
-> +      the WRITE STATUS REGISTER operation will not execute. The only 
-> way to exit
-> +      this hardware-protected mode is to drive WP# HIGH. If the WP# 
-> signal of the
-> +      flash device is not connected or is wrongly tied to GND (that 
-> includes internal
-> +      pull-downs) then status register permanently becomes read-only 
-> as the SRWD bit
-> +      cannot be reset. This boolean flag can be used on such systems 
-> to avoid setting
-> +      the SRWD bit while writing the status register. WP# signal hard 
-> strapped to GND
-> +      can be a valid use case.
-> +
 
-Sounds good! Thank you.
+The last one, I hope...
 
-Reviewed-by: Michael Walle <michael@walle.cc>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
--michael
+Best regards,
+Krzysztof
 
