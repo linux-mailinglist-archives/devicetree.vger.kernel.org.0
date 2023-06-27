@@ -2,129 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C99E73FCF6
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:38:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37E5873FCED
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:37:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229513AbjF0Nix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 09:38:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39592 "EHLO
+        id S230113AbjF0NhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 09:37:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229454AbjF0Niw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:38:52 -0400
-X-Greylist: delayed 63 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 27 Jun 2023 06:38:49 PDT
-Received: from mta-65-226.siemens.flowmailer.net (mta-65-226.siemens.flowmailer.net [185.136.65.226])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66D072962
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:38:49 -0700 (PDT)
-Received: by mta-65-226.siemens.flowmailer.net with ESMTPSA id 20230627133743f29e888f432ceec567
-        for <devicetree@vger.kernel.org>;
-        Tue, 27 Jun 2023 15:37:44 +0200
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
- d=siemens.com; i=felix.moessbauer@siemens.com;
- h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc;
- bh=xbvKmBAtZo9Ow1l8tao9RYJLC7Y08h2AksTB6L1J/zY=;
- b=cI1/s5n2pksFjO8vpuxNLSxcwggTtzpF2aoGd00Hwh2P1TPanM7XLH6Gw0liHz68CybnwL
- FY9uSCu2PXzyOjZpdW1x1AM/hCrW9wFhCgGcEFwLwZR4od8xrsZleFkPeQPw2kAqNSh4envc
- 7Y9/1QgkEVNqWqS5+xeTUGuoOAyeg=;
-From:   Felix Moessbauer <felix.moessbauer@siemens.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
-        Quirin Gylstorff <quirin.gylstorff@siemens.com>,
-        manuel.matzinger@siemens.com, devicetree@vger.kernel.org,
-        linux-sunxi@lists.linux.dev,
-        Felix Moessbauer <felix.moessbauer@siemens.com>
-Subject: [PATCH 1/1] arm: dts: Enable device-tree overlay support for sun8i-h3 pi devices
-Date:   Tue, 27 Jun 2023 21:37:03 +0800
-Message-Id: <20230627133703.355893-1-felix.moessbauer@siemens.com>
+        with ESMTP id S230146AbjF0NhP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:37:15 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60512D5B
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:37:13 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9891c73e0fbso818554666b.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:37:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687873032; x=1690465032;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Zjn+m5IJNtwxVd6i0hgU1RQ6FBtfGTIs6fzcd38U4Jo=;
+        b=fNEBITWaLLZCAFNoYkPQcaqn8qMhZVIH4tjFvICdPg7UH3NeqXNX09RHP19a29h8zL
+         4oAQbPXWNPZNaKyMaBoMMpnr3blZrVLVT+DPEMnbhP/nYY630gZvlRFHQf5Dt9WK1Ivv
+         w+F57Jh2DuPGYZUOe6//JFfeQ26Zj+R3yIJY0YEd4Y1GcNSEgJU4n81O8HhrCtmV7Au8
+         Ng99JeM0diRKB11msr6h9cupKH9Ja0Cu00SxxaKQO+3RcJRSKiJf0hQp4SYummOo4zJD
+         RiOuRzv6hTEdPBAq27Ayw2sN0TWu3A7VVbjCZovndTpye+j30JleNaSolsnjq9bXaDS7
+         TBgg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687873032; x=1690465032;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Zjn+m5IJNtwxVd6i0hgU1RQ6FBtfGTIs6fzcd38U4Jo=;
+        b=ImyJlyXLpOkjEsrfmdA8BCX676P+VViMdA+j0Qtq1YHtZyOOwq0fMIVGE9XA22aaSt
+         G8ebcEOIPnUmNiKgDd+UVC2OgE4W3QLaq33zCDY6vq+9rCHzoYCzjERw/vCXBbbukfFQ
+         FCEq3Ydogy7MyesPSBLow8p/4+c2AXkYshekqISTCQQEnUgoGy8+f6I5pF3k2qr+2G2G
+         d2QE/rpoBgIZ8u27HNz4erTZYZwZYVCG0jN7Ly5B2ydLL2XlAt+5DHQ4cUj3KJutIv4p
+         hgsLb/ooxkmhFFfyr382SJUlggdohD6nvJD09lUhJqr2eRG75LcnC9vDBxI2A8uMWrZw
+         KiZQ==
+X-Gm-Message-State: AC+VfDzVJA0L8VBPwUOwqm5HUAYJWeqReUSxiH2w9bay9MYvSXTT353t
+        IW5KtRBDthqo511QRUMnCbqq5A==
+X-Google-Smtp-Source: ACHHUZ5KPZiM0xwFFkDm9ASG5ZrHrep9NXMTXPqfYF8cYZacARH7VH8i601pygIFhMDQpdq/gxZYxg==
+X-Received: by 2002:a17:907:2da6:b0:988:15f4:fdba with SMTP id gt38-20020a1709072da600b0098815f4fdbamr29369700ejc.14.1687873032258;
+        Tue, 27 Jun 2023 06:37:12 -0700 (PDT)
+Received: from [10.230.170.72] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
+        by smtp.gmail.com with ESMTPSA id i10-20020a170906250a00b0096a6be0b66dsm4573216ejb.208.2023.06.27.06.37.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jun 2023 06:37:11 -0700 (PDT)
+Message-ID: <b6ef76a8-95fc-aa76-d811-ed25ccb8ad8e@linaro.org>
+Date:   Tue, 27 Jun 2023 15:37:09 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Flowmailer-Platform: Siemens
-Feedback-ID: 519:519-72506:519-21489:flowmailer
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: Aw: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update
+ assigned-clocks/clock-parents for mt7986
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230625191151.7808-1-linux@fw-web.de>
+ <20230625191151.7808-2-linux@fw-web.de>
+ <91411797-18b4-f515-d6c0-ca0f8ff39696@linaro.org>
+ <trinity-28cad1dc-f8e0-4f65-874f-a2392c2e878e-1687867773444@3c-app-gmx-bs07>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <trinity-28cad1dc-f8e0-4f65-874f-a2392c2e878e-1687867773444@3c-app-gmx-bs07>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the '-@' DTC option for the sun8i-h3 pi-class devices. This option
-populates the '__symbols__' node that contains all the necessary symbols
-for supporting device-tree overlays (for instance from the firmware or
-the bootloader) on these devices.
+On 27/06/2023 14:09, Frank Wunderlich wrote:
+>> Gesendet: Dienstag, 27. Juni 2023 um 12:44 Uhr
+>> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+>> Betreff: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update assigned-clocks/clock-parents for mt7986
+>>
+>> On 25/06/2023 21:11, Frank Wunderlich wrote:
+>>> From: Frank Wunderlich <frank-w@public-files.de>
+>>>
+>>> MT7986 has 2 clock-parents so update the binding for it.
+>>
+>> You didn't test it, I think. If you do, then you will see errors from
+>> other trees.
+> 
+> Hi,
+> 
+> i tested it of course...which errors do you see?
 
-These devices allow various modules to be connected and this enables
-users to create out-of-tree device-tree overlays for these modules.
+The top-level said it can be maximum 1, so raising it in allOf:if:then:
+should not be enough
 
-Please note that this change does increase the size of the resulting DTB
-by ~30%. For example, with v6.4 increase in size is as follows:
+> 11
+> this is basicly how i tested it (in case anything has changed):
+> 
+>         logfile=dtbs_arm64.log
+>         exec 3> >(tee $logfile)
+>         ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make DT_CHECKER_FLAGS=-m dt_binding_check 2>&3
+>         if [[ $? -ne 0 ]];then echo "arm64 binding check failed!";cat $logfile;exit 1;fi
+>         ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make defconfig #dtbs_check need kernel-config
+>         ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j8 DT_CHECKER_FLAGS=-m dtbs_check 2>&3
+>         if [[ $? -ne 0 ]];then echo "arm64 dtbs_check failed!";cat $logfile;exit 1;fi
 
-22909 -> 29564 sun8i-h3-orangepi-lite.dtb
-24214 -> 30935 sun8i-h3-bananapi-m2-plus.dtb
-23915 -> 30664 sun8i-h3-nanopi-m1-plus.dtb
-22969 -> 29537 sun8i-h3-nanopi-m1.dtb
-24157 -> 30836 sun8i-h3-nanopi-duo2.dtb
-24110 -> 30845 sun8i-h3-orangepi-plus2e.dtb
-23472 -> 30037 sun8i-h3-orangepi-one.dtb
-24600 -> 31410 sun8i-h3-orangepi-plus.dtb
-23618 -> 30230 sun8i-h3-orangepi-2.dtb
-22170 -> 28548 sun8i-h3-orangepi-zero-plus2.dtb
-23258 -> 29795 sun8i-h3-nanopi-neo-air.dtb
-23113 -> 29699 sun8i-h3-zeropi.dtb
-22803 -> 29270 sun8i-h3-nanopi-neo.dtb
-24674 -> 31318 sun8i-h3-nanopi-r1.dtb
-23477 -> 30038 sun8i-h3-orangepi-pc.dtb
-24622 -> 31380 sun8i-h3-bananapi-m2-plus-v1.2.dtb
-23750 -> 30366 sun8i-h3-orangepi-pc-plus.dtb
+A bit over-complicated... why not running dtbs_check against the schema
+you changed?
 
-Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
----
-Please note that I only tested the overlay on the sun8i-h3-nanopi-neo
-device. However, the devices are quite similar and in general the
-change to add symbols should be pretty safe. Similar patches have been
-applied to various other devices in the past without any negative
-effect (except for the increased size).
+> 
+> and looked into the resulting logfile for keywords like mmc like mtk-sd
+> 
+> i tried running dtbs_check with passing the yaml-file, but of course all compatibles not matching this file were reported.
+> 
+> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j6 DT_CHECKER_FLAGS=-m dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> 
+> but this spits out many errors "failed to match any schema with compatible" because i defined only the changed one...
+> 
+> maybe there is another way to check only one yaml file against all dtbs without these unrelated errors.
+> 
+> pipeline in dt-bindings-patchwork is clean too
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230625191151.7808-2-linux@fw-web.de/
 
-Felix Moessbauer
-Siemens AG
+Maybe that binding just fails to apply to DTS because of missing or not
+correct compatibles.
 
- arch/arm/boot/dts/allwinner/Makefile | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+> 
+>> Anyway, I don't understand why defining it in the first place. Just drop
+>> the assigned-clock* from the binding.
+> 
+> as it was defined (not looked where it was used) i only used the soc-specific branch to update the MaxItems...just to not break anything. After that the message i got before was fixed
+> 
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000: assigned-clocks: [[4, 35], [4, 34]] is too long
+> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000: assigned-clock-parents: [[5, 6], [4, 18]] is too long
+> 
+> but if the right way is to drop the MaxItems from generic (or the property itself - where is it taken from then?). The only
+> include i see is Documentation/devicetree/bindings/mmc/mmc-controller.yaml and there the assigned-clock* is not defined. And the
 
-diff --git a/arch/arm/boot/dts/allwinner/Makefile b/arch/arm/boot/dts/allwinner/Makefile
-index 589a1ce1120a..eebb5a0c873a 100644
---- a/arch/arm/boot/dts/allwinner/Makefile
-+++ b/arch/arm/boot/dts/allwinner/Makefile
-@@ -179,6 +179,25 @@ dtb-$(CONFIG_MACH_SUN7I) += \
- 	sun7i-a20-pcduino3-nano.dtb \
- 	sun7i-a20-wexler-tab7200.dtb \
- 	sun7i-a20-wits-pro-a20-dkt.dtb
-+
-+# Enables support for device-tree overlays for all pis
-+DTC_FLAGS_sun8i-h3-orangepi-lite := -@
-+DTC_FLAGS_sun8i-h3-bananapi-m2-plus := -@
-+DTC_FLAGS_sun8i-h3-nanopi-m1-plus := -@
-+DTC_FLAGS_sun8i-h3-nanopi-m1 := -@
-+DTC_FLAGS_sun8i-h3-nanopi-duo2 := -@
-+DTC_FLAGS_sun8i-h3-orangepi-plus2e := -@
-+DTC_FLAGS_sun8i-h3-orangepi-one := -@
-+DTC_FLAGS_sun8i-h3-orangepi-plus := -@
-+DTC_FLAGS_sun8i-h3-orangepi-2 := -@
-+DTC_FLAGS_sun8i-h3-orangepi-zero-plus2 := -@
-+DTC_FLAGS_sun8i-h3-nanopi-neo-air := -@
-+DTC_FLAGS_sun8i-h3-zeropi := -@
-+DTC_FLAGS_sun8i-h3-nanopi-neo := -@
-+DTC_FLAGS_sun8i-h3-nanopi-r1 := -@
-+DTC_FLAGS_sun8i-h3-orangepi-pc := -@
-+DTC_FLAGS_sun8i-h3-bananapi-m2-plus-v1.2 := -@
-+DTC_FLAGS_sun8i-h3-orangepi-pc-plus := -@
- dtb-$(CONFIG_MACH_SUN8I) += \
- 	sun8i-a23-evb.dtb \
- 	sun8i-a23-gt90h-v4.dtb \
--- 
-2.39.2
+The way is to entirely drop assigned-clocks. I don't think there are
+much benefits of having them in the bindings. Maybe if specific rates
+are required, then yes - device cannot work with other rates and you can
+verify it with dtbs_check. But otherwise it is like adding values of
+'reg' or 'interrupts'. Plus some board might require third item and then
+what?
+
+Best regards,
+Krzysztof
 
