@@ -2,205 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 997E773FD75
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:11:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83C6673FD77
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:12:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230349AbjF0OLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 10:11:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54336 "EHLO
+        id S231285AbjF0OMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 10:12:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54514 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230364AbjF0OLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:11:16 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3DE1270F;
-        Tue, 27 Jun 2023 07:11:14 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8901E611B9;
-        Tue, 27 Jun 2023 14:11:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EAF26C433C9;
-        Tue, 27 Jun 2023 14:11:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687875074;
-        bh=xeCPOhBMjE2CPK1AN983wnR+87uAbWSntpDZrd/CiBQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tvoMU3ZkZ6gO1+AjSp/+OnLJ1kv+57MeKLJEiUfcscWh/RFIHd9Pb1HSModFxVvnQ
-         m6rs4ymZi2wmdLLWePYzO1x0moz95fhuibjuxvwqhYm4OJ7F6LEy+/0QdWm/I0p5XO
-         gg85VyVj0w3/5PFGbAO3MeGBeLyk3R7RJfDOyh+kzfMhLQwI4MIIVT8asaMnl1TFlR
-         gd9/KU3pt4hpsFFo5UKIry586bO6nzSF3zzrlpy0zTRsJhM5Mi31m/d6vjTGiYg6tW
-         hxNibPTtvpufqhsQOtSN5XYyH13EOhky/tmgiZKI2LlxS9USVxocaQzFcjVIUC/2/d
-         UhyQQqq87f3gw==
-Received: by mail-lj1-f178.google.com with SMTP id 38308e7fff4ca-2b6a6f224a1so27304421fa.1;
-        Tue, 27 Jun 2023 07:11:13 -0700 (PDT)
-X-Gm-Message-State: AC+VfDxwVWR5BNHS1h+20aurm3CFcOM6Y7XZPmBMLe2f3se4cNy7tJbD
-        Rctz3xPS0fH4o87U3MnpatzjuZFr/XvcIp19kQ==
-X-Google-Smtp-Source: ACHHUZ7eabgwGTnZp7X5eZw1EcK1Kg+YRqCE4/uAmx2u4dnbSW6zR+fnqJvmmgj4nBQ1Y9SsU86JFbtiQ2TD3+9pqCg=
-X-Received: by 2002:a2e:7316:0:b0:2b6:9e58:33e4 with SMTP id
- o22-20020a2e7316000000b002b69e5833e4mr4531082ljc.4.1687875071928; Tue, 27 Jun
- 2023 07:11:11 -0700 (PDT)
+        with ESMTP id S230357AbjF0OLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:11:50 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17AEA359B;
+        Tue, 27 Jun 2023 07:11:36 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (unknown [193.85.242.128])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9C7D110A;
+        Tue, 27 Jun 2023 16:10:55 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1687875055;
+        bh=7Hc1d8oOHgOBTbIRoH4a/Rzr0+yr4EjZFHs0CndgT6c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=aQnQiQkUeicZnNgvNfR0+mZyn8vSSicvCKEoXBvk3AssJOPsg6XAKz2OgBDTGLwyw
+         dgxYs1I8a/BkwAFknjrGDWYZbw3p4ztAQwDUPYrj9+tsb6TSxvW2O0N9x5BtbyEi6u
+         F6kx0DyyQmkZ3s5i54T6J++yUfxHsX4SWo1V6hDg=
+Date:   Tue, 27 Jun 2023 17:11:33 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     guoniu.zhou@oss.nxp.com
+Cc:     linux-media@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        xavier.roumegue@oss.nxp.com, kernel@pengutronix.de,
+        jacopo.mondi@ideasonboard.com, sakari.ailus@linux.intel.com
+Subject: Re: [PATCH v3 3/3] media: nxp: imx8-isi: add ISI support for i.MX93
+Message-ID: <20230627141133.GC14185@pendragon.ideasonboard.com>
+References: <20230627062017.1135114-1-guoniu.zhou@oss.nxp.com>
+ <20230627062017.1135114-4-guoniu.zhou@oss.nxp.com>
 MIME-Version: 1.0
-References: <20230412111256.40013-1-okan.sahin@analog.com> <20230412111256.40013-6-okan.sahin@analog.com>
- <20230420103438.GI9904@google.com> <09eb8e4c-3e73-41f0-bf42-8ddf3c4254ec@sirena.org.uk>
- <20230421073938.GO996918@google.com> <82612171-46d7-4d82-a8fc-c7d6a99d57e9@sirena.org.uk>
- <MN2PR03MB516860989BD8ED6AC9A767FBE755A@MN2PR03MB5168.namprd03.prod.outlook.com>
- <20230621171315.GL10378@google.com> <20230626175443.GA3446604-robh@kernel.org>
- <20230627135615.GF10378@google.com>
-In-Reply-To: <20230627135615.GF10378@google.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 27 Jun 2023 08:10:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
-Message-ID: <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC Support
-To:     Lee Jones <lee@kernel.org>
-Cc:     "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230627062017.1135114-4-guoniu.zhou@oss.nxp.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 27, 2023 at 7:56=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
->
-> On Mon, 26 Jun 2023, Rob Herring wrote:
->
-> > On Wed, Jun 21, 2023 at 06:13:15PM +0100, Lee Jones wrote:
-> > > On Tue, 13 Jun 2023, Sahin, Okan wrote:
-> > >
-> > > > >On Fri, Apr 21, 2023 at 08:39:38AM +0100, Lee Jones wrote:
-> > > > >
-> > > > >> I'll try anything once!
-> > > > >
-> > > > >> Fair warning, I think this is going to massively complicate thin=
-gs.
-> > > > >
-> > > > >> Either we're going to be left with a situation where child-drive=
-r
-> > > > >> maintainers are scrabbling around looking for previous versions =
-for the
-> > > > >> MFD pull-request or contributors being forced to wait a full cyc=
-le for
-> > > > >> their dependencies to arrive in the maintainer's base.
-> > > > >
-> > > > >If people are resending after the MFD has gone in they really ough=
-t to
-> > > > >be including the pull request in the cover letter, with some combi=
-nation
-> > > > >of either referencing the mail or just saying "this depends on the
-> > > > >signed tag at url+tag", the same way they would for any other depe=
-ndency.
-> > > > >
-> > > > >I can't see how you applying stuff when you can slow things down T=
-BH,
-> > > > >the MFD bits will be applied faster and either people can pull in =
-a
-> > > > >shared tag or you can apply more commits on top of the existing co=
-re
-> > > > >driver.
-> > > > >
-> > > > >> I'm not sure why simply providing your Ack when you're happy wit=
-h the
-> > > > >> driver and forgetting about the set until the pull-request arriv=
-es, like
-> > > > >> we've been doing for nearly a decade now, isn't working for you =
-anymore
-> > > > >> but I'm mostly sure this method will be a regression.
-> > > > >
-> > > > >Like I said I've not been doing that, I've mostly been just applyi=
-ng the
-> > > > >driver when it's ready.  This might not have been so visible to yo=
-u
-> > > > >since it means that the regulator driver doesn't appear in the ser=
-ies by
-> > > > >the time the MFD settles down.  The whole "Acked-for-MFD" has alwa=
-ys
-> > > > >been a bit confusing TBH, it's not a normal ack ("go ahead and app=
-ly
-> > > > >this, I'm fine with it") so it was never clear what the intention =
-was.
-> > > > >
-> > > > >Before I started just applying the drivers there used to be consta=
-nt
-> > > > >problems with things like tags going missing (which some of the ti=
-me is
-> > > > >the submitter just not carrying them but can also be the result of=
- some
-> > > > >churn causing them to be deliberately dropped due to changes) or
-> > > > >forgetting the series as you suggest and then not looking at some =
-other
-> > > > >very similarly named series that was also getting lots of versions=
- after
-> > > > >thinking it was one that had been reviewed already.  It was all ve=
-ry
-> > > > >frustrating.  Not doing the tags until the dependencies have settl=
-ed
-> > > > >down means that if it's in my inbox it at least consistently needs=
- some
-> > > > >kind of attention and that the submitter didn't drop tags or anyth=
-ing so
-> > > > >I know why there's no tag on it even though the version number is =
-high,
-> > > > >though it's not ideal either.
-> > > >
-> > > > Hi Mark and Lee,
-> > > >
-> > > > Is there anything that I need to do for this patch set. I have rece=
-ived reviewed
-> > > > by tag for all of them so far.
-> > >
-> > > Since we are so late in the day, I'm going to just apply this for v6.=
-5.
-> > >
-> > > The remainder can then be applied, friction free, for v6.6.
-> >
-> > Now we have undocmented bindings in use by the driver (as pointed out b=
-y
-> > 'make dt_compatible_check').
-> >
-> > The whole series has all the acks/reviews needed for you to apply the
-> > whole thing, so why not take the whole thing? Plus this series has been
-> > sitting for 2 months. Not a great experience for submitters...
->
-> Patches are missing Acked-by tags.
->
->   Reviewed-by !=3D Acked-by
+Hi Guoniu,
 
-Reviewed-by > Acked-by
+Thank you for the patch.
 
->
-> I cannot merge other subsystem's patches without and Acked-by.
+On Tue, Jun 27, 2023 at 02:20:17PM +0800, guoniu.zhou@oss.nxp.com wrote:
+> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+> 
+> i.MX93 use a different gasket which has different register definition
+> compared with i.MX8. Hence implement the gasket callbacks in order to
+> add ISI support for i.MX93.
+> 
+> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
 
-I (and Krzysztof) give one or the other. If I'm taking a patch, then
-it's neither. I'm pretty sure Mark only gives Reviewed-by when he is
-not taking something.
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
-Rob
+> ---
+>  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 20 ++++++++++++++++++
+>  .../platform/nxp/imx8-isi/imx8-isi-core.h     | 12 +++++++++++
+>  .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 21 +++++++++++++++++++
+>  3 files changed, 53 insertions(+)
+> 
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> index d645b2f6fa5a..24c40e4cfef5 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> @@ -313,6 +313,25 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
+>  	.has_36bit_dma		= true,
+>  };
+>  
+> +static const struct mxc_gasket_ops mxc_imx93_gasket_ops = {
+> +	.enable = mxc_imx93_gasket_enable,
+> +	.disable = mxc_imx93_gasket_disable,
+> +};
+> +
+> +static const struct mxc_isi_plat_data mxc_imx93_data = {
+> +	.model			= MXC_ISI_IMX93,
+> +	.num_ports		= 1,
+> +	.num_channels		= 1,
+> +	.reg_offset		= 0,
+> +	.ier_reg		= &mxc_imx8_isi_ier_v2,
+> +	.set_thd		= &mxc_imx8_isi_thd_v1,
+> +	.clks			= mxc_imx8mn_clks,
+> +	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
+> +	.buf_active_reverse	= true,
+> +	.gasket_ops		= &mxc_imx93_gasket_ops,
+> +	.has_36bit_dma		= false,
+> +};
+> +
+>  /* -----------------------------------------------------------------------------
+>   * Power management
+>   */
+> @@ -524,6 +543,7 @@ static int mxc_isi_remove(struct platform_device *pdev)
+>  static const struct of_device_id mxc_isi_of_match[] = {
+>  	{ .compatible = "fsl,imx8mn-isi", .data = &mxc_imx8mn_data },
+>  	{ .compatible = "fsl,imx8mp-isi", .data = &mxc_imx8mp_data },
+> +	{ .compatible = "fsl,imx93-isi", .data = &mxc_imx93_data },
+>  	{ /* sentinel */ },
+>  };
+>  MODULE_DEVICE_TABLE(of, mxc_isi_of_match);
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> index 4f920d650153..f5be5394981e 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> @@ -73,6 +73,11 @@ struct v4l2_m2m_dev;
+>  #define GASKET_HSIZE				0x0004
+>  #define GASKET_VSIZE				0x0008
+>  
+> +/* dispmix_GPR register (i.MX93 only) */
+> +#define DISP_MIX_CAMERA_MUX                     0x30
+> +#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)        (((x) & 0x3f) << 3)
+> +#define DISP_MIX_CAMERA_MUX_GASKET_ENABLE       BIT(16)
+> +
+>  struct mxc_isi_dev;
+>  struct mxc_isi_m2m_ctx;
+>  
+> @@ -172,6 +177,7 @@ struct mxc_gasket_ops {
+>  enum model {
+>  	MXC_ISI_IMX8MN,
+>  	MXC_ISI_IMX8MP,
+> +	MXC_ISI_IMX93,
+>  };
+>  
+>  struct mxc_isi_plat_data {
+> @@ -407,6 +413,12 @@ int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
+>  			   const unsigned int port);
+>  void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
+>  
+> +int mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
+> +			    const struct v4l2_mbus_frame_desc *fd,
+> +			    const struct v4l2_mbus_framefmt *fmt,
+> +			    const unsigned int port);
+> +void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
+> +
+>  #if IS_ENABLED(CONFIG_DEBUG_FS)
+>  void mxc_isi_debug_init(struct mxc_isi_dev *isi);
+>  void mxc_isi_debug_cleanup(struct mxc_isi_dev *isi);
+> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
+> index 39f8d0e8b15d..a81c4249a26f 100644
+> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
+> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
+> @@ -30,3 +30,24 @@ void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port)
+>  {
+>  	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
+>  }
+> +
+> +/* Configure and enable gasket for i.MX93 */
+> +int mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
+> +			    const struct v4l2_mbus_frame_desc *fd,
+> +			    const struct v4l2_mbus_framefmt *fmt,
+> +			    const unsigned int port)
+> +{
+> +	u32 val;
+> +
+> +	val = DISP_MIX_CAMERA_MUX_DATA_TYPE(fd->entry[0].bus.csi2.dt);
+> +	val |= DISP_MIX_CAMERA_MUX_GASKET_ENABLE;
+> +	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val);
+> +
+> +	return 0;
+> +}
+> +
+> +void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi,
+> +			      unsigned int port)
+> +{
+> +	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, 0);
+> +}
+
+-- 
+Regards,
+
+Laurent Pinchart
