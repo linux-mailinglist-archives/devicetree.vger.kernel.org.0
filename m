@@ -2,163 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37E5873FCED
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:37:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 311AE73FD0E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:45:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230113AbjF0NhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 09:37:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38454 "EHLO
+        id S230429AbjF0NpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 09:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42396 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230146AbjF0NhP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:37:15 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C60512D5B
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:37:13 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9891c73e0fbso818554666b.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:37:13 -0700 (PDT)
+        with ESMTP id S230233AbjF0NpR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:45:17 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A2CF2115
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:45:16 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98e1c6a687fso300788566b.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:45:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687873032; x=1690465032;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1687873515; x=1690465515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Zjn+m5IJNtwxVd6i0hgU1RQ6FBtfGTIs6fzcd38U4Jo=;
-        b=fNEBITWaLLZCAFNoYkPQcaqn8qMhZVIH4tjFvICdPg7UH3NeqXNX09RHP19a29h8zL
-         4oAQbPXWNPZNaKyMaBoMMpnr3blZrVLVT+DPEMnbhP/nYY630gZvlRFHQf5Dt9WK1Ivv
-         w+F57Jh2DuPGYZUOe6//JFfeQ26Zj+R3yIJY0YEd4Y1GcNSEgJU4n81O8HhrCtmV7Au8
-         Ng99JeM0diRKB11msr6h9cupKH9Ja0Cu00SxxaKQO+3RcJRSKiJf0hQp4SYummOo4zJD
-         RiOuRzv6hTEdPBAq27Ayw2sN0TWu3A7VVbjCZovndTpye+j30JleNaSolsnjq9bXaDS7
-         TBgg==
+        bh=PCgJkdEEyunIECiH+1imlT3YGzipKdsZqBxVSz2hzhE=;
+        b=yEW2RYhaMp7O0Z7mBIYWx47qxCbbBC4kSyevnPwtr6Tu0coluudBLKH6m15BlQpYn+
+         cJDuTKCYgLXeWHos+R8qLp9feb4/WwTv/+uof1Ou+6Iwo1T0e+MEQVOQq5RsrMazadZu
+         69Az0u/b5gjl3lE0hMeLyC3uVppD7akAStRCrCYiWQEVqvuiMev5gWMXpv5hh9xkkcf1
+         EAtg6C8C9WQwsQsEt1eCqXUiKA3MVwremt76YObWu8CQl+mcI4F8mVFHZGW1rNcD+w72
+         i5zPK1FSGo/Xv/eOsjaaWAruPi2hhoXRVAkCpPDQF8pzP7CtVeVGIoe4YEIYw8KVSmd5
+         GBHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687873032; x=1690465032;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1687873515; x=1690465515;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Zjn+m5IJNtwxVd6i0hgU1RQ6FBtfGTIs6fzcd38U4Jo=;
-        b=ImyJlyXLpOkjEsrfmdA8BCX676P+VViMdA+j0Qtq1YHtZyOOwq0fMIVGE9XA22aaSt
-         G8ebcEOIPnUmNiKgDd+UVC2OgE4W3QLaq33zCDY6vq+9rCHzoYCzjERw/vCXBbbukfFQ
-         FCEq3Ydogy7MyesPSBLow8p/4+c2AXkYshekqISTCQQEnUgoGy8+f6I5pF3k2qr+2G2G
-         d2QE/rpoBgIZ8u27HNz4erTZYZwZYVCG0jN7Ly5B2ydLL2XlAt+5DHQ4cUj3KJutIv4p
-         hgsLb/ooxkmhFFfyr382SJUlggdohD6nvJD09lUhJqr2eRG75LcnC9vDBxI2A8uMWrZw
-         KiZQ==
-X-Gm-Message-State: AC+VfDzVJA0L8VBPwUOwqm5HUAYJWeqReUSxiH2w9bay9MYvSXTT353t
-        IW5KtRBDthqo511QRUMnCbqq5A==
-X-Google-Smtp-Source: ACHHUZ5KPZiM0xwFFkDm9ASG5ZrHrep9NXMTXPqfYF8cYZacARH7VH8i601pygIFhMDQpdq/gxZYxg==
-X-Received: by 2002:a17:907:2da6:b0:988:15f4:fdba with SMTP id gt38-20020a1709072da600b0098815f4fdbamr29369700ejc.14.1687873032258;
-        Tue, 27 Jun 2023 06:37:12 -0700 (PDT)
+        bh=PCgJkdEEyunIECiH+1imlT3YGzipKdsZqBxVSz2hzhE=;
+        b=WHMNcQBUjNjPhUOb7bPuzlIrWXJLyaZYvNzDVIH5zp7XTGOD2PFr0UASthV5339iPq
+         ib9NRfECfnRmD+lixcA8arVk56UlpmzBq8FTjDglnIDtXINg9fHOIhYLRJWeNAoK3w6I
+         BeGNm3GaJVZzUESm3jSMlVI5eormhiBRRzL3BMzRoFhRU/z4hlauUg1CM7fu50DBsD9U
+         1fCDR0txs5A5o1jWvJPsymPRa4zArtnAwxHoh6tjOW5Aaxgfq+YBXduPK6mQJLPg2xo8
+         3dlnSGGbAPCTOKt0Bbp4pK7FIW6FazVXxMOnc9UBtqIRKNmnQbvZTpKTQwiV1bfzU4eb
+         6d/w==
+X-Gm-Message-State: AC+VfDyY+mtYGO5lhY+/QOWbgCmGsxuSLYksGvFLVd7dTZFkRqz/NgHm
+        wkWPBtaI4y525j2XRQ60zEoJng==
+X-Google-Smtp-Source: ACHHUZ7xNs87HMMWtByJqpHlJHnDFoSkmWTxbl6mYxdivUVK9EldUno8mJHdDxO9cD97xkI8YLQ5MA==
+X-Received: by 2002:a17:907:74b:b0:971:484:6391 with SMTP id xc11-20020a170907074b00b0097104846391mr21886195ejb.20.1687873514820;
+        Tue, 27 Jun 2023 06:45:14 -0700 (PDT)
 Received: from [10.230.170.72] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
-        by smtp.gmail.com with ESMTPSA id i10-20020a170906250a00b0096a6be0b66dsm4573216ejb.208.2023.06.27.06.37.10
+        by smtp.gmail.com with ESMTPSA id b6-20020a1709064d4600b00988c6ac6b86sm4537989ejv.186.2023.06.27.06.45.13
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 06:37:11 -0700 (PDT)
-Message-ID: <b6ef76a8-95fc-aa76-d811-ed25ccb8ad8e@linaro.org>
-Date:   Tue, 27 Jun 2023 15:37:09 +0200
+        Tue, 27 Jun 2023 06:45:14 -0700 (PDT)
+Message-ID: <3ea32af9-406e-f6fe-1df1-a5988015dbb0@linaro.org>
+Date:   Tue, 27 Jun 2023 15:44:21 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: Aw: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update
- assigned-clocks/clock-parents for mt7986
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+Subject: Re: [PATCH v4 3/3] dt-bindings: ufs: qcom: Fix sm8450 bindings
+Content-Language: en-US
+To:     Luca Weiss <luca.weiss@fairphone.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Avri Altman <avri.altman@wdc.com>,
+        Bart Van Assche <bvanassche@acm.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>,
-        Sam Shih <sam.shih@mediatek.com>, linux-mmc@vger.kernel.org,
+        Iskren Chernev <me@iskren.info>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230625191151.7808-1-linux@fw-web.de>
- <20230625191151.7808-2-linux@fw-web.de>
- <91411797-18b4-f515-d6c0-ca0f8ff39696@linaro.org>
- <trinity-28cad1dc-f8e0-4f65-874f-a2392c2e878e-1687867773444@3c-app-gmx-bs07>
-Content-Language: en-US
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Eric Biggers <ebiggers@google.com>
+References: <20221209-dt-binding-ufs-v4-0-14ced60f3d1b@fairphone.com>
+ <20221209-dt-binding-ufs-v4-3-14ced60f3d1b@fairphone.com>
+ <1f94de94-c5bd-738d-5fbe-907558333cb2@linaro.org>
+ <CTNAIDCV0BIO.2JMX8MXEQ197U@otso>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <trinity-28cad1dc-f8e0-4f65-874f-a2392c2e878e-1687867773444@3c-app-gmx-bs07>
+In-Reply-To: <CTNAIDCV0BIO.2JMX8MXEQ197U@otso>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 14:09, Frank Wunderlich wrote:
->> Gesendet: Dienstag, 27. Juni 2023 um 12:44 Uhr
->> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
->> Betreff: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update assigned-clocks/clock-parents for mt7986
->>
->> On 25/06/2023 21:11, Frank Wunderlich wrote:
->>> From: Frank Wunderlich <frank-w@public-files.de>
+On 27/06/2023 10:29, Luca Weiss wrote:
+> On Mon Jun 26, 2023 at 10:27 AM CEST, Krzysztof Kozlowski wrote:
+>> On 26/06/2023 10:15, Luca Weiss wrote:
+>>> SM8450 actually supports ICE (Inline Crypto Engine) so adjust the
+>>> bindings and the example to match.
 >>>
->>> MT7986 has 2 clock-parents so update the binding for it.
+>>> Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>>> Reviewed-by: Eric Biggers <ebiggers@google.com>
+>>> Reviewed-by: Iskren Chernev <me@iskren.info>
+>>> Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
 >>
->> You didn't test it, I think. If you do, then you will see errors from
->> other trees.
+>> SM8450 should be rather converted to qcom,ice.
 > 
-> Hi,
-> 
-> i tested it of course...which errors do you see?
+> In v5 sm8450 is now using ICE, both in dtsi and binding example. But I
+> guess you could also argue reg-names should be purged from dtsi and
+> binding completely and to convert all existing dtsi to use the
+> standalone ice node, right?
 
-The top-level said it can be maximum 1, so raising it in allOf:if:then:
-should not be enough
-
-> 11
-> this is basicly how i tested it (in case anything has changed):
-> 
->         logfile=dtbs_arm64.log
->         exec 3> >(tee $logfile)
->         ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make DT_CHECKER_FLAGS=-m dt_binding_check 2>&3
->         if [[ $? -ne 0 ]];then echo "arm64 binding check failed!";cat $logfile;exit 1;fi
->         ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make defconfig #dtbs_check need kernel-config
->         ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j8 DT_CHECKER_FLAGS=-m dtbs_check 2>&3
->         if [[ $? -ne 0 ]];then echo "arm64 dtbs_check failed!";cat $logfile;exit 1;fi
-
-A bit over-complicated... why not running dtbs_check against the schema
-you changed?
+It would be good, but that's no exactly my goal. My goal is to have
+dtbs_check without errors.
 
 > 
-> and looked into the resulting logfile for keywords like mmc like mtk-sd
-> 
-> i tried running dtbs_check with passing the yaml-file, but of course all compatibles not matching this file were reported.
-> 
-> ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- make -j6 DT_CHECKER_FLAGS=-m dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> 
-> but this spits out many errors "failed to match any schema with compatible" because i defined only the changed one...
-> 
-> maybe there is another way to check only one yaml file against all dtbs without these unrelated errors.
-> 
-> pipeline in dt-bindings-patchwork is clean too
-> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230625191151.7808-2-linux@fw-web.de/
+> But I'd also like for this series to finally land at some point, we can
+> do this later, okay?
 
-Maybe that binding just fails to apply to DTS because of missing or not
-correct compatibles.
+I need to look at v5 then.
 
-> 
->> Anyway, I don't understand why defining it in the first place. Just drop
->> the assigned-clock* from the binding.
-> 
-> as it was defined (not looked where it was used) i only used the soc-specific branch to update the MaxItems...just to not break anything. After that the message i got before was fixed
-> 
-> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000: assigned-clocks: [[4, 35], [4, 34]] is too long
-> arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000: assigned-clock-parents: [[5, 6], [4, 18]] is too long
-> 
-> but if the right way is to drop the MaxItems from generic (or the property itself - where is it taken from then?). The only
-> include i see is Documentation/devicetree/bindings/mmc/mmc-controller.yaml and there the assigned-clock* is not defined. And the
-
-The way is to entirely drop assigned-clocks. I don't think there are
-much benefits of having them in the bindings. Maybe if specific rates
-are required, then yes - device cannot work with other rates and you can
-verify it with dtbs_check. But otherwise it is like adding values of
-'reg' or 'interrupts'. Plus some board might require third item and then
-what?
 
 Best regards,
 Krzysztof
