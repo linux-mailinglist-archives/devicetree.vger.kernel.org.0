@@ -2,204 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DD09974029E
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 19:50:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 254EA7402AF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 19:55:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229986AbjF0RuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 13:50:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34702 "EHLO
+        id S230295AbjF0RzC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 13:55:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36302 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231886AbjF0Rty (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 13:49:54 -0400
-Received: from NAM04-BN8-obe.outbound.protection.outlook.com (mail-bn8nam04olkn2082.outbound.protection.outlook.com [40.92.47.82])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95D24271D
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 10:49:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=JoV9+eWXGEWiaqFFELzFON0cKlidAzMRxNJX2iVxUI6lHjJtA46UeTjmHXGticGLoN/1qtaWHxXdcjyQq8ESRdUhhFPxJ5K5gBdSA4qoLlXdN7nTHl6RYHdLkuTDlUZEzHVUyA5LFBdHieH+obluVbRf59F2rKbcOYR9jwrI2K2v6Jpc3E1nBLiU/7dNzryj6JDdeDGwnRv8ReaVJrv4WALpoLHQ1dw+Y9CzcdYGbR9x0jekQalhu+IAeAPJCoJKUAFzCdBs5tc9VhZpMpw5GJAMSkBZPYw7FYWVHVe2SUBQRPO65RUx+KJ+1t0f6uohyDTBqUU60poQe+uddzUfvA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=4LBazGaFpLploPi3ms0hpIsu7P7Z7eOZarBvFFSzCN4=;
- b=MP33lWUUkMit1Nmfl3Lfu1xiSCTvTACLH2lowRz1T8jm1jLmoSzAyFKnYuq41h01ulQWLD+HTek8TXERHmkQjHIxjRyB+IKq+Zbt/cHQShJPYVJLsZ14xhIGdZ/6TaAMEPVhIX+w71ZJryBTHjav/QlQoszi9KZHxchgVxPq8LQGPUNgdxEJNpc76hpFPqdYE5RBBjauuUDOgqx4UBgX0O6uYv3OmwiEIobnTxlnmeFjVD4qVxBS3OdAlfmS45CO1rSY6raGH1NvNizoU+lnp5Z1PGK/fKqkTVdbMEReQd5U7p9AwXrwWdH8Jt2YT8VTVc4b/A/ZvDa4zAncOH7l3w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hotmail.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=4LBazGaFpLploPi3ms0hpIsu7P7Z7eOZarBvFFSzCN4=;
- b=Tvfai2MAO4ONnihJpTUPgKEomQGKpPbpzUUWxGM3/+29rwpGPwnjw3zucDEQ+KVYx3/S31uG3Hx8oT0i4Wb70CnuRExxiHP2mY1ouLSBSAlyPTUbZ1HAAdm8cM4u/83+5jmbPQjO/ZukQeY3eMavkGLXyiSukYH7pl9kdNya1PBR0d4IXs7ffdHx3rxs6xnccjBE9RRt0liA2pdZWIpba0wGw+KOv5FIV+wCClGyn+mtyIZOVwMhCB2aCeJ+uRQftYOmCfBQCP8XornZxWm60VUnGwEFLNyL0zvfXdHBmdsxJV3XmXNWsrdxPwcvsPW70brEY5hRFo9kKtCZy2qZrg==
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com (2603:10b6:805:f9::31)
- by MW4PR06MB8316.namprd06.prod.outlook.com (2603:10b6:303:12b::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.15; Tue, 27 Jun
- 2023 17:49:51 +0000
-Received: from SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::8fa4:8b62:ade1:9109]) by SN6PR06MB5342.namprd06.prod.outlook.com
- ([fe80::8fa4:8b62:ade1:9109%3]) with mapi id 15.20.6521.024; Tue, 27 Jun 2023
- 17:49:51 +0000
-Date:   Tue, 27 Jun 2023 12:49:46 -0500
-From:   Chris Morgan <macromorgan@hotmail.com>
-To:     Andre Przywara <andre.przywara@arm.com>
-Cc:     Icenowy Zheng <uwu@icenowy.me>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        mripard@kernel.org, samuel@sholland.org, jernej.skrabec@gmail.com,
-        wens@csie.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH 1/3] arm: dts: sun8i: V3s: Add pinctrl for pwm
-Message-ID: <SN6PR06MB53426CD2F0FCB98A48E6DAD2A527A@SN6PR06MB5342.namprd06.prod.outlook.com>
-References: <20230620200022.295674-1-macroalpha82@gmail.com>
- <20230620200022.295674-2-macroalpha82@gmail.com>
- <20230621005000.558b660c@slackpad.lan>
- <45cfb4dc93de59a539d48a37b9becffa4d2d6278.camel@icenowy.me>
- <20230626095005.4a95c151@donnerap.cambridge.arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230626095005.4a95c151@donnerap.cambridge.arm.com>
-X-TMN:  [fatqUxcljNJ9jWN1f1Vy/8rncMLDd+km]
-X-ClientProxiedBy: DM6PR07CA0081.namprd07.prod.outlook.com
- (2603:10b6:5:337::14) To SN6PR06MB5342.namprd06.prod.outlook.com
- (2603:10b6:805:f9::31)
-X-Microsoft-Original-Message-ID: <ZJshOp3yuTryMkuC@wintermute.localhost.fail>
+        with ESMTP id S229483AbjF0RzB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 13:55:01 -0400
+Received: from mail-oa1-x36.google.com (mail-oa1-x36.google.com [IPv6:2001:4860:4864:20::36])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F40FE5B
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 10:55:00 -0700 (PDT)
+Received: by mail-oa1-x36.google.com with SMTP id 586e51a60fabf-1b00b0ab0daso3224984fac.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 10:55:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=squareup.com; s=google; t=1687888499; x=1690480499;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=KMDH1mlxwV2sLVWQuxFIR054U5xIxrFoM4b9Bswiao0=;
+        b=bhv2tUNU2iTGPX6FqlVo3PZZoWxpv2x8hi1srmfXdLDB+wA77R3xwpagLS02aKWGTu
+         nH44RpBB5uqk9mlUsTdQ3+BgRf0Wpx1uunj1YdPgGmlFkClfdGVqb7Zh0tG4SvCx9lvG
+         pavLbGTcnIF10qIrSKFpRaJU9moYBw1u1/GSc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687888499; x=1690480499;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=KMDH1mlxwV2sLVWQuxFIR054U5xIxrFoM4b9Bswiao0=;
+        b=K35FqCRCaj1pW+02q9hiVhgk59yQZ0x7xwxSfGKBLEdUKnEKLzbtb+HGW+pVfch2cv
+         ACrehKYEPWz7vj0c+KFdwI6QISQrlj5jyKpCMxs5eXRy1HGfyNxcDbqdcTqGlT/DYCFJ
+         4K3IgzGkUxxZBID47rudJxj7PrhDf3HD9U3jyEFPxcJB5H/vthKw2g8P5T9C5tEAwpo1
+         9UDgd0HTps0jLPvV10xXN12DON5IcVu44GM24457EZcOsYtz9mvsJ0/DUsFnlz5v6SiH
+         i5pso7MLfrK048sMmuXj/xpuayezI4ceLe8ZKGWXJ7Z/ha9px9NTW+oJEA82bOIob8gG
+         Juuw==
+X-Gm-Message-State: AC+VfDwEMQHQzPQVKERt6Y+buE6ZN81H/9f/a836vmHE1B96fMOscPju
+        ylhoKUQ9mX22MmyLYW+ouizX/g==
+X-Google-Smtp-Source: ACHHUZ5128JJUpofvc84U9QEvguT6ylxK0NPBUtGocO3qCpVL4swAAl6Xq4iRqzHQOelQG16lCO4FA==
+X-Received: by 2002:a05:6870:c812:b0:1ad:1ce0:c348 with SMTP id ee18-20020a056870c81200b001ad1ce0c348mr15263035oab.11.1687888499657;
+        Tue, 27 Jun 2023 10:54:59 -0700 (PDT)
+Received: from [10.96.32.61] (137-025-033-021.res.spectrum.com. [137.25.33.21])
+        by smtp.gmail.com with ESMTPSA id d88-20020a17090a6f6100b00253508d9145sm6879840pjk.46.2023.06.27.10.54.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jun 2023 10:54:59 -0700 (PDT)
+Message-ID: <30944ea8-d4aa-d0fd-7eaa-64b59e32eb6b@squareup.com>
+Date:   Tue, 27 Jun 2023 10:54:55 -0700
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN6PR06MB5342:EE_|MW4PR06MB8316:EE_
-X-MS-Office365-Filtering-Correlation-Id: aad2d5e8-05ba-4dbf-827a-08db7736e7ef
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: X2ggYgF2fh7CyQFTrFIQpPr4eMwCLo6uOpfnbbH+ztV+48HlNQ89c0BwRe0nkvX9W4E4BQgkYGTwF+b47iTy0vu+o8kABmJZb5zJyoifxqQVaMUBAkxW1rvI/YiLf0HMCb1NIYZxagT+qaeuhDRMzdhzYyRZc+njyOls45QumJshNZUeApIxCME0E4593H219spyANrXGLd4eY7B81Tp9bV7CZfSbgxcn2biuWDGs/fbtWPpzM0Uc4+6Ux+Asc1IZpKwrjZIQ2iTLkqpYhirutX/4vX9azDllu4dJLTzwRneDJZBKbEfH2bsFBksilD/3+ZR84o7a6+KJNT3cViWyXvPp+DP6NiFUsvld9NsTdbovZgm5ATeMen4lWiOxderNmMREkskeO/67CZi3+CCOJxgrddYg5vslz2R/9NQBGbwf6lzpQEc18/KoRbYMCVmzjBbAp0iYN+RT7/wyA16vjb7OuSiof0cg/9jirW4xEmjhSmAWi7sURNBCyDCcRW3eviz4PDeOVZGSIbkW0mpfzktdHeICQMJNumN2Sr5NewAlDdm9WFB7+hzEHeRKN2c
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dEJTdmpSTzhnaktHYXNWMndVQjA3cFZISHI1bDJCK0FGM2EvYkloOHpOYVMx?=
- =?utf-8?B?RTNJMFNZdUhCb0kyOGZSUXJSYng2TnZvVDh6dmk3aW5FaE15VnlSTDFzVlds?=
- =?utf-8?B?RnNWSCs2L3hrMysySER4M2hWQVVTMkZweW81UElJQVVaU2VIMVBLOTVhbEti?=
- =?utf-8?B?OWhqblNwT2IvdU9KeU8rdmd0YlE5ZUM2Z3pBcmNXd01wckR6UXphQkl1bm01?=
- =?utf-8?B?b25HRVpERHd5ajRJS2UzVnlDNCtjNVR3MUpOS3FFUWowdVA3TWNmUWk2anRH?=
- =?utf-8?B?TnhwbWJ5OVd4Uy9KcnhKUVBSSE00T1hXWFVLZThwR010Z1o5WWZZeUF2UlFH?=
- =?utf-8?B?a1doYzdWd2g3U0xVV1pPTHExT0IxVDZkMGlzMmgvcEIwWld3QTJYNVI2T05P?=
- =?utf-8?B?Z004K2JRMVVicERrUUdwdkNONnJTWEdJWW0rbmZURjRVUCtSbjVHL1F2Y1ls?=
- =?utf-8?B?STVZMjZ4R3d6QlplWXR4OGYxcDZyTnpEVlJYRGVGRDJUdmhKYUxmbTF1aVY3?=
- =?utf-8?B?RU92UnNVMEVxUEUybmw1ei9ERFdLZmU4Tm4xTlpzMCtsWkh3YlBNWnhyOVll?=
- =?utf-8?B?ZEhKYWgvRjdPcmM2eWZvOXM4TjlnVlZPODZUemcxSk1ibEN4WDBualovTDlI?=
- =?utf-8?B?ZWdBT2d2VG9oRzNnTldKZmdJV05nd1BQUXpPdE8wYmlYbmJTb002Y0FlSWZn?=
- =?utf-8?B?WTRDR2RpWm5FbVhUY2xBSU9PUGJWN0k4N21vRzJjTmJEVG5MYVhOdjBYYXJr?=
- =?utf-8?B?L2Jxb2NraktiRWxkOWkxOUFtQzhIMmNWVlJ6SEVXN3lDcXJMSDNMTjUzM1NI?=
- =?utf-8?B?c280TnRXQWVGWDE1MFNML3UvV1ppOHM1ZC9jdk5aS2o4MmExT0p0MGRHVFYv?=
- =?utf-8?B?V2V4SlpMcEVxUU5tWkhySk5wQ2V6RDNaV0ZXMFd1RklCMjRIMWVaUUVSRHZL?=
- =?utf-8?B?SlRkYWRORUN1cThjd0FJYnJodUcxaCtMNFpRM2tNN0oza0dWZ05sRkNBNmNa?=
- =?utf-8?B?ZCt3ZmtyY1JvWklESGoxZGRKRzg5RDd6ZnVYaHNMNWRRMTVlZmRzNENTOUxE?=
- =?utf-8?B?OVNyUDgzVHpsUkQyUU9TbW0xV3NtZlZ1SVBFdEZDWEw1Yjh4cGU5Ukw1eEVT?=
- =?utf-8?B?SDFNZVV2aDFWNnpQamFPWnZWZ3JVRmd3TTdxUDZHVVNzTEhYQlFCM2FyTHhp?=
- =?utf-8?B?dkQ2TDRjTFRMSkJUU2dlUDVMVjBtOWVaVFdtTlhJODZHTTJqNzVTY1ZHVkJa?=
- =?utf-8?B?Zis3U2pNTndJWDJWOERoSFE4ZXoxNU5sVG1LYitSUXRmbTBySCtPUnZOYXQ0?=
- =?utf-8?B?M1hpcjBmOXdmR2ZsVnBkS2R1bnhJZzBpRkROT3pYNjQ2cVZOdVRIb3JhRGNo?=
- =?utf-8?B?UE5NV1A1aW0waWx5WmU4cUhBa2FnTkF6QUJER1hYZll6c3ZWbVRPTG01SFJU?=
- =?utf-8?B?V29lRmcwbnZNUjZaWFkwQnhFL0kvMHJDVUQvNnZWY3ZiaU5tREVZdTNVdzZV?=
- =?utf-8?B?REV1L0VEa0RXd2MxMXh1b0ptQ01LOUd2TGNLK2xUYm90QnZPUk9OWS80dGRK?=
- =?utf-8?B?QTQwM1l5bm5pRFJXNUlQOThwY2hpR0xMZnFzSXRYbjRYaGtyc0hGUExndHVn?=
- =?utf-8?Q?W0FNPIclebBW7S30nHTgSXfx2gK+x3JbIozVdiY+ZP0Q=3D?=
-X-OriginatorOrg: sct-15-20-4755-11-msonline-outlook-89723.templateTenant
-X-MS-Exchange-CrossTenant-Network-Message-Id: aad2d5e8-05ba-4dbf-827a-08db7736e7ef
-X-MS-Exchange-CrossTenant-AuthSource: SN6PR06MB5342.namprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2023 17:49:51.2167
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR06MB8316
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.8.0
+Subject: Re: [PATCH 02/11] arm64: dts: qcom: msm8939: Drop
+ "qcom,idle-state-spc" compatible
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Zac Crosby <zac@squareup.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Jun Nie <jun.nie@linaro.org>, Max Chen <mchen@squareup.com>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        alsa-devel@alsa-project.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, Rob Herring <robh@kernel.org>,
+        Andy Gross <andy.gross@linaro.org>
+References: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org>
+ <20230627-topic-more_bindings-v1-2-6b4b6cd081e5@linaro.org>
+From:   Benjamin Li <benl@squareup.com>
+In-Reply-To: <20230627-topic-more_bindings-v1-2-6b4b6cd081e5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 26, 2023 at 09:50:05AM +0100, Andre Przywara wrote:
-> On Sat, 24 Jun 2023 12:57:49 +0800
-> Icenowy Zheng <uwu@icenowy.me> wrote:
+On 6/27/23 9:24 AM, Konrad Dybcio wrote:
+> As of today, the only cool and legal way to get ARM64 SMP going is
+> via PSCI (or spin tables). Sadly, not all chip and device vendors were
+> considerate of this in the early days of arm64. Qualcomm, for example
+> reused their tried-and-true spin-up method from MSM8974 and their Krait/
+> arm32 Cortex designs.
 > 
-> > 在 2023-06-21星期三的 00:50 +0100，Andre Przywara写道：
-> > > On Tue, 20 Jun 2023 15:00:20 -0500
-> > > Chris Morgan <macroalpha82@gmail.com> wrote:
-> > > 
-> > > Hi Chris,
-> > > 
-> > > thanks for taking care of upstreaming, cute little device.
-> > >   
-> > > > From: Chris Morgan <macromorgan@hotmail.com>
-> > > > 
-> > > > Add a default pinctrl for the pwm function.
-> > > > 
-> > > > Signed-off-by: Chris Morgan <macromorgan@hotmail.com>  
-> > > 
-> > >   
-> > > > ---
-> > > >  arch/arm/boot/dts/sun8i-v3s.dtsi | 7 +++++++
-> > > >  1 file changed, 7 insertions(+)
-> > > > 
-> > > > diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi
-> > > > b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> > > > index b001251644f7..e5977524abe2 100644
-> > > > --- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-> > > > +++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-> > > > @@ -414,6 +414,11 @@ mmc1_pins: mmc1-pins {
-> > > >                                 bias-pull-up;
-> > > >                         };
-> > > >  
-> > > > +                       pwm_pins: pwm-pins {
-> > > > +                               pins = "PB4";
-> > > > +                               function = "pwm0";
-> > > > +                       };
-> > > > +
-> > > >                         spi0_pins: spi0-pins {
-> > > >                                 pins = "PC0", "PC1", "PC2", "PC3";
-> > > >                                 function = "spi0";
-> > > > @@ -441,6 +446,8 @@ pwm: pwm@1c21400 {
-> > > >                                      "allwinner,sun7i-a20-pwm";
-> > > >                         reg = <0x01c21400 0xc>;
-> > > >                         clocks = <&osc24M>;
-> > > > +                       pinctrl-0 = <&pwm_pins>;
-> > > > +                       pinctrl-names = "default";  
-> > > 
-> > > How is this supposed to work with multiple channels? There is PWM1 on
-> > > PB5. If one wants to potentially use that, we would need to add a
-> > > reference to those pins here as well, and they would all be muxed to
-> > > PWM upon the PWM controller probing?
-> > > 
-> > > So while I see that it's the only output pin for PWM0, this might
-> > > still
-> > > need to go into the board .dts, alongside the status = "okay"; line.
-> > > So
-> > > each board would specify exactly the pins it needs (PWM0 only, PWM1
-> > > only, both or none).  
-> > 
-> > Maybe we should have two PWM pinctrl nodes, pwm0_pins and pwm1_pins,
-> > and then enable the controller (with the pinctrl property) in
-> > individual board DTs.
+> MSM8916 supports SMP with its arm32 dt overlay, as probably could 8939.
+> But the arm64 DT should not define non-PSCI SMP or CPUidle stuff.
 > 
-> Yes, that's what I meant: keep the pinctrl node in the .dtsi here, but move
-> the pinctrl *properties* to each board's .dts.
+> Drop the qcom,idle-state-spc compatible (associated with Qualcomm-specific
+> CPUIdle) to make the dt checker happy:
 > 
-> Cheers,
-> Andre
+> apq8039-t2.dtb: idle-states: cpu-sleep-0:compatible:
+> ['qcom,idle-state-spc', 'arm,idle-state'] is too long
+> 
+> Fixes: 61550c6c156c ("arm64: dts: qcom: Add msm8939 SoC")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Okay, I'll add a pwm0 and pwm1 option. Thank you.
-
-> 
-> > > Otherwise I compared this against the manual and Linux pinctrl
-> > > driver,
-> > > it all matches up.
-> > > 
-> > > Cheers,
-> > > Andre
-> > >   
-> > > >                         #pwm-cells = <3>;
-> > > >                         status = "disabled";
-> > > >                 };  
-> > >   
-> > 
-> 
+Reviewed-by: Benjamin Li <benl@squareup.com>
