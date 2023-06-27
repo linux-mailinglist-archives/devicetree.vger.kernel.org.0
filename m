@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B1A773FBF1
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 14:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B20973FC3E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 14:55:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230268AbjF0M1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 08:27:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41670 "EHLO
+        id S230423AbjF0MzH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 08:55:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50230 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230138AbjF0M1k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 08:27:40 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2FF81999;
-        Tue, 27 Jun 2023 05:27:38 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4f86fbe5e4fso5913875e87.2;
-        Tue, 27 Jun 2023 05:27:38 -0700 (PDT)
+        with ESMTP id S230326AbjF0My4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 08:54:56 -0400
+Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7936F2715;
+        Tue, 27 Jun 2023 05:54:54 -0700 (PDT)
+Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b5c231f842so42985711fa.2;
+        Tue, 27 Jun 2023 05:54:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687868857; x=1690460857;
+        d=gmail.com; s=20221208; t=1687870493; x=1690462493;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=/mJ6hmMqZhxuz4ikK9p02Uw9j7Tjh09y+Fhxu+CmDd0=;
-        b=g7/qXappm38Acrg/PZ0xRgRoQ3mCx1qsch84FzZiz0+ESXVwyVvu0z2Enl0IUKaV7q
-         htbU0CT+SB72XpCXIx9lbP4XQQLlU17TNyj2kntCazzzgyq9M848oSBjxMchkT4pu7D6
-         jX16cc3QTMWWngPQZNfjmA6Ov0RcvBC4lTH/+eNY8EtGfO3vm7P8Ewj30/vqZT1jSbqe
-         SghKEgS4XuQ8s9D7h2UWGFi90tL/tO9lGbJkQA9/v/ASX7R0kQA2ESQLQwKsg9XiZqZZ
-         D9+heArI2amw08vNLl5A4iZvijcabNbhSpv5EluoNAZf+7hyXoJR7H0PYqj4ryjGNeS0
-         o9Cw==
+        bh=8YE7wSDf9+kixNjK3SC5HyvOe27Psh650QQ7iYwckpg=;
+        b=cjChsABwaIiGiXFxDFxskK6sd1HRgZdRbC2eVH6wCVvr1AQrgInU+xKmVehbzpUzCc
+         Ikpsh4LS5zq2zS3tYFKlFcY2TqDY0RTPND2efixaWg5ilaALZ06VJeA9KR9EvBgIs/EH
+         k+4y3YgEIdJ7wMCGOmrLLOLXprttiBkx4N7vby4VzOg9mg1wvN9j+tCPuXxAggVk2f8I
+         vtSeSDVDPP9GWwRwBA06A6OR+T2BEoRiiLnUiVSfUKh1+tgeWdpuFxnsYC5jFKx9kEec
+         U+mvIorg2MMU2p14fPMWPuI1d8qRtYzdaOB5lT9aVav8LRJyKFbcbc/8mBYtYiZJoclX
+         KGCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687868857; x=1690460857;
+        d=1e100.net; s=20221208; t=1687870493; x=1690462493;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=/mJ6hmMqZhxuz4ikK9p02Uw9j7Tjh09y+Fhxu+CmDd0=;
-        b=NFVI+/dAgQF4KfXkissMnm/EW8S7K0IeM7Eq26kBazKeuMnSyFSGqdgOR+6LBhWcAR
-         RF50pFQPuZioyAuFtW9I2RJWL+n8AyN2sy+Qo9AQZ7b/M/WOvSR/PSGnHpYQyJgnYu50
-         ulvceLbt9VBV2J2y0e5ERK+jH9MbUxyad3aYANL9lEILwrhhm3DjSBuiZ8ds1z2JmknO
-         wtLftNRHyAYdod+TEbjH3pS1HrznIzmcywUJdoav8PWGT4RrgVpN+6BxEvOA7pSkIYWY
-         Rk3VdQ3QJNaU6/vZLxOv2R+JKfWkgCWNY5C0YeMrmD9dBukDd7JAjSmoBCSgIOeyD98+
-         d8BQ==
-X-Gm-Message-State: AC+VfDzXiO2HEe2PeURwPjbTI+3P0KztemwHISqRg9lvvN8KaJA7NKme
-        s5xI2238Tj2JcIRKOOjUNzU=
-X-Google-Smtp-Source: ACHHUZ7uudNcbmp+pqAQlJxTbbL5JTe7kns0LAL50bO2FeUNhAtc/IXEvtiJbz5XUijjmrozJAEi1w==
-X-Received: by 2002:a19:4355:0:b0:4f8:5635:2cd8 with SMTP id m21-20020a194355000000b004f856352cd8mr16940533lfj.32.1687868856658;
-        Tue, 27 Jun 2023 05:27:36 -0700 (PDT)
+        bh=8YE7wSDf9+kixNjK3SC5HyvOe27Psh650QQ7iYwckpg=;
+        b=HpZiIdB0OoPTtFfpXqsu6Yv+bCA803HOR5N3wVqTfMwCJ5USHG8U/od4Wby6LVuE8Y
+         P37zo2W8cwjHC+liWwnAGzhrh25kecJracXTgZqTSOJzZEDB8thS7CDl4icJBvQznzKN
+         vIoG/l1jgQKGI2Qt6XVqlgwT/2b41Y3V6veCTt+UFAv1EN5TnK9QwpwQ5nkCw8KdLT9E
+         4qYrSPtMO5VjmKK1mQWOYXOAlCBgmunV5qJrorCAdagIMvepyhcTtguTQaaTLWIfA3LN
+         YDY8du9PRGyZmz+1506oyZQDgNtuzLi/Tm04uMNn65LKGlhOZO/8CW727LXQudVWmgiq
+         GUew==
+X-Gm-Message-State: AC+VfDyHh1083B8gQgAvtIxWaTYJvW4SeulsrSMyYOyKLEuon/dxWSNn
+        NolqUMIvLWZUoeS/O6rUtDb3m0Ro4R8=
+X-Google-Smtp-Source: ACHHUZ5gkQTil60/IJCpxMy96qfRyWmGyiGxmtKV0FFui1C5evBEIgoYE3C3DgSY38t9mhHAHX1Ipg==
+X-Received: by 2002:a2e:9e4f:0:b0:2b1:b4e9:4c3 with SMTP id g15-20020a2e9e4f000000b002b1b4e904c3mr21755792ljk.2.1687870492431;
+        Tue, 27 Jun 2023 05:54:52 -0700 (PDT)
 Received: from mobilestation ([109.194.233.142])
-        by smtp.gmail.com with ESMTPSA id y10-20020ac255aa000000b004f842478f9asm1492318lfg.88.2023.06.27.05.27.35
+        by smtp.gmail.com with ESMTPSA id o10-20020a2e730a000000b002b217532064sm1737956ljc.33.2023.06.27.05.54.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jun 2023 05:27:35 -0700 (PDT)
-Date:   Tue, 27 Jun 2023 15:27:33 +0300
+        Tue, 27 Jun 2023 05:54:51 -0700 (PDT)
+Date:   Tue, 27 Jun 2023 15:54:49 +0300
 From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Rob Herring <robh@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
 Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
         Jingoo Han <jingoohan1@gmail.com>,
         Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
         Bjorn Helgaas <bhelgaas@google.com>,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Heiko Stuebner <heiko@sntech.de>,
         Shawn Lin <shawn.lin@rock-chips.com>,
         Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         kernel@collabora.com
-Subject: Re: [PATCH v1 1/4] dt-bindings: PCI: dwc: rockchip: Fix
- interrupt-names issue
-Message-ID: <n5vgfnqicq3ndgqtcp3yjurbdn76vucj6zyjhlpjbdwoquv2la@5g5kv5gceyd7>
+Subject: Re: [PATCH v1 2/4] dt-bindings: PCI: dwc: rockchip: Add missing
+ legacy-interrupt-controller
+Message-ID: <6ewtsaw72474pwvdohpapwnmbevivlkmagwnv7r7ggixhhmo6e@fcl74rn2rlqz>
 References: <20230616170022.76107-1-sebastian.reichel@collabora.com>
- <20230616170022.76107-2-sebastian.reichel@collabora.com>
+ <20230616170022.76107-3-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230616170022.76107-2-sebastian.reichel@collabora.com>
+In-Reply-To: <20230616170022.76107-3-sebastian.reichel@collabora.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
         RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -84,137 +84,70 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 07:00:19PM +0200, Sebastian Reichel wrote:
-> The RK356x (and RK3588) have 5 ganged interrupts. For example the
-> "legacy" interrupt combines "inta/intb/intc/intd" with a register
-> providing the details.
-> 
-> Currently the binding is not specifying these interrupts resulting
-> in a bunch of errors for all rk356x boards using PCIe.
-> 
-> Fix this by specifying the interrupts and add them to the example
-> to prevent regressions.
+On Fri, Jun 16, 2023 at 07:00:20PM +0200, Sebastian Reichel wrote:
+> Rockchip RK356x and RK3588 handle legacy interrupts via a ganged
+> interrupts. The RK356x DT implements this via a sub-node named
+> "legacy-interrupt-controller", just like a couple of other PCIe
+> implementations. This adds proper documentation for this and updates
+> the example to avoid regressions.
 > 
 > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
 > ---
->  .../bindings/pci/rockchip-dw-pcie.yaml         | 18 ++++++++++++++++++
->  .../devicetree/bindings/pci/snps,dw-pcie.yaml  | 15 ++++++++++++++-
->  2 files changed, 32 insertions(+), 1 deletion(-)
+>  .../bindings/pci/rockchip-dw-pcie.yaml        | 24 +++++++++++++++++++
+>  1 file changed, 24 insertions(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> index 24c88942e59e..98e45d2d8dfe 100644
+> index 98e45d2d8dfe..bf81d306cc80 100644
 > --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
 > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> @@ -56,6 +56,17 @@ properties:
->        - const: pclk
->        - const: aux
+> @@ -67,6 +67,22 @@ properties:
+>        - const: legacy
+>        - const: err
 >  
-> +  interrupts:
-> +    maxItems: 5
+> +  legacy-interrupt-controller:
+> +    description: Interrupt controller node for handling legacy PCI interrupts.
+> +    type: object
+> +    properties:
+> +      "#address-cells":
+> +        const: 0
 > +
-> +  interrupt-names:
-> +    items:
-> +      - const: sys
-> +      - const: pmc
-> +      - const: msg
-> +      - const: legacy
-> +      - const: err
+> +      "#interrupt-cells":
+> +        const: 1
+> +
+
+> +      "interrupt-controller": true
+
+redundant quotes.
+
+> +
+> +      interrupts:
+> +        items:
+> +          - description: combined legacy interrupt
+
+Missing the "additionalProperties" qualifier and the "required"
+property.
+
+-Serge(y)
+
 > +
 >    msi-map: true
 >  
 >    num-lanes: true
-> @@ -98,6 +109,7 @@ unevaluatedProperties: false
->  
->  examples:
->    - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
->  
->      bus {
->          #address-cells = <2>;
-> @@ -117,6 +129,12 @@ examples:
->                            "aclk_dbi", "pclk",
->                            "aux";
->              device_type = "pci";
-> +            interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
-> +                         <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
-> +            interrupt-names = "sys", "pmc", "msg", "legacy", "err";
->              linux,pci-domain = <2>;
->              max-link-speed = <2>;
->              msi-map = <0x2000 &its 0x2000 0x1000>;
-> diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> index 1a83f0f65f19..9f605eb297f5 100644
-> --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> @@ -193,9 +193,22 @@ properties:
->            oneOf:
->              - description: See native "app" IRQ for details
->                enum: [ intr ]
-
-The IRQs below are either combined version of the already defined IRQs
-or just the generic DW PCIe IRQs but named differently. Moreover I
-don't see kernel using any of them except the "legacy" interrupt. What
-about converting the dts files to using the already defined names instead
-of extending the already over-diverged DT-bindings?
-Rob, Krzysztof?
-
-In anyway in order to prevent from defining the new DW PCIe bindings
-compatible with your vendor-specific names please move the aliases to
-being under the last entry of the "interrupt-names" items property.
-(See the "intr" IRQ name for example or the way the vendor-specific
-names are defined in the reg-names property.)
-
-> +        - description: Combined Legacy A/B/C/D interrupt signal.
-> +          const: legacy
-
-This is a combined signal of "^int(a|b|c|d)$". So the entry
-is supposed to look:
-+              - description: See native "int*" IRQ for details
-+                const: legacy
-
-> +        - description: Combined System interrupt signal.
-> +          const: sys
-
-This seems like the "app" interrupt. So please either convert the dts
-file to using the "app" name or move this to being defined in the same
-entry as the "intr" name.
-
-> +        - description: Combined Power Management interrupt signal.
-> +          const: pmc
-
-This is an alias to the already defined "pme" name. So either convert
-the dts file to using "pme" or move this to being in the
-vendor-specific list of the "interrupt-names" property:
-+              - description: See native "pme" IRQ for details
-+                const: pmc
-
-> +        - description: Combined Message Received interrupt signal.
-> +          const: msg
-
-ditto but with respect to the "msi" name.
-
-> +        - description: Combined Error interrupt signal.
-> +          const: err
-
-ditto but with respect to the "sft_*" name.
-
+> @@ -148,6 +164,14 @@ examples:
+>              reset-names = "pipe";
+>              #address-cells = <3>;
+>              #size-cells = <2>;
 > +
->      allOf:
->        - contains:
-> -          const: msi
-> +          enum:
-> +            - msi
-> +            - msg
-
-* Please see my suggestion about converting the DTS file instead.
-
--Serge(y)
-
->  
->  additionalProperties: true
->  
+> +            legacy-interrupt-controller {
+> +                interrupt-controller;
+> +                #address-cells = <0>;
+> +                #interrupt-cells = <1>;
+> +                interrupt-parent = <&gic>;
+> +                interrupts = <GIC_SPI 72 IRQ_TYPE_EDGE_RISING>;
+> +            };
+>          };
+>      };
+>  ...
 > -- 
 > 2.39.2
 > 
