@@ -2,95 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1190D73FDDB
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFF0973FE72
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:40:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229655AbjF0Ocl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 10:32:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36148 "EHLO
+        id S230523AbjF0OkP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 10:40:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40782 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230415AbjF0OcX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:32:23 -0400
-Received: from mail-vs1-xe31.google.com (mail-vs1-xe31.google.com [IPv6:2607:f8b0:4864:20::e31])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB25510FC
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:32:21 -0700 (PDT)
-Received: by mail-vs1-xe31.google.com with SMTP id ada2fe7eead31-4435fa903f2so726698137.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:32:21 -0700 (PDT)
+        with ESMTP id S231819AbjF0Oj7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:39:59 -0400
+Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 540D535A9
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:39:23 -0700 (PDT)
+Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-668704a5b5bso4218744b3a.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:39:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687876341; x=1690468341;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=cG7mmaozMpgjvuV6CWQPP9vpxK9PhxWUqBms3Di/VFs=;
-        b=vcPfT4UGkqo0ZtlkTl38Bs2RKevnc83rsLOxmDwcrqxCQ+TWPfkuIbQSHZOm00Z0Tw
-         /vM33MfnFbI0yeOCv8ar2dXQyFsuKL70v3/4C4UDqARdh2hcH8OvPUxhTQkB/5KyD+AD
-         kLxIZ+HK96wHM3ZSlTWn/jbUuWukQcVXLeFEVlsvh/kkLMNuC8kousG3lZnSGbcr48Zd
-         MEJXNuvT/GTlcqB9lw1CJGEPBuiKcIERn7Vw/48LoN6M5K7bgo9o0Y6zHKX2YQcLK8Os
-         ocuV6wx81XXMmh81U5ZWmvS07Gv40a3cfMZKnGru+znZ2FYWkpCUaVb62soUwuG/oIoZ
-         nxtg==
+        d=linaro.org; s=google; t=1687876760; x=1690468760;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=4nJWDV0jywhxf0OMEHmO3nQx+Dc6iDsFe4yCSR+nmZo=;
+        b=kdgHbqxy6l7gE3SPWR0nWqtUAV597wHSuY6o8Fl9p27nal0aM6gMTEz7xLENW+Jws1
+         hlOTruXn7Hs+MgPpcR/2juT+bELpD8YS1/5TYD/dLrGMaxIXqiAVmRvDrhs1xlHx2gCZ
+         3trw24snpKKKFkqDv3nqUZvIlDAwhJKH7s5PaNzGxfmYwx/YvwjUHMearGW6Al66I0Fs
+         DHUyBty4p/VQVOaVpsMCyxEQvcaYpZk8ySM3DKXyDfV2UKjXmUesPxAY9/anaWKYu264
+         VqJWhFlMhXMdu9SaoisStiOEt0WEI+99CfhgAKs+fl16xhhX3bbp+O8UPpT9B6jN0NC0
+         kd6Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687876341; x=1690468341;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cG7mmaozMpgjvuV6CWQPP9vpxK9PhxWUqBms3Di/VFs=;
-        b=coq18wTVsJhVU9O6tMpXUfXzcebB+2GMkvwD31o4NB35gsBnl4wiEZa883oR6vQWF1
-         I516MiKA2U4ruhgaQya/N3SaK+r75aKdnkz7IiCggN7er6BAyfOSLYIWY3EvzTlR4IBL
-         fG7Qsx+3rWEIDf4e9Gbq64IAWuxLr7vwvMzwdg4D9ely86PbvCDSv1lCQynAF7fBK0sT
-         iO9HTXf808S+9EPFmn0Q81PwYEIqlk1GgLKy2GhAIsDs2rDB/oU7GQZov3a1U3450GQV
-         XcgWd/9F7okRBQWBNDFsN1hrNNoTulW1LNlFW0YNkBW63GD5cpgMLO+i1gbtOXTKkAxT
-         up4g==
-X-Gm-Message-State: AC+VfDxZI6dS71QTyCd5aJKCHyJ7jcXkA+p+kvLdGPvu6Q78hXEnk9ws
-        zi2h0XlF0a5DuzF0iKZ7KUN5Wg==
-X-Google-Smtp-Source: ACHHUZ5PL5UWrDyfdKFy+qMZ9t0tjcMI6cC9i+p63jD0y6e7ilyV6u4r7dhDFBX0ZNbWreqJZ37dOA==
-X-Received: by 2002:a67:ce91:0:b0:443:5632:66de with SMTP id c17-20020a67ce91000000b00443563266demr2498101vse.16.1687876340847;
-        Tue, 27 Jun 2023 07:32:20 -0700 (PDT)
-Received: from fedora (072-189-067-006.res.spectrum.com. [72.189.67.6])
-        by smtp.gmail.com with ESMTPSA id m12-20020a67d58c000000b004435c659092sm1164404vsj.5.2023.06.27.07.32.19
+        d=1e100.net; s=20221208; t=1687876760; x=1690468760;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=4nJWDV0jywhxf0OMEHmO3nQx+Dc6iDsFe4yCSR+nmZo=;
+        b=FO07syfxyDGGsVI1XysxEubpzzbI6Vz9JP5lOJeUS5DnaC4g9zBjd5i0tKirvu8Rkm
+         gTmeuqjnKXnePgtsQVliWooL2D+q5PpFSd6Ia5ph18AntDUmvS2MELIFWWC9R4yQtqYs
+         uyQkNmEr+PcwrfCNu/Mw73vyilHEmHQcns237uMjYZEeQlRfKIPwhj2NGDKhKbUj517H
+         6IzYr2nEZsvIPKKq2VNhyWoCIw7xU2Cv5V2CxJO5zAiWw647dz/1E80g82tBf6mhtm1R
+         grL+zK8QU3787+KIvGywHVZstz8XfK3+8iEIBNZ9+aGfW28URswzEjKK1IJDBMNWPFx4
+         sxdA==
+X-Gm-Message-State: AC+VfDzIbG7ni1z1YBZYar2cmQQY67qiuG7ksUraSkQdCWhlJTfQuSDQ
+        qtEkB8Bziu1T4+41Dv11MsaI
+X-Google-Smtp-Source: ACHHUZ5q4MSqBMad/7CU3n0bTQr5IyeSnkozHYAD/trBnbhPd2KNQd92dY2h/ORvdIT1OeC1SxnDzw==
+X-Received: by 2002:a05:6a20:549a:b0:123:2c2a:ee62 with SMTP id i26-20020a056a20549a00b001232c2aee62mr22355330pzk.14.1687876760443;
+        Tue, 27 Jun 2023 07:39:20 -0700 (PDT)
+Received: from thinkpad ([117.217.176.90])
+        by smtp.gmail.com with ESMTPSA id o6-20020a63e346000000b00553b9e0510esm5820482pgj.60.2023.06.27.07.39.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jun 2023 07:32:20 -0700 (PDT)
-Date:   Tue, 27 Jun 2023 10:32:17 -0400
-From:   William Breathitt Gray <william.gray@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee@kernel.org>, "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Mark Brown <broonie@kernel.org>,
+        Tue, 27 Jun 2023 07:39:20 -0700 (PDT)
+Date:   Tue, 27 Jun 2023 20:09:12 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
+        krzysztof.kozlowski@linaro.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <ZJry8QTka8m6ag/j@fedora>
-References: <20230412111256.40013-6-okan.sahin@analog.com>
- <20230420103438.GI9904@google.com>
- <09eb8e4c-3e73-41f0-bf42-8ddf3c4254ec@sirena.org.uk>
- <20230421073938.GO996918@google.com>
- <82612171-46d7-4d82-a8fc-c7d6a99d57e9@sirena.org.uk>
- <MN2PR03MB516860989BD8ED6AC9A767FBE755A@MN2PR03MB5168.namprd03.prod.outlook.com>
- <20230621171315.GL10378@google.com>
- <20230626175443.GA3446604-robh@kernel.org>
- <20230627135615.GF10378@google.com>
- <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
+        Conor Dooley <conor+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 2/3] arm: dts: qcom: sdx65: Add interconnect path
+Message-ID: <20230627143912.GG5490@thinkpad>
+References: <1687827692-6181-1-git-send-email-quic_krichai@quicinc.com>
+ <1687827692-6181-3-git-send-email-quic_krichai@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0AHAXhl6gnWOf1AZ"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1687827692-6181-3-git-send-email-quic_krichai@quicinc.com>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -101,156 +83,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jun 27, 2023 at 06:31:30AM +0530, Krishna chaitanya chundru wrote:
+> Add pcie-mem interconnect path to sdx65 target.
+> 
 
---0AHAXhl6gnWOf1AZ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+"target" is meaningless in upstream. Call it "SoC or platform".
 
-On Tue, Jun 27, 2023 at 08:10:59AM -0600, Rob Herring wrote:
-> On Tue, Jun 27, 2023 at 7:56=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
-> >
-> > On Mon, 26 Jun 2023, Rob Herring wrote:
-> >
-> > > On Wed, Jun 21, 2023 at 06:13:15PM +0100, Lee Jones wrote:
-> > > > On Tue, 13 Jun 2023, Sahin, Okan wrote:
-> > > >
-> > > > > >On Fri, Apr 21, 2023 at 08:39:38AM +0100, Lee Jones wrote:
-> > > > > >
-> > > > > >> I'll try anything once!
-> > > > > >
-> > > > > >> Fair warning, I think this is going to massively complicate th=
-ings.
-> > > > > >
-> > > > > >> Either we're going to be left with a situation where child-dri=
-ver
-> > > > > >> maintainers are scrabbling around looking for previous version=
-s for the
-> > > > > >> MFD pull-request or contributors being forced to wait a full c=
-ycle for
-> > > > > >> their dependencies to arrive in the maintainer's base.
-> > > > > >
-> > > > > >If people are resending after the MFD has gone in they really ou=
-ght to
-> > > > > >be including the pull request in the cover letter, with some com=
-bination
-> > > > > >of either referencing the mail or just saying "this depends on t=
-he
-> > > > > >signed tag at url+tag", the same way they would for any other de=
-pendency.
-> > > > > >
-> > > > > >I can't see how you applying stuff when you can slow things down=
- TBH,
-> > > > > >the MFD bits will be applied faster and either people can pull i=
-n a
-> > > > > >shared tag or you can apply more commits on top of the existing =
-core
-> > > > > >driver.
-> > > > > >
-> > > > > >> I'm not sure why simply providing your Ack when you're happy w=
-ith the
-> > > > > >> driver and forgetting about the set until the pull-request arr=
-ives, like
-> > > > > >> we've been doing for nearly a decade now, isn't working for yo=
-u anymore
-> > > > > >> but I'm mostly sure this method will be a regression.
-> > > > > >
-> > > > > >Like I said I've not been doing that, I've mostly been just appl=
-ying the
-> > > > > >driver when it's ready.  This might not have been so visible to =
-you
-> > > > > >since it means that the regulator driver doesn't appear in the s=
-eries by
-> > > > > >the time the MFD settles down.  The whole "Acked-for-MFD" has al=
-ways
-> > > > > >been a bit confusing TBH, it's not a normal ack ("go ahead and a=
-pply
-> > > > > >this, I'm fine with it") so it was never clear what the intentio=
-n was.
-> > > > > >
-> > > > > >Before I started just applying the drivers there used to be cons=
-tant
-> > > > > >problems with things like tags going missing (which some of the =
-time is
-> > > > > >the submitter just not carrying them but can also be the result =
-of some
-> > > > > >churn causing them to be deliberately dropped due to changes) or
-> > > > > >forgetting the series as you suggest and then not looking at som=
-e other
-> > > > > >very similarly named series that was also getting lots of versio=
-ns after
-> > > > > >thinking it was one that had been reviewed already.  It was all =
-very
-> > > > > >frustrating.  Not doing the tags until the dependencies have set=
-tled
-> > > > > >down means that if it's in my inbox it at least consistently nee=
-ds some
-> > > > > >kind of attention and that the submitter didn't drop tags or any=
-thing so
-> > > > > >I know why there's no tag on it even though the version number i=
-s high,
-> > > > > >though it's not ideal either.
-> > > > >
-> > > > > Hi Mark and Lee,
-> > > > >
-> > > > > Is there anything that I need to do for this patch set. I have re=
-ceived reviewed
-> > > > > by tag for all of them so far.
-> > > >
-> > > > Since we are so late in the day, I'm going to just apply this for v=
-6.5.
-> > > >
-> > > > The remainder can then be applied, friction free, for v6.6.
-> > >
-> > > Now we have undocmented bindings in use by the driver (as pointed out=
- by
-> > > 'make dt_compatible_check').
-> > >
-> > > The whole series has all the acks/reviews needed for you to apply the
-> > > whole thing, so why not take the whole thing? Plus this series has be=
-en
-> > > sitting for 2 months. Not a great experience for submitters...
-> >
-> > Patches are missing Acked-by tags.
-> >
-> >   Reviewed-by !=3D Acked-by
->=20
-> Reviewed-by > Acked-by
->=20
-> >
-> > I cannot merge other subsystem's patches without and Acked-by.
->=20
-> I (and Krzysztof) give one or the other. If I'm taking a patch, then
-> it's neither. I'm pretty sure Mark only gives Reviewed-by when he is
-> not taking something.
->=20
-> Rob
+Also the subject should mention PCIe interconnect.
 
-It does seem a bit ambiguous whether an "Acked-by" indicates a
-"Reviewed-by + acceptance of the changes" or just a brief look-over with
-acceptance of the changes. FWIW the documentation does use the word
-"reviewed" when describing Acked-by. [^1]
+> Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
 
-However, I would argue that a Reviewed-by has a implicit acceptance of
-the changes: why else provide a Reviewed-by line for the commit message
-if you fundamentally disagree with the changes being merged? So a
-Reviewed-by given by a maintainer should be seen as approval for those
-changes to be merged.
+With both changes above,
 
-William Breathitt Gray
+Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-[^1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.htm=
-l#when-to-use-acked-by-cc-and-co-developed-by
+- Mani
 
---0AHAXhl6gnWOf1AZ
-Content-Type: application/pgp-signature; name="signature.asc"
+> ---
+>  arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+> index 1a35830..77fa97c 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
+> @@ -332,6 +332,9 @@
+>  				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+>  			interrupt-names = "global", "doorbell";
+>  
+> +			interconnects = <&system_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
+> +			interconnect-names = "pcie-mem";
+> +
+>  			resets = <&gcc GCC_PCIE_BCR>;
+>  			reset-names = "core";
+>  
+> -- 
+> 2.7.4
+> 
 
------BEGIN PGP SIGNATURE-----
-
-iHUEARYKAB0WIQSNN83d4NIlKPjon7a1SFbKvhIjKwUCZJry8QAKCRC1SFbKvhIj
-K0jEAP9974kvrI9EFi93M1mev2jyw0EIBa2A6hH29WtCU3EifQD/UW4lnOzD+057
-JcMn4YE0jSwdW5rjQuznd4HlPpZbJQ8=
-=Ukkt
------END PGP SIGNATURE-----
-
---0AHAXhl6gnWOf1AZ--
+-- 
+மணிவண்ணன் சதாசிவம்
