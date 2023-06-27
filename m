@@ -2,124 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CDD8740544
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 22:51:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58D3A74057C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 23:17:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231652AbjF0Uvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 16:51:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54770 "EHLO
+        id S229888AbjF0VR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 17:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34000 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231648AbjF0Uvq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 16:51:46 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D11A272D
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 13:51:33 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b69f71a7easo44721861fa.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 13:51:33 -0700 (PDT)
+        with ESMTP id S229481AbjF0VR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 17:17:26 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF9D198E
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 14:17:24 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51bcf75c4acso3220a12.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 14:17:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687899092; x=1690491092;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kCzDt5CROKYWDohsq+V3lFQ9c+DIuiELGjjW1xUO8b4=;
-        b=qAyW46DhS3+TOPwxuOExnMpdtCBEUamMGarvJg9AcKe+yAemmVGXuJDBhKSC2Wvt09
-         +JylKWvPIxN+Cm0K5vEBsJiLTJSL3vk881EyySiYp2NkDp6Blw6EIDY6QgiGw8ZysSP3
-         Vs7wSppcZM80nNFx+UI3K2c87rc7afx3SqmAAqBdzvHouiows1haUY8tFPt6Anfs78zv
-         xgEzx3oa7bWgJxYUSFbAf4tz55mRNvdYUuP7sC/350TTrUvZoAe66xhict4TnURHScPq
-         LKcHgBd1dWr9ee2Xzs69iTaWv69vMAANoio4PO+9gqQwEzoNTJrFVAQyB2AIGcVdakI4
-         DUWw==
+        d=google.com; s=20221208; t=1687900643; x=1690492643;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=cBeSv/arp5bR8O0ezFl7fdKlEKxWfXnzLYU9+AdmzGc=;
+        b=tfUpx5yzTHhQIqvV6B/hMBOXajoW3JRxIkAPylYF9WdKHxjWQXkaz29OkaD06EUW+C
+         /tSk+kBo0MdDNbAf7SbEV9eaO4cZ/IK21j7EeF69T3+T4FzzOV+PVke8d6c+Bb5S1HQ6
+         hLo5lk8AvJtb9soHB+Yq8dVmRdFaso7T2mFv1mIKj+d55uOi+2yqs11OZq8dxUl241lz
+         awwPlDOWsF0ihnewJriL+vS5clDEI6pQt4emYOx9wGU1+1QnOmI0tM70awk/SeNecE/U
+         1czgUpwJqXcK5y/RIVjx/rZrDm5qZhvRlJVmFjXFnzG3xAq92G/YDwthgX0Iz5XRgtSC
+         2tLQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687899092; x=1690491092;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kCzDt5CROKYWDohsq+V3lFQ9c+DIuiELGjjW1xUO8b4=;
-        b=Xk/DCohZafq55uSnRkgbmIeBnvTP412iVzJAhWGu6c0orgNaiQbCUD/sftmYrgc28r
-         onaUnh+0oftXmja4whzPVGVo6X7wqWq1EYaMpf1g+lkOT0fGZYJ1Tx0KSFBQBj7W5B5w
-         6icOm7REyyeVlalk8KEwqLy9vpYfQB+hZLZuyshyeywoxUUVIAH/wb5Sbnhu17NHlVwG
-         vykkOipssX0bo0mXE4godl6xNEpcBKH1569qHbSixrHT691J1GP/oxuudfzVa91TeE/+
-         yoYUl9y6OE9l7r5QefrTNk0rIy8eQCqKx9Mlek6uZRok83I8Cthn52BnPOA/mgvo9yn7
-         TyGw==
-X-Gm-Message-State: AC+VfDyFK4nOHtSkf5BjUKVQs0PJUo1x4gY84bZ1ojmc3DzjF8+P0uuL
-        ELyiH+cJXtoKGq7KDaXvlxOVLQ==
-X-Google-Smtp-Source: ACHHUZ5ZPUTrUE7nD8aIZbN7Xlww2DznNh1NZ2SSDhF7luRrOhP1OuGQ77OUjfsUyGqY8U50Ifyk9g==
-X-Received: by 2002:a2e:95d7:0:b0:2b4:65bf:d7b with SMTP id y23-20020a2e95d7000000b002b465bf0d7bmr18474072ljh.2.1687899091991;
-        Tue, 27 Jun 2023 13:51:31 -0700 (PDT)
-Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
-        by smtp.gmail.com with ESMTPSA id y20-20020a2e95d4000000b002b6b928a6d8sm161413ljh.33.2023.06.27.13.51.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 13:51:31 -0700 (PDT)
-Message-ID: <8656ec99-82fc-3570-701d-df4266712348@linaro.org>
-Date:   Tue, 27 Jun 2023 22:51:29 +0200
+        d=1e100.net; s=20221208; t=1687900643; x=1690492643;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=cBeSv/arp5bR8O0ezFl7fdKlEKxWfXnzLYU9+AdmzGc=;
+        b=DjXU3M1Y61l0Ye8uVrJrJNdNEElyVpDsm1nz8KpPmHUfBIVkshAqgE1PFLXHKYYrDz
+         ib8X5x0q3t/ZZN2cZpsEzenEDwg6Ltv00k3TdheC4KYKs+glTbKepDwNqVp0d1f5aWXD
+         nFLY4WZop/u0QdOMA4WguagkRjuKqq3NCPadBxq+X7FWH5cHnn55KfHC5C67kiSHLYaB
+         vQIxQ32RBOeg8g56vn9cij2H/xY+AqHtMZGtPvFC24Bc2mwgbI7W7mM7YTa5sy5m7i72
+         X2k9YmV6GYRF4pDLsc6JRfRWXycphZ7VIzlvUqOZMZuhy6hb7gZIInwwCJ12E8Seeo2E
+         Fd1w==
+X-Gm-Message-State: AC+VfDz/KsPdoIAxJO8o0d6HpvBCgPOWdkdfzBeyHs0SmfWe5H5Yah6R
+        yOlTRXDQF6ofVqgaJ/m0mUuJiJgaq9bziQQzFHhh2w==
+X-Google-Smtp-Source: ACHHUZ70Q5j1PrnGsHu1Pss9Gi238RZdicz8QeFii6Q1FnA+fmkZQD6gh8CYj3Aib3f7Q0vjX9+44Tr1PgkxN5zxB2M=
+X-Received: by 2002:a50:d087:0:b0:506:b280:4993 with SMTP id
+ v7-20020a50d087000000b00506b2804993mr28983edd.2.1687900643282; Tue, 27 Jun
+ 2023 14:17:23 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v11 6/9] soc: qcom: cpr: Use u64 for frequency
-Content-Language: en-US
-To:     Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Marijn Suijten <marijn.suijten@somainline.org>
-References: <20230217-topic-cpr3h-v11-0-ba22b4daa5d6@linaro.org>
- <20230217-topic-cpr3h-v11-6-ba22b4daa5d6@linaro.org>
- <2e11a98a-3e44-7164-84cc-7bbd519b608a@quicinc.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <2e11a98a-3e44-7164-84cc-7bbd519b608a@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+References: <20230627050148.2045691-1-yangcong5@huaqin.corp-partner.google.com>
+In-Reply-To: <20230627050148.2045691-1-yangcong5@huaqin.corp-partner.google.com>
+From:   Doug Anderson <dianders@google.com>
+Date:   Tue, 27 Jun 2023 14:17:10 -0700
+Message-ID: <CAD=FV=WR=fnhCxC37Eo3hinh2MV=eTNuXG+GrwgR6K_pV4Rbaw@mail.gmail.com>
+Subject: Re: [v2] drm/panel: Fine tune Starry-ili9882t panel HFP and HBP
+To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
+Cc:     sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
+        airlied@gmail.com, hsinyi@google.com,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27.06.2023 22:15, Jeffrey Hugo wrote:
-> On 6/27/2023 12:30 PM, Konrad Dybcio wrote:
->> 32 bits is not enough for over-2.changeGHz frequencies. Move all variables
->> that operate on Hz to u64 to avoid overflows.
->>
->> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
-> 
-> I get the following warning when building this -
-Ugh. Either didn't notice or clang wasn't unhappy with it.
+Hi,
 
-Thanks for noticing.
+On Mon, Jun 26, 2023 at 10:01=E2=80=AFPM Cong Yang
+<yangcong5@huaqin.corp-partner.google.com> wrote:
+>
+> Because the setting of hproch is too small, there will be warning in
+> kernel log[1]. After fine tune the HFP and HBP, this warning can be
+> solved. The actual measurement frame rate is 60.1Hz.
+>
+> [1]: WARNING kernel:[drm] HFP + HBP less than d-phy, FPS will under 60Hz
 
-Konrad
-> 
->   CC      drivers/soc/qcom/cpr-common.o
-> In file included from ./include/linux/device.h:15:0,
->                  from ./include/linux/platform_device.h:13,
->                  from ./include/linux/of_device.h:5,
->                  from drivers/soc/qcom/cpr.c:18:
-> drivers/soc/qcom/cpr.c: In function ‘cpr_corner_init’:
-> drivers/soc/qcom/cpr.c:870:21: warning: format ‘%lu’ expects argument of type ‘long unsigned int’, but argument 4 has type ‘u64 {aka long long unsigned int}’ [-Wformat=]
->    dev_dbg(drv->dev, "freq: %lu level: %u fuse level: %u\n",
->                      ^
-> ./include/linux/dev_printk.h:129:27: note: in definition of macro ‘dev_printk’
->    _dev_printk(level, dev, fmt, ##__VA_ARGS__);  \
->                            ^~~
-> ./include/linux/dev_printk.h:163:31: note: in expansion of macro ‘dev_fmt’
->    dev_printk(KERN_DEBUG, dev, dev_fmt(fmt), ##__VA_ARGS__); \
->                                ^~~~~~~
-> drivers/soc/qcom/cpr.c:870:3: note: in expansion of macro ‘dev_dbg’
->    dev_dbg(drv->dev, "freq: %lu level: %u fuse level: %u\n",
->    ^~~~~~~
+Thanks for including the warming. This looks like something that's
+only printed on Mediatek display controllers. Just out of curiosity:
+is that because Mediatek controllers have special requirements, or is
+this something generic and the Mediatek controller is the only one
+that warns about it?
+
+
+> Fixes: 8716a6473e6c ("drm/panel: Support for Starry-ili9882t TDDI
+> MIPI-DSI panel")
+
+Ideally the tool you have to send mail wouldn't wrap the Fixes line.
+Probably not worth resending just for this, but see if there's
+something you can do to fix this in the future.
+
+Since this is a tiny fix, I don't think we need to wait too long. I'll
+plan to land it on Thursday unless Neil wants to land it himself
+sooner.
+
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
