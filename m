@@ -2,168 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18B2673FD29
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9112E73FD2F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:49:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229867AbjF0Nsx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 09:48:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44962 "EHLO
+        id S231232AbjF0Nte (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 09:49:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231183AbjF0Nsv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:48:51 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9477A296B;
-        Tue, 27 Jun 2023 06:48:47 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 230DA611AB;
-        Tue, 27 Jun 2023 13:48:47 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BE2AC433CA;
-        Tue, 27 Jun 2023 13:48:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687873726;
-        bh=mObELhIa7cwUVV/oIDNa5An5fXRPEinl+dDJGvds3Nc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=L51bvRo3oGBkGU3bYcUoxBi7qn+NBS181faXZyiA+mjcHOLWAVCr3vgHqTrqbzGBQ
-         30OTwDS0JSOAiLcEqhE4pFGIsNHahwmRQmJPtUewXfu/gR9wKpeIfXiyPraZG7Z60J
-         zgf00meR3swepOPrA3FOV8I0GsUgmhpFuxJZBv2+BoNuiH4I61qnrDjmjrcKIA/JZB
-         ow66V3Jogu1L9blAYv3JNW41bMhfWTVYCVmk1s2hlP8DYAH6YPqsZVIb3yHd5RIvkv
-         WAvGB74OXpKMUifH2ZLpFkzPcrMrYLVBSK/iRwFRPkARZsPzEg1SpyjRevjogb2YKB
-         IiiYpcBwJkMag==
-Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b698371937so46831491fa.3;
-        Tue, 27 Jun 2023 06:48:46 -0700 (PDT)
-X-Gm-Message-State: AC+VfDwgYLbMSOsduqnnP6w+mzQwyG08fmo7GhROgTZIqHk9VDUW14rO
-        T4JYQwHNRGRPZBvtSxLm2hdDsTH8O/pDWrtJ/Q==
-X-Google-Smtp-Source: ACHHUZ5mxTMdxMXPa9Ql9RKi9asFXmBgUnXk5or90ARb0BmcJyRwHgk8XT0HrKpFAmR/DxyxLhEgELhil1yyDDw4tUE=
-X-Received: by 2002:a2e:7a06:0:b0:2b6:97e6:93f5 with SMTP id
- v6-20020a2e7a06000000b002b697e693f5mr4452783ljc.11.1687873724458; Tue, 27 Jun
- 2023 06:48:44 -0700 (PDT)
+        with ESMTP id S231182AbjF0Ntc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:49:32 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0977C3594
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:49:24 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51d93425853so3342763a12.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:49:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687873763; x=1690465763;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DjzAtSsUnoiViDhxlYstizqeG3gV5lHKEHOvIWWGEvc=;
+        b=WzzrQitVIZaaF4EPnSlfE6Y0INMHwd9HVk83s40UpzvYnZr5EUweJ0A3yEkhv61tEH
+         74r6ooCsr3i7VEjBenCCsVj5PwHp0MDIb1ESsDIJe2SyO9T8N2fcYOO55Y3R+oC9y90w
+         paeoEg21okEkWb7QjvcRSzuRose0g46zAVQRm+XWBddPvb+xoq2sab9JeNS1ZH1x3uqg
+         gO86MeGEOLpORPHe7+32lYejqyD/RqMzBabzPIAs/qgpBsFAxyf9Lkja79QapzOskwX5
+         qtEUn0+fgxkBi3hMCSmlvF1lo5ohOcfnfShb2MqT/zkQWKITD6ydqt61NEVFHiBCWLBM
+         eFrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687873763; x=1690465763;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DjzAtSsUnoiViDhxlYstizqeG3gV5lHKEHOvIWWGEvc=;
+        b=gCCUl3fwy0/9aZBXJAEIoZlIYCs5iFXChmZGw6hOaN1gf0r2BriTNXBLTnYrHEZHR0
+         OPDmMctg40am0r6tChh90GTsUvnqniiHMj7s2Iaw4d2HjIyiWzBTciShCH+PAxUkldOQ
+         OT+2ciJOZhNwqJgu74e7ikxYPa80ZM0WyUEPYWlYXMardygz8Igj2u24sSgY22anvSJ3
+         q+i8hK6GsaQHrdxN1tpt5XcWJ7kxKJFKmpkL8dGL/kFxr+sFNMx4Guahi+ZEIoOqnodi
+         XSxffVk2vwH4MCdYD2yzOI0mWK+LOTvpfecWuNJ+cDpn6JWXTvDOBFioydJXt/CwMKXw
+         Tq1g==
+X-Gm-Message-State: AC+VfDzJs9DvhnYF5Ycp/r3aeeWXNOkf0s9HFytnjvI+p1mPsR+oOqvC
+        iwBOa+UiSwCp+jpr02HdMF6wKQ==
+X-Google-Smtp-Source: ACHHUZ7Duzi+xrx51YKQp39TZMoR7EqaHPBiZwrwYQ3VqHuPl3kJuQw5RSFjzC3QlhXG7gj+iEkyzw==
+X-Received: by 2002:a17:907:7b96:b0:973:9f60:c57e with SMTP id ne22-20020a1709077b9600b009739f60c57emr31458434ejc.2.1687873763316;
+        Tue, 27 Jun 2023 06:49:23 -0700 (PDT)
+Received: from [10.230.170.72] (46-253-189-43.dynamic.monzoon.net. [46.253.189.43])
+        by smtp.gmail.com with ESMTPSA id n14-20020a170906118e00b0098ce63e36e9sm4641771eja.16.2023.06.27.06.49.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jun 2023 06:49:22 -0700 (PDT)
+Message-ID: <90422bdb-4385-b42c-b5f8-541c6c14be6b@linaro.org>
+Date:   Tue, 27 Jun 2023 15:49:21 +0200
 MIME-Version: 1.0
-References: <20230616170022.76107-1-sebastian.reichel@collabora.com>
- <20230616170022.76107-2-sebastian.reichel@collabora.com> <n5vgfnqicq3ndgqtcp3yjurbdn76vucj6zyjhlpjbdwoquv2la@5g5kv5gceyd7>
-In-Reply-To: <n5vgfnqicq3ndgqtcp3yjurbdn76vucj6zyjhlpjbdwoquv2la@5g5kv5gceyd7>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 27 Jun 2023 07:48:29 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+=kBrujhLW_KNRWpj+DQJbnXrA=RS3La5ekbJtji+xiQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+=kBrujhLW_KNRWpj+DQJbnXrA=RS3La5ekbJtji+xiQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/4] dt-bindings: PCI: dwc: rockchip: Fix
- interrupt-names issue
-To:     Serge Semin <fancer.lancer@gmail.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@collabora.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: usb: ci-hdrc-usb2: add
+ fsl,picophy-rise-fall-time-adjust property
+Content-Language: en-US
+To:     Xu Yang <xu.yang_2@nxp.com>, peter.chen@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        gregkh@linuxfoundation.org
+Cc:     conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        linux-imx@nxp.com, peng.fan@nxp.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, jun.li@nxp.com
+References: <20230627112126.1882666-1-xu.yang_2@nxp.com>
+ <20230627112126.1882666-2-xu.yang_2@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230627112126.1882666-2-xu.yang_2@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 27, 2023 at 6:27=E2=80=AFAM Serge Semin <fancer.lancer@gmail.co=
-m> wrote:
->
-> On Fri, Jun 16, 2023 at 07:00:19PM +0200, Sebastian Reichel wrote:
-> > The RK356x (and RK3588) have 5 ganged interrupts. For example the
-> > "legacy" interrupt combines "inta/intb/intc/intd" with a register
-> > providing the details.
-> >
-> > Currently the binding is not specifying these interrupts resulting
-> > in a bunch of errors for all rk356x boards using PCIe.
-> >
-> > Fix this by specifying the interrupts and add them to the example
-> > to prevent regressions.
-> >
-> > Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> > ---
-> >  .../bindings/pci/rockchip-dw-pcie.yaml         | 18 ++++++++++++++++++
-> >  .../devicetree/bindings/pci/snps,dw-pcie.yaml  | 15 ++++++++++++++-
-> >  2 files changed, 32 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yam=
-l b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > index 24c88942e59e..98e45d2d8dfe 100644
-> > --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> > @@ -56,6 +56,17 @@ properties:
-> >        - const: pclk
-> >        - const: aux
-> >
-> > +  interrupts:
-> > +    maxItems: 5
-> > +
-> > +  interrupt-names:
-> > +    items:
-> > +      - const: sys
-> > +      - const: pmc
-> > +      - const: msg
-> > +      - const: legacy
-> > +      - const: err
-> > +
-> >    msi-map: true
-> >
-> >    num-lanes: true
-> > @@ -98,6 +109,7 @@ unevaluatedProperties: false
-> >
-> >  examples:
-> >    - |
-> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> >
-> >      bus {
-> >          #address-cells =3D <2>;
-> > @@ -117,6 +129,12 @@ examples:
-> >                            "aclk_dbi", "pclk",
-> >                            "aux";
-> >              device_type =3D "pci";
-> > +            interrupts =3D <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>,
-> > +                         <GIC_SPI 159 IRQ_TYPE_LEVEL_HIGH>,
-> > +                         <GIC_SPI 158 IRQ_TYPE_LEVEL_HIGH>,
-> > +                         <GIC_SPI 157 IRQ_TYPE_LEVEL_HIGH>,
-> > +                         <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>;
-> > +            interrupt-names =3D "sys", "pmc", "msg", "legacy", "err";
-> >              linux,pci-domain =3D <2>;
-> >              max-link-speed =3D <2>;
-> >              msi-map =3D <0x2000 &its 0x2000 0x1000>;
-> > diff --git a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml b/=
-Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > index 1a83f0f65f19..9f605eb297f5 100644
-> > --- a/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > +++ b/Documentation/devicetree/bindings/pci/snps,dw-pcie.yaml
-> > @@ -193,9 +193,22 @@ properties:
-> >            oneOf:
-> >              - description: See native "app" IRQ for details
-> >                enum: [ intr ]
->
-> The IRQs below are either combined version of the already defined IRQs
-> or just the generic DW PCIe IRQs but named differently. Moreover I
-> don't see kernel using any of them except the "legacy" interrupt. What
-> about converting the dts files to using the already defined names instead
-> of extending the already over-diverged DT-bindings?
-> Rob, Krzysztof?
+On 27/06/2023 13:21, Xu Yang wrote:
+> The fsl,picophy-rise-fall-time-adjust property can help to adjust the
+> rise/fall times of the high-speed transmitter waveform. The value can be
+> 0~3. It has no unit. According to the description of USBNC_n_PHY_CFG1
+> register, the rise/fall time will be increased or decreased by a certain
+> percentage relative to design default time if a value is given to this
+> property.
+> 
+> Signed-off-by: Xu Yang <xu.yang_2@nxp.com>
 
-If there's not a dependency on the names, then we can get away with
-changing them. Otherwise, it's an ABI issue to change them. Supporting
-both names in the driver partially mitigates that, but isn't worth
-carrying that IMO.
 
-Will drop this one from my tree. Seems patches 2 and 3 aren't
-dependent on this one.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Rob
+Best regards,
+Krzysztof
+
