@@ -2,114 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0175173F010
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 03:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A2F273F05A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 03:24:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229909AbjF0BBx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 21:01:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58060 "EHLO
+        id S229888AbjF0BY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 21:24:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229724AbjF0BBw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 21:01:52 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 510F4E6F;
-        Mon, 26 Jun 2023 18:01:51 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35R10RSi027825;
-        Tue, 27 Jun 2023 01:01:47 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=CoQWJK6g3lHTk1rFQ7ZMbUKHdT1pWm6LxcNGSJjfyTs=;
- b=X3Vze7y1Zvj7/5XjU6co0qKcOeNPdgctjh0PHRmT7sqNSPIuS0XQeZDoXcwkh73qcGqk
- vpKtIA9WstTPz8s1kF9VGdr3sLQDQhwWoX97FwL8OYOCzIIppSVBwy69O9f/dSWsjL9i
- P9inu4PDXMRfnt6HBQcr4wZKWplZ5GetEeJiEAjipEp+xQVaeR4XUh6F/ZyFylCeNuRX
- Bv/iBq1Pvjbb0fNysIemph/Z2q675TaUlqJtb25rBs5zQeZI+qxFryukb5qCoRPbJ32P
- R7S6fEN+OV4rMlJ+cBdYfan87xk242XCg6KebMO3aIcz2ZSJffgVmtx0awoT/i1n1Y2+ tA== 
-Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rfcvts1jr-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 27 Jun 2023 01:01:46 +0000
-Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 35R11hjv006896;
-        Tue, 27 Jun 2023 01:01:43 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3rdsjkh3cb-1;
-        Tue, 27 Jun 2023 01:01:43 +0000
-Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 35R11hZs006832;
-        Tue, 27 Jun 2023 01:01:43 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
-        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 35R11hvv006761;
-        Tue, 27 Jun 2023 01:01:43 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id EA2A54AAA; Tue, 27 Jun 2023 06:31:42 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        krzysztof.kozlowski@linaro.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
+        with ESMTP id S229605AbjF0BY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 21:24:26 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3597D10CF
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:25 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f875b267d9so5579845e87.1
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687829063; x=1690421063;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZA4cawoZRNgrqzAENjP01rJKcNc9B6zeDmJj+ATh09U=;
+        b=r54wxMwZpOFc5UJLxh5fYB9ukPpCefKzcBodyQw0bjt4EJC3289D+8aGWWNcZzDNH7
+         q7mHqppR9uJi/lCf4275wuKz7VWVbc+jHzjuUFtQIv25KooLYqsZhxbTb5yvbQw1Zz3q
+         207Zmy1Rj5/fXwXkl24l0anKGwCyIx2t0wsh1zqB3BQRHfjCY6tdb2ern7WfipCfMQKg
+         KT22UflLcwObzJOBl5oXV4YYACDjXQhqhEjoBLrx77L6R/bRTpAle+wt/WjCAnXDCcYD
+         9rAIIg1B9dbk+XPRUSH1FNIniYrcEtmXpB3aUmrHcMJIPj4zDNZZIEk9/vbIeXCZBgwy
+         BOyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687829063; x=1690421063;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=ZA4cawoZRNgrqzAENjP01rJKcNc9B6zeDmJj+ATh09U=;
+        b=fk2F/ZEK63VRaS2PZwGUcOwTKthPJuqaFzUG2hKsUYsd/Rfycbn/LJJRNuYCHfrASI
+         7afVM0J5WzksSGEc6aJkKva+3J+z1BSm/vUOTgRwUaarCqGUThyi2cd9W+VhpOOC3E9Z
+         EEbNk1mmDDIxFYG8LDngPdFFthPPH7Vnqzv0GokgqsOisCfSX00l0vNkIRepYxdaxyV7
+         8Siogu9J9HUtFY3aFbxNMS3aEEdEr700iikKGZPZ3fTS+Ehefz6eV1dN8x43OKduR4KY
+         59Ddc4uhQ9yRfnVoHAiNKg/Mq4x6R6PkpGcmH/9jQwfLapRO3K4tNpiX+BbHaegD5qeB
+         G32Q==
+X-Gm-Message-State: AC+VfDwYoif8fpcIKSm4u6hj1jhMF5yOoUco6t0yat6xo3Ob3+0nVMjP
+        okesFwDrhbL9haq42G2mdMFXkz0xwwESgK5RmUM=
+X-Google-Smtp-Source: ACHHUZ5CpI4vZEGpB7oisPKttFApFtuxRtPklAiE6EywRqGxcAmnfCiPczi8BgBu/MLbyHtCvisiLw==
+X-Received: by 2002:a19:f201:0:b0:4f6:25ca:f147 with SMTP id q1-20020a19f201000000b004f625caf147mr16300353lfh.63.1687829063430;
+        Mon, 26 Jun 2023 18:24:23 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id z7-20020ac24187000000b004cc9042c9cfsm1331301lfh.158.2023.06.26.18.24.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 26 Jun 2023 18:24:23 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v5 2/3] arm: dts: qcom: sdx65: Add interconnect path
-Date:   Tue, 27 Jun 2023 06:31:30 +0530
-Message-Id: <1687827692-6181-3-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1687827692-6181-1-git-send-email-quic_krichai@quicinc.com>
-References: <1687827692-6181-1-git-send-email-quic_krichai@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: D7vehJOcGuySH1JAcnXRl86vOJoEoD9F
-X-Proofpoint-GUID: D7vehJOcGuySH1JAcnXRl86vOJoEoD9F
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-26_20,2023-06-26_03,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 bulkscore=0
- adultscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0 clxscore=1011
- malwarescore=0 priorityscore=1501 mlxscore=0 mlxlogscore=838 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306270007
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 00/15] ARM: dts: qcom: cleanup PMIC usage
+Date:   Tue, 27 Jun 2023 04:24:07 +0300
+Message-Id: <20230627012422.206077-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pcie-mem interconnect path to sdx65 target.
+While reviewing APQ8064 CPUFreq patchset, Konrad pointed out that PMICs
+are not a part of SoC and as such do not belong to the per-SoC files.
 
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+Cleanup the way 32-bit Qualcomm platforms treat PMICs:
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-index 1a35830..77fa97c 100644
---- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-@@ -332,6 +332,9 @@
- 				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "global", "doorbell";
- 
-+			interconnects = <&system_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
-+			interconnect-names = "pcie-mem";
-+
- 			resets = <&gcc GCC_PCIE_BCR>;
- 			reset-names = "core";
- 
+- Move SSBI PMICs to separate files (as a bonus merging two different
+  instances of PM8921, benefitting both platforms).
+
+- Include such PMIC files only from the board files, keeping SoC file
+  generic.
+
+- Move RPM regulator definitions to board files too. They do not belong
+  to the SoC dtsi files for the same reason.
+
+- Move PMIC-specific GPIOs and supply properties to individual board
+  files.
+
+Dmitry Baryshkov (15):
+  ARM: dts: qcom: apq8064: correct XOADC register address
+  ARM: dts: qcom: msm8960: introduce label for PMIC keypad
+  ARM: dts: qcom: msm8660-surf: use keypad label directly
+  ARM: dts: qcom: apq8064-nexus7: move sdcc1 node to proper place
+  ARM: dts: qcom: mdm9615-wp8548-mangoh-green: group include clauses
+  ARM: dts: qcom: strip prefix from PMIC files
+  ARM: dts: qcom: apq8064: split PMICs to separate dtsi files
+  ARM: dts: qcom: mdm9615: split PMIC to separate dtsi files
+  ARM: dts: qcom: msm8660: split PMIC to separate dtsi files
+  ARM: dts: qcom: msm8960: split PMIC to separate dtsi files
+  ARM: dts: qcom: msm8974: move vreg-boost GPIO to board files
+  ARM: dts: qcom: apq8064: move RPM regulators to board files
+  ARM: dts: qcom: mdm9615: move RPM regulators to board files
+  ARM: dts: qcom: msm8660: move RPM regulators to board files
+  ARM: dts: qcom: msm8960: drop useless rpm regulators node
+
+ arch/arm/boot/dts/qcom/pm8018.dtsi            |  57 +++++
+ arch/arm/boot/dts/qcom/pm8058.dtsi            | 162 +++++++++++++
+ .../qcom/{qcom-pm8226.dtsi => pm8226.dtsi}    |   0
+ arch/arm/boot/dts/qcom/pm8821.dtsi            |  22 ++
+ .../qcom/{qcom-pm8841.dtsi => pm8841.dtsi}    |   0
+ arch/arm/boot/dts/qcom/pm8921.dtsi            | 137 +++++++++++
+ .../qcom/{qcom-pm8941.dtsi => pm8941.dtsi}    |   0
+ .../qcom/{qcom-pma8084.dtsi => pma8084.dtsi}  |   0
+ .../dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi}  |   0
+ .../dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi}  |   0
+ .../dts/qcom/qcom-apq8026-asus-sparrow.dts    |   2 +-
+ .../dts/qcom/qcom-apq8026-huawei-sturgeon.dts |   2 +-
+ .../boot/dts/qcom/qcom-apq8026-lg-lenok.dts   |   2 +-
+ .../qcom-apq8026-samsung-matisse-wifi.dts     |   2 +-
+ .../dts/qcom/qcom-apq8060-dragonboard.dts     | 146 +++++++-----
+ .../dts/qcom/qcom-apq8064-asus-nexus7-flo.dts |  69 +++---
+ .../boot/dts/qcom/qcom-apq8064-cm-qs600.dts   |  31 +--
+ .../boot/dts/qcom/qcom-apq8064-ifc6410.dts    |  38 ++--
+ .../qcom-apq8064-sony-xperia-lagan-yuga.dts   | 110 +++++----
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi      | 195 +---------------
+ .../dts/qcom/qcom-apq8074-dragonboard.dts     |   4 +-
+ .../boot/dts/qcom/qcom-apq8084-ifc6540.dts    |   2 +-
+ arch/arm/boot/dts/qcom/qcom-apq8084-mtp.dts   |   2 +-
+ .../qcom/qcom-mdm9615-wp8548-mangoh-green.dts |   4 +-
+ .../boot/dts/qcom/qcom-mdm9615-wp8548.dtsi    | 139 +++++++++++-
+ arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi      | 180 +--------------
+ arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts  |  59 +++--
+ arch/arm/boot/dts/qcom/qcom-msm8660.dtsi      | 214 +-----------------
+ arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts   |  21 +-
+ .../qcom/qcom-msm8960-samsung-expressatt.dts  |   3 +-
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi      |  42 +---
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    |   8 +-
+ .../qcom/qcom-msm8974-sony-xperia-rhine.dtsi  |   8 +-
+ arch/arm/boot/dts/qcom/qcom-msm8974.dtsi      |   1 -
+ .../qcom/qcom-msm8974pro-fairphone-fp2.dts    |   8 +-
+ .../qcom/qcom-msm8974pro-oneplus-bacon.dts    |   8 +-
+ .../dts/qcom/qcom-msm8974pro-samsung-klte.dts |   2 +-
+ ...-msm8974pro-sony-xperia-shinano-castor.dts |   8 +-
+ arch/arm/boot/dts/qcom/qcom-sdx55-mtp.dts     |   2 +-
+ arch/arm/boot/dts/qcom/qcom-sdx55-t55.dts     |   2 +-
+ .../dts/qcom/qcom-sdx55-telit-fn980-tlb.dts   |   2 +-
+ arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dts     |   2 +-
+ 42 files changed, 851 insertions(+), 845 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8018.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom/pm8058.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8226.dtsi => pm8226.dtsi} (100%)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8821.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8841.dtsi => pm8841.dtsi} (100%)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8921.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8941.dtsi => pm8941.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pma8084.dtsi => pma8084.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi} (100%)
+
 -- 
-2.7.4
+2.39.2
 
