@@ -2,62 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F5D573FFBD
+	by mail.lfdr.de (Postfix) with ESMTP id F2C5A73FFBE
 	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 17:32:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230363AbjF0PcW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 11:32:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48590 "EHLO
+        id S231221AbjF0PcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 11:32:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48622 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjF0PcV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 11:32:21 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0AFE297E
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 08:32:19 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fbaa534dd4so4376485e9.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 08:32:19 -0700 (PDT)
+        with ESMTP id S230429AbjF0PcW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 11:32:22 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323072D4A
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 08:32:21 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-313f2a24cb6so2423374f8f.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 08:32:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687879938; x=1690471938;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=DK7yCAKgCYW5NXZNICyn2KLJZam6G9l9RavryTXKAtc=;
-        b=jj7bX3aDAW6nTQZinPTLeXKYVv+ILQ9Q+0/s7YGjZhbWEIfmWLxV9xVboHOGJ+fA9H
-         X7zLVJXfiWqsD1Fue6eAcvoZsyYVFNFaUMZLpn0jjxwqBBAuxkHzBPJUnK97BbM++cjP
-         /EXGO6lJ5uN8FRyVGVQSszwKKKpQa81p9NvQT8+nqvsB83Ef6QJe3v9rzKkL5DszjoiQ
-         Q4O0Z6KzAIcRtEOlK6OK7IhewOz0h+9rgr1Hb8YxtgTYOqOhfI5vI1RgesOvInDlbdSk
-         w92mCELPsCgsJA3EXIF7mYAkDpJuoVeDwXWeADNEkvfOkA5EQuDJMCE+3K0EdaNMVr7i
-         oJZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687879938; x=1690471938;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1687879939; x=1690471939;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=DK7yCAKgCYW5NXZNICyn2KLJZam6G9l9RavryTXKAtc=;
-        b=RKzeIxeTxhL/YGWYWfkimT/YLiaw97LAo1eqpip8UAC/Fyru4flw89ejU8Ynexyoyk
-         rZZQJPmLYtTFbUzauoYB3zMScnWIbBy8wM+Yi20SNF1+xCf1uPog/GqpKFKRPM0csqLK
-         Zs4fHY6C/35VLi0As1lQwVwA4h0dxEwPolUq32h11xEBKnQuPOV+T1rgn2MGLvO2j2rc
-         lbglyvPN7f6Gmp52mdsvnxb2Vu0+7Yn+TAxxRWHe1tucc5C3MQM4zokS8dPf81DXpehX
-         vDQgo1q/bexKVhq8cKKfB8qd1DoLr7+xHnsA1aHj/FcK3259DDk1tIMK2EQpwst9TKDx
-         KtTg==
-X-Gm-Message-State: AC+VfDyHIRwPtrz4UP52FOvUcNdtXL78kVi6PKF3g9HPX7GpLy9mcOmI
-        7FMLQYW3dAHAeETCOYuEhgNY8w==
-X-Google-Smtp-Source: ACHHUZ5zDhBG/xVbRVuabEsIZl6mReFvcBGh3/mdjyD6QKl3Piftb4S695qMVhNnfP6WfzWMcXsyNw==
-X-Received: by 2002:a7b:cc83:0:b0:3fb:4053:a9d5 with SMTP id p3-20020a7bcc83000000b003fb4053a9d5mr4079904wma.25.1687879938348;
-        Tue, 27 Jun 2023 08:32:18 -0700 (PDT)
+        bh=n0ZBGd7YKXQ+7JJGnVWF+JcYqAtSrGs+/u/C5tnBLuU=;
+        b=BclnX6uBfSiyRTC/yZKBTLPIs6TbxMLJaDwNujrh6UmHHbC3dEJO3r1iEScsmwATVU
+         0gADNzItEgbShzI4yAkJi1LfcTkwtnWlj8oCd1syqfHeD47mjuWPTmhLaVspDm1DooGv
+         1rgD2WILDm9Nzqv7FFMaAQafSzByUZHVgqFPG33BPVdM6yq7+7oVf044BBQR8qdUEq58
+         HgAsSQtwQ5ryLfgTL4hUbGdRxmYknH4SoDHLQ85bXGRlNCFsgnGcaI96zuoDAKL5kiP2
+         Sg7c3XYqSTie9ClLJEqVpsFtBkLaRYd7l8G3CC0iGsHbj5Ax6vJDWaziBa1Lgjkk7e89
+         EKdw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687879939; x=1690471939;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=n0ZBGd7YKXQ+7JJGnVWF+JcYqAtSrGs+/u/C5tnBLuU=;
+        b=C1WzSH7gJqRDuo5JbiuP2vIXQCXFKD0D/qaBlt9YcQXgCdB+yVGrZ3eLwqbxFsx5Fr
+         W7Gl4T3SgUiR05YEnkQIGQOGegxFGp1qDjjqY39eTMyoUv0ZAASZWcepjg2P9UJkZQjJ
+         6fnWDgKkijJEbAyFLwSP9jZI2FDPnriLGPEDWww1APIwLum1Lq27nJzTxlQAHyGP6d/Z
+         5SiMVQcgwfrTUrVbpClIs4ACCdgTl7YOf8qOlQOSJWBImT0nps2DmYl0Wl6Cy1UBrcks
+         KtRX2b8wPZ4sGV+O9zkbZp2G7kxzlDNc3PkN+cMH58AbCg7q1J2RI5tLPa+8MkIjL9js
+         RXsg==
+X-Gm-Message-State: AC+VfDzDG+DZYERgB36HSWp5spmAYV7E9U26jZFOmiHCXtIYSsQIL3zt
+        2V5fBwVzjsECw6FwZGMhsJar2Q==
+X-Google-Smtp-Source: ACHHUZ78PzoeHvYXfm+l/i28Dj4YRa596IuBoEhjDP4z14zEX6l5stTw7nj9Vrk18BeqptDaQCvd6w==
+X-Received: by 2002:adf:e441:0:b0:313:f45f:74a1 with SMTP id t1-20020adfe441000000b00313f45f74a1mr4191185wrm.51.1687879939707;
+        Tue, 27 Jun 2023 08:32:19 -0700 (PDT)
 Received: from lion.localdomain (cpc76484-cwma10-2-0-cust274.7-3.cable.virginm.net. [82.31.201.19])
-        by smtp.gmail.com with ESMTPSA id c25-20020a7bc019000000b003f819faff24sm14089214wmb.40.2023.06.27.08.32.17
+        by smtp.gmail.com with ESMTPSA id c25-20020a7bc019000000b003f819faff24sm14089214wmb.40.2023.06.27.08.32.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jun 2023 08:32:18 -0700 (PDT)
+        Tue, 27 Jun 2023 08:32:19 -0700 (PDT)
 From:   Caleb Connolly <caleb.connolly@linaro.org>
-Subject: [PATCH 0/3] arm64: dts: qcom: some sdm850/c630 bits
-Date:   Tue, 27 Jun 2023 16:32:15 +0100
-Message-Id: <20230627-c630-uart-and-1p2-reg-v1-0-b48bfb47639b@linaro.org>
+Date:   Tue, 27 Jun 2023 16:32:16 +0100
+Subject: [PATCH 1/3] arm64: dts: qcom: c630: add panel bridge 1p2 regulator
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAP8Am2QC/x2NQQqDMBAAvyJ77kKMNcV+pfSwiavuoansahHEv
- xt7HIZhdjBWYYNntYPyT0y+uUB9qyBNlEdG6QuDd75xwT8whcbhSrog5R7r2aPyiOTatgvdEO8
- pQGkjGWNUymm66g/ZwnqJWXmQ7T98vY/jBLGuw7+AAAAA
+Message-Id: <20230627-c630-uart-and-1p2-reg-v1-1-b48bfb47639b@linaro.org>
+References: <20230627-c630-uart-and-1p2-reg-v1-0-b48bfb47639b@linaro.org>
+In-Reply-To: <20230627-c630-uart-and-1p2-reg-v1-0-b48bfb47639b@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
@@ -68,50 +68,98 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht,
         Caleb Connolly <caleb.connolly@linaro.org>
 X-Mailer: b4 0.13-dev-46309
-X-Developer-Signature: v=1; a=openpgp-sha256; l=629;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1883;
  i=caleb.connolly@linaro.org; h=from:subject:message-id;
- bh=blNcX5KJpG6wjPVv6SEusysT4y2CQqLhwbIOq52Pc+g=;
- b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBkmwEBFP5/Se19HEIqDQeA21fb0UckOOvMRisOw
- R24+WkPZKSJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZJsBAQAKCRAFgzErGV9k
- thYsEACRotI0hFo8P+F0uUvncWlc+bIT160hGzdJOOd/wyP+f5R7KmooGSBowRlibN1QVRKVXp1
- k5ss+SDKiKx9o7K85Q1728HSLXPy3hJBLkyt+NbAdmbgytvHxaNNjOJg1TyC7AMGsXOYSFKkoEi
- O29Fq8UkqGscmkNoR5avlyG868kLR+JwuBcf3bZMMtgqtRKkzMN7v+7Uus0pRL+ZT1shPocaPO0
- zYCInlAzexPuNoz/kEesJzuWViabmYWOc8fA0tRuHrBezsVhlUKs0fbT5y3G58daXdoBtwUZlod
- k20et7zeE5ZR1t0SsldBYxMF1dfpDFG7oiwJcT8m8JWr5vNiehz3j/gdvJ0iig9JPDNADJWQjwZ
- 32HJm0gdF1klKJH7Yg97FfMrlR//nQGuBVkcx5bKg/u40UUeg9u8XGEy8eGzGRlo1nKUU0JHUJp
- C8KD0sjMu99YtaNGLX4yLDlEmTqfDmZe9QN2mR2jAMJaQGZQjldgrrkE7FyC2/OsmJ1hYCJbx6u
- xYXF+4MWZl9jYRThXiXyeu+8WekpjO37/tndzBVdK6f09n9APOB9CwXBbW/EnjpulegkJuTA22h
- D5HI23hA1/gCP4TVOxW9GIFuufzPelgAl8E2m+yhkeFwrBFNarrMrbVWO0P/fd9jP4HmQpaW7cY
- RX9rSYPcOBMcJIA==
+ bh=+WJcNXowsCpb5IqqsxVaEzf1xlcF7Pi9NpneNQQm3q8=;
+ b=owEBbQKS/ZANAwAIAQWDMSsZX2S2AcsmYgBkmwEBVFBQAnyx94gDeDwfZQmv3xJsRwQG79gxm
+ GeJnQQDBtOJAjMEAAEIAB0WIQS2UaFGPGq+0GkMVc0FgzErGV9ktgUCZJsBAQAKCRAFgzErGV9k
+ tjt/D/9AsyUW+K9EtWZ9osxBp3dV1dgC5WXPYUSEMOkY0MIkUMwmaZSvioFh1vN68sQapKD9hxT
+ XxArIV9WHMo27YEcMyPGopushrlxKOfVxZqchwpdmay8FFNfh2ov6rP1mwzmoVZhix9k+r6LYGM
+ AEmNYq1kNBd+td/FG6KZ4gTq/nx4YyFvrDmxMH0iWbEyv66XIL/3y6G0fcGbIT6yrd3oCeeS872
+ oweJ0IDZwTX+wA0zKo61MfmhzRYjnnKfLStxKO1bLApydGnyynnbnjhjqpP3d9/obCfpOdUZqte
+ vmVutCJj9Qd/YjKO7iqVL/QH1P0qNazLnI5lKM1CNtcsbaSVE3nTKxj+PHxEYHmErfd+VfIDWHY
+ zrd8Psq2Yht7K7MTShDzfaz8r2CX6uYpU0nZqDTOAruMEfutKJKTFo2nv6FDhuhPGuc1NksWaif
+ CM3Y1ZZPnqpKESnINsiYNVZ31LS2gK6Dp2EEOng58/yWirhI6d3SNJiTqnZ1KQ2cFYD+d5oo52z
+ MBmHaw0nePljPAOkyPJqMo7cbAZvoTUroxApNlg5ITeip3qbmWS64pp2WvPF2ak0fyNtlu7vFx9
+ 6vy7INiPlkF7pvR2RUQg84xHW1WZcMS2E0CU+BruMFopxMif0kn83sC5vBFUwR4unnQUzFHgm7E
+ f5ErUgj5h3V1tug==
 X-Developer-Key: i=caleb.connolly@linaro.org; a=openpgp;
  fpr=83B24DA7FE145076BC38BB250CD904EB673A7C47
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A few DT fixes for the SDM850 laptops
+The VCC and VCCA supplies of the DSI<->eDP bridge are derived from
+vreg_l2a_1p2 and controlled by a GPIO on the PMIC. Add the regulator
+here so Linux can control it.
 
-* Add the missing eDP bridge 1p2 regulator on the c630
-* Fix bluetooth UART aliases
-* Enable debug UART on the c630
-
+Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
 ---
-Caleb Connolly (3):
-      arm64: dts: qcom: c630: add panel bridge 1p2 regulator
-      arm64: dts: qcom: c630: add debug uart
-      arm64: dts: qcom: sdm850-*: fix uart6 aliases
+ .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      | 30 ++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
- .../boot/dts/qcom/sdm850-lenovo-yoga-c630.dts      | 37 +++++++++++++++++++++-
- arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts   |  2 +-
- 2 files changed, 37 insertions(+), 2 deletions(-)
----
-base-commit: c3dae0fa8662b2848ccbcdc6187443ca64cd2808
+diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+index 22a7d997cdb0..94e37e5d2177 100644
+--- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
++++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
+@@ -80,6 +80,22 @@ adsp_mem: memory@8c600000 {
+ 		};
+ 	};
+ 
++	sw_edp_1p2: edp-1p2-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "sw_edp_1p2";
++
++		regulator-min-microvolt = <1200000>;
++		regulator-max-microvolt = <1200000>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&sw_edp_1p2_en>;
++
++		gpio = <&pm8998_gpios 9 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++
++		vin-supply = <&vreg_l2a_1p2>;
++	};
++
+ 	sn65dsi86_refclk: sn65dsi86-refclk {
+ 		compatible = "fixed-clock";
+ 		#clock-cells = <0>;
+@@ -425,6 +441,8 @@ sn65dsi86: bridge@2c {
+ 
+ 		enable-gpios = <&tlmm 96 GPIO_ACTIVE_HIGH>;
+ 
++		vcca-supply = <&sw_edp_1p2>;
++		vcc-supply = <&sw_edp_1p2>;
+ 		vpll-supply = <&vreg_l14a_1p88>;
+ 		vccio-supply = <&vreg_l14a_1p88>;
+ 
+@@ -500,6 +518,18 @@ &mss_pil {
+ 	firmware-name = "qcom/sdm850/LENOVO/81JL/qcdsp1v2850.mbn", "qcom/sdm850/LENOVO/81JL/qcdsp2850.mbn";
+ };
+ 
++&pm8998_gpios {
++	/* This pin is pulled down by a fixed resistor */
++	sw_edp_1p2_en: pm8998-gpio9-state {
++		pinconf {
++			pins = "gpio9";
++			function = "normal";
++			bias-disable;
++			qcom,drive-strength = <0>;
++		};
++	};
++};
++
+ &qup_i2c10_default {
+ 	drive-strength = <2>;
+ 	bias-disable;
 
-// Caleb (they/them)
+-- 
+2.41.0
 
