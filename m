@@ -2,127 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6928573F843
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 11:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5049F73F855
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 11:10:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232075AbjF0JIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 05:08:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59910 "EHLO
+        id S229487AbjF0JKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 05:10:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34158 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232046AbjF0JHi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 05:07:38 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBEFF99;
-        Tue, 27 Jun 2023 02:07:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5F7E86108C;
-        Tue, 27 Jun 2023 09:07:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 087EEC433C8;
-        Tue, 27 Jun 2023 09:07:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687856855;
-        bh=TjvnIUutoha4FVKthOxFxk086EeAI1ezUBKjYwysZoo=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=AplOOHE1phsv72enJdweaK2cufs9vTT5p4XmJvTMx26ObcBWxbTpca6FNhJFe/KV/
-         EEPlrCnR1o0kL8oI5JBbTS8d1Vxu0epX0nxaiIzJQ27BSOlX6TGVLbSGjuRAeUbLMV
-         nsHAWlfsiXqzB6dl27IZEqDwfomcLh9tKSr8TxD4e5d+DqrJOanhB2zYiIBADBJEcd
-         DOwWojLp3PizZ+bhpQP09tbglrQXTGghIca1sC6blgvR5tOZsw69S9OApcZi+8wxm5
-         Y8LDPhKxHIclXxvqrtU7rtlShrWJon4CZPaz5lGPPYySIWGvgNlReegwYOK89YI7oZ
-         uDbHcIqIS8aIg==
-Message-ID: <e1c53cd8-9875-08dc-5662-58f868c40628@kernel.org>
-Date:   Tue, 27 Jun 2023 11:07:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom,dispcc-sm6125: Require GCC
- PLL0 DIV clock
-Content-Language: en-US
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231232AbjF0JKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 05:10:13 -0400
+Received: from mail-wr1-f41.google.com (mail-wr1-f41.google.com [209.85.221.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C79E10D8;
+        Tue, 27 Jun 2023 02:10:12 -0700 (PDT)
+Received: by mail-wr1-f41.google.com with SMTP id ffacd0b85a97d-313fb7f0f80so641691f8f.2;
+        Tue, 27 Jun 2023 02:10:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687857010; x=1690449010;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=e7hLSJVCCtLYpY+D0x3HcpH48zuU/KxVbnA9ZkjEUYc=;
+        b=FejXqnSJdNWpk/MTLHd2b46+J2RN4AMgPHkXZnIyN3+LpM96FSxDVLpL7fiHJR42er
+         pzW7P2SM0+MeHyYI1c/eH7j/Y4AOYlTXf3lSdGHUDBQxfwoge2+W1sBXrRDxrWY4W5nZ
+         qL0cwpx+uhAfG1ytXwR4HMXvyajHdfqD3f30g9GrwAWrJnwmTy8uiwH3059ilgTnwi5E
+         PJgS263OG6qw8rQc3mDDot8TUFmDxE7XRnH7vIosklhA48b4cID5GWhLRKjXCKQwezty
+         O0QKot+4cCEjafBLz/krlc+841ewpZDtbZP8akpJa6JgufuApMgLxtPGtN5qHoG1eXXE
+         osqw==
+X-Gm-Message-State: AC+VfDxpYsD6vyJ/y+LSEakr9IXdQgy/wWnlQ7Q3+lFaEIBeG+5N8Dse
+        GuNGB+i0pni4W+VWauhfIk6wCEg1icAU2f/6
+X-Google-Smtp-Source: ACHHUZ4SyZagIQKKYwDBn+gOLO2udMSIlGgeLYgeg3krB1VeISWpZu7CSPdmbFqIeZYXEqna79kD2A==
+X-Received: by 2002:adf:ea90:0:b0:30f:c5b1:23ef with SMTP id s16-20020adfea90000000b0030fc5b123efmr23619787wrm.41.1687857010328;
+        Tue, 27 Jun 2023 02:10:10 -0700 (PDT)
+Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
+        by smtp.gmail.com with ESMTPSA id c15-20020adffb4f000000b00313e4d02be8sm8880122wrs.55.2023.06.27.02.10.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jun 2023 02:10:09 -0700 (PDT)
+From:   Lucas Tanure <tanure@linux.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        Lux Aliaga <they@mint.lgbt>
-References: <52c57cab-10cf-2e7e-2c1d-fa6506786d45@linaro.org>
- <jmtjuya4c423rmdlo4ubvvqndbxvgapal5otjqnejdpdd25izp@kewbjmqdu2xs>
- <6311f26f-79ee-c471-649f-5e0b4629cfcc@linaro.org>
- <uuy5prkjhhs66te7h6z3pu4lzj2cfbiqk6ftjijwoeqpw573av@ogs6cboanvzc>
- <ziykmixskqkgheigefvyo4q3katbc4uix6jtcg7mncs25z4tj5@5gykrfgns4bm>
- <16731023-7dc7-d43d-1b16-fda44c0948ed@linaro.org>
- <yofju7jp7vmv33x7dzvzoelpumfsz3fjqy2ozakfphsuysunon@pglt2wzlsjex>
- <683a6f7e-bf1a-aff2-070b-472fb14e0353@linaro.org>
- <3nnk4xvmpnum2q6g6c6crjlqq3ra7j2z5zis53xcqbvevymuhz@mkffvs45n6ut>
- <145ab255-b3f8-1c6c-824d-5f1b40568d30@linaro.org>
- <makhh4ebdmoa5f6r4mbx4g2v2cpcsi74wqf3622dxuli4w7tb6@els2rvqcnvgz>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-In-Reply-To: <makhh4ebdmoa5f6r4mbx4g2v2cpcsi74wqf3622dxuli4w7tb6@els2rvqcnvgz>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc:     Nick <nick@khadas.com>, Artem <art@khadas.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Lucas Tanure <tanure@linux.com>
+Subject: [PATCH v6 0/4] Add Amlogic A311D2 and Khadas Vim4 Board Support
+Date:   Tue, 27 Jun 2023 10:10:03 +0100
+Message-ID: <20230627091007.190958-1-tanure@linux.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 11:02, Marijn Suijten wrote:
->>>>> So deleting a new item at the end does not matter.  But what if I respin
->>>>> this patch to add the new clock _at the end_, which will then be at the
->>>>> same index as the previous GCC_DISP_AHB_CLK?
->>>>
->>>> I think you know the answer, right? What do you want to prove? That two
->>>> independent changes can have together negative effect? We know this.
->>>
->>> The question is whether this is allowed?
->>
->> That would be an ABI break and I already explained if it is or is not
->> allowed.
-> 
-> How should we solve it then, if we cannot remove GCC_DISP_AHB_CLK in one
-> patch and add GCC_DISP_GPLL0_DIV_CLK_SRC **at the end** in the next
-> patch?  Keep an empty spot at the original index of GCC_DISP_AHB_CLK?
+The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 family.
+This chip is not the same as A311D used in Vim3 board.
 
-I don't know if you are trolling me or really asking question, so just
-in case it is the latter:
+Work based on Khadas 5.4 branch:
+https://github.com/khadas/linux/tree/khadas-vims-5.4.y
 
-"No one is locked into the ABI. SoC maintainer decides on this. "
+The current status is Vim4 board booting to emergency shell via uart.
 
-Also:
-https://lore.kernel.org/linux-arm-msm/20230608152759.GA2721945-robh@kernel.org/
+Board Features:
+- 8GB LPDDR4X 2016MHz
+- 32GB eMMC 5.1 storage
+- 32MB SPI flash
+- 10/100/1000 Base-T Ethernet
+- AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
+- HDMI 2.1 video
+- HDMI Input
+- 1x USB 2.0 + 1x USB 3.0 ports
+- 1x USB-C (power) with USB 2.0 OTG
+- 3x LED's (1x red, 1x blue, 1x white)
+- 3x buttons (power, function, reset)
+- M2 socket with PCIe, USB, ADC & I2C
+- 40pin GPIO Header
+- 1x micro SD card slot
 
-https://lore.kernel.org/linux-arm-msm/CAL_JsqKOq+PdjUPVYqdC7QcjGxp-KbAG_O9e+zrfY7k-wRr1QQ@mail.gmail.com/
+Changes Since v5:
+ - Remove meson as T7 its not a meson chip
+ - Change Uart Document descript to S4 compatibles
 
-https://lore.kernel.org/linux-arm-msm/20220602143245.GA2256965-robh@kernel.org/
+Changes Since v4:
+ - Use S4 instead of G12a for uart fallback
+ - Add OF_EARLYCON_DECLARE for T7 uart
 
-https://lore.kernel.org/linux-arm-msm/20220601202452.GA365963-robh@kernel.org/
+Changes Since v3:
+ - Fix issues with "amlogic,meson-t7-uart" documentation
 
-Any many more.
+Changes Since v2:
+ - Add "amlogic,meson-t7-uart" documentation
 
-Best regards,
-Krzysztof
+Changes Since v1:
+ - Drop the T7 clock driver as it is not needed for serial boot. It will
+ later use the S4 clock
+ driver as S4 and  T7 seems to be similar chips.
+ - Use "arm,gic-400" for interrupt controller to fix dtb_check
+ - Remove CPU node properties not needed for serial boot
+ - Move UART node to apb4 node
+ - Drop T7 UART compatible line and use S4 uart
+ - Use psci V1 instead of 0.2, it works, but I can't verify is correct
+ as the datasheet I have
+ doesn't contain that information.
+ - Remove compatible from meson-t7.dtsi, move it to vim4 board dts
+ - Add memory node with 8GB. Not sure about this one, works without,
+ but doesn't detect 8GB
+ - Use defines for GIC_CPU_MASK_SIMPLE, IRQ_TYPE_LEVEL_LOW,
+ IRQ_TYPE_LEVEL_HIGH instead of hardcoded values
+
+
+Lucas Tanure (4):
+  dt-bindings: arm: amlogic: add Amlogic A311D2 bindings
+  dt-bindings: serial: amlogic,meson-uart: Add compatible string for T7
+  tty: serial: meson: Add a earlycon for the T7 SoC
+  arm64: dts: amlogic-t7-a311d2-khadas-vim4: add initial device-tree
+
+ .../devicetree/bindings/arm/amlogic.yaml      |   7 +
+ .../bindings/serial/amlogic,meson-uart.yaml   |   4 +
+ arch/arm64/boot/dts/amlogic/Makefile          |   1 +
+ .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts |  52 ++++++
+ arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 158 ++++++++++++++++++
+ drivers/tty/serial/meson_uart.c               |   2 +
+ 6 files changed, 224 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
+ create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
+
+--
+2.41.0
 
