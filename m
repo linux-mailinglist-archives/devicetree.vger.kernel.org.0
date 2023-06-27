@@ -2,78 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BAF873FF61
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 17:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84D4373FF77
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 17:16:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbjF0POM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 11:14:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38804 "EHLO
+        id S232001AbjF0PQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 11:16:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232007AbjF0POM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 11:14:12 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA45C26B3;
-        Tue, 27 Jun 2023 08:14:10 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-785ccf19489so10756939f.3;
-        Tue, 27 Jun 2023 08:14:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687878850; x=1690470850;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=P6Dxr1qrQ+dD7ODCxvLBG8Sk4TfJL34ijnHxpCzhHGA=;
-        b=WLkL4jcTklw8Fz3tNZnnmv3SIniP1w8//Ak4fXyOYviKUjapG+tnz8A++7uo/pIZ4N
-         TtQm/eN+aFmECRNlvZC62+vBBj+/Vq5WWZrR9rb5tX6UrRJd4fTj4oFZBpdmt4KHKKQ1
-         3LGFe3W093Yayhhll0eYnvQp0BA6KEtgMKlGHryJl2wy5HhB9DXv/B7OxQv9DwFVOH5g
-         CLnkkhHDeX/ZsqvEuRt/zuxvWHdzlJbH/RUqbKdC4hDHGJhutV5nGJ8bB6i3lELRFlz1
-         ZJ5ILOcxzQ4VH7QzHLhc+ahel68xI/kIiyaWEZdfAQiFl3sbXO9BvOwEuCWMsSKErnB2
-         NDJg==
-X-Gm-Message-State: AC+VfDzyjMq+K2Tf5C6o3LFn2Hi9TMMYvLX5KctIk44VHSUI05uYHnB4
-        xzoTAZo+TSzH2KIEhbxP8g==
-X-Google-Smtp-Source: ACHHUZ7PC3wuDrYXpV6ivJj09BHOErKMVoROQny4zV4bhGuli6zRMNhs4YwTOs7ErMfy18wdNkciOw==
-X-Received: by 2002:a92:cb07:0:b0:340:5928:e048 with SMTP id s7-20020a92cb07000000b003405928e048mr27005727ilo.11.1687878850054;
-        Tue, 27 Jun 2023 08:14:10 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id y15-20020a92090f000000b003422ef44e6asm2726591ilg.6.2023.06.27.08.14.08
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jun 2023 08:14:09 -0700 (PDT)
-Received: (nullmailer pid 1929024 invoked by uid 1000);
-        Tue, 27 Jun 2023 15:14:07 -0000
-Date:   Tue, 27 Jun 2023 09:14:07 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Luca Weiss <luca.weiss@fairphone.com>,
-        Abel Vesa <abel.vesa@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
+        with ESMTP id S230267AbjF0PQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 11:16:50 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F37591735;
+        Tue, 27 Jun 2023 08:16:49 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 8FCC0611CE;
+        Tue, 27 Jun 2023 15:16:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E9746C433C8;
+        Tue, 27 Jun 2023 15:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687879009;
+        bh=zcg5VTHtV7nio5jd3NtBafSOvGTKTW5bNlR/bEqbIcI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=if16nDJdJKGrkct5P9OI/SaQ/Sx5SeEjD5dvafflrsul+ruUjSdJksYdmMNYWi6kC
+         FG9+Txe6R3g7UNU1xfaqlYE9YSAKPIBfjPIttpXCxu1dkK2SbwlPoiYukpjRLuc0LK
+         4j0q7SZ5wkve9JyX/1fnDaG+tKfAalIPjusK5M/G7UZeY31Dafmsu3jsGWVpeomwFz
+         FpzDPUtk3hITyS3PB4jrvT8p5nWxkOmhYoSlpApZ1/gXQG3LbZd6lDFt6lhCmNIwkp
+         TIw38VZnpk5b1HoTPQygFq0e8qHNohW4BJBROi9H+qmPy98LnoTTt5bg3WL+uFGVUK
+         KwVNCNXhAsbsA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1qEAQw-00045R-Gd; Tue, 27 Jun 2023 17:16:46 +0200
+Date:   Tue, 27 Jun 2023 17:16:46 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krishna Kurapati PSSNV <quic_kriskura@quicinc.com>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        "Martin K . Petersen" <martin.petersen@oracle.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Bart Van Assche <bvanassche@acm.org>,
-        linux-arm-msm@vger.kernel.org, linux-scsi@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/5] scsi: dt-bindings: ufs: qcom: Fix warning for sdm845
- by adding reg-names
-Message-ID: <20230627151407.GA1918927-robh@kernel.org>
-References: <20230623113009.2512206-1-abel.vesa@linaro.org>
- <20230623113009.2512206-6-abel.vesa@linaro.org>
- <cd84b8c6-fac7-ecef-26be-792a1b04a102@linaro.org>
- <CTK1AI4TVYRZ.F77OZB62YYC0@otso>
- <20230623211746.GA1128583-robh@kernel.org>
- <f1ff2c32-df2a-e349-1227-e5a93fe37c92@linaro.org>
+        Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v9 08/10] arm64: dts: qcom: sc8280xp: Add multiport
+ controller node for SC8280
+Message-ID: <ZJr9Xiv6_0nG0Pui@hovoldconsulting.com>
+References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
+ <20230621043628.21485-9-quic_kriskura@quicinc.com>
+ <2eab503f-fa0d-990e-bed2-2445c5496798@linaro.org>
+ <b183a130-6237-7d15-5d5a-b56582b92b35@quicinc.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <f1ff2c32-df2a-e349-1227-e5a93fe37c92@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <b183a130-6237-7d15-5d5a-b56582b92b35@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,32 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jun 24, 2023 at 09:49:12AM +0200, Krzysztof Kozlowski wrote:
-> On 23/06/2023 23:17, Rob Herring wrote:
-> >> With my private mailbox I just have a different folder for patches that
-> >> have been sent which I archive once they're applied, but with work GMail
-> >> I don't see how I can easily replicate this since it's also not grouping
-> >> threads properly.
-> > 
-> > Yeah, GMail sucks for that. I use 'lei' to get all my patches and 
-> > replies to them (though its caching will miss replies). Then I delete 
-> > them from the mbox when they are applied or otherwise finished. lei 
-> > updates won't re-add them to the mbox.
-> 
-> That's interesting approach. What's your lei search query for getting
-> your patches? "f:rob" would get all your threads you participated in.
+On Sat, Jun 24, 2023 at 12:43:23PM +0530, Krishna Kurapati PSSNV wrote:
+> > On 21.06.2023 06:36, Krishna Kurapati wrote:
+> >> Add USB and DWC3 node for tertiary port of SC8280 along with multiport
+> >> IRQ's and phy's. This will be used as a base for SA8295P and SA8295-Ride
+> >> platforms.
+> >>
+> >> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
 
-This is what I have:
+> > Not a comment to the patch, but very nice that Qcom ensured every
+> > endpoint is wakeup-capable, this used not to be the case before :D
 
-        q = (dfn:drivers OR dfn:sound OR dfn:tools OR dfn:kernel OR \
-         dfn:arch OR dfn:Documentation OR dfn:include OR dfn:scripts) AND \
-         f:robh@kernel.org AND rt:3.month.ago..
+> Yes wakeup is supported by all ports now, but I didn't make those 
+> changes now as I wanted to keep driver code diff minimal and don't need 
+> wakeup support for the product currently. But for sure, will update 
+> driver code to handle wakeup on all ports in near future.
 
-Really, I'd like a 'is a patch' flag or 'dfn:*' or 'dfn:/' here, but I 
-didn't convince the lei maintainer such a thing is needed. Sigh.
+Why didn't you include it in v9? I thought you had a working
+implementation for this?
 
-Also, you have to disable lei's caching with the --remote-fudge-time 
-option because it will miss replies to the matching query. Also reported 
-and not fixed...
+Since wakeup will be another case where glue and core need to interact,
+it's good to have the wakeup implementation from the start to be able to
+evaluate your multiport implementation properly.
 
-Rob
+Right now it looks like you only added wakeup interrupt lookup and
+request, but then you never actually enable them which is not very nice.
+
+Johan
