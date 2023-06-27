@@ -2,128 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10E57740150
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 18:34:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3D03740153
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 18:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232008AbjF0QeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 12:34:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51738 "EHLO
+        id S232263AbjF0Qe2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 12:34:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232124AbjF0Qd5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 12:33:57 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9711226B1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:33:34 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b698dd515dso47531301fa.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:33:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687883610; x=1690475610;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Um1a8Di8IY3rLUktjDo7U5c6Z65JFohHK/V4Nx6QANs=;
-        b=BGUZxcUxoexnlvX8ixsryCG1nbEQMg9k9DofDayzFEf0pJBrZ5M01orNSMl7peKN1M
-         OXk2Bd0HPISEQLmlgOzIAbJnuDJhgszt3JBzHHktSHQpC7HTh3/qI1B7q5OCuoDHKr1q
-         o8W0OOTNCjnLhvtXAVCuF3ayQIdk17/H1OWWrQDNXU+6w1UX9MOFv1k8BhVVH3pE71f4
-         CXN9Sf4Nz9QxTjps1HqpVSHrzALgMxoaEKocYyAzBppF/HpwquiDgVqrVJU/C66iHlLA
-         MbUBXlo/34Gp9dLzje7nukrhiiOGOzYBLcHKfiq9T6+Ii2umWOAnvKpAKQfGS8RgwiLq
-         hfYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687883610; x=1690475610;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Um1a8Di8IY3rLUktjDo7U5c6Z65JFohHK/V4Nx6QANs=;
-        b=IaaJsDzMzgRI0+/6D0WWFOyxalVyAkIstPbJSGPnHRebC3ApFDOncGEKI93ucNXAO7
-         2icybvEPCJ8Qy4IVpLBoKJnjDBknj6BcgeCKYWPbIvL/oSY4ZIqygQk11qa9JnZL+P00
-         34HOSwPdGIACzyBntY7o1PsI4AEG9DY/L44VpjATHXGnhlYtyzsRuN/dCavgS1QeLnbs
-         0kO5ZX8adcgIaTEFFQKYMYBNk2EGNt+P1V8JgnhPt8VPhvFam6/DVMh/04Ns+GrkE82Z
-         +L1XiDwo0neKE+M2p0ufzdl31mVfOSXiFHyaqDks2Ns93hczLDYpXCMaxdlpo9VgNdIK
-         xm0A==
-X-Gm-Message-State: AC+VfDzvuF9wcf5DNB2eTX5knAVKO+TlvfgTbw1OLsLKXLi6q2QOSNUW
-        Ipl/8wxUdy0jrOK991XqX9n4GQ==
-X-Google-Smtp-Source: ACHHUZ6i8gT3Uh61AFhzJhn90PzjFM8Pd/4izuKEFt8ksKV/UAmA+veBM9rcMDZY+A7Fk4xWHFSiqQ==
-X-Received: by 2002:a2e:b3c9:0:b0:2b5:9d78:2143 with SMTP id j9-20020a2eb3c9000000b002b59d782143mr7470933lje.28.1687883610030;
-        Tue, 27 Jun 2023 09:33:30 -0700 (PDT)
-Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
-        by smtp.gmail.com with ESMTPSA id o22-20020a2e7316000000b002b69e504a38sm1366854ljc.99.2023.06.27.09.33.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 09:33:29 -0700 (PDT)
-Message-ID: <266d3cfa-f72d-fc08-c283-19bebbd3ef4c@linaro.org>
-Date:   Tue, 27 Jun 2023 18:33:28 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm850-*: fix uart6 aliases
-Content-Language: en-US
-To:     Caleb Connolly <caleb.connolly@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232333AbjF0QeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 12:34:19 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A5883A90;
+        Tue, 27 Jun 2023 09:33:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 752AE611E1;
+        Tue, 27 Jun 2023 16:33:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A2A4C433C8;
+        Tue, 27 Jun 2023 16:33:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687883631;
+        bh=/TucQmQ2OIkIOcD5/ingQ/Eu+6luVanQxgJj7XY//cc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=I7Q1nUG4hsQpEeE4jPxgHrhCyMVIf/CV1bs5bLYS346xBHOI4M5UTSHX2ModUKji1
+         JwsxlQHPDEXMuJO4kN9ttnkb8kcKJsQxwnmbXBY1jBsuk1BMJPQXOrcGVJygb2xx90
+         HDv3RNulk70COHgDw9npwT5jxAsGRyIPJfUlZwbKLEK/IYRBowkse3Kt+8Wj2W0q9s
+         vdFpXda+klSQMI22Nr3h6srTVj3SROIWHXktLFI06L9bVPflYrnDfQnvH5lBFeqP3k
+         FNHUo8mR/193KRwOdon/9v89kTH1tunCRny/DXVcUdABT/OP1YHyIUzXQ4CM1RVPPM
+         216YDWXkNI8sQ==
+Date:   Tue, 27 Jun 2023 17:33:44 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     William Breathitt Gray <william.gray@linaro.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        "Sahin, Okan" <Okan.Sahin@analog.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-References: <20230627-c630-uart-and-1p2-reg-v1-0-b48bfb47639b@linaro.org>
- <20230627-c630-uart-and-1p2-reg-v1-3-b48bfb47639b@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230627-c630-uart-and-1p2-reg-v1-3-b48bfb47639b@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <20230627163344.GG10378@google.com>
+References: <20230420103438.GI9904@google.com>
+ <09eb8e4c-3e73-41f0-bf42-8ddf3c4254ec@sirena.org.uk>
+ <20230421073938.GO996918@google.com>
+ <82612171-46d7-4d82-a8fc-c7d6a99d57e9@sirena.org.uk>
+ <MN2PR03MB516860989BD8ED6AC9A767FBE755A@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230621171315.GL10378@google.com>
+ <20230626175443.GA3446604-robh@kernel.org>
+ <20230627135615.GF10378@google.com>
+ <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
+ <ZJry8QTka8m6ag/j@fedora>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ZJry8QTka8m6ag/j@fedora>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27.06.2023 17:32, Caleb Connolly wrote:
-> This is a follow up on a previous patch
-Either copy the commit message or reference it by hash, there have
-probably been 12341234 commits between the landing of that one and
-this one.
+On Tue, 27 Jun 2023, William Breathitt Gray wrote:
 
-For the content:
+> On Tue, Jun 27, 2023 at 08:10:59AM -0600, Rob Herring wrote:
+> > On Tue, Jun 27, 2023 at 7:56 AM Lee Jones <lee@kernel.org> wrote:
+> > >
+> > > On Mon, 26 Jun 2023, Rob Herring wrote:
+> > >
+> > > > On Wed, Jun 21, 2023 at 06:13:15PM +0100, Lee Jones wrote:
+> > > > > On Tue, 13 Jun 2023, Sahin, Okan wrote:
+> > > > >
+> > > > > > >On Fri, Apr 21, 2023 at 08:39:38AM +0100, Lee Jones wrote:
+> > > > > > >
+> > > > > > >> I'll try anything once!
+> > > > > > >
+> > > > > > >> Fair warning, I think this is going to massively complicate things.
+> > > > > > >
+> > > > > > >> Either we're going to be left with a situation where child-driver
+> > > > > > >> maintainers are scrabbling around looking for previous versions for the
+> > > > > > >> MFD pull-request or contributors being forced to wait a full cycle for
+> > > > > > >> their dependencies to arrive in the maintainer's base.
+> > > > > > >
+> > > > > > >If people are resending after the MFD has gone in they really ought to
+> > > > > > >be including the pull request in the cover letter, with some combination
+> > > > > > >of either referencing the mail or just saying "this depends on the
+> > > > > > >signed tag at url+tag", the same way they would for any other dependency.
+> > > > > > >
+> > > > > > >I can't see how you applying stuff when you can slow things down TBH,
+> > > > > > >the MFD bits will be applied faster and either people can pull in a
+> > > > > > >shared tag or you can apply more commits on top of the existing core
+> > > > > > >driver.
+> > > > > > >
+> > > > > > >> I'm not sure why simply providing your Ack when you're happy with the
+> > > > > > >> driver and forgetting about the set until the pull-request arrives, like
+> > > > > > >> we've been doing for nearly a decade now, isn't working for you anymore
+> > > > > > >> but I'm mostly sure this method will be a regression.
+> > > > > > >
+> > > > > > >Like I said I've not been doing that, I've mostly been just applying the
+> > > > > > >driver when it's ready.  This might not have been so visible to you
+> > > > > > >since it means that the regulator driver doesn't appear in the series by
+> > > > > > >the time the MFD settles down.  The whole "Acked-for-MFD" has always
+> > > > > > >been a bit confusing TBH, it's not a normal ack ("go ahead and apply
+> > > > > > >this, I'm fine with it") so it was never clear what the intention was.
+> > > > > > >
+> > > > > > >Before I started just applying the drivers there used to be constant
+> > > > > > >problems with things like tags going missing (which some of the time is
+> > > > > > >the submitter just not carrying them but can also be the result of some
+> > > > > > >churn causing them to be deliberately dropped due to changes) or
+> > > > > > >forgetting the series as you suggest and then not looking at some other
+> > > > > > >very similarly named series that was also getting lots of versions after
+> > > > > > >thinking it was one that had been reviewed already.  It was all very
+> > > > > > >frustrating.  Not doing the tags until the dependencies have settled
+> > > > > > >down means that if it's in my inbox it at least consistently needs some
+> > > > > > >kind of attention and that the submitter didn't drop tags or anything so
+> > > > > > >I know why there's no tag on it even though the version number is high,
+> > > > > > >though it's not ideal either.
+> > > > > >
+> > > > > > Hi Mark and Lee,
+> > > > > >
+> > > > > > Is there anything that I need to do for this patch set. I have received reviewed
+> > > > > > by tag for all of them so far.
+> > > > >
+> > > > > Since we are so late in the day, I'm going to just apply this for v6.5.
+> > > > >
+> > > > > The remainder can then be applied, friction free, for v6.6.
+> > > >
+> > > > Now we have undocmented bindings in use by the driver (as pointed out by
+> > > > 'make dt_compatible_check').
+> > > >
+> > > > The whole series has all the acks/reviews needed for you to apply the
+> > > > whole thing, so why not take the whole thing? Plus this series has been
+> > > > sitting for 2 months. Not a great experience for submitters...
+> > >
+> > > Patches are missing Acked-by tags.
+> > >
+> > >   Reviewed-by != Acked-by
+> > 
+> > Reviewed-by > Acked-by
+> > 
+> > >
+> > > I cannot merge other subsystem's patches without and Acked-by.
+> > 
+> > I (and Krzysztof) give one or the other. If I'm taking a patch, then
+> > it's neither. I'm pretty sure Mark only gives Reviewed-by when he is
+> > not taking something.
+> > 
+> > Rob
+> 
+> It does seem a bit ambiguous whether an "Acked-by" indicates a
+> "Reviewed-by + acceptance of the changes" or just a brief look-over with
+> acceptance of the changes. FWIW the documentation does use the word
+> "reviewed" when describing Acked-by. [^1]
+> 
+> However, I would argue that a Reviewed-by has a implicit acceptance of
+> the changes: why else provide a Reviewed-by line for the commit message
+> if you fundamentally disagree with the changes being merged? So a
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Where MFD is concerned the complexities are seldom 'whether' a patch
+should be merged, but rather 'how' it should be merged.
 
-Konrad
-> fixing the aliases for
-> sdm845 devices, fix them here too.
+In order to solve some of these issues in the past, I created a bespoke
+tag for scenarios where I'd like to indicate that a submission had been
+reviewed, but I also intended to take the patch via the MFD tree once
+all of the other pieces were ready.  Despite using this tag for around a
+decade, it did cause occasional confusion, even amongst maintainers I'd
+been working with for the longest time, so I recently stopped using it
+and replaced it with a standard Reviewed-by, to mean that it's reviewed
+but permission was *not* given for someone else to merge it - since my
+understanding, according to the documentation, is that an Acked-by is
+required for that.
+
+Recent discussions with other maintainers culminated in an agreement
+that I would start only taking the MFD pieces and follow-up with a
+pull-request for an immutable branch for them to pull from.  Since there
+is no more time to create, test and submit a maintainer-maintainer
+pull-request, I decided to merge this patch anyway, so the leaf drivers
+can be applied in a couple of weeks, after the merge-window is closed.
+
+Which brings us to where we are now!
+
+Without different tag which doesn't exist today, I'm not entirely sure
+how to solve this issue.  Ideas welcome.
+
+> Reviewed-by given by a maintainer should be seen as approval for those
+> changes to be merged.
 > 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 2 +-
->  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts     | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
+> William Breathitt Gray
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 090f73251994..62f503508dea 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -34,7 +34,7 @@ / {
->  
->  	aliases {
->  		serial0 = &uart9;
-> -		hsuart0 = &uart6;
-> +		serial1 = &uart6;
->  	};
->  
->  	gpio-keys {
-> diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> index 41f59e32af64..543837316001 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> +++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
-> @@ -56,7 +56,7 @@ framebuffer0: framebuffer@80400000 {
->  	};
->  
->  	aliases {
-> -		hsuart0 = &uart6;
-> +		serial1 = &uart6;
->  	};
->  
->  	/* Reserved memory changes */
-> 
+> [^1]: https://www.kernel.org/doc/html/latest/process/submitting-patches.html#when-to-use-acked-by-cc-and-co-developed-by
+
+-- 
+Lee Jones [李琼斯]
