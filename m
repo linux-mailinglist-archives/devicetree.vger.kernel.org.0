@@ -2,102 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58D3A74057C
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 23:17:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28F6C7405A7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 23:34:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbjF0VR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 17:17:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34000 "EHLO
+        id S230268AbjF0VeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 17:34:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38342 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjF0VR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 17:17:26 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFF9D198E
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 14:17:24 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51bcf75c4acso3220a12.0
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 14:17:24 -0700 (PDT)
+        with ESMTP id S230113AbjF0VeE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 17:34:04 -0400
+Received: from mail-il1-x129.google.com (mail-il1-x129.google.com [IPv6:2607:f8b0:4864:20::129])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08EF22106
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 14:34:03 -0700 (PDT)
+Received: by mail-il1-x129.google.com with SMTP id e9e14a558f8ab-34570ed4cb8so17174645ab.1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 14:34:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1687900643; x=1690492643;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cBeSv/arp5bR8O0ezFl7fdKlEKxWfXnzLYU9+AdmzGc=;
-        b=tfUpx5yzTHhQIqvV6B/hMBOXajoW3JRxIkAPylYF9WdKHxjWQXkaz29OkaD06EUW+C
-         /tSk+kBo0MdDNbAf7SbEV9eaO4cZ/IK21j7EeF69T3+T4FzzOV+PVke8d6c+Bb5S1HQ6
-         hLo5lk8AvJtb9soHB+Yq8dVmRdFaso7T2mFv1mIKj+d55uOi+2yqs11OZq8dxUl241lz
-         awwPlDOWsF0ihnewJriL+vS5clDEI6pQt4emYOx9wGU1+1QnOmI0tM70awk/SeNecE/U
-         1czgUpwJqXcK5y/RIVjx/rZrDm5qZhvRlJVmFjXFnzG3xAq92G/YDwthgX0Iz5XRgtSC
-         2tLQ==
+        d=chromium.org; s=google; t=1687901642; x=1690493642;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=NZqYumP33fV5BVUZmpS7A28a1sWnVNycuG2BlU8AmM8=;
+        b=IpkCBsUmZFPGJXzJ1xZcAyhntxXHhDd/LJrQddo689e29JvNh+T8rCjTy7OE937xh8
+         VEEiIMNUIle8GoiLJw9as4dQXIf/KH7BrTRBZqPKwBpOVPrjrKvBvFvpeTMlXWPIf1KN
+         QlNbuFsRWM1QaulTv8eWXnRrJ5sH6ZBOg2SaM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687900643; x=1690492643;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=cBeSv/arp5bR8O0ezFl7fdKlEKxWfXnzLYU9+AdmzGc=;
-        b=DjXU3M1Y61l0Ye8uVrJrJNdNEElyVpDsm1nz8KpPmHUfBIVkshAqgE1PFLXHKYYrDz
-         ib8X5x0q3t/ZZN2cZpsEzenEDwg6Ltv00k3TdheC4KYKs+glTbKepDwNqVp0d1f5aWXD
-         nFLY4WZop/u0QdOMA4WguagkRjuKqq3NCPadBxq+X7FWH5cHnn55KfHC5C67kiSHLYaB
-         vQIxQ32RBOeg8g56vn9cij2H/xY+AqHtMZGtPvFC24Bc2mwgbI7W7mM7YTa5sy5m7i72
-         X2k9YmV6GYRF4pDLsc6JRfRWXycphZ7VIzlvUqOZMZuhy6hb7gZIInwwCJ12E8Seeo2E
-         Fd1w==
-X-Gm-Message-State: AC+VfDz/KsPdoIAxJO8o0d6HpvBCgPOWdkdfzBeyHs0SmfWe5H5Yah6R
-        yOlTRXDQF6ofVqgaJ/m0mUuJiJgaq9bziQQzFHhh2w==
-X-Google-Smtp-Source: ACHHUZ70Q5j1PrnGsHu1Pss9Gi238RZdicz8QeFii6Q1FnA+fmkZQD6gh8CYj3Aib3f7Q0vjX9+44Tr1PgkxN5zxB2M=
-X-Received: by 2002:a50:d087:0:b0:506:b280:4993 with SMTP id
- v7-20020a50d087000000b00506b2804993mr28983edd.2.1687900643282; Tue, 27 Jun
- 2023 14:17:23 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687901642; x=1690493642;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=NZqYumP33fV5BVUZmpS7A28a1sWnVNycuG2BlU8AmM8=;
+        b=gWfm+PvL7680LhqSWpDXr/Z3h70t/aj0g/OpMWGsdUrzphEZRnBuBK9u/2mOO4cCNl
+         Nx+mFsRW3d5UmbTxKIN8kb8bJC4k2LMk+j9a1iLGSk29bv6/iZLugTqYk9mh1x4xN/CC
+         /aXZ/a/CG6F4EcWNQ7eq7SVSkWyt2cEdMmM1fO2yOOK765Li4tL3goMnB5tZwcBuDQQZ
+         E8Q/RAcM5YqKlDlavYCBOZFB3g7HB2RiH6wMr0hJZni8fmgafe7dpE9kuFGUP5IKRr4d
+         06Ho+EBIOcslJLAFwjsAoV4+xHlar2z2kM2IOpcFl2FB+/LeETkk9NMB0TBF65UHW9BY
+         Bp5Q==
+X-Gm-Message-State: AC+VfDys+CHugvB6pJHUxycuaQiNGTMNIFVPIC3EuiMumh0tJUapjbxP
+        9DxT2TcJ+8arH3yb8gO6E4o5pg==
+X-Google-Smtp-Source: ACHHUZ7ItMgqKAmuFElauXWeEhfMACuB7n5OgXQznjB8sLC8WMB+/S8XZtmBgtnccaxreLuSg38DKQ==
+X-Received: by 2002:a92:cd06:0:b0:345:bc24:7c75 with SMTP id z6-20020a92cd06000000b00345bc247c75mr2301923iln.9.1687901642456;
+        Tue, 27 Jun 2023 14:34:02 -0700 (PDT)
+Received: from localhost (30.23.70.34.bc.googleusercontent.com. [34.70.23.30])
+        by smtp.gmail.com with UTF8SMTPSA id d8-20020a92d788000000b0034233fd80d3sm2907859iln.22.2023.06.27.14.34.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 27 Jun 2023 14:34:01 -0700 (PDT)
+Date:   Tue, 27 Jun 2023 21:33:54 +0000
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Benjamin Bara <bbara93@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Benjamin Bara <benjamin.bara@skidata.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/3] usb: misc: onboard-hub: support multiple power
+ supplies
+Message-ID: <ZJtVwqJaXmSPY3TK@google.com>
+References: <20230620-hx3-v7-0-f79b4b22a1bf@skidata.com>
+ <20230620-hx3-v7-1-f79b4b22a1bf@skidata.com>
 MIME-Version: 1.0
-References: <20230627050148.2045691-1-yangcong5@huaqin.corp-partner.google.com>
-In-Reply-To: <20230627050148.2045691-1-yangcong5@huaqin.corp-partner.google.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Tue, 27 Jun 2023 14:17:10 -0700
-Message-ID: <CAD=FV=WR=fnhCxC37Eo3hinh2MV=eTNuXG+GrwgR6K_pV4Rbaw@mail.gmail.com>
-Subject: Re: [v2] drm/panel: Fine tune Starry-ili9882t panel HFP and HBP
-To:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
-        airlied@gmail.com, hsinyi@google.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20230620-hx3-v7-1-f79b4b22a1bf@skidata.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jun 23, 2023 at 09:28:12AM +0200, Benjamin Bara wrote:
+> From: Benjamin Bara <benjamin.bara@skidata.com>
+> 
+> As some of the onboard hubs require multiple power supplies, provide the
+> environment to support them.
+> 
+> Signed-off-by: Benjamin Bara <benjamin.bara@skidata.com>
 
-On Mon, Jun 26, 2023 at 10:01=E2=80=AFPM Cong Yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> Because the setting of hproch is too small, there will be warning in
-> kernel log[1]. After fine tune the HFP and HBP, this warning can be
-> solved. The actual measurement frame rate is 60.1Hz.
->
-> [1]: WARNING kernel:[drm] HFP + HBP less than d-phy, FPS will under 60Hz
-
-Thanks for including the warming. This looks like something that's
-only printed on Mediatek display controllers. Just out of curiosity:
-is that because Mediatek controllers have special requirements, or is
-this something generic and the Mediatek controller is the only one
-that warns about it?
-
-
-> Fixes: 8716a6473e6c ("drm/panel: Support for Starry-ili9882t TDDI
-> MIPI-DSI panel")
-
-Ideally the tool you have to send mail wouldn't wrap the Fixes line.
-Probably not worth resending just for this, but see if there's
-something you can do to fix this in the future.
-
-Since this is a tiny fix, I don't think we need to wait too long. I'll
-plan to land it on Thursday unless Neil wants to land it himself
-sooner.
-
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Acked-by: Matthias Kaehlcke <mka@chromium.org>
