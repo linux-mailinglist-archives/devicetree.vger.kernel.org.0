@@ -2,32 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 77AC7740483
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 22:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C6D74047F
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 22:14:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231221AbjF0UOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 16:14:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35858 "EHLO
+        id S231206AbjF0UOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 16:14:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231127AbjF0UOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 16:14:34 -0400
-Received: from relay08.th.seeweb.it (relay08.th.seeweb.it [5.144.164.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96C952700
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 13:14:30 -0700 (PDT)
+        with ESMTP id S231139AbjF0UOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 16:14:35 -0400
+Received: from relay05.th.seeweb.it (relay05.th.seeweb.it [5.144.164.166])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E019212D
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 13:14:31 -0700 (PDT)
 Received: from Marijn-Arch-PC.localdomain (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id E5A803F751;
-        Tue, 27 Jun 2023 22:14:27 +0200 (CEST)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 3E1AA3F767;
+        Tue, 27 Jun 2023 22:14:29 +0200 (CEST)
 From:   Marijn Suijten <marijn.suijten@somainline.org>
-Date:   Tue, 27 Jun 2023 22:14:20 +0200
-Subject: [PATCH v2 05/15] dt-bindings: display/msm: dsi-controller-main:
- Document SM6125
+Date:   Tue, 27 Jun 2023 22:14:21 +0200
+Subject: [PATCH v2 06/15] dt-bindings: display/msm: sc7180-dpu: Describe
+ SM6125
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230627-sm6125-dpu-v2-5-03e430a2078c@somainline.org>
+Message-Id: <20230627-sm6125-dpu-v2-6-03e430a2078c@somainline.org>
 References: <20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org>
 In-Reply-To: <20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org>
 To:     Andy Gross <agross@kernel.org>,
@@ -56,8 +56,7 @@ Cc:     ~postmarketos/upstreaming@lists.sr.ht,
         linux-kernel@vger.kernel.org,
         Krzysztof Kozlowski <krzk@kernel.org>,
         linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
 X-Mailer: b4 0.12.3
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
@@ -68,34 +67,50 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document general compatibility of the DSI controller on SM6125.
+SM6125 is identical to SM6375 except that while downstream also defines
+a throttle clock, its presence results in timeouts whereas SM6375
+requires it to not observe any timeouts.  This is represented by
+reducing the clock array length to 6 so that it cannot be passed.  Note
+that any SoC other than SM6375 (currently SC7180 and SM6350) are
+unconstrained and could either pass or leave out this "throttle" clock.
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
 ---
- Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+ .../devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml   | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-index 01848bdd5873..23926c39407e 100644
---- a/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-+++ b/Documentation/devicetree/bindings/display/msm/dsi-controller-main.yaml
-@@ -27,6 +27,7 @@ properties:
-               - qcom,sdm660-dsi-ctrl
-               - qcom,sdm845-dsi-ctrl
-               - qcom,sm6115-dsi-ctrl
-+              - qcom,sm6125-dsi-ctrl
-               - qcom,sm6350-dsi-ctrl
-               - qcom,sm6375-dsi-ctrl
-               - qcom,sm8150-dsi-ctrl
-@@ -301,6 +302,7 @@ allOf:
-           contains:
-             enum:
-               - qcom,msm8998-dsi-ctrl
-+              - qcom,sm6125-dsi-ctrl
-               - qcom,sm6350-dsi-ctrl
-     then:
-       properties:
+diff --git a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+index 630b11480496..37f66940c5e3 100644
+--- a/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
++++ b/Documentation/devicetree/bindings/display/msm/qcom,sc7180-dpu.yaml
+@@ -15,6 +15,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,sc7180-dpu
++      - qcom,sm6125-dpu
+       - qcom,sm6350-dpu
+       - qcom,sm6375-dpu
+ 
+@@ -73,6 +74,19 @@ allOf:
+         clock-names:
+           minItems: 7
+ 
++  - if:
++      properties:
++        compatible:
++          const: qcom,sm6125-dpu
++
++    then:
++      properties:
++        clocks:
++          maxItems: 6
++
++        clock-names:
++          maxItems: 6
++
+ examples:
+   - |
+     #include <dt-bindings/clock/qcom,dispcc-sc7180.h>
 
 -- 
 2.41.0
