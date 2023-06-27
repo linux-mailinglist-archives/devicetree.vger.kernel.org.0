@@ -2,70 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66F2873F8AF
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 11:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD14B73F8EB
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 11:43:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229982AbjF0J0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 05:26:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42740 "EHLO
+        id S231152AbjF0JnD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 05:43:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48412 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229495AbjF0J0t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 05:26:49 -0400
-Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4420D1737;
-        Tue, 27 Jun 2023 02:26:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1687858007; x=1719394007;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=FaFTUsuBZJ02JNJ3CCmt7qbSzKUt2W9+oeZFpl/EjGE=;
-  b=iJ4eFSgth/hcmpJDQ8dZHuk1lzkptNfO2TnXc73WxlvOkdKdHaWNCY2L
-   v6RjgtW5/jX3b3M2PHVoIcoMykG6+ClgWwadtjPpJVuLn8Kq1L62tS/9d
-   k1XnV26aAtLDiO1HWN0lVeiCP/dbAwZXYssuSjq0TX8dacSenPJpTdIKo
-   QatpqedqN8XLN89KwJ/Xg5DJSZSwwU0yZTIm99ePytfsr2Wfk7Ttm41bj
-   4cRRyjnKWRwBgsLBKad92BYmm46sqPBWc0Sa7Pj3LEUoary9ncIcU4RTF
-   1K35rwrhL7wQEj22GXr3fhoNwjK8RD9LqdpqZzqGHZB517urgEG3UJock
-   w==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="341112633"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
-   d="scan'208";a="341112633"
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Jun 2023 02:26:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10753"; a="666630604"
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
-   d="scan'208";a="666630604"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
-  by orsmga003.jf.intel.com with ESMTP; 27 Jun 2023 02:26:03 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qE4xW-000BrB-2Y;
-        Tue, 27 Jun 2023 09:26:02 +0000
-Date:   Tue, 27 Jun 2023 17:25:57 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Javier Carrasco <javier.carrasco@wolfvision.net>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Bastian Hecht <hechtb@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>
-Cc:     oe-kbuild-all@lists.linux.dev, linux-kernel@vger.kernel.org,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        Javier Carrasco <javier.carrasco@wolfvision.net>
-Subject: Re: [PATCH v3 3/4] Input: st1232 - add overlay touchscreen and
- buttons handling
-Message-ID: <202306271711.B8sjkaYH-lkp@intel.com>
-References: <20230510-feature-ts_virtobj_patch-v3-3-b4fb7fc4bab7@wolfvision.net>
+        with ESMTP id S231819AbjF0Jm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 05:42:59 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A471226A9;
+        Tue, 27 Jun 2023 02:42:53 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 759C62F4;
+        Tue, 27 Jun 2023 02:43:37 -0700 (PDT)
+Received: from [10.57.28.204] (unknown [10.57.28.204])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C407A3F64C;
+        Tue, 27 Jun 2023 02:42:50 -0700 (PDT)
+Message-ID: <ca00f50f-3c65-f5e3-eec3-5d5aa598d50b@arm.com>
+Date:   Tue, 27 Jun 2023 10:42:49 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230510-feature-ts_virtobj_patch-v3-3-b4fb7fc4bab7@wolfvision.net>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+Subject: Re: [PATCH V5 6/6] coresight: etm4x: Add ACPI support in platform
+ driver
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Anshuman Khandual <anshuman.khandual@arm.com>
+Cc:     linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        scclevenger@os.amperecomputing.com,
+        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230529062511.52016-1-anshuman.khandual@arm.com>
+ <20230529062511.52016-7-anshuman.khandual@arm.com>
+ <150b90b5-23fb-c115-6517-e6941b9b06df@arm.com>
+ <2023062736-spearhead-spinster-0fbf@gregkh>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <2023062736-spearhead-spinster-0fbf@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -73,37 +60,71 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Javier,
+On 27/06/2023 10:20, Greg Kroah-Hartman wrote:
+> On Tue, Jun 27, 2023 at 10:06:11AM +0100, Suzuki K Poulose wrote:
+>> Hi Greg,
+>>
+>> On 29/05/2023 07:25, Anshuman Khandual wrote:
+>>> From: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>>
+>>> Drop ETM4X ACPI ID from the AMBA ACPI device list, and instead just move it
+>>> inside the new ACPI devices list detected and used via platform driver.
+>>>
+>>> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+>>> Cc: Len Brown <lenb@kernel.org>
+>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>> Cc: Mike Leach <mike.leach@linaro.org>
+>>> Cc: Leo Yan <leo.yan@linaro.org>
+>>> Cc: Sudeep Holla <sudeep.holla@arm.com>
+>>> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+>>> Cc: linux-acpi@vger.kernel.org
+>>> Cc: coresight@lists.linaro.org
+>>> Cc: linux-arm-kernel@lists.infradead.org
+>>> Cc: linux-kernel@vger.kernel.org
+>>> Reviewed-by: Sudeep Holla <sudeep.holla@arm.com> (for ACPI specific changes)
+>>> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>>> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+>>> ---
+>>>    drivers/acpi/acpi_amba.c                           |  1 -
+>>>    drivers/hwtracing/coresight/coresight-etm4x-core.c | 10 ++++++++++
+>>>    2 files changed, 10 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/acpi/acpi_amba.c b/drivers/acpi/acpi_amba.c
+>>> index f5b443ab01c2..099966cbac5a 100644
+>>> --- a/drivers/acpi/acpi_amba.c
+>>> +++ b/drivers/acpi/acpi_amba.c
+>>> @@ -22,7 +22,6 @@
+>>>    static const struct acpi_device_id amba_id_list[] = {
+>>>    	{"ARMH0061", 0}, /* PL061 GPIO Device */
+>>>    	{"ARMH0330", 0}, /* ARM DMA Controller DMA-330 */
+>>> -	{"ARMHC500", 0}, /* ARM CoreSight ETM4x */
+>>>    	{"ARMHC501", 0}, /* ARM CoreSight ETR */
+>>>    	{"ARMHC502", 0}, /* ARM CoreSight STM */
+>>>    	{"ARMHC503", 0}, /* ARM CoreSight Debug */
+>>
+>> This is a bit awkward request.
+>>
+>> I would like to get your opinion on merging this to coresight tree.
+>> This change is removing the coresight ETMv4 from the ACPI AMBA
+>> scan list and moving it to the coresight driver. This change is
+>> essential for
+>> 1) Adding ACPI support for later versions of ETMv4 that are not AMBA
+>>     devices.
+>> 2) Adding power management support for AMBA ETMv4 with ACPI.
+>>
+>> The above change has been reviewed by Sudeep (Arm64 ACPI reviewer), but
+>> hasn't been Acked by the ACPI maintainer (Rafael) even after a month of
+>> follow up with at least 4 reminders [0].
+>>
+>> Are you happy with the Reviews from Sudeep and given the minimal
+>> change to the drivers/acpi/acpi_amba.c file ?
+> 
+> As we can't do anything now with the merge window open, please resend
+> after 6.5-rc1 is out and ask for the ACPI developers to ack this.
 
-kernel test robot noticed the following build errors:
+Sure, will do that.
 
-[auto build test ERROR on ac9a78681b921877518763ba0e89202254349d1b]
+Thanks
+Greg
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Javier-Carrasco/Input-ts-overlay-Add-touchscreen-overlay-object-handling/20230616-153203
-base:   ac9a78681b921877518763ba0e89202254349d1b
-patch link:    https://lore.kernel.org/r/20230510-feature-ts_virtobj_patch-v3-3-b4fb7fc4bab7%40wolfvision.net
-patch subject: [PATCH v3 3/4] Input: st1232 - add overlay touchscreen and buttons handling
-config: microblaze-randconfig-r051-20230625 (https://download.01.org/0day-ci/archive/20230627/202306271711.B8sjkaYH-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230627/202306271711.B8sjkaYH-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306271711.B8sjkaYH-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
->> ERROR: modpost: "ts_overlay_is_button_slot" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_button_press" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_mt_on_touchscreen" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_mapped_buttons" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_button_release" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_map_objects" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_mapped_touchscreen" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_get_touchscreen_abs" [drivers/input/touchscreen/st1232.ko] undefined!
->> ERROR: modpost: "ts_overlay_set_button_caps" [drivers/input/touchscreen/st1232.ko] undefined!
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
