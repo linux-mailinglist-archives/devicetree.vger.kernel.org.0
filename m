@@ -2,199 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EB2973F812
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 11:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55C0673F839
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 11:07:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231210AbjF0JD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 05:03:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57002 "EHLO
+        id S231899AbjF0JHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 05:07:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229987AbjF0JDz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 05:03:55 -0400
-Received: from APC01-TYZ-obe.outbound.protection.outlook.com (mail-tyzapc01on2095.outbound.protection.outlook.com [40.107.117.95])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9FF799;
-        Tue, 27 Jun 2023 02:03:12 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=b5Ta/SVxfVHuktLAOrWHo15vSLnxMlIkor5tYTyLeWZb/72tPG5a0cOJyyUZojFDM6WjSVoIfp846JR4Q4e/oZvUk+3ph0/2Pd5aZCAkp4Ik5aPEJbinCNcjyJ0ALtASNS8lpTRxE5zr3nJOUunBVBaALecAjURvXSmxBlJ7UOu/9XxIMIRXd7DoTTRyhoXFvA7DjIjzqLrPdZ5le0D7vDMRjGlHbiJIvoAjDTrp+eo1Phv45D5wC4w2tPizfrpDDyMQ/6hNU+jJi3WgHLw8ErbNLT09a0XdAFB2IvZfvICFb0LO766z2yrU33XiVPXq3+FFB1c6bvV40UmPhZgUhQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Oe+DX559Lvj9hJld1PPKWW1PUGNt89CYhAKnvZmA6vU=;
- b=e5cEmdXaVwaD64+YZbpmO7zWPp07AMrojMVhJYLg/Hbr9JEBxcXPPRIXRE3ZDXNkZ6l4hGqXI62RpgcB322ZYpTnW9cOn5KH7Ugd1uwIOQzNWUFIPFiz9Z4cES50wzI4dDj3e+mM1S01Mg4bFJ9WFzMpQgJABK6KX+AxgrUYXG364m9jNXvoasH2fG0OZtEXOVTKkNzAUJswI8dzLROMR2qomQZWv+JdTS2IEXtCxdApadASAmhR5yYogmZLbscT5H5/SFstPGU+VzIQ9Hh9v4MVOcn27mr7K7eKT2PkPBfDeO2IkuX6hzcm4tIUM0/ipEdlSm6PnD1OxeDh0S1RBQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
- dkim=pass header.d=amlogic.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Oe+DX559Lvj9hJld1PPKWW1PUGNt89CYhAKnvZmA6vU=;
- b=G4Kfz2D0Je3rfdzzUvSHBp3nZxsSL0zVsOkYw5vV64k0JKFJEqwSWaSrEeYSri3dFzxF2f2QE08h7h92GekNMXulMIHyE4RBBSDcmjk7LD0a/AZkyVawuV8r08uhFV6ZeM6RQsWGTMPoVuRdW3x/LZ18PVB7gZ2/gr54BWUdDgJP9m4NhvmRDRUgv+y5RiuSXh04wTxc9LIfMUiK61sEeQoJJSSPCIXz7iPbRfXZzeZYvBdfM1QeMcrKqTl25mvKjcfpsEIAU+hcnLUDwM3WWFYp+arwE7+z7gWRFEf/sFTWghuLHYJGF+94dLCYCpGtPP+11yoaK6xRvUy8KxqThg==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=amlogic.com;
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
- by SEZPR03MB7401.apcprd03.prod.outlook.com (2603:1096:101:124::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.36; Tue, 27 Jun
- 2023 09:03:05 +0000
-Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::e659:543b:2ac9:8fd7]) by TYZPR03MB6896.apcprd03.prod.outlook.com
- ([fe80::e659:543b:2ac9:8fd7%3]) with mapi id 15.20.6521.026; Tue, 27 Jun 2023
- 09:03:05 +0000
-Message-ID: <d33f35f2-d8ac-7b8d-6f23-e89cb8636109@amlogic.com>
-Date:   Tue, 27 Jun 2023 17:02:56 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add T7 based AN400
- bindings
-Content-Language: en-US
-To:     Christian Hewitt <christianshewitt@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        AML <linux-amlogic@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
- <20230626095223.721011-2-xianwei.zhao@amlogic.com>
- <94551B90-19E8-49C7-90FC-FAFA5E5E2D9C@gmail.com>
-From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
-In-Reply-To: <94551B90-19E8-49C7-90FC-FAFA5E5E2D9C@gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: SI1PR02CA0029.apcprd02.prod.outlook.com
- (2603:1096:4:1f4::20) To TYZPR03MB6896.apcprd03.prod.outlook.com
- (2603:1096:400:289::14)
+        with ESMTP id S231923AbjF0JHS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 05:07:18 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DFCAF10DA;
+        Tue, 27 Jun 2023 02:06:44 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 77D9A2F4;
+        Tue, 27 Jun 2023 02:07:00 -0700 (PDT)
+Received: from [10.57.28.204] (unknown [10.57.28.204])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6DBA73F73F;
+        Tue, 27 Jun 2023 02:06:13 -0700 (PDT)
+Message-ID: <150b90b5-23fb-c115-6517-e6941b9b06df@arm.com>
+Date:   Tue, 27 Jun 2023 10:06:11 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|SEZPR03MB7401:EE_
-X-MS-Office365-Filtering-Correlation-Id: 2bd986a5-4c16-4953-f274-08db76ed516a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: zt+SLERtf8AS5QNfEz4rkasjps5CKxj5v366qJFZHOS/UJZvx5sKnNmqzNwZ5NMiZF4fnNtuwZhZhuhoSygU0Rf+aF/aao4cxSx7NI8rV5nIul3i1LdDY2co3x8Oc8Tz9nAwB76gzByuA0cbpW8uzvR2KSRUDVkZl3vnxOHphyyioPN64NLSvWMsHpEY6Z++UcFOAk+tQMl2CZvtSMj5gE04aRmpyG4ToWJpUG0bKV19QmXYold8ips0/d6E1lPhFMmb6hRkjlq6nrHe+7x6GRQWnibsuBsV7Bs6wYGmHlla5nmyJH/K1Y1UYzHcIRvc9O2vEDiK+4A93cJGtBvtvlfrH/pF5rixb3Qjk4pg9QgDxBA/JK1mGYOxOgKN48ydI55762jUX0KSnyePaffDvyOBlD5xKw6Nz3rNevkg/G93ycl+9eBzfebRjl0mWslEMRmDLwfOt6v7i3fCfYzK/8Vc6R1TBEECkwyGt+amIXCPQavK2KCJLJR0g82b7x5CNa++3KiJV8oz49nOxrX/DaQhQiKJWaIIxA/IYP1+FnojY2eSdXGd1WZfPZVWt8pqOx1sBluR/MdhvFK89zc1xybhlmu0u9EO5lv7/ZGsX+q2j4aP9jy/Z7n9CeIGipEsvkOZAc60oF8fYnW60xyw6p57wZlw3zyLxV28nOTpXwmcMAOcQc2upG802/5fwlDU
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(136003)(366004)(376002)(39850400004)(396003)(346002)(451199021)(2906002)(186003)(6486002)(38100700002)(2616005)(83380400001)(6666004)(6506007)(6512007)(53546011)(26005)(966005)(31696002)(41300700001)(54906003)(86362001)(316002)(478600001)(36756003)(66556008)(4326008)(66946007)(66476007)(6916009)(31686004)(44832011)(7416002)(5660300002)(8676002)(8936002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VitiSE1HZUR3bm8zQmUycUMyQlBaSzZKcWtGK1owVWpPRCs3Q2tWa1NMNkxs?=
- =?utf-8?B?NFZBM1hsZTh4ZXBQK0dPWjNaU1RzRGhrOStpbXdHdDZNRm9Ma05yVXorMmtE?=
- =?utf-8?B?RXRvZnJSNjBrZEVWUlA3Q25uNzJzYjI3ZGNqY2QrNWUxQWliU0hpRStzSUpl?=
- =?utf-8?B?TkhzRTM4N3NEM0NONnBsNkRFc2pGWitoVHc4MHQyZUJwUjZuZng0Q0UyeFR0?=
- =?utf-8?B?TU00U1V5eE1idllrNVhTcGNDc2FUaUwrZ3BjS0V0WHBlNzZtT2ppYldJZmR5?=
- =?utf-8?B?cG8xaTIzdHlCS0pXL3Z2Z3JReUxRanA5LzNYTVF3cEtPT2tQL3U4V3IzcXhs?=
- =?utf-8?B?Njl5emZkTzY4cyt0K2ZpMEpRVmV5cFBXM0k3bU1CWGkxRThrOWFjS1doSlJF?=
- =?utf-8?B?b25FNkpnSU04Q0cwWU4rdzBIc3pSeWZrdGdpRzViRUlJRmZtTXhmbFdUWGlI?=
- =?utf-8?B?MDkya0hReFU0eHYreW5EZy9KWHFtdHBSaWdhT2VINHVMb2dpM2NCYWQ2Tm9n?=
- =?utf-8?B?TU1RYVFaY1hLRG42eHFneUs3SThCU1ZDODhRK3RHejFVKzF5aUZRbDBzSXFo?=
- =?utf-8?B?d0oweDladnF2RUNuMDI1TVRLWE1vUTBCa0xYUWpnZjJwZHlUZHQ4K0srYTNR?=
- =?utf-8?B?TG5VdWJyeGJEMEg2OGhPMTBSUzJXNjJ1K0hBUGZTWDhRMlNuWG9QVW90REQ1?=
- =?utf-8?B?cWE4M3ZWMGpSQXFzaWJHYXp0ZCtsYjBLZ3MxQUhrSVBvWU5qS05va1FCaGlU?=
- =?utf-8?B?NDRkci85Z3lyRWVLTEZpVlg0bFFTWWVzWmlLZlNqYklTL2NqdDF4R0xjSzlN?=
- =?utf-8?B?TVNNMUZRWG9TU1hGbEtld0RYVGN4MG45QWV2d1Q0djZyUVBwaVdSVWR5NXVy?=
- =?utf-8?B?OXpNSlFGUjMxV3VxYUM2Nm1BUCtxWm8wbkdiSzN1YWlsSUZGQ1JTZHBScVpH?=
- =?utf-8?B?OHc2RHN4YXdUSkpwSkRwYXhJRUZ3VHpRbUduc2RVSmxGVkhVY2xVTTJidHZj?=
- =?utf-8?B?Sy9RMVRsR2RidERFTC9CTnpUQzJONmYySk03Smp0dlMxaHhHZEI1ck1Qalo0?=
- =?utf-8?B?QzRLTFdNRlEwdTE5NXVIQ3BESTZrTCtIbDl1YjRBMHB4Z1BtM1hRS3lGRUdX?=
- =?utf-8?B?bkh6OURaQWNXYnh2TlFudHA5bUpDRVhodVpvclloS0ZleWFlbDRBS1YwVHJF?=
- =?utf-8?B?cGdCTEJjazlrK2NlckprMTFnZXllbmFuSittOS9Lb2dHQ2owbVVKbWpYS2tj?=
- =?utf-8?B?Q3d5QlRQQXdMMzdabjJwSTNLbnJUeGxHQUp4dmUwakh5K29VOFJQcUFxUkJL?=
- =?utf-8?B?MWdhWENidHJuMWhDdy9nTThLODJXUkxvQUtMNEcvdUZ4Q01HVjlCamc2WjIx?=
- =?utf-8?B?bW8zSHFKRFc1VHgvU1pUblAyOTErSmUySTVGd0hHSUZGdUcxM2ZHYkhXUW9Y?=
- =?utf-8?B?dTdsaG9EYVJjS3ZzRmc3NGZ2VGFjTU9DSmd2S1BQMlpydjBkbDZDRHV6ZUFx?=
- =?utf-8?B?c3U4N0xHM3ZkZmJZVnBsOUNLbzVxOVdES3krWXFNWk5uUEl1blc3Njh4M3ky?=
- =?utf-8?B?UWRzWEpPelVrcS85U2ZBNHUvWER2OFNLaXBkYTYvc1dVY05pUCtWVHJibHF4?=
- =?utf-8?B?b1daM1NCeUZTelRPUkJ2U01NYVEwcUg5UjBlS3J5QXJyMTFzRndYQloyMzMv?=
- =?utf-8?B?Rjh3M25ITFRqbkFlSmJQODRJckFjY2V0dzhycC9JeDdOdGhsSVRQa3RFbkFM?=
- =?utf-8?B?KzdPMkZQMVJ1bW5oRkVNMFpsdHV4YUZ6Uy94NHV3L3BqVldVQkNTelJyZDZH?=
- =?utf-8?B?dHM3dkR2YklrZlJ5SkJTRklrd0tKZmp5Sit4OWcwOWdlMnVBNmEvTXpvT1FS?=
- =?utf-8?B?V3BlTDRxUkJVVHExTDhMR3o3SzM0NkVLaGk1TExLZi9tR3BqVis4R1F3RCsw?=
- =?utf-8?B?TlFGYjNNTFFRWTlXUjhTZGw5UlMwTUNLQTRlLy9ZcVpORnd2MXdQbWE3SGNL?=
- =?utf-8?B?Wkx6T3dlUkhRT1JFcUxTeERsR0swbW1DUCs4aWxDTkVIQTZLS2dIK1B1MVZS?=
- =?utf-8?B?T2FvdFgxTEt1S2IyR0JqbEt5NTRDT1hqVEViV09nUjhyYkFEeGVCWWp3MzBy?=
- =?utf-8?B?b2wxMFpYempLUVFHRGVodTZZUy9mZmVsVTdMenBrMnl1eklXemRMVGhpMDVM?=
- =?utf-8?B?d3c9PQ==?=
-X-OriginatorOrg: amlogic.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2bd986a5-4c16-4953-f274-08db76ed516a
-X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2023 09:03:05.0446
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: A8c9GjSxsVBRDZ83ogArxIPcuBGl7Ft6U+ErX2v2cqSKoEQnC0cQXIj7IlXRnKgCCJxnGsBBhIobMnE/oLXrWFFDhTW4FPd+7TUVgfUPYMo=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SEZPR03MB7401
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:102.0)
+ Gecko/20100101 Thunderbird/102.12.0
+Subject: Re: [PATCH V5 6/6] coresight: etm4x: Add ACPI support in platform
+ driver
+To:     Anshuman Khandual <anshuman.khandual@arm.com>,
+        linux-arm-kernel@lists.infradead.org, coresight@lists.linaro.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     scclevenger@os.amperecomputing.com,
+        Ganapatrao Kulkarni <gankulkarni@os.amperecomputing.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Len Brown <lenb@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Mike Leach <mike.leach@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, devicetree@vger.kernel.org,
+        linux-acpi@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230529062511.52016-1-anshuman.khandual@arm.com>
+ <20230529062511.52016-7-anshuman.khandual@arm.com>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+In-Reply-To: <20230529062511.52016-7-anshuman.khandual@arm.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christian,
-       Thanks for your advice.
+Hi Greg,
 
-On 2023/6/27 16:56, Christian Hewitt wrote:
-> [你通常不会收到来自 christianshewitt@gmail.com 的电子邮件。请访问 https://aka.ms/LearnAboutSenderIdentification，以了解这一点为什么很重要]
+On 29/05/2023 07:25, Anshuman Khandual wrote:
+> From: Suzuki K Poulose <suzuki.poulose@arm.com>
 > 
-> [ EXTERNAL EMAIL ]
+> Drop ETM4X ACPI ID from the AMBA ACPI device list, and instead just move it
+> inside the new ACPI devices list detected and used via platform driver.
 > 
->> On 26 Jun 2023, at 1:52 pm, Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->>
->> Document the new T7 SoC/board device tree bindings.
->>
->> T7 is an advanced application processor designed for smart display.
->> It integrates a powerful CPU/GPU subsystem, a secured 8K video
->> CODEC engine with all major peripherals.
+> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> Cc: Len Brown <lenb@kernel.org>
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Cc: Mike Leach <mike.leach@linaro.org>
+> Cc: Leo Yan <leo.yan@linaro.org>
+> Cc: Sudeep Holla <sudeep.holla@arm.com>
+> Cc: Lorenzo Pieralisi <lpieralisi@kernel.org>
+> Cc: linux-acpi@vger.kernel.org
+> Cc: coresight@lists.linaro.org
+> Cc: linux-arm-kernel@lists.infradead.org
+> Cc: linux-kernel@vger.kernel.org
+> Reviewed-by: Sudeep Holla <sudeep.holla@arm.com> (for ACPI specific changes)
+> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> Signed-off-by: Anshuman Khandual <anshuman.khandual@arm.com>
+> ---
+>   drivers/acpi/acpi_amba.c                           |  1 -
+>   drivers/hwtracing/coresight/coresight-etm4x-core.c | 10 ++++++++++
+>   2 files changed, 10 insertions(+), 1 deletion(-)
 > 
-> ^ please avoid marketing text in commit messages (and same for the
-> other commits in this series).
-> 
-Will do
->> The main system CPU is based on Big.LITTLE architecture,
->> with quad core Cortex-A73 cluster and quad core Cortex-A53 cluster.
-> 
-> “T7 is an Amlogic SoC for smart display applications. The main CPU is
-> based on a big.LITTLE architecture with a quad-core A73 cluster and
-> quad-core A53 cluster.”
-> 
-Will do
-> Christian
-> 
->> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
->> ---
->> Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
->> 1 file changed, 6 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
->> index 08d59842655c..79a8b44ffd03 100644
->> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
->> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
->> @@ -218,6 +218,12 @@ properties:
->>                - amlogic,aq222
->>            - const: amlogic,s4
->>
->> +      - description: Boards with the Amlogic T7 A311D2 SoC
->> +        items:
->> +          - enum:
->> +              - amlogic,an400
->> +          - const: amlogic,t7
->> +
->> additionalProperties: true
->>
->> ...
->> --
->> 2.37.1
->>
->>
->> _______________________________________________
->> linux-amlogic mailing list
->> linux-amlogic@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> 
+> diff --git a/drivers/acpi/acpi_amba.c b/drivers/acpi/acpi_amba.c
+> index f5b443ab01c2..099966cbac5a 100644
+> --- a/drivers/acpi/acpi_amba.c
+> +++ b/drivers/acpi/acpi_amba.c
+> @@ -22,7 +22,6 @@
+>   static const struct acpi_device_id amba_id_list[] = {
+>   	{"ARMH0061", 0}, /* PL061 GPIO Device */
+>   	{"ARMH0330", 0}, /* ARM DMA Controller DMA-330 */
+> -	{"ARMHC500", 0}, /* ARM CoreSight ETM4x */
+>   	{"ARMHC501", 0}, /* ARM CoreSight ETR */
+>   	{"ARMHC502", 0}, /* ARM CoreSight STM */
+>   	{"ARMHC503", 0}, /* ARM CoreSight Debug */
+
+This is a bit awkward request.
+
+I would like to get your opinion on merging this to coresight tree.
+This change is removing the coresight ETMv4 from the ACPI AMBA
+scan list and moving it to the coresight driver. This change is
+essential for
+1) Adding ACPI support for later versions of ETMv4 that are not AMBA
+    devices.
+2) Adding power management support for AMBA ETMv4 with ACPI.
+
+The above change has been reviewed by Sudeep (Arm64 ACPI reviewer), but
+hasn't been Acked by the ACPI maintainer (Rafael) even after a month of
+follow up with at least 4 reminders [0].
+
+Are you happy with the Reviews from Sudeep and given the minimal
+change to the drivers/acpi/acpi_amba.c file ?
+
+Kind regards
+Suzuki
+
+[0] https://lkml.kernel.org/r/0327c5b6-9b6b-460a-dc7e-3a891485a9bd@arm.com
+
+
+> diff --git a/drivers/hwtracing/coresight/coresight-etm4x-core.c b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+> index e10f6676dd9b..fd6f9dff5881 100644
+> --- a/drivers/hwtracing/coresight/coresight-etm4x-core.c
+> +++ b/drivers/hwtracing/coresight/coresight-etm4x-core.c
+> @@ -3,6 +3,7 @@
+>    * Copyright (c) 2014, The Linux Foundation. All rights reserved.
+>    */
+>   
+> +#include <linux/acpi.h>
+>   #include <linux/bitops.h>
+>   #include <linux/kernel.h>
+>   #include <linux/moduleparam.h>
+> @@ -2344,12 +2345,21 @@ static const struct of_device_id etm4_sysreg_match[] = {
+>   	{}
+>   };
+>   
+> +#ifdef CONFIG_ACPI
+> +static const struct acpi_device_id etm4x_acpi_ids[] = {
+> +	{"ARMHC500", 0}, /* ARM CoreSight ETM4x */
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(acpi, etm4x_acpi_ids);
+> +#endif
+> +
+>   static struct platform_driver etm4_platform_driver = {
+>   	.probe		= etm4_probe_platform_dev,
+>   	.remove		= etm4_remove_platform_dev,
+>   	.driver			= {
+>   		.name			= "coresight-etm4x",
+>   		.of_match_table		= etm4_sysreg_match,
+> +		.acpi_match_table	= ACPI_PTR(etm4x_acpi_ids),
+>   		.suppress_bind_attrs	= true,
+>   		.pm			= &etm4_dev_pm_ops,
+>   	},
+
