@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B9D4973F41A
+	by mail.lfdr.de (Postfix) with ESMTP id 1F20973F418
 	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 07:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229983AbjF0Fx2 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Jun 2023 01:53:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51472 "EHLO
+        id S229810AbjF0Fx1 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 27 Jun 2023 01:53:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229780AbjF0FxZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 01:53:25 -0400
-Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A555A19B0;
-        Mon, 26 Jun 2023 22:53:23 -0700 (PDT)
-Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        with ESMTP id S229459AbjF0FxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 01:53:24 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34F7019A4;
+        Mon, 26 Jun 2023 22:53:22 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
-        by fd01.gateway.ufhost.com (Postfix) with ESMTP id DFF4D808F;
-        Tue, 27 Jun 2023 13:53:14 +0800 (CST)
-Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX166.cuchost.com
- (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Jun
- 2023 13:53:14 +0800
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 930FF24DBC0;
+        Tue, 27 Jun 2023 13:53:15 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Jun
+ 2023 13:53:15 +0800
 Received: from localhost.localdomain (183.27.97.206) by EXMBX061.cuchost.com
  (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Jun
- 2023 13:53:13 +0800
+ 2023 13:53:14 +0800
 From:   Xingyu Wu <xingyu.wu@starfivetech.com>
 To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
         "Daniel Lezcano" <daniel.lezcano@linaro.org>,
@@ -38,10 +38,12 @@ CC:     Rob Herring <robh+dt@kernel.org>,
         Xingyu Wu <xingyu.wu@starfivetech.com>,
         Samin Guo <samin.guo@starfivetech.com>,
         <linux-kernel@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>
-Subject: [PATCH v3 0/3] Add timer driver for StarFive JH7110 RISC-V SoC
-Date:   Tue, 27 Jun 2023 13:53:10 +0800
-Message-ID: <20230627055313.252519-1-xingyu.wu@starfivetech.com>
+Subject: [PATCH v3 1/3] dt-bindings: timer: Add timer for StarFive JH7110 SoC
+Date:   Tue, 27 Jun 2023 13:53:11 +0800
+Message-ID: <20230627055313.252519-2-xingyu.wu@starfivetech.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230627055313.252519-1-xingyu.wu@starfivetech.com>
+References: <20230627055313.252519-1-xingyu.wu@starfivetech.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-Originating-IP: [183.27.97.206]
@@ -49,8 +51,8 @@ X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX061.cuchost.com
  (172.16.6.61)
 X-YovoleRuleAgent: yovoleflag
 Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,50 +60,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch serises are to add timer driver for the StarFive JH7110
-RISC-V SoC. The first patch adds documentation to describe device
-tree bindings. The subsequent patch adds timer driver and support
-JH7110 SoC. The last patch adds device node about timer in JH7110
-dts.
+Add bindings for the timer on the JH7110 RISC-V SoC
+by StarFive Technology Ltd.
 
-This timer has four free-running 32 bit counters and runs in 24MHz
-clock on StarFive JH7110 SoC. And each channel(counter) triggers
-an interrupt when timeout. They support one-shot mode and
-continuous-run mode.
-
-Changes since v2:
-- Rebased on 6.4-rc7.
-- Merged the header file into the c file.
-- Renamed the functions from 'starfive_' to 'jh7110_'
-- Used function 'clocksource_register_hz' instead of
-  'clocksource_mmio_init'.
-
-v2: https://lore.kernel.org/all/20230320135433.144832-1-xingyu.wu@starfivetech.com/
-
-Changes since v1: 
-- Added description about timer and modified properties' description
-  in dt-bindings.
-- Dropped the 'interrupt-names' and 'clock-frequency' in dt-bindings.
-- Renamed the functions and added 'starfive_'
-- Modified that the driver probe by platform bus.
-
-v1: https://lore.kernel.org/all/20221223094801.181315-1-xingyu.wu@starfivetech.com/
-
-Xingyu Wu (3):
-  dt-bindings: timer: Add timer for StarFive JH7110 SoC
-  clocksource: Add JH7110 timer driver
-  riscv: dts: jh7110: starfive: Add timer node
-
- .../bindings/timer/starfive,jh7110-timer.yaml |  96 ++++
- MAINTAINERS                                   |   7 +
- arch/riscv/boot/dts/starfive/jh7110.dtsi      |  20 +
- drivers/clocksource/Kconfig                   |  11 +
- drivers/clocksource/Makefile                  |   1 +
- drivers/clocksource/timer-jh7110.c            | 485 ++++++++++++++++++
- 6 files changed, 620 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+---
+ .../bindings/timer/starfive,jh7110-timer.yaml | 96 +++++++++++++++++++
+ 1 file changed, 96 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
- create mode 100644 drivers/clocksource/timer-jh7110.c
 
+diff --git a/Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml b/Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+new file mode 100644
+index 000000000000..9a2dac11eb06
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/starfive,jh7110-timer.yaml
+@@ -0,0 +1,96 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/starfive,jh7110-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: StarFive JH7110 Timer
++
++maintainers:
++  - Xingyu Wu <xingyu.wu@starfivetech.com>
++  - Samin Guo <samin.guo@starfivetech.com>
++
++description:
++  This timer has four free-running 32 bit counters in StarFive JH7110 SoC.
++  And each channel(counter) triggers an interrupt when timeout. They support
++  one-shot mode and continuous-run mode.
++
++properties:
++  compatible:
++    const: starfive,jh7110-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    items:
++      - description: channel 0
++      - description: channel 1
++      - description: channel 2
++      - description: channel 3
++
++  clocks:
++    items:
++      - description: timer APB
++      - description: channel 0
++      - description: channel 1
++      - description: channel 2
++      - description: channel 3
++
++  clock-names:
++    items:
++      - const: apb
++      - const: ch0
++      - const: ch1
++      - const: ch2
++      - const: ch3
++
++  resets:
++    items:
++      - description: timer APB
++      - description: channel 0
++      - description: channel 1
++      - description: channel 2
++      - description: channel 3
++
++  reset-names:
++    items:
++      - const: apb
++      - const: ch0
++      - const: ch1
++      - const: ch2
++      - const: ch3
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++
++additionalProperties: false
++
++examples:
++  - |
++    timer@13050000 {
++        compatible = "starfive,jh7110-timer";
++        reg = <0x13050000 0x10000>;
++        interrupts = <69>, <70>, <71> ,<72>;
++        clocks = <&clk 124>,
++                 <&clk 125>,
++                 <&clk 126>,
++                 <&clk 127>,
++                 <&clk 128>;
++        clock-names = "apb", "ch0", "ch1",
++                      "ch2", "ch3";
++        resets = <&rst 117>,
++                 <&rst 118>,
++                 <&rst 119>,
++                 <&rst 120>,
++                 <&rst 121>;
++        reset-names = "apb", "ch0", "ch1",
++                      "ch2", "ch3";
++    };
++
 -- 
 2.17.1
 
