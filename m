@@ -2,281 +2,411 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 789FB73FB56
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 13:48:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D11B573FBC0
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 14:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231517AbjF0LsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 07:48:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53404 "EHLO
+        id S230280AbjF0MJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 08:09:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229957AbjF0LsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 07:48:12 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5796510D
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 04:48:09 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-312863a983fso4948173f8f.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 04:48:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1687866488; x=1690458488;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Rhf96h+BLy7Mn8WF98nFDpnBxh2T+MIkCjbsKeZTtrM=;
-        b=S8lKLAzEq20ijjS/vcbmd+8wkpX/zgUsiolr8eFXbqnF7U48qsA8LlIIh6KSHlS8eT
-         PTCvIqSXrlA5DUiMjlVXbYe1BgSFdazD3XWozafOyajAFxkBHFHzhuAsH/z40+vog/XU
-         Gxoa99Sc9y2PgiW7VRZh+lBfNU1AxoXuzMCKFvwTgNHJrppDLcgYpndIg19y5DdDGZ88
-         n2JI7+V/i6ZAfTu4F4PKbqtwM6oRzaH3Mu5CO+POXAEjK5N6zkmTK6jb80/4DR1PoCLJ
-         c68M6rUZg4qQX6279MwmgkvozcweuY+ONctxbRnP1QIqsfWMqNpGpwIpFYJdH5zQR9ob
-         KCFQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687866488; x=1690458488;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Rhf96h+BLy7Mn8WF98nFDpnBxh2T+MIkCjbsKeZTtrM=;
-        b=JimPTWJzOf+JlyhcsspmIXzws89KD8wkjbh92fq/eQHa8vr5zH53kM9Kjx2bAmFyEz
-         AAh38/Am2RulwNnMLRfwJdNNc814+AsLVm/fwaUeYjhM2v03Lg8cGFnQ6BoGvLU5sYfA
-         CvCOlpAnqo7EQQLB76zNwmz5nSy5regA+9MlCFTRUcMjZXNKmA/EiZeZpVurj/LvaUpD
-         gGm45PMb6z/W/Po33ibndIFV2t1GmglMbSdmP8eAQa0A73H+g4iyXHOlCDi1N7dprC+H
-         EZ0j1qIeA6LzFdp5ERlOlzE/iwwRUV9bYv8ZhCMxoRiRmEhqBJuqYO81bXAJKwZfbUaC
-         aCWA==
-X-Gm-Message-State: AC+VfDx/8U2ncSO2NrtR3Nqbi9Nwtz/kf2yu8cFsQJsS+WhaOfP7YHgA
-        eHMyIwM1rBzvcUCFv7kwlgA82Pc7z3SQoY2rCSJb0w==
-X-Google-Smtp-Source: ACHHUZ5vrLIQ67kjQ4XG6OlMA5EomoKXk6bTnttA1HboRHkY//pIphAuNx5JqZeVfJJQqWsnXAsEvrA9ZXcQWQxMxOk=
-X-Received: by 2002:a5d:4fd2:0:b0:313:f0e3:2fdc with SMTP id
- h18-20020a5d4fd2000000b00313f0e32fdcmr4557100wrw.2.1687866487638; Tue, 27 Jun
- 2023 04:48:07 -0700 (PDT)
+        with ESMTP id S231841AbjF0MJj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 08:09:39 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C7971BCB;
+        Tue, 27 Jun 2023 05:09:36 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 842DE60F56;
+        Tue, 27 Jun 2023 12:09:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BBFB9C433CA;
+        Tue, 27 Jun 2023 12:09:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687867774;
+        bh=o/NmjEG+5s686IfEFNzrvwqoyugmv7rCTYWZI4R95Es=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=uIsQTa4zihp51cJM/gA0L9IfnedQoY2cY2y1+KGNAJhh8ddEXHu9W+OGF2pn1gWpt
+         n/PmVnyB4smAVe2ZOUqdC/suqNljeWt5Ienf98x29va5zSoWJEf8lsPcZwzZP+5HOX
+         5aWwR3jCn8OuK/aJiUEaLhwVfvOlAjJhmdQVZmugt7dj2VmTIL1Kj8gQBH5r9XUchA
+         OrYNRhqT9f1y7oC3R//KZUPfrfY4cq8bPbSg2VpCu+P6e0TzVXCHCWQUOI8HMToS86
+         B0tUzz0pWEMZNqgq8ikgouDyv9oluTRByDlaPxERhfXlg4byOWzhLr8Fh4gHEKMH/w
+         leQAMO+uXtTrA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1qE7Vj-0003MX-Dm; Tue, 27 Jun 2023 14:09:32 +0200
+Date:   Tue, 27 Jun 2023 14:09:31 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v9 05/10] usb: dwc3: core: Refactor PHY logic to support
+ Multiport Controller
+Message-ID: <ZJrRe7HtMs0KbsCy@hovoldconsulting.com>
+References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
+ <20230621043628.21485-6-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-References: <20230625140931.1266216-1-songshuaishuai@tinylab.org> <CAHVXubgJcGPq_uC6iJCLTys5J6Ooa1EYcfOhBjEQwYfd+baWxw@mail.gmail.com>
-In-Reply-To: <CAHVXubgJcGPq_uC6iJCLTys5J6Ooa1EYcfOhBjEQwYfd+baWxw@mail.gmail.com>
-From:   Alexandre Ghiti <alexghiti@rivosinc.com>
-Date:   Tue, 27 Jun 2023 13:47:56 +0200
-Message-ID: <CAHVXubi-FmwJxeb5ymw_bU5NM7HyteNyyJxG7D+hDzOJWnix5Q@mail.gmail.com>
-Subject: Re: [PATCH V1 0/3] Revert huge-paged linear mapping and its related fixups
-To:     Song Shuai <songshuaishuai@tinylab.org>
-Cc:     paul.walmsley@sifive.com, palmer@dabbelt.com,
-        aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com,
-        ajones@ventanamicro.com, mpe@ellerman.id.au, arnd@arndb.de,
-        rppt@kernel.org, samuel@sholland.org, panqinglin2020@iscas.ac.cn,
-        conor.dooley@microchip.com, anup@brainfault.org,
-        xianting.tian@linux.alibaba.com, anshuman.khandual@arm.com,
-        heiko@sntech.de, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230621043628.21485-6-quic_kriskura@quicinc.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 25, 2023 at 10:36=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosin=
-c.com> wrote:
->
-> Hi Song,
->
-> On Sun, Jun 25, 2023 at 4:10=E2=80=AFPM Song Shuai <songshuaishuai@tinyla=
-b.org> wrote:
-> >
-> > We have encountered these two issues about huge-paged linear mapping si=
-nce v6.4-rc1:
-> >
-> > 1. Bug report: kernel paniced when system hibernates[1]
-> >
-> > OpenSbi [v0.8,v1.3) set the PMP regions as !no-map, and the commit 3335=
-068f8721
-> > ("riscv: Use PUD/P4D/PGD pages for the linear mapping") mapped them in =
-linear mapping.
-> > The hibernation process attempted to save/restore these mapped regions =
-resulting in access fault.
-> >
-> > This issue was temporarily fixed by commit ed309ce52218 ("RISC-V: mark =
-hibernation as nonportable").
-> > But as Alex's RFC and Rob's response stats in another thread [2] ,
-> > "Hibernation is only one case. Speculative accesses could also occur."
-> > So this fixing commit seems not the perfect answer to this issue.
-> >
-> >
-> > 2. Bug report: kernel paniced while booting (with UEFI )[3]
-> >
-> > During the booting with UEFI, UEFI Memory Mapping overwrote the membloc=
-k.
-> > The phys_ram_base was set as the end address of mmoderes0 (like 0x80040=
-000 for 256 KiB mmoderes0@80000000),
-> > which resulted the VA based on 2M-aligned PA was not 2M-aligned using v=
-a_pa_offset
-> > (PAGE_OFFSET - phys_ram_base) to translate.
-> >
-> > The best_map_size() from commit 3335068f8721 didn't check the virtual a=
-lignment
-> > before choosing a map size. and then a "VA hole" was created where page=
- faults always occurred.
-> >
-> > This issue was fixed by commit 49a0a3731596 ("riscv: Check the virtual =
-alignment before choosing a map size"),
-> > But this fixing commit has a side-effect ("the possible third one" as A=
-lex said in this thread).
-> > There are numerous PTE allocations slowing down the boot time and consu=
-ming some system memory when UEFI booting
-> > (Note that it's not involved when booting directly with OpenSbi, where =
-phys_ram_base is the 2M-aligned base of DRAM).
-> >
-> > In my test, compared with/out reverting both commit 49a0a3731596 and co=
-mmit 3335068f8721,
-> > I must wait ~20s for the linear mapping creation and mem_init_print_inf=
-o() reported ~8M extra reserved memory.
->
-> Indeed, phys_ram_base is not aligned on a 2MB boundary when booting
-> with EDK2, IIRC that's because the first chunk of memory at
-> 0x8000_0000 is marked as UC and is then completely evicted.
->
-> >
-> > To eliminate this side-effect, We should find a way to align VA and PA =
-on a 2MB boundary.
-> > The simplest way is reverting the commit 3335068f8721 ("riscv: Use PUD/=
-P4D/PGD pages for the linear mapping").
-> >
->
-> I disagree, the simplest way is to align phys_ram_base on a 2MB
-> boundary, either by aligning to the upper boundary (and then wastes
-> memory, like we used to) or by aligning to the lower boundary (but I
-> want to make sure it works).
->
-> I'll come up with something tomorrow.
+On Wed, Jun 21, 2023 at 10:06:23AM +0530, Krishna Kurapati wrote:
+> Currently the DWC3 driver supports only single port controller
+> which requires at most one HS and one SS PHY.
+> 
+> But the DWC3 USB controller can be connected to multiple ports and
+> each port can have their own PHYs. Each port of the multiport
+> controller can either be HS+SS capable or HS only capable
+> Proper quantification of them is required to modify GUSB2PHYCFG
+> and GUSB3PIPECTL registers appropriately.
+> 
+> Add support for detecting, obtaining and configuring phy's supported
+> by a multiport controller and limit the max number of ports
+> supported to 4.
+> 
+> Signed-off-by: Harsh Agarwal <quic_harshq@quicinc.com>
+> [Krishna: Modifed logic for generic phy and rebased the patch]
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
 
-@Song Shuai : can you test the following please?
+As I already said:
 
-commit a35b5e5e3f29e415f54fea064176315e79e21fb7 (HEAD ->
-dev/alex/align_va_pa_v1)
-Author: Alexandre Ghiti <alexghiti@rivosinc.com>
-Date:   Mon Jun 5 14:26:55 2023 +0000
+	If Harsh is the primary author you need to add a From: line at
+	the beginning of the patch.
 
-    riscv: Start of DRAM should at least be aligned on PMD size for
-the direct mapping
+	Either way, you need his SoB as well as your Co-developed-by tag.
 
-    So that we do not end up mapping the whole linear mapping using 4K
-    pages, which is slow at boot time, and also very likely at runtime.
+	All this is documented under Documentation/process/ somewhere.
 
-    So make sure we align the start of DRAM on a PMD boundary.
+The above is missing a From line and two Co-developed-by tags at least.
 
-    Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
+> ---
+>  drivers/usb/dwc3/core.c | 252 ++++++++++++++++++++++++++++------------
+>  drivers/usb/dwc3/core.h |  11 +-
+>  drivers/usb/dwc3/drd.c  |  15 ++-
+>  3 files changed, 192 insertions(+), 86 deletions(-)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index e1ebae54454f..2ac72525de7d 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -120,10 +120,11 @@ void dwc3_set_prtcap(struct dwc3 *dwc, u32 mode)
+>  static void __dwc3_set_mode(struct work_struct *work)
+>  {
+>  	struct dwc3 *dwc = work_to_dwc(work);
+> +	u32 desired_dr_role;
+>  	unsigned long flags;
+>  	int ret;
+>  	u32 reg;
+> -	u32 desired_dr_role;
 
-diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 4fa420faa780..4a43ec275c6d 100644
---- a/arch/riscv/mm/init.c
-+++ b/arch/riscv/mm/init.c
-@@ -214,8 +214,13 @@ static void __init setup_bootmem(void)
-        memblock_reserve(vmlinux_start, vmlinux_end - vmlinux_start);
+This is an unrelated change. Just add int i at the end.
 
-        phys_ram_end =3D memblock_end_of_DRAM();
-+
-+       /*
-+        * Make sure we align the start of the memory on a PMD boundary so =
-that
-+        * at worst, we map the linear mapping with PMD mappings.
-+        */
-        if (!IS_ENABLED(CONFIG_XIP_KERNEL))
--               phys_ram_base =3D memblock_start_of_DRAM();
-+               phys_ram_base =3D memblock_start_of_DRAM() & PMD_MASK;
+> +	int i;
+>  
+>  	mutex_lock(&dwc->mutex);
+>  	spin_lock_irqsave(&dwc->lock, flags);
 
-        /*
-         * In 64-bit, any use of __va/__pa before this point is wrong as we
+> @@ -746,23 +779,34 @@ static int dwc3_phy_setup(struct dwc3 *dwc)
+>  static int dwc3_phy_init(struct dwc3 *dwc)
+>  {
+>  	int ret;
+> +	int i;
+> +	int j;
+>  
+>  	usb_phy_init(dwc->usb2_phy);
+>  	usb_phy_init(dwc->usb3_phy);
+>  
+> -	ret = phy_init(dwc->usb2_generic_phy);
+> -	if (ret < 0)
+> -		goto err_shutdown_usb3_phy;
+> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
+> +		ret = phy_init(dwc->usb2_generic_phy[i]);
+> +		if (ret < 0)
+> +			goto err_exit_usb2_phy;
+> +	}
+>  
+> -	ret = phy_init(dwc->usb3_generic_phy);
+> -	if (ret < 0)
+> -		goto err_exit_usb2_phy;
+> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
+> +		ret = phy_init(dwc->usb3_generic_phy[i]);
+> +		if (ret < 0)
+> +			goto err_exit_usb3_phy;
+> +	}
+>  
+>  	return 0;
+>  
+> +err_exit_usb3_phy:
+> +	for (j = i-1; j >= 0; j--)
 
-An example of output when phys_ram_base is not aligned on a 2MB boundary:
+Missing spaces around - here and below.
 
----[ Linear mapping ]---
-0xffffaf8000008000-0xffffaf8000200000    0x0000000080008000      2016K
-PTE     D A G . . W R V
-0xffffaf8000200000-0xffffaf8000e00000    0x0000000080200000        12M
-PMD     D A G . . . R V
-0xffffaf8000e00000-0xffffaf8001200000    0x0000000080e00000         4M
-PMD     D A G . . W R V
-0xffffaf8001200000-0xffffaf8001a00000    0x0000000081200000         8M
-PMD     D A G . . . R V
-0xffffaf8001a00000-0xffffaf807e600000    0x0000000081a00000      1996M
-PMD     D A G . . W R V
-0xffffaf807e600000-0xffffaf807e714000    0x00000000fe600000      1104K
-PTE     D A G . . W R V
-0xffffaf807e715000-0xffffaf807e718000    0x00000000fe715000        12K
-PTE     D A G . . W R V
-0xffffaf807e71b000-0xffffaf807e71c000    0x00000000fe71b000         4K
-PTE     D A G . . W R V
-0xffffaf807e720000-0xffffaf807e800000    0x00000000fe720000       896K
-PTE     D A G . . W R V
-0xffffaf807e800000-0xffffaf807fe00000    0x00000000fe800000        22M
-PMD     D A G . . W R V
-0xffffaf807fe00000-0xffffaf807ff54000    0x00000000ffe00000      1360K
-PTE     D A G . . W R V
-0xffffaf807ff55000-0xffffaf8080000000    0x00000000fff55000       684K
-PTE     D A G . . W R V
-0xffffaf8080000000-0xffffaf83c0000000    0x0000000100000000        13G
-PUD     D A G . . W R V
-0xffffaf83c0000000-0xffffaf83ffe00000    0x0000000440000000      1022M
-PMD     D A G . . W R V
-0xffffaf83ffe00000-0xffffaf8400000000    0x000000047fe00000         2M
-PTE     D A G . . W R V
+> +		phy_exit(dwc->usb3_generic_phy[j]);
+> +	i = dwc->num_usb2_ports;
+>  err_exit_usb2_phy:
+> -	phy_exit(dwc->usb2_generic_phy);
+> -err_shutdown_usb3_phy:
+> +	for (j = i-1; j >= 0; j--)
+> +		phy_exit(dwc->usb2_generic_phy[j]);
+> +
 
-I found that it was easier to align phys_ram_base on the lower 2MB
-boundary. Aligning on the upper boundary is more complicated to me
-since there may be "something" between phys_ram_base and the upper 2MB
-boundary that needs to be accessed using the linear mapping (DT is
-accessed using fixmap so not a problem, initrd? ACPI tables? I don't
-know actually).
+Again:
 
-Weirdly simple though, I may be missing something, so any comment/test
-is welcome, it is currently running our internal CI.
+	The above is probably better implemented as a *single* loop over
+	num_usb2_ports where you enable each USB2 and USB3 PHY. On
+	errors you use the loop index to disable the already enabled
+	PHYs in reverse order below (after disabling the USB2 PHY if
+	USB3 phy init fails).
 
-Thanks,
+with emphasis on "single" added.
 
-Alex
+>  	usb_phy_shutdown(dwc->usb3_phy);
+>  	usb_phy_shutdown(dwc->usb2_phy);
 
->
-> Thanks,
->
-> Alex
->
-> >
-> >
-> > Using PUD/P4D/PGD pages for the linear mapping to improve the performan=
-ce is marginal from a recent talk [4]
-> > from Mike Rapoport. OpenSbi had marked all the PMP-protected regions as=
- "no-map" [5] to practice this talk.
-> >
-> > For all those reasons, let's revert these related commits:
-> >
-> > - commit 3335068f8721 ("riscv: Use PUD/P4D/PGD pages for the linear map=
-ping")
-> > - commit 49a0a3731596 ("riscv: Check the virtual alignment before choos=
-ing a map size")
-> > - commit ed309ce52218 ("RISC-V: mark hibernation as nonportable")
-> >
-> > [1]: https://lore.kernel.org/linux-riscv/CAAYs2=3DgQvkhTeioMmqRDVGjdtNF=
-_vhB+vm_1dHJxPNi75YDQ_Q@mail.gmail.com/
-> > [2]: https://lore.kernel.org/linux-kernel/20230530080425.18612-1-alexgh=
-iti@rivosinc.com/
-> > [3]: https://lore.kernel.org/linux-riscv/tencent_7C3B580B47C1B17C16488E=
-C1@qq.com/
-> > [4]: https://lwn.net/Articles/931406/
-> > [5]: https://github.com/riscv-software-src/opensbi/commit/8153b2622b088=
-02cc542f30a1fcba407a5667ab9
-> >
-> > Song Shuai (3):
-> >   Revert "RISC-V: mark hibernation as nonportable"
-> >   Revert "riscv: Check the virtual alignment before choosing a map size=
-"
-> >   Revert "riscv: Use PUD/P4D/PGD pages for the linear mapping"
-> >
-> >  arch/riscv/Kconfig            |  5 +---
-> >  arch/riscv/include/asm/page.h | 16 -------------
-> >  arch/riscv/mm/init.c          | 43 +++++++----------------------------
-> >  arch/riscv/mm/physaddr.c      | 16 -------------
-> >  drivers/of/fdt.c              | 11 ++++-----
-> >  5 files changed, 14 insertions(+), 77 deletions(-)
-> >
-> > --
-> > 2.20.1
-> >
+> @@ -781,23 +829,34 @@ static void dwc3_phy_exit(struct dwc3 *dwc)
+>  static int dwc3_phy_power_on(struct dwc3 *dwc)
+>  {
+>  	int ret;
+> +	int i;
+> +	int j;
+>  
+>  	usb_phy_set_suspend(dwc->usb2_phy, 0);
+>  	usb_phy_set_suspend(dwc->usb3_phy, 0);
+>  
+> -	ret = phy_power_on(dwc->usb2_generic_phy);
+> -	if (ret < 0)
+> -		goto err_suspend_usb3_phy;
+> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
+> +		ret = phy_power_on(dwc->usb2_generic_phy[i]);
+> +		if (ret < 0)
+> +			goto err_power_off_usb2_phy;
+> +	}
+>  
+> -	ret = phy_power_on(dwc->usb3_generic_phy);
+> -	if (ret < 0)
+> -		goto err_power_off_usb2_phy;
+> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
+> +		ret = phy_power_on(dwc->usb3_generic_phy[i]);
+> +		if (ret < 0)
+> +			goto err_power_off_usb3_phy;
+> +	}
+
+Again: These loops should be merged too as for phy_init.
+
+>  	return 0;
+>  
+> +err_power_off_usb3_phy:
+> +	for (j = i-1; j >= 0; j--)
+> +		phy_power_off(dwc->usb3_generic_phy[i]);
+> +	i = dwc->num_usb2_ports;
+>  err_power_off_usb2_phy:
+> -	phy_power_off(dwc->usb2_generic_phy);
+> -err_suspend_usb3_phy:
+> +	for (j = i-1; j >= 0; j--)
+> +		phy_power_off(dwc->usb2_generic_phy[i]);
+> +
+>  	usb_phy_set_suspend(dwc->usb3_phy, 1);
+>  	usb_phy_set_suspend(dwc->usb2_phy, 1);
+>  
+
+> @@ -1290,7 +1358,9 @@ static int dwc3_core_get_phy(struct dwc3 *dwc)
+>  {
+>  	struct device		*dev = dwc->dev;
+>  	struct device_node	*node = dev->of_node;
+> +	char phy_name[11];
+>  	int ret;
+> +	int i;
+>  
+>  	if (node) {
+>  		dwc->usb2_phy = devm_usb_get_phy_by_phandle(dev, "usb-phy", 0);
+> @@ -1316,22 +1386,36 @@ static int dwc3_core_get_phy(struct dwc3 *dwc)
+>  			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
+>  	}
+>  
+> -	dwc->usb2_generic_phy = devm_phy_get(dev, "usb2-phy");
+> -	if (IS_ERR(dwc->usb2_generic_phy)) {
+> -		ret = PTR_ERR(dwc->usb2_generic_phy);
+> -		if (ret == -ENOSYS || ret == -ENODEV)
+> -			dwc->usb2_generic_phy = NULL;
+> +	for (i = 0; i < dwc->num_usb2_ports; i++) {
+> +		if (dwc->num_usb2_ports == 1)
+> +			sprintf(phy_name, "usb2-phy");
+>  		else
+> -			return dev_err_probe(dev, ret, "no usb2 phy configured\n");
+> -	}
+> +			sprintf(phy_name, "usb2-port%d", i);
+> +
+> +		dwc->usb2_generic_phy[i] = devm_phy_get(dev, phy_name);
+> +		if (IS_ERR(dwc->usb2_generic_phy[i])) {
+> +			ret = PTR_ERR(dwc->usb2_generic_phy[i]);
+> +			if (ret == -ENOSYS || ret == -ENODEV)
+> +				dwc->usb2_generic_phy[i] = NULL;
+> +			else
+> +				return dev_err_probe(dev, ret,
+> +					"no %s phy configured\n", phy_name);
+
+I still believe
+
+	"failed to lookup phy %s"
+
+is better.
+
+> +		}
+>  
+> -	dwc->usb3_generic_phy = devm_phy_get(dev, "usb3-phy");
+> -	if (IS_ERR(dwc->usb3_generic_phy)) {
+> -		ret = PTR_ERR(dwc->usb3_generic_phy);
+> -		if (ret == -ENOSYS || ret == -ENODEV)
+> -			dwc->usb3_generic_phy = NULL;
+> +		if (dwc->num_usb2_ports == 1)
+> +			sprintf(phy_name, "usb3-phy");
+>  		else
+> -			return dev_err_probe(dev, ret, "no usb3 phy configured\n");
+> +			sprintf(phy_name, "usb3-port%d", i);
+> +
+> +		dwc->usb3_generic_phy[i] = devm_phy_get(dev, phy_name);
+> +		if (IS_ERR(dwc->usb3_generic_phy[i])) {
+> +			ret = PTR_ERR(dwc->usb3_generic_phy[i]);
+> +			if (ret == -ENOSYS || ret == -ENODEV)
+> +				dwc->usb3_generic_phy[i] = NULL;
+> +			else
+> +				return dev_err_probe(dev, ret,
+> +					"no %s phy configured\n", phy_name);
+
+Same here.
+
+> +		}
+>  	}
+>  
+>  	return 0;
+
+> @@ -1821,6 +1908,9 @@ static int dwc3_read_port_info(struct dwc3 *dwc)
+>  	dev_dbg(dwc->dev, "hs-ports: %u ss-ports: %u\n",
+>  			dwc->num_usb2_ports, dwc->num_usb3_ports);
+>  
+> +	if (dwc->num_usb2_ports > DWC3_MAX_PORTS)
+> +		ret = -ENOMEM;
+
+You also need to add a check for num_usb3_ports as I already mentioned.
+
+> +
+>  	iounmap(base);
+>  	return ret;
+>  }
+
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index 42fb17aa66fa..b2bab23ca22b 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -37,6 +37,9 @@
+>  #define XHCI_EXT_PORT_MINOR(x)	(((x) >> 16) & 0xff)
+>  #define XHCI_EXT_PORT_COUNT(x)	(((x) >> 8) & 0xff)
+>  
+> +/* Number of ports supported by a multiport controller */
+> +#define DWC3_MAX_PORTS 4
+
+You did not answer my question about whether this was an arbitrary
+implementation limit (i.e. just reflecting the only currently supported
+multiport controller)?
+
+> +
+>  #define DWC3_MSG_MAX	500
+>  
+>  /* Global constants */
+> @@ -1031,8 +1034,8 @@ struct dwc3_scratchpad_array {
+>   * @usb_psy: pointer to power supply interface.
+>   * @usb2_phy: pointer to USB2 PHY
+>   * @usb3_phy: pointer to USB3 PHY
+> - * @usb2_generic_phy: pointer to USB2 PHY
+> - * @usb3_generic_phy: pointer to USB3 PHY
+> + * @usb2_generic_phy: pointer to array of USB2 PHY
+> + * @usb3_generic_phy: pointer to array of USB3 PHY
+>   * @num_usb2_ports: number of USB2 ports.
+>   * @num_usb3_ports: number of USB3 ports.
+>   * @phys_ready: flag to indicate that PHYs are ready
+> @@ -1171,8 +1174,8 @@ struct dwc3 {
+>  	struct usb_phy		*usb2_phy;
+>  	struct usb_phy		*usb3_phy;
+>  
+> -	struct phy		*usb2_generic_phy;
+> -	struct phy		*usb3_generic_phy;
+> +	struct phy		*usb2_generic_phy[DWC3_MAX_PORTS];
+> +	struct phy		*usb3_generic_phy[DWC3_MAX_PORTS];
+>  
+>  	u8			num_usb2_ports;
+>  	u8			num_usb3_ports;
+> diff --git a/drivers/usb/dwc3/drd.c b/drivers/usb/dwc3/drd.c
+> index 039bf241769a..18a247ff75ac 100644
+> --- a/drivers/usb/dwc3/drd.c
+> +++ b/drivers/usb/dwc3/drd.c
+> @@ -327,10 +327,11 @@ static void dwc3_otg_device_exit(struct dwc3 *dwc)
+>  
+>  void dwc3_otg_update(struct dwc3 *dwc, bool ignore_idstatus)
+>  {
+> +	unsigned long flags;
+>  	int ret;
+>  	u32 reg;
+>  	int id;
+> -	unsigned long flags;
+> +	int i;
+>  
+>  	if (dwc->dr_mode != USB_DR_MODE_OTG)
+>  		return;
+> @@ -386,9 +387,11 @@ void dwc3_otg_update(struct dwc3 *dwc, bool ignore_idstatus)
+>  		} else {
+>  			if (dwc->usb2_phy)
+>  				otg_set_vbus(dwc->usb2_phy->otg, true);
+> -			if (dwc->usb2_generic_phy)
+> -				phy_set_mode(dwc->usb2_generic_phy,
+> -					     PHY_MODE_USB_HOST);
+> +			for (i = 0; i < dwc->num_usb2_ports; i++) {
+> +				if (dwc->usb2_generic_phy[i])
+> +					phy_set_mode(dwc->usb2_generic_phy[i],
+> +						     PHY_MODE_USB_HOST);
+
+While not strictly necessary, adding bracket around multiline statements
+is usually preferred as it improves readability.
+
+> +			}
+>  		}
+>  		break;
+>  	case DWC3_OTG_ROLE_DEVICE:
+> @@ -400,8 +403,8 @@ void dwc3_otg_update(struct dwc3 *dwc, bool ignore_idstatus)
+>  
+>  		if (dwc->usb2_phy)
+>  			otg_set_vbus(dwc->usb2_phy->otg, false);
+> -		if (dwc->usb2_generic_phy)
+> -			phy_set_mode(dwc->usb2_generic_phy,
+> +		if (dwc->usb2_generic_phy[0])
+> +			phy_set_mode(dwc->usb2_generic_phy[0],
+>  				     PHY_MODE_USB_DEVICE);
+
+Same here, but this is probably better just left at 85 columns after
+removing the line break.
+
+>  		ret = dwc3_gadget_init(dwc);
+>  		if (ret)
+
+Johan
