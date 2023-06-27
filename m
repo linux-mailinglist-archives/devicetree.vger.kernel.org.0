@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 912F573F069
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 03:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5689473F06C
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 03:24:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230133AbjF0BYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 21:24:37 -0400
+        id S230167AbjF0BYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 21:24:38 -0400
 Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230164AbjF0BYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 21:24:34 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CCB20198D
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:31 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b69f958ef3so29074851fa.1
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:31 -0700 (PDT)
+        with ESMTP id S230145AbjF0BYf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 21:24:35 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96B8A1998
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:32 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f86fbe5e4fso5155709e87.2
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687829070; x=1690421070;
+        d=linaro.org; s=google; t=1687829071; x=1690421071;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=XMvlN7j0Lwo662fOROZNKE2wCNrYWi/fAfycDcziS5I=;
-        b=YbJ0VmGaOfJBGC3r3dU5Pg5WuCH0ljY4QPQN5oMbakH8ju43hD85xm04VBRj6ca5em
-         FF81HibqNImWQZLLlRUrakqdqgTiGWLy3DCp0kO2JCG6pOR0a0d2LbisdLVSbfbTZNl0
-         DzArA0cnhXvnoTc1MjfEVKdP80Jy2aqTYtVMwVV+y+X8ILsLZjO1Y7vZ6WHJssQm6LSH
-         8u9PhN6nwpMZKsRR8RqFjl8k9ZXlVwJ0irhlB7ZDphCs7SGbTS6tYoJ7UAz+HWFqJANF
-         nGwVBTbD+uiOQnVPKbXArb39V2Z0yuBaYkKITlpVvEVp059Mc2pfHGp/6Skq9R+HLJL8
-         w3cQ==
+        bh=oNw7A1SOPXrtNiGQe+HMqv0natw7zhKCQbrRGngL/x8=;
+        b=x/lirniQbuXnjXtW5oC+gb7chwOJcvivBeBjDT2IxRSS5qZLWX/AppN0OXccwEY8dQ
+         DiA5LmDD0J34jWL8ALP1Vs8Q8sW3/Shjg6WW6GBlARkmRDAlP6o/T9yJi94tWi6RU1mX
+         XZPuzx2awtbPcgd7j1lNV0FlmoSPNdbiwQh+qtZRG9KJpB7cdeOF0s4yWRVfKuKaP3PR
+         IkjBbIsGprrhfNckNlLLA+fM9IIKqxGZuyj5uER3Y3SR8lidXAmbKBAk0YmOehLt8UK/
+         AfF6hK9XO/bkAa7Ywxn6WQlLJiSSsHQ6ABCZPBz6DZRgnm2SGSCWx29cAUcr5Jbza9hE
+         JcvQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687829070; x=1690421070;
+        d=1e100.net; s=20221208; t=1687829071; x=1690421071;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=XMvlN7j0Lwo662fOROZNKE2wCNrYWi/fAfycDcziS5I=;
-        b=AzI7kxKmCgAVqMB0Zb52TxXg2tN4G3WuBrXnM4Q2JW77TU/AUY51Ghl+ptVkgIO8Iz
-         DLAaDmi5H18EHcCuGREpnxRZodbh+SpXh+4WQgLwSEqt2Vk0di5TIKlJ1REW+mUwO3jK
-         34CYt7Kr0NmkiR57FAeCuvLmR8KLIgOACOwByYSUmZ30kZuHcCQMsEy3kQVpTG84G4i2
-         5/NrwDOMSvdF4+gBMACnYvPKH75ikVKga7i1Yad30fBMjV+oZDEchUHPExuhjMiieMii
-         l8EjV/1m+yx0Kym3O6LbPSXAzSI6olyM59srBLEP4MEbVmUuikfXD/rgBPOSVAPATQ+X
-         z2BQ==
-X-Gm-Message-State: AC+VfDwmG2riRYwVzoF3N7T8Mqw7T87wL0TlR+21ofaMtpPSRvyzyziR
-        ffthQwhEmNxfuTulwVhG/ypNNw==
-X-Google-Smtp-Source: ACHHUZ4e/3EqguN1xfPhnE+6aZjSCs7wxQWwUphd1dl9+LHCICVc0RWBtmuVE3yzzWyLkIDFyAzdoQ==
-X-Received: by 2002:a05:6512:e9d:b0:4f9:b6f8:844f with SMTP id bi29-20020a0565120e9d00b004f9b6f8844fmr4500681lfb.39.1687829070125;
+        bh=oNw7A1SOPXrtNiGQe+HMqv0natw7zhKCQbrRGngL/x8=;
+        b=Rs91jpxn8ojuoRXSNqd1FqLOriO+anc1Zg3VOwhEmttVkEp95k0asPs1ue6JA+yJ+a
+         3PCKROa4ZgSylUyjAHNPctV4+4A/iDG3TA2Pz5U8JjyWh6iIUQEnAVzYsHwPl5K12/dt
+         yNaIwWmoj2qxYVngyd45//sW6ihYl8AjeCoFTuBFyAQM8ehBB8te6C2G1gVdyqGiRo53
+         oJ/U0Ka51lnwn56AyrXaAzuHzAScqqOSV23zN5wQ/PHfmLfXo35Dc/eMYbVli8UUkaQR
+         WrM+S3m8cRpOkqMzBF+f3IyHwALgtGQYoOeKMamgjMQzPrIXUY8Cz9Fa67yV2CxbXmqb
+         8A5w==
+X-Gm-Message-State: AC+VfDxvZKobxYDinEJGpozxY7+idBbkBQhHXMUWT4/YGLHddFF0808W
+        HF5OMSjyO2ZiUr2Uosr2wpwC5w==
+X-Google-Smtp-Source: ACHHUZ7+a+Vsm9h4Re6LLAUQLQvisbVKaOpqkoqNuNwtm8HWBSe7h1jR/rgh4EIOkDrV2/OZcai0wA==
+X-Received: by 2002:a19:4314:0:b0:4f8:70f8:d424 with SMTP id q20-20020a194314000000b004f870f8d424mr12696422lfa.65.1687829070847;
         Mon, 26 Jun 2023 18:24:30 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id z7-20020ac24187000000b004cc9042c9cfsm1331301lfh.158.2023.06.26.18.24.29
+        by smtp.gmail.com with ESMTPSA id z7-20020ac24187000000b004cc9042c9cfsm1331301lfh.158.2023.06.26.18.24.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 18:24:29 -0700 (PDT)
+        Mon, 26 Jun 2023 18:24:30 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -56,9 +56,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 08/15] ARM: dts: qcom: mdm9615: split PMIC to separate dtsi files
-Date:   Tue, 27 Jun 2023 04:24:15 +0300
-Message-Id: <20230627012422.206077-9-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 09/15] ARM: dts: qcom: msm8660: split PMIC to separate dtsi files
+Date:   Tue, 27 Jun 2023 04:24:16 +0300
+Message-Id: <20230627012422.206077-10-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230627012422.206077-1-dmitry.baryshkov@linaro.org>
 References: <20230627012422.206077-1-dmitry.baryshkov@linaro.org>
@@ -80,156 +80,392 @@ include it from the board files.
 Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom/pm8018.dtsi            | 57 +++++++++++++++++++
- .../boot/dts/qcom/qcom-mdm9615-wp8548.dtsi    |  3 +-
- arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi      | 46 +--------------
- 3 files changed, 61 insertions(+), 45 deletions(-)
- create mode 100644 arch/arm/boot/dts/qcom/pm8018.dtsi
+ arch/arm/boot/dts/qcom/pm8058.dtsi            | 162 ++++++++++++++++++
+ .../dts/qcom/qcom-apq8060-dragonboard.dts     |   5 +-
+ arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts  |   1 +
+ arch/arm/boot/dts/qcom/qcom-msm8660.dtsi      | 148 +---------------
+ 4 files changed, 168 insertions(+), 148 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8058.dtsi
 
-diff --git a/arch/arm/boot/dts/qcom/pm8018.dtsi b/arch/arm/boot/dts/qcom/pm8018.dtsi
+diff --git a/arch/arm/boot/dts/qcom/pm8058.dtsi b/arch/arm/boot/dts/qcom/pm8058.dtsi
 new file mode 100644
-index 000000000000..81c0ad29fe60
+index 000000000000..f5a41e654981
 --- /dev/null
-+++ b/arch/arm/boot/dts/qcom/pm8018.dtsi
-@@ -0,0 +1,57 @@
-+// SPDX-License-Identifier: GPL-2.0+ OR MIT
-+/*
-+ * Device Tree Source for Qualcomm PM8018
-+ *
-+ * Copyright (C) 2016 BayLibre, SAS.
-+ * Author : Neil Armstrong <narmstrong@baylibre.com>
-+ */
++++ b/arch/arm/boot/dts/qcom/pm8058.dtsi
+@@ -0,0 +1,162 @@
++// SPDX-License-Identifier: GPL-2.0
 +
 +&ssbi {
-+	pm8018: pmic {
-+		compatible = "qcom,pm8018", "qcom,pm8921";
++	pm8058: pmic {
++		compatible = "qcom,pm8058";
 +		interrupt-controller;
 +		#interrupt-cells = <2>;
 +		#address-cells = <1>;
 +		#size-cells = <0>;
 +
 +		pwrkey@1c {
-+			compatible = "qcom,pm8018-pwrkey",
-+				     "qcom,pm8921-pwrkey";
++			compatible = "qcom,pm8058-pwrkey";
 +			reg = <0x1c>;
-+			interrupt-parent = <&pm8018>;
++			interrupt-parent = <&pm8058>;
 +			interrupts = <50 IRQ_TYPE_EDGE_RISING>,
 +				     <51 IRQ_TYPE_EDGE_RISING>;
 +			debounce = <15625>;
 +			pull-up;
 +		};
 +
-+		pm8018_mpps: mpps@50 {
-+			compatible = "qcom,pm8018-mpp", "qcom,ssbi-mpp";
++		pm8058_led48: led@48 {
++			compatible = "qcom,pm8058-keypad-led";
++			reg = <0x48>;
++			status = "disabled";
++		};
++
++		vibrator@4a {
++			compatible = "qcom,pm8058-vib";
++			reg = <0x4a>;
++		};
++
++		pm8058_mpps: mpps@50 {
++			compatible = "qcom,pm8058-mpp",
++				     "qcom,ssbi-mpp";
 +			reg = <0x50>;
 +			gpio-controller;
 +			#gpio-cells = <2>;
-+			gpio-ranges = <&pm8018_mpps 0 0 6>;
++			gpio-ranges = <&pm8058_mpps 0 0 12>;
 +			interrupt-controller;
 +			#interrupt-cells = <2>;
 +		};
 +
-+		rtc@11d {
-+			compatible = "qcom,pm8018-rtc", "qcom,pm8921-rtc";
-+			reg = <0x11d>;
-+			interrupt-parent = <&pm8018>;
-+			interrupts = <39 IRQ_TYPE_EDGE_RISING>;
-+			allow-set-time;
++		pm8058_led131: led@131 {
++			compatible = "qcom,pm8058-led";
++			reg = <0x131>;
++			status = "disabled";
 +		};
 +
-+		pm8018_gpio: gpio@150 {
++		pm8058_led132: led@132 {
++			compatible = "qcom,pm8058-led";
++			reg = <0x132>;
++			status = "disabled";
++		};
++
++		pm8058_led133: led@133 {
++			compatible = "qcom,pm8058-led";
++			reg = <0x133>;
++			status = "disabled";
++		};
++
++		pm8058_keypad: keypad@148 {
++			compatible = "qcom,pm8058-keypad";
++			reg = <0x148>;
++			interrupt-parent = <&pm8058>;
++			interrupts = <74 IRQ_TYPE_EDGE_RISING>,
++				     <75 IRQ_TYPE_EDGE_RISING>;
++			debounce = <15>;
++			scan-delay = <32>;
++			row-hold = <91500>;
++		};
++
++		pm8058_gpio: gpio@150 {
 +			compatible = "qcom,pm8058-gpio",
 +				     "qcom,ssbi-gpio";
 +			reg = <0x150>;
 +			gpio-controller;
 +			#gpio-cells = <2>;
-+			gpio-ranges = <&pm8018_gpio 0 0 6>;
++			gpio-ranges = <&pm8058_gpio 0 0 44>;
 +			interrupt-controller;
 +			#interrupt-cells = <2>;
 +		};
++
++		pm8058_xoadc: xoadc@197 {
++			compatible = "qcom,pm8058-adc";
++			reg = <0x197>;
++			interrupts-extended = <&pm8058 76 IRQ_TYPE_EDGE_RISING>;
++			#address-cells = <2>;
++			#size-cells = <0>;
++			#io-channel-cells = <2>;
++
++			vcoin: adc-channel@0 {
++				reg = <0x00 0x00>;
++			};
++
++			vbat: adc-channel@1 {
++				reg = <0x00 0x01>;
++			};
++
++			dcin: adc-channel@2 {
++				reg = <0x00 0x02>;
++			};
++
++			ichg: adc-channel@3 {
++				reg = <0x00 0x03>;
++			};
++
++			vph_pwr: adc-channel@4 {
++				reg = <0x00 0x04>;
++			};
++
++			usb_vbus: adc-channel@a {
++				reg = <0x00 0x0a>;
++			};
++
++			die_temp: adc-channel@b {
++				reg = <0x00 0x0b>;
++			};
++
++			ref_625mv: adc-channel@c {
++				reg = <0x00 0x0c>;
++			};
++
++			ref_1250mv: adc-channel@d {
++				reg = <0x00 0x0d>;
++			};
++
++			ref_325mv: adc-channel@e {
++				reg = <0x00 0x0e>;
++			};
++
++			ref_muxoff: adc-channel@f {
++				reg = <0x00 0x0f>;
++			};
++		};
++
++		rtc@1e8 {
++			compatible = "qcom,pm8058-rtc";
++			reg = <0x1e8>;
++			interrupt-parent = <&pm8058>;
++			interrupts = <39 IRQ_TYPE_EDGE_RISING>;
++			allow-set-time;
++		};
 +	};
 +};
-diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
-index 92c8003dac25..cc264861afe5 100644
---- a/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-mdm9615-wp8548.dtsi
-@@ -7,6 +7,7 @@
-  */
- 
- #include "qcom-mdm9615.dtsi"
-+#include "pm8018.dtsi"
++
++/ {
++	/*
++	 * These channels from the ADC are simply hardware monitors.
++	 * That is why the ADC is referred to as "HKADC" - HouseKeeping
++	 * ADC.
++	 */
++	iio-hwmon {
++		compatible = "iio-hwmon";
++		io-channels = <&pm8058_xoadc 0x00 0x01>, /* Battery */
++			      <&pm8058_xoadc 0x00 0x02>, /* DC in (charger) */
++			      <&pm8058_xoadc 0x00 0x04>, /* VPH the main system voltage */
++			      <&pm8058_xoadc 0x00 0x0b>, /* Die temperature */
++			      <&pm8058_xoadc 0x00 0x0c>, /* Reference voltage 1.25V */
++			      <&pm8058_xoadc 0x00 0x0d>, /* Reference voltage 0.625V */
++			      <&pm8058_xoadc 0x00 0x0e>; /* Reference voltage 0.325V */
++	};
++};
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts b/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
+index db4c791b2e2f..20de516a8deb 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
++++ b/arch/arm/boot/dts/qcom/qcom-apq8060-dragonboard.dts
+@@ -5,6 +5,7 @@
+ #include <dt-bindings/pinctrl/qcom,pmic-gpio.h>
+ #include <dt-bindings/pinctrl/qcom,pmic-mpp.h>
+ #include "qcom-msm8660.dtsi"
++#include "pm8058.dtsi"
  
  / {
- 	model = "Sierra Wireless WP8548 Module";
-@@ -76,7 +77,7 @@ reset-out-pins {
+ 	model = "Qualcomm APQ8060 Dragonboard";
+@@ -72,7 +73,7 @@ cm3605 {
+ 		/* Trig on both edges - getting close or far away */
+ 		interrupts-extended = <&pm8058_gpio 34 IRQ_TYPE_EDGE_BOTH>;
+ 		/* MPP05 analog input to the XOADC */
+-		io-channels = <&xoadc 0x00 0x05>;
++		io-channels = <&pm8058_xoadc 0x00 0x05>;
+ 		io-channel-names = "aout";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&dragon_cm3605_gpios>, <&dragon_cm3605_mpps>;
+@@ -945,7 +946,7 @@ irq-pins {
  	};
  };
  
--&pmicgpio {
-+&pm8018_gpio {
- 	usb_vbus_5v_pins: usb-vbus-5v-state {
- 		pins = "gpio4";
- 		function = "normal";
-diff --git a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-index b40c52ddf9b4..ac2327bc4ec5 100644
---- a/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi
-@@ -241,56 +241,14 @@ gsbi5_serial: serial@16440000 {
- 			};
+-&xoadc {
++&pm8058_xoadc {
+ 	/* Reference voltage 2.2 V */
+ 	xoadc-ref-supply = <&pm8058_l18>;
+ 
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts b/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
+index 86fbb6dfdc2a..04dca0c93971 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
++++ b/arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts
+@@ -2,6 +2,7 @@
+ #include <dt-bindings/input/input.h>
+ 
+ #include "qcom-msm8660.dtsi"
++#include "pm8058.dtsi"
+ 
+ / {
+ 	model = "Qualcomm MSM8660 SURF";
+diff --git a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
+index 78023ed2fdf7..b8094b7c09fc 100644
+--- a/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-msm8660.dtsi
+@@ -73,22 +73,6 @@ sleep-clk {
+ 		};
+ 	};
+ 
+-	/*
+-	 * These channels from the ADC are simply hardware monitors.
+-	 * That is why the ADC is referred to as "HKADC" - HouseKeeping
+-	 * ADC.
+-	 */
+-	iio-hwmon {
+-		compatible = "iio-hwmon";
+-		io-channels = <&xoadc 0x00 0x01>, /* Battery */
+-			    <&xoadc 0x00 0x02>, /* DC in (charger) */
+-			    <&xoadc 0x00 0x04>, /* VPH the main system voltage */
+-			    <&xoadc 0x00 0x0b>, /* Die temperature */
+-			    <&xoadc 0x00 0x0c>, /* Reference voltage 1.25V */
+-			    <&xoadc 0x00 0x0d>, /* Reference voltage 0.625V */
+-			    <&xoadc 0x00 0x0e>; /* Reference voltage 0.325V */
+-	};
+-
+ 	soc: soc {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+@@ -334,142 +318,14 @@ ebi2: external-bus@1a100000 {
+ 			status = "disabled";
  		};
  
--		qcom,ssbi@500000 {
-+		ssbi: qcom,ssbi@500000 {
+-		ssbi@500000 {
++		ssbi: ssbi@500000 {
  			compatible = "qcom,ssbi";
  			reg = <0x500000 0x1000>;
  			qcom,controller-type = "pmic-arbiter";
  
--			pmicintc: pmic {
--				compatible = "qcom,pm8018", "qcom,pm8921";
+-			pm8058: pmic {
+-				compatible = "qcom,pm8058";
 +			pmic {
- 				interrupts = <GIC_PPI 226 IRQ_TYPE_LEVEL_HIGH>;
- 				#interrupt-cells = <2>;
+ 				interrupt-parent = <&tlmm>;
+ 				interrupts = <88 8>;
+-				#interrupt-cells = <2>;
 -				interrupt-controller;
 -				#address-cells = <1>;
 -				#size-cells = <0>;
 -
--				pwrkey@1c {
--					compatible = "qcom,pm8018-pwrkey", "qcom,pm8921-pwrkey";
--					reg = <0x1c>;
--					interrupt-parent = <&pmicintc>;
--					interrupts = <50 IRQ_TYPE_EDGE_RISING>,
--						     <51 IRQ_TYPE_EDGE_RISING>;
--					debounce = <15625>;
--					pull-up;
--				};
--
--				pmicmpp: mpps@50 {
--					compatible = "qcom,pm8018-mpp", "qcom,ssbi-mpp";
--					interrupt-controller;
--					#interrupt-cells = <2>;
--					reg = <0x50>;
--					gpio-controller;
--					#gpio-cells = <2>;
--					gpio-ranges = <&pmicmpp 0 0 6>;
--				};
--
--				rtc@11d {
--					compatible = "qcom,pm8018-rtc", "qcom,pm8921-rtc";
--					interrupt-parent = <&pmicintc>;
--					interrupts = <39 IRQ_TYPE_EDGE_RISING>;
--					reg = <0x11d>;
--					allow-set-time;
--				};
--
--				pmicgpio: gpio@150 {
--					compatible = "qcom,pm8018-gpio", "qcom,ssbi-gpio";
+-				pm8058_gpio: gpio@150 {
+-					compatible = "qcom,pm8058-gpio",
+-						     "qcom,ssbi-gpio";
 -					reg = <0x150>;
 -					interrupt-controller;
 -					#interrupt-cells = <2>;
 -					gpio-controller;
--					gpio-ranges = <&pmicgpio 0 0 6>;
+-					gpio-ranges = <&pm8058_gpio 0 0 44>;
 -					#gpio-cells = <2>;
+-
 -				};
+-
+-				pm8058_mpps: mpps@50 {
+-					compatible = "qcom,pm8058-mpp",
+-						     "qcom,ssbi-mpp";
+-					reg = <0x50>;
+-					gpio-controller;
+-					#gpio-cells = <2>;
+-					gpio-ranges = <&pm8058_mpps 0 0 12>;
+-					interrupt-controller;
+-					#interrupt-cells = <2>;
+-				};
+-
+-				pwrkey@1c {
+-					compatible = "qcom,pm8058-pwrkey";
+-					reg = <0x1c>;
+-					interrupt-parent = <&pm8058>;
+-					interrupts = <50 1>, <51 1>;
+-					debounce = <15625>;
+-					pull-up;
+-				};
+-
+-				pm8058_keypad: keypad@148 {
+-					compatible = "qcom,pm8058-keypad";
+-					reg = <0x148>;
+-					interrupt-parent = <&pm8058>;
+-					interrupts = <74 1>, <75 1>;
+-					debounce = <15>;
+-					scan-delay = <32>;
+-					row-hold = <91500>;
+-				};
+-
+-				xoadc: xoadc@197 {
+-					compatible = "qcom,pm8058-adc";
+-					reg = <0x197>;
+-					interrupts-extended = <&pm8058 76 IRQ_TYPE_EDGE_RISING>;
+-					#address-cells = <2>;
+-					#size-cells = <0>;
+-					#io-channel-cells = <2>;
+-
+-					vcoin: adc-channel@0 {
+-						reg = <0x00 0x00>;
+-					};
+-					vbat: adc-channel@1 {
+-						reg = <0x00 0x01>;
+-					};
+-					dcin: adc-channel@2 {
+-						reg = <0x00 0x02>;
+-					};
+-					ichg: adc-channel@3 {
+-						reg = <0x00 0x03>;
+-					};
+-					vph_pwr: adc-channel@4 {
+-						reg = <0x00 0x04>;
+-					};
+-					usb_vbus: adc-channel@a {
+-						reg = <0x00 0x0a>;
+-					};
+-					die_temp: adc-channel@b {
+-						reg = <0x00 0x0b>;
+-					};
+-					ref_625mv: adc-channel@c {
+-						reg = <0x00 0x0c>;
+-					};
+-					ref_1250mv: adc-channel@d {
+-						reg = <0x00 0x0d>;
+-					};
+-					ref_325mv: adc-channel@e {
+-						reg = <0x00 0x0e>;
+-					};
+-					ref_muxoff: adc-channel@f {
+-						reg = <0x00 0x0f>;
+-					};
+-				};
+-
+-				rtc@1e8 {
+-					compatible = "qcom,pm8058-rtc";
+-					reg = <0x1e8>;
+-					interrupt-parent = <&pm8058>;
+-					interrupts = <39 1>;
+-					allow-set-time;
+-				};
+-
+-				vibrator@4a {
+-					compatible = "qcom,pm8058-vib";
+-					reg = <0x4a>;
+-				};
+-
+-				pm8058_led48: led@48 {
+-					compatible = "qcom,pm8058-keypad-led";
+-					reg = <0x48>;
+-					status = "disabled";
+-				};
+-
+-				pm8058_led131: led@131 {
+-					compatible = "qcom,pm8058-led";
+-					reg = <0x131>;
+-					status = "disabled";
+-				};
+-
+-				pm8058_led132: led@132 {
+-					compatible = "qcom,pm8058-led";
+-					reg = <0x132>;
+-					status = "disabled";
+-				};
+-
+-				pm8058_led133: led@133 {
+-					compatible = "qcom,pm8058-led";
+-					reg = <0x133>;
+-					status = "disabled";
+-				};
+-
  			};
  		};
  
