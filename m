@@ -2,243 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 63BDE73FB4D
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 13:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 789FB73FB56
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 13:48:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229562AbjF0Lps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 07:45:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51750 "EHLO
+        id S231517AbjF0LsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 07:48:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53404 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229894AbjF0Lpr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 07:45:47 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD050F4;
-        Tue, 27 Jun 2023 04:45:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4452661166;
-        Tue, 27 Jun 2023 11:45:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E79FC433C0;
-        Tue, 27 Jun 2023 11:45:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687866344;
-        bh=1hnYTqMzhlhytwgb/6vjrVjvJJ91r+9AWszFEARG5vw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Q5KUs9BF50Gr9OBt+4gfgvGUWeIe8DIeta9/O/XtmP6gecIhJOc6C3VuXgF/u+qE0
-         ACLxga2WT6GhMLd27ObnNT/U5S2BKB9fiavY/eU+Z4+0Jin0cna+0dw2KpYpxKTzgR
-         uSXwJK9DGzZIi5rgG+KZSka/9XRKbqwLzY8Edhco1d1d3GmspUOlQz7xNqOaBJyXqQ
-         1ShrAv3C7iHnZTKUbcD8s13BRxSDA4JTTRSB3/tJMwwa9TXbqHqb6ouDDPzZumwCsE
-         qwgKDF22VFW1yJ0ylPuyq+AGigdbz8JehfWb4UxMVv8fFTND4KHr3Ra79gftNyC6iL
-         PYXCJ55tCb6yA==
-Received: from johan by xi.lan with local (Exim 4.94.2)
-        (envelope-from <johan@kernel.org>)
-        id 1qE78f-0003E8-1K; Tue, 27 Jun 2023 13:45:41 +0200
-Date:   Tue, 27 Jun 2023 13:45:41 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Krishna Kurapati <quic_kriskura@quicinc.com>
-Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Felipe Balbi <balbi@kernel.org>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
-        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
-        ahalaney@redhat.com, quic_shazhuss@quicinc.com
-Subject: Re: [PATCH v9 03/10] usb: dwc3: core: Access XHCI address space
- temporarily to read port info
-Message-ID: <ZJrL5SXrSiYbvq2o@hovoldconsulting.com>
-References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
- <20230621043628.21485-4-quic_kriskura@quicinc.com>
+        with ESMTP id S229957AbjF0LsM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 07:48:12 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5796510D
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 04:48:09 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-312863a983fso4948173f8f.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 04:48:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1687866488; x=1690458488;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Rhf96h+BLy7Mn8WF98nFDpnBxh2T+MIkCjbsKeZTtrM=;
+        b=S8lKLAzEq20ijjS/vcbmd+8wkpX/zgUsiolr8eFXbqnF7U48qsA8LlIIh6KSHlS8eT
+         PTCvIqSXrlA5DUiMjlVXbYe1BgSFdazD3XWozafOyajAFxkBHFHzhuAsH/z40+vog/XU
+         Gxoa99Sc9y2PgiW7VRZh+lBfNU1AxoXuzMCKFvwTgNHJrppDLcgYpndIg19y5DdDGZ88
+         n2JI7+V/i6ZAfTu4F4PKbqtwM6oRzaH3Mu5CO+POXAEjK5N6zkmTK6jb80/4DR1PoCLJ
+         c68M6rUZg4qQX6279MwmgkvozcweuY+ONctxbRnP1QIqsfWMqNpGpwIpFYJdH5zQR9ob
+         KCFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687866488; x=1690458488;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Rhf96h+BLy7Mn8WF98nFDpnBxh2T+MIkCjbsKeZTtrM=;
+        b=JimPTWJzOf+JlyhcsspmIXzws89KD8wkjbh92fq/eQHa8vr5zH53kM9Kjx2bAmFyEz
+         AAh38/Am2RulwNnMLRfwJdNNc814+AsLVm/fwaUeYjhM2v03Lg8cGFnQ6BoGvLU5sYfA
+         CvCOlpAnqo7EQQLB76zNwmz5nSy5regA+9MlCFTRUcMjZXNKmA/EiZeZpVurj/LvaUpD
+         gGm45PMb6z/W/Po33ibndIFV2t1GmglMbSdmP8eAQa0A73H+g4iyXHOlCDi1N7dprC+H
+         EZ0j1qIeA6LzFdp5ERlOlzE/iwwRUV9bYv8ZhCMxoRiRmEhqBJuqYO81bXAJKwZfbUaC
+         aCWA==
+X-Gm-Message-State: AC+VfDx/8U2ncSO2NrtR3Nqbi9Nwtz/kf2yu8cFsQJsS+WhaOfP7YHgA
+        eHMyIwM1rBzvcUCFv7kwlgA82Pc7z3SQoY2rCSJb0w==
+X-Google-Smtp-Source: ACHHUZ5vrLIQ67kjQ4XG6OlMA5EomoKXk6bTnttA1HboRHkY//pIphAuNx5JqZeVfJJQqWsnXAsEvrA9ZXcQWQxMxOk=
+X-Received: by 2002:a5d:4fd2:0:b0:313:f0e3:2fdc with SMTP id
+ h18-20020a5d4fd2000000b00313f0e32fdcmr4557100wrw.2.1687866487638; Tue, 27 Jun
+ 2023 04:48:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230621043628.21485-4-quic_kriskura@quicinc.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230625140931.1266216-1-songshuaishuai@tinylab.org> <CAHVXubgJcGPq_uC6iJCLTys5J6Ooa1EYcfOhBjEQwYfd+baWxw@mail.gmail.com>
+In-Reply-To: <CAHVXubgJcGPq_uC6iJCLTys5J6Ooa1EYcfOhBjEQwYfd+baWxw@mail.gmail.com>
+From:   Alexandre Ghiti <alexghiti@rivosinc.com>
+Date:   Tue, 27 Jun 2023 13:47:56 +0200
+Message-ID: <CAHVXubi-FmwJxeb5ymw_bU5NM7HyteNyyJxG7D+hDzOJWnix5Q@mail.gmail.com>
+Subject: Re: [PATCH V1 0/3] Revert huge-paged linear mapping and its related fixups
+To:     Song Shuai <songshuaishuai@tinylab.org>
+Cc:     paul.walmsley@sifive.com, palmer@dabbelt.com,
+        aou@eecs.berkeley.edu, robh+dt@kernel.org, frowand.list@gmail.com,
+        ajones@ventanamicro.com, mpe@ellerman.id.au, arnd@arndb.de,
+        rppt@kernel.org, samuel@sholland.org, panqinglin2020@iscas.ac.cn,
+        conor.dooley@microchip.com, anup@brainfault.org,
+        xianting.tian@linux.alibaba.com, anshuman.khandual@arm.com,
+        heiko@sntech.de, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 21, 2023 at 10:06:21AM +0530, Krishna Kurapati wrote:
-> Currently host-only capable DWC3 controllers support Multiport.
-> Temporarily map XHCI address space for host-only controllers and parse
-> XHCI Extended Capabilities registers to read number of usb2 ports and
-> usb3 ports present on multiport controller. Each USB Port is at least HS
-> capable.
-> 
-> The port info for usb2 and usb3 phy are identified as num_usb2_ports
-> and num_usb3_ports. The intention is as follows:
-> 
-> Wherever we need to perform phy operations like:
-> 
-> LOOP_OVER_NUMBER_OF_AVAILABLE_PORTS()
-> {
-> 	phy_set_mode(dwc->usb2_generic_phy[i], PHY_MODE_USB_HOST);
-> 	phy_set_mode(dwc->usb3_generic_phy[i], PHY_MODE_USB_HOST);
-> }
-> 
-> If number of usb2 ports is 3, loop can go from index 0-2 for
-> usb2_generic_phy. If number of usb3-ports is 2, we don't know for sure,
-> if the first 2 ports are SS capable or some other ports like (2 and 3)
-> are SS capable. So instead, num_usb2_ports is used to loop around all
-> phy's (both hs and ss) for performing phy operations. If any
-> usb3_generic_phy turns out to be NULL, phy operation just bails out.
-> 
-> num_usb3_ports is used to modify GUSB3PIPECTL registers while setting up
-> phy's as we need to know how many SS capable ports are there for this.
-> 
-> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
-> ---
->  drivers/usb/dwc3/core.c | 62 +++++++++++++++++++++++++++++++++++++++++
->  drivers/usb/dwc3/core.h |  9 ++++++
->  2 files changed, 71 insertions(+)
-> 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index f6689b731718..32ec05fc242b 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -39,6 +39,7 @@
->  #include "io.h"
->  
->  #include "debug.h"
-> +#include "../host/xhci-ext-caps.h"
->  
->  #define DWC3_DEFAULT_AUTOSUSPEND_DELAY	5000 /* ms */
->  
-> @@ -1767,6 +1768,52 @@ static int dwc3_get_clocks(struct dwc3 *dwc)
->  	return 0;
->  }
->  
-> +static int dwc3_read_port_info(struct dwc3 *dwc)
-> +{
-> +	void __iomem *base;
-> +	u8 major_revision;
-> +	u32 offset = 0;
-> +	int ret = 0;
+On Sun, Jun 25, 2023 at 10:36=E2=80=AFPM Alexandre Ghiti <alexghiti@rivosin=
+c.com> wrote:
+>
+> Hi Song,
+>
+> On Sun, Jun 25, 2023 at 4:10=E2=80=AFPM Song Shuai <songshuaishuai@tinyla=
+b.org> wrote:
+> >
+> > We have encountered these two issues about huge-paged linear mapping si=
+nce v6.4-rc1:
+> >
+> > 1. Bug report: kernel paniced when system hibernates[1]
+> >
+> > OpenSbi [v0.8,v1.3) set the PMP regions as !no-map, and the commit 3335=
+068f8721
+> > ("riscv: Use PUD/P4D/PGD pages for the linear mapping") mapped them in =
+linear mapping.
+> > The hibernation process attempted to save/restore these mapped regions =
+resulting in access fault.
+> >
+> > This issue was temporarily fixed by commit ed309ce52218 ("RISC-V: mark =
+hibernation as nonportable").
+> > But as Alex's RFC and Rob's response stats in another thread [2] ,
+> > "Hibernation is only one case. Speculative accesses could also occur."
+> > So this fixing commit seems not the perfect answer to this issue.
+> >
+> >
+> > 2. Bug report: kernel paniced while booting (with UEFI )[3]
+> >
+> > During the booting with UEFI, UEFI Memory Mapping overwrote the membloc=
+k.
+> > The phys_ram_base was set as the end address of mmoderes0 (like 0x80040=
+000 for 256 KiB mmoderes0@80000000),
+> > which resulted the VA based on 2M-aligned PA was not 2M-aligned using v=
+a_pa_offset
+> > (PAGE_OFFSET - phys_ram_base) to translate.
+> >
+> > The best_map_size() from commit 3335068f8721 didn't check the virtual a=
+lignment
+> > before choosing a map size. and then a "VA hole" was created where page=
+ faults always occurred.
+> >
+> > This issue was fixed by commit 49a0a3731596 ("riscv: Check the virtual =
+alignment before choosing a map size"),
+> > But this fixing commit has a side-effect ("the possible third one" as A=
+lex said in this thread).
+> > There are numerous PTE allocations slowing down the boot time and consu=
+ming some system memory when UEFI booting
+> > (Note that it's not involved when booting directly with OpenSbi, where =
+phys_ram_base is the 2M-aligned base of DRAM).
+> >
+> > In my test, compared with/out reverting both commit 49a0a3731596 and co=
+mmit 3335068f8721,
+> > I must wait ~20s for the linear mapping creation and mem_init_print_inf=
+o() reported ~8M extra reserved memory.
+>
+> Indeed, phys_ram_base is not aligned on a 2MB boundary when booting
+> with EDK2, IIRC that's because the first chunk of memory at
+> 0x8000_0000 is marked as UC and is then completely evicted.
+>
+> >
+> > To eliminate this side-effect, We should find a way to align VA and PA =
+on a 2MB boundary.
+> > The simplest way is reverting the commit 3335068f8721 ("riscv: Use PUD/=
+P4D/PGD pages for the linear mapping").
+> >
+>
+> I disagree, the simplest way is to align phys_ram_base on a 2MB
+> boundary, either by aligning to the upper boundary (and then wastes
+> memory, like we used to) or by aligning to the lower boundary (but I
+> want to make sure it works).
+>
+> I'll come up with something tomorrow.
 
-ret is never modified, so drop and return 0 unconditionally below.
+@Song Shuai : can you test the following please?
 
-You can add it back later in the series when you start using it.
+commit a35b5e5e3f29e415f54fea064176315e79e21fb7 (HEAD ->
+dev/alex/align_va_pa_v1)
+Author: Alexandre Ghiti <alexghiti@rivosinc.com>
+Date:   Mon Jun 5 14:26:55 2023 +0000
 
-> +	u32 val;
-> +
-> +	/*
-> +	 * Remap xHCI address space to access XHCI ext cap regs,
-> +	 * since it is needed to get port info.
-> +	 */
-> +	base = ioremap(dwc->xhci_resources[0].start,
-> +				resource_size(&dwc->xhci_resources[0]));
-> +	if (IS_ERR(base))
-> +		return PTR_ERR(base);
-> +
-> +	do {
-> +		offset = xhci_find_next_ext_cap(base, offset,
-> +				XHCI_EXT_CAPS_PROTOCOL);
-> +
+    riscv: Start of DRAM should at least be aligned on PMD size for
+the direct mapping
 
-You can drop this newline.
+    So that we do not end up mapping the whole linear mapping using 4K
+    pages, which is slow at boot time, and also very likely at runtime.
 
-> +		if (!offset)
-> +			break;
-> +
-> +		val = readl(base + offset);
-> +		major_revision = XHCI_EXT_PORT_MAJOR(val);
-> +
-> +		val = readl(base + offset + 0x08);
-> +		if (major_revision == 0x03) {
-> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(val);
-> +		} else if (major_revision <= 0x02) {
-> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(val);
-> +		} else {
-> +			dev_err(dwc->dev,
-> +				"Unrecognized port major revision %d\n",
-> +							major_revision);
-> +		}
-> +	} while (1);
-> +
-> +	dev_dbg(dwc->dev, "hs-ports: %u ss-ports: %u\n",
-> +			dwc->num_usb2_ports, dwc->num_usb3_ports);
-> +
-> +	iounmap(base);
+    So make sure we align the start of DRAM on a PMD boundary.
 
-Nit: I'd add a newline here.
+    Signed-off-by: Alexandre Ghiti <alexghiti@rivosinc.com>
 
-> +	return ret;
-> +}
-> +
->  static int dwc3_probe(struct platform_device *pdev)
->  {
->  	struct device		*dev = &pdev->dev;
-> @@ -1774,6 +1821,7 @@ static int dwc3_probe(struct platform_device *pdev)
->  	void __iomem		*regs;
->  	struct dwc3		*dwc;
->  	int			ret;
-> +	unsigned int		hw_mode;
->  
->  	dwc = devm_kzalloc(dev, sizeof(*dwc), GFP_KERNEL);
->  	if (!dwc)
-> @@ -1854,6 +1902,20 @@ static int dwc3_probe(struct platform_device *pdev)
->  			goto err_disable_clks;
->  	}
->  
-> +	/*
-> +	 * Currently only DWC3 controllers that are host-only capable
-> +	 * support Multiport.
-> +	 */
-> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
-> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST) {
-> +		ret = dwc3_read_port_info(dwc);
-> +		if (ret)
-> +			goto err_disable_clks;
-> +	} else {
-> +		dwc->num_usb2_ports = 1;
-> +		dwc->num_usb3_ports = 1;
-> +	}
-> +
->  	spin_lock_init(&dwc->lock);
->  	mutex_init(&dwc->mutex);
->  
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index 8b1295e4dcdd..42fb17aa66fa 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -33,6 +33,10 @@
->  
->  #include <linux/power_supply.h>
->  
-> +#define XHCI_EXT_PORT_MAJOR(x)	(((x) >> 24) & 0xff)
-> +#define XHCI_EXT_PORT_MINOR(x)	(((x) >> 16) & 0xff)
-> +#define XHCI_EXT_PORT_COUNT(x)	(((x) >> 8) & 0xff)
+diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+index 4fa420faa780..4a43ec275c6d 100644
+--- a/arch/riscv/mm/init.c
++++ b/arch/riscv/mm/init.c
+@@ -214,8 +214,13 @@ static void __init setup_bootmem(void)
+        memblock_reserve(vmlinux_start, vmlinux_end - vmlinux_start);
 
-Again, don't copy defines from xhci.
+        phys_ram_end =3D memblock_end_of_DRAM();
++
++       /*
++        * Make sure we align the start of the memory on a PMD boundary so =
+that
++        * at worst, we map the linear mapping with PMD mappings.
++        */
+        if (!IS_ENABLED(CONFIG_XIP_KERNEL))
+-               phys_ram_base =3D memblock_start_of_DRAM();
++               phys_ram_base =3D memblock_start_of_DRAM() & PMD_MASK;
 
-Looks like these should be moved to the xhci-ext-caps.h header along
-with struct xhci_protocol_caps.
+        /*
+         * In 64-bit, any use of __va/__pa before this point is wrong as we
 
-> +
->  #define DWC3_MSG_MAX	500
->  
->  /* Global constants */
-> @@ -1029,6 +1033,8 @@ struct dwc3_scratchpad_array {
->   * @usb3_phy: pointer to USB3 PHY
->   * @usb2_generic_phy: pointer to USB2 PHY
->   * @usb3_generic_phy: pointer to USB3 PHY
-> + * @num_usb2_ports: number of USB2 ports.
-> + * @num_usb3_ports: number of USB3 ports.
+An example of output when phys_ram_base is not aligned on a 2MB boundary:
 
-Again, please drop the full stops ('.').
+---[ Linear mapping ]---
+0xffffaf8000008000-0xffffaf8000200000    0x0000000080008000      2016K
+PTE     D A G . . W R V
+0xffffaf8000200000-0xffffaf8000e00000    0x0000000080200000        12M
+PMD     D A G . . . R V
+0xffffaf8000e00000-0xffffaf8001200000    0x0000000080e00000         4M
+PMD     D A G . . W R V
+0xffffaf8001200000-0xffffaf8001a00000    0x0000000081200000         8M
+PMD     D A G . . . R V
+0xffffaf8001a00000-0xffffaf807e600000    0x0000000081a00000      1996M
+PMD     D A G . . W R V
+0xffffaf807e600000-0xffffaf807e714000    0x00000000fe600000      1104K
+PTE     D A G . . W R V
+0xffffaf807e715000-0xffffaf807e718000    0x00000000fe715000        12K
+PTE     D A G . . W R V
+0xffffaf807e71b000-0xffffaf807e71c000    0x00000000fe71b000         4K
+PTE     D A G . . W R V
+0xffffaf807e720000-0xffffaf807e800000    0x00000000fe720000       896K
+PTE     D A G . . W R V
+0xffffaf807e800000-0xffffaf807fe00000    0x00000000fe800000        22M
+PMD     D A G . . W R V
+0xffffaf807fe00000-0xffffaf807ff54000    0x00000000ffe00000      1360K
+PTE     D A G . . W R V
+0xffffaf807ff55000-0xffffaf8080000000    0x00000000fff55000       684K
+PTE     D A G . . W R V
+0xffffaf8080000000-0xffffaf83c0000000    0x0000000100000000        13G
+PUD     D A G . . W R V
+0xffffaf83c0000000-0xffffaf83ffe00000    0x0000000440000000      1022M
+PMD     D A G . . W R V
+0xffffaf83ffe00000-0xffffaf8400000000    0x000000047fe00000         2M
+PTE     D A G . . W R V
 
-Johan
+I found that it was easier to align phys_ram_base on the lower 2MB
+boundary. Aligning on the upper boundary is more complicated to me
+since there may be "something" between phys_ram_base and the upper 2MB
+boundary that needs to be accessed using the linear mapping (DT is
+accessed using fixmap so not a problem, initrd? ACPI tables? I don't
+know actually).
+
+Weirdly simple though, I may be missing something, so any comment/test
+is welcome, it is currently running our internal CI.
+
+Thanks,
+
+Alex
+
+>
+> Thanks,
+>
+> Alex
+>
+> >
+> >
+> > Using PUD/P4D/PGD pages for the linear mapping to improve the performan=
+ce is marginal from a recent talk [4]
+> > from Mike Rapoport. OpenSbi had marked all the PMP-protected regions as=
+ "no-map" [5] to practice this talk.
+> >
+> > For all those reasons, let's revert these related commits:
+> >
+> > - commit 3335068f8721 ("riscv: Use PUD/P4D/PGD pages for the linear map=
+ping")
+> > - commit 49a0a3731596 ("riscv: Check the virtual alignment before choos=
+ing a map size")
+> > - commit ed309ce52218 ("RISC-V: mark hibernation as nonportable")
+> >
+> > [1]: https://lore.kernel.org/linux-riscv/CAAYs2=3DgQvkhTeioMmqRDVGjdtNF=
+_vhB+vm_1dHJxPNi75YDQ_Q@mail.gmail.com/
+> > [2]: https://lore.kernel.org/linux-kernel/20230530080425.18612-1-alexgh=
+iti@rivosinc.com/
+> > [3]: https://lore.kernel.org/linux-riscv/tencent_7C3B580B47C1B17C16488E=
+C1@qq.com/
+> > [4]: https://lwn.net/Articles/931406/
+> > [5]: https://github.com/riscv-software-src/opensbi/commit/8153b2622b088=
+02cc542f30a1fcba407a5667ab9
+> >
+> > Song Shuai (3):
+> >   Revert "RISC-V: mark hibernation as nonportable"
+> >   Revert "riscv: Check the virtual alignment before choosing a map size=
+"
+> >   Revert "riscv: Use PUD/P4D/PGD pages for the linear mapping"
+> >
+> >  arch/riscv/Kconfig            |  5 +---
+> >  arch/riscv/include/asm/page.h | 16 -------------
+> >  arch/riscv/mm/init.c          | 43 +++++++----------------------------
+> >  arch/riscv/mm/physaddr.c      | 16 -------------
+> >  drivers/of/fdt.c              | 11 ++++-----
+> >  5 files changed, 14 insertions(+), 77 deletions(-)
+> >
+> > --
+> > 2.20.1
+> >
