@@ -2,301 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 523D873FB20
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 13:31:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63BDE73FB4D
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 13:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230161AbjF0LbB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 07:31:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45268 "EHLO
+        id S229562AbjF0Lps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 07:45:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229501AbjF0LbB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 07:31:01 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B38126AE;
-        Tue, 27 Jun 2023 04:30:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1687865459; x=1719401459;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=QH8bCWg3AE+hEhb3xFWyuBXx3P9V8zIniV4gMZjSDGI=;
-  b=S7dem12XVao7Fjus/UX/Z+Khm0oIi1/d8Iz1nqSNBdCbxCCcYPJna2/y
-   UKykWai3bAtAA314AQ5zJi+uGPVPvEeiFE1GWtkm5o9wcc59e40ltdY38
-   Iu9owv/v9awpyTLRCYrbZ7DGVh8JBSbEtSCiZCOHg+tpHbzPuwacF9Ymg
-   yR6YXClytG03FpaSZzGpTz3BE2NjmPfajNXEt2hGLliVm8zWHBkgMyL/T
-   an2yTuurDIK0ySE7Tq105KWDJ48iFMvYUg6Qs72m6DpU8SODf3SbUjAe0
-   zqW01Eg7OMM3GxDFOPhu9uyMegspNSKNP9R7IVwoLdpRPk222+wy2JDqj
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,162,1684825200"; 
-   d="asc'?scan'208";a="158783040"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 27 Jun 2023 04:30:57 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 27 Jun 2023 04:30:56 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 27 Jun 2023 04:30:53 -0700
-Date:   Tue, 27 Jun 2023 12:30:25 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     Atish Patra <atishp@atishpatra.org>
-CC:     Stefan O'Rear <sorear@fastmail.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>, <conor@kernel.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        with ESMTP id S229894AbjF0Lpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 07:45:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BD050F4;
+        Tue, 27 Jun 2023 04:45:45 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4452661166;
+        Tue, 27 Jun 2023 11:45:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E79FC433C0;
+        Tue, 27 Jun 2023 11:45:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687866344;
+        bh=1hnYTqMzhlhytwgb/6vjrVjvJJ91r+9AWszFEARG5vw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Q5KUs9BF50Gr9OBt+4gfgvGUWeIe8DIeta9/O/XtmP6gecIhJOc6C3VuXgF/u+qE0
+         ACLxga2WT6GhMLd27ObnNT/U5S2BKB9fiavY/eU+Z4+0Jin0cna+0dw2KpYpxKTzgR
+         uSXwJK9DGzZIi5rgG+KZSka/9XRKbqwLzY8Edhco1d1d3GmspUOlQz7xNqOaBJyXqQ
+         1ShrAv3C7iHnZTKUbcD8s13BRxSDA4JTTRSB3/tJMwwa9TXbqHqb6ouDDPzZumwCsE
+         qwgKDF22VFW1yJ0ylPuyq+AGigdbz8JehfWb4UxMVv8fFTND4KHr3Ra79gftNyC6iL
+         PYXCJ55tCb6yA==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1qE78f-0003E8-1K; Tue, 27 Jun 2023 13:45:41 +0200
+Date:   Tue, 27 Jun 2023 13:45:41 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Krishna Kurapati <quic_kriskura@quicinc.com>
+Cc:     Thinh Nguyen <Thinh.Nguyen@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
-        Oleksii <oleksii.kurochko@gmail.com>,
-        <linux-riscv@lists.infradead.org>, <qemu-riscv@nongnu.org>,
-        <u-boot@lists.denx.de>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
-Message-ID: <20230627-harmonize-monastery-c6b40d2e5556@wendy>
-References: <20230626-unmarked-atom-70b4d624a386@wendy>
- <a6449161-d800-4094-bf15-cde890ed17b5@app.fastmail.com>
- <CAOnJCULs47ZCai5EOQJPFrgV1-2xPjWAOB2CfUDStcigsR5Wew@mail.gmail.com>
+        Felipe Balbi <balbi@kernel.org>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        quic_pkondeti@quicinc.com, quic_ppratap@quicinc.com,
+        quic_jackp@quicinc.com, quic_harshq@quicinc.com,
+        ahalaney@redhat.com, quic_shazhuss@quicinc.com
+Subject: Re: [PATCH v9 03/10] usb: dwc3: core: Access XHCI address space
+ temporarily to read port info
+Message-ID: <ZJrL5SXrSiYbvq2o@hovoldconsulting.com>
+References: <20230621043628.21485-1-quic_kriskura@quicinc.com>
+ <20230621043628.21485-4-quic_kriskura@quicinc.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="kURSL2kHWkb9OT7S"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAOnJCULs47ZCai5EOQJPFrgV1-2xPjWAOB2CfUDStcigsR5Wew@mail.gmail.com>
+In-Reply-To: <20230621043628.21485-4-quic_kriskura@quicinc.com>
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---kURSL2kHWkb9OT7S
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Wed, Jun 21, 2023 at 10:06:21AM +0530, Krishna Kurapati wrote:
+> Currently host-only capable DWC3 controllers support Multiport.
+> Temporarily map XHCI address space for host-only controllers and parse
+> XHCI Extended Capabilities registers to read number of usb2 ports and
+> usb3 ports present on multiport controller. Each USB Port is at least HS
+> capable.
+> 
+> The port info for usb2 and usb3 phy are identified as num_usb2_ports
+> and num_usb3_ports. The intention is as follows:
+> 
+> Wherever we need to perform phy operations like:
+> 
+> LOOP_OVER_NUMBER_OF_AVAILABLE_PORTS()
+> {
+> 	phy_set_mode(dwc->usb2_generic_phy[i], PHY_MODE_USB_HOST);
+> 	phy_set_mode(dwc->usb3_generic_phy[i], PHY_MODE_USB_HOST);
+> }
+> 
+> If number of usb2 ports is 3, loop can go from index 0-2 for
+> usb2_generic_phy. If number of usb3-ports is 2, we don't know for sure,
+> if the first 2 ports are SS capable or some other ports like (2 and 3)
+> are SS capable. So instead, num_usb2_ports is used to loop around all
+> phy's (both hs and ss) for performing phy operations. If any
+> usb3_generic_phy turns out to be NULL, phy operation just bails out.
+> 
+> num_usb3_ports is used to modify GUSB3PIPECTL registers while setting up
+> phy's as we need to know how many SS capable ports are there for this.
+> 
+> Signed-off-by: Krishna Kurapati <quic_kriskura@quicinc.com>
+> ---
+>  drivers/usb/dwc3/core.c | 62 +++++++++++++++++++++++++++++++++++++++++
+>  drivers/usb/dwc3/core.h |  9 ++++++
+>  2 files changed, 71 insertions(+)
+> 
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index f6689b731718..32ec05fc242b 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -39,6 +39,7 @@
+>  #include "io.h"
+>  
+>  #include "debug.h"
+> +#include "../host/xhci-ext-caps.h"
+>  
+>  #define DWC3_DEFAULT_AUTOSUSPEND_DELAY	5000 /* ms */
+>  
+> @@ -1767,6 +1768,52 @@ static int dwc3_get_clocks(struct dwc3 *dwc)
+>  	return 0;
+>  }
+>  
+> +static int dwc3_read_port_info(struct dwc3 *dwc)
+> +{
+> +	void __iomem *base;
+> +	u8 major_revision;
+> +	u32 offset = 0;
+> +	int ret = 0;
 
-Hey Atish, Stefan,
+ret is never modified, so drop and return 0 unconditionally below.
 
-On Mon, Jun 26, 2023 at 11:35:10PM -0700, Atish Patra wrote:
-> On Mon, Jun 26, 2023 at 5:40=E2=80=AFPM Stefan O'Rear <sorear@fastmail.co=
-m> wrote:
-> > On Mon, Jun 26, 2023, at 6:10 AM, Conor Dooley wrote:
+You can add it back later in the series when you start using it.
 
-> > > Off-list, some of the RVI folks have committed to shoring up the word=
-ing
-> > > in either the ISA specifications, the riscv-isa-manual or
-> > > so that in the future, modifications to and additions or removals of
-> > > features will require a new extension. Codifying that assertion
-> > > somewhere would make it quite unlikely that compatibility would be
-> > > broken, but we have the tools required to deal with it, if & when it
-> > > crops up.
-> > > It is in our collective interest, as consumers of extension meanings,=
- to
-> > > define a scheme that enforces compatibility.
-> > >
-> > > The use of individual properties, rather than elements in a single
-> >
-> > no longer individual properties
-> >
-> > > string, will also permit validation that the properties have a meanin=
-g,
-> > > as well as potentially reject mutually exclusive combinations, or
-> > > enforce dependencies between extensions. That would not have be possi=
-ble
-> >
-> > Under what circumstances is a device tree which declares support for a
-> > superset extension (e.g. m) required to also declare support for its su=
-bsets
-> > (e.g. zmmul)?  There are compatibility issues in both directions.
-> >
-> > Proposal: If an extension X is a superset of an extension Y and X is pr=
-esent
-> > in riscv,isa-extensions, Y must also be present if Y was ratified or ad=
-ded
-> > to the schema before X, but need not also be present if Y was ratified =
-after
-> > or at the same time as X.  If X "depends on" Y, then Y must be present =
-in
-> > riscv,isa-extensions even if X and Y were ratified at the same time.
+> +	u32 val;
+> +
+> +	/*
+> +	 * Remap xHCI address space to access XHCI ext cap regs,
+> +	 * since it is needed to get port info.
+> +	 */
+> +	base = ioremap(dwc->xhci_resources[0].start,
+> +				resource_size(&dwc->xhci_resources[0]));
+> +	if (IS_ERR(base))
+> +		return PTR_ERR(base);
+> +
+> +	do {
+> +		offset = xhci_find_next_ext_cap(base, offset,
+> +				XHCI_EXT_CAPS_PROTOCOL);
+> +
 
-Yes, I think that this all makes sense from a compatibility point of
-view. Splitting it up:
+You can drop this newline.
 
-> > If an extension X is a superset of an extension Y and X is present
-> > in riscv,isa-extensions, Y must also be present if Y was ratified or ad=
-ded
-> > to the schema before X
+> +		if (!offset)
+> +			break;
+> +
+> +		val = readl(base + offset);
+> +		major_revision = XHCI_EXT_PORT_MAJOR(val);
+> +
+> +		val = readl(base + offset + 0x08);
+> +		if (major_revision == 0x03) {
+> +			dwc->num_usb3_ports += XHCI_EXT_PORT_COUNT(val);
+> +		} else if (major_revision <= 0x02) {
+> +			dwc->num_usb2_ports += XHCI_EXT_PORT_COUNT(val);
+> +		} else {
+> +			dev_err(dwc->dev,
+> +				"Unrecognized port major revision %d\n",
+> +							major_revision);
+> +		}
+> +	} while (1);
+> +
+> +	dev_dbg(dwc->dev, "hs-ports: %u ss-ports: %u\n",
+> +			dwc->num_usb2_ports, dwc->num_usb3_ports);
+> +
+> +	iounmap(base);
 
-This makes total sense from a "being nice to" software point of view.
+Nit: I'd add a newline here.
 
-> > but need not also be present if Y was ratified after
-> > or at the same time as X.
+> +	return ret;
+> +}
+> +
+>  static int dwc3_probe(struct platform_device *pdev)
+>  {
+>  	struct device		*dev = &pdev->dev;
+> @@ -1774,6 +1821,7 @@ static int dwc3_probe(struct platform_device *pdev)
+>  	void __iomem		*regs;
+>  	struct dwc3		*dwc;
+>  	int			ret;
+> +	unsigned int		hw_mode;
+>  
+>  	dwc = devm_kzalloc(dev, sizeof(*dwc), GFP_KERNEL);
+>  	if (!dwc)
+> @@ -1854,6 +1902,20 @@ static int dwc3_probe(struct platform_device *pdev)
+>  			goto err_disable_clks;
+>  	}
+>  
+> +	/*
+> +	 * Currently only DWC3 controllers that are host-only capable
+> +	 * support Multiport.
+> +	 */
+> +	hw_mode = DWC3_GHWPARAMS0_MODE(dwc->hwparams.hwparams0);
+> +	if (hw_mode == DWC3_GHWPARAMS0_MODE_HOST) {
+> +		ret = dwc3_read_port_info(dwc);
+> +		if (ret)
+> +			goto err_disable_clks;
+> +	} else {
+> +		dwc->num_usb2_ports = 1;
+> +		dwc->num_usb3_ports = 1;
+> +	}
+> +
+>  	spin_lock_init(&dwc->lock);
+>  	mutex_init(&dwc->mutex);
+>  
+> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
+> index 8b1295e4dcdd..42fb17aa66fa 100644
+> --- a/drivers/usb/dwc3/core.h
+> +++ b/drivers/usb/dwc3/core.h
+> @@ -33,6 +33,10 @@
+>  
+>  #include <linux/power_supply.h>
+>  
+> +#define XHCI_EXT_PORT_MAJOR(x)	(((x) >> 24) & 0xff)
+> +#define XHCI_EXT_PORT_MINOR(x)	(((x) >> 16) & 0xff)
+> +#define XHCI_EXT_PORT_COUNT(x)	(((x) >> 8) & 0xff)
 
-It may make sense to reduce this to only after, or not permit the
-supersets at all where they are ratified alongside their subsets.
-Cross that bridge when we come to it perhaps.
+Again, don't copy defines from xhci.
 
-> > If X "depends on" Y, then Y must be present in
-> > riscv,isa-extensions even if X and Y were ratified at the same tim
+Looks like these should be moved to the xhci-ext-caps.h header along
+with struct xhci_protocol_caps.
 
-For Linux, this is already the case for F & D. I think that's a good
-policy to follow.
+> +
+>  #define DWC3_MSG_MAX	500
+>  
+>  /* Global constants */
+> @@ -1029,6 +1033,8 @@ struct dwc3_scratchpad_array {
+>   * @usb3_phy: pointer to USB3 PHY
+>   * @usb2_generic_phy: pointer to USB2 PHY
+>   * @usb3_generic_phy: pointer to USB3 PHY
+> + * @num_usb2_ports: number of USB2 ports.
+> + * @num_usb3_ports: number of USB3 ports.
 
-> > >
-> > > vendor extensions
-> > > =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
-> > >
-> > > Compared to riscv,isa, this proposed scheme promotes vendor extension=
-s,
-> > > oft touted as the strength of RISC-V, to first-class citizens.
-> > > At present, extensions are defined as meaning what the RISC-V ISA
-> > > specifications say they do. There is no realistic way of using that
-> > > interface to provide cross-platform definitions for what vendor
-> > > extensions mean. Vendor extensions may also have even less consistency
-> > > than RVI do in terms of versioning, or no care about backwards
-> > > compatibility.
-> > > The new property allows us to assign explicit meanings on a per vendor
-> > > extension basis, backed up by a description of their meanings.
-> >
-> > How are vendor extension names allocated?  Will any proposed name for a
-> > vendor extension pass through linux-riscv@ before it shows up in the wi=
-ld,
-> > or are vendors expected to allocate extension names unilaterally?
+Again, please drop the full stops ('.').
 
-The same way any other dt-binding works, it's no different in that
-respect to compatible strings.
-
-> > Is it
-> > worth creating an experimental-* namespace for prototype implementations
-> > of unreleased extensions?
-
-IMO, people are free to do whatever they like in their own development
-trees. I don't really know why we'd introduce stuff in dt-bindings for
-things that are only in an experimental state.
-
-> > > +  riscv,isa-extensions:
-> > > +    $ref: /schemas/types.yaml#/definitions/string-array
-> > > +    minItems: 1
-> > > +    description: Extensions supported by the hart.
-> > > +    items:
-> > > +      anyOf:
-> > > +        # single letter extensions, in canonical order
-> > > +        - const: i
-> > > +          description: |
-> > > +            The base integer instruction set, as ratified in the
-> > > 20191213
-> > > +            version of the unprivileged ISA specification, with the
-> > > exception of
-> > > +            counter access.
-> > > +            Counter access was removed after the ratification of the
-> > > 20191213
-> > > +            version of the unprivileged specification and shunted in=
-to
-> > > the
-> > > +            Zicntr and Zihpm extensions.
-> >
-> > I think this may belong in the description of zicsr?  rdcycle in 201912=
-13
-> > is a special case of csrrs, which is in zicsr not the base.
-
-Sorry, this is a bit unclear. Do you mean that the sentence you have
-provided here should be in the Zicsr entry?
-
-> > > +        - const: m
-> > > +          description:
-> > > +            The standard M extension for integer multiplication and
-> > > division, as
-> > > +            ratified in the 20191213 version of the unprivileged ISA
-> > > +            specification.
-> > > +
-> > > +        - const: a
-> > > +          description:
-> > > +            The standard A extension for atomic instructions, as
-> > > ratified in the
-> > > +            20191213 version of the unprivileged ISA specification.
-> > > +
-> > > +        - const: f
-> > > +          description:
-> > > +            The standard F extension for single-precision floating
-> > > point, as
-> > > +            ratified in the 20191213 version of the unprivileged ISA
-> > > +            specification.
-> >
-> > Do we want to be able to describe the K210 in the new schema?  I believe
-> > that it implements the 2.0 F and D extensions, which are neither forward
-> > nor backward compatible with the ratified ones.
-
-If it is not compatible, then it should not claim to be :)
-We currently report the thing as implementing the same F extension as
-anything else that claims to support F, but I don't think we should be
-adding a new strictly defined property if it does not apply. Kinda
-defeats the purpose I think. I'm not sure whether it should get a new
-property, or continue (mis)using riscv,isa, in that case.
-
-> > #include <stdio.h>
-> > int main() {
-> >     long a,b;
-> >     asm("fsub.s fa0,fa0,fa0\n"
-> >         "fdiv.s fa0,fa0,fa0\n"
-> >         "fmv.x.d %0,fa0\n"
-> >         "fcvt.s.w fa1,x0\n"
-> >         "fmax.s fa1,fa1,fa0\n"
-> >         "fmv.x.d %1,fa1\n" : "=3Dr" (a), "=3Dr" (b));
-> >     printf("box(nan) =3D %lx\nmax(0,nan) =3D %lx\n", a, b);
-> >     return 0;
-> > }
-
-As an aside, if you are building software for a k210, you probably know
-pretty damn well what your target system is, given the constraints of
-the platform!
-
-> > > +        - const: h
-> > > +          description:
-> > > +            The standard H extension for hypervisors as ratified in
-> > > the 20191213
-> > > +            version of the privileged ISA specification.
-> > > +
-> > > +        # multi-letter extensions, sorted alphanumerically
->=20
-> The multi-letter extensions name should match(ignoring case) the name
-> of the frozen/ratified or
-> vendor specific extension name. Correct ?
-
-Iff it is the first time of appearance, yes.
-
-> > There are quite a few extension names defined in ratified specifications
-> > that aren't in that list yet.  Would there be interest in adding them or
-> > are we waiting for specific conditions to be met?
-
-I only added what was already in use, adding new stuff can be done
-subsequently.
-
-> > In particular several subsystems depend on "ziccif" from the profiles
-> > spec but we haven't previously had a way to check or document that
-> > dependency.
-
-Cheers,
-Conor.
-
-
---kURSL2kHWkb9OT7S
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJrIUQAKCRB4tDGHoIJi
-0lBbAP9jXwlv1nE24nhP671Dp1q3gBe8nJMes2/JaeL9fMfJAQEA2xRKTGT94tyg
-aW8dQFmO2POpJoKK3PwGFpGEdNajoAc=
-=BB4b
------END PGP SIGNATURE-----
-
---kURSL2kHWkb9OT7S--
+Johan
