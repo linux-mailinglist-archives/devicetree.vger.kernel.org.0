@@ -2,35 +2,35 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D01287405DD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 23:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5F0E7405E7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 23:47:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230238AbjF0Vqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 17:46:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44258 "EHLO
+        id S231140AbjF0VrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 17:47:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230496AbjF0Vqf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 17:46:35 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63EE42976;
-        Tue, 27 Jun 2023 14:46:32 -0700 (PDT)
+        with ESMTP id S230526AbjF0Vqp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 17:46:45 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C399297D;
+        Tue, 27 Jun 2023 14:46:39 -0700 (PDT)
 Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
         (Authenticated sender: nfraprado)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id DDAE8660716D;
-        Tue, 27 Jun 2023 22:46:28 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1E6BA660716C;
+        Tue, 27 Jun 2023 22:46:36 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1687902391;
-        bh=6/vcaD7vHgxFo563mcGSzADfJpcIhcKqIWXtcXlmyyg=;
+        s=mail; t=1687902397;
+        bh=khyVQY+Nu/Z4EDKrg96abLDsAid37RZNAFA7dJoh+K8=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=QRX7Y7FJczspzvg1lbr4hdqkL2V2n45ngk1lc9CQScHa7bQQYNO6BXWJjQ4mdUwxJ
-         /9TsURMA8BOHYMi0/Fu7ThKFO5dXWGl02FiKipJReDlL/oU340MrHwcADXNhUXbN/R
-         Ar7nAy7hwB1n1fFG9oX9YJpKbYno+7ObS6bmEJ7NFPjGR+Q/RZB5dHbw+Oc4zx4OZf
-         SRs4akW6zCFzxlDCOOtajVTuPnyjEhgqqkQP13tDy9KBzV7UfY0ncA2U/xN6KHret8
-         F4QmMtU7qTp035vpOCTPfbJKxor8dFaC9NlV0UgyerJSZhXuNjSgFzwVjB+KshnJ1C
-         jn/wsh0jiqtcQ==
+        b=BEmknKh9uXv6AKN+kRQcmsKlfxopmDPOGU9wtjVeDOZByqNTKWgbBrpoNoUI/tJ/o
+         JpCg6mqBUt8NpYy0cSQujxUuCgPiNI3k/w+SlZjOFZQA73DrJK7NKQNNUvLNnzMKIh
+         okq1nDuFjUBiz8c3QC38vE2njRckaIzgmn5iKFiGOlClmGv1JXBoem+gJEo8SmLlgt
+         s6UXFaOjHpIM10NU4NDzidkVlCX00STy5mojjPJmz999jEU4XsYr84LXg81DzHNPs8
+         VzyCm1mPcA+vQlPjma5/jMcJoS0Ec11mnN6yePr+MifjF3aj6FVbQMbvN3tdkBo7lr
+         kvPOrsasFsA7g==
 From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
         <nfraprado@collabora.com>
 To:     Matthias Brugger <matthias.bgg@gmail.com>,
@@ -39,20 +39,14 @@ Cc:     kernel@collabora.com,
         AngeloGioacchino Del Regno 
         <angelogioacchino.delregno@collabora.com>,
         =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
-        <nfraprado@collabora.com>,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        <nfraprado@collabora.com>, Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 3/7] media: dt-bindings: mediatek,vcodec: Remove VDEC_SYS register space
-Date:   Tue, 27 Jun 2023 17:45:53 -0400
-Message-ID: <20230627214615.1503901-4-nfraprado@collabora.com>
+Subject: [PATCH v4 6/7] arm64: dts: mediatek: mt8173: Drop VDEC_SYS reg from decoder
+Date:   Tue, 27 Jun 2023 17:45:56 -0400
+Message-ID: <20230627214615.1503901-7-nfraprado@collabora.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230627214615.1503901-1-nfraprado@collabora.com>
 References: <20230627214615.1503901-1-nfraprado@collabora.com>
@@ -69,108 +63,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The binding expects the first register space to be VDEC_SYS. However
-this register space is already assigned to a different node on both
-MT8173 and MT8183: a clock-controller node called 'vdecsys' which is
-also a syscon.
+Remove the VDEC_SYS register space from the decoder, so that the node
+address becomes that of VDEC_MISC, solving the long-standing conflicting
+addresses between this node and the vdecsys clock-controller node:
 
-In order to resolve the overlapping address ranges, remove the VDEC_SYS
-register space from the video decoder, and add a new property to hold
-the phandle to the syscon, so that iospace can still be handled.
+arch/arm64/boot/dts/mediatek/mt8173.dtsi:1365.38-1369.5: Warning (unique_unit_address_if_enabled): /soc/clock-controller@16000000: duplicate unit-address (also used in node /soc/vcodec@16000000)
 
-Also add reg-names to be able to tell that this new register schema is
-used, so the driver can keep backward compatibility.
+The driver makes use of this register space, however, so also add a
+phandle to the VDEC_SYS syscon to maintain functionality.
 
 Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
 
 ---
 
 Changes in v4:
-- Removed VDEC_SYS reg from mt8173 as well
-- Reworded commit
+- Added this commit
 
-Changes in v3:
-- Removed the active clock
-- Added a mediatek,vdecsys syscon property
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
 
-Changes in v2:
-- Merged with patch 1 (media: dt-bindings: mediatek,vcodec: Allow single
-  clock for mt8183) to avoid changing number of clocks twice
-- Added maxItems to reg-names
-- Constrained clocks for each compatible
-- Reordered properties for each compatible
-
- .../media/mediatek,vcodec-decoder.yaml        | 28 ++++++++++++++++---
- 1 file changed, 24 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
-index 1e56ece44aee..b401c67e3ba0 100644
---- a/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
-+++ b/Documentation/devicetree/bindings/media/mediatek,vcodec-decoder.yaml
-@@ -21,7 +21,22 @@ properties:
-       - mediatek,mt8183-vcodec-dec
+diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+index c47d7d900f28..cac4cd0a0320 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
+@@ -1368,10 +1368,9 @@ vdecsys: clock-controller@16000000 {
+ 			#clock-cells = <1>;
+ 		};
  
-   reg:
--    maxItems: 12
-+    minItems: 11
-+    maxItems: 11
-+
-+  reg-names:
-+    items:
-+      - const: misc
-+      - const: ld
-+      - const: top
-+      - const: cm
-+      - const: ad
-+      - const: av
-+      - const: pp
-+      - const: hwd
-+      - const: hwq
-+      - const: hwb
-+      - const: hwg
- 
-   interrupts:
-     maxItems: 1
-@@ -60,6 +75,10 @@ properties:
-     description:
-       Describes point to scp.
- 
-+  mediatek,vdecsys:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: Phandle to the vdecsys syscon node.
-+
- required:
-   - compatible
-   - reg
-@@ -67,6 +86,7 @@ required:
-   - clocks
-   - clock-names
-   - iommus
-+  - mediatek,vdecsys
- 
- allOf:
-   - if:
-@@ -126,10 +146,9 @@ examples:
-     #include <dt-bindings/interrupt-controller/irq.h>
-     #include <dt-bindings/power/mt8173-power.h>
- 
--    vcodec_dec: vcodec@16000000 {
-+    vcodec_dec: vcodec@16020000 {
-       compatible = "mediatek,mt8173-vcodec-dec";
--      reg = <0x16000000 0x100>,   /*VDEC_SYS*/
--          <0x16020000 0x1000>,  /*VDEC_MISC*/
-+      reg = <0x16020000 0x1000>,  /*VDEC_MISC*/
-           <0x16021000 0x800>,   /*VDEC_LD*/
-           <0x16021800 0x800>,   /*VDEC_TOP*/
-           <0x16022000 0x1000>,  /*VDEC_CM*/
-@@ -150,6 +169,7 @@ examples:
-              <&iommu M4U_PORT_HW_VDEC_VLD_EXT>,
-              <&iommu M4U_PORT_HW_VDEC_VLD2_EXT>;
-       mediatek,vpu = <&vpu>;
-+      mediatek,vdecsys = <&vdecsys>;
-       power-domains = <&scpsys MT8173_POWER_DOMAIN_VDEC>;
-       clocks = <&apmixedsys CLK_APMIXED_VCODECPLL>,
-              <&topckgen CLK_TOP_UNIVPLL_D2>,
+-		vcodec_dec: vcodec@16000000 {
++		vcodec_dec: vcodec@16020000 {
+ 			compatible = "mediatek,mt8173-vcodec-dec";
+-			reg = <0 0x16000000 0 0x100>,	/* VDEC_SYS */
+-			      <0 0x16020000 0 0x1000>,	/* VDEC_MISC */
++			reg = <0 0x16020000 0 0x1000>,	/* VDEC_MISC */
+ 			      <0 0x16021000 0 0x800>,	/* VDEC_LD */
+ 			      <0 0x16021800 0 0x800>,	/* VDEC_TOP */
+ 			      <0 0x16022000 0 0x1000>,	/* VDEC_CM */
+@@ -1382,6 +1381,8 @@ vcodec_dec: vcodec@16000000 {
+ 			      <0 0x16027000 0 0x800>,	/* VDEC_HWQ */
+ 			      <0 0x16027800 0 0x800>,	/* VDEC_HWB */
+ 			      <0 0x16028400 0 0x400>;	/* VDEC_HWG */
++			reg-names = "misc", "ld", "top", "cm", "ad", "av", "pp",
++				    "hwd", "hwq", "hwb", "hwg";
+ 			interrupts = <GIC_SPI 204 IRQ_TYPE_LEVEL_LOW>;
+ 			iommus = <&iommu M4U_PORT_HW_VDEC_MC_EXT>,
+ 				 <&iommu M4U_PORT_HW_VDEC_PP_EXT>,
+@@ -1392,6 +1393,7 @@ vcodec_dec: vcodec@16000000 {
+ 				 <&iommu M4U_PORT_HW_VDEC_VLD_EXT>,
+ 				 <&iommu M4U_PORT_HW_VDEC_VLD2_EXT>;
+ 			mediatek,vpu = <&vpu>;
++			mediatek,vdecsys = <&vdecsys>;
+ 			power-domains = <&spm MT8173_POWER_DOMAIN_VDEC>;
+ 			clocks = <&apmixedsys CLK_APMIXED_VCODECPLL>,
+ 				 <&topckgen CLK_TOP_UNIVPLL_D2>,
 -- 
 2.41.0
 
