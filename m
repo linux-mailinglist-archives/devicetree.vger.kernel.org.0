@@ -2,181 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 83C6673FD77
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B70673FD7A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:12:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231285AbjF0OMB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 10:12:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54514 "EHLO
+        id S231410AbjF0OM3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 10:12:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54898 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230357AbjF0OLu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:11:50 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17AEA359B;
-        Tue, 27 Jun 2023 07:11:36 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (unknown [193.85.242.128])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 9C7D110A;
-        Tue, 27 Jun 2023 16:10:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687875055;
-        bh=7Hc1d8oOHgOBTbIRoH4a/Rzr0+yr4EjZFHs0CndgT6c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=aQnQiQkUeicZnNgvNfR0+mZyn8vSSicvCKEoXBvk3AssJOPsg6XAKz2OgBDTGLwyw
-         dgxYs1I8a/BkwAFknjrGDWYZbw3p4ztAQwDUPYrj9+tsb6TSxvW2O0N9x5BtbyEi6u
-         F6kx0DyyQmkZ3s5i54T6J++yUfxHsX4SWo1V6hDg=
-Date:   Tue, 27 Jun 2023 17:11:33 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     guoniu.zhou@oss.nxp.com
-Cc:     linux-media@vger.kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        xavier.roumegue@oss.nxp.com, kernel@pengutronix.de,
-        jacopo.mondi@ideasonboard.com, sakari.ailus@linux.intel.com
-Subject: Re: [PATCH v3 3/3] media: nxp: imx8-isi: add ISI support for i.MX93
-Message-ID: <20230627141133.GC14185@pendragon.ideasonboard.com>
-References: <20230627062017.1135114-1-guoniu.zhou@oss.nxp.com>
- <20230627062017.1135114-4-guoniu.zhou@oss.nxp.com>
+        with ESMTP id S229814AbjF0OMQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:12:16 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87AF02D66
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:11:47 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-bff89873d34so3124400276.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 07:11:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687875106; x=1690467106;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WXrJhVf+jnZIfJ+cq7/++Rt0kUOtjIR654ZWVYK8IXA=;
+        b=muMy6ccIPvOVieHq3jydY3E+pk7Ux7eU+8fTqZc64cbKAXPQn9G7P9CLs49Km6ZNLH
+         +og5pE5dYoTSo4Nv0G9IuKJxLxYT/3kR4daUo9KSmpcrqnCZEpirJpdO4bhhDz4viIeW
+         a6kr2p8yLGcr0LFje5IlBM9yAMKXINXjr7d7oJSW0RhWpDH/i1wAz39HiojB0lh54hqM
+         uHL0HHBzjWTYe36pue47SQ7vwC/ejhmkYHexaE/mv9RDPVPfX9EgSFWDPArb1eCM/71O
+         NQXSsv28l7DJwmFDtp1RLWlnXdeIAbU66JY4JQdEp6MqgMz+lplOX7EUq0EXcUzAln0e
+         L1LQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687875106; x=1690467106;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WXrJhVf+jnZIfJ+cq7/++Rt0kUOtjIR654ZWVYK8IXA=;
+        b=HF2VPb8KIppRbHyqCod1UTzgKjXHLX+Z4La8Ew6iR3Wt6J9Ud13y1S0W/uc/W6/Qgb
+         KMtEUIf8wZP6yiuoxz70qhEzpUbnnOAiuj1154KnLQVbOV5cV5G2Jcqi52Of9VRUTcm/
+         DiS8J+T+b6GYyN6teO5g328BySbcJ3GbGkrc+BxLANoeQ17OLNetBi62bLaFJ95zL67a
+         1ctBDyEGXe0yLBaEiSd/GX23TSEA4nnW3uDihnfLf7pf07UQAcl19CIoOEkwUjbb63pz
+         d741VLzQuv/2SW5WSNa/GYcYkkUmJMzJTIhRdIqmmJDMH+CguhWxJaK5CLsPnFCk5GID
+         ra6w==
+X-Gm-Message-State: AC+VfDy7uFwcJzFbJeCYD+OTZuU4FXgWGC9MPllXRBTdhd95CGbHccZ6
+        5SGR12gTjHse8MTPaK8oQg6qcjwJzmV56JJRPSiHkw==
+X-Google-Smtp-Source: ACHHUZ70lgoIJLXZa0oFwfw4edZsuXErq+66PpsBrsvx2dF/b15nid3DcEG0tPlISlTBDYPEdt1KKo8KpAHjIj4O1Dw=
+X-Received: by 2002:a25:3d81:0:b0:c1c:9285:64c2 with SMTP id
+ k123-20020a253d81000000b00c1c928564c2mr4483834yba.50.1687875106693; Tue, 27
+ Jun 2023 07:11:46 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230627062017.1135114-4-guoniu.zhou@oss.nxp.com>
+References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
+ <20230625202547.174647-18-dmitry.baryshkov@linaro.org> <0f139da8-ae01-fc28-d14c-0ea207cf760e@linaro.org>
+ <2232c6e7-cbca-30c1-9ec5-1cea7f759daf@linaro.org> <8217b8db-cd27-185d-c6b5-e32009202c21@linaro.org>
+In-Reply-To: <8217b8db-cd27-185d-c6b5-e32009202c21@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 27 Jun 2023 17:11:35 +0300
+Message-ID: <CAA8EJpq8J4fQoqrt3Jdf3C_mGUQdqaNbybdPD-zhEYxmB7DTcg@mail.gmail.com>
+Subject: Re: [PATCH v2 17/26] ARM: dts: qcom: apq8064: add simple CPUFreq support
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guoniu,
+On Tue, 27 Jun 2023 at 15:13, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 26.06.2023 21:49, Dmitry Baryshkov wrote:
+> > On 26/06/2023 19:40, Konrad Dybcio wrote:
+> >> On 25.06.2023 22:25, Dmitry Baryshkov wrote:
+> >>> Declare CPU frequency-scaling properties. Each CPU has its own clock,
+> >>> how
+> >> however?
+> >
+> > yes
+> >
+> >>
+> >>> all CPUs have the same OPP table. Voltage scaling is not (yet)
+> >>> enabled with this patch. It will be enabled later.
+> >> Risky business.
+> >
+> > But it works :D
+> On your machine ;)
 
-Thank you for the patch.
+On two nexus-7 and one ifc6410.
 
-On Tue, Jun 27, 2023 at 02:20:17PM +0800, guoniu.zhou@oss.nxp.com wrote:
-> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
-> 
-> i.MX93 use a different gasket which has different register definition
-> compared with i.MX8. Hence implement the gasket callbacks in order to
-> add ISI support for i.MX93.
-> 
-> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
+>
+> [...]
+>
+> >>>   +    kraitcc: clock-controller {
+> >>> +        compatible = "qcom,krait-cc-v1";
+> >> Are we sure we don't wanna rework this compatible? Check the comment in
+> >> drivers/clk/qcom/krait-cc.c : krait_add_sec_mux()
+> >
+> > I remember that comment. I'd rather not introduce another compat string for such old hw. Would there be any direct benefits?
+> >
+> I'd say that the one we have here never made much sense.. Perhaps (since
+> nobody used it for 10 years) it would make sense to remodel it..
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Well we have the bindings for this driver. And also it was used by the
+OpenWRT people, IIRC.
+Thus I don't feel comfortable with throwing out old compat strings.
 
-> ---
->  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 20 ++++++++++++++++++
->  .../platform/nxp/imx8-isi/imx8-isi-core.h     | 12 +++++++++++
->  .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 21 +++++++++++++++++++
->  3 files changed, 53 insertions(+)
-> 
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> index d645b2f6fa5a..24c40e4cfef5 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> @@ -313,6 +313,25 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
->  	.has_36bit_dma		= true,
->  };
->  
-> +static const struct mxc_gasket_ops mxc_imx93_gasket_ops = {
-> +	.enable = mxc_imx93_gasket_enable,
-> +	.disable = mxc_imx93_gasket_disable,
-> +};
-> +
-> +static const struct mxc_isi_plat_data mxc_imx93_data = {
-> +	.model			= MXC_ISI_IMX93,
-> +	.num_ports		= 1,
-> +	.num_channels		= 1,
-> +	.reg_offset		= 0,
-> +	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> +	.set_thd		= &mxc_imx8_isi_thd_v1,
-> +	.clks			= mxc_imx8mn_clks,
-> +	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> +	.buf_active_reverse	= true,
-> +	.gasket_ops		= &mxc_imx93_gasket_ops,
-> +	.has_36bit_dma		= false,
-> +};
-> +
->  /* -----------------------------------------------------------------------------
->   * Power management
->   */
-> @@ -524,6 +543,7 @@ static int mxc_isi_remove(struct platform_device *pdev)
->  static const struct of_device_id mxc_isi_of_match[] = {
->  	{ .compatible = "fsl,imx8mn-isi", .data = &mxc_imx8mn_data },
->  	{ .compatible = "fsl,imx8mp-isi", .data = &mxc_imx8mp_data },
-> +	{ .compatible = "fsl,imx93-isi", .data = &mxc_imx93_data },
->  	{ /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, mxc_isi_of_match);
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> index 4f920d650153..f5be5394981e 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> @@ -73,6 +73,11 @@ struct v4l2_m2m_dev;
->  #define GASKET_HSIZE				0x0004
->  #define GASKET_VSIZE				0x0008
->  
-> +/* dispmix_GPR register (i.MX93 only) */
-> +#define DISP_MIX_CAMERA_MUX                     0x30
-> +#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)        (((x) & 0x3f) << 3)
-> +#define DISP_MIX_CAMERA_MUX_GASKET_ENABLE       BIT(16)
-> +
->  struct mxc_isi_dev;
->  struct mxc_isi_m2m_ctx;
->  
-> @@ -172,6 +177,7 @@ struct mxc_gasket_ops {
->  enum model {
->  	MXC_ISI_IMX8MN,
->  	MXC_ISI_IMX8MP,
-> +	MXC_ISI_IMX93,
->  };
->  
->  struct mxc_isi_plat_data {
-> @@ -407,6 +413,12 @@ int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
->  			   const unsigned int port);
->  void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
->  
-> +int mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
-> +			    const struct v4l2_mbus_frame_desc *fd,
-> +			    const struct v4l2_mbus_framefmt *fmt,
-> +			    const unsigned int port);
-> +void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
-> +
->  #if IS_ENABLED(CONFIG_DEBUG_FS)
->  void mxc_isi_debug_init(struct mxc_isi_dev *isi);
->  void mxc_isi_debug_cleanup(struct mxc_isi_dev *isi);
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> index 39f8d0e8b15d..a81c4249a26f 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> @@ -30,3 +30,24 @@ void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port)
->  {
->  	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
->  }
-> +
-> +/* Configure and enable gasket for i.MX93 */
-> +int mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
-> +			    const struct v4l2_mbus_frame_desc *fd,
-> +			    const struct v4l2_mbus_framefmt *fmt,
-> +			    const unsigned int port)
-> +{
-> +	u32 val;
-> +
-> +	val = DISP_MIX_CAMERA_MUX_DATA_TYPE(fd->entry[0].bus.csi2.dt);
-> +	val |= DISP_MIX_CAMERA_MUX_GASKET_ENABLE;
-> +	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val);
-> +
-> +	return 0;
-> +}
-> +
-> +void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi,
-> +			      unsigned int port)
-> +{
-> +	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, 0);
-> +}
+>
+> Konrad
+> >>
+> >>
+> >>> +        clocks = <&gcc PLL9>, /* hfpll0 */
+> >>> +             <&gcc PLL10>, /* hfpll1 */
+> >>> +             <&gcc PLL16>, /* hfpll2 */
+> >>> +             <&gcc PLL17>, /* hfpll3 */
+> >>> +             <&gcc PLL12>, /* hfpll_l2 */
+> >>> +             <&acc0>,
+> >>> +             <&acc1>,
+> >>> +             <&acc2>,
+> >>> +             <&acc3>,
+> >>> +             <&l2cc>;
+> >>> +        clock-names = "hfpll0",
+> >>> +                  "hfpll1",
+> >>> +                  "hfpll2",
+> >>> +                  "hfpll3",
+> >>> +                  "hfpll_l2",
+> >>> +                  "acpu0_aux",
+> >>> +                  "acpu1_aux",
+> >>> +                  "acpu2_aux",
+> >>> +                  "acpu3_aux",
+> >>> +                  "acpu_l2_aux";
+> >>> +        #clock-cells = <1>;
+> >>> +        #interconnect-cells = <1>;
+> >>> +    };
+> >>> +
+> >>>       sfpb_mutex: hwmutex {
+> >>>           compatible = "qcom,sfpb-mutex";
+> >>>           syscon = <&sfpb_wrapper_mutex 0x604 0x4>;
+> >>> @@ -933,6 +1100,9 @@ qfprom: qfprom@700000 {
+> >>>               #address-cells = <1>;
+> >>>               #size-cells = <1>;
+> >>>               ranges;
+> >>> +            speedbin_efuse: speedbin@c0 {
+> >>> +                reg = <0x0c0 0x4>;
+> >>> +            };
+> >> Newline between properties and subnodes & between individual subnodes,
+> >> please
+> >
+> > ack.
+> >
+> >>
+> >> Konrad
+> >>>               tsens_calib: calib@404 {
+> >>>                   reg = <0x404 0x10>;
+> >>>               };
+> >
+
+
 
 -- 
-Regards,
-
-Laurent Pinchart
+With best wishes
+Dmitry
