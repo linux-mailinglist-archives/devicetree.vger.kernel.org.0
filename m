@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 26AD57400FD
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 18:26:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98714740118
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 18:27:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231953AbjF0QZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 12:25:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46134 "EHLO
+        id S229629AbjF0Q05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 12:26:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46492 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232006AbjF0QYr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 12:24:47 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ABF7630EA
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:24:46 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fb7dc16ff0so2106907e87.2
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:24:46 -0700 (PDT)
+        with ESMTP id S232087AbjF0QYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 12:24:50 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3935D26A9
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:24:49 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4f95bf5c493so6339640e87.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:24:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687883085; x=1690475085;
+        d=linaro.org; s=google; t=1687883087; x=1690475087;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=FYaFF944CBPpPI3xTGK+ozEDUtWhjiR1kLsCUSq/tTw=;
-        b=LWoWb4vsMHyG2qkazpfTdhW+UQTZZaP+KpW9Fxat/1VZee4W/NKGQEWMqYGZ9NuW/D
-         m4BE+3+7lpPfy7kORXnMMu1bSeSKlt7jNRaY8TrFsqHaqL0z4walAIeqcpnYaKEdplVD
-         zVKYjMwT9B0tBR/Yd8IcB2nEJlj+n1AoGd3HfdLlKut5f+FuYu/F/MQmAtY2E/ouKsOE
-         PUJXqfkz1gHFvCGlVLAU71YT9nrR83dOoYgMvVHd7rBfptkSLO6f5JfCr1/rAq3A0XyZ
-         QdODVO8drrPTl7R2Ewo+g5Mm4pgMbt4oi10DHPO9L4FxaqOWf3jd0jHw3mWBZFRgiT4A
-         WlWw==
+        bh=kCywy6cYyFYFI8kb//sHM+EK5WqBRRu8/iqRaDkQ84M=;
+        b=XyWyHIoH2Ze407Yj6nB28IeDN1CDtgfv8AZnJhnbW2U++0ntJoYl3/QVHOKlr0ugmN
+         o6vqww24W07lweLE9ksjl1AFLoMK4ShQBmEr1zNIq0EoyAnN9vej5YV2E951JkQg/mj6
+         f2be8GMogkEAs23/fSmFJvgtXz/EWJRnx72oJgzg7t4GlH7aGGXtbYQyLDT7IEdCqSqo
+         DVYVJAMNjin1r7Ia2V7ZXhY5pJcfcejnwajh9n3V0xWXb6BLAr6EsO0FSIo+81Lam1J+
+         dX9zLDenkoPZH6PhWyeFQ7e6lwaX3pCRTuLZDTvb0GJrasYd9Ow7d4TVrxni4hfHa5GJ
+         x6/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687883085; x=1690475085;
+        d=1e100.net; s=20221208; t=1687883087; x=1690475087;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=FYaFF944CBPpPI3xTGK+ozEDUtWhjiR1kLsCUSq/tTw=;
-        b=luHZatanGod2igES6/eC3hyDtAcJZaEtPOmCqL9ntjNkD4jbABwxfgtcKI5aWucq3C
-         5PbKaX4HBhpA48CqEoXXUFbUK28g/EKXmdAgCV9ZXgOwx+Mkt0ewQc8XQH+TfAZ65lhA
-         xIhcEcyPTNYMVE0LKSnUVLdfjqQbR8o6uKSg89nJOHqO9KQZXbyJlVA82kHbC4LwYkGq
-         JR9aREYGedojf94xslW0uiX5DYYeAWG4at9GmOAoCpKD/Y9HLKrpj2eFdmlhJ04Yv6Ej
-         2P1pu8Puo7tPjs9KgLrvawcJjq+iJrmXLlM4G9aYELkLNFvYeh5uXvsfeyJVkIPnLxRy
-         Kr1w==
-X-Gm-Message-State: AC+VfDyFsJdNeP67r19vh4mxHdvKzta8yn8KVeHOBbODsAJEXnPIXodo
-        drWAnrN82RbScwd/OsGna3HcAg==
-X-Google-Smtp-Source: ACHHUZ4ythlTwuN1ng1WKH85xShFqna5kY+HIIDyB4fmlolvggLWrCYvWnSmKrP/dkJwFLHJqDS+fA==
-X-Received: by 2002:a19:3807:0:b0:4f6:6b:a43b with SMTP id f7-20020a193807000000b004f6006ba43bmr18574040lfa.52.1687883085080;
-        Tue, 27 Jun 2023 09:24:45 -0700 (PDT)
+        bh=kCywy6cYyFYFI8kb//sHM+EK5WqBRRu8/iqRaDkQ84M=;
+        b=AEcVtzC7XWfkSV1IRUygy6NUUB9ScbENo32UFXZzg1/lk6He42gLfFJFqfm+G5rhqT
+         pV+9WLyVjuuXTTYHBM07mCQDFTshNunLXmAQvL74Adyh/JXBPAQ2u1f0uTrP/aMOvGhA
+         Erqy7yv6lkiZOBTBQZ7BJLdvJVJYNRbTghWY5LUelGxAGN2qppx4/Jg97Nq1S+meGc3q
+         DAantBNwqaVB5i4iT/fCQ+Ti/yrr2kmIoCxoPvitmXhgzCN5CnQK8bKc0DWwAYzVrDYj
+         nv2GPAfRaDSIjubjC6yaqZyjhRMfp3jHPj/QKTQwYHidjvZ0hRVpE+6eRa08VibrtnFY
+         d9nQ==
+X-Gm-Message-State: AC+VfDx1O6v0r7Q3XEtSyyvVmYY3TNabwCuRBUe4yp5973SIpsMGUJSj
+        W7MVF6lthRBHBA0qbhr+feDpzQ==
+X-Google-Smtp-Source: ACHHUZ6LwrqrxKXfB30IuTt/FkjnhAznIHKgmo2XPru91QszdrHpLXOaCrfYFLxXQmjHKGnPvCbFNA==
+X-Received: by 2002:a19:4f52:0:b0:4f8:66e1:14e3 with SMTP id a18-20020a194f52000000b004f866e114e3mr15836081lfk.17.1687883087477;
+        Tue, 27 Jun 2023 09:24:47 -0700 (PDT)
 Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
-        by smtp.gmail.com with ESMTPSA id g7-20020a19ac07000000b004fb259a5589sm1190508lfc.104.2023.06.27.09.24.42
+        by smtp.gmail.com with ESMTPSA id g7-20020a19ac07000000b004fb259a5589sm1190508lfc.104.2023.06.27.09.24.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jun 2023 09:24:44 -0700 (PDT)
+        Tue, 27 Jun 2023 09:24:47 -0700 (PDT)
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 27 Jun 2023 18:24:19 +0200
-Subject: [PATCH 03/11] arm64: dts: qcom: msm8939: Add missing
- 'cache-unified' to L2
+Date:   Tue, 27 Jun 2023 18:24:20 +0200
+Subject: [PATCH 04/11] arm64: dts: qcom: apq8039-t2: Drop inexistent
+ property
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230627-topic-more_bindings-v1-3-6b4b6cd081e5@linaro.org>
+Message-Id: <20230627-topic-more_bindings-v1-4-6b4b6cd081e5@linaro.org>
 References: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org>
 In-Reply-To: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org>
 To:     cros-qcom-dts-watchers@chromium.org,
@@ -98,52 +98,42 @@ Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
         Andy Gross <andy.gross@linaro.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>
 X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687883074; l=872;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1687883074; l=689;
  i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=y9aAPQNrTt4WUn0fdGxJxPfCCX9Hk5OUZHkmKm33hlo=;
- b=w488Qve8orkSmgHUwwh9oyM25h1xdVtgnB4Ys0LYV1nlQjCqgKtAhax7MUl7l8I5KTts0L1Ss
- gOcd0DAg1r7Algsiwe2DbhrC3vv080aTNk+DR8kKIxjAULvaSd4hkI+
+ bh=apph7LSM6ElNjbIp4Sa6AEpFAvPu59qNl9eL4vnUenE=;
+ b=LRBHRbniws8u4a1P+s6dSMgJ58xXojZSxnIPFilY8FRHxj7kwk+9c9/vrMndrQrYkMe6HLBA1
+ qsSb3Hqz11BDWo/hVkufLbnuhTmhrQ/zLN4kTfHuIj/Obe2lz0rA+wR
 X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
  pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing property to fix the dt checker warning:
+'pin-switch-delay-us' is not used anywhere in the mainline kernel.
+Drop it.
 
-qcom/apq8039-t2.dtb: l2-cache: 'cache-unified' is a required property
-
-Fixes: 61550c6c156c ("arm64: dts: qcom: Add msm8939 SoC")
 Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm64/boot/dts/qcom/apq8039-t2.dts | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-index 38fc22e66bda..664ae303afae 100644
---- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
-@@ -55,6 +55,7 @@ CPU0: cpu@100 {
- 			L2_1: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-unified;
- 			};
- 		};
- 
-@@ -111,6 +112,7 @@ CPU4: cpu@0 {
- 			L2_0: l2-cache {
- 				compatible = "cache";
- 				cache-level = <2>;
-+				cache-unified;
- 			};
- 		};
+diff --git a/arch/arm64/boot/dts/qcom/apq8039-t2.dts b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
+index 43686bbd87f4..027d1da7e81d 100644
+--- a/arch/arm64/boot/dts/qcom/apq8039-t2.dts
++++ b/arch/arm64/boot/dts/qcom/apq8039-t2.dts
+@@ -374,7 +374,6 @@ &usb {
+ 	pinctrl-0 = <&pinctrl_otg_default>;
+ 	pinctrl-1 = <&pinctrl_otg_host>;
+ 	pinctrl-2 = <&pinctrl_otg_device>;
+-	pin-switch-delay-us = <100000>;
+ 	usb-role-switch;
+ 	status = "okay";
  
 
 -- 
