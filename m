@@ -2,144 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B747F73F453
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C21A73F457
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:16:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230003AbjF0GPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 02:15:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
+        id S230152AbjF0GQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 02:16:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230025AbjF0GPB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:15:01 -0400
-Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920831BFB;
-        Mon, 26 Jun 2023 23:15:00 -0700 (PDT)
-Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by mail.3ffe.de (Postfix) with ESMTPSA id E256850B;
-        Tue, 27 Jun 2023 08:14:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
-        t=1687846497;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=UvmboR1BMviOSQ7PsVkhSOxfTc1VG5c3nYyF5muyxD0=;
-        b=EE1kURunazGQ1GVYw9yAX4tHHZaKj/eZzng78T1g3a4vD2YUolfM6OgJSTUKGvG0iV+Urw
-        7YmVVweu87mPvKniop95Bec6euXwvGdTPaIwWiyPR6GMNPYVXuSobppkVnJLRfnhNUAcMB
-        wLraEhPRd68gTgv+9a4jNkQqU250fgAAPuh2GLdHe4qCEMGQEKiYWk94w5/iema9p7e//w
-        18HVbfKPfh2TEDtrFeqUYx6Z3S+sL3Z9EtR6J5CXc41fzytvUWCminuvAA9FFADiFMW4ET
-        JK86a0tu6gx7+GynYtX3/SlLvl8Y7A5SJl7aJnoi8q2Qa6F/In/POuEHUX05uQ==
-MIME-Version: 1.0
-Date:   Tue, 27 Jun 2023 08:14:57 +0200
-From:   Michael Walle <michael@walle.cc>
-To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
-        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        with ESMTP id S230158AbjF0GQB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:16:01 -0400
+Received: from EUR05-DB8-obe.outbound.protection.outlook.com (mail-db8eur05on2044.outbound.protection.outlook.com [40.107.20.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F17B926AE;
+        Mon, 26 Jun 2023 23:15:37 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qoy/dYfOQaCKRVcFAdf0CjhE3BJpDgHyWvn03Y62rPaRBnl9DS0E5V7aq5t+7/wrEdyaV0/QYowh5IZZWynOYF6ZyTl8L1Jiu06+MzFTGFxQfaH5OZU9nCkLl71BUMNOOEKm9+T92MGwv1d0gse1UCPNgJ3tPyl8Xb+YTNEGs3CEmgTIEz++cP3PB+zeQivamBWOr/pLtiNSDl068FFRR92WHe+bJ0Ye8U7dIb+FDACwkgXeqCidjDe6HuhqbdxO+Ad1laANW//xG1VhPB8jz0vNjoM0Q6q1QnXAHFL10K0uqAyPgac1wN02ccZF0wEWuu14rJDCPyAVmlYReehiGA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=sZYy3Z06HS9uc2pXf0fLHyI7YXzlfheYvJYaM4GejMU=;
+ b=VereF60hZmTHhD4dM/bibnSUOcBPQzkKCdgqu2wnxdrbI5iBEm1N5qwqYW3Q5VPkxIbMS+FpOQP+cSTx1rI6NC13b76QXANnRNH5Erk67UNPoD2gPh1Jsb8TnO36+EB6qgOLY7fJrYNk+mfs8KmdMY7BgWAi6FUxcAZEENrV7pBC2iJ5VgpiDKom4NhZUT65ziSXwQ3NcbaxHSzW0mD/QtJwyus50EZ4ae87CLgoETcwxdOiSs68npvpGzQw8/RiNVpMVsbTT2VvSnc1HK92/cj430wdt9Pa03k+CF8tvrzdutdNbiR5K6TdZf3KFOW4NFKf+NJEE9zuEDb3OAfMMg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=sZYy3Z06HS9uc2pXf0fLHyI7YXzlfheYvJYaM4GejMU=;
+ b=NDlUraUuF0loI/B3BSPgbbWnLUT7ksdycFL4OAGfkpvytjZQQ2ew2GTQr57zHCeFS2cpnSoxWU/tV1dl5GQrdgKlWj6zo3mNYaRUs5XOtb9+iaKHPW7Jl1jXBQ0oUMV6MqEgBk0myFFVMNjXNRiV5GkBf/DTS+qaBtYUof3GW6c=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
+ by DB8PR04MB7004.eurprd04.prod.outlook.com (2603:10a6:10:11c::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.26; Tue, 27 Jun
+ 2023 06:15:35 +0000
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::1a0c:99b1:603a:e219]) by AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::1a0c:99b1:603a:e219%3]) with mapi id 15.20.6521.023; Tue, 27 Jun 2023
+ 06:15:34 +0000
+From:   guoniu.zhou@oss.nxp.com
+To:     linux-media@vger.kernel.org, linux-imx@nxp.com,
+        devicetree@vger.kernel.org
+Cc:     laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, git@amd.com, linux-mtd@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        amitrkcian2002@gmail.com,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Subject: Re: [PATCH v3 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP#
- signal not connected
-In-Reply-To: <20230625100251.31589-3-amit.kumar-mahapatra@amd.com>
-References: <20230625100251.31589-1-amit.kumar-mahapatra@amd.com>
- <20230625100251.31589-3-amit.kumar-mahapatra@amd.com>
-Message-ID: <5e5fe22aebe17da4f9ad2c4eaaa8985f@walle.cc>
-X-Sender: michael@walle.cc
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        conor+dt@kernel.org, xavier.roumegue@oss.nxp.com,
+        kernel@pengutronix.de, jacopo.mondi@ideasonboard.com,
+        sakari.ailus@linux.intel.com
+Subject: [PATCH v3 0/3] add ISI support for iMX93 
+Date:   Tue, 27 Jun 2023 14:20:14 +0800
+Message-Id: <20230627062017.1135114-1-guoniu.zhou@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: SI2PR01CA0032.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:192::18) To AS8PR04MB9080.eurprd04.prod.outlook.com
+ (2603:10a6:20b:447::16)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AS8PR04MB9080:EE_|DB8PR04MB7004:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5b01ce58-7d5f-4a5f-b20c-08db76d5eb06
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: M4uw+64xdq3d524m+cTzhZVd8F/hIX/nRjkJC+mUoetmXIF3wN7cOhdEsr9RzvyXQrz+OF598+nuz3/0GPSb1uTH1ayWvVc6u/AQV2t/jxP/J5+aSzwSem3pgP1sVyo1W9+1KlouLzTMzGlYb60EGG2PdK+TkxCGTSHcbnwT+lBw4w7y6dzw7P+w6Dws5/trBdqDVbX99kcMtnBuJofwvOczYdWEZPWxw2Diu18fvDItAHZTPMzlcpQZb8RgS//nnNfJFXB2Xe/Naz1e7JXHGLl3HgUp6WZdtklRJLmXQphnziPq/EhcULOyLUMzc8qMHPKy5LAX+mYjaJtBgaaqT+DKOzJi/K2U1tTXBePtRqGx19Nz4AXf3z1kr8tY+0U0pwYzREwIMJrWdDYtYdyQ264DUdQkguOlu6m600TmNQ6gtmllftV3bJUBFNzfZE6hWMWz4Y/S05W2SZXp3wnh5Qw9qFJeOJNoFeXCcVS2WIsAbfDBGNVhdhmWQ88/a/2ZIiUvOY5ygdvNGZl+dTI8zVR54UvXKkn5CzdW/xJ8SDuhaLI1SjSRq6Ha8s5VEEmjxwJGu6HjcBA5p/bXDOsUHekOWwVw5rcWASH08YxTztZhJ2a7ot2NG1LMVZlntKAl
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9080.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(366004)(376002)(346002)(136003)(396003)(451199021)(186003)(2906002)(26005)(1076003)(4743002)(52116002)(38350700002)(2616005)(38100700002)(6512007)(6506007)(5660300002)(41300700001)(9686003)(66556008)(83380400001)(66476007)(66946007)(8936002)(8676002)(6666004)(7416002)(316002)(478600001)(86362001)(6486002)(4326008);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?t0MBFmhPNuUKJXQ6OgLY4hEIgKFzX7i1UPN4KAd8Azc+8unAnmkLjAS3czkh?=
+ =?us-ascii?Q?wrjxdC1CVeU7hVrbX0jif70tZe+Mc4fjmH6AFA8E0UKF1GmgB7vKpjg0ZXy0?=
+ =?us-ascii?Q?1Mp3olPZfpgpLodUfY2BwfNZrdKL90kz1UFOZmiRUsPXlgIcJz9XmX3f90W0?=
+ =?us-ascii?Q?zV7WwgCXq37hqAQGJm0+gOdFZPYMU0HXmNFet+HLqM7K9eVFFP3enQ0HnYop?=
+ =?us-ascii?Q?JxIE8um8Y72N/YVyZpLJ6HB1EuZVDLkHSm4sXWdEjesUjf+2dLPkS0uXXLv7?=
+ =?us-ascii?Q?yc4E+TqeXu34dHBXmxd8hKwCE3Mwk3AhxOd62ZBIT1tYKtRUNKEAzczr4lLO?=
+ =?us-ascii?Q?XHfU/x1JefhWazaxXDHYmTdlX3sMs+woKLFN8cKF4essr34hB4fABcTyhGpw?=
+ =?us-ascii?Q?7Uux7INEuf7GKVLldo3bp4tHXLKWz34XBxFkjfznpAV1BXxZToL79xoNGKHM?=
+ =?us-ascii?Q?FQlRUtp8jmW3HCOA+UuIXlOutXmDoLUOiJk/Rq+iVcECGmDkPv7z9FCkSMYd?=
+ =?us-ascii?Q?rq8XXBLmfQcjJGJBZXljbf0XYev4JwTd9flsEJ+B/POy45TlPZmEzJXXp5a4?=
+ =?us-ascii?Q?+JV0+T9dgQ00CGHH0RMMTyTF1d5oDxQgj9hLV9v/Ix5hrYvY8yZHDyWRGoat?=
+ =?us-ascii?Q?MtMYnQdyvlQ3j3LOw3pw0UzmgyiqMPRTW6ctAvk/ZV/3rjbzm8QXCXZtAi+l?=
+ =?us-ascii?Q?L4Zht9TPT/EzpifFQqZLMY6kCJPxuk3Ql7zAMmfEXenAR2Sk9vMYVQzmh8UN?=
+ =?us-ascii?Q?SFQ62cPQz73zYs2GHRvem52OHMNP6cs5cki21bP+uG184tr9gsz2XHpO1sXJ?=
+ =?us-ascii?Q?bbGVfYtH39vJySjqN2UAZ9OPrwawb48JVNCrQx1bz2qIu6r5gSYx7t0yf2Y/?=
+ =?us-ascii?Q?PmLnPqzKp5GcX6+oOSn/PHvok9LCCbnN/Bc0dRKZLdr3UddTR5iq3NKsy5qT?=
+ =?us-ascii?Q?D1Sc3XNLSFK7ifiIvXGb5/jYrw409GZ8Og0LZNfyB7Ra6CUNj648YwokSRUX?=
+ =?us-ascii?Q?UbP3ysBvzq5NDcr+eJoXFTy7tVTpiaKZQU7sn98TxCCV0Vr1cTggvPhHsOe+?=
+ =?us-ascii?Q?84o9aMroS9TncPYR/5+jPVVC2fMbQ8OHGUI843a8G8MIU4zLafujdnWetta9?=
+ =?us-ascii?Q?2Gg8KJmEhFQCdwT9mpEIynj4FTxabJDcqMEoORB/SlfAr0Qd+d6mzXC/D1zw?=
+ =?us-ascii?Q?MMu1s8cbS2Ik/Imxk151CaYgPGUa6NaRiJYaTYQP+3Y2BGfc7Co249Q0LYZ7?=
+ =?us-ascii?Q?hYl/DZupKmrHbBWb/EKbwqCOu9zJA05uPYweNcnAZofT/EQsNNbC3x2mnvA+?=
+ =?us-ascii?Q?tbjA/aXTN4gfbx5f7V29iHsHf0vWHQ651ZQfIEpYm/qbmSFWMBHywgQigL24?=
+ =?us-ascii?Q?+bUsvkIm3XTn7VEQgNpts1tDAXq0yBxvkXBcKSzCWsutzR2B4uI93CE7G66M?=
+ =?us-ascii?Q?QJ7TbXyFGmFPbqzzVIAynoCLAvt4OKhd1lLU+FBTWDeVqKoSEGQe7EXgMF/g?=
+ =?us-ascii?Q?+7qCs8ryg87sqMdT/Vdu4B3wA1Kn+pq40yxe0weCUORaKht81srXRZXjfZIm?=
+ =?us-ascii?Q?IG2IZnb1iOxBU0XJEFfUkUz06BWgeTwy1sVFN65N?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5b01ce58-7d5f-4a5f-b20c-08db76d5eb06
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9080.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Jun 2023 06:15:34.8665
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: UXsAkJCS8x1x+AeE1IxkM+Qj9xkwml8OalT//45y7gel+WDrj9YCG3aZyr3XbQdMw8p8y1LI7q7ZR8I2t10CSw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7004
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am 2023-06-25 12:02, schrieb Amit Kumar Mahapatra:
-> Setting the status register write disable (SRWD) bit in the status
-> register (SR) with WP# signal of the flash left floating or wrongly 
-> tied to
-> GND (that includes internal pull-downs), will configure the SR 
-> permanently
-> as read-only. If WP# signal is left floating or wrongly tied to GND, 
-> avoid
-> setting SRWD bit while writing the SR during flash protection.
-> 
-> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-> ---
->  drivers/mtd/spi-nor/core.c | 3 +++
->  drivers/mtd/spi-nor/core.h | 1 +
->  drivers/mtd/spi-nor/swp.c  | 9 +++++++--
->  3 files changed, 11 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-> index 0bb0ad14a2fc..520f5ab86d2b 100644
-> --- a/drivers/mtd/spi-nor/core.c
-> +++ b/drivers/mtd/spi-nor/core.c
-> @@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor 
-> *nor)
->  	if (flags & NO_CHIP_ERASE)
->  		nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
-> 
-> +	if (of_property_read_bool(np, "no-wp"))
-> +		nor->flags |= SNOR_F_NO_WP;
-> +
+From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
 
-Please put it below the of_property_read_bool() which is already
-there, just to keep things sorted.
+NXP i.MX93 family almost reuse ISI IP from i.MX8M family, so add
+it support in current ISI driver
 
->  	if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
->  	    !nor->controller_ops)
->  		nor->flags |= SNOR_F_RWW;
-> diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
-> index 4fb5ff09c63a..55b5e7abce6e 100644
-> --- a/drivers/mtd/spi-nor/core.h
-> +++ b/drivers/mtd/spi-nor/core.h
-> @@ -132,6 +132,7 @@ enum spi_nor_option_flags {
->  	SNOR_F_SWP_IS_VOLATILE	= BIT(13),
->  	SNOR_F_RWW		= BIT(14),
->  	SNOR_F_ECC		= BIT(15),
-> +	SNOR_F_NO_WP		= BIT(16),
+Changes in version 3:
+- Split [PATCH v2 2/2] into two patches, one create a separate file to
+  store gasket operation and the other to add ISI support for i.MX93.
+- Drop some debug message in gasket operation.
+- Merge .gasket_enable and .gasket_config to .gasket_enable
+- Drop some dead code
+- Some other small updates
 
-See the comment right above this enum :/
+Changes in version 2:
+- Remove two patches which used to rename imx8 to imx.
+  [PATCH 1/4] media: dt-bindings: media: rename nxp,imx8-isi.yaml to nxp,imx-isi.yaml
+  [PATCH 2/4] media: nxp: rename imx8-isi to imx-isi and remove reference to i.MX8
+- Modify commit log to more accurately match its goal.
+- Remove redundant "media" in patch subject.
 
->  };
-> 
->  struct spi_nor_read_command {
-> diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
-> index 0ba716e84377..cfaba41d74d6 100644
-> --- a/drivers/mtd/spi-nor/swp.c
-> +++ b/drivers/mtd/spi-nor/swp.c
-> @@ -214,8 +214,13 @@ static int spi_nor_sr_lock(struct spi_nor *nor, 
-> loff_t ofs, uint64_t len)
-> 
->  	status_new = (status_old & ~mask & ~tb_mask) | val;
-> 
-> -	/* Disallow further writes if WP pin is asserted */
-> -	status_new |= SR_SRWD;
-> +	/*
-> +	 * Disallow further writes if WP# pin is neither left floating nor
-> +	 * wrongly tied to GND(that includes internal pull-downs).
+Guoniu.zhou (3):
+  media: dt-bindings: nxp,imx8-isi: add i.MX93 ISI compatible string
+  media: nxp: imx8-isi: move i.MX8 gasket configuration to an ops
+    structure
+  media: nxp: imx8-isi: add ISI support for i.MX93
 
-nit: space missing
+ .../bindings/media/nxp,imx8-isi.yaml          |  5 +-
+ drivers/media/platform/nxp/imx8-isi/Makefile  |  2 +-
+ .../platform/nxp/imx8-isi/imx8-isi-core.c     | 32 +++++++++--
+ .../platform/nxp/imx8-isi/imx8-isi-core.h     | 42 ++++++++++++++-
+ .../platform/nxp/imx8-isi/imx8-isi-crossbar.c | 42 +++++----------
+ .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 53 +++++++++++++++++++
+ 6 files changed, 142 insertions(+), 34 deletions(-)
+ create mode 100644 drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
 
-Otherwise looks good.
+base-commit: be9aac187433af6abba5fcc2e73d91d0794ba360
+-- 
+2.37.1
 
-Thanks,
--michael
-
-> +	 * WP# pin hard strapped to GND can be a valid use case.
-> +	 */
-> +	if (!(nor->flags & SNOR_F_NO_WP))
-> +		status_new |= SR_SRWD;
-> 
->  	if (!use_top)
->  		status_new |= tb_mask;
