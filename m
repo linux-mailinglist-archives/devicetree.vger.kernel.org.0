@@ -2,266 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06AF874031B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 20:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B2FC740341
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 20:30:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230221AbjF0SWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 14:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51318 "EHLO
+        id S231203AbjF0Saw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 14:30:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55460 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230187AbjF0SV7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 14:21:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6979B8;
-        Tue, 27 Jun 2023 11:21:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 48124611FE;
-        Tue, 27 Jun 2023 18:21:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB6B9C433CB;
-        Tue, 27 Jun 2023 18:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687890116;
-        bh=a9xjoMcCDLR7irHRCJScdjWv3wkaqBHsauyp5hlVG+Q=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=T9fuH6nYndr/5jgDYv99s5FfiVsamaNES88chOpXgYzZ5fgnB1Ex0DnwvGsodc7Un
-         iCgF9B9otCIf1bQ15iBZtJBbRv/0fbJnmekyGp+am3w1SzmXKK23oo1YZd9CWBsC1e
-         IpnboaMBXPvMGurHevmv3McR1aPBPomjWWteEjiVS8ntLj4wP7iz7g7QkUrEFG56tk
-         fMmaaa9acwHSCEBPVVtd83xp4OzFGwpc8oZVkXIUXsLyw9mL+MdRo2hAG1UWhGvdoa
-         QaWjIxwtbQhH+1w0SF10PE44+IZNa+Ru24/zxXnAFGbL33qOwCYkMzjpB9DSsmGFGS
-         fKGbHKQA4rMwA==
-Received: by mail-lf1-f41.google.com with SMTP id 2adb3069b0e04-4f957a45b10so6604818e87.0;
-        Tue, 27 Jun 2023 11:21:56 -0700 (PDT)
-X-Gm-Message-State: AC+VfDwMj4LNYx5eandJ7yXVm5XUHgszZKgUdh4iq2pRlo6FImweDTu7
-        yzXgBZuan6+UDvC3yByM7FvwQCNSbgNA0soVVA==
-X-Google-Smtp-Source: ACHHUZ4Ej4swnskskQWmgB1wXjM2pl/00tjsHxrI3VG6pLgYBGSjFIWUbxKJVtkGphKbDZ8fwEBB/pDjWAI9NB3XR4k=
-X-Received: by 2002:a05:6512:ad5:b0:4fb:8359:e8c with SMTP id
- n21-20020a0565120ad500b004fb83590e8cmr2692035lfu.34.1687890114647; Tue, 27
- Jun 2023 11:21:54 -0700 (PDT)
+        with ESMTP id S230238AbjF0Sav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 14:30:51 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81721E71
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 11:30:49 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b6b98ac328so4162161fa.0
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 11:30:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687890648; x=1690482648;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eEYoyXW6KI+40nikgb+c9QT03ex81BcyrCC3z8MFeq8=;
+        b=ChhBkIYBCPE5e3butSMyjWz2gumAtO2Gb7pMg07bRRdoyNFS+pHiMMN27n8s0qzIxc
+         cVeVKJd0CsbKMTpCXbPT4aX4shOOvjvxUiDqLO7ZGkGtBJleWdBTahf9wC5CXXJnowoZ
+         qBYAZKy/IpgwG9FPSOzqQSSeGoL6K4QX9swrtNaRnKyvvetrweb78H03mCjxzrLlfyqA
+         mfhlzt9uXcO32ygXXhAibp0CXrYLODrJjNOO6Ml97mgY1UPHcZrQl+RLVC1NwAoCKv5O
+         57LSKb3ID2OMOE+q/bjxPr+4w8Qlzw072a6ilFn1jG4zqZW03HpHoPDddjOlU6acvqw+
+         mt1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687890648; x=1690482648;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eEYoyXW6KI+40nikgb+c9QT03ex81BcyrCC3z8MFeq8=;
+        b=d3DgU3BUMIdIb/5JtZMjaEl4yV27Nky4Rcxdv2xnef2+VjHNqk9grloSN6zxslWxr3
+         tXiFYuZdmTr2hF62HkumpqtxZecK1BwP+0b3/uLfurVUQ5PHwTbbs7jWYCVztRnUI3sU
+         Jc74KC4DfXje0IzL6L3rR2IgkKL2oDbxhpnbb75Tg7TFlOVctl51F/dn7dBdDYnT7p+e
+         aEq6JpGh2TAnhxYMUWe+Z0FvvBYTalt7BAOkHXQIyjX7Ic1STHv7uCcV2IsHeVAzWCLY
+         4mlqlTbkKyEncoyUt9sUtW3EdCJgKvCYbEoYerJn+bzn1MVofUFonpzVZu2k9r9IMk6b
+         YvTQ==
+X-Gm-Message-State: AC+VfDyJkCZ324OA/Xv9QRqcwRBhhNaBg3fBRqdjYZ67uHkl8kpvlwqH
+        zky7JSvY2g053yeryr9k63SmmA==
+X-Google-Smtp-Source: ACHHUZ49G223k7CVIhwQfiDM5CG7kvqpA7d51dAPg9ld9xVIXu250DD4U+oqXvUmZbEVXUf3jAewgA==
+X-Received: by 2002:ac2:4f12:0:b0:4ed:cc6d:61fe with SMTP id k18-20020ac24f12000000b004edcc6d61femr5638416lfr.24.1687890647601;
+        Tue, 27 Jun 2023 11:30:47 -0700 (PDT)
+Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
+        by smtp.gmail.com with ESMTPSA id q16-20020ac25290000000b004f640b0fb04sm1605205lfm.212.2023.06.27.11.30.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 27 Jun 2023 11:30:47 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH v11 0/9] Add support for Core Power Reduction v3, v4 and
+ Hardened
+Date:   Tue, 27 Jun 2023 20:30:36 +0200
+Message-Id: <20230217-topic-cpr3h-v11-0-ba22b4daa5d6@linaro.org>
 MIME-Version: 1.0
-References: <20230420103438.GI9904@google.com> <09eb8e4c-3e73-41f0-bf42-8ddf3c4254ec@sirena.org.uk>
- <20230421073938.GO996918@google.com> <82612171-46d7-4d82-a8fc-c7d6a99d57e9@sirena.org.uk>
- <MN2PR03MB516860989BD8ED6AC9A767FBE755A@MN2PR03MB5168.namprd03.prod.outlook.com>
- <20230621171315.GL10378@google.com> <20230626175443.GA3446604-robh@kernel.org>
- <20230627135615.GF10378@google.com> <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
- <ZJry8QTka8m6ag/j@fedora> <20230627163344.GG10378@google.com>
-In-Reply-To: <20230627163344.GG10378@google.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 27 Jun 2023 12:21:42 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+Z64tuMO8a2Y=2GrXZ8q0L4Z2avCiphsn0HOOC71Dzjg@mail.gmail.com>
-Message-ID: <CAL_Jsq+Z64tuMO8a2Y=2GrXZ8q0L4Z2avCiphsn0HOOC71Dzjg@mail.gmail.com>
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC Support
-To:     Lee Jones <lee@kernel.org>
-Cc:     William Breathitt Gray <william.gray@linaro.org>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Mark Brown <broonie@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAMwqm2QC/22NzQqDMBCEX0VybkoSi5ae+h7iIT8bsyCJbKy0i
+ O/erece5xu+mV1UIIQqHs0uCDasWDIHrS+N8MnmCSQGBsIo0yqje7mWBb30C7VJBjCtcdHdevC
+ CDWcrSEc2+8ROfs0zw4Ug4vv8GEbOCeta6HNeblr98P91LqWSXW8h3GOIttPPGbOlci00ifE4j
+ i88gg2EvwAAAA==
+To:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
         Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Robert Marko <robimarko@gmail.com>, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1687890646; l=7563;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=7+lu1MyAGNXwDNfi7jE2GjLf4UHybiRnD4saUaliAL8=;
+ b=XGTPmVre2Lc9Yp+EHRK4Wn5/lJNhQ+g9SX0/b72Pa6s5vC8tbYPycWChZ2KKKHWEmC+YSiHth
+ /augxC8pFpCBcIhfWiv2DBEAqsTKzYnd4s2dvNp/pOQYtJeeV2ohLEI
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 27, 2023 at 10:33=E2=80=AFAM Lee Jones <lee@kernel.org> wrote:
->
-> On Tue, 27 Jun 2023, William Breathitt Gray wrote:
->
-> > On Tue, Jun 27, 2023 at 08:10:59AM -0600, Rob Herring wrote:
-> > > On Tue, Jun 27, 2023 at 7:56=E2=80=AFAM Lee Jones <lee@kernel.org> wr=
-ote:
-> > > >
-> > > > On Mon, 26 Jun 2023, Rob Herring wrote:
-> > > >
-> > > > > On Wed, Jun 21, 2023 at 06:13:15PM +0100, Lee Jones wrote:
-> > > > > > On Tue, 13 Jun 2023, Sahin, Okan wrote:
-> > > > > >
-> > > > > > > >On Fri, Apr 21, 2023 at 08:39:38AM +0100, Lee Jones wrote:
-> > > > > > > >
-> > > > > > > >> I'll try anything once!
-> > > > > > > >
-> > > > > > > >> Fair warning, I think this is going to massively complicat=
-e things.
-> > > > > > > >
-> > > > > > > >> Either we're going to be left with a situation where child=
--driver
-> > > > > > > >> maintainers are scrabbling around looking for previous ver=
-sions for the
-> > > > > > > >> MFD pull-request or contributors being forced to wait a fu=
-ll cycle for
-> > > > > > > >> their dependencies to arrive in the maintainer's base.
-> > > > > > > >
-> > > > > > > >If people are resending after the MFD has gone in they reall=
-y ought to
-> > > > > > > >be including the pull request in the cover letter, with some=
- combination
-> > > > > > > >of either referencing the mail or just saying "this depends =
-on the
-> > > > > > > >signed tag at url+tag", the same way they would for any othe=
-r dependency.
-> > > > > > > >
-> > > > > > > >I can't see how you applying stuff when you can slow things =
-down TBH,
-> > > > > > > >the MFD bits will be applied faster and either people can pu=
-ll in a
-> > > > > > > >shared tag or you can apply more commits on top of the exist=
-ing core
-> > > > > > > >driver.
-> > > > > > > >
-> > > > > > > >> I'm not sure why simply providing your Ack when you're hap=
-py with the
-> > > > > > > >> driver and forgetting about the set until the pull-request=
- arrives, like
-> > > > > > > >> we've been doing for nearly a decade now, isn't working fo=
-r you anymore
-> > > > > > > >> but I'm mostly sure this method will be a regression.
-> > > > > > > >
-> > > > > > > >Like I said I've not been doing that, I've mostly been just =
-applying the
-> > > > > > > >driver when it's ready.  This might not have been so visible=
- to you
-> > > > > > > >since it means that the regulator driver doesn't appear in t=
-he series by
-> > > > > > > >the time the MFD settles down.  The whole "Acked-for-MFD" ha=
-s always
-> > > > > > > >been a bit confusing TBH, it's not a normal ack ("go ahead a=
-nd apply
-> > > > > > > >this, I'm fine with it") so it was never clear what the inte=
-ntion was.
-> > > > > > > >
-> > > > > > > >Before I started just applying the drivers there used to be =
-constant
-> > > > > > > >problems with things like tags going missing (which some of =
-the time is
-> > > > > > > >the submitter just not carrying them but can also be the res=
-ult of some
-> > > > > > > >churn causing them to be deliberately dropped due to changes=
-) or
-> > > > > > > >forgetting the series as you suggest and then not looking at=
- some other
-> > > > > > > >very similarly named series that was also getting lots of ve=
-rsions after
-> > > > > > > >thinking it was one that had been reviewed already.  It was =
-all very
-> > > > > > > >frustrating.  Not doing the tags until the dependencies have=
- settled
-> > > > > > > >down means that if it's in my inbox it at least consistently=
- needs some
-> > > > > > > >kind of attention and that the submitter didn't drop tags or=
- anything so
-> > > > > > > >I know why there's no tag on it even though the version numb=
-er is high,
-> > > > > > > >though it's not ideal either.
-> > > > > > >
-> > > > > > > Hi Mark and Lee,
-> > > > > > >
-> > > > > > > Is there anything that I need to do for this patch set. I hav=
-e received reviewed
-> > > > > > > by tag for all of them so far.
-> > > > > >
-> > > > > > Since we are so late in the day, I'm going to just apply this f=
-or v6.5.
-> > > > > >
-> > > > > > The remainder can then be applied, friction free, for v6.6.
-> > > > >
-> > > > > Now we have undocmented bindings in use by the driver (as pointed=
- out by
-> > > > > 'make dt_compatible_check').
-> > > > >
-> > > > > The whole series has all the acks/reviews needed for you to apply=
- the
-> > > > > whole thing, so why not take the whole thing? Plus this series ha=
-s been
-> > > > > sitting for 2 months. Not a great experience for submitters...
-> > > >
-> > > > Patches are missing Acked-by tags.
-> > > >
-> > > >   Reviewed-by !=3D Acked-by
-> > >
-> > > Reviewed-by > Acked-by
-> > >
-> > > >
-> > > > I cannot merge other subsystem's patches without and Acked-by.
-> > >
-> > > I (and Krzysztof) give one or the other. If I'm taking a patch, then
-> > > it's neither. I'm pretty sure Mark only gives Reviewed-by when he is
-> > > not taking something.
-> > >
-> > > Rob
-> >
-> > It does seem a bit ambiguous whether an "Acked-by" indicates a
-> > "Reviewed-by + acceptance of the changes" or just a brief look-over wit=
-h
-> > acceptance of the changes. FWIW the documentation does use the word
-> > "reviewed" when describing Acked-by. [^1]
-> >
-> > However, I would argue that a Reviewed-by has a implicit acceptance of
-> > the changes: why else provide a Reviewed-by line for the commit message
-> > if you fundamentally disagree with the changes being merged? So a
->
-> Where MFD is concerned the complexities are seldom 'whether' a patch
-> should be merged, but rather 'how' it should be merged.
->
-> In order to solve some of these issues in the past, I created a bespoke
-> tag for scenarios where I'd like to indicate that a submission had been
-> reviewed, but I also intended to take the patch via the MFD tree once
-> all of the other pieces were ready.  Despite using this tag for around a
-> decade, it did cause occasional confusion, even amongst maintainers I'd
-> been working with for the longest time, so I recently stopped using it
-> and replaced it with a standard Reviewed-by, to mean that it's reviewed
-> but permission was *not* given for someone else to merge it - since my
-> understanding, according to the documentation, is that an Acked-by is
-> required for that.
->
-> Recent discussions with other maintainers culminated in an agreement
-> that I would start only taking the MFD pieces and follow-up with a
-> pull-request for an immutable branch for them to pull from.  Since there
-> is no more time to create, test and submit a maintainer-maintainer
-> pull-request, I decided to merge this patch anyway, so the leaf drivers
-> can be applied in a couple of weeks, after the merge-window is closed.
->
-> Which brings us to where we are now!
->
-> Without different tag which doesn't exist today, I'm not entirely sure
-> how to solve this issue.  Ideas welcome.
+Changes in v11:
 
-IMO, a series with interdependencies, which most cases of a new MFD
-are, should be applied as a series. That's generally what happens
-everywhere else. Creating a branch and PR seems like extra work for
-everyone. The downside to that is any API changes outside of MFD would
-need some coordination. That coordination would only be needed when a
-subsystem has some API change and there's a new MFD using that
-subsystem rather than by default for every new MFD.
+CPR COMMON:
+- split the commonizing patch, make it actually do what it says on the
+  tin..
+- fix some overflow bugs
 
-Another option is just that you take all the binding patches since the
-MFD binding depends on the others. The drivers can still go via the
-subsystem. Not totally ideal to have branches of drivers missing
-bindings, but better than mainline missing bindings.
+CPR3:
+- fix some overflow bugs
+- don't assume "lack of qcom,opp-?loop-vadj" means val=0"
 
-Rob
+CPR BINDINGS:
+- drop quotes in items
+- drop clock-names (there's just a single one)
+- rewrite the description a bit
+- fix up the example
+- drop bogus minItems
+- "acc-syscon" -> "qcom,acc"
+
+DTS:
+- fix qfprom children so that the bits=<> doesn't overflow reg[size]
+- drop unrelated changes
+- place one reg entry per line
+
+Link to v10: https://lore.kernel.org/r/20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org
+
+Changes in v10:
+- Skip "Let qcom,opp-fuse-level be a 2-long array" (Applied by Viresh)
+- Use b4 (it may be the first time you're receiving this if git send-email
+  omitted you before..)
+- +Cc Robert Marko (expressed interest in previous revisions)
+- Add "Document CPR3 open/closed loop volt adjustment"
+CPR:
+- %hhu -> %u (checkpatch)
+CPR BINDINGS:
+- Drop QCS404 fuse set (it doesn't use this driver, what did I even think..)
+  but leave the allOf:if: block for expansion (sdm660, msm8996, ipqABCD should
+  follow soon..)
+- Drop Rob's R-b (as things changed *again*, please take one more look to make
+  sure you're okay with this file, Rob..)
+
+Link to v9:
+https://lore.kernel.org/linux-arm-msm/20230116093845.72621-1-konrad.dybcio@linaro.org/
+
+Changes in v9:
+- Restore forgotten MAINTAINERS patch (oops)
+CPR:
+- Include the missing header (big oops!)
+- Fix kconfig dependencies
+CPR bindings:
+- Fix cpu reg in example (why didn't dt_binding_check scream at that)
+- Add newlines between nodes in example
+- Change opp table node names to opp-table-cpu[04]
+- Change opp table labels to cpu[04]_opp_table
+- Change CPRh opp subnode names to opp-N from oppN
+- Remove some stray newlines
+- Bring back nvmem-cell-names and add the 8998's set
+- Allow power-domains for VDDCX_AO voting
+- Remove Rob's r-b, there's been quite a bit of changes..
+CPR DT:
+- Send the correct revision of the patch this time around..
+OPP bindings:
+- Add Rob's ack
+
+Link to v8:
+https://lore.kernel.org/linux-arm-msm/20230110175605.1240188-1-konrad.dybcio@linaro.org/
+
+Changes in v8:
+- Overtake this series from AGdR
+- Apply all review comments from v7 except Vladimir's request to
+  not create the include/ header; it will be strictly necessary for
+  OSM-aware cpufreq_hw programming, which this series was more or
+  less created just for..
+- Drop QCS404 dtsi change, account for not breaking backwards compat
+  in [3/5]
+- Add type phandle type reference to acc-syscon in [1/5]
+- Update AGdR's email addresses for maintainer entries
+- Add [2/5] to make dt_binding_check happy
+- Separate the CPRh DT addition from cpufreq_hw addition, sort and
+  properly indent new nodes
+- Drop CPR yaml conversion, that happened in meantime
+- Reorder the patches to make a bit more sense
+- Tested again on MSM8998 Xperia XZ Premium (Maple)
+- I take no responsibility for AGdR's cheeky jokes, only the code!
+
+Link to v7:
+https://lore.kernel.org/lkml/20210901155735.629282-1-angelogioacchino.delregno@somainline.org/
+
+Changes in v7:
+- Rebased on linux-next as of 210901
+- Changed cpr_read_efuse calls to nvmem_cell_read_variable_le_u32,
+  following what was done in commit c77634b9d916
+
+Changes in v6:
+- Fixes from Bjorn's review
+- After a conversation with Viresh, it turned out I was abusing the
+  OPP API to pass the APM and MEM-ACC thresholds to qcom-cpufreq-hw,
+  so now the driver is using the genpd created virtual device and
+  passing drvdata instead to stop the abuse
+- Since the CPR commonization was ignored for more than 6 months,
+  it is now included in the CPRv3/4/h series, as there is no point
+  in commonizing without having this driver
+- Rebased on v5.13
+
+Changes in v5:
+- Fixed getting OPP table when not yet installed by the caller
+  of power domain attachment
+
+Changes in v4:
+- Huge patch series has been split for better reviewability,
+  as suggested by Bjorn
+
+Changes in v3:
+- Fixed YAML doc issues
+- Removed unused variables and redundant if branch
+
+Changes in v2:
+- Implemented dynamic Memory Accelerator corners support, needed
+  by MSM8998
+- Added MSM8998 Silver/Gold parameters
+
+This commit introduces a new driver, based on the one for cpr v1,
+to enable support for the newer Qualcomm Core Power Reduction
+hardware, known downstream as CPR3, CPR4 and CPRh, and support
+for MSM8998 and SDM630 CPU power reduction.
+
+In these new versions of the hardware, support for various new
+features was introduced, including voltage reduction for the GPU,
+security hardening and a new way of controlling CPU DVFS,
+consisting in internal communication between microcontrollers,
+specifically the CPR-Hardened and the Operating State Manager.
+
+The CPR v3, v4 and CPRh are present in a broad range of SoCs,
+from the mid-range to the high end ones including, but not limited
+to, MSM8953/8996/8998, SDM630/636/660/845.
+
+As to clarify, SDM845 does the CPR/SAW/OSM setup in TZ firmware, but
+this is limited to the CPU context; despite GPU CPR support being not
+implemented in this series, it is planned for the future, and some
+SDM845 need the CPR (in the context of GPU CPR) to be configured from
+this driver.
+
+It is also planned to add the CPR data for MSM8996, since this driver
+does support the CPRv4 found on that SoC, but I currently have no time
+to properly test that on a real device, so I prefer getting this big
+implementation merged before adding more things on top.
+
+As for MSM8953, we (read: nobody from SoMainline) have no device with
+this chip: since we are unable to test the cpr data and the entire
+driver on that one, we currently have no plans to do this addition
+in the future. This is left to other nice developers: I'm sure that
+somebody will come up with that, sooner or later
+
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+AngeloGioacchino Del Regno (7):
+      MAINTAINERS: Add entry for Qualcomm CPRv3/v4/Hardened driver
+      dt-bindings: soc: qcom: cpr3: Add bindings for CPR3 driver
+      soc: qcom: cpr: Move common functions to new file
+      soc: qcom: cpr-common: Add support for flat fuse adjustment
+      soc: qcom: cpr-common: Add threads support
+      soc: qcom: Add support for Core Power Reduction v3, v4 and Hardened
+      arm64: dts: qcom: msm8998: Configure CPRh
+
+Konrad Dybcio (2):
+      dt-bindings: opp: v2-qcom-level: Document CPR3 open/closed loop volt adjustment
+      soc: qcom: cpr: Use u64 for frequency
+
+ .../devicetree/bindings/opp/opp-v2-qcom-level.yaml |   14 +
+ .../devicetree/bindings/soc/qcom/qcom,cpr3.yaml    |  289 ++
+ MAINTAINERS                                        |    6 +
+ arch/arm64/boot/dts/qcom/msm8998.dtsi              |  757 +++++
+ drivers/soc/qcom/Kconfig                           |   22 +
+ drivers/soc/qcom/Makefile                          |    2 +
+ drivers/soc/qcom/cpr-common.c                      |  362 +++
+ drivers/soc/qcom/cpr-common.h                      |  109 +
+ drivers/soc/qcom/cpr.c                             |  392 +--
+ drivers/soc/qcom/cpr3.c                            | 2932 ++++++++++++++++++++
+ include/soc/qcom/cpr.h                             |   17 +
+ 11 files changed, 4535 insertions(+), 367 deletions(-)
+---
+base-commit: 53cdf865f90ba922a854c65ed05b519f9d728424
+change-id: 20230217-topic-cpr3h-de232bfb47ec
+
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
+
