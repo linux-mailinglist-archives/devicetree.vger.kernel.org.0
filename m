@@ -2,139 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E07473F7E8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 10:56:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A952573F80A
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 11:02:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229487AbjF0I4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 04:56:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53142 "EHLO
+        id S230372AbjF0JCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 05:02:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229814AbjF0I4t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 04:56:49 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96CA88F;
-        Tue, 27 Jun 2023 01:56:48 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-98df6bc0048so376096666b.1;
-        Tue, 27 Jun 2023 01:56:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687856207; x=1690448207;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=C/PscuUk8Kiipv4zwt68FQ9jdpIXfbCLhmtQ6RSmb1A=;
-        b=iklmi/RUx0AqL55xuQrCfcTnc9lvoc9TNRqdWsM8E26IhOJnF1afg9iIZ93oeLaejo
-         h5w7WAn5XmSYKIHaM+v65tzVsnwT55KbQQI4pgQKIzAw8sY12JfvZWKudsYDjUaC63v1
-         m8p3mqom3t3D4zqsEM7ig6KJUivP5rcC7iW/C4hz6iTYq2/Er9r7SADWvK7rgwgIX6qa
-         REz/hubT3jLRmEh7+UJGN7uwxl5gXciwbQ5GvASN18YsweVqp3OHEut3Cx/gdWq42wFp
-         DnN67773WZN51M5eDCaU3G6g0/dnwRpEROsRVVumu14CU89rMa1+xVCUlsWU7H6J4e38
-         VezA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687856207; x=1690448207;
-        h=to:references:message-id:content-transfer-encoding:cc:date
-         :in-reply-to:from:subject:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=C/PscuUk8Kiipv4zwt68FQ9jdpIXfbCLhmtQ6RSmb1A=;
-        b=LzUvfwGEHSIceVtAdHiCldf9+soub0EnGvv8U1RolS6+dVXvHeXwB0gVvLcB9Q00Iu
-         +Zans8axhSNQSz7Dpr+Aps4JfTgrP+L3NIt/pSVbZC//7QqIdltn6Saauch/1B8cSIKb
-         e8pK30xvb0/VoQOdOKzJIJw0aw68Kbl95l0LKFsze+CR7fbqTuXU3chZfOkM5l/q7oZw
-         /ofrEpY9+gm+1cDdXDufomRwHp7WhgHgNyB0EAZ5y2PuNzvn5ICp3w8KaGCVEJcR/JEg
-         ivyl0Nacubqe/NY16sAucBX5VGvG9Y5pcYeQgrsb1gt7Repbb00TqqOfhEiBlkaeimPw
-         XA5A==
-X-Gm-Message-State: AC+VfDzbZZnFQWKNyDot+dw8XoSjIzks6+5qzLvKdAiOgVtdDMUUCv9c
-        Teqb+saPV9L4OK0KHKyX03Y=
-X-Google-Smtp-Source: ACHHUZ4OMI9GAwQY/y/YttSFuhosd46Q7vuSFOlipsYh3eBXwzYf5FC1OFX4yp7wvL8e5HDNKyQFVA==
-X-Received: by 2002:a17:906:eecd:b0:988:6491:98db with SMTP id wu13-20020a170906eecd00b00988649198dbmr20618073ejb.17.1687856206786;
-        Tue, 27 Jun 2023 01:56:46 -0700 (PDT)
-Received: from smtpclient.apple ([167.99.200.149])
-        by smtp.gmail.com with ESMTPSA id t13-20020a170906178d00b0098951bb4dc3sm4221891eje.184.2023.06.27.01.56.44
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 27 Jun 2023 01:56:46 -0700 (PDT)
-Content-Type: text/plain;
-        charset=utf-8
-Mime-Version: 1.0 (Mac OS X Mail 16.0 \(3696.120.41.1.3\))
-Subject: Re: [PATCH 1/2] dt-bindings: arm: amlogic: add T7 based AN400
- bindings
-From:   Christian Hewitt <christianshewitt@gmail.com>
-In-Reply-To: <20230626095223.721011-2-xianwei.zhao@amlogic.com>
-Date:   Tue, 27 Jun 2023 12:56:42 +0400
-Cc:     linux-arm-kernel@lists.infradead.org,
-        LKML <linux-kernel@vger.kernel.org>,
-        AML <linux-amlogic@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
+        with ESMTP id S230344AbjF0JCj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 05:02:39 -0400
+Received: from relay07.th.seeweb.it (relay07.th.seeweb.it [IPv6:2001:4b7a:2000:18::168])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 43649E75
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 02:02:36 -0700 (PDT)
+Received: from SoMainline.org (94-211-6-86.cable.dynamic.v4.ziggo.nl [94.211.6.86])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id C0A7A3F792;
+        Tue, 27 Jun 2023 11:02:28 +0200 (CEST)
+Date:   Tue, 27 Jun 2023 11:02:27 +0200
+From:   Marijn Suijten <marijn.suijten@somainline.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Content-Transfer-Encoding: quoted-printable
-Message-Id: <94551B90-19E8-49C7-90FC-FAFA5E5E2D9C@gmail.com>
-References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
- <20230626095223.721011-2-xianwei.zhao@amlogic.com>
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-X-Mailer: Apple Mail (2.3696.120.41.1.3)
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Martin Botka <martin.botka@somainline.org>,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
+Subject: Re: [PATCH 03/15] dt-bindings: clock: qcom,dispcc-sm6125: Require
+ GCC PLL0 DIV clock
+Message-ID: <makhh4ebdmoa5f6r4mbx4g2v2cpcsi74wqf3622dxuli4w7tb6@els2rvqcnvgz>
+References: <52c57cab-10cf-2e7e-2c1d-fa6506786d45@linaro.org>
+ <jmtjuya4c423rmdlo4ubvvqndbxvgapal5otjqnejdpdd25izp@kewbjmqdu2xs>
+ <6311f26f-79ee-c471-649f-5e0b4629cfcc@linaro.org>
+ <uuy5prkjhhs66te7h6z3pu4lzj2cfbiqk6ftjijwoeqpw573av@ogs6cboanvzc>
+ <ziykmixskqkgheigefvyo4q3katbc4uix6jtcg7mncs25z4tj5@5gykrfgns4bm>
+ <16731023-7dc7-d43d-1b16-fda44c0948ed@linaro.org>
+ <yofju7jp7vmv33x7dzvzoelpumfsz3fjqy2ozakfphsuysunon@pglt2wzlsjex>
+ <683a6f7e-bf1a-aff2-070b-472fb14e0353@linaro.org>
+ <3nnk4xvmpnum2q6g6c6crjlqq3ra7j2z5zis53xcqbvevymuhz@mkffvs45n6ut>
+ <145ab255-b3f8-1c6c-824d-5f1b40568d30@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <145ab255-b3f8-1c6c-824d-5f1b40568d30@linaro.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On 26 Jun 2023, at 1:52 pm, Xianwei Zhao <xianwei.zhao@amlogic.com> =
-wrote:
->=20
-> Document the new T7 SoC/board device tree bindings.
->=20
-> T7 is an advanced application processor designed for smart display.
-> It integrates a powerful CPU/GPU subsystem, a secured 8K video
-> CODEC engine with all major peripherals.
+On 2023-06-27 10:21:12, Krzysztof Kozlowski wrote:
+> On 27/06/2023 09:49, Marijn Suijten wrote:
+> > On 2023-06-27 09:29:53, Krzysztof Kozlowski wrote:
+> >> On 27/06/2023 08:54, Marijn Suijten wrote:
+> >>> On 2023-06-27 08:24:41, Krzysztof Kozlowski wrote:
+> >>>> On 26/06/2023 20:53, Marijn Suijten wrote:
+> >>>>> On 2023-06-26 20:51:38, Marijn Suijten wrote:
+> >>>>> <snip>
+> >>>>>>> Not really, binding also defines the list of clocks - their order and
+> >>>>>>> specific entries. This changes.
+> >>>>>>
+> >>>>>> And so it does in "dt-bindings: clock: qcom,dispcc-sm6125: Remove unused
+> >>>>>> GCC_DISP_AHB_CLK"?
+> >>>>>
+> >>>>> Never mind: it is the last item so the order of the other items doesn't
+> >>>>> change.  The total number of items decreases though, which sounds like
+> >>>>> an ABI-break too?
+> >>>>
+> >>>> How does it break? Old DTS works exactly the same, doesn't it?
+> >>>
+> >>> So deleting a new item at the end does not matter.  But what if I respin
+> >>> this patch to add the new clock _at the end_, which will then be at the
+> >>> same index as the previous GCC_DISP_AHB_CLK?
+> >>
+> >> I think you know the answer, right? What do you want to prove? That two
+> >> independent changes can have together negative effect? We know this.
+> > 
+> > The question is whether this is allowed?
+> 
+> That would be an ABI break and I already explained if it is or is not
+> allowed.
 
-^ please avoid marketing text in commit messages (and same for the
-other commits in this series).
+How should we solve it then, if we cannot remove GCC_DISP_AHB_CLK in one
+patch and add GCC_DISP_GPLL0_DIV_CLK_SRC **at the end** in the next
+patch?  Keep an empty spot at the original index of GCC_DISP_AHB_CLK?
 
-> The main system CPU is based on Big.LITTLE architecture,
-> with quad core Cortex-A73 cluster and quad core Cortex-A53 cluster.
-
-=E2=80=9CT7 is an Amlogic SoC for smart display applications. The main =
-CPU is
-based on a big.LITTLE architecture with a quad-core A73 cluster and
-quad-core A53 cluster.=E2=80=9D
-
-Christian
-
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> Documentation/devicetree/bindings/arm/amlogic.yaml | 6 ++++++
-> 1 file changed, 6 insertions(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml =
-b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> index 08d59842655c..79a8b44ffd03 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -218,6 +218,12 @@ properties:
->               - amlogic,aq222
->           - const: amlogic,s4
->=20
-> +      - description: Boards with the Amlogic T7 A311D2 SoC
-> +        items:
-> +          - enum:
-> +              - amlogic,an400
-> +          - const: amlogic,t7
-> +
-> additionalProperties: true
->=20
-> ...
-> --=20
-> 2.37.1
->=20
->=20
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
-
+- Marijn
