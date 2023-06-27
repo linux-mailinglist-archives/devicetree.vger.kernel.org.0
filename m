@@ -2,140 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0B2B73F73A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 10:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 066A273F73E
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 10:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229481AbjF0I3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 04:29:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36258 "EHLO
+        id S231942AbjF0Ia7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 04:30:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231864AbjF0I3O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 04:29:14 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CD082D4A
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 01:28:27 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fa94ea1caaso17964565e9.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 01:28:27 -0700 (PDT)
+        with ESMTP id S231488AbjF0Iah (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 04:30:37 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0008B2D4C
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 01:29:36 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-991a8eba169so268950866b.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 01:29:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687854505; x=1690446505;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yYisvyfd+rF4H58wJe4eQFLmEyiMEUswId3Wk9c1n3Y=;
-        b=wH7eTy9awNOzwL5utRtT3C5wEiMycWy0sEiaOMdHrzNDJto8y9YfPlQJSrQehR/IlK
-         r4uMh/ndv62GDY36Dge7xUrBV7ZozorvsfuGEDaXtYg+uRhfYrVZGtybNoSqh2Ln88CW
-         dTkqiZ3BaPG19VU6sLUAhdede4DquVamESgRPAZnQnd5kN6TCb3gp1JrdnovbKxeqcT6
-         ocoJ30rCOYa0E9o+yvzAlDAfTKlR69TaT8yRVPix6hXriXj/Yr4bDyNcMQDz8DUd9fbf
-         knmU51SJoZ7B3LGjK3Bi/WmXwMItT/h0C2Pbai4asAVNn294qfUP7mCQzsynsubWQoHg
-         u2Fg==
+        d=fairphone.com; s=fair; t=1687854571; x=1690446571;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=fqX5DHgOV5JQh3n7wQTrKqWa0S9nC80jd5IBZP65NGs=;
+        b=a4GBqxpv7jmHHEKUWeBkMva7W8g70p2YDS9GOd07Uc026C9bLeWu0YTtk0uNpHY9AM
+         n6EJOWy+3oafyfX58MRJtYU7Gv5CCMH4n68fNbXwD/RiLNPDUl3FKnvsGlYYCPTPS0Fk
+         A145SpaxENj2UwkTrlvH6FuXf4tcGJPUgqZbRsTiOOJZiBaI47prE0BaPIasVX5WoChS
+         b9b1Np5DrL0nHV8qCVMpOqMG2tomiTFGwZxcWAqKGfi5CFBeUMHJwESu0Elojtbat8FE
+         sAPaqG61Rfs5IE+jnGIGf2LCn5RSfJlx+c5QiFIb+DBTFgimDYgKPo9XR6cg/dAGs+an
+         oJIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687854505; x=1690446505;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yYisvyfd+rF4H58wJe4eQFLmEyiMEUswId3Wk9c1n3Y=;
-        b=BJprYRG/bKZVbIb5b9kG7lYKGBSvYZCB2fVa69B9b9FNiVtfmR7+22E3PfF1hc8bAW
-         ukQaN57g64wrnlXw1xTeqNJTQ0b1169kjT6oFA4GXwK57SFUWYV2QmQgCgDjgAouE3Sb
-         rXpMStI9GmFqrG/eGHucjg/7gSRLzcwObFgKhckemSzrjCEnIXruvsw91xXNjHHSUQU+
-         l+1K0CZ6HqF+T7+SAYmkWqn+CFwtI2udrzC6nsBHwbZNxtC72ylSLTMgBziHY2cGsHAR
-         IhrmVKSX34cQRvK2GIaHnIseqQDfqekCrjJEpelh6QwUzHAcTb9dcodlUDHCJ8PZtYI4
-         o0JA==
-X-Gm-Message-State: AC+VfDyXIafptGNs2XWmz+kL3qfjTJUP2qIockTb4Ja0DUQFot1kQM/y
-        CqkTaYHu2cqOj3lI7iH+Gs7QMQ==
-X-Google-Smtp-Source: ACHHUZ5nvEEEqnMcktYAI6is2hSR9HD1+QyfTyrqMOqlGkEkZjtq0427Hllsu2wMsfSR5lT62fh2lw==
-X-Received: by 2002:a7b:c5d7:0:b0:3f9:fd12:a8b0 with SMTP id n23-20020a7bc5d7000000b003f9fd12a8b0mr12919290wmk.20.1687854505552;
-        Tue, 27 Jun 2023 01:28:25 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id u6-20020a05600c210600b003fafe32c8f6sm3766671wml.10.2023.06.27.01.28.23
+        d=1e100.net; s=20221208; t=1687854571; x=1690446571;
+        h=in-reply-to:references:to:from:subject:cc:message-id:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=fqX5DHgOV5JQh3n7wQTrKqWa0S9nC80jd5IBZP65NGs=;
+        b=hiVSuhz8T42D1P0sZqovAtyXHgBgo/CRjIK4ZH5U5Edcvl5LW4hHwDw6x+l9eurufy
+         NKMaZrfzQ1pkEZvMqap6v2Rdlu68AuZ7pC2YCLp+mfL6OhOlavl2uomch9DSv04+jdWa
+         5s1jzd9wsy3s0KtbBH/8h8gMVMZIWL09Ot+Vaplt68VXjsjp1aHYUoinNXd43cxCmqB5
+         XLumASk+FtQJxrDWEYAb1ExSVFXc6r3iejQHTuL0nUFbbhni/9WFGju1P05Me77muQsm
+         QHmgVarxQaK83O9HgFjmvcHeSXNlfjwkQ9rPCdxsN7gl+cHj7j0rXw1FGo7nZekX+QTN
+         Cn9Q==
+X-Gm-Message-State: AC+VfDyr3MgcEeGtyftdOzq/i3ebxsiaLvXa6AALv2VIBlSNdygS3SJP
+        9rDC3gvA++L67LgjKejs8Qz/og==
+X-Google-Smtp-Source: ACHHUZ77eTguqYS4KE49xThLrCpVm5BbKtN84P5H1lk8As6ayJ7KnW61tc4r0vgr+44A4yGyfCjF7A==
+X-Received: by 2002:a17:906:974f:b0:98c:df38:517b with SMTP id o15-20020a170906974f00b0098cdf38517bmr15489785ejy.33.1687854571341;
+        Tue, 27 Jun 2023 01:29:31 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id ot6-20020a170906ccc600b0098df7d0e096sm3955863ejb.54.2023.06.27.01.29.30
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 01:28:25 -0700 (PDT)
-Message-ID: <5c384322-5321-f3c5-f0c5-0558c344eef5@linaro.org>
-Date:   Tue, 27 Jun 2023 10:28:22 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5 4/5] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0 PHY
-Content-Language: en-US
-To:     Stanley Chang <stanley_chang@realtek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Douglas Anderson <dianders@chromium.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Ray Chi <raychi@google.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        linux-phy@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org
-References: <20230627082022.22902-1-stanley_chang@realtek.com>
- <20230627082022.22902-4-stanley_chang@realtek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230627082022.22902-4-stanley_chang@realtek.com>
+        Tue, 27 Jun 2023 01:29:31 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Date:   Tue, 27 Jun 2023 10:29:30 +0200
+Message-Id: <CTNAIDCV0BIO.2JMX8MXEQ197U@otso>
+Cc:     <linux-arm-msm@vger.kernel.org>, <linux-scsi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <~postmarketos/upstreaming@lists.sr.ht>,
+        <phone-devel@vger.kernel.org>, "Eric Biggers" <ebiggers@google.com>
+Subject: Re: [PATCH v4 3/3] dt-bindings: ufs: qcom: Fix sm8450 bindings
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+To:     "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>,
+        "Andy Gross" <agross@kernel.org>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Konrad Dybcio" <konrad.dybcio@linaro.org>,
+        "Alim Akhtar" <alim.akhtar@samsung.com>,
+        "Avri Altman" <avri.altman@wdc.com>,
+        "Bart Van Assche" <bvanassche@acm.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Iskren Chernev" <me@iskren.info>,
+        "Manivannan Sadhasivam" <mani@kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>
+X-Mailer: aerc 0.15.1
+References: <20221209-dt-binding-ufs-v4-0-14ced60f3d1b@fairphone.com>
+ <20221209-dt-binding-ufs-v4-3-14ced60f3d1b@fairphone.com>
+ <1f94de94-c5bd-738d-5fbe-907558333cb2@linaro.org>
+In-Reply-To: <1f94de94-c5bd-738d-5fbe-907558333cb2@linaro.org>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 10:20, Stanley Chang wrote:
-> Add the documentation explain the property about Realtek USB PHY driver.
-> 
-> Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB
-> controller. Added the driver to drive the USB 2.0 PHY transceivers.
-> 
-> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
-> ---
-> v4 to v5 change:
->     1. Add more examples.
+On Mon Jun 26, 2023 at 10:27 AM CEST, Krzysztof Kozlowski wrote:
+> On 26/06/2023 10:15, Luca Weiss wrote:
+> > SM8450 actually supports ICE (Inline Crypto Engine) so adjust the
+> > bindings and the example to match.
+> >=20
+> > Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> > Reviewed-by: Eric Biggers <ebiggers@google.com>
+> > Reviewed-by: Iskren Chernev <me@iskren.info>
+> > Signed-off-by: Luca Weiss <luca.weiss@fairphone.com>
+>
+> SM8450 should be rather converted to qcom,ice.
 
-Not more examples. Just give one or two relevant examples.
+In v5 sm8450 is now using ICE, both in dtsi and binding example. But I
+guess you could also argue reg-names should be purged from dtsi and
+binding completely and to convert all existing dtsi to use the
+standalone ice node, right?
 
->     2. Remove the compatible realtek,usb2phy.
->     3. Revise the descriptor of the property.
->     4. Add the default of the property.
+But I'd also like for this series to finally land at some point, we can
+do this later, okay?
 
-...
+Regards
+Luca
 
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - "#phy-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    usb_port0_usb2phy: usb-phy@13214 {
-
-Drop also the labels.
-
-> +        compatible = "realtek,rtd1319d-usb2phy";
-> +        reg = <0x13214 0x4>, <0x28280 0x4>;
-> +        #phy-cells = <0>;
-> +        nvmem-cells = <&otp_usb_port0_dc_cal>, <&otp_usb_port0_dc_dis>;
-> +        nvmem-cell-names = "usb-dc-cal", "usb-dc-dis";
-> +
-> +        realtek,driving-level = <0xe>;
-
-Why keeping this example? I asked to grow it and instead there are two
-more. Just keep one describing as much as possible. Second is useful if
-you have there different properties.
-
-Your third is almost the same as second, so no need for it at all.
-
-Best regards,
-Krzysztof
+>
+> Best regards,
+> Krzysztof
 
