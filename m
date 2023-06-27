@@ -2,47 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB2F773FD67
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A04273FD71
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 16:11:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229884AbjF0OJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 10:09:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53586 "EHLO
+        id S231397AbjF0OKy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 10:10:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230019AbjF0OJT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:09:19 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CAE9295B;
-        Tue, 27 Jun 2023 07:09:16 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (unknown [193.85.242.128])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D032410A;
-        Tue, 27 Jun 2023 16:08:34 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687874915;
-        bh=2tLjFqR85/HNN1FGdzp8MdToBL0lJRcR06dzOH5Xg14=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CUbmfKBytBrklO5QRbwgDzTGo1xgRnEcHoU9PO+aHfLUcUy8eWRYElrTaQkyh4nMf
-         4QwIaAhYpI0W1vCK0v/PG8Oi41zc1wKSUZNr3Jwr4Ih6VE794RuGST2VXeqlSvGrnI
-         HvZ+Nw0LNVfKDXyDQfceZqP+wXxVNHAeiR57AdSM=
-Date:   Tue, 27 Jun 2023 17:09:13 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     guoniu.zhou@oss.nxp.com
-Cc:     linux-media@vger.kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        xavier.roumegue@oss.nxp.com, kernel@pengutronix.de,
-        jacopo.mondi@ideasonboard.com, sakari.ailus@linux.intel.com
-Subject: Re: [PATCH v3 2/3] media: nxp: imx8-isi: move i.MX8 gasket
- configuration to an ops structure
-Message-ID: <20230627140913.GB14185@pendragon.ideasonboard.com>
-References: <20230627062017.1135114-1-guoniu.zhou@oss.nxp.com>
- <20230627062017.1135114-3-guoniu.zhou@oss.nxp.com>
+        with ESMTP id S230493AbjF0OKv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 10:10:51 -0400
+Received: from mout.gmx.net (mout.gmx.net [212.227.15.15])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE9C02D76;
+        Tue, 27 Jun 2023 07:10:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=public-files.de;
+ s=s31663417; t=1687875007; x=1688479807; i=frank-w@public-files.de;
+ bh=tcte7WM1r7NehSLZobJtBRLDopOSLUZydTiAMLTHCp8=;
+ h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=C9ZFOGA4C+sQrqOsBVa1RVfSzK0VGDed5iFUh3DmYoCjb5iz3E2renoX9XiEkIb55ZeyrVv
+ GXjPxDCH8QRtyAXQ4RhKr/ubwVLHVSax3B27jdEpAoJ35MQVihAWcRIOq5gyfeTohEGzmzP9Q
+ gOOuF9MDA6JZ1B4NPWSMJhOIOfEXFQVVAejZDb+FYhVRrzGbnkmPNAdoZXqego/ZyhYc6EVFS
+ MTafAwoqiTyNqIgmTTJzpoPgYPWAuKabIOC/wg1fHkJVep2EDGYGbYcpKJ/E9FDlA+65X8Her
+ qSMmlp4NiIHWYpAHiCZ1HxsxwN5qLFseDFIVamMbQ41EsRUDWiOA==
+X-UI-Sender-Class: 724b4f7f-cbec-4199-ad4e-598c01a50d3a
+Received: from [217.61.148.1] ([217.61.148.1]) by web-mail.gmx.net
+ (3c-app-gmx-bs07.server.lan [172.19.170.56]) (via HTTP); Tue, 27 Jun 2023
+ 16:10:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20230627062017.1135114-3-guoniu.zhou@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+Message-ID: <trinity-4dd71d69-5514-4da0-8c18-a5676a311df2-1687875006833@3c-app-gmx-bs07>
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Wenbin Mei <wenbin.mei@mediatek.com>,
+        Sam Shih <sam.shih@mediatek.com>, linux-mmc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Aw: Re:  Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update
+ assigned-clocks/clock-parents for mt7986
+Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 27 Jun 2023 16:10:06 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <b6ef76a8-95fc-aa76-d811-ed25ccb8ad8e@linaro.org>
+References: <20230625191151.7808-1-linux@fw-web.de>
+ <20230625191151.7808-2-linux@fw-web.de>
+ <91411797-18b4-f515-d6c0-ca0f8ff39696@linaro.org>
+ <trinity-28cad1dc-f8e0-4f65-874f-a2392c2e878e-1687867773444@3c-app-gmx-bs07>
+ <b6ef76a8-95fc-aa76-d811-ed25ccb8ad8e@linaro.org>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:/Pe5aYi+s9kKCx0trik0mKEWPWa5NISxt/CIrmej8e0C/W4SDtpPYJ0Cll/ArsO6l7/Zu
+ +8+KH5sjk9JiARw4P6SFiDX5vY828bFt5mxI/ynFZRgIFwMFSJSZHy4KilFDsjs+kUPChwrNakGJ
+ U9V/s2bYuB+cqbgzGpiXtd1CElHvqKYSJmJPwBeB51hYjzz1XyzO2POzsv+Bti/Gis8NBcpkABqN
+ oav0QUuJiHwZ/7BGUfLL4eN1v2YPs6cDawNedCRSUjypTeBXhQ+pkwc5KZruh9kvzSjx9h8U6BbS
+ kM=
+UI-OutboundReport: notjunk:1;M01:P0:oc/IDCkwfto=;uyMwuWF0joreAn8VyMb6rA3OLle
+ KLew97pISH5oXOt+zzFzGQB5tkaorJjmZdciLWsWq/KDEcfWENbej+2y3rRuRl/yxZsDFIxuF
+ dbJCOnDbdnYvkzlrS1+ghwMuOPFJQlNHnAJaiHfi6GtmNDp0ITPUMq491nGELu6xrtv+ej/wa
+ Ehg+yvN0ZjsVh+ystNLKBCHDPyTfLaoD1QMD1fEvRUY6u35ie9xWO76OxpcnMlFjUSN3uXnAM
+ +afIFKzVbtBL4RKMECoj8Az/3SuXUfWI0GxSe/yXVKECkIz6Z1b6lShv9raUFo5dAFCK91iu9
+ nDN2HcLeTJgxYJFpKlFaa3n6j5HvjdkvYr9T+tMyBJUGJ/BpocNVugwwL2SwMeYbmbuAFdQiO
+ sW+A/oAqKIM37QPtw/XlAkxErK/lH8invVZ0dOM46qA1kDgPvGfcr/Rc++AkWv0/Fsq7UHhHU
+ QB+h854E/TCob0i4zIwj1xnBz3wuP21B4eYa87zYaJn+8+Bo225ChxLAL4pMvM7CuiUDN+7a1
+ 4TjA4GCSE6xOhG1Hv0kuoX4n1xIOcrhGYggOa6bA2jrANJqWZrJ3HiyXw5tAOBPdwSK1l0pU3
+ CXDfIb6B+MZn7n19RWUCjUDu7SvA+DcGfAo2iEurqVbJ3Q590ipBpmiOfoVM3454642i4bNZI
+ JiRRB8hDHczOdyQ1UVo+Rnweb8gFXVDc1ioeYA5H99Lv0JbVVITDEZdk9JeEVNfT1CdnCt6s2
+ IRC4fAvEvveqGqfVGBFwQcP7Mhsqi3PnfYsv5aTfVRBzxzz0Q1EVKxzleTmAhZIEOORIquYPv
+ NskoKyUr5oL3iq0x62wQuGYW7d3XmjfH1iasCFZIWjhpE=
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -51,325 +89,155 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guoniu,
+Hi
 
-Thank you for the patch.
 
-On Tue, Jun 27, 2023 at 02:20:16PM +0800, guoniu.zhou@oss.nxp.com wrote:
-> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
-> 
-> Move i.MX8MN and i.MX8MP gasket configuration to an ops structure.
+> Gesendet: Dienstag, 27. Juni 2023 um 15:37 Uhr
+> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> On 27/06/2023 14:09, Frank Wunderlich wrote:
+> >> Gesendet: Dienstag, 27. Juni 2023 um 12:44 Uhr
+> >> Von: "Krzysztof Kozlowski" <krzysztof.kozlowski@linaro.org>
+> >> Betreff: Re: [PATCH v1 1/2] dt-bindings: mmc: mtk-sd: update assigned=
+-clocks/clock-parents for mt7986
+> >>
+> >> On 25/06/2023 21:11, Frank Wunderlich wrote:
+> >>> From: Frank Wunderlich <frank-w@public-files.de>
+> >>>
+> >>> MT7986 has 2 clock-parents so update the binding for it.
+> >>
+> >> You didn't test it, I think. If you do, then you will see errors from
+> >> other trees.
+> >
+> > Hi,
+> >
+> > i tested it of course...which errors do you see?
+>
+> The top-level said it can be maximum 1, so raising it in allOf:if:then:
+> should not be enough
 
-Commit messages should explain the reason behind the change, not just
-what the change does. The *why* is considered even more important than
-the *what*, as it's (usually) possible to understand what a patch does
-by reading it, while the reason is much more difficult to get from just
-looking at the code.
+but the previous error with too long list wasn't there after the change...=
+so it seems to work...if it right, i don't know,
+but other properties are overriddedn the same way.
 
-In this case, the commit message could be
+> > 11
+> > this is basicly how i tested it (in case anything has changed):
+> >
+> >         logfile=3Ddtbs_arm64.log
+> >         exec 3> >(tee $logfile)
+> >         ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make DT_CHECKE=
+R_FLAGS=3D-m dt_binding_check 2>&3
+> >         if [[ $? -ne 0 ]];then echo "arm64 binding check failed!";cat =
+$logfile;exit 1;fi
+> >         ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make defconfig=
+ #dtbs_check need kernel-config
+> >         ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make -j8 DT_CH=
+ECKER_FLAGS=3D-m dtbs_check 2>&3
+> >         if [[ $? -ne 0 ]];then echo "arm64 dtbs_check failed!";cat $lo=
+gfile;exit 1;fi
+>
+> A bit over-complicated... why not running dtbs_check against the schema
+> you changed?
 
-"The i.MX93 includes an ISI instance compatible with the imx8-isi
-driver, but with a different gasket. To prepare for this, make the
-gasket configuration modular by moving the code to an ops structure."
+it is a script i only start ;) and having a logfile (with all messages - s=
+tdin+stdout) makes it easier to find something.
+i had always the problem, that second run does not show the errors again w=
+ithout changing the yaml or dts.
 
-> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
-> ---
->  drivers/media/platform/nxp/imx8-isi/Makefile  |  2 +-
->  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 12 ++++--
->  .../platform/nxp/imx8-isi/imx8-isi-core.h     | 30 ++++++++++++-
->  .../platform/nxp/imx8-isi/imx8-isi-crossbar.c | 42 +++++++------------
->  .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 32 ++++++++++++++
->  5 files changed, 85 insertions(+), 33 deletions(-)
-> 
-> diff --git a/drivers/media/platform/nxp/imx8-isi/Makefile b/drivers/media/platform/nxp/imx8-isi/Makefile
-> index 9bff9297686d..4376e8e0c962 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/Makefile
-> +++ b/drivers/media/platform/nxp/imx8-isi/Makefile
-> @@ -1,7 +1,7 @@
->  # SPDX-License-Identifier: GPL-2.0-only
->  
->  imx8-isi-y := imx8-isi-core.o imx8-isi-crossbar.o imx8-isi-hw.o \
-> -	imx8-isi-pipe.o imx8-isi-video.o
-> +	imx8-isi-pipe.o imx8-isi-video.o imx8-isi-gasket.o
+as you see below i tried the run against the yaml too, but there are many =
+many unrelated compatibles which seem to be not
+documented or still in txt bindings.
 
-Please use alphabetical order.
+> > and looked into the resulting logfile for keywords like mmc like mtk-s=
+d
+> >
+> > i tried running dtbs_check with passing the yaml-file, but of course a=
+ll compatibles not matching this file were reported.
+> >
+> > ARCH=3Darm64 CROSS_COMPILE=3Daarch64-linux-gnu- make -j6 DT_CHECKER_FL=
+AGS=3D-m dtbs_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mm=
+c/mtk-sd.yaml
+> >
+> > but this spits out many errors "failed to match any schema with compat=
+ible" because i defined only the changed one...
+> >
+> > maybe there is another way to check only one yaml file against all dtb=
+s without these unrelated errors.
+> >
+> > pipeline in dt-bindings-patchwork is clean too
+> > https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2023062=
+5191151.7808-2-linux@fw-web.de/
+>
+> Maybe that binding just fails to apply to DTS because of missing or not
+> correct compatibles.
 
->  imx8-isi-$(CONFIG_DEBUG_FS) += imx8-isi-debug.o
->  imx8-isi-$(CONFIG_VIDEO_IMX8_ISI_M2M) += imx8-isi-m2m.o
->  
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> index 253e77189b69..d645b2f6fa5a 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> @@ -279,6 +279,12 @@ static const struct clk_bulk_data mxc_imx8mn_clks[] = {
->  	{ .id = "apb" },
->  };
->  
-> +/* Gasket operations for i.MX8MN and i.MX8MP */
-> +static const struct mxc_gasket_ops mxc_imx8_gasket_ops = {
-> +	.enable = mxc_imx8_gasket_enable,
-> +	.disable = mxc_imx8_gasket_disable,
-> +};
-> +
+the messages are unrelated to current yaml file i passed with the DT_SCHEM=
+A_FILES parameter, e.g. the last messages:
 
-This can be moved to imx8-isi-gasket.c. You will need to add an
+	From schema: Documentation/devicetree/bindings/display/mediatek/mediatek,=
+dsi.yaml
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@15020000: failed to match any schema with compatible: ['mediatek,mt818=
+3-imgsys', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@16000000: failed to match any schema with compatible: ['mediatek,mt818=
+3-vdecsys', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@17000000: failed to match any schema with compatible: ['mediatek,mt818=
+3-vencsys', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@19000000: failed to match any schema with compatible: ['mediatek,mt818=
+3-ipu_conn', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@19010000: failed to match any schema with compatible: ['mediatek,mt818=
+3-ipu_adl', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@19180000: failed to match any schema with compatible: ['mediatek,mt818=
+3-ipu_core0', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@19280000: failed to match any schema with compatible: ['mediatek,mt818=
+3-ipu_core1', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /soc/sys=
+con@1a000000: failed to match any schema with compatible: ['mediatek,mt818=
+3-camsys', 'syscon']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb:0:0: /mt8183-=
+sound: failed to match any schema with compatible: ['mediatek,mt8183_mt635=
+8_ts3a227_max98357']
+arch/arm64/boot/dts/mediatek/mt8183-kukui-jacuzzi-burnet.dtb: bt-sco: '#so=
+und-dai-cells' is a required property
 
-extern const struct mxc_gasket_ops mxc_imx8_gasket_ops;
+> >> Anyway, I don't understand why defining it in the first place. Just d=
+rop
+> >> the assigned-clock* from the binding.
+> >
+> > as it was defined (not looked where it was used) i only used the soc-s=
+pecific branch to update the MaxItems...just to not break anything. After =
+that the message i got before was fixed
+> >
+> > arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000=
+: assigned-clocks: [[4, 35], [4, 34]] is too long
+> > arch/arm64/boot/dts/mediatek/mt7986a-bananapi-bpi-r3.dtb: mmc@11230000=
+: assigned-clock-parents: [[5, 6], [4, 18]] is too long
+> >
+> > but if the right way is to drop the MaxItems from generic (or the prop=
+erty itself - where is it taken from then?). The only
+> > include i see is Documentation/devicetree/bindings/mmc/mmc-controller.=
+yaml and there the assigned-clock* is not defined. And the
+>
+> The way is to entirely drop assigned-clocks. I don't think there are
+> much benefits of having them in the bindings. Maybe if specific rates
+> are required, then yes - device cannot work with other rates and you can
+> verify it with dtbs_check. But otherwise it is like adding values of
+> 'reg' or 'interrupts'. Plus some board might require third item and then
+> what?
 
-to imx8-isi-core.h, and remove the declarations of the
-mxc_imx8_gasket_enable() and mxc_imx8_gasket_disable() disable from the
-header (and make those functions static).
+mhm, disabled all assigned-clock* properties and do not get any messages a=
+bout this (don't know why because of "unevaluatedProperties: false", but l=
+ooks like it works)
 
->  static const struct mxc_isi_plat_data mxc_imx8mn_data = {
->  	.model			= MXC_ISI_IMX8MN,
->  	.num_ports		= 1,
-> @@ -289,7 +295,7 @@ static const struct mxc_isi_plat_data mxc_imx8mn_data = {
->  	.clks			= mxc_imx8mn_clks,
->  	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
->  	.buf_active_reverse	= false,
-> -	.has_gasket		= true,
-> +	.gasket_ops		= &mxc_imx8_gasket_ops,
->  	.has_36bit_dma		= false,
->  };
->  
-> @@ -303,7 +309,7 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
->  	.clks			= mxc_imx8mn_clks,
->  	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
->  	.buf_active_reverse	= true,
-> -	.has_gasket		= true,
-> +	.gasket_ops		= &mxc_imx8_gasket_ops,
->  	.has_36bit_dma		= true,
->  };
->  
-> @@ -443,7 +449,7 @@ static int mxc_isi_probe(struct platform_device *pdev)
->  		return PTR_ERR(isi->regs);
->  	}
->  
-> -	if (isi->pdata->has_gasket) {
-> +	if (isi->pdata->gasket_ops) {
->  		isi->gasket = syscon_regmap_lookup_by_phandle(dev->of_node,
->  							      "fsl,blk-ctrl");
->  		if (IS_ERR(isi->gasket)) {
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> index e469788a9e6c..4f920d650153 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> @@ -12,12 +12,14 @@
->  
->  #include <linux/list.h>
->  #include <linux/mutex.h>
-> +#include <linux/regmap.h>
+there are only some syscon-nodes in mt8173-*.dtb where these properties us=
+ed are reported
 
-This isn't needed here.
+btw. need binding also be backported to stable? so do i need to add the ta=
+g there?
 
->  #include <linux/spinlock.h>
->  #include <linux/types.h>
->  #include <linux/videodev2.h>
->  
->  #include <media/media-device.h>
->  #include <media/media-entity.h>
-> +#include <media/mipi-csi2.h>
-
-Not needed either.
-
->  #include <media/v4l2-async.h>
->  #include <media/v4l2-ctrls.h>
->  #include <media/v4l2-dev.h>
-> @@ -59,6 +61,18 @@ struct v4l2_m2m_dev;
->  #define MXC_ISI_M2M			"mxc-isi-m2m"
->  #define MXC_MAX_PLANES			3
->  
-> +/* GASKET (i.MX8MN and i.MX8MP only) */
-> +#define GASKET_BASE(n)				(0x0060 + (n) * 0x30)
-> +
-> +#define GASKET_CTRL				0x0000
-> +#define GASKET_CTRL_DATA_TYPE(dt)		((dt) << 8)
-> +#define GASKET_CTRL_DATA_TYPE_MASK		(0x3f << 8)
-> +#define GASKET_CTRL_DUAL_COMP_ENABLE		BIT(1)
-> +#define GASKET_CTRL_ENABLE			BIT(0)
-> +
-> +#define GASKET_HSIZE				0x0004
-> +#define GASKET_VSIZE				0x0008
-> +
-
-Those macros can be moved to imx8-isi-gasket.c.
-
->  struct mxc_isi_dev;
->  struct mxc_isi_m2m_ctx;
->  
-> @@ -147,6 +161,14 @@ struct mxc_isi_set_thd {
->  	struct mxc_isi_panic_thd panic_set_thd_v;
->  };
->  
-> +struct mxc_gasket_ops {
-> +	int (*enable)(struct mxc_isi_dev *isi,
-> +		      const struct v4l2_mbus_frame_desc *fd,
-> +		      const struct v4l2_mbus_framefmt *fmt,
-> +		      const unsigned int port);
-> +	void (*disable)(struct mxc_isi_dev *isi, const unsigned int port);
-> +};
-> +
->  enum model {
->  	MXC_ISI_IMX8MN,
->  	MXC_ISI_IMX8MP,
-> @@ -159,10 +181,10 @@ struct mxc_isi_plat_data {
->  	unsigned int reg_offset;
->  	const struct mxc_isi_ier_reg  *ier_reg;
->  	const struct mxc_isi_set_thd *set_thd;
-> +	const struct mxc_gasket_ops *gasket_ops;
->  	const struct clk_bulk_data *clks;
->  	unsigned int num_clks;
->  	bool buf_active_reverse;
-> -	bool has_gasket;
->  	bool has_36bit_dma;
->  };
->  
-> @@ -379,6 +401,12 @@ void mxc_isi_channel_set_outbuf(struct mxc_isi_pipe *pipe,
->  u32 mxc_isi_channel_irq_status(struct mxc_isi_pipe *pipe, bool clear);
->  void mxc_isi_channel_irq_clear(struct mxc_isi_pipe *pipe);
->  
-> +int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
-> +			   const struct v4l2_mbus_frame_desc *fd,
-> +			   const struct v4l2_mbus_framefmt *fmt,
-> +			   const unsigned int port);
-> +void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port);
-> +
->  #if IS_ENABLED(CONFIG_DEBUG_FS)
->  void mxc_isi_debug_init(struct mxc_isi_dev *isi);
->  void mxc_isi_debug_cleanup(struct mxc_isi_dev *isi);
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
-> index f7447b2f4d77..d803fda3fdaf 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-crossbar.c
-> @@ -25,32 +25,18 @@ static inline struct mxc_isi_crossbar *to_isi_crossbar(struct v4l2_subdev *sd)
->  	return container_of(sd, struct mxc_isi_crossbar, sd);
->  }
->  
-> -/* -----------------------------------------------------------------------------
-> - * Media block control (i.MX8MN and i.MX8MP only)
-> - */
-> -#define GASKET_BASE(n)				(0x0060 + (n) * 0x30)
-> -
-> -#define GASKET_CTRL				0x0000
-> -#define GASKET_CTRL_DATA_TYPE(dt)		((dt) << 8)
-> -#define GASKET_CTRL_DATA_TYPE_MASK		(0x3f << 8)
-> -#define GASKET_CTRL_DUAL_COMP_ENABLE		BIT(1)
-> -#define GASKET_CTRL_ENABLE			BIT(0)
-> -
-> -#define GASKET_HSIZE				0x0004
-> -#define GASKET_VSIZE				0x0008
-> -
->  static int mxc_isi_crossbar_gasket_enable(struct mxc_isi_crossbar *xbar,
->  					  struct v4l2_subdev_state *state,
->  					  struct v4l2_subdev *remote_sd,
->  					  u32 remote_pad, unsigned int port)
->  {
->  	struct mxc_isi_dev *isi = xbar->isi;
-> +	const struct mxc_gasket_ops *gasket_ops = isi->pdata->gasket_ops;
->  	const struct v4l2_mbus_framefmt *fmt;
->  	struct v4l2_mbus_frame_desc fd;
-> -	u32 val;
->  	int ret;
->  
-> -	if (!isi->pdata->has_gasket)
-> +	if (!gasket_ops)
->  		return 0;
->  
->  	/*
-> @@ -77,16 +63,14 @@ static int mxc_isi_crossbar_gasket_enable(struct mxc_isi_crossbar *xbar,
->  	if (!fmt)
->  		return -EINVAL;
->  
-> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_HSIZE, fmt->width);
-> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_VSIZE, fmt->height);
-> -
-> -	val = GASKET_CTRL_DATA_TYPE(fd.entry[0].bus.csi2.dt)
-> -	    | GASKET_CTRL_ENABLE;
-> -
-> -	if (fd.entry[0].bus.csi2.dt == MIPI_CSI2_DT_YUV422_8B)
-> -		val |= GASKET_CTRL_DUAL_COMP_ENABLE;
-> -
-> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, val);
-> +	if (gasket_ops->enable) {
-
-I would drop this check. Both gasket ops are mandatory, we don't need to
-support situations where only enable or disable are provided.
-
-> +		ret = gasket_ops->enable(isi, &fd, fmt, port);
-> +		if (ret) {
-> +			dev_err(isi->dev,
-> +				"failed to enable gasket%d\n", port);
-> +			return ret;
-> +		}
-> +	}
->  
->  	return 0;
->  }
-> @@ -95,11 +79,13 @@ static void mxc_isi_crossbar_gasket_disable(struct mxc_isi_crossbar *xbar,
->  					    unsigned int port)
->  {
->  	struct mxc_isi_dev *isi = xbar->isi;
-> +	const struct mxc_gasket_ops *gasket_ops = isi->pdata->gasket_ops;
->  
-> -	if (!isi->pdata->has_gasket)
-> +	if (!gasket_ops)
->  		return;
->  
-> -	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
-> +	if (gasket_ops->disable)
-
-Same here, you can drop this check.
-
-> +		gasket_ops->disable(isi, port);
->  }
->  
->  /* -----------------------------------------------------------------------------
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> new file mode 100644
-> index 000000000000..39f8d0e8b15d
-> --- /dev/null
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> @@ -0,0 +1,32 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright 2019-2023 NXP
-> + */
-> +
-
-You'll need
-
-#include <linux/regmap.h>
-#include <media/mipi-csi2.h>
-
-> +#include "imx8-isi-core.h"
-> +
-> +/* Configure and enable gasket for i.MX8MN and i.MX8P */
-> +int mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
-> +			   const struct v4l2_mbus_frame_desc *fd,
-> +			   const struct v4l2_mbus_framefmt *fmt,
-> +			   const unsigned int port)
-> +{
-> +	u32 val;
-> +
-> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_HSIZE, fmt->width);
-> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_VSIZE, fmt->height);
-> +
-> +	val = GASKET_CTRL_DATA_TYPE(fd->entry[0].bus.csi2.dt);
-> +	if (fd->entry[0].bus.csi2.dt == MIPI_CSI2_DT_YUV422_8B)
-> +		val |= GASKET_CTRL_DUAL_COMP_ENABLE;
-> +
-> +	val |= GASKET_CTRL_ENABLE;
-> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, val);
-> +	return 0;
-> +}
-> +
-> +/* Disable gasket for i.MX8MN and i.MX8P */
-> +void mxc_imx8_gasket_disable(struct mxc_isi_dev *isi, const unsigned int port)
-> +{
-> +	regmap_write(isi->gasket, GASKET_BASE(port) + GASKET_CTRL, 0);
-> +}
-
--- 
-Regards,
-
-Laurent Pinchart
+regards Frank
