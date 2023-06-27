@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D5EA74013B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 18:32:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E57740150
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 18:34:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232582AbjF0Qcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 12:32:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52336 "EHLO
+        id S232008AbjF0QeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 12:34:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232237AbjF0Qb4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 12:31:56 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11368E1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:31:45 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f973035d60so6310487e87.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:31:44 -0700 (PDT)
+        with ESMTP id S232124AbjF0Qd5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 12:33:57 -0400
+Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9711226B1
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:33:34 -0700 (PDT)
+Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b698dd515dso47531301fa.3
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 09:33:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687883503; x=1690475503;
+        d=linaro.org; s=google; t=1687883610; x=1690475610;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bauePcOtZ+EWi9plQW7xDmbFhAORWaDetr6LMDlu6RU=;
-        b=uUOBk3N/f83axkX6v5eStt6K2ouFXfPDokCMptOZP/WxfzFH3XZh6VxQnvFVeqNru4
-         M7N1n3prMcHagUrBBJrJIos6J4kX78B7MqUvHA27YdmQke1psZltLSnz2ZTDJfBx5nzX
-         fO54KN1kZSJA3M2qeiYOR7OJt2UPaMn24oc1KQ2Qgc1RKH6JSAiCzKzv+oa0bP6iWg6J
-         qtLvlNDDTvZVMqBXwoGV4wt7iBoJ5MciQxfSOQBQeSUGf4VPp+HQVn317zrd8+rXvmw8
-         rKv301FE0aBU6r2jKpoE5lw1jgW7ldYZm5KGD9nK16rAnhAVmjv6JESVIYu7y+u5m0P6
-         f4Cw==
+        bh=Um1a8Di8IY3rLUktjDo7U5c6Z65JFohHK/V4Nx6QANs=;
+        b=BGUZxcUxoexnlvX8ixsryCG1nbEQMg9k9DofDayzFEf0pJBrZ5M01orNSMl7peKN1M
+         OXk2Bd0HPISEQLmlgOzIAbJnuDJhgszt3JBzHHktSHQpC7HTh3/qI1B7q5OCuoDHKr1q
+         o8W0OOTNCjnLhvtXAVCuF3ayQIdk17/H1OWWrQDNXU+6w1UX9MOFv1k8BhVVH3pE71f4
+         CXN9Sf4Nz9QxTjps1HqpVSHrzALgMxoaEKocYyAzBppF/HpwquiDgVqrVJU/C66iHlLA
+         MbUBXlo/34Gp9dLzje7nukrhiiOGOzYBLcHKfiq9T6+Ii2umWOAnvKpAKQfGS8RgwiLq
+         hfYw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687883503; x=1690475503;
+        d=1e100.net; s=20221208; t=1687883610; x=1690475610;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bauePcOtZ+EWi9plQW7xDmbFhAORWaDetr6LMDlu6RU=;
-        b=gCi0UMMyMb6zDd/zBo9a/5/WDiAoH/PgTosCOBG59pt2ICGLj7/kZ1zwYqaP5sg6UK
-         5BJu1FisuTfe0+ZALxRgFHGmF+1CitxAI/rwna84+kI9ERmLYxYytcTm3iFpWjwAXb1x
-         IF0/1zLoHIdP6rKp7C1QaWM6GyV8vuObLEO3wVlK/PssY3q4YjvN0JHcKMAHxdoqYY2C
-         7LtPjsW3Ufa+Ua+/xLez/4KnIbMu4mMPXKqllNPNjGSEx6+n2is6qeU1VRd35fnOqbbQ
-         f1bKJ2DKkkidjWC2E/NMNqeeJ9SflQvT52jencJ7svQwry8jSTsvOUi8hy1Jcqy9D1nG
-         /3/w==
-X-Gm-Message-State: AC+VfDxDn24Z+u7UzSqTImmoomKAqz1EGy8Y5budfVKh7UC7SIs6Jdie
-        Lv/3uMk5LoN/NIwdMKrS1yuBkA==
-X-Google-Smtp-Source: ACHHUZ4le5rbMHhIweRiNkGPP0LiE+M+Kq9/B+8FCbQeh/eaqoBrYjgD5XRmN8HDFwXpwIQELwbDFQ==
-X-Received: by 2002:a19:ca4e:0:b0:4f8:8be4:8a82 with SMTP id h14-20020a19ca4e000000b004f88be48a82mr12844823lfj.22.1687883503412;
-        Tue, 27 Jun 2023 09:31:43 -0700 (PDT)
+        bh=Um1a8Di8IY3rLUktjDo7U5c6Z65JFohHK/V4Nx6QANs=;
+        b=IaaJsDzMzgRI0+/6D0WWFOyxalVyAkIstPbJSGPnHRebC3ApFDOncGEKI93ucNXAO7
+         2icybvEPCJ8Qy4IVpLBoKJnjDBknj6BcgeCKYWPbIvL/oSY4ZIqygQk11qa9JnZL+P00
+         34HOSwPdGIACzyBntY7o1PsI4AEG9DY/L44VpjATHXGnhlYtyzsRuN/dCavgS1QeLnbs
+         0kO5ZX8adcgIaTEFFQKYMYBNk2EGNt+P1V8JgnhPt8VPhvFam6/DVMh/04Ns+GrkE82Z
+         +L1XiDwo0neKE+M2p0ufzdl31mVfOSXiFHyaqDks2Ns93hczLDYpXCMaxdlpo9VgNdIK
+         xm0A==
+X-Gm-Message-State: AC+VfDzvuF9wcf5DNB2eTX5knAVKO+TlvfgTbw1OLsLKXLi6q2QOSNUW
+        Ipl/8wxUdy0jrOK991XqX9n4GQ==
+X-Google-Smtp-Source: ACHHUZ6i8gT3Uh61AFhzJhn90PzjFM8Pd/4izuKEFt8ksKV/UAmA+veBM9rcMDZY+A7Fk4xWHFSiqQ==
+X-Received: by 2002:a2e:b3c9:0:b0:2b5:9d78:2143 with SMTP id j9-20020a2eb3c9000000b002b59d782143mr7470933lje.28.1687883610030;
+        Tue, 27 Jun 2023 09:33:30 -0700 (PDT)
 Received: from [192.168.1.101] (abxj103.neoplus.adsl.tpnet.pl. [83.9.3.103])
-        by smtp.gmail.com with ESMTPSA id d30-20020ac25ede000000b004f3b4d17114sm1568171lfq.144.2023.06.27.09.31.42
+        by smtp.gmail.com with ESMTPSA id o22-20020a2e7316000000b002b69e504a38sm1366854ljc.99.2023.06.27.09.33.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 09:31:43 -0700 (PDT)
-Message-ID: <61c645f9-79cc-23f9-7df3-24cdec80d28a@linaro.org>
-Date:   Tue, 27 Jun 2023 18:31:41 +0200
+        Tue, 27 Jun 2023 09:33:29 -0700 (PDT)
+Message-ID: <266d3cfa-f72d-fc08-c283-19bebbd3ef4c@linaro.org>
+Date:   Tue, 27 Jun 2023 18:33:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 2/3] arm64: dts: qcom: c630: add debug uart
+Subject: Re: [PATCH 3/3] arm64: dts: qcom: sdm850-*: fix uart6 aliases
 Content-Language: en-US
 To:     Caleb Connolly <caleb.connolly@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -65,15 +65,15 @@ To:     Caleb Connolly <caleb.connolly@linaro.org>,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         ~postmarketos/upstreaming@lists.sr.ht
 References: <20230627-c630-uart-and-1p2-reg-v1-0-b48bfb47639b@linaro.org>
- <20230627-c630-uart-and-1p2-reg-v1-2-b48bfb47639b@linaro.org>
+ <20230627-c630-uart-and-1p2-reg-v1-3-b48bfb47639b@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230627-c630-uart-and-1p2-reg-v1-2-b48bfb47639b@linaro.org>
+In-Reply-To: <20230627-c630-uart-and-1p2-reg-v1-3-b48bfb47639b@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,37 +81,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 27.06.2023 17:32, Caleb Connolly wrote:
-> The c630 exposes its debug UART via a connector on the PCB, enable it.
-> 
-> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
-> ---
+> This is a follow up on a previous patch
+Either copy the commit message or reference it by hash, there have
+probably been 12341234 commits between the landing of that one and
+this one.
+
+For the content:
+
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 5 +++++
->  1 file changed, 5 insertions(+)
+> fixing the aliases for
+> sdm845 devices, fix them here too.
+> 
+> Signed-off-by: Caleb Connolly <caleb.connolly@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts | 2 +-
+>  arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts     | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
 > 
 > diff --git a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> index 94e37e5d2177..090f73251994 100644
+> index 090f73251994..62f503508dea 100644
 > --- a/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
 > +++ b/arch/arm64/boot/dts/qcom/sdm850-lenovo-yoga-c630.dts
-> @@ -33,6 +33,7 @@ / {
->  	chassis-type = "convertible";
+> @@ -34,7 +34,7 @@ / {
 >  
 >  	aliases {
-> +		serial0 = &uart9;
->  		hsuart0 = &uart6;
+>  		serial0 = &uart9;
+> -		hsuart0 = &uart6;
+> +		serial1 = &uart6;
 >  	};
 >  
-> @@ -708,6 +709,10 @@ bluetooth {
+>  	gpio-keys {
+> diff --git a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+> index 41f59e32af64..543837316001 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+> +++ b/arch/arm64/boot/dts/qcom/sdm850-samsung-w737.dts
+> @@ -56,7 +56,7 @@ framebuffer0: framebuffer@80400000 {
 >  	};
->  };
 >  
-> +&uart9 {
-> +	status = "okay";
-> +};
-> +
->  &ufs_mem_hc {
->  	status = "okay";
+>  	aliases {
+> -		hsuart0 = &uart6;
+> +		serial1 = &uart6;
+>  	};
 >  
+>  	/* Reserved memory changes */
 > 
