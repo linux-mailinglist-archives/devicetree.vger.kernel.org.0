@@ -2,109 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5784073F44B
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B747F73F453
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:15:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230037AbjF0GOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 02:14:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57064 "EHLO
+        id S230003AbjF0GPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 02:15:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58246 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230019AbjF0GN6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:13:58 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F1531FC4
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:13:56 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fba64d9296so1822155e9.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:13:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687846435; x=1690438435;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=vfwpHbbsGCKJMLfgMJV+HTBNlG4lMxS4KT5GYcIwgWs=;
-        b=Cxdr9MjnhD1y1tv8kdfCCAoMYPwwgY5GRYKaZEqGT4GJaMZxYENg1sFqosTDfhfr0w
-         GbbxDgQ+SBRVC9l/lx7HMh4gXokQIKMsn05xJBsK9yWZHzLHavYwYs29yaB7pY3AvjtK
-         889XEItirMacODDaVk5FoFi0R6R6WRrYAvAWxbG7JJ8+mLXKIH78BLXAllE51iAllpCW
-         cPUdjw8eL144xNVQKiO5DP/WACSQOMznscsPRJmf1KJkeEnIQz5FpIIggyE/qtzJS23M
-         S1sHeYIE+zTPsesPD7wl/lGwsnJVmTthCpYXIxKLMXVgdmfyFHZ6DE0mhBu+aYrNzC2r
-         +IHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687846435; x=1690438435;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=vfwpHbbsGCKJMLfgMJV+HTBNlG4lMxS4KT5GYcIwgWs=;
-        b=kLdJ9CBrbLOJtUyJbMOhFHUKi/3F+m7uPQopCKOfF7dWeVMVcjrFx2ap8Dc99kNXK3
-         Lg1UTeIt00FrGqO9gWI0ftpQyUZ8dgmDP7VqahQrpvwkKEc676YTjkxacyvu+kWkjlx8
-         wo0deG+kGDL8CMqp1P4aRgVwY3EXjFsPjvhrGFOmzWTNcWNGsG3mMgbOLBmL6sSxwyGE
-         O91/jOpZMHaCY9Rxna9iKaBIOomaxwtADvC32ckXkl2I7WY5qgQyF5bzw2JxPEUIfFif
-         KyipviTFQxs+eP7rOQxsMpHV/SypovoCKWx0elytXgTzpLH5xiguNdxU/HRombzm0mAn
-         Dwew==
-X-Gm-Message-State: AC+VfDwO6qWxhdl+N7FbLEBnoOefhkTSBPvOsvyycb8WifYKLCqCMM9T
-        CvXbcvjectuFa1Ex1XA5UmOzwg==
-X-Google-Smtp-Source: ACHHUZ4VrZ3ppTufd3kRre67uS4/bLfAKihSZysTXpHw/VwowyjL5lnfxd4qusi+NuogkMTgLgY0xw==
-X-Received: by 2002:a05:600c:3644:b0:3fb:a2b6:8dfd with SMTP id y4-20020a05600c364400b003fba2b68dfdmr751079wmq.32.1687846434949;
-        Mon, 26 Jun 2023 23:13:54 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id s7-20020adfeb07000000b0030ae901bc54sm9284680wrn.62.2023.06.26.23.13.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 26 Jun 2023 23:13:54 -0700 (PDT)
-Message-ID: <a5731e43-4e9d-2571-9156-c1f97696df8c@linaro.org>
-Date:   Tue, 27 Jun 2023 08:13:52 +0200
+        with ESMTP id S230025AbjF0GPB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:15:01 -0400
+Received: from mail.3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 920831BFB;
+        Mon, 26 Jun 2023 23:15:00 -0700 (PDT)
+Received: from 3ffe.de (0001.3ffe.de [IPv6:2a01:4f8:c0c:9d57::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail.3ffe.de (Postfix) with ESMTPSA id E256850B;
+        Tue, 27 Jun 2023 08:14:57 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2022082101;
+        t=1687846497;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=UvmboR1BMviOSQ7PsVkhSOxfTc1VG5c3nYyF5muyxD0=;
+        b=EE1kURunazGQ1GVYw9yAX4tHHZaKj/eZzng78T1g3a4vD2YUolfM6OgJSTUKGvG0iV+Urw
+        7YmVVweu87mPvKniop95Bec6euXwvGdTPaIwWiyPR6GMNPYVXuSobppkVnJLRfnhNUAcMB
+        wLraEhPRd68gTgv+9a4jNkQqU250fgAAPuh2GLdHe4qCEMGQEKiYWk94w5/iema9p7e//w
+        18HVbfKPfh2TEDtrFeqUYx6Z3S+sL3Z9EtR6J5CXc41fzytvUWCminuvAA9FFADiFMW4ET
+        JK86a0tu6gx7+GynYtX3/SlLvl8Y7A5SJl7aJnoi8q2Qa6F/In/POuEHUX05uQ==
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH V3 3/3] dt-bindings: serial: fsl-lpuart: correct
- imx93-lpuart dt-binding item
-Content-Language: en-US
-To:     Sherry Sun <sherry.sun@nxp.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        shenwei.wang@nxp.com, gregkh@linuxfoundation.org
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@pengutronix.de, linux-serial@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-References: <20230627025332.11133-1-sherry.sun@nxp.com>
- <20230627025332.11133-4-sherry.sun@nxp.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230627025332.11133-4-sherry.sun@nxp.com>
-Content-Type: text/plain; charset=UTF-8
+Date:   Tue, 27 Jun 2023 08:14:57 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     tudor.ambarus@linaro.org, pratyush@kernel.org,
+        miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, git@amd.com, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        amitrkcian2002@gmail.com,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Subject: Re: [PATCH v3 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP#
+ signal not connected
+In-Reply-To: <20230625100251.31589-3-amit.kumar-mahapatra@amd.com>
+References: <20230625100251.31589-1-amit.kumar-mahapatra@amd.com>
+ <20230625100251.31589-3-amit.kumar-mahapatra@amd.com>
+Message-ID: <5e5fe22aebe17da4f9ad2c4eaaa8985f@walle.cc>
+X-Sender: michael@walle.cc
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 04:53, Sherry Sun wrote:
-> Correct the fsl,imx93-lpuart dt-binding item, imx93/imx8ulp add some new
-> features based on imx7ulp lpuart, so need to add "fsl,imx8ulp-lpuart"
-> for imx93 to enable those new features.
+Am 2023-06-25 12:02, schrieb Amit Kumar Mahapatra:
+> Setting the status register write disable (SRWD) bit in the status
+> register (SR) with WP# signal of the flash left floating or wrongly 
+> tied to
+> GND (that includes internal pull-downs), will configure the SR 
+> permanently
+> as read-only. If WP# signal is left floating or wrongly tied to GND, 
+> avoid
+> setting SRWD bit while writing the SR during flash protection.
 > 
-> Signed-off-by: Sherry Sun <sherry.sun@nxp.com>
+> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
 > ---
+>  drivers/mtd/spi-nor/core.c | 3 +++
+>  drivers/mtd/spi-nor/core.h | 1 +
+>  drivers/mtd/spi-nor/swp.c  | 9 +++++++--
+>  3 files changed, 11 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+> index 0bb0ad14a2fc..520f5ab86d2b 100644
+> --- a/drivers/mtd/spi-nor/core.c
+> +++ b/drivers/mtd/spi-nor/core.c
+> @@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor 
+> *nor)
+>  	if (flags & NO_CHIP_ERASE)
+>  		nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
+> 
+> +	if (of_property_read_bool(np, "no-wp"))
+> +		nor->flags |= SNOR_F_NO_WP;
+> +
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Please put it below the of_property_read_bool() which is already
+there, just to keep things sorted.
 
+>  	if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
+>  	    !nor->controller_ops)
+>  		nor->flags |= SNOR_F_RWW;
+> diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
+> index 4fb5ff09c63a..55b5e7abce6e 100644
+> --- a/drivers/mtd/spi-nor/core.h
+> +++ b/drivers/mtd/spi-nor/core.h
+> @@ -132,6 +132,7 @@ enum spi_nor_option_flags {
+>  	SNOR_F_SWP_IS_VOLATILE	= BIT(13),
+>  	SNOR_F_RWW		= BIT(14),
+>  	SNOR_F_ECC		= BIT(15),
+> +	SNOR_F_NO_WP		= BIT(16),
 
----
+See the comment right above this enum :/
 
-This is an automated instruction, just in case, because many review tags
-are being ignored. If you do not know the process, here is a short
-explanation:
+>  };
+> 
+>  struct spi_nor_read_command {
+> diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
+> index 0ba716e84377..cfaba41d74d6 100644
+> --- a/drivers/mtd/spi-nor/swp.c
+> +++ b/drivers/mtd/spi-nor/swp.c
+> @@ -214,8 +214,13 @@ static int spi_nor_sr_lock(struct spi_nor *nor, 
+> loff_t ofs, uint64_t len)
+> 
+>  	status_new = (status_old & ~mask & ~tb_mask) | val;
+> 
+> -	/* Disallow further writes if WP pin is asserted */
+> -	status_new |= SR_SRWD;
+> +	/*
+> +	 * Disallow further writes if WP# pin is neither left floating nor
+> +	 * wrongly tied to GND(that includes internal pull-downs).
 
-Please add Acked-by/Reviewed-by/Tested-by tags when posting new
-versions, under or above your Signed-off-by tag. Tools like b4 can help
-here. However, there's no need to repost patches *only* to add the tags.
-The upstream maintainer will do that for acks received on the version
-they apply.
+nit: space missing
 
-https://elixir.bootlin.com/linux/v5.17/source/Documentation/process/submitting-patches.rst#L540
+Otherwise looks good.
 
-Best regards,
-Krzysztof
+Thanks,
+-michael
 
+> +	 * WP# pin hard strapped to GND can be a valid use case.
+> +	 */
+> +	if (!(nor->flags & SNOR_F_NO_WP))
+> +		status_new |= SR_SRWD;
+> 
+>  	if (!use_top)
+>  		status_new |= tb_mask;
