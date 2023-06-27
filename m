@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A509B73FC9A
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:15:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04BB073FCC9
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 15:24:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229957AbjF0NP0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 09:15:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59212 "EHLO
+        id S230138AbjF0NYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 09:24:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34034 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229887AbjF0NPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:15:25 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09CFA26BA;
-        Tue, 27 Jun 2023 06:15:22 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4f86dbce369so6074010e87.0;
-        Tue, 27 Jun 2023 06:15:21 -0700 (PDT)
+        with ESMTP id S230195AbjF0NYQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 09:24:16 -0400
+Received: from mail-pf1-x429.google.com (mail-pf1-x429.google.com [IPv6:2607:f8b0:4864:20::429])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 499F9294B
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:24:14 -0700 (PDT)
+Received: by mail-pf1-x429.google.com with SMTP id d2e1a72fcca58-668709767b1so2803141b3a.2
+        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 06:24:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687871720; x=1690463720;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=DMNoJT8hPvOgickLb3tIrjnQjsjqpdNLJafYlSM3WJ0=;
-        b=ZIMXw14K7xllAD+oUnVq1yykhWL0q5zGOzs4VkC4Miq8z4QBlOIeoaIm7ti062ThTW
-         bH1CaNACe+KaqFdnP1d0+YGDgfP3OjlabEqH8lkBpKK1b4igcHPKWCAG0x65EUzdlbwH
-         cPSAL+ns/a82HQe7qbDuiSJfnHbheEFA104OFFZhjX0yWUs32Nq0W/B0f9gyzPIFzDPz
-         N5t59nCm08mt2QpUDBZnA1JjayMPE06gDaaQ2L7EK0HLv3qoor6kARN4qhL+rq/rSM2S
-         FgDjuLlBAfAl+LixmZfAgK5jYRI4qWpgHSsmBVU4/SkNU0kXjLCvbACVvBEDLXzAMU4p
-         qqVg==
+        d=linaro.org; s=google; t=1687872254; x=1690464254;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Y02hN0PNekjOd5szuk9Ub9WcGYvupKGth45H8Ct66UY=;
+        b=IRjeNnOm4E4Z+pIzRr/Di7z/oSbw5+dbir8tihAqnEil/TvIC7fsGDSw2X/YZLPFqo
+         GAZ+hSGoAgUCgnlB3sS5kstebfnK/iSKbUWe2XyxZuYTHbo+mBws+m+EM2MlmTIY54/R
+         vgXH2d7Nu6b49+mRnvDN6OPuRyLuPsjHHzLlcDAJuM5yGJ7ud/XMPItYri16GetafB8j
+         z6lY4T9sCyHz1GrTJnHsHqMSXi3hHEKLK9nIsJp2cma02Te9I21k24fotjDqzmJ2MdaV
+         Qxbr2ZI36ctG3umjd/xKHbol5V7lZMXcKOJE/jiU7a5GG5cLdY2tzR4F9TOeISJiM7tA
+         T7vg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687871720; x=1690463720;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=DMNoJT8hPvOgickLb3tIrjnQjsjqpdNLJafYlSM3WJ0=;
-        b=GsyDSY9ZO0yujla+XVR6lKYswWTYT4ZjSJN2uSlNfjEHbmE+MgcxWJBC1PcjcOefGw
-         wblODzK2TypaVn+XQkV5VaVHIYad24KfPmpKiqrVIBy09PRtUzAF8nFh9PwLxFQ9vvSz
-         s51B4BfZUvEm2MS2hLlzPV9oLxZhSkFlt9QRJbdqIwURV4BX8E2zJL98bQS4vORaM9Z1
-         +YSNMhP6ifTFySjAibQsuyG5cVdDtzMyoCtXFthnKE+a/GbeyCHo5JQeLi+UD60BcC5I
-         h/lkci06EoPsNLMRlUgy67yfgLwLoG4q24nA1vU4RFmpbIFw5Ka8Uj+yagY07Tfev8pm
-         NwXg==
-X-Gm-Message-State: AC+VfDxS6V6wllBV0ZQbh6vQqRZltNCf5kaR1GcRBj8Ohhoq7o1nrI50
-        ihM6iOaCh+N3aQSQBaz3M37W5KV73S4=
-X-Google-Smtp-Source: ACHHUZ5icUHSPxZrlGwMtUuxnOzym9Z9UIWELwuRvJ5tht9IILNV7rwhC+H4HuHjIPp9l83Vv+wsJg==
-X-Received: by 2002:a19:5053:0:b0:4f9:5519:78b8 with SMTP id z19-20020a195053000000b004f9551978b8mr12643966lfj.63.1687871720124;
-        Tue, 27 Jun 2023 06:15:20 -0700 (PDT)
-Received: from mobilestation ([109.194.233.142])
-        by smtp.gmail.com with ESMTPSA id b2-20020ac247e2000000b004fb881e5c23sm147435lfp.47.2023.06.27.06.15.18
+        d=1e100.net; s=20221208; t=1687872254; x=1690464254;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y02hN0PNekjOd5szuk9Ub9WcGYvupKGth45H8Ct66UY=;
+        b=lxDNbNoSQStX66UCTAerrDkQKqpyTewmJCnJoQy1dzDf/3Mh6juysj+ITzgMYy3UaN
+         VpmRfbj+pnwj8lWcX5xXF3TgvrauK2Feze06TyW1/crCznn2FmqfHQw3AZ6gg8nEvUXn
+         N8Mf8JKLgTX+sS9Mps10DgcjRnsIKnn+olttGp4gnGvzWQde2+o6XPPrm7APByEWHBT4
+         kmU5V4/1QEe6a+2ElLUnrBswZUszhyteVOP2bZgby617+RruAQR4EXPfZg/brBxz6q5S
+         oBLSFjCt+O9F9lznMr0oDEt7GXqWqnrllbPfwAtPs+YXK6D2nNm41FyNj9tpKAZhNjyj
+         MbFQ==
+X-Gm-Message-State: AC+VfDz051rQndXLQ6DIQgAqoLi86QrQY8BCdQ75K5lxPYEu5F2h5JUK
+        HlL0m5/fuFXN4/vB+AE4TNmc
+X-Google-Smtp-Source: ACHHUZ7Aa5yD/wVIoF86iX7X1j+YPhnUIsDI1+AG6UNtVTQSxUdTQ0x7XC0A3hZK+P5lJoGx4wIP4w==
+X-Received: by 2002:a05:6a00:398f:b0:64f:aea5:7b49 with SMTP id fi15-20020a056a00398f00b0064faea57b49mr30320035pfb.17.1687872253752;
+        Tue, 27 Jun 2023 06:24:13 -0700 (PDT)
+Received: from thinkpad ([117.217.176.90])
+        by smtp.gmail.com with ESMTPSA id u23-20020a62ed17000000b00668821499c3sm5416179pfh.156.2023.06.27.06.24.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 27 Jun 2023 06:15:19 -0700 (PDT)
-Date:   Tue, 27 Jun 2023 16:15:12 +0300
-From:   Serge Semin <fancer.lancer@gmail.com>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
+        Tue, 27 Jun 2023 06:24:13 -0700 (PDT)
+Date:   Tue, 27 Jun 2023 18:54:06 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Johan Hovold <johan+linaro@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Simon Xue <xxm@rock-chips.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kernel@collabora.com
-Subject: Re: [PATCH v1 3/4] dt-bindings: PCI: dwc: rockchip: Update for RK3588
-Message-ID: <tcwgwwyx5lvoowp2bxkaemfp7eefbvmfzwprcml7wmtrwadxtm@et2ofo64cru2>
-References: <20230616170022.76107-1-sebastian.reichel@collabora.com>
- <20230616170022.76107-4-sebastian.reichel@collabora.com>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Patrick Wildt <patrick@blueri.se>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: add explicit rtc
+ interrupt parent
+Message-ID: <20230627132406.GA5490@thinkpad>
+References: <20230627085306.6033-1-johan+linaro@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230616170022.76107-4-sebastian.reichel@collabora.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230627085306.6033-1-johan+linaro@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,75 +79,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 16, 2023 at 07:00:21PM +0200, Sebastian Reichel wrote:
-> The PCIe 2.0 controllers on RK3588 need one additional clock,
-> one additional reset line and one for ranges entry.
-
-Just a nitpick: it would be perfect to have these new items evaluated
-compatible-string conditionally. Anyway:
-
-Reviewed-by: Serge Semin <fancer.lancer@gmail.com>
-
--Serge(y)
-
+On Tue, Jun 27, 2023 at 10:53:06AM +0200, Johan Hovold wrote:
+> Unless explicitly specified the interrupt-parent property is inherited
+> from the parent node on Linux even though this may not be in full
+> compliance with the devicetree specification.
 > 
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> Following commit 2d5cab9232ba ("arm64: dts: qcom: sc8280xp-pmics:
+> Specify interrupt parent explicitly"), add an explicit interrupt parent
+> also for the PMIC RTC node for the benefit of other operating systems
+> which may be confused by this omission.
+> 
+> Note that any such OS must still implement a fallback to the root
+> interrupt domain as most devicetrees are written under the assumption
+> that the interrupt parent is inherited.
+> 
+> Reported-by: Patrick Wildt <patrick@blueri.se>
+> Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
+
+It is good to encode this in the binding and fix other such instances.
+
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+
+- Mani
+
 > ---
->  .../bindings/pci/rockchip-dw-pcie.yaml           | 16 +++++++++++++---
->  1 file changed, 13 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> index bf81d306cc80..7897af0ec297 100644
-> --- a/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> +++ b/Documentation/devicetree/bindings/pci/rockchip-dw-pcie.yaml
-> @@ -41,20 +41,24 @@ properties:
->        - const: config
->  
->    clocks:
-> +    minItems: 5
->      items:
->        - description: AHB clock for PCIe master
->        - description: AHB clock for PCIe slave
->        - description: AHB clock for PCIe dbi
->        - description: APB clock for PCIe
->        - description: Auxiliary clock for PCIe
-> +      - description: PIPE clock
->  
->    clock-names:
-> +    minItems: 5
->      items:
->        - const: aclk_mst
->        - const: aclk_slv
->        - const: aclk_dbi
->        - const: pclk
->        - const: aux
-> +      - const: pipe
->  
->    interrupts:
->      maxItems: 5
-> @@ -97,13 +101,19 @@ properties:
->      maxItems: 1
->  
->    ranges:
-> -    maxItems: 2
-> +    minItems: 2
-> +    maxItems: 3
->  
->    resets:
-> -    maxItems: 1
-> +    minItems: 1
-> +    maxItems: 2
->  
->    reset-names:
-> -    const: pipe
-> +    oneOf:
-> +      - const: pipe
-> +      - items:
-> +          - const: pwr
-> +          - const: pipe
->  
->    vpcie3v3-supply: true
->  
+> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> index a0ba535bb6c9..80ee12ded4f4 100644
+> --- a/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc8280xp-pmics.dtsi
+> @@ -101,7 +101,7 @@ pmk8280_rtc: rtc@6100 {
+>  			compatible = "qcom,pmk8350-rtc";
+>  			reg = <0x6100>, <0x6200>;
+>  			reg-names = "rtc", "alarm";
+> -			interrupts = <0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+> +			interrupts-extended = <&spmi_bus 0x0 0x62 0x1 IRQ_TYPE_EDGE_RISING>;
+>  			wakeup-source;
+>  			status = "disabled";
+>  		};
 > -- 
-> 2.39.2
+> 2.39.3
 > 
+
+-- 
+மணிவண்ணன் சதாசிவம்
