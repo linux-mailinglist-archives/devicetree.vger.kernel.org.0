@@ -2,153 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 081DC73F5E5
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 09:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B80C973F5F3
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 09:46:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbjF0Hn5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 03:43:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39990 "EHLO
+        id S229939AbjF0HqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 03:46:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229884AbjF0Hn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 03:43:56 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B75AE74
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 00:43:54 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4f8777caaa1so5755895e87.3
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 00:43:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687851832; x=1690443832;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Qht7SqGLbmJWzU5hnUhM0fN/sQoDQZIYVELEYjld22w=;
-        b=ToU64NKGbR4QsZRo9+hl4zbyIbkqlm7DReyCHhFgL6QpyVntnjtwP+8681XRrbNByJ
-         Tnlmtdc0sS2X5sXKrCNiWs+0evI34zlGixJt9aDKFnmXlWEi0BLwQHe+A2G8fHOfX/o8
-         5pZO51cwl4mSF3WHn9PP4g8dmohFVEOqi/vhYXrKq08L07DDtvZqRR/ATFxZ3y2uY59k
-         dQ+CpkM+GiIlZdt/pXvSPoQFCXh0p1+Vdyd7eyVDCtwSdywhXcZO0E2S32oDvv/RVxXU
-         CXdsBWSg9SU0eaLHXRRU1YMZHDPZ7OdIUJaPvjucib/4zlshCNkbG0c8Dv9MZxHina1j
-         xnMg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687851832; x=1690443832;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Qht7SqGLbmJWzU5hnUhM0fN/sQoDQZIYVELEYjld22w=;
-        b=XK+xlmBHxHMgKPW4BNqNyKZDrJwAlGvlhVFCh2SF0UyDRIeUakS4j26d+6p2RalwFu
-         4XvfQxAAyJr0hGHfTSTf+oPtxw8uEd0YCW1y6aXs1wpAXjZiZX9u1JysI80ZNh9gS2SJ
-         W1g7qWqBrdG4IbwbVZQRwzqEoqf4cR4SgmmRaYqLJA2P16XAjHjNX4ZqlmYJZEK/cJpL
-         7vrZwiNB+hdUfhbTNHW00a0j3qkPJdRlhK7Emi3tXP8LnfbJy/I/0b7wHoq5FJZFYLGB
-         WiJhWN5zmKbFU8NsYYuObdDWTU0doI+FjV535Tb4xYzzUGcczW/KYWR6R+j74z5DDeF7
-         2eLw==
-X-Gm-Message-State: AC+VfDzyR/5qr9eIQalyvEX6o7wxmLn+ey8aYxEXYuLMUWzPeW2FkC93
-        +Tp2vFegOd46ZSn0c0mam1u59g==
-X-Google-Smtp-Source: ACHHUZ4kfY2DPQ+asW4P38+Dgd5ePOe+T6M/G2eRs9P+TOc/20kSiDtl9r+C7hrsfXlu57oG2I4QeQ==
-X-Received: by 2002:a05:6512:1142:b0:4fa:5255:4fa3 with SMTP id m2-20020a056512114200b004fa52554fa3mr3830323lfg.5.1687851832503;
-        Tue, 27 Jun 2023 00:43:52 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:cec9:2929:7a19:7afa? ([2a01:e0a:982:cbb0:cec9:2929:7a19:7afa])
-        by smtp.gmail.com with ESMTPSA id 13-20020a05600c240d00b003f7f2a1484csm9835606wmp.5.2023.06.27.00.43.51
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 27 Jun 2023 00:43:52 -0700 (PDT)
-Message-ID: <709fbed2-a7cf-d2fa-da4e-5d417b7130d4@linaro.org>
-Date:   Tue, 27 Jun 2023 09:43:50 +0200
+        with ESMTP id S229567AbjF0HqV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 03:46:21 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80116196;
+        Tue, 27 Jun 2023 00:46:18 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 9E82424E261;
+        Tue, 27 Jun 2023 15:46:15 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Jun
+ 2023 15:46:15 +0800
+Received: from [192.168.120.57] (171.223.208.138) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 27 Jun
+ 2023 15:46:14 +0800
+Message-ID: <c3c7fb8a-7c0c-5966-88cd-e004db69de83@starfivetech.com>
+Date:   Tue, 27 Jun 2023 15:46:08 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 0/2] Baisc devicetree support for Amlogic T7
-Content-Language: en-US
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
+Subject: Re: [PATCH v4 0/4] StarFive's Pulse Width Modulation driver support
+To:     <devicetree@vger.kernel.org>, <linux-pwm@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+CC:     Thierry Reding <thierry.reding@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Lucas Tanure <tanure@linux.com>
-References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
- <20230626-viewless-marrow-17838c2172f6@wendy>
- <676db602-54d8-d6b0-274f-365e65a2102c@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <676db602-54d8-d6b0-274f-365e65a2102c@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Hal Feng <hal.feng@starfivetech.com>
+References: <20230601085154.36938-1-william.qiu@starfivetech.com>
+Content-Language: en-US
+From:   William Qiu <william.qiu@starfivetech.com>
+In-Reply-To: <20230601085154.36938-1-william.qiu@starfivetech.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [171.223.208.138]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 08:13, Xianwei Zhao wrote:
-> Hi Conor,
->      Thanks for you reply.
-> On 2023/6/26 18:02, Conor Dooley wrote:
+
+
+On 2023/6/1 16:51, William Qiu wrote:
+> Hi,
 > 
+> This patchset adds initial rudimentary support for the StarFive
+> Pulse Width Modulation controller driver. And this driver will
+> be used in StarFive's VisionFive 2 board.The first patch add
+> Documentations for the device and Patch 2 adds device probe for
+> the module.
 > 
->  > [ EXTERNAL EMAIL ]
->  >
->  > Hey,
->  >
->  > On Mon, Jun 26, 2023 at 05:52:21PM +0800, Xianwei Zhao wrote:
->  >> T7 is an advanced application processor designed for smart display.
->  >>
->  >> Add the new T7 SoC/board device tree bindings.
->  >>
->  >> Add basic support for the T7 based Amlogic AN400 board, which describes
->  >> the following components: CPU, GIC, IRQ, Timer, UART. It's capable of
->  >> booting up into the serial console.
->  >
->  > Lucas has already sent patches for the T7 SoC & is at v5:
->  > https://lore.kernel.org/linux-devicetree/20230623081242.109131-1-tanure@linux.com/
->  >
->  > There's been a bit of discussion there, and there serial stuff in
->  > particular is different in his series (it doesn't use always-on for
->  > examples).
->  > Could you please go and take a look at his series?
->  >
->  > Cheers,
->  > Conor.
->  >
-> AN400 is the reference board designed by Amlogic, which is different from Khadas VIM4.
-
-Please coordinate with Lucas so a single bindings & dtsi patches are submitted,
-in any case only a single one will be reviewed and merged.
-You can rebase your AN400 dts on top of his VIM4 initial patchset.
-
-Thanks,
-Neil
-
-> And T7 serial is the same as S4, so I follow S4 serial.
+> Changes v2->v3:
+> - Rebased to v6.4rc3.
+> - Sorted the header files in alphabetic order.
+> - Changed iowrite32() to writel().
+> - Added a way to turn off.
+> - Moified polarity inversion implementation.
+> - Added 7100 support.
+> - Added dts patches.
+> - Used the various helpers in linux/math.h.
+> - Corrected formatting problems.
+> - Renamed dtbinding  to 'starfive,jh7100-pwm.yaml'.
+> - Dropped the redundant code.
 > 
->  >>
->  >> Xianwei Zhao (2):
->  >>    dt-bindings: arm: amlogic: add T7 based AN400 bindings
->  >>    arm64: dts: add support for T7 based Amlogic AN400
->  >>
->  >>   .../devicetree/bindings/arm/amlogic.yaml      |   6 +
->  >>   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
->  >>   .../dts/amlogic/amlogic-t7-a311d2-an400.dts   |  30 ++++
->  >>   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 156 ++++++++++++++++++
->  >>   4 files changed, 193 insertions(+)
->  >> create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
->  >> create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
->  >>
->  >>
->  >> base-commit: 057889cb4244096ea5abcbe76ffd4d311c3078fe
->  >> --
->  >> 2.37.1
->  >>
->  >>
->  >> _______________________________________________
->  >> linux-amlogic mailing list
->  >> linux-amlogic@lists.infradead.org
->  >> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> Changes v2->v3:
+> - Fixed some formatting issues.
+> 
+> Changes v1->v2:
+> - Renamed the dt-binding 'pwm-starfive.yaml' to 'starfive,jh7110-pwm.yaml'.
+> - Dropped the compatible's Items.
+> - Dropped the unuse defines.
+> - Modified the code to follow the Linux coding style.
+> - Changed return value to dev_err_probe.
+> - Dropped the unnecessary local variable.
+> 
+> The patch series is based on v6.4rc3.
+> 
+> William Qiu (4):
+>   dt-bindings: pwm: Add StarFive PWM module
+>   pwm: starfive: Add PWM driver support
+>   riscv: dts: starfive: jh7110: Add PWM node and pins configuration
+>   riscv: dts: starfive: jh7100: Add PWM node and pins configuration
+> 
+>  .../bindings/pwm/starfive,jh7100-pwm.yaml     |  55 +++++
+>  MAINTAINERS                                   |   7 +
+>  .../boot/dts/starfive/jh7100-common.dtsi      |  24 +++
+>  arch/riscv/boot/dts/starfive/jh7100.dtsi      |   9 +
+>  .../jh7110-starfive-visionfive-2.dtsi         |  22 ++
+>  arch/riscv/boot/dts/starfive/jh7110.dtsi      |   9 +
+>  drivers/pwm/Kconfig                           |   9 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-starfive-ptc.c                | 192 ++++++++++++++++++
+>  9 files changed, 328 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/starfive,jh7100-pwm.yaml
+>  create mode 100644 drivers/pwm/pwm-starfive-ptc.c
+> 
+> --
+> 2.34.1
+> 
+Hi everyone,
 
+Could you please help me review this patch series to see if there is
+anything that needs to be modified?
+Thanks for taking time to review this patch series.
+
+Best Regards,
+William
