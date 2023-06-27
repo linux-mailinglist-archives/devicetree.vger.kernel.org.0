@@ -2,103 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEAC973F078
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 03:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C66B773F0AF
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 03:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230052AbjF0BYq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 26 Jun 2023 21:24:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38120 "EHLO
+        id S229623AbjF0B51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 26 Jun 2023 21:57:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230217AbjF0BYl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 21:24:41 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81DEA199A
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:37 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4f865f0e16cso5310563e87.3
-        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:24:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687829075; x=1690421075;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ENG5Jv6a0TW5PGfcHPFllkQgFWY/YRggXXI6rGy0UPs=;
-        b=jVkGZ2YjhSyV7QNuk1HqyZoPcvydkSpmcx0RDnxS/QeQ/MD5OOWBDtEMhMa9xuShtM
-         m3mNSyWJFbhE8HrCyzg0HirPkVMx12S/HtCAmu2/1Z011v3YR9ymzaCcTxK7NgvNLn4J
-         sf8DjmsTlCdArDpPVA6PqUjOasCMlLu5CjtwXJPVJvXCREYfshlOXdmQOYLdxHQsOyMp
-         c/x05qvapG0+P61CFvaKBI9IwDXT36H6fXOww7upC129usx6+6Xjqe3fHBkddmCoR8U5
-         c1xhV/FN+8UtLTnqUMHM2PI1f+MoWDRbO4cpqqNA/O+NH3ULKH7iS9OuU0O0cZJNSBVh
-         Hrag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687829075; x=1690421075;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ENG5Jv6a0TW5PGfcHPFllkQgFWY/YRggXXI6rGy0UPs=;
-        b=FtuPCDN9Onhx9dqRm6ye0YwPZWlaIlV0DX8o1j1yjuhmHdHKFtEChGvc2BVBqqf8m/
-         pH3RwMj5VPgKCBQSWRppgxp4M5HkwJhsf1En4Twms7/1HAMTfYsPMwfLsDV98V+ziBzJ
-         9ZES43As0mTn+FxKqVrBidAt0vQ6z5+Lr3jBC1LzvVSzaO69baCh9OtmFHXPREr3S/3H
-         lsBJDYPXbF7krxvXWOqbENSvD7qNBmHoeGLRElO29BY+hxftA0qSxcpEWgNO6Q5s2k2Y
-         oQFtXhul/x823wkQUGCi4RJrv1sdF7X20htamgGQrGB25Q7hsnrq1KCtwy1NtKfnV3/d
-         2OtQ==
-X-Gm-Message-State: AC+VfDysUFo6KET3qknuC752yaS8fUHiyoFDbck9kkl98abxTkIVaZ6l
-        DwXX+qrazZmCE9ueIrFWtFeiww==
-X-Google-Smtp-Source: ACHHUZ6gNONfmZPb6aBMZHeBZ1VQiZSVo5SGugvi/hKPfT+DS7i2utlykBMbW43mxeTzqERRXx5c1A==
-X-Received: by 2002:a19:4351:0:b0:4f8:5c90:f8a4 with SMTP id m17-20020a194351000000b004f85c90f8a4mr14589751lfj.33.1687829075655;
-        Mon, 26 Jun 2023 18:24:35 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id z7-20020ac24187000000b004cc9042c9cfsm1331301lfh.158.2023.06.26.18.24.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 26 Jun 2023 18:24:35 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229605AbjF0B50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 26 Jun 2023 21:57:26 -0400
+X-Greylist: delayed 62 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 26 Jun 2023 18:57:23 PDT
+Received: from mta-64-225.siemens.flowmailer.net (mta-64-225.siemens.flowmailer.net [185.136.64.225])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B747D1715
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 18:57:23 -0700 (PDT)
+Received: by mta-64-225.siemens.flowmailer.net with ESMTPSA id 20230627015618b48e32370e2ff15416
+        for <devicetree@vger.kernel.org>;
+        Tue, 27 Jun 2023 03:56:18 +0200
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; s=fm1;
+ d=siemens.com; i=felix.moessbauer@siemens.com;
+ h=Date:From:Subject:To:Message-ID:MIME-Version:Content-Type:Content-Transfer-Encoding:Cc:References:In-Reply-To;
+ bh=Kd9AXUdMdBnyR4stAIi1JYhDUVh2/vdM8utOmyH4SdA=;
+ b=LTrMgSzLJbU/X3xf9PxdB2k4HvbK3Mvvp/Gb8glyIQCpub31hm/RSJqNmclk2gAw38pUEV
+ oq0fszGM2mMhwes1glajH7zahmiSISLHKqLyhZ0Tao8i30+hXj+7vH75iGm9B37StZaWKhmz
+ 2lHUFVThXo0tZWw7XV8I/sXW3cK38=;
+Message-ID: <96522dbb16dc3cecac9c20e32d58e5ea0ddf0f2c.camel@siemens.com>
+Subject: Re: [PATCH RESEND 0/2] arm/arm64: dts: Enable device-tree overlay
+ support for RPi devices
+From:   Moessbauer Felix <felix.moessbauer@siemens.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Aurelien Jarno <aurelien@aurel32.net>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Krzysztof Kozlowski <krzk+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 15/15] ARM: dts: qcom: msm8960: drop useless rpm regulators node
-Date:   Tue, 27 Jun 2023 04:24:22 +0300
-Message-Id: <20230627012422.206077-16-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230627012422.206077-1-dmitry.baryshkov@linaro.org>
-References: <20230627012422.206077-1-dmitry.baryshkov@linaro.org>
+        bcm-kernel-feedback-list@broadcom.com
+Cc:     Stefan Wahren <stefan.wahren@i2se.com>,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, Phil Elwell <phil@raspberrypi.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org, soc@kernel.org,
+        quirin.gylstorff@siemens.com, manuel.matzinger@siemens.com
+Date:   Tue, 27 Jun 2023 09:56:09 +0800
+In-Reply-To: <2cfbf1a0-2cef-057d-dce4-13ee50c626d7@gmail.com>
+References: <20220427233607.1225419-1-aurelien@aurel32.net>
+         <2cfbf1a0-2cef-057d-dce4-13ee50c626d7@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Flowmailer-Platform: Siemens
+Feedback-ID: 519:519-72506:519-21489:flowmailer
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The set of regulators available over the RPM requests is not a property
-of the SoC. The only msm8960 board file (qcom-msm8960-cdp) also defines
-this node together with the compatible string. Drop the useless device
-node.
+On Wed, 2022-05-18 at 12:52 -0700, Florian Fainelli wrote:
+>=20
+>=20
+> On 4/27/2022 4:36 PM, Aurelien Jarno wrote:
+> > This patchset changes the generation of the Raspberry Pi devices
+> > DTB
+> > files to improve the support for out-of-tree device-tree overlays,
+> > like
+> > it has recently been done for the Nvidia SoCs.
+> >=20
+> > I personally only need that for arm64, but I have added a similar
+> > patch
+> > to do the same on arm.
+>=20
+> This looks good to me, Rob, does that approach work for you?
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 4 ----
- 1 file changed, 4 deletions(-)
+Since May 2023 this patch is integrated into the Debian kernel build
+[1]. However it would be better if we could integrate it into the
+kernel directly. Is there anything blocking? For me, the patch looks
+fine. Similar patches for Nvidia boards also already got integrated
+[2].
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index 8157236f249d..b25cd58003e2 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -200,10 +200,6 @@ rpm: rpm@108000 {
- 				     <GIC_SPI 21 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 22 IRQ_TYPE_EDGE_RISING>;
- 			interrupt-names = "ack", "err", "wakeup";
--
--			regulators {
--				compatible = "qcom,rpm-pm8921-regulators";
--			};
- 		};
- 
- 		acc0: clock-controller@2088000 {
--- 
-2.39.2
+If there is no general objection against enabling the overlays, I plan
+to send patches for the sun8i-h3 arm boards as well.
 
+Best regards,
+Felix Moessbauer
+Siemens AG
+
+[1]
+https://salsa.debian.org/kernel-team/linux/-/commit/fae42149fd0a37c68a496ef=
+bbb11f1dac484a163
+[2]
+https://lore.kernel.org/all/20220203184327.65878-1-jonathanh@nvidia.com/T/
