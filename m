@@ -2,396 +2,717 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF0173F4A8
-	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B781073F4D7
+	for <lists+devicetree@lfdr.de>; Tue, 27 Jun 2023 08:52:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230497AbjF0GkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 02:40:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40298 "EHLO
+        id S230164AbjF0Gwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 02:52:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46864 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230429AbjF0GkF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:40:05 -0400
-Received: from mailgw01.mediatek.com (unknown [60.244.123.138])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA88C9F;
-        Mon, 26 Jun 2023 23:40:03 -0700 (PDT)
-X-UUID: 6f1f998214b511ee9cb5633481061a41-20230627
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=y9gb5DsL6ohZIhywiXBpwMFfpSz0sqd/ntC7ZEhIAgo=;
-        b=RtViVNPHRkCkosInKmtYsQ1YI3AlgG9aa7bTOo3lEeoVeWLne0K8ZSLmqSNjavL4tldO4jNdFw5c8agM0j1kD+Scn6tipdWRNpWwlOZ3qvIMTnVXMrRFvGTEih3BOPOlfqcPW3RYGxuBbACQO/g3PMkJmeBpWBEPfMMQ0ovTjCQ=;
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.1.27,REQID:35fc352e-24b8-41df-98e5-34f1e321f47a,IP:0,U
-        RL:0,TC:0,Content:-25,EDM:-30,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACT
-        ION:release,TS:-55
-X-CID-META: VersionHash:01c9525,CLOUDID:f65b5b82-5a99-42ae-a2dd-e4afb731b474,B
-        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:2,IP:nil,UR
-        L:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO
-X-CID-BVR: 0
-X-CID-BAS: 0,_,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR
-X-UUID: 6f1f998214b511ee9cb5633481061a41-20230627
-Received: from mtkmbs10n2.mediatek.inc [(172.21.101.183)] by mailgw01.mediatek.com
-        (envelope-from <shawn.sung@mediatek.com>)
-        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
-        with ESMTP id 100108060; Tue, 27 Jun 2023 14:39:58 +0800
-Received: from mtkmbs13n1.mediatek.inc (172.21.101.193) by
- MTKMBS14N2.mediatek.inc (172.21.101.76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.26; Tue, 27 Jun 2023 14:39:56 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
- mtkmbs13n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
- 15.2.1118.26 via Frontend Transport; Tue, 27 Jun 2023 14:39:56 +0800
-From:   Hsiao Chien Sung <shawn.sung@mediatek.com>
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <Project_Global_Chrome_Upstream_Group@mediatek.com>,
-        Singo Chang <singo.chang@mediatek.com>,
-        Nancy Lin <nancy.lin@mediatek.com>,
-        Jason-JH Lin <jason-jh.lin@mediatek.com>,
-        Shawn Sung <shawn.sung@mediatek.com>
-Subject: [PATCH v5 14/14] drm/mediatek: Support MT8188 Padding in display driver
-Date:   Tue, 27 Jun 2023 14:39:46 +0800
-Message-ID: <20230627063946.14935-15-shawn.sung@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20230627063946.14935-1-shawn.sung@mediatek.com>
-References: <20230627063946.14935-1-shawn.sung@mediatek.com>
+        with ESMTP id S230093AbjF0Gw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 02:52:29 -0400
+Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A65E1FCD
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:52:19 -0700 (PDT)
+Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-bd77424c886so4458757276.0
+        for <devicetree@vger.kernel.org>; Mon, 26 Jun 2023 23:52:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1687848738; x=1690440738;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=+Kc3zhOKZd/UjF/KeOsXx3lQ0wMmK16Rpt4hqELTARQ=;
+        b=fk29Wt8e21i5Jb717SvKW8rsc0fMbI7Ui1WhkB+XFkow/Yd+D+z/mm9ohxqvB2VFMa
+         C8fKQ/mmRrmVmhxMbWGa9S99qGfBiwwXHeFWiJx7OBij+c275IL3XNIEv8XEyUPLHIwJ
+         MUtkk2NXED/8mZ7SaSn3XJkOFWqToe7rohzJ8c66gF4ZjAF6u2LQudZ0CN+oFqQT5eTT
+         RVPgbioexilywj6m+aCZQZcY5EmJPQFiNfXf+UcrKQN7Q4uVfDq1MsbgGySfgIbqNx2a
+         pkqDQkAVGkdBtxIYQ1Zr3u7tJjKo7VBKIjGuegEjnXw3HDWeI1NuMGzi+mEUnc2fq5AO
+         naYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687848738; x=1690440738;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+Kc3zhOKZd/UjF/KeOsXx3lQ0wMmK16Rpt4hqELTARQ=;
+        b=J2HRj89+eHx+dNMNMW/bfvZQ1KlTzwmEvgWZcXuO08qXeMIQJx/+oYgMJ2pUVST1Kt
+         brEH+xU2VmcXzHLPSShMxbSzCLrwYkcM/zIiHV3h0RUwpdDwXMsBFfuou8kPc47Bma05
+         3MlSGI6xViZplaO/iVozfzs8CONbeLGXkP+F0XttfYqNIVU6iCCqZMWXJWoU/zcFpIh5
+         UtoFUrmjLmZ4VBdbWIc2mrJabWI7b6/SjvGFMYFZv6oI520kgKqCTuPz2YbSp91bbUr+
+         6beisdCs+46orIjwh90S4XFuDtnhY7MJOFLUdqNj3UsbhDtWaJeNHucpMXaJhh0//Nv2
+         asPA==
+X-Gm-Message-State: AC+VfDzz7n8BU+yg/Y/IAibAx7WSy3vTjPLCzA/XgDOP4nTXVGP7MKDy
+        GshRPfrJzxPgksqZk0aZsebViXpKIqfdbefFmaUWaA==
+X-Google-Smtp-Source: ACHHUZ4X68+UT9pZjTqhq6kfHxaYXaPa5xnPgNVZwM3xd1Au7tnC5zTjjJ321aSiWw0nDk70iVNlvknHnQKuOTF1gEg=
+X-Received: by 2002:a25:2543:0:b0:c13:14b0:d2b7 with SMTP id
+ l64-20020a252543000000b00c1314b0d2b7mr9590769ybl.0.1687848737994; Mon, 26 Jun
+ 2023 23:52:17 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <CAK9=C2UesoUCeb8k0DSCHi7Zr+B5U26KQ9oCs9map3a2zzYqAw@mail.gmail.com>
+ <mhng-5b997e5c-757d-4fe3-9da2-183a4b93a873@palmer-ri-x1c9>
+In-Reply-To: <mhng-5b997e5c-757d-4fe3-9da2-183a4b93a873@palmer-ri-x1c9>
+From:   Anup Patel <apatel@ventanamicro.com>
+Date:   Tue, 27 Jun 2023 12:22:06 +0530
+Message-ID: <CAK9=C2U4BkJKH36r7C7TocEpDjqMJwrmpSL_cyWCveohQ+j_zg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
+To:     Palmer Dabbelt <palmer@rivosinc.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        ajones@ventanamicro.com, atishp@atishpatra.org, jrtc27@jrtc27.com,
+        rick@andestech.com, ycliang@andestech.com,
+        oleksii.kurochko@gmail.com, linux-riscv@lists.infradead.org,
+        qemu-riscv@nongnu.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Padding is a new display module on MT8188, it provides ability
-to add pixels to width and height of a layer with specified colors.
+On Tue, Jun 27, 2023 at 1:23=E2=80=AFAM Palmer Dabbelt <palmer@rivosinc.com=
+> wrote:
+>
+> On Mon, 26 Jun 2023 10:38:43 PDT (-0700), apatel@ventanamicro.com wrote:
+> > On Mon, Jun 26, 2023 at 3:42=E2=80=AFPM Conor Dooley <conor.dooley@micr=
+ochip.com> wrote:
+> >>
+> >> intro
+> >> =3D=3D=3D=3D=3D
+> >>
+> >> When the RISC-V dt-bindings were accepted upstream in Linux, the base
+> >> ISA etc had yet to be ratified. By the ratification of the base ISA,
+> >> incompatible changes had snuck into the specifications - for example t=
+he
+> >> Zicsr and Zifencei extensions were spun out of the base ISA.
+> >>
+> >> Fast forward to today, and the reason for this patch.
+> >> Currently the riscv,isa dt property permits only a specific subset of
+> >> the ISA string - in particular it excludes version numbering.
+> >> With the current constraints, it is not possible to discern whether
+> >> "rv64i" means that the hart supports the fence.i instruction, for
+> >> example.
+> >> Future systems may choose to implement their own instruction fencing,
+> >> perhaps using a vendor extension, or they may not implement the option=
+al
+> >> counter extensions. Software needs a way to determine this.
+> >>
+> >> versioning schemes
+> >> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>
+> >> "Use the extension versions that are described in the ISA manual" you
+> >> may say, and it's not like this has not been considered.
+> >> Firstly, software that parses the riscv,isa property at runtime will
+> >> need to contain a lookup table of some sort that maps arbitrary versio=
+ns
+> >> to versions it understands. There is not a consistent application of
+> >> version number applied to extensions, with a higgledy-piggledy
+> >> collection of tags, "bare" and versioned documents awaiting the reader
+> >> on the "recently ratified extensions" page:
+> >> https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions
+> >>
+> >>         As an aside, and this is reflected in the patch too, since man=
+y
+> >>         extensions have yet to appear in a release of the ISA specs,
+> >>         they are defined by commits in their respective "working draft=
+"
+> >>         repositories.
+> >>
+> >> Secondly, there is an issue of backwards compatibility, whereby allowi=
+ng
+> >> numbers in the ISA string, some parsers may be broken. This would
+> >> require an additional property to be created to even use the versions =
+in
+> >> this manner.
+> >>
+> >> ~boolean properties~ string array property
+> >> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>
+> >> If a new property is needed, the whole approach may as well be looked =
+at
+> >> from the bottom up. A string with limited character choices etc is
+> >> hardly the best approach for communicating extension information to
+> >> software.
+> >>
+> >> Switching to using properties that are defined on a per extension basi=
+s,
+> >> allows us to define explicit meanings for the DT representation of eac=
+h
+> >> extension - rather than the current situation where different operatin=
+g
+> >> systems or other bits of software may impart different meanings to
+> >> characters in the string.
+> >> Clearly the best source of meanings is the specifications themselves,
+> >> this just provides us the ability to choose at what point in time the
+> >> meaning is set. If an extension changes incompatibility in the future,
+> >> a new property will be required.
+> >>
+> >> Off-list, some of the RVI folks have committed to shoring up the wordi=
+ng
+> >> in either the ISA specifications, the riscv-isa-manual or
+> >> so that in the future, modifications to and additions or removals of
+> >> features will require a new extension. Codifying that assertion
+> >> somewhere would make it quite unlikely that compatibility would be
+> >> broken, but we have the tools required to deal with it, if & when it
+> >> crops up.
+> >> It is in our collective interest, as consumers of extension meanings, =
+to
+> >> define a scheme that enforces compatibility.
+> >>
+> >> The use of individual properties, rather than elements in a single
+> >> string, will also permit validation that the properties have a meaning=
+,
+> >> as well as potentially reject mutually exclusive combinations, or
+> >> enforce dependencies between extensions. That would not have be possib=
+le
+> >> with the current dt-schema infrastructure for arbitrary strings, as we
+> >> would need to add a riscv,isa parser to dt-validate!
+> >> That's not implemented in this patch, but rather left as future work (=
+for
+> >> the brave, or the foolish).
+> >>
+> >> acpi
+> >> =3D=3D=3D=3D
+> >>
+> >> The current ACPI ECR is based on having a single ISA string unfortunat=
+ely,
+> >> but ideally ACPI will move to another method, perhaps GUIDs, that give
+> >> explicit meaning to extensions.
+> >
+> > Drop this paragraph on ACPI.
+> >
+> > We clearly mentioned previously that ACPI will follow specs defined by =
+RVI.
+> > There are scalability issues in using GUIDs for each ISA extension.
+>
+> Which spec are we following for the ACPI ISA string?
 
-Due to hardware design, Mixer in VDOSYS1 requires width of a layer
-to be 2-pixel-align, or 4-pixel-align when ETHDR is enabled,
-we need Padding to deal with odd width.
+ACPI RHCT follows the "ISA Extension Naming Conventions"
+defined by the RISC-V unpriv spec. I understand that there are
+unresolved issues in the "ISA Extension Naming Conventions"
+which should be addressed by RVI and we should also try our
+best to have this fixed in the spec.
 
-Please notice that even if the Padding is in bypass mode,
-settings in register must be cleared to 0,
-or undefined behaviors could happen.
+In any case, ACPI spec is owned by UEFI forum so it does
+not make sense to define/recommend anything for ACPI in
+DT bindings.
 
-Signed-off-by: Hsiao Chien Sung <shawn.sung@mediatek.com>
----
- drivers/gpu/drm/mediatek/Makefile             |   3 +-
- drivers/gpu/drm/mediatek/mtk_disp_drv.h       |   3 +
- .../gpu/drm/mediatek/mtk_disp_ovl_adaptor.c   |  33 +++++
- drivers/gpu/drm/mediatek/mtk_drm_drv.c        |   1 +
- drivers/gpu/drm/mediatek/mtk_drm_drv.h        |   2 +-
- drivers/gpu/drm/mediatek/mtk_padding.c        | 136 ++++++++++++++++++
- 6 files changed, 176 insertions(+), 2 deletions(-)
- create mode 100644 drivers/gpu/drm/mediatek/mtk_padding.c
+Regards,
+Anup
 
-diff --git a/drivers/gpu/drm/mediatek/Makefile b/drivers/gpu/drm/mediatek/Makefile
-index d4d193f60271..5e4436403b8d 100644
---- a/drivers/gpu/drm/mediatek/Makefile
-+++ b/drivers/gpu/drm/mediatek/Makefile
-@@ -16,7 +16,8 @@ mediatek-drm-y := mtk_disp_aal.o \
- 		  mtk_dsi.o \
- 		  mtk_dpi.o \
- 		  mtk_ethdr.o \
--		  mtk_mdp_rdma.o
-+		  mtk_mdp_rdma.o \
-+		  mtk_padding.o
- 
- obj-$(CONFIG_DRM_MEDIATEK) += mediatek-drm.o
- 
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_drv.h b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-index 2254038519e1..f9fdb1268aa5 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_drv.h
-@@ -157,4 +157,7 @@ void mtk_mdp_rdma_config(struct device *dev, struct mtk_mdp_rdma_cfg *cfg,
- const u32 *mtk_mdp_rdma_get_formats(struct device *dev);
- size_t mtk_mdp_rdma_get_num_formats(struct device *dev);
- 
-+int mtk_padding_clk_enable(struct device *dev);
-+void mtk_padding_clk_disable(struct device *dev);
-+void mtk_padding_config(struct device *dev, struct cmdq_pkt *cmdq_pkt);
- #endif
-diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-index f73a558dcf93..ca8f3febbf11 100644
---- a/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-+++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl_adaptor.c
-@@ -29,6 +29,7 @@ enum mtk_ovl_adaptor_comp_type {
- 	OVL_ADAPTOR_TYPE_ETHDR,
- 	OVL_ADAPTOR_TYPE_MDP_RDMA,
- 	OVL_ADAPTOR_TYPE_MERGE,
-+	OVL_ADAPTOR_TYPE_PADDING,
- 	OVL_ADAPTOR_TYPE_NUM,
- };
- 
-@@ -46,6 +47,14 @@ enum mtk_ovl_adaptor_comp_id {
- 	OVL_ADAPTOR_MERGE1,
- 	OVL_ADAPTOR_MERGE2,
- 	OVL_ADAPTOR_MERGE3,
-+	OVL_ADAPTOR_PADDING0,
-+	OVL_ADAPTOR_PADDING1,
-+	OVL_ADAPTOR_PADDING2,
-+	OVL_ADAPTOR_PADDING3,
-+	OVL_ADAPTOR_PADDING4,
-+	OVL_ADAPTOR_PADDING5,
-+	OVL_ADAPTOR_PADDING6,
-+	OVL_ADAPTOR_PADDING7,
- 	OVL_ADAPTOR_ID_MAX
- };
- 
-@@ -66,6 +75,7 @@ static const char * const private_comp_stem[OVL_ADAPTOR_TYPE_NUM] = {
- 	[OVL_ADAPTOR_TYPE_ETHDR]	= "ethdr",
- 	[OVL_ADAPTOR_TYPE_MDP_RDMA]	= "vdo1-rdma",
- 	[OVL_ADAPTOR_TYPE_MERGE]	= "merge",
-+	[OVL_ADAPTOR_TYPE_PADDING]	= "padding",
- };
- 
- static const struct mtk_ddp_comp_funcs _ethdr = {
-@@ -78,6 +88,11 @@ static const struct mtk_ddp_comp_funcs _merge = {
- 	.clk_disable = mtk_merge_clk_disable,
- };
- 
-+static const struct mtk_ddp_comp_funcs _padding = {
-+	.clk_enable = mtk_padding_clk_enable,
-+	.clk_disable = mtk_padding_clk_disable,
-+};
-+
- static const struct mtk_ddp_comp_funcs _rdma = {
- 	.clk_enable = mtk_mdp_rdma_clk_enable,
- 	.clk_disable = mtk_mdp_rdma_clk_disable,
-@@ -97,6 +112,14 @@ static const struct ovl_adaptor_comp_match comp_matches[OVL_ADAPTOR_ID_MAX] = {
- 	[OVL_ADAPTOR_MERGE1] = { OVL_ADAPTOR_TYPE_MERGE, DDP_COMPONENT_MERGE2, 2, &_merge },
- 	[OVL_ADAPTOR_MERGE2] = { OVL_ADAPTOR_TYPE_MERGE, DDP_COMPONENT_MERGE3, 3, &_merge },
- 	[OVL_ADAPTOR_MERGE3] = { OVL_ADAPTOR_TYPE_MERGE, DDP_COMPONENT_MERGE4, 4, &_merge },
-+	[OVL_ADAPTOR_PADDING0] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING0, 0, &_padding },
-+	[OVL_ADAPTOR_PADDING1] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING1, 1, &_padding },
-+	[OVL_ADAPTOR_PADDING2] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING2, 2, &_padding },
-+	[OVL_ADAPTOR_PADDING3] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING3, 3, &_padding },
-+	[OVL_ADAPTOR_PADDING4] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING4, 4, &_padding },
-+	[OVL_ADAPTOR_PADDING5] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING5, 5, &_padding },
-+	[OVL_ADAPTOR_PADDING6] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING6, 6, &_padding },
-+	[OVL_ADAPTOR_PADDING7] = { OVL_ADAPTOR_TYPE_PADDING, DDP_COMPONENT_PADDING7, 7, &_padding },
- };
- 
- void mtk_ovl_adaptor_layer_config(struct device *dev, unsigned int idx,
-@@ -108,6 +131,8 @@ void mtk_ovl_adaptor_layer_config(struct device *dev, unsigned int idx,
- 	struct mtk_mdp_rdma_cfg rdma_config = {0};
- 	struct device *ethdr;
- 	struct device *merge;
-+	struct device *padding_l;
-+	struct device *padding_r;
- 	struct device *rdma_l;
- 	struct device *rdma_r;
- 	const struct drm_format_info *fmt_info = drm_format_info(pending->format);
-@@ -124,6 +149,8 @@ void mtk_ovl_adaptor_layer_config(struct device *dev, unsigned int idx,
- 
- 	ethdr = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_ETHDR0];
- 	merge = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_MERGE0 + idx];
-+	padding_l = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_PADDING0 + 2 * idx];
-+	padding_r = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_PADDING0 + 2 * idx + 1];
- 	rdma_l = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_MDP_RDMA0 + 2 * idx];
- 	rdma_r = ovl_adaptor->ovl_adaptor_comp[OVL_ADAPTOR_MDP_RDMA0 + 2 * idx + 1];
- 
-@@ -159,10 +186,15 @@ void mtk_ovl_adaptor_layer_config(struct device *dev, unsigned int idx,
- 	rdma_config.color_encoding = pending->color_encoding;
- 	mtk_mdp_rdma_config(rdma_l, &rdma_config, cmdq_pkt);
- 
-+	if (padding_l)
-+		mtk_padding_config(padding_l, cmdq_pkt);
-+
- 	if (use_dual_pipe) {
- 		rdma_config.x_left = l_w;
- 		rdma_config.width = r_w;
- 		mtk_mdp_rdma_config(rdma_r, &rdma_config, cmdq_pkt);
-+		if (padding_r)
-+			mtk_padding_config(padding_r, cmdq_pkt);
- 	}
- 
- 	mtk_merge_start_cmdq(merge, cmdq_pkt);
-@@ -353,6 +385,7 @@ static int ovl_adaptor_comp_get_id(struct device *dev, struct device_node *node,
- }
- 
- static const struct of_device_id mtk_ovl_adaptor_comp_dt_ids[] = {
-+	{ .compatible = "mediatek,mt8188-padding", .data = (void *)OVL_ADAPTOR_TYPE_PADDING },
- 	{ .compatible = "mediatek,mt8195-disp-ethdr", .data = (void *)OVL_ADAPTOR_TYPE_ETHDR },
- 	{ .compatible = "mediatek,mt8195-disp-merge", .data = (void *)OVL_ADAPTOR_TYPE_MERGE },
- 	{ .compatible = "mediatek,mt8195-vdo1-rdma", .data = (void *)OVL_ADAPTOR_TYPE_MDP_RDMA },
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.c b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-index 613093068bb4..ed5b5b8d6c2e 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.c
-@@ -977,6 +977,7 @@ static struct platform_driver * const mtk_drm_drivers[] = {
- 	&mtk_dsi_driver,
- 	&mtk_ethdr_driver,
- 	&mtk_mdp_rdma_driver,
-+	&mtk_padding_driver,
- };
- 
- static int __init mtk_drm_init(void)
-diff --git a/drivers/gpu/drm/mediatek/mtk_drm_drv.h b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-index eb2fd45941f0..562f2db47add 100644
---- a/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-+++ b/drivers/gpu/drm/mediatek/mtk_drm_drv.h
-@@ -64,5 +64,5 @@ extern struct platform_driver mtk_dpi_driver;
- extern struct platform_driver mtk_dsi_driver;
- extern struct platform_driver mtk_ethdr_driver;
- extern struct platform_driver mtk_mdp_rdma_driver;
--
-+extern struct platform_driver mtk_padding_driver;
- #endif /* MTK_DRM_DRV_H */
-diff --git a/drivers/gpu/drm/mediatek/mtk_padding.c b/drivers/gpu/drm/mediatek/mtk_padding.c
-new file mode 100644
-index 000000000000..bbb9c5e286ce
---- /dev/null
-+++ b/drivers/gpu/drm/mediatek/mtk_padding.c
-@@ -0,0 +1,136 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2023 MediaTek Inc.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/component.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/soc/mediatek/mtk-cmdq.h>
-+
-+#include "mtk_disp_drv.h"
-+#include "mtk_drm_crtc.h"
-+#include "mtk_drm_ddp_comp.h"
-+
-+/**
-+ * struct mtk_padding - basic information of Padding
-+ * @clk: Clock of the module
-+ * @regs: Virtual address of the Padding for CPU to access
-+ * @cmdq_reg: CMDQ setting of the Padding
-+ *
-+ * Every Padding should have different clock source, register base, and
-+ * CMDQ settings, we stored these differences all together.
-+ */
-+struct mtk_padding {
-+	struct clk		*clk;
-+	void __iomem		*regs;
-+	struct cmdq_client_reg	cmdq_reg;
-+};
-+
-+int mtk_padding_clk_enable(struct device *dev)
-+{
-+	struct mtk_padding *padding = dev_get_drvdata(dev);
-+
-+	return clk_prepare_enable(padding->clk);
-+}
-+
-+void mtk_padding_clk_disable(struct device *dev)
-+{
-+	struct mtk_padding *padding = dev_get_drvdata(dev);
-+
-+	clk_disable_unprepare(padding->clk);
-+}
-+
-+void mtk_padding_config(struct device *dev, struct cmdq_pkt *cmdq_pkt)
-+{
-+	struct mtk_padding *padding = dev_get_drvdata(dev);
-+
-+	/* bypass padding */
-+	mtk_ddp_write_mask(cmdq_pkt, GENMASK(1, 0), &padding->cmdq_reg, padding->regs, 0,
-+			   GENMASK(1, 0));
-+}
-+
-+static int mtk_padding_bind(struct device *dev, struct device *master, void *data)
-+{
-+	return 0;
-+}
-+
-+static void mtk_padding_unbind(struct device *dev, struct device *master, void *data)
-+{
-+}
-+
-+static const struct component_ops mtk_padding_component_ops = {
-+	.bind	= mtk_padding_bind,
-+	.unbind = mtk_padding_unbind,
-+};
-+
-+static int mtk_padding_probe(struct platform_device *pdev)
-+{
-+	struct device *dev = &pdev->dev;
-+	struct mtk_padding *priv;
-+	struct resource *res;
-+	int ret;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(priv->clk)) {
-+		dev_err(dev, "failed to get clk\n");
-+		return PTR_ERR(priv->clk);
-+	}
-+
-+	priv->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &res);
-+	if (IS_ERR(priv->regs)) {
-+		dev_err(dev, "failed to do ioremap\n");
-+		return PTR_ERR(priv->regs);
-+	}
-+
-+#if IS_REACHABLE(CONFIG_MTK_CMDQ)
-+	ret = cmdq_dev_get_client_reg(dev, &priv->cmdq_reg, 0);
-+	if (ret) {
-+		dev_err(dev, "failed to get gce client reg\n");
-+		return ret;
-+	}
-+#endif
-+
-+	platform_set_drvdata(pdev, priv);
-+
-+	ret = devm_pm_runtime_enable(dev);
-+	if (ret)
-+		return ret;
-+
-+	ret = component_add(dev, &mtk_padding_component_ops);
-+	if (ret) {
-+		pm_runtime_disable(dev);
-+		return dev_err_probe(dev, ret, "failed to add component\n");
-+	}
-+
-+	return 0;
-+}
-+
-+static int mtk_padding_remove(struct platform_device *pdev)
-+{
-+	component_del(&pdev->dev, &mtk_padding_component_ops);
-+	return 0;
-+}
-+
-+static const struct of_device_id mtk_padding_driver_dt_match[] = {
-+	{ .compatible = "mediatek,mt8188-padding" },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, mtk_padding_driver_dt_match);
-+
-+struct platform_driver mtk_padding_driver = {
-+	.probe		= mtk_padding_probe,
-+	.remove		= mtk_padding_remove,
-+	.driver		= {
-+		.name	= "mediatek-padding",
-+		.owner	= THIS_MODULE,
-+		.of_match_table = mtk_padding_driver_dt_match,
-+	},
-+};
--- 
-2.18.0
 
+
+>
+> > Regards,
+> > Anup
+> >
+> >>
+> >> parser simplicity
+> >> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>
+> >> Many systems that parse DT at runtime already implement an function th=
+at
+> >> can check for the presence of a string in an array of string, as it is
+> >> similar to the process for parsing a list of compatible strings, so a
+> >> bunch of new, custom, DT parsing should not be needed.
+> >> Getting rid of "riscv,isa" parsing would be a nice simplification, but
+> >> unfortunately for backwards compatibility with old dtbs, existing
+> >> parsers may not be removable - which may greatly simplify
+> >> dt parsing code. In Linux, for example, checking for whether a hart
+> >> supports an extension becomes as simple as:
+> >>         of_property_match_string(node, "riscv,isa-extensions", "zicbom=
+")
+> >>
+> >> vendor extensions
+> >> =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> >>
+> >> Compared to riscv,isa, this proposed scheme promotes vendor extensions=
+,
+> >> oft touted as the strength of RISC-V, to first-class citizens.
+> >> At present, extensions are defined as meaning what the RISC-V ISA
+> >> specifications say they do. There is no realistic way of using that
+> >> interface to provide cross-platform definitions for what vendor
+> >> extensions mean. Vendor extensions may also have even less consistency
+> >> than RVI do in terms of versioning, or no care about backwards
+> >> compatibility.
+> >> The new property allows us to assign explicit meanings on a per vendor
+> >> extension basis, backed up by a description of their meanings.
+> >>
+> >> fin
+> >> =3D=3D=3D
+> >>
+> >> Create a new file to store the extension meanings and a new
+> >> riscv,isa-base property to replace the aspect of riscv,isa that is
+> >> not represented by the new property - the base ISA implemented by a ha=
+rt.
+> >>
+> >> As a starting point, add properties for extensions currently used in
+> >> Linux.
+> >>
+> >> Finally, mark riscv,isa as deprecated, as removing support for it in
+> >> existing programs would be an ABI break.
+> >>
+> >> CC: Palmer Dabbelt <palmer@dabbelt.com>
+> >> CC: Paul Walmsley <paul.walmsley@sifive.com>
+> >> CC: Rob Herring <robh+dt@kernel.org>
+> >> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> >> CC: Alistair Francis <alistair.francis@wdc.com>
+> >> CC: Andrew Jones <ajones@ventanamicro.com>
+> >> CC: Anup Patel <apatel@ventanamicro.com>
+> >> CC: Atish Patra <atishp@atishpatra.org>
+> >> CC: Jessica Clarke <jrtc27@jrtc27.com>
+> >> CC: Rick Chen <rick@andestech.com>
+> >> CC: Leo <ycliang@andestech.com>
+> >> CC: Oleksii <oleksii.kurochko@gmail.com>
+> >> CC: linux-riscv@lists.infradead.org
+> >> CC: qemu-riscv@nongnu.org
+> >> CC: u-boot@lists.denx.de
+> >> CC: devicetree@vger.kernel.org
+> >> CC: linux-kernel@vger.kernel.org
+> >> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+> >> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> >> ---
+> >> Changes in v3:
+> >> - Per Rob's suggestion, switch to an array of strings. Cuts down on th=
+e
+> >>   size, compared to booleans. It has a standard mechanism for parsing
+> >>   (you need to parse arrays of strings for compatibles). It still allo=
+ws
+> >>   for having a limited set of explicitly defined properties - so the
+> >>   advantages over a free-form string still apply.
+> >> - Pick up Palmer's Ack and Review (although I expect that he will be t=
+he
+> >>   one to apply this).
+> >> ---
+> >>  .../devicetree/bindings/riscv/cpus.yaml       |  43 ++-
+> >>  .../devicetree/bindings/riscv/extensions.yaml | 245 +++++++++++++++++=
++
+> >>  2 files changed, 265 insertions(+), 23 deletions(-)
+> >>  create mode 100644 Documentation/devicetree/bindings/riscv/extensions=
+.yaml
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Docum=
+entation/devicetree/bindings/riscv/cpus.yaml
+> >> index 67bd239ead0b..74bc92591086 100644
+> >> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> >> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> >> @@ -25,6 +25,7 @@ description: |
+> >>
+> >>  allOf:
+> >>    - $ref: /schemas/cpu.yaml#
+> >> +  - $ref: extensions.yaml
+> >>
+> >>  properties:
+> >>    compatible:
+> >> @@ -82,25 +83,6 @@ properties:
+> >>      description:
+> >>        The blocksize in bytes for the Zicboz cache operations.
+> >>
+> >> -  riscv,isa:
+> >> -    description:
+> >> -      Identifies the specific RISC-V instruction set architecture
+> >> -      supported by the hart.  These are documented in the RISC-V
+> >> -      User-Level ISA document, available from
+> >> -      https://riscv.org/specifications/
+> >> -
+> >> -      Due to revisions of the ISA specification, some deviations
+> >> -      have arisen over time.
+> >> -      Notably, riscv,isa was defined prior to the creation of the
+> >> -      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
+> >> -      implies "zicntr_zicsr_zifencei_zihpm".
+> >> -
+> >> -      While the isa strings in ISA specification are case
+> >> -      insensitive, letters in the riscv,isa string must be all
+> >> -      lowercase.
+> >> -    $ref: /schemas/types.yaml#/definitions/string
+> >> -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?=
+(?:_[hsxz](?:[a-z])+)*$
+> >> -
+> >>    # RISC-V has multiple properties for cache op block sizes as the si=
+zes
+> >>    # differ between individual CBO extensions
+> >>    cache-op-block-size: false
+> >> @@ -139,8 +121,17 @@ properties:
+> >>        DMIPS/MHz, relative to highest capacity-dmips-mhz
+> >>        in the system.
+> >>
+> >> +oneOf:
+> >> +  - required:
+> >> +      - riscv,isa
+> >> +  - required:
+> >> +      - riscv,isa-base
+> >> +
+> >> +dependencies:
+> >> +  riscv,isa-base: [ "riscv,isa-extensions" ]
+> >> +  riscv,isa-extensions: [ "riscv,isa-base" ]
+> >> +
+> >>  required:
+> >> -  - riscv,isa
+> >>    - interrupt-controller
+> >>
+> >>  unevaluatedProperties: false
+> >> @@ -160,7 +151,9 @@ examples:
+> >>                  i-cache-sets =3D <128>;
+> >>                  i-cache-size =3D <16384>;
+> >>                  reg =3D <0>;
+> >> -                riscv,isa =3D "rv64imac";
+> >> +                riscv,isa-base =3D "rv64i";
+> >> +                riscv,isa-extensions =3D "i", "m", "a", "c";
+> >> +
+> >>                  cpu_intc0: interrupt-controller {
+> >>                          #interrupt-cells =3D <1>;
+> >>                          compatible =3D "riscv,cpu-intc";
+> >> @@ -183,8 +176,10 @@ examples:
+> >>                  i-tlb-size =3D <32>;
+> >>                  mmu-type =3D "riscv,sv39";
+> >>                  reg =3D <1>;
+> >> -                riscv,isa =3D "rv64imafdc";
+> >>                  tlb-split;
+> >> +                riscv,isa-base =3D "rv64i";
+> >> +                riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c"=
+;
+> >> +
+> >>                  cpu_intc1: interrupt-controller {
+> >>                          #interrupt-cells =3D <1>;
+> >>                          compatible =3D "riscv,cpu-intc";
+> >> @@ -202,8 +197,10 @@ examples:
+> >>                  device_type =3D "cpu";
+> >>                  reg =3D <0>;
+> >>                  compatible =3D "riscv";
+> >> -                riscv,isa =3D "rv64imafdc";
+> >>                  mmu-type =3D "riscv,sv48";
+> >> +                riscv,isa-base =3D "rv64i";
+> >> +                riscv,isa-extensions =3D "i", "m", "a", "f", "d", "c"=
+;
+> >> +
+> >>                  interrupt-controller {
+> >>                          #interrupt-cells =3D <1>;
+> >>                          interrupt-controller;
+> >> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b=
+/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >> new file mode 100644
+> >> index 000000000000..af98307f2c2c
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> >> @@ -0,0 +1,245 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/riscv/extensions.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: RISC-V ISA extensions
+> >> +
+> >> +maintainers:
+> >> +  - Paul Walmsley <paul.walmsley@sifive.com>
+> >> +  - Palmer Dabbelt <palmer@sifive.com>
+> >> +  - Conor Dooley <conor@kernel.org>
+> >> +
+> >> +description: |
+> >> +  RISC-V has a large number of extensions, some of which are "standar=
+d"
+> >> +  extensions, meaning they are ratified by RISC-V International, and =
+others
+> >> +  are "vendor" extensions.
+> >> +  This document defines properties that indicate whether a hart suppo=
+rts a
+> >> +  given extension.
+> >> +
+> >> +  Once a standard extension has been ratified, no changes in behaviou=
+r can be
+> >> +  made without the creation of a new extension.
+> >> +  The properties for standard extensions therefore map to their origi=
+nally
+> >> +  ratified states, with the exception of the I, Zicntr & Zihpm extens=
+ions.
+> >> +  See the "i" property for more information.
+> >> +
+> >> +select:
+> >> +  properties:
+> >> +    compatible:
+> >> +      contains:
+> >> +        const: riscv
+> >> +
+> >> +properties:
+> >> +  riscv,isa:
+> >> +    description:
+> >> +      Identifies the specific RISC-V instruction set architecture
+> >> +      supported by the hart.  These are documented in the RISC-V
+> >> +      User-Level ISA document, available from
+> >> +      https://riscv.org/specifications/
+> >> +
+> >> +      Due to revisions of the ISA specification, some deviations
+> >> +      have arisen over time.
+> >> +      Notably, riscv,isa was defined prior to the creation of the
+> >> +      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
+> >> +      implies "zicntr_zicsr_zifencei_zihpm".
+> >> +
+> >> +      While the isa strings in ISA specification are case
+> >> +      insensitive, letters in the riscv,isa string must be all
+> >> +      lowercase.
+> >> +    $ref: /schemas/types.yaml#/definitions/string
+> >> +    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?=
+(?:_[hsxz](?:[a-z])+)*$
+> >> +    deprecated: true
+> >> +
+> >> +  riscv,isa-base:
+> >> +    description:
+> >> +      The base ISA implemented by this hart, as described by the 2019=
+1213
+> >> +      version of the unprivileged ISA specification.
+> >> +    enum:
+> >> +      - rv32i
+> >> +      - rv64i
+> >> +
+> >> +  riscv,isa-extensions:
+> >> +    $ref: /schemas/types.yaml#/definitions/string-array
+> >> +    minItems: 1
+> >> +    description: Extensions supported by the hart.
+> >> +    items:
+> >> +      anyOf:
+> >> +        # single letter extensions, in canonical order
+> >> +        - const: i
+> >> +          description: |
+> >> +            The base integer instruction set, as ratified in the 2019=
+1213
+> >> +            version of the unprivileged ISA specification, with the e=
+xception of
+> >> +            counter access.
+> >> +            Counter access was removed after the ratification of the =
+20191213
+> >> +            version of the unprivileged specification and shunted int=
+o the
+> >> +            Zicntr and Zihpm extensions.
+> >> +
+> >> +        - const: m
+> >> +          description:
+> >> +            The standard M extension for integer multiplication and d=
+ivision, as
+> >> +            ratified in the 20191213 version of the unprivileged ISA
+> >> +            specification.
+> >> +
+> >> +        - const: a
+> >> +          description:
+> >> +            The standard A extension for atomic instructions, as rati=
+fied in the
+> >> +            20191213 version of the unprivileged ISA specification.
+> >> +
+> >> +        - const: f
+> >> +          description:
+> >> +            The standard F extension for single-precision floating po=
+int, as
+> >> +            ratified in the 20191213 version of the unprivileged ISA
+> >> +            specification.
+> >> +
+> >> +        - const: d
+> >> +          description:
+> >> +            The standard D extension for double-precision floating-po=
+int, as
+> >> +            ratified in the 20191213 version of the unprivileged ISA
+> >> +            specification.
+> >> +
+> >> +        - const: q
+> >> +          description:
+> >> +            The standard Q extension for quad-precision floating-poin=
+t, as
+> >> +            ratified in the 20191213 version of the unprivileged ISA
+> >> +            specification.
+> >> +
+> >> +        - const: c
+> >> +          description:
+> >> +            The standard C extension for compressed instructions, as =
+ratified in
+> >> +            the 20191213 version of the unprivileged ISA specificatio=
+n.
+> >> +
+> >> +        - const: v
+> >> +          description:
+> >> +            The standard V extension for vector operations, as ratifi=
+ed
+> >> +            in-and-around commit 7a6c8ae ("Fix text that describes vf=
+mv.v.f
+> >> +            encoding") of the riscv-v-spec.
+> >> +
+> >> +        - const: h
+> >> +          description:
+> >> +            The standard H extension for hypervisors as ratified in t=
+he 20191213
+> >> +            version of the privileged ISA specification.
+> >> +
+> >> +        # multi-letter extensions, sorted alphanumerically
+> >> +        - const: smaia
+> >> +          description: |
+> >> +            The standard Smaia supervisor-level extension for the adv=
+anced
+> >> +            interrupt architecture for machine-mode-visible csr and b=
+ehavioural
+> >> +            changes to interrupts as frozen at commit ccbddab ("Merge=
+ pull
+> >> +            request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
+> >> +
+> >> +        - const: ssaia
+> >> +          description: |
+> >> +            The standard Ssaia supervisor-level extension for the adv=
+anced
+> >> +            interrupt architecture for supervisor-mode-visible csr an=
+d
+> >> +            behavioural changes to interrupts as frozen at commit ccb=
+ddab
+> >> +            ("Merge pull request #42 from riscv/jhauser-2023-RC4") of=
+ riscv-aia.
+> >> +
+> >> +        - const: sscofpmf
+> >> +          description: |
+> >> +            The standard Sscofpmf supervisor-level extension for coun=
+t overflow
+> >> +            and mode-based filtering as ratified at commit 01d1df0 ("=
+Add ability
+> >> +            to manually trigger workflow. (#2)") of riscv-count-overf=
+low.
+> >> +
+> >> +        - const: sstc
+> >> +          description: |
+> >> +            The standard Sstc supervisor-level extension for time com=
+pare as
+> >> +            ratified at commit 3f9ed34 ("Add ability to manually trig=
+ger
+> >> +            workflow. (#2)") of riscv-time-compare.
+> >> +
+> >> +        - const: svinval
+> >> +          description:
+> >> +            The standard Svinval supervisor-level extension for fine-=
+grained
+> >> +            address-translation cache invalidation as ratified in the=
+ 20191213
+> >> +            version of the privileged ISA specification.
+> >> +
+> >> +        - const: svnapot
+> >> +          description:
+> >> +            The standard Svnapot supervisor-level extensions for napo=
+t
+> >> +            translation contiguity as ratified in the 20191213 versio=
+n of the
+> >> +            privileged ISA specification.
+> >> +
+> >> +        - const: svpbmt
+> >> +          description:
+> >> +            The standard Svpbmt supervisor-level extensions for page-=
+based
+> >> +            memory types as ratified in the 20191213 version of the p=
+rivileged
+> >> +            ISA specification.
+> >> +
+> >> +        - const: zba
+> >> +          description: |
+> >> +            The standard Zba bit-manipulation extension for address g=
+eneration
+> >> +            acceleration instructions as ratified at commit 6d33919 (=
+"Merge pull
+> >> +            request #158 from hirooih/clmul-fix-loop-end-condition") =
+of
+> >> +            riscv-bitmanip.
+> >> +
+> >> +        - const: zbb
+> >> +          description: |
+> >> +            The standard Zbb bit-manipulation extension for basic bit=
+-manipulation
+> >> +            as ratified at commit 6d33919 ("Merge pull request #158 f=
+rom
+> >> +            hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+> >> +
+> >> +        - const: zbc
+> >> +          description: |
+> >> +            The standard Zbc bit-manipulation extension for carry-les=
+s
+> >> +            multiplication as ratified at commit 6d33919 ("Merge pull=
+ request
+> >> +            #158 from hirooih/clmul-fix-loop-end-condition") of riscv=
+-bitmanip.
+> >> +
+> >> +        - const: zbs
+> >> +          description: |
+> >> +            The standard Zbs bit-manipulation extension for single-bi=
+t
+> >> +            instructions as ratified at commit 6d33919 ("Merge pull r=
+equest #158
+> >> +            from hirooih/clmul-fix-loop-end-condition") of riscv-bitm=
+anip.
+> >> +
+> >> +        - const: zicbom
+> >> +          description:
+> >> +            The standard Zicbom extension for base cache management o=
+perations as
+> >> +            ratified in commit 3dd606f ("Create cmobase-v1.0.pdf") of=
+ riscv-CMOs.
+> >> +
+> >> +        - const: zicbop
+> >> +          description:
+> >> +            The standard Zicbop extension for cache-block prefetch in=
+structions
+> >> +            as ratified in commit 3dd606f ("Create cmobase-v1.0.pdf")=
+ of
+> >> +            riscv-CMOs.
+> >> +
+> >> +        - const: zicboz
+> >> +          description:
+> >> +            The standard Zicboz extension for cache-block zeroing as =
+ratified
+> >> +            in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CM=
+Os.
+> >> +
+> >> +        - const: zicntr
+> >> +          description:
+> >> +            The standard Zicntr extension for base counters and timer=
+s, as
+> >> +            ratified in the 20191213 version of the unprivileged ISA
+> >> +            specification.
+> >> +
+> >> +        - const: zicsr
+> >> +          description:
+> >> +            The standard Zicsr extension for control and status regis=
+ter
+> >> +            instructions, as ratified in the 20191213 version of the
+> >> +            unprivileged ISA specification.
+> >> +
+> >> +        - const: zifencei
+> >> +          description:
+> >> +            The standard Zifencei extension for instruction-fetch fen=
+ce, as
+> >> +            ratified in the 20191213 version of the unprivileged ISA
+> >> +            specification.
+> >> +
+> >> +        - const: zihintpause
+> >> +          description:
+> >> +            The standard Zihintpause extension for pause hints, as ra=
+tified in
+> >> +            commit d8ab5c7 ("Zihintpause is ratified") of the riscv-i=
+sa-manual.
+> >> +
+> >> +        - const: zihpm
+> >> +          description:
+> >> +            The standard Zihpm extension for hardware performance cou=
+nters, as
+> >> +            ratified in the 20191213 version of the unprivileged ISA
+> >> +            specification.
+> >> +
+> >> +        - const: ztso
+> >> +          description:
+> >> +            The standard Ztso extension for total store ordering, as =
+ratified
+> >> +            in commit 2e5236 ("Ztso is now ratified.") of the
+> >> +            riscv-isa-manual.
+> >> +
+> >> +additionalProperties: true
+> >> +...
+> >> --
+> >> 2.40.1
+> >>
