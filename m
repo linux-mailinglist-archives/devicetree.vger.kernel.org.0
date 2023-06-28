@@ -2,162 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C97741445
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:51:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BBAE74144D
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:54:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231967AbjF1Ovz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 10:51:55 -0400
-Received: from mx2.sberdevices.ru ([45.89.224.132]:53767 "EHLO
-        mx1.sberdevices.ru" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S231977AbjF1Ov3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 10:51:29 -0400
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id BA890120019;
-        Wed, 28 Jun 2023 17:51:11 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru BA890120019
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1687963871;
-        bh=ijsYqbMrBgDeL0im1rxl0SGUF7eOfc45yINo+UI8MC4=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=Oe+k4MbnYaiC6F6uZRqqnKz+SRkhwtkRZ3YJ/ekh/TdOjH2aH3gBkDFjr1gETBnGC
-         fCP14LYp/96JhA6mgW2C3tbIQfEmtOgfa5a3azAY6seTm/rG8Asro4GxFlax56ZZnk
-         YM/aLipf/rrquca2rutqkoZrK3dys3RcUu8/9bCnXaOS9naoAIEEjY6SnwzsyBZAG+
-         VTZlh3nhsq4yEKTrCRd4gW/q6O9VMSdBnZpzRbdY7vnP0ZXePcK0NoPvNUGDGn+JSg
-         OkJ4LMJQEOm0l4RDlrE/0I/3JVL1RRhfqi2qE2Hb20LPitRPzGtjkK4JbUDuCk65Xk
-         RHrHyYNtEPnew==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Wed, 28 Jun 2023 17:51:10 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 28 Jun
- 2023 17:50:12 +0300
-Date:   Wed, 28 Jun 2023 17:51:10 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     <neil.armstrong@linaro.org>
-CC:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <jbrunet@baylibre.com>, <mturquette@baylibre.com>,
-        <sboyd@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <khilman@baylibre.com>,
-        <conor+dt@kernel.org>, <kernel@sberdevices.ru>,
-        <sdfw_system_team@sberdevices.ru>, <rockosov@gmail.com>,
-        <linux-amlogic@lists.infradead.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Oleg Lyovin <ovlevin@sberdevices.ru>
-Subject: Re: [PATCH v1 5/6] arm64: dts: meson: a1: introduce UART_AO mux
- definitions
-Message-ID: <20230628145110.a7igezu7ts2aymkd@CAB-WSD-L081021>
-References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
- <20230607201641.20982-6-ddrokosov@sberdevices.ru>
- <CAFBinCD-5RD_iszZZRg58XqTHDEHnipJkf2aAex8MdUyh=bVCw@mail.gmail.com>
- <c41d2d9f-7ddd-160d-d455-ba4fece7ff93@linaro.org>
+        id S229832AbjF1OyV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 10:54:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229647AbjF1OyU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 10:54:20 -0400
+Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 193DC19B4
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 07:54:18 -0700 (PDT)
+Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fb7589b187so5567897e87.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 07:54:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1687964056; x=1690556056;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9/0nNN44VNRNUJVhh4K+B/77Q53o4u445deZJq878Zg=;
+        b=3U/AqUXHlkLWMESSviAmOFThRvVcswBGYbBOWKK59lj1GZ2VqgQ1+pSZko0dtzN7UP
+         Ca7Aio6JPmkKxeQi8G4zYUDlNZmWxxWurWQduxodhFykzHp5qF/t5qpxLP4ZyyZBeyhH
+         ZP8RRglbiprZPTTaA4iGl3+yGE9fOZ2dS+Ch4Xm+ysB7yIR8g8dT1BqDqbwjt/9F4BeN
+         NDjVPJlnTXwtg2ATTLDUEMiKxFDkDtSOiAo7HkspOVOTz1cLdgZoULtjtI5AEgY7H2Ew
+         1Mh6lE0Lgr1B4aNyF8rjQYpzYhA8jD9/McHP9A71ucdr594dMUZQFOrI1aIfs14UKod2
+         cxWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687964056; x=1690556056;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9/0nNN44VNRNUJVhh4K+B/77Q53o4u445deZJq878Zg=;
+        b=Qo+nA+bIblBdbEtmqTmSubtw+yTt6wd1C6qYsNR+Ge8sACVKNvIVs51Fg5NAHBwQ/b
+         GeO7QFnonXPaSxTxsCiHJDAortwEzQMCYUFJ5+cK8R911gLVHdU3kMbeq+IQSQK0CS4j
+         yYqlb8hOBhYVkdGTXqM2IM15NZQEPOm/6XbYDEPfN0lm2J+82LrnPniE8hpBHj7qbfcn
+         DwPKmaWqzSkJKG1L/qh7YFn75MLN5Hyv55yHvW5cO+HXq4TDQnSjjzlIifGhFXkAxzqn
+         4pmtMC2mikNac7GJ3Zahd7BWWc1EvLevEn16yZBY0VGrXWpCfaz3jB2//acE9GWldlmE
+         m29g==
+X-Gm-Message-State: AC+VfDwODg7XFfxcB8WOP2wGGRBu3pOISjI3p5RFlBMqRwvyIYd/9Y2P
+        U/GUdwyzfKtz4wfvR4HqF4++Jg==
+X-Google-Smtp-Source: ACHHUZ5hKqR6Qa4F5o02E1EftTHMMD7L0/abbxO4ZsmrimeO6vZ7sL5KrmRVU9LTa27Amjnnr3F8Bw==
+X-Received: by 2002:a19:431c:0:b0:4f9:58bd:9e5a with SMTP id q28-20020a19431c000000b004f958bd9e5amr10705065lfa.27.1687964056264;
+        Wed, 28 Jun 2023 07:54:16 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:55f:21e0:9e19:4376:dea6:dbfa])
+        by smtp.gmail.com with ESMTPSA id k16-20020a05600c0b5000b003fba6709c68sm4846278wmr.47.2023.06.28.07.54.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jun 2023 07:54:15 -0700 (PDT)
+From:   Julien Stephan <jstephan@baylibre.com>
+Cc:     Julien Stephan <jstephan@baylibre.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        devicetree@vger.kernel.org,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        Phi-bang Nguyen <pnguyen@baylibre.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sumanth Korikkar <sumanthk@linux.ibm.com>,
+        Vasily Gorbik <gor@linux.ibm.com>
+Subject: [PATCH 0/4] Add Mediatek ISP3.0
+Date:   Wed, 28 Jun 2023 16:52:51 +0200
+Message-ID: <20230628145412.1610260-1-jstephan@baylibre.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c41d2d9f-7ddd-160d-d455-ba4fece7ff93@linaro.org>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178314 [Jun 28 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/28 08:00:00 #21591748
-X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
+To:     unlisted-recipients:; (no To-header on input)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neil, Martin,
+This series add the support of the Mediatek ISP3.0 found on some
+Mediatek SoCs such as the mt8365. The driver is divided into 2 parts:
 
-On Mon, Jun 26, 2023 at 03:34:38PM +0200, neil.armstrong@linaro.org wrote:
-> Hi,
-> 
-> On 25/06/2023 23:07, Martin Blumenstingl wrote:
-> > On Wed, Jun 7, 2023 at 10:16 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
-> > > 
-> > > From: Oleg Lyovin <ovlevin@sberdevices.ru>
-> > > 
-> > > The Amlogic A1 has a UART_AO port, which can be used, for example, for
-> > > BT HCI H4 connection.
-> > > 
-> > > This patch adds mux definitions for it.
-> > In the past we've only taken the pinctrl definitions if we have a
-> > board that uses them.
-> > Neil, do we still have the same policy in place? If so this patch
-> > should be sent with the series that adds support for your A1 board.
-> 
-> Yes and no, if the work is done I'll take it, but yeah since upstream linux
-> hates dead code, let's only define what's necessary.
-> 
+* SENINF: the sensor interface
+* CAMSV: this driver provides a path to bypass the SoC ISP so that image
+  data coming from the SENINF can go directly into memory without any
+  image processing. This allows the use of an external ISP or camera
+  sensor directly.
 
-I'll prepare the patches for ad401 reference board, and share the in the
-next patch series version.
+The SENINF has several inputs connected to phys. The PHY module is
+available here: https://lore.kernel.org/all/20230620121928.1231745-1-jstephan@baylibre.com/
 
-> > 
-> > > Signed-off-by: Oleg Lyovin <ovlevin@sberdevices.ru>
-> > > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> > > ---
-> > >   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 16 ++++++++++++++++
-> > >   1 file changed, 16 insertions(+)
-> > > 
-> > > diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> > > index 0efd922ca7e1..3eb6aa9c00e0 100644
-> > > --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> > > +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
-> > > @@ -118,6 +118,22 @@ gpio: bank@400 {
-> > >                                          gpio-ranges = <&periphs_pinctrl 0 0 62>;
-> > >                                  };
-> > > 
-> > > +                               uart_a_pins: uart_a {
-> > Only our newer .dtsi (e.g. meson-g12-common.dtsi) are following the
-> > pattern where node names should use dashes instead of underscores.
-> > So please use: uart_a_pins: uart-a { ...
-> 
-> The new scheme which should be use should be:
-> 
-> uart_a_pins: uart-a-pins-state {
-> 
-> but it wasn't enforced in the pinctrl yaml pushed by heiner, but for sure
-> no underscores in the node name.
-> 
+The SENINF driver is based on previous work done by Louis Kuo available
+as an RFC here: https://lore.kernel.org/all/20200708104023.3225-1-louis.kuo@mediatek.com/
 
-Okay, got it
+Louis Kuo (2):
+  dt-bindings: media: add mediatek ISP3.0 sensor interface
+  media: platform: mediatek: isp_30: add mediatek ISP3.0 sensor
+    interface
 
-> > 
-> > [...]
-> > > +                               uart_a_cts_rts_pins: uart_a_cts_rts {
-> > similar to the comment from above:
-> > uart_a_cts_rts_pins: uart-a-cts-rts { ...
-> > 
-> > > +                                       mux {
-> > > +                                               groups = "uart_a_cts",
-> > > +                                                        "uart_a_rts";
-> > > +                                               function = "uart_a";
-> > > +                                               bias-pull-down;
-> > Out of curiosity: is this pull down needed on all boards or just specific ones?
-> > It seems like all other SoCs use bias-disable for the RTS/CTS pins.
-> > 
-> > 
-> > Best regards,
-> > Martin
-> 
+Phi-bang Nguyen (2):
+  dt-bindings: media: add mediatek ISP3.0 camsv
+  media: platform: mediatek: isp_30: add mediatek ISP3.0 camsv
 
--- 
-Thank you,
-Dmitry
+ .../bindings/media/mediatek,mt8365-camsv.yaml |  113 ++
+ .../media/mediatek,mt8365-seninf.yaml         |  301 ++++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/mediatek/Kconfig       |    1 +
+ drivers/media/platform/mediatek/Makefile      |    1 +
+ drivers/media/platform/mediatek/isp/Kconfig   |    2 +
+ drivers/media/platform/mediatek/isp/Makefile  |    3 +
+ .../platform/mediatek/isp/isp_30/Kconfig      |   35 +
+ .../platform/mediatek/isp/isp_30/Makefile     |    4 +
+ .../mediatek/isp/isp_30/camsv/Makefile        |    7 +
+ .../mediatek/isp/isp_30/camsv/mtk_camsv.c     |  334 ++++
+ .../mediatek/isp/isp_30/camsv/mtk_camsv.h     |  200 +++
+ .../isp/isp_30/camsv/mtk_camsv30_hw.c         |  474 +++++
+ .../isp/isp_30/camsv/mtk_camsv30_regs.h       |   59 +
+ .../isp/isp_30/camsv/mtk_camsv_video.c        |  781 +++++++++
+ .../mediatek/isp/isp_30/seninf/Makefile       |    5 +
+ .../mediatek/isp/isp_30/seninf/mtk_seninf.c   | 1559 +++++++++++++++++
+ .../isp/isp_30/seninf/mtk_seninf_reg.h        |   99 ++
+ 18 files changed, 3988 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-camsv.yaml
+ create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+ create mode 100644 drivers/media/platform/mediatek/isp/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/isp/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Kconfig
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_hw.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv30_regs.h
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/camsv/mtk_camsv_video.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/Makefile
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf.c
+ create mode 100644 drivers/media/platform/mediatek/isp/isp_30/seninf/mtk_seninf_reg.h
+
+--
+2.41.0
