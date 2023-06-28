@@ -2,115 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 018FF7416D8
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 18:57:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76983741732
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:28:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbjF1Q5p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 12:57:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41806 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230196AbjF1Q5n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 12:57:43 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 494A2170F
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 09:57:41 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b6a16254a4so707661fa.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 09:57:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687971459; x=1690563459;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Z/zCltrriS9+FwfYPkaoLx57nyP2zICnwZ3L4CTqa1o=;
-        b=syyZXBBk17JauNows5A2urMe/pcWTLphLlt4SnwA2w1ABVK5XugBET02VZTNZuT4nG
-         BDOc/kJ6ib1UvpjR32PSCHkft8ibj9934gCK2qvehWRrfkXF7XIf4m9a2w5Ob9dQ4t6m
-         YZ5YM2SzILcwULe1BPJAKAJIk+Pp/GFko0WMt29LldbbJK8E+rLLMRBjb2C03Ue8b75A
-         u7mMPttbXk1mjEURIFqk7RS7UbQLQ7z7WoDPAsVE6Q2SzvNwTuRfQw3Ojl1xWI2r0ocl
-         c+kPoqasBRouUlgkGGyrbERJppvjbFjiNYmcTRbdgXFDfJYEir3S3Im2G2WUV2XiPykH
-         lDBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687971459; x=1690563459;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Z/zCltrriS9+FwfYPkaoLx57nyP2zICnwZ3L4CTqa1o=;
-        b=GcaKMY1oae3XJYhg5CFgyBu3tjJ7YMaKFpDqYQpxw7sBBz6FELCjkRWHwRzhiaejcy
-         7VdiOY139Euf+SnPWF9gWKO6am5oKN6cUdrp0EtVW7wddqWlbN4dvGSmZ2ld6sdl4W/E
-         HZp+oh/8KepHB8cj8/pVaKDqi19pY+YIioMRnXpix4hZq3pdDksJbkAXz3P0iN5y70F4
-         Zfb1G8HjpP1LYy6YGrsXDUN6lxyVt4J6Fc9/jqIoz3a7iIK5zvLNxAmCaX0lTGd9AoJY
-         ms+y3RN/CjNBefRlpaQWKaT2MNmQveK0cNEeXRx7dxx9isUw1S6E/xfCH0ThXsamqiIB
-         ZOBg==
-X-Gm-Message-State: AC+VfDy6+kvMhHYOkUKVhxvTC2gOKoEDeBlpjrAxTz5pNmozynHBj76T
-        17rWgf9l2Zfvd/heeGAtAd9ZiS1+gN7XWISQnos=
-X-Google-Smtp-Source: ACHHUZ5O1WkcZQ+NAg+pK0OUsPsx/35pHTmfE+O/DSkG1d2UB7WiB+g4BQBT7/MHrfwy18PtV+CYew==
-X-Received: by 2002:a2e:7c09:0:b0:2b5:80c9:1266 with SMTP id x9-20020a2e7c09000000b002b580c91266mr17376124ljc.43.1687971459498;
-        Wed, 28 Jun 2023 09:57:39 -0700 (PDT)
-Received: from [10.10.15.130] ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id t8-20020a2e9c48000000b002b6a824d65fsm1076904ljj.0.2023.06.28.09.57.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jun 2023 09:57:39 -0700 (PDT)
-Message-ID: <73dce263-bee6-554f-9eb6-af4aa7badab1@linaro.org>
-Date:   Wed, 28 Jun 2023 19:57:38 +0300
+        id S231890AbjF1R2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 13:28:40 -0400
+Received: from dfw.source.kernel.org ([139.178.84.217]:43116 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230255AbjF1R1h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:27:37 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id EE7886141D;
+        Wed, 28 Jun 2023 17:27:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A4E5C433C8;
+        Wed, 28 Jun 2023 17:27:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687973256;
+        bh=F0PybSEQg3oGD0oV9xIryADKGMGVcc7224PKlDe1/K4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=OsEgIy0JwjVpU/mf7fw0rJ7mr+bBZglsYTZdbf8Dn4JnhFnNOfIYLU+hA2LvICmyA
+         lbjO6oUAEmzFzxKcnasoNxL9iOPO8Rh8t+dRQCrDckMUzPjN8mr/1y3eEffWaX7kqZ
+         rLpVnZOl4+btvjWEsh1AyhVwI92R2NCuIeEsOEizLnzegfQNqOESqhsWn2E+q+AG6Y
+         uRVh0DGL/D7Qa6n9QZPt8ZX41A47uykMP6noohpzhbSR3CJ2ebJ/qLnqkYWTZFugZw
+         jfRmKQgENyts32K84EzGzLkPj1SKCzbYs9Ie75gtkpc3Tx9FwcKiBOZyEN2l/6N8/T
+         5mb2O2878JRww==
+Date:   Wed, 28 Jun 2023 18:27:30 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+Cc:     tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        hkallweit1@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add support
+ for Amlogic-C3 SoCs
+Message-ID: <20230628-carat-dwarf-0b8e8c047c45@spud>
+References: <20230628091533.3884385-1-huqiang.qin@amlogic.com>
+ <20230628091533.3884385-2-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/3] ASoC: qcom: q6apm: add support for reading firmware
- name from DT
-Content-Language: en-GB
-To:     Mark Brown <broonie@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, johan+linaro@kernel.org,
-        perex@perex.cz, tiwai@suse.com, lgirdwood@gmail.com,
-        ckeepax@opensource.cirrus.com, kuninori.morimoto.gx@renesas.com,
-        linux-kernel@vger.kernel.org, pierre-louis.bossart@linux.intel.com,
-        alsa-devel@alsa-project.org
-References: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
- <20230628102621.15016-3-srinivas.kandagatla@linaro.org>
- <f71c8d2b-d5f4-42bb-932f-5b9ec6117ffc@sirena.org.uk>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <f71c8d2b-d5f4-42bb-932f-5b9ec6117ffc@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="XbbCx1QsHjc5jIJV"
+Content-Disposition: inline
+In-Reply-To: <20230628091533.3884385-2-huqiang.qin@amlogic.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2023 14:53, Mark Brown wrote:
-> On Wed, Jun 28, 2023 at 11:26:20AM +0100, Srinivas Kandagatla wrote:
->> Currently firmware file name is autogenerated based on card name and model number,
->> however this imposed a restriction of finding firmware in a single firmware path.
->> Platform specific firmwares are normally located in sub folders of the SoC.
->>
->> Provide more flexibity by reading firmware-name from DT.
-> 
-> Why not try a series of firmware names/locations generated using the
-> identifying information for the card/system?  That way we don't have to
-> put a filename in the ABI which has fun scaling issues.
 
-This is what was done by Srini in the initial (currently committed) 
-version. Unfortunately this easily results in the audio topology being 
-separated from the rest of the platform-specific firmware. For example, 
-for the mentioned X13s we already have a subdir under /lib/firmware/qcom 
-and several firmware-name DT properties pointing to the files in that 
-subdir:
+--XbbCx1QsHjc5jIJV
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-$ grep firmware-name 
-arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
-	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcadsp8280.mbn";
-	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qccdsp8280.mbn";
+On Wed, Jun 28, 2023 at 05:15:32PM +0800, Huqiang Qin wrote:
+> Update dt-binding document for GPIO interrupt controller of Amlogic-C3 So=
+Cs
+>=20
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
 
-This is not unique to the X13s, other Qualcomm boards also use full paths.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
 
--- 
-With best wishes
-Dmitry
+Cheers,
+Conor.
 
+> ---
+>  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml   | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlog=
+ic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-contr=
+oller/amlogic,meson-gpio-intc.yaml
+> index e84e4f33b358..3d06db98e978 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
+n-gpio-intc.yaml
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
+n-gpio-intc.yaml
+> @@ -35,6 +35,7 @@ properties:
+>                - amlogic,meson-sm1-gpio-intc
+>                - amlogic,meson-a1-gpio-intc
+>                - amlogic,meson-s4-gpio-intc
+> +              - amlogic,c3-gpio-intc
+>            - const: amlogic,meson-gpio-intc
+> =20
+>    reg:
+> --=20
+> 2.37.1
+>=20
+
+--XbbCx1QsHjc5jIJV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJxtggAKCRB4tDGHoIJi
+0hj7AQDpVNTHoWvTaJwjH4OGLihfyqwOGbkOpryPiMX1htjj6gEAkF5EUPPKWA4c
+QU+X8XLZU39rF0w7SHpuQNW2J1IAPgQ=
+=wqpH
+-----END PGP SIGNATURE-----
+
+--XbbCx1QsHjc5jIJV--
