@@ -2,105 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CD82740EC1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 12:28:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D4E740F7F
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 12:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231405AbjF1K2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 06:28:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57364 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231421AbjF1K0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 06:26:43 -0400
-Received: from mail-wr1-x429.google.com (mail-wr1-x429.google.com [IPv6:2a00:1450:4864:20::429])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33E502D66
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 03:26:42 -0700 (PDT)
-Received: by mail-wr1-x429.google.com with SMTP id ffacd0b85a97d-311367a3e12so6944927f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 03:26:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687948000; x=1690540000;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=srR4qXI4SOaRzuTnNjTHD1luV6fZZPzoY3QYdalo8qI=;
-        b=Y6Q+PawFy+kJaRdCZCPHXwMw9ZqLRbomAw6YgjOi9KVEfS/4P/HbDrP9ZhJRU6ywOe
-         iPv0i8olWL0oVFvuiIRH981wrhd+0pzPMqEy0D0ZgBge/cjyeDZ73H6a0WW82n704GUS
-         4Y+Wk0SCIcMFW7ghIYsQg9J15d+lSu6A4sqaWr3IocqBnd+WBewi6ZB7hEw7JCckIql5
-         FB4i5VDkAG78WKb1JBJChHG/5jncfE8sX84cDYXoNG4syCvR7JTv6mmK4Japm2OWV8Qy
-         wiiX9wGTj6mkM9Z74fzUTnghT2FI9trCV2M1LmWw3YvtarKYty56k+D3F+H0+NoLgpO5
-         yY9g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687948000; x=1690540000;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=srR4qXI4SOaRzuTnNjTHD1luV6fZZPzoY3QYdalo8qI=;
-        b=DRgxi1jGiO6DO0xGp7+J2gSd20gQ7SdrHdXlkZ2D6NHzC/cflvTk2zrAYyqqh4SEWA
-         YKdThJdXWYR2WAw+mRApiRkaOTT4zmyZ10+ZkmTJlutT84DNimIh4htUOit8MEs9/kme
-         G6NnQaQRFNwVBDXDn5GYy+Wl/+GwionTJzQ5Mysvjmlecl12j6AacY5rzbJeuLbekc67
-         I32g9BxttKUEBwjguRfKRFnsqCzlOfAGsq0/5+j9g+nyEipkj2c0hZWfVu+nEFbmqte/
-         bxUaa7CldR2dkroyVswfT610K9JeGWOwuw4M9DHq2nfO8Rwv57Va2dX7qowlhOl4EDnI
-         GMtQ==
-X-Gm-Message-State: AC+VfDyjuULPnv9K87UQ3SeVnAlNe/Dn4KsTpXSB1cPxTRyCIpj9TzRB
-        gfozkLz4yU9XExqMAIxK8vk4CX4hUGNXVndDQgYQfQ==
-X-Google-Smtp-Source: ACHHUZ5S4H9zXhddpOXM9tKWiI2dGOx62qaeBcYbU97WH85fLsREvkzVPMEm3gY/9OG0jwyaeyA//w==
-X-Received: by 2002:a5d:5307:0:b0:313:f60d:4958 with SMTP id e7-20020a5d5307000000b00313f60d4958mr5463674wrv.53.1687948000700;
-        Wed, 28 Jun 2023 03:26:40 -0700 (PDT)
-Received: from localhost.localdomain ([5.133.47.210])
-        by smtp.gmail.com with ESMTPSA id a10-20020a5d53ca000000b003140555c0ddsm2467780wrw.56.2023.06.28.03.26.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jun 2023 03:26:40 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        broonie@kernel.org
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        johan+linaro@kernel.org, perex@perex.cz, tiwai@suse.com,
-        lgirdwood@gmail.com, ckeepax@opensource.cirrus.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: sc8280xp-x13s: Add audio topology firmware path
-Date:   Wed, 28 Jun 2023 11:26:21 +0100
-Message-Id: <20230628102621.15016-4-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
-References: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
+        id S229840AbjF1K7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 06:59:39 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:36884 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229522AbjF1K7f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 06:59:35 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35SAxDPP039747;
+        Wed, 28 Jun 2023 05:59:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1687949953;
+        bh=fAz5LFseo7lEldx3ZYITuvV7Xvig0TD/PEjZ1krIfcE=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=DJJNhfBYVJprDaynnB1x5t74zsQJLkdPiJJVoZcclfCWK2C8SvhQ7wyt0zGoRwzuv
+         eRDqdItBrkxITOBzsXKYa8FF1ekZoSWh/Cjvb/ZUzh48AhO+K9aIksD4zVuhXkxmQ0
+         wYBgKleRaDOgXpAG4EqDsd1UTLZDXFRK51RG7HFE=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35SAxDk1025395
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 28 Jun 2023 05:59:13 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 28
+ Jun 2023 05:59:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 28 Jun 2023 05:59:12 -0500
+Received: from localhost (ileaxei01-snat2.itg.ti.com [10.180.69.6])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35SAxB7e121791;
+        Wed, 28 Jun 2023 05:59:12 -0500
+Date:   Wed, 28 Jun 2023 05:59:11 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     "Kumar, Udit" <u-kumar1@ti.com>
+CC:     Bhavya Kapoor <b-kapoor@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
+        <kristo@kernel.org>, <vigneshr@ti.com>
+Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721s2-main: Enable support for
+ SDR104 speed mode
+Message-ID: <20230628105911.rdpqwxuhshgaj2ik@kobold>
+References: <20230412121415.860447-1-b-kapoor@ti.com>
+ <7fe4adef-9be2-6dae-d53f-692f9775439c@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <7fe4adef-9be2-6dae-d53f-692f9775439c@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add audio topology firmware name and path in dt so that we can
-specify full path for it.
+On 13:50-20230628, Kumar, Udit wrote:
+> 
+> On 4/12/2023 5:44 PM, Bhavya Kapoor wrote:
+> > According to TRM for J721S2, SDR104 speed mode is supported by the SoC
+> > but its capabilities were masked in device tree. Remove sdhci-caps-mask
+> > to enable support for SDR104 speed mode for SD card in J721S2 SoC.
+> > 
+> > [+] Refer to : section 12.3.6.1.1 MMCSD Features, in J721S2 TRM
+> > - https://www.ti.com/lit/zip/spruj28
+> > 
+> > Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
+> > Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
+> > ---
+> > Changelog v1->v2:
+> > 	- Modified Commit Message and Added Fixes tag
+> > 
+> > Link to v1 : https://lore.kernel.org/all/20230404091245.336732-1-b-kapoor@ti.com/
+> > 
+> >   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 2 --
+> >   1 file changed, 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> > index 8915132efcc1..95c6151ed10c 100644
+> > --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> > +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
+> > @@ -400,8 +400,6 @@ main_sdhci1: mmc@4fb0000 {
+> >   		ti,clkbuf-sel = <0x7>;
+> >   		ti,trm-icp = <0x8>;
+> >   		dma-coherent;
+> > -		/* Masking support for SDR104 capability */
+> > -		sdhci-caps-mask = <0x00000003 0x00000000>;
+> 
+> 
+> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts | 5 +++++
- 1 file changed, 5 insertions(+)
+Please confirm if there are any changes in *tap-delay attributes.
+> 
+> >   	};
+> >   	main_navss: bus@30000000 {
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-index 7cc3028440b6..0160b8e7d64f 100644
---- a/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-+++ b/arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
-@@ -924,6 +924,11 @@
- 	};
- };
- 
-+
-+&q6apm {
-+	firmware-name = "qcom/sc8280xp/LENOVO/21BX/audioreach-tplg.bin";
-+};
-+
- &qup0 {
- 	status = "okay";
- };
--- 
-2.21.0
-
+--
+Regards,
+Nishanth Menon
