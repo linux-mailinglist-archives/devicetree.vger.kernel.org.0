@@ -2,122 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C5AB9741485
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:05:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CD38741498
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:10:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231454AbjF1PFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 11:05:42 -0400
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131]:24504 "EHLO
-        mx0b-0031df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231886AbjF1PFk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jun 2023 11:05:40 -0400
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35SBrfTn007823;
-        Wed, 28 Jun 2023 15:05:07 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=OzLkR4S+T/Lq/RWUNFp92amr0KMTeZqRJceBBbmWwgc=;
- b=KOkj6Fwm61bhxNPBSSQ7haG8kPWLbTdMoqlOve4T2Y1Z3qmLDSEyLsOohyqL+j+1eErC
- KWDJZvdXHn8AvVw0U6k1Ahdq5Et4Mxjepmz622XN8JS3trRzMngXrPP/wDzSL+9QXD8C
- k5gpla27YSwCwNeuvFrl8N4SRP5PYh9dBt7Pvm7El0QbfBaO22PjfMaDoi/0bD5U9vIb
- Cnu8HWsxYOFCTVRmRNF1gk6/1PB1aq+0d8M3VN55v9IqH0ZXCUrHrkZZuYjJGzQihArP
- 381xl5ZS/wCaOwDuvXas1XRbs1PJu+xN/gLU7p9XKUownZUmpy/uwRlZbzmrayu+ZObV RQ== 
-Received: from nasanppmta03.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rg9pb1t9y-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 15:05:06 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35SF55kE003112
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 15:05:05 GMT
-Received: from [10.216.26.159] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 28 Jun
- 2023 08:04:57 -0700
-Message-ID: <3f29c981-be84-99dd-7e5c-84ac32792c1f@quicinc.com>
-Date:   Wed, 28 Jun 2023 20:34:52 +0530
+        id S231929AbjF1PKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 11:10:08 -0400
+Received: from mx.kolabnow.com ([212.103.80.153]:16646 "EHLO mx.kolabnow.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S231200AbjF1PKH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jun 2023 11:10:07 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mx.kolabnow.com (Postfix) with ESMTP id BD3A01507;
+        Wed, 28 Jun 2023 17:10:05 +0200 (CEST)
+Authentication-Results: ext-mx-out001.mykolab.com (amavisd-new);
+        dkim=pass (4096-bit key) reason="pass (just generated, assumed good)"
+        header.d=kolabnow.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kolabnow.com; h=
+        content-transfer-encoding:mime-version:message-id:date:date
+        :subject:subject:from:from:received:received:received; s=
+        dkim20160331; t=1687965003; x=1689779404; bh=h4ahYP33d2p2uwjetro
+        Ov3PU/MUKWiTuDotZ45ehQFk=; b=sO9bn2YoyvPU65FCXgW9wZRMClV3Nj8HNKp
+        U06azC7tLSfm63hVNaJ8sOAVz+8Qonducv4TzjnOaYNQnrZrQZzTMgPMcKukM/Oo
+        0RamdVOPLU/ByaOY5MCWF0KMdTvjYB16Qh3FnWLL4FuWuoFFMqwFS0F231pRV79n
+        MDFA9HlMqAuRWEnsGYmDQBfHfRbslNij/xG4mGjqkqMVSZLBE619KVJKTZkQ0cr0
+        AmQ6msGFBEm4hfzBqHazeXngO3dRnn+ei77LLu6/F28OFq7LTHfMp/Pv0Bv8/Uwh
+        oTYHRIbLSyEk2A4ckIPMoKQFn+NKPNqE2S83Q13lh7hNgj9xEDLwG4D2/6CQ6D5s
+        62w19V1uXL02IhoDFK+lGoLS+xBZugmNv0nn+7Iv9plJS5NG3jLf/eKCyYcpCx0J
+        cfoGEtejzv1m1pV9wYnR/2+eVLrwm7cemaY3e7YBNIYP1vMBw9vaV+SDml1mhBE1
+        ssW7w1VK03j/uIMxaMt7mpZEmnMvuOMy/BOgxRBehFSAeDtPTbfk4dA0Ssl2xOrW
+        jWczFdkLXqCJQdaiQtrI0v6hoBV8otr8vKXufokYhi92WGulfeYzOZmNFjLqZtg4
+        Yka0Jz1I0olJhxPOS8vRDWXQCjkGlTw0MZ3wfVVu1/JuBRWTURjKByuTguPB4N5T
+        ydFM9NCc=
+X-Virus-Scanned: amavisd-new at mykolab.com
+X-Spam-Flag: NO
+X-Spam-Score: -1.9
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 tagged_above=-10 required=4
+        tests=[BAYES_00=-1.9] autolearn=no autolearn_force=no
+Received: from mx.kolabnow.com ([127.0.0.1])
+        by localhost (ext-mx-out001.mykolab.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 54oBje1Govza; Wed, 28 Jun 2023 17:10:03 +0200 (CEST)
+Received: from int-mx002.mykolab.com (unknown [10.9.13.2])
+        by mx.kolabnow.com (Postfix) with ESMTPS id 7BE82607;
+        Wed, 28 Jun 2023 17:10:02 +0200 (CEST)
+Received: from ext-subm003.mykolab.com (unknown [10.9.6.3])
+        by int-mx002.mykolab.com (Postfix) with ESMTPS id AD56934CA;
+        Wed, 28 Jun 2023 17:10:01 +0200 (CEST)
+From:   alison@she-devel.com
+To:     johan@kernel.org
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alison@she-devel.com,
+        achaiken@aurora.tech
+Subject: [PATCH v8 0/2] support config of U-Blox Zed-F9 GNSS
+Date:   Wed, 28 Jun 2023 08:09:46 -0700
+Message-Id: <20230628150948.908273-1-alison@she-devel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 02/21] kallsyms: Export kallsyms_lookup_name
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <keescook@chromium.org>, <tony.luck@intel.com>,
-        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linus.walleij@linaro.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-3-git-send-email-quic_mojha@quicinc.com>
- <CAHp75Vcu6_Gr6Y8ThzOZdC34-sxOx9esYhpS2p22rAWjwv5Bkg@mail.gmail.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <CAHp75Vcu6_Gr6Y8ThzOZdC34-sxOx9esYhpS2p22rAWjwv5Bkg@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: jnLRn8fp110S0Jt2xc2g4BloN4Ej1wEc
-X-Proofpoint-ORIG-GUID: jnLRn8fp110S0Jt2xc2g4BloN4Ej1wEc
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-28_10,2023-06-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 clxscore=1015
- spamscore=0 bulkscore=0 priorityscore=1501 adultscore=0 lowpriorityscore=0
- phishscore=0 mlxscore=0 mlxlogscore=888 impostorscore=0 malwarescore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306280134
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Alison Chaiken <alison@she-devel.com>
+
+Add generalized support for setting arbitrary configuration of the
+U-Blox Zed-F9P GNSS.  Employ the new functionality to set the baud rate
+of the Zed-F9P if the devicetree specifies a non-default value.
+
+Tested with 6.1.22 on U-Blox Zed-F9P GNSS devices.
+
+V7 -> V8 Rebased on v6.4.
+V6 -> V7 Fixed tag and version.
+V5 -> V6 Change #ifdef to _maybe_unused and fix warnings.
+V4 -> V5 Wrap all new code in a CONFIG_OF=y check and fixes
+V3 -> V4 Lookup device-specific properties by matching driver data.
+V2 -> V3 Add email recipients whom I foolishly missed the first two times.
+V1 -> V2 Fixes error identified by kernel test robot:
+
+Alison Chaiken (2):
+  gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
+  dt-bindings: gnss: Add U-Blox Zed-F9
+
+ .../bindings/gnss/u-blox,neo-6m.yaml          |   1 +
+ drivers/gnss/ubx.c                            | 243 +++++++++++++++++-
+ 2 files changed, 233 insertions(+), 11 deletions(-)
 
 
-On 6/28/2023 6:54 PM, Andy Shevchenko wrote:
-> On Wed, Jun 28, 2023 at 3:35 PM Mukesh Ojha <quic_mojha@quicinc.com> wrote:
->>
->> Module like minidump providing debugging support will need to
->> get the symbol information from the core kernel e.g to get
->> the linux_banner, kernel section addresses bss, data, ro etc.
->>
->> commit 0bd476e6c671 ("kallsyms: unexport kallsyms_lookup_name()
-> 
-> Commit
-> 
->>   and kallsyms_on_each_symbol()") unexports kallsyms_lookup_name
->> due to lack of in-tree user of the symbol. Now, that minidump
->> will one of its user, export it.
-> 
-> users
-> 
-> ...
-> 
-> Is it a direct revert? Then make it visible by leaving pieces from `git revert`.
-> 
+base-commit: 6995e2de6891c724bfeb2db33d7b87775f913ad1
+-- 
+2.40.1
 
-No, it is not direct revert..
-
-> ...
-> 
->> -
-> 
-> If not, drop this stray change.
-
-ok
-
-- Mukesh
-> 
->> +EXPORT_SYMBOL_GPL(kallsyms_lookup_name);
-> 
-> 
