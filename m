@@ -2,65 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 50042741C29
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 01:07:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE4A1741C3B
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 01:12:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231340AbjF1XHh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 19:07:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57860 "EHLO
+        id S231751AbjF1XMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 19:12:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230476AbjF1XHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 19:07:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FDD010FE;
-        Wed, 28 Jun 2023 16:07:35 -0700 (PDT)
+        with ESMTP id S231509AbjF1XMX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 19:12:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 840331FFB;
+        Wed, 28 Jun 2023 16:12:22 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C5A3361485;
-        Wed, 28 Jun 2023 23:07:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 822A4C433C0;
-        Wed, 28 Jun 2023 23:07:33 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 12EFA6148B;
+        Wed, 28 Jun 2023 23:12:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71A48C433CB;
+        Wed, 28 Jun 2023 23:12:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687993654;
-        bh=53C7MomxKIvUQ7nkSMtiS9K6tPKxxxmP21jcwV8lafA=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=PkZZrge8omk9ElyRJAkXPrd/dypCeIzKxA35G30+61WGI9WVNc4FTVep4b8rQfzzq
-         9/cYXfw1Aocj8jVoerhoXrfUPXCMQ5Pt9UAvBkD3i+3HUGDULirVleHh4rENXZlKMH
-         jwwXhbx663yjqLHg5heXfoEwkfIzpttTKiIX9iv1n9qjyNrcASMI4a72PhaghYkJxg
-         FYKhMZvsYNVKb25SbdX9fVU8LxQnOqYCJMxzByZsl305jkBtS6UPOC2k51oESJ7Mbx
-         cWHAcnmJdrxI4345xN/1hr7K5lweU6C835Wnmdk0WBAQzO4aY6QDEHvLq+dXKhebGH
-         m3twOSh7qZzKQ==
-Message-ID: <b08bca2f9e7887cc4046b66bf2d8acb72c0e97e5.camel@kernel.org>
-Subject: Re: [PATCH v9 2/4] tpm: of: Make of-tree specific function commonly
- available
-From:   Jarkko Sakkinen <jarkko@kernel.org>
-To:     Stefan Berger <stefanb@linux.ibm.com>,
-        Jerry Snitselaar <jsnitsel@redhat.com>
-Cc:     kexec@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-integrity@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linuxppc-dev@lists.ozlabs.org, nayna@linux.ibm.com,
-        nasastry@in.ibm.com, mpe@ellerman.id.au,
-        Jason Gunthorpe <jgg@ziepe.ca>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Mimi Zohar <zohar@linux.ibm.com>,
-        Nageswara R Sastry <rnsastry@linux.ibm.com>,
-        Coiby Xu <coxu@redhat.com>
-Date:   Thu, 29 Jun 2023 02:07:29 +0300
-In-Reply-To: <4afde78d-e138-9eee-50e0-dbd32f4dcfe0@linux.ibm.com>
-References: <20230418134409.177485-1-stefanb@linux.ibm.com>
-         <20230418134409.177485-3-stefanb@linux.ibm.com>
-         <e4dcxwp63uisirxwanjwrhzrnve45wqnxhijfp4oq274r4neco@v2btoy43ue5h>
-         <CT8BRJZS8RQU.9ICEA2UAFC7G@suppilovahvero>
-         <4afde78d-e138-9eee-50e0-dbd32f4dcfe0@linux.ibm.com>
+        s=k20201202; t=1687993941;
+        bh=VtoAF6nuCa4Fxj4WgDnwmAot+ZQSC5M1c1smWPa+7s4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZMut3JVteUhuboOHyxQn2/OnmHzUHTDI7P5S69np/0sSNjWKL8xCAKh1QCBWT/H3c
+         AkhD8qwR9f4ceDA4eQFcxfG9R2MzFkkzpmjx+cTJlheZ+gIEW2kZXyMImjX926Df6o
+         Ryd6MguGXwa8irs4lKVuhqyKjQV/skz00UJLeVADdJNEiZm2lDTE+wIrbC9uNkdzQ5
+         R+vVZlwfGoaLiJN1VsH0kKapglMuQvPMoX3uOOtkvHQ5rZ8QuRZRF52sv5TklWqzBz
+         kbTJlr6uzeM64DUw8XY50SABgKR46yFeqYila9O/AG/FQUtP+SDCkD0kKZqLyt+RuI
+         W5DgXISkURJcg==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b69ea3b29fso946411fa.3;
+        Wed, 28 Jun 2023 16:12:21 -0700 (PDT)
+X-Gm-Message-State: AC+VfDzGMh5ZKE2fPqWCI6o2wX+uDoEcucjgHZU0jEJ2SJp+Of0ctGn6
+        poStpg4n0WL7eMIIzdxVyv+GN+Jb9Oz3JAY5BQ==
+X-Google-Smtp-Source: ACHHUZ6Fzpg/so1UAEGwnBtL4zBjBnbpHjF3CA2AlhadTbCPzhJfaOQGQ18vYiqiQMB+CX6Xq5p+Wl0G+/tQFXQKP78=
+X-Received: by 2002:a2e:9107:0:b0:2b5:9b3b:f7ea with SMTP id
+ m7-20020a2e9107000000b002b59b3bf7eamr11189150ljg.41.1687993939392; Wed, 28
+ Jun 2023 16:12:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com> <2023062814-chance-flounder-f002@gregkh>
+In-Reply-To: <2023062814-chance-flounder-f002@gregkh>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 28 Jun 2023 17:12:06 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+Message-ID: <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related support
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     corbet@lwn.net, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
+        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
+        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.48.1-0ubuntu1 
-MIME-Version: 1.0
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -69,42 +72,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2023-06-09 at 14:49 -0400, Stefan Berger wrote:
->=20
-> On 6/9/23 14:18, Jarkko Sakkinen wrote:
-> > On Thu May 25, 2023 at 1:56 AM EEST, Jerry Snitselaar wrote:
-> > > On Tue, Apr 18, 2023 at 09:44:07AM -0400, Stefan Berger wrote:
-> > > > Simplify tpm_read_log_of() by moving reusable parts of the code int=
-o
-> > > > an inline function that makes it commonly available so it can be
-> > > > used also for kexec support. Call the new of_tpm_get_sml_parameters=
-()
-> > > > function from the TPM Open Firmware driver.
-> > > >=20
-> > > > Signed-off-by: Stefan Berger <stefanb@linux.ibm.com>
-> > > > Cc: Jarkko Sakkinen <jarkko@kernel.org>
-> > > > Cc: Jason Gunthorpe <jgg@ziepe.ca>
-> > > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > > Cc: Frank Rowand <frowand.list@gmail.com>
-> > > > Reviewed-by: Mimi Zohar <zohar@linux.ibm.com>
-> > > > Tested-by: Nageswara R Sastry <rnsastry@linux.ibm.com>
-> > > > Tested-by: Coiby Xu <coxu@redhat.com>
-> > > > Acked-by: Jarkko Sakkinen <jarkko@kernel.org>
-> > > >=20
-> > >=20
-> > > Reviewed-by: Jerry Snitselaar <jsnitsel@redhat.com>
-> >=20
-> > If I just pick tpm only patches they won't apply so maybe TPM changes
-> > should be better separated if that is by any means possible.
->=20
-> Per the comment here I am putting this series here on hold.
-> https://lore.kernel.org/linux-integrity/20230418134409.177485-1-stefanb@l=
-inux.ibm.com/T/#m03745c2af2c46f19f329522fcb6ccb2bf2eaedc7
+On Wed, Jun 28, 2023 at 9:45=E2=80=AFAM Greg KH <gregkh@linuxfoundation.org=
+> wrote:
+>
+> On Wed, Jun 28, 2023 at 06:04:27PM +0530, Mukesh Ojha wrote:
+> > Minidump is a best effort mechanism to collect useful and predefined da=
+ta
+> > for first level of debugging on end user devices running on Qualcomm So=
+Cs.
+> > It is built on the premise that System on Chip (SoC) or subsystem part =
+of
+> > SoC crashes, due to a range of hardware and software bugs. Hence, the
+> > ability to collect accurate data is only a best-effort. The data collec=
+ted
+> > could be invalid or corrupted, data collection itself could fail, and s=
+o on.
+> >
+> > Qualcomm devices in engineering mode provides a mechanism for generatin=
+g
+> > full system ramdumps for post mortem debugging. But in some cases it's
+> > however not feasible to capture the entire content of RAM. The minidump
+> > mechanism provides the means for selecting which snippets should be
+> > included in the ramdump.
+> >
+> > Minidump kernel driver implementation is divided into two parts for
+> > simplicity, one is minidump core which can also be called minidump
+> > frontend(As API gets exported from this driver for registration with
+> > backend) and the other part is minidump backend i.e, where the underlyi=
+ng
+> > implementation of minidump will be there. There could be different way
+> > how the backend is implemented like Shared memory, Memory mapped IO
+> > or Resource manager(gunyah) based where the guest region information is
+> > passed to hypervisor via hypercalls.
+> >
+> >     Minidump Client-1     Client-2      Client-5    Client-n
+> >              |               |              |             |
+> >              |               |    ...       |   ...       |
+> >              |               |              |             |
+> >              |               |              |             |
+> >              |               |              |             |
+> >              |               |              |             |
+> >              |               |              |             |
+> >              |               |              |             |
+> >              |           +---+--------------+----+        |
+> >              +-----------+  qcom_minidump(core)  +--------+
+> >                          |                       |
+> >                          +------+-----+------+---+
+> >                                 |     |      |
+> >                                 |     |      |
+> >                 +---------------+     |      +--------------------+
+> >                 |                     |                           |
+> >                 |                     |                           |
+> >                 |                     |                           |
+> >                 v                     v                           v
+> >      +-------------------+      +-------------------+     +------------=
+------+
+> >      |qcom_minidump_smem |      |qcom_minidump_mmio |     | qcom_minidu=
+mp_rm |
+> >      |                   |      |                   |     |            =
+      |
+> >      +-------------------+      +-------------------+     +------------=
+------+
+> >        Shared memory              Memory mapped IO           Resource m=
+anager
+> >         (backend)                   (backend)                   (backen=
+d)
+> >
+> >
+> > Here, we will be giving all analogy of backend with SMEM as it is the
+> > only implemented backend at present but general idea remains the same.
+>
+> If you only have one "backend" then you don't need the extra compexity
+> here at all, just remove that whole middle layer please and make this
+> much simpler and smaller and easier to review and possibly accept.
 
-Hi, sorry for late response. The Midsummer weekend really
-messed my schedules (it is a big thing Finland). This year
-the timing with the kernel cycle has been conflicting.
+pstore already supports backends. Why aren't the above backends just
+pstore backends rather than having an intermediate pstore backend in
+RAM which then somehow gets moved into these minidump backends.
 
-OK cool.
+> We don't add layers when they are not needed, and never when there is no
+> actual user.  If you need the extra "complexity" later, then add it
+> later when it is needed as who knows when that will ever be.
+>
+> Please redo this series based on that, thanks.
 
-BR, Jarkko
+My bigger issue with this whole series is what would this all look
+like if every SoC vendor upstreamed their own custom dumping
+mechanism. That would be a mess. (I have similar opinions on the
+$soc-vendor hypervisors.)
+
+Rob
