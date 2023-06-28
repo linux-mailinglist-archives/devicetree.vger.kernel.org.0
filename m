@@ -2,295 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A132D7413E0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:34:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11B77741402
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:45:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231273AbjF1Ocs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 10:32:48 -0400
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131]:11160 "EHLO
-        mx0b-0031df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231127AbjF1Ocl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jun 2023 10:32:41 -0400
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35SBEeoH026308;
-        Wed, 28 Jun 2023 14:32:24 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=W7WnL8mgHuMiFaub7gEfEGkF/nZF/hE5lIKpRJEdEjY=;
- b=gKRjO4/6SGMS8/6q6UZiww5JA600Q14Ao08rtvNKK2jkQ3uxHoSMOF8CiEDubvnfbNRF
- vx9fh8EJ7pVird/8mFFxShypEZgjoQi/OenLd8kBk72KRHrT1dTU7KUPg8pdOzMvDoT7
- Vyp2btEbHNScPTmXNB0F913cQ2LiQcqbKUvFmjGoBAc+XGEjS7UAf2NLZoupkPoezvfU
- kbKyf7+aKf1c+Lb9a1AxXje9e7/BzVMJzd6rwQ8j46aZAA/xHlHKnZPJEBZG+Vg18LCI
- 2vll5l4Ae/pmgxGcw5V6/t3hH4Kk+zhqMQwq0KgsebvEXUXuYu19KqfGtbrAIHvCYiBv dw== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rgemk15dp-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 14:32:24 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35SEWMCj000945
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 14:32:22 GMT
-Received: from [10.226.59.182] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.7; Wed, 28 Jun
- 2023 07:32:14 -0700
-Message-ID: <c3a6a217-dc5c-4814-1d32-c951f2f92495@quicinc.com>
-Date:   Wed, 28 Jun 2023 08:32:13 -0600
+        id S230073AbjF1Opb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 10:45:31 -0400
+Received: from mail-he1eur04on2050.outbound.protection.outlook.com ([40.107.7.50]:35999
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S230329AbjF1Op1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jun 2023 10:45:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=ZPoz5bQc0dzEuQIXotMiPB7TGFd8zN2Is/gP2HfX1VkfF0zbCxJ7WPoscw6S9noHBy1iPrNUJ9zrLbOTr4OssXrJkNHI+b/yHYnjzm2nDhb9TNswaiT+rQsr6cHcC5v39LX/lRYLTxbbOjrTmA8wFss3h2yzxe1NUv7RmRYwnmrxhm6diFnDVTkWWbnm1jSHn/vfrMoFMGDR5j0MNb3aUdXAENVMFicufxVYDt68Pv7aofdsfgJ6mcB8f+IsqGL9NIntDFZG0Lc7AA9xEUrQ0xv977M4D+fy6g01bO4p0X+JXMHnta7ebHTtx3xhD2QCsqUz53Dkdd20kFB8+WPMGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=MP1T3gtr+cB2YUY0ykBWG0GweE8pdzY9lvO9qW73wSQ=;
+ b=crwdcGdK98Tvf+cOEoC3bcwVlE66QFDVyFndt0U0BbZG53h9HvPrEm3dK0YqIVk+J7kk1KSWZ5A0uUftJBQnQ9Czqgz6ej+7pgcQL1HEgyjJiT1ZvK8DrDoO+oYS6GmNVlB0BbtHmvYnW0Ys4mcTwnyxyfusJmK3LAooI8d63dqpEB3SvivHjy/YaMWu83lgppCf52lWheAbXq4kTwaGvv0vT7lzj16369d2faRNO2B1qvGeMJG1/hAp+4vkmKogNWJpgKek4pG4246rw9kT22Dvo6RKvhb8wTBkaKoD3E4TA/lnQK2oG6ubUOiPprBHsSpwtGNu69kqRQ+nG+IRLA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=MP1T3gtr+cB2YUY0ykBWG0GweE8pdzY9lvO9qW73wSQ=;
+ b=eqqQLeYf866sUu+SkMQy9dHs3Xg2hoHXlTSp0sg+SLMqmTeD8Mr4AR+wwEtaWNDmrhOvNl+QV7bLCDMkCu9L08BHFo8O0+goegNSizlJjhEHvlWNizQxxNrVRMjKAtbUX0ujutcUKgRkF7bgRCLU7MfRGa9TS7/5RSBVmpSb0dI=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nxp.com;
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
+ by AS8PR04MB9046.eurprd04.prod.outlook.com (2603:10a6:20b:441::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.26; Wed, 28 Jun
+ 2023 14:45:24 +0000
+Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::4a2a:262e:415f:e41c]) by AM6PR04MB4838.eurprd04.prod.outlook.com
+ ([fe80::4a2a:262e:415f:e41c%7]) with mapi id 15.20.6521.026; Wed, 28 Jun 2023
+ 14:45:22 +0000
+Date:   Wed, 28 Jun 2023 10:45:07 -0400
+From:   Frank Li <Frank.li@nxp.com>
+To:     vkoul@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
+        imx@lists.linux.dev
+Subject: Re: [PATCH v9 00/13] dmaengine: edma: add freescale edma v3 support
+Message-ID: <ZJxHc62V72eVMYu4@lizhi-Precision-Tower-5810>
+References: <20230620201221.2580428-1-Frank.Li@nxp.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230620201221.2580428-1-Frank.Li@nxp.com>
+X-ClientProxiedBy: BY3PR05CA0003.namprd05.prod.outlook.com
+ (2603:10b6:a03:254::8) To AM6PR04MB4838.eurprd04.prod.outlook.com
+ (2603:10a6:20b:4::16)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH v12 00/10] (no cover subject)
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     Robert Marko <robimarko@gmail.com>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-pm@vger.kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-References: <20230217-topic-cpr3h-v12-0-1a4d050e1e67@linaro.org>
-From:   Jeffrey Hugo <quic_jhugo@quicinc.com>
-In-Reply-To: <20230217-topic-cpr3h-v12-0-1a4d050e1e67@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: 7VLS1VKQlhiTuDoTyXT8FpSL2LgcIDiN
-X-Proofpoint-ORIG-GUID: 7VLS1VKQlhiTuDoTyXT8FpSL2LgcIDiN
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-28_10,2023-06-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 adultscore=0
- phishscore=0 clxscore=1011 lowpriorityscore=0 suspectscore=0
- mlxlogscore=999 impostorscore=0 priorityscore=1501 mlxscore=0 spamscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306280129
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AS8PR04MB9046:EE_
+X-MS-Office365-Filtering-Correlation-Id: acdb2633-9d11-4ad4-7dc5-08db77e64cf1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: z6/YiIU/ABbpIRZH+1AcwjAt6d4PS0MrBTit3XW4JHVSkEbQtHrihMUCbuSxVYhPocRUQH7oMMZ6d+zpn/WZFR7fIBANa6+wK/XcHodFdE2iHsXRr9lyH/aeHIXHs/o1BXUZTzlQcZm9bLeqXY5V+K87PWJrhh/DkOJf2iVYKOTR/w8JxX/n9Kryt69fvfsseMMU+HmwssmqZWQVKs5b6pZ6qfcb3vc2WnA0H6dbwz7KldAMSNM0eqk4qRBPFtpkANsYgLUgCJ9KhFnt+GS9i7BMdLuiqG3VZxmnCbLB4fQSvUzCKj9CacAYYLHLrZL5oWqE6lSkqgw9hBMo7QWrQx3y6PMOECAS4Zzw5HbvNfxnM0/BS5gak+nIlibm6xAWCNQ1Tpsrnlp3B3+Rfl09132LAxd8/4FeJdBKPSXybg5GjIn43lUsc2vyLZdLBLtnCUjEPThH7wPjtZbt4u9lHJxLLe92EG4auytcFKNvdGVOh5lYPSo3UL01jUIKaEQgLkB8NIWjtd6TjLvjLaUMQF89tOhUIfZEbx6ue1kopYH+jOgNWvp7DnYIgao9Rghv+jj0EdH01M6TUnvuV/k3CwQSpbdqw7iG5dipTQREChnYjYx+cS2IQjJuckQlja2dh9uP7tznqxOLYGHHuR4dmQ==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(7916004)(346002)(39860400002)(396003)(136003)(376002)(366004)(451199021)(921005)(38100700002)(5660300002)(33716001)(86362001)(41300700001)(38350700002)(66476007)(8936002)(8676002)(66556008)(316002)(66946007)(478600001)(6486002)(186003)(6506007)(9686003)(6512007)(26005)(52116002)(2906002)(83380400001)(6666004);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Ka0WB7SJ5l1QRgRw86pKXfmLusB1nyMM53aRuunxj0AC9GkDzdaphb3nOwrk?=
+ =?us-ascii?Q?p8G8PXdrp9HkbafiUn6sA/d5HR1YxYXjVv6QHaR+XgtY1yzQSr+3XtCB67kw?=
+ =?us-ascii?Q?nUubsZK33a/nE8uWwOYjG6WAZepqQRUfIR+gWams2/pU0bnfKClJ0c4qsdqA?=
+ =?us-ascii?Q?ibQ2k8g70Sv0g53wVd0F25c8jbBZdHUcUQc7fJVGNBgC3e8m4JSSiLbjjrh2?=
+ =?us-ascii?Q?CZTuTwzQ9uxRW1+tCkl+WBOb8T06CN9C6bH/Rvjhw1+Zl78s0/pjEPjVNdJM?=
+ =?us-ascii?Q?8kgC0WYSOJPexo5zG0lDjTjQZ1XnCMFZeooA7mm6qpAS0JKdmWXqK3Z+yKj7?=
+ =?us-ascii?Q?zQy7GCzQLby3bg3kE6AT22VFs7aF3v+gOPG7Pl1IAKh+h9gGvOXr589T4V1n?=
+ =?us-ascii?Q?s7aws2Gr1pFSyD8BpZqtrssWELLhHA/KfmRn9bpoEO91Tipyu8EaWeowLrKt?=
+ =?us-ascii?Q?CRszSA48Kn7eRGj8tqEMSFpYZ+JDZ55lg7btzamjDfU3XF531rfgYvoB2jKv?=
+ =?us-ascii?Q?auTOoZuCd9m5fmfLd5HL0DaSe7wVmipkRlSO0iKUZMsrZhdu5m1NSYNiUHRc?=
+ =?us-ascii?Q?qej4G7BGQAjJAlqpFZ1LBsNHydKB4fs2dcZwRyJ7WY/rFoavHrtn6dcL3wNL?=
+ =?us-ascii?Q?6c15hprav/hs2hwJ2abrhQMrwtev/v6M3P/0vEwovMwoDdvl/ZdaiCUkI9He?=
+ =?us-ascii?Q?AmAURraFNy0dxtHqhRntu0PLdPL7/UWUjpPRV6r3hVFglPttQtZ4qwv60r0J?=
+ =?us-ascii?Q?4I9WXPOouHzNNZBZWSeq0+9h2TCkZNk26fjIZfr29h2mz3ETJrDJo8x5WPLH?=
+ =?us-ascii?Q?GCNNsYzqYfZEMzAakDsda4VdFWbBik0mM6BeVF77aBxdaRJQKWvSfcZy82SL?=
+ =?us-ascii?Q?Vh7vp/AKi8qmjzvm0sm6JqBhgBB+08jqgVsklvITHJUxES29nVp62IgQLJWR?=
+ =?us-ascii?Q?wCHiz0RfdVXN1Q7JLgIAngqCThjQhveOG6E1MBL8gjJasvWJiosyE0+c9acq?=
+ =?us-ascii?Q?QEHEA5V01O9GTfvNSMwBe3Qwx32W0FeN97K3liGwC8+GwO7cV1STynylX8fc?=
+ =?us-ascii?Q?bPk9Y7UqK5xL/QnQTcNcWMpAhnp4zpGLFcM225TvxS4pFXP2Lzi+wEkRbBNf?=
+ =?us-ascii?Q?9+QJRze7aLfCT8vg4E6YY7DUHT12NBdsDUD4iVGlk0IVjWqcmQ00w3ocFmzY?=
+ =?us-ascii?Q?6W1lmWRoe08mJ4ZXJCpxDbvouWgpR4We0qA36URpQqOEP4EMtnzfGpY1bMEi?=
+ =?us-ascii?Q?VK0QmJ7MzOEiRPzR90A3ZHjeyyQwWgO9+6WAomOkd+FWx32z3Y+VgVdhvWiz?=
+ =?us-ascii?Q?oDkeGZBDOTKOhaSQusF4mTnBGlJ+m4qKK3sLBwmH5IS6S6JwsIXhHI0LKo5h?=
+ =?us-ascii?Q?316IeHJuRoiV8BUyp7yzzaHAOJq6e/hU79LIb286PAq3ny0GHr/QT4TO6xCA?=
+ =?us-ascii?Q?ZEu3mV5y8odlAkxwRWJKfg0oWPckKTOMeOQ34koKppFfkL2gKkNifwcuEgzA?=
+ =?us-ascii?Q?FlCuwSz0W+Vh/jUEr++oi3v51mAww1HxFfVUXhHIKYcrYj1pJljLLg9SYyYc?=
+ =?us-ascii?Q?qxJrIUUJHHkfljuhiaPX2GLue5zjYrnF47cM4R28?=
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: acdb2633-9d11-4ad4-7dc5-08db77e64cf1
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2023 14:45:22.1629
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: K3lIkUkLw9whVxAE4V5wfM3u/sdxBjDq6M+f4HaDMvttKRmZBzIgF1nhRPx1kObD4HoGNlsgeZPUDJRsLwCprQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB9046
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/28/2023 8:00 AM, Konrad Dybcio wrote:
-> Changes in v12:
-> - Add the !independent! patch to block cpufreq-dt from probing on 8998 (it tries
->    to when we attach OPP tables to the CPU nodes)
-> - Include all promised changes to the CPR3 driver from v11 (I managed to
->    send the wrong version of that patch last time around..)
-> - Partially rewrite debugfs code (to make it work and be cleaner)
-> - use FIELD_PREP/GET throughout the driver (managed to squash a bug when
->    exploring that)
-> - Fix and finish the removal of cpr_get_ro_factor() by introducing
->    cpr_thread_desc.ro_scaling_factor_common
-> - Replace underscores in node names with '-'
-> - Fix some formatstring issues that clang apparently doesn't care about
-> - Link to v11: https://lore.kernel.org/r/20230217-topic-cpr3h-v11-0-ba22b4daa5d6@linaro.org
+On Tue, Jun 20, 2023 at 04:12:08PM -0400, Frank Li wrote:
+> This patch series introduces support for the eDMA version 3 from
+> Freescale. The eDMA v3 brings alterations in the register layout,
+> particularly, the separation of channel control registers into
+> different channels. The Transfer Control Descriptor (TCD) layout,
+> however, remains identical with only the offset being changed.
 > 
-> Add support for Core Power Reduction v3, v4 and Hardened
+> The first 11 patches aim at tidying up the existing Freescale
+> eDMA code and laying the groundwork for the integration of eDMA v3
+> support.
 > 
-> Changes in v11:
+> Patch 1-11:
+> These patches primarily focus on cleaning up and refactoring the existing
+> fsl_edma driver code. This is to accommodate the upcoming changes and new
+> features introduced with the eDMA v3.
 > 
-> CPR COMMON:
-> - split the commonizing patch, make it actually do what it says on the
->    tin..
-> - fix some overflow bugs
+> Patch 12:
+> This patch introduces support for eDMA v3. In addition, this patch has
+> been designed with an eye towards future upgradability, specifically for
+> transitioning to eDMA v5. The latter involves a significant upgrade
+> where the TCD address would need to support 64 bits.
 > 
-> CPR3:
-> - fix some overflow bugs
-> - don't assume "lack of qcom,opp-?loop-vadj" means val=0"
-> 
-> CPR BINDINGS:
-> - drop quotes in items
-> - drop clock-names (there's just a single one)
-> - rewrite the description a bit
-> - fix up the example
-> - drop bogus minItems
-> - "acc-syscon" -> "qcom,acc"
-> 
-> DTS:
-> - fix qfprom children so that the bits=<> doesn't overflow reg[size]
-> - drop unrelated changes
-> - place one reg entry per line
-> 
-> Link to v10: https://lore.kernel.org/r/20230217-topic-cpr3h-v10-0-67aed8fdfa61@linaro.org
-> 
-> Changes in v10:
-> - Skip "Let qcom,opp-fuse-level be a 2-long array" (Applied by Viresh)
-> - Use b4 (it may be the first time you're receiving this if git send-email
->    omitted you before..)
-> - +Cc Robert Marko (expressed interest in previous revisions)
-> - Add "Document CPR3 open/closed loop volt adjustment"
-> CPR:
-> - %hhu -> %u (checkpatch)
-> CPR BINDINGS:
-> - Drop QCS404 fuse set (it doesn't use this driver, what did I even think..)
->    but leave the allOf:if: block for expansion (sdm660, msm8996, ipqABCD should
->    follow soon..)
-> - Drop Rob's R-b (as things changed *again*, please take one more look to make
->    sure you're okay with this file, Rob..)
-> 
-> Link to v9:
-> https://lore.kernel.org/linux-arm-msm/20230116093845.72621-1-konrad.dybcio@linaro.org/
-> 
-> Changes in v9:
-> - Restore forgotten MAINTAINERS patch (oops)
-> CPR:
-> - Include the missing header (big oops!)
-> - Fix kconfig dependencies
-> CPR bindings:
-> - Fix cpu reg in example (why didn't dt_binding_check scream at that)
-> - Add newlines between nodes in example
-> - Change opp table node names to opp-table-cpu[04]
-> - Change opp table labels to cpu[04]_opp_table
-> - Change CPRh opp subnode names to opp-N from oppN
-> - Remove some stray newlines
-> - Bring back nvmem-cell-names and add the 8998's set
-> - Allow power-domains for VDDCX_AO voting
-> - Remove Rob's r-b, there's been quite a bit of changes..
-> CPR DT:
-> - Send the correct revision of the patch this time around..
-> OPP bindings:
-> - Add Rob's ack
-> 
-> Link to v8:
-> https://lore.kernel.org/linux-arm-msm/20230110175605.1240188-1-konrad.dybcio@linaro.org/
-> 
-> Changes in v8:
-> - Overtake this series from AGdR
-> - Apply all review comments from v7 except Vladimir's request to
->    not create the include/ header; it will be strictly necessary for
->    OSM-aware cpufreq_hw programming, which this series was more or
->    less created just for..
-> - Drop QCS404 dtsi change, account for not breaking backwards compat
->    in [3/5]
-> - Add type phandle type reference to acc-syscon in [1/5]
-> - Update AGdR's email addresses for maintainer entries
-> - Add [2/5] to make dt_binding_check happy
-> - Separate the CPRh DT addition from cpufreq_hw addition, sort and
->    properly indent new nodes
-> - Drop CPR yaml conversion, that happened in meantime
-> - Reorder the patches to make a bit more sense
-> - Tested again on MSM8998 Xperia XZ Premium (Maple)
-> - I take no responsibility for AGdR's cheeky jokes, only the code!
-> 
-> Link to v7:
-> https://lore.kernel.org/lkml/20210901155735.629282-1-angelogioacchino.delregno@somainline.org/
-> 
-> Changes in v7:
-> - Rebased on linux-next as of 210901
-> - Changed cpr_read_efuse calls to nvmem_cell_read_variable_le_u32,
->    following what was done in commit c77634b9d916
-> 
-> Changes in v6:
-> - Fixes from Bjorn's review
-> - After a conversation with Viresh, it turned out I was abusing the
->    OPP API to pass the APM and MEM-ACC thresholds to qcom-cpufreq-hw,
->    so now the driver is using the genpd created virtual device and
->    passing drvdata instead to stop the abuse
-> - Since the CPR commonization was ignored for more than 6 months,
->    it is now included in the CPRv3/4/h series, as there is no point
->    in commonizing without having this driver
-> - Rebased on v5.13
-> 
-> Changes in v5:
-> - Fixed getting OPP table when not yet installed by the caller
->    of power domain attachment
-> 
-> Changes in v4:
-> - Huge patch series has been split for better reviewability,
->    as suggested by Bjorn
-> 
-> Changes in v3:
-> - Fixed YAML doc issues
-> - Removed unused variables and redundant if branch
-> 
-> Changes in v2:
-> - Implemented dynamic Memory Accelerator corners support, needed
->    by MSM8998
-> - Added MSM8998 Silver/Gold parameters
-> 
-> This commit introduces a new driver, based on the one for cpr v1,
-> to enable support for the newer Qualcomm Core Power Reduction
-> hardware, known downstream as CPR3, CPR4 and CPRh, and support
-> for MSM8998 and SDM630 CPU power reduction.
-> 
-> In these new versions of the hardware, support for various new
-> features was introduced, including voltage reduction for the GPU,
-> security hardening and a new way of controlling CPU DVFS,
-> consisting in internal communication between microcontrollers,
-> specifically the CPR-Hardened and the Operating State Manager.
-> 
-> The CPR v3, v4 and CPRh are present in a broad range of SoCs,
-> from the mid-range to the high end ones including, but not limited
-> to, MSM8953/8996/8998, SDM630/636/660/845.
-> 
-> As to clarify, SDM845 does the CPR/SAW/OSM setup in TZ firmware, but
-> this is limited to the CPU context; despite GPU CPR support being not
-> implemented in this series, it is planned for the future, and some
-> SDM845 need the CPR (in the context of GPU CPR) to be configured from
-> this driver.
-> 
-> It is also planned to add the CPR data for MSM8996, since this driver
-> does support the CPRv4 found on that SoC, but I currently have no time
-> to properly test that on a real device, so I prefer getting this big
-> implementation merged before adding more things on top.
-> 
-> As for MSM8953, we (read: nobody from SoMainline) have no device with
-> this chip: since we are unable to test the cpr data and the entire
-> driver on that one, we currently have no plans to do this addition
-> in the future. This is left to other nice developers: I'm sure that
-> somebody will come up with that, sooner or later
-> 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
-> AngeloGioacchino Del Regno (8):
->        cpufreq: blacklist MSM8998 in cpufreq-dt-platdev
->        MAINTAINERS: Add entry for Qualcomm CPRv3/v4/Hardened driver
->        dt-bindings: soc: qcom: cpr3: Add bindings for CPR3 driver
->        soc: qcom: cpr: Move common functions to new file
->        soc: qcom: cpr-common: Add support for flat fuse adjustment
->        soc: qcom: cpr-common: Add threads support
->        soc: qcom: Add support for Core Power Reduction v3, v4 and Hardened
->        arm64: dts: qcom: msm8998: Configure CPRh
-> 
-> Konrad Dybcio (2):
->        dt-bindings: opp: v2-qcom-level: Document CPR3 open/closed loop volt adjustment
->        soc: qcom: cpr: Use u64 for frequency
-> 
->   .../devicetree/bindings/opp/opp-v2-qcom-level.yaml |   14 +
->   .../devicetree/bindings/soc/qcom/qcom,cpr3.yaml    |  289 ++
->   MAINTAINERS                                        |    6 +
->   arch/arm64/boot/dts/qcom/msm8998.dtsi              |  757 ++++++
->   drivers/cpufreq/cpufreq-dt-platdev.c               |    1 +
->   drivers/soc/qcom/Kconfig                           |   22 +
->   drivers/soc/qcom/Makefile                          |    2 +
->   drivers/soc/qcom/cpr-common.c                      |  362 +++
->   drivers/soc/qcom/cpr-common.h                      |  109 +
->   drivers/soc/qcom/cpr.c                             |  394 +--
->   drivers/soc/qcom/cpr3.c                            | 2855 ++++++++++++++++++++
->   include/soc/qcom/cpr.h                             |   17 +
->   12 files changed, 4460 insertions(+), 368 deletions(-)
-> ---
-> base-commit: 5c875096d59010cee4e00da1f9c7bdb07a025dc2
-> change-id: 20230217-topic-cpr3h-de232bfb47ec
-> 
-> Best regards,
+> Patch 13:
+> This patch focuses on the device tree bindings and their modifications
+> to properly handle and integrate the changes brought about by eDMA v3
 
-Tested on the Lenovo Miix 630 (8998).  No issues observed.
+@vkoul:
+  Do you have chance to check these patches? Any chance to come into 6.5
+  All audio parts of i.MX8x and i.MX9 was dependent on these patches.
 
-Tested-by: Jeffrey Hugo <quic_jhugo@quicinc.com>
+best regards
+Frank Li
+
+> 
+> Change from v8 to v9
+> - add dmaengine: fsl-edma: fix build error when arch is s390
+>   fix kernel test robot build issue
+> 
+> Change from v7 to v8
+> -dt-bind: add missed part
+> 
+> clock-names:
+> > items:
+> >   - const: dma
+> > 
+> > clocks:
+> >   maxItems: 1
+> 
+> Change from v6 to v7
+> -dt-bind: remove "else" branch. 
+> 
+> Change from v5 to v6
+> - dt-bind: rework it by fixed top level constraint.
+> 
+> Change from v4 to v5
+> - dt-bind, add example for imx93 to trigger make dt_binding_check to
+> generate the yaml error. fixed dt_binding_check error. 
+>   keep compatible string ordered alphabetically.
+> 
+> Change from v3 to v4.
+> - use dma-channel-mask instead of fsl,channel-mask
+> - don't use dmamux after v3. only use flags to distinguish the IP
+> difference
+> - fixed 8qm and imx93 have not CH_MUX register. Previous can work
+> because dmamux is 0.
+> 
+> Change from v2 to v3
+> - dt-binding: add interrupt-names
+> - dt-binding: add minItems
+> - dt-binding: add missed property: fsl,channel-mask
+> - rework patch 4, removed edma_version to avoid confuse with hardware
+> IP version.
+> 
+> Change from v1 to v2
+> - fixed issue found by make DT_CHECKER_FLAGS=-m dt_binding_check
+> - fixed warning found by kernel test robot
+> 
+> 
+> Frank Li (13):
+> 1   dmaengine: fsl-edma: fix build error when arch is s390
+> 2   dmaengine: fsl-edma: clean up EXPORT_SYMBOL_GPL in fsl-edma-common.c
+> 3   dmaengine: fsl-edma: clean up fsl_edma_irq_exit()
+> 4   dmaengine: fsl-edma: transition from bool fields to bitmask flags in
+>     drvdata
+> 5   dmaengine: fsl-edma: Remove enum edma_version
+> 6   dmaengine: fsl-edma: move common IRQ handler to common.c
+> 7   dmaengine: fsl-edma: simply ATTR_DSIZE and ATTR_SSIZE by using ffs()
+> 8   dmaengine: fsl-edma: refactor using devm_clk_get_enabled
+> 9   dmaengine: fsl-edma: move clearing of register interrupt into
+>     setup_irq function
+> 10  dmaengine: fsl-edma: refactor chan_name setup and safety
+> 11  dmaengine: fsl-edma: move tcd into struct fsl_dma_chan
+> 12  dmaengine: fsl-edma: integrate v3 support
+> 13  dt-bindings: fsl-dma: fsl-edma: add edma3 compatible string
+> 
+>  .../devicetree/bindings/dma/fsl,edma.yaml     | 106 +++++-
+>  drivers/dma/Kconfig                           |   2 +-
+>  drivers/dma/Makefile                          |   6 +-
+>  drivers/dma/fsl-edma-common.c                 | 308 +++++++++++------
+>  drivers/dma/fsl-edma-common.h                 | 127 +++++--
+>  drivers/dma/{fsl-edma.c => fsl-edma-main.c}   | 320 ++++++++++++++----
+>  drivers/dma/{mcf-edma.c => mcf-edma-main.c}   |  36 +-
+>  7 files changed, 677 insertions(+), 228 deletions(-)
+>  rename drivers/dma/{fsl-edma.c => fsl-edma-main.c} (62%)
+>  rename drivers/dma/{mcf-edma.c => mcf-edma-main.c} (90%)
+> 
+> -- 
+> 2.34.1
+> 
