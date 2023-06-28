@@ -2,189 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59CCB740D54
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 11:41:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46144740D57
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 11:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232347AbjF1JkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 05:40:09 -0400
-Received: from mx1.sberdevices.ru ([37.18.73.165]:14222 "EHLO
-        mx1.sberdevices.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S235520AbjF1JfC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 05:35:02 -0400
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 6D6B8100010;
-        Wed, 28 Jun 2023 12:34:59 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6D6B8100010
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1687944899;
-        bh=GclWWL59oht8VgFW8Tc4TABopkyYORqVnTmqa0M/qOg=;
-        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
-        b=isgdeBQNhCOXqAPWFxY23/4YS2SM5oveSMYOXgZN04ijpuuJPs8QDSJo86zoxFWSq
-         akx548USahmjFutrW98GiQW9Yu5c3HMUQyRrw8PBE4RxahH3AYcuCpE66ts5FHhudy
-         UcgvLJxbfBkOGNYZnxlYDseuBe13CHMgxp5XJTcdciGCUwpvDTiamXOo7D+JYIEvqL
-         39cJ82LQBy62R7fdzuQWngyJXD2ZY7eifYTKneKsO6/Bvv2S27QlWD9jxGMj1WI/Es
-         wmm7viJHorE3OsE//MeQ/HQMsgGk0Rs4bNAlJJPH6F0j4qvFx4CdkpHLc9m2xMeuGU
-         hhdW8OtiOlxJg==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Wed, 28 Jun 2023 12:34:59 +0300 (MSK)
-Received: from localhost.localdomain (100.64.160.123) by
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Wed, 28 Jun 2023 12:34:02 +0300
-From:   Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-To:     Liang Yang <liang.yang@amlogic.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-CC:     <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        Arseniy Krasnov <AVKrasnov@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC step size
-Date:   Wed, 28 Jun 2023 12:29:36 +0300
-Message-ID: <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
-X-Mailer: git-send-email 2.35.0
-In-Reply-To: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
-References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
+        id S231409AbjF1Jkw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 05:40:52 -0400
+Received: from mail-io1-f44.google.com ([209.85.166.44]:45068 "EHLO
+        mail-io1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S233213AbjF1JiX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 05:38:23 -0400
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-77acb04309dso287194039f.2;
+        Wed, 28 Jun 2023 02:38:22 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687945102; x=1690537102;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=XOpBCKE+PIRr5MgGPC1pYSwv19OzpzqzpgmhgsMavwo=;
+        b=g5VqDoPapIAaDPb68zNYxAKZzdJc/DvP+33FAJP8JTLu08WfKIb0FVSPkRCN95CWsT
+         OJi3YRrEFkLZDjiJJY+SRQ4JY0MWjIYpWoqVBwDUL7D3R992EcWDs3uAQhWTWKz9IbsS
+         4BYnZpyIxk7Wg2uQUQ/w48rlX6CxqI6X2a8QM6mAl4aATxLZWXAZ69IOvRxd7v1lUGrY
+         SNSl0GSOq+5GMXu3O02XnvD5rpGlmGW764jD+Qsrbeux2BoHaOFXAO46YquzB6pZMaml
+         nN5a6NJEZDVWZ0Ud3acs6mEBuQViTfWq3aOqTFFU43pA8xRNIHUt7A9r536+504uQL9t
+         nBMA==
+X-Gm-Message-State: AC+VfDw/AciQuEM72KYaPXzrshxjyZNSpFIhG8nh4anjvGuiTHyknl60
+        VGJ3ZskIhrNh5pwnBp9ZGxKX6fu0vw==
+X-Google-Smtp-Source: ACHHUZ7aZ+YVb425TfCrUALvFuPQDBZ6ct5yhqYMzSjPk05y5iZkOnAREaFJwZcG3G0AGJrOu2GnTA==
+X-Received: by 2002:a6b:e60a:0:b0:783:71b1:50cf with SMTP id g10-20020a6be60a000000b0078371b150cfmr5833101ioh.11.1687945102273;
+        Wed, 28 Jun 2023 02:38:22 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id z3-20020a6b5c03000000b0077ac4b77d62sm3475262ioh.43.2023.06.28.02.38.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jun 2023 02:38:21 -0700 (PDT)
+Received: (nullmailer pid 4181073 invoked by uid 1000);
+        Wed, 28 Jun 2023 09:38:17 -0000
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178300 [Jun 28 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean
-X-KSMG-LinksScanning: Clean
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/28 08:00:00 #21591748
-X-KSMG-AntiVirus-Status: Clean, skipped
+From:   Rob Herring <robh@kernel.org>
+To:     cy_huang@richtek.com
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com,
+        conor+dt@kernel.org, broonie@kernel.org,
+        linux-kernel@vger.kernel.org
+In-Reply-To: <1687942037-14652-2-git-send-email-cy_huang@richtek.com>
+References: <1687942037-14652-1-git-send-email-cy_huang@richtek.com>
+ <1687942037-14652-2-git-send-email-cy_huang@richtek.com>
+Message-Id: <168794509690.4180998.4132353427147392015.robh@kernel.org>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: rt5739: Add compatible for
+ rt5733
+Date:   Wed, 28 Jun 2023 03:38:17 -0600
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Meson NAND supports both 512B and 1024B ECC step size.
 
-Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
----
- drivers/mtd/nand/raw/meson_nand.c | 47 +++++++++++++++++++++++--------
- 1 file changed, 35 insertions(+), 12 deletions(-)
+On Wed, 28 Jun 2023 16:47:16 +0800, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
+> 
+> Add compatible string for rt5733.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> ---
+>  Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
-index 345212e8c691..6cc4f63b86c8 100644
---- a/drivers/mtd/nand/raw/meson_nand.c
-+++ b/drivers/mtd/nand/raw/meson_nand.c
-@@ -135,6 +135,7 @@ struct meson_nfc_nand_chip {
- struct meson_nand_ecc {
- 	u32 bch;
- 	u32 strength;
-+	u32 size;
- };
- 
- struct meson_nfc_data {
-@@ -190,7 +191,8 @@ struct meson_nfc {
- };
- 
- enum {
--	NFC_ECC_BCH8_1K		= 2,
-+	NFC_ECC_BCH8_512	= 1,
-+	NFC_ECC_BCH8_1K,
- 	NFC_ECC_BCH24_1K,
- 	NFC_ECC_BCH30_1K,
- 	NFC_ECC_BCH40_1K,
-@@ -198,15 +200,16 @@ enum {
- 	NFC_ECC_BCH60_1K,
- };
- 
--#define MESON_ECC_DATA(b, s)	{ .bch = (b),	.strength = (s)}
-+#define MESON_ECC_DATA(b, s, sz)	{ .bch = (b), .strength = (s), .size = (sz) }
- 
- static struct meson_nand_ecc meson_ecc[] = {
--	MESON_ECC_DATA(NFC_ECC_BCH8_1K, 8),
--	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24),
--	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30),
--	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40),
--	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50),
--	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60),
-+	MESON_ECC_DATA(NFC_ECC_BCH8_512, 8,  512),
-+	MESON_ECC_DATA(NFC_ECC_BCH8_1K,  8,  1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50, 1024),
-+	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60, 1024),
- };
- 
- static int meson_nand_calc_ecc_bytes(int step_size, int strength)
-@@ -224,8 +227,27 @@ static int meson_nand_calc_ecc_bytes(int step_size, int strength)
- 
- NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
- 		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
--NAND_ECC_CAPS_SINGLE(meson_axg_ecc_caps,
--		     meson_nand_calc_ecc_bytes, 1024, 8);
-+
-+static const int axg_stepinfo_strengths[] = { 8 };
-+static const struct nand_ecc_step_info axg_stepinfo_1024 = {
-+	.stepsize = 1024,
-+	.strengths = axg_stepinfo_strengths,
-+	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
-+};
-+
-+static const struct nand_ecc_step_info axg_stepinfo_512 = {
-+	.stepsize = 512,
-+	.strengths = axg_stepinfo_strengths,
-+	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
-+};
-+
-+static const struct nand_ecc_step_info axg_stepinfo[] = { axg_stepinfo_1024, axg_stepinfo_512 };
-+
-+static const struct nand_ecc_caps meson_axg_ecc_caps = {
-+	.stepinfos = axg_stepinfo,
-+	.nstepinfos = ARRAY_SIZE(axg_stepinfo),
-+	.calc_ecc_bytes = meson_nand_calc_ecc_bytes,
-+};
- 
- static struct meson_nfc_nand_chip *to_meson_nand(struct nand_chip *nand)
- {
-@@ -1259,7 +1281,8 @@ static int meson_nand_bch_mode(struct nand_chip *nand)
- 		return -EINVAL;
- 
- 	for (i = 0; i < ARRAY_SIZE(meson_ecc); i++) {
--		if (meson_ecc[i].strength == nand->ecc.strength) {
-+		if (meson_ecc[i].strength == nand->ecc.strength &&
-+		    meson_ecc[i].size == nand->ecc.size) {
- 			meson_chip->bch_mode = meson_ecc[i].bch;
- 			return 0;
- 		}
-@@ -1278,7 +1301,7 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
- 	struct meson_nfc *nfc = nand_get_controller_data(nand);
- 	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
- 	struct mtd_info *mtd = nand_to_mtd(nand);
--	int nsectors = mtd->writesize / 1024;
-+	int nsectors = mtd->writesize / 512;
- 	int raw_writesize;
- 	int ret;
- 
--- 
-2.35.0
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
+
+yamllint warnings/errors:
+
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.example.dtb: /example-0/cpuctrl@a22000/clock@0: failed to match any schema with compatible: ['hisilicon,hix5hd2-clock']
+Documentation/devicetree/bindings/arm/hisilicon/controller/sysctrl.example.dtb: /example-0/system-controller@802000/clock@0: failed to match any schema with compatible: ['hisilicon,hi3620-clock']
+Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.example.dtb: /example-0/peripheral-controller@8a20000/phy@850: failed to match any schema with compatible: ['hisilicon,hi3798cv200-combphy']
+Documentation/devicetree/bindings/net/qca,ar71xx.example.dtb: /example-0/ethernet@1a000000/mdio/switch@10: failed to match any schema with compatible: ['qca,ar9331-switch']
+Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: /example-0/usb/mdio@1/switch@0: failed to match any schema with compatible: ['marvell,mv88e6190']
+Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: /example-0/parent/i2c/camera@36: failed to match any schema with compatible: ['ovti,ov5695']
+Documentation/devicetree/bindings/thermal/imx-thermal.example.dtb: /example-0/anatop@20c8000: failed to match any schema with compatible: ['fsl,imx6q-anatop', 'syscon', 'simple-mfd']
+Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: failed to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
+Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.example.dtb: /example-0/memory-controller@13410000/ethernet@6: failed to match any schema with compatible: ['davicom,dm9000']
+Documentation/devicetree/bindings/leds/common.example.dtb: /example-2/i2c/led-controller@30: failed to match any schema with compatible: ['panasonic,an30259a']
+Documentation/devicetree/bindings/clock/milbeaut-clock.example.dtb: /example-2/serial@1e700010: failed to match any schema with compatible: ['socionext,milbeaut-usio-uart']
+Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.example.dtb: /example-1/syscon@20e00000: failed to match any schema with compatible: ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
+Documentation/devicetree/bindings/sound/audio-graph-card2.example.dtb: /example-0/cpu: failed to match any schema with compatible: ['cpu-driver']
+Documentation/devicetree/bindings/sound/audio-graph-card2.example.dtb: /example-0/codec: failed to match any schema with compatible: ['codec-driver']
+Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.example.dtb: /example-0/iomcu@ffd7e000: failed to match any schema with compatible: ['hisilicon,hi3660-iomcu', 'syscon']
+Documentation/devicetree/bindings/i2c/qcom,i2c-cci.example.dtb: /example-0/cci@ac4a000/i2c-bus@1/camera@60: failed to match any schema with compatible: ['ovti,ov7251']
+Documentation/devicetree/bindings/input/mediatek,pmic-keys.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['mediatek,mt6397']
+Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.example.dtb: /example-0/pmic@0: failed to match any schema with compatible: ['sprd,sc2731']
+Documentation/devicetree/bindings/dma/dma-router.example.dtb: /example-0/dma-router@4a002b78: failed to match any schema with compatible: ['ti,dra7-dma-crossbar']
+Documentation/devicetree/bindings/dma/dma-controller.example.dtb: /example-0/dma-controller@48000000: failed to match any schema with compatible: ['ti,omap-sdma']
+Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['ti,twl6035-pmic', 'ti,palmas-pmic']
+Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['ti,twl6035-pmic', 'ti,palmas-pmic']
+
+doc reference errors (make refcheckdocs):
+
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1687942037-14652-2-git-send-email-cy_huang@richtek.com
+
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
