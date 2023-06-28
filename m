@@ -2,239 +2,287 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1425D7412B6
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 15:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 868027412D2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 15:44:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232109AbjF1Nk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 09:40:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48806 "EHLO
+        id S232108AbjF1NoP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 09:44:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231768AbjF1NkX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 09:40:23 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE6C6129;
-        Wed, 28 Jun 2023 06:40:21 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 31FAF612D6;
-        Wed, 28 Jun 2023 13:40:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 46700C433C8;
-        Wed, 28 Jun 2023 13:40:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687959620;
-        bh=n93fGuiqy7H4U4TmzEq5JRsE3duXMKbiuJlE6vujB4U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Jhdnl+5aF3fp26RLRbHB7ZKnexyfwuqNwTwZBaiQ67XpFKJ4ZAi8fYSJdinmjTeK6
-         VYiNyZ/PQCzWxRlVvlF0rMYZaPJSv1od0hUc2jB1FbGEFcy1mg+4i9hvKb3PtrAYbz
-         ZWUriLsuyp4zenTbNwmCDBM1+VC44TDabXln8iP4bkrVAKWrkYeDDB9CKb7tU0HLhx
-         AwYYFtmvWfY+Je+PIypbpZMXXxaSkm/cureteAl/ZkGQ2xrASDtfuIOkOklX6KuQrn
-         ei/VTgELIuMH8l97s4nl2WIcKG/2v+PK01NpR8/EgPwr2CKUWYQ6ciORMclmmaVUb1
-         nzl9ZMr9J+mrg==
-Date:   Wed, 28 Jun 2023 14:40:13 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     William Breathitt Gray <william.gray@linaro.org>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <20230628134013.GH10378@google.com>
-References: <20230421073938.GO996918@google.com>
- <82612171-46d7-4d82-a8fc-c7d6a99d57e9@sirena.org.uk>
- <MN2PR03MB516860989BD8ED6AC9A767FBE755A@MN2PR03MB5168.namprd03.prod.outlook.com>
- <20230621171315.GL10378@google.com>
- <20230626175443.GA3446604-robh@kernel.org>
- <20230627135615.GF10378@google.com>
- <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
- <ZJry8QTka8m6ag/j@fedora>
- <20230627163344.GG10378@google.com>
- <CAL_Jsq+Z64tuMO8a2Y=2GrXZ8q0L4Z2avCiphsn0HOOC71Dzjg@mail.gmail.com>
+        with ESMTP id S231659AbjF1NoO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 09:44:14 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E744710D5;
+        Wed, 28 Jun 2023 06:44:12 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51d80d81d6eso5255931a12.1;
+        Wed, 28 Jun 2023 06:44:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687959851; x=1690551851;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=DBv8cSvMkvEF1DkMG98bpwrqP7g4vFh1aUZStsMNl9c=;
+        b=Zlc1pZYlLshNBMDIZeLIFmudEhsNNxdVueSsNAVMmfG4YxQ5KunHGM745IFd7VoEgK
+         1K8lzl+LKzAx7oVBL2Z7/riAJsBCfX3z3JxqCM4NYJqigC6ie/9DZodlWiN4vLRfqoLw
+         1w9HzZ/FUWEOhXXRUYOAcvypkfOtRyWXrFq71+rU9WgAaTDPYPzPVtiQwi+bjxrZQs6q
+         CwbheXFyDke1BS+YBQ1eNbNQ8fqaq0DHMCGULn+sq+9tIlD/9B5uqQtkyIUiHQQXvL7y
+         Jlq3IPRIL6OEaKSq/QPsSV81eMiY0be/JYlz3qWw5dZLOkUkewIVXrBJo/eGFE8IDVBa
+         mtDQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687959851; x=1690551851;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=DBv8cSvMkvEF1DkMG98bpwrqP7g4vFh1aUZStsMNl9c=;
+        b=PwY9Sh99HC8hU6/o3Krt7uXt8VJw+5sRWbTqP0qmwws11T2h8C2E73ofBfThrxc14K
+         ed7H1d14AYyM+oU3vsYYm+nsiKAF12Rr33S4mNCUU4bXo1lGRorlbJz4M2H6+JJTsN1D
+         P6essoZ5GXDOxnqlB6zQDPu8iwmXA86HaONm6pZI2tiWMb4lcPMjTUY2UC6YRfINP7L2
+         AtWV/SN/eYg4+sGYgOs08nSpJ3c0qEdFWWoEfvNaxrtxE+uSvg2YZc06lp1c7XH9qf56
+         quyAm199xZwIBItMY1YcFTxBY45yn0XFnKaVplufuFqXAqROYGmtfjs9WVSHzHpSyib9
+         K1Eg==
+X-Gm-Message-State: AC+VfDx/SP7geF29/hJ61kp2ASMNN4b6TzYchKFclYIZihbVP2Rr1qUx
+        W8ma6LLzZ8ihrYtaCGNv3/TTLFcOzkEkY8HGDvY=
+X-Google-Smtp-Source: ACHHUZ7oXZBHs6NMhkxsGsw96wOEqS7BEMbTZjUoi8ySOd5bxD2bpIiiZDa91fCITCubHFaPraFG5y3NUElfmp3zhrc=
+X-Received: by 2002:aa7:c593:0:b0:51d:93c8:99ff with SMTP id
+ g19-20020aa7c593000000b0051d93c899ffmr8089366edq.36.1687959851110; Wed, 28
+ Jun 2023 06:44:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+Z64tuMO8a2Y=2GrXZ8q0L4Z2avCiphsn0HOOC71Dzjg@mail.gmail.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com> <1687955688-20809-5-git-send-email-quic_mojha@quicinc.com>
+In-Reply-To: <1687955688-20809-5-git-send-email-quic_mojha@quicinc.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Wed, 28 Jun 2023 16:43:34 +0300
+Message-ID: <CAHp75VfF=TVBiTBGeDuGdROPFbS=zbc4ABjPL1cCfWe0rTxhQA@mail.gmail.com>
+Subject: Re: [PATCH v4 04/21] soc: qcom: Add Qualcomm APSS minidump (frontend)
+ feature support
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     corbet@lwn.net, agross@kernel.org, andersson@kernel.org,
+        konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        mathieu.poirier@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, linus.walleij@linaro.org,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jun 2023, Rob Herring wrote:
+On Wed, Jun 28, 2023 at 3:35=E2=80=AFPM Mukesh Ojha <quic_mojha@quicinc.com=
+> wrote:
+>
+> Minidump is a best effort mechanism to collect useful and predefined
+> data for first level of debugging on end user devices running on
+> Qualcomm SoCs. It is built on the premise that System on Chip (SoC)
+> or subsystem part of SoC crashes, due to a range of hardware and
+> software bugs. Hence, the ability to collect accurate data is only
+> a best-effort. The data collected could be invalid or corrupted,
+> data collection itself could fail, and so on.
+>
+> Qualcomm devices in engineering mode provides a mechanism for
+> generating full system ramdumps for post mortem debugging. But in some
+> cases it's however not feasible to capture the entire content of RAM.
+> The minidump mechanism provides the means for selecting region should
+> be included in the ramdump. The solution supports extracting the
+> ramdump/minidump produced either over USB or stored to an attached
+> storage device.
+>
+> Minidump kernel driver implementation is divided into two parts for
+> simplicity, one is minidump core which can also be called minidump
+> frontend(As API gets exported from this driver for registration with
+> backend) and the other part is minidump backend i.e, where the underlying
+> implementation of minidump will be there. There could be different way
+> how the backend is implemented like Shared memory, Memory mapped IO
+> or Resource manager based where the guest region information is passed
+> to hypervisor via hypercalls.
+>
+> Minidump Client-1     Client-2      Client-5    Client-n
+>          |               |              |             |
+>          |               |    ...       |   ...       |
+>          |               |              |             |
+>          |               |              |             |
+>          |               |              |             |
+>          |               |              |             |
+>          |               |              |             |
+>          |               |              |             |
+>          |           +---+--------------+----+        |
+>          +-----------+  qcom_minidump(core)  +--------+
+>                      |                       |
+>                      +------+-----+------+---+
+>                             |     |      |
+>                             |     |      |
+>             +---------------+     |      +--------------------+
+>             |                     |                           |
+>             |                     |                           |
+>             |                     |                           |
+>             v                     v                           v
+>  +-------------------+      +-------------------+     +------------------=
++
+>  |qcom_minidump_smem |      |qcom_minidump_mmio |     | qcom_minidump_rm =
+|
+>  |                   |      |                   |     |                  =
+|
+>  +-------------------+      +-------------------+     +------------------=
++
+>    Shared memory              Memory mapped IO           Resource manager
+>     (backend)                   (backend)                   (backend)
+>
+> Here, we will be giving all analogy of backend with SMEM as it is the
+> only implemented backend at present but general idea remains the same.
 
-> On Tue, Jun 27, 2023 at 10:33 AM Lee Jones <lee@kernel.org> wrote:
-> >
-> > On Tue, 27 Jun 2023, William Breathitt Gray wrote:
-> >
-> > > On Tue, Jun 27, 2023 at 08:10:59AM -0600, Rob Herring wrote:
-> > > > On Tue, Jun 27, 2023 at 7:56 AM Lee Jones <lee@kernel.org> wrote:
-> > > > >
-> > > > > On Mon, 26 Jun 2023, Rob Herring wrote:
-> > > > >
-> > > > > > On Wed, Jun 21, 2023 at 06:13:15PM +0100, Lee Jones wrote:
-> > > > > > > On Tue, 13 Jun 2023, Sahin, Okan wrote:
-> > > > > > >
-> > > > > > > > >On Fri, Apr 21, 2023 at 08:39:38AM +0100, Lee Jones wrote:
-> > > > > > > > >
-> > > > > > > > >> I'll try anything once!
-> > > > > > > > >
-> > > > > > > > >> Fair warning, I think this is going to massively complicate things.
-> > > > > > > > >
-> > > > > > > > >> Either we're going to be left with a situation where child-driver
-> > > > > > > > >> maintainers are scrabbling around looking for previous versions for the
-> > > > > > > > >> MFD pull-request or contributors being forced to wait a full cycle for
-> > > > > > > > >> their dependencies to arrive in the maintainer's base.
-> > > > > > > > >
-> > > > > > > > >If people are resending after the MFD has gone in they really ought to
-> > > > > > > > >be including the pull request in the cover letter, with some combination
-> > > > > > > > >of either referencing the mail or just saying "this depends on the
-> > > > > > > > >signed tag at url+tag", the same way they would for any other dependency.
-> > > > > > > > >
-> > > > > > > > >I can't see how you applying stuff when you can slow things down TBH,
-> > > > > > > > >the MFD bits will be applied faster and either people can pull in a
-> > > > > > > > >shared tag or you can apply more commits on top of the existing core
-> > > > > > > > >driver.
-> > > > > > > > >
-> > > > > > > > >> I'm not sure why simply providing your Ack when you're happy with the
-> > > > > > > > >> driver and forgetting about the set until the pull-request arrives, like
-> > > > > > > > >> we've been doing for nearly a decade now, isn't working for you anymore
-> > > > > > > > >> but I'm mostly sure this method will be a regression.
-> > > > > > > > >
-> > > > > > > > >Like I said I've not been doing that, I've mostly been just applying the
-> > > > > > > > >driver when it's ready.  This might not have been so visible to you
-> > > > > > > > >since it means that the regulator driver doesn't appear in the series by
-> > > > > > > > >the time the MFD settles down.  The whole "Acked-for-MFD" has always
-> > > > > > > > >been a bit confusing TBH, it's not a normal ack ("go ahead and apply
-> > > > > > > > >this, I'm fine with it") so it was never clear what the intention was.
-> > > > > > > > >
-> > > > > > > > >Before I started just applying the drivers there used to be constant
-> > > > > > > > >problems with things like tags going missing (which some of the time is
-> > > > > > > > >the submitter just not carrying them but can also be the result of some
-> > > > > > > > >churn causing them to be deliberately dropped due to changes) or
-> > > > > > > > >forgetting the series as you suggest and then not looking at some other
-> > > > > > > > >very similarly named series that was also getting lots of versions after
-> > > > > > > > >thinking it was one that had been reviewed already.  It was all very
-> > > > > > > > >frustrating.  Not doing the tags until the dependencies have settled
-> > > > > > > > >down means that if it's in my inbox it at least consistently needs some
-> > > > > > > > >kind of attention and that the submitter didn't drop tags or anything so
-> > > > > > > > >I know why there's no tag on it even though the version number is high,
-> > > > > > > > >though it's not ideal either.
-> > > > > > > >
-> > > > > > > > Hi Mark and Lee,
-> > > > > > > >
-> > > > > > > > Is there anything that I need to do for this patch set. I have received reviewed
-> > > > > > > > by tag for all of them so far.
-> > > > > > >
-> > > > > > > Since we are so late in the day, I'm going to just apply this for v6.5.
-> > > > > > >
-> > > > > > > The remainder can then be applied, friction free, for v6.6.
-> > > > > >
-> > > > > > Now we have undocmented bindings in use by the driver (as pointed out by
-> > > > > > 'make dt_compatible_check').
-> > > > > >
-> > > > > > The whole series has all the acks/reviews needed for you to apply the
-> > > > > > whole thing, so why not take the whole thing? Plus this series has been
-> > > > > > sitting for 2 months. Not a great experience for submitters...
-> > > > >
-> > > > > Patches are missing Acked-by tags.
-> > > > >
-> > > > >   Reviewed-by != Acked-by
-> > > >
-> > > > Reviewed-by > Acked-by
-> > > >
-> > > > >
-> > > > > I cannot merge other subsystem's patches without and Acked-by.
-> > > >
-> > > > I (and Krzysztof) give one or the other. If I'm taking a patch, then
-> > > > it's neither. I'm pretty sure Mark only gives Reviewed-by when he is
-> > > > not taking something.
-> > > >
-> > > > Rob
-> > >
-> > > It does seem a bit ambiguous whether an "Acked-by" indicates a
-> > > "Reviewed-by + acceptance of the changes" or just a brief look-over with
-> > > acceptance of the changes. FWIW the documentation does use the word
-> > > "reviewed" when describing Acked-by. [^1]
-> > >
-> > > However, I would argue that a Reviewed-by has a implicit acceptance of
-> > > the changes: why else provide a Reviewed-by line for the commit message
-> > > if you fundamentally disagree with the changes being merged? So a
-> >
-> > Where MFD is concerned the complexities are seldom 'whether' a patch
-> > should be merged, but rather 'how' it should be merged.
-> >
-> > In order to solve some of these issues in the past, I created a bespoke
-> > tag for scenarios where I'd like to indicate that a submission had been
-> > reviewed, but I also intended to take the patch via the MFD tree once
-> > all of the other pieces were ready.  Despite using this tag for around a
-> > decade, it did cause occasional confusion, even amongst maintainers I'd
-> > been working with for the longest time, so I recently stopped using it
-> > and replaced it with a standard Reviewed-by, to mean that it's reviewed
-> > but permission was *not* given for someone else to merge it - since my
-> > understanding, according to the documentation, is that an Acked-by is
-> > required for that.
-> >
-> > Recent discussions with other maintainers culminated in an agreement
-> > that I would start only taking the MFD pieces and follow-up with a
-> > pull-request for an immutable branch for them to pull from.  Since there
-> > is no more time to create, test and submit a maintainer-maintainer
-> > pull-request, I decided to merge this patch anyway, so the leaf drivers
-> > can be applied in a couple of weeks, after the merge-window is closed.
-> >
-> > Which brings us to where we are now!
-> >
-> > Without different tag which doesn't exist today, I'm not entirely sure
-> > how to solve this issue.  Ideas welcome.
-> 
-> IMO, a series with interdependencies, which most cases of a new MFD
-> are, should be applied as a series. That's generally what happens
-> everywhere else. Creating a branch and PR seems like extra work for
-> everyone. The downside to that is any API changes outside of MFD would
+the general
 
-This is what we've been doing for the last decade.  However, I'm getting
-mixed messages from folk.  Mark recently asked for something completely
-different (which I did say would be a bad idea at the time):
+>
+> The core of minidump feature is part of Qualcomm's boot firmware code.
+> It initializes shared memory (SMEM), which is a part of DDR and
+> allocates a small section of it to minidump table i.e also called
 
-https://lore.kernel.org/all/20230421073938.GO996918@google.com/
+the minidump
 
-Could we please just pick a strategy and go with it?
+> global table of content (G-ToC). Each subsystem (APSS, ADSP, ...) has
+> their own table of segments to be included in the minidump, all
+> references from a descriptor in SMEM (G-ToC). Each segment/region has
+> some details like name, physical address and it's size etc. and it
+> could be anywhere scattered in the DDR.
+>
+> qcom_minidump(core or frontend) driver adds the capability to add APSS
+> region to be dumped as part of ram dump collection. It provides
+> appropriate symbol register/unregister client regions.
+>
+> To simplify post mortem debugging, it creates and maintain an ELF
+> header as first region that gets updated upon registration
+> of a new region.
 
-> need some coordination. That coordination would only be needed when a
-> subsystem has some API change and there's a new MFD using that
-> subsystem rather than by default for every new MFD.
-> 
-> Another option is just that you take all the binding patches since the
-> MFD binding depends on the others. The drivers can still go via the
-> subsystem. Not totally ideal to have branches of drivers missing
-> bindings, but better than mainline missing bindings.
+...
 
-My original method of taking everything with Acks was fine IMHO.
+> +#include <linux/device.h>
+> +#include <linux/export.h>
+> +#include <linux/kallsyms.h>
 
--- 
-Lee Jones [李琼斯]
+> +#include <linux/kernel.h>
+
+Why?
+
+And again a lot of missing headers, like
+
+bug.h
+dev_printk.h
+errno.h
+export.h
+mutex.h
+slab.h
+
+> +#include <linux/module.h>
+> +#include <linux/printk.h>
+> +#include <linux/string.h>
+
+...
+
+> +/*
+> + * In some of the Old Qualcomm devices, boot firmware statically allocat=
+es 300
+> + * as total number of supported region (including all co-processors) in
+
+regions
+
+> + * minidump table out of which linux was using 201. In future, this limi=
+tation
+> + * from boot firmware might get removed by allocating the region dynamic=
+ally.
+> + * So, keep it compatible with older devices, we can keep the current li=
+mit for
+
+So, to keep...
+
+> + * Linux to 201.
+> + */
+
+...
+
+> +static struct elf_shdr *elf_shdr_entry_addr(struct elfhdr *ehdr, int idx=
+)
+> +{
+> +       struct elf_shdr *eshdr =3D (struct elf_shdr *)((size_t)ehdr + ehd=
+r->e_shoff);
+
+Interesting casting pointer to a size_t. Perhaps void * would work
+more explicitly?
+Ditto for all other cases like this.
+
+> +       return &eshdr[idx];
+> +}
+
+...
+
+> +       old_idx +=3D strscpy((strtab + old_idx), name, MAX_REGION_NAME_LE=
+NGTH);
+
+(Parentheses are not needed)
+
+strscpy() might return a very big number in this case. Is it a problem?
+
+...
+
+> +unlock:
+
+out_unlock: ?
+
+Ditto for other similar cases.
+
+> +       mutex_unlock(&md_lock);
+> +       return ret;
+
+...
+
+> +       /*
+> +        * Above are some prdefined sections/program header used
+
+predefined
+
+> +        * for debug, update their count here.
+> +        */
+
+...
+
+> +#ifndef _QCOM_MINIDUMP_INTERNAL_H_
+> +#define _QCOM_MINIDUMP_INTERNAL_H_
+
+> +#include <linux/elf.h>
+
+Not sure I see how it's used. You may provide forward declarations for
+the pointers.
+
+> +#include <soc/qcom/qcom_minidump.h>
+
++ kconfig.h for IS_ENABLED() ?
+
+MIssing forward declaration:
+struct device;
+
+...
+
+>  #ifndef _QCOM_MINIDUMP_H_
+>  #define _QCOM_MINIDUMP_H_
+
++ types.h for phys_addr_t.
+
+...
+
+> + * @size:      Number of byte to dump from @address location,
+
+bytes
+
+> + *             and it should be 4 byte aligned.
+
+--=20
+With Best Regards,
+Andy Shevchenko
