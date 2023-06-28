@@ -2,120 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A9774167F
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 18:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D52A9741682
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 18:32:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232227AbjF1Qak (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 12:30:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38886 "EHLO
+        id S230422AbjF1Qcw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 12:32:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232001AbjF1QaU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 12:30:20 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E61326AB
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 09:30:18 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-314090abb67so1155108f8f.2
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 09:30:18 -0700 (PDT)
+        with ESMTP id S231909AbjF1QcL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 12:32:11 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8EF72D4E
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 09:31:28 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b6b98ac328so142071fa.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 09:31:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687969817; x=1690561817;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=GMrDQpzoZwdfVDUBjNtjm8VWm39L3gvHFkqK/8Oz7Fg=;
-        b=Ba0XBSFDaUbS4aKjdlM+C4FCmPkBthmSTdfBs6mHnlYMS0NobRCZScMWgsulr6FThL
-         pnVyYRHvQCjtkncraECzLAvQ+7UaaOUOeoLC/FrbqnFzQeidWUji5UyY2HQhg/pYcVVH
-         ZDpPPOqOCvqYv2GZ5sfeTCDWOIDqe8SLoK35Yxpc300QsmkzeAxQVkFdOfKS944KxFT8
-         SRO7PcD+XNpalbwTg9/mxwiBqFQfoph45g5itQdglK1IfaxhxXXwZznxJF/Ocww5oFpO
-         9/ExtBr7Oq+j0Ob4taYU+NANwdLBzhD+eJcM7mxFBFjNHNmbpZL6QPC5Q5HQsxo87IWt
-         jI/A==
+        d=sifive.com; s=google; t=1687969887; x=1690561887;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=MxUKkkbx+vRaC8aApGfWw+lRG/yJ6GciI8eYWTcSc+k=;
+        b=UWTbqKJ2fZNsGlGeU+8ZqLPNDF2dy+79VrxjSQXDm8YcY/1L1wE7WMUH+axRruogbx
+         A08uUzgNdoD9PvKZlIafvnJ3JtujnGWoKyJkpMWvVa0ipnPKdJijF266uEO18WoglKYp
+         l+ehO5vfpQkxBZggXZNKcZKv+EQKodX2f+Z1dgQJ8iiCO/64mushT8tSZHQySYGC4tIH
+         /wSVEHiefbZ1CXQQEbX7i4urF2ooCKxKflvI9W9GmTZkcms+hP3Jh0w3eaeLTg7HZOjM
+         i7yZiz8IDiby+B+LAGmNaisWhRX1gXnaXUlH5o8JGY/TE+Z5wjFBsBuWon1C7rxHA0bI
+         ZErA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687969817; x=1690561817;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=GMrDQpzoZwdfVDUBjNtjm8VWm39L3gvHFkqK/8Oz7Fg=;
-        b=YlkDFOBIh5ShLmP88gV/Pvn2+nn9x6ezeJYlVaxcp36F5e5QIot6ZagUPp1TC1LYcK
-         k8ZA5X1YhtwkyD6lSFNGHcq23vJaT0GmEICy2z63+otxJjt/Tky2H5cAtt2/RzZgd9CU
-         EwDSeD7ftM2D2OTseSzwymtBXbMdOPgG2kxFCCMXkvjw6fKq06QqVx3Q81haHf+w+qFf
-         0mmGM1XMfpST5qBhpgJb2RDrDnDP4F+UjWNaBQolaux2jUs/MQN/ZI6MdT4yUJ1OCD0F
-         vKrrf/l5MuJ4WGtWA83Hfce6hBDkE60oFdDDFZkNpwlFR5MTcJwAZgzspP9CvUc8kJEz
-         36XA==
-X-Gm-Message-State: AC+VfDw5wewbXgaknJPpe9zhcnl2NoVKiulrbO0sweSn6EkaFeVxSTs/
-        s3xffYp02EovnzBvLTV+JvUClw==
-X-Google-Smtp-Source: ACHHUZ5ixMGvBpAM+0EN2kJ24buliqjZdgG6MhG+EaLDx0AocAWUzViTOhuZS9BEglKFygOinlA7EA==
-X-Received: by 2002:a05:6000:1a4f:b0:314:415:cbf5 with SMTP id t15-20020a0560001a4f00b003140415cbf5mr3635839wry.51.1687969816968;
-        Wed, 28 Jun 2023 09:30:16 -0700 (PDT)
-Received: from [192.168.1.195] ([5.133.47.210])
-        by smtp.googlemail.com with ESMTPSA id q14-20020adfdfce000000b003113ccbf388sm3953201wrn.13.2023.06.28.09.30.15
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 28 Jun 2023 09:30:16 -0700 (PDT)
-Message-ID: <b2aef484-71c9-5655-c1f8-ddde57687491@linaro.org>
-Date:   Wed, 28 Jun 2023 17:30:15 +0100
+        d=1e100.net; s=20221208; t=1687969887; x=1690561887;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=MxUKkkbx+vRaC8aApGfWw+lRG/yJ6GciI8eYWTcSc+k=;
+        b=g8eKRv2KMCIeF4Ie7Q1cWk/VlYrd2IkzGWw+tV9qvPva4mSEVnIaDflllh6Wg+CDik
+         LT7JG+8tU9VpyPOAyOpwvr75Yu/ouAVY2uDpJmERPrMMxLbkgdPjXPAtVs+vfXV9PPt3
+         iLb48sTCPw9i9ya0m5ZW/jBH+AwCAPqphE31C4uLxge8WUDtfvoIfY0fjaAHLQMeC+vY
+         VXvK39eG+j6c2yqgApxkM8CeOtmMbElVZMuwBVZE3Vp/+jk2bbFVh/J+q4MtZ8jHlxED
+         7l+8Nyh8gR7EAXP5u59X3xJtUXUWPMybG6E9Y9sFSNUMKynRzRgcZ+ajie022ULYhVg9
+         kjNA==
+X-Gm-Message-State: AC+VfDzXxDdJpUO3MSkLmII9e5VzTCAUnmcwIrsKLirEcWlAQkOCPwDr
+        eMigukq2C555ywhxI/LwGazz8+2H+D360IgbEARWRA==
+X-Google-Smtp-Source: ACHHUZ4m+7RR8cSMdL8PzsOGNomHg8wcCI+B4awSJPYhsIdDffEKLLZoyQ0wBygn7bgMqn4iZow/NVhPAO6GvWVDdGA=
+X-Received: by 2002:a2e:9e07:0:b0:2b4:5fdd:f588 with SMTP id
+ e7-20020a2e9e07000000b002b45fddf588mr21115198ljk.43.1687969887180; Wed, 28
+ Jun 2023 09:31:27 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/3] ASoC: qcom: q6apm: add support for reading firmware
- name from DT
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        johan+linaro@kernel.org, perex@perex.cz, tiwai@suse.com,
-        lgirdwood@gmail.com, ckeepax@opensource.cirrus.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org
-References: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
- <20230628102621.15016-3-srinivas.kandagatla@linaro.org>
- <f71c8d2b-d5f4-42bb-932f-5b9ec6117ffc@sirena.org.uk>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-In-Reply-To: <f71c8d2b-d5f4-42bb-932f-5b9ec6117ffc@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+References: <20230616063210.19063-1-eric.lin@sifive.com> <20230616063210.19063-4-eric.lin@sifive.com>
+ <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org> <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
+ <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
+In-Reply-To: <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
+From:   Eric Lin <eric.lin@sifive.com>
+Date:   Thu, 29 Jun 2023 00:31:15 +0800
+Message-ID: <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
+        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Krzysztof,
 
+On Mon, Jun 26, 2023 at 2:19=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+>
+> On 26/06/2023 05:26, Eric Lin wrote:
+> > Hi Krzysztof,
+> >
+> > On Fri, Jun 16, 2023 at 6:45=E2=80=AFPM Krzysztof Kozlowski
+> > <krzysztof.kozlowski@linaro.org> wrote:
+> >>
+> >> On 16/06/2023 08:32, Eric Lin wrote:
+> >>> This add YAML DT binding documentation for SiFive Private L2
+> >>> cache controller
+> >>>
+> >>> Signed-off-by: Eric Lin <eric.lin@sifive.com>
+> >>> Reviewed-by: Zong Li <zong.li@sifive.com>
+> >>> Reviewed-by: Nick Hu <nick.hu@sifive.com>
+> >>> ---
+> >>>  .../bindings/riscv/sifive,pL2Cache0.yaml      | 81 +++++++++++++++++=
+++
+> >>>  1 file changed, 81 insertions(+)
+> >>>  create mode 100644 Documentation/devicetree/bindings/riscv/sifive,pL=
+2Cache0.yaml
+> >>>
+> >>> diff --git a/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0=
+.yaml b/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml
+> >>> new file mode 100644
+> >>> index 000000000000..b5d8d4a39dde
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/riscv/sifive,pL2Cache0.yaml
+> >>> @@ -0,0 +1,81 @@
+> >>> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >>> +# Copyright (C) 2023 SiFive, Inc.
+> >>> +%YAML 1.2
+> >>> +---
+> >>> +$id: http://devicetree.org/schemas/riscv/sifive,pL2Cache0.yaml#
+> >>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >>> +
+> >>> +title: SiFive Private L2 Cache Controller
+> >>> +
+> >>> +maintainers:
+> >>> +  - Greentime Hu  <greentime.hu@sifive.com>
+> >>> +  - Eric Lin      <eric.lin@sifive.com>
+> >>> +
+> >>> +description:
+> >>> +  The SiFive Private L2 Cache Controller is per hart and communicate=
+s with both the upstream
+> >>> +  L1 caches and downstream L3 cache or memory, enabling a high-perfo=
+rmance cache subsystem.
+> >>> +  All the properties in ePAPR/DeviceTree specification applies for t=
+his platform.
+> >>
+> >> Drop the last sentence. Why specification would not apply?
+> >>
+> > OK, I'll drop it in v2.
+> >
+> >>> +
+> >>> +allOf:
+> >>> +  - $ref: /schemas/cache-controller.yaml#
+> >>> +
+> >>> +select:
+> >>> +  properties:
+> >>> +    compatible:
+> >>> +      contains:
+> >>> +        enum:
+> >>> +          - sifive,pL2Cache0
+> >>> +          - sifive,pL2Cache
+> >>> +
+> >>> +  required:
+> >>> +    - compatible
+> >>> +
+> >>> +properties:
+> >>> +  compatible:
+> >>> +    items:
+> >>
+> >>
+> >> You have only one item, so no need for items... unless you just missed
+> >> proper fallback.
+> >
+> > OK, I'll fix it in v2.
+> >
+> >>
+> >>> +      - enum:
+> >>> +          - sifive,pL2Cache0
+> >>> +          - sifive,pL2Cache1
+> >>
+> >> What is "0" and "1" here? What do these compatibles represent? Why the=
+y
+> >> do not have any SoC related part?
+> >
+> > The pL2Cache1 has minor changes in hardware, but it can use the same
+> > pl2 cache driver.
+>
+> Then why aren't they compatible?
+>
 
-On 28/06/2023 12:53, Mark Brown wrote:
-> On Wed, Jun 28, 2023 at 11:26:20AM +0100, Srinivas Kandagatla wrote:
->> Currently firmware file name is autogenerated based on card name and model number,
->> however this imposed a restriction of finding firmware in a single firmware path.
->> Platform specific firmwares are normally located in sub folders of the SoC.
->>
->> Provide more flexibity by reading firmware-name from DT.
-> 
-> Why not try a series of firmware names/locations generated using the
-> identifying information for the card/system?  That way we don't have to
-There is no consistent way with the current state of what is available 
-in linux-firmware and what drivers can generate from DMI, atleast with 
-Qualcomm SoCs.
+The pL2Cache1 has removed some unused bits in the register compared to
+pl2Cache0.
+From the hardware perspective, they are not compatible but they can
+share the same pl2 cache driver in software.
+Thus, we would like to keep both. It would be great if you can provide
+some suggestions. Thanks.
 
-Example for x13s has all the firmwares are under 
-qcom/sc8280xp/LENOVO/21BX for two models 21BX, 21BY.
+Best Regards,
+Eric Lin.
 
-However none of the DMI properties match exactly to 21BX or 21BY.
-
-These have to be either derived from product name 21BYZ9SNUS or some 
-other dmi properties.
-
-This logic is not going to be very reliable, can differ across platforms.
-
-All of the qcom platforms use firmware-name from DT to get the full 
-firmware path with name.
-
-I know this has scaling issues, but with the current state of things, 
-its the only option I see.
-
-> put a filename in the ABI which has fun scaling issues.
-
-
-thanks,
-srini
+> > May I ask, what do you mean about the SoC-related part? Thanks.
+>
+> This is part of a SoC, right? We expect SoC blocks to have compatible
+> based on the SoC.
+>
+>
+>
+> Best regards,
+> Krzysztof
+>
