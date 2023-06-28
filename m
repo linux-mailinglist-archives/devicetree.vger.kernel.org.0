@@ -2,87 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E527D74105B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 13:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1622A74106E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 13:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231640AbjF1LsV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 07:48:21 -0400
-Received: from dfw.source.kernel.org ([139.178.84.217]:57412 "EHLO
+        id S229845AbjF1Lx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 07:53:26 -0400
+Received: from dfw.source.kernel.org ([139.178.84.217]:33752 "EHLO
         dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230324AbjF1Lr4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 07:47:56 -0400
+        with ESMTP id S229456AbjF1LxZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 07:53:25 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 39753612CC;
-        Wed, 28 Jun 2023 11:47:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 067DEC433C0;
-        Wed, 28 Jun 2023 11:47:53 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 64276612B9;
+        Wed, 28 Jun 2023 11:53:25 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 56E20C433C8;
+        Wed, 28 Jun 2023 11:53:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687952875;
-        bh=Q1FhBIvMRelAU3h4x0qiEZ2oX2C87xJQ3oF5cUFma94=;
+        s=k20201202; t=1687953204;
+        bh=xVwb1hbny65LhXYunDaleFlCI4FDcQUSrTRPLj3KOu4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=G1rhz9yINX4ma+xMgKtFDDwFQsuJcxD4UwoeVhDY7p/GDP1fxbxbKTWhEikuIFnTw
-         NQ3KuaXxw1ZlatyzefvArcs0tDxZ4kwyZemqIQ7qn1/OGYksi7vLiAkl2XwUPJEbbO
-         p0WkNLeemmMBKlJFKs+uc+qMXS5gVssFo144SVbVqIltOOc9IZT0B6SNOiUkQviWSM
-         FT1f+BCe1LEJ3YRGpPcLBu4um+uW7UofRWcIdrS2Xy46AnX3+9MoMl878mk96V5SYB
-         c10+jDC2eeh9jpQCa/jUubWS1I7OKA36hXWobtM9u/1U8jOIo2JRwb7Rt3qjthShuE
-         MAYxsQ+Qc0PjA==
-Date:   Wed, 28 Jun 2023 12:47:50 +0100
+        b=n5+HSauXIMq7f8QOzjxVRIWnK3eqJ1mLau90HUb4uVZsHYw7BRnhCeuJGwyOX6qWV
+         E16XKq5bnSNYMFnZCMR1M0ZYF8ZNUSO1L4Jylwy4G3PDb5X8+WrSS2ACWaT607iITu
+         fcKM++1YXmWkvyxdHi458eviBa+KPKIynKx9odHdDBLpiM95i0BQTri/X43JvEE1MG
+         oWAEQTUrC93KxgYtJTJqbS0p5EPVDvgg7Whzux/W9S+Yq/jAE0Zx6QbkK1M2lfBFgs
+         9Ljvr0Go4pxMvx8QlpRDw6Jyulq19dQHwUf45xFICTrZSXuyq2nV0NxOsvHymBVcox
+         L+lMr6g18Ojag==
+Date:   Wed, 28 Jun 2023 12:53:14 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang@richtek.com
-Cc:     krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        robh+dt@kernel.org, lgirdwood@gmail.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] regulator: rt5739: Add DID check and compatible for
- rt5733
-Message-ID: <2a8732f4-13fe-476d-9ae7-b970bd82c218@sirena.org.uk>
-References: <1687942037-14652-1-git-send-email-cy_huang@richtek.com>
- <1687942037-14652-3-git-send-email-cy_huang@richtek.com>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        johan+linaro@kernel.org, perex@perex.cz, tiwai@suse.com,
+        lgirdwood@gmail.com, ckeepax@opensource.cirrus.com,
+        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org
+Subject: Re: [PATCH 2/3] ASoC: qcom: q6apm: add support for reading firmware
+ name from DT
+Message-ID: <f71c8d2b-d5f4-42bb-932f-5b9ec6117ffc@sirena.org.uk>
+References: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
+ <20230628102621.15016-3-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dZp7zQbwpodH2L5a"
+        protocol="application/pgp-signature"; boundary="hBi2IyGgla1GexBf"
 Content-Disposition: inline
-In-Reply-To: <1687942037-14652-3-git-send-email-cy_huang@richtek.com>
+In-Reply-To: <20230628102621.15016-3-srinivas.kandagatla@linaro.org>
 X-Cookie: HELLO, everybody, I'm a HUMAN!!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---dZp7zQbwpodH2L5a
+--hBi2IyGgla1GexBf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 28, 2023 at 04:47:17PM +0800, cy_huang@richtek.com wrote:
+On Wed, Jun 28, 2023 at 11:26:20AM +0100, Srinivas Kandagatla wrote:
+> Currently firmware file name is autogenerated based on card name and mode=
+l number,
+> however this imposed a restriction of finding firmware in a single firmwa=
+re path.
+> Platform specific firmwares are normally located in sub folders of the So=
+C.
+>=20
+> Provide more flexibity by reading firmware-name from DT.
 
-> +	if (did == RT5733_CHIPDIE_ID) {
-> +		min_uV = RT5733_VOLT_MINUV;
-> +		max_uV = RT5733_VOLT_MAXUV;
-> +		step_uV = RT5733_VOLT_STPUV;
-> +	} else {
-> +		min_uV = RT5739_VOLT_MINUV;
-> +		max_uV = RT5739_VOLT_MAXUV;
-> +		step_uV = RT5739_VOLT_STPUV;
-> +	}
+Why not try a series of firmware names/locations generated using the
+identifying information for the card/system?  That way we don't have to
+put a filename in the ABI which has fun scaling issues.
 
-It would be better to write these as switch statements so if any more
-variants turn up they can be added more easily.
-
---dZp7zQbwpodH2L5a
+--hBi2IyGgla1GexBf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmScHeUACgkQJNaLcl1U
-h9CKKgf/eMaIvJ+GA0vHvvKksA4S1NUI7q/j1CaaMTXgwqcv9WCmMdTEZWJHb5GC
-sPxe1EOuqiz0RpkDk2NDzgYyUcJGNnY/cdhhYSaejkaaCHToEvz+sSZex642DVRQ
-mvwJrxVNlVKFWh7ZQbaqEjpKxy4cSLcaWI4PVq8BFIfS5QzxD04Xq1fqaZu7soSi
-Wmvn+XjxALwUEYCtlzDu2m/xncpWC3bcy+3t9lh/44lhwpWTM2keR5NQ7jZj1akB
-1X3jGXBOIzfjPPCUxEpgviXVVJik2w9wjUMHNa2FD7ub679cLdACJGL7gH4/CUv3
-Xz8F3/FpOBZcDe7otdRBIHTYTMfSPA==
-=e51C
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmScHyoACgkQJNaLcl1U
+h9A3/Qf+M+M8zuT/1Y8FhzspndLccu9JqoTFH0Rx5lIglukamB7ABbwn7IZYk2Q/
+A0l3/Gs8GOpaNVeWpWDp603eHiEdgL3Lxuoe5uFfIWDYiciH8JIYgenbpqJSpleG
+NmcSFUwTLUC/Jd3pLlbBmjhRL8SncpXvEuReausjHNdnSzMqZurMFhC5wzli4Iv4
+eFpFGmYvQ0S1ljHC0Kfs3s7TC9xfk5yNYBcRoC3V1tzQkFsBm7X237QCvyjQO7Q8
+4d03zsBHN8y1jK+Iaz3qGLwu6MHlmkKkH7ZtKlPNDNziMjyg3F6XwiobWukjWYu7
+/OqWgA7xwRYquR7taXpc2cpK116OrA==
+=3HfF
 -----END PGP SIGNATURE-----
 
---dZp7zQbwpodH2L5a--
+--hBi2IyGgla1GexBf--
