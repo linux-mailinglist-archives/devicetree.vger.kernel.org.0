@@ -2,126 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9187419C0
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 22:37:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D34D57419E4
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 22:52:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231538AbjF1Ugo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 16:36:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37472 "EHLO
+        id S231428AbjF1Uv7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 16:51:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45102 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232059AbjF1Uf5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 16:35:57 -0400
-Received: from mail-lf1-x135.google.com (mail-lf1-x135.google.com [IPv6:2a00:1450:4864:20::135])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06EC1273C
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 13:35:48 -0700 (PDT)
-Received: by mail-lf1-x135.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so95288e87.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 13:35:48 -0700 (PDT)
+        with ESMTP id S231609AbjF1Uv5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 16:51:57 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0DDE194;
+        Wed, 28 Jun 2023 13:51:56 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98377c5d53eso29990766b.0;
+        Wed, 28 Jun 2023 13:51:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687984547; x=1690576547;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=w4FrtTzzHgJt6VgBD5Al19EdXlLxrqJDKTmf8RSr2nw=;
-        b=BayOPWTj/YnDNGngG10tqbk/lga6jA6qkD1rt8kJU0L5moKrqx3DYkXvuIFmQ28aVu
-         I5oei8+BP4P4hOr3ATnzH+nUHxm0ESM5xE0401AJTPv5WKZNgyNgiBGBSwUw7fC/3Vnf
-         yOndcOvJ5q6+vLLA/KW9o4NeMDFiNGyU/6ZY1BUDPdd2SVK8KJz2ww91FLQQ6sSIwIZ4
-         Ba2aBJGAU0xPfD7HVbAwQ5XbIobd01rKXoBu1+WTYN33EoWofY1ymB7cjSfSA8DMB5oT
-         cjtbvjaOTJbj4y6XYEwEjknU1+sUWByuChuO+dkIaMBQFMokKX6NaLSAtP7YeBM7fH4u
-         uNbg==
+        d=googlemail.com; s=20221208; t=1687985515; x=1690577515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=H09su0JFKNP1Fr2cMqvDj35F61R1G5GRKDatbkayncI=;
+        b=HhKl0a8N+ZKyZOg/yyWu2wih6yNx8S4yuWQkB7m/pi8Ms3UVGXqwsDDq/4qptTm4XC
+         0Gt3AhtG2RA86n76l7v7J+F2Mzif/vKYYlQS6xNQl2VX2Uyq8JK1MtzB97bXsy7nRH0/
+         4WVbQ4GN90ugYr/aWRQEyaugh/RBNdkGj5dvj/zrDTr5La8pf1mWzUyH5MbvcrNXMjGY
+         xPbk019pAtqGRKJ0H7SGKlPeXDYyt58gVsXvmNqMRyK1OP6DeUULsKKb/9A/a5nb8ovK
+         +ANHBtNdS4FRxFomULwxZKkHyeNXhE/S+SvQAcISQs036hJGYhQwy5d7zz2wGWKWDswx
+         Dk0w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687984547; x=1690576547;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1687985515; x=1690577515;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=w4FrtTzzHgJt6VgBD5Al19EdXlLxrqJDKTmf8RSr2nw=;
-        b=l+Guc+27um3xqOK6Y2IGthYiyXwd7R6g4/jzXCsBK4dpOtwWMUUFHY9f5gS25E0Tq6
-         o/cKIdpdVFyvCA0n/RnO7js4+RnPShvJ6kgXaU8UR1Se5OnYHxlmWkgGBBIV9nEmnYLH
-         vurnjIcPljx3pxXdNa+aSVjS3b5cegGlrREijvigiE9klWbRNDEMlMCUjOoDbMTzuqcu
-         h9T6+TyDMTz5a9qVQnfjlwwJJXrJb+QOGUC0XcudNuBOpxi0Nlp1MNnMWb3FDxVMp4Dc
-         tyMVrLOKHeteminTEzK24sJXLOBNr6sknoK11jBMUS6vx7Kf7x+urXoHw3jtT6yGg9xh
-         KNPQ==
-X-Gm-Message-State: AC+VfDy6vX6WawGL0mEQGrvCDUvUikLaGYPqSneef5d3Kn4+v+Qk4TUd
-        E0CwVruvYWQu3i8U8tU6EfD29A==
-X-Google-Smtp-Source: ACHHUZ7IRPMwemXJGk4bUgZ8NEjR9/5Bz4Lvpzn8XaqFqMIHZc9eoQ9qMsT19SSmiByMSzSsrdUDAw==
-X-Received: by 2002:a19:6755:0:b0:4f8:58f4:b96e with SMTP id e21-20020a196755000000b004f858f4b96emr21900556lfj.37.1687984547234;
-        Wed, 28 Jun 2023 13:35:47 -0700 (PDT)
-Received: from [192.168.1.101] (abyk82.neoplus.adsl.tpnet.pl. [83.9.30.82])
-        by smtp.gmail.com with ESMTPSA id m25-20020a056512015900b004fb86c89fa1sm753363lfo.135.2023.06.28.13.35.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jun 2023 13:35:46 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Wed, 28 Jun 2023 22:35:14 +0200
-Subject: [PATCH RFC 14/14] drm/msm/a6xx: Poll for GBIF unhalt status in
- hw_init
+        bh=H09su0JFKNP1Fr2cMqvDj35F61R1G5GRKDatbkayncI=;
+        b=FWjJLpd/Sj0apHjCY1KEr92uH4HaAtcIIW7Ifi/Oz8RGNw4ihe7vENobxnBRlDwsW8
+         u7RHtQjGw4y8XcPWAIu9v1+rI2VXLC/t5TYO5NZZfUJ79CMwVvd9zRECDxl5PU3CLSDt
+         pdM8kSEy57PnL1hN0MU8rSsTZM23UZZJqgSrVddpSoZBPlpRTcEnubO4zd5VJqzCeK0L
+         bQw0kE0kjh2pNFaHajZlthKrcrL/VhbeSm8b+pTd4pDIF77GLedMoXXUu5EeZ5MLUp6o
+         oS3nxG3J/I0rGZRUAd4Sqx19QQbJ3M7MQnmX3pJbaJ9zwtvOnSOaLb9gN9zYFXcX7kv8
+         85DQ==
+X-Gm-Message-State: AC+VfDzapoZAp1sai3g9dqcJQpQwNEy2dlia2GR6BWOzwgKoI+2ZaXuh
+        vDeraoc7ICjcDJqpdZq2P5y8vNGJGYZM3SEI0OxnFPfo
+X-Google-Smtp-Source: ACHHUZ6ZHBQJxCh+FwiIqR9kqXjpG7Tcm/91+2ol36od0qJFABIuiBJMSCabSpWrShyknE0rzh7IBfR2eiQrWsFTbLE=
+X-Received: by 2002:a17:906:d542:b0:977:95f4:5cca with SMTP id
+ cr2-20020a170906d54200b0097795f45ccamr29993727ejc.54.1687985514876; Wed, 28
+ Jun 2023 13:51:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230628-topic-a7xx_drmmsm-v1-14-a7f4496e0c12@linaro.org>
-References: <20230628-topic-a7xx_drmmsm-v1-0-a7f4496e0c12@linaro.org>
-In-Reply-To: <20230628-topic-a7xx_drmmsm-v1-0-a7f4496e0c12@linaro.org>
-To:     Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1687984524; l=1255;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=5Q1kvDGqQf+MZGSOe2N8n59sdYSKweQE1iz0+XOB04c=;
- b=eXvXP/e+RhlAwoWIAvEi5snC/1AjilAjPzcIT9/z050IFx7BiJqsJPVjijWMHbh0Eosacg1Mh
- yHlbBK/Mq2rB0sbPFYndGRfJjM8/YkKiNuzpi1B5hPjhfx845Uzw/Wt
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
+ <20230607201641.20982-2-ddrokosov@sberdevices.ru> <CAFBinCAO14zcgY66UyJO9UxuCWf1N-Lsx=iYNTJL=cwXoJv__Q@mail.gmail.com>
+ <20230628141839.ea7qzotr5un6f2ij@CAB-WSD-L081021>
+In-Reply-To: <20230628141839.ea7qzotr5un6f2ij@CAB-WSD-L081021>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Wed, 28 Jun 2023 22:51:43 +0200
+Message-ID: <CAFBinCBzmYQu-+1A8MxZ+r551Jeym29fg9ErZJkftTEdL2b=-A@mail.gmail.com>
+Subject: Re: [PATCH v1 1/6] arm64: dts: meson: a1: introduce PLL and
+ Peripherals clk controllers
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, khilman@baylibre.com,
+        conor+dt@kernel.org, kernel@sberdevices.ru,
+        sdfw_system_team@sberdevices.ru, rockosov@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some GPUs - particularly A7xx ones - are really really stubborn and
-sometimes take a longer-than-expected time to finish unhalting GBIF.
-
-Note that this is not caused by the request a few lines above.
-
-Poll for the unhalt ack to make sure we're not trying to write bits to
-an essentially dead GPU that can't receive data on its end of the bus.
-Failing to do this will result in inexplicable GMU timeouts or worse.
-
-This is a rather ugly hack which introduces a whole lot of latency.
-
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- drivers/gpu/drm/msm/adreno/a6xx_gpu.c | 4 ++++
- 1 file changed, 4 insertions(+)
-
-diff --git a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-index fac325217a7e..b0fa764ba299 100644
---- a/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a6xx_gpu.c
-@@ -1629,6 +1629,10 @@ static int hw_init(struct msm_gpu *gpu)
- 		mb();
- 	}
- 
-+	/* Some GPUs are stubborn and take their sweet time to unhalt GBIF! */
-+	if (adreno_is_a7xx(adreno_gpu) && a6xx_has_gbif(adreno_gpu))
-+		spin_until(!gpu_read(gpu, REG_A6XX_GBIF_HALT_ACK));
-+
- 	gpu_write(gpu, REG_A6XX_RBBM_SECVID_TSB_CNTL, 0);
- 
- 	if (adreno_is_a619_holi(adreno_gpu))
-
--- 
-2.41.0
-
+On Wed, Jun 28, 2023 at 4:18=E2=80=AFPM Dmitry Rokosov <ddrokosov@sberdevic=
+es.ru> wrote:
+[...]
+> >
+> > >                         gpio_intc: interrupt-controller@0440 {
+> > note to self: at some point we'll have to re-order &gpio_intc, but
+> > that's out of scope for this patch
+>
+> I have noticed that the 'meson-a1.dtsi' file contains unsorted items. As
+> part of the current patch series, I can re-order them to improve the dt
+> structure.
+That would be awesome!
