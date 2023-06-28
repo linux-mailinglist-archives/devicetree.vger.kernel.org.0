@@ -2,120 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F621740CC1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 11:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A408E740D43
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 11:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230119AbjF1JYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 05:24:43 -0400
-Received: from mail-io1-f54.google.com ([209.85.166.54]:51612 "EHLO
-        mail-io1-f54.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234530AbjF1JSO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 05:18:14 -0400
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-78358268d1bso137972639f.3;
-        Wed, 28 Jun 2023 02:18:14 -0700 (PDT)
+        id S231248AbjF1Jjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 05:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48904 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231219AbjF1JWv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 05:22:51 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0100C2733
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 02:22:49 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-bd729434fa0so5707896276.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 02:22:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1687944169; x=1690536169;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=7/BYorY/q5cLcDCJ090Ghd9w+MLE7Dxtd/FOA8XGDK0=;
+        b=yGjc51d+pnM9hgZXegh8DLv4eBfWeNuQiQAqZqW/yiUB1oZacLRVjQkPKxQ1SD3+cr
+         OB9/i0YTbxwHomeiZ+R6g4e8ZlP9pHZrNtvk4dODAOPVPjg62kWiAbzqUknUJlbv2w8w
+         80uXgaDuIp90IZ8SgDVZ/RMIX03ZD3Jgq5ih+FL9wx6yYgNE/zB/3VhKzl+nyVnXExaC
+         ZQToOuiiFgx5ELsVyQhptW9UqaLW7uN0QNjQ0qavMfUQHvMtu1Oa9hBD1Dz4qd2PQrUy
+         4Xhys1MVsogiRyPPJtcTynNPChMfuNIlaSus7JRWHT4Kpac2UG9+lVMsrpqHfGfBuCGM
+         hw2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687943893; x=1690535893;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=y3rNiHDzzvT5fn4zsItuTLUfPl9yseXqas/GeAA6tTU=;
-        b=M2xdpC9YyeyaqFLVRhoUphFWh/NJZL5y3wh37KlDHKx15LF9dkTy7xWghSqOmTODAA
-         HuLyzM1pRFraLNh94tH91euZIBL7m5w6q+hdgNvG5Mjj8hQLsyO0TOxdLTKwks1lobiu
-         AqgcleOHNt+IQO6dVm3HBM7Pjg9pcHQfwlG4nK1pwGDW6Alq1n9YndOTPLp4DjU4uVdk
-         M/WNJmr36IOGf43qGk8K6xClmtBS79jqTGtSQNNKn/nAdIZhy1rNq1PZtqqqLSGLAx8a
-         /tzWJwkMQQxWQpKeUrnm1EclF/TM2DM7exMfckcPpYsx65HcK6SPOiEM3X8UdAX40itw
-         KgUQ==
-X-Gm-Message-State: AC+VfDxufqd99VleAS5ZOjwe3iT3Lf1NaPUZAekpp0TDHtiCjkk4IikV
-        ayclH1boIF5baxBJ1TvWtNvYGhZDnw==
-X-Google-Smtp-Source: ACHHUZ5hdew/tbjh37LxMK1//ANp1jJhQJGeMCqjFo7ZC1u/XMFXJeJvxavj99PxkNADBXvIkZi10w==
-X-Received: by 2002:a6b:d808:0:b0:783:491a:13fe with SMTP id y8-20020a6bd808000000b00783491a13femr11503497iob.5.1687943893293;
-        Wed, 28 Jun 2023 02:18:13 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id p14-20020a02b38e000000b0042adbd157b5sm1089962jan.179.2023.06.28.02.18.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jun 2023 02:18:12 -0700 (PDT)
-Received: (nullmailer pid 4146586 invoked by uid 1000);
-        Wed, 28 Jun 2023 09:18:10 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1687944169; x=1690536169;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=7/BYorY/q5cLcDCJ090Ghd9w+MLE7Dxtd/FOA8XGDK0=;
+        b=V8zMjHpA8iMt8NVgr7ZFEyErx2sE4joQ8N3HMnybkoptSkW075EuOQxnRJJd/jZa0L
+         Wj8DVnQkUBx25bmTlsH3JOMHht6+LM6zrtj8SZ4z7S0y344QKim1zjKzbNsiN6kxF+4S
+         sInwjp3OHBHqfMY7NxNjHkq3QbaU2itX5z5220VVMuo6iIosf8W3FNNVrPezdMjCMGk9
+         5y1trYpEsWq3HcSjDWaBa+FEMCHwGNFDd/e+67bCeg9N+GDJnUHLcQdFNllEt4jmaWAt
+         yBF73CjVvrg+yySAEwvoYAWuHlxed8F/b+/LL5MYzwz/3vGCSJIIFAZX3Y2PeuXNVKxQ
+         CCaw==
+X-Gm-Message-State: AC+VfDzrd2DY82XMzk5NC6m/cMTxvLNyCAghtlixJmFym6RYPqZsTWIu
+        wC0hRUFiBsVfP0gQjGG0QauHZGcdnxJadIuum7kLoQ==
+X-Google-Smtp-Source: ACHHUZ4r8WinXJCe974MXutLGlQG6R6mzm8uxHQuDvBriU4zf9/VBOQVyva1v0fUYCoOQYRpUOz5Bz8N4Lm1mHqZQc8=
+X-Received: by 2002:a25:838e:0:b0:c12:abdb:c22d with SMTP id
+ t14-20020a25838e000000b00c12abdbc22dmr12289571ybk.61.1687944169188; Wed, 28
+ Jun 2023 02:22:49 -0700 (PDT)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     guoniu.zhou@oss.nxp.com
-Cc:     krzysztof.kozlowski+dt@linaro.org, sakari.ailus@linux.intel.com,
-        laurent.pinchart@ideasonboard.com, mchehab@kernel.org,
-        robh+dt@kernel.org, xavier.roumegue@oss.nxp.com,
-        conor+dt@kernel.org, linux-media@vger.kernel.org,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        devicetree@vger.kernel.org, jacopo.mondi@ideasonboard.com
-In-Reply-To: <20230628064251.1774296-2-guoniu.zhou@oss.nxp.com>
-References: <20230628064251.1774296-1-guoniu.zhou@oss.nxp.com>
- <20230628064251.1774296-2-guoniu.zhou@oss.nxp.com>
-Message-Id: <168794389087.4146462.8940502156407485967.robh@kernel.org>
-Subject: Re: [PATCH v4 1/3] media: dt-bindings: nxp,imx8-isi: add i.MX93
- ISI compatible string
-Date:   Wed, 28 Jun 2023 03:18:10 -0600
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org> <20230521-drm-panels-sony-v1-10-541c341d6bee@somainline.org>
+In-Reply-To: <20230521-drm-panels-sony-v1-10-541c341d6bee@somainline.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 28 Jun 2023 11:22:37 +0200
+Message-ID: <CACRpkdbrk_pPqewo-bGPq4NQScHSRKNMeO0ik_aqEQ+BY12BBQ@mail.gmail.com>
+Subject: Re: [PATCH RFC 10/10] drm/panel/sony-griffin-samsung: Add panel
+ driver for Sony Xperia 1
+To:     Marijn Suijten <marijn.suijten@somainline.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        devicetree@vger.kernel.org,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, May 21, 2023 at 11:23=E2=80=AFPM Marijn Suijten
+<marijn.suijten@somainline.org> wrote:
 
-On Wed, 28 Jun 2023 14:42:49 +0800, guoniu.zhou@oss.nxp.com wrote:
-> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
-> 
-> Add the compatible string support for i.MX93 ISI.
-> 
-> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Tommaso Merciai <tomm.merciai@gmail.com>
-> ---
->  Documentation/devicetree/bindings/media/nxp,imx8-isi.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
+> The Sony Xperia 1 (codename kumano griffin) features an unnamed 4k OLED
+> DSI cmd mode panel produced by Samsung.  It can be driven in a
+> 1644x3840@60 or 1096x2560@60 mode, and always has Display Stream
+> Compression 1.1 enabled.
+>
+> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
+(...)
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> +static int sony_griffin_samsung_on(struct sony_griffin_samsung *ctx)
+> +{
 
-yamllint warnings/errors:
+> +       ret =3D mipi_dsi_dcs_exit_sleep_mode(dsi);
+> +       if (ret < 0) {
+> +               dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+> +               return ret;
+> +       }
+> +       usleep_range(10000, 11000);
+> +
+> +       ret =3D mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLA=
+NK);
+> +       if (ret < 0) {
+> +               dev_err(dev, "Failed to set tear on: %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x05);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xd7, 0x07);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+> +       /* Enable backlight control */
+> +       mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, BIT(5=
+));
+> +       msleep(110);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xe2, enable_4k ? 0 : 1);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+> +
+> +       ret =3D mipi_dsi_dcs_set_column_address(dsi, 0, hdisplay - 1);
+> +       if (ret < 0) {
+> +               dev_err(dev, "Failed to set column address: %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       ret =3D mipi_dsi_dcs_set_page_address(dsi, 0, vdisplay - 1);
+> +       if (ret < 0) {
+> +               dev_err(dev, "Failed to set page address: %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x70);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xb9, 0x00, 0x60);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xc5, 0x2e, 0x21);
+> +       mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+> +
+> +       ret =3D mipi_dsi_dcs_set_display_on(dsi);
+> +       if (ret < 0) {
+> +               dev_err(dev, "Failed to turn display on: %d\n", ret);
+> +               return ret;
+> +       }
+> +
+> +       return 0;
+> +}
 
-dtschema/dtc warnings/errors:
-Documentation/devicetree/bindings/clock/milbeaut-clock.example.dtb: /example-2/serial@1e700010: failed to match any schema with compatible: ['socionext,milbeaut-usio-uart']
-Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.example.dtb: /example-1/syscon@20e00000: failed to match any schema with compatible: ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/leds/common.example.dtb: /example-2/i2c/led-controller@30: failed to match any schema with compatible: ['panasonic,an30259a']
-Documentation/devicetree/bindings/sound/audio-graph-card2.example.dtb: /example-0/cpu: failed to match any schema with compatible: ['cpu-driver']
-Documentation/devicetree/bindings/sound/audio-graph-card2.example.dtb: /example-0/codec: failed to match any schema with compatible: ['codec-driver']
-Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: failed to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/thermal/imx-thermal.example.dtb: /example-0/anatop@20c8000: failed to match any schema with compatible: ['fsl,imx6q-anatop', 'syscon', 'simple-mfd']
-Documentation/devicetree/bindings/i2c/qcom,i2c-cci.example.dtb: /example-0/cci@ac4a000/i2c-bus@1/camera@60: failed to match any schema with compatible: ['ovti,ov7251']
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['ti,twl6035-pmic', 'ti,palmas-pmic']
-Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['ti,twl6035-pmic', 'ti,palmas-pmic']
-Documentation/devicetree/bindings/input/mediatek,pmic-keys.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['mediatek,mt6397']
-Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.example.dtb: /example-0/pmic@0: failed to match any schema with compatible: ['sprd,sc2731']
-Documentation/devicetree/bindings/dma/dma-controller.example.dtb: /example-0/dma-controller@48000000: failed to match any schema with compatible: ['ti,omap-sdma']
-Documentation/devicetree/bindings/dma/dma-router.example.dtb: /example-0/dma-router@4a002b78: failed to match any schema with compatible: ['ti,dra7-dma-crossbar']
-Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.example.dtb: /example-0/memory-controller@13410000/ethernet@6: failed to match any schema with compatible: ['davicom,dm9000']
-Documentation/devicetree/bindings/arm/hisilicon/controller/sysctrl.example.dtb: /example-0/system-controller@802000/clock@0: failed to match any schema with compatible: ['hisilicon,hi3620-clock']
-Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.example.dtb: /example-0/cpuctrl@a22000/clock@0: failed to match any schema with compatible: ['hisilicon,hix5hd2-clock']
-Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.example.dtb: /example-0/peripheral-controller@8a20000/phy@850: failed to match any schema with compatible: ['hisilicon,hi3798cv200-combphy']
-Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: /example-0/parent/i2c/camera@36: failed to match any schema with compatible: ['ovti,ov5695']
-Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: /example-0/usb/mdio@1/switch@0: failed to match any schema with compatible: ['marvell,mv88e6190']
-Documentation/devicetree/bindings/net/qca,ar71xx.example.dtb: /example-0/ethernet@1a000000/mdio/switch@10: failed to match any schema with compatible: ['qca,ar9331-switch']
-Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.example.dtb: /example-0/iomcu@ffd7e000: failed to match any schema with compatible: ['hisilicon,hi3660-iomcu', 'syscon']
+This is eerily similar to the sequence in panel-samsung-sofef00.c:
 
-doc reference errors (make refcheckdocs):
+static int sofef00_panel_on(struct sofef00_panel *ctx)
+{
+        struct mipi_dsi_device *dsi =3D ctx->dsi;
+        struct device *dev =3D &dsi->dev;
+        int ret;
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230628064251.1774296-2-guoniu.zhou@oss.nxp.com
+        dsi->mode_flags |=3D MIPI_DSI_MODE_LPM;
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+        ret =3D mipi_dsi_dcs_exit_sleep_mode(dsi);
+        if (ret < 0) {
+                dev_err(dev, "Failed to exit sleep mode: %d\n", ret);
+                return ret;
+        }
+        usleep_range(10000, 11000);
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+        mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
 
-pip3 install dtschema --upgrade
+        ret =3D mipi_dsi_dcs_set_tear_on(dsi, MIPI_DSI_DCS_TEAR_MODE_VBLANK=
+);
+        if (ret < 0) {
+                dev_err(dev, "Failed to set tear on: %d\n", ret);
+                return ret;
+        }
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+        mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+        mipi_dsi_dcs_write_seq(dsi, 0xf0, 0x5a, 0x5a);
+        mipi_dsi_dcs_write_seq(dsi, 0xb0, 0x07);
+        mipi_dsi_dcs_write_seq(dsi, 0xb6, 0x12);
+        mipi_dsi_dcs_write_seq(dsi, 0xf0, 0xa5, 0xa5);
+        mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_CONTROL_DISPLAY, 0x20);
+        mipi_dsi_dcs_write_seq(dsi, MIPI_DCS_WRITE_POWER_SAVE, 0x00);
 
+        ret =3D mipi_dsi_dcs_set_display_on(dsi);
+        if (ret < 0) {
+                dev_err(dev, "Failed to set display on: %d\n", ret);
+                return ret;
+        }
+
+        return 0;
+}
+
+Isn't this just the same display controller with a different configuration?
+Especially the sleep ranges are even the same.
+
+I almost feel like buying these phones just to pry them apart and put
+under a microscope to figure out what these displays actually contain.
+
+Yours,
+Linus Walleij
