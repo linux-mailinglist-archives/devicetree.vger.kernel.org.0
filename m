@@ -2,107 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 76983741732
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:28:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB05741741
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231890AbjF1R2k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 13:28:40 -0400
-Received: from dfw.source.kernel.org ([139.178.84.217]:43116 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230255AbjF1R1h (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:27:37 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EE7886141D;
-        Wed, 28 Jun 2023 17:27:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5A4E5C433C8;
-        Wed, 28 Jun 2023 17:27:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687973256;
-        bh=F0PybSEQg3oGD0oV9xIryADKGMGVcc7224PKlDe1/K4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=OsEgIy0JwjVpU/mf7fw0rJ7mr+bBZglsYTZdbf8Dn4JnhFnNOfIYLU+hA2LvICmyA
-         lbjO6oUAEmzFzxKcnasoNxL9iOPO8Rh8t+dRQCrDckMUzPjN8mr/1y3eEffWaX7kqZ
-         rLpVnZOl4+btvjWEsh1AyhVwI92R2NCuIeEsOEizLnzegfQNqOESqhsWn2E+q+AG6Y
-         uRVh0DGL/D7Qa6n9QZPt8ZX41A47uykMP6noohpzhbSR3CJ2ebJ/qLnqkYWTZFugZw
-         jfRmKQgENyts32K84EzGzLkPj1SKCzbYs9Ie75gtkpc3Tx9FwcKiBOZyEN2l/6N8/T
-         5mb2O2878JRww==
-Date:   Wed, 28 Jun 2023 18:27:30 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Huqiang Qin <huqiang.qin@amlogic.com>
-Cc:     tglx@linutronix.de, maz@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        neil.armstrong@linaro.org, khilman@baylibre.com,
-        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
-        hkallweit1@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH V2 1/2] dt-bindings: interrupt-controller: Add support
- for Amlogic-C3 SoCs
-Message-ID: <20230628-carat-dwarf-0b8e8c047c45@spud>
-References: <20230628091533.3884385-1-huqiang.qin@amlogic.com>
- <20230628091533.3884385-2-huqiang.qin@amlogic.com>
+        id S231346AbjF1ReD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 13:34:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44884 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230379AbjF1Rd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:33:59 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF5A210B
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 10:33:58 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so3542618e87.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 10:33:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1687973636; x=1690565636;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=mu8Gi2wSnoTXkOMcCin+xgkyW4SfsZOtfaMQ9m+MZ5U=;
+        b=ctXSjsQSzaufeY9GTPqn+avzhgMNvjo9PgbMSWr3gC1OzFmKrqHpkfW/Hh4/BxaRHj
+         oatlyGdfBX5is3/rXAkRtPpuVaBjnbVAWHtGueEalCtd0kiWVV+nHvycDQA6ttsaegMd
+         3lcR9743n2mULg7SZFP8WAzgB7VrDSJyHfySHd5R6/1eVpsEDvWiJ7WrXlv0a9KSs29x
+         WETDEpY2W0csY2Kc8h8MS0M9gIM0+saldCRjt5f4n2ePrtvwjqb9Q37Q+s3b2t5w550r
+         rE7oMwUkLRYM2F7ETOGVj7LBn7mLZofgXEPOlaZgFM5DxnuqH6dXXJk0pzK8+aL2GhCR
+         7xfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687973636; x=1690565636;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=mu8Gi2wSnoTXkOMcCin+xgkyW4SfsZOtfaMQ9m+MZ5U=;
+        b=OQQmwBiWtUaJUnsrwTwIHmgorMucU/y96TcvcrLP2EfAuPlE87ST6ziIzDSyST7xkq
+         29EzpeEPu0JH+mByAbCPeBQ3Q0BY1Z8LtTx97vJBZzKn/mwXTpzjNEsFmvxu4nVjrRp/
+         EJs8/1gm5ndvCRrRPCrUrGSRhJfQvy1xDkTHQ1GR/7Vv/6deQelPxdYruFOXrHZg8XRU
+         vDsPNWjxMU9yr7SJAjyCCUFALy57EGg3fgCYjXTeQJg+aHVvSu0hefUIA5PVzVa3Wo+1
+         IkLXrd0pr9zOabxo8B2kChZJiM3AI0R0FbPuEnJyGSMwlQzsdzqCWtdpkO2y5X/cuCRK
+         1SvQ==
+X-Gm-Message-State: AC+VfDxZrqPDWXquVRtwS4czGNPKTcTyftrLZrFHdlbTHpiDu71bmK+H
+        RSlAUqEFdqP8L0lCqbCcpUUFVhmZe6vgtcEYNsZHAw==
+X-Google-Smtp-Source: ACHHUZ7/LXypQ2b7zt5BdRodKsoDzSYUcdIaTGpou0UZUfpPyxiEPFkUIurdLsWJ+cccDbdbnTpgIrlMLbBaiJoTBCY=
+X-Received: by 2002:a19:7710:0:b0:4f8:6800:86f6 with SMTP id
+ s16-20020a197710000000b004f8680086f6mr16992828lfc.49.1687973636628; Wed, 28
+ Jun 2023 10:33:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="XbbCx1QsHjc5jIJV"
-Content-Disposition: inline
-In-Reply-To: <20230628091533.3884385-2-huqiang.qin@amlogic.com>
+References: <20230626-provable-angrily-81760e8c3cc6@wendy> <20230626-sensuous-clothing-124f7ae0aedf@wendy>
+In-Reply-To: <20230626-sensuous-clothing-124f7ae0aedf@wendy>
+From:   Evan Green <evan@rivosinc.com>
+Date:   Wed, 28 Jun 2023 10:33:20 -0700
+Message-ID: <CALs-HstDV3PjBk_8WDecwuvVK9rno1CKFzT1+8ohoUXE7X0GwA@mail.gmail.com>
+Subject: Re: [PATCH v1 6/9] RISC-V: add single letter extensions to riscv_isa_ext
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     palmer@dabbelt.com, conor@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---XbbCx1QsHjc5jIJV
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Jun 28, 2023 at 05:15:32PM +0800, Huqiang Qin wrote:
-> Update dt-binding document for GPIO interrupt controller of Amlogic-C3 So=
-Cs
->=20
-> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
-
-Acked-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
+On Mon, Jun 26, 2023 at 4:21=E2=80=AFAM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
+>
+> So that riscv_fill_hwcap() can use riscv_isa_ext to probe for single
+> letter extensions, add them to it. riscv_isa_ext_data grows a new
+> member, signifying whether an extension is multi-letter & thus requiring
+> special handling.
+> As a result, what gets spat out in /proc/cpuinfo will become borked, as
+> single letter extensions will be printed as part of the base extensions
+> and while printing from riscv_isa_arr. Take the opportunity to unify the
+> printing of the isa string, using the new member of riscv_isa_ext_data
+> in the process.
+>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 > ---
->  .../bindings/interrupt-controller/amlogic,meson-gpio-intc.yaml   | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/amlog=
-ic,meson-gpio-intc.yaml b/Documentation/devicetree/bindings/interrupt-contr=
-oller/amlogic,meson-gpio-intc.yaml
-> index e84e4f33b358..3d06db98e978 100644
-> --- a/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
-n-gpio-intc.yaml
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/amlogic,meso=
-n-gpio-intc.yaml
-> @@ -35,6 +35,7 @@ properties:
->                - amlogic,meson-sm1-gpio-intc
->                - amlogic,meson-a1-gpio-intc
->                - amlogic,meson-s4-gpio-intc
-> +              - amlogic,c3-gpio-intc
->            - const: amlogic,meson-gpio-intc
-> =20
->    reg:
-> --=20
-> 2.37.1
->=20
+>  arch/riscv/include/asm/hwcap.h |  1 +
+>  arch/riscv/kernel/cpu.c        | 36 ++++++----------------
+>  arch/riscv/kernel/cpufeature.c | 56 +++++++++++++++++++++-------------
+>  3 files changed, 46 insertions(+), 47 deletions(-)
+>
+> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
+p.h
+> index a35bee219dd7..6ad896dc4342 100644
+> --- a/arch/riscv/include/asm/hwcap.h
+> +++ b/arch/riscv/include/asm/hwcap.h
+> @@ -77,6 +77,7 @@ unsigned long riscv_get_elf_hwcap(void);
+>  struct riscv_isa_ext_data {
+>         const unsigned int id;
+>         const char *name;
+> +       const bool multi_letter;
 
---XbbCx1QsHjc5jIJV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJxtggAKCRB4tDGHoIJi
-0hj7AQDpVNTHoWvTaJwjH4OGLihfyqwOGbkOpryPiMX1htjj6gEAkF5EUPPKWA4c
-QU+X8XLZU39rF0w7SHpuQNW2J1IAPgQ=
-=wqpH
------END PGP SIGNATURE-----
-
---XbbCx1QsHjc5jIJV--
+Instead of defining a new member, could we just infer this by making a
+macro like #define MULTI_LETTER(name) (name[0] && name[1])?
