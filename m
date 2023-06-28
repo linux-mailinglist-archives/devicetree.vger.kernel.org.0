@@ -2,117 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 71AC77407C1
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 03:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4015F74082E
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 04:19:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229763AbjF1BrX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 27 Jun 2023 21:47:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51532 "EHLO
+        id S230303AbjF1CTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 27 Jun 2023 22:19:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229651AbjF1BrW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 21:47:22 -0400
-Received: from mail-oi1-x22a.google.com (mail-oi1-x22a.google.com [IPv6:2607:f8b0:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9A3C51BE9
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 18:47:21 -0700 (PDT)
-Received: by mail-oi1-x22a.google.com with SMTP id 5614622812f47-3a1ba074dadso3024345b6e.1
-        for <devicetree@vger.kernel.org>; Tue, 27 Jun 2023 18:47:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1687916841; x=1690508841;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=39f5Ofs4Fut4oG/x67xmD5HKVQS6vifJS9n1Fqh5CNI=;
-        b=xCwf9hAwyokrWOGO7CX935cGCvgM7aunAkp6xEeawz1c2RtC1heZey3QYcfDZD205r
-         hrqHBiB4isLHaYtBq5xyNuHLup9OdGt/LRrEiH786z8vYdu+ws4UwiE2bO71ztqUfVEa
-         9xdUBGg/I8Kt9nxdQnb+RZahB3yaUyYznzbdGDDJ7QA3TBxRZT9VmjAzfEDg7Q/GMGUM
-         gcDVRgMXClox+ITMtyGgKcM1qZz5dkJBHaXn28Mchsxhyv+SeBYF5u9LtDSX0N2xngqs
-         mPrTsZQ4pTIIY6ByM1galx7dSoRDyWiH7A/Y6LH7HanurvSyOsBwCyDTh4JvDaHceB9W
-         PXtQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687916841; x=1690508841;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=39f5Ofs4Fut4oG/x67xmD5HKVQS6vifJS9n1Fqh5CNI=;
-        b=Mhufg4YLTR6+e2GH1dWOul0qwsYJDn5V40N2oZYGZzvYUPupb7hprCqi2SXu5fy32Q
-         UzJ3Qt9tOOy01xwPjZd7W4bZKftbmq1Ka6rFlFVnMkxh2x2BzgWSIg5sB1NM0f4gnG1z
-         pyKtTRy2EhNaXcLn8QRufpHwbcGnV0bLRwS/AiexgBxwizzrTSBhfRdh0F91A1pPfb1z
-         ZKfM6c3Z9Ah3QJL0qVauNTWrgA8vWMKVG/sYnV538J9WrCLhe8uL95iXMMT23qRxNVNL
-         uoNFAP1eU/hahRoZqdE/qC0MwdYz4mA6KHDWMmo0fn4IP1zYeOAUgu8j4zlc6JqGUUOs
-         4q4Q==
-X-Gm-Message-State: AC+VfDxrWy5XnTACEDPI2Do+1zm83lautHMVDGLVPFGHjzSJg8NxUFte
-        aji8Cb89cpzRZlEr8u0esqBlJSgGqyu5TXHR3VgguQ==
-X-Google-Smtp-Source: ACHHUZ7c501zOPij6leqylYmOj8Qka5FCrkxofq6AvdEns+6OFM8mCOc1asFuyTCWGmGLGr1txrh4LPuXsNJwsPyEls=
-X-Received: by 2002:a05:6808:1b07:b0:399:b7bd:9041 with SMTP id
- bx7-20020a0568081b0700b00399b7bd9041mr36225966oib.34.1687916840967; Tue, 27
- Jun 2023 18:47:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230627050148.2045691-1-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=WR=fnhCxC37Eo3hinh2MV=eTNuXG+GrwgR6K_pV4Rbaw@mail.gmail.com>
-In-Reply-To: <CAD=FV=WR=fnhCxC37Eo3hinh2MV=eTNuXG+GrwgR6K_pV4Rbaw@mail.gmail.com>
-From:   cong yang <yangcong5@huaqin.corp-partner.google.com>
-Date:   Wed, 28 Jun 2023 09:47:09 +0800
-Message-ID: <CAHwB_NLDFqDEQ14cTAo3z1pvXvCZXhMeRbTXM3u93hVtpjE52w@mail.gmail.com>
-Subject: Re: [v2] drm/panel: Fine tune Starry-ili9882t panel HFP and HBP
-To:     Doug Anderson <dianders@google.com>
-Cc:     sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
-        airlied@gmail.com, hsinyi@google.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230473AbjF1CTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 27 Jun 2023 22:19:45 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F7F41BE9;
+        Tue, 27 Jun 2023 19:19:44 -0700 (PDT)
+Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35S1Qwxq020558;
+        Wed, 28 Jun 2023 02:19:37 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references; s=qcppdkim1;
+ bh=a/X1FFHaWN2vRp3imLzc9nrTHycORh/+rtRoKayrDF8=;
+ b=czOQBtZFVkt5rnT/xetDrmeHk19jEtPxeRO3FYBy85Fk7lkP+DFQWcavWEJemR3A+zX5
+ XpxmaykDugh38OKxOgGks1yElc0SnQJNuj8mk/A/YQM4aobEWAwDci7y4M01ypJHcYbC
+ Qm7f7zLT+rhDy66599GzLUfgCT2IuujbikMpSkSjyqNIWBGKudZ4Vtu7UaFt78+dtv//
+ zWvDegAPn+1MGMZ4krW619Kd2YDFzhzq9feTCzm7fu3S6k5hmgYVj5WQJpAjO/bBHTNG
+ MYUGW1XgBhWukdmz9MINyvgiUElnfHjvo37eyNVIkqMvNqXiv5850kYbQqnJyEWpNQCs qQ== 
+Received: from apblrppmta01.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rfbfcc5je-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 28 Jun 2023 02:19:37 +0000
+Received: from pps.filterd (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 35S2JYB7023380;
+        Wed, 28 Jun 2023 02:19:34 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 3rdsjkqpkj-1;
+        Wed, 28 Jun 2023 02:19:34 +0000
+Received: from APBLRPPMTA01.qualcomm.com (APBLRPPMTA01.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 35S2JYBG023364;
+        Wed, 28 Jun 2023 02:19:34 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
+        by APBLRPPMTA01.qualcomm.com (PPS) with ESMTP id 35S2JXrL023362;
+        Wed, 28 Jun 2023 02:19:34 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
+        id 65D484AAD; Wed, 28 Jun 2023 07:49:33 +0530 (+0530)
+From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
+To:     manivannan.sadhasivam@linaro.org
+Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
+        krzysztof.kozlowski@linaro.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v6 1/3] dt-bindings: PCI: qcom: ep: Add interconnects path
+Date:   Wed, 28 Jun 2023 07:49:28 +0530
+Message-Id: <1687918770-28416-2-git-send-email-quic_krichai@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1687918770-28416-1-git-send-email-quic_krichai@quicinc.com>
+References: <1687918770-28416-1-git-send-email-quic_krichai@quicinc.com>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: e_IT5626rkkaFORRJGS3co2qZEJ95YBn
+X-Proofpoint-GUID: e_IT5626rkkaFORRJGS3co2qZEJ95YBn
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-27_16,2023-06-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
+ spamscore=0 impostorscore=0 suspectscore=0 mlxscore=0 mlxlogscore=999
+ phishscore=0 clxscore=1015 bulkscore=0 lowpriorityscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306280019
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Doug
+Some platforms may not boot if a device driver doesn't
+initialize the interconnect path. Mostly it is handled
+by the bootloader but we have starting to see cases
+where bootloader simply ignores them.
 
+Add the "pcie-mem" interconnect path as a required property
+to the bindings.
 
-On Wed, Jun 28, 2023 at 5:17=E2=80=AFAM Doug Anderson <dianders@google.com>=
- wrote:
->
-> Hi,
->
-> On Mon, Jun 26, 2023 at 10:01=E2=80=AFPM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > Because the setting of hproch is too small, there will be warning in
-> > kernel log[1]. After fine tune the HFP and HBP, this warning can be
-> > solved. The actual measurement frame rate is 60.1Hz.
-> >
-> > [1]: WARNING kernel:[drm] HFP + HBP less than d-phy, FPS will under 60H=
-z
->
-> Thanks for including the warming. This looks like something that's
-> only printed on Mediatek display controllers. Just out of curiosity:
-> is that because Mediatek controllers have special requirements, or is
-> this something generic and the Mediatek controller is the only one
-> that warns about it?
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
-It seems to be a generic calculation formula for MTK controllers.
-At least I have see this warning in both MT8186 and MT8188.
-By the way, the same warning will also appear under coreboot.
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+index 8111122..bc32e13 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+@@ -71,6 +71,13 @@ properties:
+     description: GPIO used as WAKE# output signal
+     maxItems: 1
+ 
++  interconnects:
++    maxItems: 1
++
++  interconnect-names:
++    items:
++      - const: pcie-mem
++
+   resets:
+     maxItems: 1
+ 
+@@ -98,6 +105,8 @@ required:
+   - interrupts
+   - interrupt-names
+   - reset-gpios
++  - interconnects
++  - interconnect-names
+   - resets
+   - reset-names
+   - power-domains
+@@ -167,7 +176,9 @@ examples:
+   - |
+     #include <dt-bindings/clock/qcom,gcc-sdx55.h>
+     #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interconnect/qcom,sdx55.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
++
+     pcie_ep: pcie-ep@1c00000 {
+         compatible = "qcom,sdx55-pcie-ep";
+         reg = <0x01c00000 0x3000>,
+@@ -194,6 +205,8 @@ examples:
+         interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+         interrupt-names = "global", "doorbell";
++        interconnects = <&system_noc MASTER_PCIE &mc_virt SLAVE_EBI_CH0>;
++        interconnect-names = "pcie-mem";
+         reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
+         wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+         resets = <&gcc GCC_PCIE_BCR>;
+-- 
+2.7.4
 
->
->
-> > Fixes: 8716a6473e6c ("drm/panel: Support for Starry-ili9882t TDDI
-> > MIPI-DSI panel")
->
-> Ideally the tool you have to send mail wouldn't wrap the Fixes line.
-> Probably not worth resending just for this, but see if there's
-> something you can do to fix this in the future.
->
-> Since this is a tiny fix, I don't think we need to wait too long. I'll
-> plan to land it on Thursday unless Neil wants to land it himself
-> sooner.
-
-Thank you, Doug.
-
->
-> Reviewed-by: Douglas Anderson <dianders@chromium.org>
