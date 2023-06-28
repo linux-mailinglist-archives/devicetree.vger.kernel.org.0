@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5649741582
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:43:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1F3F741586
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:45:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbjF1Pna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 11:43:30 -0400
-Received: from dfw.source.kernel.org ([139.178.84.217]:54314 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230287AbjF1Pn3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 11:43:29 -0400
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 7F9D26136F;
-        Wed, 28 Jun 2023 15:43:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 61F6DC433C0;
-        Wed, 28 Jun 2023 15:43:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
-        s=korg; t=1687967007;
-        bh=QafBLFEUSubIM0CHvXTdPIXFnVTEgRgzGG04lDEXW5s=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=tlPmZc5wm/YQdCJ7H8wF7mko03Bw8ML0pQaHXsDTii81r62St9LdDepg8mzMWmCp6
-         erGIUwBdJu49dRTVY0rroxrRSbS2wHJTILgPe6nJ4m+h+NFC8hHau96ibNsgMsY5Ub
-         o1xePnLiaA7yiaT3/mhqWkGGBoHxBjNlAoYB21HQ=
-Date:   Wed, 28 Jun 2023 17:43:25 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Will Deacon <will@kernel.org>
-Cc:     Mukesh Ojha <quic_mojha@quicinc.com>,
-        Pavan Kondeti <quic_pkondeti@quicinc.com>, corbet@lwn.net,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        id S231332AbjF1Pom (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 11:44:42 -0400
+Received: from mail-il1-f180.google.com ([209.85.166.180]:42338 "EHLO
+        mail-il1-f180.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230147AbjF1Pol (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 11:44:41 -0400
+Received: by mail-il1-f180.google.com with SMTP id e9e14a558f8ab-345a32f3eeaso100695ab.1;
+        Wed, 28 Jun 2023 08:44:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687967080; x=1690559080;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=e8qi2/hGD1+QQV7LjWPANEr9l2yFXdhrRF59lxS51Ek=;
+        b=CI5QAJ/nMBEe+xR4CIrgL138WVhak4AT/8YFSWYb9j8DH+olIIa1V48455i5vQTMHj
+         BflqK58zNsVtuch91RPfTjxJWqj13z/VEcBBv/mhhhvhU0W+fZxL5H0vMNcrc27FqYJf
+         vbEy85SNeuMPW/JWBgarkCN7HDqodKFbtCy+o8FeOX/dTeunMVrd4CHWaUaBkG+33fHh
+         QZe2dAPaOSOIEWzpe75yvRlRQPD0qEaqdySvCydAnka6umSgUQUAs/hE2Vq4mAu3cewB
+         dQ8wIOS4E4dZj7/zglXmUFjRkZfsJNObAWGz5V6/VfNbOnornD5z6ny7eWKH7sWQYmZt
+         npOg==
+X-Gm-Message-State: AC+VfDz0wfQwF5MX3JcidD5cFLg9C0sSANm33nit9+pyslEfHb8O/oqc
+        CI3T3am/6KuAFmioSlE+xh/ROuBj6Q==
+X-Google-Smtp-Source: ACHHUZ79mRzg8+qZLbggc6AbavxNQm7x9oE4nROWahp4rP1eUGmg9coMWivmV3bV2fvmgRrNosi1Qw==
+X-Received: by 2002:a92:d94d:0:b0:341:24f1:3f74 with SMTP id l13-20020a92d94d000000b0034124f13f74mr1285671ilq.14.1687967080305;
+        Wed, 28 Jun 2023 08:44:40 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id b3-20020a92ce03000000b00345c0eca0e7sm950361ilo.85.2023.06.28.08.44.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jun 2023 08:44:39 -0700 (PDT)
+Received: (nullmailer pid 530531 invoked by uid 1000);
+        Wed, 28 Jun 2023 15:44:37 -0000
+Date:   Wed, 28 Jun 2023 09:44:37 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Seven Lee <wtli@nuvoton.com>
+Cc:     linux-kernel@vger.kernel.org, supercraig0719@gmail.com,
+        dardar923@gmail.com, broonie@kernel.org, WTLI@nuvoton.com,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
-        catalin.marinas@arm.com, linus.walleij@linaro.org,
-        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v4 02/21] kallsyms: Export kallsyms_lookup_name
-Message-ID: <2023062852-jurist-sitcom-e0d6@gregkh>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-3-git-send-email-quic_mojha@quicinc.com>
- <a26f22d2-95a7-4143-bff5-45ef0b53b30b@quicinc.com>
- <86c104a6-a685-4d05-08f4-e1be595f9d31@quicinc.com>
- <20230628153246.GA22090@willie-the-truck>
+        SJLIN0@nuvoton.com, lgirdwood@gmail.com, KCHSU0@nuvoton.com,
+        YHCHuang@nuvoton.com, CTLIN0@nuvoton.com, scott6986@gmail.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        conor+dt@kernel.org
+Subject: Re: [PATCH] ASoC: dt-bindings: nau8821: Convert to dtschema
+Message-ID: <168796707718.530473.9600429077455152027.robh@kernel.org>
+References: <20230628085009.1130318-1-wtli@nuvoton.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230628153246.GA22090@willie-the-truck>
+In-Reply-To: <20230628085009.1130318-1-wtli@nuvoton.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 04:32:47PM +0100, Will Deacon wrote:
-> On Wed, Jun 28, 2023 at 08:52:57PM +0530, Mukesh Ojha wrote:
-> > 
-> > 
-> > On 6/28/2023 7:23 PM, Pavan Kondeti wrote:
-> > > On Wed, Jun 28, 2023 at 06:04:29PM +0530, Mukesh Ojha wrote:
-> > > > Module like minidump providing debugging support will need to
-> > > > get the symbol information from the core kernel e.g to get
-> > > > the linux_banner, kernel section addresses bss, data, ro etc.
-> > > > 
-> > > One might ask why we would need such a debug driver to
-> > > be compiled as module? What would you do if we need to capture more
-> > > kernel data structures later? Do you plan to continue use
-> > > kallsyms_lookup_name() to query all the symbols?
-> > 
-> > You are on point, i needed this driver to be static but i don't have
-> > any example at present to collect more than just _linux_banner_ from
-> > my existing set of patches..
-> > 
-> > Agree, it will be easier to make this driver as static instead of
-> > opening up the doors for modules to abuse via exporting
-> > kallsyms_lookup_name() and also it will be very slow for production
-> > kernel uses.
+
+On Wed, 28 Jun 2023 16:50:09 +0800, Seven Lee wrote:
+> Convert the NAU8821 audio CODEC bindings to DT schema.
 > 
-> Right, I unexported that symbol deliberately in 0bd476e6c671 ("kallsyms:
-> unexport kallsyms_lookup_name() and kallsyms_on_each_symbol()") and I
-> don't think we should add it back for this driver.
+> Signed-off-by: Seven Lee <wtli@nuvoton.com>
+> ---
+>  .../devicetree/bindings/sound/nau8821.txt     |  55 --------
+>  .../bindings/sound/nuvoton,nau8821.yaml       | 125 ++++++++++++++++++
+>  2 files changed, 125 insertions(+), 55 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/sound/nau8821.txt
+>  create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
+> 
 
-I agree, it shouldn't be needed by any in-kernel module/driver.  If you
-really want the name, look it up afterward in userspace :)
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-thanks,
-
-greg k-h
