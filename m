@@ -2,118 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9B67418C7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 21:19:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEEE27418CF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 21:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229522AbjF1TTA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 15:19:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56194 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231361AbjF1TSw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 15:18:52 -0400
-Received: from mail-yw1-x112d.google.com (mail-yw1-x112d.google.com [IPv6:2607:f8b0:4864:20::112d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 952051FE8
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 12:18:50 -0700 (PDT)
-Received: by mail-yw1-x112d.google.com with SMTP id 00721157ae682-5701e8f2b79so2100557b3.0
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 12:18:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1687979930; x=1690571930;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=7DUD/shWe46KMvA0LBMlGn2qbYD6iSa8fQ8POxlPlXM=;
-        b=bwFjvvNcUJo7//TF8Jp1vEu1xBV6qJmdrgeX0/ANiiVkekDwHHURXv+DV88cWYT6jW
-         RbHZEIn3r9PtHYcU4fIMjie5zJI6IS0zU0Yq+6jHzzBqH1S+8mbos0IDAI3y4O1YxynU
-         imdW1P2optY818M2gbNF5hU4q2ZU/cpterMPuJEU5VtKZ63vv5BOPOYpaOXFEVDcJCZe
-         njEyQ1uoFmFpp8jWN7ztedU+45WHoCMjLCJHxIZUoYY3yo0OHqUkekyUbJVC4tKKMOka
-         OguEhhd/Ez61qhzCh0w6nIJMbVWfYEit5vhI4og1FaIZ6NwTsVbGXZoQEAU8iEt/P0Zs
-         bmkQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687979930; x=1690571930;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=7DUD/shWe46KMvA0LBMlGn2qbYD6iSa8fQ8POxlPlXM=;
-        b=Ot3/cB6GyxZUrNezA3KhSBlslETuz+zcNtMbgEg1c/RlR3Kp8MdMeifdG3jYlLygh7
-         qsHo4534972A8rJH2DZAVMDIKn5nTgeK5UJPjuRuSw9spDaEM3QFNRVsEpR3aMeJDjfy
-         S8VlHw59d1xz5iOqPEd3GC3gfgBhnmTh3hp1hFNW8h8iFs+hh8Xwyv1immXsl54D2JLA
-         YSBKLdp1UJLpPxh2C26WcSbL61fkpv62fdQG5VyO++AL9BmBAjheo9m3VoOHO/8U8bSK
-         n7IYkWcNXbklps8tSu3Lj1RKvHdaG+rUdWCqNWmj4sqN88/NIM0+CeyN7Tod5rWuZSqq
-         jqPg==
-X-Gm-Message-State: AC+VfDwTGlu8P9jrNSqRbXNnOZcphA3xHIq9RG7zRu+XBVWXGkCGLx7Y
-        sfRNw5cnG0ZJDAgkZvBU/1OlzumFkT00hgKrB7q4xw==
-X-Google-Smtp-Source: ACHHUZ7rpDB3iLiEU8xufHcYAsfVBnrCQGv7FT1VlaIgweQmvXwzogrWdJylssczyf5duNaEFnucjJqA02PevJT363c=
-X-Received: by 2002:a05:6902:91:b0:bb8:4cc6:9d09 with SMTP id
- h17-20020a056902009100b00bb84cc69d09mr28026725ybs.29.1687979929795; Wed, 28
- Jun 2023 12:18:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-10-541c341d6bee@somainline.org>
- <CACRpkdbrk_pPqewo-bGPq4NQScHSRKNMeO0ik_aqEQ+BY12BBQ@mail.gmail.com> <a7h7hudmgg3ldb334o2knga7dqilvp47tfd46se4szpri2xi35@lxg5i5igjfmj>
-In-Reply-To: <a7h7hudmgg3ldb334o2knga7dqilvp47tfd46se4szpri2xi35@lxg5i5igjfmj>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 28 Jun 2023 21:18:38 +0200
-Message-ID: <CACRpkdZSNzeh8v=HW6948dJ8j0xNMhgrAz2+CpvQX=meGwPkyg@mail.gmail.com>
-Subject: Re: [PATCH RFC 10/10] drm/panel/sony-griffin-samsung: Add panel
- driver for Sony Xperia 1
-To:     Marijn Suijten <marijn.suijten@somainline.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S231483AbjF1TUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 15:20:36 -0400
+Received: from dfw.source.kernel.org ([139.178.84.217]:45928 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231495AbjF1TUd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 15:20:33 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1BA1461453;
+        Wed, 28 Jun 2023 19:20:33 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B56C4C433C9;
+        Wed, 28 Jun 2023 19:20:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687980032;
+        bh=ZQZVtPeU7dPNfjGKYQ6Traz9rQl2dIA6gWmjA6m8qoc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=MNwdXgUAdozPFhzvee/9wFbEm1LOcTqPM+0kxlq1OXoC4ACco74LdlRpZZdvmn4Aa
+         8pARNmwwLJTg+/YUQI9OPZ6xg2xt4hEopHVW21rE7gkCF+zmKmDIFFR3sNddnwga8P
+         uovtIqPF8UljmZzo478xqZhrezrLWS/ndPSL2XgYG8gk4qAiNNxHaAoioglGGg7HTE
+         L8FAKplr0VVd7jcxJ2H7otD5Hez1qfRM3cO+uNjJEGo6QtNDoFYR7ALyNcWcEDDtuG
+         T8/OTb/jl7jherPuJOfe9CeqsGDQoXao7KIAO1A0qDZeWNyeK7inssZBwAKXayuYiz
+         Snp2MwMet+L7A==
+Date:   Wed, 28 Jun 2023 20:20:24 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Lee Jones <lee@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        "Sahin, Okan" <Okan.Sahin@analog.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        devicetree@vger.kernel.org,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <472a4d86-3bfb-4c2b-a099-f1254dd01e24@sirena.org.uk>
+References: <82612171-46d7-4d82-a8fc-c7d6a99d57e9@sirena.org.uk>
+ <MN2PR03MB516860989BD8ED6AC9A767FBE755A@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230621171315.GL10378@google.com>
+ <20230626175443.GA3446604-robh@kernel.org>
+ <20230627135615.GF10378@google.com>
+ <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
+ <ZJry8QTka8m6ag/j@fedora>
+ <20230627163344.GG10378@google.com>
+ <CAL_Jsq+Z64tuMO8a2Y=2GrXZ8q0L4Z2avCiphsn0HOOC71Dzjg@mail.gmail.com>
+ <20230628134013.GH10378@google.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="t/OdDRDxov9ilkpM"
+Content-Disposition: inline
+In-Reply-To: <20230628134013.GH10378@google.com>
+X-Cookie: HELLO, everybody, I'm a HUMAN!!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 4:20=E2=80=AFPM Marijn Suijten
-<marijn.suijten@somainline.org> wrote:
 
-> But for now we might already create a step-up version of that by having
-> a "Samsung panel driver library" to deduplicate generic commands, which
-> drivers can freely call into?
+--t/OdDRDxov9ilkpM
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Yeah something like that is likely what we want.
+On Wed, Jun 28, 2023 at 02:40:13PM +0100, Lee Jones wrote:
+> On Tue, 27 Jun 2023, Rob Herring wrote:
+> > On Tue, Jun 27, 2023 at 10:33=E2=80=AFAM Lee Jones <lee@kernel.org> wro=
+te:
 
-> On the other hand of the spectrum we currently have 4 downstream panels
-> for Sony devices that all declare to be using the sofef01 controller,
-> but with vastly different command sets.  And even if we "accidentally"
-> send the wrong set for the wrong device, the panel works anyway with no
-> noticeable color shifts or otherwise...
+> > IMO, a series with interdependencies, which most cases of a new MFD
+> > are, should be applied as a series. That's generally what happens
+> > everywhere else. Creating a branch and PR seems like extra work for
+> > everyone. The downside to that is any API changes outside of MFD would
 
-Yeah that is typically the case :/
+> This is what we've been doing for the last decade.  However, I'm getting
+> mixed messages from folk.  Mark recently asked for something completely
+> different (which I did say would be a bad idea at the time):
 
-We should try to group the similar code together and expect that sooner
-or later we will figure out what display controller(s) it is and name it af=
-ter
-that rather than after the panel (which I define as the combination of
-a display controller and an actual panel).
+> https://lore.kernel.org/all/20230421073938.GO996918@google.com/
 
-Yours,
-Linus Walleij
+> Could we please just pick a strategy and go with it?
+
+The basic ask from me is for things that cause these serieses to make
+progress, ideally in ways that minimise the amount of noise that they
+generate (given that they're generally pretty routine).  Applying
+patches when they're ready at least mitigates the size of the series,
+makes it easy to tell that they're OK and doesn't preclude applying more
+patches on top of it if that's a thing that people want to do.
+
+> > need some coordination. That coordination would only be needed when a
+> > subsystem has some API change and there's a new MFD using that
+> > subsystem rather than by default for every new MFD.
+
+> > Another option is just that you take all the binding patches since the
+> > MFD binding depends on the others. The drivers can still go via the
+> > subsystem. Not totally ideal to have branches of drivers missing
+> > bindings, but better than mainline missing bindings.
+
+> My original method of taking everything with Acks was fine IMHO.
+
+As I mentioned before the number of resends of what are frequently very
+similar serieses (eg, two PMICs from the same vendor in flight at the
+same time) was causing me real issues with tags going AWOL and things
+getting lost in the noise.
+
+--t/OdDRDxov9ilkpM
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSch/cACgkQJNaLcl1U
+h9Cquwf/beLq1gjcYtTzTT+W2Y2bDq3eP4a1a1nJj6YBoMNGL+H9aDDh+IEYQcny
+tQ93FGnAxxprHje5GpW88ar0WLhMDf/nlCvuv5M5SGXgKtAvTV26FZzQr5NMKgFW
+bhdMs4r869lmrqfF8uG7xE6REDJqLKUqTgW7x1i+pVnE2MuFPT5coQbqAJohhR91
+ZhEhjPKzdUq1L9gC8MkosngN8XSTQZtVbs060CLHXc12gBqkw0bxgImIMRtP+ld7
+bVYPdSDhsTG7cJp/BmJIeNtE70RQczZbXYfqeRgw5wbuZVIWEHilOjV+oe1FJaV0
+3EehhtqBFHUFu+aOROFtdNOcsqSnbQ==
+=+yB6
+-----END PGP SIGNATURE-----
+
+--t/OdDRDxov9ilkpM--
