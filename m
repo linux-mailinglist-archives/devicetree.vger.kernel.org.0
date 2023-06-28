@@ -2,125 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 186CA741776
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:51:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC7E07417CF
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 20:11:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229924AbjF1Rvf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 13:51:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46198 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230331AbjF1Rve (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:51:34 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EEEE02127
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 10:51:32 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b6a5fd1f46so1384441fa.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 10:51:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1687974691; x=1690566691;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=UIfoyCpUUajyFpMhMqY2mJy3ksaLY6ORUfahwyFeKps=;
-        b=PZhSyKn0rBq8tzcP5Bek1yLJg+XNjZNPiL4LicVXac8ZOnPsWOnWA/9I80VfEM4619
-         g5ay6vTG1iOzQj4ZH+Ab5XNGun/Iazle8Ji9pUkAGLMi2e0llijrwn+V/yw5k+v/9Luh
-         RzJbb8msOTGWs80BMmcTGN4oLQohW5sbBQId13ax1T8cACnTMXSM57HORJikYJABP05Y
-         2AX9yXWr89Mwke4BESf25avuAOE7dLikndEcqN49udXL2cEUvH21ZM8j0MuNZ9J6gnou
-         jI1RYyDbtxgC9SexfytFdTs6FJo2prck5CqbvHYZFhbG0bmUDr6FmBp4iMJnL9/K/rYm
-         7JHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687974691; x=1690566691;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=UIfoyCpUUajyFpMhMqY2mJy3ksaLY6ORUfahwyFeKps=;
-        b=Pjg0IPRc5bmmvqVCxTtJe8TgGrN9Q8O7nXuzN6eJyMR+MkXBcSRF2vJ+56Z51qoAsJ
-         uQAzF6TEGdEHO6bb10Oi9kFqt4waBX9dQi0Jbkq6aML976Yna/G+lhVNaF7T+C0mC0fL
-         RQRCEJ0QupIHUVpc424Y12GX/u7RSoptRRy5KsD8jl0GsJM5/NTwTAO1rv8h34KLDfOx
-         vUUsFuwj2j5mkRwjEqKzJIAOHHiEgD79sq9ZStS98393golK87b6CrRXi+LESMYLdTuC
-         VyMaUrA2qjn2lVJFKjviHQhhb/leWTqa521nT5fWXcIVdLI1RJC7PCZR07hLyUxjYgFa
-         0g8g==
-X-Gm-Message-State: AC+VfDxso01VQrinRtJRLYm20qTYtUaOcthvoD9mLZGK6x2SJXce+Oko
-        PGVg2efyXlvEuOrhiY/lHyzWx/awUj+UJ0vHNNLIfg==
-X-Google-Smtp-Source: ACHHUZ5owY13ULc/O32xrPfk+xUrhF3ccAD9wXq9jBAmvoET+2nZVQozOcdx0DwQxDw2S4OBcBUVCT2CQpLzucnAlkE=
-X-Received: by 2002:a2e:3e08:0:b0:2b6:9ed0:46f4 with SMTP id
- l8-20020a2e3e08000000b002b69ed046f4mr8648646lja.23.1687974691162; Wed, 28 Jun
- 2023 10:51:31 -0700 (PDT)
+        id S231181AbjF1SLA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 14:11:00 -0400
+Received: from dfw.source.kernel.org ([139.178.84.217]:48202 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229517AbjF1SK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 14:10:57 -0400
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 029A161374;
+        Wed, 28 Jun 2023 18:10:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30A2AC433C8;
+        Wed, 28 Jun 2023 18:10:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687975856;
+        bh=S8iFMTRFi4myYQxAkEhyB53zlJci8Gm8CA/jvNuBY2s=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cPTY3bX1lk4GxRiSxlodx+ugOaPB3xpc1AmBC6B9gILVTJY8pSBfrCaCQ9rQ/Fv8y
+         pmWZm8dao4+74szOO2hgfa6SsbzICms/cgnhZ8JNoK166T+Y3D0SRev4qLf7OwAd54
+         0gnOc9wTbeW3k7JIfSTn6veo35Qq4EIvjub+CoAWLkstUS3XubjZjPClmKATV5psyB
+         DhUapJ8FeaXOPdB7oMzpfa7FY/vqDW8k4s+lWdD3/k2ecx6FuQ2WbgN4LqfDK+yAF8
+         Kh1wKQkKPg9Xyf/ZrdcT2SXk06B2HOxfY0qoj/8fOMtezSZUJnCR7NvTp8DnH2I8PS
+         TO9hWPdCw5uvA==
+Date:   Wed, 28 Jun 2023 19:10:50 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, johan+linaro@kernel.org,
+        perex@perex.cz, tiwai@suse.com, lgirdwood@gmail.com,
+        ckeepax@opensource.cirrus.com, kuninori.morimoto.gx@renesas.com,
+        linux-kernel@vger.kernel.org, pierre-louis.bossart@linux.intel.com,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH 2/3] ASoC: qcom: q6apm: add support for reading firmware
+ name from DT
+Message-ID: <c377aefe-2678-4ba7-96b3-2186e8f3f1b4@sirena.org.uk>
+References: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
+ <20230628102621.15016-3-srinivas.kandagatla@linaro.org>
+ <f71c8d2b-d5f4-42bb-932f-5b9ec6117ffc@sirena.org.uk>
+ <73dce263-bee6-554f-9eb6-af4aa7badab1@linaro.org>
 MIME-Version: 1.0
-References: <20230626-provable-angrily-81760e8c3cc6@wendy> <20230626-sensuous-clothing-124f7ae0aedf@wendy>
- <CALs-HstDV3PjBk_8WDecwuvVK9rno1CKFzT1+8ohoUXE7X0GwA@mail.gmail.com> <20230628-gizzard-trading-a5f9785128b5@spud>
-In-Reply-To: <20230628-gizzard-trading-a5f9785128b5@spud>
-From:   Evan Green <evan@rivosinc.com>
-Date:   Wed, 28 Jun 2023 10:50:55 -0700
-Message-ID: <CALs-HsvdXu+Ag50FpdCRthZamP+pzsqhxr2rnA+=Ko_sZ98z9A@mail.gmail.com>
-Subject: Re: [PATCH v1 6/9] RISC-V: add single letter extensions to riscv_isa_ext
-To:     Conor Dooley <conor@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>, palmer@dabbelt.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="odJ0u5EEv+hukUFR"
+Content-Disposition: inline
+In-Reply-To: <73dce263-bee6-554f-9eb6-af4aa7badab1@linaro.org>
+X-Cookie: HELLO, everybody, I'm a HUMAN!!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 10:43=E2=80=AFAM Conor Dooley <conor@kernel.org> wr=
-ote:
->
-> On Wed, Jun 28, 2023 at 10:33:20AM -0700, Evan Green wrote:
-> > On Mon, Jun 26, 2023 at 4:21=E2=80=AFAM Conor Dooley <conor.dooley@micr=
-ochip.com> wrote:
-> > >
-> > > So that riscv_fill_hwcap() can use riscv_isa_ext to probe for single
-> > > letter extensions, add them to it. riscv_isa_ext_data grows a new
-> > > member, signifying whether an extension is multi-letter & thus requir=
-ing
-> > > special handling.
-> > > As a result, what gets spat out in /proc/cpuinfo will become borked, =
-as
-> > > single letter extensions will be printed as part of the base extensio=
-ns
-> > > and while printing from riscv_isa_arr. Take the opportunity to unify =
-the
-> > > printing of the isa string, using the new member of riscv_isa_ext_dat=
-a
-> > > in the process.
-> > >
-> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > > ---
-> > >  arch/riscv/include/asm/hwcap.h |  1 +
-> > >  arch/riscv/kernel/cpu.c        | 36 ++++++----------------
-> > >  arch/riscv/kernel/cpufeature.c | 56 +++++++++++++++++++++-----------=
---
-> > >  3 files changed, 46 insertions(+), 47 deletions(-)
-> > >
-> > > diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/=
-hwcap.h
-> > > index a35bee219dd7..6ad896dc4342 100644
-> > > --- a/arch/riscv/include/asm/hwcap.h
-> > > +++ b/arch/riscv/include/asm/hwcap.h
-> > > @@ -77,6 +77,7 @@ unsigned long riscv_get_elf_hwcap(void);
-> > >  struct riscv_isa_ext_data {
-> > >         const unsigned int id;
-> > >         const char *name;
-> > > +       const bool multi_letter;
-> >
-> > Instead of defining a new member, could we just infer this by making a
-> > macro like #define MULTI_LETTER(name) (name[0] && name[1])?
->
-> Or don't even try to be clever like this and just call strnlen on the
-> name & check if it is 1? It's only used in 2 places.
 
-Sounds good to me!
+--odJ0u5EEv+hukUFR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Wed, Jun 28, 2023 at 07:57:38PM +0300, Dmitry Baryshkov wrote:
+> On 28/06/2023 14:53, Mark Brown wrote:
+
+> > Why not try a series of firmware names/locations generated using the
+> > identifying information for the card/system?  That way we don't have to
+> > put a filename in the ABI which has fun scaling issues.
+
+> This is what was done by Srini in the initial (currently committed) version.
+> Unfortunately this easily results in the audio topology being separated from
+> the rest of the platform-specific firmware. For example, for the mentioned
+> X13s we already have a subdir under /lib/firmware/qcom and several
+> firmware-name DT properties pointing to the files in that subdir:
+
+> $ grep firmware-name
+> arch/arm64/boot/dts/qcom/sc8280xp-lenovo-thinkpad-x13s.dts
+> 		firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcdxkmsuc8280.mbn";
+> 	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qcadsp8280.mbn";
+> 	firmware-name = "qcom/sc8280xp/LENOVO/21BX/qccdsp8280.mbn";
+
+> This is not unique to the X13s, other Qualcomm boards also use full paths.
+
+If the goal here is to put all the firmwares for a given board in a
+single place surely it would be better to factor this all out of the
+individual drivers so that they ask some helper for a directory to use
+for firmware?  Adding these device specific firmware node properties
+doesn't seem to follow.
+
+--odJ0u5EEv+hukUFR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmScd6kACgkQJNaLcl1U
+h9CVewf/VRExNVrsgkLPa3cwHd22uiab7/9Pce7RpfyTmoA1zyYUbQvPZOsJgNZ+
+0Q5a15Cw4YMXpdQIE37xVukcWttL5myFf8ycUSU45WAS5+YLuDa/RcuGFP5/IEZm
+Lcq3wfX7zG0mxhE9Kj2E+k/rKieUPDbHGBfSikKrw8GL9jB8EZNG3tk7PXRLXpeJ
+FAN+BRcSuZTjKInCR0ErUSgbMqNXHinbdxC8VCtwDZd7U6R0YT9xaKlVzMf+aK0K
++8ZptUCFFDR9THaCOXj3ujwF54WycL5Wo+9jIoPsVF92RTQcMwtzGmM48K6WY8tz
+86G2gU01b89cvJ2vMPpdqZqR/UxLig==
+=8mP1
+-----END PGP SIGNATURE-----
+
+--odJ0u5EEv+hukUFR--
