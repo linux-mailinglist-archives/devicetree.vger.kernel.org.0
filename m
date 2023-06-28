@@ -2,106 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C20507415BD
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:55:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C7C67415DB
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:57:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229935AbjF1Py5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 11:54:57 -0400
-Received: from mail-io1-f51.google.com ([209.85.166.51]:42199 "EHLO
-        mail-io1-f51.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbjF1Py4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 11:54:56 -0400
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-785d738d3feso2053839f.0;
-        Wed, 28 Jun 2023 08:54:56 -0700 (PDT)
+        id S231678AbjF1P5C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 11:57:02 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:51634 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231767AbjF1P5B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 11:57:01 -0400
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-78358268d1bso1659239f.3;
+        Wed, 28 Jun 2023 08:57:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687967696; x=1690559696;
+        d=1e100.net; s=20221208; t=1687967820; x=1690559820;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=dvM2j4MFWu2+tkWUIYPaSox/q0gO7Yl+tyqnCdAuB4I=;
-        b=VqV4Oy24RqMUr5Ez3dhnwo9oCXjOGf7T2njLBOAqfTWF1lmP47A5RQwh/jB/bfsPMh
-         aZgJFBKDibABZ1p5REC8ifWboXoHEf9YjSWuxN75LehnIFdQyWIbsoWbhDPbDNl2onVG
-         ERFtYRbznrJyDJhq0SaFKh9KW2UXMnWt3ChNCugEZ60to0NDgH7tdQEl9d+yDRv9Obv2
-         Cn6CMmwwPFzHAsZ7m3SHsdugTnXkHkqaPJb3DzIcFbZy8Pj337C5X+/bvv8e11MLmckE
-         jqT9oe9TwEA+FXd+oOtgJd/AFUgPyPcgUNJ2ryV/KTqZ96m4CPu4xO1pa/IRXRCl0CX8
-         YWcA==
-X-Gm-Message-State: AC+VfDy+SLjILjeEsVL49CJI1up746RbohwytPvTzM6c9TKKo9cqNVKR
-        rTjPKfuTFxpd2DgegnvZ+g==
-X-Google-Smtp-Source: ACHHUZ7vOyiGVJcVU0xLxr6GOynYLXsRfMlwVF8aoB5Ye4p2RGPwCEIj1VqWd7eoGZKz85FYYMaI6A==
-X-Received: by 2002:a05:6602:418a:b0:783:4135:5b96 with SMTP id bx10-20020a056602418a00b0078341355b96mr1207753iob.5.1687967695956;
-        Wed, 28 Jun 2023 08:54:55 -0700 (PDT)
+        bh=G9vjhtyrPzntszALkJYOS9anDbw7azywtjHfHluvC5Y=;
+        b=La553Fu5dzwZZIKTKR/znoX7nSh5175fbD5cEPAdoxld5t6kSPFfdJCCkCop5bnRO4
+         r0OC+aCJyjL7W0U6wcQcGtVQ7Wc6SGxyzCDUbzvUD+ojKP2sy3szpCJ8LzW35ysl5VBs
+         lQu145jotC1X+ODiw8CJyUPuAR7MwzYY+W1l7iVpbeNNOc4ArwykmsZDnteL+i5Imk6l
+         Bx3NIJUBMUNJq8ktP7aHyhWvZrda/NGmvK5V5dtLUCu0cwfqI7h1XG+2KNFmqe2+4n7F
+         0Jef0m8+Kw0jvUyA+/3IK9cENDyhlgP7D5OVsboqlvx0CDsxggsnt9AhfEtVc4t/vGtZ
+         SCsw==
+X-Gm-Message-State: AC+VfDxYJojTTlH/e3wRY8fY6x/e/m3Qvu2j6jfilwUflP/3Kz27j0zE
+        70UowV2IAwvfAB/KpLuGF5j3doejiw==
+X-Google-Smtp-Source: ACHHUZ64GJSy6e4Pv/1ugB/LV0/Ouck7xZFFJ8siqL5xc7fp0UeLsbQMENBu18KcKlP3ZqY6x1t5kg==
+X-Received: by 2002:a6b:fd13:0:b0:786:267e:bd4 with SMTP id c19-20020a6bfd13000000b00786267e0bd4mr1049163ioi.10.1687967819767;
+        Wed, 28 Jun 2023 08:56:59 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id s5-20020a02cc85000000b0042acb1ec82bsm1991384jap.112.2023.06.28.08.54.54
+        by smtp.gmail.com with ESMTPSA id v20-20020a6b5b14000000b007836c7e8dccsm1540597ioh.17.2023.06.28.08.56.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jun 2023 08:54:55 -0700 (PDT)
-Received: (nullmailer pid 541922 invoked by uid 1000);
-        Wed, 28 Jun 2023 15:54:53 -0000
-Date:   Wed, 28 Jun 2023 09:54:53 -0600
+        Wed, 28 Jun 2023 08:56:58 -0700 (PDT)
+Received: (nullmailer pid 544141 invoked by uid 1000);
+        Wed, 28 Jun 2023 15:56:56 -0000
+Date:   Wed, 28 Jun 2023 09:56:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
-        broonie@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        johan+linaro@kernel.org, perex@perex.cz, tiwai@suse.com,
-        lgirdwood@gmail.com, ckeepax@opensource.cirrus.com,
-        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
-        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org
-Subject: Re: [PATCH 1/3] ASoC: dt-bindings: q6apm: add firmware-name bindings
-Message-ID: <20230628155453.GA537917-robh@kernel.org>
-References: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
- <20230628102621.15016-2-srinivas.kandagatla@linaro.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v12 01/10] cpufreq: blacklist MSM8998 in
+ cpufreq-dt-platdev
+Message-ID: <20230628155656.GA542106-robh@kernel.org>
+References: <20230217-topic-cpr3h-v12-0-1a4d050e1e67@linaro.org>
+ <20230217-topic-cpr3h-v12-1-1a4d050e1e67@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230628102621.15016-2-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20230217-topic-cpr3h-v12-1-1a4d050e1e67@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 11:26:19AM +0100, Srinivas Kandagatla wrote:
-> Add bindings to get firmare-name from DT, this will provide more flexibility
-> to specify platform specific firmware file name and location. Also this brings
-> tplg firmware name inline with other board specific firmware locations.
-
-tplg?
-
+On Wed, Jun 28, 2023 at 04:00:40PM +0200, Konrad Dybcio wrote:
+> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Add the MSM8998 to the blacklist since the CPU scaling is handled
+
+s/blacklist/denylist/ or s/blacklist/blocklist/
+
+> out of this.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  Documentation/devicetree/bindings/sound/qcom,q6apm.yaml | 5 +++++
->  1 file changed, 5 insertions(+)
+>  drivers/cpufreq/cpufreq-dt-platdev.c | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
-> index ef1965aca254..c783451145ef 100644
-> --- a/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
-> +++ b/Documentation/devicetree/bindings/sound/qcom,q6apm.yaml
-> @@ -31,6 +31,10 @@ properties:
->      unevaluatedProperties: false
->      description: Qualcomm DSP audio ports
+> diff --git a/drivers/cpufreq/cpufreq-dt-platdev.c b/drivers/cpufreq/cpufreq-dt-platdev.c
+> index e2b20080de3a..adb3579a1fee 100644
+> --- a/drivers/cpufreq/cpufreq-dt-platdev.c
+> +++ b/drivers/cpufreq/cpufreq-dt-platdev.c
+> @@ -143,6 +143,7 @@ static const struct of_device_id blocklist[] __initconst = {
 >  
-> +  firmware-name:
-> +    $ref: /schemas/types.yaml#/definitions/string
-
-Already has a type, so you can drop.
-
-No default? Or pattern it should match? 
-
-> +    description: Audio Topology Firmware name
-> +
->    '#sound-dai-cells':
->      const: 0
->  
-> @@ -38,6 +42,7 @@ required:
->    - compatible
->    - bedais
->    - dais
-> +  - firmware-name
-
-Causes warnings. Test you bindings.
-
->  
->  unevaluatedProperties: false
->  
+>  	{ .compatible = "qcom,apq8096", },
+>  	{ .compatible = "qcom,msm8996", },
+> +	{ .compatible = "qcom,msm8998", },
+>  	{ .compatible = "qcom,qcs404", },
+>  	{ .compatible = "qcom,sa8155p" },
+>  	{ .compatible = "qcom,sa8540p" },
+> 
 > -- 
-> 2.21.0
+> 2.41.0
 > 
