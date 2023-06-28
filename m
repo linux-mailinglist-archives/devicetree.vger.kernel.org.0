@@ -2,109 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A3A53740A9C
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 10:08:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62B5E740AB6
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 10:11:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232149AbjF1IHy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 04:07:54 -0400
-Received: from dfw.source.kernel.org ([139.178.84.217]:48386 "EHLO
-        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232320AbjF1IEv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 04:04:51 -0400
+        id S233085AbjF1ILN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 04:11:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232234AbjF1IGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 04:06:14 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A97EF198;
+        Wed, 28 Jun 2023 01:04:49 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 382A1612B2;
-        Wed, 28 Jun 2023 06:47:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 985EAC433C8;
-        Wed, 28 Jun 2023 06:47:01 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 93DF46133B;
+        Wed, 28 Jun 2023 07:49:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D7511C433C9;
+        Wed, 28 Jun 2023 07:49:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687934821;
-        bh=d+baqAWGEBGvcOft2QO3hccMGeQCJsFLMtVCuuWroW0=;
+        s=k20201202; t=1687938552;
+        bh=dMPfHf1WanGtgCkRNc8s8fHX9o1lxEd1S+vhVrf+Rnw=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=CfXojygt+HeElbkAC6X55hXj4o+kaWr5OI73g21/V3AZ1MK3bHXL4mBcvOev/0w5c
-         lLsJEn/9SIAkBhFg6uibNwKMQesouU17kPMgVW8QoCW9Eu/7JBUa+tePTidRrp/zRo
-         5fzHv+EP39oquyYSja8zoUchED860xkdOAQ0FU3h+1lttHk+USF2TOKOnnFjPbK3qr
-         sQbEmfKAgEu3wo2KwJRigDT18J+32dLLfxd/un6020jb4Oom5OaoITtzZwO1FUs/xQ
-         PL7Vz6zsgJaS/hSVueevSqfYD8wP3o2U817m1cHkN5cWUDtUPvDnqm9j9TAQx0brbX
-         SsYCgsE80cAbg==
+        b=Vf3GvOxHmfc3IrUcippeNuf03xnie0Mv5V8E68+tdrTgldOp6komTU/du8m++Pyvy
+         i8jKQIMHjT6+RsN34VeCnijjWgW+/d+SXvpSrLJu/QLaVnHq7FHglUdys/F4keGBUV
+         VF3bjmXqZsmRIPI7RxGJdMUE4geXAqcV8fRnA4ZiTl/4Xlt6Q3QmThCSauvSS47L7G
+         FC01+rj18oglpwyP7oDaHHyBBh1KUdh8bqxBANMj0T4cKb2qGpyKLHqSl4j5GS4/sl
+         ZsWgM6Y40afoAYLt9rUhWWYpRN/qS+xQassT+goLTArPu/XiDhULhadHd1ahCidf3j
+         RqWoL9A+pvXFQ==
 Received: from johan by xi.lan with local (Exim 4.94.2)
         (envelope-from <johan@kernel.org>)
-        id 1qEOxA-0001LV-U7; Wed, 28 Jun 2023 08:47:00 +0200
-Date:   Wed, 28 Jun 2023 08:47:00 +0200
+        id 1qEPvM-0002XF-2g; Wed, 28 Jun 2023 09:49:12 +0200
+Date:   Wed, 28 Jun 2023 09:49:12 +0200
 From:   Johan Hovold <johan@kernel.org>
-To:     Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Johan Hovold <johan+linaro@kernel.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        Das Srinagesh <quic_gurus@quicinc.com>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Patrick Wildt <patrick@blueri.se>
-Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: add explicit rtc
- interrupt parent
-Message-ID: <ZJvXZDBGBSQfeBdh@hovoldconsulting.com>
-References: <20230627085306.6033-1-johan+linaro@kernel.org>
- <20230627132406.GA5490@thinkpad>
- <ZJr_5JIqWSGq-E-T@hovoldconsulting.com>
- <20230628052557.GB20477@thinkpad>
+        linux-kernel@vger.kernel.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>
+Subject: Re: [PATCH 0/2] Hook up 8280 SCM icc
+Message-ID: <ZJvl-J4aQQozown1@hovoldconsulting.com>
+References: <20230622-topic-8280scmicc-v1-0-6ef318919ea5@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230628052557.GB20477@thinkpad>
+In-Reply-To: <20230622-topic-8280scmicc-v1-0-6ef318919ea5@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 10:55:57AM +0530, Manivannan Sadhasivam wrote:
-> On Tue, Jun 27, 2023 at 05:27:32PM +0200, Johan Hovold wrote:
-> > On Tue, Jun 27, 2023 at 06:54:06PM +0530, Manivannan Sadhasivam wrote:
-> > > On Tue, Jun 27, 2023 at 10:53:06AM +0200, Johan Hovold wrote:
-> > > > Unless explicitly specified the interrupt-parent property is inherited
-> > > > from the parent node on Linux even though this may not be in full
-> > > > compliance with the devicetree specification.
-> > > > 
-> > > > Following commit 2d5cab9232ba ("arm64: dts: qcom: sc8280xp-pmics:
-> > > > Specify interrupt parent explicitly"), add an explicit interrupt parent
-> > > > also for the PMIC RTC node for the benefit of other operating systems
-> > > > which may be confused by this omission.
-> > > > 
-> > > > Note that any such OS must still implement a fallback to the root
-> > > > interrupt domain as most devicetrees are written under the assumption
-> > > > that the interrupt parent is inherited.
-> > > > 
-> > > > Reported-by: Patrick Wildt <patrick@blueri.se>
-> > > > Signed-off-by: Johan Hovold <johan+linaro@kernel.org>
-> > > 
-> > > It is good to encode this in the binding and fix other such instances.
-> > 
-> > Not sure about that. Perhaps the spec should be updated to match reality
-> > instead... We have many more instances like this, even for this very
-> > SoC, but apparently OpenBSD or whatever OS needs this falls back to the
-> > root domain then.
-> > 
-> 
-> Just because linux is doing it in a different way doesn't warrant an amendment
-> to the spec IMO.
+On Thu, Jun 22, 2023 at 05:56:14PM +0200, Konrad Dybcio wrote:
+> The icc handle for SCM was missing on 8280. Add it.
 
-My point is that it's apparently not just Linux as most devicetrees work
-this way at least for the root domain. And then it may be time to update
-the spec in some way.
- 
-> > Changing this for the rtc node for consistency after you changed the
-> > others is a no-brainer, but not sure about trying to do this tree-wide.
-> > We already have too many of these one-line DT cleanups...
-> > 
-> 
-> I agree that this is going to be a one-line cleanup but someone has to do it.
-> (not asking you to do since I also skipped it during 2d5cab9232ba). We can put
-> it in the back burner.
+> Konrad Dybcio (2):
+>       dt-bindings: firmware: qcom,scm: Allow interconnect on SC8280XP
+>       arm64: dts: qcom: sc8280xp: Add missing SCM interconnect
 
-So that may actually amount to a ten-thousand line diff or so... And
-then it's probably better to just update the spec.
+Appears to work and matches the vendor dts, but no sign of any
+"performance benefit" as mentioned in 65b7ebda5028 ("firmware: qcom_scm:
+Add bw voting support to the SCM interface") during fw load at boot.
+
+Reviewed-by: Johan Hovold <johan+linaro@kernel.org>
+Tested-by: Johan Hovold <johan+linaro@kernel.org>
 
 Johan
