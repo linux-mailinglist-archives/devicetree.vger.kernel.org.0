@@ -2,250 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D215741747
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:35:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F86741763
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:42:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231388AbjF1ReQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 13:34:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231481AbjF1ReL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:34:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374762102;
-        Wed, 28 Jun 2023 10:34:10 -0700 (PDT)
+        id S229763AbjF1Rmx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 13:42:53 -0400
+Received: from dfw.source.kernel.org ([139.178.84.217]:54786 "EHLO
+        dfw.source.kernel.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S229652AbjF1Rmv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:42:51 -0400
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD1B461440;
-        Wed, 28 Jun 2023 17:34:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C965AC433C8;
-        Wed, 28 Jun 2023 17:34:05 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 395116141D;
+        Wed, 28 Jun 2023 17:42:51 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 44D93C433C8;
+        Wed, 28 Jun 2023 17:42:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687973649;
-        bh=eQUSJ/UXw38WGA2n3EfRxEikZsIX5IenbbmsGSo1lQ8=;
+        s=k20201202; t=1687974170;
+        bh=lqDFjemWmplk7HOK0FDXsjyFPEZ6trWi4OmRwLFV/5M=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=noXT1R3GKk3Jb9Gw5xjR3GpKL3bo+mbyIHCFpq+y1u+gZj0HJJ0eJ/1bQ3Wmad95y
-         4G3MeZHex8pxEL+9c1iZL1SwFIHnAPllP577+nXiPRn/+Od7mAxiu5t5InRTmF4XAj
-         8TX3zZBTZZEonD87BKoBdUaY1QYEVrvI3CErSL9Kk6b0v/NjDFzXuGQh0biCPr6x0l
-         mfhoIxpp7D30HQFKpffAo5eRYV9LoNSZfi8rDNdeI3GLHiLGuQx9A0b3JXbNKsoskR
-         4d0OvqDspl5NWfw6y+XWDb211neWEdPyiswiZws6/2GgLo4tlgO8szncmha1k+XJwC
-         ESMlIW8u9yWMQ==
-Date:   Wed, 28 Jun 2023 18:34:03 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH v5 2/7] dt-bindings: soc: starfive: Add StarFive syscon
- module
-Message-ID: <20230628-affix-maverick-84a08905f05b@spud>
-References: <20230613125852.211636-1-xingyu.wu@starfivetech.com>
- <20230613125852.211636-3-xingyu.wu@starfivetech.com>
- <7e2d6bfe-5687-97c5-778b-c02e9c0894af@linaro.org>
- <a83c98ae-2f6c-00c4-5d05-fc304718e05a@starfivetech.com>
+        b=Cm/4DEX2nbNEK3Lyi4lprLSxrrS6BvJE6GZxSx4V7hZoBmtsObVCdDFxffScaEzoU
+         zpoKJDIHPrv6LznJN61cXRAx+tK+xTUHZGrP6fJaMg1HTTK0wrM4fjUCOD7I2707co
+         4uezjJdsVDzYBI1dEV88F0nduy1MZH3/lRdNG/NzkTTKCCZ7u939C0msw9J9gnnC2/
+         5J7ygqQM6/o0Fxrz+IGMxSUfY+9ttOYaWuvg/uqXTdmnAoaGiRi8mnnpX8qUArd6nd
+         1MZ8an89pGr3FubGz43ikVU0pklxkUT+Y2mtsO7c7dUKdD/Z3d4qCC1tlxvpPhcizy
+         ze6YsJIw1OBDg==
+Date:   Wed, 28 Jun 2023 18:42:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     krzysztof.kozlowski+dt@linaro.org, andersson@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
+        johan+linaro@kernel.org, perex@perex.cz, tiwai@suse.com,
+        lgirdwood@gmail.com, ckeepax@opensource.cirrus.com,
+        kuninori.morimoto.gx@renesas.com, linux-kernel@vger.kernel.org,
+        pierre-louis.bossart@linux.intel.com, alsa-devel@alsa-project.org
+Subject: Re: [PATCH 2/3] ASoC: qcom: q6apm: add support for reading firmware
+ name from DT
+Message-ID: <bca929a1-03bd-4854-872a-07060e483d1b@sirena.org.uk>
+References: <20230628102621.15016-1-srinivas.kandagatla@linaro.org>
+ <20230628102621.15016-3-srinivas.kandagatla@linaro.org>
+ <f71c8d2b-d5f4-42bb-932f-5b9ec6117ffc@sirena.org.uk>
+ <b2aef484-71c9-5655-c1f8-ddde57687491@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="OWsCuXQtkR2oS87D"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="Iw1MrnpkR98xnaXf"
 Content-Disposition: inline
-In-Reply-To: <a83c98ae-2f6c-00c4-5d05-fc304718e05a@starfivetech.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+In-Reply-To: <b2aef484-71c9-5655-c1f8-ddde57687491@linaro.org>
+X-Cookie: HELLO, everybody, I'm a HUMAN!!
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---OWsCuXQtkR2oS87D
+--Iw1MrnpkR98xnaXf
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Wed, Jun 28, 2023 at 02:44:10PM +0800, Xingyu Wu wrote:
-> On 2023/6/14 2:31, Krzysztof Kozlowski wrote:
-> > On 13/06/2023 14:58, Xingyu Wu wrote:
-> >> From: William Qiu <william.qiu@starfivetech.com>
-> >>=20
-> >> Add documentation to describe StarFive System Controller Registers.
-> >>=20
-> >> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> >> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> >> ---
-> >>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 62 +++++++++++++++++++
-> >>  MAINTAINERS                                   |  7 +++
-> >>  2 files changed, 69 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/sta=
-rfive,jh7110-syscon.yaml
-> >>=20
-> >> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,j=
-h7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive=
-,jh7110-syscon.yaml
-> >> new file mode 100644
-> >> index 000000000000..a81190f8a54d
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-s=
-yscon.yaml
-> >> @@ -0,0 +1,62 @@
-> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> >> +%YAML 1.2
-> >> +---
-> >> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-sysco=
-n.yaml#
-> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >> +
-> >> +title: StarFive JH7110 SoC system controller
-> >> +
-> >> +maintainers:
-> >> +  - William Qiu <william.qiu@starfivetech.com>
-> >> +
-> >> +description: |
-> >> +  The StarFive JH7110 SoC system controller provides register informa=
-tion such
-> >> +  as offset, mask and shift to configure related modules such as MMC =
-and PCIe.
-> >> +
-> >> +properties:
-> >> +  compatible:
-> >> +    oneOf:
-> >> +      - items:
-> >> +          - const: starfive,jh7110-sys-syscon
-> >> +          - const: syscon
-> >> +          - const: simple-mfd
-> >> +      - items:
-> >> +          - enum:
-> >> +              - starfive,jh7110-aon-syscon
-> >> +              - starfive,jh7110-stg-syscon
-> >> +          - const: syscon
-> >> +
-> >> +  reg:
-> >> +    maxItems: 1
-> >> +
-> >> +  clock-controller:
-> >> +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
-> >> +    type: object
-> >> +
-> >> +  "#power-domain-cells":
-> >> +    const: 1
-> >> +
-> >> +required:
-> >> +  - compatible
-> >> +  - reg
-> >> +
-> >> +allOf:
-> >> +  - if:
-> >> +      properties:
-> >> +        compatible:
-> >> +          contains:
-> >> +            const: starfive,jh7110-aon-syscon
-> >> +    then:
-> >> +      required:
-> >> +        - "#power-domain-cells"
-> >=20
-> > Where did you implement the results of the discussion that only some
-> > devices can have power and clock controller?
-> >=20
-> > According to your code all of above - sys, aon and stg - have clock and
-> > power controllers. If not, then the code is not correct, so please do
-> > not respond with what is where (like you did last time) but actually
-> > implement what you say.
-> >=20
->=20
-> Hi Krzysztof, I need to modify the code to implement it.
-> If I drop the 'clock-controller' and '"#power-domain-cells"' in properite=
-s, and change to this:
->=20
-> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
-on.yaml
-> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
-on.yaml
-> @@ -29,28 +29,33 @@ properties:
->    reg:
->      maxItems: 1
-> =20
-> -  clock-controller:
-> -    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
-> -    type: object
-> -
-> -  "#power-domain-cells":
-> -    const: 1
-> -
->  required:
->    - compatible
->    - reg
-> =20
->  allOf:
-> +  - if:
-> +      properties:
-> +        compatible:
-> +          contains:
-> +            const: starfive,jh7110-sys-syscon
-> +    then:
-> +      properties:
-> +        clock-controller:
-> +          $ref: /schemas/clock/starfive,jh7110-pll.yaml#
-> +          type: object
+On Wed, Jun 28, 2023 at 05:30:15PM +0100, Srinivas Kandagatla wrote:
+> On 28/06/2023 12:53, Mark Brown wrote:
 
-Why do this?
-Why not define the property has you have been doing, but only allow it
-on the syscons that support it?
-See the section starting at L205 of example-schema.yaml.
+> > Why not try a series of firmware names/locations generated using the
+> > identifying information for the card/system?  That way we don't have to
 
-> +
->    - if:
->        properties:
->          compatible:
->            contains:
->              const: starfive,jh7110-aon-syscon
->      then:
-> -      required:
-> -        - "#power-domain-cells"
-> +      properties:
-> +        "#power-domain-cells":
-> +          const: 1
-> =20
+> There is no consistent way with the current state of what is available in
+> linux-firmware and what drivers can generate from DMI, atleast with Qualcomm
+> SoCs.
 
-> -additionalProperties: false
-> +additionalProperties: true
+What's in linux-firmware now is not relevant, we can change that however
+we like.
 
-Why do you need this?
-Allowing "additionalProperties: true" sounds like you've got some prblem
-that you are trying to hide...
+> Example for x13s has all the firmwares are under qcom/sc8280xp/LENOVO/21BX
+> for two models 21BX, 21BY.
 
-> Would it be better to show that sys-syscon only has clock-controller and =
-aon-syscon is power controller?
+> However none of the DMI properties match exactly to 21BX or 21BY.
 
-You should only permit the properties where they are valid, yes.
+> These have to be either derived from product name 21BYZ9SNUS or some other
+> dmi properties.
 
-Cheers,
-Conor.
+> This logic is not going to be very reliable, can differ across platforms.
 
+But the goal here is to have platform specific firmwares so that's fine?
+So long as we come up with something stable and platform specific
+userspace will have the information to provide the firmware it likes,
+even if that does end up involving a lot of symlinks.
 
---OWsCuXQtkR2oS87D
+> All of the qcom platforms use firmware-name from DT to get the full firmware
+> path with name.
+
+> I know this has scaling issues, but with the current state of things, its
+> the only option I see.
+
+When you say "all the qcom platforms" what do you mean, you're proposing
+a new property here?
+
+--Iw1MrnpkR98xnaXf
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJxvCwAKCRB4tDGHoIJi
-0tjQAP9pADun+GqeVqOgv5jm6U4HG5PohwpeIYYvSjn0hhv2RwD/f1ncpULXC5ZJ
-fMsTacgJ5ATCXknFjmdw+LoxZKge5Qg=
-=b8dO
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSccRMACgkQJNaLcl1U
+h9BRrwf8DRcauWHVO26sbyrZZ2DD0opRH8+s+6Omd6fL+MKJ8WXwMYpBKHxfHWFU
+2LchHvPwo+UVu/lj6qhkOM/B3RV8yt0VK1yMpjcKGEPqJWIQn6dH9lEIcnCnVmTU
+dIkoxX4fd0FjNthvyVBqjuzKHkHQsaanWH6S6zz2KtDRThROD6EuaJv4ODfOGYST
+55BSX3JIZ5rTOVhCsT9fMLCpK353CHOaqrO7xd4UdGDRoLYP8gNxIivjZPBBKnBy
+SEAtK3SVxhNBv0xRTYivVY0yvIBjf/XyVRuDrRlllCywc9vTZRDEYT6wXFfcyQ5z
+yS96KgbdGB1uTs/blOMFnzxh1peu+w==
+=/Cgk
 -----END PGP SIGNATURE-----
 
---OWsCuXQtkR2oS87D--
+--Iw1MrnpkR98xnaXf--
