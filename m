@@ -2,180 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D8E6A741AA7
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 23:22:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 872BA741AD2
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 23:27:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230014AbjF1VWV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 17:22:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58070 "EHLO
+        id S232258AbjF1V0u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 17:26:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231615AbjF1VVc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 17:21:32 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BAC352974;
-        Wed, 28 Jun 2023 14:16:05 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (85-160-58-109.reb.o2.cz [85.160.58.109])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 479BF9CA;
-        Wed, 28 Jun 2023 23:15:24 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1687986924;
-        bh=77nJ0fGw+uL5vfsiYs5CiYEvuL9mewmxbmaSs+0tbKM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eh1DRSBDCKWKpcqzu6IQuuQM92tlJ6fc0oz7R68yvzkOcZGv+abHnUo6mcHuW0VUJ
-         mR4ivbDAZF65SYewP6KinLW0XZ9GPAH5w9aZG198tQoXHdOaPUksnub6NCwirbeWer
-         6/wjYZz3l+BHtic47p5Do/ZDu1GAFgaFml32yejk=
-Date:   Thu, 29 Jun 2023 00:16:04 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     guoniu.zhou@oss.nxp.com
-Cc:     linux-media@vger.kernel.org, linux-imx@nxp.com,
-        devicetree@vger.kernel.org, mchehab@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        xavier.roumegue@oss.nxp.com, kernel@pengutronix.de,
-        jacopo.mondi@ideasonboard.com, sakari.ailus@linux.intel.com
-Subject: Re: [PATCH v4 3/3] media: nxp: imx8-isi: add ISI support for i.MX93
-Message-ID: <20230628211604.GB27706@pendragon.ideasonboard.com>
-References: <20230628064251.1774296-1-guoniu.zhou@oss.nxp.com>
- <20230628064251.1774296-4-guoniu.zhou@oss.nxp.com>
+        with ESMTP id S232395AbjF1V03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 17:26:29 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5B562134;
+        Wed, 28 Jun 2023 14:26:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1687987561; x=1719523561;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=M7aa333XpPNGYhk+GT02yvHRVbg6aw/odt14RBTj1RI=;
+  b=eVEP3igP/AlR4M0m/pRNdKrPH2bnEoBYV2Ov6sQ6f/8KXz5fMHH54rQy
+   2fIzOfyaKPhpid26dq127lz8KC+5hq6hpmEd/fcskyyvS3T9gVf8TR7yj
+   mZim+s8rAPXrC6DL14e7iV1DGvG6Mv4DrU49KgxARGputRlENch2HVPJ9
+   C+vIqNhExJsMbiOLmFXsJ78fcRsgOzN802j9EsWfuetBRtrVXNQ5SMCV2
+   x1xB6DqUTPKvGHOxHcxX6cIafHEPIHznCqD3NfESW9TuuPNNvA3RNIcXC
+   /7LuKdYQGzbGrgFJ4bWEsx8dB4cXV3Jbzn26qBcyUnfpPBZWUrPxTxvnh
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="351756286"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; 
+   d="scan'208";a="351756286"
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Jun 2023 14:26:00 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10755"; a="861673519"
+X-IronPort-AV: E=Sophos;i="6.01,166,1684825200"; 
+   d="scan'208";a="861673519"
+Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
+  by fmsmga001.fm.intel.com with ESMTP; 28 Jun 2023 14:25:54 -0700
+Received: from kbuild by 783282924a45 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qEcfh-000DVB-2t;
+        Wed, 28 Jun 2023 21:25:53 +0000
+Date:   Thu, 29 Jun 2023 05:25:25 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH 2/4] regulator: Introduce Qualcomm REFGEN regulator driver
+Message-ID: <202306290533.nqqGHj1w-lkp@intel.com>
+References: <20230628-topic-refgen-v1-2-126e59573eeb@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230628064251.1774296-4-guoniu.zhou@oss.nxp.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_TEMPERROR,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230628-topic-refgen-v1-2-126e59573eeb@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 02:42:51PM +0800, guoniu.zhou@oss.nxp.com wrote:
-> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
-> 
-> i.MX93 use a different gasket which has different register definition
-> compared with i.MX8. Hence implement the gasket callbacks in order to
-> add ISI support for i.MX93.
-> 
-> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 15 ++++++++++
->  .../platform/nxp/imx8-isi/imx8-isi-core.h     |  2 ++
->  .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 28 +++++++++++++++++++
->  3 files changed, 45 insertions(+)
-> 
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> index f2774325dd61..13a0225de634 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
-> @@ -304,6 +304,20 @@ static const struct mxc_isi_plat_data mxc_imx8mp_data = {
->  	.has_36bit_dma		= true,
->  };
->  
-> +static const struct mxc_isi_plat_data mxc_imx93_data = {
-> +	.model			= MXC_ISI_IMX93,
-> +	.num_ports		= 1,
-> +	.num_channels		= 1,
-> +	.reg_offset		= 0,
-> +	.ier_reg		= &mxc_imx8_isi_ier_v2,
-> +	.set_thd		= &mxc_imx8_isi_thd_v1,
-> +	.clks			= mxc_imx8mn_clks,
-> +	.num_clks		= ARRAY_SIZE(mxc_imx8mn_clks),
-> +	.buf_active_reverse	= true,
-> +	.gasket_ops		= &mxc_imx93_gasket_ops,
-> +	.has_36bit_dma		= false,
-> +};
-> +
->  /* -----------------------------------------------------------------------------
->   * Power management
->   */
-> @@ -515,6 +529,7 @@ static int mxc_isi_remove(struct platform_device *pdev)
->  static const struct of_device_id mxc_isi_of_match[] = {
->  	{ .compatible = "fsl,imx8mn-isi", .data = &mxc_imx8mn_data },
->  	{ .compatible = "fsl,imx8mp-isi", .data = &mxc_imx8mp_data },
-> +	{ .compatible = "fsl,imx93-isi", .data = &mxc_imx93_data },
->  	{ /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, mxc_isi_of_match);
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> index 87182ebb99f0..ddd3d8ce4000 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
-> @@ -150,6 +150,7 @@ struct mxc_gasket_ops {
->  enum model {
->  	MXC_ISI_IMX8MN,
->  	MXC_ISI_IMX8MP,
-> +	MXC_ISI_IMX93,
->  };
->  
->  struct mxc_isi_plat_data {
-> @@ -287,6 +288,7 @@ struct mxc_isi_dev {
->  };
->  
->  extern const struct mxc_gasket_ops mxc_imx8_gasket_ops;
-> +extern const struct mxc_gasket_ops mxc_imx93_gasket_ops;
->  
->  int mxc_isi_crossbar_init(struct mxc_isi_dev *isi);
->  void mxc_isi_crossbar_cleanup(struct mxc_isi_crossbar *xbar);
-> diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> index f3758af59db1..96f36a6d8a3c 100644
-> --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
-> @@ -19,6 +19,11 @@
->  #define GASKET_HSIZE				0x0004
->  #define GASKET_VSIZE				0x0008
->  
-> +/* dispmix_GPR register (i.MX93 only) */
-> +#define DISP_MIX_CAMERA_MUX                     0x30
-> +#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)        (((x) & 0x3f) << 3)
-> +#define DISP_MIX_CAMERA_MUX_GASKET_ENABLE       BIT(16)
-> +
->  /* Configure and enable gasket for i.MX8MN and i.MX8P */
->  static void mxc_imx8_gasket_enable(struct mxc_isi_dev *isi,
->  				   const struct v4l2_mbus_frame_desc *fd,
-> @@ -50,3 +55,26 @@ const struct mxc_gasket_ops mxc_imx8_gasket_ops = {
->  	.enable = mxc_imx8_gasket_enable,
->  	.disable = mxc_imx8_gasket_disable,
->  };
+Hi Konrad,
 
-Following the comment on 2/3, let's add
+kernel test robot noticed the following build errors:
 
-/* -----------------------------------------------------------------------------
- * i.MX93 gasket
- */
+[auto build test ERROR on 5c875096d59010cee4e00da1f9c7bdb07a025dc2]
 
-, move the three DISP_MIX_CAMERA_MUX* macros here, and drop the comments
-before the enable and disable functions.
+url:    https://github.com/intel-lab-lkp/linux/commits/Konrad-Dybcio/dt-bindings-regulator-Describe-Qualcomm-REFGEN-regulator/20230629-003148
+base:   5c875096d59010cee4e00da1f9c7bdb07a025dc2
+patch link:    https://lore.kernel.org/r/20230628-topic-refgen-v1-2-126e59573eeb%40linaro.org
+patch subject: [PATCH 2/4] regulator: Introduce Qualcomm REFGEN regulator driver
+config: loongarch-allmodconfig (https://download.01.org/0day-ci/archive/20230629/202306290533.nqqGHj1w-lkp@intel.com/config)
+compiler: loongarch64-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230629/202306290533.nqqGHj1w-lkp@intel.com/reproduce)
 
-> +
-> +/* Configure and enable gasket for i.MX93 */
-> +static void mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
-> +				    const struct v4l2_mbus_frame_desc *fd,
-> +				    const struct v4l2_mbus_framefmt *fmt,
-> +				    const unsigned int port)
-> +{
-> +	u32 val;
-> +
-> +	val = DISP_MIX_CAMERA_MUX_DATA_TYPE(fd->entry[0].bus.csi2.dt);
-> +	val |= DISP_MIX_CAMERA_MUX_GASKET_ENABLE;
-> +	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val);
-> +}
-> +
-> +static void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi,
-> +				     unsigned int port)
-> +{
-> +	regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, 0);
-> +}
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306290533.nqqGHj1w-lkp@intel.com/
 
-Missing blank line.
+All errors (new ones prefixed by >>):
 
-> +const struct mxc_gasket_ops mxc_imx93_gasket_ops = {
-> +	.enable = mxc_imx93_gasket_enable,
-> +	.disable = mxc_imx93_gasket_disable,
-> +};
+   In file included from include/linux/irqflags.h:17,
+                    from include/linux/spinlock.h:59,
+                    from include/linux/kref.h:16,
+                    from include/linux/mm_types.h:8,
+                    from include/linux/buildid.h:5,
+                    from include/linux/module.h:14,
+                    from drivers/regulator/qcom-refgen-regulator.c:7:
+   arch/loongarch/include/asm/percpu.h:20:4: error: #error compiler support for the model attribute is necessary when a recent assembler is used
+      20 | #  error compiler support for the model attribute is necessary when a recent assembler is used
+         |    ^~~~~
+   drivers/regulator/qcom-refgen-regulator.c: In function 'qcom_sdm845_refgen_is_enabled':
+>> drivers/regulator/qcom-refgen-regulator.c:64:13: error: implicit declaration of function 'FIELD_GET' [-Werror=implicit-function-declaration]
+      64 |         if (FIELD_GET(REFGEN_BG_CTRL_MASK, val) != REFGEN_BG_CTRL_ENABLE)
+         |             ^~~~~~~~~
+   cc1: some warnings being treated as errors
+
+
+vim +/FIELD_GET +64 drivers/regulator/qcom-refgen-regulator.c
+
+    57	
+    58	static int qcom_sdm845_refgen_is_enabled(struct regulator_dev *rdev)
+    59	{
+    60		struct qcom_refgen *vreg = rdev_get_drvdata(rdev);
+    61		u32 val;
+    62	
+    63		regmap_read(vreg->base, REFGEN_REG_BG_CTRL, &val);
+  > 64		if (FIELD_GET(REFGEN_BG_CTRL_MASK, val) != REFGEN_BG_CTRL_ENABLE)
+    65			return 0;
+    66	
+    67		regmap_read(vreg->base, REFGEN_REG_BIAS_EN, &val);
+    68		if (FIELD_GET(REFGEN_BIAS_EN_MASK, val) != REFGEN_BIAS_EN_ENABLE)
+    69			return 0;
+    70	
+    71		return 1;
+    72	}
+    73	
 
 -- 
-Regards,
-
-Laurent Pinchart
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
