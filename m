@@ -2,92 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4A3174156B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86066741572
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 17:42:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232067AbjF1Pkk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 11:40:40 -0400
-Received: from mail-il1-f176.google.com ([209.85.166.176]:59437 "EHLO
-        mail-il1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232631AbjF1PkZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 11:40:25 -0400
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-34568286979so26465765ab.2;
-        Wed, 28 Jun 2023 08:40:24 -0700 (PDT)
+        id S232490AbjF1Plx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 11:41:53 -0400
+Received: from mail-io1-f45.google.com ([209.85.166.45]:53633 "EHLO
+        mail-io1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S232514AbjF1Plc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 11:41:32 -0400
+Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-78362f57500so1092239f.3;
+        Wed, 28 Jun 2023 08:41:32 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687966824; x=1690558824;
+        d=1e100.net; s=20221208; t=1687966891; x=1690558891;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=x4udzc9jnMqC5J8rq17SsUAo8Uct+p8BS0NFlNfOk8c=;
-        b=j3HM2E3QOW7RpDo3yfJmNn0h0K5gUpCpc36OAdFqOWfYqGs5sgQrb2HFMFTFQIByYW
-         xU6M2K5GBt20KP7YQhsED7xMGwvLq82O2Qo7JUlFWgE+2gl3YwCsN9FvJzTAjP7EZcui
-         xLMYtC9/tWnwf1pfDvJHgL96ROVr/xTF3qFSVwK1QaoyrDibTB+393GlIokf76/5o7aI
-         sxr5I/lFPufDBNUz7BSXxmOQ6qlemghdp3F4B+O85Pu977iHTaAgiwGuGdWdV9HgpP4v
-         mmrMLheUK60QCThJGFiG78USyj8aoZumioT2IF/iZO+PkGY7se/JQjck+ZetHlzAQZGt
-         yQsA==
-X-Gm-Message-State: AC+VfDzbNkjPTwN5yMCfqduy1d+LSYrK5EpAhAlN3dLOlZMSnf6hypsn
-        JeEF8vMC7rHCG2zxIkdWqg==
-X-Google-Smtp-Source: ACHHUZ6ayGbYzQG1PKJecSRaIV1JAJEG1gN8LqkRrUvtwo0eGDQVu8JOqSFjv4oiFaqjy/3ofA1oKA==
-X-Received: by 2002:a05:6e02:102:b0:33c:b395:a898 with SMTP id t2-20020a056e02010200b0033cb395a898mr30352399ilm.18.1687966824151;
-        Wed, 28 Jun 2023 08:40:24 -0700 (PDT)
+        bh=+l0t342YajPczddg3NeDWb3a/OrxF8h1Xy5klh6ycWw=;
+        b=XkjTjz05p7URLpk6mYEvgGPvC1yZ9tAfJ4xC8XtILS7wuqRRlO16AjGNuRgCjhqG6t
+         f6EhHGnsbdNbuampDlm93v3Xh8fMIQY65wehOJwX0vsxIQbyl0uah27ANN7pLVH/Fe6p
+         bXJxABm+uhgfrt6ok5ABH/wY2OnT1aqW8nfBhzlBxMqFqCDwi1hIzYMsKWNzMxUhFuHP
+         W1izzCz0+IEuHM973aAU3NMweeHe38Gbk4pP9XsnV1Uiqx1LzLTvBAGvWrtTtgJ3Hh/Y
+         8jqheuaMx++Q9H3hLxwqSST8vseUUlIDUYTXANC8x1BEQJqHXYkH2pv/eKg/c7fUnDKE
+         VWvA==
+X-Gm-Message-State: AC+VfDx7U4s5tayHdIXi4SaCPPBtRbWYalJBlFAMhfUWDS9tH0cwv3pC
+        Ege23f9si2LQRcyIqDH9Ow==
+X-Google-Smtp-Source: ACHHUZ5z1KhArl5WVBvoeAffyfwPgt5CoRj5pu9y5bbLS+G4RJIbaL86Jp/4BB3uTKG2VX7LEPJDuQ==
+X-Received: by 2002:a6b:f219:0:b0:783:72b9:ed6b with SMTP id q25-20020a6bf219000000b0078372b9ed6bmr5979826ioh.12.1687966891575;
+        Wed, 28 Jun 2023 08:41:31 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id z7-20020a92bf07000000b00338a1272ce1sm3433838ilh.52.2023.06.28.08.40.22
+        by smtp.gmail.com with ESMTPSA id h19-20020a0566380f1300b004267a5abce9sm350066jas.53.2023.06.28.08.41.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 28 Jun 2023 08:40:23 -0700 (PDT)
-Received: (nullmailer pid 525524 invoked by uid 1000);
-        Wed, 28 Jun 2023 15:40:22 -0000
-Date:   Wed, 28 Jun 2023 09:40:22 -0600
+        Wed, 28 Jun 2023 08:41:30 -0700 (PDT)
+Received: (nullmailer pid 526885 invoked by uid 1000);
+        Wed, 28 Jun 2023 15:41:29 -0000
+Date:   Wed, 28 Jun 2023 09:41:29 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sergio Paracuellos <sergio.paracuellos@gmail.com>
-Cc:     devicetree@vger.kernel.org, tglx@linutronix.de,
-        daniel.lezcano@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: timer: add Ralink SoCs system tick counter
-Message-ID: <20230628154022.GA520881-robh@kernel.org>
-References: <20230628082716.2075736-1-sergio.paracuellos@gmail.com>
+To:     cy_huang@richtek.com
+Cc:     krzysztof.kozlowski+dt@linaro.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, broonie@kernel.org, conor+dt@kernel.org,
+        lgirdwood@gmail.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: rt5739: Add compatible for
+ rt5733
+Message-ID: <168796688888.526832.3830907816457044210.robh@kernel.org>
+References: <1687942037-14652-1-git-send-email-cy_huang@richtek.com>
+ <1687942037-14652-2-git-send-email-cy_huang@richtek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230628082716.2075736-1-sergio.paracuellos@gmail.com>
+In-Reply-To: <1687942037-14652-2-git-send-email-cy_huang@richtek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 10:27:16AM +0200, Sergio Paracuellos wrote:
-> Add YAML doc for the system tick counter which is present on Ralink SoCs.
+
+On Wed, 28 Jun 2023 16:47:16 +0800, cy_huang@richtek.com wrote:
+> From: ChiYuan Huang <cy_huang@richtek.com>
 > 
-> Signed-off-by: Sergio Paracuellos <sergio.paracuellos@gmail.com>
+> Add compatible string for rt5733.
+> 
+> Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
 > ---
->  .../bindings/timer/ralink,cevt-systick.yaml   | 38 +++++++++++++++++++
->  1 file changed, 38 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
+>  Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
-> new file mode 100644
-> index 000000000000..59d97feddf4e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/timer/ralink,cevt-systick.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/timer/ralink,cevt-systick.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: System tick counter present in Ralink family SoCs
-> +
-> +maintainers:
-> +  - Sergio Paracuellos <sergio.paracuellos@gmail.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: ralink,cevt-systick
 
-What is "cevt"? Would be nice to define. Really this should have been 
-SoC specific, but it looks like it has been upstream "forever", so fine.
+Acked-by: Rob Herring <robh@kernel.org>
 
-Otherwise,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-(the error report can be ignored)
