@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D54827411D9
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 14:58:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DD44741209
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 15:15:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231213AbjF1M6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 08:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
+        id S231496AbjF1NOR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 09:14:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230238AbjF1M6J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 08:58:09 -0400
-Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45821FFE;
-        Wed, 28 Jun 2023 05:58:07 -0700 (PDT)
-Received: by mail-io1-xd34.google.com with SMTP id ca18e2360f4ac-77a62a84855so237979339f.1;
-        Wed, 28 Jun 2023 05:58:07 -0700 (PDT)
+        with ESMTP id S231578AbjF1NOL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 09:14:11 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EC4026AB
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 06:14:08 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb8ede27eeso1461279e87.0
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 06:14:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1687957087; x=1690549087;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=EmAJ4kybVwJdt2vlA7P+ww38r+1sb7umIggV1gZPfIc=;
-        b=TH62gIf3kGj2Mt+ts7Y630wN71DXW47CEhU3g2Pwmabuz3PXytPQ+L5Z5vUmfzd6tq
-         XX0K8zmrpoR4BlYFswV/u0sf4deJ+qP51K5HmjwsQUKQbe8NWmP8rAMTv/y1qvlfhswi
-         7CW3NrPDN3CvIDMFcbjXS0c4nN1j+Cca6liM/YmFCe/6hiOwC9Uid2twZQmsbo66y65p
-         tjEXGKewk/oH/q31S0lN7KDx2E9WT4nFBWDXkAIK4wAt9D4gmsPinno/+w3jHdTsWKvF
-         sEToXu2u7v6U1qdh32oUFrXkeMs0SW64cwg0f8r8L+RH6/dqj9BC6o4rrMLkjw8XfNzl
-         7dLg==
+        d=linaro.org; s=google; t=1687958046; x=1690550046;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6viCOgG4sp4LSEgc4O1bPfBhiupPntM6FB5iNKFMAlg=;
+        b=EmAyIxCioasbpN3otta6Nnn4lDgBD4FrOjdP6edUgz2CQDliCCuDIAuo/QIAGbbuRE
+         D7YVTwNRwaT9tQQgXwxRvp3UWHURk52vJsOSemn0/YrPYcRpy7uw5jJz28Kv1WwyCIF1
+         rrd9Bcpj5jntR44W4kh/BcYHXf5UEshadofhcTJ3kZqbxYcem7Dj44CbP8lDbisfsS1g
+         gU9JaINbpQjqh6xsnJMZKHRgGRsoBBS1ZJkYkwWA6zu391G6qVvp7h7fZfo2KfxlskAB
+         /wDhiqnid3rxlm21U6dZoSvEVBUaB4Lo/daNWVQeiOaX20pm0g2K88698XnlLaqud+F/
+         klUw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687957087; x=1690549087;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=EmAJ4kybVwJdt2vlA7P+ww38r+1sb7umIggV1gZPfIc=;
-        b=Dsmz1dweJyMZv/X6IUyqHL4jBX5NK+W3t07y0N+Hn+sZYeK5z4vFCecnBrAActMgdi
-         N/MrAVMj9ZEzaTvTx0+8m9D7I/v9ktsJhvp9vnAlMUuqUQrSRW6nYkp41k2mWK1xAiSE
-         Dn5HY4HxPjFM/bA3wo8kbOex2ZkyAYHqbsHbZxdLYhONLl2lD0Nc0sy1yXVhTAynY7Up
-         2KYo7vq/BFJiXyRZF66mgot0eNdgY0OXtEGCWeXGMLiLyhRxYUq5USJ4SNrnXDRUAMxA
-         /CW36bU+XENzpeaZgKQeANaA7IES/NoagIhIlOQEMQ9rxmVc1BY9hXsAeto91qi6WWKf
-         hB7g==
-X-Gm-Message-State: AC+VfDyM9N8Vs3ASGn2OrCfxqwPfCqgI8XKal1pMKNRqAvvSkj1uEUAm
-        Lb5AfTBXWTHqJDHkRN8q3uDbSWYuhEDX8jn+jQ8=
-X-Google-Smtp-Source: ACHHUZ6wS3W3zO8LM9C9sDqMZ4ikRUkeGGgbR0c2UtDxGwWsiO7g3opU34oKoYpfnXFkZ40VN/fauhQQUj3llWYZ3Z8=
-X-Received: by 2002:a6b:f203:0:b0:783:7298:55ef with SMTP id
- q3-20020a6bf203000000b00783729855efmr5556608ioh.11.1687957087169; Wed, 28 Jun
- 2023 05:58:07 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1687958046; x=1690550046;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=6viCOgG4sp4LSEgc4O1bPfBhiupPntM6FB5iNKFMAlg=;
+        b=C/icbHCiDwEs5SkUjXswRTR5eb2EuU9GlXRTTC5jxLOLzb6dbzzUIMC9php6eWa65A
+         dclWr6zJDK1mxyZRq7QdOtr7kt3ucIRvzbjNotVF+82BxC5LF4UisHtllt6Ml5ZiyW2y
+         FW+EVl4x3s3/mcrpyaurQKNm9TdorNXiPPAlMiD3GHP9GqpeNpTPMLVVLbRlLVUFeND7
+         0O01klJF4W5hR5k13Qd6T0nv6pvTORfWbXwn6iOV0JG1+mjQvcuKNxeiJJcc08Jx1H0C
+         L4GXHQ8SXYZmVOCwWBD/dEmOOd7BXnQij77+Fr2ChVlxEScLFnmR1YdmQA1y1U2G8FuG
+         MT5Q==
+X-Gm-Message-State: AC+VfDwPCHw2q48YcJgdmT74b+DYve5+0k/NXgbFVzZfuwpZg6T+Hz72
+        eldKOT+tM7ms8xPwFA31fVtofg==
+X-Google-Smtp-Source: ACHHUZ5rHPLrRU8/kDyX/6ZBhH+KbrmbSJ6pf0ikKhJimA9mXA5l0jp63+OklliKfxxLNCvUh3baWw==
+X-Received: by 2002:ac2:4f0f:0:b0:4fb:8c2a:d43f with SMTP id k15-20020ac24f0f000000b004fb8c2ad43fmr2954905lfr.7.1687958046302;
+        Wed, 28 Jun 2023 06:14:06 -0700 (PDT)
+Received: from [10.10.15.130] ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id a22-20020a19f816000000b004fb77d6cab3sm1099391lff.261.2023.06.28.06.14.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 28 Jun 2023 06:14:05 -0700 (PDT)
+Message-ID: <a16b57be-34cd-d093-ac63-d02aef049e51@linaro.org>
+Date:   Wed, 28 Jun 2023 16:14:05 +0300
 MIME-Version: 1.0
-References: <20230614104759.228372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230614104759.228372-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <20d4d296-14d7-467d-826c-b5c9cdf4599a@app.fastmail.com>
-In-Reply-To: <20d4d296-14d7-467d-826c-b5c9cdf4599a@app.fastmail.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Wed, 28 Jun 2023 13:57:40 +0100
-Message-ID: <CA+V-a8tMcNnx3AK69KeFaNLvgt4yhy0wKdKdjR=AvuUwZNM-RA@mail.gmail.com>
-Subject: Re: [PATCH v9 5/6] cache: Add L2 cache management for Andes AX45MP
- RISC-V core
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     "Conor.Dooley" <conor.dooley@microchip.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        guoren <guoren@kernel.org>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Samuel Holland <samuel@sholland.org>,
-        linux-riscv@lists.infradead.org,
-        Christoph Hellwig <hch@infradead.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v4 5/6] soc: qcom: Add LLCC support for multi channel DDR
+Content-Language: en-GB
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20230623141806.13388-1-quic_kbajaj@quicinc.com>
+ <20230623141806.13388-6-quic_kbajaj@quicinc.com>
+ <CAA8EJpoZiXWDHGEgBF6KuKruQigqdy37pLH1Q_AnXsN6iRPhyA@mail.gmail.com>
+ <db8ea67e-529c-856b-026e-2435a2405f6b@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <db8ea67e-529c-856b-026e-2435a2405f6b@quicinc.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,77 +84,153 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+On 28/06/2023 11:45, Komal Bajaj wrote:
 
-Thank you for the review.
+No HTML emails on public mailing lists, please.
 
+> 
+> 
+> On 6/23/2023 7:56 PM, Dmitry Baryshkov wrote:
+>> On Fri, 23 Jun 2023 at 17:19, Komal Bajaj<quic_kbajaj@quicinc.com>  wrote:
+>>> Add LLCC support for multi channel DDR configuration
+>>> based on a feature register. Reading DDR channel
+>>> confiuration uses nvmem framework, so select the
+>>> dependency in Kconfig. Without this, there will be
+>>> errors while building the driver with COMPILE_TEST only.
+>>>
+>>> Signed-off-by: Komal Bajaj<quic_kbajaj@quicinc.com>
+>>> ---
+>>>   drivers/soc/qcom/Kconfig     |  2 ++
+>>>   drivers/soc/qcom/llcc-qcom.c | 33 ++++++++++++++++++++++++++++++---
+>>>   2 files changed, 32 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+>>> index a491718f8064..cc9ad41c63aa 100644
+>>> --- a/drivers/soc/qcom/Kconfig
+>>> +++ b/drivers/soc/qcom/Kconfig
+>>> @@ -64,6 +64,8 @@ config QCOM_LLCC
+>>>          tristate "Qualcomm Technologies, Inc. LLCC driver"
+>>>          depends on ARCH_QCOM || COMPILE_TEST
+>>>          select REGMAP_MMIO
+>>> +       select NVMEM
+>> No need to select NVMEM. The used functions are stubbed if NVMEM is disabled
+> 
+> With the previous patch, where this config was not selected, below error 
+> was flagged by kernel test robot -
+> 
+>     drivers/soc/qcom/llcc-qcom.c: In function 'qcom_llcc_get_cfg_index':
+>      >> drivers/soc/qcom/llcc-qcom.c:951:15: error: implicit declaration
+>     of function 'nvmem_cell_read_u8'; did you mean
+>     'nvmem_cell_read_u64'? [-Werror=implicit-function-declaration]
+>           951 |         ret = nvmem_cell_read_u8(&pdev->dev,
+>     "multi_chan_ddr", cfg_index);
+>               |               ^~~~~~~~~~~~~~~~~~
+>               |               nvmem_cell_read_u64
+>         cc1: some warnings being treated as errors
 
-On Wed, Jun 14, 2023 at 2:11=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrote=
-:
->
-> On Wed, Jun 14, 2023, at 12:47, Prabhakar wrote:
->
-> > +static void ax45mp_dma_cache_inv(phys_addr_t paddr, unsigned long size=
-)
-> > +{
-> > +     unsigned long start =3D (unsigned long)phys_to_virt(paddr);
-> > +     char cache_buf[2][AX45MP_CACHE_LINE_SIZE];
-> > +     unsigned long end =3D start + size;
-> > +     unsigned long old_start =3D start;
-> > +     unsigned long old_end =3D end;
-> > +     unsigned long line_size;
-> > +     unsigned long flags;
-> > +
-> > +     if (unlikely(start =3D=3D end))
-> > +             return;
-> > +
-> > +     line_size =3D ax45mp_priv.ax45mp_cache_line_size;
-> > +
-> > +     memset(&cache_buf, 0x0, sizeof(cache_buf));
-> > +     start =3D start & (~(line_size - 1));
-> > +     end =3D ((end + line_size - 1) & (~(line_size - 1)));
-> > +
-> > +     local_irq_save(flags);
-> > +     if (unlikely(start !=3D old_start))
-> > +             memcpy(&cache_buf[0][0], (void *)start, line_size);
-> > +
-> > +     if (unlikely(end !=3D old_end))
-> > +             memcpy(&cache_buf[1][0], (void *)(old_end & (~(line_size =
-- 1))),
-> > line_size);
-> > +
-> > +     ax45mp_cpu_dcache_inval_range(start, end, line_size);
-> > +
-> > +     if (unlikely(start !=3D old_start))
-> > +             memcpy((void *)start, &cache_buf[0][0], (old_start & (lin=
-e_size -
-> > 1)));
-> > +
-> > +     local_irq_restore(flags);
-> > +}
->
-> I'm not quite sure what this does, maybe some comments would help.
->
-> This looks like a novel method of preserving partial cache lines
-> at the beginning (but not the end?) of an unaligned area.
->
-I missed this earlier, (I removed the preserving of cache line from
-then end and left the beginning part. Samuel pointed to earlier on
-these patches if the cache-line-size is 64 we dont need to do this).
-Preserving cache lines is not needed at all,  Ive verified this and
-just doing a _inval() is sufficient. I'll update this and send a new
-version.
+Judging from the rest of nvmem-consumer.h, it appears that not having 
+stubs for this function is an omission. Please fix the header instead.
 
-Cheers,
-Prabhakar
+> 
+>>> +       select QCOM_SCM
+>>>          help
+>>>            Qualcomm Technologies, Inc. platform specific
+>>>            Last Level Cache Controller(LLCC) driver for platforms such as,
+>>> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+>>> index 6cf373da5df9..3c29612da1c5 100644
+>>> --- a/drivers/soc/qcom/llcc-qcom.c
+>>> +++ b/drivers/soc/qcom/llcc-qcom.c
+>>> @@ -12,6 +12,7 @@
+>>>   #include <linux/kernel.h>
+>>>   #include <linux/module.h>
+>>>   #include <linux/mutex.h>
+>>> +#include <linux/nvmem-consumer.h>
+>>>   #include <linux/of.h>
+>>>   #include <linux/of_device.h>
+>>>   #include <linux/regmap.h>
+>>> @@ -943,6 +944,19 @@ static int qcom_llcc_cfg_program(struct platform_device *pdev,
+>>>          return ret;
+>>>   }
+>>>
+>>> +static int qcom_llcc_get_cfg_index(struct platform_device *pdev, u8 *cfg_index)
+>>> +{
+>>> +       int ret;
+>>> +
+>>> +       ret = nvmem_cell_read_u8(&pdev->dev, "multi-chan-ddr", cfg_index);
+>>> +       if (ret == -ENOENT) {
+>> || ret == -EOPNOTSUPP ?
+> 
+> Okay
+> 
+>>> +               *cfg_index = 0;
+>>> +               return 0;
+>>> +       }
+>>> +
+>>> +       return ret;
+>>> +}
+>>> +
+>>>   static int qcom_llcc_remove(struct platform_device *pdev)
+>>>   {
+>>>          /* Set the global pointer to a error code to avoid referencing it */
+>>> @@ -975,11 +989,13 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>>          struct device *dev = &pdev->dev;
+>>>          int ret, i;
+>>>          struct platform_device *llcc_edac;
+>>> -       const struct qcom_llcc_config *cfg;
+>>> +       const struct qcom_llcc_config *cfg, *entry;
+>>>          const struct llcc_slice_config *llcc_cfg;
+>>>          u32 sz;
+>>> +       u8 cfg_index;
+>>>          u32 version;
+>>>          struct regmap *regmap;
+>>> +       u32 num_entries = 0;
+>>>
+>>>          drv_data = devm_kzalloc(dev, sizeof(*drv_data), GFP_KERNEL);
+>>>          if (!drv_data) {
+>>> @@ -1040,8 +1056,19 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>>
+>>>          drv_data->version = version;
+>>>
+>>> -       llcc_cfg = cfg[0]->sct_data;
+>>> -       sz = cfg[0]->size;
+>>> +       ret = qcom_llcc_get_cfg_index(pdev, &cfg_index);
+>>> +       if (ret)
+>>> +               goto err;
+>>> +
+>>> +       for (entry = cfg; entry->sct_data; entry++, num_entries++)
+>>> +               ;
+>> Please add num_cfgs to the configuration data instead.
+> 
+> Shall I create a new wrapper struct having a field num_cfg and a pointer 
+> to those cfgs
+> because configuration data is itself an instance of "struct 
+> qcom_llcc_config" and
+> we can have multiple instances of it.
 
-> As far as I can tell, most dma_mapping implementations don't
-> even try to do that at all, but the ones that do take a different
-> approach by calling _wback_inv() on partial cache lines instead
-> of calling _inv().
->
-> I'd say this does not belong into the low-level operations
-> here, especially since the ZICBOM variant doesn't do this either.
->
+A wrapper struct is a better approach in my opinion.
 
->       Arnd
+> 
+> 
+>>> +       if (cfg_index >= num_entries || cfg_index < 0) {
+>> cfg_index is unsigned, so it can not be less than 0.
+> 
+> Okay.
+> 
+>>> +               ret = -EINVAL;
+>>> +               goto err;
+>>> +       }
+>>> +
+>>> +       llcc_cfg = cfg[cfg_index].sct_data;
+>>> +       sz = cfg[cfg_index].size;
+>>>
+>>>          for (i = 0; i < sz; i++)
+>>>                  if (llcc_cfg[i].slice_id > drv_data->max_slices)
+>>> --
+>>> 2.40.1
+>>>
+> 
+
+-- 
+With best wishes
+Dmitry
+
