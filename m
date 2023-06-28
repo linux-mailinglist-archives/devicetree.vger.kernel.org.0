@@ -2,109 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CB05741741
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:34:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D215741747
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 19:35:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbjF1ReD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 13:34:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44884 "EHLO
+        id S231388AbjF1ReQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 13:34:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44920 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230379AbjF1Rd7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:33:59 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EF5A210B
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 10:33:58 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so3542618e87.1
-        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 10:33:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1687973636; x=1690565636;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mu8Gi2wSnoTXkOMcCin+xgkyW4SfsZOtfaMQ9m+MZ5U=;
-        b=ctXSjsQSzaufeY9GTPqn+avzhgMNvjo9PgbMSWr3gC1OzFmKrqHpkfW/Hh4/BxaRHj
-         oatlyGdfBX5is3/rXAkRtPpuVaBjnbVAWHtGueEalCtd0kiWVV+nHvycDQA6ttsaegMd
-         3lcR9743n2mULg7SZFP8WAzgB7VrDSJyHfySHd5R6/1eVpsEDvWiJ7WrXlv0a9KSs29x
-         WETDEpY2W0csY2Kc8h8MS0M9gIM0+saldCRjt5f4n2ePrtvwjqb9Q37Q+s3b2t5w550r
-         rE7oMwUkLRYM2F7ETOGVj7LBn7mLZofgXEPOlaZgFM5DxnuqH6dXXJk0pzK8+aL2GhCR
-         7xfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1687973636; x=1690565636;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mu8Gi2wSnoTXkOMcCin+xgkyW4SfsZOtfaMQ9m+MZ5U=;
-        b=OQQmwBiWtUaJUnsrwTwIHmgorMucU/y96TcvcrLP2EfAuPlE87ST6ziIzDSyST7xkq
-         29EzpeEPu0JH+mByAbCPeBQ3Q0BY1Z8LtTx97vJBZzKn/mwXTpzjNEsFmvxu4nVjrRp/
-         EJs8/1gm5ndvCRrRPCrUrGSRhJfQvy1xDkTHQ1GR/7Vv/6deQelPxdYruFOXrHZg8XRU
-         vDsPNWjxMU9yr7SJAjyCCUFALy57EGg3fgCYjXTeQJg+aHVvSu0hefUIA5PVzVa3Wo+1
-         IkLXrd0pr9zOabxo8B2kChZJiM3AI0R0FbPuEnJyGSMwlQzsdzqCWtdpkO2y5X/cuCRK
-         1SvQ==
-X-Gm-Message-State: AC+VfDxZrqPDWXquVRtwS4czGNPKTcTyftrLZrFHdlbTHpiDu71bmK+H
-        RSlAUqEFdqP8L0lCqbCcpUUFVhmZe6vgtcEYNsZHAw==
-X-Google-Smtp-Source: ACHHUZ7/LXypQ2b7zt5BdRodKsoDzSYUcdIaTGpou0UZUfpPyxiEPFkUIurdLsWJ+cccDbdbnTpgIrlMLbBaiJoTBCY=
-X-Received: by 2002:a19:7710:0:b0:4f8:6800:86f6 with SMTP id
- s16-20020a197710000000b004f8680086f6mr16992828lfc.49.1687973636628; Wed, 28
- Jun 2023 10:33:56 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230626-provable-angrily-81760e8c3cc6@wendy> <20230626-sensuous-clothing-124f7ae0aedf@wendy>
-In-Reply-To: <20230626-sensuous-clothing-124f7ae0aedf@wendy>
-From:   Evan Green <evan@rivosinc.com>
-Date:   Wed, 28 Jun 2023 10:33:20 -0700
-Message-ID: <CALs-HstDV3PjBk_8WDecwuvVK9rno1CKFzT1+8ohoUXE7X0GwA@mail.gmail.com>
-Subject: Re: [PATCH v1 6/9] RISC-V: add single letter extensions to riscv_isa_ext
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     palmer@dabbelt.com, conor@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Sunil V L <sunilvl@ventanamicro.com>,
+        with ESMTP id S231481AbjF1ReL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 13:34:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 374762102;
+        Wed, 28 Jun 2023 10:34:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id AD1B461440;
+        Wed, 28 Jun 2023 17:34:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C965AC433C8;
+        Wed, 28 Jun 2023 17:34:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1687973649;
+        bh=eQUSJ/UXw38WGA2n3EfRxEikZsIX5IenbbmsGSo1lQ8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=noXT1R3GKk3Jb9Gw5xjR3GpKL3bo+mbyIHCFpq+y1u+gZj0HJJ0eJ/1bQ3Wmad95y
+         4G3MeZHex8pxEL+9c1iZL1SwFIHnAPllP577+nXiPRn/+Od7mAxiu5t5InRTmF4XAj
+         8TX3zZBTZZEonD87BKoBdUaY1QYEVrvI3CErSL9Kk6b0v/NjDFzXuGQh0biCPr6x0l
+         mfhoIxpp7D30HQFKpffAo5eRYV9LoNSZfi8rDNdeI3GLHiLGuQx9A0b3JXbNKsoskR
+         4d0OvqDspl5NWfw6y+XWDb211neWEdPyiswiZws6/2GgLo4tlgO8szncmha1k+XJwC
+         ESMlIW8u9yWMQ==
+Date:   Wed, 28 Jun 2023 18:34:03 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
         linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v5 2/7] dt-bindings: soc: starfive: Add StarFive syscon
+ module
+Message-ID: <20230628-affix-maverick-84a08905f05b@spud>
+References: <20230613125852.211636-1-xingyu.wu@starfivetech.com>
+ <20230613125852.211636-3-xingyu.wu@starfivetech.com>
+ <7e2d6bfe-5687-97c5-778b-c02e9c0894af@linaro.org>
+ <a83c98ae-2f6c-00c4-5d05-fc304718e05a@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="OWsCuXQtkR2oS87D"
+Content-Disposition: inline
+In-Reply-To: <a83c98ae-2f6c-00c4-5d05-fc304718e05a@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 26, 2023 at 4:21=E2=80=AFAM Conor Dooley <conor.dooley@microchi=
-p.com> wrote:
->
-> So that riscv_fill_hwcap() can use riscv_isa_ext to probe for single
-> letter extensions, add them to it. riscv_isa_ext_data grows a new
-> member, signifying whether an extension is multi-letter & thus requiring
-> special handling.
-> As a result, what gets spat out in /proc/cpuinfo will become borked, as
-> single letter extensions will be printed as part of the base extensions
-> and while printing from riscv_isa_arr. Take the opportunity to unify the
-> printing of the isa string, using the new member of riscv_isa_ext_data
-> in the process.
->
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/include/asm/hwcap.h |  1 +
->  arch/riscv/kernel/cpu.c        | 36 ++++++----------------
->  arch/riscv/kernel/cpufeature.c | 56 +++++++++++++++++++++-------------
->  3 files changed, 46 insertions(+), 47 deletions(-)
->
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwca=
-p.h
-> index a35bee219dd7..6ad896dc4342 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -77,6 +77,7 @@ unsigned long riscv_get_elf_hwcap(void);
->  struct riscv_isa_ext_data {
->         const unsigned int id;
->         const char *name;
-> +       const bool multi_letter;
 
-Instead of defining a new member, could we just infer this by making a
-macro like #define MULTI_LETTER(name) (name[0] && name[1])?
+--OWsCuXQtkR2oS87D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Wed, Jun 28, 2023 at 02:44:10PM +0800, Xingyu Wu wrote:
+> On 2023/6/14 2:31, Krzysztof Kozlowski wrote:
+> > On 13/06/2023 14:58, Xingyu Wu wrote:
+> >> From: William Qiu <william.qiu@starfivetech.com>
+> >>=20
+> >> Add documentation to describe StarFive System Controller Registers.
+> >>=20
+> >> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> >> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+> >> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> >> ---
+> >>  .../soc/starfive/starfive,jh7110-syscon.yaml  | 62 +++++++++++++++++++
+> >>  MAINTAINERS                                   |  7 +++
+> >>  2 files changed, 69 insertions(+)
+> >>  create mode 100644 Documentation/devicetree/bindings/soc/starfive/sta=
+rfive,jh7110-syscon.yaml
+> >>=20
+> >> diff --git a/Documentation/devicetree/bindings/soc/starfive/starfive,j=
+h7110-syscon.yaml b/Documentation/devicetree/bindings/soc/starfive/starfive=
+,jh7110-syscon.yaml
+> >> new file mode 100644
+> >> index 000000000000..a81190f8a54d
+> >> --- /dev/null
+> >> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-s=
+yscon.yaml
+> >> @@ -0,0 +1,62 @@
+> >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> >> +%YAML 1.2
+> >> +---
+> >> +$id: http://devicetree.org/schemas/soc/starfive/starfive,jh7110-sysco=
+n.yaml#
+> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> >> +
+> >> +title: StarFive JH7110 SoC system controller
+> >> +
+> >> +maintainers:
+> >> +  - William Qiu <william.qiu@starfivetech.com>
+> >> +
+> >> +description: |
+> >> +  The StarFive JH7110 SoC system controller provides register informa=
+tion such
+> >> +  as offset, mask and shift to configure related modules such as MMC =
+and PCIe.
+> >> +
+> >> +properties:
+> >> +  compatible:
+> >> +    oneOf:
+> >> +      - items:
+> >> +          - const: starfive,jh7110-sys-syscon
+> >> +          - const: syscon
+> >> +          - const: simple-mfd
+> >> +      - items:
+> >> +          - enum:
+> >> +              - starfive,jh7110-aon-syscon
+> >> +              - starfive,jh7110-stg-syscon
+> >> +          - const: syscon
+> >> +
+> >> +  reg:
+> >> +    maxItems: 1
+> >> +
+> >> +  clock-controller:
+> >> +    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
+> >> +    type: object
+> >> +
+> >> +  "#power-domain-cells":
+> >> +    const: 1
+> >> +
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +
+> >> +allOf:
+> >> +  - if:
+> >> +      properties:
+> >> +        compatible:
+> >> +          contains:
+> >> +            const: starfive,jh7110-aon-syscon
+> >> +    then:
+> >> +      required:
+> >> +        - "#power-domain-cells"
+> >=20
+> > Where did you implement the results of the discussion that only some
+> > devices can have power and clock controller?
+> >=20
+> > According to your code all of above - sys, aon and stg - have clock and
+> > power controllers. If not, then the code is not correct, so please do
+> > not respond with what is where (like you did last time) but actually
+> > implement what you say.
+> >=20
+>=20
+> Hi Krzysztof, I need to modify the code to implement it.
+> If I drop the 'clock-controller' and '"#power-domain-cells"' in properite=
+s, and change to this:
+>=20
+> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
+on.yaml
+> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
+on.yaml
+> @@ -29,28 +29,33 @@ properties:
+>    reg:
+>      maxItems: 1
+> =20
+> -  clock-controller:
+> -    $ref: /schemas/clock/starfive,jh7110-pll.yaml#
+> -    type: object
+> -
+> -  "#power-domain-cells":
+> -    const: 1
+> -
+>  required:
+>    - compatible
+>    - reg
+> =20
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-sys-syscon
+> +    then:
+> +      properties:
+> +        clock-controller:
+> +          $ref: /schemas/clock/starfive,jh7110-pll.yaml#
+> +          type: object
+
+Why do this?
+Why not define the property has you have been doing, but only allow it
+on the syscons that support it?
+See the section starting at L205 of example-schema.yaml.
+
+> +
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              const: starfive,jh7110-aon-syscon
+>      then:
+> -      required:
+> -        - "#power-domain-cells"
+> +      properties:
+> +        "#power-domain-cells":
+> +          const: 1
+> =20
+
+> -additionalProperties: false
+> +additionalProperties: true
+
+Why do you need this?
+Allowing "additionalProperties: true" sounds like you've got some prblem
+that you are trying to hide...
+
+> Would it be better to show that sys-syscon only has clock-controller and =
+aon-syscon is power controller?
+
+You should only permit the properties where they are valid, yes.
+
+Cheers,
+Conor.
+
+
+--OWsCuXQtkR2oS87D
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJxvCwAKCRB4tDGHoIJi
+0tjQAP9pADun+GqeVqOgv5jm6U4HG5PohwpeIYYvSjn0hhv2RwD/f1ncpULXC5ZJ
+fMsTacgJ5ATCXknFjmdw+LoxZKge5Qg=
+=b8dO
+-----END PGP SIGNATURE-----
+
+--OWsCuXQtkR2oS87D--
