@@ -2,122 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DE23C741181
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 14:44:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D54827411D9
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 14:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232315AbjF1Mk4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 08:40:56 -0400
-Received: from mx0b-0031df01.pphosted.com ([205.220.180.131]:7312 "EHLO
-        mx0b-0031df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S232208AbjF1Mh5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jun 2023 08:37:57 -0400
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35S8hwfV019656;
-        Wed, 28 Jun 2023 12:37:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=qcppdkim1;
- bh=orV3xaRgOXdBv+EvZhahI6WQdstYeA90CZqOQkv6cLI=;
- b=UkwnUQPzsvBy/N+7oBJ1VdTYqGgjVAQ70vfr1gECSNgCOZRfSiS5hMP42KYlrUYylgD6
- /OJU1KE8h0ljrxHe67E7qXGcUvGotbUze+XittlcOXVHIbyodTjAwG5xNBw1rGX5dLtj
- SU9goPMK1v4ufPtn34pZDdnUxIynyeGoR00i3sfyqXYbs+Q9JPpNzkK0uZD8x2chWaqE
- jt3ZnTU3DNIuOXThieOJ+mkvbntdigmlV1B1dXZFhqKY7fqYD9EQg7SNoBBYNRaMXIW+
- ntX9fQ8bsRl0gb9jW1B5FTBle9vlctw3Sk9AlfZB7pqwcGb2ileF5QCPHd1v3N9XFdbC +Q== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rg7x3skw1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 12:37:40 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35SCbdFH010228
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 12:37:39 GMT
-Received: from hu-mojha-hyd.qualcomm.com (10.80.80.8) by
- nasanex01c.na.qualcomm.com (10.45.79.139) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Wed, 28 Jun 2023 05:37:33 -0700
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-To:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <keescook@chromium.org>, <tony.luck@intel.com>,
-        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linus.walleij@linaro.org>, <andy.shevchenko@gmail.com>
-CC:     <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>,
-        "Mukesh Ojha" <quic_mojha@quicinc.com>
-Subject: [PATCH v4 21/21] firmware: qcom_scm: Add multiple download mode support
-Date:   Wed, 28 Jun 2023 18:04:48 +0530
-Message-ID: <1687955688-20809-22-git-send-email-quic_mojha@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+        id S231213AbjF1M6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 08:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43392 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S230238AbjF1M6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 08:58:09 -0400
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D45821FFE;
+        Wed, 28 Jun 2023 05:58:07 -0700 (PDT)
+Received: by mail-io1-xd34.google.com with SMTP id ca18e2360f4ac-77a62a84855so237979339f.1;
+        Wed, 28 Jun 2023 05:58:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1687957087; x=1690549087;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=EmAJ4kybVwJdt2vlA7P+ww38r+1sb7umIggV1gZPfIc=;
+        b=TH62gIf3kGj2Mt+ts7Y630wN71DXW47CEhU3g2Pwmabuz3PXytPQ+L5Z5vUmfzd6tq
+         XX0K8zmrpoR4BlYFswV/u0sf4deJ+qP51K5HmjwsQUKQbe8NWmP8rAMTv/y1qvlfhswi
+         7CW3NrPDN3CvIDMFcbjXS0c4nN1j+Cca6liM/YmFCe/6hiOwC9Uid2twZQmsbo66y65p
+         tjEXGKewk/oH/q31S0lN7KDx2E9WT4nFBWDXkAIK4wAt9D4gmsPinno/+w3jHdTsWKvF
+         sEToXu2u7v6U1qdh32oUFrXkeMs0SW64cwg0f8r8L+RH6/dqj9BC6o4rrMLkjw8XfNzl
+         7dLg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687957087; x=1690549087;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=EmAJ4kybVwJdt2vlA7P+ww38r+1sb7umIggV1gZPfIc=;
+        b=Dsmz1dweJyMZv/X6IUyqHL4jBX5NK+W3t07y0N+Hn+sZYeK5z4vFCecnBrAActMgdi
+         N/MrAVMj9ZEzaTvTx0+8m9D7I/v9ktsJhvp9vnAlMUuqUQrSRW6nYkp41k2mWK1xAiSE
+         Dn5HY4HxPjFM/bA3wo8kbOex2ZkyAYHqbsHbZxdLYhONLl2lD0Nc0sy1yXVhTAynY7Up
+         2KYo7vq/BFJiXyRZF66mgot0eNdgY0OXtEGCWeXGMLiLyhRxYUq5USJ4SNrnXDRUAMxA
+         /CW36bU+XENzpeaZgKQeANaA7IES/NoagIhIlOQEMQ9rxmVc1BY9hXsAeto91qi6WWKf
+         hB7g==
+X-Gm-Message-State: AC+VfDyM9N8Vs3ASGn2OrCfxqwPfCqgI8XKal1pMKNRqAvvSkj1uEUAm
+        Lb5AfTBXWTHqJDHkRN8q3uDbSWYuhEDX8jn+jQ8=
+X-Google-Smtp-Source: ACHHUZ6wS3W3zO8LM9C9sDqMZ4ikRUkeGGgbR0c2UtDxGwWsiO7g3opU34oKoYpfnXFkZ40VN/fauhQQUj3llWYZ3Z8=
+X-Received: by 2002:a6b:f203:0:b0:783:7298:55ef with SMTP id
+ q3-20020a6bf203000000b00783729855efmr5556608ioh.11.1687957087169; Wed, 28 Jun
+ 2023 05:58:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 7N0NHCXx1HtIlnlWstC82DtCdSHMY6m1
-X-Proofpoint-GUID: 7N0NHCXx1HtIlnlWstC82DtCdSHMY6m1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-28_08,2023-06-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 impostorscore=0
- spamscore=0 priorityscore=1501 suspectscore=0 malwarescore=0 mlxscore=0
- adultscore=0 mlxlogscore=999 lowpriorityscore=0 phishscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2306280111
+References: <20230614104759.228372-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230614104759.228372-6-prabhakar.mahadev-lad.rj@bp.renesas.com> <20d4d296-14d7-467d-826c-b5c9cdf4599a@app.fastmail.com>
+In-Reply-To: <20d4d296-14d7-467d-826c-b5c9cdf4599a@app.fastmail.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Wed, 28 Jun 2023 13:57:40 +0100
+Message-ID: <CA+V-a8tMcNnx3AK69KeFaNLvgt4yhy0wKdKdjR=AvuUwZNM-RA@mail.gmail.com>
+Subject: Re: [PATCH v9 5/6] cache: Add L2 cache management for Andes AX45MP
+ RISC-V core
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     "Conor.Dooley" <conor.dooley@microchip.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        guoren <guoren@kernel.org>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Samuel Holland <samuel@sholland.org>,
+        linux-riscv@lists.infradead.org,
+        Christoph Hellwig <hch@infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        "Lad, Prabhakar" <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, scm driver only supports full dump when download
-mode is selected. Add support to enable minidump as well as
-enable it along with fulldump.
+Hi Arnd,
 
-Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
----
- drivers/firmware/qcom_scm.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Thank you for the review.
 
-diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
-index 946cb0f76a17..52e3b613a1af 100644
---- a/drivers/firmware/qcom_scm.c
-+++ b/drivers/firmware/qcom_scm.c
-@@ -31,6 +31,8 @@ static u32 download_mode;
- #define SCM_HAS_BUS_CLK		BIT(2)
- 
- #define QCOM_DOWNLOAD_FULLDUMP		 0x1
-+#define QCOM_DOWNLOAD_MINIDUMP		 0x2
-+#define QCOM_DOWNLOAD_BOTHDUMP		 (QCOM_DOWNLOAD_FULLDUMP | QCOM_DOWNLOAD_MINIDUMP)
- #define QCOM_DOWNLOAD_NODUMP		 0x0
- #define QCOM_DOWNLOAD_MODE_SHIFT	   4
- #define QCOM_DOWNLOAD_MODE_MASK		0x30
-@@ -85,6 +87,8 @@ static const char * const qcom_scm_convention_names[] = {
- static const char * const download_mode_name[] = {
- 	[QCOM_DOWNLOAD_NODUMP]	 = "off",
- 	[QCOM_DOWNLOAD_FULLDUMP] = "full",
-+	[QCOM_DOWNLOAD_MINIDUMP] = "mini",
-+	[QCOM_DOWNLOAD_BOTHDUMP] = "full,mini",
- };
- 
- static struct qcom_scm *__scm;
-@@ -1465,7 +1469,7 @@ static const struct kernel_param_ops download_mode_param_ops = {
- 
- module_param_cb(download_mode, &download_mode_param_ops, NULL, 0644);
- MODULE_PARM_DESC(download_mode,
--		"download mode: off/full are acceptable values");
-+		"download mode: off/full/mini/full,mini are acceptable values");
- 
- static int qcom_scm_probe(struct platform_device *pdev)
- {
--- 
-2.7.4
 
+On Wed, Jun 14, 2023 at 2:11=E2=80=AFPM Arnd Bergmann <arnd@arndb.de> wrote=
+:
+>
+> On Wed, Jun 14, 2023, at 12:47, Prabhakar wrote:
+>
+> > +static void ax45mp_dma_cache_inv(phys_addr_t paddr, unsigned long size=
+)
+> > +{
+> > +     unsigned long start =3D (unsigned long)phys_to_virt(paddr);
+> > +     char cache_buf[2][AX45MP_CACHE_LINE_SIZE];
+> > +     unsigned long end =3D start + size;
+> > +     unsigned long old_start =3D start;
+> > +     unsigned long old_end =3D end;
+> > +     unsigned long line_size;
+> > +     unsigned long flags;
+> > +
+> > +     if (unlikely(start =3D=3D end))
+> > +             return;
+> > +
+> > +     line_size =3D ax45mp_priv.ax45mp_cache_line_size;
+> > +
+> > +     memset(&cache_buf, 0x0, sizeof(cache_buf));
+> > +     start =3D start & (~(line_size - 1));
+> > +     end =3D ((end + line_size - 1) & (~(line_size - 1)));
+> > +
+> > +     local_irq_save(flags);
+> > +     if (unlikely(start !=3D old_start))
+> > +             memcpy(&cache_buf[0][0], (void *)start, line_size);
+> > +
+> > +     if (unlikely(end !=3D old_end))
+> > +             memcpy(&cache_buf[1][0], (void *)(old_end & (~(line_size =
+- 1))),
+> > line_size);
+> > +
+> > +     ax45mp_cpu_dcache_inval_range(start, end, line_size);
+> > +
+> > +     if (unlikely(start !=3D old_start))
+> > +             memcpy((void *)start, &cache_buf[0][0], (old_start & (lin=
+e_size -
+> > 1)));
+> > +
+> > +     local_irq_restore(flags);
+> > +}
+>
+> I'm not quite sure what this does, maybe some comments would help.
+>
+> This looks like a novel method of preserving partial cache lines
+> at the beginning (but not the end?) of an unaligned area.
+>
+I missed this earlier, (I removed the preserving of cache line from
+then end and left the beginning part. Samuel pointed to earlier on
+these patches if the cache-line-size is 64 we dont need to do this).
+Preserving cache lines is not needed at all,  Ive verified this and
+just doing a _inval() is sufficient. I'll update this and send a new
+version.
+
+Cheers,
+Prabhakar
+
+> As far as I can tell, most dma_mapping implementations don't
+> even try to do that at all, but the ones that do take a different
+> approach by calling _wback_inv() on partial cache lines instead
+> of calling _inv().
+>
+> I'd say this does not belong into the low-level operations
+> here, especially since the ZICBOM variant doesn't do this either.
+>
+
+>       Arnd
