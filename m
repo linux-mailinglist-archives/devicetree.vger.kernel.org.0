@@ -2,223 +2,634 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C66A8741379
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:12:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA61E74138B
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231359AbjF1OLq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 10:11:46 -0400
-Received: from mx0a-0031df01.pphosted.com ([205.220.168.131]:42612 "EHLO
-        mx0a-0031df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S231794AbjF1OLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jun 2023 10:11:44 -0400
-Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35SAiFIe025307;
-        Wed, 28 Jun 2023 14:11:11 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=0eblgT014c+8SRT2pgiRR3+5QnD4yE7+kP0/0z5wMJM=;
- b=JW35XjQwhEC3+Xclwo11hKg7gPsZjN2ENw+VAPIF/j70j8fRLvRpkaVf9v8nIW5AFvdL
- h3MnNxo+kUk6YaWARCANzMDiTLwBSlqCL8Z0BGUR/QOHaQ39mlMqpUS8tsdJ433wEnAC
- usIfnDjAvLGSKBTKU5mbR1HCu+iKTpAwj9P0SCOaHjSia3H6EZDWSaudWZohC5GWBsTf
- U87uvvL610+LKstLMDrjp5OXuhBjMbPRyWPDrbXjNXHO8iTrmyeway+zZxkD6dw22vlA
- sXbI4L49bTbwS/Y7x+hmPxgl/cP89sO8FWlVldZP2zbgoe1Ug8QgkXFiTO0Hus1rOMy7 VQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rgas2sfj1-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 14:11:10 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35SEB6fJ022664
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 28 Jun 2023 14:11:09 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.7; Wed, 28 Jun 2023 07:10:58 -0700
-Date:   Wed, 28 Jun 2023 19:40:54 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Mukesh Ojha <quic_mojha@quicinc.com>
-CC:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <keescook@chromium.org>, <tony.luck@intel.com>,
-        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linus.walleij@linaro.org>, <andy.shevchenko@gmail.com>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v4 08/21] dt-bindings: reserved-memory: Add qcom,ramoops
- binding
-Message-ID: <87ba1c2d-fa0b-4ac5-ba79-b3556101b612@quicinc.com>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: qgWM1z5KnWi9Ml4NVQi6OAL0n-awJPvZ
-X-Proofpoint-GUID: qgWM1z5KnWi9Ml4NVQi6OAL0n-awJPvZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-28_10,2023-06-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
- suspectscore=0 phishscore=0 mlxlogscore=999 bulkscore=0 mlxscore=0
- impostorscore=0 priorityscore=1501 adultscore=0 spamscore=0 clxscore=1015
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306280126
+        id S230373AbjF1OQw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 10:16:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53292 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231203AbjF1OQu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 10:16:50 -0400
+Received: from mail-pf1-x42e.google.com (mail-pf1-x42e.google.com [IPv6:2607:f8b0:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A364297C
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 07:16:47 -0700 (PDT)
+Received: by mail-pf1-x42e.google.com with SMTP id d2e1a72fcca58-6686a05bc66so3847999b3a.1
+        for <devicetree@vger.kernel.org>; Wed, 28 Jun 2023 07:16:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1687961807; x=1690553807;
+        h=message-id:to:from:cc:in-reply-to:subject:date:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=sWcmTJrxRz+QgigCulu7HBKjsA2VUVXoyDxiV1AN4eA=;
+        b=LhHc+Uh9voJ5aB6gJXWXTZrz8rQxuCDQ49o1idu1BMe5wng0LdV62me3RG75NWAJ9H
+         MaR/4rOoirXjqz3HY47UR4kQBDT+UqTm+4LOw2XwPIzovpuVv5jrvm85g0z4+a+Z2GJ7
+         0eJHDZbWhQwcwwrXSGy/zgE3hzMIFct0lmnd+itegBthsKZ3z+VcJwnKMwyLsTs4Yet5
+         MKQ1kwaQYqwU3OZ0z6uJSyfS/Fkxi8tU3qieh2eXljZLT4OLZo/TOMJt42wrSOSkdHd9
+         b0PyY9kVvXZdUmAVLlfKhm37GR33qFPFiMqeSBSIokYpWuoqM6rwKvbx0bkSLHzJL3VJ
+         TUIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1687961807; x=1690553807;
+        h=message-id:to:from:cc:in-reply-to:subject:date:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=sWcmTJrxRz+QgigCulu7HBKjsA2VUVXoyDxiV1AN4eA=;
+        b=IMhhfcL7jzLHrNgTWUVcjF7LJ9I5V39+qBcnNDIVhnLa9CMPrX3mGn8nILrXW/FeUJ
+         +JYrh3+u9gBwONnNDFtr1aACxkqD5bwHhmaZ4GHb32vU/QpkLvJOPEtQFdu89AJXIDcL
+         lJgWQDMUiQ6j5VokOnvcnmonmv3EzoxinQ6dKQlu3i9b0d6VAYy0E4u7IwrasWkspDAB
+         AiiaiL4x05LD08op8lOsF5eLyd7eVqNL9uV8aZprG4EkaPOcPEdvvN807DrqGW9iTBlO
+         WX0OAvHm5gCiyxt0bzHnltSn5Y16m7+orS1AHaY+imLsYH6k3u9VNRwwNGutAxfXDPUa
+         O6xg==
+X-Gm-Message-State: AC+VfDx31GhNGKJiz6N/w8Jix12XCKDdvQDsZ1khKb0GSjvWIAnkbwHQ
+        puQ7dHBOfxgQcNgTZtsFpdBH3KDfSf1Nnwo8bEs=
+X-Google-Smtp-Source: ACHHUZ5tyb3W2fgRHm0dzKTpkViHsA4dAyqafdaLslPDuOVFSLenaZ8bUKCjVu5MA0UA7CdcZ7bGJA==
+X-Received: by 2002:a05:6a21:78a9:b0:110:6146:1020 with SMTP id bf41-20020a056a2178a900b0011061461020mr37734321pzc.53.1687961806704;
+        Wed, 28 Jun 2023 07:16:46 -0700 (PDT)
+Received: from localhost ([135.180.227.0])
+        by smtp.gmail.com with ESMTPSA id i6-20020aa78d86000000b00666b7446219sm7186563pfr.45.2023.06.28.07.16.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 28 Jun 2023 07:16:45 -0700 (PDT)
+Date:   Wed, 28 Jun 2023 07:16:45 -0700 (PDT)
+X-Google-Original-Date: Wed, 28 Jun 2023 07:16:38 PDT (-0700)
+Subject:     Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
+In-Reply-To: <mhng-ac8c0366-c236-4a7f-b351-b59e2d9a19ab@palmer-ri-x1c9>
+CC:     Conor Dooley <conor.dooley@microchip.com>,
+        Conor Dooley <conor@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org,
+        Alistair Francis <Alistair.Francis@wdc.com>,
+        ajones@ventanamicro.com, atishp@atishpatra.org, jrtc27@jrtc27.com,
+        rick@andestech.com, ycliang@andestech.com,
+        oleksii.kurochko@gmail.com, linux-riscv@lists.infradead.org,
+        qemu-riscv@nongnu.org, u-boot@lists.denx.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     apatel@ventanamicro.com
+Message-ID: <mhng-9dcef543-3e4c-4d58-ad5a-cf3487270672@palmer-ri-x1c9>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,PP_MIME_FAKE_ASCII_TEXT,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 06:04:35PM +0530, Mukesh Ojha wrote:
-> Qualcomm ramoops minidump logger provide a means of storing
-> the ramoops data to some dynamically reserved memory instead
-> of traditionally implemented ramoops where the region should
-> be statically fixed ram region. Its device tree binding
-> would be exactly same as ramoops device tree binding and is
-> going to contain traditional ramoops frontend data and this
-> content will be collected via Qualcomm minidump infrastructure
-> provided from the boot firmware.
-> 
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
->  .../devicetree/bindings/soc/qcom/qcom,ramoops.yaml | 126 +++++++++++++++++++++
->  1 file changed, 126 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> new file mode 100644
-> index 000000000000..b1fdcf3f8ad4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,ramoops.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm Ramoops minidump logger
-> +
-> +description: |
-> +  Qualcomm ramoops minidump logger provide a means of storing the ramoops
-> +  data to some dynamically reserved memory instead of traditionally
-> +  implemented ramoops where the region should be statically fixed ram
-> +  region. Because of its similarity with ramoops it will also have same
-> +  set of property what ramoops have it in its schema and is going to
-> +  contain traditional ramoops frontend data and this region will be
-> +  collected via Qualcomm minidump infrastructure provided from the
-> +  boot firmware.
-> +
-> +maintainers:
-> +  - Mukesh Ojha <quic_mojha@quicinc.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,sm8450-ramoops
-> +      - const: qcom,ramoops
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +    description: handle to memory reservation for qcom,ramoops region.
-> +
-> +  ecc-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: enables ECC support and specifies ECC buffer size in bytes
-> +    default: 0 # no ECC
-> +
-> +  record-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: maximum size in bytes of each kmsg dump
-> +    default: 0
-> +
-> +  console-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: size in bytes of log buffer reserved for kernel messages
-> +    default: 0
-> +
-> +  ftrace-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: size in bytes of log buffer reserved for function tracing and profiling
-> +    default: 0
-> +
-> +  pmsg-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: size in bytes of log buffer reserved for userspace messages
-> +    default: 0
-> +
-> +  mem-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: if present, sets the type of mapping is to be used to map the reserved region.
-> +    default: 0
-> +    oneOf:
-> +      - const: 0
-> +        description: write-combined
-> +      - const: 1
-> +        description: unbuffered
-> +      - const: 2
-> +        description: cached
-> +
-> +  max-reason:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 2 # log oopses and panics
-> +    maximum: 0x7fffffff
-> +    description: |
-> +      If present, sets maximum type of kmsg dump reasons to store.
-> +      This can be set to INT_MAX to store all kmsg dumps.
-> +      See include/linux/kmsg_dump.h KMSG_DUMP_* for other kmsg dump reason values.
-> +      Setting this to 0 (KMSG_DUMP_UNDEF), means the reason filtering will be
-> +      controlled by the printk.always_kmsg_dump boot param.
-> +      If unset, it will be 2 (KMSG_DUMP_OOPS), otherwise 5 (KMSG_DUMP_MAX).
-> +
-> +  flags:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +    description: |
-> +      If present, pass ramoops behavioral flags
-> +      (see include/linux/pstore_ram.h RAMOOPS_FLAG_* for flag values).
-> +
-> +  no-dump-oops:
-> +    deprecated: true
-> +    type: boolean
-> +    description: |
-> +      Use max_reason instead. If present, and max_reason is not specified,
-> +      it is equivalent to max_reason = 1 (KMSG_DUMP_PANIC).
-> +
-> +  unbuffered:
-> +    deprecated: true
-> +    type: boolean
-> +    description: |
-> +      Use mem_type instead. If present, and mem_type is not specified,
-> +      it is equivalent to mem_type = 1 and uses unbuffered mappings to map
-> +      the reserved region (defaults to buffered mappings mem_type = 0).
-> +      If both are specified -- "mem_type" overrides "unbuffered".
-> +
+On Tue, 27 Jun 2023 08:49:06 PDT (-0700), Palmer Dabbelt wrote:
+> On Mon, 26 Jun 2023 23:52:06 PDT (-0700), apatel@ventanamicro.com wrote:
+>> On Tue, Jun 27, 2023 at 1:23 AM Palmer Dabbelt <palmer@rivosinc.com> wrote:
+>>>
+>>> On Mon, 26 Jun 2023 10:38:43 PDT (-0700), apatel@ventanamicro.com wrote:
+>>> > On Mon, Jun 26, 2023 at 3:42 PM Conor Dooley <conor.dooley@microchip.com> wrote:
+>>> >>
+>>> >> intro
+>>> >> =====
+>>> >>
+>>> >> When the RISC-V dt-bindings were accepted upstream in Linux, the base
+>>> >> ISA etc had yet to be ratified. By the ratification of the base ISA,
+>>> >> incompatible changes had snuck into the specifications - for example the
+>>> >> Zicsr and Zifencei extensions were spun out of the base ISA.
+>>> >>
+>>> >> Fast forward to today, and the reason for this patch.
+>>> >> Currently the riscv,isa dt property permits only a specific subset of
+>>> >> the ISA string - in particular it excludes version numbering.
+>>> >> With the current constraints, it is not possible to discern whether
+>>> >> "rv64i" means that the hart supports the fence.i instruction, for
+>>> >> example.
+>>> >> Future systems may choose to implement their own instruction fencing,
+>>> >> perhaps using a vendor extension, or they may not implement the optional
+>>> >> counter extensions. Software needs a way to determine this.
+>>> >>
+>>> >> versioning schemes
+>>> >> ==================
+>>> >>
+>>> >> "Use the extension versions that are described in the ISA manual" you
+>>> >> may say, and it's not like this has not been considered.
+>>> >> Firstly, software that parses the riscv,isa property at runtime will
+>>> >> need to contain a lookup table of some sort that maps arbitrary versions
+>>> >> to versions it understands. There is not a consistent application of
+>>> >> version number applied to extensions, with a higgledy-piggledy
+>>> >> collection of tags, "bare" and versioned documents awaiting the reader
+>>> >> on the "recently ratified extensions" page:
+>>> >> https://wiki.riscv.org/display/HOME/Recently+Ratified+Extensions
+>>> >>
+>>> >>         As an aside, and this is reflected in the patch too, since many
+>>> >>         extensions have yet to appear in a release of the ISA specs,
+>>> >>         they are defined by commits in their respective "working draft"
+>>> >>         repositories.
+>>> >>
+>>> >> Secondly, there is an issue of backwards compatibility, whereby allowing
+>>> >> numbers in the ISA string, some parsers may be broken. This would
+>>> >> require an additional property to be created to even use the versions in
+>>> >> this manner.
+>>> >>
+>>> >> ~boolean properties~ string array property
+>>> >> ==========================================
+>>> >>
+>>> >> If a new property is needed, the whole approach may as well be looked at
+>>> >> from the bottom up. A string with limited character choices etc is
+>>> >> hardly the best approach for communicating extension information to
+>>> >> software.
+>>> >>
+>>> >> Switching to using properties that are defined on a per extension basis,
+>>> >> allows us to define explicit meanings for the DT representation of each
+>>> >> extension - rather than the current situation where different operating
+>>> >> systems or other bits of software may impart different meanings to
+>>> >> characters in the string.
+>>> >> Clearly the best source of meanings is the specifications themselves,
+>>> >> this just provides us the ability to choose at what point in time the
+>>> >> meaning is set. If an extension changes incompatibility in the future,
+>>> >> a new property will be required.
+>>> >>
+>>> >> Off-list, some of the RVI folks have committed to shoring up the wording
+>>> >> in either the ISA specifications, the riscv-isa-manual or
+>>> >> so that in the future, modifications to and additions or removals of
+>>> >> features will require a new extension. Codifying that assertion
+>>> >> somewhere would make it quite unlikely that compatibility would be
+>>> >> broken, but we have the tools required to deal with it, if & when it
+>>> >> crops up.
+>>> >> It is in our collective interest, as consumers of extension meanings, to
+>>> >> define a scheme that enforces compatibility.
+>>> >>
+>>> >> The use of individual properties, rather than elements in a single
+>>> >> string, will also permit validation that the properties have a meaning,
+>>> >> as well as potentially reject mutually exclusive combinations, or
+>>> >> enforce dependencies between extensions. That would not have be possible
+>>> >> with the current dt-schema infrastructure for arbitrary strings, as we
+>>> >> would need to add a riscv,isa parser to dt-validate!
+>>> >> That's not implemented in this patch, but rather left as future work (for
+>>> >> the brave, or the foolish).
+>>> >>
+>>> >> acpi
+>>> >> ====
+>>> >>
+>>> >> The current ACPI ECR is based on having a single ISA string unfortunately,
+>>> >> but ideally ACPI will move to another method, perhaps GUIDs, that give
+>>> >> explicit meaning to extensions.
+>>> >
+>>> > Drop this paragraph on ACPI.
+>>> >
+>>> > We clearly mentioned previously that ACPI will follow specs defined by RVI.
+>>> > There are scalability issues in using GUIDs for each ISA extension.
+>>>
+>>> Which spec are we following for the ACPI ISA string?
+>>
+>> ACPI RHCT follows the "ISA Extension Naming Conventions"
+>> defined by the RISC-V unpriv spec. I understand that there are
+>> unresolved issues in the "ISA Extension Naming Conventions"
+>> which should be addressed by RVI and we should also try our
+>> best to have this fixed in the spec.
+>
+> Which version of the spec?  We've had a ton of issues related to
+> versioning everywhere else the ISA string has been used, we need to know
+> specifically which version we're parsing in order to do anything
+> meaningful with it.
 
-Most of the properties you added here are already documented at
-Documentation/devicetree/bindings/reserved-memory/ramoops.yaml 
+Anup: Can you please provide a pointer to the spec this is supposed to 
+implement?  I don't want to end up in the same spot again where we're 
+presuming some spec changes, we've got to support whatever we merge no 
+matter what happens on the spec side.
 
-Can't we just reference them here? would something like work?
+In theory I'm on vacation today, but I'll try and look at the thread 
+again tonight when I get back.
 
-max-reason:
-  $ref: "../../reserved-memory/ramoops.yaml#/properties/max-reason
-
-> +unevaluatedProperties: false
-> +
-
-will there be any additional properties be added dynamically? if not,
-should not we use "additionalProperties: false" here?
-
-Thanks,
-Pavan
+>> In any case, ACPI spec is owned by UEFI forum so it does
+>> not make sense to define/recommend anything for ACPI in
+>> DT bindings.
+>
+> Unless I missed something this is just a long commit message, it's not
+> even in the docs.  If you don't want the DT side to even mention ACPI
+> that's fine with me, though, I don't really care.
+>
+>>
+>> Regards,
+>> Anup
+>>
+>>
+>>
+>>>
+>>> > Regards,
+>>> > Anup
+>>> >
+>>> >>
+>>> >> parser simplicity
+>>> >> =================
+>>> >>
+>>> >> Many systems that parse DT at runtime already implement an function that
+>>> >> can check for the presence of a string in an array of string, as it is
+>>> >> similar to the process for parsing a list of compatible strings, so a
+>>> >> bunch of new, custom, DT parsing should not be needed.
+>>> >> Getting rid of "riscv,isa" parsing would be a nice simplification, but
+>>> >> unfortunately for backwards compatibility with old dtbs, existing
+>>> >> parsers may not be removable - which may greatly simplify
+>>> >> dt parsing code. In Linux, for example, checking for whether a hart
+>>> >> supports an extension becomes as simple as:
+>>> >>         of_property_match_string(node, "riscv,isa-extensions", "zicbom")
+>>> >>
+>>> >> vendor extensions
+>>> >> =================
+>>> >>
+>>> >> Compared to riscv,isa, this proposed scheme promotes vendor extensions,
+>>> >> oft touted as the strength of RISC-V, to first-class citizens.
+>>> >> At present, extensions are defined as meaning what the RISC-V ISA
+>>> >> specifications say they do. There is no realistic way of using that
+>>> >> interface to provide cross-platform definitions for what vendor
+>>> >> extensions mean. Vendor extensions may also have even less consistency
+>>> >> than RVI do in terms of versioning, or no care about backwards
+>>> >> compatibility.
+>>> >> The new property allows us to assign explicit meanings on a per vendor
+>>> >> extension basis, backed up by a description of their meanings.
+>>> >>
+>>> >> fin
+>>> >> ===
+>>> >>
+>>> >> Create a new file to store the extension meanings and a new
+>>> >> riscv,isa-base property to replace the aspect of riscv,isa that is
+>>> >> not represented by the new property - the base ISA implemented by a hart.
+>>> >>
+>>> >> As a starting point, add properties for extensions currently used in
+>>> >> Linux.
+>>> >>
+>>> >> Finally, mark riscv,isa as deprecated, as removing support for it in
+>>> >> existing programs would be an ABI break.
+>>> >>
+>>> >> CC: Palmer Dabbelt <palmer@dabbelt.com>
+>>> >> CC: Paul Walmsley <paul.walmsley@sifive.com>
+>>> >> CC: Rob Herring <robh+dt@kernel.org>
+>>> >> CC: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>> >> CC: Alistair Francis <alistair.francis@wdc.com>
+>>> >> CC: Andrew Jones <ajones@ventanamicro.com>
+>>> >> CC: Anup Patel <apatel@ventanamicro.com>
+>>> >> CC: Atish Patra <atishp@atishpatra.org>
+>>> >> CC: Jessica Clarke <jrtc27@jrtc27.com>
+>>> >> CC: Rick Chen <rick@andestech.com>
+>>> >> CC: Leo <ycliang@andestech.com>
+>>> >> CC: Oleksii <oleksii.kurochko@gmail.com>
+>>> >> CC: linux-riscv@lists.infradead.org
+>>> >> CC: qemu-riscv@nongnu.org
+>>> >> CC: u-boot@lists.denx.de
+>>> >> CC: devicetree@vger.kernel.org
+>>> >> CC: linux-kernel@vger.kernel.org
+>>> >> Reviewed-by: Palmer Dabbelt <palmer@rivosinc.com>
+>>> >> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+>>> >> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+>>> >> ---
+>>> >> Changes in v3:
+>>> >> - Per Rob's suggestion, switch to an array of strings. Cuts down on the
+>>> >>   size, compared to booleans. It has a standard mechanism for parsing
+>>> >>   (you need to parse arrays of strings for compatibles). It still allows
+>>> >>   for having a limited set of explicitly defined properties - so the
+>>> >>   advantages over a free-form string still apply.
+>>> >> - Pick up Palmer's Ack and Review (although I expect that he will be the
+>>> >>   one to apply this).
+>>> >> ---
+>>> >>  .../devicetree/bindings/riscv/cpus.yaml       |  43 ++-
+>>> >>  .../devicetree/bindings/riscv/extensions.yaml | 245 ++++++++++++++++++
+>>> >>  2 files changed, 265 insertions(+), 23 deletions(-)
+>>> >>  create mode 100644 Documentation/devicetree/bindings/riscv/extensions.yaml
+>>> >>
+>>> >> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+>>> >> index 67bd239ead0b..74bc92591086 100644
+>>> >> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+>>> >> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+>>> >> @@ -25,6 +25,7 @@ description: |
+>>> >>
+>>> >>  allOf:
+>>> >>    - $ref: /schemas/cpu.yaml#
+>>> >> +  - $ref: extensions.yaml
+>>> >>
+>>> >>  properties:
+>>> >>    compatible:
+>>> >> @@ -82,25 +83,6 @@ properties:
+>>> >>      description:
+>>> >>        The blocksize in bytes for the Zicboz cache operations.
+>>> >>
+>>> >> -  riscv,isa:
+>>> >> -    description:
+>>> >> -      Identifies the specific RISC-V instruction set architecture
+>>> >> -      supported by the hart.  These are documented in the RISC-V
+>>> >> -      User-Level ISA document, available from
+>>> >> -      https://riscv.org/specifications/
+>>> >> -
+>>> >> -      Due to revisions of the ISA specification, some deviations
+>>> >> -      have arisen over time.
+>>> >> -      Notably, riscv,isa was defined prior to the creation of the
+>>> >> -      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
+>>> >> -      implies "zicntr_zicsr_zifencei_zihpm".
+>>> >> -
+>>> >> -      While the isa strings in ISA specification are case
+>>> >> -      insensitive, letters in the riscv,isa string must be all
+>>> >> -      lowercase.
+>>> >> -    $ref: /schemas/types.yaml#/definitions/string
+>>> >> -    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+>>> >> -
+>>> >>    # RISC-V has multiple properties for cache op block sizes as the sizes
+>>> >>    # differ between individual CBO extensions
+>>> >>    cache-op-block-size: false
+>>> >> @@ -139,8 +121,17 @@ properties:
+>>> >>        DMIPS/MHz, relative to highest capacity-dmips-mhz
+>>> >>        in the system.
+>>> >>
+>>> >> +oneOf:
+>>> >> +  - required:
+>>> >> +      - riscv,isa
+>>> >> +  - required:
+>>> >> +      - riscv,isa-base
+>>> >> +
+>>> >> +dependencies:
+>>> >> +  riscv,isa-base: [ "riscv,isa-extensions" ]
+>>> >> +  riscv,isa-extensions: [ "riscv,isa-base" ]
+>>> >> +
+>>> >>  required:
+>>> >> -  - riscv,isa
+>>> >>    - interrupt-controller
+>>> >>
+>>> >>  unevaluatedProperties: false
+>>> >> @@ -160,7 +151,9 @@ examples:
+>>> >>                  i-cache-sets = <128>;
+>>> >>                  i-cache-size = <16384>;
+>>> >>                  reg = <0>;
+>>> >> -                riscv,isa = "rv64imac";
+>>> >> +                riscv,isa-base = "rv64i";
+>>> >> +                riscv,isa-extensions = "i", "m", "a", "c";
+>>> >> +
+>>> >>                  cpu_intc0: interrupt-controller {
+>>> >>                          #interrupt-cells = <1>;
+>>> >>                          compatible = "riscv,cpu-intc";
+>>> >> @@ -183,8 +176,10 @@ examples:
+>>> >>                  i-tlb-size = <32>;
+>>> >>                  mmu-type = "riscv,sv39";
+>>> >>                  reg = <1>;
+>>> >> -                riscv,isa = "rv64imafdc";
+>>> >>                  tlb-split;
+>>> >> +                riscv,isa-base = "rv64i";
+>>> >> +                riscv,isa-extensions = "i", "m", "a", "f", "d", "c";
+>>> >> +
+>>> >>                  cpu_intc1: interrupt-controller {
+>>> >>                          #interrupt-cells = <1>;
+>>> >>                          compatible = "riscv,cpu-intc";
+>>> >> @@ -202,8 +197,10 @@ examples:
+>>> >>                  device_type = "cpu";
+>>> >>                  reg = <0>;
+>>> >>                  compatible = "riscv";
+>>> >> -                riscv,isa = "rv64imafdc";
+>>> >>                  mmu-type = "riscv,sv48";
+>>> >> +                riscv,isa-base = "rv64i";
+>>> >> +                riscv,isa-extensions = "i", "m", "a", "f", "d", "c";
+>>> >> +
+>>> >>                  interrupt-controller {
+>>> >>                          #interrupt-cells = <1>;
+>>> >>                          interrupt-controller;
+>>> >> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>>> >> new file mode 100644
+>>> >> index 000000000000..af98307f2c2c
+>>> >> --- /dev/null
+>>> >> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+>>> >> @@ -0,0 +1,245 @@
+>>> >> +# SPDX-License-Identifier: (GPL-2.0 OR MIT)
+>>> >> +%YAML 1.2
+>>> >> +---
+>>> >> +$id: http://devicetree.org/schemas/riscv/extensions.yaml#
+>>> >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> >> +
+>>> >> +title: RISC-V ISA extensions
+>>> >> +
+>>> >> +maintainers:
+>>> >> +  - Paul Walmsley <paul.walmsley@sifive.com>
+>>> >> +  - Palmer Dabbelt <palmer@sifive.com>
+>>> >> +  - Conor Dooley <conor@kernel.org>
+>>> >> +
+>>> >> +description: |
+>>> >> +  RISC-V has a large number of extensions, some of which are "standard"
+>>> >> +  extensions, meaning they are ratified by RISC-V International, and others
+>>> >> +  are "vendor" extensions.
+>>> >> +  This document defines properties that indicate whether a hart supports a
+>>> >> +  given extension.
+>>> >> +
+>>> >> +  Once a standard extension has been ratified, no changes in behaviour can be
+>>> >> +  made without the creation of a new extension.
+>>> >> +  The properties for standard extensions therefore map to their originally
+>>> >> +  ratified states, with the exception of the I, Zicntr & Zihpm extensions.
+>>> >> +  See the "i" property for more information.
+>>> >> +
+>>> >> +select:
+>>> >> +  properties:
+>>> >> +    compatible:
+>>> >> +      contains:
+>>> >> +        const: riscv
+>>> >> +
+>>> >> +properties:
+>>> >> +  riscv,isa:
+>>> >> +    description:
+>>> >> +      Identifies the specific RISC-V instruction set architecture
+>>> >> +      supported by the hart.  These are documented in the RISC-V
+>>> >> +      User-Level ISA document, available from
+>>> >> +      https://riscv.org/specifications/
+>>> >> +
+>>> >> +      Due to revisions of the ISA specification, some deviations
+>>> >> +      have arisen over time.
+>>> >> +      Notably, riscv,isa was defined prior to the creation of the
+>>> >> +      Zicntr, Zicsr, Zifencei and Zihpm extensions and thus "i"
+>>> >> +      implies "zicntr_zicsr_zifencei_zihpm".
+>>> >> +
+>>> >> +      While the isa strings in ISA specification are case
+>>> >> +      insensitive, letters in the riscv,isa string must be all
+>>> >> +      lowercase.
+>>> >> +    $ref: /schemas/types.yaml#/definitions/string
+>>> >> +    pattern: ^rv(?:64|32)imaf?d?q?c?b?k?j?p?v?h?(?:[hsxz](?:[a-z])+)?(?:_[hsxz](?:[a-z])+)*$
+>>> >> +    deprecated: true
+>>> >> +
+>>> >> +  riscv,isa-base:
+>>> >> +    description:
+>>> >> +      The base ISA implemented by this hart, as described by the 20191213
+>>> >> +      version of the unprivileged ISA specification.
+>>> >> +    enum:
+>>> >> +      - rv32i
+>>> >> +      - rv64i
+>>> >> +
+>>> >> +  riscv,isa-extensions:
+>>> >> +    $ref: /schemas/types.yaml#/definitions/string-array
+>>> >> +    minItems: 1
+>>> >> +    description: Extensions supported by the hart.
+>>> >> +    items:
+>>> >> +      anyOf:
+>>> >> +        # single letter extensions, in canonical order
+>>> >> +        - const: i
+>>> >> +          description: |
+>>> >> +            The base integer instruction set, as ratified in the 20191213
+>>> >> +            version of the unprivileged ISA specification, with the exception of
+>>> >> +            counter access.
+>>> >> +            Counter access was removed after the ratification of the 20191213
+>>> >> +            version of the unprivileged specification and shunted into the
+>>> >> +            Zicntr and Zihpm extensions.
+>>> >> +
+>>> >> +        - const: m
+>>> >> +          description:
+>>> >> +            The standard M extension for integer multiplication and division, as
+>>> >> +            ratified in the 20191213 version of the unprivileged ISA
+>>> >> +            specification.
+>>> >> +
+>>> >> +        - const: a
+>>> >> +          description:
+>>> >> +            The standard A extension for atomic instructions, as ratified in the
+>>> >> +            20191213 version of the unprivileged ISA specification.
+>>> >> +
+>>> >> +        - const: f
+>>> >> +          description:
+>>> >> +            The standard F extension for single-precision floating point, as
+>>> >> +            ratified in the 20191213 version of the unprivileged ISA
+>>> >> +            specification.
+>>> >> +
+>>> >> +        - const: d
+>>> >> +          description:
+>>> >> +            The standard D extension for double-precision floating-point, as
+>>> >> +            ratified in the 20191213 version of the unprivileged ISA
+>>> >> +            specification.
+>>> >> +
+>>> >> +        - const: q
+>>> >> +          description:
+>>> >> +            The standard Q extension for quad-precision floating-point, as
+>>> >> +            ratified in the 20191213 version of the unprivileged ISA
+>>> >> +            specification.
+>>> >> +
+>>> >> +        - const: c
+>>> >> +          description:
+>>> >> +            The standard C extension for compressed instructions, as ratified in
+>>> >> +            the 20191213 version of the unprivileged ISA specification.
+>>> >> +
+>>> >> +        - const: v
+>>> >> +          description:
+>>> >> +            The standard V extension for vector operations, as ratified
+>>> >> +            in-and-around commit 7a6c8ae ("Fix text that describes vfmv.v.f
+>>> >> +            encoding") of the riscv-v-spec.
+>>> >> +
+>>> >> +        - const: h
+>>> >> +          description:
+>>> >> +            The standard H extension for hypervisors as ratified in the 20191213
+>>> >> +            version of the privileged ISA specification.
+>>> >> +
+>>> >> +        # multi-letter extensions, sorted alphanumerically
+>>> >> +        - const: smaia
+>>> >> +          description: |
+>>> >> +            The standard Smaia supervisor-level extension for the advanced
+>>> >> +            interrupt architecture for machine-mode-visible csr and behavioural
+>>> >> +            changes to interrupts as frozen at commit ccbddab ("Merge pull
+>>> >> +            request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
+>>> >> +
+>>> >> +        - const: ssaia
+>>> >> +          description: |
+>>> >> +            The standard Ssaia supervisor-level extension for the advanced
+>>> >> +            interrupt architecture for supervisor-mode-visible csr and
+>>> >> +            behavioural changes to interrupts as frozen at commit ccbddab
+>>> >> +            ("Merge pull request #42 from riscv/jhauser-2023-RC4") of riscv-aia.
+>>> >> +
+>>> >> +        - const: sscofpmf
+>>> >> +          description: |
+>>> >> +            The standard Sscofpmf supervisor-level extension for count overflow
+>>> >> +            and mode-based filtering as ratified at commit 01d1df0 ("Add ability
+>>> >> +            to manually trigger workflow. (#2)") of riscv-count-overflow.
+>>> >> +
+>>> >> +        - const: sstc
+>>> >> +          description: |
+>>> >> +            The standard Sstc supervisor-level extension for time compare as
+>>> >> +            ratified at commit 3f9ed34 ("Add ability to manually trigger
+>>> >> +            workflow. (#2)") of riscv-time-compare.
+>>> >> +
+>>> >> +        - const: svinval
+>>> >> +          description:
+>>> >> +            The standard Svinval supervisor-level extension for fine-grained
+>>> >> +            address-translation cache invalidation as ratified in the 20191213
+>>> >> +            version of the privileged ISA specification.
+>>> >> +
+>>> >> +        - const: svnapot
+>>> >> +          description:
+>>> >> +            The standard Svnapot supervisor-level extensions for napot
+>>> >> +            translation contiguity as ratified in the 20191213 version of the
+>>> >> +            privileged ISA specification.
+>>> >> +
+>>> >> +        - const: svpbmt
+>>> >> +          description:
+>>> >> +            The standard Svpbmt supervisor-level extensions for page-based
+>>> >> +            memory types as ratified in the 20191213 version of the privileged
+>>> >> +            ISA specification.
+>>> >> +
+>>> >> +        - const: zba
+>>> >> +          description: |
+>>> >> +            The standard Zba bit-manipulation extension for address generation
+>>> >> +            acceleration instructions as ratified at commit 6d33919 ("Merge pull
+>>> >> +            request #158 from hirooih/clmul-fix-loop-end-condition") of
+>>> >> +            riscv-bitmanip.
+>>> >> +
+>>> >> +        - const: zbb
+>>> >> +          description: |
+>>> >> +            The standard Zbb bit-manipulation extension for basic bit-manipulation
+>>> >> +            as ratified at commit 6d33919 ("Merge pull request #158 from
+>>> >> +            hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>>> >> +
+>>> >> +        - const: zbc
+>>> >> +          description: |
+>>> >> +            The standard Zbc bit-manipulation extension for carry-less
+>>> >> +            multiplication as ratified at commit 6d33919 ("Merge pull request
+>>> >> +            #158 from hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>>> >> +
+>>> >> +        - const: zbs
+>>> >> +          description: |
+>>> >> +            The standard Zbs bit-manipulation extension for single-bit
+>>> >> +            instructions as ratified at commit 6d33919 ("Merge pull request #158
+>>> >> +            from hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>>> >> +
+>>> >> +        - const: zicbom
+>>> >> +          description:
+>>> >> +            The standard Zicbom extension for base cache management operations as
+>>> >> +            ratified in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+>>> >> +
+>>> >> +        - const: zicbop
+>>> >> +          description:
+>>> >> +            The standard Zicbop extension for cache-block prefetch instructions
+>>> >> +            as ratified in commit 3dd606f ("Create cmobase-v1.0.pdf") of
+>>> >> +            riscv-CMOs.
+>>> >> +
+>>> >> +        - const: zicboz
+>>> >> +          description:
+>>> >> +            The standard Zicboz extension for cache-block zeroing as ratified
+>>> >> +            in commit 3dd606f ("Create cmobase-v1.0.pdf") of riscv-CMOs.
+>>> >> +
+>>> >> +        - const: zicntr
+>>> >> +          description:
+>>> >> +            The standard Zicntr extension for base counters and timers, as
+>>> >> +            ratified in the 20191213 version of the unprivileged ISA
+>>> >> +            specification.
+>>> >> +
+>>> >> +        - const: zicsr
+>>> >> +          description:
+>>> >> +            The standard Zicsr extension for control and status register
+>>> >> +            instructions, as ratified in the 20191213 version of the
+>>> >> +            unprivileged ISA specification.
+>>> >> +
+>>> >> +        - const: zifencei
+>>> >> +          description:
+>>> >> +            The standard Zifencei extension for instruction-fetch fence, as
+>>> >> +            ratified in the 20191213 version of the unprivileged ISA
+>>> >> +            specification.
+>>> >> +
+>>> >> +        - const: zihintpause
+>>> >> +          description:
+>>> >> +            The standard Zihintpause extension for pause hints, as ratified in
+>>> >> +            commit d8ab5c7 ("Zihintpause is ratified") of the riscv-isa-manual.
+>>> >> +
+>>> >> +        - const: zihpm
+>>> >> +          description:
+>>> >> +            The standard Zihpm extension for hardware performance counters, as
+>>> >> +            ratified in the 20191213 version of the unprivileged ISA
+>>> >> +            specification.
+>>> >> +
+>>> >> +        - const: ztso
+>>> >> +          description:
+>>> >> +            The standard Ztso extension for total store ordering, as ratified
+>>> >> +            in commit 2e5236 ("Ztso is now ratified.") of the
+>>> >> +            riscv-isa-manual.
+>>> >> +
+>>> >> +additionalProperties: true
+>>> >> +...
+>>> >> --
+>>> >> 2.40.1
+>>> >>
