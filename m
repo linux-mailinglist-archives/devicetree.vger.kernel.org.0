@@ -2,306 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 61B99740BF7
+	by mail.lfdr.de (Postfix) with ESMTP id F0E25740BF9
 	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 10:56:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234981AbjF1I4G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 04:56:06 -0400
-Received: from mail-psaapc01hn2219.outbound.protection.outlook.com ([52.100.0.219]:47840
-        "EHLO APC01-PSA-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S233988AbjF1IuV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 28 Jun 2023 04:50:21 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=N6eEqmfotfe2CieZRHgiSvVqgXib3ru99iBV1rb70Y8FFgplEdcJBej5DbVnQtAiNaQZnITo9jd47+0wWTYiccY4ootP+R0zCgPat8+ZqVytXtZkTMOZ3jqXescm/S7Qh7gr4qrWE28CmmSxcYWp3S+ZBXasNqJF6JdxScTCwFoVkIrLRVioj+vgRj2axc8oh7KzNu1jHCTIRGm4JIBTr9Bdc5n5vo2GYVN73qmnCaCKW1PpaAgtecJiW6PSiUv4Nbz6bSEFQM2kobUWkdTigRHJ/43tag1wXop4zH73MK1NUZT7vRDXUhUA9dEOxl4EqMCo7/wc1XYbFaVU8O/Xbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=zQRA5ZBRU41EkIlvTOxbPvp8iacxTwMBx+xczB9TrTM=;
- b=Y8Ph0JKssQCCw9QQlViZWA8zAr0rkyw0xo0hikpcbce8P8CZugp2Xgr1gosesgWlvZJmh2r/ssgAdw3hAA+Kgg9M+BGVnVm+lvSLxscwWHuqouPrkoBeFNxqCvj9D4JL6csb6R/4dt7ksafgvLXGBmnWaY9cHZk58KxGnIWCl/QPqaNJNpXj/gaz0TV8W/4Kq1qCbb6vLAvWoFDKI5ePaCvUeGnZU9Z6Xsd/ZTqq+DAAdSBynjP2gt2cga9pLjQdtztCA+dk0DWVmwBOTvoiMMwStfpMhBlt5UhGwTQOf7yB869arTMAsLo7Cbdfp+SRu8UVd+0ayAd5wawaCWTMcQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 175.98.123.7) smtp.rcpttodomain=kernel.org smtp.mailfrom=nuvoton.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=nuvoton.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nuvoton.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zQRA5ZBRU41EkIlvTOxbPvp8iacxTwMBx+xczB9TrTM=;
- b=bG496CSLiv+HermhJdpZXKX3BhujOgvul+yLw6ysjDpWJg5Pe45qI9mPhTPuTYQ4eQxBOy5BcTS4pKoDn2QdnvNgH4pt3hc9HfaBxrIPn8159oLiVftbdL7QMmDQsMHYy/w4mHk/spCcO34U6vpDoqoqvWRaxJMCJGKobsDb7xM=
-Received: from PS1PR03CA0017.apcprd03.prod.outlook.com (2603:1096:803:3d::29)
- by KL1PR0302MB5410.apcprd03.prod.outlook.com (2603:1096:820:33::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.26; Wed, 28 Jun
- 2023 08:50:17 +0000
-Received: from PSAAPC01FT040.eop-APC01.prod.protection.outlook.com
- (2603:1096:803:3d:cafe::66) by PS1PR03CA0017.outlook.office365.com
- (2603:1096:803:3d::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.18 via Frontend
- Transport; Wed, 28 Jun 2023 08:50:16 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 175.98.123.7)
- smtp.mailfrom=nuvoton.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nuvoton.com;
-Received-SPF: Pass (protection.outlook.com: domain of nuvoton.com designates
- 175.98.123.7 as permitted sender) receiver=protection.outlook.com;
- client-ip=175.98.123.7; helo=NTHCCAS04.nuvoton.com; pr=C
-Received: from NTHCCAS04.nuvoton.com (175.98.123.7) by
- PSAAPC01FT040.mail.protection.outlook.com (10.13.38.122) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
- 15.20.6544.16 via Frontend Transport; Wed, 28 Jun 2023 08:50:16 +0000
-Received: from NTHCML01A.nuvoton.com (10.1.8.177) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2176.2; Wed, 28
- Jun 2023 16:50:14 +0800
-Received: from NTHCCAS04.nuvoton.com (10.1.8.29) by NTHCML01A.nuvoton.com
- (10.1.8.177) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.2176.2; Wed, 28 Jun
- 2023 16:50:14 +0800
-Received: from localhost.localdomain (10.11.36.27) by NTHCCAS04.nuvoton.com
- (10.1.8.29) with Microsoft SMTP Server id 15.1.2176.2 via Frontend Transport;
- Wed, 28 Jun 2023 16:50:13 +0800
-From:   Seven Lee <wtli@nuvoton.com>
-To:     <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <YHCHuang@nuvoton.com>,
-        <KCHSU0@nuvoton.com>, <CTLIN0@nuvoton.com>, <WTLI@nuvoton.com>,
-        <SJLIN0@nuvoton.com>, <scott6986@gmail.com>,
-        <supercraig0719@gmail.com>, <dardar923@gmail.com>,
-        Seven Lee <wtli@nuvoton.com>
-Subject: [PATCH] ASoC: dt-bindings: nau8821: Convert to dtschema
-Date:   Wed, 28 Jun 2023 16:50:09 +0800
-Message-ID: <20230628085009.1130318-1-wtli@nuvoton.com>
-X-Mailer: git-send-email 2.25.1
+        id S234993AbjF1I4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 04:56:10 -0400
+Received: from mx0a-0031df01.pphosted.com ([205.220.168.131]:15138 "EHLO
+        mx0a-0031df01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S233797AbjF1IxX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 28 Jun 2023 04:53:23 -0400
+Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35S7mYHj014442;
+        Wed, 28 Jun 2023 08:52:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=nxbHiyfMNnhx4XUpknlzeEjX+JkKUzyLXEMSoAFObQU=;
+ b=NH8rNzW6ByA07gT4EkOlMvFxOhcElpc4QPduqXQ/wzviPLRsXkabdSu4QDRdKAjaaxFP
+ 7VQYf1+ezrZBDyrDNdk2B1BWP4ZbK1yG70/YE9vuTEz7tawsO/6fd8oeSkfGGuRJO6ob
+ aw/Xyhhq22wkXFr4RpyJxXPn0t7KzZPzqCuWtjz2+/XmdkS7dB3U+atGp3uIRi/JTtfF
+ S9VFLl0p1DqI6foS9jyoDI2bQF5j2Bm8yFPXX0e5p5Teiq/LIzAJKGmgtr22X0OtevYu
+ 6AQuP2usEkBkzdOiyZwGHdTaIZeyBbY7QIxcpJBVFdixaj4fMY45Yj9g+X5o3mA5q3eL wQ== 
+Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rgfp3raed-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 28 Jun 2023 08:52:55 +0000
+Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
+        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35S8qsMN028810
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 28 Jun 2023 08:52:54 GMT
+Received: from [10.214.230.142] (10.80.80.8) by nalasex01b.na.qualcomm.com
+ (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Wed, 28 Jun
+ 2023 01:52:51 -0700
+Message-ID: <e80f0bd3-cf1e-dfed-bcc6-d22d4d934230@quicinc.com>
+Date:   Wed, 28 Jun 2023 14:22:46 +0530
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-NotSetDelaration: True
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PSAAPC01FT040:EE_|KL1PR0302MB5410:EE_
-X-MS-Office365-Filtering-Correlation-Id: fe3c9c46-076b-4bcf-0177-08db77b4b209
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: FQPrZ5A5Kqyh0ld690WYv7TbIrcC9hoDeiE/NiyHLf2vNtG2uvYk1ZRpAbx13yKqQTug3TFamYGwtQ7d7uO/nfOwXTkv4O62BWkzmQSTP0lgKTyk2ph6avhep3E9OmZM0tALkQZ1tqx9xaXHCTcRWWlAVmxhNXrS9oRp0yKgLvRflCtTSh8NlVEdBw4Mdq689m8RWWQsUunVLlmFOud9O8gPSmseEYxIlt+SUiwIpZi3I1CEf5wUrNg8EJdieUyLXM169xM2C/Tc/YIvcbC65Pt7g5wdLu98oUhCbSw0DHh8SM8xHidCAGorUHNeBfx1o8YuyqwGsZEMpkaHT1hTWc/lwFQIsnv3B48cmSbgfKrlN2e90F3PHgyPEQ3e1nG4pKHHU7Qg5wf7sBqdnX7Kf31oM+zXTtuEsuethLzVZ5xhqIV6iHvkiEh1y5J1pg6rkJ68b4lBOVVSsnJIrQG8ycCpx3YSQWplpkqRthnWfzc8wGtqEwURo2G5daDk7yj6cIkcHmI6faYz8ZfKdTFrwgENuYCtvz5k1LpUAv5ejEPwsAjnciTK4UN4tqtG/xFHn2jZGouaqfLhufiqv7kqmrzJC90W10HCN+P//Rp7tdup33sTRLlTybhcovZxLX9WIuU+LB/AgwYgjVuBT+2/d1p++YNgiBgdETHimF7VtybsZp0yXkuU+eS5FEaOoEd9DjLeTk4bOgJ4bu/gRm0wImtURicteK5uFQaxRxVoWb0SXrmt5kXSNs8EzzdOTJY5PiMoSrRFIxxxZml8sZo6OL7Kteua3HhQ7lFKK9xsAMWDTZAhvLOWBUF03NniIPXWbM/GBUja9E9RsQL652tLCw==
-X-Forefront-Antispam-Report: CIP:175.98.123.7;CTRY:TW;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:NTHCCAS04.nuvoton.com;PTR:175-98-123-7.static.tfn.net.tw;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(396003)(39860400002)(136003)(5400799015)(451199021)(46966006)(40470700004)(36840700001)(54906003)(966005)(6666004)(478600001)(83380400001)(2616005)(47076005)(36860700001)(336012)(40480700001)(82740400003)(86362001)(40460700003)(34020700004)(426003)(82310400005)(1076003)(26005)(107886003)(186003)(81166007)(2906002)(4326008)(36756003)(6916009)(8936002)(41300700001)(70206006)(70586007)(316002)(356005)(7416002)(8676002)(5660300002)(12100799033);DIR:OUT;SFP:1501;
-X-OriginatorOrg: nuvoton.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Jun 2023 08:50:16.6716
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: fe3c9c46-076b-4bcf-0177-08db77b4b209
-X-MS-Exchange-CrossTenant-Id: a3f24931-d403-4b4a-94f1-7d83ac638e07
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=a3f24931-d403-4b4a-94f1-7d83ac638e07;Ip=[175.98.123.7];Helo=[NTHCCAS04.nuvoton.com]
-X-MS-Exchange-CrossTenant-AuthSource: PSAAPC01FT040.eop-APC01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0302MB5410
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.5.1
+Subject: Re: [PATCH v4 5/6] soc: qcom: Add LLCC support for multi channel DDR
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20230623141806.13388-1-quic_kbajaj@quicinc.com>
+ <20230623141806.13388-6-quic_kbajaj@quicinc.com>
+ <b84b2bfc-6f8f-f50f-27b5-52a982ae30f2@linaro.org>
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+In-Reply-To: <b84b2bfc-6f8f-f50f-27b5-52a982ae30f2@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01b.na.qualcomm.com (10.47.209.197)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: cRMwfyNecBWdklBeIV7n11-jCEgFYkRh
+X-Proofpoint-ORIG-GUID: cRMwfyNecBWdklBeIV7n11-jCEgFYkRh
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-28_05,2023-06-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxlogscore=956
+ clxscore=1015 suspectscore=0 bulkscore=0 malwarescore=0 impostorscore=0
+ phishscore=0 lowpriorityscore=0 priorityscore=1501 mlxscore=0 spamscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
+ definitions=main-2306280077
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NAU8821 audio CODEC bindings to DT schema.
 
-Signed-off-by: Seven Lee <wtli@nuvoton.com>
----
- .../devicetree/bindings/sound/nau8821.txt     |  55 --------
- .../bindings/sound/nuvoton,nau8821.yaml       | 125 ++++++++++++++++++
- 2 files changed, 125 insertions(+), 55 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/sound/nau8821.txt
- create mode 100644 Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
 
-diff --git a/Documentation/devicetree/bindings/sound/nau8821.txt b/Documentation/devicetree/bindings/sound/nau8821.txt
-deleted file mode 100644
-index 7c84e7c7327a..000000000000
---- a/Documentation/devicetree/bindings/sound/nau8821.txt
-+++ /dev/null
-@@ -1,55 +0,0 @@
--Nuvoton NAU88L21 audio codec
--
--This device supports I2C only.
--
--Required properties:
--  - compatible : Must be "nuvoton,nau8821"
--
--  - reg : the I2C address of the device. This is either 0x1B (CSB=0) or 0x54 (CSB=1).
--
--Optional properties:
--  - nuvoton,jkdet-enable: Enable jack detection via JKDET pin.
--  - nuvoton,jkdet-pull-enable: Enable JKDET pin pull. If set - pin pull enabled,
--      otherwise pin in high impedance state.
--  - nuvoton,jkdet-pull-up: Pull-up JKDET pin. If set then JKDET pin is pull up, otherwise pull down.
--  - nuvoton,jkdet-polarity: JKDET pin polarity. 0 - active high, 1 - active low.
--
--  - nuvoton,vref-impedance: VREF Impedance selection
--      0 - Open
--      1 - 25 kOhm
--      2 - 125 kOhm
--      3 - 2.5 kOhm
--
--  - nuvoton,micbias-voltage: Micbias voltage level.
--      0 - VDDA
--      1 - VDDA
--      2 - VDDA * 1.1
--      3 - VDDA * 1.2
--      4 - VDDA * 1.3
--      5 - VDDA * 1.4
--      6 - VDDA * 1.53
--      7 - VDDA * 1.53
--
--  - nuvoton,jack-insert-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
--  - nuvoton,jack-eject-debounce: number from 0 to 7 that sets debounce time to 2^(n+2) ms
--
--  - nuvoton,dmic-clk-threshold: the ADC threshold of DMIC clock.
--  - nuvoton,key_enable: Headset button detection switch.
--
--Example:
--
--  headset: nau8821@1b {
--      compatible = "nuvoton,nau8821";
--      reg = <0x1b>;
--      interrupt-parent = <&gpio>;
--      interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
--      nuvoton,jkdet-enable;
--      nuvoton,jkdet-pull-enable;
--      nuvoton,jkdet-pull-up;
--      nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
--      nuvoton,vref-impedance = <2>;
--      nuvoton,micbias-voltage = <6>;
--      nuvoton,jack-insert-debounce = <7>;
--      nuvoton,jack-eject-debounce = <7>;
--      nuvoton,dmic-clk-threshold = 3072000;
--  };
-diff --git a/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
-new file mode 100644
-index 000000000000..fc2f4ce4db88
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/nuvoton,nau8821.yaml
-@@ -0,0 +1,125 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/nuvoton,nau8821.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NAU88L21 audio codec
-+
-+maintainers:
-+  - Seven Lee <wtli@nuvoton.com>
-+
-+allOf:
-+  - $ref: dai-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: nuvoton,nau8821
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  nuvoton,jkdet-enable:
-+    description: Enable jack detection via JKDET pin.
-+    type: boolean
-+
-+  nuvoton,jkdet-pull-enable:
-+    description: Enable JKDET pin pull. If set - pin pull enabled,
-+      otherwise pin in high impedance state.
-+    type: boolean
-+
-+  nuvoton,jkdet-pull-up:
-+    description: Pull-up JKDET pin. If set then JKDET pin is pull up,
-+      otherwise pull down.
-+    type: boolean
-+
-+  nuvoton,key-enable:
-+    description: handles key press detection.
-+    type: boolean
-+
-+  nuvoton,jkdet-polarity:
-+    description: JKDET pin polarity.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # active high
-+      - 1 # active low
-+    default: 1
-+
-+  nuvoton,micbias-voltage:
-+    description: MICBIAS output level select.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # VDDA
-+      - 1 # VDDA * 1
-+      - 2 # VDDA * 1.1
-+      - 3 # VDDA * 1.2
-+      - 4 # VDDA * 1.3
-+      - 5 # VDDA * 1.4
-+      - 6 # VDDA * 1.53
-+      - 7 # VDDA * 1.53
-+    default: 6
-+
-+  nuvoton,vref-impedance:
-+    description: VMID Tie-off impedance select.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    enum:
-+      - 0 # open
-+      - 1 # 25KOhms
-+      - 2 # 125KOhms
-+      - 3 # 2.5KOhms
-+    default: 2
-+
-+  nuvoton,jack-insert-debounce:
-+    description: number from 0 to 7 that sets debounce time to 2^(n+2)ms.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 7
-+    default: 7
-+
-+  nuvoton,jack-eject-debounce:
-+    description: number from 0 to 7 that sets debounce time to 2^(n+2)ms.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    maximum: 7
-+    default: 0
-+
-+  nuvoton,dmic-clk-threshold:
-+    description: DMIC clock speed expected value. Unit is Hz.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    default: 3072000
-+
-+  '#sound-dai-cells':
-+    const: 0
-+
-+required:
-+  - compatible
-+  - reg
-+
-+unevaluatedProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+        codec@1b {
-+            compatible = "nuvoton,nau8821";
-+            reg = <0x1b>;
-+            interrupt-parent = <&gpio>;
-+            interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
-+            nuvoton,jkdet-enable;
-+            nuvoton,jkdet-pull-enable;
-+            nuvoton,jkdet-pull-up;
-+            nuvoton,key-enable;
-+            nuvoton,jkdet-polarity = <GPIO_ACTIVE_LOW>;
-+            nuvoton,micbias-voltage = <6>;
-+            nuvoton,vref-impedance = <2>;
-+            nuvoton,jack-insert-debounce = <7>;
-+            nuvoton,jack-eject-debounce = <0>;
-+            nuvoton,dmic-clk-threshold = <3072000>;
-+            #sound-dai-cells = <0>;
-+        };
-+    };
--- 
-2.25.1
+On 6/23/2023 8:28 PM, Konrad Dybcio wrote:
+> On 23.06.2023 16:18, Komal Bajaj wrote:
+>> Add LLCC support for multi channel DDR configuration
+>> based on a feature register. Reading DDR channel
+>> confiuration uses nvmem framework, so select the
+>> dependency in Kconfig. Without this, there will be
+>> errors while building the driver with COMPILE_TEST only.
+>>
+>> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+>> ---
+>>   drivers/soc/qcom/Kconfig     |  2 ++
+>>   drivers/soc/qcom/llcc-qcom.c | 33 ++++++++++++++++++++++++++++++---
+>>   2 files changed, 32 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
+>> index a491718f8064..cc9ad41c63aa 100644
+>> --- a/drivers/soc/qcom/Kconfig
+>> +++ b/drivers/soc/qcom/Kconfig
+>> @@ -64,6 +64,8 @@ config QCOM_LLCC
+>>   	tristate "Qualcomm Technologies, Inc. LLCC driver"
+>>   	depends on ARCH_QCOM || COMPILE_TEST
+>>   	select REGMAP_MMIO
+>> +	select NVMEM
+>> +	select QCOM_SCM
+>>   	help
+>>   	  Qualcomm Technologies, Inc. platform specific
+>>   	  Last Level Cache Controller(LLCC) driver for platforms such as,
+>> diff --git a/drivers/soc/qcom/llcc-qcom.c b/drivers/soc/qcom/llcc-qcom.c
+>> index 6cf373da5df9..3c29612da1c5 100644
+>> --- a/drivers/soc/qcom/llcc-qcom.c
+>> +++ b/drivers/soc/qcom/llcc-qcom.c
+>> @@ -12,6 +12,7 @@
+>>   #include <linux/kernel.h>
+>>   #include <linux/module.h>
+>>   #include <linux/mutex.h>
+>> +#include <linux/nvmem-consumer.h>
+>>   #include <linux/of.h>
+>>   #include <linux/of_device.h>
+>>   #include <linux/regmap.h>
+>> @@ -943,6 +944,19 @@ static int qcom_llcc_cfg_program(struct platform_device *pdev,
+>>   	return ret;
+>>   }
+>>   
+>> +static int qcom_llcc_get_cfg_index(struct platform_device *pdev, u8 *cfg_index)
+>> +{
+>> +	int ret;
+>> +
+>> +	ret = nvmem_cell_read_u8(&pdev->dev, "multi-chan-ddr", cfg_index);
+>> +	if (ret == -ENOENT) {
+>> +		*cfg_index = 0;
+>> +		return 0;
+>> +	}
+>> +
+>> +	return ret;
+>> +}
+>> +
+>>   static int qcom_llcc_remove(struct platform_device *pdev)
+>>   {
+>>   	/* Set the global pointer to a error code to avoid referencing it */
+>> @@ -975,11 +989,13 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>   	struct device *dev = &pdev->dev;
+>>   	int ret, i;
+>>   	struct platform_device *llcc_edac;
+>> -	const struct qcom_llcc_config *cfg;
+>> +	const struct qcom_llcc_config *cfg, *entry;
+>>   	const struct llcc_slice_config *llcc_cfg;
+>>   	u32 sz;
+>> +	u8 cfg_index;
+>>   	u32 version;
+>>   	struct regmap *regmap;
+>> +	u32 num_entries = 0;
+>>   
+>>   	drv_data = devm_kzalloc(dev, sizeof(*drv_data), GFP_KERNEL);
+>>   	if (!drv_data) {
+>> @@ -1040,8 +1056,19 @@ static int qcom_llcc_probe(struct platform_device *pdev)
+>>   
+>>   	drv_data->version = version;
+>>   
+>> -	llcc_cfg = cfg[0]->sct_data;
+>> -	sz = cfg[0]->size;
+>> +	ret = qcom_llcc_get_cfg_index(pdev, &cfg_index);
+>> +	if (ret)
+>> +		goto err;
+>> +
+>
+>> +	for (entry = cfg; entry->sct_data; entry++, num_entries++)
+>> +		;
+>> +	if (cfg_index >= num_entries || cfg_index < 0) {
+> cfg_index is an unsigned variable, it can never be < 0
+
+Okay, will remove this condition.
+
+>
+>> +		ret = -EINVAL;
+>> +		goto err;
+>> +	}
+>> +
+> if (cfg_index >= entry->size)? With that, you can also keep the config
+> entries non-0-terminated in the previous patch, saving a whole lot of RAM.
+
+entry->size represents the size of sct table whereas num_entries 
+represents the number
+of sct tables that we can have. And by this check we are validating the 
+value read from the
+fuse register. Am I understanding your comment correctly?
+
+>
+> Konrad
+>> +	llcc_cfg = cfg[cfg_index].sct_data;
+>> +	sz = cfg[cfg_index].size;
+>>   
+>>   	for (i = 0; i < sz; i++)
+>>   		if (llcc_cfg[i].slice_id > drv_data->max_slices)
 
