@@ -2,250 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 102CF74140B
-	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:48:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BB19741438
+	for <lists+devicetree@lfdr.de>; Wed, 28 Jun 2023 16:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231200AbjF1Or7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 10:47:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55978 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230425AbjF1Or6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 10:47:58 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9503198D;
-        Wed, 28 Jun 2023 07:47:57 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        id S231208AbjF1OuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 10:50:12 -0400
+Received: from mx2.sberdevices.ru ([45.89.224.132]:38861 "EHLO
+        mx1.sberdevices.ru" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S231921AbjF1Oty (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 10:49:54 -0400
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 24DCA120003;
+        Wed, 28 Jun 2023 17:49:36 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 24DCA120003
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1687963776;
+        bh=ITqZMbjUWmbRB4x96Vne7PtoeN8QuM2q0MmJhQ/nKpI=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+        b=oV2LGSLukBS6FXn4Jmetv8SIvz2qDSYr0Q2RjFXY/A19VryG+jlxdkMWEgN2vKlPd
+         JHgWHOnPPD8VGQLm554l10oy6gtmutSvkcXJADvRCFUOJazFW1etrWYXQ+G+39J1sV
+         TqKBYRRL1hx2r5iPUcNboflsWlLFRvDBFU1vTAU7Hi+hJpbqeyKd8VUkMCU3N0L3F7
+         CHBpY01TfRreGb/8FSvxPbjqtjZk9GfaBeqgvf1HepRnQEUzYMbfDQsuPQd5p4K+U9
+         7tvXebM5RDfQKs9+NLXJe2neZOhvK+DLLaOEItjqbX3acwaT0p8rJZyM8ZXUSZKM7K
+         fvTpo1qa8z5dw==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1C08F6134F;
-        Wed, 28 Jun 2023 14:47:57 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7AF9DC433AB;
-        Wed, 28 Jun 2023 14:47:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1687963676;
-        bh=dbZOpf4AHAye+gEQztEqh9VIZLtkDBUxqZMPbmGLl+s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=hfVM45dloMH8kpSz4RnA6tTn5Ld1YZSOxngo6gRx8gB3cT0jp2HHXLgRp1fqBX0II
-         cRTCk3pUyZMlclcJjZhOvrGdpR6LsjtdtAIB9CFX8M06Fno2t8wbDdtvm2bO3ZO0HO
-         wv2KGOkj6SWDomsTKE70W8+70NOSs7wQRt62S0wlg+tfHGG3EO/YjGk/7EuAhJklCu
-         jbpCeOayrir5ber3sfzyJaw3OtBlx4W4228/0Wn99AI7AWigdjDCRDaYnPg+/FzlhA
-         K7newaxYSpWKyWXYY3gHfeGn7sojCWniftizFjyObeXh8vOPBMm85iWCUeQGyqLLQ4
-         OxrVFy7ElWGnw==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b44d77e56bso13402021fa.1;
-        Wed, 28 Jun 2023 07:47:56 -0700 (PDT)
-X-Gm-Message-State: AC+VfDw3twsgY06x0TFWDaJo/y6X2CZ/qTB+WP6cOIh2Vm77snwRWo1G
-        wxyMAD2p85DlAYueSi1CdJVLnAapqSMaHmiNxg==
-X-Google-Smtp-Source: ACHHUZ4FS2dC/MyJZTtVWrak5Zf1juHvb3xJu2MhfMoNpMasZghaqSA4jeia3iUcQKn0qlQLZbYEpYsJBo81i/I041E=
-X-Received: by 2002:a05:651c:124b:b0:2b6:a694:aaa1 with SMTP id
- h11-20020a05651c124b00b002b6a694aaa1mr615716ljh.1.1687963674155; Wed, 28 Jun
- 2023 07:47:54 -0700 (PDT)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Wed, 28 Jun 2023 17:49:35 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 28 Jun
+ 2023 17:48:37 +0300
+Date:   Wed, 28 Jun 2023 17:49:34 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+CC:     <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+        <mturquette@baylibre.com>, <sboyd@kernel.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <khilman@baylibre.com>, <conor+dt@kernel.org>,
+        <kernel@sberdevices.ru>, <sdfw_system_team@sberdevices.ru>,
+        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
+        <linux-clk@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Oleg Lyovin <ovlevin@sberdevices.ru>
+Subject: Re: [PATCH v1 5/6] arm64: dts: meson: a1: introduce UART_AO mux
+ definitions
+Message-ID: <20230628144934.sbtvdktg6boo5opj@CAB-WSD-L081021>
+References: <20230607201641.20982-1-ddrokosov@sberdevices.ru>
+ <20230607201641.20982-6-ddrokosov@sberdevices.ru>
+ <CAFBinCD-5RD_iszZZRg58XqTHDEHnipJkf2aAex8MdUyh=bVCw@mail.gmail.com>
 MIME-Version: 1.0
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com> <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
-In-Reply-To: <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 28 Jun 2023 08:47:41 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ_TTnGjjB2d8_FKHpWBRG5GHLoWnabCKjsdeZ4QFdNEg@mail.gmail.com>
-Message-ID: <CAL_JsqJ_TTnGjjB2d8_FKHpWBRG5GHLoWnabCKjsdeZ4QFdNEg@mail.gmail.com>
-Subject: Re: [PATCH v4 08/21] dt-bindings: reserved-memory: Add qcom,ramoops binding
-To:     Mukesh Ojha <quic_mojha@quicinc.com>
-Cc:     corbet@lwn.net, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
-        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
-X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
-        lindbergh.monkeyblade.net
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAFBinCD-5RD_iszZZRg58XqTHDEHnipJkf2aAex8MdUyh=bVCw@mail.gmail.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178314 [Jun 28 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, 127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/28 08:00:00 #21591748
+X-KSMG-AntiVirus-Status: Clean, skipped
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 6:36=E2=80=AFAM Mukesh Ojha <quic_mojha@quicinc.com=
-> wrote:
->
-> Qualcomm ramoops minidump logger provide a means of storing
-> the ramoops data to some dynamically reserved memory instead
-> of traditionally implemented ramoops where the region should
-> be statically fixed ram region. Its device tree binding
-> would be exactly same as ramoops device tree binding and is
-> going to contain traditional ramoops frontend data and this
-> content will be collected via Qualcomm minidump infrastructure
-> provided from the boot firmware.
+Martin,
 
-The big difference is if firmware is not deciding where this log
-lives, then it doesn't need to be in DT. How does anything except the
-kernel that allocates the log find the logs?
+On Sun, Jun 25, 2023 at 11:07:51PM +0200, Martin Blumenstingl wrote:
+> On Wed, Jun 7, 2023 at 10:16 PM Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+> >
+> > From: Oleg Lyovin <ovlevin@sberdevices.ru>
+> >
+> > The Amlogic A1 has a UART_AO port, which can be used, for example, for
+> > BT HCI H4 connection.
+> >
+> > This patch adds mux definitions for it.
+> In the past we've only taken the pinctrl definitions if we have a
+> board that uses them.
+> Neil, do we still have the same policy in place? If so this patch
+> should be sent with the series that adds support for your A1 board.
+> 
+> > Signed-off-by: Oleg Lyovin <ovlevin@sberdevices.ru>
+> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> > ---
+> >  arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 16 ++++++++++++++++
+> >  1 file changed, 16 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> > index 0efd922ca7e1..3eb6aa9c00e0 100644
+> > --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> > +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> > @@ -118,6 +118,22 @@ gpio: bank@400 {
+> >                                         gpio-ranges = <&periphs_pinctrl 0 0 62>;
+> >                                 };
+> >
+> > +                               uart_a_pins: uart_a {
+> Only our newer .dtsi (e.g. meson-g12-common.dtsi) are following the
+> pattern where node names should use dashes instead of underscores.
+> So please use: uart_a_pins: uart-a { ...
+> 
 
-I'm pretty sure I already said all this before.
+Okay, no problem. I'll rename the nodes in the next patch series
+version.
 
->
-> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> ---
->  .../devicetree/bindings/soc/qcom/qcom,ramoops.yaml | 126 +++++++++++++++=
-++++++
->  1 file changed, 126 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ramoo=
-ps.yaml
->
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml=
- b/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> new file mode 100644
-> index 000000000000..b1fdcf3f8ad4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> @@ -0,0 +1,126 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/soc/qcom/qcom,ramoops.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Qualcomm Ramoops minidump logger
-> +
-> +description: |
-> +  Qualcomm ramoops minidump logger provide a means of storing the ramoop=
-s
-> +  data to some dynamically reserved memory instead of traditionally
-> +  implemented ramoops where the region should be statically fixed ram
-> +  region. Because of its similarity with ramoops it will also have same
-> +  set of property what ramoops have it in its schema and is going to
-> +  contain traditional ramoops frontend data and this region will be
-> +  collected via Qualcomm minidump infrastructure provided from the
-> +  boot firmware.
-> +
-> +maintainers:
-> +  - Mukesh Ojha <quic_mojha@quicinc.com>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - qcom,sm8450-ramoops
-> +      - const: qcom,ramoops
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +    description: handle to memory reservation for qcom,ramoops region.
-> +
-> +  ecc-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: enables ECC support and specifies ECC buffer size in by=
-tes
-> +    default: 0 # no ECC
-> +
-> +  record-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: maximum size in bytes of each kmsg dump
-> +    default: 0
-> +
-> +  console-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: size in bytes of log buffer reserved for kernel message=
-s
-> +    default: 0
-> +
-> +  ftrace-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: size in bytes of log buffer reserved for function traci=
-ng and profiling
-> +    default: 0
-> +
-> +  pmsg-size:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: size in bytes of log buffer reserved for userspace mess=
-ages
-> +    default: 0
-> +
-> +  mem-type:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: if present, sets the type of mapping is to be used to m=
-ap the reserved region.
-> +    default: 0
-> +    oneOf:
-> +      - const: 0
-> +        description: write-combined
-> +      - const: 1
-> +        description: unbuffered
-> +      - const: 2
-> +        description: cached
-> +
-> +  max-reason:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 2 # log oopses and panics
-> +    maximum: 0x7fffffff
-> +    description: |
-> +      If present, sets maximum type of kmsg dump reasons to store.
-> +      This can be set to INT_MAX to store all kmsg dumps.
-> +      See include/linux/kmsg_dump.h KMSG_DUMP_* for other kmsg dump reas=
-on values.
-> +      Setting this to 0 (KMSG_DUMP_UNDEF), means the reason filtering wi=
-ll be
-> +      controlled by the printk.always_kmsg_dump boot param.
-> +      If unset, it will be 2 (KMSG_DUMP_OOPS), otherwise 5 (KMSG_DUMP_MA=
-X).
-> +
-> +  flags:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 0
-> +    description: |
-> +      If present, pass ramoops behavioral flags
-> +      (see include/linux/pstore_ram.h RAMOOPS_FLAG_* for flag values).
-> +
-> +  no-dump-oops:
-> +    deprecated: true
+> [...]
+> > +                               uart_a_cts_rts_pins: uart_a_cts_rts {
+> similar to the comment from above:
+> uart_a_cts_rts_pins: uart-a-cts-rts { ...
+> 
 
-Why would you define deprecated properties in a *new* binding?
+Ok
 
-> +    type: boolean
-> +    description: |
-> +      Use max_reason instead. If present, and max_reason is not specifie=
-d,
-> +      it is equivalent to max_reason =3D 1 (KMSG_DUMP_PANIC).
-> +
-> +  unbuffered:
-> +    deprecated: true
-> +    type: boolean
-> +    description: |
-> +      Use mem_type instead. If present, and mem_type is not specified,
-> +      it is equivalent to mem_type =3D 1 and uses unbuffered mappings to=
- map
-> +      the reserved region (defaults to buffered mappings mem_type =3D 0)=
-.
-> +      If both are specified -- "mem_type" overrides "unbuffered".
-> +
-> +unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - memory-region
-> +
-> +anyOf:
-> +  - required: [record-size]
-> +  - required: [console-size]
-> +  - required: [ftrace-size]
-> +  - required: [pmsg-size]
-> +
-> +examples:
-> +  - |
-> +
-> +    qcom_ramoops {
-> +        compatible =3D "qcom,sm8450-ramoops", "qcom,ramoops";
-> +        memory-region =3D <&qcom_ramoops_region>;
-> +        console-size =3D <0x8000>;    /* 32kB */
-> +        record-size =3D <0x400>;      /*  1kB */
-> +        ecc-size =3D <16>;
-> +    };
-> --
-> 2.7.4
->
+> > +                                       mux {
+> > +                                               groups = "uart_a_cts",
+> > +                                                        "uart_a_rts";
+> > +                                               function = "uart_a";
+> > +                                               bias-pull-down;
+> Out of curiosity: is this pull down needed on all boards or just specific ones?
+> It seems like all other SoCs use bias-disable for the RTS/CTS pins.
+> 
+
+That's a good question. The Amlogic custom kernel DTSI declares
+bias-pull-down for CTS/RTS pins in UART_A. There is no information about
+this in the A1 datasheet. However, from my understanding, it is related
+to the usage of the UART_A. Typically, the UART_A endpoint on A1 boards
+is used for BT connections, which is why Amlogic applies bias-pull-down
+in the common DTSI. If my assumption is correct, it would be better to
+move the bias-pull-down node parameter to the custom board DTS. I will
+investigate this further and rework it in the next version if necessary.
+
+-- 
+Thank you,
+Dmitry
