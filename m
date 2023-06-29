@@ -2,137 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 90E4074257F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 14:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49814742595
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 14:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232017AbjF2MOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 08:14:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50402 "EHLO
+        id S231443AbjF2MTl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 08:19:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232238AbjF2MOR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 08:14:17 -0400
-Received: from relay06.th.seeweb.it (relay06.th.seeweb.it [IPv6:2001:4b7a:2000:18::167])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C97B35AB;
-        Thu, 29 Jun 2023 05:14:14 -0700 (PDT)
-Received: from SoMainline.org (82-72-63-87.cable.dynamic.v4.ziggo.nl [82.72.63.87])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by m-r2.th.seeweb.it (Postfix) with ESMTPSA id 911C73ED7C;
-        Thu, 29 Jun 2023 14:14:05 +0200 (CEST)
-Date:   Thu, 29 Jun 2023 14:14:04 +0200
-From:   Marijn Suijten <marijn.suijten@somainline.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
-Subject: Re: [PATCH v2 13/15] arm64: dts: qcom: sm6125: Add dispcc node
-Message-ID: <kisifidg4bdb4v6fb6nvgt5omsprssd4bxrn6wqehjo66l2y4a@7nfaydtafzpn>
-References: <20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org>
- <20230627-sm6125-dpu-v2-13-03e430a2078c@somainline.org>
- <4a267feb-5855-1427-c378-b2615eae4f84@linaro.org>
+        with ESMTP id S229794AbjF2MTk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 08:19:40 -0400
+Received: from mail-ua1-x92c.google.com (mail-ua1-x92c.google.com [IPv6:2607:f8b0:4864:20::92c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB1DF1BE8;
+        Thu, 29 Jun 2023 05:19:39 -0700 (PDT)
+Received: by mail-ua1-x92c.google.com with SMTP id a1e0cc1a2514c-78f554d4949so201208241.3;
+        Thu, 29 Jun 2023 05:19:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688041179; x=1690633179;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=TGv78mKGzB1Ok9tyfdClls4DVuXjLXhxTceQ76I/LfY=;
+        b=RV1lqe1xUgZ170NuxsH+Zfi6fdVox6x1HcE5zlTgTdOOf+DwUdy6UhEleH1Yiyqi/B
+         qwV8T/rZRq7Bl+yOrz0+an491UMneurdnbcq42CjpAUGoLcNM/2sg7dmTgsgSJ50TUE5
+         a7TaS8GXWBQ2hK4oVtvkEyc4utf5efp2og9SvsmQhXe0beL/0cFflVJ9Flr8LU0BQQLx
+         vk8lpYgyDk4YtjiIMtWw4mKTzBCm33gX+dq3DjBbIdTLIAGhDtm1FuXzvuMVBUIbgHV9
+         9CUtrttt9LTRnfuxxJHV0IKoZtAvL32vMVoROfqm5kmS3L5UzrJfqnfyFQhl+ayPIls4
+         tTQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688041179; x=1690633179;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=TGv78mKGzB1Ok9tyfdClls4DVuXjLXhxTceQ76I/LfY=;
+        b=hQJNEM6kWwQy7xmNUvc3T7pYT7Oq7wpuajBk+MGGNUTWTW8aHZZ/ImmZQfRyzspyCB
+         4MlGlT8lKHR1Yy5/He6dOjyQmScezD+U7/dR5JklfP3CxQ1ALQGqaBS7j3Mx+WetPoZV
+         Cb9pg40LnbweSoaMmyyIQ0BjFmAzDdZawfaZDpLWcb3NxkYTNmHyle9Ki49rZ/n8J50E
+         JJL5P0HfQo3OG3+znmZdm+Ctd8ORdvxyjHFt6B1E6MJ372W2YFz5yMu7jZjWxlAv84f8
+         2j34vQnIHzWHwiatHiHAJ2VS1mV31a4ZDs9QfgDAf7XcnSFZIBrTPVNFvtYcPI3CRMGT
+         oZ5A==
+X-Gm-Message-State: AC+VfDyvubhGffduUNJ77n7kxDIT+eiTiZz5MYRvanH41cSKx1W6wnnr
+        uTjNzY7rhpuCJQbrYgjAG7+p6nkPQQRWSeWytps=
+X-Google-Smtp-Source: ACHHUZ6v6+1aaPN/DZCIV2mVThVjW3Ef7xPdSSOAu5cyWd8b4TbcBikkHfY5x7c4ThKdZr4KjZhxvpm+j5T7sx/1v6s=
+X-Received: by 2002:a67:ea8f:0:b0:443:6b64:aed4 with SMTP id
+ f15-20020a67ea8f000000b004436b64aed4mr7137772vso.26.1688041178729; Thu, 29
+ Jun 2023 05:19:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <4a267feb-5855-1427-c378-b2615eae4f84@linaro.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230207091902.2512905-1-milkfafa@gmail.com> <20230207091902.2512905-4-milkfafa@gmail.com>
+ <867ec517-ef29-e8ac-8e0c-6f7ca440cf3d@linaro.org> <CADnNmFpf8kMeHYrUcab5Mg3P0zZ=kUi3o8bLCz-EdyAHVKoLNw@mail.gmail.com>
+ <c4676e35-322c-7091-65d0-4e50ba04ca85@xs4all.nl>
+In-Reply-To: <c4676e35-322c-7091-65d0-4e50ba04ca85@xs4all.nl>
+From:   Kun-Fa Lin <milkfafa@gmail.com>
+Date:   Thu, 29 Jun 2023 20:19:27 +0800
+Message-ID: <CADnNmFrw08stAZ8BvpP7y6EyrG7Dd_UQ9em8QqvghVLQmQmwdQ@mail.gmail.com>
+Subject: Re: [PATCH v11 3/7] dt-bindings: arm: nuvoton: Add NPCM GFXI
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        mchehab@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com,
+        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
+        kwliu@nuvoton.com, kflin@nuvoton.com
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-06-29 13:56:25, Dmitry Baryshkov wrote:
-> On 27/06/2023 23:14, Marijn Suijten wrote:
-> > Enable and configure the dispcc node on SM6125 for consumption by MDSS
-> > later on.
-> > 
-> > Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> > ---
-> >   arch/arm64/boot/dts/qcom/sm6125.dtsi | 25 +++++++++++++++++++++++++
-> >   1 file changed, 25 insertions(+)
-> > 
-> > diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> > index edb03508dba3..a5cc0d43d2d9 100644
-> > --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> > @@ -3,6 +3,7 @@
-> >    * Copyright (c) 2021, Martin Botka <martin.botka@somainline.org>
-> >    */
-> >   
-> > +#include <dt-bindings/clock/qcom,dispcc-sm6125.h>
-> >   #include <dt-bindings/clock/qcom,gcc-sm6125.h>
-> >   #include <dt-bindings/clock/qcom,rpmcc.h>
-> >   #include <dt-bindings/dma/qcom-gpi.h>
-> > @@ -1203,6 +1204,30 @@ sram@4690000 {
-> >   			reg = <0x04690000 0x10000>;
-> >   		};
-> >   
-> > +		dispcc: clock-controller@5f00000 {
-> > +			compatible = "qcom,sm6125-dispcc";
-> > +			reg = <0x05f00000 0x20000>;
-> > +			clocks = <&rpmcc RPM_SMD_XO_CLK_SRC>,
-> > +				 <0>,
-> > +				 <0>,
-> > +				 <0>,
-> > +				 <0>,
-> > +				 <0>,
-> > +				 <&gcc GCC_DISP_AHB_CLK>,
-> > +				 <&gcc GCC_DISP_GPLL0_DIV_CLK_SRC>;
-> > +			clock-names = "bi_tcxo",
-> > +				      "dsi0_phy_pll_out_byteclk",
-> > +				      "dsi0_phy_pll_out_dsiclk",
-> > +				      "dsi1_phy_pll_out_dsiclk",
-> > +				      "dp_phy_pll_link_clk",
-> > +				      "dp_phy_pll_vco_div_clk",
-> > +				      "cfg_ahb_clk",
-> > +				      "gcc_disp_gpll0_div_clk_src";
-> > +			power-domains = <&rpmpd SM6125_VDDCX>;
-> 
-> Would it be logical to specify the required-opps too?
+Hi Hans,
 
-Perhaps, but barely any other SoC aside from sm8x50 sets it on dispcc.
-What should it be, rpmhpd_opp_low_svs?  IIRC we used "svs" for the DSI
-PHY despite not having a reference value downstream (it sets a range of
-NOM-TURBO_NO_CPR, and RETENTION when it's off).
+Sorry for the late response.
 
-- Marijn
 
-> 
-> > +			#clock-cells = <1>;
-> > +			#power-domain-cells = <1>;
-> > +		};
-> > +
-> >   		apps_smmu: iommu@c600000 {
-> >   			compatible = "qcom,sm6125-smmu-500", "qcom,smmu-500", "arm,mmu-500";
-> >   			reg = <0x0c600000 0x80000>;
-> > 
-> 
-> -- 
-> With best wishes
-> Dmitry
-> 
+> > I'll move it to Documentation/devicetree/bindings/soc/npcm/nuvoton,gfxi.yaml.
+>
+> v12 still has this in the old location, so it appears you forgot this.
+
+Thanks for the reminder, v13 will correct the path.
+
+Regards,
+Marvin
