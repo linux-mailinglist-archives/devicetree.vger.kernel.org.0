@@ -2,150 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DBAD57426B5
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 14:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 423B97426FE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 15:10:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230353AbjF2MtP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 08:49:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34560 "EHLO
+        id S231843AbjF2NKf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 09:10:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38358 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231566AbjF2MtK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 08:49:10 -0400
-Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96EE21FD8;
-        Thu, 29 Jun 2023 05:49:08 -0700 (PDT)
-Received: by mail-vk1-xa32.google.com with SMTP id 71dfb90a1353d-4717089ae5bso240095e0c.0;
-        Thu, 29 Jun 2023 05:49:08 -0700 (PDT)
+        with ESMTP id S230463AbjF2NKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 09:10:34 -0400
+Received: from mail-wm1-x335.google.com (mail-wm1-x335.google.com [IPv6:2a00:1450:4864:20::335])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDF4B2D78
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 06:10:29 -0700 (PDT)
+Received: by mail-wm1-x335.google.com with SMTP id 5b1f17b1804b1-3fbc060a2caso3672815e9.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 06:10:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688042947; x=1690634947;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=vibqGgTSkZNI78S50QxrbWxjy/o83ic28jzcG95Wy2Q=;
-        b=P3EPMDYmvOSSNO9IpZqusoOBhARr6/ZEj3M9vLeC2NLXktdqWrxRP6VCiBJB2OfVNO
-         poEVY6xEQCXTliwFgS7PtM5HIu6UcG9AeFUQT9d3+0PK1E8f5g3lD/9H8L8gZ3jvqgyq
-         E3MATdkd4sCHDdQIL8RznP6cNlvtmN34rMtE+aUmE7aDTLDM+xoyod8fJ+HpUMWjmc7C
-         LDWLNoZa81W3LdFza0scs6+quKYp5DrvUtWbvDybN9e4w5ER1pqgVhtpQ2KQt0cq84to
-         eh+Ot6kJKqTWzN1RoCAGL6YJsKiOw2Cjut2vNti/xl6r2ofFasHqv0v7msfHvoyhYpxE
-         JIzw==
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688044228; x=1690636228;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VItU8HW70st6V8J8MISUt/JOqLi21m2A756zbojdNMc=;
+        b=HdGsFrpTob1y2/e3wRPz1UeRcwZ0DiwPVms16eSe+/HyHniDYA37WEHZ5Y60PNhJja
+         b3X5DoNIn9ax/gqP85NsCpRO6iCYz3ax4tY/OuZTElwYDJP+MRh1b4jyQOLKBR+I/B+G
+         bFWWxphQGCblRS7Oit5liqCTVwkRscCLvF2CGAt2pj30nn1MlB5XpW5EYQeflwAuTtts
+         Ktx3MDvY8A/waPvTuUIlAolac1+8xCE8zhTgON8766QweJoAhp5Z+K92ZBvzt5ASqXBp
+         kOr/cNoe4WcHp/Mocj8x9Uc9R+n3fvgFjF3ySmYnkCSaJs29Ilpn4d3QY5OJfSkllWYz
+         VG7Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688042947; x=1690634947;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1688044228; x=1690636228;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=vibqGgTSkZNI78S50QxrbWxjy/o83ic28jzcG95Wy2Q=;
-        b=XJr369u5Yr2eVqs1qAc4UNjYY4jo//0GoQCdb1rKN7ZloVB7r74ZqtmViZ65u8xGoK
-         RiycA+zo633XJhI7Jw1u8wbc1OJGwBow5Ln9WtXOMOGYT5c1f5aX/vxjxQqZQEi63hjN
-         /eWd6HPevbi3b6uzY3LokG/1zPsmdnvPLufLcbCxlwHTIVyv0wyp54ksDwc/15cL4nMK
-         ny5kwhHT8TWk0t+R070oBzYO9rvgVxkLjcGXnLJAFjhXyaoPSwrsiNtkgPjSRFHXup0H
-         H9z4kfkSICKgoa4zgdAbqvnhA+XW+WFrN7O9R/x19Ry/redTrp16Yk1MukaMhXPR7N1c
-         yvTw==
-X-Gm-Message-State: AC+VfDx7gT4j243fUkQZe3G6hYDAjpwHxiWV+MUVrPG1ppKAmDwrrRwo
-        YoIQ3VpCzevqrz7em2PPRy3Eq0hiJ1NUZOoOqts=
-X-Google-Smtp-Source: ACHHUZ7Imuyy+vaxv6ag//M1MbImCVZ/QGl59+QnilJ6V+R09MX3TvxgWSai1hFKtmimL+klvWeZki159QVoEgIick8=
-X-Received: by 2002:a1f:c1c3:0:b0:471:5224:bbdf with SMTP id
- r186-20020a1fc1c3000000b004715224bbdfmr19495635vkf.3.1688042947552; Thu, 29
- Jun 2023 05:49:07 -0700 (PDT)
+        bh=VItU8HW70st6V8J8MISUt/JOqLi21m2A756zbojdNMc=;
+        b=gdDTjQG+bG0rwEKumhw8OyaxIRTDsvOZmcyuytAsVKnRdqLYvzcjM1qomWRN9KFcKl
+         0u/jHZFR7TP9OhvP7NEdaEPor1L+GdJ+0tnxgtWTTxMa4S8qcJeUaOVB1btsxE9s1/a3
+         SiOZU3qpUvKvTxxfgqwR5SZpjbf6F5Ak7XK64S+kfKlYHeADb8lzgboWJw5VLC6cpOvH
+         cQ1td6l5YA5DggaaE6ebAwVWt2uEAisZBM+bMt9E7fvoKAvIr1sCszkosRUWTPp7SCkh
+         7tf8bGZcy1QOXRaQEugcB/i+FBH9U7BiBUvgaMAykRXF007KALe79amdrb41IG7OBzru
+         /s7w==
+X-Gm-Message-State: AC+VfDzYID82X/+4LwfG1Y+x6UjM+5B7K4Dg9ZdAW79gk8QbyNayVYXT
+        rRrlEv51/DK+ov6cr0NMRkalVB6myoFTtAuNaL4=
+X-Google-Smtp-Source: ACHHUZ6HE00YizRhBI6hxzj6Lkxz0YnEWYDsqVRUDcXxb+GkugvQIGw672zIBlmxTlcrREh+AQA3iQ==
+X-Received: by 2002:a05:600c:3644:b0:3fb:a2b6:8dfd with SMTP id y4-20020a05600c364400b003fba2b68dfdmr5943020wmq.32.1688044228139;
+        Thu, 29 Jun 2023 06:10:28 -0700 (PDT)
+Received: from [127.0.1.1] ([77.205.21.223])
+        by smtp.gmail.com with ESMTPSA id v4-20020a05600c214400b003fa95890484sm11885899wml.20.2023.06.29.06.10.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jun 2023 06:10:27 -0700 (PDT)
+From:   Julien Panis <jpanis@baylibre.com>
+Subject: [PATCH 0/3] Configure usb0 as peripheral on am335x boards
+Date:   Thu, 29 Jun 2023 15:09:54 +0200
+Message-Id: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
 MIME-Version: 1.0
-References: <20230502084430.234182-1-milkfafa@gmail.com> <20230502084430.234182-8-milkfafa@gmail.com>
- <e43029b5-edbb-9358-a0a6-a104ff2fa154@xs4all.nl>
-In-Reply-To: <e43029b5-edbb-9358-a0a6-a104ff2fa154@xs4all.nl>
-From:   Kun-Fa Lin <milkfafa@gmail.com>
-Date:   Thu, 29 Jun 2023 20:48:56 +0800
-Message-ID: <CADnNmFpSg+nU+gvc-CUzYRJ6newCrgLesoLda6kHJ6o2a8Su5A@mail.gmail.com>
-Subject: Re: [PATCH v12 7/7] media: nuvoton: Add driver for NPCM video capture
- and encode engine
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     mchehab@kernel.org, avifishman70@gmail.com, tmaimon77@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, andrzej.p@collabora.com,
-        devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-kernel@vger.kernel.org, openbmc@lists.ozlabs.org,
-        kwliu@nuvoton.com, kflin@nuvoton.com
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAKOCnWQC/x3N0QrCMAyF4VcZuTbQVjemryJepDVbA7OWREUYe
+ 3c7L38OH2cFYxU2uHQrKH/E5Fla+EMHKVOZGeXeGoILRzeEM74tOiTD2lzNrLSg72kid0rBjz0
+ 0GMkYo1JJeacPshfrPlTlSb7/t+tt237l5FNSfQAAAA==
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, vigneshr@ti.com, nm@ti.com,
+        Julien Panis <jpanis@baylibre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1688044226; l=994;
+ i=jpanis@baylibre.com; s=20230526; h=from:subject:message-id;
+ bh=o90YNbzVP/LtweeHx56MaIg0Ldsz+J7DwexvicBarJ8=;
+ b=AkYcWqHrfTA7UmVjPbGJl1k9MoNSK9+UPOxWTKhBe2tkAshcsZrXg9h0wowm5XQHP2/GaOXQm
+ 6QiH9JI9XE/APq0qK+xLmtjs4RRe4o2leyX5+xqtLf53mFnOqqN+K8/
+X-Developer-Key: i=jpanis@baylibre.com; a=ed25519;
+ pk=8eSM4/xkiHWz2M1Cw1U3m2/YfPbsUdEJPCWY3Mh9ekQ=
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+This series configures usb0 dr_mode as 'peripheral' for am335x-evm,
+am335x-evmsk, and am335x-icev2. This USB port is mainly used for
+RNDIS and DFU.
 
-> Apologies for the delay in reviewing this. As you may have noticed, we
-> have too many incoming patches and not enough reviewers, so it takes
-> too often way too long before I have time to review drivers like this.
+Initially, a series was submitted to overlay dr_mode in u-boot specific
+device trees ('<board>-u-boot.dtsi'):
+https://lore.kernel.org/all/20230621-fix_usb_ether_init-v2-0-ff121f0e8d7a@baylibre.com/
 
-That's OK. I appreciate your time and comments.
+It was finally decided to modify linux device trees.
 
-> > +     /* Resolution changed */
-> > +     if (status & VCD_STAT_VHT_CHG || status & VCD_STAT_HAC_CHG)
-> > +             schedule_work(&video->res_work);
->
-> I don't think you need to schedule work. If the resolution changed,
-> then you can just call vb2_queue_error and queue the SOURCE_CHANGED
-> event here. You don't need to detect the resolution, you know it has changed,
-> so just inform userspace and that will call QUERY_DV_TIMINGS.
+Signed-off-by: Julien Panis <jpanis@baylibre.com>
+---
+Julien Panis (3):
+      ARM: dts: am335x-evm: Use usb0 as peripheral
+      ARM: dts: am335x-evmsk: Use usb0 as peripheral
+      ARM: dts: am335x-icev2: Use usb0 as peripheral
 
-OK. Will modify it as you suggested.
+ arch/arm/boot/dts/am335x-evm.dts   | 4 ++++
+ arch/arm/boot/dts/am335x-evmsk.dts | 4 ++++
+ arch/arm/boot/dts/am335x-icev2.dts | 4 ++++
+ 3 files changed, 12 insertions(+)
+---
+base-commit: 3a8a670eeeaa40d87bd38a587438952741980c18
+change-id: 20230629-usb0-as-peripheral-15afa04c2185
 
-> > +     if (status & VCD_STAT_IFOR || status & VCD_STAT_IFOT) {
-> > +             dev_warn(video->dev, "VCD FIFO overrun or over thresholds\n");
-> > +             npcm_video_stop(video);
-> > +             npcm_video_start(video);
->
-> This is dangerous: video_start detects the resolution and can update the
-> width/height. So now there can be a mismatch between what userspace expects
-> and what the DMA sends.
->
-> I would make a new npcm_video_init(video) function that does the initial
-> timings detection. Call that on the first open. The npcm_video_start drops
-> that code and just uses the last set timings.
->
-> Feel free to use an alternative to this, as long as restarting the video
-> here doesn't change the width/height/format as a side-effect.
+Best regards,
+-- 
+Julien Panis <jpanis@baylibre.com>
 
-Understood. I've checked that it can just call npcm_video_start_frame (in which
-npcm_video_vcd_state_machine_reset will be called to reset VCD state
-machine and FIFOs) and
-the width/height/format will not be changed.
-
-> > +     if (*num_buffers > MAX_REQ_BUFS)
-> > +             *num_buffers = MAX_REQ_BUFS;
->
-> Why limit this? Can't you just use rect[VIDEO_MAX_FRAME]?
-
-I just realized VIDEO_MAX_FRAME is a common define in videodev2.h.
-Will change to use it.
-
-> > +     /*
-> > +      * When a video buffer is dequeued, free associated rect_list and
-> > +      * capture next frame.
-> > +      */
-> > +     head = &video->list[video->vb_index];
-> > +     list_for_each_safe(pos, nx, head) {
-> > +             tmp = list_entry(pos, struct rect_list, list);
-> > +             list_del(&tmp->list);
-> > +             kfree(tmp);
-> > +     }
-> > +
-> > +     if (npcm_video_start_frame(video)) {
->
-> This is weird. This is not normally done here since you never know when
-> userspace will dequeue a buffer.
->
-> I would expect to see this called:
->
-> 1) In start_streaming (so that works)
-> 2) When a buffer is captured and vb2_buffer_done is called: if another
->    empty buffer is available, then use that.
-> 3) in buf_queue: if the buffer list was empty, and vb2_start_streaming_called()
->    is true, then you can start capturing again.
-
-Will modify as you suggested. Thanks for the guide.
-
-Regards,
-Marvin
