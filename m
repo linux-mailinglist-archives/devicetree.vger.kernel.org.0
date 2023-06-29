@@ -2,84 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C7447742BA2
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 19:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68389742BAA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 19:59:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231843AbjF2R7L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 13:59:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37494 "EHLO
+        id S231950AbjF2R7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 13:59:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37848 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230207AbjF2R7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 13:59:09 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D065910EC;
-        Thu, 29 Jun 2023 10:59:08 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4CFDA615D5;
-        Thu, 29 Jun 2023 17:59:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C1B9CC433C9;
-        Thu, 29 Jun 2023 17:59:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688061547;
-        bh=KWuh+EtlgN9WgsuGzzN5S2e0JO8yjgAdyyzGc2r4JgM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lgHCSLr4LI+gd3Bgw18ZI0ef9rt/JfwYNIy0RfQDQHclcOHCK/3jkuqrxGg3i2hCN
-         laW6+qyxaq+IANQ6TQVo8u0SfgUrD7wQHpHixdoqkT/gb57iZIvmQOhi2OFJG7LNHi
-         QgvIKpmnxXRINqB563yyxCuR56jd9SQLXKtbxqkpknGU8LF1D/utk0DIt0hvZsGTDw
-         TNx1MmHpAIo1hxsbPdkwk73Nu0zUU7qxLjdtoE91n7F8XyK2DE0EINbQ5eLv34aScl
-         szfL5+Ur+T0EeUVGYsYKgNVC8a+41LALLx+EwoH/jt0NdpZ4leTbJOytOXjnRfxIyQ
-         cScB8p/FmyjJg==
-Date:   Thu, 29 Jun 2023 18:58:59 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lee Jones <lee@kernel.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
+        with ESMTP id S231933AbjF2R7n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 13:59:43 -0400
+Received: from mail-il1-f170.google.com (mail-il1-f170.google.com [209.85.166.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CFD18E49;
+        Thu, 29 Jun 2023 10:59:42 -0700 (PDT)
+Received: by mail-il1-f170.google.com with SMTP id e9e14a558f8ab-345a4efb66dso4157185ab.3;
+        Thu, 29 Jun 2023 10:59:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688061582; x=1690653582;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Ltsj44Ysm9Ir8gMsSRtpiAJhqVybd6I1k73Eyk2Y9bo=;
+        b=I5SXYCSC86iwt1piBpyaxfkw3bk8qDP8pjvZ1Tv3tsBNmYnkQecQsS/N5n0IJKDwuJ
+         GBe9qdkESGt2RK1APvYDYxBAUm4rx4Pn6XT58Q6Tm58oVxdcUO/DGvgM3M40l9Gaozs0
+         k/b0K/erbMeObHizbq4PRpJkwQfkgHukHi1KQCIDFL9QTYpdbbLaUHg9VqUvWAbUn7oY
+         /x+1n5pwH19kRf41AUhomXkEybso3Jz3HxK4bcprKswaep25xQzaik/EgNXQTMCRx810
+         kxbLYb04IpX6EaU+bAmOnFyv6op2+1NwASKGxinZ5Fx0q2ZWzE3FlB3dLOFq7w/iUTU8
+         SoPw==
+X-Gm-Message-State: AC+VfDyAF+O5Lkb4zq/9SHKTdS1lj52ApNT5ShMZCDE6QoBbOzQoKIM8
+        SEohjpwsIL7a4CNTJ5bGYA==
+X-Google-Smtp-Source: ACHHUZ54eMsTJJWCtPoEJIejljl2L1fgaKzjT7pk8sgNMmOGvqHqFhQZWVJA6mYIXW00z9Mh2DfH2g==
+X-Received: by 2002:a92:c742:0:b0:345:b35e:38ce with SMTP id y2-20020a92c742000000b00345b35e38cemr10456290ilp.31.1688061581994;
+        Thu, 29 Jun 2023 10:59:41 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id o5-20020a92c685000000b00342612c48f6sm4187871ilg.53.2023.06.29.10.59.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jun 2023 10:59:41 -0700 (PDT)
+Received: (nullmailer pid 3269993 invoked by uid 1000);
+        Thu, 29 Jun 2023 17:59:39 -0000
+Date:   Thu, 29 Jun 2023 11:59:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Astrid Rost <astrid.rost@axis.com>
+Cc:     Dan Murphy <dmurphy@ti.com>, Andrew Davis <afd@ti.com>,
         Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <998ef8d8-594e-45e3-9aa3-ec9061cf7f11@sirena.org.uk>
-References: <ZJry8QTka8m6ag/j@fedora>
- <20230627163344.GG10378@google.com>
- <CAL_Jsq+Z64tuMO8a2Y=2GrXZ8q0L4Z2avCiphsn0HOOC71Dzjg@mail.gmail.com>
- <20230628134013.GH10378@google.com>
- <472a4d86-3bfb-4c2b-a099-f1254dd01e24@sirena.org.uk>
- <20230629072500.GA2110266@google.com>
- <d070eecd-cb3b-4968-803e-1817a1a4359a@sirena.org.uk>
- <20230629155134.GB2110266@google.com>
- <7987cbbe-55bc-49a9-b63a-7f1906bf5f74@sirena.org.uk>
- <CAL_Jsq+AQrv7EGMtEkB-2cBCvA4mLHuMbyQ=f39yQkYPkvfVww@mail.gmail.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>, kernel@axis.com,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/2] dt: bindings: lp50xx: Add max-brightness as in
+ leds-pwm
+Message-ID: <20230629175939.GA3260807-robh@kernel.org>
+References: <20230629134722.3908637-1-astrid.rost@axis.com>
+ <20230629134722.3908637-3-astrid.rost@axis.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tDYfe0SN7PXC6vv2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+AQrv7EGMtEkB-2cBCvA4mLHuMbyQ=f39yQkYPkvfVww@mail.gmail.com>
-X-Cookie: Surprise due today.  Also the rent.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230629134722.3908637-3-astrid.rost@axis.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -87,58 +69,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jun 29, 2023 at 03:47:22PM +0200, Astrid Rost wrote:
+> Add max-brightness in order to reduce the current on the connected LEDs.
+> Normally, the maximum brightness is determined by the hardware, and this
+> property is not required. This property is used to set a software limit.
+> It could happen that an LED is made so bright that it gets damaged or
+> causes damage due to restrictions in a specific system, such as mounting
+> conditions.
+> 
+> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 9 +++++++++
+>  1 file changed, 9 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> index 402c25424525..6a1425969cb4 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+> @@ -73,6 +73,15 @@ patternProperties:
+>        '#size-cells':
+>          const: 0
+>  
+> +      max-brightness:
+> +        description:
+> +          Normally, the maximum brightness is determined by the hardware, and
+> +          this property is not required. This property is used to set a software
+> +          limit. It could happen that an LED is made so bright that it gets
+> +          damaged or causes damage due to restrictions in a specific system,
+> +          such as mounting conditions.
+> +        $ref: /schemas/types.yaml#definitions/uint32
 
---tDYfe0SN7PXC6vv2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+We already have led-max-microamp. If this h/w works by controlling the 
+current, then that is what you should use. "max-brightness" makes more 
+sense for PWM based control.
 
-On Thu, Jun 29, 2023 at 11:48:34AM -0600, Rob Herring wrote:
-> On Thu, Jun 29, 2023 at 10:00=E2=80=AFAM Mark Brown <broonie@kernel.org> =
-wrote:
+If you do end up keeping this, it belongs in the 'led' nodes not the 
+controller as brightness is a property of the LED, not the LED 
+driver(controller). And it should be in common schema rather than 
+defining the type yet again.
 
-> > That says it's a bit unusual to use a separate branch with a PR, it
-> > doesn't say anything about it being the end of the world to pick up
-> > parts of a series that are ready without picking up the whole lot,
-> > especially when we're getting to the merge window.
-
-> There's some risk the core part could change affecting the sub
-> components after you pick it up, or that the author just abandons
-> getting the core part upstream and we're left with a dead driver.
-
-Right, I'm suggesting applying the core part without waiting for every
-single leaf driver to be lined up rather than the other way around -
-that way the core part is stable and the leaf drivers only have issues
-with changes in their subsystems that they'll have anyway even with
-waiting.  Leaf drivers can be added on top as they're ready and if
-something misses a release then it can go through the subsystem, and if
-people do end up wandering off then you've still got whatever did get
-merged in case someone else wants to pick things up.
-
-> I'm fine if the sub-components are picked up first (and land in next
-> first), but the MFD binding picked up first is a problem usually. And
-> that has happened multiple times. Also, it does mean the MFD branch
-> will have binding warnings, but that's Lee's problem if he cares
-> (probably not).
-
-Linus complained about picking up the subcomponents without the core,
-especially if the MFD doesn't end up landing in the same release for
-whatever reason (which is fair enough, especially when the MFD does
-miss).
-
---tDYfe0SN7PXC6vv2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSdxmIACgkQJNaLcl1U
-h9CHYAf9EbdZGwiGICj8MmjmRrU64GcItZ0n3M0NJGW42FIOBaL27H9fX+gTv3m1
-6Qzdry927rL0wBh33M+lEVkcwkAyb2Gbb2o6OzVV1V1aY6nHZEBRZKV0dUa28al7
-oB8iwZrP4wjzyPOpMgivmlFrIVH1AgigZU0KUOFhTQ17LE9Wo14k7azm/rPUZVkX
-RZgrMDBHif8fjRxdjpGVPSfhPF9MefkHZlTOShYS5OxlKr/rNYqMqZcIAKx8Ii2e
-02SCG+B+/IOlTBjIMsYUyGfa47pgMq0CAd0Ukx3HFNcWcC6HOw5bjYzKC92IsS5P
-pESqhQQwJV8pV7rVWeSv9rp8ZPrGwQ==
-=jwih
------END PGP SIGNATURE-----
-
---tDYfe0SN7PXC6vv2--
+Rob
