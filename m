@@ -2,265 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 540E474217A
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 09:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DA057421C9
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:08:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232394AbjF2Hyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 03:54:31 -0400
-Received: from mail-vi1eur02on2048.outbound.protection.outlook.com ([40.107.241.48]:31489
-        "EHLO EUR02-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S232422AbjF2HxT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 29 Jun 2023 03:53:19 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=QEFqPCs6uE6RPpPVvAAKnAxOP6jsa1r0CuRVCtoG5zQK/QYN+3gA5X/xLtMYCxG+Ic8X4y+HKbMSeonmhb7h8aFJMgoeqEcDNy3GVTFflBlXCk5YASKqI0uEOXHdKbt73x9Q/URHxKiyBGdRuI2Jl3vplrZS0qWcOdPiweNwl/jGzHfFKuBxyPW39Bhvjt5ZiIXV2AsPza7TyvJn3uSSY1UoQLiY+A46lwj2qiYkOh4Zyh5tz5FlbqriV8WZkae7M7+SZBJmZBF/T1SguONFOU71nwmJG2ycgU07SwWrd9lZjalPsqjG1CLW2OmhyKwpfCo8rSNLAp9eeB5xYOY5/g==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=eSI2Qmu64zQHLVJ57XQ4ze1rlixAColllgajHlYDBfg=;
- b=Wlf6Kfc0/9JLpIJo4gNiF4ANFCtg7ICbnb5ytQjY/aLzmgXuN/XTuMgjmeZgM16nAXpCeaqmV5sF/hpnhg3CCoiBmRVD7lR62ghL9pZi7sdiHobj0dcGjtnZSjjLzTO51qkQao1/EGsqU8MqerJ7S+7NCBPsh01PguTY5xtlJzGg/eVYy/BWzIZgK8f4IPiEqlLsZ0WbiaZsUBe9lDbZFeK+Es8w3jGWJYXjFhGeGewwEu85Nh7JDcemfkjtkJCamYehzli3N0G/ybIHg56tG6ORJ0D2Lv1mi07/gb2WevK5AUq3rRLECcCpyhR0tIPn7b2VD2Ohr8w7nhSGtU2nqQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=wolfvision.net; dmarc=pass action=none
- header.from=wolfvision.net; dkim=pass header.d=wolfvision.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wolfvision.net;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=eSI2Qmu64zQHLVJ57XQ4ze1rlixAColllgajHlYDBfg=;
- b=tAZBDV9WDHhBsG5rpfn+vKQ0Ni983ngk06sZtdmgz90UIKkijssZJ7s0KYcxARUrl1ziSlYDqWVcpYY3r6Ssu4RPEPteoLKbd2IOEjPJOS6NOlggJyLw3DHABBUDW3Onq8Xj1ipwknPfJl1gDr2Q4UxWrimyg5D+sWO49yNQ//0=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=wolfvision.net;
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com (2603:10a6:803:111::15)
- by DB3PR08MB9009.eurprd08.prod.outlook.com (2603:10a6:10:43f::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.23; Thu, 29 Jun
- 2023 07:53:15 +0000
-Received: from VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::bd0e:a139:9e67:b86d]) by VE1PR08MB4974.eurprd08.prod.outlook.com
- ([fe80::bd0e:a139:9e67:b86d%4]) with mapi id 15.20.6544.019; Thu, 29 Jun 2023
- 07:53:15 +0000
-Message-ID: <feb8931d-45e0-e701-d8a7-0f5e3c108a84@wolfvision.net>
-Date:   Thu, 29 Jun 2023 09:53:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 1/4] Input: ts-overlay - Add touchscreen overlay object
- handling
-To:     Jeff LaBundy <jeff@labundy.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Bastian Hecht <hechtb@gmail.com>,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20230510-feature-ts_virtobj_patch-v3-0-b4fb7fc4bab7@wolfvision.net>
- <20230510-feature-ts_virtobj_patch-v3-1-b4fb7fc4bab7@wolfvision.net>
- <ZJj5VcHvfMMWMRx8@nixie71>
- <89cbb534-9371-c2be-0bad-776b51476ce8@wolfvision.net>
- <ZJmW/KOCJF25Z79t@nixie71>
- <543b2d74-eac4-3856-17c6-0654459a91b4@wolfvision.net>
- <ZJz6jnt9hDjuU3du@nixie71>
-Content-Language: en-US
-From:   Javier Carrasco <javier.carrasco@wolfvision.net>
-In-Reply-To: <ZJz6jnt9hDjuU3du@nixie71>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: VI1PR06CA0155.eurprd06.prod.outlook.com
- (2603:10a6:803:a0::48) To VE1PR08MB4974.eurprd08.prod.outlook.com
- (2603:10a6:803:111::15)
+        id S232440AbjF2IIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 04:08:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43816 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S231330AbjF2IHx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:07:53 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FD085590;
+        Thu, 29 Jun 2023 00:59:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1688025590; x=1719561590;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=zm9fRv5qf7aVcKz8UF1M10ebABrrwF8E2+bUQwu5ZfU=;
+  b=qSDOQkPx+Jn3HnlwQrhixQmfgpO3YJQaYIstZyKboIqe836zcS/0ByfS
+   TONoUpOoQht9VFCXsHE/KdWv1yznAbnADOhXT6BqYASlmCcC42jtEYD8F
+   GZr1XMS0EJdC08el8ER4mM1mAdJLpSwJRdepcgDu+eE/nB+MT5eSKA+o2
+   /LUpw48Mz5OTLRI49qOuK4bX0AQ0pCfircD58UamBtg3+0w3PvfyZifVY
+   MS8pvVgDUSUdDdwMUeugMmyXspj265OEffxs08srhJnqoI/DnNx41cwGt
+   mCWQ4BMWdffvE3Azlu5pEv3ER6EQNxPe1JTgSQHmF/zmPoGe3HHVJPgWA
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,168,1684792800"; 
+   d="scan'208";a="31670788"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 29 Jun 2023 09:59:48 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id C3FD5280078;
+        Thu, 29 Jun 2023 09:59:47 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>,
+        "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>
+Cc:     "laurent.pinchart@ideasonboard.com" 
+        <laurent.pinchart@ideasonboard.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "Xavier Roumegue (OSS)" <xavier.roumegue@oss.nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>,
+        "sakari.ailus@linux.intel.com" <sakari.ailus@linux.intel.com>
+Subject: Re: [PATCH v5 3/3] media: nxp: imx8-isi: add ISI support for i.MX93
+Date:   Thu, 29 Jun 2023 09:59:47 +0200
+Message-ID: <4813902.GXAFRqVoOG@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <AS8PR04MB90801F3FC8D5A1D01E6BC32BFA25A@AS8PR04MB9080.eurprd04.prod.outlook.com>
+References: <20230629013621.2388121-1-guoniu.zhou@oss.nxp.com> <5948448.lOV4Wx5bFT@steina-w> <AS8PR04MB90801F3FC8D5A1D01E6BC32BFA25A@AS8PR04MB9080.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: VE1PR08MB4974:EE_|DB3PR08MB9009:EE_
-X-MS-Office365-Filtering-Correlation-Id: 45cd38f6-dcfa-4c55-4c68-08db7875e4ce
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: XsEROJ+dGk1JHA6AKyNim52G3JGqL+UY0Iq7Mh93U0E6PGrK/eEw9/ZTI0c5MW5LuIJVqPWMiOrHoWEH+JX5gS5aPQQqEi5Dq5ib9tzXfKQWJKpUe8CVCRWZCwsu77pjoE56NVaWouV/6HTtOsJ4006A7mk/26iyGud1KZXgJlxek+IRzzPEM60rGjWqg24TgyxkwxBKDW4GiIDaa6uh0tG/IGtwr3AJ33LD0CjrHYpkqAHoaHIVXfCJ+xKeaw4yLepRM7GQ3G0byoatqpd7tTi/GgQoU9Bv2NjkJRU6B7Zscu690WCbhqTx8nqN/ket5yeqiWji7pobEpHNE4vYbndI5lad3HtAkBxdegn2mFqdhVdkp9eAAdxmVjnL5EHvnAhAKnNM7h466U47sKjZUlPnlFO1TMhAK0HYyY7K2WQhAwCXtIfhy0/vItUstr96jkmkPgTLWQKlCotpViCkpWmKlMUhkxDArexMjHAb+iRh8KkTudMvNgoHhqkFrzeqLSXQB2X+fImbDln22j0q5Ymvo9V2os906dhjI/qHXeQlh2Yj4J9LRK2h2Qr9BUJeE8Oiz+fjoeS9X8k/520JbKYSgJ+beqEsNll3qZlPWxZdHNWq3CJNzS+r45hCnC9Etvi9gXUjzsGrvnyIwNEjYQ==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR08MB4974.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(136003)(39840400004)(376002)(366004)(84040400005)(451199021)(31686004)(7416002)(66946007)(316002)(44832011)(66476007)(6916009)(66556008)(478600001)(4326008)(36756003)(8936002)(66899021)(8676002)(5660300002)(86362001)(31696002)(2906002)(54906003)(41300700001)(6486002)(53546011)(6506007)(6512007)(6666004)(186003)(83380400001)(38100700002)(2616005)(45980500001)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Mjh3VmJjcmRvWXZnSytaNlZLTWVTSHMyNjFCK25GQjI1dmhrSDI1VGpWT01M?=
- =?utf-8?B?TzgrV3JiclJwN0xlRGh4WXFEM0RxNzNNVmNRK0xzMDkrdlBlTGdyZWpyV1NF?=
- =?utf-8?B?QkFuSFFRZnZNeGNlUzhUNGJCamdTcThFZGRNRzc1Yk9qSHZheEtuZWNGcDA4?=
- =?utf-8?B?aTUrV2NnZXM3UjkyQ2tYeHRjNzB0bzFuT3liMmU5VStsOG9wa29FOWtyUXNo?=
- =?utf-8?B?Q3o4Y285OEtaU3dsUFBVZjNLRC96eTBRRGtld3pEZGJrRnhCd0VaN2tCejRU?=
- =?utf-8?B?bW5TVHNWNHBkQk9WcEt5M1JEejRUMHI1V3JiNkloSXVNR2NRcW8yYjJBMFZs?=
- =?utf-8?B?Z0tEOFBOVUVBQ3J0d2JSY2cwRllGZ1pJUjBJcWdCWkFEVy9ObjZFekFQbWh5?=
- =?utf-8?B?MUd6RnFKK0NUSkh5ZFY3cUdDbGJhcEhBNkJ4VitWMnZnTzNjdGVNUThwZjVS?=
- =?utf-8?B?ZG0wVjM0U0NjSnpTcGRCOFhYQ2lFRnlvTWtLMU5jYUNVRUJBemFpYi8rTVVV?=
- =?utf-8?B?S1pPRWNPM09vSHBuSU9ySTFLcTJRem9GMmEwTDdlWXdkODZBWk1Lb21XNzN4?=
- =?utf-8?B?eTVpeHBmc2NhbDJ4WEw4a2NJSlREUkU5bFdMYzA1b3VLYnh0Slp5a1YvNmFi?=
- =?utf-8?B?Wm91RDlFQ3B0NFBWVzZoMitRaVRQTGo0U3FkdTBseVkxcks3SjFBYWN5V21x?=
- =?utf-8?B?ODBoRUpzYXk4Ylp2UXlpMzY1VHVFVDZ3Q0Yweit0TGhuZzVRN0RydHNnWGJO?=
- =?utf-8?B?SHpPei9heDlKa2habzVqUjBwbmxHTlQzMUJMK3NyWm9uTDE4TE9HNkRUa1ho?=
- =?utf-8?B?LzhDenBaMVRGUHB3eDFIb0ZoaUJNc054STZ6YlZGZ3ExZ05UeU56dmd1V1J2?=
- =?utf-8?B?RHlORm5IeksvbmJYL2xoakpzWi9LRHF0WHVpRms3SEhyR1BhbElENDg2N2Na?=
- =?utf-8?B?bVBnNVRibC9rbWsreDMvS2s4RWFGcWhSOXdsVlN4OFRBUzgrcjkyK2t4U0xj?=
- =?utf-8?B?RVQ4MStkdlVkOEp3dWh4MW0vTk96MHh3Nkp3V01MTFlUT1pMcmcxU3ZYNUVU?=
- =?utf-8?B?dlVtQUJ3UDdmNGplNGNDYXZ5Q0l2TG5Oek05ZzhBODd2NkJOa0N1YVY0bHFn?=
- =?utf-8?B?cGIrZ2MyRnlxN3ZaYzZBOWtGQ0xsc254YWI2MDY3UFRMVitza05zYnRmb0U3?=
- =?utf-8?B?OTMrNzE4OWNGTEozRGFDNlEvb1VYOERvQmxMQ1BOZVBiZ05tOXY1VTJMaHNM?=
- =?utf-8?B?V1grUysrMnhTR2VObUkzUWVTemJuWEluNTcxUy9hVG1XU1RrcmtzWkZObHha?=
- =?utf-8?B?cDV1MzE0cVEzMnl2VTQrVS82cWhDL1RraVdEWkNtNTI3MVR4cXpMQU9DalFE?=
- =?utf-8?B?eHhUZ2FoKzJSK2lnV2dWWS8xWUxJTUFpSHpyeTJ3WE9rRFNqb09IcXRWK1NT?=
- =?utf-8?B?K21VdW5XOGtFUXgrVG5mRmVjUjNBcWJNcG1IWnd5RmovcjA2WFRuS3BYMjZk?=
- =?utf-8?B?N0t6ZTVtZUc0aGx1NStYc1JneEh5RUxnRFB0ZkNPNkJZdXlIb1o3em5Cc3lu?=
- =?utf-8?B?ZktNS25aNy9WeW1VRVNORWFMTm1NVHM3RlFydk1hN1FhWXBwL1c0b3h6L2tL?=
- =?utf-8?B?M29pTXFjdnhHblZ6c2Vvb1NJVC9SMnVDVXpuUy91TE1venhBQ0huVGJMeHJl?=
- =?utf-8?B?VUhESTI2M1ZXTWxjWkdMcmI2RldiL05EU1d3aTMxQk1TZnVUQlZ5dTV1dWFF?=
- =?utf-8?B?bE9FSEhWeUFrR3RpcTdDTEdLcTZqNCtLRzBtT050L1Ewd2FNM29HVVFpSkRW?=
- =?utf-8?B?aEJaNi9IcmdvSG92VGJHZlhZVFNzWlJtT3NZdnp6U3NYTUlHV216bWgxWmxh?=
- =?utf-8?B?YS8wb3lSbUhrQnRkR0EwMzBjdnU5TWdITzlIVU9CZzVuN01ITjkxVHRsTW5x?=
- =?utf-8?B?eDduNHRYdWc4QlY0dld3LzFzQVF5RWxFTTQxeVBTMVlmVUZKMUViRzF3cy9m?=
- =?utf-8?B?Nnl1RS9wSDZoeWFSMXhPWXlBeitZVjRaZit6OVhXZHNub0hkeTFHTTNHNFdV?=
- =?utf-8?B?c2Z0S29vdEU3TGlSRUl2bTJRQVkxalVHdERMY0JuNzd5cDJXYnU3R0laczNi?=
- =?utf-8?B?THZHVUsreUdjSGNxYWc3Snd6QUViSjlnWGxDUVQ5WnpRdFRTWCtzU05SeUJv?=
- =?utf-8?B?MmFlMzE3WXoza1B5eGZlSkFBcHNLTEZOS1FQUmJ2RWZkNGcvSnVDRGZXaURQ?=
- =?utf-8?Q?SmVUVNmZtXi6vLT7+1DQAGh4Bdhy4cpgHpMlwNU5e8=3D?=
-X-OriginatorOrg: wolfvision.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 45cd38f6-dcfa-4c55-4c68-08db7875e4ce
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR08MB4974.eurprd08.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Jun 2023 07:53:14.9755
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: e94ec9da-9183-471e-83b3-51baa8eb804f
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Rpr6jMMXp28RmAryHxrU+FDnpcePvNtiCISUDCh46FBr2jA1FXz0QPiRNIzsTGbaSS6/00fapQqTV4f+8wATd4hd5ljAJLd8zGgu2+sa7nc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR08MB9009
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
+        lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jeff,
+Hi Guoniu,
 
-On 29.06.23 05:29, Jeff LaBundy wrote:
-> Hi Javier,
-> 
-> On Wed, Jun 28, 2023 at 08:44:51AM +0200, Javier Carrasco wrote:
-> 
-> [...]
-> 
->>>>>> +static const char *const ts_overlay_names[] = {
->>>>>> +	[TOUCHSCREEN] = "overlay-touchscreen",
->>>>>
->>>>> I'm a little confused why we need new code for this particular function; it's
->>>>> what touchscreen-min-x/y and touchscreen-size-x/y were meant to define. Why
->>>>> can't we keep using those?
->>>>>
->>>> According to the bindings, touchscreen-min-x/y define the minimum
->>>> reported values, but the overlay-touchscreen is actually setting a new
->>>> origin. Therefore I might be misusing those properties. On the other
->>>> hand touchscreen-size-x/y would make more sense, but I also considered
->>>> the case where someone would like to describe the real size of the
->>>> touchscreen outside of the overlay node as well as the clipped size
->>>> inside the node. In that case using the same property twice would be
->>>> confusing.
->>>> So in the end I thought that the origin/size properties are more precise
->>>> and applicable for all objects and not only the overlay touchscreen.
->>>> These properties are needed for the buttons anyways and in the future
->>>> more overlay would use the same properties.
->>>
->>> Ah, I understand now. touchscreen-min-x/y define the lower limits of the axes
->>> reported to input but they don't move the origin. I'm aligned with the reason
->>> to introduce this function.
->>>
->>> This does beg the question as to whether we need two separate types of children
->>> and related parsing code. Can we not simply have one overlay definition, and
->>> make the decision as to whether we are dealing with a border or virtual button
->>> based on whether 'linux,code' is present?
->>>
->> A single overlay definition would be possible, but in case more objects
->> are added in the future, looking for single properties and then deciding
->> what object it is might get messy pretty fast. You could end up needing
->> a decision tree and the definition in the DT would get more complex.
->>
->> Now the decision tree is straightforward (linux,code -> button), but
->> that might not always be the case. In the current implementation there
->> are well-defined objects and adding a new one will never affect the
->> parsing of the rest.
->> Therefore I would like to keep it more readable and easily extendable.
-> 
-> As a potential customer of this feature, I'm ultimately looking to describe
-> the hardware as succinctly as possible. Currently we have two overlay types,
-> a border and button(s). The former will never have linux,code defined, while
-> the latter will. From my naive perspective, it seems redundant to define the
-> overlay types differently when their properties imply the difference already.
-> 
-> Ultimately it seems we are simply dealing with generic "segments" scattered
-> throughout a larger touch surface. These segments start to look something
-> like the following:
-> 
-> struct touch_segment {
-> 	unsigned int x_origin;
-> 	unsigned int y_origin;
-> 	unsigned int x_size;
-> 	unsigned int y_size;
-> 	unsigned int code;
-> };
-> 
-> You then have one exported function akin to touchscreen_parse_properties() that
-> simply walks the parent device looking for children named "touch-segment-0",
-> "touch-segment-1", etc. and parses the five properties, with the fifth (keycode)
-> being optional.
-> 
-> And then, you have one last exported function akin to touchscreen_report_pos()
-> that processes the touch coordinates. If the coordinates are in a given segment
-> and segment->code == KEY_RESERVED (i.e. linux,code was never given), then this
-> function simply passes the shifted coordinates to touchscreen_report_pos().
-> 
-> If however segment->code != KEY_RESERVED, it calls input_report_key() based on
-> whether the coordinates are within the segment. If this simplified solution
-> shrinks the code enough, it may even make sense to keep it in touchscreen.c
-> which this new feature is so tightly coupled to anyway.
-> 
-> I'm sure the devil is in the details however, and I understand the value in
-> future-proofing. Can you help me understand a potential future case where this
-> simplified view would break, and the existing definitions would be better?
-> 
-> Kind regards,
-> Jeff LaBundy
+Am Donnerstag, 29. Juni 2023, 09:07:23 CEST schrieb G.N. Zhou (OSS):
+> Hi Alexander,
+>=20
+>=20
+> > -----Original Message-----
+> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > Sent: 2023=E5=B9=B46=E6=9C=8829=E6=97=A5 14:43
+> > To: linux-media@vger.kernel.org; dl-linux-imx <linux-imx@nxp.com>;
+> > devicetree@vger.kernel.org; G.N. Zhou (OSS) <guoniu.zhou@oss.nxp.com>
+> > Cc: laurent.pinchart@ideasonboard.com; mchehab@kernel.org;
+> > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
+> > conor+dt@kernel.org;
+ Xavier Roumegue (OSS)
+> > <xavier.roumegue@oss.nxp.com>;
+> > kernel@pengutronix.de; jacopo.mondi@ideasonboard.com;
+> > sakari.ailus@linux.intel.com
+> > Subject: Re: [PATCH v5 3/3] media: nxp: imx8-isi: add ISI support for
+> > i.MX93
+=20
+> > Caution: This is an external email. Please take care when clicking links
+> > or opening
+ attachments. When in doubt, report the message using the
+> > 'Report this email' button
+> >=20
+> >=20
+> > Hi Guoniu,
+> >=20
+> > thanks for the patch series.
+> >=20
+> > Am Donnerstag, 29. Juni 2023, 03:36:21 CEST schrieb
+> > guoniu.zhou@oss.nxp.com:
+> >=20
+> > > ********************
+> > > Achtung externe E-Mail: =C3=96ffnen Sie Anh=C3=A4nge und Links nur, w=
+enn Sie
+> > > wissen, dass diese aus einer sicheren Quelle stammen und sicher sind.
+> > > Leiten Sie die E-Mail im Zweifelsfall zur Pr=C3=BCfung an den IT-Help=
+desk
+> > > weiter.
+ Attention external email: Open attachments and links only if
+> > > you know that they are from a secure source and are safe. In doubt
+> > > forward the email to the IT-Helpdesk to check it. ********************
+> > >
+> > >
+> > >
+> > > From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+> > >
+> > >
+> > >
+> > > i.MX93 use a different gasket which has different register definition
+> > > compared with i.MX8. Hence implement the gasket callbacks in order to
+> > > add ISI support for i.MX93.
+> > >
+> > >
+> > >
+> > > Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > >=20
+> > >  .../platform/nxp/imx8-isi/imx8-isi-core.c     | 15 ++++++++++
+> > >  .../platform/nxp/imx8-isi/imx8-isi-core.h     |  2 ++
+> > >  .../platform/nxp/imx8-isi/imx8-isi-gasket.c   | 30 +++++++++++++++++=
+++
+> > >  3 files changed, 47 insertions(+)
+> > >
+> > >
+> > >
+> > > diff --git a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c index
+> > > 5165f8960c2c..27bd18b7ee65 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.c
+> > > @@ -307,6 +307,20 @@ static const struct mxc_isi_plat_data
+> >=20
+> > mxc_imx8mp_data =3D
+> >=20
+> > > { .has_36bit_dma              =3D true,
+> > >=20
+> > >  };
+> > >
+> > >
+> > >
+> > > +static const struct mxc_isi_plat_data mxc_imx93_data =3D {
+> > > +     .model                  =3D MXC_ISI_IMX93,
+> > > +     .num_ports              =3D 1,
+> > > +     .num_channels           =3D 1,
+> > > +     .reg_offset             =3D 0,
+> > > +     .ier_reg                =3D &mxc_imx8_isi_ier_v2,
+> > > +     .set_thd                =3D &mxc_imx8_isi_thd_v1,
+> > > +     .clks                   =3D mxc_imx8mn_clks,
+> > > +     .num_clks               =3D ARRAY_SIZE(mxc_imx8mn_clks),
+> > > +     .buf_active_reverse     =3D true,
+> > > +     .gasket_ops             =3D &mxc_imx93_gasket_ops,
+> > > +     .has_36bit_dma          =3D false,
+> > > +};
+> > > +
+> > >=20
+> > >  /*
+> > >=20
+> > > ----------------------------------------------------------------------
+> > > -----
+> > > -- * Power management
+> > >=20
+> > >   */
+> > >=20
+> > > @@ -518,6 +532,7 @@ static int mxc_isi_remove(struct platform_device
+> > > *pdev)  static const struct of_device_id mxc_isi_of_match[] =3D {
+> > >=20
+> > >       { .compatible =3D "fsl,imx8mn-isi", .data =3D &mxc_imx8mn_data =
+},
+> > >       { .compatible =3D "fsl,imx8mp-isi", .data =3D &mxc_imx8mp_data =
+},
+> > >=20
+> > > +     { .compatible =3D "fsl,imx93-isi", .data =3D &mxc_imx93_data },
+> > >=20
+> > >       { /* sentinel */ },
+> > > =20
+> > >  };
+> > >  MODULE_DEVICE_TABLE(of, mxc_isi_of_match); diff --git
+> > >=20
+> > > a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h index
+> > > 78ca047d93d1..2810ebe9b5f7 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-core.h
+> > > @@ -158,6 +158,7 @@ struct mxc_gasket_ops {  enum model {
+> > >=20
+> > >       MXC_ISI_IMX8MN,
+> > >       MXC_ISI_IMX8MP,
+> > >=20
+> > > +     MXC_ISI_IMX93,
+> > >=20
+> > >  };
+> > >
+> > >
+> > >
+> > >  struct mxc_isi_plat_data {
+> > >=20
+> > > @@ -295,6 +296,7 @@ struct mxc_isi_dev {  };
+> > >
+> > >
+> > >
+> > >  extern const struct mxc_gasket_ops mxc_imx8_gasket_ops;
+> > >=20
+> > > +extern const struct mxc_gasket_ops mxc_imx93_gasket_ops;
+> > >
+> > >
+> > >
+> > >  int mxc_isi_crossbar_init(struct mxc_isi_dev *isi);  void
+> > >=20
+> > > mxc_isi_crossbar_cleanup(struct mxc_isi_crossbar *xbar); diff --git
+> > > a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
+> > > b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c index
+> > > 1d632dc60699..50ac1d3a2b6f 100644
+> > > --- a/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
+> > > +++ b/drivers/media/platform/nxp/imx8-isi/imx8-isi-gasket.c
+> > > @@ -53,3 +53,33 @@ const struct mxc_gasket_ops mxc_imx8_gasket_ops =
+=3D {
+> > >=20
+> > >       .enable =3D mxc_imx8_gasket_enable,
+> > >       .disable =3D mxc_imx8_gasket_disable,  };
+> > >=20
+> > > +
+> > > +/*
+> > > ----------------------------------------------------------------------
+> > > -----
+> > > -- + * i.MX93 gasket
+> > > + **/
+> > > +
+> > > +#define DISP_MIX_CAMERA_MUX                     0x30
+> >=20
+> >=20
+> > Which peripheral does this refer to? I would assume it is the Media Mix
+> > Domain Block Control, but there is no register at 0x30 mentioned in the
+> > reference manual. You have some additional information?
+> >=20
+> > Also which type of input did you use? MIPI-CSI2 or parallel interface?
+>=20
+>=20
+> Yes, it's Media Mix Domain Block Control(I name it Disp_Mix due to history
+> reason).
+>
+> I check RM in NXP Website and don't found 0x30 as you said since it's REV=
+2,
+> not latest one which still under review.
 
-I agree that your approach would reduce the code and then moving this
-feature to touchscreen.c would be reasonable. So if in the end that is
-the desired solution, I will go for it. But there are some points where
-I think the bit of extra code would be worth it.
+Thanks for confirmation.
 
-From a DT perspective, I can imagine some scenarios where a bunch of
-segments scattered around would be messy. An example would be a keypad
-with let's say N=9 buttons. It could be described easily with a buttons
-node and the keys inside. Understanding what the node describes would be
-straightforward as well, let alone N being much bigger.
-You could argue that the buttons node could have segments inside instead
-of buttons, but in the case where a cropped touchscreen is also
-described, you would end up with a segment outside the buttons node and
-the rest inside. That would reduce the parsing savings. Some labeling
-would help in that case, but that would be not as clear as the current
-implementation.
-There is another point that I will just touch upon because I have no
-experience in the matter. I have seen that some keys use the
-'linux,input-type' property to define themselves as keys, switches, etc.
-If that property or any other that I do not know is necessary for other
-implementations, the button object will cover them better than a generic
-segment where half of the properties would be meaningless in some
-scenarios. Buttons/keys are so ubiquitous that a dedicated object for
-them does not look that bad imho.
-But as I said, I do not want to make a strong statement here because I
-have seen that you maintain several bindings where this properties are
-present and I am not the right person to explain that to you... or
-actually anyone else out there :)
+> The input is MIPI CSI-2 by default.(We use default value in the serials)
 
-Talking about the code itself, having a structure for buttons is handy
-because you can keep track of the button status (e.g. pressed) and in
-the end it is just a child of the base shape that is used for the
-overlay touchscreen. The same applies to any function that handles
-buttons: they just wrap around the shape functions and add the
-button-specific management. So if the parsing is taken aside, the code
-does not get much savings from that side and it is again much more
-readable and comprehensible.
+Thanks. Is there already a (preliminary) driver for the MIPI CSI-2 peripher=
+al?
 
-Thank you for your efforts to improve these patches and the constructive
-discussion.
+Thanks and best regards,
+Alexander
 
-Best regards,
-Javier Carrasco
+> >=20
+> > Thanks and best regards,
+> > Alexander
+> >=20
+> >=20
+> > > +#define DISP_MIX_CAMERA_MUX_DATA_TYPE(x)        (((x) & 0x3f) << 3)
+> > > +#define DISP_MIX_CAMERA_MUX_GASKET_ENABLE       BIT(16)
+> > > +static void mxc_imx93_gasket_enable(struct mxc_isi_dev *isi,
+> > > +                                 const struct v4l2_mbus_frame_desc
+> >=20
+> > *fd,
+> >=20
+> > > +                                 const struct v4l2_mbus_framefmt
+> >=20
+> > *fmt,
+> >=20
+> > > +                                 const unsigned int port) {
+> > > +     u32 val;
+> > > +
+> > > +     val =3D DISP_MIX_CAMERA_MUX_DATA_TYPE(fd->entry[0].bus.csi2.dt);
+> > > +     val |=3D DISP_MIX_CAMERA_MUX_GASKET_ENABLE;
+> > > +     regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, val); }
+> > > +
+> > > +static void mxc_imx93_gasket_disable(struct mxc_isi_dev *isi,
+> > > +                                  unsigned int port) {
+> > > +     regmap_write(isi->gasket, DISP_MIX_CAMERA_MUX, 0); }
+> > > +
+> > > +const struct mxc_gasket_ops mxc_imx93_gasket_ops =3D {
+> > > +     .enable =3D mxc_imx93_gasket_enable,
+> > > +     .disable =3D mxc_imx93_gasket_disable, };
+> >=20
+> >=20
+> >=20
+> > --
+> > TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, =
+Germany
+> > Amtsgericht M=C3=BCnchen, HRB 105018
+> > Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan=
+ Schneider
+> > http://www.tq-group.com/
+> >=20
+>=20
+>=20
+
+
+=2D-=20
+TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
+any
+Amtsgericht M=C3=BCnchen, HRB 105018
+Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
+neider
+http://www.tq-group.com/
+
+
