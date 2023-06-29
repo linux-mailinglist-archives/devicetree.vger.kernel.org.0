@@ -2,120 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7710B7422AA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 898AC7422D3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 11:01:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232046AbjF2Iwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 04:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56508 "EHLO
+        id S231273AbjF2JBn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 05:01:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32826 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232209AbjF2IwJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:52:09 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2FBB13A86;
-        Thu, 29 Jun 2023 01:51:53 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35T8dv15032715;
-        Thu, 29 Jun 2023 10:51:43 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=Iz+hQhO6dEojH0eFv013M4o5vsc6rHv4k2nkimlmwAM=;
- b=PdwR5pfs2D/jQIdC/dGfJ1lcD9R8HIfYCiHPf1JIyDsnBSN4yZF7r4cXcaIcRBR/S/AP
- acx8ekRBjHeGDNQDUS/2jTHUcD1091cxUFSjIqDWdU0ovBH70ehEL+ysG+Y5Vwus+3tC
- MxJlk+WsDFd/YqDpiFIWkAuwlCZcaemUwItee0g4kkvbLMm0JmTUpFqAG6UJS//QVMiI
- q0yxidxZniVxB0mNKgSwPRmGmtxLcowIGBTkMRcSgreViKN4A8gmBIJLMsIGqWDXSnW/
- tPZQ95PRSxh46HPNMsnoVr6O26DIl21vFnJRxATkUMwogO34eZAD1cyKEPApFgeTOFHl fg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rh299hp5h-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Jun 2023 10:51:42 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C0B3A100060;
-        Thu, 29 Jun 2023 10:51:41 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id B88692194CE;
-        Thu, 29 Jun 2023 10:51:41 +0200 (CEST)
-Received: from [10.129.178.187] (10.129.178.187) by SHFDAG1NODE2.st.com
- (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 29 Jun
- 2023 10:51:40 +0200
-Message-ID: <c20287a0-7daf-0867-31d0-fc4057798f68@foss.st.com>
-Date:   Thu, 29 Jun 2023 10:51:40 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v5 3/3] ARM: dts: stm32: support display on
- stm32f746-disco board
-Content-Language: en-US
-To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
-        <linux-kernel@vger.kernel.org>
-CC:     <michael@amarulasolutions.com>,
-        Amarula patchwork <linux-amarula@amarulasolutions.com>,
-        Philippe Cornu <philippe.cornu@foss.st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        with ESMTP id S230055AbjF2JBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 05:01:42 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E38C410D5;
+        Thu, 29 Jun 2023 02:01:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1688029301; x=1719565301;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=w3S5KyMzhn3eCt7uu2HW5CUsu9QGVcQK3sBOL7pJmvU=;
+  b=nk9GZ6VKSMhHfYwnXaznXAPf9OSBK473WD/tVB+bHCjEljkGgSUUHpT6
+   /w4pQu9cOMvLneXnVb2Zf0iILzqYlvcNlfiGTHluU7ET7ar9fmh5zMbkW
+   auR2liX6OU+RGJXLQbxq8BI8v0SkE0Bwuq5KLET/P8lSxS209utq0QWFM
+   s4EiPUpk/DoCfIExwnDpusbqW6GVbmK9tRqcti44ILzRFO8id7krJUERx
+   HEZfHE/fgBZnX5wOP7uaA5LpoQ4Xqd5e2vWW+keDOposw4Owg3P6qV8Df
+   qbSdOr1uwk1hT9QEk60IzteP0fnMhDPGhVA/rseIpas0l4Y819ew9ry70
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; 
+   d="asc'?scan'208";a="218159678"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Jun 2023 02:01:40 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 29 Jun 2023 02:01:39 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 29 Jun 2023 02:01:36 -0700
+Date:   Thu, 29 Jun 2023 10:01:07 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Xingyu Wu <xingyu.wu@starfivetech.com>
+CC:     Conor Dooley <conor@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
         Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230629083726.84910-1-dario.binacchi@amarulasolutions.com>
- <20230629083726.84910-4-dario.binacchi@amarulasolutions.com>
-From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
-In-Reply-To: <20230629083726.84910-4-dario.binacchi@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.129.178.187]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
- (10.75.129.70)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-28_14,2023-06-27_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: Re: [PATCH v5 2/7] dt-bindings: soc: starfive: Add StarFive syscon
+ module
+Message-ID: <20230629-throng-creation-a33bbd191c1a@wendy>
+References: <20230613125852.211636-1-xingyu.wu@starfivetech.com>
+ <20230613125852.211636-3-xingyu.wu@starfivetech.com>
+ <7e2d6bfe-5687-97c5-778b-c02e9c0894af@linaro.org>
+ <a83c98ae-2f6c-00c4-5d05-fc304718e05a@starfivetech.com>
+ <20230628-affix-maverick-84a08905f05b@spud>
+ <2270fd7f-1751-066a-0da5-e35cdd59fd2f@starfivetech.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="dyYLTwA1dVYqX1L9"
+Content-Disposition: inline
+In-Reply-To: <2270fd7f-1751-066a-0da5-e35cdd59fd2f@starfivetech.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+--dyYLTwA1dVYqX1L9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 6/29/23 10:37, Dario Binacchi wrote:
-> Add support to Rocktech RK043FN48H display on stm32f746-disco board.
->
-> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
->
-> ---
->
-> Changes in v5:
-> I am confident that framebuffer sizing is a real requirement for STM32 boards,
-> but I need some time to understand if and how to introduce this functionality.
-> Therefore, I drop the following patches to allow the series to be fully merged:
->  - [4/6] dt-bindings: display: stm32-ltdc: add optional st,fb-bpp property
->  - [5/6] ARM: dts: stm32: set framebuffer bit depth on stm32f746-disco
->  - [6/6] drm/stm: set framebuffer bit depth through DTS property
->
-> Changes in v4:
-> - Use DTS property instead of module parameter to set the framebuffer bit depth.
->
-> Changes in v3:
-> - drop [4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
->   Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next):
->   https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c42a37a27c777d63961dd634a30f7c887949491a
-> - drop [5/6] drm/panel: simple: add support for Rocktech RK043FN48H panel
->   Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
->   https://cgit.freedesktop.org/drm/drm-misc/commit/?id=13cdd12a9f934158f4ec817cf048fcb4384aa9dc
->
->  arch/arm/boot/dts/stm32f746-disco.dts | 51 +++++++++++++++++++++++++++
->  1 file changed, 51 insertions(+)
+On Thu, Jun 29, 2023 at 02:42:39PM +0800, Xingyu Wu wrote:
+> On 2023/6/29 1:34, Conor Dooley wrote:
+> > On Wed, Jun 28, 2023 at 02:44:10PM +0800, Xingyu Wu wrote:
+> >> On 2023/6/14 2:31, Krzysztof Kozlowski wrote:
+> >> > On 13/06/2023 14:58, Xingyu Wu wrote:
+> >> >> From: William Qiu <william.qiu@starfivetech.com>
 
+> >> >> +allOf:
+> >> >> +  - if:
+> >> >> +      properties:
+> >> >> +        compatible:
+> >> >> +          contains:
+> >> >> +            const: starfive,jh7110-aon-syscon
+> >> >> +    then:
+> >> >> +      required:
+> >> >> +        - "#power-domain-cells"
+> >> >=20
+> >> > Where did you implement the results of the discussion that only some
+> >> > devices can have power and clock controller?
+> >> >=20
+> >> > According to your code all of above - sys, aon and stg - have clock =
+and
+> >> > power controllers. If not, then the code is not correct, so please do
+> >> > not respond with what is where (like you did last time) but actually
+> >> > implement what you say.
 
-Reviewed-by: Raphaël Gallais-Pou <raphael.gallais-pou@foss.st.com>
+> Yeah, following your advice, I modified the codes and there are two optio=
+ns:
+>=20
+> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
+on.yaml
+> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
+on.yaml
+> @@ -41,6 +41,16 @@ required:
+>    - reg
+> =20
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-sys-syscon
+> +    then:
+> +      required:
+> +        - clock-controller
+> +      properties:
+> +        "#power-domain-cells": false
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              const: starfive,jh7110-aon-syscon
+>      then:
+>        required:
+>          - "#power-domain-cells"
+> +      properties:
+> +        clock-controller: false
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-stg-syscon
+> +    then:
+> +      properties:
+> +        clock-controller: false
+> +        "#power-domain-cells": false
+> =20
+>  additionalProperties: false
+>=20
+> Or :
+>=20
+> --- a/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
+on.yaml
+> +++ b/Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-sysc=
+on.yaml
+> @@ -41,6 +41,17 @@ required:
+>    - reg
+> =20
+>  allOf:
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: starfive,jh7110-sys-syscon
+> +    then:
+> +      required:
+> +        - clock-controller
+> +    else:
+> +      properties:
+> +        clock-controller: false
+>    - if:
+>        properties:
+>          compatible:
+>            contains:
+>              const: starfive,jh7110-aon-syscon
+>      then:
+>        required:
+>          - "#power-domain-cells"
+> +    else:
+> +      properties:
+> +        "#power-domain-cells": false
+> =20
+>  additionalProperties: false
+>=20
+> Which one is better? Thanks.
 
-Thanks,
-Raphaël G.-P.
+This second one looks better to me, as it achieves the same thing in a
+simpler way.
 
+Cheers,
+Conor.
+
+--dyYLTwA1dVYqX1L9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJ1IUwAKCRB4tDGHoIJi
+0p+VAP0VjZDVhCo7waX9fMh6nsZdgK3duJg4TOoQ68hNJoD8xgEAvalmj5FLOA7Y
+XHTX3ksOnF8f5wfr2yjAkNY6DmfAng0=
+=bcF5
+-----END PGP SIGNATURE-----
+
+--dyYLTwA1dVYqX1L9--
