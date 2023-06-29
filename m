@@ -2,71 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BC592742915
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 17:05:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A68D8742940
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 17:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231443AbjF2PFi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 11:05:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44722 "EHLO
+        id S232492AbjF2PQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 11:16:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231787AbjF2PFh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 11:05:37 -0400
-Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27B712D7F;
-        Thu, 29 Jun 2023 08:05:36 -0700 (PDT)
-Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-345b347196cso3220365ab.3;
-        Thu, 29 Jun 2023 08:05:36 -0700 (PDT)
+        with ESMTP id S232248AbjF2PQj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 11:16:39 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F21D1BD3;
+        Thu, 29 Jun 2023 08:16:38 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-78362f57500so33350339f.3;
+        Thu, 29 Jun 2023 08:16:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688051135; x=1690643135;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=NhcKZLjWrDNttxGmNBxY3JBPC1dw1l/gq6LRekbNzq8=;
-        b=kwn0AuL3li29nlMeYm4DdfkPJfNeL7MpskGf825jVkJk8N/XdnsOaqFU8xHHWiSwIE
-         gn6XIkS0p2SahteuCJ5U/6ROcp9/Wh+cUxn2ehFVWFTXbIth7X9Sd4EOmN8gs3Nr+rt8
-         JSOUNfy/D06vN6QZF3eCpR9vN1fKE+dICVJdBzHa/QruaVAcGKbu9MMfUn4qKGXXvqDC
-         +CbRkWwlLwBmZQNxQ+2GDscRKPTGxqcTtUcPA0nKuypXKWx5Y0M+WAVb8LUTa+E9AhmQ
-         ADrJkPlHRtnf/qpI4ijEER6pNUYVcl6ayttPYQRYAOjpDIFHBXIxoH42TgvzXGUgjng4
-         w6ig==
-X-Gm-Message-State: AC+VfDyGjz0Z75ZcsvZeuQYsjs3+PJ2J45zVDdnA+hGvWWjuq3/yXCbM
-        2JHQfj32w5IJM+n3HihFyA==
-X-Google-Smtp-Source: ACHHUZ5/ubSHnOOsJs8hFdVdPR5AB9dDU59w9AQGzatEGCNhG/K02sYj6XVgHiA3uc2Ij1YRTnGiCw==
-X-Received: by 2002:a92:d08a:0:b0:345:8373:4ca8 with SMTP id h10-20020a92d08a000000b0034583734ca8mr15786460ilh.27.1688051135318;
-        Thu, 29 Jun 2023 08:05:35 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688051797; x=1690643797;
+        h=in-reply-to:content-transfer-encoding:content-disposition
+         :mime-version:references:message-id:subject:cc:to:from:date
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=0yYf5unE82HQU5zdhq4SDOKtiWOXlUCb+r9zxuFce2k=;
+        b=E6qGiwoD7wJKHthJVIlos/TCERX3quUusd1A9jOTsR0Zl0anjkeiXgW4jPwWz+ogdG
+         0cdRajckR305M64/Ui8CAiSNDSi0DTBe+sajakpT6qS66cXD5qd7kDF12M3P6Q8+92aF
+         YRoD5pAGUlMyOyi+ajNLCJBdrlUFMnbPUUdsTlr5ITfcCyE5Jzy/ljq41gEYDqkLnqRp
+         XqVHziCikYs4EtvnuQ8ON1kDwsd3y4lPhhifz7ASZp0IzG9WC26xDZMAnmWOvIMQKwlc
+         /pnhSl1OSddLbam0KyqNTxv3pgK6YnjX9X6VYn/CRZcax2NP9nrSBxo4sUWeZwM3cSS2
+         GrSg==
+X-Gm-Message-State: AC+VfDw49XVrVHXSy6FTOQMoPZed1hB7BGMQtBI38EiqWLxP0soWcv8S
+        bJoOzH/7DFTS0lUe/HHMUA==
+X-Google-Smtp-Source: ACHHUZ5U9UVQbTAUVWIC66Yomz/Nun21h36jybZhE6vvGCn8AppClylklh5mm22nnepr7qOXF5xS+Q==
+X-Received: by 2002:a5e:a51a:0:b0:783:62af:fbdf with SMTP id 26-20020a5ea51a000000b0078362affbdfmr11243399iog.14.1688051797580;
+        Thu, 29 Jun 2023 08:16:37 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id g6-20020a056638060600b0042b144abf71sm53204jar.179.2023.06.29.08.05.29
+        by smtp.gmail.com with ESMTPSA id a16-20020a056638005000b00418ba399842sm2824504jap.13.2023.06.29.08.16.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jun 2023 08:05:31 -0700 (PDT)
-Received: (nullmailer pid 2973007 invoked by uid 1000);
-        Thu, 29 Jun 2023 15:05:28 -0000
-Date:   Thu, 29 Jun 2023 09:05:28 -0600
+        Thu, 29 Jun 2023 08:16:36 -0700 (PDT)
+Received: (nullmailer pid 3050930 invoked by uid 1000);
+        Thu, 29 Jun 2023 15:16:35 -0000
+Date:   Thu, 29 Jun 2023 09:16:35 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Maso Huang <maso.huang@mediatek.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Trevor Wu <trevor.wu@mediatek.com>,
-        Jiaxin Yu <jiaxin.yu@mediatek.com>,
-        Ren Zhijie <renzhijie2@huawei.com>,
-        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v2 7/7] ASoC: dt-bindings: mediatek,mt7986-afe: add audio
- afe document
-Message-ID: <20230629150528.GA2961718-robh@kernel.org>
-References: <20230626023501.11120-1-maso.huang@mediatek.com>
- <20230626023501.11120-8-maso.huang@mediatek.com>
+To:     Jiri Valek - 2N <jiriv@axis.com>
+Cc:     krzysztof.kozlowski+dt@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-kernel@vger.kernel.org, u.kleine-koenig@pengutronix.de
+Subject: Re: [PATCH v4 1/2] dt-bindings: input: microchip,cap11xx: add
+ advanced sensitivity settings
+Message-ID: <20230629151635.GA3003066-robh@kernel.org>
+References: <20230627065316.1065911-1-jiriv@axis.com>
+ <20230627065316.1065911-2-jiriv@axis.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230626023501.11120-8-maso.huang@mediatek.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230627065316.1065911-2-jiriv@axis.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -78,113 +66,137 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 26, 2023 at 10:35:01AM +0800, Maso Huang wrote:
-> Add mt7986 audio afe document.
+On Tue, Jun 27, 2023 at 08:53:15AM +0200, Jiri Valek - 2N wrote:
+> Add support for advanced sensitivity settings and signal guard feature.
 > 
-> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
+> Signed-off-by: Jiri Valek - 2N <jiriv@axis.com>
 > ---
->  .../bindings/sound/mediatek,mt7986-afe.yaml   | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mediatek,mt7986-afe.yaml
+>  .../bindings/input/microchip,cap11xx.yaml     | 77 +++++++++++++++++--
+>  1 file changed, 72 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mediatek,mt7986-afe.yaml b/Documentation/devicetree/bindings/sound/mediatek,mt7986-afe.yaml
-> new file mode 100644
-> index 000000000000..257327a33ea1
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mediatek,mt7986-afe.yaml
-> @@ -0,0 +1,89 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mediatek,mt7986-afe.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: MediaTek AFE PCM controller for MT7986
-> +
-> +maintainers:
-> +  - Maso Huang <maso.huang@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: mediatek,mt7986-afe
-> +      - items:
-> +          - enum:
-> +              - mediatek,mt7981-afe
-> +              - mediatek,mt7988-afe
-> +          - const: mediatek,mt7986-afe
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    minItems: 5
-> +    items:
-> +      - description: audio bus clock
-> +      - description: audio 26M clock
-> +      - description: audio intbus clock
-> +      - description: audio hopping clock
-> +      - description: audio pll clock
-> +      - description: mux for pcm_mck
-> +      - description: audio i2s/pcm mck
-> +
-> +  clock-names:
-> +    minItems: 5
-> +    items:
-> +      - const: aud_bus_ck
-> +      - const: aud_26m_ck
-> +      - const: aud_l_ck
-> +      - const: aud_aud_ck
-> +      - const: aud_eg2_ck
-> +      - const: aud_sel
-> +      - const: aud_i2s_m
+> diff --git a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> index 5fa625b5c5fb..b69dac1fba0e 100644
+> --- a/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> +++ b/Documentation/devicetree/bindings/input/microchip,cap11xx.yaml
+> @@ -45,13 +45,13 @@ properties:
+>        Enables the Linux input system's autorepeat feature on the input device.
+>  
+>    linux,keycodes:
+> -    minItems: 6
+> -    maxItems: 6
+> +    minItems: 3
+> +    maxItems: 8
+>      description: |
+>        Specifies an array of numeric keycode values to
+>        be used for the channels. If this property is
+>        omitted, KEY_A, KEY_B, etc are used as defaults.
+> -      The array must have exactly six entries.
+> +      The number of entries must correspond to the number of channels.
 
-'aud_' is redundant.
+This change seems unrelated? Or maybe advanced sensitivity means more 
+channels? If so, explain this in the commit msg.
 
+>  
+>    microchip,sensor-gain:
+>      $ref: /schemas/types.yaml#/definitions/uint32
+> @@ -70,6 +70,55 @@ properties:
+>        open drain. This property allows using the active
+>        high push-pull output.
+>  
+> +  microchip,sensitivity-delta-sense:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 32
+> +    enum: [1, 2, 4, 8, 16, 32, 64, 128]
+> +    description:
+> +      Optional parameter. Controls the sensitivity multiplier of a touch detection.
+> +      At the more sensitive settings, touches are detected for a smaller delta
+> +      capacitance corresponding to a “lighter” touch.
 > +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - assigned-clocks
-> +  - assigned-clock-parents
+> +  microchip,signal-guard:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 3
+> +    maxItems: 8
+> +    items:
+> +      minimum: 0
+> +      maximum: 1
+> +    description: |
+> +      Optional parameter supported only for CAP129x.
+> +      0 - off
+> +      1 - on
+> +      The signal guard isolates the signal from virtual grounds.
+> +      If enabled then the behavior of the channel is changed to signal guard.
+> +      The number of entries must correspond to the number of channels.
 > +
-> +additionalProperties: false
+> +  microchip,input-treshold:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 3
+> +    maxItems: 8
+> +    items:
+> +      minimum: 0
+> +      maximum: 127
+> +    description:
+> +      Optional parameter. Specifies the delta threshold that is used to
+> +      determine if a touch has been detected.
+> +      The number of entries must correspond to the number of channels.
 > +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/clock/mt7986-clk.h>
+> +  microchip,calib-sensitivity:
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 3
+> +    maxItems: 8
+> +    items:
+> +      minimum: 1
+> +      maximum: 4
+> +    description:
+> +      Optional parameter supported only for CAP129x. Specifies an array of
+> +      numeric values that controls the gain used by the calibration routine to
+> +      enable sensor inputs to be more sensitive for proximity detection.
+> +      The number of entries must correspond to the number of channels.
 > +
-> +    afe@11210000 {
-> +        compatible = "mediatek,mt7986-afe";
-> +        reg = <0x11210000 0x9000>;
-> +        interrupts = <GIC_SPI 106 IRQ_TYPE_LEVEL_HIGH>;
-> +        clocks = <&infracfg_ao CLK_INFRA_AUD_BUS_CK>,
-> +                 <&infracfg_ao CLK_INFRA_AUD_26M_CK>,
-> +                 <&infracfg_ao CLK_INFRA_AUD_L_CK>,
-> +                 <&infracfg_ao CLK_INFRA_AUD_AUD_CK>,
-> +                 <&infracfg_ao CLK_INFRA_AUD_EG2_CK>;
-> +        clock-names = "aud_bus_ck",
-> +                      "aud_26m_ck",
-> +                      "aud_l_ck",
-> +                      "aud_aud_ck",
-> +                      "aud_eg2_ck";
-> +        assigned-clocks = <&topckgen CLK_TOP_A1SYS_SEL>,
-> +                          <&topckgen CLK_TOP_AUD_L_SEL>,
-> +                          <&topckgen CLK_TOP_A_TUNER_SEL>;
-> +        assigned-clock-parents = <&topckgen CLK_TOP_APLL2_D4>,
-> +                                 <&apmixedsys CLK_APMIXED_APLL2>,
-> +                                 <&topckgen CLK_TOP_APLL2_D4>;
-> +    };
+>  patternProperties:
+>    "^led@[0-7]$":
+>      type: object
+> @@ -98,10 +147,23 @@ allOf:
+>          compatible:
+>            contains:
+>              enum:
+> -              - microchip,cap1106
+> +              - microchip,cap1188
+>      then:
+>        patternProperties:
+> -        "^led@[0-7]$": false
+> +        "^led@[0-7]$": true
 > +
-> +...
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - microchip,cap1293
+> +              - microchip,cap1298
+> +
+> +    then:
+> +      properties:
+> +        microchip,signal-guard: true
+> +        microchip,calib-sensitivity: true
+
+This 'if' doesn't do anything. These properties are already allowed. You 
+need an if for the cases they aren't allowed.
+
+>  
+>  required:
+>    - compatible
+> @@ -122,6 +184,11 @@ examples:
+>          reg = <0x28>;
+>          autorepeat;
+>          microchip,sensor-gain = <2>;
+> +        microchip,sensitivity-delta-sense = <16>;
+> +
+> +        microchip,signal-guard = <0>, <0>, <0>, <0>, <0>, <0>;
+> +        microchip,input-treshold = <21>, <18>, <46>, <46>, <46>, <21>;
+> +        microchip,calib-sensitivity = <1>, <2>, <2>, <1>, <1>, <2>;
+>  
+>          linux,keycodes = <103>,	/* KEY_UP */
+>                           <106>,	/* KEY_RIGHT */
 > -- 
-> 2.18.0
+> 2.25.1
 > 
