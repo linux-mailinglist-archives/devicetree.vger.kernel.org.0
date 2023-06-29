@@ -2,112 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 81B5C741FEB
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 07:30:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C82FE742008
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 07:46:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231638AbjF2Fae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 01:30:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58696 "EHLO
+        id S231609AbjF2Fqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 01:46:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231817AbjF2FaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 01:30:25 -0400
-Received: from fllv0016.ext.ti.com (fllv0016.ext.ti.com [198.47.19.142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA683297C;
-        Wed, 28 Jun 2023 22:30:09 -0700 (PDT)
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 35T5Tuoc040060;
-        Thu, 29 Jun 2023 00:29:56 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1688016596;
-        bh=ryLOadtKY1Ezda+Ho7YZF9WQLrMVCh1hKe7UO/PWB5g=;
-        h=Date:Subject:To:CC:References:From:In-Reply-To;
-        b=QV/S6Ol6RuWqc5kFMwp/gW/08bPkTjjb5ASAJcmTvER6kKtHXdQfhoXyfoi1m0sYk
-         dKpwD25L0eUXO/tcFrQE+ob0oaqtN8qcmLAoJIwbCkKq8DcgJ3DrlR7rMjM+Lgv9TK
-         sfxYixHP9GoiN2RDaPMB77acyq2P//aTzfKd1yn8=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 35T5TuTr004043
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 29 Jun 2023 00:29:56 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 29
- Jun 2023 00:29:56 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
- Frontend Transport; Thu, 29 Jun 2023 00:29:56 -0500
-Received: from [10.249.133.19] (ileaxei01-snat.itg.ti.com [10.180.69.5])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 35T5TqPq073289;
-        Thu, 29 Jun 2023 00:29:53 -0500
-Message-ID: <d85fbd74-6470-f664-2eb6-ee02b8135b23@ti.com>
-Date:   Thu, 29 Jun 2023 10:59:51 +0530
+        with ESMTP id S230119AbjF2Fqi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 01:46:38 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C4EDB1FFA;
+        Wed, 28 Jun 2023 22:46:33 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 35T5jNc95016165, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 35T5jNc95016165
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Thu, 29 Jun 2023 13:45:23 +0800
+Received: from RTEXMBS05.realtek.com.tw (172.21.6.98) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Thu, 29 Jun 2023 13:45:24 +0800
+Received: from RTEXH36506.realtek.com.tw (172.21.6.27) by
+ RTEXMBS05.realtek.com.tw (172.21.6.98) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.34; Thu, 29 Jun 2023 13:45:23 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server id
+ 15.1.2507.17 via Frontend Transport; Thu, 29 Jun 2023 13:45:23 +0800
+From:   Stanley Chang <stanley_chang@realtek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Stanley Chang <stanley_chang@realtek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Ray Chi <raychi@google.com>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+Subject: [PATCH v6 1/5] usb: phy: add usb phy notify port status API
+Date:   Thu, 29 Jun 2023 13:45:09 +0800
+Message-ID: <20230629054523.7519-1-stanley_chang@realtek.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721s2-main: Enable support for
- SDR104 speed mode
-Content-Language: en-US
-To:     Nishanth Menon <nm@ti.com>, "Kumar, Udit" <u-kumar1@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <robh+dt@kernel.org>,
-        <kristo@kernel.org>, <vigneshr@ti.com>
-References: <20230412121415.860447-1-b-kapoor@ti.com>
- <7fe4adef-9be2-6dae-d53f-692f9775439c@ti.com>
- <20230628105911.rdpqwxuhshgaj2ik@kobold>
-From:   Bhavya Kapoor <b-kapoor@ti.com>
-In-Reply-To: <20230628105911.rdpqwxuhshgaj2ik@kobold>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-KSE-ServerInfo: RTEXMBS05.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+In Realtek SoC, the parameter of usb phy is designed to can dynamic
+tuning base on port status. Therefore, add a notify callback of phy
+driver when usb port status change.
 
-On 28/06/23 16:29, Nishanth Menon wrote:
-> On 13:50-20230628, Kumar, Udit wrote:
->> On 4/12/2023 5:44 PM, Bhavya Kapoor wrote:
->>> According to TRM for J721S2, SDR104 speed mode is supported by the SoC
->>> but its capabilities were masked in device tree. Remove sdhci-caps-mask
->>> to enable support for SDR104 speed mode for SD card in J721S2 SoC.
->>>
->>> [+] Refer to : section 12.3.6.1.1 MMCSD Features, in J721S2 TRM
->>> - https://www.ti.com/lit/zip/spruj28
->>>
->>> Fixes: b8545f9d3a54 ("arm64: dts: ti: Add initial support for J721S2 SoC")
->>> Signed-off-by: Bhavya Kapoor <b-kapoor@ti.com>
->>> ---
->>> Changelog v1->v2:
->>> 	- Modified Commit Message and Added Fixes tag
->>>
->>> Link to v1 : https://lore.kernel.org/all/20230404091245.336732-1-b-kapoor@ti.com/
->>>
->>>   arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi | 2 --
->>>   1 file changed, 2 deletions(-)
->>>
->>> diff --git a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> index 8915132efcc1..95c6151ed10c 100644
->>> --- a/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> +++ b/arch/arm64/boot/dts/ti/k3-j721s2-main.dtsi
->>> @@ -400,8 +400,6 @@ main_sdhci1: mmc@4fb0000 {
->>>   		ti,clkbuf-sel = <0x7>;
->>>   		ti,trm-icp = <0x8>;
->>>   		dma-coherent;
->>> -		/* Masking support for SDR104 capability */
->>> -		sdhci-caps-mask = <0x00000003 0x00000000>;
->>
->> Reviewed-by: Udit Kumar <u-kumar1@ti.com>
-> Please confirm if there are any changes in *tap-delay attributes.
-There is no changes in tap delay values .
->>>   	};
->>>   	main_navss: bus@30000000 {
-> --
-> Regards,
-> Nishanth Menon
+The Realtek phy driver is designed to dynamically adjust disconnection
+level and calibrate phy parameters. When the device connected bit changes
+and when the disconnected bit changes, do port status change notification:
+
+Check if portstatus is USB_PORT_STAT_CONNECTION and portchange is
+USB_PORT_STAT_C_CONNECTION.
+1. The device is connected, the driver lowers the disconnection level and
+   calibrates the phy parameters.
+2. The device disconnects, the driver increases the disconnect level and
+   calibrates the phy parameters.
+
+When controller to notify connect that device is already ready. If we
+adjust the disconnection level in notify_connect, the disconnect may have
+been triggered at this stage. So we need to change that as early as
+possible. Therefore, we add an api to notify phy the port status changes.
+
+Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+---
+v5 to v6 change:
+    No change
+v4 to v5 change:
+    No change
+v3 to v4 change:
+    Fix the warning for checkpatch with strict.
+v2 to v3 change:
+    Add more comments about the reason for adding this api
+v1 to v2 change:
+    No change
+---
+ drivers/usb/core/hub.c  | 13 +++++++++++++
+ include/linux/usb/phy.h | 13 +++++++++++++
+ 2 files changed, 26 insertions(+)
+
+diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+index 97a0f8faea6e..10f3364c3fc2 100644
+--- a/drivers/usb/core/hub.c
++++ b/drivers/usb/core/hub.c
+@@ -614,6 +614,19 @@ static int hub_ext_port_status(struct usb_hub *hub, int port1, int type,
+ 		ret = 0;
+ 	}
+ 	mutex_unlock(&hub->status_mutex);
++
++	if (!ret) {
++		struct usb_device *hdev = hub->hdev;
++
++		if (hdev && !hdev->parent) {
++			struct usb_hcd *hcd = bus_to_hcd(hdev->bus);
++
++			if (hcd->usb_phy)
++				usb_phy_notify_port_status(hcd->usb_phy,
++							   port1 - 1, *status, *change);
++		}
++	}
++
+ 	return ret;
+ }
+ 
+diff --git a/include/linux/usb/phy.h b/include/linux/usb/phy.h
+index e4de6bc1f69b..b513749582d7 100644
+--- a/include/linux/usb/phy.h
++++ b/include/linux/usb/phy.h
+@@ -144,6 +144,10 @@ struct usb_phy {
+ 	 */
+ 	int	(*set_wakeup)(struct usb_phy *x, bool enabled);
+ 
++	/* notify phy port status change */
++	int	(*notify_port_status)(struct usb_phy *x, int port,
++				      u16 portstatus, u16 portchange);
++
+ 	/* notify phy connect status change */
+ 	int	(*notify_connect)(struct usb_phy *x,
+ 			enum usb_device_speed speed);
+@@ -316,6 +320,15 @@ usb_phy_set_wakeup(struct usb_phy *x, bool enabled)
+ 		return 0;
+ }
+ 
++static inline int
++usb_phy_notify_port_status(struct usb_phy *x, int port, u16 portstatus, u16 portchange)
++{
++	if (x && x->notify_port_status)
++		return x->notify_port_status(x, port, portstatus, portchange);
++	else
++		return 0;
++}
++
+ static inline int
+ usb_phy_notify_connect(struct usb_phy *x, enum usb_device_speed speed)
+ {
+-- 
+2.34.1
+
