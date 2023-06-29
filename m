@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B374B7427BA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 15:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEEA774284D
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 16:29:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231208AbjF2NxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 09:53:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49668 "EHLO
+        id S231132AbjF2O3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 10:29:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230466AbjF2NxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 09:53:12 -0400
-Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B31633588
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 06:53:11 -0700 (PDT)
-Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-311394406d0so675892f8f.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 06:53:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1688046790; x=1690638790;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=deXO6fUjQ/I1CcOjtw/6ftLQJ+2W+4iNuI5l6xeu1MY=;
-        b=R3X+tNcWmh90c7FQO2IFEUfn3dY7XU/IHZ8m0K4m8FncWd17IOSWpZkcdQ/U4hooaD
-         cgGmeTTrRr2OrRfKuTs1sHB+4cNZN5NqDhyzsmfk4Zxjjb56L51k//kPcbMmsSj01LRu
-         D2R89DHBjJKgxDL6HCLJv3XKtZ/Twswg5Y7/iTwtbaAFODUrne1G0IHI8OdIxb5kchDd
-         GRDkla/ZEuvPWSXTReK24119T8u8/ZPQYsYaoOtebqXT2a10XTEQ6uJ1S8wF2Oj08XDI
-         06o58qwmThSFm8Zs1nzZTznOXaj9hIS1yUsdD8NKey0rq7eFGm833c2UCm9yBnmFXmlU
-         LBzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688046790; x=1690638790;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=deXO6fUjQ/I1CcOjtw/6ftLQJ+2W+4iNuI5l6xeu1MY=;
-        b=CrKy6RNZHe9JNyUAOTrxvLLusMATolQ3NodUv6iXGKt2IzvU2ZJFJaq0JKu6kLF+cy
-         ADtt2VpW1tYm7xtfDlInS8313aqSXpUHj99XGGtiVPKFLmn2bT0dAcB4vwW0bSAADGkS
-         nH8lZcsY6nSX77C223isMcNdFpHmIEP2xCH9eJb0D5ooK3drRrymDHqBYGvpy6bat1I5
-         67sJ8fD4xwUpOTPwzLnT2u4P2BJmMeh3oSodPsr+vIdA3jPk6yAPJCoqVFsjwuc/3qsK
-         dAtWKEHZ/2qmy3RGnrOJ7tKLgfCn5dgpwv6vXTk2ZKYiVVCYIyYG1Xs9xRCirlguCHB8
-         NZsw==
-X-Gm-Message-State: AC+VfDxJJyFwfGQssyCNaoErPPiELukdUYXlA21rkqRzDzq0ueB1wCfa
-        wQbIP/QHLyeHnKaENV6u0tmfnA==
-X-Google-Smtp-Source: ACHHUZ7FopTsScqJSZJdQm5B0JeBmJRowx9BBtyn/tckLRY0Q6eU6yJYdVMGnFQeUUk6i7smW5PvUA==
-X-Received: by 2002:a5d:564e:0:b0:313:f241:f198 with SMTP id j14-20020a5d564e000000b00313f241f198mr8536457wrw.8.1688046790109;
-        Thu, 29 Jun 2023 06:53:10 -0700 (PDT)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id b7-20020a5d45c7000000b003141a3c4353sm1340835wrs.30.2023.06.29.06.53.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jun 2023 06:53:09 -0700 (PDT)
-Date:   Thu, 29 Jun 2023 15:53:08 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     palmer@dabbelt.com, conor@kernel.org,
+        with ESMTP id S230476AbjF2O3d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 10:29:33 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0F9B1BCC;
+        Thu, 29 Jun 2023 07:29:32 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5EC3261567;
+        Thu, 29 Jun 2023 14:29:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AF314C433C8;
+        Thu, 29 Jun 2023 14:29:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688048971;
+        bh=8JR/CItlrlQ0WqXRlW0E1yvLOIt6OvzL+5y4jKGIuYg=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pDOS2el9UoNYVZ350IIkDR2ADV9uSmaLE1hmlkn/+A4QGbJN+FI0dIKFXzI4WE9XN
+         1mcNtZQRj32Kp+xgWEgkyKohlH/QjW6q4wyGeGwzhKNEpfZJisCf/SSSVLAjD8klTJ
+         IiNqI4DyJjVf4ZVMQzckCJe3BfgIP5sSYOZuXiTPZWI7TyzFz4retExRl3m0UIXIj2
+         4+/1s/q4L54senPb4mgQbI4rEDfOINpMoAWrVyLqeyAOlimVJUFw7+XREu62vDc00T
+         wKsK0UPA/HSYGZF6o5tExCDd6AzQo9+5IGABLCM6LqwNpGka5qd51qAloAaQqfOoWR
+         1jmYl2lyOVraw==
+Received: from johan by xi.lan with local (Exim 4.94.2)
+        (envelope-from <johan@kernel.org>)
+        id 1qEseM-0006qy-FB; Thu, 29 Jun 2023 16:29:35 +0200
+Date:   Thu, 29 Jun 2023 16:29:34 +0200
+From:   Johan Hovold <johan@kernel.org>
+To:     Patrick Wildt <patrick@blueri.se>
+Cc:     Manivannan Sadhasivam <mani@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Johan Hovold <johan+linaro@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v2 10/10] RISC-V: provide a Kconfig option to disable
- parsing "riscv,isa"
-Message-ID: <20230629-11c59410a48bba2c00bb2433@orel>
-References: <20230629-rebuttal-vagueness-a699deb7c7b3@wendy>
- <20230629-resilient-grievance-d782163b09d6@wendy>
- <20230629-a80f112e6ed4158080867694@orel>
- <20230629-deceit-macarena-2a744ac70148@wendy>
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Mark Kettenis <kettenis@openbsd.org>
+Subject: Re: [PATCH] arm64: dts: qcom: sc8280xp-pmics: add explicit rtc
+ interrupt parent
+Message-ID: <ZJ2VTjm-JaGfskl5@hovoldconsulting.com>
+References: <20230627085306.6033-1-johan+linaro@kernel.org>
+ <20230627132406.GA5490@thinkpad>
+ <ZJr_5JIqWSGq-E-T@hovoldconsulting.com>
+ <20230628052557.GB20477@thinkpad>
+ <ZJvXZDBGBSQfeBdh@hovoldconsulting.com>
+ <ZJvv_bcum7nhrgrO@mone.fritz.box>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230629-deceit-macarena-2a744ac70148@wendy>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <ZJvv_bcum7nhrgrO@mone.fritz.box>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,72 +72,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 29, 2023 at 12:39:51PM +0100, Conor Dooley wrote:
-> On Thu, Jun 29, 2023 at 11:31:33AM +0200, Andrew Jones wrote:
-> > On Thu, Jun 29, 2023 at 09:28:56AM +0100, Conor Dooley wrote:
-> > > As it says on the tin, provide a Kconfig option to disabling parsing the
-> > > "riscv,isa" devicetree property. Hide the option behind NONPORTABLE so
-> > > that only those willing to keep the pieces enable it, and make sure the
-> > > default kernel contains the fallback code.
-> > > 
-> > > Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
-> > > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> > > ---
-> > >  arch/riscv/Kconfig             | 16 ++++++++++++++++
-> > >  arch/riscv/kernel/cpu.c        |  3 +++
-> > >  arch/riscv/kernel/cpufeature.c |  2 +-
-> > >  3 files changed, 20 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> > > index 1d39efe2b940..0e1909ac5947 100644
-> > > --- a/arch/riscv/Kconfig
-> > > +++ b/arch/riscv/Kconfig
-> > > @@ -291,6 +291,22 @@ config NONPORTABLE
-> > >  
-> > >  	  If unsure, say N.
-> > >  
-> > > +config NO_RISCV_ISA_FALLBACK
-> > > +	bool "Permit falling back to parsing riscv,isa for extension support"
-> > > +	depends on NONPORTABLE
-> > > +	help
-> > > +	  Parsing the "riscv,isa" devicetree property has been deprecated and
-> > > +	  replaced by a list of explicitly defined strings. For compatibility
-> > > +	  with existing platforms, the kernel will fall back to parsing the
-> > > +	  "riscv,isa" property if the replacements are not found.
-> > > +
-> > > +	  Selecting Y here will result in a kernel without this fallback, and
-> > > +	  will not work on platforms where the devicetree does not contain the
-> > > +	  replacement 	  properties of "riscv,isa-base" and
-> >                      ^ spacing issue
+On Wed, Jun 28, 2023 at 10:31:57AM +0200, Patrick Wildt wrote:
+> On Wed, Jun 28, 2023 at 08:47:00AM +0200, Johan Hovold wrote:
+
+> > My point is that it's apparently not just Linux as most devicetrees work
+> > this way at least for the root domain. And then it may be time to update
+> > the spec in some way.
 > 
-> Huh, weird. Given the tab followed by spaces, it must have snuck in
-> during reflow of the text after some rewording.
-> Wonder how I missed it, given that...
-> 
-> > Should we also have a kernel command line option, 'isa_fallback', where
-> > without this config the command line option is not necessary to fallback,
-> > but, with this config, no fallback will be done unless 'isa_fallback' is
-> > provided?
-> 
-> I don't know, maybe I have the wrong end of the stick but it feels a bit
-> premature for something that may never not be hidden behind NONPORTABLE?
-> Perhaps that could be left for a point in time where the default value
-> of the symbol changes, or the dependency on NONPORTABLE is removed?
-> 
+> I'm not sure about the point you're trying to make.  In OpenBSD's
+> implementation, which I think complies with the spec, for non-extended
+> interrupts we check the node's (or all its parents') interrupt-parent
+> property.
 
-With the command line option, we could consider dropping NONPORTABLE (but
-still default off this config). What I'm thinking is that if we want to
-encourage the adoption of the new format, then there should be a bit of
-pain when it's not used, but not enough pain to risk rebellion. So,
+My point is that that is not compliant with the spec either which only
+says that in case 'interrupt-parent' is missing in a node for an
+interrupt-generating device, then the interrupt parent is assumed to be
+the devicetree parent (which must then also be an interrupt controller
+or nexus).
 
- * defconfig builds will silently/painlessly fallback
+There is no provision for any recursive lookup in the spec currently.
 
- * builds that want to encourage adoption enable this config and will
-   fail to boot when they don't get what they want and don't have the
-   command line option
+> Technically the SPMI arbiter could define an interrupt-parent that
+> points to itself, because it's using interrupts-extended anyway to
+> point to the PDC.  But that would feel a bit stupid and not really
+> correct.  Alternatively each child node could have interrupt-parent.
 
- * users still working through the growing pains can manage when
-   the boot fails, and when it doesn't, with the command line
+I agree that that would not really be correct (e.g. as 'interrupt' and
+'interrupt-extended' are supposed to be mutually exclusive).
 
-Thanks,
-drew
+> That said, I understand the point that it might make sense to amend
+> the spec so that if a parent node is an interrupt-controller, that's
+> most probably interrupt parent,
+
+This bit is already in the spec.
+
+> unless an interrupt-parent property
+> shows up before.
+
+But this seems to suggest that you really meant to say "ancestor" in the
+first clause?
+
+> I would like to add that OpenBSD supports a number of SoCs for quite
+> some years and this is the first time I've hit an issue with interrupts
+> that were not designed in a way for the current spec to work.  That said
+> we obviously support quite fewer SoCs/boards in total compared to Linux.
+
+So OpenBSD apparently implements something similar to Linux (recursive
+lookup of 'interrupt-parent' properties), but not the part about
+stopping the recursion when hitting an interrupt controller.
+
+Neither part appears to be spec compliant, but you only care about
+updating DTs that do not comply to the latter bit. That seems reasonable
+and should importantly not require adding tens of thousands of
+'interrupt-parent' properties to the DTs in mainline.
+
+Johan
