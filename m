@@ -2,163 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58D24742295
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFB537422A2
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:51:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231963AbjF2Iso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 04:48:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53840 "EHLO
+        id S229865AbjF2Ivd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 04:51:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57082 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229873AbjF2IsP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:48:15 -0400
-Received: from mail-lf1-x129.google.com (mail-lf1-x129.google.com [IPv6:2a00:1450:4864:20::129])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2716944BF
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 01:45:28 -0700 (PDT)
-Received: by mail-lf1-x129.google.com with SMTP id 2adb3069b0e04-4fafe87c6fbso635688e87.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 01:45:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688028326; x=1690620326;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=F9c/Sgnntrd4PLPE97fe1hO07h+vpbHzWVDhlUf4NLE=;
-        b=o6Bt7kUqI6c73rmx2IZbT+oK/jw8EAUelXUlO2gDsHwXvf3MjL8oFp/n6JFHZwzoqK
-         BLsDSI2zlFrU8fPPM/51ElJTnXqnPcjjc9A4mLveHt2EMunBe6OLmZBYXQ9pA4x693a1
-         Lk1p5pIhKP0EzqiYbD3H05AuDt4thQpGRLJWU74lm3W1IJCHeawEUD99NrSgpYadEQnR
-         DlKilvUXNiZUkO4uP4em1uAl3sXDwQddNr9VkQy+/7o6rnHmYOBC4nTqbfeOCHqoYsLn
-         IXjKWDSSU8CI2lWcsqsusVusZm/BQVmM0yVf6Od/n49P0/KXFoZjnqrpNeTs7M9i6+gd
-         HtvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688028326; x=1690620326;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F9c/Sgnntrd4PLPE97fe1hO07h+vpbHzWVDhlUf4NLE=;
-        b=U4LPPgp/wrlHvp41U9tswNVCtvUKn88hZNGXzSsLjpLEJ7pFpKPBdqzvvZaQlN/o2d
-         I4QSVZMzR84f2azDLHJkJpkPj+9TCpVkbobUL8lxR5pg5dvF5sEnsliJGc5a4hx//yD/
-         b13UQ01C10a1UFiAfm4zZAwKHWASeIP3nptL867vaDEuG4TAJE6/vQxsoX8Eg+GQvt94
-         9Bwm+nLXzgWsxH3fqjkP1IbstoKtazKfFx6GNuO3VzTCkJOFQUvIPY3P4LU0LL0EZqs7
-         nzGuJWyrbWaEW1ov5hLAFGnyMyTlg99esd3UKApQwOUSpF1M8wZCkGsIOMWJDfGsnPlr
-         v1Tg==
-X-Gm-Message-State: ABy/qLarpXPk6TMnm4pINPOOVbzw/Ht4HdayUkLOXyASCnRRQuNqK0M6
-        o3z9HV1zKuNCPAbfK3ywC4wXPw==
-X-Google-Smtp-Source: APBJJlH8LQwEMkOFJdbdn8IrGr/8WOtmsjrUEho66Yg7p5fPZKa4NzYigSxuH+FneC10rjP/rXqLgA==
-X-Received: by 2002:a05:6512:2310:b0:4fb:9a1e:1262 with SMTP id o16-20020a056512231000b004fb9a1e1262mr1202033lfu.65.1688028326533;
-        Thu, 29 Jun 2023 01:45:26 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id b7-20020a056512024700b004f85d80ca64sm2233550lfo.221.2023.06.29.01.45.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jun 2023 01:45:26 -0700 (PDT)
-Message-ID: <f274247c-f45b-8a48-92f2-cff4597aff15@linaro.org>
-Date:   Thu, 29 Jun 2023 11:45:25 +0300
+        with ESMTP id S229632AbjF2IvH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:51:07 -0400
+Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86DF03A99;
+        Thu, 29 Jun 2023 01:49:51 -0700 (PDT)
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35T8dVjv030703;
+        Thu, 29 Jun 2023 10:49:34 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=selector1;
+ bh=l8RvMrlTLa90NRnYyns4B2PhCeunLSOJB7Ln5p2pTI8=;
+ b=31NmLm5g1wkLE5clZjqZPBAXuPOu6PbXd3/Kn1OmJWvox2Jru9EGgbnidlqVFv0ZzR4u
+ 2uGQwbSDPdHUuNhZ2JFQ003kNncyCpCpZSjUauJ2TNzzaKGFNNixlZqE+JdDeMpvY+zb
+ ZAJmxWFIC7fssS7ReQB93v12tSvWNWzPj+AQe0ShEFQ7F7hmmze/Y4i+eXormYMNDb/V
+ 0HlMLZDYd982HAcakcCleNM6AFqHM0C0c4XL+ElwRS5eTIakwQE9hmHF50VlpwnplfKS
+ 1F7W5I0+C9wovxCDMPh/Yq8mjxkJyCvytWWucsmzKAMGckd7jeu3NcrsEpArFUIJ0h4q mg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rh6mxr23y-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 29 Jun 2023 10:49:34 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 308F910005F;
+        Thu, 29 Jun 2023 10:49:33 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node2.st.com [10.75.129.70])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2525821863D;
+        Thu, 29 Jun 2023 10:49:33 +0200 (CEST)
+Received: from [10.129.178.187] (10.129.178.187) by SHFDAG1NODE2.st.com
+ (10.75.129.70) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Thu, 29 Jun
+ 2023 10:49:32 +0200
+Message-ID: <25fd302e-4478-c7ba-f361-5ce05bb9e106@foss.st.com>
+Date:   Thu, 29 Jun 2023 10:49:32 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.11.0
-Subject: Re: [PATCH 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
-Content-Language: en-GB
-To:     Anjelique Melendez <quic_amelende@quicinc.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        u.kleine-koenig@pengutronix.de, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
-References: <20230621185949.2068-1-quic_amelende@quicinc.com>
- <20230621185949.2068-2-quic_amelende@quicinc.com>
- <20230626135857.GA3118929-robh@kernel.org>
- <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v5 1/3] ARM: dts: stm32: add ltdc support on stm32f746 MCU
+To:     Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        <linux-kernel@vger.kernel.org>
+CC:     <michael@amarulasolutions.com>,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>
+References: <20230629083726.84910-1-dario.binacchi@amarulasolutions.com>
+ <20230629083726.84910-2-dario.binacchi@amarulasolutions.com>
+Content-Language: en-US
+From:   Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>
+In-Reply-To: <20230629083726.84910-2-dario.binacchi@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.129.178.187]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE2.st.com
+ (10.75.129.70)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-29_01,2023-06-27_01,2023-05-22_02
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2023 04:19, Anjelique Melendez wrote:
-> 
-> 
-> On 6/26/2023 6:58 AM, Rob Herring wrote:
->> On Wed, Jun 21, 2023 at 11:59:45AM -0700, Anjelique Melendez wrote:
->>> Add binding for the Qualcomm Programmable Boot Sequencer device.
->>>
->>> Signed-off-by: Anjelique Melendez <quic_amelende@quicinc.com>
->>> ---
->>>   .../bindings/soc/qcom/qcom-pbs.yaml           | 41 +++++++++++++++++++
->>>   1 file changed, 41 insertions(+)
->>>   create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml
->>> new file mode 100644
->>> index 000000000000..0a89c334f95c
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/soc/qcom/qcom-pbs.yaml
->>> @@ -0,0 +1,41 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/soc/qcom/qcom-pbs.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Qualcomm Technologies, Inc. PBS
->>> +
->>> +maintainers:
->>> +  - Anjelique Melendez <quic_amelende@quicinc.com>
->>> +
->>> +description: |
->>> +  Qualcomm PBS (programmable boot sequencer) supports triggering sequences
->>> +  for clients upon request.
->>> +
->>> +properties:
->>> +  compatible:
->>> +    const: qcom,pbs
->>> +
->>> +  reg:
->>> +    description: |
->>> +      Base address of the PBS peripheral.
->>> +    maxItems: 1
->>> +
->>> +required:
->>> + - compatible
->>> + - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    pmic {
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +
->>> +      qcom,pbs@7400 {
->>> +        compatible = "qcom,pbs";
->>> +        reg = <0x7400>;
->>> +      };
->>
->> Why do you need a child node for this? Is there more than 1 instance in
->> a PMIC? Every sub-function of a PMIC doesn't have to have a DT node.
->>
-> 
-> We currently have another downstream driver (which is planned to get upstreamed)
-> which also needs a handle to a pbs device in order to properly trigger events.
+Hi,
 
-Does it have to be a separate driver? Or is it a part of the LPG driver, 
-just being artificially split away?
 
-> 
->> Rob
-> 
-> 
-> 
+On 6/29/23 10:37, Dario Binacchi wrote:
+> Add LTDC (Lcd-tft Display Controller) support.
+>
+> Signed-off-by: Dario Binacchi <dario.binacchi@amarulasolutions.com>
+> ---
+>
+> (no changes since v1)
+>
+>  arch/arm/boot/dts/stm32f746.dtsi | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 
--- 
-With best wishes
-Dmitry
+Reviewed-by: Raphaël Gallais-Pou <raphael.gallais-pou@foss.st.com>
 
