@@ -2,76 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C428B74234F
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 11:32:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 951387423C3
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 12:15:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231482AbjF2JcO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 05:32:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39544 "EHLO
+        id S230222AbjF2KPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 06:15:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49652 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232102AbjF2Jbn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 05:31:43 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8665810C9
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 02:31:36 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fafe87c6fbso692655e87.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 02:31:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1688031095; x=1690623095;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=ajD4Xlmgnwv8O+jtu7HYaXxwVa4EBrrrsttRRo2IsCo=;
-        b=S6CoM+QL+IrLFXgIDSFYfgP3xref1Lw3zrAa+ruoTEOTjEaeaWuoTi/yED9tjbOX3e
-         WPy4uhNOuQ/FNXaRj8aD0G3pH+8qlO8D4BxuYAa4lGpwdcf6eftfPCG2ANJ7sdFMv4kV
-         NjVwHbhrtAJVyuyZ6UtzcDQEYkrtRwFgHZJUI8GaBcf3os1KN5dYL6QD2xr5mcK6mkY/
-         SYXwzjIiHG7dgcHXiVmE0eqmwaXbKdm9KjwnCZS+otS/r8deZFL7rxvIoPhgnLRIdzhE
-         z/1HTz7KLstyepnVUfFEUHJ39fR2O1TkMdm/bfO0XjWzVpm1xIjslxTdUBlh/u1r2iC0
-         Z2oA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688031095; x=1690623095;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=ajD4Xlmgnwv8O+jtu7HYaXxwVa4EBrrrsttRRo2IsCo=;
-        b=WoijRld7LTyY0pH6eZ1gXBA4jDXACiozeeI6uL4vv1fS2sC9SfGjxywdWSgruoLdgW
-         A/nSDjHtt95osju3FaJYoFKtd+vG69oV7+mBy0pFJsybs1DNtK+ZMukUZ+hXrJBQzfqU
-         hp8LOjgw3TSy7yTc6YAGibwI4yedZ5SamG/pHiVJ4my2MDXdt7Odu1s5FTIjQI3T3A/Z
-         aKvXX9JcAS0eCYq76qUgSpbQwjvr8/6DMohGJuVIj+RSen4g0ksxYdxHkGLC3d6MiBIY
-         9RCK+9J5h73dz/OJJSTQSiq4BvN+rsTS2f8xUQgDqV/t32JjoB4bqbY5Ihorj6aalpOj
-         EnmA==
-X-Gm-Message-State: ABy/qLYHV1T9BjP4P/BAURQ8vzR6IlmTKrw2MJgkN3yB4/bIIA47K5Py
-        5uI4voQwmd89UeJe6Y03R7vMBw==
-X-Google-Smtp-Source: APBJJlEt3kWDaGO7D0zrrowbl1KaWdBGX6mWiQYWM1fItOdFeb3Rv6MrTumN9H7oxc+mij9WFVhxNA==
-X-Received: by 2002:a05:6512:2355:b0:4fb:97d9:382b with SMTP id p21-20020a056512235500b004fb97d9382bmr1730502lfu.60.1688031094662;
-        Thu, 29 Jun 2023 02:31:34 -0700 (PDT)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id m6-20020a7bce06000000b003f733c1129fsm7205674wmc.33.2023.06.29.02.31.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jun 2023 02:31:34 -0700 (PDT)
-Date:   Thu, 29 Jun 2023 11:31:33 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     palmer@dabbelt.com, conor@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v2 10/10] RISC-V: provide a Kconfig option to disable
- parsing "riscv,isa"
-Message-ID: <20230629-a80f112e6ed4158080867694@orel>
-References: <20230629-rebuttal-vagueness-a699deb7c7b3@wendy>
- <20230629-resilient-grievance-d782163b09d6@wendy>
+        with ESMTP id S232033AbjF2KOe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 06:14:34 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E14743C14;
+        Thu, 29 Jun 2023 03:11:30 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6C0BA61508;
+        Thu, 29 Jun 2023 10:11:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 71EACC433C8;
+        Thu, 29 Jun 2023 10:11:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688033489;
+        bh=7QmvM1Ky6hyRub5lLoveiNRl1PkeunqIVXKu1oYNN5U=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mtZqsGNK+DgvnRm8fscT4hbHI2v/AUqGUlG1cuN2mjP0rZKvE2LrZRmgyv7PlTGuD
+         cSZFRWTtytdvIsPSWmaufVFvW+vb3fPgcf6gfxovk08W3zROucmqbUjnSmOaS+5hBg
+         TKom+2aMfhRgnePIZAsD2/a+IYIC8KvFX4Ie0naZukKd4mhqY9UFMw67aM6Fwb1ilG
+         zOOpi6G8RnTml8MC6dydSr42HoAttiZQp480bbqh7WOD4aE6QoLW4HbtIrlFknujXh
+         HMa4LLT2X40B4J/RyyB+RuSW233o9w3RDGoSH9x/VOC7dfmvKkfHSbOWfbq8PXaEoB
+         KMlAFB1KVxGnA==
+Date:   Thu, 29 Jun 2023 11:11:23 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     David Laight <David.Laight@aculab.com>
+Cc:     'Sameer Pujar' <spujar@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "perex@perex.cz" <perex@perex.cz>,
+        "tiwai@suse.com" <tiwai@suse.com>,
+        "jonathanh@nvidia.com" <jonathanh@nvidia.com>,
+        "mkumard@nvidia.com" <mkumard@nvidia.com>,
+        "sheetal@nvidia.com" <sheetal@nvidia.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "stable@vger.kernel.org" <stable@vger.kernel.org>,
+        Oder Chiou <oder_chiou@realtek.com>
+Subject: Re: [PATCH v2 3/5] ASoC: rt5640: Fix sleep in atomic context
+Message-ID: <550e5c8f-0bfb-4ffc-9a43-1ecb153c6a02@sirena.org.uk>
+References: <1688015537-31682-1-git-send-email-spujar@nvidia.com>
+ <1688015537-31682-4-git-send-email-spujar@nvidia.com>
+ <bae9f041867e4625ad293d284566bb4f@AcuMS.aculab.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+aXQRe9dUQ7rrBkZ"
 Content-Disposition: inline
-In-Reply-To: <20230629-resilient-grievance-d782163b09d6@wendy>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+In-Reply-To: <bae9f041867e4625ad293d284566bb4f@AcuMS.aculab.com>
+X-Cookie: Surprise due today.  Also the rent.
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -80,84 +72,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 29, 2023 at 09:28:56AM +0100, Conor Dooley wrote:
-> As it says on the tin, provide a Kconfig option to disabling parsing the
-> "riscv,isa" devicetree property. Hide the option behind NONPORTABLE so
-> that only those willing to keep the pieces enable it, and make sure the
-> default kernel contains the fallback code.
-> 
-> Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->  arch/riscv/Kconfig             | 16 ++++++++++++++++
->  arch/riscv/kernel/cpu.c        |  3 +++
->  arch/riscv/kernel/cpufeature.c |  2 +-
->  3 files changed, 20 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-> index 1d39efe2b940..0e1909ac5947 100644
-> --- a/arch/riscv/Kconfig
-> +++ b/arch/riscv/Kconfig
-> @@ -291,6 +291,22 @@ config NONPORTABLE
->  
->  	  If unsure, say N.
->  
-> +config NO_RISCV_ISA_FALLBACK
-> +	bool "Permit falling back to parsing riscv,isa for extension support"
-> +	depends on NONPORTABLE
-> +	help
-> +	  Parsing the "riscv,isa" devicetree property has been deprecated and
-> +	  replaced by a list of explicitly defined strings. For compatibility
-> +	  with existing platforms, the kernel will fall back to parsing the
-> +	  "riscv,isa" property if the replacements are not found.
-> +
-> +	  Selecting Y here will result in a kernel without this fallback, and
-> +	  will not work on platforms where the devicetree does not contain the
-> +	  replacement 	  properties of "riscv,isa-base" and
-                     ^ spacing issue
 
-> +	  "riscv,isa-extensions". Please see the dt-binding, located at
-> +	  Documentation/devicetree/bindings/riscv/extensions.yaml for details
-> +	  on the replacement properties.
-> +
->  choice
->  	prompt "Base ISA"
->  	default ARCH_RV64I
-> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> index 9a4f4a23afcd..86a1d98b8b3b 100644
-> --- a/arch/riscv/kernel/cpu.c
-> +++ b/arch/riscv/kernel/cpu.c
-> @@ -81,6 +81,9 @@ int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *har
->  	return 0;
->  
->  old_interface:
-> +	if (IS_ENABLED(CONFIG_NO_RISCV_ISA_FALLBACK))
-> +		return -ENODEV;
-> +
->  	if (of_property_read_string(node, "riscv,isa", &isa)) {
->  		pr_warn("CPU with hartid=%lu has no \"riscv,isa-base\" or \"riscv,isa\" property\n",
->  			*hart);
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index 2c4503fa984f..f6fb18d2af84 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -490,7 +490,7 @@ void __init riscv_fill_hwcap(void)
->  	} else {
->  		int ret = riscv_fill_hwcap_from_ext_list(isa2hwcap);
->  
-> -		if (ret) {
-> +		if (ret && !IS_ENABLED(CONFIG_NO_RISCV_ISA_FALLBACK)) {
->  			pr_info("Falling back to deprecated \"riscv,isa\"\n");
->  			riscv_fill_hwcap_from_isa_string(isa2hwcap);
->  		}
-> -- 
-> 2.40.1
->
+--+aXQRe9dUQ7rrBkZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Should we also have a kernel command line option, 'isa_fallback', where
-without this config the command line option is not necessary to fallback,
-but, with this config, no fallback will be done unless 'isa_fallback' is
-provided?
+On Thu, Jun 29, 2023 at 08:38:09AM +0000, David Laight wrote:
+> From: Sameer Pujar
 
-Thanks,
-drew
+> > Following prints are observed while testing audio on Jetson AGX Orin wh=
+ich
+> > has onboard RT5640 audio codec:
+> >=20
+> >   BUG: sleeping function called from invalid context at kernel/workqueu=
+e.c:3027
+> >   in_atomic(): 1, irqs_disabled(): 128, non_block: 0, pid: 0, name: swa=
+pper/0
+
+> My 'gut feel' is that this will just move the problem elsewhere.
+
+> If the ISR is responsible for adding audio buffers (etc) then it is
+> also not unlikely that the scheduling delays in running a threaded ISR
+> will cause audio glitches if the system is busy.
+
+What makes you think this is anything to do with audio glitches?  The
+bug is literally what is described, it is not valid to sleep in atomic
+contexts and if we ever actually try things are likely to go badly.
+
+--+aXQRe9dUQ7rrBkZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSdWMoACgkQJNaLcl1U
+h9AtaQf8CxjCsdB1iRGBoRv5utkgYwI0VNyGiPs7GW70GzZc456Z381WvE94jU01
+60leed9uBoJP3hs88KzS/G9Tg4StZFdmHQxVkjy78ArKLRUCPl4rMqc2bTODvWSf
+aYtTcgMRZZjgoY+mDHpBSFpPFJqB1DQs2CICy8BvoyOJDq05ghN8DU7dGQ+pl415
+QaHrjbbOJkj7d+e2PftSuXOHfcF7Y0mj5E8yFjWQn1WwVfMCAhbRJvhYtpbzry6X
+UBWlM5GC6Hi1rx8zvMiKx6LemyxK924I92k8HiIa+75Rq5jM8JxldvYj+FuWlgIE
+8BDY4GdfkgUBVHTn4ZJYjy2mb3nPEg==
+=eZLP
+-----END PGP SIGNATURE-----
+
+--+aXQRe9dUQ7rrBkZ--
