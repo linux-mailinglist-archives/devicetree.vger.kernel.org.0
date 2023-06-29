@@ -2,360 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C2C957420C4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 09:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3F027420EA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 09:25:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231787AbjF2HKt convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Jun 2023 03:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48852 "EHLO
+        id S231977AbjF2HZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 03:25:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231709AbjF2HKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 03:10:48 -0400
-Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94CA02110;
-        Thu, 29 Jun 2023 00:10:46 -0700 (PDT)
-Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-bd61dd9a346so353251276.2;
-        Thu, 29 Jun 2023 00:10:46 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688022645; x=1690614645;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=Tn9NNmjuel7XZ5JFuKy8oA1aMH0qpUgNaaolh4a54YM=;
-        b=UN3/VbrmzgPIUWLsqQsWMKZrnVsD4s4V8ad3AcNTTsgNXzYAxVBAtEgltV5sxClOqd
-         +3RpkXAYdkI26Xy+oUi7QpYunA1zLPGMXI40BmnpZSCDHKrJjR6C0vUv0D8fKzG0O4d/
-         4TEU9iwfA/JxrVSPW0mfsyJKgWCKfqpLOhq1hELj5augeIxecKx/WS3/9uyV5eBqeBUS
-         HRyoePib3Abr7Bv37aD0Us52CO4X1hWc7dLYA3cfalWirGX2Uy9ydI6wQ0h7hqCYkRmo
-         IAXMlHt/4CTLsfuFStyagzi8Kc02cq7X4L9YY88JHWRSP5RmdknaGt0aiUFCTDn2FoKe
-         J8TA==
-X-Gm-Message-State: AC+VfDxSyP5+XgTZXtALFzGLdLAJ/4ECPM7FQdpfITNmhyIkGrsQHQ4D
-        zlWOxifMT0i/eoglCmwuD0r2kr5eMp1xQQ==
-X-Google-Smtp-Source: ACHHUZ4JoxtBfXTWL9qbf98s3fVi/5gTFO5VGfST86n8sZVx5cHKfu8/7Avsji6uDVVarB5aj8nCcA==
-X-Received: by 2002:a25:a287:0:b0:c1a:eb92:73d with SMTP id c7-20020a25a287000000b00c1aeb92073dmr11922620ybi.65.1688022645505;
-        Thu, 29 Jun 2023 00:10:45 -0700 (PDT)
-Received: from mail-yw1-f176.google.com (mail-yw1-f176.google.com. [209.85.128.176])
-        by smtp.gmail.com with ESMTPSA id x68-20020a25ce47000000b00b8f6ec5a955sm2422276ybe.49.2023.06.29.00.10.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jun 2023 00:10:45 -0700 (PDT)
-Received: by mail-yw1-f176.google.com with SMTP id 00721157ae682-57026f4bccaso3520787b3.2;
-        Thu, 29 Jun 2023 00:10:44 -0700 (PDT)
-X-Received: by 2002:a81:4fce:0:b0:565:e48d:32cf with SMTP id
- d197-20020a814fce000000b00565e48d32cfmr40124407ywb.7.1688022644631; Thu, 29
- Jun 2023 00:10:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230627091007.190958-1-tanure@linux.com> <20230627091007.190958-5-tanure@linux.com>
- <fd7e60d1-b99a-a425-42c9-db85236ba71e@amlogic.com>
-In-Reply-To: <fd7e60d1-b99a-a425-42c9-db85236ba71e@amlogic.com>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Thu, 29 Jun 2023 08:10:33 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+1q1nbE3HxA_xG5f6vwRBfvzcfBnXiFnEfsU7KuBkTHWA@mail.gmail.com>
-Message-ID: <CAJX_Q+1q1nbE3HxA_xG5f6vwRBfvzcfBnXiFnEfsU7KuBkTHWA@mail.gmail.com>
-Subject: Re: [PATCH v6 4/4] arm64: dts: amlogic-t7-a311d2-khadas-vim4: add
- initial device-tree
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232115AbjF2HZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 03:25:10 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E8C9E58;
+        Thu, 29 Jun 2023 00:25:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D5365614D9;
+        Thu, 29 Jun 2023 07:25:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC66BC433C0;
+        Thu, 29 Jun 2023 07:25:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688023508;
+        bh=DjGPmaicOQHgW2B1UVzAGqUY9g3dDTuRLVc78Aqh5sI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mzhjPaFGCqitPXcsjJBa7ewG2MrowqLK4Pn7QehP9MoRIHdKsLwzBIavjatsHlx6Q
+         TXR+2X01fpY86ujJAuRMjW8Nw5Pa//VGABKpDut/AeHsEW8ovuyciNXEiR/BzMYXnC
+         MbcXgE7UVXw2fwPPhWSQZ6iG5z3fT4qrNMLSnu3cu2U9HfB0ziq9nN4LBPFgF9klnk
+         stXPWjZL+cKAGWyXHSeBbB7NzfZj7LFC43yuI+3rhivd+mrFK6OXHIR33wiggMHCHG
+         5BI4B2irsuORvef9EudHjRpf2CndIy7xh09Vz5RsMjBmdnvqr7fps6lNwQlLVnQo9r
+         7YWsvfkjAxhpw==
+Date:   Thu, 29 Jun 2023 08:25:00 +0100
+From:   Lee Jones <lee@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        "Sahin, Okan" <Okan.Sahin@analog.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>, Nick <nick@khadas.com>,
-        Artem <art@khadas.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Caleb Connolly <caleb.connolly@linaro.org>,
+        Marcus Folkesson <marcus.folkesson@gmail.com>,
+        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
+Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
+ Support
+Message-ID: <20230629072500.GA2110266@google.com>
+References: <MN2PR03MB516860989BD8ED6AC9A767FBE755A@MN2PR03MB5168.namprd03.prod.outlook.com>
+ <20230621171315.GL10378@google.com>
+ <20230626175443.GA3446604-robh@kernel.org>
+ <20230627135615.GF10378@google.com>
+ <CAL_JsqL3T6pjnTFgFvbYMeATD6cjhc-Sm0vZW2cv5k+w9Oxjuw@mail.gmail.com>
+ <ZJry8QTka8m6ag/j@fedora>
+ <20230627163344.GG10378@google.com>
+ <CAL_Jsq+Z64tuMO8a2Y=2GrXZ8q0L4Z2avCiphsn0HOOC71Dzjg@mail.gmail.com>
+ <20230628134013.GH10378@google.com>
+ <472a4d86-3bfb-4c2b-a099-f1254dd01e24@sirena.org.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <472a4d86-3bfb-4c2b-a099-f1254dd01e24@sirena.org.uk>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 27, 2023 at 10:21 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->
->
->
-> On 2023/6/27 17:10, Lucas Tanure wrote:
-> > [ EXTERNAL EMAIL ]
-> >
-> > The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 SoC
-> > family, on a board with the same form factor as the VIM3 models.
-> >
-> > - 8GB LPDDR4X 2016MHz
-> > - 32GB eMMC 5.1 storage
-> > - 32MB SPI flash
-> > - 10/100/1000 Base-T Ethernet
-> > - AP6275S Wireless (802.11 a/b/g/n/ac/ax, BT5.1)
-> > - HDMI 2.1 video
-> > - HDMI Input
-> > - 1x USB 2.0 + 1x USB 3.0 ports
-> > - 1x USB-C (power) with USB 2.0 OTG
-> > - 3x LED's (1x red, 1x blue, 1x white)
-> > - 3x buttons (power, function, reset)
-> > - M2 socket with PCIe, USB, ADC & I2C
-> > - 40pin GPIO Header
-> > - 1x micro SD card slot
-> >
-> > Signed-off-by: Lucas Tanure <tanure@linux.com>
-> > ---
-> >   arch/arm64/boot/dts/amlogic/Makefile          |   1 +
-> >   .../amlogic/amlogic-t7-a311d2-khadas-vim4.dts |  52 ++++++
-> >   arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi   | 158 ++++++++++++++++++
-> >   3 files changed, 211 insertions(+)
-> >   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> >   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> >
-> > diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> > index cd1c5b04890a..166fec1e4229 100644
-> > --- a/arch/arm64/boot/dts/amlogic/Makefile
-> > +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> > @@ -1,4 +1,5 @@
-> >   # SPDX-License-Identifier: GPL-2.0
-> > +dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
-> >   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
-> >   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
-> >   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j110-rev-2.dtb
-> > diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> > new file mode 100644
-> > index 000000000000..5d7fb86a9738
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-khadas-vim4.dts
-> > @@ -0,0 +1,52 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (c) 2022 Wesion, Inc. All rights reserved.
-> > + */
-> > +
-> > +/dts-v1/;
-> > +
-> > +#include "amlogic-t7.dtsi"
-> > +
-> > +/ {
-> > +       model = "Khadas vim4";
-> > +       compatible = "khadas,vim4", "amlogic,a311d2", "amlogic,t7";
-> > +
-> > +       aliases {
-> > +               serial0 = &uart_A;
-> > +       };
-> > +
-> > +       memory@0 {
-> > +               device_type = "memory";
-> > +               reg = <0x0 0x0 0x2 0x0>; /* 8 GB */
-> > +       };
-> > +
-> > +       reserved-memory {
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               ranges;
-> > +
-> > +               /* 3 MiB reserved for ARM Trusted Firmware (BL31) */
-> > +               secmon_reserved: secmon@5000000 {
-> > +                       reg = <0x0 0x05000000 0x0 0x300000>;
-> > +                       no-map;
-> > +               };
-> > +
-> > +               /* 32 MiB reserved for ARM Trusted Firmware (BL32) */
-> > +               secmon_reserved_bl32: secmon@5300000 {
-> > +                       reg = <0x0 0x05300000 0x0 0x2000000>;
-> > +                       no-map;
-> > +               };
-> > +       };
-> > +
-> > +       xtal: xtal-clk {
-> > +               compatible = "fixed-clock";
-> > +               clock-frequency = <24000000>;
-> > +               clock-output-names = "xtal";
-> > +               #clock-cells = <0>;
-> > +       };
-> > +
-> > +};
-> > +
-> > +&uart_A {
-> > +       status = "okay";
-> > +};
-> > diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> > new file mode 100644
-> > index 000000000000..6f3971b4df99
-> > --- /dev/null
-> > +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7.dtsi
-> > @@ -0,0 +1,158 @@
-> > +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> > +/*
-> > + * Copyright (c) 2019 Amlogic, Inc. All rights reserved.
-> > + */
-> > +
-> > +#include <dt-bindings/interrupt-controller/arm-gic.h>
-> > +
-> > +/ {
-> > +       interrupt-parent = <&gic>;
-> > +       #address-cells = <2>;
-> > +       #size-cells = <2>;
-> > +
-> > +       cpus {
-> > +               #address-cells = <0x2>;
-> > +               #size-cells = <0x0>;
-> > +
-> > +               cpu-map {
-> > +                       cluster0 {
-> > +                               core0 {
-> > +                                       cpu = <&cpu100>;
-> > +                               };
-> > +                               core1 {
-> > +                                       cpu = <&cpu101>;
-> > +                               };
-> > +                               core2 {
-> > +                                       cpu = <&cpu102>;
-> > +                               };
-> > +                               core3 {
-> > +                                       cpu = <&cpu103>;
-> > +                               };
-> > +                       };
-> > +
-> > +                       cluster1 {
-> > +                               core0 {
-> > +                                       cpu = <&cpu0>;
-> > +                               };
-> > +                               core1 {
-> > +                                       cpu = <&cpu1>;
-> > +                               };
-> > +                               core2 {
-> > +                                       cpu = <&cpu2>;
-> > +                               };
-> > +                               core3 {
-> > +                                       cpu = <&cpu3>;
-> > +                               };
-> > +                       };
-> > +               };
-> > +
-> > +               cpu100: cpu@100 {
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a53";
-> > +                       reg = <0x0 0x100>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +
-> > +               cpu101: cpu@101{
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a53";
-> > +                       reg = <0x0 0x101>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +
-> > +               cpu102: cpu@102 {
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a53";
-> > +                       reg = <0x0 0x102>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +
-> > +               cpu103: cpu@103 {
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a53";
-> > +                       reg = <0x0 0x103>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +
-> > +               cpu0: cpu@0 {
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a73";
-> > +                       reg = <0x0 0x0>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +
-> > +               cpu1: cpu@1 {
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a73";
-> > +                       reg = <0x0 0x1>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +
-> > +               cpu2: cpu@2 {
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a73";
-> > +                       reg = <0x0 0x2>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +
-> > +               cpu3: cpu@3 {
-> > +                       device_type = "cpu";
-> > +                       compatible = "arm,cortex-a73";
-> > +                       reg = <0x0 0x3>;
-> > +                       enable-method = "psci";
-> > +               };
-> > +       };
-> > +
-> > +       timer {
-> > +               compatible = "arm,armv8-timer";
-> > +               interrupts = <GIC_PPI 13 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> > +                            <GIC_PPI 14 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> > +                            <GIC_PPI 11 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>,
-> > +                            <GIC_PPI 10 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_LOW)>;
-> > +       };
-> cpu number is 8, not 4, need use GIC_CPU_MASK_SIMPLE(8)
-> > +
-> > +       psci {
-> > +               compatible = "arm,psci-1.0";
-> > +               method = "smc";
-> > +       };
-> > +
-> > +       sm: secure-monitor {
-> > +               compatible = "amlogic,meson-gxbb-sm";
-> > +       };
-> > +
-> > +       soc {
-> > +               compatible = "simple-bus";
-> > +               #address-cells = <2>;
-> > +               #size-cells = <2>;
-> > +               ranges;
-> > +
-> > +               gic: interrupt-controller@fff01000 {
-> > +                       compatible = "arm,gic-400";
-> > +                       #interrupt-cells = <3>;
-> > +                       #address-cells = <0>;
-> > +                       interrupt-controller;
-> > +                       reg = <0x0 0xfff01000 0 0x1000>,
-> > +                             <0x0 0xfff02000 0 0x0100>;
-> > +                       interrupts = <GIC_PPI 9 (GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
-> cpu number is 8, not 4, need use GIC_CPU_MASK_SIMPLE(8)
-OK
+TL;DR: I'm reverting back to the old style of cross-subsystem patch
+management where sets get merged as sets with maintainer Acks (or
+Reviews!).
 
-> > +               };
-> > +
-> > +               apb4: bus@fe000000 {
-> > +                       compatible = "simple-bus";
-> > +                       reg = <0x0 0xfe000000 0x0 0x480000>;
-> > +                       #address-cells = <2>;
-> > +                       #size-cells = <2>;
-> > +                       ranges = <0x0 0x0 0x0 0xfe000000 0x0 0x480000>;
-> > +
-> > +                       uart_A: serial@78000 {
-> use lowercase, "uart_a"
+On Wed, 28 Jun 2023, Mark Brown wrote:
+> On Wed, Jun 28, 2023 at 02:40:13PM +0100, Lee Jones wrote:
+> > On Tue, 27 Jun 2023, Rob Herring wrote:
+> > > On Tue, Jun 27, 2023 at 10:33 AM Lee Jones <lee@kernel.org> wrote:
+> 
+> > > IMO, a series with interdependencies, which most cases of a new MFD
+> > > are, should be applied as a series. That's generally what happens
+> > > everywhere else. Creating a branch and PR seems like extra work for
+> > > everyone. The downside to that is any API changes outside of MFD would
+> 
+> > This is what we've been doing for the last decade.  However, I'm getting
+> > mixed messages from folk.  Mark recently asked for something completely
+> > different (which I did say would be a bad idea at the time):
+> 
+> > https://lore.kernel.org/all/20230421073938.GO996918@google.com/
+> 
+> > Could we please just pick a strategy and go with it?
+> 
+> The basic ask from me is for things that cause these serieses to make
+> progress, ideally in ways that minimise the amount of noise that they
+> generate (given that they're generally pretty routine).  Applying
+> patches when they're ready at least mitigates the size of the series,
+> makes it easy to tell that they're OK and doesn't preclude applying more
+> patches on top of it if that's a thing that people want to do.
+> 
+> > > need some coordination. That coordination would only be needed when a
+> > > subsystem has some API change and there's a new MFD using that
+> > > subsystem rather than by default for every new MFD.
+> 
+> > > Another option is just that you take all the binding patches since the
+> > > MFD binding depends on the others. The drivers can still go via the
+> > > subsystem. Not totally ideal to have branches of drivers missing
+> > > bindings, but better than mainline missing bindings.
+> 
+> > My original method of taking everything with Acks was fine IMHO.
+> 
+> As I mentioned before the number of resends of what are frequently very
+> similar serieses (eg, two PMICs from the same vendor in flight at the
+> same time) was causing me real issues with tags going AWOL and things
+> getting lost in the noise.
 
-OK
-> > +                               compatible = "amlogic,t7-uart",
-> > +                                            "amlogic,meson-s4-uart";
-> > +                               reg = <0x0 0x78000 0x0 0x18>;
-> > +                               interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
-> > +                               status = "disabled";
-> > +                               clocks = <&xtal>, <&xtal>, <&xtal>
-> "xtal" why defined in  amlogic-t7-a311d2-khadas-vim4.dts files
+As much as I empathise with each of these points (I feel it too), the
+alternative seems to be causing more issues for more people.  With that
+in mind, I'm going to revert back to how we've been doing things for a
+long time now.  Please try to Ack and forget.  If a contributor fails to
+apply a previously issued tag, we'll have to bring that up at the time.
 
-The 24MHz clock is a crystal in VIm4 schematic, so its something the
-board did to provide that clock.
-Other boards using a311d2 could provide that clock in a different way.
-Or are you saying that this clock is mandatory at boot time, and all
-boards using this chip will have the same crystal?
-
-> > +                               clock-names = "xtal", "pclk", "baud";
-> > +                       };
-> > +               };
-> > +
-> > +       };
-> > +};
-> > --
-> > 2.41.0
-> >
+-- 
+Lee Jones [李琼斯]
