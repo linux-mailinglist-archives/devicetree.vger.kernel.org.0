@@ -2,79 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9DF497430DD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 01:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B85757430E5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 01:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229483AbjF2XIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 19:08:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55778 "EHLO
+        id S230446AbjF2XL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 19:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjF2XIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 19:08:09 -0400
-Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA1D30C4;
-        Thu, 29 Jun 2023 16:08:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1688080088; x=1719616088;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=iznXYZ4xH3Nv8gWM89HiaGceomxOh3Ta2hE5jZaVkOM=;
-  b=hf7R9BmpUHb+H+KPeikLPY/F62jOVX+vZ2xUi4+cFoSMP3goXwN4sSm2
-   aphqsQE1NiP8vsP15kkpfIUNX/iXiT86U73biMPyopXHsqRoCcIoo16Dx
-   2qHRGo9G5QbxQxWAPKQQGz7EWJjuZrw8WvS6D02NfDmyRvkhk9ewuF8Cm
-   6SNKwaZ9qmzA8TXwn1nMoj5qLZO1Ro0P6NW5/1Gv29cy3oKug/eAPsHKd
-   UnEzk/N1WXQzu/b5gsDbPZh1vBMYeP+MM/eGwePrbcr/fULZznmVvz0Nz
-   QVvsP945RMWs3vqxPRzCWx5fwzSgi/vHIoizYl/s8mqbccP+MVDnk9Kqk
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="352077264"
-X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; 
-   d="scan'208";a="352077264"
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2023 16:08:07 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="807531156"
-X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; 
-   d="scan'208";a="807531156"
-Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
-  by FMSMGA003.fm.intel.com with ESMTP; 29 Jun 2023 16:08:02 -0700
-Received: from kbuild by 783282924a45 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qF0k5-000ETx-1u;
-        Thu, 29 Jun 2023 23:08:01 +0000
-Date:   Fri, 30 Jun 2023 07:07:19 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>
-Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        freedreno@lists.freedesktop.org
-Subject: Re: [PATCH v2 2/4] regulator: Introduce Qualcomm REFGEN regulator
- driver
-Message-ID: <202306300643.LHN1fbOT-lkp@intel.com>
-References: <20230628-topic-refgen-v2-2-6136487c78c5@linaro.org>
+        with ESMTP id S230345AbjF2XL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 19:11:27 -0400
+Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D58CA30EC
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 16:11:25 -0700 (PDT)
+Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4f954d7309fso1543413e87.1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 16:11:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1688080284; x=1690672284;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JKu76E7WcQ6JEkoMWbqzICZoGJiCZ/5zG7ZivKkv2PY=;
+        b=z/ogiVgMw+ng4EM8Tb5Gmyjq2vlH7AsBq87THvi3aEBY0BVh2jDdrPXv9QwTN9zJ8X
+         KeC8mHA0aYGM4LJ5YnLjUjcWunDy6LVIcGCuR1iJCRwAI8xoGI3ND030p/q0AnpEOx3d
+         mZkRuTap3Ke6uQ+cBAnsB++1uKreHSAqud+A5qSpD4gLX5KEpYTVYeQY/v4WqW2lYln4
+         +cGbJAv/LCelvlGB6luAyu/TT6LBiRWSDSLmDQqWpj+SHgU5YaXj9cQUY6DZY0CjcRNQ
+         l6oBWj9B454JRE11rp7YrM3+SgD5GyYzs4FiJPCKN34RpZpoa4ycw8H5YVninP7pKbhk
+         beXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688080284; x=1690672284;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=JKu76E7WcQ6JEkoMWbqzICZoGJiCZ/5zG7ZivKkv2PY=;
+        b=l5WJd6t9jL00QdLlt5+KvB47dUXMkvZvNOmm/5ZeL6rmf9ZMgkQl19/s2XzCfo897P
+         7kbnxniuTed4GN+WBxXz+A2d/3SJXOsbMeRvE2uTUTsM6Rwfm9e7Lj/CsBSPZDe6TvQi
+         X9ta4tTHnoIgQFiQnxvshuJ3rRW9OfGr7TFTDGUoSMNAGi5jdT+ZNXS1gYz8HL2FxYdB
+         UyWqn64uz2DP6wiW7szQApO/FmTmQlGGtcqJcSvbDXOW53pCGmtXuvTsqfbG9wIRnnEK
+         c1fo90oOfnonNB7uMwm3mwiSTSB25ei/r0P0EklTevZtWO67lrTiaJBm9CxT7EBn4pkX
+         cfjQ==
+X-Gm-Message-State: AC+VfDwmgW2xkvMm11Yc0IIfsXIJPHsu4wZ7J+KHTBNhUQ5KfooyocFj
+        /pAWdhaUNcCpJeJQO5R9TGvylby0FENPKU5h8W2BgQ==
+X-Google-Smtp-Source: ACHHUZ7n+73cSq6w39b5phHcFSgfR/+91iV3RuorlsfjFzts0A+c3W+Wv8vvXQHZoVeynzbbgrKFIdjPJnqy8lyNQ9Y=
+X-Received: by 2002:a05:6512:2352:b0:4f4:b10f:d521 with SMTP id
+ p18-20020a056512235200b004f4b10fd521mr1890759lfu.13.1688080284039; Thu, 29
+ Jun 2023 16:11:24 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230628-topic-refgen-v2-2-6136487c78c5@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+References: <20230629-rebuttal-vagueness-a699deb7c7b3@wendy> <20230629-fruit-syndrome-74e32af9c8ad@wendy>
+In-Reply-To: <20230629-fruit-syndrome-74e32af9c8ad@wendy>
+From:   Evan Green <evan@rivosinc.com>
+Date:   Thu, 29 Jun 2023 16:10:48 -0700
+Message-ID: <CALs-HstMTxJFHEoSCaAUtYzT+a-2RSYAhWMQmkVw2+WE=y0agQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/10] RISC-V: don't parse dt/acpi isa string to get rv32/rv64
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     palmer@dabbelt.com, conor@kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
         T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,137 +75,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Konrad,
+On Thu, Jun 29, 2023 at 1:29=E2=80=AFAM Conor Dooley <conor.dooley@microchi=
+p.com> wrote:
+>
+> From: Heiko Stuebner <heiko.stuebner@vrull.eu>
+>
+> When filling hwcap the kernel already expects the isa string to start wit=
+h
+> rv32 if CONFIG_32BIT and rv64 if CONFIG_64BIT.
+>
+> So when recreating the runtime isa-string we can also just go the other w=
+ay
+> to get the correct starting point for it.
+>
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@vrull.eu>
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> ---
+> Changes in v2:
+> - Delete the whole else & pull print_mmu() above it, since that's common
+>   code now
+> ---
+>  arch/riscv/kernel/cpu.c | 21 +++++++++------------
+>  1 file changed, 9 insertions(+), 12 deletions(-)
+>
+> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
+> index a2fc952318e9..2fb5e8e1df52 100644
+> --- a/arch/riscv/kernel/cpu.c
+> +++ b/arch/riscv/kernel/cpu.c
+> @@ -253,13 +253,16 @@ static void print_isa_ext(struct seq_file *f)
+>   */
+>  static const char base_riscv_exts[13] =3D "imafdqcbkjpvh";
+>
+> -static void print_isa(struct seq_file *f, const char *isa)
+> +static void print_isa(struct seq_file *f)
+>  {
+>         int i;
+>
+>         seq_puts(f, "isa\t\t: ");
+> -       /* Print the rv[64/32] part */
+> -       seq_write(f, isa, 4);
+> +       if (IS_ENABLED(CONFIG_32BIT))
+> +               seq_write(f, "rv32", 4);
+> +       else
+> +               seq_write(f, "rv64", 4);
+> +
+>         for (i =3D 0; i < sizeof(base_riscv_exts); i++) {
+>                 if (__riscv_isa_extension_available(NULL, base_riscv_exts=
+[i] - 'a'))
+>                         /* Print only enabled the base ISA extensions */
+> @@ -316,27 +319,21 @@ static int c_show(struct seq_file *m, void *v)
+>         unsigned long cpu_id =3D (unsigned long)v - 1;
+>         struct riscv_cpuinfo *ci =3D per_cpu_ptr(&riscv_cpuinfo, cpu_id);
+>         struct device_node *node;
+> -       const char *compat, *isa;
+> +       const char *compat;
+>
+>         seq_printf(m, "processor\t: %lu\n", cpu_id);
+>         seq_printf(m, "hart\t\t: %lu\n", cpuid_to_hartid_map(cpu_id));
+> +       print_isa(m);
+> +               print_mmu(m);
 
-kernel test robot noticed the following build errors:
+Did the indent get wonky here or am I just seeing it wrong because gmail?
+Otherwise:
 
-[auto build test ERROR on 5c875096d59010cee4e00da1f9c7bdb07a025dc2]
+Reviewed-by: Evan Green <evan@rivosinc.com>
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Konrad-Dybcio/dt-bindings-regulator-Describe-Qualcomm-REFGEN-regulator/20230630-043835
-base:   5c875096d59010cee4e00da1f9c7bdb07a025dc2
-patch link:    https://lore.kernel.org/r/20230628-topic-refgen-v2-2-6136487c78c5%40linaro.org
-patch subject: [PATCH v2 2/4] regulator: Introduce Qualcomm REFGEN regulator driver
-config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20230630/202306300643.LHN1fbOT-lkp@intel.com/config)
-compiler: s390-linux-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230630/202306300643.LHN1fbOT-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202306300643.LHN1fbOT-lkp@intel.com/
-
-All errors (new ones prefixed by >>, old ones prefixed by <<):
-
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_sed.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_nq.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_twos.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_ftp.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_pe_sip.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/nf_defrag_ipv4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/nf_reject_ipv4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/iptable_nat.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/iptable_raw.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ip_tunnel.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ipip.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ip_gre.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/udp_tunnel.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ip_vti.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ah4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/esp4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/xfrm4_tunnel.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/tunnel4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/inet_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/tcp_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/udp_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/raw_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/xfrm/xfrm_algo.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/xfrm/xfrm_user.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/unix/unix_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/ip6table_raw.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/ip6table_nat.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/nf_defrag_ipv6.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/nf_reject_ipv6.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/ah6.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/esp6.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/xfrm6_tunnel.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/tunnel6.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/mip6.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/sit.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/ip6_udp_tunnel.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ar9331.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_brcm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_dsa.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_gswip.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_hellcreek.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ksz.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_lan9303.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_mtk.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_none.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ocelot.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ocelot_8021q.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_qca.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_rtl4_a.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_rtl8_4.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_rzn1_a5psw.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_sja1105.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_trailer.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_xrs700x.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/8021q/8021q.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/xdp/xsk_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/mptcp/mptcp_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/mptcp/mptcp_crypto_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/mptcp/mptcp_token_test.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/packet/af_packet.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/packet/af_packet_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/key/af_key.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/nf_conntrack_bridge.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtables.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtable_broute.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtable_filter.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtable_nat.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/bridge.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/sunrpc/sunrpc.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/sunrpc/auth_gss/auth_rpcgss.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/sunrpc/auth_gss/rpcsec_gss_krb5.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/kcm/kcm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/atm/atm.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/atm/lec.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/atm/mpoa.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/sctp/sctp_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/tipc/diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/caif.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/chnl_net.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/caif_socket.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/caif_usb.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/6lowpan/6lowpan.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ieee802154/6lowpan/ieee802154_6lowpan.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/ieee802154/ieee802154_socket.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/nfc/nci/nci.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/nfc/nfc_digital.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/vmw_vsock/vsock_diag.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in net/hsr/hsr.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/cio/ccwgroup.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/cio/vfio_ccw.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dasd_diag_mod.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dasd_eckd_mod.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dasd_fba_mod.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dcssblk.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/char/raw3270.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/char/con3270.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/char/fs3270.o
-WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/net/lcs.o
-ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
-ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
->> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/regulator/qcom-refgen-regulator.ko] undefined!
-ERROR: modpost: "iounmap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
-ERROR: modpost: "ioremap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
-ERROR: modpost: "devm_platform_ioremap_resource" [drivers/char/xillybus/xillybus_of.ko] undefined!
-ERROR: modpost: "devm_memremap" [drivers/misc/open-dice.ko] undefined!
-ERROR: modpost: "devm_memunmap" [drivers/misc/open-dice.ko] undefined!
-ERROR: modpost: "iounmap" [drivers/net/ethernet/8390/pcnet_cs.ko] undefined!
-ERROR: modpost: "ioremap" [drivers/net/ethernet/8390/pcnet_cs.ko] undefined!
-WARNING: modpost: suppressed 13 unresolved symbol warnings because there were too many)
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+>
+>         if (acpi_disabled) {
+>                 node =3D of_get_cpu_node(cpu_id, NULL);
+> -               if (!of_property_read_string(node, "riscv,isa", &isa))
+> -                       print_isa(m, isa);
+>
+> -               print_mmu(m);
+>                 if (!of_property_read_string(node, "compatible", &compat)=
+ &&
+>                     strcmp(compat, "riscv"))
+>                         seq_printf(m, "uarch\t\t: %s\n", compat);
+>
+>                 of_node_put(node);
+> -       } else {
+> -               if (!acpi_get_riscv_isa(NULL, cpu_id, &isa))
+> -                       print_isa(m, isa);
+> -
+> -               print_mmu(m);
+>         }
+>
+>         seq_printf(m, "mvendorid\t: 0x%lx\n", ci->mvendorid);
+> --
+> 2.40.1
+>
