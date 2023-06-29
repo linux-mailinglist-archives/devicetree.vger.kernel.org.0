@@ -2,168 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43FBC741DDA
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 03:59:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B24E3741DED
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 04:05:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229539AbjF2B7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 21:59:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46520 "EHLO
+        id S231566AbjF2CFm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 22:05:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230463AbjF2B7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 21:59:39 -0400
-Received: from stravinsky.debian.org (unknown [IPv6:2001:41b8:202:deb::311:108])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C59270A;
-        Wed, 28 Jun 2023 18:59:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
-        s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description;
-        bh=YChyS4nbtccbfNNu4X1A8v3ecoV4guD+QWtTyEZmb9U=; b=Zqqr+smxp55qdZwF34DftF8llx
-        j1un6BP2dCog0gdIk8uXiquY+6GJso4mPHx0RLbYxJRgDO3JAnuk0MauwEct7RQHVLzcPWOYrZU3S
-        hluJWKTArm8fnHQcrB9YM3iQXWKQbebPARM/yemRImQL4kLZR9fOTMhsWgz7ezB181DBDRtRMuD8l
-        IAGGRuDalj8Zotrhd9zKPxpp1hpr9YZM6Ux5Re5Hr8GKR2j19hK7f3FB0yepPKnq2gfL37jACo1g9
-        xlKP6wld0uGYSKUvu9kyxBqAyOh+sq4HwydUdWS0HRC5v9/92DLXTObmNGWDNr2a7tjp4+QqlTGfL
-        9hL+OOOQ==;
-Received: from authenticated user
-        by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
-        (Exim 4.94.2)
-        (envelope-from <kibi@debian.org>)
-        id 1qEgwL-005i06-9G; Thu, 29 Jun 2023 01:59:22 +0000
-Date:   Thu, 29 Jun 2023 03:59:18 +0200
-From:   Cyril Brulebois <kibi@debian.org>
-To:     Jim Quinlan <james.quinlan@broadcom.com>
-Cc:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenz@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Phil Elwell <phil@raspberrypi.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Conor Dooley <conor+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jim Quinlan <jim2101024@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v6 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ#
- mode
-Message-ID: <20230629015918.v4u7atl3ep3aetgj@mraw.org>
-Organization: Debian
-References: <20230623144100.34196-1-james.quinlan@broadcom.com>
+        with ESMTP id S229918AbjF2CFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 22:05:41 -0400
+Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8565710FF;
+        Wed, 28 Jun 2023 19:05:38 -0700 (PDT)
+X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
+        LIVER,40,3)
+Received: from 192.168.10.47
+        by mg.richtek.com with MailGates ESMTP Server V5.0(12361:0:AUTH_RELAY)
+        (envelope-from <cy_huang@richtek.com>); Thu, 29 Jun 2023 10:05:29 +0800 (CST)
+Received: from ex3.rt.l (192.168.10.46) by ex4.rt.l (192.168.10.47) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Thu, 29 Jun
+ 2023 10:05:28 +0800
+Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
+ (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
+ Transport; Thu, 29 Jun 2023 10:05:28 +0800
+Date:   Thu, 29 Jun 2023 10:05:28 +0800
+From:   ChiYuan Huang <cy_huang@richtek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>, <lgirdwood@gmail.com>,
+        <conor+dt@kernel.org>, <broonie@kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: rt5739: Add compatible for
+ rt5733
+Message-ID: <20230629020528.GA13871@linuxcarl2.richtek.com>
+References: <1687942037-14652-1-git-send-email-cy_huang@richtek.com>
+ <1687942037-14652-2-git-send-email-cy_huang@richtek.com>
+ <168794509690.4180998.4132353427147392015.robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7befo4br4255cxtj"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20230623144100.34196-1-james.quinlan@broadcom.com>
-X-Debian-User: kibi
-X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RDNS_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <168794509690.4180998.4132353427147392015.robh@kernel.org>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---7befo4br4255cxtj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-Hi Jim,
-
-Jim Quinlan <james.quinlan@broadcom.com> (2023-06-23):
-> v6 -- No code has been changed.
->    -- Changed commit subject and comment in "#PERST" commit (Bjorn, Cyril)
->    -- Changed sign-off and author email address for all commits.
->       This was due to a change in Broadcom's upstreaming policy.
-
-I've just run some more tests to be on the safe side, and I can confirm
-everything is still looking good with the updated series and the updated
-base commit.
-
-Test setup:
------------
-
- - using a $CM with the 20230111 EEPROM
- - on the same CM4 IO Board
- - with a $PCIE board (PCIe to multiple USB ports)
- - and the same Samsung USB flash drive.
-
-where $CM is one of:
-
- - CM4 Lite Rev 1.0
- - CM4 8/32 Rev 1.0
- - CM4 4/32 Rev 1.1
-
-and $PCIE is one of:
-
- - SupaHub PCE6U1C-R02, VER 006
- - SupaHub PCE6U1C-R02, VER 006S
-
-
-Results:
---------
-
- 1. With an unpatched kernel, I'm getting the dreaded Serror for all
-    $CM/$PCIE combinations. That's reproducible with:
-     - the 6.1.y kernel shipped in Debian 12;
-     - a locally-built v6.4-rc7-194-g8a28a0b6f1a1d kernel.
-
- 2. With a patched kernel (v6.4-rc7-194-g8a28a0b6f1a1d + this series),
-    for all $CM/$PCIE combinations, I'm getting a system that boots,
-    sees the flash drive, and gives decent read performance on the USB
-    flash drive (200+ MB/s on the CM4 Lite, 220+ MB/s on the non-Lite
-    versions).
-
-
-In passing, since that looks like it could be merged finally: I suppose
-it's fair to say this series adds support for hardware that wasn't
-working before, which means it's not a candidate for inclusion via
-stable@ (even if it gets rid of a nasty failure to boot depending on
-what hardware is plugged in at that time)?
-
-In other words, downstream distributions should be expected to either
-adjust their build systems to pick some future Linux release or consider
-backporting this series on their own, to each base Linux version they
-support?
-
-
-Thanks again for all the help figuring this out.
-
-
-Cheers,
---=20
-Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
-D-I release manager -- Release team member -- Freelance Consultant
-
---7befo4br4255cxtj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmSc5XMACgkQ/5FK8MKz
-VSA3Sg//fgoP825n1pCIyd3e2L9YZB3DWHb6OWdjrkcyyLL4YEn6BapxdPkjwMpk
-JAK7iCo1grklQEvdqMrkoc4mRHsjN/3Hkx9GzRguiU28AqaMkazc3s+GnRJtoUnO
-zWNPnwnwsaeIGmB0uIXWLxtp1A9naSO/zOPwD/INCWYbC2EAT4sEPb+A4qqtMrz/
-CGXalNZb58prYVJrlZ2fcQL3SGrgf4lcob7JqtZcL9pHE5uaS7sOhSQdxQI1JgTC
-/6bjJGvBAyLLlOA8rTR8vYgmXbaFX12aVJ9OOn0tByScMc7VNikVPSTo7/Oc630t
-ElCEnxxIc/cslSXhM1xlhUMgGY8WIrr1G0qNM7LPVoC4FPWsOjdFXj0ooChEKaHW
-ZqKrJ7UDlq7rTIwyzJTVCbZJw+QVt8Qz6ffaQgbJ5jGkVIxrjFgfMvfNeRIhEF8a
-c6PJiLNm8QRh2h497F+J2PopC/i9kEL/k5ySoa1rOzqUPReXhN57Q5xQRivOZDdw
-nMa7m5eX0gbtvjX3qaCwVIIcwpVaWAeiOEm2/B3aAKiPVPmibw0sdCRtoSflh2NZ
-dq2ReO2rJZhNHgeOD3oY6L0vU7w2dN8k56eh+JVcWzksjqPgbndq0U54oFnuBnfL
-I7qN6WjGtPPQeYf/j9ngJkuKTPY/BUxUTP0cBkFrgQMHqnTJOyA=
-=yUbx
------END PGP SIGNATURE-----
-
---7befo4br4255cxtj--
+On Wed, Jun 28, 2023 at 03:38:17AM -0600, Rob Herring wrote:
+> 
+> On Wed, 28 Jun 2023 16:47:16 +0800, cy_huang@richtek.com wrote:
+> > From: ChiYuan Huang <cy_huang@richtek.com>
+> > 
+> > Add compatible string for rt5733.
+> > 
+> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+> > ---
+> >  Documentation/devicetree/bindings/regulator/richtek,rt5739.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> > 
+> 
+> My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+> on your patch (DT_CHECKER_FLAGS is new in v5.13):
+> 
+> yamllint warnings/errors:
+> 
+> dtschema/dtc warnings/errors:
+> Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.example.dtb: /example-0/cpuctrl@a22000/clock@0: failed to match any schema with compatible: ['hisilicon,hix5hd2-clock']
+> Documentation/devicetree/bindings/arm/hisilicon/controller/sysctrl.example.dtb: /example-0/system-controller@802000/clock@0: failed to match any schema with compatible: ['hisilicon,hi3620-clock']
+> Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.example.dtb: /example-0/peripheral-controller@8a20000/phy@850: failed to match any schema with compatible: ['hisilicon,hi3798cv200-combphy']
+> Documentation/devicetree/bindings/net/qca,ar71xx.example.dtb: /example-0/ethernet@1a000000/mdio/switch@10: failed to match any schema with compatible: ['qca,ar9331-switch']
+> Documentation/devicetree/bindings/net/marvell,mvusb.example.dtb: /example-0/usb/mdio@1/switch@0: failed to match any schema with compatible: ['marvell,mv88e6190']
+> Documentation/devicetree/bindings/media/rockchip-isp1.example.dtb: /example-0/parent/i2c/camera@36: failed to match any schema with compatible: ['ovti,ov5695']
+> Documentation/devicetree/bindings/thermal/imx-thermal.example.dtb: /example-0/anatop@20c8000: failed to match any schema with compatible: ['fsl,imx6q-anatop', 'syscon', 'simple-mfd']
+> Documentation/devicetree/bindings/thermal/brcm,avs-ro-thermal.example.dtb: /example-0/avs-monitor@7d5d2000: failed to match any schema with compatible: ['brcm,bcm2711-avs-monitor', 'syscon', 'simple-mfd']
+> Documentation/devicetree/bindings/memory-controllers/ingenic,nemc.example.dtb: /example-0/memory-controller@13410000/ethernet@6: failed to match any schema with compatible: ['davicom,dm9000']
+> Documentation/devicetree/bindings/leds/common.example.dtb: /example-2/i2c/led-controller@30: failed to match any schema with compatible: ['panasonic,an30259a']
+> Documentation/devicetree/bindings/clock/milbeaut-clock.example.dtb: /example-2/serial@1e700010: failed to match any schema with compatible: ['socionext,milbeaut-usio-uart']
+> Documentation/devicetree/bindings/clock/sprd,sc9863a-clk.example.dtb: /example-1/syscon@20e00000: failed to match any schema with compatible: ['sprd,sc9863a-glbregs', 'syscon', 'simple-mfd']
+> Documentation/devicetree/bindings/sound/audio-graph-card2.example.dtb: /example-0/cpu: failed to match any schema with compatible: ['cpu-driver']
+> Documentation/devicetree/bindings/sound/audio-graph-card2.example.dtb: /example-0/codec: failed to match any schema with compatible: ['codec-driver']
+> Documentation/devicetree/bindings/reset/hisilicon,hi3660-reset.example.dtb: /example-0/iomcu@ffd7e000: failed to match any schema with compatible: ['hisilicon,hi3660-iomcu', 'syscon']
+> Documentation/devicetree/bindings/i2c/qcom,i2c-cci.example.dtb: /example-0/cci@ac4a000/i2c-bus@1/camera@60: failed to match any schema with compatible: ['ovti,ov7251']
+> Documentation/devicetree/bindings/input/mediatek,pmic-keys.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['mediatek,mt6397']
+> Documentation/devicetree/bindings/input/sprd,sc27xx-vibrator.example.dtb: /example-0/pmic@0: failed to match any schema with compatible: ['sprd,sc2731']
+> Documentation/devicetree/bindings/dma/dma-router.example.dtb: /example-0/dma-router@4a002b78: failed to match any schema with compatible: ['ti,dra7-dma-crossbar']
+> Documentation/devicetree/bindings/dma/dma-controller.example.dtb: /example-0/dma-controller@48000000: failed to match any schema with compatible: ['ti,omap-sdma']
+> Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['ti,twl6035-pmic', 'ti,palmas-pmic']
+> Documentation/devicetree/bindings/iio/adc/ti,palmas-gpadc.example.dtb: /example-0/pmic: failed to match any schema with compatible: ['ti,twl6035-pmic', 'ti,palmas-pmic']
+> 
+> doc reference errors (make refcheckdocs):
+> 
+> See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1687942037-14652-2-git-send-email-cy_huang@richtek.com
+> 
+> The base for the series is generally the latest rc1. A different dependency
+> should be noted in *this* patch.
+> 
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure 'yamllint' is installed and dt-schema is up to
+> date:
+> 
+> pip3 install dtschema --upgrade
+> 
+> Please check and re-submit after running the above command yourself. Note
+> that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+> your schema. However, it must be unset to test all examples with your schema.
+>
+Already checked again.
+False alarm? 
