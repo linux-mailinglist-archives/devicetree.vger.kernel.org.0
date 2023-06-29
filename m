@@ -2,150 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 47852742268
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:42:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65647742286
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232582AbjF2ImX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Jun 2023 04:42:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52238 "EHLO
+        id S232825AbjF2IpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 04:45:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53100 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232405AbjF2IlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:41:16 -0400
-Received: from eu-smtp-delivery-151.mimecast.com (eu-smtp-delivery-151.mimecast.com [185.58.85.151])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B9C8294C
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 01:38:12 -0700 (PDT)
-Received: from AcuMS.aculab.com (156.67.243.121 [156.67.243.121]) by
- relay.mimecast.com with ESMTP with both STARTTLS and AUTH (version=TLSv1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- uk-mta-86-mCyGUWdvOzqOD0rili5ykg-1; Thu, 29 Jun 2023 09:38:10 +0100
-X-MC-Unique: mCyGUWdvOzqOD0rili5ykg-1
-Received: from AcuMS.Aculab.com (10.202.163.4) by AcuMS.aculab.com
- (10.202.163.4) with Microsoft SMTP Server (TLS) id 15.0.1497.48; Thu, 29 Jun
- 2023 09:38:09 +0100
-Received: from AcuMS.Aculab.com ([::1]) by AcuMS.aculab.com ([::1]) with mapi
- id 15.00.1497.048; Thu, 29 Jun 2023 09:38:09 +0100
-From:   David Laight <David.Laight@ACULAB.COM>
-To:     'Sameer Pujar' <spujar@nvidia.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzk+dt@kernel.org" <krzk+dt@kernel.org>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "perex@perex.cz" <perex@perex.cz>,
-        "tiwai@suse.com" <tiwai@suse.com>
-CC:     "jonathanh@nvidia.com" <jonathanh@nvidia.com>,
-        "mkumard@nvidia.com" <mkumard@nvidia.com>,
-        "sheetal@nvidia.com" <sheetal@nvidia.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "stable@vger.kernel.org" <stable@vger.kernel.org>,
-        Oder Chiou <oder_chiou@realtek.com>
-Subject: RE: [PATCH v2 3/5] ASoC: rt5640: Fix sleep in atomic context
-Thread-Topic: [PATCH v2 3/5] ASoC: rt5640: Fix sleep in atomic context
-Thread-Index: AQHZqkh8hA8hSCOxA0KruUap8XcLma+hdFow
-Date:   Thu, 29 Jun 2023 08:38:09 +0000
-Message-ID: <bae9f041867e4625ad293d284566bb4f@AcuMS.aculab.com>
-References: <1688015537-31682-1-git-send-email-spujar@nvidia.com>
- <1688015537-31682-4-git-send-email-spujar@nvidia.com>
-In-Reply-To: <1688015537-31682-4-git-send-email-spujar@nvidia.com>
-Accept-Language: en-GB, en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.202.205.107]
+        with ESMTP id S229522AbjF2Io2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:44:28 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0367A1B1
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 01:43:31 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id 2adb3069b0e04-4fb7769f15aso645980e87.0
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 01:43:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688028209; x=1690620209;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Qo4yGUv1TOFCIrsnfkNO3R46DvaHvrlG+9D5FRJF5Jg=;
+        b=M3FTGszHO6OJxctxtz0KJywXYYbX7jV/+5rSXgCzHg5cYUb6W+I37sd9TENmRHfi2W
+         iSCFErZa/f1Mss1p45fguznG1BbnuGnVkfswH6fkVEwm7ZPs4n/bl96MNFPbI1P4VzUH
+         aBsiVd0KgUibCfpQfaKkf26Fk9fk9j6HFRX1NHJYGP5L5fBJZbssEGtgRxP/dLTUQ80A
+         FeWpG3prcSUD8CSviJBo7m4EejOXdY7vpCNRM7P/WE53wN6zZcLO7Segdo8LVC1nTnpT
+         fVBb3zVv14xqN6KdpY7vNWwbuGgTsn6TTiVdSfjiBIhDlXO2H7yFdMWlVFm7qWzPhxgF
+         fufA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688028209; x=1690620209;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Qo4yGUv1TOFCIrsnfkNO3R46DvaHvrlG+9D5FRJF5Jg=;
+        b=hApf6BlS4Nhv0fjA+WKKC74KRe0KgveMbDjLlJ7tmP/q2/w553LPMFmgwSR/7kq8PR
+         L32iXHyYNadm5wWBtZulS8Q4/XXZ6cTXPCK4MfA+wiMDRwQXInNMApiHjlgCZYbv/Wre
+         POUb9i836I53w5hH6MngwJFEPq4zVClmM58PNm6Cx5pNeCEM+f7WFrtkCDTknmjgrQ0t
+         oNVHx3BkE9xdmeIRf2GxuE/QYATBoLeKS9/SCPMg8zuIoh8Hwsu4/NvsphNb5fRyjEKJ
+         bIdaOXB9pssiLNcOgwRf0alDR8CWtQA+SVHCJXbruEF/BKvGEL2ZpyvQEdJp0R1vbKyN
+         g8xg==
+X-Gm-Message-State: AC+VfDwvl8tw94BwqRx8vRcWdcqSUCbMuc9v1h6A/Dn7SjY/3K/oa9CD
+        Mvk+ohPmKym9X3O208e6Ito0mA==
+X-Google-Smtp-Source: ACHHUZ7stWXiuLhwXrWPZUUzH7IcRisV14MnYsT7ncg2kjCKJUgtYj6FUKnNJRwbW1MvDGNrQus1SQ==
+X-Received: by 2002:a05:6512:3f01:b0:4fb:89bb:ca19 with SMTP id y1-20020a0565123f0100b004fb89bbca19mr5157774lfa.66.1688028209160;
+        Thu, 29 Jun 2023 01:43:29 -0700 (PDT)
+Received: from [192.168.1.101] (abyk82.neoplus.adsl.tpnet.pl. [83.9.30.82])
+        by smtp.gmail.com with ESMTPSA id a6-20020a056512390600b004f21f196701sm2241839lfu.203.2023.06.29.01.43.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jun 2023 01:43:28 -0700 (PDT)
+Message-ID: <6109d966-b705-4e84-d8b3-c895ef540db3@linaro.org>
+Date:   Thu, 29 Jun 2023 10:43:26 +0200
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-Originator: aculab.com
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
 Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+References: <20230628-topic-refgen-v1-0-126e59573eeb@linaro.org>
+ <20230628-topic-refgen-v1-2-126e59573eeb@linaro.org>
+ <76e2f865-1a37-4517-b343-6aaea397fcf7@sirena.org.uk>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH 2/4] regulator: Introduce Qualcomm REFGEN regulator driver
+In-Reply-To: <76e2f865-1a37-4517-b343-6aaea397fcf7@sirena.org.uk>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,PDS_BAD_THREAD_QP_64,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sameer Pujar
-> Sent: 29 June 2023 06:12
+On 28.06.2023 21:28, Mark Brown wrote:
+> On Wed, Jun 28, 2023 at 06:29:46PM +0200, Konrad Dybcio wrote:
 > 
-> Following prints are observed while testing audio on Jetson AGX Orin which
-> has onboard RT5640 audio codec:
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2017, 2019-2020, The Linux Foundation. All rights reserved.
+>> + * Copyright (c) 2023, Linaro Limited
+>> + */
 > 
->   BUG: sleeping function called from invalid context at kernel/workqueue.c:3027
->   in_atomic(): 1, irqs_disabled(): 128, non_block: 0, pid: 0, name: swapper/0
->   preempt_count: 10001, expected: 0
->   RCU nest depth: 0, expected: 0
->   ------------[ cut here ]------------
->   WARNING: CPU: 0 PID: 0 at kernel/irq/handle.c:159 __handle_irq_event_percpu+0x1e0/0x270
->   ---[ end trace ad1c64905aac14a6 ]-
-> 
-> The IRQ handler rt5640_irq() runs in interrupt context and can sleep
-> during cancel_delayed_work_sync().
-> 
-> Fix this by running IRQ handler, rt5640_irq(), in thread context.
-> Hence replace request_irq() calls with devm_request_threaded_irq().
-
-My 'gut feel' is that this will just move the problem elsewhere.
-
-If the ISR is responsible for adding audio buffers (etc) then it is
-also not unlikely that the scheduling delays in running a threaded ISR
-will cause audio glitches if the system is busy.
+> Please use a C++ comment for the whole thing for consistency.
+Oh that's new!
 
 > 
-> Fixes: 051dade34695 ("ASoC: rt5640: Fix the wrong state of JD1 and JD2")
-> Cc: stable@vger.kernel.org
-> Cc: Oder Chiou <oder_chiou@realtek.com>
-> Signed-off-by: Sameer Pujar <spujar@nvidia.com>
-> ---
->  sound/soc/codecs/rt5640.c | 12 +++++++-----
->  1 file changed, 7 insertions(+), 5 deletions(-)
+>> +static int qcom_sdm845_refgen_enable(struct regulator_dev *rdev)
+>> +{
+>> +	struct qcom_refgen *vreg = rdev_get_drvdata(rdev);
+>> +
+>> +	regmap_update_bits(vreg->base, REFGEN_REG_BG_CTRL,
+>> +			   REFGEN_BG_CTRL_MASK, REFGEN_BG_CTRL_ENABLE);
+>> +	regmap_write(vreg->base, REFGEN_REG_BIAS_EN, REFGEN_BIAS_EN_ENABLE);
 > 
-> diff --git a/sound/soc/codecs/rt5640.c b/sound/soc/codecs/rt5640.c
-> index 0ed4fa2..e24ed75 100644
-> --- a/sound/soc/codecs/rt5640.c
-> +++ b/sound/soc/codecs/rt5640.c
-> @@ -2567,9 +2567,10 @@ static void rt5640_enable_jack_detect(struct snd_soc_component *component,
->  	if (jack_data && jack_data->use_platform_clock)
->  		rt5640->use_platform_clock = jack_data->use_platform_clock;
+> For the enable and disable operations we use a mix of _update_bits() and
+> absolute writes with no FIELD_PREP()...
+This absolute write was accidentally fine as the mask began at bit0...
+
 > 
-> -	ret = request_irq(rt5640->irq, rt5640_irq,
-> -			  IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> -			  "rt5640", rt5640);
-> +	ret = devm_request_threaded_irq(component->dev, rt5640->irq,
-> +					NULL, rt5640_irq,
-> +					IRQF_TRIGGER_RISING | IRQF_TRIGGER_FALLING | IRQF_ONESHOT,
-> +					"rt5640", rt5640);
-
-You need a comment saying this must be a threaded IRQ because the ISR
-calls cancel_delayed_work_sync().
-
-	David
-
->  	if (ret) {
->  		dev_warn(component->dev, "Failed to reguest IRQ %d: %d\n", rt5640->irq, ret);
->  		rt5640_disable_jack_detect(component);
-> @@ -2622,8 +2623,9 @@ static void rt5640_enable_hda_jack_detect(
+>> +static int qcom_sdm845_refgen_is_enabled(struct regulator_dev *rdev)
+>> +{
+>> +	struct qcom_refgen *vreg = rdev_get_drvdata(rdev);
+>> +	u32 val;
+>> +
+>> +	regmap_read(vreg->base, REFGEN_REG_BG_CTRL, &val);
+>> +	if (FIELD_GET(REFGEN_BG_CTRL_MASK, val) != REFGEN_BG_CTRL_ENABLE)
+>> +		return 0;
+>> +
+>> +	regmap_read(vreg->base, REFGEN_REG_BIAS_EN, &val);
+>> +	if (FIELD_GET(REFGEN_BIAS_EN_MASK, val) != REFGEN_BIAS_EN_ENABLE)
+>> +		return 0;
 > 
->  	rt5640->jack = jack;
+> ...but when we read back the status we use FIELD_GET().  This looks like
+> a bug, and given that one of the fields starts at bit 1 it presumably is
+> one - FIELD_GET() will do shifting.
+...but a 2-bit-wide field will never equal 6.
+Looks like I put unshifted values in the defines for REFGEN_BG_CTRL..
+
+Thanks for spotting that!
+
 > 
-> -	ret = request_irq(rt5640->irq, rt5640_irq,
-> -			  IRQF_TRIGGER_RISING | IRQF_ONESHOT, "rt5640", rt5640);
-> +	ret = devm_request_threaded_irq(component->dev, rt5640->irq,
-> +					NULL, rt5640_irq, IRQF_TRIGGER_RISING | IRQF_ONESHOT,
-> +					"rt5640", rt5640);
->  	if (ret) {
->  		dev_warn(component->dev, "Failed to reguest IRQ %d: %d\n", rt5640->irq, ret);
->  		rt5640->irq = -ENXIO;
-> --
-> 2.7.4
+>> +static int qcom_sm8250_refgen_enable(struct regulator_dev *rdev)
+>> +{
+>> +	struct qcom_refgen *vreg = rdev_get_drvdata(rdev);
+>> +
+>> +	regmap_update_bits(vreg->base, REFGEN_REG_PWRDWN_CTRL5,
+>> +			   REFGEN_PWRDWN_CTRL5_MASK, REFGEN_PWRDWN_CTRL5_ENABLE);
+> 
+> This is a single bit in a single register so could use the standard
+> helpers rather than open coding, the sdm845 does need custom operations
+> due to having two fields to manage.
+Forgot that's a thing!
 
--
-Registered Address Lakeside, Bramley Road, Mount Farm, Milton Keynes, MK1 1PT, UK
-Registration No: 1397386 (Wales)
-
+Konrad
