@@ -2,69 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 32E37742A7B
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 18:19:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B95D742A86
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 18:22:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232111AbjF2QTM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 12:19:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40050 "EHLO
+        id S232013AbjF2QWN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 12:22:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231902AbjF2QTK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 12:19:10 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C5F3CF;
-        Thu, 29 Jun 2023 09:19:09 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-7835c92c373so20254039f.0;
-        Thu, 29 Jun 2023 09:19:09 -0700 (PDT)
+        with ESMTP id S232446AbjF2QWL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 12:22:11 -0400
+Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52A6B2D71;
+        Thu, 29 Jun 2023 09:22:10 -0700 (PDT)
+Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-78625caa702so36251339f.1;
+        Thu, 29 Jun 2023 09:22:10 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688055549; x=1690647549;
+        d=1e100.net; s=20221208; t=1688055729; x=1690647729;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=GzFF9iYtdArZX/WdIkxczovu3b9psWf4QpXmpxsWlSo=;
-        b=KnllrfWaCdmarRCJccQBr3cKLNnS3nGkrB+bmz4fkovJOHBLF9WyylEBjR/s1MSVvP
-         sIhH4ox9yFS7iKAkA4zdWYgzgjkIdRxuG/2G4vBz/I1B6oi9ncY3l7dt3XstjashAHTR
-         t1y1j+JFekQBs2MzFXnB2uWGij/chV1+6+hVLdylDjBoUZEdAmhiB+e6MizYWA6RBT/s
-         PihK/Yfr2NHhsc4scSvecHTKqabGOrcWeOzbn0A/F7rtJwt5fFyCJnYWLz+rUBqBJwhb
-         mAMDPjOQTo7jZCJdFEmqz1Mdm5WWCNBZvWAvgkXKlbqLpDT+9s8BpO7gpYLV8ETRzfME
-         u7yA==
-X-Gm-Message-State: AC+VfDwk1Tl/UH9rSac97lCd5wdmTcC75wAEP2OoZUe52u7VI7BtZMez
-        1MkVViyQ+RCx9hLmvhuUBJKGi2EjcA==
-X-Google-Smtp-Source: ACHHUZ4Egtuwpgl/FjmgbZkIkLAoLebxcaeXSSJQrI05xRI+RigHebzty+j+IJ1GFKNXMDPF6py4fw==
-X-Received: by 2002:a6b:6106:0:b0:783:6c18:1e97 with SMTP id v6-20020a6b6106000000b007836c181e97mr302767iob.8.1688055548803;
-        Thu, 29 Jun 2023 09:19:08 -0700 (PDT)
+        bh=8XJIPc5D/nWMfHtdu7S7li9GBwwNXgclF2o+QzBIkc4=;
+        b=h1p8UOYDhvekLDtouXyxYzVLqYPXQES0d5trf7gGfzrqCG3sxpTEi2eUjt5fcnJytL
+         oBz3u6FvXO38u/hZMsKOWxw4EBBVwcXgsejzc7JCGHP0q6eV14DWxZ4Q13ElLkkVsLo8
+         k7cqMyVCdSRYtFyn//wM/aUWU6RIyKjVXdHuhF/sOZ3X8i9uTJSlWRxG2jjVpCWAo4Ma
+         8N4qdxtILC5pq+LSwgd04YuQwLgvag9hRFbXFBfwCNyluO32cFdn9a4BF03R90YEh5/3
+         P6MiPhj7ghF0hMIiN5Dy70lzeLbUIN+Sl7tcnthFEI+YGn9SfnWypFo+xwbWPmqyFENG
+         liMQ==
+X-Gm-Message-State: AC+VfDxCQNTaIqS0jrT1+H6hGeHcPaa6HlATJmIiG2Yi7z/KQF+ndult
+        FCIQMU8EN4ARR63y5ZtTwQ==
+X-Google-Smtp-Source: ACHHUZ6zGJ7m4puXX8RHcH3RvWagEBtmRonrdSYks1C5rYbMaDbnTtvDB2aOGrA7t0/2f2jzbMXmHw==
+X-Received: by 2002:a05:6602:200c:b0:786:2d04:7b14 with SMTP id y12-20020a056602200c00b007862d047b14mr19684iod.16.1688055729525;
+        Thu, 29 Jun 2023 09:22:09 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id v18-20020a02cbb2000000b0042acf389ac8sm2538540jap.130.2023.06.29.09.19.06
+        by smtp.gmail.com with ESMTPSA id b2-20020a05663801a200b0042aeaba5413sm1498979jaq.117.2023.06.29.09.22.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jun 2023 09:19:08 -0700 (PDT)
-Received: (nullmailer pid 3137121 invoked by uid 1000);
-        Thu, 29 Jun 2023 16:19:06 -0000
-Date:   Thu, 29 Jun 2023 10:19:06 -0600
+        Thu, 29 Jun 2023 09:22:08 -0700 (PDT)
+Received: (nullmailer pid 3141062 invoked by uid 1000);
+        Thu, 29 Jun 2023 16:22:06 -0000
+Date:   Thu, 29 Jun 2023 10:22:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Cc:     Richard Weinberger <richard@nod.at>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liang Yang <liang.yang@amlogic.com>, kernel@sberdevices.ru,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, oxffffaa@gmail.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        linux-mtd@lists.infradead.org, Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [RFC PATCH v1 1/2] dt-bindings: nand: meson: support for 512B
- ECC step size
-Message-ID: <168805554569.3137064.405254444310669508.robh@kernel.org>
-References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
- <20230628092937.538683-2-AVKrasnov@sberdevices.ru>
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH 1/4] dt-bindings: regulator: Describe Qualcomm REFGEN
+ regulator
+Message-ID: <20230629162206.GA3137232-robh@kernel.org>
+References: <20230628-topic-refgen-v1-0-126e59573eeb@linaro.org>
+ <20230628-topic-refgen-v1-1-126e59573eeb@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230628092937.538683-2-AVKrasnov@sberdevices.ru>
+In-Reply-To: <20230628-topic-refgen-v1-1-126e59573eeb@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -76,16 +79,93 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Wed, 28 Jun 2023 12:29:35 +0300, Arseniy Krasnov wrote:
-> Meson NAND supports both 512B and 1024B ECC step size, so replace
-> 'const' for only 1024B step size with enum for both sizes.
+On Wed, Jun 28, 2023 at 06:29:45PM +0200, Konrad Dybcio wrote:
+> Modern Qualcomm SoCs have a REFGEN (reference voltage generator)
+> regulator, providing reference voltage to on-chip IP, like PHYs.
+> It's controlled through MMIO and we can toggle it or read its state back.
 > 
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> Describe it.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
->  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../regulator/qcom,sdm845-refgen-regulator.yaml    | 56 ++++++++++++++++++++++
+>  1 file changed, 56 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,sdm845-refgen-regulator.yaml b/Documentation/devicetree/bindings/regulator/qcom,sdm845-refgen-regulator.yaml
+> new file mode 100644
+> index 000000000000..19d3eb9db98f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,sdm845-refgen-regulator.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/qcom,sdm845-refgen-regulator.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Qualcomm Technologies, Inc. REFGEN Regulator
+> +
+> +maintainers:
+> +  - Konrad Dybcio <konradybcio@kernel.org>
+> +
+> +description: |
 
-Acked-by: Rob Herring <robh@kernel.org>
+Don't need '|'.
 
+> +    The REFGEN (reference voltage renegator) regulator provides reference
+
+renegator?
+
+> +    voltage for on-chip IPs (like PHYs) on some Qualcomm SoCs.
+> +
+> +allOf:
+> +  - $ref: regulator.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - qcom,sc7180-refgen-regulator
+> +              - qcom,sc8180x-refgen-regulator
+> +              - qcom,sm8150-refgen-regulator
+> +          - const: qcom,sdm845-refgen-regulator
+> +
+> +      - items:
+> +          - enum:
+> +              - qcom,sc7280-refgen-regulator
+> +              - qcom,sc8280xp-refgen-regulator
+> +              - qcom,sm6350-refgen-regulator
+> +              - qcom,sm6375-refgen-regulator
+> +              - qcom,sm8350-refgen-regulator
+> +          - const: qcom,sm8250-refgen-regulator
+> +
+> +      - enum:
+> +          - qcom,sdm845-refgen-regulator
+> +          - qcom,sm8250-refgen-regulator
+> +
+> +  reg: true
+
+Need to define how many.
+
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    regulator@162f000 {
+> +      compatible = "qcom,sm8250-refgen-regulator";
+> +      reg = <0 0x0162f000 0 0x84>;
+
+Default cell size is 1.
+
+> +    };
+> +...
+> 
+> -- 
+> 2.41.0
+> 
