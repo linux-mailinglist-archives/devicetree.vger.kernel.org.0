@@ -2,96 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5544A742485
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 12:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95A4E742511
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 13:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232013AbjF2K51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 06:57:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60428 "EHLO
+        id S232329AbjF2Lke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 07:40:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232097AbjF2K45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 06:56:57 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 888131BFE
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 03:56:54 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb9ae4cef6so784508e87.3
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 03:56:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688036213; x=1690628213;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=XudBHNh6EIvicDJvP3l5PakLMCO2XVjkw1Un1jKRhd0=;
-        b=uu7ZjOBoQU8Zuc6xF9IASCisl5i3RJN+o5oEwL0m8WNpxK4h7tBhSvxhOCqQRrjq87
-         Hkg7yfdzH0v8pIDmxRQAGR0u2DHKqAjQaV2OCkDaYZObNHJXM4/nLOXobEn13seseI6X
-         T/XY7LDx1LM++ixk5soYZgowssC0pWDGzuVTcdV5WnF/uIYj0WWxjOZn2qju8TU2Emgw
-         10SG3XblmYyhBTrBCl95QTy0tnbNfHFsKBYPqn6sxYmBUku97ztxomjEPhya+HRs9NYt
-         gEodLw7pzi0dZm1rldmPfx3Obbtqx7P3KOpXnk3n28Rucp/+1cm01JhaxQmMww0TL7bL
-         sAgg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688036213; x=1690628213;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=XudBHNh6EIvicDJvP3l5PakLMCO2XVjkw1Un1jKRhd0=;
-        b=j3zYf0lTEBlWsp1lE3bQUiL6yvDHP4gVFM3s1RsIYRuJ93TOX/Q7/zpZgGQnkK6TbN
-         flvBzdw4DtHF4WPAGyHeGEBpWD23eixzrgpVOHdbRDTfmSrHXcp8VbHV5e3iipXcJSkB
-         PljfV6ePuzftGzP7vBwbblHvGRTcqVWjw494QDYepZOkyeyLNTX5wUHmXt0Ur7hwQGwY
-         +kAQQi299uSFHCQvZdkONy1wgZzQx7H7fETqmXjQfpCiFXUrbykjfAFlBTDJ0BnwaafM
-         ELRJZQIIwJwMXvmRsoKsLv56MZK2vGGzKYCG2B2gmuhLTLHhH/EJ3y/gJS0wTncZ16gB
-         t8cw==
-X-Gm-Message-State: AC+VfDxGlONEzno8MhUUAZKAJbMbhtmiH7pBh6/U+81O7Dr7aEodnetM
-        LY86Fi/YGLDmOXi1d7/vG6iPHw==
-X-Google-Smtp-Source: ACHHUZ67QQf0NeeCiPkk8c2GdI8jXCRn30dGTaBROv29CmYfqAcSa310+UuNTx97NP8aEBPeMY55Vg==
-X-Received: by 2002:a19:4f04:0:b0:4f8:56c8:e6b4 with SMTP id d4-20020a194f04000000b004f856c8e6b4mr22003723lfb.47.1688036212712;
-        Thu, 29 Jun 2023 03:56:52 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id u27-20020ac248bb000000b004f861e64f24sm2276659lfg.113.2023.06.29.03.56.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jun 2023 03:56:52 -0700 (PDT)
-Message-ID: <9ea758a7-236a-6367-1832-fb65cb2ec75b@linaro.org>
-Date:   Thu, 29 Jun 2023 13:56:51 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v2 14/15] arm64: dts: qcom: sm6125: Add display hardware
- nodes
-Content-Language: en-GB
-To:     Marijn Suijten <marijn.suijten@somainline.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S232106AbjF2Lk3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 07:40:29 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.154.123])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C83D10F0;
+        Thu, 29 Jun 2023 04:40:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1688038826; x=1719574826;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=sAr1yW8ms9qKdVY87lLEN9RPbOLSC7vvBYXs60c7FDI=;
+  b=u05q+pJZZssCqlezI/w0BorKOqAo/eiI4+c4cyMhF6eCF21w0OQAKVmr
+   /M/3XeCEudZ6hlVS0vZgCclrsj3rdKedet0Wa/2F5ROnBpDB4GZZrr3hR
+   rYF9LUFlcWIyYoAhfD4fpjjsMKldxgmRc+cepWnSHB1vfR0EY+uMwkdA4
+   3wdGXcApbpMVjQArj5MjHdDEI6dOvvuwRnQbiC3M4TUz8HEPfQ0ZjpMx/
+   gjsxRkqi+Mry7iUMawm9vkCzwZymZr9ZYIt2VnNKP1tmuBjwCaCTgi7qv
+   nyKsLuB2ctlqgD7zHUfg6NMV3LskL/cQya9LnmSbs9pXtdd5Cz0HWdKlB
+   Q==;
+X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; 
+   d="asc'?scan'208";a="218175038"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Jun 2023 04:40:24 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Thu, 29 Jun 2023 04:40:22 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Thu, 29 Jun 2023 04:40:20 -0700
+Date:   Thu, 29 Jun 2023 12:39:51 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Andrew Jones <ajones@ventanamicro.com>
+CC:     <palmer@dabbelt.com>, <conor@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Loic Poulain <loic.poulain@linaro.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>
-Cc:     ~postmarketos/upstreaming@lists.sr.ht,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, Lux Aliaga <they@mint.lgbt>
-References: <20230627-sm6125-dpu-v2-0-03e430a2078c@somainline.org>
- <20230627-sm6125-dpu-v2-14-03e430a2078c@somainline.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230627-sm6125-dpu-v2-14-03e430a2078c@somainline.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Evan Green <evan@rivosinc.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>
+Subject: Re: [PATCH v2 10/10] RISC-V: provide a Kconfig option to disable
+ parsing "riscv,isa"
+Message-ID: <20230629-deceit-macarena-2a744ac70148@wendy>
+References: <20230629-rebuttal-vagueness-a699deb7c7b3@wendy>
+ <20230629-resilient-grievance-d782163b09d6@wendy>
+ <20230629-a80f112e6ed4158080867694@orel>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="Sze7hK0PNyYVfnYw"
+Content-Disposition: inline
+In-Reply-To: <20230629-a80f112e6ed4158080867694@orel>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -99,28 +76,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 23:14, Marijn Suijten wrote:
-> Add the DT nodes that describe the MDSS hardware on SM6125, containing
-> one MDP (display controller) together with a single DSI and DSI PHY.  No
-> DisplayPort support is added for now.
-> 
-> Signed-off-by: Marijn Suijten <marijn.suijten@somainline.org>
-> ---
->   arch/arm64/boot/dts/qcom/sm6125.dtsi | 191 ++++++++++++++++++++++++++++++++++-
->   1 file changed, 189 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm6125.dtsi b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> index a5cc0d43d2d9..b21fa1256f95 100644
-> --- a/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sm6125.dtsi
-> @@ -1204,12 +1204,199 @@ sram@4690000 {
->   			reg = <0x04690000 0x10000>;
->   		};
->   
+--Sze7hK0PNyYVfnYw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, Jun 29, 2023 at 11:31:33AM +0200, Andrew Jones wrote:
+> On Thu, Jun 29, 2023 at 09:28:56AM +0100, Conor Dooley wrote:
+> > As it says on the tin, provide a Kconfig option to disabling parsing the
+> > "riscv,isa" devicetree property. Hide the option behind NONPORTABLE so
+> > that only those willing to keep the pieces enable it, and make sure the
+> > default kernel contains the fallback code.
+> >=20
+> > Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+> > ---
+> >  arch/riscv/Kconfig             | 16 ++++++++++++++++
+> >  arch/riscv/kernel/cpu.c        |  3 +++
+> >  arch/riscv/kernel/cpufeature.c |  2 +-
+> >  3 files changed, 20 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+> > index 1d39efe2b940..0e1909ac5947 100644
+> > --- a/arch/riscv/Kconfig
+> > +++ b/arch/riscv/Kconfig
+> > @@ -291,6 +291,22 @@ config NONPORTABLE
+> > =20
+> >  	  If unsure, say N.
+> > =20
+> > +config NO_RISCV_ISA_FALLBACK
+> > +	bool "Permit falling back to parsing riscv,isa for extension support"
+> > +	depends on NONPORTABLE
+> > +	help
+> > +	  Parsing the "riscv,isa" devicetree property has been deprecated and
+> > +	  replaced by a list of explicitly defined strings. For compatibility
+> > +	  with existing platforms, the kernel will fall back to parsing the
+> > +	  "riscv,isa" property if the replacements are not found.
+> > +
+> > +	  Selecting Y here will result in a kernel without this fallback, and
+> > +	  will not work on platforms where the devicetree does not contain the
+> > +	  replacement 	  properties of "riscv,isa-base" and
+>                      ^ spacing issue
 
--- 
-With best wishes
-Dmitry
+Huh, weird. Given the tab followed by spaces, it must have snuck in
+during reflow of the text after some rewording.
+Wonder how I missed it, given that...
 
+> Should we also have a kernel command line option, 'isa_fallback', where
+> without this config the command line option is not necessary to fallback,
+> but, with this config, no fallback will be done unless 'isa_fallback' is
+> provided?
+
+I don't know, maybe I have the wrong end of the stick but it feels a bit
+premature for something that may never not be hidden behind NONPORTABLE?
+Perhaps that could be left for a point in time where the default value
+of the symbol changes, or the dependency on NONPORTABLE is removed?
+
+Cheers,
+Conor.
+
+--Sze7hK0PNyYVfnYw
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJ1thwAKCRB4tDGHoIJi
+0vzDAQDP9JlWlUGwMAoSKSxFjb6GGIDX8Mbn07UsWcWTcqMgAgD+JkZNTy1Vf7gU
+LgyClwNQJHHQVT0Xj7BVnlyqzAn93Aw=
+=bH7a
+-----END PGP SIGNATURE-----
+
+--Sze7hK0PNyYVfnYw--
