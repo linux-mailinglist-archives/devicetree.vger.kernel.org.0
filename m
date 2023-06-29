@@ -2,150 +2,290 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A8779742AAE
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 18:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BEB1742ABE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 18:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231718AbjF2Qdq convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 29 Jun 2023 12:33:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44670 "EHLO
+        id S232196AbjF2Qm0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 12:42:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229445AbjF2Qdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 12:33:45 -0400
-Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 698BA30EC;
-        Thu, 29 Jun 2023 09:33:43 -0700 (PDT)
-Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-56ff9cc91b4so8633227b3.0;
-        Thu, 29 Jun 2023 09:33:43 -0700 (PDT)
+        with ESMTP id S231883AbjF2Qm0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 12:42:26 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE42130DD;
+        Thu, 29 Jun 2023 09:42:23 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-34568286979so3976655ab.2;
+        Thu, 29 Jun 2023 09:42:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688056422; x=1690648422;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=kxwLFy9k5SNI8Gdm+Tnj9m12doV32P23RU600L8QjFM=;
-        b=gVznQFVknbOmCARjquBMr1OT8KRbF3We6ulGs2cNxw9OXyWZX+5FKs+Zxv3Ub2g+ma
-         bcC85fsWSk0LRs8MsO3L14u8XtipkU8DCKCmJeiPRys3fcEq7TgKinQEHKTxi8Qh/F4O
-         vm/0nykSctWTlbCze73VxO9nXcgVW2fyouE8iUX8nxFIB1S78xrrAziKSv4PeWfTIKVO
-         396/gpFmiCFxGTs0aSSeOCYfMh5Qs26N9sBhRvf+4Q5+wyNveLI7JZVR1cgtlDs8H2Dc
-         E0MWz8DzhhLtHAsI6PolGQamHHhRlBauxk3ZQrrmBFe1ky5xXVJHHjMs9ao9mwCfMklE
-         IHRg==
-X-Gm-Message-State: AC+VfDwo9N1GEF6CC4qL9jxkmDk4Vypa5ZIAG+g7OYVpAsf7wl2B3uQJ
-        5F2SR4trcMTR1bf1xBAynSKC3PinJvUQZu1q
-X-Google-Smtp-Source: ACHHUZ5iyGmPuvQukcLpT2LzCpG3w8iqjWw+QfhU7G7jklt/n3IM5gQnPQhXemCRw8Wk7zNBapCtKQ==
-X-Received: by 2002:a81:6cd7:0:b0:56d:9e9:c2a1 with SMTP id h206-20020a816cd7000000b0056d09e9c2a1mr44903395ywc.16.1688056422260;
-        Thu, 29 Jun 2023 09:33:42 -0700 (PDT)
-Received: from mail-yb1-f177.google.com (mail-yb1-f177.google.com. [209.85.219.177])
-        by smtp.gmail.com with ESMTPSA id q130-20020a817588000000b0057725aeb4afsm399314ywc.84.2023.06.29.09.33.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jun 2023 09:33:41 -0700 (PDT)
-Received: by mail-yb1-f177.google.com with SMTP id 3f1490d57ef6-bd77424c886so809508276.0;
-        Thu, 29 Jun 2023 09:33:40 -0700 (PDT)
-X-Received: by 2002:a25:3252:0:b0:c1a:bff5:377d with SMTP id
- y79-20020a253252000000b00c1abff5377dmr299680yby.64.1688056420537; Thu, 29 Jun
- 2023 09:33:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
- <20230626-viewless-marrow-17838c2172f6@wendy> <676db602-54d8-d6b0-274f-365e65a2102c@amlogic.com>
- <20230627-unsure-uniformly-079cad2c26e6@wendy> <061bb829-fb75-d154-0c15-9f0f982fec41@amlogic.com>
-In-Reply-To: <061bb829-fb75-d154-0c15-9f0f982fec41@amlogic.com>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Thu, 29 Jun 2023 17:33:29 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+0Kf3zFyUtkCEkm7K8zXwaovxQmo1DWFwy8y25GQ2wqXg@mail.gmail.com>
-Message-ID: <CAJX_Q+0Kf3zFyUtkCEkm7K8zXwaovxQmo1DWFwy8y25GQ2wqXg@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Baisc devicetree support for Amlogic T7
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1688056943; x=1690648943;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=TRWy3i6pbeNlRXNAD1TtP6TYXEvbi4bC2/D/Non/65w=;
+        b=Z3+zQlidyDDk1Sxokbib6GgCqm6kidBCsraKl/y2XrNPGyolXNbP5Fy1Qri1ofgqdp
+         eLGjsgUvrkdHZVw5i4zzBNPEp/dQJxhODQ593SrxUMKZEMpzaDk+Xhcgv9pcWk8+Ni/F
+         cj0jP8tyAZTjTwxSvt+h3gN9fSNnCEF2jY5727+JPTWvWnvdvNA+byoF02BcvLDSb41/
+         IoEXuLrEsGYLe2dc1BAbJTePMhQz6DKlXAZilK2sxMHXhG31egvo8huyt4goC4+dJo0D
+         0RyR+QDrBIe7Iq/DbM+O/xqQ/q8OpNoSwSeLQgHO+4l5cBdCQscjNur2ZV808S/ly9dq
+         Q1fw==
+X-Gm-Message-State: AC+VfDzKt0X6xtPcA+FEQOU4/qTglR5B/KPb5hRQFdx/PxI2mJ9Y3KEi
+        zlEV9vVTdLvoJy/8/8FIiQ==
+X-Google-Smtp-Source: ACHHUZ7M99eTAmUw4XoU5ZkgjxBk1JtUJxqFkrmyUDW3gTIetju8FtlPY8j8oAevFgTFYsWNosN0qw==
+X-Received: by 2002:a92:d947:0:b0:345:6ce1:d255 with SMTP id l7-20020a92d947000000b003456ce1d255mr14874073ilq.1.1688056942890;
+        Thu, 29 Jun 2023 09:42:22 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id u10-20020a92da8a000000b00345b0111f91sm2512841iln.36.2023.06.29.09.42.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jun 2023 09:42:22 -0700 (PDT)
+Received: (nullmailer pid 3167869 invoked by uid 1000);
+        Thu, 29 Jun 2023 16:42:20 -0000
+Date:   Thu, 29 Jun 2023 10:42:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Stanley Chang <stanley_chang@realtek.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Ray Chi <raychi@google.com>, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH v6 4/5] dt-bindings: phy: realtek: Add the doc about the
+ Realtek SoC USB 2.0 PHY
+Message-ID: <20230629164220.GA3146341-robh@kernel.org>
+References: <20230629054523.7519-1-stanley_chang@realtek.com>
+ <20230629054523.7519-4-stanley_chang@realtek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230629054523.7519-4-stanley_chang@realtek.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 27, 2023 at 8:52 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->
->
-> On 2023/6/27 15:23, Conor Dooley wrote:
->
->
->  > [ EXTERNAL EMAIL ]
->  >
->  > On Tue, Jun 27, 2023 at 02:13:34PM +0800, Xianwei Zhao wrote:
->  >> Hi Conor,
->  >>      Thanks for you reply.
->  >> On 2023/6/26 18:02, Conor Dooley wrote:
->  >>
->  >>
->  >>> [ EXTERNAL EMAIL ]
->  >>>
->  >>> Hey,
->  >>>
->  >>> On Mon, Jun 26, 2023 at 05:52:21PM +0800, Xianwei Zhao wrote:
->  >>>> T7 is an advanced application processor designed for smart display.
->  >>>>
->  >>>> Add the new T7 SoC/board device tree bindings.
->  >>>>
->  >>>> Add basic support for the T7 based Amlogic AN400 board, which
->  >>>> describesthe following components: CPU, GIC, IRQ, Timer, UART. It's
->  >>>> capable of booting up into the serial console.
->  >>>
->  >>> Lucas has already sent patches for the T7 SoC & is at v5:
->  >>> https://lore.kernel.org/linux-devicetree/20230623081242.109131-1-
->  >>> tanure@linux.com/
->  >>> There's been a bit of discussion there, and there serial stuff in
->  >>> particular is different in his series (it doesn't use always-on for
->  >>> examples).
->  >>> Could you please go and take a look at his series?
->  >>>
->  >>> Cheers,
->  >>> Conor.
->  >>>
->  >> AN400 is the reference board designed by Amlogic, which is different
->  >> from Khadas VIM4.
->  >
->  > Yet you share the same dtsi, which he has got through several
->  > iterations of before you arrived.
->  >
-> Hi Lucas,
-> Are you going to continue with the dtsi part?
->
->  >> And T7 serial is the same as S4, so I follow S4 serial.
->  >
->  > Yeah, no. SoC specific compatible please.
->  >
->  >
->  > _______________________________________________
->  > linux-amlogic mailing list
->  > linux-amlogic@lists.infradead.org
->  > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+On Thu, Jun 29, 2023 at 01:45:12PM +0800, Stanley Chang wrote:
+> Add the documentation explain the property about Realtek USB PHY driver.
 
-Hi Xianwei,
+In the subject, drop "the doc about the". It's redundant. And perhaps 
+add 'DHC RTD SoC' if this isn't for *all* Realtek SoCs.
 
-I am doing the basics for Amlogic T7 A311D2, but the next step ( sd
-card or emmc, something to boot on) would be more difficult for me
-than you.
-After the first series for Vim4 gets merged, I will start to work on
-how to get sd cards working.
-But if you already have that working for the AN400 board, please send
-it. And I will look at that work and use it for Vim4.
+> Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB
+> controller. Added the driver to drive the USB 2.0 PHY transceivers.
 
-Or, if you don't have it ready and want to share it with me, we can
-work together on these A311D2 patches.
-You test on AN400, and I test on Vim4.
+driver? This is a binding for the h/w.
 
-Thanks
-Lucas
+> 
+> Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+> ---
+> v5 to v6 change:
+>     Drop the redundant examples
+>     Drop the label of example
+> v4 to v5 change:
+>     1. Add more examples.
+>     2. Remove the compatible realtek,usb2phy.
+>     3. Revise the descriptor of the property.
+>     4. Add the default of the property.
+> v3 to v4 change:
+>     1. Remove the parameter and non hardware properties from dts.
+>     2. Using the compatible data included the config and parameter
+>        in driver.
+> v2 to v3 change:
+>     1. Broken down into two patches, one for each of USB 2 & 3.
+>     2. Add more description about Realtek RTD SoCs architecture.
+>     3. Removed parameter v1 support for simplification.
+>     4. Revised the compatible name for fallback compatible.
+>     5. Remove some properties that can be set in the driver.
+> v1 to v2 change:
+>     Add phy-cells for generic phy driver
+> ---
+>  .../bindings/phy/realtek,usb2phy.yaml         | 153 ++++++++++++++++++
+>  1 file changed, 153 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/phy/realtek,usb2phy.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/realtek,usb2phy.yaml b/Documentation/devicetree/bindings/phy/realtek,usb2phy.yaml
+> new file mode 100644
+> index 000000000000..773663bf5c62
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/realtek,usb2phy.yaml
+> @@ -0,0 +1,153 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2023 Realtek Semiconductor Corporation
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/realtek,usb2phy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Realtek DHC SoCs USB 2.0 PHY
+> +
+> +maintainers:
+> +  - Stanley Chang <stanley_chang@realtek.com>
+> +
+> +description:
+
+You need '|' if formatting (line breaks) are important.
+
+> +  Realtek USB 2.0 PHY support the digital home center (DHC) RTD series SoCs.
+> +  The USB 2.0 PHY driver is designed to support the XHCI controller. The SoCs
+> +  support multiple XHCI controllers. One PHY device node maps to one XHCI
+> +  controller.
+> +
+> +  RTD1295/RTD1619 SoCs USB
+> +  The USB architecture includes three XHCI controllers.
+> +  Each XHCI maps to one USB 2.0 PHY and map one USB 3.0 PHY on some
+> +  controllers.
+> +  XHCI controller#0 -- usb2phy -- phy#0
+> +                    |- usb3phy -- phy#0
+> +  XHCI controller#1 -- usb2phy -- phy#0
+> +  XHCI controller#2 -- usb2phy -- phy#0
+> +                    |- usb3phy -- phy#0
+> +
+> +  RTD1395 SoCs USB
+> +  The USB architecture includes two XHCI controllers.
+> +  The controller#0 has one USB 2.0 PHY. The controller#1 includes two USB 2.0
+> +  PHY.
+> +  XHCI controller#0 -- usb2phy -- phy#0
+> +  XHCI controller#1 -- usb2phy -- phy#0
+> +                               |- phy#1
+> +
+> +  RTD1319/RTD1619b SoCs USB
+> +  The USB architecture includes three XHCI controllers.
+> +  Each XHCI maps to one USB 2.0 PHY and map one USB 3.0 PHY on controllers#2.
+> +  XHCI controller#0 -- usb2phy -- phy#0
+> +  XHCI controller#1 -- usb2phy -- phy#0
+> +  XHCI controller#2 -- usb2phy -- phy#0
+> +                    |- usb3phy -- phy#0
+> +
+> +  RTD1319d SoCs USB
+> +  The USB architecture includes three XHCI controllers.
+> +  Each xhci maps to one USB 2.0 PHY and map one USB 3.0 PHY on controllers#0.
+> +  XHCI controller#0 -- usb2phy -- phy#0
+> +                    |- usb3phy -- phy#0
+> +  XHCI controller#1 -- usb2phy -- phy#0
+> +  XHCI controller#2 -- usb2phy -- phy#0
+> +
+> +  RTD1312c/RTD1315e SoCs USB
+> +  The USB architecture includes three XHCI controllers.
+> +  Each XHCI maps to one USB 2.0 PHY.
+> +  XHCI controller#0 -- usb2phy -- phy#0
+> +  XHCI controller#1 -- usb2phy -- phy#0
+> +  XHCI controller#2 -- usb2phy -- phy#0
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - realtek,rtd1295-usb2phy
+> +      - realtek,rtd1312c-usb2phy
+> +      - realtek,rtd1315e-usb2phy
+> +      - realtek,rtd1319-usb2phy
+> +      - realtek,rtd1319d-usb2phy
+> +      - realtek,rtd1395-usb2phy
+> +      - realtek,rtd1395-usb2phy-2port
+> +      - realtek,rtd1619-usb2phy
+> +      - realtek,rtd1619b-usb2phy
+> +
+> +  reg:
+> +    items:
+> +      - description: PHY data registers
+> +      - description: PHY control registers
+> +
+> +  "#phy-cells":
+> +    const: 0
+> +
+> +  nvmem-cells:
+> +    maxItems: 2
+> +    description:
+> +      Phandles to nvmem cell that contains the trimming data.
+> +      If unspecified, default value is used.
+> +
+> +  nvmem-cell-names:
+> +    items:
+> +      - const: usb-dc-cal
+> +      - const: usb-dc-dis
+> +    description:
+> +      The following names, which correspond to each nvmem-cells.
+> +      usb-dc-cal is the driving level for each phy specified via efuse.
+> +      usb-dc-dis is the disconnection level for each phy specified via efuse.
+> +
+> +  realtek,inverse-hstx-sync-clock:
+> +    description:
+> +      For one of the phys of RTD1619b SoC, the synchronous clock of the
+> +      high-speed tx must be inverted.
+
+"invert" assumes I know what non-inverted means. I do not. Better to 
+state in terms of active high, low, falling edge, rising edge, etc.
+
+> +    type: boolean
+> +
+> +  realtek,driving-level:
+> +    description:
+> +      Control the magnitude of High speed Dp/Dm output swing.
+> +      For a different board or port, the original magnitude maybe not meet
+> +      the specification. In this situation we can adjust the value to meet
+> +      the specification.
+
+What are the units?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 8
+> +    minimum: 0
+> +    maximum: 31
+> +
+> +  realtek,driving-compensate:
+
+compensate what?
+
+> +    description:
+> +      For RTD1315e SoC, the driving level can be adjusted by reading the
+> +      efuse table. This property provides drive compensation.
+> +      If the magnitude of High speed Dp/Dm output swing still not meet the
+> +      specification, then we can set this value to meet the specification.
+> +    $ref: /schemas/types.yaml#/definitions/int32
+> +    default: 0
+> +    minimum: -8
+> +    maximum: 8
+> +
+> +  realtek,disconnection-compensate:
+> +    description:
+> +      This adjusts the disconnection level compensation for the different
+> +      boards with different disconnection level.
+> +    $ref: /schemas/types.yaml#/definitions/int32
+> +    default: 0
+> +    minimum: -8
+> +    maximum: 8
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#phy-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    usb-phy@13214 {
+> +        compatible = "realtek,rtd1619b-usb2phy";
+> +        reg = <0x13214 0x4>, <0x28280 0x4>;
+> +        #phy-cells = <0>;
+> +        nvmem-cells = <&otp_usb_port0_dc_cal>, <&otp_usb_port0_dc_dis>;
+> +        nvmem-cell-names = "usb-dc-cal", "usb-dc-dis";
+> +
+> +        realtek,inverse-hstx-sync-clock;
+> +        realtek,driving-level = <0xa>;
+> +        realtek,driving-compensate = <(-1)>;
+> +        realtek,disconnection-compensate = <(-1)>;
+> +    };
+> -- 
+> 2.34.1
+> 
