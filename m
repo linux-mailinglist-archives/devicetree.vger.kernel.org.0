@@ -2,109 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ADF89742704
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 15:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 432637427A8
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 15:47:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229632AbjF2NKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 09:10:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38376 "EHLO
+        id S231655AbjF2Nrd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 09:47:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48356 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231787AbjF2NKf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 09:10:35 -0400
-Received: from mail-wm1-x32e.google.com (mail-wm1-x32e.google.com [IPv6:2a00:1450:4864:20::32e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8330230EF
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 06:10:33 -0700 (PDT)
-Received: by mail-wm1-x32e.google.com with SMTP id 5b1f17b1804b1-3fbc19964a6so1708315e9.0
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 06:10:33 -0700 (PDT)
+        with ESMTP id S229794AbjF2Nrc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 09:47:32 -0400
+Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02AB5358A;
+        Thu, 29 Jun 2023 06:47:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688044232; x=1690636232;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=XUtUi/Yoqz3agAUVfV1tjyIuOCv5KY9VMs6W5QBKGg8=;
-        b=s6KWxkqROj9zdzjYcDrp7KI1+wORQsz4tzfoWeFM5i9wbR8esW35SGdD+opaC0624/
-         EAYmGefjjcPBOEkQAFfmd0d9GNkguyfRWF3nbbMwGenNNNFIIOqp/pXgNfUY4IlFKbMX
-         R418B3zZAHA0x2zafVxgguNLufoze66o4uIsfNLDjCKvksxBY9LW/B6NEb24hW54RTJg
-         tqq/aywYQ9LUl/unLK5uXW5PStnmDjvoCoCTSWfOMDKx7L9+1zsDKK1Rso9IL7pnwhon
-         KXZmbsDIsxfcVavyWiN6orWu8UN7AlL/mJbxspjUkQpD3GDC7Wi6LI8B+lwF8UsH+gXa
-         pwbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688044232; x=1690636232;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XUtUi/Yoqz3agAUVfV1tjyIuOCv5KY9VMs6W5QBKGg8=;
-        b=CsGtTAtJyUScRMvW0R7n5RBdCLK7wVkaS6GBFbFNsU+hQRfxiYEF5fDH/QMgM4ee4D
-         3/jYfvx2cX0/WJOLksPiA004PnAhyjcSrjKmV9a9NOK/92FUOzbm0r410FmZ6bXepbWX
-         nIpSFaVwMSsvlmZUXRO4R7Nk0rQp+B5CC5d4aTwajl1YJVkfv+85EGGj+8d44fCiascq
-         U/K6ZoJ+l8Eva8tQvjhZ/OzA/MTdQ/z8L4b+7RfHX+HHpvufHzA6MwmRcfwQJvWXiWbK
-         Pb4EB42c1sVdC9Ua5R9OJO3QO0g6Ph0Q4q+CRi1R/6VWP4VJMl9Mvw1S8vkxI1NzAe6i
-         R2kg==
-X-Gm-Message-State: AC+VfDzUAwG733iXGLl1ENTPPTFk6tR9FikbPX52H3xAlc7S1ou+wpPh
-        Qd0VblpDidXD+gICKF/h5c4fQh1rMCt72CTqWnQ=
-X-Google-Smtp-Source: ACHHUZ67Q6XG0BjMI0Qd/UsaG7kEVeVG+DWuP8BggHdINcVFDf0A6+R4/vpbW9s0edHr4TU4DLxdwg==
-X-Received: by 2002:a1c:6a18:0:b0:3fb:b287:b0ad with SMTP id f24-20020a1c6a18000000b003fbb287b0admr3871669wmc.13.1688044231900;
-        Thu, 29 Jun 2023 06:10:31 -0700 (PDT)
-Received: from [127.0.1.1] ([77.205.21.223])
-        by smtp.gmail.com with ESMTPSA id v4-20020a05600c214400b003fa95890484sm11885899wml.20.2023.06.29.06.10.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jun 2023 06:10:31 -0700 (PDT)
-From:   Julien Panis <jpanis@baylibre.com>
-Date:   Thu, 29 Jun 2023 15:09:57 +0200
-Subject: [PATCH 3/3] ARM: dts: am335x-icev2: Use usb0 as peripheral
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230629-usb0-as-peripheral-v1-3-167f78a11746@baylibre.com>
-References: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
-In-Reply-To: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+  d=axis.com; q=dns/txt; s=axis-central1; t=1688046452;
+  x=1719582452;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=mRwhJbcypJGWdkrQyemMfvhuOL1PFCUxpQrwdJedum4=;
+  b=dKfXCQCN2vA5NEY0E47gha8oEDzuiNiCFHsPSfN3jPSzYzSOfvULH5j+
+   idHpzxvVV4ZxWhzB98MDKPoZ6mZNAvcgZp6bqleGXFNQ19ZQ+45cfwq+3
+   oIanOoHxfW/sEmP4viFSyLRqUvDdfILDwXEyvFuhh7GK0fhZgNYi6WZUO
+   5pOjo1gLEAg/xzuE6em4X8yzV4IwuTUXOj6nlX6J5kv4btfC4LWsWdn1i
+   CSZ/StfhRuDHZkKllnA6zqsNrIXIRFkyi4dBfRZjIcIXxP3vsO94A9dRW
+   XHwUINOonQ1nvRAlGlswzILMAv+up10G6yUsjbgAEbwhjc29vzwNtaIqr
+   Q==;
+From:   Astrid Rost <astrid.rost@axis.com>
+To:     Dan Murphy <dmurphy@ti.com>, Andrew Davis <afd@ti.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, vigneshr@ti.com, nm@ti.com,
-        Julien Panis <jpanis@baylibre.com>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1688044226; l=592;
- i=jpanis@baylibre.com; s=20230526; h=from:subject:message-id;
- bh=f31ZJ4CrfK4QstO+c+WLiSCch8Xr0qSQn/ZWVMjUlpY=;
- b=yIQu64DKUqP0BKtXpzPqgjyaBwCZsOBUjsEU3H6RZ5n6mZzwSidOVxqSqFHvLEmz+HFBcIh3F
- dlqsLTfr6MMB8GszGUFK4bkvOsX/S3uVv0ghJjFs5GrfmZh+q17Q06j
-X-Developer-Key: i=jpanis@baylibre.com; a=ed25519;
- pk=8eSM4/xkiHWz2M1Cw1U3m2/YfPbsUdEJPCWY3Mh9ekQ=
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+CC:     <kernel@axis.com>, Astrid Rost <astrid.rost@axis.com>,
+        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v1 2/2] dt: bindings: lp50xx: Add max-brightness as in leds-pwm
+Date:   Thu, 29 Jun 2023 15:47:22 +0200
+Message-ID: <20230629134722.3908637-3-astrid.rost@axis.com>
+X-Mailer: git-send-email 2.30.2
+In-Reply-To: <20230629134722.3908637-1-astrid.rost@axis.com>
+References: <20230629134722.3908637-1-astrid.rost@axis.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch configures usb0 dr_mode as peripheral.
-This USB port is mainly used for RNDIS and DFU.
+Add max-brightness in order to reduce the current on the connected LEDs.
+Normally, the maximum brightness is determined by the hardware, and this
+property is not required. This property is used to set a software limit.
+It could happen that an LED is made so bright that it gets damaged or
+causes damage due to restrictions in a specific system, such as mounting
+conditions.
 
-Signed-off-by: Julien Panis <jpanis@baylibre.com>
+Signed-off-by: Astrid Rost <astrid.rost@axis.com>
 ---
- arch/arm/boot/dts/am335x-icev2.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ Documentation/devicetree/bindings/leds/leds-lp50xx.yaml | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/arch/arm/boot/dts/am335x-icev2.dts b/arch/arm/boot/dts/am335x-icev2.dts
-index 5835c0cdda50..203e374676d3 100644
---- a/arch/arm/boot/dts/am335x-icev2.dts
-+++ b/arch/arm/boot/dts/am335x-icev2.dts
-@@ -360,6 +360,10 @@ adc {
- 	};
- };
+diff --git a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+index 402c25424525..6a1425969cb4 100644
+--- a/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
++++ b/Documentation/devicetree/bindings/leds/leds-lp50xx.yaml
+@@ -73,6 +73,15 @@ patternProperties:
+       '#size-cells':
+         const: 0
  
-+&usb0 {
-+	dr_mode = "peripheral";
-+};
++      max-brightness:
++        description:
++          Normally, the maximum brightness is determined by the hardware, and
++          this property is not required. This property is used to set a software
++          limit. It could happen that an LED is made so bright that it gets
++          damaged or causes damage due to restrictions in a specific system,
++          such as mounting conditions.
++        $ref: /schemas/types.yaml#definitions/uint32
 +
- #include "tps65910.dtsi"
- 
- &tps {
-
+     patternProperties:
+       "^led@[0-9a-f]+$":
+         type: object
 -- 
-2.37.3
+2.30.2
 
