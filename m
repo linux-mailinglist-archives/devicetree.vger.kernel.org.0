@@ -2,71 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C666B742232
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:31:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D22D742263
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 10:42:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232489AbjF2IbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 04:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48654 "EHLO
+        id S230413AbjF2ImR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 04:42:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232656AbjF2Ia0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:30:26 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 480C72703;
-        Thu, 29 Jun 2023 01:30:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1688027415; x=1719563415;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=FyhCBQzwfA+WMj8JPqh8q7RSGYDMWs5+f1Cx9CBdUeU=;
-  b=pTmqSUC7tUzftDcBj6G2Yo/YQOU+fGmpVSVCVPHBhWWbnjCN0Z/wVY2z
-   ig7a+gsi+e0JTP2GccymgKu5EHEPQfBfDjxfMkVSxIUmPD412GEzGEzP8
-   EPeI0R4aVmkA3Fhz6aRMQD/bNN24PE0H9uSYyCNHCNULX8uPofuYUVk6b
-   DsfWxbRcqC9ZtrEng6EMD+wpfmF1kuF/pq8wqHvo0cMTOtFLY5jGH06Xa
-   +U+x06SlXq496rhqUgeYOUXvcMTp9AtBZv2Ire41K2y9uCVt8Wy45AGIp
-   FNdGfRev6Zwb1TWLXdUygQasbv4gezxX5iZRD+ppxOOZ2bME04Api1Wk8
-   Q==;
-X-IronPort-AV: E=Sophos;i="6.01,168,1684825200"; 
-   d="scan'208";a="220461307"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Jun 2023 01:30:14 -0700
-Received: from chn-vm-ex04.mchp-main.com (10.10.85.152) by
- chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Thu, 29 Jun 2023 01:30:14 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex04.mchp-main.com
- (10.10.85.152) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Thu, 29 Jun 2023 01:30:11 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <palmer@dabbelt.com>
-CC:     <conor@kernel.org>, <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229469AbjF2IlL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 04:41:11 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D56CF3C38
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 01:37:36 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-313fb7f0f80so417038f8f.2
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 01:37:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google; t=1688027855; x=1690619855;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=eHpE4uTWiAqdi7U0f3J575mib/zD7YmmgRLR1ViHO+A=;
+        b=frEbSknS3v438cdIlYKHwjwtwgqkU3mgD/rVMxfM9D/7fjJlbTWQsTlixjZa855t3+
+         ZkPMIV/L2XKqU6jFbBBevvmNbKXEujiwIdNIfmd0XkbHhYoT7BU6S6GcY8PYNnLVmVMS
+         R8vwKSnMBLxrLXRPzl01uyZzIgNsKMGVCENtY=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688027855; x=1690619855;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=eHpE4uTWiAqdi7U0f3J575mib/zD7YmmgRLR1ViHO+A=;
+        b=UKxa+xq1TxPYTatMwB/2M6wRIFIFh5p9wNxMmUd4T2ba0iIDtf79Q8LTsSIu/xbaB5
+         pZCBFOLp0dmHpyf9sAcBjfaNUZjB8zT4mSw8uyAu+bnvDa75bXUCspcyqfg9MlQmTL/s
+         iBzZb/0I5w2x4c0PZvxxPJrzkfEyf7hLRhqnDLpBZ0UmieqnRqq2/xlS4C3917ZoBvax
+         FwhF++ziHxA9ysEIiPKqYfidwRcTQSOdv2goDK1Q3gB3h9g9H7r2U86Ij90jT+UB9S72
+         j1F0whx8l7FSoSbFWA4FLrxjdo64Liccqk4giXPpVIzansbzgyQt0BjfcjGg7kB4ar7j
+         PatQ==
+X-Gm-Message-State: ABy/qLaCS4D4Wgj0sJDvLvT6ElQcQhu3aaqroxI9Jhe4s4H8THtwx4PB
+        br8mjUJ/WXr63+T1xSHh2Uevhg==
+X-Google-Smtp-Source: APBJJlESkpal0RtTCw62QNAS9feUilaK2gVhUlIYl4Pq7aGF2xLVJApz8huaJEbVLYdmsI0FDdDPtA==
+X-Received: by 2002:adf:f88f:0:b0:314:13e2:2f46 with SMTP id u15-20020adff88f000000b0031413e22f46mr1223503wrp.27.1688027855157;
+        Thu, 29 Jun 2023 01:37:35 -0700 (PDT)
+Received: from dario-ThinkPad-T14s-Gen-2i.praguecc.cz (90-182-211-1.rcp.o2.cz. [90.182.211.1])
+        by smtp.gmail.com with ESMTPSA id cw13-20020a056000090d00b003112f836d4esm15266322wrb.85.2023.06.29.01.37.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jun 2023 01:37:34 -0700 (PDT)
+From:   Dario Binacchi <dario.binacchi@amarulasolutions.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     michael@amarulasolutions.com,
+        Amarula patchwork <linux-amarula@amarulasolutions.com>,
+        Philippe Cornu <philippe.cornu@foss.st.com>,
+        Raphael Gallais-Pou <raphael.gallais-pou@foss.st.com>,
+        Dario Binacchi <dario.binacchi@amarulasolutions.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Conor Dooley <conor+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        "Evan Green" <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: [PATCH v2 10/10] RISC-V: provide a Kconfig option to disable parsing "riscv,isa"
-Date:   Thu, 29 Jun 2023 09:28:56 +0100
-Message-ID: <20230629-resilient-grievance-d782163b09d6@wendy>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230629-rebuttal-vagueness-a699deb7c7b3@wendy>
-References: <20230629-rebuttal-vagueness-a699deb7c7b3@wendy>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com
+Subject: [PATCH v5 0/3] Add display support on the stm32f746-disco board
+Date:   Thu, 29 Jun 2023 10:37:23 +0200
+Message-Id: <20230629083726.84910-1-dario.binacchi@amarulasolutions.com>
+X-Mailer: git-send-email 2.32.0
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2700; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=FyhCBQzwfA+WMj8JPqh8q7RSGYDMWs5+f1Cx9CBdUeU=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDClzHY7obVavUtw9NyBe5vWxwFOv+ZZa9B6d4MElaLi3sH39 L1GJjlIWBjEOBlkxRZbE230tUuv/uOxw7nkLM4eVCWQIAxenAEzkIx8jw5rVnnHmXF8XyF8z4PaQEv qXySfEuc0x/uets2oXG2dcf8/IcKJg2Z2Q6tpjEw6/avzHMm3O+rCfdR9mrtNeXVv+6JC5DzMA
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,73 +75,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As it says on the tin, provide a Kconfig option to disabling parsing the
-"riscv,isa" devicetree property. Hide the option behind NONPORTABLE so
-that only those willing to keep the pieces enable it, and make sure the
-default kernel contains the fallback code.
+The series adds support for the display on the stm32f746-disco board.
 
-Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
- arch/riscv/Kconfig             | 16 ++++++++++++++++
- arch/riscv/kernel/cpu.c        |  3 +++
- arch/riscv/kernel/cpufeature.c |  2 +-
- 3 files changed, 20 insertions(+), 1 deletion(-)
+Changes in v5:
+I am confident that framebuffer sizing is a real requirement for STM32 boards,
+but I need some time to understand if and how to introduce this functionality.
+Therefore, I drop the following patches to allow the series to be fully merged:
+ - [4/6] dt-bindings: display: stm32-ltdc: add optional st,fb-bpp property
+ - [5/6] ARM: dts: stm32: set framebuffer bit depth on stm32f746-disco
+ - [6/6] drm/stm: set framebuffer bit depth through DTS property
 
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 1d39efe2b940..0e1909ac5947 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -291,6 +291,22 @@ config NONPORTABLE
- 
- 	  If unsure, say N.
- 
-+config NO_RISCV_ISA_FALLBACK
-+	bool "Permit falling back to parsing riscv,isa for extension support"
-+	depends on NONPORTABLE
-+	help
-+	  Parsing the "riscv,isa" devicetree property has been deprecated and
-+	  replaced by a list of explicitly defined strings. For compatibility
-+	  with existing platforms, the kernel will fall back to parsing the
-+	  "riscv,isa" property if the replacements are not found.
-+
-+	  Selecting Y here will result in a kernel without this fallback, and
-+	  will not work on platforms where the devicetree does not contain the
-+	  replacement 	  properties of "riscv,isa-base" and
-+	  "riscv,isa-extensions". Please see the dt-binding, located at
-+	  Documentation/devicetree/bindings/riscv/extensions.yaml for details
-+	  on the replacement properties.
-+
- choice
- 	prompt "Base ISA"
- 	default ARCH_RV64I
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index 9a4f4a23afcd..86a1d98b8b3b 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -81,6 +81,9 @@ int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *har
- 	return 0;
- 
- old_interface:
-+	if (IS_ENABLED(CONFIG_NO_RISCV_ISA_FALLBACK))
-+		return -ENODEV;
-+
- 	if (of_property_read_string(node, "riscv,isa", &isa)) {
- 		pr_warn("CPU with hartid=%lu has no \"riscv,isa-base\" or \"riscv,isa\" property\n",
- 			*hart);
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 2c4503fa984f..f6fb18d2af84 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -490,7 +490,7 @@ void __init riscv_fill_hwcap(void)
- 	} else {
- 		int ret = riscv_fill_hwcap_from_ext_list(isa2hwcap);
- 
--		if (ret) {
-+		if (ret && !IS_ENABLED(CONFIG_NO_RISCV_ISA_FALLBACK)) {
- 			pr_info("Falling back to deprecated \"riscv,isa\"\n");
- 			riscv_fill_hwcap_from_isa_string(isa2hwcap);
- 		}
+Changes in v4:
+- Use DTS property instead of module parameter to set the framebuffer bit depth.
+
+Changes in v3:
+- rename ltdc-pins-a-0 to ltdc-0.
+- drop [4/6] dt-bindings: display: simple: add Rocktech RK043FN48H
+  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next):
+  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=c42a37a27c777d63961dd634a30f7c887949491a
+- drop [5/6] drm/panel: simple: add support for Rocktech RK043FN48H panel
+  Applied to https://anongit.freedesktop.org/git/drm/drm-misc.git (drm-misc-next)
+  https://cgit.freedesktop.org/drm/drm-misc/commit/?id=13cdd12a9f934158f4ec817cf048fcb4384aa9dc
+
+Dario Binacchi (3):
+  ARM: dts: stm32: add ltdc support on stm32f746 MCU
+  ARM: dts: stm32: add pin map for LTDC on stm32f7
+  ARM: dts: stm32: support display on stm32f746-disco board
+
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 35 ++++++++++++++++++
+ arch/arm/boot/dts/stm32f746-disco.dts  | 51 ++++++++++++++++++++++++++
+ arch/arm/boot/dts/stm32f746.dtsi       | 10 +++++
+ 3 files changed, 96 insertions(+)
+
 -- 
-2.40.1
+2.32.0
 
