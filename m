@@ -2,266 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 34738741DCD
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 03:50:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43FBC741DDA
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 03:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230330AbjF2Bpk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 28 Jun 2023 21:45:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45394 "EHLO
+        id S229539AbjF2B7u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 28 Jun 2023 21:59:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229469AbjF2Bpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 21:45:39 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4781FCB;
-        Wed, 28 Jun 2023 18:45:37 -0700 (PDT)
-Received: from pps.filterd (m0279871.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35T0CrFQ029409;
-        Thu, 29 Jun 2023 01:45:14 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- content-transfer-encoding : in-reply-to; s=qcppdkim1;
- bh=ZYWynEvEKNe8VfOw/p/gTYwzAY7ckXkgyE3yqJuE0T0=;
- b=MJA9ev2Hkxjx5p10t12BffBjoMcDAiGG2uua9kd2bo1QIn9+IMwwap3Gs5CMnbWzZ2HK
- PCxYfg2M5Xs5vkGPJdyxpjK9trQ5yVfGDT3K+SOf1hhtRbMVdE1HyKQ8UewJ8IEEJdyf
- k4RKtyrVOo+PsTmDAoF+JQV23BcN/JcvYGAVXDjW5zGfDfJJGmJrDwD44XhrXf7Ycivt
- zEwNqjYeL7fWDg95JHWzsQAh7USekFhzTKtpLeXnfmLyDhWJaqgfxYZWFyBOVjKiYlUi
- 3u/hy2R3J3J1HziDGZcAzXkGg9SZVSWVS3oP+QKsuPrC0fkbIlEP9qSsSMHyenUqhE8H dg== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rgetpj99c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Jun 2023 01:45:14 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35T1jCmm022921
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 29 Jun 2023 01:45:13 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.7; Wed, 28 Jun 2023 18:45:05 -0700
-Date:   Thu, 29 Jun 2023 07:15:01 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Pavan Kondeti <quic_pkondeti@quicinc.com>,
-        Mukesh Ojha <quic_mojha@quicinc.com>, <corbet@lwn.net>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <keescook@chromium.org>,
-        <tony.luck@intel.com>, <gpiccoli@igalia.com>,
-        <mathieu.poirier@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <linus.walleij@linaro.org>,
-        <andy.shevchenko@gmail.com>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
+        with ESMTP id S230463AbjF2B7j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 28 Jun 2023 21:59:39 -0400
+Received: from stravinsky.debian.org (unknown [IPv6:2001:41b8:202:deb::311:108])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57C59270A;
+        Wed, 28 Jun 2023 18:59:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=debian.org;
+        s=smtpauto.stravinsky; h=X-Debian-User:In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=YChyS4nbtccbfNNu4X1A8v3ecoV4guD+QWtTyEZmb9U=; b=Zqqr+smxp55qdZwF34DftF8llx
+        j1un6BP2dCog0gdIk8uXiquY+6GJso4mPHx0RLbYxJRgDO3JAnuk0MauwEct7RQHVLzcPWOYrZU3S
+        hluJWKTArm8fnHQcrB9YM3iQXWKQbebPARM/yemRImQL4kLZR9fOTMhsWgz7ezB181DBDRtRMuD8l
+        IAGGRuDalj8Zotrhd9zKPxpp1hpr9YZM6Ux5Re5Hr8GKR2j19hK7f3FB0yepPKnq2gfL37jACo1g9
+        xlKP6wld0uGYSKUvu9kyxBqAyOh+sq4HwydUdWS0HRC5v9/92DLXTObmNGWDNr2a7tjp4+QqlTGfL
+        9hL+OOOQ==;
+Received: from authenticated user
+        by stravinsky.debian.org with esmtpsa (TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256)
+        (Exim 4.94.2)
+        (envelope-from <kibi@debian.org>)
+        id 1qEgwL-005i06-9G; Thu, 29 Jun 2023 01:59:22 +0000
+Date:   Thu, 29 Jun 2023 03:59:18 +0200
+From:   Cyril Brulebois <kibi@debian.org>
+To:     Jim Quinlan <james.quinlan@broadcom.com>
+Cc:     linux-pci@vger.kernel.org,
+        Nicolas Saenz Julienne <nsaenz@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Phil Elwell <phil@raspberrypi.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Conor Dooley <conor+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jim Quinlan <jim2101024@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Krzysztof =?utf-8?Q?Wilczy=C5=84ski?= <kw@linux.com>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v4 08/21] dt-bindings: reserved-memory: Add qcom,ramoops
- binding
-Message-ID: <07e3a4ce-d1fd-4af7-a288-a88e8fb1c954@quicinc.com>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
- <87ba1c2d-fa0b-4ac5-ba79-b3556101b612@quicinc.com>
- <CAL_Jsq+_G4wBR7tm+DvN-yYSaoAX6OgxHa0AToJYucDdhD=Dtg@mail.gmail.com>
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:BROADCOM BCM2711/BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 0/5] PCI: brcmstb: Configure appropriate HW CLKREQ#
+ mode
+Message-ID: <20230629015918.v4u7atl3ep3aetgj@mraw.org>
+Organization: Debian
+References: <20230623144100.34196-1-james.quinlan@broadcom.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="7befo4br4255cxtj"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAL_Jsq+_G4wBR7tm+DvN-yYSaoAX6OgxHa0AToJYucDdhD=Dtg@mail.gmail.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 9kp9rIKzyYn_Az1wGtxsEwfzcKAeNG4n
-X-Proofpoint-GUID: 9kp9rIKzyYn_Az1wGtxsEwfzcKAeNG4n
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-28_14,2023-06-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- mlxlogscore=999 spamscore=0 priorityscore=1501 suspectscore=0
- clxscore=1015 bulkscore=0 mlxscore=0 phishscore=0 lowpriorityscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306290014
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+In-Reply-To: <20230623144100.34196-1-james.quinlan@broadcom.com>
+X-Debian-User: kibi
+X-Spam-Status: No, score=-3.6 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RDNS_NONE,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        UNPARSEABLE_RELAY autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 05:17:13PM -0600, Rob Herring wrote:
-> On Wed, Jun 28, 2023 at 8:11 AM Pavan Kondeti <quic_pkondeti@quicinc.com> wrote:
-> >
-> > On Wed, Jun 28, 2023 at 06:04:35PM +0530, Mukesh Ojha wrote:
-> > > Qualcomm ramoops minidump logger provide a means of storing
-> > > the ramoops data to some dynamically reserved memory instead
-> > > of traditionally implemented ramoops where the region should
-> > > be statically fixed ram region. Its device tree binding
-> > > would be exactly same as ramoops device tree binding and is
-> > > going to contain traditional ramoops frontend data and this
-> > > content will be collected via Qualcomm minidump infrastructure
-> > > provided from the boot firmware.
-> > >
-> > > Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> > > ---
-> > >  .../devicetree/bindings/soc/qcom/qcom,ramoops.yaml | 126 +++++++++++++++++++++
-> > >  1 file changed, 126 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> > > new file mode 100644
-> > > index 000000000000..b1fdcf3f8ad4
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/soc/qcom/qcom,ramoops.yaml
-> > > @@ -0,0 +1,126 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: "http://devicetree.org/schemas/soc/qcom/qcom,ramoops.yaml#"
-> > > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> > > +
-> > > +title: Qualcomm Ramoops minidump logger
-> > > +
-> > > +description: |
-> > > +  Qualcomm ramoops minidump logger provide a means of storing the ramoops
-> > > +  data to some dynamically reserved memory instead of traditionally
-> > > +  implemented ramoops where the region should be statically fixed ram
-> > > +  region. Because of its similarity with ramoops it will also have same
-> > > +  set of property what ramoops have it in its schema and is going to
-> > > +  contain traditional ramoops frontend data and this region will be
-> > > +  collected via Qualcomm minidump infrastructure provided from the
-> > > +  boot firmware.
-> > > +
-> > > +maintainers:
-> > > +  - Mukesh Ojha <quic_mojha@quicinc.com>
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    items:
-> > > +      - enum:
-> > > +          - qcom,sm8450-ramoops
-> > > +      - const: qcom,ramoops
-> > > +
-> > > +  memory-region:
-> > > +    maxItems: 1
-> > > +    description: handle to memory reservation for qcom,ramoops region.
-> > > +
-> > > +  ecc-size:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: enables ECC support and specifies ECC buffer size in bytes
-> > > +    default: 0 # no ECC
-> > > +
-> > > +  record-size:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: maximum size in bytes of each kmsg dump
-> > > +    default: 0
-> > > +
-> > > +  console-size:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: size in bytes of log buffer reserved for kernel messages
-> > > +    default: 0
-> > > +
-> > > +  ftrace-size:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: size in bytes of log buffer reserved for function tracing and profiling
-> > > +    default: 0
-> > > +
-> > > +  pmsg-size:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: size in bytes of log buffer reserved for userspace messages
-> > > +    default: 0
-> > > +
-> > > +  mem-type:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    description: if present, sets the type of mapping is to be used to map the reserved region.
-> > > +    default: 0
-> > > +    oneOf:
-> > > +      - const: 0
-> > > +        description: write-combined
-> > > +      - const: 1
-> > > +        description: unbuffered
-> > > +      - const: 2
-> > > +        description: cached
-> > > +
-> > > +  max-reason:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    default: 2 # log oopses and panics
-> > > +    maximum: 0x7fffffff
-> > > +    description: |
-> > > +      If present, sets maximum type of kmsg dump reasons to store.
-> > > +      This can be set to INT_MAX to store all kmsg dumps.
-> > > +      See include/linux/kmsg_dump.h KMSG_DUMP_* for other kmsg dump reason values.
-> > > +      Setting this to 0 (KMSG_DUMP_UNDEF), means the reason filtering will be
-> > > +      controlled by the printk.always_kmsg_dump boot param.
-> > > +      If unset, it will be 2 (KMSG_DUMP_OOPS), otherwise 5 (KMSG_DUMP_MAX).
-> > > +
-> > > +  flags:
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    default: 0
-> > > +    description: |
-> > > +      If present, pass ramoops behavioral flags
-> > > +      (see include/linux/pstore_ram.h RAMOOPS_FLAG_* for flag values).
-> > > +
-> > > +  no-dump-oops:
-> > > +    deprecated: true
-> > > +    type: boolean
-> > > +    description: |
-> > > +      Use max_reason instead. If present, and max_reason is not specified,
-> > > +      it is equivalent to max_reason = 1 (KMSG_DUMP_PANIC).
-> > > +
-> > > +  unbuffered:
-> > > +    deprecated: true
-> > > +    type: boolean
-> > > +    description: |
-> > > +      Use mem_type instead. If present, and mem_type is not specified,
-> > > +      it is equivalent to mem_type = 1 and uses unbuffered mappings to map
-> > > +      the reserved region (defaults to buffered mappings mem_type = 0).
-> > > +      If both are specified -- "mem_type" overrides "unbuffered".
-> > > +
-> >
-> > Most of the properties you added here are already documented at
-> > Documentation/devicetree/bindings/reserved-memory/ramoops.yaml
-> 
-> That is certainly a problem. Don't define the same property more than
-> once. Not yet checked and enforced by the tools, but it will be.
-> 
-> > Can't we just reference them here? would something like work?
-> >
-> > max-reason:
-> >   $ref: "../../reserved-memory/ramoops.yaml#/properties/max-reason
-> 
-> Can work, but no. Common properties need to go into a schema of common
-> properties which the device specific schemas reference.
-> 
 
-Thanks for the clarification. We need to define the common properties
-and make it available under /schemas/<>.yaml and add a reference to it
-in these bindings. Is my understanding correct?
+--7befo4br4255cxtj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> >
-> > > +unevaluatedProperties: false
-> > > +
-> >
-> > will there be any additional properties be added dynamically? if not,
-> > should not we use "additionalProperties: false" here?
-> 
-> I don't know what you mean by dynamically, but that's not the criteria
-> for which to use.
-> 
-ok, I was wrong in saying dynamically. I should say "are there any other
-properties that will be included that are not documented here".
+Hi Jim,
 
-is below my understanding correct?
+Jim Quinlan <james.quinlan@broadcom.com> (2023-06-23):
+> v6 -- No code has been changed.
+>    -- Changed commit subject and comment in "#PERST" commit (Bjorn, Cyril)
+>    -- Changed sign-off and author email address for all commits.
+>       This was due to a change in Broadcom's upstreaming policy.
 
-additionalProperties needs to be set to false if at all this binding
-defines all the possible properties (including child nodes) and not
-referring to any other schemas.
+I've just run some more tests to be on the safe side, and I can confirm
+everything is still looking good with the updated series and the updated
+base commit.
 
-If that is not the case and this binding references to other schemas,
-then unevaluatedProperties could be used since additionalProperties
-can't support combining schemas.
+Test setup:
+-----------
 
-Thanks,
-Pavan
+ - using a $CM with the 20230111 EEPROM
+ - on the same CM4 IO Board
+ - with a $PCIE board (PCIe to multiple USB ports)
+ - and the same Samsung USB flash drive.
+
+where $CM is one of:
+
+ - CM4 Lite Rev 1.0
+ - CM4 8/32 Rev 1.0
+ - CM4 4/32 Rev 1.1
+
+and $PCIE is one of:
+
+ - SupaHub PCE6U1C-R02, VER 006
+ - SupaHub PCE6U1C-R02, VER 006S
+
+
+Results:
+--------
+
+ 1. With an unpatched kernel, I'm getting the dreaded Serror for all
+    $CM/$PCIE combinations. That's reproducible with:
+     - the 6.1.y kernel shipped in Debian 12;
+     - a locally-built v6.4-rc7-194-g8a28a0b6f1a1d kernel.
+
+ 2. With a patched kernel (v6.4-rc7-194-g8a28a0b6f1a1d + this series),
+    for all $CM/$PCIE combinations, I'm getting a system that boots,
+    sees the flash drive, and gives decent read performance on the USB
+    flash drive (200+ MB/s on the CM4 Lite, 220+ MB/s on the non-Lite
+    versions).
+
+
+In passing, since that looks like it could be merged finally: I suppose
+it's fair to say this series adds support for hardware that wasn't
+working before, which means it's not a candidate for inclusion via
+stable@ (even if it gets rid of a nasty failure to boot depending on
+what hardware is plugged in at that time)?
+
+In other words, downstream distributions should be expected to either
+adjust their build systems to pick some future Linux release or consider
+backporting this series on their own, to each base Linux version they
+support?
+
+
+Thanks again for all the help figuring this out.
+
+
+Cheers,
+--=20
+Cyril Brulebois (kibi@debian.org)            <https://debamax.com/>
+D-I release manager -- Release team member -- Freelance Consultant
+
+--7befo4br4255cxtj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEtg6/KYRFPHDXTPR4/5FK8MKzVSAFAmSc5XMACgkQ/5FK8MKz
+VSA3Sg//fgoP825n1pCIyd3e2L9YZB3DWHb6OWdjrkcyyLL4YEn6BapxdPkjwMpk
+JAK7iCo1grklQEvdqMrkoc4mRHsjN/3Hkx9GzRguiU28AqaMkazc3s+GnRJtoUnO
+zWNPnwnwsaeIGmB0uIXWLxtp1A9naSO/zOPwD/INCWYbC2EAT4sEPb+A4qqtMrz/
+CGXalNZb58prYVJrlZ2fcQL3SGrgf4lcob7JqtZcL9pHE5uaS7sOhSQdxQI1JgTC
+/6bjJGvBAyLLlOA8rTR8vYgmXbaFX12aVJ9OOn0tByScMc7VNikVPSTo7/Oc630t
+ElCEnxxIc/cslSXhM1xlhUMgGY8WIrr1G0qNM7LPVoC4FPWsOjdFXj0ooChEKaHW
+ZqKrJ7UDlq7rTIwyzJTVCbZJw+QVt8Qz6ffaQgbJ5jGkVIxrjFgfMvfNeRIhEF8a
+c6PJiLNm8QRh2h497F+J2PopC/i9kEL/k5ySoa1rOzqUPReXhN57Q5xQRivOZDdw
+nMa7m5eX0gbtvjX3qaCwVIIcwpVaWAeiOEm2/B3aAKiPVPmibw0sdCRtoSflh2NZ
+dq2ReO2rJZhNHgeOD3oY6L0vU7w2dN8k56eh+JVcWzksjqPgbndq0U54oFnuBnfL
+I7qN6WjGtPPQeYf/j9ngJkuKTPY/BUxUTP0cBkFrgQMHqnTJOyA=
+=yUbx
+-----END PGP SIGNATURE-----
+
+--7befo4br4255cxtj--
