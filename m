@@ -2,36 +2,36 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D9EE742CD4
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 21:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C6BC742D42
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 21:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233410AbjF2TDG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 15:03:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
+        id S232209AbjF2TF4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 15:05:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232372AbjF2TBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 15:01:47 -0400
+        with ESMTP id S233466AbjF2TDV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 15:03:21 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D5E73A8E;
-        Thu, 29 Jun 2023 12:01:37 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C59F33C23;
+        Thu, 29 Jun 2023 12:02:00 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9E6F9615D8;
-        Thu, 29 Jun 2023 19:01:36 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D05D0C433C0;
-        Thu, 29 Jun 2023 19:01:35 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5CCFB61600;
+        Thu, 29 Jun 2023 19:02:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 675D8C433CD;
+        Thu, 29 Jun 2023 19:01:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688065296;
-        bh=n92uXP+PR/COY4F3gJ0g8WAUwUX5F+Y/b2NSPmdSlXQ=;
+        s=k20201202; t=1688065319;
+        bh=FsfFDLqgmY9SMMnUYxeo8rjBO5Tm0rDlY+CxeWfUkLM=;
         h=From:To:Cc:Subject:Date:From;
-        b=dlbWv+Qac171iWLp83haoUN36SpWnO4vjdvgCc3pSm6IozvuhvCYXDyUOlLnuKkWG
-         fhu8Ih7XsMTXn0E/iakmnCymArnmBVkpoqjqmv7S+P/JGDp3+lI8ciB6QzObXtZax6
-         ESR5+6atNgIyJ/R+y6E9cEDryb4EylYJOaYqEm2LPQt5z/fSzpa5uQVT+L4zPxwLAO
-         kQy/IscF4UdC9DTOhqP30KDOrunugA1a0QutvOIiE9umQMyBMLTCRysuxNGjOw+3gV
-         pMxp00SBcxfy5oUOeunHYP6yiH4tfpuOFr2U5gyx0gxdXbfVF9ZCvcCmFEz5iTt6Lg
-         yvU75/Xozjycw==
+        b=bxlrOvtFnTjP1ihB+lsVUtsfC5Cu+k+ydf5KfSWby8owRE6antdyGXYE7+Pe9WBi/
+         ybojO9sDMIg2MieYYmmQkntX94anUqoyEDJKHCpOvOzt2PTK9wdfY2Qcso4xv6nwyf
+         8qmgOyLlAOZwORBTCAoacXvH9ffm4SNVry8SOJc1vLzKbuyqXJAH1R193eBjolMaFw
+         0s1N9LjmG5a65lst45acx4Sdsh5KaiaRKd8G2jOTgWD+2V4jxJfqW2RiY2CG0JLt+f
+         nDGcPMIGTg1duCayQLmV42Tw7V7HlUjuF+CUTZRYG4ZoiUZoMvQ2RSrBkoAq779d//
+         IkLiDFb4xboHw==
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Lorenz Brun <lorenz@brun.one>,
@@ -41,14 +41,14 @@ Cc:     Lorenz Brun <lorenz@brun.one>,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 6.1 01/12] arm64: dts: rockchip: fix USB regulator on ROCK64
-Date:   Thu, 29 Jun 2023 15:01:21 -0400
-Message-Id: <20230629190134.907949-1-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.15 1/5] arm64: dts: rockchip: fix USB regulator on ROCK64
+Date:   Thu, 29 Jun 2023 15:01:52 -0400
+Message-Id: <20230629190158.908169-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
-X-stable-base: Linux 6.1.35
+X-stable-base: Linux 5.15.118
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
@@ -92,7 +92,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 2 insertions(+), 12 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
-index f69a38f42d2d5..0a27fa5271f57 100644
+index 1b0f7e4551ea4..522d2d4281033 100644
 --- a/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
 +++ b/arch/arm64/boot/dts/rockchip/rk3328-rock64.dts
 @@ -37,7 +37,8 @@ vcc_sd: sdmmc-regulator {
