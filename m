@@ -2,41 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E363F742118
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 09:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38277742119
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 09:35:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232273AbjF2HfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 03:35:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55344 "EHLO
+        id S232277AbjF2HfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 03:35:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232298AbjF2He1 (ORCPT
+        with ESMTP id S232302AbjF2He1 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 03:34:27 -0400
-Received: from mail-ed1-f48.google.com (mail-ed1-f48.google.com [209.85.208.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4001B30C5;
-        Thu, 29 Jun 2023 00:34:25 -0700 (PDT)
-Received: by mail-ed1-f48.google.com with SMTP id 4fb4d7f45d1cf-51d9865b8a2so389436a12.3;
-        Thu, 29 Jun 2023 00:34:25 -0700 (PDT)
+Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com [209.85.208.45])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5102935B6;
+        Thu, 29 Jun 2023 00:34:26 -0700 (PDT)
+Received: by mail-ed1-f45.google.com with SMTP id 4fb4d7f45d1cf-51d946d2634so422764a12.3;
+        Thu, 29 Jun 2023 00:34:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688024063; x=1690616063;
+        d=1e100.net; s=20221208; t=1688024065; x=1690616065;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=nc1BU6BhZ7z4IqTRybSYVNkHF2gq7R9QPn7Ka511/8o=;
-        b=BFaqi0vF4yTbBXtBSATA53NGh4rs9XV/Ooj+wOecRaJidrRXr91wx27EQNUv10grIf
-         KADqvJVFt15eLz5UpVtPnuArTdHk43zysNtZszA5BRsjLoOYpjGMHGABvLe1JqyxoCpi
-         nHabLH1zY+nOos61p06+61bZgskpolZ3JC/e9Wx0VHSm0ThvwN5y14eohbjeoaHkdN/+
-         no8a4XCZu9EEwfRlPKHsFLqIM7lQ0B1stm5vvat9yPoEDO1bWwt4Q21uHowcVv/ShzBo
-         FYm7AaETy+BENVR0MG/Qj+Bwdw5Ux9oqieQCnKvwW6kMOzo5OjxiVOH2CuG2qpxsHNze
-         xInA==
-X-Gm-Message-State: ABy/qLb460cnhW7a1V5/7p2XWEyhO9VQZdU1ohjxDKfEJPd7SzfLZ43j
-        FC1awMzx6q+lgKOMyIM14y0=
-X-Google-Smtp-Source: APBJJlF7URx8BE0lY+MGEELC1a/SQZVKF9RkK/VhLFS096RToUMgbWS6WUN+sRTll4ZitQolY8aF6Q==
-X-Received: by 2002:a50:fc13:0:b0:51d:df35:3818 with SMTP id i19-20020a50fc13000000b0051ddf353818mr733004edr.5.1688024063671;
-        Thu, 29 Jun 2023 00:34:23 -0700 (PDT)
+        bh=S6T7r24ENI7G0wksSZQkaqpDe3IM+chAS5vheCtgJd8=;
+        b=M7/vyQ9o8V2hXekjQCQ2oyjvLFUp1l223pq4TUt6wn3xF5qp13pj70BzYrEfSpTwKL
+         rs5vnb6Tr2W8y5+2g2OayC3/5MpjH/3pYr2KMqzfhYtuvKRIp+4XGWyiu3z88awuF7Zc
+         mVUmEbajeXwo0gV5XIN7wnnFNS3eZ5EchU82YzVAPnjC1UW0DoSVXtf1skDuXoqvDJJY
+         vlgzf6LTFTkoh0UZmfa1ChUMKe1cyFS8XRvO5Tc9vK03Si2K2fQXVKvXeOIqBq4v3Ncc
+         PrjTkKTXm1xz+pByhOdaeGE9sPy/mYvX5gYW0TKDeA6V6IVY0M4S7SkyIj2vWHWbfSV+
+         17+A==
+X-Gm-Message-State: ABy/qLaLqfKuHBiiCLBOs2O86wBMOgCRVEaAaQtFApFzVHA04Zc8DEGs
+        QVj/NEPQvVLbzkwbaYhtH9U=
+X-Google-Smtp-Source: APBJJlFk8i9NeMAgJv7UPq36pyJkMY0ql2BNqaQJs8WwVB9P4KcwdXVQm0eEZEGpoia2vi3M14jaUA==
+X-Received: by 2002:aa7:c2d9:0:b0:51d:d5f2:121c with SMTP id m25-20020aa7c2d9000000b0051dd5f2121cmr1291170edp.5.1688024064797;
+        Thu, 29 Jun 2023 00:34:24 -0700 (PDT)
 Received: from ryzen.lan (cpc87451-finc19-2-0-cust61.4-2.cable.virginm.net. [82.11.51.62])
-        by smtp.gmail.com with ESMTPSA id be28-20020a0564021a3c00b0051bfb7de166sm5453716edb.39.2023.06.29.00.34.22
+        by smtp.gmail.com with ESMTPSA id be28-20020a0564021a3c00b0051bfb7de166sm5453716edb.39.2023.06.29.00.34.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jun 2023 00:34:23 -0700 (PDT)
+        Thu, 29 Jun 2023 00:34:24 -0700 (PDT)
 From:   Lucas Tanure <tanure@linux.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -49,11 +49,10 @@ Cc:     Nick <nick@khadas.com>, Artem <art@khadas.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org,
-        Lucas Tanure <tanure@linux.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v7 2/4] dt-bindings: serial: amlogic,meson-uart: Add compatible string for T7
-Date:   Thu, 29 Jun 2023 08:34:17 +0100
-Message-ID: <20230629073419.207886-3-tanure@linux.com>
+        Lucas Tanure <tanure@linux.com>
+Subject: [PATCH v7 3/4] tty: serial: meson: Add a earlycon for the T7 SoC
+Date:   Thu, 29 Jun 2023 08:34:18 +0100
+Message-ID: <20230629073419.207886-4-tanure@linux.com>
 X-Mailer: git-send-email 2.41.0
 In-Reply-To: <20230629073419.207886-1-tanure@linux.com>
 References: <20230629073419.207886-1-tanure@linux.com>
@@ -69,31 +68,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Amlogic T7 SoCs uses the same UART controller as S4 SoCs and G12A.
-There is no need for an extra compatible line in the driver, but
-add T7 compatible line for documentation.
+The new Amlogic T7 SoC does not have a always-on uart,
+so add OF_EARLYCON_DECLARE for it.
 
 Signed-off-by: Lucas Tanure <tanure@linux.com>
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Acked-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../devicetree/bindings/serial/amlogic,meson-uart.yaml        | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/tty/serial/meson_uart.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-index 01ec45b3b406..591d1f8de191 100644
---- a/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-+++ b/Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-@@ -50,6 +50,10 @@ properties:
-         items:
-           - const: amlogic,meson-g12a-uart
-           - const: amlogic,meson-gx-uart
-+      - description: UART controller on S4 compatible SoCs
-+        items:
-+          - const: amlogic,t7-uart
-+          - const: amlogic,meson-s4-uart
+diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
+index 2501db5a7aaf..c24e105a98c5 100644
+--- a/drivers/tty/serial/meson_uart.c
++++ b/drivers/tty/serial/meson_uart.c
+@@ -649,6 +649,8 @@ meson_serial_early_console_setup(struct earlycon_device *device, const char *opt
 
-   reg:
-     maxItems: 1
+ OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
+ 		    meson_serial_early_console_setup);
++OF_EARLYCON_DECLARE(meson, "amlogic,t7-uart",
++		    meson_serial_early_console_setup);
+
+ #define MESON_SERIAL_CONSOLE	(&meson_serial_console)
+ #else
 --
 2.41.0
 
