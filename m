@@ -2,195 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F1F87430C9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 00:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DF497430DD
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 01:08:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232048AbjF2W4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 18:56:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53968 "EHLO
+        id S229483AbjF2XIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 19:08:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231768AbjF2W4g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 18:56:36 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A94092728;
-        Thu, 29 Jun 2023 15:56:34 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DFB0B61616;
-        Thu, 29 Jun 2023 22:56:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1BF62C433C8;
-        Thu, 29 Jun 2023 22:56:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688079393;
-        bh=3TnYQudVtFlXxE58kTi/EBiMxfubypuHndomsfjsV1M=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=L9JqTkO1i1PrVyAUM7r1c2hdYDHrbvgLACn5dXzseCc4rSZ65Ig6Ti9k+okZwpaqn
-         mCsY/0MxkhVccPjpDlD57ZSkUsJ9xMOvivEJgL9DR92gDcMxfpUTAo7HTLzt0Kykxh
-         A+4QvoBXFl/ftp2kOYipG0svUeeH6mAXdMZvLaBL5dwTrt+wTnNSOmQ+CaKqmQUKyC
-         gLBLXOIrK0phjbcp61tnYqcZgVlI1UwyrMmPttQ5Z6oi5CZu+7KFFY96AiFPmlvRSV
-         /I42c85/ixx929OzlK+O9MeRN9003u6TGfAvq9JqDZx+yYM3VHJCOHPl3wXyvvyZFw
-         leHLopiuked9A==
-Date:   Thu, 29 Jun 2023 17:56:31 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Lizhi Hou <lizhi.hou@amd.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh@kernel.org, max.zhen@amd.com,
-        sonal.santan@amd.com, stefano.stabellini@xilinx.com
-Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
-Message-ID: <20230629225631.GA446944@bhelgaas>
+        with ESMTP id S229459AbjF2XIJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 19:08:09 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EA1D30C4;
+        Thu, 29 Jun 2023 16:08:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1688080088; x=1719616088;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=iznXYZ4xH3Nv8gWM89HiaGceomxOh3Ta2hE5jZaVkOM=;
+  b=hf7R9BmpUHb+H+KPeikLPY/F62jOVX+vZ2xUi4+cFoSMP3goXwN4sSm2
+   aphqsQE1NiP8vsP15kkpfIUNX/iXiT86U73biMPyopXHsqRoCcIoo16Dx
+   2qHRGo9G5QbxQxWAPKQQGz7EWJjuZrw8WvS6D02NfDmyRvkhk9ewuF8Cm
+   6SNKwaZ9qmzA8TXwn1nMoj5qLZO1Ro0P6NW5/1Gv29cy3oKug/eAPsHKd
+   UnEzk/N1WXQzu/b5gsDbPZh1vBMYeP+MM/eGwePrbcr/fULZznmVvz0Nz
+   QVvsP945RMWs3vqxPRzCWx5fwzSgi/vHIoizYl/s8mqbccP+MVDnk9Kqk
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="352077264"
+X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; 
+   d="scan'208";a="352077264"
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Jun 2023 16:08:07 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10756"; a="807531156"
+X-IronPort-AV: E=Sophos;i="6.01,169,1684825200"; 
+   d="scan'208";a="807531156"
+Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
+  by FMSMGA003.fm.intel.com with ESMTP; 29 Jun 2023 16:08:02 -0700
+Received: from kbuild by 783282924a45 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qF0k5-000ETx-1u;
+        Thu, 29 Jun 2023 23:08:01 +0000
+Date:   Fri, 30 Jun 2023 07:07:19 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Rob Clark <robdclark@gmail.com>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Krishna Manikandan <quic_mkrishn@quicinc.com>
+Cc:     oe-kbuild-all@lists.linux.dev, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        freedreno@lists.freedesktop.org
+Subject: Re: [PATCH v2 2/4] regulator: Introduce Qualcomm REFGEN regulator
+ driver
+Message-ID: <202306300643.LHN1fbOT-lkp@intel.com>
+References: <20230628-topic-refgen-v2-2-6136487c78c5@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1688059190-4225-3-git-send-email-lizhi.hou@amd.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230628-topic-refgen-v2-2-6136487c78c5@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 29, 2023 at 10:19:47AM -0700, Lizhi Hou wrote:
-> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
-> spaces from multiple hardware peripherals to its PCI BAR. Normally,
-> the PCI core discovers devices and BARs using the PCI enumeration process.
-> There is no infrastructure to discover the hardware peripherals that are
-> present in a PCI device, and which can be accessed through the PCI BARs.
+Hi Konrad,
 
-IIUC this is basically a multi-function device except that instead of
-each device being a separate PCI Function, they all appear in a single
-Function.  That would mean all the devices share the same config space
-so a single PCI Command register controls all of them, they all share
-the same IRQs (either INTx or MSI/MSI-X), any MMIO registers are likely
-in a shared BAR, etc., right?
+kernel test robot noticed the following build errors:
 
-Obviously PCI enumeration only sees the single Function and binds a
-single driver to it.  But IIUC, you want to use existing drivers for
-each of these sub-devices, so this series adds a DT node for the
-single Function (using the quirks that call of_pci_make_dev_node()).
-And I assume that when the PCI driver claims the single Function, it
-will use that DT node to add platform devices, and those existing
-drivers can claim those?
+[auto build test ERROR on 5c875096d59010cee4e00da1f9c7bdb07a025dc2]
 
-I don't see the PCI driver for the single Function in this series.  Is
-that coming?  Is this series useful without it?
+url:    https://github.com/intel-lab-lkp/linux/commits/Konrad-Dybcio/dt-bindings-regulator-Describe-Qualcomm-REFGEN-regulator/20230630-043835
+base:   5c875096d59010cee4e00da1f9c7bdb07a025dc2
+patch link:    https://lore.kernel.org/r/20230628-topic-refgen-v2-2-6136487c78c5%40linaro.org
+patch subject: [PATCH v2 2/4] regulator: Introduce Qualcomm REFGEN regulator driver
+config: s390-allmodconfig (https://download.01.org/0day-ci/archive/20230630/202306300643.LHN1fbOT-lkp@intel.com/config)
+compiler: s390-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230630/202306300643.LHN1fbOT-lkp@intel.com/reproduce)
 
-> Apparently, the device tree framework requires a device tree node for the
-> PCI device. Thus, it can generate the device tree nodes for hardware
-> peripherals underneath. Because PCI is self discoverable bus, there might
-> not be a device tree node created for PCI devices. Furthermore, if the PCI
-> device is hot pluggable, when it is plugged in, the device tree nodes for
-> its parent bridges are required. Add support to generate device tree node
-> for PCI bridges.
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202306300643.LHN1fbOT-lkp@intel.com/
 
-Can you remind me why hot-adding a PCI device requires DT nodes for
-parent bridges?  I don't think we have those today, so maybe the DT
-node for the PCI device requires a DT parent?  How far up does that
-go?  From this patch, I guess a Root Port would be the top DT node on
-a PCIe system, since that's the top PCI-to-PCI bridge?
+All errors (new ones prefixed by >>, old ones prefixed by <<):
 
-This patch adds a DT node for *every* PCI bridge in the system.  We
-only actually need that node for these unusual devices.  Is there some
-way the driver for the single PCI Function could add that node when it
-is needed?  Sorry if you've answered this in the past; maybe the
-answer could be in the commit log or a code comment in case somebody
-else wonders.
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_sed.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_nq.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_twos.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_ftp.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/netfilter/ipvs/ip_vs_pe_sip.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/nf_defrag_ipv4.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/nf_reject_ipv4.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/iptable_nat.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/netfilter/iptable_raw.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ip_tunnel.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ipip.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ip_gre.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/udp_tunnel.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ip_vti.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/ah4.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/esp4.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/xfrm4_tunnel.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/tunnel4.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/inet_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/tcp_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/udp_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv4/raw_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/xfrm/xfrm_algo.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/xfrm/xfrm_user.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/unix/unix_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/ip6table_raw.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/ip6table_nat.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/nf_defrag_ipv6.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/netfilter/nf_reject_ipv6.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/ah6.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/esp6.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/xfrm6_tunnel.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/tunnel6.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/mip6.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/sit.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ipv6/ip6_udp_tunnel.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ar9331.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_brcm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_dsa.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_gswip.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_hellcreek.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ksz.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_lan9303.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_mtk.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_none.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ocelot.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_ocelot_8021q.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_qca.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_rtl4_a.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_rtl8_4.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_rzn1_a5psw.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_sja1105.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_trailer.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/dsa/tag_xrs700x.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/8021q/8021q.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/xdp/xsk_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/mptcp/mptcp_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/mptcp/mptcp_crypto_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/mptcp/mptcp_token_test.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/packet/af_packet.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/packet/af_packet_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/key/af_key.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/nf_conntrack_bridge.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtables.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtable_broute.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtable_filter.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/netfilter/ebtable_nat.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/bridge/bridge.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/sunrpc/sunrpc.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/sunrpc/auth_gss/auth_rpcgss.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/sunrpc/auth_gss/rpcsec_gss_krb5.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/kcm/kcm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/atm/atm.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/atm/lec.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/atm/mpoa.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/sctp/sctp_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/tipc/diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/caif.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/chnl_net.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/caif_socket.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/caif/caif_usb.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/6lowpan/6lowpan.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ieee802154/6lowpan/ieee802154_6lowpan.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/ieee802154/ieee802154_socket.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/nfc/nci/nci.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/nfc/nfc_digital.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/vmw_vsock/vsock_diag.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in net/hsr/hsr.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/cio/ccwgroup.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/cio/vfio_ccw.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dasd_diag_mod.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dasd_eckd_mod.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dasd_fba_mod.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/block/dcssblk.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/char/raw3270.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/char/con3270.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/char/fs3270.o
+WARNING: modpost: missing MODULE_DESCRIPTION() in drivers/s390/net/lcs.o
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/fsl-edma.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/dma/idma64.ko] undefined!
+>> ERROR: modpost: "devm_platform_ioremap_resource" [drivers/regulator/qcom-refgen-regulator.ko] undefined!
+ERROR: modpost: "iounmap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
+ERROR: modpost: "ioremap" [drivers/tty/ipwireless/ipwireless.ko] undefined!
+ERROR: modpost: "devm_platform_ioremap_resource" [drivers/char/xillybus/xillybus_of.ko] undefined!
+ERROR: modpost: "devm_memremap" [drivers/misc/open-dice.ko] undefined!
+ERROR: modpost: "devm_memunmap" [drivers/misc/open-dice.ko] undefined!
+ERROR: modpost: "iounmap" [drivers/net/ethernet/8390/pcnet_cs.ko] undefined!
+ERROR: modpost: "ioremap" [drivers/net/ethernet/8390/pcnet_cs.ko] undefined!
+WARNING: modpost: suppressed 13 unresolved symbol warnings because there were too many)
 
-> @@ -340,6 +340,8 @@ void pci_bus_add_device(struct pci_dev *dev)
->  	 */
->  	pcibios_bus_add_device(dev);
->  	pci_fixup_device(pci_fixup_final, dev);
-> +	if (pci_is_bridge(dev))
-> +		of_pci_make_dev_node(dev);
-
-It'd be nice to have a clue here about why we need this, since this is
-executed for *every* system, even ACPI platforms that typically don't
-use OF things.
-
->  	pci_create_sysfs_dev_files(dev);
->  	pci_proc_attach_device(dev);
->  	pci_bridge_d3_update(dev);
-> diff --git a/drivers/pci/of.c b/drivers/pci/of.c
-> index 2c25f4fa0225..9786ae407948 100644
-> --- a/drivers/pci/of.c
-> +++ b/drivers/pci/of.c
-> @@ -487,6 +487,15 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
->  		} else {
->  			/* We found a P2P bridge, check if it has a node */
->  			ppnode = pci_device_to_OF_node(ppdev);
-> +#if IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_NODES)
-
-I would use plain #ifdef here instead of IS_ENABLED(), as you did in
-pci.h below.  IS_ENABLED() is true if the Kconfig symbol is set to
-either "y" or "m".
-
-Using IS_ENABLED() suggests that the config option *could* be a
-module, which is not the case here because CONFIG_PCI_DYNAMIC_OF_NODES
-is a bool.
-
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/include/linux/kconfig.h?id=v6.4#n69
-
-> @@ -617,6 +626,85 @@ int devm_of_pci_bridge_init(struct device *dev, struct pci_host_bridge *bridge)
->  	return pci_parse_request_of_pci_ranges(dev, bridge);
->  }
->  
-> +#if IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_NODES)
-
-Same here, of course.
-
-> +void of_pci_remove_node(struct pci_dev *pdev)
-> +{
-> +	struct device_node *np;
-> +
-> +	np = pci_device_to_OF_node(pdev);
-> +	if (!np || !of_node_check_flag(np, OF_DYNAMIC))
-
-> + * Each entry in the ranges table is a tuple containing the child address,
-> + * the parent address, and the size of the region in the child address space.
-> + * Thus, for PCI, in each entry parent address is an address on the primary
-> + * side and the child address is the corresponding address on the secondary
-> + * side.
-> + */
-> +struct of_pci_range {
-> +	u32		child_addr[OF_PCI_ADDRESS_CELLS];
-> +	u32		parent_addr[OF_PCI_ADDRESS_CELLS];
-> +	u32		size[OF_PCI_SIZE_CELLS];
-
-> +		if (pci_is_bridge(pdev)) {
-> +			memcpy(rp[i].child_addr, rp[i].parent_addr,
-> +			       sizeof(rp[i].child_addr));
-> +		} else {
-> +			/*
-> +			 * For endpoint device, the lower 64-bits of child
-> +			 * address is always zero.
-
-I think this connects with the secondary side comment above, right?  I
-think I would comment this as:
-
-  /*
-   * PCI-PCI bridges don't translate addresses, so the child
-   * (secondary side) address is identical to the parent (primary
-   * side) address.
-   */
-
-and
-
-  /*
-   * Non-bridges have no child (secondary side) address, so clear it
-   * out.
-   */
-
-> +			 */
-> +			rp[i].child_addr[0] = j;
-
-> +	ret = of_changeset_add_empty_prop(ocs, np, "dynamic");
-
-It seems slightly confusing to use a "dynamic" property here when we
-also have the OF_DYNAMIC dynamic flag above.  I think they have
-different meanings, don't they?
-
-Bjorn
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
