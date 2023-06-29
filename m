@@ -2,169 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6D8F742862
-	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 16:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 400167428CE
+	for <lists+devicetree@lfdr.de>; Thu, 29 Jun 2023 16:48:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231766AbjF2OaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 29 Jun 2023 10:30:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60854 "EHLO
+        id S231953AbjF2OsH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 29 Jun 2023 10:48:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232314AbjF2OaS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 10:30:18 -0400
-Received: from mg.richtek.com (mg.richtek.com [220.130.44.152])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 03BA92D7F;
-        Thu, 29 Jun 2023 07:30:13 -0700 (PDT)
-X-MailGates: (flag:4,DYNAMIC,BADHELO,RELAY,NOHOST:PASS)(compute_score:DE
-        LIVER,40,3)
-Received: from 192.168.10.46
-        by mg.richtek.com with MailGates ESMTP Server V5.0(12333:0:AUTH_RELAY)
-        (envelope-from <cy_huang@richtek.com>); Thu, 29 Jun 2023 22:29:57 +0800 (CST)
-Received: from ex3.rt.l (192.168.10.46) by ex3.rt.l (192.168.10.46) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.25; Thu, 29 Jun
- 2023 22:29:57 +0800
-Received: from linuxcarl2.richtek.com (192.168.10.154) by ex3.rt.l
- (192.168.10.45) with Microsoft SMTP Server id 15.2.1118.25 via Frontend
- Transport; Thu, 29 Jun 2023 22:29:57 +0800
-From:   <cy_huang@richtek.com>
-To:     <broonie@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <robh+dt@kernel.org>, <lgirdwood@gmail.com>,
-        <cy_huang@richtek.com>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] regulator: rt5739: Add DID check and compatible for rt5733
-Date:   Thu, 29 Jun 2023 22:29:56 +0800
-Message-ID: <1688048996-25606-3-git-send-email-cy_huang@richtek.com>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1688048996-25606-1-git-send-email-cy_huang@richtek.com>
-References: <1688048996-25606-1-git-send-email-cy_huang@richtek.com>
+        with ESMTP id S231766AbjF2OsG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 29 Jun 2023 10:48:06 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DD8F1FC1;
+        Thu, 29 Jun 2023 07:48:05 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-78363328c04so33499339f.0;
+        Thu, 29 Jun 2023 07:48:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688050084; x=1690642084;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uilq6z/8qDMrMwwK/ThP4YRy5D7LVd88uC6Jk/hXOB0=;
+        b=Dae4MVNbjKDJ2ZbZzGH/TgQM9eIuK8bnVBtWNA/DzXLlgLECwRskyNM1yCrwer0eOH
+         MCEKCJUTojf+TDyspB7Ygi5/OvBnXcSahb8soMTH1bV+uMPymOunSkIoZiaAHRxJ9ffi
+         lQuR6OKey6p8KlWt+q6t50rS1TiaUQVFwfLh6webvk+q4F8mau1WUCD1wA4gTN7LyrLy
+         rW8FeArd45DIg7tI3zQtlWPX9/jQg+qvQoB9bOVqAdHXtytSi4+/z5DgwcS89TZrPTmK
+         mH0vReeaqdCVApjZ3XxpHFqhwQXz8NaqF7O/pppWbXoiIyYB6Ik/VUKsWYmCGinya+9m
+         VP0g==
+X-Gm-Message-State: AC+VfDzj7WSSl8l5pobJcdCAu+fHmLMvk7NWgIRhzg6KRcBccaEiX6Ka
+        e6cQLpDgQVmcD8nR6cVb7A==
+X-Google-Smtp-Source: ACHHUZ5ZVvbmn50/zDnLJaH0yQC1yqsQQY1KVrAIBDo0Kk8dgB7tB6uNKpFuUkQokEuPl8zkbvpgBg==
+X-Received: by 2002:a6b:dd09:0:b0:783:5452:e343 with SMTP id f9-20020a6bdd09000000b007835452e343mr11464812ioc.14.1688050084530;
+        Thu, 29 Jun 2023 07:48:04 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h23-20020a5e8417000000b00783634b9eafsm2541364ioj.50.2023.06.29.07.48.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 29 Jun 2023 07:48:03 -0700 (PDT)
+Received: (nullmailer pid 2947111 invoked by uid 1000);
+        Thu, 29 Jun 2023 14:48:01 -0000
+Date:   Thu, 29 Jun 2023 08:48:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-pm@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Andy Gross <agross@kernel.org>, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
+        Nishanth Menon <nm@ti.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>
+Subject: Re: [PATCH v2 01/26] dt-bindings: opp: opp-v2-kryo-cpu: support
+ Qualcomm Krait SoCs
+Message-ID: <168805008087.2947031.13766833790422511577.robh@kernel.org>
+References: <20230625202547.174647-1-dmitry.baryshkov@linaro.org>
+ <20230625202547.174647-2-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230625202547.174647-2-dmitry.baryshkov@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
 
-Add compatible and use DID to check rt5733.
+On Sun, 25 Jun 2023 23:25:22 +0300, Dmitry Baryshkov wrote:
+> Exted the opp-v2-kryo-cpu.yaml to support defining OPP tables for the
+> previous generation of Qualcomm CPUs, 32-bit Krait-based platforms.
+> 
+> It makes no sense to use 'operating-points-v2-kryo-cpu' compatibility
+> node for the Krait cores. Add support for the Krait-specific
+> 'operating-points-v2-krait-cpu' compatibility string and the relevant
+> opp-microvolt subclasses properties.
+> 
+> The listed opp-supported-hw values are applicable only to msm8996 /
+> msm8996pro platforms. Remove the enum as other platforms will use other
+> bit values. It makes little sense to list all possible values for all
+> the platforms here.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+>  .../devicetree/bindings/opp/opp-v2-kryo-cpu.yaml     | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
+> 
 
-The only difference bwtween rt5733 and rt5739 is the output range and
-voltage step. These two chips can be distinguished from the DIE id.
-
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
-v2:
-- Remove DID check in 'set_suspend_voltage' callback, use desc member to
-  check min/max and vsel calculation
-- Use switch case to check DID for the future variation
----
- drivers/regulator/rt5739.c | 36 +++++++++++++++++++++++++++++-------
- 1 file changed, 29 insertions(+), 7 deletions(-)
-
-diff --git a/drivers/regulator/rt5739.c b/drivers/regulator/rt5739.c
-index 74fc5bf6d87e..ca5f9b05331c 100644
---- a/drivers/regulator/rt5739.c
-+++ b/drivers/regulator/rt5739.c
-@@ -31,10 +31,17 @@
- #define RT5739_MODEVSEL1_MASK	BIT(1)
- #define RT5739_MODEVSEL0_MASK	BIT(0)
- #define RT5739_VID_MASK		GENMASK(7, 5)
-+#define RT5739_DID_MASK		GENMASK(3, 0)
- #define RT5739_ACTD_MASK	BIT(7)
- #define RT5739_ENVSEL1_MASK	BIT(1)
- #define RT5739_ENVSEL0_MASK	BIT(0)
- 
-+#define RT5733_CHIPDIE_ID	0x1
-+#define RT5733_VOLT_MINUV	270000
-+#define RT5733_VOLT_MAXUV	1401250
-+#define RT5733_VOLT_STPUV	6250
-+#define RT5733_N_VOLTS		182
-+
- #define RT5739_VOLT_MINUV	300000
- #define RT5739_VOLT_MAXUV	1300000
- #define RT5739_VOLT_STPUV	5000
-@@ -93,8 +100,11 @@ static int rt5739_set_suspend_voltage(struct regulator_dev *rdev, int uV)
- 	const struct regulator_desc *desc = rdev->desc;
- 	struct regmap *regmap = rdev_get_regmap(rdev);
- 	unsigned int reg, vsel;
-+	int max_uV;
-+
-+	max_uV = desc->min_uV + desc->uV_step * (desc->n_voltages - 1);
- 
--	if (uV < RT5739_VOLT_MINUV || uV > RT5739_VOLT_MAXUV)
-+	if (uV < desc->min_uV || uV > max_uV)
- 		return -EINVAL;
- 
- 	if (desc->vsel_reg == RT5739_REG_NSEL0)
-@@ -102,7 +112,7 @@ static int rt5739_set_suspend_voltage(struct regulator_dev *rdev, int uV)
- 	else
- 		reg = RT5739_REG_NSEL0;
- 
--	vsel = (uV - RT5739_VOLT_MINUV) / RT5739_VOLT_STPUV;
-+	vsel = (uV - desc->min_uV) / desc->uV_step;
- 	return regmap_write(regmap, reg, vsel);
- }
- 
-@@ -189,15 +199,12 @@ static unsigned int rt5739_of_map_mode(unsigned int mode)
- }
- 
- static void rt5739_init_regulator_desc(struct regulator_desc *desc,
--				       bool vsel_active_high)
-+				       bool vsel_active_high, u8 did)
- {
- 	/* Fixed */
- 	desc->name = "rt5739-regulator";
- 	desc->owner = THIS_MODULE;
- 	desc->ops = &rt5739_regulator_ops;
--	desc->n_voltages = RT5739_N_VOLTS;
--	desc->min_uV = RT5739_VOLT_MINUV;
--	desc->uV_step = RT5739_VOLT_STPUV;
- 	desc->vsel_mask = RT5739_VSEL_MASK;
- 	desc->enable_reg = RT5739_REG_CNTL2;
- 	desc->active_discharge_reg = RT5739_REG_CNTL1;
-@@ -213,6 +220,20 @@ static void rt5739_init_regulator_desc(struct regulator_desc *desc,
- 		desc->vsel_reg = RT5739_REG_NSEL0;
- 		desc->enable_mask = RT5739_ENVSEL0_MASK;
- 	}
-+
-+	/* Assigned by CHIPDIE ID */
-+	switch (did) {
-+	case RT5733_CHIPDIE_ID:
-+		desc->n_voltages = RT5733_N_VOLTS;
-+		desc->min_uV = RT5733_VOLT_MINUV;
-+		desc->uV_step = RT5733_VOLT_STPUV;
-+		break;
-+	default:
-+		desc->n_voltages = RT5739_N_VOLTS;
-+		desc->min_uV = RT5739_VOLT_MINUV;
-+		desc->uV_step = RT5739_VOLT_STPUV;
-+		break;
-+	}
- }
- 
- static const struct regmap_config rt5739_regmap_config = {
-@@ -258,7 +279,7 @@ static int rt5739_probe(struct i2c_client *i2c)
- 
- 	vsel_acth = device_property_read_bool(dev, "richtek,vsel-active-high");
- 
--	rt5739_init_regulator_desc(desc, vsel_acth);
-+	rt5739_init_regulator_desc(desc, vsel_acth, vid & RT5739_DID_MASK);
- 
- 	cfg.dev = dev;
- 	cfg.of_node = dev_of_node(dev);
-@@ -271,6 +292,7 @@ static int rt5739_probe(struct i2c_client *i2c)
- }
- 
- static const struct of_device_id rt5739_device_table[] = {
-+	{ .compatible = "richtek,rt5733" },
- 	{ .compatible = "richtek,rt5739" },
- 	{ /* sentinel */ }
- };
--- 
-2.40.1
+Acked-by: Rob Herring <robh@kernel.org>
 
