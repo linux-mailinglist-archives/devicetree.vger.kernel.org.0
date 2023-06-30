@@ -2,258 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D14743D0B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 15:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 900E5743D1C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 15:58:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230054AbjF3NzA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 09:55:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58102 "EHLO
+        id S232176AbjF3N6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 09:58:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58744 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230046AbjF3Ny7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 09:54:59 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EED7CE5E;
-        Fri, 30 Jun 2023 06:54:57 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35UBoD09017765;
-        Fri, 30 Jun 2023 13:54:54 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=JPqW/yb8tupNXF0cJMpitNiYM42Q+8XjZnb82FxXeHA=;
- b=ZOe98rViwuR1ltgEy773tSVtfQcLPe2vrzzjHaBeIHXkWZ/cZ1YCo8lhHIzmNG+TgaRI
- /8ZJWAx0W54svKeaswgD331Tm4NRA9w1rRmO8iB/kIohna5+gX4HvHaubPHS+kMtwn0B
- ljgkJ3pfpMtwKLJpWRQqHJqfQ1D3UAKUs058mDv26XRvY/2AERBJV7PuvlLmCINudvDj
- S353P3j76/kWIj9ZWEREwwh2x7E28oI7ikfw01YVQrjy5gxGFFhdXDPKqhP3ZXocD1Xj
- jdGN3t0Z2ySv3COk44ftpxKM8YdZ0X+DfXn7SnNyYhPtN+kBgmIM2nme2gVUKrE3UDMQ FQ== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rhw70rdp5-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Jun 2023 13:54:54 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35UDsr8X021079
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Jun 2023 13:54:53 GMT
-Received: from [10.216.15.2] (10.80.80.8) by nalasex01b.na.qualcomm.com
- (10.47.209.197) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.7; Fri, 30 Jun
- 2023 06:54:48 -0700
-Message-ID: <88407863-7f7f-aea0-e9b8-4275e667bb4b@quicinc.com>
-Date:   Fri, 30 Jun 2023 19:24:42 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.5.1
-Subject: Re: [PATCH v4 5/6] soc: qcom: Add LLCC support for multi channel DDR
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-CC:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229546AbjF3N6w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 09:58:52 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EDB792118;
+        Fri, 30 Jun 2023 06:58:48 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-3090d3e9c92so2280445f8f.2;
+        Fri, 30 Jun 2023 06:58:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688133527; x=1690725527;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=c5+VmZboCGtXD2h7I6RPQX0D+BsuFZkuK+SwH65LkZo=;
+        b=SSjGPXScNJKwxC3/hOijYSRYNtfnn2Uf6P5ymjz41IWxhmk7v8Nx+x0XBUbbafnaYm
+         8f9bBsVY6/JlwQooOx8a0WPXU8OWwDxN/cfMck3vWr+CstlH2swJHchbMC+m7hjyzk0j
+         ff0BkN2VtwbPKOoI9NBK77oW+iePZ7sZut57D8jKfyzT2qKDf6WPwiCXi6wM4hWgtjoK
+         yIq9DJH4QUJvnnoWl5S/lw82k+r7wIsTS3WZtuLjN1xlOsQp22qCqg6a6889b8wgnJwU
+         03dorAlp5u1fBqKiUgceBmkf9IHCd7VjpjHfwq7bpNaGOs3GnlAYgZC+bpqBl0iZm9CC
+         deYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688133527; x=1690725527;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=c5+VmZboCGtXD2h7I6RPQX0D+BsuFZkuK+SwH65LkZo=;
+        b=UTqkv7bYgDpMjjsJRQeMrjOMBe5wLpT6PhatpNuavZoJX6zHXJH8TfM50Ii1JSC4GT
+         mAaOICLyCwpw3D7Ed2fISDVhgfzKkfz473e0VcbgzwsXU7C6cbw5u//sDi/8J/YSX1R2
+         qUu5s6UQEg0xJalZhnG2XYzFZsTRvrMfIgtRr+fZUStXm583f+SbM8vdnNlYaKyOwpCf
+         lPOor3SY6nRfdEagTd0PoAiC0ZPM732IE4DOqjEWVW5s8gIVUYIp+QRlpQwppFofgJH7
+         9jWd9/7E7ZS50VJk9iVWnWvWGiSDiEu97uRd9jr/jBdh+75NJib8cNuE/PcFig943dP9
+         UURw==
+X-Gm-Message-State: ABy/qLZe7vTJaVYc250HnwwkVmfQ1P8Og1RCc9aO7bF/kSUt6zoSyjsf
+        e36ZiD5SDIGasDTxzKnf4LtDLPEcEuI=
+X-Google-Smtp-Source: APBJJlHOUc2EoCB2i+DAHpJZEzY9OnAN1I7UyH5LcaJCG/FCJAOfKlzA6hCLCkBo76RVCCemaDboZg==
+X-Received: by 2002:a5d:58c3:0:b0:314:748:d59d with SMTP id o3-20020a5d58c3000000b003140748d59dmr2727282wrf.27.1688133527072;
+        Fri, 30 Jun 2023 06:58:47 -0700 (PDT)
+Received: from localhost (p200300e41f305300f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f30:5300:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id q10-20020adfdfca000000b003141e629cb6sm2538560wrn.101.2023.06.30.06.58.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jun 2023 06:58:46 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20230623141806.13388-1-quic_kbajaj@quicinc.com>
- <20230623141806.13388-6-quic_kbajaj@quicinc.com>
- <CAA8EJpoZiXWDHGEgBF6KuKruQigqdy37pLH1Q_AnXsN6iRPhyA@mail.gmail.com>
- <db8ea67e-529c-856b-026e-2435a2405f6b@quicinc.com>
- <a16b57be-34cd-d093-ac63-d02aef049e51@linaro.org>
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-In-Reply-To: <a16b57be-34cd-d093-ac63-d02aef049e51@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: [PATCH] dt-bindings: serial: tegra-hsuart: Convert to json-schema
+Date:   Fri, 30 Jun 2023 15:58:43 +0200
+Message-ID: <20230630135843.1092770-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: NofqB320yLJTH1vpnVFuj0hsts4OTfJ3
-X-Proofpoint-GUID: NofqB320yLJTH1vpnVFuj0hsts4OTfJ3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-30_05,2023-06-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- mlxlogscore=629 spamscore=0 impostorscore=0 malwarescore=0
- priorityscore=1501 clxscore=1015 lowpriorityscore=0 bulkscore=0
- suspectscore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2306300118
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Thierry Reding <treding@nvidia.com>
 
+Convert the Tegra High-Speed UART bindings from the free-form text
+format to json-schema.
 
-On 6/28/2023 6:44 PM, Dmitry Baryshkov wrote:
-> On 28/06/2023 11:45, Komal Bajaj wrote:
->
-> No HTML emails on public mailing lists, please.
->
->>
->>
->> On 6/23/2023 7:56 PM, Dmitry Baryshkov wrote:
->>> On Fri, 23 Jun 2023 at 17:19, Komal Bajaj<quic_kbajaj@quicinc.com>  
->>> wrote:
->>>> Add LLCC support for multi channel DDR configuration
->>>> based on a feature register. Reading DDR channel
->>>> confiuration uses nvmem framework, so select the
->>>> dependency in Kconfig. Without this, there will be
->>>> errors while building the driver with COMPILE_TEST only.
->>>>
->>>> Signed-off-by: Komal Bajaj<quic_kbajaj@quicinc.com>
->>>> ---
->>>>   drivers/soc/qcom/Kconfig     |  2 ++
->>>>   drivers/soc/qcom/llcc-qcom.c | 33 ++++++++++++++++++++++++++++++---
->>>>   2 files changed, 32 insertions(+), 3 deletions(-)
->>>>
->>>> diff --git a/drivers/soc/qcom/Kconfig b/drivers/soc/qcom/Kconfig
->>>> index a491718f8064..cc9ad41c63aa 100644
->>>> --- a/drivers/soc/qcom/Kconfig
->>>> +++ b/drivers/soc/qcom/Kconfig
->>>> @@ -64,6 +64,8 @@ config QCOM_LLCC
->>>>          tristate "Qualcomm Technologies, Inc. LLCC driver"
->>>>          depends on ARCH_QCOM || COMPILE_TEST
->>>>          select REGMAP_MMIO
->>>> +       select NVMEM
->>> No need to select NVMEM. The used functions are stubbed if NVMEM is 
->>> disabled
->>
->> With the previous patch, where this config was not selected, below 
->> error was flagged by kernel test robot -
->>
->>     drivers/soc/qcom/llcc-qcom.c: In function 'qcom_llcc_get_cfg_index':
->>      >> drivers/soc/qcom/llcc-qcom.c:951:15: error: implicit declaration
->>     of function 'nvmem_cell_read_u8'; did you mean
->>     'nvmem_cell_read_u64'? [-Werror=implicit-function-declaration]
->>           951 |         ret = nvmem_cell_read_u8(&pdev->dev,
->>     "multi_chan_ddr", cfg_index);
->>               |               ^~~~~~~~~~~~~~~~~~
->>               |               nvmem_cell_read_u64
->>         cc1: some warnings being treated as errors
->
-> Judging from the rest of nvmem-consumer.h, it appears that not having 
-> stubs for this function is an omission. Please fix the header instead.
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+ .../bindings/serial/nvidia,tegra20-hsuart.txt |  73 -----------
+ .../serial/nvidia,tegra20-hsuart.yaml         | 124 ++++++++++++++++++
+ 2 files changed, 124 insertions(+), 73 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
 
-Okay, I will add the stub for this function in the header.
-
->
->>
->>>> +       select QCOM_SCM
->>>>          help
->>>>            Qualcomm Technologies, Inc. platform specific
->>>>            Last Level Cache Controller(LLCC) driver for platforms 
->>>> such as,
->>>> diff --git a/drivers/soc/qcom/llcc-qcom.c 
->>>> b/drivers/soc/qcom/llcc-qcom.c
->>>> index 6cf373da5df9..3c29612da1c5 100644
->>>> --- a/drivers/soc/qcom/llcc-qcom.c
->>>> +++ b/drivers/soc/qcom/llcc-qcom.c
->>>> @@ -12,6 +12,7 @@
->>>>   #include <linux/kernel.h>
->>>>   #include <linux/module.h>
->>>>   #include <linux/mutex.h>
->>>> +#include <linux/nvmem-consumer.h>
->>>>   #include <linux/of.h>
->>>>   #include <linux/of_device.h>
->>>>   #include <linux/regmap.h>
->>>> @@ -943,6 +944,19 @@ static int qcom_llcc_cfg_program(struct 
->>>> platform_device *pdev,
->>>>          return ret;
->>>>   }
->>>>
->>>> +static int qcom_llcc_get_cfg_index(struct platform_device *pdev, 
->>>> u8 *cfg_index)
->>>> +{
->>>> +       int ret;
->>>> +
->>>> +       ret = nvmem_cell_read_u8(&pdev->dev, "multi-chan-ddr", 
->>>> cfg_index);
->>>> +       if (ret == -ENOENT) {
->>> || ret == -EOPNOTSUPP ?
->>
->> Okay
->>
->>>> +               *cfg_index = 0;
->>>> +               return 0;
->>>> +       }
->>>> +
->>>> +       return ret;
->>>> +}
->>>> +
->>>>   static int qcom_llcc_remove(struct platform_device *pdev)
->>>>   {
->>>>          /* Set the global pointer to a error code to avoid 
->>>> referencing it */
->>>> @@ -975,11 +989,13 @@ static int qcom_llcc_probe(struct 
->>>> platform_device *pdev)
->>>>          struct device *dev = &pdev->dev;
->>>>          int ret, i;
->>>>          struct platform_device *llcc_edac;
->>>> -       const struct qcom_llcc_config *cfg;
->>>> +       const struct qcom_llcc_config *cfg, *entry;
->>>>          const struct llcc_slice_config *llcc_cfg;
->>>>          u32 sz;
->>>> +       u8 cfg_index;
->>>>          u32 version;
->>>>          struct regmap *regmap;
->>>> +       u32 num_entries = 0;
->>>>
->>>>          drv_data = devm_kzalloc(dev, sizeof(*drv_data), GFP_KERNEL);
->>>>          if (!drv_data) {
->>>> @@ -1040,8 +1056,19 @@ static int qcom_llcc_probe(struct 
->>>> platform_device *pdev)
->>>>
->>>>          drv_data->version = version;
->>>>
->>>> -       llcc_cfg = cfg[0]->sct_data;
->>>> -       sz = cfg[0]->size;
->>>> +       ret = qcom_llcc_get_cfg_index(pdev, &cfg_index);
->>>> +       if (ret)
->>>> +               goto err;
->>>> +
->>>> +       for (entry = cfg; entry->sct_data; entry++, num_entries++)
->>>> +               ;
->>> Please add num_cfgs to the configuration data instead.
->>
->> Shall I create a new wrapper struct having a field num_cfg and a 
->> pointer to those cfgs
->> because configuration data is itself an instance of "struct 
->> qcom_llcc_config" and
->> we can have multiple instances of it.
->
-> A wrapper struct is a better approach in my opinion.
-
-Okay, will follow this approach then.
-
-Thanks
-Komal
->
->>
->>
->>>> +       if (cfg_index >= num_entries || cfg_index < 0) {
->>> cfg_index is unsigned, so it can not be less than 0.
->>
->> Okay.
->>
->>>> +               ret = -EINVAL;
->>>> +               goto err;
->>>> +       }
->>>> +
->>>> +       llcc_cfg = cfg[cfg_index].sct_data;
->>>> +       sz = cfg[cfg_index].size;
->>>>
->>>>          for (i = 0; i < sz; i++)
->>>>                  if (llcc_cfg[i].slice_id > drv_data->max_slices)
->>>> -- 
->>>> 2.40.1
->>>>
->>
->
+diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
+deleted file mode 100644
+index f709304036c2..000000000000
+--- a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
++++ /dev/null
+@@ -1,73 +0,0 @@
+-NVIDIA Tegra20/Tegra30 high speed (DMA based) UART controller driver.
+-
+-Required properties:
+-- compatible : should be,
+-  "nvidia,tegra20-hsuart" for Tegra20,
+-  "nvidia,tegra30-hsuart" for Tegra30,
+-  "nvidia,tegra186-hsuart" for Tegra186,
+-  "nvidia,tegra194-hsuart" for Tegra194.
+-
+-- reg: Should contain UART controller registers location and length.
+-- interrupts: Should contain UART controller interrupts.
+-- clocks: Must contain one entry, for the module clock.
+-  See ../clocks/clock-bindings.txt for details.
+-- resets : Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names : Must include the following entries:
+-  - serial
+-- dmas : Must contain an entry for each entry in dma-names.
+-  See ../dma/dma.txt for details.
+-- dma-names : Must include the following entries:
+-  - rx
+-  - tx
+-
+-Optional properties:
+-- nvidia,enable-modem-interrupt: Enable modem interrupts. Should be enable
+-		only if all 8 lines of UART controller are pinmuxed.
+-- nvidia,adjust-baud-rates: List of entries providing percentage of baud rate
+-  adjustment within a range.
+-  Each entry contains sets of 3 values. Range low/high and adjusted rate.
+-  <range_low range_high adjusted_rate>
+-  When baud rate set on controller falls within the range mentioned in this
+-  field, baud rate will be adjusted by percentage mentioned here.
+-  Ex: <9600 115200 200>
+-  Increase baud rate by 2% when set baud rate falls within range 9600 to 115200
+-
+-Baud Rate tolerance:
+-  Standard UART devices are expected to have tolerance for baud rate error by
+-  -4 to +4 %. All Tegra devices till Tegra210 had this support. However,
+-  Tegra186 chip has a known hardware issue. UART Rx baud rate tolerance level
+-  is 0% to +4% in 1-stop config. Otherwise, the received data will have
+-  corruption/invalid framing errors. Parker errata suggests adjusting baud
+-  rate to be higher than the deviations observed in Tx.
+-
+-  Tx deviation of connected device can be captured over scope (or noted from
+-  its spec) for valid range and Tegra baud rate has to be set above actual
+-  Tx baud rate observed. To do this we use nvidia,adjust-baud-rates
+-
+-  As an example, consider there is deviation observed in Tx for baud rates as
+-  listed below.
+-  0 to 9600 has 1% deviation
+-  9600 to 115200 2% deviation
+-  This slight deviation is expcted and Tegra UART is expected to handle it. Due
+-  to the issue stated above, baud rate on Tegra UART should be set equal to or
+-  above deviation observed for avoiding frame errors.
+-  Property should be set like this
+-  nvidia,adjust-baud-rates = <0 9600 100>,
+-  			     <9600 115200 200>;
+-
+-Example:
+-
+-serial@70006000 {
+-	compatible = "nvidia,tegra30-hsuart", "nvidia,tegra20-hsuart";
+-	reg = <0x70006000 0x40>;
+-	reg-shift = <2>;
+-	interrupts = <0 36 0x04>;
+-	nvidia,enable-modem-interrupt;
+-	clocks = <&tegra_car 6>;
+-	resets = <&tegra_car 6>;
+-	reset-names = "serial";
+-	dmas = <&apbdma 8>, <&apbdma 8>;
+-	dma-names = "rx", "tx";
+-	nvidia,adjust-baud-rates = <1000000 4000000 136>; /* 1.36% shift */
+-};
+diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+new file mode 100644
+index 000000000000..247ee33f8a01
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+@@ -0,0 +1,124 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra20/Tegra30 high speed (DMA based) UART controller driver
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Jon Hunter <jonathanh@nvidia.com>
++
++properties:
++  compatible:
++    oneOf:
++      - const: nvidia,tegra20-hsuart
++      - const: nvidia,tegra30-hsuart
++      - items:
++          - const: nvidia,tegra124-hsuart
++          - const: nvidia,tegra30-hsuart
++      - const: nvidia,tegra186-hsuart
++      - const: nvidia,tegra194-hsuart
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: module clock
++
++  resets:
++    items:
++      - description: module reset
++
++  reset-names:
++    items:
++      - const: serial
++
++  dmas:
++    items:
++      - description: DMA channel used for reception
++      - description: DMA channel used for transmission
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
++  nvidia,enable-modem-interrupt:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: Enable modem interrupts. Should be enable only if all 8 lines of UART controller
++      are pinmuxed.
++
++  nvidia,adjust-baud-rates:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    description: |
++      List of entries providing percentage of baud rate adjustment within a range. Each entry
++      contains a set of 3 values: range low/high and adjusted rate. When the baud rate set on the
++      controller falls within the range mentioned in this field, the baud rate will be adjusted by
++      percentage mentioned here.
++
++      Example: <9600 115200 200>
++
++      Increase baud rate by 2% when set baud rate falls within range 9600 to 115200.
++
++      Standard UART devices are expected to have tolerance for baud rate error by -4 to +4 %. All
++      Tegra devices till Tegra210 had this support. However, Tegra186 chip has a known hardware
++      issue. UART RX baud rate tolerance level is 0% to +4% in 1-stop config. Otherwise, the
++      received data will have corruption/invalid framing errors. Parker errata suggests adjusting
++      baud rate to be higher than the deviations observed in TX.
++
++      TX deviation of connected device can be captured over scope (or noted from its spec) for
++      valid range and Tegra baud rate has to be set above actual TX baud rate observed. To do this
++      we use nvidia,adjust-baud-rates.
++
++      As an example, consider there is deviation observed in TX for baud rates as listed below. 0
++      to 9600 has 1% deviation 9600 to 115200 2% deviation. This slight deviation is expcted and
++      Tegra UART is expected to handle it. Due to the issue stated above, baud rate on Tegra UART
++      should be set equal to or above deviation observed for avoiding frame errors. Property
++      should be set like this:
++
++        nvidia,adjust-baud-rates = <0 9600 100>,
++                                   <9600 115200 200>;
++    items:
++      items:
++        - description: range lower bound
++        - description: range upper bound
++        - description: adjustment (in permyriad, i.e. 0.01%)
++
++allOf:
++  - $ref: serial.yaml
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++  - reset-names
++  - dmas
++  - dma-names
++
++examples:
++  - |
++    #include <dt-bindings/clock/tegra30-car.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    serial@70006000 {
++        compatible = "nvidia,tegra30-hsuart";
++        reg = <0x70006000 0x40>;
++        interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
++        nvidia,enable-modem-interrupt;
++        clocks = <&tegra_car TEGRA30_CLK_UARTA>;
++        resets = <&tegra_car 6>;
++        reset-names = "serial";
++        dmas = <&apbdma 8>, <&apbdma 8>;
++        dma-names = "rx", "tx";
++        nvidia,adjust-baud-rates = <1000000 4000000 136>; /* 1.36% shift */
++    };
+-- 
+2.41.0
 
