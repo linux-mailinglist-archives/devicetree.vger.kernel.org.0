@@ -2,117 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FCAB743360
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 06:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 242BE743387
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 06:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230407AbjF3EHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 00:07:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47160 "EHLO
+        id S230488AbjF3EZn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 00:25:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjF3EHD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 00:07:03 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2828A198E
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 21:07:01 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 84C402C0543;
-        Fri, 30 Jun 2023 16:06:58 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1688098018;
-        bh=jB27fmXkfzp7He06PxN/Gc4RfV1heM0YKMl2NWUGi/A=;
-        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
-        b=d2zsqXm+xOY9ObtniFSp1XB3ylZj8/9z186Q/lBwA1e6yz1HFJsrvoRLNb5WSexuv
-         TnRn+Mij8sADWO6qEQL9wgM3S19CnRodag/v+l7eRsnqnsnzy9V4OSVjTFVYLgEUSs
-         2TnFTKM3MloDZFC9p1tmqAGzlovrnokHuGOId3JTeVpaBKPvFWb+nKabqC+o0jbR9Q
-         IDQr4BJoE+e9+L5vUegfdDnHVgqNvqWxVyJnJ7H4+6jlRocYoZBuMUB3ZtQtFq2GLe
-         zvorIGltlrlqg98TO1DokdACVnC2K/4V3tSl0HhAPbzvoqwUqAwb2U/MmraVcEQash
-         SDyuf+qlzFuvg==
-Received: from svr-chch-ex2.atlnz.lc (Not Verified[2001:df5:b000:bc8::76]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B649e54e20001>; Fri, 30 Jun 2023 16:06:58 +1200
-Received: from svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) by
- svr-chch-ex2.atlnz.lc (2001:df5:b000:bc8::76) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Fri, 30 Jun 2023 16:06:58 +1200
-Received: from svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567]) by
- svr-chch-ex2.atlnz.lc ([fe80::a9eb:c9b7:8b52:9567%15]) with mapi id
- 15.02.1118.030; Fri, 30 Jun 2023 16:06:58 +1200
-From:   Chris Packham <Chris.Packham@alliedtelesis.co.nz>
-To:     "miquel.raynal@bootlin.com" <miquel.raynal@bootlin.com>,
-        "richard@nod.at" <richard@nod.at>,
-        "vigneshr@ti.com" <vigneshr@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "gregory.clement@bootlin.com" <gregory.clement@bootlin.com>,
-        "pierre.gondois@arm.com" <pierre.gondois@arm.com>,
-        "arnd@arndb.de" <arnd@arndb.de>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>
-CC:     "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 2/3] arm64: dts: marvell: Add NAND flash controller to
- AC5
-Thread-Topic: [PATCH v2 2/3] arm64: dts: marvell: Add NAND flash controller to
- AC5
-Thread-Index: AQHZp9wFzLABkbH5wEGgo5cmf3kQUa+h972A
-Date:   Fri, 30 Jun 2023 04:06:58 +0000
-Message-ID: <aa45c265-5b90-b8a5-722e-4bcbc662660b@alliedtelesis.co.nz>
-References: <20230626031217.870938-1-chris.packham@alliedtelesis.co.nz>
- <20230626031217.870938-3-chris.packham@alliedtelesis.co.nz>
-In-Reply-To: <20230626031217.870938-3-chris.packham@alliedtelesis.co.nz>
-Accept-Language: en-NZ, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-originating-ip: [10.33.22.30]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <0324BC037DBF9749B057D985433F6C8F@atlnz.lc>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=NPqrBHyg c=1 sm=1 tr=0 a=Xf/6aR1Nyvzi7BryhOrcLQ==:117 a=xqWC_Br6kY4A:10 a=75chYTbOgJ0A:10 a=IkcTkHD0fZMA:10 a=of4jigFt-DYA:10 a=w2twMtuE976TmCkByo0A:9 a=QEXdDO2ut3YA:10
-X-SEG-SpamProfiler-Score: 0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230342AbjF3EZk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 00:25:40 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2E8A6171E;
+        Thu, 29 Jun 2023 21:25:39 -0700 (PDT)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35U3dZq8009715;
+        Fri, 30 Jun 2023 04:25:31 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references; s=qcppdkim1;
+ bh=a/X1FFHaWN2vRp3imLzc9nrTHycORh/+rtRoKayrDF8=;
+ b=X9Rh5DKfmF3EldedPXv0MPGT5HbXecB8mM9hwbWWQwMCxsNdtuWInkHDShZ6bfiRrHqi
+ WznuOE6xrZJ8+S3vJZvdXGV4f7YH6VJlUonsUepO7MBO6n8m7gmVF+/kzyBGBU+tr9fW
+ 7KRZllogNBRQ+VdEHn8WLY97WSsnSCQLx+rXprx3D5tsOEgCLkYN4O8piDQZtJ8sc9jB
+ 4Clgv2W+hEdFz8kCTBthFspWx8jKDOf41t6ubes8Qi4jRa2oQ+Nu1XB1yqu6E/JxDK3l
+ np0tWeXb3Dq98atzv66orqeGe35lCVOV5G2MJf1BfQSzYg/c21uFhJSDddNwMVB4PWPP uA== 
+Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rhamwhnbj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 04:25:31 +0000
+Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 35U4PRZg013216;
+        Fri, 30 Jun 2023 04:25:27 GMT
+Received: from pps.reinject (localhost [127.0.0.1])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3rdsjknf4k-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
+        Fri, 30 Jun 2023 04:25:27 +0000
+Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
+        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 35U4PQAX013195;
+        Fri, 30 Jun 2023 04:25:26 GMT
+Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
+        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 35U4PQqg013187;
+        Fri, 30 Jun 2023 04:25:26 +0000
+Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
+        id DAE904ABD; Fri, 30 Jun 2023 09:55:25 +0530 (+0530)
+From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
+To:     manivannan.sadhasivam@linaro.org
+Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
+        krzysztof.kozlowski@linaro.org,
+        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?q?Krzysztof=20Wilczy=C5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS)
+Subject: [PATCH v7 1/3] dt-bindings: PCI: qcom: ep: Add interconnects path
+Date:   Fri, 30 Jun 2023 09:55:21 +0530
+Message-Id: <1688099123-28036-2-git-send-email-quic_krichai@quicinc.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1688099123-28036-1-git-send-email-quic_krichai@quicinc.com>
+References: <1688099123-28036-1-git-send-email-quic_krichai@quicinc.com>
+X-QCInternal: smtphost
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: SN8Nmx7IrravWD8ga2RihsPEbNGo8_3M
+X-Proofpoint-GUID: SN8Nmx7IrravWD8ga2RihsPEbNGo8_3M
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-30_02,2023-06-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=999 spamscore=0
+ phishscore=0 clxscore=1015 adultscore=0 mlxscore=0 lowpriorityscore=0
+ malwarescore=0 bulkscore=0 suspectscore=0 impostorscore=0
+ priorityscore=1501 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306300036
+X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DQpPbiAyNi8wNi8yMyAxNToxMiwgQ2hyaXMgUGFja2hhbSB3cm90ZToNCj4gVGhlIEFDNS9BQzVY
-IFNvQyBoYXMgYSBOQU5EIGZsYXNoIGNvbnRyb2xsZXIgKE5GQykuIEFkZCB0aGlzIHRvDQo+IHRo
-ZSBiYXNlIFNvQyBkdHNpIGZpbGUgYXMgYSBkaXNhYmxlZCBub2RlLiBUaGUgTkZDIGludGVncmF0
-aW9uDQo+IG9uIHRoZSBBQzUvQUM1WCBvbmx5IHN1cHBvcnRzIFNEUiB0aW1pbmcgbW9kZXMgdXAg
-dG8gMyBzbyByZXF1aXJlcyBhDQo+IGRlZGljYXRlZCBjb21wYXRpYmxlIHByb3BlcnR5IHNvIHRo
-aXMgbGltaXRhdGlvbiBjYW4gYmUgZW5mb3JjZWQuDQo+DQo+IFNpZ25lZC1vZmYtYnk6IENocmlz
-IFBhY2toYW0gPGNocmlzLnBhY2toYW1AYWxsaWVkdGVsZXNpcy5jby5uej4NCj4gLS0tDQo+DQo+
-IE5vdGVzOg0KPiAgICAgIENoYW5nZXMgaW4gdjI6DQo+ICAgICAgLSBOZXcuDQo+DQo+ICAgYXJj
-aC9hcm02NC9ib290L2R0cy9tYXJ2ZWxsL2FjNS05OGR4MjV4eC5kdHNpIHwgMTAgKysrKysrKysr
-Kw0KPiAgIDEgZmlsZSBjaGFuZ2VkLCAxMCBpbnNlcnRpb25zKCspDQo+DQo+IGRpZmYgLS1naXQg
-YS9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4ZHgyNXh4LmR0c2kgYi9hcmNoL2Fy
-bTY0L2Jvb3QvZHRzL21hcnZlbGwvYWM1LTk4ZHgyNXh4LmR0c2kNCj4gaW5kZXggOGJjZTY0MDY5
-MTM4Li43NGQ2NDRlMGMyOWUgMTAwNjQ0DQo+IC0tLSBhL2FyY2gvYXJtNjQvYm9vdC9kdHMvbWFy
-dmVsbC9hYzUtOThkeDI1eHguZHRzaQ0KPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21hcnZl
-bGwvYWM1LTk4ZHgyNXh4LmR0c2kNCj4gQEAgLTI5Niw2ICsyOTYsMTYgQEAgc3BpMTogc3BpQDgw
-NWE4MDAwIHsNCj4gICAJCQlzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPiAgIAkJfTsNCj4gICANCj4g
-KwkJbmFuZDogbmFuZC1jb250cm9sbGVyQDgwNWIwMDAwIHsNCj4gKwkJCWNvbXBhdGlibGUgPSAi
-bWFydmVsbCxhYzUtbmFuZC1jb250cm9sbGVyIjsNCj4gKwkJCXJlZyA9ICA8MHgwIDB4ODA1YjAw
-MDAgMHgwIDB4MDAwMDAwNTQ+Ow0KPiArCQkJI2FkZHJlc3MtY2VsbHMgPSA8MHgxPjsNCj4gKwkJ
-CSNzaXplLWNlbGxzID0gPDB4MD47DQo+ICsJCQlpbnRlcnJ1cHRzID0gPEdJQ19TUEkgODkgSVJR
-X1RZUEVfTEVWRUxfSElHSD47DQo+ICsJCQljbG9ja3MgPSA8JmNubV9jbG9jaz47DQoNCkFjdHVh
-bGx5IEkgdGhpbmsgSSd2ZSBqdXN0IG5vdGljZWQgYSBwcm9ibGVtIHdpdGggdGhpcy4gVGhlIE5G
-QyB1c2VzIGEgDQpkaWZmZXJlbnQgY2xvY2sgbm90IHRoZSBjbm0gb25lLiBJdCdzIG5vdCBhIGdh
-dGluZyBjbG9jayBsaWtlIG90aGVyIFNvQ3MgDQphbmQgdGhleSdyZSBjbG9zZSBlbm91Z2ggZnJl
-cXVlbmN5IHdpc2Ugc28gaXQgbW9zdGx5IHdvcmtzLiBJJ2xsIHVwZGF0ZSANCnRoaXMgdG8gYWRk
-IGEgZGVkaWNhdGVkIG5hbmQtY2xvY2sgZm9yIHYzLg0KDQo+ICsJCQlzdGF0dXMgPSAiZGlzYWJs
-ZWQiOw0KPiArCQl9Ow0KPiArDQo+ICAgCQlnaWM6IGludGVycnVwdC1jb250cm9sbGVyQDgwNjAw
-MDAwIHsNCj4gICAJCQljb21wYXRpYmxlID0gImFybSxnaWMtdjMiOw0KPiAgIAkJCSNpbnRlcnJ1
-cHQtY2VsbHMgPSA8Mz47
+Some platforms may not boot if a device driver doesn't
+initialize the interconnect path. Mostly it is handled
+by the bootloader but we have starting to see cases
+where bootloader simply ignores them.
+
+Add the "pcie-mem" interconnect path as a required property
+to the bindings.
+
+Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+---
+ Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+index 8111122..bc32e13 100644
+--- a/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
++++ b/Documentation/devicetree/bindings/pci/qcom,pcie-ep.yaml
+@@ -71,6 +71,13 @@ properties:
+     description: GPIO used as WAKE# output signal
+     maxItems: 1
+ 
++  interconnects:
++    maxItems: 1
++
++  interconnect-names:
++    items:
++      - const: pcie-mem
++
+   resets:
+     maxItems: 1
+ 
+@@ -98,6 +105,8 @@ required:
+   - interrupts
+   - interrupt-names
+   - reset-gpios
++  - interconnects
++  - interconnect-names
+   - resets
+   - reset-names
+   - power-domains
+@@ -167,7 +176,9 @@ examples:
+   - |
+     #include <dt-bindings/clock/qcom,gcc-sdx55.h>
+     #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interconnect/qcom,sdx55.h>
+     #include <dt-bindings/interrupt-controller/arm-gic.h>
++
+     pcie_ep: pcie-ep@1c00000 {
+         compatible = "qcom,sdx55-pcie-ep";
+         reg = <0x01c00000 0x3000>,
+@@ -194,6 +205,8 @@ examples:
+         interrupts = <GIC_SPI 140 IRQ_TYPE_LEVEL_HIGH>,
+                      <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
+         interrupt-names = "global", "doorbell";
++        interconnects = <&system_noc MASTER_PCIE &mc_virt SLAVE_EBI_CH0>;
++        interconnect-names = "pcie-mem";
+         reset-gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
+         wake-gpios = <&tlmm 53 GPIO_ACTIVE_LOW>;
+         resets = <&gcc GCC_PCIE_BCR>;
+-- 
+2.7.4
+
