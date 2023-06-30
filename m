@@ -2,114 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A62A743E16
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 16:59:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8F56743E5A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 17:15:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232445AbjF3O7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 10:59:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54958 "EHLO
+        id S231718AbjF3PPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 11:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232823AbjF3O7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 10:59:09 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C427F35AF;
-        Fri, 30 Jun 2023 07:59:07 -0700 (PDT)
-Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35UB5F8N004978;
-        Fri, 30 Jun 2023 14:58:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=O+7N+RpWhjjER73lgAnJg3/KuwNUZLf32hCpl/lcCjg=;
- b=CsYVivMP5Nj7p2YiMGPoPcpkczwwmtjqXGhlvznK+KxysAZYAX5ghlNf//DJKf/RZlRp
- iyluJhYakWVZuVKnaOyz2SZvIe3vycn8qsX2zaubzeO+TiH5IeLgUGueEa5K7niuZEnc
- woSN5ejP7VOyrMBNCz38bTkmy6zdecZqyZ1rvlVOhh3abJXSEOEz2XfdyyYnAZPuTD3g
- udxyTIuMWecivD6gPEsyBoMIUBNBWPDH7H5NtEWc+Ms9et5ibstDFivVezFJ/tSLElHr
- UaEK175lmIwJc8d79jM9ogKclzSfib6IMMdNeNrAfON3U4NCNNvcUwKKbIuRWS9KOFZY Bw== 
-Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rhfewa7qs-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Jun 2023 14:58:47 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35UEwlbS007764
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Jun 2023 14:58:47 GMT
-Received: from [10.216.37.216] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 30 Jun
- 2023 07:58:37 -0700
-Message-ID: <69f8c351-9654-2b4b-b95c-cd1b26b28057@quicinc.com>
-Date:   Fri, 30 Jun 2023 20:28:33 +0530
+        with ESMTP id S232355AbjF3POu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 11:14:50 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBD38273B;
+        Fri, 30 Jun 2023 08:14:48 -0700 (PDT)
+Received: from notapiano.myfiosgateway.com (zone.collabora.co.uk [167.235.23.81])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: nfraprado)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id A96FE6606E8F;
+        Fri, 30 Jun 2023 16:14:42 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1688138086;
+        bh=jVo3WNeds8sK5Pxd5xxnTIN/UCq1LsJU3CgBkczPgyI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SeNtEsY8eeza03E7UHal4qruDipxfp0f25usWCmK1J1XYtA0yMxSZmr4WFqVwMYs9
+         b2Mfp0FBtsVgLZd+UkuSp/PykZB8YzJMsD/b5B2YGReRAKxUA/GrBe9KPpfb7SS4Hb
+         oY2rs719sudhsChMvcLaK/oDa5/urKtoTwNWdO4nK4DFMdKPp0iiScMFJ3UylRI9n8
+         Pfl5YPUP/BBvEhITf8l4U4Y8B6fvjiAOSXqru+8zG0iwCMPQy1kgE1XkZn9mTpo5k8
+         okA2UoYMYXtHyq70JX5H0kLA+Uac4SfB3chspgc3iQWAsG2KOyxzhDcd2YPNjD24OM
+         tpNVlCjLy7mzg==
+From:   =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        =?UTF-8?q?N=C3=ADcolas=20F=2E=20R=2E=20A=2E=20Prado?= 
+        <nfraprado@collabora.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v5 0/7] Enable decoder for mt8183
+Date:   Fri, 30 Jun 2023 11:14:06 -0400
+Message-ID: <20230630151436.155586-1-nfraprado@collabora.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 18/21] pinctrl: qcom: Use qcom_scm_io_update_field()
-Content-Language: en-US
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <keescook@chromium.org>, <tony.luck@intel.com>,
-        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linus.walleij@linaro.org>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-19-git-send-email-quic_mojha@quicinc.com>
- <CAHp75VcUgC+TATXp2c+VCNbfYTPYANrAcYftYqLsj+wg+e=12A@mail.gmail.com>
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <CAHp75VcUgC+TATXp2c+VCNbfYTPYANrAcYftYqLsj+wg+e=12A@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: NDy_K3d84hReuGKT4_iTMuOBUX4jA1ys
-X-Proofpoint-GUID: NDy_K3d84hReuGKT4_iTMuOBUX4jA1ys
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-30_05,2023-06-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 lowpriorityscore=0
- impostorscore=0 suspectscore=0 malwarescore=0 priorityscore=1501
- clxscore=1015 spamscore=0 mlxlogscore=877 adultscore=0 bulkscore=0
- phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306300126
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for your time and suggestion.
 
-On 6/28/2023 7:14 PM, Andy Shevchenko wrote:
-> On Wed, Jun 28, 2023 at 3:37 PM Mukesh Ojha <quic_mojha@quicinc.com> wrote:
->>
->> Use qcom_scm_io_update_field() exported function introduced
->> in last commit.
-> 
-> the last
-> 
-> But what is that? Be more specific.
-> 
-> ...
-> 
->> +       mask = (GENMASK(2, 0) << g->intr_target_bit);
-> 
-> Outer parentheses are not needed.
+This series enables the hardware decoder present on mt8183. At first
+glance, the only missing piece is the devicetree node for it, however,
+simply adding it as is would cause an address collision between the
+first register iospace and the clock-controller node, so a rework of the
+dt-binding and driver, as well as addition of a new syscon phandle
+property, were needed first.
 
-Will apply the changes.
+Tested that H264 decoding works with the hardware decoder on
+mt8183-kukui-jacuzzi-juniper-sku16, giving a fluster score of 98/135 on
+the JVT-AVC_V1 test suite. And ensured other SoCs (MT8192 and MT8195)
+still work as usual.
 
--Mukesh
+Changes in v5:
+- Added explicit include to patch 5 following 0day report
 
-> 
+Changes in v4:
+- Removed VDEC_SYS reg from mt8173 as well
+- Made driver handling cleaner
+
+Changes in v3:
+- Switched the handling of the VDEC_HW_ACTIVE bit to use a syscon
+  instead of the 'active' clock
+
+Changes in v2:
+- Merged commit 1 (media: dt-bindings: mediatek,vcodec: Allow single
+  clock for mt8183) into commit 3 (media: dt-bindings: mediatek,vcodec:
+  Remove VDEC_SYS for mt8183)
+- Further constrained properties in dt-binding
+- Added CLK_IGNORE_UNUSED flag to active clock
+- Reformatted reg-names in DT node
+
+Nícolas F. R. A. Prado (6):
+  media: dt-bindings: mediatek,vcodec: Allow single clock for mt8183
+  media: dt-bindings: mediatek,vcodec: Don't require assigned-clocks
+  media: dt-bindings: mediatek,vcodec: Remove VDEC_SYS register space
+  media: mediatek: vcodec: Define address for VDEC_HW_ACTIVE
+  media: mediatek: vcodec: Read HW active status from syscon
+  arm64: dts: mediatek: mt8173: Drop VDEC_SYS reg from decoder
+
+Yunfei Dong (1):
+  arm64: dts: mediatek: mt8183: Add decoder
+
+ .../media/mediatek,vcodec-decoder.yaml        | 67 ++++++++++++----
+ arch/arm64/boot/dts/mediatek/mt8173.dtsi      |  8 +-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      | 30 ++++++++
+ .../mediatek/vcodec/mtk_vcodec_dec_drv.c      | 77 ++++++++++++++++---
+ .../mediatek/vcodec/mtk_vcodec_dec_hw.c       |  4 +-
+ .../mediatek/vcodec/mtk_vcodec_dec_hw.h       |  3 +-
+ .../platform/mediatek/vcodec/mtk_vcodec_drv.h |  1 +
+ .../mediatek/vcodec/mtk_vcodec_util.c         | 15 ++++
+ .../mediatek/vcodec/mtk_vcodec_util.h         |  2 +
+ .../mediatek/vcodec/vdec/vdec_vp8_if.c        | 10 +--
+ 10 files changed, 178 insertions(+), 39 deletions(-)
+
+-- 
+2.41.0
+
