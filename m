@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6705E7434CA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 08:13:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D2F57434CC
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 08:13:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232096AbjF3GNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 02:13:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55790 "EHLO
+        id S232260AbjF3GN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 02:13:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232155AbjF3GNW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 02:13:22 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBCBB2686
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 23:13:20 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b698937f85so23929161fa.2
-        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 23:13:20 -0700 (PDT)
+        with ESMTP id S232155AbjF3GNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 02:13:25 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BFB2705
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 23:13:21 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b699a2fe86so23961061fa.3
+        for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 23:13:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688105599; x=1690697599;
+        d=linaro.org; s=google; t=1688105600; x=1690697600;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=to6KZ4R4fBoTHdJdtVbxCQRUtjuR5HoBa1YSLAKM0fg=;
-        b=jy/VYhqnzJ7RuYITQHN4r4qF4bf9+b+WU5lYPYBVgmQR2U3jJSpWk5GKEh+OWJ4teS
-         lDPH0nSDF3S2HDUkMJ3EJRG5HOOJ7rx3rhLZFuhzgcClmz32YwMozEYpa/2hbELPHW10
-         bey71A29uL/o0TKikGPrb8pSafTcOSYUD77TcXrrn2cTQIEnkQ7JUcdghIQ9HuWmjshZ
-         Sy45K0msiWPcPfqIJsnhZJCKpkbd+n9HBiEY3aJ/BgPuhNq3sdJ9miLsph+25HVMEUg2
-         +o4WpmoDc4Ls+665ofdVr98TL47DmEQyjbcsV51MGEJX1tPYxbD5S4cEi6pZXJpgZHu9
-         +HDQ==
+        bh=Wmn+M2fNga+4TNI6jt8uO55BNbxGOHvu4NVWQjGkRuY=;
+        b=bhiTPh2xSONiC5pMqLinu2tf4uLERVeZzdtMA1WZeHgiMvBApDzNW+GoHer3+A4WBt
+         YD0gG2XHe0487kaQU4FPAd1SQEynSOJVzsKU5mtnfOZ1zqa3VwgaxF7ajvTpfGSWa53N
+         GlecAfjShCN0u4YXCHDt34jhP/QYFs5/9OENtY6Sa514kZF52rbOhYNf33hawrr+0LGr
+         eTxhaAMjxISaeB2v4OwbVPhtddGHxV6jWZZpLgN8tKDexMSg/6PdDpfnBQu4pxeZ6kKx
+         35ukYXXyVWP1p05cwumIQ+GkJHWrTe4jFdmUtEBrtSQpYuymbVotxjbCBh8JYxDxS80D
+         I+9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688105599; x=1690697599;
+        d=1e100.net; s=20221208; t=1688105600; x=1690697600;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=to6KZ4R4fBoTHdJdtVbxCQRUtjuR5HoBa1YSLAKM0fg=;
-        b=HWGTY+YIh508t3g2rUgKM1s8KK5naTROdrE9EbzKakBSCnpZKmMdigoOC9NEvyygau
-         VlM9/z262mh4ghhS57t7rK9NLQpr3WtZX559EOnfAEgq8Mv/tWwUyPDue6G5b82HgKlL
-         44Y/73ZylZxFkZjlFK0WKduI2EL3VG/vrSgvBB4i4T57635cF8RA9UGZcvTAZ/4GCp7P
-         yzHKmht6LvBsb10ecx9lPPor02XfSAPxpiXRZW3mBKgjeiedbAHUVBEUILYUkrEsQxxf
-         nZQDzPRpvmQ/EmgqKPL8wYsKZ4QhE3LIQbBLxmiXrteJikwwSf8wY0CvEEU5fBec3lI6
-         YDRw==
-X-Gm-Message-State: ABy/qLabQgUOCuL1VC0aI95ynaOkZs+cn1hFBgy0UZSZXsV9P1IRQFLa
-        7GzupOl7x5PTa2Ar6sToNvS53A==
-X-Google-Smtp-Source: APBJJlEg8/XqW1LcOdNpHUc4A7Nrfk8u2tEzzYo4nKfxHwfjvQPXpmrOgLJKw4MrlAM1w3wV8m00pg==
-X-Received: by 2002:a2e:9b88:0:b0:2b4:6456:4553 with SMTP id z8-20020a2e9b88000000b002b464564553mr1260482lji.47.1688105599196;
-        Thu, 29 Jun 2023 23:13:19 -0700 (PDT)
+        bh=Wmn+M2fNga+4TNI6jt8uO55BNbxGOHvu4NVWQjGkRuY=;
+        b=diK9CNE9NwNMyiyHJAXlU0OGT0bLaPhnAdggnb6K3DQ75EZgScf8ECSw1t3zlCCF75
+         GnZZKUb4hYVoNQ9lUgz6KY1CnkXW7LTIaL/oAskVMXiXlNv5J5uXw6eIbPsX4wMQ87w/
+         4ruXxv618q1AxkeX0nxYLk3h6g5sPAe2pdEBgb7lDPX4XH9Wfb2BSUuMcVtJa5QNca5q
+         H/OTOxE/ltSRHQweqUvIwxMCF0taFX6PNSfVBef4Sd2WlsPY7QTiY6I/s4DLiVXoWXM+
+         r9CxUdnHRvSmjE7JHAaJAhE04SRjpMiKgu6E8LdauIqrGFbQLJfpaTVfMQZmIu9UaHwT
+         /npQ==
+X-Gm-Message-State: ABy/qLYIrf0TDhb/WpbRi6bVYbOCvkl/xGkSn04o/H56WCSpwPcnFlsT
+        2W8RAlTq6dH93cCXWrMHntUIKQ==
+X-Google-Smtp-Source: APBJJlEhx+4ElNlwrvS7nlIc98U8QgF4F0QyKRwJdgPBkZYrDhaQURLhjRUmcuubtCsAs7kwDgTbnw==
+X-Received: by 2002:a2e:88d2:0:b0:2b6:364:c153 with SMTP id a18-20020a2e88d2000000b002b60364c153mr1253517ljk.14.1688105600025;
+        Thu, 29 Jun 2023 23:13:20 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id g22-20020a2eb0d6000000b002b6caeb4b41sm505582ljl.27.2023.06.29.23.13.18
+        by smtp.gmail.com with ESMTPSA id g22-20020a2eb0d6000000b002b6caeb4b41sm505582ljl.27.2023.06.29.23.13.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 29 Jun 2023 23:13:18 -0700 (PDT)
+        Thu, 29 Jun 2023 23:13:19 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -56,9 +56,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 3/7] arm64: dts: qcom: pmr735b: fix thermal zone name
-Date:   Fri, 30 Jun 2023 09:13:11 +0300
-Message-Id: <20230630061315.4027453-4-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 4/7] arm64: dts: qcom: pmk8350: fix ADC-TM compatible string
+Date:   Fri, 30 Jun 2023 09:13:12 +0300
+Message-Id: <20230630061315.4027453-5-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
 References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
@@ -67,36 +67,38 @@ Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The name of the thermal zone in pmr735b.dtsi (pmr735a-thermal) conflicts
-with the thermal zone in pmr735a.dtsi. Rename the thermal zone according
-to the chip name.
+The commit b2de43136058 ("arm64: dts: qcom: pmk8350: Add peripherals for
+pmk8350") for the ADC TM (thermal monitoring device) have used the
+compatible string from the vendor kernel ("qcom,adc-tm7"). Use the
+proper compatible string that is defined in the upstream kernel
+("qcom,spmi-adc-tm5-gen2").
 
-Fixes: 6f3426b3dea4 ("arm64: dts: qcom: pmr735b: add temp sensor and thermal zone config")
+Fixes: b2de43136058 ("arm64: dts: qcom: pmk8350: Add peripherals for pmk8350")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pmr735b.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/pmk8350.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/pmr735b.dtsi b/arch/arm64/boot/dts/qcom/pmr735b.dtsi
-index ec24c4478005..f7473e247322 100644
---- a/arch/arm64/boot/dts/qcom/pmr735b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pmr735b.dtsi
-@@ -8,7 +8,7 @@
+diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+index bc6297e7253e..1eb74017062d 100644
+--- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
+@@ -59,7 +59,7 @@ pmk8350_vadc: adc@3100 {
+ 		};
  
- / {
- 	thermal-zones {
--		pmr735a_thermal: pmr735a-thermal {
-+		pmr735b_thermal: pmr735b-thermal {
- 			polling-delay-passive = <100>;
- 			polling-delay = <0>;
- 			thermal-sensors = <&pmr735b_temp_alarm>;
+ 		pmk8350_adc_tm: adc-tm@3400 {
+-			compatible = "qcom,adc-tm7";
++			compatible = "qcom,spmi-adc-tm5-gen2";
+ 			reg = <0x3400>;
+ 			interrupts = <PMK8350_SID 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
+ 			#address-cells = <1>;
 -- 
 2.39.2
 
