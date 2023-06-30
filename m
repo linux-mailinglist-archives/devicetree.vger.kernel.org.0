@@ -2,153 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 550757436C9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:15:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A51AE7436D3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:16:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232424AbjF3IPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:15:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34870 "EHLO
+        id S231455AbjF3IQl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:16:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231455AbjF3IPR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:15:17 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F6F35AA
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:15:10 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b6a084a34cso24359031fa.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:15:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688112909; x=1690704909;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=OhFdwYkyZTL6Y1dUm2j0hCQyzhpxxGY7i59uaPWC9mw=;
-        b=doZoTSG79zw54hBGm/a397QqLE5+JZzxPqm1H9BYAwN6DWbpJwKYFlxKjkNRrebTDP
-         rg5jhM9/YzMtRGlSFp3RB5lhPHQNrABOBKk1zFJmN7MC33ArkIpl0Sc9gF1n0IsSgP8W
-         W8/Ns7TkJFb8YkX1hSjAlsXEf5KvHjF5CDXhTFVf7bkkmEYp8h6Uhs6SRLoAB+yYJbXr
-         Z21588BEeYzns+9aFlvOffNuQ4f5ctLg6A+wkwU/nWgKpl+oWhWloK6at+T83Fx3FHc/
-         ezG9uCEaAjMaXSSPwz0Oua5lsnhrTTGAftoHZUrS9X9MDItwp16jCLWITF/AEak6V/X6
-         SmXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688112909; x=1690704909;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=OhFdwYkyZTL6Y1dUm2j0hCQyzhpxxGY7i59uaPWC9mw=;
-        b=USQHQqHwJe4KLy6EjARt+EZ8HEi42ACcWZ99sAl8QJj66btgXZkK3njMVQtT2LiZy/
-         6mLsQ8SWZpmxDqGgCZyI10tl2QkNSXFdVfrkdLuKpp9CVTBCuLM6kSMduX00rX/u896p
-         O+E8l4+v4NCLkUtBSk3rGzJ87rbDErk5YuBl9bhdz1SVp050lavKuQ0UV4qZg5uCfpKL
-         7GllSN5ETKIF7IBD2AShXtUThhMgNVW1ojZBsB/ccj6TzBAi8khtb0pFs7hg7Vaz/f09
-         //vxnfeXN0kF+9aF1lxohUrBjRa7cOrOl3i1BGDamw6F8RUH9ID59KM9kraeeXVmBCUb
-         wxWw==
-X-Gm-Message-State: ABy/qLZegYGfF/50cLXXURc7ZHv8oLGH/yElgNqRmOLRQv93rRdrrdXG
-        qaTtRg3tqYhnPyO3OFdBKMFDJA==
-X-Google-Smtp-Source: APBJJlEJWRIJLTWA7dUfWDNzYLHpqqVTSo1Adrdzt+ZJB4Vp6q5Q2cmQ+16P7/sQKC6XWjGODY8bTA==
-X-Received: by 2002:ac2:5e70:0:b0:4fa:abe7:7c80 with SMTP id a16-20020ac25e70000000b004faabe77c80mr1450320lfr.39.1688112909193;
-        Fri, 30 Jun 2023 01:15:09 -0700 (PDT)
-Received: from [192.168.1.101] (abyj222.neoplus.adsl.tpnet.pl. [83.9.29.222])
-        by smtp.gmail.com with ESMTPSA id f23-20020ac25337000000b004eb12329053sm903915lfh.256.2023.06.30.01.15.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jun 2023 01:15:08 -0700 (PDT)
-Message-ID: <bfe2f1a6-e8d8-e2de-ea40-aedfb543bba0@linaro.org>
-Date:   Fri, 30 Jun 2023 10:15:07 +0200
+        with ESMTP id S230158AbjF3IQk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:16:40 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9890A1997
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:16:39 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 36393616F6
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 08:16:39 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4DAC9C433C0;
+        Fri, 30 Jun 2023 08:16:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688112998;
+        bh=L2Bqk5OUv7P0DhnUUbcJYDUftg6MpFkMggFdEpg+EzU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XXRoZUQRBdRQdC+1o4Zyj3zdT0lIF0YvjfCYDcxog46SYsl5GcJ62rwu0f5LidZf6
+         wx9T0eP95Q+X51JvDYYB0deO2jp5f7v+m+8UUT4bYB0piNN6FTR/Bs1n/Ns0BTz8MN
+         oFOlUiqaPnMWusZQ6qwTv1LfBMfYdbkquG7L6OGj5fFXYunvGjX/UQEM11THTFw7qx
+         tRkkK1Mi+FWHLBl+K9FOWTV/2sqSn5wMAp6WSyaIS2b1/YksxMxKItQstOGoY2IZGs
+         idZuHzmmlW0EDJwo5Clv9TpMKADjbIil1mvdUorRYH0LyRDu9PeGtAHCob+fYJqY80
+         Bdypri/GyJX7w==
+Date:   Fri, 30 Jun 2023 10:16:35 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Andre Przywara <andre.przywara@arm.com>
+Cc:     Chris Morgan <macromorgan@hotmail.com>,
+        Chris Morgan <macroalpha82@gmail.com>,
+        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
+        uwu@icenowy.me, samuel@sholland.org, jernej.skrabec@gmail.com,
+        wens@csie.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
+Subject: Re: [PATCH 3/3] ARM: dts: sunxi: add support for Anbernic RG-Nano
+Message-ID: <ytgchgmhgegjdqe44yamcgh6ovk6yxbpj2oxgrtslqle5tskvl@np2oxx4l6a5w>
+References: <20230620200022.295674-1-macroalpha82@gmail.com>
+ <20230620200022.295674-4-macroalpha82@gmail.com>
+ <20230621105228.41ca9fcf@donnerap.cambridge.arm.com>
+ <SN6PR06MB53426B6D9456C68AAE8C51B0A527A@SN6PR06MB5342.namprd06.prod.outlook.com>
+ <20230629203410.660eb9a4@slackpad.lan>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 6/7] arm64: dts: qcom: sm8450-hdk: define DIE_TEMP
- channels
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-7-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230630061315.4027453-7-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="aubmr3hyym4b2f3n"
+Content-Disposition: inline
+In-Reply-To: <20230629203410.660eb9a4@slackpad.lan>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.06.2023 08:13, Dmitry Baryshkov wrote:
-> Declare the DIE_TEMP channels provided by PMICs. Use them to provide
-> temperature reading for the spmi-temp-alarm thermal zones.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 43 +++++++++++++++++++++++++
->  1 file changed, 43 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> index dabb7e872f38..d07e402eaba3 100644
-> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-> @@ -6,6 +6,10 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/regulator/qcom,rpmh-regulator.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pm8350.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pm8350b.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmk8350.h>
-> +#include <dt-bindings/iio/qcom,spmi-adc7-pmr735a.h>
->  #include <dt-bindings/sound/qcom,q6dsp-lpass-ports.h>
->  #include "sm8450.dtsi"
->  #include "pm8350.dtsi"
-> @@ -588,6 +592,45 @@ &pcie1_phy {
->  	vdda-pll-supply = <&vreg_l6b_1p2>;
->  };
->  
-> +&pm8350_temp_alarm {
-> +	io-channels = <&pmk8350_vadc PM8350_ADC7_DIE_TEMP(1)>;
-> +	io-channel-names = "thermal";
-> +};
-> +
-> +&pm8350b_temp_alarm {
-> +	io-channels = <&pmk8350_vadc PM8350B_ADC7_DIE_TEMP>;
-> +	io-channel-names = "thermal";
-> +};
-> +
-> +&pmr735a_temp_alarm {
-> +	io-channels = <&pmk8350_vadc PMR735A_ADC7_DIE_TEMP>;
-> +	io-channel-names = "thermal";
-> +};
-> +
-> +&pmk8350_vadc {
-> +	status = "okay";
-> +
-> +	channel@3 {
-> +		reg = <PMK8350_ADC7_DIE_TEMP>;
-> +		label = "pmk8350_die_temp";
-> +	};
-> +
-> +	channel@103 {
-> +		reg = <PM8350_ADC7_DIE_TEMP(1)>;
-> +		label = "pm8350_die_temp";
-> +	};
-> +
-> +	channel@303 {
-> +		reg = <PM8350B_ADC7_DIE_TEMP>;
-> +		label = "pm8350b_die_temp";
-> +	};
-> +
-> +	channel@403 {
-> +		reg = <PMR735A_ADC7_DIE_TEMP>;
-> +		label = "pmr735a_die_temp";
-> +	};
-> +};
-> +
->  &remoteproc_adsp {
->  	status = "okay";
->  	firmware-name = "qcom/sm8450/adsp.mbn";
+--aubmr3hyym4b2f3n
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Jun 29, 2023 at 08:34:10PM +0100, Andre Przywara wrote:
+> > > > +&usbphy {
+> > > > +	usb0_id_det-gpios =3D <&pio 5 6 GPIO_ACTIVE_HIGH>;
+>=20
+> Where is this pin connected to, in the USB-C connector? One of the CC
+> pins?
+>=20
+> > > > +	status =3D "okay"; =20
+> > >=20
+> > > So in the commit message you say "USB-C for power", but this here
+> > > describes a full featured USB port. So does that work? Can you use it=
+ as a
+> > > gadget, but also as a host? =20
+> >=20
+> > Yes, it's an OTG port with the ID pin pulled to ground.
+>=20
+> Do you mean both CC pins? IIRC this means it's hardwired as a
+> peripheral (UFP).
+>=20
+> If I ignore the ID pin above, this looks like on the OrangePi Zero2 or
+> the MangoPi MQ-R. In those cases we put peripheral in the DT, as this
+> is what this connection seems to indicate. That *can* be used a host as
+> well, with the "right" cable, but it's not really a well supported
+> configuration, so we leave this up to people to change this locally,
+> should they really desire so.
+
+The ID pin above is exactly what makes "the right cable" works:
+depending on the state of the ID pin the controller will act either as a
+peripheral or a host. Dual-mode works just fine, so if the hardware
+supports it there's no reason not to enable it.
+
+Maxime
+
+--aubmr3hyym4b2f3n
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZJ6PYwAKCRDj7w1vZxhR
+xVsdAP9wv8TWgxBbhFEUlsThGRD3a2rj2pLnq8AfD7HXTRqAUAD/SIbSPIGFx7Ml
+w6Rdb0aUFBhit7AHd0spORfjFBlruAA=
+=aiyU
+-----END PGP SIGNATURE-----
+
+--aubmr3hyym4b2f3n--
