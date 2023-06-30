@@ -2,106 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B0A87436FF
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CF0D74370A
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:26:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232532AbjF3IXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:23:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37354 "EHLO
+        id S231176AbjF3I0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:26:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232509AbjF3IW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:22:59 -0400
-Received: from mail-pf1-x430.google.com (mail-pf1-x430.google.com [IPv6:2607:f8b0:4864:20::430])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E738129
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:22:56 -0700 (PDT)
-Received: by mail-pf1-x430.google.com with SMTP id d2e1a72fcca58-666e6ecb52dso1028461b3a.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:22:56 -0700 (PDT)
+        with ESMTP id S229967AbjF3I0B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:26:01 -0400
+Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94202125
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:26:00 -0700 (PDT)
+Received: by mail-wr1-x42b.google.com with SMTP id ffacd0b85a97d-3141c3a7547so1430512f8f.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:26:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688113375; x=1690705375;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=aB/NARlS5Ir2yzVRaT0fYnfX6oqtCT4qz1PmDL02FdU=;
-        b=k1xTiUS8cd+tudGaoFNEjYyn20oxUcTr40P1+dDR6fSuTqYDuDgapbkNAapa2OMGEK
-         YUTO/kla71gAiyt0HID5SqziWZrYztcyPkt8nOwMWIjfdjO+We2UqiByXJl9fzh/BMsU
-         6fJVEbpcFS7Xw4aQUkTmCmq+fvLna6iUc+uyDrGNg1m7FoUPUXAD8kRmGi6xCcJs8hfs
-         mMSxQL9QFPklzqxfxAtm/5GmXEGLqRQ7gtTeQXbuBBtmiMuYY46Sp3yApCRmeYnx48Le
-         37xrvxj2h5squB9QuyBKgrtUALCf6fZxyChQGfB0N27D8xWMtR0TceQtn5RAvoiofWTf
-         ErCA==
+        d=linaro.org; s=google; t=1688113559; x=1690705559;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=JN/skVFzqLdPw7AlE3XLmce7r2j1OJBz1+1w6/PJFoY=;
+        b=aXuneFJUVUDufOAQdR4wSkHP3Z4W9okhCvGEmoa1q7Oqj066AEx6fVt7K3lFpVPzP/
+         1zRodu+oZqIkGzhbyEnv43NatnIdVZ5aKV+qQTAepUajiskl4SAUxd7JOkrqF7YAWOjH
+         mig5JpK2mlCMk6O1pVjJp4X2QfpDYvFoY0Eqx2ZJLaHEQdTTxmAkgCxLMSBimDyD+VaY
+         wwnBoSrpyM7A1CPwpTUvCqEe0cG7sM2cGAoBoGYYvxkmh1k0mMhm0BGnHl+CuKgtxv7U
+         tjp6h2uTWI1UoJT/ZHZnKt4kyuKzHgnFCEYsG2uld20AO1Xxv8ZHbEQOSY7QwgIAK+cd
+         39iQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688113375; x=1690705375;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=aB/NARlS5Ir2yzVRaT0fYnfX6oqtCT4qz1PmDL02FdU=;
-        b=YeFBG89gbQFeuy7GQunDDwO+XyWjcQn7unkxps7869UcwDO30j8CXATvjuEUemk2GA
-         bWEIaaCPl+KfnFTrisC3GmmwjU1Cz972Ye4Zt2NuaWyC05A03kc4x+6vQWye4yz7NaSe
-         GWSt9cb/QiT38IOXU4SConHmuHYNYJQjlulO9OgP17XY0x3YELRoWJebFG93lwMcIPBq
-         JQaDp8P7vGysggpoIZ1yme4eH4vfQ3z4jtTbepiQQfcTkShBmRuBMbuZ1BpY22r9YfOU
-         HxGJcB+GixtPM+n2xvm0BfOR020Hz/9UejUIP/XbrXcfJLrAVTUDN86fXueOrk+nulPx
-         1pMA==
-X-Gm-Message-State: AC+VfDwiOMA9AHWzicYXYQa6iKEX94T7eIOcvy8mpSixKHSTCoeaaJX4
-        ht925BwvSol9tjQrc91L8VIeXPbG2/4FkqxlicM=
-X-Google-Smtp-Source: ACHHUZ42fhIYo4LeKf9iiBZSi2OLijZ04X55oE1u2vKp61P7Nv7KzUbbp06RSmmgrScmmb10J29DeA==
-X-Received: by 2002:a05:6a20:12c4:b0:127:462b:c41c with SMTP id v4-20020a056a2012c400b00127462bc41cmr2026373pzg.37.1688113375346;
-        Fri, 30 Jun 2023 01:22:55 -0700 (PDT)
-Received: from localhost.localdomain ([223.233.68.54])
-        by smtp.gmail.com with ESMTPSA id a16-20020aa780d0000000b00666e2dac482sm9462967pfn.124.2023.06.30.01.22.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jun 2023 01:22:55 -0700 (PDT)
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-To:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org
-Cc:     vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        andersson@kernel.org, bhupesh.sharma@linaro.org,
-        bhupesh.linux@gmail.com, agross@kernel.org,
-        konrad.dybcio@linaro.org, conor+dt@kernel.org, robh+dt@kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        Linux Kernel Functional Testing <lkft@linaro.org>
-Subject: [PATCH v9 2/2] dt-bindings: dma: Increase iommu maxItems for BAM DMA
-Date:   Fri, 30 Jun 2023 13:52:30 +0530
-Message-Id: <20230630082230.2264698-3-bhupesh.sharma@linaro.org>
-X-Mailer: git-send-email 2.38.1
-In-Reply-To: <20230630082230.2264698-1-bhupesh.sharma@linaro.org>
-References: <20230630082230.2264698-1-bhupesh.sharma@linaro.org>
+        d=1e100.net; s=20221208; t=1688113559; x=1690705559;
+        h=content-transfer-encoding:in-reply-to:organization:from:references
+         :cc:to:content-language:subject:reply-to:user-agent:mime-version
+         :date:message-id:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JN/skVFzqLdPw7AlE3XLmce7r2j1OJBz1+1w6/PJFoY=;
+        b=UQnyUCILaMwxMzgSPNzStz6i9Hpy3oVjMCvFGKcSZV0V6YQIm5K0qSS2fNbNhgPQ+v
+         bPs5WQp5WIg7AEWOSCWEeeElimihyNAHeQN7U9DKrO4azfe80wBiGPuKBwo438nXw8H/
+         jU1BEk713ON/1h1cmNBm92W1wQDikdGNPLNJGe5K0EFk6JD8zbqIWCL4BrBmYUjSznJI
+         AnWGkoE9+csLeaGPN6NwRFaUVHqDCn4bdHFKMmBTQR173MCS2djXyBmLhMXVfNzxrx34
+         fhW2LszR48YgNvo0HG/o4UWJS7mugK2ArgQR3telq9iqocUd5XLrZ1w490/gBo8zLPOY
+         qctg==
+X-Gm-Message-State: ABy/qLYQVXNMlrKIxW3tCuYWpSjjTaMS/s/q8by/5IHUix5BzNVpfv2J
+        DGngbR8jXpmMftxJ8t3iEN9CsQ==
+X-Google-Smtp-Source: APBJJlHa087MAwC780nBikc1q9i123IcPApI2AHu7dPIl8dKNMLM3FF0iBM0DpSao+JpY2tRW5YBsw==
+X-Received: by 2002:a5d:4c43:0:b0:313:eee0:89a4 with SMTP id n3-20020a5d4c43000000b00313eee089a4mr1559018wrt.12.1688113559055;
+        Fri, 30 Jun 2023 01:25:59 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:eac6:eb92:cae4:cfd2? ([2a01:e0a:982:cbb0:eac6:eb92:cae4:cfd2])
+        by smtp.gmail.com with ESMTPSA id f2-20020a5d5682000000b00313ec7dd652sm14860320wrv.44.2023.06.30.01.25.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jun 2023 01:25:58 -0700 (PDT)
+Message-ID: <f69b60b9-9c22-655c-3152-4874e2fb8865@linaro.org>
+Date:   Fri, 30 Jun 2023 10:25:57 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8450-hdk: remove pmr735b PMIC
+ inclusion
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
+ <20230630061315.4027453-6-dmitry.baryshkov@linaro.org>
+ <ace0b594-c1d1-09b9-7402-484091268a55@linaro.org>
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Organization: Linaro Developer Services
+In-Reply-To: <ace0b594-c1d1-09b9-7402-484091268a55@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since SM8250 BAM DMA engine supports six iommu entries,
-increase the maxItems in the iommu property section, without
-which 'dtbs_check' would throw errors.
+On 30/06/2023 10:13, Konrad Dybcio wrote:
+> On 30.06.2023 08:13, Dmitry Baryshkov wrote:
+>> The 8450-HDK doesn't use PMR735B PMIC. Drop its inclusion to remove the
+>> warning during the HDK bootup.
+>>
+>> Fixes: 30464456a1ea ("arm64: dts: qcom: sm8450-hdk: add pmic files")
+>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+>> ---
+> That's.. strange.. Did you confirm this with schematics, or even better,
+> socinfo?
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Tested-by: Anders Roxell <anders.roxell@linaro.org>
-Tested-by: Linux Kernel Functional Testing <lkft@linaro.org>
-Signed-off-by: Bhupesh Sharma <bhupesh.sharma@linaro.org>
----
- Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I confirm it doesn't have a 735b from the Schematics
 
-diff --git a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-index c663b6102f50..6433f2892ae4 100644
---- a/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-+++ b/Documentation/devicetree/bindings/dma/qcom,bam-dma.yaml
-@@ -44,7 +44,7 @@ properties:
- 
-   iommus:
-     minItems: 1
--    maxItems: 4
-+    maxItems: 6
- 
-   num-channels:
-     $ref: /schemas/types.yaml#/definitions/uint32
--- 
-2.38.1
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+> 
+> Konrad
+>>   arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 1 -
+>>   1 file changed, 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>> index bc4c125d1832..dabb7e872f38 100644
+>> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+>> @@ -14,7 +14,6 @@
+>>   #include "pm8450.dtsi"
+>>   #include "pmk8350.dtsi"
+>>   #include "pmr735a.dtsi"
+>> -#include "pmr735b.dtsi"
+>>   
+>>   / {
+>>   	model = "Qualcomm Technologies, Inc. SM8450 HDK";
 
