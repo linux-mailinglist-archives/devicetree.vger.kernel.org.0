@@ -2,193 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 534E974379B
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F7877437B6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:48:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232664AbjF3IkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:40:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46586 "EHLO
+        id S232234AbjF3Isa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:48:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50204 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232712AbjF3IkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:40:02 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CF381BDB;
-        Fri, 30 Jun 2023 01:40:00 -0700 (PDT)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35U6avW6032179;
-        Fri, 30 Jun 2023 08:39:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=qcppdkim1; bh=EVK7wrH/nairRxefhzxNFPVusChusvF2s4IQ96xpqQo=;
- b=Tkr8gLQbHNb9AMhyMbw8GFuuNbLL7NrTntar+prm/+dlR6G9XkS5eBf/RjhpK6FoDVTR
- SlQGXzulhQM49S4oaYWnl9+Abhr1afCvL0dqrXp1QpxxOtXH7tBbAITHSulj4593PMva
- zyXqNKSakZmp3o7QRGA3T3Xr8LiLNQ+vKwW5wa6NH5NV9LPEcv2R8o4E9xjil6pS04+r
- 5VbzQNWDxo04EvKLU/KQJajP/wSrSSygVbjHMO6bsEiuv00cdJMtNvTfJsRpE45etPuh
- 2wPGKMw5eekmrjeZaze8RUV0GfHho3LOgms5+deSd0DWnBJqcif8Thct+dZQCyinInCz FQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rha8e2534-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Jun 2023 08:39:27 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35U8d6FZ029555
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Jun 2023 08:39:06 GMT
-Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
- nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.7; Fri, 30 Jun 2023 01:38:58 -0700
-Date:   Fri, 30 Jun 2023 14:08:54 +0530
-From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
-To:     Mukesh Ojha <quic_mojha@quicinc.com>
-CC:     Pavan Kondeti <quic_pkondeti@quicinc.com>, <corbet@lwn.net>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <keescook@chromium.org>, <tony.luck@intel.com>,
-        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
-        <catalin.marinas@arm.com>, <will@kernel.org>,
-        <linus.walleij@linaro.org>, <andy.shevchenko@gmail.com>,
-        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v4 04/21] soc: qcom: Add Qualcomm APSS minidump
- (frontend) feature support
-Message-ID: <b0b78da5-eec6-4bcc-9eaf-8149e2477f18@quicinc.com>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-5-git-send-email-quic_mojha@quicinc.com>
- <8f00beed-f07b-43b6-820e-87af719598c6@quicinc.com>
- <774b0432-a78f-1aec-a31a-51067e33154f@quicinc.com>
+        with ESMTP id S229787AbjF3Is3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:48:29 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F10F1FCD
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:48:27 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-986d8332f50so194727666b.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688114905; x=1690706905;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=7ND7dNyhnZmormo1qsszJJ6OCUF3X4qBa9aUSKAs9Fo=;
+        b=Nlop1p62Zh/45QHOahMCSK6OJcwNbUS62VDJ3r31xRt2FnsftZi2QO4R/NsyYDZa5e
+         1zvPGzveJSdE+ybzyfS33E+L5xlInvTspjfDA8z5AUCz7MPpqtqzNuSbwQvlVlAh/s0G
+         j0MsN5Z9ygKJyEuzKfccg/FlbUMjrP06pBmizZLbO2k7/lodJQmyVTVIXApbuKOhCa1c
+         m1YWjsZE2/1gTfl9AkGS9Ml31kryTbvVgk5VJCD0wtyqwiybaQNTFmFDTwZPzMADUjGV
+         WevQQI7HdEm6uiFz1X86+RpgaAC6rKZfsYkS0GEGQjMAw/fVJX2QXxYREi/NH2mhLiYm
+         5RtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688114905; x=1690706905;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=7ND7dNyhnZmormo1qsszJJ6OCUF3X4qBa9aUSKAs9Fo=;
+        b=hroN1QxraTLxLK1cHIcZKwgEo5uI0MiLhZIxkgLkNWNeSqMBaj2VZB44NwiG++hYon
+         ISc+aNk/kmnPuhQ+9un6SsIzFXQhp+BOsitBtKGcJLodmoCaa2GnTixakdJskWp3Mct6
+         Ov8n5NnhfM9MBxrAS9+e9nSVEUK/R1hUIeqeCh6Bc+wxhLLDKGLmeeYK10E0iBWzKY9d
+         h0h4rQNzGeRPlXK4rRxZXOGjYAA8uGyhRusWtnEDQvFLA/VS0owLDuEqHtJZV6VlnE3p
+         li+C0OIwrbIuz53Zt+Hl5iEEb8H7bGBQrI3i6GMdzwl61aO4crI8ke2TAmjf6XbJuImS
+         BbCA==
+X-Gm-Message-State: AC+VfDyX/HgMk5IBzMIHmZEA3MAsiJDrQBAdPoT9p4hvbj62juVo1A5+
+        8Py9xgZsYbddCQ1x4J/Peh0FIQ==
+X-Google-Smtp-Source: APBJJlH6NE+RJWp/uuJQSzzT7DyyRhteXkuogpPYaAVVGrddaQHIhsAoLXUO3RwlY41Mjc0+tAWgJw==
+X-Received: by 2002:a17:906:4dcb:b0:96f:8439:6143 with SMTP id f11-20020a1709064dcb00b0096f84396143mr1384083ejw.40.1688114905435;
+        Fri, 30 Jun 2023 01:48:25 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.171])
+        by smtp.gmail.com with ESMTPSA id s2-20020a170906960200b0098d2261d189sm7913892ejx.19.2023.06.30.01.48.23
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jun 2023 01:48:24 -0700 (PDT)
+Message-ID: <6190c9c4-6d6e-7577-f2a4-8fbede61b405@linaro.org>
+Date:   Fri, 30 Jun 2023 09:48:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <774b0432-a78f-1aec-a31a-51067e33154f@quicinc.com>
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: tMYjS84mXq3GeG-H7WpbMOj0EGPoVrHG
-X-Proofpoint-ORIG-GUID: tMYjS84mXq3GeG-H7WpbMOj0EGPoVrHG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-30_05,2023-06-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 phishscore=0
- mlxlogscore=999 clxscore=1015 impostorscore=0 priorityscore=1501
- spamscore=0 mlxscore=0 malwarescore=0 suspectscore=0 adultscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306300072
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v3 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP#
+ signal not connected
+Content-Language: en-US
+To:     Michael Walle <michael@walle.cc>,
+        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+Cc:     pratyush@kernel.org, miquel.raynal@bootlin.com, richard@nod.at,
+        vigneshr@ti.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        git@amd.com, linux-mtd@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        amitrkcian2002@gmail.com
+References: <20230625100251.31589-1-amit.kumar-mahapatra@amd.com>
+ <20230625100251.31589-3-amit.kumar-mahapatra@amd.com>
+ <5e5fe22aebe17da4f9ad2c4eaaa8985f@walle.cc>
+From:   Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <5e5fe22aebe17da4f9ad2c4eaaa8985f@walle.cc>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 12:45:13PM +0530, Mukesh Ojha wrote:
-> > > +/**
-> > > + * qcom_minidump_region_register() - Register region in APSS Minidump table.
-> > > + * @region: minidump region.
-> > > + *
-> > > + * Return: On success, it returns 0 and negative error value on failure.
-> > > + */
-> > 
-> > Are we not going to return any cookie upon success which can be passed
-> > to us during unregistration?
+
+
+On 6/27/23 07:14, Michael Walle wrote:
+> Am 2023-06-25 12:02, schrieb Amit Kumar Mahapatra:
+>> Setting the status register write disable (SRWD) bit in the status
+>> register (SR) with WP# signal of the flash left floating or wrongly tied to
+>> GND (that includes internal pull-downs), will configure the SR permanently
+>> as read-only. If WP# signal is left floating or wrongly tied to GND, avoid
+>> setting SRWD bit while writing the SR during flash protection.
+>>
+>> Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
+>> ---
+>>  drivers/mtd/spi-nor/core.c | 3 +++
+>>  drivers/mtd/spi-nor/core.h | 1 +
+>>  drivers/mtd/spi-nor/swp.c  | 9 +++++++--
+>>  3 files changed, 11 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
+>> index 0bb0ad14a2fc..520f5ab86d2b 100644
+>> --- a/drivers/mtd/spi-nor/core.c
+>> +++ b/drivers/mtd/spi-nor/core.c
+>> @@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor *nor)
+>>      if (flags & NO_CHIP_ERASE)
+>>          nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
+>>
+>> +    if (of_property_read_bool(np, "no-wp"))
+>> +        nor->flags |= SNOR_F_NO_WP;
+>> +
 > 
-> e.g, Let's just say if we return the region number as an cookies, the
-> problem i see that, we multiple unregistration is happening we will
-> be shifting the array upwards and that results in the index/cookies does
-> not retain the same for the shifted regions.
+> Please put it below the of_property_read_bool() which is already
+> there, just to keep things sorted.
 > 
-> So, at the moment, client need to pass the same region for un-registration
-> as they have passed for registration..
+>>      if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
+>>          !nor->controller_ops)
+>>          nor->flags |= SNOR_F_RWW;
+>> diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
+>> index 4fb5ff09c63a..55b5e7abce6e 100644
+>> --- a/drivers/mtd/spi-nor/core.h
+>> +++ b/drivers/mtd/spi-nor/core.h
+>> @@ -132,6 +132,7 @@ enum spi_nor_option_flags {
+>>      SNOR_F_SWP_IS_VOLATILE    = BIT(13),
+>>      SNOR_F_RWW        = BIT(14),
+>>      SNOR_F_ECC        = BIT(15),
+>> +    SNOR_F_NO_WP        = BIT(16),
+> 
+> See the comment right above this enum :/
+> 
+>>  };
+>>
+>>  struct spi_nor_read_command {
+>> diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
+>> index 0ba716e84377..cfaba41d74d6 100644
+>> --- a/drivers/mtd/spi-nor/swp.c
+>> +++ b/drivers/mtd/spi-nor/swp.c
+>> @@ -214,8 +214,13 @@ static int spi_nor_sr_lock(struct spi_nor *nor, loff_t ofs, uint64_t len)
+>>
+>>      status_new = (status_old & ~mask & ~tb_mask) | val;
+>>
+>> -    /* Disallow further writes if WP pin is asserted */
+>> -    status_new |= SR_SRWD;
+>> +    /*
+>> +     * Disallow further writes if WP# pin is neither left floating nor
+>> +     * wrongly tied to GND(that includes internal pull-downs).
+> 
+> nit: space missing
+> 
+> Otherwise looks good.
 > 
 
-From a driver user pov, there is no reason for keeping
-qcom_minidump_region struct around after the registration, agree?
-However, the unregistration API expects it again, so the driver needs to
-cache it. The region is no way being used by the minidump core either..so it is
-just there for no reason. Hence I asked this question.
+Thanks, Michael.
 
-Thanks for the explanation about why the region number can't be used as
-cookie. Is it a limitation on the firmware that we need to left shift
-all regions when a region is deleted? I ask this because
-minidump_region::valid is avaialble for Linux to mark a lazy deletion.
-Sure your look up would have to traverse the entire array in worst case,
-but today also you are doing that for duplicate name check.
-If this lazy deletion can be implemented, the region number can be used
-a cookie, right?
+Amit, would be good if you can address Michael's comments and
+resubmit. If not, I'll amend the patch by myself when applying.
 
-> > 
-> > > +int qcom_minidump_region_register(const struct qcom_minidump_region *region)
-> > > +{
-> > > +	int ret;
-> > > +
-> > > +	if (!qcom_minidump_valid_region(region))
-> > > +		return -EINVAL;
-> > > +
-> > > +	mutex_lock(&md_lock);
-> > > +	if (!md) {
-> > > +		mutex_unlock(&md_lock);
-> > > +		pr_err("No backend registered yet, try again..");
-> > > +		return -EPROBE_DEFER;
-> > > +	}
-> > > +
-> > > +	ret = md->ops->md_region_register(md, region);
-> > > +	if (ret)
-> > > +		goto unlock;
-> > > +
-> > 
-> > The md_lock description in the beginning does not seems to be correct.
-> > It is not limited to backend registration. It has much wider usage.
-> > 
-> > You are holding the lock while calling into backend. Basically the
-> > synchronization is done in the front end.
-> 
-> Initially, the thought was to have the backend their own lock but that
-> is irrelevant as all the contention is there in the front end.
-> 
-> So, used the same lock for synchronization as i moved in developement
-> and the later that comment became obsolete.
-> 
-> Thanks for catching this.
-> will fix the comment.
-> 
-
-Sure
-
-> > 
-> > > +	qcom_md_update_elf_header(region);
-> > > +unlock:
-> > > +	mutex_unlock(&md_lock);
-> > > +	return ret;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(qcom_minidump_region_register);
-> 
-> > 
-> > > +	ret = qcom_minidump_clear_header(region);
-> > > +unlock:
-> > > +	mutex_unlock(&md_lock);
-> > > +	return ret;
-> > > +}
-> > > +EXPORT_SYMBOL_GPL(qcom_minidump_region_unregister);
-> > 
-> > can we create a namespace for exporting these symbols?
-> 
-> Any specific reason, you are suggesting this ?
-> 
-
-My original intention was to mark qcom_minidump_backend_register()
-and qcom_minidump_backend_unregister() under a namespace. Because these
-are not meant for any drivers but only for minidump backend. That serves
-as a clear documentation that minidump implementation is spanned across
-this frontend and backend modules.
-
-Thanks,
-Pavan
+Cheers,
+ta
