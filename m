@@ -2,154 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F08B7440B1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:00:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC6587440CB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233014AbjF3RAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 13:00:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54426 "EHLO
+        id S229785AbjF3RFj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 13:05:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232812AbjF3RAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:00:07 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842B64209
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 09:59:08 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fa8ce2307dso25773155e9.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 09:59:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688144341; x=1690736341;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=8Eyaf/JArFBnOJmUxcF7DoGLYY7fHW+Lur/i45+1eYA=;
-        b=cRsI+Jc0zlEoiUnzMwgGVMTkMYll1xolMO9sNUYMp0FooJsUY4ea3qKTvrBPV3W1xS
-         PdZIteGitEx9EYSLfRJOYktkFaGNgrjM1fFkOgOEvg9QpZfmPTHRP0w9/N2IQbu4+vs0
-         nb54cBQE/s37T2C5zG7nCIR1V1emFvCiO2dgZn0Pz5F2ONkZj2tZtARRUTJGEin0ve2S
-         TMKzcm5hDnbkJdr2TIU0CbpiH29R/WxZLmENSPUSj9byP3++sCzxuhKXEZ1zIb6Wn2I2
-         cYCa21dnclLHYM4KbKNbtJpA/o/MUiaWI16RbEycKNxYjhX7e3isSa7OfeVEqG9msFcB
-         UCYQ==
+        with ESMTP id S233000AbjF3REy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:04:54 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F051D3C30;
+        Fri, 30 Jun 2023 10:04:48 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-7835bad99fbso88923439f.1;
+        Fri, 30 Jun 2023 10:04:48 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688144341; x=1690736341;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=8Eyaf/JArFBnOJmUxcF7DoGLYY7fHW+Lur/i45+1eYA=;
-        b=jBI7hpM+EAoGlFqUw/Wej9gJ0Ht0wCpjwatOTP2rc2w43X0DhVS3sxtkbloU93zqH6
-         z3nT/3mU8TOxKt8ysuN5iG+1cwFpOQfKO1mIInH1M7b5gQQS14W3VX5oxoN3XQRn2VLQ
-         +egex/OHn+g2cKMMPEYHoYxSXmKQjWILdFehR0Ner9LukMkt1RPoK5CyINSHeL+QWBzY
-         1gq4J52wwpsGbdHXrAP0dYZUoMDuMH8LP4w5SsoZFiDvMoOn8evlerUonw6wEo9uZD6D
-         DgigS2g+oKHBkzCUWFu5wApiSO6tN5VeXMeF5PDuPHEBbYmT1xQhoBRW57ycFsukTAIA
-         MFvQ==
-X-Gm-Message-State: ABy/qLbtCyjPsQjJFLlF1deZzo8UURep25kfayDADNOVS/Y+vBU4pVXo
-        CT9WCZ/fDjRmjKO1Wbs0rSApaw==
-X-Google-Smtp-Source: APBJJlHFfj2oZl0xVr1nB2zXh05figvBAqXp7tIH/wIQJvw0txyZj53M9A0+P0VhEGIP+1a6UuKwCw==
-X-Received: by 2002:a5d:49d1:0:b0:314:172b:a75a with SMTP id t17-20020a5d49d1000000b00314172ba75amr3025280wrs.26.1688144340838;
-        Fri, 30 Jun 2023 09:59:00 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id u14-20020adfdb8e000000b003112ab916cdsm18913772wri.73.2023.06.30.09.58.59
+        d=1e100.net; s=20221208; t=1688144688; x=1690736688;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=bDSvITIumvxU+9FeXxHNbJLwhZGzlxTTZldXnMbbHIk=;
+        b=RruGZEIVVjV37EmwLYWeUNTEgoEZLxVyAoTrlVySuNTybnB76gI/OQ9FCuN2/9xKIa
+         /zq6qEUSJBt+GMQa0gy3DnWcORqJSSV3F2ykshWOQO/zrwFxIg2/Bhhin1BGiCI9avPL
+         DGfa0NCeozfC3fESajjY7jzZgmHVOtoxupq66ZsAAbOnM5d0KcRQ4II+riFfhpttfvU9
+         wN/KA89OOtubXAhfGlBISy3/JZ/2gZU4RpCSLKGcT5Udz5G+T+N7SkzL8vvsm4nmB1dL
+         qd6nxd/KqCICTBShtvadvURwMqvZ1j03Uv3fwtDkyjLXzleSfzXZY86blQMlua+ACBFw
+         GugQ==
+X-Gm-Message-State: AC+VfDzBhSbH3SnZzUTAKg4ECB4QbCRAxibYLyG7EZpIESJMUr5BtARU
+        Do3zv4Ks4W3JpifkCe8RUQ==
+X-Google-Smtp-Source: ACHHUZ7YVGW6lKVvg7C24o8CcDQqjgMElHyuoGKVnJCWvqYKZlQzdchG5JVGPC50uiHB8TDngxV6bA==
+X-Received: by 2002:a05:6602:19d1:b0:783:5209:c01 with SMTP id ba17-20020a05660219d100b0078352090c01mr3305594iob.17.1688144687999;
+        Fri, 30 Jun 2023 10:04:47 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id k5-20020a02cb45000000b0040bbcee6b57sm2373025jap.133.2023.06.30.10.04.45
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jun 2023 09:59:00 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 30 Jun 2023 18:58:40 +0200
-Subject: [PATCH v2 15/15] MAINTAINERS: remove OXNAS entry
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230630-topic-oxnas-upstream-remove-v2-15-fb6ab3dea87c@linaro.org>
-References: <20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org>
-In-Reply-To: <20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        Fri, 30 Jun 2023 10:04:47 -0700 (PDT)
+Received: (nullmailer pid 1908824 invoked by uid 1000);
+        Fri, 30 Jun 2023 17:04:44 -0000
+Date:   Fri, 30 Jun 2023 11:04:44 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Dipen Patel <dipenp@nvidia.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Alessandro Zummo <a.zummo@towertech.it>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dilip Kota <eswara.kota@linux.intel.com>,
+        Mark Brown <broonie@kernel.org>, timestamp@lists.linux.dev,
+        alsa-devel@alsa-project.org, linux-watchdog@vger.kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-phy@lists.infradead.org,
+        linux-spi@vger.kernel.org, linux-rtc@vger.kernel.org,
         Conor Dooley <conor+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <brgl@bgdev.pl>,
-        Andy Shevchenko <andy@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Marc Zyngier <maz@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        netdev@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-oxnas@groups.io,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daniel Golle <daniel@makrotopia.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1154;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=/Lhm4rki32xogr5e1680FrjcVLCt+j7sMVgTOqF2+4g=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBknwm6aoHZMmN8vUbEzTBcIOV7ONJvx2yeNn0kZRnx
- LgLt0iSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJ8JugAKCRB33NvayMhJ0aMOD/
- 4o1u07bP99PyNkyrdoo5HuA/tEA4HRTOWRFwUBK2Fr4hLcuccLKZbqEoot/K06rPOpWlmBA0xJibYq
- 9sx1cEJc+h2Z6AM6bLv21ZYqK5qXiv45NFZpA+avGwHQ3eQR49KMC8+J9Fb92MOTESddkVzr1uu4WE
- e9aJ1LI/ccd/i2cJ1q6JYWT4B5L5cIQbiI/ZtSRz8pqJ4w6w0RKypV0T7VJm80k0Jv8SmEp0Dlp+vG
- 2WQAMcwB/wTd8fh2LKmHED0shMiW2MEQuAkLKiPoDPvybnsLhvaPHGkWmSMXRhTZl6DoGzOsvrTeGt
- aTFim1T/5SP8kSCH5IyYKe7HfsE8Yt9gBcyRyqu0NC2ehuN5DgDWJ25XQwf3CLLfN8xEj42a7f9Exr
- zWAe21b8vupE/IPlBZdtLAl4pizrS9O5UPCdYcEh7XVCBa8AMrQci3cdYVfnZjmMz9oQqhg9nYhA0V
- JGXiIp5zNtWsKoFqxPzpq30E48YAl7SC9jsUWLsXeqRm5FyrRsX8HmFPcHSNlOHUHID+XL5ltvxMy9
- 5gbGOWZlwiRjX+X7+KZrzjzudA7BX8jOe+INgytdS3AgKSHSOiXc8Sx/ja2xf/Z/Hwp1CQeFZO2eQN
- 2DfMAaMQrsOrzJs9Ps4BqxlAh6NcIKGU989Dmfjl521a7QN3/cdOvxA/sGbw==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 7/7] dt-bindings: watchdog: restrict node name suffixes
+Message-ID: <168814464489.1908194.10092224539849073775.robh@kernel.org>
+References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
+ <20230530144851.92059-8-krzysztof.kozlowski@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230530144851.92059-8-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Due to lack of maintenance and stall of development for a few years now,
-and since no new features will ever be added upstream, remove MAINTAINERS
-entry for OXNAS files.
 
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
-Acked-by: Arnd Bergmann <arnd@arndb.de>
-Acked-by: Daniel Golle <daniel@makrotopia.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- MAINTAINERS | 10 ----------
- 1 file changed, 10 deletions(-)
+On Tue, 30 May 2023 16:48:51 +0200, Krzysztof Kozlowski wrote:
+> Make the pattern matching node names a bit stricter to improve DTS
+> consistency.  The pattern is restricted to -N suffixes to decimal
+> numbers.
+> 
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> 
+> ---
+> 
+> Cc: Tony Lindgren <tony@atomide.com>
+> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  Documentation/devicetree/bindings/watchdog/watchdog.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 4545d4287305..cfe1bc884005 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2565,16 +2565,6 @@ S:	Maintained
- W:	http://www.digriz.org.uk/ts78xx/kernel
- F:	arch/arm/mach-orion5x/ts78xx-*
- 
--ARM/OXNAS platform support
--M:	Neil Armstrong <neil.armstrong@linaro.org>
--L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
--L:	linux-oxnas@groups.io (moderated for non-subscribers)
--S:	Maintained
--F:	arch/arm/boot/dts/ox8*.dts*
--F:	arch/arm/mach-oxnas/
--F:	drivers/power/reset/oxnas-restart.c
--N:	oxnas
--
- ARM/QUALCOMM CHROMEBOOK SUPPORT
- R:	cros-qcom-dts-watchers@chromium.org
- F:	arch/arm64/boot/dts/qcom/sc7180*
-
--- 
-2.34.1
+Seems watchdog patches aren't getting applied... Applied, thanks!
 
