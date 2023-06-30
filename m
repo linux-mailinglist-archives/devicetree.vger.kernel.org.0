@@ -2,79 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18900744157
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:35:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1F8A74416D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:40:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232822AbjF3RfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 13:35:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47700 "EHLO
+        id S232388AbjF3RkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 13:40:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51702 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232834AbjF3RfB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:35:01 -0400
-Received: from mail-il1-f176.google.com (mail-il1-f176.google.com [209.85.166.176])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F10E4680;
-        Fri, 30 Jun 2023 10:34:39 -0700 (PDT)
-Received: by mail-il1-f176.google.com with SMTP id e9e14a558f8ab-345d3c10bdfso8967775ab.2;
-        Fri, 30 Jun 2023 10:34:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688146471; x=1690738471;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=LQ94kfdEfq9RrPFyhfJUVdunZkyBAVzDUoOb8tFiC9I=;
-        b=DJc9gkx2Qj6nob9kqtEG+l+YwkxBFXyM8CaOh8ba4p4FroqnWH4MLV9xI3ZsjAbiMD
-         koSz7EW5nCy4Rijk07WqybpKcPOEYLXPzehOYJ4bi6c7BwHEFZ3aYvAgsO7ywXjE4f29
-         QMi11B8XmiBmQ39nN2LvSQ6NhgempeoNWS0kyiS5dH1RekkBHqvl+p5Yd0K2IOMu5UEn
-         N5K15JyUyhvE31i9cdFVVILterRo8vr00DDmxqL8ae9K/e/gTN8ZK7dAEj3ZsOi8PzVP
-         xzzqZKkzXa6pNGVnG3oeEQxJKo2c0c1m0WW8xs29+Q9ZnkmMuvrWjbdXewIrIH3MQbIf
-         J2wg==
-X-Gm-Message-State: AC+VfDysE37+dnvW0RJV16jsw1N5xoU4k0x3NKkITmQWpGlkHk9KEEj/
-        1D5bYXOSZ0nm3CWRMn1FcnVTTIB5sA==
-X-Google-Smtp-Source: ACHHUZ4EbUs4PS9q79isRP9O3xuyN3VlPHEnyRoBjVZ32PU31b0maNUtRwGNVSbiOr7AKyybiYfTVQ==
-X-Received: by 2002:a6b:a16:0:b0:783:694f:e791 with SMTP id z22-20020a6b0a16000000b00783694fe791mr3651652ioi.12.1688146471480;
-        Fri, 30 Jun 2023 10:34:31 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id i17-20020a02ca51000000b0042af069eeefsm1830983jal.50.2023.06.30.10.34.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jun 2023 10:34:30 -0700 (PDT)
-Received: (nullmailer pid 2074728 invoked by uid 1000);
-        Fri, 30 Jun 2023 17:34:28 -0000
-Date:   Fri, 30 Jun 2023 11:34:28 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     linux-phy@lists.infradead.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Oleksij Rempel <o.rempel@pengutronix.de>,
+        with ESMTP id S232119AbjF3RkL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:40:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0CD4199B;
+        Fri, 30 Jun 2023 10:40:09 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E627617C5;
+        Fri, 30 Jun 2023 17:40:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0773DC433C8;
+        Fri, 30 Jun 2023 17:40:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688146808;
+        bh=fgMw4Lp/89gtsazSrFpFs6t2HizOmMl025qH0SfI+3I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oDtJjJBwaYpzniZn58CZW7gfEA4yVbEcCAXoEczsJPipXrnCHZ/iEoIIhJRJYioYv
+         Mv2s6ZaJrq2alFzZ9QMF7xRvC2J/KZ4N5vqOuJuTcUOk96GLXw22Iv6zGcgKDCgYqX
+         V80VgNhFGWPJ6vwAAjUTdGLfDAjH7hNJznbG34XtJ1kOg4ICngoslMBuKtd5J/YFfa
+         BGP3LcMb+IgmCJWvwjW0Ieaxqb8do132PC9BUM+P7c7WQsiztb4omluj4SOinSJowB
+         KHP4TbIZDXj2u4cLH7wIBI2dZF1Bgvb0SrMmIfgBOiWd966YnXzHvnrjhk2MJRnMqd
+         O2wfBYO8bgLLQ==
+Date:   Fri, 30 Jun 2023 18:40:02 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Atish Patra <atishp@atishpatra.org>,
+        Stefan O'Rear <sorear@fastmail.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-watchdog@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Tony Lindgren <tony@atomide.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Dilip Kota <eswara.kota@linux.intel.com>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        timestamp@lists.linux.dev, Vinod Koul <vkoul@kernel.org>,
-        alsa-devel@alsa-project.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Dipen Patel <dipenp@nvidia.com>,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 6/7] dt-bindings: timestamp: restrict node name suffixes
-Message-ID: <168814645706.2074491.15762386958786625732.robh@kernel.org>
-References: <20230530144851.92059-1-krzysztof.kozlowski@linaro.org>
- <20230530144851.92059-7-krzysztof.kozlowski@linaro.org>
+        Alistair Francis <alistair.francis@wdc.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        Oleksii <oleksii.kurochko@gmail.com>,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>
+Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230630-scheming-hurry-947c54f131a5@spud>
+References: <20230626-unmarked-atom-70b4d624a386@wendy>
+ <a6449161-d800-4094-bf15-cde890ed17b5@app.fastmail.com>
+ <CAOnJCULs47ZCai5EOQJPFrgV1-2xPjWAOB2CfUDStcigsR5Wew@mail.gmail.com>
+ <20230627-harmonize-monastery-c6b40d2e5556@wendy>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="AjUvKUIkfgdr2+xV"
 Content-Disposition: inline
-In-Reply-To: <20230530144851.92059-7-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20230627-harmonize-monastery-c6b40d2e5556@wendy>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -83,22 +72,121 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Tue, 30 May 2023 16:48:50 +0200, Krzysztof Kozlowski wrote:
-> Make the pattern matching node names a bit stricter to improve DTS
-> consistency.  The pattern is restricted to -N suffixes to decimal
-> numbers.
-> 
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> 
-> ---
-> 
-> Cc: Tony Lindgren <tony@atomide.com>
-> Cc: Oleksij Rempel <o.rempel@pengutronix.de>
-> ---
->  .../bindings/timestamp/hardware-timestamps-common.yaml          | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+--AjUvKUIkfgdr2+xV
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Applied, thanks!
+Been implementing feedback, so going back through this
 
+On Tue, Jun 27, 2023 at 12:30:25PM +0100, Conor Dooley wrote:
+> On Mon, Jun 26, 2023 at 11:35:10PM -0700, Atish Patra wrote:
+> > On Mon, Jun 26, 2023 at 5:40=E2=80=AFPM Stefan O'Rear <sorear@fastmail.=
+com> wrote:
+> > > On Mon, Jun 26, 2023, at 6:10 AM, Conor Dooley wrote:
+>=20
+> > > > Off-list, some of the RVI folks have committed to shoring up the wo=
+rding
+> > > > in either the ISA specifications, the riscv-isa-manual or
+> > > > so that in the future, modifications to and additions or removals of
+> > > > features will require a new extension. Codifying that assertion
+> > > > somewhere would make it quite unlikely that compatibility would be
+> > > > broken, but we have the tools required to deal with it, if & when it
+> > > > crops up.
+> > > > It is in our collective interest, as consumers of extension meaning=
+s, to
+> > > > define a scheme that enforces compatibility.
+> > > >
+> > > > The use of individual properties, rather than elements in a single
+> > >
+> > > no longer individual properties
+> > >
+> > > > string, will also permit validation that the properties have a mean=
+ing,
+> > > > as well as potentially reject mutually exclusive combinations, or
+> > > > enforce dependencies between extensions. That would not have be pos=
+sible
+> > >
+> > > Under what circumstances is a device tree which declares support for a
+> > > superset extension (e.g. m) required to also declare support for its =
+subsets
+> > > (e.g. zmmul)?  There are compatibility issues in both directions.
+> > >
+> > > Proposal: If an extension X is a superset of an extension Y and X is =
+present
+> > > in riscv,isa-extensions, Y must also be present if Y was ratified or =
+added
+> > > to the schema before X, but need not also be present if Y was ratifie=
+d after
+> > > or at the same time as X.  If X "depends on" Y, then Y must be presen=
+t in
+> > > riscv,isa-extensions even if X and Y were ratified at the same time.
+>=20
+> Yes, I think that this all makes sense from a compatibility point of
+> view. Splitting it up:
+>=20
+> > > If an extension X is a superset of an extension Y and X is present
+> > > in riscv,isa-extensions, Y must also be present if Y was ratified or =
+added
+> > > to the schema before X
+>=20
+> This makes total sense from a "being nice to" software point of view.
+>=20
+> > > but need not also be present if Y was ratified after
+> > > or at the same time as X.
+>=20
+> It may make sense to reduce this to only after, or not permit the
+> supersets at all where they are ratified alongside their subsets.
+> Cross that bridge when we come to it perhaps.
+
+I ending up doing some proof of concept implementation of this for linux
+the other day, I think "at or at the same time" is the way to go. Up to
+me to enforce while reviewing binding patches I guess!
+
+> > > If X "depends on" Y, then Y must be present in
+> > > riscv,isa-extensions even if X and Y were ratified at the same tim
+>=20
+> For Linux, this is already the case for F & D. I think that's a good
+> policy to follow.
+
+> > > > +        - const: i
+> > > > +          description: |
+> > > > +            The base integer instruction set, as ratified in the
+> > > > 20191213
+> > > > +            version of the unprivileged ISA specification, with the
+> > > > exception of
+> > > > +            counter access.
+> > > > +            Counter access was removed after the ratification of t=
+he
+> > > > 20191213
+> > > > +            version of the unprivileged specification and shunted =
+into
+> > > > the
+> > > > +            Zicntr and Zihpm extensions.
+> > >
+> > > I think this may belong in the description of zicsr?  rdcycle in 2019=
+1213
+> > > is a special case of csrrs, which is in zicsr not the base.
+>=20
+> Sorry, this is a bit unclear. Do you mean that the sentence you have
+> provided here should be in the Zicsr entry?
+
+I went and checked this, rdcycle appears in chapter 10 "Counters", not
+chapter 9 "Zicsr". I'll slightly reword it & put it in both sections
+since the specs are (IMO) unclear in this regard.
+
+Cheers,
+Conor.
+
+--AjUvKUIkfgdr2+xV
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJ8TcgAKCRB4tDGHoIJi
+0kfhAP9LUTyxG2UPb9njPjY61mUQw7bCuGAoavL5xUWQbnhDFQEAsxfEEvEMtCk4
+UEUiLHTChRa5oy2pr1vS8chP0tO/Sw0=
+=VCpO
+-----END PGP SIGNATURE-----
+
+--AjUvKUIkfgdr2+xV--
