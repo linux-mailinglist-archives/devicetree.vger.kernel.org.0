@@ -2,183 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E36D1743D5E
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 16:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34E44743D89
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 16:33:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232543AbjF3OW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 10:22:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36090 "EHLO
+        id S232480AbjF3OdP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 10:33:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232532AbjF3OWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 10:22:55 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2046.outbound.protection.outlook.com [40.107.243.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E02030DD;
-        Fri, 30 Jun 2023 07:22:53 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xw7RF+3OqIswbnckuZXrKEah6WYdQ4lBdwRsjXV9s0ji60DhIitsE7XQ8+6krwMMmCPoh5AyRFUfufbK4/v6yGjauu1x4pGRk95OJW7gBnoFOU4KemvM4qD9OLHxjC0Dl3PMUmgXmdaWsgkORkZdelUZGOK/PgvOLliNCL40Ibej8dtVE0E3hFOASOBu6uuQvUs0EdgB4DBIl8/8roBcecEPN8CdjsvRM2sRszbHmRh2tzE8mpiSCKi7RJYMssE95kIW2dVKHDDj1pIaBf47i3+mxJci1BLphIqDm6TpBb1BZ3yfuMWs7C2XABthivpifQFjL7D3ZjOPWmSdZnbTMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=1lSxVmcXp5yVNt1hwgwl8dHwzeEFZyc4m/AacEM1+vY=;
- b=ZWXB26rqPafYavJ2FXZiOmEii2fpRAdf68Y/NsWeIgU3zDy4qdwjxwk1QvCgOAseyNpEL8H/Y/We3bwlPLaqtVpGGHKeLb+6Z2hdy3v+C9CocHPPXrhePmj6tld+O1pOXJ7K6DsrRr90r0h9N6LTL+cAVDPeB/FYpGAFEZ/iu62uuHYtlAMMCPDzhtuXDXtMiHly7KH7u6TAvRZ9aprbNgBXlBgw7TNwNGDzJ0S7TLYDRt0h1xYLuLcaTPY2hwJsrVYNF7RT7+zxNqpjb+uDN04NKswWdMJ6LMgDPMj/1kH7wEy3WmTLQTQcMkZXH0cN3eFPrGKRRtMuF0u7UTIKig==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=linaro.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=1lSxVmcXp5yVNt1hwgwl8dHwzeEFZyc4m/AacEM1+vY=;
- b=NtcAQ1uzyeP6CeDCg0u8XStr1Rk5vmkp2SAlbkMTAnfe5xiRbx3+9c3NWrkr4yP6hMRO9XZ70JIMzUY6Mr1dNjLqei0cKDePiAQV1hJshFlzSCeaYK1ldXNI6QoDveUivQraK9EqByVAtsi0kmCvYEmZ+hrMJ2i0aKqIWDiZRy4=
-Received: from SJ0PR05CA0019.namprd05.prod.outlook.com (2603:10b6:a03:33b::24)
- by BL0PR12MB4882.namprd12.prod.outlook.com (2603:10b6:208:1c3::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.19; Fri, 30 Jun
- 2023 14:22:51 +0000
-Received: from DM6NAM11FT107.eop-nam11.prod.protection.outlook.com
- (2603:10b6:a03:33b:cafe::78) by SJ0PR05CA0019.outlook.office365.com
- (2603:10b6:a03:33b::24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.12 via Frontend
- Transport; Fri, 30 Jun 2023 14:22:50 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- DM6NAM11FT107.mail.protection.outlook.com (10.13.172.142) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6521.43 via Frontend Transport; Fri, 30 Jun 2023 14:22:50 +0000
-Received: from SATLEXMB07.amd.com (10.181.41.45) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
- 2023 09:22:49 -0500
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB07.amd.com
- (10.181.41.45) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.6; Fri, 30 Jun
- 2023 07:22:48 -0700
-Received: from xhdakumarma40u.xilinx.com (10.180.168.240) by
- SATLEXMB03.amd.com (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.23
- via Frontend Transport; Fri, 30 Jun 2023 09:22:44 -0500
-From:   Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-To:     <tudor.ambarus@linaro.org>, <pratyush@kernel.org>,
-        <miquel.raynal@bootlin.com>, <richard@nod.at>, <vigneshr@ti.com>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>
-CC:     <git@amd.com>, <michael@walle.cc>, <linux-mtd@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <amitrkcian2002@gmail.com>,
-        Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
-Subject: [PATCH v4 2/2] mtd: spi-nor: Avoid setting SRWD bit in SR if WP# signal not connected
-Date:   Fri, 30 Jun 2023 19:52:33 +0530
-Message-ID: <20230630142233.63585-3-amit.kumar-mahapatra@amd.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230630142233.63585-1-amit.kumar-mahapatra@amd.com>
-References: <20230630142233.63585-1-amit.kumar-mahapatra@amd.com>
+        with ESMTP id S232532AbjF3OdN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 10:33:13 -0400
+Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CF4C35BC;
+        Fri, 30 Jun 2023 07:32:52 -0700 (PDT)
+Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-783546553ddso81553239f.0;
+        Fri, 30 Jun 2023 07:32:52 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688135572; x=1690727572;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=6xcro6lh1zv5j2U+liXdEyfLACiand4vz4NRvXzPPcM=;
+        b=GjI/rNqd+wj7gR2MuA8nc0ejqiVJN0H5HNjf1MJNIDPX6+87rUG7i0Mx4mmNQPxUc2
+         9Nb4cY46CL4mAYjt/H506Wuwy+Ac4IDlIkjExbdFoLmTCtuY2Ly4wzP67vTgQoU75YSA
+         CSPpNSbKxXORY7U8L/kZhXldBHr8YIhOEDkslWbDTtehflFBoeO9Y12LeF8SCgkwZrk2
+         pbXMa4F/qjq7VRpi6POVRmwFeMLXyj+WO7FP4SVS42Z6ZJHuFuupta0wYp5JQPiX1bwj
+         t8yXTgjxrjK4zp2Mg9dGcZvrH2jVYuyGet2Qd3JPLGO7F0vbq74vjlauq4TYzNfjuBv2
+         DpKA==
+X-Gm-Message-State: AC+VfDzCwFwtR5H+3FktO1EVBEC2176B8ZDesx8H4DksNu+Y6iLTHU/2
+        0B20hH4RH044dB6dzLHxwg==
+X-Google-Smtp-Source: ACHHUZ4CO3N+D+JrbADad/wGz5LejFXrB56H9kCxA+ypCwGJ48L6wJJ4Gp0NV6WG4i6r00M9ecvKbQ==
+X-Received: by 2002:a5e:8901:0:b0:783:6455:cc9c with SMTP id k1-20020a5e8901000000b007836455cc9cmr3261459ioj.3.1688135571670;
+        Fri, 30 Jun 2023 07:32:51 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id l7-20020a6b7007000000b0077e40979b41sm2159576ioc.45.2023.06.30.07.32.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jun 2023 07:32:50 -0700 (PDT)
+Received: (nullmailer pid 1430732 invoked by uid 1000);
+        Fri, 30 Jun 2023 14:32:48 -0000
+Date:   Fri, 30 Jun 2023 08:32:48 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Julien Stephan <jstephan@baylibre.com>
+Cc:     Louis Kuo <louis.kuo@mediatek.com>,
+        Phi-Bang Nguyen <pnguyen@baylibre.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        devicetree@vger.kernel.org,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Sumanth Korikkar <sumanthk@linux.ibm.com>,
+        Vasily Gorbik <gor@linux.ibm.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: media: add mediatek ISP3.0 sensor
+ interface
+Message-ID: <20230630143248.GA1425958-robh@kernel.org>
+References: <20230630100321.1951138-1-jstephan@baylibre.com>
+ <20230630100321.1951138-2-jstephan@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT107:EE_|BL0PR12MB4882:EE_
-X-MS-Office365-Filtering-Correlation-Id: 928c7ed1-dc43-4f9c-b297-08db79757c13
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 2tzryPe7UsOplof1QoYs9gSppk6sNNN1943dk0HuXhIDJ+5VAaGTZ+UbukuhXKt1FXi5iChMpxK+dhQc+Clx4RKIJ3JAkqP+HtqkU8Fv+bVARdnZR9uHixU/LDGF+g69HB+cs84mRziRxnU3xXNz5S688mygknmyrWIzWBvX+J10dkJzTxaObsMMlcj5bDLJl9cVffZ4BmkhSB9eP4/nBjPPjhmeGgIKYdCeJsSvoMyS2p9pXH6w9bDQRkNJx9lS7OVn0+jq9sd56rI05mp4Toi+8qQAEB6vtB07MCjlIqT+yCJzJsAdUfSmm0CvDQMdT8GdZQJvnd6TtQu8nQyteDt+7wzQm0CeLzpd5MxbPmKZRAtjN/aVdlxwepUiK6iBBbX0gx+qMQ0dIuf9ZgAc8Ubdm3SgoqOQXyDpjC83pLJH3YsR85jVHKd82YgE4dnQoOqTBS6QJP6dH9k6uRvsLRmHXFn/vtRRlJahJ87IvmDYZvZ0UJGeO1ZCYNOnyRlw5lRRShT6vld0Xiy9vS99fKr2CJCHOhR2tqVdC7td5T444MQ0ytZqoAlRvadFnmzhSY1nQdNCSqJE71r4JKLYW5VOYDfyWKn01xFlEJnI8J7Lgnj8g6EZd5+k1cdIwLOKo2N35QNeeze3eBY4BAen/6wZzy+lbZv2b6BLzgGIpLrjTsZWBPXxcpYrx1SLhF8CMhSkgNbwp0oy/GgIhUo09dyahLHBrq26HUNz25U6vef3gbZrmN0hCVZGkNHy/eI9Be9S0YieZURR+QVlRdNYUQ==
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(136003)(39860400002)(376002)(451199021)(36840700001)(46966006)(40470700004)(40460700003)(4326008)(316002)(70586007)(6666004)(478600001)(110136005)(70206006)(54906003)(36756003)(86362001)(47076005)(426003)(83380400001)(186003)(26005)(2616005)(336012)(36860700001)(82310400005)(1076003)(2906002)(5660300002)(7416002)(41300700001)(8676002)(8936002)(40480700001)(356005)(81166007)(82740400003)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2023 14:22:50.2076
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 928c7ed1-dc43-4f9c-b297-08db79757c13
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT107.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR12MB4882
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230630100321.1951138-2-jstephan@baylibre.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Setting the status register write disable (SRWD) bit in the status
-register (SR) with WP# signal of the flash left floating or wrongly tied to
-GND (that includes internal pull-downs), will configure the SR permanently
-as read-only. If WP# signal is left floating or wrongly tied to GND, avoid
-setting SRWD bit while writing the SR during flash protection.
+On Fri, Jun 30, 2023 at 12:01:50PM +0200, Julien Stephan wrote:
+> From: Louis Kuo <louis.kuo@mediatek.com>
+> 
+> This adds the bindings, for the mediatek ISP3.0 SENINF module embedded in
+> some Mediatek SoC, such as the mt8365
+> 
+> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> Signed-off-by: Phi-Bang Nguyen <pnguyen@baylibre.com>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> ---
+>  .../media/mediatek,mt8365-seninf.yaml         | 295 ++++++++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  2 files changed, 302 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml b/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+> new file mode 100644
+> index 000000000000..1697e94853f5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/mediatek,mt8365-seninf.yaml
+> @@ -0,0 +1,295 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2023 MediaTek, BayLibre
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/mediatek,mt8365-seninf.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MediaTek Sensor Interface 3.0
+> +
+> +maintainers:
+> +  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> +  - Julien Stephan <jstephan@baylibre.com>
+> +  - Andy Hsieh <andy.hsieh@mediatek.com>
+> +
+> +description:
+> +  The ISP3.0 SENINF is the CSI-2 and parallel camera sensor interface found in
+> +  multiple MediaTek SoCs. It can support up to three physical CSI-2
+> +  input ports, configured in DPHY (2 or 4 data lanes) or CPHY depending on the SoC.
+> +  On the output side, SENINF can be connected either to CAMSV instance or
+> +  to the internal ISP. CAMSV is used to transfer the sensor data (Raw, YUV)
+> +  to DRAM directly, without internal ISP processing.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-seninf
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: Seninf camsys clock
+> +      - description: Seninf top mux clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: camsys
+> +      - const: top_mux
+> +
+> +  phys:
+> +    minItems: 1
+> +    maxItems: 4
+> +    description:
+> +      phandle to the PHYs connected to CSI0/A, CSI1, CSI2 and CSI0B
+> +
+> +  phy-names:
+> +    minItems: 1
+> +    items:
+> +      - const: csi0
+> +      - const: csi1
+> +      - const: csi2
+> +      - const: csi0b
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI0 or CSI0A port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI1 port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +      port@2:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI2 port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 4
+> +
+> +      port@3:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description: CSI0B port
+> +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              clock-lanes:
+> +                maxItems: 1
+> +              data-lanes:
+> +                minItems: 1
+> +                maxItems: 2
+> +
+> +      port@4:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
 
-Signed-off-by: Amit Kumar Mahapatra <amit.kumar-mahapatra@amd.com>
----
- drivers/mtd/spi-nor/core.c    | 3 +++
- drivers/mtd/spi-nor/core.h    | 1 +
- drivers/mtd/spi-nor/debugfs.c | 1 +
- drivers/mtd/spi-nor/swp.c     | 9 +++++++--
- 4 files changed, 12 insertions(+), 2 deletions(-)
+/schemas/graph.yaml#/properties/port
 
-diff --git a/drivers/mtd/spi-nor/core.c b/drivers/mtd/spi-nor/core.c
-index 0bb0ad14a2fc..520f5ab86d2b 100644
---- a/drivers/mtd/spi-nor/core.c
-+++ b/drivers/mtd/spi-nor/core.c
-@@ -2864,6 +2864,9 @@ static void spi_nor_init_flags(struct spi_nor *nor)
- 	if (flags & NO_CHIP_ERASE)
- 		nor->flags |= SNOR_F_NO_OP_CHIP_ERASE;
- 
-+	if (of_property_read_bool(np, "no-wp"))
-+		nor->flags |= SNOR_F_NO_WP;
-+
- 	if (flags & SPI_NOR_RWW && nor->info->n_banks > 1 &&
- 	    !nor->controller_ops)
- 		nor->flags |= SNOR_F_RWW;
-diff --git a/drivers/mtd/spi-nor/core.h b/drivers/mtd/spi-nor/core.h
-index 4fb5ff09c63a..55b5e7abce6e 100644
---- a/drivers/mtd/spi-nor/core.h
-+++ b/drivers/mtd/spi-nor/core.h
-@@ -132,6 +132,7 @@ enum spi_nor_option_flags {
- 	SNOR_F_SWP_IS_VOLATILE	= BIT(13),
- 	SNOR_F_RWW		= BIT(14),
- 	SNOR_F_ECC		= BIT(15),
-+	SNOR_F_NO_WP		= BIT(16),
- };
- 
- struct spi_nor_read_command {
-diff --git a/drivers/mtd/spi-nor/debugfs.c b/drivers/mtd/spi-nor/debugfs.c
-index e11536fffe0f..6e163cb5b478 100644
---- a/drivers/mtd/spi-nor/debugfs.c
-+++ b/drivers/mtd/spi-nor/debugfs.c
-@@ -27,6 +27,7 @@ static const char *const snor_f_names[] = {
- 	SNOR_F_NAME(SWP_IS_VOLATILE),
- 	SNOR_F_NAME(RWW),
- 	SNOR_F_NAME(ECC),
-+	SNOR_F_NAME(NO_WP),
- };
- #undef SNOR_F_NAME
- 
-diff --git a/drivers/mtd/spi-nor/swp.c b/drivers/mtd/spi-nor/swp.c
-index 0ba716e84377..5ab9d5324860 100644
---- a/drivers/mtd/spi-nor/swp.c
-+++ b/drivers/mtd/spi-nor/swp.c
-@@ -214,8 +214,13 @@ static int spi_nor_sr_lock(struct spi_nor *nor, loff_t ofs, uint64_t len)
- 
- 	status_new = (status_old & ~mask & ~tb_mask) | val;
- 
--	/* Disallow further writes if WP pin is asserted */
--	status_new |= SR_SRWD;
-+	/*
-+	 * Disallow further writes if WP# pin is neither left floating nor
-+	 * wrongly tied to GND (that includes internal pull-downs).
-+	 * WP# pin hard strapped to GND can be a valid use case.
-+	 */
-+	if (!(nor->flags & SNOR_F_NO_WP))
-+		status_new |= SR_SRWD;
- 
- 	if (!use_top)
- 		status_new |= tb_mask;
--- 
-2.17.1
+> +        unevaluatedProperties: false
+
+Drop
+
+> +        description: connection point for cam0
+> +
+> +        properties:
+
+Drop all this. Don't need to define endpoint as 
+/schemas/graph.yaml#/properties/port already does.
+
+Same on other ports.
+
+> +          endpoint:
+> +            $ref: /schemas/graph.yaml#/$defs/endpoint-base
+> +            unevaluatedProperties: false
 
