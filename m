@@ -2,66 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B80B6744010
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D016744016
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:48:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232388AbjF3QrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 12:47:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49656 "EHLO
+        id S232095AbjF3Qs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 12:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50512 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232373AbjF3QrE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:47:04 -0400
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com [209.85.166.43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96C9D10FB;
-        Fri, 30 Jun 2023 09:47:03 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id ca18e2360f4ac-783544a1c90so86487439f.1;
-        Fri, 30 Jun 2023 09:47:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688143623; x=1690735623;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=d6DGhP0NKduRLIremGdPnWFJvBxfZB29kWmtTlgPqSY=;
-        b=WvpL7lOAuKkgFxaWAFLZ5Tv69C21jl0O0F4s5WOhee/h42pmUQOxC3epSSokUdnXeB
-         55MBtoft6M5b/qQOxQoaZHCAD9eUFagU0aOCz56jpa5Hoa3xehnUSPHqT6q7y8irfTKJ
-         ftoCHJjXRv5MLpvTsri4RMjsMQS4r6os16CKbA/3ClQbIXYeE/gNi2W074PWGN5TJd9C
-         z8JFBkgvLCGt6gzI+VnfMapniCWciBPkm+qWB7Q5PQc7Lwi30YH1rsDlRyOzv2dDc+4q
-         jD2JOwgJCci3+Uh+6cUiM3wsemmG0FFMGuXdm95er55l1mLsUxyb7aEvgomzBLhDIouE
-         gj/Q==
-X-Gm-Message-State: AC+VfDzseNRarC1PJjDvdbQQEB0R+2BZeidfrTR2Ddu09Y6od4/glC/V
-        ZF7cFH063RRfwH93mnmDaRaysu2e0A==
-X-Google-Smtp-Source: ACHHUZ6OwIYPczmqbgzkEpt6HyXVM0dPvYAT8oKibXf2XmJsco67c0AQJfN7FfdjPE7jY6RKcJU0ng==
-X-Received: by 2002:a5d:9a09:0:b0:77e:249e:d84 with SMTP id s9-20020a5d9a09000000b0077e249e0d84mr3330170iol.5.1688143622820;
-        Fri, 30 Jun 2023 09:47:02 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id el16-20020a0566384d9000b0042aebf02107sm2091962jab.138.2023.06.30.09.47.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jun 2023 09:47:01 -0700 (PDT)
-Received: (nullmailer pid 1884430 invoked by uid 1000);
-        Fri, 30 Jun 2023 16:46:59 -0000
-Date:   Fri, 30 Jun 2023 10:46:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, krzysztof.kozlowski+dt@linaro.org,
-        sbhatta@marvell.com, linux@armlinux.org.uk, michal.simek@amd.com,
-        radhey.shyam.pandey@amd.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, anirudha.sarangi@amd.com,
-        harini.katakam@amd.com, git@amd.com
-Subject: Re: [PATCH net-next V4 1/3] dt-bindings: net: xlnx,axi-ethernet:
- Introduce DMA support
-Message-ID: <20230630164659.GA1877117-robh@kernel.org>
-References: <20230630053844.1366171-1-sarath.babu.naidu.gaddam@amd.com>
- <20230630053844.1366171-2-sarath.babu.naidu.gaddam@amd.com>
+        with ESMTP id S230009AbjF3QsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:48:25 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F07D10FB;
+        Fri, 30 Jun 2023 09:48:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1F74E6179E;
+        Fri, 30 Jun 2023 16:48:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5583BC433C0;
+        Fri, 30 Jun 2023 16:48:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688143703;
+        bh=Nd8IcQkatSNE5s/b57nxVYn+hCy0DE0OvfYaIi0hv1U=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=cpsaJu+ftljiTRRn524d0jBzQwdqQ/0GNIPJAXXUogfJg0YSjIjVVgSS3xlexPjQO
+         oNBk3gCDchHEgPFBaD6gAjel/vjpMUFBjBI5cQtiVtdC+pIkZ9x1zSu971cs8mQ3xj
+         8ehTFkwHyULNCE70KWSMDZj01v6ZrrwT9QSECZ/V4YGeiSl9LQ4w/2Nwa7q1/7ng+O
+         Req4CMLRXV6doLCwWVkD0z3lITUGvAeaLgihdhvsNgFmO6EtDfBqWVsOD/6pq6GzuD
+         pdQ6MHFFGWZl6k22eGRhi2VlkhdLh5u5SfBkAWN95bfi3J5gASF7AbHGzDSRAGrTRX
+         vjujTX/dSF0wg==
+Date:   Fri, 30 Jun 2023 11:48:21 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        max.zhen@amd.com, sonal.santan@amd.com,
+        stefano.stabellini@xilinx.com
+Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
+Message-ID: <20230630164821.GA483874@bhelgaas>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230630053844.1366171-2-sarath.babu.naidu.gaddam@amd.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+In-Reply-To: <20230629235226.GA92592-robh@kernel.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,102 +55,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 11:08:42AM +0530, Sarath Babu Naidu Gaddam wrote:
-> From: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
+On Thu, Jun 29, 2023 at 05:52:26PM -0600, Rob Herring wrote:
+> On Thu, Jun 29, 2023 at 05:56:31PM -0500, Bjorn Helgaas wrote:
+> > On Thu, Jun 29, 2023 at 10:19:47AM -0700, Lizhi Hou wrote:
+> > > The PCI endpoint device such as Xilinx Alveo PCI card maps the register
+> > > spaces from multiple hardware peripherals to its PCI BAR. Normally,
+> > > the PCI core discovers devices and BARs using the PCI enumeration process.
+> > > There is no infrastructure to discover the hardware peripherals that are
+> > > present in a PCI device, and which can be accessed through the PCI BARs.
+> > 
+> > IIUC this is basically a multi-function device except that instead of
+> > each device being a separate PCI Function, they all appear in a single
+> > Function.  That would mean all the devices share the same config space
+> > so a single PCI Command register controls all of them, they all share
+> > the same IRQs (either INTx or MSI/MSI-X), any MMIO registers are likely
+> > in a shared BAR, etc., right?
 > 
-> The axiethernet will use dmaengine framework to communicate
-> with dma controller IP instead of built-in dma programming sequence.
+> Could be multiple BARs, but yes.
 
-What's dmaengine framework? This is a binding patch about the h/w.
+Where does the PCI glue live?  E.g., who ioremaps the BARs?  Who sets
+up PCI interrupts?  Who enables bus mastering?  The platform driver
+that claims the DT node wouldn't know that this is part of a PCI
+device, so I guess the PCI driver must do all that stuff?  I don't see
+it in the xmgmt-drv.c from
+https://lore.kernel.org/all/20220305052304.726050-4-lizhi.hou@xilinx.com/
 
+> > Obviously PCI enumeration only sees the single Function and binds a
+> > single driver to it.  But IIUC, you want to use existing drivers for
+> > each of these sub-devices, so this series adds a DT node for the
+> > single Function (using the quirks that call of_pci_make_dev_node()).
+> > And I assume that when the PCI driver claims the single Function, it
+> > will use that DT node to add platform devices, and those existing
+> > drivers can claim those?
 > 
-> To request dma transmit and receive channels the axiethernet uses
-> generic dmas, dma-names properties.
+> Yes. It will call some variant of of_platform_populate().
 > 
-> Axiethernet may use AXI DMA or MCDMA. DMA has only two channels
-> where as MCDMA has 16 Tx, 16 Rx channels. To uniquely identify each
-> channel, we are using 'chan' suffix. Depending on the usecase AXI
-> ethernet driver can request any combination of multichannel DMA
-> channels.
+> > I don't see the PCI driver for the single Function in this series.  Is
+> > that coming?  Is this series useful without it?
+> 
+> https://lore.kernel.org/all/20220305052304.726050-4-lizhi.hou@xilinx.com/
+> 
+> I asked for things to be split up as the original series did a lot 
+> of new things at once. This series only works with the QEMU PCI test 
+> device which the DT unittest will use.
+> 
+> > > Apparently, the device tree framework requires a device tree node for the
+> > > PCI device. Thus, it can generate the device tree nodes for hardware
+> > > peripherals underneath. Because PCI is self discoverable bus, there might
+> > > not be a device tree node created for PCI devices. Furthermore, if the PCI
+> > > device is hot pluggable, when it is plugged in, the device tree nodes for
+> > > its parent bridges are required. Add support to generate device tree node
+> > > for PCI bridges.
+> > 
+> > Can you remind me why hot-adding a PCI device requires DT nodes for
+> > parent bridges?
+> 
+> Because the PCI device needs a DT node and we can't just put PCI devices 
+> in the DT root. We have to create the bus hierarchy.
+> 
+> > I don't think we have those today, so maybe the DT
+> > node for the PCI device requires a DT parent?  How far up does that
+> > go?
+> 
+> All the way.
+> 
+> >  From this patch, I guess a Root Port would be the top DT node on
+> > a PCIe system, since that's the top PCI-to-PCI bridge?
+> 
+> Yes. Plus above the host bridge could have a hierarchy of nodes.
 
-The DMA provider is outside the scope of the binding. Instead, describe 
-how Axiethernet can use 2 or 32 channels.
+I'm missing something if it goes "all the way up," i.e., to a single
+system root, but a Root Port is the top DT node.  If a Root Port is
+the top, there would be several roots.
 
+> > This patch adds a DT node for *every* PCI bridge in the system.  We
+> > only actually need that node for these unusual devices.  Is there some
+> > way the driver for the single PCI Function could add that node when it
+> > is needed?  Sorry if you've answered this in the past; maybe the
+> > answer could be in the commit log or a code comment in case somebody
+> > else wonders.
 > 
-> Example:
-> dma-names = tx_chan0, rx_chan0, tx_chan1, rx_chan1;
-> 
-> Also to support the backward compatibility, use "dmas" property to
-> identify as it should use dmaengine framework or legacy
-> driver(built-in dma programming).
-> 
-> At this point it is recommended to use dmaengine framework but it's
-> optional. Once the solution is stable will make dmas as
-> required properties.
-> 
-> Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-> Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-> 
-> ---
-> Changes in V4:
-> 1) Updated commit description about tx/rx channels name.
-> 2) Removed "dt-bindings" and "dmaengine" strings in subject.
-> 3) Extended dmas and dma-names to support MCDMA channel names.
-> 1) Remove "driver" from commit message.
-> 2) Use pattern/regex for dma-names property.
-> 
-> Changes in V3:
-> 1) Reverted reg and interrupts property to  support backward compatibility.
-> 2) Moved dmas and dma-names properties from Required properties.
-> 
-> Changes in V2:
-> - None.
-> ---
->  .../bindings/net/xlnx,axi-ethernet.yaml          | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> index 1d33d80af11c..ea203504b8d4 100644
-> --- a/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> +++ b/Documentation/devicetree/bindings/net/xlnx,axi-ethernet.yaml
-> @@ -122,6 +122,20 @@ properties:
->        and "phy-handle" should point to an external PHY if exists.
->      maxItems: 1
->  
-> +  dmas:
-> +    minItems: 2
-> +    maxItems: 32
-> +    description: DMA Channel phandle and DMA request line number
+> This was discussed early on. I don't think it would work to create the 
+> nodes at the time we discover we have a device that wants a DT node. The 
+> issue is decisions are made in the code based on whether there's a DT 
+> node for a PCI device or not. It might work, but I think it's fragile to 
+> have nodes attached to devices at different points in time.
 
-Drop this description. That's every 'dmas' property. Instead define what 
-each entry is.
+Ah.  So I guess the problem is we enumerate a PCI bridge, we might do
+something based on the fact that it doesn't have a DT node, then add a
+DT node for it later.
 
-> +
-> +  dma-names:
-> +    items:
-> +      pattern: "^[tr]x_chan[0-9]|1[0-5]$"
-
-I think you need some parentheses. Does a channel 10 or higher name 
-validate?
-
-> +    description:
-> +      Should be "tx_chan0", "tx_chan1" ... "tx_chan15" for DMA Tx channel
-> +      Should be "rx_chan0", "rx_chan1" ... "rx_chan15" for DMA Rx channel
-> +    minItems: 2
-> +    maxItems: 32
-> +
->  required:
->    - compatible
->    - interrupts
-> @@ -143,6 +157,8 @@ examples:
->          clocks = <&axi_clk>, <&axi_clk>, <&pl_enet_ref_clk>, <&mgt_clk>;
->          phy-mode = "mii";
->          reg = <0x40c00000 0x40000>,<0x50c00000 0x40000>;
-> +        dmas = <&xilinx_dma 0>, <&xilinx_dma 1>;
-> +        dma-names = "tx_chan0", "rx_chan0";
->          xlnx,rxcsum = <0x2>;
->          xlnx,rxmem = <0x800>;
->          xlnx,txcsum = <0x2>;
-> -- 
-> 2.25.1
-> 
+Bjorn
