@@ -2,109 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E9D3A74375F
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C76974376E
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:36:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232587AbjF3Ifp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:35:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44286 "EHLO
+        id S232614AbjF3Igi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:36:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232588AbjF3Ifc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:35:32 -0400
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647DE3A89
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:35:26 -0700 (PDT)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1b06777596cso1480756fac.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:35:26 -0700 (PDT)
+        with ESMTP id S232644AbjF3IgP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:36:15 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D8E835BD
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:36:14 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fbc77e76aaso3442255e9.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:36:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688114125; x=1690706125;
+        d=linaro.org; s=google; t=1688114172; x=1690706172;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=X1Gp5Gg4BNunXsleMrsnw5ZYlJcOJJdlLO0f4lwUvf4=;
-        b=Xrs9VFWohqyU/H8LwH8zZ3T5PJKsE4qUa3nULVa/uzwCY3jburveYZTEQGU4h2OdVi
-         2gpznjZeJwZ+mFFYBwJ0DuOwGEnxevyhmtLIj3blRjllRP2SefPyXkWFsyjYV3Hm2vSg
-         zlffKwvxP2wyofstAyEnWxEDKW3X/n+QDpZrLL6dy4BOFhzijd7OCF9tEsdZMjaSKRWQ
-         DRvbj0i2QDuKvdaYibY11rt1Q87SAy+LUHvraBoa5i1Emc/eb2Rjc4I7PwiArtUP8Ufy
-         gYP88iMeno5kWSJ7doGeZLv0z0fzsjGAOpLsx6/tAlrndvy6WOdHzmUz8eH2sIPBfZX6
-         1s9Q==
+        bh=vYLmeNIa/qbq0KtAzV/Ey9lpEGHL4i7EOrsVCQLPj3A=;
+        b=A+sxzTewrp+4wWtq/DbqZ2PmzuwXHSL5d+QkgJIf/INdv9tJM6AL+Ql5b1Amu4UtfO
+         Vjm8RM6HWVcmHCB5QnVEIAj0w4VxuvAub5BJ9OILwaPraOTZ9gRxcYhIZKJSiPL73eRv
+         DJSAzIIT2WcwcZPHWwYGjs3RlzM+iHgycuiIV3PyH7BhYiDUNtUGt/sueuB0M6BxqcrF
+         YdSkz4d+5/XN39dPE19udl8Z37W2gmiO/6sRvMf1MMfTzhsZIl1NOopZwFUsp/B4N+jC
+         T0Eq9STbIySEa67sLPNzpyx2VFqkI0gzA9Ug391DoOfM8qkpye8ayVq+T5bkKr8ALyur
+         /R8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688114125; x=1690706125;
+        d=1e100.net; s=20221208; t=1688114172; x=1690706172;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=X1Gp5Gg4BNunXsleMrsnw5ZYlJcOJJdlLO0f4lwUvf4=;
-        b=ApM6wAW5KV1rR70aVUb43mYLGsX1o4SyPBZgrzcPpUOeL4qcw/bwbECh5gvPIJQ0zY
-         fAaS2H0TAxesKarxgVQAq96qcGq3G4AMYNobdMMv/hxlI7Ede2dqOLt73NnSsXVNnYYT
-         d8KlB4GHvZ+JFpxzT94lmCjcPQXqD4SCRRJBhD78Toit8xSkoW7tlNpWXKVy7gfqoGCp
-         aukmWIAOi/1nEj2jBCiBkUC5hLdW9b9IyGbu2wumIIttvWnW5Y4KlQY22Z+K4sU+qgyj
-         cWGECBp73qmHmLdyLMY2I/fGhuQMh7ZL8Hz/5sBKSYz9g/cuKpj8P1MP8Gvl6O5ukOkv
-         /+RA==
-X-Gm-Message-State: ABy/qLbnPEdUTyfguELdJjUW1QsDgqudNCpaAgtszW6Mh8tRy9h4Dn2m
-        STkMYf6wWoMxjFF7h6zVmHl7iQ==
-X-Google-Smtp-Source: ACHHUZ41dWBdoUrDVQNrZIPi2FWG8gSP1Rq8A5pKSjChQLo4+ZXNFCQAZ1VAvbvoSvq0q3MAE0kRvQ==
-X-Received: by 2002:a05:6871:8a2:b0:1b0:38f1:841d with SMTP id r34-20020a05687108a200b001b038f1841dmr2814289oaq.45.1688114125620;
-        Fri, 30 Jun 2023 01:35:25 -0700 (PDT)
-Received: from [192.168.1.4] ([223.233.68.54])
-        by smtp.gmail.com with ESMTPSA id jx15-20020a17090b46cf00b00262e914169csm8495370pjb.12.2023.06.30.01.35.20
+        bh=vYLmeNIa/qbq0KtAzV/Ey9lpEGHL4i7EOrsVCQLPj3A=;
+        b=RhMM8I6Os2HcHlAFDW5IL2k/yAhu4+nZplRaYkKBjy1ooxthSEBYqRSO1oMdBJX9pl
+         QZUUwyhjaEe+BM1K7yYtS4orVpiz7TA7oL7xxpV6kcErj9FwRwkp/zHWGd0lfom7EDAh
+         sioai7IOBgN9MXm7ujNKfpgQLFBSMSVBGIMrpyFMkT619D16hltaE3MZrqLJ1YGxToLL
+         0+qWfvpMsaSYVFvFAZ6IpmLNdViorV6oobzGFIkRU7X2nG8TKWTcmkDzJ03VjAPxwKNR
+         B3CbNzzM2UsRvPFrCpcpVNP6duwU9OgUPQW2/2WJboeNYW9Ai4n2uyiVVABzzSFdWt1v
+         vEnA==
+X-Gm-Message-State: AC+VfDwX3v7PmT42I1CHWfZE73imbzmTp6h6sqtSDtUuotyT1FYbhvRl
+        yIu/z999NcFhUpdtVcVvMP7hdvRHU7ouIercfII=
+X-Google-Smtp-Source: ACHHUZ7EZObFAaKzqiAF5KKdvIUKd3ODGlToOXtpArd4HfG1IV5jWmOGUZTY+v+gqbbS0+LUc2uoKg==
+X-Received: by 2002:a7b:c445:0:b0:3f9:b7cc:731 with SMTP id l5-20020a7bc445000000b003f9b7cc0731mr1457072wmi.15.1688114172525;
+        Fri, 30 Jun 2023 01:36:12 -0700 (PDT)
+Received: from [192.168.2.107] ([79.115.63.171])
+        by smtp.gmail.com with ESMTPSA id n2-20020a05600c294200b003fa78d1055esm18320515wmd.21.2023.06.30.01.36.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jun 2023 01:35:25 -0700 (PDT)
-Message-ID: <2dcfd994-2729-8780-a7aa-9a051d2fa047@linaro.org>
-Date:   Fri, 30 Jun 2023 14:05:18 +0530
+        Fri, 30 Jun 2023 01:36:12 -0700 (PDT)
+Message-ID: <cba4c06c-65ed-141a-80e4-3731c3560ae9@linaro.org>
+Date:   Fri, 30 Jun 2023 09:36:10 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.1
-Subject: Re: [PATCH v8 02/11] dt-bindings: dma: Increase iommu maxItems for
- BAM DMA
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] dt-bindings: mtd: spi-nor: clarify the need for spi-nor
+ compatibles
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
-        linux-crypto@vger.kernel.org, andersson@kernel.org,
-        bhupesh.linux@gmail.com, robh+dt@kernel.org,
-        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
-        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org,
-        stephan@gerhold.net, Anders Roxell <anders.roxell@linaro.org>,
-        Linux Kernel Functional Testing <lkft@linaro.org>
-References: <20230526192210.3146896-1-bhupesh.sharma@linaro.org>
- <20230526192210.3146896-3-bhupesh.sharma@linaro.org>
- <27b85110-9eb8-84dc-17a9-908e312e2e22@linaro.org>
-From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
-In-Reply-To: <27b85110-9eb8-84dc-17a9-908e312e2e22@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Pratyush Yadav <pratyush@kernel.org>,
+        Michael Walle <michael@walle.cc>, linux-mtd@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        devicetree@vger.kernel.org
+References: <20230616140054.2788684-1-miquel.raynal@bootlin.com>
+From:   Tudor Ambarus <tudor.ambarus@linaro.org>
+In-Reply-To: <20230616140054.2788684-1-miquel.raynal@bootlin.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+Hi, Miquel,
 
-On 6/18/23 2:09 PM, Krzysztof Kozlowski wrote:
-> On 26/05/2023 21:22, Bhupesh Sharma wrote:
->> Since SM8450 BAM DMA engine supports five iommu entries,
->> increase the maxItems in the iommu property section, without
->> which 'dtbs_check' reports the following error:
->>
->>    arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx224.dtb:
->>      dma-controller@1dc4000: iommus: is too long
+On 6/16/23 15:00, Miquel Raynal wrote:
+> Most SPI NOR devices do not require a specific compatible, their ID can
+> in general be discovered with the JEDEC READ ID opcode. In this case,
+> only the "jedec,spi-nor" generic compatible is expected. Clarify this
+> information in the compatible description to (i) help device-tree
+> writers and (ii) prevent further attempts to extend this list with
+> useless information.
+
+Sounds good. If you don't mind I'll reword the description from below
+when applying.
+
 > 
-> Also, please drop error message, because it is not true. The files do
-> not have such device node, so you cannot have such warning.
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
+> ---
+>  Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> Please rewrite the commit msg to explain that certain devices, e.g.
-> sm8250, use more iommus.
+> diff --git a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> index 7149784a36ac..bef071163e38 100644
+> --- a/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/jedec,spi-nor.yaml
+> @@ -43,8 +43,10 @@ properties:
+>            - const: jedec,spi-nor
+>        - const: jedec,spi-nor
+>      description:
+> -      Must also include "jedec,spi-nor" for any SPI NOR flash that can be
+> -      identified by the JEDEC READ ID opcode (0x9F).
+> +      SPI NOR flashes compatible with the JEDEC standard or which may be
 
-I have sent a v9 (which can be seen here: 
-<https://lore.kernel.org/linux-arm-msm/20230630082230.2264698-1-bhupesh.sharma@linaro.org/>), 
-which addresses your review comments shared on v8.
+s/JEDEC/JEDEC216, s/may/can
 
-Please help review.
+> +      identified with the JEDEC READ ID opcode (0x9F) do not deserve a
 
-Thanks,
-Bhupesh
+"deserve" is a little harsh. How about "must be matched against
+the generic ...".
+
+For future me: 0x9f is not a JEDEC216 opcode, it just happened
+that the industry agreed on a specific opcode for reading the
+ID of the flash. JEDEC216 doesn't care about the flash's ID.
+We care because of the fixup hooks.
+
+Cheers,
+ta
+> +      specific compatible. They should instead only be matched against
+> +      the generic "jedec,spi-nor" compatible.
+>  
+>    reg:
+>      minItems: 1
