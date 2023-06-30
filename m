@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 38AC07434C7
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 08:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6705E7434CA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 08:13:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232095AbjF3GNX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 02:13:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55778 "EHLO
+        id S232096AbjF3GNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 02:13:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232113AbjF3GNV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 02:13:21 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A36A3585
+        with ESMTP id S232155AbjF3GNW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 02:13:22 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBCBB2686
         for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 23:13:20 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b69dcf45faso24503871fa.0
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b698937f85so23929161fa.2
         for <devicetree@vger.kernel.org>; Thu, 29 Jun 2023 23:13:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688105598; x=1690697598;
+        d=linaro.org; s=google; t=1688105599; x=1690697599;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=edP5PM6mjKVSJWtiU1VEZfC4hL5CzXucY0brXKKjw/M=;
-        b=FThiX6KJQdjSdcL4qPR/7suGpJYL4jCq2gf4lqy1VTbENY4jPSvwxzCN7EGzBucGur
-         d8OtW4r12iuM2b7WHnBq+OXIDs0W9aTxPJf/oq4tzTCRno+Xlja9dNooEQvGXiSuAJEv
-         Q8ghvu1cvd0jL+dlYfbvGihHclH6qiwNQa76PO0ErzynDBSoh1SoV5Ux6JXleK5fSZb3
-         wF1XMpV8DfbavEme7ju9cv67YyHH7INCTK1QjnkWROMI1pdufuEopzDDh5GuGn56dv3C
-         kl4MzdR3+xdYNdgU3TT6xDxNeStN4z2Is224HQYfjput/0fVleBCdEP+LNe5IgChpIGs
-         d37Q==
+        bh=to6KZ4R4fBoTHdJdtVbxCQRUtjuR5HoBa1YSLAKM0fg=;
+        b=jy/VYhqnzJ7RuYITQHN4r4qF4bf9+b+WU5lYPYBVgmQR2U3jJSpWk5GKEh+OWJ4teS
+         lDPH0nSDF3S2HDUkMJ3EJRG5HOOJ7rx3rhLZFuhzgcClmz32YwMozEYpa/2hbELPHW10
+         bey71A29uL/o0TKikGPrb8pSafTcOSYUD77TcXrrn2cTQIEnkQ7JUcdghIQ9HuWmjshZ
+         Sy45K0msiWPcPfqIJsnhZJCKpkbd+n9HBiEY3aJ/BgPuhNq3sdJ9miLsph+25HVMEUg2
+         +o4WpmoDc4Ls+665ofdVr98TL47DmEQyjbcsV51MGEJX1tPYxbD5S4cEi6pZXJpgZHu9
+         +HDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688105598; x=1690697598;
+        d=1e100.net; s=20221208; t=1688105599; x=1690697599;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=edP5PM6mjKVSJWtiU1VEZfC4hL5CzXucY0brXKKjw/M=;
-        b=AltR7Md9FEntC82WpxHl7ePDlHoTctD+dxryEL24dqmbFAsOfWBzRy7Ml0f8bskEea
-         0EW81QmgyqijRTZlHgBQyoWwwLv6gIGkQG7aixwPdzRYeVAReN4zjNWqBazIOu/OaRkL
-         u8kk77RnYfO/yB602snvpEOO7vLP4bmh64wIb5wmysnEn9M/OMiG9aOpCAf9ScQ0r6Os
-         Oq6KGDXwZiDBf1ZvXAsOapjGLvyKGDRIiyuOThdeJeKL9FIAav/K2PLqY3F5RkJjeGyg
-         n4wKz3XdN1DS9WLbBRUqgV2R+PT1nh5H5XPCzQ8k9UT0AC4UnKNhsL7Bd8yjCpaZ3z9L
-         p7Bw==
-X-Gm-Message-State: ABy/qLb8w1Vx5qFf7D6XfMRUKzrNLSaLNoyr6TgX+luLPsZaIsU5JMa8
-        xc+RDg+WBqnLZxg6KxwpVK8xe2rWSMxlK4rlkQQ=
-X-Google-Smtp-Source: APBJJlGJDsLiL7jxqx42MQOU1tPm3eGCzkQ9PqcEeQq8DM02k/SCHCGknCR3xIeXDFsE644iBOD2vQ==
-X-Received: by 2002:a2e:9b97:0:b0:2b6:a19e:5168 with SMTP id z23-20020a2e9b97000000b002b6a19e5168mr1287613lji.39.1688105598503;
-        Thu, 29 Jun 2023 23:13:18 -0700 (PDT)
+        bh=to6KZ4R4fBoTHdJdtVbxCQRUtjuR5HoBa1YSLAKM0fg=;
+        b=HWGTY+YIh508t3g2rUgKM1s8KK5naTROdrE9EbzKakBSCnpZKmMdigoOC9NEvyygau
+         VlM9/z262mh4ghhS57t7rK9NLQpr3WtZX559EOnfAEgq8Mv/tWwUyPDue6G5b82HgKlL
+         44Y/73ZylZxFkZjlFK0WKduI2EL3VG/vrSgvBB4i4T57635cF8RA9UGZcvTAZ/4GCp7P
+         yzHKmht6LvBsb10ecx9lPPor02XfSAPxpiXRZW3mBKgjeiedbAHUVBEUILYUkrEsQxxf
+         nZQDzPRpvmQ/EmgqKPL8wYsKZ4QhE3LIQbBLxmiXrteJikwwSf8wY0CvEEU5fBec3lI6
+         YDRw==
+X-Gm-Message-State: ABy/qLabQgUOCuL1VC0aI95ynaOkZs+cn1hFBgy0UZSZXsV9P1IRQFLa
+        7GzupOl7x5PTa2Ar6sToNvS53A==
+X-Google-Smtp-Source: APBJJlEg8/XqW1LcOdNpHUc4A7Nrfk8u2tEzzYo4nKfxHwfjvQPXpmrOgLJKw4MrlAM1w3wV8m00pg==
+X-Received: by 2002:a2e:9b88:0:b0:2b4:6456:4553 with SMTP id z8-20020a2e9b88000000b002b464564553mr1260482lji.47.1688105599196;
+        Thu, 29 Jun 2023 23:13:19 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id g22-20020a2eb0d6000000b002b6caeb4b41sm505582ljl.27.2023.06.29.23.13.17
+        by smtp.gmail.com with ESMTPSA id g22-20020a2eb0d6000000b002b6caeb4b41sm505582ljl.27.2023.06.29.23.13.18
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Thu, 29 Jun 2023 23:13:18 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
@@ -56,9 +56,9 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/7] arm64: dts: qcom: pm8350b: fix thermal zone name
-Date:   Fri, 30 Jun 2023 09:13:10 +0300
-Message-Id: <20230630061315.4027453-3-dmitry.baryshkov@linaro.org>
+Subject: [PATCH 3/7] arm64: dts: qcom: pmr735b: fix thermal zone name
+Date:   Fri, 30 Jun 2023 09:13:11 +0300
+Message-Id: <20230630061315.4027453-4-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
 References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
@@ -74,29 +74,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The name of the thermal zone in pm8350b.dtsi (pm8350c-thermal) conflicts
-with the thermal zone in pm8350c.dtsi. Rename the thermal zone according
+The name of the thermal zone in pmr735b.dtsi (pmr735a-thermal) conflicts
+with the thermal zone in pmr735a.dtsi. Rename the thermal zone according
 to the chip name.
 
-Fixes: 5c1399299d9d ("arm64: dts: qcom: pm8350b: add temp sensor and thermal zone config")
+Fixes: 6f3426b3dea4 ("arm64: dts: qcom: pmr735b: add temp sensor and thermal zone config")
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/pm8350b.dtsi | 2 +-
+ arch/arm64/boot/dts/qcom/pmr735b.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/qcom/pm8350b.dtsi b/arch/arm64/boot/dts/qcom/pm8350b.dtsi
-index f1c7bd9d079c..05c105898892 100644
---- a/arch/arm64/boot/dts/qcom/pm8350b.dtsi
-+++ b/arch/arm64/boot/dts/qcom/pm8350b.dtsi
+diff --git a/arch/arm64/boot/dts/qcom/pmr735b.dtsi b/arch/arm64/boot/dts/qcom/pmr735b.dtsi
+index ec24c4478005..f7473e247322 100644
+--- a/arch/arm64/boot/dts/qcom/pmr735b.dtsi
++++ b/arch/arm64/boot/dts/qcom/pmr735b.dtsi
 @@ -8,7 +8,7 @@
  
  / {
  	thermal-zones {
--		pm8350b_thermal: pm8350c-thermal {
-+		pm8350b_thermal: pm8350b-thermal {
+-		pmr735a_thermal: pmr735a-thermal {
++		pmr735b_thermal: pmr735b-thermal {
  			polling-delay-passive = <100>;
  			polling-delay = <0>;
- 			thermal-sensors = <&pm8350b_temp_alarm>;
+ 			thermal-sensors = <&pmr735b_temp_alarm>;
 -- 
 2.39.2
 
