@@ -2,145 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 18E137443C1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 23:05:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32044744413
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 23:49:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232115AbjF3VFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 17:05:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60088 "EHLO
+        id S232403AbjF3Vtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 17:49:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42144 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232725AbjF3VE5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 17:04:57 -0400
-Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 066014212
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 14:04:55 -0700 (PDT)
-Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-bd0a359ca35so2177304276.3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 14:04:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688159095; x=1690751095;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WArU76iRqH6SKzUD6+chWZxFx8/6jk4xhUrLjkiMcdQ=;
-        b=B1Mqy3LGhDYbzvj/sFL3l+l2Rc8HWIhvqUrnaP4zsDmdfIaULy1wK4We3ZMPi37cFo
-         Izgg7/uh0h8xb2I+IYiW2VtDhOOHUgYDfyAiRC6FPeHn642GiPKTv1uqgratlKUEazxH
-         EI91R0SPYCfwByToGHKPuRs1jJxqfjf1iAHka3Wl88BZa9Y7w+zeeknzhZj0wIpoqa0o
-         pJwUisuhUa0editg4tGQFVQz6QVsbFrSNPhv6t3YsJfGX1QMHujpcO4jdKkgtgElovLP
-         A/Yo4GNTRqW+9y44g2kE03JBFWyrki9Gan/UeWXcm0Ghn5Yoa4zYukHDg+KGfIs73iyh
-         9Ejg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688159095; x=1690751095;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WArU76iRqH6SKzUD6+chWZxFx8/6jk4xhUrLjkiMcdQ=;
-        b=aRGWv9DHi7A6BDYW/Fq6LS6DGtANJcxyq1UJBbchryp5wMbdZWCfqNFzyrUgS0wVVh
-         qq9dLNCYxMneFCUC1xISDUEiatm1SwAdy/4zkwZGmrY0ZkJv57EGWSyIznqicIwXMjvZ
-         D7VYN8GHlWzoNW2neZUj9u8IQtam1tsYN7k9wQ7fb6SQc/wnL3pZhzIJ4oY7uE9sdmQW
-         pG1wopPvT9IHP0fRhEsEzlDHSncvQhMvafqEJZRe4ev9SMSK6VT1BXQgeHfxoCyYEsC9
-         4evnk1/tVdPeOPZ+5apa2xIEgIRnsIuP6xbQaSJXtAnmn8Xfj1BGlmQDxVPELGeudXEQ
-         VIPg==
-X-Gm-Message-State: ABy/qLYVn0DT3A2Ne0yYb1QYubDnSSQjl0EGbwtyq+yOWrbUgT+JDves
-        isB0G+FM97zvE9vyyAqY3VU9mEpPw4NYb4T3l1Lmnw==
-X-Google-Smtp-Source: APBJJlH2A8VpylLDMOgUdGE6ghhfm6sGQRdNjSiLPjHdQQZ2BU7IvmtmbogLsohamOXrUfDQkyVYJ141UcR4uODzLUQ=
-X-Received: by 2002:a25:60d6:0:b0:be6:6539:7fdc with SMTP id
- u205-20020a2560d6000000b00be665397fdcmr3216624ybb.1.1688159095052; Fri, 30
- Jun 2023 14:04:55 -0700 (PDT)
+        with ESMTP id S232466AbjF3Vth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 17:49:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 842F33ABD;
+        Fri, 30 Jun 2023 14:49:33 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id D5A5B6181D;
+        Fri, 30 Jun 2023 21:49:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id F231DC433C8;
+        Fri, 30 Jun 2023 21:49:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688161772;
+        bh=nwvYl376FTCG3QHJncLs4AS9k0pbesWjAIyl6ONM498=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:From;
+        b=FVzDJFNo8Kfe1Y9U1al2N/AQc+AcvDWoTkJfYvvhwlm4KmN0lWaaOD6U4CQfg1Ckm
+         ufOPr+9q4bPnek4s1RNLYQbAJ3Imq6sYNOT7RCib1TgHyJ/NnyibnKZ+xw1KgXmpQa
+         b2M7gMU6srNlOzYcdTdRdURlyroyIJqacMBFhRhY9YB8VtFrC5Wi0WlTPQRIhm5pDO
+         QUI2/fftob3UxY/madEfAop+mJzeIJSCyBmAWFXyAE9sApN16sEG5IUaGwAxcd8xDO
+         sQuPB9cJ/GKnAPutMwlldZ59uROXrwGjzjy4+PjCpP+uPJzvpEwSEZlOtEGgKnKKLa
+         3rEh4Jtx4X56Q==
+Date:   Fri, 30 Jun 2023 16:49:30 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+Cc:     krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, bhelgaas@google.com, lorenzo.pieralisi@arm.com,
+        linux-arm-kernel@lists.infradead.org, bharat.kumar.gogada@amd.com,
+        michals@amd.com
+Subject: Re: [PATCH V5 1/3] Move and rename error interrupt bits to a common
+ header.
+Message-ID: <20230630214930.GA496585@bhelgaas>
 MIME-Version: 1.0
-References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-8-dmitry.baryshkov@linaro.org> <c59d002b-9d06-d744-d90b-22da4186522a@linaro.org>
- <CAA8EJpp+b1KVaMK82j7T=iGovXVAu3jq51rTHu6yqPcnkwXoeg@mail.gmail.com>
- <65d9025b-134d-eb8c-98d8-ab7103a5dc44@linaro.org> <CAA8EJpopHRNTyuzi2V=1t7o5xbXaCjxjP=yQUigCYDJMULxb=Q@mail.gmail.com>
- <e2c6abdc-f586-be9c-b400-7bf57021d5fa@linaro.org> <CAA8EJpoN0nVJdBwYfRkS305fWjbHL6BUxcgo1CmS8jmn6gp2jg@mail.gmail.com>
- <20230630205920.GE1059662@hu-bjorande-lv.qualcomm.com>
-In-Reply-To: <20230630205920.GE1059662@hu-bjorande-lv.qualcomm.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sat, 1 Jul 2023 00:04:43 +0300
-Message-ID: <CAA8EJpri1xaZPTSi2pnCpNj_f+VG8B0K=5G7zz+ec7rfcQMUdg@mail.gmail.com>
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8450-hdk: add ADC-TM thermal zones
-To:     Bjorn Andersson <quic_bjorande@quicinc.com>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230628092812.1592644-2-thippeswamy.havalige@amd.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jun 2023 at 23:59, Bjorn Andersson <quic_bjorande@quicinc.com> wrote:
->
-> On Fri, Jun 30, 2023 at 08:42:23PM +0300, Dmitry Baryshkov wrote:
-> > On Fri, 30 Jun 2023 at 19:15, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > >
-> > > On 30.06.2023 14:57, Dmitry Baryshkov wrote:
-> > > > On Fri, 30 Jun 2023 at 14:27, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > > >>
-> > > >> On 30.06.2023 12:07, Dmitry Baryshkov wrote:
-> > > >>> On Fri, 30 Jun 2023 at 11:19, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> > > >>>>
-> > > >>>> On 30.06.2023 08:13, Dmitry Baryshkov wrote:
-> > > >>>>> Add thermal zones controlled through the ADC-TM (ADC thermal monitoring)
-> > > >>>>> PMIC interface. This includes several onboard sensors and the XO thermal
-> > > >>>>> sensor.
-> > > >>>>>
-> > > >>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > > >>>>> ---
-> > > >>>> [...]
-> > > >>>>>
-> > > >>>>> +     channel@144 {
-> > > >>>>> +             reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-> > > >>>> This define should be cleaned up.. Since it takes a sid argument,
-> > > >>>> it really is ADC7_AMUX_THM1_100K_PU(sid)
-> > > >>>
-> > > >>> I don't think I understood your comment. The define itself is specific
-> > > >>> to PM8350, other PMICs might have different channel assignments.
-> > > >>
-> > > >> include/dt-bindings/iio/qcom,spmi-vadc.h
-> > > >> 263:#define ADC7_AMUX_THM1_100K_PU                      0x44
-> > > >
-> > > > Do you want to define PM8350_ADC7_AMUX_THM1_100K_PU(sid) using
-> > > > ADC7_AMUX_THM1_100K_PU ?
-> > > > Or to make all users use ADC7_AMUX_THM1_100K_PU?
-> > >
-> > >
-> > > >Or add the SID
-> > > > argument to ADC7_AMUX_THM1_100K_PU and switch to it?
-> > > This.
-> > >
-> > > Since we have a generic binding for it (not sure what sort of ABI-ish rules
-> > > apply here, probably not very many since it's just a dumb preprocessor define),
-> > > we should not redefine it for each PMIC, especially since the SIDs are variable
-> > > nowadays :/
-> >
-> > I think it would be worth to have per-PMIC headers (which define which
-> > channels are available on this PMIC), but to use values from the
-> > qcom,spmi-vadc.h  header to define those per-PMIC values.
-> >
-> > WDYT?
-> >
->
-> Note that the channel relates to this PMIC, but the sid is of the
-> measured PMIC. So I'm not sure which PMIC you're thinking of when you
-> say per-PMIC...
+The subject line needs to contain "PCI: " and the driver name.
+The subject line also should not end with a period.
+It looks like some of these interrupt bits are not errors.
 
-Not quite. Both sid and channel are for the peasuring PMIC (pm8350b,
-pm8350, etc). On pmk8350 we further multiplex them into the 8 channels
-of adc-tm.
+Mentioned previously at https://lore.kernel.org/r/ZF6SHJ44s4OqPYj4@bhelgaas
 
->
-> Regards,
-> Bjorn
+Suggest this instead:
 
+  PCI: xilinx-cpm: Move interrupt bit definitions to common header
 
+On Wed, Jun 28, 2023 at 02:58:10PM +0530, Thippeswamy Havalige wrote:
+> Move and rename error interrupt bit macros to a common header file for
+> code reusability.
 
--- 
-With best wishes
-Dmitry
+Suggest this:
+
+  Rename Xilinx interrupt bit definitions so they are not
+  CPM-specific.  Move the definitions to pcie-xilinx-common.h where
+  they can be shared between pcie-xilinx-cpm and the new xilinx-xdma
+  driver.
+
+> Move common linux header files for reusability.
+
+This sentence is redundant and should be removed.
+
+> Signed-off-by: Thippeswamy Havalige <thippeswamy.havalige@amd.com>
+> Signed-off-by: Bharat Kumar Gogada <bharat.kumar.gogada@amd.com>
+
+Bjorn
