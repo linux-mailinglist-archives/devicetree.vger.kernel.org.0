@@ -2,191 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B1F8A74416D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:40:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3121774417D
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:42:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232388AbjF3RkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 13:40:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51702 "EHLO
+        id S230308AbjF3Rmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 13:42:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232119AbjF3RkL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:40:11 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E0CD4199B;
-        Fri, 30 Jun 2023 10:40:09 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6E627617C5;
-        Fri, 30 Jun 2023 17:40:09 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0773DC433C8;
-        Fri, 30 Jun 2023 17:40:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688146808;
-        bh=fgMw4Lp/89gtsazSrFpFs6t2HizOmMl025qH0SfI+3I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oDtJjJBwaYpzniZn58CZW7gfEA4yVbEcCAXoEczsJPipXrnCHZ/iEoIIhJRJYioYv
-         Mv2s6ZaJrq2alFzZ9QMF7xRvC2J/KZ4N5vqOuJuTcUOk96GLXw22Iv6zGcgKDCgYqX
-         V80VgNhFGWPJ6vwAAjUTdGLfDAjH7hNJznbG34XtJ1kOg4ICngoslMBuKtd5J/YFfa
-         BGP3LcMb+IgmCJWvwjW0Ieaxqb8do132PC9BUM+P7c7WQsiztb4omluj4SOinSJowB
-         KHP4TbIZDXj2u4cLH7wIBI2dZF1Bgvb0SrMmIfgBOiWd966YnXzHvnrjhk2MJRnMqd
-         O2wfBYO8bgLLQ==
-Date:   Fri, 30 Jun 2023 18:40:02 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     Atish Patra <atishp@atishpatra.org>,
-        Stefan O'Rear <sorear@fastmail.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
+        with ESMTP id S232712AbjF3Rmh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:42:37 -0400
+Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF56199B
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 10:42:35 -0700 (PDT)
+Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-bb3a77abd7bso2081547276.0
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 10:42:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688146955; x=1690738955;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=5GBVbHOFTdsyQJU8GGb14QvACpNRgooKdXsV/1n/jmE=;
+        b=XIVwvb9ZkoK9yR1KK3wGqQiI5P1EA8aljusSHRUNJL6khr7ZfLkl948A85RZCIR882
+         8XIkJG1rilOdOE6NFGi2sP4imn+Mg/ruQMamjrzH0qxDjK4mSERGFBDLHE78v2KI9c9B
+         5WTugaH2dk3pCxdZRCvz9txTIuzlhS7UFVsWFPnexuzA1NhQKPOD0Bmh8wbbG19K/tbu
+         Ara2OJOMLWzxwyYTH7lKDNeykcxgTSx3Fs3hppttITd0d2tpXGC7x3a1DHQhhRop40p2
+         qZ6NJAfsCQ+JdbH3/1WxW6GmYSYtsDBWkWrxisbmtHmAlFKNcbALUVKSO4RXNSPNdfhv
+         BJGw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688146955; x=1690738955;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=5GBVbHOFTdsyQJU8GGb14QvACpNRgooKdXsV/1n/jmE=;
+        b=aFVGUIgia0amDua8qiSYPxRAw5z7/qBSrkzZqylHCBLo0tkoLzk0LrY/vAVZKxw09t
+         eu5+US/VdvDlO4IjPg6zKS9JvdZ+cc1h3vcQkAFO5TBP9TSLdh68mibsHmthscTjIsGk
+         8XU8lS4AqZ5hHcfOujZ28z1JaeIiN1eal8ZnbRvpj9UJ6j9Hdcws8uOpnxkxSfhLWJWj
+         iTACSr/tzlFT93wxMORLT+7dsVvrD9P9+cDOvro5NvZ+JMxNzuiMPKVkvC25+44hfuqG
+         dNPEi5xaYlncC19LzuPUDtaJoTGeReAH87wOMYHcWcN+irrmQbM8NzUKv2cmRPb6AFJ3
+         d7EA==
+X-Gm-Message-State: ABy/qLZ/kSBmOAEp/mEPyNUQlQxRZF+eruRYPU8dj9nev9pjdClGsvMN
+        fRAdWfV8ni6V0fUpLToedj+u8B+ARl51zah534uqBQ==
+X-Google-Smtp-Source: APBJJlHEHXl3UILh2Mi9iFeCzRu6oPkIpCEYs+FuX67r8o+chF6UivHFOFWZstM8v89A8IaytZ+uanrvsla7hDq/bxI=
+X-Received: by 2002:a25:db87:0:b0:c01:4d4a:cbaa with SMTP id
+ g129-20020a25db87000000b00c014d4acbaamr3214487ybf.37.1688146955047; Fri, 30
+ Jun 2023 10:42:35 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
+ <20230630061315.4027453-8-dmitry.baryshkov@linaro.org> <c59d002b-9d06-d744-d90b-22da4186522a@linaro.org>
+ <CAA8EJpp+b1KVaMK82j7T=iGovXVAu3jq51rTHu6yqPcnkwXoeg@mail.gmail.com>
+ <65d9025b-134d-eb8c-98d8-ab7103a5dc44@linaro.org> <CAA8EJpopHRNTyuzi2V=1t7o5xbXaCjxjP=yQUigCYDJMULxb=Q@mail.gmail.com>
+ <e2c6abdc-f586-be9c-b400-7bf57021d5fa@linaro.org>
+In-Reply-To: <e2c6abdc-f586-be9c-b400-7bf57021d5fa@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Fri, 30 Jun 2023 20:42:23 +0300
+Message-ID: <CAA8EJpoN0nVJdBwYfRkS305fWjbHL6BUxcgo1CmS8jmn6gp2jg@mail.gmail.com>
+Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8450-hdk: add ADC-TM thermal zones
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
-        Oleksii <oleksii.kurochko@gmail.com>,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v3] dt-bindings: riscv: deprecate riscv,isa
-Message-ID: <20230630-scheming-hurry-947c54f131a5@spud>
-References: <20230626-unmarked-atom-70b4d624a386@wendy>
- <a6449161-d800-4094-bf15-cde890ed17b5@app.fastmail.com>
- <CAOnJCULs47ZCai5EOQJPFrgV1-2xPjWAOB2CfUDStcigsR5Wew@mail.gmail.com>
- <20230627-harmonize-monastery-c6b40d2e5556@wendy>
-MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="AjUvKUIkfgdr2+xV"
-Content-Disposition: inline
-In-Reply-To: <20230627-harmonize-monastery-c6b40d2e5556@wendy>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 30 Jun 2023 at 19:15, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 30.06.2023 14:57, Dmitry Baryshkov wrote:
+> > On Fri, 30 Jun 2023 at 14:27, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>
+> >> On 30.06.2023 12:07, Dmitry Baryshkov wrote:
+> >>> On Fri, 30 Jun 2023 at 11:19, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >>>>
+> >>>> On 30.06.2023 08:13, Dmitry Baryshkov wrote:
+> >>>>> Add thermal zones controlled through the ADC-TM (ADC thermal monitoring)
+> >>>>> PMIC interface. This includes several onboard sensors and the XO thermal
+> >>>>> sensor.
+> >>>>>
+> >>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>>>> ---
+> >>>> [...]
+> >>>>>
+> >>>>> +     channel@144 {
+> >>>>> +             reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
+> >>>> This define should be cleaned up.. Since it takes a sid argument,
+> >>>> it really is ADC7_AMUX_THM1_100K_PU(sid)
+> >>>
+> >>> I don't think I understood your comment. The define itself is specific
+> >>> to PM8350, other PMICs might have different channel assignments.
+> >>
+> >> include/dt-bindings/iio/qcom,spmi-vadc.h
+> >> 263:#define ADC7_AMUX_THM1_100K_PU                      0x44
+> >
+> > Do you want to define PM8350_ADC7_AMUX_THM1_100K_PU(sid) using
+> > ADC7_AMUX_THM1_100K_PU ?
+> > Or to make all users use ADC7_AMUX_THM1_100K_PU?
+>
+>
+> >Or add the SID
+> > argument to ADC7_AMUX_THM1_100K_PU and switch to it?
+> This.
+>
+> Since we have a generic binding for it (not sure what sort of ABI-ish rules
+> apply here, probably not very many since it's just a dumb preprocessor define),
+> we should not redefine it for each PMIC, especially since the SIDs are variable
+> nowadays :/
 
---AjUvKUIkfgdr2+xV
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I think it would be worth to have per-PMIC headers (which define which
+channels are available on this PMIC), but to use values from the
+qcom,spmi-vadc.h  header to define those per-PMIC values.
 
-Been implementing feedback, so going back through this
+WDYT?
 
-On Tue, Jun 27, 2023 at 12:30:25PM +0100, Conor Dooley wrote:
-> On Mon, Jun 26, 2023 at 11:35:10PM -0700, Atish Patra wrote:
-> > On Mon, Jun 26, 2023 at 5:40=E2=80=AFPM Stefan O'Rear <sorear@fastmail.=
-com> wrote:
-> > > On Mon, Jun 26, 2023, at 6:10 AM, Conor Dooley wrote:
->=20
-> > > > Off-list, some of the RVI folks have committed to shoring up the wo=
-rding
-> > > > in either the ISA specifications, the riscv-isa-manual or
-> > > > so that in the future, modifications to and additions or removals of
-> > > > features will require a new extension. Codifying that assertion
-> > > > somewhere would make it quite unlikely that compatibility would be
-> > > > broken, but we have the tools required to deal with it, if & when it
-> > > > crops up.
-> > > > It is in our collective interest, as consumers of extension meaning=
-s, to
-> > > > define a scheme that enforces compatibility.
-> > > >
-> > > > The use of individual properties, rather than elements in a single
-> > >
-> > > no longer individual properties
-> > >
-> > > > string, will also permit validation that the properties have a mean=
-ing,
-> > > > as well as potentially reject mutually exclusive combinations, or
-> > > > enforce dependencies between extensions. That would not have be pos=
-sible
-> > >
-> > > Under what circumstances is a device tree which declares support for a
-> > > superset extension (e.g. m) required to also declare support for its =
-subsets
-> > > (e.g. zmmul)?  There are compatibility issues in both directions.
-> > >
-> > > Proposal: If an extension X is a superset of an extension Y and X is =
-present
-> > > in riscv,isa-extensions, Y must also be present if Y was ratified or =
-added
-> > > to the schema before X, but need not also be present if Y was ratifie=
-d after
-> > > or at the same time as X.  If X "depends on" Y, then Y must be presen=
-t in
-> > > riscv,isa-extensions even if X and Y were ratified at the same time.
->=20
-> Yes, I think that this all makes sense from a compatibility point of
-> view. Splitting it up:
->=20
-> > > If an extension X is a superset of an extension Y and X is present
-> > > in riscv,isa-extensions, Y must also be present if Y was ratified or =
-added
-> > > to the schema before X
->=20
-> This makes total sense from a "being nice to" software point of view.
->=20
-> > > but need not also be present if Y was ratified after
-> > > or at the same time as X.
->=20
-> It may make sense to reduce this to only after, or not permit the
-> supersets at all where they are ratified alongside their subsets.
-> Cross that bridge when we come to it perhaps.
+>
+> Sorry for being too vague.
+>
+> Konrad
+> >
+> >>
+> >> Konrad
+> >>>
+> >>>>
+> >>>> Konrad
+> >>>>
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "skin_msm_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>> +     channel@145 {
+> >>>>> +             reg = <PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "camera_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>> +     channel@146 {
+> >>>>> +             reg = <PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "therm1_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>> +     channel@147 {
+> >>>>> +             reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "wide_rfc_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>> +     channel@148 {
+> >>>>> +             reg = <PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "rear_tof_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>> +     channel@14c {
+> >>>>> +             reg = <PM8350_ADC7_GPIO3_100K_PU(1)>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "therm2_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>>       channel@303 {
+> >>>>>               reg = <PM8350B_ADC7_DIE_TEMP>;
+> >>>>>               label = "pm8350b_die_temp";
+> >>>>>       };
+> >>>>>
+> >>>>> +     channel@348 {
+> >>>>> +             reg = <PM8350B_ADC7_AMUX_THM5_100K_PU>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "usb_conn_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>>       channel@403 {
+> >>>>>               reg = <PMR735A_ADC7_DIE_TEMP>;
+> >>>>>               label = "pmr735a_die_temp";
+> >>>>>       };
+> >>>>> +
+> >>>>> +     channel@44a {
+> >>>>> +             reg = <PMR735A_ADC7_GPIO1_100K_PU>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "qtm_w_temp";
+> >>>>> +     };
+> >>>>> +
+> >>>>> +     channel@44b {
+> >>>>> +             reg = <PMR735A_ADC7_GPIO2_100K_PU>;
+> >>>>> +             qcom,hw-settle-time = <200>;
+> >>>>> +             qcom,ratiometric;
+> >>>>> +             label = "qtm_n_temp";
+> >>>>> +     };
+> >>>>>  };
+> >>>>>
+> >>>>>  &remoteproc_adsp {
+> >>>
+> >>>
+> >>>
+> >
+> >
+> >
 
-I ending up doing some proof of concept implementation of this for linux
-the other day, I think "at or at the same time" is the way to go. Up to
-me to enforce while reviewing binding patches I guess!
 
-> > > If X "depends on" Y, then Y must be present in
-> > > riscv,isa-extensions even if X and Y were ratified at the same tim
->=20
-> For Linux, this is already the case for F & D. I think that's a good
-> policy to follow.
 
-> > > > +        - const: i
-> > > > +          description: |
-> > > > +            The base integer instruction set, as ratified in the
-> > > > 20191213
-> > > > +            version of the unprivileged ISA specification, with the
-> > > > exception of
-> > > > +            counter access.
-> > > > +            Counter access was removed after the ratification of t=
-he
-> > > > 20191213
-> > > > +            version of the unprivileged specification and shunted =
-into
-> > > > the
-> > > > +            Zicntr and Zihpm extensions.
-> > >
-> > > I think this may belong in the description of zicsr?  rdcycle in 2019=
-1213
-> > > is a special case of csrrs, which is in zicsr not the base.
->=20
-> Sorry, this is a bit unclear. Do you mean that the sentence you have
-> provided here should be in the Zicsr entry?
-
-I went and checked this, rdcycle appears in chapter 10 "Counters", not
-chapter 9 "Zicsr". I'll slightly reword it & put it in both sections
-since the specs are (IMO) unclear in this regard.
-
-Cheers,
-Conor.
-
---AjUvKUIkfgdr2+xV
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJ8TcgAKCRB4tDGHoIJi
-0kfhAP9LUTyxG2UPb9njPjY61mUQw7bCuGAoavL5xUWQbnhDFQEAsxfEEvEMtCk4
-UEUiLHTChRa5oy2pr1vS8chP0tO/Sw0=
-=VCpO
------END PGP SIGNATURE-----
-
---AjUvKUIkfgdr2+xV--
+-- 
+With best wishes
+Dmitry
