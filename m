@@ -2,165 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A1FE5744518
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 01:19:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 392CD74452B
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 01:22:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232717AbjF3XT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 19:19:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36844 "EHLO
+        id S232367AbjF3XWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 19:22:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37680 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232732AbjF3XTR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 19:19:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 452914683;
-        Fri, 30 Jun 2023 16:18:36 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id C1EEE61805;
-        Fri, 30 Jun 2023 23:18:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A84C433C8;
-        Fri, 30 Jun 2023 23:18:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688167115;
-        bh=JKd3pcacA54AZ0fE+QcV56KctfOkUbfebcxzki2Xzw4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=ZMi4zhYmfvWJMdkvedanUYstuVE7V++h8+4bGqe8iRsO64USW/4d3yNZcbJWF4dFb
-         iqTvVQKxd/hcW4amlQdMvCalBxakXpwsJTYx//KfXK+Ocq3HhdqzLAEEYyA/WYIIO9
-         m3cUTjAbAJXwWJTR0npi8sxQCqDafIpDyT5YR4y6LnkTsWJGTejQg1k828QAQJx+xF
-         YLnwfYb5OtgQJjbOcQXgbr+hQQtFhmaqz89WhtJPqc0oVV2rfVNBe+d6Ybj7rH73xa
-         7quq7fo9yvPZswXaoXZA2zNn/lkZUWFjoQZtXWIaOEyaGkBTpKhMpv4g35BMDBquFB
-         c2GoPvpi27qaQ==
-Date:   Fri, 30 Jun 2023 18:18:32 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Thippeswamy Havalige <thippeswamy.havalige@amd.com>
-Cc:     krzysztof.kozlowski@linaro.org, devicetree@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, bhelgaas@google.com, lorenzo.pieralisi@arm.com,
-        linux-arm-kernel@lists.infradead.org, bharat.kumar.gogada@amd.com,
-        michals@amd.com
-Subject: Re: [PATCH V5 3/3] PCI: xilinx-xdma: Add Xilinx XDMA Root Port driver
-Message-ID: <20230630231832.GA496495@bhelgaas>
+        with ESMTP id S232788AbjF3XWU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 19:22:20 -0400
+Received: from mail-lj1-x232.google.com (mail-lj1-x232.google.com [IPv6:2a00:1450:4864:20::232])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 345AC49F4
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 16:21:39 -0700 (PDT)
+Received: by mail-lj1-x232.google.com with SMTP id 38308e7fff4ca-2b69ed7d050so39726901fa.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 16:21:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688167270; x=1690759270;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=JP9h1rS2E5zsXkgZB46K1q99NJea9LBJTLy1ke4IjZc=;
+        b=wpI1xR5ZSnTdrYLlCcyiJlkZAKkFt/ubC3aVLLfsmfIuZciKT2vmnnHAk3lzHyns0J
+         F34c1QCD1dz6LSf88nO2fz4MJC5xxe9XmjSAPMZ1ZC0EH6NhJAOVIZuDxyD2BuSi1bKS
+         ub4YMufjNhvaJsWAfrB80VgX0mQhaGyA6jr7IVc0sJvj5Hy51/jpuB3W2bFaL1u6j2Zt
+         MtiJvniHwWUtr7u/wPGl+qS9rnj+c14E8AX2YIgj/KCBpifSptpFU5Sgy8et+HdLV9wB
+         EH68AMG8DBlhDCU/qtIBMbV5drasRU8ILU9Xjo7BmNQwDcxraFklg6h6sNtfRDiPxMSv
+         Ihrw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688167270; x=1690759270;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=JP9h1rS2E5zsXkgZB46K1q99NJea9LBJTLy1ke4IjZc=;
+        b=Ov8wZn5DyZnxer1uPTidwUR89uD1t9I/wBQ9MDCf2Rqjs+rjLz3h28kpXYfLA6XW3d
+         fVmtV5sRWgi1XHgJd/YUChqQKdFwhchdFs+9lG7ahSXWyHdA1YD9aMzcO/qi7fXtU0N2
+         ipOcI2qZht48qYR+SfzahOPyCM+l/gv/ZW1E2belH2445Ndjs6bmCFifai00nh0h/utn
+         uiMOJ0nI0T82/NsmbDEDMigWLByG4jpcUfV5JfuGMc65XSl1SmmGGTZ2O14aASmZgBCR
+         QpyMwrM3krgyHDfuizeGoFgC+e47yoRjyypotRph3fB8OQm8zAdLxHlXHkkhtvECvSjz
+         cjAw==
+X-Gm-Message-State: ABy/qLZle6QnKFQ0K4JZCuFrq2atd7LQDrtIpmlsC89x1r4Pme1dpX+T
+        wuKvb512MNdF3QAjv1alzK8OlA==
+X-Google-Smtp-Source: APBJJlF1yY21wcdEDtPDbJt3hFKGXm/xt/2uqknhN64+s2wv1sz+diPMOV9CZs8CQfXbD4Ly/BKUjA==
+X-Received: by 2002:a05:651c:155:b0:2b6:9cec:8bfb with SMTP id c21-20020a05651c015500b002b69cec8bfbmr2545994ljd.16.1688167270172;
+        Fri, 30 Jun 2023 16:21:10 -0700 (PDT)
+Received: from [192.168.1.101] (abxi253.neoplus.adsl.tpnet.pl. [83.9.2.253])
+        by smtp.gmail.com with ESMTPSA id k16-20020a2e8890000000b002b6bd43793dsm1538052lji.124.2023.06.30.16.21.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 30 Jun 2023 16:21:09 -0700 (PDT)
+Message-ID: <35b32667-fa29-3e00-1cad-e12a3eb7f362@linaro.org>
+Date:   Sat, 1 Jul 2023 01:21:07 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230628092812.1592644-4-thippeswamy.havalige@amd.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH V5 4/5] clk: qcom: camcc-sm8550: Add support for qdss,
+ sleep and xo clocks
+Content-Language: en-US
+To:     Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Taniya Das <quic_tdas@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Imran Shaik <quic_imrashai@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230623164619.11464-1-quic_jkona@quicinc.com>
+ <20230623164619.11464-5-quic_jkona@quicinc.com>
+ <11b3058c-2261-95a4-2347-b0a33fdeb1e3@linaro.org>
+ <99aebcb3-89d4-993b-5bc1-abc475b94843@quicinc.com>
+ <a10cdae8-3f18-7ffc-8db7-ab21b47b91ca@linaro.org>
+ <a04dd502-bd0f-e5c2-c935-16d221fb86cc@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <a04dd502-bd0f-e5c2-c935-16d221fb86cc@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 28, 2023 at 02:58:12PM +0530, Thippeswamy Havalige wrote:
-> Add support for Xilinx XDMA Soft IP core as Root Port.
-> ...
+On 30.06.2023 09:14, Jagadeesh Kona wrote:
+> 
+> 
+> On 6/26/2023 7:10 PM, Dmitry Baryshkov wrote:
+>> On 26/06/2023 14:59, Jagadeesh Kona wrote:
+>>>
+>>>
+>>> On 6/24/2023 5:49 PM, Konrad Dybcio wrote:
+>>>> On 23.06.2023 18:46, Jagadeesh Kona wrote:
+>>>>> Add support for camera qdss, sleep and xo clocks.
+>>>>>
+>>>>> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
+>>>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>>>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
+>>>>> ---
+>>>>> Changes since v4:
+>>>>>   - No changes.
+>>>>> Changes since v3:
+>>>>>   - No changes.
+>>>>> Changes since v2:
+>>>>>   - No changes.
+>>>>> Changes since v1:
+>>>>>   - Newly added.
+>>>>>
+>>>>>   drivers/clk/qcom/camcc-sm8550.c | 180 ++++++++++++++++++++++++++++++++
+>>>>>   1 file changed, 180 insertions(+)
+>>>>>
+>>>>> diff --git a/drivers/clk/qcom/camcc-sm8550.c b/drivers/clk/qcom/camcc-sm8550.c
+>>>>> index 075bea32087c..7b4882444d58 100644
+>>>>> --- a/drivers/clk/qcom/camcc-sm8550.c
+>>>>> +++ b/drivers/clk/qcom/camcc-sm8550.c
+>>>>> @@ -22,6 +22,8 @@
+>>>>>   enum {
+>>>>>       DT_IFACE,
+>>>>>       DT_BI_TCXO,
+>>>>> +    DT_BI_TCXO_AO,
+>>>>> +    DT_SLEEP_CLK,
+>>>>>   };
+>>>>>   enum {
+>>>>> @@ -43,6 +45,7 @@ enum {
+>>>>>       P_CAM_CC_PLL10_OUT_EVEN,
+>>>>>       P_CAM_CC_PLL11_OUT_EVEN,
+>>>>>       P_CAM_CC_PLL12_OUT_EVEN,
+>>>>> +    P_SLEEP_CLK,
+>>>>>   };
+>>>>>   static const struct pll_vco lucid_ole_vco[] = {
+>>>>> @@ -881,6 +884,22 @@ static const struct clk_parent_data cam_cc_parent_data_11[] = {
+>>>>>       { .hw = &cam_cc_pll7_out_even.clkr.hw },
+>>>>>   };
+>>>>> +static const struct parent_map cam_cc_parent_map_12[] = {
+>>>>> +    { P_SLEEP_CLK, 0 },
+>>>>> +};
+>>>>> +
+>>>>> +static const struct clk_parent_data cam_cc_parent_data_12[] = {
+>>>>> +    { .index = DT_SLEEP_CLK },
+>>>>> +};
+>>>>> +
+>>>>> +static const struct parent_map cam_cc_parent_map_13[] = {
+>>>>> +    { P_BI_TCXO, 0 },
+>>>>> +};
+>>>>> +
+>>>>> +static const struct clk_parent_data cam_cc_parent_data_13_ao[] = {
+>>>>> +    { .index = DT_BI_TCXO_AO },
+>>>>> +};
+>>>>> +
+>>>>>   static const struct freq_tbl ftbl_cam_cc_bps_clk_src[] = {
+>>>>>       F(19200000, P_BI_TCXO, 1, 0, 0),
+>>>>>       F(200000000, P_CAM_CC_PLL8_OUT_EVEN, 1, 0, 0),
+>>>>> @@ -1565,6 +1584,29 @@ static struct clk_rcg2 cam_cc_mclk7_clk_src = {
+>>>>>       },
+>>>>>   };
+>>>>> +static const struct freq_tbl ftbl_cam_cc_qdss_debug_clk_src[] = {
+>>>>> +    F(19200000, P_BI_TCXO, 1, 0, 0),
+>>>>> +    F(75000000, P_CAM_CC_PLL0_OUT_EVEN, 8, 0, 0),
+>>>>> +    F(150000000, P_CAM_CC_PLL0_OUT_EVEN, 4, 0, 0),
+>>>>> +    F(300000000, P_CAM_CC_PLL0_OUT_MAIN, 4, 0, 0),
+>>>>> +    { }
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_rcg2 cam_cc_qdss_debug_clk_src = {
+>>>>> +    .cmd_rcgr = 0x13f24,
+>>>>> +    .mnd_width = 0,
+>>>>> +    .hid_width = 5,
+>>>>> +    .parent_map = cam_cc_parent_map_0,
+>>>>> +    .freq_tbl = ftbl_cam_cc_qdss_debug_clk_src,
+>>>>> +    .clkr.hw.init = &(const struct clk_init_data) {
+>>>>> +        .name = "cam_cc_qdss_debug_clk_src",
+>>>>> +        .parent_data = cam_cc_parent_data_0,
+>>>>> +        .num_parents = ARRAY_SIZE(cam_cc_parent_data_0),
+>>>>> +        .flags = CLK_SET_RATE_PARENT,
+>>>>> +        .ops = &clk_rcg2_shared_ops,
+>>>>> +    },
+>>>>> +};
+>>>>> +
+>>>>>   static const struct freq_tbl ftbl_cam_cc_sfe_0_clk_src[] = {
+>>>>>       F(466000000, P_CAM_CC_PLL6_OUT_EVEN, 1, 0, 0),
+>>>>>       F(594000000, P_CAM_CC_PLL6_OUT_EVEN, 1, 0, 0),
+>>>>> @@ -1611,6 +1653,26 @@ static struct clk_rcg2 cam_cc_sfe_1_clk_src = {
+>>>>>       },
+>>>>>   };
+>>>>> +static const struct freq_tbl ftbl_cam_cc_sleep_clk_src[] = {
+>>>>> +    F(32000, P_SLEEP_CLK, 1, 0, 0),
+>>>>> +    { }
+>>>>> +};
+>>>>> +
+>>>>> +static struct clk_rcg2 cam_cc_sleep_clk_src = {
+>>>>> +    .cmd_rcgr = 0x141a0,
+>>>>> +    .mnd_width = 0,
+>>>>> +    .hid_width = 5,
+>>>>> +    .parent_map = cam_cc_parent_map_12,
+>>>>> +    .freq_tbl = ftbl_cam_cc_sleep_clk_src,
+>>>>> +    .clkr.hw.init = &(const struct clk_init_data) {
+>>>>> +        .name = "cam_cc_sleep_clk_src",
+>>>>> +        .parent_data = cam_cc_parent_data_12,
+>>>>> +        .num_parents = ARRAY_SIZE(cam_cc_parent_data_12),
+>>>>> +        .flags = CLK_SET_RATE_PARENT,
+>>>>> +        .ops = &clk_rcg2_shared_ops,
+>>>>> +    },
+>>>>> +};
+>>>>> +
+>>>>>   static const struct freq_tbl ftbl_cam_cc_slow_ahb_clk_src[] = {
+>>>>>       F(19200000, P_BI_TCXO, 1, 0, 0),
+>>>>>       F(80000000, P_CAM_CC_PLL0_OUT_EVEN, 7.5, 0, 0),
+>>>>> @@ -1632,6 +1694,26 @@ static struct clk_rcg2 cam_cc_slow_ahb_clk_src = {
+>>>>>       },
+>>>>>   };
+>>>>> +static const struct freq_tbl ftbl_cam_cc_xo_clk_src[] = {
+>>>>> +    F(19200000, P_BI_TCXO, 1, 0, 0),
+>>>> You're overloading P_BI_TCXO with a different parent clock (XO_A).
+>>>>
+>>>
+>>> This RCG just requires active only voting, hence using XO_A as its parent.
+>>>
+>>> Both XO and XO_A are same clock in HW (BI_TCXO), hence we can reuse P_BI_TCXO in frequency table for XO_A parent as well.
+>>
+>> Please don't do such things, it complicates understanding the driver. The reviewer could have thought that here the driver was really referencing to the BI_TCXO rather than BI_TCXO_AO.
+>>
+> 
+> The enum in parent list indicates the actual HW clock, and since XO and XO_A are the same HW clock, parent enum needs to be a single one. Only parent_data needs to be updated with AO as we have been doing for all targets.
+I see your point, however to Linux, XO and XO_A are two separate clocks
+within the CCF.
 
-> |Reported-by: kernel test robot <lkp@intel.com>
-> |Reported-by: Dan Carpenter <error27@gmail.com>
-> |Closes: https://lore.kernel.org/r/202305261250.2cs1phTS-lkp@intel.com/
-
-Remove these.  I mentioned this before:
-https://lore.kernel.org/r/ZHd/7AaLaGyr1jNA@bhelgaas
-
-> + * struct pl_dma_pcie - PCIe port information
-> + * @dev: Device pointer
-> + * @reg_base: IO Mapped Register Base
-> + * @irq: Interrupt number
-> + * @cfg: Holds mappings of config space window
-> + * @phys_reg_base: Physical address of reg base
-> + * @intx_domain: Legacy IRQ domain pointer
-> + * @pldma_domain: PL DMA IRQ domain pointer
-> + * @resources: Bus Resources
-> + * @msi: MSI information
-> + * @irq_misc: Legacy and error interrupt number
-> + * @intx_irq: legacy interrupt number
-> + * @lock: lock protecting shared register access
-
-Capitalize the intx_irq and lock descriptions so they match the others.
-
-"Legacy and error interrupt number" and "legacy interrupt number"
-sound like they overlap -- "legacy interrupt number" is part of both.
-Is that an error?
-
-> +static bool xilinx_pl_dma_pcie_valid_device(struct pci_bus *bus, unsigned int devfn)
-> +{
-> +	struct pl_dma_pcie *port = bus->sysdata;
-> +
-> +	/* Check if link is up when trying to access downstream ports */
-> +	if (!pci_is_root_bus(bus)) {
-> +		/*
-> +		 * If the link goes down after we check for link-up, we have a problem:
-> +		 * if a PIO request is initiated while link-down, the whole controller
-> +		 * hangs, and even after link comes up again, previous PIO requests
-> +		 * won't work, and a reset of the whole PCIe controller is needed.
-> +		 * Henceforth we need link-up check here to avoid sending PIO request
-> +		 * when link is down.
-
-Wrap this comment so it fits in 80 columns like the rest of the file.
-
-I think the comment was added because I pointed out that this is racy.
-Obviously the comment doesn't *fix* the race, and it actually doesn't
-even describe the race.
-
-Even with the xilinx_pl_dma_pcie_link_up() check, this is racy because
-xilinx_pl_dma_pcie_link_up() may tell you the link is up, but the link
-may go down before the driver attempts the config transaction.  THAT
-is the race.
-
-If the controller hangs in that situation, that's a hardware defect,
-and from your comment, it sounds like it's unrecoverable.
-
-> +		 */
-> +		if (!xilinx_pl_dma_pcie_link_up(port))
-> +			return false;
-
-> +static int xilinx_pl_dma_pcie_intx_map(struct irq_domain *domain, unsigned int irq,
-> +				       irq_hw_number_t hwirq)
-
-Wrap to fit in 80 columns like the rest of the file.
-
-> +static struct irq_chip xilinx_msi_irq_chip = {
-> +	.name = "pl_dma_pciepcie:msi",
-
-Why does this name have two copies of "pcie" in it?  This driver has
-four irq_chip structs; maybe the names could be more similar?
-
-  xilinx_leg_irq_chip			INTx
-  xilinx_msi_irq_chip			pl_dma_pciepcie:msi
-  xilinx_irq_chip			Xilinx MSI
-  xilinx_pl_dma_pcie_event_irq_chip	RC-Event
-
-> +	/* Plug the INTx chained handler */
-> +	irq_set_chained_handler_and_data(port->intx_irq,
-> +					 xilinx_pl_dma_pcie_intx_flow, port);
-> +
-> +	/* Plug the main event chained handler */
-> +	irq_set_chained_handler_and_data(port->irq,
-> +					 xilinx_pl_dma_pcie_event_flow, port);
-
-What's the reason for using chained IRQs?  Can this be done without
-them?  I don't claim to understand all the issues here, but it seems
-better to avoid chained IRQ handlers when possible:
-https://lore.kernel.org/all/877csohcll.ffs@tglx/
-
-> +	/*set the Bridge enable bit */
-
-Space before "Set".  I mentioned this before at
-https://lore.kernel.org/r/ZHd/7AaLaGyr1jNA@bhelgaas
-
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!res) {
-> +		dev_err(dev, "missing \"reg\" property\n");
-
-All your other error messages are capitalized.  Make this one match.
-
-> +	bridge->ops = (struct pci_ops *)&xilinx_pl_dma_pcie_ops.pci_ops;
-
-I don't think this cast is needed.
-
-Bjorn
+Konrad
+> 
+> Thanks,
+> Jagadeesh
+> 
+>>>
+>>> Thanks,
+>>> Jagadeesh
+>>>
+>>>> The rest lgtm
+>>>>
+>>>> Konrad
+>>
+>> [skipped the rest]
+>>
