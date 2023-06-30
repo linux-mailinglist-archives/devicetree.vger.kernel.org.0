@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FBA27436BD
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366747436C1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:13:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231431AbjF3INJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:13:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34404 "EHLO
+        id S232242AbjF3INp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:13:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231455AbjF3INI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:13:08 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1EDA41FCD
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:13:07 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b69f216c73so24193991fa.3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:13:07 -0700 (PDT)
+        with ESMTP id S232307AbjF3INm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:13:42 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 911E83588
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:13:41 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fafe87c6fbso2494055e87.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:13:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688112785; x=1690704785;
+        d=linaro.org; s=google; t=1688112820; x=1690704820;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=8N98NIXmZWmFeIP8+c/tNntFW57IprvaGEGZFvUwvnQ=;
-        b=pFw7I4QfTtG5ff1hDrCExT9n0BgtdRfGGCBpZYh1OXJ8yv6/tU8QDMU7ydSWp0vhUK
-         0RMo2xlaej/yxsJK7sQrf8iRJIo39eqsOiUbwQcKD7vbXtmV0ERQRyK3Qk5hPLCMzUAR
-         zHLP9/QExOTAheg3fUM6oHzPq68JrIWQcn6sa14TfJcCUU3slx/SEou27iQqbPFW4FBh
-         vhVhzIdRM7ukwcnKYKHGWiNDS3hAJaJq2VAcffwZcD9Oy9h3SZr6lR5gkJ4UWXUupAYm
-         dEuG+abHYoQQzxL7Yn4bC37svpuE0r9rgcPJhpiAbOLBCxxeItIAlM8z8gON5lo9nMuq
-         QmrA==
+        bh=mATsalF8ij180CRAWepYO+45OI7CgFAF3ABhqAFWSnA=;
+        b=zjeVN9pJuhmAZQG4sTl4aWH5Wd1sOTaoMV3NcpBPNDebbWoPNR1xwqaTvfBCq8dbLf
+         ijpf9uB5OwOoad5eF6Xlxy2gk1SaWI10JDxn9eh2rs63w/v0CpIQP+HjjhLPeko37IjE
+         RVpfjqXYoTSzQgFH4UzzPwnGNKtJV2o2cADCWTKytVQpw3hjjZMoyVjrJ8iVzJjVYYDo
+         fHG6aZ7qVAIqA7D3iLYmhdrcjI6q5ithCTV+8RAzIV1bjUbG2ZpZhNcgvamM7deIxcBe
+         XhxMFP4mhzlyKfoHNVwlSyoNd5gaFN1Yftu/qp6eQk/NTMyQNfNtmj+MadaJcgrbJyDm
+         1AaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688112785; x=1690704785;
+        d=1e100.net; s=20221208; t=1688112820; x=1690704820;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8N98NIXmZWmFeIP8+c/tNntFW57IprvaGEGZFvUwvnQ=;
-        b=IZr3DzRasnZ+vZxsEr1ynbRuVDyONEA9hKC7hXDqi/8qR0KCc5YErGHpu2SrTNK9XE
-         7aVaEddQVUfz+Pob/3o51Mnuy2Bi2PtIl9hO/U0XhTpq4AUGAfvqIyAYCDn69pK51Kos
-         Gi0mQDCQeKw4mILV4vLuhMZUgX4SOx2NdLaFsY3EJwlKkttHs8VdiJjg/NvfUO8iM+gT
-         ozERVR+uk2omQzcn5DLqFT/c8a6yHO8Tic8BclNdtuB7uFxm8ql7iaOocJrr3VF2OoWX
-         L1L9pGNkatTfZKbWvKILMqUbhgb8svCMje/R4FyUCVMVvOh0UaFf7vc443QIVMy8FnXv
-         wfrw==
-X-Gm-Message-State: ABy/qLZKpHoJwwIzkWFzrJhEfa6Li8HYgyQ5LfIsiRvD552xIeoOFVy7
-        MfDZ+8+C/jJK4RlnRYG9q8oQaA==
-X-Google-Smtp-Source: APBJJlHidOeQ9zm5aN+jCatjHDU1qcKRQnBMu/++EeLXfTkmZ+cM2UmLvB4E2WrG5a/NL3MlSlHxDw==
-X-Received: by 2002:a2e:9844:0:b0:2b6:cbba:1307 with SMTP id e4-20020a2e9844000000b002b6cbba1307mr1431342ljj.0.1688112785454;
-        Fri, 30 Jun 2023 01:13:05 -0700 (PDT)
+        bh=mATsalF8ij180CRAWepYO+45OI7CgFAF3ABhqAFWSnA=;
+        b=iu+sPns07aWpM3Zt9al6Akz3oku9afHe1nSB/bYeBQPTYVratUs1RjvLWVXhR4uto+
+         DoPbAdbHD7AJXBqoQvXc3CstcgQ9zTAFDMjB4lXvVPGlHBb5BmaX+0LTI/NDepChdYUV
+         yUSAlfR48U/DR6+0ioE2wyB0I2ZBGIO2LWwx00BEUbdDZSzzFTZfuQUifB1Zo4Vnu8wf
+         boUhky92duA8NOo2/pFN7IKJzXdX8a0oEdSH1VEvauTalPa6xTyy2tXD0BcMh5PwR7sw
+         05U/O6HRw7PYPURLSLKHNFRsOXYX1yxFSVzHrnEkjJhlfrWmB0mEZIWMmY+LUlr9fdqf
+         T4Fw==
+X-Gm-Message-State: ABy/qLa0kb4lzgx94Nzk/ib4nvHINbwUvMprtgzkwKRotjT6fotHY7vr
+        pNd6NvBzZV21xkmkUdzRQp+im/6c8g2Kg4pkDeg=
+X-Google-Smtp-Source: APBJJlEQxVhFfIVpE1X8pDoNxED7S9bVOZRjUEs5/rDKjNqU0Sp3uOOx3jnrDzEluvIi44+pB0WJCQ==
+X-Received: by 2002:ac2:5e6b:0:b0:4fb:744c:2e9a with SMTP id a11-20020ac25e6b000000b004fb744c2e9amr1458508lfr.32.1688112819697;
+        Fri, 30 Jun 2023 01:13:39 -0700 (PDT)
 Received: from [192.168.1.101] (abyj222.neoplus.adsl.tpnet.pl. [83.9.29.222])
-        by smtp.gmail.com with ESMTPSA id v10-20020a2e87ca000000b002b6d647c7e6sm63929ljj.133.2023.06.30.01.13.04
+        by smtp.gmail.com with ESMTPSA id v11-20020a056512096b00b004f76658694csm2614558lft.238.2023.06.30.01.13.38
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jun 2023 01:13:05 -0700 (PDT)
-Message-ID: <4c7377c8-eca9-5614-9c71-d90c091f134d@linaro.org>
-Date:   Fri, 30 Jun 2023 10:13:04 +0200
+        Fri, 30 Jun 2023 01:13:39 -0700 (PDT)
+Message-ID: <ace0b594-c1d1-09b9-7402-484091268a55@linaro.org>
+Date:   Fri, 30 Jun 2023 10:13:38 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 4/7] arm64: dts: qcom: pmk8350: fix ADC-TM compatible
- string
+Subject: Re: [PATCH 5/7] arm64: dts: qcom: sm8450-hdk: remove pmr735b PMIC
+ inclusion
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -64,9 +64,9 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-5-dmitry.baryshkov@linaro.org>
+ <20230630061315.4027453-6-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230630061315.4027453-5-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230630061315.4027453-6-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,32 +80,28 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30.06.2023 08:13, Dmitry Baryshkov wrote:
-> The commit b2de43136058 ("arm64: dts: qcom: pmk8350: Add peripherals for
-> pmk8350") for the ADC TM (thermal monitoring device) have used the
-> compatible string from the vendor kernel ("qcom,adc-tm7"). Use the
-> proper compatible string that is defined in the upstream kernel
-> ("qcom,spmi-adc-tm5-gen2").
+> The 8450-HDK doesn't use PMR735B PMIC. Drop its inclusion to remove the
+> warning during the HDK bootup.
 > 
-> Fixes: b2de43136058 ("arm64: dts: qcom: pmk8350: Add peripherals for pmk8350")
+> Fixes: 30464456a1ea ("arm64: dts: qcom: sm8450-hdk: add pmic files")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-Well actually, adc-tm7 would be the correct compatible (PM8350X is PMIC7)
-but it never landed on the driver side..
+That's.. strange.. Did you confirm this with schematics, or even better,
+socinfo?
 
 Konrad
->  arch/arm64/boot/dts/qcom/pmk8350.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pmk8350.dtsi b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> index bc6297e7253e..1eb74017062d 100644
-> --- a/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pmk8350.dtsi
-> @@ -59,7 +59,7 @@ pmk8350_vadc: adc@3100 {
->  		};
+> diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> index bc4c125d1832..dabb7e872f38 100644
+> --- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> +++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
+> @@ -14,7 +14,6 @@
+>  #include "pm8450.dtsi"
+>  #include "pmk8350.dtsi"
+>  #include "pmr735a.dtsi"
+> -#include "pmr735b.dtsi"
 >  
->  		pmk8350_adc_tm: adc-tm@3400 {
-> -			compatible = "qcom,adc-tm7";
-> +			compatible = "qcom,spmi-adc-tm5-gen2";
->  			reg = <0x3400>;
->  			interrupts = <PMK8350_SID 0x34 0x0 IRQ_TYPE_EDGE_RISING>;
->  			#address-cells = <1>;
+>  / {
+>  	model = "Qualcomm Technologies, Inc. SM8450 HDK";
