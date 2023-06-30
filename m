@@ -2,68 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BB03E743C4D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 14:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AE1F743C90
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 15:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232095AbjF3M6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 08:58:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38888 "EHLO
+        id S232525AbjF3NUU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 09:20:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45962 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229508AbjF3M6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 08:58:00 -0400
-Received: from mail-yw1-x1136.google.com (mail-yw1-x1136.google.com [IPv6:2607:f8b0:4864:20::1136])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDCF92D70
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 05:57:58 -0700 (PDT)
-Received: by mail-yw1-x1136.google.com with SMTP id 00721157ae682-577637de4beso2258517b3.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 05:57:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688129878; x=1690721878;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=JQCrl7A/rIH8uSHfyu+uZL/P6cdZFk4n3tT8OtlO/xo=;
-        b=oPdob9Hs78h0VuxLuMsHTSSKSQsy2omAIqIsV6s0BGW9C8IcOGEsP3TopefaUaVcs2
-         0BRoy09i6N9rCPjIwaAt1DRcmgeaIIzl2lHU4czQ92j/HkjesDLWEt1QLsJ8g5y+dEtW
-         iEeeyYbQSWlm3vml7PSXIuPi/YmXV7UDXs7DN/6VKUS+IrLR93m52mMfGwHXWci+1QYD
-         9OXOQ3cX2/HmC1aqOhaMEUBpVspNTcJaqlceKBSN7wLb925UQf+6wcvBZBYROddnbahC
-         yjJluvYYkP08yMXGTqj53mvmauHcbdg/OjbZScg4dChXax8bji+zQXzExxGoV06G99vy
-         yAbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688129878; x=1690721878;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=JQCrl7A/rIH8uSHfyu+uZL/P6cdZFk4n3tT8OtlO/xo=;
-        b=EBGbofK6Dl5BFs+SaQen8Vh3RzJ71JVtPfahpX9d37eFU2JRJ/OMj0WV+CoaKjQpqz
-         dJvf4HoukB10yt97F1WY4efEZUIoJZ19x+t/dXkeZ0aZ8valCBhDpwvceNYONsYQAAUC
-         +0SlRZ4XVPB4T2bkYqSwJdk6ZVLkrEWYevVYwdhy3EDmG9a5NWTeu7nX0rMGcravSZ2K
-         5tf6gtPKPSXWEZSKfoTFCU0InyY6pYZ00lLS4E9YpS3VYuDOrcavvCEsTXCl4GkZ58q4
-         ncgMcMW95HN93dspg53BCRzlOYzeCRnnIKRS5oMqk8zg1i409GYkVJ4Yj3ylL/19kJ8B
-         xCWg==
-X-Gm-Message-State: ABy/qLbPqFs81Ilaw9xOGMBuk2K4DTGOVgnvq8BxfCVSzk3kgFRI6IV2
-        gibjGFYSWkeQ1n4o0ZwQ4fBk9oM4XrGGM+iQkOFGug==
-X-Google-Smtp-Source: APBJJlE5fHF6+9Pnv2C/x84Fx1XbeMTvYCz8/yQZzjx9rKb9aDS1JbMcOGbsBOJZrP7da0+PAKm4vBNtA+bm22TDvAQ=
-X-Received: by 2002:a25:ed10:0:b0:bc9:92c9:7fd1 with SMTP id
- k16-20020a25ed10000000b00bc992c97fd1mr2750125ybh.3.1688129878014; Fri, 30 Jun
- 2023 05:57:58 -0700 (PDT)
+        with ESMTP id S232480AbjF3NUT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 09:20:19 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20BEA3A81;
+        Fri, 30 Jun 2023 06:20:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1688131218; x=1719667218;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=EaJ77L8/k3Hf0KmA9VK9enDoW0KMpkjzS7BilECDl2A=;
+  b=zNSTiHPPjPJnIj1KJ98izycMouV3yTak2XgvVfFNuQVlPdS3pyVLRVD3
+   VQw5eUu+Al+WkJdlc2ICzdhXPP8ADplTCogp33X9TGZwb9WEjKC3XBMbf
+   OJlQgBHmoWX1H0eDEgkPJSAbUutgSTmOoTK4YEZnom2qDmMQxUHlBy1xL
+   YEI4TWGwz7hpHg3XWtwgvjUDB050Q/5R4smaipRfk4jCgz2PHGRkIYZhd
+   wAsDQrMut1PiCXw5d48s6ghJOuCv9uv1md2EKYwrlL50tFoy9O7y7T90t
+   yN1HiVmViVMBj5BTj7BdO2IxPQdjOumvDDtiQM5OmhDMo5WZzBAHV+pS4
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,170,1684825200"; 
+   d="asc'?scan'208";a="221422464"
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 30 Jun 2023 06:20:18 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Fri, 30 Jun 2023 06:20:17 -0700
+Received: from wendy (10.10.115.15) by chn-vm-ex01.mchp-main.com
+ (10.10.85.143) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
+ Transport; Fri, 30 Jun 2023 06:20:15 -0700
+Date:   Fri, 30 Jun 2023 14:19:46 +0100
+From:   Conor Dooley <conor.dooley@microchip.com>
+To:     Andrew Jones <ajones@ventanamicro.com>
+CC:     Conor Dooley <conor@kernel.org>,
+        Palmer Dabbelt <palmer@rivosinc.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        <aou@eecs.berkeley.edu>, <heiko.stuebner@vrull.eu>,
+        Evan Green <evan@rivosinc.com>, <sunilvl@ventanamicro.com>,
+        <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 10/10] RISC-V: provide a Kconfig option to disable
+ parsing "riscv,isa"
+Message-ID: <20230630-urgency-emission-882cd52a7a27@wendy>
+References: <20230629-landed-popsicle-ab46ab3b46d9@spud>
+ <mhng-f060b5c8-aa99-4952-b1e1-ee85a92e6b07@palmer-ri-x1c9a>
+ <20230629-angled-gallantly-8fe7451a25fa@spud>
+ <20230630-7d0f6fe66c9415315d491f15@orel>
 MIME-Version: 1.0
-References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-8-dmitry.baryshkov@linaro.org> <c59d002b-9d06-d744-d90b-22da4186522a@linaro.org>
- <CAA8EJpp+b1KVaMK82j7T=iGovXVAu3jq51rTHu6yqPcnkwXoeg@mail.gmail.com> <65d9025b-134d-eb8c-98d8-ab7103a5dc44@linaro.org>
-In-Reply-To: <65d9025b-134d-eb8c-98d8-ab7103a5dc44@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 30 Jun 2023 15:57:46 +0300
-Message-ID: <CAA8EJpopHRNTyuzi2V=1t7o5xbXaCjxjP=yQUigCYDJMULxb=Q@mail.gmail.com>
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8450-hdk: add ADC-TM thermal zones
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="o4a1LRPZt0ieGy5D"
+Content-Disposition: inline
+In-Reply-To: <20230630-7d0f6fe66c9415315d491f15@orel>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -71,121 +74,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jun 2023 at 14:27, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 30.06.2023 12:07, Dmitry Baryshkov wrote:
-> > On Fri, 30 Jun 2023 at 11:19, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >>
-> >> On 30.06.2023 08:13, Dmitry Baryshkov wrote:
-> >>> Add thermal zones controlled through the ADC-TM (ADC thermal monitoring)
-> >>> PMIC interface. This includes several onboard sensors and the XO thermal
-> >>> sensor.
-> >>>
-> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>> ---
-> >> [...]
-> >>>
-> >>> +     channel@144 {
-> >>> +             reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-> >> This define should be cleaned up.. Since it takes a sid argument,
-> >> it really is ADC7_AMUX_THM1_100K_PU(sid)
-> >
-> > I don't think I understood your comment. The define itself is specific
-> > to PM8350, other PMICs might have different channel assignments.
->
-> include/dt-bindings/iio/qcom,spmi-vadc.h
-> 263:#define ADC7_AMUX_THM1_100K_PU                      0x44
+--o4a1LRPZt0ieGy5D
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Do you want to define PM8350_ADC7_AMUX_THM1_100K_PU(sid) using
-ADC7_AMUX_THM1_100K_PU ?
-Or to make all users use ADC7_AMUX_THM1_100K_PU? Or add the SID
-argument to ADC7_AMUX_THM1_100K_PU and switch to it?
-
->
-> Konrad
+On Fri, Jun 30, 2023 at 09:46:48AM +0200, Andrew Jones wrote:
+> On Thu, Jun 29, 2023 at 10:44:18PM +0100, Conor Dooley wrote:
+> > On Thu, Jun 29, 2023 at 02:16:49PM -0700, Palmer Dabbelt wrote:
+> > > On Thu, 29 Jun 2023 13:20:55 PDT (-0700), Conor Dooley wrote:
+> ...
+> > > > +bool __initdata riscv_isa_fallback_cmdline =3D false;
+> > > > +static int __init riscv_isa_fallback_setup(char *__unused)
+> > >=20
+> > > Maybe it's better to support =3Dtrue and =3Dfalse here?  Not sure it =
+matters,
+> > > we're already down a rabbit hole ;)
+> >=20
+> > Dunno, not implemented a cmdline param before. Seemed "cleaner" to check
+> > for presence, don't really care so I'll adapt to w/e.
 > >
-> >>
-> >> Konrad
-> >>
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "skin_msm_temp";
-> >>> +     };
-> >>> +
-> >>> +     channel@145 {
-> >>> +             reg = <PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "camera_temp";
-> >>> +     };
-> >>> +
-> >>> +     channel@146 {
-> >>> +             reg = <PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "therm1_temp";
-> >>> +     };
-> >>> +
-> >>> +     channel@147 {
-> >>> +             reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "wide_rfc_temp";
-> >>> +     };
-> >>> +
-> >>> +     channel@148 {
-> >>> +             reg = <PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "rear_tof_temp";
-> >>> +     };
-> >>> +
-> >>> +     channel@14c {
-> >>> +             reg = <PM8350_ADC7_GPIO3_100K_PU(1)>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "therm2_temp";
-> >>> +     };
-> >>> +
-> >>>       channel@303 {
-> >>>               reg = <PM8350B_ADC7_DIE_TEMP>;
-> >>>               label = "pm8350b_die_temp";
-> >>>       };
-> >>>
-> >>> +     channel@348 {
-> >>> +             reg = <PM8350B_ADC7_AMUX_THM5_100K_PU>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "usb_conn_temp";
-> >>> +     };
-> >>> +
-> >>>       channel@403 {
-> >>>               reg = <PMR735A_ADC7_DIE_TEMP>;
-> >>>               label = "pmr735a_die_temp";
-> >>>       };
-> >>> +
-> >>> +     channel@44a {
-> >>> +             reg = <PMR735A_ADC7_GPIO1_100K_PU>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "qtm_w_temp";
-> >>> +     };
-> >>> +
-> >>> +     channel@44b {
-> >>> +             reg = <PMR735A_ADC7_GPIO2_100K_PU>;
-> >>> +             qcom,hw-settle-time = <200>;
-> >>> +             qcom,ratiometric;
-> >>> +             label = "qtm_n_temp";
-> >>> +     };
-> >>>  };
-> >>>
-> >>>  &remoteproc_adsp {
-> >
-> >
-> >
+>=20
+> I don't have a strong preference here, but to throw in more food for
+> thought, I see this DT-v1 vs. DT-v2 choice to be a bit analogous to the
+> DT vs. ACPI choice. The 'acpi' command line parameter, for RISC-V, can
+> be 'off', 'on', and 'force', where
+>=20
+>   off -- disable ACPI if default was on
+>   on -- enable ACPI but allow fallback to DT
+>   force -- enable ACPI if default was off
+>=20
+> So, if the default of the isa fallback command line option will depend on
+> Kconfig, then we may also want a 'force'.
 
+I'm not sure that I understand what "force" would give us.
+There's 4 cases:
+- CONFIG_RISCV_ISA_FALLBACK is enabled, cmdline option is present:
+  cmdline option is ignored, fallback is taken if needed.
+  crash if neither are present.
 
+- CONFIG_RISCV_ISA_FALLBACK is enabled, cmdline option is not present:
+  cmdline option is ignored, fallback is taken if needed.
+  crash if neither are present.
 
--- 
-With best wishes
-Dmitry
+- CONFIG_RISCV_ISA_FALLBACK is disabled, cmdline option is present:
+  cmdline option takes priority, fallback is taken if needed.
+  crash if neither are present.
+
+- CONFIG_RISCV_ISA_FALLBACK is disabled, cmdline option is not present:
+  fallback is never taken
+  crash if new properties aren't present.
+
+I don't really see the value in having an equivalent to acpi=3Doff,
+because the order of precedence is, to use your naming, "DT-v2" falling
+back to "DT-v1" & the default value concerns the use of the fallback.
+For ACPI, it is the other way around & the option controls the use of
+"DT-v2"'s analogue. Trying to slot in that logic:
+
+- CONFIG_RISCV_ISA_FALLBACK is enabled, cmdline option "=3Don":
+  cmdline option is ignored, fallback is taken if needed.
+  crash if neither are present.
+
+- CONFIG_RISCV_ISA_FALLBACK is enabled, cmdline option "=3Doff":
+  cmdline option is prioritised, fallback is taken if needed.
+  crash if new properties aren't present.
+
+- CONFIG_RISCV_ISA_FALLBACK is disabled, cmdline option "=3Don":
+  cmdline option is prioritised, fallback is taken if needed.
+  crash if neither are present.
+
+- CONFIG_RISCV_ISA_FALLBACK is disabled, cmdline option "=3Doff":
+  fallback is never taken
+  crash if new properties aren't present.
+
+I think I prefer the behaviour of what I currently have & I don't really
+get where the "force" option is supposed to fit in either?
+
+Cheers,
+Conor.
+
+--o4a1LRPZt0ieGy5D
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJ7WZwAKCRB4tDGHoIJi
+0gMcAQChwEuzvhSORcS7/4Mm0GXlyvRmOlOfWOHtGmwWRFmLMgD+JzMMaxJwKmej
+f/W/6SoUrX44MMben0skWQdfEYtTNQo=
+=N0ZM
+-----END PGP SIGNATURE-----
+
+--o4a1LRPZt0ieGy5D--
