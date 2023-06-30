@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F4AF7436AA
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:12:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C09587436B0
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:12:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232003AbjF3IMF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:12:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34242 "EHLO
+        id S231655AbjF3IMV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:12:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34288 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230506AbjF3IME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:12:04 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585511FCC
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:12:03 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7acaa7a5so2488209e87.1
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:12:03 -0700 (PDT)
+        with ESMTP id S230233AbjF3IMU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:12:20 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E1011FCC
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:12:19 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f954d7309fso1945381e87.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:12:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688112721; x=1690704721;
+        d=linaro.org; s=google; t=1688112737; x=1690704737;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=W50uLn6Ipi70lC/DeI/GySvcCDeVU856F9ShXora3ZI=;
-        b=Yrs49uEJbMD5MhAn1DXhB74/uAyzr/tOtnJWJ2HtFIr2j8hHW8hL8qQaA4gnGoTJ76
-         utjCZDqgrkVUaBobsQ6bqZ/ne4HpTWQLwNb4y+OFSC9dY6fYXNXxQa4yXf8kGMNKbgTQ
-         Nt6nIH+XE7w0TJSM4DUqGQ6OHRAKWh0CGDeftnLqiTrXoaT+r7w0Dr03xRDS0qcmoiU9
-         ZVn5p/k/T48r2nv5GglxCMlSF4SdiLUGNRj3251k/0SiZglVikleVXFGgxPnmmeg1Zck
-         NcuBQdEc5GRPGl/DYg7oFUlOofTplPdqzgV6kUmSb07aZvLG+flkxGS/Ym6Virw2S9Lc
-         m7Jw==
+        bh=+kmi96YERORzCFGWsxEn1Ss8jzUB9ou9W1D9mEuodnk=;
+        b=dKyYaTxrhF1UxMH4fuKL69epEIyewnf4GcT2NJD9tI3d3RK8l5S5LXLQt83i2s6+C0
+         DtZCxTKuCNvKJ9UltqEAMVwj5RtoKJgyZ5kqjw9WyrTdRqpiarzu+LnCqECvuDqHtW0T
+         tsib1uyUn5f2GEGmugf3y1SA74ZKQwos8Noi6fvnkcMOFIUxLVNzYVEHOeRdq8EN3PKT
+         1Se46CsU3uykx3pwfG+QEuYlFA26UTTv1kpDyRhKaZX37g3MJuTOeiLN4lTPH5lMEKCj
+         M7QIGGwr6sKTejcdzh6NOlLMNWrQn3l1AMr3GW0MrLnJBgWNI52LJaznub12O9ozkBGz
+         kdQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688112721; x=1690704721;
+        d=1e100.net; s=20221208; t=1688112737; x=1690704737;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=W50uLn6Ipi70lC/DeI/GySvcCDeVU856F9ShXora3ZI=;
-        b=EMIuyQ9cJp4pDlthxrwGtPKZx1XGkIBLnPGySuJDjNMWrH1E6PsVfhYTqle7aZn++o
-         ADHibtsf1qQn9AcZagbMGOFdKe6+jKZdiTTV9K1u345bpAl3pA65AobI+bcHMnY+jGtQ
-         rC+KdDVwfKoKNOOxxOD7Jmz+ibHnfpgWEkf2458f1abljMLT5Ovf0MuFu5Gi4qcA3Gs+
-         b+ciSZZF3SMCxClh3KjH8E/b9itexFvzvkxg3A64WMr7wGtwy9MANJi89AKAMOL5EoCh
-         lBXhNTbHeLUPzlKxY0E7yz1/juXnwkxqlikZm40nMb2RBzksihnkJssXpj+xb/DVSPzj
-         BWRg==
-X-Gm-Message-State: ABy/qLZ29bVyCq4Z+50HizMmhGS2xSZXAfMx9vIEYcxOldH01yDPsME2
-        fge5bn8Rc6OuYuOvLxRjyYoRSQ==
-X-Google-Smtp-Source: APBJJlGxxL98aLwwuTk5vmsAR7f0XS7WyoNT0B7KwzqSleenSL4gE2AKotsmq6VFp+9Y0KkVSK967A==
-X-Received: by 2002:a05:6512:2397:b0:4fb:a0ec:983f with SMTP id c23-20020a056512239700b004fba0ec983fmr2149167lfv.14.1688112721528;
-        Fri, 30 Jun 2023 01:12:01 -0700 (PDT)
+        bh=+kmi96YERORzCFGWsxEn1Ss8jzUB9ou9W1D9mEuodnk=;
+        b=DjQeo7BKVRBo6xy1gThW/qS17CEjeI/UJ/jvt5LrQAqGXGNljXtp42bDG3FgLX6/AW
+         QsWQbdlyOJUPXJWKuqBO/2qKMNv4cqhqHowTjQ7rbyQKzsYblz7HASEimCmcE2zYPlGb
+         hjIFpKNwUWIbqANSMSVjihJAuxTBXIgvEjow+m8Y0DpAAy2TG7W9BwStr4FZqcO8R+VF
+         H15QyQ4S+Hs6WNZUOo9c79MocRvonL30PAKymzvvudi6AuNt6pgup5ZZJQZezwbmfnbk
+         OQnK15QvK8BdccYLQMlq7jPUHJKQcXxvLo4xdtcKZXFGKaQHkvirkO0ljuSCX1WSWiTb
+         5Emg==
+X-Gm-Message-State: AC+VfDzz67tySL0Dli65xyXU4cUgCa8bHfkhMplJMjY/fXf5IIEDRwZ1
+        uqT3CLEhWF9LQMYr5ky8BGyHEA==
+X-Google-Smtp-Source: ACHHUZ5msFVrafxSMBgzWjkXLzTGxeVKdsWpmbzKhvMo5ZVBH0/Dpwkp2H3G4gxKIkPkVTEYRBqyUQ==
+X-Received: by 2002:a05:6512:3a85:b0:4f8:5d2d:4941 with SMTP id q5-20020a0565123a8500b004f85d2d4941mr2429097lfu.34.1688112737572;
+        Fri, 30 Jun 2023 01:12:17 -0700 (PDT)
 Received: from [192.168.1.101] (abyj222.neoplus.adsl.tpnet.pl. [83.9.29.222])
-        by smtp.gmail.com with ESMTPSA id d13-20020ac241cd000000b004f62fdf61fdsm2632501lfi.204.2023.06.30.01.12.00
+        by smtp.gmail.com with ESMTPSA id d26-20020ac2545a000000b004efe73ee01fsm2631831lfn.306.2023.06.30.01.12.16
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jun 2023 01:12:00 -0700 (PDT)
-Message-ID: <e340e0f2-9eee-8f77-0144-123dce1653a0@linaro.org>
-Date:   Fri, 30 Jun 2023 10:11:59 +0200
+        Fri, 30 Jun 2023 01:12:17 -0700 (PDT)
+Message-ID: <9c122062-e2ac-9daf-72e2-94b8ff3bd2a2@linaro.org>
+Date:   Fri, 30 Jun 2023 10:12:16 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/7] arm64: dts: qcom: pm8350: fix thermal zone name
+Subject: Re: [PATCH 2/7] arm64: dts: qcom: pm8350b: fix thermal zone name
 Content-Language: en-US
 To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Andy Gross <agross@kernel.org>,
@@ -63,9 +63,9 @@ To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
 References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-2-dmitry.baryshkov@linaro.org>
+ <20230630061315.4027453-3-dmitry.baryshkov@linaro.org>
 From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230630061315.4027453-2-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230630061315.4027453-3-dmitry.baryshkov@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -79,31 +79,29 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 30.06.2023 08:13, Dmitry Baryshkov wrote:
-> The name of the thermal zone in pm8350.dtsi (pm8350c-thermal) conflicts
+> The name of the thermal zone in pm8350b.dtsi (pm8350c-thermal) conflicts
 > with the thermal zone in pm8350c.dtsi. Rename the thermal zone according
 > to the chip name.
 > 
-> Fixes: 7a79b95f4288 ("arm64: dts: qcom: pm8350: add temp sensor and thermal zone config")
+> Fixes: 5c1399299d9d ("arm64: dts: qcom: pm8350b: add temp sensor and thermal zone config")
 > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
-DTC really needs some sus overwrite warnings!
-
 Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
 Konrad
->  arch/arm64/boot/dts/qcom/pm8350.dtsi | 2 +-
+>  arch/arm64/boot/dts/qcom/pm8350b.dtsi | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/pm8350.dtsi b/arch/arm64/boot/dts/qcom/pm8350.dtsi
-> index 2dfeb99300d7..9ed9ba23e81e 100644
-> --- a/arch/arm64/boot/dts/qcom/pm8350.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/pm8350.dtsi
+> diff --git a/arch/arm64/boot/dts/qcom/pm8350b.dtsi b/arch/arm64/boot/dts/qcom/pm8350b.dtsi
+> index f1c7bd9d079c..05c105898892 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8350b.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8350b.dtsi
 > @@ -8,7 +8,7 @@
 >  
 >  / {
 >  	thermal-zones {
-> -		pm8350_thermal: pm8350c-thermal {
-> +		pm8350_thermal: pm8350-thermal {
+> -		pm8350b_thermal: pm8350c-thermal {
+> +		pm8350b_thermal: pm8350b-thermal {
 >  			polling-delay-passive = <100>;
 >  			polling-delay = <0>;
->  			thermal-sensors = <&pm8350_temp_alarm>;
+>  			thermal-sensors = <&pm8350b_temp_alarm>;
