@@ -2,148 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AB34743FA6
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:24:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CAFF743FB1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:29:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231176AbjF3QYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 12:24:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39994 "EHLO
+        id S232664AbjF3Q3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 12:29:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41170 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230427AbjF3QYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:24:01 -0400
-X-Greylist: delayed 443 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 30 Jun 2023 09:23:59 PDT
-Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341C9E49;
-        Fri, 30 Jun 2023 09:23:59 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 5DF9D100002;
-        Fri, 30 Jun 2023 19:16:34 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5DF9D100002
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1688141794;
-        bh=DYDUqZ5q1Q+sph6vsN5QJLQHBW12OVdZvTZa4RwFxxw=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=pkn05C5Ytqa2b3cXCsR7wj5mahZr8wJnb942hV1b9vPD+uSJK3h7s+kSSgmKgZft/
-         4CHHvwGsW4sacX2udyfF+Ob9tu0gUGs4GXh6d6+3nekQ7C9OrS71U8Y1cDpXbRSGG9
-         eLc1oz6rn9ympSoRSHka1EmYqo2ezvcZG7NnjazTj4EwVJPpdHow7NsmZ1uBdzHI0Y
-         bNL2rdviD3DCcXoet/xkxdVk8itMxz7v9Egd6HuBhHx8mN/Fme9aQb+6A0HEmbkhSI
-         0cWZNFZcbbWIFYCjFidzG5gku3QkLoQFl0GZaRv/P6ypEQ6oN9FOiJBo+kV38EMzhA
-         2oshPxRDFjV3Q==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Fri, 30 Jun 2023 19:16:34 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 30 Jun
- 2023 19:16:20 +0300
-Date:   Fri, 30 Jun 2023 19:16:33 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     zelong dong <zelong.dong@amlogic.com>
-CC:     <narmstrong@baylibre.com>, <p.zabel@pengutronix.de>,
-        <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
-        <martin.blumenstingl@googlemail.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <jbrunet@baylibre.com>,
-        <devicetree@vger.kernel.org>, <kelvin.zhang@amlogic.com>
-Subject: Re: [PATCH 3/3] arm64: dts: meson: add reset controller for Meson-C3
- SoC
-Message-ID: <20230630161633.eym2dhxaffn2uxfv@CAB-WSD-L081021>
-References: <20230630121059.28748-1-zelong.dong@amlogic.com>
- <20230630121059.28748-4-zelong.dong@amlogic.com>
+        with ESMTP id S232494AbjF3Q3W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:29:22 -0400
+Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C31AD3A9B
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 09:29:20 -0700 (PDT)
+Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fbc5d5742eso11714445e9.3
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 09:29:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688142559; x=1690734559;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=kx9jwINsXynT9xYRg2h3H3ifzA5sFvWLT1WN3/8C4lc=;
+        b=j5qb6MNlO7QpZUWIfZPtZTarvlKiW0T3tJg1j4USkqToGimjZIFgs8/Y8xd6WkbcjF
+         s8RuYSlI+4dpa0WzZMmGdy6DkoVSJIHiwX8EIKh7gZrZJOwh4ohZqXxnpKk/C+5NPXbU
+         +Z4skyWDZD6YioymPTa6jsgU/02dLHhF61LjnHtRK8koMUGZrptr40i4Iw5xlVgubCRe
+         Vj3XGvC6rDKIM4wdCinKo7uwPIVAUmNdXrwD3vGB+Sm4r5irOFYsPvCg3a04aFjY+F9z
+         aL1h79/ocUs/UuAB6n4JGAAxj4NglyesHf1cGeZp2/PoaalkSnQfPw2o7dfSe5ZsEvpp
+         FvjA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688142559; x=1690734559;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=kx9jwINsXynT9xYRg2h3H3ifzA5sFvWLT1WN3/8C4lc=;
+        b=Iy8XTeTpYkGV3zvYYSpOnWPGpBYesK/YP2n3IFSrszOlDNarzQgJH4FJrU9n3ps3jJ
+         /LN7ZehDmW9xVEBKKAk6aYl25Jqbwrd80WAXhU2GlxnOvVHD+tMSnB8zCzqDeTBkCRDP
+         IzZaYhZ35MWw8S1rT1Um7ySSgqTNNAbp5W12M02/nKWiIljA3Q4cQYXG4WR6yAQkxtoh
+         ELE9Wxv2cJAFen6RDrWkcmHaf9sV/8tGDbtNTrFYidex+xY1k3001wg58BM3En1p2aqp
+         CZzPqRqOQWDL/QO7op3MR+8ebNBgejlJj7Mxsnfaqmz3MvZy8d1SrhjMbjZ7i96hgCWl
+         vm8g==
+X-Gm-Message-State: AC+VfDwCcpYaVbkLH7vL+lF91HhKDjzMPC3LYAIiBWHPm0LVx1rXkpiq
+        pp5iseUQYfD2X0YLe/7TVAjR8RvSnt+wU/pkZCGYzA==
+X-Google-Smtp-Source: ACHHUZ5RuRc3hXLqWe4gbrbDsWZogKmRY9nZUJg0bSPHqjXea8yKM12vmyiLfNgxlF/HtV9lIxVwzg==
+X-Received: by 2002:a7b:c38f:0:b0:3fb:a46c:7eac with SMTP id s15-20020a7bc38f000000b003fba46c7eacmr2392722wmj.7.1688142559167;
+        Fri, 30 Jun 2023 09:29:19 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id cx16-20020a056000093000b00301a351a8d6sm18835836wrb.84.2023.06.30.09.29.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jun 2023 09:29:18 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v6 0/9] drm/meson: add support for MIPI DSI Display
+Date:   Fri, 30 Jun 2023 18:29:07 +0200
+Message-Id: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230630121059.28748-4-zelong.dong@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178380 [Jun 30 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lists.infradead.org:7.1.1;lore.kernel.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/06/30 15:49:00
-X-KSMG-LinksScanning: Clean, bases: 2023/06/30 15:49:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/30 12:24:00 #21606311
-X-KSMG-AntiVirus-Status: Clean, skipped
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANMCn2QC/5XPPQ6DMAwF4KtUmesKQkJ/pt6j6mCCAUuQoASiV
+ oi7N7B1ZHxv+J69iECeKYjHaRGeIgd2NoXyfBKmQ9sScJ2ykJksMp1LwKF3LRuIJSiYxzB5wgH
+ qwGBMA5GHAqobaZlfKW8UigRVGAgqj9Z0ibJz36dy9NTwZ19+vVPuOEzOf/dDotraQ5tRQQZS3
+ 6WRd0JZFs+eLXp3cb4Vmx/1cVMnU5dUXVHVOn31Z67r+gMUcLX4PgEAAA==
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Nicolas Belin <nbelin@baylibre.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        "Lukas F. Hartmann" <lukas@mntre.com>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5161;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=KfaJiJcLkkgQCw9HdRYTgcdAd/F8lTdn4g+NwaXkFxU=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBknwLZyBY0mgaxL7PeOcmDOMaYMgLFO68JTmPi+N8g
+ RPOmrPSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZJ8C2QAKCRB33NvayMhJ0QGID/
+ 9P6um3EqQ+k72K5UqyMiHK6j21kWBVguqjDVTj/c0DeTJQJvxMMGbNgkZ5ZpTks5d9FH6N21kwp3WM
+ emuBApDfHYWCAHZgX6fL+9u2sI8TzzI+3wJZLeFWA9I+t6SYxUf9V5hka2twlKlh0rvZlWSlgGPpQM
+ bmJpt0UgKkuYLXK60DCI4co/OfPivOcAZHOeiq4rEX6AwsRCBuP2VTyFrwcoQBs0+6+VL8raX/zM8c
+ z6dt1X46a0KmeVKQn6ZApWAPGp4bOXc60bYxDrtGCSs/wD7k7YIj9o0q89aBK1P3J0KuCMGfz6+G+R
+ rxeObm4iOJd3tGdM56pinMvvZWtaC/o1QMV7uElq3aTAPz9+rJKcelrySd4UmN6O4AW8SmjiRnhUO4
+ EolVjb5bJZfSifsSCCGgA23eFav+NwjisIw/ANOd+1HeEpILg7r1lhkP181urJtqyw2eOdoB/LJ+r7
+ AS1xPAz9/MGUwJpVXqZn98Pll4+A8WTjurO0dh1+BEB44FYNcoz2SpLaSLQkhhH2MdeWza0DVSRLEE
+ qsDIZeFRH5LGokG0Plotm8TfxmkBFtDqpNbERD5Qlb/HoKWLT5wlUDlB+DwOiiWKKpneLIByL3tloP
+ x8FSe+ZjRXI3NLe3hoL1wORK9ufRVmgl3jsuCUi8p1GxOZjnJQdeH5vhrNlw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Zelong,
+The Amlogic G12A, G12B & SM1 SoCs embeds a Synopsys DW-MIPI-DSI transceiver (ver 1.21a),
+with a custom glue managing the IP resets, clock and data input similar to the DW-HDMI
+glue on the same Amlogic SoCs.
 
-Thanks a lot for the patch, please find my comments below.
+This is a follow-up of v5  now the DRM patches are applied, the clk & DT changes
+remains for a full DSI support on G12A & SM1 platforms.
 
-On Fri, Jun 30, 2023 at 08:10:59PM +0800, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add the reset controller device of Meson-C3 SoC family
-> 
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
-> ---
->  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index 60ad4f3eef9d..62684b7a684c 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -6,6 +6,7 @@
->  #include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/gpio/gpio.h>
-> +#include <dt-bindings/reset/amlogic,meson-c3-reset.h>
->  
->  / {
->  	cpus {
-> @@ -82,6 +83,12 @@ uart_b: serial@7a000 {
->  				clock-names = "xtal", "pclk", "baud";
->  			};
->  
-> +			reset: reset-controller@0x2000 {
-> +				compatible = "amlogic,meson-c3-reset";
-> +				reg = <0x0 0x2000 0x0 0x98>;
-> +				#reset-cells = <1>;
-> +			};
-> +
+The DW-MIPI-DSI transceiver + D-PHY are clocked by the GP0 PLL, and the ENCL encoder + VIU
+pixel reader by the VCLK2 clock using the HDMI PLL.
 
-As Martin mentioned in the my review, internal apb entries should be
-sorted by base reg offset. So reset-controller must be located before
-uart_b.
+The DW-MIPI-DSI transceiver gets this pixel stream as input clocked with the VCLK2 clock.
 
-Please refer to:
+An optional "MEAS" clock can be enabled to measure the delay between each vsync feeding the
+DW-MIPI-DSI transceiver.
 
-https://lore.kernel.org/linux-amlogic/CAFBinCAO14zcgY66UyJO9UxuCWf1N-Lsx=iYNTJL=cwXoJv__Q@mail.gmail.com/
+The clock setup has been redesigned to use CCF, a common PLL (GP0) and the VCLK2 clock
+path for DSI in preparation of full CCF support and possibly dual display with HDMI.
 
->  		};
->  	};
->  };
-> -- 
-> 2.35.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+The change from v5 is that now we use a "VCLK" driver instea dof notifier and rely
+on CLK_SET_RATE_GATE to ensure the VCLK gate operation are called.
 
+Depends on clkid public migration at [4].
+
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v6:
+- dropped applied DRM patches
+- dropped clk private prefix patches
+- rebased on top of 20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org
+- re-ordered/cleaned ENCL patches to match clkid public migration
+- Added new "vclk" driver
+- uses vclk driver instead of notifier
+- cleaned VCLK2 clk flags
+- add px_clk gating from DSI driver
+- Link to v5: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v5-0-56eb7a4d5b8e@linaro.org
+
+Changes in v5:
+- Aded PRIV all the G12 internal clk IDS to simplify public exposing
+- Fixed the DSI bindings
+- Fixed the DSI HSYNC/VSYNC polarity handling
+- Fixed the DSI clock setup
+- Fixed the DSI phy timings
+- Dropped components for DSI, only keeping it for HDMI
+- Added MNT Reform 2 CM4 DT
+- Dropped already applied PHY fix
+- Link to v4: https://lore.kernel.org/r/20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v4-0-2592c29ea263@linaro.org
+
+Changes from v3 at [3]:
+- switched all clk setup via CCF
+- using single PLL for DSI controller & ENCL encoder
+- added ENCL clocks to CCF
+- make the VCLK2 clocks configuration by CCF
+- fixed probe/bind of DSI controller to work with panels & bridges
+- added bit_clk to controller to it can setup the BIT clock aswell
+- added fix for components unbind
+- added fix for analog phy setup value
+- added TS050 timings fix
+- dropped previous clk control patch
+
+Changes from v2 at [2]:
+- Fixed patch 3
+- Added reviews from Jagan
+- Rebased on v5.19-rc1
+
+Changes from v1 at [1]:
+- fixed DSI host bindings
+- add reviewed-by tags for bindings
+- moved magic values to defines thanks to Martin's searches
+- added proper prefixes to defines
+- moved phy_configure to phy_init() dw-mipi-dsi callback
+- moved phy_on to a new phy_power_on() dw-mipi-dsi callback
+- correctly return phy_init/configure errors to callback returns
+
+[1] https://lore.kernel.org/r/20200907081825.1654-1-narmstrong@baylibre.com
+[2] https://lore.kernel.org/r/20220120083357.1541262-1-narmstrong@baylibre.com
+[3] https://lore.kernel.org/r/20220617072723.1742668-1-narmstrong@baylibre.com
+[4] https://lore.kernel.org/all/20230607-topic-amlogic-upstream-clkid-public-migration-v2-0-38172d17c27a@linaro.org/
+
+---
+Neil Armstrong (9):
+      dt-bindings: clk: g12a-clkc: add CTS_ENCL clock ids
+      clk: meson: g12a: add CTS_ENCL & CTS_ENCL_SEL clocks
+      clk: meson: add vclk driver
+      clk: meson: g12a: make VCLK2 and ENCL clock path configurable by CCF
+      drm/meson: gate px_clk when setting rate
+      arm64: meson: g12-common: add the MIPI DSI nodes
+      DONOTMERGE: arm64: meson: khadas-vim3l: add DSI panel
+      dt-bindings: arm: amlogic: Document the MNT Reform 2 CM4 adapter with a BPI-CM4 Module
+      arm64: dts: amlogic: meson-g12b-bananapi-cm4: add support for MNT Reform2 with CM4 adaper
+
+ Documentation/devicetree/bindings/arm/amlogic.yaml |   1 +
+ arch/arm64/boot/dts/amlogic/Makefile               |   1 +
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi  |  70 ++++
+ .../meson-g12b-bananapi-cm4-mnt-reform2.dts        | 388 +++++++++++++++++++++
+ .../boot/dts/amlogic/meson-g12b-khadas-vim3.dtsi   |   2 +-
+ arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi |  76 ++++
+ .../boot/dts/amlogic/meson-sm1-khadas-vim3l.dts    |   2 +-
+ drivers/clk/meson/Kconfig                          |   5 +
+ drivers/clk/meson/Makefile                         |   1 +
+ drivers/clk/meson/g12a.c                           |  81 ++++-
+ drivers/clk/meson/vclk.c                           | 146 ++++++++
+ drivers/clk/meson/vclk.h                           |  68 ++++
+ drivers/gpu/drm/meson/meson_dw_mipi_dsi.c          |   7 +
+ include/dt-bindings/clock/g12a-clkc.h              |   2 +
+ 14 files changed, 832 insertions(+), 18 deletions(-)
+---
+base-commit: c6eb67de8578186066a9a3e947edf95e6fc56ed7
+change-id: 20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-b8e5217e1f4a
+
+Best regards,
 -- 
-Thank you,
-Dmitry
+Neil Armstrong <neil.armstrong@linaro.org>
+
