@@ -2,297 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CC58F7435C1
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 09:29:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 685137435D9
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 09:36:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229455AbjF3H3H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 03:29:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49974 "EHLO
+        id S232367AbjF3HgC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 03:36:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232091AbjF3H3G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 03:29:06 -0400
-Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA24C2690
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 00:28:55 -0700 (PDT)
-Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fa8cd4a113so16279215e9.2
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 00:28:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1688110134; x=1690702134;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=I5hnHLVzBmXjX34BGgWyrCPO1253WX/LErEgN1o82kw=;
-        b=eK2veF+sXiK1f6F6Ryz5qMNL9KR/JTqWXWrwnauwpwS4S2SbOBqWreg1jOJof/xVr6
-         0tdT3sN2XYtKm9WDfJ2k7n4TXdxKVci2gO70/ZBV0L/xLVzwGFu3b96hWOpZyyH0/64X
-         Y/4FwEgA6nhnDElwm6Wpx+urEsujsFQGyi5UzZEfMeqTdzZki4Ko3IdbDq8lmJe6yfqn
-         U+3VI14iYpbKJEN437PH7YTuB8U8zsV87c6AtfGGyc/VndWngDD3BjE2mDDT6GDx1ZxL
-         cAfi46T+yP5eIwBSlrYJg02MG5pq3lfJtdmUubVtXkQ6aZD96dQRq9mY6p31s5dqFcv0
-         u+pw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688110134; x=1690702134;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=I5hnHLVzBmXjX34BGgWyrCPO1253WX/LErEgN1o82kw=;
-        b=IBbI1vrNt5lDWiPH2ZW0gEh32xiIdDlukYVeGKlP1T3r2RFS5Db3NXMN+0htNJQf+0
-         iF872traOBpWakHwekitaBZ5ugjkKkFD4QSSxTti5Y9IqJdXzh6/g62vs6K09pwtqHVn
-         Ur8I2/d2Rijwl5JshRT0ehuBMa2j1TKlqKjiOxrMLGIk8/n9m6Ep10i0uLKlblSHeWbA
-         RFp1YjKOSwH7k8W+qa54mefBQ7HIHMLxhob+nO1JcILR6IU/LR1TePig56uBXiowO3no
-         kKbYHYRUbE888Njg2tDaikWibPIFo08nlggaq02NsLyrOn30KzM35km2fxGR4mhf/grL
-         7Nbw==
-X-Gm-Message-State: AC+VfDzYXVkIuUh5LtF20Lz04+uvSKCOilZX4pBfzXsH/udrcVZ0JL4e
-        7fYo+czTfIL3Q8hNvg/sQWJObSpsRacPNmHJebo=
-X-Google-Smtp-Source: ACHHUZ7OfWejyvRwW+wSH4AjjfHdFJ4CbX0pfF0ylt/EErynx8bdIVuRTP62VNT4HzszPH01RgaI3A==
-X-Received: by 2002:a05:600c:3649:b0:3f9:bf0f:1ceb with SMTP id y9-20020a05600c364900b003f9bf0f1cebmr1450795wmq.37.1688110134199;
-        Fri, 30 Jun 2023 00:28:54 -0700 (PDT)
-Received: from localhost (2001-1ae9-1c2-4c00-20f-c6b4-1e57-7965.ip6.tmcz.cz. [2001:1ae9:1c2:4c00:20f:c6b4:1e57:7965])
-        by smtp.gmail.com with ESMTPSA id l21-20020a7bc455000000b003fa95c466a1sm13851044wmi.5.2023.06.30.00.28.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 30 Jun 2023 00:28:53 -0700 (PDT)
-Date:   Fri, 30 Jun 2023 09:28:52 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor.dooley@microchip.com>
-Cc:     palmer@dabbelt.com, conor@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 03/10] RISC-V: shunt isa_ext_arr to cpufeature.c
-Message-ID: <20230630-1a540679d6cf0275511bfbfc@orel>
-References: <20230629-rebuttal-vagueness-a699deb7c7b3@wendy>
- <20230629-museum-playhouse-6dbe7e573f2c@wendy>
+        with ESMTP id S232415AbjF3HfP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 03:35:15 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 686312694;
+        Fri, 30 Jun 2023 00:35:05 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 35U7XiBD2019875, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36505.realtek.com.tw[172.21.6.25])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 35U7XiBD2019875
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Fri, 30 Jun 2023 15:33:44 +0800
+Received: from RTEXDAG02.realtek.com.tw (172.21.6.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.32; Fri, 30 Jun 2023 15:33:45 +0800
+Received: from RTEXMBS04.realtek.com.tw (172.21.6.97) by
+ RTEXDAG02.realtek.com.tw (172.21.6.101) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Fri, 30 Jun 2023 15:33:45 +0800
+Received: from RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d]) by
+ RTEXMBS04.realtek.com.tw ([fe80::e138:e7f1:4709:ff4d%5]) with mapi id
+ 15.01.2375.007; Fri, 30 Jun 2023 15:33:45 +0800
+From:   =?big5?B?U3RhbmxleSBDaGFuZ1up96h8vHdd?= <stanley_chang@realtek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        "Douglas Anderson" <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Bagas Sanjaya <bagasdotme@gmail.com>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Ray Chi <raychi@google.com>,
+        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
+Subject: RE: [PATCH v6 4/5] dt-bindings: phy: realtek: Add the doc about the Realtek SoC USB 2.0 PHY
+Thread-Topic: [PATCH v6 4/5] dt-bindings: phy: realtek: Add the doc about the
+ Realtek SoC USB 2.0 PHY
+Thread-Index: AQHZqkz4ea6k1ChKgUmQ1oGFAHMAzq+hdqEAgAFUL4A=
+Date:   Fri, 30 Jun 2023 07:33:45 +0000
+Message-ID: <f17378f003144f4ba50ec08e0ad38c0b@realtek.com>
+References: <20230629054523.7519-1-stanley_chang@realtek.com>
+ <20230629054523.7519-4-stanley_chang@realtek.com>
+ <20230629164220.GA3146341-robh@kernel.org>
+In-Reply-To: <20230629164220.GA3146341-robh@kernel.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.21.190.159]
+x-kse-serverinfo: RTEXDAG02.realtek.com.tw, 9
+x-kse-antispam-interceptor-info: fallback
+x-kse-antivirus-interceptor-info: fallback
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230629-museum-playhouse-6dbe7e573f2c@wendy>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-ServerInfo: RTEXH36505.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 29, 2023 at 09:28:49AM +0100, Conor Dooley wrote:
-> To facilitate using one struct to define extensions, rather than having
-> several, shunt isa_ext_arr to cpufeature.c, where it will be used for
-> probing extension presence also.
-> As that scope of the array as widened, prefix it with riscv & drop the
-> type from the variable name.
-> 
-> Since the new array is const, print_isa() needs a wee bit of cleanup to
-> avoid complaints about losing the const qualifier.
-> 
-> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
-> Changes in v2:
-> - Drop the empty element from the end of the array, it was adding a bug
->   anyway as I was not decrementing the result of ARRAY_SIZE() by one.
->   Likely I meant to drop it originally and forgot, as dropping the
->   decrement was intentional.
-
-I don't think v1 introduced a bug, because you changed the condition to
-'<' from '<=' to account for not subtracting one. Both the original code
-and v1 were doing a useless __riscv_isa_extension_available() check of
-RISCV_ISA_EXT_MAX, though, which this version removes.
-
-Thanks,
-drew
-
-
-> ---
->  arch/riscv/include/asm/hwcap.h |  3 ++
->  arch/riscv/kernel/cpu.c        | 75 +---------------------------------
->  arch/riscv/kernel/cpufeature.c | 67 ++++++++++++++++++++++++++++++
->  3 files changed, 72 insertions(+), 73 deletions(-)
-> 
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index f041bfa7f6a0..7a57e6109aef 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -76,6 +76,9 @@ struct riscv_isa_ext_data {
->  	unsigned int isa_ext_id;
->  };
->  
-> +extern const struct riscv_isa_ext_data riscv_isa_ext[];
-> +extern const size_t riscv_isa_ext_count;
-> +
->  unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
->  
->  #define riscv_isa_extension_mask(ext) BIT_MASK(RISCV_ISA_EXT_##ext)
-> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> index ddd7634e4c1d..269a32ceb595 100644
-> --- a/arch/riscv/kernel/cpu.c
-> +++ b/arch/riscv/kernel/cpu.c
-> @@ -160,81 +160,10 @@ arch_initcall(riscv_cpuinfo_init);
->  
->  #ifdef CONFIG_PROC_FS
->  
-> -#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
-> -	{							\
-> -		.uprop = #UPROP,				\
-> -		.isa_ext_id = EXTID,				\
-> -	}
-> -
-> -/*
-> - * The canonical order of ISA extension names in the ISA string is defined in
-> - * chapter 27 of the unprivileged specification.
-> - *
-> - * Ordinarily, for in-kernel data structures, this order is unimportant but
-> - * isa_ext_arr defines the order of the ISA string in /proc/cpuinfo.
-> - *
-> - * The specification uses vague wording, such as should, when it comes to
-> - * ordering, so for our purposes the following rules apply:
-> - *
-> - * 1. All multi-letter extensions must be separated from other extensions by an
-> - *    underscore.
-> - *
-> - * 2. Additional standard extensions (starting with 'Z') must be sorted after
-> - *    single-letter extensions and before any higher-privileged extensions.
-> -
-> - * 3. The first letter following the 'Z' conventionally indicates the most
-> - *    closely related alphabetical extension category, IMAFDQLCBKJTPVH.
-> - *    If multiple 'Z' extensions are named, they must be ordered first by
-> - *    category, then alphabetically within a category.
-> - *
-> - * 3. Standard supervisor-level extensions (starting with 'S') must be listed
-> - *    after standard unprivileged extensions.  If multiple supervisor-level
-> - *    extensions are listed, they must be ordered alphabetically.
-> - *
-> - * 4. Standard machine-level extensions (starting with 'Zxm') must be listed
-> - *    after any lower-privileged, standard extensions.  If multiple
-> - *    machine-level extensions are listed, they must be ordered
-> - *    alphabetically.
-> - *
-> - * 5. Non-standard extensions (starting with 'X') must be listed after all
-> - *    standard extensions. If multiple non-standard extensions are listed, they
-> - *    must be ordered alphabetically.
-> - *
-> - * An example string following the order is:
-> - *    rv64imadc_zifoo_zigoo_zafoo_sbar_scar_zxmbaz_xqux_xrux
-> - *
-> - * New entries to this struct should follow the ordering rules described above.
-> - */
-> -static struct riscv_isa_ext_data isa_ext_arr[] = {
-> -	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
-> -	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
-> -	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
-> -	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
-> -	__RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
-> -	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
-> -	__RISCV_ISA_EXT_DATA(zihpm, RISCV_ISA_EXT_ZIHPM),
-> -	__RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
-> -	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
-> -	__RISCV_ISA_EXT_DATA(zbs, RISCV_ISA_EXT_ZBS),
-> -	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
-> -	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
-> -	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
-> -	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
-> -	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
-> -	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
-> -	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
-> -	__RISCV_ISA_EXT_DATA("", RISCV_ISA_EXT_MAX),
-> -};
-> -
->  static void print_isa_ext(struct seq_file *f)
->  {
-> -	struct riscv_isa_ext_data *edata;
-> -	int i = 0, arr_sz;
-> -
-> -	arr_sz = ARRAY_SIZE(isa_ext_arr) - 1;
-> -
-> -	for (i = 0; i <= arr_sz; i++) {
-> -		edata = &isa_ext_arr[i];
-> +	for (int i = 0; i < riscv_isa_ext_count; i++) {
-> +		const struct riscv_isa_ext_data *edata = &riscv_isa_ext[i];
->  		if (!__riscv_isa_extension_available(NULL, edata->isa_ext_id))
->  			continue;
->  		seq_printf(f, "_%s", edata->uprop);
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index bdcf460ea53d..fb476153fffc 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
-> @@ -99,6 +99,73 @@ static bool riscv_isa_extension_check(int id)
->  	return true;
->  }
->  
-> +#define __RISCV_ISA_EXT_DATA(UPROP, EXTID) \
-> +	{							\
-> +		.uprop = #UPROP,				\
-> +		.isa_ext_id = EXTID,				\
-> +	}
-> +
-> +/*
-> + * The canonical order of ISA extension names in the ISA string is defined in
-> + * chapter 27 of the unprivileged specification.
-> + *
-> + * Ordinarily, for in-kernel data structures, this order is unimportant but
-> + * isa_ext_arr defines the order of the ISA string in /proc/cpuinfo.
-> + *
-> + * The specification uses vague wording, such as should, when it comes to
-> + * ordering, so for our purposes the following rules apply:
-> + *
-> + * 1. All multi-letter extensions must be separated from other extensions by an
-> + *    underscore.
-> + *
-> + * 2. Additional standard extensions (starting with 'Z') must be sorted after
-> + *    single-letter extensions and before any higher-privileged extensions.
-> + *
-> + * 3. The first letter following the 'Z' conventionally indicates the most
-> + *    closely related alphabetical extension category, IMAFDQLCBKJTPVH.
-> + *    If multiple 'Z' extensions are named, they must be ordered first by
-> + *    category, then alphabetically within a category.
-> + *
-> + * 3. Standard supervisor-level extensions (starting with 'S') must be listed
-> + *    after standard unprivileged extensions.  If multiple supervisor-level
-> + *    extensions are listed, they must be ordered alphabetically.
-> + *
-> + * 4. Standard machine-level extensions (starting with 'Zxm') must be listed
-> + *    after any lower-privileged, standard extensions.  If multiple
-> + *    machine-level extensions are listed, they must be ordered
-> + *    alphabetically.
-> + *
-> + * 5. Non-standard extensions (starting with 'X') must be listed after all
-> + *    standard extensions. If multiple non-standard extensions are listed, they
-> + *    must be ordered alphabetically.
-> + *
-> + * An example string following the order is:
-> + *    rv64imadc_zifoo_zigoo_zafoo_sbar_scar_zxmbaz_xqux_xrux
-> + *
-> + * New entries to this struct should follow the ordering rules described above.
-> + */
-> +const struct riscv_isa_ext_data riscv_isa_ext[] = {
-> +	__RISCV_ISA_EXT_DATA(zicbom, RISCV_ISA_EXT_ZICBOM),
-> +	__RISCV_ISA_EXT_DATA(zicboz, RISCV_ISA_EXT_ZICBOZ),
-> +	__RISCV_ISA_EXT_DATA(zicntr, RISCV_ISA_EXT_ZICNTR),
-> +	__RISCV_ISA_EXT_DATA(zicsr, RISCV_ISA_EXT_ZICSR),
-> +	__RISCV_ISA_EXT_DATA(zifencei, RISCV_ISA_EXT_ZIFENCEI),
-> +	__RISCV_ISA_EXT_DATA(zihintpause, RISCV_ISA_EXT_ZIHINTPAUSE),
-> +	__RISCV_ISA_EXT_DATA(zihpm, RISCV_ISA_EXT_ZIHPM),
-> +	__RISCV_ISA_EXT_DATA(zba, RISCV_ISA_EXT_ZBA),
-> +	__RISCV_ISA_EXT_DATA(zbb, RISCV_ISA_EXT_ZBB),
-> +	__RISCV_ISA_EXT_DATA(zbs, RISCV_ISA_EXT_ZBS),
-> +	__RISCV_ISA_EXT_DATA(smaia, RISCV_ISA_EXT_SMAIA),
-> +	__RISCV_ISA_EXT_DATA(ssaia, RISCV_ISA_EXT_SSAIA),
-> +	__RISCV_ISA_EXT_DATA(sscofpmf, RISCV_ISA_EXT_SSCOFPMF),
-> +	__RISCV_ISA_EXT_DATA(sstc, RISCV_ISA_EXT_SSTC),
-> +	__RISCV_ISA_EXT_DATA(svinval, RISCV_ISA_EXT_SVINVAL),
-> +	__RISCV_ISA_EXT_DATA(svnapot, RISCV_ISA_EXT_SVNAPOT),
-> +	__RISCV_ISA_EXT_DATA(svpbmt, RISCV_ISA_EXT_SVPBMT),
-> +};
-> +
-> +const size_t riscv_isa_ext_count = ARRAY_SIZE(riscv_isa_ext);
-> +
->  void __init riscv_fill_hwcap(void)
->  {
->  	struct device_node *node;
-> -- 
-> 2.40.1
-> 
+SGkgUm9iLA0KDQo+IE9uIFRodSwgSnVuIDI5LCAyMDIzIGF0IDAxOjQ1OjEyUE0gKzA4MDAsIFN0
+YW5sZXkgQ2hhbmcgd3JvdGU6DQo+ID4gQWRkIHRoZSBkb2N1bWVudGF0aW9uIGV4cGxhaW4gdGhl
+IHByb3BlcnR5IGFib3V0IFJlYWx0ZWsgVVNCIFBIWSBkcml2ZXIuDQo+IA0KPiBJbiB0aGUgc3Vi
+amVjdCwgZHJvcCAidGhlIGRvYyBhYm91dCB0aGUiLiBJdCdzIHJlZHVuZGFudC4gQW5kIHBlcmhh
+cHMgYWRkICdESEMNCj4gUlREIFNvQycgaWYgdGhpcyBpc24ndCBmb3IgKmFsbCogUmVhbHRlayBT
+b0NzLg0KPiANCj4gPiBSZWFsdGVrIERIQyAoZGlnaXRhbCBob21lIGNlbnRlcikgUlREIFNvQ3Mg
+c3VwcG9ydCBEV0MzIFhIQ0kgVVNCDQo+ID4gY29udHJvbGxlci4gQWRkZWQgdGhlIGRyaXZlciB0
+byBkcml2ZSB0aGUgVVNCIDIuMCBQSFkgdHJhbnNjZWl2ZXJzLg0KPiANCj4gZHJpdmVyPyBUaGlz
+IGlzIGEgYmluZGluZyBmb3IgdGhlIGgvdy4NCg0KSSBtZWFuLCB0aGUgZHJpdmVyIGlzIGRyaXZl
+cnMvcGh5L3JlYWx0ZWsvcGh5LXJ0ay11c2IyLmMNCkkgd2lsbCByZXZpc2UgYXMNCiAgICBkdC1i
+aW5kaW5nczogcGh5OiByZWFsdGVrOiBBZGQgdGhlIFJlYWx0ZWsgREhDIFJURCBTb0MgVVNCIDIu
+MCBQSFkNCg0KICAgIEFkZCB0aGUgZG9jdW1lbnRhdGlvbiBleHBsYWluIHRoZSBwcm9wZXJ0eSBh
+Ym91dCBSZWFsdGVrIFVTQiBQSFkgZHJpdmVyLg0KDQogICAgUmVhbHRlayBESEMgKGRpZ2l0YWwg
+aG9tZSBjZW50ZXIpIFJURCBTb0NzIHN1cHBvcnQgRFdDMyBYSENJIFVTQg0KICAgIGNvbnRyb2xs
+ZXIgYW5kIHVzZXMgcGh5LXJ0ay11c2IyIGFzIGRyaXZlciBmb3IgVVNCIDIuMCBQSFkgdHJhbnNj
+ZWl2ZXIuLg0KDQo+ID4gKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvcGh5L3Jl
+YWx0ZWssdXNiMnBoeS55YW1sIw0KPiA+ICskc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcv
+bWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gPiArDQo+ID4gK3RpdGxlOiBSZWFsdGVrIERIQyBT
+b0NzIFVTQiAyLjAgUEhZDQo+ID4gKw0KPiA+ICttYWludGFpbmVyczoNCj4gPiArICAtIFN0YW5s
+ZXkgQ2hhbmcgPHN0YW5sZXlfY2hhbmdAcmVhbHRlay5jb20+DQo+ID4gKw0KPiA+ICtkZXNjcmlw
+dGlvbjoNCj4gDQo+IFlvdSBuZWVkICd8JyBpZiBmb3JtYXR0aW5nIChsaW5lIGJyZWFrcykgYXJl
+IGltcG9ydGFudC4NCg0KSSB0aGluayBJIG5lZWQgaXQuIEkgd2lsbCBhZGQgaXQuDQoNCj4gPiAr
+ICByZWFsdGVrLGludmVyc2UtaHN0eC1zeW5jLWNsb2NrOg0KPiA+ICsgICAgZGVzY3JpcHRpb246
+DQo+ID4gKyAgICAgIEZvciBvbmUgb2YgdGhlIHBoeXMgb2YgUlREMTYxOWIgU29DLCB0aGUgc3lu
+Y2hyb25vdXMgY2xvY2sgb2YgdGhlDQo+ID4gKyAgICAgIGhpZ2gtc3BlZWQgdHggbXVzdCBiZSBp
+bnZlcnRlZC4NCj4gDQo+ICJpbnZlcnQiIGFzc3VtZXMgSSBrbm93IHdoYXQgbm9uLWludmVydGVk
+IG1lYW5zLiBJIGRvIG5vdC4gQmV0dGVyIHRvIHN0YXRlIGluDQo+IHRlcm1zIG9mIGFjdGl2ZSBo
+aWdoLCBsb3csIGZhbGxpbmcgZWRnZSwgcmlzaW5nIGVkZ2UsIGV0Yy4NCg0KTWVhbmluZywgdGhl
+IGNsb2NrIG11c3QgYmUgcmV2ZXJzZWQuDQo+IA0KPiA+ICsgICAgdHlwZTogYm9vbGVhbg0KPiA+
+ICsNCj4gPiArICByZWFsdGVrLGRyaXZpbmctbGV2ZWw6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjoN
+Cj4gPiArICAgICAgQ29udHJvbCB0aGUgbWFnbml0dWRlIG9mIEhpZ2ggc3BlZWQgRHAvRG0gb3V0
+cHV0IHN3aW5nLg0KPiA+ICsgICAgICBGb3IgYSBkaWZmZXJlbnQgYm9hcmQgb3IgcG9ydCwgdGhl
+IG9yaWdpbmFsIG1hZ25pdHVkZSBtYXliZSBub3QNCj4gbWVldA0KPiA+ICsgICAgICB0aGUgc3Bl
+Y2lmaWNhdGlvbi4gSW4gdGhpcyBzaXR1YXRpb24gd2UgY2FuIGFkanVzdCB0aGUgdmFsdWUgdG8g
+bWVldA0KPiA+ICsgICAgICB0aGUgc3BlY2lmaWNhdGlvbi4NCj4gDQo+IFdoYXQgYXJlIHRoZSB1
+bml0cz8NCg0KVGhlcmUgaXMgbm8gdW5pdC4gSXQgaXMgb25seSBhIGdhaW4gZm9yIGFkanVzdGlu
+ZyB0aGUgbWFnbml0dWRlLiANCg0KPiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMueWFtbCMv
+ZGVmaW5pdGlvbnMvdWludDMyDQo+ID4gKyAgICBkZWZhdWx0OiA4DQo+ID4gKyAgICBtaW5pbXVt
+OiAwDQo+ID4gKyAgICBtYXhpbXVtOiAzMQ0KPiA+ICsNCj4gPiArICByZWFsdGVrLGRyaXZpbmct
+Y29tcGVuc2F0ZToNCj4gDQo+IGNvbXBlbnNhdGUgd2hhdD8NCg0KSXQgaXMgdG8gY29tcGVuc2F0
+ZSB0aGUgZHJpdmluZyBsZXZlbC4gSW4gb3RoZXIgd29yZCwgdG8gYWRqdXN0IHRoZSBkcml2aW5n
+IGxldmVsLg0KDQpUaGFua3MsDQpTdGFubGV5DQo=
