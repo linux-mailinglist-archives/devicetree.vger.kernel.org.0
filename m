@@ -2,213 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0445743F86
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AB34743FA6
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:24:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231784AbjF3QPh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 12:15:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37312 "EHLO
+        id S231176AbjF3QYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 12:24:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232993AbjF3QPH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:15:07 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12772116
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 09:15:04 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b5c231c23aso33462311fa.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 09:15:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688141703; x=1690733703;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=SZDqX7gD/xgh/gMlqi1pNOxVe7oIaYP1fwQ1H/uNA38=;
-        b=Lb2E59jds8kWXxb80EfeRVRYadhUQqINTHKAsGz4X8dLdshM531nkSYYsnw41EZiWT
-         eO62G66XpyJrIeYCArNu3navf6zi4I+RIvdFRgeHnN332NKGZCZKq+BW4LcMOMCtn20r
-         alag4tsAxSfIyKGrrW6QDkovCuZXfU0mkNpZRbJ56BAgLD0SDkCdOKC7pSbb3T33D/Lt
-         h68nUJwB17Fd5OPHNVBw83KBZHmRMuivLJe5cJIfbBGiOe30iDtyJ1eFilMwxiHUcMNm
-         eqOzdWO+x1uvTcYxB/PyXTd5kG99Ae8E1gZjcAC6XTTH+O//nqSasPC/JB0x1CytY13P
-         f+Iw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688141703; x=1690733703;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SZDqX7gD/xgh/gMlqi1pNOxVe7oIaYP1fwQ1H/uNA38=;
-        b=a5gUOwLD5kfMm2qfQTMme9EE8/T3sf/QGnOPb2nSySjHVRzUNbn7Ei1HiRetKcx5QU
-         5kubKDAOo3GkOKYczwJ+xM3arZzqEym6TffXbh+LMK1YyxvLgxQv6kAKBcG8m7KdHEgA
-         0b+H1Nwv1l3o/qM5/INx0sis8+Ro/J6Jpikou5UPZYAAcG7VDkfOJiLV+clUGLf/csWe
-         a/Cfd0pHBZYvgqIfQcg/TTnPj7g214Z5a/MEZKrVtPj+4QstAC2OZV2R7acjusJiRmEr
-         yxepJdTvdAwSZJVyhHgczN59BK9yd8rwlUi+WeXGD/j8BsT6MsEDHktZtTRetVvobtbB
-         nMUw==
-X-Gm-Message-State: ABy/qLbD0eMDyd2d6UDWY5KC5KF/ALNRqkhlU5Nf/kmQMQHwZ6v7rYdb
-        vyO3Vpoi1/ENHDhml5FDXqJGnQ==
-X-Google-Smtp-Source: APBJJlELQDN66X2VRxLxOBpWrJ/X1MvbFeMo/jTbubsgz3oc3onpltZIs0jBmuyijljKSNW5jGuQBQ==
-X-Received: by 2002:a2e:9d4e:0:b0:2b6:d8cf:2f44 with SMTP id y14-20020a2e9d4e000000b002b6d8cf2f44mr178207ljj.13.1688141703043;
-        Fri, 30 Jun 2023 09:15:03 -0700 (PDT)
-Received: from [192.168.1.101] (abyj222.neoplus.adsl.tpnet.pl. [83.9.29.222])
-        by smtp.gmail.com with ESMTPSA id t26-20020a2e781a000000b002b6cde9f325sm535204ljc.105.2023.06.30.09.15.01
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jun 2023 09:15:02 -0700 (PDT)
-Message-ID: <e2c6abdc-f586-be9c-b400-7bf57021d5fa@linaro.org>
-Date:   Fri, 30 Jun 2023 18:15:01 +0200
+        with ESMTP id S230427AbjF3QYB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:24:01 -0400
+X-Greylist: delayed 443 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Fri, 30 Jun 2023 09:23:59 PDT
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 341C9E49;
+        Fri, 30 Jun 2023 09:23:59 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 5DF9D100002;
+        Fri, 30 Jun 2023 19:16:34 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5DF9D100002
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1688141794;
+        bh=DYDUqZ5q1Q+sph6vsN5QJLQHBW12OVdZvTZa4RwFxxw=;
+        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
+        b=pkn05C5Ytqa2b3cXCsR7wj5mahZr8wJnb942hV1b9vPD+uSJK3h7s+kSSgmKgZft/
+         4CHHvwGsW4sacX2udyfF+Ob9tu0gUGs4GXh6d6+3nekQ7C9OrS71U8Y1cDpXbRSGG9
+         eLc1oz6rn9ympSoRSHka1EmYqo2ezvcZG7NnjazTj4EwVJPpdHow7NsmZ1uBdzHI0Y
+         bNL2rdviD3DCcXoet/xkxdVk8itMxz7v9Egd6HuBhHx8mN/Fme9aQb+6A0HEmbkhSI
+         0cWZNFZcbbWIFYCjFidzG5gku3QkLoQFl0GZaRv/P6ypEQ6oN9FOiJBo+kV38EMzhA
+         2oshPxRDFjV3Q==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Fri, 30 Jun 2023 19:16:34 +0300 (MSK)
+Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
+ (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 30 Jun
+ 2023 19:16:20 +0300
+Date:   Fri, 30 Jun 2023 19:16:33 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     zelong dong <zelong.dong@amlogic.com>
+CC:     <narmstrong@baylibre.com>, <p.zabel@pengutronix.de>,
+        <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
+        <martin.blumenstingl@googlemail.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <jbrunet@baylibre.com>,
+        <devicetree@vger.kernel.org>, <kelvin.zhang@amlogic.com>
+Subject: Re: [PATCH 3/3] arm64: dts: meson: add reset controller for Meson-C3
+ SoC
+Message-ID: <20230630161633.eym2dhxaffn2uxfv@CAB-WSD-L081021>
+References: <20230630121059.28748-1-zelong.dong@amlogic.com>
+ <20230630121059.28748-4-zelong.dong@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8450-hdk: add ADC-TM thermal
- zones
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-8-dmitry.baryshkov@linaro.org>
- <c59d002b-9d06-d744-d90b-22da4186522a@linaro.org>
- <CAA8EJpp+b1KVaMK82j7T=iGovXVAu3jq51rTHu6yqPcnkwXoeg@mail.gmail.com>
- <65d9025b-134d-eb8c-98d8-ab7103a5dc44@linaro.org>
- <CAA8EJpopHRNTyuzi2V=1t7o5xbXaCjxjP=yQUigCYDJMULxb=Q@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAA8EJpopHRNTyuzi2V=1t7o5xbXaCjxjP=yQUigCYDJMULxb=Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20230630121059.28748-4-zelong.dong@amlogic.com>
+User-Agent: NeoMutt/20220415
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178380 [Jun 30 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, lists.infradead.org:7.1.1;lore.kernel.org:7.1.1;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/06/30 15:49:00
+X-KSMG-LinksScanning: Clean, bases: 2023/06/30 15:49:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/30 12:24:00 #21606311
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.06.2023 14:57, Dmitry Baryshkov wrote:
-> On Fri, 30 Jun 2023 at 14:27, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 30.06.2023 12:07, Dmitry Baryshkov wrote:
->>> On Fri, 30 Jun 2023 at 11:19, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>>>
->>>> On 30.06.2023 08:13, Dmitry Baryshkov wrote:
->>>>> Add thermal zones controlled through the ADC-TM (ADC thermal monitoring)
->>>>> PMIC interface. This includes several onboard sensors and the XO thermal
->>>>> sensor.
->>>>>
->>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>>>> ---
->>>> [...]
->>>>>
->>>>> +     channel@144 {
->>>>> +             reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
->>>> This define should be cleaned up.. Since it takes a sid argument,
->>>> it really is ADC7_AMUX_THM1_100K_PU(sid)
->>>
->>> I don't think I understood your comment. The define itself is specific
->>> to PM8350, other PMICs might have different channel assignments.
->>
->> include/dt-bindings/iio/qcom,spmi-vadc.h
->> 263:#define ADC7_AMUX_THM1_100K_PU                      0x44
+Hello Zelong,
+
+Thanks a lot for the patch, please find my comments below.
+
+On Fri, Jun 30, 2023 at 08:10:59PM +0800, zelong dong wrote:
+> From: Zelong Dong <zelong.dong@amlogic.com>
 > 
-> Do you want to define PM8350_ADC7_AMUX_THM1_100K_PU(sid) using
-> ADC7_AMUX_THM1_100K_PU ?
-> Or to make all users use ADC7_AMUX_THM1_100K_PU?
-
-
->Or add the SID
-> argument to ADC7_AMUX_THM1_100K_PU and switch to it?
-This.
-
-Since we have a generic binding for it (not sure what sort of ABI-ish rules
-apply here, probably not very many since it's just a dumb preprocessor define),
-we should not redefine it for each PMIC, especially since the SIDs are variable
-nowadays :/
-
-Sorry for being too vague.
-
-Konrad
+> Add the reset controller device of Meson-C3 SoC family
 > 
->>
->> Konrad
->>>
->>>>
->>>> Konrad
->>>>
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "skin_msm_temp";
->>>>> +     };
->>>>> +
->>>>> +     channel@145 {
->>>>> +             reg = <PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "camera_temp";
->>>>> +     };
->>>>> +
->>>>> +     channel@146 {
->>>>> +             reg = <PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "therm1_temp";
->>>>> +     };
->>>>> +
->>>>> +     channel@147 {
->>>>> +             reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "wide_rfc_temp";
->>>>> +     };
->>>>> +
->>>>> +     channel@148 {
->>>>> +             reg = <PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "rear_tof_temp";
->>>>> +     };
->>>>> +
->>>>> +     channel@14c {
->>>>> +             reg = <PM8350_ADC7_GPIO3_100K_PU(1)>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "therm2_temp";
->>>>> +     };
->>>>> +
->>>>>       channel@303 {
->>>>>               reg = <PM8350B_ADC7_DIE_TEMP>;
->>>>>               label = "pm8350b_die_temp";
->>>>>       };
->>>>>
->>>>> +     channel@348 {
->>>>> +             reg = <PM8350B_ADC7_AMUX_THM5_100K_PU>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "usb_conn_temp";
->>>>> +     };
->>>>> +
->>>>>       channel@403 {
->>>>>               reg = <PMR735A_ADC7_DIE_TEMP>;
->>>>>               label = "pmr735a_die_temp";
->>>>>       };
->>>>> +
->>>>> +     channel@44a {
->>>>> +             reg = <PMR735A_ADC7_GPIO1_100K_PU>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "qtm_w_temp";
->>>>> +     };
->>>>> +
->>>>> +     channel@44b {
->>>>> +             reg = <PMR735A_ADC7_GPIO2_100K_PU>;
->>>>> +             qcom,hw-settle-time = <200>;
->>>>> +             qcom,ratiometric;
->>>>> +             label = "qtm_n_temp";
->>>>> +     };
->>>>>  };
->>>>>
->>>>>  &remoteproc_adsp {
->>>
->>>
->>>
+> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> index 60ad4f3eef9d..62684b7a684c 100644
+> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
+> @@ -6,6 +6,7 @@
+>  #include <dt-bindings/interrupt-controller/irq.h>
+>  #include <dt-bindings/interrupt-controller/arm-gic.h>
+>  #include <dt-bindings/gpio/gpio.h>
+> +#include <dt-bindings/reset/amlogic,meson-c3-reset.h>
+>  
+>  / {
+>  	cpus {
+> @@ -82,6 +83,12 @@ uart_b: serial@7a000 {
+>  				clock-names = "xtal", "pclk", "baud";
+>  			};
+>  
+> +			reset: reset-controller@0x2000 {
+> +				compatible = "amlogic,meson-c3-reset";
+> +				reg = <0x0 0x2000 0x0 0x98>;
+> +				#reset-cells = <1>;
+> +			};
+> +
+
+As Martin mentioned in the my review, internal apb entries should be
+sorted by base reg offset. So reset-controller must be located before
+uart_b.
+
+Please refer to:
+
+https://lore.kernel.org/linux-amlogic/CAFBinCAO14zcgY66UyJO9UxuCWf1N-Lsx=iYNTJL=cwXoJv__Q@mail.gmail.com/
+
+>  		};
+>  	};
+>  };
+> -- 
+> 2.35.1
 > 
 > 
-> 
+> _______________________________________________
+> linux-amlogic mailing list
+> linux-amlogic@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+
+-- 
+Thank you,
+Dmitry
