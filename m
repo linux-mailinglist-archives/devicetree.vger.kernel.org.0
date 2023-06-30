@@ -2,570 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D16F743479
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 07:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE4F37434C1
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 08:13:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229508AbjF3FlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 01:41:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45042 "EHLO
+        id S231176AbjF3GNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 02:13:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55706 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229455AbjF3FlS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 01:41:18 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on20616.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe5b::616])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DB383AAE;
-        Thu, 29 Jun 2023 22:40:46 -0700 (PDT)
+        with ESMTP id S230009AbjF3GNJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 02:13:09 -0400
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2102.outbound.protection.outlook.com [40.107.255.102])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52D612683;
+        Thu, 29 Jun 2023 23:13:03 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=d3ZKpPPIpCsLjGE2bgwIS6GD31Y8HqfNH73aXr2rU27PqlL2cCsXAfHMcb+67tabtImcuXIJsOjt1goYFKTN4MrDtKsXKQwDNVqkC4kp6jy8JubeE/YNAKdqzV7pG/D2BMQjjChJK+RAZzEiV57RO3+ZFZL9T1P+s4+6C36crKfXbInuAgwB7vOnBT3h6S0bp74jGTaL+TBoOmpRdxB39acPKrGdhovDWsbUusX5J6xN75HO6WSN9mBM4rb+gDPK5bgTc/1A8QFk0X+ijjm5g6PcouEK58QaaCaSTcQabRDXiKwmxgddaj6mLK/snmKTzYPluFusjbWDvtBNxtQ+uA==
+ b=AoIrJPXFXjtC2T+xDgVNerIQxTfzG8DBmxAO9T6c70UWSIwFhLPHPYLAId+BzOIbhMqfFCQUe1zI9DjRwg/wXqodlaZbhN1C3UT1Q6HJYES+TkA80oZydlxDtyywQRXRgsFkn5FkQ1gl8I+6CVp839Agmu/Srby0i36Aq+OVXiqkJgr1k4T/mgOFKbkhTBCn+uPXr4rZiJPRrKtqwVUkA4CsxI2HahIPe0xUnllGG1pEmzWY1KoTW73KTuASDYScYAA9Nrp5kqFyo4Fdtx4mtAQ1RoHM+YTy2zJy/jge/aQWhZ5fPw3oP0op82uPCGtVS6x5xmfoinJ6t7FQIY8lLg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=v/V0kR+Bf9c/SbqV2nADViWn/nWikp09f5GLzT2IdPw=;
- b=i0za2vMv2Lv9uHWl5X5jflQbnlRB7+FFJjD684R0LseoXxObvUiRiTlFfpc9Tf8+d4YA1RH/0oTw+ZvefS3zO2KHC0rJDVnIgK7l5n/gABtESV47IfUXsL4NSYDI64cwiaHwptsIIPSRYG5mIlhIFTeytnCBr0AVKyn59UjFGxc8SIbcdjEHmWJ/r6wOX16bzTdhjwKAfs/t6eSpO/6Y5g4KGZrRHn5oPKNWYjFFW2SWJzKIudfb215ZGEnOuDIEzEh1Gt6v+QYLmE2084dqwJErltApwlRJmFXnAY3qqbiNZSTbgJveCj64gmt2tMCtSaBSdpumvlGe5VpVnAmSlQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=davemloft.net smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ bh=68AEoLHaw7K5lA//P6P+EhZ+PRqLgrvIVdEXZScmZ04=;
+ b=A35boGNQzzmQYP8TzhewSec1kMHmR7FjRIpHfqpOwdy+XkobPZ9uOM1AlT9/tdjIkMH7+2VL/LikLktfqXZEa/uIa8k2ZXOBXwurPitfGaq2BtqA00zlfm7Swl3FuDlzKrpYaiyDOdlvMcWzApzY4lmSaTaGt/nyweZ3Fx1q4pecKLqdWns78e+upOpq9tuL1wSZAvZtOPLZgKiH0tpXqrMlIRutQSyjSC+KPGx074+ySqzAEyjEyT6MEluZDwFRXzyxXtOcWI1VwnheUuo7CntyTHkkk51yEYtb9Rl6kAij+pi88yG37F3L6H7boKBxLfc22Xyd4VGb1QpKc4AeSw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
+ header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aspeedtech.com;
+ s=selector1;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=v/V0kR+Bf9c/SbqV2nADViWn/nWikp09f5GLzT2IdPw=;
- b=XnNNmmtrRYlBUBEbITQv7e59IYyvpyd5iZEICdCkcNhauQdMZIMdKCqbUuRQ7bgPjrrTG84W6fcLQ1N7cSgih/2RfNoZ961FSZFbi/gyNZ/UBgOvjFlQjnEYXVhw8DlPKC3q22o4gpL5HUAaRtjajHfrKdi7mlxrHMISaws3XZ0=
-Received: from DS7PR03CA0202.namprd03.prod.outlook.com (2603:10b6:5:3b6::27)
- by SJ0PR12MB8614.namprd12.prod.outlook.com (2603:10b6:a03:47d::17) with
+ bh=68AEoLHaw7K5lA//P6P+EhZ+PRqLgrvIVdEXZScmZ04=;
+ b=g7yJvAXjbED1ph5lBb7CRBfcgRZzhy3VTB9gTV6RnivWZ2J4zzNFrSzcNW7gmw9j6CmFvV1zhLDQT4t15zBpxzpALJXpMaZ/CdWZtGfyG+H2wNqRHuCccP4esbHVoNQBw9fSNqX9eGAbT2TMFHfZML8Vp/fpptPGWnUl2BHgcNaiEzeMfUFNc1UIXFQRM/8NYOuPSIP1WfGgqG2oNzdFjUt5ARhE32fanFQo2HcT0TEuFXA8/1Uk1UAKDjb8ogGm/+Do9cobRp67qUH0RFujHeDmxKVSDIzmx8IqZqSc16Dq8boH/1xIn2qnHoUHipLKdnhyLisJ9tzGq4dzYmqp9A==
+Received: from TYZPR06MB6567.apcprd06.prod.outlook.com (2603:1096:400:465::12)
+ by TYZPR06MB5733.apcprd06.prod.outlook.com (2603:1096:400:282::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6521.24; Fri, 30 Jun
- 2023 05:39:15 +0000
-Received: from DM6NAM11FT084.eop-nam11.prod.protection.outlook.com
- (2603:10b6:5:3b6:cafe::ee) by DS7PR03CA0202.outlook.office365.com
- (2603:10b6:5:3b6::27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.22 via Frontend
- Transport; Fri, 30 Jun 2023 05:39:15 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- DM6NAM11FT084.mail.protection.outlook.com (10.13.172.132) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.50 via Frontend Transport; Fri, 30 Jun 2023 05:39:15 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
- 2023 00:39:09 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
- 2023 00:39:05 -0500
-Received: from xhdsneeli40.xilinx.com (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
- Transport; Fri, 30 Jun 2023 00:39:00 -0500
-From:   Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
-To:     <davem@davemloft.net>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     <sbhatta@marvell.com>, <linux@armlinux.org.uk>,
-        <michal.simek@amd.com>, <radhey.shyam.pandey@amd.com>,
-        <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <anirudha.sarangi@amd.com>,
-        <harini.katakam@amd.com>, <sarath.babu.naidu.gaddam@amd.com>,
-        <git@amd.com>
-Subject: [PATCH net-next V4 3/3] net: axienet: Introduce dmaengine support
-Date:   Fri, 30 Jun 2023 11:08:44 +0530
-Message-ID: <20230630053844.1366171-4-sarath.babu.naidu.gaddam@amd.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230630053844.1366171-1-sarath.babu.naidu.gaddam@amd.com>
-References: <20230630053844.1366171-1-sarath.babu.naidu.gaddam@amd.com>
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6500.37; Fri, 30 Jun
+ 2023 06:12:59 +0000
+Received: from TYZPR06MB6567.apcprd06.prod.outlook.com
+ ([fe80::7bcf:584c:587c:6340]) by TYZPR06MB6567.apcprd06.prod.outlook.com
+ ([fe80::7bcf:584c:587c:6340%7]) with mapi id 15.20.6500.036; Fri, 30 Jun 2023
+ 06:12:59 +0000
+From:   Dylan Hung <dylan_hung@aspeedtech.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        "mturquette@baylibre.com" <mturquette@baylibre.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     BMC-SW <BMC-SW@aspeedtech.com>
+Subject: RE: [PATCH] dt-bindings: clock: ast2600: Add I3C and MAC reset
+ definitions
+Thread-Topic: [PATCH] dt-bindings: clock: ast2600: Add I3C and MAC reset
+ definitions
+Thread-Index: AQHZpCUufmT2Rth+wkmDz+SvGV4yjK+VCR2AgA3iXHA=
+Date:   Fri, 30 Jun 2023 06:12:59 +0000
+Message-ID: <TYZPR06MB6567C8FC02D49C05439B6D549C2AA@TYZPR06MB6567.apcprd06.prod.outlook.com>
+References: <20230621094545.707-1-dylan_hung@aspeedtech.com>
+ <80cd8bb9-54ad-4c5c-f3ce-c8655cd2ff74@linaro.org>
+In-Reply-To: <80cd8bb9-54ad-4c5c-f3ce-c8655cd2ff74@linaro.org>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=aspeedtech.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: TYZPR06MB6567:EE_|TYZPR06MB5733:EE_
+x-ms-office365-filtering-correlation-id: aef9ffa2-9f18-45ef-aa8b-08db79310da4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: B+/AuYd/DHU9iHx9pho5nMTVB3TUQEgT72+a1cP8LtrSOr0/1avMuKjXwfTskbIlDJmREsMfRkPbwPnMnJ9kKREFonzGoBJqKepPvtQamtkT6bUsugXn3h9IkA9PIjy5yGDItR5xg8YakFmAb+Buy+TXQbz8GeFXgn6begJn0pJw9igtPXy89auecgvoUxq8r590WRrIrxLh+nXe9ovOGfkhFIDuUTGDxfZJSMlS1vh6WKFrLyWjGJZ6Ztpd8beND/cW5vWfFJxiAp269/O0/P/GDVoB7rwRg4wMviRtJFRacAOQGmVZG56bnS3wuaKD/00SnTgwL74CmSu+Yjm6sw8fqWZXocbv9FaHdbY96nAagpBLfUSgW/+vLKtOlLAyvsG6R1TILYzRFnXzvcfr6O47XKR2bcXoAGDksvx9FQY09LaWMbq/H/s54GroSoq2KXTzk1oX+6BJH2jtY/AASU1TCmeYuv6bwVRAAJdPchj98KrGhwjnulK81xTow5wB0WSW4WHRfNXmeREs/m0FsOaWziRa7Tgc0yU1G+HKONOgFl/0oae00xlBEP1feuDXTES1BRrbntilJT09tEv08dR8hx4Vs/CkERt3mjYB0FoXOEKS/SY2Ygz+Wu+kDQ1M
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR06MB6567.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(366004)(376002)(39850400004)(346002)(136003)(396003)(451199021)(2906002)(186003)(55016003)(7696005)(71200400001)(122000001)(86362001)(107886003)(9686003)(38100700002)(83380400001)(53546011)(6506007)(110136005)(41300700001)(38070700005)(26005)(478600001)(316002)(76116006)(66556008)(66446008)(4326008)(66946007)(33656002)(64756008)(66476007)(5660300002)(52536014)(8676002)(8936002);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?SC9HOEZuMjZ4eHBmZzluaXE4cDhKVG5aOWdIeHJuRmFlLzQ4NzRmTjBMOWxt?=
+ =?utf-8?B?eDlwWUMyN2MyRzl2blBpeTVPRkZscXB0UzNYQzNkS084Rzc4Wi9wMWwyc1RH?=
+ =?utf-8?B?UTUyZjFKM1NVS29YUkJvRFdPci9HTWlPaTlrbzJzQzdmK1B2VWtwdEE5cnpq?=
+ =?utf-8?B?Sk9FKzZkYXh6S1phRDNGbFF4Vk5XZWFRQ05KQW1JNExHQVVXV0FZT0FOT29D?=
+ =?utf-8?B?emN2ckZFcGtlaWxVcFg3MmV2SWFNL0JHS1JWNGdVbnVQbytkR1h2eDAycVN4?=
+ =?utf-8?B?S1VGNWJpWFFUUHkzM3p1Z2xuQVNiWmE3Y2h4NitjTlJjZGMzMlQxaVVXd0Ir?=
+ =?utf-8?B?VHlaTE5qRmJoZlVwMFJ6Y0dwci9jRCsrVWhndUIwN2luS2J4Mlc2TTVVU2c4?=
+ =?utf-8?B?cWJ3SkJRSzA4OUVLb3VLY0JuZDZPWVFSL0tTb1VUblNsQVVUc0ZYenVGSkJ3?=
+ =?utf-8?B?OUhOWHdWbS9KWGJseDBzalhRczFtaXVPWm1iMnd6NTJZcHI0aDBHcnBYUFZx?=
+ =?utf-8?B?aGh2MThiR2RCUEgwdjRjczdtWUZzcFVEajVaV09rSnVBME1KUmQvWE85bkcv?=
+ =?utf-8?B?TGowVEpJNDd6QzJFVFVIRFMrdmZvbnhoZHp4eU9xUHN5QXJtOEFob3l4bEhz?=
+ =?utf-8?B?SjRYa0lCL2g4QW81WTJzaThRbitNc1JyMlREZzRGMG9kRmhyblJ4R2NTN1Fo?=
+ =?utf-8?B?M0xLakZzbWZnYTlVZ080VS9iQmhmMERjakV5azYyZ3JpRmNQa0JvVWJXWmRz?=
+ =?utf-8?B?aUdzcFFDZFJYTXlHSTFyTnpTWGRVSFo4QnV5dVFLTnJUZkdwd0hNMmxFMmV0?=
+ =?utf-8?B?MWhCZVNlUS9QWnJVbVlnTGxhS0NVcEhBWW9PMUc3TkdCbkNlZDZLcUJ3YmZl?=
+ =?utf-8?B?R3M4dFJ3WnFEMjU4cXJialdwcnlnSWhjbENFcnYyVGIwSU1sUVFnbzNhamJX?=
+ =?utf-8?B?TUIzNUx5MzJ3YTAxKzRwUDFlaFBoaFNSNm9Gb0FtY01MdEYrVFhKLzNhdzUv?=
+ =?utf-8?B?TjA1UUhtcVYybittT2VTbXo2Z3NQa1RhWnZhWWlIcHVNVEtTQXpqblo3aDlw?=
+ =?utf-8?B?dmpxN3B0aGtmL1FoTVdlM2dhQTZFRk5NM0I4NlQ5cnU2TE1aV1ZiQXByejl3?=
+ =?utf-8?B?UUV4b0REUkZHNk0yeXBzaU1tMDlzZ1IxblY3NFZ1TzFrTVBTTUxNSlB0alAv?=
+ =?utf-8?B?NG5jTmF0OUFNVVpPQWRsTnEyTFhjZEJ5YjBad1pkeEo2SDFEbE55MEpRRW1L?=
+ =?utf-8?B?cEo0a0tBM2JtemdZMkRsYWpYUE55bDhQUGxOc0poK2pJcVdOOVI3eWVhWnRX?=
+ =?utf-8?B?UTRWb01rVjNOMW0wWW91S1c5Y293aXhycXFoVGJWYkhRWE1CejdtaGQ5K0Qx?=
+ =?utf-8?B?TW5EbkVxUmU5b1hYYXh5c1RsUlpOQVBIVjZiMlF6MFY3L1JQWCs5QTNtcnIz?=
+ =?utf-8?B?UXJ3SWhyQXUvQjBRN1BmWlczSEt4aHpvNzN6RzFLVW9oc3pwVVRnZjVXUGVr?=
+ =?utf-8?B?a0hFQjJUQUdZZnphdVNndEEwL21uY1lGOUZjbGxkYmhTaCtyeEFLTEMxLzB3?=
+ =?utf-8?B?eGxOTkR3WFNBYzQrZVhrV1JZdzhhWE5YS0VzOVZKUlhTbVBvMlFHRzdsUVg5?=
+ =?utf-8?B?VUMzQU0yYW5aRG5HcmZNWHVCak5iUVhnK0FKRVdNMmtGTE8wazB6ZUQ4cmJE?=
+ =?utf-8?B?NTZ5STc4MVFBYkVjVk05bGNjNGxkTFZNMkh3UnFJQ3VQRnpKS2krWVVFNHJX?=
+ =?utf-8?B?MTV1QUNvR09tWG9YVEdKeHNCdmZxeXJEaWFGM1MzcW1rTHJ1T1FFRE5ZYndQ?=
+ =?utf-8?B?N0xPUjA2YU9ZeDVIcHRQalRVSCtiTTcram5sOG5OSzZnZzN0WmJUZ3paOW9Q?=
+ =?utf-8?B?OEU3bHJ1aTI1ZmEvRVlCQTdEUjFNV0lFODcvU3h3M05MRGhJWDlidkhXV0lF?=
+ =?utf-8?B?R2htR2ZPRVRETkV4V2k2S2wwdUIzVnd0RWlKUk4zVldXenNmOVJOc1hiZlE0?=
+ =?utf-8?B?anZENmVWT0VDUjgyM0hqcGllQ3AxQklIaTdJWUYxa3RjNHN0OGdKc1J4akVr?=
+ =?utf-8?B?b3F0d001aDNZMzlwYzNmcGlpdUVYV0dQQVBPRWhkbFFnN05sRUpwUzduUjc0?=
+ =?utf-8?Q?hwEN7yNgNku+4b6dV27j4KTEj?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM6NAM11FT084:EE_|SJ0PR12MB8614:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad3adf12-9f3a-40c5-fb50-08db792c575e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: RxriUZKX0Q5wda1mfUXe2jUYLifgv3fbW2X7NpwYmwTw53XZ+f2YHysJwYbltyKpKdNCR1fGZ4YlY6nRXWi5z3hkZ9dEHIoNPB4U4fV2OFJNi3/7c6QFad+exhzjRR9jTS9wVmZlmecaOEL/TW9zWl9+4YOPbB7BpTE9GMKLXKir/Y5qSdl7K1tuyXr7vOVCj7xXrJ2CXkPPd/+QW+D/s87zyKY+tQ7vh4buwcLxQwmmx9nVnXeANwBk507n/F0zEPXAtckSHahSJ+qbBwx+Xst+N+nqjxZ5ceIFu0FoiAp9CAZrgZns9Wq+4NBISh7luhv7VKSAirxqtejQ6n+0/B5U2f9IOz5DDznK5g8zCOYqO/Cq1adnZ5AvOvoIOZGgjGn3e+pavYtSQYR/vUVoat0zIu9gsSLPlwzaB03KqU+HUqs4cI7Nghtt/PKglFCsDQwh+vs8JpB3jsef++rPJ4vyDlWm8IUQYlPHfAa/c9Td83eX4Bi+FipE1RpnVUvrAA3sfnKVz645eAhNtKHPs1hQFfSeSCbvK8Z1hjw5y1U82ldyfLmqPCqTL8bI+6ENfRTFvNWwSssCWV/AS0dyfeRMlpAz8s9bxcxA1gy+WwXlqGlhfqIpkjGOVvqYWrxJG6CGmElo447Q6/V9JkSWkLek8Tip5Vdxyg3aLRbWE8VQ1ibSCSRSpjZMY/+4guyWSzkPvSbKoMQcZNWALUl30olVpJWpHNa/4J6TaUnybaVVmVU3HHbbm5JCt7ipZoCQ
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(376002)(396003)(39860400002)(346002)(136003)(451199021)(36840700001)(40470700004)(46966006)(26005)(4326008)(82310400005)(8936002)(36860700001)(966005)(110136005)(2616005)(478600001)(1076003)(336012)(54906003)(426003)(2906002)(6666004)(83380400001)(186003)(356005)(103116003)(30864003)(70206006)(7416002)(47076005)(36756003)(82740400003)(81166007)(40480700001)(70586007)(5660300002)(86362001)(40460700003)(8676002)(41300700001)(316002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2023 05:39:15.3484
+X-OriginatorOrg: aspeedtech.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR06MB6567.apcprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: aef9ffa2-9f18-45ef-aa8b-08db79310da4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jun 2023 06:12:59.2283
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad3adf12-9f3a-40c5-fb50-08db792c575e
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: DM6NAM11FT084.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR12MB8614
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Smd8hCt8PfM/1fXYrlcEabqVStSx+CLSv9EC9pvugOH3u03rp8qvFGXDk8Zk5KGLoBk7msvoHOHte/awN1Se5W8TxD6AKJwxSzoRIp6hdv8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TYZPR06MB5733
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dmaengine framework to communicate with the xilinx DMAengine
-driver(AXIDMA).
-
-Axi ethernet driver uses separate channels for transmit and receive.
-Add support for these channels to handle TX and RX with skb and
-appropriate callbacks. Also add axi ethernet core interrupt for
-dmaengine framework support.
-
-The dmaengine framework was extended for metadata API support during the
-axidma RFC[1] discussion. However it still needs further enhancements to
-make it well suited for ethernet usecases. The ethernet features i.e
-ethtool set/get of DMA IP properties, ndo_poll_controller,(mentioned
-in TODO) and it requires follow-up discussion and dma framework
-enhancement.
-
-Introducing dmaengine support has a dependency on xilinx_dma. It uses
-one of xilinx_dma API to reset the DMA. DMA needs to be reset prior
-to accessing MDIO.
-
-[1]: https://lore.kernel.org/lkml/1522665546-10035-1-git-send-email-
-radheys@xilinx.com
-
-Signed-off-by: Radhey Shyam Pandey <radhey.shyam.pandey@xilinx.com>
-Signed-off-by: Sarath Babu Naidu Gaddam <sarath.babu.naidu.gaddam@amd.com>
----
-Changes in V4:
-1) Remove the AXIENET_USE_DMA.
-2) Add dev_err_probe for dma_request_chan error handling.
-3) Add kmem_cache_destroy for create in axienet_setup_dma_chan.
-4) Add XILINX_DMA dependency in ethernet drier Kconfig file.
-5) move setup_dma_channel to init_dmaengine func
-6) Remove unlikely
-	if (unlikely(ret < 0))
-7) if (ret == 0) to if (!ret)
-8) Rename DMA_MEM_TO_DEV to DMA_TO_DEVICE
-9) Remove else check for lp->use_dmaengine = 1; in the probe.
-
-Changes in V3:
-1) New patch for dmaengine framework support.
----
- drivers/net/ethernet/xilinx/Kconfig           |   1 +
- drivers/net/ethernet/xilinx/xilinx_axienet.h  |   6 +
- .../net/ethernet/xilinx/xilinx_axienet_main.c | 309 +++++++++++++++++-
- 3 files changed, 314 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/net/ethernet/xilinx/Kconfig b/drivers/net/ethernet/xilinx/Kconfig
-index 0014729b8865..35d96c633a33 100644
---- a/drivers/net/ethernet/xilinx/Kconfig
-+++ b/drivers/net/ethernet/xilinx/Kconfig
-@@ -26,6 +26,7 @@ config XILINX_EMACLITE
- config XILINX_AXI_EMAC
- 	tristate "Xilinx 10/100/1000 AXI Ethernet support"
- 	depends on HAS_IOMEM
-+	depends on XILINX_DMA
- 	select PHYLINK
- 	help
- 	  This driver supports the 10/100/1000 Ethernet from Xilinx for the
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet.h b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-index 3ead0bac597b..726c14d1470a 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet.h
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet.h
-@@ -436,6 +436,9 @@ struct axidma_bd {
-  * @coalesce_count_tx:	Store the irq coalesce on TX side.
-  * @coalesce_usec_tx:	IRQ coalesce delay for TX
-  * @use_dmaengine: flag to check dmaengine framework usage.
-+ * @tx_chan:	TX DMA channel.
-+ * @rx_chan:	RX DMA channel.
-+ * @skb_cache:	Custom skb slab allocator
-  */
- struct axienet_local {
- 	struct net_device *ndev;
-@@ -501,6 +504,9 @@ struct axienet_local {
- 	u32 coalesce_count_tx;
- 	u32 coalesce_usec_tx;
- 	u8  use_dmaengine;
-+	struct dma_chan *tx_chan;
-+	struct dma_chan *rx_chan;
-+	struct kmem_cache *skb_cache;
- };
- 
- /**
-diff --git a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-index 1fa67bb09625..ea7321703155 100644
---- a/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-+++ b/drivers/net/ethernet/xilinx/xilinx_axienet_main.c
-@@ -37,6 +37,9 @@
- #include <linux/phy.h>
- #include <linux/mii.h>
- #include <linux/ethtool.h>
-+#include <linux/dmaengine.h>
-+#include <linux/dma-mapping.h>
-+#include <linux/dma/xilinx_dma.h>
- 
- #include "xilinx_axienet.h"
- 
-@@ -46,6 +49,9 @@
- #define TX_BD_NUM_MIN			(MAX_SKB_FRAGS + 1)
- #define TX_BD_NUM_MAX			4096
- #define RX_BD_NUM_MAX			4096
-+#define DMA_NUM_APP_WORDS		5
-+#define LEN_APP				4
-+#define RX_BUF_NUM_DEFAULT		128
- 
- /* Must be shorter than length of ethtool_drvinfo.driver field to fit */
- #define DRIVER_NAME		"xaxienet"
-@@ -54,6 +60,16 @@
- 
- #define AXIENET_REGS_N		40
- 
-+struct axi_skbuff {
-+	struct scatterlist sgl[MAX_SKB_FRAGS + 1];
-+	struct dma_async_tx_descriptor *desc;
-+	dma_addr_t dma_address;
-+	struct sk_buff *skb;
-+	int sg_len;
-+} __packed;
-+
-+static int axienet_rx_submit_desc(struct net_device *ndev);
-+
- /* Match table for of_platform binding */
- static const struct of_device_id axienet_of_match[] = {
- 	{ .compatible = "xlnx,axi-ethernet-1.00.a", },
-@@ -726,6 +742,108 @@ static inline int axienet_check_tx_bd_space(struct axienet_local *lp,
- 	return 0;
- }
- 
-+/**
-+ * axienet_dma_tx_cb - DMA engine callback for TX channel.
-+ * @data:       Pointer to the axi_skbuff structure
-+ * @result:     error reporting through dmaengine_result.
-+ * This function is called by dmaengine driver for TX channel to notify
-+ * that the transmit is done.
-+ */
-+static void axienet_dma_tx_cb(void *data, const struct dmaengine_result *result)
-+{
-+	struct axi_skbuff *axi_skb = data;
-+
-+	struct net_device *netdev = axi_skb->skb->dev;
-+	struct axienet_local *lp = netdev_priv(netdev);
-+
-+	u64_stats_update_begin(&lp->tx_stat_sync);
-+	u64_stats_add(&lp->tx_bytes, axi_skb->skb->len);
-+	u64_stats_add(&lp->tx_packets, 1);
-+	u64_stats_update_end(&lp->tx_stat_sync);
-+
-+	dma_unmap_sg(lp->dev, axi_skb->sgl, axi_skb->sg_len, DMA_TO_DEVICE);
-+	dev_kfree_skb_any(axi_skb->skb);
-+	kmem_cache_free(lp->skb_cache, axi_skb);
-+}
-+
-+/**
-+ * axienet_start_xmit_dmaengine - Starts the transmission.
-+ * @skb:        sk_buff pointer that contains data to be Txed.
-+ * @ndev:       Pointer to net_device structure.
-+ *
-+ * Return: NETDEV_TX_OK, on success
-+ *          NETDEV_TX_BUSY, if any memory failure or SG error.
-+ *
-+ * This function is invoked from xmit to initiate transmission. The
-+ * function sets the skbs , call back API, SG etc.
-+ * Additionally if checksum offloading is supported,
-+ * it populates AXI Stream Control fields with appropriate values.
-+ */
-+static netdev_tx_t
-+axienet_start_xmit_dmaengine(struct sk_buff *skb, struct net_device *ndev)
-+{
-+	struct dma_async_tx_descriptor *dma_tx_desc = NULL;
-+	struct axienet_local *lp = netdev_priv(ndev);
-+	u32 app[DMA_NUM_APP_WORDS] = {0};
-+	struct axi_skbuff *axi_skb;
-+	u32 csum_start_off;
-+	u32 csum_index_off;
-+	int sg_len;
-+	int ret;
-+
-+	sg_len = skb_shinfo(skb)->nr_frags + 1;
-+	axi_skb = kmem_cache_zalloc(lp->skb_cache, GFP_KERNEL);
-+	if (!axi_skb)
-+		return NETDEV_TX_BUSY;
-+
-+	sg_init_table(axi_skb->sgl, sg_len);
-+	ret = skb_to_sgvec(skb, axi_skb->sgl, 0, skb->len);
-+	if (ret < 0)
-+		goto xmit_error_skb_sgvec;
-+
-+	ret = dma_map_sg(lp->dev, axi_skb->sgl, sg_len, DMA_TO_DEVICE);
-+	if (!ret)
-+		goto xmit_error_skb_sgvec;
-+
-+	/*Fill up app fields for checksum */
-+	if (skb->ip_summed == CHECKSUM_PARTIAL) {
-+		if (lp->features & XAE_FEATURE_FULL_TX_CSUM) {
-+			/* Tx Full Checksum Offload Enabled */
-+			app[0] |= 2;
-+		} else if (lp->features & XAE_FEATURE_PARTIAL_RX_CSUM) {
-+			csum_start_off = skb_transport_offset(skb);
-+			csum_index_off = csum_start_off + skb->csum_offset;
-+			/* Tx Partial Checksum Offload Enabled */
-+			app[0] |= 1;
-+			app[1] = (csum_start_off << 16) | csum_index_off;
-+		}
-+	} else if (skb->ip_summed == CHECKSUM_UNNECESSARY) {
-+		app[0] |= 2; /* Tx Full Checksum Offload Enabled */
-+	}
-+
-+	dma_tx_desc = lp->tx_chan->device->device_prep_slave_sg(lp->tx_chan, axi_skb->sgl,
-+			sg_len, DMA_MEM_TO_DEV,
-+			DMA_PREP_INTERRUPT, (void *)app);
-+
-+	if (!dma_tx_desc)
-+		goto xmit_error_prep;
-+
-+	axi_skb->skb = skb;
-+	axi_skb->sg_len = sg_len;
-+	dma_tx_desc->callback_param =  axi_skb;
-+	dma_tx_desc->callback_result = axienet_dma_tx_cb;
-+	dmaengine_submit(dma_tx_desc);
-+	dma_async_issue_pending(lp->tx_chan);
-+
-+	return NETDEV_TX_OK;
-+
-+xmit_error_prep:
-+	dma_unmap_sg(lp->dev, axi_skb->sgl, sg_len, DMA_TO_DEVICE);
-+xmit_error_skb_sgvec:
-+	kmem_cache_free(lp->skb_cache, axi_skb);
-+	return NETDEV_TX_BUSY;
-+}
-+
- /**
-  * axienet_tx_poll - Invoked once a transmit is completed by the
-  * Axi DMA Tx channel.
-@@ -910,7 +1028,42 @@ axienet_start_xmit(struct sk_buff *skb, struct net_device *ndev)
- 	if (!lp->use_dmaengine)
- 		return axienet_start_xmit_legacy(skb, ndev);
- 	else
--		return NETDEV_TX_BUSY;
-+		return axienet_start_xmit_dmaengine(skb, ndev);
-+}
-+
-+/**
-+ * axienet_dma_rx_cb - DMA engine callback for RX channel.
-+ * @data:       Pointer to the axi_skbuff structure
-+ * @result:     error reporting through dmaengine_result.
-+ * This function is called by dmaengine driver for RX channel to notify
-+ * that the packet is received.
-+ */
-+static void axienet_dma_rx_cb(void *data, const struct dmaengine_result *result)
-+{
-+	struct axi_skbuff *axi_skb = data;
-+	struct sk_buff *skb = axi_skb->skb;
-+	struct net_device *netdev = skb->dev;
-+	struct axienet_local *lp = netdev_priv(netdev);
-+	size_t meta_len, meta_max_len, rx_len;
-+	u32 *app;
-+
-+	app  = dmaengine_desc_get_metadata_ptr(axi_skb->desc, &meta_len, &meta_max_len);
-+	dma_unmap_single(lp->dev, axi_skb->dma_address, lp->max_frm_size,
-+			 DMA_FROM_DEVICE);
-+	/* TODO: Derive app word index programmatically */
-+	rx_len = (app[LEN_APP] & 0xFFFF);
-+	skb_put(skb, rx_len);
-+	skb->protocol = eth_type_trans(skb, netdev);
-+	skb->ip_summed = CHECKSUM_NONE;
-+
-+	netif_rx(skb);
-+	kmem_cache_free(lp->skb_cache, axi_skb);
-+	u64_stats_update_begin(&lp->rx_stat_sync);
-+	u64_stats_add(&lp->rx_packets, 1);
-+	u64_stats_add(&lp->rx_bytes, rx_len);
-+	u64_stats_update_end(&lp->rx_stat_sync);
-+	axienet_rx_submit_desc(netdev);
-+	dma_async_issue_pending(lp->rx_chan);
- }
- 
- /**
-@@ -1146,6 +1299,108 @@ static irqreturn_t axienet_eth_irq(int irq, void *_ndev)
- 
- static void axienet_dma_err_handler(struct work_struct *work);
- 
-+/**
-+ * axienet_rx_submit_desc - Submit the descriptors with required data
-+ * like call backup API, skb buffer.. etc to dmaengine.
-+ *
-+ * @ndev:	net_device pointer
-+ *
-+ *Return: 0, on success.
-+ *          non-zero error value on failure
-+ */
-+static int axienet_rx_submit_desc(struct net_device *ndev)
-+{
-+	struct dma_async_tx_descriptor *dma_rx_desc = NULL;
-+	struct axienet_local *lp = netdev_priv(ndev);
-+	struct axi_skbuff *axi_skb;
-+	struct sk_buff *skb;
-+	dma_addr_t addr;
-+	int ret;
-+
-+	axi_skb = kmem_cache_alloc(lp->skb_cache, GFP_KERNEL);
-+
-+	if (!axi_skb)
-+		return -ENOMEM;
-+	skb = netdev_alloc_skb(ndev, lp->max_frm_size);
-+	if (!skb) {
-+		ret = -ENOMEM;
-+		goto rx_bd_init_skb;
-+	}
-+
-+	sg_init_table(axi_skb->sgl, 1);
-+	addr = dma_map_single(lp->dev, skb->data, lp->max_frm_size, DMA_FROM_DEVICE);
-+	sg_dma_address(axi_skb->sgl) = addr;
-+	sg_dma_len(axi_skb->sgl) = lp->max_frm_size;
-+	dma_rx_desc = dmaengine_prep_slave_sg(lp->rx_chan, axi_skb->sgl,
-+					      1, DMA_DEV_TO_MEM,
-+					      DMA_PREP_INTERRUPT);
-+	if (!dma_rx_desc) {
-+		ret = -EINVAL;
-+		goto rx_bd_init_prep_sg;
-+	}
-+
-+	axi_skb->skb = skb;
-+	axi_skb->dma_address = sg_dma_address(axi_skb->sgl);
-+	axi_skb->desc = dma_rx_desc;
-+	dma_rx_desc->callback_param =  axi_skb;
-+	dma_rx_desc->callback_result = axienet_dma_rx_cb;
-+	dmaengine_submit(dma_rx_desc);
-+
-+	return 0;
-+
-+rx_bd_init_prep_sg:
-+	dma_unmap_single(lp->dev, addr, lp->max_frm_size, DMA_FROM_DEVICE);
-+	dev_kfree_skb(skb);
-+rx_bd_init_skb:
-+	kmem_cache_free(lp->skb_cache, axi_skb);
-+	return ret;
-+}
-+
-+/**
-+ * axienet_init_dmaengine - init the dmaengine code.
-+ * @ndev:       Pointer to net_device structure
-+ *
-+ * Return: 0, on success.
-+ *          non-zero error value on failure
-+ *
-+ * This is the dmaengine initialization code.
-+ */
-+static inline int axienet_init_dmaengine(struct net_device *ndev)
-+{
-+	struct axienet_local *lp = netdev_priv(ndev);
-+	int i, ret;
-+
-+	lp->tx_chan = dma_request_chan(lp->dev, "tx_chan0");
-+	if (IS_ERR(lp->tx_chan)) {
-+		ret = PTR_ERR(lp->tx_chan);
-+		return dev_err_probe(lp->dev, ret, "No Ethernet DMA (TX) channel found\n");
-+	}
-+
-+	lp->rx_chan = dma_request_chan(lp->dev, "rx_chan0");
-+	if (IS_ERR(lp->rx_chan)) {
-+		ret = PTR_ERR(lp->rx_chan);
-+		dev_err_probe(lp->dev, ret, "No Ethernet DMA (RX) channel found\n");
-+		goto err_dma_request_rx;
-+	}
-+	lp->skb_cache = kmem_cache_create("ethernet", sizeof(struct axi_skbuff),
-+					  0, 0, NULL);
-+	if (!lp->skb_cache) {
-+		ret =  -ENOMEM;
-+		goto err_kmem;
-+	}
-+	/* TODO: Instead of BD_NUM_DEFAULT use runtime support*/
-+	for (i = 0; i < RX_BUF_NUM_DEFAULT; i++)
-+		axienet_rx_submit_desc(ndev);
-+	dma_async_issue_pending(lp->rx_chan);
-+
-+	return 0;
-+err_kmem:
-+	dma_release_channel(lp->rx_chan);
-+err_dma_request_rx:
-+	dma_release_channel(lp->tx_chan);
-+	return ret;
-+}
-+
- /**
-  * axienet_init_legacy_dma - init the dma legacy code.
-  * @ndev:       Pointer to net_device structure
-@@ -1237,7 +1492,24 @@ static int axienet_open(struct net_device *ndev)
- 
- 	phylink_start(lp->phylink);
- 
--	if (!lp->use_dmaengine) {
-+	if (lp->use_dmaengine) {
-+		/* Enable interrupts for Axi Ethernet core (if defined) */
-+		if (lp->eth_irq > 0) {
-+			ret = request_irq(lp->eth_irq, axienet_eth_irq, IRQF_SHARED,
-+					  ndev->name, ndev);
-+			if (ret)
-+				goto error_code;
-+		}
-+
-+		ret = axienet_init_dmaengine(ndev);
-+
-+		if (ret < 0) {
-+			if (lp->eth_irq > 0)
-+				free_irq(lp->eth_irq, ndev);
-+			goto error_code;
-+		}
-+
-+	} else {
- 		ret = axienet_init_legacy_dma(ndev);
- 		if (ret)
- 			goto error_code;
-@@ -1285,6 +1557,14 @@ static int axienet_stop(struct net_device *ndev)
- 		free_irq(lp->tx_irq, ndev);
- 		free_irq(lp->rx_irq, ndev);
- 		axienet_dma_bd_release(ndev);
-+	} else {
-+		dmaengine_terminate_all(lp->tx_chan);
-+		dmaengine_terminate_all(lp->rx_chan);
-+
-+		dma_release_channel(lp->rx_chan);
-+		dma_release_channel(lp->tx_chan);
-+
-+		kmem_cache_destroy(lp->skb_cache);
- 	}
- 
- 	axienet_iow(lp, XAE_IE_OFFSET, 0);
-@@ -2134,6 +2414,31 @@ static int axienet_probe(struct platform_device *pdev)
- 		}
- 		netif_napi_add(ndev, &lp->napi_rx, axienet_rx_poll);
- 		netif_napi_add(ndev, &lp->napi_tx, axienet_tx_poll);
-+	} else {
-+		struct xilinx_vdma_config cfg;
-+		struct dma_chan *tx_chan;
-+
-+		lp->eth_irq = platform_get_irq_optional(pdev, 0);
-+		tx_chan = dma_request_chan(lp->dev, "tx_chan0");
-+
-+		if (IS_ERR(tx_chan)) {
-+			ret = PTR_ERR(tx_chan);
-+			dev_err_probe(lp->dev, ret, "No Ethernet DMA (TX) channel found\n");
-+			goto cleanup_clk;
-+		}
-+
-+		cfg.reset = 1;
-+		/* As name says VDMA but it has support for DMA channel reset*/
-+		ret = xilinx_vdma_channel_set_config(tx_chan, &cfg);
-+
-+		if (ret < 0) {
-+			dev_err(&pdev->dev, "Reset channel failed\n");
-+			dma_release_channel(tx_chan);
-+			goto cleanup_clk;
-+		}
-+
-+		dma_release_channel(tx_chan);
-+		lp->use_dmaengine = 1;
- 	}
- 
- 	/* Check for Ethernet core IRQ (optional) */
--- 
-2.25.1
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBLcnp5c3p0b2YgS296bG93c2tp
+IFttYWlsdG86a3J6eXN6dG9mLmtvemxvd3NraUBsaW5hcm8ub3JnXQ0KPiBTZW50OiBXZWRuZXNk
+YXksIEp1bmUgMjEsIDIwMjMgNjoxMSBQTQ0KPiBUbzogRHlsYW4gSHVuZyA8ZHlsYW5faHVuZ0Bh
+c3BlZWR0ZWNoLmNvbT47IG10dXJxdWV0dGVAYmF5bGlicmUuY29tOw0KPiBzYm95ZEBrZXJuZWwu
+b3JnOyByb2JoK2R0QGtlcm5lbC5vcmc7IGtyenlzenRvZi5rb3psb3dza2krZHRAbGluYXJvLm9y
+ZzsNCj4gY29ub3IrZHRAa2VybmVsLm9yZzsgbGludXgtY2xrQHZnZXIua2VybmVsLm9yZzsgZGV2
+aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmcN
+Cj4gQ2M6IEJNQy1TVyA8Qk1DLVNXQGFzcGVlZHRlY2guY29tPg0KPiBTdWJqZWN0OiBSZTogW1BB
+VENIXSBkdC1iaW5kaW5nczogY2xvY2s6IGFzdDI2MDA6IEFkZCBJM0MgYW5kIE1BQyByZXNldA0K
+PiBkZWZpbml0aW9ucw0KPiANCj4gT24gMjEvMDYvMjAyMyAxMTo0NSwgRHlsYW4gSHVuZyB3cm90
+ZToNCj4gPiBBZGQgcmVzZXQgZGVmaW5pdGlvbnMgb2YgQVNUMjYwMCBJM0MgYW5kIE1BQyBjb250
+cm9sbGVycy4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IER5bGFuIEh1bmcgPGR5bGFuX2h1bmdA
+YXNwZWVkdGVjaC5jb20+DQo+ID4gLS0tDQo+ID4gIGluY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2sv
+YXN0MjYwMC1jbG9jay5oIHwgMTMgKysrKysrKysrKysrLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwg
+MTIgaW5zZXJ0aW9ucygrKSwgMSBkZWxldGlvbigtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2lu
+Y2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svYXN0MjYwMC1jbG9jay5oDQo+IGIvaW5jbHVkZS9kdC1i
+aW5kaW5ncy9jbG9jay9hc3QyNjAwLWNsb2NrLmgNCj4gPiBpbmRleCBlMTQ5ZWVlNjE1ODguLjA3
+Mzc3NTg5ZjhmNCAxMDA2NDQNCj4gPiAtLS0gYS9pbmNsdWRlL2R0LWJpbmRpbmdzL2Nsb2NrL2Fz
+dDI2MDAtY2xvY2suaA0KPiA+ICsrKyBiL2luY2x1ZGUvZHQtYmluZGluZ3MvY2xvY2svYXN0MjYw
+MC1jbG9jay5oDQo+ID4gQEAgLTkwLDcgKzkwLDE4IEBADQo+ID4gIC8qIE9ubHkgbGlzdCByZXNl
+dHMgaGVyZSB0aGF0IGFyZSBub3QgcGFydCBvZiBhIGNsb2NrIGdhdGUgKyByZXNldCBwYWlyICov
+DQo+ID4gICNkZWZpbmUgQVNQRUVEX1JFU0VUX0FEQwkJNTUNCj4gPiAgI2RlZmluZSBBU1BFRURf
+UkVTRVRfSlRBR19NQVNURVIyCTU0DQo+ID4gLSNkZWZpbmUgQVNQRUVEX1JFU0VUX0kzQ19ETUEJ
+CTM5DQo+IA0KPiBUaGlzIHdpbGwgYnJlYWsgYWxsIHRoZSB1c2Vycy4NCj4gDQoNCg0KPiBCZXN0
+IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KDQo=
