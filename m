@@ -2,218 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3121774417D
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:42:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B44474418F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 19:48:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230308AbjF3Rmi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 13:42:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53320 "EHLO
+        id S232823AbjF3Rst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 13:48:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55062 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232712AbjF3Rmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:42:37 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBF56199B
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 10:42:35 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-bb3a77abd7bso2081547276.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 10:42:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688146955; x=1690738955;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5GBVbHOFTdsyQJU8GGb14QvACpNRgooKdXsV/1n/jmE=;
-        b=XIVwvb9ZkoK9yR1KK3wGqQiI5P1EA8aljusSHRUNJL6khr7ZfLkl948A85RZCIR882
-         8XIkJG1rilOdOE6NFGi2sP4imn+Mg/ruQMamjrzH0qxDjK4mSERGFBDLHE78v2KI9c9B
-         5WTugaH2dk3pCxdZRCvz9txTIuzlhS7UFVsWFPnexuzA1NhQKPOD0Bmh8wbbG19K/tbu
-         Ara2OJOMLWzxwyYTH7lKDNeykcxgTSx3Fs3hppttITd0d2tpXGC7x3a1DHQhhRop40p2
-         qZ6NJAfsCQ+JdbH3/1WxW6GmYSYtsDBWkWrxisbmtHmAlFKNcbALUVKSO4RXNSPNdfhv
-         BJGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688146955; x=1690738955;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5GBVbHOFTdsyQJU8GGb14QvACpNRgooKdXsV/1n/jmE=;
-        b=aFVGUIgia0amDua8qiSYPxRAw5z7/qBSrkzZqylHCBLo0tkoLzk0LrY/vAVZKxw09t
-         eu5+US/VdvDlO4IjPg6zKS9JvdZ+cc1h3vcQkAFO5TBP9TSLdh68mibsHmthscTjIsGk
-         8XU8lS4AqZ5hHcfOujZ28z1JaeIiN1eal8ZnbRvpj9UJ6j9Hdcws8uOpnxkxSfhLWJWj
-         iTACSr/tzlFT93wxMORLT+7dsVvrD9P9+cDOvro5NvZ+JMxNzuiMPKVkvC25+44hfuqG
-         dNPEi5xaYlncC19LzuPUDtaJoTGeReAH87wOMYHcWcN+irrmQbM8NzUKv2cmRPb6AFJ3
-         d7EA==
-X-Gm-Message-State: ABy/qLZ/kSBmOAEp/mEPyNUQlQxRZF+eruRYPU8dj9nev9pjdClGsvMN
-        fRAdWfV8ni6V0fUpLToedj+u8B+ARl51zah534uqBQ==
-X-Google-Smtp-Source: APBJJlHEHXl3UILh2Mi9iFeCzRu6oPkIpCEYs+FuX67r8o+chF6UivHFOFWZstM8v89A8IaytZ+uanrvsla7hDq/bxI=
-X-Received: by 2002:a25:db87:0:b0:c01:4d4a:cbaa with SMTP id
- g129-20020a25db87000000b00c014d4acbaamr3214487ybf.37.1688146955047; Fri, 30
- Jun 2023 10:42:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-8-dmitry.baryshkov@linaro.org> <c59d002b-9d06-d744-d90b-22da4186522a@linaro.org>
- <CAA8EJpp+b1KVaMK82j7T=iGovXVAu3jq51rTHu6yqPcnkwXoeg@mail.gmail.com>
- <65d9025b-134d-eb8c-98d8-ab7103a5dc44@linaro.org> <CAA8EJpopHRNTyuzi2V=1t7o5xbXaCjxjP=yQUigCYDJMULxb=Q@mail.gmail.com>
- <e2c6abdc-f586-be9c-b400-7bf57021d5fa@linaro.org>
-In-Reply-To: <e2c6abdc-f586-be9c-b400-7bf57021d5fa@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Fri, 30 Jun 2023 20:42:23 +0300
-Message-ID: <CAA8EJpoN0nVJdBwYfRkS305fWjbHL6BUxcgo1CmS8jmn6gp2jg@mail.gmail.com>
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8450-hdk: add ADC-TM thermal zones
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S232387AbjF3Rsr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 13:48:47 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5209F2D4A;
+        Fri, 30 Jun 2023 10:48:46 -0700 (PDT)
+X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="352275048"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; 
+   d="scan'208";a="352275048"
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jun 2023 10:48:45 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10757"; a="787792137"
+X-IronPort-AV: E=Sophos;i="6.01,171,1684825200"; 
+   d="scan'208";a="787792137"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga004.fm.intel.com with ESMTP; 30 Jun 2023 10:48:36 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andy@kernel.org>)
+        id 1qFIET-001AaS-1x;
+        Fri, 30 Jun 2023 20:48:33 +0300
+Date:   Fri, 30 Jun 2023 20:48:33 +0300
+From:   Andy Shevchenko <andy@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>,
+        Jose Abreu <joabreu@synopsys.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Sebastian Reichel <sre@kernel.org>,
+        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-oxnas@groups.io,
+        Arnd Bergmann <arnd@arndb.de>,
+        Daniel Golle <daniel@makrotopia.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>
+Subject: Re: [PATCH v2 00/15] ARM: oxnas support removal
+Message-ID: <ZJ8VcZq2s5XrxJge@smile.fi.intel.com>
+References: <20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jun 2023 at 19:15, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 30.06.2023 14:57, Dmitry Baryshkov wrote:
-> > On Fri, 30 Jun 2023 at 14:27, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >>
-> >> On 30.06.2023 12:07, Dmitry Baryshkov wrote:
-> >>> On Fri, 30 Jun 2023 at 11:19, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
-> >>>>
-> >>>> On 30.06.2023 08:13, Dmitry Baryshkov wrote:
-> >>>>> Add thermal zones controlled through the ADC-TM (ADC thermal monitoring)
-> >>>>> PMIC interface. This includes several onboard sensors and the XO thermal
-> >>>>> sensor.
-> >>>>>
-> >>>>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> >>>>> ---
-> >>>> [...]
-> >>>>>
-> >>>>> +     channel@144 {
-> >>>>> +             reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-> >>>> This define should be cleaned up.. Since it takes a sid argument,
-> >>>> it really is ADC7_AMUX_THM1_100K_PU(sid)
-> >>>
-> >>> I don't think I understood your comment. The define itself is specific
-> >>> to PM8350, other PMICs might have different channel assignments.
-> >>
-> >> include/dt-bindings/iio/qcom,spmi-vadc.h
-> >> 263:#define ADC7_AMUX_THM1_100K_PU                      0x44
-> >
-> > Do you want to define PM8350_ADC7_AMUX_THM1_100K_PU(sid) using
-> > ADC7_AMUX_THM1_100K_PU ?
-> > Or to make all users use ADC7_AMUX_THM1_100K_PU?
->
->
-> >Or add the SID
-> > argument to ADC7_AMUX_THM1_100K_PU and switch to it?
-> This.
->
-> Since we have a generic binding for it (not sure what sort of ABI-ish rules
-> apply here, probably not very many since it's just a dumb preprocessor define),
-> we should not redefine it for each PMIC, especially since the SIDs are variable
-> nowadays :/
+On Fri, Jun 30, 2023 at 06:58:25PM +0200, Neil Armstrong wrote:
+> With [1] removing MPCore SMP support, this makes the OX820 barely usable,
+> associated with a clear lack of maintainance, development and migration to
+> dt-schema it's clear that Linux support for OX810 and OX820 should be removed.
+> 
+> In addition, the OX810 hasn't been booted for years and isn't even present
+> in an ARM config file.
+> 
+> For the OX820, lack of USB and SATA support makes the platform not usable
+> in the current Linux support and relies on off-tree drivers hacked from the
+> vendor (defunct for years) sources.
+> 
+> The last users are in the OpenWRT distribution, and today's removal means
+> support will still be in stable 6.1 LTS kernel until end of 2026.
+> 
+> If someone wants to take over the development even with lack of SMP, I'll
+> be happy to hand off maintainance.
+> 
+> It has been a fun time adding support for this architecture, but it's time
+> to get over!
+> 
+> Now arch/arm parts are removed, now it's time to remove the remaining stuff.
 
-I think it would be worth to have per-PMIC headers (which define which
-channels are available on this PMIC), but to use values from the
-qcom,spmi-vadc.h  header to define those per-PMIC values.
+For all non-DT patches
+Acked-by: Andy Shevchenko <andy@kernel.org>
 
-WDYT?
-
->
-> Sorry for being too vague.
->
-> Konrad
-> >
-> >>
-> >> Konrad
-> >>>
-> >>>>
-> >>>> Konrad
-> >>>>
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "skin_msm_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>> +     channel@145 {
-> >>>>> +             reg = <PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "camera_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>> +     channel@146 {
-> >>>>> +             reg = <PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "therm1_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>> +     channel@147 {
-> >>>>> +             reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "wide_rfc_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>> +     channel@148 {
-> >>>>> +             reg = <PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "rear_tof_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>> +     channel@14c {
-> >>>>> +             reg = <PM8350_ADC7_GPIO3_100K_PU(1)>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "therm2_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>>       channel@303 {
-> >>>>>               reg = <PM8350B_ADC7_DIE_TEMP>;
-> >>>>>               label = "pm8350b_die_temp";
-> >>>>>       };
-> >>>>>
-> >>>>> +     channel@348 {
-> >>>>> +             reg = <PM8350B_ADC7_AMUX_THM5_100K_PU>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "usb_conn_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>>       channel@403 {
-> >>>>>               reg = <PMR735A_ADC7_DIE_TEMP>;
-> >>>>>               label = "pmr735a_die_temp";
-> >>>>>       };
-> >>>>> +
-> >>>>> +     channel@44a {
-> >>>>> +             reg = <PMR735A_ADC7_GPIO1_100K_PU>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "qtm_w_temp";
-> >>>>> +     };
-> >>>>> +
-> >>>>> +     channel@44b {
-> >>>>> +             reg = <PMR735A_ADC7_GPIO2_100K_PU>;
-> >>>>> +             qcom,hw-settle-time = <200>;
-> >>>>> +             qcom,ratiometric;
-> >>>>> +             label = "qtm_n_temp";
-> >>>>> +     };
-> >>>>>  };
-> >>>>>
-> >>>>>  &remoteproc_adsp {
-> >>>
-> >>>
-> >>>
-> >
-> >
-> >
-
-
+I always like negative statistics of a magnitude order!
 
 -- 
-With best wishes
-Dmitry
+With Best Regards,
+Andy Shevchenko
+
+
