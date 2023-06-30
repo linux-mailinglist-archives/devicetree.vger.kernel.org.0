@@ -2,88 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7AF1A743DB9
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 16:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 037D0743E09
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 16:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232601AbjF3OnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 10:43:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45104 "EHLO
+        id S232840AbjF3O6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 10:58:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54294 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232604AbjF3Om7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 10:42:59 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 636823C06;
-        Fri, 30 Jun 2023 07:42:38 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id EDCAF6176C;
-        Fri, 30 Jun 2023 14:42:37 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 16954C433C8;
-        Fri, 30 Jun 2023 14:42:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688136157;
-        bh=FobgviI7+8dwx2oijrp2XqAsD6wlFH06OENkuR5Y50g=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=ZEO2dSFD4R0cumSQ4KDz5a/xHsp+PHKKOqrleiwbGQWliL7M6QRQL3SI2fjxSu1/c
-         DPrZlpsMi9p+MbDq8YRTskpM8iHGZZ2Da21v2F6dsYGd5W0RWL1nJKjni7/JCt5wHf
-         r1DyKC01cKJyK93I5AT+W9u+RMYg5NMxBAmSwqWM0c7L7OtQOBriffyjkbtxiOET1k
-         0CDlBcMIe8WZtdT5Ahl/iF+kTtFjRnSXJfkcGdm0SLMLb0dn1K6sH0Q1ORH3EpiEpM
-         aTKIrBolB1mZRob90MIuRPw4QcORcVjnPiAYAgKYBr8FYllUafmLgNkisCFneynHJz
-         8YQVaA1qHSWPQ==
-Date:   Fri, 30 Jun 2023 09:42:35 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Lizhi Hou <lizhi.hou@amd.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        max.zhen@amd.com, sonal.santan@amd.com,
-        stefano.stabellini@xilinx.com
-Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
-Message-ID: <20230630144235.GA483557@bhelgaas>
+        with ESMTP id S232823AbjF3O6a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 10:58:30 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD4B81FFA;
+        Fri, 30 Jun 2023 07:58:28 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35UDxH1M024499;
+        Fri, 30 Jun 2023 14:58:07 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=FWsoqs5iDUcCdUn2UKhCC9bwPd9A9e7CbTu4kW+ZpB8=;
+ b=fnmyUWxzzm79znoy8gnBpmXrs3gJhJSXo1UOKD1tZETinx1Ma/+OQH5xFCsuZeMKa3U2
+ lsbATJRcBgbH5IKztfChCgwFtt4FzEehkpFhUBEbM3su+EvQfSW+bwquruzksSQwGth9
+ 5VD+2JC7Fco1kHux2tLE45WUTMAes2EwQ5o9bhvwFNkDwcTngE1vbkPw+0zhV1vNdL0G
+ LEi7nXHToSomg04GA+Z2fTN4VDxtNlHfuCdIO11a7T1IY99SCpm8oydCdOciy2rKIO0V
+ bP+NjZQebj1KwBaAX4S8iYDONyrL3MS3oEwQE2uWj5Px9wIljdjiDFi+r6bdUhf5PxJE AA== 
+Received: from nasanppmta02.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rgy1tm5kt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 14:58:06 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35UEw5n2006969
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 14:58:05 GMT
+Received: from [10.216.37.216] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 30 Jun
+ 2023 07:57:57 -0700
+Message-ID: <b13c8010-c7bb-db21-44c5-06e95b341b7c@quicinc.com>
+Date:   Fri, 30 Jun 2023 20:27:53 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230629235551.GB92592-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 19/21] firmware: scm: Modify only the download bits in
+ TCSR register
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <corbet@lwn.net>,
+        <agross@kernel.org>, <andersson@kernel.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <keescook@chromium.org>, <tony.luck@intel.com>,
+        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <linus.walleij@linaro.org>, <andy.shevchenko@gmail.com>
+CC:     <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <1687955688-20809-20-git-send-email-quic_mojha@quicinc.com>
+ <d5c5671f-b6a8-9e97-f917-784dffed7f90@linaro.org>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <d5c5671f-b6a8-9e97-f917-784dffed7f90@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: LpiivA6ciBvOOGo7KcK_y1r3YaR7Kbj7
+X-Proofpoint-GUID: LpiivA6ciBvOOGo7KcK_y1r3YaR7Kbj7
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-30_05,2023-06-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ impostorscore=0 mlxlogscore=999 mlxscore=0 malwarescore=0
+ lowpriorityscore=0 clxscore=1015 adultscore=0 priorityscore=1501
+ bulkscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306300126
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 29, 2023 at 05:55:51PM -0600, Rob Herring wrote:
-> On Thu, Jun 29, 2023 at 05:56:31PM -0500, Bjorn Helgaas wrote:
-> > On Thu, Jun 29, 2023 at 10:19:47AM -0700, Lizhi Hou wrote:
-> > > The PCI endpoint device such as Xilinx Alveo PCI card maps the register
-> > > spaces from multiple hardware peripherals to its PCI BAR. Normally,
-> > > the PCI core discovers devices and BARs using the PCI enumeration process.
-> > > There is no infrastructure to discover the hardware peripherals that are
-> > > present in a PCI device, and which can be accessed through the PCI BARs.
 
-> > > --- a/drivers/pci/of.c
-> > > +++ b/drivers/pci/of.c
-> > > @@ -487,6 +487,15 @@ static int of_irq_parse_pci(const struct pci_dev *pdev, struct of_phandle_args *
-> > >  		} else {
-> > >  			/* We found a P2P bridge, check if it has a node */
-> > >  			ppnode = pci_device_to_OF_node(ppdev);
-> > > +#if IS_ENABLED(CONFIG_PCI_DYNAMIC_OF_NODES)
-> > 
-> > I would use plain #ifdef here instead of IS_ENABLED(), as you did in
-> > pci.h below.  IS_ENABLED() is true if the Kconfig symbol is set to
-> > either "y" or "m".
+
+On 6/28/2023 8:50 PM, Konrad Dybcio wrote:
+> On 28.06.2023 14:34, Mukesh Ojha wrote:
+>> CrashDump collection is based on the DLOAD bit of TCSR register.
+>> To retain other bits, we read the register and modify only the
+>> DLOAD bit as the other bits have their own significance.
+>>
+>> Co-developed-by: Poovendhan Selvaraj <quic_poovendh@quicinc.com>
+>> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
+>> ---
+>>   drivers/firmware/qcom_scm.c | 12 ++++++++++--
+>>   1 file changed, 10 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/drivers/firmware/qcom_scm.c b/drivers/firmware/qcom_scm.c
+>> index 104d86e49b97..a9ff77d16c42 100644
+>> --- a/drivers/firmware/qcom_scm.c
+>> +++ b/drivers/firmware/qcom_scm.c
+>> @@ -30,6 +30,11 @@ module_param(download_mode, bool, 0);
+>>   #define SCM_HAS_IFACE_CLK	BIT(1)
+>>   #define SCM_HAS_BUS_CLK		BIT(2)
+>>   
+>> +#define QCOM_DOWNLOAD_FULLDUMP		 0x1
+>> +#define QCOM_DOWNLOAD_NODUMP		 0x0
+>> +#define QCOM_DOWNLOAD_MODE_SHIFT	   4
+>> +#define QCOM_DOWNLOAD_MODE_MASK		0x30
+> GENMASK and then FIELD_PREP below?
+
+Just checked about FIELD_PREP, it works, thanks.
+
+FIELD_PREP(GENMASK(5, 4), QCOM_DOWNLOAD_FULLDUMP)
+FIELD_PREP(GENMASK(5, 4), QCOM_DOWNLOAD_NODUMP)
+
+-Mukesh
+
 > 
-> Actually, IS_ENABLED() with a C 'if' rather than a preprocessor #if 
-> would work here and is preferred.
-
-Makes sense; I see the justification at [1].  I do wish it didn't have
-to be different between this usage and the "#ifdef
-CONFIG_PCI_DYNAMIC_OF_NODES" in pci.h for the stubs.  But this is OK
-by me.
-
-Bjorn
-
-[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/process/coding-style.rst?id=v6.4#n1162
+>> +
+>>   struct qcom_scm {
+>>   	struct device *dev;
+>>   	struct clk *core_clk;
+>> @@ -440,6 +445,7 @@ static int __qcom_scm_set_dload_mode(struct device *dev, bool enable)
+>>   static void qcom_scm_set_download_mode(bool enable)
+>>   {
+>>   	bool avail;
+>> +	int val;
+> What's wrong with initializing it in the same line as ret?
+> 
+>>   	int ret = 0;
+>>   
+>>   	avail = __qcom_scm_is_call_available(__scm->dev,
+>> @@ -448,8 +454,10 @@ static void qcom_scm_set_download_mode(bool enable)
+>>   	if (avail) {
+>>   		ret = __qcom_scm_set_dload_mode(__scm->dev, enable);
+>>   	} else if (__scm->dload_mode_addr) {
+>> -		ret = qcom_scm_io_writel(__scm->dload_mode_addr,
+>> -				enable ? QCOM_SCM_BOOT_SET_DLOAD_MODE : 0);
+>> +		val = (enable ? QCOM_DOWNLOAD_FULLDUMP : QCOM_DOWNLOAD_NODUMP);
+> unnecessary braces
+> 
+> Konrad
+>> +		val <<= QCOM_DOWNLOAD_MODE_SHIFT;
+>> +		ret = qcom_scm_io_update_field(__scm->dload_mode_addr,
+>> +				QCOM_DOWNLOAD_MODE_MASK, val);
+>>   	} else {
+>>   		dev_err(__scm->dev,
+>>   			"No available mechanism for setting download mode\n");
