@@ -2,120 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 31574743731
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:31:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9D3A74375F
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:35:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232528AbjF3IbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:31:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41234 "EHLO
+        id S232587AbjF3Ifp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:35:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44286 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232569AbjF3Iay (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:30:54 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B1351BE9
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:30:52 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992ac92aed9so182135366b.3
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:30:52 -0700 (PDT)
+        with ESMTP id S232588AbjF3Ifc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:35:32 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 647DE3A89
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:35:26 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1b06777596cso1480756fac.2
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:35:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688113850; x=1690705850;
+        d=linaro.org; s=google; t=1688114125; x=1690706125;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=D/3vNAtGem+SW3NEw8TxWc36bYxPo7w7vyt7ieHf+us=;
-        b=X9CYKpAwj2I4bs/RrW9wetKKNYxVSjpGHS8N5x8UXnynSXk6ZoJ/U+4zVtXpGWT52P
-         ZHmbmhW0HJ898oAw7jB2Bu1G7X+s4Mwn1v8197pmj+jT+M76DTpylqcaW+bEbZq2sqt3
-         wyZeXDMF7lCF95g/TG4uMmjnIE4PQ1OrBQOu8allSpgxlIo4MJsjn/gjWnx8nhxVCl/j
-         o6GD8Cih0hFF25gKsiH3hLt1K0yBkbKSKvfRHTRBpHM9Ano88KR8IyUSjxGuMb0e4s6O
-         aeh8ZYFs9pKAKU65QjG4EdGvvZTOwVRc5ZAgBS7yw8Vl8gDps/ZNb/hl3EwvqyLu6iXF
-         JIBQ==
+        bh=X1Gp5Gg4BNunXsleMrsnw5ZYlJcOJJdlLO0f4lwUvf4=;
+        b=Xrs9VFWohqyU/H8LwH8zZ3T5PJKsE4qUa3nULVa/uzwCY3jburveYZTEQGU4h2OdVi
+         2gpznjZeJwZ+mFFYBwJ0DuOwGEnxevyhmtLIj3blRjllRP2SefPyXkWFsyjYV3Hm2vSg
+         zlffKwvxP2wyofstAyEnWxEDKW3X/n+QDpZrLL6dy4BOFhzijd7OCF9tEsdZMjaSKRWQ
+         DRvbj0i2QDuKvdaYibY11rt1Q87SAy+LUHvraBoa5i1Emc/eb2Rjc4I7PwiArtUP8Ufy
+         gYP88iMeno5kWSJ7doGeZLv0z0fzsjGAOpLsx6/tAlrndvy6WOdHzmUz8eH2sIPBfZX6
+         1s9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688113850; x=1690705850;
+        d=1e100.net; s=20221208; t=1688114125; x=1690706125;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=D/3vNAtGem+SW3NEw8TxWc36bYxPo7w7vyt7ieHf+us=;
-        b=VtvgS8NvWv1/Rg74Ajdj/OPazx/DZvXV/zk3WJuPdRs+F4XOS0PSXVTYQ5d9/cF+eO
-         9/UqLamcd0UTNpQwveyH3H0a5B1ktW8Or5HAypOSlN7Vv8g1tcAOZFRMvZGlClDed0DV
-         o81B9UNbdCSAt1o+5icHXKe4HQH2+8EsRHp4SVv5WNDBZzTF6Cr0alfk+jso9yJ/6vIH
-         BclS/NgZ4EldjXyc36a1ISBkSlA8qEkUMA85ZeElv29KUio/fN6MwnL2CajNmeeHDbk0
-         KDGOo9FUkBgvWL3jr8tulHlpHW1F5TF/i5duIvhFNCoIgMYxOO2v001tvYuT7ec46Tmy
-         u+UA==
-X-Gm-Message-State: ABy/qLYnplsn5KUCGBz3gotaZnmWGFPl0GBAkSBHEX064Y/rPxVZ5Bjp
-        gbIKzxDbEOWuW7FJUSFdIxfkTA==
-X-Google-Smtp-Source: APBJJlFFB5PMDVNJBdfV0DaRNYSfGCkqYb/oBQBBfPmg03KNna48yepwGE4Ai7ntJUnKvIlRSmWGqQ==
-X-Received: by 2002:a17:906:4a91:b0:991:d2a8:658a with SMTP id x17-20020a1709064a9100b00991d2a8658amr1588541eju.34.1688113850590;
-        Fri, 30 Jun 2023 01:30:50 -0700 (PDT)
-Received: from [192.168.147.121] ([77.205.21.63])
-        by smtp.gmail.com with ESMTPSA id k7-20020a170906a38700b00985ed2f1584sm7680503ejz.187.2023.06.30.01.30.49
+        bh=X1Gp5Gg4BNunXsleMrsnw5ZYlJcOJJdlLO0f4lwUvf4=;
+        b=ApM6wAW5KV1rR70aVUb43mYLGsX1o4SyPBZgrzcPpUOeL4qcw/bwbECh5gvPIJQ0zY
+         fAaS2H0TAxesKarxgVQAq96qcGq3G4AMYNobdMMv/hxlI7Ede2dqOLt73NnSsXVNnYYT
+         d8KlB4GHvZ+JFpxzT94lmCjcPQXqD4SCRRJBhD78Toit8xSkoW7tlNpWXKVy7gfqoGCp
+         aukmWIAOi/1nEj2jBCiBkUC5hLdW9b9IyGbu2wumIIttvWnW5Y4KlQY22Z+K4sU+qgyj
+         cWGECBp73qmHmLdyLMY2I/fGhuQMh7ZL8Hz/5sBKSYz9g/cuKpj8P1MP8Gvl6O5ukOkv
+         /+RA==
+X-Gm-Message-State: ABy/qLbnPEdUTyfguELdJjUW1QsDgqudNCpaAgtszW6Mh8tRy9h4Dn2m
+        STkMYf6wWoMxjFF7h6zVmHl7iQ==
+X-Google-Smtp-Source: ACHHUZ41dWBdoUrDVQNrZIPi2FWG8gSP1Rq8A5pKSjChQLo4+ZXNFCQAZ1VAvbvoSvq0q3MAE0kRvQ==
+X-Received: by 2002:a05:6871:8a2:b0:1b0:38f1:841d with SMTP id r34-20020a05687108a200b001b038f1841dmr2814289oaq.45.1688114125620;
+        Fri, 30 Jun 2023 01:35:25 -0700 (PDT)
+Received: from [192.168.1.4] ([223.233.68.54])
+        by smtp.gmail.com with ESMTPSA id jx15-20020a17090b46cf00b00262e914169csm8495370pjb.12.2023.06.30.01.35.20
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jun 2023 01:30:50 -0700 (PDT)
-Message-ID: <f4fa80fd-1a6a-4718-0287-f5288cd9d912@baylibre.com>
-Date:   Fri, 30 Jun 2023 10:30:48 +0200
+        Fri, 30 Jun 2023 01:35:25 -0700 (PDT)
+Message-ID: <2dcfd994-2729-8780-a7aa-9a051d2fa047@linaro.org>
+Date:   Fri, 30 Jun 2023 14:05:18 +0530
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 0/3] Configure usb0 as peripheral on am335x boards
+ Thunderbird/102.3.1
+Subject: Re: [PATCH v8 02/11] dt-bindings: dma: Increase iommu maxItems for
+ BAM DMA
 Content-Language: en-US
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        vigneshr@ti.com, nm@ti.com
-References: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
- <20230630072047.GK14287@atomide.com>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <20230630072047.GK14287@atomide.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     agross@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, andersson@kernel.org,
+        bhupesh.linux@gmail.com, robh+dt@kernel.org,
+        konrad.dybcio@linaro.org, vladimir.zapolskiy@linaro.org,
+        rfoss@kernel.org, neil.armstrong@linaro.org, djakov@kernel.org,
+        stephan@gerhold.net, Anders Roxell <anders.roxell@linaro.org>,
+        Linux Kernel Functional Testing <lkft@linaro.org>
+References: <20230526192210.3146896-1-bhupesh.sharma@linaro.org>
+ <20230526192210.3146896-3-bhupesh.sharma@linaro.org>
+ <27b85110-9eb8-84dc-17a9-908e312e2e22@linaro.org>
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+In-Reply-To: <27b85110-9eb8-84dc-17a9-908e312e2e22@linaro.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Tony,
+Hi Krzysztof,
 
-On 6/30/23 09:20, Tony Lindgren wrote:
-> Hi,
->
-> * Julien Panis <jpanis@baylibre.com> [230629 13:10]:
->> This series configures usb0 dr_mode as 'peripheral' for am335x-evm,
->> am335x-evmsk, and am335x-icev2. This USB port is mainly used for
->> RNDIS and DFU.
-> Is this a mini-B connector? Just wondering if it was originally attempted
-> to be configured as OTG or how it ended up with a host configuration..
-
-It's a micro USB-AB connector.
-I don't know how it ended up with a host configuration, it looks like an oversight.
-Maybe Vignesh or Nishanth can confirm (?)
-
->
->> Initially, a series was submitted to overlay dr_mode in u-boot specific
->> device trees ('<board>-u-boot.dtsi'):
->> https://lore.kernel.org/all/20230621-fix_usb_ether_init-v2-0-ff121f0e8d7a@baylibre.com/
+On 6/18/23 2:09 PM, Krzysztof Kozlowski wrote:
+> On 26/05/2023 21:22, Bhupesh Sharma wrote:
+>> Since SM8450 BAM DMA engine supports five iommu entries,
+>> increase the maxItems in the iommu property section, without
+>> which 'dtbs_check' reports the following error:
 >>
->> It was finally decided to modify linux device trees.
-> Do we need these as fixes? If so is there a fixes tag for these?
+>>    arch/arm64/boot/dts/qcom/sm8450-sony-xperia-nagara-pdx224.dtb:
+>>      dma-controller@1dc4000: iommus: is too long
+> 
+> Also, please drop error message, because it is not true. The files do
+> not have such device node, so you cannot have such warning.
+> 
+> Please rewrite the commit msg to explain that certain devices, e.g.
+> sm8250, use more iommus.
 
-I don't think so.
-The u-boot series mentioned above was submitted to fix an error returned
-by usb_ether_init() function. This error appeared after changes in u-boot
-(arch/arm/mach-omap2/am33xx/board.c). The u-boot commit is:
-6815a66ad7430 ("am33xx: musb: Remove unused configuration logic").
-But this commit is right actually, and the error appeared because dr_mode
-was not properly configured for am335x-evmsk and am335x-icev2 dts.
-In other words, this u-boot commit is correct but revealed an oversight
-in dr_mode configuration for these boards.
-So, there is not a fixes tag here. That was just an omission in device trees.
+I have sent a v9 (which can be seen here: 
+<https://lore.kernel.org/linux-arm-msm/20230630082230.2264698-1-bhupesh.sharma@linaro.org/>), 
+which addresses your review comments shared on v8.
 
->
-> Regards,
->
-> Tony
+Please help review.
 
-Julien
+Thanks,
+Bhupesh
