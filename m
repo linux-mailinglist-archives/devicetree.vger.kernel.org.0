@@ -2,169 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C0687436E0
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C0DC7436F5
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 10:22:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232437AbjF3ITo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 04:19:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35756 "EHLO
+        id S231431AbjF3IWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 04:22:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230158AbjF3ITn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:19:43 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21985DF
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:19:42 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fb7b2e3dacso2581923e87.0
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:19:42 -0700 (PDT)
+        with ESMTP id S230158AbjF3IWr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 04:22:47 -0400
+Received: from mail-qk1-x731.google.com (mail-qk1-x731.google.com [IPv6:2607:f8b0:4864:20::731])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E92821FCD
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:22:44 -0700 (PDT)
+Received: by mail-qk1-x731.google.com with SMTP id af79cd13be357-76571dae5feso147745985a.1
+        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 01:22:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688113180; x=1690705180;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2QQq9NTHobPqeSfcXQ7aU1rLWiJqSno6OurOsmAmkQY=;
-        b=qi7zdbfnnJVVBGENqi243qHF0eVZImrdPMnsUGHylbN2GbHbTnFdUkVeT+l9mM8nR+
-         4z0LVu+weSBY8ZbNCZ0Y57PRTDfXhmE65fD3MtPb9SK1h+PSs0PZebwm6vU23T1RnHJW
-         q/G1aB7AMnG2Kjqv108yQo3BfFa/3AtncPXRMn8RBGwAAOJt8wDMsQLFNBAZHi05Iwz7
-         +11zNDFxZgwriLYtVAnkS9bIGxv0XKWRyjHU1QXkj/N5fMGRXx3glIx1qTXbscyDJYG1
-         u0wIPqRxP1lIYviuiEt+htyg9A2/jt4bspXKMCGkGL0DyhZG1pDu+xndayRBPaUHbjSO
-         vuiQ==
+        d=linaro.org; s=google; t=1688113363; x=1690705363;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=24mW1z/BqCb5EBJHp3ULvIr3bZwApFxhHmnOyHEIWyI=;
+        b=MvVFGuyKfZ4RfhcbEV9YmVNzMeIxc4lcl9UuH7lRzVqqYIW7z1hmetpngcE66TjiSp
+         Dbd+W/JAvsyRkU1Lt4gibkJYQJwmnR5UExEuKeN2u+Gw6wtBMWnlZe9Ee9S76+3y3N5Q
+         ZVdLeqtzOBMJ8pdPDIJcHy8+aJuNCq0IAzM4BOMXUh6a4CPmPkx4ZBrwdRyuIKx2q8UQ
+         fqJGRrJ+T37eJ9YY0VDUYywTZ9HJXBos5x8HfTism8dGfUew0N8OD2V7Y78Udosc3T0D
+         aFcn7HEjfNIsLkZok4Z2PUEW2RV1GSy2njui6Qw1whU6F436hR8HP0D7tIOU2xUQ4z33
+         SNDQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688113180; x=1690705180;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2QQq9NTHobPqeSfcXQ7aU1rLWiJqSno6OurOsmAmkQY=;
-        b=Ybh8JiYIqZQl732mph23eHeRTkmR0H209cyUpyV0+OooydBJ5VkWrm9So0AxW5tRBr
-         ow4Tq5Eo9y4b5jhVEWonKrPZ4maImMT4DSNQDSxPLSAhyL4gJ7dYfUv0hJwDNw3n9BOR
-         s9AlQXyCaefARr2BooUFFkbIRIzYvs2TFzonaOw4ZmmtFdsC2HP2TxLFhXXr9ifnfQfj
-         G7fQPUTdcM+68i0G/9EY9vcLjfhPjPRAA7N3wGw/8uosdv5ESc/2KvPmkac51S1585VB
-         gFvqo/G0C7OkmysN3PqkYogDfJTCHTE5twHL/xXySO2FWt11Ne3g3DhsfhQhDt+MhEgh
-         kduQ==
-X-Gm-Message-State: ABy/qLbW/zhFj/cpA/ylN2IQxBIgUMpbyGzhCuIqeBQH8D1YXICl2dod
-        E4IG7obR195Vc3zW0CpCfn7jEg==
-X-Google-Smtp-Source: APBJJlF9DxDWlPlR4S6OH6RalO709z8tlBHRKPg0kZSn3jwh3a/IMzmWQXh1YQGbGjAOgek+gfaFRw==
-X-Received: by 2002:ac2:58fb:0:b0:4fb:9772:6639 with SMTP id v27-20020ac258fb000000b004fb97726639mr1504788lfo.6.1688113180356;
-        Fri, 30 Jun 2023 01:19:40 -0700 (PDT)
-Received: from [192.168.1.101] (abyj222.neoplus.adsl.tpnet.pl. [83.9.29.222])
-        by smtp.gmail.com with ESMTPSA id u17-20020ac243d1000000b004facdf96283sm2368647lfl.254.2023.06.30.01.19.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 30 Jun 2023 01:19:39 -0700 (PDT)
-Message-ID: <c59d002b-9d06-d744-d90b-22da4186522a@linaro.org>
-Date:   Fri, 30 Jun 2023 10:19:38 +0200
+        d=1e100.net; s=20221208; t=1688113363; x=1690705363;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=24mW1z/BqCb5EBJHp3ULvIr3bZwApFxhHmnOyHEIWyI=;
+        b=Oh6UfqfaRgFoXN4KY0NuaH7yeRVOuphWOmw1l/st4be0YMbcrKCcqB22wQ3TT+Rhsl
+         lUJNL40O3DDOBFehJ8+6IfaODHYTgNM1OnzGM9tT3jztZd/wlAdl21PT/Uk7FhanbC6o
+         jzSZB7FijbmL+L/nNe95pbaWa4tyIPjUT3p/iJ3bnDMTtau6VkjqMyE4dA316cS3MS81
+         FK1us7+rd3ajPpQ2pzT+Bgfo264FA4oIfhmFccCuH5wvDz7dCR0V+UGlpAknZemxC+J+
+         P69vx0p66qF5wRHXv8AMqMHdaun7Flx6jqnBYiGhNSv6927d9Hw8N0T7GvBMQUb8/hrX
+         sokg==
+X-Gm-Message-State: AC+VfDwgF6ToNZt7E/ehowwuDaZx7jttaKLHPCqyDccG/vsW6JaldIW3
+        UEjGyf7GK6zE5htM4tG2wPUHbyDQfihsfQUsg8Q=
+X-Google-Smtp-Source: ACHHUZ7M/I5tDg2Tx8uMTc+kdz6EifYof2eCpYo3fW6wNGsw+33eb+QabNrLyJHUsmo7kjyIkxcwkA==
+X-Received: by 2002:a05:620a:8e0c:b0:767:2736:ecd4 with SMTP id re12-20020a05620a8e0c00b007672736ecd4mr1513344qkn.47.1688113363676;
+        Fri, 30 Jun 2023 01:22:43 -0700 (PDT)
+Received: from localhost.localdomain ([223.233.68.54])
+        by smtp.gmail.com with ESMTPSA id a16-20020aa780d0000000b00666e2dac482sm9462967pfn.124.2023.06.30.01.22.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jun 2023 01:22:43 -0700 (PDT)
+From:   Bhupesh Sharma <bhupesh.sharma@linaro.org>
+To:     devicetree@vger.kernel.org, dmaengine@vger.kernel.org
+Cc:     vkoul@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        andersson@kernel.org, bhupesh.sharma@linaro.org,
+        bhupesh.linux@gmail.com, agross@kernel.org,
+        konrad.dybcio@linaro.org, conor+dt@kernel.org, robh+dt@kernel.org
+Subject: [PATCH v9 0/2] dt-bindings: dma: Add support for SM6115 and QCM2290 SoCs
+Date:   Fri, 30 Jun 2023 13:52:28 +0530
+Message-Id: <20230630082230.2264698-1-bhupesh.sharma@linaro.org>
+X-Mailer: git-send-email 2.38.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: sm8450-hdk: add ADC-TM thermal
- zones
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230630061315.4027453-1-dmitry.baryshkov@linaro.org>
- <20230630061315.4027453-8-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230630061315.4027453-8-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30.06.2023 08:13, Dmitry Baryshkov wrote:
-> Add thermal zones controlled through the ADC-TM (ADC thermal monitoring)
-> PMIC interface. This includes several onboard sensors and the XO thermal
-> sensor.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-[...]
->  
-> +	channel@144 {
-> +		reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-This define should be cleaned up.. Since it takes a sid argument,
-it really is ADC7_AMUX_THM1_100K_PU(sid)
+Add support for SM6115 and QCM2290 SoCs in qcom,bam-dma bindings.
+Also increase iommu maxItems for BAM DMA to 6 which is the number
+required on sm8250 SoC.
 
-Konrad
+This patchset is rebased on linux-next/master.
 
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "skin_msm_temp";
-> +	};
-> +
-> +	channel@145 {
-> +		reg = <PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "camera_temp";
-> +	};
-> +
-> +	channel@146 {
-> +		reg = <PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "therm1_temp";
-> +	};
-> +
-> +	channel@147 {
-> +		reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "wide_rfc_temp";
-> +	};
-> +
-> +	channel@148 {
-> +		reg = <PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "rear_tof_temp";
-> +	};
-> +
-> +	channel@14c {
-> +		reg = <PM8350_ADC7_GPIO3_100K_PU(1)>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "therm2_temp";
-> +	};
-> +
->  	channel@303 {
->  		reg = <PM8350B_ADC7_DIE_TEMP>;
->  		label = "pm8350b_die_temp";
->  	};
->  
-> +	channel@348 {
-> +		reg = <PM8350B_ADC7_AMUX_THM5_100K_PU>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "usb_conn_temp";
-> +	};
-> +
->  	channel@403 {
->  		reg = <PMR735A_ADC7_DIE_TEMP>;
->  		label = "pmr735a_die_temp";
->  	};
-> +
-> +	channel@44a {
-> +		reg = <PMR735A_ADC7_GPIO1_100K_PU>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "qtm_w_temp";
-> +	};
-> +
-> +	channel@44b {
-> +		reg = <PMR735A_ADC7_GPIO2_100K_PU>;
-> +		qcom,hw-settle-time = <200>;
-> +		qcom,ratiometric;
-> +		label = "qtm_n_temp";
-> +	};
->  };
->  
->  &remoteproc_adsp {
+Changes since v8:
+-----------------
+- v8 can be viewed here: https://www.spinics.net/lists/linux-crypto/msg72349.html
+- As rest of the patches from v8 have been applied to linux-next, dropped them from v9.
+- Added dma list and maintainer in Cc again as the Cc list got messed up while
+  sending out v8.
+
+Changes since v7:
+-----------------
+- v7 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230519214813.2593271-1-bhupesh.sharma@linaro.org/
+- Addressed Stephan's comment about RPM clocks for sm6115 crypto block in dtsi.
+- Also fixed the iommu context ids for sm6115 crypto block in dtsi.
+
+Changes since v6:
+-----------------
+- v6 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230405072836.1690248-1-bhupesh.sharma@linaro.org/
+- Collected Acks, R-Bs and Tested-by for various patches.
+- Addressed Konrad's comment about iommu sids for sm8150 and sm8250
+  crypto node entries.
+- Addressed Konrad's and Stephan's comments about adding RPM clock for
+  crypto blocks on qcm2290 and sm6115.
+
+Changes since v5:
+-----------------
+- v5 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230402100509.1154220-1-bhupesh.sharma@linaro.org/
+- Collected Ack from Rob for [PATCH 01/11].
+- Addressed Georgi's comment about interconnect cells in [PATCH 10/11].
+
+Changes since v4:
+-----------------
+- v4 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230331164323.729093-1-bhupesh.sharma@linaro.org/
+- Collected R-Bs from Konrad for a couple of patches sent in v4.
+- Fixed incorrect email IDs for a couple of patches sent in v3, which I used for
+  some patches created on a different work machine.
+- No functional changes since v3.
+
+Changes since v3:
+-----------------
+- v3 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230328092815.292665-1-bhupesh.sharma@linaro.org/
+- Collected Acks from Krzysztof for a couple of patches sent in v3.
+- Fixed review comments from Krzysztof regarding DMA binding document
+  and also added a couple of new patches which are required to fix the
+  'dtbs_check' errors highlighted after this fix.
+
+Changes since v2:
+-----------------
+- v2 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230322114519.3412469-1-bhupesh.sharma@linaro.org/
+- No functional change since v2. As the sdm845 patch from v1 was accepted in linux-next,
+  dropped it from this version.
+
+Changes since v1:
+-----------------
+- v1 can be viewed here: https://lore.kernel.org/linux-arm-msm/20230321190118.3327360-1-bhupesh.sharma@linaro.org/
+- Folded the BAM DMA dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230321184811.3325725-1-bhupesh.sharma@linaro.org/)
+- Folded the QCE dt-binding change.
+  (sent earlier as: https://lore.kernel.org/linux-arm-msm/20230320073816.3012198-1-bhupesh.sharma@linaro.org/)
+- Folded Neil's SM8450 dts patch in this series.
+- Addressed review comments from Rob, Stephan and Konrad.
+- Collected Konrad's R-B for [PATCH 5/9].
+
+Bhupesh Sharma (2):
+  dt-bindings: dma: Add support for SM6115 and QCM2290 SoCs
+  dt-bindings: dma: Increase iommu maxItems for BAM DMA
+
+ .../devicetree/bindings/dma/qcom,bam-dma.yaml | 22 ++++++++++++-------
+ 1 file changed, 14 insertions(+), 8 deletions(-)
+
+-- 
+2.38.1
+
