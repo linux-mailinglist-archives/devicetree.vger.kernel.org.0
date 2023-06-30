@@ -2,138 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 582B7743B4C
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 13:58:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E62EB743B74
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 14:06:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232661AbjF3L6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 07:58:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46976 "EHLO
+        id S233010AbjF3MGE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 08:06:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50340 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231956AbjF3L6R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 07:58:17 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0CA76171E;
-        Fri, 30 Jun 2023 04:58:15 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 291E56173B;
-        Fri, 30 Jun 2023 11:58:15 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 88CF5C433C0;
-        Fri, 30 Jun 2023 11:58:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688126294;
-        bh=og/alEAgFmUrna29k3gmbnQ2qlv9qDvV6lg1WZdZS3Q=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XG4Ryok+6n2Ff+5jP1ZgE0I38G9bhUJJIvahc3FNxUc8luaLi0OpjlRlR7XC7uHlO
-         DsBOorTzcHghPWzPJUJuBORYQlEaV4yDWKZpFAdzQlmPN7oPNsY0Ca+r+nBnS6Jxge
-         VwpwCY9LRnYc2kTrIHlJ/KcFG0S1QpkxHWgbGkOqdOChnuWrcgS67QvK50wugItFJG
-         /acH2V6uA1yKmNBxK61IZ9Dk3n042V6cgJkXULvfh08PTuVaVwhC9mUxhPoWcEHSDp
-         NO0a7qwNiIown7xwZov6l+EYthAjy++agd04DGX/9bmAVn5ccUb9cKfiRHhM4SVZdK
-         C97ZAfhc26UkA==
-Date:   Fri, 30 Jun 2023 12:58:06 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Lee Jones <lee@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>,
+        with ESMTP id S233014AbjF3MFl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 08:05:41 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1DAC46B8;
+        Fri, 30 Jun 2023 05:04:56 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbc12181b6so15461825e9.2;
+        Fri, 30 Jun 2023 05:04:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688126687; x=1690718687;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=XeWX/R3ALNQW7TMdg+WDALqzh4Qvq/B6Wn9m1S92myA=;
+        b=JoLxtruYLIlTTHRqsCr+TZ6lLDf8IIj/rhFiwETu3Qp7dNG/lRPnCyfHxdG9aPgJB6
+         GU6V1HDHQVP+/fmNPyCMlRtR01ZJFwB6zSQdKhfmmF+I64oT/LZgQmLsnXPdUA56A4Lw
+         2VYwy6fOQ+IHOk22ddL0HSVBkQzaVy6e2EgtFHKtRSJlNW1XIerKAtPTSdTESwQZtqjO
+         4nLDPvDASO64ceaPyBAoBkkW+CoS7rCOUMXP+8PMHSw50Fn6Nzqufe3IkFgaXUjv+igp
+         PP17+yS3HmaVMEFX/M5qfduAK2KcImCsvNMCFwAcwFdpAUOvm8GtlljoNCKcBA76oND9
+         YRBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688126687; x=1690718687;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=XeWX/R3ALNQW7TMdg+WDALqzh4Qvq/B6Wn9m1S92myA=;
+        b=C+j/0gl4OFwFJMHsjAkL9tB4l7+sJgohl1Pe6i3NE1d8AB2ZJkrWV3cyuioelCfoOv
+         cqnxooNqOlX7m06ml7bs636jZDKsqqu7CtQ8dCW2Ya4PCBygbGcjpKmVh42NXnbPXj5k
+         +KsUTy3Hc/fVCcXzlBR2LmcTsOJQQSwx5ni5oYPc7eeJ89sIyP0jLX1yU8A5pMDa8xNX
+         le4HUTS28t30//V9QU2LV36aj1rBNatBn8yjr0zAfmuI73BHWC2GV7rFjewKbYMK0XHR
+         kp6EDSGz/4mAijT/SvJSRbjzpHW8U5qNtQU4eO3G+xWlzgREUL9KyyQCpdoiakVj4Xqo
+         ZqUw==
+X-Gm-Message-State: AC+VfDxSJanoNgri6m1qJYm/0YLTch9QD6+hpMYnq9c/IQhu13phX8dB
+        y12N5b1o+qq2fgZ8wLgTOGA=
+X-Google-Smtp-Source: ACHHUZ4/eJQGJDNAiNsJSdVSI4ZAtA7L30Wt/03YbJalDCSU7kF5tE/eLGUmDlr4nRGqTwyJlmnqCw==
+X-Received: by 2002:a05:600c:21ce:b0:3f8:d0e7:dad8 with SMTP id x14-20020a05600c21ce00b003f8d0e7dad8mr1784038wmj.3.1688126687111;
+        Fri, 30 Jun 2023 05:04:47 -0700 (PDT)
+Received: from prasmi.home ([2a00:23c8:2501:c701:dbbb:7082:18ec:f407])
+        by smtp.gmail.com with ESMTPSA id k22-20020a05600c0b5600b003fb40f5f553sm11766912wmr.31.2023.06.30.05.04.46
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 30 Jun 2023 05:04:46 -0700 (PDT)
+From:   Prabhakar <prabhakar.csengg@gmail.com>
+X-Google-Original-From: Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <4283e3aa-14b5-4b2e-9a8a-aeee1e493c27@sirena.org.uk>
-References: <472a4d86-3bfb-4c2b-a099-f1254dd01e24@sirena.org.uk>
- <20230629072500.GA2110266@google.com>
- <d070eecd-cb3b-4968-803e-1817a1a4359a@sirena.org.uk>
- <20230629155134.GB2110266@google.com>
- <7987cbbe-55bc-49a9-b63a-7f1906bf5f74@sirena.org.uk>
- <CAL_Jsq+AQrv7EGMtEkB-2cBCvA4mLHuMbyQ=f39yQkYPkvfVww@mail.gmail.com>
- <998ef8d8-594e-45e3-9aa3-ec9061cf7f11@sirena.org.uk>
- <CAL_JsqK1X-oZHerE9qhcPZ=mFsm7rJa3KxWGBqV3znHHfr6vaQ@mail.gmail.com>
- <920531c8-b5c1-409a-9cda-3ec77ba944e7@sirena.org.uk>
- <20230630071751.GC2110266@google.com>
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-gpio@vger.kernel.org, Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [RFC PATCH 0/4] Add missing pins for RZ/Five SoC
+Date:   Fri, 30 Jun 2023 13:04:29 +0100
+Message-Id: <20230630120433.49529-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="q6ikaDz92rEr7KkW"
-Content-Disposition: inline
-In-Reply-To: <20230630071751.GC2110266@google.com>
-X-Cookie: Old mail has arrived.
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
 
---q6ikaDz92rEr7KkW
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Hi Geert,
 
-On Fri, Jun 30, 2023 at 08:17:51AM +0100, Lee Jones wrote:
-> On Thu, 29 Jun 2023, Mark Brown wrote:
+This patch series intends to incorporate the absent port pins P19 to P28,
+which are exclusively available on the RZ/Five SoC.
 
-> > My suggestion is that once the core is ready to apply that and also
-> > start applying everything else to Lee's tree as it's ready.  A branch
-> > also works and might come in handy anyway in the case where there's some
-> > subsystem wide updates in some other subsystem (since it avoids having
-> > to pull the whole MFD tree in or anything like that) but it's not
-> > essential to the idea.
+I am submitting this series as an RFC (Request for Comments) as the port
+pins P19 to P28 cannot be utilized as GPIO but can be utilized as
+multiplexed pins. Additionally, certain attributes such as setting the
+ISEL would necessitate a device tree property to indicate ISEL. Therefore,
+before proceeding with the addition of comprehensive support, I would
+appreciate some input on whether an alternative approach could be considered.
 
-> The issue we currently have is that the core usually comes with a header
-> file which is included by some or all of the leaf drivers.  If leaf
-> drivers are pulled in without that header, the drivers will fail to
-> build which will make people grumpy.
+Cheers,
+Prabhakar
 
-Which is why I'm not suggesting doing that.
+Lad Prabhakar (4):
+  pinctrl: renesas: rzg2l: Include pinmap in RZG2L_GPIO_PORT_PACK()
+    macro
+  pinctrl: renesas: pinctrl-rzg2l: Add validation of GPIO pin in
+    rzg2l_gpio_request()
+  pinctrl: renesas: pinctrl-rzg2l: Add the missing port pins P19 to P28
+  riscv: dts: renesas: r9a07g043f: Update gpio-ranges property
 
-> The suggestion of a separate branch that's added to over time as leaf
-> drivers become ready is even more work that a one-hit strategy.  It will
-> also mean littering the working branch which a bunch more merges and/or
-> more frequent rebases than I'm happy with.
+ arch/riscv/boot/dts/renesas/r9a07g043f.dtsi |   4 +
+ drivers/pinctrl/renesas/pinctrl-rzg2l.c     | 263 +++++++++++++-------
+ 2 files changed, 176 insertions(+), 91 deletions(-)
 
-As I said you don't *need* to do the separate branch, it's more of a
-nice to have in case cross tree issues come up, and it'll probably work
-fine most of the time to just put the incremental commits directly on
-your main branch even if there was a separate branch for the initial
-batch.  This all becomes especially true as we get close to the merge
-window and the likelyhood of new cross tree issues decreases.
+-- 
+2.34.1
 
---q6ikaDz92rEr7KkW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSew00ACgkQJNaLcl1U
-h9AvZgf9EKqEitJbUm3ywtBy7eGuYkv7xgaky391q0cvAAhIIh36P3G47f7uIEF3
-sGvPJxuu/5oSmkxW3Ir0kJB2tBbQviAFG2uaFVxf3F0BZOnsIc+VJIY357uPuB9E
-mt8BOcMip1jI2xeX5R8C4S8axp5Ce+n/cmMseOCPRAMHP7xVf1TdFSGA2mFqwSNJ
-bOlq1bqUGvs8ZwLfej//laEnWQKEspPrQ5rYZASRVx+85HtLgkUM665FVa6Jg/QF
-hkCIezMosvl/qzfBMK72Z42Bk3HAM3xYFCpy0eiha+NJDBHsWIX1GruVclkn9n4R
-8jlIG43meWFkYsrt1KiQ+E8+9wJk6Q==
-=HBKs
------END PGP SIGNATURE-----
-
---q6ikaDz92rEr7KkW--
