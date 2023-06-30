@@ -2,105 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4269B744226
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 20:25:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CAE74422C
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 20:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232680AbjF3SZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 14:25:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37196 "EHLO
+        id S230100AbjF3S0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 14:26:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230525AbjF3SZK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 14:25:10 -0400
-Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2042.outbound.protection.outlook.com [40.107.92.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4293BCA;
-        Fri, 30 Jun 2023 11:25:09 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=bJrVKYHq8kQ9rRLj8ncjvqNXyoxAFVEZdq/TthmRGeEZk1GE905Vpet5xUT8KuUAq/O2rKTQgnlJz92u4pIo2Y1drn/LOXxj0Vxb27yZtMdg1L5/S2T0I6T9ameLg/IsDSjrMxIuSMAIvGCih59MYlcGDdXKGZUrFd1KFhJLwN9Ii3UOcag2v7YbzdvQQc3MW6dxuCFkksp7G5DzVJDAzW6XbiVvPfDUj2jZIigRiT+rnU6Rtk2PkbHETC2mcn/rLyXspCxuOdiWjj+WaFyKYuvSDoRAITKYtT8fFVnXA62j70kY4iHjb3WAhwtRnrHxFtZNsxwndtM4AqOe8lDhyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xEKS2OQjfHTx+TTcuLZv+mAL2FZ4gz18KDCYjtohWVs=;
- b=Lynz1FLRxOONxsSs8YW3tYQX/4Bm5+G8xeAK6Loy8ylW6X+faI4dovueUjOoFWFC83kbu6tuddjr/krmc2lCBcTbV+HPel7RKIUv84Fd1DKZmfS98GqNOR+uCwSXR7jpQhUV/oucbaw/myJ/lDhfvltmlnSI8n6YZVgx3tJGv688AgSEdreoIZZPXPtOE80jR0eZT/Bj4GDvT1Rek7P7Fv18vCulhHPni/7g3DQz+93hcWlNNZ6MFf466PcfHlYE501QAxhrcvnTTUggkTDMThMd8qcmF1LMD43fepF63ek20sc1AaEtSFX5b2Fl6IciSaEnyXiIZnYiJVFXlZpRyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xEKS2OQjfHTx+TTcuLZv+mAL2FZ4gz18KDCYjtohWVs=;
- b=JS5jQX8CnoIDRre1YGjU7mFPHFvTOpKCIqD5Z9puiSYbxCXVAnfimxrJlk16KzDJKkw8CPr7KoCLQstk+xVtN674rJ51X73vGIcae0dvvGPVN03diC5zz+OQh8gFd2Bsp3MaYnhTM+0gnBMXCxmNfeUVfG/N5jV4mcf2sDo9Zgs=
-Received: from MW2PR16CA0049.namprd16.prod.outlook.com (2603:10b6:907:1::26)
- by SJ1PR12MB6123.namprd12.prod.outlook.com (2603:10b6:a03:45a::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.19; Fri, 30 Jun
- 2023 18:25:07 +0000
-Received: from CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
- (2603:10b6:907:1:cafe::45) by MW2PR16CA0049.outlook.office365.com
- (2603:10b6:907:1::26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.22 via Frontend
- Transport; Fri, 30 Jun 2023 18:25:06 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
-Received: from SATLEXMB04.amd.com (165.204.84.17) by
- CO1NAM11FT077.mail.protection.outlook.com (10.13.175.55) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6500.51 via Frontend Transport; Fri, 30 Jun 2023 18:25:06 +0000
-Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
- 2023 13:25:04 -0500
-Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
- (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
- 2023 13:25:04 -0500
-Received: from [172.19.74.144] (10.180.168.240) by SATLEXMB04.amd.com
- (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
- Transport; Fri, 30 Jun 2023 13:25:03 -0500
-Message-ID: <9f39fc3d-ae40-e5b1-8d40-8c27fc4e1022@amd.com>
-Date:   Fri, 30 Jun 2023 11:24:58 -0700
+        with ESMTP id S232530AbjF3S0C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 14:26:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0B91611F;
+        Fri, 30 Jun 2023 11:26:00 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 762E8617E3;
+        Fri, 30 Jun 2023 18:26:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7241DC433C8;
+        Fri, 30 Jun 2023 18:25:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688149559;
+        bh=lU5Jax1nzuulLLXk8kmWS/Lwjle6hctsG+z14gG1nZk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=n2zuYPZpxDO7zSPz/R0oLW3+8CTRhOHgWtgagY86H+pzYMyLySRY/nTAi5+yrL6WW
+         iXTzsfv3BiXOw6YRhYwr855IKdYMmrLdMQIQx0UZBQ54kpo8M0uUKXo72sFZpiJBe7
+         P8OyXKLJp99xlzVzQWRkMmmlyBkaAv4Q2+xQGV2qSWl5axyjVWpvjb9/a3V+77bpQN
+         mV9lMWip/gI0Wvh0NzCHmChfanhc2KN2+T49HauZcovxE28f0bFgj358RbyQOHfyRP
+         JVyj4s+UWbxawXhXP+kbvjdieCccsAW7WocqgXgU6Z1ftqdctnFR766dDZXCOl5uVg
+         sJXTCbKmFQaTw==
+Date:   Fri, 30 Jun 2023 19:25:55 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     =?utf-8?B?UGF3ZcWC?= Anikiel <pan@semihalf.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org, dinguyen@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, mchehab@kernel.org, upstream@semihalf.com,
+        amstan@chromium.org, ribalda@chromium.org
+Subject: Re: [RFC PATCH 3/3] ARM: dts: Add Chameleon v3 video node
+Message-ID: <20230630-scrimmage-antelope-7d1f82d491fc@spud>
+References: <20230630144006.1513270-1-pan@semihalf.com>
+ <20230630144006.1513270-4-pan@semihalf.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
-Content-Language: en-US
-To:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>
-CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <max.zhen@amd.com>,
-        <sonal.santan@amd.com>, <stefano.stabellini@xilinx.com>
-References: <1688059190-4225-3-git-send-email-lizhi.hou@amd.com>
- <20230629225631.GA446944@bhelgaas> <20230629235226.GA92592-robh@kernel.org>
-From:   Lizhi Hou <lizhi.hou@amd.com>
-In-Reply-To: <20230629235226.GA92592-robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT077:EE_|SJ1PR12MB6123:EE_
-X-MS-Office365-Filtering-Correlation-Id: dc7e3027-e8e5-48a4-cc9d-08db7997549c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 7L8lRsAIfZhI0RydQ/hMTOSdOmEK3kFE3eJUng1sGiPnSe5uaI8x0HO4ZcSF0nbxkpxOelSTyJmGDMgumBk5Uc3+RNic+WcQYtkXOvnDcFpabHoJiVj6gQ0me/CrdiSPfMJQKT8CbTQ5mS8k8kPCPOLb18FfsrDJsltG6bwQKB2amKeC+8DA9js596Lim0QrhmQqU47GgHtfqnOD+fi1leQnddEQRDFBD+eHe/ezAGvUE3b+HpajaTKt0iBF/tuakCt+FgeVh8h0ce+xVJNfKvhoknYfNwsD4o2OA+MBeGl7p3LKGmX9mzaxKH5zNktVNbH/jNCbMWFs3UTw+0aDnDjbPMoko3ueEMzTI1XJNLIYeh5auW0/4qKElaADGhpXvhGzhDrLNt2fANgE9p5xNJ7JcQFhB+KTzRtJjMIzvhyIn2U4dDLFzNv1WhIifw1lycJDUdaq1reFs8b/LhkQBMF8rIK3nmYesIyvrRhyikibplWfQBI379K/dhQitTPcEKaPJ6LCNjplSpIACTyQstZpfCCQawq5NYd0SO7bI/TObbiIoJnHralyNWOZgxmAHK1pW0Epq9tjJ7s3CsXChb36OeDf3QxzYMxqY5VqZ8b0mxoYinBn5G7mv0Qp4YOp4BJ7jhKfr7hqq+JVJbTOyA8mx3TNq6cXfm91tNyi+UgNB+3UnAE3BivpubrYf5sILI0iMCCUixNgxVkWNj5CdSAhoQlt3jDGaM0pW1N8TrwUo7iBObOErvdlbdfiXfQLqnM2EKzFJj8ul86bNjTVkH5dIXdu5JjdIRo8LJqxoOs=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199021)(36840700001)(40470700004)(46966006)(82310400005)(966005)(82740400003)(81166007)(6666004)(356005)(426003)(336012)(47076005)(2616005)(186003)(26005)(53546011)(40480700001)(36860700001)(31696002)(5660300002)(86362001)(40460700003)(8676002)(44832011)(36756003)(2906002)(70206006)(70586007)(54906003)(110136005)(16576012)(8936002)(316002)(4326008)(41300700001)(478600001)(31686004)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2023 18:25:06.8079
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: dc7e3027-e8e5-48a4-cc9d-08db7997549c
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6123
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="kVJXDbSCjEHzrhGM"
+Content-Disposition: inline
+In-Reply-To: <20230630144006.1513270-4-pan@semihalf.com>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -108,37 +60,44 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 6/29/23 16:52, Rob Herring wrote:
->>> +			rp[i].child_addr[0] = j;
->>> +	ret = of_changeset_add_empty_prop(ocs, np, "dynamic");
->> It seems slightly confusing to use a "dynamic" property here when we
->> also have the OF_DYNAMIC dynamic flag above.  I think they have
->> different meanings, don't they?
-> Hum, what's the property for? It's new in this version. Any DT property
-> needs to be documented, but I don't see why we need it.
+--kVJXDbSCjEHzrhGM
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-This is mentioned in my previous reply for V9
+On Fri, Jun 30, 2023 at 04:40:06PM +0200, Pawe=C5=82 Anikiel wrote:
+> Add node for the video system device.
+>=20
+> Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
+> ---
+>  .../socfpga/socfpga_arria10_chameleonv3.dts   | 54 +++++++++++++++++++
+>  1 file changed, 54 insertions(+)
+>=20
+> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.=
+dts b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
+> index 422d00cd4c74..5e66363d4ab5 100644
+> --- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
+> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
+> @@ -10,6 +10,60 @@ / {
+>  	compatible =3D "google,chameleon-v3", "enclustra,mercury-aa1",
+>  		     "altr,socfpga-arria10", "altr,socfpga";
+> =20
+> +	soc {
+> +		video@c0060500 {
+> +			compatible =3D "google,chv3-video";
 
-https://lore.kernel.org/lkml/af9b6bb3-a98d-4fb6-b51e-b48bca61dada@amd.com/
+This compatible does not seem to be documented & I did not see a comment
+about the lack of a binding in the cover letter. What am I missing?
 
-As we discussed before, "interrupt-map" was intended to be used here.
+--kVJXDbSCjEHzrhGM
+Content-Type: application/pgp-signature; name="signature.asc"
 
-And after thinking it more, it may not work for the cases where ppnode
+-----BEGIN PGP SIGNATURE-----
 
-is not dynamically generated and it does not have "interrupt-map".
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJ8eMwAKCRB4tDGHoIJi
+0sQqAP9qGyuFMg3O1ddjoQJ4GetsY2vrLNfwliwz+tXxXSQVUAEApgYQJHvRhx58
+XF2nPBZjWFy0bZmZq68VroZmLUHWgAc=
+=0xdT
+-----END PGP SIGNATURE-----
 
-For example the IBM ppc system, its device tree has nodes for pci bridge
-
-and it does not have "interrupt-map".
-
-Based on previous discussions, OF_DYNAMIC should not be used here.
-
-So I think adding "dynamic" might be a way to identify the dynamically
-
-added node. Or we can introduce a new flag e.g OF_IRQ_SWIZZLING.
-
-
-Thanks,
-
-Lizhi
-
+--kVJXDbSCjEHzrhGM--
