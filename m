@@ -2,127 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B3BB5743F7A
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:09:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D3AB743F69
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 18:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232314AbjF3QJR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 12:09:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35672 "EHLO
+        id S232569AbjF3QE7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 12:04:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33092 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232518AbjF3QJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:09:16 -0400
-Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8119E199B;
-        Fri, 30 Jun 2023 09:09:13 -0700 (PDT)
-Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 51004120008;
-        Fri, 30 Jun 2023 18:59:42 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 51004120008
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1688140782;
-        bh=AiyUTaQfmfU+3VE/gItxQHz0hqpdNFW3IG8wVLoP4yk=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=TDONc09uuAn5/UWTB1FWrYRyUvL7jmXbwYuwdSAbrBmKMbb1wfcUI9HyPEb6CBcIw
-         5LUEv9RmIIhvKc4ksj8gBqOdg0g9+KqzND3XXG52kUcLFjkcEMBiHL8SOpTO6jiolP
-         A/TNfVr7MHf+JBxqmmkKDADHkOpBSftaEMXpiCfZVxKOawYCJ3Z1aO+TmvBhhiAXpK
-         T9PBrLPKMapUG06U6iocsPHobeuSntZx1QIQrgXjJFyGLVi1tiYaN+bQfjkaMfXSwc
-         gLe+QxkogBIFGURQWDO2lq+J+oB7yITkG37w591xO4UaNJGFPvUpsxRXjDkk+m2F5m
-         On1WGeqxGffFA==
-Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Fri, 30 Jun 2023 18:59:41 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Fri, 30 Jun
- 2023 18:59:26 +0300
-Date:   Fri, 30 Jun 2023 18:59:39 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     zelong dong <zelong.dong@amlogic.com>
-CC:     <narmstrong@baylibre.com>, <p.zabel@pengutronix.de>,
-        <khilman@baylibre.com>, Rob Herring <robh+dt@kernel.org>,
-        <martin.blumenstingl@googlemail.com>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-amlogic@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <jbrunet@baylibre.com>,
-        <devicetree@vger.kernel.org>, <kelvin.zhang@amlogic.com>
-Subject: Re: [PATCH 2/3] reset: reset-meson: add support for the Meson-C3 SoC
- Reset Controller
-Message-ID: <20230630155939.l2natpf5nbusjoq6@CAB-WSD-L081021>
-References: <20230630121059.28748-1-zelong.dong@amlogic.com>
- <20230630121059.28748-3-zelong.dong@amlogic.com>
+        with ESMTP id S230388AbjF3QE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 12:04:58 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1441F10A;
+        Fri, 30 Jun 2023 09:04:56 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35UB80b3022110;
+        Fri, 30 Jun 2023 16:04:23 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=tky6m4fUf0fCfzuDZQBGDmIT+aFWsl+CwJAdAJ5dtR8=;
+ b=eohuH3XVi7if6yQGxcXHvspndAdCdUC1K8wFPmmbx5Acv4mHVmtVJzXrQGzx2mcuS/VB
+ 8Nzmdq8gUwN03mlvmqFTV4FesVyo6e2Lxj9KHts14fJnOK7RPOxZW61/pEwcbCRbL5J8
+ pidfbCDJVK8lxDW6ofo6c2JkQf0eGJ6hh/IdgQ0DXCFDJETCI2eUhTCKj71iwCjI8RKY
+ ryQmZcTh4QHTDRVV5/xXIn/ekdohDiUXXn8z7DLhhJ2kLqVlOlHGzXpb88yaXVdpZ5qI
+ 9p3ksx4MiPxl5uuhC6Cc+76QdmxmruHkmc7tuNwgwUiMWbThFpBuQerIKOeKvjWUlMsY cw== 
+Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rhsycs6sk-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 16:04:22 +0000
+Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
+        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35UG4LHO028478
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 16:04:21 GMT
+Received: from [10.216.37.216] (10.80.80.8) by nasanex01c.na.qualcomm.com
+ (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Fri, 30 Jun
+ 2023 09:04:12 -0700
+Message-ID: <cc30660f-dd72-aade-6346-a93c6ad4b695@quicinc.com>
+Date:   Fri, 30 Jun 2023 21:34:08 +0530
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230630121059.28748-3-zelong.dong@amlogic.com>
-User-Agent: NeoMutt/20220415
-X-Originating-IP: [100.64.160.123]
-X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
- p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
-X-KSMG-Rule-ID: 10
-X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178380 [Jun 30 2023]
-X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
-X-KSMG-AntiSpam-Rate: 0
-X-KSMG-AntiSpam-Status: not_detected
-X-KSMG-AntiSpam-Method: none
-X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 517 517 b0056c19d8e10afbb16cb7aad7258dedb0179a79, {Tracking_uf_ne_domains}, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;127.0.0.199:7.1.2;lists.infradead.org:7.1.1;sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
-X-MS-Exchange-Organization-SCL: -1
-X-KSMG-AntiSpam-Interceptor-Info: scan successful
-X-KSMG-AntiPhishing: Clean, bases: 2023/06/30 14:28:00
-X-KSMG-LinksScanning: Clean, bases: 2023/06/30 14:28:00
-X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/06/30 12:24:00 #21606311
-X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
+ support
+Content-Language: en-US
+To:     Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>
+CC:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <keescook@chromium.org>,
+        <tony.luck@intel.com>, <gpiccoli@igalia.com>,
+        <mathieu.poirier@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <linus.walleij@linaro.org>,
+        <andy.shevchenko@gmail.com>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <2023062814-chance-flounder-f002@gregkh>
+ <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+From:   Mukesh Ojha <quic_mojha@quicinc.com>
+In-Reply-To: <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nasanex01c.na.qualcomm.com (10.45.79.139)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: xFGHRqPtPcAUiRgmUBFSReWrwDHZPxak
+X-Proofpoint-GUID: xFGHRqPtPcAUiRgmUBFSReWrwDHZPxak
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-30_05,2023-06-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 malwarescore=0
+ mlxscore=0 phishscore=0 bulkscore=0 adultscore=0 mlxlogscore=999
+ impostorscore=0 priorityscore=1501 spamscore=0 clxscore=1015
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306300137
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 08:10:58PM +0800, zelong dong wrote:
-> From: Zelong Dong <zelong.dong@amlogic.com>
-> 
-> Add a new compatible string to support for the reset controller
-> on the C3 SoC. The count and offset for C3 Soc RESET registers are
-> same as S4 Soc.
-> 
-> Change-Id: I65113f6a90545cd46015abf60b4bcb63fa148267
-> Signed-off-by: Zelong Dong <zelong.dong@amlogic.com>
 
-Reviewed-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 
-> ---
->  drivers/reset/reset-meson.c | 1 +
->  1 file changed, 1 insertion(+)
+On 6/29/2023 4:42 AM, Rob Herring wrote:
+> On Wed, Jun 28, 2023 at 9:45 AM Greg KH <gregkh@linuxfoundation.org> wrote:
+>>
+>> On Wed, Jun 28, 2023 at 06:04:27PM +0530, Mukesh Ojha wrote:
+>>> Minidump is a best effort mechanism to collect useful and predefined data
+>>> for first level of debugging on end user devices running on Qualcomm SoCs.
+>>> It is built on the premise that System on Chip (SoC) or subsystem part of
+>>> SoC crashes, due to a range of hardware and software bugs. Hence, the
+>>> ability to collect accurate data is only a best-effort. The data collected
+>>> could be invalid or corrupted, data collection itself could fail, and so on.
+>>>
+>>> Qualcomm devices in engineering mode provides a mechanism for generating
+>>> full system ramdumps for post mortem debugging. But in some cases it's
+>>> however not feasible to capture the entire content of RAM. The minidump
+>>> mechanism provides the means for selecting which snippets should be
+>>> included in the ramdump.
+>>>
+>>> Minidump kernel driver implementation is divided into two parts for
+>>> simplicity, one is minidump core which can also be called minidump
+>>> frontend(As API gets exported from this driver for registration with
+>>> backend) and the other part is minidump backend i.e, where the underlying
+>>> implementation of minidump will be there. There could be different way
+>>> how the backend is implemented like Shared memory, Memory mapped IO
+>>> or Resource manager(gunyah) based where the guest region information is
+>>> passed to hypervisor via hypercalls.
+>>>
+>>>      Minidump Client-1     Client-2      Client-5    Client-n
+>>>               |               |              |             |
+>>>               |               |    ...       |   ...       |
+>>>               |               |              |             |
+>>>               |               |              |             |
+>>>               |               |              |             |
+>>>               |               |              |             |
+>>>               |               |              |             |
+>>>               |               |              |             |
+>>>               |           +---+--------------+----+        |
+>>>               +-----------+  qcom_minidump(core)  +--------+
+>>>                           |                       |
+>>>                           +------+-----+------+---+
+>>>                                  |     |      |
+>>>                                  |     |      |
+>>>                  +---------------+     |      +--------------------+
+>>>                  |                     |                           |
+>>>                  |                     |                           |
+>>>                  |                     |                           |
+>>>                  v                     v                           v
+>>>       +-------------------+      +-------------------+     +------------------+
+>>>       |qcom_minidump_smem |      |qcom_minidump_mmio |     | qcom_minidump_rm |
+>>>       |                   |      |                   |     |                  |
+>>>       +-------------------+      +-------------------+     +------------------+
+>>>         Shared memory              Memory mapped IO           Resource manager
+>>>          (backend)                   (backend)                   (backend)
+>>>
+>>>
+>>> Here, we will be giving all analogy of backend with SMEM as it is the
+>>> only implemented backend at present but general idea remains the same.
+>>
+>> If you only have one "backend" then you don't need the extra compexity
+>> here at all, just remove that whole middle layer please and make this
+>> much simpler and smaller and easier to review and possibly accept.
 > 
-> diff --git a/drivers/reset/reset-meson.c b/drivers/reset/reset-meson.c
-> index 13878ca2779d..ee1d5caf0ee4 100644
-> --- a/drivers/reset/reset-meson.c
-> +++ b/drivers/reset/reset-meson.c
-> @@ -109,6 +109,7 @@ static const struct of_device_id meson_reset_dt_ids[] = {
->  	 { .compatible = "amlogic,meson-axg-reset",  .data = &meson8b_param},
->  	 { .compatible = "amlogic,meson-a1-reset",   .data = &meson_a1_param},
->  	 { .compatible = "amlogic,meson-s4-reset",   .data = &meson_s4_param},
-> +	 { .compatible = "amlogic,meson-c3-reset",   .data = &meson_s4_param},
->  	 { /* sentinel */ },
->  };
->  MODULE_DEVICE_TABLE(of, meson_reset_dt_ids);
-> -- 
-> 2.35.1
-> 
-> 
-> _______________________________________________
-> linux-amlogic mailing list
-> linux-amlogic@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> pstore already supports backends. Why aren't the above backends just
+> pstore backends rather than having an intermediate pstore backend in
+> RAM which then somehow gets moved into these minidump backends.
 
--- 
-Thank you,
-Dmitry
+It can't be another pstore backend since, pstore backend(ram) is for
+the system where there is a guarantees of fixed ram range content 
+persist across boot, but that is not true with minidump, there is no
+pstorefs kind of support with minidump.
+
+Instead, the whole idea of backend/front-end of minidump here, is
+entirely related to minidump and here minidump backend could be
+anything like could be Shared memory in DDR which is shared across
+multiple subsystem (CPUSS) is one of them or it could be something
+where you want to collect minidump for a guest vm which guest
+does not have access to backend instead it may be the hypervisor
+do the register the region for the guest.
+
+Pstore(ram) is one of the clients of minidump where, we want to collect
+the console/pmsg/ftrace/dmesg logs for production devices where
+DDR dump is difficult and the reason of doing this to not re-invent
+the wheel and it just need physical address/size .
+
+  +---------+     +---------+   +--------+     +---------+
+  | console |     | pmsg    |   | ftrace |     | dmesg   |
+  +---------+     +---------+   +--------+     +---------+
+        |             |             |              |
+        |             |             |              |
+        +------------------------------------------+
+                           |
+                          \ /
+                   +----------------+
+             (1)   |pstore frontends|
+                   +----------------+
+                           |
+                          \ /
+                  +------------------- +
+             (2)  | pstore backend(ram)|
+                  +--------------------+
+                           |
+                          \ /
+                  +--------------------+
+             (3)  |qcom_pstore_minidump|
+                  +--------------------+
+
+-Mukesh
+> 
+>> We don't add layers when they are not needed, and never when there is no
+>> actual user.  If you need the extra "complexity" later, then add it
+>> later when it is needed as who knows when that will ever be.
+>>
+>> Please redo this series based on that, thanks.
+> 
+> My bigger issue with this whole series is what would this all look
+> like if every SoC vendor upstreamed their own custom dumping
+> mechanism. That would be a mess. (I have similar opinions on the
+> $soc-vendor hypervisors.)
+> 
+> Rob
