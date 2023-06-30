@@ -2,98 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D37E744306
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 22:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E4A174430B
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 22:03:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229484AbjF3UAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 16:00:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40778 "EHLO
+        id S230426AbjF3UDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 16:03:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41360 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232262AbjF3UAF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 16:00:05 -0400
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (mail-bn8nam12on20626.outbound.protection.outlook.com [IPv6:2a01:111:f400:fe5b::626])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D00301FC1;
-        Fri, 30 Jun 2023 13:00:03 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZJHtTGw5aoFoOQ9+hTtSYnffJlgz70G3gYl6SyijPQnDuWGcp2fecEhD6FxOZ1JHMrj3hETlIm6sVIZQCflAV0X08T4hNnsoDq/C/BJFYqkABO3DH3JJH0CORN44TPDY7wRpD2n/foFbS3PdmkQKAdTVWjSsS5PXgi3R4QOQBgsCG9TvnlHLx4vraBqnlbA0WdTP+f2IvysmOjbtNyg7o/TqfpNOeiMu1oHsCQHTX8UQw8NMPtuvhRmHzxbYF4zOg0VfL3KOA7u8xU6tUpBNDpU/sfipfQB6344Rhg4agBut0lmL5at5r8ZUvYIxPnUhzhxhbwR/DtGsuVeyOwPLrg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HcasFk97ljDjKsO3gI3Gv1wsnlRYpJuPfekRKC+UplI=;
- b=FnWZMrd3xmICj9P9VNDIQF/qex11+1eRZ9obuAYuV2uJwYUQocUFMpGRatUeyXm+cle75uuDlaIbz40eQND4GSlvYPM0nYAKOUABdS16IhJ+EtYctpfjSUXrYKgmm/vtx9DuN8+TgcEWlDAZdPCIaAoO2Tdh7S2uO6OtSBqRI1SImEYnURtYx0LSPk9gDVt1SY0oVKqDbsa2jWxEj4o0KjTPS7yW2f69UYcMenvBDOooWpcH1gx0VVm5A7epvP951bDoAp6rEWp9ShraYcSlLiI/F3G3kVAAAGeQfUHYq6dP8RRGXSARJp08uQDKfh9RLIZWrd52Cdh0PSpjCd7joA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
- (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=HcasFk97ljDjKsO3gI3Gv1wsnlRYpJuPfekRKC+UplI=;
- b=Ciyn3r4yfxMx8vU9/Z4jrin/9v3Y5AK4htx2Qg8TV3D6lMviqmSwyu2BBw+t3K+F21K+XykwF7IlIyxoUrM5fXwlavNABfsdLYOLx1AhDUzzT/Z9Zfi0c35ZldHjF4KwAzoNVCuuOx5wpvVpUhx5+1X764jANDMBIK+lQAmVVW4=
-Received: from MW4P222CA0007.NAMP222.PROD.OUTLOOK.COM (2603:10b6:303:114::12)
- by DM4PR12MB5229.namprd12.prod.outlook.com (2603:10b6:5:398::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.19; Fri, 30 Jun
- 2023 19:59:57 +0000
-Received: from CO1NAM11FT096.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:114:cafe::78) by MW4P222CA0007.outlook.office365.com
- (2603:10b6:303:114::12) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.22 via Frontend
- Transport; Fri, 30 Jun 2023 19:59:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=SATLEXMB03.amd.com; pr=C
-Received: from SATLEXMB03.amd.com (165.204.84.17) by
- CO1NAM11FT096.mail.protection.outlook.com (10.13.175.84) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.20.6521.43 via Frontend Transport; Fri, 30 Jun 2023 19:59:57 +0000
-Received: from SATLEXMB03.amd.com (10.181.40.144) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
- 2023 14:59:53 -0500
-Received: from [172.19.74.144] (10.180.168.240) by SATLEXMB03.amd.com
- (10.181.40.144) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
- Transport; Fri, 30 Jun 2023 14:59:52 -0500
-Message-ID: <1c41b8e1-5b13-463b-c522-6775954c0ee7@amd.com>
-Date:   Fri, 30 Jun 2023 12:59:47 -0700
+        with ESMTP id S229774AbjF3UDi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 16:03:38 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F81C13E;
+        Fri, 30 Jun 2023 13:03:37 -0700 (PDT)
+Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35UJe3jd022974;
+        Fri, 30 Jun 2023 20:03:28 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=7Kj8HQoxK0oXlxEssFyywogLQQqErFgwwotTvJTZo2M=;
+ b=ADRzBsVnBPNiEaqBxnhw22kglW9SzgMuY2utGSnQEOh7j3DhQDmBqQt0z9Q9abHHzW5K
+ 6WGK9Y5doe6Fdg6O03VKC5FH0pnFfYYaEdhxCPpGdIzwEejZ8L29AsDr8DyDj4lmPlOt
+ 1rzW7+6eq3VsPwsWwIDkLuaPRuhNa/Rj2VZxqFyZLGlkgeJDOiSrPXubKfMI12bocBdW
+ rJmOzuOI5nY6nxk/ast5b1K2w4s33Dah3b4/2XafkVbTqEFQRS8vvFwnrq2gwJvXrUXT
+ BLWa753IjXMvQ6ZWTwkjiOdOLNcNTL5NqUo4zQq276L1o1JCiwPMRzY3VMp+k6Fkytx4 IA== 
+Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rgy1tmsvc-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 20:03:27 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35UK3QqN016147
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 20:03:26 GMT
+Received: from hu-bjorande-lv.qualcomm.com (10.49.16.6) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.7; Fri, 30 Jun 2023 13:03:26 -0700
+Date:   Fri, 30 Jun 2023 13:03:25 -0700
+From:   Bjorn Andersson <quic_bjorande@quicinc.com>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+CC:     Komal Bajaj <quic_kbajaj@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 3/6] nvmem: sec-qfprom: Add Qualcomm secure QFPROM
+ support.
+Message-ID: <20230630200325.GA1059662@hu-bjorande-lv.qualcomm.com>
+References: <20230623141806.13388-1-quic_kbajaj@quicinc.com>
+ <20230623141806.13388-4-quic_kbajaj@quicinc.com>
+ <ea4c49cd-17d1-6921-a447-5debaebb0cfd@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
- Thunderbird/91.11.0
-Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
-Content-Language: en-US
-To:     Bjorn Helgaas <helgaas@kernel.org>, Rob Herring <robh@kernel.org>
-CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <max.zhen@amd.com>,
-        <sonal.santan@amd.com>, <stefano.stabellini@xilinx.com>
-References: <20230630164821.GA483874@bhelgaas>
-From:   Lizhi Hou <lizhi.hou@amd.com>
-In-Reply-To: <20230630164821.GA483874@bhelgaas>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT096:EE_|DM4PR12MB5229:EE_
-X-MS-Office365-Filtering-Correlation-Id: 31d53abf-3882-4d14-18ad-08db79a49457
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 1K+OchoippdYHbjSUjK+us8XeZOgi9N0CypOfGoPK2Rkol0REtfZqCmw77S4cxzcO+TyAZc8aG0ibKeB9IFuXsViUF7JsJuDMh66ACkQRERiaw4N01YbFrbvQcw/hTjuHn8ZV5hMN1AG0YbcE5ioMj1jXfdHU6cexw8RDIPB2htUUGVjt2ySsaOWJf0pUmkL36pglQAaWn+siOX8rhnykd/hung/87jDgP57kjhCVlXhciqTW8vG9RGY+sodeZ9a1o/N4n9+d06eFLpva5u/xq0ZVUD6Aes3e8WYXPBVwdbxfdI7D8QCguJiQr0fFEGfwQxfVcRNKrDf/9/Zrub/w36HgKh3dgL2Vibo5C+5xsfVWqjMCMRGLXwDf60zbH3CBFbo5sWC/8PwFzSLLQlEFpZZ9Mscx/Jt6wrJC/U3y305O7Z0jPM14votok0K9iNOS/mhdPD0ui4ammoxvRwPuNcLlE6mX+Qokr03hAgRNyCH0tO37/4kQdmIpkc79Ikz5J3Dl73MoEfKcldVI6w/5Pdyw29pnE/kGAt0MnX3FuPpK3sJC5xymoOu6beE/9Iv2asORG5vnFSx1VDNHWcXdj+8HxKrG4qTUwjyjD9m8xRkjm7fe7+b1lBomjYRpku32wwFyR5veFOKJjpZem8Qf04CrbqLXe0cEs1Dins2ae9ds1N0MjfXCo7eicKtH91Q2x0v7GXikm0QV+hKuOZ440WI/7Gdxgxh24uwMhXuXEfdxyv1bEk9NSI/HQupsh2B9HEIkbcKnS7YmGfzzapC4ioV/N9wEDGP/xytIYOuxms=
-X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB03.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(396003)(346002)(39860400002)(376002)(136003)(451199021)(46966006)(36840700001)(40470700004)(336012)(426003)(47076005)(40460700003)(83380400001)(2616005)(2906002)(81166007)(82740400003)(356005)(36860700001)(40480700001)(36756003)(8936002)(8676002)(82310400005)(110136005)(5660300002)(86362001)(31686004)(54906003)(16576012)(41300700001)(966005)(4326008)(70206006)(70586007)(6666004)(316002)(478600001)(186003)(31696002)(44832011)(53546011)(26005)(43740500002)(36900700001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2023 19:59:57.1671
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 31d53abf-3882-4d14-18ad-08db79a49457
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB03.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT096.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB5229
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ea4c49cd-17d1-6921-a447-5debaebb0cfd@linaro.org>
+X-Originating-IP: [10.49.16.6]
+X-ClientProxiedBy: nalasex01a.na.qualcomm.com (10.47.209.196) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: vYd3QWMYftPcC3hZ48bRaNHZ4nArgx_K
+X-Proofpoint-GUID: vYd3QWMYftPcC3hZ48bRaNHZ4nArgx_K
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-30_12,2023-06-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
+ impostorscore=0 mlxlogscore=999 mlxscore=0 malwarescore=0
+ lowpriorityscore=0 clxscore=1011 adultscore=0 priorityscore=1501
+ bulkscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2306300174
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -101,40 +84,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jun 23, 2023 at 04:53:44PM +0200, Konrad Dybcio wrote:
+> On 23.06.2023 16:18, Komal Bajaj wrote:
+> > diff --git a/drivers/nvmem/sec-qfprom.c b/drivers/nvmem/sec-qfprom.c
+[..]
+> > +static int sec_qfprom_reg_read(void *context, unsigned int reg, void *_val, size_t bytes)
+> > +{
+> > +	struct sec_qfprom_priv *priv = context;
+> > +	u8 *val = _val;
+> > +	u8 *tmp;
+> > +	u32 read_val;
+> > +	unsigned int i;
+> Please sort this to look like a reverse-Christmas-tree
+> 
+> 
+> > +
+> > +	for (i = 0; i < bytes; i++, reg++) {
+> > +		if (i == 0 || reg % 4 == 0) {
+> > +			if (qcom_scm_io_readl(priv->qfpseccorrected + (reg & ~3), &read_val)) {
+> > +				dev_err(priv->dev, "Couldn't access fuse register\n");
+> > +				return -EINVAL;
+> > +			}
+> > +			tmp = (u8 *)&read_val;
+> > +		}
+> I don't understand this read-4-times dance.. qcom_scm_io_readl() reads
+> u32, so this should be as simple as:
+> 
+> val[i + 0] = FIELD_GET(GENMASK(7, 0), reg);
+> val[i + 1] = ..
+> val[i + 2] = ..
+> val[i + 3] = ..
+> 
 
-On 6/30/23 09:48, Bjorn Helgaas wrote:
-> On Thu, Jun 29, 2023 at 05:52:26PM -0600, Rob Herring wrote:
->> On Thu, Jun 29, 2023 at 05:56:31PM -0500, Bjorn Helgaas wrote:
->>> On Thu, Jun 29, 2023 at 10:19:47AM -0700, Lizhi Hou wrote:
->>>> The PCI endpoint device such as Xilinx Alveo PCI card maps the register
->>>> spaces from multiple hardware peripherals to its PCI BAR. Normally,
->>>> the PCI core discovers devices and BARs using the PCI enumeration process.
->>>> There is no infrastructure to discover the hardware peripherals that are
->>>> present in a PCI device, and which can be accessed through the PCI BARs.
->>> IIUC this is basically a multi-function device except that instead of
->>> each device being a separate PCI Function, they all appear in a single
->>> Function.  That would mean all the devices share the same config space
->>> so a single PCI Command register controls all of them, they all share
->>> the same IRQs (either INTx or MSI/MSI-X), any MMIO registers are likely
->>> in a shared BAR, etc., right?
->> Could be multiple BARs, but yes.
-> Where does the PCI glue live?  E.g., who ioremaps the BARs?  Who sets
-> up PCI interrupts?  Who enables bus mastering?  The platform driver
-> that claims the DT node wouldn't know that this is part of a PCI
-> device, so I guess the PCI driver must do all that stuff?  I don't see
-> it in the xmgmt-drv.c from
-> https://lore.kernel.org/all/20220305052304.726050-4-lizhi.hou@xilinx.com/
->
-Yes, the PCI driver will do all that stuff. This xmgmt-drv.c is created
-
-to just populating the devices based on fdt input.  It is removed after
-
-the unittest is created which can populate devices and verify the
-
-address translation.
+No need for FIELD_GET() to do that, you can just do *(u32*)val =
+read_val; although this comes with alignment issues.
 
 
-Thanks,
+But, that this the length of val is always divisible by 4, and I
+wasn't able to convince myself that it was the case...
 
-Lizhi
+So this is, pretty much, what I proposed in v3:
+https://lore.kernel.org/linux-arm-msm/20230527205031.iwsujvlbxazukwfy@ripper/
 
+Regards,
+Bjorn
+
+> 
+> > +
+> > +		val[i] = tmp[reg & 3];
+> > +	}
+> > +
+> > +	return 0;
