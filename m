@@ -2,132 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5A0D7435A4
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 09:18:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00DCF7435AB
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 09:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229967AbjF3HSF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 03:18:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46822 "EHLO
+        id S232180AbjF3HUv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 03:20:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229945AbjF3HSC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 03:18:02 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 322D81731;
-        Fri, 30 Jun 2023 00:18:01 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AC93D616D4;
-        Fri, 30 Jun 2023 07:18:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 17820C433C0;
-        Fri, 30 Jun 2023 07:17:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688109480;
-        bh=pB6a8MtXW9LfZbrAZovpz0Qoo2FMyZhdSLuByWXv/p8=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Tngw9s3h5Aiar0GBBlumSxvQpfOKfKZ4pOx6A/DmQM6dkRwrU+mlKLYw8mLXyTy8H
-         5PWMcuJyc35eYxs/SGEbJP9da+cPMt1D3GpbaTP346PLUZoojXoADDoaW6VoP8Sif2
-         Lm+CDZe7fO4/tiqalXtpgNXsOA6x1KcsGu0UN8Nn82A+gwF5JbVUmL0UmB/nkZARX3
-         XRonjnO2UWTw6aeuKkN/wdIizOpjBMwudqlz938SJT+b/cssjWhzpX2a+Hsfj4JB2b
-         Ln+btnFedIvtiDt6G9oldwTFwNVjBtZfq33SrznmhcjHxxzgn1snuWH6jy3/D4rVsC
-         G+4fwHGFCuOrg==
-Date:   Fri, 30 Jun 2023 08:17:51 +0100
-From:   Lee Jones <lee@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        "Sahin, Okan" <Okan.Sahin@analog.com>,
+        with ESMTP id S229945AbjF3HUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 03:20:50 -0400
+Received: from muru.com (muru.com [72.249.23.125])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 67C8EE61;
+        Fri, 30 Jun 2023 00:20:49 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 7680180FE;
+        Fri, 30 Jun 2023 07:20:48 +0000 (UTC)
+Date:   Fri, 30 Jun 2023 10:20:47 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Julien Panis <jpanis@baylibre.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Caleb Connolly <caleb.connolly@linaro.org>,
-        Marcus Folkesson <marcus.folkesson@gmail.com>,
-        "Bolboaca, Ramona" <Ramona.Bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        "Tilki, Ibrahim" <Ibrahim.Tilki@analog.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>
-Subject: Re: [PATCH v7 5/5] mfd: max77541: Add ADI MAX77541/MAX77540 PMIC
- Support
-Message-ID: <20230630071751.GC2110266@google.com>
-References: <20230628134013.GH10378@google.com>
- <472a4d86-3bfb-4c2b-a099-f1254dd01e24@sirena.org.uk>
- <20230629072500.GA2110266@google.com>
- <d070eecd-cb3b-4968-803e-1817a1a4359a@sirena.org.uk>
- <20230629155134.GB2110266@google.com>
- <7987cbbe-55bc-49a9-b63a-7f1906bf5f74@sirena.org.uk>
- <CAL_Jsq+AQrv7EGMtEkB-2cBCvA4mLHuMbyQ=f39yQkYPkvfVww@mail.gmail.com>
- <998ef8d8-594e-45e3-9aa3-ec9061cf7f11@sirena.org.uk>
- <CAL_JsqK1X-oZHerE9qhcPZ=mFsm7rJa3KxWGBqV3znHHfr6vaQ@mail.gmail.com>
- <920531c8-b5c1-409a-9cda-3ec77ba944e7@sirena.org.uk>
+        Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vigneshr@ti.com, nm@ti.com
+Subject: Re: [PATCH 0/3] Configure usb0 as peripheral on am335x boards
+Message-ID: <20230630072047.GK14287@atomide.com>
+References: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <920531c8-b5c1-409a-9cda-3ec77ba944e7@sirena.org.uk>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 29 Jun 2023, Mark Brown wrote:
+Hi,
 
-> On Thu, Jun 29, 2023 at 12:14:00PM -0600, Rob Herring wrote:
-> > On Thu, Jun 29, 2023 at 11:59 AM Mark Brown <broonie@kernel.org> wrote:
-> 
-> > > Right, I'm suggesting applying the core part without waiting for every
-> > > single leaf driver to be lined up rather than the other way around -
-> > > that way the core part is stable and the leaf drivers only have issues
-> > > with changes in their subsystems that they'll have anyway even with
-> > > waiting.  Leaf drivers can be added on top as they're ready and if
-> > > something misses a release then it can go through the subsystem, and if
-> > > people do end up wandering off then you've still got whatever did get
-> > > merged in case someone else wants to pick things up.
-> 
-> > I misunderstood. I thought you wanted to apply things to get them out
-> > of your queue.
-> 
-> Well, I *do* but that's got issues especially when things get stuck so
-> I'm not going to.
-> 
-> >                That doesn't work when the leaf drivers depend on the
-> > core, so what do we do there? A branch or Lee takes everything? That's
-> > almost always the case with the bindings as the core binding
-> > references the child node bindings. My preference there would be that
-> > Lee picks up all the bindings with the core driver.
-> 
-> My suggestion is that once the core is ready to apply that and also
-> start applying everything else to Lee's tree as it's ready.  A branch
-> also works and might come in handy anyway in the case where there's some
-> subsystem wide updates in some other subsystem (since it avoids having
-> to pull the whole MFD tree in or anything like that) but it's not
-> essential to the idea.
+* Julien Panis <jpanis@baylibre.com> [230629 13:10]:
+> This series configures usb0 dr_mode as 'peripheral' for am335x-evm,
+> am335x-evmsk, and am335x-icev2. This USB port is mainly used for
+> RNDIS and DFU.
 
-The issue we currently have is that the core usually comes with a header
-file which is included by some or all of the leaf drivers.  If leaf
-drivers are pulled in without that header, the drivers will fail to
-build which will make people grumpy.
+Is this a mini-B connector? Just wondering if it was originally attempted
+to be configured as OTG or how it ended up with a host configuration..
 
-The suggestion of a separate branch that's added to over time as leaf
-drivers become ready is even more work that a one-hit strategy.  It will
-also mean littering the working branch which a bunch more merges and/or
-more frequent rebases than I'm happy with.
+> Initially, a series was submitted to overlay dr_mode in u-boot specific
+> device trees ('<board>-u-boot.dtsi'):
+> https://lore.kernel.org/all/20230621-fix_usb_ether_init-v2-0-ff121f0e8d7a@baylibre.com/
+> 
+> It was finally decided to modify linux device trees.
 
--- 
-Lee Jones [李琼斯]
+Do we need these as fixes? If so is there a fixes tag for these?
+
+Regards,
+
+Tony
