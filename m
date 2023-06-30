@@ -2,75 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6C517433A3
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 06:39:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1B9C7433CA
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 06:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229991AbjF3EjZ convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Jun 2023 00:39:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56732 "EHLO
+        id S230256AbjF3Ezq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 00:55:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229459AbjF3EjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 00:39:25 -0400
-Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B4A1FC0;
-        Thu, 29 Jun 2023 21:39:20 -0700 (PDT)
-Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-c13280dfb09so1372044276.2;
-        Thu, 29 Jun 2023 21:39:20 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688099959; x=1690691959;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=WCTjff0Lm/tkc2wvW+DXTAD5VUVHNKURb19DniWHXAc=;
-        b=HMRxRdGlfVDURrt1iQr2yiUxysd4BSefhCVfYklrRBHEoApgVmcDs8ZbE45QWFgOgj
-         cCYTvAbqAkrSBbELlgBW/SDvUspy0iHgDZecC0LJe+FXaSrjBVOELz0f/uWe/9votjlw
-         xK78+ynzPj/POmJc6AIpEPD84TNJzVsuEQMbi0xWG+HIOAehLyNauhvvJGbO0+uC5ARZ
-         FZZYILm2pNMEH2GculWSAxYC4FaLUaxDOEpDGwjKSAlwk8lHu9KtBaErudlrSNuwmTgJ
-         Lzum96BhcdvHcyUnYU2sAYyvxnE22NnmBbRPAnKzm3Elx9BNFD/DG/XxZe2wDyPnV6A7
-         fEog==
-X-Gm-Message-State: ABy/qLYnLQLNOiWfO71sCHyNf+pzwZpKXTCM+GrutxCxI436zZspkf7o
-        sjmE/DW3AVJORK1PNJhVILZzgWUxzIcb1xbR
-X-Google-Smtp-Source: APBJJlHcnlhQVr/XiJSoKdbWwRGozSxDZLax3KI9epzczZ23m1Ah0w3PM0mIwiWaTTnHK3hnf39i/w==
-X-Received: by 2002:a25:6884:0:b0:c39:8036:e3f9 with SMTP id d126-20020a256884000000b00c398036e3f9mr1837158ybc.26.1688099959254;
-        Thu, 29 Jun 2023 21:39:19 -0700 (PDT)
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
-        by smtp.gmail.com with ESMTPSA id w143-20020a25df95000000b00bcae3682a51sm2861298ybg.47.2023.06.29.21.39.18
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 29 Jun 2023 21:39:18 -0700 (PDT)
-Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5700401acbeso14956587b3.0;
-        Thu, 29 Jun 2023 21:39:18 -0700 (PDT)
-X-Received: by 2002:a81:5bd6:0:b0:56d:2e22:8b31 with SMTP id
- p205-20020a815bd6000000b0056d2e228b31mr1434020ywb.41.1688099958565; Thu, 29
- Jun 2023 21:39:18 -0700 (PDT)
+        with ESMTP id S229850AbjF3Ezo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 00:55:44 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 997E4268F;
+        Thu, 29 Jun 2023 21:55:42 -0700 (PDT)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35U4f3rK026286;
+        Fri, 30 Jun 2023 04:55:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=date : from : to :
+ cc : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=qcppdkim1; bh=b+w3SPUDkVDyUR0+2E+FFbXQu9m8vqG3ceTEzOxJgus=;
+ b=hLD4dPDX6DQ1aO+TXkgPIMrd9o4r5xMqmi0yw9tVvKDxUX/W30SYHbRp7sjL7zMWT92C
+ YybWqrYLY+K9sEmXL58ogb3yQaLsGwMT3btquKtOlNBao0p8QfEPBtNt44Enak5ZaJv/
+ 8MnpgVMCvMEvPemUPZxHGmeRHV7MHELNiNpS8YeVzqr/A9GrDZbGVrwKdlA/PR7pX1/w
+ C3Z/q3SyjEnZLR1i1WgPmfIdx556IJ/OAjzMR/6atgVyxsBck54KaE8/UGrVD3tK9Nrc
+ cNr24U3b6OXXHaKDRrB4jqdmxIYIToNuNtEYW3g1HCRoFR9Ee6pCHuN99mTYvFmYtH2p pg== 
+Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rh0aajub1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 04:55:18 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 35U4tHZi019826
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 30 Jun 2023 04:55:17 GMT
+Received: from hu-pkondeti-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.7; Thu, 29 Jun 2023 21:55:10 -0700
+Date:   Fri, 30 Jun 2023 10:25:06 +0530
+From:   Pavan Kondeti <quic_pkondeti@quicinc.com>
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+CC:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <keescook@chromium.org>, <tony.luck@intel.com>,
+        <gpiccoli@igalia.com>, <mathieu.poirier@linaro.org>,
+        <catalin.marinas@arm.com>, <will@kernel.org>,
+        <linus.walleij@linaro.org>, <andy.shevchenko@gmail.com>,
+        <linux-doc@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-hardening@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>
+Subject: Re: [PATCH v4 11/21] soc: qcom: Register pstore frontend region with
+ minidump
+Message-ID: <99c98f22-69f7-4a6a-acc9-6a6a6bdb2031@quicinc.com>
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <1687955688-20809-12-git-send-email-quic_mojha@quicinc.com>
 MIME-Version: 1.0
-References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
- <20230626-viewless-marrow-17838c2172f6@wendy> <676db602-54d8-d6b0-274f-365e65a2102c@amlogic.com>
- <20230627-unsure-uniformly-079cad2c26e6@wendy> <061bb829-fb75-d154-0c15-9f0f982fec41@amlogic.com>
- <CAJX_Q+0Kf3zFyUtkCEkm7K8zXwaovxQmo1DWFwy8y25GQ2wqXg@mail.gmail.com> <0b4b67aa-e8f5-2bd9-223b-0f26add687fe@amlogic.com>
-In-Reply-To: <0b4b67aa-e8f5-2bd9-223b-0f26add687fe@amlogic.com>
-Reply-To: tanure@linux.com
-From:   Lucas Tanure <tanure@linux.com>
-Date:   Fri, 30 Jun 2023 05:39:07 +0100
-X-Gmail-Original-Message-ID: <CAJX_Q+3jDsFwmx-voMxCiKadJSobV00BuwLjpzc72UK5681ibQ@mail.gmail.com>
-Message-ID: <CAJX_Q+3jDsFwmx-voMxCiKadJSobV00BuwLjpzc72UK5681ibQ@mail.gmail.com>
-Subject: Re: [PATCH 0/2] Baisc devicetree support for Amlogic T7
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <1687955688-20809-12-git-send-email-quic_mojha@quicinc.com>
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: zgTbR1O443Va8HNnMKw7yS4Z709NUWth
+X-Proofpoint-ORIG-GUID: zgTbR1O443Va8HNnMKw7yS4Z709NUWth
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-06-30_02,2023-06-27_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
+ priorityscore=1501 phishscore=0 spamscore=0 lowpriorityscore=0
+ suspectscore=0 mlxscore=0 clxscore=1015 impostorscore=0 mlxlogscore=863
+ malwarescore=0 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.12.0-2305260000 definitions=main-2306300041
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
         version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -78,88 +87,87 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 3:22 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
->
->
->
-> On 2023/6/30 00:33, Lucas Tanure wrote:
-> > [ EXTERNAL EMAIL ]
-> >
-> > On Tue, Jun 27, 2023 at 8:52 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
-> >>
-> >>
-> >> On 2023/6/27 15:23, Conor Dooley wrote:
-> >>
-> >>
-> >>   > [ EXTERNAL EMAIL ]
-> >>   >
-> >>   > On Tue, Jun 27, 2023 at 02:13:34PM +0800, Xianwei Zhao wrote:
-> >>   >> Hi Conor,
-> >>   >>      Thanks for you reply.
-> >>   >> On 2023/6/26 18:02, Conor Dooley wrote:
-> >>   >>
-> >>   >>
-> >>   >>> [ EXTERNAL EMAIL ]
-> >>   >>>
-> >>   >>> Hey,
-> >>   >>>
-> >>   >>> On Mon, Jun 26, 2023 at 05:52:21PM +0800, Xianwei Zhao wrote:
-> >>   >>>> T7 is an advanced application processor designed for smart display.
-> >>   >>>>
-> >>   >>>> Add the new T7 SoC/board device tree bindings.
-> >>   >>>>
-> >>   >>>> Add basic support for the T7 based Amlogic AN400 board, which
-> >>   >>>> describesthe following components: CPU, GIC, IRQ, Timer, UART. It's
-> >>   >>>> capable of booting up into the serial console.
-> >>   >>>
-> >>   >>> Lucas has already sent patches for the T7 SoC & is at v5:
-> >>   >>> https://lore.kernel.org/linux-devicetree/20230623081242.109131-1-
-> >>   >>> tanure@linux.com/
-> >>   >>> There's been a bit of discussion there, and there serial stuff in
-> >>   >>> particular is different in his series (it doesn't use always-on for
-> >>   >>> examples).
-> >>   >>> Could you please go and take a look at his series?
-> >>   >>>
-> >>   >>> Cheers,
-> >>   >>> Conor.
-> >>   >>>
-> >>   >> AN400 is the reference board designed by Amlogic, which is different
-> >>   >> from Khadas VIM4.
-> >>   >
-> >>   > Yet you share the same dtsi, which he has got through several
-> >>   > iterations of before you arrived.
-> >>   >
-> >> Hi Lucas,
-> >> Are you going to continue with the dtsi part?
-> >>
-> >>   >> And T7 serial is the same as S4, so I follow S4 serial.
-> >>   >
-> >>   > Yeah, no. SoC specific compatible please.
-> >>   >
-> >>   >
-> >>   > _______________________________________________
-> >>   > linux-amlogic mailing list
-> >>   > linux-amlogic@lists.infradead.org
-> >>   > http://lists.infradead.org/mailman/listinfo/linux-amlogic
-> >
-> > Hi Xianwei,
-> >
-> > I am doing the basics for Amlogic T7 A311D2, but the next step ( sd
-> > card or emmc, something to boot on) would be more difficult for me
-> > than you.
-> > After the first series for Vim4 gets merged, I will start to work on
-> > how to get sd cards working.
-> > But if you already have that working for the AN400 board, please send
-> > it. And I will look at that work and use it for Vim4.
-> >
-> > Or, if you don't have it ready and want to share it with me, we can
-> > work together on these A311D2 patches.
-> > You test on AN400, and I test on Vim4.
-> >
-> > Thanks
-> > Lucas
->
-> We are preparing this part. However it depends on clock. So the clock
-> must ready first.
+On Wed, Jun 28, 2023 at 06:04:38PM +0530, Mukesh Ojha wrote:
+> +static int qcom_ramoops_md_region_register(struct device *dev, struct qcom_minidump_region **zone,
+> +					   const char *name, phys_addr_t phys_addr,
+> +					   unsigned long size)
+> +{
+> +	struct qcom_minidump_region *md_region;
+> +	int ret;
+> +
+> +	if (!size)
+> +		return 0;
+> +
+> +	md_region = devm_kzalloc(dev, sizeof(*md_region), GFP_KERNEL);
+> +	if (!md_region)
+> +		return -ENOMEM;
+> +
+> +	strscpy(md_region->name, name, sizeof(md_region->name));
+> +	md_region->phys_addr = phys_addr;
+> +	md_region->virt_addr = phys_to_virt(phys_addr);
+> +	md_region->size = size;
+> +	*zone = md_region;
+> +	ret = qcom_minidump_region_register(md_region);
+> +	if (ret)
+> +		dev_err(dev, "failed to add %s in minidump: err: %d\n", name, ret);
+> +
+> +	return ret;
+> +}
+> +
+> +static int qcom_ramoops_minidump_register(struct qcom_ramoops_dd *qcom_rdd)
+> +{
+> +	struct ramoops_platform_data *pdata = &qcom_rdd->qcom_ramoops_pdata;
+> +	char name[MAX_NAME_LENGTH];
+> +	size_t zone_sz;
+> +	phys_addr_t phys_addr;
+> +	int ret = 0;
+> +	int i;
+> +
+> +	phys_addr = pdata->mem_address;
+> +	for (i = 0; i < qcom_rdd->max_dump_cnt; i++) {
+> +		scnprintf(name, sizeof(name), "KDMSG%d", i);
+> +		ret = qcom_ramoops_md_region_register(qcom_rdd->dev,
+> +			&qcom_rdd->dmesg_region[i], name, phys_addr,
+> +			pdata->record_size);
+> +		if (ret)
+> +			return ret;
+> +
+> +		phys_addr += pdata->record_size;
+> +	}
+> +
+> +	ret = qcom_ramoops_md_region_register(qcom_rdd->dev,
+> +			&qcom_rdd->console_region, "KCONSOLE", phys_addr,
+> +			pdata->console_size);
+> +	if (ret)
+> +		return ret;
+> +
+> +	phys_addr += pdata->console_size;
+> +
+> +	ret = qcom_ramoops_md_region_register(qcom_rdd->dev,
+> +			&qcom_rdd->pmsg_region, "KPMSG", phys_addr,
+> +			pdata->pmsg_size);
+> +	if (ret)
+> +		return ret;
+> +
+> +	phys_addr += pdata->pmsg_size;
+> +
+> +	zone_sz =  pdata->ftrace_size / qcom_rdd->max_ftrace_cnt;
+> +	for (i = 0; i < qcom_rdd->max_ftrace_cnt; i++) {
+> +		ret = qcom_ramoops_md_region_register(qcom_rdd->dev,
+> +			&qcom_rdd->ftrace_region[i], "KFTRACE", phys_addr,
+> +			zone_sz);
+> +		if (ret)
+> +			return ret;
+> +
+> +		phys_addr += zone_sz;
+> +	}
+> +
+> +	return ret;
+> +}
 
-Will you send clock for T7?
+This may be the least of your worries, but plan to fix the error
+handling in this function. The probe expects this function to self clean
+when returning error.
+
+Thanks,
+Pavan
