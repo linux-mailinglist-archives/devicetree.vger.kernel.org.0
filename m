@@ -2,116 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DAD33743385
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 06:25:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6C517433A3
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 06:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230308AbjF3EZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 00:25:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52302 "EHLO
+        id S229991AbjF3EjZ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 30 Jun 2023 00:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56732 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230410AbjF3EZe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 00:25:34 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE69E30DD;
-        Thu, 29 Jun 2023 21:25:33 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 35U3e18e001680;
-        Fri, 30 Jun 2023 04:25:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=THevGgIaAz40LxJ7PoX5+QlN0ue7D25a3gYMNyvw4/8=;
- b=ZS/i5/Ep47PXfMZzGXsojCLdgvkPJHxWw2STyyTAWUlk4YphJIgIJPoRFf7QGck8zFwi
- mTD+y8TdkpHM1PtBryEZQXhZPDXnXi5n/gLbOczB3LgYwui/j9RpDAbnb+iJZehhQOrY
- UebyYMrK2q21BhWDr1ToC2He54KMX5FiKazmcQm+R53NGfWBxjsN3QSh8UCGtGgTuDtl
- 98PtQKlzeth1V7pqrjRd/8bU9fueTM8E9sidZoHIE9znAP3KANadGOCUl1wDrxLskSr5
- z4fqdvZDynZM5hr3iKEPMqVc6lTvwL7wtMNNuWeS/W2Zhw5V6fv3rt+goUW3B30pATgy YQ== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rgy1tjuq4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 30 Jun 2023 04:25:30 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 35U4PR91013217;
-        Fri, 30 Jun 2023 04:25:27 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3rdsjknf4p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Fri, 30 Jun 2023 04:25:27 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 35U4PQTs013199;
-        Fri, 30 Jun 2023 04:25:26 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-krichai-hyd.qualcomm.com [10.213.110.112])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 35U4PQ1Q013191;
-        Fri, 30 Jun 2023 04:25:26 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 4058933)
-        id 15AED4AC1; Fri, 30 Jun 2023 09:55:26 +0530 (+0530)
-From:   Krishna chaitanya chundru <quic_krichai@quicinc.com>
-To:     manivannan.sadhasivam@linaro.org
-Cc:     helgaas@kernel.org, linux-pci@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        quic_vbadigan@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_skananth@quicinc.com, quic_ramkri@quicinc.com,
-        krzysztof.kozlowski@linaro.org,
-        Krishna chaitanya chundru <quic_krichai@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        with ESMTP id S229459AbjF3EjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 00:39:25 -0400
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com [209.85.219.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65B4A1FC0;
+        Thu, 29 Jun 2023 21:39:20 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-c13280dfb09so1372044276.2;
+        Thu, 29 Jun 2023 21:39:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688099959; x=1690691959;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :reply-to:in-reply-to:references:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WCTjff0Lm/tkc2wvW+DXTAD5VUVHNKURb19DniWHXAc=;
+        b=HMRxRdGlfVDURrt1iQr2yiUxysd4BSefhCVfYklrRBHEoApgVmcDs8ZbE45QWFgOgj
+         cCYTvAbqAkrSBbELlgBW/SDvUspy0iHgDZecC0LJe+FXaSrjBVOELz0f/uWe/9votjlw
+         xK78+ynzPj/POmJc6AIpEPD84TNJzVsuEQMbi0xWG+HIOAehLyNauhvvJGbO0+uC5ARZ
+         FZZYILm2pNMEH2GculWSAxYC4FaLUaxDOEpDGwjKSAlwk8lHu9KtBaErudlrSNuwmTgJ
+         Lzum96BhcdvHcyUnYU2sAYyvxnE22NnmBbRPAnKzm3Elx9BNFD/DG/XxZe2wDyPnV6A7
+         fEog==
+X-Gm-Message-State: ABy/qLYnLQLNOiWfO71sCHyNf+pzwZpKXTCM+GrutxCxI436zZspkf7o
+        sjmE/DW3AVJORK1PNJhVILZzgWUxzIcb1xbR
+X-Google-Smtp-Source: APBJJlHcnlhQVr/XiJSoKdbWwRGozSxDZLax3KI9epzczZ23m1Ah0w3PM0mIwiWaTTnHK3hnf39i/w==
+X-Received: by 2002:a25:6884:0:b0:c39:8036:e3f9 with SMTP id d126-20020a256884000000b00c398036e3f9mr1837158ybc.26.1688099959254;
+        Thu, 29 Jun 2023 21:39:19 -0700 (PDT)
+Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com. [209.85.128.179])
+        by smtp.gmail.com with ESMTPSA id w143-20020a25df95000000b00bcae3682a51sm2861298ybg.47.2023.06.29.21.39.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 29 Jun 2023 21:39:18 -0700 (PDT)
+Received: by mail-yw1-f179.google.com with SMTP id 00721157ae682-5700401acbeso14956587b3.0;
+        Thu, 29 Jun 2023 21:39:18 -0700 (PDT)
+X-Received: by 2002:a81:5bd6:0:b0:56d:2e22:8b31 with SMTP id
+ p205-20020a815bd6000000b0056d2e228b31mr1434020ywb.41.1688099958565; Thu, 29
+ Jun 2023 21:39:18 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230626095223.721011-1-xianwei.zhao@amlogic.com>
+ <20230626-viewless-marrow-17838c2172f6@wendy> <676db602-54d8-d6b0-274f-365e65a2102c@amlogic.com>
+ <20230627-unsure-uniformly-079cad2c26e6@wendy> <061bb829-fb75-d154-0c15-9f0f982fec41@amlogic.com>
+ <CAJX_Q+0Kf3zFyUtkCEkm7K8zXwaovxQmo1DWFwy8y25GQ2wqXg@mail.gmail.com> <0b4b67aa-e8f5-2bd9-223b-0f26add687fe@amlogic.com>
+In-Reply-To: <0b4b67aa-e8f5-2bd9-223b-0f26add687fe@amlogic.com>
+Reply-To: tanure@linux.com
+From:   Lucas Tanure <tanure@linux.com>
+Date:   Fri, 30 Jun 2023 05:39:07 +0100
+X-Gmail-Original-Message-ID: <CAJX_Q+3jDsFwmx-voMxCiKadJSobV00BuwLjpzc72UK5681ibQ@mail.gmail.com>
+Message-ID: <CAJX_Q+3jDsFwmx-voMxCiKadJSobV00BuwLjpzc72UK5681ibQ@mail.gmail.com>
+Subject: Re: [PATCH 0/2] Baisc devicetree support for Amlogic T7
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS)
-Subject: [PATCH v7 2/3] arm: dts: qcom: sdx65: Add PCIe interconnect path
-Date:   Fri, 30 Jun 2023 09:55:22 +0530
-Message-Id: <1688099123-28036-3-git-send-email-quic_krichai@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1688099123-28036-1-git-send-email-quic_krichai@quicinc.com>
-References: <1688099123-28036-1-git-send-email-quic_krichai@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: 5j12IA82wQq_YKOHLNjiHz3083IuHaVr
-X-Proofpoint-GUID: 5j12IA82wQq_YKOHLNjiHz3083IuHaVr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-06-30_02,2023-06-27_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 phishscore=0
- impostorscore=0 mlxlogscore=871 mlxscore=0 malwarescore=0
- lowpriorityscore=0 clxscore=1015 adultscore=0 priorityscore=1501
- bulkscore=0 spamscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2306300037
-X-Spam-Status: No, score=-2.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add pcie-mem interconnect path to sdx65 platform.
+On Fri, Jun 30, 2023 at 3:22 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+>
+>
+>
+> On 2023/6/30 00:33, Lucas Tanure wrote:
+> > [ EXTERNAL EMAIL ]
+> >
+> > On Tue, Jun 27, 2023 at 8:52 AM Xianwei Zhao <xianwei.zhao@amlogic.com> wrote:
+> >>
+> >>
+> >> On 2023/6/27 15:23, Conor Dooley wrote:
+> >>
+> >>
+> >>   > [ EXTERNAL EMAIL ]
+> >>   >
+> >>   > On Tue, Jun 27, 2023 at 02:13:34PM +0800, Xianwei Zhao wrote:
+> >>   >> Hi Conor,
+> >>   >>      Thanks for you reply.
+> >>   >> On 2023/6/26 18:02, Conor Dooley wrote:
+> >>   >>
+> >>   >>
+> >>   >>> [ EXTERNAL EMAIL ]
+> >>   >>>
+> >>   >>> Hey,
+> >>   >>>
+> >>   >>> On Mon, Jun 26, 2023 at 05:52:21PM +0800, Xianwei Zhao wrote:
+> >>   >>>> T7 is an advanced application processor designed for smart display.
+> >>   >>>>
+> >>   >>>> Add the new T7 SoC/board device tree bindings.
+> >>   >>>>
+> >>   >>>> Add basic support for the T7 based Amlogic AN400 board, which
+> >>   >>>> describesthe following components: CPU, GIC, IRQ, Timer, UART. It's
+> >>   >>>> capable of booting up into the serial console.
+> >>   >>>
+> >>   >>> Lucas has already sent patches for the T7 SoC & is at v5:
+> >>   >>> https://lore.kernel.org/linux-devicetree/20230623081242.109131-1-
+> >>   >>> tanure@linux.com/
+> >>   >>> There's been a bit of discussion there, and there serial stuff in
+> >>   >>> particular is different in his series (it doesn't use always-on for
+> >>   >>> examples).
+> >>   >>> Could you please go and take a look at his series?
+> >>   >>>
+> >>   >>> Cheers,
+> >>   >>> Conor.
+> >>   >>>
+> >>   >> AN400 is the reference board designed by Amlogic, which is different
+> >>   >> from Khadas VIM4.
+> >>   >
+> >>   > Yet you share the same dtsi, which he has got through several
+> >>   > iterations of before you arrived.
+> >>   >
+> >> Hi Lucas,
+> >> Are you going to continue with the dtsi part?
+> >>
+> >>   >> And T7 serial is the same as S4, so I follow S4 serial.
+> >>   >
+> >>   > Yeah, no. SoC specific compatible please.
+> >>   >
+> >>   >
+> >>   > _______________________________________________
+> >>   > linux-amlogic mailing list
+> >>   > linux-amlogic@lists.infradead.org
+> >>   > http://lists.infradead.org/mailman/listinfo/linux-amlogic
+> >
+> > Hi Xianwei,
+> >
+> > I am doing the basics for Amlogic T7 A311D2, but the next step ( sd
+> > card or emmc, something to boot on) would be more difficult for me
+> > than you.
+> > After the first series for Vim4 gets merged, I will start to work on
+> > how to get sd cards working.
+> > But if you already have that working for the AN400 board, please send
+> > it. And I will look at that work and use it for Vim4.
+> >
+> > Or, if you don't have it ready and want to share it with me, we can
+> > work together on these A311D2 patches.
+> > You test on AN400, and I test on Vim4.
+> >
+> > Thanks
+> > Lucas
+>
+> We are preparing this part. However it depends on clock. So the clock
+> must ready first.
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Krishna chaitanya chundru <quic_krichai@quicinc.com>
----
- arch/arm/boot/dts/qcom/qcom-sdx65.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-index 1a35830..77fa97c 100644
---- a/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-sdx65.dtsi
-@@ -332,6 +332,9 @@
- 				     <GIC_SPI 145 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-names = "global", "doorbell";
- 
-+			interconnects = <&system_noc MASTER_PCIE_0 &mc_virt SLAVE_EBI1>;
-+			interconnect-names = "pcie-mem";
-+
- 			resets = <&gcc GCC_PCIE_BCR>;
- 			reset-names = "core";
- 
--- 
-2.7.4
-
+Will you send clock for T7?
