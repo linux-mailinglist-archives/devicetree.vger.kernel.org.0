@@ -2,72 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9AE9A744215
-	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 20:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4269B744226
+	for <lists+devicetree@lfdr.de>; Fri, 30 Jun 2023 20:25:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229634AbjF3SV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 14:21:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36238 "EHLO
+        id S232680AbjF3SZL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 30 Jun 2023 14:25:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232361AbjF3SV5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 14:21:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C19D3BD;
-        Fri, 30 Jun 2023 11:21:56 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 48A36617DF;
-        Fri, 30 Jun 2023 18:21:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E5D34C433C8;
-        Fri, 30 Jun 2023 18:21:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688149315;
-        bh=sM46dcengp7YkqfFo0VJUNN08NUrJCfycUaS2/3Woo0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=odJQMvmZ0rqdXgLbMO87OefdaC4QW3lgA/RWvCb/rfwsahLGiH1t1dFswomLcQIru
-         Z0hBWjgnZ4rt6sPNx3V8LxMtVy2Ea0AYR17S54qnwtCXCduR8Vzmj3bxKwY4gSOjLg
-         YNB3P8zD9A7gOORxtd68UVGihekQbl0Qh1aZHXURJ6emhf1E/qigeW/mxttRgdfrea
-         81V/O4GOJsty2zQALa/JSvuUCVsywnp+AlWB2/P0nJVbaXJDR4gbWY18dY+vQt7y31
-         CWmuZQJZ2wMA7ugKXOyZTsgUClPKgyj4vM9CKlxoKsGdRtmB2cZWsHbayTW4kJZOqU
-         tgUTP5fwxGz2Q==
-Date:   Fri, 30 Jun 2023 19:21:49 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Stanley =?utf-8?B?Q2hhbmdb5piM6IKy5b63XQ==?= 
-        <stanley_chang@realtek.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Bagas Sanjaya <bagasdotme@gmail.com>,
-        Flavio Suligoi <f.suligoi@asem.it>,
-        Ray Chi <raychi@google.com>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>
-Subject: Re: [PATCH v6 4/5] dt-bindings: phy: realtek: Add the doc about the
- Realtek SoC USB 2.0 PHY
-Message-ID: <20230630-trowel-pleat-5312a869dda2@spud>
-References: <20230629054523.7519-1-stanley_chang@realtek.com>
- <20230629054523.7519-4-stanley_chang@realtek.com>
- <20230629164220.GA3146341-robh@kernel.org>
- <f17378f003144f4ba50ec08e0ad38c0b@realtek.com>
+        with ESMTP id S230525AbjF3SZK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 14:25:10 -0400
+Received: from NAM10-BN7-obe.outbound.protection.outlook.com (mail-bn7nam10on2042.outbound.protection.outlook.com [40.107.92.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4293BCA;
+        Fri, 30 Jun 2023 11:25:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bJrVKYHq8kQ9rRLj8ncjvqNXyoxAFVEZdq/TthmRGeEZk1GE905Vpet5xUT8KuUAq/O2rKTQgnlJz92u4pIo2Y1drn/LOXxj0Vxb27yZtMdg1L5/S2T0I6T9ameLg/IsDSjrMxIuSMAIvGCih59MYlcGDdXKGZUrFd1KFhJLwN9Ii3UOcag2v7YbzdvQQc3MW6dxuCFkksp7G5DzVJDAzW6XbiVvPfDUj2jZIigRiT+rnU6Rtk2PkbHETC2mcn/rLyXspCxuOdiWjj+WaFyKYuvSDoRAITKYtT8fFVnXA62j70kY4iHjb3WAhwtRnrHxFtZNsxwndtM4AqOe8lDhyA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=xEKS2OQjfHTx+TTcuLZv+mAL2FZ4gz18KDCYjtohWVs=;
+ b=Lynz1FLRxOONxsSs8YW3tYQX/4Bm5+G8xeAK6Loy8ylW6X+faI4dovueUjOoFWFC83kbu6tuddjr/krmc2lCBcTbV+HPel7RKIUv84Fd1DKZmfS98GqNOR+uCwSXR7jpQhUV/oucbaw/myJ/lDhfvltmlnSI8n6YZVgx3tJGv688AgSEdreoIZZPXPtOE80jR0eZT/Bj4GDvT1Rek7P7Fv18vCulhHPni/7g3DQz+93hcWlNNZ6MFf466PcfHlYE501QAxhrcvnTTUggkTDMThMd8qcmF1LMD43fepF63ek20sc1AaEtSFX5b2Fl6IciSaEnyXiIZnYiJVFXlZpRyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 165.204.84.17) smtp.rcpttodomain=kernel.org smtp.mailfrom=amd.com; dmarc=pass
+ (p=quarantine sp=quarantine pct=100) action=none header.from=amd.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=xEKS2OQjfHTx+TTcuLZv+mAL2FZ4gz18KDCYjtohWVs=;
+ b=JS5jQX8CnoIDRre1YGjU7mFPHFvTOpKCIqD5Z9puiSYbxCXVAnfimxrJlk16KzDJKkw8CPr7KoCLQstk+xVtN674rJ51X73vGIcae0dvvGPVN03diC5zz+OQh8gFd2Bsp3MaYnhTM+0gnBMXCxmNfeUVfG/N5jV4mcf2sDo9Zgs=
+Received: from MW2PR16CA0049.namprd16.prod.outlook.com (2603:10b6:907:1::26)
+ by SJ1PR12MB6123.namprd12.prod.outlook.com (2603:10b6:a03:45a::5) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.19; Fri, 30 Jun
+ 2023 18:25:07 +0000
+Received: from CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:907:1:cafe::45) by MW2PR16CA0049.outlook.office365.com
+ (2603:10b6:907:1::26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.22 via Frontend
+ Transport; Fri, 30 Jun 2023 18:25:06 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
+ smtp.mailfrom=amd.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=amd.com;
+Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
+ 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
+ client-ip=165.204.84.17; helo=SATLEXMB04.amd.com; pr=C
+Received: from SATLEXMB04.amd.com (165.204.84.17) by
+ CO1NAM11FT077.mail.protection.outlook.com (10.13.175.55) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.20.6500.51 via Frontend Transport; Fri, 30 Jun 2023 18:25:06 +0000
+Received: from SATLEXMB05.amd.com (10.181.40.146) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
+ 2023 13:25:04 -0500
+Received: from SATLEXMB04.amd.com (10.181.40.145) by SATLEXMB05.amd.com
+ (10.181.40.146) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.23; Fri, 30 Jun
+ 2023 13:25:04 -0500
+Received: from [172.19.74.144] (10.180.168.240) by SATLEXMB04.amd.com
+ (10.181.40.145) with Microsoft SMTP Server id 15.1.2507.23 via Frontend
+ Transport; Fri, 30 Jun 2023 13:25:03 -0500
+Message-ID: <9f39fc3d-ae40-e5b1-8d40-8c27fc4e1022@amd.com>
+Date:   Fri, 30 Jun 2023 11:24:58 -0700
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="aEhlxy1fUgPMd5+/"
-Content-Disposition: inline
-In-Reply-To: <f17378f003144f4ba50ec08e0ad38c0b@realtek.com>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:91.0) Gecko/20100101
+ Thunderbird/91.11.0
+Subject: Re: [PATCH V10 2/5] PCI: Create device tree node for bridge
+Content-Language: en-US
+To:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <helgaas@kernel.org>
+CC:     <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <max.zhen@amd.com>,
+        <sonal.santan@amd.com>, <stefano.stabellini@xilinx.com>
+References: <1688059190-4225-3-git-send-email-lizhi.hou@amd.com>
+ <20230629225631.GA446944@bhelgaas> <20230629235226.GA92592-robh@kernel.org>
+From:   Lizhi Hou <lizhi.hou@amd.com>
+In-Reply-To: <20230629235226.GA92592-robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CO1NAM11FT077:EE_|SJ1PR12MB6123:EE_
+X-MS-Office365-Filtering-Correlation-Id: dc7e3027-e8e5-48a4-cc9d-08db7997549c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: 7L8lRsAIfZhI0RydQ/hMTOSdOmEK3kFE3eJUng1sGiPnSe5uaI8x0HO4ZcSF0nbxkpxOelSTyJmGDMgumBk5Uc3+RNic+WcQYtkXOvnDcFpabHoJiVj6gQ0me/CrdiSPfMJQKT8CbTQ5mS8k8kPCPOLb18FfsrDJsltG6bwQKB2amKeC+8DA9js596Lim0QrhmQqU47GgHtfqnOD+fi1leQnddEQRDFBD+eHe/ezAGvUE3b+HpajaTKt0iBF/tuakCt+FgeVh8h0ce+xVJNfKvhoknYfNwsD4o2OA+MBeGl7p3LKGmX9mzaxKH5zNktVNbH/jNCbMWFs3UTw+0aDnDjbPMoko3ueEMzTI1XJNLIYeh5auW0/4qKElaADGhpXvhGzhDrLNt2fANgE9p5xNJ7JcQFhB+KTzRtJjMIzvhyIn2U4dDLFzNv1WhIifw1lycJDUdaq1reFs8b/LhkQBMF8rIK3nmYesIyvrRhyikibplWfQBI379K/dhQitTPcEKaPJ6LCNjplSpIACTyQstZpfCCQawq5NYd0SO7bI/TObbiIoJnHralyNWOZgxmAHK1pW0Epq9tjJ7s3CsXChb36OeDf3QxzYMxqY5VqZ8b0mxoYinBn5G7mv0Qp4YOp4BJ7jhKfr7hqq+JVJbTOyA8mx3TNq6cXfm91tNyi+UgNB+3UnAE3BivpubrYf5sILI0iMCCUixNgxVkWNj5CdSAhoQlt3jDGaM0pW1N8TrwUo7iBObOErvdlbdfiXfQLqnM2EKzFJj8ul86bNjTVkH5dIXdu5JjdIRo8LJqxoOs=
+X-Forefront-Antispam-Report: CIP:165.204.84.17;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:SATLEXMB04.amd.com;PTR:InfoDomainNonexistent;CAT:NONE;SFS:(13230028)(4636009)(136003)(39860400002)(376002)(396003)(346002)(451199021)(36840700001)(40470700004)(46966006)(82310400005)(966005)(82740400003)(81166007)(6666004)(356005)(426003)(336012)(47076005)(2616005)(186003)(26005)(53546011)(40480700001)(36860700001)(31696002)(5660300002)(86362001)(40460700003)(8676002)(44832011)(36756003)(2906002)(70206006)(70586007)(54906003)(110136005)(16576012)(8936002)(316002)(4326008)(41300700001)(478600001)(31686004)(43740500002)(36900700001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Jun 2023 18:25:06.8079
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: dc7e3027-e8e5-48a4-cc9d-08db7997549c
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d;Ip=[165.204.84.17];Helo=[SATLEXMB04.amd.com]
+X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT077.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ1PR12MB6123
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,NICE_REPLY_A,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -75,124 +108,37 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---aEhlxy1fUgPMd5+/
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 6/29/23 16:52, Rob Herring wrote:
+>>> +			rp[i].child_addr[0] = j;
+>>> +	ret = of_changeset_add_empty_prop(ocs, np, "dynamic");
+>> It seems slightly confusing to use a "dynamic" property here when we
+>> also have the OF_DYNAMIC dynamic flag above.  I think they have
+>> different meanings, don't they?
+> Hum, what's the property for? It's new in this version. Any DT property
+> needs to be documented, but I don't see why we need it.
 
-On Fri, Jun 30, 2023 at 07:33:45AM +0000, Stanley Chang[=E6=98=8C=E8=82=B2=
-=E5=BE=B7] wrote:
-> Hi Rob,
->=20
-> > On Thu, Jun 29, 2023 at 01:45:12PM +0800, Stanley Chang wrote:
-> > > Add the documentation explain the property about Realtek USB PHY driv=
-er.
-> >=20
-> > In the subject, drop "the doc about the". It's redundant. And perhaps a=
-dd 'DHC
-> > RTD SoC' if this isn't for *all* Realtek SoCs.
-> >=20
-> > > Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB
-> > > controller. Added the driver to drive the USB 2.0 PHY transceivers.
-> >=20
-> > driver? This is a binding for the h/w.
->=20
-> I mean, the driver is drivers/phy/realtek/phy-rtk-usb2.c
-> I will revise as
->     dt-bindings: phy: realtek: Add the Realtek DHC RTD SoC USB 2.0 PHY
->=20
->     Add the documentation explain the property about Realtek USB PHY driv=
-er.
->=20
->     Realtek DHC (digital home center) RTD SoCs support DWC3 XHCI USB
->     controller and uses phy-rtk-usb2 as driver for USB 2.0 PHY transceive=
-r..
+This is mentioned in my previous reply for V9
 
-No, you should mention nothing to do with how a particular operating
-system chooses to structure its code here. Bindings describe hardware,
-and the commit message should reflect that.
+https://lore.kernel.org/lkml/af9b6bb3-a98d-4fb6-b51e-b48bca61dada@amd.com/
 
->=20
-> > > +$id: http://devicetree.org/schemas/phy/realtek,usb2phy.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Realtek DHC SoCs USB 2.0 PHY
-> > > +
-> > > +maintainers:
-> > > +  - Stanley Chang <stanley_chang@realtek.com>
-> > > +
-> > > +description:
-> >=20
-> > You need '|' if formatting (line breaks) are important.
->=20
-> I think I need it. I will add it.
->=20
-> > > +  realtek,inverse-hstx-sync-clock:
-> > > +    description:
-> > > +      For one of the phys of RTD1619b SoC, the synchronous clock of =
-the
-> > > +      high-speed tx must be inverted.
-> >=20
-> > "invert" assumes I know what non-inverted means. I do not. Better to st=
-ate in
-> > terms of active high, low, falling edge, rising edge, etc.
->=20
-> Meaning, the clock must be reversed.
+As we discussed before, "interrupt-map" was intended to be used here.
 
-Maybe that means something to Rob, but "reversed" doesn't seem any more
-meaningful than inverse. I agree that it should be described in terms of
-"active high" etc, as they have well understood meanings.
+And after thinking it more, it may not work for the cases where ppnode
 
-> > > +    type: boolean
-> > > +
-> > > +  realtek,driving-level:
-> > > +    description:
-> > > +      Control the magnitude of High speed Dp/Dm output swing.
-> > > +      For a different board or port, the original magnitude maybe not
-> > meet
-> > > +      the specification. In this situation we can adjust the value t=
-o meet
-> > > +      the specification.
-> >=20
-> > What are the units?
->=20
-> There is no unit. It is only a gain for adjusting the magnitude.
+is not dynamically generated and it does not have "interrupt-map".
 
-Gain has units too.
+For example the IBM ppc system, its device tree has nodes for pci bridge
 
-> > > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > > +    default: 8
-> > > +    minimum: 0
-> > > +    maximum: 31
-> > > +
-> > > +  realtek,driving-compensate:
-> >=20
-> > compensate what?
->=20
-> It is to compensate the driving level.
+and it does not have "interrupt-map".
 
-Should it be called "driving-level-compensate" then?
+Based on previous discussions, OF_DYNAMIC should not be used here.
 
-> In other word, to adjust the driving level.
+So I think adding "dynamic" might be a way to identify the dynamically
 
-So, "realtek,driving-level" sets the gain and
-"realtek,driving-compensate" adjusts the driving level.
-By that logic, is this also a gain?
-
-Also this property is only for the RTD1315e? That should be
-described in/constrained by the binding itself, not in the text
-description alone IMO.
+added node. Or we can introduce a new flag e.g OF_IRQ_SWIZZLING.
 
 
---aEhlxy1fUgPMd5+/
-Content-Type: application/pgp-signature; name="signature.asc"
+Thanks,
 
------BEGIN PGP SIGNATURE-----
+Lizhi
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZJ8dPQAKCRB4tDGHoIJi
-0lmUAP45sQ9AK7ogaqK+eH+Y4Gn7Emg+7aM7bHUQwQztSG0w/AD/ZtzuQIET/Qsw
-9vk5lYfiSF8wdLIPvZ1gQ5IVcpEEHAM=
-=Acbb
------END PGP SIGNATURE-----
-
---aEhlxy1fUgPMd5+/--
