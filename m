@@ -2,102 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FB2F7447E2
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:06:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CA3D7447F6
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbjGAIGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 04:06:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35508 "EHLO
+        id S229917AbjGAIOa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 04:14:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229641AbjGAIGk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:06:40 -0400
-Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC393199
-        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:06:37 -0700 (PDT)
-Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51d9a925e9aso3024303a12.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:06:37 -0700 (PDT)
+        with ESMTP id S229863AbjGAIO3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:14:29 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E2B3E0
+        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:14:27 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3090d3e9c92so3387753f8f.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:14:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688198796; x=1690790796;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=linaro.org; s=google; t=1688199266; x=1690791266;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=F2AOA85WPLNeq59zZIQIWUFQQzF6b4WaPXnHpsoj/pM=;
-        b=uTt9U+aYLjgWdXce3eySEIwUYyScwz33iTbz8S7vol+S7QzIP9b1Fio3ugyjMzlTEM
-         H35JObt6DdDe+ZAcrodw8uN/VW+NQ0CqZ3BQL4MYQyK/VG/jqB9fXAiem+0ABDpT8SMD
-         jtIdYLOMBEssloGgEwn0cZsSLT3+MKV5fWePDdwy5GOGUNilj/gsbg/gPIl5znH0T4Wu
-         vzEsOA4OW+uHY00syfFg4Kk7fezNivoQaQSTeCBtNOfjXPeHitfb0gcotxrQzmejiOg3
-         Ym29/2O6Y8KtJR8Z70kir6HCS6nh0pKIyzJxpXQqPSeCQaqa/GXYh7L3Bhc+EOvvhCfl
-         rA7w==
+        bh=B9J7X11SuOiKzwg8zM4pCPONMh4yD15NNSD4f4DtEeY=;
+        b=rh83CQApG43JSKsX6MyogdOQymYI/SkykLrlG3aahsbET0jEkvcKt1K0u/RyyenMj2
+         dAc6r6pJZVzSge+xQpdul7MMzWbjZnZzAkzzx4d2JWXZhhMQcRW9dz/sMtWdeLauXQGA
+         hGdSnn/SxPB9vjx6boygHjZI503KvKmoLA1jYlYhC7r4TMQvOJlgXQDL3dUXcgctwTG5
+         M4olWhthyZvEpSTId5jtHyxXFnT3+XnMbfAgDXCZgdZuLQDGoQufkmOlSLrH4yljvHzD
+         M5gyGew6BIZGPdCxbCM8bsAsD3w9W+J+EkBhfOcYpxkrLFvX98Qv8UqU89qhu5basW+t
+         IwBg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688198796; x=1690790796;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+        d=1e100.net; s=20221208; t=1688199266; x=1690791266;
+        h=content-transfer-encoding:in-reply-to:from:references:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=F2AOA85WPLNeq59zZIQIWUFQQzF6b4WaPXnHpsoj/pM=;
-        b=JonNk5iNsT8xreeU6bsc/dv79rlU9ZxIv5l0BG+3EFdnC1d8BcEdDFpYJjqneSQAQ5
-         gq6wglPEhCqRTPGP4m1lQNhklo0Eoz8ZieiSiGA2aj68GpNjbTdHy33hPcnXXDqjtLbq
-         twKTAi3BPArvskLDNLqd0JNmCTuXVdS3Svo4zjNbWV7dPz83JIMhUnqOe9u1C4rtWKvi
-         6A6K/gwb32efQ8PzFS2a5zlGejPLh6XS674l7wX/8ufl/HpmKG5DMDT2w6yqmabjjxlC
-         LNjf3xERs1wESBv3vHNkTRQ5LstQxY776zCvuoPC/7tu1DvvYV4Vl+/jasugI6W1Zenr
-         btKw==
-X-Gm-Message-State: ABy/qLYi+kp1HFJFcNkER+kQaT11wTcslS46QhbvE8SdM+sW1VlqvS1D
-        D0o3j3oJsruwkDE9j0pUcNiylw==
-X-Google-Smtp-Source: APBJJlEAcfboaxVqaehIP+kbquc2c7WH/RTZTv63cSm62Jc7muAl9JsCRYIb9E82IwV3w1SZdW4oEA==
-X-Received: by 2002:a05:6402:64d:b0:51d:9605:28fd with SMTP id u13-20020a056402064d00b0051d960528fdmr2861016edx.26.1688198796353;
-        Sat, 01 Jul 2023 01:06:36 -0700 (PDT)
+        bh=B9J7X11SuOiKzwg8zM4pCPONMh4yD15NNSD4f4DtEeY=;
+        b=hekDUdLTxteJpaStsrPZsTSQDd8yWPSZK8wx/B/R02+vA//CIzL7waLUeSgby2SgwF
+         6fM2Vw6xfYhg0Z/UjY6OQOYCwIWs53Khv4htpZh2lpX4BajlgB/zmWiJS33L0tQU+clQ
+         nxKLL2ROqH64sSbONv+50YZ589PlXA/u/VPc0/u+OFpmngQquOkvNPkV+kV3oo5DJd9N
+         nliY8J6C9uITVIlBx20X+mIi7W/b+A37/ru/KnBgkVbSWyxou6nyWbDG5ZYpR3BDmB0Z
+         k1Zbv/ePbubkJZ74HSBpXIDjrHEWjeKUXM3Xkk9EuYaLPMsIQqT6ksnrIYXT8fdba/Yk
+         G1Qw==
+X-Gm-Message-State: ABy/qLbIHWtzwM/jd12EJiKSkwV7g73waITBg4LSOhrV5vKzFOw5SAcY
+        /wMI7wq02Z8oUS21mGYG4Zof+Q==
+X-Google-Smtp-Source: APBJJlGnZ87GlqELUyFSQTfpgmcHtXhAn0wDNgjNrtXAjDlesoGuFxZ1xlBsf1tFgZQDnxD5/8wNFA==
+X-Received: by 2002:adf:f992:0:b0:314:1e87:f5d3 with SMTP id f18-20020adff992000000b003141e87f5d3mr6115912wrr.29.1688199266042;
+        Sat, 01 Jul 2023 01:14:26 -0700 (PDT)
 Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id i12-20020a170906850c00b00992f81122e1sm1268309ejx.21.2023.07.01.01.06.34
+        by smtp.gmail.com with ESMTPSA id o9-20020a056402038900b0051de4f15362sm2071648edv.5.2023.07.01.01.14.24
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Jul 2023 01:06:35 -0700 (PDT)
-Message-ID: <05d97994-49a4-1618-890f-9f5c70c201fa@linaro.org>
-Date:   Sat, 1 Jul 2023 10:06:34 +0200
+        Sat, 01 Jul 2023 01:14:25 -0700 (PDT)
+Message-ID: <9fba446c-f0eb-ef44-8ced-f7a0bde8d064@linaro.org>
+Date:   Sat, 1 Jul 2023 10:14:24 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 03/11] arm64: dts: qcom: msm8939: Add missing
- 'cache-unified' to L2
+Subject: Re: [PATCH] arm64: dts: tegra: drop serial clock-names and
+ reset-names
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        cros-qcom-dts-watchers@chromium.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Jon Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Benjamin Li <benl@squareup.com>,
-        James Willcox <jwillcox@squareup.com>,
-        Joseph Gates <jgates@squareup.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Zac Crosby <zac@squareup.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Banajit Goswami <bgoswami@quicinc.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Wesley Cheng <quic_wcheng@quicinc.com>,
-        Jun Nie <jun.nie@linaro.org>, Max Chen <mchen@squareup.com>,
-        Shawn Guo <shawn.guo@linaro.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Vincent Knecht <vincent.knecht@mailoo.org>,
-        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
-        Konrad Dybcio <konradybcio@kernel.org>,
-        alsa-devel@alsa-project.org, iommu@lists.linux.dev,
-        linux-usb@vger.kernel.org, Leo Yan <leo.yan@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Andy Gross <andy.gross@linaro.org>
-References: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org>
- <20230627-topic-more_bindings-v1-3-6b4b6cd081e5@linaro.org>
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230123151543.369724-1-krzysztof.kozlowski@linaro.org>
+ <55cece9b-b4b8-854c-f948-2e30895f36b0@nvidia.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230627-topic-more_bindings-v1-3-6b4b6cd081e5@linaro.org>
+In-Reply-To: <55cece9b-b4b8-854c-f948-2e30895f36b0@nvidia.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -110,18 +79,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 27/06/2023 18:24, Konrad Dybcio wrote:
-> Add the missing property to fix the dt checker warning:
+On 28/06/2023 11:58, Jon Hunter wrote:
 > 
-> qcom/apq8039-t2.dtb: l2-cache: 'cache-unified' is a required property
+> On 23/01/2023 15:15, Krzysztof Kozlowski wrote:
+>> The serial node does not use clock-names and reset-names:
+>>
+>>    tegra234-sim-vdk.dtb: serial@3100000: Unevaluated properties are not allowed ('clock-names', 'reset-names' were unexpected)
+>>
+>> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+>> ---
+>>   arch/arm64/boot/dts/nvidia/tegra132.dtsi | 8 --------
+>>   arch/arm64/boot/dts/nvidia/tegra186.dtsi | 2 --
+>>   arch/arm64/boot/dts/nvidia/tegra194.dtsi | 4 ----
+>>   arch/arm64/boot/dts/nvidia/tegra210.dtsi | 8 --------
+>>   arch/arm64/boot/dts/nvidia/tegra234.dtsi | 2 --
+>>   5 files changed, 24 deletions(-)
 > 
-> Fixes: 61550c6c156c ("arm64: dts: qcom: Add msm8939 SoC")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 ++
+> ...
+> 
+>> diff --git a/arch/arm64/boot/dts/nvidia/tegra234.dtsi b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> index b54353f31df5..372be226a7f4 100644
+>> --- a/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> +++ b/arch/arm64/boot/dts/nvidia/tegra234.dtsi
+>> @@ -676,9 +676,7 @@ uarta: serial@3100000 {
+>>   			reg = <0x0 0x03100000 0x0 0x10000>;
+>>   			interrupts = <GIC_SPI 112 IRQ_TYPE_LEVEL_HIGH>;
+>>   			clocks = <&bpmp TEGRA234_CLK_UARTA>;
+>> -			clock-names = "serial";
+>>   			resets = <&bpmp TEGRA234_RESET_UARTA>;
+>> -			reset-names = "serial";
+>>   			status = "disabled";
+>>   		};
+>>   
+> 
+> 
+> Thierry, do you have a patch to convert the Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt to yaml? I have noticed that the above change now cause the hsuart to fail on Tegra234 ...
 
-
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+my patch was touching only the UART (8250), not the HSUART. These are
+different compatible and different drivers. Why do you think HSUART is
+affected here?
 
 Best regards,
 Krzysztof
