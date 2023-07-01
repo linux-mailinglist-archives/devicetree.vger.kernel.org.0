@@ -2,80 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F0517447FE
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:18:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 270EB744806
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:22:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229532AbjGAISG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 04:18:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38978 "EHLO
+        id S229641AbjGAIWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 04:22:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40290 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229490AbjGAISD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:18:03 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB6D2E5C
-        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:17:54 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-992bc8b5c5cso263769466b.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:17:54 -0700 (PDT)
+        with ESMTP id S229515AbjGAIWa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:22:30 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90381BC
+        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:22:28 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9891c73e0fbso475087966b.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:22:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688199473; x=1690791473;
+        d=linaro.org; s=google; t=1688199747; x=1690791747;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=nFUtqRuFYxZPNfD4i3kr3X3ptU2+o2FOiAEweLLRh0Y=;
-        b=hZ/FFeqa4g54JerJ53qoyxU4QTmUnUf0v73u41e+vOdiGZyUnWeNIEbTY9zWw4XMQw
-         zX2EuskfWe+XkRlT71jQ/Imrl935VrguDYwH/WJAC6FgSzab8UDCYWrLrjfpaV5+mcEx
-         4vjRkfjXAzH8mjoZyJvU6x0Ms+Qxl+jZqu9S7m3AQtatRtdY4C3jxzFPj1iNK9j7tvsj
-         fiS79qaZO6xV8jW4vvzP6xdrGYKSsjN4qM4hv01/6t6X6bNKti8xozXaZAEsDIvpgXT5
-         CEP1COSjeAsWkkylM7qBrO5SfimMr8i59FAO7XMV/o8vqa2s1MfsNPE+6Xqc69fDc5C1
-         C7Qg==
+        bh=gMzN5ldrDLudsFTYrIWTDNOwJnSoomZPJebktTnoU4I=;
+        b=z0vr7th4jrnuqwOOGzCSY6B5JNYPSI9Q1lAB5/LAiCsFLpgAeHlZ9AP0z3cjr2grLr
+         10l6wNeJX6XhSKFFjLl9yqKhmuQMZ5///4QLfTrb9Ctwa7DjXs75TxJFGTpwuGR9fggH
+         egDYhRbJuK7VooVdV+BHbDNF8uRt8h+WIp4+2eI9R4NNO9EvdJQLu5FFk7agf80rdsvw
+         6PFEGk8iC/GhsdXH93Z+EKtepKkCgj26eQevb3URGojIfPgReTD1tcZ0zpa0Gh2TPopR
+         pZDCSaMSd2VhCWVQV4USmsOmFUib+gIvSyi7cZf07sxN37OQdqQwARTdFK+1JBPSBcXL
+         F3Kg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688199473; x=1690791473;
+        d=1e100.net; s=20221208; t=1688199747; x=1690791747;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=nFUtqRuFYxZPNfD4i3kr3X3ptU2+o2FOiAEweLLRh0Y=;
-        b=XC1VpyogVR1QiYBNVV4TG9l0Mow1MagMf4CabG/actD7HMIoaJjQS6MAT+COZ9e2vZ
-         ZNICn4mS1Nez1Mfj6LI62Mhmf/utIM6W73kL/iBmbx00lvYBevpRztxkXrG02BQlrR+q
-         feCs5fZMKN6rwaPYegVWVYhu6hiTtX98rXVojUK5ltj5WkpGIbFydc4VGBUFIy1PxsGg
-         N+QgtjnxU3dVlIn57EjRQFIcrLubgaxYRVqP/LJW9wrESUuFFpRSuANSKL/meJWz13eA
-         lOyh2pTHsWzAjM/NuocZYDJGxgCub8zIPPb5qoj4VbbMGZ39V9kOh+qkH7rDsUP4MZDw
-         7ECQ==
-X-Gm-Message-State: ABy/qLZEbW1zQO7Vpicwx2AAFhbmYh6VZRm8zBnQo7IEbgSYGyBkZa13
-        CXQR1xbBZY0JY0RfDDdEszCd4Q==
-X-Google-Smtp-Source: APBJJlHl6fEgoqPBsy1ZFFH2uK0Gpmfi0RiZj0Uiu8sQs4UkbbfdT3pVNRrhM6i2vh5cofEh0GFVtQ==
-X-Received: by 2002:a17:906:3650:b0:974:1d8b:ca5f with SMTP id r16-20020a170906365000b009741d8bca5fmr3422697ejb.9.1688199473199;
-        Sat, 01 Jul 2023 01:17:53 -0700 (PDT)
+        bh=gMzN5ldrDLudsFTYrIWTDNOwJnSoomZPJebktTnoU4I=;
+        b=ARYY9uETX3pLejjgmXXBu4tWN0SCPhybf2TFd+Q1B0Mcp0K/6CGszzo/fW0ORWjO7/
+         XcgMZwIpCN6Xi1U+fak/KhuAp9ZfjWQz5aXZRp87fJjsw57Cg9JjdaV1tv7YMWvhZJPg
+         uvQfholTQbDMYMy5vejioFUvia7KKEM4glYTvm5AtDvAR5j7tDTwGybliM0++8kep3SG
+         HbmMg3MRRiVuooim4ymIgDY3oHMs6KeakGGqi4k7w2IVHYoTyateYIdlJ+otXCYQJ0BO
+         kQfi8v3X77XrbYjssmbUSV7VyOk1xNEOV08E3YZJkhnpoA9d2aLbPCEAFvOQ+QCcxfav
+         ffZg==
+X-Gm-Message-State: ABy/qLYo/pH2uFa2cZBfWYVLfaPuueNn/bBMq1RaAwZkK7uVmIM+ezcC
+        FmPwEoG285vvQ24MOxVcx8Rs0w==
+X-Google-Smtp-Source: APBJJlHQQAoTBEsW/Bor8efMuJEWqdkdKXwXOik6r7upNjbyBabBfFtmqbgej0SUq+B2EXp04+tBXg==
+X-Received: by 2002:a17:907:212a:b0:992:6d73:5696 with SMTP id qo10-20020a170907212a00b009926d735696mr4386219ejb.5.1688199747015;
+        Sat, 01 Jul 2023 01:22:27 -0700 (PDT)
 Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id jj25-20020a170907985900b00992b1c93279sm2693469ejc.110.2023.07.01.01.17.51
+        by smtp.gmail.com with ESMTPSA id b27-20020a170906195b00b00991e2b5a27dsm6356217eje.37.2023.07.01.01.22.25
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Jul 2023 01:17:52 -0700 (PDT)
-Message-ID: <c0244a98-4c91-93d8-a3e4-5210d0b3f205@linaro.org>
-Date:   Sat, 1 Jul 2023 10:17:51 +0200
+        Sat, 01 Jul 2023 01:22:26 -0700 (PDT)
+Message-ID: <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org>
+Date:   Sat, 1 Jul 2023 10:22:25 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v1 1/5] ASoC: dt-bindings: Add StarFive JH7110 dummy
- PWM-DAC transmitter
+Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
+ cache controller
 Content-Language: en-US
-To:     Hal Feng <hal.feng@starfivetech.com>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        Walker Chen <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230626110909.38718-1-hal.feng@starfivetech.com>
- <20230626110909.38718-2-hal.feng@starfivetech.com>
- <006ddacd-0496-70d1-3310-99b16706de84@linaro.org>
- <0312262c-28c0-9445-c6f7-2079a57db8c7@starfivetech.com>
+To:     Eric Lin <eric.lin@sifive.com>
+Cc:     conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
+        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>,
+        Greentime Hu <greentime.hu@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>
+References: <20230616063210.19063-1-eric.lin@sifive.com>
+ <20230616063210.19063-4-eric.lin@sifive.com>
+ <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org>
+ <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
+ <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
+ <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <0312262c-28c0-9445-c6f7-2079a57db8c7@starfivetech.com>
+In-Reply-To: <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,35 +85,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2023 03:57, Hal Feng wrote:
-> On Mon, 26 Jun 2023 17:34:56 +0200, Krzysztof Kozlowski wrote:
->> On 26/06/2023 13:09, Hal Feng wrote:
->>> Add bindings for StarFive JH7110 dummy PWM-DAC transmitter.
->>
->> ...
->>
->>> +required:
->>> +  - compatible
->>> +  - "#sound-dai-cells"
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    pwmdac-dit {
->>> +        compatible = "starfive,jh7110-pwmdac-dit";
->>> +        #sound-dai-cells = <0>;
->>
->> BTW, I don't see any resources here. Neither in the driver. I think you
->> just added this for driver, not for a real hardware.
-> 
-> Yes, this is a dummy PWM-DAC transmitter as described in the title. The
-> StarFive JH7110 PWM-DAC module doesn't need a hardware codec, but a
-> dummy codec is needed for the driver.
+On 28/06/2023 18:31, Eric Lin wrote:
 
-Bindings are no for drivers, therefore with such reasoning the answer
-is: drop entire binding. If you think otherwise, please give me some
-more details about the hardware.
+>>>>
+>>>>> +      - enum:
+>>>>> +          - sifive,pL2Cache0
+>>>>> +          - sifive,pL2Cache1
+>>>>
+>>>> What is "0" and "1" here? What do these compatibles represent? Why they
+>>>> do not have any SoC related part?
+>>>
+>>> The pL2Cache1 has minor changes in hardware, but it can use the same
+>>> pl2 cache driver.
+>>
+>> Then why aren't they compatible?
+>>
+> 
+> The pL2Cache1 has removed some unused bits in the register compared to
+> pl2Cache0.
+> From the hardware perspective, they are not compatible but they can
+> share the same pl2 cache driver in software.
+
+So they are compatible... If they were not compatible, you wouldn't be
+able to use the same match in the driver.
+
+> Thus, we would like to keep both. It would be great if you can provide
+> some suggestions. Thanks.
+
+I propose to make them compatible, like every other piece of SoC. I
+don't see any benefit of having them separate.
 
 Best regards,
 Krzysztof
