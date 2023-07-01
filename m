@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B4987445A5
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 02:37:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB2F7447E2
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:06:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229506AbjGAAhz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 30 Jun 2023 20:37:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55814 "EHLO
+        id S229941AbjGAIGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 04:06:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229447AbjGAAhz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 30 Jun 2023 20:37:55 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id D6BF13C02
-        for <devicetree@vger.kernel.org>; Fri, 30 Jun 2023 17:37:53 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D6F60C14;
-        Fri, 30 Jun 2023 17:38:36 -0700 (PDT)
-Received: from slackpad.lan (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8266D3F663;
-        Fri, 30 Jun 2023 17:37:50 -0700 (PDT)
-Date:   Sat, 1 Jul 2023 01:37:07 +0100
-From:   Andre Przywara <andre.przywara@arm.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Chris Morgan <macromorgan@hotmail.com>,
-        Chris Morgan <macroalpha82@gmail.com>,
-        linux-sunxi@lists.linux.dev, devicetree@vger.kernel.org,
-        uwu@icenowy.me, samuel@sholland.org, jernej.skrabec@gmail.com,
-        wens@csie.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org
-Subject: Re: [PATCH 3/3] ARM: dts: sunxi: add support for Anbernic RG-Nano
-Message-ID: <20230701013707.54c6d37a@slackpad.lan>
-In-Reply-To: <ytgchgmhgegjdqe44yamcgh6ovk6yxbpj2oxgrtslqle5tskvl@np2oxx4l6a5w>
-References: <20230620200022.295674-1-macroalpha82@gmail.com>
-        <20230620200022.295674-4-macroalpha82@gmail.com>
-        <20230621105228.41ca9fcf@donnerap.cambridge.arm.com>
-        <SN6PR06MB53426B6D9456C68AAE8C51B0A527A@SN6PR06MB5342.namprd06.prod.outlook.com>
-        <20230629203410.660eb9a4@slackpad.lan>
-        <ytgchgmhgegjdqe44yamcgh6ovk6yxbpj2oxgrtslqle5tskvl@np2oxx4l6a5w>
-Organization: Arm Ltd.
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.31; x86_64-slackware-linux-gnu)
+        with ESMTP id S229641AbjGAIGk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:06:40 -0400
+Received: from mail-ed1-x535.google.com (mail-ed1-x535.google.com [IPv6:2a00:1450:4864:20::535])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC393199
+        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:06:37 -0700 (PDT)
+Received: by mail-ed1-x535.google.com with SMTP id 4fb4d7f45d1cf-51d9a925e9aso3024303a12.0
+        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:06:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688198796; x=1690790796;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=F2AOA85WPLNeq59zZIQIWUFQQzF6b4WaPXnHpsoj/pM=;
+        b=uTt9U+aYLjgWdXce3eySEIwUYyScwz33iTbz8S7vol+S7QzIP9b1Fio3ugyjMzlTEM
+         H35JObt6DdDe+ZAcrodw8uN/VW+NQ0CqZ3BQL4MYQyK/VG/jqB9fXAiem+0ABDpT8SMD
+         jtIdYLOMBEssloGgEwn0cZsSLT3+MKV5fWePDdwy5GOGUNilj/gsbg/gPIl5znH0T4Wu
+         vzEsOA4OW+uHY00syfFg4Kk7fezNivoQaQSTeCBtNOfjXPeHitfb0gcotxrQzmejiOg3
+         Ym29/2O6Y8KtJR8Z70kir6HCS6nh0pKIyzJxpXQqPSeCQaqa/GXYh7L3Bhc+EOvvhCfl
+         rA7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688198796; x=1690790796;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=F2AOA85WPLNeq59zZIQIWUFQQzF6b4WaPXnHpsoj/pM=;
+        b=JonNk5iNsT8xreeU6bsc/dv79rlU9ZxIv5l0BG+3EFdnC1d8BcEdDFpYJjqneSQAQ5
+         gq6wglPEhCqRTPGP4m1lQNhklo0Eoz8ZieiSiGA2aj68GpNjbTdHy33hPcnXXDqjtLbq
+         twKTAi3BPArvskLDNLqd0JNmCTuXVdS3Svo4zjNbWV7dPz83JIMhUnqOe9u1C4rtWKvi
+         6A6K/gwb32efQ8PzFS2a5zlGejPLh6XS674l7wX/8ufl/HpmKG5DMDT2w6yqmabjjxlC
+         LNjf3xERs1wESBv3vHNkTRQ5LstQxY776zCvuoPC/7tu1DvvYV4Vl+/jasugI6W1Zenr
+         btKw==
+X-Gm-Message-State: ABy/qLYi+kp1HFJFcNkER+kQaT11wTcslS46QhbvE8SdM+sW1VlqvS1D
+        D0o3j3oJsruwkDE9j0pUcNiylw==
+X-Google-Smtp-Source: APBJJlEAcfboaxVqaehIP+kbquc2c7WH/RTZTv63cSm62Jc7muAl9JsCRYIb9E82IwV3w1SZdW4oEA==
+X-Received: by 2002:a05:6402:64d:b0:51d:9605:28fd with SMTP id u13-20020a056402064d00b0051d960528fdmr2861016edx.26.1688198796353;
+        Sat, 01 Jul 2023 01:06:36 -0700 (PDT)
+Received: from [192.168.10.214] ([217.169.179.6])
+        by smtp.gmail.com with ESMTPSA id i12-20020a170906850c00b00992f81122e1sm1268309ejx.21.2023.07.01.01.06.34
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Jul 2023 01:06:35 -0700 (PDT)
+Message-ID: <05d97994-49a4-1618-890f-9f5c70c201fa@linaro.org>
+Date:   Sat, 1 Jul 2023 10:06:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 03/11] arm64: dts: qcom: msm8939: Add missing
+ 'cache-unified' to L2
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        cros-qcom-dts-watchers@chromium.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Benjamin Li <benl@squareup.com>,
+        James Willcox <jwillcox@squareup.com>,
+        Joseph Gates <jgates@squareup.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Zac Crosby <zac@squareup.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Banajit Goswami <bgoswami@quicinc.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, Lee Jones <lee@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Wesley Cheng <quic_wcheng@quicinc.com>,
+        Jun Nie <jun.nie@linaro.org>, Max Chen <mchen@squareup.com>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Vincent Knecht <vincent.knecht@mailoo.org>,
+        Bryan O'Donoghue <bryan.odonoghue@linaro.org>,
+        Konrad Dybcio <konradybcio@kernel.org>,
+        alsa-devel@alsa-project.org, iommu@lists.linux.dev,
+        linux-usb@vger.kernel.org, Leo Yan <leo.yan@linaro.org>,
+        Rob Herring <robh@kernel.org>,
+        Andy Gross <andy.gross@linaro.org>
+References: <20230627-topic-more_bindings-v1-0-6b4b6cd081e5@linaro.org>
+ <20230627-topic-more_bindings-v1-3-6b4b6cd081e5@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230627-topic-more_bindings-v1-3-6b4b6cd081e5@linaro.org>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 30 Jun 2023 10:16:35 +0200
-Maxime Ripard <mripard@kernel.org> wrote:
-
-Hi,
-
-> On Thu, Jun 29, 2023 at 08:34:10PM +0100, Andre Przywara wrote:
-> > > > > +&usbphy {
-> > > > > +	usb0_id_det-gpios = <&pio 5 6 GPIO_ACTIVE_HIGH>;  
-> > 
-> > Where is this pin connected to, in the USB-C connector? One of the CC
-> > pins?
-> >   
-> > > > > +	status = "okay";    
-> > > > 
-> > > > So in the commit message you say "USB-C for power", but this here
-> > > > describes a full featured USB port. So does that work? Can you use it as a
-> > > > gadget, but also as a host?    
-> > > 
-> > > Yes, it's an OTG port with the ID pin pulled to ground.  
-> > 
-> > Do you mean both CC pins? IIRC this means it's hardwired as a
-> > peripheral (UFP).
-> > 
-> > If I ignore the ID pin above, this looks like on the OrangePi Zero2 or
-> > the MangoPi MQ-R. In those cases we put peripheral in the DT, as this
-> > is what this connection seems to indicate. That *can* be used a host as
-> > well, with the "right" cable, but it's not really a well supported
-> > configuration, so we leave this up to people to change this locally,
-> > should they really desire so.  
+On 27/06/2023 18:24, Konrad Dybcio wrote:
+> Add the missing property to fix the dt checker warning:
 > 
-> The ID pin above is exactly what makes "the right cable" works:
-> depending on the state of the ID pin the controller will act either as a
-> peripheral or a host. Dual-mode works just fine, so if the hardware
-> supports it there's no reason not to enable it.
+> qcom/apq8039-t2.dtb: l2-cache: 'cache-unified' is a required property
+> 
+> Fixes: 61550c6c156c ("arm64: dts: qcom: Add msm8939 SoC")
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8939.dtsi | 2 ++
 
-Mmmh, I think that's correct for an USB micro-B socket, but this is a
-USB type C one. I don't think USB type C role switching can be easily
-implemented with just a single GPIO, probably not even with two purely
-digital GPIOs, as you would need some more clever voltage detection
-circuitry.
-For a simple connection via a USB-2.0 A<->C cable this probably doesn't
-matter (as nothing happens to the CC pins?), and a USB-C thumb drive
-probably would work as well, but I doubt those boards can properly
-detect that automatically.
 
-Chris, can you check how many pins from the type C connector are
-actually used on the board? Can you follow the traces? Does it just
-pull CC1 and CC2 to GND, via a resistor? Or are those pins somehow
-connected to the SoC, or even a separate USB-C controller chip? Maybe
-also worth checking if the stock OS can detect hosts or devices attached
-automatically.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-I am not really familiar with the USB type C situation in those
-simplified USB-2.0-only setups, so if anyone can shed some light on
-this, I'd be grateful.
+Best regards,
+Krzysztof
 
-Cheers,
-Andre
