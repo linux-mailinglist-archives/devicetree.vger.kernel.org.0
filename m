@@ -2,118 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 270EB744806
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:22:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFC6C74480E
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:34:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbjGAIWb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 04:22:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40290 "EHLO
+        id S230154AbjGAIeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 04:34:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41642 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229515AbjGAIWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:22:30 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 90381BC
-        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:22:28 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9891c73e0fbso475087966b.1
-        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:22:28 -0700 (PDT)
+        with ESMTP id S229665AbjGAIeG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:34:06 -0400
+Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF6D813E
+        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:34:03 -0700 (PDT)
+Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-9926623e367so311078166b.0
+        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:34:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688199747; x=1690791747;
+        d=linaro.org; s=google; t=1688200442; x=1690792442;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=gMzN5ldrDLudsFTYrIWTDNOwJnSoomZPJebktTnoU4I=;
-        b=z0vr7th4jrnuqwOOGzCSY6B5JNYPSI9Q1lAB5/LAiCsFLpgAeHlZ9AP0z3cjr2grLr
-         10l6wNeJX6XhSKFFjLl9yqKhmuQMZ5///4QLfTrb9Ctwa7DjXs75TxJFGTpwuGR9fggH
-         egDYhRbJuK7VooVdV+BHbDNF8uRt8h+WIp4+2eI9R4NNO9EvdJQLu5FFk7agf80rdsvw
-         6PFEGk8iC/GhsdXH93Z+EKtepKkCgj26eQevb3URGojIfPgReTD1tcZ0zpa0Gh2TPopR
-         pZDCSaMSd2VhCWVQV4USmsOmFUib+gIvSyi7cZf07sxN37OQdqQwARTdFK+1JBPSBcXL
-         F3Kg==
+        bh=ln71CslK+wNkG4luuwS7YiYZydBZMEVnpr27Fg4FgP0=;
+        b=Q2NkimT1scuu/IiVNGHS7pfdg2HjllvWeMMG8MZCygBWNeAyBQ4YZlE8VlWTun+qm+
+         qAbWN2xzkTCjjrRMRq4i/pkcFfBg+mP6KaYVMrm+rGQW/5BLU29xi6PRhNSTh4G5aqrd
+         3+OuNyObya/Nb6RQWikgKOie/dcsMauAim2cQxxYHcBAjUokVadSDDKl3HnHHeOfUaCX
+         OQgjXn6Hu5AgIDFGXiBgTt4h1H26pwj4DbfK4eeTE9f52jY3HuljAk97JnPocjfJpSRA
+         cUJ68KOn2nq3XIGz6rhz/YEBKQaS8xAi9gUoebuRWndad1Mrh8JEs5PQ8Qtq37iI3FmB
+         IFZg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688199747; x=1690791747;
+        d=1e100.net; s=20221208; t=1688200442; x=1690792442;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=gMzN5ldrDLudsFTYrIWTDNOwJnSoomZPJebktTnoU4I=;
-        b=ARYY9uETX3pLejjgmXXBu4tWN0SCPhybf2TFd+Q1B0Mcp0K/6CGszzo/fW0ORWjO7/
-         XcgMZwIpCN6Xi1U+fak/KhuAp9ZfjWQz5aXZRp87fJjsw57Cg9JjdaV1tv7YMWvhZJPg
-         uvQfholTQbDMYMy5vejioFUvia7KKEM4glYTvm5AtDvAR5j7tDTwGybliM0++8kep3SG
-         HbmMg3MRRiVuooim4ymIgDY3oHMs6KeakGGqi4k7w2IVHYoTyateYIdlJ+otXCYQJ0BO
-         kQfi8v3X77XrbYjssmbUSV7VyOk1xNEOV08E3YZJkhnpoA9d2aLbPCEAFvOQ+QCcxfav
-         ffZg==
-X-Gm-Message-State: ABy/qLYo/pH2uFa2cZBfWYVLfaPuueNn/bBMq1RaAwZkK7uVmIM+ezcC
-        FmPwEoG285vvQ24MOxVcx8Rs0w==
-X-Google-Smtp-Source: APBJJlHQQAoTBEsW/Bor8efMuJEWqdkdKXwXOik6r7upNjbyBabBfFtmqbgej0SUq+B2EXp04+tBXg==
-X-Received: by 2002:a17:907:212a:b0:992:6d73:5696 with SMTP id qo10-20020a170907212a00b009926d735696mr4386219ejb.5.1688199747015;
-        Sat, 01 Jul 2023 01:22:27 -0700 (PDT)
+        bh=ln71CslK+wNkG4luuwS7YiYZydBZMEVnpr27Fg4FgP0=;
+        b=bynqro96OdHpsiescalNZYqKKvWOopr0ymIPIU7UuRtBm/jcUD/8B/eYYGaeQjPEq3
+         Ixqwt4phr8emAKrnc7IolsXw1HfFXYlw5OuWDAtOml8kIXD//2ejOYl2bJSGxIGhz0uz
+         C/UJIxc9/h25KEQtRtuV7+G1ptAc1VJl76/S4JZ9NhfIgG3N+izWJmCDo8RL5p3egHDS
+         sB4wIJd0GOW9gSSdu9OFhCkplVVQE5MrougldWbxaijN0QuTt40A8l+jtzwIlTK4zCYP
+         bHHFl9tPbmDXveYA5PLPlXbGROKgH5S6fcZzDkLGGSfFPeS08qVoRx8JFWYuHjunA9Wf
+         4vqA==
+X-Gm-Message-State: ABy/qLYyKgk9P2D6H7WUQFpuKW14oI1HdxZI1JcIWiqUJZ7Wyc/kf3hy
+        g/11wyZ3PRazqYsxKL1+ebfhrg==
+X-Google-Smtp-Source: APBJJlHxmuqetckhUv6v1CC+aVS7a9zdw4R4oa+2xmoDW0Qz3S/5/qPZdv0AD3U+alxjTqLMoko7jw==
+X-Received: by 2002:a17:906:854c:b0:98c:cc3c:194e with SMTP id h12-20020a170906854c00b0098ccc3c194emr3250372ejy.52.1688200442264;
+        Sat, 01 Jul 2023 01:34:02 -0700 (PDT)
 Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id b27-20020a170906195b00b00991e2b5a27dsm6356217eje.37.2023.07.01.01.22.25
+        by smtp.gmail.com with ESMTPSA id w6-20020a17090633c600b0098748422178sm8908124eja.56.2023.07.01.01.34.01
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Jul 2023 01:22:26 -0700 (PDT)
-Message-ID: <f5275617-d68c-c76b-d799-106f67cc2071@linaro.org>
-Date:   Sat, 1 Jul 2023 10:22:25 +0200
+        Sat, 01 Jul 2023 01:34:01 -0700 (PDT)
+Message-ID: <e5bd4f01-0b00-4d70-c642-4fdfc0a139fc@linaro.org>
+Date:   Sat, 1 Jul 2023 10:34:00 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 3/3] dt-bindings: riscv: sifive: Add SiFive Private L2
- cache controller
+Subject: Re: [PATCH v2 5/6] can: tcan4x5x: Add support for tcan4552/4553
 Content-Language: en-US
-To:     Eric Lin <eric.lin@sifive.com>
-Cc:     conor@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dslin1010@gmail.com,
-        Zong Li <zong.li@sifive.com>, Nick Hu <nick.hu@sifive.com>,
-        Greentime Hu <greentime.hu@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>
-References: <20230616063210.19063-1-eric.lin@sifive.com>
- <20230616063210.19063-4-eric.lin@sifive.com>
- <2437bda9-bbdb-ad80-7201-1e16e1388890@linaro.org>
- <CAPqJEFoTsmVZ4kvsSB0RkQZaQGyXC96KV6RvdpeC5XxURCOZ0w@mail.gmail.com>
- <8c9ed2d4-83ab-ecc0-a300-e6bc8e2047b6@linaro.org>
- <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Michal Kubiak <michal.kubiak@intel.com>,
+        Vivek Yadav <vivek.2311@samsung.com>,
+        linux-can@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Simon Horman <simon.horman@corigine.com>
+References: <20230621093103.3134655-1-msp@baylibre.com>
+ <20230621093103.3134655-6-msp@baylibre.com>
+ <32557326-650c-192d-9a82-ca5451b01f70@linaro.org>
+ <20230621123158.fd3pd6i7aefawobf@blmsp>
+ <21f12495-ffa9-a0bf-190a-11b6ae30ca45@linaro.org>
+ <20230622122339.6tkajdcenj5r3vdm@blmsp>
+ <e2cc150b-49e3-7f2f-ce7f-a5982d129346@linaro.org>
+ <20230627142300.heju4qccian5hsjk@blmsp>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAPqJEFqhmxksvEgvC61cJcRGR0DrSWDZxJC3J7tdgcG8UY+sFw@mail.gmail.com>
+In-Reply-To: <20230627142300.heju4qccian5hsjk@blmsp>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2023 18:31, Eric Lin wrote:
+On 27/06/2023 16:23, Markus Schneider-Pargmann wrote:
 
->>>>
->>>>> +      - enum:
->>>>> +          - sifive,pL2Cache0
->>>>> +          - sifive,pL2Cache1
->>>>
->>>> What is "0" and "1" here? What do these compatibles represent? Why they
->>>> do not have any SoC related part?
+>>> The version information is always readable for that chip, regardless of
+>>> state and wake GPIOs as far as I know. So yes it is possible to setup
+>>> the GPIOs based on the content of the ID register.
 >>>
->>> The pL2Cache1 has minor changes in hardware, but it can use the same
->>> pl2 cache driver.
+>>> I personally would prefer separate compatibles. The binding
+>>> documentation needs to address that wake and state GPIOs are not
+>>> available for tcan4552/4553. I think having compatibles that are for
+>>> these chips would make sense then. However this is my opinion, you are
+>>> the maintainer.
 >>
->> Then why aren't they compatible?
->>
+>> We do not talk about compatibles in the bindings here. This is
+>> discussion about your driver. The entire logic of validating DTB is
+>> flawed and not needed. Detect the variant and act based on this.
 > 
-> The pL2Cache1 has removed some unused bits in the register compared to
-> pl2Cache0.
-> From the hardware perspective, they are not compatible but they can
-> share the same pl2 cache driver in software.
+> I thought it was about the bindings, sorry.
+> 
+> So to summarize the compatibles ti,tcan4552 and ti,tcan4553 are fine.
+> But the driver should use the ID register for detection and not compare
+> the detected variant with the given compatible?
+> 
+> In my opinion it is useful to have an error messages that says there is
+> something wrong with the devicetree as this can be very helpful for the
+> developers who bringup new devices. This helps to quickly find issues
+> with the devicetree.
 
-So they are compatible... If they were not compatible, you wouldn't be
-able to use the same match in the driver.
-
-> Thus, we would like to keep both. It would be great if you can provide
-> some suggestions. Thanks.
-
-I propose to make them compatible, like every other piece of SoC. I
-don't see any benefit of having them separate.
+That's not a current policy for other drivers, so this shouldn't be
+really special. Kernel is poor in validating DTS. It's not its job. It's
+the job of the DT schema.
 
 Best regards,
 Krzysztof
