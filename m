@@ -2,178 +2,479 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C233744812
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 10:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 847F3744836
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 11:25:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229741AbjGAIfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 04:35:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41756 "EHLO
+        id S229734AbjGAJZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 05:25:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47996 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229559AbjGAIfE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 04:35:04 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3290CE0
-        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 01:35:03 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fa16c6a85cso4331220e87.3
-        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 01:35:03 -0700 (PDT)
+        with ESMTP id S229561AbjGAJZp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 05:25:45 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF9CB1986
+        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 02:25:42 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51d89664272so2895216a12.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 02:25:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688200501; x=1690792501;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=tmyMg2G+EEDiO35MdO/CXry6h0X0pw99+yWSxYKFfbI=;
-        b=Vr4Ghuv+Mv6id9gWUhOnC5E8Uwwt4IdgunWijK80oHiTwWIFYfNXLbwkorghenzsSE
-         KDecY8a52s/kBHdx+vpCB/MJ9kogFeTX8eYwccfUHuSLRHBUhH4QtyyfNWOMUludHdYT
-         ADB6wMuG5EGpJkQ0SLvgJAjtOxx48d//AlNQFCzIo/XXbtacGPxNG1/FtdnafX3iBI3S
-         B1H95Az8rW+YJKGWx03TQRzjhVPIZcu9Zm6wcG3D6RjW94N2ZAMENbitJrLLl2PzIR1G
-         +GQJp3KLVWxuBAygOLoJFpZERuu//6+rLyW3mpwXjeXjNKwUHd432f6we+U5YYi1zY/a
-         EFKA==
+        d=linaro.org; s=google; t=1688203541; x=1690795541;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id:from
+         :to:cc:subject:date:message-id:reply-to;
+        bh=zgEVh1bz7XHN5cvJ5EPhqy0TqEi9NwTwtU5q6hB8ix0=;
+        b=pxxf2lMqu9A2XJSoASDa2hLCengcAazxF20/msEmLamUDzzqpqHSuGCc487qq2OLri
+         a0QIHc1lSnDhD88DwW1fxDOQbj6xCTCQUlg8US97ZgtjbbhKVe75lHMzfVKcX9zkj69I
+         echXXK2BEmurQ1hCi7na+yp3zVtZIUT2BMCB2c8gXYzi3W+1zgI9OED8UlS6pLFVLimq
+         qmt7hm8n8VfBF0ieN7RTOu0K5SuQi0RAjJJZ56TVUvlP6iQHLAzT0yRo6Una+JXNZ+Er
+         UNMjQHTGtUVf5jzuPVw2WBkVKGiF3U3BpaWf/2IDkVYdiL8zLS/kkxfJaQHNTUpNY4j4
+         v7tQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688200501; x=1690792501;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1688203541; x=1690795541;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=tmyMg2G+EEDiO35MdO/CXry6h0X0pw99+yWSxYKFfbI=;
-        b=RAs1VDbCzEigb7IX94GiW+8ifMAbz6dq9SO6gDiDxXllEGF8/AO5poNlSpX9nm2o36
-         EwlMZyNfRUEJEHpWpJsib1nNu278cxBTpDy02Tk4KI6jxBfTa3TM2EkhmECrKjl3PArC
-         soDHBlexetRjN5ZpizEDbct8CUprT1tGhc+uq/BgJ9X0wxcuCvNkqQSGVKDtXFL18iYD
-         +sKMDUfrKiHtu+yEPb0SPUcU7urnyYjwyZtnIrpj11Dqg4ylDLaBtMgDDAZMrlqU665H
-         pP2LQVN28ezrS/SIaMn2VRdfX0b4eym7bZRti7Viz75eeWrx9/GrmCxwRiBEbttmftQ3
-         xZTw==
-X-Gm-Message-State: ABy/qLYNAqbvEXQbq2ZGEDhdC3mVcrBoCD19b5GDx5HWvcXO6/Q4tot7
-        Fp0FLtgmKS4mxEx6AEy0mZpeRXp7iPxkTcdWbQgCcDjy
-X-Google-Smtp-Source: APBJJlHVg9JKcSsO5f+mwwC7HASqtysYpfW76+fV4zT00bVtxqiuYX4ByGC/rgovc8P5HkKUIELRyg==
-X-Received: by 2002:a05:6512:3443:b0:4fb:89c1:c209 with SMTP id j3-20020a056512344300b004fb89c1c209mr3410752lfr.62.1688200501393;
-        Sat, 01 Jul 2023 01:35:01 -0700 (PDT)
+        bh=zgEVh1bz7XHN5cvJ5EPhqy0TqEi9NwTwtU5q6hB8ix0=;
+        b=VDLuuObph79sRIfrJSFj+FXPOvoXICv1ZBR2Z4dDMbXDmvKGmDW2fG2Bn/7xZKziGB
+         5XVx17hd38X9beIR9Q7Hnoh9ZYWNmu6oTF5kUDRYlNV332HuloYILmw/6vKhLB6Dm/1p
+         XNtCrrZCyV/b1vRK7CP3H6MzSKaEG6+fg1d8zeYGhUTjxmr1S61psSAeQ9b6slgrU00M
+         AEBJqs+FlixQAQD8ogj9gRH9QF3dKILR0uaniKaFGCkwStimjAsIpW8MifkCGgW534xN
+         tJS/GuZENpz1EwJ/ZPuhj/wPyg1H9aY82oKaXqDs4tzPZET3e+kA0v+q2jQTtZDstKmA
+         mN3g==
+X-Gm-Message-State: ABy/qLYtQgIvwvC0WO6IjajE4Nnyxoyo+DTOZHn9iKjcd1E/cSlOTfSX
+        GyX1/ngpX6ITMTIb8i3shJSi0GVxNZHSQhNcgtueMetX
+X-Google-Smtp-Source: APBJJlFvHclEiFmDlYn70oAZrmZKfzGtgJ84rU9H0VW+pqwvllYjX408dIVbWHCPmZ/DS0zSOwRQyw==
+X-Received: by 2002:aa7:df17:0:b0:51d:d568:fa4e with SMTP id c23-20020aa7df17000000b0051dd568fa4emr2835011edy.41.1688203540992;
+        Sat, 01 Jul 2023 02:25:40 -0700 (PDT)
 Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id q7-20020aa7d447000000b005183ce42da9sm7521126edr.18.2023.07.01.01.35.00
+        by smtp.gmail.com with ESMTPSA id v1-20020a056402184100b0050488d1d376sm7690327edy.0.2023.07.01.02.25.39
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Jul 2023 01:35:00 -0700 (PDT)
-Message-ID: <6ad6d7d1-3626-fe79-6b4c-b7dde2b97860@linaro.org>
-Date:   Sat, 1 Jul 2023 10:34:59 +0200
+        Sat, 01 Jul 2023 02:25:40 -0700 (PDT)
+Message-ID: <28e3d9d5-177b-3f1f-5565-493310ac402d@linaro.org>
+Date:   Sat, 1 Jul 2023 11:25:39 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 2/5] dt-bindings: pps: pps-gpio: introduce capture-clear
- property
+Subject: Re: [PATCH] arm64: dts: rockchip: add support for Rongpin king3399
+ board
+To:     ocfox <i@ocfox.me>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230630173010.272469-1-i@ocfox.me>
 Content-Language: en-US
-To:     "Farber, Eliav" <farbere@amazon.com>, giometti@enneenne.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     ronenk@amazon.com, talel@amazon.com, hhhawa@amazon.com,
-        jonnyc@amazon.com, itamark@amazon.com, shellykz@amazon.com,
-        amitlavi@amazon.com, almogbs@amazon.com
-References: <20230625142134.33690-1-farbere@amazon.com>
- <20230625142134.33690-3-farbere@amazon.com>
- <4244c92d-2079-e3d9-44c8-8e5593d093a5@linaro.org>
- <7d2fa941-8c3e-d99a-f556-ac9c11b500d8@amazon.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7d2fa941-8c3e-d99a-f556-ac9c11b500d8@amazon.com>
+In-Reply-To: <20230630173010.272469-1-i@ocfox.me>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2023 10:47, Farber, Eliav wrote:
-> On 6/25/2023 6:46 PM, Krzysztof Kozlowski wrote:
->> On 25/06/2023 16:21, Eliav Farber wrote:
->>> Add a new optional "capture-clear" boolean property.
->>> When present, PPS clear events shall also be reported.
->>>
->>> Signed-off-by: Eliav Farber <farbere@amazon.com>
->>> ---
->>>  Documentation/devicetree/bindings/pps/pps-gpio.txt | 4 ++++
->>
->> Please convert the bindings to DT schema first.
-> I will convert to DT schema first, if I indeed end up modifying this file.
+On 30/06/2023 19:27, ocfox wrote:
+> king3399 is a bord from Rongpin, you can find detail about
+> it here:
+> (http://www.rpdzkj.com/copy_2_1703937_175104_2536441.html)
 > 
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/pps/pps-gpio.txt 
->>> b/Documentation/devicetree/bindings/pps/pps-gpio.txt
->>> index 9012a2a02e14..8d588e38c44e 100644
->>> --- a/Documentation/devicetree/bindings/pps/pps-gpio.txt
->>> +++ b/Documentation/devicetree/bindings/pps/pps-gpio.txt
->>> @@ -14,6 +14,10 @@ Additional required properties for the PPS ECHO 
->>> functionality:
->>>  Optional properties:
->>>  - assert-falling-edge: when present, assert is indicated by a 
->>> falling edge
->>>                         (instead of by a rising edge)
->>> +- capture-clear: when present, report also PPS clear events, which 
->>> is the
->>> +                 opposite of the assert edge (if assert is 
->>> rising-edge then
->>> +                 clear is falling-edge and if assert is falling-edge 
->>> then
->>> +                 clear is rising-edge).
->>
->> Why this is board-dependant? Falling edge is happening anyway, so it is
->> in the hardware all the time. DT describes the hardware, not Linux
->> driver behavior.
-> Falling edge of the pulse is happening all the time, but the falling
-> edge event is currently never reported by the pps-gpio driver.
+> This patch add basic node for the board and make it able to bring
+> up.
 > 
-> It is because there is no place in the pps-gpio driver that sets
-> info->capture_clear, so
->    pps_event(info->pps, &ts, PPS_CAPTURECLEAR, data);
-> will never be called.
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/pps/clients/pps-gpio.c?h=v6.4#n59
+> Works:
+> - USB, type-C port
+> - Ethernet
+> - WiFi/BT
+> - HDMI
+> - eMMC
+> - PCIe
+> - sd-card
 > 
-> There was an option in the past to set info->capture_clear, but that
-> option was removed in commit ee89646619ba ("pps: clients: gpio: Get rid
-> of legacy platform data").
-
-I know the history and question was not about it. You add DT support, so
-whatever board files were doing, does not matter really.
-
+> Not test for other peripheral:
+> - AUDIO
+> - MIC
+> - SIM
+> - MIPI
 > 
-> This node in the DT isn't a pure HW device, but rather a SW driver.
-> The patch I shared allows to set capture-clear from device-tree same as
-> setting of assert-falling-edge is done.
-
-The binding still describes actual hardware - there is a system with a
-PPS signal on a GPIO.
-
-Your reasoning for this property is because you need it:
-"It is because there is no place in the pps-gpio driver that sets"
-With this approach we would need to accept every weird or bogus
-property, because someone needs it for the driver.
-
-Bindings are for the hardware, even if the concept is a bit more
-software-driven.
-
+> Signed-off-by: ocfox <i@ocfox.me>
+> ---
+>  arch/arm64/boot/dts/rockchip/Makefile         |    1 +
+>  .../boot/dts/rockchip/rk3399-king3399.dts     | 1077 +++++++++++++++++
+>  2 files changed, 1078 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-king3399.dts
 > 
-> Do you suggest I enable capture_clear in a different way?
-> Perhaps module-param?
+> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+> index b7fb908eb92d..73ebee6ef430 100644
+> --- a/arch/arm64/boot/dts/rockchip/Makefile
+> +++ b/arch/arm64/boot/dts/rockchip/Makefile
+> @@ -42,6 +42,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-hugsun-x99.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-captain.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-v.dtb
+> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-king3399.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-kobol-helios64.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-leez-p710.dtb
+>  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopc-t4.dtb
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-king3399.dts b/arch/arm64/boot/dts/rockchip/rk3399-king3399.dts
+> new file mode 100644
+> index 000000000000..5d68add63d59
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-king3399.dts
+> @@ -0,0 +1,1077 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2017 Fuzhou Rockchip Electronics Co., Ltd.
+> + *
+> + * Copyright (c) 2023 ocfox <i@ocfox.me>
+> + */
+> +
+> +/dts-v1/;
+> +#include <dt-bindings/pwm/pwm.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/usb/pd.h>
+> +#include "rk3399.dtsi"
+> +#include "rk3399-opp.dtsi"
+> +
+> +/ {
+> +	model = "KING3399 RK3399 Board";
+> +	compatible = "rockchip,king3399", "rockchip,rk3399";
 
-module params are also disliked, so usually the answer for non-hardware
-properties is sysfs ABI.
+Missing bindings patch. Looks like wrong vendor prefix - you called this
+board "Rongpin", not "Rockchip".
 
-Whether this is hardware property or not, I don't know. You did not
-provide rationale supporting it, so I tend to look at this as candidate
-for sysfs.
+> +
+> +	aliases {
+> +		mmc0 = &sdio0;
+> +		mmc1 = &sdmmc;
+> +		mmc2 = &sdhci;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial2:1500000n8";
+> +	};
+> +
+> +	clkin_gmac: external-gmac-clock {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <125000000>;
+> +		clock-output-names = "clkin_gmac";
+> +		#clock-cells = <0>;
+> +	};
+> +
+> +	adc-keys {
+> +		compatible = "adc-keys";
+> +		io-channels = <&saradc 1>;
+> +		io-channel-names = "buttons";
+> +		keyup-threshold-microvolt = <1800000>;
+> +		poll-interval = <100>;
+> +
+> +		button-up {
+> +			label = "Volume Up";
+> +			linux,code = <KEY_VOLUMEUP>;
+> +			press-threshold-microvolt = <100000>;
+> +		};
+> +
+> +		button-down {
+> +			label = "Volume Down";
+> +			linux,code = <KEY_VOLUMEDOWN>;
+> +			press-threshold-microvolt = <300000>;
+> +		};
+> +
+> +		back {
 
-> 
->> What's more, your property name sounds a lot like a driver property, so
->> even if this is suitable for DT, you would need to name it properly to
->> match hardware feature/characteristic.
-> I chose capture-clear as a name since it is aligned with the driver's
-> terminology. It sets the capture_clear parameter, just like
-> assert-falling-edge in DT sets assert_falling_edge parameter.
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
 
-Sure, poor examples like to multiply. For assert-falling-edge, it looks
-like some fake property was added instead of using proper, existing
-properties indicating the polarity of GPIO and/or type of interrupt
-(rising/falling edge).
+> +			label = "Back";
+> +			linux,code = <KEY_BACK>;
+> +			press-threshold-microvolt = <985000>;
+> +		};
+> +	};
+> +
+> +	keys: gpio-keys {
+> +		compatible = "gpio-keys"; // poweroff not sure
+> +		autorepeat;
+> +
+> +		power {
+
+It does not look like you tested the DTS against bindings. Please run
+`make dtbs_check` (see
+Documentation/devicetree/bindings/writing-schema.rst or
+https://www.linaro.org/blog/tips-and-tricks-for-validating-devicetree-sources-with-the-devicetree-schema/
+for instructions).
+
+> +			debounce-interval = <100>;
+> +			gpios = <&gpio0 RK_PA5 GPIO_ACTIVE_LOW>;
+> +			label = "GPIO Power";
+> +			linux,code = <KEY_POWER>;
+> +			linux,input-type = <1>;
+> +			pinctrl-names = "default";
+> +			pinctrl-0 = <&pwr_btn>;
+> +			wakeup-source;
+> +		};
+> +	};
+> +
+> +	ir-receiver {
+> +		compatible = "gpio-ir-receiver";
+> +		gpios = <&gpio0 RK_PA6 GPIO_ACTIVE_LOW>; // bsp
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ir_int>;
+> +	};
+> +
+> +	backlight: backlight {
+> +		status = "disabled";
+> +		compatible = "pwm-backlight";
+> +		brightness-levels = <
+> +			  0   1   2   3   4   5   6   7
+> +			  8   9  10  11  12  13  14  15
+> +			 16  17  18  19  20  21  22  23
+> +			 24  25  26  27  28  29  30  31
+> +			 32  33  34  35  36  37  38  39
+> +			 40  41  42  43  44  45  46  47
+> +			 48  49  50  51  52  53  54  55
+> +			 56  57  58  59  60  61  62  63
+> +			 64  65  66  67  68  69  70  71
+> +			 72  73  74  75  76  77  78  79
+> +			 80  81  82  83  84  85  86  87
+> +			 88  89  90  91  92  93  94  95
+> +			 96  97  98  99 100 101 102 103
+> +			104 105 106 107 108 109 110 111
+> +			112 113 114 115 116 117 118 119
+> +			120 121 122 123 124 125 126 127
+> +			128 129 130 131 132 133 134 135
+> +			136 137 138 139 140 141 142 143
+> +			144 145 146 147 148 149 150 151
+> +			152 153 154 155 156 157 158 159
+> +			160 161 162 163 164 165 166 167
+> +			168 169 170 171 172 173 174 175
+> +			176 177 178 179 180 181 182 183
+> +			184 185 186 187 188 189 190 191
+> +			192 193 194 195 196 197 198 199
+> +			200 201 202 203 204 205 206 207
+> +			208 209 210 211 212 213 214 215
+> +			216 217 218 219 220 221 222 223
+> +			224 225 226 227 228 229 230 231
+> +			232 233 234 235 236 237 238 239
+> +			240 241 242 243 244 245 246 247
+> +			248 249 250 251 252 253 254 255>;
+> +		default-brightness-level = <200>;
+> +		enable-gpios = <&gpio1 RK_PB5 GPIO_ACTIVE_HIGH>;
+> +		pwms = <&pwm0 0 25000 0>;
+> +	};
+> +
+> +	sdio_pwrseq: sdio-pwrseq {
+> +		compatible = "mmc-pwrseq-simple";
+> +		clocks = <&rk808 1>;
+> +		clock-names = "ext_clock";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&wifi_reg_on_h>;
+> +
+> +		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
+> +	};
+> +
+> +	/* switched by pmic_sleep */
+> +	vcc1v8_s3: vcca1v8_s3: vcc1v8-s3 {
+
+Use some consistent name suffixes or prefixes. Some of your regulators
+are regulators, some not.
+
+....
+
+> +
+> +	// vdd 5v: USB 2&3, USB Hub, Type-C, HDMI, MIPI, IR
+> +	vcc5v0_host: vcc5v0-host-regulator {
+
+Like here
+
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		regulator-boot-on;
+> +		gpio = <&gpio4 RK_PD6 GPIO_ACTIVE_HIGH>; // bsp
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcc5v0_host_en>;
+> +		regulator-name = "vcc5v0_host";
+> +		// regulator-always-on;
+
+Drop dead code
+
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc5v0_typec0: vbus-typec-regulator {
+> +		compatible = "regulator-fixed";
+> +		enable-active-high;
+> +		gpio = <&gpio4 RK_PD2 GPIO_ACTIVE_HIGH>; // bsp
+
+What is that "// bsp" comment?
+
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&vcc5v0_typec_en>;
+> +		regulator-name = "vcc5v0_typec0";
+> +		vin-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	vcc_sys: vcc5v0_sys: vcc5v0-sys { // bsp
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vcc5v0_sys";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <5000000>;
+> +		regulator-max-microvolt = <5000000>;
+> +		vin-supply = <&dc_12v>;
+> +	};
+> +
+> +
+> +	dc_12v: vdd_12v: dc-12v { // dc_12v vdd_12V
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "dc_12v";
+> +		regulator-always-on;
+> +		regulator-boot-on;
+> +		regulator-min-microvolt = <12000000>;
+> +		regulator-max-microvolt = <12000000>;
+> +	};
+> +
+> +	rt5651-sound { // verify
+
+So it is not suitable to upstream. Drop unrelated comments or mark your
+patch as not for merging.
+
+> +		status = "okay";
+
+Drop, it's by default.
+
+> +		compatible = "simple-audio-card";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&hp_det>;
+> +
+> +		simple-audio-card,name = "realtek,rt5651-codec";
+> +		simple-audio-card,format = "i2s";
+> +		simple-audio-card,mclk-fs = <256>;
+> +		simple-audio-card,hp-det-gpio = <&gpio4 RK_PD4 GPIO_ACTIVE_HIGH>;
+> +		simple-audio-card,aux-devs = <&speaker_amp>;
+> +		simple-audio-card,pin-switches = "Speaker";
+> +		simple-audio-card,widgets =
+> +			"Microphone", "Mic Jack",
+> +			"Headphone", "Headphones",
+> +			"Speaker", "Speaker";
+> +		simple-audio-card,routing =
+> +			"Mic Jack", "micbias1",
+> +			"Headphones", "HPOL",
+> +			"Headphones", "HPOR",
+> +			"Speaker Amplifier INL", "HPOL",
+> +			"Speaker Amplifier INR", "HPOR",
+> +			"Speaker", "Speaker Amplifier OUTL",
+> +			"Speaker", "Speaker Amplifier OUTR";
+> +		simple-audio-card,cpu {
+> +			sound-dai = <&i2s0>;
+> +		};
+> +		simple-audio-card,codec {
+> +			sound-dai = <&rt5651>;
+> +		};
+> +	};
+> +
+> +	speaker_amp: speaker-amplifier { // verify
+> +		compatible = "simple-audio-amplifier";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&spk_ctl>;
+> +		enable-gpios = <&gpio0 RK_PB3 GPIO_ACTIVE_HIGH>;
+> +		sound-name-prefix = "Speaker Amplifier";
+> +		vcc-supply = <&vcc5v0_sys>;
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&breathe_led_pin>;
+> +
+> +		breathe_led: led-breathe-led { // bsp // vdd_12V
+> +			label = "breathe_led";
+> +			linux,default-trigger = "heartbeat";
+> +			default-state = "off";
+> +			gpios = <&gpio4 RK_PD0 GPIO_ACTIVE_LOW>;
+> +		};
+> +	};
+> +
+> +	fan0: gpio-fan { // verify // vcc5v0_sys
+> +		#cooling-cells = <2>;
+> +		compatible = "gpio-fan";
+> +		gpio-fan,speed-map = <0 0 3000 1>;
+> +		gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_HIGH>;
+> +		status = "okay";
+> +	};
+
+Drop
+
+> +
+> +	gpio-restart {
+> +		compatible = "gpio-restart";
+> +		gpios = <&gpio1 RK_PD0 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&hub_rst>;
+> +		priority = <200>;
+> +		active-delay = <100>;
+> +		inactive-delay = <10>;
+> +		wait-delay = <100>;
+> +	};
+> +
+
+Drop stray blank line
+
+...
+
+> +
+> +&i2c1 {
+> +	i2c-scl-rising-time-ns = <300>;
+> +	i2c-scl-falling-time-ns = <15>;
+> +	status = "okay";
+> +
+> +	rt5651: rt5651@1a {
+
+Node names should be generic. See also explanation and list of examples
+in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +		#sound-dai-cells = <0>;
+> +		compatible = "realtek,rt5651";
+> +		reg = <0x1a>;
+> +		clocks = <&cru SCLK_I2S_8CH_OUT>;
+> +		clock-names = "mclk";
+> +		status = "okay";
+> +	};
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +};
+> +
+> +// Used for HDMI
+> +&i2c3 {
+> +	i2c-scl-rising-time-ns = <450>;
+> +	i2c-scl-falling-time-ns = <15>;
+> +	status = "okay";
+> +};
+> +
+> +// Type-C
+> +// Accelerometer
+> +// Touch Screen
+> +&i2c4 {
+> +	clock-frequency = <400000>;
+> +	i2c-scl-rising-time-ns = <450>;
+> +	i2c-scl-falling-time-ns = <15>;
+> +	status = "okay";
+> +
+> +	fusb302@22 { // bsp checked
+
+Node names should be generic. See also explanation and list of examples
+in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
 
 Best regards,
 Krzysztof
