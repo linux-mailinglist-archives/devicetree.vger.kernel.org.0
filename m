@@ -2,207 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 79CE8744899
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 13:01:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEF0574489C
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 13:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229510AbjGALB2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 07:01:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58732 "EHLO
+        id S229762AbjGALBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 07:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229557AbjGALB0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 07:01:26 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 667983C05
-        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 04:01:24 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-992bc8b5c5cso274511766b.0
-        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 04:01:24 -0700 (PDT)
+        with ESMTP id S229961AbjGALBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 07:01:45 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16443C18
+        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 04:01:43 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992ca792065so242125866b.2
+        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 04:01:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688209283; x=1690801283;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=dZ1or/MdMx0omH5bKg4Oj18nw/lksLHMXCAGiNzJOQ4=;
-        b=l5ATTLEkTO6e3mMV4Zd/lzxiZOKjq9mQSPrWhK2DFNU1A1eHH4GcFlE4AI1mwkBhN1
-         0e3OO/PYcI/uXGYv0iBLZahCX5H4/N+CPOyQN/HD2RZVL5jVeF2xVRZ4xMRnSTQ5bAHU
-         HaBMFgPTvEQbduVWcooM13IMk7rSph8N0J1UwfkdwmHsLPZglXgeMMx3BJuqAlyj3P+o
-         LDEk8b6oVyBYRjCsT2D0wBBLK7Sxs2ZRDkhbAnhxef1475ZhyEWdu6bOgnp0UxsBHUBJ
-         LigN6sghjD2mXQKLfLpUTGhm0RAiouU+42/DfhvkaIR3j39nNWKB92zGcTecaADMKroS
-         gVjA==
+        d=ventanamicro.com; s=google; t=1688209302; x=1690801302;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=iUgkxYj4hDdaeULOykMIAMiTYI4q7YAWRcLFU1vSbps=;
+        b=Hl6PE+6tbQAK3mCvx+YO6XTFLzapBMm8lxpT/1mcQfSusfpxU8+WUET6DNyDlb9gG8
+         tYNvNPt8I+LTE58jZu3BrFuSpW3vvVraNpSu+Jpl4S4ELRffi/YrwE/3b5LQSXuJjdyW
+         ifHY4vY7etvbXXNEgHbvmWOL368iaR8tvZdn0DDuHJ338jSWzHaq2TX53R4OexKYDUoK
+         10Qj/oj/1RBrC9bj45Lv8C1pWw05ejDbivtz8ZP/8XqTrjYHN98NiWBFHG+4fMjX3Mon
+         TE0gKszRbjVhL0hqjesgen/EEUGk2UkdcGfZTNBbNiXC4qV1UuUpe9tEEln2IWWcvu+Y
+         KcEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688209283; x=1690801283;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=dZ1or/MdMx0omH5bKg4Oj18nw/lksLHMXCAGiNzJOQ4=;
-        b=iZgP5XukCXJRD2uVuQOZdfJm5GaAE6TgANnAXTYM0LWEDYTcha+uSIGOkpXFTi2V3T
-         Q0UOu88W3TAkM08qOcZ+IZJfDkhfCnINoeTqH1zBkVcjz9taGorgD7wqalrBLXsWYAEM
-         Feh/hyXewV27EmriJstb6b4DhxQfdmYkelpgOsv56jzkmhYBjYPqyeIjmovDBejwwu8p
-         bPLLg8N3tPkFVh8vwbvc5XfunEAvWNKge2z61y7fZo8PRctk7Ns+BxHu3l92ZTJJzQg/
-         VNmnr4NSOs4/lQSXKj/7lNyuokWtJto7779cH+nFhleuzYQXkVv37ZfF096CtLY/MrnO
-         X6ug==
-X-Gm-Message-State: ABy/qLa7066V+EV0+g/tOwS4AWVPjGrp2eBRjT60KyFV/fFtMgdUPFAO
-        HS9/XhSusFRNj4Josz5ONF8Bnw==
-X-Google-Smtp-Source: APBJJlElNbbZdOdk19QhJCE35zZn5Te95ct9xR7hyv0ISeTz7uMTomfWvFBRbgRu/jsnLzZJIKe2tA==
-X-Received: by 2002:a17:906:c3a4:b0:98d:f062:8503 with SMTP id t36-20020a170906c3a400b0098df0628503mr3168554ejz.77.1688209282661;
-        Sat, 01 Jul 2023 04:01:22 -0700 (PDT)
-Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id sb22-20020a170906edd600b00982a92a849asm9195404ejb.91.2023.07.01.04.01.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 01 Jul 2023 04:01:22 -0700 (PDT)
-Message-ID: <caaf6ada-61a4-df67-0a55-06ab3c19fd3c@linaro.org>
-Date:   Sat, 1 Jul 2023 13:01:20 +0200
+        d=1e100.net; s=20221208; t=1688209302; x=1690801302;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=iUgkxYj4hDdaeULOykMIAMiTYI4q7YAWRcLFU1vSbps=;
+        b=IYtQAWk0dRAu6j3D5hLkFA2jOVtLFPWqfCMx+F0NpgaZN3gqUHFdYYiC6+OEbvQ/h+
+         9dnl4ssKFur13aGy2UhjRDtWez7Wk7uEQsNVbQDQc9mLjqwf8H02ewKdokVHtT+MR+F9
+         uNzOAj55eUKgCgbYUX5dgGTYZZ9WRNYndzuBdhLKOkkOVAXNgUxdtSbyZpvipP5ryztJ
+         T9VvCSMw7dl2xlRyq+qS0J7j2sE/sfX1IRsri2mqvUDMUSc82kOfElZSBzOAmeaLBo1y
+         KfppmE2+R1icAVvTKGa7dcY17ATX8vJ1Bvf992STssfd4m6BedcdHjymf0BZOlTTTZZB
+         DQQQ==
+X-Gm-Message-State: ABy/qLZ2pu/cKqv03KgNsUJus19ewur7qEJNtiXO57q3vQHsm9snU3Qu
+        r0Md9CSUQ0hgLrNfIiBw/GbBAA==
+X-Google-Smtp-Source: APBJJlFkK8StAK5YsG+2ZcpOu+kBMm85tO+8fKQBITtMoynDzvNSvGndfZtNLBSou1PvXBWQdFIuWw==
+X-Received: by 2002:a17:906:7a0b:b0:98d:cd3e:c18f with SMTP id d11-20020a1709067a0b00b0098dcd3ec18fmr4312746ejo.72.1688209302131;
+        Sat, 01 Jul 2023 04:01:42 -0700 (PDT)
+Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
+        by smtp.gmail.com with ESMTPSA id x6-20020a170906710600b0098e48ad11f2sm7705332ejj.93.2023.07.01.04.01.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 01 Jul 2023 04:01:41 -0700 (PDT)
+Date:   Sat, 1 Jul 2023 13:01:40 +0200
+From:   Andrew Jones <ajones@ventanamicro.com>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     palmer@dabbelt.com, Conor Dooley <conor.dooley@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        Oleksii <oleksii.kurochko@gmail.com>,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4] dt-bindings: riscv: deprecate riscv,isa
+Message-ID: <20230701-b348653e432924f090c513db@orel>
+References: <20230630-very-greedless-16522d7b7830@spud>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 2/7] dt-bindings: leds: leds-qcom-lpg: Add support for LUT
- through NVMEM devices
-Content-Language: en-US
-To:     Anjelique Melendez <quic_amelende@quicinc.com>, pavel@ucw.cz,
-        lee@kernel.org, thierry.reding@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        agross@kernel.org, andersson@kernel.org
-Cc:     konrad.dybcio@linaro.org, u.kleine-koenig@pengutronix.de,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pwm@vger.kernel.org
-References: <20230621185949.2068-1-quic_amelende@quicinc.com>
- <20230621185949.2068-3-quic_amelende@quicinc.com>
- <4ee5f3fc-3376-7421-23cd-8fc905704493@linaro.org>
- <cb7630b4-4953-31df-faeb-a54f7757c1af@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cb7630b4-4953-31df-faeb-a54f7757c1af@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230630-very-greedless-16522d7b7830@spud>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29/06/2023 02:12, Anjelique Melendez wrote:
->>
->>
->>
->>> +      required when LUT mode is supported and the LUT pattern is stored in a single
->>> +      SDAM module instead of a LUT module.
->>
->> Which devices support LUT? Why this is not constrained per variant?
-> When you say constrained per variant, are you looking for something more like this?
-> i.e. 
-> allOf:
->   - if: 
->       properties:
->         compatible:
->           contains:
->             const: qcom,pmi632-lpg
->     then:
->       properties:
->         nvmem:
->           maxItems: 1
->         nvmem-names:
->           items:
->             - const: lpg_chan_sdam
->       required:
->         - nvmem
->         - qcom,pbs-client
->   - if: 
->       properties:
->         compatible:
->           contains:
->             const: qcom,pm8350c-pwm
->     then:
->       properties:
->         nvmem:
->           maxItems: 2
->         nvmem-names:
->           items:
->             - const: lpg_chan_sdam
->             - const: lut_sdam
->       required:
->        - nvmem
+On Fri, Jun 30, 2023 at 07:04:04PM +0100, Conor Dooley wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+...
+> +oneOf:
+> +  - required:
+> +      - riscv,isa
+> +  - required:
+> +      - riscv,isa-base
+> +
 
-Yes.
+I guess this means a DT must have either isa or isa-base, but not both.
+What should QEMU and other platforms which want to provide DTs that work
+for older kernels, but also start using the new schema do? I'd guess
+they'd like to provide both, where they'd expect isa-base to be used by
+newer kernels and isa by the old.
 
-> 
->>
->>> +
->>>    multi-led:
->>>      type: object
->>>      $ref: leds-class-multicolor.yaml#
->>> @@ -191,4 +216,64 @@ examples:
->>>        compatible = "qcom,pm8916-pwm";
->>>        #pwm-cells = <2>;
->>>      };
->>> +  - |
->>> +    #include <dt-bindings/leds/common.h>
->>> +
->>> +    led-controller {
->>> +      compatible = "qcom,pm8350c-pwm";
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +      #pwm-cells = <2>;
->>> +      nvmem-names = "lpg_chan_sdam" , "lut_sdam";
->>
->> Fix your whitespaces.
-> Ack
->>
->>> +      nvmem = <&pmk8550_sdam_21 &pmk8550_sdam_22>;
->>
->> Two entries, not one> 
->> Anyway, adding one property does not justify new example. Integrate it
->> into existing one.
-> 
-> So we actually cannot integrate these properties into existing examples.
-> The current examples are for PMICs that use LUT peripherals (https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/leds/rgb/leds-qcom-lpg.c?h=v6.4#n1417).
-> This patch series is adding support for PMICs that do not have a LUT peripheral
-> and instead store LUT patterns and LPG configurations in either 1 or 2 NVMEM(s). 
->>
->>> +
->>> +      led@1 {
->>> +        reg = <1>;
->>> +        color = <LED_COLOR_ID_RED>;
->>> +        label = "red";
->>> +      };
->>> +
->>> +      led@2 {
->>> +        reg = <2>;
->>> +        color = <LED_COLOR_ID_GREEN>;
->>> +        label = "green";
->>> +      };
->>> +
->>> +      led@3 {
->>> +        reg = <3>;
->>> +        color = <LED_COLOR_ID_BLUE>;
->>> +        label = "blue";
->>> +      };
->>> +    };
->>> +  - |
->>> +    #include <dt-bindings/leds/common.h>
->>> +
->>> +    led-controller {
->>> +      compatible = "qcom,pmi632-lpg";
->>> +      #address-cells = <1>;
->>> +      #size-cells = <0>;
->>> +      #pwm-cells = <2>;
->>> +      nvmem-names = "lpg_chan_sdam";
->>> +      nvmem = <&pmi632_sdam7>;
->>> +      qcom,pbs-client = <&pmi632_pbs_client3>;
->>
->> One more example? Why?
->>
->> Why do you have here only one NVMEM cell? Aren't you missing constraints
->> in the binding?The use of the qcom,pbs-client is only used when we have a PMIC device that has a single PPG NVMEM, 
-> which is why this was not included in the above 2 nvmem PPG example. I see how these two PPG examples
-> are repetitive so I am ok with getting rid of one of them but I do think we should have at least one PPG example.
-
-
-This example probably should replace one of the previous ones, because
-it is bigger / more complete.
-
-Best regards,
-Krzysztof
-
+Thanks,
+drew
