@@ -2,67 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E487A744B97
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 00:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D63FE744BAE
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 01:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229629AbjGAWTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 18:19:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55158 "EHLO
+        id S229755AbjGAXDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 19:03:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229446AbjGAWTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 18:19:24 -0400
-X-Greylist: delayed 1507 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 01 Jul 2023 15:19:23 PDT
-Received: from hall.aurel32.net (hall.aurel32.net [IPv6:2001:bc8:30d7:100::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1E6D1AC;
-        Sat,  1 Jul 2023 15:19:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=aurel32.net
-        ; s=202004.hall; h=In-Reply-To:Content-Type:MIME-Version:References:
-        Message-ID:Subject:Cc:To:From:Date:Content-Transfer-Encoding:From:Reply-To:
-        Subject:Content-ID:Content-Description:X-Debbugs-Cc;
-        bh=xXXdlOkCWm65vKF5GsUiRqvKCb4A+LCa7xc5vezYfgI=; b=YakJMl/5lgW1CugbfVN4XcJLn/
-        e3j0i7gOFSOdq54YHbS6MABE5Ahh94u+cHXUapba3iKESmpSRxB+rro3mxQ0UvDQRY0eqKhlxu2vN
-        4DgnOJ/IK9S3+GFlFVuuNrYbEZYtB+X7ajce19jhQ7JDaCQ5rR2t8dlM21MBy4nObsl6eavwkV7Qv
-        jU4x/tX+mOh3qQ3mNMoLbMvOuCKSM5Y7fJAbx6kUjvrTCDj6h7n1FKJPmO9Qcv7IudHi8jgS3pj4p
-        9mTBEpIxhK9N9C5quB/t7aVTW16Hn2Zjh/yWm9rfxTUMjpy4pGUKH8z8AVj89kxXv54mkPZVF4Z4J
-        hFNqhr0w==;
-Received: from [2a01:e34:ec5d:a741:8a4c:7c4e:dc4c:1787] (helo=ohm.rr44.fr)
-        by hall.aurel32.net with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1qFiXA-00F8ep-Bi; Sat, 01 Jul 2023 23:53:36 +0200
-Received: from aurel32 by ohm.rr44.fr with local (Exim 4.96)
-        (envelope-from <aurelien@aurel32.net>)
-        id 1qFiX8-00FDHi-1D;
-        Sat, 01 Jul 2023 23:53:34 +0200
-Date:   Sat, 1 Jul 2023 23:53:34 +0200
-From:   Aurelien Jarno <aurelien@aurel32.net>
-To:     jiajie.ho@starfivetech.com
-Cc:     Palmer Dabbelt <palmer@rivosinc.com>, olivia@selenic.com,
-        herbert@gondor.apana.org.au, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kernel@esmil.dk,
+        with ESMTP id S229698AbjGAXDR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 19:03:17 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EC32210DC;
+        Sat,  1 Jul 2023 16:03:16 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 0001460A29;
+        Sat,  1 Jul 2023 23:03:15 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 07DE2C433C7;
+        Sat,  1 Jul 2023 23:03:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688252595;
+        bh=mt6r8UFPAN4tDG96jEynlaqTUBoJG9qJ6uaWu2oLhFc=;
+        h=Date:From:To:Subject:References:In-Reply-To:From;
+        b=S5wa8azmV3YtUbJzzbB3djgUw3PV3KeEZWnV51I3p6rwFYDhTGd+Sn/Mt0b/iO/Lf
+         ogBXDkNy67736NmHzoZMI7r1ZO5bhoUHwMv+y2W5wKCP+PGClckuF+uD1WJZtXmq2u
+         QMpNpnhP/CUm/rkAng8f11FeC74FXx00cR6Sx1w2X8vLz1y6h9f6aBOnjhWQ1T/B0s
+         G7pymFjt4s0iWOEi5wZmll7Rn4KCeT8DS/MWhi5SwmI4uChlOueuebXW43bHpdLTvG
+         vCRhnnFY9o7UhwJXOv2e284x0MBy5OP6wDk7qDNCHjyGQizoCaLlla/tDDdzk4o+lO
+         qNo3Jg8rm6u2w==
+Date:   Sun, 2 Jul 2023 00:03:10 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Walker Chen <walker.chen@starfivetech.com>,
+        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor.dooley@microchip.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v5 3/3] riscv: dts: starfive: Add TRNG node for
- VisionFive 2
-Message-ID: <ZKCgXvcbWBGWZnsU@aurel32.net>
-Mail-Followup-To: jiajie.ho@starfivetech.com,
-        Palmer Dabbelt <palmer@rivosinc.com>, olivia@selenic.com,
-        herbert@gondor.apana.org.au, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, kernel@esmil.dk,
-        Conor Dooley <conor.dooley@microchip.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-References: <20230117015445.32500-4-jiajie.ho@starfivetech.com>
- <mhng-348475f1-5880-4951-9692-78210a17acd3@palmer-ri-x1c9a>
+Subject: Re: [PATCH v6 4/4] riscv: dts: starfive: add dma controller node
+Message-ID: <20230702-scallop-unsafe-9a02b511c95d@spud>
+References: <20230322094820.24738-1-walker.chen@starfivetech.com>
+ <20230322094820.24738-5-walker.chen@starfivetech.com>
+ <ZKCiOQ0IuptKO8kr@aurel32.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="96nw6xgaB1M0jdl2"
 Content-Disposition: inline
-In-Reply-To: <mhng-348475f1-5880-4951-9692-78210a17acd3@palmer-ri-x1c9a>
-User-Agent: Mutt/2.2.9 (2022-11-12)
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+In-Reply-To: <ZKCiOQ0IuptKO8kr@aurel32.net>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -70,46 +64,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-03-14 18:45, Palmer Dabbelt wrote:
-> On Mon, 16 Jan 2023 17:54:45 PST (-0800), jiajie.ho@starfivetech.com wrote:
-> > Adding StarFive TRNG controller node to VisionFive 2 SoC.
-> > 
-> > Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-> > Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
-> > Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+
+--96nw6xgaB1M0jdl2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Sun, Jul 02, 2023 at 12:01:29AM +0200, Aurelien Jarno wrote:
+> On 2023-03-22 17:48, Walker Chen wrote:
+> > Add the dma controller node for the Starfive JH7110 SoC.
+> >=20
+> > Reviewed-by: Emil Renner Berthing <emil.renner.berthing@canonical.com>
+> > Signed-off-by: Walker Chen <walker.chen@starfivetech.com>
 > > ---
-> >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 10 ++++++++++
-> >  1 file changed, 10 insertions(+)
-> > 
-> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > index 4ac159d79d66..3c29e0bc6246 100644
+> >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> >=20
+> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot=
+/dts/starfive/jh7110.dtsi
+> > index 17220576b21c..b503b6137743 100644
 > > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
 > > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
-> > @@ -455,5 +455,15 @@ uart5: serial@12020000 {
-> >  			reg-shift = <2>;
-> >  			status = "disabled";
+> > @@ -510,6 +510,24 @@
+> >  			#gpio-cells =3D <2>;
 > >  		};
-> > +
-> > +		rng: rng@1600c000 {
-> > +			compatible = "starfive,jh7110-trng";
-> > +			reg = <0x0 0x1600C000 0x0 0x4000>;
-> > +			clocks = <&stgcrg JH7110_STGCLK_SEC_HCLK>,
-> > +				 <&stgcrg JH7110_STGCLK_SEC_MISCAHB>;
-> > +			clock-names = "hclk", "ahb";
-> > +			resets = <&stgcrg JH7110_STGRST_SEC_TOP_HRESETN>;
-> > +			interrupts = <30>;
+> > =20
+> > +		dma: dma-controller@16050000 {
+> > +			compatible =3D "starfive,jh7110-axi-dma";
+> > +			reg =3D <0x0 0x16050000 0x0 0x10000>;
+> > +			clocks =3D <&stgcrg JH7110_STGCLK_DMA1P_AXI>,
+> > +				 <&stgcrg JH7110_STGCLK_DMA1P_AHB>;
+> > +			clock-names =3D "core-clk", "cfgr-clk";
+> > +			resets =3D <&stgcrg JH7110_STGRST_DMA1P_AXI>,
+> > +				 <&stgcrg JH7110_STGRST_DMA1P_AHB>;
+> > +			interrupts =3D <73>;
+> > +			#dma-cells =3D <1>;
+> > +			dma-channels =3D <4>;
+> > +			snps,dma-masters =3D <1>;
+> > +			snps,data-width =3D <3>;
+> > +			snps,block-size =3D <65536 65536 65536 65536>;
+> > +			snps,priority =3D <0 1 2 3>;
+> > +			snps,axi-max-burst-len =3D <16>;
 > > +		};
-> >  	};
-> >  };
-> 
-> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> > +
+> >  		aoncrg: clock-controller@17000000 {
+> >  			compatible =3D "starfive,jh7110-aoncrg";
+> >  			reg =3D <0x0 0x17000000 0x0 0x10000>;
+>=20
+> It appears that this patch has never been applied, although the rest of
+> the series has already been merged.
 
-It appears that this patch has never been applied, although the rest of
-the series has already been merged. Unfortunately it doesn't apply
-anymore due to other changes to that file.
+Correct. I can't apply it because the stgcrg it depends on is still
+pending.
 
-Could you please rebase and resend it?
+> Unfortunately it doesn't apply
+> anymore due to other changes to that file.
+>=20
+> Could you please rebase and repost it?
 
--- 
-Aurelien Jarno                          GPG: 4096R/1DDD8C9B
-aurelien@aurel32.net                     http://aurel32.net
+
+--96nw6xgaB1M0jdl2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKCwrgAKCRB4tDGHoIJi
+0sJFAQCnplDzaTop7ez/Pr9QBVITVUVlMtt0v7fU5DSZnt0IHwD/ZjpCO+cq0H7W
+P/Oxe8VydOaHPtSZ+KQFMCHpMsAR5AE=
+=RdNo
+-----END PGP SIGNATURE-----
+
+--96nw6xgaB1M0jdl2--
