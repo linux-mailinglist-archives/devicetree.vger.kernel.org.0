@@ -2,78 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BEF0574489C
-	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 13:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B3F7448A4
+	for <lists+devicetree@lfdr.de>; Sat,  1 Jul 2023 13:03:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229762AbjGALBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 07:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58860 "EHLO
+        id S229940AbjGALD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 1 Jul 2023 07:03:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60106 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229961AbjGALBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 07:01:45 -0400
-Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C16443C18
-        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 04:01:43 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992ca792065so242125866b.2
-        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 04:01:43 -0700 (PDT)
+        with ESMTP id S229609AbjGALD4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 07:03:56 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D6883C07
+        for <devicetree@vger.kernel.org>; Sat,  1 Jul 2023 04:03:55 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9924ac01f98so336061466b.1
+        for <devicetree@vger.kernel.org>; Sat, 01 Jul 2023 04:03:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ventanamicro.com; s=google; t=1688209302; x=1690801302;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=iUgkxYj4hDdaeULOykMIAMiTYI4q7YAWRcLFU1vSbps=;
-        b=Hl6PE+6tbQAK3mCvx+YO6XTFLzapBMm8lxpT/1mcQfSusfpxU8+WUET6DNyDlb9gG8
-         tYNvNPt8I+LTE58jZu3BrFuSpW3vvVraNpSu+Jpl4S4ELRffi/YrwE/3b5LQSXuJjdyW
-         ifHY4vY7etvbXXNEgHbvmWOL368iaR8tvZdn0DDuHJ338jSWzHaq2TX53R4OexKYDUoK
-         10Qj/oj/1RBrC9bj45Lv8C1pWw05ejDbivtz8ZP/8XqTrjYHN98NiWBFHG+4fMjX3Mon
-         TE0gKszRbjVhL0hqjesgen/EEUGk2UkdcGfZTNBbNiXC4qV1UuUpe9tEEln2IWWcvu+Y
-         KcEA==
+        d=linaro.org; s=google; t=1688209433; x=1690801433;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=HhqTMzigphscucmhe7mCsjJ8z9OVn1JSWHfhcmXyrPc=;
+        b=LKRJEBgTOj5IEA91MIUcoWTKV7pASptI2nJgvzivXbX2fZQQPuQPtaT9D4/G/z76cV
+         Arv5qP56U9XeCldVp/gDgtX6mhgDTq589HzIXYFkMERwQKqqZ/AVJgAfKt5lqQNF94/U
+         uLk69/lQT8AOYJCXW17jdBulrrrHr5u9ddwr4foMYWyexQjWllOWrcPvgQfJimTe8h+5
+         pDEn3X3MykXQ9DtTw+vB9jp2cFkOFDuapXZ+zrhOKtelAZUL5Gk3rn+kKe6h0fhg4Uad
+         GzDvMEclkp/EinOf0RHInGwDo71yAZx1+fN8J6UrV8gaOrPnYxsTRrPp2cgvNMyuLtf4
+         U9Pw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688209302; x=1690801302;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=iUgkxYj4hDdaeULOykMIAMiTYI4q7YAWRcLFU1vSbps=;
-        b=IYtQAWk0dRAu6j3D5hLkFA2jOVtLFPWqfCMx+F0NpgaZN3gqUHFdYYiC6+OEbvQ/h+
-         9dnl4ssKFur13aGy2UhjRDtWez7Wk7uEQsNVbQDQc9mLjqwf8H02ewKdokVHtT+MR+F9
-         uNzOAj55eUKgCgbYUX5dgGTYZZ9WRNYndzuBdhLKOkkOVAXNgUxdtSbyZpvipP5ryztJ
-         T9VvCSMw7dl2xlRyq+qS0J7j2sE/sfX1IRsri2mqvUDMUSc82kOfElZSBzOAmeaLBo1y
-         KfppmE2+R1icAVvTKGa7dcY17ATX8vJ1Bvf992STssfd4m6BedcdHjymf0BZOlTTTZZB
-         DQQQ==
-X-Gm-Message-State: ABy/qLZ2pu/cKqv03KgNsUJus19ewur7qEJNtiXO57q3vQHsm9snU3Qu
-        r0Md9CSUQ0hgLrNfIiBw/GbBAA==
-X-Google-Smtp-Source: APBJJlFkK8StAK5YsG+2ZcpOu+kBMm85tO+8fKQBITtMoynDzvNSvGndfZtNLBSou1PvXBWQdFIuWw==
-X-Received: by 2002:a17:906:7a0b:b0:98d:cd3e:c18f with SMTP id d11-20020a1709067a0b00b0098dcd3ec18fmr4312746ejo.72.1688209302131;
-        Sat, 01 Jul 2023 04:01:42 -0700 (PDT)
-Received: from localhost (cst2-173-16.cust.vodafone.cz. [31.30.173.16])
-        by smtp.gmail.com with ESMTPSA id x6-20020a170906710600b0098e48ad11f2sm7705332ejj.93.2023.07.01.04.01.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 01 Jul 2023 04:01:41 -0700 (PDT)
-Date:   Sat, 1 Jul 2023 13:01:40 +0200
-From:   Andrew Jones <ajones@ventanamicro.com>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     palmer@dabbelt.com, Conor Dooley <conor.dooley@microchip.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
-        Oleksii <oleksii.kurochko@gmail.com>,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Palmer Dabbelt <palmer@rivosinc.com>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4] dt-bindings: riscv: deprecate riscv,isa
-Message-ID: <20230701-b348653e432924f090c513db@orel>
-References: <20230630-very-greedless-16522d7b7830@spud>
+        d=1e100.net; s=20221208; t=1688209433; x=1690801433;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=HhqTMzigphscucmhe7mCsjJ8z9OVn1JSWHfhcmXyrPc=;
+        b=Qq1uCjpXKZTaoXgMWY6/IS0RYh/JfoStOE1tI5tXMXWV+OwLP37n87iED+I4lpMusU
+         W/+jZoaFCN0tRDJD6XkRa6vEki4NX8wXaft5PXoc53v0oGXGre5lEDHGKMJLngo7jS8d
+         Do4EMY+EN58exjO7Ym0lquvxMNCzi8Kb9yadrX3/ZQCkFJyseZNJ0AJDq4R3m22JESB8
+         /o7jOLDRDCFfOtujDCFkbGwfdJOvY79jxqguZQzAHpNlbucIYlwZ7bpziJB3IBzZpvw3
+         Ew4U18FaQ4rkIHzNft1SZYMkfgcMqRlZ0RU3Si6NCUF7fsVbRo5kJHpSbzPO0Jeek8fI
+         ryWQ==
+X-Gm-Message-State: ABy/qLYh/poLQmPFre5wQYMBY29ri37wOEHD/xCI8PdB3ci5aHqwdTWE
+        /5JBKmZyyaNVa7NClSoKnqX+1Q==
+X-Google-Smtp-Source: APBJJlG/KJHFR2pxeOBJd4GJGW6+VY61SdKHDQ/D5BZNk1PeSlmGkMEJJrcHYHu7Ht+MB/bZGMnvGg==
+X-Received: by 2002:a17:906:4f0a:b0:992:ba2c:2e0c with SMTP id t10-20020a1709064f0a00b00992ba2c2e0cmr4057020eju.36.1688209433622;
+        Sat, 01 Jul 2023 04:03:53 -0700 (PDT)
+Received: from [192.168.10.214] ([217.169.179.6])
+        by smtp.gmail.com with ESMTPSA id ci8-20020a170906c34800b009888aa1da11sm9047040ejb.188.2023.07.01.04.03.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sat, 01 Jul 2023 04:03:53 -0700 (PDT)
+Message-ID: <e7298704-5a03-0961-90a3-dab4af60c326@linaro.org>
+Date:   Sat, 1 Jul 2023 13:03:51 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230630-very-greedless-16522d7b7830@spud>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/7] dt-bindings: soc: qcom: Add qcom-pbs bindings
+Content-Language: en-US
+To:     Anjelique Melendez <quic_amelende@quicinc.com>,
+        Rob Herring <robh@kernel.org>
+Cc:     pavel@ucw.cz, lee@kernel.org, thierry.reding@gmail.com,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        u.kleine-koenig@pengutronix.de, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pwm@vger.kernel.org
+References: <20230621185949.2068-1-quic_amelende@quicinc.com>
+ <20230621185949.2068-2-quic_amelende@quicinc.com>
+ <20230626135857.GA3118929-robh@kernel.org>
+ <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <2e871e21-a81d-0d7d-993b-9a9d7bd9d962@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,21 +82,32 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 07:04:04PM +0100, Conor Dooley wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-...
-> +oneOf:
-> +  - required:
-> +      - riscv,isa
-> +  - required:
-> +      - riscv,isa-base
-> +
+On 29/06/2023 03:19, Anjelique Melendez wrote:
 
-I guess this means a DT must have either isa or isa-base, but not both.
-What should QEMU and other platforms which want to provide DTs that work
-for older kernels, but also start using the new schema do? I'd guess
-they'd like to provide both, where they'd expect isa-base to be used by
-newer kernels and isa by the old.
+>>> +examples:
+>>> +  - |
+>>> +    pmic {
+>>> +      #address-cells = <1>;
+>>> +      #size-cells = <0>;
+>>> +
+>>> +      qcom,pbs@7400 {
+>>> +        compatible = "qcom,pbs";
+>>> +        reg = <0x7400>;
+>>> +      };
+>>
+>> Why do you need a child node for this? Is there more than 1 instance in 
+>> a PMIC? Every sub-function of a PMIC doesn't have to have a DT node.
+>>
+> 
+> We currently have another downstream driver (which is planned to get upstreamed)
+> which also needs a handle to a pbs device in order to properly trigger events. 
 
-Thanks,
-drew
+I don't see how does it answer Rob's concerns. Neither mine about
+incomplete binding. You don't need pbs node here for that.
+
+Anyway, whatever you have downstream also does not justify any changes.
+Either upstream these so we can see it or drop this binding.
+
+Best regards,
+Krzysztof
+
