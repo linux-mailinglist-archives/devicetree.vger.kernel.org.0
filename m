@@ -2,74 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E71744FF3
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 20:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D79C744FF9
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 20:51:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230095AbjGBSvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 14:51:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59178 "EHLO
+        id S230110AbjGBSvT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 14:51:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229989AbjGBSu7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 14:50:59 -0400
+        with ESMTP id S229874AbjGBSvT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 14:51:19 -0400
 Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2E23D3
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 11:50:56 -0700 (PDT)
-Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992f6d7c7fbso254432466b.3
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 11:50:56 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 27D0CE6
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 11:51:14 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-98377c5d53eso434163166b.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 11:51:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688323855; x=1690915855;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=AVRMoZW9ijGIpyvygGi+iAD5fBYGpVLlMEOzk+cyEPU=;
-        b=QOK1d5NbMqTQIB0Absu1ojOZ2ERpDXvTHKszuvAWQvwrKTtNE6Kxh1yCi5YTMp5BJh
-         eaHEj2l283oBxkjwdl3hlKZC437KW8ODD4ssCx4QxTSnkjtj3fzYAg1k6S3gNKdGpRxm
-         eGzdEzvN4ZEurmNNlDQ9kYJxT+Rdp3hPZ/DSyHKuZk2FoLqaKxhW1MNTBkVRy4pg8lE9
-         9w2iyORyDqeN3SUuO6Wo3GvHUgS96rCh7b2Oy/jTIziBjDLzI0Qw/h0kJ+96DsSvCrm5
-         x06yaBuJTQKTK7Jo8VCKv5iKy8zwalMT+kLADAXFZ/djWrAMBKjhA55s4qjq11E25mCY
-         CqgQ==
+        d=linaro.org; s=google; t=1688323872; x=1690915872;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9/mme4Lm+IwXrrQx5Y89ikjVJUw+qnmRCi3rmSsnT4g=;
+        b=Zuhnc1HGzSO7uBk+VyGuuUa5cyluYdGZVU+kuJ/QWmITjrRcfHKnWZ7bt4o48qF2Te
+         pDK5+x+ESI2xNPn84e/H8TLV2298BnTgqs0ujIf6SNlFdBXUpw2N5CwjZqY5WTDsv3y8
+         6BU87Rp4SbcAHs6Cc6R7RDifYHablnCyZVMb+IEKqgDS+zKHaHWBj5i2MbYAxudzk9Mh
+         ZXRqsKAagDfNVNhA3pCilq3gMbX83EaDpOdnjEE4M63ksj6jVaB3kD0OpNeGrcWqwA/n
+         Uz4GFGn3ZSWvxa9oVmiDDMGuuyMCQZwPT1iKo96XTuTm00vTl9eHj/w0EwlDJpy4z8Al
+         WxJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688323855; x=1690915855;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=AVRMoZW9ijGIpyvygGi+iAD5fBYGpVLlMEOzk+cyEPU=;
-        b=QOcAcE4RpH91ZIU7sYk0JvKR0QeIeTFef2n2SELPQ+RQzb3/gOyVUNSjUxa+dqTy/9
-         /6JDA70iBAU4x/3lr+D70XLq3Va/602hfjRrNYAcWYAjLTtGFHlcq0TjMexrbKa+H4rP
-         G1TFOChKnwxyI0t6BqTDj7iHq9Fszp2nNebzmpEVWjNg3FiwioUuRPir+/dwukJlXMij
-         /ra+qyVXxhLmoWwe+nMfEbyzA4eagLPPuBrgd2xo3TKxyfehzyasN1uytdisCr00yeO/
-         9eLfoIf1vNlWdTF+R+rj/PVHQKijyPZ+iZI5F5nq9JNssStRvmTNnCSqdoCla1VlH+Vg
-         wXcA==
-X-Gm-Message-State: ABy/qLZbRbrtpkUDzNhr0crYZ6O4lpRB/bPNXvU7v6se4VPWa8CxX2Rc
-        CfZSI3tnl4fQnJ/PelDYyqVwkg==
-X-Google-Smtp-Source: APBJJlHFqU3sYu1BoRVEeeWVkU+qDAqc0/uD8hUl503msgMnsNoSYPdiZzrUqLW9ihvDP6HrFlc+5Q==
-X-Received: by 2002:a17:906:ae51:b0:966:471c:2565 with SMTP id lf17-20020a170906ae5100b00966471c2565mr5523467ejb.48.1688323855420;
-        Sun, 02 Jul 2023 11:50:55 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688323872; x=1690915872;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9/mme4Lm+IwXrrQx5Y89ikjVJUw+qnmRCi3rmSsnT4g=;
+        b=JBW6Gcp9LKHLoRMWYWIRqFdvE/MTLl292wi/C9F5L5N/uB6s9yxEVMPixc2bsYLqFY
+         zKsv6iVUQY6q6e2fHSOYIbo2m0bC7FdBcWsnl347G9JEsow7rXAmrQmDI8XiZuKkrLFc
+         s2tPsSatPZNDBT0b/zvWKjUnRzuticQafWbdhfuOUXN3TjJS0GBF2vm0VTyHpRmbUgdk
+         zSWXeIGcIF+sL1xjHsQX4eFBP94RS+b+jFMfGa+4wqG5G+0r+GxiLDJGPzoyL0waJwOu
+         TwnyMvfJQWKYLNDviWfjhHEfF5YBApEEBYJ+7f+wZ58YtBk35r6d2/nfacxifoRdkvD+
+         UCow==
+X-Gm-Message-State: ABy/qLaD3eRkuaGwUff7o5iQLNhJmeFy8v3wSGqjqQcl9jOKKX71gUl7
+        oY9wWj1qsc0hnSTVUsk1WNCAww==
+X-Google-Smtp-Source: APBJJlHi/q4sUNd8jee7scTtyJ7OSdYtxch3B7eprgdADql8ScJgIB0rOMFFwMEeSTx0hmgIpCigsQ==
+X-Received: by 2002:a17:906:8699:b0:94e:e30e:7245 with SMTP id g25-20020a170906869900b0094ee30e7245mr5757074ejx.8.1688323872184;
+        Sun, 02 Jul 2023 11:51:12 -0700 (PDT)
 Received: from krzk-bin.. ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id ga12-20020a170906b84c00b009929ab17be0sm5325010ejb.162.2023.07.02.11.50.54
+        by smtp.gmail.com with ESMTPSA id w15-20020a170906480f00b00992fafcb82fsm3121663ejq.24.2023.07.02.11.51.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jul 2023 11:50:54 -0700 (PDT)
+        Sun, 02 Jul 2023 11:51:11 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Steen Hegelund <Steen.Hegelund@microchip.com>,
+        Daniel Machon <daniel.machon@microchip.com>,
+        UNGLinuxDriver@microchip.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] ARM: dts: qcom: minor whitespace cleanup around '='
-Date:   Sun,  2 Jul 2023 20:50:51 +0200
-Message-Id: <20230702185051.43867-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] arm64: dts: microchip: minor whitespace cleanup around '='
+Date:   Sun,  2 Jul 2023 20:51:07 +0200
+Message-Id: <20230702185108.43959-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230702185051.43867-1-krzysztof.kozlowski@linaro.org>
-References: <20230702185051.43867-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,68 +81,34 @@ sign.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi      | 20 +++++++++----------
- .../qcom/qcom-msm8974pro-fairphone-fp2.dts    |  2 +-
- 2 files changed, 11 insertions(+), 11 deletions(-)
+ arch/arm64/boot/dts/microchip/sparx5.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-index f0ef86fadc9d..5f0ff61017d1 100644
---- a/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-ipq4019.dtsi
-@@ -416,10 +416,10 @@ restart@4ab000 {
+diff --git a/arch/arm64/boot/dts/microchip/sparx5.dtsi b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+index 4996499cc738..24075cd91420 100644
+--- a/arch/arm64/boot/dts/microchip/sparx5.dtsi
++++ b/arch/arm64/boot/dts/microchip/sparx5.dtsi
+@@ -469,14 +469,14 @@ serdes: serdes@10808000 {
  
- 		pcie0: pci@40000000 {
- 			compatible = "qcom,pcie-ipq4019";
--			reg =  <0x40000000 0xf1d
--				0x40000f20 0xa8
--				0x80000 0x2000
--				0x40100000 0x1000>;
-+			reg = <0x40000000 0xf1d>,
-+			      <0x40000f20 0xa8>,
-+			      <0x80000 0x2000>,
-+			      <0x40100000 0x1000>;
- 			reg-names = "dbi", "elbi", "parf", "config";
- 			device_type = "pci";
- 			linux,pci-domain = <0>;
-@@ -543,9 +543,9 @@ wifi0: wifi@a000000 {
- 				     <GIC_SPI 46 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 47 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 168 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names =  "msi0",  "msi1",  "msi2",  "msi3",
--					   "msi4",  "msi5",  "msi6",  "msi7",
--					   "msi8",  "msi9", "msi10", "msi11",
-+			interrupt-names = "msi0",  "msi1",  "msi2",  "msi3",
-+					  "msi4",  "msi5",  "msi6",  "msi7",
-+					  "msi8",  "msi9", "msi10", "msi11",
- 					  "msi12", "msi13", "msi14", "msi15",
- 					  "legacy";
- 			status = "disabled";
-@@ -585,9 +585,9 @@ wifi1: wifi@a800000 {
- 				     <GIC_SPI 62 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 63 IRQ_TYPE_EDGE_RISING>,
- 				     <GIC_SPI 169 IRQ_TYPE_LEVEL_HIGH>;
--			interrupt-names =  "msi0",  "msi1",  "msi2",  "msi3",
--					   "msi4",  "msi5",  "msi6",  "msi7",
--					   "msi8",  "msi9", "msi10", "msi11",
-+			interrupt-names = "msi0",  "msi1",  "msi2",  "msi3",
-+					  "msi4",  "msi5",  "msi6",  "msi7",
-+					  "msi8",  "msi9", "msi10", "msi11",
- 					  "msi12", "msi13", "msi14", "msi15",
- 					  "legacy";
- 			status = "disabled";
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-index f531d2679f6c..42d253b75dad 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-@@ -414,7 +414,7 @@ cmd-data-pins {
- 
- 	wcnss_pin_a: wcnss-pin-active-state {
- 		wlan-pins {
--			pins =  "gpio36", "gpio37", "gpio38", "gpio39", "gpio40";
-+			pins = "gpio36", "gpio37", "gpio38", "gpio39", "gpio40";
- 			function = "wlan";
- 
- 			drive-strength = <6>;
+ 		switch: switch@600000000 {
+ 			compatible = "microchip,sparx5-switch";
+-			reg =	<0x6 0 0x401000>,
+-				<0x6 0x10004000 0x7fc000>,
+-				<0x6 0x11010000 0xaf0000>;
++			reg = <0x6 0 0x401000>,
++			      <0x6 0x10004000 0x7fc000>,
++			      <0x6 0x11010000 0xaf0000>;
+ 			reg-names = "cpu", "dev", "gcb";
+ 			interrupt-names = "xtr", "fdma", "ptp";
+-			interrupts =	<GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
+-					<GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
+-					<GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
++			interrupts = <GIC_SPI 30 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>,
++				     <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+ 			resets = <&reset 0>;
+ 			reset-names = "switch";
+ 		};
 -- 
 2.34.1
 
