@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AC4B744F0F
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 19:44:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEA74744F17
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 19:44:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbjGBRnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 13:43:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41216 "EHLO
+        id S230258AbjGBRnf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 13:43:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230111AbjGBRnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 13:43:08 -0400
+        with ESMTP id S230122AbjGBRnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 13:43:09 -0400
 Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09952E5E
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2A0EE5C
         for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 10:43:07 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b69e6d324aso57716381fa.0
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 10:43:06 -0700 (PDT)
+Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b5c2433134so46243121fa.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 10:43:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688319785; x=1690911785;
+        d=linaro.org; s=google; t=1688319786; x=1690911786;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Spy/Rz/cAzxXKn/s1kOsEtZbTl790jBubt05JLTnLbc=;
-        b=xKVARl3+UEavVSKgEWAuZsemmhzlBXiFkYs+0+a2XvrnOYn+6kKi3bSiCv5xIQw1tH
-         4Rde/UGHJm+jLcm3GeOjdUs+4MGDzdDhAT7ftX17teNQ9upYzmBFMgaUq42DAPMgFd6H
-         uyms78+EI6eoPcCzjmRyIII9hr/uvxaqwNPJDpIZ2FrRxJzL6kOIEQ/30Gs1J/dPVse8
-         Woa/SGMa2A+7MFpeEaulOkFYgkdrm5TrJiKmLsEWZwXipJqZC192llmi6jTsje8z/kwm
-         gaIeEPTEBbn2BLwWoviRnJA7Dj5PD0gbg0adsKj9mwqeJBQMjnCPWx+6cwiTAECEOpN1
-         UjPA==
+        bh=PiQD8NPXoK/nu21wRjz7swL+/90HK35SEq9eEZ5XXuE=;
+        b=szb37ojCIrWyIbH7RQecSCJP/XyeHyNqmmaBh9onDYcDKLD+FIPvzBnDlqIGY+WFcw
+         QSD33xfVIt+XDzwzzbL+FjtjY4tFTUbGMGhLhC2jGAk9pRDEDs5N2y8VIYFEMCvarAJm
+         os4V8LiXrKwQddITdbdGB9vAqS5ygbeMTnnjgrWVmuTTjYdLn+FqO0dgWAC+10UiH3G8
+         cos0esosbF4r75PFBny36CIY2jBj8EGcfi/C9kEcQCD6RPt9v+915NdZ2Ets+OhY6lCb
+         773d9W5fipsjUR+o4HJ4WfKgXcr5rqPuWDKDjIY3vU57uNwXjiS0W1qBs58+XuljIjTy
+         ldeQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688319785; x=1690911785;
+        d=1e100.net; s=20221208; t=1688319786; x=1690911786;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=Spy/Rz/cAzxXKn/s1kOsEtZbTl790jBubt05JLTnLbc=;
-        b=ZgFBwZ0Dai/E0lSZpR/o+/yuqNUUQeZaFE0mSYRAJN4tq1hK0FoiV8HCSqFt5TksI/
-         n4ABokA57cpKwDRzkXMQDkkjwlAtcxu0Q0beKBUBo2ubcZmZjDHV9K7DQs8EjKUs5YtD
-         Ff0F3pIacjiSHZrbhI6fTb5wo1fyPpeJ6KntFhsi/MBCF1LVIBNqd/WkvlqVW/wJnoRM
-         tl3rDtuCIYO+qAAhEGOU9sGb3tNK/iX9RwIwH3IV8lGcF3FvXQyaoS9CiNLwDK4fG32/
-         svwJFWkYGLTaIUigd+LvBA/yxxq6XiTST1N4F2MI7aYxBAhTmUDRAE5z2XMrIUmWYBZC
-         VM/Q==
-X-Gm-Message-State: ABy/qLbia2DJr7tu0iwLOqboM9Ctz06UyTXldGNn93yUVeunBMSXuJr/
-        fByCOImXExKhufVZrVE7QCLTww==
-X-Google-Smtp-Source: APBJJlG6YkIBJol9D4H5EYF2JEsDZOPDID8nIXGAv1Q5LpjlHVZZ9535mZzz5sKuyxPv/7oF6o4Yig==
-X-Received: by 2002:a2e:8757:0:b0:2b6:cd71:6235 with SMTP id q23-20020a2e8757000000b002b6cd716235mr5413316ljj.42.1688319785438;
-        Sun, 02 Jul 2023 10:43:05 -0700 (PDT)
+        bh=PiQD8NPXoK/nu21wRjz7swL+/90HK35SEq9eEZ5XXuE=;
+        b=hPlw3pkuLhrEZx8ndZi9/cxoSRtimLVDnA2hPvkRJsxfCsGNyKIaTXnLyABejMyFUf
+         gk2fBF9gyGViZ2vdWxmSr0TV5oELH633+lKg+T5gw07o5W9dHwXRMyzSIHFCpADky+1Z
+         tlODtYPPEGxkX322qF/kHG9KcbSwYnkZ0mSWfbUVZZHWjTP/mDersElsMXycU4xq5WwW
+         fdFuqtNE2FBAJlrXfnwbELrRDKHeoLQZd7vSO8TEM8fjCOhcC5OVz5uOtL1pbvfuT2EJ
+         cDapmeFODJKQclI8DMIbpoqya46FdclN06CBA4XxzFbQorQ0ysN3SXiIz0uHR7FX1Sv1
+         pJ6A==
+X-Gm-Message-State: ABy/qLaeOVn1x0pm4h5Qd7X4+Uyct04AZ+DdV7gYEq7pTkoBfMj3GjI1
+        gkH0HIhukwudQJf/770QX976HA==
+X-Google-Smtp-Source: APBJJlEHhMCDwDgf/6aVjCgaLcezDzbyqLrvjHOiuS5k6VoPxU2fW7+YSfalxB9Qt1FFfIok6q1SPw==
+X-Received: by 2002:a2e:8697:0:b0:2b6:bd20:c4be with SMTP id l23-20020a2e8697000000b002b6bd20c4bemr2409804lji.20.1688319786343;
+        Sun, 02 Jul 2023 10:43:06 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id v23-20020a2e9917000000b002b6daa3fa2csm1372550lji.69.2023.07.02.10.43.04
+        by smtp.gmail.com with ESMTPSA id v23-20020a2e9917000000b002b6daa3fa2csm1372550lji.69.2023.07.02.10.43.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jul 2023 10:43:04 -0700 (PDT)
+        Sun, 02 Jul 2023 10:43:05 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -66,9 +66,9 @@ Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
         Christian Marangi <ansuelsmth@gmail.com>,
         Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH v3 19/28] ARM: dts: qcom: apq8064: declare SAW2 regulators
-Date:   Sun,  2 Jul 2023 20:42:37 +0300
-Message-Id: <20230702174246.121656-20-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v3 20/28] ARM: dts: qcom: apq8064: add Krait clock controller
+Date:   Sun,  2 Jul 2023 20:42:38 +0300
+Message-Id: <20230702174246.121656-21-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
 In-Reply-To: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
 References: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
@@ -76,7 +76,7 @@ MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,66 +84,51 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SAW2 (SPM and AVS Wrapper) among other things is yet another way to
-handle CPU-related PMIC regulators. Provide a way to control voltage of
-these regulators.
+Add device node for the clock controller for the CPU cores and L2
+clocks. It will be further used by the L2 and by the CPUfreq nodes.
 
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 ---
- arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 24 ++++++++++++++++++++----
- 1 file changed, 20 insertions(+), 4 deletions(-)
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 26 ++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
 
 diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-index 5a85359d61e5..ab4b8f8270bb 100644
+index ab4b8f8270bb..c212215800d0 100644
 --- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
 +++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-@@ -408,25 +408,41 @@ acc3: clock-controller@20b8000 {
- 		saw0: power-manager@2089000 {
- 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
- 			reg = <0x02089000 0x1000>, <0x02009000 0x1000>;
--			regulator;
-+
-+			saw0_vreg: regulator {
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
+@@ -213,6 +213,32 @@ sleep_clk: sleep_clk {
  		};
+ 	};
  
- 		saw1: power-manager@2099000 {
- 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
- 			reg = <0x02099000 0x1000>, <0x02009000 0x1000>;
--			regulator;
++	kraitcc: clock-controller {
++		compatible = "qcom,krait-cc-v1";
++		clocks = <&gcc PLL9>, /* hfpll0 */
++			 <&gcc PLL10>, /* hfpll1 */
++			 <&gcc PLL16>, /* hfpll2 */
++			 <&gcc PLL17>, /* hfpll3 */
++			 <&gcc PLL12>, /* hfpll_l2 */
++			 <&acc0>,
++			 <&acc1>,
++			 <&acc2>,
++			 <&acc3>,
++			 <&l2cc>;
++		clock-names = "hfpll0",
++			      "hfpll1",
++			      "hfpll2",
++			      "hfpll3",
++			      "hfpll_l2",
++			      "acpu0_aux",
++			      "acpu1_aux",
++			      "acpu2_aux",
++			      "acpu3_aux",
++			      "acpu_l2_aux";
++		#clock-cells = <1>;
++		#interconnect-cells = <1>;
++	};
 +
-+			saw1_vreg: regulator {
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
- 		};
- 
- 		saw2: power-manager@20a9000 {
- 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
- 			reg = <0x020a9000 0x1000>, <0x02009000 0x1000>;
--			regulator;
-+
-+			saw2_vreg: regulator {
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
- 		};
- 
- 		saw3: power-manager@20b9000 {
- 			compatible = "qcom,apq8064-saw2-v1.1-cpu", "qcom,saw2";
- 			reg = <0x020b9000 0x1000>, <0x02009000 0x1000>;
--			regulator;
-+
-+			saw3_vreg: regulator {
-+				regulator-min-microvolt = <850000>;
-+				regulator-max-microvolt = <1300000>;
-+			};
- 		};
- 
- 		sps_sic_non_secure: sps-sic-non-secure@12100000 {
+ 	sfpb_mutex: hwmutex {
+ 		compatible = "qcom,sfpb-mutex";
+ 		syscon = <&sfpb_wrapper_mutex 0x604 0x4>;
 -- 
 2.39.2
 
