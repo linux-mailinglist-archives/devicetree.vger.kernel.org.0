@@ -2,79 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B6DA3744BC6
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 01:35:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 692BF744C9E
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 10:08:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229586AbjGAXf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 1 Jul 2023 19:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34952 "EHLO
+        id S229523AbjGBIIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 04:08:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33570 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229477AbjGAXf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 1 Jul 2023 19:35:28 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50A8A1725;
-        Sat,  1 Jul 2023 16:35:27 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DAA5860B41;
-        Sat,  1 Jul 2023 23:35:26 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3CE0EC433CB;
-        Sat,  1 Jul 2023 23:35:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688254526;
-        bh=PJQy4/1p5EsjFhKhO/qYY2FRfK0oK1uwx8Obk6wyd3o=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ImIdfomfjxVZZ0ycehvi+hOi7iRCrcFuxAmQNRY0/n40l4c0ACk7KUddmkDzXw0zA
-         6FimANH9VzNgmTdfWB6/BRCHh5wzRB70cdhT5nItmFjwToX5I5Lw8HQp7mqAt+nDQ4
-         pQZTUsac+vEjiBj4ZkxLdHDUNcq0OGy7Vs80jvJgeY50p6jRwxY7kvjmf2aikP4vw3
-         hfRVc5bZkRF4adFrJpzkpllK9GS94DOH4MUqQ22rXhCmQgOUpVaWSsozaqN1V5cpoX
-         J/5u3Gx9ihPhWrsNxU1fkE3X1t8yS0BznuQPUzJDNc/e1ke8+P+/lfWRiMzv1pbvsr
-         dLydA7KNsMx1A==
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b69a48368fso49636981fa.0;
-        Sat, 01 Jul 2023 16:35:26 -0700 (PDT)
-X-Gm-Message-State: ABy/qLY/vNcNTlssma+dJLd1dfEa2Di3Tc+VVg0c8wwdEpIM5hr/ufpT
-        DGlag+4RTUaHeYrvXnVX5MpmO8QmIckIGNmIDw==
-X-Google-Smtp-Source: APBJJlGXb97S4LcC81WPYNWzCLE4ubtRDMfQc+w41cN33vqI4+yfgrMOBvquGaWnyjqwJEnQwSWD1+OZZGu2/rbGrDo=
-X-Received: by 2002:a05:6512:2094:b0:4f9:5396:ed1b with SMTP id
- t20-20020a056512209400b004f95396ed1bmr4223084lfr.28.1688254524241; Sat, 01
- Jul 2023 16:35:24 -0700 (PDT)
+        with ESMTP id S229671AbjGBIId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 04:08:33 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 516E410EC
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 01:08:31 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51d7f350758so4280693a12.3
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 01:08:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688285310; x=1690877310;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yiK+2U/avbBAV4omOI54stBTDSJ/EAt/1elJuMeHDBs=;
+        b=WIDy5mfFUskmICtRg/FM3Zrd6HN+Tub/DpXTeoIr+AsESgznR+Asn/JukLAm6dDv66
+         Rj33BnMIvvGl6YbB6qZlgE/zdekUD2YdGh35EKPcp/VnM6w+ZlHuG8XC1a+TU8kgkhku
+         19iH5iLh8QRRnzgXMjmfieQ4P1RQlUIz+bMHJuTy7+aZpw4kQgV1vPNfLlJxi0vnQjDO
+         H65axygqXaaS16E+gx065AQMk4Qs9blpg5IZ0QrfJGy50FEAXMO0itzHgG3rlA93bvHW
+         sFannxyMuPLJBjMu/YUtnlYW2ZR/eAhSC6C84M0sAtB2Noegyj/pczDlINTG6z7HJk47
+         oDCg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688285310; x=1690877310;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yiK+2U/avbBAV4omOI54stBTDSJ/EAt/1elJuMeHDBs=;
+        b=jdkc2rVODeboeVAMAbaKpS++qYBGtEptQxegTKURSbVI4y78RwKq5f3DBsoKXAARCy
+         KrN+YAmYV9HIMUxX0Xx3NFVF9zWEC6d583RsfPsxD7ObZ05aYdkcFP2GKinxiKr01JcX
+         37hnpl3dlcXYVjZ7sgNGYXuH7os92qHtvXYVDFKzKQP7ufdpRtMMH4wsfFXfW44WrGAY
+         0VDd6u/RUcpAVQLhlNsTSuiUN2+oZzVF7yiDkBAkj9t7ZX1Vr1YwTmCu72b5uUgtSW4y
+         D6UGRQET0mBvTea68t8MqBZuiRaBaCVH0Fd87ZoIouh0spdoarx9j4LU5LcghUGX5LUU
+         cJyA==
+X-Gm-Message-State: ABy/qLYEMvp7Q5hWCYuDwHciJpRMDYuZFnFNASmAGDGuad+tkkdibVlw
+        5DXfoCFSmw45EesVB2E8Lz+v0w==
+X-Google-Smtp-Source: APBJJlGWpB4p3HPFjgY/jo67bYOd3wrJxfJT99DmTEqvpdH/XPSeieNy/NxOiaIgYpFFRTESnRHoaA==
+X-Received: by 2002:aa7:d911:0:b0:51e:677:603f with SMTP id a17-20020aa7d911000000b0051e0677603fmr1212016edr.38.1688285309609;
+        Sun, 02 Jul 2023 01:08:29 -0700 (PDT)
+Received: from [192.168.10.214] ([217.169.179.6])
+        by smtp.gmail.com with ESMTPSA id z2-20020a50eb42000000b0051bf17d7710sm8772590edp.57.2023.07.02.01.08.28
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Jul 2023 01:08:28 -0700 (PDT)
+Message-ID: <6c5879dc-bc5c-0b02-0f1a-39b5b5cd5c20@linaro.org>
+Date:   Sun, 2 Jul 2023 10:08:27 +0200
 MIME-Version: 1.0
-References: <20230630100321.1951138-1-jstephan@baylibre.com> <20230630100321.1951138-3-jstephan@baylibre.com>
-In-Reply-To: <20230630100321.1951138-3-jstephan@baylibre.com>
-From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Date:   Sun, 2 Jul 2023 07:35:12 +0800
-X-Gmail-Original-Message-ID: <CAAOTY_-qu2RWr496wXxc1Cp14eZfzKt4QgEH8fJns2LOjpwi8Q@mail.gmail.com>
-Message-ID: <CAAOTY_-qu2RWr496wXxc1Cp14eZfzKt4QgEH8fJns2LOjpwi8Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/4] media: platform: mediatek: isp_30: add mediatek
- ISP3.0 sensor interface
-To:     Julien Stephan <jstephan@baylibre.com>
-Cc:     Louis Kuo <louis.kuo@mediatek.com>,
-        Phi-bang Nguyen <pnguyen@baylibre.com>,
-        Florian Sylvestre <fsylvestre@baylibre.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Alexander Gordeev <agordeev@linux.ibm.com>,
-        Andy Hsieh <andy.hsieh@mediatek.com>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        daoyuan huang <daoyuan.huang@mediatek.com>,
-        devicetree@vger.kernel.org,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Moudy Ho <moudy.ho@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vasily Gorbik <gor@linux.ibm.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
+ support
+Content-Language: en-US
+To:     Mukesh Ojha <quic_mojha@quicinc.com>, corbet@lwn.net,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
+        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
+        andy.shevchenko@gmail.com
+Cc:     linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-hardening@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,52 +83,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Julien:
+On 28/06/2023 14:34, Mukesh Ojha wrote:
+> Minidump is a best effort mechanism to collect useful and predefined data
+> for first level of debugging on end user devices running on Qualcomm SoCs.
+> It is built on the premise that System on Chip (SoC) or subsystem part of
+> SoC crashes, due to a range of hardware and software bugs. Hence, the
+> ability to collect accurate data is only a best-effort. The data collected
+> could be invalid or corrupted, data collection itself could fail, and so on.
+> 
 
-Julien Stephan <jstephan@baylibre.com> =E6=96=BC 2023=E5=B9=B46=E6=9C=8830=
-=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:05=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> From: Louis Kuo <louis.kuo@mediatek.com>
->
-> This will add the mediatek ISP3.0 seninf (sensor interface) driver found
-> on several Mediatek SoCs such as the mt8365.
->
-> Then seninf module has 4 physical CSI-2 inputs. Depending on the soc they
-> may not be all connected.
->
-> Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
-> Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
-> Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
-> Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Signed-off-by: Julien Stephan <jstephan@baylibre.com>
->
+...hundred of unrelated lines...
 
-[snip]
+>  #define PANIC_PRINT_TASK_INFO          0x00000001
+>  #define PANIC_PRINT_MEM_INFO           0x00000002
+> @@ -261,6 +263,7 @@ void panic(const char *fmt, ...)
+>         int old_cpu, this_cpu;
+>         bool _crash_kexec_post_notifiers = crash_kexec_post_notifiers;
+> 
+> +       in_panic = true;
+>         if (panic_on_warn) {
+>                 /*
+>                  * This thread may hit another WARN() in the panic path.
+> --------------------------------------------------------------------------
+> 
+> Changes in v4:
 
-> +
-> +static const struct mtk_seninf_conf seninf_8365_conf =3D {
-> +       .model =3D "mtk-camsys-3.0",
-> +       .nb_inputs =3D 4,
-> +       .nb_muxes =3D 6,
-> +       .nb_outputs =3D 4,
-> +};
-> +
-> +static const struct of_device_id mtk_seninf_of_match[] =3D {
-> +       {
-> +               .compatible =3D "mediatek,mt8365-seninf",
-> +               .data =3D &seninf_8365_conf,
+Putting changelog at the end of very long cover letter does no help us
+to find it.
 
-Now only support one SoC, so it's necessary to select the SoC data and
-you could directly place the data in the code. After support other
-SoC, so we could know what should be placed in struct mtg_seninf_conf
-(Now we have no any information).
+>  - Redesigned the driver and divided the driver into front end and backend (smem) so
+>    that any new backend can be attached easily to avoid code duplication.
+>  - Patch reordering as per the driver and subsystem to easier review of the code.
+>  - Removed minidump specific code from remoteproc to minidump smem based driver.
+>  - Enabled the all the driver as modules.
+>  - Address comments made on documentation and yaml and Device tree file [Krzysztof/Konrad]
 
-Regards,
-Chun-Kuang.
+That's not enough. Your binding changed a lot and I doubt we proposed
+such changes. You need to be specific.
 
-> +       },
-> +       {
-> +       },
-> +};
-> +MODULE_DEVICE_TABLE(of, mtk_seninf_of_match);
+>  - Address comments made qcom_pstore_minidump driver and given its Device tree
+>    same set of properties as ramoops. [Luca/Kees]
+>  - Added patch for MAINTAINER file.
+>  - Include defconfig change as one patch as per [Krzysztof] suggestion.
+>  - Tried to remove the redundant file scope variables from the module as per [Krzysztof] suggestion.
+>  - Addressed comments made on dload mode patch v6 version 
+>    https://lore.kernel.org/lkml/1680076012-10785-1-git-send-email-quic_mojha@quicinc.com/
+> 
+> 
+
+Best regards,
+Krzysztof
+
