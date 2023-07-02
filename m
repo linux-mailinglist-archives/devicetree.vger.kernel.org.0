@@ -2,86 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DDC1744CBA
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 10:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D2E744CEA
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 11:20:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjGBI31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 04:29:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36490 "EHLO
+        id S229761AbjGBJUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 05:20:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229848AbjGBI30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 04:29:26 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7884810E9
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 01:29:23 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-992ca792065so325209866b.2
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 01:29:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688286561; x=1690878561;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=w1biNblKgtJgfVRZwDEOvjX/I6fTJ7KpT17Ok3nZx5M=;
-        b=uMqJUTA42zzTNobzfwK8XPREa/a9vj3Xfc/7KWipp1cnp/Jg0XeVY+x4k214j2yY2p
-         QoGg5zzyWZV0KJSDggJXTP6f6mbFRRUdjqNSf2NxLj7/wA9SRfIAm46ygvQ63r2uEXpX
-         fNoQjpgZVebllbu86RL5eRXcyUHR8Qhpzzihk9iDeJafk2zy7kZGgIGhfVity3Cmmwg0
-         pLKzBMIuwWp2HAWLosqYLZF9VyQAZld2sBX35Cf/wCq5foc92YcnAyZQjJYvz2dvD+H2
-         e3pIDjwRFmrF+Bh5CEoYUtwBR6uYTLkmSgeZBlRZgUB4OyFMScKs8aVTjco9NECFFkB6
-         sGog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688286561; x=1690878561;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=w1biNblKgtJgfVRZwDEOvjX/I6fTJ7KpT17Ok3nZx5M=;
-        b=T9JEfruwAqPXxtUOazYbncAGrxEfVF852Xm8gR6kQHmBC7c06F4yFsWg0tvBzVreGS
-         NJIFWsm1QRiai2CKBepEiY8vrm+XfLcOSRpv9CNK1tmNfQzytceq/R3gK7RqJUcT5F/T
-         RgCTPwX3tObgX8tD/UGnVNwidUCPXSWf+oRmL4JJmuE53KFVmnRQZb8CxKnFZxVgW/KD
-         hXhc+EdpkoM7FoONVXgGoElhRh2n5kii/M0d4ES/G4Afmkp/R7XSMbp9Ry8ACD5Zrdhh
-         XddJypemn5UV+20jBhiqUPYrUicQOnI65sTAHqeSvyLizfKJlsy3fMyqXyl7+5AM2o6J
-         AECw==
-X-Gm-Message-State: ABy/qLaH7zA6upjKZWmQqxLunQh1fDDGK43DnVOq/qXG/dei6GYRyPk3
-        M4yuAOB/Ri64YY0PfBR5SWoSzQ==
-X-Google-Smtp-Source: APBJJlEq7536nmIYj1sWz/vSWp1KlO2nfy5GE5f1MJ94C2mivpQ6trVaYeegVFmTsikSDWcGy6GDVg==
-X-Received: by 2002:a17:906:e48:b0:988:882b:9a3 with SMTP id q8-20020a1709060e4800b00988882b09a3mr5395799eji.36.1688286561035;
-        Sun, 02 Jul 2023 01:29:21 -0700 (PDT)
-Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id s22-20020aa7cb16000000b0051bed498851sm9043073edt.54.2023.07.02.01.29.19
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Jul 2023 01:29:20 -0700 (PDT)
-Message-ID: <29af84dc-7db8-0c43-07b6-eb743cf25e57@linaro.org>
-Date:   Sun, 2 Jul 2023 10:29:18 +0200
+        with ESMTP id S229460AbjGBJUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 05:20:46 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44741AC;
+        Sun,  2 Jul 2023 02:20:41 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4DD1D60B93;
+        Sun,  2 Jul 2023 09:20:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A2E3EC43395;
+        Sun,  2 Jul 2023 09:20:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688289639;
+        bh=OoxJTr497VHioUOadb8LISKib9/DxBLCZJxT7FykF9g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=bL0RniYz/c2H9vpv4pnuaegmDqeFYDlUS2BEZ7GDJrxaZs9kAQm8I1PMBYfdWmWpL
+         Q4BwNtmNN7cjEb9ZEBMxfdH6HGTTH7ldQIhsTRnan2H8upACk1UfBKxzWVDIqZK7EC
+         aoJ9kyx0fO+f5T4QELXyDFR3OOW71En9FO9CRQCv8gCGAKA+8DvNDYz/5JckqAS+Yl
+         vdPmulOGE4uWEYbOL2mghdaRMKPAWPkzRISV58zSqCf0nVYb8PmGRuSaqq5toObf3+
+         udZE9XFmwFXy7ZVJQy1bsEEI0vrmLPLd+BMr1MqiYnB2kpaKuFh8RCPJN3a206Hxl9
+         OIBmWKxePHZ8A==
+Received: by mail-lj1-f175.google.com with SMTP id 38308e7fff4ca-2b69f216c73so50938281fa.3;
+        Sun, 02 Jul 2023 02:20:39 -0700 (PDT)
+X-Gm-Message-State: ABy/qLYQ/gaK092RUztfq/Xg0bUMGQqLLMO/j0Ob3oO03h0F2n+9UNqS
+        g9W5bA6Mb7VVIAMv3+DQwO1BZrytKHggI+lm7Q==
+X-Google-Smtp-Source: APBJJlFzKkAXMTAQCIn36i2e8A9159bcyumoyoBjKkUas8tkWmueWlSltNowd8sa4B/xy0FSyk17VqHCj3F5LJNwJpU=
+X-Received: by 2002:a05:6512:ea0:b0:4f8:6882:ae9d with SMTP id
+ bi32-20020a0565120ea000b004f86882ae9dmr5936084lfb.69.1688289637554; Sun, 02
+ Jul 2023 02:20:37 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
- support
-Content-Language: en-US
-To:     Mukesh Ojha <quic_mojha@quicinc.com>,
+References: <20230630100321.1951138-1-jstephan@baylibre.com>
+ <20230630100321.1951138-3-jstephan@baylibre.com> <CAAOTY_-qu2RWr496wXxc1Cp14eZfzKt4QgEH8fJns2LOjpwi8Q@mail.gmail.com>
+In-Reply-To: <CAAOTY_-qu2RWr496wXxc1Cp14eZfzKt4QgEH8fJns2LOjpwi8Q@mail.gmail.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sun, 2 Jul 2023 17:20:25 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_9SFRMb7d3c62SVDnZY00hRAZ=9wBi9QCcv1UKuc8iBtQ@mail.gmail.com>
+Message-ID: <CAAOTY_9SFRMb7d3c62SVDnZY00hRAZ=9wBi9QCcv1UKuc8iBtQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] media: platform: mediatek: isp_30: add mediatek
+ ISP3.0 sensor interface
+To:     Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Cc:     Julien Stephan <jstephan@baylibre.com>,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        Phi-bang Nguyen <pnguyen@baylibre.com>,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Alexander Gordeev <agordeev@linux.ibm.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        devicetree@vger.kernel.org,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Moudy Ho <moudy.ho@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>
-Cc:     corbet@lwn.net, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
-        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Alex Elder <elder@linaro.org>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <2023062814-chance-flounder-f002@gregkh>
- <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
- <cc30660f-dd72-aade-6346-a93c6ad4b695@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <cc30660f-dd72-aade-6346-a93c6ad4b695@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        Vasily Gorbik <gor@linux.ibm.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,26 +84,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2023 18:04, Mukesh Ojha wrote:
->>
->>> We don't add layers when they are not needed, and never when there is no
->>> actual user.  If you need the extra "complexity" later, then add it
->>> later when it is needed as who knows when that will ever be.
->>>
->>> Please redo this series based on that, thanks.
->>
->> My bigger issue with this whole series is what would this all look
->> like if every SoC vendor upstreamed their own custom dumping
->> mechanism. That would be a mess. (I have similar opinions on the
->> $soc-vendor hypervisors.)
+Hi, Julien:
 
-Mukesh,
+Chun-Kuang Hu <chunkuang.hu@kernel.org> =E6=96=BC 2023=E5=B9=B47=E6=9C=882=
+=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8A=E5=8D=887:35=E5=AF=AB=E9=81=93=EF=BC=
+=9A
+>
+> Hi, Julien:
+>
+> Julien Stephan <jstephan@baylibre.com> =E6=96=BC 2023=E5=B9=B46=E6=9C=883=
+0=E6=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=886:05=E5=AF=AB=E9=81=93=EF=
+=BC=9A
+> >
+> > From: Louis Kuo <louis.kuo@mediatek.com>
+> >
+> > This will add the mediatek ISP3.0 seninf (sensor interface) driver foun=
+d
+> > on several Mediatek SoCs such as the mt8365.
+> >
+> > Then seninf module has 4 physical CSI-2 inputs. Depending on the soc th=
+ey
+> > may not be all connected.
+> >
+> > Signed-off-by: Louis Kuo <louis.kuo@mediatek.com>
+> > Signed-off-by: Phi-bang Nguyen <pnguyen@baylibre.com>
+> > Signed-off-by: Florian Sylvestre <fsylvestre@baylibre.com>
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Julien Stephan <jstephan@baylibre.com>
+> >
+>
+> [snip]
+>
+> > +
+> > +static const struct mtk_seninf_conf seninf_8365_conf =3D {
+> > +       .model =3D "mtk-camsys-3.0",
+> > +       .nb_inputs =3D 4,
+> > +       .nb_muxes =3D 6,
+> > +       .nb_outputs =3D 4,
+> > +};
+> > +
+> > +static const struct of_device_id mtk_seninf_of_match[] =3D {
+> > +       {
+> > +               .compatible =3D "mediatek,mt8365-seninf",
+> > +               .data =3D &seninf_8365_conf,
+>
+> Now only support one SoC, so it's necessary to select the SoC data and
+> you could directly place the data in the code. After support other
 
-LPC CFP is still open. There will be also Android and Kernel Debugging
-LPC microconference tracks. Coming with a unified solution could be a
-great topic for LPC. Solutions targeting only one user are quite often
-frowned upon.
+Typo.
 
-Best regards,
-Krzysztof
+Now only support one SoC, so it's not necessary to select the SoC data
+and you could directly place the data in the code.
 
+Regards,
+Chun-Kuang.
+
+> SoC, so we could know what should be placed in struct mtg_seninf_conf
+> (Now we have no any information).
+>
+> Regards,
+> Chun-Kuang.
+>
+> > +       },
+> > +       {
+> > +       },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, mtk_seninf_of_match);
