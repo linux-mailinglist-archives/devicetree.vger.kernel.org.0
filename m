@@ -2,283 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2504F744F63
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 19:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97B82744F9F
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 20:18:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229783AbjGBRvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 13:51:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43550 "EHLO
+        id S229605AbjGBSSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 14:18:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229822AbjGBRvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 13:51:00 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 764CAE75
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 10:50:55 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so5666979e87.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 10:50:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688320253; x=1690912253;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Z9c4FVrk3TOMJ6j16d6O+t5YuZj+ItNzqA8EFXL3KU4=;
-        b=uh/4XzzKE/5XsID7kTOyWIoP8u1qc25TdfJ1rK4qsszQRHy+DxrxsmDfwLOMErmjRq
-         gSySLRp5OWRprSPjR2f/oO9pfbobBmSSksyxsbTSKinSzaBG+CA0kYFd+qQ1KXO5Sovk
-         Ek6IG0MTF2MfrkwYfClkyJ1Ckeqn4dz+pdPY+6ZWGazEqXzO800gV4H/uvrGV3IDHzQL
-         LdwTHpkvWqtrq+Jk/8lojU1fy0Rlo5LIFUuY+T6aOHK96/0ya++94GHZn1niyW5uW+WP
-         LMHs5+ROzW4Ifd1D67DNFm1nIne2QutqYqAE8Jx0/er7pXwyWNrxyfDgdk2ZEa4d8g1l
-         exyQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688320253; x=1690912253;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Z9c4FVrk3TOMJ6j16d6O+t5YuZj+ItNzqA8EFXL3KU4=;
-        b=Sn1IzsQ7pUeikaGThuYGJOvuwfIA7ppfPks7X9556/GAdsf2X4i7pc5VcRnLEi94Vn
-         887+7PzQeZ7sBAy9EnLezkTNEasbmcC0HMX7hQ4x8SbtfVI+B15mjnrtTs02p5IooiXR
-         S3br1+O9kVNYNNyysD1QWi/ai9bpCu+1OR18XFU7IoDM1xEE4iMqQvqBRC3mSAYFSXRn
-         MWgm8D17AvsKlQXyCjtEz5zM/uNA62bchKfnWY7wPR7K8vW08lilR7xkI3OgERUY4HnC
-         0EX69fDxpHDlRTiWwbNr90cAtdlbqIAinLWGOBLJNIwvunxcdtUSqFPePN0zKC77wdkN
-         7xqg==
-X-Gm-Message-State: ABy/qLYxQ6TiretNLLMkH2nayUbfOpGUnLMCU5FbjBNpMGg2WZGivCVk
-        msKVYXLUBKwuo57iYm9pMPiwqQ==
-X-Google-Smtp-Source: APBJJlEKHOsXd+51Th8sPvpetw4Vg+Hi18xf34lCm3nDuN/IKTHt3zqx6wMRvqWjRFR/i+EAMcowTA==
-X-Received: by 2002:a05:6512:33c9:b0:4fb:5dd5:715c with SMTP id d9-20020a05651233c900b004fb5dd5715cmr7025921lfg.4.1688320252843;
-        Sun, 02 Jul 2023 10:50:52 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id d1-20020ac24c81000000b004fb759964a9sm3354130lfl.168.2023.07.02.10.50.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jul 2023 10:50:52 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [RFC PATCH 8/8] ARM: dts: qcom: apq8064: add simple CPUFreq support
-Date:   Sun,  2 Jul 2023 20:50:45 +0300
-Message-Id: <20230702175045.122041-9-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230702175045.122041-1-dmitry.baryshkov@linaro.org>
-References: <20230702175045.122041-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S229554AbjGBSSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 14:18:33 -0400
+Received: from meesny.iki.fi (meesny.iki.fi [IPv6:2001:67c:2b0:1c1::201])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 279F8A0;
+        Sun,  2 Jul 2023 11:18:32 -0700 (PDT)
+Received: from hillosipuli.retiisi.eu (dkzdf0gkyyyyyyyyyyyyt-3.rev.dnainternet.fi [IPv6:2001:14ba:4506:4f15::1])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sailus)
+        by meesny.iki.fi (Postfix) with ESMTPSA id 4QvHNv2SZjzyV2;
+        Sun,  2 Jul 2023 21:18:22 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi; s=meesny;
+        t=1688321906;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=7lI2A2qjPCBlExV9+ZB1/YBwUAzA2MonmUQlX+M6HBs=;
+        b=s0XsxIB64ux6/3Aw16bvgGfQD9LsCPD5Ks6pdoTxXjEcb+pEMfxK1eVNPu/6JuN+DhNx6A
+        rZ3/EGyLC1FF+DvsyPFuWUjKDsPFqRN2ipzQ+FiPQw2RZKoghnq3HHMKRsrbT4RRmGfmZE
+        b0FS9e53bFuhbPwcmGhH07W6mVfHxNw=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=iki.fi;
+        s=meesny; t=1688321906;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=7lI2A2qjPCBlExV9+ZB1/YBwUAzA2MonmUQlX+M6HBs=;
+        b=Yebic20bYbLNpnn9xFX27i1u+mF32OO/4gU0gMmEOct+BPZN2NzVq5Y3lJGDXdM/IQFPqd
+        1TfDnQLWS7ntr8jwu934zgRFAbXiUMDB8moVHaNXB0cnQ3MDVivwN7VrUhjKQiJQYjaLQp
+        xNx06WnZrSieH+BcMAc8SPpD3hbsEnE=
+ARC-Authentication-Results: i=1;
+        ORIGINATING;
+        auth=pass smtp.auth=sailus smtp.mailfrom=sakari.ailus@iki.fi
+ARC-Seal: i=1; s=meesny; d=iki.fi; t=1688321906; a=rsa-sha256; cv=none;
+        b=EJkAxodtQDmJ7Rh2bT3o0TjsP19zVDTuiweCZbL+jOft+DskktMUQKZFJyiacAW5oNbImI
+        yajxfIsJc3ugffje353I3yRL7kA9Lr7oYfUiD6de45kkCuXmDuLzBUAT8+wICko71wwSiF
+        QoSN5DzhDsbnrYvKB4RlCBNejNuk3aI=
+Received: from valkosipuli.retiisi.eu (valkosipuli.localdomain [192.168.4.2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id 47958634C93;
+        Sun,  2 Jul 2023 21:18:21 +0300 (EEST)
+Date:   Sun, 2 Jul 2023 18:18:21 +0000
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
+        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
+        tomi.valkeinen@ideasonboard.com,
+        bcm-kernel-feedback-list@broadcom.com, stefan.wahren@i2se.com
+Subject: Re: [PATCH v5 04/11] media: bcm2835-unicam: Add support for
+ CCP2/CSI2 camera interface
+Message-ID: <ZKG/bej80eL13Qqp@valkosipuli.retiisi.eu>
+References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
+ <20220208155027.891055-5-jeanmichel.hautbois@ideasonboard.com>
+ <YhihbncnSlmvrn/D@valkosipuli.retiisi.eu>
+ <20230702152356.GA16995@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230702152356.GA16995@pendragon.ideasonboard.com>
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Declare CPU frequency-scaling properties. Each CPU has its own clock,
-how all CPUs have the same OPP table. Voltage scaling is not (yet)
-enabled with this patch. It will be enabled later.
+Hi Laurent,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 147 +++++++++++++++++++++++
- 1 file changed, 147 insertions(+)
+On Sun, Jul 02, 2023 at 06:23:56PM +0300, Laurent Pinchart wrote:
+> Hi Sakari,
+> 
+> On Fri, Feb 25, 2022 at 11:29:18AM +0200, Sakari Ailus wrote:
+> > On Tue, Feb 08, 2022 at 04:50:20PM +0100, Jean-Michel Hautbois wrote:
+> > > Add driver for the Unicam camera receiver block on BCM283x processors.
+> > > It is represented as two video device nodes: unicam-image and
+> > > unicam-embedded which are connected to an internal subdev (named
+> > > unicam-subdev) in order to manage streams routing.
+> > > 
+> > > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> > > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > > 
+> > > ---
+> > > v4:
+> > >   - Add the vendor prefox for DT name
+> > >   - Use the reg-names in DT parsing
+> > >   - Remove MAINTAINERS entry
+> > > 
+> > > v3 main changes:
+> > >   - Change code organization
+> > >   - Remove unused variables
+> > >   - Correct the fmt_meta functions
+> > >   - Rewrite the start/stop streaming
+> > >     - You can now start the image node alone, but not the metadata one
+> > >     - The buffers are allocated per-node
+> > >     - only the required stream is started, if the route exists and is
+> > >       enabled
+> > >   - Prefix the macros with UNICAM_ to not have too generic names
+> > >   - Drop colorspace support
+> > >     -> This is causing issues in the try-fmt v4l2-compliance test
+> > >   test VIDIOC_G_FMT: OK
+> > > 	fail: v4l2-test-formats.cpp(363): colorspace >= 0xff
+> > > 	fail: v4l2-test-formats.cpp(465): testColorspace(!node->is_io_mc, pix.pixelformat, pix.colorspace, pix.ycbcr_enc, pix.quantization)
+> > >   test VIDIOC_TRY_FMT: FAIL
+> > > 	fail: v4l2-test-formats.cpp(363): colorspace >= 0xff
+> > > 	fail: v4l2-test-formats.cpp(465): testColorspace(!node->is_io_mc, pix.pixelformat, pix.colorspace, pix.ycbcr_enc, pix.quantization)
+> > >   test VIDIOC_S_FMT: FAIL
+> > > 
+> > > v2: Remove the unicam_{info,debug,error} macros and use
+> > > dev_dbg/dev_err instead.
+> > > ---
+> > >  drivers/media/platform/Kconfig                |    1 +
+> > >  drivers/media/platform/Makefile               |    2 +
+> > >  drivers/media/platform/bcm2835/Kconfig        |   21 +
+> > >  drivers/media/platform/bcm2835/Makefile       |    3 +
+> > >  .../platform/bcm2835/bcm2835-unicam-regs.h    |  253 ++
+> > >  .../media/platform/bcm2835/bcm2835-unicam.c   | 2570 +++++++++++++++++
+> > >  6 files changed, 2850 insertions(+)
+> > >  create mode 100644 drivers/media/platform/bcm2835/Kconfig
+> > >  create mode 100644 drivers/media/platform/bcm2835/Makefile
+> > >  create mode 100644 drivers/media/platform/bcm2835/bcm2835-unicam-regs.h
+> > >  create mode 100644 drivers/media/platform/bcm2835/bcm2835-unicam.c
+> 
+> [snip]
+> 
+> > > diff --git a/drivers/media/platform/bcm2835/bcm2835-unicam-regs.h b/drivers/media/platform/bcm2835/bcm2835-unicam-regs.h
+> > > new file mode 100644
+> > > index 000000000000..b8d297076a02
+> > > --- /dev/null
+> > > +++ b/drivers/media/platform/bcm2835/bcm2835-unicam-regs.h
+> 
+> [snip]
+> 
+> > > +static int unicam_connect_of_subdevs(struct unicam_device *unicam)
+> > > +{
+> > > +	struct v4l2_fwnode_endpoint ep = { };
+> > > +	struct fwnode_handle *ep_handle;
+> > > +	struct v4l2_async_subdev *asd;
+> > > +	unsigned int lane;
+> > > +	int ret = -EINVAL;
+> > > +
+> > > +	if (of_property_read_u32(unicam->dev->of_node, "brcm,num-data-lanes",
+> > > +				 &unicam->max_data_lanes) < 0) {
+> > 
+> > As you're already using fwnode API below, you could use
+> > device_property_read_u32() here.
+> > 
+> > You can then replace of_device.h by mod_devicetable.h. Up to you.
+> > 
+> > > +		dev_err(unicam->dev, "DT property %s not set\n",
+> > > +			"brcm,num-data-lanes");
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	/* Get the local endpoint and remote device. */
+> > > +	ep_handle = fwnode_graph_get_endpoint_by_id(dev_fwnode(unicam->dev),
+> > > +						    0, 0,
+> > > +						    FWNODE_GRAPH_ENDPOINT_NEXT);
+> > > +	if (!ep_handle) {
+> > > +		dev_err(unicam->dev, "No endpoint\n");
+> > > +		return -ENODEV;
+> > > +	}
+> > > +
+> > > +	/* Parse the local endpoint and validate its configuration. */
+> > > +	if (v4l2_fwnode_endpoint_alloc_parse(ep_handle, &ep)) {
+> > 
+> > As you don't need link-frequencies property parsing, you should use
+> > v4l2_fwnode_endpoint_parse(). That avoids having to call
+> > v4l2_fwnode_endpoint_free().
+> > 
+> > > +		dev_err(unicam->dev, "could not parse endpoint\n");
+> > > +		goto cleanup_exit;
+> > > +	}
+> > > +
+> > > +	dev_dbg(unicam->dev, "parsed local endpoint, bus_type %u\n",
+> > > +		ep.bus_type);
+> > > +
+> > > +	unicam->bus_type = ep.bus_type;
+> > > +
+> > > +	switch (ep.bus_type) {
+> > > +	case V4L2_MBUS_CSI2_DPHY:
+> > > +		switch (ep.bus.mipi_csi2.num_data_lanes) {
+> > > +		case 1:
+> > > +		case 2:
+> > > +		case 4:
+> > > +			break;
+> > > +
+> > > +		default:
+> > > +			dev_err(unicam->dev, "%u data lanes not supported\n",
+> > > +				ep.bus.mipi_csi2.num_data_lanes);
+> > > +			goto cleanup_exit;
+> > > +		}
+> > > +
+> > > +		for (lane = 0; lane < ep.bus.mipi_csi2.num_data_lanes; lane++) {
+> > > +			if (ep.bus.mipi_csi2.data_lanes[lane] != lane + 1) {
+> > > +				dev_err(unicam->dev, "data lanes reordering not supported\n");
+> > > +				goto cleanup_exit;
+> > > +			}
+> > > +		}
+> > > +
+> > > +		if (ep.bus.mipi_csi2.num_data_lanes > unicam->max_data_lanes) {
+> > > +			dev_err(unicam->dev, "endpoint requires %u data lanes when %u are supported\n",
+> > > +				ep.bus.mipi_csi2.num_data_lanes,
+> > > +				unicam->max_data_lanes);
+> > > +		}
+> > > +
+> > > +		unicam->active_data_lanes = ep.bus.mipi_csi2.num_data_lanes;
+> > > +		unicam->bus_flags = ep.bus.mipi_csi2.flags;
+> > > +
+> > > +		break;
+> > > +
+> > > +	case V4L2_MBUS_CCP2:
+> > > +		if (ep.bus.mipi_csi1.clock_lane != 0 ||
+> > > +		    ep.bus.mipi_csi1.data_lane != 1) {
+> > > +			dev_err(unicam->dev, "unsupported lanes configuration\n");
+> > 
+> > If the hardware doesn't support lane remapping for CCP2, then that should
+> > be reflected in DT bindings, i.e. data-lanes isn't relevant. There's no
+> > need to check that here.
+> 
+> Should the above check for CSI-2 be dropped as well then ?
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-index 48b3962dd4fb..995ea32f8d66 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/qcom,lcc-msm8960.h>
- #include <dt-bindings/mfd/qcom-rpm.h>
- #include <dt-bindings/soc/qcom,gsbi.h>
-+#include <dt-bindings/soc/qcom,krait-l2-cache.h>
- 
- / {
- 	#address-cells = <1>;
-@@ -29,6 +30,13 @@ cpu@0 {
- 			next-level-cache = <&L2>;
- 			qcom,acc = <&acc0>;
- 			qcom,saw = <&saw0>;
-+			clocks = <&kraitcc KRAIT_CPU_0>;
-+			clock-names = "cpu";
-+			clock-latency = <100000>;
-+			vdd-core-supply = <&saw0_vreg>;
-+			interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
-+			operating-points-v2 = <&cpu_opp_table>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		cpu@1 {
-@@ -39,6 +47,13 @@ cpu@1 {
- 			next-level-cache = <&L2>;
- 			qcom,acc = <&acc1>;
- 			qcom,saw = <&saw1>;
-+			clocks = <&kraitcc KRAIT_CPU_0>;
-+			clock-names = "cpu";
-+			clock-latency = <100000>;
-+			vdd-core-supply = <&saw1_vreg>;
-+			interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
-+			operating-points-v2 = <&cpu_opp_table>;
-+			#cooling-cells = <2>;
- 		};
- 
- 		L2: l2-cache {
-@@ -169,6 +184,127 @@ opp-1350000000 {
- 		};
- 	};
- 
-+	cpu_opp_table: opp-table-cpu {
-+		compatible = "operating-points-v2-krait-cpu";
-+		nvmem-cells = <&speedbin_efuse>;
-+
-+		/*
-+		 * Voltage thresholds are <target min max>
-+		 */
-+		opp-384000000 {
-+			opp-hz = /bits/ 64 <384000000>;
-+			opp-peak-kBps = <384000>;
-+			opp-microvolt-speed0-pvs0 = <950000 950000 950000>;
-+			opp-microvolt-speed0-pvs1 = <925000 900000 950000>;
-+			opp-microvolt-speed0-pvs3 = <875000 850000 900000>;
-+			opp-supported-hw = <0x1>;
-+			/*
-+			 * higher latency as it requires switching between
-+			 * clock sources
-+			 */
-+			clock-latency-ns = <244144>;
-+		};
-+
-+		opp-486000000 {
-+			opp-hz = /bits/ 64 <486000000>;
-+			opp-peak-kBps = <702000>;
-+			opp-microvolt-speed0-pvs0 = <975000 975000 975000>;
-+			opp-microvolt-speed0-pvs1 = <950000 925000 975000>;
-+			opp-microvolt-speed0-pvs3 = <900000 875000 925000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-594000000 {
-+			opp-hz = /bits/ 64 <594000000>;
-+			opp-peak-kBps = <702000>;
-+			opp-microvolt-speed0-pvs0 = <1000000 1000000 1000000>;
-+			opp-microvolt-speed0-pvs1 = <975000 950000 1000000>;
-+			opp-microvolt-speed0-pvs3 = <925000 900000 950000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-702000000 {
-+			opp-hz = /bits/ 64 <702000000>;
-+			opp-peak-kBps = <702000>;
-+			opp-microvolt-speed0-pvs0 = <1025000 1025000 1025000>;
-+			opp-microvolt-speed0-pvs1 = <1000000 975000 1025000>;
-+			opp-microvolt-speed0-pvs3 = <950000 925000 975000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-810000000 {
-+			opp-hz = /bits/ 64 <810000000>;
-+			opp-peak-kBps = <702000>;
-+			opp-microvolt-speed0-pvs0 = <1075000 1075000 1075000>;
-+			opp-microvolt-speed0-pvs1 = <1050000 1025000 1075000>;
-+			opp-microvolt-speed0-pvs3 = <1000000 975000 1025000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-918000000 {
-+			opp-hz = /bits/ 64 <918000000>;
-+			opp-peak-kBps = <702000>;
-+			opp-microvolt-speed0-pvs0 = <1100000 1100000 1100000>;
-+			opp-microvolt-speed0-pvs1 = <1075000 1050000 1100000>;
-+			opp-microvolt-speed0-pvs3 = <1025000 1000000 1050000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-1026000000 {
-+			opp-hz = /bits/ 64 <1026000000>;
-+			opp-peak-kBps = <702000>;
-+			opp-microvolt-speed0-pvs0 = <1125000 1125000 1125000>;
-+			opp-microvolt-speed0-pvs1 = <1100000 1075000 1125000>;
-+			opp-microvolt-speed0-pvs3 = <1050000 1025000 1075000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-1134000000 {
-+			opp-hz = /bits/ 64 <1134000000>;
-+			opp-peak-kBps = <1350000>;
-+			opp-microvolt-speed0-pvs0 = <1175000 1175000 1175000>;
-+			opp-microvolt-speed0-pvs1 = <1150000 1125000 1175000>;
-+			opp-microvolt-speed0-pvs3 = <1100000 1075000 1125000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-1242000000 {
-+			opp-hz = /bits/ 64 <1242000000>;
-+			opp-peak-kBps = <1350000>;
-+			opp-microvolt-speed0-pvs0 = <1200000 1200000 1200000>;
-+			opp-microvolt-speed0-pvs1 = <1175000 1150000 1200000>;
-+			opp-microvolt-speed0-pvs3 = <1125000 1100000 1150000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-1350000000 {
-+			opp-hz = /bits/ 64 <1350000000>;
-+			opp-peak-kBps = <1350000>;
-+			opp-microvolt-speed0-pvs0 = <1225000 1225000 1225000>;
-+			opp-microvolt-speed0-pvs1 = <1200000 1175000 1225000>;
-+			opp-microvolt-speed0-pvs3 = <1150000 1125000 1175000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-1458000000 {
-+			opp-hz = /bits/ 64 <1458000000>;
-+			opp-peak-kBps = <1350000>;
-+			opp-microvolt-speed0-pvs0 = <1237500 1237500 1237500>;
-+			opp-microvolt-speed0-pvs1 = <1212500 1187500 1237500>;
-+			opp-microvolt-speed0-pvs3 = <1162500 1137500 1187500>;
-+			opp-supported-hw = <0x1>;
-+		};
-+
-+		opp-1512000000 {
-+			opp-hz = /bits/ 64 <1512000000>;
-+			opp-peak-kBps = <1350000>;
-+			opp-microvolt-speed0-pvs0 = <1250000 1250000 1250000>;
-+			opp-microvolt-speed0-pvs1 = <1225000 1200000 1250000>;
-+			opp-microvolt-speed0-pvs3 = <1175000 1150000 1200000>;
-+			opp-supported-hw = <0x1>;
-+		};
-+	};
-+
- 	memory {
- 		device_type = "memory";
- 		reg = <0x0 0x0>;
-@@ -266,6 +402,17 @@ msmgpio: pinctrl@800000 {
- 			reg = <0x800000 0x4000>;
- 		};
- 
-+		qfprom: qfprom@700000 {
-+			compatible = "qcom,msm8960-qfprom", "qcom,qfprom";
-+			reg = <0x00700000 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			ranges;
-+			speedbin_efuse: speedbin@c0 {
-+				reg = <0x0c0 0x4>;
-+			};
-+		};
-+
- 		gcc: clock-controller@900000 {
- 			compatible = "qcom,gcc-msm8960";
- 			#clock-cells = <1>;
+Same for CSI-2, too: if there's nothing to configure there (lane remapping)
+there's no need to validate that part of the DT either.
+
+> 
+> > > +			goto cleanup_exit;
+> > > +		}
+> > > +
+> > > +		unicam->max_data_lanes = 1;
+> > > +		unicam->active_data_lanes = 1;
+> > > +		unicam->bus_flags = ep.bus.mipi_csi1.strobe;
+> > > +		break;
+> > > +
+> > > +	default:
+> > > +		/* Unsupported bus type */
+> > > +		dev_err(unicam->dev, "unsupported bus type %u\n",
+> > > +			ep.bus_type);
+> > > +		goto cleanup_exit;
+> > > +	}
+> > > +
+> > > +	dev_dbg(unicam->dev, "%s bus, %u data lanes, flags=0x%08x\n",
+> > > +		unicam->bus_type == V4L2_MBUS_CSI2_DPHY ? "CSI-2" : "CCP2",
+> > > +		unicam->active_data_lanes, unicam->bus_flags);
+> > 
+> > V4l2-fwnode already prints this information I believe.
+> 
+> True. It does so with pr_debug() though, it would be nice to use
+> dev_dbg(). That's a candidate for a separate fix of course.
+
+The reason for using pr_debug() is that the device isn't used by the fwnode
+framework. Would you add that just for debug prints? Note that the device
+nodes themselves are already being printed so it adds little to the
+usefulness of the messages.
+
 -- 
-2.39.2
+Kind regards,
 
+Sakari Ailus
