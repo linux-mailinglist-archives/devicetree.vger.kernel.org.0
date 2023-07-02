@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 57446744DC5
+	by mail.lfdr.de (Postfix) with ESMTP id C8427744DC6
 	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 15:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229947AbjGBNnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 09:43:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41494 "EHLO
+        id S229631AbjGBNn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 09:43:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229941AbjGBNnY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 09:43:24 -0400
-Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 571ABE6A
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 06:43:23 -0700 (PDT)
-Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b69923a715so54459231fa.0
+        with ESMTP id S229952AbjGBNnZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 09:43:25 -0400
+Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E8FAE6C
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 06:43:24 -0700 (PDT)
+Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b5c2433134so44698851fa.0
         for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 06:43:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688305401; x=1690897401;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=vLuexr7NAUfWT2/HDhg3mtXe+TEPWAZI5+vgB3CHmyY=;
-        b=crWkKGLrsCFZYD44IWSkgz7sUBAj//nDbADt7I4QT52qGVUJtyHc15/EcBII+EyaTf
-         GS29diRMetsHEVIGZQBpb9go5+5s6/OiVr+AvZPuTIJ1JY0uzlo298BNtIuOiKRUl0ZR
-         Rl3t55+OwBjAxWpyPnalpI/uKq4UHLlxx9z4slJzg99a3Hf/44HH1qDLDPc9k63CpTAd
-         XYfQ/c+3U5Jal1aajm9VoA4/gPUP7NO2nXwpHdvvxHlPYG7Wq3qB0WCyFhKdsrsAChmC
-         zJPU2laVW/PdvxJ2mpsgSEFtfPwDd4hx4hrqKJGpCGo0/AVrKy6gKVmUKyhi1qEMjIRy
-         jlWQ==
+        d=linaro.org; s=google; t=1688305402; x=1690897402;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=k1Y1IRv5D7qP29mdVFTxcgI7R6hEH2Hd2mk1Wr0MsVw=;
+        b=av9JgTf++Zf0rCKhgeyx9PWm3edwO/gYGPyGUE256aXocB/SGFU0zrHbd0YswRfQde
+         JQb4Bxb3jsd1J05m63yb1L7pMd8nWbuTCGdMdA4hsR5OCJHUdcNrmiLGMjAe5ucI04MB
+         HdO80jlLwH0TR8dSlCqgk/kLHqHSesg3ZAXa6ZskSh+rAK5SLmFyRfVnRVgx2JtpUE+p
+         j5DOyiczVFA1pjAkYUiZRjdDBNc5Gazg60A0cvnaQInBKi1LrwgUfRLUC8WmKFcrPGE/
+         oh3LVvem9A1tMISC9SzMF8ySRzm+MsHINg4Xg1aY3bQse7aZbgc/yMd0blicd4DDkWOg
+         SmnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688305401; x=1690897401;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=vLuexr7NAUfWT2/HDhg3mtXe+TEPWAZI5+vgB3CHmyY=;
-        b=izpXls9/WcpQ64QvaNzq5A2dLoKe20NfIPgRfyZKkBObzWA/pujzRXZpsL4JJPzamy
-         xJnwmAJfpHDulrcF6Y4Z3YzlmEqVthwznoa4LBPNMRIStgMXZGhmaSP8ifn0Ay2czaLZ
-         evz9Znl+Bv74OarRPMSZJUCI06SMfNwzbUcbdhtP+SOe1r5mirdTLiX2Gxd+oZi/uCbV
-         NxTR48XxNw8qB1GXQOT0mraehBMFdZYVgeY8Bm3H8KGN/AF5ZUVyaPnzMc5yoLJGzp/y
-         HZuDYMoxRjKLe8wof9/LkH63ywkzhDfEfyu7vY2Rz3i3WoCGG0laJxls9Nn7rh6MAuIN
-         OdRw==
-X-Gm-Message-State: ABy/qLaG45JfLstUb7OC2XZ9ACb2MbnC9CHPKIHN6mDaZjIJEV1wcd11
-        EYFiP6+1xg4QmOIgiLvXi78WEg==
-X-Google-Smtp-Source: APBJJlH0RKAiT0zU+eSKW8eNftrtsYD75IJ1pBObeYmC4hVNqP1AYS0xA+to1IqRF3He77q+WopvmQ==
-X-Received: by 2002:a2e:9d98:0:b0:2b6:cc3b:5645 with SMTP id c24-20020a2e9d98000000b002b6cc3b5645mr5559622ljj.49.1688305401420;
-        Sun, 02 Jul 2023 06:43:21 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688305402; x=1690897402;
+        h=content-transfer-encoding:mime-version:references:in-reply-to
+         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=k1Y1IRv5D7qP29mdVFTxcgI7R6hEH2Hd2mk1Wr0MsVw=;
+        b=SdsZeZZOGNGUZh1tik1RWK0olDUPMMkL15RTsbdMcXn6Z0vnAaHKoS8FOREIzF23X/
+         XAUBQ/3D7cZ0ghwdiKT/59ryrkIxzJQA4RWpWtWJm4cBLsIoIjFFAMTfGKfxOYDoG48/
+         iJCSHvqR4hlBbXE1J8DRqUdSCr4fpR86OoFVBDAzLhf7qAXQecqCkTeJpT5dM+GU7N1Q
+         pD4Y/icyYIg3Vx+mBfY02zgD2D9eAl1umAyTzcdhc332f2nSYETC+n2BP0Lix3PLTybj
+         6Sw/Ye3LzRSYG2iAttCCb9zofXCRS5IOies/RvVSWH2AMMUbjrA+hkWddwqKekvxcfbW
+         f+pA==
+X-Gm-Message-State: AC+VfDzL5/jymGgG6qzzzmfrC5KgPfAzSa70Rgo5bOtZuzmHV0+JzYbD
+        yi5LyFSsc407NUSLFJ/Ji0KEXA==
+X-Google-Smtp-Source: ACHHUZ7yFgN53fhYd006uVcCUlfQ8NSOgxKTzf5Zu5N1Zm4vjB22HbzPiKgXF0CSuKVaO29geQWqAA==
+X-Received: by 2002:a05:651c:10b0:b0:2b6:9e1d:cd0f with SMTP id k16-20020a05651c10b000b002b69e1dcd0fmr4205067ljn.12.1688305402380;
+        Sun, 02 Jul 2023 06:43:22 -0700 (PDT)
 Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id d9-20020a2e96c9000000b002b6988ca476sm4310650ljj.101.2023.07.02.06.43.20
+        by smtp.gmail.com with ESMTPSA id d9-20020a2e96c9000000b002b6988ca476sm4310650ljj.101.2023.07.02.06.43.21
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jul 2023 06:43:20 -0700 (PDT)
+        Sun, 02 Jul 2023 06:43:21 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <andersson@kernel.org>,
@@ -55,10 +56,12 @@ To:     Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 00/27] ARM: dts: qcom: cleanup PMIC usage
-Date:   Sun,  2 Jul 2023 16:42:53 +0300
-Message-Id: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
+Subject: [PATCH v2 01/27] ARM: dts: qcom: apq8064: correct XOADC register address
+Date:   Sun,  2 Jul 2023 16:42:54 +0300
+Message-Id: <20230702134320.98831-2-dmitry.baryshkov@linaro.org>
 X-Mailer: git-send-email 2.39.2
+In-Reply-To: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
+References: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -71,110 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-While reviewing APQ8064 CPUFreq patchset, Konrad pointed out that PMICs
-are not a part of SoC and as such do not belong to the per-SoC files.
+The XOADC is present at the address 0x197 rather than just 197. It
+doesn't change a lot (since the driver hardcodes all register
+addresses), but the DT should present correct address anyway.
 
-Cleanup the way 32-bit Qualcomm platforms treat PMICs:
+Fixes: c4b70883ee33 ("ARM: dts: add XOADC and IIO HWMON to APQ8064")
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-- Move SSBI PMICs to separate files (as a bonus merging two different
-  instances of PM8921, benefitting both platforms).
-
-- Include such PMIC files only from the board files, keeping SoC file
-  generic.
-
-- Move RPM regulator definitions to board files too. They do not belong
-  to the SoC dtsi files for the same reason.
-
-- Move PMIC-specific GPIOs and supply properties to individual board
-  files.
-
-Changes since v1:
-- To ease reviewing break cleanups from the  "split PMIC" patches
-  (Konrad).
-
-Dmitry Baryshkov (27):
-  ARM: dts: qcom: apq8064: correct XOADC register address
-  ARM: dts: qcom: msm8960: introduce label for PMIC keypad
-  ARM: dts: qcom: msm8660-surf: use keypad label directly
-  ARM: dts: qcom: apq8064-nexus7: move sdcc1 node to proper place
-  ARM: dts: qcom: mdm9615-wp8548-mangoh-green: group include clauses
-  ARM: dts: qcom: strip prefix from PMIC files
-  ARM: dts: qcom: apq8064: fix PMIC node labels
-  ARM: dts: qcom: mdm9615: fix PMIC node labels
-  ARM: dts: qcom: msm8660: fix PMIC node labels
-  ARM: dts: qcom: msm8960: fix PMIC node labels
-  ARM: dts: qcom: msm8960: split PMIC to separate dtsi files
-  ARM: dts: qcom: apq8064: split PMICs to separate dtsi files
-  ARM: dts: qcom: mdm9615: split PMIC to separate dtsi files
-  ARM: dts: qcom: msm8660: split PMIC to separate dtsi files
-  ARM: dts: qcom: pm8058: reorder nodes
-  ARM: dts: qcom: pm8921: reorder nodes
-  ARM: dts: qcom: pm8018: move reg property
-  ARM: dts: qcom: pm8921: move reg property
-  ARM: dts: qcom: pm8058: use defined IRQ flags
-  ARM: dts: qcom: pm8921: switch to interrupts-extended
-  ARM: dts: qcom: pm8018: switch to interrupts-extended
-  ARM: dts: qcom: pm8058: switch to interrupts-extended
-  ARM: dts: qcom: apq8064: move RPM regulators to board files
-  ARM: dts: qcom: mdm9615: move RPM regulators to board files
-  ARM: dts: qcom: msm8660: move RPM regulators to board files
-  ARM: dts: qcom: msm8960: drop useless rpm regulators node
-  ARM: dts: qcom: msm8974: move regulators to board files
-
- arch/arm/boot/dts/qcom/pm8018.dtsi            |  55 +++++
- arch/arm/boot/dts/qcom/pm8058.dtsi            | 159 +++++++++++++
- .../qcom/{qcom-pm8226.dtsi => pm8226.dtsi}    |   0
- arch/arm/boot/dts/qcom/pm8821.dtsi            |  22 ++
- .../qcom/{qcom-pm8841.dtsi => pm8841.dtsi}    |   0
- arch/arm/boot/dts/qcom/pm8921.dtsi            | 136 +++++++++++
- .../qcom/{qcom-pm8941.dtsi => pm8941.dtsi}    |   0
- .../qcom/{qcom-pma8084.dtsi => pma8084.dtsi}  |   0
- .../dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi}  |   0
- .../dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi}  |   0
- .../dts/qcom/qcom-apq8026-asus-sparrow.dts    |   2 +-
- .../dts/qcom/qcom-apq8026-huawei-sturgeon.dts |   2 +-
- .../boot/dts/qcom/qcom-apq8026-lg-lenok.dts   |   2 +-
- .../qcom-apq8026-samsung-matisse-wifi.dts     |   2 +-
- .../dts/qcom/qcom-apq8060-dragonboard.dts     | 146 +++++++-----
- .../dts/qcom/qcom-apq8064-asus-nexus7-flo.dts |  69 +++---
- .../boot/dts/qcom/qcom-apq8064-cm-qs600.dts   |  31 +--
- .../boot/dts/qcom/qcom-apq8064-ifc6410.dts    |  38 ++--
- .../qcom-apq8064-sony-xperia-lagan-yuga.dts   | 110 +++++----
- arch/arm/boot/dts/qcom/qcom-apq8064.dtsi      | 195 +---------------
- .../dts/qcom/qcom-apq8074-dragonboard.dts     |  31 ++-
- .../boot/dts/qcom/qcom-apq8084-ifc6540.dts    |   2 +-
- arch/arm/boot/dts/qcom/qcom-apq8084-mtp.dts   |   2 +-
- .../qcom/qcom-mdm9615-wp8548-mangoh-green.dts |   4 +-
- .../boot/dts/qcom/qcom-mdm9615-wp8548.dtsi    | 139 +++++++++++-
- arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi      | 181 +--------------
- arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts  |  59 +++--
- arch/arm/boot/dts/qcom/qcom-msm8660.dtsi      | 214 +-----------------
- arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts   |  21 +-
- .../qcom/qcom-msm8960-samsung-expressatt.dts  |   3 +-
- arch/arm/boot/dts/qcom/qcom-msm8960.dtsi      |  42 +---
- .../qcom-msm8974-lge-nexus5-hammerhead.dts    |  31 ++-
- .../qcom/qcom-msm8974-sony-xperia-rhine.dtsi  |  31 ++-
- arch/arm/boot/dts/qcom/qcom-msm8974.dtsi      |  27 ---
- .../qcom/qcom-msm8974pro-fairphone-fp2.dts    |  31 ++-
- .../qcom/qcom-msm8974pro-oneplus-bacon.dts    |  31 ++-
- .../dts/qcom/qcom-msm8974pro-samsung-klte.dts |  12 +-
- ...-msm8974pro-sony-xperia-shinano-castor.dts |  31 ++-
- arch/arm/boot/dts/qcom/qcom-sdx55-mtp.dts     |   2 +-
- arch/arm/boot/dts/qcom/qcom-sdx55-t55.dts     |   2 +-
- .../dts/qcom/qcom-sdx55-telit-fn980-tlb.dts   |   2 +-
- arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dts     |   2 +-
- 42 files changed, 996 insertions(+), 873 deletions(-)
- create mode 100644 arch/arm/boot/dts/qcom/pm8018.dtsi
- create mode 100644 arch/arm/boot/dts/qcom/pm8058.dtsi
- rename arch/arm/boot/dts/qcom/{qcom-pm8226.dtsi => pm8226.dtsi} (100%)
- create mode 100644 arch/arm/boot/dts/qcom/pm8821.dtsi
- rename arch/arm/boot/dts/qcom/{qcom-pm8841.dtsi => pm8841.dtsi} (100%)
- create mode 100644 arch/arm/boot/dts/qcom/pm8921.dtsi
- rename arch/arm/boot/dts/qcom/{qcom-pm8941.dtsi => pm8941.dtsi} (100%)
- rename arch/arm/boot/dts/qcom/{qcom-pma8084.dtsi => pma8084.dtsi} (100%)
- rename arch/arm/boot/dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi} (100%)
- rename arch/arm/boot/dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi} (100%)
-
+diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+index d2289205ff81..4f4393e11580 100644
+--- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
++++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+@@ -766,7 +766,7 @@ pwrkey@1c {
+ 
+ 				xoadc: xoadc@197 {
+ 					compatible = "qcom,pm8921-adc";
+-					reg = <197>;
++					reg = <0x197>;
+ 					interrupts-extended = <&pmicintc 78 IRQ_TYPE_EDGE_RISING>;
+ 					#address-cells = <2>;
+ 					#size-cells = <0>;
 -- 
 2.39.2
 
