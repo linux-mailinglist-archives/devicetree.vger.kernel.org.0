@@ -2,444 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DC5B744D93
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 14:21:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57446744DC5
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 15:43:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjGBMU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 08:20:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
+        id S229947AbjGBNnZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 09:43:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41494 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjGBMU6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 08:20:58 -0400
-Received: from smtp-fw-6002.amazon.com (smtp-fw-6002.amazon.com [52.95.49.90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4352D101;
-        Sun,  2 Jul 2023 05:20:56 -0700 (PDT)
+        with ESMTP id S229941AbjGBNnY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 09:43:24 -0400
+Received: from mail-lj1-x230.google.com (mail-lj1-x230.google.com [IPv6:2a00:1450:4864:20::230])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 571ABE6A
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 06:43:23 -0700 (PDT)
+Received: by mail-lj1-x230.google.com with SMTP id 38308e7fff4ca-2b69923a715so54459231fa.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 06:43:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1688300456; x=1719836456;
-  h=message-id:date:mime-version:subject:to:cc:references:
-   from:in-reply-to:content-transfer-encoding;
-  bh=rq8735iOG5vYAi4oR+PYcweJfAUXtrauEJjLHOf55GU=;
-  b=jVEr+/Uizzb2mLYHUH+81t8iiXKE0BfN8vKKIB8aoWD3h10lQ980fKj0
-   pRMtYDV9UnOE3JcXUU7AVY3V8rAvVBhmL9a5eXcteYAB6cJRe4KwF4I91
-   fOj0r30xee5yBak5DjmHJQvb6wsVGacZOIyABHh0pEUdo8Rv4RYjNtVnn
-   c=;
-X-IronPort-AV: E=Sophos;i="6.01,176,1684800000"; 
-   d="scan'208";a="342222044"
-Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1box-1dm6-7f722725.us-east-1.amazon.com) ([10.43.8.6])
-  by smtp-border-fw-6002.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2023 12:20:54 +0000
-Received: from EX19D017EUA003.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
-        by email-inbound-relay-iad-1box-1dm6-7f722725.us-east-1.amazon.com (Postfix) with ESMTPS id E64F9882BA;
-        Sun,  2 Jul 2023 12:20:51 +0000 (UTC)
-Received: from EX19D044EUA002.ant.amazon.com (10.252.50.212) by
- EX19D017EUA003.ant.amazon.com (10.252.50.129) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Sun, 2 Jul 2023 12:20:50 +0000
-Received: from [192.168.156.52] (10.85.143.178) by
- EX19D044EUA002.ant.amazon.com (10.252.50.212) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Sun, 2 Jul 2023 12:20:44 +0000
-Message-ID: <98aeb2ce-7a3e-116b-f16d-6c6f98aa9ac3@amazon.com>
-Date:   Sun, 2 Jul 2023 15:20:39 +0300
+        d=linaro.org; s=google; t=1688305401; x=1690897401;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=vLuexr7NAUfWT2/HDhg3mtXe+TEPWAZI5+vgB3CHmyY=;
+        b=crWkKGLrsCFZYD44IWSkgz7sUBAj//nDbADt7I4QT52qGVUJtyHc15/EcBII+EyaTf
+         GS29diRMetsHEVIGZQBpb9go5+5s6/OiVr+AvZPuTIJ1JY0uzlo298BNtIuOiKRUl0ZR
+         Rl3t55+OwBjAxWpyPnalpI/uKq4UHLlxx9z4slJzg99a3Hf/44HH1qDLDPc9k63CpTAd
+         XYfQ/c+3U5Jal1aajm9VoA4/gPUP7NO2nXwpHdvvxHlPYG7Wq3qB0WCyFhKdsrsAChmC
+         zJPU2laVW/PdvxJ2mpsgSEFtfPwDd4hx4hrqKJGpCGo0/AVrKy6gKVmUKyhi1qEMjIRy
+         jlWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688305401; x=1690897401;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=vLuexr7NAUfWT2/HDhg3mtXe+TEPWAZI5+vgB3CHmyY=;
+        b=izpXls9/WcpQ64QvaNzq5A2dLoKe20NfIPgRfyZKkBObzWA/pujzRXZpsL4JJPzamy
+         xJnwmAJfpHDulrcF6Y4Z3YzlmEqVthwznoa4LBPNMRIStgMXZGhmaSP8ifn0Ay2czaLZ
+         evz9Znl+Bv74OarRPMSZJUCI06SMfNwzbUcbdhtP+SOe1r5mirdTLiX2Gxd+oZi/uCbV
+         NxTR48XxNw8qB1GXQOT0mraehBMFdZYVgeY8Bm3H8KGN/AF5ZUVyaPnzMc5yoLJGzp/y
+         HZuDYMoxRjKLe8wof9/LkH63ywkzhDfEfyu7vY2Rz3i3WoCGG0laJxls9Nn7rh6MAuIN
+         OdRw==
+X-Gm-Message-State: ABy/qLaG45JfLstUb7OC2XZ9ACb2MbnC9CHPKIHN6mDaZjIJEV1wcd11
+        EYFiP6+1xg4QmOIgiLvXi78WEg==
+X-Google-Smtp-Source: APBJJlH0RKAiT0zU+eSKW8eNftrtsYD75IJ1pBObeYmC4hVNqP1AYS0xA+to1IqRF3He77q+WopvmQ==
+X-Received: by 2002:a2e:9d98:0:b0:2b6:cc3b:5645 with SMTP id c24-20020a2e9d98000000b002b6cc3b5645mr5559622ljj.49.1688305401420;
+        Sun, 02 Jul 2023 06:43:21 -0700 (PDT)
+Received: from umbar.unikie.fi ([192.130.178.91])
+        by smtp.gmail.com with ESMTPSA id d9-20020a2e96c9000000b002b6988ca476sm4310650ljj.101.2023.07.02.06.43.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Jul 2023 06:43:20 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH v2 00/27] ARM: dts: qcom: cleanup PMIC usage
+Date:   Sun,  2 Jul 2023 16:42:53 +0300
+Message-Id: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/5] pps: add pulse-width calculation in nsec
-Content-Language: en-US
-To:     Rodolfo Giometti <giometti@enneenne.com>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <ronenk@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
-        <jonnyc@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
-        <amitlavi@amazon.com>, <almogbs@amazon.com>, <farbere@amazon.com>
-References: <20230625142134.33690-1-farbere@amazon.com>
- <20230625142134.33690-2-farbere@amazon.com>
- <6b6dd2ae-a30d-4f25-f696-c01f2e5a4a1e@enneenne.com>
-From:   "Farber, Eliav" <farbere@amazon.com>
-In-Reply-To: <6b6dd2ae-a30d-4f25-f696-c01f2e5a4a1e@enneenne.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.85.143.178]
-X-ClientProxiedBy: EX19D032UWB004.ant.amazon.com (10.13.139.136) To
- EX19D044EUA002.ant.amazon.com (10.252.50.212)
-X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/27/2023 5:27 PM, Rodolfo Giometti wrote:
-> On 25/06/23 16:21, Eliav Farber wrote:
->> This change adds PPS pulse-width calculation in nano seconds.
->> Width time can be calculated for both assert time and reset time.
->>
->> Calculation can be done only if capture ASSERT and capture CLEAR modes
->> are both enabled.
->>
->> Assert width is calculated as:
->>    clear-time - assert-time
->> and clear width is calculated as:
->>    assert-time - clear-time
->>
->> Read-only sysfs were added to get the last pulse-width time and event
->> sequence.
->> Examples:
->>   * cat /sys/class/pps/pps0/pulse_width_assert
->>     20001450#85
->>   * cat /sys/class/pps/pps1/pulse_width_clear
->>     979893314#16
->>
->> Signed-off-by: Eliav Farber <farbere@amazon.com>
->> ---
->>   drivers/pps/kapi.c         | 49 ++++++++++++++++++++++++++++++++++++++
->>   drivers/pps/pps.c          |  9 +++++++
->>   drivers/pps/sysfs.c        | 30 +++++++++++++++++++++++
->>   include/linux/pps_kernel.h |  3 +++
->>   include/uapi/linux/pps.h   | 19 +++++++++++++++
->>   5 files changed, 110 insertions(+)
->>
->> diff --git a/drivers/pps/kapi.c b/drivers/pps/kapi.c
->> index d9d566f70ed1..deeecfc0a3ee 100644
->> --- a/drivers/pps/kapi.c
->> +++ b/drivers/pps/kapi.c
->> @@ -82,6 +82,14 @@ struct pps_device *pps_register_source(struct 
->> pps_source_info *info,
->>               goto pps_register_source_exit;
->>       }
->>
->> +     if ((info->mode & PPS_WIDTHBOTH) &&
->> +         ((info->mode & PPS_CAPTUREBOTH) != PPS_CAPTUREBOTH)) {
->> +             pr_err("%s: width can't be calculated without both 
->> captures (mode = 0x%x)\n",
->> +                    info->name, info->mode);
->> +             err = -EINVAL;
->> +             goto pps_register_source_exit;
->> +     }
->
-> See the comment below where you define PPS_WIDTHBOTH.
->
->>       /* Allocate memory for the new PPS source struct */
->>       pps = kzalloc(sizeof(struct pps_device), GFP_KERNEL);
->>       if (pps == NULL) {
->> @@ -143,6 +151,39 @@ void pps_unregister_source(struct pps_device *pps)
->>   }
->>   EXPORT_SYMBOL(pps_unregister_source);
->>
->> +static u64 pps_ktime_sub(struct pps_ktime *ts1, struct pps_ktime *ts2)
->> +{
->> +     if (ts1->sec == ts2->sec)
->> +             return (ts1->nsec > ts2->nsec) ? (ts1->nsec - 
->> ts2->nsec) : (ts2->nsec - ts1->nsec);
->> +
->> +     if (ts1->sec > ts2->sec)
->> +             return (ts1->sec - ts2->sec) * NSEC_PER_SEC + ts1->nsec 
->> - ts2->nsec;
->> +
->> +     return (ts2->sec - ts1->sec) * NSEC_PER_SEC + ts2->nsec - 
->> ts1->nsec;
->> +}
->> +
->> +static void pps_calc_clear_width(struct pps_device *pps)
->> +{
->> +     if (pps->clear_sequence == 0)
->> +             return;
->> +
->> +     pps->clear_width.sequence++;
->
-> I don't understand the meaning of this field... regarding assert and 
-> clear it
-> states the n-th sample but in this case...? Why do you need it?
+While reviewing APQ8064 CPUFreq patchset, Konrad pointed out that PMICs
+are not a part of SoC and as such do not belong to the per-SoC files.
 
-For assert and clear, the sequence parameter is basically the counter
-of assert/clear events.
-Similarly, I wanted to have a counter for the number of pulses which
-there width was counted.
-The sequence was used by me in the sysfs to show the pulse counter and
-pulse width in nano-seconds.
-Will counter make more sense instead of sequence?
-Initially, I used the assert_sequence and clear_sequence as the pulse
-counter, but there were few cases to handle.
-In case first interrupt happened during a pulse, then
-assert_sequence != clear_sequence, but if not then
-assert_sequence == clear_sequence.
-So I preferred to add an new independent value.
+Cleanup the way 32-bit Qualcomm platforms treat PMICs:
 
->> +     pps->clear_width.nsec = pps_ktime_sub(&pps->assert_tu, 
->> &pps->clear_tu);
->> +     dev_dbg(pps->dev, "PPS clear width = %llu#%u\n",
->> +             pps->clear_width.nsec, pps->clear_width.sequence);
->> +}
->> +
->> +static void pps_calc_assert_width(struct pps_device *pps)
->> +{
->> +     if (pps->assert_sequence == 0)
->> +             return;
->> +
->> +     pps->assert_width.sequence++;
->
-> Ditto.
->
->> +     pps->assert_width.nsec = pps_ktime_sub(&pps->clear_tu, 
->> &pps->assert_tu);
->> +     dev_dbg(pps->dev, "PPS assert width = %llu#%u\n",
->> +             pps->assert_width.nsec, pps->assert_width.sequence);
->> +}
->> +
->>   /* pps_event - register a PPS event into the system
->>    * @pps: the PPS device
->>    * @ts: the event timestamp
->> @@ -191,6 +232,10 @@ void pps_event(struct pps_device *pps, struct 
->> pps_event_time *ts, int event,
->>               dev_dbg(pps->dev, "capture assert seq #%u\n",
->>                       pps->assert_sequence);
->>
->> +             /* Calculate clear pulse-width */
->> +             if (pps->params.mode & PPS_WIDTHCLEAR)
->> +                     pps_calc_clear_width(pps);
->> +
->>               captured = ~0;
->>       }
->>       if (event & pps->params.mode & PPS_CAPTURECLEAR) {
->> @@ -205,6 +250,10 @@ void pps_event(struct pps_device *pps, struct 
->> pps_event_time *ts, int event,
->>               dev_dbg(pps->dev, "capture clear seq #%u\n",
->>                       pps->clear_sequence);
->>
->> +             /* Calculate assert pulse-width */
->> +             if (pps->params.mode & PPS_WIDTHASSERT)
->> +                     pps_calc_assert_width(pps);
->> +
->>               captured = ~0;
->>       }
->>
->> diff --git a/drivers/pps/pps.c b/drivers/pps/pps.c
->> index 5d19baae6a38..8299a272af11 100644
->> --- a/drivers/pps/pps.c
->> +++ b/drivers/pps/pps.c
->> @@ -195,6 +195,11 @@ static long pps_cdev_ioctl(struct file *file,
->>               fdata.info.clear_tu = pps->clear_tu;
->>               fdata.info.current_mode = pps->current_mode;
->>
->> +             memcpy(&fdata.info.assert_width, &pps->assert_width,
->> +                    sizeof(struct pps_kwidth));
->> +             memcpy(&fdata.info.clear_width, &pps->clear_width,
->> +                    sizeof(struct pps_kwidth));
->> +
->>               spin_unlock_irq(&pps->lock);
->>
->>               err = copy_to_user(uarg, &fdata, sizeof(struct 
->> pps_fdata));
->> @@ -283,6 +288,10 @@ static long pps_cdev_compat_ioctl(struct file 
->> *file,
->>                               sizeof(struct pps_ktime_compat));
->>               memcpy(&compat.info.clear_tu, &pps->clear_tu,
->>                               sizeof(struct pps_ktime_compat));
->> +             memcpy(&compat.info.assert_width, &pps->assert_width,
->> +                    sizeof(struct pps_kwidth_compat));
->> +             memcpy(&compat.info.clear_width, &pps->clear_width,
->> +                    sizeof(struct pps_kwidth_compat));
->>
->>               spin_unlock_irq(&pps->lock);
->>
->> diff --git a/drivers/pps/sysfs.c b/drivers/pps/sysfs.c
->> index 134bc33f6ad0..3e34de77dba6 100644
->> --- a/drivers/pps/sysfs.c
->> +++ b/drivers/pps/sysfs.c
->> @@ -79,6 +79,34 @@ static ssize_t path_show(struct device *dev, 
->> struct device_attribute *attr,
->>   }
->>   static DEVICE_ATTR_RO(path);
->>
->> +static ssize_t pulse_width_assert_show(struct device *dev,
->> +                                    struct device_attribute *attr,
->> +                                    char *buf)
->> +{
->> +     struct pps_device *pps = dev_get_drvdata(dev);
->> +
->> +     if (!(pps->info.mode & PPS_WIDTHASSERT))
->> +             return 0;
->> +
->> +     return sprintf(buf, "%llu#%u\n",
->> +                    pps->assert_width.nsec, 
->> pps->assert_width.sequence);
->> +}
->> +static DEVICE_ATTR_RO(pulse_width_assert);
->> +
->> +static ssize_t pulse_width_clear_show(struct device *dev,
->> +                                   struct device_attribute *attr,
->> +                                   char *buf)
->> +{
->> +     struct pps_device *pps = dev_get_drvdata(dev);
->> +
->> +     if (!(pps->info.mode & PPS_WIDTHCLEAR))
->> +             return 0;
->> +
->> +     return sprintf(buf, "%llu#%u\n",
->> +                    pps->clear_width.nsec, pps->clear_width.sequence);
->> +}
->> +static DEVICE_ATTR_RO(pulse_width_clear);
->> +
->>   static struct attribute *pps_attrs[] = {
->>       &dev_attr_assert.attr,
->>       &dev_attr_clear.attr,
->> @@ -86,6 +114,8 @@ static struct attribute *pps_attrs[] = {
->>       &dev_attr_echo.attr,
->>       &dev_attr_name.attr,
->>       &dev_attr_path.attr,
->> +     &dev_attr_pulse_width_assert.attr,
->> +     &dev_attr_pulse_width_clear.attr,
->>       NULL,
->>   };
->>
->> diff --git a/include/linux/pps_kernel.h b/include/linux/pps_kernel.h
->> index 78c8ac4951b5..15f2338095c6 100644
->> --- a/include/linux/pps_kernel.h
->> +++ b/include/linux/pps_kernel.h
->> @@ -51,6 +51,9 @@ struct pps_device {
->>       struct pps_ktime clear_tu;
->>       int current_mode;                       /* PPS mode at event 
->> time */
->>
->> +     struct pps_kwidth assert_width;         /* PPS assert 
->> pulse-width time and event seq # */
->> +     struct pps_kwidth clear_width;          /* PPS clear 
->> pulse-width time and event seq # */
->> +
->>       unsigned int last_ev;                   /* last PPS event id */
->>       wait_queue_head_t queue;                /* PPS event queue */
->>
->> diff --git a/include/uapi/linux/pps.h b/include/uapi/linux/pps.h
->> index 009ebcd8ced5..dd93dac0afc1 100644
->> --- a/include/uapi/linux/pps.h
->> +++ b/include/uapi/linux/pps.h
->> @@ -64,12 +64,24 @@ struct pps_ktime_compat {
->>   } __attribute__((packed, aligned(4)));
->>   #define PPS_TIME_INVALID    (1<<0)  /* used to specify 
->> timeout==NULL */
->>
->> +struct pps_kwidth {
->> +     __u64 nsec;
->> +     __u32 sequence;
->> +};
->> +
->> +struct pps_kwidth_compat {
->> +     __u64 nsec;
->> +     __u32 sequence;
->> +} __attribute__((packed, aligned(4)));
->
-> Why do you need a new type? Since both assert_width and clear_width 
-> are time
-> quantities as far as assert_tu and clear_tu, they can be of the same 
-> type, can't
-> they? Or, at least they can simply be __u64 since having an 
-> assert_width or
-> clear_width longer than 1 second is a non-sense...
+- Move SSBI PMICs to separate files (as a bonus merging two different
+  instances of PM8921, benefitting both platforms).
 
-For each pulse I wanted to save width in nsec (without sec) and
-counter.
-I need it twice for both assert and clear, hence I added a new
-structure for it.
+- Include such PMIC files only from the board files, keeping SoC file
+  generic.
 
->>   struct pps_kinfo {
->>       __u32 assert_sequence;          /* seq. num. of assert event */
->>       __u32 clear_sequence;           /* seq. num. of clear event */
->>       struct pps_ktime assert_tu;     /* time of assert event */
->>       struct pps_ktime clear_tu;      /* time of clear event */
->>       int current_mode;               /* current mode bits */
->> +     struct pps_kwidth assert_width; /* assert pulse-width time and 
->> seq. num. */
->> +     struct pps_kwidth clear_width;  /* clear pulse-width time and 
->> seq. num. */
->>   };
->
-> Altering this structure may break userspace code... also rfc2783 at 
-> section-3.2
-> states that:
->
->    The API defines these new data structures:
->
->       typedef struct {
->           pps_seq_t   assert_sequence;        /* assert event seq # */
->           pps_seq_t   clear_sequence;         /* clear event seq # */
->           pps_timeu_t assert_tu;
->           pps_timeu_t clear_tu;
->           int         current_mode;           /* current mode bits */
->       } pps_info_t;
->
-> So, I'm not willing to change this structure just to add this new data 
-> that I
-> don't even know where it's used...
->
-> If you just read these information via sysfs, please drop these part.
+- Move RPM regulator definitions to board files too. They do not belong
+  to the SoC dtsi files for the same reason.
 
-ACK. I'll drop this part.
+- Move PMIC-specific GPIOs and supply properties to individual board
+  files.
 
->>   struct pps_kinfo_compat {
->> @@ -78,6 +90,8 @@ struct pps_kinfo_compat {
->>       struct pps_ktime_compat assert_tu;      /* time of assert event */
->>       struct pps_ktime_compat clear_tu;       /* time of clear event */
->>       int current_mode;                       /* current mode bits */
->> +     struct pps_kwidth_compat assert_width;  /* assert pulse-width 
->> time and seq. num. */
->> +     struct pps_kwidth_compat clear_width;   /* clear pulse-width 
->> time and seq. num. */
->>   };
->>
->>   struct pps_kparams {
->> @@ -96,6 +110,11 @@ struct pps_kparams {
->>   #define PPS_CAPTURECLEAR    0x02    /* capture clear events */
->>   #define PPS_CAPTUREBOTH             0x03    /* capture assert and 
->> clear events */
->>
->> +/* Pulse-width calculation */
->> +#define PPS_WIDTHASSERT              0x04    /* calculate assert 
->> width */
->> +#define PPS_WIDTHCLEAR               0x08    /* calculate clear 
->> width */
->> +#define PPS_WIDTHBOTH                0x0c    /* calculate assert and 
->> clear width */
->> +
->
-> I don't understand why a process should ask for just PPS_WIDTHASSERT or
-> PPS_WIDTHCLEAR... I think you can avoid defining these values and just 
-> enabling
-> pulse width calculation when both assert and clear events are available. 
+Changes since v1:
+- To ease reviewing break cleanups from the  "split PMIC" patches
+  (Konrad).
 
-ACK. I'll drop the new defines and enable width calculation when
-PPS_CAPTUREASSERT and PPS_CAPTURECLEAR are both defined.
+Dmitry Baryshkov (27):
+  ARM: dts: qcom: apq8064: correct XOADC register address
+  ARM: dts: qcom: msm8960: introduce label for PMIC keypad
+  ARM: dts: qcom: msm8660-surf: use keypad label directly
+  ARM: dts: qcom: apq8064-nexus7: move sdcc1 node to proper place
+  ARM: dts: qcom: mdm9615-wp8548-mangoh-green: group include clauses
+  ARM: dts: qcom: strip prefix from PMIC files
+  ARM: dts: qcom: apq8064: fix PMIC node labels
+  ARM: dts: qcom: mdm9615: fix PMIC node labels
+  ARM: dts: qcom: msm8660: fix PMIC node labels
+  ARM: dts: qcom: msm8960: fix PMIC node labels
+  ARM: dts: qcom: msm8960: split PMIC to separate dtsi files
+  ARM: dts: qcom: apq8064: split PMICs to separate dtsi files
+  ARM: dts: qcom: mdm9615: split PMIC to separate dtsi files
+  ARM: dts: qcom: msm8660: split PMIC to separate dtsi files
+  ARM: dts: qcom: pm8058: reorder nodes
+  ARM: dts: qcom: pm8921: reorder nodes
+  ARM: dts: qcom: pm8018: move reg property
+  ARM: dts: qcom: pm8921: move reg property
+  ARM: dts: qcom: pm8058: use defined IRQ flags
+  ARM: dts: qcom: pm8921: switch to interrupts-extended
+  ARM: dts: qcom: pm8018: switch to interrupts-extended
+  ARM: dts: qcom: pm8058: switch to interrupts-extended
+  ARM: dts: qcom: apq8064: move RPM regulators to board files
+  ARM: dts: qcom: mdm9615: move RPM regulators to board files
+  ARM: dts: qcom: msm8660: move RPM regulators to board files
+  ARM: dts: qcom: msm8960: drop useless rpm regulators node
+  ARM: dts: qcom: msm8974: move regulators to board files
 
->>   #define PPS_OFFSETASSERT    0x10    /* apply compensation for 
->> assert event */
->>   #define PPS_OFFSETCLEAR             0x20    /* apply compensation 
->> for clear event */
->
-> However, the real point is: since an userpsace program can retrieve 
-> the time of
-> assert and clear events, why it cannot compute the pulses width by 
-> itself? :)
+ arch/arm/boot/dts/qcom/pm8018.dtsi            |  55 +++++
+ arch/arm/boot/dts/qcom/pm8058.dtsi            | 159 +++++++++++++
+ .../qcom/{qcom-pm8226.dtsi => pm8226.dtsi}    |   0
+ arch/arm/boot/dts/qcom/pm8821.dtsi            |  22 ++
+ .../qcom/{qcom-pm8841.dtsi => pm8841.dtsi}    |   0
+ arch/arm/boot/dts/qcom/pm8921.dtsi            | 136 +++++++++++
+ .../qcom/{qcom-pm8941.dtsi => pm8941.dtsi}    |   0
+ .../qcom/{qcom-pma8084.dtsi => pma8084.dtsi}  |   0
+ .../dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi}  |   0
+ .../dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi}  |   0
+ .../dts/qcom/qcom-apq8026-asus-sparrow.dts    |   2 +-
+ .../dts/qcom/qcom-apq8026-huawei-sturgeon.dts |   2 +-
+ .../boot/dts/qcom/qcom-apq8026-lg-lenok.dts   |   2 +-
+ .../qcom-apq8026-samsung-matisse-wifi.dts     |   2 +-
+ .../dts/qcom/qcom-apq8060-dragonboard.dts     | 146 +++++++-----
+ .../dts/qcom/qcom-apq8064-asus-nexus7-flo.dts |  69 +++---
+ .../boot/dts/qcom/qcom-apq8064-cm-qs600.dts   |  31 +--
+ .../boot/dts/qcom/qcom-apq8064-ifc6410.dts    |  38 ++--
+ .../qcom-apq8064-sony-xperia-lagan-yuga.dts   | 110 +++++----
+ arch/arm/boot/dts/qcom/qcom-apq8064.dtsi      | 195 +---------------
+ .../dts/qcom/qcom-apq8074-dragonboard.dts     |  31 ++-
+ .../boot/dts/qcom/qcom-apq8084-ifc6540.dts    |   2 +-
+ arch/arm/boot/dts/qcom/qcom-apq8084-mtp.dts   |   2 +-
+ .../qcom/qcom-mdm9615-wp8548-mangoh-green.dts |   4 +-
+ .../boot/dts/qcom/qcom-mdm9615-wp8548.dtsi    | 139 +++++++++++-
+ arch/arm/boot/dts/qcom/qcom-mdm9615.dtsi      | 181 +--------------
+ arch/arm/boot/dts/qcom/qcom-msm8660-surf.dts  |  59 +++--
+ arch/arm/boot/dts/qcom/qcom-msm8660.dtsi      | 214 +-----------------
+ arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts   |  21 +-
+ .../qcom/qcom-msm8960-samsung-expressatt.dts  |   3 +-
+ arch/arm/boot/dts/qcom/qcom-msm8960.dtsi      |  42 +---
+ .../qcom-msm8974-lge-nexus5-hammerhead.dts    |  31 ++-
+ .../qcom/qcom-msm8974-sony-xperia-rhine.dtsi  |  31 ++-
+ arch/arm/boot/dts/qcom/qcom-msm8974.dtsi      |  27 ---
+ .../qcom/qcom-msm8974pro-fairphone-fp2.dts    |  31 ++-
+ .../qcom/qcom-msm8974pro-oneplus-bacon.dts    |  31 ++-
+ .../dts/qcom/qcom-msm8974pro-samsung-klte.dts |  12 +-
+ ...-msm8974pro-sony-xperia-shinano-castor.dts |  31 ++-
+ arch/arm/boot/dts/qcom/qcom-sdx55-mtp.dts     |   2 +-
+ arch/arm/boot/dts/qcom/qcom-sdx55-t55.dts     |   2 +-
+ .../dts/qcom/qcom-sdx55-telit-fn980-tlb.dts   |   2 +-
+ arch/arm/boot/dts/qcom/qcom-sdx65-mtp.dts     |   2 +-
+ 42 files changed, 996 insertions(+), 873 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8018.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom/pm8058.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8226.dtsi => pm8226.dtsi} (100%)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8821.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8841.dtsi => pm8841.dtsi} (100%)
+ create mode 100644 arch/arm/boot/dts/qcom/pm8921.dtsi
+ rename arch/arm/boot/dts/qcom/{qcom-pm8941.dtsi => pm8941.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pma8084.dtsi => pma8084.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pmx55.dtsi => pmx55.dtsi} (100%)
+ rename arch/arm/boot/dts/qcom/{qcom-pmx65.dtsi => pmx65.dtsi} (100%)
 
-The userpsace program can retrieve the time of assert and clear events,
-but it is not always clear how to compute it.
-Initially that was how I did it:
-Read both times, make sure sequence of both times was identical, and
-then compute: clear_time – assert_time.
-But as I mentioned, when using wide pulses, it might be that when
-driver starts, it is a the middle of a pulse.
-In that case clear_time will be captured first (seq #1).
-Then assert_time is captured (seq #1).
-However, assert pulse width can only be calculated for the second
-clear-time sequence and first assert-time sequence.
-So to simplify this for the user, I added the calculation to the
-driver.
-Hope this was clear.
-Please let me know if this satisfies you, and then I’ll share a second
-version of patches which fixes all the other comments you gave.
-
----
-Regards, Eliav
+-- 
+2.39.2
 
