@@ -2,378 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EE37744DFB
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 15:44:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C2C5744E4C
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 17:24:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230074AbjGBNn7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 09:43:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42226 "EHLO
+        id S229608AbjGBPX7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 11:23:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbjGBNnx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 09:43:53 -0400
-Received: from mail-lj1-x22e.google.com (mail-lj1-x22e.google.com [IPv6:2a00:1450:4864:20::22e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D2710E5
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 06:43:43 -0700 (PDT)
-Received: by mail-lj1-x22e.google.com with SMTP id 38308e7fff4ca-2b63e5f94f1so44507891fa.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 06:43:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688305422; x=1690897422;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=lYK7jyDPhdkvFKyhVvnwQ7HbIDbOuUQGXBtxnQGSLEk=;
-        b=Y0SWxhrHLFr3dJ2orUPnxSxejwivvE6IwyioIWbB+dpSUrvO9edNFaKJGBnHcUKoQv
-         +4FybETbZinpM+n4eNSoDTN0sNbk73r3evRXenuZzLxIrMdvO3oQiJAENcIyhY0+TBYu
-         954cFvrRt9ptFj8zIOdAbHAzFrvzww+oCDrRoAWgO2WqkO3BNacKT3wz4GnDW82UXh2T
-         /PjpKdQ+k0lCIE7vo2vnjcy7o7O3lg2D0wqzLjUnMlQFZ7R7D6+Du8279YvlrsSb1aeK
-         g/sn1BByR5qZupTpJ0lMgQxidrWk/urDEGLjEB8Q/Yqe/OKqihEkyeadegjcVokyN8OQ
-         L1kA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688305422; x=1690897422;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=lYK7jyDPhdkvFKyhVvnwQ7HbIDbOuUQGXBtxnQGSLEk=;
-        b=YoqI78z71duPAp6EZ+9w773BdbDBrx+Kq8Vg5XSFRp2e2cuxVKHefIz4naE2EQ0XID
-         lGYLWaQ3yFYFpoKcC5Iuqx1/8/stez4f0gMz2eAw3GfSmOTH5nGigZyJkxDRsEsQ3T+v
-         kJCfv+wcZU8Vy3YzCzcJeZgvtCfIoX03xHQz4Vz1mejQjxdxmHltvq4VA7sZDus6BykA
-         d6M8X3/84BreVopiLIZK6LPSN5cPotvZy6n0kygs2WkvpOamOcnURd+hk6ruZM9nt+jS
-         AlTUzGMxWGl4HmnQs4J5blGLmn34UOFrIeZiqCmiNpgyxQcljMuXvthACuC2NitnyO6v
-         GIvg==
-X-Gm-Message-State: ABy/qLax+nR02B2vpGWh+h4JYkzK7PZcMSg6TSNMQBwRiWJgrvdEshP8
-        ACK6ni4Ark678sRZODVt4rHtWQ==
-X-Google-Smtp-Source: APBJJlE3rDN2VekRnBE2h3G/JDjsV29YSwHVyMLZsMT4TkhLSfd01Use9FaA+uqEghQsRThRMT9nhg==
-X-Received: by 2002:a2e:9893:0:b0:2b6:da61:d5b9 with SMTP id b19-20020a2e9893000000b002b6da61d5b9mr1353902ljj.14.1688305421944;
-        Sun, 02 Jul 2023 06:43:41 -0700 (PDT)
-Received: from umbar.unikie.fi ([192.130.178.91])
-        by smtp.gmail.com with ESMTPSA id d9-20020a2e96c9000000b002b6988ca476sm4310650ljj.101.2023.07.02.06.43.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jul 2023 06:43:41 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH v2 27/27] ARM: dts: qcom: msm8974: move regulators to board files
-Date:   Sun,  2 Jul 2023 16:43:20 +0300
-Message-Id: <20230702134320.98831-28-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
-References: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
+        with ESMTP id S229554AbjGBPX6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 11:23:58 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [213.167.242.64])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70DBCE69;
+        Sun,  2 Jul 2023 08:23:57 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (85-160-45-201.reb.o2.cz [85.160.45.201])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id E4800289;
+        Sun,  2 Jul 2023 17:23:12 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1688311393;
+        bh=Go/q4Bj5k2u8R/kaZnLH8yaLYq0EaAahz6vsxOCVh6w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wjAq7ZSxEo1iSsG1n+Qy8B/aqndzIF8zMPLSp5ENLpYgXp1OCfrR9LP9bwbXwDY6v
+         UH1/BU5aUQs2/XZH8/Bi8e/smxkNk2Umq0AXZ6asilmQGdGIZlu4y+2qx0IDOq92Bc
+         m+sCnlXP1fZ+qYD3xpqedwmSZOKmJPRDI6An2eNU=
+Date:   Sun, 2 Jul 2023 18:23:56 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Sakari Ailus <sakari.ailus@iki.fi>
+Cc:     Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>,
+        dave.stevenson@raspberrypi.com, devicetree@vger.kernel.org,
+        kernel-list@raspberrypi.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, lukasz@jany.st,
+        mchehab@kernel.org, naush@raspberrypi.com, robh@kernel.org,
+        tomi.valkeinen@ideasonboard.com,
+        bcm-kernel-feedback-list@broadcom.com, stefan.wahren@i2se.com
+Subject: Re: [PATCH v5 04/11] media: bcm2835-unicam: Add support for
+ CCP2/CSI2 camera interface
+Message-ID: <20230702152356.GA16995@pendragon.ideasonboard.com>
+References: <20220208155027.891055-1-jeanmichel.hautbois@ideasonboard.com>
+ <20220208155027.891055-5-jeanmichel.hautbois@ideasonboard.com>
+ <YhihbncnSlmvrn/D@valkosipuli.retiisi.eu>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <YhihbncnSlmvrn/D@valkosipuli.retiisi.eu>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The vph-pwr and boost regulators (even if they are unified by design)
-are not a property of SoC, so move them to board files.
+Hi Sakari,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- .../dts/qcom/qcom-apq8074-dragonboard.dts     | 27 +++++++++++++++++++
- .../qcom-msm8974-lge-nexus5-hammerhead.dts    | 27 +++++++++++++++++++
- .../qcom/qcom-msm8974-sony-xperia-rhine.dtsi  | 27 +++++++++++++++++++
- arch/arm/boot/dts/qcom/qcom-msm8974.dtsi      | 27 -------------------
- .../qcom/qcom-msm8974pro-fairphone-fp2.dts    | 27 +++++++++++++++++++
- .../qcom/qcom-msm8974pro-oneplus-bacon.dts    | 27 +++++++++++++++++++
- .../dts/qcom/qcom-msm8974pro-samsung-klte.dts | 10 ++++++-
- ...-msm8974pro-sony-xperia-shinano-castor.dts | 27 +++++++++++++++++++
- 8 files changed, 171 insertions(+), 28 deletions(-)
+On Fri, Feb 25, 2022 at 11:29:18AM +0200, Sakari Ailus wrote:
+> On Tue, Feb 08, 2022 at 04:50:20PM +0100, Jean-Michel Hautbois wrote:
+> > Add driver for the Unicam camera receiver block on BCM283x processors.
+> > It is represented as two video device nodes: unicam-image and
+> > unicam-embedded which are connected to an internal subdev (named
+> > unicam-subdev) in order to manage streams routing.
+> > 
+> > Signed-off-by: Dave Stevenson <dave.stevenson@raspberrypi.com>
+> > Signed-off-by: Naushir Patuck <naush@raspberrypi.com>
+> > Signed-off-by: Jean-Michel Hautbois <jeanmichel.hautbois@ideasonboard.com>
+> > 
+> > ---
+> > v4:
+> >   - Add the vendor prefox for DT name
+> >   - Use the reg-names in DT parsing
+> >   - Remove MAINTAINERS entry
+> > 
+> > v3 main changes:
+> >   - Change code organization
+> >   - Remove unused variables
+> >   - Correct the fmt_meta functions
+> >   - Rewrite the start/stop streaming
+> >     - You can now start the image node alone, but not the metadata one
+> >     - The buffers are allocated per-node
+> >     - only the required stream is started, if the route exists and is
+> >       enabled
+> >   - Prefix the macros with UNICAM_ to not have too generic names
+> >   - Drop colorspace support
+> >     -> This is causing issues in the try-fmt v4l2-compliance test
+> >   test VIDIOC_G_FMT: OK
+> > 	fail: v4l2-test-formats.cpp(363): colorspace >= 0xff
+> > 	fail: v4l2-test-formats.cpp(465): testColorspace(!node->is_io_mc, pix.pixelformat, pix.colorspace, pix.ycbcr_enc, pix.quantization)
+> >   test VIDIOC_TRY_FMT: FAIL
+> > 	fail: v4l2-test-formats.cpp(363): colorspace >= 0xff
+> > 	fail: v4l2-test-formats.cpp(465): testColorspace(!node->is_io_mc, pix.pixelformat, pix.colorspace, pix.ycbcr_enc, pix.quantization)
+> >   test VIDIOC_S_FMT: FAIL
+> > 
+> > v2: Remove the unicam_{info,debug,error} macros and use
+> > dev_dbg/dev_err instead.
+> > ---
+> >  drivers/media/platform/Kconfig                |    1 +
+> >  drivers/media/platform/Makefile               |    2 +
+> >  drivers/media/platform/bcm2835/Kconfig        |   21 +
+> >  drivers/media/platform/bcm2835/Makefile       |    3 +
+> >  .../platform/bcm2835/bcm2835-unicam-regs.h    |  253 ++
+> >  .../media/platform/bcm2835/bcm2835-unicam.c   | 2570 +++++++++++++++++
+> >  6 files changed, 2850 insertions(+)
+> >  create mode 100644 drivers/media/platform/bcm2835/Kconfig
+> >  create mode 100644 drivers/media/platform/bcm2835/Makefile
+> >  create mode 100644 drivers/media/platform/bcm2835/bcm2835-unicam-regs.h
+> >  create mode 100644 drivers/media/platform/bcm2835/bcm2835-unicam.c
 
-diff --git a/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
-index 5a8af16bf02d..3e5311e7196e 100644
---- a/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
-@@ -49,6 +49,33 @@ mpss_region: mpss@ac00000 {
- 			no-map;
- 		};
- 	};
-+
-+	vreg_boost: vreg-boost {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vreg-boost";
-+		regulator-min-microvolt = <3150000>;
-+		regulator-max-microvolt = <3150000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&boost_bypass_n_pin>;
-+	};
-+
-+	vreg_vph_pwr: vreg-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+
-+		regulator-always-on;
-+	};
- };
- 
- &blsp1_uart2 {
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
-index da99f770d4f5..ca402b4a68bd 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
-@@ -60,6 +60,33 @@ vibrator {
- 		enable-gpios = <&tlmm 60 GPIO_ACTIVE_HIGH>;
- 	};
- 
-+	vreg_boost: vreg-boost {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vreg-boost";
-+		regulator-min-microvolt = <3150000>;
-+		regulator-max-microvolt = <3150000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&boost_bypass_n_pin>;
-+	};
-+
-+	vreg_vph_pwr: vreg-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+
-+		regulator-always-on;
-+	};
-+
- 	vreg_wlan: wlan-regulator {
- 		compatible = "regulator-fixed";
- 
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
-index 23ae474698aa..a43341ae4495 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
-@@ -65,6 +65,33 @@ ramoops@3e8e0000 {
- 			pmsg-size = <0x80000>;
- 		};
- 	};
-+
-+	vreg_boost: vreg-boost {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vreg-boost";
-+		regulator-min-microvolt = <3150000>;
-+		regulator-max-microvolt = <3150000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&boost_bypass_n_pin>;
-+	};
-+
-+	vreg_vph_pwr: vreg-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+
-+		regulator-always-on;
-+	};
- };
- 
- &blsp1_i2c2 {
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-index aeca504918a0..a4ff1fe63903 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-@@ -2376,31 +2376,4 @@ timer {
- 			     <GIC_PPI 1 0xf08>;
- 		clock-frequency = <19200000>;
- 	};
--
--	vreg_boost: vreg-boost {
--		compatible = "regulator-fixed";
--
--		regulator-name = "vreg-boost";
--		regulator-min-microvolt = <3150000>;
--		regulator-max-microvolt = <3150000>;
--
--		regulator-always-on;
--		regulator-boot-on;
--
--		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
--		enable-active-high;
--
--		pinctrl-names = "default";
--		pinctrl-0 = <&boost_bypass_n_pin>;
--	};
--
--	vreg_vph_pwr: vreg-vph-pwr {
--		compatible = "regulator-fixed";
--		regulator-name = "vph-pwr";
--
--		regulator-min-microvolt = <3600000>;
--		regulator-max-microvolt = <3600000>;
--
--		regulator-always-on;
--	};
- };
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-index 24f9521a0be6..9cbdfe62051e 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-@@ -57,6 +57,33 @@ vibrator {
- 		enable-gpios = <&tlmm 86 GPIO_ACTIVE_HIGH>;
- 		vcc-supply = <&pm8941_l18>;
- 	};
-+
-+	vreg_boost: vreg-boost {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vreg-boost";
-+		regulator-min-microvolt = <3150000>;
-+		regulator-max-microvolt = <3150000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&boost_bypass_n_pin>;
-+	};
-+
-+	vreg_vph_pwr: vreg-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+
-+		regulator-always-on;
-+	};
- };
- 
- &blsp1_i2c2 {
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
-index c0ca264d8140..6d1412aec45a 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
-@@ -51,6 +51,33 @@ event-hall-sensor {
- 			debounce-interval = <150>;
- 		};
- 	};
-+
-+	vreg_boost: vreg-boost {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vreg-boost";
-+		regulator-min-microvolt = <3150000>;
-+		regulator-max-microvolt = <3150000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&boost_bypass_n_pin>;
-+	};
-+
-+	vreg_vph_pwr: vreg-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+
-+		regulator-always-on;
-+	};
- };
- 
- &blsp1_i2c1 {
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-index 325feb89b343..ca3aa16b4b10 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-@@ -155,7 +155,15 @@ vreg_panel: panel-regulator {
- 		enable-active-high;
- 	};
- 
--	/delete-node/ vreg-boost;
-+	vreg_vph_pwr: vreg-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+
-+		regulator-always-on;
-+	};
- };
- 
- &blsp1_i2c2 {
-diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-index efe21289c9fe..b76d51b1b667 100644
---- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-+++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-@@ -84,6 +84,33 @@ vreg_vsp: lcd-dcdc-regulator {
- 		pinctrl-0 = <&lcd_dcdc_en_pin_a>;
- 	};
- 
-+	vreg_boost: vreg-boost {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vreg-boost";
-+		regulator-min-microvolt = <3150000>;
-+		regulator-max-microvolt = <3150000>;
-+
-+		regulator-always-on;
-+		regulator-boot-on;
-+
-+		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&boost_bypass_n_pin>;
-+	};
-+
-+	vreg_vph_pwr: vreg-vph-pwr {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vph-pwr";
-+
-+		regulator-min-microvolt = <3600000>;
-+		regulator-max-microvolt = <3600000>;
-+
-+		regulator-always-on;
-+	};
-+
- 	vreg_wlan: wlan-regulator {
- 		compatible = "regulator-fixed";
- 
+[snip]
+
+> > diff --git a/drivers/media/platform/bcm2835/bcm2835-unicam-regs.h b/drivers/media/platform/bcm2835/bcm2835-unicam-regs.h
+> > new file mode 100644
+> > index 000000000000..b8d297076a02
+> > --- /dev/null
+> > +++ b/drivers/media/platform/bcm2835/bcm2835-unicam-regs.h
+
+[snip]
+
+> > +static int unicam_connect_of_subdevs(struct unicam_device *unicam)
+> > +{
+> > +	struct v4l2_fwnode_endpoint ep = { };
+> > +	struct fwnode_handle *ep_handle;
+> > +	struct v4l2_async_subdev *asd;
+> > +	unsigned int lane;
+> > +	int ret = -EINVAL;
+> > +
+> > +	if (of_property_read_u32(unicam->dev->of_node, "brcm,num-data-lanes",
+> > +				 &unicam->max_data_lanes) < 0) {
+> 
+> As you're already using fwnode API below, you could use
+> device_property_read_u32() here.
+> 
+> You can then replace of_device.h by mod_devicetable.h. Up to you.
+> 
+> > +		dev_err(unicam->dev, "DT property %s not set\n",
+> > +			"brcm,num-data-lanes");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	/* Get the local endpoint and remote device. */
+> > +	ep_handle = fwnode_graph_get_endpoint_by_id(dev_fwnode(unicam->dev),
+> > +						    0, 0,
+> > +						    FWNODE_GRAPH_ENDPOINT_NEXT);
+> > +	if (!ep_handle) {
+> > +		dev_err(unicam->dev, "No endpoint\n");
+> > +		return -ENODEV;
+> > +	}
+> > +
+> > +	/* Parse the local endpoint and validate its configuration. */
+> > +	if (v4l2_fwnode_endpoint_alloc_parse(ep_handle, &ep)) {
+> 
+> As you don't need link-frequencies property parsing, you should use
+> v4l2_fwnode_endpoint_parse(). That avoids having to call
+> v4l2_fwnode_endpoint_free().
+> 
+> > +		dev_err(unicam->dev, "could not parse endpoint\n");
+> > +		goto cleanup_exit;
+> > +	}
+> > +
+> > +	dev_dbg(unicam->dev, "parsed local endpoint, bus_type %u\n",
+> > +		ep.bus_type);
+> > +
+> > +	unicam->bus_type = ep.bus_type;
+> > +
+> > +	switch (ep.bus_type) {
+> > +	case V4L2_MBUS_CSI2_DPHY:
+> > +		switch (ep.bus.mipi_csi2.num_data_lanes) {
+> > +		case 1:
+> > +		case 2:
+> > +		case 4:
+> > +			break;
+> > +
+> > +		default:
+> > +			dev_err(unicam->dev, "%u data lanes not supported\n",
+> > +				ep.bus.mipi_csi2.num_data_lanes);
+> > +			goto cleanup_exit;
+> > +		}
+> > +
+> > +		for (lane = 0; lane < ep.bus.mipi_csi2.num_data_lanes; lane++) {
+> > +			if (ep.bus.mipi_csi2.data_lanes[lane] != lane + 1) {
+> > +				dev_err(unicam->dev, "data lanes reordering not supported\n");
+> > +				goto cleanup_exit;
+> > +			}
+> > +		}
+> > +
+> > +		if (ep.bus.mipi_csi2.num_data_lanes > unicam->max_data_lanes) {
+> > +			dev_err(unicam->dev, "endpoint requires %u data lanes when %u are supported\n",
+> > +				ep.bus.mipi_csi2.num_data_lanes,
+> > +				unicam->max_data_lanes);
+> > +		}
+> > +
+> > +		unicam->active_data_lanes = ep.bus.mipi_csi2.num_data_lanes;
+> > +		unicam->bus_flags = ep.bus.mipi_csi2.flags;
+> > +
+> > +		break;
+> > +
+> > +	case V4L2_MBUS_CCP2:
+> > +		if (ep.bus.mipi_csi1.clock_lane != 0 ||
+> > +		    ep.bus.mipi_csi1.data_lane != 1) {
+> > +			dev_err(unicam->dev, "unsupported lanes configuration\n");
+> 
+> If the hardware doesn't support lane remapping for CCP2, then that should
+> be reflected in DT bindings, i.e. data-lanes isn't relevant. There's no
+> need to check that here.
+
+Should the above check for CSI-2 be dropped as well then ?
+
+> > +			goto cleanup_exit;
+> > +		}
+> > +
+> > +		unicam->max_data_lanes = 1;
+> > +		unicam->active_data_lanes = 1;
+> > +		unicam->bus_flags = ep.bus.mipi_csi1.strobe;
+> > +		break;
+> > +
+> > +	default:
+> > +		/* Unsupported bus type */
+> > +		dev_err(unicam->dev, "unsupported bus type %u\n",
+> > +			ep.bus_type);
+> > +		goto cleanup_exit;
+> > +	}
+> > +
+> > +	dev_dbg(unicam->dev, "%s bus, %u data lanes, flags=0x%08x\n",
+> > +		unicam->bus_type == V4L2_MBUS_CSI2_DPHY ? "CSI-2" : "CCP2",
+> > +		unicam->active_data_lanes, unicam->bus_flags);
+> 
+> V4l2-fwnode already prints this information I believe.
+
+True. It does so with pr_debug() though, it would be nice to use
+dev_dbg(). That's a candidate for a separate fix of course.
+
+> > +
+> > +	/* Initialize and register the async notifier. */
+> > +	v4l2_async_nf_init(&unicam->notifier);
+> > +
+> > +	asd = v4l2_async_nf_add_fwnode_remote(&unicam->notifier, ep_handle,
+> > +					      struct v4l2_async_subdev);
+> > +
+> > +	fwnode_handle_put(ep_handle);
+> > +	ep_handle = NULL;
+> > +
+> > +	if (IS_ERR(asd)) {
+> > +		ret = PTR_ERR(asd);
+> > +		goto cleanup_exit;
+> > +	}
+> > +
+> > +	unicam->notifier.ops = &unicam_async_ops;
+> > +
+> > +	ret = v4l2_async_nf_register(&unicam->v4l2_dev, &unicam->notifier);
+> > +	if (ret) {
+> > +		dev_err(unicam->dev, "Error registering device notifier: %d\n", ret);
+> > +		goto cleanup_exit;
+> > +	}
+> > +
+> > +	return 0;
+> > +
+> > +cleanup_exit:
+> > +	v4l2_fwnode_endpoint_free(&ep);
+> > +	fwnode_handle_put(ep_handle);
+> > +
+> > +	return ret;
+> > +}
+
+[snip]
+
 -- 
-2.39.2
+Regards,
 
+Laurent Pinchart
