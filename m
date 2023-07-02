@@ -2,111 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B50A2744D40
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7219744D4B
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:34:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229709AbjGBKaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 06:30:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49580 "EHLO
+        id S229756AbjGBKeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 06:34:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229605AbjGBKaO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:30:14 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45133E7D
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 03:30:12 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-311367a3e12so4592177f8f.2
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 03:30:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688293811; x=1690885811;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=E/AKobFXk2c7axAYUWlFRY5XKu7EkRHpm3DTOLsRDMw=;
-        b=qYeuy69OwZ+bkpFiGmLnLvQV+HdgH8p5lPD1W6N+UirHmEQp/EQYsPcT5BdhVSXLC9
-         AxItyQc+1FnHfifuChU4xhxfm/rXJSzZNe1KRhFTmyfN4i5VqMqZo7m82Zvib45z34Bu
-         HJoNGec4gqBa5X3uvSyRZSyjR5GdzBYRmC4HJl27XkNvl9JATaW5R8srXSWZKJzBCnq1
-         nBNkY0RsiWdUEgXR4T7JlB1riEbuVeeqWAcrn4JMABRXjWUHVz/TYNfaaHf7LUKHD5Vk
-         DoQbA4SLBYpR04RSQxq9buZbfgKmRVdTaF2rkV4xq1XR3Ei78FSMxscPGsnWGayjAQHP
-         +Kcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688293811; x=1690885811;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=E/AKobFXk2c7axAYUWlFRY5XKu7EkRHpm3DTOLsRDMw=;
-        b=HbOa0u359U8UYbRT3VdU8SjFJTub0uf7qn++7PYz1hhNrYS+yjTfU92E1+CFj+en2q
-         thfrETNoWz/XoWgNYrShUjbbeYK2seuf5UvN2h1d/1KWx2VNHNbSKUpqCvVYzhPOif6c
-         UjgrLUC2RJvgXrfml3vXanrBGKT8XkpyOSKP1liUvvNnIYD0v2bvxWC2fESo9ElboDpS
-         ZZbryCidxBcOkL9AC3Mh3it5KkD9oujjibJy7EDB4IO8Ev3KuP3jW05yhmps+RO9SNQY
-         MUpZvgjP7XggDSwy+INvvZ22dFLDQZvAtelMLBBlAB/2p8DqpEC2uLPIAc+a9eOvt2TR
-         7ZPg==
-X-Gm-Message-State: ABy/qLZknIeRS5g1Ox8Ai4n5VOo7Uowizm+E+y6jY4a+rFH2JDctuyhM
-        BWOu0DCseXWfo9w7xmdaHlg2Cg==
-X-Google-Smtp-Source: APBJJlGd1Q363NUQ95fT39f6EGsQ1a//7/2PXR2vnTVuYr5WHw1UQOY0P0dU26vA//L8rrC45Cvh2A==
-X-Received: by 2002:a5d:4ac2:0:b0:313:e161:d013 with SMTP id y2-20020a5d4ac2000000b00313e161d013mr6654510wrs.15.1688293810652;
-        Sun, 02 Jul 2023 03:30:10 -0700 (PDT)
-Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id o7-20020aa7dd47000000b0051bf57aa0c6sm8969693edw.87.2023.07.02.03.30.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Jul 2023 03:30:10 -0700 (PDT)
-Message-ID: <3348348a-ee62-c9c4-d9b4-0df6745ff6a0@linaro.org>
-Date:   Sun, 2 Jul 2023 12:30:09 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v5 3/7] media: dt-bindings: mediatek,vcodec: Remove
- VDEC_SYS register space
-To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
-        <nfraprado@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
-        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+        with ESMTP id S229554AbjGBKeT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:34:19 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70A7135;
+        Sun,  2 Jul 2023 03:34:18 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Qv53V1fv4z6J6n8;
+        Sun,  2 Jul 2023 18:32:38 +0800 (CST)
+Received: from localhost (10.48.51.211) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sun, 2 Jul
+ 2023 11:34:13 +0100
+Date:   Sun, 2 Jul 2023 18:34:09 +0800
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Waqar Hameed <waqar.hameed@axis.com>
+CC:     Jonathan Cameron <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, <kernel@axis.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-References: <20230630151436.155586-1-nfraprado@collabora.com>
- <20230630151436.155586-4-nfraprado@collabora.com>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230630151436.155586-4-nfraprado@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        <kernel@lists.axis.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: proximity: Add bindings for
+ Murata IRS-D200
+Message-ID: <20230702183409.0000021f@Huawei.com>
+In-Reply-To: <pndwmzz1yqu.fsf@axis.com>
+References: <cover.1686926857.git.waqarh@axis.com>
+        <9487391b0565434761055b39ba04900bd839580a.1686926857.git.waqarh@axis.com>
+        <20230617135532.328dc3c8@jic23-huawei>
+        <pndwmzz1yqu.fsf@axis.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.48.51.211]
+X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2023 17:14, Nícolas F. R. A. Prado wrote:
-> The binding expects the first register space to be VDEC_SYS. However
-> this register space is already assigned to a different node on both
-> MT8173 and MT8183: a clock-controller node called 'vdecsys' which is
-> also a syscon.
+On Mon, 19 Jun 2023 12:41:06 +0200
+Waqar Hameed <waqar.hameed@axis.com> wrote:
+
+> On Sat, Jun 17, 2023 at 13:55 +0100 Jonathan Cameron <jic23@kernel.org> wrote:
 > 
-> In order to resolve the overlapping address ranges, remove the VDEC_SYS
-> register space from the video decoder, and add a new property to hold
-> the phandle to the syscon, so that iospace can still be handled.
+> > On Fri, 16 Jun 2023 17:10:42 +0200
+> > Waqar Hameed <waqar.hameed@axis.com> wrote:
+> >  
+> >> Murata IRS-D200 is a PIR sensor for human detection. It uses the I2C bus
+> >> for communication with interrupt support. Add devicetree bindings
+> >> requiring the compatible string, I2C slave address (reg) and interrupts.
+> >> 
+> >> Signed-off-by: Waqar Hameed <waqar.hameed@axis.com>  
+> >
+> > This device will have some power supplies, so I'd expect those to be both
+> > listed and marked as required (maybe some are optional?)  
 > 
-> Also add reg-names to be able to tell that this new register schema is
-> used, so the driver can keep backward compatibility.
+> Right, will add that here (and call `devm_regulator_get_enable()` in
+> driver's probe).
 > 
-> Signed-off-by: Nícolas F. R. A. Prado <nfraprado@collabora.com>
+> [...]
+> 
+> >> +required:
+> >> +  - compatible
+> >> +  - reg
+> >> +  - interrupts  
+> >
+> > If it is possible to remove interrupts from requires  - and hence have
+> > at least a partly functional driver doing basic reading of the sensor
+> > then that is usually a good idea.   Far too many board designers seem
+> > to decide that they don't need to wire up interrupt liness
+> > If it's really hard then don't worry too much.  
+> 
+> I see. It would be possible, but would also require some work. Let's
+> leave it for now then?
 
+Sure - as long as you review the patches when they come in :)
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-
-Best regards,
-Krzysztof
-
+Jonathan
