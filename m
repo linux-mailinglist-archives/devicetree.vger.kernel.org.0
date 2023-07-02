@@ -2,81 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2757C745226
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 22:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F3274522D
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 22:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232938AbjGBULN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 16:11:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55668 "EHLO
+        id S229664AbjGBUOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 16:14:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233064AbjGBULD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 16:11:03 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE37210FB
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 13:10:01 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51d9bf5411aso4149314a12.2
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 13:10:01 -0700 (PDT)
+        with ESMTP id S229657AbjGBUOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 16:14:41 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BD88B0
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 13:14:40 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-31438512cafso133757f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 13:14:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688328592; x=1690920592;
+        d=linaro.org; s=google; t=1688328879; x=1690920879;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=0XEbinDKQmA0sOkZ9j4oK2eVO7lkopAowopk2a9saj8=;
-        b=UIXqveSMX+oujydoxpDfsn6bSse4eMBBiZz50mTtAiQkPx1/x9DVAZa3SBO2xUYLf1
-         7OTpN9L+07q93d8jxInlx1vzfueoLXVyTLi5jnOPHuPVWF2kgSAp81DQzf7dtA2hApmM
-         yA+EJCYdHCoxwUFHPqUdgsVCdI1F8ihJcwvuIADu/yvkv9OWCX1U+fSBZFGz3aXUn2PQ
-         TnI4nPcHhgbMOlvzMJnRNHvb9OdIMhcSS107H+fNZo9PlVhK14Th+D/0dKaukGaOrKYk
-         hvnCNzv6ko5iFkZBXBixixhIK0NOX2UBYCGwRb/tO6T5NsZOaB9jbIX8Oj8wy0iEebb8
-         XxWA==
+        bh=/msN/aF74Dw7L5vp0UJekcbvD89qyKZgROZ3cEOh1Hs=;
+        b=Uhkby4bQCZI750ftvrp0r1LBbPbfegZuk7UpAh1rQjWk7GufTeCqQBkeyW09rlE+Mn
+         6CC032Jedh2SqZBAFpu8+ruy1rnfwhbgOrG86r/SFfL5Pf4B24ACtAUj14bbp20Epb5u
+         7ZeuyzneodyGhKnxKWISBvpXeHt7m+8s+CLPXo7Ksf9Pjn4FvLOCSD2AqWIzfAMDPHmr
+         rnq0aGqYg3KgTIpreyr+n8LZrEOKZE8BJAR0XL2xmCOmx2s0GU/PHo+VPqVYxX5yqdqa
+         pcXqBei6CJ7tjaPBKWB1vfqafqmjY2/f4vr8CfSrpv9nhvc98bE0Kfj3IaTabM0apTEz
+         JHdw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688328592; x=1690920592;
+        d=1e100.net; s=20221208; t=1688328879; x=1690920879;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=0XEbinDKQmA0sOkZ9j4oK2eVO7lkopAowopk2a9saj8=;
-        b=E2n5b4CzECkS1riVqE1dsmLCr5MkjcNZMpyT/TiIeoNtEcaIyKXjF7d4WCSk7MrgNe
-         YCPx/y0+HKgDtrUrLORvsKoXZbdOyzq7CdJT8BYhGzNMPvjJNukAS3hA5DmuNj+RgO8N
-         EE2Xrzu23rg7OGgTetwTTH2QRHITQCyWLO+Y0L1aJuIAZE7D0oyTOtKxHOEeiEXga2TR
-         7Z+ZvjQSmdQcT6EyX1LsMXT1EcHcLBedJE5ZgTTJ9L6tijBRLTnUOxm5zAOwAD5jv4lA
-         K3q3YXJjcMAfmwn4JZhuBL65PIJO6U3f5xQn8gDLiIiiyiZ2oTgoM2111sKZa82I6LfE
-         m4/g==
-X-Gm-Message-State: ABy/qLZSrF4s6iTgtriyBpGa2P6k49u1a01wQBeliFGROrcpPvaizLRa
-        t3it+cT7To48MVm+kfg66wcEPw==
-X-Google-Smtp-Source: APBJJlG0HOHJON9xOHZ/yU82pUxWEV1BWHwlPLfoIk/EW35/54QSwfzuQdlgV1vXC9abgHES3eep6A==
-X-Received: by 2002:aa7:d8d9:0:b0:51d:e498:201 with SMTP id k25-20020aa7d8d9000000b0051de4980201mr5548697eds.27.1688328592128;
-        Sun, 02 Jul 2023 13:09:52 -0700 (PDT)
+        bh=/msN/aF74Dw7L5vp0UJekcbvD89qyKZgROZ3cEOh1Hs=;
+        b=Ekcdi7VYZ/9NO1gE/KGqwAIa5jJ1uF56hx/dLUlFLLzHtFJxTBvLdp3P4UcK8915Y/
+         jVEfqoqZtqwzb0DN9EhK5MPlukp/mRYyjq0ZkoqyhNpwvTcxEVh5YVwZjMY1qSVJzF3v
+         xjf/uUoKGmQZhwJ+btGnUeLjfv9E9gaHelxtSQkSj9DdA+PmpNHyPr3KOJYJx3hJxlSP
+         rRwvfTPhCtbxCyEaGB8US/+QxzrZAgNHPPfZP1zk3+NWtLhWrhmy7NOGM8cokuV+6exq
+         Tbj/9MLHJkFt1Hr5BOP2SJZF1JAKno3fMoxWDZoqWSLgeIWC83OXIRoXaXY7E/9S6x2K
+         IyCQ==
+X-Gm-Message-State: ABy/qLbD7c7oRascrfxRdfv8xv7XCfY/E+mAFWIJPVH8EAuw51BnqKEl
+        vmE17QoXWDurH1nNHRXb39y37w==
+X-Google-Smtp-Source: APBJJlEaMjzxW+IotAZmesVA1vpJP5bdewGQX0Ffdx0+UU5lShCdfPz6r+z4c0n+yANGdCIWVevPAA==
+X-Received: by 2002:a5d:6844:0:b0:314:1d26:4e66 with SMTP id o4-20020a5d6844000000b003141d264e66mr6377336wrw.63.1688328878745;
+        Sun, 02 Jul 2023 13:14:38 -0700 (PDT)
 Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id u21-20020a056402065500b0051de3c6c5e5sm4033677edx.94.2023.07.02.13.09.51
+        by smtp.gmail.com with ESMTPSA id k24-20020aa7c398000000b0051def9be785sm3405866edq.85.2023.07.02.13.14.37
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Jul 2023 13:09:51 -0700 (PDT)
-Message-ID: <64543b2f-854f-4342-ee6d-d32f616eb55e@linaro.org>
-Date:   Sun, 2 Jul 2023 22:09:50 +0200
+        Sun, 02 Jul 2023 13:14:38 -0700 (PDT)
+Message-ID: <11ec64ad-8fb8-e94d-2019-d3deb399084b@linaro.org>
+Date:   Sun, 2 Jul 2023 22:14:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v3 21/28] ARM: dts: qcom: apq8064: add L2 cache scaling
+Subject: Re: [PATCH] ARM: dts: st: add buswidth property to stm32f429-disco
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+To:     Raphael Gallais-Pou <rgallaispou@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
- <20230702174246.121656-22-dmitry.baryshkov@linaro.org>
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@foss.st.com>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20230702103516.139440-1-rgallaispou@gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230702174246.121656-22-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230702103516.139440-1-rgallaispou@gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -89,44 +80,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02/07/2023 19:42, Dmitry Baryshkov wrote:
-> Populate L2 cache node with clock, supplies and OPP information to
-> facilitate scaling L2 frequency.
+On 02/07/2023 12:35, Raphael Gallais-Pou wrote:
+> The ili9341 is left without a mandatory buswidth to properly communicate
+> between the SI bus and the display. Add the device-tree property.
 > 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
+> ---
+>  arch/arm/boot/dts/stm32f429-disco.dts | 1 +
 
+There is no such file. Please rebase on recent Linux.
 
-...
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32f429-disco.dts b/arch/arm/boot/dts/stm32f429-disco.dts
+> index 3b81228d46a2..5eaf95afc8c7 100644
+> --- a/arch/arm/boot/dts/stm32f429-disco.dts
+> +++ b/arch/arm/boot/dts/stm32f429-disco.dts
+> @@ -197,6 +197,7 @@ display: display@1{
+>  		spi-3wire;
+>  		spi-max-frequency = <10000000>;
+>  		dc-gpios = <&gpiod 13 0>;
+> +		buswidth = <8>;
 
->  	qcom,mode = <GSBI_PROT_I2C_UART>;
->  	status = "okay";
-> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-> index c212215800d0..860f8981e8db 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
-> @@ -2,6 +2,7 @@
->  /dts-v1/;
->  
->  #include <dt-bindings/clock/qcom,gcc-msm8960.h>
-> +#include <dt-bindings/clock/qcom,krait-cc.h>
->  #include <dt-bindings/clock/qcom,lcc-msm8960.h>
->  #include <dt-bindings/reset/qcom,gcc-msm8960.h>
->  #include <dt-bindings/clock/qcom,mmcc-msm8960.h>
-> @@ -81,9 +82,106 @@ CPU3: cpu@3 {
->  		};
->  
->  		L2: l2-cache {
-> -			compatible = "cache";
-> +			compatible = "qcom,krait-l2-cache", "cache";
->  			cache-level = <2>;
->  			cache-unified;
-> +			clocks = <&kraitcc KRAIT_L2>;
-> +			#interconnect-cells = <1>;
-> +			operating-points-v2 = <&l2_opp_table>;
-> +
-> +			l2_opp_table: opp-table-l2 {
-
-opp-table
+There is no such spi property.
 
 Best regards,
 Krzysztof
