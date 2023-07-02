@@ -2,201 +2,444 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ABFAF744D6A
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 13:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DC5B744D93
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 14:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229657AbjGBLHS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 07:07:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54980 "EHLO
+        id S229657AbjGBMU7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 08:20:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229569AbjGBLHR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 07:07:17 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 23730DC;
-        Sun,  2 Jul 2023 04:07:15 -0700 (PDT)
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Qv5nT5Y0rz6J6ns;
-        Sun,  2 Jul 2023 19:05:33 +0800 (CST)
-Received: from localhost (10.48.51.211) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sun, 2 Jul
- 2023 12:07:08 +0100
-Date:   Sun, 2 Jul 2023 19:07:04 +0800
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Olivier Moysan <olivier.moysan@foss.st.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>
-Subject: Re: [RFC PATCH 0/7] iio: add iio backend device type
-Message-ID: <20230702190704.000071ba@Huawei.com>
-In-Reply-To: <20230702185618.00002453@Huawei.com>
-References: <20230623140944.2613002-1-olivier.moysan@foss.st.com>
-        <20230702185618.00002453@Huawei.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S229554AbjGBMU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 08:20:58 -0400
+Received: from smtp-fw-6002.amazon.com (smtp-fw-6002.amazon.com [52.95.49.90])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4352D101;
+        Sun,  2 Jul 2023 05:20:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1688300456; x=1719836456;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=rq8735iOG5vYAi4oR+PYcweJfAUXtrauEJjLHOf55GU=;
+  b=jVEr+/Uizzb2mLYHUH+81t8iiXKE0BfN8vKKIB8aoWD3h10lQ980fKj0
+   pRMtYDV9UnOE3JcXUU7AVY3V8rAvVBhmL9a5eXcteYAB6cJRe4KwF4I91
+   fOj0r30xee5yBak5DjmHJQvb6wsVGacZOIyABHh0pEUdo8Rv4RYjNtVnn
+   c=;
+X-IronPort-AV: E=Sophos;i="6.01,176,1684800000"; 
+   d="scan'208";a="342222044"
+Received: from iad12-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-iad-1box-1dm6-7f722725.us-east-1.amazon.com) ([10.43.8.6])
+  by smtp-border-fw-6002.iad6.amazon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Jul 2023 12:20:54 +0000
+Received: from EX19D017EUA003.ant.amazon.com (iad12-ws-svc-p26-lb9-vlan2.iad.amazon.com [10.40.163.34])
+        by email-inbound-relay-iad-1box-1dm6-7f722725.us-east-1.amazon.com (Postfix) with ESMTPS id E64F9882BA;
+        Sun,  2 Jul 2023 12:20:51 +0000 (UTC)
+Received: from EX19D044EUA002.ant.amazon.com (10.252.50.212) by
+ EX19D017EUA003.ant.amazon.com (10.252.50.129) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Sun, 2 Jul 2023 12:20:50 +0000
+Received: from [192.168.156.52] (10.85.143.178) by
+ EX19D044EUA002.ant.amazon.com (10.252.50.212) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Sun, 2 Jul 2023 12:20:44 +0000
+Message-ID: <98aeb2ce-7a3e-116b-f16d-6c6f98aa9ac3@amazon.com>
+Date:   Sun, 2 Jul 2023 15:20:39 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.48.51.211]
-X-ClientProxiedBy: lhrpeml500004.china.huawei.com (7.191.163.9) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/5] pps: add pulse-width calculation in nsec
+Content-Language: en-US
+To:     Rodolfo Giometti <giometti@enneenne.com>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+CC:     <ronenk@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
+        <jonnyc@amazon.com>, <itamark@amazon.com>, <shellykz@amazon.com>,
+        <amitlavi@amazon.com>, <almogbs@amazon.com>, <farbere@amazon.com>
+References: <20230625142134.33690-1-farbere@amazon.com>
+ <20230625142134.33690-2-farbere@amazon.com>
+ <6b6dd2ae-a30d-4f25-f696-c01f2e5a4a1e@enneenne.com>
+From:   "Farber, Eliav" <farbere@amazon.com>
+In-Reply-To: <6b6dd2ae-a30d-4f25-f696-c01f2e5a4a1e@enneenne.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.85.143.178]
+X-ClientProxiedBy: EX19D032UWB004.ant.amazon.com (10.13.139.136) To
+ EX19D044EUA002.ant.amazon.com (10.252.50.212)
+X-Spam-Status: No, score=-5.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2 Jul 2023 18:56:18 +0800
-Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
+On 6/27/2023 5:27 PM, Rodolfo Giometti wrote:
+> On 25/06/23 16:21, Eliav Farber wrote:
+>> This change adds PPS pulse-width calculation in nano seconds.
+>> Width time can be calculated for both assert time and reset time.
+>>
+>> Calculation can be done only if capture ASSERT and capture CLEAR modes
+>> are both enabled.
+>>
+>> Assert width is calculated as:
+>>    clear-time - assert-time
+>> and clear width is calculated as:
+>>    assert-time - clear-time
+>>
+>> Read-only sysfs were added to get the last pulse-width time and event
+>> sequence.
+>> Examples:
+>>   * cat /sys/class/pps/pps0/pulse_width_assert
+>>     20001450#85
+>>   * cat /sys/class/pps/pps1/pulse_width_clear
+>>     979893314#16
+>>
+>> Signed-off-by: Eliav Farber <farbere@amazon.com>
+>> ---
+>>   drivers/pps/kapi.c         | 49 ++++++++++++++++++++++++++++++++++++++
+>>   drivers/pps/pps.c          |  9 +++++++
+>>   drivers/pps/sysfs.c        | 30 +++++++++++++++++++++++
+>>   include/linux/pps_kernel.h |  3 +++
+>>   include/uapi/linux/pps.h   | 19 +++++++++++++++
+>>   5 files changed, 110 insertions(+)
+>>
+>> diff --git a/drivers/pps/kapi.c b/drivers/pps/kapi.c
+>> index d9d566f70ed1..deeecfc0a3ee 100644
+>> --- a/drivers/pps/kapi.c
+>> +++ b/drivers/pps/kapi.c
+>> @@ -82,6 +82,14 @@ struct pps_device *pps_register_source(struct 
+>> pps_source_info *info,
+>>               goto pps_register_source_exit;
+>>       }
+>>
+>> +     if ((info->mode & PPS_WIDTHBOTH) &&
+>> +         ((info->mode & PPS_CAPTUREBOTH) != PPS_CAPTUREBOTH)) {
+>> +             pr_err("%s: width can't be calculated without both 
+>> captures (mode = 0x%x)\n",
+>> +                    info->name, info->mode);
+>> +             err = -EINVAL;
+>> +             goto pps_register_source_exit;
+>> +     }
+>
+> See the comment below where you define PPS_WIDTHBOTH.
+>
+>>       /* Allocate memory for the new PPS source struct */
+>>       pps = kzalloc(sizeof(struct pps_device), GFP_KERNEL);
+>>       if (pps == NULL) {
+>> @@ -143,6 +151,39 @@ void pps_unregister_source(struct pps_device *pps)
+>>   }
+>>   EXPORT_SYMBOL(pps_unregister_source);
+>>
+>> +static u64 pps_ktime_sub(struct pps_ktime *ts1, struct pps_ktime *ts2)
+>> +{
+>> +     if (ts1->sec == ts2->sec)
+>> +             return (ts1->nsec > ts2->nsec) ? (ts1->nsec - 
+>> ts2->nsec) : (ts2->nsec - ts1->nsec);
+>> +
+>> +     if (ts1->sec > ts2->sec)
+>> +             return (ts1->sec - ts2->sec) * NSEC_PER_SEC + ts1->nsec 
+>> - ts2->nsec;
+>> +
+>> +     return (ts2->sec - ts1->sec) * NSEC_PER_SEC + ts2->nsec - 
+>> ts1->nsec;
+>> +}
+>> +
+>> +static void pps_calc_clear_width(struct pps_device *pps)
+>> +{
+>> +     if (pps->clear_sequence == 0)
+>> +             return;
+>> +
+>> +     pps->clear_width.sequence++;
+>
+> I don't understand the meaning of this field... regarding assert and 
+> clear it
+> states the n-th sample but in this case...? Why do you need it?
 
-> On Fri, 23 Jun 2023 16:09:36 +0200
-> Olivier Moysan <olivier.moysan@foss.st.com> wrote:
-> 
-> > This RFC re-opens an old discussion regarding channel scaling
-> > management in STM32 DFSDM driver [1]
-> > 
-> > The DFSDM is a peripheral provided by the STM32MP1x SoC family.
-> > One objective is also to prepare the introduction of its successor in
-> > the STM32MP12x SoC family: the MDF (Multi-function Digital Filter).
-> > The MDF driver will have the same requirements as the DFSDM regarding
-> > channel scaling management. So, the solution proposed here will apply
-> > also for the future MDF driver.
-> > 
-> > [1]
-> > https://patchwork.kernel.org/project/linux-iio/patch/20200204101008.11411-5-olivier.moysan@st.com/
-> > 
-> > As a short reminder of our previous discussion, the two main options
-> > emerging were the following ones:
-> > 
-> > - Option1: Use the DFSDM as an hardware accelerator and expose the
-> > scaled channels on SD modulator side.
-> > Drawbak: this solution is leading to an very complex datapath, especially
-> > for scan mode.
-> > 
-> > - Option2: Introduce a new IIO device type (so-called backend)
-> > Retrieve scaling information from SD modulator scaling to expose a single
-> > IIO device on DFSDM side. This solution is derivated from rcar-gyroadc
-> > example, but with a more standard approach.
-> > This was discussed in 
-> > https://lore.kernel.org/lkml/20210919191414.09270f4e@jic23-huawei/  
-> 
-> Naming probably needs a rethink given the actual hardware we are talking about
-> here is normally called a frontend and so people will be confused...
+For assert and clear, the sequence parameter is basically the counter
+of assert/clear events.
+Similarly, I wanted to have a counter for the number of pulses which
+there width was counted.
+The sequence was used by me in the sysfs to show the pulse counter and
+pulse width in nano-seconds.
+Will counter make more sense instead of sequence?
+Initially, I used the assert_sequence and clear_sequence as the pulse
+counter, but there were few cases to handle.
+In case first interrupt happened during a pulse, then
+assert_sequence != clear_sequence, but if not then
+assert_sequence == clear_sequence.
+So I preferred to add an new independent value.
 
-Hmm. I think the basic approach looks fine but needs fleshing out and
-perhaps one or two more examples implemented to be sure that we have
-something flexible enough to stand the test of time...
+>> +     pps->clear_width.nsec = pps_ktime_sub(&pps->assert_tu, 
+>> &pps->clear_tu);
+>> +     dev_dbg(pps->dev, "PPS clear width = %llu#%u\n",
+>> +             pps->clear_width.nsec, pps->clear_width.sequence);
+>> +}
+>> +
+>> +static void pps_calc_assert_width(struct pps_device *pps)
+>> +{
+>> +     if (pps->assert_sequence == 0)
+>> +             return;
+>> +
+>> +     pps->assert_width.sequence++;
+>
+> Ditto.
+>
+>> +     pps->assert_width.nsec = pps_ktime_sub(&pps->clear_tu, 
+>> &pps->assert_tu);
+>> +     dev_dbg(pps->dev, "PPS assert width = %llu#%u\n",
+>> +             pps->assert_width.nsec, pps->assert_width.sequence);
+>> +}
+>> +
+>>   /* pps_event - register a PPS event into the system
+>>    * @pps: the PPS device
+>>    * @ts: the event timestamp
+>> @@ -191,6 +232,10 @@ void pps_event(struct pps_device *pps, struct 
+>> pps_event_time *ts, int event,
+>>               dev_dbg(pps->dev, "capture assert seq #%u\n",
+>>                       pps->assert_sequence);
+>>
+>> +             /* Calculate clear pulse-width */
+>> +             if (pps->params.mode & PPS_WIDTHCLEAR)
+>> +                     pps_calc_clear_width(pps);
+>> +
+>>               captured = ~0;
+>>       }
+>>       if (event & pps->params.mode & PPS_CAPTURECLEAR) {
+>> @@ -205,6 +250,10 @@ void pps_event(struct pps_device *pps, struct 
+>> pps_event_time *ts, int event,
+>>               dev_dbg(pps->dev, "capture clear seq #%u\n",
+>>                       pps->clear_sequence);
+>>
+>> +             /* Calculate assert pulse-width */
+>> +             if (pps->params.mode & PPS_WIDTHASSERT)
+>> +                     pps_calc_assert_width(pps);
+>> +
+>>               captured = ~0;
+>>       }
+>>
+>> diff --git a/drivers/pps/pps.c b/drivers/pps/pps.c
+>> index 5d19baae6a38..8299a272af11 100644
+>> --- a/drivers/pps/pps.c
+>> +++ b/drivers/pps/pps.c
+>> @@ -195,6 +195,11 @@ static long pps_cdev_ioctl(struct file *file,
+>>               fdata.info.clear_tu = pps->clear_tu;
+>>               fdata.info.current_mode = pps->current_mode;
+>>
+>> +             memcpy(&fdata.info.assert_width, &pps->assert_width,
+>> +                    sizeof(struct pps_kwidth));
+>> +             memcpy(&fdata.info.clear_width, &pps->clear_width,
+>> +                    sizeof(struct pps_kwidth));
+>> +
+>>               spin_unlock_irq(&pps->lock);
+>>
+>>               err = copy_to_user(uarg, &fdata, sizeof(struct 
+>> pps_fdata));
+>> @@ -283,6 +288,10 @@ static long pps_cdev_compat_ioctl(struct file 
+>> *file,
+>>                               sizeof(struct pps_ktime_compat));
+>>               memcpy(&compat.info.clear_tu, &pps->clear_tu,
+>>                               sizeof(struct pps_ktime_compat));
+>> +             memcpy(&compat.info.assert_width, &pps->assert_width,
+>> +                    sizeof(struct pps_kwidth_compat));
+>> +             memcpy(&compat.info.clear_width, &pps->clear_width,
+>> +                    sizeof(struct pps_kwidth_compat));
+>>
+>>               spin_unlock_irq(&pps->lock);
+>>
+>> diff --git a/drivers/pps/sysfs.c b/drivers/pps/sysfs.c
+>> index 134bc33f6ad0..3e34de77dba6 100644
+>> --- a/drivers/pps/sysfs.c
+>> +++ b/drivers/pps/sysfs.c
+>> @@ -79,6 +79,34 @@ static ssize_t path_show(struct device *dev, 
+>> struct device_attribute *attr,
+>>   }
+>>   static DEVICE_ATTR_RO(path);
+>>
+>> +static ssize_t pulse_width_assert_show(struct device *dev,
+>> +                                    struct device_attribute *attr,
+>> +                                    char *buf)
+>> +{
+>> +     struct pps_device *pps = dev_get_drvdata(dev);
+>> +
+>> +     if (!(pps->info.mode & PPS_WIDTHASSERT))
+>> +             return 0;
+>> +
+>> +     return sprintf(buf, "%llu#%u\n",
+>> +                    pps->assert_width.nsec, 
+>> pps->assert_width.sequence);
+>> +}
+>> +static DEVICE_ATTR_RO(pulse_width_assert);
+>> +
+>> +static ssize_t pulse_width_clear_show(struct device *dev,
+>> +                                   struct device_attribute *attr,
+>> +                                   char *buf)
+>> +{
+>> +     struct pps_device *pps = dev_get_drvdata(dev);
+>> +
+>> +     if (!(pps->info.mode & PPS_WIDTHCLEAR))
+>> +             return 0;
+>> +
+>> +     return sprintf(buf, "%llu#%u\n",
+>> +                    pps->clear_width.nsec, pps->clear_width.sequence);
+>> +}
+>> +static DEVICE_ATTR_RO(pulse_width_clear);
+>> +
+>>   static struct attribute *pps_attrs[] = {
+>>       &dev_attr_assert.attr,
+>>       &dev_attr_clear.attr,
+>> @@ -86,6 +114,8 @@ static struct attribute *pps_attrs[] = {
+>>       &dev_attr_echo.attr,
+>>       &dev_attr_name.attr,
+>>       &dev_attr_path.attr,
+>> +     &dev_attr_pulse_width_assert.attr,
+>> +     &dev_attr_pulse_width_clear.attr,
+>>       NULL,
+>>   };
+>>
+>> diff --git a/include/linux/pps_kernel.h b/include/linux/pps_kernel.h
+>> index 78c8ac4951b5..15f2338095c6 100644
+>> --- a/include/linux/pps_kernel.h
+>> +++ b/include/linux/pps_kernel.h
+>> @@ -51,6 +51,9 @@ struct pps_device {
+>>       struct pps_ktime clear_tu;
+>>       int current_mode;                       /* PPS mode at event 
+>> time */
+>>
+>> +     struct pps_kwidth assert_width;         /* PPS assert 
+>> pulse-width time and event seq # */
+>> +     struct pps_kwidth clear_width;          /* PPS clear 
+>> pulse-width time and event seq # */
+>> +
+>>       unsigned int last_ev;                   /* last PPS event id */
+>>       wait_queue_head_t queue;                /* PPS event queue */
+>>
+>> diff --git a/include/uapi/linux/pps.h b/include/uapi/linux/pps.h
+>> index 009ebcd8ced5..dd93dac0afc1 100644
+>> --- a/include/uapi/linux/pps.h
+>> +++ b/include/uapi/linux/pps.h
+>> @@ -64,12 +64,24 @@ struct pps_ktime_compat {
+>>   } __attribute__((packed, aligned(4)));
+>>   #define PPS_TIME_INVALID    (1<<0)  /* used to specify 
+>> timeout==NULL */
+>>
+>> +struct pps_kwidth {
+>> +     __u64 nsec;
+>> +     __u32 sequence;
+>> +};
+>> +
+>> +struct pps_kwidth_compat {
+>> +     __u64 nsec;
+>> +     __u32 sequence;
+>> +} __attribute__((packed, aligned(4)));
+>
+> Why do you need a new type? Since both assert_width and clear_width 
+> are time
+> quantities as far as assert_tu and clear_tu, they can be of the same 
+> type, can't
+> they? Or, at least they can simply be __u64 since having an 
+> assert_width or
+> clear_width longer than 1 second is a non-sense...
 
-Jonathan
+For each pulse I wanted to save width in nsec (without sec) and
+counter.
+I need it twice for both assert and clear, hence I added a new
+structure for it.
 
-> 
-> I'm traveling at the moment, so only going to take a fairly superficial first
-> look at what you have here.
-> 
-> Jonathan
-> 
-> > 
-> > The patchset proposed in this RFC implements option2 (backend) solution.
-> > These patches provide a minimal API implemented as a template.
-> > The intented use of this API is illustrated through the DFSDM channel
-> > scaling support basic implementation.
-> > 
-> > For sake of simplicity I did not include the related DT binding
-> > in this serie. 
-> > 
-> > Below are some use case examples.
-> > 
-> > * DFSDM with SD modulator backend:
-> >   -------------------------------
-> > This use case corresponds to the example implemented in this RFC.
-> > The channel attributes are retrieved from backend by the dfsdm, and
-> > the resulting scaling is exposed through DFSDM IIO device sysfs
-> > 
-> > - Single channel:
-> > +-------------+  ch attr   +--------+  sysfs (compound scaling)
-> > | sd0 backend | ---------> | dfsdm0 | -------------------------->
-> > +-------------+            +--------+
-> > 
-> > - Scan mode:
-> > +-------------+  ch attr   +-------------+  sysfs (compound scaling)
-> > | sd1 backend | ---------> |   dfsdm1    | -------------------------->
-> > +-------------+            +-------------+
-> >                              ^
-> >                              |
-> > +-------------+  ch attr     |
-> > | sd2 backend |--------------+
-> > +-------------+
-> > 
-> > 
-> > * Voltage divider in front of an adc:
-> >   ----------------------------------
-> > By way of example, here is a comparison on scaling management with
-> > a iio-rescale device, and how it could be managed with a backend device.
-> > 
-> > - iio-rescale implementation
-> > Scaling is exposed both on ADC and iio-rescale IIO devices.
-> > On iio-rescale device we get the compound scaling
-> > 
-> > +---------------------------+  ch attr   +------+  sysfs
-> > |     iio-rescale (div)     | <--------- | adc0 | ------->
-> > +---------------------------+            +------+
-> >   |
-> >   | sysfs (compound scaling)
-> >   v
-> > 
-> > - Backend implementation:
-> > Compound scaling is exposed on ADC IIO device.
-> > No scaling exposed on backend device
-> > 
-> > +---------------+  ch attr   +------+  sysfs (compound scaling)
-> > | backend (div) | ---------> | adc0 | -------------------------->
-> > +---------------+            +------+
-> > 
-> > 
-> > * Cascaded backends:
-> >   -----------------
-> > Backends may be cascaded to allow computation of the whole chain scaling
-> > This is not part of this RFC, but it is identified as a potential
-> > future use case.
-> > 
-> > +---------------+  attr   +-------------+  attr   +--------+  sysfs
-> > | backend (div) | ------> | sd0 backend | ------> | dfsdm0 | ------->
-> > +---------------+         +-------------+         +--------+
-> > 
-> > Olivier Moysan (7):
-> >   iio: introduce iio backend device
-> >   of: property: add device link support for io-backends
-> >   iio: adc: stm32-dfsdm: manage dfsdm as a channel provider
-> >   iio: adc: stm32-dfsdm: adopt generic channel bindings
-> >   iio: adc: sd_adc_modulator: change to iio backend device
-> >   iio: adc: stm32-dfsdm: add scaling support to dfsdm
-> >   ARM: dts: stm32: add dfsdm iio suppport
-> > 
-> >  arch/arm/boot/dts/stm32mp157c-ev1.dts |  62 +++++++++
-> >  drivers/iio/Makefile                  |   2 +
-> >  drivers/iio/adc/sd_adc_modulator.c    |  92 +++++++++++---
-> >  drivers/iio/adc/stm32-dfsdm-adc.c     | 176 ++++++++++++++++----------
-> >  drivers/iio/industrialio-backend.c    |  59 +++++++++
-> >  drivers/of/property.c                 |   2 +
-> >  include/linux/iio/backend.h           |  29 +++++
-> >  7 files changed, 336 insertions(+), 86 deletions(-)
-> >  create mode 100644 drivers/iio/industrialio-backend.c
-> >  create mode 100644 include/linux/iio/backend.h
-> >   
-> 
-> 
+>>   struct pps_kinfo {
+>>       __u32 assert_sequence;          /* seq. num. of assert event */
+>>       __u32 clear_sequence;           /* seq. num. of clear event */
+>>       struct pps_ktime assert_tu;     /* time of assert event */
+>>       struct pps_ktime clear_tu;      /* time of clear event */
+>>       int current_mode;               /* current mode bits */
+>> +     struct pps_kwidth assert_width; /* assert pulse-width time and 
+>> seq. num. */
+>> +     struct pps_kwidth clear_width;  /* clear pulse-width time and 
+>> seq. num. */
+>>   };
+>
+> Altering this structure may break userspace code... also rfc2783 at 
+> section-3.2
+> states that:
+>
+>    The API defines these new data structures:
+>
+>       typedef struct {
+>           pps_seq_t   assert_sequence;        /* assert event seq # */
+>           pps_seq_t   clear_sequence;         /* clear event seq # */
+>           pps_timeu_t assert_tu;
+>           pps_timeu_t clear_tu;
+>           int         current_mode;           /* current mode bits */
+>       } pps_info_t;
+>
+> So, I'm not willing to change this structure just to add this new data 
+> that I
+> don't even know where it's used...
+>
+> If you just read these information via sysfs, please drop these part.
+
+ACK. I'll drop this part.
+
+>>   struct pps_kinfo_compat {
+>> @@ -78,6 +90,8 @@ struct pps_kinfo_compat {
+>>       struct pps_ktime_compat assert_tu;      /* time of assert event */
+>>       struct pps_ktime_compat clear_tu;       /* time of clear event */
+>>       int current_mode;                       /* current mode bits */
+>> +     struct pps_kwidth_compat assert_width;  /* assert pulse-width 
+>> time and seq. num. */
+>> +     struct pps_kwidth_compat clear_width;   /* clear pulse-width 
+>> time and seq. num. */
+>>   };
+>>
+>>   struct pps_kparams {
+>> @@ -96,6 +110,11 @@ struct pps_kparams {
+>>   #define PPS_CAPTURECLEAR    0x02    /* capture clear events */
+>>   #define PPS_CAPTUREBOTH             0x03    /* capture assert and 
+>> clear events */
+>>
+>> +/* Pulse-width calculation */
+>> +#define PPS_WIDTHASSERT              0x04    /* calculate assert 
+>> width */
+>> +#define PPS_WIDTHCLEAR               0x08    /* calculate clear 
+>> width */
+>> +#define PPS_WIDTHBOTH                0x0c    /* calculate assert and 
+>> clear width */
+>> +
+>
+> I don't understand why a process should ask for just PPS_WIDTHASSERT or
+> PPS_WIDTHCLEAR... I think you can avoid defining these values and just 
+> enabling
+> pulse width calculation when both assert and clear events are available. 
+
+ACK. I'll drop the new defines and enable width calculation when
+PPS_CAPTUREASSERT and PPS_CAPTURECLEAR are both defined.
+
+>>   #define PPS_OFFSETASSERT    0x10    /* apply compensation for 
+>> assert event */
+>>   #define PPS_OFFSETCLEAR             0x20    /* apply compensation 
+>> for clear event */
+>
+> However, the real point is: since an userpsace program can retrieve 
+> the time of
+> assert and clear events, why it cannot compute the pulses width by 
+> itself? :)
+
+The userpsace program can retrieve the time of assert and clear events,
+but it is not always clear how to compute it.
+Initially that was how I did it:
+Read both times, make sure sequence of both times was identical, and
+then compute: clear_time – assert_time.
+But as I mentioned, when using wide pulses, it might be that when
+driver starts, it is a the middle of a pulse.
+In that case clear_time will be captured first (seq #1).
+Then assert_time is captured (seq #1).
+However, assert pulse width can only be calculated for the second
+clear-time sequence and first assert-time sequence.
+So to simplify this for the user, I added the calculation to the
+driver.
+Hope this was clear.
+Please let me know if this satisfies you, and then I’ll share a second
+version of patches which fixes all the other comments you gave.
+
+---
+Regards, Eliav
 
