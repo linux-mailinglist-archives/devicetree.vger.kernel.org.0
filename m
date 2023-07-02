@@ -2,251 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E15A744D39
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:28:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B50A2744D40
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:30:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229817AbjGBK24 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 2 Jul 2023 06:28:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48842 "EHLO
+        id S229709AbjGBKaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 06:30:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49580 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjGBK24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:28:56 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50DD91B0;
-        Sun,  2 Jul 2023 03:28:53 -0700 (PDT)
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Qv4vP3zydz67GCQ;
-        Sun,  2 Jul 2023 18:25:37 +0800 (CST)
-Received: from localhost (10.48.51.211) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sun, 2 Jul
- 2023 11:28:48 +0100
-Date:   Sun, 2 Jul 2023 18:28:43 +0800
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     <Marius.Cristea@microchip.com>
-CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
-        <lars@metafoo.de>, <linux-iio@vger.kernel.org>,
-        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 2/2] iio: adc: adding support for MCP3564 ADC
-Message-ID: <20230702182843.000049b0@Huawei.com>
-In-Reply-To: <6ab2ec4a9389bbcf9acfbf16291eef088908f1b8.camel@microchip.com>
-References: <20230519160145.44208-1-marius.cristea@microchip.com>
-        <20230519160145.44208-3-marius.cristea@microchip.com>
-        <20230520161509.4c704656@jic23-huawei>
-        <6ab2ec4a9389bbcf9acfbf16291eef088908f1b8.camel@microchip.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
+        with ESMTP id S229605AbjGBKaO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:30:14 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 45133E7D
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 03:30:12 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-311367a3e12so4592177f8f.2
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 03:30:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688293811; x=1690885811;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=E/AKobFXk2c7axAYUWlFRY5XKu7EkRHpm3DTOLsRDMw=;
+        b=qYeuy69OwZ+bkpFiGmLnLvQV+HdgH8p5lPD1W6N+UirHmEQp/EQYsPcT5BdhVSXLC9
+         AxItyQc+1FnHfifuChU4xhxfm/rXJSzZNe1KRhFTmyfN4i5VqMqZo7m82Zvib45z34Bu
+         HJoNGec4gqBa5X3uvSyRZSyjR5GdzBYRmC4HJl27XkNvl9JATaW5R8srXSWZKJzBCnq1
+         nBNkY0RsiWdUEgXR4T7JlB1riEbuVeeqWAcrn4JMABRXjWUHVz/TYNfaaHf7LUKHD5Vk
+         DoQbA4SLBYpR04RSQxq9buZbfgKmRVdTaF2rkV4xq1XR3Ei78FSMxscPGsnWGayjAQHP
+         +Kcw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688293811; x=1690885811;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=E/AKobFXk2c7axAYUWlFRY5XKu7EkRHpm3DTOLsRDMw=;
+        b=HbOa0u359U8UYbRT3VdU8SjFJTub0uf7qn++7PYz1hhNrYS+yjTfU92E1+CFj+en2q
+         thfrETNoWz/XoWgNYrShUjbbeYK2seuf5UvN2h1d/1KWx2VNHNbSKUpqCvVYzhPOif6c
+         UjgrLUC2RJvgXrfml3vXanrBGKT8XkpyOSKP1liUvvNnIYD0v2bvxWC2fESo9ElboDpS
+         ZZbryCidxBcOkL9AC3Mh3it5KkD9oujjibJy7EDB4IO8Ev3KuP3jW05yhmps+RO9SNQY
+         MUpZvgjP7XggDSwy+INvvZ22dFLDQZvAtelMLBBlAB/2p8DqpEC2uLPIAc+a9eOvt2TR
+         7ZPg==
+X-Gm-Message-State: ABy/qLZknIeRS5g1Ox8Ai4n5VOo7Uowizm+E+y6jY4a+rFH2JDctuyhM
+        BWOu0DCseXWfo9w7xmdaHlg2Cg==
+X-Google-Smtp-Source: APBJJlGd1Q363NUQ95fT39f6EGsQ1a//7/2PXR2vnTVuYr5WHw1UQOY0P0dU26vA//L8rrC45Cvh2A==
+X-Received: by 2002:a5d:4ac2:0:b0:313:e161:d013 with SMTP id y2-20020a5d4ac2000000b00313e161d013mr6654510wrs.15.1688293810652;
+        Sun, 02 Jul 2023 03:30:10 -0700 (PDT)
+Received: from [192.168.10.214] ([217.169.179.6])
+        by smtp.gmail.com with ESMTPSA id o7-20020aa7dd47000000b0051bf57aa0c6sm8969693edw.87.2023.07.02.03.30.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Jul 2023 03:30:10 -0700 (PDT)
+Message-ID: <3348348a-ee62-c9c4-d9b4-0df6745ff6a0@linaro.org>
+Date:   Sun, 2 Jul 2023 12:30:09 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="ISO-8859-1"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.48.51.211]
-X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v5 3/7] media: dt-bindings: mediatek,vcodec: Remove
+ VDEC_SYS register space
+To:     =?UTF-8?B?TsOtY29sYXMgRi4gUi4gQS4gUHJhZG8=?= 
+        <nfraprado@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>, kernel@collabora.com,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+References: <20230630151436.155586-1-nfraprado@collabora.com>
+ <20230630151436.155586-4-nfraprado@collabora.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230630151436.155586-4-nfraprado@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Jun 2023 11:32:11 +0000
-<Marius.Cristea@microchip.com> wrote:
-
-> Hi Jonathan,
+On 30/06/2023 17:14, NÃ­colas F. R. A. Prado wrote:
+> The binding expects the first register space to be VDEC_SYS. However
+> this register space is already assigned to a different node on both
+> MT8173 and MT8183: a clock-controller node called 'vdecsys' which is
+> also a syscon.
 > 
->    Please see my comments bellow.
+> In order to resolve the overlapping address ranges, remove the VDEC_SYS
+> register space from the video decoder, and add a new property to hold
+> the phandle to the syscon, so that iospace can still be handled.
 > 
-> Thanks,
-> Marius
+> Also add reg-names to be able to tell that this new register schema is
+> used, so the driver can keep backward compatibility.
 > 
-> On Sat, 2023-05-20 at 16:15 +0100, Jonathan Cameron wrote:
-> > > +
-> > > +What:               
-> > > /sys/bus/iio/devices/iio:deviceX/calibscale_available
-> > > +KernelVersion:       6.4
-> > > +Contact:     linux-iio@vger.kernel.org
-> > > +Description:
-> > > +             Reading returns a range with the possible values for
-> > > the gain
-> > > +             error digital calibration register.
-> > > +
-> > > +What:               
-> > > /sys/bus/iio/devices/iio:deviceX/boost_current
-> > > +KernelVersion:       6.4
-> > > +Contact:     linux-iio@vger.kernel.org
-> > > +Description:
-> > > +             This attribute is used to set the biasing circuit of
-> > > the
-> > > +             Delta-Sigma modulator. The different BOOST settings
-> > > are applied
-> > > +             to the entire modulator circuit, including the
-> > > voltage reference
-> > > +             buffers.
-> > > +
-> > > +What:               
-> > > /sys/bus/iio/devices/iio:deviceX/boost_current_available
-> > > +KernelVersion:       6.4
-> > > +Contact:     linux-iio@vger.kernel.org
-> > > +Description:
-> > > +             Reading returns a list with the possible values for
-> > > +             the current biasing circuit of the Delta-Sigma
-> > > modulator.
-> > > +
-> > > +             "x0.5",   - ADC channel has current x 0.5  
-> > 
-> > Keep just numbers in the attr.  It should be named in a fashion that
-> > makes it apparent that it's a multiplier, not an absolute current.
-> > 
-> > New ABI like this is best avoided if we can. I see from a quick
-> > glance at the
-> > datasheet that there is advice on controlling this to allow for
-> > different
-> > clock settings, but I'm not sure if that's a simple relationship or
-> > not.
-> > From
-> > https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP3461-2-4-Two-Four-Eight-Channel-153.6-ksps-Low-Noise-16-Bit-Delta-Sigma-ADC-Data-Sheet-20006180D.pdf
-> > figures 2-20 onwards, it looks like this effectively trades off power
-> > consumption
-> > against max frequency, so maybe we could set it automatically?
-> >   
-> 
-> Here being a trade off between power consumption and bandwidth I would
-> like it to be somehow programmable and let the user to set it. Maybe
-> the user wants to "monitor" a channel (have low power consumption) and
-> other channels to be benefit from a larger bandwidth. It don't think it
-> can be set automatically.
-
-Hmm. Whilst it's certainly possible a user wants to do this sort of
-mix the trade off against extra complexity of the interface (and hence
-the chance that anyone actually uses it being reduced, makes me wonder
-if it is worth while).  If you just configured this for all channels
-then could be done automatically from sampling_frequency control which
-is standard ABI.  
-
-I don't really mind something custom if necessary though, but I find it very
-unlikely that this particular interface generalizes long term as it's
-a multiplier of 'something magic' - if we could make these actual
-currents that would be better but I have no idea if we can.
-
-> 
-> >   
-> > > +
-> > > +             "x0.66",  - ADC channel has current x 0.66
-> > > +
-> > > +             "x1",     - ADC channel has current x 1 (default)
-> > > +
-> > > +             "x2"      - ADC channel has current x 2
-> > > +
-> > > +What:                /sys/bus/iio/devices/iio:deviceX/current_bias  
-> > 
-> > Another bit of custom ABI with the normal problems of it being
-> > unknown
-> > to standard userspace software.  You could perhaps use an output
-> > channel for
-> > this and just treat it like a current DAC, with a label that makes
-> > it's relationship
-> > to the inputs obvious.  
-> 
-> 
-> I could use an output channel to setup the current. Is it OK to have
-> both ADC and "DAC" functionality in "iio/adc"?
-
-Yes. That's fine if it's primarily an ADC - I think we have some
-existing examples (definitely do in other classes of sensor, but maybe
-not ADCs).
-
-> 
-
-> > > +
-> > > +What:               
-> > > /sys/bus/iio/devices/iio:deviceX/enable_auto_zeroing_mux
-> > > +KernelVersion:       6.4
-> > > +Contact:     linux-iio@vger.kernel.org
-> > > +Description:
-> > > +             This attribute is used to enable the analog input
-> > > multiplexer
-> > > +             auto-zeroing algorithm. Write '1' to enable it, write
-> > > '0' to
-> > > +             disable it.  
-> > If you can explain what auto zeroing is that would be great. It's not
-> > something
-> > I recall seeing in other drivers.  
-> 
-> I will add this description:
->        "This attribute is used to enable the chopping algorithm for the
-> internal voltage reference buffer. This setting has no effect
-> when external voltage reference is selected.
-
-Don't present it when that's the case an no need to talk about it
-in this description as a result.
-
-> Internal voltage reference buffer injects a certain quantity of
-> 1/f noise into the system that can be modulated with the
-> incoming input signals and can limit the SNR performance at
-> higher Oversampling Ratio values (over 256). To overcome this
-> limitation, the buffer includes an auto-zeroing algorithm that
-> greatly reduces (cancels out) the 1/f noise and cancels the
-> offset value of the reference buffer. As a result, the SNR of
-> the system is not affected by this 1/f noise component of the
-> reference buffer, even at maximum oversampling ratio values.
-> Write '1' to enable it, write '0' to disable it."
-
-Indeed a new one to me.  We've had devices that modulate
-the input a little in the past.  Dumb question though - why
-wouldn't you turn this on?  Do we need to provide the option.
+> Signed-off-by: NÃ­colas F. R. A. Prado <nfraprado@collabora.com>
 
 
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-> > > +What:               
-> > > /sys/bus/iio/devices/iio:deviceX/enable_auto_zeroing_ref
-> > > +KernelVersion:       6.4
-> > > +Contact:     linux-iio@vger.kernel.org
-> > > +Description:
-> > > +             This attribute is used to enable the chopping
-> > > algorithm for the
-> > > +             internal voltage reference buffer.  Write '1' to
-> > > enable it,
-> > > +             write '0' to disable it.
-> > > +
-> > > +What:                /sys/bus/iio/devices/iio:deviceX/hardwaregain
-> > > +KernelVersion:       6.4
-> > > +Contact:     linux-iio@vger.kernel.org
-> > > +Description:
-> > > +             This attribute is used to set the hardware applied
-> > > gain factor.
-> > > +             It is shared across all channels.  
-> > This attr is pretty much only used when the gain is not directly
-> > related to the
-> > value being used.  An example being a time of flight sensor where the
-> > amplitude
-> > of the measured signal doesn't directly matter as we are looking for
-> > the timing of the
-> > peak, we just need it to be big enough to measure. Otherwise scale is
-> > what you want.
-> >   
-> 
-> The MCP3564 has internally an input amplifier with programmable gain.
-> Because we can measure a difference between 2 channels, we have clients
-> that measure the output of load cells. This output is quite small am we
-> need to amplify it before conversion is done.
-> 
-> I was thinking that because we name it "hardwaregain" this will be be
-> somehow connected to a configurable gain that could be set in hardware.
-> Is better to have a separate info strictly related to  hardware
-> amplification.
-
-Not an interface that any standard software will control.  If you can
-either treat it as _scale (which implies that it is relevant to the _raw
-calculation) or as _calibscale (which implies that it is a tweak to correct
-for device differences or external circuitry but should not be applied by
-software to the _raw value) then you will have a control that is
-the same as being used for any other device.   Many ADCs have programmable
-gain - we deliberately expose that only via _scale because userspace doesn't
-care 'how' a gain results, just what it is.
-
-
-Jonathan
+Best regards,
+Krzysztof
 
