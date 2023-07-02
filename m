@@ -2,46 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 80206744D29
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:04:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E15A744D39
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:28:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229523AbjGBKEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 06:04:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46676 "EHLO
+        id S229817AbjGBK24 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 2 Jul 2023 06:28:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229533AbjGBKEW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:04:22 -0400
+        with ESMTP id S229533AbjGBK24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:28:56 -0400
 Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA789E54;
-        Sun,  2 Jul 2023 03:04:19 -0700 (PDT)
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.207])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Qv4MR54xHz6D9BC;
-        Sun,  2 Jul 2023 18:01:23 +0800 (CST)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50DD91B0;
+        Sun,  2 Jul 2023 03:28:53 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.206])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4Qv4vP3zydz67GCQ;
+        Sun,  2 Jul 2023 18:25:37 +0800 (CST)
 Received: from localhost (10.48.51.211) by lhrpeml500005.china.huawei.com
  (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Sun, 2 Jul
- 2023 11:04:13 +0100
-Date:   Sun, 2 Jul 2023 18:04:09 +0800
+ 2023 11:28:48 +0100
+Date:   Sun, 2 Jul 2023 18:28:43 +0800
 From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Kim Seer Paller <kimseer.paller@analog.com>
-CC:     <jic23@kernel.org>, <lars@metafoo.de>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <Michael.Hennerich@analog.com>,
-        <andy.shevchenko@gmail.com>, <robh@kernel.org>,
-        <krzysztof.kozlowski@linaro.org>, <conor+dt@kernel.org>,
-        <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v8 2/2] iio: adc: max14001: New driver
-Message-ID: <20230702180315.00003dbe@Huawei.com>
-In-Reply-To: <20230622143227.30147-2-kimseer.paller@analog.com>
-References: <20230622143227.30147-1-kimseer.paller@analog.com>
-        <20230622143227.30147-2-kimseer.paller@analog.com>
+To:     <Marius.Cristea@microchip.com>
+CC:     <jic23@kernel.org>, <devicetree@vger.kernel.org>,
+        <lars@metafoo.de>, <linux-iio@vger.kernel.org>,
+        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] iio: adc: adding support for MCP3564 ADC
+Message-ID: <20230702182843.000049b0@Huawei.com>
+In-Reply-To: <6ab2ec4a9389bbcf9acfbf16291eef088908f1b8.camel@microchip.com>
+References: <20230519160145.44208-1-marius.cristea@microchip.com>
+        <20230519160145.44208-3-marius.cristea@microchip.com>
+        <20230520161509.4c704656@jic23-huawei>
+        <6ab2ec4a9389bbcf9acfbf16291eef088908f1b8.camel@microchip.com>
 Organization: Huawei Technologies Research and Development (UK) Ltd.
 X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="ISO-8859-1"
+Content-Transfer-Encoding: 8BIT
 X-Originating-IP: [10.48.51.211]
-X-ClientProxiedBy: lhrpeml100003.china.huawei.com (7.191.160.210) To
+X-ClientProxiedBy: lhrpeml100001.china.huawei.com (7.191.160.183) To
  lhrpeml500005.china.huawei.com (7.191.163.240)
 X-CFilter-Loop: Reflected
 X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
@@ -53,144 +52,201 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 22 Jun 2023 22:32:27 +0800
-Kim Seer Paller <kimseer.paller@analog.com> wrote:
+On Thu, 22 Jun 2023 11:32:11 +0000
+<Marius.Cristea@microchip.com> wrote:
 
-> The MAX14001 is configurable, isolated 10-bit ADCs for multi-range
-> binary inputs.
+> Hi Jonathan,
 > 
-> Signed-off-by: Kim Seer Paller <kimseer.paller@analog.com>
-> Reported-by: kernel test robot <lkp@intel.com>
-> Closes: https://lore.kernel.org/oe-kbuild-all/202306211545.7b6CdqsL-lkp@intel.com/
+>    Please see my comments bellow.
+> 
+> Thanks,
+> Marius
+> 
+> On Sat, 2023-05-20 at 16:15 +0100, Jonathan Cameron wrote:
+> > > +
+> > > +What:               
+> > > /sys/bus/iio/devices/iio:deviceX/calibscale_available
+> > > +KernelVersion:       6.4
+> > > +Contact:     linux-iio@vger.kernel.org
+> > > +Description:
+> > > +             Reading returns a range with the possible values for
+> > > the gain
+> > > +             error digital calibration register.
+> > > +
+> > > +What:               
+> > > /sys/bus/iio/devices/iio:deviceX/boost_current
+> > > +KernelVersion:       6.4
+> > > +Contact:     linux-iio@vger.kernel.org
+> > > +Description:
+> > > +             This attribute is used to set the biasing circuit of
+> > > the
+> > > +             Delta-Sigma modulator. The different BOOST settings
+> > > are applied
+> > > +             to the entire modulator circuit, including the
+> > > voltage reference
+> > > +             buffers.
+> > > +
+> > > +What:               
+> > > /sys/bus/iio/devices/iio:deviceX/boost_current_available
+> > > +KernelVersion:       6.4
+> > > +Contact:     linux-iio@vger.kernel.org
+> > > +Description:
+> > > +             Reading returns a list with the possible values for
+> > > +             the current biasing circuit of the Delta-Sigma
+> > > modulator.
+> > > +
+> > > +             "x0.5",   - ADC channel has current x 0.5  
+> > 
+> > Keep just numbers in the attr.  It should be named in a fashion that
+> > makes it apparent that it's a multiplier, not an absolute current.
+> > 
+> > New ABI like this is best avoided if we can. I see from a quick
+> > glance at the
+> > datasheet that there is advice on controlling this to allow for
+> > different
+> > clock settings, but I'm not sure if that's a simple relationship or
+> > not.
+> > From
+> > https://ww1.microchip.com/downloads/aemDocuments/documents/APID/ProductDocuments/DataSheets/MCP3461-2-4-Two-Four-Eight-Channel-153.6-ksps-Low-Noise-16-Bit-Delta-Sigma-ADC-Data-Sheet-20006180D.pdf
+> > figures 2-20 onwards, it looks like this effectively trades off power
+> > consumption
+> > against max frequency, so maybe we could set it automatically?
+> >   
+> 
+> Here being a trade off between power consumption and bandwidth I would
+> like it to be somehow programmable and let the user to set it. Maybe
+> the user wants to "monitor" a channel (have low power consumption) and
+> other channels to be benefit from a larger bandwidth. It don't think it
+> can be set automatically.
 
-Hi, 
+Hmm. Whilst it's certainly possible a user wants to do this sort of
+mix the trade off against extra complexity of the interface (and hence
+the chance that anyone actually uses it being reduced, makes me wonder
+if it is worth while).  If you just configured this for all channels
+then could be done automatically from sampling_frequency control which
+is standard ABI.  
 
-Two outstanding comments that I think I raised in earlier reviews..
+I don't really mind something custom if necessary though, but I find it very
+unlikely that this particular interface generalizes long term as it's
+a multiplier of 'something magic' - if we could make these actual
+currents that would be better but I have no idea if we can.
+
+> 
+> >   
+> > > +
+> > > +             "x0.66",  - ADC channel has current x 0.66
+> > > +
+> > > +             "x1",     - ADC channel has current x 1 (default)
+> > > +
+> > > +             "x2"      - ADC channel has current x 2
+> > > +
+> > > +What:                /sys/bus/iio/devices/iio:deviceX/current_bias  
+> > 
+> > Another bit of custom ABI with the normal problems of it being
+> > unknown
+> > to standard userspace software.  You could perhaps use an output
+> > channel for
+> > this and just treat it like a current DAC, with a label that makes
+> > it's relationship
+> > to the inputs obvious.  
+> 
+> 
+> I could use an output channel to setup the current. Is it OK to have
+> both ADC and "DAC" functionality in "iio/adc"?
+
+Yes. That's fine if it's primarily an ADC - I think we have some
+existing examples (definitely do in other classes of sensor, but maybe
+not ADCs).
+
+> 
+
+> > > +
+> > > +What:               
+> > > /sys/bus/iio/devices/iio:deviceX/enable_auto_zeroing_mux
+> > > +KernelVersion:       6.4
+> > > +Contact:     linux-iio@vger.kernel.org
+> > > +Description:
+> > > +             This attribute is used to enable the analog input
+> > > multiplexer
+> > > +             auto-zeroing algorithm. Write '1' to enable it, write
+> > > '0' to
+> > > +             disable it.  
+> > If you can explain what auto zeroing is that would be great. It's not
+> > something
+> > I recall seeing in other drivers.  
+> 
+> I will add this description:
+>        "This attribute is used to enable the chopping algorithm for the
+> internal voltage reference buffer. This setting has no effect
+> when external voltage reference is selected.
+
+Don't present it when that's the case an no need to talk about it
+in this description as a result.
+
+> Internal voltage reference buffer injects a certain quantity of
+> 1/f noise into the system that can be modulated with the
+> incoming input signals and can limit the SNR performance at
+> higher Oversampling Ratio values (over 256). To overcome this
+> limitation, the buffer includes an auto-zeroing algorithm that
+> greatly reduces (cancels out) the 1/f noise and cancels the
+> offset value of the reference buffer. As a result, the SNR of
+> the system is not affected by this 1/f noise component of the
+> reference buffer, even at maximum oversampling ratio values.
+> Write '1' to enable it, write '0' to disable it."
+
+Indeed a new one to me.  We've had devices that modulate
+the input a little in the past.  Dumb question though - why
+wouldn't you turn this on?  Do we need to provide the option.
+
+
+
+> > > +What:               
+> > > /sys/bus/iio/devices/iio:deviceX/enable_auto_zeroing_ref
+> > > +KernelVersion:       6.4
+> > > +Contact:     linux-iio@vger.kernel.org
+> > > +Description:
+> > > +             This attribute is used to enable the chopping
+> > > algorithm for the
+> > > +             internal voltage reference buffer.  Write '1' to
+> > > enable it,
+> > > +             write '0' to disable it.
+> > > +
+> > > +What:                /sys/bus/iio/devices/iio:deviceX/hardwaregain
+> > > +KernelVersion:       6.4
+> > > +Contact:     linux-iio@vger.kernel.org
+> > > +Description:
+> > > +             This attribute is used to set the hardware applied
+> > > gain factor.
+> > > +             It is shared across all channels.  
+> > This attr is pretty much only used when the gain is not directly
+> > related to the
+> > value being used.  An example being a time of flight sensor where the
+> > amplitude
+> > of the measured signal doesn't directly matter as we are looking for
+> > the timing of the
+> > peak, we just need it to be big enough to measure. Otherwise scale is
+> > what you want.
+> >   
+> 
+> The MCP3564 has internally an input amplifier with programmable gain.
+> Because we can measure a difference between 2 channels, we have clients
+> that measure the output of load cells. This output is quite small am we
+> need to amplify it before conversion is done.
+> 
+> I was thinking that because we name it "hardwaregain" this will be be
+> somehow connected to a configurable gain that could be set in hardware.
+> Is better to have a separate info strictly related to  hardware
+> amplification.
+
+Not an interface that any standard software will control.  If you can
+either treat it as _scale (which implies that it is relevant to the _raw
+calculation) or as _calibscale (which implies that it is a tweak to correct
+for device differences or external circuitry but should not be applied by
+software to the _raw value) then you will have a control that is
+the same as being used for any other device.   Many ADCs have programmable
+gain - we deliberately expose that only via _scale because userspace doesn't
+care 'how' a gain results, just what it is.
+
 
 Jonathan
-
-> diff --git a/drivers/iio/adc/max14001.c b/drivers/iio/adc/max14001.c
-> new file mode 100644
-> index 000000000000..a21ebcde71fa
-> --- /dev/null
-> +++ b/drivers/iio/adc/max14001.c
-
-...
-
-> +static int max14001_read(void *context, unsigned int reg_addr, unsigned int *data)
-> +{
-> +	struct max14001_state *st = context;
-> +	int ret;
-> +
-> +	struct spi_transfer xfers[] = {
-> +		{
-> +			.tx_buf = &st->spi_tx_buffer,
-> +			.len = sizeof(st->spi_tx_buffer),
-> +			.cs_change = 1,
-> +		}, {
-> +			.rx_buf = &st->spi_rx_buffer,
-> +			.len = sizeof(st->spi_rx_buffer),
-> +		},
-> +	};
-> +
-> +	/*
-> +	 * Convert transmit buffer to big-endian format and reverse transmit
-> +	 * buffer to align with the LSB-first input on SDI port.
-> +	 */
-> +	st->spi_tx_buffer = cpu_to_be16(bitrev16(FIELD_PREP(MAX14001_ADDR_MASK,
-> +								reg_addr)));
-> +
-> +	ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * Align received data from the receive buffer, reversing and reordering
-> +	 * it to match the expected MSB-first format.
-> +	 */
-> +	*data = (__force u16)(be16_to_cpu(bitrev16(st->spi_rx_buffer))) &
-> +							MAX14001_DATA_MASK;
-> +
-These sequences still confuse me a lot because I'd expect the values in tx
-to have the opposite operations applied to those for rx and that's not the
-case.
-
-Let's take a le system. 
-tx = cpu_to_be16(bitrev16(x))
-   = cpu_to_be16((__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8));
-   = __bitrev8(x & 0xff) | (__bitrev8(x >> 8) << 8)
-or swap all the bits in each byte, but don't swap the bytes.
-
-rx = cpu_to_be16(bitrev16(x))
-   = be16_to_cpu(((__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)_
-   = __bitrev8(x & 0xff) | __bitrev(x >> 8)
-   
-also swap all the bits in each byte, but don't swap the bytes.
-
-So it is the reverse because the bytes swaps unwind themselves somewhat.
-For a be system cpu_to_be16 etc are noop.
-tx = (__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)
-rx = (__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)
-
-So in this case swap all 16 bits.
-
-Now, given I'd expected them to be reversed for the tx vs rx case.
-E.g.
-tx = cpu_to_be16(bitrev16(x))
-As above.
-For rx, le host
-rx = bitrev16(be16_to_cpu(x))
-   = __bitrev8((x >> 8) & 0xff) << 8) |  __bitrev8((((x & 0xff) << 8) >> 8)
-same as above (if you swap the two terms I think.
-
-For be the be16_to_cpu is a noop again, so it's just bitrev16(x) as expected.
-
-Hence if I've understood this correctly you could reverse the terms so that
-it was 'obvious' you were doing the opposite for the tx term vs the rx one
-without making the slightest bit of difference....
-   
-hmm. Might be worth doing simply to avoid questions.
-
-
-> +	return 0;
-> +}
-> +static int max14001_reg_update(struct max14001_state *st,
-> +				unsigned int reg_addr,
-> +				unsigned int mask,
-> +				unsigned int val)
-> +{
-> +	int ret;
-> +	unsigned int reg_data;
-> +
-> +	/* Enable SPI Registers Write */
-> +	ret = max14001_write(st, MAX14001_WEN, MAX14001_WRITE_WEN);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = max14001_read(st, reg_addr, &reg_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	reg_data |= FIELD_PREP(mask, val);
-
-This is still a problem if the compiler happens to fail to figure out
-that mask is a compile time constant.  Given it only ever takes one value
-I'd suggest either calling the FIELD_PREP at the caller, or just 
-pushing all this code inline so that you can put the definition
-inline.
-
-> +
-> +	ret = max14001_write(st, reg_addr, reg_data);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Write Verification Register */
-> +	ret = max14001_write_verification_reg(st, reg_addr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Disable SPI Registers Write */
-> +	return max14001_write(st, MAX14001_WEN, 0);
-> +}
-
 
