@@ -2,68 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37250744D57
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:44:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9DF6744D58
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229871AbjGBKoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 06:44:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
+        id S229889AbjGBKrP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 06:47:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52752 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229657AbjGBKoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:44:18 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D18018D
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 03:44:17 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-991ef0b464cso623032366b.0
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 03:44:17 -0700 (PDT)
+        with ESMTP id S229657AbjGBKrO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:47:14 -0400
+Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57095E6F
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 03:47:13 -0700 (PDT)
+Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51d89664272so3876293a12.1
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 03:47:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688294655; x=1690886655;
+        d=linaro.org; s=google; t=1688294832; x=1690886832;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=Kr463YdK4TueQEsVEF6h6lfHtlC9u7gWIjzonOPSpWY=;
-        b=lAmo/htwhnr3meiTy6buZajTjmyBMZGOcsAN7c1z+G9I8Zp2AsDtuXny9NQlz4uL8C
-         00Xqe+4m3aYUamayF/Zhdhu1Nq12H9R1/PBmdmPO/vXYGTg7FAl0/S1zFiuMw1jm91kb
-         cJks7JHr9QsFUpahsfuSPDY2JlhHcWnrA2AYzGmJA6dnLsSl+1KZ4UHOU/LGZzji3kzx
-         EaU5u18quTmRGKWto4Q8jVPBNQdsw0mN3sZrfNKBihzNzI1kenLTEoryrOO3LOKeXSCE
-         kZtHwrozSUM3U1I+vDCbpDQd8Fq6MtUEXf6wsZ/aYFXzfTmP2kKPYtsv8/pAE5Z0U3DY
-         mSCQ==
+        bh=doP8CZZyrslCenSYjdf6T/PIt+tCk5F92Ar2E5adtJ0=;
+        b=ctacEYA1JK6veFXxDJZFud4r7LN4mBV0X0v7BsVcyc/h8oYdZJGgjQKfYbSclowoaF
+         CKs9o5FIk4V/q8HdhxLVMS+Sr42LMHv+2sZCF8mC1KhKgvnJZh+69V4xD+YDMSYvsewV
+         WNWMQiagaIhorzQIhS7+M2H2kyDkr2sPp+GZv66P5t8ubtR95qYQhfzLtRQeKW8MHomL
+         kxGBUQyE83nuOB1+LLo9XvcMNl6hbj18QP9Xo/33e2Bs36JK0zpsHisRQmtKmyQue+sl
+         1pvQidSX7rfr4UOtgA2F6PKiRNJXHbHYojIpxZC8qxgeo+7dS0ixvkqrlbOm2SrYriy4
+         k1NA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688294655; x=1690886655;
+        d=1e100.net; s=20221208; t=1688294832; x=1690886832;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=Kr463YdK4TueQEsVEF6h6lfHtlC9u7gWIjzonOPSpWY=;
-        b=JBZRuprBLtXtLErvO45h2IVqFiuyfsCiTijzTYjn8R6Tsn8X3TKR4sYwlnbnea0diM
-         49TQcwuR5d10iuwppi/47mnBuZgZ9bgJXxPP+TDuNgOaZDcebM1JSE+Z9bFKb3kguvSi
-         TOi/qCcOVz0CuoVvc+8iDLN7azQOyJ1zoTdDdDkIYexERcysUvrvt2YK5c9dK+CEWhuY
-         jUcCpdEQVYLVUu7pmvMUBOWM52836NBVY/d0BtZHd1wQszJbkr2YQdzKzFCmJzfubR66
-         WNa7v65goYCo89/GvOX6pFg56mOpbcXJ5IBrm/rPOVGlD6XsDJem7XHnbo4tfnBY7Xkw
-         en7g==
-X-Gm-Message-State: AC+VfDyUwh26NTRCX0QNLyOjJHSlytMyWRflJUu8hnJPVaEtzLf/C/ON
-        GcjSkwed5/kehGuD/O+0WEfFvQ==
-X-Google-Smtp-Source: ACHHUZ5YtWdGr8CtiyE5+4zncb/6RbLT+pffZLWaUK/5zaKkRbOmvN3mhkPyS7MUdOe3iXe1x2Q0HA==
-X-Received: by 2002:a17:906:6a0f:b0:991:d414:d889 with SMTP id qw15-20020a1709066a0f00b00991d414d889mr11713340ejc.15.1688294655476;
-        Sun, 02 Jul 2023 03:44:15 -0700 (PDT)
+        bh=doP8CZZyrslCenSYjdf6T/PIt+tCk5F92Ar2E5adtJ0=;
+        b=iJiesLe3DPg6wX3wlVBdFDpkJ0SgUf/PU8olEwYgdIZ6ZDl+VXoXUcHPVBAindvhW8
+         BBpeEWxLepgYlhlHpnpvKoTH3tKVH5v2ZyUoWNRdIk6AbUt3SE9p4aqrGxYgKvzByshf
+         xIy2Y2EIO16Dv/X15VgK31kzBcdVAlLhDM6vDm5qTRLEoQ1lbQdBU5gyU6cYukU6mfoU
+         I6ED7dXF4LIC66p1Qh5LTD3dvDObUhH4skkc8/Bp5BKBCFOWjFc3f2nB1nAYfIWNyFkv
+         IsYUpR8+5B2syMmbByzAvJEFwcsR56Sm9DBFL5cV9Pwwg3z2MXA3UisfOtg7wQkkgFER
+         TbjQ==
+X-Gm-Message-State: ABy/qLYBHu47k5kBTGkOLSp2VcVrr2W/rlffFONLi6usOMmMjucjsngb
+        0CLJf9D73vYtD9kGWfhCKGsb6w==
+X-Google-Smtp-Source: APBJJlEUDjmuQNgaEKhIauAAnEoZ97aP9Ydyy4Asa0tJshbXlejAZ3SysQ8kzJrnLsVizDYxGEaxCQ==
+X-Received: by 2002:aa7:ca57:0:b0:51d:96de:af6f with SMTP id j23-20020aa7ca57000000b0051d96deaf6fmr5497089edt.0.1688294831756;
+        Sun, 02 Jul 2023 03:47:11 -0700 (PDT)
 Received: from [192.168.10.214] ([217.169.179.6])
-        by smtp.gmail.com with ESMTPSA id c15-20020a170906528f00b0098866a94f14sm10405513ejm.125.2023.07.02.03.44.14
+        by smtp.gmail.com with ESMTPSA id q14-20020a056402040e00b0051d890b2407sm8550077edv.81.2023.07.02.03.47.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 02 Jul 2023 03:44:15 -0700 (PDT)
-Message-ID: <5d13ddb3-e81e-2ce6-a4f6-90e2210b8def@linaro.org>
-Date:   Sun, 2 Jul 2023 12:44:14 +0200
+        Sun, 02 Jul 2023 03:47:11 -0700 (PDT)
+Message-ID: <889bbee2-db9c-c1dd-dc8a-cdc436f1dfd8@linaro.org>
+Date:   Sun, 2 Jul 2023 12:47:09 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: clock: imx93: Add PDM IPG clk
+Subject: Re: [PATCH 3/4] dt-bindings: media: add mediatek ISP3.0 camsv
 Content-Language: en-US
-To:     Jacky Bai <ping.bai@nxp.com>, abelvesa@kernel.org,
-        peng.fan@nxp.com, sboyd@kernel.org, shawnguo@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
-Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230628061724.2056520-1-ping.bai@nxp.com>
+To:     Julien Stephan <jstephan@baylibre.com>
+Cc:     Phi-bang Nguyen <pnguyen@baylibre.com>,
+        Andy Hsieh <andy.hsieh@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        daoyuan huang <daoyuan.huang@mediatek.com>,
+        devicetree@vger.kernel.org,
+        Florian Sylvestre <fsylvestre@baylibre.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-media@vger.kernel.org,
+        Louis Kuo <louis.kuo@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Moudy Ho <moudy.ho@mediatek.com>,
+        Ping-Hsun Wu <ping-hsun.wu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vasily Gorbik <gor@linux.ibm.com>
+References: <20230628145412.1610260-1-jstephan@baylibre.com>
+ <20230628145412.1610260-4-jstephan@baylibre.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230628061724.2056520-1-ping.bai@nxp.com>
+In-Reply-To: <20230628145412.1610260-4-jstephan@baylibre.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -76,19 +93,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28/06/2023 08:17, Jacky Bai wrote:
-> From: Chancel Liu <chancel.liu@nxp.com>
+On 28/06/2023 16:52, Julien Stephan wrote:
+> From: Phi-bang Nguyen <pnguyen@baylibre.com>
 > 
-> Add PDM IPG clk.
-> 
-> Reviewed-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> ---
->  include/dt-bindings/clock/imx93-clock.h | 3 ++-
+> This adds the bindings, for the ISP3.0 camsv module embedded in
+> some Mediatek SoC, such as the mt8365
+
+Thank you for your patch. There is something to discuss/improve.
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> +
+> +description:
+> +  The CAMSV is a set of DMA engines connected to the SENINF CSI-2
+> +  receivers. The number of CAMSVs depend on the SoC model.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt8365-camsv
+> +
+> +  reg:
+> +    maxItems: 3
+
+Describe the items (items with description) instead.
+
+> +
+
+...
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/clock/mediatek,mt8365-clk.h>
+> +    #include <dt-bindings/memory/mediatek,mt8365-larb-port.h>
+> +    #include <dt-bindings/power/mediatek,mt8365-power.h>
+> +
+> +    soc {
+> +        #address-cells = <2>;
+> +        #size-cells = <2>;
+> +
+> +        camsv1: camsv@15050000 {
+> +            compatible = "mediatek,mt8365-camsv";
+> +            reg = <0 0x15050000 0 0x0040>,
+> +            <0 0x15050208 0 0x0020>,
+> +            <0 0x15050400 0 0x0100>;
+
+Fix the alignment.
+
+> +            interrupts = <GIC_SPI 186 IRQ_TYPE_LEVEL_LOW>;
+> +            clocks = <&camsys CLK_CAM>,
+> +            <&camsys CLK_CAMTG>,
+> +            <&camsys CLK_CAMSV0>;
+
+Everywhere...
+
 
 Best regards,
 Krzysztof
