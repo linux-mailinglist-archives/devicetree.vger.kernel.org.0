@@ -2,97 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 95DA9744D45
-	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37250744D57
+	for <lists+devicetree@lfdr.de>; Sun,  2 Jul 2023 12:44:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229941AbjGBKbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 06:31:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50136 "EHLO
+        id S229871AbjGBKoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 2 Jul 2023 06:44:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229554AbjGBKbs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:31:48 -0400
-Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A751135;
-        Sun,  2 Jul 2023 03:31:47 -0700 (PDT)
-Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-307d58b3efbso3821591f8f.0;
-        Sun, 02 Jul 2023 03:31:47 -0700 (PDT)
+        with ESMTP id S229657AbjGBKoS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 06:44:18 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D18018D
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 03:44:17 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-991ef0b464cso623032366b.0
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 03:44:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688293906; x=1690885906;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=+9HNwsfm1QcsCZ6i0OtSLp++3UaVesUVHugZWgXamS4=;
-        b=XIxUYIDaYrAcbCaZjAOJQA6qry3INr7EmhUAmmfwz7ZGkmJXBwZ389ldYtx44Fxt9E
-         2CsHd48uhVy09DoBYa3O0J7jURA7Q9V0BindDZkXmr9VDg8Yawltw8Ks89Q69MIx7AO2
-         t4sQsgFCAd+iUrPCyKy8ZOpwqw/JQ78AZ/+RMC88gCrkSL58CaGHgeRgORFGnjuLmYms
-         g3Znk8LwmFb8aJTd5kOU2IwmB8EnWAtTsL0EVPclr0MkQEjtZWT3pKZnVNPlbM2Vskap
-         qOFYX0QlMOVct8XAl+bjkUlJ09FCa7Z17yXTyFTTigR7JUVqRLpme8hjkEYMO7tiHqFg
-         l4uw==
+        d=linaro.org; s=google; t=1688294655; x=1690886655;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Kr463YdK4TueQEsVEF6h6lfHtlC9u7gWIjzonOPSpWY=;
+        b=lAmo/htwhnr3meiTy6buZajTjmyBMZGOcsAN7c1z+G9I8Zp2AsDtuXny9NQlz4uL8C
+         00Xqe+4m3aYUamayF/Zhdhu1Nq12H9R1/PBmdmPO/vXYGTg7FAl0/S1zFiuMw1jm91kb
+         cJks7JHr9QsFUpahsfuSPDY2JlhHcWnrA2AYzGmJA6dnLsSl+1KZ4UHOU/LGZzji3kzx
+         EaU5u18quTmRGKWto4Q8jVPBNQdsw0mN3sZrfNKBihzNzI1kenLTEoryrOO3LOKeXSCE
+         kZtHwrozSUM3U1I+vDCbpDQd8Fq6MtUEXf6wsZ/aYFXzfTmP2kKPYtsv8/pAE5Z0U3DY
+         mSCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688293906; x=1690885906;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=+9HNwsfm1QcsCZ6i0OtSLp++3UaVesUVHugZWgXamS4=;
-        b=U+f4Eu0syy2ofjUeZkAdckUDztc8fEs/opr1HBcGI89S55p1rtxQ5oKPVYNmumYo21
-         bmdg2PhAbUo3yxbIougtWTtYxui6n8Bx2KEc0RS5qKOHLAqMufihegzt6v0Ct2OFY2Yz
-         9woRp0D877biA0P+aGj3sk808XE9wUUYoekEpjLfsGR5tc8O1sDE5rBHfuorOtrvprhd
-         ArPmr+Udz26pZofj6fLDnAdp6eYva6LHKAXA2h3KeYhMXppXtZ/iWPnv6EIRg/7eCC8y
-         7x9Lokz6IBxCsgxS97bbNKVQD8VZZaArxF3jnVspdNW6BRcOanAIhGEFDF+aDE64m+44
-         wV/g==
-X-Gm-Message-State: ABy/qLZaVzYdY0sDV9zt11Txs+1DPsa6JEdfvniMoqmLCT30HU33eKgn
-        S3G0hjQa3l+q682ILaTOjBQ=
-X-Google-Smtp-Source: APBJJlFdbrMVw4b6z234EX++g7sa7brYPo9YLyT5rx35Vbecfts+aFRsmuqCwHuvCLX2q+adLIcNtg==
-X-Received: by 2002:adf:e80f:0:b0:313:e20c:b8e8 with SMTP id o15-20020adfe80f000000b00313e20cb8e8mr5448993wrm.30.1688293905642;
-        Sun, 02 Jul 2023 03:31:45 -0700 (PDT)
-Received: from localhost ([2a01:e0a:32f:1f0:ae0b:3bc8:c743:b2d8])
-        by smtp.gmail.com with ESMTPSA id p19-20020a05600c205300b003fbc2c0addbsm7265041wmg.42.2023.07.02.03.31.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jul 2023 03:31:45 -0700 (PDT)
-From:   Raphael Gallais-Pou <rgallaispou@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>
-Cc:     devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: st: add buswidth property to stm32f429-disco
-Date:   Sun,  2 Jul 2023 12:35:16 +0200
-Message-ID: <20230702103516.139440-1-rgallaispou@gmail.com>
-X-Mailer: git-send-email 2.41.0
+        d=1e100.net; s=20221208; t=1688294655; x=1690886655;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Kr463YdK4TueQEsVEF6h6lfHtlC9u7gWIjzonOPSpWY=;
+        b=JBZRuprBLtXtLErvO45h2IVqFiuyfsCiTijzTYjn8R6Tsn8X3TKR4sYwlnbnea0diM
+         49TQcwuR5d10iuwppi/47mnBuZgZ9bgJXxPP+TDuNgOaZDcebM1JSE+Z9bFKb3kguvSi
+         TOi/qCcOVz0CuoVvc+8iDLN7azQOyJ1zoTdDdDkIYexERcysUvrvt2YK5c9dK+CEWhuY
+         jUcCpdEQVYLVUu7pmvMUBOWM52836NBVY/d0BtZHd1wQszJbkr2YQdzKzFCmJzfubR66
+         WNa7v65goYCo89/GvOX6pFg56mOpbcXJ5IBrm/rPOVGlD6XsDJem7XHnbo4tfnBY7Xkw
+         en7g==
+X-Gm-Message-State: AC+VfDyUwh26NTRCX0QNLyOjJHSlytMyWRflJUu8hnJPVaEtzLf/C/ON
+        GcjSkwed5/kehGuD/O+0WEfFvQ==
+X-Google-Smtp-Source: ACHHUZ5YtWdGr8CtiyE5+4zncb/6RbLT+pffZLWaUK/5zaKkRbOmvN3mhkPyS7MUdOe3iXe1x2Q0HA==
+X-Received: by 2002:a17:906:6a0f:b0:991:d414:d889 with SMTP id qw15-20020a1709066a0f00b00991d414d889mr11713340ejc.15.1688294655476;
+        Sun, 02 Jul 2023 03:44:15 -0700 (PDT)
+Received: from [192.168.10.214] ([217.169.179.6])
+        by smtp.gmail.com with ESMTPSA id c15-20020a170906528f00b0098866a94f14sm10405513ejm.125.2023.07.02.03.44.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 02 Jul 2023 03:44:15 -0700 (PDT)
+Message-ID: <5d13ddb3-e81e-2ce6-a4f6-90e2210b8def@linaro.org>
+Date:   Sun, 2 Jul 2023 12:44:14 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: clock: imx93: Add PDM IPG clk
+Content-Language: en-US
+To:     Jacky Bai <ping.bai@nxp.com>, abelvesa@kernel.org,
+        peng.fan@nxp.com, sboyd@kernel.org, shawnguo@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230628061724.2056520-1-ping.bai@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230628061724.2056520-1-ping.bai@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ili9341 is left without a mandatory buswidth to properly communicate
-between the SI bus and the display. Add the device-tree property.
+On 28/06/2023 08:17, Jacky Bai wrote:
+> From: Chancel Liu <chancel.liu@nxp.com>
+> 
+> Add PDM IPG clk.
+> 
+> Reviewed-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> Signed-off-by: Chancel Liu <chancel.liu@nxp.com>
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> ---
+>  include/dt-bindings/clock/imx93-clock.h | 3 ++-
 
-Signed-off-by: Raphael Gallais-Pou <rgallaispou@gmail.com>
----
- arch/arm/boot/dts/stm32f429-disco.dts | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/stm32f429-disco.dts b/arch/arm/boot/dts/stm32f429-disco.dts
-index 3b81228d46a2..5eaf95afc8c7 100644
---- a/arch/arm/boot/dts/stm32f429-disco.dts
-+++ b/arch/arm/boot/dts/stm32f429-disco.dts
-@@ -197,6 +197,7 @@ display: display@1{
- 		spi-3wire;
- 		spi-max-frequency = <10000000>;
- 		dc-gpios = <&gpiod 13 0>;
-+		buswidth = <8>;
- 		port {
- 			panel_in_rgb: endpoint {
- 			remote-endpoint = <&ltdc_out_rgb>;
--- 
-2.41.0
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
