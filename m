@@ -2,68 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E15F74569B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:59:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAF8374566D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229976AbjGCH7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 03:59:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45738 "EHLO
+        id S229944AbjGCHwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 03:52:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229597AbjGCH7q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:59:46 -0400
-X-Greylist: delayed 533 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 03 Jul 2023 00:59:43 PDT
-Received: from mail.withamteme.com (mail.withamteme.com [141.95.17.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60FF1BC
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 00:59:43 -0700 (PDT)
-Received: by mail.withamteme.com (Postfix, from userid 1002)
-        id 838EAA2727; Mon,  3 Jul 2023 07:50:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=withamteme.com;
-        s=mail; t=1688370648;
-        bh=+Z1DY1JtbI1lR5tmt3OW8xT8H08PjM6MKKa6zMFzPFQ=;
-        h=Date:From:To:Subject:From;
-        b=AtxHkHFXon1hBHknQ4o8zl5ZY1O0dg/wXGzHwfS3qPoVVeLWBlDrcDZWts//IFMXU
-         rz8POMufeCOtTSmlPUYw4F46H0jHbe11HOgXAZxT4PlkgQhvVtrV6hRHxjBt/1OFIt
-         v3QeCvXJnwKkJi4q/Pe9Xj/y982W3RmV1PMjm7/qU+PlGjg6XcM/sJBFHFV3uX1kvI
-         zzDWs3lMa8fOEr1x5zSaNX0W7T4LqJqYGBFEgiEyoIlXnLdI/QVnNMAeqzXgaKi2pv
-         TW8Memi3AAgi6HJY+lmEvKV8+bgOQWT/KEa8q+mjjAG/bJl1VWWxVB9bznaT2880ag
-         iAwOFrWrHcTJA==
-Received: by withamteme.com for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 07:50:39 GMT
-Message-ID: <20230703064520-0.1.7v.h4yf.0.0jd03vl07s@withamteme.com>
-Date:   Mon,  3 Jul 2023 07:50:39 GMT
-From:   "Grzegorz Frycz" <grzegorz.frycz@withamteme.com>
-To:     <devicetree@vger.kernel.org>
-Subject: =?UTF-8?Q?Nieodp=C5=82atne_spotkanie_z_doradc=C4=85_?=
-X-Mailer: mail.withamteme.com
+        with ESMTP id S229653AbjGCHwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:52:22 -0400
+Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF573A6;
+        Mon,  3 Jul 2023 00:52:19 -0700 (PDT)
+Received: from EXMBX166.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX166", Issuer "EXMBX166" (not verified))
+        by ex01.ufhost.com (Postfix) with ESMTP id 46C3B24E268;
+        Mon,  3 Jul 2023 15:52:17 +0800 (CST)
+Received: from EXMBX068.cuchost.com (172.16.6.68) by EXMBX166.cuchost.com
+ (172.16.6.76) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Jul
+ 2023 15:52:17 +0800
+Received: from [192.168.155.85] (202.188.176.82) by EXMBX068.cuchost.com
+ (172.16.6.68) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 3 Jul
+ 2023 15:52:12 +0800
+Message-ID: <017dd7a1-302b-b4be-6b3d-3da0021a9b32@starfivetech.com>
+Date:   Mon, 3 Jul 2023 15:52:12 +0800
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v5 3/3] riscv: dts: starfive: Add TRNG node for VisionFive
+ 2
+Content-Language: en-US
+To:     Aurelien Jarno <aurelien@aurel32.net>,
+        Palmer Dabbelt <palmer@rivosinc.com>, <olivia@selenic.com>,
+        <herbert@gondor.apana.org.au>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <kernel@esmil.dk>,
+        Conor Dooley <conor.dooley@microchip.com>,
+        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-riscv@lists.infradead.org>
+References: <20230117015445.32500-4-jiajie.ho@starfivetech.com>
+ <mhng-348475f1-5880-4951-9692-78210a17acd3@palmer-ri-x1c9a>
+ <ZKCgXvcbWBGWZnsU@aurel32.net>
+From:   Jia Jie Ho <jiajie.ho@starfivetech.com>
+In-Reply-To: <ZKCgXvcbWBGWZnsU@aurel32.net>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_20,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_ABUSE_SURBL autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Level: *
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [202.188.176.82]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX068.cuchost.com
+ (172.16.6.68)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dzie=C5=84 dobry,
+On 2/7/2023 5:53 am, Aurelien Jarno wrote:
+> On 2023-03-14 18:45, Palmer Dabbelt wrote:
+>> On Mon, 16 Jan 2023 17:54:45 PST (-0800), jiajie.ho@starfivetech.com wrote:
+>> > Adding StarFive TRNG controller node to VisionFive 2 SoC.
+>> > 
+>> > Co-developed-by: Jenny Zhang <jenny.zhang@starfivetech.com>
+>> > Signed-off-by: Jenny Zhang <jenny.zhang@starfivetech.com>
+>> > Signed-off-by: Jia Jie Ho <jiajie.ho@starfivetech.com>
+>> > ---
+>> >  arch/riscv/boot/dts/starfive/jh7110.dtsi | 10 ++++++++++
+>> >  1 file changed, 10 insertions(+)
+>> > 
+>> > diff --git a/arch/riscv/boot/dts/starfive/jh7110.dtsi b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> > index 4ac159d79d66..3c29e0bc6246 100644
+>> > --- a/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> > +++ b/arch/riscv/boot/dts/starfive/jh7110.dtsi
+>> > @@ -455,5 +455,15 @@ uart5: serial@12020000 {
+>> >  			reg-shift = <2>;
+>> >  			status = "disabled";
+>> >  		};
+>> > +
+>> > +		rng: rng@1600c000 {
+>> > +			compatible = "starfive,jh7110-trng";
+>> > +			reg = <0x0 0x1600C000 0x0 0x4000>;
+>> > +			clocks = <&stgcrg JH7110_STGCLK_SEC_HCLK>,
+>> > +				 <&stgcrg JH7110_STGCLK_SEC_MISCAHB>;
+>> > +			clock-names = "hclk", "ahb";
+>> > +			resets = <&stgcrg JH7110_STGRST_SEC_TOP_HRESETN>;
+>> > +			interrupts = <30>;
+>> > +		};
+>> >  	};
+>> >  };
+>> 
+>> Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+> 
+> It appears that this patch has never been applied, although the rest of
+> the series has already been merged. Unfortunately it doesn't apply
+> anymore due to other changes to that file.
+> 
+> Could you please rebase and resend it?
+> 
 
-chcia=C5=82bym zaproponowa=C4=87 swoje wsparcie jako broker ubezpieczenio=
-wy.
+Hi Aurelien,
 
-Zrozumienie Pa=C5=84stwa potrzeb pozwoli mi dopasowa=C4=87 odpowiednie ro=
-zwi=C4=85zania ubezpieczeniowe z konkurencyjnymi stawkami i elastycznymi =
-warunkami. =20
+This patch is dependent on
+https://patchwork.kernel.org/project/linux-riscv/patch/20230518101234.143748-2-xingyu.wu@starfivetech.com/
 
-Dzi=C4=99ki zdolno=C5=9Bciom analitycznym i negocjacyjnym, a tak=C5=BCe d=
-obrej znajomo=C5=9Bci rynku ubezpieczeniowego dostarcz=C4=99 Pa=C5=84stwu=
- kompleksowe produkty, kt=C3=B3re zapewni=C4=85 optymalne pokrycie ryzyka=
- i zabezpiecz=C4=85 Pa=C5=84stwa interesy.
+I'll send a new patch for this dts node after all dependencies have been merged.
 
-Chc=C4=85 Pa=C5=84stwo niezobowi=C4=85zuj=C4=85co sprawdzi=C4=87 warunki?
-
-
-Pozdrawiam
-Grzegorz Frycz
+Thanks,
+Jia Jie
