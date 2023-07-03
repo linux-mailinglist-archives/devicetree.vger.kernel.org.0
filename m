@@ -2,143 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7108F745B3F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 276B4745B2C
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:33:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230215AbjGCLgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 07:36:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50860 "EHLO
+        id S231251AbjGCLdJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 07:33:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49090 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229585AbjGCLgq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:36:46 -0400
-Received: from NAM12-DM6-obe.outbound.protection.outlook.com (mail-dm6nam12on2068.outbound.protection.outlook.com [40.107.243.68])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C671EC;
-        Mon,  3 Jul 2023 04:36:42 -0700 (PDT)
+        with ESMTP id S231231AbjGCLdH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:33:07 -0400
+Received: from EUR03-AM7-obe.outbound.protection.outlook.com (mail-am7eur03on2079.outbound.protection.outlook.com [40.107.105.79])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 581BCE59;
+        Mon,  3 Jul 2023 04:33:04 -0700 (PDT)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fnHP46xS7UUMzcVjWvafTNBbziNFZH4Jd+8XzOFioZ1TPLdhzvuEwfICMUMbRAty3HUG64HrjgEifwqm7mgaspgx8ztjk3/N+Qyr3qJ5YRsv0gHoo+w8vjgPaffT1vPvYGiu8JgKErBjzgQ7fvjsV1oa/DdNT07lZnuKv/7410vRxFXEXLOeeUiceCu4e0ThqP1IPCICCg4Vv2PAdqyEQYjPDyt+9jvt+ZfdR6bz8Nozru5tRNpGCZ5EM6KolPEr4IJ+1FAcEoAgWO38Z93qH2VlN0+wTSgO0U4ugEnNjIq2jZjVpYupSD+KWh52oM6bUJXlRSOMsWn+mvlSvh6sfQ==
+ b=RFK1o7Ak/lU6o68Pls+ijIj/E+07a1+uNd1GI50sinGgdxqKedS0oVBRQwHC878hucyGzDrE/YCjRDX6JqLhX+ntRWPZzquQpFT6iVI1QuFfDuzcBpOXlH/aFED/cIXHEaKAEZ7jFKOfZ/OQbwHnGP9P4famuWppuXrnPBA1NaZ+FL3F9qAZUTK9smHD+kxAM81imw5M2xG8/kx1jd9bJjvk2MzMJLVtnNaCAWc8BP5vEr8Z7gveHcg1VaE+GD7XQFYnyo235m7Nj0THlpe0FA/WtYg/w5oGL8AYAsfc61UwvZcdbp7nrwFylztSTYJLBE7sNmZjJQt09iXKuLDh+w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nyj5t5IraypRpxrBG0Yy2IDcXBus11jCmXP93+AAp38=;
- b=llYnVWcXB7OI03P3wA5YszavgJMUsYfsdC5TW/RIPCZBRcEht4BZe/8wuEsu3J+sLwc20ddqjkZ48DwWdx4zD+WojwjBSmC4zLI9ReluFCnlILOiRTO/Qz0pExSyYmfYZ2ErjePEW6lZ4kaj7FdbEbYdhL4cwqSPx7up2wRYKQbIn97JRSh79RIoM5ffM+wvIrZBIw+DdAiZi+jgJVOlzZlbttShCtfacxrswYM/ZS9HHkwS6Dta//pFsUkDm39xere0hqLoA4kylehGXSHnOTNfgk7TJW3fUz/0EXOFk+i+k9OusieD+0BC60dhMslpwOS33vfflkUgb0QVwY7vpA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.160) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ bh=VOpryqmqQar6O6WWQRPFsHYityWNNjD6Y/c13ueTlPE=;
+ b=Uhtn++WZZGww3E9wDDTsd7J9pgvGCNfudHLYyqSNiIttBnTq0qVQ2jyyiSVwPKtNd8giL9WVJ4KneRzYtX6UrJ3FzeJ5dM0nmAHKEazwNprTKbntYhFyML2oAwiwuhW76VPgA8QkPYjmkKp12NrkUBCBDjGHN4eXfSo8YbTvRbJlBAISRfYLUmufai1thzDJyN+zk2s0FNJCeCfM+6ACQbb9/ivF+L0IfdWiYfk6OS152QTPscSqaggZ1+1Tq4Gy+ufXPNK7uPGt7WjeKavPgLoHwPqUXXmDdQXEH3HCITObyclpxjjIvPPs+Rb1TClU1H0BCSunqzJ4AVwnmyHiBg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=nyj5t5IraypRpxrBG0Yy2IDcXBus11jCmXP93+AAp38=;
- b=l2e5tA8UNKJa3j0LdVZu9USPLEIIbNHjBRCqHczf1ken0KrYQIANYxX9TBT5H9IMqf+wMYr8wIR9ggGgfpuYPECT9wysuS4lLbkkACZPbc86QgezgwNzsAyCRekhwi5PYpMsFGaUxj0HF1a+BCOCXkjQzXqFgn+B9Q9BlKAMqLHUp+Ag1XeRYErFZM8EtJG3cTd9A1jH0KFPkmzh6nxhEJxWUl/89NnU7fM3Mv2CfBK/s5v9ij7/w5L9AjNFA0T9W9zj6ZBKia/qqD5xguYDScnUjlgt7OhHnDVTo+b9riOzjkFE88rCF10xxWl1marCIBUhodhAp79zvVL/uVBFNQ==
-Received: from MW4PR03CA0228.namprd03.prod.outlook.com (2603:10b6:303:b9::23)
- by BL1PR12MB5946.namprd12.prod.outlook.com (2603:10b6:208:399::8) with
+ bh=VOpryqmqQar6O6WWQRPFsHYityWNNjD6Y/c13ueTlPE=;
+ b=SBcMYKxI+YzFY0sOtFSZwoF7Bx7P4UVm0X2yTYQKbAKPS380XdVpvcSRSiTcbeYwnutm32xPYYyS07wWLilRPqOZSyu1pmgt7iRWt7c+emTBExG1Je3Y7SW911QjIkLlBgPVFJru1tqQbDxr538ELSJ9ogRaY3OLTgGdlUxn0uU=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=oss.nxp.com;
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
+ by DU2PR04MB8502.eurprd04.prod.outlook.com (2603:10a6:10:2d1::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.24; Mon, 3 Jul
- 2023 11:36:40 +0000
-Received: from CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
- (2603:10b6:303:b9:cafe::8d) by MW4PR03CA0228.outlook.office365.com
- (2603:10b6:303:b9::23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.30 via Frontend
- Transport; Mon, 3 Jul 2023 11:36:39 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.160)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.160 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.160; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.160) by
- CO1NAM11FT042.mail.protection.outlook.com (10.13.174.250) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6521.44 via Frontend Transport; Mon, 3 Jul 2023 11:36:39 +0000
-Received: from rnnvmail204.nvidia.com (10.129.68.6) by mail.nvidia.com
- (10.129.200.66) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Mon, 3 Jul 2023
- 04:36:21 -0700
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by rnnvmail204.nvidia.com
- (10.129.68.6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Mon, 3 Jul 2023
- 04:36:20 -0700
-Received: from moonraker.home (10.127.8.14) by mail.nvidia.com (10.129.68.10)
- with Microsoft SMTP Server id 15.2.986.37 via Frontend Transport; Mon, 3 Jul
- 2023 04:36:19 -0700
-From:   Jon Hunter <jonathanh@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-CC:     <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>
-Subject: [PATCH] arm64: tegra: Fix HSUART for Jetson AGX Orin
-Date:   Mon, 3 Jul 2023 12:36:17 +0100
-Message-ID: <20230703113617.75311-1-jonathanh@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-MIME-Version: 1.0
-X-NVConfidentiality: public
+ 2023 11:33:00 +0000
+Received: from AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::1a0c:99b1:603a:e219]) by AS8PR04MB9080.eurprd04.prod.outlook.com
+ ([fe80::1a0c:99b1:603a:e219%3]) with mapi id 15.20.6544.024; Mon, 3 Jul 2023
+ 11:33:00 +0000
+From:   guoniu.zhou@oss.nxp.com
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com
+Cc:     mchehab@kernel.org, laurent.pinchart@ideasonboard.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jacopo.mondi@ideasonboard.com
+Subject: [PATCH 0/2] media: nxp: add i.MX93 MIPI CSI-2 support
+Date:   Mon,  3 Jul 2023 19:37:32 +0800
+Message-Id: <20230703113734.762307-1-guoniu.zhou@oss.nxp.com>
+X-Mailer: git-send-email 2.37.1
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
+X-ClientProxiedBy: SG2P153CA0014.APCP153.PROD.OUTLOOK.COM (2603:1096::24) To
+ AS8PR04MB9080.eurprd04.prod.outlook.com (2603:10a6:20b:447::16)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1NAM11FT042:EE_|BL1PR12MB5946:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4bf54ec6-3d13-46b6-91fe-08db7bb9c448
+X-MS-TrafficTypeDiagnostic: AS8PR04MB9080:EE_|DU2PR04MB8502:EE_
+X-MS-Office365-Filtering-Correlation-Id: a3f4c872-ee98-4c99-605a-08db7bb94161
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: ylgXfNwfjWi/7WkeXB0TRRrUrzGB2+irliRbvTfbtCMkE9cwmmx5UrsexekroZuysKwRgDQRUNjX6Ppxd7tgcqyNJqkgVbp3hW0A2jKaWAouGvX4vepwXubq7NS4wXYbgEuaoIqhFIvHvIE8wU1epeidW3ZfB5W+C+5OFf9JeDdF6fdKBjlnvXWP1BwpwEZU9TAfal3MjScTpekFQW9hwGmzn9qEPokMwEpyRDNQCnPujPPPTe+uqfepwue1WSzwl8KrV23nxEnFEYNoZyRAVhVzseTYvT6Zv2370IRCgfOcPc3F8gLyKFzh3TX2pRK6G67jeW1CUZrN0D5VV8KxBZt1dP/im/G9vjGdH0lT54b72qPBimdFaKSyBMtGL+3OLABGLNxKUHUlHYTBMmgdlw+zP5M/JHcdhpk8iTjWuWPs5q+m7Drfv2XLSE/tX7cMTkyuKuCZrMcofzByB/IB5TMk9qusDng1vQ4mLxjm4mnsBLd+2/8dJ8TQ6/mhdk3aPjBZP4tdLM8VIjMVZB/4pEcrrhlzHE/TTl06/2trIt5fCH8ABpDlV2M2gAXUVPDJJXHr2X6xmaNuMGs3oh2Kf1hdE1ng8hcptEolRcH8Ylm3lRQDmwotPneyGcPU3VQuR6kQOQjSZJ5NTaG//oCldwd/Mqal3wEzsAc8c/N3xhnXj9MwVdEBn6FDAmAiHNzFOulLqtt6NgeVPKvADAEtYz55CMEZ0zyjq0w6Cyws5E2/FkxgFoKo6lHEarQFDITx
-X-Forefront-Antispam-Report: CIP:216.228.117.160;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge1.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(136003)(376002)(396003)(346002)(39860400002)(451199021)(40470700004)(46966006)(36840700001)(40460700003)(2906002)(41300700001)(5660300002)(8936002)(8676002)(82310400005)(36756003)(40480700001)(86362001)(186003)(2616005)(478600001)(107886003)(26005)(1076003)(82740400003)(70206006)(47076005)(316002)(4326008)(70586007)(36860700001)(7636003)(54906003)(356005)(336012)(426003)(110136005)(83380400001);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2023 11:36:39.4219
+X-Microsoft-Antispam-Message-Info: ZEkAcbJpd3qnIZvktgpUOnbWhHTNUoIejCKD3FABRm5ZYjbJaQI/j1pCUjKBjomZNaOERH2MLSfsCiNm18dINXUoHkseb+pa9EoHev/28ZEjMEVU70eVdkhXt4DOS2JQ9hcbDmt66xE2BG4TMkp9yAwgNznFEHnkPtTXRyOpu5ma9VsKYWnenzhqM+WD5MnhQ9fd1lyvPLZKmxiLKEJ9+lfusJsQOwRe03ldARRHfEoFc3VyBk6xuBzlfKSm6duQrESTHn2KBh7vfEumx/C5WDeFpRzzzAP6m1x997UKmSlgvB3d6N5/P+A1ZForl11yukO72xcwJ4g/1pMLIqiKltOp83FCNHfNfzMmPOSLA66LZRFkFAI2GwgtCc6tk2yN11i66+qZcTtvaIO9+LdQzVxpwQQ8WuL+k3MZyLLK4X2hrCyfG4E67iS7dteXUB1yhnVMDbFxV3T/5f0kDpseM9OKVBwO+i0W7qmLLhCCokpHcpSemb3V0Gry0WmnmZINry0zcneaQ84n7O8yLzTntCcwhATCQZptByyobX0rpKphOQ+C1jXrH8sdK/kQfwkMM7hnw5QqKmPCZyTueuRiTDm7OFsP+c8thJF4P3jCGR2DCFdpJctWsb+I+G9+mV9C
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AS8PR04MB9080.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(39860400002)(346002)(376002)(396003)(136003)(366004)(451199021)(26005)(478600001)(1076003)(9686003)(6666004)(6512007)(6506007)(86362001)(2616005)(186003)(38350700002)(38100700002)(66556008)(66946007)(66476007)(4326008)(83380400001)(52116002)(6486002)(316002)(5660300002)(8676002)(8936002)(41300700001)(2906002);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?0mHkto4fKk77+2UnohbtcaS9gHCf2H8pNogWQd8hYgB06zAoZB3/2CLx3b0s?=
+ =?us-ascii?Q?hHRoO/ywj1WxoeQZC5lLvE6cHlMuxcRz2YnmJ5okYIc3E1+3TAsoxYKGMI7q?=
+ =?us-ascii?Q?IKQxFzSDKeEC/l+1SnvQKRIGuY9KZKRSjAyZkBWGPv84+VtBNnyq5q6mYNvJ?=
+ =?us-ascii?Q?49CdfJWgTX8B8GyrtG4HQRKUL5KHTvYxpFuivNEz5geJARVj0+YZTE5dSQ3r?=
+ =?us-ascii?Q?R3UM9Z9R8znuVZDPJ0B6Tg4s421D35RtHEEe6H87Ng9HrXUgDfEmbWyOaLL5?=
+ =?us-ascii?Q?6xfr6ZrAAyAVVXJcs7YHdar5uNgsRdZ+Wpg1TWKoSTWDprOaQ9f2NYiyxmha?=
+ =?us-ascii?Q?cQmqsSAohBYduhZtoAbeSjK3AAcwT+2m8ZGN6njqQKOusw7D63c1nwdNzPVE?=
+ =?us-ascii?Q?dSesLkxV/mygHguzf6iUqKP3hJP1kOQSXZ4MUJDd98VBGYtIM+cbu4Q3+Emj?=
+ =?us-ascii?Q?Fw/zaIREUtyHaon9EIRrUEyetU9zfz3mnXeXMYH5TC2ppI0BQtumm4qDQQSE?=
+ =?us-ascii?Q?bqg5bw2ibXex4jMp05iSbMYqMVKpTqh0q7y4zmbMxDvA/VhINbyRoz8yzCqB?=
+ =?us-ascii?Q?DAFuBo87RwAehUgwmLLQW/tk2BNzkFHlyqqKIk8sfNVFD/q6P4YwxHdIzbPo?=
+ =?us-ascii?Q?9z9ZOxVFBGBnsDFg4XrSRkWnVYRdcWtLRGwdPjspOk66oQSc/GTakcV4WxAO?=
+ =?us-ascii?Q?lmPOdp0u/8iC7qdfJngPI9qJBDvx4biZDxXbkdKVQdFhzcCKY4+nCv6CAB+y?=
+ =?us-ascii?Q?yxonYDv7fEbWzb3s9Gu+FUH8iHp+0KO+wDPFDKFjxc6Lpg0fI3FhFxNEK7pA?=
+ =?us-ascii?Q?t2TuU5voFKmzvlP68sBXbLYgF1VjzDTyrL9kzjkPnHMhMbVjaJFIqrbGiczF?=
+ =?us-ascii?Q?au0QqXblSNx+HrfnetNFrBqJR1EekAI62M5+b2tOgsnc1fMbmho+lqfMNoa9?=
+ =?us-ascii?Q?FQvfBkbAfBW9Q1NeqLlPlGI6d4J0HX647OiVlKv/fHG2p964q2a0nGuSnkpp?=
+ =?us-ascii?Q?k2LBPidgJ4EezSdG0Uln7n4H1oxp6J1iVgShL2PzGmDnHYA3LAXQN8rnkx30?=
+ =?us-ascii?Q?WS6T9UUVLE4LJsQuIeqBY0RaHOG16towKBX+atCd+je+tQAc9lczUy/tcOlO?=
+ =?us-ascii?Q?QYixvHJq3lqSjzCnvU7h5uDLXh+iPpblFhuY2bXajz0nitdp4Dz6L2EMfTeo?=
+ =?us-ascii?Q?ISG0ql/jkGcAfloz3tn3cRQuI6FlPbrruIC/om2rAPUidc3oYMZh6Av/yr8J?=
+ =?us-ascii?Q?7VF/UApkma84HD3A92lyZdzSpImhUyapf+NW9iSJ0RR9fGLbqX3hZ9ZJGred?=
+ =?us-ascii?Q?+9ProrXDEJIJYC9rFUcEP28W9HHDhZwnXOSybG1pB4YoCHs8eXKH+ZJnEm9b?=
+ =?us-ascii?Q?h/fRE10vYg1fJtQ116DSJJgZhj/31D++/mXPQ5mOzDbtOOys/nmOWEKtYs95?=
+ =?us-ascii?Q?hb/9U4grTsX1s9WGwDfQyOcLV7SRN793SCDthoB4x2SVR1c6gMN19nrFg8XC?=
+ =?us-ascii?Q?isCUEXKOGsI4Zy2H7gg07MGV368NFPlS22+WifNNAntVRfNbnFWFEK2R9HBI?=
+ =?us-ascii?Q?taGH89Th3mvEDMF244vQPKvu41QUpZfyItkTZDiZ?=
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a3f4c872-ee98-4c99-605a-08db7bb94161
+X-MS-Exchange-CrossTenant-AuthSource: AS8PR04MB9080.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2023 11:33:00.2511
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4bf54ec6-3d13-46b6-91fe-08db7bb9c448
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.160];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: CO1NAM11FT042.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5946
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 5EXzK2Zx/OiF8bzeVCmo2ZfDDlNkhJSg9TmvifWP+8EraEVa1AUrJs9B8MDj+oImRIg04PYuzIROVGBi0mSHkw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DU2PR04MB8502
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
-reset-names") was applied, the HSUART failed to probe and the following
-error is seen:
+From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
 
- serial-tegra 3100000.serial: Couldn't get the reset
- serial-tegra: probe of 3100000.serial failed with error -2
+Add MIPI CSI-2 and D-PHY driver support for NXP i.MX93.
 
-Commit 71de0a054d0e ("arm64: tegra: Drop serial clock-names and
-reset-names") is correct because the "reset-names" property is not
-needed for 8250 UARTs. However, the "reset-names" is required for the
-HSUART and should have been populated as part of commit ff578db7b693
-("arm64: tegra: Enable UART instance on 40-pin header") that
-enabled the HSUART for Jetson AGX Orin. Fix this by populating the
-"reset-names" property for the HSUART on Jetson AGX Orin.
+v4l2-compliance 1.23.0-4996, 64bits, 64-bit time_t
+v4l2-compliance SHA: 9431e4b26b48 2023-02-13 14:51:47
 
-Fixes: ff578db7b693 ("arm64: tegra: Enable UART instance on 40-pin header")
-Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
----
- arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts | 1 +
- 1 file changed, 1 insertion(+)
+Compliance test for device /dev/v4l-subdev2:
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-index cd13cf2381dd..513cc2cd0b66 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3737-0000+p3701-0000.dts
-@@ -2010,6 +2010,7 @@ interrupt-controller@2a40000 {
- 
- 		serial@3100000 {
- 			compatible = "nvidia,tegra194-hsuart";
-+			reset-names = "serial";
- 			status = "okay";
- 		};
- 
+Driver Info:
+        Driver version   : 6.4.0
+	Capabilities     : 0x00000000
+
+
+Required ioctls:
+	test VIDIOC_SUDBEV_QUERYCAP: OK
+	test invalid ioctls: OK
+
+Allow for multiple opens:
+	test second /dev/v4l-subdev2 open: OK
+	test VIDIOC_SUBDEV_QUERYCAP: OK
+	test for unlimited opens: OK
+
+Debug ioctls:
+	test VIDIOC_LOG_STATUS: OK (Not Supported)
+
+Input ioctls:
+	test VIDIOC_G/S_TUNER/ENUM_FREQ_BANDS: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_S_HW_FREQ_SEEK: OK (Not Supported)
+	test VIDIOC_ENUMAUDIO: OK (Not Supported)
+	test VIDIOC_G/S/ENUMINPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDIO: OK (Not Supported)
+	Inputs: 0 Audio Inputs: 0 Tuners: 0
+
+Output ioctls:
+	test VIDIOC_G/S_MODULATOR: OK (Not Supported)
+	test VIDIOC_G/S_FREQUENCY: OK (Not Supported)
+	test VIDIOC_ENUMAUDOUT: OK (Not Supported)
+	test VIDIOC_G/S/ENUMOUTPUT: OK (Not Supported)
+	test VIDIOC_G/S_AUDOUT: OK (Not Supported)
+	Outputs: 0 Audio Outputs: 0 Modulators: 0
+
+Input/Output configuration ioctls:
+	test VIDIOC_ENUM/G/S/QUERY_STD: OK (Not Supported)
+	test VIDIOC_ENUM/G/S/QUERY_DV_TIMINGS: OK (Not Supported)
+	test VIDIOC_DV_TIMINGS_CAP: OK (Not Supported)
+	test VIDIOC_G/S_EDID: OK (Not Supported)
+
+Control ioctls:
+	test VIDIOC_QUERY_EXT_CTRL/QUERYMENU: OK (Not Supported)
+	test VIDIOC_QUERYCTRL: OK (Not Supported)
+	test VIDIOC_G/S_CTRL: OK (Not Supported)
+	test VIDIOC_G/S/TRY_EXT_CTRLS: OK (Not Supported)
+	test VIDIOC_(UN)SUBSCRIBE_EVENT/DQEVENT: OK (Not Supported)
+	test VIDIOC_G/S_JPEGCOMP: OK (Not Supported)
+	Standard Controls: 0 Private Controls: 0
+
+Format ioctls:
+	test VIDIOC_ENUM_FMT/FRAMESIZES/FRAMEINTERVALS: OK (Not Supported)
+	test VIDIOC_G/S_PARM: OK (Not Supported)
+	test VIDIOC_G_FBUF: OK (Not Supported)
+	test VIDIOC_G_FMT: OK (Not Supported)
+	test VIDIOC_TRY_FMT: OK (Not Supported)
+	test VIDIOC_S_FMT: OK (Not Supported)
+	test VIDIOC_G_SLICED_VBI_CAP: OK (Not Supported)
+	test Cropping: OK (Not Supported)
+	test Composing: OK (Not Supported)
+	test Scaling: OK (Not Supported)
+
+Codec ioctls:
+	test VIDIOC_(TRY_)ENCODER_CMD: OK (Not Supported)
+	test VIDIOC_G_ENC_INDEX: OK (Not Supported)
+	test VIDIOC_(TRY_)DECODER_CMD: OK (Not Supported)
+
+Buffer ioctls:
+	test VIDIOC_REQBUFS/CREATE_BUFS/QUERYBUF: OK (Not Supported)
+	test VIDIOC_EXPBUF: OK (Not Supported)
+	test Requests: OK (Not Supported)
+
+Total for device /dev/v4l-subdev2: 43, Succeeded: 43, Failed: 0, Warnings: 0
+
+Guoniu.zhou (2):
+  media: dt-bindings: Add binding doc for i.MX93 MIPI CSI-2
+  media: nxp: add driver for i.MX93 MIPI CSI-2 controller and D-PHY
+
+ .../bindings/media/nxp,dwc-mipi-csi2.yaml     |  140 ++
+ MAINTAINERS                                   |   10 +
+ drivers/media/platform/nxp/Kconfig            |   11 +
+ drivers/media/platform/nxp/Makefile           |    3 +
+ drivers/media/platform/nxp/dwc-mipi-csi2.c    | 1384 +++++++++++++++++
+ drivers/media/platform/nxp/dwc-mipi-csi2.h    |  289 ++++
+ drivers/media/platform/nxp/dwc-mipi-dphy.c    |  195 +++
+ 7 files changed, 2032 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.yaml
+ create mode 100644 drivers/media/platform/nxp/dwc-mipi-csi2.c
+ create mode 100644 drivers/media/platform/nxp/dwc-mipi-csi2.h
+ create mode 100644 drivers/media/platform/nxp/dwc-mipi-dphy.c
+
 -- 
-2.34.1
+2.37.1
 
