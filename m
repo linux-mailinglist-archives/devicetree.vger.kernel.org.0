@@ -2,79 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 48F2A745DB3
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 15:47:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1744C745E0D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 15:59:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230131AbjGCNrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 09:47:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60964 "EHLO
+        id S229484AbjGCN70 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 09:59:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39070 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229738AbjGCNrw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 09:47:52 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 370A5114
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 06:47:51 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-98df3dea907so528966766b.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 06:47:51 -0700 (PDT)
+        with ESMTP id S229958AbjGCN7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 09:59:23 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1B396E5A
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 06:59:22 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-98e011f45ffso421028366b.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 06:59:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688392069; x=1690984069;
+        d=linaro.org; s=google; t=1688392760; x=1690984760;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=5mR8kflAUl3Rreoc5lJ+BkszrAX8k/kBUds7AX5wTeQ=;
-        b=luH7LMT3M6gjy+U9cz1PKrhJaitqeIjGWzyuCQk1Fg98SinFKK84u425JS/Pod4SEY
-         W5iAMYzShDe/QD4iDQNjApF1N6nEliO1cv99bqxinSAVA/D3pgTnbHDCov21AJJ2UrdT
-         Uh27Y+hdz3Q5nVDBRdA/DWhQyyCi+iJbXIavvGpbv90UClKFWobx5dGZAo4iRXpGmQ5V
-         533VsGBlyklrUzpITzl6qeVIWbmF0rQApIENtAgSBRjhUWitb25lNQ4HzJh0ElGoDjzU
-         /uZIzP80x6zRcdRRprqCzm9AQZpJ249deanxwT6mjuGM9LZBtY2aKfzTQOL+8RvaTAEv
-         yPLw==
+        bh=X80ysD/F6wvgJKG8ztSCHOsfQgFC0oL2m6OimzpJAHE=;
+        b=xTlawRSml3QjxxqYZhVn+T6lwHkX+LmDoaoGwDF4hdysxEQOSi8mjnnsbImPtglyjv
+         +ueYNV2paUwXBQ/3g83aN6gYENvfk733tRTvOo0wmNGy7lqUwIRKTvCmRzjxq0In0lW2
+         yaNlNGu2TD8uPiYRncw7dSXirI/BcZc/aIq81+eCdTP1Ve5oz30koqDmcvX1NnpVJ2z2
+         FD50Py6puVy3JN6WomELAUvSb4oGicviRNggW+lOCIV8fWgQWZIZJ3SL2vKYR8GzAE0o
+         aguWBV3nO+LXRycWErSpsSmQXimW/FUnKhiBQIJ4G5w+FRI1cS5L1stPC3bdnhFdlE3n
+         GaVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688392069; x=1690984069;
+        d=1e100.net; s=20221208; t=1688392760; x=1690984760;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5mR8kflAUl3Rreoc5lJ+BkszrAX8k/kBUds7AX5wTeQ=;
-        b=XUOdv7cQFUCpigrV85owYbk4SSsX+tROUXzpKYbED1upIZXfEKeXyj8fzmIfmEyLXt
-         vgJ/3/eayscvPpLTZp3lp4VTSQRS9bQkpKiWugUlLgxfHwaJ3kWJLh3yhg0NYF8TBx1X
-         RcxGBe6nyeBN8ZKb7vGgrStI8nOGU6ZEJH/gS1VZT32YnXVIskpcWrI89+DaPi5mNgES
-         rKa4K1WHmB43aUd1aobKPs7Moki++lciOfzFEV95qXCoEei3S5fTLSZtaB/e4cbyl4by
-         OFeLxLeKZoT+xvqOETiVBgDmmhNWSXazOmUdGT1+hto1P8ObIy6YjH3gPvslowFfzz5P
-         x9rw==
-X-Gm-Message-State: ABy/qLZvmLklwX9wDNLNkXS7DbGUO30x8JmtEXtrw/uhBJWgDKkOjP+M
-        PFxYNFBfWloHoLAYli8e+tRCHg==
-X-Google-Smtp-Source: APBJJlEL46+KVkuqPX8uIyw1aGCUFwRRFtVipSjMFgZQOsSGE44XK1wwr4iA1h2F4ukGGad+KbHMZg==
-X-Received: by 2002:a17:906:1690:b0:96f:5747:a0de with SMTP id s16-20020a170906169000b0096f5747a0demr7622915ejd.6.1688392069742;
-        Mon, 03 Jul 2023 06:47:49 -0700 (PDT)
+        bh=X80ysD/F6wvgJKG8ztSCHOsfQgFC0oL2m6OimzpJAHE=;
+        b=c8vBOvVFTTicqUlbtKsRsXeZNCrbz2xi50JrGgn3v1bwaqY3yHM7Wf068J9Fi7OXgf
+         XqpVMXhXSI8J3YNWPNz3hazNsY0jIPzptJy9JuDq+KgaVjTvPRl+b3NKAOvFw9J3+nbs
+         Jh+6/IEtTnK/A5HJJBCmxdDJrIONz5MdUkDewrhpDDJbbqaCWeezq/05FKzVFjus+E66
+         su0Mgsr02T15Jra10JvlyKpknKvqyAqTNYXuJwTaJ1PmlzOw384wOSDiFLyun2MfRjfG
+         jZob4/dXqX6qSzQxC+1ckLFbm/0DXjRac/k+PS56QciySf1GSks8hhXuqDywGrfViTA7
+         3VjA==
+X-Gm-Message-State: ABy/qLa+JaSoc3qCfPO6A0NnZ5Zj/4G3T/jhdJp/bCaCXcPnmccD2RX8
+        nGImf9sdMK61cPS4VdvkNXYpQg==
+X-Google-Smtp-Source: APBJJlHWOpmp0L5iU4aJ3V1Luyx61WADzk04WlLGpK/8sKUeSlzfLcnuvKA4rHqVN4V/eGDHm6iOWQ==
+X-Received: by 2002:a17:907:76ab:b0:992:d013:1132 with SMTP id jw11-20020a17090776ab00b00992d0131132mr5768360ejc.1.1688392760602;
+        Mon, 03 Jul 2023 06:59:20 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id oz31-20020a170906cd1f00b0098d15d170a0sm11936803ejb.202.2023.07.03.06.47.48
+        by smtp.gmail.com with ESMTPSA id p11-20020a1709060e8b00b00993159ce075sm3726148ejf.210.2023.07.03.06.59.18
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 06:47:49 -0700 (PDT)
-Message-ID: <5f501f0f-2362-4079-d833-6883b674e588@linaro.org>
-Date:   Mon, 3 Jul 2023 15:47:47 +0200
+        Mon, 03 Jul 2023 06:59:20 -0700 (PDT)
+Message-ID: <14253982-da00-ceaa-4fe9-c2561258b014@linaro.org>
+Date:   Mon, 3 Jul 2023 15:59:18 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v4 2/2] soc: loongson2_pm: add power management support
+Subject: Re: [PATCH 1/5] dt-bindings: spi: spi-geni-qcom: Allow no qup-core
+ icc path
 Content-Language: en-US
-To:     zhuyinbo <zhuyinbo@loongson.cn>, Rob Herring <robh+dt@kernel.org>,
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Liu Yun <liuyun@loongson.cn>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn
-References: <20230620090811.721-1-zhuyinbo@loongson.cn>
- <20230620090811.721-3-zhuyinbo@loongson.cn>
- <bd9661f1-b77d-2ce9-0de2-f559576bf55a@loongson.cn>
+        linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20230703-topic-8250_qup_icc-v1-0-fea39aa07525@linaro.org>
+ <20230703-topic-8250_qup_icc-v1-1-fea39aa07525@linaro.org>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <bd9661f1-b77d-2ce9-0de2-f559576bf55a@loongson.cn>
+In-Reply-To: <20230703-topic-8250_qup_icc-v1-1-fea39aa07525@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,13 +86,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2023 03:30, zhuyinbo wrote:
+On 03/07/2023 15:31, Konrad Dybcio wrote:
+> Some SoCs (like SM8150 and SM8250) don't seem to provide a qup-core path.
+> Allow such case.
 > 
-> Friendly ping ?
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>  .../devicetree/bindings/spi/qcom,spi-geni-qcom.yaml       | 15 ++++++++++-----
+>  1 file changed, 10 insertions(+), 5 deletions(-)
 > 
 
-Please avoid pings during merge window. Not much can happen with the
-patchset anyway. Resend or ping afterwards.
+
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
