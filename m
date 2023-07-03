@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B897745E4F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:16:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5AA745E7D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:26:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229608AbjGCOQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 10:16:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45770 "EHLO
+        id S230101AbjGCOZ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 10:25:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50478 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229484AbjGCOQR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:16:17 -0400
-Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36446E54
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 07:16:16 -0700 (PDT)
-Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-98e39784a85so811084466b.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 07:16:16 -0700 (PDT)
+        with ESMTP id S229604AbjGCOZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:25:58 -0400
+Received: from mail-lf1-x136.google.com (mail-lf1-x136.google.com [IPv6:2a00:1450:4864:20::136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0395E5C
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 07:25:56 -0700 (PDT)
+Received: by mail-lf1-x136.google.com with SMTP id 2adb3069b0e04-4fb761efa7aso6973409e87.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 07:25:56 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688393774; x=1690985774;
+        d=linaro.org; s=google; t=1688394355; x=1690986355;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=YZZJzbwFN4n03zshXK/J7TJjDtnSZkH39pK/RDg/Cu8=;
-        b=NDAvG1Uq9mqFT4vdanvxRFxPwqRPt1DYfERUMqUxx1QMnZlj9AwlXAVeC+kMmYFfK1
-         kcta0tNxQRlDOAyrM6V5RoCakvaO5Myehpsd6W1ps4oxm3n5IXLhZeZqjANJ9aUAVSjt
-         iTKUjtaMOYsIKA+x959dguBWKV9iUOW3+Web6fUfRQoZP/3gmsowr5mWCpOVz8sxddWf
-         5oSrxONL99T7s+WgUEo/Nw0aZJ/Ma/iV6NEFFqNPZF8zT8dOwcMDQX8NHlu0m5fmCPPr
-         uxEdpSwinLaRn01b7LGOFHvnYgSgVZayJZDQtQKEfJPCsK5To0OknozzxbGje1svGbQY
-         yoHg==
+        bh=nR1JIau5H5rAt0KfiJQqEOPzQsDB3hDcj43jCj7PzkM=;
+        b=XFE+lKHhuGUEIXWBw4DftRQl+i6fw+3/N8iyJEyTVXO/98D+spWfUSRMZkOBzRB7XD
+         SVy0VcHTVh3QPXv7kxJne6o5fqL3GZiaQFO++JNMFeRepJqynHenV0O034CMh9uoIW98
+         3eMoo0trZx4+MaUFqSa4g3yHawk7gA3t/hSkfYiMt2OjtYYCvfYPWSfo6Q9GEVwCym70
+         zbuAaKlA+ADuKSHEK1cnjcXRJucspTr5/ZfBpsvtMkMYK7Y82HGwwaRrmeo49u5tu5b7
+         Ng30EYNhd/PVblqQP8XZpOJ/xz2DCMyHC8JUj2IION+iBaAl2z/a2PwglkKDZ1kjMh7m
+         uJYQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688393774; x=1690985774;
+        d=1e100.net; s=20221208; t=1688394355; x=1690986355;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=YZZJzbwFN4n03zshXK/J7TJjDtnSZkH39pK/RDg/Cu8=;
-        b=I338UA3KcgyvSVsFtzKWL4XqAI9jNsZGwZDzLUXnURwcmPZ6su2D2TYzcEiZH6L1ua
-         M9Q25sK5A23VpKJN9Gck6nevJYlYZ6h20OmiZoA8AaCTLA+XSNo7oFXfliVhaM9Arvnl
-         eB7p8axX91bj2wWWoHzPy0Hyu957/mtr0RbutBpOq3j6AmEkECnWfl1FrWnVzWl0Sa+S
-         KMDzGMmwj5ArgEknccvewnSvirW2hxe7ZLeG8728GbaG9iJhAxc74abpAS6g8um5awPe
-         5xVCAwTxyuIbvVW2drlLyAvh8cD5vMxoU8XMJ2ExmM3kZHgxdINEnp6GxNap+/70SFlJ
-         ocZg==
-X-Gm-Message-State: AC+VfDwqJ5ECgwU666D0VIHiKSUJmTx6SE0p1/9xhVYJ8g6CEjJXkrGz
-        7Bub+eGwQKXPeqEOwNBpe3USqA==
-X-Google-Smtp-Source: ACHHUZ749XOz+TzH+Pgvlma0DNoLLiZLUWSy8ZcmVUnssJhoqQyIBCOCh6Ux9aU6w2XG4KQmsC7txQ==
-X-Received: by 2002:a17:907:60d5:b0:98d:f2c9:a1eb with SMTP id hv21-20020a17090760d500b0098df2c9a1ebmr14827554ejc.24.1688393774502;
-        Mon, 03 Jul 2023 07:16:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id la25-20020a170906ad9900b00992e14af9c3sm4821934ejb.143.2023.07.03.07.16.12
+        bh=nR1JIau5H5rAt0KfiJQqEOPzQsDB3hDcj43jCj7PzkM=;
+        b=MfpeRnYJFj4R8MSyEcKBpyojcLeDRAan+A6kPcfMh7Nx/ZeVXu1KijFbjppFRt9Y/N
+         vYPySE8qOR/KMSbDDmtoASqwk3tmSxjzAsccCO8xeL9nOWOlFRDxNUdfb+7iEEaZ6D2S
+         BQFn2VzssS0xt1yZrSjMELHbFRjt49xkaOYnwSiNI8H+tX7GX03K15gKi9GqFCQ9rbU9
+         MUoJQynM8w3zM4fGGB8LgZoTFMSxm0iG9BokvHggVUtQvvtSK433NWUZY0vFCo2ZHcu8
+         LkklevTSVwU8TAIUUchJng52HDEbIwyaTd5I4H2Y4VZqSznIYfKhmA5xr60emgarOC0E
+         xVvg==
+X-Gm-Message-State: ABy/qLZsFGJ44BQP3yhKJjlyX51CjlTJD3uuJcaZ8+3Iekcgw8F5EPfL
+        1w9ZfoBJKWg7w5Q+RKFYPEln4g==
+X-Google-Smtp-Source: APBJJlHM/qj4pCS4sZLl2C1DpzpOgZRb5FHLaQjBC5mgZoHK2+2jKTCEi/ZXgIu5NMvCycfbRNL82A==
+X-Received: by 2002:a19:8c1d:0:b0:4f4:b13a:d683 with SMTP id o29-20020a198c1d000000b004f4b13ad683mr6185895lfd.69.1688394354995;
+        Mon, 03 Jul 2023 07:25:54 -0700 (PDT)
+Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
+        by smtp.gmail.com with ESMTPSA id v16-20020ac25610000000b004fb763b5171sm3815903lfd.86.2023.07.03.07.25.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 07:16:14 -0700 (PDT)
-Message-ID: <7b8e0f70-a6d2-16e4-5615-004b930298c5@linaro.org>
-Date:   Mon, 3 Jul 2023 16:16:11 +0200
+        Mon, 03 Jul 2023 07:25:54 -0700 (PDT)
+Message-ID: <643629e2-0da9-44ac-68bf-1867fad8a9ee@linaro.org>
+Date:   Mon, 3 Jul 2023 17:25:53 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: i3c: Add mctp-controller property
-Content-Language: en-US
-To:     Matt Johnston <matt@codeconstruct.com.au>
-Cc:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sm8250: Add interconnects and
+ power-domains to QUPs
+Content-Language: en-GB
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230703053048.275709-1-matt@codeconstruct.com.au>
- <20230703053048.275709-2-matt@codeconstruct.com.au>
- <CAGE=qrrqE3Vj1Bs+cC51gKPDmsqMTyHEAJhsrGCyS_jYKf42Gw@mail.gmail.com>
- <d29fc42c04f2e1142b0a196ef7df2d74335cec2e.camel@codeconstruct.com.au>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d29fc42c04f2e1142b0a196ef7df2d74335cec2e.camel@codeconstruct.com.au>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org
+References: <20230703-topic-8250_qup_icc-v1-0-fea39aa07525@linaro.org>
+ <20230703-topic-8250_qup_icc-v1-5-fea39aa07525@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230703-topic-8250_qup_icc-v1-5-fea39aa07525@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -84,58 +87,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2023 10:14, Matt Johnston wrote:
-> On Mon, 2023-07-03 at 09:15 +0200, Krzysztof Kozlowski wrote:
->> On Mon, 3 Jul 2023 at 07:31, Matt Johnston <matt@codeconstruct.com.au> wrote:
->>>
->>> This property is used to describe a I3C bus with attached MCTP I3C
->>> target devices.
->>>
->>> Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
->>> ---
->>>  Documentation/devicetree/bindings/i3c/i3c.yaml | 4 ++++
->>>  1 file changed, 4 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
->>> index fdb4212149e7..08731e2484f2 100644
->>> --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
->>> +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
->>> @@ -55,6 +55,10 @@ properties:
->>>
->>>        May not be supported by all controllers.
->>>
->>> +  mctp-controller:
->>> +    description: |
->>> +      Indicates that this bus hosts MCTP-over-I3C target devices.
->>
->> I have doubts you actually tested it - there is no type/ref. Also,
->> your description is a bit different than existing from dtschema. Why?
->> Aren't these the same things?
+On 03/07/2023 16:31, Konrad Dybcio wrote:
+> Describe the interconnect paths related to QUPs and add the power-domains
+> powering them.
 > 
-> (sorry my reply minutes ago was somehow an old draft, please ignore)
+> This is required for icc sync_state, as otherwise QUP access is gated.
 > 
-> Ah, I'll add 
-> $ref: /schemas/types.yaml#/definitions/flag
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
+>   arch/arm64/boot/dts/qcom/sm8250.dtsi | 150 +++++++++++++++++++++++++++++++++++
+>   1 file changed, 150 insertions(+)
 
-Although does not matter, but use the same as in dtschema.
-type: boolean
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-> 
-> Testing with 
->   make dtbs_check DT_SCHEMA_FILES=trivial-devices.yaml
-> I don't see any warnings, and neither after adding mctp-controller to a .dts
-> (out of tree) and testing with
->   make CHECK_DTBS=y DT_SCHEMA_FILES=i3c.yaml aspeed-test.dtb
-> 
-> Should that pick it up?
-> 
-> For the description, do you mean it differs to the other properties in
-> i3c.yaml, or something else?
-
-It differs than existing mctp-controller property. If this was on
-purpose, please share a bit more why. If not, maybe use the same
-description?
-
-Best regards,
-Krzysztof
+-- 
+With best wishes
+Dmitry
 
