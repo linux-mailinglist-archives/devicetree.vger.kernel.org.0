@@ -2,59 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DF8774608B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 18:15:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1EE8746093
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 18:17:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231202AbjGCQO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 12:14:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47320 "EHLO
+        id S230095AbjGCQRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 12:17:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48364 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230471AbjGCQO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 12:14:57 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FA85138;
-        Mon,  3 Jul 2023 09:14:56 -0700 (PDT)
+        with ESMTP id S230016AbjGCQRI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 12:17:08 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4CE5138;
+        Mon,  3 Jul 2023 09:17:07 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 0D6D160FB8;
-        Mon,  3 Jul 2023 16:14:56 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0173BC433C8;
-        Mon,  3 Jul 2023 16:14:52 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6169C60FB7;
+        Mon,  3 Jul 2023 16:17:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CF160C433C8;
+        Mon,  3 Jul 2023 16:17:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688400895;
-        bh=BsWEnEqe0ET6H80r8pFNGKHrTSHA978h0Yg/VQDguJQ=;
+        s=k20201202; t=1688401026;
+        bh=JTevVLvj3EYl1fWMMxi04EGyH5Dsiv3lYD+IRooLid4=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=DBpa3O4SAB9T5iO6tx9YKtDdUNgENsXa7+59DWLAMAhcYmZm1dASjQ3w/8NTnFV7L
-         BUeOzClEPDVInf4kDWhAbQ9YFd2G3NBJfwn7BoU/Mgo86gd6YBiP/lbpYafIqi90WR
-         JulMexxx/8SQau25L4BD5Kh1Yz46MCxRsgEDEUxEI6s2T32CWwLZkUCDnNW3cNeBGO
-         riGCMv/Afh9nzf1ZNE8L3h7sJOAisOJCbqvmL1OcnkE0zSimjitaaNR4sv09seJMkv
-         aRaRu58ShUx21o12T/H1deaullBpAnZ2dpoxc50RSw4rFxs1r+tpf4a1pdxNOKzIHP
-         753vgVHhyza1g==
-Date:   Mon, 3 Jul 2023 17:14:50 +0100
+        b=CiCpscVmtLwtlr03C+J+S7pOm5HBjzckjCfZojZuaIiGVt8r77DyLUSGk8NY/Rsbh
+         NWzznjLAAzD0GOk0U/pWNhIRGbzeW65vHHQ3e2eooHEbX///fV4ui76SNSIVaK0noN
+         ZPQt92CgOTxtsxrmcS2bB62OdVIXhbLh6efBXBbKjuXh6CnA+IF8b+d3aw3pjQjmWt
+         4HG1UOlxh000Pjiz9eYovhb1CDPEiVxlF7nshYTi5iPCPAKI7rNBFb518iM18c5N0r
+         c6Jkv60zDjasmQAAj8mO8UuBntpS4VHm7DpAa/0VyIytTbr5neZN8ZsGo/ujywc9hj
+         gs+Pq4VAeMi7Q==
+Date:   Mon, 3 Jul 2023 17:17:01 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Jonathan Cameron <Jonathan.Cameron@huawei.com>, jic23@kernel.org,
-        lars@metafoo.de, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        alazar@startmail.com, daniel.baluta@nxp.com,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH] dt-bindings: iio: adc: ti,ads1015: fix datarate max
- value and meaning
-Message-ID: <20230703-worshiper-observer-f44b6ddf1e00@spud>
-References: <20230621160857.3400747-1-m.felsch@pengutronix.de>
- <20230621-unsavory-ransack-f0a3af93325c@spud>
- <20230702174148.00004260@Huawei.com>
- <20230703064626.2vr6tfwthoi5kivh@pengutronix.de>
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     palmer@dabbelt.com, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Evan Green <evan@rivosinc.com>,
+        Sunil V L <sunilvl@ventanamicro.com>,
+        linux-doc@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 02/11] RISC-V: don't parse dt/acpi isa string to get
+ rv32/rv64
+Message-ID: <20230703-baboon-panning-b8a7268899c7@spud>
+References: <20230703-repayment-vocalist-e4f3eeac2b2a@wendy>
+ <20230703-foothill-enforced-86baba776d5e@wendy>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="LP4V6kP74TAFPZ8x"
+        protocol="application/pgp-signature"; boundary="S8rcp5QksxDE+03r"
 Content-Disposition: inline
-In-Reply-To: <20230703064626.2vr6tfwthoi5kivh@pengutronix.de>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+In-Reply-To: <20230703-foothill-enforced-86baba776d5e@wendy>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -64,94 +67,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---LP4V6kP74TAFPZ8x
+--S8rcp5QksxDE+03r
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 03, 2023 at 08:46:26AM +0200, Marco Felsch wrote:
-> On 23-07-02, Jonathan Cameron wrote:
-> > On Wed, 21 Jun 2023 21:41:05 +0100
-> > Conor Dooley <conor@kernel.org> wrote:
-> >=20
-> > > On Wed, Jun 21, 2023 at 06:08:57PM +0200, Marco Felsch wrote:
-> > > > Datarate (dr) is a 3-bit wide register field. Values from 0 to 7 are
-> > > > allowed for all devices but only for the ADS1115 devices a value of=
- 7
-> > > > does make a difference.
-> > > >=20
-> > > > While on it fix the description of the datarate for ADS1115 devices=
- as
-> > > > well.
-> > > >=20
-> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > ---
-> > > >  .../devicetree/bindings/iio/adc/ti,ads1015.yaml   | 15 +++++++++++=
-++--
-> > > >  1 file changed, 13 insertions(+), 2 deletions(-)
-> > > >=20
-> > > > diff --git a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.y=
-aml b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
-> > > > index 2127d639a7683..e004659099c19 100644
-> > > > --- a/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
-> > > > +++ b/Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
-> > > > @@ -78,9 +78,9 @@ patternProperties:
-> > > >        ti,datarate:
-> > > >          $ref: /schemas/types.yaml#/definitions/uint32
-> > > >          minimum: 0
-> > > > -        maximum: 6
-> > > > +        maximum: 7
-> > > >          description: |
-> > > > -          Data acquisition rate in samples per second
-> > > > +          Data acquisition rate in samples per second for ADS1015,=
- TLA2024
-> > > >            0: 128
-> > > >            1: 250
-> > > >            2: 490
-> > > > @@ -88,6 +88,17 @@ patternProperties:
-> > > >            4: 1600 (default)
-> > > >            5: 2400
-> > > >            6: 3300
-> > > > +          7: 3300
-> > > > +
-> > > > +          Data acquisition rate in samples per second for ADS1115
-> > > > +          0: 8
-> > > > +          1: 16
-> > > > +          2: 32
-> > > > +          3: 64
-> > > > +          4: 128 (default)
-> > > > +          5: 250
-> > > > +          6: 475
-> > > > +          7: 860 =20
-> > >=20
-> > > I'll leave this one to Rob or Krzysztof to ack/review, but this does
-> > > seem like as good an opportunity as any to migrate to a property that
-> > > allows you to put the actual data acquisition rate in & not have to a=
-dd
-> > > new key-value mappings to the binding to support devices with differi=
-ng
-> > > schemes.
-> >=20
-> > I agree a value would have been better, but now we are where we are,
-> > I'm not sure it's worth the churn of changing it - particularly as the
-> > driver will need to support the old binding for every anyway.
+On Mon, Jul 03, 2023 at 11:27:54AM +0100, Conor Dooley wrote:
+> From: Heiko Stuebner <heiko.stuebner@vrull.eu>
 >=20
-> Yep, this would be an API change :/
+> When filling hwcap the kernel already expects the isa string to start with
+> rv32 if CONFIG_32BIT and rv64 if CONFIG_64BIT.
+>=20
+> So when recreating the runtime isa-string we can also just go the other w=
+ay
+> to get the correct starting point for it.
+>=20
+> Signed-off-by: Heiko Stuebner <heiko.stuebner@vrull.eu>
+> Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
+> Co-developed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
 
-Of course, but so what you have in these patches anyway. Change being
-the operative word, not break ;)
+=46rom v(n-1) that I forgot:
+Reviewed-by: Evan Green <evan@rivosinc.com>
+https://lore.kernel.org/all/CALs-HstMTxJFHEoSCaAUtYzT+a-2RSYAhWMQmkVw2+WE=
+=3Dy0agQ@mail.gmail.com/
 
-Either way, I passed the buck to Rob and Krzysztof on this one anyway.
-
---LP4V6kP74TAFPZ8x
+--S8rcp5QksxDE+03r
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKLz+gAKCRB4tDGHoIJi
-0otIAP9xFJSeIP3HiTneXLse5jNZ3jBezQU5c1F9vLvMq+owpAEA7nf2aGhhkepH
-TzK/kLHXPz5hZPtCMfwzcibw6Ntxegs=
-=lITH
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKL0fQAKCRB4tDGHoIJi
+0p+RAP0SaOTCcjlKb7lby+pG6VFLS58+FyrQcXkCBeY7K51RPAEAux82L+HUS/zt
+evbKbKhrJ9v/b2UtdBwW0tyrIdyLCQA=
+=9aI/
 -----END PGP SIGNATURE-----
 
---LP4V6kP74TAFPZ8x--
+--S8rcp5QksxDE+03r--
