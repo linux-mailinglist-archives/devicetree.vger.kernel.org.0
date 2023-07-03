@@ -2,72 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 89EE5746075
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 18:10:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FC4B74607A
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 18:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230441AbjGCQKE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 12:10:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45186 "EHLO
+        id S229885AbjGCQLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 12:11:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230281AbjGCQKD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 12:10:03 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07227138
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 09:10:02 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51dec0b6fecso4214637a12.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 09:10:01 -0700 (PDT)
+        with ESMTP id S230385AbjGCQLO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 12:11:14 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1463E5D
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 09:11:12 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-992af8b3b1bso516863866b.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 09:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688400600; x=1690992600;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=linaro.org; s=google; t=1688400671; x=1690992671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=LjungVd0/xOT2xWI77bKySokcNnytRYgG5Uu2ldusX4=;
-        b=DaRfPwmGCcCDWkMyZd/KzmzPJ3OwupWE4lG+U1qybpBT44GBgLEtjRv2xg8vK/u5uE
-         FbXx2x4uQReVARA8YKrHMgHoCPthpHNfO+VSvBMjJbb2B9V8nZK8jsUFX75/g4eW1KJ2
-         lra5ltykUJmKSyVy64Mg3x82exWymYwR2Xjpc7aozpmDgqq+DgG2jYKapWn64dO9ph2s
-         9y+nT6vnsKL9P+G0qTq5x8TsNnH1fb8EMXINgasUvgmepm6J+m1syK+m1dUs9O0iNhu5
-         l8RJJSZQCtGosV+TpPKn7Vp5PoSK89gbXfVfxOr6tYPlpiMwLfoa8JEemFVzE1QkROBq
-         tz8g==
+        bh=mFlswnfR5vQlHdaD7d/pndVxZDbWFDFhAabQH+HPREA=;
+        b=shiYMOLm8Y5Q2JKiCn7+lSvae/AGMbsaD79O+uh0OEs3p6bTCtM6Ny6pfLMklx6dpI
+         1AICy0Z3oEMLj/O3jC9yAIscra6mijQzv0+PtFeDE9IahsfR8pxPchbGx0EpV/PO9Ffd
+         sq47k8e8IHRhZu0aLitkGsmScfvUwv6pedfR5b3q48A1SSbWh9+csLemF+3wPkIhs+Xy
+         l0CSJqlj1MfF7L/hvV5ypCYwczPvnhsh+n/NVLDP3cafN7cqGTTHrF126M/53ZpRNeGz
+         6RzoM+ntKmwuBinsDav2Q2Ap+GefRrKIZFT/VSPbSyVUHLSBSNOZItNbLMNlPotmo3Fy
+         ZZ2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688400600; x=1690992600;
-        h=content-transfer-encoding:in-reply-to:from:references:to
+        d=1e100.net; s=20221208; t=1688400671; x=1690992671;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LjungVd0/xOT2xWI77bKySokcNnytRYgG5Uu2ldusX4=;
-        b=a2/PRTCMCCVTGbLyDfs1huPAMwh/RMxyDWLnEBSWwLZfetmvUDbwKHA8X+EQ9NHYnu
-         meYLDNSf3CJBnqVCk4Aj6/7iVmpKpn2JyA/FOvlRjArWUGr/nryiIENZqmEfg7kJI4Dq
-         KWWc01EY71LMvV2H7Mi7ju0ss643X0VyEeoUcVhOJIEUDHUFQzQpPTNebp0fOj0NF0Ec
-         YQVQXec5dqGN5a9XgvNhpQD1jZQkMgFVAkpKi08ByigSycCH8ifkML/x6TZq4bF1TRET
-         EkrbdIAB/sBbpe7WFeLnmciZ/DeJHwRWltxjUO2FdWIAfDq9U5IpmzzbL3rOOt8fArDV
-         CDGw==
-X-Gm-Message-State: ABy/qLZigIGEBORVDCxImOGQ1NU941EvnQKgP3THxU/9x7gjo/JsTJND
-        AgzVw7G4R/D26R406QhWEG/ioQ==
-X-Google-Smtp-Source: APBJJlEdQduU4Odvi7yNT3UQy9kDY+lEssXYe8tOu5yZp/tDGzHDh9gnWuSC4AfJT9ngt+m4qfWfnw==
-X-Received: by 2002:a05:6402:8d8:b0:51e:e67:df4d with SMTP id d24-20020a05640208d800b0051e0e67df4dmr2925284edz.38.1688400600509;
-        Mon, 03 Jul 2023 09:10:00 -0700 (PDT)
+        bh=mFlswnfR5vQlHdaD7d/pndVxZDbWFDFhAabQH+HPREA=;
+        b=QRIKyTK0SFJQI3xZHzsW7i7Ts+hsA7KzJ0nVQdjbMrSjvRxB/RKljDFvDUWNOt9Cry
+         CNz44KsQZiyaa4Axm4qqBMWFJoR+delYys7zJd7uAVuiQUcSCF7eVRwM1LMm1mgJqpDp
+         u1O9ua+hsNvZkZHYvX5d0WjEHXu8Cf8SospuLjV6WRmfxVm6Ok6o5KqEGB5R/+hH/nQq
+         fD+SCdvEgSGhbs+4F2w+/4Rb6Q8wrCYMoplx1F9z4VWmsUf9RFS2JH3rJrmrqywqa6lX
+         6vsUfMMg5DCWdvkFWi/1w9wg0ibcKECbXvB82fM/nj4Jb2WdUW7QXIjQua8DDFxFXBCT
+         0sYg==
+X-Gm-Message-State: ABy/qLZdsCimUeEVQWHyNWu4RkpCVBfSsOUJ/yfMAOvHwCpTExfuQJ/+
+        Edl3UQR63SrT+4ZeWAMA5PPJabTxLwsB62CRcBVJvIOi
+X-Google-Smtp-Source: APBJJlHopqSgCk8a/DV9or4emsz1q46Wa42KuWpzdZsVzpuqlFL8HoS/ql8gqBZ003d5Wb0NhcIR1g==
+X-Received: by 2002:a17:906:854c:b0:992:b66e:72f9 with SMTP id h12-20020a170906854c00b00992b66e72f9mr8109932ejy.69.1688400671028;
+        Mon, 03 Jul 2023 09:11:11 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id p14-20020a05640243ce00b0051dd16f7e50sm6212725edc.44.2023.07.03.09.09.58
+        by smtp.gmail.com with ESMTPSA id r21-20020a1709067fd500b009828e26e519sm11963583ejs.122.2023.07.03.09.11.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 09:09:59 -0700 (PDT)
-Message-ID: <8f859959-d0d7-8417-68c9-19105be1844d@linaro.org>
-Date:   Mon, 3 Jul 2023 18:09:57 +0200
+        Mon, 03 Jul 2023 09:11:10 -0700 (PDT)
+Message-ID: <370213c8-b48f-0940-a007-01b7e86f0183@linaro.org>
+Date:   Mon, 3 Jul 2023 18:11:08 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: minor whitespace cleanup around '='
+Subject: Re: [PATCH] arm64: dts: arm: minor whitespace cleanup around '='
 Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20230702185051.43867-1-krzysztof.kozlowski@linaro.org>
- <e09af830-d114-7ee6-0cab-e6812bc10fd4@linaro.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230702185315.44584-1-krzysztof.kozlowski@linaro.org>
+ <20230703085649.y363mybfshlj77ax@bogus>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <e09af830-d114-7ee6-0cab-e6812bc10fd4@linaro.org>
+In-Reply-To: <20230703085649.y363mybfshlj77ax@bogus>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -80,98 +80,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2023 11:30, Konrad Dybcio wrote:
-> On 2.07.2023 20:50, Krzysztof Kozlowski wrote:
+On 03/07/2023 10:56, Sudeep Holla wrote:
+> On Sun, Jul 02, 2023 at 08:53:15PM +0200, Krzysztof Kozlowski wrote:
 >> The DTS code coding style expects exactly one space before and after '='
 >> sign.
 >>
->> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
->> ---
->>  arch/arm64/boot/dts/qcom/ipq8074.dtsi         |   8 +-
->>  .../dts/qcom/msm8916-samsung-serranove.dts    |   6 +-
->>  arch/arm64/boot/dts/qcom/msm8939.dtsi         |  14 +-
->>  .../boot/dts/qcom/msm8953-xiaomi-daisy.dts    |   2 +-
->>  .../boot/dts/qcom/msm8953-xiaomi-vince.dts    |   2 +-
->>  arch/arm64/boot/dts/qcom/msm8996.dtsi         |   6 +-
->>  .../dts/qcom/msm8996pro-xiaomi-natrium.dts    |   2 +-
->>  arch/arm64/boot/dts/qcom/msm8998.dtsi         |  18 +-
->>  arch/arm64/boot/dts/qcom/qcm2290.dtsi         |   2 +-
->>  arch/arm64/boot/dts/qcom/qcs404.dtsi          |   8 +-
->>  arch/arm64/boot/dts/qcom/sa8540p.dtsi         |   2 +-
->>  .../sc7280-herobrine-audio-rt5682-3mic.dtsi   |   2 +-
->>  arch/arm64/boot/dts/qcom/sc7280.dtsi          |   2 +-
->>  arch/arm64/boot/dts/qcom/sc8180x.dtsi         |   2 +-
->>  arch/arm64/boot/dts/qcom/sdm630.dtsi          |  10 +-
->>  .../dts/qcom/sdm845-oneplus-enchilada.dts     |   2 +-
->>  arch/arm64/boot/dts/qcom/sdx75.dtsi           |   4 +-
->>  arch/arm64/boot/dts/qcom/sm6115.dtsi          |   2 +-
->>  arch/arm64/boot/dts/qcom/sm8250.dtsi          | 198 +++++++++---------
->>  arch/arm64/boot/dts/qcom/sm8350.dtsi          | 196 ++++++++---------
->>  arch/arm64/boot/dts/qcom/sm8450.dtsi          | 194 ++++++++---------
->>  arch/arm64/boot/dts/qcom/sm8550.dtsi          | 196 ++++++++---------
->>  22 files changed, 439 insertions(+), 439 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/ipq8074.dtsi b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->> index 68839acbd613..00ed71936b47 100644
->> --- a/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/ipq8074.dtsi
->> @@ -794,10 +794,10 @@ frame@b128000 {
->>  
->>  		pcie1: pci@10000000 {
->>  			compatible = "qcom,pcie-ipq8074";
->> -			reg =  <0x10000000 0xf1d>,
->> -			       <0x10000f20 0xa8>,
->> -			       <0x00088000 0x2000>,
->> -			       <0x10100000 0x1000>;
->> +			reg = <0x10000000 0xf1d>,
->> +			      <0x10000f20 0xa8>,
->> +			      <0x00088000 0x2000>,
->> +			      <0x10100000 0x1000>;
->>  			reg-names = "dbi", "elbi", "parf", "config";
->>  			device_type = "pci";
->>  			linux,pci-domain = <1>;
->> diff --git a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
->> index 15dc246e84e2..126e8b5cf49f 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
->> +++ b/arch/arm64/boot/dts/qcom/msm8916-samsung-serranove.dts
->> @@ -219,9 +219,9 @@ magnetometer@2e {
->>  		compatible = "yamaha,yas537";
->>  		reg = <0x2e>;
->>  
->> -		mount-matrix =  "0",  "1",  "0",
->> -				"1",  "0",  "0",
->> -				"0",  "0", "-1";
->> +		mount-matrix = "0",  "1",  "0",
->> +			       "1",  "0",  "0",
->> +			       "0",  "0", "-1";
->>  	};
->>  };
->>  
->> diff --git a/arch/arm64/boot/dts/qcom/msm8939.dtsi b/arch/arm64/boot/dts/qcom/msm8939.dtsi
->> index 895cafc11480..c4209e2d4b4e 100644
->> --- a/arch/arm64/boot/dts/qcom/msm8939.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/msm8939.dtsi
->> @@ -155,7 +155,7 @@ CPU7: cpu@3 {
->>  
->>  		idle-states {
->>  			CPU_SLEEP_0: cpu-sleep-0 {
->> -				compatible ="qcom,idle-state-spc", "arm,idle-state";
->> +				compatible = "qcom,idle-state-spc", "arm,idle-state";
-> Will conflict with:
 > 
-> https://lore.kernel.org/linux-arm-msm/20230627-topic-more_bindings-v1-2-6b4b6cd081e5@linaro.org/
+> Acked-by: Sudeep Holla <sudeep.holla@arm.com>
 > 
-> there are also a couple of entries with property =\n\t{n}[a-z]
-> 
-> Otherwise lgtm
-> 
-... and if I want to reply to this, I have to find and remove entire big
-piece of unrelated quote. So you put this burden on me and you keep
-insisting that everything is easy. No, it is not.
+> Let me know if you are expecting me to pick up or you plan to send all
+> such changes bundled together.
 
-Anyway, the remaining =\t properties were done like this on purpose for
-easier reading. What I am cleaning here are the cases where there are no
-benefits of such style.
+Thanks, I would prefer if you pick it up. I can take it as well, but
+that's rather exception, not a rule.
 
 Best regards,
 Krzysztof
