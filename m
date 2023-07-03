@@ -2,66 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F8667455CD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:15:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A355C7455DF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:20:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229899AbjGCHPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 03:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54990 "EHLO
+        id S230063AbjGCHUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 03:20:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229593AbjGCHPV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:15:21 -0400
-Received: from mail-oa1-x35.google.com (mail-oa1-x35.google.com [IPv6:2001:4860:4864:20::35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0C86E50
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 00:15:19 -0700 (PDT)
-Received: by mail-oa1-x35.google.com with SMTP id 586e51a60fabf-1b0606bee45so3800954fac.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 00:15:19 -0700 (PDT)
+        with ESMTP id S230246AbjGCHUu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:20:50 -0400
+Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F91BE47
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 00:20:48 -0700 (PDT)
+Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1b03ec2015fso3550514fac.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 00:20:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688368518; x=1690960518;
+        d=linaro.org; s=google; t=1688368847; x=1690960847;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=IAZeTOZazbGFZSDmndWdfTDNm2nB8DtY7mHI7XdQ7lk=;
-        b=fwrYNJNQGr2V0i3pfa9Vg8VYK7yIzXp54Mx+sp9Ejgte1Va2hgY8F+rZDIsw+Y9Q6a
-         nRp4ePOT5h7wKwqbVlcJXN9hTKgM7oyd4UeQO07XFij25ieux3InxE0J+r17kKtg+SOw
-         +KXyXKR5Ml/hsgMppG7m5Hwz9fpFa2difABUqtcE3OrYMVi1I0n2V/1/1h1l5rS9iFGB
-         5oKBkl4Fe8eFguqnOmUgoV8tPNUCW81H57jVYbBJKY+sKxUH7u5iki0WF4DTDw4yxJ6v
-         r7nRIsXBx7VZ8Ul6LRsU7Ac6dILJQPncwm9o5+FgSpMkcd1FJA/yplKZ6q8fbIuqrHw4
-         FPXg==
+        bh=5wOEeEqZxs/53QPFBAeYmLrF3X4waeqXDqE1Qr5s1oo=;
+        b=K4Fk0wgl41urJ973GedutT6AJySQVRpM7IEAeH1DL3A0K5cftuzCamKRTB9DPS99mD
+         nA2nj+JvCX7ToqPkiXrqneN0AFk6tdTwfutFdtsVKkSIPottw7M/tR3AATLz4IgyfIl5
+         3uIT+BmwDiCixsnU59nodSwDjHwYO1qhwePVV9/5uIAGIE8HgjGzSORacDRfTQN9o+A4
+         RK189ThZg7KIFV/i1sqW4r2TYZBTb/6fmGM/KM32273ABzhuloTOaX+mqNyy/elVoy8H
+         x0NV4f9dVSDnPrOCSmBeOuSYdtx92ccMK5jyz2fExYMyn5NXHnQPrd9uQwVYLUOJFjPO
+         p98w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688368518; x=1690960518;
+        d=1e100.net; s=20221208; t=1688368847; x=1690960847;
         h=cc:to:subject:message-id:date:from:in-reply-to:references
          :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=IAZeTOZazbGFZSDmndWdfTDNm2nB8DtY7mHI7XdQ7lk=;
-        b=GopO5k/pp+Kp27B1k7a21TIUpg+6s3yWWedg0buW6iTSNqgnsNicHadBYchTr+b6xx
-         6Mwm2Q+rkeQ4cUZiEfjuZAJVkuJba6d61rtKfD6mnUlukpr4s7Cy5O3QmmBCWjuu3CHH
-         e0yTVh/d+wXMYNE1W1ZoqDK0cyrRBThsKboh/WMlRn0MJSsuPrKmN89yvj5BRfkOanrW
-         vowVv79CCeLPXj7DaQ+4PLq8j02ebr6boO5EqM9wh493mWavdpgid/G2WZY6AQFvM2ew
-         3ZvCSkP4uA+mD9e4LN6n5A8bpR7LmZOCDPT6axqhs0pcTeDGavtamnHtIIO32VZhk42m
-         /09w==
-X-Gm-Message-State: ABy/qLaJqUxZDluQn/hpK4LFlgy2Tf+6zE5e/17V7x3pjUwge1+WILKS
-        456OQKaJAnDbIa5d24cFxUJqkfRi66cjYqlZvHen3g==
-X-Google-Smtp-Source: APBJJlFl1y1DD9smdIG3z9ZwGyRcMYA2S0C03PiyGo2Yyt6cyslQgtkKycE8R19wvHB6Fw36fGyu2SOkeqKm2IpNDeM=
-X-Received: by 2002:a05:6870:6c1c:b0:188:1195:5ec5 with SMTP id
- na28-20020a0568706c1c00b0018811955ec5mr10062907oab.39.1688368518367; Mon, 03
- Jul 2023 00:15:18 -0700 (PDT)
+        bh=5wOEeEqZxs/53QPFBAeYmLrF3X4waeqXDqE1Qr5s1oo=;
+        b=jVt0wXPLp6kwqnFeDTcgz6jz0LOuAzHzMoK0xwEkdbhmRaMH2o6OzIXMGkKHIdfYK2
+         wkiSDTZZg68hmmWAhVQnQ43Ud689zD6F6F6vzw/y719UaO1TDobGo2V6n4+blwPzzO9x
+         30kPTkJDbroKP9ee+40kQf1Q7a3m2PzanYhaRRKylibcIXbCiscPWhuDHJhzgE4HHZiI
+         K2hAKv0IhVkgPqZHeyPTr9jr4iWDNO7PKcS/xQesP61qb43wC7xKc/nD0kLejkKPIOPz
+         DkRS0g4gbiJyc+ABHX13cFVE82P/Q5aZGGJhEkTuonNFTdCwAMGknsGr5EAG1Xjm2pRT
+         c8Fg==
+X-Gm-Message-State: ABy/qLacp46E9lBvUavGWBF8zJnMR4W6d0zw2Jme4ypdv8QolBJHLhOf
+        G/SqKsRe27NWaCsQ18AWLMynZia9sFMTsJfGL/RFQg==
+X-Google-Smtp-Source: APBJJlEb+AJ0CavHV/EY5o02uXm03FgkhsSGBahp5rgVjQwn4oDUf2oZLdvfrUiaO5BwJCpHYi9SurP9PwIS6yl4hW0=
+X-Received: by 2002:a05:6870:f150:b0:1b0:3771:736c with SMTP id
+ l16-20020a056870f15000b001b03771736cmr12943732oac.41.1688368847232; Mon, 03
+ Jul 2023 00:20:47 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230703053048.275709-1-matt@codeconstruct.com.au> <20230703053048.275709-2-matt@codeconstruct.com.au>
-In-Reply-To: <20230703053048.275709-2-matt@codeconstruct.com.au>
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
+ <CAL_JsqJ_TTnGjjB2d8_FKHpWBRG5GHLoWnabCKjsdeZ4QFdNEg@mail.gmail.com>
+ <cacbbb02-732e-076e-50bf-292d20a4d722@quicinc.com> <58a26b9e-a48d-d567-c310-193a2c52521e@linaro.org>
+ <5447f9f8-55b4-8bed-66a6-1c9d62b02c79@quicinc.com>
+In-Reply-To: <5447f9f8-55b4-8bed-66a6-1c9d62b02c79@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date:   Mon, 3 Jul 2023 09:15:06 +0200
-Message-ID: <CAGE=qrrqE3Vj1Bs+cC51gKPDmsqMTyHEAJhsrGCyS_jYKf42Gw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: i3c: Add mctp-controller property
-To:     Matt Johnston <matt@codeconstruct.com.au>
-Cc:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
+Date:   Mon, 3 Jul 2023 09:20:35 +0200
+Message-ID: <CAGE=qrq0CuO4J-6yC=YZ4xjL67o9QTqpei0ovX-X_8MLVeEH6g@mail.gmail.com>
+Subject: Re: [PATCH v4 08/21] dt-bindings: reserved-memory: Add qcom,ramoops binding
+To:     Mukesh Ojha <quic_mojha@quicinc.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, corbet@lwn.net,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
+        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
+        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
@@ -73,31 +78,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Jul 2023 at 07:31, Matt Johnston <matt@codeconstruct.com.au> wrote:
+On Mon, 3 Jul 2023 at 08:22, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
+> On 7/2/2023 1:42 PM, Krzysztof Kozlowski wrote:
+> >>> The big difference is if firmware is not deciding where this log
+> >>> lives, then it doesn't need to be in DT. How does anything except the
+> >>> kernel that allocates the log find the logs?
+> >>
+> >> Yes, you are correct, firmware is not deciding where the logs lives
+> >> instead here, Kernel has reserved the region where the ramoops region
+> >> lives and later with the minidump registration where, physical
+> >> address/size/virtual address(for parsing) are passed and that is how
+> >> firmware is able to know and dump those region before triggering system
+> >> reset.
+> >
+> > Your explanation does not justify storing all this in DT. Kernel can
+> > allocate any memory it wishes, store there logs and pass the address to
+> > the firmware. That's it, no need for DT.
 >
-> This property is used to describe a I3C bus with attached MCTP I3C
-> target devices.
->
-> Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
-> ---
->  Documentation/devicetree/bindings/i3c/i3c.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
-> index fdb4212149e7..08731e2484f2 100644
-> --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
-> +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
-> @@ -55,6 +55,10 @@ properties:
->
->        May not be supported by all controllers.
->
-> +  mctp-controller:
-> +    description: |
-> +      Indicates that this bus hosts MCTP-over-I3C target devices.
+> If you go through the driver, you will know that what it does, is
 
-I have doubts you actually tested it - there is no type/ref. Also,
-your description is a bit different than existing from dtschema. Why?
-Aren't these the same things?
+We talk about bindings and I should not be forced to look at the
+driver to be able to understand them. Bindings should stand on their
+own.
+
+> just create platform device for actual ramoops driver to probe and to
+
+Not really justification for Devicetree anyway. Whatever your driver
+is doing, is driver's business, not bindings.
+
+> provide this it needs exact set of parameters of input what original
+> ramoops DT provides, we need to keep it in DT as maintaining this in
+> driver will not scale well with different size/parameter size
+> requirement for different targets.
+
+Really? Why? I don't see a problem in scaling. At all.
+
+>
+> >
+> >>
+> >> A part of this registration code you can find in 11/21
+> >>
+> >>> I'm pretty sure I already said all this before.
+> >>
+> >> Yes, you said this before but that's the reason i came up with vendor
+> >> ramoops instead of changing traditional ramoops binding.
+> >
+> > That's unexpected conclusion. Adding more bindings is not the answer to
+> > comment that it should not be in the DTS in the first place.
+>
+> Please suggest, what is the other way being above text as requirement..
+
+I do not see any requirement for us there. Forcing me to figure out
+how to add non-hardware property to DT is not the way to convince
+reviewers. But if you insist - we have ABI for this, called sysfs. If
+it is debugging feature, then debugfs.
 
 Best regards,
 Krzysztof
