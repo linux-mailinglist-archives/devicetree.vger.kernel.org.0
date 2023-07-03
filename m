@@ -2,107 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E405745C4A
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 14:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45926745C6D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 14:43:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230402AbjGCMdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 08:33:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49548 "EHLO
+        id S230114AbjGCMne (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 08:43:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230483AbjGCMdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 08:33:19 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DBBCAE7E
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 05:33:14 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b6e7d7952eso14748391fa.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 05:33:14 -0700 (PDT)
+        with ESMTP id S229504AbjGCMnd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 08:43:33 -0400
+Received: from mail-il1-x12a.google.com (mail-il1-x12a.google.com [IPv6:2607:f8b0:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E39B9BC;
+        Mon,  3 Jul 2023 05:43:32 -0700 (PDT)
+Received: by mail-il1-x12a.google.com with SMTP id e9e14a558f8ab-345db6c12b4so16740205ab.0;
+        Mon, 03 Jul 2023 05:43:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688387593; x=1690979593;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=LhfrXDCit7gC6UNJ9zxd5YYkATKXfztakGAxqCORjpU=;
-        b=PTl2J96D/DXP0ioiXlDXQjPk2eQQE0gU3gHy4fVUouQkTXVBHc8HamEz+VFjkBb/Wo
-         rSVDk0IS1EdDa0cFQv/xbkQSySukP+PEITp0V0QJ6FOpe69lLDqBgOTAzRKow0TebR31
-         mHxl8FJ50wsSJ+6kbVX3++u/E97yiO+LPniBpIeFcSlacKIWjqwUuVUfydTwPQXZxztA
-         C0DZSgrkLC8Wov3PEWDplUxli2LpSxnrhNIHt7J/y4LQE6Fj1KBKsf50qSWLTuK3Jh+O
-         fj1qQEF2eGAwLRsswRc5B8hPB1Eph+og0ER3Khp1FCR8mwgNFsQznxvG/3AGjKA1hiYL
-         O3ow==
+        d=gmail.com; s=20221208; t=1688388212; x=1690980212;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ZcEoocC19pvVvckXEfOwPq0UrW7yuRC8cKDF3dCYEz4=;
+        b=Xknf2hwH10pOXp2JSYKV5VMG25V29YwSCtAF1bztkGfwW1rGJHKDMcWVI7c1RRZJtz
+         wdtoI40NHgRDbD0DvHw/0gUjHO4pnAdQRAeMWEByAK+mqgBCTExDYRuuisz4c6LcH7Cu
+         lbefqBP2iBDZRZM6GhsVbEahUoSxwXYqWi0i1JQiaDvEpo6NgDzET3zJpDesMnb9lcu8
+         S2q1OYub0sdyeWS65VHBzhH6gIgGynBzeCJ1WwVCfzFyFItirpwAAAcfu41D8PGbVEyF
+         UbeXgx3xtNy+8lD8iBLNS9HwmTP3xMrvFva1f1h3lfDYQyj0Gh7/4jsJablMW5y0+HtK
+         X0cg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688387593; x=1690979593;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=LhfrXDCit7gC6UNJ9zxd5YYkATKXfztakGAxqCORjpU=;
-        b=XZes0862YQ4SdF4PofkiIfGtdb6WLey1aV3HzqKqJn2xU1I7P5xtTkhbXCHpaJreHq
-         X5ciahQOfbY9xHITHs//FfCO2Hr/gT63+Q+XZaRZoxjBdIlphHfG+UnxCeqYdsQlWvlQ
-         VQTEAutks+omBDCKBKKYC0x2EU8baP4FIUg2vkYQQ2RHHDIhw55mg5rPVfVzqfS0dDBy
-         KsVZEfwNiTt6IHqZ1jSm8cDypw1+A9jMkuXFIel3rA2H1LpRpteSJjkhRlFokMjeJGF2
-         vA7FgZjZYH4UB5DX1BhVJgq1w6rCTePxUCu8J9GkCjMwFr8gW3XFctW6BEdt/9TvGRTB
-         w4ZA==
-X-Gm-Message-State: ABy/qLZpoZIlgvlnMkORDLeLmwZ9VBSLsFLilFXSbK6BquV65y+1Qbr7
-        8h0stldkrAVPSKmMhlbF4PPO4vB1lEwe7LNkRziNZcqh
-X-Google-Smtp-Source: APBJJlGgueiIvReR4RZC34W5mgNbDVir3z0bbYJoEIBN1p28sRET5jJ5DVkKA1f1FPRpigRYzKtQvA==
-X-Received: by 2002:a2e:81d3:0:b0:2b6:ef5d:965c with SMTP id s19-20020a2e81d3000000b002b6ef5d965cmr242828ljg.44.1688387593103;
-        Mon, 03 Jul 2023 05:33:13 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id rp25-20020a170906d97900b0098e17ea781csm11095329ejb.94.2023.07.03.05.33.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 05:33:12 -0700 (PDT)
-Message-ID: <df7440e2-58b0-9f12-8f37-4f0d9050f934@linaro.org>
-Date:   Mon, 3 Jul 2023 14:33:10 +0200
+        d=1e100.net; s=20221208; t=1688388212; x=1690980212;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ZcEoocC19pvVvckXEfOwPq0UrW7yuRC8cKDF3dCYEz4=;
+        b=MnHxA/gXIpQHDW7COsXDdJQO0oe60mzYXx0S6o9AclECjkB/YHptb7WwoTvhrEP1ZM
+         2RjkLG64RoTN66CZ1yf3wLc7QhRkLw1iXKgVvG90hXgNBw0EYP3tGWVl6st6fB0No3pA
+         jeqw+n3HLoGbMpdR5g9T6leOQChe9jM5DXVJ8nBcr95HgqyCwlCVibNXCIZw7WoWjgHu
+         q5FkTSVwjwe88KGwFrrueL8zaQu5imZC6zNlpdMZOP9V6aNPY57tcUMuoM93uSlCMGqh
+         i5VvIVqf9K1NqPttVkKoY+3oD/IWMTNk2IsKJZaS4wyiTMtO1sqdmaUbcJkPoZSf0sXj
+         cifA==
+X-Gm-Message-State: AC+VfDw2KZpvrBe4IF+3LLx3CluzgFkawSGLsJavHIY9fXJUHxl2vc6e
+        Yw1CyV2mYkZvsZmlyJtmD/WRRSzsVmlUcAHIgh8=
+X-Google-Smtp-Source: ACHHUZ5Zk75GyTJn8VfVPthaCVH4awdI5bmJizAK7v91XelWS1kU8rpKLdAAWEQH3wcA/yiXqvhxLSQ+BwE8f0ktwnw=
+X-Received: by 2002:a6b:7a02:0:b0:785:d017:c16f with SMTP id
+ h2-20020a6b7a02000000b00785d017c16fmr11368650iom.14.1688388212208; Mon, 03
+ Jul 2023 05:43:32 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [RFC PATCH 3/3] ARM: dts: Add Chameleon v3 video node
-Content-Language: en-US
-To:     =?UTF-8?Q?Pawe=c5=82_Anikiel?= <pan@semihalf.com>,
-        Conor Dooley <conor@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, dinguyen@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, mchehab@kernel.org, upstream@semihalf.com,
-        amstan@chromium.org, ribalda@chromium.org
-References: <20230630144006.1513270-1-pan@semihalf.com>
- <20230630144006.1513270-4-pan@semihalf.com>
- <20230630-scrimmage-antelope-7d1f82d491fc@spud>
- <CAF9_jYT1Fz4hBQrNtgkM6mU-JVH=ZxsJnkaLDsa5uoEV_hTLVA@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAF9_jYT1Fz4hBQrNtgkM6mU-JVH=ZxsJnkaLDsa5uoEV_hTLVA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230630120433.49529-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20230630120433.49529-2-prabhakar.mahadev-lad.rj@bp.renesas.com> <OS0PR01MB592217C4028606B67B39C6858629A@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB592217C4028606B67B39C6858629A@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Date:   Mon, 3 Jul 2023 13:43:06 +0100
+Message-ID: <CA+V-a8sXcHP2AYYLLONLLBDVctMb=fnU=D4+6hNoHGx5Dk2O3Q@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/4] pinctrl: renesas: rzg2l: Include pinmap in
+ RZG2L_GPIO_PORT_PACK() macro
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2023 13:44, Paweł Anikiel wrote:
->>> diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
->>> index 422d00cd4c74..5e66363d4ab5 100644
->>> --- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
->>> +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
->>> @@ -10,6 +10,60 @@ / {
->>>       compatible = "google,chameleon-v3", "enclustra,mercury-aa1",
->>>                    "altr,socfpga-arria10", "altr,socfpga";
->>>
->>> +     soc {
->>> +             video@c0060500 {
->>> +                     compatible = "google,chv3-video";
->>
->> This compatible does not seem to be documented & I did not see a comment
->> about the lack of a binding in the cover letter. What am I missing?
-> 
-> Yes, the compatible is not documented for now (I'll do that in a later
-> patchset), sorry for not mentioning that in the cover letter.
+Hi Biju,
 
-You cannot add undocumented compatible. This cannot be fixed in "a later
-patchset".
+Thank you for the review.
 
-Best regards,
-Krzysztof
+On Mon, Jul 3, 2023 at 12:42=E2=80=AFPM Biju Das <biju.das.jz@bp.renesas.co=
+m> wrote:
+>
+> Hi Prabhakar,
+>
+> Thanks for the patch.
+>
+> > -----Original Message-----
+> > From: Prabhakar <prabhakar.csengg@gmail.com>
+> > Sent: Friday, June 30, 2023 1:05 PM
+> > To: Geert Uytterhoeven <geert+renesas@glider.be>; Magnus Damm
+> > <magnus.damm@gmail.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
+> > <krzysztof.kozlowski+dt@linaro.org>; Linus Walleij
+> > <linus.walleij@linaro.org>; linux-renesas-soc@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-
+> > kernel@vger.kernel.org; linux-gpio@vger.kernel.org; Biju Das
+> > <biju.das.jz@bp.renesas.com>; Prabhakar <prabhakar.csengg@gmail.com>;
+> > Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > Subject: [RFC PATCH 1/4] pinctrl: renesas: rzg2l: Include pinmap in
+> > RZG2L_GPIO_PORT_PACK() macro
+> >
+> > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Currently we assume all the port pins are sequential ie always PX_0 to
+> > PX_n (n=3D1..7) exist, but on RZ/Five SoC we have additional pins P19_1=
+ to
+> > P28_5 which have holes in them, for example only one pin on port19 is
+> > available and that is P19_1 and not P19_0.
+> >
+> > So to handle such cases include pinmap for each port which would
+> > indicate the pin availability on each port. With this we also get
+> > additional pin validation, for example on the RZ/G2L SOC P0 has two pin=
+s
+> > P0_1 and P0_0 but with DT/SYSFS could use the P0_2-P0_7.
+> >
+> > While at it, update rzg2l_validate_gpio_pin() to use the port pinmap to
+> > validate the gpio pin.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 167 ++++++++++++------------
+> >  1 file changed, 86 insertions(+), 81 deletions(-)
+> >
+> > diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > index 9511d920565e..a0c2e585e765 100644
+> > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
+> > @@ -67,10 +67,12 @@
+> >                                        PIN_CFG_FILCLKSEL)
+> >
+> >  /*
+> > - * n indicates number of pins in the port, a is the register index
+> > - * and f is pin configuration capabilities supported.
+> > + * m indicates the bitmap of supported pins, n indicates number
+> > + * of pins in the port, a is the register index and f is pin
+> > + * configuration capabilities supported.
+> >   */
+> > -#define RZG2L_GPIO_PORT_PACK(n, a, f)        (((n) << 28) | ((a) << 20=
+) |
+> > (f))
+> > +#define RZG2L_GPIO_PORT_PACK(m, n, a, f)     ((UL(m) << 32) | (UL(n) <=
+< 28)
+> > | ((a) << 20) | (f))
+>
+> I guess, you can still achieve RZG2L_GPIO_PORT_PACK(n, a, f) with
+> ((UL(PINMAP(n)) << 32) | (UL(n) << 28) | ((a) << 20) | (f))
+>
+> #define PINMAP(n) GENMASK(n,0) ?? Then you don't need to modify rzg2l_gpi=
+o_configs.
+>
+Good point, but this would work if port pins didn't have any holes.
+For example on RZ/Five port P19 we have P19_1 pin only and P19_0 is
+not available (and similarly for port P25 we have P25_1).
 
+Cheers,
+Prabhakar
