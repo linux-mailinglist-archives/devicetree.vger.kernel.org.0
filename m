@@ -2,127 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F21EC746499
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 23:03:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6EBC7464A1
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 23:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229914AbjGCVD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 17:03:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46748 "EHLO
+        id S229915AbjGCVG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 17:06:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47022 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229494AbjGCVD4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 17:03:56 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB808E5B
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 14:03:54 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id 5b1f17b1804b1-3fba5a8af2cso50328385e9.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 14:03:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688418233; x=1691010233;
-        h=to:subject:message-id:date:from:sender:reply-to:mime-version:from
-         :to:cc:subject:date:message-id:reply-to;
-        bh=fdaGRKUmPYcfz5L4eAMNXgr6p+xMBbPrGJDyeVTp3D8=;
-        b=l8rpBRFaPew0YqV7DZanIpuWeodaX9/qRAqEPdSjup30SHA/ZJZ/b5gw4WL/BYedV+
-         etj07elNs84lZ2uLofmkuK10CbLXFv0uOBv0NwD5kP+8gI1vlHvfOGDK18q0NTaVzANz
-         ezb3cECBKFmYJgNC7q0iaUDcwhepB5ltTmoGunKQIDxCttV0tsLUSVSKtSinOZ7PhIkL
-         QCmW8F2OgzWhshEldyIKaY2BPGcEzF0J/ysZAC3+5q76QXKNwH9dnKZzOS9U7BMEOBZZ
-         eAI0IMyzgNtKJ8NJWAW5h9S0yB9metfDOErzv6CJiFQSF45LQi1RswSAUwa/R6lOWARg
-         DrqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688418233; x=1691010233;
-        h=to:subject:message-id:date:from:sender:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fdaGRKUmPYcfz5L4eAMNXgr6p+xMBbPrGJDyeVTp3D8=;
-        b=MOSC0W551bpguJ/pmdkZJxFS7IZgSKCyAWikaiZH7dxBWlGJGgn1yUCSTMEKQVfZuZ
-         YaaKsI2W0ePQ2eYVl1TPVWdQYP0UWsdEbndAf1ukaMHwGqda0HfEmu1MdmikqYnMxlSz
-         yWGMadsvTznlAx1yWNbqSh/ziZ0ib7A+CwPOtAlCXwmblUp4eYmQtUEKr8YR9cv2HV83
-         UZ8Z3y9/tT7JAHigKrfZm2/4bfkWDwesg6//6KsekpM8NYGLJENoNaalu+cKg7pJ2Otm
-         z7O9wF6rW5UTxsjKTlthLW4S+jlM6tRi6nl0iVOyKzmPPC5oIFAFmaYVOcgXcopdJYwj
-         dqcw==
-X-Gm-Message-State: ABy/qLaT+Pl5gLtx+Dc1MCOiQAkxr9w1ODOIB6OGdJ6MQvn8DPcDEcDb
-        XNiSg/l/822Ypqa2cGlRDe6n1cm6Czpn5M1/bgQ=
-X-Google-Smtp-Source: APBJJlEx8MqAhBLAdQe6RHpmr0KNXKocLLpAJ8+mDOb29w6QTXAEnnwBQ6p7XDIMpBsLnEmwE0M7F3YOfA0XfBkoOIU=
-X-Received: by 2002:a7b:c40d:0:b0:3fb:df34:176e with SMTP id
- k13-20020a7bc40d000000b003fbdf34176emr637822wmi.31.1688418233422; Mon, 03 Jul
- 2023 14:03:53 -0700 (PDT)
+        with ESMTP id S229517AbjGCVG1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 17:06:27 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C28FAE59;
+        Mon,  3 Jul 2023 14:06:26 -0700 (PDT)
+Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 363KkklH015899;
+        Mon, 3 Jul 2023 21:06:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=Kf6a8f2zayKx9LTfaLSkoGTGTiIxgMuV5IPvELMWJQ4=;
+ b=Y32lhCdsHualNtkQYtskbVgQ8iR34tiZd70U/wTcVT15B6fbh+jzd/7FdEP63oLabR9s
+ RTIUm8NjzabsOQP7Hp2SgiQkLuH43Y91sx5PhaASmCImp3OYtjC2CfTf15Z2aqguH/s2
+ NpQeR4i0p+YJ5xzqFviKXBht4UNWd1zv6nUL/tY4IUDFIpoMtx/vGje0f2FdH6NTfj4k
+ YH0j5ilYCVcvp0YEcs1I3Sx5iplHPRln3Fia3HB1PwKtzGN5NcWzU5UaB5YtCy3zVsS/
+ YEDyJ/o/ypB+smeQJh3BKywwshPmUkoyLwppD/AXw2gfDPq9pl/ixzgBj90/sDe8kHFG xw== 
+Received: from nasanppmta05.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rkwyfh0ss-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Jul 2023 21:06:00 +0000
+Received: from nasanex01a.na.qualcomm.com (nasanex01a.na.qualcomm.com [10.52.223.231])
+        by NASANPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 363L5xAY020569
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 3 Jul 2023 21:05:59 GMT
+Received: from [10.110.23.29] (10.80.80.8) by nasanex01a.na.qualcomm.com
+ (10.52.223.231) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.7; Mon, 3 Jul 2023
+ 14:05:58 -0700
+Message-ID: <957a3cdb-6091-8679-ddb0-296db2347291@quicinc.com>
+Date:   Mon, 3 Jul 2023 14:05:58 -0700
 MIME-Version: 1.0
-Reply-To: causanillerovira.mariajose@gmail.com
-Sender: wonnnmann902@gmail.com
-Received: by 2002:a05:6f02:305:b0:4d:f8b0:aa1a with HTTP; Mon, 3 Jul 2023
- 14:03:52 -0700 (PDT)
-From:   Causanille Rovira <causanillerovira.mariajose@gmail.com>
-Date:   Mon, 3 Jul 2023 14:03:52 -0700
-X-Google-Sender-Auth: aLwrCON7j_X6v7DfGHMli5hNAIY
-Message-ID: <CACTRgumbgfmcSrLCQO-TNXPzUV6EBjrjc4dvFmioayAEQK8aYg@mail.gmail.com>
-Subject: Re: beloved
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: Yes, score=5.3 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,LOTS_OF_MONEY,MONEY_FRAUD_5,MONEY_FREEMAIL_REPTO,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_MONEY_PERCENT,
-        T_SCC_BODY_TEXT_LINE,UNDISC_MONEY autolearn=no autolearn_force=no
-        version=3.4.6
-X-Spam-Report: * -0.0 RCVD_IN_DNSWL_NONE RBL: Sender listed at
-        *      https://www.dnswl.org/, no trust
-        *      [2a00:1450:4864:20:0:0:0:344 listed in]
-        [list.dnswl.org]
-        *  0.8 BAYES_50 BODY: Bayes spam probability is 40 to 60%
-        *      [score: 0.5000]
-        *  0.0 FREEMAIL_FROM Sender email is commonly abused enduser mail
-        *      provider
-        *      [causanillerovira.mariajose[at]gmail.com]
-        * -0.0 SPF_PASS SPF: sender matches SPF record
-        *  0.2 FREEMAIL_ENVFROM_END_DIGIT Envelope-from freemail username ends
-        *       in digit
-        *      [wonnnmann902[at]gmail.com]
-        *  0.0 SPF_HELO_NONE SPF: HELO does not publish an SPF Record
-        *  0.1 DKIM_SIGNED Message has a DKIM or DK signature, not necessarily
-        *       valid
-        * -0.1 DKIM_VALID_EF Message has a valid DKIM or DK signature from
-        *      envelope-from domain
-        * -0.1 DKIM_VALID Message has at least one valid DKIM or DK signature
-        * -0.1 DKIM_VALID_AU Message has a valid DKIM or DK signature from
-        *      author's domain
-        *  0.0 LOTS_OF_MONEY Huge... sums of money
-        * -0.0 T_SCC_BODY_TEXT_LINE No description available.
-        *  1.2 MONEY_FREEMAIL_REPTO Lots of money from someone using free
-        *      email?
-        *  0.0 T_MONEY_PERCENT X% of a lot of money for you
-        *  3.2 UNDISC_MONEY Undisclosed recipients + money/fraud signs
-        *  0.0 MONEY_FRAUD_5 Lots of money and many fraud phrases
-X-Spam-Level: *****
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.10.0
+Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
+ support
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mukesh Ojha <quic_mojha@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>
+CC:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <keescook@chromium.org>,
+        <tony.luck@intel.com>, <gpiccoli@igalia.com>,
+        <mathieu.poirier@linaro.org>, <catalin.marinas@arm.com>,
+        <will@kernel.org>, <linus.walleij@linaro.org>,
+        <andy.shevchenko@gmail.com>, <linux-doc@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
+        <linux-remoteproc@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>, Alex Elder <elder@linaro.org>
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <2023062814-chance-flounder-f002@gregkh>
+ <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+ <cc30660f-dd72-aade-6346-a93c6ad4b695@quicinc.com>
+ <29af84dc-7db8-0c43-07b6-eb743cf25e57@linaro.org>
+From:   Trilok Soni <quic_tsoni@quicinc.com>
+In-Reply-To: <29af84dc-7db8-0c43-07b6-eb743cf25e57@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nasanex01a.na.qualcomm.com (10.52.223.231)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-ORIG-GUID: xPPByBNK4qpXUqaj3eMFPyXF3yEyeyp0
+X-Proofpoint-GUID: xPPByBNK4qpXUqaj3eMFPyXF3yEyeyp0
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-03_15,2023-06-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxlogscore=802
+ lowpriorityscore=0 clxscore=1011 priorityscore=1501 impostorscore=0
+ spamscore=0 phishscore=0 malwarescore=0 mlxscore=0 adultscore=0
+ bulkscore=0 suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307030193
+X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dearest beloved!
+On 7/2/2023 1:29 AM, Krzysztof Kozlowski wrote:
+> On 30/06/2023 18:04, Mukesh Ojha wrote:
+>>>
+>>>> We don't add layers when they are not needed, and never when there is no
+>>>> actual user.  If you need the extra "complexity" later, then add it
+>>>> later when it is needed as who knows when that will ever be.
+>>>>
+>>>> Please redo this series based on that, thanks.
+>>>
+>>> My bigger issue with this whole series is what would this all look
+>>> like if every SoC vendor upstreamed their own custom dumping
+>>> mechanism. That would be a mess. (I have similar opinions on the
+>>> $soc-vendor hypervisors.)
+> 
+> Mukesh,
+> 
+> LPC CFP is still open. There will be also Android and Kernel Debugging
+> LPC microconference tracks. Coming with a unified solution could be a
+> great topic for LPC. Solutions targeting only one user are quite often
+> frowned upon.
 
-I am glad to know you, but God knows you better and why he has
-directed me to you at this point in time, I got your email from the
-internet. I am Causanille Rovira Maria Jose; from Spain residing in
-Burkina Faso since 19 years ago as a business woman dealing with
-mining equipment for gold exportation. Since three years now I have
-been suffering from Lungs Cancer disease and the medical reports is
-very critical due to the gravity; my aim is I needed a God fearing and
-honest fellow to entrust my little earnings to for the benefit of the
-less privilege ones.
+LPC is far out and in November. Can we not have others speak up if they 
+have the similar solution now? We can expand this to linux-kernel and 
+ask for the other SOC vendors to chime in. I am sure that we may have 
+existing solutions which came in for the one user first like Intel RDT 
+if I remember. I am sure ARM MPAM usecase was present at that time but 
+Intel RDT based solution which was x86 specific but accepted.
 
-I am having US$9.5 Million; in a bank here in Burkina Faso which l
-labor for during my state of good health, but my mind is not at rest
-because l do not trust anyone around me since l lost my husband and l
-have not exposed this message to any person(s) 'am sending this
-message through the help of a nurse laptop at the hospital on my sick
-bed. My purpose is that I want you to apply as beneficiary to these
-funds then 60% for your labor and 40% for Orphanage homes and  less
-privilege  ones anywhere of your choice.
-
-As soon as I receive your good intention I shall give you more
-information and the person to contact who will provide the necessary
-documents to enable you to apply to the bank. Waiting to hear from you
-for necessary process, May the Pace of Almighty God be with you.
-
-Best regards
-Causanille Rovira Maria JOSE
-Please reply to this my private email: causanillerovira.mariajose@gmail.com
+---Trilok Soni
