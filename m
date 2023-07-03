@@ -2,48 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15129745A91
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 12:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89D86745AA8
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 12:57:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229839AbjGCKtR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 06:49:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33462 "EHLO
+        id S230024AbjGCK53 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 06:57:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229534AbjGCKtQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 06:49:16 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 35C3CB2;
-        Mon,  3 Jul 2023 03:49:14 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 7CF462F4;
-        Mon,  3 Jul 2023 03:49:56 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4ABA73F762;
-        Mon,  3 Jul 2023 03:49:12 -0700 (PDT)
-Date:   Mon, 3 Jul 2023 11:49:10 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>
-Cc:     "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 3/4] pinctrl: Implementation of the generic
- scmi-pinctrl driver
-Message-ID: <ZKKnpqaI1zS67zWM@e120937-lin>
-References: <cover.1686063941.git.oleksii_moisieiev@epam.com>
- <43109a0f2f362222fca79e2afd15c46ed9a32977.1686063941.git.oleksii_moisieiev@epam.com>
+        with ESMTP id S229585AbjGCK52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 06:57:28 -0400
+Received: from mga05.intel.com (mga05.intel.com [192.55.52.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF756C9;
+        Mon,  3 Jul 2023 03:57:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1688381847; x=1719917847;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:content-transfer-encoding:in-reply-to;
+  bh=X3VlH9K19OuBvGHPMftKnphxNQLYWxQLKZwmAPD0saM=;
+  b=dw8LlaqPnkWl3QsR5igME/DBUlW7kDSdpjy/IHqGbrUnV+A0Wc00uMHT
+   vK8Uh8Xud5cNtgkOarFvadkmHeS8UYo3I1eeKD7e6+OG1kJFhhBj86XgU
+   7B8f7qoR7mlVV7YTvcwrtZ4QjfdgIoShWLwoGrJtaBlP6PlI8my7IZOZj
+   WiDnayyVuXhU7NGSeDEX2MGr4xu2GX9eA4EBPRPOC7PkvqOHt85iLwSHc
+   jS8BRDmRETrTaBv6Pf0X0c0Je5M6ezTMaHwAfy3vMX80liu0CTZEI3phV
+   zmMtbj4/xN4TmkIdM85+WU2pNZF0/N2eiXHFy3Z4wixrGPS+v8TvEEQxz
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10759"; a="449226270"
+X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; 
+   d="scan'208";a="449226270"
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 03 Jul 2023 03:57:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10759"; a="1049035279"
+X-IronPort-AV: E=Sophos;i="6.01,178,1684825200"; 
+   d="scan'208";a="1049035279"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by fmsmga005.fm.intel.com with ESMTP; 03 Jul 2023 03:57:24 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1qGHFC-001qGe-2Q;
+        Mon, 03 Jul 2023 13:57:22 +0300
+Date:   Mon, 3 Jul 2023 13:57:22 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Daniel Kaehn <kaehndan@gmail.com>,
+        Niyas Sait <niyas.sait@linaro.org>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        jikos@kernel.org, benjamin.tissoires@redhat.com,
+        bartosz.golaszewski@linaro.org, dmitry.torokhov@gmail.com,
+        devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        ethan.twardy@plexus.com
+Subject: Re: [PATCH v9 3/3] HID: cp2112: Fwnode Support
+Message-ID: <ZKKpknBH3Pa9mLS1@smile.fi.intel.com>
+References: <20230319204802.1364-1-kaehndan@gmail.com>
+ <20230319204802.1364-4-kaehndan@gmail.com>
+ <ZBhYXwjPeRiZwxMT@smile.fi.intel.com>
+ <ZBhY5Gp88gVK7q/g@smile.fi.intel.com>
+ <CAP+ZCCc=q_=d18UHEZ9N8HVQ6AYQsTfNgS1r93UCJOB-OEodSw@mail.gmail.com>
+ <ZBhoHzTr5l38u/kX@smile.fi.intel.com>
+ <CAP+ZCCe3G_b3o=zWcqJNSFbs26yH6wzBbfHjkg2JuPeWgujfiQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <43109a0f2f362222fca79e2afd15c46ed9a32977.1686063941.git.oleksii_moisieiev@epam.com>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAP+ZCCe3G_b3o=zWcqJNSFbs26yH6wzBbfHjkg2JuPeWgujfiQ@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_NONE,T_FILL_THIS_FORM_SHORT,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -51,690 +76,130 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 06, 2023 at 04:22:28PM +0000, Oleksii Moisieiev wrote:
-> scmi-pinctrl driver implements pinctrl driver interface and using
-> SCMI protocol to redirect messages from pinctrl subsystem SDK to
-> SCP firmware, which does the changes in HW.
++Cc: Niyas, who is working a lot on filling the gaps in ACPI in comparison
+     to DT in the Linux kernel. Perhaps he has some ideas or even better
+     solutions.
 
-I would drop any reference to SCP, which is a reference implementation
-BUT not neccesarily the only one.... "SCMI platform firware" should be
-generic enough.
+On Mon, May 01, 2023 at 06:35:44PM -0500, Daniel Kaehn wrote:
+> On Mon, Mar 20, 2023 at 9:10 AM Andy Shevchenko
+> <andriy.shevchenko@linux.intel.com> wrote:
+> > On Mon, Mar 20, 2023 at 08:40:07AM -0500, Daniel Kaehn wrote:
+> > > On Mon, Mar 20, 2023 at 8:00 AM Andy Shevchenko
+> > > <andriy.shevchenko@linux.intel.com> wrote:
+> > > > On Mon, Mar 20, 2023 at 02:58:07PM +0200, Andy Shevchenko wrote:
+> > > > > On Sun, Mar 19, 2023 at 03:48:02PM -0500, Danny Kaehn wrote:
 
+...
+
+> > > > > > +   device_for_each_child_node(&hdev->dev, child) {
+> > > > > > +           name = fwnode_get_name(child);
+> > > > > > +           ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
+> > > > > > +
+> > > > > > +           if ((name && strcmp("i2c", name) == 0) || (!ret && addr == 0))
+> > > > > > +                   device_set_node(&dev->adap.dev, child);
+> > > > > > +           else if ((name && strcmp("gpio", name)) == 0 ||
+> > > > > > +                                   (!ret && addr == 1))
+> > > > > > +                   dev->gc.fwnode = child;
+> > > > > > +   }
+> > > > >
+> > > > > Please, make addresses defined explicitly. You may also do it with node naming
+> > > > > schema:
+> > > > >
+> > > > > #define CP2112_I2C_ADR                0
+> > > > > #define CP2112_GPIO_ADR               1
+> > > > >
+> > > > > static const char * const cp2112_cell_names[] = {
+> > > > >       [CP2112_I2C_ADR]        = "i2c",
+> > > > >       [CP2112_GPIO_ADR]       = "gpio",
+> > > > > };
+> > > > >
+> > > > >       device_for_each_child_node(&hdev->dev, child) {
+> > > > >               name = fwnode_get_name(child);
+> > > > >               if (name) {
+> > > > >                       ret = match_string(cp2112_cell_names, ARRAY_SIZE(cp2112_cell_names), name);
+> > > > >                       if (ret >= 0)
+> > > > >                               addr = ret;
+> > > > >               } else
+> > > > >                       ret = acpi_get_local_address(ACPI_HANDLE_FWNODE(child), &addr);
+> > > > >               if (ret < 0)
+> > > > >                       ...error handling if needed...
+> > > > >
+> > > > >               switch (addr) {
+> > > > >               case CP2112_I2C_ADR:
+> > > > >                       device_set_node(&dev->adap.dev, child);
+> > > > >                       break;
+> > > > >               case CP2112_GPIO_ADR:
+> > > > >                       dev->gc.fwnode = child;
+> > > > >                       break;
+> > > > >               default:
+> > > > >                       ...error handling...
+> > > > >               }
+> > > > >       }
+> > > >
+> > > > Btw, don't you use "reg" property for the child nodes? It would be better from
+> > > > de facto used patterns (we have a couple of mode drivers that have a common
+> > > > code to read "reg" or _ADR() and that code can be split into a helper and used
+> > > > here).
+> > >
+> > > Named nodes _seem_ to be preferred in DT for when there isn't a logical /
+> > > natural numbering to the child nodes. A.e. for USB, reg is used to specify
+> > > which port, for I2C, which address on the bus, but for two parallel and
+> > > independent functions on the same device, it seems named nodes would make
+> > > more sense in DT. Many examples exist in mainline where named nodes are used
+> > > in DT in this way.
+> >
+> > Okay, I'm not an expert in the DT preferable schemas, so I believe DT people
+> > should answer on this.
 > 
-> This setup expects SCP firmware (or similar system, such as ATF)
-> to be installed on the platform, which implements pinctrl driver
-> for the specific platform.
+> Hello,
 > 
-> SCMI-Pinctrl driver should be configured from the device-tree and uses
-> generic device-tree mappings for the configuration.
-
-This should be obvious, I would drop any reference to the fact that you
-need an SCMI server somewhere replying to your requests and to the need
-of a DT configuration thing which is anyeway standard.
-
+> Thanks for all the time spent reviewing this thus far. Following up to
+> see what my next steps might be.
 > 
-> Signed-off-by: Oleksii Moisieiev <oleksii_moisieiev@epam.com>
-> ---
->  MAINTAINERS                    |   1 +
->  drivers/pinctrl/Kconfig        |  11 +
->  drivers/pinctrl/Makefile       |   1 +
->  drivers/pinctrl/pinctrl-scmi.c | 554 +++++++++++++++++++++++++++++++++
->  4 files changed, 567 insertions(+)
->  create mode 100644 drivers/pinctrl/pinctrl-scmi.c
+> It sounds like we might want some DT folks to weigh in on the strategy
+> used for identifying the child I2C and GPIO nodes for the CP2112
+> device before moving further toward applying this.
 > 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 297b2512963d..91883955fc1a 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -20527,6 +20527,7 @@ M:	Oleksii Moisieiev <oleksii_moisieiev@epam.com>
->  L:	linux-arm-kernel@lists.infradead.org
->  S:	Maintained
->  F:	drivers/firmware/arm_scmi/pinctrl.c
-> +F:	drivers/pinctrl/pinctrl-scmi.c
->  
->  SYSTEM RESET/SHUTDOWN DRIVERS
->  M:	Sebastian Reichel <sre@kernel.org>
-> diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-> index 5787c579dcf6..c4680a2c5e13 100644
-> --- a/drivers/pinctrl/Kconfig
-> +++ b/drivers/pinctrl/Kconfig
-> @@ -546,4 +546,15 @@ source "drivers/pinctrl/uniphier/Kconfig"
->  source "drivers/pinctrl/visconti/Kconfig"
->  source "drivers/pinctrl/vt8500/Kconfig"
->  
-> +config PINCTRL_SCMI
-> +	tristate "Pinctrl driver controlled via SCMI interface"
+> Since the DT list is on this thread (as well as Rob+Krzystof), and
+> this has sat for a little while, I'm assuming that the ball is in my
+> court to seek out an answer/opinion here. (I know folks get a lot of
+> email, so apologies if the correct move would have been to wait a bit
+> longer before following up! Not intending to be rude.)
+> 
+> Would it be appropriate / expected that I send a separate email thread
+> to the DT mailing list on their opinion here? Or would that create
+> more confusion/complexity in adding yet another thread? I did create a
+> separate email thread for the initial DT vs. ACPI conversation we had
+> about accessing children by name or index in a unified way due to the
+> differences in upper/lower case and use-cases, but that
+> (understandably) didn't seem to gain any traction.
+> 
+> Thanks for any insights!
+> 
+> Thanks,
+> Danny Kaehn
+> 
+> > > One example is network cards which provide an mdio bus
+> > > bind through the child "mdio". One example of a specifically a
+> > > child i2c controller being bound to "i2c" can be found in
+> > > pine64,pinephone-keyboard.yaml.
+> > > But it's certainly possible this isn't the desired direction moving forward
+> > > in DT -- my opinion should definitely be taken with a grain of salt. Maybe
+> > > this is something I should follow up on with DT folks on that DT vs. ACPI
+> > > thread made earlier.
+> > >
+> > > One thing I did notice when looking at the mfd subsystem is that most DT
+> > > drivers actually match on the compatible string of the child nodes, a.e.
+> > > "silabs,cp2112", "silabs,cp2112-gpio".  "silabs,cp2112-i2c". We could
+> > > implement that here, but I think that would make more sense if we were to
+> > > actually split the cp2112 into mfd & platform drivers, and additionally split
+> > > the DT binding by function.
+> >
+> > IIRC (but might be very well mistaken) the compatible strings for children
+> > are discouraged.
 
-"using SCMI protocol interface" maybe is more fitting...it is the pin
-that is controlled via SCMI not the driver, which is indeed the
-controller of the pin via SCMI O_o
+-- 
+With Best Regards,
+Andy Shevchenko
 
-> +	depends on ARM_SCMI_PROTOCOL || COMPILE_TEST
-> +	select PINMUX
-> +	select GENERIC_PINCONF
-> +	help
-> +	  This driver provides support for pinctrl which is controlled
-> +	  by firmware that implements the SCMI interface.
-> +	  It uses SCMI Message Protocol to interact with the
-> +	  firmware providing all the pinctrl controls.
-> +
->  endif
-> diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
-> index e196c6e324ad..b932a116e6a0 100644
-> --- a/drivers/pinctrl/Makefile
-> +++ b/drivers/pinctrl/Makefile
-> @@ -51,6 +51,7 @@ obj-$(CONFIG_PINCTRL_SX150X)	+= pinctrl-sx150x.o
->  obj-$(CONFIG_PINCTRL_TB10X)	+= pinctrl-tb10x.o
->  obj-$(CONFIG_PINCTRL_ZYNQMP)	+= pinctrl-zynqmp.o
->  obj-$(CONFIG_PINCTRL_ZYNQ)	+= pinctrl-zynq.o
-> +obj-$(CONFIG_PINCTRL_SCMI)	+= pinctrl-scmi.o
->  
 
-Probably needs to be alphabetically ordered.
-
->  obj-y				+= actions/
->  obj-$(CONFIG_ARCH_ASPEED)	+= aspeed/
-> diff --git a/drivers/pinctrl/pinctrl-scmi.c b/drivers/pinctrl/pinctrl-scmi.c
-> new file mode 100644
-> index 000000000000..e46dffa652c6
-> --- /dev/null
-> +++ b/drivers/pinctrl/pinctrl-scmi.c
-> @@ -0,0 +1,554 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * System Control and Power Interface (SCMI) Protocol based pinctrl driver
-> + *
-> + * Copyright (C) 2023 EPAM
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/err.h>
-> +#include <linux/module.h>
-> +#include <linux/seq_file.h>
-> +#include <linux/scmi_protocol.h>
-> +#include <linux/slab.h>
-> +
-> +#include <linux/pinctrl/machine.h>
-> +#include <linux/pinctrl/pinconf.h>
-> +#include <linux/pinctrl/pinconf-generic.h>
-> +#include <linux/pinctrl/pinctrl.h>
-> +#include <linux/pinctrl/pinmux.h>
-> +
-> +#include "pinctrl-utils.h"
-> +#include "core.h"
-> +#include "pinconf.h"
-> +
-> +#define DRV_NAME "scmi-pinctrl"
-> +
-> +static const struct scmi_pinctrl_proto_ops *pinctrl_ops;
-> +
-> +struct scmi_pinctrl_funcs {
-> +	unsigned int num_groups;
-> +	const char **groups;
-> +};
-> +
-> +struct scmi_pinctrl {
-> +	struct device *dev;
-> +	struct scmi_protocol_handle *ph;
-> +	struct pinctrl_dev *pctldev;
-> +	struct pinctrl_desc pctl_desc;
-> +	struct scmi_pinctrl_funcs *functions;
-> +	unsigned int nr_functions;
-> +	char **groups;
-> +	unsigned int nr_groups;
-> +	struct pinctrl_pin_desc *pins;
-> +	unsigned int nr_pins;
-> +};
-> +
-> +static int pinctrl_scmi_get_groups_count(struct pinctrl_dev *pctldev)
-> +{
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return -EINVAL;
-
-This check is superfluos right ? If you registered successfully with the
-Pinctrl subsys and you passed your pmx driver_data as properly
-initialized in _probe you can never get a NULL here for pmx or pmx->ph.
-
-> +
-> +	return pinctrl_ops->get_count(pmx->ph, GROUP_TYPE);
-> +}
-> +
-> +static const char *pinctrl_scmi_get_group_name(struct pinctrl_dev *pctldev,
-> +					       unsigned int selector)
-> +{
-> +	int ret;
-> +	const char *name;
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return NULL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return NULL;
-> +
-
-Ditto.
-
-> +	ret = pinctrl_ops->get_name(pmx->ph, selector, GROUP_TYPE, &name);
-> +	if (ret) {
-> +		dev_err(pmx->dev, "get name failed with err %d", ret);
-> +		return NULL;
-> +	}
-> +
-> +	return name;
-> +}
-> +
-> +static int pinctrl_scmi_get_group_pins(struct pinctrl_dev *pctldev,
-> +				       unsigned int selector,
-> +				       const unsigned int **pins,
-> +				       unsigned int *num_pins)
-> +{
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return -EINVAL;
-> +
-
-Ditto.
-
-> +	return pinctrl_ops->get_group_pins(pmx->ph, selector,
-> +					   pins, num_pins);
-> +}
-> +
-> +#ifdef CONFIG_OF
-> +static int pinctrl_scmi_dt_node_to_map(struct pinctrl_dev *pctldev,
-> +				       struct device_node *np_config,
-> +				       struct pinctrl_map **map,
-> +				       u32 *num_maps)
-> +{
-> +	return pinconf_generic_dt_node_to_map(pctldev, np_config, map,
-> +					      num_maps, PIN_MAP_TYPE_INVALID);
-> +}
-> +
-> +static void pinctrl_scmi_dt_free_map(struct pinctrl_dev *pctldev,
-> +				     struct pinctrl_map *map, u32 num_maps)
-> +{
-> +	kfree(map);
-> +}
-> +
-> +#endif /* CONFIG_OF */
-> +
-> +static const struct pinctrl_ops pinctrl_scmi_pinctrl_ops = {
-> +	.get_groups_count = pinctrl_scmi_get_groups_count,
-> +	.get_group_name = pinctrl_scmi_get_group_name,
-> +	.get_group_pins = pinctrl_scmi_get_group_pins,
-> +#ifdef CONFIG_OF
-> +	.dt_node_to_map = pinctrl_scmi_dt_node_to_map,
-> +	.dt_free_map = pinctrl_scmi_dt_free_map,
-> +#endif
-> +};
-> +
-> +static int pinctrl_scmi_get_functions_count(struct pinctrl_dev *pctldev)
-> +{
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return -EINVAL;
-> +
-
-Ditto.
-
-> +	return pinctrl_ops->get_count(pmx->ph, FUNCTION_TYPE);
-> +}
-> +
-> +static const char *pinctrl_scmi_get_function_name(struct pinctrl_dev *pctldev,
-> +						  unsigned int selector)
-> +{
-> +	int ret;
-> +	const char *name;
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return NULL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return NULL;
-> +
-
-Ditto.
-
-> +	ret = pinctrl_ops->get_name(pmx->ph, selector, FUNCTION_TYPE, &name);
-> +	if (ret) {
-> +		dev_err(pmx->dev, "get name failed with err %d", ret);
-> +		return NULL;
-> +	}
-> +
-> +	return name;
-> +}
-> +
-> +static int pinctrl_scmi_get_function_groups(struct pinctrl_dev *pctldev,
-> +					    unsigned int selector,
-> +					    const char * const **groups,
-> +					    unsigned int * const num_groups)
-> +{
-> +	const unsigned int *group_ids;
-> +	int ret, i;
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph || !groups || !num_groups)
-> +		return -EINVAL;
-> +
-
-Ditto for pmx/pmx->ph.
-
-> +	if (selector < pmx->nr_functions &&
-> +	    pmx->functions[selector].num_groups) {
-> +		*groups = (const char * const *)pmx->functions[selector].groups;
-> +		*num_groups = pmx->functions[selector].num_groups;
-> +		return 0;
-> +	}
-> +
-> +	ret = pinctrl_ops->get_function_groups(pmx->ph, selector,
-> +					       &pmx->functions[selector].num_groups,
-> +					       &group_ids);
-> +	if (ret) {
-> +		dev_err(pmx->dev, "Unable to get function groups, err %d", ret);
-> +		return ret;
-> +	}
-> +
-> +	*num_groups = pmx->functions[selector].num_groups;
-> +	if (!*num_groups)
-> +		return -EINVAL;
-> +
-> +	pmx->functions[selector].groups =
-> +		devm_kcalloc(pmx->dev, *num_groups,
-> +			     sizeof(*pmx->functions[selector].groups),
-> +			     GFP_KERNEL);
-> +	if (!pmx->functions[selector].groups)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < *num_groups; i++) {
-> +		pmx->functions[selector].groups[i] =
-> +			pinctrl_scmi_get_group_name(pmx->pctldev,
-> +						    group_ids[i]);
-> +		if (!pmx->functions[selector].groups[i]) {
-> +			ret = -ENOMEM;
-> +			goto error;
-> +		}
-> +	}
-> +
-> +	*groups = (const char * const *)pmx->functions[selector].groups;
-> +
-> +	return 0;
-> +
-> +error:
-> +	devm_kfree(pmx->dev, pmx->functions[selector].groups);
-> +
-> +	return ret;
-> +}
-> +
-> +static int pinctrl_scmi_func_set_mux(struct pinctrl_dev *pctldev,
-> +				     unsigned int selector, unsigned int group)
-> +{
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return -EINVAL;
-
-Ditto.
-
-> +
-> +	return pinctrl_ops->set_mux(pmx->ph, selector, group);
-> +}
-> +
-> +static int pinctrl_scmi_request(struct pinctrl_dev *pctldev,
-> +				unsigned int offset)
-> +{
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return -EINVAL;
-
-Ditto.
-
-> +
-> +	return pinctrl_ops->request_pin(pmx->ph, offset);
-> +}
-> +
-> +static int pinctrl_scmi_free(struct pinctrl_dev *pctldev, unsigned int offset)
-> +{
-> +	struct scmi_pinctrl *pmx;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return -EINVAL;
-
-Ditto.
-
-> +
-> +	return pinctrl_ops->free_pin(pmx->ph, offset);
-> +}
-> +
-> +static const struct pinmux_ops pinctrl_scmi_pinmux_ops = {
-> +	.request = pinctrl_scmi_request,
-> +	.free = pinctrl_scmi_free,
-> +	.get_functions_count = pinctrl_scmi_get_functions_count,
-> +	.get_function_name = pinctrl_scmi_get_function_name,
-> +	.get_function_groups = pinctrl_scmi_get_function_groups,
-> +	.set_mux = pinctrl_scmi_func_set_mux,
-> +};
-> +
-> +static int pinctrl_scmi_pinconf_get(struct pinctrl_dev *pctldev,
-> +				    unsigned int _pin,
-> +				    unsigned long *config)
-> +{
-> +	int ret;
-> +	struct scmi_pinctrl *pmx;
-> +	enum pin_config_param config_type;
-> +	unsigned long config_value;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph || !config)
-> +		return -EINVAL;
-> +
-
-Ditto for pmx/pmx->ph.
-
-> +	config_type = pinconf_to_config_param(*config);
-> +
-> +	ret = pinctrl_ops->get_config(pmx->ph, _pin, PIN_TYPE, config_type,
-> +				      &config_value);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*config = pinconf_to_config_packed(config_type, config_value);
-> +
-> +	return 0;
-> +}
-> +
-> +static int pinctrl_scmi_pinconf_set(struct pinctrl_dev *pctldev,
-> +				    unsigned int _pin,
-> +				    unsigned long *configs,
-> +				    unsigned int num_configs)
-> +{
-> +	int i, ret;
-> +	struct scmi_pinctrl *pmx;
-> +	enum pin_config_param config_type;
-> +	unsigned long config_value;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph || !configs || num_configs == 0)
-> +		return -EINVAL;
-
-Ditto for pmx/pmx->ph.
-
-> +
-> +	for (i = 0; i < num_configs; i++) {
-> +		config_type = pinconf_to_config_param(configs[i]);
-> +		config_value = pinconf_to_config_argument(configs[i]);
-> +
-> +		ret = pinctrl_ops->set_config(pmx->ph, _pin, PIN_TYPE, config_type,
-> +					      config_value);
-> +		if (ret) {
-> +			dev_err(pmx->dev, "Error parsing config %ld\n",
-> +				configs[i]);
-> +			break;
-> +		}
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int pinctrl_scmi_pinconf_group_set(struct pinctrl_dev *pctldev,
-> +					  unsigned int group,
-> +					  unsigned long *configs,
-> +					  unsigned int num_configs)
-> +{
-> +	int i, ret;
-> +	struct scmi_pinctrl *pmx;
-> +	enum pin_config_param config_type;
-> +	unsigned long config_value;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph || !configs || num_configs == 0)
-> +		return -EINVAL;
-
-Ditto for pmx/pmx->ph.
-
-> +
-> +	for (i = 0; i < num_configs; i++) {
-> +		config_type = pinconf_to_config_param(configs[i]);
-> +		config_value = pinconf_to_config_argument(configs[i]);
-> +
-> +		ret = pinctrl_ops->set_config(pmx->ph, group, GROUP_TYPE,
-> +					      config_type, config_value);
-> +		if (ret) {
-> +			dev_err(pmx->dev, "Error parsing config = %ld",
-> +				configs[i]);
-> +			break;
-> +		}
-> +	}
-> +
-> +	return ret;
-> +};
-> +
-> +static int pinctrl_scmi_pinconf_group_get(struct pinctrl_dev *pctldev,
-> +					  unsigned int _pin,
-> +					  unsigned long *config)
-> +{
-> +	int ret;
-> +	struct scmi_pinctrl *pmx;
-> +	enum pin_config_param config_type;
-> +	unsigned long config_value;
-> +
-> +	if (!pctldev)
-> +		return -EINVAL;
-> +
-> +	pmx = pinctrl_dev_get_drvdata(pctldev);
-> +
-> +	if (!pmx || !pmx->ph || !config)
-> +		return -EINVAL;
-
-Ditto for pmx/pmx->ph.
-
-> +
-> +	config_type = pinconf_to_config_param(*config);
-> +
-> +	ret = pinctrl_ops->get_config(pmx->ph, _pin, GROUP_TYPE,
-> +				      config_type, &config_value);
-> +	if (ret)
-> +		return ret;
-> +
-> +	*config = pinconf_to_config_packed(config_type, config_value);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct pinconf_ops pinctrl_scmi_pinconf_ops = {
-> +	.is_generic = true,
-> +	.pin_config_get = pinctrl_scmi_pinconf_get,
-> +	.pin_config_set = pinctrl_scmi_pinconf_set,
-> +	.pin_config_group_set = pinctrl_scmi_pinconf_group_set,
-> +	.pin_config_group_get = pinctrl_scmi_pinconf_group_get,
-> +	.pin_config_config_dbg_show = pinconf_generic_dump_config,
-> +};
-> +
-> +static int pinctrl_scmi_get_pins(struct scmi_pinctrl *pmx,
-> +				 unsigned int *nr_pins,
-> +				 const struct pinctrl_pin_desc **pins)
-> +{
-> +	int ret, i;
-> +
-> +	if (!pmx || !pmx->ph)
-> +		return -EINVAL;
-
-Ditto.
-
-> +
-> +	if (!pins || !nr_pins)
-> +		return -EINVAL;
-> +
-> +	if (pmx->nr_pins) {
-> +		*pins = pmx->pins;
-> +		*nr_pins = pmx->nr_pins;
-> +		return 0;
-> +	}
-> +
-> +	*nr_pins = pinctrl_ops->get_count(pmx->ph, PIN_TYPE);
-> +
-> +	pmx->nr_pins = *nr_pins;
-> +	pmx->pins = devm_kmalloc_array(pmx->dev, *nr_pins, sizeof(*pmx->pins),
-> +				       GFP_KERNEL);
-> +	if (!pmx->pins)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < *nr_pins; i++) {
-> +		pmx->pins[i].number = i;
-> +		ret = pinctrl_ops->get_name(pmx->ph, i, PIN_TYPE,
-> +					    &pmx->pins[i].name);
-> +		if (ret) {
-> +			dev_err(pmx->dev, "Can't get name for pin %d: rc %d",
-> +				i, ret);
-> +			goto err_free;
-> +		}
-> +	}
-> +
-> +	*pins = pmx->pins;
-> +	dev_dbg(pmx->dev, "got pins %d", *nr_pins);
-> +
-> +	return 0;
-> + err_free:
-> +	devm_kfree(pmx->dev, pmx->pins);
-> +	pmx->nr_pins = 0;
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct scmi_device_id scmi_id_table[] = {
-> +	{ SCMI_PROTOCOL_PINCTRL, "pinctrl" },
-> +	{ }
-> +};
-> +MODULE_DEVICE_TABLE(scmi, scmi_id_table);
-> +
-> +static int scmi_pinctrl_probe(struct scmi_device *sdev)
-> +{
-> +	int ret;
-> +	struct scmi_pinctrl *pmx;
-> +	const struct scmi_handle *handle;
-> +	struct scmi_protocol_handle *ph;
-> +
-> +	if (!sdev || !sdev->handle)
-> +		return -EINVAL;
-> +
-> +	handle = sdev->handle;
-> +
-> +	pinctrl_ops = handle->devm_protocol_get(sdev, SCMI_PROTOCOL_PINCTRL, &ph);
-> +	if (IS_ERR(pinctrl_ops))
-> +		return PTR_ERR(pinctrl_ops);
-> +
-> +	pmx = devm_kzalloc(&sdev->dev, sizeof(*pmx), GFP_KERNEL);
-> +	if (!pmx)
-> +		return -ENOMEM;
-> +
-> +	pmx->ph = ph;
-> +
-> +	pmx->dev = &sdev->dev;
-> +	pmx->pctl_desc.name = DRV_NAME;
-> +	pmx->pctl_desc.owner = THIS_MODULE;
-> +	pmx->pctl_desc.pctlops = &pinctrl_scmi_pinctrl_ops;
-> +	pmx->pctl_desc.pmxops = &pinctrl_scmi_pinmux_ops;
-> +	pmx->pctl_desc.confops = &pinctrl_scmi_pinconf_ops;
-> +
-> +	ret = pinctrl_scmi_get_pins(pmx, &pmx->pctl_desc.npins,
-> +				    &pmx->pctl_desc.pins);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = devm_pinctrl_register_and_init(&sdev->dev, &pmx->pctl_desc, pmx,
-> +					     &pmx->pctldev);
-> +	if (ret) {
-> +		dev_err_probe(&sdev->dev, ret, "Failed to register pinctrl\n");
-> +		return ret;
-> +	}
-> +
-> +	pmx->nr_functions = pinctrl_scmi_get_functions_count(pmx->pctldev);
-> +	pmx->nr_groups = pinctrl_scmi_get_groups_count(pmx->pctldev);
-> +
-> +	if (pmx->nr_functions) {
-> +		pmx->functions =
-> +			devm_kcalloc(&sdev->dev, pmx->nr_functions,
-> +				     sizeof(*pmx->functions),
-> +				     GFP_KERNEL);
-> +		if (!pmx->functions)
-> +			return -ENOMEM;
-> +	}
-> +
-> +	if (pmx->nr_groups) {
-> +		pmx->groups =
-> +			devm_kcalloc(&sdev->dev, pmx->nr_groups,
-> +				     sizeof(*pmx->groups),
-> +				     GFP_KERNEL);
-> +		if (!pmx->groups)
-> +			return -ENOMEM;
-> +	}
-> +
-> +	return pinctrl_enable(pmx->pctldev);
-> +}
-> +
-> +static struct scmi_driver scmi_pinctrl_driver = {
-> +	.name = DRV_NAME,
-> +	.probe = scmi_pinctrl_probe,
-> +	.id_table = scmi_id_table,
-> +};
-> +module_scmi_driver(scmi_pinctrl_driver);
-> +
-
-Thanks,
-Cristian
