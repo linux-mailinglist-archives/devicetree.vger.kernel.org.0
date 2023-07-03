@@ -2,100 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6543745496
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 06:39:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32B35745504
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 07:41:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229988AbjGCEjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 00:39:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46190 "EHLO
+        id S229854AbjGCFlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 01:41:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57048 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229973AbjGCEjI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 00:39:08 -0400
-Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49003E4C
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 21:39:05 -0700 (PDT)
-Received: by mail-pj1-x102f.google.com with SMTP id 98e67ed59e1d1-263253063f9so2962361a91.1
-        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 21:39:04 -0700 (PDT)
+        with ESMTP id S229914AbjGCFle (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 01:41:34 -0400
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37C3CC0;
+        Sun,  2 Jul 2023 22:41:29 -0700 (PDT)
+Received: by codeconstruct.com.au (Postfix, from userid 10001)
+        id 5F8F020153; Mon,  3 Jul 2023 13:31:43 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688359144; x=1690951144;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=JQa+D3bKZ4O4X9M+/GDbUXDgSQgWey4zHBVp12A/tyI=;
-        b=m+GgiZJMY2GS44/BQkwyMYFYMP51zz2ucUazeKUJ3BSo9w69Q2tXsgqxvb1neJ985S
-         amGPFnsHQcwozrLn4ghLN4POCUVgLCA1DGJZeJOODZsIdEjaaKA5VvJ/gV2PmqNgbK3Q
-         ed5D/YJQImyRQjc9tzIUA6ZyvPup8uEQjfrhE6n9ELnemPmwGiWdx1zY4bNx5m2Ediux
-         J5uemWTK4i9hx3pD7zleltHrluZgpWVLkZ7pvjskPZeHqqj8brCQkjlMIbc1pKQVwe3y
-         NKyW4IH+8ka/S9lG2ULnI8SiNlO3YU5GO1DDrr2iKVt64nnQxb+1+CLDwGVnOoyW8W0X
-         Cc2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688359144; x=1690951144;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=JQa+D3bKZ4O4X9M+/GDbUXDgSQgWey4zHBVp12A/tyI=;
-        b=Pzjz/NXkty1RtnCRHQx2qbmw1UEdTzYichuLaxUnbDRG0TiWF0HwV1Yga214A2a1kg
-         yd4XYO6a/TRH7NNDW+gvVlcaJmbTTI0poU18qFZnuyraIG0bXHQ6ubeU62Rhqrt7ZZi3
-         izpB0tpxEZ7WQ9aBEqrxIPDulUlxJl6/X9DgM8SHrGCliJoPHysvILC8ncVIiNsLxmyt
-         3E6mL+NuOTA/2w1zbWRpiZd/KctB1xDoFdvVmEH+Ki95k0HKWWJbdO3KjK5Y6H/geqs+
-         FFwgLJjFwYN8J/OsqNc4oXwzO/dLMr2lpyicjBKLbg19U8HtgVoFoozyjskwABHTT1zK
-         /xGg==
-X-Gm-Message-State: ABy/qLbb+Yg6AtE3bKCH8ByZgdnbzzG1prGANdlZaDWCpxyXXQZ/xdLp
-        J0YIwJvSm+RA7g8lqhp8C2M5MQ==
-X-Google-Smtp-Source: APBJJlGJAqDtdAlIcLY6/PXL/R2IWqlVaFJAmvBSHXphW5VbL7iECzu9LLaRZeY67AgChYrKFKR7OQ==
-X-Received: by 2002:a17:90a:3d0d:b0:25b:ea12:a2f5 with SMTP id h13-20020a17090a3d0d00b0025bea12a2f5mr8671488pjc.35.1688359144365;
-        Sun, 02 Jul 2023 21:39:04 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id lp15-20020a17090b4a8f00b00263d3448141sm118842pjb.8.2023.07.02.21.39.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 02 Jul 2023 21:39:03 -0700 (PDT)
-Date:   Mon, 3 Jul 2023 10:09:01 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        d=codeconstruct.com.au; s=2022a; t=1688362303;
+        bh=LQt2kPJhGKAg0Y5UT/bfj8ZmQ8oXOQs1B872I/8uUKc=;
+        h=From:To:Cc:Subject:Date;
+        b=VvmvIMHiGxEiiGr+B4r3ldNNlIhw4iqbXiVtV+zal8xxkGXLZpd/Izuu12nv3L4qS
+         UGjsAs/+glhlB8D7DpzaE7sAwmZ+BanWZsK1ST+7iBr4GPg8IwtF6WkMTOIFsovpWw
+         zZR/QfhLZZHQVYHNV2mXxO4dqidLJKLNdLbdAD8zopvlrMbRwD30x0u1OmhZrnQlUA
+         vqJ5yS4AyrMA2x8WerPz8wEQRg95OJUBY5IYqyLfh0l+UMzzpfbTLYvDf+st+7esO0
+         f1qE9sVgijZ2yad4O+vqRwAa4aqQAqD94cCuSJXnUxb7rmLBwkA4tv3VEuiR7hDH/L
+         GoOJRAUs+qj+Q==
+From:   Matt Johnston <matt@codeconstruct.com.au>
+To:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: Re: [PATCH v3 00/28] ARM: qcom: apq8064: support CPU frequency
- scaling
-Message-ID: <20230703043901.b4wvxgq3r2a6yijv@vireshk-i7>
-References: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
+        Conor Dooley <conor+dt@kernel.org>
+Subject: [PATCH 0/3] I3C MCTP net driver
+Date:   Mon,  3 Jul 2023 13:30:45 +0800
+Message-Id: <20230703053048.275709-1-matt@codeconstruct.com.au>
+X-Mailer: git-send-email 2.37.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-07-23, 20:42, Dmitry Baryshkov wrote:
-> Implement CPUFreq support for one of the oldest supported Qualcomm
-> platforms, APQ8064. Each core has independent power and frequency
-> control. Additionally the L2 cache is scaled to follow the CPU
-> frequencies (failure to do so results in strange semi-random crashes).
-> 
-> Core voltage is controlled through the SAW2 devices, one for each core.
-> The L2 has two regulators, vdd-mem and vdd-dig.
+This series adds an I3C transport for the kernel's MCTP network
+protocol. MCTP is a communication protocol between system components
+(BMCs, drives, NICs etc), with higher level protocols such as NVMe-MI or
+PLDM built on top of it (in userspace). It runs over various transports
+such as I2C, PCIe, or I3C.
 
-Is it possible to send the cpufreq/opp patches separately so I can apply
-directly ?
+The mctp-i3c driver follows a similar approach to the kernel's existing
+mctp-i2c driver, creating a "mctpi3cX" network interface for each
+numbered I3C bus. Busses opt in to support by adding a "mctp-controller"
+property to the devicetree:
+
+&i3c0 {
+        mctp-controller;
+}
+
+The driver will bind to MCTP class devices (DCR 0xCC) that are on a
+supported I3C bus. Each bus is represented by a `struct mctp_i3c_bus`
+that keeps state for the network device. An individual I3C device
+(struct mctp_i3c_device) performs operations using the "parent"
+mctp_i3c_bus object. The I3C notify/enumeration patch is needed so that
+the mctp-i3c driver can handle creating/removing mctp_i3c_bus objects as
+required.
+
+The mctp-i3c driver is using the Provisioned ID as an identifier for
+target I3C devices (the neighbour address), as that will be more stable
+than the I3C dynamic address. The driver internally translates that to a
+dynamic address for bus operations.
+
+The driver has been tested using an AST2600 platform. A remote endpoint 
+has been tested against Qemu, as well as using the target mode support 
+in Aspeed's vendor tree.
+
+---
+
+I'll leave it to maintainers whether this should be merged through the
+i3c or net tree.
+
+Since my previous RFC email to the i3c list, this adds dt-bindings
+and fixes a comment typo. 
+
+Jeremy Kerr (1):
+  i3c: Add support for bus enumeration & notification
+
+Matt Johnston (2):
+  dt-bindings: i3c: Add mctp-controller property
+  mctp i3c: MCTP I3C driver
+
+ .../devicetree/bindings/i3c/i3c.yaml          |   4 +
+ drivers/i3c/master.c                          |  35 +
+ drivers/net/mctp/Kconfig                      |   9 +
+ drivers/net/mctp/Makefile                     |   1 +
+ drivers/net/mctp/mctp-i3c.c                   | 778 ++++++++++++++++++
+ include/linux/i3c/master.h                    |  11 +
+ 6 files changed, 838 insertions(+)
+ create mode 100644 drivers/net/mctp/mctp-i3c.c
 
 -- 
-viresh
+2.37.2
+
