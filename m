@@ -2,131 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98915745BB2
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33B12745BBC
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:57:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231437AbjGCLyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 07:54:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60540 "EHLO
+        id S231479AbjGCL46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 07:56:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230355AbjGCLyM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:54:12 -0400
-Received: from mail-lf1-x12f.google.com (mail-lf1-x12f.google.com [IPv6:2a00:1450:4864:20::12f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82E3FE8
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 04:54:11 -0700 (PDT)
-Received: by mail-lf1-x12f.google.com with SMTP id 2adb3069b0e04-4fb73ba3b5dso6855501e87.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 04:54:11 -0700 (PDT)
+        with ESMTP id S231475AbjGCL45 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:56:57 -0400
+Received: from mail-wm1-x32f.google.com (mail-wm1-x32f.google.com [IPv6:2a00:1450:4864:20::32f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E147410E
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 04:56:55 -0700 (PDT)
+Received: by mail-wm1-x32f.google.com with SMTP id 5b1f17b1804b1-3fbc54caad5so37152795e9.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 04:56:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688385250; x=1690977250;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688385414; x=1690977414;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=bXNzRd3jR5JPFmpeTiXWdVfFXAjxU+F5vLbqYF9b+/8=;
-        b=oYn14Z7Ibwkul7KPYWZeUcbnpKKX/F+FFhzC1vfBC6FT0itpam8xVxU6UgVFhOYB5B
-         QHg5sq8MlOb3MNSHUzkkTCKrSrQgp/E4zY2P+B/JBq+nm5uMgUlf6I+rA0Y6dP9ZcUUF
-         yQtspkwaUDZC9gu8158mT3jdjPdNHjxkfhHKeGc4lP6S2uNMk4wADugpw/6Fxdv8tY88
-         0qIHZGMuL8vIzrT5lf/6Hk2RvfzL/oQ78usVog2Pjq2vSMZV7oi4Rdqxsh0oEQkG9eDj
-         uzK5lM0PMFF9sWEUYkuCMdkC+jEltH4tAdvQ6wxEyeEYw8EcD68pAgVXaa8tS2r88/U7
-         K1AA==
+        bh=TTq4B8VQydiZBj9HRWXj7S7KM5zH7YsDOhpU1L0DXi4=;
+        b=IEoMrr0Ski5D2vzSr0VAQh5kNAU7257QhAft+YiErVJ9WunpDECW4kav+qfqa8TdBa
+         4aYSZt67yCoGIiwL3OjCOL6XhnPsCV3PX/xyTGlfJ7SNEaHXKnGhmfwUNd/wR6fo1+7n
+         L63xfGVlUeJ6DclBLXgIleEWkuHNM9AJiFT7L+eOhFSZ8WB00mw3mqGfOBNAcb2OK8YP
+         VxmbHN3b3oBnK8G2byqiO7Hcw8tzsNHqFpYjAR8Ghw5EuiYILv5ndcnVD6XcdtS4iZaf
+         nv5qddQ/PUEtu9PGxgYDGMcANb7Z4OLAR5VKtmL7E7+MbG0/CcuXG9ZRj/yWTwZJHRkf
+         +Giw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688385250; x=1690977250;
+        d=1e100.net; s=20221208; t=1688385414; x=1690977414;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=bXNzRd3jR5JPFmpeTiXWdVfFXAjxU+F5vLbqYF9b+/8=;
-        b=Ilao8ay87dcFtMsje/ai2qFQKlkytsjyMikxTZ1K/xjz923ALrWfVuciqZYb3Mizcg
-         l4obkbRehJiC7QB6S7PTCnNquuU/KvQedzzWHErAnfc6BaGNp4AT2ihTBxSsLJRrcdwh
-         /GJCPJhMxTqZer7ZpdDbDcYZjqHNse134F14yyxMVlAdUSFAjbOJxe5nBN57q4Tq0a/F
-         /twxXPeyN1tNa0ZtRAoovcUV0YpOy4Lt+6U1VKNjJWY5tkD1jNc8KOYMtyELzl+1Ec2h
-         8R9RE/QUb2J6/fox0wHNNAHRAtqwexdjRafxOzA3vMi5YMCoQbzsxbaIS2XfAQAmSeWm
-         b4jw==
-X-Gm-Message-State: ABy/qLbZcrl+kol1ikFPJmWCRQzV/cjwOhaiGieI9NeifwxxNvO08ty2
-        bnhiPK/dx4btS/ORTiy290SeCQ==
-X-Google-Smtp-Source: APBJJlGGpcU0CVrLkKNj6VTl3fcyaH8gB9svHaSByztWdsn5cjniHPgxrb5zbhxcL4Tks/rRyN1tEw==
-X-Received: by 2002:a05:6512:360a:b0:4f7:55e4:4665 with SMTP id f10-20020a056512360a00b004f755e44665mr5759684lfs.56.1688385249861;
-        Mon, 03 Jul 2023 04:54:09 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id r11-20020ac25a4b000000b004fb7da93c24sm3340292lfn.273.2023.07.03.04.54.08
+        bh=TTq4B8VQydiZBj9HRWXj7S7KM5zH7YsDOhpU1L0DXi4=;
+        b=UwhbXnV/klS7YsOvYAXoywUjviHzez9FVC7YK3K7U9VXl7BjkdiT9YNJZlyXF716Hs
+         DqjZGGDj8NYbWQDsUjwS7LipMcDwFTSLMI6o7xOdZVSjIFY+f6euqixtcgo/PMBXf/F4
+         uSHH0EkZxgV7NN5v4z4Goyq7QOqz0BRZ/auqijICluLWEkiEAvMiQ2pMezXFHr+bp08E
+         iFVWyBEJM7uVYYvNw64pTiLVoh9oX7Op5kn3t7gKXQ+LB42oROpP06GaII9enoeVXaH2
+         8uTpsionZmEyyjAFc/8jlhyBdnmDp0lPJD6dAlKaYAKUxkvnqpeGcv7EsMhUJSGK4aU5
+         sYNg==
+X-Gm-Message-State: AC+VfDy7sIjYARS+impbt2/Hs1cKMqpR8rT+NJ1Es89qINKXgnZqKRs0
+        iU6DvpGJNQGSvk+gBBSbQE6UOA==
+X-Google-Smtp-Source: ACHHUZ5CW2k7JvgHdwNLhg2i8HEeB/5xPMDUQZX5RoLenIKDPWRe8KP9Flewwh8BRzeQh9yYMTS06Q==
+X-Received: by 2002:a05:600c:3787:b0:3fb:ac73:f7d9 with SMTP id o7-20020a05600c378700b003fbac73f7d9mr7607357wmr.32.1688385414262;
+        Mon, 03 Jul 2023 04:56:54 -0700 (PDT)
+Received: from [192.168.35.121] ([77.205.22.13])
+        by smtp.gmail.com with ESMTPSA id n24-20020a7bcbd8000000b003fbca05faa9sm8198120wmi.24.2023.07.03.04.56.53
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 04:54:09 -0700 (PDT)
-Message-ID: <115b2e2d-f2b2-f96b-a586-3bcbaee47586@linaro.org>
-Date:   Mon, 3 Jul 2023 13:54:08 +0200
+        Mon, 03 Jul 2023 04:56:53 -0700 (PDT)
+Message-ID: <babf5f20-ddf4-74bf-1788-f8e356acaa92@baylibre.com>
+Date:   Mon, 3 Jul 2023 13:56:52 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 22/27] ARM: dts: qcom: pm8058: switch to
- interrupts-extended
+Subject: Re: [PATCH 0/3] Configure usb0 as peripheral on am335x boards
 Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
- <20230702134320.98831-23-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230702134320.98831-23-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+To:     Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        vigneshr@ti.com, nm@ti.com
+References: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
+ <20230630072047.GK14287@atomide.com>
+ <f4fa80fd-1a6a-4718-0287-f5288cd9d912@baylibre.com>
+ <7f44798b-e2bf-1620-da37-ca13bfd07a21@kernel.org>
+From:   Julien Panis <jpanis@baylibre.com>
+In-Reply-To: <7f44798b-e2bf-1620-da37-ca13bfd07a21@kernel.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2.07.2023 15:43, Dmitry Baryshkov wrote:
-> Merge interrups and interrupt-parent properties into a single
-> interrupts-extended property.
-> 
-> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+On 6/30/23 21:40, Roger Quadros wrote:
+> Hi,
+>
+> On 30/06/2023 11:30, Julien Panis wrote:
+>> Hello Tony,
+>>
+>> On 6/30/23 09:20, Tony Lindgren wrote:
+>>> Hi,
+>>>
+>>> * Julien Panis <jpanis@baylibre.com> [230629 13:10]:
+>>>> This series configures usb0 dr_mode as 'peripheral' for am335x-evm,
+>>>> am335x-evmsk, and am335x-icev2. This USB port is mainly used for
+>>>> RNDIS and DFU.
+>>> Is this a mini-B connector? Just wondering if it was originally attempted
+>>> to be configured as OTG or how it ended up with a host configuration..
+>> It's a micro USB-AB connector.
+>> I don't know how it ended up with a host configuration, it looks like an oversight.
+>> Maybe Vignesh or Nishanth can confirm (?)
+> usb0 role should be "otg".
+> It is rightly so in Linux DT. am33xx.dtsi contains "otg" and all AM335x board files inherit from it.
+>
+> So I don't think setting it to "peripheral" in u-boot is the right thing to do.
 
-Konrad
->  arch/arm/boot/dts/qcom/pm8058.dtsi | 13 +++++--------
->  1 file changed, 5 insertions(+), 8 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/pm8058.dtsi b/arch/arm/boot/dts/qcom/pm8058.dtsi
-> index 3683d7b60918..984b79777984 100644
-> --- a/arch/arm/boot/dts/qcom/pm8058.dtsi
-> +++ b/arch/arm/boot/dts/qcom/pm8058.dtsi
-> @@ -11,9 +11,8 @@ pm8058: pmic {
->  		pwrkey@1c {
->  			compatible = "qcom,pm8058-pwrkey";
->  			reg = <0x1c>;
-> -			interrupt-parent = <&pm8058>;
-> -			interrupts = <50 IRQ_TYPE_EDGE_RISING>,
-> -				     <51 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts-extended = <&pm8058 50 IRQ_TYPE_EDGE_RISING>,
-> +					      <&pm8058 51 IRQ_TYPE_EDGE_RISING>;
->  			debounce = <15625>;
->  			pull-up;
->  		};
-> @@ -61,9 +60,8 @@ pm8058_led133: led@133 {
->  		pm8058_keypad: keypad@148 {
->  			compatible = "qcom,pm8058-keypad";
->  			reg = <0x148>;
-> -			interrupt-parent = <&pm8058>;
-> -			interrupts = <74 IRQ_TYPE_EDGE_RISING>,
-> -				     <75 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts-extended = <&pm8058 74 IRQ_TYPE_EDGE_RISING>,
-> +					      <&pm8058 75 IRQ_TYPE_EDGE_RISING>;
->  			debounce = <15>;
->  			scan-delay = <32>;
->  			row-hold = <91500>;
-> @@ -136,8 +134,7 @@ ref_muxoff: adc-channel@f {
->  		rtc@1e8 {
->  			compatible = "qcom,pm8058-rtc";
->  			reg = <0x1e8>;
-> -			interrupt-parent = <&pm8058>;
-> -			interrupts = <39 IRQ_TYPE_EDGE_RISING>;
-> +			interrupts-extended = <&pm8058 39 IRQ_TYPE_EDGE_RISING>;
->  			allow-set-time;
->  		};
->  	};
+This series is for kernel (not for u-boot).
+Why is it a problem to set usb0 as 'peripheral' in kernel for the 3 board dts ?
+
+With usb0 not set as 'peripheral', the 3 boards (am335x-evm, evm-sk, icev2)
+do not boot with uboot 2023.04. This error is returned, with LOG_LEVEL=5:
+     No USB device found
+     USB ether init failed
+     initcall sequence 8ffdbba4 failed at call 808024d9 (err=-19)
+     ### ERROR ### Please RESET the board ###
+This error is also returned with usb0 as 'otg'.
+
+Julien Panis
