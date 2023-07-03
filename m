@@ -2,77 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BFEBD745F53
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 17:01:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 868DE745F58
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 17:01:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231559AbjGCPA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 11:00:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43314 "EHLO
+        id S229897AbjGCPBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 11:01:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44226 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231528AbjGCPA6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 11:00:58 -0400
-Received: from mail-ed1-x52d.google.com (mail-ed1-x52d.google.com [IPv6:2a00:1450:4864:20::52d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9D7CE6F
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 08:00:54 -0700 (PDT)
-Received: by mail-ed1-x52d.google.com with SMTP id 4fb4d7f45d1cf-51d9a925e9aso5785614a12.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 08:00:54 -0700 (PDT)
+        with ESMTP id S231584AbjGCPBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 11:01:45 -0400
+Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14447E70
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 08:01:37 -0700 (PDT)
+Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-992acf67388so425086566b.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 08:01:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688396453; x=1690988453;
+        d=linaro.org; s=google; t=1688396495; x=1690988495;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=kYc7ssW76JbeyuIAYWb2z/AMKU9mWqY66zI1YvE3ht4=;
-        b=rq3em3i2DhBtDJZbyPiiH/JcD1whzSHiFE+JJXBVtdQ7Tq3p/2ShBpJc/UnO79qBh4
-         dAYkUPQ1m3NvvHRtkMH3gr/vV21L+K5D2Oaeysm1HKEU56G4eV0RWgmGs3Zug6JRw/uv
-         NDODM6ZAIj83FeP3w8oKRGCLKlWZTD4GJ+9T8kg1SDDNmCV2rDMTm4X3HgSCsCy6NtfJ
-         lxwevRsHXWM8SRP3n/IrG6nsLudj15VBgyQsxEulKpwMRoFDf35iMHqw8qkYUFc0x6EE
-         uHW7NSSUAwzgxhgtZC2G5mqIQNeBP2swrKbq18kQrpKjvgEKQDmBVwqP80xWOTJUHgpI
-         EAgg==
+        bh=wIdAV5V5KAnS+h+qxHS03r1FUQFpj/gJ3vvk0BEn92E=;
+        b=ifmaivl4Z+J5L8F8MKx5XFkvPydvR4OFSmVCDYgNVzdBET5oxRjmyWnN2kndVisi4P
+         lh0KEoEm0nCh+Ao5XN1cGX5wQaxlfgIqV77vEmp7203tbGymfBI0Rq7akosGTOmg8Wf8
+         PmWQMd5NuMCt2/cyDk13+/PjRrrJWrMrXJShpcAI37eAsBCWmcKYJtNcJ5raUkOwtyAk
+         Q35E7HeaXRJj7Jt9HW1ZVoD9ofYkcEmiBQGtfN6227PPbG9tO5Y4MLtEEOnLm1/6EuS2
+         vZw7pZBeqXTIklfShbq6TVnnpRut4lKaShTbszCmBOV//5NapwMjQGtaJuGV2iVjzIQg
+         bLdA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688396453; x=1690988453;
+        d=1e100.net; s=20221208; t=1688396495; x=1690988495;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=kYc7ssW76JbeyuIAYWb2z/AMKU9mWqY66zI1YvE3ht4=;
-        b=OKUKnxRnDW3Dy6GiPZ0ngrOgo2I9BsgP1kRycisk6hHAGk4JSBouA4y/bpP6Ws3Gdb
-         mlSBI/0JI022L+0JZQdy8IO/F3bytgxPxa0iGntM+Vxr0/5lqb4iCYz9n0glrPbr/YFy
-         UAeaw7uLyPPmphZAKq2cXVsOpBVAiwaXQl1br3SuwQSekNzx21LsATNgVHvYpbTTHwo7
-         +ExSoYfFectcKjF5KrOcCgmDa2PCi7dGlzLg9cpEg3qymM8h6VtWsgvqFrxRH+R0m55a
-         9eRtN5w03Wc7wawCkATzJrbKGr+e363JJsDEPdxh5wqaHJ3CkenBjza5r4EWRW/NFAYL
-         HKRA==
-X-Gm-Message-State: ABy/qLbZbWhRNuUe2tqZX4mOP2/4gptni4x12EJ8bw4xHFWqQDpgsGO7
-        2+9+bOjeoTWNVwNXbn1n/XVbSg==
-X-Google-Smtp-Source: APBJJlFd14wiD2Xpe42nUkkf2jg9Ee7geplQ4o0gKJmte8k6StgWqm4Jvh5aw2ZOGo/GOSZbcFcCpQ==
-X-Received: by 2002:aa7:d7ce:0:b0:51d:f37b:1b4e with SMTP id e14-20020aa7d7ce000000b0051df37b1b4emr7377991eds.19.1688396453073;
-        Mon, 03 Jul 2023 08:00:53 -0700 (PDT)
+        bh=wIdAV5V5KAnS+h+qxHS03r1FUQFpj/gJ3vvk0BEn92E=;
+        b=aJbXG7gXWyE210t83dyKHoidJdhHM+65U9660DHXLBvK+UQdjBh8nnGISdMVHWQmLX
+         w/u/cJzuY+nzN1hciUy8EEqFBAwZvtfd7CNG58dRqs7PP6LwC28H2jNnLCnVJuUOE55R
+         q76s8XI5HJ5VZT+YlG3zPfwSGAbwKlx0Gq/XTAnybvAB6KayU2xYTSRDiqOeDi0AvtJF
+         wjvu+ueT1tbJG55gUfrRJHElhOPU1H9Fb7FSR96yS/kC6/y3Q8EBJYtxhgWVAlG4RV7N
+         YkL4OzuDNLz33LYlP4zAI/872VPgnkRZTvZ0xeKZna2wv//9WYNKEoLgb1+qj1rJwqBb
+         uGOg==
+X-Gm-Message-State: AC+VfDyCPzEfm16tOkzLfykOLFkoi/x4w+tjTvTFi3Y/hx2U+PTMCLYY
+        FawuSqrmLIfglCKOdjb4166kjA==
+X-Google-Smtp-Source: APBJJlF4nZmviyLst8bq9ovVEqJK/HZkrp9/ry8hWn6K/xwqIxJjlmWLVSf2GEYdGeflLlSv7IOP3g==
+X-Received: by 2002:a17:906:8699:b0:973:d06d:545f with SMTP id g25-20020a170906869900b00973d06d545fmr5693067ejx.24.1688396495465;
+        Mon, 03 Jul 2023 08:01:35 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id k17-20020a1709063e1100b009875a6d28b0sm2266432eji.51.2023.07.03.08.00.51
+        by smtp.gmail.com with ESMTPSA id h22-20020a170906829600b009931a3adf64sm3751695ejx.17.2023.07.03.08.01.34
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 08:00:52 -0700 (PDT)
-Message-ID: <cf2978dc-9ef9-0b3c-911a-7da97977e412@linaro.org>
-Date:   Mon, 3 Jul 2023 17:00:50 +0200
+        Mon, 03 Jul 2023 08:01:35 -0700 (PDT)
+Message-ID: <56c0783b-59b4-0eda-5a9a-ceed53ebf41d@linaro.org>
+Date:   Mon, 3 Jul 2023 17:01:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v9 00/13] dmaengine: edma: add freescale edma v3 support
+Subject: Re: [PATCH 2/3] i3c: Add support for bus enumeration & notification
 Content-Language: en-US
-To:     Frank Li <Frank.li@nxp.com>
-Cc:     vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
-        imx@lists.linux.dev
-References: <20230620201221.2580428-1-Frank.Li@nxp.com>
- <ZJxHc62V72eVMYu4@lizhi-Precision-Tower-5810>
- <3ce07ab8-9ed0-d5c0-e7da-bb24085cc3f8@linaro.org>
- <ZKLfB7putFfLlAoH@lizhi-Precision-Tower-5810>
+To:     Matt Johnston <matt@codeconstruct.com.au>,
+        linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Eric Dumazet <edumazet@google.com>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230703053048.275709-1-matt@codeconstruct.com.au>
+ <20230703053048.275709-3-matt@codeconstruct.com.au>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZKLfB7putFfLlAoH@lizhi-Precision-Tower-5810>
+In-Reply-To: <20230703053048.275709-3-matt@codeconstruct.com.au>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,57 +84,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2023 16:45, Frank Li wrote:
-> On Sun, Jul 02, 2023 at 10:22:22PM +0200, Krzysztof Kozlowski wrote:
->> On 28/06/2023 16:45, Frank Li wrote:
->>> On Tue, Jun 20, 2023 at 04:12:08PM -0400, Frank Li wrote:
->>>> This patch series introduces support for the eDMA version 3 from
->>>> Freescale. The eDMA v3 brings alterations in the register layout,
->>>> particularly, the separation of channel control registers into
->>>> different channels. The Transfer Control Descriptor (TCD) layout,
->>>> however, remains identical with only the offset being changed.
->>>>
->>>> The first 11 patches aim at tidying up the existing Freescale
->>>> eDMA code and laying the groundwork for the integration of eDMA v3
->>>> support.
->>>>
->>>> Patch 1-11:
->>>> These patches primarily focus on cleaning up and refactoring the existing
->>>> fsl_edma driver code. This is to accommodate the upcoming changes and new
->>>> features introduced with the eDMA v3.
->>>>
->>>> Patch 12:
->>>> This patch introduces support for eDMA v3. In addition, this patch has
->>>> been designed with an eye towards future upgradability, specifically for
->>>> transitioning to eDMA v5. The latter involves a significant upgrade
->>>> where the TCD address would need to support 64 bits.
->>>>
->>>> Patch 13:
->>>> This patch focuses on the device tree bindings and their modifications
->>>> to properly handle and integrate the changes brought about by eDMA v3
->>>
->>> @vkoul:
->>>   Do you have chance to check these patches? Any chance to come into 6.5
->>>   All audio parts of i.MX8x and i.MX9 was dependent on these patches.
->>
->> Why do you ping during the merge window?
->>
->> v6.5? And what about having it in next for two weeks? One thing is to
->> ping for something forgotten, different thing is to try squeeze patches
->> skipping our process.
+On 03/07/2023 07:30, Matt Johnston wrote:
+> From: Jeremy Kerr <jk@codeconstruct.com.au>
 > 
-> I saw dmaengine tree have not update over 5 weeks.
-> https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git/
+> This allows other drivers to be notified when new i3c busses are
+> attached, referring to a whole i3c bus as opposed to individual
+> devices.
+> 
+> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
 
-Then you should have pinged during that time.
-
-> And vkoul have not sent out pull request yet. So I just want to check
-> if possible. 
-
-It is merge window. Patches are supposed to be in next for two weeks
-before merge window.
-
-
+Your SoB is missing.
 
 Best regards,
 Krzysztof
