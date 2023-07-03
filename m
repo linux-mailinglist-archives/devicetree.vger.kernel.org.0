@@ -2,78 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D1249745D4F
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 15:29:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C014745D58
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 15:31:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229816AbjGCN3r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 09:29:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52456 "EHLO
+        id S231570AbjGCNbS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 09:31:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53406 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231153AbjGCN3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 09:29:47 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6998110C6
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 06:29:35 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-314172bb818so5123589f8f.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 06:29:35 -0700 (PDT)
+        with ESMTP id S231550AbjGCNbR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 09:31:17 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61F42E41
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 06:31:15 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b6adef5c22so68062301fa.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 06:31:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688390973; x=1690982973;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=Y/VhzLPQHUerf9yIXAHQ3k56ZyHp33w08cf8vUBWG7Y=;
-        b=njVWohKchlcMEssQAmIF1k9K45Bbsrd0GbQfEH6owssZIqpB91tbfaZvQBAe2y6d1N
-         pfYh+rKJvhufICIyrpnVitykosZoAVctBURaePVLlsfTfbkyTRZHEZHi3Cwb2R1Ef2Mb
-         zPNZyr0j7/n69lqkf1LcW1BVdC45GIbm429M52QLjFBtW+HPuNBK9Brwx6z1rtL6ervi
-         J18BdPRMVF+ob1T3MaG2ubOle4LHZ6bX6GWGxuqpzeXoMdxExxR5eztZ50719pVvVZXQ
-         mget4xvTOK6HJHHZRrIizrB/mjd6/JRYFiY+unzHfnSkh5xQ/AICSlgjz/c67zA4qYd2
-         wIpQ==
+        d=linaro.org; s=google; t=1688391073; x=1690983073;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=mmnKR6NrcH13RIboC24wgvo0cXm9uFpdKMc5Nw0n2zA=;
+        b=ScMdpPo+quZsGKt6VxpWHDSxyvsyHQTKTkDln/Nk5LM97r3ByHE8tRaLbaMvIxbS85
+         lQMOOI6mNxiq/LTabMNpFsGcPccJoVDJvShOaSrpsRAAw2GVxGZ0/hQb3kL+DOn9bPO3
+         LzzMb+6WZ9gj9hrm80XN+GiplqVeWvzt2DHlJzYUm4O3fYez/hIEfojd6aCDtOQLMyDw
+         /JST52UuE9cGQN/N23OmzKAbDBCwMaT+9FXOCFXxFcoYHA40lGBrO7AfStANI6Fie7bc
+         AybJ0M1nIfz4EcE8lNqRCIoqPrMLcwxi6MjmTcgE/1FmWXxq/MKuYPxjFySG61Pss78+
+         QEIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688390973; x=1690982973;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1688391073; x=1690983073;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=Y/VhzLPQHUerf9yIXAHQ3k56ZyHp33w08cf8vUBWG7Y=;
-        b=T31iib8TtsVatk6fnywiw2yofKXI8ynQqudkHvTVUcmGRR5BXZIW9EZnyru9j/ZwdM
-         GGFG31hWrtFzkUcYNyO9bkPtOldYLNYYHgQno1+O2SwqSbbib/13QwpQ8UMcOUtwJwnG
-         yj+IVSrAq1kdKFMn/KDSx5PaSDf3FA0mlqhtza3wK82tNOyoEydLOAyih8tSR8/tWEmO
-         4g6OJQNU1yrB6L+qGMVNbV9f/OU+x22l1AqAOXzTQJEe7UiQi4fALKsGuZdWUTW6Ab2x
-         SHhfglceN+41YfeSRHzaOriKuhW4FwVa3v8HEtyuZLZk48GjjovhOBnM9d2KCpWwQnRk
-         vqdQ==
-X-Gm-Message-State: ABy/qLZmkS62HCHx/G2Y6A645qmWampE8MkBJQr5hyRP6XwEFgfCMhhC
-        W4L8wAbgi2VWJKfPOY40r5RK8Q==
-X-Google-Smtp-Source: APBJJlGMsazVkHFxwQldk7Ee64dl++ep07uZano3iNOZM0/SiZWu6RXho/B4b8i2C1OknUXd7j1Nag==
-X-Received: by 2002:a5d:6986:0:b0:314:37a9:f225 with SMTP id g6-20020a5d6986000000b0031437a9f225mr2684111wru.40.1688390973573;
-        Mon, 03 Jul 2023 06:29:33 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:cf0b:9dd4:190:b74f? ([2a01:e0a:982:cbb0:cf0b:9dd4:190:b74f])
-        by smtp.gmail.com with ESMTPSA id k5-20020a5d6e85000000b003063a92bbf5sm25802354wrz.70.2023.07.03.06.29.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 06:29:33 -0700 (PDT)
-Message-ID: <e85f6dee-d62c-9f2f-b1de-8c38bb5aeb14@linaro.org>
-Date:   Mon, 3 Jul 2023 15:29:31 +0200
+        bh=mmnKR6NrcH13RIboC24wgvo0cXm9uFpdKMc5Nw0n2zA=;
+        b=idwFiUd7HyI9Q8cvQsCpEVBt7+LKwi+sKyDaEfF1oI3h6Kv2ny5+XjGul15RmWXP4k
+         7w5R6fdZ01in9tZuQg2zqRnshHvMy2SN8NUKHz1bNYXFQhSy5kcnKuQcduVemeNlAfC1
+         Z3vfAlylm0dQ2x21SYoznnBGAn0/gArODOlS7mF93gXGrKF0Q9pm1g1U75DkOE0KmbJr
+         WEDOMKdI8sBFDJilvwXgtgFY5JaSlLzpcvg9sQklK1rKeviwiCk5SZdBMVwZbR89RyHG
+         8tk8fT+UL3iBWVW17ScPtMf9MiRFForr8uVk0pCXwR+8aWHbHRaXuIDCDM+1xxOaKvYA
+         ZTUw==
+X-Gm-Message-State: ABy/qLY1pmZhDfOpreIw475beuFKsIU8TORm8WVyyP7IGI046dDHhzFg
+        7DcJ+I7MooL8YL+99zygeOVHHw==
+X-Google-Smtp-Source: APBJJlGFdqjy8wwAOkx2KKsD9YVjv9xJFBDRdOY+uU/tTgJX7vCdJgPQj5vpQBGok4bNXDBHh5GbeQ==
+X-Received: by 2002:a05:6512:3984:b0:4fb:85b2:cf78 with SMTP id j4-20020a056512398400b004fb85b2cf78mr8856638lfu.37.1688391073559;
+        Mon, 03 Jul 2023 06:31:13 -0700 (PDT)
+Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
+        by smtp.gmail.com with ESMTPSA id ep7-20020a056512484700b004fbb1f70ceesm833417lfb.227.2023.07.03.06.31.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jul 2023 06:31:13 -0700 (PDT)
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: [PATCH 0/5] Add interconnects to QUPs on SM8250
+Date:   Mon, 03 Jul 2023 15:31:09 +0200
+Message-Id: <20230703-topic-8250_qup_icc-v1-0-fea39aa07525@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH 2/3] soc: c3: Add support for power domains controller
-Content-Language: en-US
-To:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAJ3NomQC/x2N0QqDMAwAf0XyvEBtp5X9yhCpMZsBqV2rMhD/f
+ WGPd3DcCYWzcIFHdULmQ4qsUaG+VUBziG9GmZTBGuuMNw63NQlhZxszfPY0CBG2tW+74O7kmUD
+ DMRTGMYdIs6ZxXxaVKfNLvv/Ts7+uH6A3bfx5AAAA
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>
-References: <20230703093142.2028500-1-xianwei.zhao@amlogic.com>
- <20230703093142.2028500-3-xianwei.zhao@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230703093142.2028500-3-xianwei.zhao@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andi Shyti <andi.shyti@kernel.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org,
+        Konrad Dybcio <konrad.dybcio@linaro.org>
+X-Mailer: b4 0.12.2
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1688391072; l=1274;
+ i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
+ bh=P/b9sUtVGW1aCLv/5W9/Do7IS4MZ5AYwLEHs4cWI4Yo=;
+ b=FeyN/5yDiFSyKCkhToHlIcdNwZzpYCsAzae8/E3MTmMzSSgehX8sZSykvbqgM4E5OR2o/LBXV
+ pAWX9VvkUzICzoebYDjNNIbkASbiD70Z2u/I6lHttwRFt3eIaxT4Pcp
+X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
+ pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -82,104 +90,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+SM8250 (like SM8150 but unlike all other QUP-equipped SoCs) doesn't
+provide a qup-core path. Adjust the bindings and drivers as necessary,
+and then describe the icc paths in the device tree. This makes it possible
+for interconnect sync_state succeed so long as you don't use UFS.
 
-On 03/07/2023 11:31, =Xianwei Zhao wrote:
-> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> 
-> Add support for C3 Power controller. C3 power control
-> registers are in secure domain, and should be accessed by SMC.
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
->   drivers/soc/amlogic/meson-secure-pwrc.c | 28 ++++++++++++++++++++++++-
->   1 file changed, 27 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/soc/amlogic/meson-secure-pwrc.c b/drivers/soc/amlogic/meson-secure-pwrc.c
-> index 25b4b71df9b8..39ccc8f2e630 100644
-> --- a/drivers/soc/amlogic/meson-secure-pwrc.c
-> +++ b/drivers/soc/amlogic/meson-secure-pwrc.c
-> @@ -12,6 +12,7 @@
->   #include <linux/pm_domain.h>
->   #include <dt-bindings/power/meson-a1-power.h>
->   #include <dt-bindings/power/meson-s4-power.h>
-> +#include <dt-bindings/power/amlogic-c3-power.h>
->   #include <linux/arm-smccc.h>
->   #include <linux/firmware/meson/meson_sm.h>
->   #include <linux/module.h>
-> @@ -132,6 +133,22 @@ static struct meson_secure_pwrc_domain_desc s4_pwrc_domains[] = {
->   	SEC_PD(S4_AUDIO,	0),
->   };
->   
-> +static struct meson_secure_pwrc_domain_desc c3_pwrc_domains[] = {
-> +	SEC_PD(C3_NNA,	0),
-> +	SEC_PD(C3_AUDIO,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_SDIOA,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_EMMC,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_USB_COMB, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_SDCARD,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_ETH,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GE2D,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_CVE,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_GDC_WRAP,	GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_ISP_TOP,		GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_MIPI_ISP_WRAP, GENPD_FLAG_ALWAYS_ON),
-> +	SEC_PD(C3_VCODEC,	0),
-> +};
+Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+---
+Konrad Dybcio (5):
+      dt-bindings: spi: spi-geni-qcom: Allow no qup-core icc path
+      dt-bindings: serial: geni-qcom: Allow no qup-core icc path
+      dt-bindings: i2c: qcom,i2c-geni: Allow no qup-core icc path
+      soc: qcom: geni-se: Allow any combination of icc paths
+      arm64: dts: qcom: sm8250: Add interconnects and power-domains to QUPs
 
-Please move this struct before _s4_
+ .../bindings/i2c/qcom,i2c-geni-qcom.yaml           |  27 ++--
+ .../bindings/serial/qcom,serial-geni-qcom.yaml     |  26 ++--
+ .../bindings/spi/qcom,spi-geni-qcom.yaml           |  15 ++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi               | 150 +++++++++++++++++++++
+ drivers/soc/qcom/qcom-geni-se.c                    |   9 +-
+ 5 files changed, 204 insertions(+), 23 deletions(-)
+---
+base-commit: 296d53d8f84ce50ffaee7d575487058c8d437335
+change-id: 20230703-topic-8250_qup_icc-61768a34c7ec
 
-> +
->   static int meson_secure_pwrc_probe(struct platform_device *pdev)
->   {
->   	int i;
-> @@ -179,7 +196,7 @@ static int meson_secure_pwrc_probe(struct platform_device *pdev)
->   	for (i = 0 ; i < match->count ; ++i) {
->   		struct meson_secure_pwrc_domain *dom = &pwrc->domains[i];
->   
-> -		if (!match->domains[i].index)
-> +		if (!match->domains[i].name)
-
-Is this change necessary ? If yes please move it to another patch
-and explain it's purpose. If it fixes something, add a Fixes tag so
-it can be backported.
-
-Thanks,
-Neil
-
->   			continue;
->   
->   		dom->pwrc = pwrc;
-> @@ -207,6 +224,11 @@ static struct meson_secure_pwrc_domain_data meson_secure_s4_pwrc_data = {
->   	.count = ARRAY_SIZE(s4_pwrc_domains),
->   };
->   
-> +static struct meson_secure_pwrc_domain_data amlogic_secure_c3_pwrc_data = {
-> +	.domains = c3_pwrc_domains,
-> +	.count = ARRAY_SIZE(c3_pwrc_domains),
-> +};
-
-Please move this struct before _s4_
-
-> +
->   static const struct of_device_id meson_secure_pwrc_match_table[] = {
->   	{
->   		.compatible = "amlogic,meson-a1-pwrc",
-> @@ -216,6 +238,10 @@ static const struct of_device_id meson_secure_pwrc_match_table[] = {
->   		.compatible = "amlogic,meson-s4-pwrc",
->   		.data = &meson_secure_s4_pwrc_data,
->   	},
-> +	{
-> +		.compatible = "amlogic,c3-pwrc",
-> +		.data = &amlogic_secure_c3_pwrc_data,
-> +	},
-
-Please move this entry before _s4_
-
->   	{ /* sentinel */ }
->   };
->   MODULE_DEVICE_TABLE(of, meson_secure_pwrc_match_table);
-
-Thanks,
-Neil
+Best regards,
+-- 
+Konrad Dybcio <konrad.dybcio@linaro.org>
 
