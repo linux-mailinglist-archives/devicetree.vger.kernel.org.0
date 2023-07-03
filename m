@@ -2,96 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7460974589B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 11:43:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 064C674589F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 11:45:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230323AbjGCJnW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Jul 2023 05:43:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44924 "EHLO
+        id S230037AbjGCJpE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 05:45:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45670 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229820AbjGCJnW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 05:43:22 -0400
-Received: from mail-yw1-f182.google.com (mail-yw1-f182.google.com [209.85.128.182])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 72512CD;
-        Mon,  3 Jul 2023 02:43:21 -0700 (PDT)
-Received: by mail-yw1-f182.google.com with SMTP id 00721157ae682-5702415be17so45084507b3.2;
-        Mon, 03 Jul 2023 02:43:21 -0700 (PDT)
+        with ESMTP id S229820AbjGCJpE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 05:45:04 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08DA012E
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 02:45:02 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fbab0d0b88so34187775e9.0
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 02:45:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688377501; x=1690969501;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=xWRijkh1Cz7shs1vKxqe0+Zs7DVoINyukGAI1yjyh98=;
+        b=zEJijkuwKNKpNjqksGIZlSAxW70/gyObVFg0GUnC7m4lBJ+Lg0AfxasdG39w1xA+hn
+         RSFyob+aXfHL8qxITEZDI8M32O4fWeqGC7LvyO6O3ao1hpvbb5Z32s2LtoNxxgVmgp2r
+         zwc9gmzCGRnVogReVfOIzhlStaAaBMUtez6EhICZa7aRw1t9rz4en2o5+rnXXCRLXH1z
+         fR0xIbUap1SSwnM2kWB36Q+jwliXGxJh8yFBNDa/aQU9ew6qtvO5wM3B9EV0jTA5xIm9
+         odfeHOwc4IkecenPDrHKJ4Adws4gh7qThsZMmikVp8Ls7VBHU4r/70mX6fnN8I+hPlb4
+         LgpA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688377400; x=1690969400;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1688377501; x=1690969501;
+        h=content-transfer-encoding:mime-version:date:message-id:subject
+         :references:in-reply-to:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=kxia0UfgqS/oGm4ifJU+grXMEUFur2Qpj0zc6W0DlDY=;
-        b=WoAAnBr2ZuYQyBCL5/5BvkIPYG+GYZacfRjRAx+rPHEuNN9x3rFOuSgxWV6gX7nITz
-         0WURke6hFyPhVLbGY4Qg2pbuRifrbwJkSIln5RI1SLWVkClDU0kJupnvfWO4JdDq7NoQ
-         N72+9Dl68zvDngq9b3yhjTRgG9x5rZPDvWwRuLCvk4f9xASyyiRNpSucuO6rEDr4mvXO
-         ffr93VbxcV5RHZgvels/ObBRCHEOk3V34wkwlHp0PBL5nrvxQYXc2dzgZ61rOFgFhyPv
-         RndTHNO/Arb2srs+lpQ5UPk3tvkLa4lbcWZaWGVkdFo72QaWSbEwrWaz+BS9+1YOtiY9
-         Mdwg==
-X-Gm-Message-State: ABy/qLafTPn9Da5K0cxOhobhNw/0MWiRAUcgOWwu9TVRlOBmHhguTbmH
-        Bon+pbBEI4kO0LwwaYlD12w7F3QN8kfuCg==
-X-Google-Smtp-Source: APBJJlHr+Cr/g5/igmqZhM/FJRTBQd76vgobptKYG6Thi2FC+p8AfaVwf860ZAC/1zw4O4C0V6S5qQ==
-X-Received: by 2002:a0d:d48e:0:b0:56d:3d83:15cb with SMTP id w136-20020a0dd48e000000b0056d3d8315cbmr9126597ywd.44.1688377400463;
-        Mon, 03 Jul 2023 02:43:20 -0700 (PDT)
-Received: from mail-yb1-f169.google.com (mail-yb1-f169.google.com. [209.85.219.169])
-        by smtp.gmail.com with ESMTPSA id s4-20020a0dd004000000b0057399b3bd26sm5000509ywd.33.2023.07.03.02.43.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 02:43:20 -0700 (PDT)
-Received: by mail-yb1-f169.google.com with SMTP id 3f1490d57ef6-bcb6dbc477eso3793395276.1;
-        Mon, 03 Jul 2023 02:43:20 -0700 (PDT)
-X-Received: by 2002:a25:7d06:0:b0:bac:f51c:b0ba with SMTP id
- y6-20020a257d06000000b00bacf51cb0bamr8618647ybc.0.1688377400127; Mon, 03 Jul
- 2023 02:43:20 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230622113341.657842-1-fabrizio.castro.jz@renesas.com> <20230622113341.657842-2-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20230622113341.657842-2-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 3 Jul 2023 11:43:08 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXSn9UpW_negX5PYTtg17GitU9zXGy_JN=VucB4dWn7fg@mail.gmail.com>
-Message-ID: <CAMuHMdXSn9UpW_negX5PYTtg17GitU9zXGy_JN=VucB4dWn7fg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/5] spi: dt-bindings: Add bindings for RZ/V2M CSI
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        bh=xWRijkh1Cz7shs1vKxqe0+Zs7DVoINyukGAI1yjyh98=;
+        b=fMEQq6FFR2e0nCTtSxPf7ZctSiZduAAeOuEwBLeGgKgDDPd/Z/bf75WhD9vgx0uWo7
+         cqg6830QE5sPJQlNxQE7xiUxoaIzi4V7zK/O8SbHV5KM36x5k73aulwopcrjIZEMt8bX
+         y7IPo/BirRTppI2sjJexHU/iE5/B1gt/0XmhoKl/XJff8caw3wFAc72B81O8X8DT/wXC
+         Hyb6Et1ThgRVdkIgoygfV0bF73qRaF26Fj0UexumRDCkM3OtYiQLHCis+YYX8DLmfgrm
+         7LP6+7osM5+Wqk0s7UdmPhGGu5NtnkEJstuui+ujjcGomrZdk/yX2/JXmgYjzHwkdidR
+         j03g==
+X-Gm-Message-State: AC+VfDzSIwdBzCys1bKAt2gVMNrfsirX73vGCPPT457DqvI7oh5yi/3I
+        Xmj5RtrtuL02+OCaGWSd2zMvEg==
+X-Google-Smtp-Source: ACHHUZ6ZtFY37tY6pT1zUZzqmiG5cyIFC7oVykZP9ABODyv8PakLWqRyvRQngHCYivyFbNw9XuRhNA==
+X-Received: by 2002:a05:600c:2259:b0:3f7:aee8:c23a with SMTP id a25-20020a05600c225900b003f7aee8c23amr12700275wmm.19.1688377501390;
+        Mon, 03 Jul 2023 02:45:01 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
+        by smtp.gmail.com with ESMTPSA id i7-20020a05600c290700b003fbb346279dsm13805286wmd.38.2023.07.03.02.45.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 03 Jul 2023 02:45:00 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-spi@vger.kernel.org,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        Lucas Tanure <tanure@linux.com>
+Cc:     Nick <nick@khadas.com>, Artem <art@khadas.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Conor Dooley <conor.dooley@microchip.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+In-Reply-To: <20230629073419.207886-1-tanure@linux.com>
+References: <20230629073419.207886-1-tanure@linux.com>
+Subject: Re: (subset) [PATCH v7 0/4] Add Amlogic A311D2 and Khadas Vim4
+ Board Support
+Message-Id: <168837750049.1068586.16885145268136151183.b4-ty@linaro.org>
+Date:   Mon, 03 Jul 2023 11:45:00 +0200
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.12.3
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 22, 2023 at 1:34 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> Add dt-bindings for the CSI IP found inside the RZ/V2M SoC.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-> ---
->
-> v2: no changes
+Hi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Thu, 29 Jun 2023 08:34:15 +0100, Lucas Tanure wrote:
+> The Khadas VIM4 uses the Amlogic A311D2 SoC, based on the Amlogic T7 family.
+> This chip is not the same as A311D used in Vim3 board.
+> 
+> Work based on Khadas 5.4 branch:
+> https://github.com/khadas/linux/tree/khadas-vims-5.4.y
+> 
+> The current status is Vim4 board booting to emergency shell via uart.
+> 
+> [...]
 
-Gr{oetje,eeting}s,
+Thanks, Applied to https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git (v6.6/arm64-dt)
 
-                        Geert
+[1/4] dt-bindings: arm: amlogic: add Amlogic A311D2 bindings
+      https://git.kernel.org/amlogic/c/19f1263230b6c665d950d63290de6648ed81e0a9
+[4/4] arm64: dts: amlogic-t7-a311d2-khadas-vim4: add initial device-tree
+      https://git.kernel.org/amlogic/c/419b6066cf1ff2a5f29edf565d5ece55fceb4230
+
+These changes has been applied on the intermediate git tree [1].
+
+The v6.6/arm64-dt branch will then be sent via a formal Pull Request to the Linux SoC maintainers
+for inclusion in their intermediate git branches in order to be sent to Linus during
+the next merge window, or sooner if it's a set of fixes.
+
+In the cases of fixes, those will be merged in the current release candidate
+kernel and as soon they appear on the Linux master branch they will be
+backported to the previous Stable and Long-Stable kernels [2].
+
+The intermediate git branches are merged daily in the linux-next tree [3],
+people are encouraged testing these pre-release kernels and report issues on the
+relevant mailing-lists.
+
+If problems are discovered on those changes, please submit a signed-off-by revert
+patch followed by a corrective changeset.
+
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/amlogic/linux.git
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git
+[3] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+Neil
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
