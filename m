@@ -2,91 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88B3474556C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 08:22:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F8F2745587
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 08:38:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230043AbjGCGW4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 02:22:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40282 "EHLO
+        id S229482AbjGCGir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 02:38:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44740 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230141AbjGCGWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 02:22:51 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37AC8C0;
-        Sun,  2 Jul 2023 23:22:50 -0700 (PDT)
-Received: from pps.filterd (m0279866.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3634wx6r006027;
-        Mon, 3 Jul 2023 06:22:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=lz8e5ZwZImHg3i0oIzXkv/yPT9vujL/l4PbLkBP+AfY=;
- b=mQkqiUI/NznR+KCfWYiKRv0OxcaXaOS9lbKAgNjk6G4/CFtEKJ4DNu1r4tnZcqlME98H
- +XMtSxOvfe7gPnl3+2Kq7fsk45cbSEpQt9iggUMHyj4ThqAiNtHy3mH7C1wYh/vMyhHE
- WHtPjDCNzJn2pTII9hEV4LQY7cn/ua5NOXhi7AcWlULBNQkgskSLpSpyBofL8Wwyybun
- 7Tz/nnKbodWVux/17TDdrDZYcQl8sbjLnbFdhBck0/ruRtzdJlnxlOxJkIQRFOq2c4qo
- vTIPT704q1zad5nFjSUkb3ibuPjUKGEPPH1AKO0wf7MPE2+TUJZfFZz9bQU6kJKECKnj aA== 
-Received: from nasanppmta04.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rjdedu2wx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Jul 2023 06:22:09 +0000
-Received: from nasanex01c.na.qualcomm.com (nasanex01c.na.qualcomm.com [10.45.79.139])
-        by NASANPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3636M8W1023447
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 3 Jul 2023 06:22:08 GMT
-Received: from [10.214.66.81] (10.80.80.8) by nasanex01c.na.qualcomm.com
- (10.45.79.139) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42; Sun, 2 Jul 2023
- 23:22:02 -0700
-Message-ID: <5447f9f8-55b4-8bed-66a6-1c9d62b02c79@quicinc.com>
-Date:   Mon, 3 Jul 2023 11:51:41 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v4 08/21] dt-bindings: reserved-memory: Add qcom,ramoops
- binding
+        with ESMTP id S229680AbjGCGiq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 02:38:46 -0400
+Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8954CC;
+        Sun,  2 Jul 2023 23:38:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1688366325; x=1719902325;
+  h=message-id:subject:from:to:date:in-reply-to:references:
+   content-transfer-encoding:mime-version;
+  bh=XY0H3vpbe1CY3a8pLjAJo9l/2ZEaI81wluzp+nLFyyA=;
+  b=Nm8cC+UcdK+MtJbLCv+oMI+hYS4ae0SdCNuXDtbYW6q3JiRTSZBG8R3E
+   mkoR1YT2cnPj/JAmzfQjYm2C4D7y9T4NukGqwGDQpUtHrzEbxyOoVo4di
+   /dOfueqk7llbRvCq9SWLGcf4CtGCoLuCwCdRhE7ms3ctlCGC/x7cyUW3A
+   TAuEktgxx1zLy0zTmAdE9mZfxnRKR4Al+bYo4pYXIMBoR2tHrnWHt/8zd
+   m4I2vhDXucrmhE1zkgrGBE6UXl5udo7ZUKlwEyMr9TSXxRSTdCjht1+cY
+   O8de/AkpMDCjnrOvc897ILZygwuSR4Wk6nieKHmgQuRwRRodbr5B50Ru0
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,177,1684825200"; 
+   d="scan'208";a="221002744"
+X-Amp-Result: SKIPPED(no attachment in message)
+Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
+  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Jul 2023 23:38:45 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.21; Sun, 2 Jul 2023 23:38:44 -0700
+Received: from den-dk-m31857.microchip.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.2507.21 via Frontend Transport; Sun, 2 Jul 2023 23:38:42 -0700
+Message-ID: <590ccbc8e32e7c85392ba331a83d00ad81eae0c8.camel@microchip.com>
+Subject: Re: [PATCH 1/2] arm64: dts: microchip: minor whitespace cleanup
+ around '='
+From:   Steen Hegelund <steen.hegelund@microchip.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <corbet@lwn.net>, <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <conor+dt@kernel.org>, <keescook@chromium.org>,
-        <tony.luck@intel.com>, <gpiccoli@igalia.com>,
-        <mathieu.poirier@linaro.org>, <catalin.marinas@arm.com>,
-        <will@kernel.org>, <linus.walleij@linaro.org>,
-        <andy.shevchenko@gmail.com>, <linux-doc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-hardening@vger.kernel.org>,
-        <linux-remoteproc@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
- <CAL_JsqJ_TTnGjjB2d8_FKHpWBRG5GHLoWnabCKjsdeZ4QFdNEg@mail.gmail.com>
- <cacbbb02-732e-076e-50bf-292d20a4d722@quicinc.com>
- <58a26b9e-a48d-d567-c310-193a2c52521e@linaro.org>
-Content-Language: en-US
-From:   Mukesh Ojha <quic_mojha@quicinc.com>
-In-Reply-To: <58a26b9e-a48d-d567-c310-193a2c52521e@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nasanex01c.na.qualcomm.com (10.45.79.139)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: W_MW9N648fOAOVkEkWbqMJYXECrB4HD3
-X-Proofpoint-ORIG-GUID: W_MW9N648fOAOVkEkWbqMJYXECrB4HD3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-03_04,2023-06-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- lowpriorityscore=0 adultscore=0 priorityscore=1501 clxscore=1015
- mlxscore=0 mlxlogscore=999 impostorscore=0 bulkscore=0 phishscore=0
- spamscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307030058
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        Daniel Machon <daniel.machon@microchip.com>,
+        <UNGLinuxDriver@microchip.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Mon, 3 Jul 2023 08:38:41 +0200
+In-Reply-To: <20230702185108.43959-1-krzysztof.kozlowski@linaro.org>
+References: <20230702185108.43959-1-krzysztof.kozlowski@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: base64
+User-Agent: Evolution 3.48.3 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,62 +71,48 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+T24gU3VuLCAyMDIzLTA3LTAyIGF0IDIwOjUxICswMjAwLCBLcnp5c3p0b2YgS296bG93c2tpIHdy
+b3RlOgo+IEVYVEVSTkFMIEVNQUlMOiBEbyBub3QgY2xpY2sgbGlua3Mgb3Igb3BlbiBhdHRhY2ht
+ZW50cyB1bmxlc3MgeW91IGtub3cgdGhlCj4gY29udGVudCBpcyBzYWZlCj4gCj4gVGhlIERUUyBj
+b2RlIGNvZGluZyBzdHlsZSBleHBlY3RzIGV4YWN0bHkgb25lIHNwYWNlIGJlZm9yZSBhbmQgYWZ0
+ZXIgJz0nCj4gc2lnbi4KPiAKPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2YgS296bG93c2tpIDxr
+cnp5c3p0b2Yua296bG93c2tpQGxpbmFyby5vcmc+Cj4gLS0tCj4gwqBhcmNoL2FybTY0L2Jvb3Qv
+ZHRzL21pY3JvY2hpcC9zcGFyeDUuZHRzaSB8IDEyICsrKysrKy0tLS0tLQo+IMKgMSBmaWxlIGNo
+YW5nZWQsIDYgaW5zZXJ0aW9ucygrKSwgNiBkZWxldGlvbnMoLSkKPiAKPiBkaWZmIC0tZ2l0IGEv
+YXJjaC9hcm02NC9ib290L2R0cy9taWNyb2NoaXAvc3Bhcng1LmR0c2kKPiBiL2FyY2gvYXJtNjQv
+Ym9vdC9kdHMvbWljcm9jaGlwL3NwYXJ4NS5kdHNpCj4gaW5kZXggNDk5NjQ5OWNjNzM4Li4yNDA3
+NWNkOTE0MjAgMTAwNjQ0Cj4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9taWNyb2NoaXAvc3Bh
+cng1LmR0c2kKPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL21pY3JvY2hpcC9zcGFyeDUuZHRz
+aQo+IEBAIC00NjksMTQgKzQ2OSwxNCBAQCBzZXJkZXM6IHNlcmRlc0AxMDgwODAwMCB7Cj4gCj4g
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIHN3aXRjaDogc3dpdGNoQDYwMDAwMDAwMCB7
+Cj4gwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBjb21wYXRp
+YmxlID0gIm1pY3JvY2hpcCxzcGFyeDUtc3dpdGNoIjsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVnID3CoMKgIDwweDYgMCAweDQwMTAwMD4sCj4gLcKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCA8MHg2IDB4MTAwMDQwMDAgMHg3ZmMwMDA+LAo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPDB4NiAweDExMDEwMDAwIDB4YWYw
+MDAwPjsKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVn
+ID0gPDB4NiAwIDB4NDAxMDAwPiwKPiArwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPDB4NiAweDEwMDA0MDAwIDB4N2ZjMDAwPiwKPiArwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgPDB4
+NiAweDExMDEwMDAwIDB4YWYwMDAwPjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgIHJlZy1uYW1lcyA9ICJjcHUiLCAiZGV2IiwgImdjYiI7Cj4gwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCBpbnRlcnJ1cHQtbmFtZXMg
+PSAieHRyIiwgImZkbWEiLCAicHRwIjsKPiAtwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqAgaW50ZXJydXB0cyA9wqDCoMKgIDxHSUNfU1BJIDMwIElSUV9UWVBFX0xF
+VkVMX0hJR0g+LAo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxHSUNfU1BJIDI1IElSUV9UWVBFX0xF
+VkVMX0hJR0g+LAo+IC3CoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgIDxHSUNfU1BJIDI3IElSUV9UWVBFX0xF
+VkVMX0hJR0g+Owo+ICvCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDC
+oCBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMzAgSVJRX1RZUEVfTEVWRUxfSElHSD4sCj4gK8KgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqAgPEdJQ19TUEkgMjUgSVJRX1RZUEVfTEVWRUxfSElHSD4sCj4gK8KgwqDCoMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKg
+wqAgPEdJQ19TUEkgMjcgSVJRX1RZUEVfTEVWRUxfSElHSD47Cj4gwqDCoMKgwqDCoMKgwqDCoMKg
+wqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoCByZXNldHMgPSA8JnJlc2V0IDA+Owo+IMKgwqDC
+oMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgcmVzZXQtbmFtZXMgPSAi
+c3dpdGNoIjsKPiDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqDCoMKgwqAgfTsKPiAtLQo+IDIuMzQu
+MQo+IApSZXZpZXdlZC1ieTogU3RlZW4gSGVnZWx1bmQgPFN0ZWVuLkhlZ2VsdW5kQG1pY3JvY2hp
+cC5jb20+CgpCUgpTdGVlbgo=
 
-
-On 7/2/2023 1:42 PM, Krzysztof Kozlowski wrote:
-> On 28/06/2023 17:01, Mukesh Ojha wrote:
->>
->>
->> On 6/28/2023 8:17 PM, Rob Herring wrote:
->>> On Wed, Jun 28, 2023 at 6:36 AM Mukesh Ojha <quic_mojha@quicinc.com> wrote:
->>>>
->>>> Qualcomm ramoops minidump logger provide a means of storing
->>>> the ramoops data to some dynamically reserved memory instead
->>>> of traditionally implemented ramoops where the region should
->>>> be statically fixed ram region. Its device tree binding
->>>> would be exactly same as ramoops device tree binding and is
->>>> going to contain traditional ramoops frontend data and this
->>>> content will be collected via Qualcomm minidump infrastructure
->>>> provided from the boot firmware.
->>>
->>> The big difference is if firmware is not deciding where this log
->>> lives, then it doesn't need to be in DT. How does anything except the
->>> kernel that allocates the log find the logs?
->>
->> Yes, you are correct, firmware is not deciding where the logs lives
->> instead here, Kernel has reserved the region where the ramoops region
->> lives and later with the minidump registration where, physical
->> address/size/virtual address(for parsing) are passed and that is how
->> firmware is able to know and dump those region before triggering system
->> reset.
-> 
-> Your explanation does not justify storing all this in DT. Kernel can
-> allocate any memory it wishes, store there logs and pass the address to
-> the firmware. That's it, no need for DT.
-
-If you go through the driver, you will know that what it does, is
-just create platform device for actual ramoops driver to probe and to
-provide this it needs exact set of parameters of input what original 
-ramoops DT provides, we need to keep it in DT as maintaining this in
-driver will not scale well with different size/parameter size
-requirement for different targets.
-
-> 
->>
->> A part of this registration code you can find in 11/21
->>
->>> I'm pretty sure I already said all this before.
->>
->> Yes, you said this before but that's the reason i came up with vendor
->> ramoops instead of changing traditional ramoops binding.
-> 
-> That's unexpected conclusion. Adding more bindings is not the answer to
-> comment that it should not be in the DTS in the first place.
-
-Please suggest, what is the other way being above text as requirement..
-
--- Mukesh
-> 
-> Best regards,
-> Krzysztof
-> 
