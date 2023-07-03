@@ -2,60 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E1887457DD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 10:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B803745841
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 11:20:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229738AbjGCI5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 04:57:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49250 "EHLO
+        id S230192AbjGCJUt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 05:20:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230205AbjGCI5F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 04:57:05 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id C9E9D10CE;
-        Mon,  3 Jul 2023 01:56:53 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AEA371FB;
-        Mon,  3 Jul 2023 01:57:35 -0700 (PDT)
-Received: from bogus (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D35903F762;
-        Mon,  3 Jul 2023 01:56:51 -0700 (PDT)
-Date:   Mon, 3 Jul 2023 09:56:49 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Liviu Dudau <liviu.dudau@arm.com>,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: arm: minor whitespace cleanup around '='
-Message-ID: <20230703085649.y363mybfshlj77ax@bogus>
-References: <20230702185315.44584-1-krzysztof.kozlowski@linaro.org>
+        with ESMTP id S230181AbjGCJUt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 05:20:49 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 145051A1;
+        Mon,  3 Jul 2023 02:20:47 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3638igWF024760;
+        Mon, 3 Jul 2023 09:20:44 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=23NU6hBXNSSaD+ZlGgoiLhzx3KfHft2aiZNXw3ISVWA=;
+ b=oIQBmQ66ZfFkwi5YjackxFv4lZatjdWhVH0snH8TzOwFhJ3DwDCcUDXxfLAkFzyOWZPz
+ dQp/ETBh5/nFcgBv3l6yJaSiDPGGvcCDMwrHbGjAfRp3r2F220ZiX9WpAcXBMBfMRmgj
+ ZVJx0bvhDvZ22GxM3kG8xKtQ4IItkkF6k7LUwY3po2M+eiQpCgUukefpZknxW0SAEoIi
+ n0eb9nglUaaseuPhUju9vzAGXz5wvPnO4k2IlsuHL7cODekw2dz4WXohoOfBfHwmWir7
+ czU99i5i3/6cUQ+MPg1QJC9j7fY06lo/dTEfy0WeP8DwtKgFh7Qthlp872xwixEks5Hu uw== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rjbfqkn29-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 03 Jul 2023 09:20:44 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3639Kh57032721
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Mon, 3 Jul 2023 09:20:43 GMT
+Received: from hu-mkshah-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.7; Mon, 3 Jul 2023 02:20:39 -0700
+From:   Maulik Shah <quic_mkshah@quicinc.com>
+To:     <andersson@kernel.org>, <konrad.dybcio@linaro.org>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <quic_lsrao@quicinc.com>, Maulik Shah <quic_mkshah@quicinc.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH] dt-bindings: soc: qcom: stats: Update maintainer email
+Date:   Mon, 3 Jul 2023 14:50:26 +0530
+Message-ID: <20230703092026.4923-1-quic_mkshah@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230702185315.44584-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Nn6vSZvJ15_GH-byhkv1mskJHeMSga94
+X-Proofpoint-ORIG-GUID: Nn6vSZvJ15_GH-byhkv1mskJHeMSga94
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-03_08,2023-06-30_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0 bulkscore=0
+ mlxlogscore=733 phishscore=0 clxscore=1011 impostorscore=0 mlxscore=0
+ spamscore=0 lowpriorityscore=0 priorityscore=1501 malwarescore=0
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307030083
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 02, 2023 at 08:53:15PM +0200, Krzysztof Kozlowski wrote:
-> The DTS code coding style expects exactly one space before and after '='
-> sign.
->
+Replace my email.
 
-Acked-by: Sudeep Holla <sudeep.holla@arm.com>
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Maulik Shah <quic_mkshah@quicinc.com>
+---
+ Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Let me know if you are expecting me to pick up or you plan to send all
-such changes bundled together.
-
+diff --git a/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml b/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
+index 7ab8cfff18c1..96a7f1822022 100644
+--- a/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
++++ b/Documentation/devicetree/bindings/soc/qcom/qcom-stats.yaml
+@@ -7,7 +7,7 @@ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ title: Qualcomm Technologies, Inc. (QTI) Stats
+ 
+ maintainers:
+-  - Maulik Shah <mkshah@codeaurora.org>
++  - Maulik Shah <quic_mkshah@quicinc.com>
+ 
+ description:
+   Always On Processor/Resource Power Manager maintains statistics of the SoC
 -- 
-Regards,
-Sudeep
+2.17.1
+
