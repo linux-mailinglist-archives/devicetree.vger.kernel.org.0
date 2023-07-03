@@ -2,106 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 15F3A745ECD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:43:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12FDB745EED
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:45:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231371AbjGCOnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 10:43:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57744 "EHLO
+        id S230349AbjGCOo6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 10:44:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59764 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231416AbjGCOm4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:42:56 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31ED210FC;
-        Mon,  3 Jul 2023 07:42:46 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 363ESjan001922;
-        Mon, 3 Jul 2023 14:42:36 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=58oaRQ/dIqzZbCUsTlTEvMrpQMdoVfPl72V6S0kghiU=;
- b=VzOoybEcMU+T0Uk8G4wHJ9inbbGS+RCac0Mdm3/dlq3ovsM6bqSbDS9rSYWgKFrNsrIB
- DzyriNQsPlJzI6dP6bxPVNohp3CSElrS19lumqQG5z+4/5Xr8SeRDPmOBnGlJROZEdop
- nKJOlAmVnuD4V4JeOpXqNZid04xwAdPO0t6cgVAysmWFc8F/toF29QwsFSCfv+wie5ux
- 9paAF86ro9TJwiEIu7D/NpJQbz+1HonuKbxWdQJB/qqHzBscRttJWMLhiGicT5uaB8pD
- d2h8C6iKpBknlG2V7zMnVtphn2Y54PIvtnpEciukd8OO+KMC7xStd6ncQCX12x+nghxr 6w== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rkv1dgjvq-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 03 Jul 2023 14:42:36 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 363EgUtd031930;
-        Mon, 3 Jul 2023 14:42:33 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3rjd7k8gff-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Mon, 03 Jul 2023 14:42:33 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 363EgRgb031491;
-        Mon, 3 Jul 2023 14:42:33 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 363EgTaR031748;
-        Mon, 03 Jul 2023 14:42:33 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 7729D5025; Mon,  3 Jul 2023 20:12:32 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        lee@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linus.walleij@linaro.org, lgirdwood@gmail.com, broonie@kernel.org,
-        sboyd@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH 10/10] pinctrl: qcom-pmic-gpio: Add support for pmx75
-Date:   Mon,  3 Jul 2023 20:12:26 +0530
-Message-Id: <1688395346-3126-11-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1688395346-3126-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1688395346-3126-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: -Wra_PDkQb30WA7T8NpQac6DX2yfyN3T
-X-Proofpoint-ORIG-GUID: -Wra_PDkQb30WA7T8NpQac6DX2yfyN3T
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-03_11,2023-06-30_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- adultscore=0 lowpriorityscore=0 mlxlogscore=925 phishscore=0
- impostorscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307030132
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no
-        version=3.4.6
+        with ESMTP id S230360AbjGCOox (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:44:53 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57120171B;
+        Mon,  3 Jul 2023 07:44:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
+        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
+        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
+        bh=pteZzJsj4EYRrxGttSfyJ3QdTS0O5i9iUaaO/p8LKvQ=; b=VoZUdS8+3fD1nzIi+CDFXQNRUR
+        ZyXLatUtPhLQQyPCUWnRDCVI85u+/ljrMWFNcVgGpu1eW1h1pmhLfz6Mc3kpoauCQxYmFSWGJa74J
+        Bdtbd/riCPQ9ibHOcdVbeDqs2ljQAYfI87HrCgXUOVPQsbPeDrfwCdl70WeiAC2E1AL4=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qGKmJ-000U8I-46; Mon, 03 Jul 2023 16:43:47 +0200
+Date:   Mon, 3 Jul 2023 16:43:47 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Matt Johnston <matt@codeconstruct.com.au>
+Cc:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH 3/3] mctp i3c: MCTP I3C driver
+Message-ID: <8321002c-9b75-44da-9200-23d951148ae9@lunn.ch>
+References: <20230703053048.275709-1-matt@codeconstruct.com.au>
+ <20230703053048.275709-4-matt@codeconstruct.com.au>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230703053048.275709-4-matt@codeconstruct.com.au>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pmx75 pmic support gpio controller so add compatible in the driver.
+> +#define MCTP_I3C_MAXBUF 65536
+> +/* 48 bit Provisioned Id */
+> +#define PID_SIZE 6
+> +
+> +/* 64 byte payload, 4 byte MCTP header */
+> +static const int MCTP_I3C_MINMTU = 64 + 4;
+> +/* One byte less to allow for the PEC */
+> +static const int MCTP_I3C_MAXMTU = MCTP_I3C_MAXBUF - 1;
+> +/* 4 byte MCTP header, no data, 1 byte PEC */
+> +static const int MCTP_I3C_MINLEN = 4 + 1;
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 1 +
- 1 file changed, 1 insertion(+)
+Why static const and not #define? It would also be normal for
+variables to be lower case, to make it clear they are in fact
+variables, not #defines.
 
-diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-index 5e8b42e..3d0b896 100644
---- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-+++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-@@ -1251,6 +1251,7 @@ static const struct of_device_id pmic_gpio_of_match[] = {
- 	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
- 	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
- 	{ .compatible = "qcom,pmx65-gpio", .data = (void *) 16 },
-+	{ .compatible = "qcom,pmx75-gpio", .data = (void *) 16 },
- 	{ },
- };
- 
--- 
-2.7.4
+> +struct mctp_i3c_bus {
+> +	struct net_device *ndev;
+> +
+> +	struct task_struct *tx_thread;
+> +	wait_queue_head_t tx_wq;
+> +	/* tx_lock protects tx_skb and devs */
+> +	spinlock_t tx_lock;
+> +	/* Next skb to transmit */
+> +	struct sk_buff *tx_skb;
+> +	/* Scratch buffer for xmit */
+> +	u8 tx_scratch[MCTP_I3C_MAXBUF];
+> +
+> +	/* Element of busdevs */
+> +	struct list_head list;
+> +
+> +	/* Provisioned ID of our controller */
+> +	u64 pid;
+> +
+> +	struct i3c_bus *bus;
+> +	/* Head of mctp_i3c_device.list. Protected by busdevs_lock */
+> +	struct list_head devs;
+> +};
+> +
+> +struct mctp_i3c_device {
+> +	struct i3c_device *i3c;
+> +	struct mctp_i3c_bus *mbus;
+> +	struct list_head list; /* Element of mctp_i3c_bus.devs */
+> +
+> +	/* Held while tx_thread is using this device */
+> +	struct mutex lock;
+> +
+> +	/* Whether BCR indicates MDB is present in IBI */
+> +	bool have_mdb;
+> +	/* I3C dynamic address */
+> +	u8 addr;
+> +	/* Maximum read length */
+> +	u16 mrl;
+> +	/* Maximum write length */
+> +	u16 mwl;
+> +	/* Provisioned ID */
+> +	u64 pid;
+> +};
 
+Since you have commented about most of the members of these
+structures, you could use kerneldoc.
+
+> +/* We synthesise a mac header using the Provisioned ID.
+> + * Used to pass dest to mctp_i3c_start_xmit.
+> + */
+> +struct mctp_i3c_internal_hdr {
+> +	u8 dest[PID_SIZE];
+> +	u8 source[PID_SIZE];
+> +} __packed;
+> +
+> +/* Returns the 48 bit Provisioned Id from an i3c_device_info.pid */
+> +static void pid_to_addr(u64 pid, u8 addr[PID_SIZE])
+> +{
+> +	pid = cpu_to_be64(pid);
+> +	memcpy(addr, ((u8 *)&pid) + 2, PID_SIZE);
+> +}
+> +
+> +static u64 addr_to_pid(u8 addr[PID_SIZE])
+> +{
+> +	u64 pid = 0;
+> +
+> +	memcpy(((u8 *)&pid) + 2, addr, PID_SIZE);
+> +	return be64_to_cpu(pid);
+> +}
+
+I don't know anything about MCTP. But Ethernet MAC addresses are also
+48 bits. Could you make use of u64_to_ether_addr() and ether_addr_to_u64()?
+
+> +static int mctp_i3c_setup(struct mctp_i3c_device *mi)
+> +{
+> +	const struct i3c_ibi_setup ibi = {
+> +		.max_payload_len = 1,
+> +		.num_slots = MCTP_I3C_IBI_SLOTS,
+> +		.handler = mctp_i3c_ibi_handler,
+> +	};
+> +	bool ibi_set = false, ibi_enabled = false;
+> +	struct i3c_device_info info;
+> +	int rc;
+> +
+> +	i3c_device_get_info(mi->i3c, &info);
+> +	mi->have_mdb = info.bcr & BIT(2);
+> +	mi->addr = info.dyn_addr;
+> +	mi->mwl = info.max_write_len;
+> +	mi->mrl = info.max_read_len;
+> +	mi->pid = info.pid;
+> +
+> +	rc = i3c_device_request_ibi(mi->i3c, &ibi);
+> +	if (rc == 0) {
+> +		ibi_set = true;
+> +	} else if (rc == -ENOTSUPP) {
+
+In networking, we try to avoid ENOTSUPP and use EOPNOTSUPP:
+
+https://lore.kernel.org/netdev/20200511165319.2251678-1-kuba@kernel.org/
+
+
+> +static int mctp_i3c_header_create(struct sk_buff *skb, struct net_device *dev,
+> +				  unsigned short type, const void *daddr,
+> +	   const void *saddr, unsigned int len)
+> +{
+> +	struct mctp_i3c_internal_hdr *ihdr;
+> +
+> +	skb_push(skb, sizeof(struct mctp_i3c_internal_hdr));
+> +	skb_reset_mac_header(skb);
+> +	ihdr = (void *)skb_mac_header(skb);
+> +	memcpy(ihdr->dest, daddr, PID_SIZE);
+> +	memcpy(ihdr->source, saddr, PID_SIZE);
+
+ether_addr_copy() ?
+
+> +/* Returns an ERR_PTR on failure */
+> +static struct mctp_i3c_bus *mctp_i3c_bus_add(struct i3c_bus *bus)
+> +__must_hold(&busdevs_lock)
+> +{
+> +	struct mctp_i3c_bus *mbus = NULL;
+> +	struct net_device *ndev = NULL;
+> +	u8 addr[PID_SIZE];
+> +	char namebuf[IFNAMSIZ];
+> +	int rc;
+> +
+> +	if (!mctp_i3c_is_mctp_controller(bus))
+> +		return ERR_PTR(-ENOENT);
+> +
+> +	snprintf(namebuf, sizeof(namebuf), "mctpi3c%d", bus->id);
+> +	ndev = alloc_netdev(sizeof(*mbus), namebuf, NET_NAME_ENUM, mctp_i3c_net_setup);
+> +	if (!ndev) {
+> +		pr_warn("No memory for %s\n", namebuf);
+
+pr_ functions are not liked too much. Is there a struct device you can
+use with dev_warn()?
+
+    Andrew
