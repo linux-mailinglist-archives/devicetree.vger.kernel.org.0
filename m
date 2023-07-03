@@ -2,162 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A7D474544C
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 05:51:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49F75745478
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 06:17:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230032AbjGCDvG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 2 Jul 2023 23:51:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36286 "EHLO
+        id S229816AbjGCERL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 00:17:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42318 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229988AbjGCDvE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 2 Jul 2023 23:51:04 -0400
-Received: from gate2.alliedtelesis.co.nz (gate2.alliedtelesis.co.nz [202.36.163.20])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 30C5A1B6
-        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 20:51:02 -0700 (PDT)
-Received: from svr-chch-seg1.atlnz.lc (mmarshal3.atlnz.lc [10.32.18.43])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        by gate2.alliedtelesis.co.nz (Postfix) with ESMTPS id 0BAF62C049B;
-        Mon,  3 Jul 2023 15:50:49 +1200 (NZST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alliedtelesis.co.nz;
-        s=mail181024; t=1688356249;
-        bh=+XmE3h4JR9jmL93Rq94bj5aEzeXvD+l2Bfqms27UMGE=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kbYkkQmL4/7/Ze7FV7f9QCgt9/TGe6ZNLVYJV/+vri52xvcSbBqA/lo5/7lAy1uMj
-         sVIQaiNcWagWfhc+K6gUCA9m1ot6m45WTOL80gJtHPGYXLWyThOaG4fPFJjIQW3Zu0
-         wsIOyD5rmvwxGU7tE9XshX0d38j/oG4QVZkJ/uODF/J4vPpiclEynvoU66tGLDgsf8
-         og/wiHf44i+KE+t/ILgMUDKBzDbYqlQVrXP7oGLhrJVLd/b1ioikFdrYbwpZvZ8rtU
-         Yfk7DtB434bHr9r2oy7ZAHKlb9hwDCh8hPtTWcbSbj17IPV0QJq7h7Dgn5CZocLIuZ
-         drwtFtTn/zx0Q==
-Received: from pat.atlnz.lc (Not Verified[10.32.16.33]) by svr-chch-seg1.atlnz.lc with Trustwave SEG (v8,2,6,11305)
-        id <B64a245980003>; Mon, 03 Jul 2023 15:50:48 +1200
-Received: from chrisp-dl.ws.atlnz.lc (chrisp-dl.ws.atlnz.lc [10.33.22.30])
-        by pat.atlnz.lc (Postfix) with ESMTP id A436E13EE82;
-        Mon,  3 Jul 2023 15:50:48 +1200 (NZST)
-Received: by chrisp-dl.ws.atlnz.lc (Postfix, from userid 1030)
-        id A5931283B6B; Mon,  3 Jul 2023 15:50:48 +1200 (NZST)
-From:   Chris Packham <chris.packham@alliedtelesis.co.nz>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, gregory.clement@bootlin.com
-Cc:     linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>
-Subject: [PATCH v3 3/3] mtd: rawnand: marvell: add support for AC5 SoC
-Date:   Mon,  3 Jul 2023 15:50:44 +1200
-Message-ID: <20230703035044.2063303-4-chris.packham@alliedtelesis.co.nz>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230703035044.2063303-1-chris.packham@alliedtelesis.co.nz>
-References: <20230703035044.2063303-1-chris.packham@alliedtelesis.co.nz>
+        with ESMTP id S229875AbjGCERK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 00:17:10 -0400
+Received: from mail-pg1-x532.google.com (mail-pg1-x532.google.com [IPv6:2607:f8b0:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AECB018D
+        for <devicetree@vger.kernel.org>; Sun,  2 Jul 2023 21:17:05 -0700 (PDT)
+Received: by mail-pg1-x532.google.com with SMTP id 41be03b00d2f7-55b1238a013so2877020a12.3
+        for <devicetree@vger.kernel.org>; Sun, 02 Jul 2023 21:17:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688357825; x=1690949825;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=8OxVYH9Wks9suyBw2nLMYDF06Gci/zPGti3eMnFSLVs=;
+        b=c6cJkNCyqOSuE5I5vUG7MTMI2ZdQ75OX+6GU+FY58Mv7Rgb4OeOWKjMuKo9OqgPVP4
+         RHDrIhD8tnkuIkwz4mR+aNhJT6qGShL+KqWIvmXG0GNtqTD7LpLkytb9r2Mke38P5V9d
+         aRtxQqmS1JsQyznjpEWKSqBqKEYTu2pqtYDjpDMsVDpybTwLsfWIS5IVdJCqparAU6dS
+         drQYEZfzJQxBG0QNPkrKlzHJ2Ig9iaQHjMzEZYSqTdFMsFTYj/qWHdA7Q3WtpdEDi+k3
+         /HpitRIMbRI7Uuty3LznXwW0cf4X4hs6wsVRh5n1/I48HgFuYi9hj8vH0T8Cgy/wBEHO
+         6cMw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688357825; x=1690949825;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8OxVYH9Wks9suyBw2nLMYDF06Gci/zPGti3eMnFSLVs=;
+        b=FVQH/tTU2n8AyO4BE0GR+0ykR132YdJMJGe8Vobo0VZbx9er52mOLSVM0LLTuIAClk
+         XiudraMZPJcjEg3P9YGDUgd+f7CecC0/idIbJmgJ0ZDD/CUW6QUt8ZyGc23gRpIXGYWw
+         j5ZMhcvGrjn0XFk4zMIMzcmAbtUBCdK145SNsN7Pj9AoIlk0VGbtDglo3Mjh0ACkpNkQ
+         qMmMVxZ2AlPJq6ThWMaGURf7ToXvMe4VWu4/O20HwZEt0/+qQzMruViRZB2ZwaVIC5s9
+         uLbmva/lhJPeLc6jWXHYvD7JiFF9ZNsBcis99/zRQlURYNatUJ8qJ20KGq0ybKfsSTW4
+         jRsg==
+X-Gm-Message-State: ABy/qLZHEDgD2RpphnyTHWyzMRLy2VIM1dHODvuFBQBJ50iPw9Ndq2EL
+        RQLFdra0gVE/q1J4PqrTcTvwfQ==
+X-Google-Smtp-Source: APBJJlFPljXi9LeaSXf7WDj270rKAuCdCoLQCocwupCs5wIshILvwoHTbQO17j0ePv6VXjlHEot66A==
+X-Received: by 2002:a17:90a:ff08:b0:263:44dd:f85 with SMTP id ce8-20020a17090aff0800b0026344dd0f85mr9643580pjb.24.1688357824931;
+        Sun, 02 Jul 2023 21:17:04 -0700 (PDT)
+Received: from localhost ([122.172.87.195])
+        by smtp.gmail.com with ESMTPSA id z19-20020a17090ad79300b002631f3d36a1sm9287904pju.36.2023.07.02.21.17.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 02 Jul 2023 21:17:03 -0700 (PDT)
+Date:   Mon, 3 Jul 2023 09:47:01 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Niklas Cassel <nks@flawful.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Robert Marko <robimarko@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Jeffrey Hugo <quic_jhugo@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>
+Subject: Re: [PATCH v12 01/10] cpufreq: blacklist MSM8998 in
+ cpufreq-dt-platdev
+Message-ID: <20230703041701.ntv2f2h7z2welmvn@vireshk-i7>
+References: <20230217-topic-cpr3h-v12-0-1a4d050e1e67@linaro.org>
+ <20230217-topic-cpr3h-v12-1-1a4d050e1e67@linaro.org>
+ <20230628155656.GA542106-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-X-SEG-SpamProfiler-Analysis: v=2.3 cv=NPqrBHyg c=1 sm=1 tr=0 a=KLBiSEs5mFS1a/PbTCJxuA==:117 a=ws7JD89P4LkA:10 a=FN2KoAgMzK-72ix3NDkA:9
-X-SEG-SpamProfiler-Score: 0
-x-atlnz-ls: pat
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230628155656.GA542106-robh@kernel.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the AC5/AC5X SoC from Marvell. The NFC on this SoC only
-supports SDR modes up to 3.
+On 28-06-23, 09:56, Rob Herring wrote:
+> On Wed, Jun 28, 2023 at 04:00:40PM +0200, Konrad Dybcio wrote:
+> > From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
+> > 
+> > Add the MSM8998 to the blacklist since the CPU scaling is handled
+> 
+> s/blacklist/denylist/ or s/blacklist/blocklist/
 
-Marvell's SDK includes some predefined values for the ndtr registers.
-These haven't been incorporated as the existing code seems to get good
-values based on measurements taken with an oscilloscope.
+They are already named allowlist and blocklist.
 
-Signed-off-by: Chris Packham <chris.packham@alliedtelesis.co.nz>
----
+> > @@ -143,6 +143,7 @@ static const struct of_device_id blocklist[] __initconst = {
 
-Notes:
-    Changes in v3:
-    - None
-    Changes in v2:
-    - None
-
- drivers/mtd/nand/raw/Kconfig        |  2 +-
- drivers/mtd/nand/raw/marvell_nand.c | 16 ++++++++++++++++
- 2 files changed, 17 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
-index b523354dfb00..0f4cbb497010 100644
---- a/drivers/mtd/nand/raw/Kconfig
-+++ b/drivers/mtd/nand/raw/Kconfig
-@@ -160,7 +160,7 @@ config MTD_NAND_MARVELL
- 	  including:
- 	  - PXA3xx processors (NFCv1)
- 	  - 32-bit Armada platforms (XP, 37x, 38x, 39x) (NFCv2)
--	  - 64-bit Aramda platforms (7k, 8k) (NFCv2)
-+	  - 64-bit Aramda platforms (7k, 8k, ac5) (NFCv2)
-=20
- config MTD_NAND_SLC_LPC32XX
- 	tristate "NXP LPC32xx SLC NAND controller"
-diff --git a/drivers/mtd/nand/raw/marvell_nand.c b/drivers/mtd/nand/raw/m=
-arvell_nand.c
-index 30c15e4e1cc0..b9a8dd324211 100644
---- a/drivers/mtd/nand/raw/marvell_nand.c
-+++ b/drivers/mtd/nand/raw/marvell_nand.c
-@@ -375,6 +375,7 @@ static inline struct marvell_nand_chip_sel *to_nand_s=
-el(struct marvell_nand_chip
-  *			BCH error detection and correction algorithm,
-  *			NDCB3 register has been added
-  * @use_dma:		Use dma for data transfers
-+ * @max_mode_number:	Maximum timing mode supported by the controller
-  */
- struct marvell_nfc_caps {
- 	unsigned int max_cs_nb;
-@@ -383,6 +384,7 @@ struct marvell_nfc_caps {
- 	bool legacy_of_bindings;
- 	bool is_nfcv2;
- 	bool use_dma;
-+	unsigned int max_mode_number;
- };
-=20
- /**
-@@ -2376,6 +2378,9 @@ static int marvell_nfc_setup_interface(struct nand_=
-chip *chip, int chipnr,
- 	if (IS_ERR(sdr))
- 		return PTR_ERR(sdr);
-=20
-+	if (nfc->caps->max_mode_number && nfc->caps->max_mode_number < conf->ti=
-mings.mode)
-+		return -EOPNOTSUPP;
-+
- 	/*
- 	 * SDR timings are given in pico-seconds while NFC timings must be
- 	 * expressed in NAND controller clock cycles, which is half of the
-@@ -3073,6 +3078,13 @@ static const struct marvell_nfc_caps marvell_armad=
-a_8k_nfc_caps =3D {
- 	.is_nfcv2 =3D true,
- };
-=20
-+static const struct marvell_nfc_caps marvell_ac5_caps =3D {
-+	.max_cs_nb =3D 2,
-+	.max_rb_nb =3D 1,
-+	.is_nfcv2 =3D true,
-+	.max_mode_number =3D 3,
-+};
-+
- static const struct marvell_nfc_caps marvell_armada370_nfc_caps =3D {
- 	.max_cs_nb =3D 4,
- 	.max_rb_nb =3D 2,
-@@ -3121,6 +3133,10 @@ static const struct of_device_id marvell_nfc_of_id=
-s[] =3D {
- 		.compatible =3D "marvell,armada-8k-nand-controller",
- 		.data =3D &marvell_armada_8k_nfc_caps,
- 	},
-+	{
-+		.compatible =3D "marvell,ac5-nand-controller",
-+		.data =3D &marvell_ac5_caps,
-+	},
- 	{
- 		.compatible =3D "marvell,armada370-nand-controller",
- 		.data =3D &marvell_armada370_nfc_caps,
---=20
-2.41.0
-
+-- 
+viresh
