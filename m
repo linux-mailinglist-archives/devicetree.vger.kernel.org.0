@@ -2,127 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9035D745E4D
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:15:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B897745E4F
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbjGCOPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 10:15:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45344 "EHLO
+        id S229608AbjGCOQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 10:16:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjGCOPF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:15:05 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D121E54
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 07:15:02 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31427ddd3fbso3060223f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 07:15:02 -0700 (PDT)
+        with ESMTP id S229484AbjGCOQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:16:17 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36446E54
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 07:16:16 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-98e39784a85so811084466b.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 07:16:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688393700; x=1690985700;
+        d=linaro.org; s=google; t=1688393774; x=1690985774;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=RyceS1YttDjM3IZjfYBUQgEmN60GSkIWDDnpTU52Yck=;
-        b=QKqbyYWge/CzSIbqNJ7s43VhCzkCengong+Wjfjgl9eJ4pBd8Sa82RnUNOnt8G4Q4L
-         WHUioevKysa0JpDczaPGkeCnpG5j/hV5g/d6prS3jJYOkVS/XlnC75zPY1/C6uK610y2
-         oqXqZCInzR8u/Ry4cQY/x9VVC3z3IJOImkhE928K2g6TThzH/hv8ACt4wTj7XjahAj+p
-         aDbdPIAgv+0xRXFHVbpf1RTuJcEF/TAZyAERHwoaboFgNOyBK4tgn+A+CwvYDDEyfd9+
-         oZ6poyQnRxQwGRX29VRXXQ3QB2UMe33E0LLKmCBQywXE5dfipcpbQh/nkZiIZK1kDaXR
-         OJFA==
+        bh=YZZJzbwFN4n03zshXK/J7TJjDtnSZkH39pK/RDg/Cu8=;
+        b=NDAvG1Uq9mqFT4vdanvxRFxPwqRPt1DYfERUMqUxx1QMnZlj9AwlXAVeC+kMmYFfK1
+         kcta0tNxQRlDOAyrM6V5RoCakvaO5Myehpsd6W1ps4oxm3n5IXLhZeZqjANJ9aUAVSjt
+         iTKUjtaMOYsIKA+x959dguBWKV9iUOW3+Web6fUfRQoZP/3gmsowr5mWCpOVz8sxddWf
+         5oSrxONL99T7s+WgUEo/Nw0aZJ/Ma/iV6NEFFqNPZF8zT8dOwcMDQX8NHlu0m5fmCPPr
+         uxEdpSwinLaRn01b7LGOFHvnYgSgVZayJZDQtQKEfJPCsK5To0OknozzxbGje1svGbQY
+         yoHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688393700; x=1690985700;
+        d=1e100.net; s=20221208; t=1688393774; x=1690985774;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RyceS1YttDjM3IZjfYBUQgEmN60GSkIWDDnpTU52Yck=;
-        b=U5AMe+XqN76skKUoLYfjnpAF07gaxnZyXkcg4VqCpzAmDuXQq8vDGjIPF+V4T+IH+o
-         pf44ZU6buNrWFYUTiZ4ZIThiaIK/PzpHlwfpjBucq5PAA/7ycBmz2toHQKgEbeP9DxZS
-         g/IgTtSZlJPKo3yFRm0LKdoWIxEXSCHdZeRKkdiaEZN8k05KL2/FNsWbo+KzU39ovZkp
-         ElWissqM4EcyruYBTRN0Zd6ulPvWMx5909YgO/+HkIwMuO/DTcULsMt3VwXpDT5NHHx2
-         3xK9DuTYaPoVWsGm74ZInkY/D8Cj2okCXAexog340qCxdgXnRYYZSMCXjM/KjDayXTMH
-         4sfA==
-X-Gm-Message-State: ABy/qLYqxA/nTaJDVLHgpW3kX4PTD3/kvp7SBQp/SRB5q6iChwFsKiSO
-        +AUXWffAL0N5FdN5v3cVTKDoFA==
-X-Google-Smtp-Source: APBJJlHR/lQXKb6swTRqOGJbAoI77k/2SH5OHhhofvZIsZ88I3xNCyf+POaBLaEtPZoJnq8it1mksA==
-X-Received: by 2002:adf:e6cc:0:b0:30a:e9cb:1a2e with SMTP id y12-20020adfe6cc000000b0030ae9cb1a2emr7648315wrm.65.1688393700421;
-        Mon, 03 Jul 2023 07:15:00 -0700 (PDT)
-Received: from [192.168.35.121] ([77.205.22.13])
-        by smtp.gmail.com with ESMTPSA id z11-20020adfe54b000000b0031128382ed0sm6661539wrm.83.2023.07.03.07.14.58
+        bh=YZZJzbwFN4n03zshXK/J7TJjDtnSZkH39pK/RDg/Cu8=;
+        b=I338UA3KcgyvSVsFtzKWL4XqAI9jNsZGwZDzLUXnURwcmPZ6su2D2TYzcEiZH6L1ua
+         M9Q25sK5A23VpKJN9Gck6nevJYlYZ6h20OmiZoA8AaCTLA+XSNo7oFXfliVhaM9Arvnl
+         eB7p8axX91bj2wWWoHzPy0Hyu957/mtr0RbutBpOq3j6AmEkECnWfl1FrWnVzWl0Sa+S
+         KMDzGMmwj5ArgEknccvewnSvirW2hxe7ZLeG8728GbaG9iJhAxc74abpAS6g8um5awPe
+         5xVCAwTxyuIbvVW2drlLyAvh8cD5vMxoU8XMJ2ExmM3kZHgxdINEnp6GxNap+/70SFlJ
+         ocZg==
+X-Gm-Message-State: AC+VfDwqJ5ECgwU666D0VIHiKSUJmTx6SE0p1/9xhVYJ8g6CEjJXkrGz
+        7Bub+eGwQKXPeqEOwNBpe3USqA==
+X-Google-Smtp-Source: ACHHUZ749XOz+TzH+Pgvlma0DNoLLiZLUWSy8ZcmVUnssJhoqQyIBCOCh6Ux9aU6w2XG4KQmsC7txQ==
+X-Received: by 2002:a17:907:60d5:b0:98d:f2c9:a1eb with SMTP id hv21-20020a17090760d500b0098df2c9a1ebmr14827554ejc.24.1688393774502;
+        Mon, 03 Jul 2023 07:16:14 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id la25-20020a170906ad9900b00992e14af9c3sm4821934ejb.143.2023.07.03.07.16.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 07:14:59 -0700 (PDT)
-Message-ID: <6a51d860-2d20-6c35-3935-985d5b41853e@baylibre.com>
-Date:   Mon, 3 Jul 2023 16:14:57 +0200
+        Mon, 03 Jul 2023 07:16:14 -0700 (PDT)
+Message-ID: <7b8e0f70-a6d2-16e4-5615-004b930298c5@linaro.org>
+Date:   Mon, 3 Jul 2023 16:16:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 0/3] Configure usb0 as peripheral on am335x boards
+Subject: Re: [PATCH 1/3] dt-bindings: i3c: Add mctp-controller property
 Content-Language: en-US
-To:     Roger Quadros <rogerq@kernel.org>, Tony Lindgren <tony@atomide.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        vigneshr@ti.com, nm@ti.com, Tom Rini <trini@konsulko.com>
-References: <20230629-usb0-as-peripheral-v1-0-167f78a11746@baylibre.com>
- <20230630072047.GK14287@atomide.com>
- <f4fa80fd-1a6a-4718-0287-f5288cd9d912@baylibre.com>
- <7f44798b-e2bf-1620-da37-ca13bfd07a21@kernel.org>
- <babf5f20-ddf4-74bf-1788-f8e356acaa92@baylibre.com>
- <9ef45899-c766-e839-522a-3b048f8106f7@kernel.org>
-From:   Julien Panis <jpanis@baylibre.com>
-In-Reply-To: <9ef45899-c766-e839-522a-3b048f8106f7@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+To:     Matt Johnston <matt@codeconstruct.com.au>
+Cc:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230703053048.275709-1-matt@codeconstruct.com.au>
+ <20230703053048.275709-2-matt@codeconstruct.com.au>
+ <CAGE=qrrqE3Vj1Bs+cC51gKPDmsqMTyHEAJhsrGCyS_jYKf42Gw@mail.gmail.com>
+ <d29fc42c04f2e1142b0a196ef7df2d74335cec2e.camel@codeconstruct.com.au>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <d29fc42c04f2e1142b0a196ef7df2d74335cec2e.camel@codeconstruct.com.au>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/3/23 15:44, Roger Quadros wrote:
->
-> On 03/07/2023 14:56, Julien Panis wrote:
->> On 6/30/23 21:40, Roger Quadros wrote:
->>> Hi,
+On 03/07/2023 10:14, Matt Johnston wrote:
+> On Mon, 2023-07-03 at 09:15 +0200, Krzysztof Kozlowski wrote:
+>> On Mon, 3 Jul 2023 at 07:31, Matt Johnston <matt@codeconstruct.com.au> wrote:
 >>>
->>> On 30/06/2023 11:30, Julien Panis wrote:
->>>> Hello Tony,
->>>>
->>>> On 6/30/23 09:20, Tony Lindgren wrote:
->>>>> Hi,
->>>>>
->>>>> * Julien Panis <jpanis@baylibre.com> [230629 13:10]:
->>>>>> This series configures usb0 dr_mode as 'peripheral' for am335x-evm,
->>>>>> am335x-evmsk, and am335x-icev2. This USB port is mainly used for
->>>>>> RNDIS and DFU.
->>>>> Is this a mini-B connector? Just wondering if it was originally attempted
->>>>> to be configured as OTG or how it ended up with a host configuration..
->>>> It's a micro USB-AB connector.
->>>> I don't know how it ended up with a host configuration, it looks like an oversight.
->>>> Maybe Vignesh or Nishanth can confirm (?)
->>> usb0 role should be "otg".
->>> It is rightly so in Linux DT. am33xx.dtsi contains "otg" and all AM335x board files inherit from it.
+>>> This property is used to describe a I3C bus with attached MCTP I3C
+>>> target devices.
 >>>
->>> So I don't think setting it to "peripheral" in u-boot is the right thing to do.
->> This series is for kernel (not for u-boot).
->> Why is it a problem to set usb0 as 'peripheral' in kernel for the 3 board dts ?
+>>> Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
+>>> ---
+>>>  Documentation/devicetree/bindings/i3c/i3c.yaml | 4 ++++
+>>>  1 file changed, 4 insertions(+)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documentation/devicetree/bindings/i3c/i3c.yaml
+>>> index fdb4212149e7..08731e2484f2 100644
+>>> --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
+>>> +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
+>>> @@ -55,6 +55,10 @@ properties:
+>>>
+>>>        May not be supported by all controllers.
+>>>
+>>> +  mctp-controller:
+>>> +    description: |
+>>> +      Indicates that this bus hosts MCTP-over-I3C target devices.
 >>
->> With usb0 not set as 'peripheral', the 3 boards (am335x-evm, evm-sk, icev2)
->> do not boot with uboot 2023.04. This error is returned, with LOG_LEVEL=5:
->>      No USB device found
->>      USB ether init failed
->>      initcall sequence 8ffdbba4 failed at call 808024d9 (err=-19)
->>      ### ERROR ### Please RESET the board ###
->> This error is also returned with usb0 as 'otg'.
-> This error is at u-boot correct? This will need further investigation.
->
-> Does it function correctly in Linux when kept as 'otg'?
->
+>> I have doubts you actually tested it - there is no type/ref. Also,
+>> your description is a bit different than existing from dtschema. Why?
+>> Aren't these the same things?
+> 
+> (sorry my reply minutes ago was somehow an old draft, please ignore)
+> 
+> Ah, I'll add 
+> $ref: /schemas/types.yaml#/definitions/flag
 
-This error is at u-boot level, indeed. I add Tom Rini to this thread, since he
-was involved in the discussion here:
-https://lore.kernel.org/all/20230621-fix_usb_ether_init-v2-0-ff121f0e8d7a@baylibre.com/
-If dr_mode is set as 'peripheral' in '<board>-u-boot.dtsi' and kept as 'otg'
-in linux, it functions correctly in linux.
+Although does not matter, but use the same as in dtschema.
+type: boolean
+
+> 
+> Testing with 
+>   make dtbs_check DT_SCHEMA_FILES=trivial-devices.yaml
+> I don't see any warnings, and neither after adding mctp-controller to a .dts
+> (out of tree) and testing with
+>   make CHECK_DTBS=y DT_SCHEMA_FILES=i3c.yaml aspeed-test.dtb
+> 
+> Should that pick it up?
+> 
+> For the description, do you mean it differs to the other properties in
+> i3c.yaml, or something else?
+
+It differs than existing mctp-controller property. If this was on
+purpose, please share a bit more why. If not, maybe use the same
+description?
+
+Best regards,
+Krzysztof
+
