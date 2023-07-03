@@ -2,166 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE3E0745EFD
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:46:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADDD9745F0D
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 16:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbjGCOqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 10:46:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33800 "EHLO
+        id S231384AbjGCOtq convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Jul 2023 10:49:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36572 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231235AbjGCOqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:46:37 -0400
-Received: from EUR04-VI1-obe.outbound.protection.outlook.com (mail-vi1eur04on2074.outbound.protection.outlook.com [40.107.8.74])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36C5110D7;
-        Mon,  3 Jul 2023 07:46:13 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=alqpJrlipXrtFOEJbake33Z5HAPrUkRhd288JpCiZv88kLAecROn3Lel7O8Jee8rIF4zmg/LkJU3XXlK7EVZhVu1BdON2mTx06KCfq0n5caEIwP0+sj6Hj7/tNGgqcTUB5zFbHxPpSlGQ9v9IUj6IZz+edfeL1wWYuPg3720oxOwE6FKNWju8HBDRXxmvkzZlp8o2hC6RZAOGs5zBUbX50c7yb73XyvwnbqkmVSoCk5CcxqxvpldUDGUOHXe6rZk6/9MPWO+QXuciLN5YnP2shTWKVdm4BhJx8JJuSpfq29wIEjDJEwPTTFaoYFMsPSLBxWmQVKzLeQidJOMyrdE2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=52Bf2yORxBOvSQR8KJG/EmprvhdAYYBwNEDV+PTwhuw=;
- b=cR0JKwyq1tQYwtSYGoHluS7UVdN2Uhap8fT2hsr8nGrTz5ROMAaZNLMAev3Dm8S8dQc4FQXPpoRPvLBBniNqkysw8KOhG38lZFtN3VcdhBnu7MVMfSz4Zvr1l90lyLrKzC9W7GgZl/nRF3FfgipeZVWCvhuimY4CKcU5yn1808l3WPtHduVKZ1xCNlPqr2buq1tHnQzcBc3YZ9LcZmC0FroiJoiA7GSTxvtOn3dBIZl2b344R+xInN+OPncQrFozooZXWgdeJYKv44f4AEkLpuOIyB0RiHcB7TjVhqnmG3jr6g9pK1BA5bDRXz2eUQp7ldr7aMPWgKia4gKB76dh2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=52Bf2yORxBOvSQR8KJG/EmprvhdAYYBwNEDV+PTwhuw=;
- b=lpSzvfmkk2F+wxLv4wQdGrU378liX5eNmCRNXuCEZbrLhsMTF16Fsshjj8BL/kaHQk+JIATM/FPuQ4dzBuDESxoq1xBMVeg5y6LGKYywoIBJmW6W1sqKK0+LDoPUjUEDBGw2+yfDkbVpSijfzFkBbz803Niz5rbvYHRKiHFlhsM=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by PA4PR04MB7806.eurprd04.prod.outlook.com (2603:10a6:102:c9::21) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6544.24; Mon, 3 Jul
- 2023 14:45:40 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c%7]) with mapi id 15.20.6544.024; Mon, 3 Jul 2023
- 14:45:40 +0000
-Date:   Mon, 3 Jul 2023 10:45:27 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     vkoul@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, dmaengine@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        peng.fan@nxp.com, joy.zou@nxp.com, shenwei.wang@nxp.com,
-        imx@lists.linux.dev
-Subject: Re: [PATCH v9 00/13] dmaengine: edma: add freescale edma v3 support
-Message-ID: <ZKLfB7putFfLlAoH@lizhi-Precision-Tower-5810>
-References: <20230620201221.2580428-1-Frank.Li@nxp.com>
- <ZJxHc62V72eVMYu4@lizhi-Precision-Tower-5810>
- <3ce07ab8-9ed0-d5c0-e7da-bb24085cc3f8@linaro.org>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <3ce07ab8-9ed0-d5c0-e7da-bb24085cc3f8@linaro.org>
-X-ClientProxiedBy: SJ0PR03CA0143.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::28) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+        with ESMTP id S230072AbjGCOtp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 10:49:45 -0400
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com [209.85.128.169])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26FD2B2;
+        Mon,  3 Jul 2023 07:49:44 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5703cb4bcb4so48059217b3.3;
+        Mon, 03 Jul 2023 07:49:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688395783; x=1690987783;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=nY1I4rwqDndCDmWpTkptLJRSj9+jun4KpqhzWpHlROg=;
+        b=J5C3B1bptD1PtBht6YeK92I6OEZirpGTiCvq61y9iNzqgvQ7fRkj8Ny25TzR4xwSiE
+         +HvERqurtfGq6Tg8RFtDIVoERu1BDwdA7SuPWuBi7XpuHzW0CWMmoyoAJdPum2GZjtkz
+         XjpYwV/5rk58a40BV8G5kXW1BrG1jKKdEdTiqWWRY4VCmxNHopJMeY4IEuESfE6r8xn4
+         j2nXCyyAW/Bld3v64nvis7/GFeRAFW5kXh346NCswJdMLpesBoLKrC2VSrSPArmK97ex
+         vYLtegGBlz8GkVuFqnOw+/vWzxIvBwAXACB1XLBaiKWwPovWG09SPZhP86hRFDB8DfeX
+         agqw==
+X-Gm-Message-State: ABy/qLZtk87+zPcorKs7YQZYV3h/RcClJ5QD4y8WaMR5XZDyeu+OfytL
+        CsGhArNH5KJHhDJ+if+VsbVyFFaffNAyXg==
+X-Google-Smtp-Source: APBJJlF0M4Fikyc0Ul4SzDeqUAzNRZP96JEtVLCJdDdSn3+io+1b7eUxliLWPtfEYm2dY1uhhvcPkw==
+X-Received: by 2002:a81:628a:0:b0:56d:4b17:7e9c with SMTP id w132-20020a81628a000000b0056d4b177e9cmr11763355ywb.32.1688395783112;
+        Mon, 03 Jul 2023 07:49:43 -0700 (PDT)
+Received: from mail-yw1-f169.google.com (mail-yw1-f169.google.com. [209.85.128.169])
+        by smtp.gmail.com with ESMTPSA id 132-20020a25168a000000b00bcc9793c3e6sm4398729ybw.65.2023.07.03.07.49.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jul 2023 07:49:42 -0700 (PDT)
+Received: by mail-yw1-f169.google.com with SMTP id 00721157ae682-5703cb4bcb4so48058897b3.3;
+        Mon, 03 Jul 2023 07:49:42 -0700 (PDT)
+X-Received: by 2002:a25:15c1:0:b0:bfe:77f1:f454 with SMTP id
+ 184-20020a2515c1000000b00bfe77f1f454mr8566617ybv.51.1688395782355; Mon, 03
+ Jul 2023 07:49:42 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|PA4PR04MB7806:EE_
-X-MS-Office365-Filtering-Correlation-Id: a5165bda-988e-4b8f-c0a3-08db7bd42bdc
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: TEf0B84+1Ue3Gj7wXdyXYUmtpKmwYd4birjOC1hAricXbei+XalYh+QsK5genzN9Ywr7yHQm3BR+G38ns5D1UliUpJSWZZcmZfAIOSbyjsaq2Kj4kxpr1yeP4jslzgfDdiSGOA6RiKfI0jHQx1UdBpvPzVYYeLbpj6itfREjZa9V/HJ6LYvXEfLGiQ/zXrtOQ1lbb3Q/tE7N80hjY6Ro08TfC3RZ+DEOlkokfxtyo0BivaF0ruXf3J7e4CZqEnut2UtdE1U2nk1cYe2f0R/zqS4sdKp9EzXErcGVzD1BLmi568+z3xrdKjpvA5eMUC88jc+U0PLDTPUEtg2m4BBYbwTtuoAe6T0VD3rDXah9bayJ8XdVcw9e2l4Djjdc1KA6Li5G2WIkLnb7/VqN/emtdCHFna7vAi+iUcunkZa0JUKGTGo2Cj2CZQGSRB1I1QNR6fi5O0CMLP829PwKTWuiWXYGCPgOPqSRzh68DR8Or1A6jNMxsY82G151xPqmFpuUFMXKSOpkNK6/G/XRThioMZXg7xLoZ1MPrY19KkSjm3Zk4ZwDDQk1hfrC8sQX7FFIlo3BwxoBU3eoM4QqTb0OTUrJsoJ8ojNGTQ/uW1esYNw=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(4636009)(366004)(346002)(136003)(376002)(396003)(39860400002)(451199021)(2906002)(6666004)(966005)(52116002)(6486002)(316002)(478600001)(41300700001)(5660300002)(8676002)(8936002)(6916009)(66946007)(4326008)(66476007)(66556008)(33716001)(83380400001)(86362001)(38350700002)(38100700002)(26005)(53546011)(186003)(6506007)(6512007)(9686003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?+f4zGXikrOE7jydNJEVeqvUM34ESBSrHw04CgdX5kcTFJzp3r9DLxBaU9VX5?=
- =?us-ascii?Q?RNZoM93H1EGZq6tZBEptdEIjrddhmalB3q7ZH6q903FzWMpbmaoENFeumO1B?=
- =?us-ascii?Q?uUJN08+MsaOTATU4MRTgN80wobXyo4uIvFRdWPZYydQ0kkxqsehn9h2/y60J?=
- =?us-ascii?Q?EBvnvRIO8ecyZrdzOiEykx1A2jAfOOqC1x3zDBIz8chZkd7eyF9BDsVq8Cuc?=
- =?us-ascii?Q?hxL3bUAfwiw/UDkcHdAJW80oWVvACGvmzhHPalbRMm27aU+70AUv62o2Z2Bu?=
- =?us-ascii?Q?8DctfyBKWbr9Q/yHVmugn2GS1qRDAgyEKUDvSgp1CKbjsmCL6sf0NnaHcN1v?=
- =?us-ascii?Q?Cu8D5My7nxm18Gin5XqPgEilhYMqxe3FVaSi97qimbpncrcQVApD9XjMMzgx?=
- =?us-ascii?Q?uQx3u1+c77dOFdCxLKkEXY49qSp79lxtIsHNjF0v/kPf0KENBqtjCjuMTnBv?=
- =?us-ascii?Q?88W0dr1Iwk2aOf6K67GT4fffBggWlfdL4kx7fxf6+vPGN7TqrqN+k2oFZNtZ?=
- =?us-ascii?Q?LgVG+vLLJk4FnzOA7sJpmq04J1sQDMgXKck0kpfzQR10G4xN+4fJFq2zvoxc?=
- =?us-ascii?Q?ffYwOg44hEHSZ7X/uGNmQuQ1hOiPoxiJwgiA6qiZJRyPDcrT4wYtoB79s1cc?=
- =?us-ascii?Q?MAeE6bV6BNvPo0adfAQSdXajbIPqx6kR3gZ7VnhF47JCz+xNf4tlv/FM8Brg?=
- =?us-ascii?Q?+LzGVf/nrUy+j3xg/Xo0pH9Dr7HkOAMJHeQWdFbkhUhRi65x5V5UEDYuRyMG?=
- =?us-ascii?Q?ZWTY7wp3REhJoGFg6NvM91X3626tRLaS5P0KwdtNrTG0RlfJVtX7YAkSJJyt?=
- =?us-ascii?Q?/3EpafuBLF65KeF81VLJcxUZXmNvnymmxpkfCtskR8JH0TqvSIt+6M/0t1uw?=
- =?us-ascii?Q?nszWmjG7mSdfUYPYSORS1IS3Sm2+KN2Mr0jnI+ITrkvUn3+1xNAFsnNFlMw1?=
- =?us-ascii?Q?xe+7w1VlqihEhxAix5Y/+kPFiszs1d3GIm8tUJNdnlGswiHZtYy9qkZXyyQH?=
- =?us-ascii?Q?LeYyGvdAHI/fykpCuSMcu/sPw8FP6jmBzl4P1pu32NIIT7z8v63CZP0J9b1/?=
- =?us-ascii?Q?q6OiH4CqBnVQgA7ujzE7cgBZLQp6FhwCOcWdV5ReoQzyxxzwnlOfaY3qZbXD?=
- =?us-ascii?Q?lTi4aGC/XVQD63BeOJLfSWzM7M559oqKjIe9YiHjbPTOW/fVgCSncG15kLKU?=
- =?us-ascii?Q?HyWPZU2DBNbpmtStDZAAuV8Yyq3wD2InPPI2ObEzHtCvopMqqerG77cLWUMZ?=
- =?us-ascii?Q?qjIz4rCKVypTLzKZLG1AbAX2LnegQepGrrALL5iCUttdu0UiutGMar8B3v1A?=
- =?us-ascii?Q?wRA1T5OdBjsIIL0uCqyHXJ3hwNUlfvlzhhmTpAZpQPiKagssRH43Xcb+Dz1X?=
- =?us-ascii?Q?aOedsyu90iWIvFiaIMkVuCz0hm1h0agh2ztVcSntDZfiGtdbtarmhP6+ApBm?=
- =?us-ascii?Q?dO2X/1Wsx2PeaHi2AUNbTEByyp4p/tZhWUERWKrnIEbMcw0yoWoF24jbCpkX?=
- =?us-ascii?Q?v5mPHX34/bjSMPl218FDlR3MpnUGpqXVkbiXy1qVH//LLwXg4NkAYGsTUMT5?=
- =?us-ascii?Q?dxjhZ3wcqBuwIABwtCk=3D?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a5165bda-988e-4b8f-c0a3-08db7bd42bdc
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 03 Jul 2023 14:45:40.3916
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 5diaYqQEIm+21AzdTIVJIpLsM3wEe5Ya+GsYFhSX9JV+z4Z1Q7aXDALdCtPb8QyVMTZGPmvfUsrNxbTZJKF8RA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PA4PR04MB7806
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+References: <20230623080135.15696-1-fabrizio.castro.jz@renesas.com>
+ <CAMuHMdVNG_LENbU_nu-W+x_snXxbz3vbs=Yb-__FF3DBR2JEUA@mail.gmail.com> <CACRpkdavQ1X29LyZscvdkBOS53H5sdYhZbKhWL9fpdghiddCTw@mail.gmail.com>
+In-Reply-To: <CACRpkdavQ1X29LyZscvdkBOS53H5sdYhZbKhWL9fpdghiddCTw@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 3 Jul 2023 16:49:30 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUoHRBWy3JXosTu7N0HUYECC=7DaiQWhchJQ=Fn=72vGA@mail.gmail.com>
+Message-ID: <CAMuHMdUoHRBWy3JXosTu7N0HUYECC=7DaiQWhchJQ=Fn=72vGA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: rzv2mevk2: Fix eMMC/SDHI pinctrl names
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 02, 2023 at 10:22:22PM +0200, Krzysztof Kozlowski wrote:
-> On 28/06/2023 16:45, Frank Li wrote:
-> > On Tue, Jun 20, 2023 at 04:12:08PM -0400, Frank Li wrote:
-> >> This patch series introduces support for the eDMA version 3 from
-> >> Freescale. The eDMA v3 brings alterations in the register layout,
-> >> particularly, the separation of channel control registers into
-> >> different channels. The Transfer Control Descriptor (TCD) layout,
-> >> however, remains identical with only the offset being changed.
-> >>
-> >> The first 11 patches aim at tidying up the existing Freescale
-> >> eDMA code and laying the groundwork for the integration of eDMA v3
-> >> support.
-> >>
-> >> Patch 1-11:
-> >> These patches primarily focus on cleaning up and refactoring the existing
-> >> fsl_edma driver code. This is to accommodate the upcoming changes and new
-> >> features introduced with the eDMA v3.
-> >>
-> >> Patch 12:
-> >> This patch introduces support for eDMA v3. In addition, this patch has
-> >> been designed with an eye towards future upgradability, specifically for
-> >> transitioning to eDMA v5. The latter involves a significant upgrade
-> >> where the TCD address would need to support 64 bits.
-> >>
-> >> Patch 13:
-> >> This patch focuses on the device tree bindings and their modifications
-> >> to properly handle and integrate the changes brought about by eDMA v3
-> > 
-> > @vkoul:
-> >   Do you have chance to check these patches? Any chance to come into 6.5
-> >   All audio parts of i.MX8x and i.MX9 was dependent on these patches.
-> 
-> Why do you ping during the merge window?
-> 
-> v6.5? And what about having it in next for two weeks? One thing is to
-> ping for something forgotten, different thing is to try squeeze patches
-> skipping our process.
+Hi Linus, Fabrizio,
 
-I saw dmaengine tree have not update over 5 weeks.
-https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/dmaengine.git/
-And vkoul have not sent out pull request yet. So I just want to check
-if possible. 
+On Sat, Jun 24, 2023 at 9:12 PM Linus Walleij <linus.walleij@linaro.org> wrote:
+> On Fri, Jun 23, 2023 at 10:40 AM Geert Uytterhoeven
+> <geert@linux-m68k.org> wrote:
+> > On Fri, Jun 23, 2023 at 10:01 AM Fabrizio Castro
+> > <fabrizio.castro.jz@renesas.com> wrote:
+> > > pinctrl-rzv2m b6250000.pinctrl: pin P8_2 already requested by 85000000.mmc; cannot claim for 85020000.mmc
+> > > pinctrl-rzv2m b6250000.pinctrl: pin-130 (85020000.mmc) status -22
+> > > renesas_sdhi_internal_dmac 85020000.mmc: Error applying setting, reverse things back
 
-Frank
+I managed to reproduce the issue[*], and devised a fix, which I will
+send shortly.
 
-> 
-> Best regards,
-> Krzysztof
-> 
+> > To me, that sounds like a bug in the pinctrl core.
+> > Or am I missing something?
+>
+> The pin control core tracks on a per-pin basis, it has no clue about
+> the name of certain dt nodes.
+>
+> This bug would be in the DT parsing code for the different states
+> I think, and rzv2m is not using the core helpers for this but
+> rather rzv2m_dt_subnode_to_map() etc.
+
+Indeed, there's an issue in rzv2m_dt_subnode_to_map(): it registers
+groups and functions using just the subnode names, which may not
+be unique.  When this happens, they are ignored silently.
+
+      $ cat /sys/kernel/debug/pinctrl/b6250000.pinctrl/pingroups
+      registered pin groups:
+      group: data
+      pin 130 (P8_2)
+      pin 131 (P8_3)
+      pin 132 (P8_4)
+      pin 133 (P8_5)
+
+      group: ctrl
+      pin 128 (P8_0)
+      pin 129 (P8_1)
+
+      group: cd
+      pin 135 (P8_7)
+
+      $ cat /sys/kernel/debug/pinctrl/b6250000.pinctrl/pinmux-functions
+      function 0: data, groups = [ data ]
+      function 1: ctrl, groups = [ ctrl ]
+      function 2: cd, groups = [ cd ]
+
+You can see this by adding checks in the pin control core:
+
+--- a/drivers/pinctrl/core.c
++++ b/drivers/pinctrl/core.c
+@@ -639,8 +639,10 @@ int pinctrl_generic_add_group(struct pinctrl_dev
+*pctldev, const char *name,
+                return -EINVAL;
+
+        selector = pinctrl_generic_group_name_to_selector(pctldev, name);
+-       if (selector >= 0)
++       if (selector >= 0) {
++               pr_err("Duplicate group name %s (selector %d)\n",
+name, selector);
+                return selector;
++       }
+
+        selector = pctldev->num_groups;
+
+--- a/drivers/pinctrl/pinmux.c
++++ b/drivers/pinctrl/pinmux.c
+@@ -878,8 +878,10 @@ int pinmux_generic_add_function(struct
+pinctrl_dev *pctldev,
+                return -EINVAL;
+
+        selector = pinmux_func_name_to_selector(pctldev, name);
+-       if (selector >= 0)
++       if (selector >= 0) {
++pr_err("Duplicate function name %s (selector %d)\n", name, selector);
+                return selector;
++       }
+
+        selector = pctldev->num_functions;
+
+Is there any special reason why such duplicates are just ignored,
+and not flagged as an error?
+
+The RZ/G2L and RZ/N1 pin control drivers have the same issue, but it
+is not triggered on these platforms (yet), as their DTS files either
+do not use subnodes, or use unique subnode names.
+
+The RZ/A1 and RZ/A2 pin control drivers are not affected, as they do
+not support subnodes.
+
+The StarFive JH7100 pin control driver does it right, by constructing
+group/function names from both the node and the subnode names.
+
+[*] As I do not have an RZ/V2M board, I added pin control, eMMC, and
+    SDHI snippets from RZ/V2M to the Koelsch DTS, and modified the
+    drivers to not touch the non-existing hardware.
+
+
+
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
