@@ -2,74 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A355C7455DF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:20:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F4417455EF
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230063AbjGCHUu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 03:20:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57126 "EHLO
+        id S230344AbjGCHYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 03:24:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230246AbjGCHUu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:20:50 -0400
-Received: from mail-oa1-x2a.google.com (mail-oa1-x2a.google.com [IPv6:2001:4860:4864:20::2a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F91BE47
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 00:20:48 -0700 (PDT)
-Received: by mail-oa1-x2a.google.com with SMTP id 586e51a60fabf-1b03ec2015fso3550514fac.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 00:20:48 -0700 (PDT)
+        with ESMTP id S230232AbjGCHYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:24:36 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66231E5D
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 00:24:30 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-313f61890fbso4559598f8f.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 00:24:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688368847; x=1690960847;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5wOEeEqZxs/53QPFBAeYmLrF3X4waeqXDqE1Qr5s1oo=;
-        b=K4Fk0wgl41urJ973GedutT6AJySQVRpM7IEAeH1DL3A0K5cftuzCamKRTB9DPS99mD
-         nA2nj+JvCX7ToqPkiXrqneN0AFk6tdTwfutFdtsVKkSIPottw7M/tR3AATLz4IgyfIl5
-         3uIT+BmwDiCixsnU59nodSwDjHwYO1qhwePVV9/5uIAGIE8HgjGzSORacDRfTQN9o+A4
-         RK189ThZg7KIFV/i1sqW4r2TYZBTb/6fmGM/KM32273ABzhuloTOaX+mqNyy/elVoy8H
-         x0NV4f9dVSDnPrOCSmBeOuSYdtx92ccMK5jyz2fExYMyn5NXHnQPrd9uQwVYLUOJFjPO
-         p98w==
+        d=linaro.org; s=google; t=1688369068; x=1690961068;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=KgMnJ8CKfBislhp1HG0z8FmS5BLcV5+cmaj4jvnhxWQ=;
+        b=lKrkHVcsQngHENPpMshxYINgAv/o3G4zjF9clGaCwoFrRmttkUWr4CBrogdvxNzMS3
+         VBP86BoCy3AKClMFDF9HKPnJtmGpdmiipRLgTXgdGNS4e85wXCTHXgQTmURXCy5fNf5m
+         LxexEPRA7cwPlrcsXz+F1rXEQI1sP8laktduTFkvWEbrgg/jMuTHCuPebIqG1ozPUTdZ
+         IUYsdmpolDS8JvoAktsNi9dCycog7boyCBWaDP3PYwLu4lolTKdY5ehvy7aTMVfkLHfK
+         R07BeDK6M+Dv1Kr+KwncWpguMs+6Gv792dGNu4Jf1DKoHce2DPoWYH74hji1yCmqMA4W
+         sEMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688368847; x=1690960847;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=1e100.net; s=20221208; t=1688369068; x=1690961068;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=5wOEeEqZxs/53QPFBAeYmLrF3X4waeqXDqE1Qr5s1oo=;
-        b=jVt0wXPLp6kwqnFeDTcgz6jz0LOuAzHzMoK0xwEkdbhmRaMH2o6OzIXMGkKHIdfYK2
-         wkiSDTZZg68hmmWAhVQnQ43Ud689zD6F6F6vzw/y719UaO1TDobGo2V6n4+blwPzzO9x
-         30kPTkJDbroKP9ee+40kQf1Q7a3m2PzanYhaRRKylibcIXbCiscPWhuDHJhzgE4HHZiI
-         K2hAKv0IhVkgPqZHeyPTr9jr4iWDNO7PKcS/xQesP61qb43wC7xKc/nD0kLejkKPIOPz
-         DkRS0g4gbiJyc+ABHX13cFVE82P/Q5aZGGJhEkTuonNFTdCwAMGknsGr5EAG1Xjm2pRT
-         c8Fg==
-X-Gm-Message-State: ABy/qLacp46E9lBvUavGWBF8zJnMR4W6d0zw2Jme4ypdv8QolBJHLhOf
-        G/SqKsRe27NWaCsQ18AWLMynZia9sFMTsJfGL/RFQg==
-X-Google-Smtp-Source: APBJJlEb+AJ0CavHV/EY5o02uXm03FgkhsSGBahp5rgVjQwn4oDUf2oZLdvfrUiaO5BwJCpHYi9SurP9PwIS6yl4hW0=
-X-Received: by 2002:a05:6870:f150:b0:1b0:3771:736c with SMTP id
- l16-20020a056870f15000b001b03771736cmr12943732oac.41.1688368847232; Mon, 03
- Jul 2023 00:20:47 -0700 (PDT)
+        bh=KgMnJ8CKfBislhp1HG0z8FmS5BLcV5+cmaj4jvnhxWQ=;
+        b=UGB9pbKBiq8Q0nbhZi7R3s4PeyNpQ/T1/KgEZMVRZfMebUR4Vgy6wFGyvds5TMvGJl
+         yaiQlbWwHt84OYMI+1kiQjH4SilVWeSNvIcLBB/eTJKPmRGHaTmtPqBu0Dk2kOZUYD8J
+         EznIpabAKY1f5ZO3F6ULgXUiKqdEDSku9hXZb0DGxIoxQF0mtt0meCa4l4cOH1GNL+iv
+         Y2sv12HFGwegV/cEoKWP1kHeQ0JrWIU+F+ERUSyxKpjJBG/wfZd3G4yA2UHA1975E24r
+         pfqgc/S/1A02ZR4onS9WRzgjB0qkLKaqZwbu11kpOaUQG4FyljQboIpIGR564ZFys6KH
+         IwDA==
+X-Gm-Message-State: ABy/qLYup2AmigXjJbD2PO2/mxpnEUBWf8SEUcU78mMJW3o56EjNnrLC
+        AY69Fdnq1a62LHx1S2jHPyK0aA==
+X-Google-Smtp-Source: APBJJlErVoF0iApuPq86HVOvO0iLKPOR8uT2faeOcndYld3NEwBM2GZKbdz/+srhnFDYERI4fgA7tQ==
+X-Received: by 2002:a5d:6349:0:b0:313:e48a:d173 with SMTP id b9-20020a5d6349000000b00313e48ad173mr6657516wrw.68.1688369068512;
+        Mon, 03 Jul 2023 00:24:28 -0700 (PDT)
+Received: from [192.168.7.21] (679773502.box.freepro.com. [212.114.21.58])
+        by smtp.gmail.com with ESMTPSA id u11-20020adfdd4b000000b003143765e207sm1899030wrm.49.2023.07.03.00.24.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jul 2023 00:24:27 -0700 (PDT)
+Message-ID: <65d78d07-be4f-8ea0-b322-353b5c23fcb0@linaro.org>
+Date:   Mon, 3 Jul 2023 09:24:23 +0200
 MIME-Version: 1.0
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-9-git-send-email-quic_mojha@quicinc.com>
- <CAL_JsqJ_TTnGjjB2d8_FKHpWBRG5GHLoWnabCKjsdeZ4QFdNEg@mail.gmail.com>
- <cacbbb02-732e-076e-50bf-292d20a4d722@quicinc.com> <58a26b9e-a48d-d567-c310-193a2c52521e@linaro.org>
- <5447f9f8-55b4-8bed-66a6-1c9d62b02c79@quicinc.com>
-In-Reply-To: <5447f9f8-55b4-8bed-66a6-1c9d62b02c79@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Date:   Mon, 3 Jul 2023 09:20:35 +0200
-Message-ID: <CAGE=qrq0CuO4J-6yC=YZ4xjL67o9QTqpei0ovX-X_8MLVeEH6g@mail.gmail.com>
-Subject: Re: [PATCH v4 08/21] dt-bindings: reserved-memory: Add qcom,ramoops binding
-To:     Mukesh Ojha <quic_mojha@quicinc.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, corbet@lwn.net,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
-        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH v6 5/9] drm/meson: gate px_clk when setting rate
+Content-Language: en-US
+To:     George Stark <gnstark@sberdevices.ru>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Nicolas Belin <nbelin@baylibre.com>
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        dri-devel@lists.freedesktop.org
+References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org>
+ <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-5-fd2ac9845472@linaro.org>
+ <c487ed03-0ab2-74fb-91bc-4a773bfdfc5b@sberdevices.ru>
+Organization: Linaro Developer Services
+In-Reply-To: <c487ed03-0ab2-74fb-91bc-4a773bfdfc5b@sberdevices.ru>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -78,60 +93,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Jul 2023 at 08:22, Mukesh Ojha <quic_mojha@quicinc.com> wrote:
-> On 7/2/2023 1:42 PM, Krzysztof Kozlowski wrote:
-> >>> The big difference is if firmware is not deciding where this log
-> >>> lives, then it doesn't need to be in DT. How does anything except the
-> >>> kernel that allocates the log find the logs?
-> >>
-> >> Yes, you are correct, firmware is not deciding where the logs lives
-> >> instead here, Kernel has reserved the region where the ramoops region
-> >> lives and later with the minidump registration where, physical
-> >> address/size/virtual address(for parsing) are passed and that is how
-> >> firmware is able to know and dump those region before triggering system
-> >> reset.
-> >
-> > Your explanation does not justify storing all this in DT. Kernel can
-> > allocate any memory it wishes, store there logs and pass the address to
-> > the firmware. That's it, no need for DT.
->
-> If you go through the driver, you will know that what it does, is
+On 30/06/2023 20:10, George Stark wrote:
+> Hello Neil
+> 
+> On 6/30/23 19:29, Neil Armstrong wrote:
+>> Disable the px_clk when setting the rate to recover a fully
+>> configured and correctly reset VCLK clock tree after the rate
+>> is set.
+>>
+>> Fixes: 77d9e1e6b846 ("drm/meson: add support for MIPI-DSI transceiver")
+>> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+>> ---
+>>   drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 7 +++++++
+>>   1 file changed, 7 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+>> index 57447abf1a29..dc63d2d813a9 100644
+>> --- a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+>> +++ b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
+>> @@ -94,6 +94,7 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
+>>           return ret;
+>>       }
+>> +    clk_disable_unprepare(mipi_dsi->px_clk);
+>>       ret = clk_set_rate(mipi_dsi->px_clk, mipi_dsi->mode->clock * 1000);
+>>       if (ret) {
+>> @@ -102,6 +103,12 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
+>>           return ret;
+>>       }
+>> +    clk_prepare_enable(mipi_dsi->px_clk);
+> probably should be:
+> ret = clk_prepare_enable(mipi_dsi->px_clk);
 
-We talk about bindings and I should not be forced to look at the
-driver to be able to understand them. Bindings should stand on their
-own.
+Indeed, thx for noticing :-)
 
-> just create platform device for actual ramoops driver to probe and to
+>> +    if (ret) {
+>> +        dev_err(mipi_dsi->dev, "Failed to enable DSI Pixel clock (ret %d)\n", ret);
+>> +        return ret;
+>> +    }
+>> +
+>>       switch (mipi_dsi->dsi_device->format) {
+>>       case MIPI_DSI_FMT_RGB888:
+>>           dpi_data_format = DPI_COLOR_24BIT;
+>>
 
-Not really justification for Devicetree anyway. Whatever your driver
-is doing, is driver's business, not bindings.
-
-> provide this it needs exact set of parameters of input what original
-> ramoops DT provides, we need to keep it in DT as maintaining this in
-> driver will not scale well with different size/parameter size
-> requirement for different targets.
-
-Really? Why? I don't see a problem in scaling. At all.
-
->
-> >
-> >>
-> >> A part of this registration code you can find in 11/21
-> >>
-> >>> I'm pretty sure I already said all this before.
-> >>
-> >> Yes, you said this before but that's the reason i came up with vendor
-> >> ramoops instead of changing traditional ramoops binding.
-> >
-> > That's unexpected conclusion. Adding more bindings is not the answer to
-> > comment that it should not be in the DTS in the first place.
->
-> Please suggest, what is the other way being above text as requirement..
-
-I do not see any requirement for us there. Forcing me to figure out
-how to add non-hardware property to DT is not the way to convince
-reviewers. But if you insist - we have ABI for this, called sysfs. If
-it is debugging feature, then debugfs.
-
-Best regards,
-Krzysztof
