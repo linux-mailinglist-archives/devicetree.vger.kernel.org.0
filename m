@@ -2,82 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA16774651B
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 23:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 942ED7465AE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 00:19:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230351AbjGCVsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 17:48:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57382 "EHLO
+        id S230137AbjGCWTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 18:19:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37080 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231289AbjGCVsO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 17:48:14 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78B5410D7;
-        Mon,  3 Jul 2023 14:47:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1688420849;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=ZIBH0iqPa4JrF/ybKqeSFFr0n/xkJ271cTM5K0p5/cQ=;
-        b=yjzkFAfybAOqo8D0wjdvvR35hNMpwMN104L2Nj+j98H/tBAVpfcZl9/0Vzqp0pXcBoiKaN
-        kVE8T07f35X6Q0nN7OqKsjFwTXb6SB4qtZ0zr8S7r2y8wU+tZbWeFui3Rh4F6ISab4jdgI
-        99wBXtCm30nD5B93k3jAWghuPQWeQ3o=
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Paul Cercueil <paul@crapouillou.net>, stable@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: exynos/i9100: Fix LCD screen's physical size
-Date:   Mon,  3 Jul 2023 23:47:15 +0200
-Message-Id: <20230703214715.623447-4-paul@crapouillou.net>
-In-Reply-To: <20230703214715.623447-1-paul@crapouillou.net>
-References: <20230703214715.623447-1-paul@crapouillou.net>
+        with ESMTP id S229653AbjGCWTt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 18:19:49 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4998BBC
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 15:19:48 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-bacf685150cso5705123276.3
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 15:19:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688422787; x=1691014787;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=Z9HevVK3dLy2DI5tpdlrhQ7544ZuKcagqCCGV2FMIRE=;
+        b=B/xAUULsp+QZNBqB/xJExV+WaRnhz39fH88VMTgV2qqE6qZec0PJ+IGlaSrHVrTuq6
+         Yc6MI4hqG8QvLXMpEVgbv1r4ED54eI1h1SfpjgOy2caol+rpuIxlaRLg/fMuW4QKVZg+
+         8x0yBGMeIPrpsdMwaICRbY6uKnuhN2YxMXIRI8/Yrnq1FTs3xTGGag2zcCkCnoJGQwpH
+         mB1ZSLMKvo6jRJ0FCEnOSYSUi6L4KwPinjGjFwAXYhU1VpddjbP3Ykz6ZoY2S+sZN7yd
+         fn7Urxw3Uq5m2ZcIr3deVWHF78VM+32ijH8JJR5xVGA0yNENhm2iFDND48O27dzkcD+W
+         +4aA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688422787; x=1691014787;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=Z9HevVK3dLy2DI5tpdlrhQ7544ZuKcagqCCGV2FMIRE=;
+        b=GO51JnMgycDvP/IClKK1MqtntxiXlhWtu67nCS7Y2WMbsCgczRA0ed0Q+q5HPTkBwm
+         /rYMe0X67s0/GsCejOTxqR5kCHgZZ+WpiLvNoyQ12oQZRVBiiFzyfem0ZH15OhconY/n
+         OpKo8ghctt8jMFCS9sgvC2hrdnIe0MB64YEVrAjYbwQjyx0nFnDbfV5wyCDII8ORCTHh
+         Sjyhy8us7xpmFULYrRV1bTs8ct1ibOAnGecV9mkILZAyNrYe2yKiXCIfIlDW4BCZE/Y+
+         VURjbYEbQYTUoSuFwmzMcx4jaMfRE9XR7iN9OEXAd5QkSR1Tu8F2UTRHtHlEbOusKKwJ
+         BiRg==
+X-Gm-Message-State: ABy/qLb2+VxyZpooYZx0kqD2c+ye3NFjbvrtGtYAYG1gdM2lsjHQDNiJ
+        KRjL8Cz9ZRjEIMkX8EBff/dl0D8PcJ5PTqEYAH/v2g==
+X-Google-Smtp-Source: APBJJlHExt3Lgn60LULo4I21TJ/yokWh52mlqq1qzF5KzFQVszDbClIjmtAAn/XDzc5g4KpeVMI5ljpSeeSBPsZDdZM=
+X-Received: by 2002:a25:9c86:0:b0:c1c:7458:87f2 with SMTP id
+ y6-20020a259c86000000b00c1c745887f2mr10060974ybo.26.1688422787511; Mon, 03
+ Jul 2023 15:19:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam: Yes
+References: <20230621213115.113266-1-nick.hawkins@hpe.com> <CACRpkdazmeFHagwkJ3s6BHRBgFoLPbj8AVnPL2f+vTi9K46Kcg@mail.gmail.com>
+ <4961CC2A-1755-4784-B942-EE840F981106@hpe.com>
+In-Reply-To: <4961CC2A-1755-4784-B942-EE840F981106@hpe.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 4 Jul 2023 00:19:35 +0200
+Message-ID: <CACRpkdYQ3bYQ=cELPLEaVkFKM1jbjCwpmPyYGLC6ox10=vS_pQ@mail.gmail.com>
+Subject: Re: [PATCH v4 0/5] ARM: Add GPIO support
+To:     "Hawkins, Nick" <nick.hawkins@hpe.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "Verdun, Jean-Marie" <verdun@hpe.com>,
+        "brgl@bgdev.pl" <brgl@bgdev.pl>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "krzysztof.kozlowski+dt@linaro.org" 
+        <krzysztof.kozlowski+dt@linaro.org>,
+        "jdelvare@suse.com" <jdelvare@suse.com>,
+        "linux@roeck-us.net" <linux@roeck-us.net>,
+        "andy.shevchenko@gmail.com" <andy.shevchenko@gmail.com>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The previous values were completely bogus, and resulted in the computed
-DPI ratio being much lower than reality, causing applications and UIs to
-misbehave.
+On Mon, Jul 3, 2023 at 5:31=E2=80=AFPM Hawkins, Nick <nick.hawkins@hpe.com>=
+ wrote:
 
-Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-Fixes: 8620cc2f99b7 ("ARM: dts: exynos: Add devicetree file for the Galaxy S2")
-Cc: <stable@vger.kernel.org> # v5.8+
----
- arch/arm/boot/dts/exynos4210-i9100.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> As always thank you for your feedback and suggestions. Sorry for the
+> delayed response. I will bring this concept to my team to discuss.
 
-diff --git a/arch/arm/boot/dts/exynos4210-i9100.dts b/arch/arm/boot/dts/exynos4210-i9100.dts
-index 37cd4dde53e4..a9ec1f6c1dea 100644
---- a/arch/arm/boot/dts/exynos4210-i9100.dts
-+++ b/arch/arm/boot/dts/exynos4210-i9100.dts
-@@ -207,8 +207,8 @@ lcd@0 {
- 			power-on-delay = <10>;
- 			reset-delay = <10>;
- 
--			panel-width-mm = <90>;
--			panel-height-mm = <154>;
-+			panel-width-mm = <56>;
-+			panel-height-mm = <93>;
- 
- 			display-timings {
- 				timing {
--- 
-2.40.1
+Thanks!
 
+> A possible issue with this could be how our cooling profile varies
+> based on options present such as extra DIMMS, CPU, storage,
+> network ... etc.
+
+The thermal subsystem has plenty of tunables in sysfs, see:
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Doc=
+umentation/ABI/testing/sysfs-class-thermal
+I don't think it's a problem to add more, if there are technical
+requirements for it.
+
+Yours,
+Linus Walleij
