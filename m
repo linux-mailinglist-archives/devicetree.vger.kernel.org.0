@@ -2,64 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597337459A0
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 12:06:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 513357459B7
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 12:09:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229585AbjGCKGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 06:06:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35134 "EHLO
+        id S230434AbjGCKJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 06:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229849AbjGCKGb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 06:06:31 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 42F2AE55;
-        Mon,  3 Jul 2023 03:06:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8A2A860EA5;
-        Mon,  3 Jul 2023 10:06:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E1C48C433C9;
-        Mon,  3 Jul 2023 10:06:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688378776;
-        bh=fg9u5qol+i4IE9oNqt3vMUT6VtW9bdPHOEaHOZk3P+w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=nE02Uj7IjSAF3+TaZZKxSwCWOaQ/Ma2L2Eqp9+HVv2ub49lfF9UB8mhn1ftgsIGt2
-         YmYmFl/Mc6tMTW/v3wpNxrzE0A7dlYmh1DtWST88uQ/lMrs+RbAUrbJkSNMSHvzc3E
-         PeoHqM3CRVufm60o5/2l2LWrLohWcQk4sx49OR3JfAh7WogRlAU9QCcVPsb0k+pE8m
-         JTsUWwz2w6vC0tgTsoQ+OirGd8Q26q53nahjZfFWiBzjR4E3TfdsC8e50mL6ystkiK
-         D8+ibq/Iluf+I2LsoKQ3eRxXEIJkV3Yz9Mx5PpVdJpchWU5s5H/mITM0EowkbT55+o
-         qfXsJCLQDOZ9Q==
-Received: from johan by xi.lan with local (Exim 4.96)
-        (envelope-from <johan@kernel.org>)
-        id 1qGGRz-0000kv-1C;
-        Mon, 03 Jul 2023 12:06:31 +0200
-Date:   Mon, 3 Jul 2023 12:06:31 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S229983AbjGCKJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 06:09:45 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id AF7A6196;
+        Mon,  3 Jul 2023 03:09:39 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 273432F4;
+        Mon,  3 Jul 2023 03:10:22 -0700 (PDT)
+Received: from FVFF77S0Q05N (unknown [10.57.27.109])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4700B3F762;
+        Mon,  3 Jul 2023 03:09:38 -0700 (PDT)
+Date:   Mon, 3 Jul 2023 11:09:35 +0100
+From:   Mark Rutland <mark.rutland@arm.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Will Deacon <will@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        cros-qcom-dts-watchers@chromium.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: minor whitespace cleanup around '='
-Message-ID: <ZKKdp8r5Z_47iU-j@hovoldconsulting.com>
-References: <20230702185051.43867-1-krzysztof.kozlowski@linaro.org>
- <e09af830-d114-7ee6-0cab-e6812bc10fd4@linaro.org>
- <ZKKXGE95Sv-eLQa8@hovoldconsulting.com>
- <0f4f5a4d-379b-c00c-6bf2-58c08fcc4551@linaro.org>
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] perf: pmuv3: Add Cortex-A520, Cortex-A715, and
+ Cortex-A720 PMUs
+Message-ID: <ZKKeX4LU0_8qpTxk@FVFF77S0Q05N>
+References: <20230630185602.2175559-1-robh@kernel.org>
+ <20230630185602.2175559-2-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <0f4f5a4d-379b-c00c-6bf2-58c08fcc4551@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230630185602.2175559-2-robh@kernel.org>
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,21 +46,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 03, 2023 at 11:56:40AM +0200, Konrad Dybcio wrote:
-> On 3.07.2023 11:38, Johan Hovold wrote:
- 
-> > Konrad, please remember to trim irrelevant context from your replies
-> > (e.g. so that we don't have to skim through thousands of lines to find
-> > a single comment).
-> My actual reply begins at line 77, which is considerably less than
-> thousands and is concluded by my signoff, which signifies the end
-> of the message.
+On Fri, Jun 30, 2023 at 12:56:02PM -0600, Rob Herring wrote:
+> Add support for the Arm Cortex-A520, Cortex-A715, and Cortex-A720 CPU
+> PMUs. They are straight-forward additions with just new compatible
+> strings.
+> 
+> Signed-off-by: Rob Herring <robh@kernel.org>
 
-That was not the point. The point is that you should trim your replies,
-including context after your reply (sure, some people keep context when
-providing reviewed-by tags, but generally replies should be trimmed).
+Acked-by: Mark Rutland <mark.rutland@arm.com>
 
-Including an empty line before your inline comments would also make your
-replies easier to read.
+Mark.
 
-Johan
+> ---
+>  drivers/perf/arm_pmuv3.c | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/drivers/perf/arm_pmuv3.c b/drivers/perf/arm_pmuv3.c
+> index 08b3a1bf0ef6..0bf522b05dc3 100644
+> --- a/drivers/perf/arm_pmuv3.c
+> +++ b/drivers/perf/arm_pmuv3.c
+> @@ -1266,7 +1266,10 @@ PMUV3_INIT_SIMPLE(armv8_cortex_a76)
+>  PMUV3_INIT_SIMPLE(armv8_cortex_a77)
+>  PMUV3_INIT_SIMPLE(armv8_cortex_a78)
+>  PMUV3_INIT_SIMPLE(armv9_cortex_a510)
+> +PMUV3_INIT_SIMPLE(armv9_cortex_a520)
+>  PMUV3_INIT_SIMPLE(armv9_cortex_a710)
+> +PMUV3_INIT_SIMPLE(armv9_cortex_a715)
+> +PMUV3_INIT_SIMPLE(armv9_cortex_a720)
+>  PMUV3_INIT_SIMPLE(armv8_cortex_x1)
+>  PMUV3_INIT_SIMPLE(armv9_cortex_x2)
+>  PMUV3_INIT_SIMPLE(armv8_neoverse_e1)
+> @@ -1334,7 +1337,10 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
+>  	{.compatible = "arm,cortex-a77-pmu",	.data = armv8_cortex_a77_pmu_init},
+>  	{.compatible = "arm,cortex-a78-pmu",	.data = armv8_cortex_a78_pmu_init},
+>  	{.compatible = "arm,cortex-a510-pmu",	.data = armv9_cortex_a510_pmu_init},
+> +	{.compatible = "arm,cortex-a520-pmu",	.data = armv9_cortex_a520_pmu_init},
+>  	{.compatible = "arm,cortex-a710-pmu",	.data = armv9_cortex_a710_pmu_init},
+> +	{.compatible = "arm,cortex-a715-pmu",	.data = armv9_cortex_a715_pmu_init},
+> +	{.compatible = "arm,cortex-a720-pmu",	.data = armv9_cortex_a720_pmu_init},
+>  	{.compatible = "arm,cortex-x1-pmu",	.data = armv8_cortex_x1_pmu_init},
+>  	{.compatible = "arm,cortex-x2-pmu",	.data = armv9_cortex_x2_pmu_init},
+>  	{.compatible = "arm,neoverse-e1-pmu",	.data = armv8_neoverse_e1_pmu_init},
+> -- 
+> 2.40.1
+> 
