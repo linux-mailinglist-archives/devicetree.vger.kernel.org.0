@@ -2,131 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 85AE9745B80
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:47:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AB69745B82
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230298AbjGCLrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 07:47:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57034 "EHLO
+        id S229894AbjGCLsD convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Jul 2023 07:48:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229894AbjGCLrp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:47:45 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73AD910E
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 04:47:44 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b5e7dba43cso68774951fa.1
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 04:47:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688384863; x=1690976863;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=yrZqXbMULCzgMdQRGdrGAnOVYCA+2+CvfjxWieey9kA=;
-        b=VSWJtK7oBEJMyq9z+9pb/ZdSXzZbkKLUBDxakxIfQY0Yc1ROH9tGfO2KxdQjd0rcTl
-         iNoiNARklCpHakv0pMID6wP1RojXeLk8uiecoYY4QAp1zXEzfkMnb0r3XPV2Mc1nwV0F
-         8+qK26L6BrGQKUJcAh7QQWgXaTuu8E4KCcHhSpTCj8HfLD9WDmKxMpVL/WYMhr9Bpa4T
-         d6m+GkCN7hTOr2ItToKHRDVnZV98puPaqyHLXlQzVFx0iLI10NPe2D4yQND44sUxCPy3
-         AC2E3cFKBQKuRK7Aek2bWXUGT02fAWWEk0Cde8eAD+qcsdjGHyyje9vPJdwSU+tvrVWj
-         GxdA==
+        with ESMTP id S231401AbjGCLsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:48:00 -0400
+Received: from mail-yb1-f171.google.com (mail-yb1-f171.google.com [209.85.219.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 585C0E8;
+        Mon,  3 Jul 2023 04:47:59 -0700 (PDT)
+Received: by mail-yb1-f171.google.com with SMTP id 3f1490d57ef6-c581c758ad8so462454276.1;
+        Mon, 03 Jul 2023 04:47:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688384863; x=1690976863;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=yrZqXbMULCzgMdQRGdrGAnOVYCA+2+CvfjxWieey9kA=;
-        b=GDv4J2hRN3ciRi4liehRtwbkbEHBo3LGe7kOA8G5Iub17SPB6U+tS8JwV2NUGP0mHg
-         Y4IuTXIM/GAtIKsO7kZyym3kdosnbqkIGR2RKB6W8XKFNsQdC8NAudnwpslIRToqNz6f
-         zJd0ucaRWZKVF0/xSPcb0EOakQ+a+78HeYG/kEiVy9us0Qi62/Gmofwsb5p3BM2zqzfP
-         VnDhY788U07wK74uKOiZB3baiMGps2yy6/5J5rnZftevF0hQl0QqwFINh/R4j3q3okql
-         buWLwZk5VQVxzU7Tw3Y+VEYa62eqWLElbLTuKwFL5IgPGT1LoA4p6/C/3K205dqjVYb9
-         HFPg==
-X-Gm-Message-State: ABy/qLarLQsh/ztSeyfvEAxKJfGv4glOJm9PveCOnJdFqe3090wEbE56
-        gLEOmezU9hFqMIfDFPvBzbGc6g==
-X-Google-Smtp-Source: APBJJlEn0CB3Pv0NJ/u3/l6HMZ8obHmy7fBBkAvbNzq/ZjSiRfM4/4JF02IIVMYOMMPoAXRA7EKtXw==
-X-Received: by 2002:a2e:7318:0:b0:2b6:ec2a:a67e with SMTP id o24-20020a2e7318000000b002b6ec2aa67emr1359111ljc.53.1688384862706;
-        Mon, 03 Jul 2023 04:47:42 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id t8-20020a2e9c48000000b002b6a824d65fsm3908420ljj.0.2023.07.03.04.47.41
+        d=1e100.net; s=20221208; t=1688384878; x=1690976878;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=uD1lL3AqZw/En4NSEtQUIk0MJ/LF3aM3VljhUrwO4vc=;
+        b=Ff4nKiI7X+aipZ2NYKbJGJxt9kSyAAnHy0+Yg9Tp+nLLzVHEgpqaDHhYrFzCkV0s9V
+         PFGYkVbAfYudPcJnPJjNO2Rxt5KYeoBoeZbuTDuS3knCVlLwQjz4EcDocD//lxNpTw91
+         RZGd0JbpLAgdXSxHHfBJ7+Yxk7pDTw3AHixr+P6xb0BH9GclhI+WO1zLXLYkvJsFStvD
+         7BcV1WafUVa38c4aLTmmly13EMa479wWgWo1oeyUwQWI1qikHLyNPUQBj1gXxlwiA0Om
+         xzvudNUOVH72m//cFBjrvo5lejtrcqs/MNsuMkl9VVKqD34hRJby1JvCKrnmUSr99mt9
+         +bSQ==
+X-Gm-Message-State: ABy/qLZOgIH3LMYxI7o81xn2FdAlrOhK91wM0BOo/TN3/YQBnWYQBjol
+        AtduZm+vjcZ/StcAo6OpD3y2E8EBkepCkw==
+X-Google-Smtp-Source: APBJJlGFWI1JcRTOQW+ynB1DvGK1KlIBWnJYCxAaHXBBOIVpFD5TCvLn/iHkeZAKee1nfP2vuTLvqA==
+X-Received: by 2002:a5b:44a:0:b0:c21:1a86:d2b7 with SMTP id s10-20020a5b044a000000b00c211a86d2b7mr8292929ybp.55.1688384878388;
+        Mon, 03 Jul 2023 04:47:58 -0700 (PDT)
+Received: from mail-yw1-f174.google.com (mail-yw1-f174.google.com. [209.85.128.174])
+        by smtp.gmail.com with ESMTPSA id 4-20020a250704000000b00c3a96009bdfsm2265366ybh.35.2023.07.03.04.47.58
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 04:47:42 -0700 (PDT)
-Message-ID: <f4543f7b-9cc6-4dad-5eb5-7ca1286c4bf7@linaro.org>
-Date:   Mon, 3 Jul 2023 13:47:41 +0200
+        Mon, 03 Jul 2023 04:47:58 -0700 (PDT)
+Received: by mail-yw1-f174.google.com with SMTP id 00721157ae682-579dd20b1c8so25056017b3.1;
+        Mon, 03 Jul 2023 04:47:58 -0700 (PDT)
+X-Received: by 2002:a25:26cb:0:b0:c39:db28:6a50 with SMTP id
+ m194-20020a2526cb000000b00c39db286a50mr8508785ybm.36.1688384878017; Mon, 03
+ Jul 2023 04:47:58 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 10/27] ARM: dts: qcom: msm8960: fix PMIC node labels
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
- <20230702134320.98831-11-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230702134320.98831-11-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+References: <20230622113341.657842-1-fabrizio.castro.jz@renesas.com> <20230622113341.657842-5-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20230622113341.657842-5-fabrizio.castro.jz@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 3 Jul 2023 13:47:46 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXW9Vrk8y+UOAHaRdAkEwy6gXNGgdRAawPLrEqDHB+cvQ@mail.gmail.com>
+Message-ID: <CAMuHMdXW9Vrk8y+UOAHaRdAkEwy6gXNGgdRAawPLrEqDHB+cvQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/5] arm64: dts: renesas: r9a09g011: Add CSI nodes
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2.07.2023 15:43, Dmitry Baryshkov wrote:
-> Change PM8921 node labels to start with pm8921_ prefix, following other
-> Qualcomm PMIC device nodes.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+On Thu, Jun 22, 2023 at 1:34 PM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> The Renesas RZ/V2M comes with 6 Clocked Serial Interface (CSI)
+> IPs (CSI0, CSI1, CSI2, CSI3, CSI4, CSI5), but Linux is only
+> allowed access to CSI0 and CSI4.
+>
+> This commit adds SoC specific device tree support for CSI0 and
+> CSI4.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 > ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>
+> v2: no changes
 
-Konrad
->  arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 8 ++++----
->  1 file changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-> index 913bc6afd0a1..6b8d90d02146 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
-> @@ -264,7 +264,7 @@ ssbi@500000 {
->  			reg = <0x500000 0x1000>;
->  			qcom,controller-type = "pmic-arbiter";
->  
-> -			pmicintc: pmic {
-> +			pm8921: pmic {
->  				compatible = "qcom,pm8921";
->  				interrupt-parent = <&msmgpio>;
->  				interrupts = <104 IRQ_TYPE_LEVEL_LOW>;
-> @@ -276,7 +276,7 @@ pmicintc: pmic {
->  				pwrkey@1c {
->  					compatible = "qcom,pm8921-pwrkey";
->  					reg = <0x1c>;
-> -					interrupt-parent = <&pmicintc>;
-> +					interrupt-parent = <&pm8921>;
->  					interrupts = <50 IRQ_TYPE_EDGE_RISING>,
->  						     <51 IRQ_TYPE_EDGE_RISING>;
->  					debounce = <15625>;
-> @@ -286,7 +286,7 @@ pwrkey@1c {
->  				pm8921_keypad: keypad@148 {
->  					compatible = "qcom,pm8921-keypad";
->  					reg = <0x148>;
-> -					interrupt-parent = <&pmicintc>;
-> +					interrupt-parent = <&pm8921>;
->  					interrupts = <74 IRQ_TYPE_EDGE_RISING>,
->  						     <75 IRQ_TYPE_EDGE_RISING>;
->  					debounce = <15>;
-> @@ -296,7 +296,7 @@ pm8921_keypad: keypad@148 {
->  
->  				rtc@11d {
->  					compatible = "qcom,pm8921-rtc";
-> -					interrupt-parent = <&pmicintc>;
-> +					interrupt-parent = <&pm8921>;
->  					interrupts = <39 IRQ_TYPE_EDGE_RISING>;
->  					reg = <0x11d>;
->  					allow-set-time;
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.6.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
