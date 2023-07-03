@@ -2,137 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F4417455EF
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:24:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E15F74569B
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 09:59:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230344AbjGCHYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 03:24:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58126 "EHLO
+        id S229976AbjGCH7r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 03:59:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45738 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230232AbjGCHYg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:24:36 -0400
-Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66231E5D
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 00:24:30 -0700 (PDT)
-Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-313f61890fbso4559598f8f.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 00:24:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688369068; x=1690961068;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=KgMnJ8CKfBislhp1HG0z8FmS5BLcV5+cmaj4jvnhxWQ=;
-        b=lKrkHVcsQngHENPpMshxYINgAv/o3G4zjF9clGaCwoFrRmttkUWr4CBrogdvxNzMS3
-         VBP86BoCy3AKClMFDF9HKPnJtmGpdmiipRLgTXgdGNS4e85wXCTHXgQTmURXCy5fNf5m
-         LxexEPRA7cwPlrcsXz+F1rXEQI1sP8laktduTFkvWEbrgg/jMuTHCuPebIqG1ozPUTdZ
-         IUYsdmpolDS8JvoAktsNi9dCycog7boyCBWaDP3PYwLu4lolTKdY5ehvy7aTMVfkLHfK
-         R07BeDK6M+Dv1Kr+KwncWpguMs+6Gv792dGNu4Jf1DKoHce2DPoWYH74hji1yCmqMA4W
-         sEMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688369068; x=1690961068;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=KgMnJ8CKfBislhp1HG0z8FmS5BLcV5+cmaj4jvnhxWQ=;
-        b=UGB9pbKBiq8Q0nbhZi7R3s4PeyNpQ/T1/KgEZMVRZfMebUR4Vgy6wFGyvds5TMvGJl
-         yaiQlbWwHt84OYMI+1kiQjH4SilVWeSNvIcLBB/eTJKPmRGHaTmtPqBu0Dk2kOZUYD8J
-         EznIpabAKY1f5ZO3F6ULgXUiKqdEDSku9hXZb0DGxIoxQF0mtt0meCa4l4cOH1GNL+iv
-         Y2sv12HFGwegV/cEoKWP1kHeQ0JrWIU+F+ERUSyxKpjJBG/wfZd3G4yA2UHA1975E24r
-         pfqgc/S/1A02ZR4onS9WRzgjB0qkLKaqZwbu11kpOaUQG4FyljQboIpIGR564ZFys6KH
-         IwDA==
-X-Gm-Message-State: ABy/qLYup2AmigXjJbD2PO2/mxpnEUBWf8SEUcU78mMJW3o56EjNnrLC
-        AY69Fdnq1a62LHx1S2jHPyK0aA==
-X-Google-Smtp-Source: APBJJlErVoF0iApuPq86HVOvO0iLKPOR8uT2faeOcndYld3NEwBM2GZKbdz/+srhnFDYERI4fgA7tQ==
-X-Received: by 2002:a5d:6349:0:b0:313:e48a:d173 with SMTP id b9-20020a5d6349000000b00313e48ad173mr6657516wrw.68.1688369068512;
-        Mon, 03 Jul 2023 00:24:28 -0700 (PDT)
-Received: from [192.168.7.21] (679773502.box.freepro.com. [212.114.21.58])
-        by smtp.gmail.com with ESMTPSA id u11-20020adfdd4b000000b003143765e207sm1899030wrm.49.2023.07.03.00.24.24
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 00:24:27 -0700 (PDT)
-Message-ID: <65d78d07-be4f-8ea0-b322-353b5c23fcb0@linaro.org>
-Date:   Mon, 3 Jul 2023 09:24:23 +0200
+        with ESMTP id S229597AbjGCH7q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 03:59:46 -0400
+X-Greylist: delayed 533 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 03 Jul 2023 00:59:43 PDT
+Received: from mail.withamteme.com (mail.withamteme.com [141.95.17.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E60FF1BC
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 00:59:43 -0700 (PDT)
+Received: by mail.withamteme.com (Postfix, from userid 1002)
+        id 838EAA2727; Mon,  3 Jul 2023 07:50:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=withamteme.com;
+        s=mail; t=1688370648;
+        bh=+Z1DY1JtbI1lR5tmt3OW8xT8H08PjM6MKKa6zMFzPFQ=;
+        h=Date:From:To:Subject:From;
+        b=AtxHkHFXon1hBHknQ4o8zl5ZY1O0dg/wXGzHwfS3qPoVVeLWBlDrcDZWts//IFMXU
+         rz8POMufeCOtTSmlPUYw4F46H0jHbe11HOgXAZxT4PlkgQhvVtrV6hRHxjBt/1OFIt
+         v3QeCvXJnwKkJi4q/Pe9Xj/y982W3RmV1PMjm7/qU+PlGjg6XcM/sJBFHFV3uX1kvI
+         zzDWs3lMa8fOEr1x5zSaNX0W7T4LqJqYGBFEgiEyoIlXnLdI/QVnNMAeqzXgaKi2pv
+         TW8Memi3AAgi6HJY+lmEvKV8+bgOQWT/KEa8q+mjjAG/bJl1VWWxVB9bznaT2880ag
+         iAwOFrWrHcTJA==
+Received: by withamteme.com for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 07:50:39 GMT
+Message-ID: <20230703064520-0.1.7v.h4yf.0.0jd03vl07s@withamteme.com>
+Date:   Mon,  3 Jul 2023 07:50:39 GMT
+From:   "Grzegorz Frycz" <grzegorz.frycz@withamteme.com>
+To:     <devicetree@vger.kernel.org>
+Subject: =?UTF-8?Q?Nieodp=C5=82atne_spotkanie_z_doradc=C4=85_?=
+X-Mailer: mail.withamteme.com
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v6 5/9] drm/meson: gate px_clk when setting rate
-Content-Language: en-US
-To:     George Stark <gnstark@sberdevices.ru>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Nicolas Belin <nbelin@baylibre.com>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org
-References: <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-0-fd2ac9845472@linaro.org>
- <20230512-amlogic-v6-4-upstream-dsi-ccf-vim3-v6-5-fd2ac9845472@linaro.org>
- <c487ed03-0ab2-74fb-91bc-4a773bfdfc5b@sberdevices.ru>
-Organization: Linaro Developer Services
-In-Reply-To: <c487ed03-0ab2-74fb-91bc-4a773bfdfc5b@sberdevices.ru>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=1.0 required=5.0 tests=BAYES_20,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_ABUSE_SURBL autolearn=no autolearn_force=no
+        version=3.4.6
+X-Spam-Level: *
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/06/2023 20:10, George Stark wrote:
-> Hello Neil
-> 
-> On 6/30/23 19:29, Neil Armstrong wrote:
->> Disable the px_clk when setting the rate to recover a fully
->> configured and correctly reset VCLK clock tree after the rate
->> is set.
->>
->> Fixes: 77d9e1e6b846 ("drm/meson: add support for MIPI-DSI transceiver")
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>   drivers/gpu/drm/meson/meson_dw_mipi_dsi.c | 7 +++++++
->>   1 file changed, 7 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
->> index 57447abf1a29..dc63d2d813a9 100644
->> --- a/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
->> +++ b/drivers/gpu/drm/meson/meson_dw_mipi_dsi.c
->> @@ -94,6 +94,7 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
->>           return ret;
->>       }
->> +    clk_disable_unprepare(mipi_dsi->px_clk);
->>       ret = clk_set_rate(mipi_dsi->px_clk, mipi_dsi->mode->clock * 1000);
->>       if (ret) {
->> @@ -102,6 +103,12 @@ static int dw_mipi_dsi_phy_init(void *priv_data)
->>           return ret;
->>       }
->> +    clk_prepare_enable(mipi_dsi->px_clk);
-> probably should be:
-> ret = clk_prepare_enable(mipi_dsi->px_clk);
+Dzie=C5=84 dobry,
 
-Indeed, thx for noticing :-)
+chcia=C5=82bym zaproponowa=C4=87 swoje wsparcie jako broker ubezpieczenio=
+wy.
 
->> +    if (ret) {
->> +        dev_err(mipi_dsi->dev, "Failed to enable DSI Pixel clock (ret %d)\n", ret);
->> +        return ret;
->> +    }
->> +
->>       switch (mipi_dsi->dsi_device->format) {
->>       case MIPI_DSI_FMT_RGB888:
->>           dpi_data_format = DPI_COLOR_24BIT;
->>
+Zrozumienie Pa=C5=84stwa potrzeb pozwoli mi dopasowa=C4=87 odpowiednie ro=
+zwi=C4=85zania ubezpieczeniowe z konkurencyjnymi stawkami i elastycznymi =
+warunkami. =20
 
+Dzi=C4=99ki zdolno=C5=9Bciom analitycznym i negocjacyjnym, a tak=C5=BCe d=
+obrej znajomo=C5=9Bci rynku ubezpieczeniowego dostarcz=C4=99 Pa=C5=84stwu=
+ kompleksowe produkty, kt=C3=B3re zapewni=C4=85 optymalne pokrycie ryzyka=
+ i zabezpiecz=C4=85 Pa=C5=84stwa interesy.
+
+Chc=C4=85 Pa=C5=84stwo niezobowi=C4=85zuj=C4=85co sprawdzi=C4=87 warunki?
+
+
+Pozdrawiam
+Grzegorz Frycz
