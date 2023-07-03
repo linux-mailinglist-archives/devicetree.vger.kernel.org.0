@@ -2,98 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10FBF745CC7
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 15:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58B41745CE6
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 15:12:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230262AbjGCND1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 09:03:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37410 "EHLO
+        id S230332AbjGCNMO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 09:12:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42436 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231214AbjGCND0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 09:03:26 -0400
-Received: from smtp2.axis.com (smtp2.axis.com [195.60.68.18])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 83636DD;
-        Mon,  3 Jul 2023 06:03:24 -0700 (PDT)
+        with ESMTP id S231309AbjGCNMN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 09:12:13 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE914E41
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 06:12:11 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3141140f51bso5957685f8f.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 06:12:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; q=dns/txt; s=axis-central1; t=1688389405;
-  x=1719925405;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=KbvtwpanuwW6qJCP+fYqUb+ooGXEb/YS8TqTqotN8+8=;
-  b=gr9kcHuQAoHVpCDeS9o3cqK8KHu4TtGi07N1D6zea6vVl6FA54wDGMYp
-   c+ywtsIZz38HT144FCfz8tK9RUONDgAXhZ2TOC5RzC9GtMVjkJT9SeHoc
-   cXsAn4tP29FocAAVh0rrPyu7FaRDPSxMDgzao89b1k3I3WK97O2i2BSM+
-   Hcn7U425UC1Iqpun7l+bwNy1/MR1AI6P5+iUfbnIY1LLUWH4Th8wirboN
-   t936FRDnIRBOrp/KQsK7MpK4lzEfAl9rYype3wOkZiqLZztLdUFY1yXuD
-   jLAE9F6AGaNgLbyLiTzZ11Q6Y0MSM1N94v52kIdfzMfIpVW7xp6XeEqKY
-   w==;
-From:   Astrid Rost <astrid.rost@axis.com>
-To:     Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        "Jacek Anaszewski" <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, "Lee Jones" <lee@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>
-CC:     <kernel@axis.com>, Astrid Rost <astrid.rost@axis.com>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v3 1/2] dt-bindings: leds: Read max-brightness from devicetree
-Date:   Mon, 3 Jul 2023 15:03:12 +0200
-Message-ID: <20230703130313.548519-2-astrid.rost@axis.com>
-X-Mailer: git-send-email 2.30.2
-In-Reply-To: <20230703130313.548519-1-astrid.rost@axis.com>
-References: <20230703130313.548519-1-astrid.rost@axis.com>
+        d=linaro.org; s=google; t=1688389930; x=1690981930;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3C72+69VGn6Vh4PEX3kulCzL7RyUsSJTOHMj9jDZHN8=;
+        b=uKaA9p0Ox2ovUpVrrVYgiLiawXF/eJHtDmw08cPCzgZCbB60Ie8INNvKUxBIAKmL3Y
+         gJjymwQdcF7raXNSF8V6wRpvvBFTtLf7turtg9TU69p5lKeXMaD3Z6AKI9UYiwJRApAI
+         IwHg9pDdFL6ENpVemuwnYsQ1q7YBVDw7d2I64puqIHBLNSMNvR3bY+KieueemlUZI4Wx
+         VNwKAbld7p6chbwhedWQ/HFD3cmZG4DjjGBZ1UDZ5JQMWdmeF/kgXYKIpM3ZHIQHpGNk
+         JalLPDuZ1BM6md6B3Gsm+P5SO/aD6zQVkMFh25wH0/768JWkKOd5sOlYeVUH5tPTISd3
+         ABLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688389930; x=1690981930;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3C72+69VGn6Vh4PEX3kulCzL7RyUsSJTOHMj9jDZHN8=;
+        b=XglmvUYFGhs4Yhk9AmCZjvdXQLvArZtol24TBEliv8XAb9whDwGZHzkbim3lToNe7i
+         2M5Zc2wEeuPVb8O3pIAUKymSiY0iqDaYtqevd34vynEc5AvKF1DSB+BGyx9jWlNWe8VF
+         ujy6cq+5kUtuKjHNPMdJcyyMch2Wdl6R6hm0M6xsWKMLGfOgbW2OT0aRMmpYqYV5Gliz
+         x2hWq41kKoUBBLO9VL3G/5gPdRywhDtKwkQlbF6ivVaH8WL5e/e9X1gjRCJs4cinfWRv
+         /TRvERHQ66GQNHr5yt+X+UkCfIeDr9yhP7lGMT7L8u9guMxYm6NMQZG6FbGrkVOyzqrj
+         2a/w==
+X-Gm-Message-State: ABy/qLY3efZjl9BFwquZiUA+3t22CK3G8dL92Hz0hY36OH6Gvb3c1u4z
+        eJiTqkVcb6hCI/QOfZcjhf1ZLQ==
+X-Google-Smtp-Source: APBJJlGzI2y08jEzmUxZusXD3XCrTA4WMsvMiPknAxeFAukczBsa/LAjJj2fSLhRTg7ATBgccqwsAQ==
+X-Received: by 2002:adf:ee51:0:b0:313:fd52:af37 with SMTP id w17-20020adfee51000000b00313fd52af37mr10499400wro.4.1688389930317;
+        Mon, 03 Jul 2023 06:12:10 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id m16-20020a5d6250000000b003068f5cca8csm25443464wrv.94.2023.07.03.06.12.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jul 2023 06:12:09 -0700 (PDT)
+Message-ID: <d1cfb1fb-d347-16d8-4446-dddcf8200638@linaro.org>
+Date:   Mon, 3 Jul 2023 15:12:08 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: power: add Amlogic C3 power domains
+To:     =Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>
+References: <20230703093142.2028500-1-xianwei.zhao@amlogic.com>
+ <20230703093142.2028500-2-xianwei.zhao@amlogic.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230703093142.2028500-2-xianwei.zhao@amlogic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Normally, the maximum brightness is determined by the hardware, and this
-property is not required. This property is used to set a software limit.
-It could happen that an LED is made so bright that it gets damaged or
-causes damage due to restrictions in a specific system, such as mounting
-conditions.
-Note that this flag is mainly used for PWM-LEDs, where it is not possible
-to map brightness to current. Drivers for other controllers should use
-led-max-microamp.
+On 03/07/2023 11:31, =Xianwei Zhao wrote:
+> From: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> 
+> Add devicetree binding document and related header file for Amlogic C3 secure power domains.
+> 
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>  .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
+>  include/dt-bindings/power/amlogic-c3-power.h  | 26 +++++++++++++++++++
+>  2 files changed, 28 insertions(+), 1 deletion(-)
+>  create mode 100644 include/dt-bindings/power/amlogic-c3-power.h
+> 
+> diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> index eab21bb2050a..d80bbedfe3aa 100644
+> --- a/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> +++ b/Documentation/devicetree/bindings/power/amlogic,meson-sec-pwrc.yaml
+> @@ -12,7 +12,7 @@ maintainers:
+>    - Jianxin Pan <jianxin.pan@amlogic.com>
+>  
+>  description: |+
+> -  Secure Power Domains used in Meson A1/C1/S4 SoCs, and should be the child node
+> +  Secure Power Domains used in Meson A1/C1/S4 & C3 SoCs, and should be the child node
+>    of secure-monitor.
+>  
+>  properties:
+> @@ -20,6 +20,7 @@ properties:
+>      enum:
+>        - amlogic,meson-a1-pwrc
+>        - amlogic,meson-s4-pwrc
+> +      - amlogic,c3-pwrc
+>  
+>    "#power-domain-cells":
+>      const: 1
+> diff --git a/include/dt-bindings/power/amlogic-c3-power.h b/include/dt-bindings/power/amlogic-c3-power.h
+> new file mode 100644
+> index 000000000000..3403e7c0b49d
+> --- /dev/null
+> +++ b/include/dt-bindings/power/amlogic-c3-power.h
 
-Signed-off-by: Astrid Rost <astrid.rost@axis.com>
----
- Documentation/devicetree/bindings/leds/common.yaml | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Filename matching compatibles, please.
 
-diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
-index 11aedf1650a1..16f08d0939ce 100644
---- a/Documentation/devicetree/bindings/leds/common.yaml
-+++ b/Documentation/devicetree/bindings/leds/common.yaml
-@@ -160,6 +160,18 @@ properties:
-       For flash LED controllers with configurable current this property is
-       mandatory for the LEDs in the non-flash modes (e.g. torch or indicator).
- 
-+  max-brightness:
-+    description:
-+      Normally, the maximum brightness is determined by the hardware, and this
-+      property is not required. This property is used to set a software limit.
-+      It could happen that an LED is made so bright that it gets damaged or
-+      causes damage due to restrictions in a specific system, such as mounting
-+      conditions.
-+      Note that this flag is mainly used for PWM-LEDs, where it is not possible
-+      to map brightness to current. Drivers for other controllers should use
-+      led-max-microamp.
-+    $ref: /schemas/types.yaml#definitions/uint32
-+
-   panic-indicator:
-     description:
-       This property specifies that the LED should be used, if at all possible,
--- 
-2.30.2
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
+> +/*
+> + * Copyright (c) 2023 Amlogic, Inc.
+> + * Author: hongyu chen1 <hongyu.chen1@amlogic.com>
+> + */
+> +#ifndef _DT_BINDINGS_AMLOGIC_C3_POWER_H
+> +#define _DT_BINDINGS_AMLOGIC_C3_POWER_H
+> +
+> +#define PWRC_C3_NNA_ID				0
+> +#define PWRC_C3_AUDIO_ID			1
+> +#define PWRC_C3_RESV_SEC_ID			2
+> +#define PWRC_C3_SDIOA_ID			3
+> +#define PWRC_C3_EMMC_ID				4
+> +#define PWRC_C3_USB_COMB_ID			5
+> +#define PWRC_C3_SDCARD_ID			6
+> +#define PWRC_C3_ETH_ID				7
+> +#define PWRC_C3_RESV0_ID			8
+> +#define PWRC_C3_GE2D_ID				9
+> +#define PWRC_C3_CVE_ID				10
+> +#define PWRC_C3_GDC_WRAP_ID			11
+> +#define PWRC_C3_ISP_TOP_ID			12
+> +#define PWRC_C3_MIPI_ISP_WRAP_ID		13
+> +#define PWRC_C3_VCODEC_ID			14
+> +
+> +#endif
+> +
+
+No need for stray blank line.
+
+Best regards,
+Krzysztof
 
