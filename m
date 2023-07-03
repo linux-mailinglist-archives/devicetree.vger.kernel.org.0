@@ -2,69 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 43719745B70
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:44:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 102E2745B75
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 13:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231292AbjGCLos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 07:44:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55420 "EHLO
+        id S229792AbjGCLqS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 07:46:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56280 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231215AbjGCLoq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:44:46 -0400
-Received: from mail-lj1-x235.google.com (mail-lj1-x235.google.com [IPv6:2a00:1450:4864:20::235])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B90F3115
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 04:44:44 -0700 (PDT)
-Received: by mail-lj1-x235.google.com with SMTP id 38308e7fff4ca-2b6985de215so69152701fa.2
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 04:44:44 -0700 (PDT)
+        with ESMTP id S229504AbjGCLqS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 07:46:18 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C06A210E
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 04:46:16 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fb7373dd35so5367174e87.1
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 04:46:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf.com; s=google; t=1688384683; x=1690976683;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yaNHFGtqidFFoc879AcjoyLmp2ttt/EsaJvpqNaeTBg=;
-        b=tG+WDuV6RlFBC96XU0zrBQAAznnNTMP26skrKr0lEq/LIRouxE23HHH8iDMF4HOaXP
-         hv3CqtSeblorPsoUJGIMgX7Oir0zrOLXdgvaNSB+w0Wqw3SZxROIFKgYSZHaqRbrVAaQ
-         TcSpQp9U0PtgaAXgUwZqPFJsb9TwF4HGqi45jUzgW5lBGeXnMOUQySyltDC9Waalxbcg
-         4tMW/i5QTGtZFcFEysu+wWvFktGkmSr8vucZV3vdv2dLXXoA4mqPGcU2vi5vr2wFwaq2
-         q6ep/ns6phzhjdHnjjs0PC1VfilxQ3rwxQOgQfzMi2Rt/kkjFMzyN4dBi/Kh6v+SZZsE
-         lIdw==
+        d=linaro.org; s=google; t=1688384775; x=1690976775;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=B6G6Ky/4Q6tdtkuvpD0vESp+VehNcwpR4HNp9O/62/Y=;
+        b=ki1XEJ26HqXwyXReNeFunARRos0LLX3LVvMWdfe84Q6SllOzXniFRotaH7/0RkchHd
+         aSUmYk4E6vew4tydsaCKiv/ebyrDsoym/xk2lpePJOtmPXLrtA7XD0kQvyxS/WlubS2P
+         RZiedoOHKRz3c0K30PvjT3XsgknWRMSBwiBwjn/vnNhlexwHArj0oj5AsbNP//A7qKqS
+         Acov8iOZe8olOGL3iQdcn/EISwSz74RT/uswyMEP1L7KVeqZp3mZH+2HCZUKwOmA4yu6
+         cCpaL5TdCcq8AlrSz6aD5lQGchdVGAbfqChOY18ynSM4oTnZ/ueDIvncp/qdC6tNT8yt
+         Z5Gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688384683; x=1690976683;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yaNHFGtqidFFoc879AcjoyLmp2ttt/EsaJvpqNaeTBg=;
-        b=aHal2+D04ZqP2dhIUQSyjWGiuN2/9lHL19CVXwsEdrzMoz04FBdHjA+Ga9TQlrgBlf
-         KEeUMiYiuqfZaPFznfcwXiW9WTkvLw0QpC8MHtMrdMOKgl5M0hUDKL8qwSuWfTgC8pZZ
-         m6rAfhg4RkeXW/nhl952f8Eotdhpb0/LL5Vg2+zBJJtdKsfX5Dkf5+jWfXpJFCn+ddMd
-         8TqqlTiapE7uCgk6TKXd3n7ROGIion1tuuVDkhEq/oI7KflACaEyc0OZWnWOtO2145wD
-         aUSGxi78C6hsSnSEuCgS94bUCGr8Zac6WS1Kon+AONX5eGv1r2W4gC3Ye6vLhA4L0FPe
-         x7UA==
-X-Gm-Message-State: ABy/qLb11H+UkSC9fqXbuPVSSv9wio0YYXtTePlAifqnL9p5al9ARruD
-        2DdVVSwNBBdpUMNeBQLhIMx2YTkUM/wl2I8L9m60wg==
-X-Google-Smtp-Source: APBJJlGbheteHmbNZEDEkZHAuIEEMQkHMHMiMY31fEaVpgo1N30lf/fgRzYRxG7UFIccv4g/oQFL+6AtzrHyfgR4dtI=
-X-Received: by 2002:a2e:98d6:0:b0:2b6:9930:871 with SMTP id
- s22-20020a2e98d6000000b002b699300871mr6735718ljj.13.1688384682883; Mon, 03
- Jul 2023 04:44:42 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688384775; x=1690976775;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=B6G6Ky/4Q6tdtkuvpD0vESp+VehNcwpR4HNp9O/62/Y=;
+        b=A1ZpffK/NnYDoBQci9PLLK8Op4WiJtOYVQ4RBXjnlqf79DlwDsQPVfjBOQXyb5bh66
+         +6dLyNVr8lCr9agISM2XJU6JOt5O/3sNzRCvCQSiN+CK2XyLxrqCa+hxZHwEQ+dI+W1k
+         D+gKyiiTAhgKPv5WOYpekom2aSqDZEv5EmjBBhpmum3BLL8uvM/jZFjyDTiB3joAPh+5
+         rJ1/tln8Tc9JVuMOlLIYK+y1385iPfDvv3cA90yGj5Q3AhbtBxlnNO1CJU01+kAV9/Bq
+         z7BUkhS6FrDCM0Ys9Z0PwxuKNuAWT5N0jFSSg3OXWRi7eX/JorWxj5grAYqNUQzjHHcj
+         eDTA==
+X-Gm-Message-State: ABy/qLZSWBfL08Bmcc7jsHhZGg/WxnPWyGJSbG8vJIjLEw3pYVYm9bpA
+        1Vjs6nhrDaFrFiOx6OJniL/2bw==
+X-Google-Smtp-Source: APBJJlHPtGZmmmizHCC6N3MEZmPaZfAyhUAp/9tJCgAcKUwm1hAtGjXA1zOCVv/7PXLNbb1Ja0LyIA==
+X-Received: by 2002:ac2:4ec7:0:b0:4fb:94c3:5149 with SMTP id p7-20020ac24ec7000000b004fb94c35149mr2996420lfr.31.1688384775056;
+        Mon, 03 Jul 2023 04:46:15 -0700 (PDT)
+Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
+        by smtp.gmail.com with ESMTPSA id w14-20020ac2598e000000b004fb7d1149e1sm3373739lfn.290.2023.07.03.04.46.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 03 Jul 2023 04:46:14 -0700 (PDT)
+Message-ID: <e3c508a2-7b66-6be6-5aa9-4aa34aa29465@linaro.org>
+Date:   Mon, 3 Jul 2023 13:46:13 +0200
 MIME-Version: 1.0
-References: <20230630144006.1513270-1-pan@semihalf.com> <20230630144006.1513270-4-pan@semihalf.com>
- <20230630-scrimmage-antelope-7d1f82d491fc@spud>
-In-Reply-To: <20230630-scrimmage-antelope-7d1f82d491fc@spud>
-From:   =?UTF-8?Q?Pawe=C5=82_Anikiel?= <pan@semihalf.com>
-Date:   Mon, 3 Jul 2023 13:44:31 +0200
-Message-ID: <CAF9_jYT1Fz4hBQrNtgkM6mU-JVH=ZxsJnkaLDsa5uoEV_hTLVA@mail.gmail.com>
-Subject: Re: [RFC PATCH 3/3] ARM: dts: Add Chameleon v3 video node
-To:     Conor Dooley <conor@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, dinguyen@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, mchehab@kernel.org, upstream@semihalf.com,
-        amstan@chromium.org, ribalda@chromium.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 07/27] ARM: dts: qcom: apq8064: fix PMIC node labels
+Content-Language: en-US
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+References: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
+ <20230702134320.98831-8-dmitry.baryshkov@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230702134320.98831-8-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,32 +78,78 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 8:26=E2=80=AFPM Conor Dooley <conor@kernel.org> wro=
-te:
->
-> On Fri, Jun 30, 2023 at 04:40:06PM +0200, Pawe=C5=82 Anikiel wrote:
-> > Add node for the video system device.
-> >
-> > Signed-off-by: Pawe=C5=82 Anikiel <pan@semihalf.com>
-> > ---
-> >  .../socfpga/socfpga_arria10_chameleonv3.dts   | 54 +++++++++++++++++++
-> >  1 file changed, 54 insertions(+)
-> >
-> > diff --git a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv=
-3.dts b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
-> > index 422d00cd4c74..5e66363d4ab5 100644
-> > --- a/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
-> > +++ b/arch/arm/boot/dts/intel/socfpga/socfpga_arria10_chameleonv3.dts
-> > @@ -10,6 +10,60 @@ / {
-> >       compatible =3D "google,chameleon-v3", "enclustra,mercury-aa1",
-> >                    "altr,socfpga-arria10", "altr,socfpga";
-> >
-> > +     soc {
-> > +             video@c0060500 {
-> > +                     compatible =3D "google,chv3-video";
->
-> This compatible does not seem to be documented & I did not see a comment
-> about the lack of a binding in the cover letter. What am I missing?
+On 2.07.2023 15:43, Dmitry Baryshkov wrote:
+> Change PM8921 node labels to start with pm8921_ prefix, following other
+> Qualcomm PMIC device nodes.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Yes, the compatible is not documented for now (I'll do that in a later
-patchset), sorry for not mentioning that in the cover letter.
+Konrad
+>  arch/arm/boot/dts/qcom/qcom-apq8064.dtsi | 24 ++++++++++++------------
+>  1 file changed, 12 insertions(+), 12 deletions(-)
+> 
+> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+> index 4f4393e11580..5ffb960d09b4 100644
+> --- a/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+> +++ b/arch/arm/boot/dts/qcom/qcom-apq8064.dtsi
+> @@ -332,13 +332,13 @@ scm {
+>  	 */
+>  	iio-hwmon {
+>  		compatible = "iio-hwmon";
+> -		io-channels = <&xoadc 0x00 0x01>, /* Battery */
+> -			    <&xoadc 0x00 0x02>, /* DC in (charger) */
+> -			    <&xoadc 0x00 0x04>, /* VPH the main system voltage */
+> -			    <&xoadc 0x00 0x0b>, /* Die temperature */
+> -			    <&xoadc 0x00 0x0c>, /* Reference voltage 1.25V */
+> -			    <&xoadc 0x00 0x0d>, /* Reference voltage 0.625V */
+> -			    <&xoadc 0x00 0x0e>; /* Charger temperature */
+> +		io-channels = <&pm8921_xoadc 0x00 0x01>, /* Battery */
+> +			      <&pm8921_xoadc 0x00 0x02>, /* DC in (charger) */
+> +			      <&pm8921_xoadc 0x00 0x04>, /* VPH the main system voltage */
+> +			      <&pm8921_xoadc 0x00 0x0b>, /* Die temperature */
+> +			      <&pm8921_xoadc 0x00 0x0c>, /* Reference voltage 1.25V */
+> +			      <&pm8921_xoadc 0x00 0x0d>, /* Reference voltage 0.625V */
+> +			      <&pm8921_xoadc 0x00 0x0e>; /* Charger temperature */
+>  	};
+>  
+>  	soc: soc {
+> @@ -714,7 +714,7 @@ ssbi@500000 {
+>  			reg = <0x00500000 0x1000>;
+>  			qcom,controller-type = "pmic-arbiter";
+>  
+> -			pmicintc: pmic {
+> +			pm8921: pmic {
+>  				compatible = "qcom,pm8921";
+>  				interrupt-parent = <&tlmm_pinmux>;
+>  				interrupts = <74 8>;
+> @@ -749,7 +749,7 @@ pm8921_mpps: mpps@50 {
+>  
+>  				rtc@11d {
+>  					compatible = "qcom,pm8921-rtc";
+> -					interrupt-parent = <&pmicintc>;
+> +					interrupt-parent = <&pm8921>;
+>  					interrupts = <39 1>;
+>  					reg = <0x11d>;
+>  					allow-set-time;
+> @@ -758,16 +758,16 @@ rtc@11d {
+>  				pwrkey@1c {
+>  					compatible = "qcom,pm8921-pwrkey";
+>  					reg = <0x1c>;
+> -					interrupt-parent = <&pmicintc>;
+> +					interrupt-parent = <&pm8921>;
+>  					interrupts = <50 1>, <51 1>;
+>  					debounce = <15625>;
+>  					pull-up;
+>  				};
+>  
+> -				xoadc: xoadc@197 {
+> +				pm8921_xoadc: xoadc@197 {
+>  					compatible = "qcom,pm8921-adc";
+>  					reg = <0x197>;
+> -					interrupts-extended = <&pmicintc 78 IRQ_TYPE_EDGE_RISING>;
+> +					interrupts-extended = <&pm8921 78 IRQ_TYPE_EDGE_RISING>;
+>  					#address-cells = <2>;
+>  					#size-cells = <0>;
+>  					#io-channel-cells = <2>;
