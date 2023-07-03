@@ -2,113 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 62036745712
-	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 10:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BBD8745714
+	for <lists+devicetree@lfdr.de>; Mon,  3 Jul 2023 10:14:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230092AbjGCIOT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 04:14:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56570 "EHLO
+        id S231318AbjGCIOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 04:14:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56582 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230373AbjGCIOT (ORCPT
+        with ESMTP id S230074AbjGCIOT (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 04:14:19 -0400
-Received: from mail-vk1-xa33.google.com (mail-vk1-xa33.google.com [IPv6:2607:f8b0:4864:20::a33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04D61E40
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 01:14:17 -0700 (PDT)
-Received: by mail-vk1-xa33.google.com with SMTP id 71dfb90a1353d-47e611669e5so13098e0c.3
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 01:14:16 -0700 (PDT)
+Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED944C5;
+        Mon,  3 Jul 2023 01:14:18 -0700 (PDT)
+Received: from [192.168.12.102] (unknown [159.196.94.230])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 9D9352012A;
+        Mon,  3 Jul 2023 16:14:16 +0800 (AWST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=bgdev-pl.20221208.gappssmtp.com; s=20221208; t=1688372056; x=1690964056;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=11QJYwMbaUBpF9NueY3t6DsMt9/06w7p8RRvTfLIaJc=;
-        b=L0Xoku72iyScuyAAlvdURXBApKe96vcZyauApjEXYrGVlSdQ5+Noqx/dJGtVL5x6q/
-         jlFR5a9BhO9sA8f3jeglFFz63W5kpnijEXV3GbujV4lA4VrnyUUly7d3Wcix3txlUZKX
-         0zTnULX0ieClGA2akWPTDF84ad2rXwBO7fEXhu1OYcHAAKgyVmkRs6hX/zxDaek+K+yy
-         +Dq303IKCVITitnmnDhFbe5F+dSDTjXUpTQlniD7u22PH7eeed9b8JO4qs6ZdKwCYj/I
-         dMxjHx7kBRx/dGnktAFbMiPelHl/QS1H0Ujo5z344HSwUz0dNoig8gIxg/cBlzWUnRon
-         rbWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688372056; x=1690964056;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=11QJYwMbaUBpF9NueY3t6DsMt9/06w7p8RRvTfLIaJc=;
-        b=IGqZQ++knmk2EfEeIRApdBB1h3M9XtltXLp6Gf10W2vbheHzd8qsReAWPQYJcjt/Bm
-         lpLIzRoD06Nllv1b7oouiJ3P/g3rNhjX8JaO8SgztudXmfUESWaxuhE+d82WI4CGEZOx
-         dFutlXJDAtuf3yobqRij23cGxqVFa25OmEAcUiUQO+al8GNFZhPUapl/JTCcBBETelC7
-         v7am/w+RHUVP63ozyBRM5uP4suRKAtm0PRpLttikCRZ7ZaDn2fHxN5Lmy6b4UYw50QKO
-         GREi8TdEE9YUyEzTaNZ4UiEDSrBDTczEFv5PJNA0LnFjjK+UkTWh81AzYI4gzav/IuWy
-         pFKQ==
-X-Gm-Message-State: ABy/qLZ5PiaIwtfmg4qtD39QZS0yhUzLhsdhv3Jze/qeKA9PWGXAEpi9
-        UopqiFecOOgCILeEJKCVSpbNalfqN9IUy9tT2sWS8A==
-X-Google-Smtp-Source: APBJJlGUXmmzazOU3H2rwPItzzs5yY59Pr2doU3bzs7pqr02Nwa0JTfP80SKVHXrdbTVZhHGNnsVQtkzPqxhjzQX+Tw=
-X-Received: by 2002:a1f:c1d0:0:b0:471:5939:f4f2 with SMTP id
- r199-20020a1fc1d0000000b004715939f4f2mr3056599vkf.8.1688372056011; Mon, 03
- Jul 2023 01:14:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230630-topic-oxnas-upstream-remove-v2-0-fb6ab3dea87c@linaro.org>
- <20230630-topic-oxnas-upstream-remove-v2-11-fb6ab3dea87c@linaro.org>
-In-Reply-To: <20230630-topic-oxnas-upstream-remove-v2-11-fb6ab3dea87c@linaro.org>
-From:   Bartosz Golaszewski <brgl@bgdev.pl>
-Date:   Mon, 3 Jul 2023 10:14:04 +0200
-Message-ID: <CAMRc=McTEPt_gb5HX98khmxvQDX-VQQ62uBF=p4dr_QqouL0kQ@mail.gmail.com>
-Subject: Re: [PATCH v2 11/15] dt-bindings: gpio: gpio_oxnas: remove obsolete bindings
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Giuseppe Cavallaro <peppe.cavallaro@st.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Jose Abreu <joabreu@synopsys.com>,
+        d=codeconstruct.com.au; s=2022a; t=1688372056;
+        bh=3vG4Y1Ce9Qo+ZUx7zgRT9LamZxjnSqZyYA8M+Re6/EU=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References;
+        b=MG8hDVpq0S4fuCRWQnn2t81qZilkAi0AnQWQCcT0RXKXCWxdCUlV3TdiT57gtsqD+
+         OJ5diuvizhUlGXAiYVDtsuN1ewrHWAtiqdKEsltc6zumfQoeSE1i5VoIZYHTER+J7v
+         QEQ2Z+lzVsJJ3Iy+gG5nphl3s5LWzonUNVNVuzdiM1f2qzzMFghUr144QPtq8OyWh/
+         gGkG7JLzSqeds1sLW82eaIcVVZ5GemLwevZ1BkY9hwcDSRd0Vs+6W1u1R9aCFdrNw7
+         XcLWnOqeo0KQeD7+M+yWIGe8n3bfgK6kpuYTIRact2/PrumPosDngv7KmLkHQqyvc1
+         mJhg9lJ/KMgGQ==
+Message-ID: <d29fc42c04f2e1142b0a196ef7df2d74335cec2e.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/3] dt-bindings: i3c: Add mctp-controller property
+From:   Matt Johnston <matt@codeconstruct.com.au>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
         "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
         Jakub Kicinski <kuba@kernel.org>,
         Paolo Abeni <pabeni@redhat.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andy Shevchenko <andy@kernel.org>,
-        Sebastian Reichel <sre@kernel.org>,
-        Marc Zyngier <maz@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-mtd@lists.infradead.org, netdev@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-oxnas@groups.io,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Daniel Golle <daniel@makrotopia.org>
+        Jeremy Kerr <jk@codeconstruct.com.au>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Date:   Mon, 03 Jul 2023 16:14:16 +0800
+In-Reply-To: <CAGE=qrrqE3Vj1Bs+cC51gKPDmsqMTyHEAJhsrGCyS_jYKf42Gw@mail.gmail.com>
+References: <20230703053048.275709-1-matt@codeconstruct.com.au>
+         <20230703053048.275709-2-matt@codeconstruct.com.au>
+         <CAGE=qrrqE3Vj1Bs+cC51gKPDmsqMTyHEAJhsrGCyS_jYKf42Gw@mail.gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+User-Agent: Evolution 3.46.1-0ubuntu1 
+MIME-Version: 1.0
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 30, 2023 at 6:58=E2=80=AFPM Neil Armstrong
-<neil.armstrong@linaro.org> wrote:
->
-> Due to lack of maintenance and stall of development for a few years now,
-> and since no new features will ever be added upstream, remove the
-> OX810 and OX820 gpio bindings.
->
-> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
-> Acked-by: Daniel Golle <daniel@makrotopia.org>
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
+On Mon, 2023-07-03 at 09:15 +0200, Krzysztof Kozlowski wrote:
+> On Mon, 3 Jul 2023 at 07:31, Matt Johnston <matt@codeconstruct.com.au> wr=
+ote:
+> >=20
+> > This property is used to describe a I3C bus with attached MCTP I3C
+> > target devices.
+> >=20
+> > Signed-off-by: Matt Johnston <matt@codeconstruct.com.au>
+> > ---
+> >  Documentation/devicetree/bindings/i3c/i3c.yaml | 4 ++++
+> >  1 file changed, 4 insertions(+)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/i3c/i3c.yaml b/Documenta=
+tion/devicetree/bindings/i3c/i3c.yaml
+> > index fdb4212149e7..08731e2484f2 100644
+> > --- a/Documentation/devicetree/bindings/i3c/i3c.yaml
+> > +++ b/Documentation/devicetree/bindings/i3c/i3c.yaml
+> > @@ -55,6 +55,10 @@ properties:
+> >=20
+> >        May not be supported by all controllers.
+> >=20
+> > +  mctp-controller:
+> > +    description: |
+> > +      Indicates that this bus hosts MCTP-over-I3C target devices.
+>=20
+> I have doubts you actually tested it - there is no type/ref. Also,
+> your description is a bit different than existing from dtschema. Why?
+> Aren't these the same things?
 
-Acked-by: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+(sorry my reply minutes ago was somehow an old draft, please ignore)
+
+Ah, I'll add=20
+$ref: /schemas/types.yaml#/definitions/flag
+
+Testing with=20
+  make dtbs_check DT_SCHEMA_FILES=3Dtrivial-devices.yaml
+I don't see any warnings, and neither after adding mctp-controller to a .dt=
+s
+(out of tree) and testing with
+  make CHECK_DTBS=3Dy DT_SCHEMA_FILES=3Di3c.yaml aspeed-test.dtb
+
+Should that pick it up?
+
+For the description, do you mean it differs to the other properties in
+i3c.yaml, or something else?
+
+Thanks,
+Matt
