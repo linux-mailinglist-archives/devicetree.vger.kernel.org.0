@@ -2,75 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E256D74714F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 14:28:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3467074716A
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 14:33:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231356AbjGDM2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 08:28:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43534 "EHLO
+        id S229647AbjGDMdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 08:33:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46454 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230413AbjGDM2Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 08:28:16 -0400
-Received: from mail-ej1-x634.google.com (mail-ej1-x634.google.com [IPv6:2a00:1450:4864:20::634])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A0610CC
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 05:28:01 -0700 (PDT)
-Received: by mail-ej1-x634.google.com with SMTP id a640c23a62f3a-992b66e5affso635561166b.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 05:28:01 -0700 (PDT)
+        with ESMTP id S231901AbjGDMdK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 08:33:10 -0400
+Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4C04DA
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 05:33:08 -0700 (PDT)
+Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fbc0314a7bso65297e87.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 05:33:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688473679; x=1691065679;
+        d=linaro.org; s=google; t=1688473987; x=1691065987;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=SevSQ95ow3GtjYpqXgCPnMrECe2jzasM0xVgVLW819c=;
-        b=fgwp2G4rHlpBpyYwQHFN+c8PamgAxQJjZb4Ph8qKhZ4M9mCE+NXFd3tZR1OJpdYl6y
-         j879K72BdCsDrvRi0s9o6ClSTHUarfwo5MGBAA/UrKyS4/GxzvJCPMg8rcNHy2eeBSC0
-         /wLonHBc8XRHaXnVfPbU2B6GUcv+kT+If8UJd952WhXDhZB38pnXvjUiPj2Dhumqx5+f
-         zBcPDWbHSCNfuv47yjqbmmKcDsGE2SX8zqHdlKYwhSXtHrClDiTUqJ0XvPsJQ6x8f/r7
-         l1v6HYZPX2jgk7UoO+Gdde6BRMSN3o4AtQtufyp7fxcJAXZh041ggRIYBIPC/wgKFroc
-         Okag==
+        bh=JzgQQIKNDoBtiJAoujjApNzPmxlwUw+BR/55LC+iVio=;
+        b=CfEh/KBX/LDElugpqwu2sDiT5kzXeo1eUeTMkkVqIJI2SqJcdnjVe2vPA2dqVHS1To
+         /DvB2YRM9V3P7Wch1cEt6adXxVs7BbjGuxZ/Vhq0SLNNWwyq4OPGy+biCdIp3o2brOyo
+         +875WKhU9m/NCiMugZ8F4R84ttG3MSGh4kOeMs+jZRbLoGVYQUh10a/jZqZ4jvHnT92f
+         XaKepWIKwo/gHccmOsMfF2VjUwXlbOtmaelEDM7XXjHvrcvLki6YRaV4K1EGdAg69d9V
+         PdlIrairKLZ2UQLKC1Ir5xWwHix969JD4ISXs3esm7Co8feRDKjFLuBsq1cPMfpDdeQ5
+         G0Mw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688473679; x=1691065679;
+        d=1e100.net; s=20221208; t=1688473987; x=1691065987;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=SevSQ95ow3GtjYpqXgCPnMrECe2jzasM0xVgVLW819c=;
-        b=lBCYiPNebknyKZ9elO1LNxnW9nuuHL4KTfXJr462UBL1lJ1SPeKinaox3MPBlzetZI
-         18bGmwf5h/3c9T9acTMYrqqY23UDCru/oC0kudubOQuI1hthWP8RFVmB9/AeEElnYQFC
-         5E0xO1xtCRnLCQJmiS1kd8vXeATCenkoO9jB7eT05uk7smTWnEFDwf7bA3ENsMhhctAF
-         Bx5kLCGi8/1JJA5vSD8ABs2rn+HWUtftPAXRcWj2RAZRlBYmhdxVh/FGhLjuBquZQ5l0
-         cH2P1CdYiorPlFHx+yiIdOv1EMSiCrZF1Qcy95BUW6HBzgnirZS6gQZjs9o5dc04EDda
-         cvzw==
-X-Gm-Message-State: ABy/qLaNX3P+XIWa90Py7HeNbB5O9BBedpfdn3biOet2fRVbX77DZ5H6
-        1IIIZ73Ce+Ujsi8iLGYMoN6mmQ==
-X-Google-Smtp-Source: APBJJlH19su5vA9EyL6D7MtXA5VlLwKOm8UcW/oRKW1bw+rDa/li+5szobRKvBCIOYgZGAJ6K98IAA==
-X-Received: by 2002:a17:906:5296:b0:977:e310:1ce7 with SMTP id c22-20020a170906529600b00977e3101ce7mr10322466ejm.38.1688473679643;
-        Tue, 04 Jul 2023 05:27:59 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id n5-20020a1709061d0500b00992b2c55c67sm6979176ejh.156.2023.07.04.05.27.57
+        bh=JzgQQIKNDoBtiJAoujjApNzPmxlwUw+BR/55LC+iVio=;
+        b=asni3bI0t5fbsGw//Xp+v4WSciD5PGPKGPvatx34XspksUW6kkVMqH8hoIITqZaRPd
+         DJ45L2sUui8k8/F83s5t7nS+BCzmvCCmguT03cZfU7SarKorQj6RCt4Zf6OqLxqb83J3
+         3aO1+z7uYMnKDhSBJ+uuG9pqAhNzIKg5HTo4l4emGHAedH7S3Y2nvpyM6uPX/vEE+3RI
+         ZpCui+w6e132c9fFifC9ddJVJObY4TbLDqGr08jMrJddjUQ/+3gEdGtN7xr8CUPUFnCd
+         lwOJ555KZZgBBe7aV8VrdxGqEcOsrQX/Q2EQlPl5yk6OTbegFH65jViHDoC9w8IbSD7Y
+         cAvg==
+X-Gm-Message-State: ABy/qLYc7r5kd+mSdZkbddnTtIDy7LrXeG3/0UCZQ24Cke3g/vZITU5Z
+        3tgbJ58UQ1/qIuRBR6ehSyOP7Q==
+X-Google-Smtp-Source: APBJJlES1dFuMDEMs90e8mGzZJHQmmY+3FjM1O68m2ZDGiywI0ysXyovZjddRxhtodG9hlyCBhFx7Q==
+X-Received: by 2002:ac2:4ec5:0:b0:4fb:7de4:c837 with SMTP id p5-20020ac24ec5000000b004fb7de4c837mr8424423lfr.68.1688473987006;
+        Tue, 04 Jul 2023 05:33:07 -0700 (PDT)
+Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
+        by smtp.gmail.com with ESMTPSA id r4-20020a19ac44000000b004fba5c20ab1sm2527946lfc.167.2023.07.04.05.33.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 05:27:59 -0700 (PDT)
-Message-ID: <4afd90d9-f1bd-f40d-1c79-50fef1406ab7@linaro.org>
-Date:   Tue, 4 Jul 2023 14:27:57 +0200
+        Tue, 04 Jul 2023 05:33:06 -0700 (PDT)
+Message-ID: <05666bf0-07f8-1e3a-22bf-fc779e2b7367@linaro.org>
+Date:   Tue, 4 Jul 2023 14:33:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [RESEND v1 2/2] riscv: dts: starfive: Add spi node for JH7110 SoC
+Subject: Re: [PATCH V2] PCI: qcom: Use PARF_SLV_ADDR_SPACE_SIZE for ops_2_3_3
 Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Linus Walleij <linus.walleij@linaro.org>
-References: <20230704092200.85401-1-william.qiu@starfivetech.com>
- <20230704092200.85401-3-william.qiu@starfivetech.com>
- <7f3b600d-d315-22d6-b987-eabfe1b04fdf@linaro.org>
- <eba1e868-6371-42fe-91be-bcbee54d1aff@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <eba1e868-6371-42fe-91be-bcbee54d1aff@sirena.org.uk>
+To:     Sricharan Ramabadhran <quic_srichara@quicinc.com>,
+        agross@kernel.org, andersson@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        sboyd@kernel.org, mturquette@baylibre.com, mani@kernel.org,
+        lpieralisi@kernel.org, bhelgaas@google.com,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-pci@vger.kernel.org
+Cc:     stable@vger.kernel.org
+References: <20230703175757.2425540-1-quic_srichara@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <20230703175757.2425540-1-quic_srichara@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -83,24 +80,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2023 14:26, Mark Brown wrote:
-> On Tue, Jul 04, 2023 at 11:39:29AM +0200, Krzysztof Kozlowski wrote:
->> On 04/07/2023 11:22, William Qiu wrote:
->>> Add spi node for JH7110 SoC.
->>>
->>> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
->>
->> Missing SoB.
+On 3.07.2023 19:57, Sricharan Ramabadhran wrote:
+> PARF_SLV_ADDR_SPACE_SIZE_2_3_3 macro is used for IPQ8074
+> 2_3_3 post_init ops. pcie slave addr size was initially set
+> to 0x358, but was wrongly changed to 0x168 as a part of
+> "PCI: qcom: Remove PCIE20_ prefix from register definitions"
+> Fixing it, by using the right macro PARF_SLV_ADDR_SPACE_SIZE
+> and removing the unused PARF_SLV_ADDR_SPACE_SIZE_2_3_3.
 > 
-> It's fine not to have a signoff for the codeveloper of codeveloped
-> patches, see case (a) for the DCO.
+> Without this pcie bring up on IPQ8074 is broken now.
+> 
+> Fixes: 39171b33f652 ("PCI: qcom: Remove PCIE20_ prefix from register definitions")
+> Signed-off-by: Sricharan Ramabadhran <quic_srichara@quicinc.com>
+> ---
+Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Also see:
-"every Co-developed-by: must be immediately
-followed by a Signed-off-by: of the associated co-author."
-
-https://elixir.bootlin.com/linux/v6.4/source/Documentation/process/submitting-patches.rst#L467
-
-Best regards,
-Krzysztof
-
+Konrad
+>  [V2] Fixed the 'fixes tag' correctly, subject, right macro usage
+> 
+>  drivers/pci/controller/dwc/pcie-qcom.c | 3 +--
+>  1 file changed, 1 insertion(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index 4ab30892f6ef..1689d072fe86 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -43,7 +43,6 @@
+>  #define PARF_PHY_REFCLK				0x4c
+>  #define PARF_CONFIG_BITS			0x50
+>  #define PARF_DBI_BASE_ADDR			0x168
+> -#define PARF_SLV_ADDR_SPACE_SIZE_2_3_3		0x16c /* Register offset specific to IP ver 2.3.3 */
+>  #define PARF_MHI_CLOCK_RESET_CTRL		0x174
+>  #define PARF_AXI_MSTR_WR_ADDR_HALT		0x178
+>  #define PARF_AXI_MSTR_WR_ADDR_HALT_V2		0x1a8
+> @@ -811,7 +810,7 @@ static int qcom_pcie_post_init_2_3_3(struct qcom_pcie *pcie)
+>  	u32 val;
+>  
+>  	writel(SLV_ADDR_SPACE_SZ,
+> -		pcie->parf + PARF_SLV_ADDR_SPACE_SIZE_2_3_3);
+> +		pcie->parf + PARF_SLV_ADDR_SPACE_SIZE);
+>  
+>  	val = readl(pcie->parf + PARF_PHY_CTRL);
+>  	val &= ~PHY_TEST_PWR_DOWN;
