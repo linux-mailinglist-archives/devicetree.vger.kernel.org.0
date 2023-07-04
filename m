@@ -2,59 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2617B74699B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 08:24:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2633A7469A0
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 08:25:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230260AbjGDGYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 02:24:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52248 "EHLO
+        id S230349AbjGDGZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 02:25:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230383AbjGDGYt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 02:24:49 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60B58E7A
-        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 23:24:41 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b6a16254a4so77336101fa.0
-        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 23:24:41 -0700 (PDT)
+        with ESMTP id S230395AbjGDGZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 02:25:13 -0400
+Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2B87E52
+        for <devicetree@vger.kernel.org>; Mon,  3 Jul 2023 23:25:08 -0700 (PDT)
+Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51d9c71fb4bso4873385a12.2
+        for <devicetree@vger.kernel.org>; Mon, 03 Jul 2023 23:25:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688451879; x=1691043879;
+        d=linaro.org; s=google; t=1688451907; x=1691043907;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=ysKLbkMaHd7CpfuuBq5QAfneGIJ3MozjrzSbJoSmczI=;
-        b=eI8VYpyuiGr0qMDlEmx1ltrgQvuvAZRiMDT0uGrTY9bZ9Y/lheAl9bi98scqkp9Ma4
-         kO3R9ja8M6XxiVeK8ytEeFCl10KkGmfkbqlV0prg4b4XFdBlWFSs20MWOC7TvNLi+cLl
-         lmtpNlN3aOPk1fVA9iZW8e6nfJUha2aWnpjxmJAWpYw8bqAeSqyGfDDTpkbL5iGy4ymb
-         gCpmoTLr7e0hbsFBhFioU/iAKlPRLimDhHnBkLaKGgm9+YDv/jwsxTZ3pvrjSM3ITwUP
-         YXX7f5ZuBnvl43tz31lZzO2XpHw5iB5VyrF8AMw5B8QM5H7k1hTnA6OlNLejo/Dcv/wh
-         7cGg==
+        bh=9gXLbcQakGOuD9xEtAslIaebWUauZ1RX8TuYQEBPUVc=;
+        b=xSMRQAliLvhuDESAsKTgXWLEaEErgpxYiZEp4WUdnlIajkTIjUdradyi6+28eYsRoK
+         1Up1eKR8cbP1LTZBIuBCbbTXMqjjUSaIFj4cXqEaW8+gWIP06tbOy85E07q7H5eVeFE+
+         JFoKWQDwsX3/AmNVO6vDr4RHvNsCcJD0+uUEE/vAtqhiYVwvYNltqNQEleay7Ge2MEzc
+         ztKz0CFae+BS9nwzQS9gDq6Ukwnjb5pZ5gIZ3ZEk79tWON7y5PpkMyYk2SLoCxuFlGDc
+         aGAb47E6ngH0D5V9bmqNdK2q/lgQNew1ptZJq35gIJEJ+P7J7K5Shjb45ry2QEE5DoP9
+         rF1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688451879; x=1691043879;
+        d=1e100.net; s=20221208; t=1688451907; x=1691043907;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ysKLbkMaHd7CpfuuBq5QAfneGIJ3MozjrzSbJoSmczI=;
-        b=NZ4hrZ+WHVHY9dFEQoeh7xEpXG729eaAx2HjPQ/z4/nlQVNqsGNIqaQWgY2zEusIVk
-         F90v3xE14+5kC96dfG5wam/sWDRwPrayjF8vQobUKJ2OPG9Z8cnA6iNKK2f7akKRUAo8
-         vsVY8ITtNkNbGcafZ/sBTvZSCj8LAlG+CavJODayVt7ULEuJuS3sYarUqyx7xc1oEfEX
-         HPtPXfn/P//5lpijg/pTKfiosg22WrnTTE399BZZ3ZW1YJTd/+gY4s2nn4XxtuXvb9OH
-         1O5SsLQNj0VmUVup0dzkdF1FEztIiND8ucDON7qgkzbYYs4dcTxOVZa4XUdjQRbZy6D4
-         HVug==
-X-Gm-Message-State: ABy/qLZkV2KpE1WO7zzRpJxlWP3X9cWso0b+Dy/wvVfxQ5g7QlzvAdwN
-        9M37n2MZNyDhw4jn+IGiMza7CA==
-X-Google-Smtp-Source: APBJJlF/0l/YqwsvPnGxXuOFVUW0cZuozXQg708kW3EfkPPhVbUWN2ZDvzl8SGrP6DYv0SrmD8YrYQ==
-X-Received: by 2002:a2e:a41a:0:b0:2b1:a89a:5f2b with SMTP id p26-20020a2ea41a000000b002b1a89a5f2bmr8227690ljn.2.1688451879621;
-        Mon, 03 Jul 2023 23:24:39 -0700 (PDT)
+        bh=9gXLbcQakGOuD9xEtAslIaebWUauZ1RX8TuYQEBPUVc=;
+        b=k2bmY9ED806dd92cRodPq4ZysxV/cZq8XzSHUmW7nNfXY4QXhkjUUGq7LPCilp/qf8
+         xTqVjpi/Hxo9jj/oqFG8xA7GmXQkgoDXZ3vjGu6IiSaHmuBdolCZhzjuXd/gG25azjgG
+         C2Y8UyZ3z7nYjPTHjTymXHgfdB+TmR6Q3MHpaSPvVMhgfvRU2ZvDOZ6l7fffTBakyQed
+         rFhLgHjRTMysS6pyncMl7JqBzRCjxaJOYYAWn1w+aVv8HSAeDQQzZNt1aEW6iiFG4uMG
+         8qJGZvBoVtOcXkAD5pepO9pcTQk6hrPaAMsK+Y2nc8Awx3vq/JKAX+k1m5fqBqamwwzq
+         fONg==
+X-Gm-Message-State: ABy/qLY/lIbCKnRxSwuWfTkC5JU0iO8RyzWiKvRtLSYxBFvAK4r1iyTc
+        jXFf7VPCMUOwsGph5U/l7rgdgg==
+X-Google-Smtp-Source: APBJJlFf70iU68uuAsACk+p1i0iiLiZZc2D4Lk4akWYnHOTrbQbjHx8k7fL02j7c1jBDCYaC3seXVA==
+X-Received: by 2002:a17:907:9844:b0:98e:2b00:c509 with SMTP id jj4-20020a170907984400b0098e2b00c509mr9125002ejc.30.1688451907419;
+        Mon, 03 Jul 2023 23:25:07 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id w19-20020aa7dcd3000000b0050bc4eb9846sm11459983edu.1.2023.07.03.23.24.37
+        by smtp.gmail.com with ESMTPSA id qq2-20020a17090720c200b00992aea2c55dsm6597272ejb.153.2023.07.03.23.25.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 03 Jul 2023 23:24:39 -0700 (PDT)
-Message-ID: <d23ec6d4-b011-87e9-2ecb-9af86cab3270@linaro.org>
-Date:   Tue, 4 Jul 2023 08:24:37 +0200
+        Mon, 03 Jul 2023 23:25:07 -0700 (PDT)
+Message-ID: <08b503ac-98bd-dd8c-bf1e-c81f1ed0b47b@linaro.org>
+Date:   Tue, 4 Jul 2023 08:25:04 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 05/10] dt-bindings: mfd: Add compatible for pmx75
+Subject: Re: [PATCH 06/10] dt-bindings: pinctrl: qcom-pmic-gpio: Add pmx75
+ support
 Content-Language: en-US
 To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, konrad.dybcio@linaro.org, lee@kernel.org,
@@ -64,15 +65,15 @@ To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
 References: <1688395346-3126-1-git-send-email-quic_rohiagar@quicinc.com>
- <1688395346-3126-6-git-send-email-quic_rohiagar@quicinc.com>
+ <1688395346-3126-7-git-send-email-quic_rohiagar@quicinc.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1688395346-3126-6-git-send-email-quic_rohiagar@quicinc.com>
+In-Reply-To: <1688395346-3126-7-git-send-email-quic_rohiagar@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -80,14 +81,13 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 03/07/2023 16:42, Rohit Agarwal wrote:
-> Add compatible for pmic pmx75 used in Snapdragon series.
+> Add support for the pmx75 GPIO support to the Qualcomm PMIC GPIO
+> binding.
 > 
 > Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
->  Documentation/devicetree/bindings/mfd/qcom,spmi-pmic.yaml | 1 +
 
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
