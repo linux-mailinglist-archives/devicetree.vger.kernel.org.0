@@ -2,117 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 23CD9746D9C
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 11:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6E11746DC7
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 11:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230145AbjGDJfQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 05:35:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51550 "EHLO
+        id S231228AbjGDJkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 05:40:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231623AbjGDJed (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 05:34:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D3CF1BD3
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 02:33:34 -0700 (PDT)
-Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1qGcOv-0006tw-RL; Tue, 04 Jul 2023 11:32:49 +0200
-Received: from [2a0a:edc0:0:1101:1d::28] (helo=dude02.red.stw.pengutronix.de)
-        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1qGcOu-00C09s-8Y; Tue, 04 Jul 2023 11:32:48 +0200
-Received: from sha by dude02.red.stw.pengutronix.de with local (Exim 4.94.2)
-        (envelope-from <sha@pengutronix.de>)
-        id 1qGcOr-002TzG-I0; Tue, 04 Jul 2023 11:32:45 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     linux-rockchip@lists.infradead.org
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, Heiko Stuebner <heiko@sntech.de>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Will Deacon <will@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, kernel@pengutronix.de,
-        Michael Riesch <michael.riesch@wolfvision.net>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Vincent Legoll <vincent.legoll@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v7 26/26] arm64: dts: rockchip: rk3588s: Add DFI
-Date:   Tue,  4 Jul 2023 11:32:42 +0200
-Message-Id: <20230704093242.583575-27-s.hauer@pengutronix.de>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230704093242.583575-1-s.hauer@pengutronix.de>
-References: <20230704093242.583575-1-s.hauer@pengutronix.de>
+        with ESMTP id S231432AbjGDJkb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 05:40:31 -0400
+Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E2941FE3
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 02:38:23 -0700 (PDT)
+Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-99342a599e9so327853566b.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 02:38:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688463501; x=1691055501;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ERnzPIPRvWevLboQhEVq6zSzhxrqqEGbLmA9tpsiGI0=;
+        b=irSJlz54V83Ic3w9B7kkZVmPaAKj8rOOaqqHxt4z2EndhT+6OFdL5rl1MkfCEmcUk+
+         U2b3+TQaYECpAxUhcgDPZVbeP7cp3TFOAOkaJ+YG79KoF6emCpXHgWnalOOjl96k8AGO
+         BChhV9m4pIftAdSk9Kp1xjUO6V2DN+iBtuL63QZ8cLHiYbO3Jv4Dy+MG4fJ3Y/JvkmxW
+         mqL67qqV68/4OU3HY+83C8Poen6m1u0qJGosTpTvaiFR854RekzI3K1js02j3ikaa9WU
+         Hesu4hGDWk+U1b7eVMifuWg7maaeU1ydnTd+JRFeYMTltdJ0/71rP0kIpgJELFgP9HlB
+         hS6Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688463501; x=1691055501;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ERnzPIPRvWevLboQhEVq6zSzhxrqqEGbLmA9tpsiGI0=;
+        b=YNZvOmFroq78iptEBzklx7ctIvQQ+hINBax/bn4sxT5hR47VFQnOkDuQwYpvWQVMJ/
+         1SWOquVfx+ZJLTf+0d4WenXafNiLC+9qM3va6o7/ti/bhUmJyrxkuiEs/jLzsN5KSYG5
+         OsE39mdwOFR4ehsgVUT/+Q9ftDxT1Dzy3rhbCbhTfe3phz6utQUEAGM/r+OySGrC8Hiy
+         gzdYTLa4Bt0mGzJtgSY6L8MRpRPWf17ZXizv/z82cVLt3BPu2791vNX2EbnhI3d3kqSH
+         bi7z6Amxt6O0Wj7ud0sLd0xQOPab99MahFX7CGXEyNEr+6WkgDJWsHQx9GddkSH4t+hw
+         /yMA==
+X-Gm-Message-State: ABy/qLbb6U/4FE8a6s2eWbodNphHBVje4UtaeRFYKj12+uEFnJu9h62X
+        0tCCOq84R39e4sOqwDVWBZz4ThnyK7aztBqd4A4=
+X-Google-Smtp-Source: APBJJlExmWdalCwz4mhd46wIPBv+5Ajxdam8PI8PX4rD0du+csKdm67scVujAXZWR1HmZMfM3p/34Q==
+X-Received: by 2002:a17:906:594b:b0:988:a632:774a with SMTP id g11-20020a170906594b00b00988a632774amr10860901ejr.27.1688463501122;
+        Tue, 04 Jul 2023 02:38:21 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e19-20020a170906249300b0098e4aef0791sm11602644ejb.66.2023.07.04.02.38.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jul 2023 02:38:20 -0700 (PDT)
+Message-ID: <1b65e8d1-d5e1-0d6b-1248-d9683be44db8@linaro.org>
+Date:   Tue, 4 Jul 2023 11:38:17 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [RESEND v1 1/2] dt-binding: spi: constrain minItems of clocks and
+ clock-names
+Content-Language: en-US
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20230704092200.85401-1-william.qiu@starfivetech.com>
+ <20230704092200.85401-2-william.qiu@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230704092200.85401-2-william.qiu@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DFI unit can be used to measure DRAM utilization using perf. Add the
-node to the device tree. The DFI needs a rockchip,pmu phandle to the pmu
-containing registers for SDRAM configuration details. This is added in
-this patch as well.
+On 04/07/2023 11:21, William Qiu wrote:
+> The SPI controller only need apb_pclk clock to work properly on JH7110 SoC,
+> so there add minItems whose value is equal to 1. Other platforms do not
+> have this constraint.
+> 
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
 
-Reviewed-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-Signed-off-by: Sascha Hauer <s.hauer@pengutronix.de>
----
+I don't get why this is resent, but subject prefix is still wrong. It's
+dt-bindings.
 
-Notes:
-    Changes since v4:
-    - new patch
+> ---
+>  Documentation/devicetree/bindings/spi/spi-pl022.yaml | 11 ++++++++---
+>  1 file changed, 8 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/spi/spi-pl022.yaml b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> index 91e540a92faf..42bb34c39971 100644
+> --- a/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> +++ b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+> @@ -11,6 +11,7 @@ maintainers:
+> 
+>  allOf:
+>    - $ref: spi-controller.yaml#
+> +  - $ref: /schemas/arm/primecell.yaml#
 
- arch/arm64/boot/dts/rockchip/rk3588s.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+This looks unrelated, so keep it as separate commit with its own rationale.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-index a3124bd2e092c..723a17ec04361 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3588s.dtsi
-@@ -397,6 +397,11 @@ scmi_shmem: sram@0 {
- 		};
- 	};
- 
-+	pmu1grf: syscon@fd58a000 {
-+		compatible = "rockchip,rk3588-pmugrf", "syscon", "simple-mfd";
-+		reg = <0x0 0xfd58a000 0x0 0x10000>;
-+	};
-+
- 	sys_grf: syscon@fd58c000 {
- 		compatible = "rockchip,rk3588-sys-grf", "syscon";
- 		reg = <0x0 0xfd58c000 0x0 0x1000>;
-@@ -1121,6 +1126,17 @@ qos_vop_m1: qos@fdf82200 {
- 		reg = <0x0 0xfdf82200 0x0 0x20>;
- 	};
- 
-+	dfi: dfi@fe060000 {
-+		reg = <0x00 0xfe060000 0x00 0x10000>;
-+		compatible = "rockchip,rk3588-dfi";
-+		interrupts = <GIC_SPI 28 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 38 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH 0>,
-+			     <GIC_SPI 58 IRQ_TYPE_LEVEL_HIGH 0>;
-+		interrupt-names = "ch0", "ch1", "ch2", "ch3";
-+		rockchip,pmu = <&pmu1grf>;
-+	};
-+
- 	gmac1: ethernet@fe1c0000 {
- 		compatible = "rockchip,rk3588-gmac", "snps,dwmac-4.20a";
- 		reg = <0x0 0xfe1c0000 0x0 0x10000>;
--- 
-2.39.2
+> 
+>  # We need a select here so we don't match all nodes with 'arm,primecell'
+>  select:
+> @@ -34,12 +35,16 @@ properties:
+>      maxItems: 1
+> 
+>    clocks:
+> +    minItems: 1
+>      maxItems: 2
+> 
+>    clock-names:
+> -    items:
+> -      - const: sspclk
+> -      - const: apb_pclk
+> +    oneOf:
+> +      - items:
+> +          - const: apb_pclk
+> +      - items:
+> +          - const: sspclk
+> +          - const: apb_pclk
+
+Are you sure that your clock is APB pclk in such case?
+
+Best regards,
+Krzysztof
 
