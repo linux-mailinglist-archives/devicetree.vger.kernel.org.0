@@ -2,384 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DC0687473AD
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 16:08:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E9E07473CE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 16:13:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231436AbjGDOIQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 10:08:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37822 "EHLO
+        id S231608AbjGDONa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 10:13:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42650 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231414AbjGDOIP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 10:08:15 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19534E72
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 07:08:14 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fbb281eec6so3488815e87.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 07:08:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688479692; x=1691071692;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=5AFiGBS/zGuc9xugDm8aCJCV9O8BpIrsJn4xnO04hvw=;
-        b=MYYW6i2PjUCxN9BKpcD5ZCbG/m9u7nk5o4NUSLVE9nY/Fw3eDroK/iBbNcUzB5IQqJ
-         7W+tsyg7GbE+XnhOz2DfzE5CYlQNNukegI74XCwa8OEpYK1cdqRDH13XoomxL7eXebH4
-         mdeWWoK0wP1/pqfjwWMTG/80mm+gxwCAcNIeehmbzN2YaA7aDkUKpRI5aaYuhZrI4Zog
-         rc2ZS4Ie0P6ekNtxhDZvemCHdAkpPYz75SQX6prK7VjJxSHuQnz9TdmPYbqCNqYaG/JZ
-         xyzvcX6eGBn3OFIsGyLJX6/1ls1T+KqEWQ7DF17giOYNBvnryrZI4sBLYEq9ulwkxMGr
-         +8cA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688479692; x=1691071692;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=5AFiGBS/zGuc9xugDm8aCJCV9O8BpIrsJn4xnO04hvw=;
-        b=Nrzykpvbk1wbHP/A7DBPbOw9fVfpcU5KJ4xb/drG4x5tAJd6uoPVUXTZFqwfEcEJof
-         j156BTG65A6fEMFv57+1fNamKYoUB3Itok23k2atD4/D9QoCgoy+ZP88ONHG/BMAmPhq
-         xzye7A+CN0LffskhaJ76T8HSPD/eCIRaQ0U2G7oXFafemqjciIMvJTXgXhJiVApGxEOS
-         pn34E4sCfWFVv4e3W08eV8MTxV0aH77ktyfKG4fShsK+WN8vHjc8U95OkJVxqNCzRqGF
-         kgqKk++7uVrubcLa/bt6kCWDBiRhaobWgNrIXrwRsOrbDkD/2iuyrbi+ZI0vg81OANsE
-         Gx6w==
-X-Gm-Message-State: ABy/qLYhW6GhM68QAEbFWlnZ75/k0DkA7vQMNmVMxOBNMIYDf8IEAGe8
-        o2VgL8LD9wVeC2eZ/mPJNk/k7A==
-X-Google-Smtp-Source: APBJJlGd+o2133PP/vmFNrjZ4qJJbfEXkrdeEphzHNIhUR9iyY2YaFMxTeGRJ5rpJ09gurP/j9BjiA==
-X-Received: by 2002:a05:6512:6cd:b0:4f8:6d54:72fa with SMTP id u13-20020a05651206cd00b004f86d5472famr10936976lff.2.1688479692051;
-        Tue, 04 Jul 2023 07:08:12 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id g1-20020a19ee01000000b004fba101946dsm2769084lfb.187.2023.07.04.07.08.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 07:08:11 -0700 (PDT)
-Message-ID: <399f29d0-ca1e-932c-6d7f-e07d6d0c0159@linaro.org>
-Date:   Tue, 4 Jul 2023 16:08:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 27/27] ARM: dts: qcom: msm8974: move regulators to
- board files
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S231574AbjGDON1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 10:13:27 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9325E10D5;
+        Tue,  4 Jul 2023 07:13:24 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 208A3611DB;
+        Tue,  4 Jul 2023 14:13:24 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 30E98C433C8;
+        Tue,  4 Jul 2023 14:13:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688480003;
+        bh=Nk5zRQ565eWa3r6Bd86j1AJU+hDJ5pUdhSqyH4FS99E=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=HctInVLn9PWcYJ5WhvvFXsWezBRvc5bRarfoujy6BErf4LVVxPqkU/4CBRX+T8njc
+         H8d3k6lSBsCCrZhOLMZvSAMlkL+RnMxbyLWt3Ng5GyfWd32lq9N+rvwcu4TRQnG+Eb
+         7Sg7jRLlI4m/qJ445cqtASjKBSV6SLgLfcGD/8W2c8QdvYaCshqZAJVEp6x263tlzU
+         1L9yE3PmU/eaVlCXIP9ptrS6SgyQ3KewLWvd2hc3JIMjIRMi0BMAevu89+CEk3CfIB
+         nQimzoztuJuII00XmJuYTptsyzPIlRR+kMmFxKs9QgWpVYEMbrxlOJ91YJisnKpKPe
+         20fHdfTJlDZZg==
+Date:   Tue, 4 Jul 2023 15:13:17 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-References: <20230702134320.98831-1-dmitry.baryshkov@linaro.org>
- <20230702134320.98831-28-dmitry.baryshkov@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230702134320.98831-28-dmitry.baryshkov@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [RESEND v1 2/2] riscv: dts: starfive: Add spi node for JH7110 SoC
+Message-ID: <41c905da-ae3e-4acb-bbfa-d33d3306824d@sirena.org.uk>
+References: <20230704092200.85401-1-william.qiu@starfivetech.com>
+ <20230704092200.85401-3-william.qiu@starfivetech.com>
+ <7f3b600d-d315-22d6-b987-eabfe1b04fdf@linaro.org>
+ <eba1e868-6371-42fe-91be-bcbee54d1aff@sirena.org.uk>
+ <4afd90d9-f1bd-f40d-1c79-50fef1406ab7@linaro.org>
+ <6307c5b2-64d2-405f-b1a5-696d4184f6a0@sirena.org.uk>
+ <a8c1a5e7-9938-bf6c-6bb7-6c1e4d8ce08b@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="8SqqqwgXKD0N3HXB"
+Content-Disposition: inline
+In-Reply-To: <a8c1a5e7-9938-bf6c-6bb7-6c1e4d8ce08b@linaro.org>
+X-Cookie: Memory fault - where am I?
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2.07.2023 15:43, Dmitry Baryshkov wrote:
-> The vph-pwr and boost regulators (even if they are unified by design)
-> are not a property of SoC, so move them to board files.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> ---
-Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 
-Konrad
->  .../dts/qcom/qcom-apq8074-dragonboard.dts     | 27 +++++++++++++++++++
->  .../qcom-msm8974-lge-nexus5-hammerhead.dts    | 27 +++++++++++++++++++
->  .../qcom/qcom-msm8974-sony-xperia-rhine.dtsi  | 27 +++++++++++++++++++
->  arch/arm/boot/dts/qcom/qcom-msm8974.dtsi      | 27 -------------------
->  .../qcom/qcom-msm8974pro-fairphone-fp2.dts    | 27 +++++++++++++++++++
->  .../qcom/qcom-msm8974pro-oneplus-bacon.dts    | 27 +++++++++++++++++++
->  .../dts/qcom/qcom-msm8974pro-samsung-klte.dts | 10 ++++++-
->  ...-msm8974pro-sony-xperia-shinano-castor.dts | 27 +++++++++++++++++++
->  8 files changed, 171 insertions(+), 28 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts b/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
-> index 5a8af16bf02d..3e5311e7196e 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-apq8074-dragonboard.dts
-> @@ -49,6 +49,33 @@ mpss_region: mpss@ac00000 {
->  			no-map;
->  		};
->  	};
-> +
-> +	vreg_boost: vreg-boost {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "vreg-boost";
-> +		regulator-min-microvolt = <3150000>;
-> +		regulator-max-microvolt = <3150000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&boost_bypass_n_pin>;
-> +	};
-> +
-> +	vreg_vph_pwr: vreg-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph-pwr";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &blsp1_uart2 {
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts b/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
-> index da99f770d4f5..ca402b4a68bd 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974-lge-nexus5-hammerhead.dts
-> @@ -60,6 +60,33 @@ vibrator {
->  		enable-gpios = <&tlmm 60 GPIO_ACTIVE_HIGH>;
->  	};
->  
-> +	vreg_boost: vreg-boost {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "vreg-boost";
-> +		regulator-min-microvolt = <3150000>;
-> +		regulator-max-microvolt = <3150000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&boost_bypass_n_pin>;
-> +	};
-> +
-> +	vreg_vph_pwr: vreg-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph-pwr";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		regulator-always-on;
-> +	};
-> +
->  	vreg_wlan: wlan-regulator {
->  		compatible = "regulator-fixed";
->  
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
-> index 23ae474698aa..a43341ae4495 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974-sony-xperia-rhine.dtsi
-> @@ -65,6 +65,33 @@ ramoops@3e8e0000 {
->  			pmsg-size = <0x80000>;
->  		};
->  	};
-> +
-> +	vreg_boost: vreg-boost {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "vreg-boost";
-> +		regulator-min-microvolt = <3150000>;
-> +		regulator-max-microvolt = <3150000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&boost_bypass_n_pin>;
-> +	};
-> +
-> +	vreg_vph_pwr: vreg-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph-pwr";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &blsp1_i2c2 {
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-> index aeca504918a0..a4ff1fe63903 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974.dtsi
-> @@ -2376,31 +2376,4 @@ timer {
->  			     <GIC_PPI 1 0xf08>;
->  		clock-frequency = <19200000>;
->  	};
-> -
-> -	vreg_boost: vreg-boost {
-> -		compatible = "regulator-fixed";
-> -
-> -		regulator-name = "vreg-boost";
-> -		regulator-min-microvolt = <3150000>;
-> -		regulator-max-microvolt = <3150000>;
-> -
-> -		regulator-always-on;
-> -		regulator-boot-on;
-> -
-> -		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-> -		enable-active-high;
-> -
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&boost_bypass_n_pin>;
-> -	};
-> -
-> -	vreg_vph_pwr: vreg-vph-pwr {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "vph-pwr";
-> -
-> -		regulator-min-microvolt = <3600000>;
-> -		regulator-max-microvolt = <3600000>;
-> -
-> -		regulator-always-on;
-> -	};
->  };
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-> index 24f9521a0be6..9cbdfe62051e 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-fairphone-fp2.dts
-> @@ -57,6 +57,33 @@ vibrator {
->  		enable-gpios = <&tlmm 86 GPIO_ACTIVE_HIGH>;
->  		vcc-supply = <&pm8941_l18>;
->  	};
-> +
-> +	vreg_boost: vreg-boost {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "vreg-boost";
-> +		regulator-min-microvolt = <3150000>;
-> +		regulator-max-microvolt = <3150000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&boost_bypass_n_pin>;
-> +	};
-> +
-> +	vreg_vph_pwr: vreg-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph-pwr";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &blsp1_i2c2 {
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
-> index c0ca264d8140..6d1412aec45a 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-oneplus-bacon.dts
-> @@ -51,6 +51,33 @@ event-hall-sensor {
->  			debounce-interval = <150>;
->  		};
->  	};
-> +
-> +	vreg_boost: vreg-boost {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "vreg-boost";
-> +		regulator-min-microvolt = <3150000>;
-> +		regulator-max-microvolt = <3150000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&boost_bypass_n_pin>;
-> +	};
-> +
-> +	vreg_vph_pwr: vreg-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph-pwr";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &blsp1_i2c1 {
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-> index 325feb89b343..ca3aa16b4b10 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-samsung-klte.dts
-> @@ -155,7 +155,15 @@ vreg_panel: panel-regulator {
->  		enable-active-high;
->  	};
->  
-> -	/delete-node/ vreg-boost;
-> +	vreg_vph_pwr: vreg-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph-pwr";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &blsp1_i2c2 {
-> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-> index efe21289c9fe..b76d51b1b667 100644
-> --- a/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-> +++ b/arch/arm/boot/dts/qcom/qcom-msm8974pro-sony-xperia-shinano-castor.dts
-> @@ -84,6 +84,33 @@ vreg_vsp: lcd-dcdc-regulator {
->  		pinctrl-0 = <&lcd_dcdc_en_pin_a>;
->  	};
->  
-> +	vreg_boost: vreg-boost {
-> +		compatible = "regulator-fixed";
-> +
-> +		regulator-name = "vreg-boost";
-> +		regulator-min-microvolt = <3150000>;
-> +		regulator-max-microvolt = <3150000>;
-> +
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +
-> +		gpio = <&pm8941_gpios 21 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&boost_bypass_n_pin>;
-> +	};
-> +
-> +	vreg_vph_pwr: vreg-vph-pwr {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vph-pwr";
-> +
-> +		regulator-min-microvolt = <3600000>;
-> +		regulator-max-microvolt = <3600000>;
-> +
-> +		regulator-always-on;
-> +	};
-> +
->  	vreg_wlan: wlan-regulator {
->  		compatible = "regulator-fixed";
->  
+--8SqqqwgXKD0N3HXB
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Tue, Jul 04, 2023 at 03:21:30PM +0200, Krzysztof Kozlowski wrote:
+> On 04/07/2023 15:16, Mark Brown wrote:
+> > On Tue, Jul 04, 2023 at 02:27:57PM +0200, Krzysztof Kozlowski wrote:
+
+> >> Also see:
+> >> "every Co-developed-by: must be immediately
+> >> followed by a Signed-off-by: of the associated co-author."
+
+> >> https://elixir.bootlin.com/linux/v6.4/source/Documentation/process/submitting-patches.rst#L467
+
+> > Oh, that seems unhelpful especially with it not lining up with the DCO.
+
+> I assume the intention was here that if I attribute some co-author with
+> Co-developed-by, then I know that author, therefore I expect author to
+> explicitly participate in DCO chain.
+
+Why?  They're not the one sending the patch out, nor are they relying on
+someone else having certified anything.
+
+> Otherwise, just drop the Co-developed-by.
+
+It seems separately useful.
+
+--8SqqqwgXKD0N3HXB
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSkKP0ACgkQJNaLcl1U
+h9BUCQf+MakDSushGvfaRHCWXKX9k0RiV5f+NZvtmqvrVE86MgvfZXWos/vS+mTd
+KY3WC115btHDG+rP5TdrtREdf/CKBvuZ7f/xb7CuzNrkn9cO4luF7qZKb48jqqQY
++66UT0zca96GKUpT2RQ1HR9sMg6umR7qj2RezJOXLBgHMBwAq6aofIIGVcj1tkzi
+wKcOeluQX1g96OJjcxo/Kj42y/5kQdhMj6GmbVRoRiiMX2MiXcLbIMh15gtYgfmU
+KaP24Oeb9skgN6X8/1hja6swCSqQD2VRbX+aPSYyVncd9uDMx0Ya+7cP14Ex+W8u
+37T11N/kr/NhVOEyHpdjM628LNblHQ==
+=+ena
+-----END PGP SIGNATURE-----
+
+--8SqqqwgXKD0N3HXB--
