@@ -2,147 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D491E74734B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB23074736B
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:59:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229610AbjGDNu0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 09:50:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59174 "EHLO
+        id S231572AbjGDN7v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 09:59:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33688 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230137AbjGDNu0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:50:26 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE74EE
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 06:50:24 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f86e6e4038so7046816e87.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 06:50:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688478622; x=1691070622;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=8DsZYUEHTqBU3AGKVXdDyeX9gb+lep1XYSsRWjvSZ/I=;
-        b=WKNuf3B5GGVejJYAW9LuXXw4+PS33E2LeapZGIUL6ADxTRm91x8bmjoKpA5mlZ/X8G
-         7MR9wRGTLSrVuf/Fi7gXmHazP0tYZxSi47S5Mnc79Qd2bJEU4PV3an8129x/i9tN2qPm
-         xwnTagR+NSsvrThZpYnCBo8V3Litsui7nf7hPw67DsxGA7YnbaZTdT3eR3D6AuKib2dJ
-         ++f4fKb7Oc//QAvyuv2JJVrlZCTP4vCtTyv8qS/eouEntZBHpKdFVklyGE6vbxGXNijm
-         IrCkUwJuHuiI/FbeBXIh3gusYJqXYK3GOC1E1L5mCqvvqSKmOjPo8/1D6Q/EJMiekREY
-         oW5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688478622; x=1691070622;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=8DsZYUEHTqBU3AGKVXdDyeX9gb+lep1XYSsRWjvSZ/I=;
-        b=CKXQ4j96Blgxk3ZhBYzg3tIqG6baeFl+xOPC6cxNsC0yKV2TOy7AiaDWssa+VBpIG9
-         6pKvuusQO0gXhEUfk/hSXkbcepONjjHVjpy7F8XPkOSUySTBHV9Pro6xyeAQXYtz/010
-         NOB8EIQTChdXJyfjkoX6APqyI35TdBqUT9KxXusOkEraBBJnQNgVdfDh5VULWvIuium0
-         DuTZ6U5gofBmxLQBCGGsn7uQEsg2/o3sRNLdc/jlwfz68Uaew24EYvlujYVS3qjaydnn
-         GdyopS+K5rGX/RYIVrF50bImlzO44uZs1+JxqjgN2O0GN8yLwCTMjtXYhMW7UQvSm3im
-         Fypg==
-X-Gm-Message-State: AC+VfDz5z4nreKUYG2F8UVxiseEqUGxmi+EmjPkrbWBMJ89BbD6gz4QF
-        WJsoZ7Iij13TFoNoxFtkaE2q8A==
-X-Google-Smtp-Source: ACHHUZ40dzDwz/sUzcpkcaTq5m/CZjEKlgEj3OYPpc+HneTDxI2+nl4kPhWRf9VGETUxPCD/Rj4GPQ==
-X-Received: by 2002:ac2:4e0c:0:b0:4f4:7a5:e800 with SMTP id e12-20020ac24e0c000000b004f407a5e800mr6424265lfr.10.1688478622464;
-        Tue, 04 Jul 2023 06:50:22 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id f14-20020ac2532e000000b004fb77cb4b8esm4291607lfh.14.2023.07.04.06.50.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 06:50:22 -0700 (PDT)
-Message-ID: <3a305852-b44f-0b4b-e8dc-fbb0749ddb18@linaro.org>
-Date:   Tue, 4 Jul 2023 15:50:20 +0200
+        with ESMTP id S231511AbjGDN7t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:59:49 -0400
+Received: from mx1.sberdevices.ru (mx2.sberdevices.ru [45.89.224.132])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89BD9E76;
+        Tue,  4 Jul 2023 06:59:46 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk02 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 44F16120055;
+        Tue,  4 Jul 2023 16:59:44 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 44F16120055
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1688479184;
+        bh=r6SG7lpLI9I/NbwtRkLknIz0u9uOXQx48vgR4sPGnQg=;
+        h=From:To:Subject:Date:Message-ID:MIME-Version:Content-Type:From;
+        b=BsWXiXBNVIt0liZsYWa9pyaBtocrh/m98ikOb4r0RJCJyYIFERS4Lc8VIu7AMrtiK
+         83GKyeBM+v25HaVoX78N0zAHxHIhyBjQp3j+Ny2KkEewkqWaRH9pU0+8FlxlKmwOoW
+         ywtixPfBY7FmNS/i2TJefpiIczflsTSXX3xOTQ40cXJ8Zl9w89cz8V/JAA6n8u2RmL
+         Xmc+yH8hbh3ajT9N2NCQJJ4NyPyJNcwWZAQOTO3bf+Xnjxwuovwe7+ymWxnickMZyx
+         JH6UlnxsVB/n5Fz93iCfWlumDNxIEBknxlOmFSp8uCNCD94J3hQ0olk5HFGK1kbZPo
+         aFvpK9BTJg48A==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Tue,  4 Jul 2023 16:59:44 +0300 (MSK)
+Received: from localhost.localdomain (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 4 Jul 2023 16:59:33 +0300
+From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
+To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
+        <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
+        <jirislaby@kernel.org>, <khilman@baylibre.com>,
+        <martin.blumenstingl@googlemail.com>
+CC:     <kelvin.zhang@amlogic.com>, <xianwei.zhao@amlogic.com>,
+        <kernel@sberdevices.ru>, <rockosov@gmail.com>,
+        <linux-amlogic@lists.infradead.org>,
+        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Subject: [PATCH v1 0/5] tty: serial: meson: support ttyS devname
+Date:   Tue, 4 Jul 2023 16:59:31 +0300
+Message-ID: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
+X-Mailer: git-send-email 2.36.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [RFC PATCH 4/8] ARM: dts: qcom: msm8960-cdp: constraint cpufreq
- regulators
-Content-Language: en-US
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-References: <20230702175045.122041-1-dmitry.baryshkov@linaro.org>
- <20230702175045.122041-5-dmitry.baryshkov@linaro.org>
- <971262d5-98b3-c48e-89fd-ce107275008a@linaro.org>
- <CAA8EJpqvk02LeuS=-pPLUi=0OsBQ0npqioEtYkiNfPm+0EpF8Q@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAA8EJpqvk02LeuS=-pPLUi=0OsBQ0npqioEtYkiNfPm+0EpF8Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178421 [Jul 04 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_uf_ne_domains}, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;100.64.160.123:7.1.2;127.0.0.199:7.1.2;sberdevices.ru:5.0.1,7.1.1;libera.irclog.whitequark.org:7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean, bases: 2023/07/04 08:48:00
+X-KSMG-LinksScanning: Clean, bases: 2023/07/04 08:48:00
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/04 05:54:00 #21559896
+X-KSMG-AntiVirus-Status: Clean, skipped
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 4.07.2023 15:34, Dmitry Baryshkov wrote:
-> On Tue, 4 Jul 2023 at 16:03, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->>
->> On 2.07.2023 19:50, Dmitry Baryshkov wrote:
->>> Add additional constraints to the CPUfreq-related regulators, it is
->>> better be safe than sorry there.
->>>
->>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->>> ---
->> I'm squinting quite hard at
->>
->> https://github.com/LineageOS/sony-kernel-msm8960/blob/jb-dev/arch/arm/mach-msm/acpuclock-8960.c
->>
->> but I can't figure out where these min values came from
-> 
-> These should be the minimum values for vdd_min and vdd_dig in
-> l2_freq_tbl_8960_kraitv2 (v1 is unsupported in mainline).
-> See below,
-> 
->>
->> Konrad
->>>  arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
->>> index 414881d34c60..cba0d1e460a1 100644
->>> --- a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
->>> +++ b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
->>> @@ -131,7 +131,7 @@ pm8921_s2: s2 {
->>>               };
->>>
->>>               pm8921_s3: s3 {
->>> -                     regulator-min-microvolt = <500000>;
->>> +                     regulator-min-microvolt = <950000>;
-> 
-> And this is obviously a c&p from 8064. This should be 1050000.
-Okay, please remember to fix all other boards from this patchset too.
+During a IRC discussion with Neil, as reported in reference [1], an idea
+emerged to provide support for a standard devname 'ttyS' in new SoCs
+such as A1, S4, T7, C3 and others. The current devname 'ttyAML' is not
+widely known and has caused several issues with both low and high-level
+software, without any apparent justification for its implementation.
+Consequently, it has been deemed necessary to introduce the 'ttyS'
+devname for all new 'compatible' entries, while still retaining backward
+compatibility with the old 'ttyAML' devname by supporting it in parallel
+with the new approach. This patch series therefore aims to implement
+these changes.
 
-Konrad
-> 
->>>                       regulator-max-microvolt = <1150000>;
->>>                       qcom,switch-mode-frequency = <4800000>;
->>>                       bias-pull-down;
->>> @@ -287,7 +287,7 @@ pm8921_l23: l23 {
->>>               };
->>>
->>>               pm8921_l24: l24 {
->>> -                     regulator-min-microvolt = <750000>;
->>> +                     regulator-min-microvolt = <1050000>;
->>>                       regulator-max-microvolt = <1150000>;
->>>                       bias-pull-down;
->>>               };
-> 
-> 
-> 
+Links:
+    [1]: https://libera.irclog.whitequark.org/linux-amlogic/2023-07-03
+
+Dmitry Rokosov (5):
+  tty: serial: meson: use dev_err_probe
+  tty: serial: meson: redesign the module to platform_driver
+  tty: serial: meson: apply ttyS devname instead of ttyAML for new SoCs
+  dt-bindings: serial: amlogic,meson-uart: support Amlogic A1
+  arm64: dts: meson: a1: change uart compatible string
+
+ .../bindings/serial/amlogic,meson-uart.yaml   |  2 +
+ arch/arm64/boot/dts/amlogic/meson-a1.dtsi     |  4 +-
+ drivers/tty/serial/meson_uart.c               | 83 ++++++++++---------
+ 3 files changed, 47 insertions(+), 42 deletions(-)
+
+-- 
+2.36.0
+
