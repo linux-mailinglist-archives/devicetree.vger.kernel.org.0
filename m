@@ -2,113 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E7AA746705
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 03:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2DE374670E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 04:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230311AbjGDB6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 21:58:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51656 "EHLO
+        id S231341AbjGDCCy convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 3 Jul 2023 22:02:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52322 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229897AbjGDB6j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 21:58:39 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06025E59;
-        Mon,  3 Jul 2023 18:58:37 -0700 (PDT)
+        with ESMTP id S229896AbjGDCCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 22:02:53 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81B4AE72;
+        Mon,  3 Jul 2023 19:02:48 -0700 (PDT)
 Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
         (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
         (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id 791BF24E271;
-        Tue,  4 Jul 2023 09:58:35 +0800 (CST)
-Received: from EXMBX062.cuchost.com (172.16.6.62) by EXMBX165.cuchost.com
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 7C93480B6;
+        Tue,  4 Jul 2023 10:02:41 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
  (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 4 Jul
- 2023 09:58:35 +0800
-Received: from [192.168.120.43] (171.223.208.138) by EXMBX062.cuchost.com
- (172.16.6.62) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 4 Jul
- 2023 09:58:34 +0800
-Message-ID: <fd591491-b8aa-b3e0-82e0-7d19c841819e@starfivetech.com>
-Date:   Tue, 4 Jul 2023 09:58:32 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.10.0
-Subject: Re: [PATCH v6 0/8] Add Ethernet driver for StarFive JH7110 SoC
-Content-Language: en-US
-To:     Jakub Kicinski <kuba@kernel.org>,
-        <linux-riscv@lists.infradead.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Paolo Abeni <pabeni@redhat.com>,
+ 2023 10:02:41 +0800
+Received: from localhost.localdomain (113.72.144.31) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 4 Jul
+ 2023 10:02:40 +0800
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+To:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         "Rob Herring" <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Peter Geis <pgwipeout@gmail.com>,
-        Yanhong Wang <yanhong.wang@starfivetech.com>
-References: <20230313034645.5469-1-samin.guo@starfivetech.com>
- <20230313173330.797bf8e7@kernel.org>
- <51102144-1533-d2f7-5fde-e01160a6f49e@starfivetech.com>
- <ZKChUuUpCgh/jPSU@aurel32.net>
-From:   Guo Samin <samin.guo@starfivetech.com>
-In-Reply-To: <ZKChUuUpCgh/jPSU@aurel32.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [171.223.208.138]
-X-ClientProxiedBy: EXCAS066.cuchost.com (172.16.6.26) To EXMBX062.cuchost.com
- (172.16.6.62)
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Conor Dooley <conor@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>
+CC:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        Xingyu Wu <xingyu.wu@starfivetech.com>,
+        "William Qiu" <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+Subject: [PATCH v6 0/7] Add PLL clocks driver and syscon for StarFive JH7110 SoC
+Date:   Tue, 4 Jul 2023 10:02:32 +0800
+Message-ID: <20230704020239.288500-1-xingyu.wu@starfivetech.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [113.72.144.31]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
 X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Re: [PATCH v6 0/8] Add Ethernet driver for StarFive JH7110 SoC
-From: Aurelien Jarno <aurelien@aurel32.net>
-tro: Guo Samin <samin.guo@starfivetech.com>
-data: 2023/7/2
+This patch serises are to add PLL clocks driver and providers by writing
+and reading syscon registers for the StarFive JH7110 RISC-V SoC. And add 
+documentation and nodes to describe StarFive System Controller(syscon)
+Registers. This patch serises are based on Linux 6.4.
 
-> Hi,
-> 
-> On 2023-03-15 09:31, Guo Samin wrote:
->> Re: [PATCH v6 0/8] Add Ethernet driver for StarFive JH7110 SoC
->> From: Jakub Kicinski <kuba@kernel.org>
->> to: Samin Guo <samin.guo@starfivetech.com>
->> data: 2023/3/14
->>
->>> On Mon, 13 Mar 2023 11:46:37 +0800 Samin Guo wrote:
->>>> This series adds ethernet support for the StarFive JH7110 RISC-V SoC.
->>>> The series includes MAC driver. The MAC version is dwmac-5.20 (from
->>>> Synopsys DesignWare). For more information and support, you can visit
->>>> RVspace wiki[1].
->>>
->>> I'm guessing the first 6 patches need to go via networking and patches
->>> 7 and 8 via riscv trees? Please repost those separately, otherwise
->>> the series won't apply and relevant CIs can't run on it.
->>
->> Hi Jakub,
->>
->> 	Thanks a lot, I will repost those separately.
-> 
-> Unless I am mistaken, this patches haven't been reposted since them.
-> Could you please do that?
-> 
-> Thanks
-> Aurelien
-> 
+PLLs are high speed, low jitter frequency synthesizers in JH7110.
+Each PLL clock works in integer mode or fraction mode by some dividers,
+and the dividers are set in several syscon registers.
+The formula for calculating frequency is: 
+Fvco = Fref * (NI + NF) / M / Q1
 
-Hi Aurelien,
+The first patch adds docunmentation to describe PLL clock bindings,
+and the second patch adds documentation to decribe syscon registers.
+The patch 3 modifies the SYSCRG dibindings and adds PLL clock inputs.
+The patch 4 adds driver to support PLL clocks for JH7110.
+The patch 5 modifies the system clock driver and can select the PLL clock
+source from PLL clocks driver. And the patch 6 adds the 
+stg/sys/aon syscon nodes for JH7110 SoC. The last patch modifies the 
+syscrg node in JH7110 dts file.
 
-Sorry for not having an update in a while. I'm waiting for the configuration of PHY to be finalized and the SYSCON patch to finally be merged in.
-1) There are some updates to visionfive 2's PHY Drive Strength[1], but the implementation has not yet been finalized. Of course this is not the most important thing, since it can be updated later.
-2) DTS depends on SYSCON. If the patch about SYSCON[2] has not been merged into the main line, there will be compilation problems. SYSCON's patch is part of Xingyu's PLL patchsets, and if the parts of SYSCON could be merged first, there would be no problem.
+Changes since v5: 
+- Rebased on Linux 6.4.
+- Patch 1 fixed some grammatical mistake.
+- Patch 2 added the selection about properties from different syscon
+  modules and madethe example completed.
+- Patch 3 dropped the 'optional' PLL clocks.
 
-[1]: https://patchwork.kernel.org/project/netdevbpf/cover/20230526090502.29835-1-samin.guo@starfivetech.com
-[2]: https://patchwork.kernel.org/project/linux-riscv/patch/20230613125852.211636-7-xingyu.wu@starfivetech.com
- 
-Best regards,
-Samin
+v5: https://lore.kernel.org/all/20230613125852.211636-1-xingyu.wu@starfivetech.com/
+
+Changes since v4: 
+- Rebased on Linux 6.4-rc6.
+- Patch 2 dropped the example node about sys-syscon.
+- Patch 3 used PLL clocks as one of optional items in SYSCRG bindings.
+- Patch 4 used the patch instead about PLL clocks driver from Emil.
+- Patch 5 retained the fixed factor PLL clocks as the optional source
+  about PLL clocks in SYSCRG clock driver.
+- Patch 6 added the child node clock-controller as the complete
+  sys-syscon node and patch 7 dropped this part.
+
+v4: https://lore.kernel.org/all/20230512022036.97987-1-xingyu.wu@starfivetech.com/
+
+Changes since v3: 
+- Rebased on Linux 6.4-rc1.
+- Dropped the 'power-controller' property and used 'power-domain-cells'
+  instead in syscon binding.
+- Used the data by of_device_id to get the syscon registers'
+  configuration include offset, mask and shift.
+
+v3: https://lore.kernel.org/all/20230414024157.53203-1-xingyu.wu@starfivetech.com/
+
+Changes since v2: 
+- Rebased on latest JH7110 basic clock drivers.
+- Added the complete documentation to describe syscon register.
+- Added syscon node in JH7110 dts file.
+- Modified the clock rate selection to match the closest rate in
+  PLL driver when setting rate.
+
+v2: https://lore.kernel.org/all/20230316030514.137427-1-xingyu.wu@starfivetech.com/
+
+Changes since v1:
+- Changed PLL clock node to be child of syscon node in dts.
+- Modifed the definitions and names of function in PLL clock driver.
+- Added commit to update syscon and syscrg dt-bindings.
+
+v1: https://lore.kernel.org/all/20230221141147.303642-1-xingyu.wu@starfivetech.com/
+
+William Qiu (2):
+  dt-bindings: soc: starfive: Add StarFive syscon module
+  riscv: dts: starfive: jh7110: Add syscon nodes
+
+Xingyu Wu (5):
+  dt-bindings: clock: Add StarFive JH7110 PLL clock generator
+  dt-bindings: clock: jh7110-syscrg: Add PLL clock inputs
+  clk: starfive: Add StarFive JH7110 PLL clock driver
+  clk: starfive: jh7110-sys: Add PLL clocks source from DTS
+  riscv: dts: starfive: jh7110: Add PLL clocks source in SYSCRG node
+
+ .../bindings/clock/starfive,jh7110-pll.yaml   |  46 ++
+ .../clock/starfive,jh7110-syscrg.yaml         |  18 +-
+ .../soc/starfive/starfive,jh7110-syscon.yaml  |  93 ++++
+ MAINTAINERS                                   |  13 +
+ arch/riscv/boot/dts/starfive/jh7110.dtsi      |  30 +-
+ drivers/clk/starfive/Kconfig                  |   9 +
+ drivers/clk/starfive/Makefile                 |   1 +
+ .../clk/starfive/clk-starfive-jh7110-pll.c    | 507 ++++++++++++++++++
+ .../clk/starfive/clk-starfive-jh7110-sys.c    |  45 +-
+ .../dt-bindings/clock/starfive,jh7110-crg.h   |   6 +
+ 10 files changed, 746 insertions(+), 22 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/starfive,jh7110-pll.yaml
+ create mode 100644 Documentation/devicetree/bindings/soc/starfive/starfive,jh7110-syscon.yaml
+ create mode 100644 drivers/clk/starfive/clk-starfive-jh7110-pll.c
+
+-- 
+2.25.1
+
