@@ -2,115 +2,271 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 40F23746DE4
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 11:44:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E2EF746DFE
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 11:52:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231394AbjGDJo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 05:44:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60308 "EHLO
+        id S230262AbjGDJwG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 05:52:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35430 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231432AbjGDJoP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 05:44:15 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B561725
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 02:43:56 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5149aafef44so6114923a12.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 02:43:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688463835; x=1691055835;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2jjVOyUTnAKMRHBkOAZFEZ2Gt/AchktqGDrwDJg3g/0=;
-        b=WMnfo36Btbfm7d0ZlMf3SJM8X7nDp/s5XlMgIET7P+HRjpjlytc+l4t0U4hyXIc6+x
-         Gq/K45vYX6Ib+pOG6NTFHwtHboFXecOitRXIHT9fLbn+KifrXzVXeoj9WPOtPpec7Pn1
-         v4Wx9/tRn/1q2oAqdmyenxoo+yQydUrV/2jGrBUhcmeAGhAgKKQStcyg3ijkeuev5Ah6
-         pgzUQ6o6/21yc/7cKq47qqR3mEFNwAdDOp2Qvllun3RaKnJdbi1219c0VW6rMu5Fq9M1
-         Vq7m1lW0r9TfNqtSJrbe9cV//oa46CttOeWLHLAuKfiNhaiMMYPi8nUI6+79345jxXJR
-         BjYg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688463835; x=1691055835;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2jjVOyUTnAKMRHBkOAZFEZ2Gt/AchktqGDrwDJg3g/0=;
-        b=aihl0d4xDLNtrCDTFWgIX5ckt/piJBSQLex4fPipfe0AbSrDE7WuO5Dlp3ie1PEQ2o
-         IWu1BP8EdCTbkkvTQl3gKGqX1NSQntBfLlluczxc2KjJV3qntAnpnrR9nrLAQqewuqhD
-         bEhsXeqLBrCOvACtG6xnDFABNTynzFUhmnHRWYuYBjxRtHh/wcRbSlt5ZlL3xtVZ+G/3
-         rqtBCcOsribz8+igngiL+tD8VNgQtCPNMlHEqfzxcqJTN+M3ePmflg5vH7giVA+bVHWO
-         grwlb3kZgzmfLulJ4W4E4KAzVmlks6E2oLdvb+8zY7S2lG9YOhFg2SKc1YDoBpBVD03r
-         vHOQ==
-X-Gm-Message-State: AC+VfDwClvgzV+rP9YcOXdJCOubE8sQ86w71cxdtEXO+oqBgE5NEnRy9
-        q9V1mwTjTQUa6YeCx65IJLCL1l1qw2xrkfrrDOA=
-X-Google-Smtp-Source: APBJJlH2BFfowyRuGkZg/4gGurh7iScSfZUSYvUlWG8KR6PQzOga/kTW3dcg5eZE/mRNoT1lrgm9rw==
-X-Received: by 2002:a17:906:46cf:b0:98d:d26c:e13b with SMTP id k15-20020a17090646cf00b0098dd26ce13bmr9263223ejs.8.1688463835157;
-        Tue, 04 Jul 2023 02:43:55 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id b27-20020a170906195b00b00991e2b5a27dsm10457201eje.37.2023.07.04.02.43.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 02:43:54 -0700 (PDT)
-Message-ID: <552d39ee-0fa0-94c0-89b9-245e39e8586d@linaro.org>
-Date:   Tue, 4 Jul 2023 11:43:52 +0200
+        with ESMTP id S230055AbjGDJwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 05:52:04 -0400
+Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E58CA;
+        Tue,  4 Jul 2023 02:52:01 -0700 (PDT)
+Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 5CC0110005F;
+        Tue,  4 Jul 2023 12:52:00 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 5CC0110005F
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
+        s=mail; t=1688464320;
+        bh=6aHU9qCXGm3WV8is8vuW6UfIzP5GrTzeuf097Em3H+w=;
+        h=Message-ID:Date:MIME-Version:Subject:To:From:Content-Type:From;
+        b=KWCIRLzfLA2l5MdNTi1c4llIzIntPopKcbY91bhWKOmVKbqyehCbyGdgv386KIh9L
+         W2g/UE/4N62TbJLXtGhjy/l5MsSvsLMZg3VD2GHyXPojyxAgY5prl1BWAbMuvfKjhc
+         VbFLWjB/SB5uZG/gb/Y2F5eCKz6rqnpBvV83R4te6VwcZ88WK/8QMPsQhASQLok+mS
+         0mlv84KCQg2RSVhvrgLdmrzRsnSEcF2sIk9dcAU7zb+uZHaDIi1TtlT3+56XsmLs6i
+         myrewkKbIByjCXvq85ICmBksJjZvLTbI1kAbNL+G/UVsdnssr9NoyinhpRv9ZjJlC3
+         JWre5jzGWSy6Q==
+Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx1.sberdevices.ru (Postfix) with ESMTPS;
+        Tue,  4 Jul 2023 12:52:00 +0300 (MSK)
+Received: from [192.168.0.12] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 4 Jul 2023 12:51:50 +0300
+Message-ID: <aede4639-0e99-565a-c997-c414342c66af@sberdevices.ru>
+Date:   Tue, 4 Jul 2023 12:46:51 +0300
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v4 3/3] riscv: dts: starfive: Add QSPI controller node for
- StarFive JH7110 SoC
+ Thunderbird/102.7.1
+Subject: Re: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC step
+ size
 Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230704090453.83980-1-william.qiu@starfivetech.com>
- <20230704090453.83980-4-william.qiu@starfivetech.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230704090453.83980-4-william.qiu@starfivetech.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
+ <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
+ <20230704103617.4affae8a@xps-13>
+ <9e6eaa87-887c-f955-113a-43860c8ea00c@sberdevices.ru>
+ <20230704114110.25ca9de4@xps-13>
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+In-Reply-To: <20230704114110.25ca9de4@xps-13>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [100.64.160.123]
+X-ClientProxiedBy: p-i-exch-sc-m02.sberdevices.ru (172.16.192.103) To
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
+X-KSMG-Rule-ID: 10
+X-KSMG-Message-Action: clean
+X-KSMG-AntiSpam-Lua-Profiles: 178414 [Jul 04 2023]
+X-KSMG-AntiSpam-Version: 5.9.59.0
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
+X-KSMG-AntiSpam-Rate: 0
+X-KSMG-AntiSpam-Status: not_detected
+X-KSMG-AntiSpam-Method: none
+X-KSMG-AntiSpam-Auth: dkim=none
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:5.0.1,7.1.1;127.0.0.199:7.1.2;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;100.64.160.123:7.1.2;sberdevices.ru:5.0.1,7.1.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-MS-Exchange-Organization-SCL: -1
+X-KSMG-AntiSpam-Interceptor-Info: scan successful
+X-KSMG-AntiPhishing: Clean
+X-KSMG-LinksScanning: Clean
+X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/04 05:54:00 #21559896
+X-KSMG-AntiVirus-Status: Clean, skipped
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2023 11:04, William Qiu wrote:
-> Add the quad spi controller node for the StarFive JH7110 SoC.
+
+
+On 04.07.2023 12:41, Miquel Raynal wrote:
+> Hi Arseniy,
 > 
-> Co-developed-by: Ziv Xu <ziv.xu@starfivetech.com>
-> Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
-> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+> avkrasnov@sberdevices.ru wrote on Tue, 4 Jul 2023 12:23:03 +0300:
+> 
+>> On 04.07.2023 11:36, Miquel Raynal wrote:
+>>> Hi Arseniy,
+>>>
+>>> AVKrasnov@sberdevices.ru wrote on Wed, 28 Jun 2023 12:29:36 +0300:
+>>>   
+>>>> Meson NAND supports both 512B and 1024B ECC step size.
+>>>>
+>>>> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+>>>> ---
+>>>>  drivers/mtd/nand/raw/meson_nand.c | 47 +++++++++++++++++++++++--------
+>>>>  1 file changed, 35 insertions(+), 12 deletions(-)
+>>>>
+>>>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+>>>> index 345212e8c691..6cc4f63b86c8 100644
+>>>> --- a/drivers/mtd/nand/raw/meson_nand.c
+>>>> +++ b/drivers/mtd/nand/raw/meson_nand.c
+>>>> @@ -135,6 +135,7 @@ struct meson_nfc_nand_chip {
+>>>>  struct meson_nand_ecc {
+>>>>  	u32 bch;
+>>>>  	u32 strength;
+>>>> +	u32 size;
+>>>>  };
+>>>>  
+>>>>  struct meson_nfc_data {
+>>>> @@ -190,7 +191,8 @@ struct meson_nfc {
+>>>>  };
+>>>>  
+>>>>  enum {
+>>>> -	NFC_ECC_BCH8_1K		= 2,
+>>>> +	NFC_ECC_BCH8_512	= 1,
+>>>> +	NFC_ECC_BCH8_1K,
+>>>>  	NFC_ECC_BCH24_1K,
+>>>>  	NFC_ECC_BCH30_1K,
+>>>>  	NFC_ECC_BCH40_1K,
+>>>> @@ -198,15 +200,16 @@ enum {
+>>>>  	NFC_ECC_BCH60_1K,
+>>>>  };
+>>>>  
+>>>> -#define MESON_ECC_DATA(b, s)	{ .bch = (b),	.strength = (s)}
+>>>> +#define MESON_ECC_DATA(b, s, sz)	{ .bch = (b), .strength = (s), .size = (sz) }
+>>>>  
+>>>>  static struct meson_nand_ecc meson_ecc[] = {
+>>>> -	MESON_ECC_DATA(NFC_ECC_BCH8_1K, 8),
+>>>> -	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24),
+>>>> -	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30),
+>>>> -	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40),
+>>>> -	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50),
+>>>> -	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60),
+>>>> +	MESON_ECC_DATA(NFC_ECC_BCH8_512, 8,  512),
+>>>> +	MESON_ECC_DATA(NFC_ECC_BCH8_1K,  8,  1024),
+>>>> +	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24, 1024),
+>>>> +	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30, 1024),
+>>>> +	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40, 1024),
+>>>> +	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50, 1024),
+>>>> +	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60, 1024),
+>>>>  };
+>>>>  
+>>>>  static int meson_nand_calc_ecc_bytes(int step_size, int strength)
+>>>> @@ -224,8 +227,27 @@ static int meson_nand_calc_ecc_bytes(int step_size, int strength)
+>>>>  
+>>>>  NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
+>>>>  		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
+>>>> -NAND_ECC_CAPS_SINGLE(meson_axg_ecc_caps,
+>>>> -		     meson_nand_calc_ecc_bytes, 1024, 8);
+>>>> +
+>>>> +static const int axg_stepinfo_strengths[] = { 8 };
+>>>> +static const struct nand_ecc_step_info axg_stepinfo_1024 = {
+>>>> +	.stepsize = 1024,
+>>>> +	.strengths = axg_stepinfo_strengths,
+>>>> +	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
+>>>> +};
+>>>> +
+>>>> +static const struct nand_ecc_step_info axg_stepinfo_512 = {
+>>>> +	.stepsize = 512,
+>>>> +	.strengths = axg_stepinfo_strengths,
+>>>> +	.nstrengths = ARRAY_SIZE(axg_stepinfo_strengths)
+>>>> +};
+>>>> +
+>>>> +static const struct nand_ecc_step_info axg_stepinfo[] = { axg_stepinfo_1024, axg_stepinfo_512 };
+>>>> +
+>>>> +static const struct nand_ecc_caps meson_axg_ecc_caps = {
+>>>> +	.stepinfos = axg_stepinfo,
+>>>> +	.nstepinfos = ARRAY_SIZE(axg_stepinfo),
+>>>> +	.calc_ecc_bytes = meson_nand_calc_ecc_bytes,
+>>>> +};
+>>>>  
+>>>>  static struct meson_nfc_nand_chip *to_meson_nand(struct nand_chip *nand)
+>>>>  {
+>>>> @@ -1259,7 +1281,8 @@ static int meson_nand_bch_mode(struct nand_chip *nand)
+>>>>  		return -EINVAL;
+>>>>  
+>>>>  	for (i = 0; i < ARRAY_SIZE(meson_ecc); i++) {
+>>>> -		if (meson_ecc[i].strength == nand->ecc.strength) {
+>>>> +		if (meson_ecc[i].strength == nand->ecc.strength &&
+>>>> +		    meson_ecc[i].size == nand->ecc.size) {
+>>>>  			meson_chip->bch_mode = meson_ecc[i].bch;
+>>>>  			return 0;
+>>>>  		}
+>>>> @@ -1278,7 +1301,7 @@ static int meson_nand_attach_chip(struct nand_chip *nand)
+>>>>  	struct meson_nfc *nfc = nand_get_controller_data(nand);
+>>>>  	struct meson_nfc_nand_chip *meson_chip = to_meson_nand(nand);
+>>>>  	struct mtd_info *mtd = nand_to_mtd(nand);
+>>>> -	int nsectors = mtd->writesize / 1024;
+>>>> +	int nsectors = mtd->writesize / 512;  
+>>>
+>>> This cannot be unconditional, right?  
+>>
+>> Hello Miquel!
+>>
+>> Yes, this code looks strange. 'nsectors' is used to calculate space in OOB
+>> that could be used by ECC engine (this value will be passed as 'oobavail'
+>> to 'nand_ecc_choose_conf()'). Idea of 512 is to consider "worst" case
+>> for ECC, e.g. minimal number of bytes for ECC engine (and at the same time
+>> maximum number of free bytes). For Meson, if ECC step size is 512, then we
+>> have 4 x 2 free bytes in OOB (if step size if 1024 then we have 2 x 2 free
+>> bytes in OOB).
+>>
+>> I think this code could be reworked in the following way:
+>>
+>> if ECC step size is already known here (from DTS), calculate 'nsectors' using
+>> given value (div by 512 for example). Otherwise calculate 'nsectors' in the
+>> current manner:
+> 
+> It will always be known when these function are run. There is no
+> guessing here.
 
-...
+Hm I checked, that but if step size is not set in DTS, here it will be 0, 
+then it will be selected in 'nand_ecc_choose_conf()' according provided 'ecc_caps'
+and 'oobavail'...
 
-> +		qspi: spi@13010000 {
-> +			compatible = "starfive,jh7110-qspi", "cdns,qspi-nor";
-> +			reg = <0x0 0x13010000 0x0 0x10000>,
-> +			      <0x0 0x21000000 0x0 0x400000>;
-> +			interrupts = <25>;
-> +			clocks = <&syscrg JH7110_SYSCLK_QSPI_REF>,
-> +				 <&syscrg JH7110_SYSCLK_QSPI_AHB>,
-> +				 <&syscrg JH7110_SYSCLK_QSPI_APB>;
-> +			clock-names = "ref", "ahb", "apb";
-> +			resets = <&syscrg JH7110_SYSRST_QSPI_APB>,
-> +				 <&syscrg JH7110_SYSRST_QSPI_AHB>,
-> +				 <&syscrg JH7110_SYSRST_QSPI_REF>;
-> +			reset-names = "qspi", "qspi-ocp", "rstc_ref";
-> +			cdns,fifo-depth = <256>;
-> +			cdns,fifo-width = <4>;
-> +			cdns,trigger-address = <0x0>;
+Anyway, I'll do the following thing:
 
-Bus nodes are usually disabled by default and enabled when needed for
-specific boards.
+int nsectors;
 
-Best regards,
-Krzysztof
+if (nand->ecc.size)
+    nsectors = mtd->writesize / nand->ecc.size; <--- this is for 512 ECC
+else
+    nsectors = mtd->writesize / 1024; <--- this is for default 1024 ECC
 
+Thanks, Arseniy
+
+> 
+>>
+>> int nsectors = mtd->writesize / 1024;
+>>
+>> Moreover 1024 is default ECC step size for this driver, so default behaviour
+>> will be preserved.
+> 
+> Yes, otherwise you would break existing users.
+> 
+>>
+>> Thanks, Arseniy
+>>
+>>>   
+>>>>  	int raw_writesize;
+>>>>  	int ret;
+>>>>    
+>>>
+>>>
+>>> Thanks,
+>>> Miquèl  
+> 
+> 
+> Thanks,
+> Miquèl
