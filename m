@@ -2,67 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0EF30746BA6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:16:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6ADDD746BB5
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:17:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230216AbjGDIQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 04:16:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44644 "EHLO
+        id S231417AbjGDIR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 04:17:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45282 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229895AbjGDIQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:16:11 -0400
+        with ESMTP id S231433AbjGDIR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:17:26 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73879BD
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:16:09 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1qGbCX-0002xR-Ep; Tue, 04 Jul 2023 10:15:57 +0200
-Message-ID: <b382e51d-2f57-c4ab-7590-2083bd771abd@pengutronix.de>
-Date:   Tue, 4 Jul 2023 10:15:55 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.2
-Subject: Re: [PATCH 2/2] ARM: dts: imx6: pfla02: Fix SD card reboot problem
-Content-Language: en-US
-To:     Andrej Picej <andrej.picej@norik.com>, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16F3D107
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:17:24 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qGbDk-00038d-Px; Tue, 04 Jul 2023 10:17:12 +0200
+Received: from mfe by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1qGbDk-00057a-Ew; Tue, 04 Jul 2023 10:17:12 +0200
+Date:   Tue, 4 Jul 2023 10:17:12 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Andrej Picej <andrej.picej@norik.com>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, upstream@phytec.de
+Subject: Re: [PATCH 2/2] ARM: dts: imx6: pfla02: Fix SD card reboot problem
+Message-ID: <20230704081712.7dyj2mspj2m25rp7@pengutronix.de>
 References: <20230704080304.816942-1-andrej.picej@norik.com>
  <20230704080304.816942-3-andrej.picej@norik.com>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 In-Reply-To: <20230704080304.816942-3-andrej.picej@norik.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+User-Agent: NeoMutt/20180716
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: mfe@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Andrej,
-
-On 04.07.23 10:03, Andrej Picej wrote:
+On 23-07-04, Andrej Picej wrote:
 > If regulator is not marked as always-on the regulator gets disabled on
 > reboot breaking the next boot.
-
-While this is ok as a fix, the real issue is that your system reset doesn't
-restore PMIC rails to a good state. Are you perhaps doing a SoC-internal
-reset only or have the PMIC misconfigured?
-
-Cheers,
-Ahmad
-
 > 
 > Signed-off-by: Andrej Picej <andrej.picej@norik.com>
 > ---
@@ -78,13 +70,18 @@ Ahmad
 >  				regulator-min-microvolt = <3300000>;
 >  				regulator-max-microvolt = <3300000>;
 > +				regulator-always-on;
+
+I think this is the supply for the sd-card, so you can make use of
+'vmmc-supply'.
+
+Regards,
+  Marco
+
 >  			};
 >  
 >  			vdd_sd1_reg: ldo10 {
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
-
+> -- 
+> 2.25.1
+> 
+> 
+> 
