@@ -2,135 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 294977472C8
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0C337472EA
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:41:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230364AbjGDNfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 09:35:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48264 "EHLO
+        id S229994AbjGDNlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 09:41:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230238AbjGDNfL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:35:11 -0400
-Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3BD10A
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 06:35:10 -0700 (PDT)
-Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-57764a6bf8cso47136837b3.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 06:35:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688477709; x=1691069709;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=WqIHh+G4XahXVKdkslZXY2hDyJ9c234XGoQUojzzroA=;
-        b=y3EPa0BxKmG5AolGrBXtKtk5yxu7UDdfkbh9qbFcLUnY5WWexlDXKwKEOAjVlVakkJ
-         uKxLuoTitJmFs9PO9UDVAUlC9SoX6MKokSyPQhLsCyQRSkaYA0j8hInarR9amNsIwVOF
-         Jy4w/a2ROrnNsnygY5w8aIb+I6Nixvp0EWrPTND8WlYO+q1OqPUz4PbJaEx/JlhPPRzM
-         qGpH7ZfPtT6VNBslTQ4VoBMb0GbxzKaIx6dW3oDVN5G3jtmoBhaMk7VtbfjdAbxGSuz3
-         BHvgh4lxl6BpC/p2KjCHpH1s1kXvESul+KB40C3D8TkAWE9Wf4vUiXgL94YB2Us1H4Ar
-         acbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688477709; x=1691069709;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WqIHh+G4XahXVKdkslZXY2hDyJ9c234XGoQUojzzroA=;
-        b=IlR2lfdR0NWmEZvwgWI0eBWnDWdCm4te11lscwy+DkL0zJncYlh+43FCbHpQPYe2Py
-         iGdg8sMfo/vw0a3Te0fNyUYKj2sP3vzHDPt6INfOXhGO4wF/wHAr9JIB8pKf5e7eAJIj
-         wUbNAhpwpKaQUAZ2ukPZ1CH0KS+eVCqrypB3XCPc34vldxZiPxkk+o5C2jMn97AMPfAx
-         O7yuEW4Nz+RimNXfm/L2gEYrEfscdSDflisItTQTZcmxmy8V/Hohxe1Pdq7wmq0C89CD
-         ZGwZo3AQbHRLbpBatb+laDNTjWM6vEaaiq3bmagZ77f3C4VToOV3QGUACb7RLL2abL0M
-         5lYA==
-X-Gm-Message-State: ABy/qLa/oEez2uQcoQ/nxj1JqY9pStj7l4adXstoxK5X17phec94NA9H
-        GrxQ+A2zFn7rdg1mB+qE1VedqrclZ3PHrDA1RsyxnRgT6KdLWnC4sRI=
-X-Google-Smtp-Source: APBJJlEYH6VsmNEu5MYnqCp4aZICtRhSpFUOoR+/B14onGj+m97qmuMBKMWWYtMv7ca/U7kvG6k+qXQV+bE2WdHHHyo=
-X-Received: by 2002:a5b:f07:0:b0:c13:aca0:b70a with SMTP id
- x7-20020a5b0f07000000b00c13aca0b70amr12114660ybr.32.1688477709691; Tue, 04
- Jul 2023 06:35:09 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230702175045.122041-1-dmitry.baryshkov@linaro.org>
- <20230702175045.122041-5-dmitry.baryshkov@linaro.org> <971262d5-98b3-c48e-89fd-ce107275008a@linaro.org>
-In-Reply-To: <971262d5-98b3-c48e-89fd-ce107275008a@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Tue, 4 Jul 2023 16:34:58 +0300
-Message-ID: <CAA8EJpqvk02LeuS=-pPLUi=0OsBQ0npqioEtYkiNfPm+0EpF8Q@mail.gmail.com>
-Subject: Re: [RFC PATCH 4/8] ARM: dts: qcom: msm8960-cdp: constraint cpufreq regulators
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230256AbjGDNlP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:41:15 -0400
+Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954F2E6D;
+        Tue,  4 Jul 2023 06:41:13 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1688478072;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=QJLhG5xef0Dm9kVxipRfJ1zAKqJpL9r++IajKk5AkNU=;
+        b=pZo+4NrPp2dycBIRoGMvUMInSYsTFLDpojazcKafyNd55aRmC80dmZ1TZdYaeVs3mfgjBE
+        z6ngQq4XpQ7bf5wQ2kp6Wzt7xDHanylnonV7EkM+d+LnLuDobkEPsoLkh+3gpPDbbgwy29
+        vbjXtpOZPjanZTztmEfCWazX4Lgpl+QXBjT/gdKdhQcq1+x+DdcRUuscmFGFmhgGn/2V6H
+        vCyMqXZ2ZVDsIKLbSwQGOD2dMUUzCWV/hB7/CdX44FztFNvbk5M+8U0Zr2R6dumBq+AmIY
+        9VbRtRlJnIx8NOokmg9NJjeqGgYG+rmqreo7wsMxVxuXqXZIPGyqvZVsvtM/fQ==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 6F5DEC000B;
+        Tue,  4 Jul 2023 13:41:08 +0000 (UTC)
+Date:   Tue, 4 Jul 2023 15:41:06 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Arseniy Krasnov <avkrasnov@sberdevices.ru>
+Cc:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC
+ step size
+Message-ID: <20230704154106.5c5aafd8@xps-13>
+In-Reply-To: <ee2eb73a-fb25-58ae-cf7e-83d971b7b8b2@sberdevices.ru>
+References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
+        <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
+        <20230704103617.4affae8a@xps-13>
+        <9e6eaa87-887c-f955-113a-43860c8ea00c@sberdevices.ru>
+        <20230704114110.25ca9de4@xps-13>
+        <aede4639-0e99-565a-c997-c414342c66af@sberdevices.ru>
+        <20230704115628.55320428@xps-13>
+        <ee2eb73a-fb25-58ae-cf7e-83d971b7b8b2@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Jul 2023 at 16:03, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->
-> On 2.07.2023 19:50, Dmitry Baryshkov wrote:
-> > Add additional constraints to the CPUfreq-related regulators, it is
-> > better be safe than sorry there.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > ---
-> I'm squinting quite hard at
->
-> https://github.com/LineageOS/sony-kernel-msm8960/blob/jb-dev/arch/arm/mach-msm/acpuclock-8960.c
->
-> but I can't figure out where these min values came from
+Hi Arseniy,
 
-These should be the minimum values for vdd_min and vdd_dig in
-l2_freq_tbl_8960_kraitv2 (v1 is unsupported in mainline).
-See below,
+> >>>> Yes, this code looks strange. 'nsectors' is used to calculate space =
+in OOB
+> >>>> that could be used by ECC engine (this value will be passed as 'ooba=
+vail'
+> >>>> to 'nand_ecc_choose_conf()'). Idea of 512 is to consider "worst" case
+> >>>> for ECC, e.g. minimal number of bytes for ECC engine (and at the sam=
+e time
+> >>>> maximum number of free bytes). For Meson, if ECC step size is 512, t=
+hen we
+> >>>> have 4 x 2 free bytes in OOB (if step size if 1024 then we have 2 x =
+2 free
+> >>>> bytes in OOB).
+> >>>>
+> >>>> I think this code could be reworked in the following way:
+> >>>>
+> >>>> if ECC step size is already known here (from DTS), calculate 'nsecto=
+rs' using
+> >>>> given value (div by 512 for example). Otherwise calculate 'nsectors'=
+ in the
+> >>>> current manner:   =20
+> >>>
+> >>> It will always be known when these function are run. There is no
+> >>> guessing here.   =20
+> >>
+> >> Hm I checked, that but if step size is not set in DTS, here it will be=
+ 0,=20
+> >> then it will be selected in 'nand_ecc_choose_conf()' according provide=
+d 'ecc_caps'
+> >> and 'oobavail'...
+> >>
+> >> Anyway, I'll do the following thing:
+> >>
+> >> int nsectors;
+> >>
+> >> if (nand->ecc.size)
+> >>     nsectors =3D mtd->writesize / nand->ecc.size; <--- this is for 512=
+ ECC =20
+> >=20
+> > You should set nand->ecc.size in ->attach_chip() instead. =20
+>=20
+> Sorry, didn't get it... if ECC step size is set in DTS, then here, in chi=
+p attach
+> callback it will be already known (DT part was processed in 'rawnand_dt_i=
+nit()').
+> If ECC step size is unknown (e.g. 0 here), 'nand_ecc_choose_conf()' will =
+set it
+> according provided ecc caps. What do You mean for "You should set ..." ?
 
->
-> Konrad
-> >  arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
-> > index 414881d34c60..cba0d1e460a1 100644
-> > --- a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
-> > +++ b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
-> > @@ -131,7 +131,7 @@ pm8921_s2: s2 {
-> >               };
-> >
-> >               pm8921_s3: s3 {
-> > -                     regulator-min-microvolt = <500000>;
-> > +                     regulator-min-microvolt = <950000>;
+The current approach is wrong, it decides the number of ECC chunks
+(called nsectors in the driver) and then asks the core to decide the
+number of ECC chunks to use.
 
-And this is obviously a c&p from 8064. This should be 1050000.
+Just provide mtd->oobsize - 2 as last parameter and then rely on the
+core's logic to find the right ECC step-size/strength?
 
-> >                       regulator-max-microvolt = <1150000>;
-> >                       qcom,switch-mode-frequency = <4800000>;
-> >                       bias-pull-down;
-> > @@ -287,7 +287,7 @@ pm8921_l23: l23 {
-> >               };
-> >
-> >               pm8921_l24: l24 {
-> > -                     regulator-min-microvolt = <750000>;
-> > +                     regulator-min-microvolt = <1050000>;
-> >                       regulator-max-microvolt = <1150000>;
-> >                       bias-pull-down;
-> >               };
+There is no point in requesting a particular step size without a
+specific strength, or? So I believe you should provide both in the DTS
+if you want particular parameters to be applied, otherwise you can let
+the core decide what is best.
 
-
-
--- 
-With best wishes
-Dmitry
+Thanks,
+Miqu=C3=A8l
