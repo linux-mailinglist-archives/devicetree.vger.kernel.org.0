@@ -2,56 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59F847466EA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 03:38:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9E3D7466FC
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 03:51:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbjGDBiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 3 Jul 2023 21:38:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47922 "EHLO
+        id S230482AbjGDBvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 3 Jul 2023 21:51:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229698AbjGDBiv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 21:38:51 -0400
-Received: from mail.loongson.cn (mail.loongson.cn [114.242.206.163])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id E33EDE4E;
-        Mon,  3 Jul 2023 18:38:48 -0700 (PDT)
-Received: from loongson.cn (unknown [10.20.42.35])
-        by gateway (Coremail) with SMTP id _____8AxhMQneKNkpWMFAA--.9010S3;
-        Tue, 04 Jul 2023 09:38:47 +0800 (CST)
-Received: from [10.20.42.35] (unknown [10.20.42.35])
-        by localhost.localdomain (Coremail) with SMTP id AQAAf8DxfSMeeKNkUJMaAA--.33054S3;
-        Tue, 04 Jul 2023 09:38:45 +0800 (CST)
-Subject: Re: [PATCH v4 2/2] soc: loongson2_pm: add power management support
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        with ESMTP id S229897AbjGDBvy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 3 Jul 2023 21:51:54 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52982E4E;
+        Mon,  3 Jul 2023 18:51:47 -0700 (PDT)
+X-UUID: 518017aa1a0d11eeb20a276fd37b9834-20230704
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=IPhmurxIVo/R0GRBWKcyDnc4vP2+DDeDn+FJPxUQvro=;
+        b=Lo7Fp9YJzKNU2+IXARn4LoFOyys4yb1J2oHaH6pfqGYuDdJoxqGNs5jzVQ7xJNfXLAY5PM3X/U9oTTsIfqmjTJITfTS8vAd7RIdokERzO7I8I+hQUadLOcE/lQ5mEFupZB/vfRQMJEGBH+UIavVGLkX5Xr6c8GoKyeWfFaN2DHA=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.27,REQID:5f027663-c10e-461a-be6c-0c33f285a6fb,IP:0,U
+        RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
+        :release,TS:-5
+X-CID-META: VersionHash:01c9525,CLOUDID:3da8d20d-c22b-45ab-8a43-3004e9216b56,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:11|1,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:
+        NO
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULN
+X-UUID: 518017aa1a0d11eeb20a276fd37b9834-20230704
+Received: from mtkmbs11n1.mediatek.inc [(172.21.101.185)] by mailgw02.mediatek.com
+        (envelope-from <xiaoyong.lu@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 1497641359; Tue, 04 Jul 2023 09:51:39 +0800
+Received: from mtkmbs11n2.mediatek.inc (172.21.101.187) by
+ mtkmbs13n2.mediatek.inc (172.21.101.108) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Tue, 4 Jul 2023 09:51:38 +0800
+Received: from mhfsdcap04.gcn.mediatek.inc (10.17.3.154) by
+ mtkmbs11n2.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Tue, 4 Jul 2023 09:51:37 +0800
+From:   Xiaoyong Lu <xiaoyong.lu@mediatek.com>
+To:     Yunfei Dong <yunfei.dong@mediatek.com>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Andrew-CT Chen <andrew-ct.chen@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Liu Yun <liuyun@loongson.cn>
-Cc:     Jianmin Lv <lvjianmin@loongson.cn>, wanghongliang@loongson.cn,
-        Liu Peibao <liupeibao@loongson.cn>,
-        loongson-kernel@lists.loongnix.cn, zhuyinbo@loongson.cn
-References: <20230620090811.721-1-zhuyinbo@loongson.cn>
- <20230620090811.721-3-zhuyinbo@loongson.cn>
- <bd9661f1-b77d-2ce9-0de2-f559576bf55a@loongson.cn>
- <5f501f0f-2362-4079-d833-6883b674e588@linaro.org>
-From:   zhuyinbo <zhuyinbo@loongson.cn>
-Message-ID: <ea9e6648-668a-202b-6d4f-b9c06db32c3a@loongson.cn>
-Date:   Tue, 4 Jul 2023 09:38:38 +0800
-User-Agent: Mozilla/5.0 (X11; Linux loongarch64; rv:68.0) Gecko/20100101
- Thunderbird/68.7.0
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Tomasz Figa <tfiga@google.com>
+CC:     George Sun <george.sun@mediatek.com>,
+        Xiaoyong Lu <xiaoyong.lu@mediatek.com>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Fritz Koenig <frkoenig@chromium.org>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Irui Wang <irui.wang@mediatek.com>,
+        Steve Cho <stevecho@chromium.org>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [v2] media: mediatek: vcodec: fix AV1 decode fail for 36bit iova
+Date:   Tue, 4 Jul 2023 09:51:35 +0800
+Message-ID: <20230704015135.31850-1-xiaoyong.lu@mediatek.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <5f501f0f-2362-4079-d833-6883b674e588@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: AQAAf8DxfSMeeKNkUJMaAA--.33054S3
-X-CM-SenderInfo: 52kx5xhqerqz5rrqw2lrqou0/
-X-Coremail-Antispam: 1Uk129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7KY7
-        ZEXasCq-sGcSsGvfJ3UbIjqfuFe4nvWSU5nxnvy29KBjDU0xBIdaVrnUUvcSsGvfC2Kfnx
-        nUUI43ZEXa7xR_UUUUUUUUU==
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,DKIM_INVALID,
+        DKIM_SIGNED,HK_RANDOM_ENVFROM,HK_RANDOM_FROM,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -59,20 +86,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Fix av1 decode fail when iova is 36bit.
 
+Decoder hardware will access incorrect iova address when tile buffer is
+36bit, it will lead to iommu fault when hardware access dram data.
 
-在 2023/7/3 下午9:47, Krzysztof Kozlowski 写道:
-> On 03/07/2023 03:30, zhuyinbo wrote:
->>
->> Friendly ping ?
->>
-> 
-> Please avoid pings during merge window. Not much can happen with the
-> patchset anyway. Resend or ping afterwards.
-> 
+Fixes: 2f5d0aef37c6 ("media: mediatek: vcodec: support stateless AV1 decoder")
+Signed-off-by: Xiaoyong Lu<xiaoyong.lu@mediatek.com>
+---
+Changes from v1
 
+- prefer '|' rather than '+'
+- prefer '&' rather than shift operation
+- add comments for address operations
 
-okay, I got it.
+v1:
+- VDEC HW can access tile buffer and decode normally.
+- Test ok by mt8195 32bit and mt8188 36bit iova.
 
-Thanks
+---
+ .../mediatek/vcodec/vdec/vdec_av1_req_lat_if.c       | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c b/drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c
+index 404a1a23fd402..e9f2393f6a883 100644
+--- a/drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c
++++ b/drivers/media/platform/mediatek/vcodec/vdec/vdec_av1_req_lat_if.c
+@@ -1658,9 +1658,9 @@ static void vdec_av1_slice_setup_tile_buffer(struct vdec_av1_slice_instance *ins
+ 	u32 allow_update_cdf = 0;
+ 	u32 sb_boundary_x_m1 = 0, sb_boundary_y_m1 = 0;
+ 	int tile_info_base;
+-	u32 tile_buf_pa;
++	u64 tile_buf_pa;
+ 	u32 *tile_info_buf = instance->tile.va;
+-	u32 pa = (u32)bs->dma_addr;
++	u64 pa = (u64)bs->dma_addr;
+ 
+ 	if (uh->disable_cdf_update == 0)
+ 		allow_update_cdf = 1;
+@@ -1673,8 +1673,12 @@ static void vdec_av1_slice_setup_tile_buffer(struct vdec_av1_slice_instance *ins
+ 		tile_info_buf[tile_info_base + 0] = (tile_group->tile_size[tile_num] << 3);
+ 		tile_buf_pa = pa + tile_group->tile_start_offset[tile_num];
+ 
+-		tile_info_buf[tile_info_base + 1] = (tile_buf_pa >> 4) << 4;
+-		tile_info_buf[tile_info_base + 2] = (tile_buf_pa % 16) << 3;
++		/* save av1 tile high 4bits(bit 32-35) address in lower 4 bits position
++		 * and clear original for hw requirement.
++		 */
++		tile_info_buf[tile_info_base + 1] = (tile_buf_pa & 0xFFFFFFF0ull) |
++			((tile_buf_pa & 0xF00000000ull) >> 32);
++		tile_info_buf[tile_info_base + 2] = (tile_buf_pa & 0xFull) << 3;
+ 
+ 		sb_boundary_x_m1 =
+ 			(tile->mi_col_starts[tile_col + 1] - tile->mi_col_starts[tile_col] - 1) &
+-- 
+2.18.0
 
