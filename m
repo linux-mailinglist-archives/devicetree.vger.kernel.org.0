@@ -2,118 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F576747686
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 18:27:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C7DA747703
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 18:42:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231704AbjGDQ10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 12:27:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38184 "EHLO
+        id S231750AbjGDQmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 12:42:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46242 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231649AbjGDQ1S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 12:27:18 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5BBE1709;
-        Tue,  4 Jul 2023 09:27:17 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 5A714612FC;
-        Tue,  4 Jul 2023 16:27:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2C45EC433C7;
-        Tue,  4 Jul 2023 16:27:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688488036;
-        bh=RCmzxehzebrqRgx9G9jdNhWmK0+1CXN/OnL9vYnuNzw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=QTFTfSfxbp6l2PYD/GBq+4AYTMmWuQ5TLEgcmHsrG5hay+Ra+OvbLtgQ+IYoe9LK1
-         rcRRskOA/JDkbDNEIOkkdEMWfI9F2HXuFu0VZj9X3GLBqBIzhDDg5mo+A1VZDBdiz1
-         mTTZcVeV2fhu9Po8qvMk2XC39JGYicAdynM9Bn/RUjB2pcGYJVL1ANdpPxdd0pz/d7
-         KZM1VsP8lYY+vSsG/nK+USSi9w1tcWXq/dXge1rwAItpYWC6K+vhmoybaIIFfj2b2r
-         qsZOSm0gy2Nlk9ScxFPMUq+pyFhorTrEROledeBwzQ81AXIjqej+4st1qZRUJq3bxR
-         CnUgyaeoB7Y0g==
-Date:   Tue, 4 Jul 2023 17:27:11 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     =?utf-8?B?UGF3ZcWC?= Anikiel <pan@semihalf.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-media@vger.kernel.org, dinguyen@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, mchehab@kernel.org, upstream@semihalf.com,
-        amstan@chromium.org, ribalda@chromium.org
-Subject: Re: [RFC PATCH 3/3] ARM: dts: Add Chameleon v3 video node
-Message-ID: <20230704-denture-pleat-dec490f218d4@spud>
-References: <20230630144006.1513270-1-pan@semihalf.com>
- <20230630144006.1513270-4-pan@semihalf.com>
- <20230630-scrimmage-antelope-7d1f82d491fc@spud>
- <CAF9_jYT1Fz4hBQrNtgkM6mU-JVH=ZxsJnkaLDsa5uoEV_hTLVA@mail.gmail.com>
- <df7440e2-58b0-9f12-8f37-4f0d9050f934@linaro.org>
- <CAF9_jYSwDdyE6mj8+1bA23MWmFHdm16jTSYaRQiF1kzpUtkMNQ@mail.gmail.com>
- <e9fe352a-92fc-023b-8ce2-9a82cbeaada9@linaro.org>
+        with ESMTP id S231756AbjGDQmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 12:42:12 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13D6C10EC;
+        Tue,  4 Jul 2023 09:42:10 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b69923a715so90056071fa.0;
+        Tue, 04 Jul 2023 09:42:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688488928; x=1691080928;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=yupS//9NmMxfnT6ltG5kxVBogtqQcoE8/2q6AUUdGQw=;
+        b=FG28R3P6sSBELo1BHbDh1u5yXRQtjbi5PCB0MoKyVK7IEKtJZajXi3XuqG5Ml6I45+
+         yZHUmy6XsrEMAxnm1IzZ8BztupTZC0Z9fpWlqK8LGHVk2F2apsSIukrAHilS2oxa/xAS
+         qpihh/xfR7BUIthE3ApDowHFV5XZUeX0LpTcIqMU/7V2xIPOQj3Vpor+WiZeEQRKpZX5
+         l+7kpLghxGLlwcG7YCoOLx/zJjoROv8J8JqBp1pN9JdZrMnPjxiZgvczFAJWu+OYxfQF
+         iK1tP2gS0VXdP/BD7rDoFPetrExeVBXCYhvXmzTwIXDylQkw396omYx4cHktqagcfCPc
+         V0PQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688488928; x=1691080928;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=yupS//9NmMxfnT6ltG5kxVBogtqQcoE8/2q6AUUdGQw=;
+        b=YfikvDlJiviSB5xQlVy6wfiaYGXkJgElQAYuPdOjZYEg43gcW292+jJR0pT3xKdO5O
+         iGvDtabp8RcYZTJK6gCPjbghSgRIgg8M0oD/tWt2IxhU+BhbYsMOVX2DTslHC+e+U6Fk
+         MfY4MAAB5WLFI7dBNBcQtPsQYUsPp92btlOD1x8TQPngv4H18h7EDFNseGAkyi36owj3
+         h9pPHrsAQOtfa0rzoESfI1AfUPnb6dEsKwzQlGt+a5rCtN46ucvyUtvH6EhczAfJjXo8
+         sqsm3kSl7TJ3PWq+MNUdHPXgCXyzORt4SwqK1HioOuQCF9QNr+V4YoaNDkWyMd01aq64
+         F3Hw==
+X-Gm-Message-State: ABy/qLZaOqbZitZxJkfHQ8x6NGRGSHSUHloYm6f9tVjrQ/yUmfQ7aV9H
+        U68ljrpR/5pyqlkA0en/dJI=
+X-Google-Smtp-Source: APBJJlF3gZ2pDkNLrQ+Vr/5gwS3fkTjsbD4Rft28N6ngjS3EphzfTJ2DCzAq9VU2i+6oKg3rNxFEXQ==
+X-Received: by 2002:a2e:9209:0:b0:2b4:490a:66b7 with SMTP id k9-20020a2e9209000000b002b4490a66b7mr11624877ljg.12.1688488927887;
+        Tue, 04 Jul 2023 09:42:07 -0700 (PDT)
+Received: from david-ryuzu.fritz.box ([188.195.169.176])
+        by smtp.googlemail.com with ESMTPSA id u15-20020a2e2e0f000000b002b6eb5db863sm1181920lju.43.2023.07.04.09.42.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 04 Jul 2023 09:42:07 -0700 (PDT)
+From:   David Wronek <davidwronek@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        David Wronek <davidwronek@gmail.com>
+Subject: [PATCH 0/7] Add initial support for SM7125 and Xiaomi SM7125 platform
+Date:   Tue,  4 Jul 2023 18:31:53 +0200
+Message-ID: <20230704163848.169853-2-davidwronek@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5WLOzH29bRZqVRPT"
-Content-Disposition: inline
-In-Reply-To: <e9fe352a-92fc-023b-8ce2-9a82cbeaada9@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces support for the Qualcomm SM7125 and the Xiaomi
+SM7125 platform.
 
---5WLOzH29bRZqVRPT
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+David Wronek (3):
+  dt-bindings: arm: qcom: Document SM7125 and xiaomi,joyeuse board
+  arm64: dts: qcom: pm6150: Add resin and rtc nodes
+  arm64: dts: qcom: Add support for the Xiaomi SM7125 platform
 
-On Tue, Jul 04, 2023 at 06:23:10PM +0200, Krzysztof Kozlowski wrote:
-> On 04/07/2023 18:16, Pawe=C5=82 Anikiel wrote:
-> >>>>> +     soc {
-> >>>>> +             video@c0060500 {
-> >>>>> +                     compatible =3D "google,chv3-video";
-> >>>>
-> >>>> This compatible does not seem to be documented & I did not see a com=
-ment
-> >>>> about the lack of a binding in the cover letter. What am I missing?
-> >>>
-> >>> Yes, the compatible is not documented for now (I'll do that in a later
-> >>> patchset), sorry for not mentioning that in the cover letter.
-> >>
-> >> You cannot add undocumented compatible. This cannot be fixed in "a lat=
-er
-> >> patchset".
-> >=20
-> > I meant later revision, I'm certainly not expecting this one to land
-> > (I sent is as an RFC).
->=20
-> That's not clear. RFC is interpreted differently by different people.
-> Some just ignore it entirely, some still review.
->=20
-> > Is it really necessary to document the
-> > compatible to get any form of feedback on the overall structure of the
-> > driver?
->=20
-> Depends on the person. Anyway no problem for me - I will just ignore the
-> patchset.
+map220v (4):
+  dt-bindings: arm: qcom,ids: Add SoC ID for SM7125
+  soc: qcom: socinfo: Add SoC ID for SM7125
+  clk: qcom: gcc-sc7180: Fix up gcc_sdcc2_apps_clk_src
+  arm64: dts: qcom: Add SM7125 device tree
 
-FWIW, I was asking about it in case you weren't aware Pawe=C5=82 that you
-would need to document the properties, since it wasn't mentioned
-anywhere.
+ .../devicetree/bindings/arm/qcom.yaml         |   6 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/pm6150.dtsi          |  15 +
+ .../boot/dts/qcom/sm7125-xiaomi-joyeuse.dts   |  16 +
+ .../boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi  | 420 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm7125.dtsi          |  16 +
+ drivers/clk/qcom/gcc-sc7180.c                 |   1 +
+ drivers/soc/qcom/socinfo.c                    |   1 +
+ include/dt-bindings/arm/qcom,ids.h            |   1 +
+ 9 files changed, 477 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125.dtsi
 
---5WLOzH29bRZqVRPT
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.41.0
 
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKRIXwAKCRB4tDGHoIJi
-0jGZAQDWQB4jPolKqW8X5dQ9ioDGdBhLx+zbPGKZ4XL1su+RKwD/ZK/JRwBZsIW/
-HvRU+5FmDR5N084z2Q3cA8a0IV0YdAE=
-=AD9h
------END PGP SIGNATURE-----
-
---5WLOzH29bRZqVRPT--
