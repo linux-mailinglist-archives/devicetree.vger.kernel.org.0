@@ -2,91 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 08F13746C94
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 11:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 279BF746B6F
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:06:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbjGDJAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 05:00:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33986 "EHLO
+        id S231349AbjGDIGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 04:06:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40194 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230414AbjGDJAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 05:00:06 -0400
-X-Greylist: delayed 3349 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Tue, 04 Jul 2023 02:00:03 PDT
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F752127;
-        Tue,  4 Jul 2023 02:00:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
-        Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=jM+TtMP9aKuqji/7LgTWiurmTk0GfsL2Jv2TGbk6/bU=; b=PZNwwdZO7AB9Wp+MmHl7kWIWmW
-        9fvQRGFrIzF2mRupJNfp4ag+TIBZqrZ/bcf1WqBURdEmK7GBfkwXLQ/d1cT5UWohTC2wcSmWSUs9w
-        3PV5fSBnUOPj5ZejUYMHUhvwZT2gS+vu680ICVZbPcgbJATB4Wgy3aGQ5P9IVMhgK4OHiBVvKxY6E
-        JtSvdA7F8howtiuUwm4nlYzqUjZvtQBQ1679UFznfZfvSUPd2Br2yXv4hE/EFtoa1U1/nqKGUQ3es
-        RGChHez9ofgNhh5Ze4Ud6lkHl3eZ8++l8lb1q2Tr9LrjlMCkgLMrkH/KHpSE9PNNK53kMSt0oN8rb
-        WPK1m9YQ==;
-Received: from [89.212.21.243] (port=50488 helo=localhost.localdomain)
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.96)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1qGb1A-009KMj-01;
-        Tue, 04 Jul 2023 10:04:12 +0200
-From:   Andrej Picej <andrej.picej@norik.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, upstream@phytec.de
-Subject: [PATCH 2/2] ARM: dts: imx6: pfla02: Fix SD card reboot problem
-Date:   Tue,  4 Jul 2023 10:03:04 +0200
-Message-Id: <20230704080304.816942-3-andrej.picej@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230704080304.816942-1-andrej.picej@norik.com>
-References: <20230704080304.816942-1-andrej.picej@norik.com>
+        with ESMTP id S231225AbjGDIF7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:05:59 -0400
+Received: from mail-ed1-x534.google.com (mail-ed1-x534.google.com [IPv6:2a00:1450:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D836EE6D
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:05:52 -0700 (PDT)
+Received: by mail-ed1-x534.google.com with SMTP id 4fb4d7f45d1cf-51d5569e4d1so5002026a12.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 01:05:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688457951; x=1691049951;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=kE2ue8LGVuugjUiTDaUn50VTM+JPtGA4JYDXutTtpKg=;
+        b=eZ00IGtMjV0y8RSQK1G+L0JHyYMiUuhSy0hbYWjiVnQLMwCWZ/IbI42ATFnlfasT06
+         UEKPptczTbQ7Ntat16D4ikwpLo7FGp/AK8n1tySnfm0X+7xc+iP0AFLN2C5pOlTy5vG1
+         QQ4C+QUqhLgU+bWtJqknLZSKyr7CYJJSTxOuvkYVpCQ9HEMu1iyoWvZl8r1PXPX5O5ZI
+         cwdUXUGQ4csqkxt3yfQa/Jw/F2rOpj52jNlEz2gupm5UIulDa7QRluGNlBbbO0VuZFJT
+         ESv5SV+AL8miTQbyxzmzwKkOIASl9povXsUxIY+lFfj+clJh/4r49dX25wlDnBq7A+lM
+         bPOw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688457951; x=1691049951;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=kE2ue8LGVuugjUiTDaUn50VTM+JPtGA4JYDXutTtpKg=;
+        b=XhBYo7K6yc/D13AXbB9A/EV0jqNr47JKs8mTlcfCjF+rh83W9BKgQ3d2gp+cDh9PJ0
+         /3Z/rRWnF0LZ7HzxTABlXgJ/R7bzqFmF079AJEWcz43qJlIbHnERyTGqiNIUpz/ne3sI
+         R67py4Te4Q03ZQqpxDKsR3Zz49ZbsXDa7VROZE9AOhiKlnrcRXztKysN9ccv573ub6oB
+         eFggvP0Ex73UDUphdbQJup7K8WqMvN8wtc+dmi52mFCostD0aZYxksDX2ntLm4fmRCdc
+         0KJVmpdvn6qFZ4TEdBNcAVX+ojNXK/hm8LOGdX/MoSN9x4ca18mDcNwSgn5wXlPxdBPG
+         uUbQ==
+X-Gm-Message-State: ABy/qLZXauSNfvwNV4jHTia/N88V+iJia2J0asFJvCoI8weeA5MFMpGN
+        Dc7TrxR0jGWibG8/tVTNdoOq6g==
+X-Google-Smtp-Source: APBJJlH1b2c/hQwTCfqQugMRZr6jblfjuFAZ4XD7Ctk20k2tIjH8q2+xYaNZOo4GRWIpOQ6n7g7lkQ==
+X-Received: by 2002:a50:ed1a:0:b0:51d:8971:4325 with SMTP id j26-20020a50ed1a000000b0051d89714325mr6186944eds.9.1688457951360;
+        Tue, 04 Jul 2023 01:05:51 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id a17-20020a50ff11000000b0051a4fcf7187sm11269669edu.62.2023.07.04.01.05.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jul 2023 01:05:50 -0700 (PDT)
+Message-ID: <10027cb1-ad3e-ad19-d25d-5356ef715be2@linaro.org>
+Date:   Tue, 4 Jul 2023 10:05:49 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/2] dt-bindings: clock: qcom,sm8350-videocc: Add SC8280XP
+Content-Language: en-US
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230703-topic-8280_videocc-v1-0-8959d4d0a93e@linaro.org>
+ <20230703-topic-8280_videocc-v1-1-8959d4d0a93e@linaro.org>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230703-topic-8280_videocc-v1-1-8959d4d0a93e@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If regulator is not marked as always-on the regulator gets disabled on
-reboot breaking the next boot.
+On 03/07/2023 20:09, Konrad Dybcio wrote:
+> SC8280XP reuses the SM8350 video clock controller block, changing just a
+> couple tunables. Docuemnt it.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+> ---
 
-Signed-off-by: Andrej Picej <andrej.picej@norik.com>
----
- arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-index 80adb2a02cc9..25d6a036d5b8 100644
---- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
-@@ -192,6 +192,7 @@ vdd_3v3_pmic_io_reg: ldo6 {
- 			vdd_sd0_reg: ldo9 {
- 				regulator-min-microvolt = <3300000>;
- 				regulator-max-microvolt = <3300000>;
-+				regulator-always-on;
- 			};
- 
- 			vdd_sd1_reg: ldo10 {
--- 
-2.25.1
+Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Best regards,
+Krzysztof
 
