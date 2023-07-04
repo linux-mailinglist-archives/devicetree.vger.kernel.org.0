@@ -2,240 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A11367469FF
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 08:49:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C991746A4D
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 09:07:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230391AbjGDGts (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 02:49:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58704 "EHLO
+        id S230331AbjGDHHw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 03:07:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231284AbjGDGt1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 02:49:27 -0400
-Received: from codeconstruct.com.au (pi.codeconstruct.com.au [203.29.241.158])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E285F10C1;
-        Mon,  3 Jul 2023 23:49:13 -0700 (PDT)
-Received: from [192.168.14.220] (unknown [159.196.94.230])
-        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id 9014E2005F;
-        Tue,  4 Jul 2023 14:49:11 +0800 (AWST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=codeconstruct.com.au; s=2022a; t=1688453351;
-        bh=PGRdypURB7/bEiy3km3h+y8xHnGSZsusZVLuX9QWNis=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References;
-        b=NrgFqCzjKIh0WZtBBLjlTbTJi1XZ5Mv2+Hi2TCHsQj87ntESLe9lIhYUU+vW1OrOo
-         XzfNKiMCj+Z9UUXPe5srPYBgtoKQtQc59vaecLH4nxsuU5ViMZXygHg9ilyEEpQeXd
-         J0KCz6i4XlJvdwNQ+GQRbDn90Ikn7QgzLaoCmQV6gaIDD/lC4RUGMT7HsKTo+mH0Rb
-         ELMkSq9SUw1+1vT8dC0qksJ1rU42VDaI4LIsebWTuL0OMQWW5QxH8RShfeDrMFtU9z
-         SKHW43bNebhoJs1P9zYwRo1aZa8Lvyome5vF4QFmySTC5K8QiNchYZWROFEZiKOl+L
-         SOeVOeIPCrjXg==
-Message-ID: <a4c5090defc84625cbac5e16ed50dc8316dda755.camel@codeconstruct.com.au>
-Subject: Re: [PATCH 3/3] mctp i3c: MCTP I3C driver
-From:   Matt Johnston <matt@codeconstruct.com.au>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     linux-i3c@lists.infradead.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, Eric Dumazet <edumazet@google.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Jeremy Kerr <jk@codeconstruct.com.au>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Date:   Tue, 04 Jul 2023 14:49:11 +0800
-In-Reply-To: <8321002c-9b75-44da-9200-23d951148ae9@lunn.ch>
-References: <20230703053048.275709-1-matt@codeconstruct.com.au>
-         <20230703053048.275709-4-matt@codeconstruct.com.au>
-         <8321002c-9b75-44da-9200-23d951148ae9@lunn.ch>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.46.1-0ubuntu1 
+        with ESMTP id S230197AbjGDHHu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 03:07:50 -0400
+Received: from fd01.gateway.ufhost.com (fd01.gateway.ufhost.com [61.152.239.71])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AFB1C130;
+        Tue,  4 Jul 2023 00:07:46 -0700 (PDT)
+Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
+        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
+        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
+        by fd01.gateway.ufhost.com (Postfix) with ESMTP id 570B78159;
+        Tue,  4 Jul 2023 15:07:45 +0800 (CST)
+Received: from EXMBX061.cuchost.com (172.16.6.61) by EXMBX165.cuchost.com
+ (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 4 Jul
+ 2023 15:07:44 +0800
+Received: from [192.168.125.128] (113.72.144.31) by EXMBX061.cuchost.com
+ (172.16.6.61) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Tue, 4 Jul
+ 2023 15:07:43 +0800
+Message-ID: <61120362-6b19-3683-db18-8d703ae278eb@starfivetech.com>
+Date:   Tue, 4 Jul 2023 15:04:38 +0800
 MIME-Version: 1.0
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v6 2/7] dt-bindings: soc: starfive: Add StarFive syscon
+ module
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+CC:     <linux-riscv@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        "Michael Turquette" <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Conor Dooley" <conor@kernel.org>,
+        Emil Renner Berthing <emil.renner.berthing@canonical.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Hal Feng <hal.feng@starfivetech.com>,
+        William Qiu <william.qiu@starfivetech.com>,
+        <linux-kernel@vger.kernel.org>, <linux-clk@vger.kernel.org>
+References: <20230704020239.288500-1-xingyu.wu@starfivetech.com>
+ <20230704020239.288500-3-xingyu.wu@starfivetech.com>
+ <c2edda13-c674-df56-d1a2-cb47b405b896@linaro.org>
+From:   Xingyu Wu <xingyu.wu@starfivetech.com>
+In-Reply-To: <c2edda13-c674-df56-d1a2-cb47b405b896@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [113.72.144.31]
+X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX061.cuchost.com
+ (172.16.6.61)
+X-YovoleRuleAgent: yovoleflag
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On 2023/7/4 14:30, Krzysztof Kozlowski wrote:
+> On 04/07/2023 04:02, Xingyu Wu wrote:
+>> From: William Qiu <william.qiu@starfivetech.com>
+>> 
+>> Add documentation to describe StarFive System Controller Registers.
+>> 
+>> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> 
+> I don't think there is a point in reviewing bindings which were never
+> tested. I hope you agree with me.
+> 
+> The patch just introduces errors. :(
+> 
 
-On Mon, 2023-07-03 at 16:43 +0200, Andrew Lunn wrote:
-> > +#define MCTP_I3C_MAXBUF 65536
-> > +/* 48 bit Provisioned Id */
-> > +#define PID_SIZE 6
-> > +
-> > +/* 64 byte payload, 4 byte MCTP header */
-> > +static const int MCTP_I3C_MINMTU =3D 64 + 4;
-> > +/* One byte less to allow for the PEC */
-> > +static const int MCTP_I3C_MAXMTU =3D MCTP_I3C_MAXBUF - 1;
-> > +/* 4 byte MCTP header, no data, 1 byte PEC */
-> > +static const int MCTP_I3C_MINLEN =3D 4 + 1;
->=20
-> Why static const and not #define? It would also be normal for
-> variables to be lower case, to make it clear they are in fact
-> variables, not #defines.
+Sorry, it was my fault. I tested it but found the example uncompleted.
+And I forgot to test it after completing it. Sorry.
 
-My personal preference is for static const since it's less error prone,
-though had to use #define for the ones used in array sizing. Happy to chang=
-e
-to #define if that's the style though.
+Best regards,
+Xingyu Wu
 
-> > +struct mctp_i3c_bus {
-> > +	struct net_device *ndev;
-> > +
-> > +	struct task_struct *tx_thread;
-> > +	wait_queue_head_t tx_wq;
-> > +	/* tx_lock protects tx_skb and devs */
-> > +	spinlock_t tx_lock;
-> > +	/* Next skb to transmit */
-> > +	struct sk_buff *tx_skb;
-> > +	/* Scratch buffer for xmit */
-> > +	u8 tx_scratch[MCTP_I3C_MAXBUF];
-> > +
-> > +	/* Element of busdevs */
-> > +	struct list_head list;
-> > +
-> > +	/* Provisioned ID of our controller */
-> > +	u64 pid;
-> > +
-> > +	struct i3c_bus *bus;
-> > +	/* Head of mctp_i3c_device.list. Protected by busdevs_lock */
-> > +	struct list_head devs;
-> > +};
-> > +
-> > +struct mctp_i3c_device {
-> > +	struct i3c_device *i3c;
-> > +	struct mctp_i3c_bus *mbus;
-> > +	struct list_head list; /* Element of mctp_i3c_bus.devs */
-> > +
-> > +	/* Held while tx_thread is using this device */
-> > +	struct mutex lock;
-> > +
-> > +	/* Whether BCR indicates MDB is present in IBI */
-> > +	bool have_mdb;
-> > +	/* I3C dynamic address */
-> > +	u8 addr;
-> > +	/* Maximum read length */
-> > +	u16 mrl;
-> > +	/* Maximum write length */
-> > +	u16 mwl;
-> > +	/* Provisioned ID */
-> > +	u64 pid;
-> > +};
->=20
-> Since you have commented about most of the members of these
-> structures, you could use kerneldoc.
-
-These aren't intended to be exposed as an API anywhere, just commented
-for future code readers (including me). Is kerneldoc still appropriate?
->=20
-> > +/* We synthesise a mac header using the Provisioned ID.
-> > + * Used to pass dest to mctp_i3c_start_xmit.
-> > + */
-> > +struct mctp_i3c_internal_hdr {
-> > +	u8 dest[PID_SIZE];
-> > +	u8 source[PID_SIZE];
-> > +} __packed;
-> > +
-> > +/* Returns the 48 bit Provisioned Id from an i3c_device_info.pid */
-> > +static void pid_to_addr(u64 pid, u8 addr[PID_SIZE])
-> > +{
-> > +	pid =3D cpu_to_be64(pid);
-> > +	memcpy(addr, ((u8 *)&pid) + 2, PID_SIZE);
-> > +}
-> > +
-> > +static u64 addr_to_pid(u8 addr[PID_SIZE])
-> > +{
-> > +	u64 pid =3D 0;
-> > +
-> > +	memcpy(((u8 *)&pid) + 2, addr, PID_SIZE);
-> > +	return be64_to_cpu(pid);
-> > +}
->=20
-> I don't know anything about MCTP. But Ethernet MAC addresses are also
-> 48 bits. Could you make use of u64_to_ether_addr() and ether_addr_to_u64(=
-)?
-
-The 48 bit identifier is an I3C Provisioned ID. It has a similar purpose to
-an ethernet MAC address but for a different protocol. I think it might caus=
-e
-confusion to code readers if it were passed to ethernet functions.
->=20
-
-> > +static int mctp_i3c_setup(struct mctp_i3c_device *mi)
-> > +{
-> > +	const struct i3c_ibi_setup ibi =3D {
-> > +		.max_payload_len =3D 1,
-> > +		.num_slots =3D MCTP_I3C_IBI_SLOTS,
-> > +		.handler =3D mctp_i3c_ibi_handler,
-> > +	};
-> > +	bool ibi_set =3D false, ibi_enabled =3D false;
-> > +	struct i3c_device_info info;
-> > +	int rc;
-> > +
-> > +	i3c_device_get_info(mi->i3c, &info);
-> > +	mi->have_mdb =3D info.bcr & BIT(2);
-> > +	mi->addr =3D info.dyn_addr;
-> > +	mi->mwl =3D info.max_write_len;
-> > +	mi->mrl =3D info.max_read_len;
-> > +	mi->pid =3D info.pid;
-> > +
-> > +	rc =3D i3c_device_request_ibi(mi->i3c, &ibi);
-> > +	if (rc =3D=3D 0) {
-> > +		ibi_set =3D true;
-> > +	} else if (rc =3D=3D -ENOTSUPP) {
->=20
-> In networking, we try to avoid ENOTSUPP and use EOPNOTSUPP:
->=20
-> https://lore.kernel.org/netdev/20200511165319.2251678-1-kuba@kernel.org/
-
-checkpatch noticed this one too, but the existing I3C functions return
-ENOTSUPP so it needs to match against that.
-
-> > +static int mctp_i3c_header_create(struct sk_buff *skb, struct net_devi=
-ce
-> > *dev,
-> > +				  unsigned short type, const void
-> > *daddr,
-> > +	   const void *saddr, unsigned int len)
-> > +{
-> > +	struct mctp_i3c_internal_hdr *ihdr;
-> > +
-> > +	skb_push(skb, sizeof(struct mctp_i3c_internal_hdr));
-> > +	skb_reset_mac_header(skb);
-> > +	ihdr =3D (void *)skb_mac_header(skb);
-> > +	memcpy(ihdr->dest, daddr, PID_SIZE);
-> > +	memcpy(ihdr->source, saddr, PID_SIZE);
->=20
-> ether_addr_copy() ?
->=20
-> > +/* Returns an ERR_PTR on failure */
-> > +static struct mctp_i3c_bus *mctp_i3c_bus_add(struct i3c_bus *bus)
-> > +__must_hold(&busdevs_lock)
-> > +{
-> > +	struct mctp_i3c_bus *mbus =3D NULL;
-> > +	struct net_device *ndev =3D NULL;
-> > +	u8 addr[PID_SIZE];
-> > +	char namebuf[IFNAMSIZ];
-> > +	int rc;
-> > +
-> > +	if (!mctp_i3c_is_mctp_controller(bus))
-> > +		return ERR_PTR(-ENOENT);
-> > +
-> > +	snprintf(namebuf, sizeof(namebuf), "mctpi3c%d", bus->id);
-> > +	ndev =3D alloc_netdev(sizeof(*mbus), namebuf, NET_NAME_ENUM,
-> > mctp_i3c_net_setup);
-> > +	if (!ndev) {
-> > +		pr_warn("No memory for %s\n", namebuf);
->=20
-> pr_ functions are not liked too much. Is there a struct device you can
-> use with dev_warn()?
-
-I'll change the ones with a device available, that one in particular can be
-removed anyway.
-
-Thanks,
-Matt
