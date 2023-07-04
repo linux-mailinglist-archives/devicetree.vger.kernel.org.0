@@ -2,204 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04EF1746C14
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD8D4746C20
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:39:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231782AbjGDIgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 04:36:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52476 "EHLO
+        id S230156AbjGDIjR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 04:39:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231705AbjGDIgY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:36:24 -0400
-Received: from relay3-d.mail.gandi.net (relay3-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::223])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3901B10C6;
-        Tue,  4 Jul 2023 01:36:21 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1688459780;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=zeaw/mEHipmGdPt6yz1DrOUPKlcqLWAbkNQPWyuHIOg=;
-        b=lTJwhZHjYgSCiEdAOpVIQXoP+mdtHnW8eXahIbKbFodDULRUSrqNoKFvbJvZSu5b+dSsmz
-        oOK0YDOl+hmesqjpFxHQRiGMWf4aDBrlENbAcZh2QmPhbuDICsCUFYle2GSFD2bQAClkHV
-        JBcTWRPUNCb+9/m/24xVbYFeSURdwQhd9zhcKLe00OOMjdnhWHP6hbvaYIFhX0Q4N0T+4X
-        n+9ITuzvkkDQxYQlM03MfEOD4VHPjYEd7RtNjNXKXXnChzaFa5ZOpXXCvtSaVlErDr/SYj
-        Cl6rc9NkOS4Gts4/3TwWzyQYoOjJXW/Clk430udZ1yZqEXIPfYC+FyE63mAhQg==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id D6E9D6000D;
-        Tue,  4 Jul 2023 08:36:18 +0000 (UTC)
-Date:   Tue, 4 Jul 2023 10:36:17 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-Cc:     Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC
- step size
-Message-ID: <20230704103617.4affae8a@xps-13>
-In-Reply-To: <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
-References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
-        <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231140AbjGDIiy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:38:54 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 63E98101;
+        Tue,  4 Jul 2023 01:38:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1688459931; x=1719995931;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=66rmVFF6mOeNiOClvPDq6VuPrHLwsEe57/SioeogkQA=;
+  b=VtyHCwDb1wohM2TD06MR0BDSR7y4X3jtUyKEiU0dSLWjEf+Uvd+XNtYu
+   PAl5+AmbgGucKc6QM38fUovxST6g6IwafPJbvc/NKvwvMshUl48+uzVMq
+   dPubAXb+Kg767qnYaQTWtem+SXmJhuHiVYXHGhNfKp4JN2AL1JOoK+mQ9
+   YOQk21awhwtjLcCxpOxSW8FbdTZE6FyLoa4/BzCVu/4rkk2fxoVyufEBZ
+   U3tRcaRDCxXqyQRUIHrpo3EWkod5yyvRtZoQ7eldTugHioOhAsYfWos2H
+   2vtG3WZJ1+EskaPpiWS1llXm8VMz6d8iU7zAbjjGNWEHUnD7Xmpju8SPt
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,180,1684792800"; 
+   d="scan'208";a="31741766"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 04 Jul 2023 10:38:49 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 44526280087;
+        Tue,  4 Jul 2023 10:38:49 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-imx@nxp.com, guoniu.zhou@oss.nxp.com
+Cc:     mchehab@kernel.org, laurent.pinchart@ideasonboard.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, jacopo.mondi@ideasonboard.com
+Subject: Re: [PATCH 1/2] media: dt-bindings: Add binding doc for i.MX93 MIPI CSI-2
+Date:   Tue, 04 Jul 2023 10:38:49 +0200
+Message-ID: <2292421.ElGaqSPkdT@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230703113734.762307-2-guoniu.zhou@oss.nxp.com>
+References: <20230703113734.762307-1-guoniu.zhou@oss.nxp.com> <20230703113734.762307-2-guoniu.zhou@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arseniy,
+Hi Guoniu,
 
-AVKrasnov@sberdevices.ru wrote on Wed, 28 Jun 2023 12:29:36 +0300:
+thanks for posting this driver.
 
-> Meson NAND supports both 512B and 1024B ECC step size.
+Am Montag, 3. Juli 2023, 13:37:33 CEST schrieb guoniu.zhou@oss.nxp.com:
+> ********************
+> Achtung externe E-Mail: =D6ffnen Sie Anh=E4nge und Links nur, wenn Sie wi=
+ssen,
+> dass diese aus einer sicheren Quelle stammen und sicher sind. Leiten Sie
+> die E-Mail im Zweifelsfall zur Pr=FCfung an den IT-Helpdesk weiter.
+> Attention external email: Open attachments and links only if you know that
+> they are from a secure source and are safe. In doubt forward the email to
+> the IT-Helpdesk to check it. ********************
 >=20
-> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
+>=20
+> Add new binding documentation for DesignWare Core MIPI CSI-2 receiver
+> and DPHY found on NXP i.MX93.
+>=20
+> Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
 > ---
->  drivers/mtd/nand/raw/meson_nand.c | 47 +++++++++++++++++++++++--------
->  1 file changed, 35 insertions(+), 12 deletions(-)
+>  .../bindings/media/nxp,dwc-mipi-csi2.yaml     | 140 ++++++++++++++++++
+>  1 file changed, 140 insertions(+)
 >=20
-> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/mes=
-on_nand.c
-> index 345212e8c691..6cc4f63b86c8 100644
-> --- a/drivers/mtd/nand/raw/meson_nand.c
-> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> @@ -135,6 +135,7 @@ struct meson_nfc_nand_chip {
->  struct meson_nand_ecc {
->  	u32 bch;
->  	u32 strength;
-> +	u32 size;
->  };
-> =20
->  struct meson_nfc_data {
-> @@ -190,7 +191,8 @@ struct meson_nfc {
->  };
-> =20
->  enum {
-> -	NFC_ECC_BCH8_1K		=3D 2,
-> +	NFC_ECC_BCH8_512	=3D 1,
-> +	NFC_ECC_BCH8_1K,
->  	NFC_ECC_BCH24_1K,
->  	NFC_ECC_BCH30_1K,
->  	NFC_ECC_BCH40_1K,
-> @@ -198,15 +200,16 @@ enum {
->  	NFC_ECC_BCH60_1K,
->  };
-> =20
-> -#define MESON_ECC_DATA(b, s)	{ .bch =3D (b),	.strength =3D (s)}
-> +#define MESON_ECC_DATA(b, s, sz)	{ .bch =3D (b), .strength =3D (s), .siz=
-e =3D (sz) }
-> =20
->  static struct meson_nand_ecc meson_ecc[] =3D {
-> -	MESON_ECC_DATA(NFC_ECC_BCH8_1K, 8),
-> -	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24),
-> -	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30),
-> -	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40),
-> -	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50),
-> -	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60),
-> +	MESON_ECC_DATA(NFC_ECC_BCH8_512, 8,  512),
-> +	MESON_ECC_DATA(NFC_ECC_BCH8_1K,  8,  1024),
-> +	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24, 1024),
-> +	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30, 1024),
-> +	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40, 1024),
-> +	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50, 1024),
-> +	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60, 1024),
->  };
-> =20
->  static int meson_nand_calc_ecc_bytes(int step_size, int strength)
-> @@ -224,8 +227,27 @@ static int meson_nand_calc_ecc_bytes(int step_size, =
-int strength)
-> =20
->  NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
->  		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
-> -NAND_ECC_CAPS_SINGLE(meson_axg_ecc_caps,
-> -		     meson_nand_calc_ecc_bytes, 1024, 8);
+> diff --git a/Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.ya=
+ml
+> b/Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.yaml new file
+> mode 100644
+> index 000000000000..ece6fb8991d4
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.yaml
+> @@ -0,0 +1,140 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/nxp,dwc-mipi-csi2.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +static const int axg_stepinfo_strengths[] =3D { 8 };
-> +static const struct nand_ecc_step_info axg_stepinfo_1024 =3D {
-> +	.stepsize =3D 1024,
-> +	.strengths =3D axg_stepinfo_strengths,
-> +	.nstrengths =3D ARRAY_SIZE(axg_stepinfo_strengths)
-> +};
+> +title: NXP i.MX93 MIPI CSI-2 Host Controller receiver
 > +
-> +static const struct nand_ecc_step_info axg_stepinfo_512 =3D {
-> +	.stepsize =3D 512,
-> +	.strengths =3D axg_stepinfo_strengths,
-> +	.nstrengths =3D ARRAY_SIZE(axg_stepinfo_strengths)
-> +};
+> +maintainers:
+> +  - G.N. Zhou <guoniu.zhou@nxp.com>
 > +
-> +static const struct nand_ecc_step_info axg_stepinfo[] =3D { axg_stepinfo=
-_1024, axg_stepinfo_512 };
+> +description: |-
+> +  The MIPI CSI-2 receiver found on i.MX93 originates from Synopsys
+> +  DesignWare Core and it implements the CSI-2 protocol on the host
+> +  side and a DPHY configured as a Slave acts as the physical layer.
+> +  Two data lanes are supported on i.MX93 family devices and the data
+> +  rate of each lane support up to 1.5Gbps.
 > +
-> +static const struct nand_ecc_caps meson_axg_ecc_caps =3D {
-> +	.stepinfos =3D axg_stepinfo,
-> +	.nstepinfos =3D ARRAY_SIZE(axg_stepinfo),
-> +	.calc_ecc_bytes =3D meson_nand_calc_ecc_bytes,
-> +};
-> =20
->  static struct meson_nfc_nand_chip *to_meson_nand(struct nand_chip *nand)
->  {
-> @@ -1259,7 +1281,8 @@ static int meson_nand_bch_mode(struct nand_chip *na=
-nd)
->  		return -EINVAL;
-> =20
->  	for (i =3D 0; i < ARRAY_SIZE(meson_ecc); i++) {
-> -		if (meson_ecc[i].strength =3D=3D nand->ecc.strength) {
-> +		if (meson_ecc[i].strength =3D=3D nand->ecc.strength &&
-> +		    meson_ecc[i].size =3D=3D nand->ecc.size) {
->  			meson_chip->bch_mode =3D meson_ecc[i].bch;
->  			return 0;
->  		}
-> @@ -1278,7 +1301,7 @@ static int meson_nand_attach_chip(struct nand_chip =
-*nand)
->  	struct meson_nfc *nfc =3D nand_get_controller_data(nand);
->  	struct meson_nfc_nand_chip *meson_chip =3D to_meson_nand(nand);
->  	struct mtd_info *mtd =3D nand_to_mtd(nand);
-> -	int nsectors =3D mtd->writesize / 1024;
-> +	int nsectors =3D mtd->writesize / 512;
+> +  While the CSI-2 receiver is separate from the MIPI D-PHY IP core,
+> +  the PHY is completely wrapped by the CSI-2 controller and expose
+> +  a control interface which only can communicate with CSI-2 controller
+> +  This binding thus covers both IP cores.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - fsl,imx93-mipi-csi2
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    items:
+> +      - description: The peripheral clock (a.k.a. APB clock)
+> +      - description: The pixel clock
+> +      - description: The MIPI D-PHY clock
+> +
+> +  clock-names:
+> +    items:
+> +      - const: per
+> +      - const: pixel
+> +      - const: phy_cfg
+> +
+> +  power-domains:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    $ref: /schemas/graph.yaml#/properties/ports
+> +
+> +    properties:
+> +      port@0:
+> +        $ref: /schemas/graph.yaml#/$defs/port-base
+> +        unevaluatedProperties: false
+> +        description:
+> +          Input port node, single endpoint describing the CSI-2
+> transmitter. +
+> +        properties:
+> +          endpoint:
+> +            $ref: video-interfaces.yaml#
+> +            unevaluatedProperties: false
+> +
+> +            properties:
+> +              data-lanes:
+> +                minItems: 1
+> +                items:
+> +                  - const: 1
+> +                  - const: 2
+> +
+> +              fsl,hsfreqrange:
+> +                $ref: /schemas/types.yaml#/definitions/uint32
+> +                description:
+> +                  Used to select the desired high speed frequency range
+> +                  according to data lane bit rate. Please refer to i.MX93
+> +                  reference manual MIPI CSI-2 DPHY chapter to get a valid
+> +                  value.
 
-This cannot be unconditional, right?
+If this is data lane bit rate specific, shouldn't it be set in s_stream=20
+callback or similar?
 
->  	int raw_writesize;
->  	int ret;
-> =20
+Best regards,
+Alexander
+
+> +
+> +            required:
+> +              - data-lanes
+> +              - fsl,hsfreqrange
+> +
+> +      port@1:
+> +        $ref: /schemas/graph.yaml#/properties/port
+> +        description:
+> +          Output port node
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +  - power-domains
+> +  - ports
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/imx93-clock.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/power/fsl,imx93-power.h>
+> +
+> +    mipi-csi@4ae00000 {
+> +        compatible =3D "fsl,imx93-mipi-csi2";
+> +        reg =3D <0x4ae00000 0x10000>;
+> +        interrupts =3D <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
+> +        clocks =3D <&clks IMX93_CLK_MIPI_CSI_GATE>,
+> +                 <&clks IMX93_CLK_CAM_PIX>,
+> +                 <&clks IMX93_CLK_MIPI_PHY_CFG>;
+> +        clock-names =3D "per", "pixel", "phy_cfg";
+> +        power-domains =3D <&media_blk_ctrl IMX93_MEDIABLK_PD_MIPI_CSI>;
+> +
+> +        ports {
+> +            #address-cells =3D <1>;
+> +            #size-cells =3D <0>;
+> +
+> +            port@0 {
+> +                reg =3D <0>;
+> +
+> +                mipi_from_sensor: endpoint {
+> +                    remote-endpoint =3D <&ap1302_to_mipi>;
+> +                    data-lanes =3D <1 2>;
+> +                    fsl,hsfreqrange =3D <0x2c>;
+> +                };
+> +            };
+> +
+> +            port@1 {
+> +                reg =3D <1>;
+> +
+> +                mipi_to_isi: endpoint {
+> +                    remote-endpoint =3D <&isi_in>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +...
 
 
-Thanks,
-Miqu=C3=A8l
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
