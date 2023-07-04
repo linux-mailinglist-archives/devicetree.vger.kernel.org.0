@@ -2,122 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3252A74713F
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 14:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09B98747148
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 14:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231243AbjGDMZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 08:25:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39700 "EHLO
+        id S230137AbjGDM1L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 08:27:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231379AbjGDMZB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 08:25:01 -0400
-Received: from mail-lj1-x234.google.com (mail-lj1-x234.google.com [IPv6:2a00:1450:4864:20::234])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7605E1BD5
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 05:23:26 -0700 (PDT)
-Received: by mail-lj1-x234.google.com with SMTP id 38308e7fff4ca-2b5c231c23aso89373161fa.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 05:23:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688473405; x=1691065405;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uPValZyTZ8WT4pXLvEOIhNkjZRCsSVMvy0kqcxXBZWY=;
-        b=GbdNYU+53uc+CKJ45SjHdFYvihr23ISMMItqnnGph2QrBQp/yUMObVlUB5z18Fww6W
-         V3fldaqEl6L+CEcp8/o4l5MeC26PsbGQXiTDGgZp3Ptioa6a9IES2HzueIOT7VyOTN61
-         bjquV6U0C5dzQJvTdxRdYqxI34m0L0zIo5Tiei5DBfaiYD23RrrjWjomMgQS9bdPis6V
-         cdi8Xj60xM914Rj+lfjdlREdLmdWQ5IpQcBKnJzq9xBHTLacA6ImPgMFeD/Z/Bz5DM0N
-         mXLOunrwwhKfvcGwfdSVKQH4J07PeT/P/5SZDXhbQJk0o2Glnwd5l11l0jV0a4F8Ey0Y
-         lLCg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688473405; x=1691065405;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=uPValZyTZ8WT4pXLvEOIhNkjZRCsSVMvy0kqcxXBZWY=;
-        b=Tfzehz8phaeZaf2Q5cw9TFLKXwncyqIiREu+trILhfUikvnP5q2BaQaDNVoDw5nVME
-         ysRvvbh/zS0iGjoo0rCu7txCJ/9UQASEtbu/tbpUPOHT6sqMO1dvam+9tboXK8d4rbdQ
-         NY3isB5/7O4fDw0KM1ZLSXr54LZHfHLXen7x4qrEvh9e07ec30iz+WQO0m+rLhZvDTbn
-         tZKqM8q5bbo8XbKv8Q76V91l/25ZbjcEzscHBHqhajrWOuc2c3Q3Wf0KSo7Oigasvaau
-         XqZnSTc3ok0AjP7qEzlxTm2eyJnWPXY9OYB2B2Xqfl+2FFuR9DBGr9EtZUT8ujsFq8Gh
-         i7sQ==
-X-Gm-Message-State: ABy/qLYBgRnt82hYnrEk+NjHeF912K2hJaFSKOaBSUN1VEOH2/0mubxx
-        fxkJPAJV5Pg5z6f5bRaiTu+OJw==
-X-Google-Smtp-Source: APBJJlGhow9mucQnVPsfHwcdatGIOezpi0wujhzokvFVMFGT/fK19zshJEpL7q0k7GTqRVHtWMA6Kw==
-X-Received: by 2002:a2e:7011:0:b0:2b6:e958:d03 with SMTP id l17-20020a2e7011000000b002b6e9580d03mr4190511ljc.30.1688473404846;
-        Tue, 04 Jul 2023 05:23:24 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id y16-20020a2e9790000000b002b6d465583csm2851817lji.126.2023.07.04.05.23.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jul 2023 05:23:24 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Tue, 04 Jul 2023 14:23:18 +0200
-Subject: [PATCH 2/2] arm64: dts: qcom: sm8250: Mark SMMUs as DMA coherent
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230704-topic-8250_pcie_dmac-v1-2-799603a980b0@linaro.org>
-References: <20230704-topic-8250_pcie_dmac-v1-0-799603a980b0@linaro.org>
-In-Reply-To: <20230704-topic-8250_pcie_dmac-v1-0-799603a980b0@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+        with ESMTP id S231379AbjGDM06 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 08:26:58 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 291442114;
+        Tue,  4 Jul 2023 05:26:18 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id BD3856122F;
+        Tue,  4 Jul 2023 12:26:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id C5DB6C433C7;
+        Tue,  4 Jul 2023 12:26:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688473570;
+        bh=w5Afb4XWjxOhR3PdDC5/dWU4ESSRpE7tbnpWTqpze6k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=LmBK1ZxKi3vPvuNJFPWoXidDeHkATevaFIYAYB8Exj12AB7CguWsstOl+K5xSR4kE
+         kxrJAdfzquoJKGKtFtOa5eweKL+VfDGeMRJOqsC9YX54GEoSmAf3mS4jBIPGJNa84Y
+         xU2W+aE/AALQmXi56RJvXv+EHsKNmiUc0KS3f4Q0wLBW43h9S/3g+39kEun9DlhCZ4
+         /hDfwrd9rVV1Jz+2zxX3E/kiJ3wBFd9ISxMvaBpsPhLvKzNPBQpoP6653vBmiC+ujY
+         EFcCf3SjsHA2spkeqylbJb8UK7qycznK64MZ/dqQvW2QakxmEe1m+uwTdvxqPIOusA
+         D/L2bRftQkJUA==
+Date:   Tue, 4 Jul 2023 13:26:04 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Jonathan Marek <jonathan@marek.ca>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1688473400; l=1012;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=VBShug28IBIFJfOo9caAInSc6q5XHytMqyraNym9TJs=;
- b=3Q7TSlPOV0jaUPz/ndqxXhZeVAyVR+DygeEGccfP5sWFJmt2hzoRB/YMfoX+lmk8Wcf//cyYm
- xvYJbE9aEYbC3Kc97Jj+kSOPYiwCaXBnFbflUPm9IZbP5VT0a1NVThO
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [RESEND v1 2/2] riscv: dts: starfive: Add spi node for JH7110 SoC
+Message-ID: <eba1e868-6371-42fe-91be-bcbee54d1aff@sirena.org.uk>
+References: <20230704092200.85401-1-william.qiu@starfivetech.com>
+ <20230704092200.85401-3-william.qiu@starfivetech.com>
+ <7f3b600d-d315-22d6-b987-eabfe1b04fdf@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="OO8jAjJ1e96WJdbG"
+Content-Disposition: inline
+In-Reply-To: <7f3b600d-d315-22d6-b987-eabfe1b04fdf@linaro.org>
+X-Cookie: Memory fault - where am I?
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SMMUs on SM8250 are cache-coherent. Mark them as such.
 
-Fixes: a89441fcd09d ("arm64: dts: qcom: sm8250: add apps_smmu node")
-Fixes: 04a3605b184e ("arm64: dts: qcom: add sm8250 GPU nodes")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+--OO8jAjJ1e96WJdbG
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 1af0eed9eef5..ccc38c205de3 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -2729,6 +2729,7 @@ adreno_smmu: iommu@3da0000 {
- 			clock-names = "ahb", "bus", "iface";
- 
- 			power-domains = <&gpucc GPU_CX_GDSC>;
-+			dma-coherent;
- 		};
- 
- 		slpi: remoteproc@5c00000 {
-@@ -5399,6 +5400,7 @@ apps_smmu: iommu@15000000 {
- 					<GIC_SPI 696 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 697 IRQ_TYPE_LEVEL_HIGH>,
- 					<GIC_SPI 707 IRQ_TYPE_LEVEL_HIGH>;
-+			dma-coherent;
- 		};
- 
- 		adsp: remoteproc@17300000 {
+On Tue, Jul 04, 2023 at 11:39:29AM +0200, Krzysztof Kozlowski wrote:
+> On 04/07/2023 11:22, William Qiu wrote:
+> > Add spi node for JH7110 SoC.
+> >=20
+> > Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
+>=20
+> Missing SoB.
 
--- 
-2.41.0
+It's fine not to have a signoff for the codeveloper of codeveloped
+patches, see case (a) for the DCO.
 
+--OO8jAjJ1e96WJdbG
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSkD9wACgkQJNaLcl1U
+h9BTigf+LfNH/CBAYdHfe3VZllj07Uk+C8zJO27te847iom4iGuhCC+jcGSITT+r
+u4PaSovtoVAJjyknu8Ns2AuKQDJocuR0qa65kY9Q38AcZhWEDchiZP93cbb/ukN+
+9LfbJdhX/H4V2mcsb1m5qX0mmgDm7TFdiwYXn43mamyeV2S9t6mgMAXcs7emO4Q/
+ZvKpAAVWi77lhHDqU5vCu7vywRdUIXWcDxHMzzvRySIKeqlPwHZpVxRfASMhy7ty
+OggCESMVtDcJRCG5x9EO7HbLAuDfNX5KDAcDlGZWYgNMu3FpTe4zkPknDWhN9Bm7
+gQPUvZVzPu0+Q3YvijgMyNP5VfM4mQ==
+=5CMq
+-----END PGP SIGNATURE-----
+
+--OO8jAjJ1e96WJdbG--
