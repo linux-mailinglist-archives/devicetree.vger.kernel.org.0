@@ -2,151 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B215974774D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 18:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF895747752
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 18:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230197AbjGDQ4O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 12:56:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54558 "EHLO
+        id S231493AbjGDQ5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 12:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231887AbjGDQ4B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 12:56:01 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04A7410D3;
-        Tue,  4 Jul 2023 09:55:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=ir9+y5TV/whsVJj6sRiC8xzutqWRefem7WoHTqvHtKI=; b=U8sbMgm1YEOWwAXteDHcVi08zW
-        pZ348ePZh5veZhVunmFjkXqG1xB3U7XYfkC317VK3Egw+cyNhtoqj9Lskc4BckyqQ4pgkI42AK2L5
-        7DJkbbV3JVt2m1biNmPPolb0J0XftRKZKDYuTGw9SUVbfTJGWOBI1fNlJh7SZPu/wJM8=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:38500 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qGjJW-0000nG-QE; Tue, 04 Jul 2023 12:55:43 -0400
-Date:   Tue, 4 Jul 2023 12:55:41 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pierluigi Passaro <pierluigi.p@variscite.com>,
-        Nate Drude <nate.d@variscite.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <20230704125541.f361cab8de3faacd830418ab@hugovil.com>
-In-Reply-To: <CAOMZO5CX8WzaNeHmE8ohT2_6F-ehRRNWGnF7Dji=uLGphY4q2A@mail.gmail.com>
-References: <20230704150240.2022020-1-hugo@hugovil.com>
-        <1341ba38-35c1-1657-aed4-a3c11f584367@linaro.org>
-        <20230704113124.f2830afe1d9df252afe5abdc@hugovil.com>
-        <834a0679-7e0c-150f-68be-c75d7dac0bc8@linaro.org>
-        <CAOMZO5CX8WzaNeHmE8ohT2_6F-ehRRNWGnF7Dji=uLGphY4q2A@mail.gmail.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+        with ESMTP id S231367AbjGDQ5X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 12:57:23 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E59DBDD;
+        Tue,  4 Jul 2023 09:57:22 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7B3F161302;
+        Tue,  4 Jul 2023 16:57:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4B6F1C433C7;
+        Tue,  4 Jul 2023 16:57:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688489841;
+        bh=MVK2bS+f6XohwJ0w4CtQX6uyCqJA+y7IuaOf1eEVzMY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZbKVjQMOI7tOQZ0qiLl39Yj+RCq0pT415EnZJAX39Pns8On/Yo8yX2ouWsBdWza6D
+         WpRp6Yt/StzDscW5QhJbD+YnX8/m/NiWzf/Hj1mqYBozI2Luwyacdg2qo/Vh+7QJCA
+         5o4cwhVHaLh5jIhngMo8peEvsW2yIk6JEvpBMZKOm3Dx+OSpoQ+En7lzK0iGgkKY45
+         Uk3SiVvO+oLuOC1uSnO+f/nX6eLMRJ8nMZGfWcBzdcsWXcLmornN1VljMOyR4XRxGY
+         C8+fNAgSf3VRPEEf+Q2Xta8a2s2uzfPNpJmztkio125pZazEIDRNmsQef9tyoTZV4C
+         OnfqP7ysrKfuA==
+Date:   Tue, 4 Jul 2023 17:57:15 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
+Cc:     gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, jbrunet@baylibre.com,
+        jirislaby@kernel.org, khilman@baylibre.com,
+        martin.blumenstingl@googlemail.com, kelvin.zhang@amlogic.com,
+        xianwei.zhao@amlogic.com, kernel@sberdevices.ru,
+        rockosov@gmail.com, linux-amlogic@lists.infradead.org,
+        linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v1 3/5] tty: serial: meson: apply ttyS devname instead of
+ ttyAML for new SoCs
+Message-ID: <20230704-pogo-zeppelin-5fa281f5c9e6@spud>
+References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
+ <20230704135936.14697-4-ddrokosov@sberdevices.ru>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="cFEFPb639xHq5Qr+"
+Content-Disposition: inline
+In-Reply-To: <20230704135936.14697-4-ddrokosov@sberdevices.ru>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH] arm64: dts: imx8mn-var-som-symphony: fix USB OTG
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 4 Jul 2023 13:33:10 -0300
-Fabio Estevam <festevam@gmail.com> wrote:
 
-> Adding some Variscite folks in case they can help to clarify.
-> 
-> On Tue, Jul 4, 2023 at 1:20 PM Krzysztof Kozlowski
-> <krzysztof.kozlowski@linaro.org> wrote:
-> >
-> > On 04/07/2023 17:31, Hugo Villeneuve wrote:
-> > > On Tue, 4 Jul 2023 17:08:12 +0200
-> > > Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-> > >
-> > >> On 04/07/2023 17:02, Hugo Villeneuve wrote:
-> > >>> From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > >>>
-> > >>> USB OTG is currently broken on the Variscite Symphony EVK and imx8mn
-> > >>> nano SOM.
-> > >>>
-> > >>> Import changes from linux-5.15 branch of  doen't giveto fix it.
-> > >>>
-> > >>> Link: https://github.com/varigit/linux-imx.git
-> > >>> Fixes: 7358e05bddca ("arm64: dts: imx8mn-var-som-symphony: Add Variscite Symphony board with VAR-SOM-MX8MN")
-> > >>> Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
-> > >>> ---
-> > >>>  .../dts/freescale/imx8mn-var-som-symphony.dts | 37 ++++++++++++++++++-
-> > >>>  1 file changed, 35 insertions(+), 2 deletions(-)
-> > >>>
-> > >>> diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-> > >>> index 406a711486da..aef89198f24c 100644
-> > >>> --- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-> > >>> +++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-> > >>> @@ -6,6 +6,7 @@
-> > >>>
-> > >>>  /dts-v1/;
-> > >>>
-> > >>> +#include <dt-bindings/usb/pd.h>
-> > >>>  #include "imx8mn-var-som.dtsi"
-> > >>>
-> > >>>  / {
-> > >>> @@ -104,10 +105,29 @@ extcon_usbotg1: typec@3d {
-> > >>>             compatible = "nxp,ptn5150";
-> > >>>             reg = <0x3d>;
-> > >>>             interrupt-parent = <&gpio1>;
-> > >>> -           interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-> > >>> +           interrupts = <11 IRQ_TYPE_NONE>;
-> > >>
-> > >> That's surprising, why?
-> > >
-> > > Hi,
-> > > the varigit repos log or source code has no information about this
-> > > particular configuration.
-> > >
-> > > In the schematics, the interrupt output pin of the PTN5150 is connected
-> > > to two different resistors, one of these being connected to GPIO1 pin
-> > > 11. But these two resistors are not assembled on any versions of the
-> > > board, so the interrupt pin is currently not used.
-> >
-> > OK, so there is no interrupt, but not interrupt of type none. Just drop
-> > the property and make it optional in the bindings. The driver however
-> > requires the interrupt, so I wonder how the device is going to work
-> > without it?
-> >
-> > Are you sure that interrupt line is not shorted instead of missing resistor?
+--cFEFPb639xHq5Qr+
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Hi,
-Link for schematics:
-https://www.variscite.com/wp-content/uploads/2019/07/Symphony-Board-Schematics.zip
+On Tue, Jul 04, 2023 at 04:59:34PM +0300, Dmitry Rokosov wrote:
+> It is worth noting that the devname ttyS is a widely recognized tty name
+> and is commonly used by many uart device drivers. Given the established
+> usage and compatibility concerns, it may not be feasible to change the
+> devname for older SoCs. However, for new definitions, it is acceptable
+> and even recommended to use a new devname to help ensure clarity and
+> avoid any potential conflicts on lower or upper software levels.
 
-In the schematics, both resistors R106 (connected to PTN5150 on one
-side and GPIO1 pin 11 on the other size) and R131 have the text "NC"
-near their reference designator. And I visually confirm that R106
-and R131 are not soldered on the board.
+> In
+> addition, modify the meson_uart_dt match data for g12a, a1, and s4 to
+> their appropriate values to ensure proper devname values and
+> functionality.
 
-However, GPIO1 pin 11 (the interrupt pin configured in the DTS) is
-also connected to PTN5150 pin 9 (ID), which has a simple pull-up to
-3.3V. So from what I can see/deduce, the DTS interrupt pin
-will always be 3.3V, and never pulled to GND.
+IMO, this is a separate change that should be in another patch, had to
+go looking through a several of unrelated $subject patches to understand
+how the binding patch was going to work.
 
-Hugo.
+Cheers,
+Conor.
+
+> For more information please refer to IRC discussion at [1].
+>=20
+> Links:
+>     [1]: https://libera.irclog.whitequark.org/linux-amlogic/2023-07-03
+>=20
+> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
+> ---
+>  drivers/tty/serial/meson_uart.c | 33 +++++++++++++++++++++++++++++++--
+>  1 file changed, 31 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_u=
+art.c
+> index 87c0eb5f2dba..361f9326b527 100644
+> --- a/drivers/tty/serial/meson_uart.c
+> +++ b/drivers/tty/serial/meson_uart.c
+> @@ -82,6 +82,7 @@ static struct uart_driver meson_uart_driver;
+>  static struct uart_port *meson_ports[AML_UART_PORT_NUM];
+> =20
+>  struct meson_uart_data {
+> +	const char *dev_name;
+>  	bool has_xtal_div2;
+>  };
+> =20
+> @@ -683,6 +684,7 @@ static int meson_uart_probe_clocks(struct platform_de=
+vice *pdev,
+> =20
+>  static int meson_uart_probe(struct platform_device *pdev)
+>  {
+> +	const struct meson_uart_data *priv_data;
+>  	struct resource *res_mem;
+>  	struct uart_port *port;
+>  	u32 fifosize =3D 64; /* Default is 64, 128 for EE UART_0 */
+> @@ -729,6 +731,18 @@ static int meson_uart_probe(struct platform_device *=
+pdev)
+>  	if (ret)
+>  		return ret;
+> =20
+> +	priv_data =3D device_get_match_data(&pdev->dev);
+> +
+> +	if (priv_data) {
+> +		struct console *cons =3D meson_uart_driver.cons;
+> +
+> +		meson_uart_driver.dev_name =3D priv_data->dev_name;
+> +
+> +		if (cons)
+> +			strscpy(cons->name, priv_data->dev_name,
+> +				sizeof(cons->name));
+> +	}
+> +
+>  	if (!meson_uart_driver.state) {
+>  		ret =3D uart_register_driver(&meson_uart_driver);
+>  		if (ret)
+> @@ -748,7 +762,7 @@ static int meson_uart_probe(struct platform_device *p=
+dev)
+>  	port->x_char =3D 0;
+>  	port->ops =3D &meson_uart_ops;
+>  	port->fifosize =3D fifosize;
+> -	port->private_data =3D (void *)device_get_match_data(&pdev->dev);
+> +	port->private_data =3D (void *)priv_data;
+> =20
+>  	meson_ports[pdev->id] =3D port;
+>  	platform_set_drvdata(pdev, port);
+> @@ -780,6 +794,17 @@ static int meson_uart_remove(struct platform_device =
+*pdev)
+>  }
+> =20
+>  static struct meson_uart_data meson_g12a_uart_data =3D {
+> +	.dev_name =3D "ttyAML",
+> +	.has_xtal_div2 =3D true,
+> +};
+> +
+> +static struct meson_uart_data meson_a1_uart_data =3D {
+> +	.dev_name =3D "ttyS",
+> +	.has_xtal_div2 =3D false,
+> +};
+> +
+> +static struct meson_uart_data meson_s4_uart_data =3D {
+> +	.dev_name =3D "ttyS",
+>  	.has_xtal_div2 =3D true,
+>  };
+> =20
+> @@ -794,7 +819,11 @@ static const struct of_device_id meson_uart_dt_match=
+[] =3D {
+>  	},
+>  	{
+>  		.compatible =3D "amlogic,meson-s4-uart",
+> -		.data =3D (void *)&meson_g12a_uart_data,
+> +		.data =3D (void *)&meson_s4_uart_data,
+> +	},
+> +	{
+> +		.compatible =3D "amlogic,meson-a1-uart",
+> +		.data =3D (void *)&meson_a1_uart_data,
+>  	},
+>  	{ /* sentinel */ },
+>  };
+> --=20
+> 2.36.0
+>=20
+
+--cFEFPb639xHq5Qr+
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKRPawAKCRB4tDGHoIJi
+0mZzAP47gQmIoHiEKtf6/SExpFCyadxEql+D7dStRjofvLIEgAD9F25QTpMwc7zH
+/3Dk88CYjPnAzUZCHEyVxiL5r2QW9Ak=
+=wvA0
+-----END PGP SIGNATURE-----
+
+--cFEFPb639xHq5Qr+--
