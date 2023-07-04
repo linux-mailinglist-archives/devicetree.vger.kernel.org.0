@@ -2,137 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 925B0746A58
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 09:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6996746A92
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 09:26:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230081AbjGDHNY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 03:13:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41712 "EHLO
+        id S231281AbjGDH0y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 03:26:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46432 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229804AbjGDHNX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 03:13:23 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF543130;
-        Tue,  4 Jul 2023 00:13:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1688454802; x=1719990802;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=3R780gSrSJ9nAhXyLdyPKWWj43EVLHOBBiNKAgvxGrU=;
-  b=xPW1IBOORPmY3AuH7XsIYwZRSENfZZUi9dRsE800lejI+z7DiDjMLfx9
-   IUTXAiVKfSHQ+7NV3wMjOhePoG4OlcxXtqhTHytbLsaXWakwQrlkIS3Q4
-   uxYBBAmS/gWYJwZq8DTIMYkuq+NWolEcbTmb8vQIqHqI4ABzAz8aNOBNb
-   sMi04JZHGfR4xram/dOvPB1EP2Ph8yOv8j2zmquNSyYcScqJw5LuX4KsH
-   CMQzSRzfWgiqlR8EJv73wJdKnHhq+Bl79ezYm1l52yuEoVpg5QYXwpuLr
-   BtGicCDG5FUBb1+RNfzDFID7tAmgb7l06I1Zxe8yAu4oKIFouB2LmhwYE
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,179,1684825200"; 
-   d="asc'?scan'208";a="221180429"
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa3.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 04 Jul 2023 00:13:21 -0700
-Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Tue, 4 Jul 2023 00:13:21 -0700
-Received: from wendy (10.10.115.15) by chn-vm-ex03.mchp-main.com
- (10.10.85.151) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21 via Frontend
- Transport; Tue, 4 Jul 2023 00:13:18 -0700
-Date:   Tue, 4 Jul 2023 08:12:49 +0100
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <palmer@dabbelt.com>
-CC:     <conor@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
-        Sunil V L <sunilvl@ventanamicro.com>,
-        <linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: Re: [PATCH v3 11/11] RISC-V: provide Kconfig & commandline options
- to control parsing "riscv,isa"
-Message-ID: <20230704-surely-defective-c55f6341127c@wendy>
-References: <20230703-repayment-vocalist-e4f3eeac2b2a@wendy>
- <20230703-greedy-dividable-251fa2b809ac@wendy>
+        with ESMTP id S230316AbjGDH0x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 03:26:53 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A36EE47
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 00:26:51 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-991ef0b464cso951033266b.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 00:26:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688455609; x=1691047609;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Ko8q2mnYLI83it45ln5vyRLkSD2JXittgz6nDfh2LUk=;
+        b=Eyn5UqvQRnDHzH93YBxpvy/QxhUhyh7uMIOjZKwG76mk8DnNGhTzZkMIeHEdiws/Uk
+         d5IRrBR+TQLGEQNZhhvMmDiTCge0qwfi0a2/tDAllN95wfQ1B2uQaiISr/WaKUBdKIjm
+         neIclPd+NIQU70MCKW6TxpKd20MchEFhy6DCtSR3cXZWaCDlU1l6vBeuTW98/9o3XPql
+         kB0bnQN1Suq00BeaNBGTg0b3+/wzGktGKvXuaMjmfMICDMBNeRHX3J2ufa6/rVqBcaiP
+         XjboSaTxEkRiqPJHlR1N90SmD1ZxGuJ6UU1AGUcYe2IMjknggDSJ+UVhEZXjn8G67iCE
+         ZvjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688455609; x=1691047609;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=Ko8q2mnYLI83it45ln5vyRLkSD2JXittgz6nDfh2LUk=;
+        b=UEYyZ40/CpEVIMx2r/+ejKgBqUeUBY57NOoOxtcUYLhYSzrL3n4JeS+zDwdAbwhWCO
+         oDuURR6bW01GqXmdXoQl3ve8OHK6nkVr9hemapxaOztmBrKRh7b0dELNBeiZqmlKGqys
+         2PhnWGYr9e5InYUGmjVsdx+LdZZHUt/YcWmKa5oNXeV4BcEVqE6w4tsOT/6a56sQnI6b
+         6RZuSy+nlEVfXGn7/u/QDQz2hdoUdAMrNRBoh1kX+Ef+VFLWAA0pZIcnOia0KR36oqXy
+         UGkjs15f0ZI8rC15SoHAFJOvjf7O94ogGaEbqoe0shZMMHHIc+SsYztERzkMJVFifUPh
+         TBFQ==
+X-Gm-Message-State: AC+VfDy/GEgfWYh4pa7p1OcPNJZ/DO2gmESSd/fq2GE9jL6EYEsHOvqJ
+        jV3TMAZ0bYw3LJMmtgXlkoiycQ==
+X-Google-Smtp-Source: ACHHUZ5hASxtVh21+e43yIjhBs+XizAcCCJiOECAnwwb2VER0djao+3pyeJbY77gN3U5XdE0Z7jP7A==
+X-Received: by 2002:a17:907:720c:b0:988:565f:bf46 with SMTP id dr12-20020a170907720c00b00988565fbf46mr12681627ejc.32.1688455609366;
+        Tue, 04 Jul 2023 00:26:49 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id kd9-20020a17090798c900b00992d70cc8acsm5841233ejc.112.2023.07.04.00.26.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jul 2023 00:26:48 -0700 (PDT)
+Message-ID: <1fc32a13-489f-8d23-47b8-166ba4c39db3@linaro.org>
+Date:   Tue, 4 Jul 2023 09:26:45 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="M4y9ClbXh4dwVo7F"
-Content-Disposition: inline
-In-Reply-To: <20230703-greedy-dividable-251fa2b809ac@wendy>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 1/4] dt-bindings: interconnect: qcom,rpmh: Add SM8250
+ QUP virt
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andi Shyti <andi.shyti@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        Odelu Kukatla <okukatla@codeaurora.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Sibi Sankar <sibis@codeaurora.org>
+Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
+        linux-arm-msm@vger.kernel.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-pm@vger.kernel.org
+References: <20230703-topic-8250_qup_icc-v2-0-9ba0a9460be2@linaro.org>
+ <20230703-topic-8250_qup_icc-v2-1-9ba0a9460be2@linaro.org>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230703-topic-8250_qup_icc-v2-1-9ba0a9460be2@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---M4y9ClbXh4dwVo7F
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Mon, Jul 03, 2023 at 11:28:03AM +0100, Conor Dooley wrote:
-> As it says on the tin, provide Kconfig option to control parsing the
-> "riscv,isa" devicetree property. If either option is used, the kernel
-> will fall back to parsing "riscv,isa", where "riscv,isa-base" and
-> "riscv,isa-extensions" are not present.
-> The Kconfig options are set up so that the default kernel configuration
-> will enable the fallback path, without needing the commandline option.
->=20
-> Suggested-by: Andrew Jones <ajones@ventanamicro.com>
-> Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
-> Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
+On 03/07/2023 22:15, Konrad Dybcio wrote:
+> Document the QUP virtual bus on SM8250.
+> 
+> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
 > ---
-> Changes in v3:
-> - Invert the Kconfig entry. It's now default y & not hidden by
->   NONPORTABLE, but its entablement will now activate the fallback
-> - Add a commandline option to enable the fallback on kernels that do not
->   enable it in Kconfig, as Drew suggested
-> - Default the global var to the Kconfig option & override it with the
->   commandline one, rather than have checks for IS_ENABLED() and for the
->   commandline option in riscv_fill_hwcap() &
->   riscv_early_of_processor_hartid()
 
-My own bot reports a build failure for nommu, because of section
-mismatches. riscv_early_of_processor_hartid() needs a dose of __init:
 
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index 1acf3679600d..208f1a700121 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -41,7 +41,7 @@ int riscv_of_processor_hartid(struct device_node *node, u=
-nsigned long *hart)
- 	return 0;
- }
-=20
--int riscv_early_of_processor_hartid(struct device_node *node, unsigned lon=
-g *hart)
-+int __init riscv_early_of_processor_hartid(struct device_node *node, unsig=
-ned long *hart)
- {
- 	const char *isa;
-=20
-Good aul nommu build, always the one that catches stuff :)
+> +
+> +allOf:
+> +  - $ref: qcom,rpmh-common.yaml#
+> +  - if:
+> +      not:
+> +        properties:
+> +          compatible:
+> +            enum:
+> +              - qcom,sm8250-qup-virt
+> +    then:
+> +      required:
+> +        - reg
+> +
+>  
+If there is going to be new version - drop stray blank line here.
 
---M4y9ClbXh4dwVo7F
-Content-Type: application/pgp-signature; name="signature.asc"
+In any case:
 
------BEGIN PGP SIGNATURE-----
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKPGXQAKCRB4tDGHoIJi
-0rg5AP9PY2fBP1Bcb1QnerRLwimjm13N3bl6EFsys6XQFXHKGgEA1IWYAyQyJYZo
-ePxSXe208Sl91eEjos5oE0IwX0ipbgQ=
-=YbUb
------END PGP SIGNATURE-----
+Best regards,
+Krzysztof
 
---M4y9ClbXh4dwVo7F--
