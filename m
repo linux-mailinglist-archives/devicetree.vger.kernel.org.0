@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BC26746B84
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 872C0746B8E
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:09:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230482AbjGDIHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 04:07:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41348 "EHLO
+        id S229943AbjGDIJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 04:09:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42600 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231624AbjGDIH1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:07:27 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7F53173E
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:07:15 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9926623e367so611159966b.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 01:07:15 -0700 (PDT)
+        with ESMTP id S229610AbjGDIJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:09:46 -0400
+Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA521CA
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:09:44 -0700 (PDT)
+Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fbc656873eso64558445e9.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 01:09:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688458034; x=1691050034;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=ckr6+/gekGirtr50OHDvvWLDUFdItGBZUEI8k9LrOlw=;
-        b=UNiyzEjhJ69LSQbYfLtTq/zgmjbXfjdCu6wtuRmFMo7YCqIrk7zudyJiKR4rW6awIl
-         dnJLi00KvdsXpgtREiyEZ0OMm7YfeWrhHt2tzGVoORIJwPag0JkN1Vyv9OFvwHu/evFy
-         VrSa2Aryuus+aEtKqcICoA6GSIUy45ropXyB8N6dpD8/xQxyE5hSHMzJONNjTj3EBWCM
-         5fZ4rG7hP4vlIs27OdVGvA+jvfi3qPMkdFN0qQmhCsT5sgmoIv/fPJXp0RQ6S3PP0vQu
-         Z7AocFqwsIksd5j76OUGrZ5N+JEV+nSBIEBgHVD6uG8tuckPPXv/kU84GOrHpXeDiCbw
-         Fc+A==
+        d=linaro.org; s=google; t=1688458183; x=1691050183;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=fvBmFcK9SXnfqzwuT+DfReBotxw6B6mSOnCOgONNgv0=;
+        b=Pq175pcSnAl7IBWg926B60sUexUNsN91Xa/FXmI2ntAs3lAcXGzMzqf4IEP6z2ykp9
+         Adjl5UHjXAQG8b4Im0Dof7v6hUdWRtbvmWC3hTxCMF5N2VNgfVITNVQn8/Jf8xUKWf+E
+         7BG6w3II1oRPPgcIYSMC8un0AEKX2h+RaDCShclbX+PeUfqmBWMA01dcSttEvegLWGn0
+         fq2+rYWCegcCvj/dHvaA66hFXc2tQl9YHzQvNN3D8QPQeIBL5ALKdRVi1m+co9bZcItC
+         LtNLXBnjMXpBtBpqBJGhiDoSRiG0h6cBbZZceGDgK8M0NeBtkhbwaCfmgLOvfPmbSYQu
+         50+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688458034; x=1691050034;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=ckr6+/gekGirtr50OHDvvWLDUFdItGBZUEI8k9LrOlw=;
-        b=htFOixJI3WeyJTUD94Hb7pGXcjcXMM3gbdvDweUL+nP7bZPpMObHHNldEa/U5b42zx
-         kBjGEx9paN0tVquFHAHtQOLr08ottOC8pkDg562G9gbQAmnsgtGFS0uLz9gHYtM7NcvT
-         W8RkkTZPqh+XNFk791E39HbNSd+YFo+EKEjf6CFUm+5cjIvBsE/xA1oZ0IfiWmqvd9g3
-         q9WIbuqF5wSHijmIrtvHunWokMBRwEY+JGeQ6UN+8R7uRL2v0+u4b2CZZ+uath7KC3yo
-         HLuL4CH4vZOTnnBBJZUqrfjo/72dOCmmVR6zY06vRXWegouKDwAAnraL3mgmC3DcEsHJ
-         eZfw==
-X-Gm-Message-State: ABy/qLZe/utnW2VINnv0j9eEwm+vKAWrCnGXBVCERKyPuerkV7VXygw9
-        5CY8+hCe8r1XOGbMznlhO+pH6Q==
-X-Google-Smtp-Source: APBJJlEABByJGfnIEipqN5UYmx124WgDwPOwjwjrXDp8XkPeDqGP+rQevwMp6ZwRWae2hIQqNmzgFg==
-X-Received: by 2002:a17:906:4e52:b0:992:9a5e:3172 with SMTP id g18-20020a1709064e5200b009929a5e3172mr7727541ejw.59.1688458034232;
-        Tue, 04 Jul 2023 01:07:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id z9-20020a17090655c900b00992d0de8762sm5975404ejp.216.2023.07.04.01.07.12
+        d=1e100.net; s=20221208; t=1688458183; x=1691050183;
+        h=content-transfer-encoding:in-reply-to:subject:organization
+         :references:cc:to:content-language:reply-to:from:user-agent
+         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=fvBmFcK9SXnfqzwuT+DfReBotxw6B6mSOnCOgONNgv0=;
+        b=XLOCEQhbgf3RYc5nvu5hronqWVQs4OKDRoHmkW6kCs4dYSPaPQGVXiVZHFzoQHlaC9
+         SSHw97xv2dG8EgMcOC8j5cFtUNNcs57mkOTe+ynS46jKbK3pRcUHZLBFGtKNYcK83niG
+         J5mHvo0auPz1bJc9Bm+NmCWTNyEzjQ+iuqnZ6hzE0k3/I10F+XObHY3ae2ObAK+mGCZb
+         u776J57pvuUwf4k4M70mubLlo6/k1ezWpZeaX5V5vBBSAX70gAyb/3aHBqz9yILau3aR
+         AZeJfj1EB638A0sgiBwoL6tTxHqq3u6fe9Qfd6sMk/gdbC0QNIOth08X/MrgpHtu1o0B
+         xE4A==
+X-Gm-Message-State: AC+VfDxkdT8r8gThV7I5TwC/X8bxkcIPNXTqD/erni90BsXMi6/1IHpF
+        7FtIDaiaTja6ljFBwqGH/GfaOVFAM/SFqakjzMDGsA==
+X-Google-Smtp-Source: ACHHUZ7Djrvqul6xZf1D/plK1Qgd3CmUESVoJdtGZKmCNznyqFyd+//02tHVc7+lyTW8WZM1HIkk4g==
+X-Received: by 2002:a1c:7914:0:b0:3fa:984d:7e94 with SMTP id l20-20020a1c7914000000b003fa984d7e94mr16886762wme.18.1688458183057;
+        Tue, 04 Jul 2023 01:09:43 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:106:cd85:84ae:7b? ([2a01:e0a:982:cbb0:106:cd85:84ae:7b])
+        by smtp.gmail.com with ESMTPSA id l25-20020a1c7919000000b003fbb25da65bsm17017498wme.30.2023.07.04.01.09.42
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 01:07:13 -0700 (PDT)
-Message-ID: <7299b735-d613-1306-796c-291f03f3b361@linaro.org>
-Date:   Tue, 4 Jul 2023 10:07:11 +0200
+        Tue, 04 Jul 2023 01:09:42 -0700 (PDT)
+Message-ID: <112727a2-29c5-1402-deb7-f35119b4338e@linaro.org>
+Date:   Tue, 4 Jul 2023 10:09:41 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v12 01/10] cpufreq: blacklist MSM8998 in
- cpufreq-dt-platdev
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
 Content-Language: en-US
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
+To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Niklas Cassel <nks@flawful.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Robert Marko <robimarko@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        Jeffrey Hugo <quic_jhugo@quicinc.com>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>
-References: <20230217-topic-cpr3h-v12-0-1a4d050e1e67@linaro.org>
- <20230217-topic-cpr3h-v12-1-1a4d050e1e67@linaro.org>
- <20230628155656.GA542106-robh@kernel.org>
- <20230703041701.ntv2f2h7z2welmvn@vireshk-i7>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230703041701.ntv2f2h7z2welmvn@vireshk-i7>
-Content-Type: text/plain; charset=UTF-8
+        Conor Dooley <conor+dt@kernel.org>
+References: <20230704031636.3215838-1-xianwei.zhao@amlogic.com>
+ <20230704031636.3215838-3-xianwei.zhao@amlogic.com>
+Organization: Linaro Developer Services
+Subject: Re: [PATCH 2/2] arm64: dts: add board AN400
+In-Reply-To: <20230704031636.3215838-3-xianwei.zhao@amlogic.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
@@ -96,19 +85,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2023 06:17, Viresh Kumar wrote:
-> On 28-06-23, 09:56, Rob Herring wrote:
->> On Wed, Jun 28, 2023 at 04:00:40PM +0200, Konrad Dybcio wrote:
->>> From: AngeloGioacchino Del Regno <angelogioacchino.delregno@somainline.org>
->>>
->>> Add the MSM8998 to the blacklist since the CPU scaling is handled
->>
->> s/blacklist/denylist/ or s/blacklist/blocklist/
+Hi,
+
+On 04/07/2023 05:16, Xianwei Zhao wrote:
+> Add devicetree support for Amlogic AN400  board based T7 SoC.
 > 
-> They are already named allowlist and blocklist.
+> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> ---
+>   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>   .../dts/amlogic/amlogic-t7-a311d2-an400.dts   | 39 +++++++++++++++++++
+>   2 files changed, 40 insertions(+)
+>   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
+> index 91fa425116ea..8b6f57a94863 100644
+> --- a/arch/arm64/boot/dts/amlogic/Makefile
+> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+> @@ -1,5 +1,6 @@
+>   # SPDX-License-Identifier: GPL-2.0
+>   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+> +dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
+> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
+> new file mode 100644
+> index 000000000000..d755e1ee108a
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
+> @@ -0,0 +1,39 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "amlogic-t7.dtsi"
+> +
+> +/ {
+> +	model = "Amlogic A311D2 AN400 Development Board";
+> +	compatible = "amlogic,an400", "amlogic,a311d2", "amlogic,t7";
+> +	interrupt-parent = <&gic>;
+> +	#address-cells = <2>;
+> +	#size-cells = <2>;
+> +
+> +	aliases {
+> +		serial0 = &uart_a;
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		linux,usable-memory = <0x00000000 0x00000000 0x00000000 0xE0000000
+> +					0x00000001 0x00000000 0x00000000 0x20000000>;
 
-This was about commit msg and subject. They are not named like this.
+Please use "reg =" instead of linux,usable-memory, which is not a documented property
 
-Best regards,
-Krzysztof
+Please use `make CHECK_DTBS=yes amlogic/amlogic-t7-a311d2-an400.dtb` before posting DT patches,
+and make sure there's no errors except already in-review bindings like here the UART compatible.
+
+The result here is:
+arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 'anyOf' conditional failed, one must be fixed:
+         'reg' is a required property
+         'ranges' is a required property
+         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
+arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 'linux,usable-memory' does not match any of the regexes: 'pinctrl-[0-9]+'
+         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/memory.yaml
+arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 'reg' is a required property
+         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/memory.yaml
+
+Please fix this one.
+
+arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: serial@78000: compatible: 'oneOf' conditional failed, one must be fixed:
+         ['amlogic,t7-uart', 'amlogic,meson-s4-uart'] is too short
+         ['amlogic,t7-uart', 'amlogic,meson-s4-uart'] is too long
+         'amlogic,t7-uart' is not one of ['amlogic,meson6-uart', 'amlogic,meson8-uart', 'amlogic,meson8b-uart', 'amlogic,meson-gx-uart', 'amlogic,meson-s4-uart']
+         'amlogic,meson-g12a-uart' was expected
+         'amlogic,meson-ao-uart' was expected
+         'amlogic,meson-gx-uart' was expected
+         From schema: Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: serial@78000: Unevaluated properties are not allowed ('compatible' was unexpected)
+         From schema: Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /soc/bus@fe000000/serial@78000: failed to match any schema with compatible: ['amlogic,t7-uart', 'amlogic,meson-s4-uart']
+
+This one is OK, the UART bindings is reviewed and should be picked up for v6.6
+
+Neil
+
+> +	};
+> +
+> +	xtal: xtal-clk {
+> +		compatible = "fixed-clock";
+> +		clock-frequency = <24000000>;
+> +		clock-output-names = "xtal";
+> +		#clock-cells = <0>;
+> +	};
+> +};
+> +
+> +&uart_a {
+> +	clocks = <&xtal>, <&xtal>, <&xtal>;
+> +	clock-names = "xtal", "pclk", "baud";
+> +	status = "okay";
+> +};
 
