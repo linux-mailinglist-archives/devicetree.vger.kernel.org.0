@@ -2,178 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 354477478DE
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 22:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B2AD7478F4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 22:24:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231702AbjGDUAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 16:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44652 "EHLO
+        id S231734AbjGDUYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 16:24:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46786 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231661AbjGDUAI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 16:00:08 -0400
-Received: from mail-wm1-x332.google.com (mail-wm1-x332.google.com [IPv6:2a00:1450:4864:20::332])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 870A010DC
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 13:00:05 -0700 (PDT)
-Received: by mail-wm1-x332.google.com with SMTP id 5b1f17b1804b1-3fa93d61d48so71237355e9.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 13:00:05 -0700 (PDT)
+        with ESMTP id S231250AbjGDUYu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 16:24:50 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07E1BE76;
+        Tue,  4 Jul 2023 13:24:49 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id 41be03b00d2f7-55b5a37acb6so463862a12.0;
+        Tue, 04 Jul 2023 13:24:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688500804; x=1691092804;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=1fHzMQe/+l45AJ3P9Rbxg4rzS7GRLXVPi798OCju+Z4=;
-        b=HQwGSsPcJ+uQHbqPMy98njNj6tF+eQEfyemUayPA+ZJf1lOYRUPLq+6aTVWIpacQzf
-         vjhM9O7nFCAGNwkm1s+9r+cTLRansqTYdh0j3fl0rtMmAtjhYvow7V1RefZEzMFY7haR
-         NpbEhCtVdafdme+quovgSGdaG6vMZmxL3qcS6lQuXfZXcOYRGLBl541S6xAwnhV4//Fd
-         AyDDvLWwy7Etxx/OzT1DyIScjKRyie11qVqqvW1Vem3lLtYyRZAgU+naLKvi97z+j2UO
-         Ka9I7yQnBZ/grCmv6tXVUgj0AGWg/iUzh3YeM8MsgWYWCAWI9UlFLCnC8+N+pNuJjxti
-         oSfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688500804; x=1691092804;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
+        d=gmail.com; s=20221208; t=1688502288; x=1691094288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=1fHzMQe/+l45AJ3P9Rbxg4rzS7GRLXVPi798OCju+Z4=;
-        b=e8mYyY/7khhylOpZ8AFI1hhyt92B//dIFrDEUeG6QatPfrgPFSeLoJdkVfUN/HlP7B
-         wcZPIJp69oUT9bzWsDd9kHVnJR8MC5SR95IHD7rkAuLKSBgcxenkzj7+exmRqzklsjGh
-         sEPntd0gNOyJuifHa37FM5OnLNAPDcNP6wO42tXJopHaUFvTbP1l0az4qrWbMhym0Ff/
-         XcZ00Ap1LtE4wV3zw/Nw2vu7dR/91T0FyRYDO3gnUglxtKHj62d7QlodrL69fq3AF2Ds
-         Ktqpu3eHEJBDgrPhIkl5MdIzAZ8+VCXZQeUsnx67MfmoNPNNGnoDIHvGthRqNpyAEDG5
-         81VQ==
-X-Gm-Message-State: AC+VfDzcn1Ddo095y+c0Swokfcyfsfi3S7CFUqedvzv6fTAgtVrQFAGA
-        XnBF7a0whe3oxoxtwK45F0CY5Q==
-X-Google-Smtp-Source: ACHHUZ4qKooTw7KG7/DJ2LWDyTsusB+7bUHH6LJuNOebyrTILr8eT7yOrJujqqFlxcqRyYVsTymoUg==
-X-Received: by 2002:a1c:7409:0:b0:3fb:7724:254b with SMTP id p9-20020a1c7409000000b003fb7724254bmr11950726wmc.9.1688500803967;
-        Tue, 04 Jul 2023 13:00:03 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb0:4a33:b29e:11b3:752b])
-        by smtp.gmail.com with ESMTPSA id y6-20020a7bcd86000000b003fbb346279dsm10194wmj.38.2023.07.04.13.00.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jul 2023 13:00:03 -0700 (PDT)
-References: <20230703200404.20361-1-ddrokosov@sberdevices.ru>
- <1j352378zh.fsf@starbuckisacylon.baylibre.com>
- <20230704195451.7gklbmyautuajqtq@CAB-WSD-L081021>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     neil.armstrong@linaro.org, mturquette@baylibre.com,
-        sboyd@kernel.org, khilman@baylibre.com,
-        martin.blumenstingl@googlemail.com, jian.hu@amlogic.com,
-        kernel@sberdevices.ru, rockosov@gmail.com,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Jan Dakinevich <yvdakinevich@sberdevices.ru>
-Subject: Re: [PATCH v1] clk: meson: change usleep_range() to udelay() for
- atomic context
-Date:   Tue, 04 Jul 2023 21:58:31 +0200
-In-reply-to: <20230704195451.7gklbmyautuajqtq@CAB-WSD-L081021>
-Message-ID: <1jy1jv5tx8.fsf@starbuckisacylon.baylibre.com>
+        bh=eXcoyB2c2LmPovrfcZqFCh1F+dK1nMZObtAQzAlFgu0=;
+        b=H7/P+BxaeP0N3C+tbkIDNCg32NLgroPE2sONbk5/kGI/NZH9BHeZfzSL6slAIOM8bf
+         hjUiS0bmu0QS5bSKoMeh9nk2ACtJ4fvWXRO6hcYoDJt915cKMlHo8vkztzHy2rTOB8ZD
+         u0cllXoxcq36G+VNI5RLx+SEIw6Kw5Deg3W9fUnV4o4gg8mdAMUlIORZFCMd4R2fVaFF
+         aDPhMuc9X+Da7JuDKu4/nGF51le2Fbwkk89PGTJ3ZZetJ6EJGS7V8/se1Gwn5tFh9fc5
+         DzpWgS2AwuaR7MMG+JxxVye2WcMN8h+Mn99FbxP+g+Dtz0r922k3OxeYn83PsUmp/IaU
+         EAiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688502288; x=1691094288;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=eXcoyB2c2LmPovrfcZqFCh1F+dK1nMZObtAQzAlFgu0=;
+        b=lMb4ST2fi42MBjt4xGXJYPaRVwroVfBvVhUmt7QhITV3P3iIxIO/DTUEw6ZSJjvT3I
+         9vG0BgYAd9X+0wqGL3lE2/keqgNTKW6Bfwzt/+9vyxMpoBIfyM6a1CDBYnp5POFyVimh
+         4cQDbEjHvi821FStTksnTEyx4KcClSIxP3XLKKzoYXCh6kF0r4uPlN+Ry/QtDhfzAHU8
+         TmzQXSagRjbFaquB6tewzForgnCseB+XH8qkSugPChdYz/WlETNHyeLhvXiRaD5PAMmb
+         lNMR9droPO/iEXlDCF9LlE9uz0GeIaqISy6Vu9ggtP7vxH35iYX3G2o8SXLQOELzngER
+         8m1A==
+X-Gm-Message-State: ABy/qLY7UtpWtneINIPe9SlKepzN99hQAufhF1cCGP981Bzq2AjQIOh0
+        +FPLu/Fbq2TbtquqPA+KNeK877KoPzwplQTUv4H8BKyulQ4=
+X-Google-Smtp-Source: APBJJlE75SoXvUcaKn+0M4NzzJRZdJFs9Q59qM9V68AgG6NSgpM5KHfjRyVh308gqb0wj64XVW1sOsE7REkdmConEe8=
+X-Received: by 2002:a05:6a00:280a:b0:676:2a5c:7bc5 with SMTP id
+ bl10-20020a056a00280a00b006762a5c7bc5mr15978772pfb.1.1688502288424; Tue, 04
+ Jul 2023 13:24:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+References: <20230704184109.991104-1-m.felsch@pengutronix.de> <20230704184109.991104-3-m.felsch@pengutronix.de>
+In-Reply-To: <20230704184109.991104-3-m.felsch@pengutronix.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 4 Jul 2023 17:24:36 -0300
+Message-ID: <CAOMZO5C21f9+ByLVHMaK9wHcCSF3R9W1c1ZCfirx7TuX=786Rw@mail.gmail.com>
+Subject: Re: [PATCH 3/3] arm64: dts: freescale: Add DEBIX SOM A and SOM A I/O
+ Board support
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
+        linux-imx@nxp.com, marex@denx.de, frieder.schrempf@kontron.de,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marco,
 
-On Tue 04 Jul 2023 at 22:54, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
+On Tue, Jul 4, 2023 at 3:41=E2=80=AFPM Marco Felsch <m.felsch@pengutronix.d=
+e> wrote:
 
-> Hello Jerome,
->
-> Thank you for the review!
->
-> On Tue, Jul 04, 2023 at 09:43:41PM +0200, Jerome Brunet wrote:
->> 
->> On Mon 03 Jul 2023 at 23:04, Dmitry Rokosov <ddrokosov@sberdevices.ru> wrote:
->> 
->> > The function meson_clk_pll_enable() can be invoked under the enable_lock
->> > spinlock from the clk core logic
->> 
->> ---
->> > (please refer to
->> > drivers/clk/clk.c:clk_core_enable_lock()), which risks a kernel panic
->> > during the usleep_range() call:
->> >
->> 
->> This part of the comment is not very useful - please drop it
->> 
->
-> Do you mean a stack trace or reference to clk_core_enable_lock()?
+> +&fec {
+> +       pinctrl-names =3D "default";
+> +       pinctrl-0 =3D <&pinctrl_fec>;
+> +       phy-mode =3D "rgmii-id";
+> +       phy-handle =3D <&ethphy1>;
+> +       fsl,magic-packet;
+> +       phy-reset-gpios =3D <&gpio4 19 GPIO_ACTIVE_LOW>;
+> +       phy-reset-duration =3D <10>;
+> +       phy-reset-post-delay =3D <150>;
 
-The comment about clk_core_enable_lock.
-The stack trace is useful, it may help people googling the warning
+These properties are deprecated. Please move them under the mdio node.
 
->
->> >    BUG: scheduling while atomic: kworker/u4:2/36/0x00000002
->> >    Modules linked in: g_ffs usb_f_fs libcomposite
->> >    CPU: 1 PID: 36 Comm: kworker/u4:2 Not tainted 6.4.0-rc5 #273
->> >    Workqueue: events_unbound async_run_entry_fn
->> >    Call trace:
->> >     dump_backtrace+0x9c/0x128
->> >     show_stack+0x20/0x38
->> >     dump_stack_lvl+0x48/0x60
->> >     dump_stack+0x18/0x28
->> >     __schedule_bug+0x58/0x78
->> >     __schedule+0x828/0xa88
->> >     schedule+0x64/0xd8
->> >     schedule_hrtimeout_range_clock+0xd0/0x208
->> >     schedule_hrtimeout_range+0x1c/0x30
->> >     usleep_range_state+0x6c/0xa8
->> >     meson_clk_pll_enable+0x1f4/0x310
->> >     clk_core_enable+0x78/0x200
->> >     clk_core_enable+0x58/0x200
->> >     clk_core_enable+0x58/0x200
->> >     clk_core_enable+0x58/0x200
->> >     clk_enable+0x34/0x60
->> >
->> > Considering that this code is expected to be used in an atomic context,
->> > it is required to use the udelay() function instead of usleep_range()
->> > for the atomic context safety.
->> 
->> Please use an imperative form, instructing the code to change 
->> 
->
-> Ack
->
->> >
->> > Fixes: b6ec400aa153 ("clk: meson: introduce new pll power-on sequence for A1 SoC family")
->> > Reported-by: Jan Dakinevich <yvdakinevich@sberdevices.ru>
->> > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
->> > Signed-off-by: Jan Dakinevich <yvdakinevich@sberdevices.ru>
->> 
->> The tags are confusing here
->> I suppose a 2 lines change has not be been written with 4 hands ;)
->> 
->> If Jan just reported and you made the change then drop his signed-off
->> If he did the job, then drop the reported-by and change the author
->> 
->
-> No problem :) Sometimes 2 lines change is produced during 4 hands
-> debugging :)
->
->> > ---
->> >  drivers/clk/meson/clk-pll.c | 4 ++--
->> >  1 file changed, 2 insertions(+), 2 deletions(-)
->> >
->> > diff --git a/drivers/clk/meson/clk-pll.c b/drivers/clk/meson/clk-pll.c
->> > index 56ec2210f1ad..eef6f37c8d8d 100644
->> > --- a/drivers/clk/meson/clk-pll.c
->> > +++ b/drivers/clk/meson/clk-pll.c
->> > @@ -367,9 +367,9 @@ static int meson_clk_pll_enable(struct clk_hw *hw)
->> >  	 * 3. enable the lock detect module
->> >  	 */
->> >  	if (MESON_PARM_APPLICABLE(&pll->current_en)) {
->> > -		usleep_range(10, 20);
->> > +		udelay(10);
->> >  		meson_parm_write(clk->map, &pll->current_en, 1);
->> > -		usleep_range(40, 50);
->> > +		udelay(40);
->> >  	};
->> >  
->> >  	if (MESON_PARM_APPLICABLE(&pll->l_detect)) {
->> 
+> +               /*
+> +                * Since USB1 is binded to peripheral mode we need to ens=
+ure
 
+s/binded/bound
+
+> +/* =C2=B5SD Card */
+> +&usdhc2 {
+> +       pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
+> +       pinctrl-0 =3D <&pinctrl_usdhc2>;
+> +       pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>;
+> +       pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>;
+> +       vmmc-supply =3D <&reg_usdhc2_vmmc>;
+> +       bus-width =3D <4>;
+> +       disable-wp;
+> +       no-sdio;
+> +       no-mmc;
+> +
+
+No need for this blank line.
+
+> +       assigned-clocks =3D <&clk IMX8MP_CLK_USDHC2>;
+> +       assigned-clock-rates =3D <400000000>;
+> +
+
+Ditto.
+
+> +
+> +       pmic@25 {
+> +               compatible =3D "nxp,pca9450c";
+> +               reg =3D <0x25>;
+> +               pinctrl-names =3D "default";
+> +               pinctrl-0 =3D <&pinctrl_pmic>;
+> +
+> +               interrupt-parent =3D <&gpio1>;
+> +               interrupts =3D <3 GPIO_ACTIVE_LOW>;
+> +
+> +               regulators {
+> +                       buck1: BUCK1 {
+> +                               regulator-name =3D "BUCK1";
+> +                               regulator-min-microvolt =3D <600000>;
+> +                               regulator-max-microvolt =3D <2187500>;
+> +                               regulator-boot-on;
+> +                               regulator-always-on;
+> +                               regulator-ramp-delay =3D <3125>;
+> +                       };
+> +
+> +                       buck2: BUCK2 {
+> +                               regulator-name =3D "BUCK2";
+> +                               regulator-min-microvolt =3D <600000>;
+> +                               regulator-max-microvolt =3D <2187500>;
+> +                               regulator-boot-on;
+> +                               regulator-always-on;
+> +                               regulator-ramp-delay =3D <3125>;
+> +                               nxp,dvs-run-voltage =3D <950000>;
+> +                               nxp,dvs-standby-voltage =3D <850000>;
+> +                       };
+> +
+> +                       buck4: BUCK4{
+
+Missing space after BUCK4.
+
+> +                               regulator-name =3D "BUCK4";
+> +                               regulator-min-microvolt =3D <600000>;
+> +                               regulator-max-microvolt =3D <3400000>;
+> +                               regulator-boot-on;
+> +                               regulator-always-on;
+> +                       };
+> +
+> +                       buck5: BUCK5{
+
+Ditto.
+
+> +&usdhc3 {
+> +       pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
+> +       pinctrl-0 =3D <&pinctrl_usdhc3>;
+> +       pinctrl-1 =3D <&pinctrl_usdhc3_100mhz>;
+> +       pinctrl-2 =3D <&pinctrl_usdhc3_200mhz>;
+> +       bus-width =3D <8>;
+> +       non-removable;
+> +
+
+No need for this blank line.
+
+
+> +       assigned-clocks =3D <&clk IMX8MP_CLK_USDHC3>;
+> +       assigned-clock-rates =3D <400000000>;
+> +
+
+Ditto.
