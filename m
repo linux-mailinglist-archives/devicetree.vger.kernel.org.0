@@ -2,118 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD0BD746B04
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 09:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60C4E746B67
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:03:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231671AbjGDHrm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 03:47:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56248 "EHLO
+        id S230374AbjGDIDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 04:03:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231538AbjGDHrS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 03:47:18 -0400
-Received: from mail-yb1-xb2c.google.com (mail-yb1-xb2c.google.com [IPv6:2607:f8b0:4864:20::b2c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6A647CA
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 00:47:01 -0700 (PDT)
-Received: by mail-yb1-xb2c.google.com with SMTP id 3f1490d57ef6-bb3a77abd7bso5902177276.0
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 00:47:01 -0700 (PDT)
+        with ESMTP id S231225AbjGDICq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:02:46 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08D32E5B
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:02:39 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51d80c5c834so9501083a12.1
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 01:02:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688456820; x=1691048820;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=mRkvpRfMuOlSLRipkiu8Jze1f6nATDLcC9Hl3jUoeDQ=;
-        b=Cqx18F0N47ar3DMEAXrXv9rl0+r4nk7G3XIVZRj+2UatRbWk2pkiJ9fKNXd1oP8qjq
-         4XGs4CS5/ocs96OdReTui+io6Q2RUlZ2xxAxeEfoNbFw56P4i3S1lZhx6voqo8pd4ZdQ
-         b/z4MqyLg8Lk25P+fCUbRY5CLKhcdCYyP1VaofG31awCT1pligE7xlPpR9vrV2FAtAB8
-         hrTY3OLE3iGxJDe19xFGHJKZrbGQbgeVnZQZ1LO88hXcP8k+t1rKS1uSbiU2YmEBku1z
-         zhrV/EdGR6Ifa04qAC0UcP4bA69IZzAjaNuqfw6hl7caT3ETmaYRF7TCVLwGVDifp70u
-         65rQ==
+        d=linaro.org; s=google; t=1688457757; x=1691049757;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=yBZPI8glJqIUeXhqVRAMT4N4I6Vuww3+N8Gf1+RF6eg=;
+        b=A2IEtShJbjKpwGTdVrHcrDd4B6aTMvHQ2LMjreMTZS6SAURNgYuypXFUZHxb/taqUR
+         2HW+6514DjeJsL+S43lF/gccbk655IkQ/PIc3wc7yOu3uHrSSwrj5w+3n57yyyg5tIkG
+         EZvOdJV55bzGa2IRL+1vFYVXuB3CNbFmMEn2hQjFY+FK8PNQf6EzgXvXRpFiR6nKYNfB
+         zbQeb/Rcez+EMySJxtuGNB6v52GLemDYdsbQdcg8YbQsbYNGvxhGrMRbHiV+suU7LhTf
+         H0NRXYD5ibwRKn5wwWfuyBLmuYh2OkbcXQUbjEuQY8nxvAB2nw3RdPGgoJgBjJDgUWxA
+         erHA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688456820; x=1691048820;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=mRkvpRfMuOlSLRipkiu8Jze1f6nATDLcC9Hl3jUoeDQ=;
-        b=WIyWjRuGckrYkhh2YyVxqs0mT/Gkw4q89ttd+JVJTcrmFRaGVvYQEh4CxQsXNzVpy0
-         d2hqoU95PplETBiNN8u3salTra3dvW8k0w3iYbPptLQKrpvzgWFMs30Gcf05ncvn8cZa
-         7GFz1KMcTlrvBE+7mnrRBb5iWw6AoxMPuGSytz3KJ1qJhUH/zFUE0EAkjpTyKKmW6O4F
-         XjehwLTOPZs/IQI+iTQ6HHuMarBi9WZ+o3PUr+QuYBXu8JHIvRPmog4yIvWT/ITot4/F
-         DGrpN/PfQdpBvIzPCpWqxSo6TClF1mx/nu8h/i23bjWtkBjO3zSrkdg5AkCo9K4kMb0O
-         iicA==
-X-Gm-Message-State: ABy/qLahUE2K9l2BrzHBms+PAfZsWH97UOBWO9LDyUiAT/fORqFBzQak
-        Dp+JZ9baagdpw9lR86TdJlqG6gmYPPUfs7l3N5C28lKNc7TJYXw7
-X-Google-Smtp-Source: APBJJlEOVYLwvS3+qiYbXUZ3wW+zZMGMoOzX9B+2fCT/SfdKHpfvSIDaTLdVEL1H0hSnyYGdkqZBANWlryRDoYIKA2I=
-X-Received: by 2002:a25:a8a:0:b0:bcb:9b43:5a89 with SMTP id
- 132-20020a250a8a000000b00bcb9b435a89mr11258112ybk.61.1688456820597; Tue, 04
- Jul 2023 00:47:00 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688457757; x=1691049757;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=yBZPI8glJqIUeXhqVRAMT4N4I6Vuww3+N8Gf1+RF6eg=;
+        b=ILGkHP2zz0PZ7k5qOyqrlZS4hCIFetJauw2bIpD7ok4DnYZVEI0Zj0Gx/jE4GJWHal
+         isnLOH0upGn05JUQrkEsA587L43admdR+ZP6F5gmJEebg7+2QBEjoGG9qcOPtNnMtDtf
+         o53HgcC7oFV0KpNOMRdTeUB69+/CY4KAwydLdAhW1ieKvbLk2id3uLK5/2I1p8LhDI+K
+         yOJg5xXCyCMvYShM955nBqPwcR8YMwv0PG3qiLM2RuO7co1I1dA3GTRiZmF41+RFm52u
+         XmhQXd77H/YFFIQz4EnFiXTyziZR9Gm8ec27lF+QPh5k2VIluJ5g6j6OjX0zVHW6E8GQ
+         F1dQ==
+X-Gm-Message-State: ABy/qLany3TQqKPhqumY6SI7pEa/As5y1tJxmZHeK9zq4xr+k58Fntrm
+        hHtcj7CA/k50E9x9zkqBSZiD+yQ5OoTfJt5C4LeiAQ==
+X-Google-Smtp-Source: APBJJlH717oPGFv+MjoFn80oa7HNgr/u6Yrl7/XZuLT5Lhy/wGRwAFSGpyBAiRmiDQc7Muh+xJqIcQ==
+X-Received: by 2002:a05:6402:b1a:b0:51d:914a:9f3d with SMTP id bm26-20020a0564020b1a00b0051d914a9f3dmr12953207edb.10.1688457757473;
+        Tue, 04 Jul 2023 01:02:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id s19-20020a056402165300b0051d9df5dd2fsm9370643edx.72.2023.07.04.01.02.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jul 2023 01:02:37 -0700 (PDT)
+Message-ID: <85771493-a06a-b92d-51c5-c7771443b563@linaro.org>
+Date:   Tue, 4 Jul 2023 10:02:35 +0200
 MIME-Version: 1.0
-References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
- <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
- <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com> <CAD=FV=W_Vw=WTuap60PtzU8Jc58T1PsEhJfY96NmFFgmC1DB9w@mail.gmail.com>
-In-Reply-To: <CAD=FV=W_Vw=WTuap60PtzU8Jc58T1PsEhJfY96NmFFgmC1DB9w@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 4 Jul 2023 09:46:49 +0200
-Message-ID: <CACRpkdZkNio99zS+ttEXncOtS1TcYbfunKSKddErRDV1gTY43w@mail.gmail.com>
-Subject: Re: [v4 4/4] drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
-To:     Doug Anderson <dianders@google.com>
-Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        neil.armstrong@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, sam@ravnborg.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: clock: imx8-acm: Add audio clock mux
+ support
+Content-Language: en-US
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
+        peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
         robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hsinyi@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        shengjiu.wang@gmail.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1688449175-1677-1-git-send-email-shengjiu.wang@nxp.com>
+ <1688449175-1677-2-git-send-email-shengjiu.wang@nxp.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1688449175-1677-2-git-send-email-shengjiu.wang@nxp.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 1, 2023 at 5:55=E2=80=AFPM Doug Anderson <dianders@google.com> =
-wrote:
-> On Thu, May 25, 2023 at 2:32=E2=80=AFAM Cong Yang
-> <yangcong5@huaqin.corp-partner.google.com> wrote:
-> >
-> > The Starry-ili9882 is a 10.51" WUXGA TFT panel. which fits in nicely wi=
-th
-> > the existing panel-boe-tv101wum-nl6 driver. From the datasheet,MIPI nee=
-d
-> > to keep the LP11 state before the lcm_reset pin is pulled high. So add
-> > lp11_before_reset flag.
-> >
-> > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> >  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 371 ++++++++++++++++++
-> >  1 file changed, 371 insertions(+)
->
-> Applied to drm-misc-next:
->
-> 8716a6473e6c drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
+On 04/07/2023 07:39, Shengjiu Wang wrote:
+> Add the clock dt-binding file for audio clock mux. which
+> is the IP for i.MX8QM, i.MX8QXP, i.MX8DXL.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
 
-Sorry for noticing too late and coming after the fact and complaining.
+Except what the bot already pointed out:
 
-We must stop using the panel-boe-tv101wum-nl6.c driver as a
-one-stop-shop for Chromium panels. The Starry panel in particular
-hardware-wise has nothing in common with the other panels in this
-driver and I'm suspicious about patch 3/4 as well.
+> ---
+>  .../devicetree/bindings/clock/imx8-acm.yaml   | 71 +++++++++++++++++++
+>  1 file changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/imx8-acm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/clock/imx8-acm.yaml b/Documentation/devicetree/bindings/clock/imx8-acm.yaml
+> new file mode 100644
+> index 000000000000..820c06b81aa6
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/imx8-acm.yaml
 
-Please check my patch breaking it out to a separate driver, and
-if you could check internally if you have a datasheet for Ilitek
-ILI9882t or can use your vendor leverage to get one to improve
-on the driver (such as define the DCS commands...) that would
-be great.
+Filename matching compatible. At least vendor prefix is missing.
 
-There are good reasons for grouping the panel drivers into
-respective display controller such as fixing bugs in one place
-and if we ever want to properly support things such as
-gamma correction it will provide the proper per-display-controller
-approach.
 
-Yours,
-Linus Walleij
+> @@ -0,0 +1,71 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/imx8-acm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: NXP i.MX8 Audio Clock Mux Binding
+> +
+> +maintainers:
+> +  - Shengjiu Wang <shengjiu.wang@nxp.com>
+> +
+> +description: |
+> +  NXP i.MX8 Audio Clock Mux is dedicated clock muxing IP
+> +  used to control Audio related clock on the SoC.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - nxp,imx8qm-acm
+> +      - nxp,imx8qxp-acm
+> +      - nxp,imx8dxl-acm
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  power-domains:
+> +    minItems: 13
+> +    maxItems: 21
+
+
+21 power domains? What's this? Why clock device make entire SoC awake?
+
+Anyway, you need to list them.
+
+> +
+> +  '#clock-cells':
+> +    const: 1
+> +    description:
+> +      The clock consumer should specify the desired clock by having the clock
+> +      ID in its "clocks" phandle cell. See include/dt-bindings/clock/imx8-clock.h
+> +      for the full list of i.MX8 ACM clock IDs.
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - power-domains
+> +  - '#clock-cells'
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  # Clock Control Module node:
+> +  - |
+> +    #include <dt-bindings/firmware/imx/rsrc.h>
+> +
+> +    acm@59e00000 {
+
+
+Node names should be generic. See also explanation and list of examples
+in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+> +        compatible = "nxp,imx8qxp-acm";
+> +        reg = <0x59e00000 0x1D0000>;
+
+Don't mix hexes. Only lower-case.
+
+Please perform some basic review in NXP before sending it.
+
+Best regards,
+Krzysztof
+
