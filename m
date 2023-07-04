@@ -2,120 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E827746E70
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 12:23:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF3A5746E87
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 12:25:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230156AbjGDKXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 06:23:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45770 "EHLO
+        id S231533AbjGDKZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 06:25:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46852 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230114AbjGDKXE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 06:23:04 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2BD02135;
-        Tue,  4 Jul 2023 03:23:03 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3647k79D002503;
-        Tue, 4 Jul 2023 10:22:59 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=qcppdkim1;
- bh=c5dtDXJqb0T4Tt3/YuSjwf0oFZqGgM57+4XBYOJ5nvw=;
- b=dTVE0yKV/tB04+LlbUlGPd0gg4InjOE+wtnyeZG4DAhdeTvH8eQtj/vnaEEqJme4VBHX
- XgEmKd/22TWZhUAhI9Uu04edwu9sjoDkmuw9MsJGtsTYK1l3Jqk6zqY615aSpL+sR7Sk
- EzLDOCqch48q5mhhheUyi0CpkuycNzeeIMIHZhyUJ6eCRpRbJ3nCj1KSvwUhzWRoipGb
- PRnFdv3+T20aB5N+cjXTGp2N2OZ6Fu9PQbimdH3ZN16Qt+XTRjRTHAPm+/A8M1a7rfj4
- q9pVWQ4rTlByRybfBKvWPJdQbt3D58gjGuTiRvkmwuGBCYUXH+VA9ZFumC0FdXUJD86r 1A== 
-Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rkv1djfaw-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 04 Jul 2023 10:22:59 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 364AMwLV005415
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 4 Jul 2023 10:22:58 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.7; Tue, 4 Jul 2023 03:22:55 -0700
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>
-Subject: [PATCH] arm64: dts: qcom: qdu1000: Add reserved gpio list
-Date:   Tue, 4 Jul 2023 15:52:24 +0530
-Message-ID: <20230704102224.25052-1-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.40.1
+        with ESMTP id S231535AbjGDKZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 06:25:41 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1843184;
+        Tue,  4 Jul 2023 03:25:40 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 79EC26606FA4;
+        Tue,  4 Jul 2023 11:25:38 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1688466339;
+        bh=OK1hVnQx2+QUut5ekc5MMXkV5OBtCioWQbQvC+CYWOk=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=AAvx7lsehf+CnXxI5/sKpl2B5gtl72kS9T7gr//4AF3eLhN9/q+jS4IaO3wUGZIId
+         wAY67Qm+rGP4bAHSmoc8YiH4XNn3ZGQL1orgBhzNIf/C/UmQbAHlewEvgEgjQXH81G
+         w1RXBoXgIcachDJ2kCxNjPFcFxV30FhwjDbDjbvj/Cqa6Qlp2DjDJxvPiLCOjUz1Yg
+         6oTz+1M9Z5iftOxrUl6pk1y3I8YJykugGeuVy0zSQP3U18A87MUSvPJk5WI06+gh8U
+         goqnrgntzicd0wfPgqinNDdDznm5Ib5x8gQfP/k00B5nL7SX4Ywvg+KBlxcb6pLdKP
+         3dL7OYFfji1sA==
+Message-ID: <59b1b17b-64f8-1f60-7206-4d0a03e4eecb@collabora.com>
+Date:   Tue, 4 Jul 2023 12:25:36 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: j_mWqHLQLKJZtWB-Q4Xa591QAk_iQkvZ
-X-Proofpoint-ORIG-GUID: j_mWqHLQLKJZtWB-Q4Xa591QAk_iQkvZ
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-04_06,2023-07-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 malwarescore=0
- adultscore=0 lowpriorityscore=0 mlxlogscore=561 phishscore=0
- impostorscore=0 mlxscore=0 priorityscore=1501 clxscore=1015 spamscore=0
- suspectscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307040086
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v6 3/8] soc: mediatek: pm-domains: Split bus_prot_mask
+Content-Language: en-US
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230627131040.3418538-1-msp@baylibre.com>
+ <20230627131040.3418538-4-msp@baylibre.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230627131040.3418538-4-msp@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reserved gpio list for QDU1000 and QRU1000 SoCs
-which will not be used by HLOS.
+Il 27/06/23 15:10, Markus Schneider-Pargmann ha scritto:
+> bus_prot_mask is used for all operations, set clear and acknowledge. In
+> preparation of m8365 power domain support split this one mask into two,
+> one mask for set and clear, another one for acknowledge.
+> 
+> Signed-off-by: Markus Schneider-Pargmann <msp@baylibre.com>
+> ---
+>   drivers/soc/mediatek/mtk-pm-domains.c | 24 ++++++++++++++----------
+>   drivers/soc/mediatek/mtk-pm-domains.h | 14 ++++++++------
+>   2 files changed, 22 insertions(+), 16 deletions(-)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-pm-domains.c b/drivers/soc/mediatek/mtk-pm-domains.c
+> index aa9ab413479e..c801fa763e89 100644
+> --- a/drivers/soc/mediatek/mtk-pm-domains.c
+> +++ b/drivers/soc/mediatek/mtk-pm-domains.c
+> @@ -123,18 +123,20 @@ static int _scpsys_bus_protect_enable(const struct scpsys_bus_prot_data *bpd, st
+>   	int i, ret;
+>   
+>   	for (i = 0; i < SPM_MAX_BUS_PROT_DATA; i++) {
+> -		u32 val, mask = bpd[i].bus_prot_mask;
+> +		u32 val;
+> +		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
+> +		u32 sta_mask = bpd[i].bus_prot_sta_mask;
+>   
+> -		if (!mask)
+> +		if (!set_clr_mask)
+>   			break;
+>   
+>   		if (bpd[i].flags & BUS_PROT_REG_UPDATE)
+> -			regmap_set_bits(regmap, bpd[i].bus_prot_set, mask);
+> +			regmap_set_bits(regmap, bpd[i].bus_prot_set, set_clr_mask);
+>   		else
+> -			regmap_write(regmap, bpd[i].bus_prot_set, mask);
+> +			regmap_write(regmap, bpd[i].bus_prot_set, set_clr_mask);
+>   
+>   		ret = regmap_read_poll_timeout(regmap, bpd[i].bus_prot_sta,
+> -					       val, (val & mask) == mask,
+> +					       val, (val & sta_mask) == sta_mask,
+>   					       MTK_POLL_DELAY_US, MTK_POLL_TIMEOUT);
+>   		if (ret)
+>   			return ret;
+> @@ -160,21 +162,23 @@ static int _scpsys_bus_protect_disable(const struct scpsys_bus_prot_data *bpd,
+>   	int i, ret;
+>   
+>   	for (i = SPM_MAX_BUS_PROT_DATA - 1; i >= 0; i--) {
+> -		u32 val, mask = bpd[i].bus_prot_mask;
+> +		u32 val;
+> +		u32 set_clr_mask = bpd[i].bus_prot_set_clr_mask;
+> +		u32 sta_mask = bpd[i].bus_prot_sta_mask;
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 4 ++++
- arch/arm64/boot/dts/qcom/qru1000-idp.dts | 4 ++++
- 2 files changed, 8 insertions(+)
+Only one nitpick: val should be declared after the others....
+That's just for readability and nothing else, obviously.
 
-diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-index 1d22f87fd238..0496e87ddfd5 100644
---- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-@@ -471,6 +471,10 @@ &sdhc {
- 	status = "okay";
- };
- 
-+&tlmm {
-+	gpio-reserved-ranges = <28 2>;
-+};
-+
- &uart7 {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-index 2cc893ae4d10..80dadd2f30a3 100644
---- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-@@ -448,6 +448,10 @@ &qupv3_id_0 {
- 	status = "okay";
- };
- 
-+&tlmm {
-+	gpio-reserved-ranges = <28 2>;
-+};
-+
- &uart7 {
- 	status = "okay";
- };
--- 
-2.40.1
+Anyway, after that change:
+
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+
 
