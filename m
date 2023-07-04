@@ -2,123 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C6FCE74779B
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 19:19:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 662697477EF
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 19:37:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230195AbjGDRTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 13:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36296 "EHLO
+        id S230011AbjGDRhc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 13:37:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229793AbjGDRTE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 13:19:04 -0400
+        with ESMTP id S229793AbjGDRhb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 13:37:31 -0400
 Received: from mx1.sberdevices.ru (mx1.sberdevices.ru [37.18.73.165])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7469AE76;
-        Tue,  4 Jul 2023 10:19:02 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 021BDE6D;
+        Tue,  4 Jul 2023 10:37:29 -0700 (PDT)
 Received: from p-infra-ksmg-sc-msk01 (localhost [127.0.0.1])
-        by mx1.sberdevices.ru (Postfix) with ESMTP id 058E3100069;
-        Tue,  4 Jul 2023 20:19:01 +0300 (MSK)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 058E3100069
+        by mx1.sberdevices.ru (Postfix) with ESMTP id 6876C100069;
+        Tue,  4 Jul 2023 20:37:28 +0300 (MSK)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mx1.sberdevices.ru 6876C100069
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sberdevices.ru;
-        s=mail; t=1688491141;
-        bh=+h4yVW7FjpHQ+urNjtfPriUNzJFyj06QNNvg77/XYRs=;
-        h=Date:From:To:Subject:Message-ID:MIME-Version:Content-Type:From;
-        b=maqmeQDMdiiQvgMVedC+XspuixWr+zxXEFZTeF5UtiGvFx5XCJ40bGxz5RX1RMZfa
-         couGVJuc3ltmrWFN8iUrKslX2Nnemmuu2SiIfQAgfETfl7rv8mx+W4G/HOBUhRa7kS
-         wypwIq6yGYZEWSeung19nxdbQ1qdLWU6EKB0LRTDqHPjLnvpd5Y2I88GMVFKZ8gxL3
-         0MiHKoFM3S1eh5esAv5FsEmI4Nt1+5SdBHqFUVTBqOoBczy0kuiMdsH/lI7VF9wQNq
-         OtSSj3HGGkwdjI7EFePVoQFdVaIgiEEbvXGdwpVATqLoHbhwGQnDrTUCwV2RpxmbDS
-         I26/yimdAVLuQ==
+        s=mail; t=1688492248;
+        bh=0t+mR7aNfe+ylAtBNvEGCWYPJQx/8WNK8PjxOwrmOTA=;
+        h=Message-ID:Date:MIME-Version:Subject:From:To:Content-Type:From;
+        b=EIFPPYpZJB8y2bcROy4Q+4zWKdi0+Ib+gA3lCPMFpqJu4mUljOrGG/pCWOfyJ632J
+         O3cmZMq3vc9YD1iv4z0BHcGK+wWEMaEnkcYQP6lKik2gzxY0m8SciVZFqqU/NbXoqa
+         6q5o35SdgFVj93wzzxtac1lZW61l+jg1XfKXdGMf0a9CaqOPpGPDT1zwgM3QirNDu+
+         4d3NtPQnBnfnP6CD8hxpbloZCPJfj+yIuAkV5nGL1iSSkfwbAQwKhhwn1LVriTRVxT
+         TXK/RSVwFppOizc7LrvjRDzwple+astxMeoW9ArzwFmWyfyaCUnRWRx8pC7C2D3DQO
+         wgcn1eNK6d9pQ==
 Received: from p-i-exch-sc-m01.sberdevices.ru (p-i-exch-sc-m01.sberdevices.ru [172.16.192.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
         by mx1.sberdevices.ru (Postfix) with ESMTPS;
-        Tue,  4 Jul 2023 20:19:00 +0300 (MSK)
-Received: from localhost (100.64.160.123) by p-i-exch-sc-m01.sberdevices.ru
- (172.16.192.107) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Tue, 4 Jul
- 2023 20:18:49 +0300
-Date:   Tue, 4 Jul 2023 20:19:00 +0300
-From:   Dmitry Rokosov <ddrokosov@sberdevices.ru>
-To:     Conor Dooley <conor@kernel.org>
-CC:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <neil.armstrong@linaro.org>, <jbrunet@baylibre.com>,
-        <jirislaby@kernel.org>, <khilman@baylibre.com>,
-        <martin.blumenstingl@googlemail.com>, <kelvin.zhang@amlogic.com>,
-        <xianwei.zhao@amlogic.com>, <kernel@sberdevices.ru>,
-        <rockosov@gmail.com>, <linux-amlogic@lists.infradead.org>,
-        <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v1 5/5] arm64: dts: meson: a1: change uart compatible
- string
-Message-ID: <20230704171900.ulnnpkuzvtbbqa3d@CAB-WSD-L081021>
-References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
- <20230704135936.14697-6-ddrokosov@sberdevices.ru>
- <20230704-cannabis-cannon-19397cd806bc@spud>
- <20230704170843.wksxekltre2ob4en@CAB-WSD-L081021>
- <20230704-staff-smilingly-401b99e28edd@spud>
+        Tue,  4 Jul 2023 20:37:28 +0300 (MSK)
+Received: from [192.168.0.12] (100.64.160.123) by
+ p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.30; Tue, 4 Jul 2023 20:37:16 +0300
+Message-ID: <59246d83-7c4b-8b34-3173-71bdb698c2aa@sberdevices.ru>
+Date:   Tue, 4 Jul 2023 20:32:13 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20230704-staff-smilingly-401b99e28edd@spud>
-User-Agent: NeoMutt/20220415
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.7.1
+Subject: Re: [PATCH v3 2/2] mtd: rawnand: meson: waiting w/o wired ready/busy
+ pin
+Content-Language: en-US
+From:   Arseniy Krasnov <avkrasnov@sberdevices.ru>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+CC:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+References: <20230608044728.1328506-1-AVKrasnov@sberdevices.ru>
+ <20230608044728.1328506-3-AVKrasnov@sberdevices.ru>
+ <20230704144357.286281dc@xps-13>
+ <47994f36-27d4-e5e4-73a9-6d4225671eec@sberdevices.ru>
+ <20230704151220.67857861@xps-13>
+ <73849b9c-0700-4946-84a2-428f98f0a6d6@sberdevices.ru>
+In-Reply-To: <73849b9c-0700-4946-84a2-428f98f0a6d6@sberdevices.ru>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-Originating-IP: [100.64.160.123]
 X-ClientProxiedBy: p-i-exch-sc-m01.sberdevices.ru (172.16.192.107) To
  p-i-exch-sc-m01.sberdevices.ru (172.16.192.107)
 X-KSMG-Rule-ID: 10
 X-KSMG-Message-Action: clean
-X-KSMG-AntiSpam-Lua-Profiles: 178431 [Jul 04 2023]
+X-KSMG-AntiSpam-Lua-Profiles: 178432 [Jul 04 2023]
 X-KSMG-AntiSpam-Version: 5.9.59.0
-X-KSMG-AntiSpam-Envelope-From: DDRokosov@sberdevices.ru
+X-KSMG-AntiSpam-Envelope-From: AVKrasnov@sberdevices.ru
 X-KSMG-AntiSpam-Rate: 0
 X-KSMG-AntiSpam-Status: not_detected
 X-KSMG-AntiSpam-Method: none
 X-KSMG-AntiSpam-Auth: dkim=none
-X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Track_E25351}, {Tracking_from_domain_doesnt_match_to}, p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1;d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
+X-KSMG-AntiSpam-Info: LuaCore: 520 520 ccb018a655251011855942a2571029252d3d69a2, {Tracking_from_domain_doesnt_match_to}, d41d8cd98f00b204e9800998ecf8427e.com:7.1.1;sberdevices.ru:7.1.1,5.0.1;127.0.0.199:7.1.2;100.64.160.123:7.1.2;p-i-exch-sc-m01.sberdevices.ru:7.1.1,5.0.1, FromAlignment: s, {Tracking_white_helo}, ApMailHostAddress: 100.64.160.123
 X-MS-Exchange-Organization-SCL: -1
 X-KSMG-AntiSpam-Interceptor-Info: scan successful
 X-KSMG-AntiPhishing: Clean
 X-KSMG-LinksScanning: Clean
 X-KSMG-AntiVirus: Kaspersky Secure Mail Gateway, version 2.0.1.6960, bases: 2023/07/04 05:54:00 #21559896
 X-KSMG-AntiVirus-Status: Clean, skipped
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 04, 2023 at 06:10:46PM +0100, Conor Dooley wrote:
-> On Tue, Jul 04, 2023 at 08:08:43PM +0300, Dmitry Rokosov wrote:
-> > On Tue, Jul 04, 2023 at 06:02:58PM +0100, Conor Dooley wrote:
-> > > On Tue, Jul 04, 2023 at 04:59:36PM +0300, Dmitry Rokosov wrote:
-> > > > In the current implementation, the meson-a1 configuration incorporates a
-> > > > unique compatibility tag "amlogic,meson-a1-uart' within the meson-uart
-> > > > driver due to its usage of the new console device name "ttyS".
-> > > > Consequently, the previous compatibility tag designated for the
-> > > > 'amlogic,meson-gx-uart' configuration has become obsolete and is no
-> > > > longer relevant to the current setup.
-> > > 
-> > > I don't really see why you would remove the gx-uart to be honest, and
-> > > not use it as a fallback. Neil's platform though, so his call :)
-> > > 
-> > 
-> > Because of amlogic,meson-gx-uart has legacy devname, we do not want to
-> > use it in the A1.
+
+
+On 04.07.2023 16:07, Arseniy Krasnov wrote:
 > 
-> Which I did read in your commit message, fallback being the operative
-> word here.
+> 
+> On 04.07.2023 16:12, Miquel Raynal wrote:
+>> Hi Arseniy,
+>>
+>> avkrasnov@sberdevices.ru wrote on Tue, 4 Jul 2023 15:46:18 +0300:
+>>
+>>> On 04.07.2023 15:43, Miquel Raynal wrote:
+>>>> Hi Arseniy,
+>>>>
+>>>> AVKrasnov@sberdevices.ru wrote on Thu, 8 Jun 2023 07:47:28 +0300:
+>>>>   
+>>>>> If there is no wired ready/busy pin, classic way to wait for command
+>>>>> completion is to use function 'nand_soft_waitrdy()'. Meson NAND has
+>>>>> special command which allows to wait for NAND_STATUS_READY bit without
+>>>>> reading status in a software loop (as 'nand_soft_waitrdy()' does). To
+>>>>> use it send this command along with NAND_CMD_STATUS, then wait for an
+>>>>> interrupt, and after interrupt send NAND_CMD_READ0. So this feature
+>>>>> allows to use interrupt driven waiting without wired ready/busy pin.
+>>>>>
+>>>>> Suggested-by: Liang Yang <liang.yang@amlogic.com>
+>>>>> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+>>>>> ---
+>>>>>  drivers/mtd/nand/raw/meson_nand.c | 77 +++++++++++++++++++++++++++++--
+>>>>>  1 file changed, 73 insertions(+), 4 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/meson_nand.c
+>>>>> index 074e14225c06..9f05e113b4ea 100644
+>>>>> --- a/drivers/mtd/nand/raw/meson_nand.c
+>>>>> +++ b/drivers/mtd/nand/raw/meson_nand.c
+>>>>> @@ -38,6 +38,7 @@
+>>>>>  #define NFC_CMD_SCRAMBLER_DISABLE	0
+>>>>>  #define NFC_CMD_SHORTMODE_DISABLE	0
+>>>>>  #define NFC_CMD_RB_INT		BIT(14)
+>>>>> +#define NFC_CMD_RB_INT_NO_PIN	((0xb << 10) | BIT(18) | BIT(16))
+>>>>>  
+>>>>>  #define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
+>>>>>  
+>>>>> @@ -179,6 +180,7 @@ struct meson_nfc {
+>>>>>  	u32 info_bytes;
+>>>>>  
+>>>>>  	unsigned long assigned_cs;
+>>>>> +	bool no_rb_pin;
+>>>>>  };
+>>>>>  
+>>>>>  enum {
+>>>>> @@ -392,7 +394,42 @@ static void meson_nfc_set_data_oob(struct nand_chip *nand,
+>>>>>  	}
+>>>>>  }
+>>>>>  
+>>>>> -static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_ms)
+>>>>> +static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int timeout_ms,
+>>>>> +				    bool need_cmd_read0)
+>>>>> +{
+>>>>> +	u32 cmd, cfg;
+>>>>> +
+>>>>> +	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
+>>>>> +	meson_nfc_drain_cmd(nfc);
+>>>>> +	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
+>>>>> +
+>>>>> +	cfg = readl(nfc->reg_base + NFC_REG_CFG);
+>>>>> +	cfg |= NFC_RB_IRQ_EN;
+>>>>> +	writel(cfg, nfc->reg_base + NFC_REG_CFG);
+>>>>> +
+>>>>> +	reinit_completion(&nfc->completion);
+>>>>> +	cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
+>>>>> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>>>>> +
+>>>>> +	/* use the max erase time as the maximum clock for waiting R/B */
+>>>>> +	cmd = NFC_CMD_RB | NFC_CMD_RB_INT_NO_PIN | nfc->timing.tbers_max;
+>>>>> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>>>>> +
+>>>>> +	if (!wait_for_completion_timeout(&nfc->completion,
+>>>>> +					 msecs_to_jiffies(timeout_ms)))
+>>>>> +		return -ETIMEDOUT;
+>>>>> +
+>>>>> +	if (need_cmd_read0) {
+>>>>> +		cmd = nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
+>>>>> +		writel(cmd, nfc->reg_base + NFC_REG_CMD);
+>>>>> +		meson_nfc_drain_cmd(nfc);
+>>>>> +		meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
+>>>>> +	}  
+>>>>
+>>>> I forgot about this, you should avoid open coding core helpers, can you
+>>>> please send a followup patch to use nand_status_op() and
+>>>> nand_exit_status_op() ?  
+>>>
+>>> A ok, so:
+>>> 1) Sending NAND_CMD_STATUS goes to nand_status_op()
+>>> 2) Sending NAND_CMD_READ0 goes to nand_exit_status_op()
+>>>
+>>> Ok, no problem! I'll prepare and send it on this week!
+>>
+>> Exactly. Sorry I had this in mind but I likely forgot to write it
+>> down.
+> 
+> Ok, got it!
 
-Although it is difficult for me to envision a situation where we would
-require this fallback, but gx-uart fallback will function from a kernel
-perspective (without taking into account bootloader setup or userspace
-daemon script). I don't have any objections to stay gx-uart as a
-fallback, will do it in the v2.
+Hm, seems 'int nand_exit_status_op(struct nand_chip *chip)' is not exported,
+so I can't use it in the Meson module. While 'nand_status_op()' works ok.
+May I can export 'nand_exit_status_op()?'
 
--- 
-Thank you,
-Dmitry
+Thanks, Arseniy
+
+
+> 
+> Thanks, Arseniy
+> 
+>>
+>> Thanks,
+>> Miquèl
