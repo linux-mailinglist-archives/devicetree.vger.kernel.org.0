@@ -2,251 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98B2F746DD6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 11:42:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40F23746DE4
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 11:44:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231533AbjGDJmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 05:42:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56858 "EHLO
+        id S231394AbjGDJo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 05:44:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231528AbjGDJmb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 05:42:31 -0400
-Received: from relay7-d.mail.gandi.net (relay7-d.mail.gandi.net [217.70.183.200])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8A37E59;
-        Tue,  4 Jul 2023 02:41:15 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1688463674;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=/m9hnbmXRoLzd2pZwx0iA9IbGKVFRLbsVCiOPjgHHdU=;
-        b=J0td3VK4VJoUifzJSNtk/5oRsJ+64l85Ui3WFQR8kG51DjpUQ4TL4MH4OJPmUHP0llm78G
-        3wRh1W5vdxHL+ZWfT/KR5N9uhCqBP09Mhr7BgybzKGe/cq67y+4SS1Ih3YkRn5E3hnTmMK
-        by2/WQYP9M+0bsid40lBnWd5RNef75a21cMSevmoN8Rmt9VLd4gYnBurlswXNlOMRx57i6
-        dnAF7w83FWFPKVjEsDoX/6HxNPguFPwXCXGwN/tStcmiWtiDSD904JgnoiWxi5wEbeaTvF
-        yM5mUwjTu4jm/de95ZxHTK9FKUlLpB9TiPhNmAq0j6Y3pzb3n8cdGsw7WMVjJA==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id AD2142001D;
-        Tue,  4 Jul 2023 09:41:11 +0000 (UTC)
-Date:   Tue, 4 Jul 2023 11:41:10 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Cc:     Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231432AbjGDJoP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 05:44:15 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9B561725
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 02:43:56 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-5149aafef44so6114923a12.0
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 02:43:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688463835; x=1691055835;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=2jjVOyUTnAKMRHBkOAZFEZ2Gt/AchktqGDrwDJg3g/0=;
+        b=WMnfo36Btbfm7d0ZlMf3SJM8X7nDp/s5XlMgIET7P+HRjpjlytc+l4t0U4hyXIc6+x
+         Gq/K45vYX6Ib+pOG6NTFHwtHboFXecOitRXIHT9fLbn+KifrXzVXeoj9WPOtPpec7Pn1
+         v4Wx9/tRn/1q2oAqdmyenxoo+yQydUrV/2jGrBUhcmeAGhAgKKQStcyg3ijkeuev5Ah6
+         pgzUQ6o6/21yc/7cKq47qqR3mEFNwAdDOp2Qvllun3RaKnJdbi1219c0VW6rMu5Fq9M1
+         Vq7m1lW0r9TfNqtSJrbe9cV//oa46CttOeWLHLAuKfiNhaiMMYPi8nUI6+79345jxXJR
+         BjYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688463835; x=1691055835;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=2jjVOyUTnAKMRHBkOAZFEZ2Gt/AchktqGDrwDJg3g/0=;
+        b=aihl0d4xDLNtrCDTFWgIX5ckt/piJBSQLex4fPipfe0AbSrDE7WuO5Dlp3ie1PEQ2o
+         IWu1BP8EdCTbkkvTQl3gKGqX1NSQntBfLlluczxc2KjJV3qntAnpnrR9nrLAQqewuqhD
+         bEhsXeqLBrCOvACtG6xnDFABNTynzFUhmnHRWYuYBjxRtHh/wcRbSlt5ZlL3xtVZ+G/3
+         rqtBCcOsribz8+igngiL+tD8VNgQtCPNMlHEqfzxcqJTN+M3ePmflg5vH7giVA+bVHWO
+         grwlb3kZgzmfLulJ4W4E4KAzVmlks6E2oLdvb+8zY7S2lG9YOhFg2SKc1YDoBpBVD03r
+         vHOQ==
+X-Gm-Message-State: AC+VfDwClvgzV+rP9YcOXdJCOubE8sQ86w71cxdtEXO+oqBgE5NEnRy9
+        q9V1mwTjTQUa6YeCx65IJLCL1l1qw2xrkfrrDOA=
+X-Google-Smtp-Source: APBJJlH2BFfowyRuGkZg/4gGurh7iScSfZUSYvUlWG8KR6PQzOga/kTW3dcg5eZE/mRNoT1lrgm9rw==
+X-Received: by 2002:a17:906:46cf:b0:98d:d26c:e13b with SMTP id k15-20020a17090646cf00b0098dd26ce13bmr9263223ejs.8.1688463835157;
+        Tue, 04 Jul 2023 02:43:55 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id b27-20020a170906195b00b00991e2b5a27dsm10457201eje.37.2023.07.04.02.43.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jul 2023 02:43:54 -0700 (PDT)
+Message-ID: <552d39ee-0fa0-94c0-89b9-245e39e8586d@linaro.org>
+Date:   Tue, 4 Jul 2023 11:43:52 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 3/3] riscv: dts: starfive: Add QSPI controller node for
+ StarFive JH7110 SoC
+Content-Language: en-US
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC
- step size
-Message-ID: <20230704114110.25ca9de4@xps-13>
-In-Reply-To: <9e6eaa87-887c-f955-113a-43860c8ea00c@sberdevices.ru>
-References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
-        <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
-        <20230704103617.4affae8a@xps-13>
-        <9e6eaa87-887c-f955-113a-43860c8ea00c@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>
+References: <20230704090453.83980-1-william.qiu@starfivetech.com>
+ <20230704090453.83980-4-william.qiu@starfivetech.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230704090453.83980-4-william.qiu@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H4,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arseniy,
+On 04/07/2023 11:04, William Qiu wrote:
+> Add the quad spi controller node for the StarFive JH7110 SoC.
+> 
+> Co-developed-by: Ziv Xu <ziv.xu@starfivetech.com>
+> Signed-off-by: Ziv Xu <ziv.xu@starfivetech.com>
+> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
 
-avkrasnov@sberdevices.ru wrote on Tue, 4 Jul 2023 12:23:03 +0300:
+...
 
-> On 04.07.2023 11:36, Miquel Raynal wrote:
-> > Hi Arseniy,
-> >=20
-> > AVKrasnov@sberdevices.ru wrote on Wed, 28 Jun 2023 12:29:36 +0300:
-> >  =20
-> >> Meson NAND supports both 512B and 1024B ECC step size.
-> >>
-> >> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> >> ---
-> >>  drivers/mtd/nand/raw/meson_nand.c | 47 +++++++++++++++++++++++--------
-> >>  1 file changed, 35 insertions(+), 12 deletions(-)
-> >>
-> >> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/raw/=
-meson_nand.c
-> >> index 345212e8c691..6cc4f63b86c8 100644
-> >> --- a/drivers/mtd/nand/raw/meson_nand.c
-> >> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> >> @@ -135,6 +135,7 @@ struct meson_nfc_nand_chip {
-> >>  struct meson_nand_ecc {
-> >>  	u32 bch;
-> >>  	u32 strength;
-> >> +	u32 size;
-> >>  };
-> >> =20
-> >>  struct meson_nfc_data {
-> >> @@ -190,7 +191,8 @@ struct meson_nfc {
-> >>  };
-> >> =20
-> >>  enum {
-> >> -	NFC_ECC_BCH8_1K		=3D 2,
-> >> +	NFC_ECC_BCH8_512	=3D 1,
-> >> +	NFC_ECC_BCH8_1K,
-> >>  	NFC_ECC_BCH24_1K,
-> >>  	NFC_ECC_BCH30_1K,
-> >>  	NFC_ECC_BCH40_1K,
-> >> @@ -198,15 +200,16 @@ enum {
-> >>  	NFC_ECC_BCH60_1K,
-> >>  };
-> >> =20
-> >> -#define MESON_ECC_DATA(b, s)	{ .bch =3D (b),	.strength =3D (s)}
-> >> +#define MESON_ECC_DATA(b, s, sz)	{ .bch =3D (b), .strength =3D (s), .=
-size =3D (sz) }
-> >> =20
-> >>  static struct meson_nand_ecc meson_ecc[] =3D {
-> >> -	MESON_ECC_DATA(NFC_ECC_BCH8_1K, 8),
-> >> -	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24),
-> >> -	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30),
-> >> -	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40),
-> >> -	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50),
-> >> -	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60),
-> >> +	MESON_ECC_DATA(NFC_ECC_BCH8_512, 8,  512),
-> >> +	MESON_ECC_DATA(NFC_ECC_BCH8_1K,  8,  1024),
-> >> +	MESON_ECC_DATA(NFC_ECC_BCH24_1K, 24, 1024),
-> >> +	MESON_ECC_DATA(NFC_ECC_BCH30_1K, 30, 1024),
-> >> +	MESON_ECC_DATA(NFC_ECC_BCH40_1K, 40, 1024),
-> >> +	MESON_ECC_DATA(NFC_ECC_BCH50_1K, 50, 1024),
-> >> +	MESON_ECC_DATA(NFC_ECC_BCH60_1K, 60, 1024),
-> >>  };
-> >> =20
-> >>  static int meson_nand_calc_ecc_bytes(int step_size, int strength)
-> >> @@ -224,8 +227,27 @@ static int meson_nand_calc_ecc_bytes(int step_siz=
-e, int strength)
-> >> =20
-> >>  NAND_ECC_CAPS_SINGLE(meson_gxl_ecc_caps,
-> >>  		     meson_nand_calc_ecc_bytes, 1024, 8, 24, 30, 40, 50, 60);
-> >> -NAND_ECC_CAPS_SINGLE(meson_axg_ecc_caps,
-> >> -		     meson_nand_calc_ecc_bytes, 1024, 8);
-> >> +
-> >> +static const int axg_stepinfo_strengths[] =3D { 8 };
-> >> +static const struct nand_ecc_step_info axg_stepinfo_1024 =3D {
-> >> +	.stepsize =3D 1024,
-> >> +	.strengths =3D axg_stepinfo_strengths,
-> >> +	.nstrengths =3D ARRAY_SIZE(axg_stepinfo_strengths)
-> >> +};
-> >> +
-> >> +static const struct nand_ecc_step_info axg_stepinfo_512 =3D {
-> >> +	.stepsize =3D 512,
-> >> +	.strengths =3D axg_stepinfo_strengths,
-> >> +	.nstrengths =3D ARRAY_SIZE(axg_stepinfo_strengths)
-> >> +};
-> >> +
-> >> +static const struct nand_ecc_step_info axg_stepinfo[] =3D { axg_stepi=
-nfo_1024, axg_stepinfo_512 };
-> >> +
-> >> +static const struct nand_ecc_caps meson_axg_ecc_caps =3D {
-> >> +	.stepinfos =3D axg_stepinfo,
-> >> +	.nstepinfos =3D ARRAY_SIZE(axg_stepinfo),
-> >> +	.calc_ecc_bytes =3D meson_nand_calc_ecc_bytes,
-> >> +};
-> >> =20
-> >>  static struct meson_nfc_nand_chip *to_meson_nand(struct nand_chip *na=
-nd)
-> >>  {
-> >> @@ -1259,7 +1281,8 @@ static int meson_nand_bch_mode(struct nand_chip =
-*nand)
-> >>  		return -EINVAL;
-> >> =20
-> >>  	for (i =3D 0; i < ARRAY_SIZE(meson_ecc); i++) {
-> >> -		if (meson_ecc[i].strength =3D=3D nand->ecc.strength) {
-> >> +		if (meson_ecc[i].strength =3D=3D nand->ecc.strength &&
-> >> +		    meson_ecc[i].size =3D=3D nand->ecc.size) {
-> >>  			meson_chip->bch_mode =3D meson_ecc[i].bch;
-> >>  			return 0;
-> >>  		}
-> >> @@ -1278,7 +1301,7 @@ static int meson_nand_attach_chip(struct nand_ch=
-ip *nand)
-> >>  	struct meson_nfc *nfc =3D nand_get_controller_data(nand);
-> >>  	struct meson_nfc_nand_chip *meson_chip =3D to_meson_nand(nand);
-> >>  	struct mtd_info *mtd =3D nand_to_mtd(nand);
-> >> -	int nsectors =3D mtd->writesize / 1024;
-> >> +	int nsectors =3D mtd->writesize / 512; =20
-> >=20
-> > This cannot be unconditional, right? =20
->=20
-> Hello Miquel!
->=20
-> Yes, this code looks strange. 'nsectors' is used to calculate space in OOB
-> that could be used by ECC engine (this value will be passed as 'oobavail'
-> to 'nand_ecc_choose_conf()'). Idea of 512 is to consider "worst" case
-> for ECC, e.g. minimal number of bytes for ECC engine (and at the same time
-> maximum number of free bytes). For Meson, if ECC step size is 512, then we
-> have 4 x 2 free bytes in OOB (if step size if 1024 then we have 2 x 2 free
-> bytes in OOB).
->=20
-> I think this code could be reworked in the following way:
->=20
-> if ECC step size is already known here (from DTS), calculate 'nsectors' u=
-sing
-> given value (div by 512 for example). Otherwise calculate 'nsectors' in t=
-he
-> current manner:
+> +		qspi: spi@13010000 {
+> +			compatible = "starfive,jh7110-qspi", "cdns,qspi-nor";
+> +			reg = <0x0 0x13010000 0x0 0x10000>,
+> +			      <0x0 0x21000000 0x0 0x400000>;
+> +			interrupts = <25>;
+> +			clocks = <&syscrg JH7110_SYSCLK_QSPI_REF>,
+> +				 <&syscrg JH7110_SYSCLK_QSPI_AHB>,
+> +				 <&syscrg JH7110_SYSCLK_QSPI_APB>;
+> +			clock-names = "ref", "ahb", "apb";
+> +			resets = <&syscrg JH7110_SYSRST_QSPI_APB>,
+> +				 <&syscrg JH7110_SYSRST_QSPI_AHB>,
+> +				 <&syscrg JH7110_SYSRST_QSPI_REF>;
+> +			reset-names = "qspi", "qspi-ocp", "rstc_ref";
+> +			cdns,fifo-depth = <256>;
+> +			cdns,fifo-width = <4>;
+> +			cdns,trigger-address = <0x0>;
 
-It will always be known when these function are run. There is no
-guessing here.
+Bus nodes are usually disabled by default and enabled when needed for
+specific boards.
 
->=20
-> int nsectors =3D mtd->writesize / 1024;
->=20
-> Moreover 1024 is default ECC step size for this driver, so default behavi=
-our
-> will be preserved.
+Best regards,
+Krzysztof
 
-Yes, otherwise you would break existing users.
-
->=20
-> Thanks, Arseniy
->=20
-> >  =20
-> >>  	int raw_writesize;
-> >>  	int ret;
-> >>   =20
-> >=20
-> >=20
-> > Thanks,
-> > Miqu=C3=A8l =20
-
-
-Thanks,
-Miqu=C3=A8l
