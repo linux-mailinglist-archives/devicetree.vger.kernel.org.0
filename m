@@ -2,189 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 872C0746B8E
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:09:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EF30746BA6
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:16:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229943AbjGDIJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 04:09:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42600 "EHLO
+        id S230216AbjGDIQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 04:16:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjGDIJq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:09:46 -0400
-Received: from mail-wm1-x32c.google.com (mail-wm1-x32c.google.com [IPv6:2a00:1450:4864:20::32c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA521CA
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:09:44 -0700 (PDT)
-Received: by mail-wm1-x32c.google.com with SMTP id 5b1f17b1804b1-3fbc656873eso64558445e9.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 01:09:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688458183; x=1691050183;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=fvBmFcK9SXnfqzwuT+DfReBotxw6B6mSOnCOgONNgv0=;
-        b=Pq175pcSnAl7IBWg926B60sUexUNsN91Xa/FXmI2ntAs3lAcXGzMzqf4IEP6z2ykp9
-         Adjl5UHjXAQG8b4Im0Dof7v6hUdWRtbvmWC3hTxCMF5N2VNgfVITNVQn8/Jf8xUKWf+E
-         7BG6w3II1oRPPgcIYSMC8un0AEKX2h+RaDCShclbX+PeUfqmBWMA01dcSttEvegLWGn0
-         fq2+rYWCegcCvj/dHvaA66hFXc2tQl9YHzQvNN3D8QPQeIBL5ALKdRVi1m+co9bZcItC
-         LtNLXBnjMXpBtBpqBJGhiDoSRiG0h6cBbZZceGDgK8M0NeBtkhbwaCfmgLOvfPmbSYQu
-         50+w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688458183; x=1691050183;
-        h=content-transfer-encoding:in-reply-to:subject:organization
-         :references:cc:to:content-language:reply-to:from:user-agent
-         :mime-version:date:message-id:x-gm-message-state:from:to:cc:subject
-         :date:message-id:reply-to;
-        bh=fvBmFcK9SXnfqzwuT+DfReBotxw6B6mSOnCOgONNgv0=;
-        b=XLOCEQhbgf3RYc5nvu5hronqWVQs4OKDRoHmkW6kCs4dYSPaPQGVXiVZHFzoQHlaC9
-         SSHw97xv2dG8EgMcOC8j5cFtUNNcs57mkOTe+ynS46jKbK3pRcUHZLBFGtKNYcK83niG
-         J5mHvo0auPz1bJc9Bm+NmCWTNyEzjQ+iuqnZ6hzE0k3/I10F+XObHY3ae2ObAK+mGCZb
-         u776J57pvuUwf4k4M70mubLlo6/k1ezWpZeaX5V5vBBSAX70gAyb/3aHBqz9yILau3aR
-         AZeJfj1EB638A0sgiBwoL6tTxHqq3u6fe9Qfd6sMk/gdbC0QNIOth08X/MrgpHtu1o0B
-         xE4A==
-X-Gm-Message-State: AC+VfDxkdT8r8gThV7I5TwC/X8bxkcIPNXTqD/erni90BsXMi6/1IHpF
-        7FtIDaiaTja6ljFBwqGH/GfaOVFAM/SFqakjzMDGsA==
-X-Google-Smtp-Source: ACHHUZ7Djrvqul6xZf1D/plK1Qgd3CmUESVoJdtGZKmCNznyqFyd+//02tHVc7+lyTW8WZM1HIkk4g==
-X-Received: by 2002:a1c:7914:0:b0:3fa:984d:7e94 with SMTP id l20-20020a1c7914000000b003fa984d7e94mr16886762wme.18.1688458183057;
-        Tue, 04 Jul 2023 01:09:43 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:106:cd85:84ae:7b? ([2a01:e0a:982:cbb0:106:cd85:84ae:7b])
-        by smtp.gmail.com with ESMTPSA id l25-20020a1c7919000000b003fbb25da65bsm17017498wme.30.2023.07.04.01.09.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 01:09:42 -0700 (PDT)
-Message-ID: <112727a2-29c5-1402-deb7-f35119b4338e@linaro.org>
-Date:   Tue, 4 Jul 2023 10:09:41 +0200
+        with ESMTP id S229895AbjGDIQL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:16:11 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73879BD
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 01:16:09 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1qGbCX-0002xR-Ep; Tue, 04 Jul 2023 10:15:57 +0200
+Message-ID: <b382e51d-2f57-c4ab-7590-2083bd771abd@pengutronix.de>
+Date:   Tue, 4 Jul 2023 10:15:55 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 2/2] ARM: dts: imx6: pfla02: Fix SD card reboot problem
 Content-Language: en-US
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-References: <20230704031636.3215838-1-xianwei.zhao@amlogic.com>
- <20230704031636.3215838-3-xianwei.zhao@amlogic.com>
-Organization: Linaro Developer Services
-Subject: Re: [PATCH 2/2] arm64: dts: add board AN400
-In-Reply-To: <20230704031636.3215838-3-xianwei.zhao@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Andrej Picej <andrej.picej@norik.com>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, upstream@phytec.de
+References: <20230704080304.816942-1-andrej.picej@norik.com>
+ <20230704080304.816942-3-andrej.picej@norik.com>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <20230704080304.816942-3-andrej.picej@norik.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hello Andrej,
 
-On 04/07/2023 05:16, Xianwei Zhao wrote:
-> Add devicetree support for Amlogic AN400  board based T7 SoC.
+On 04.07.23 10:03, Andrej Picej wrote:
+> If regulator is not marked as always-on the regulator gets disabled on
+> reboot breaking the next boot.
+
+While this is ok as a fix, the real issue is that your system reset doesn't
+restore PMIC rails to a good state. Are you perhaps doing a SoC-internal
+reset only or have the PMIC misconfigured?
+
+Cheers,
+Ahmad
+
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Signed-off-by: Andrej Picej <andrej.picej@norik.com>
 > ---
->   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
->   .../dts/amlogic/amlogic-t7-a311d2-an400.dts   | 39 +++++++++++++++++++
->   2 files changed, 40 insertions(+)
->   create mode 100644 arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
+>  arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/Makefile b/arch/arm64/boot/dts/amlogic/Makefile
-> index 91fa425116ea..8b6f57a94863 100644
-> --- a/arch/arm64/boot/dts/amlogic/Makefile
-> +++ b/arch/arm64/boot/dts/amlogic/Makefile
-> @@ -1,5 +1,6 @@
->   # SPDX-License-Identifier: GPL-2.0
->   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
-> +dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
->   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
->   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
-> new file mode 100644
-> index 000000000000..d755e1ee108a
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
-> @@ -0,0 +1,39 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "amlogic-t7.dtsi"
-> +
-> +/ {
-> +	model = "Amlogic A311D2 AN400 Development Board";
-> +	compatible = "amlogic,an400", "amlogic,a311d2", "amlogic,t7";
-> +	interrupt-parent = <&gic>;
-> +	#address-cells = <2>;
-> +	#size-cells = <2>;
-> +
-> +	aliases {
-> +		serial0 = &uart_a;
-> +	};
-> +
-> +	memory@0 {
-> +		device_type = "memory";
-> +		linux,usable-memory = <0x00000000 0x00000000 0x00000000 0xE0000000
-> +					0x00000001 0x00000000 0x00000000 0x20000000>;
+> diff --git a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+> index 80adb2a02cc9..25d6a036d5b8 100644
+> --- a/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-phytec-pfla02.dtsi
+> @@ -192,6 +192,7 @@ vdd_3v3_pmic_io_reg: ldo6 {
+>  			vdd_sd0_reg: ldo9 {
+>  				regulator-min-microvolt = <3300000>;
+>  				regulator-max-microvolt = <3300000>;
+> +				regulator-always-on;
+>  			};
+>  
+>  			vdd_sd1_reg: ldo10 {
 
-Please use "reg =" instead of linux,usable-memory, which is not a documented property
-
-Please use `make CHECK_DTBS=yes amlogic/amlogic-t7-a311d2-an400.dtb` before posting DT patches,
-and make sure there's no errors except already in-review bindings like here the UART compatible.
-
-The result here is:
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 'anyOf' conditional failed, one must be fixed:
-         'reg' is a required property
-         'ranges' is a required property
-         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 'linux,usable-memory' does not match any of the regexes: 'pinctrl-[0-9]+'
-         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/memory.yaml
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 'reg' is a required property
-         From schema: /usr/local/lib/python3.10/dist-packages/dtschema/schemas/memory.yaml
-
-Please fix this one.
-
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: serial@78000: compatible: 'oneOf' conditional failed, one must be fixed:
-         ['amlogic,t7-uart', 'amlogic,meson-s4-uart'] is too short
-         ['amlogic,t7-uart', 'amlogic,meson-s4-uart'] is too long
-         'amlogic,t7-uart' is not one of ['amlogic,meson6-uart', 'amlogic,meson8-uart', 'amlogic,meson8b-uart', 'amlogic,meson-gx-uart', 'amlogic,meson-s4-uart']
-         'amlogic,meson-g12a-uart' was expected
-         'amlogic,meson-ao-uart' was expected
-         'amlogic,meson-gx-uart' was expected
-         From schema: Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: serial@78000: Unevaluated properties are not allowed ('compatible' was unexpected)
-         From schema: Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
-arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /soc/bus@fe000000/serial@78000: failed to match any schema with compatible: ['amlogic,t7-uart', 'amlogic,meson-s4-uart']
-
-This one is OK, the UART bindings is reviewed and should be picked up for v6.6
-
-Neil
-
-> +	};
-> +
-> +	xtal: xtal-clk {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <24000000>;
-> +		clock-output-names = "xtal";
-> +		#clock-cells = <0>;
-> +	};
-> +};
-> +
-> +&uart_a {
-> +	clocks = <&xtal>, <&xtal>, <&xtal>;
-> +	clock-names = "xtal", "pclk", "baud";
-> +	status = "okay";
-> +};
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
