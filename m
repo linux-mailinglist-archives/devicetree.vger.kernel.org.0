@@ -2,106 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 054C77472A6
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:22:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294977472C8
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:35:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231666AbjGDNWO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 09:22:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42766 "EHLO
+        id S230364AbjGDNfM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 09:35:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231700AbjGDNVv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:21:51 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F9B71985
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 06:21:33 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so685663966b.2
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 06:21:33 -0700 (PDT)
+        with ESMTP id S230238AbjGDNfL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:35:11 -0400
+Received: from mail-yw1-x1134.google.com (mail-yw1-x1134.google.com [IPv6:2607:f8b0:4864:20::1134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D3BD10A
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 06:35:10 -0700 (PDT)
+Received: by mail-yw1-x1134.google.com with SMTP id 00721157ae682-57764a6bf8cso47136837b3.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 06:35:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688476892; x=1691068892;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=RBSF1NolQO8rskeUSMv3t8uDwxMXaGRNLk5ilo4Ryuw=;
-        b=pNiEfh7s3N/B+0ZxCLnR0kBEzaW0kSO6X8+7eP1ur1DXCI6lW6OySCKvEMl3hfKhF5
-         VNnmJuVnJfDw6Xo9akbj7qi1PsFZJ+XagzITJ9aRQmiGrVnXgPFqe5or4p4lYnNjzDa/
-         Oi3cWN0Iv2VfnqMw+3BqoFYDG+i3CKppYBkE8BMVMRm5S/5qTvMNVcB3FYhHU8l6m6ba
-         Vo8SLZJULu06uwSccIK2tEEIssQpPhph6+qdA/d7hzgDNFlE7EgndHOplSTJj8PY+sVz
-         2HsEiP5QnrE91awtaGCmnIuxp3WjX47iPO5BCXcfgf9D6uJGeddnmAOAkCuIGOekoloS
-         IDuw==
+        d=linaro.org; s=google; t=1688477709; x=1691069709;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=WqIHh+G4XahXVKdkslZXY2hDyJ9c234XGoQUojzzroA=;
+        b=y3EPa0BxKmG5AolGrBXtKtk5yxu7UDdfkbh9qbFcLUnY5WWexlDXKwKEOAjVlVakkJ
+         uKxLuoTitJmFs9PO9UDVAUlC9SoX6MKokSyPQhLsCyQRSkaYA0j8hInarR9amNsIwVOF
+         Jy4w/a2ROrnNsnygY5w8aIb+I6Nixvp0EWrPTND8WlYO+q1OqPUz4PbJaEx/JlhPPRzM
+         qGpH7ZfPtT6VNBslTQ4VoBMb0GbxzKaIx6dW3oDVN5G3jtmoBhaMk7VtbfjdAbxGSuz3
+         BHvgh4lxl6BpC/p2KjCHpH1s1kXvESul+KB40C3D8TkAWE9Wf4vUiXgL94YB2Us1H4Ar
+         acbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688476892; x=1691068892;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=RBSF1NolQO8rskeUSMv3t8uDwxMXaGRNLk5ilo4Ryuw=;
-        b=SBJEjSpOyBVNT+MiQkHP3yCbVQ8XT497xd0REnwAclut3NvgLQgfpLtg6psVXNPLlD
-         udv2AZhPsaMtegHcJ3/AP0+k8XulYF71EXdLmgmsJzAx3zi5YZ3KqMCdhnW5hhzQimAf
-         rulZHSthz2bAcDrSyNgohELF2tTWdEMp+5lNBDGHL66aggHhVC1WlrQDbOHZTNAXIYFg
-         c+IfZs3SqwQEsBSKMsXGODns1tcUEs7G/R6AQ34QftP6xlblVpFuuUR9RJpMnbPAeeFM
-         gmbc5ANQ4p2532tjH2l5YaMgN5yZo5wpYif4amnDGK66Dk4J/sIIbAzCOCWfpGHia+XK
-         9lPw==
-X-Gm-Message-State: ABy/qLYSgYqOIju6eJGhCcq0n/cLSchcuQTU5wRrhMq6Mzki2NnogVlC
-        94gZXqddnAlu3VS/lRajFYV6nQ==
-X-Google-Smtp-Source: ACHHUZ7GruU2SMpelDGt/k32whGmAdH3xrb4LP13iZfv51rQJZeKedemsN+25543YUVb0HiPq59Phg==
-X-Received: by 2002:a17:906:af15:b0:987:9823:b9f with SMTP id lx21-20020a170906af1500b0098798230b9fmr10240987ejb.28.1688476892394;
-        Tue, 04 Jul 2023 06:21:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id r21-20020a1709067fd500b009828e26e519sm13100150ejs.122.2023.07.04.06.21.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 06:21:31 -0700 (PDT)
-Message-ID: <a8c1a5e7-9938-bf6c-6bb7-6c1e4d8ce08b@linaro.org>
-Date:   Tue, 4 Jul 2023 15:21:30 +0200
+        d=1e100.net; s=20221208; t=1688477709; x=1691069709;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=WqIHh+G4XahXVKdkslZXY2hDyJ9c234XGoQUojzzroA=;
+        b=IlR2lfdR0NWmEZvwgWI0eBWnDWdCm4te11lscwy+DkL0zJncYlh+43FCbHpQPYe2Py
+         iGdg8sMfo/vw0a3Te0fNyUYKj2sP3vzHDPt6INfOXhGO4wF/wHAr9JIB8pKf5e7eAJIj
+         wUbNAhpwpKaQUAZ2ukPZ1CH0KS+eVCqrypB3XCPc34vldxZiPxkk+o5C2jMn97AMPfAx
+         O7yuEW4Nz+RimNXfm/L2gEYrEfscdSDflisItTQTZcmxmy8V/Hohxe1Pdq7wmq0C89CD
+         ZGwZo3AQbHRLbpBatb+laDNTjWM6vEaaiq3bmagZ77f3C4VToOV3QGUACb7RLL2abL0M
+         5lYA==
+X-Gm-Message-State: ABy/qLa/oEez2uQcoQ/nxj1JqY9pStj7l4adXstoxK5X17phec94NA9H
+        GrxQ+A2zFn7rdg1mB+qE1VedqrclZ3PHrDA1RsyxnRgT6KdLWnC4sRI=
+X-Google-Smtp-Source: APBJJlEYH6VsmNEu5MYnqCp4aZICtRhSpFUOoR+/B14onGj+m97qmuMBKMWWYtMv7ca/U7kvG6k+qXQV+bE2WdHHHyo=
+X-Received: by 2002:a5b:f07:0:b0:c13:aca0:b70a with SMTP id
+ x7-20020a5b0f07000000b00c13aca0b70amr12114660ybr.32.1688477709691; Tue, 04
+ Jul 2023 06:35:09 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [RESEND v1 2/2] riscv: dts: starfive: Add spi node for JH7110 SoC
-Content-Language: en-US
-To:     Mark Brown <broonie@kernel.org>
-Cc:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
+References: <20230702175045.122041-1-dmitry.baryshkov@linaro.org>
+ <20230702175045.122041-5-dmitry.baryshkov@linaro.org> <971262d5-98b3-c48e-89fd-ce107275008a@linaro.org>
+In-Reply-To: <971262d5-98b3-c48e-89fd-ce107275008a@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 4 Jul 2023 16:34:58 +0300
+Message-ID: <CAA8EJpqvk02LeuS=-pPLUi=0OsBQ0npqioEtYkiNfPm+0EpF8Q@mail.gmail.com>
+Subject: Re: [RFC PATCH 4/8] ARM: dts: qcom: msm8960-cdp: constraint cpufreq regulators
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Linus Walleij <linus.walleij@linaro.org>
-References: <20230704092200.85401-1-william.qiu@starfivetech.com>
- <20230704092200.85401-3-william.qiu@starfivetech.com>
- <7f3b600d-d315-22d6-b987-eabfe1b04fdf@linaro.org>
- <eba1e868-6371-42fe-91be-bcbee54d1aff@sirena.org.uk>
- <4afd90d9-f1bd-f40d-1c79-50fef1406ab7@linaro.org>
- <6307c5b2-64d2-405f-b1a5-696d4184f6a0@sirena.org.uk>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <6307c5b2-64d2-405f-b1a5-696d4184f6a0@sirena.org.uk>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2023 15:16, Mark Brown wrote:
-> On Tue, Jul 04, 2023 at 02:27:57PM +0200, Krzysztof Kozlowski wrote:
-> 
->> Also see:
->> "every Co-developed-by: must be immediately
->> followed by a Signed-off-by: of the associated co-author."
-> 
->> https://elixir.bootlin.com/linux/v6.4/source/Documentation/process/submitting-patches.rst#L467
-> 
-> Oh, that seems unhelpful especially with it not lining up with the DCO.
+On Tue, 4 Jul 2023 at 16:03, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 2.07.2023 19:50, Dmitry Baryshkov wrote:
+> > Add additional constraints to the CPUfreq-related regulators, it is
+> > better be safe than sorry there.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > ---
+> I'm squinting quite hard at
+>
+> https://github.com/LineageOS/sony-kernel-msm8960/blob/jb-dev/arch/arm/mach-msm/acpuclock-8960.c
+>
+> but I can't figure out where these min values came from
 
-I assume the intention was here that if I attribute some co-author with
-Co-developed-by, then I know that author, therefore I expect author to
-explicitly participate in DCO chain.
+These should be the minimum values for vdd_min and vdd_dig in
+l2_freq_tbl_8960_kraitv2 (v1 is unsupported in mainline).
+See below,
 
-Otherwise, just drop the Co-developed-by.
+>
+> Konrad
+> >  arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
+> > index 414881d34c60..cba0d1e460a1 100644
+> > --- a/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
+> > +++ b/arch/arm/boot/dts/qcom/qcom-msm8960-cdp.dts
+> > @@ -131,7 +131,7 @@ pm8921_s2: s2 {
+> >               };
+> >
+> >               pm8921_s3: s3 {
+> > -                     regulator-min-microvolt = <500000>;
+> > +                     regulator-min-microvolt = <950000>;
 
-Best regards,
-Krzysztof
+And this is obviously a c&p from 8064. This should be 1050000.
 
+> >                       regulator-max-microvolt = <1150000>;
+> >                       qcom,switch-mode-frequency = <4800000>;
+> >                       bias-pull-down;
+> > @@ -287,7 +287,7 @@ pm8921_l23: l23 {
+> >               };
+> >
+> >               pm8921_l24: l24 {
+> > -                     regulator-min-microvolt = <750000>;
+> > +                     regulator-min-microvolt = <1050000>;
+> >                       regulator-max-microvolt = <1150000>;
+> >                       bias-pull-down;
+> >               };
+
+
+
+-- 
+With best wishes
+Dmitry
