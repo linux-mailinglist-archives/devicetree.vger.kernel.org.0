@@ -2,156 +2,311 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A0C337472EA
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:41:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACFEF74730C
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 15:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229994AbjGDNlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 09:41:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52160 "EHLO
+        id S231689AbjGDNoc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 09:44:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230256AbjGDNlP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:41:15 -0400
-Received: from relay6-d.mail.gandi.net (relay6-d.mail.gandi.net [217.70.183.198])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 954F2E6D;
-        Tue,  4 Jul 2023 06:41:13 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1688478072;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=QJLhG5xef0Dm9kVxipRfJ1zAKqJpL9r++IajKk5AkNU=;
-        b=pZo+4NrPp2dycBIRoGMvUMInSYsTFLDpojazcKafyNd55aRmC80dmZ1TZdYaeVs3mfgjBE
-        z6ngQq4XpQ7bf5wQ2kp6Wzt7xDHanylnonV7EkM+d+LnLuDobkEPsoLkh+3gpPDbbgwy29
-        vbjXtpOZPjanZTztmEfCWazX4Lgpl+QXBjT/gdKdhQcq1+x+DdcRUuscmFGFmhgGn/2V6H
-        vCyMqXZ2ZVDsIKLbSwQGOD2dMUUzCWV/hB7/CdX44FztFNvbk5M+8U0Zr2R6dumBq+AmIY
-        9VbRtRlJnIx8NOokmg9NJjeqGgYG+rmqreo7wsMxVxuXqXZIPGyqvZVsvtM/fQ==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id 6F5DEC000B;
-        Tue,  4 Jul 2023 13:41:08 +0000 (UTC)
-Date:   Tue, 4 Jul 2023 15:41:06 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Cc:     Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230318AbjGDNo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 09:44:26 -0400
+Received: from mail-yb1-xb33.google.com (mail-yb1-xb33.google.com [IPv6:2607:f8b0:4864:20::b33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF119E7E
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 06:44:19 -0700 (PDT)
+Received: by mail-yb1-xb33.google.com with SMTP id 3f1490d57ef6-c15a5ed884dso6336223276.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 06:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688478259; x=1691070259;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=3yWYPWXKblhDWZ/Oc+OifRs6+fFIT+OU4JwWdNhtMVU=;
+        b=ZIndQUur14zsPbtBt6VkwDKoamcnJ08o/eAj8q3PbWIv+1tJxURxko+YpPMA3nm6+B
+         vqrEpVSefdBY4WkQaLgbOQwwxqSXiq3Hqu0Z6uU+m8q0/fZ7ySVF0WG39WH547v3kX5M
+         ofsfxkTTHDCtGHFs/fnVLwxArG5rkXZuM63XUytmNWrbKL4xfeDOUTjikEXT93crDf0e
+         4BRyEY7/4C0wT+Y3w8uawjgNDSk8unp4Qt/c6lOMlr5o2CPtgEGqu4sJgS2EDe7VNiyb
+         AsDWmZLUsavuE12dMWjS6ARBvmBqGX6hz3EU5qbJM+oa6vkuDh9o+31UUGl2cAhdjvLF
+         NBOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688478259; x=1691070259;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=3yWYPWXKblhDWZ/Oc+OifRs6+fFIT+OU4JwWdNhtMVU=;
+        b=VwiG707ZO/ce8Evr61cMGjic63uccIE3h/ZH0LGEsNdaUmyzvsqp7V6cYgtx1wiIWQ
+         nx71KvMpSvFXXgrESjF326XqBBJ0Sq36R0bNz3DMjgox97hiLHbZyzkfkIKvdLUwtZuM
+         HlDJeRdD/HVkB0vgdddXXx5ReVLLrNnL5Z7k7ccPOxSBMhCoblvTlehLlzZ1ZSLBgDeG
+         NMDpWF0tE8zuv2f9OkXdGN50d5cjPL+Fs1eOxFv2BB8I46k8DwUxhDJ2ZacTFckCP24B
+         oXrf28y9KwCeO/oqu+W5hESDQnKs1zfJGff+LC23kzeuYXfERy6PSzktBzYqk8UdE46G
+         oB0Q==
+X-Gm-Message-State: ABy/qLbbuHNrAzhjxQVp78awmIcmoci+5tyTsHqHYJrJUHf4TpSB/4g2
+        875tA78/D+NGIm4g1xwGjBGCvMukJwYxgOdO6xpjBA==
+X-Google-Smtp-Source: APBJJlGeJ0GbjA7vQKaAcL7qUchlJGlNB/xqxD5gzoaYovQvjuo4dj6GzstL49MCOiGgCzHSrHwnSH6tMbkeCdG4cwQ=
+X-Received: by 2002:a25:be13:0:b0:c49:5b11:8906 with SMTP id
+ h19-20020a25be13000000b00c495b118906mr8313521ybk.61.1688478259130; Tue, 04
+ Jul 2023 06:44:19 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230702175045.122041-1-dmitry.baryshkov@linaro.org>
+ <20230702175045.122041-9-dmitry.baryshkov@linaro.org> <3231276b-7906-1cbe-6edd-73098118449a@linaro.org>
+In-Reply-To: <3231276b-7906-1cbe-6edd-73098118449a@linaro.org>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Tue, 4 Jul 2023 16:44:08 +0300
+Message-ID: <CAA8EJppUA+Ce9fzS8cq13VA0DKspzKY=8pCoy2BMW4zGkiY6rQ@mail.gmail.com>
+Subject: Re: [RFC PATCH 8/8] ARM: dts: qcom: apq8064: add simple CPUFreq support
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC PATCH v1 2/2] mtd: rawnand: meson: support for 512B ECC
- step size
-Message-ID: <20230704154106.5c5aafd8@xps-13>
-In-Reply-To: <ee2eb73a-fb25-58ae-cf7e-83d971b7b8b2@sberdevices.ru>
-References: <20230628092937.538683-1-AVKrasnov@sberdevices.ru>
-        <20230628092937.538683-3-AVKrasnov@sberdevices.ru>
-        <20230704103617.4affae8a@xps-13>
-        <9e6eaa87-887c-f955-113a-43860c8ea00c@sberdevices.ru>
-        <20230704114110.25ca9de4@xps-13>
-        <aede4639-0e99-565a-c997-c414342c66af@sberdevices.ru>
-        <20230704115628.55320428@xps-13>
-        <ee2eb73a-fb25-58ae-cf7e-83d971b7b8b2@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Content-Type: text/plain; charset="UTF-8"
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arseniy,
+On Tue, 4 Jul 2023 at 16:05, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>
+> On 2.07.2023 19:50, Dmitry Baryshkov wrote:
+>
+> Subject: wrong soc
+>
+> > Declare CPU frequency-scaling properties. Each CPU has its own clock,
+> > how all CPUs have the same OPP table. Voltage scaling is not (yet)
+> > enabled with this patch. It will be enabled later.
+> >
+> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> ---Same concern as patch 4, can't see where these values came from.
 
-> >>>> Yes, this code looks strange. 'nsectors' is used to calculate space =
-in OOB
-> >>>> that could be used by ECC engine (this value will be passed as 'ooba=
-vail'
-> >>>> to 'nand_ecc_choose_conf()'). Idea of 512 is to consider "worst" case
-> >>>> for ECC, e.g. minimal number of bytes for ECC engine (and at the sam=
-e time
-> >>>> maximum number of free bytes). For Meson, if ECC step size is 512, t=
-hen we
-> >>>> have 4 x 2 free bytes in OOB (if step size if 1024 then we have 2 x =
-2 free
-> >>>> bytes in OOB).
-> >>>>
-> >>>> I think this code could be reworked in the following way:
-> >>>>
-> >>>> if ECC step size is already known here (from DTS), calculate 'nsecto=
-rs' using
-> >>>> given value (div by 512 for example). Otherwise calculate 'nsectors'=
- in the
-> >>>> current manner:   =20
-> >>>
-> >>> It will always be known when these function are run. There is no
-> >>> guessing here.   =20
-> >>
-> >> Hm I checked, that but if step size is not set in DTS, here it will be=
- 0,=20
-> >> then it will be selected in 'nand_ecc_choose_conf()' according provide=
-d 'ecc_caps'
-> >> and 'oobavail'...
-> >>
-> >> Anyway, I'll do the following thing:
-> >>
-> >> int nsectors;
-> >>
-> >> if (nand->ecc.size)
-> >>     nsectors =3D mtd->writesize / nand->ecc.size; <--- this is for 512=
- ECC =20
-> >=20
-> > You should set nand->ecc.size in ->attach_chip() instead. =20
->=20
-> Sorry, didn't get it... if ECC step size is set in DTS, then here, in chi=
-p attach
-> callback it will be already known (DT part was processed in 'rawnand_dt_i=
-nit()').
-> If ECC step size is unknown (e.g. 0 here), 'nand_ecc_choose_conf()' will =
-set it
-> according provided ecc caps. What do You mean for "You should set ..." ?
+Explained below.
 
-The current approach is wrong, it decides the number of ECC chunks
-(called nsectors in the driver) and then asks the core to decide the
-number of ECC chunks to use.
+Please use https://android.googlesource.com/kernel/msm/+/android-msm-hammerhead-3.4-marshmallow-mr2/arch/arm/mach-msm/acpuclock-8960.c
+as a reference.
 
-Just provide mtd->oobsize - 2 as last parameter and then rely on the
-core's logic to find the right ECC step-size/strength?
+>
+> Konrad
+> >  arch/arm/boot/dts/qcom/qcom-msm8960.dtsi | 147 +++++++++++++++++++++++
+> >  1 file changed, 147 insertions(+)
+> >
+> > diff --git a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+> > index 48b3962dd4fb..995ea32f8d66 100644
+> > --- a/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+> > +++ b/arch/arm/boot/dts/qcom/qcom-msm8960.dtsi
+> > @@ -8,6 +8,7 @@
+> >  #include <dt-bindings/clock/qcom,lcc-msm8960.h>
+> >  #include <dt-bindings/mfd/qcom-rpm.h>
+> >  #include <dt-bindings/soc/qcom,gsbi.h>
+> > +#include <dt-bindings/soc/qcom,krait-l2-cache.h>
+> >
+> >  / {
+> >       #address-cells = <1>;
+> > @@ -29,6 +30,13 @@ cpu@0 {
+> >                       next-level-cache = <&L2>;
+> >                       qcom,acc = <&acc0>;
+> >                       qcom,saw = <&saw0>;
+> > +                     clocks = <&kraitcc KRAIT_CPU_0>;
+> > +                     clock-names = "cpu";
+> > +                     clock-latency = <100000>;
+> > +                     vdd-core-supply = <&saw0_vreg>;
+> > +                     interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
+> > +                     operating-points-v2 = <&cpu_opp_table>;
+> > +                     #cooling-cells = <2>;
+> >               };
+> >
+> >               cpu@1 {
+> > @@ -39,6 +47,13 @@ cpu@1 {
+> >                       next-level-cache = <&L2>;
+> >                       qcom,acc = <&acc1>;
+> >                       qcom,saw = <&saw1>;
+> > +                     clocks = <&kraitcc KRAIT_CPU_0>;
+> > +                     clock-names = "cpu";
+> > +                     clock-latency = <100000>;
+> > +                     vdd-core-supply = <&saw1_vreg>;
+> > +                     interconnects = <&L2 MASTER_KRAIT_L2 &L2 SLAVE_KRAIT_L2>;
+> > +                     operating-points-v2 = <&cpu_opp_table>;
+> > +                     #cooling-cells = <2>;
+> >               };
+> >
+> >               L2: l2-cache {
+> > @@ -169,6 +184,127 @@ opp-1350000000 {
+> >               };
+> >       };
+> >
+> > +     cpu_opp_table: opp-table-cpu {
+> > +             compatible = "operating-points-v2-krait-cpu";
+> > +             nvmem-cells = <&speedbin_efuse>;
+> > +
+> > +             /*
+> > +              * Voltage thresholds are <target min max>
+> > +              */
+> > +             opp-384000000 {
+> > +                     opp-hz = /bits/ 64 <384000000>;
+> > +                     opp-peak-kBps = <384000>;
+> > +                     opp-microvolt-speed0-pvs0 = <950000 950000 950000>;
 
-There is no point in requesting a particular step size without a
-specific strength, or? So I believe you should provide both in the DTS
-if you want particular parameters to be applied, otherwise you can let
-the core decide what is best.
+acpu_freq_tbl_slow, the voltage column.
+For the PVS_SLOW the pvs_tables doesn't list turbo boost, so all three
+voltages are the same.
 
-Thanks,
-Miqu=C3=A8l
+> > +                     opp-microvolt-speed0-pvs1 = <925000 900000 950000>;
+
+This comes from acpu_freq_tbl_nom. The voltage from the table becomes
+the middle value (min).
+For PVS_NOM the pvs_tables has the turbo value (25000), which
+acpuclock-krait applied by default, this becomes the first (target)
+value.
+For maximum I added another 25 mV to account for this exact value not
+being supported by the core (SAW) regulator.
+
+
+> > +                     opp-microvolt-speed0-pvs3 = <875000 850000 900000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +                     /*
+> > +                      * higher latency as it requires switching between
+> > +                      * clock sources
+> > +                      */
+> > +                     clock-latency-ns = <244144>;
+> > +             };
+> > +
+> > +             opp-486000000 {
+> > +                     opp-hz = /bits/ 64 <486000000>;
+> > +                     opp-peak-kBps = <702000>;
+> > +                     opp-microvolt-speed0-pvs0 = <975000 975000 975000>;
+> > +                     opp-microvolt-speed0-pvs1 = <950000 925000 975000>;
+> > +                     opp-microvolt-speed0-pvs3 = <900000 875000 925000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-594000000 {
+> > +                     opp-hz = /bits/ 64 <594000000>;
+> > +                     opp-peak-kBps = <702000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1000000 1000000 1000000>;
+> > +                     opp-microvolt-speed0-pvs1 = <975000 950000 1000000>;
+> > +                     opp-microvolt-speed0-pvs3 = <925000 900000 950000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-702000000 {
+> > +                     opp-hz = /bits/ 64 <702000000>;
+> > +                     opp-peak-kBps = <702000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1025000 1025000 1025000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1000000 975000 1025000>;
+> > +                     opp-microvolt-speed0-pvs3 = <950000 925000 975000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-810000000 {
+> > +                     opp-hz = /bits/ 64 <810000000>;
+> > +                     opp-peak-kBps = <702000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1075000 1075000 1075000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1050000 1025000 1075000>;
+> > +                     opp-microvolt-speed0-pvs3 = <1000000 975000 1025000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-918000000 {
+> > +                     opp-hz = /bits/ 64 <918000000>;
+> > +                     opp-peak-kBps = <702000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1100000 1100000 1100000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1075000 1050000 1100000>;
+> > +                     opp-microvolt-speed0-pvs3 = <1025000 1000000 1050000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-1026000000 {
+> > +                     opp-hz = /bits/ 64 <1026000000>;
+> > +                     opp-peak-kBps = <702000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1125000 1125000 1125000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1100000 1075000 1125000>;
+> > +                     opp-microvolt-speed0-pvs3 = <1050000 1025000 1075000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-1134000000 {
+> > +                     opp-hz = /bits/ 64 <1134000000>;
+> > +                     opp-peak-kBps = <1350000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1175000 1175000 1175000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1150000 1125000 1175000>;
+> > +                     opp-microvolt-speed0-pvs3 = <1100000 1075000 1125000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-1242000000 {
+> > +                     opp-hz = /bits/ 64 <1242000000>;
+> > +                     opp-peak-kBps = <1350000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1200000 1200000 1200000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1175000 1150000 1200000>;
+> > +                     opp-microvolt-speed0-pvs3 = <1125000 1100000 1150000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-1350000000 {
+> > +                     opp-hz = /bits/ 64 <1350000000>;
+> > +                     opp-peak-kBps = <1350000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1225000 1225000 1225000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1200000 1175000 1225000>;
+> > +                     opp-microvolt-speed0-pvs3 = <1150000 1125000 1175000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-1458000000 {
+> > +                     opp-hz = /bits/ 64 <1458000000>;
+> > +                     opp-peak-kBps = <1350000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1237500 1237500 1237500>;
+> > +                     opp-microvolt-speed0-pvs1 = <1212500 1187500 1237500>;
+> > +                     opp-microvolt-speed0-pvs3 = <1162500 1137500 1187500>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +
+> > +             opp-1512000000 {
+> > +                     opp-hz = /bits/ 64 <1512000000>;
+> > +                     opp-peak-kBps = <1350000>;
+> > +                     opp-microvolt-speed0-pvs0 = <1250000 1250000 1250000>;
+> > +                     opp-microvolt-speed0-pvs1 = <1225000 1200000 1250000>;
+> > +                     opp-microvolt-speed0-pvs3 = <1175000 1150000 1200000>;
+> > +                     opp-supported-hw = <0x1>;
+> > +             };
+> > +     };
+> > +
+> >       memory {
+> >               device_type = "memory";
+> >               reg = <0x0 0x0>;
+> > @@ -266,6 +402,17 @@ msmgpio: pinctrl@800000 {
+> >                       reg = <0x800000 0x4000>;
+> >               };
+> >
+> > +             qfprom: qfprom@700000 {
+> > +                     compatible = "qcom,msm8960-qfprom", "qcom,qfprom";
+> > +                     reg = <0x00700000 0x1000>;
+> > +                     #address-cells = <1>;
+> > +                     #size-cells = <1>;
+> > +                     ranges;
+> > +                     speedbin_efuse: speedbin@c0 {
+> > +                             reg = <0x0c0 0x4>;
+> > +                     };
+> > +             };
+> > +
+> >               gcc: clock-controller@900000 {
+> >                       compatible = "qcom,gcc-msm8960";
+> >                       #clock-cells = <1>;
+
+
+
+-- 
+With best wishes
+Dmitry
