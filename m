@@ -2,213 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C813B746C4D
-	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81891746C68
+	for <lists+devicetree@lfdr.de>; Tue,  4 Jul 2023 10:53:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231732AbjGDIsN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 04:48:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56966 "EHLO
+        id S229708AbjGDIx1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 04:53:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58958 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231320AbjGDIsL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:48:11 -0400
-Received: from mail-io1-xd29.google.com (mail-io1-xd29.google.com [IPv6:2607:f8b0:4864:20::d29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF70A107;
-        Tue,  4 Jul 2023 01:48:09 -0700 (PDT)
-Received: by mail-io1-xd29.google.com with SMTP id ca18e2360f4ac-77a62a84855so214199139f.1;
-        Tue, 04 Jul 2023 01:48:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688460489; x=1691052489;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FthdFNqIrNBSp4Ff+7I5wf7NZtageiCvQNjA6zok5uo=;
-        b=FWmDAOGksUr/QGz4CDArxktNgIPvc38M0/lTa2VYxzTVeVXDKhc0qoUYZD0sOXLih9
-         j6RAkMSJEozSwhuSUUcBY81gGKJ8sobh71Guq2n/+i7QmSzIAf1Z83n747otQ4Rjj/kz
-         2abUbgxbKbr3lra+9jHftNgHXBX7YBPK3dbY7bkTrj4QwJt1EpllB8rHiDAsrrVKsSNn
-         uOGMFcoxSYxPV6fzWJ457wh3zqEXEYfCXheAyQCCWLIH/ShD4N/SdmUVJjxL+359KNfF
-         VhkR0XPPey0Gp5aUvWqes8X9AwQy++ZJsuctYxSjkmNZLErWsCdv0Co/HAyqvW0sXoTi
-         6YZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688460489; x=1691052489;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=FthdFNqIrNBSp4Ff+7I5wf7NZtageiCvQNjA6zok5uo=;
-        b=SBy9Jkl7QYh1gxQt8tsHFdqljSykclHaxfC9VaC2ajMauuuOx8eW+l/YDo6VG1OCRp
-         hpzHwri+4H2UobrOMISBg5799yUeuKkCfoutOPG2CGLoUOaHNfJGyl/HCxEK+RkMFy6+
-         BJn1/m+3qMv1poOrglzxfFdEOqeT5kAj60IAL8fVYVdvK/hArQ26bIVeajSlhUSnUPG3
-         vGoTbls12s3f4E7UX7dLDiB5lUi7bno2LpWsYfD7Oia1OfauRQrAomOziz4VEb5aa9zN
-         j4/P4/IgYGg/sRx3VBIGVtqImaY1mcPhw0zi0+QxXEx1aZIMlWkgRp1yJ4XWxb3gjubK
-         zisg==
-X-Gm-Message-State: AC+VfDwRw4ZflHhQRHaF5jH9IGVKQ3ImRS6UIam43+T66K2SdmmT+jXs
-        XdprALi5kCzuINtWdCsUh1keq44+xoTLDWixnBw=
-X-Google-Smtp-Source: ACHHUZ6jPnIKynBJ0oBa8Pc4sTNHuq++xhfssqh0qa7MHJnSLGSiG5AVhvinJsEW9ITj1tJfYUv+P6Ll5u31M9KK3a8=
-X-Received: by 2002:a5e:8b03:0:b0:76c:56fb:3c59 with SMTP id
- g3-20020a5e8b03000000b0076c56fb3c59mr13828031iok.10.1688460489189; Tue, 04
- Jul 2023 01:48:09 -0700 (PDT)
+        with ESMTP id S229451AbjGDIx0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 04:53:26 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1997115;
+        Tue,  4 Jul 2023 01:53:25 -0700 (PDT)
+Received: from [IPV6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2] (unknown [IPv6:2001:b07:2ed:14ed:c5f8:7372:f042:90a2])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 26AFE6606ED1;
+        Tue,  4 Jul 2023 09:53:23 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1688460804;
+        bh=/4dyF8HZFtyp5Y+HhxEP3bwZNJAwUnFLGbeU+g9n2hg=;
+        h=Date:Subject:To:References:From:In-Reply-To:From;
+        b=W3r6fyfFCV1d9e3fbQqWrqlaliK8RIJShsA3JhU6t4EZyN4iWkAeaGI3c56yX1tnH
+         AIiII36iLobpWce1aQFoKmrM9lYwC30dMdNIaTPaW1W36djA7K7sMC0dGJ7po+J+Uk
+         Q+0G44HIScbow+zRuk+KM1HPRgCeaOEiDzSOPZzOJpKo3zHQ4SFM1heRe3bnfSSu5y
+         xmXWRoJsHcw6cSG+wAQSznNP/ZrZq5aSDyj43q5ijt5vopAk2Mcl8Uva0BeeZ1F1rP
+         QI6WkjLbZKkcbgMmuKEBsqyhifcfmK+wc4uhDbV2Nblw8fX8J+67YgJVCoCFbd69t/
+         WsCfOWSGdf/Mg==
+Message-ID: <ef7b62ab-b1f3-b687-7561-1ab65282ba23@collabora.com>
+Date:   Tue, 4 Jul 2023 10:53:20 +0200
 MIME-Version: 1.0
-References: <20230630120433.49529-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20230630120433.49529-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <OS0PR01MB59223E030DAE587A49C9D0FE862EA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
- <CA+V-a8um0xQ2FJyrHs=5Pc2PNvgW6B6z31zyFQ6zAYhi6=zgvQ@mail.gmail.com> <OS0PR01MB5922BFC7C34062876E53BBB7862EA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB5922BFC7C34062876E53BBB7862EA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Tue, 4 Jul 2023 09:47:43 +0100
-Message-ID: <CA+V-a8t3PveWo==GQNPWV3cTAQebtsgKwrFvc5qJVc_RsBKcGA@mail.gmail.com>
-Subject: Re: [RFC PATCH 1/4] pinctrl: renesas: rzg2l: Include pinmap in
- RZG2L_GPIO_PORT_PACK() macro
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 2/7] ASoC: mediatek: mt7986: support audio clock
+ control
+Content-Language: en-US
+To:     Maso Huang <maso.huang@mediatek.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Trevor Wu <trevor.wu@mediatek.com>,
+        Jiaxin Yu <jiaxin.yu@mediatek.com>,
+        Ren Zhijie <renzhijie2@huawei.com>,
+        Allen-KH Cheng <allen-kh.cheng@mediatek.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230626023501.11120-1-maso.huang@mediatek.com>
+ <20230626023501.11120-3-maso.huang@mediatek.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230626023501.11120-3-maso.huang@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 4, 2023 at 9:42=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas.com=
-> wrote:
->
-> Hi Prabhakar,
->
-> > -----Original Message-----
-> > From: Lad, Prabhakar <prabhakar.csengg@gmail.com>
-> > Sent: Tuesday, July 4, 2023 9:36 AM
-> > To: Biju Das <biju.das.jz@bp.renesas.com>
-> > Cc: Geert Uytterhoeven <geert+renesas@glider.be>; Magnus Damm
-> > <magnus.damm@gmail.com>; Rob Herring <robh+dt@kernel.org>; Krzysztof
-> > Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Linus Walleij
-> > <linus.walleij@linaro.org>; linux-renesas-soc@vger.kernel.org;
-> > devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-
-> > kernel@vger.kernel.org; linux-gpio@vger.kernel.org; Prabhakar Mahadev
-> > Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Subject: Re: [RFC PATCH 1/4] pinctrl: renesas: rzg2l: Include pinmap in
-> > RZG2L_GPIO_PORT_PACK() macro
-> >
-> > Hi Biju,
-> >
-> > On Tue, Jul 4, 2023 at 9:30=E2=80=AFAM Biju Das <biju.das.jz@bp.renesas=
-.com>
-> > wrote:
-> > >
-> > > Hi Prabhakar,
-> > >
-> > > > -----Original Message-----
-> > > > From: Prabhakar <prabhakar.csengg@gmail.com>
-> > > > Sent: Friday, June 30, 2023 1:05 PM
-> > > > To: Geert Uytterhoeven <geert+renesas@glider.be>; Magnus Damm
-> > > > <magnus.damm@gmail.com>
-> > > > Cc: Rob Herring <robh+dt@kernel.org>; Krzysztof Kozlowski
-> > > > <krzysztof.kozlowski+dt@linaro.org>; Linus Walleij
-> > > > <linus.walleij@linaro.org>; linux-renesas-soc@vger.kernel.org;
-> > > > devicetree@vger.kernel.org; linux-riscv@lists.infradead.org; linux-
-> > > > kernel@vger.kernel.org; linux-gpio@vger.kernel.org; Biju Das
-> > > > <biju.das.jz@bp.renesas.com>; Prabhakar
-> > > > <prabhakar.csengg@gmail.com>; Prabhakar Mahadev Lad
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > Subject: [RFC PATCH 1/4] pinctrl: renesas: rzg2l: Include pinmap in
-> > > > RZG2L_GPIO_PORT_PACK() macro
-> > > >
-> > > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > >
-> > > > Currently we assume all the port pins are sequential ie always PX_0
-> > > > to PX_n (n=3D1..7) exist, but on RZ/Five SoC we have additional pin=
-s
-> > > > P19_1 to
-> > > > P28_5 which have holes in them, for example only one pin on port19
-> > > > is available and that is P19_1 and not P19_0.
-> > > >
-> > > > So to handle such cases include pinmap for each port which would
-> > > > indicate the pin availability on each port. With this we also get
-> > > > additional pin validation, for example on the RZ/G2L SOC P0 has two
-> > > > pins
-> > > > P0_1 and P0_0 but with DT/SYSFS could use the P0_2-P0_7.
-> > > >
-> > > > While at it, update rzg2l_validate_gpio_pin() to use the port pinma=
-p
-> > > > to validate the gpio pin.
-> > > >
-> > > > Signed-off-by: Lad Prabhakar
-> > > > <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > > ---
-> > > >  drivers/pinctrl/renesas/pinctrl-rzg2l.c | 167
-> > > > ++++++++++++------------
-> > > >  1 file changed, 86 insertions(+), 81 deletions(-)
-> > > >
-> > > > diff --git a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > index 9511d920565e..a0c2e585e765 100644
-> > > > --- a/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > +++ b/drivers/pinctrl/renesas/pinctrl-rzg2l.c
-> > > > @@ -67,10 +67,12 @@
-> > > >                                        PIN_CFG_FILCLKSEL)
-> > > >
-> > > >  /*
-> > > > - * n indicates number of pins in the port, a is the register index
-> > > > - * and f is pin configuration capabilities supported.
-> > > > + * m indicates the bitmap of supported pins, n indicates number
-> > > > + * of pins in the port, a is the register index and f is pin
-> > > > + * configuration capabilities supported.
-> > > >   */
-> > > > -#define RZG2L_GPIO_PORT_PACK(
->
-> , a, f)        (((n) << 28) | ((a) <<
-> > 20) |
-> > > > (f))
-> > > > +#define RZG2L_GPIO_PORT_PACK(m, n, a, f)     ((UL(m) << 32) |
-> > (UL(n) << 28)
-> > > > | ((a) << 20) | (f))
-> > > > +#define RZG2L_GPIO_PORT_GET_PINMAP(x)        (((x) & GENMASK(39,
-> > 32)) >> 32)
-> > > >  #define RZG2L_GPIO_PORT_GET_PINCNT(x)        (((x) & GENMASK(30,
-> > 28)) >> 28)
-> > > >  #define RZG2L_GPIO_PORT_GET_INDEX(x) (((x) & GENMASK(26, 20)) >>
-> > > > 20)  #define RZG2L_GPIO_PORT_GET_CFGS(x)  ((x) & GENMASK(19, 0)) @@
-> > > > -129,7 +131,7 @@ struct rzg2l_dedicated_configs {
-> > > >
-> > > >  struct rzg2l_pinctrl_data {
-> > > >       const char * const *port_pins;
-> > > > -     const u32 *port_pin_configs;
-> > > > +     const u64 *port_pin_configs;
-> > >
-> > > Can this be SoC specific? Only for RZ/Five you need this changes.
-> > > Others SoCs like RZ/{G2L,G2LC,V2L and G2UL) still work with u32* as
-> > > there is no holes. With this change memory usage is doubled as we
-> > > change from
-> > > u32->u64.
-> > >
-> > This is to avoid writing to undocumented registers so I have added for
-> > all the SoCs. For example on the RZ/G2L SOC P0 has two pins P0_1 and
-> > P0_0 but DT/SYSFS could use the P0_2-P0_7. This patch restricts users t=
-o
-> > use only available GPIO pins.
->
-> I guess that still can be achieved, as the below macro has valid
-> pins info??
->
-> #define RZG2L_GPIO_PORT_GET_PINCNT(x)   (((x) & GENMASK(30, 28)) >> 28)
->
-> if (!(BIT(bit) & GENMASK(RZG2L_GPIO_PORT_GET_PINCNT(x), 0))
-> return -EINVAL;
->
-Agreed, If Geert is OK to have SoC specific checks around I'll do the above=
-.
+Il 26/06/23 04:34, Maso Huang ha scritto:
+> Add audio clock wrapper and audio tuner control.
+> 
+> Signed-off-by: Maso Huang <maso.huang@mediatek.com>
+> ---
+>   sound/soc/mediatek/mt7986/mt7986-afe-clk.c | 75 ++++++++++++++++++++++
+>   sound/soc/mediatek/mt7986/mt7986-afe-clk.h | 18 ++++++
+>   2 files changed, 93 insertions(+)
+>   create mode 100644 sound/soc/mediatek/mt7986/mt7986-afe-clk.c
+>   create mode 100644 sound/soc/mediatek/mt7986/mt7986-afe-clk.h
+> 
+> diff --git a/sound/soc/mediatek/mt7986/mt7986-afe-clk.c b/sound/soc/mediatek/mt7986/mt7986-afe-clk.c
+> new file mode 100644
+> index 000000000000..a8b5fae05673
+> --- /dev/null
+> +++ b/sound/soc/mediatek/mt7986/mt7986-afe-clk.c
+> @@ -0,0 +1,75 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * mt7986-afe-clk.c  --  MediaTek 7986 afe clock ctrl
+> + *
+> + * Copyright (c) 2021 MediaTek Inc.
+> + * Author: Vic Wu <vic.wu@mediatek.com>
+> + *         Maso Huang <maso.huang@mediatek.com>
+> + */
+> +
+> +#include <linux/clk.h>
+> +
+> +#include "mt7986-afe-common.h"
+> +#include "mt7986-afe-clk.h"
+> +#include "mt7986-reg.h"
+> +
+> +enum {
+> +	CK_INFRA_AUD_BUS_CK = 0,
+> +	CK_INFRA_AUD_26M_CK,
+> +	CK_INFRA_AUD_L_CK,
+> +	CK_INFRA_AUD_AUD_CK,
+> +	CK_INFRA_AUD_EG2_CK,
+> +	CLK_NUM
+> +};
+> +
+> +static const char *aud_clks[CLK_NUM] = {
+> +	[CK_INFRA_AUD_BUS_CK] = "aud_bus_ck",
+> +	[CK_INFRA_AUD_26M_CK] = "aud_26m_ck",
+> +	[CK_INFRA_AUD_L_CK] = "aud_l_ck",
+> +	[CK_INFRA_AUD_AUD_CK] = "aud_aud_ck",
+> +	[CK_INFRA_AUD_EG2_CK] = "aud_eg2_ck",
+> +};
+> +
+> +int mt7986_init_clock(struct mtk_base_afe *afe)
+> +{
+> +	struct mt7986_afe_private *afe_priv = afe->platform_priv;
+> +	int ret, i;
+> +
+> +	afe_priv->clks = devm_kcalloc(afe->dev, CLK_NUM,
+> +				sizeof(*afe_priv->clks), GFP_KERNEL);
+> +	if (!afe_priv->clks)
+> +		return -ENOMEM;
+> +	afe_priv->num_clks = CLK_NUM;
+> +
+> +	for (i = 0; i < afe_priv->num_clks; i++)
+> +		afe_priv->clks[i].id = aud_clks[i];
+> +
+> +	ret = devm_clk_bulk_get(afe->dev, afe_priv->num_clks, afe_priv->clks);
+> +	if (ret)
+> +		return dev_err_probe(afe->dev, ret, "Failed to get clocks\n");
+> +
+> +	return 0;
+> +}
+> +
+> +int mt7986_afe_enable_clock(struct mtk_base_afe *afe)
+> +{
+> +	struct mt7986_afe_private *afe_priv = afe->platform_priv;
+> +	int ret;
+> +
+> +	ret = clk_bulk_prepare_enable(afe_priv->num_clks, afe_priv->clks);
 
-Cheers,
-Prabhakar
+You don't need a wrapper function for just a single clk_bulk_prepare_enable() call.
+
+> +	if (ret)
+> +		return dev_err_probe(afe->dev, ret, "Failed to enable clocks\n");
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(mt7986_afe_enable_clock);
+> +
+> +int mt7986_afe_disable_clock(struct mtk_base_afe *afe)
+> +{
+> +	struct mt7986_afe_private *afe_priv = afe->platform_priv;
+> +
+> +	clk_bulk_disable_unprepare(afe_priv->num_clks, afe_priv->clks);
+
+Same for this one....
+
+... which means that this file will have only mt7986_init_clock() so, ultimately,
+you don't need a mt7986-afe-clk.c file at all.
+Please merge this logic into mt7986-afe-pcm.c, which is also the only user of it.
+
+Thanks,
+Angelo
+
