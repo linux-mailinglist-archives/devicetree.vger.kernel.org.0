@@ -2,83 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 04D11747A42
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 01:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9ADF747A62
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 01:31:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230239AbjGDXA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 4 Jul 2023 19:00:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45668 "EHLO
+        id S230239AbjGDXbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 4 Jul 2023 19:31:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50018 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229603AbjGDXA0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 19:00:26 -0400
-Received: from mail-pf1-x435.google.com (mail-pf1-x435.google.com [IPv6:2607:f8b0:4864:20::435])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 805CCE54;
-        Tue,  4 Jul 2023 16:00:25 -0700 (PDT)
-Received: by mail-pf1-x435.google.com with SMTP id d2e1a72fcca58-66872dbc2efso1545907b3a.0;
-        Tue, 04 Jul 2023 16:00:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688511625; x=1691103625;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Y3GIXZAL55jvxfyPH9CnEkGXqdXbHSVv7grC7W9k0FU=;
-        b=lywf5eF6Jlzj1WJcnZ9s3Iu5RCNnRfc+ozbpg3ZBuNiCCkp994iakAwdKfaedcSV2m
-         Vor4ZZcLmxVhW/DeFVzf2n/agIsQ/hyWPOGMixHDTlQjm1iUSHYoAXzNKxDlasU6j8F9
-         ath3XXa4MeHP+nO6MNVocij3233xjkuNZnvYAqcHA2kuaZJvkb20N3ji0ndfTvI7p7dJ
-         5iRMfOpaw63YqRaLAspqHFG1W5ENthaFJCR9F6oty5pT/8Nfpci/XOQPL2F1S88Uqu47
-         gO7u8f737/AXPsxKeCRWHX/ybNNR9+1oRkIwcYyHTQJtTaElsn7beMx+qUiJFqNSq0Em
-         hZJg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688511625; x=1691103625;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=Y3GIXZAL55jvxfyPH9CnEkGXqdXbHSVv7grC7W9k0FU=;
-        b=TUfxYYSjM2WOdVTjmhG1uHIpdbf3FEive4Ifj77gGw0TrQf37GBqs9iNB9/shj7auR
-         Ru7EPnEbSqlO06K5Lk68maSOEeEy+B3C+rjVj7O3Sinm2P5VgsNuTUD6M5QXXq1zA9Km
-         D3K9d9I6ZqBhdMv8UoHEqMpusX7fm8rBuswWwx0RlHcfS7Rufkxs7AH4QxiM9No9te3r
-         SQFBlNXidnmhcgHZPR08/81iBOjPz4B0y/6IHIQ3jnjip92+2pG8b7CalNAx8uSIX+zt
-         CPDEdFuipMz3RsoUBklbqh4vsd9blbpNYg1tllb9oCLrx5hH3SRv8cuZHO1daJkWyb7o
-         70mQ==
-X-Gm-Message-State: ABy/qLaYSVsrzfyd1OV0qxytKSZs2lNUf0eYBOwBliLurNrIDZNPp+wS
-        Hl1GERkZ/gnYZipaAs70v8vteziykRa6d1XIriUQKPjVCpOTaQ==
-X-Google-Smtp-Source: APBJJlE59DFolFuYV01BXk/etc630/ymSEmWO7IZhtXA+rNbhnveNTb2MkA+yA9G/yd1OrD5mO3TtU4HIz+YrO7+g3g=
-X-Received: by 2002:a05:6a00:399a:b0:681:9fe0:b543 with SMTP id
- fi26-20020a056a00399a00b006819fe0b543mr16877234pfb.2.1688511624974; Tue, 04
- Jul 2023 16:00:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230704150240.2022020-1-hugo@hugovil.com> <1341ba38-35c1-1657-aed4-a3c11f584367@linaro.org>
- <20230704113124.f2830afe1d9df252afe5abdc@hugovil.com> <834a0679-7e0c-150f-68be-c75d7dac0bc8@linaro.org>
- <CAOMZO5CX8WzaNeHmE8ohT2_6F-ehRRNWGnF7Dji=uLGphY4q2A@mail.gmail.com>
- <20230704125541.f361cab8de3faacd830418ab@hugovil.com> <20230704130204.7ac64cbd76b3440fc351c373@hugovil.com>
- <CAOMZO5Dsp7YZfmpkBNsQgE4d3Ag-v2fpBAU=aZ9NGqGYoaOMWQ@mail.gmail.com>
- <20230704164140.824f6890dae5c87fc92531b4@hugovil.com> <CAOMZO5BNaQVMKbxU9rc5zOBwv9c+HayLnkjqrSgPKgMGzQ585A@mail.gmail.com>
- <20230704172801.f11422b3f947c625f53af871@hugovil.com> <CAOMZO5CWh0-5eMTBwjvNUrY-yOHE=daj6n-jAAfjWoV-H4rt0Q@mail.gmail.com>
-In-Reply-To: <CAOMZO5CWh0-5eMTBwjvNUrY-yOHE=daj6n-jAAfjWoV-H4rt0Q@mail.gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 4 Jul 2023 20:00:13 -0300
-Message-ID: <CAOMZO5AZiuEAh6nJB8Oub83At6bsvLhzOhsT_yOniZSucrAUMQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mn-var-som-symphony: fix USB OTG
-To:     Hugo Villeneuve <hugo@hugovil.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pierluigi Passaro <pierluigi.p@variscite.com>,
-        Nate Drude <nate.d@variscite.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229744AbjGDXbJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 4 Jul 2023 19:31:09 -0400
+Received: from mga03.intel.com (mga03.intel.com [134.134.136.65])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8E20E7A;
+        Tue,  4 Jul 2023 16:31:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1688513468; x=1720049468;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=/C1Y+lxkTyN+kkBIpYhP3CMcKBqhJlI9zm3rmb7ICE4=;
+  b=C9sSy1tXyC9CHrp42oqsyNMTk5huOve/+e7vY8OgrN81TKzdhK7bBQAI
+   KchQuYnR7rKtKNHwC6ACehVuCQyVGa8yvwEWqk7etDLAyypuCvnTHnRtT
+   /kyZh57o6aQEBrOMC0X9LfKtFFKu/MoCP/DgcbaxBu0Shp5938SJ8zRs8
+   uOze0a4mFsj7aBwtrArqIi0o6VInLI2DByrzEOY5U4skco3s823dKnpou
+   C3yRb5SqOXj7MOifxdNHmG9sWfmUeKTHh9X3JQZGpA4/qdBEsl0yeoZls
+   OpjBxLsRPX8PWkv5VgX6hfum0sm0BMb8pvTK3PTjbvNbcbNr/+UhNmmev
+   A==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="366692372"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; 
+   d="scan'208";a="366692372"
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2023 16:31:08 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="892974234"
+X-IronPort-AV: E=Sophos;i="6.01,181,1684825200"; 
+   d="scan'208";a="892974234"
+Received: from lkp-server01.sh.intel.com (HELO 783282924a45) ([10.239.97.150])
+  by orsmga005.jf.intel.com with ESMTP; 04 Jul 2023 16:31:05 -0700
+Received: from kbuild by 783282924a45 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qGpU8-000IdT-1N;
+        Tue, 04 Jul 2023 23:31:04 +0000
+Date:   Wed, 5 Jul 2023 07:30:05 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
+        Marek Vasut <marex@denx.de>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] leds: pca995x: Add support for PCA995X chips
+Message-ID: <202307050752.XBy4Li9L-lkp@intel.com>
+References: <20230704202843.91867-2-marex@denx.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230704202843.91867-2-marex@denx.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,24 +69,123 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 4, 2023 at 6:50=E2=80=AFPM Fabio Estevam <festevam@gmail.com> w=
-rote:
->
-> On Tue, Jul 4, 2023 at 6:28=E2=80=AFPM Hugo Villeneuve <hugo@hugovil.com>=
- wrote:
->
-> > Hi Fabio,
-> > it is important to remember that on this board, like I explained
-> > before, the INTB pin is not connected to anything.
-> >
-> > It is only the ID pin (9) that is connected to the GPIO1_11 pin.
->
-> Now I looked at the schematics and you are right.
->
-> In this case, GPIO1_11 should not be represented as irq then.
+Hi Marek,
 
-Variscite added an "irq-is-id-quirk"  property on their tree to handle this=
-:
+kernel test robot noticed the following build warnings:
 
-https://github.com/varigit/linux-imx/commit/fbe6aa2a9c014fdb10b29a715a1be69=
-5dac60828
+[auto build test WARNING on lee-leds/for-leds-next]
+[also build test WARNING on krzk-dt/for-next pavel-leds/for-next linus/master v6.4 next-20230704]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
+
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Vasut/leds-pca995x-Add-support-for-PCA995X-chips/20230705-043046
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20230704202843.91867-2-marex%40denx.de
+patch subject: [PATCH 2/2] leds: pca995x: Add support for PCA995X chips
+config: sparc-allyesconfig (https://download.01.org/0day-ci/archive/20230705/202307050752.XBy4Li9L-lkp@intel.com/config)
+compiler: sparc64-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230705/202307050752.XBy4Li9L-lkp@intel.com/reproduce)
+
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307050752.XBy4Li9L-lkp@intel.com/
+
+All warnings (new ones prefixed by >>):
+
+   drivers/leds/leds-pca995x.c: In function 'pca995x_probe':
+>> drivers/leds/leds-pca995x.c:103:17: warning: cast from pointer to integer of different size [-Wpointer-to-int-cast]
+     103 |         btype = (int)device_get_match_data(&client->dev);
+         |                 ^
+   drivers/leds/leds-pca995x.c: At top level:
+   drivers/leds/leds-pca995x.c:190:18: error: initialization of 'int (*)(struct i2c_client *)' from incompatible pointer type 'int (*)(struct i2c_client *, const struct i2c_device_id *)' [-Werror=incompatible-pointer-types]
+     190 |         .probe = pca995x_probe,
+         |                  ^~~~~~~~~~~~~
+   drivers/leds/leds-pca995x.c:190:18: note: (near initialization for 'pca995x_driver.<anonymous>.probe')
+   cc1: some warnings being treated as errors
+
+
+vim +103 drivers/leds/leds-pca995x.c
+
+    93	
+    94	static int pca995x_probe(struct i2c_client *client, const struct i2c_device_id *id)
+    95	{
+    96		struct fwnode_handle *led_fwnodes[PCA995X_MAX_OUTPUTS] = { 0 };
+    97		struct fwnode_handle *np, *child;
+    98		struct device *dev = &client->dev;
+    99		struct pca995x_chip *chip;
+   100		struct pca995x_led *led;
+   101		int i, btype, reg, ret;
+   102	
+ > 103		btype = (int)device_get_match_data(&client->dev);
+   104	
+   105		np = dev_fwnode(dev);
+   106		if (!np)
+   107			return -ENODEV;
+   108	
+   109		chip = devm_kzalloc(dev, sizeof(*chip), GFP_KERNEL);
+   110		if (!chip)
+   111			return -ENOMEM;
+   112	
+   113		chip->btype = btype;
+   114		chip->regmap = devm_regmap_init_i2c(client, &pca995x_regmap);
+   115		if (IS_ERR(chip->regmap))
+   116			return PTR_ERR(chip->regmap);
+   117	
+   118		i2c_set_clientdata(client, chip);
+   119	
+   120		fwnode_for_each_available_child_node(np, child) {
+   121			ret = fwnode_property_read_u32(child, "reg", &reg);
+   122			if (ret) {
+   123				fwnode_handle_put(child);
+   124				return ret;
+   125			}
+   126	
+   127			if (reg < 0 || reg >= PCA995X_MAX_OUTPUTS || led_fwnodes[reg]) {
+   128				fwnode_handle_put(child);
+   129				return -EINVAL;
+   130			}
+   131	
+   132			led = &chip->leds[reg];
+   133			led_fwnodes[reg] = child;
+   134			led->chip = chip;
+   135			led->led_no = reg;
+   136			led->ldev.brightness_set_blocking = pca995x_brightness_set;
+   137			led->ldev.max_brightness = 255;
+   138		}
+   139	
+   140		for (i = 0; i < PCA995X_MAX_OUTPUTS; i++) {
+   141			struct led_init_data init_data = {};
+   142	
+   143			if (!led_fwnodes[i])
+   144				continue;
+   145	
+   146			init_data.fwnode = led_fwnodes[i];
+   147	
+   148			ret = devm_led_classdev_register_ext(dev,
+   149							     &chip->leds[i].ldev,
+   150							     &init_data);
+   151			if (ret < 0) {
+   152				fwnode_handle_put(child);
+   153				return dev_err_probe(dev, ret,
+   154						     "Could not register LED %s\n",
+   155						     chip->leds[i].ldev.name);
+   156			}
+   157		}
+   158	
+   159		/* Disable LED all-call address and set normal mode */
+   160		ret = regmap_write(chip->regmap, PCA995X_MODE1, PCA995X_MODE_1_CFG);
+   161		if (ret)
+   162			return ret;
+   163	
+   164		/* IREF Output current value for all LEDn outputs */
+   165		return regmap_write(chip->regmap,
+   166				    btype ? PCA9955B_IREFALL : PCA9952_IREFALL,
+   167				    PCA995X_IREFALL_CFG);
+   168	}
+   169	
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
