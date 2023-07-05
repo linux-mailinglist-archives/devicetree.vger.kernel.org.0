@@ -2,117 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B41E747C8F
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 07:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3BE0747C97
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 07:42:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231137AbjGEFkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 01:40:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56202 "EHLO
+        id S230367AbjGEFmH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 01:42:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57266 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230447AbjGEFko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 01:40:44 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08CFAE7B;
-        Tue,  4 Jul 2023 22:40:43 -0700 (PDT)
-Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3655MGHT020214;
-        Wed, 5 Jul 2023 05:40:40 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=DBUCHIImMscDsnUUCsVgxa65R40ZGDgdgGftaFAsJPs=;
- b=JPoTSUM+A7uJp1qsh6NFjBdSEmWLT+M1pbBrVA9/BX2CIRS5OnlJWxaKXHhCdVBTTFgo
- hFI+D8gYx4lqByBTEk+xs7gJ6qR7fN4IeTNgfQLMJrQrbYCBFZGDCFwrCV0sgpnYYZDV
- B4wmT57uv8fyQE+Tfz7bAiJ+FC6afDAWGP2w4nF5sfkxU3UJsPGxMRGS+7pAmavVjJe3
- sqfqsK1WjQ32ZcwSkeMkt6MkDVAzGfhuE8oEYaFxmJspuR/1yvObevvwpHXE2/vms4qO
- 1T448pKIOLcMOXZWNsbw/2TSxTvg+JCdl+1lrU03ucVlgiCEWskJm7XKjZZ1Ng3yEbY6 Jw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rn152g4df-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Jul 2023 05:40:40 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3655ed9m024790
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 5 Jul 2023 05:40:39 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.7; Tue, 4 Jul 2023 22:40:36 -0700
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>
-Subject: [PATCH 2/2] arm64: dts: qcom: qru1000-idp: Update reserved memory region
-Date:   Wed, 5 Jul 2023 11:09:14 +0530
-Message-ID: <20230705053914.9759-3-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230705053914.9759-1-quic_kbajaj@quicinc.com>
-References: <20230705053914.9759-1-quic_kbajaj@quicinc.com>
+        with ESMTP id S231213AbjGEFmF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 01:42:05 -0400
+Received: from mga12.intel.com (mga12.intel.com [192.55.52.136])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C058219B;
+        Tue,  4 Jul 2023 22:41:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1688535712; x=1720071712;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=HUAt3U42HCZDHpLQ85nw0NDF0N9Ckkn1QxOID021dY4=;
+  b=k2+51M48BsggkfJMHCB23f/vHbxXatln/Jb1nx5BS8Z36vVwIA1Vd4rA
+   A/s3btga4Gy0zLscYS8XHkw1hd1cqWJb/B49f8Nulhf73POw0dix6SaQv
+   vi5tNencfrFlCtx+Fr1aMJU+8X3tXNZruwwZEF5+TC/rDfKJjWZNDlA3o
+   KlrHsedFnbfX+ULm9fqJkABq6cFnxrTywQURhCRw5KQ+cRDZqDFekHYvC
+   0Psx0EbLCT/HtUsQx49pgXvuJw7R2562qhzHRKPrNbjgCfA1Bi8pDlQKP
+   eFdCUXckJtL+ictE25zJfa3f9to9+Y2NlIUy0l883tpk5NEOcBCavMNUI
+   Q==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="342845358"
+X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; 
+   d="scan'208";a="342845358"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2023 22:41:52 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="965687490"
+X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; 
+   d="scan'208";a="965687490"
+Received: from lkp-server01.sh.intel.com (HELO c544d7fc5005) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 04 Jul 2023 22:41:49 -0700
+Received: from kbuild by c544d7fc5005 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qGvGv-0000PX-0Y;
+        Wed, 05 Jul 2023 05:41:49 +0000
+Date:   Wed, 5 Jul 2023 13:41:42 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev,
+        Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
+        Marek Vasut <marex@denx.de>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] leds: pca995x: Add support for PCA995X chips
+Message-ID: <202307051306.EhTQLR8l-lkp@intel.com>
+References: <20230705000407.153005-2-marex@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: LJ0OS_9esvq-GzxiXnMGYJqQoIqgp7bW
-X-Proofpoint-ORIG-GUID: LJ0OS_9esvq-GzxiXnMGYJqQoIqgp7bW
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-04_16,2023-07-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
- priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0
- lowpriorityscore=0 mlxscore=0 malwarescore=0 clxscore=1015 mlxlogscore=669
- adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307050051
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705000407.153005-2-marex@denx.de>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing reserved regions as described in QRU1000 memory map.
+Hi Marek,
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qru1000-idp.dts | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+kernel test robot noticed the following build errors:
 
-diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-index 2cc893ae4d10..836804020946 100644
---- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-@@ -448,6 +448,22 @@ &qupv3_id_0 {
- 	status = "okay";
- };
+[auto build test ERROR on lee-leds/for-leds-next]
+[also build test ERROR on krzk-dt/for-next linus/master v6.4 next-20230704]
+[If your patch is applied to the wrong git tree, kindly drop us a note.
+And when submitting patch, we suggest to use '--base' as documented in
+https://git-scm.com/docs/git-format-patch#_base_tree_information]
 
-+&reserved_memory {
-+	#address-cells = <2>;
-+	#size-cells = <2>;
-+	ranges;
-+
-+	ecc_meta_data_reserved_mem: ecc_meta_data_reserved_region@f0000000 {
-+		no-map;
-+		reg = <0x0 0xf0000000 0x0 0x10000000>;
-+	};
-+
-+	tenx_sp_mem: tenx_sp_region@800000000 {
-+		no-map;
-+		reg = <0x8 0x0 0x0 0x80000000>;
-+	};
-+};
-+
- &uart7 {
- 	status = "okay";
- };
---
-2.40.1
+url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Vasut/leds-pca995x-Add-support-for-PCA995X-chips/20230705-080506
+base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
+patch link:    https://lore.kernel.org/r/20230705000407.153005-2-marex%40denx.de
+patch subject: [PATCH v2 2/2] leds: pca995x: Add support for PCA995X chips
+config: powerpc-allmodconfig (https://download.01.org/0day-ci/archive/20230705/202307051306.EhTQLR8l-lkp@intel.com/config)
+compiler: powerpc-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230705/202307051306.EhTQLR8l-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307051306.EhTQLR8l-lkp@intel.com/
+
+All errors (new ones prefixed by >>, old ones prefixed by <<):
+
+>> FATAL: modpost: drivers/leds/leds-pca995x: sizeof(struct i2c_device_id)=24 is not a modulo of the size of section __mod_i2c__<identifier>_device_table=588.
+>> Fix definition of struct i2c_device_id in mod_devicetable.h
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
