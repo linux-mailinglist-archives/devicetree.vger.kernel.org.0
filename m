@@ -2,112 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F044748692
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 16:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19BC174869C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 16:43:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232571AbjGEOmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 10:42:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48750 "EHLO
+        id S232594AbjGEOnU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 10:43:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232501AbjGEOmd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 10:42:33 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8F9A10CF
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 07:42:31 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fb41682472so10336702e87.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 07:42:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688568150; x=1691160150;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=LvfxYoatLPY+EEK3fZXAaMdZCVIQwiRsXvqBzlQnUio=;
-        b=zrmknDbWs4pXA2BEO+ZZbVS1/Vg3LDziRqcQZVHwrspolpztZ9aKw8dsbUeyoL8GnA
-         dM0/Dhc5+Q7lRSv/a/VL22dNGx7MwcVPNGkmtpX9SMCOS2pmWiPIsLNnVnIx9WNd7tM0
-         ZR86oIFUmaICXXSTI30wkW7hRNvkywplXSXjhqfjOdvt4yMkWcLpKTjNKon4wGbRS/6l
-         PYYYu19Oa0fWNGbPl7ycT0ssWvXEQxdvQ3reESoP9KryJF8Y67EAQMTVC0ht3rKtBdbN
-         eFAd1WgoiuiHIx9lDFPKfSvJIU8lSLjumJwIX2rlsPWOsve6twEcqwH7z2tODLoNwR8K
-         WIVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688568150; x=1691160150;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=LvfxYoatLPY+EEK3fZXAaMdZCVIQwiRsXvqBzlQnUio=;
-        b=AwWul9dU/z0OoLYHR5ahdxPSD/xyapfwZXJeSXKC8K8urkbppcvAOWpGeRrI5NZNvw
-         AWbG7N+b8lyTMeb3peZqh5zRogFr+exMuZlkhpdAolqtFkV6HTm3vW9vxraswZeyuMDk
-         0NEeeuHCO62uYxs12LSme5+Z4IHesWXtusnEKq0vhV7rHv7r3lzMf5ksDMMLEqouoSc8
-         oM55W0ZOHbEPO/gr2UC6csWD5dhP+hQzHoTRRdsO2meAn6xZufTgAS66zkKNoKjyxwSK
-         W45sKM1zJ68wXGWv+LAJegQbyxgThfjpC0wXmoSZXNEHKYBGKTwWqxNfuFVgiIZ/2IKf
-         u5+Q==
-X-Gm-Message-State: ABy/qLadhDLqDi7RFIb3kRL+Y9IZQDeCqHge7tDXoknUrUXNS0HZFGn2
-        XsI5JoGtHyw64GvWCrqQiYfUww==
-X-Google-Smtp-Source: APBJJlGYhYhict3tVNgScjd7KiEg9N8T63CfQkYGiQDMubJFxYUP7RMS0Z5BovY5eCZ+8GTsDCAgyQ==
-X-Received: by 2002:a2e:8e89:0:b0:2b6:e536:a2a3 with SMTP id z9-20020a2e8e89000000b002b6e536a2a3mr9007351ljk.19.1688568150187;
-        Wed, 05 Jul 2023 07:42:30 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id xa10-20020a170907b9ca00b00988955f7b5esm14727581ejc.157.2023.07.05.07.42.28
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 07:42:29 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S232580AbjGEOnS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 10:43:18 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39A401717;
+        Wed,  5 Jul 2023 07:43:03 -0700 (PDT)
+Received: from obbardc-t14.home (unknown [IPv6:2a00:23c8:b70a:ae01:7599:ed26:1798:f430])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: obbardc)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3E2906601F5E;
+        Wed,  5 Jul 2023 15:43:01 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1688568181;
+        bh=P5Fm2OLmai5YtKVyYGBI2DmPwndevSpJJeqkn7lP5ck=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TmpRt2quPRUL1+pIUMicinQ4wqcXrxe0QccFxpINEWL3onIO1SDx8kBo9oPwvQttb
+         YSPGD2baFTCg/3ZKSYAcE9g8ToOViebdtTp/NyUFB16m0n9PSNXfE3W4txR94K5mSh
+         C3CF6d6HUGiDZkIpX3twktyeyTfEP5QmFJFSYEQIMmp6oDWpdaSerOEkZpv2zFL1tC
+         MW6QBVkgr45bzi5s1kQj9dLP+i3AK/XubqOg/7Dh+UeBKRQ5rxAwRpKbyoUYVB2gWO
+         XwJgW8iTMNzqMntbv9h0hT/yP54688jSGNv40jJG3a2Kkgr5VRCdkUU2GBjgKrp61q
+         GoaBsdzHk03qg==
+From:   Christopher Obbard <chris.obbard@collabora.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     kernel@collabora.com,
+        Christopher Obbard <chris.obbard@collabora.com>,
+        Akash Gajjar <Akash_Gajjar@mentor.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: add missing space before {
-Date:   Wed,  5 Jul 2023 16:42:26 +0200
-Message-Id: <20230705144226.280490-1-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
+        FUKAUMI Naoki <naoki@radxa.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Manoj Sai <abbaraju.manojsai@amarulasolutions.com>,
+        Pragnesh Patel <Pragnesh_Patel@mentor.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Chen <stephen@radxa.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/2] Disable HS400 for eMMC on Radxa ROCK 4 SBCs
+Date:   Wed,  5 Jul 2023 15:42:53 +0100
+Message-Id: <20230705144255.115299-1-chris.obbard@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing whitespace between node name/label and opening {.
+There is some instablity with some eMMC modules on ROCK Pi 4 SBCs running
+in HS400 mode. This ends up resulting in some block errors after a while
+or after a "heavy" operation utilising the eMMC (e.g. resizing a
+filesystem). An example of these errors is as follows:
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/qcom/sc8180x.dtsi                    | 2 +-
- arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+    [  289.171014] mmc1: running CQE recovery
+    [  290.048972] mmc1: running CQE recovery
+    [  290.054834] mmc1: running CQE recovery
+    [  290.060817] mmc1: running CQE recovery
+    [  290.061337] blk_update_request: I/O error, dev mmcblk1, sector 1411072 op 0x1:(WRITE) flags 0x800 phys_seg 36 prio class 0
+    [  290.061370] EXT4-fs warning (device mmcblk1p1): ext4_end_bio:348: I/O error 10 writing to inode 29547 starting block 176466)
+    [  290.061484] Buffer I/O error on device mmcblk1p1, logical block 172288
+    [  290.061531] Buffer I/O error on device mmcblk1p1, logical block 172289
+    [  290.061551] Buffer I/O error on device mmcblk1p1, logical block 172290
+    [  290.061574] Buffer I/O error on device mmcblk1p1, logical block 172291
+    [  290.061592] Buffer I/O error on device mmcblk1p1, logical block 172292
+    [  290.061615] Buffer I/O error on device mmcblk1p1, logical block 172293
+    [  290.061632] Buffer I/O error on device mmcblk1p1, logical block 172294
+    [  290.061654] Buffer I/O error on device mmcblk1p1, logical block 172295
+    [  290.061673] Buffer I/O error on device mmcblk1p1, logical block 172296
+    [  290.061695] Buffer I/O error on device mmcblk1p1, logical block 172297
 
-diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-index 3c1314e12d08..fe8534538618 100644
---- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-@@ -3429,7 +3429,7 @@ timer@17c20000 {
- 			#size-cells = <1>;
- 			ranges = <0 0 0 0x20000000>;
- 
--			frame@17c21000{
-+			frame@17c21000 {
- 				reg = <0x17c21000 0x1000>,
- 				      <0x17c22000 0x1000>;
- 				frame-number = <0>;
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-index b841ea9192ae..85e5cf3dc91e 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250-xiaomi-elish-common.dtsi
-@@ -565,7 +565,7 @@ panel_in_0: endpoint {
- 				};
- 			};
- 
--			port@1{
-+			port@1 {
- 				reg = <1>;
- 
- 				panel_in_1: endpoint {
+Disabling the Command Queue seems to stop the CQE recovery from running,
+but doesn't seem to improve the I/O errors. Until this can be investigated
+further, disable HS400 mode on the ROCK Pi 4 SBCs to at least stop I/O
+errors from occurring.
+
+
+Christopher Obbard (2):
+  arm64: dts: rockchip: Disable HS400 for eMMC on ROCK Pi 4
+  arm64: dts: rockchip: Disable HS400 for eMMC on ROCK 4C+
+
+ arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 3 +--
+ arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 4 ++--
+ 2 files changed, 3 insertions(+), 4 deletions(-)
+
 -- 
-2.34.1
+2.40.1
 
