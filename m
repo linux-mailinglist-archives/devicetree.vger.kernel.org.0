@@ -2,107 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B6A474889A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:57:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 530997488B9
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233070AbjGEP5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:57:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
+        id S233253AbjGEP7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 11:59:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232650AbjGEP5f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:57:35 -0400
-Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0DB12A;
-        Wed,  5 Jul 2023 08:57:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
-        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
-        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=+tOjqvgYJNwlm6nq1waFWdOB29jJE7UIgZxS5xd47T0=; b=qZBJaOAKLcRXzvs3BA1NWHeR5+
-        jcDihT+COymIsLyZaLeuXJP5RmCHimVzZB78PPB9ckzLLDtxXxv8vKxbW0GZNAIgYqygoMKjQY+k1
-        VR7YCfx6Wa/NtGGDupvm/KYi/4RIayzUuiwsdErm/hKkr2nkkBKeVM9JqszQKPV2DA0s=;
-Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:48064 helo=pettiford)
-        by mail.hugovil.com with esmtpa (Exim 4.92)
-        (envelope-from <hugo@hugovil.com>)
-        id 1qH4sa-0005PX-QW; Wed, 05 Jul 2023 11:57:21 -0400
-Date:   Wed, 5 Jul 2023 11:57:20 -0400
-From:   Hugo Villeneuve <hugo@hugovil.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Nate Drude <Nate.D@variscite.com>,
-        Pierluigi Passaro <pierluigi.p@variscite.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S233233AbjGEP7Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:59:24 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20DA1FC4
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 08:59:01 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3112f5ab0b1so7624308f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 08:59:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688572731; x=1691164731;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=moibl62gzAsWVTokluvPSFK/S0tyJbu/881cJb+p80o=;
+        b=JSlq8CZYrL0RmBsVMhuobUhV95XMGPxVfjGNavCOWyxUgSDHCaJB4aAXpc5KoUvq40
+         fykvC+WCiFXbWE5Z/OEaXbgEQO5+99cEZcZ439cMGWzd0tn/RtXvHe13K1KHd1M/7kxS
+         agXTzzdaz8SDtGYRZtw+KzPgomGI6nfejQqRPgLR657DflSyEmtY9+UcMcetjEbXGOj0
+         S3SDFqvZOjtSHTaVjrTDKmXS6TOaWRSwrdb5HqsIN2TlRZEbKVeQIt9vc2/DgiklaPyx
+         XRzTGp9k6pT2BuWv6adsmAYFJtP1xt8B4r+oL5KMEzcv/dB7IqzPrpdKmwZ961oHLbSQ
+         iZBA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688572731; x=1691164731;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=moibl62gzAsWVTokluvPSFK/S0tyJbu/881cJb+p80o=;
+        b=gdN6bxTCEvb9QY0bGw5hnMBchbzLAZaHVoiRztwTkXUJdeJrXhix4BUh5gMQXxvn8S
+         aXMxvIzpTqg+ciq4zFaNbGdquDpkJxCnWyDrIHlvwGK/ds83muRq2xIg+PnXk/+OLHPK
+         bZ4xqMNNBEvehcrkr++fq5tdTIcxGAPqIbHYxBnqZTNfbGpppbntPWwC4NS3exmU8Jh5
+         lW/I4t57wWFzBr4xDbnKKGKbKBv456XvlHCiH01BKbhTfzerBrKFGLJEWRLBYYgWMx54
+         MSfVkzL5skjI5lccD2+kptFPk3KTxjdzkz92P2eB3omdYcp2AoYsTuWTQqnN4yqYdFH/
+         KgEA==
+X-Gm-Message-State: ABy/qLYbGDZ/rxMoKSQlmv56zL2a6q0hZbEp4Nlgklr82quIh5N5z3oi
+        2WUJ/UGbbE2+go6zMEfQs7UDag==
+X-Google-Smtp-Source: APBJJlGx+kWWfQ+ERifBEWKHxqWBwGmPAO4EZnQin0ptwlMz0lU3sRP6zkQMsbyuoLdBaBGZMnrUZQ==
+X-Received: by 2002:a5d:4f8d:0:b0:314:11ea:480d with SMTP id d13-20020a5d4f8d000000b0031411ea480dmr14762913wru.9.1688572731063;
+        Wed, 05 Jul 2023 08:58:51 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:65eb:d140:2d45:ee85? ([2a01:e0a:982:cbb0:65eb:d140:2d45:ee85])
+        by smtp.gmail.com with ESMTPSA id s11-20020a5d69cb000000b00313f07ccca4sm27119522wrw.117.2023.07.05.08.58.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 08:58:49 -0700 (PDT)
+Message-ID: <bd6b9372-6eb0-c54f-9341-1dc46c4e63b0@linaro.org>
+Date:   Wed, 5 Jul 2023 17:58:48 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
+ LGD panel driver for Sony Xperia XZ3)
+Content-Language: en-US
+To:     Maxime Ripard <mripard@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        Caleb Connolly <caleb@connolly.tech>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Message-Id: <20230705115720.036340a2ea3bf23f1fac0815@hugovil.com>
-In-Reply-To: <9dc5738b-2170-a010-4685-ef8cc4bd3fa0@linaro.org>
-References: <20230704150240.2022020-1-hugo@hugovil.com>
-        <20230704172801.f11422b3f947c625f53af871@hugovil.com>
-        <CAOMZO5CWh0-5eMTBwjvNUrY-yOHE=daj6n-jAAfjWoV-H4rt0Q@mail.gmail.com>
-        <CAOMZO5AZiuEAh6nJB8Oub83At6bsvLhzOhsT_yOniZSucrAUMQ@mail.gmail.com>
-        <20230705093507.7458eada3ae05e0e1740a10e@hugovil.com>
-        <AS2PR08MB88082608DB46EC1287C6E54B852FA@AS2PR08MB8808.eurprd08.prod.outlook.com>
-        <CAOMZO5D-a4sUEqqsppjpgkCRFfeetY32+QP0CvrGw6v5q=J+KA@mail.gmail.com>
-        <20230705102502.d8c9fa894bd271a5526d81f7@hugovil.com>
-        <AS2PR08MB88085D6B7338AD6D4D3C9956852FA@AS2PR08MB8808.eurprd08.prod.outlook.com>
-        <20230705104837.e620da576f22f28244daacb1@hugovil.com>
-        <CAOMZO5D_p3hf+HVHNAijEevJRpzwmyGPcoHjiapsOx_ddsoksg@mail.gmail.com>
-        <20230705113419.183f686f47252abf3532fc9e@hugovil.com>
-        <45545984-ef00-f653-91db-cb6c1cb0a3a4@linaro.org>
-        <20230705115106.a4c314e8e177f6516bebda13@hugovil.com>
-        <9dc5738b-2170-a010-4685-ef8cc4bd3fa0@linaro.org>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+References: <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
+ <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
+ <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+ <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
+ <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
+ <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
+ <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
+ <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
+ <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
+ <6e070141-8c0e-59ed-8a08-58c3fadb17df@linaro.org>
+ <lidknise4copce3vb2wth4z3fl2p4npsc4u6ajqb6zsp6lnpca@rp6wxcmy2aa4>
+Organization: Linaro Developer Services
+In-Reply-To: <lidknise4copce3vb2wth4z3fl2p4npsc4u6ajqb6zsp6lnpca@rp6wxcmy2aa4>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 184.161.19.61
-X-SA-Exim-Mail-From: hugo@hugovil.com
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
-Subject: Re: [PATCH] arm64: dts: imx8mn-var-som-symphony: fix USB OTG
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Jul 2023 17:54:05 +0200
-Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
-
-> On 05/07/2023 17:51, Hugo Villeneuve wrote:
-> >> As I wrote, interrupt type cannot be none. What does it even mean "none"
-> >> for your case?
-> > 
-> > Hi,
-> > I have no idea why Variscite are using this IRQ type of NONE.
+On 05/07/2023 16:24, Maxime Ripard wrote:
+> On Wed, Jul 05, 2023 at 04:37:57PM +0300, Dmitry Baryshkov wrote:
+>>>>>
+>>>>> Either way, I'm not really sure it's a good idea to multiply the
+>>>>> capabilities flags of the DSI host, and we should just stick to the
+>>>>> spec. If the spec says that we have to support DSC while video is
+>>>>> output, then that's what the panels should expect.
+>>>>
+>>>> Except some panels supports DSC & non-DSC, Video and Command mode, and
+>>>> all that is runtime configurable. How do you handle that ?
+>>>
+>>> In this case, most of the constraints are going to be on the encoder
+>>> still so it should be the one driving it. The panel will only care about
+>>> which mode has been selected, but it shouldn't be the one driving it,
+>>> and thus we still don't really need to expose the host capabilities.
+>>
+>> This is an interesting perspective. This means that we can and actually have
+>> to extend the drm_display_mode with the DSI data and compression
+>> information.
 > 
-> Because it worked :)
-
-lol
-
-> > 
-> > I can put IRQ_TYPE_EDGE_FALLING since I tested it and it works.
+> I wouldn't extend drm_display_mode, but extending one of the state
+> structures definitely.
 > 
-> Seems reasonable because on schematics this looked pulled up.
+> We already have some extra variables in drm_connector_state for HDMI,
+> I don't think it would be a big deal to add a few for MIPI-DSI.
+> 
+> We also floated the idea for a while to create bus-specific states, with
+> helpers to match. Maybe it would be a good occasion to start doing it?
+> 
+>> For example, the panel that supports all four types for the 1080p should
+>> export several modes:
+>>
+>> 1920x1080-command
+>> 1920x1080-command-DSC
+>> 1920x1080-video
+>> 1920x1080-video-DSC
+>>
+>> where video/command and DSC are some kinds of flags and/or information in
+>> the drm_display_mode? Ideally DSC also has several sub-flags, which denote
+>> what kind of configuration is supported by the DSC sink (e.g. bpp, yuv,
+>> etc).
+> 
+> So we have two things to do, right? We need to expose what the panel can
+> take (ie, EDID for HDMI), and then we need to tell it what we picked
+> (infoframes).
+> 
+> We already express the former in mipi_dsi_device, so we could extend the
+> flags stored there.
+> 
+> And then, we need to tie what the DSI host chose to a given atomic state
+> so the panel knows what was picked and how it should set everything up.
 
-Ok, I will resubmit a V2 of the patch then with this.
+Yep this looks like a good plan
 
-Thank you,
-Hugo.
+Neil
+
+> 
+>> Another option would be to get this handled via the bus format negotiation,
+>> but that sounds like worse idea to me.
+> 
+> Yeah, I'm not really fond of the format negociation stuff either.
+> 
+> Maxime
+
