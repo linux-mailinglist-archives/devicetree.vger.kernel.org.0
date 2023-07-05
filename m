@@ -2,240 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 659B0748527
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:38:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45AD6748531
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232280AbjGENiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 09:38:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45822 "EHLO
+        id S231384AbjGENkl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 09:40:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231955AbjGENiF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:38:05 -0400
-Received: from mail-lj1-x236.google.com (mail-lj1-x236.google.com [IPv6:2a00:1450:4864:20::236])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BACA6AF
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 06:38:00 -0700 (PDT)
-Received: by mail-lj1-x236.google.com with SMTP id 38308e7fff4ca-2b63e5f94f1so9769801fa.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 06:38:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688564279; x=1691156279;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fsrVgZLidtXiSJl+QeeYUBwc0NDQGXHckKC4/BV4xqA=;
-        b=bbxpbYFtL8FsxMc3aOYSlPR+clD+JP0/dQYNr7FE7FNyAa0XEk6lAm0fcPvJdx2a6K
-         7usRvsPdOvEp1P1dkSfmp3UQNu8zClEgXEVoZBls6q9zi1+PEWf9EadOCiyx0UShVEEB
-         9w8LZzSop7seDg2MnfLfy4C9hLvY0L7AemvVJgMESwMMt2hAhwv5HT3lbdjsHfxW76K2
-         jl7cv74N1nh0X2ug14rRy+SNWRQ6GlTaOzThwM9d/87OYUIzlpd5fCUxNOU8OHYXNu9O
-         a262fMo8A9mQeUcD/5vQ1AhfgCgYFdBcNXkFNHYkPqJq94tZ0kXyF/78KVT51UA6OaaH
-         Vw0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688564279; x=1691156279;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fsrVgZLidtXiSJl+QeeYUBwc0NDQGXHckKC4/BV4xqA=;
-        b=ah8p9iNv2DDWrEWRNnKqs/HCsJlDJnC2TmhhyXxIEc9YvG/F+SlFf/0ZigZJ2+STbM
-         XHfap3Qugc/XI/TjMhasyhE9uxxyEdKTtcEOxFJm9mtkmv3BEIZuGChK99SlPi/CLQ75
-         UiTBY4UUMw6Ul3ihQ1gi5ERKvxv+xZKKx+JYWrcfJhVJ9KGTUDUte8L3QvxMxQmEI2yA
-         VE5g4AR2H1Yv+6haQTyKr5sQdL/j+oat8FrtdjD0AEG+hNlU+ugYGVs+eo+rEAXovetK
-         nQrboi/166ZKFtTYRSgZ1HmCWYoyCfUWLs95FiOcbQ8oQ/UyICewIViAgvlpt6OwECb6
-         ApHg==
-X-Gm-Message-State: ABy/qLanljpAaLuNUEWisHMU0vUjbbiWN5abE7Zdib8kGiApgQDBf8f3
-        oo9o0QYFCJrv8L3upJ2k1ifQZWz6YmD52vgHMK0=
-X-Google-Smtp-Source: APBJJlF5U/tPgy7TnTyP8b3T4J2uBhyYdvFNzZkSSUM3078KaGv3mUcvpD9rtCs74AguVdgdpgqMVw==
-X-Received: by 2002:a2e:aa13:0:b0:2b6:f942:ad50 with SMTP id bf19-20020a2eaa13000000b002b6f942ad50mr911716ljb.11.1688564278758;
-        Wed, 05 Jul 2023 06:37:58 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id k1-20020a2e9201000000b002b6ed0067c9sm1434275ljg.116.2023.07.05.06.37.57
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 06:37:58 -0700 (PDT)
-Message-ID: <6e070141-8c0e-59ed-8a08-58c3fadb17df@linaro.org>
-Date:   Wed, 5 Jul 2023 16:37:57 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
- LGD panel driver for Sony Xperia XZ3)
-Content-Language: en-GB
-To:     Maxime Ripard <mripard@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
- <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
- <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
- <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
- <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
- <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
- <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
- <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        with ESMTP id S230466AbjGENkk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:40:40 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F3369F;
+        Wed,  5 Jul 2023 06:40:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=xCdqLKG1nXaRMoiOUaSkIvb0jJRnoEa7lfZSbBirUUA=; b=YLJRNgZqHYdv4EpcxpHCBXnvAM
+        hP4DnBaBSb1/RzBLDmOj/+uqL4aL9bEpruSLpMrvjkHqji8MOBZXALZasaGFfZwhxXsSqPlJaTXA7
+        kHgTPw3pFlzppmIgSdE28G562FzICthBIK2F7bWydFyVEbtEyQQNMVFSgbC2h2bsTEmc=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:54756 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qH2k4-0003vb-5Y; Wed, 05 Jul 2023 09:40:25 -0400
+Date:   Wed, 5 Jul 2023 09:40:12 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Hugo Villeneuve <hugo@hugovil.com>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        a.zummo@towertech.it, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, linux-rtc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>
+Message-Id: <20230705094012.7e6660dc4669d375911044f1@hugovil.com>
+In-Reply-To: <20230621142852.07c5f4940e5a9920039bf4d1@hugovil.com>
+References: <20221215150214.1109074-1-hugo@hugovil.com>
+        <Y8rl452Xm1FrnFfF@mail.local>
+        <20230621101429.7f86490aa7590f0d978834ce@hugovil.com>
+        <20230621125945.1f10b66832d0d1c61e21f78d@hugovil.com>
+        <20230621181441cd214f99@mail.local>
+        <20230621142852.07c5f4940e5a9920039bf4d1@hugovil.com>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH v3 00/14] rtc: pcf2127: add PCF2131 driver
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 16:29, Maxime Ripard wrote:
-> On Wed, Jul 05, 2023 at 03:05:33PM +0200, Neil Armstrong wrote:
->> On 05/07/2023 14:04, Maxime Ripard wrote:
->>> Hi,
->>>
->>> On Tue, May 30, 2023 at 03:36:04PM +0300, Dmitry Baryshkov wrote:
->>>> On 30/05/2023 15:15, AngeloGioacchino Del Regno wrote:
->>>>> Il 30/05/23 13:44, Dmitry Baryshkov ha scritto:
->>>>>> On Tue, 30 May 2023 at 10:24, Neil Armstrong
->>>>>> <neil.armstrong@linaro.org> wrote:
->>>>>>>
->>>>>>> Hi Marijn, Dmitry, Caleb, Jessica,
->>>>>>>
->>>>>>> On 29/05/2023 23:11, Marijn Suijten wrote:
->>>>>>>> On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
->>>>>>>> <snip>
->>>>>>>>>> +   if (ctx->dsi->dsc) {
->>>>>>>>>
->>>>>>>>> dsi->dsc is always set, thus this condition can be dropped.
->>>>>>>>
->>>>>>>> I want to leave room for possibly running the panel without DSC (at a
->>>>>>>> lower resolution/refresh rate, or at higher power consumption if there
->>>>>>>> is enough BW) by not assigning the pointer, if we get access to panel
->>>>>>>> documentation: probably one of the magic commands sent in this driver
->>>>>>>> controls it but we don't know which.
->>>>>>>
->>>>>>> I'd like to investigate if DSC should perhaps only be enabled if we
->>>>>>> run non certain platforms/socs ?
->>>>>>>
->>>>>>> I mean, we don't know if the controller supports DSC and those
->>>>>>> particular
->>>>>>> DSC parameters so we should probably start adding something like :
->>>>>>>
->>>>>>> static drm_dsc_config dsc_params_qcom = {}
->>>>>>>
->>>>>>> static const struct of_device_id panel_of_dsc_params[] = {
->>>>>>>            { .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
->>>>>>>            { .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
->>>>>>>            { .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
->>>>>>>            { .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
->>>>>>> };
->>>>>>
->>>>>> I think this would damage the reusability of the drivers. The panel
->>>>>> driver does not actually care if the SoC is SM8350, sunxi-something or
->>>>>> RCar.
->>>>>> Instead it cares about host capabilities.
->>>>>>
->>>>>> I think instead we should extend mipi_dsi_host:
->>>>>>
->>>>>> #define MIPI_DSI_HOST_MODE_VIDEO BIT(0)
->>>>>> #define MIPI_DSI_HOST_MODE_CMD  BIT(1)
->>>>>> #define MIPI_DSI_HOST_VIDEO_SUPPORTS_COMMANDS BIT(2)
->>>>>> // FIXME: do we need to provide additional caps here ?
->>>>>>
->>>>>> #define MIPI_DSI_DSC_1_1 BIT(0)
->>>>>> #define MIPI_DSI_DSC_1_2 BIT(1)
->>>>>> #define MIPI_DSI_DSC_NATIVE_422 BIT(2)
->>>>>> #define MIPI_DSI_DSC_NATIVE_420 BIT(3)
->>>>>> #define MIPI_DSI_DSC_FRAC_BPP BIT(4)
->>>>>> // etc.
->>>>>>
->>>>>> struct mipi_dsi_host {
->>>>>>     // new fields only
->>>>>>      unsigned long mode_flags;
->>>>>>      unsigned long dsc_flags;
->>>>>> };
->>>>>>
->>>>>> Then the panel driver can adapt itself to the host capabilities and
->>>>>> (possibly) select one of the internally supported DSC profiles.
->>>>>>
->>>>>
->>>>> I completely agree about extending mipi_dsi_host, other SoCs could reuse
->>>>> that and
->>>>> support for DSC panels would become a lot cleaner.
->>>>
->>>> Sounds good. I will wait for one or two more days (to get the possible
->>>> feedback on fields/flags/etc) and post an RFC patch to dri-devel.
->>>
->>> I just came across that discussion, and couldn't find those patches, did
->>> you ever send them?
+On Wed, 21 Jun 2023 14:28:52 -0400
+Hugo Villeneuve <hugo@hugovil.com> wrote:
 
-No, I got sidetracked by other issues.
-
->>>
->>> Either way, I'm not really sure it's a good idea to multiply the
->>> capabilities flags of the DSI host, and we should just stick to the
->>> spec. If the spec says that we have to support DSC while video is
->>> output, then that's what the panels should expect.
->>
->> Except some panels supports DSC & non-DSC, Video and Command mode, and
->> all that is runtime configurable. How do you handle that ?
+> On Wed, 21 Jun 2023 20:14:41 +0200
+> Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
 > 
-> In this case, most of the constraints are going to be on the encoder
-> still so it should be the one driving it. The panel will only care about
-> which mode has been selected, but it shouldn't be the one driving it,
-> and thus we still don't really need to expose the host capabilities.
-
-This is an interesting perspective. This means that we can and actually 
-have to extend the drm_display_mode with the DSI data and compression 
-information.
-
-For example, the panel that supports all four types for the 1080p should 
-export several modes:
-
-1920x1080-command
-1920x1080-command-DSC
-1920x1080-video
-1920x1080-video-DSC
-
-where video/command and DSC are some kinds of flags and/or information 
-in the drm_display_mode? Ideally DSC also has several sub-flags, which 
-denote what kind of configuration is supported by the DSC sink (e.g. 
-bpp, yuv, etc).
-
-Another option would be to get this handled via the bus format 
-negotiation, but that sounds like worse idea to me.
-
-> This is very much like HDMI: the encoder knows what the monitor is
-> capable of, will take a decision based on its capabilities and the
-> monitor's and will then let the monitor know. But the monitor never
-> knows what the encoder is truly capable of, nor will it enforce
-> something.
+> > On 21/06/2023 12:59:45-0400, Hugo Villeneuve wrote:
+> > > On Wed, 21 Jun 2023 10:14:29 -0400
+> > > Hugo Villeneuve <hugo@hugovil.com> wrote:
+> > > 
+> > > > On Fri, 20 Jan 2023 20:05:07 +0100
+> > > > Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
+> > > > 
+> > > > > Hello,
+> > > > > 
+> > > > > I know I've been holding off on the review of this series for a while
+> > > > > and I'm sorry for that.
+> > > > > 
+> > > > > One of the main issue that is remaining is that the driver ends up being
+> > > > > 53% bigger and generaly less efficient for no added functionality for
+> > > > > the existing RTCs.
+> > > > > 
+> > > > > I know performance is not a concern however, having more code in the
+> > > > > set/read time and irq paths means that it is more difficult to set an
+> > > > > get the time precisely.
+> > > > 
+> > > > Hi Alexandre,
+> > > > one way to keep rtc_read_time() as efficient as before, and even more
+> > > > efficient by reading 7 instead of 10 registers, would be to drop reading
+> > > > the CTRL3 register, which is only used to detect and display an info
+> > > > message for the low battery condition. This low battery check could be
+> > > > moved to an ioctl call, like it is done in the PCF8523 driver.
+> > > > 
+> > > > Hugo.
+> > > 
+> > > Hi,
+> > > in fact it is already part of the ioctl, so it is even simpler...
+> > > 
+> > 
+> > Yes, the dev_info can be removed.
 > 
-> Maxime
+> Hi,
+> great, I will integrate that patch to improve rtc_read_time()
+> performance, and resubmit V4 soon with the requested changes mentioned
+> during V3 review.
+> 
+> Thank you, Hugo.
 
--- 
-With best wishes
-Dmitry
+Hi Alexandre,
+I submitted V4 a few days ago, please let me know if everything is
+in order and all comments properly addressed.
 
+If all is good, any chance we can have that integrated into v6.5?
+
+Thank you, Hugo.
+
+
+> > > > > I guess I'll take it as a merged driver but I took a different decision
+> > > > > for other RTCs.
+> > > > > 
+> > > > > On 15/12/2022 10:02:01-0500, Hugo Villeneuve wrote:
+> > > > > > From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+> > > > > > 
+> > > > > > Hello,
+> > > > > > this patch series adds the driver for the PCF2131 real-time clock.
+> > > > > > 
+> > > > > > This RTC is very similar in functionality to the PCF2127/29 with the
+> > > > > > following differences:
+> > > > > >   -supports two new control registers at offsets 4 and 5
+> > > > > >   -supports a new reset register
+> > > > > >   -supports 4 tamper detection functions instead of 1
+> > > > > >   -has no nvmem (like the PCF2129)
+> > > > > >   -has two output interrupt pins instead of one
+> > > > > >   -has 1/100th seconds capabilities (not supported in this driver)
+> > > > > >   -pcf2127 has watchdog clock sources: 1/60,   1, 64 and 4096Hz
+> > > > > >    pcf2131 has watchdog clock sources: 1/64, 1/4,  4 and   64Hz
+> > > > > >   -watchdog value register cannot be read after being set
+> > > > > > 
+> > > > > > Most of the register addresses are very different, although they still
+> > > > > > follow the same layout. For example, the time/date and tamper registers
+> > > > > > have a different base address, but the offsets are all the same.
+> > > > > > Consequently, the source code of the PCF2127 driver can be easily adapted
+> > > > > > to support this new device.
+> > > > > > 
+> > > > > > Patches 1 to 6 modify the existing pcf2127 driver to make it more generic
+> > > > > > and able to support multiple variants, like the PCF2131. This is done
+> > > > > > mostly by using offsets instead of absolute hardcoded register addresses.
+> > > > > > 
+> > > > > > Patch 7 add actual support for the PCF2131.
+> > > > > > 
+> > > > > > Patch 8 configures all interrupt sources to go through the INT A pin.
+> > > > > > 
+> > > > > > Patch 9 changes the PWRMNG bits to be the same with the PCF2131 as they
+> > > > > >       are with the PCF2127/29 (different default values).
+> > > > > > 
+> > > > > > Patch 10 allow to confirm PCF2131 device presence by reading the reset
+> > > > > >       register fixed pattern.
+> > > > > > 
+> > > > > > Patch 11 adapt the time/date registers write sequence for PCF2131 (STOP and
+> > > > > >       CPR bits).
+> > > > > > 
+> > > > > > Patch 12 add support for generic watchdog timing configuration.
+> > > > > > 
+> > > > > > Patch 13 add a new flag to identify if device has read support for reading
+> > > > > >       watchdog register value.
+> > > > > >       Since the watchdog value register cannot be read on the PCF2131 after
+> > > > > >       being set, it seems that we cannot detect if watchdog timer was
+> > > > > >       started by bootloader. I am not sure what is the best way to handle
+> > > > > >       this situation, suggestions are welcomed.
+> > > > > > 
+> > > > > > Patch 14 add the dt-bindings for the PCF2131.
+> > > > > > 
+> > > > > > I have tested the driver using a PCF2131-ARD evaluation board connected to
+> > > > > > an NXP imx8mp evaluation board:
+> > > > > >   - Time get/set ok;
+> > > > > >   - Alarms get/set ok
+> > > > > >   - Timestamp 1 to 4 ok
+> > > > > >   - IRQ alarm ok
+> > > > > >   - Watchdog ok
+> > > > > >   - Also tested successfully with "RTC Driver Test Example" from
+> > > > > >     Documentation/rtc.txt
+> > > > > > 
+> > > > > > I have also tested the driver on a custom PCF2129 adapter board connected to a
+> > > > > > beaglebone black.
+> > > > > > 
+> > > > > > Thank you.
+> > > > > > 
+> > > > > > Link: [v1] https://patchwork.ozlabs.org/project/rtc-linux/patch/20220125200009.900660-2-hugo@hugovil.com/
+> > > > > > Link: [v2] https://patchwork.ozlabs.org/project/rtc-linux/list/?series=285734
+> > > > > > 
+> > > > > > Changes for V3:
+> > > > > > - Rebased for kernel v6.1
+> > > > > > 
+> > > > > > Changes for V2:
+> > > > > > - In general, fix and improvements after I have tested on real hardware
+> > > > > > - Fix alarm interrupt A/B mask setting for PCF2131:
+> > > > > >   PCF2131_BIT_INT_AIE must be cleared, not set, to enable interrupt.
+> > > > > > - Remove low_reg validation: only check if TS interrupt flag is
+> > > > > >   defined, as low_reg is defined at address 0 for PCF2127/29.
+> > > > > > - Change PWRMNG value for PCF2131: default is different than PCF2127/29.
+> > > > > > - Adapt time/date registers write sequence for PCF2131 (STOP and CPR bits).
+> > > > > > - Map all interrupt sources to INT A pin
+> > > > > > - Read and validate PCF2131 device presence from RESET register
+> > > > > > - Adapt watchdog configuration for PCF2131
+> > > > > > 
+> > > > > > Hugo Villeneuve (14):
+> > > > > >   rtc: pcf2127: add variant-specific configuration structure
+> > > > > >   rtc: pcf2127: adapt for time/date registers at any offset
+> > > > > >   rtc: pcf2127: adapt for alarm registers at any offset
+> > > > > >   rtc: pcf2127: adapt for WD registers at any offset
+> > > > > >   rtc: pcf2127: adapt for CLKOUT register at any offset
+> > > > > >   rtc: pcf2127: add support for multiple TS functions
+> > > > > >   rtc: pcf2127: add support for PCF2131 RTC
+> > > > > >   rtc: pcf2127: add support for PCF2131 interrupts on output INT_A
+> > > > > >   rtc: pcf2127: set PWRMNG value for PCF2131
+> > > > > >   rtc: pcf2127: read and validate PCF2131 device signature
+> > > > > >   rtc: pcf2127: adapt time/date registers write sequence for PCF2131
+> > > > > >   rtc: pcf2127: support generic watchdog timing configuration
+> > > > > >   rtc: pcf2127: add flag for watchdog register value read support
+> > > > > >   dt-bindings: rtc: pcf2127: add PCF2131
+> > > > > > 
+> > > > > >  .../devicetree/bindings/rtc/nxp,pcf2127.yaml  |   4 +-
+> > > > > >  drivers/rtc/Kconfig                           |   4 +-
+> > > > > >  drivers/rtc/rtc-pcf2127.c                     | 939 ++++++++++++++----
+> > > > > >  3 files changed, 752 insertions(+), 195 deletions(-)
+> > > > > > 
+> > > > > > -- 
+> > > > > > 2.30.2
+> > > > > > 
+> > > > > 
+> > > > > -- 
+> > > > > Alexandre Belloni, co-owner and COO, Bootlin
+> > > > > Embedded Linux and Kernel engineering
+> > > > > https://bootlin.com
+> > > > > 
+> > 
+> > -- 
+> > Alexandre Belloni, co-owner and COO, Bootlin
+> > Embedded Linux and Kernel engineering
+> > https://bootlin.com
+> > 
