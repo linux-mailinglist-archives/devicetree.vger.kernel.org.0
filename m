@@ -2,72 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 230E9748704
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 16:57:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C335748708
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 16:58:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232679AbjGEO55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 10:57:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33166 "EHLO
+        id S232775AbjGEO6O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 10:58:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33262 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232742AbjGEO54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 10:57:56 -0400
-Received: from mail-ed1-x52a.google.com (mail-ed1-x52a.google.com [IPv6:2a00:1450:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 731251985
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 07:57:49 -0700 (PDT)
-Received: by mail-ed1-x52a.google.com with SMTP id 4fb4d7f45d1cf-5149aafef44so7797768a12.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 07:57:49 -0700 (PDT)
+        with ESMTP id S232877AbjGEO6D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 10:58:03 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C4D11712
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 07:58:01 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-9741caaf9d4so613330066b.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 07:58:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688569068; x=1691161068;
+        d=linaro.org; s=google; t=1688569080; x=1691161080;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=VEPj9MNRtJknVYwMtm8K9KHPmosJrfBiNj5dYN7jj4s=;
-        b=URubkmlEbTg6P1Fe1S7d1HFf5IG1PybcKWIV8h3wl4VtsD1CWKW583PCB1F8rNlpNA
-         iU54+0BJau+XNqARNBdeCBUSOvVcucL0cSoUH3/gGx8rriYjhx8PwaBtVOZWTrdvMd8M
-         uPXXJ/jKbn2hN5GXAUXCpW8elYP5P6eiiO16JMqj4o5dHPcDe00RQJuY6jjUByOyO/57
-         +dfI25XfOQtjYFwxIY+hExf2EquYbVdvKvAz0UK2Wzp8IWqUqqjugI1IvZEQl3EOVrVn
-         Nne/Mha8kE+8GkwlP66Li93rldqBSFVbRJZA5DXL08jlR2XkYnA31C724agOC23RFmtL
-         AivA==
+        bh=9TXmyffj6SDIx2DlhbRmyINxNWCM9g8iPJmckmavVI0=;
+        b=eza3My4Ao3j9TghRrLi5iuA6532Yv8j10igwzA6GPNFf7gVBb43uQ1IQg4smmoA1De
+         HJ4N5cVqwnLAdf7EU7cO+gBBlcAfx82/5f1WDlD234mBdcOmr/MJcHZQVzDVKLe3B7Td
+         isPQUgTT+zEvYvXPlajkMdUOiczzoac3y6trVnt0yLXiwhoxPNDyJknEcNpYq2wDmDIs
+         vevYCfqPJphpfne1Rt0kw46nlazbprYt6dvn4rbpDvDKXPj70K02ApnDD+l6hPHEtju0
+         GYi9u1ebG2TpUGsPbajGyyEOt+s8etxCpHXDJRO6nfy/99K5wc6wDN19yhhsbKVJ/gZG
+         SmAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688569068; x=1691161068;
+        d=1e100.net; s=20221208; t=1688569080; x=1691161080;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=VEPj9MNRtJknVYwMtm8K9KHPmosJrfBiNj5dYN7jj4s=;
-        b=MqCtSxBYbM73llkH2elnx0DodJ4kFXjnVTXrh/T+9kXbFSdzjuQHeYxpdmU/Riq9X8
-         WLfQUYbKNJK6wEyTA7LLSIEWGm5YiEUC1AmN3epcIehIuYN61cIvl7KiZiIDBS16zjds
-         4J5S63sHC1OmLfjKpad/NzVn8NEaAXCp+HyV0rilmI4t/Ne06hMgeA4O+k70lnQipYZ0
-         8Ub37EBPbeJnKR090iRWwMisLik8R8KjSGqhNenAN088wYTOdwJCkjl50e3TayNZjNFQ
-         VfKul5NEcYR/s35QEWoR8Dy51m7RuxXJJHr7d4mqWOL8KmD5DOJdiFVmFF3qqPEYE+7+
-         CyeA==
-X-Gm-Message-State: ABy/qLbxYEB5+nzPEiF3k7pSTGcxmYyp9N14jebn4CrvzTrFHuo3jjTP
-        e1Smg5v+SoKGnMrlZkKsexhrNg==
-X-Google-Smtp-Source: APBJJlG6vsOX8k1cNJ3Gt/TYjk/rLFTMAwz7DghyTLEbVq4DCsOgN3iLG2kBiKyjXRn8cJ67PK8zBA==
-X-Received: by 2002:aa7:de1a:0:b0:51d:ec25:ce38 with SMTP id h26-20020aa7de1a000000b0051dec25ce38mr12241724edv.10.1688569068018;
-        Wed, 05 Jul 2023 07:57:48 -0700 (PDT)
+        bh=9TXmyffj6SDIx2DlhbRmyINxNWCM9g8iPJmckmavVI0=;
+        b=kyk80GE4CUyaGiynH/HxETm52YfggnFiuh6PeZHTWbOUiB8Tz6MrUWp64nhN/bpt4l
+         2VB24qZqtUqGThNWSROfyIsUB3BbJJ/tsGXptY/PRMyW5ExAUw1ckk81y+YexbavMKZW
+         2M7RllUopO5L3jZBrNRMEiJ2aRNnHjiG+5eTvMmBlbrIhI7taKDttdEHGAh0E9KHofa7
+         K0EZTwVvepQxL+G71Lr8T2Y86oejWiZ5SkA40Ie8ZVy46qcqbbB7ze0yLRZh02iwH5l0
+         HMcIcMw4CodBCIqO0aaEVl+ceB8QHFglJCBfELxATMexV4sFB4nx8s+mCIK21S/IPsAv
+         uAhg==
+X-Gm-Message-State: ABy/qLZUBFrc7Y9w0EJxnnAr9XqNvX9D9oqh+Nw2M1Es89ELoOpCuwK/
+        3FpE1tBy6xiPvu2TFFAHDY018A==
+X-Google-Smtp-Source: APBJJlEbtA05Ax7aea+dVyf3c8SLdBrzK2FOyV4V9q1C8xtMUNRr5C5jxL3lrdZNSbn2yzI1sBVYuQ==
+X-Received: by 2002:a17:906:27d8:b0:992:a90a:5d1f with SMTP id k24-20020a17090627d800b00992a90a5d1fmr13016183ejc.68.1688569080031;
+        Wed, 05 Jul 2023 07:58:00 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id g25-20020aa7c859000000b0050cc4461fc5sm13044558edt.92.2023.07.05.07.57.46
+        by smtp.gmail.com with ESMTPSA id t19-20020a170906065300b009882e53a42csm14650339ejb.81.2023.07.05.07.57.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 07:57:47 -0700 (PDT)
+        Wed, 05 Jul 2023 07:57:59 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Rob Herring <robh+dt@kernel.org>,
+To:     David Lechner <david@lechnology.com>,
+        Bartosz Golaszewski <brgl@bgdev.pl>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        Christophe Leroy <christophe.leroy@csgroup.eu>,
-        devicetree@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        linux-kernel@vger.kernel.org
+        Conor Dooley <conor+dt@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH] powerpc: dts: add missing space before {
-Date:   Wed,  5 Jul 2023 16:57:43 +0200
-Message-Id: <20230705145743.292855-1-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: ti: add missing space before {
+Date:   Wed,  5 Jul 2023 16:57:54 +0200
+Message-Id: <20230705145755.292927-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -78,179 +82,77 @@ Add missing whitespace between node name/label and opening {.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/powerpc/boot/dts/fsl/c293si-post.dtsi  | 12 ++++++------
- arch/powerpc/boot/dts/fsl/p1022rdk.dts      | 10 +++++-----
- arch/powerpc/boot/dts/fsl/p1022si-post.dtsi |  2 +-
- arch/powerpc/boot/dts/fsl/p3041ds.dts       |  4 ++--
- arch/powerpc/boot/dts/fsl/p5040ds.dts       |  2 +-
- arch/powerpc/boot/dts/fsl/t4240qds.dts      |  2 +-
- arch/powerpc/boot/dts/mpc5121.dtsi          |  2 +-
- arch/powerpc/boot/dts/mpc5125twr.dts        |  2 +-
- 8 files changed, 18 insertions(+), 18 deletions(-)
+ arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts | 2 +-
+ arch/arm/boot/dts/ti/keystone/keystone-k2l.dtsi | 2 +-
+ arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts    | 8 ++++----
+ 3 files changed, 6 insertions(+), 6 deletions(-)
 
-diff --git a/arch/powerpc/boot/dts/fsl/c293si-post.dtsi b/arch/powerpc/boot/dts/fsl/c293si-post.dtsi
-index bec0fc36849d..f208fb8f64b3 100644
---- a/arch/powerpc/boot/dts/fsl/c293si-post.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/c293si-post.dtsi
-@@ -124,10 +124,10 @@ crypto@80000 {
- 		reg = <0x80000 0x20000>;
- 		ranges = <0x0 0x80000 0x20000>;
+diff --git a/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts b/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts
+index afd04a423856..17a1632a8ac1 100644
+--- a/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts
++++ b/arch/arm/boot/dts/ti/davinci/da850-lego-ev3.dts
+@@ -391,7 +391,7 @@ &spi1 {
+ 	pinctrl-names = "default";
+ 	cs-gpios = <&gpio 44 GPIO_ACTIVE_LOW>;
  
--		jr@1000{
-+		jr@1000 {
- 			interrupts = <45 2 0 0>;
- 		};
--		jr@2000{
-+		jr@2000 {
- 			interrupts = <57 2 0 0>;
- 		};
- 	};
-@@ -140,10 +140,10 @@ crypto@a0000 {
- 		reg = <0xa0000 0x20000>;
- 		ranges = <0x0 0xa0000 0x20000>;
+-	display@0{
++	display@0 {
+ 		compatible = "lego,ev3-lcd";
+ 		reg = <0>;
+ 		spi-max-frequency = <10000000>;
+diff --git a/arch/arm/boot/dts/ti/keystone/keystone-k2l.dtsi b/arch/arm/boot/dts/ti/keystone/keystone-k2l.dtsi
+index 8949578e62e8..2062fe561642 100644
+--- a/arch/arm/boot/dts/ti/keystone/keystone-k2l.dtsi
++++ b/arch/arm/boot/dts/ti/keystone/keystone-k2l.dtsi
+@@ -137,7 +137,7 @@ uart01_spi2_pins: uart01-spi2-pins {
+ 				>;
+ 			};
  
--		jr@1000{
-+		jr@1000 {
- 			interrupts = <49 2 0 0>;
- 		};
--		jr@2000{
-+		jr@2000 {
- 			interrupts = <50 2 0 0>;
- 		};
- 	};
-@@ -156,10 +156,10 @@ crypto@c0000 {
- 		reg = <0xc0000 0x20000>;
- 		ranges = <0x0 0xc0000 0x20000>;
- 
--		jr@1000{
-+		jr@1000 {
- 			interrupts = <55 2 0 0>;
- 		};
--		jr@2000{
-+		jr@2000 {
- 			interrupts = <56 2 0 0>;
- 		};
- 	};
-diff --git a/arch/powerpc/boot/dts/fsl/p1022rdk.dts b/arch/powerpc/boot/dts/fsl/p1022rdk.dts
-index 29e8af1e3711..4261c2f7e4b3 100644
---- a/arch/powerpc/boot/dts/fsl/p1022rdk.dts
-+++ b/arch/powerpc/boot/dts/fsl/p1022rdk.dts
-@@ -60,23 +60,23 @@ rtc@68 {
- 				compatible = "st,m41t62";
- 				reg = <0x68>;
- 			};
--			adt7461@4c{
-+			adt7461@4c {
- 				compatible = "adi,adt7461";
- 				reg = <0x4c>;
- 			};
--			zl6100@21{
-+			zl6100@21 {
- 				compatible = "isil,zl6100";
- 				reg = <0x21>;
- 			};
--			zl6100@24{
-+			zl6100@24 {
- 				compatible = "isil,zl6100";
- 				reg = <0x24>;
- 			};
--			zl6100@26{
-+			zl6100@26 {
- 				compatible = "isil,zl6100";
- 				reg = <0x26>;
- 			};
--			zl6100@29{
-+			zl6100@29 {
- 				compatible = "isil,zl6100";
- 				reg = <0x29>;
- 			};
-diff --git a/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi b/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi
-index 5f51b7bfc064..093e4e3ed368 100644
---- a/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi
-+++ b/arch/powerpc/boot/dts/fsl/p1022si-post.dtsi
-@@ -238,7 +238,7 @@ global-utilities@e0000 {
- 		fsl,has-rstcr;
+-			dfesync_rp1_pins: dfesync-rp1-pins{
++			dfesync_rp1_pins: dfesync-rp1-pins {
+ 				pinctrl-single,bits = <
+ 					/* DFESYNC_RP1_SEL */
+ 					0x0 0x0 0x2
+diff --git a/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts b/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts
+index 863552393c07..edaddc7b6a5e 100644
+--- a/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts
++++ b/arch/arm/boot/dts/ti/omap/am437x-idk-evm.dts
+@@ -58,7 +58,7 @@ vdd_core: fixed-regulator-vdd_core {
+ 		vin-supply = <&vdd_corereg>;
  	};
  
--	power@e0070{
-+	power@e0070 {
- 		compatible = "fsl,mpc8536-pmc", "fsl,mpc8548-pmc";
- 		reg = <0xe0070 0x20>;
+-	v1_8dreg: fixed-regulator-v1_8dreg{
++	v1_8dreg: fixed-regulator-v1_8dreg {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "V1_8DREG";
+ 		regulator-min-microvolt = <1800000>;
+@@ -68,7 +68,7 @@ v1_8dreg: fixed-regulator-v1_8dreg{
+ 		vin-supply = <&v24_0d>;
  	};
-diff --git a/arch/powerpc/boot/dts/fsl/p3041ds.dts b/arch/powerpc/boot/dts/fsl/p3041ds.dts
-index 6f5f7283c533..ca0e0272ac62 100644
---- a/arch/powerpc/boot/dts/fsl/p3041ds.dts
-+++ b/arch/powerpc/boot/dts/fsl/p3041ds.dts
-@@ -41,7 +41,7 @@ / {
- 	#size-cells = <2>;
- 	interrupt-parent = <&mpic>;
  
--	aliases{
-+	aliases {
- 		phy_rgmii_0 = &phy_rgmii_0;
- 		phy_rgmii_1 = &phy_rgmii_1;
- 		phy_sgmii_1c = &phy_sgmii_1c;
-@@ -165,7 +165,7 @@ adt7461@4c {
- 			};
- 		};
+-	v1_8d: fixed-regulator-v1_8d{
++	v1_8d: fixed-regulator-v1_8d {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "V1_8D";
+ 		regulator-min-microvolt = <1800000>;
+@@ -78,7 +78,7 @@ v1_8d: fixed-regulator-v1_8d{
+ 		vin-supply = <&v1_8dreg>;
+ 	};
  
--		fman@400000{
-+		fman@400000 {
- 			ethernet@e0000 {
- 				phy-handle = <&phy_sgmii_1c>;
- 				phy-connection-type = "sgmii";
-diff --git a/arch/powerpc/boot/dts/fsl/p5040ds.dts b/arch/powerpc/boot/dts/fsl/p5040ds.dts
-index 30850b3228e0..5cfc689ee474 100644
---- a/arch/powerpc/boot/dts/fsl/p5040ds.dts
-+++ b/arch/powerpc/boot/dts/fsl/p5040ds.dts
-@@ -41,7 +41,7 @@ / {
- 	#size-cells = <2>;
- 	interrupt-parent = <&mpic>;
+-	v1_5dreg: fixed-regulator-v1_5dreg{
++	v1_5dreg: fixed-regulator-v1_5dreg {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "V1_5DREG";
+ 		regulator-min-microvolt = <1500000>;
+@@ -88,7 +88,7 @@ v1_5dreg: fixed-regulator-v1_5dreg{
+ 		vin-supply = <&v24_0d>;
+ 	};
  
--	aliases{
-+	aliases {
- 		phy_sgmii_slot2_1c = &phy_sgmii_slot2_1c;
- 		phy_sgmii_slot2_1d = &phy_sgmii_slot2_1d;
- 		phy_sgmii_slot2_1e = &phy_sgmii_slot2_1e;
-diff --git a/arch/powerpc/boot/dts/fsl/t4240qds.dts b/arch/powerpc/boot/dts/fsl/t4240qds.dts
-index c0913ac5aaad..128b5798bb97 100644
---- a/arch/powerpc/boot/dts/fsl/t4240qds.dts
-+++ b/arch/powerpc/boot/dts/fsl/t4240qds.dts
-@@ -41,7 +41,7 @@ / {
- 	#size-cells = <2>;
- 	interrupt-parent = <&mpic>;
- 
--	aliases{
-+	aliases {
- 		phy_rgmii1 = &phyrgmii1;
- 		phy_rgmii2 = &phyrgmii2;
- 		phy_sgmii3 = &phy3;
-diff --git a/arch/powerpc/boot/dts/mpc5121.dtsi b/arch/powerpc/boot/dts/mpc5121.dtsi
-index 3f66b91a8e3c..d3fc8062fbcd 100644
---- a/arch/powerpc/boot/dts/mpc5121.dtsi
-+++ b/arch/powerpc/boot/dts/mpc5121.dtsi
-@@ -140,7 +140,7 @@ clks: clock@f00 {
- 		};
- 
- 		/* Power Management Controller */
--		pmc@1000{
-+		pmc@1000 {
- 			compatible = "fsl,mpc5121-pmc";
- 			reg = <0x1000 0x100>;
- 			interrupts = <83 0x8>;
-diff --git a/arch/powerpc/boot/dts/mpc5125twr.dts b/arch/powerpc/boot/dts/mpc5125twr.dts
-index 0bd2acc0401d..ee090709aa3a 100644
---- a/arch/powerpc/boot/dts/mpc5125twr.dts
-+++ b/arch/powerpc/boot/dts/mpc5125twr.dts
-@@ -104,7 +104,7 @@ clks: clock@f00 {	// Clock control
- 			clock-names = "osc";
- 		};
- 
--		pmc@1000{  // Power Management Controller
-+		pmc@1000 {  // Power Management Controller
- 			compatible = "fsl,mpc5121-pmc";
- 			reg = <0x1000 0x100>;
- 			interrupts = <83 0x2>;
+-	v1_5d: fixed-regulator-v1_5d{
++	v1_5d: fixed-regulator-v1_5d {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "V1_5D";
+ 		regulator-min-microvolt = <1500000>;
 -- 
 2.34.1
 
