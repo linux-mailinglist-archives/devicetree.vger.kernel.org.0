@@ -2,195 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AFFE748E92
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 22:09:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0904A748F12
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 22:40:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232119AbjGEUJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 16:09:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36190 "EHLO
+        id S229634AbjGEUky (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 16:40:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45148 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229634AbjGEUJp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 16:09:45 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 056C41727
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 13:09:44 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b701e41cd3so13899601fa.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 13:09:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688587782; x=1691179782;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QedvqYyJQViKyDdMD30O1M4fPDEkDaVf9Y43Xrvhkbs=;
-        b=gT9o+qi7q8GI67qc4H1S3zeZyOR3NCtEjmK0kMBoZOTeO4eBGtk6kqTc+1ashkwQ4g
-         GQVIp1YvHYbKOlHdL5mAsdfcLO/RGERkQTLW0IfvDcrRWKwVkAvr0CmU8an6E82KjVW6
-         Ucj9ymEzDo7uDP33JNxTLDI9R22B3AeH8O6HGYoSJA4yz43ZseJkxwt51XIT3TSmNI1n
-         vOkWp+ZH42ubdsgyAVft+AF3xzr2r269xq4FQvq9HjdwNgAdx/Wkmki0UyxiXhrKxQu/
-         mANCf5VBOihpSsQnOFfrROEzMY0EXY059H57mHKkudw/2UEgv0Qyh3kUffcYG9JXaU4f
-         Dc3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688587782; x=1691179782;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QedvqYyJQViKyDdMD30O1M4fPDEkDaVf9Y43Xrvhkbs=;
-        b=EDspXW6tFINQoSg4Uat/WmBYs/6MGfwMRjEAxptJjsOqJdDUQ81UjODX/R1mmxVmUi
-         rkhPR9hB3C9ReO4H0lZxMH7rnXrCC35qsTiXI04SMkMvtCkkhunv5Q6oBM3iIUhtUpRe
-         T5wz5hfka/dpJ43+BZR3abfX970oH5g0CDOBcrNpgUgJ4kidi0+ZfvHHV5Vw93DNmYZZ
-         HuFDp1uQIHdeXW4/MxAR9+DFpxiabqx2zSvXcI0sYXR8anSLmYtV0bWN6fnpKD90FEHw
-         Ljp5yV7xmhRiNSnikoUM0SvgsAR+6AIv60ZddH66W9YMZsaGZZC5Amocir5RmviwkCnw
-         PzWg==
-X-Gm-Message-State: ABy/qLZjeGL5CNvoibpKa/w1ip0OpkXAupBxw2DNcVkRiHJMn+QiNNYr
-        XOuyaQOpPmNtShn3moSlwFxCpw==
-X-Google-Smtp-Source: APBJJlHHNVJDZhY4e/En6E7OEuxyXThgyg1SBCxz7UAziGWfAUAugUI9omkfweqDp8gyvViv/f1ycw==
-X-Received: by 2002:a2e:8e8d:0:b0:2b6:cf18:7397 with SMTP id z13-20020a2e8e8d000000b002b6cf187397mr10609414ljk.5.1688587782244;
-        Wed, 05 Jul 2023 13:09:42 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id j10-20020a2e850a000000b002b6ca539d92sm3957501lji.138.2023.07.05.13.09.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 13:09:41 -0700 (PDT)
-Message-ID: <a718f7c1-4ef1-18c8-33c7-c5da22e92c89@linaro.org>
-Date:   Wed, 5 Jul 2023 23:09:40 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
- LGD panel driver for Sony Xperia XZ3)
-Content-Language: en-GB
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-References: <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
- <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
- <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
- <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
- <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
- <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
- <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
- <6e070141-8c0e-59ed-8a08-58c3fadb17df@linaro.org>
- <lidknise4copce3vb2wth4z3fl2p4npsc4u6ajqb6zsp6lnpca@rp6wxcmy2aa4>
- <CAA8EJpq_VeY=44FqYm7QAT32AR=rmMOV0RtAfNFkb1hpSp29dw@mail.gmail.com>
- <djrx34qwb7yen47dmlsym4mg2pib4syncvdy52ma3sin7uhs7j@gi3znayuucnj>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <djrx34qwb7yen47dmlsym4mg2pib4syncvdy52ma3sin7uhs7j@gi3znayuucnj>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S233470AbjGEUky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 16:40:54 -0400
+Received: from www522.your-server.de (www522.your-server.de [195.201.215.122])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1851819A3;
+        Wed,  5 Jul 2023 13:40:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=folker-schwesinger.de; s=default2212; h=In-Reply-To:References:Message-Id:
+        To:From:Cc:Subject:Date:Content-Type:Content-Transfer-Encoding:Mime-Version:
+        Sender:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID;
+        bh=fwgkD+l/wKF+0W7lw6F3W01TP++bGxB20+3iUOcYWz0=; b=iAqmbQbTpdWxduFtrUHR0hfMSy
+        j2HFv1KI0MhPxOOBXI32IAdUmY5+US5owdiWS8qhMPJc17FWHUbWXN9Qg9fC3x+eAwYBaDEnIXUNa
+        Ds4GbcMbdPsuuJa/LiUL2YZcQne2tiHzGK78BKSYiBWcqpYLDhzgRMmLddDC/rfi9IaHwOgotB9qp
+        rx6VXFmFVak8iqeP7s/U6jkQC9pjlrj1CPHSQOt3qzdxlliXF2xOy1SCs7IX3O0ukSyzcYrk3N/R4
+        YThX6eJCKWjURp6+MopvdVuON9zeCaT/lFPkIYqHR6trXl7K7CRLojWTooRjn89jX1OPqKP8QhTz2
+        3LYTTfxg==;
+Received: from sslproxy03.your-server.de ([88.198.220.132])
+        by www522.your-server.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <dev@folker-schwesinger.de>)
+        id 1qH9B4-0003aR-7T; Wed, 05 Jul 2023 22:32:42 +0200
+Received: from [80.88.20.1] (helo=localhost)
+        by sslproxy03.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <dev@folker-schwesinger.de>)
+        id 1qH9B3-0004zD-F9; Wed, 05 Jul 2023 22:32:41 +0200
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Wed, 05 Jul 2023 20:32:40 +0000
+Subject: Re: [PATCH v1 0/2] Disable HS400 for eMMC on Radxa ROCK 4 SBCs
+Cc:     <kernel@collabora.com>, "Akash Gajjar" <Akash_Gajjar@mentor.com>,
+        "Conor Dooley" <conor+dt@kernel.org>,
+        "FUKAUMI Naoki" <naoki@radxa.com>,
+        "Heiko Stuebner" <heiko@sntech.de>,
+        "Jagan Teki" <jagan@amarulasolutions.com>,
+        "Krzysztof Kozlowski" <krzysztof.kozlowski+dt@linaro.org>,
+        "Manoj Sai" <abbaraju.manojsai@amarulasolutions.com>,
+        "Pragnesh Patel" <Pragnesh_Patel@mentor.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Stephen Chen" <stephen@radxa.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+From:   "Folker Schwesinger" <dev@folker-schwesinger.de>
+To:     "Christopher Obbard" <chris.obbard@collabora.com>,
+        <linux-rockchip@lists.infradead.org>
+Message-Id: <CTUIBFDTG9O8.1XKGSAIMSH7LR@homedev>
+X-Mailer: aerc 0.15.2-76-g69094e332779
+References: <20230705144255.115299-1-chris.obbard@collabora.com>
+In-Reply-To: <20230705144255.115299-1-chris.obbard@collabora.com>
+X-Authenticated-Sender: dev@folker-schwesinger.de
+X-Virus-Scanned: Clear (ClamAV 0.103.8/26960/Wed Jul  5 09:29:05 2023)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 19:53, Maxime Ripard wrote:
-> On Wed, Jul 05, 2023 at 06:20:13PM +0300, Dmitry Baryshkov wrote:
->> On Wed, 5 Jul 2023 at 17:24, Maxime Ripard <mripard@kernel.org> wrote:
->>>
->>> On Wed, Jul 05, 2023 at 04:37:57PM +0300, Dmitry Baryshkov wrote:
->>>>>>>
->>>>>>> Either way, I'm not really sure it's a good idea to multiply the
->>>>>>> capabilities flags of the DSI host, and we should just stick to the
->>>>>>> spec. If the spec says that we have to support DSC while video is
->>>>>>> output, then that's what the panels should expect.
->>>>>>
->>>>>> Except some panels supports DSC & non-DSC, Video and Command mode, and
->>>>>> all that is runtime configurable. How do you handle that ?
->>>>>
->>>>> In this case, most of the constraints are going to be on the encoder
->>>>> still so it should be the one driving it. The panel will only care about
->>>>> which mode has been selected, but it shouldn't be the one driving it,
->>>>> and thus we still don't really need to expose the host capabilities.
->>>>
->>>> This is an interesting perspective. This means that we can and actually have
->>>> to extend the drm_display_mode with the DSI data and compression
->>>> information.
->>>
->>> I wouldn't extend drm_display_mode, but extending one of the state
->>> structures definitely.
->>>
->>> We already have some extra variables in drm_connector_state for HDMI,
->>> I don't think it would be a big deal to add a few for MIPI-DSI.
->>>
->>> We also floated the idea for a while to create bus-specific states, with
->>> helpers to match. Maybe it would be a good occasion to start doing it?
->>>
->>>> For example, the panel that supports all four types for the 1080p should
->>>> export several modes:
->>>>
->>>> 1920x1080-command
->>>> 1920x1080-command-DSC
->>>> 1920x1080-video
->>>> 1920x1080-video-DSC
->>>>
->>>> where video/command and DSC are some kinds of flags and/or information in
->>>> the drm_display_mode? Ideally DSC also has several sub-flags, which denote
->>>> what kind of configuration is supported by the DSC sink (e.g. bpp, yuv,
->>>> etc).
->>>
->>> So we have two things to do, right? We need to expose what the panel can
->>> take (ie, EDID for HDMI), and then we need to tell it what we picked
->>> (infoframes).
->>>
->>> We already express the former in mipi_dsi_device, so we could extend the
->>> flags stored there.
->>>
->>> And then, we need to tie what the DSI host chose to a given atomic state
->>> so the panel knows what was picked and how it should set everything up.
->>
->> This is definitely something we need. Marijn has been stuck with the
->> panels that support different models ([1]).
->>
->> Would you prefer a separate API for this kind of information or
->> abusing atomic_enable() is fine from your point of view?
->>
->> My vote would be for going with existing operations, with the slight
->> fear of ending up with another DSI-specific hack (like
->> pre_enable_prev_first).
-> 
-> I don't think we can get away without getting access to the atomic_state
-> from the panel at least.
-> 
-> Choosing one setup over another is likely going to depend on the mode,
-> and that's only available in the state.
-> 
-> We don't have to go the whole way though and create the sub-classes of
-> drm_connector_state, but I think we should at least provide it to the
-> panel.
-> 
-> What do you think of creating a new set of atomic_* callbacks for
-> panels, call that new set of functions from msm and start from there?
+Hi,
 
-We are (somewhat) bound by the panel_bridge, but yeah, it seems possible.
+On Wed Jul 5, 2023 at 4:42 PM CEST, Christopher Obbard wrote:
+> There is some instablity with some eMMC modules on ROCK Pi 4 SBCs running
+> in HS400 mode. This ends up resulting in some block errors after a while
+> or after a "heavy" operation utilising the eMMC (e.g. resizing a
+> filesystem). An example of these errors is as follows:
+>
+>     [  289.171014] mmc1: running CQE recovery
+>     [  290.048972] mmc1: running CQE recovery
+>     [  290.054834] mmc1: running CQE recovery
+>     [  290.060817] mmc1: running CQE recovery
+>     [  290.061337] blk_update_request: I/O error, dev mmcblk1, sector 141=
+1072 op 0x1:(WRITE) flags 0x800 phys_seg 36 prio class 0
+>     [  290.061370] EXT4-fs warning (device mmcblk1p1): ext4_end_bio:348: =
+I/O error 10 writing to inode 29547 starting block 176466)
+>     [  290.061484] Buffer I/O error on device mmcblk1p1, logical block 17=
+2288
+>     [  290.061531] Buffer I/O error on device mmcblk1p1, logical block 17=
+2289
+>     [  290.061551] Buffer I/O error on device mmcblk1p1, logical block 17=
+2290
+>     [  290.061574] Buffer I/O error on device mmcblk1p1, logical block 17=
+2291
+>     [  290.061592] Buffer I/O error on device mmcblk1p1, logical block 17=
+2292
+>     [  290.061615] Buffer I/O error on device mmcblk1p1, logical block 17=
+2293
+>     [  290.061632] Buffer I/O error on device mmcblk1p1, logical block 17=
+2294
+>     [  290.061654] Buffer I/O error on device mmcblk1p1, logical block 17=
+2295
+>     [  290.061673] Buffer I/O error on device mmcblk1p1, logical block 17=
+2296
+>     [  290.061695] Buffer I/O error on device mmcblk1p1, logical block 17=
+2297
+>
+> Disabling the Command Queue seems to stop the CQE recovery from running,
+> but doesn't seem to improve the I/O errors. Until this can be investigate=
+d
+> further, disable HS400 mode on the ROCK Pi 4 SBCs to at least stop I/O
+> errors from occurring.
 
--- 
-With best wishes
-Dmitry
+Thanks for the patches! This issue lately got some attention on the
+Radxa forums so thanks for bringing it to the kernel lists.
+
+As a user who was hitting this issue some time ago I'd like to share the
+observations I made during my testing:
+
+I've seen these EMMC issues on several RockPi4 boards (4b v1.4, 4b v1.5,
+4SE and 4b+ v1.73), with different EMMC modules (3 Foresee, 1 Samsung)
+and throughout different kernels (v6.1.8 through 6.1.37, 6.3,
+6.3.0-rc7-next-20230421).
+
+However, with this vendor image [1] that uses kernel
+4.4.154-116-rockchip-g86a614bc15b3 all of the EMMC modules work just fine.
+The same holds true for another vendor image with kernel
+4.4.154-00039-g00fccd37c63c-dirty.
+
+The interesting thing here is, that both 4.4 kernels have HS400 enabled
+(and max-frequency=3D<150000000> set) in their respective device-trees.
+This can be checked in the vendor kernel repo for
+4.4.154-116-rockchip-g86a614bc15b3 [2] and for
+4.4.154-00039-g00fccd37c63c [3].
+
+Kind regards
+
+Folker
+
+
+[1]: https://github.com/radxa-build/rock-pi-4b/releases/download/main-df04b=
+3af/rockpi-4b-debian-buster-xfce4-arm64-20220401-0335-gpt.img.xz
+[2]: https://github.com/radxa/kernel/blob/86a614bc15b3b1aeb3a9a9e395aedd088=
+c70e35e/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+[3]: https://github.com/radxa/kernel/blob/00fccd37c63cd51b2ae9b3af965f975c5=
+61674b1/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi
+
+>
+> Christopher Obbard (2):
+>   arm64: dts: rockchip: Disable HS400 for eMMC on ROCK Pi 4
+>   arm64: dts: rockchip: Disable HS400 for eMMC on ROCK 4C+
+>
+>  arch/arm64/boot/dts/rockchip/rk3399-rock-4c-plus.dts | 3 +--
+>  arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4.dtsi   | 4 ++--
+>  2 files changed, 3 insertions(+), 4 deletions(-)
 
