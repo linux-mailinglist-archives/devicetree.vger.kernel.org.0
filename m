@@ -2,87 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 99C20748562
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:49:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D47574858A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232117AbjGENtO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 09:49:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51644 "EHLO
+        id S232211AbjGENzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 09:55:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231428AbjGENtN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:49:13 -0400
-Received: from mail-pf1-x42a.google.com (mail-pf1-x42a.google.com [IPv6:2607:f8b0:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9629F7;
-        Wed,  5 Jul 2023 06:49:12 -0700 (PDT)
-Received: by mail-pf1-x42a.google.com with SMTP id d2e1a72fcca58-682ae5d4184so245250b3a.1;
-        Wed, 05 Jul 2023 06:49:12 -0700 (PDT)
+        with ESMTP id S229576AbjGENza (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:55:30 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F37519AB
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 06:55:27 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id ffacd0b85a97d-314319c0d3eso4391762f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 06:55:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688564952; x=1691156952;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=KuYXAnLC1GEa0aUM7vMLrZwJokRnFKJrVYJTizeDpio=;
-        b=KiG7bYw0wJJfpIJp9b9ruWPurgt5aZ4Uk9nuENkUYqfgCKdazxVc7TUhwOEeJ3CeV8
-         Gj88c2Vn4BOWejD7qMOmDSYBcyUO33HH74sCAEfdIMVnmaC3cv485fz9QP2NCMNkWXYG
-         9Rf/R0MrQNxQpFPMTkjmAZRQdAsY+Utw+3jsPe30rjQ+pVWdTTAYKyNny3n8bKlQZO/R
-         AU5BhoYkTSTLeRpB6rg+hz5pi7PpM9K5A0BQzgabt20M/Fpc6wDu32786BrwQoLm3zJk
-         nIsInt/zGFd1ukTrBIjLVxmmBzx1AfVXCVAHa9vAL+VkQ7oRWrrXsXYsGZAIT4uZT14X
-         +UZw==
+        d=linaro.org; s=google; t=1688565325; x=1691157325;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=QDtJCKqfKjcaKFw75l+br9FSk3/UDaoY4ROK4bND+g4=;
+        b=bMY4zcmVkRkJZuGTA/33qY4pDQWVLuUTDNqW/Ux6jP9erW+UhwIf8QtmjuEgBm2vsv
+         ghUmFqo7e48R9GIW9Tv1zVyXNUmvK/H7vYx8tZ73fxSftzxvB0D/fENKY5xY+uUVP2gK
+         oxS8XvPWaS326vR+V8PJvOIhZr59gE5i7ZPhyRlgpf6FGMihAysHqNhkw2MzhxKQRYQ+
+         ynmXBDhPXypo8gW7b0viowmjJanw3tmV74qmbkMLTP2pFGg3Q3llS3m75Qat1+yR6y34
+         8WiXgiGWQpcBc+BprKeMv3lLlUkl4A8DdI/0xx2+VNWrtvOTpHozakUvW7U7TI+dG7Y4
+         NncA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688564952; x=1691156952;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=KuYXAnLC1GEa0aUM7vMLrZwJokRnFKJrVYJTizeDpio=;
-        b=E6f7l0aNImzEH7LAoxrQgnrn40R5JMIruHeqHF8+hhmNua25z6jzw1KpvkSL4YGqU5
-         z7Hv5niX3us2reVPRZQhrabRKgJz1DB3LUlPjFKB4lEUFlugMX1bU6agMQxutAKjZvfv
-         x3KM4qIvB/+NRDMFQIvDkVv9LliOcmDPJS8ppk2svvdh3EJFUM3qsDfVQ/ZXI65rtI7J
-         BuqBLre4ddHD7wEJskXQpcC9TdMLsJjoNlHNDznoiJDPRoWeVJhHvIA41S83E/UmxC1k
-         28wD6Y8ivoWSlgfikwJAx2XsgUFiEFbAptWsA1dYGnyVyRXe3f7IB2doQiL6yoQLckBF
-         ovIA==
-X-Gm-Message-State: ABy/qLZmGO8Yodt4QdE9uLtPC2etM5+zInlogpLePrw9LyjR/hHz/tvA
-        v5r5MBoU6x/ESSgEtlYSUE7mMgTjh0DI8IkVFWA=
-X-Google-Smtp-Source: APBJJlGoEDFnZYoQCmUR5h9nWmsSCcz2h7frUqqnTArXL/TlBN0YsL1JBetG1VH6F6tCbE8lLJZomLrpnfrcVfLWzwk=
-X-Received: by 2002:a05:6a21:6d89:b0:12f:dce2:b392 with SMTP id
- wl9-20020a056a216d8900b0012fdce2b392mr713706pzb.6.1688564952242; Wed, 05 Jul
- 2023 06:49:12 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688565325; x=1691157325;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QDtJCKqfKjcaKFw75l+br9FSk3/UDaoY4ROK4bND+g4=;
+        b=MiyP2XdLMjbK07uukNotYq0xOVv6bni6V7MxRdn3Y19xsXH2/9nsMJF5wz2Im0Ke0D
+         aNydRj8sLwSH82wel5T+iVkAcxyeUwSBX5sAu6ZsMSezkv36b4JKISEqcFYd4Rdo11DI
+         YUXwjK05hLNENeX7RO/QHzNb0+zBdvEuyeSp3d0U17O8MqGz1VkvOA0ntYpNMbICV1Eq
+         G+zAcfIXp+eWiF6VTuuGXgWbTvBcI3sTpP8SAHGuA/qL5qrhMlxXN8oJCgJipv4HuP01
+         OdkV0K7wY1qEcwuW8zyhgi34TSfbSAjxG9I6i2bR3qoXY35pKPEFm13oQ/tiGMddY0Hj
+         OtSg==
+X-Gm-Message-State: ABy/qLaUNjzCcJEjKyMG8S/0MxwP2zl5GEUrw4rnpWMrKPPuL9TnRdwM
+        W2Ly7AWqaO7XICQfkf00CoZA+g==
+X-Google-Smtp-Source: APBJJlEDj7353XXfmQuL/K85xJsW2fbnWCsuq5RfNgpui++UqX0DPWU+I7uxm15VgnfHX9RGnjKMLg==
+X-Received: by 2002:adf:e747:0:b0:314:2f5b:2ce with SMTP id c7-20020adfe747000000b003142f5b02cemr10156381wrn.12.1688565325537;
+        Wed, 05 Jul 2023 06:55:25 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:65eb:d140:2d45:ee85? ([2a01:e0a:982:cbb0:65eb:d140:2d45:ee85])
+        by smtp.gmail.com with ESMTPSA id u11-20020adfdd4b000000b003143765e207sm8251847wrm.49.2023.07.05.06.55.24
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 06:55:25 -0700 (PDT)
+Message-ID: <f7bf6f1a-1cc6-55e3-82a2-ecc6818be5c4@linaro.org>
+Date:   Wed, 5 Jul 2023 15:55:24 +0200
 MIME-Version: 1.0
-References: <20230704150240.2022020-1-hugo@hugovil.com> <1341ba38-35c1-1657-aed4-a3c11f584367@linaro.org>
- <20230704113124.f2830afe1d9df252afe5abdc@hugovil.com> <834a0679-7e0c-150f-68be-c75d7dac0bc8@linaro.org>
- <CAOMZO5CX8WzaNeHmE8ohT2_6F-ehRRNWGnF7Dji=uLGphY4q2A@mail.gmail.com>
- <20230704125541.f361cab8de3faacd830418ab@hugovil.com> <20230704130204.7ac64cbd76b3440fc351c373@hugovil.com>
- <CAOMZO5Dsp7YZfmpkBNsQgE4d3Ag-v2fpBAU=aZ9NGqGYoaOMWQ@mail.gmail.com>
- <20230704164140.824f6890dae5c87fc92531b4@hugovil.com> <CAOMZO5BNaQVMKbxU9rc5zOBwv9c+HayLnkjqrSgPKgMGzQ585A@mail.gmail.com>
- <20230704172801.f11422b3f947c625f53af871@hugovil.com> <CAOMZO5CWh0-5eMTBwjvNUrY-yOHE=daj6n-jAAfjWoV-H4rt0Q@mail.gmail.com>
- <CAOMZO5AZiuEAh6nJB8Oub83At6bsvLhzOhsT_yOniZSucrAUMQ@mail.gmail.com>
- <20230705093507.7458eada3ae05e0e1740a10e@hugovil.com> <AS2PR08MB88082608DB46EC1287C6E54B852FA@AS2PR08MB8808.eurprd08.prod.outlook.com>
-In-Reply-To: <AS2PR08MB88082608DB46EC1287C6E54B852FA@AS2PR08MB8808.eurprd08.prod.outlook.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 5 Jul 2023 10:49:01 -0300
-Message-ID: <CAOMZO5D-a4sUEqqsppjpgkCRFfeetY32+QP0CvrGw6v5q=J+KA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mn-var-som-symphony: fix USB OTG
-To:     Nate Drude <Nate.D@variscite.com>
-Cc:     Hugo Villeneuve <hugo@hugovil.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Pierluigi Passaro <pierluigi.p@variscite.com>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: [PATCH 1/3] drm/panel: ld9040: Use better magic values
+Content-Language: en-US
+To:     Paul Cercueil <paul@crapouillou.net>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        Sam Ravnborg <sam@ravnborg.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20230703214715.623447-1-paul@crapouillou.net>
+ <20230703214715.623447-2-paul@crapouillou.net>
+Organization: Linaro Developer Services
+In-Reply-To: <20230703214715.623447-2-paul@crapouillou.net>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -90,18 +84,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nate,
+Hi
 
-On Wed, Jul 5, 2023 at 10:42=E2=80=AFAM Nate Drude <Nate.D@variscite.com> w=
-rote:
+On 03/07/2023 23:47, Paul Cercueil wrote:
+> I have no idea what the prior magic values mean, and I have no idea
+> what my replacement (extracted from [1]) magic values mean.
+> 
+> What I do know, is that these new values result in a much better
+> picture, where the blacks are really black (as you would expect on an
+> AMOLED display) instead of grey-ish.
+> 
+> [1] https://github.com/dorimanx/Dorimanx-SG2-I9100-Kernel/blob/master-jelly-bean/arch/arm/mach-exynos/u1-panel.h
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> ---
+>   drivers/gpu/drm/panel/panel-samsung-ld9040.c | 11 ++++++-----
+>   1 file changed, 6 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-samsung-ld9040.c b/drivers/gpu/drm/panel/panel-samsung-ld9040.c
+> index 01eb211f32f7..7fd9444b42c5 100644
+> --- a/drivers/gpu/drm/panel/panel-samsung-ld9040.c
+> +++ b/drivers/gpu/drm/panel/panel-samsung-ld9040.c
+> @@ -180,17 +180,18 @@ static void ld9040_init(struct ld9040 *ctx)
+>   {
+>   	ld9040_dcs_write_seq_static(ctx, MCS_USER_SETTING, 0x5a, 0x5a);
+>   	ld9040_dcs_write_seq_static(ctx, MCS_PANEL_CONDITION,
+> -		0x05, 0x65, 0x96, 0x71, 0x7d, 0x19, 0x3b, 0x0d,
+> -		0x19, 0x7e, 0x0d, 0xe2, 0x00, 0x00, 0x7e, 0x7d,
+> -		0x07, 0x07, 0x20, 0x20, 0x20, 0x02, 0x02);
+> +		0x05, 0x5e, 0x96, 0x6b, 0x7d, 0x0d, 0x3f, 0x00,
+> +		0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+> +		0x07, 0x05, 0x1f, 0x1f, 0x1f, 0x00, 0x00);
+>   	ld9040_dcs_write_seq_static(ctx, MCS_DISPCTL,
+> -		0x02, 0x08, 0x08, 0x10, 0x10);
+> +		0x02, 0x06, 0x0a, 0x10, 0x10);
+>   	ld9040_dcs_write_seq_static(ctx, MCS_MANPWR, 0x04);
+>   	ld9040_dcs_write_seq_static(ctx, MCS_POWER_CTRL,
+>   		0x0a, 0x87, 0x25, 0x6a, 0x44, 0x02, 0x88);
+> -	ld9040_dcs_write_seq_static(ctx, MCS_ELVSS_ON, 0x0d, 0x00, 0x16);
+> +	ld9040_dcs_write_seq_static(ctx, MCS_ELVSS_ON, 0x0f, 0x00, 0x16);
+>   	ld9040_dcs_write_seq_static(ctx, MCS_GTCON, 0x09, 0x00, 0x00);
+>   	ld9040_brightness_set(ctx);
+> +
 
-> The patch 'drivers: extcon: ptn5150: Add irq-is-id-quirk' referred to by =
-Fabio is required for OTG to work correctly on all versions of the Symphony=
- board.
->
-> I can submit this patch mainline, do you think it will be accepted as is?
+You can drop this spurious new line for v2
 
-I think it is worth submitting it to get some feedback from the
-ptn5150 and DT maintainers.
+>   	ld9040_dcs_write_seq_static(ctx, MIPI_DCS_EXIT_SLEEP_MODE);
+>   	ld9040_dcs_write_seq_static(ctx, MIPI_DCS_SET_DISPLAY_ON);
+>   }
 
-Thanks
+And add
+
+Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+
+Neil
