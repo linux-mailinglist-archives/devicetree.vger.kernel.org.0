@@ -2,196 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E46CD74833C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 13:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 686F6748315
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 13:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231769AbjGELql (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 07:46:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49940 "EHLO
+        id S230417AbjGELmK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 07:42:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46332 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231726AbjGELqi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 07:46:38 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8CF84172D;
-        Wed,  5 Jul 2023 04:46:14 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,183,1684767600"; 
-   d="scan'208";a="170615162"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 05 Jul 2023 20:46:12 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 6080F40029CA;
-        Wed,  5 Jul 2023 20:46:12 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v17 06/20] PCI: designware-ep: Add INTx IRQs support
-Date:   Wed,  5 Jul 2023 20:41:52 +0900
-Message-Id: <20230705114206.3585188-7-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S230248AbjGELmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 07:42:04 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4D7B173E
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 04:42:01 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fb4146e8fcso5570945e9.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 04:42:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688557320; x=1691149320;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9gQlDSngFOwPPUISUlBVLwpxXVmpFtUqiaGlXaZpOTw=;
+        b=v4fawfHscxtp8ZsT3tpLY7hNhhx8GSsW8Na9ltQEbjX2vKqxLPA1zzoYdOkt9XbU1l
+         GwAJkzPkMD3RXPp66ucMpFJwtYWY/X9e9ggSb43tE5bI/Ly8yCTdruNE3PuRnpxedCTs
+         I0kD7vMzwbhc+1AxlpnFhNBUaK+/INT1jaXz8YT81WN9nBlCo2cWeWB6bZBWaK2rUHgE
+         WAl7UGD6ubRHpCqzqJ4X3tlssCZYjs8EBVR/NE+gpe9GOCr24/T502WtCc0fCJKWVimE
+         XnzF0N6Ej3AejQxNgNus5UiI9k8YsgB0Lvmt0vWdU26i5XFqE9NqOdhtE/cUrFxLnHSL
+         yJAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688557320; x=1691149320;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=9gQlDSngFOwPPUISUlBVLwpxXVmpFtUqiaGlXaZpOTw=;
+        b=XaSKSEylwBa8yfZcLB6Juo6DYUlU4ObNFwRP18eRl8IPvG3DI/JIn17Rtge3lsotiJ
+         cF1JO2LC0b3oDJpJ58RhIDfrw1KrJU9f1Hmt6SNJayiQxqHsSnAL6A6hkFtK6NYDClJs
+         K+p8N3tpMvsjCgrmD6Q5sBwKe7Ekf+GkCGKBT3iAHeQztC1vkCpSJZ9OI4M8ciM8dkkW
+         WnkbHPdOtU/1mFTO81NE/jTidkUtn6RXqLmJAFjd27+5Lx/WFN+OGMrRT4jHZk66maw3
+         ykBIjeedz0GDS892qGcd3rFdtEkfwpJWgMbT6K2dEVf6DXhjng9icIms9GCougqlakY7
+         6J8A==
+X-Gm-Message-State: ABy/qLZHblOhqUQFTGe0pr2xA4ujSF/CUcfwh09NmfF/NLp5aNchwQ1U
+        UqAwzmBGcVWOc191DhJSI4iN5g==
+X-Google-Smtp-Source: APBJJlHhvkXC0knRiPmGbihVFfIpUMgphxgM1NpomrfQajY9dKVXPnbE0I4STbUyZqmVmDI1RKduUA==
+X-Received: by 2002:a7b:c8d3:0:b0:3f4:2a69:409 with SMTP id f19-20020a7bc8d3000000b003f42a690409mr2101902wml.11.1688557320234;
+        Wed, 05 Jul 2023 04:42:00 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003fb416d732csm1916808wmk.6.2023.07.05.04.41.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 04:41:59 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 05 Jul 2023 13:41:52 +0200
+Subject: [PATCH v2 2/3] dt-bindings: clock: amlogic: convert
+ amlogic,gxbb-aoclkc.txt to dt-schema
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230705-b4-amlogic-bindings-convert-take2-v2-2-22be915ddc3b@linaro.org>
+References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+In-Reply-To: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=5696;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=90IENEZBGraleyfH5zMrD+1Aq1pySzcYXHESwDVRm5E=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpVcDr3AXSM8KlYrEhr9cojI1jnMDm/uDsLVB7de5
+ tbH4L8iJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKVXAwAKCRB33NvayMhJ0V5tD/
+ 984cvGo8wVrNKMbVeYEmQnEKYhwus0ji+FCkkDLp35GvhdcGgQUBQGiWamtvP6QsQyqnvPuUglbEtC
+ wSOiftVH+MifknlCiJaMXqJZlwn/PDPXWknt1aHDwVQK4YGNyhMpKhvW0swQ+8W1u2edtphTmrGD7E
+ 4j4hCOu/jbKcoK9vRmXXZtZSBtEibBInrPNoiE6+VQF8AzkWheAXBEDujy3ABM0a7TI0oJO+g9Y4lQ
+ 0+3pR5yc69p0ASbRzz+sQ/ogzPvdjWubsVebSDVQXfaC36MXxMIUA7UR974heu98zc7t67GXRJBpCR
+ itWDIx8Qv35kSfR0/UXeOJ7FLjc/dVLrD60zoqrhWJNBJkgC96Zn9eRHDpaTq7GzH+HGStU09nlqdf
+ 7kr15eT2Mv5GC3ASET476WCpmYu3sRidKX8GXQvB7U4NFDLhq4osnNZfdVlxEYdg8UBV75f7zCCx7j
+ fcmC2ikj/6dbzra/+A/ERdttYaBG7xjdxKuMm9XwCPYo/Q03TT/sDzdBJ0104GzkGtkHM3xSI5BJvQ
+ 1kKSExC35G29iRklEHd1VzveoVyHEhFVGjtnYfG9gt7aeFazFlydmB5hbG+GgYOARz5u+9Ja3h8AHR
+ KpuvdE6ivOiE/d854mXAsiRRFl7PReZQCcPMKLI0KNH84+X0WgEyRFfaZaBw==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for triggering INTx IRQs by using outbound iATU.
-Outbound iATU is utilized to send assert and de-assert INTx TLPs.
-The message is generated based on the payloadless Msg TLP with type
-0x14, where 0x4 is the routing code implying the Terminate at
-Receiver message. The message code is specified as b1000xx for
-the INTx assertion and b1001xx for the INTx de-assertion.
+Convert the Amlogic Always-On Clock Controller bindings to dt-schema.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- .../pci/controller/dwc/pcie-designware-ep.c   | 69 +++++++++++++++++--
- drivers/pci/controller/dwc/pcie-designware.h  |  2 +
- 2 files changed, 67 insertions(+), 4 deletions(-)
+ .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  64 -------------
+ .../bindings/clock/amlogic,gxbb-aoclkc.yaml        | 101 +++++++++++++++++++++
+ 2 files changed, 101 insertions(+), 64 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-index fe2e0d765be9..1d24ebf9686f 100644
---- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-@@ -6,9 +6,11 @@
-  * Author: Kishon Vijay Abraham I <kishon@ti.com>
-  */
- 
-+#include <linux/delay.h>
- #include <linux/of.h>
- #include <linux/platform_device.h>
- 
-+#include "../../pci.h"
- #include "pcie-designware.h"
- #include <linux/pci-epc.h>
- #include <linux/pci-epf.h>
-@@ -484,14 +486,60 @@ static const struct pci_epc_ops epc_ops = {
- 	.get_features		= dw_pcie_ep_get_features,
- };
- 
-+static int dw_pcie_ep_send_msg(struct dw_pcie_ep *ep, u8 func_no, u8 code,
-+			       u8 routing)
-+{
-+	struct dw_pcie_ob_atu_cfg atu = { 0 };
-+	struct pci_epc *epc = ep->epc;
-+	int ret;
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
+deleted file mode 100644
+index c41f0be5d438..000000000000
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
++++ /dev/null
+@@ -1,64 +0,0 @@
+-* Amlogic GXBB AO Clock and Reset Unit
+-
+-The Amlogic GXBB AO clock controller generates and supplies clock to various
+-controllers within the Always-On part of the SoC.
+-
+-Required Properties:
+-
+-- compatible: value should be different for each SoC family as :
+-	- GXBB (S905) : "amlogic,meson-gxbb-aoclkc"
+-	- GXL (S905X, S905D) : "amlogic,meson-gxl-aoclkc"
+-	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
+-	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
+-	- G12A (S905X2, S905D2, S905Y2) : "amlogic,meson-g12a-aoclkc"
+-	followed by the common "amlogic,meson-gx-aoclkc"
+-- clocks: list of clock phandle, one for each entry clock-names.
+-- clock-names: should contain the following:
+-  * "xtal"     : the platform xtal
+-  * "mpeg-clk" : the main clock controller mother clock (aka clk81)
+-  * "ext-32k-0"  : external 32kHz reference #0 if any (optional)
+-  * "ext-32k-1"  : external 32kHz reference #1 if any (optional - gx only)
+-  * "ext-32k-2"  : external 32kHz reference #2 if any (optional - gx only)
+-
+-- #clock-cells: should be 1.
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/gxbb-aoclkc.h header and can be
+-used in device tree sources.
+-
+-- #reset-cells: should be 1.
+-
+-Each reset is assigned an identifier and client nodes can use this identifier
+-to specify the reset which they consume. All available resets are defined as
+-preprocessor macros in the dt-bindings/reset/gxbb-aoclkc.h header and can be
+-used in device tree sources.
+-
+-Parent node should have the following properties :
+-- compatible: "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd"
+-- reg: base address and size of the AO system control register space.
+-
+-Example: AO Clock controller node:
+-
+-ao_sysctrl: sys-ctrl@0 {
+-	compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
+-	reg =  <0x0 0x0 0x0 0x100>;
+-
+-	clkc_AO: clock-controller {
+-		compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
+-		#clock-cells = <1>;
+-		#reset-cells = <1>;
+-		clocks = <&xtal>, <&clkc CLKID_CLK81>;
+-		clock-names = "xtal", "mpeg-clk";
+-	};
+-
+-Example: UART controller node that consumes the clock and reset generated
+-  by the clock controller:
+-
+-	uart_AO: serial@4c0 {
+-		compatible = "amlogic,meson-uart";
+-		reg = <0x4c0 0x14>;
+-		interrupts = <0 90 1>;
+-		clocks = <&clkc_AO CLKID_AO_UART1>;
+-		resets = <&clkc_AO RESET_AO_UART1>;
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml
+new file mode 100644
+index 000000000000..0adcfbcf5c85
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml
+@@ -0,0 +1,101 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,gxbb-aoclkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	atu.func_no = func_no;
-+	atu.code = code;
-+	atu.routing = routing;
-+	atu.type = PCIE_ATU_TYPE_MSG;
-+	atu.cpu_addr = ep->intx_mem_phys;
-+	atu.size = epc->mem->window.page_size;
++title: Amlogic Always-On Clock Controller
 +
-+	ret = dw_pcie_ep_outbound_atu(ep, &atu);
-+	if (ret)
-+		return ret;
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
 +
-+	writel(0, ep->intx_mem);
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,meson-gxbb-aoclkc
++              - amlogic,meson-gxl-aoclkc
++              - amlogic,meson-gxm-aoclkc
++              - amlogic,meson-axg-aoclkc
++          - const: amlogic,meson-gx-aoclkc
++      - enum:
++          - amlogic,meson-axg-aoclkc
++          - amlogic,meson-g12a-aoclkc
 +
-+	dw_pcie_ep_unmap_addr(epc, func_no, 0, ep->intx_mem_phys);
++  clocks:
++    minItems: 2
++    maxItems: 5
 +
-+	return 0;
-+}
++  clock-names:
++    minItems: 2
++    maxItems: 5
 +
- int dw_pcie_ep_raise_intx_irq(struct dw_pcie_ep *ep, u8 func_no)
- {
- 	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
- 	struct device *dev = pci->dev;
-+	int ret;
- 
--	dev_err(dev, "EP cannot trigger INTx IRQs\n");
-+	if (!ep->intx_mem) {
-+		dev_err(dev, "INTx not supported\n");
-+		return -EOPNOTSUPP;
-+	}
- 
--	return -EINVAL;
-+	/*
-+	 * Even though the PCI bus specification implies the level-triggered
-+	 * INTx interrupts the kernel PCIe endpoint framework has a single
-+	 * PCI_EPC_IRQ_INTx flag defined for the legacy IRQs simulation. Thus
-+	 * this function sends the Deassert_INTx PCIe TLP after the Assert_INTx
-+	 * message with the 50 usec duration basically implementing the
-+	 * rising-edge triggering IRQ. Hopefully the interrupt controller will
-+	 * still be able to register the incoming IRQ event...
-+	 */
-+	ret = dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_ASSERT_INTA,
-+				  PCI_MSG_TYPE_R_ROUTING_LOCAL);
-+	if (ret)
-+		return ret;
++  '#clock-cells':
++    const: 1
 +
-+	usleep_range(50, 100);
++  '#reset-cells':
++    const: 1
 +
-+	return dw_pcie_ep_send_msg(ep, func_no, PCI_MSG_CODE_DEASSERT_INTA,
-+				   PCI_MSG_TYPE_R_ROUTING_LOCAL);
- }
- EXPORT_SYMBOL_GPL(dw_pcie_ep_raise_intx_irq);
- 
-@@ -622,6 +670,10 @@ void dw_pcie_ep_exit(struct dw_pcie_ep *ep)
- 
- 	dw_pcie_edma_remove(pci);
- 
-+	if (ep->intx_mem)
-+		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-+				      epc->mem->window.page_size);
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - '#clock-cells'
++  - '#reset-cells'
 +
- 	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
- 			      epc->mem->window.page_size);
- 
-@@ -793,9 +845,14 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
- 		goto err_exit_epc_mem;
- 	}
- 
-+	ep->intx_mem = pci_epc_mem_alloc_addr(epc, &ep->intx_mem_phys,
-+					      epc->mem->window.page_size);
-+	if (!ep->intx_mem)
-+		dev_warn(dev, "Failed to reserve memory for INTx\n");
++allOf:
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-gxbb-aoclkc
 +
- 	ret = dw_pcie_edma_detect(pci);
- 	if (ret)
--		goto err_free_epc_mem;
-+		goto err_free_epc_mem_intx;
- 
- 	if (ep->ops->get_features) {
- 		epc_features = ep->ops->get_features(ep);
-@@ -812,7 +869,11 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
- err_remove_edma:
- 	dw_pcie_edma_remove(pci);
- 
--err_free_epc_mem:
-+err_free_epc_mem_intx:
-+	if (ep->intx_mem)
-+		pci_epc_mem_free_addr(epc, ep->intx_mem_phys, ep->intx_mem,
-+				      epc->mem->window.page_size);
++    then:
++      properties:
++        clock-names:
++          minItems: 2
++          items:
++            - const: xtal 
++            - const: mpeg-clk
++            - const: ext-32k-0
++            - const: ext-32k-1
++            - const: ext-32k-2
 +
- 	pci_epc_mem_free_addr(epc, ep->msi_mem_phys, ep->msi_mem,
- 			      epc->mem->window.page_size);
- 
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index c626d21243b0..812c221b3f7c 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -365,6 +365,8 @@ struct dw_pcie_ep {
- 	unsigned long		*ob_window_map;
- 	void __iomem		*msi_mem;
- 	phys_addr_t		msi_mem_phys;
-+	void __iomem		*intx_mem;
-+	phys_addr_t		intx_mem_phys;
- 	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
- };
- 
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-g12a-aoclkc
++
++    then:
++      properties:
++        clocks:
++          maxItems: 3
++
++        clock-names:
++          minItems: 2
++          items:
++            - const: xtal 
++            - const: mpeg-clk
++            - const: ext-32k-0
++
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-gxl-aoclkc
++            - amlogic,meson-gxm-aoclkc
++            - amlogic,meson-axg-aoclkc
++
++    then:
++      properties:
++        clocks:
++          maxItems: 2
++
++        clock-names:
++          items:
++            - const: xtal 
++            - const: mpeg-clk
++
++additionalProperties: false
+
 -- 
-2.25.1
+2.34.1
 
