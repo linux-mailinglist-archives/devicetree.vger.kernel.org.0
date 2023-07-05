@@ -2,209 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5C357483B9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 14:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C31B7483C1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 14:07:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231923AbjGEMEG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 08:04:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60670 "EHLO
+        id S231937AbjGEMHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 08:07:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33142 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230242AbjGEMEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 08:04:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA6061706;
-        Wed,  5 Jul 2023 05:04:04 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 68D2261516;
-        Wed,  5 Jul 2023 12:04:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 48C41C433C8;
-        Wed,  5 Jul 2023 12:04:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688558643;
-        bh=zpQHiah5pU5ivi5QnyiHH3I+kbG+Eq4swtcEgTjXUaA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZsPAFsMvzkFtlDcZtJDpGIX2qQVVvXrwaEzMc7YGvKZhROXNuKvg722OlAweWXL/Z
-         j/jjr5q2t1u9HoihkQya58R90kZ8PdgAnd8yduFaPMAyXzRdjHcwUMfWJeFXrfIJ3G
-         EjC2RAZc6dMyu2vTUkhLFprfZWTXvfJ96Wi2veiK2ujOoYv4keYHeszKrCwk5uXp9Z
-         fDKdRi4Mtl+hulGM3htJArlZxOiz07hCizRGXwqFm6LXkHSfc7u8w8yTPDRbRer9RX
-         3mpjgitDz4YcBfN48skVFGVMqzApFLpaGUrl/wa9xzf94H/A7MXMOVghnRJEJfUUkP
-         HfXztUJE8FJPA==
-Date:   Wed, 5 Jul 2023 14:04:00 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel:
- Add LGD panel driver for Sony Xperia XZ3)
-Message-ID: <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
-References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
- <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
- <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
- <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
- <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
- <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
- <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
+        with ESMTP id S229493AbjGEMHE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 08:07:04 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A96F170A
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 05:07:03 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1qH1Hh-0003un-Ab; Wed, 05 Jul 2023 14:07:01 +0200
+Message-ID: <e9a08364-c277-bfec-cb31-b01b39e17bed@pengutronix.de>
+Date:   Wed, 5 Jul 2023 14:06:59 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vjd4hy6ibnmkekav"
-Content-Disposition: inline
-In-Reply-To: <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.2
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Subject: Re: [PATCH 2/2] ARM: dts: imx6: pfla02: Fix SD card reboot problem
+To:     Andrej Picej <andrej.picej@norik.com>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Cc:     devicetree@vger.kernel.org, conor+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
+        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
+        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
+        upstream@phytec.de
+References: <20230704080304.816942-1-andrej.picej@norik.com>
+ <20230704080304.816942-3-andrej.picej@norik.com>
+ <20230704081712.7dyj2mspj2m25rp7@pengutronix.de>
+ <7ed6fde0-37a4-a667-2629-0a6b8a202a69@norik.com>
+ <14cd16df-ef47-05b3-5266-ffff109a8326@pengutronix.de>
+ <3c0de35f-915a-7ae9-c369-9545b55dd2e4@norik.com>
+ <6a2e5b14-c5d3-b384-2539-033381768dca@norik.com>
+Content-Language: en-US
+In-Reply-To: <6a2e5b14-c5d3-b384-2539-033381768dca@norik.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 05.07.23 12:39, Andrej Picej wrote:> On 5. 07. 23 10:40, Andrej Picej wrote:
+>> On 5. 07. 23 10:30, Ahmad Fatoum wrote:
+>>> On 05.07.23 10:28, Andrej Picej wrote:
+>>>> I think the main reason for a failed boot is that the PMIC doesn't get reset and that the bootloader doesn't specifically enable the SD card regulator.
+>>>>
+>>>> Could this patch still be applied or should we put the fix in reset routine/bootloader?
+>>>
+>>> Is SD-Card not main boot medium? From your description, I thought BootROM
+>>> will fail to boot before bootloader has a chance to do anything about it.
+>>>
+>>
+>> Yes sorry, you are absolutly right, the BootROM fails. It confused me because I could see the booloader booting, but it was from one of the fallback mediums. So I guess fixing the bootloader is not really an option.
+>> Sorry for the confusion.
+>>
+> 
+> Ok, the main problem is well known, that's why PHYTEC disables the imx watchdog and uses a PMIC one for the reboot handler. This one resets the board completely. The SD card regulator problem is really just the manifestation of that bug. Unfortunately I didn't noticed that. :(
+> 
+> I will create a v2 with a proper fix, where imx watchdog gets disabled.
 
---vjd4hy6ibnmkekav
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I'd be wary about solving it this way at the DTSI level, because it can
+break existing users:
 
-Hi,
+  - Boot flow depends on reading boot reason, but with PMIC reset, everything
+    is power-on reset
 
-On Tue, May 30, 2023 at 03:36:04PM +0300, Dmitry Baryshkov wrote:
-> On 30/05/2023 15:15, AngeloGioacchino Del Regno wrote:
-> > Il 30/05/23 13:44, Dmitry Baryshkov ha scritto:
-> > > On Tue, 30 May 2023 at 10:24, Neil Armstrong
-> > > <neil.armstrong@linaro.org> wrote:
-> > > >=20
-> > > > Hi Marijn, Dmitry, Caleb, Jessica,
-> > > >=20
-> > > > On 29/05/2023 23:11, Marijn Suijten wrote:
-> > > > > On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
-> > > > > <snip>
-> > > > > > > +=A0=A0 if (ctx->dsi->dsc) {
-> > > > > >=20
-> > > > > > dsi->dsc is always set, thus this condition can be dropped.
-> > > > >=20
-> > > > > I want to leave room for possibly running the panel without DSC (=
-at a
-> > > > > lower resolution/refresh rate, or at higher power consumption if =
-there
-> > > > > is enough BW) by not assigning the pointer, if we get access to p=
-anel
-> > > > > documentation: probably one of the magic commands sent in this dr=
-iver
-> > > > > controls it but we don't know which.
-> > > >=20
-> > > > I'd like to investigate if DSC should perhaps only be enabled if we
-> > > > run non certain platforms/socs ?
-> > > >=20
-> > > > I mean, we don't know if the controller supports DSC and those
-> > > > particular
-> > > > DSC parameters so we should probably start adding something like :
-> > > >=20
-> > > > static drm_dsc_config dsc_params_qcom =3D {}
-> > > >=20
-> > > > static const struct of_device_id panel_of_dsc_params[] =3D {
-> > > > =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8150", , .data =
-=3D &dsc_params_qcom },
-> > > > =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8250", , .data =
-=3D &dsc_params_qcom },
-> > > > =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8350", , .data =
-=3D &dsc_params_qcom },
-> > > > =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8450", , .data =
-=3D &dsc_params_qcom },
-> > > > };
-> > >=20
-> > > I think this would damage the reusability of the drivers. The panel
-> > > driver does not actually care if the SoC is SM8350, sunxi-something or
-> > > RCar.
-> > > Instead it cares about host capabilities.
-> > >=20
-> > > I think instead we should extend mipi_dsi_host:
-> > >=20
-> > > #define MIPI_DSI_HOST_MODE_VIDEO BIT(0)
-> > > #define MIPI_DSI_HOST_MODE_CMD=A0 BIT(1)
-> > > #define MIPI_DSI_HOST_VIDEO_SUPPORTS_COMMANDS BIT(2)
-> > > // FIXME: do we need to provide additional caps here ?
-> > >=20
-> > > #define MIPI_DSI_DSC_1_1 BIT(0)
-> > > #define MIPI_DSI_DSC_1_2 BIT(1)
-> > > #define MIPI_DSI_DSC_NATIVE_422 BIT(2)
-> > > #define MIPI_DSI_DSC_NATIVE_420 BIT(3)
-> > > #define MIPI_DSI_DSC_FRAC_BPP BIT(4)
-> > > // etc.
-> > >=20
-> > > struct mipi_dsi_host {
-> > > =A0 // new fields only
-> > > =A0=A0 unsigned long mode_flags;
-> > > =A0=A0 unsigned long dsc_flags;
-> > > };
-> > >=20
-> > > Then the panel driver can adapt itself to the host capabilities and
-> > > (possibly) select one of the internally supported DSC profiles.
-> > >=20
-> >=20
-> > I completely agree about extending mipi_dsi_host, other SoCs could reuse
-> > that and
-> > support for DSC panels would become a lot cleaner.
->=20
-> Sounds good. I will wait for one or two more days (to get the possible
-> feedback on fields/flags/etc) and post an RFC patch to dri-devel.
+  - Bootloader starts i.MX watchdog, but new kernel will service only
+    PMIC watchdog leading to system reset
 
-I just came across that discussion, and couldn't find those patches, did
-you ever send them?
+  - Even if updating bootloader and kernel together, fallback of kernel
+    may end up that bootloader uses PMIC watchdog, but kernel uses i.MX
+    watchdog
 
-Either way, I'm not really sure it's a good idea to multiply the
-capabilities flags of the DSI host, and we should just stick to the
-spec. If the spec says that we have to support DSC while video is
-output, then that's what the panels should expect.
+  - There can be valid reasons to use both watchdogs and disabling
+    one at the SoM level breaks that
 
-If a host isn't able to provide that, it's a bug and we should fix the
-controller driver instead of creating a workaround in the core for
-broken drivers.
+I had a similar issue once (Board controller reset to be used instead of SoC
+reset) and settled on using the barebox watchdog-priority/restart-priority[1]
+binding to select the "better" watchdog and then fixed up this choice into
+the kernel command line (barebox CONFIG_SYSTEMD_OF_WATCHDOG).
 
-Another concern I have is that, those broken drivers are usually the
-undocumented ones that already have trouble supporting the most trivial
-setup. Creating more combinations both at the controller and panel level
-will just make it harder for those drivers.
+If you decide to fix it for the evaluation kits, please add some text
+into the commit message that this fix should not be backported to older kernels.
+While it's ultimately the correct thing to do, changing this is IMO not stable
+backport material.
 
-Maxime
+[1]: FWIW, there was past discussion about adding restart priorities to Linux, e.g.
+https://lore.kernel.org/all/20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de/
 
---vjd4hy6ibnmkekav
-Content-Type: application/pgp-signature; name="signature.asc"
+Cheers,
+Ahmad
 
------BEGIN PGP SIGNATURE-----
+> 
+> Thanks for your help,
+> Andrej
+> 
+> 
+>>
+>>>>
+>>>> Best regards,
+>>>> Andrej
+>>>>
+>>>>>
+>>>>> Regards,
+>>>>>     Marco
+>>>>>
+>>>>>>                };
+>>>>>>                  vdd_sd1_reg: ldo10 {
+>>>>>> -- 
+>>>>>> 2.25.1
+>>>>>>
+>>>>>>
+>>>>>>
+>>>>
+>>>>
+>>>
+> 
 
-iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZKVcMAAKCRDj7w1vZxhR
-xeVgAQDMoWfOkJ4iYKGDevKKuJrt/Yox11zWBcNz3kO+JHvKCgEA1xY50FGJLaT2
-cS39fgkgt4dP5e/C3mtQGra1z+NhNgM=
-=LKUp
------END PGP SIGNATURE-----
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
---vjd4hy6ibnmkekav--
