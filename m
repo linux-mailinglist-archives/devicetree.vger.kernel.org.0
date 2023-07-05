@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F30B748726
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:00:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 559A874872E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:00:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232814AbjGEPAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36210 "EHLO
+        id S232987AbjGEPAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 11:00:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36394 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232917AbjGEPAb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:00:31 -0400
-Received: from mail-ej1-x631.google.com (mail-ej1-x631.google.com [IPv6:2a00:1450:4864:20::631])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E003A1980
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 08:00:05 -0700 (PDT)
-Received: by mail-ej1-x631.google.com with SMTP id a640c23a62f3a-9928abc11deso811977766b.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 08:00:05 -0700 (PDT)
+        with ESMTP id S232964AbjGEPAk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:00:40 -0400
+Received: from mail-ej1-x635.google.com (mail-ej1-x635.google.com [IPv6:2a00:1450:4864:20::635])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9B919BD
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 08:00:16 -0700 (PDT)
+Received: by mail-ej1-x635.google.com with SMTP id a640c23a62f3a-992e22c09edso492373566b.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 08:00:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688569201; x=1691161201;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=n/0F5R5mM5gPxobbPiX1/48EdQzBnBDgRcO6PDWtuN8=;
-        b=HccxiV79lI2HgXxRNWs8t158mb7UQqRkK8v9l/986PAPvi595UGcoLvuijRIZs2p3Y
-         hvgVF6r8NQsI0qI6wbB1N7B2zUkqP+byHpTHq/+if1kNYiXID0hqKDSQr9QABiPfPW40
-         DoZ/+xgX6I2KasLF7nbz9yk7c3Btq5cX3RhjssFb29UsNc7vXoDvOwXtkRktoUxIrlWu
-         gLxwtLl1HW0PJIao5pz/cnrJEvFdqZEflnehNYrJidcg+ILACHldZdM4Y8H4P4rdpiL3
-         HrHWhpidUrJddAUJKbB1ATRpJKmIq+ZEVbp0bffYnZNVSB9HWQxz9lzICRudVBqGeSQl
-         Gmcw==
+        d=linaro.org; s=google; t=1688569211; x=1691161211;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=zoj6PovRbQtOS9C5HOPl6B505HcYhQOk1Hb8p+qbuDo=;
+        b=wERFDEO1li69fIU+KUHWAEHjn5+bMAooEiWlHlYDnVIdlK61szQC42sOaqaQuGZIUm
+         UjnmbaTahZNA+QNdIM6/H/oO4EeDWcGNIqSnomfPTc2WTLCtxI+RJknsLFPfNd25nNA0
+         tnk8vZC/wMzqIz0r8tzICRVLBShcB1aCssW0QlWWyYAxUwBTn7eUchBCd/FMfWDcukd7
+         4ApwEGLy3HBIeYl8iuHtnsYPSkwXkPtVAzC2TSr+M6I/4lN4nAAuSib4dJ1rR43kvMBU
+         rCFmON1Fac8Wyo0v8gyCzmxevqMPmiPa74ZQWK+7zUxPDcAffRloEOizwBX7KQpvrPas
+         iL0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688569201; x=1691161201;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=n/0F5R5mM5gPxobbPiX1/48EdQzBnBDgRcO6PDWtuN8=;
-        b=ND7dDJWhpZLz6mkFfkK9ZyKgzGUnjwgFD4SNsK4wvgGdVwAXn5MG+GB96f2BiE5sWL
-         bW1lLidX5f7ctlrNaboxCrlVVR3CQ5eam5MA31xvB8CiB7EkP0GSvCSdP3eefgdBknHZ
-         db6t38/j4+yhOT3pjf6LDBd+FWh1P0RJV1YwqqxR1vMgC9t6sWE75SNJyfT8qbt9VGGF
-         AWRNfGxpjNwJEqivN8YGF5wucgwv8jLQooE8vuX4dC+e1WKDNzsE5NE+iSsDPKhw9Kzz
-         rviNOb72BeV7iCc7i9g+xP842jibv0sKQbBXzWZdJIIdcsgZzFtikDVY/0+zZ1Bhq1Ed
-         hG5w==
-X-Gm-Message-State: ABy/qLZ+24EoTMnxAwBaLF8zCBCbCvzmJL0AtLo8dynfXH9A6gegxc3j
-        ya+QKpDxVaTifU0LbV+OHKRMKQ==
-X-Google-Smtp-Source: APBJJlFs66ZYzad7VZkX8+2j2B/JcOuMsc3lw/12x52kx+Zfnk9LAjEu8jN6kZrrLFgmFyjhTXqnqg==
-X-Received: by 2002:a17:906:f884:b0:992:345e:8319 with SMTP id lg4-20020a170906f88400b00992345e8319mr13126885ejb.58.1688569201513;
-        Wed, 05 Jul 2023 08:00:01 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688569211; x=1691161211;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=zoj6PovRbQtOS9C5HOPl6B505HcYhQOk1Hb8p+qbuDo=;
+        b=KodoZ5BwcCi56O50zF0Bf4SL0V4PXjeOaB53uE1HX1QBGqVLz2QgcaTE5Ko6YdjQAn
+         oPSuRpmM9BGrbWlTIv70b7O6bzS9VGX4AfqSEn3/t9kKAOV8EnqAeEhNcFcLq/QBFJq7
+         Ysq6JESNA/qfq38BaPbeFHArlGpteY+THmWk4EijAqKZLsxZHNx/aznYrGkb+GNqpt0P
+         PuTqOizMjGWt8EmSpHH8s3ChsxQHODf7eHpC1jOqQmhdT0fvPEj3nJ++FOZOg8UumUj5
+         toxMayIZJNzJ/3hvSuQrmKSQuOvM8nEsRJGXHsFPcdrCNU05KC76RhOwDzp0ktRna6jE
+         F29g==
+X-Gm-Message-State: ABy/qLbVpqdktHAa7jzJ5U/oxDnof3Mu3FloeprNPIwHmxhBevQbRUOm
+        oBmLLe0yfz+Qb2N3uDPJU77NjfT/XaStst9Bge8=
+X-Google-Smtp-Source: APBJJlHDuJ57DJRbSpm3ZfMkLb71JQyDqyG9Z9b+EwOVBs6eGnhnuvhmGOHJSm6o09XJiYLYJsZSyQ==
+X-Received: by 2002:a17:906:5904:b0:98e:18ea:442c with SMTP id h4-20020a170906590400b0098e18ea442cmr12854691ejq.45.1688569211231;
+        Wed, 05 Jul 2023 08:00:11 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id p20-20020a170906605400b0098ec690e6d7sm13079425ejj.73.2023.07.05.07.59.59
+        by smtp.gmail.com with ESMTPSA id bu5-20020a170906a14500b0096f6a131b9fsm14704838ejb.23.2023.07.05.08.00.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 08:00:01 -0700 (PDT)
+        Wed, 05 Jul 2023 08:00:10 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: freescale: add missing space before {
-Date:   Wed,  5 Jul 2023 16:59:53 +0200
-Message-Id: <20230705145953.293632-2-krzysztof.kozlowski@linaro.org>
+Subject: [PATCH 1/2] ARM: dts: mediatek: add missing space before {
+Date:   Wed,  5 Jul 2023 17:00:05 +0200
+Message-Id: <20230705150006.293690-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230705145953.293632-1-krzysztof.kozlowski@linaro.org>
-References: <20230705145953.293632-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -83,129 +79,267 @@ Add missing whitespace between node name/label and opening {.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi    | 6 +++---
- arch/arm64/boot/dts/freescale/imx8mn-evk.dts           | 6 +++---
- arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts | 4 ++--
- arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi       | 2 +-
- arch/arm64/boot/dts/freescale/imx8mq.dtsi              | 2 +-
- arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts        | 2 +-
- 6 files changed, 11 insertions(+), 11 deletions(-)
+ arch/arm/boot/dts/mediatek/mt2701-evb.dts |  2 +-
+ arch/arm/boot/dts/mediatek/mt6323.dtsi    | 58 +++++++++++------------
+ 2 files changed, 30 insertions(+), 30 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-index bd5d771637ca..9b1b522517f8 100644
---- a/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8-apalis-v1.1.dtsi
-@@ -684,15 +684,15 @@ &lsio_pwm3 {
- };
- 
- /* Messaging Units */
--&mu_m0{
-+&mu_m0 {
+diff --git a/arch/arm/boot/dts/mediatek/mt2701-evb.dts b/arch/arm/boot/dts/mediatek/mt2701-evb.dts
+index d1535f385f36..9c7325f18933 100644
+--- a/arch/arm/boot/dts/mediatek/mt2701-evb.dts
++++ b/arch/arm/boot/dts/mediatek/mt2701-evb.dts
+@@ -244,7 +244,7 @@ &uart0 {
+ &usb2 {
  	status = "okay";
- };
+ 	usb-role-switch;
+-	connector{
++	connector {
+ 		compatible = "gpio-usb-b-connector", "usb-b-connector";
+ 		type = "micro";
+ 		id-gpios = <&pio 44 GPIO_ACTIVE_HIGH>;
+diff --git a/arch/arm/boot/dts/mediatek/mt6323.dtsi b/arch/arm/boot/dts/mediatek/mt6323.dtsi
+index 7fda40ab5fe8..c230c865116d 100644
+--- a/arch/arm/boot/dts/mediatek/mt6323.dtsi
++++ b/arch/arm/boot/dts/mediatek/mt6323.dtsi
+@@ -21,10 +21,10 @@ mt6323_leds: leds {
+ 			status = "disabled";
+ 		};
  
--&mu1_m0{
-+&mu1_m0 {
- 	status = "okay";
- };
+-		mt6323regulator: mt6323regulator{
++		mt6323regulator: mt6323regulator {
+ 			compatible = "mediatek,mt6323-regulator";
  
--&mu2_m0{
-+&mu2_m0 {
- 	status = "okay";
- };
- 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-index 4839a962a170..0b71f50d936e 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
-@@ -40,7 +40,7 @@ pmic: pmic@25 {
- 		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 
- 		regulators {
--			buck1: BUCK1{
-+			buck1: BUCK1 {
- 				regulator-name = "VDD_SOC";
- 				regulator-min-microvolt = <850000>;
- 				regulator-max-microvolt = <950000>;
-@@ -59,7 +59,7 @@ buck2: BUCK2 {
- 				regulator-ramp-delay = <3125>;
+-			mt6323_vproc_reg: buck_vproc{
++			mt6323_vproc_reg: buck_vproc {
+ 				regulator-name = "vproc";
+ 				regulator-min-microvolt = < 700000>;
+ 				regulator-max-microvolt = <1350000>;
+@@ -33,7 +33,7 @@ mt6323_vproc_reg: buck_vproc{
+ 				regulator-boot-on;
  			};
  
--			buck4: BUCK4{
-+			buck4: BUCK4 {
- 				regulator-name = "VDD_3V3";
+-			mt6323_vsys_reg: buck_vsys{
++			mt6323_vsys_reg: buck_vsys {
+ 				regulator-name = "vsys";
+ 				regulator-min-microvolt = <1400000>;
+ 				regulator-max-microvolt = <2987500>;
+@@ -42,13 +42,13 @@ mt6323_vsys_reg: buck_vsys{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vpa_reg: buck_vpa{
++			mt6323_vpa_reg: buck_vpa {
+ 				regulator-name = "vpa";
+ 				regulator-min-microvolt = < 500000>;
+ 				regulator-max-microvolt = <3650000>;
+ 			};
+ 
+-			mt6323_vtcxo_reg: ldo_vtcxo{
++			mt6323_vtcxo_reg: ldo_vtcxo {
+ 				regulator-name = "vtcxo";
+ 				regulator-min-microvolt = <2800000>;
+ 				regulator-max-microvolt = <2800000>;
+@@ -57,28 +57,28 @@ mt6323_vtcxo_reg: ldo_vtcxo{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vcn28_reg: ldo_vcn28{
++			mt6323_vcn28_reg: ldo_vcn28 {
+ 				regulator-name = "vcn28";
+ 				regulator-min-microvolt = <2800000>;
+ 				regulator-max-microvolt = <2800000>;
+ 				regulator-enable-ramp-delay = <185>;
+ 			};
+ 
+-			mt6323_vcn33_bt_reg: ldo_vcn33_bt{
++			mt6323_vcn33_bt_reg: ldo_vcn33_bt {
+ 				regulator-name = "vcn33_bt";
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3600000>;
+ 				regulator-enable-ramp-delay = <185>;
+ 			};
+ 
+-			mt6323_vcn33_wifi_reg: ldo_vcn33_wifi{
++			mt6323_vcn33_wifi_reg: ldo_vcn33_wifi {
+ 				regulator-name = "vcn33_wifi";
+ 				regulator-min-microvolt = <3300000>;
+ 				regulator-max-microvolt = <3600000>;
+ 				regulator-enable-ramp-delay = <185>;
+ 			};
+ 
+-			mt6323_va_reg: ldo_va{
++			mt6323_va_reg: ldo_va {
+ 				regulator-name = "va";
+ 				regulator-min-microvolt = <2800000>;
+ 				regulator-max-microvolt = <2800000>;
+@@ -87,14 +87,14 @@ mt6323_va_reg: ldo_va{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vcama_reg: ldo_vcama{
++			mt6323_vcama_reg: ldo_vcama {
+ 				regulator-name = "vcama";
+ 				regulator-min-microvolt = <1500000>;
+ 				regulator-max-microvolt = <2800000>;
+ 				regulator-enable-ramp-delay = <216>;
+ 			};
+ 
+-			mt6323_vio28_reg: ldo_vio28{
++			mt6323_vio28_reg: ldo_vio28 {
+ 				regulator-name = "vio28";
+ 				regulator-min-microvolt = <2800000>;
+ 				regulator-max-microvolt = <2800000>;
+@@ -103,7 +103,7 @@ mt6323_vio28_reg: ldo_vio28{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vusb_reg: ldo_vusb{
++			mt6323_vusb_reg: ldo_vusb {
+ 				regulator-name = "vusb";
  				regulator-min-microvolt = <3300000>;
  				regulator-max-microvolt = <3300000>;
-@@ -67,7 +67,7 @@ buck4: BUCK4{
- 				regulator-always-on;
+@@ -111,7 +111,7 @@ mt6323_vusb_reg: ldo_vusb{
+ 				regulator-boot-on;
  			};
  
--			buck5: BUCK5{
-+			buck5: BUCK5 {
- 				regulator-name = "VDD_1V8";
+-			mt6323_vmc_reg: ldo_vmc{
++			mt6323_vmc_reg: ldo_vmc {
+ 				regulator-name = "vmc";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3300000>;
+@@ -119,7 +119,7 @@ mt6323_vmc_reg: ldo_vmc{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vmch_reg: ldo_vmch{
++			mt6323_vmch_reg: ldo_vmch {
+ 				regulator-name = "vmch";
+ 				regulator-min-microvolt = <3000000>;
+ 				regulator-max-microvolt = <3300000>;
+@@ -127,7 +127,7 @@ mt6323_vmch_reg: ldo_vmch{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vemc3v3_reg: ldo_vemc3v3{
++			mt6323_vemc3v3_reg: ldo_vemc3v3 {
+ 				regulator-name = "vemc3v3";
+ 				regulator-min-microvolt = <3000000>;
+ 				regulator-max-microvolt = <3300000>;
+@@ -135,49 +135,49 @@ mt6323_vemc3v3_reg: ldo_vemc3v3{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vgp1_reg: ldo_vgp1{
++			mt6323_vgp1_reg: ldo_vgp1 {
+ 				regulator-name = "vgp1";
+ 				regulator-min-microvolt = <1200000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-enable-ramp-delay = <216>;
+ 			};
+ 
+-			mt6323_vgp2_reg: ldo_vgp2{
++			mt6323_vgp2_reg: ldo_vgp2 {
+ 				regulator-name = "vgp2";
+ 				regulator-min-microvolt = <1200000>;
+ 				regulator-max-microvolt = <3000000>;
+ 				regulator-enable-ramp-delay = <216>;
+ 			};
+ 
+-			mt6323_vgp3_reg: ldo_vgp3{
++			mt6323_vgp3_reg: ldo_vgp3 {
+ 				regulator-name = "vgp3";
+ 				regulator-min-microvolt = <1200000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-enable-ramp-delay = <216>;
+ 			};
+ 
+-			mt6323_vcn18_reg: ldo_vcn18{
++			mt6323_vcn18_reg: ldo_vcn18 {
+ 				regulator-name = "vcn18";
  				regulator-min-microvolt = <1800000>;
  				regulator-max-microvolt = <1800000>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-index b4409349eb3f..cccdc3dd1c6c 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-debix-model-a.dts
-@@ -129,7 +129,7 @@ buck2: BUCK2 {
- 				nxp,dvs-standby-voltage = <850000>;
+ 				regulator-enable-ramp-delay = <216>;
  			};
  
--			buck4: BUCK4{
-+			buck4: BUCK4 {
- 				regulator-name = "BUCK4";
- 				regulator-min-microvolt = <600000>;
- 				regulator-max-microvolt = <3400000>;
-@@ -137,7 +137,7 @@ buck4: BUCK4{
- 				regulator-always-on;
+-			mt6323_vsim1_reg: ldo_vsim1{
++			mt6323_vsim1_reg: ldo_vsim1 {
+ 				regulator-name = "vsim1";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3000000>;
+ 				regulator-enable-ramp-delay = <216>;
  			};
  
--			buck5: BUCK5{
-+			buck5: BUCK5 {
- 				regulator-name = "BUCK5";
- 				regulator-min-microvolt = <600000>;
- 				regulator-max-microvolt = <3400000>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi
-index 0187890a90c5..efc00f4abeb1 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-sr-som.dtsi
-@@ -133,7 +133,7 @@ eeprom@50 {
- 	};
- };
+-			mt6323_vsim2_reg: ldo_vsim2{
++			mt6323_vsim2_reg: ldo_vsim2 {
+ 				regulator-name = "vsim2";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <3000000>;
+ 				regulator-enable-ramp-delay = <216>;
+ 			};
  
--&pgc_gpu{
-+&pgc_gpu {
- 	power-supply = <&sw1a_reg>;
- };
+-			mt6323_vrtc_reg: ldo_vrtc{
++			mt6323_vrtc_reg: ldo_vrtc {
+ 				regulator-name = "vrtc";
+ 				regulator-min-microvolt = <2800000>;
+ 				regulator-max-microvolt = <2800000>;
+@@ -185,28 +185,28 @@ mt6323_vrtc_reg: ldo_vrtc{
+ 				regulator-boot-on;
+ 			};
  
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 225eceeaf0d5..5b5414955420 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -631,7 +631,7 @@ snvs: snvs@30370000 {
- 				compatible = "fsl,sec-v4.0-mon", "syscon", "simple-mfd";
- 				reg = <0x30370000 0x10000>;
+-			mt6323_vcamaf_reg: ldo_vcamaf{
++			mt6323_vcamaf_reg: ldo_vcamaf {
+ 				regulator-name = "vcamaf";
+ 				regulator-min-microvolt = <1200000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-enable-ramp-delay = <216>;
+ 			};
  
--				snvs_rtc: snvs-rtc-lp{
-+				snvs_rtc: snvs-rtc-lp {
- 					compatible = "fsl,sec-v4.0-mon-rtc-lp";
- 					regmap = <&snvs>;
- 					offset = <0x34>;
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts b/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
-index 7d00e17f0447..50bf7919c863 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
-@@ -180,7 +180,7 @@ IMX8QXP_ENET0_RGMII_RXD3_CONN_ENET0_RGMII_RXD3		0x06000020
- 		>;
- 	};
+-			mt6323_vibr_reg: ldo_vibr{
++			mt6323_vibr_reg: ldo_vibr {
+ 				regulator-name = "vibr";
+ 				regulator-min-microvolt = <1200000>;
+ 				regulator-max-microvolt = <3300000>;
+ 				regulator-enable-ramp-delay = <36>;
+ 			};
  
--	pinctrl_leds: ledsgrp{
-+	pinctrl_leds: ledsgrp {
- 		fsl,pins = <
- 			IMX8QXP_ESAI0_TX2_RX3_LSIO_GPIO0_IO06			0x00000021
- 			IMX8QXP_ESAI0_TX3_RX2_LSIO_GPIO0_IO07			0x00000021
+-			mt6323_vrf18_reg: ldo_vrf18{
++			mt6323_vrf18_reg: ldo_vrf18 {
+ 				regulator-name = "vrf18";
+ 				regulator-min-microvolt = <1825000>;
+ 				regulator-max-microvolt = <1825000>;
+ 				regulator-enable-ramp-delay = <187>;
+ 			};
+ 
+-			mt6323_vm_reg: ldo_vm{
++			mt6323_vm_reg: ldo_vm {
+ 				regulator-name = "vm";
+ 				regulator-min-microvolt = <1200000>;
+ 				regulator-max-microvolt = <1800000>;
+@@ -215,7 +215,7 @@ mt6323_vm_reg: ldo_vm{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vio18_reg: ldo_vio18{
++			mt6323_vio18_reg: ldo_vio18 {
+ 				regulator-name = "vio18";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
+@@ -224,14 +224,14 @@ mt6323_vio18_reg: ldo_vio18{
+ 				regulator-boot-on;
+ 			};
+ 
+-			mt6323_vcamd_reg: ldo_vcamd{
++			mt6323_vcamd_reg: ldo_vcamd {
+ 				regulator-name = "vcamd";
+ 				regulator-min-microvolt = <1200000>;
+ 				regulator-max-microvolt = <1800000>;
+ 				regulator-enable-ramp-delay = <216>;
+ 			};
+ 
+-			mt6323_vcamio_reg: ldo_vcamio{
++			mt6323_vcamio_reg: ldo_vcamio {
+ 				regulator-name = "vcamio";
+ 				regulator-min-microvolt = <1800000>;
+ 				regulator-max-microvolt = <1800000>;
 -- 
 2.34.1
 
