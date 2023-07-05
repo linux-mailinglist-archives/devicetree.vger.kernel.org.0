@@ -2,143 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46F1074845D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 14:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 398B774849D
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:05:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231978AbjGEMr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 08:47:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51092 "EHLO
+        id S229910AbjGENFz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 09:05:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58592 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230268AbjGEMr0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 08:47:26 -0400
-Received: from mail-lj1-x22a.google.com (mail-lj1-x22a.google.com [IPv6:2a00:1450:4864:20::22a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F344E10EC
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 05:47:24 -0700 (PDT)
-Received: by mail-lj1-x22a.google.com with SMTP id 38308e7fff4ca-2b6f9edac8dso24794391fa.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 05:47:24 -0700 (PDT)
+        with ESMTP id S231367AbjGENFy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:05:54 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C74481722
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 06:05:36 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-307d20548adso7375678f8f.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 06:05:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688561243; x=1691153243;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=k7AhrM/NDMrVR6eVPD7oN790ZYJE1/FcirAMl2b04pQ=;
-        b=mCeVcIOm1PPFrD2UKvevfj8L2uOKCTQBZ4OJCsj5Hp29KJ0/XkNI5HxrDMTdPmM9N1
-         1ex36PNrVwZf+ZrHdkJQDp1Rc0WWzru+ZUY16eEh7R1vze2VLkVwHiwsPG6Lu/EEfhB9
-         5yIN/V1FABMjagHcNwNeGHOlZxS1yVcMVIrgSyxhyEES05ngtAN0yF3JN76m1hPLc/Pw
-         QtlbzEPj11xkqsHFVOAwyZgJnplHZTLdQkAdYBxDN8Vb/0ct79wzVjZDNMHc4Um7nfZJ
-         zwJN01lwdZFoj+6/9VXv4XpC8/Z0oyNKYHsZCiALRA1Xv+KRdgB6nY3ExDtAlYjfXZzg
-         H1TA==
+        d=linaro.org; s=google; t=1688562335; x=1691154335;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=CA54dLzrUoc/7PYdDYtu4eUol1rypI3WEhlD1W/X9Q0=;
+        b=jJTkU8pPVyxow9SduDzddj5wGH2HNtJz+VH/cHmtziG24I3Qf9LYKJjoO9GIWNkV+9
+         9A6ibO+kz8t9Y5hV19tMqTKqmLZXQBBSG6M1976e0Ouw3Q3I8b62ilI4SlXjIz4idQyc
+         hD7VaE5Y4OWh5E6s9PFMsQuDwfeTfrgfam2+CQK0xlsofa5dVcssLlQsS3qobBHHaVvc
+         OJSZiyQ2FDifTfbvgyFqI9BvzFhjAtBSoxshmSRhi4Z5HNng4AbGXi8remdhlWzpqAu4
+         2BTB0D3zTOrTIKgKb3OFZNAG8//668S+fzKQjoW9HkkzOWugohTNDh2jPnwEN3XFbtL+
+         xXzw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688561243; x=1691153243;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=k7AhrM/NDMrVR6eVPD7oN790ZYJE1/FcirAMl2b04pQ=;
-        b=RUwRcG23tPa+bRBxS5xOel9ILp+Ltx90cbtqjShsPBMZD8gKDvQpEQZg8BZMFJI67P
-         wQvNa/OkZKfDyTrGr++2MpMOZlJ9sXjrQWtQjoOM07S90p/9xfyhMmkKTQGlcsg36G+D
-         lvFPg4tq+pEIhY3fkReNaD5KpR0TwoF+axZ7Hoa+2pUc/Ggi3saJ8Eo6u+cXYSnGbV5o
-         has86GRA5omJxBqgV+p41mnFRedGbnrcP986tbF6JjHgKM9Rbu0nrLApvuuK8D1H1tWh
-         jBr4C9SGX4nFQEf6D2v4uNnz0FVEhjUWHvrAPb57FBNSL9D+qwLtcnBuuZwFuBtr9mzo
-         NXaQ==
-X-Gm-Message-State: ABy/qLZfMrZFxleaEsUboUMfUO7XSamXrrS/dO85EI/95BNCWQE3WIUz
-        Vl7+7KWlGQpuwwG445LCTv5SRg==
-X-Google-Smtp-Source: APBJJlGzWamSYpfesn8gFD1Q+Sg/TrWeLhLTFZLCfS3wI3IL97fduA0ZhIzKK1xWYaARlKInulx8JQ==
-X-Received: by 2002:a2e:8783:0:b0:2b7:2ea:2e27 with SMTP id n3-20020a2e8783000000b002b702ea2e27mr164767lji.19.1688561243243;
-        Wed, 05 Jul 2023 05:47:23 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id s6-20020a2e83c6000000b002b69febf515sm5714758ljh.125.2023.07.05.05.47.21
+        d=1e100.net; s=20221208; t=1688562335; x=1691154335;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CA54dLzrUoc/7PYdDYtu4eUol1rypI3WEhlD1W/X9Q0=;
+        b=AT1ETv3qgNnzvLzpuh4LCCqaD9IyV2EvcEglsF7BOpp8vrwmQuHAR/qgz0HVT9/t46
+         Ng9aiyCCACEyJp2vM4SrsnaiaVIDyJn1F7tA7Fh3yfJhDF6p6vo9bYK6Sqqmeu1LV2eK
+         i+nultF0flv4fU4F7RcRZfj62EkaQvMHmbATt7lWsqbYfdw+OkH5hefee/QF6XCr7S6G
+         qWW8ePP4kvEY7lj+XT7Sr676gZRXiESo62TMRMSVMayGM/QBywqomiWfp9xER5WYUv7g
+         S2b5WWgd2Q7UC3QCim3cuRJo99fAMsXixMFbeqDJEAZy4klHydgQEGszqcbMyciSoA1S
+         5DxQ==
+X-Gm-Message-State: ABy/qLZRygRRg/qShF8YKBsLAk0sglbhUChyot+UZyhe22qBLIxN/1nW
+        Mpo6SCw5w+HXkPN4gEwSFK/6Mw==
+X-Google-Smtp-Source: APBJJlGJU83ICpcO8IQe64PfKBuOhINm2kolngsASCVWqz4EpB8g6LPTdIMJsusjCxZ7gidF9bcwfg==
+X-Received: by 2002:a5d:61d1:0:b0:314:25d:c8f4 with SMTP id q17-20020a5d61d1000000b00314025dc8f4mr12984929wrv.2.1688562335178;
+        Wed, 05 Jul 2023 06:05:35 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:65eb:d140:2d45:ee85? ([2a01:e0a:982:cbb0:65eb:d140:2d45:ee85])
+        by smtp.gmail.com with ESMTPSA id cx16-20020a056000093000b00301a351a8d6sm31201883wrb.84.2023.07.05.06.05.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 05:47:22 -0700 (PDT)
-Message-ID: <bec987d3-41b4-5edd-8daa-ee67f19c5005@linaro.org>
-Date:   Wed, 5 Jul 2023 14:47:21 +0200
+        Wed, 05 Jul 2023 06:05:34 -0700 (PDT)
+Message-ID: <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
+Date:   Wed, 5 Jul 2023 15:05:33 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH RFT RFC 1/3] arm64: dts: qcom: sc8280xp: Add lower cluster
- idle states
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
+ LGD panel driver for Sony Xperia XZ3)
 Content-Language: en-US
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Maxime Ripard <mripard@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        Caleb Connolly <caleb@connolly.tech>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Johan Hovold <johan+linaro@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-References: <20230619-topic-sc8280xp-idle-v1-0-35a8b98451d0@linaro.org>
- <20230619-topic-sc8280xp-idle-v1-1-35a8b98451d0@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <20230619-topic-sc8280xp-idle-v1-1-35a8b98451d0@linaro.org>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
+ <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
+ <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+ <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
+ <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
+ <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
+ <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
+Organization: Linaro Developer Services
+In-Reply-To: <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19.06.2023 18:18, Konrad Dybcio wrote:
-> Apart from a total LLCC + APSS power collapse, SC8280XP can also put
-> either the DSU rail (CPU + L3), or VDD_CX in power collapse.
+On 05/07/2023 14:04, Maxime Ripard wrote:
+> Hi,
 > 
-> Add support for these lower idle states to allow more flexibility.
+> On Tue, May 30, 2023 at 03:36:04PM +0300, Dmitry Baryshkov wrote:
+>> On 30/05/2023 15:15, AngeloGioacchino Del Regno wrote:
+>>> Il 30/05/23 13:44, Dmitry Baryshkov ha scritto:
+>>>> On Tue, 30 May 2023 at 10:24, Neil Armstrong
+>>>> <neil.armstrong@linaro.org> wrote:
+>>>>>
+>>>>> Hi Marijn, Dmitry, Caleb, Jessica,
+>>>>>
+>>>>> On 29/05/2023 23:11, Marijn Suijten wrote:
+>>>>>> On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
+>>>>>> <snip>
+>>>>>>>> +   if (ctx->dsi->dsc) {
+>>>>>>>
+>>>>>>> dsi->dsc is always set, thus this condition can be dropped.
+>>>>>>
+>>>>>> I want to leave room for possibly running the panel without DSC (at a
+>>>>>> lower resolution/refresh rate, or at higher power consumption if there
+>>>>>> is enough BW) by not assigning the pointer, if we get access to panel
+>>>>>> documentation: probably one of the magic commands sent in this driver
+>>>>>> controls it but we don't know which.
+>>>>>
+>>>>> I'd like to investigate if DSC should perhaps only be enabled if we
+>>>>> run non certain platforms/socs ?
+>>>>>
+>>>>> I mean, we don't know if the controller supports DSC and those
+>>>>> particular
+>>>>> DSC parameters so we should probably start adding something like :
+>>>>>
+>>>>> static drm_dsc_config dsc_params_qcom = {}
+>>>>>
+>>>>> static const struct of_device_id panel_of_dsc_params[] = {
+>>>>>           { .compatible = "qcom,sm8150", , .data = &dsc_params_qcom },
+>>>>>           { .compatible = "qcom,sm8250", , .data = &dsc_params_qcom },
+>>>>>           { .compatible = "qcom,sm8350", , .data = &dsc_params_qcom },
+>>>>>           { .compatible = "qcom,sm8450", , .data = &dsc_params_qcom },
+>>>>> };
+>>>>
+>>>> I think this would damage the reusability of the drivers. The panel
+>>>> driver does not actually care if the SoC is SM8350, sunxi-something or
+>>>> RCar.
+>>>> Instead it cares about host capabilities.
+>>>>
+>>>> I think instead we should extend mipi_dsi_host:
+>>>>
+>>>> #define MIPI_DSI_HOST_MODE_VIDEO BIT(0)
+>>>> #define MIPI_DSI_HOST_MODE_CMD  BIT(1)
+>>>> #define MIPI_DSI_HOST_VIDEO_SUPPORTS_COMMANDS BIT(2)
+>>>> // FIXME: do we need to provide additional caps here ?
+>>>>
+>>>> #define MIPI_DSI_DSC_1_1 BIT(0)
+>>>> #define MIPI_DSI_DSC_1_2 BIT(1)
+>>>> #define MIPI_DSI_DSC_NATIVE_422 BIT(2)
+>>>> #define MIPI_DSI_DSC_NATIVE_420 BIT(3)
+>>>> #define MIPI_DSI_DSC_FRAC_BPP BIT(4)
+>>>> // etc.
+>>>>
+>>>> struct mipi_dsi_host {
+>>>>    // new fields only
+>>>>     unsigned long mode_flags;
+>>>>     unsigned long dsc_flags;
+>>>> };
+>>>>
+>>>> Then the panel driver can adapt itself to the host capabilities and
+>>>> (possibly) select one of the internally supported DSC profiles.
+>>>>
+>>>
+>>> I completely agree about extending mipi_dsi_host, other SoCs could reuse
+>>> that and
+>>> support for DSC panels would become a lot cleaner.
+>>
+>> Sounds good. I will wait for one or two more days (to get the possible
+>> feedback on fields/flags/etc) and post an RFC patch to dri-devel.
 > 
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> ---
->  arch/arm64/boot/dts/qcom/sc8280xp.dtsi | 20 ++++++++++++++++++--
->  1 file changed, 18 insertions(+), 2 deletions(-)
+> I just came across that discussion, and couldn't find those patches, did
+> you ever send them?
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> index ac0596dfdbc4..d524f851cb53 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8280xp.dtsi
-> @@ -285,7 +285,23 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->  		};
->  
->  		domain-idle-states {
-> -			CLUSTER_SLEEP_0: cluster-sleep-0 {
-> +			CLUSTER_SLEEP_L3_PC: cluster-sleep-0 {
-I guess this is misleading.
+> Either way, I'm not really sure it's a good idea to multiply the
+> capabilities flags of the DSI host, and we should just stick to the
+> spec. If the spec says that we have to support DSC while video is
+> output, then that's what the panels should expect.
 
-cluster-sleep-0 would be APSS_OFF (cores and caches have no power)
-cluster-sleep-1 is ok (the CX rail is 0.0W)
-cluster-sleep-2 would be AOSS_SLEEP (a.k.a. we've entered the SLEEP
-state within RPMh and the system needs to be woken up by PDC)
+Except some panels supports DSC & non-DSC, Video and Command mode, and
+all that is runtime configurable. How do you handle that ?
 
-Konrad
-> +				compatible = "domain-idle-state";
-> +				arm,psci-suspend-param = <0x41000044>;
-> +				entry-latency-us = <2752>;
-> +				exit-latency-us = <3048>;
-> +				min-residency-us = <6118>;
-> +			};
-> +
-> +			CLUSTER_SLEEP_CX_OFF: cluster-sleep-1 {
-> +				compatible = "domain-idle-state";
-> +				arm,psci-suspend-param = <0x41002344>;
-> +				entry-latency-us = <3263>;
-> +				exit-latency-us = <4562>;
-> +				min-residency-us = <8467>;
-> +			};
-> +
-> +			CLUSTER_SLEEP_APSS_OFF: cluster-sleep-2 {
->  				compatible = "domain-idle-state";
->  				arm,psci-suspend-param = <0x4100c344>;
->  				entry-latency-us = <3263>;
-> @@ -632,7 +648,7 @@ CPU_PD7: power-domain-cpu7 {
->  
->  		CLUSTER_PD: power-domain-cpu-cluster0 {
->  			#power-domain-cells = <0>;
-> -			domain-idle-states = <&CLUSTER_SLEEP_0>;
-> +			domain-idle-states = <&CLUSTER_SLEEP_L3_PC &CLUSTER_SLEEP_CX_OFF &CLUSTER_SLEEP_APSS_OFF>;
->  		};
->  	};
->  
 > 
+> If a host isn't able to provide that, it's a bug and we should fix the
+> controller driver instead of creating a workaround in the core for
+> broken drivers.
+> 
+> Another concern I have is that, those broken drivers are usually the
+> undocumented ones that already have trouble supporting the most trivial
+> setup. Creating more combinations both at the controller and panel level
+> will just make it harder for those drivers.
+> 
+> Maxime
+
