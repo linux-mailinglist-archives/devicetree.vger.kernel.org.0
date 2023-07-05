@@ -2,106 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 495C67480AB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:18:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BF567480B6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231367AbjGEJSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 05:18:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45196 "EHLO
+        id S230487AbjGEJU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 05:20:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46988 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231559AbjGEJSJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:18:09 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DE6CA3;
-        Wed,  5 Jul 2023 02:18:08 -0700 (PDT)
-Received: from pps.filterd (m0279863.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3656rfKs004217;
-        Wed, 5 Jul 2023 09:18:05 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=6zn7ArBE4475+Ku3zKKxsNF3LY3cQy6G6oxLvWSz2mg=;
- b=YAcpR7Nx9WIYIwOexQWz7KEGdAkFAwOlql8oLblCZfnB0a2aeIctVMgZBUA/jlvyiYy8
- uF4oPa94YICHsQEEH66OpFzGZCZF6riioDMJnJA8hGa7mjxHnudK+BNoE8eesdFWxcGQ
- 9+hRdQU/4/vX+YAUnHU3+3gFZqspA615PNAXG29pEXqBxvJn0tqB3O3CIDDOApQ42xZm
- 8P1njlUr193SG545FFxrfKY9kxvoP7zBHxB0RBozVc/khGcOGeIuPRAiejLjXIiVV/gC
- GcrOe+9PW0JV6byvD+7WgFapVwFb/CeeSMTZ1MV8OKhLQb9YgYkj0rgOIdBXVsxqJsTd iQ== 
-Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rmhf12e95-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Jul 2023 09:18:05 +0000
-Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
-        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3659I4CB012083
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 5 Jul 2023 09:18:04 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.7; Wed, 5 Jul 2023 02:18:01 -0700
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: qru1000-idp: Add reserved gpio list
-Date:   Wed, 5 Jul 2023 14:47:30 +0530
-Message-ID: <20230705091730.32087-3-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230705091730.32087-1-quic_kbajaj@quicinc.com>
-References: <20230705091730.32087-1-quic_kbajaj@quicinc.com>
+        with ESMTP id S231569AbjGEJUY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:20:24 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD0A170E
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 02:20:20 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51d9890f368so7233949a12.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 02:20:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688548819; x=1691140819;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=BklEsHObd9lavchnm/4o+Pr3bOXNI+WG9VrYnDlfX7o=;
+        b=EQeZouLRROqNhu91gJoDc7GAUq2uokA65yYUzgJNMk7xsGU/qBnXfF5M9jhB4Q1M4Y
+         Mbh0jto9tJqsCxHAr/CxCiD/nRQCRpB2LppPA/aizWlfVr5/oWsDWhAkPF+qTXhQaWYe
+         1vcQz8I07zXB0h49fw8VjjGeWkiD/Iq9vHpUPuYOdML/Ek1L9o7/myTN2MmV7l24NWvJ
+         /yZ7RmYgmzxpCyvh4bG32p/T3Zj/HS2N1nDYmUCCaBv+yiMGaKiKQrRcmVobaGkrPIms
+         k9CtXajXnQmlWZsKmVRBkwC3Ep2UaeOXIXNZv4dGgpNEWNAyvevLGGHcAUUOX7fv3Kd2
+         /hGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688548819; x=1691140819;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=BklEsHObd9lavchnm/4o+Pr3bOXNI+WG9VrYnDlfX7o=;
+        b=eHQGG7DiSTD6xcrxaLlWnyW/Wz9k/S6Vw2/FhrnHFweUhxoL4bupJVDDb/OSLcXFBr
+         sXAj2fMP7rJkO5kjCKPB78ODi9jiWF+DNlmXsB/wpRfQXVyoiNW3LLxGKSWdtiQyOhJh
+         0Xznius90cGQeyiBJwBHwRaAXrnSs0QG7mq6TRrrjDlChCOoGsILrGDClU3nSTdzt9EX
+         l9XB7WCkj8TWojAeX+GRClvUNlAHuPkg76vLSq8tGSeovtXB/MuOvG1e70RvNifYWrUx
+         ZmN0m0rGrJBIwwPMfzuWMwz6MsRAFKiywMeJOwFct+3vAnyvU5QCZMP6qZjn5Qb08G7z
+         WhMA==
+X-Gm-Message-State: ABy/qLYm/tyn8jnoGqCsUSlFMv7+SikI5ao+zwxSBJ6Wg+5fM0fERUOH
+        xw4a0+BG/FTX8Ge5rOA1cJRryQ==
+X-Google-Smtp-Source: APBJJlGUR6tdUIBs1Ggtp7BC+0WhkW9OOgzEC1K0guvcFh3QVyRQqIOjQG5pDHe0ySWPCgMprM+v+Q==
+X-Received: by 2002:a17:907:2ce6:b0:965:6075:d0e1 with SMTP id hz6-20020a1709072ce600b009656075d0e1mr13807518ejc.72.1688548818868;
+        Wed, 05 Jul 2023 02:20:18 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id e21-20020a170906c01500b009929ab17bdfsm8735573ejz.168.2023.07.05.02.20.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 02:20:18 -0700 (PDT)
+Message-ID: <2923201f-8bf4-a55d-a033-28ae5e569466@linaro.org>
+Date:   Wed, 5 Jul 2023 11:20:16 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01c.na.qualcomm.com (10.47.97.35)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: TxsO0vJrHYVxFoU3rnWBnMOf4z5J5rh3
-X-Proofpoint-ORIG-GUID: TxsO0vJrHYVxFoU3rnWBnMOf4z5J5rh3
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-04_16,2023-07-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 malwarescore=0
- lowpriorityscore=0 clxscore=1015 impostorscore=0 adultscore=0
- suspectscore=0 mlxscore=0 phishscore=0 mlxlogscore=806 spamscore=0
- bulkscore=0 priorityscore=1501 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2307050084
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH V1 1/1] regulator: Add awinic,aw3750x.yaml
+Content-Language: en-US
+To:     like@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     liweilei@awinic.com, liangdong@awinic.com, yijiangtao@awinic.com
+References: <20230705081942.2608531-1-like@awinic.com>
+ <20230705081942.2608531-2-like@awinic.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230705081942.2608531-2-like@awinic.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add reserve gpios for QRU1000 IDP platform. These gpios are
-needed for modem subsystem.
+On 05/07/2023 10:19, like@awinic.com wrote:
+> From: Ke Li <like@awinic.com>
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qru1000-idp.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Please use subject prefixes matching the subsystem. You can get them for
+example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
+your patch is touching.
 
-diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-index 2cc893ae4d10..80dadd2f30a3 100644
---- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-@@ -448,6 +448,10 @@ &qupv3_id_0 {
- 	status = "okay";
- };
+Missing commit msg.
 
-+&tlmm {
-+	gpio-reserved-ranges = <28 2>;
-+};
-+
- &uart7 {
- 	status = "okay";
- };
---
-2.40.1
+> 
+> Signed-off-by: Ke Li <like@awinic.com>
+> ---
+>  .../bindings/regulator/awinic,aw3750x.yaml    | 151 ++++++++++++++++++
+>  1 file changed, 151 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml b/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
+> new file mode 100644
+> index 000000000000..cdb3d9dbf88f
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
+> @@ -0,0 +1,151 @@
+> +# SPDX-License-Identifier: GPL-2.0-only
+
+Dual license.
+
+Please run scripts/checkpatch.pl and fix reported warnings. Some
+warnings can be ignored, but the code here looks like it needs a fix.
+Feel free to get in touch if the warning is not clear.
+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/regulator/awinic,aw3750x.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Awinic AW3750X Power Management IC
+> +
+> +maintainers:
+> +  - Weidong Wang <wangweidong.a@awinic.com>
+> +  - Ke Li <like@awinic.com>
+> +
+> +description: |
+> +  AW3750X is designed to generate both positive and negative bias voltages for.
+> +  TFT-LCD panels or other general dual-supply applications. It consists a highly
+> +  integrated synchronous boost converter with input voltage from 2.7V to 5.5V.
+> +
+> +properties:
+> +  compatible:
+> +    const: awinic,aw3750x_led
+
+I don't understand why there is _led suffix. Isn't this regulator? Can
+it be anything else?
+
+Also, x looks like a wildcard, which is not allowed in compatibles.
+
+> +
+> +  enp:
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    description:
+> +      Properties for single LDO regulator.
+> +
+> +    properties:
+> +      regulator-name: true
+
+Drop
+
+> +
+> +    required:
+> +      - regulator-name
+
+Is it really required?
+
+> +
+> +    unevaluatedProperties: false
+> +
+> +  enn:
+> +    type: object
+> +    $ref: regulator.yaml#
+> +    description:
+> +      Properties for single BOOST regulator.
+> +
+> +    properties:
+> +      regulator-name: true
+> +
+> +    required:
+> +      - regulator-name
+> +
+> +    unevaluatedProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - enp
+> +  - enn
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/pinctrl/mt8186-pinfunc.h>
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    pio: pinctrl@10005000 {
+> +      aw_enn_default: aw_enn_default {
+> +        pins_cmd_dat {
+> +          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
+> +          slew-rate = <1>;
+> +          output-low;
+> +        };
+> +      };
+> +
+> +      aw_enn_output_high: aw_enn_output_high {
+> +        pins_cmd_dat {
+> +          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
+> +          slew-rate = <1>;
+> +          output-high;
+> +        };
+> +      };
+> +
+> +      aw_enn_output_low: aw_enn_output_low {
+> +        pins_cmd_dat {
+> +          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
+> +          slew-rate = <1>;
+> +          output-low;
+> +        };
+> +      };
+> +
+> +      aw_enp_default: aw_enp_default {
+> +        pins_cmd_dat {
+> +          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
+> +          slew-rate = <1>;
+> +          output-low;
+> +        };
+> +      };
+
+All this is incorrect and unrelated. Drop it.
+
+> +
+> +      aw_enp_output_high: aw_enp_output_high {
+> +        pins_cmd_dat {
+> +          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
+> +          slew-rate = <1>;
+> +          output-high;
+> +        };
+> +      };
+> +
+> +      aw_enp_output_low: aw_enp_output_low {
+> +        pins_cmd_dat {
+> +          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
+> +          slew-rate = <1>;
+> +          output-low;
+> +        };
+> +      };
+> +
+> +    };
+> +
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        aw3750x@3e {
+
+Node names should be generic. See also explanation and list of examples
+in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+
+> +            compatible = "awinic,aw3750x_led";
+> +            aw3750x_gpio_ctrl = <0>;
+> +            reg = <0x3e>;
+> +            outp = <0x0E>;
+> +            outn = <0x0E>;
+> +            enn-gpio = <&pio 7 0>;
+> +            enp-gpio = <&pio 1 0>;
+
+It does not look like you tested the bindings, at least after quick
+look. Please run `make dt_binding_check` (see
+Documentation/devicetree/bindings/writing-schema.rst for instructions).
+Maybe you need to update your dtschema and yamllint.
+
+> +            pinctrl-names = "aw_enn_default", "aw_enn_output_high",
+> +                            "aw_enn_output_low", "aw_enp_default",
+> +                            "aw_enp_output_high", "aw_enp_output_low";
+> +            pinctrl-0 = <&aw_enn_default>;
+> +            pinctrl-1 = <&aw_enn_output_high>;
+> +            pinctrl-2 = <&aw_enn_output_low>;
+> +            pinctrl-3 = <&aw_enp_default>;
+> +            pinctrl-4 = <&aw_enp_output_high>;
+> +            pinctrl-5 = <&aw_enp_output_low>;
+> +
+> +            aw_lcdb_outp_vreg: enp {
+> +              label = "outp";
+
+Really?
+
+
+Best regards,
+Krzysztof
 
