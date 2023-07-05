@@ -2,179 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 29267747C0D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 06:30:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B53EF747C76
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 07:33:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229700AbjGEEay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 00:30:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43168 "EHLO
+        id S231334AbjGEFd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 01:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53648 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbjGEEax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 00:30:53 -0400
-Received: from mga01.intel.com (mga01.intel.com [192.55.52.88])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F015E10F2;
-        Tue,  4 Jul 2023 21:30:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1688531451; x=1720067451;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=84aTN3DMOl1ZTyWwGezoKTAMEsc6BiJKaJjLi0xsoro=;
-  b=VIUz6+JbfHBVPuAdhKEzRcSdJqPtzYc5N2Iqt7krRSUCHVj+Ah2sqCHz
-   L4eNr425u2r0yjDgsZwfgxIgCPOKWv4XWVcpI9eaMQVCpEB+NePmTwem5
-   XbQWZtQ27YoUGC4nXmnDPo5MgetlWJ74Ot5QDRk2KfaIzWFsyDvnlQBcM
-   Ry3hDSCC9jXIe0wg4RXhs0LBVF7YvLgoLbL6err01848WHzxPWn9C48Nd
-   O3WiN3kqrNkmFQFKfGvNHY+hNJ7sfa+RBD3WG+CmfdaJW2cQC21Lq3IQh
-   WLUxKgT+1hpAG++wRqpdYgphC3VHReYgzNQQDVuBXVEXqft1NCLV2RK15
-   A==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="393996440"
-X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; 
-   d="scan'208";a="393996440"
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2023 21:30:51 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10761"; a="722251111"
-X-IronPort-AV: E=Sophos;i="6.01,182,1684825200"; 
-   d="scan'208";a="722251111"
-Received: from lkp-server01.sh.intel.com (HELO c544d7fc5005) ([10.239.97.150])
-  by fmsmga007.fm.intel.com with ESMTP; 04 Jul 2023 21:30:48 -0700
-Received: from kbuild by c544d7fc5005 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qGuAB-0000MS-1T;
-        Wed, 05 Jul 2023 04:30:47 +0000
-Date:   Wed, 5 Jul 2023 12:29:52 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org
-Cc:     llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
-        Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
-        Marek Vasut <marex@denx.de>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] leds: pca995x: Add support for PCA995X chips
-Message-ID: <202307051216.4riLLcLt-lkp@intel.com>
-References: <20230705000407.153005-2-marex@denx.de>
+        with ESMTP id S230487AbjGEFdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 01:33:24 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA46BE3;
+        Tue,  4 Jul 2023 22:33:23 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3655R9s6010520;
+        Wed, 5 Jul 2023 05:33:02 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=qcppdkim1;
+ bh=fMI+CGIPKH5SbOwUbji5gwSRrdN0l3dcn45P2g6P+iM=;
+ b=cz3CLVNA2zDbZ7WRpSSSjeoKVWmelpkuHDQz9ULBJRHIMMWksFuLS8KZMVCR4Ewka7ao
+ L5ed7b6EBJ46IDvpr7X1LEPQWIGzZi2CQsVu+5xGTyvdihCTYPzs5yAbB1nJEarK76bW
+ evm+RGgyPE2E1+Q56vK3ozCT4k7fVqgpfR9ABqCkVqwoy3WIOmkLMst/g1qJg2OaT+n0
+ 4ZGKqTaCZaPHEhUi9+jWDmaRG4lorLeW5RMviBsXoJPwZP4v0PCU1xpopIpln1YvFsBo
+ w/sViZv0wknQYpM+YORceKOGxCd1ITLyFEUTwoC8OA3hYmdp369nwawdsRrdS9MUnjg0 Ig== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rn2cp809d-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 05 Jul 2023 05:33:01 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3655X1vM002420
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 5 Jul 2023 05:33:01 GMT
+Received: from hu-schowdhu-blr.qualcomm.com (10.80.80.8) by
+ nalasex01a.na.qualcomm.com (10.47.209.196) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.7; Tue, 4 Jul 2023 22:32:57 -0700
+From:   Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>,
+        Souradeep Chowdhury <quic_schowdhu@quicinc.com>
+Subject: [PATCH V7 0/2] firmware: Add support for boot_stats
+Date:   Wed, 5 Jul 2023 11:02:30 +0530
+Message-ID: <cover.1688533340.git.quic_schowdhu@quicinc.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230705000407.153005-2-marex@denx.de>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: -NcZajytzaNAr-41PGjW7zBddm3IesMk
+X-Proofpoint-ORIG-GUID: -NcZajytzaNAr-41PGjW7zBddm3IesMk
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-04_16,2023-07-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 spamscore=0 clxscore=1015 bulkscore=0 mlxlogscore=534
+ lowpriorityscore=0 suspectscore=0 impostorscore=0 mlxscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307050050
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Qualcomm's proprietary Android boot-loaders capture boot time
+stats, like the time when the bootloader started execution and at what
+point the bootloader handed over control to the kernel etc. in the IMEM
+region. This information is captured by the bootloader and populated on
+the device tree properties "pre-abl-time" and "abl-time" which can be
+be viewed from the user space like as follows:-
 
-kernel test robot noticed the following build warnings:
+/sys/firmware/devicetree/base/bootstats # cat abl_time
+17898
 
-[auto build test WARNING on lee-leds/for-leds-next]
-[also build test WARNING on krzk-dt/for-next]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+As a part of this patch series added the bindings for boot-stats which
+was suggested in the v6 of the series. The link for the same is as
+follows:-
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Marek-Vasut/leds-pca995x-Add-support-for-PCA995X-chips/20230705-080506
-base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/leds.git for-leds-next
-patch link:    https://lore.kernel.org/r/20230705000407.153005-2-marex%40denx.de
-patch subject: [PATCH v2 2/2] leds: pca995x: Add support for PCA995X chips
-config: s390-randconfig-r025-20230705 (https://download.01.org/0day-ci/archive/20230705/202307051216.4riLLcLt-lkp@intel.com/config)
-compiler: clang version 17.0.0 (https://github.com/llvm/llvm-project.git 4a5ac14ee968ff0ad5d2cc1ffa0299048db4c88a)
-reproduce: (https://download.01.org/0day-ci/archive/20230705/202307051216.4riLLcLt-lkp@intel.com/reproduce)
+https://lore.kernel.org/linux-arm-kernel/7d397e67-5d56-4975-98af-1ac9746c07f4@app.fastmail.com/
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202307051216.4riLLcLt-lkp@intel.com/
+Souradeep Chowdhury (2):
+  dt-bindings: firmware: bootstats: Add the dtschema
+  MAINTAINERS: Add the entry for boot_stats support
 
-All warnings (new ones prefixed by >>):
+ .../bindings/firmware/qcom,bootstats.yaml     | 38 +++++++++++++++++++
+ MAINTAINERS                                   |  6 +++
+ 2 files changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/firmware/qcom,bootstats.yaml
 
-   In file included from drivers/leds/leds-pca995x.c:16:
-   In file included from include/linux/regmap.h:20:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:75:
-   include/asm-generic/io.h:547:31: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     547 |         val = __raw_readb(PCI_IOBASE + addr);
-         |                           ~~~~~~~~~~ ^
-   include/asm-generic/io.h:560:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     560 |         val = __le16_to_cpu((__le16 __force)__raw_readw(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:37:59: note: expanded from macro '__le16_to_cpu'
-      37 | #define __le16_to_cpu(x) __swab16((__force __u16)(__le16)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:102:54: note: expanded from macro '__swab16'
-     102 | #define __swab16(x) (__u16)__builtin_bswap16((__u16)(x))
-         |                                                      ^
-   In file included from drivers/leds/leds-pca995x.c:16:
-   In file included from include/linux/regmap.h:20:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:75:
-   include/asm-generic/io.h:573:61: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     573 |         val = __le32_to_cpu((__le32 __force)__raw_readl(PCI_IOBASE + addr));
-         |                                                         ~~~~~~~~~~ ^
-   include/uapi/linux/byteorder/big_endian.h:35:59: note: expanded from macro '__le32_to_cpu'
-      35 | #define __le32_to_cpu(x) __swab32((__force __u32)(__le32)(x))
-         |                                                           ^
-   include/uapi/linux/swab.h:115:54: note: expanded from macro '__swab32'
-     115 | #define __swab32(x) (__u32)__builtin_bswap32((__u32)(x))
-         |                                                      ^
-   In file included from drivers/leds/leds-pca995x.c:16:
-   In file included from include/linux/regmap.h:20:
-   In file included from include/linux/iopoll.h:14:
-   In file included from include/linux/io.h:13:
-   In file included from arch/s390/include/asm/io.h:75:
-   include/asm-generic/io.h:584:33: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     584 |         __raw_writeb(value, PCI_IOBASE + addr);
-         |                             ~~~~~~~~~~ ^
-   include/asm-generic/io.h:594:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     594 |         __raw_writew((u16 __force)cpu_to_le16(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:604:59: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     604 |         __raw_writel((u32 __force)cpu_to_le32(value), PCI_IOBASE + addr);
-         |                                                       ~~~~~~~~~~ ^
-   include/asm-generic/io.h:692:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     692 |         readsb(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:700:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     700 |         readsw(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:708:20: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     708 |         readsl(PCI_IOBASE + addr, buffer, count);
-         |                ~~~~~~~~~~ ^
-   include/asm-generic/io.h:717:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     717 |         writesb(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:726:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     726 |         writesw(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
-   include/asm-generic/io.h:735:21: warning: performing pointer arithmetic on a null pointer has undefined behavior [-Wnull-pointer-arithmetic]
-     735 |         writesl(PCI_IOBASE + addr, buffer, count);
-         |                 ~~~~~~~~~~ ^
->> drivers/leds/leds-pca995x.c:177:34: warning: unused variable 'pca995x_of_match' [-Wunused-const-variable]
-     177 | static const struct of_device_id pca995x_of_match[] = {
-         |                                  ^
-   13 warnings generated.
+--
+2.17.1
 
-
-vim +/pca995x_of_match +177 drivers/leds/leds-pca995x.c
-
-   176	
- > 177	static const struct of_device_id pca995x_of_match[] = {
-   178		{ .compatible = "nxp,pca9952",  .data = (void *)0 /* non-B chip */ },
-   179		{ .compatible = "nxp,pca9955b", .data = (void *)1 /* B-type chip */ },
-   180		{},
-   181	};
-   182	MODULE_DEVICE_TABLE(i2c, pca995x_of_match);
-   183	
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
