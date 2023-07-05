@@ -2,121 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E284747E28
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 631E1747E3C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:29:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232251AbjGEHXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 03:23:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
+        id S231707AbjGEH3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 03:29:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232230AbjGEHXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:23:48 -0400
-Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723C210D5
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 00:23:46 -0700 (PDT)
-Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9939fbb7191so74577766b.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 00:23:46 -0700 (PDT)
+        with ESMTP id S230439AbjGEH3e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:29:34 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F200E4F
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 00:29:33 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e285ac32eso170952a12.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 00:29:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688541825; x=1691133825;
+        d=linaro.org; s=google; t=1688542172; x=1691134172;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=lfHsvDQ9gANPVD8NJhKIViMe2g10IPISfPCqc4m/wEU=;
-        b=Kfs3hrRItqd9Y7BwC9buaitUGmo3La9s/LDZVVR/eZeWRl8IXBxJUGjPl7VVSCujc4
-         mfprd+UZdPsiwiDulfVUBm42k3zIZFk2c4fPArW5zrAVI2Dabho9AZK1IHJMrTm4QxVc
-         BJoNoUgcnQzmsm2UgcJ8fyOd/nky2Btk6Zg9nTbQiAK0zAD+h+1JMkW0tb62ZT+Cl9TN
-         mywdoYAQe5n8zGTXANOeEHAh/Yz/tZiJoE1zmbIHzulY024fkIX501zAcRVU2asSUpfF
-         xCoLzDOtM65yiuDgTzccaVxxRbur+k4Ym9PwPejDfPX84e8pyjbzfUd513EFn5tjvj7v
-         38jQ==
+        bh=04KsCEQq3BTQ3Hv4slClhCupTLs++iE2IM0zdOeIRKk=;
+        b=O7Q13QLtFiYubIqbr4dB4gWPNSwaF+mr4Cumj7k5dEPGuWLea/jl1B653FTWrAImMI
+         2xnjRF4alacRxam3juvdPamAy/dVG4pEugr4Q1G3xJe4UUm2tHdaH8TQ3SRiX1UD4u7E
+         9WQFZ3LtJjUo+k+93qgYCjQ8iUBct7fH3SDrHOdmNvmym/D5Hjh1EYkj3vSXMRlyi2GN
+         maEw9cPy4pEGSOHj7lBFJ5maICU9aUgwJWDZzh53BR/RSNzgyG2TAHESLVYQBFvdVsKK
+         HB3TPZLaIyvtwpwoRLdU3z0QO38fXG2pz2ujhNwfjUE5hyrnTg2j+VLl9SQQ7SPvmuq/
+         bGVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688541825; x=1691133825;
+        d=1e100.net; s=20221208; t=1688542172; x=1691134172;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lfHsvDQ9gANPVD8NJhKIViMe2g10IPISfPCqc4m/wEU=;
-        b=BeeK9KzNnXwDENqVe8a5hjj5tESYk4Zedi4eAKh0ZqjBdekN9I4pQuFKc3iqv6CIye
-         NyhA+mNGoBtThHrO/ssZmvK5AwBcW2ilvjOivjm8rqV7N2vdvfqkyqv3Azk6b53iDiQg
-         4BXXYauBUaQ38ROSYYmt+p9Ocr8/8Si2WMzqNLKfDkwHB2drlAe96qeavksLDwowsfwM
-         MYHLF8lBxr1nLdDZmfvL7tW1tU9OzRLzpNdYEN+T2G+R/fZfFi5iheJSLKn1orQgfTJ1
-         q5fJ1nLB6Zk3Hdl/0UsE3746gsXSAFzF5xkKJNFKqfUR5Y8af8D+OSBJg8wX0yFCHG2i
-         9pbw==
-X-Gm-Message-State: ABy/qLbU3rlSvxk59qoCRgRqAAZMYc821PFEe64M7HTDtSqvH0klosK6
-        15aLeR8cdArssXK4Wz1/ngTm1A==
-X-Google-Smtp-Source: APBJJlHFN29jfTiNUx5sFWnNBEOCkG12dMSYS1/ng4NNgeX2L9P1cSy+erlCNqaNEgJair2vOCiZJw==
-X-Received: by 2002:a17:906:2d1:b0:98f:8481:24b3 with SMTP id 17-20020a17090602d100b0098f848124b3mr1189990ejk.37.1688541824853;
-        Wed, 05 Jul 2023 00:23:44 -0700 (PDT)
+        bh=04KsCEQq3BTQ3Hv4slClhCupTLs++iE2IM0zdOeIRKk=;
+        b=DfPOPLHRr6mc5Jo0bhp4NSCwVq/KsAqiDjdE60fyP7vnue0pTDdvcyxviLzm/WGXWP
+         Y6vIUEiW+ZeXloKojXzumpqUVwBHnM2nNBf6UhZCj6ApUNO47Hni8p7y6AddevRA6SmB
+         rri07HppvD3eIakC8BAKSNTGE1UUZG6RbRWZPuR/KFUixUbO13ippj5wycWG4WvXfdrS
+         Klxs/5mA4dqSRoGhiBIIpw2illj47st5j3Dqiq0Wr+Ce37z08DqxfXKKYWmeawifXqAe
+         99hvuPjWrM45i9XrR9O5OplPmBWJ363YBli3PaRqzobvQPNaFQlLwjR0HTw677A60qqI
+         dSuw==
+X-Gm-Message-State: ABy/qLZ1cLkBpYNShATANw6nVeKuYs0mhjAy5Y89RaANf0VrV5jw16jy
+        Cx/xygPLuB2/YGikQpDwwGNB5A==
+X-Google-Smtp-Source: APBJJlEt1mvtnReMBJcVFDryVN+XiJidc1ci2kcvMPZAKlMO7aNOrbX9FbwTnLjhGYQCJzEdo/yRiA==
+X-Received: by 2002:a05:6402:b16:b0:51e:2664:e6e7 with SMTP id bm22-20020a0564020b1600b0051e2664e6e7mr900391edb.38.1688542172081;
+        Wed, 05 Jul 2023 00:29:32 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id gw26-20020a170906f15a00b009929d998abcsm8546834ejb.209.2023.07.05.00.23.43
+        by smtp.gmail.com with ESMTPSA id g19-20020a50ee13000000b0051df5bd1cd8sm6189542eds.65.2023.07.05.00.29.29
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 00:23:44 -0700 (PDT)
-Message-ID: <175d03f6-122f-bbd2-5d38-61fe4022c5cd@linaro.org>
-Date:   Wed, 5 Jul 2023 09:23:42 +0200
+        Wed, 05 Jul 2023 00:29:31 -0700 (PDT)
+Message-ID: <4fa4e983-03af-7222-3ffc-96ebe703a4f8@linaro.org>
+Date:   Wed, 5 Jul 2023 09:29:28 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v4 2/3] spi: cadence-quadspi: Add clock configuration for
- StarFive JH7110 QSPI
+Subject: Re: [PATCH v2 1/3] dt-bindings: clock: fsl,imx8-acm: Add audio clock
+ mux support
 Content-Language: en-US
-To:     William Qiu <william.qiu@starfivetech.com>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Emil Renner Berthing <kernel@esmil.dk>,
-        Ziv Xu <ziv.xu@starfivetech.com>
-References: <20230704090453.83980-1-william.qiu@starfivetech.com>
- <20230704090453.83980-3-william.qiu@starfivetech.com>
- <808dac44-a72c-4675-1e4a-0ed96190efb4@linaro.org>
- <90b55926-1d0c-b9c0-3020-5837e2028809@starfivetech.com>
+To:     Shengjiu Wang <shengjiu.wang@gmail.com>
+Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
+        peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1688521839-3036-1-git-send-email-shengjiu.wang@nxp.com>
+ <1688521839-3036-2-git-send-email-shengjiu.wang@nxp.com>
+ <41ee8c5c-7a6f-04b2-9853-67fb6bdb67b3@linaro.org>
+ <CAA+D8ANEsQzXEDjz3+SgKbCWz+cqUHbtLVD6fkd2spbNb5uvgw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <90b55926-1d0c-b9c0-3020-5837e2028809@starfivetech.com>
+In-Reply-To: <CAA+D8ANEsQzXEDjz3+SgKbCWz+cqUHbtLVD6fkd2spbNb5uvgw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 09:04, William Qiu wrote:
+On 05/07/2023 08:45, Shengjiu Wang wrote:
+>> Drop description, it's redundant. I did not ask to add it.
+>>
+>> Anyway, my comment is unanswered. Don't ignore the emails you receive.
+>>
+> Can someone provide rationale for this?
+>>
 > 
-> 
-> On 2023/7/5 14:21, Krzysztof Kozlowski wrote:
->> On 04/07/2023 11:04, William Qiu wrote:
->>> Add QSPI clock operation in device probe.
->>>
->>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
->>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
->>> Reported-by: kernel test robot <lkp@intel.com>
->>> Closes: https://lore.kernel.org/oe-kbuild-all/202306022017.UbwjjWRN-lkp@intel.com/
->>> Reported-by: Julia Lawall <julia.lawall@inria.fr>
->>> Closes: https://lore.kernel.org/r/202306040644.6ZHs55x4-lkp@intel.com/
->>
->>
->>>  
->>> @@ -1840,6 +1858,8 @@ static int cqspi_resume(struct device *dev)
->>>  	struct spi_master *master = dev_get_drvdata(dev);
->>>  
->>>  	clk_prepare_enable(cqspi->clk);
->>> +	if (of_device_is_compatible(dev->of_node, "starfive,jh7110-qspi"))
->>
->> Don't add compatible checks inside the code. It does not scale. We
->> expect compatibles to be listed only in one place - of_device_id - and
->> customize driver with match data / quirks / flags.
->>
->> Comment applies to all your diff hunks.
->>
-> I'll use "of_device_get_match_data" to replace it. But the way I added
-> reset before is also by compatible checks. Should I change this place to 
-> "of_device_get_match_data" as well?
+> The Audio clock mux is binded with all the audio IP and audio clocks in the
+> subsystem
+> so need to list the power domain of related clocks and IPs. Each clock and
+> IPs has
+> a power domain, so there are so many power domains.
 
-I don't know what's there, but in general driver should be written in a
-consistent style.
+OK, Reference Manual does not mention them but I see your SCU PD driver
+actually registers such power domains.
 
 Best regards,
 Krzysztof
