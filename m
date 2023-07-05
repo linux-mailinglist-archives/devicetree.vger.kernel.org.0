@@ -2,85 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 385B7748C9B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95CFC748CE7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233027AbjGETAY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 15:00:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39410 "EHLO
+        id S233602AbjGETFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 15:05:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42838 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233203AbjGETAS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:00:18 -0400
-Received: from mail-il1-f169.google.com (mail-il1-f169.google.com [209.85.166.169])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 623321BD4;
-        Wed,  5 Jul 2023 12:00:05 -0700 (PDT)
-Received: by mail-il1-f169.google.com with SMTP id e9e14a558f8ab-345ff28865aso19199485ab.1;
-        Wed, 05 Jul 2023 12:00:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688583604; x=1691175604;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=0q11DZxec5L1lkk4HsxoZsfErpJ5+1KB1UsFypJsHD4=;
-        b=iefiRkebaAvTufaYrlEVkxlVJlDfuhX57NblJJRCcOS9E7c+ql68rBVbcRw5G+JfJf
-         O9Go03eDhe8ok2UFxTp71TNBef1xcd1V7Ndw/nNov0SgnpMFtVozUbMXz5fp2K2Jj2AH
-         Jyz+DKrO45KoOxWdb7gGkAQ1vwRQX5o5sQXUNp1untP8ilPb+nW4qK3bA6zvilqFYSke
-         0Q81SxgFVGLSXgl+AcAwgLX1ypxZdtMjX8M/XXObQS0lBgW32ov0WSMynKhid68vBhjX
-         ZusNe1nWc7C3uw4a20itmJu7qE0AreUTF+jtJUdpq37KCTg0nUaTih6bPBDKYAkUaTxn
-         DOdg==
-X-Gm-Message-State: ABy/qLZ49AmgFf6TnSgm5GXxebqmXzt+q0FgAvNqhk7EkZWiOirJgjDb
-        9pz9FoUs6ZVph0lEScKdHQ==
-X-Google-Smtp-Source: APBJJlFqSXuAN1fdMf7i+nqPki2M66lKvpwvplbv+HDdzMUHg1S2FBrZDgnaOOqjV/1/ssZ0tQ6ohw==
-X-Received: by 2002:a92:c688:0:b0:345:fae5:666c with SMTP id o8-20020a92c688000000b00345fae5666cmr32802ilg.4.1688583604526;
-        Wed, 05 Jul 2023 12:00:04 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id c15-20020a02a40f000000b0042b2f8024c9sm3034530jal.149.2023.07.05.12.00.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 12:00:03 -0700 (PDT)
-Received: (nullmailer pid 1592669 invoked by uid 1000);
-        Wed, 05 Jul 2023 19:00:01 -0000
-Date:   Wed, 5 Jul 2023 13:00:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>
-Cc:     linux-serial@vger.kernel.org, xianwei.zhao@amlogic.com,
-        devicetree@vger.kernel.org, khilman@baylibre.com,
-        kelvin.zhang@amlogic.com, linux-kernel@vger.kernel.org,
-        conor+dt@kernel.org, jbrunet@baylibre.com,
-        gregkh@linuxfoundation.org, robh+dt@kernel.org,
-        jirislaby@kernel.org, rockosov@gmail.com,
-        krzysztof.kozlowski+dt@linaro.org,
-        martin.blumenstingl@googlemail.com, neil.armstrong@linaro.org,
-        linux-arm-kernel@lists.infradead.org, kernel@sberdevices.ru,
-        linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH v1 4/5] dt-bindings: serial: amlogic,meson-uart: support
- Amlogic A1
-Message-ID: <168858360022.1592604.9922710628917242811.robh@kernel.org>
-References: <20230704135936.14697-1-ddrokosov@sberdevices.ru>
- <20230704135936.14697-5-ddrokosov@sberdevices.ru>
+        with ESMTP id S233626AbjGETEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:04:00 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8169F1FEA;
+        Wed,  5 Jul 2023 12:03:40 -0700 (PDT)
+Received: from p200300ccff0adc001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0a:dc00:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qH7mh-0017Xc-MG; Wed, 05 Jul 2023 21:03:27 +0200
+Received: from andi by aktux with local (Exim 4.96)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qH7mh-001UQf-09;
+        Wed, 05 Jul 2023 21:03:27 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
+        tiwai@suse.com, peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
+        dmitry.torokhov@gmail.com, andreas@kemnade.info,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
+Subject: [PATCH 0/3] ARM: omap4: embt2ws: Add audio support
+Date:   Wed,  5 Jul 2023 21:03:21 +0200
+Message-Id: <20230705190324.355282-1-andreas@kemnade.info>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230704135936.14697-5-ddrokosov@sberdevices.ru>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add audio support for Epson Moverio BT-200.
+In the vendor kernel, the MCBSP side is used as master,
+so do it here also that way.
 
-On Tue, 04 Jul 2023 16:59:35 +0300, Dmitry Rokosov wrote:
-> Introduce meson uart serial bindings for A1 SoC family.
-> 
-> Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
-> ---
->  .../devicetree/bindings/serial/amlogic,meson-uart.yaml          | 2 ++
->  1 file changed, 2 insertions(+)
-> 
+Andreas Kemnade (3):
+  ASoC: ti: omap-mcbsp: Ignore errors for getting fck_src
+  ASoC: tlv320aic3x: use BCLK instead of MCLK if not in master mode
+  ARM: dts: omap4: embt2ws: Add audio support
 
-Acked-by: Rob Herring <robh@kernel.org>
+ arch/arm/boot/dts/omap4-epson-embt2ws.dts | 21 +++++++++++++++++++++
+ sound/soc/codecs/tlv320aic3x.c            |  4 ++++
+ sound/soc/ti/omap-mcbsp.c                 |  4 ++--
+ 3 files changed, 27 insertions(+), 2 deletions(-)
+
+-- 
+2.39.2
 
