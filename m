@@ -2,188 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0454C7489E6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 19:10:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18EDF748A08
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 19:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232271AbjGERKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 13:10:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38176 "EHLO
+        id S232370AbjGERUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 13:20:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43300 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232491AbjGERKU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 13:10:20 -0400
-Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 8DEB01BEC;
-        Wed,  5 Jul 2023 10:10:12 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,183,1684767600"; 
-   d="scan'208";a="170657377"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 06 Jul 2023 02:10:11 +0900
-Received: from localhost.localdomain (unknown [10.226.92.131])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B0117402BEC3;
-        Thu,  6 Jul 2023 02:10:07 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH v6 1/2] dt-bindings: clock: Add Renesas versa3 clock generator bindings
-Date:   Wed,  5 Jul 2023 18:09:59 +0100
-Message-Id: <20230705171000.85786-2-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230705171000.85786-1-biju.das.jz@bp.renesas.com>
-References: <20230705171000.85786-1-biju.das.jz@bp.renesas.com>
+        with ESMTP id S231776AbjGERUM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 13:20:12 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C28FBA
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 10:20:09 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-992f6d7c7fbso634800966b.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 10:20:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688577607; x=1691169607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=DfEHsbcVLsYY2/6MdyIJQreizHbf5yUJFDf6o8SZPns=;
+        b=yUPwuMYoTrAIbvL+x7Qmdp6zHDBqj6BWcwUx5FEQzS5Em4Dk94RrpW1R1DrmbqL1pT
+         xSE7wxjloL3ZEtiipOTNGChx/VY8nHNwXyogmiV6ZCTFnHI3F2llT8KDzgrXEYvG6M06
+         /MxP7DB0eGdiK3T0prn60kdZ30MwP/id0PtHHGtWKOENJUYdGfiZOt5lIPw/iFsLH1p3
+         ysV8bmJIju6UzD71SxEy20wol/P8LIgliKjUlSBEnTno6FpMFZ+/8ienitSI7cJ5qqtJ
+         m/D9SlwGs1U6TSFZpUiB6Vp7zHnoZpeN8qRhw4eTu47PiLOxKDqt3gZ9ghkWpIWFJ8Od
+         CE/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688577607; x=1691169607;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=DfEHsbcVLsYY2/6MdyIJQreizHbf5yUJFDf6o8SZPns=;
+        b=bbRhHQuietU00OMfmvEzNgtBLipaKhY5j4u9UcCHn+doL91vhxm4gCPbvhIOkrhgu0
+         raHAUUIl9cI9nSJKugvqvESAYKqiWGpELB/pMW2mX6DiJAMGgzdoAz7hbHPvyDl0G3p9
+         yOvhBKkbTdlW/DBp7Rl4jYexAvq1wUOPKxOveYtA9O5IAB4g/OkXyTqVYRq+IjpbvWN+
+         kkIYRfpawaLmpyEtIFIKSJM828TZMYFvZniozAzEDOlOuMg4T63+M7LVL9i31HywDQmH
+         nZeI98N+JzgxvWlTqTVPOqoMNQAubThcbOb/4QQBTXYxSeeOiMr9BOIFbs4qKjXuVj+Z
+         UDnw==
+X-Gm-Message-State: AC+VfDzyb1O/rpm8yUR52bujdWMfYEAHTV7IadbxaAEZyVzF8oQSDPO+
+        o8VQ6i881KQU65hLa23Kabfsmg==
+X-Google-Smtp-Source: APBJJlGYjDazpHom/rxOe0Tt8KgqL1usdNH/RfAzUqq56N/uG0cGBM5j2B7OjBSjkYX0+X2DCREjsw==
+X-Received: by 2002:a17:906:b7c8:b0:992:bd2b:d0b8 with SMTP id fy8-20020a170906b7c800b00992bd2bd0b8mr10059261ejb.29.1688577607701;
+        Wed, 05 Jul 2023 10:20:07 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id xa10-20020a170907b9ca00b00977c7566ccbsm14915729ejc.164.2023.07.05.10.20.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 10:20:07 -0700 (PDT)
+Message-ID: <295e4cb9-0fa1-8370-72da-ade8123c90a5@linaro.org>
+Date:   Wed, 5 Jul 2023 19:20:04 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH V1 1/1] regulator: Add awinic,aw3750x.yaml
+Content-Language: en-US
+To:     Mark Brown <broonie@kernel.org>
+Cc:     like@awinic.com, lgirdwood@gmail.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        liweilei@awinic.com, liangdong@awinic.com, yijiangtao@awinic.com
+References: <20230705081942.2608531-1-like@awinic.com>
+ <20230705081942.2608531-2-like@awinic.com>
+ <2923201f-8bf4-a55d-a033-28ae5e569466@linaro.org>
+ <17ad855b-3a3b-4dba-9a64-a1a683b3b905@sirena.org.uk>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <17ad855b-3a3b-4dba-9a64-a1a683b3b905@sirena.org.uk>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document Renesas versa3 clock generator(5P35023) bindings.
+On 05/07/2023 13:52, Mark Brown wrote:
+> On Wed, Jul 05, 2023 at 11:20:16AM +0200, Krzysztof Kozlowski wrote:
+>> On 05/07/2023 10:19, like@awinic.com wrote:
+>>> From: Ke Li <like@awinic.com>
+> 
+>>> +properties:
+>>> +  compatible:
+>>> +    const: awinic,aw3750x_led
+> 
+>> I don't understand why there is _led suffix. Isn't this regulator? Can
+>> it be anything else?
+> 
+> Boost regulators are almost always used to drive LEDs for things like
+> backlights.
 
-The 5P35023 is a VersaClock programmable clock generator and
-is designed for low-power, consumer, and high-performance PCI
-Express applications. The 5P35023 device is a three PLL
-architecture design, and each PLL is individually programmable
-and allowing for up to 6 unique frequency outputs.
+Let me be a bit more precise - if this device can have multiple
+functions, then the compatible usually has some suffixes (although no
+underscores). If this device has only one feature - regardless whether
+for backlight or for anything else - the compatible has only model.
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
-v5->v6:
- * No change
-v4->v5:
- * No change
-v3->v4:
- * No change
-v2->v3:
- * Added Rb tag from Krzysztof Kozlowski
- * Removed | from Link to data sheet.
- * Dropped stray blank line from example.
- * Updated example section for assigned-clocks to mach same alignment
-   with assigned-clock-rates. This is trivial change so retained the
-   Rb tag.
-RFC->v2:
- * Renamed the filename to match with compatible
- * Added maintainers entry after title
- * Removed the wrapping for the link to data sheet.
- * Removed reg description
- * Removed clock names
- * Replaced minItems->maxItems in renesas,settings property
- * Dropped assigned-clocks, assigned-clock-rates
- * Dropped renesas,clock-divider-read-only and renesas,clock-flags
- * Drooped clock handle part from example
- * Dropped reg from example.
- * Dropped consumer example
----
- .../bindings/clock/renesas,5p35023.yaml       | 86 +++++++++++++++++++
- 1 file changed, 86 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-
-diff --git a/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-new file mode 100644
-index 000000000000..839648e753d4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/renesas,5p35023.yaml
-@@ -0,0 +1,86 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/renesas,5p35023.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Renesas 5p35023 VersaClock 3 programmable I2C clock generator
-+
-+maintainers:
-+  - Biju Das <biju.das.jz@bp.renesas.com>
-+
-+description: |
-+  The 5P35023 is a VersaClock programmable clock generator and
-+  is designed for low-power, consumer, and high-performance PCI
-+  express applications. The 5P35023 device is a three PLL
-+  architecture design, and each PLL is individually programmable
-+  and allowing for up to 6 unique frequency outputs.
-+
-+  An internal OTP memory allows the user to store the configuration
-+  in the device. After power up, the user can change the device register
-+  settings through the I2C interface when I2C mode is selected.
-+
-+  The driver can read a full register map from the DT, and will use that
-+  register map to initialize the attached part (via I2C) when the system
-+  boots. Any configuration not supported by the common clock framework
-+  must be done via the full register map, including optimized settings.
-+
-+  Link to datasheet:
-+  https://www.renesas.com/us/en/products/clocks-timing/clock-generation/programmable-clocks/5p35023-versaclock-3s-programmable-clock-generator
-+
-+properties:
-+  compatible:
-+    enum:
-+      - renesas,5p35023
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  renesas,settings:
-+    description: Optional, complete register map of the device.
-+      Optimized settings for the device must be provided in full
-+      and are written during initialization.
-+    $ref: /schemas/types.yaml#/definitions/uint8-array
-+    maxItems: 37
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+  - clocks
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        versa3: clock-generator@68 {
-+            compatible = "renesas,5p35023";
-+            reg = <0x68>;
-+            #clock-cells = <1>;
-+
-+            clocks = <&x1_x2>;
-+
-+            renesas,settings = [
-+                80 00 11 19 4c 02 23 7f 83 19 08 a9 5f 25 24 bf
-+                00 14 7a e1 00 00 00 00 01 55 59 bb 3f 30 90 b6
-+                80 b0 45 c4 95
-+            ];
-+
-+            assigned-clocks = <&versa3 0>, <&versa3 1>,
-+                              <&versa3 2>, <&versa3 3>,
-+                              <&versa3 4>, <&versa3 5>;
-+            assigned-clock-rates = <12288000>, <25000000>,
-+                                   <12000000>, <11289600>,
-+                                   <11289600>, <24000000>;
-+        };
-+    };
--- 
-2.25.1
+Best regards,
+Krzysztof
 
