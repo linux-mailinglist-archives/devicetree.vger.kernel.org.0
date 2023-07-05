@@ -2,91 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DA1DA7491F6
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 01:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02CF474920E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 01:50:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232076AbjGEXko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 19:40:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44690 "EHLO
+        id S232145AbjGEXuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 19:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232075AbjGEXkn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 19:40:43 -0400
-Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694A2198E
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 16:40:42 -0700 (PDT)
-Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1a1fa977667so196055fac.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 16:40:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1688600441; x=1691192441;
-        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
-         :subject:references:in-reply-to:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=NLLif1KY2D3x/oQIb0fD6DgvzVEwBt9PgSDAy1D7jfw=;
-        b=GUqHR3iKA3GKI3FuCSb+pdbJzC8NCKsiIcv9MeUIUvVgtc5fdWqZABfE+K9cmW/amq
-         zWhMXjO2ROJtnMmSGMNvotrD3ew37U0nxfF4Jelj+YkaCXP541t0HaQyDY/WF9B5KVpv
-         2vGrYoqoPpFqUJQ8w0yLdkhTnnA70PliwOjBBjpciRhQj/2X8fOhvFYpt2UY2s/fvw2n
-         5s3fJOmoHlv/Mq3CXmD7kImG0SmvSfQGlGosw3lE3j9EYXQh5r9qyjR6A2KRWpV8zy+G
-         ctpYQrsNTFQoR0P8QUxAml2EIsaoejiP7D8UnzHHacxXkal7+h5nkx8ow1tQJSoqc3G2
-         5UZg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688600441; x=1691192441;
-        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
-         :subject:references:in-reply-to:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=NLLif1KY2D3x/oQIb0fD6DgvzVEwBt9PgSDAy1D7jfw=;
-        b=dvliXCj5cC3uDre/XkFDhApT7uvFhFL46k4oa+ZuGTYHievhAS5Io2WDrec9zvo017
-         AINGK19ShOwe3SWwXsv+GQrASJcXTRou5FdopewTaPq0BiPmviRR3SRdpgj77z4dB6a4
-         +foFVwyVlh2XX3/Px3jLWAIV5IgED7G3U3TOSiGxHBJ+qO0S2IVC2OaJVeuOU6z7eINF
-         H+E6CJsGzm7X87ALDRu8+1pg+mLyz9iDJI9Gt3McNNUz2AyJWt9p+5AiRtiAY6ogCLzX
-         UFu/a8PhMmNJDPnCnQuGF5e8XdKZsTIBgvmJbAMS/FWTCCaiTYizrtJmu6j1XZi7c2Jf
-         KzfQ==
-X-Gm-Message-State: ABy/qLYJ3YwKo8CPyzKeEtaDRYikFQIXZk2G1gIIkOcts+aqj5W7mJCO
-        Z2gGNF0e9GVn3YJ3y3+7xElHfQ==
-X-Google-Smtp-Source: APBJJlGhY6ik2a9lxlF0RgXnj1DEVnZ0h08AlHINQ5Ed9RK6Pu0MrgIAW8hiIMXydNfQShpu3O117w==
-X-Received: by 2002:a05:6870:79e:b0:1a7:e554:500a with SMTP id en30-20020a056870079e00b001a7e554500amr631818oab.49.1688600441720;
-        Wed, 05 Jul 2023 16:40:41 -0700 (PDT)
-Received: from localhost ([135.180.227.0])
-        by smtp.gmail.com with ESMTPSA id 14-20020a17090a194e00b0025dc5749b4csm2047993pjh.21.2023.07.05.16.40.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 16:40:41 -0700 (PDT)
-In-Reply-To: <20230702-eats-scorebook-c951f170d29f@spud>
-References: <20230702-eats-scorebook-c951f170d29f@spud>
-Subject: Re: [PATCH v5] dt-bindings: riscv: deprecate riscv,isa
-Message-Id: <168860030764.22647.8715497868636301645.b4-ty@rivosinc.com>
-Date:   Wed, 05 Jul 2023 16:38:27 -0700
-MIME-Version: 1.0
+        with ESMTP id S231539AbjGEXuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 19:50:24 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA13D1732;
+        Wed,  5 Jul 2023 16:50:23 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 6DF8E6181A;
+        Wed,  5 Jul 2023 23:50:23 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPS id BC4A4C433C9;
+        Wed,  5 Jul 2023 23:50:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688601022;
+        bh=BgODPXLPTsaU0wj68dFe2wWU/mnAmoYudmtTIg9uug4=;
+        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
+        b=aq+2KA2q3s3qQaEOMbkSETl+1X+mfs637M/CazsUgB4O2lm21KaVSxkSNcAwixCc0
+         SgTYm68ui15/f0GFRRZ++yRyK17iqs/kqqD5nA8yrFC1a70mI5Ygp+GD5az4U/ujdB
+         sD4uRZffzhEmiHhAs1dK5nZiLkXRW8/sjPpUXcM6iqk9AzpP1fHH6wip8FMHFhgjRg
+         yUo71RvQ0qEbMIqqrbWyMCnGjxv3mKTFek7KrCyi67lX95wy3H+WPsLbKXkIm9iKQr
+         mLWia703Eh0HuzmJQXjHEe2hp8A7k+dPBDvHFsp4mPfpgvlirV2iFg/w5IKxaY/5JG
+         wXxvj9iQvk2iA==
+Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 9B68EC6445A;
+        Wed,  5 Jul 2023 23:50:22 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Mailer: b4 0.13-dev-901c5
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Alistair Francis <alistair.francis@wdc.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Anup Patel <apatel@ventanamicro.com>,
-        Atish Patra <atishp@atishpatra.org>,
-        Jessica Clarke <jrtc27@jrtc27.com>,
-        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
-        Oleksii <oleksii.kurochko@gmail.com>,
-        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Subject: Re: [PATCH v5] dt-bindings: riscv: deprecate riscv,isa
+From:   patchwork-bot+linux-riscv@kernel.org
+Message-Id: <168860102263.23922.9146715518598128204.git-patchwork-notify@kernel.org>
+Date:   Wed, 05 Jul 2023 23:50:22 +0000
+References: <20230702-eats-scorebook-c951f170d29f@spud>
+In-Reply-To: <20230702-eats-scorebook-c951f170d29f@spud>
+To:     Conor Dooley <conor@kernel.org>
+Cc:     linux-riscv@lists.infradead.org, palmer@dabbelt.com,
+        conor.dooley@microchip.com, paul.walmsley@sifive.com,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        alistair.francis@wdc.com, ajones@ventanamicro.com,
+        apatel@ventanamicro.com, atishp@atishpatra.org, jrtc27@jrtc27.com,
+        rick@andestech.com, ycliang@andestech.com,
+        oleksii.kurochko@gmail.com, qemu-riscv@nongnu.org,
         u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-From:   Palmer Dabbelt <palmer@rivosinc.com>
-To:     Palmer Dabbelt <palmer@dabbelt.com>,
-        Conor Dooley <conor@kernel.org>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        linux-kernel@vger.kernel.org, palmer@rivosinc.com, robh@kernel.org
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello:
 
-On Sun, 02 Jul 2023 00:10:01 +0100, Conor Dooley wrote:
+This patch was applied to riscv/linux.git (for-next)
+by Palmer Dabbelt <palmer@rivosinc.com>:
+
+On Sun,  2 Jul 2023 00:10:01 +0100 you wrote:
+> From: Conor Dooley <conor.dooley@microchip.com>
+> 
 > intro
 > =====
 > 
@@ -97,12 +82,13 @@ On Sun, 02 Jul 2023 00:10:01 +0100, Conor Dooley wrote:
 > 
 > [...]
 
-Applied, thanks!
+Here is the summary with links:
+  - [v5] dt-bindings: riscv: deprecate riscv,isa
+    https://git.kernel.org/riscv/c/aeb71e42caae
 
-[1/1] dt-bindings: riscv: deprecate riscv,isa
-      https://git.kernel.org/palmer/c/aeb71e42caae
-
-Best regards,
+You are awesome, thank you!
 -- 
-Palmer Dabbelt <palmer@rivosinc.com>
+Deet-doot-dot, I am a bot.
+https://korg.docs.kernel.org/patchwork/pwbot.html
+
 
