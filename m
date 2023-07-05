@@ -2,87 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F1B748E5D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:53:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9CD8748E69
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:54:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234348AbjGETxQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 15:53:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56388 "EHLO
+        id S233408AbjGETy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 15:54:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233278AbjGETxN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:53:13 -0400
-Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 019541980;
-        Wed,  5 Jul 2023 12:53:06 -0700 (PDT)
-Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-345f4a3ff76so23386565ab.2;
-        Wed, 05 Jul 2023 12:53:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688586785; x=1691178785;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=y45aTDzSTQD6CGxFP2My2e1zQpvSPUcKTCZkKn80Qfs=;
-        b=TXyoDjYT9yNFoPb8q+zGCoBrErrzjBiNbDa/CzEsi9gIpFbZqRAxiSiP+3kduEINiT
-         X71mD4J9w2R/qeN2KfOhwtawlq3wx8+9muHVwIpr8uvY4qetX7B8o0zzeuE6Y8zfAc4M
-         qGuZi+uG2wfjobFMkcsKsN452+w99TCD7dcobw4DFQxq1yYIxaQxYlI2Yn6lirgc49dR
-         tRKFUtLlc4RFCxijbOt47PLfRiR2exlqsQ5DhgtiuKn5bbq5CI+bUqqFAsqjoExYKfOu
-         FgToHnOGVM/HTukQmuepbm1fzM8i7d4khNpMqlzZFOdb9y8gTxxIKJ0OWx4Q7RNknVqO
-         CdBQ==
-X-Gm-Message-State: ABy/qLYMqTdVSIrC5KNaJPK8ErY4noeeSTWtuuGRrZVXmSVk7Q1BHreL
-        jMQcc91C+usARJqRHveUzTc4gxPKKw==
-X-Google-Smtp-Source: APBJJlG849qoygO19N3NJ7tJkbVASz+SkcxxwDLkmdq5oiTtzbDaYXe0Djxd06jEC+Rq5kaeoS1mfg==
-X-Received: by 2002:a92:c647:0:b0:346:46e:209c with SMTP id 7-20020a92c647000000b00346046e209cmr115663ill.22.1688586785208;
-        Wed, 05 Jul 2023 12:53:05 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id y24-20020a02c018000000b0042b4b1246cbsm1994291jai.148.2023.07.05.12.53.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 12:53:04 -0700 (PDT)
-Received: (nullmailer pid 1732499 invoked by uid 1000);
-        Wed, 05 Jul 2023 19:53:01 -0000
-Date:   Wed, 5 Jul 2023 13:53:01 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
+        with ESMTP id S233435AbjGETyY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:54:24 -0400
+Received: from lelv0143.ext.ti.com (lelv0143.ext.ti.com [198.47.23.248])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3EA041981;
+        Wed,  5 Jul 2023 12:54:21 -0700 (PDT)
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 365JruRW029344;
+        Wed, 5 Jul 2023 14:53:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1688586836;
+        bh=JYEmsOFHbXgS5MxsHkWI4gJFbQZO7FxeLmm0d1G/I18=;
+        h=From:To:CC:Subject:Date;
+        b=Dtr3GvoLEH1+JV3O3xC2peTbniUUh/ZSq7Q9izsEuwludmzMUCn5n0sEuISQuHuly
+         kwKid9WkcW3YLBQhPcA8BzLhPAD/fTrIxCADe4z4QlOLfmOUqK5nlgEchxFW1eJ3DK
+         /crXLuuEVeUlM4dQqThHW3qsgJc8Ee1dLse8xWh8=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 365Jru2k083979
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 5 Jul 2023 14:53:56 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Wed, 5
+ Jul 2023 14:53:56 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Wed, 5 Jul 2023 14:53:56 -0500
+Received: from uda0498204.dhcp.ti.com (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 365JrueS041658;
+        Wed, 5 Jul 2023 14:53:56 -0500
+From:   Judith Mendez <jm@ti.com>
+To:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>
+CC:     Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, <linux-can@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Schuyler Patton <spatton@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Kevin Hilman <khilman@baylibre.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: amlogic: convert
- amlogic,gxbb-clkc.txt to dt-schema
-Message-ID: <168858678149.1732437.11783574032549132078.robh@kernel.org>
-References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
- <20230705-b4-amlogic-bindings-convert-take2-v2-1-22be915ddc3b@linaro.org>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Simon Horman <simon.horman@corigine.com>
+Subject: [PATCH 0/2] Enable multiple MCAN on AM62x
+Date:   Wed, 5 Jul 2023 14:53:54 -0500
+Message-ID: <20230705195356.866774-1-jm@ti.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230705-b4-amlogic-bindings-convert-take2-v2-1-22be915ddc3b@linaro.org>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On AM62x there are two MCANs in MCU domain. The MCANs in MCU domain
+were not enabled since there is no hardware interrupt routed to A53
+GIC interrupt controller. Therefore A53 Linux cannot be interrupted
+by MCU MCANs.
 
-On Wed, 05 Jul 2023 13:41:51 +0200, Neil Armstrong wrote:
-> Convert the Amlogic Clock Controller bindings to dt-schema.
-> 
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
-> ---
->  .../bindings/clock/amlogic,gxbb-clkc.txt           | 53 ----------------------
->  .../bindings/clock/amlogic,gxbb-clkc.yaml          | 37 +++++++++++++++
->  2 files changed, 37 insertions(+), 53 deletions(-)
-> 
+This solution instantiates a hrtimer with 1 ms polling interval
+for MCAN device when there is no hardware interrupt property in
+DTB MCAN node. The hrtimer generates a recurring software interrupt
+which allows to call the isr. The isr will check if there is pending
+transaction by reading a register and proceed normally if there is.
+MCANs with hardware interrupt routed to A53 Linux will continue to
+use the hardware interrupt as expected.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Timer polling method was tested on both classic CAN and CAN-FD
+at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
+switching.
+
+Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
+1 MBPS timer polling interval is the better timer polling interval
+since it has comparable latency to hardware interrupt with the worse
+case being 1ms + CAN frame propagation time and CPU load is not
+substantial. Latency can be improved further with less than 1 ms
+polling intervals, howerver it is at the cost of CPU usage since CPU
+load increases at 0.5 ms.
+
+Note that in terms of power, enabling MCU MCANs with timer-polling
+implementation might have negative impact since we will have to wake
+up every 1 ms whether there are CAN packets pending in the RX FIFO or
+not. This might prevent the CPU from entering into deeper idle states
+for extended periods of time.
+
+v8:
+Link: https://lore.kernel.org/linux-can/20230530224820.303619-1-jm@ti.com/T/#t
+
+v7:
+Link: https://lore.kernel.org/linux-can/20230523023749.4526-1-jm@ti.com/T/#t
+
+v6:
+Link: https://lore.kernel.org/linux-can/20230518193613.15185-1-jm@ti.com/T/#t
+
+v5:
+Link: https://lore.kernel.org/linux-can/20230510202952.27111-1-jm@ti.com/T/#t
+
+v4:
+Link: https://lore.kernel.org/linux-can/c3395692-7dbf-19b2-bd3f-31ba86fa4ac9@linaro.org/T/#t
+
+v2:
+Link: https://lore.kernel.org/linux-can/20230424195402.516-1-jm@ti.com/T/#t
+
+V1:
+Link: https://lore.kernel.org/linux-can/19d8ae7f-7b74-a869-a818-93b74d106709@ti.com/T/#t
+
+RFC:
+Link: https://lore.kernel.org/linux-can/52a37e51-4143-9017-42ee-8d17c67028e3@ti.com/T/#t
+
+v9:
+- Change add MS to HRTIMER_POLL_INTERVAL
+- Change syntax from "= 0" to "!"
+
+v8:
+- Cancel hrtimer after interrupts in m_can_stop
+- Move assignment of hrtimer_callback to m_can_class_register()
+- Initialize irq = 0 if polling mode is used
+
+v7:
+- Clean up m_can_platform.c after removing poll-interval
+
+v6:
+- Move hrtimer stop/start function calls to m_can_open and m_can_close to
+support power suspend/resume
+
+v5:
+- Remove poll-interval in bindings
+- Change dev_dbg to dev_info if hardware int exists and polling
+is enabled
+
+v4:
+- Wrong patches sent
+
+v3:
+- Update binding poll-interval description
+- Add oneOf to select either
+interrupts/798d276b39e984345d52b933a900a71fa0815928
+
+v2:
+- Add poll-interval property to bindings and MCAN DTB node
+- Add functionality to check for 'poll-interval' property in MCAN node 
+- Bindings: add an example using poll-interval
+- Add 'polling' flag in driver to check if device is using polling method
+- Check for timer polling and hardware interrupt cases, default to
+hardware interrupt method
+- Change ns_to_ktime() to ms_to_ktime()
+
+Judith Mendez (2):
+  dt-bindings: net: can: Remove interrupt properties for MCAN
+  can: m_can: Add hrtimer to generate software interrupt
+
+ .../bindings/net/can/bosch,m_can.yaml         | 20 ++++++++++--
+ drivers/net/can/m_can/m_can.c                 | 32 ++++++++++++++++++-
+ drivers/net/can/m_can/m_can.h                 |  3 ++
+ drivers/net/can/m_can/m_can_platform.c        | 23 +++++++++++--
+ 4 files changed, 72 insertions(+), 6 deletions(-)
+
+
+base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
+-- 
+2.34.1
 
