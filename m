@@ -2,211 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C932B747F7B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 10:21:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20B2F747F80
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 10:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231559AbjGEIVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 04:21:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44780 "EHLO
+        id S229697AbjGEIXg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 04:23:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231502AbjGEIVd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 04:21:33 -0400
-Received: from out28-195.mail.aliyun.com (out28-195.mail.aliyun.com [115.124.28.195])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19A1D1FD9;
-        Wed,  5 Jul 2023 01:20:58 -0700 (PDT)
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.09028281|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.587746-0.000190752-0.412063;FP=0|0|0|0|0|-1|-1|-1;HT=ay29a033018047204;MF=like@awinic.com;NM=1;PH=DS;RN=11;RT=11;SR=0;TI=SMTPD_---.Tm-KwVH_1688545239;
-Received: from awinic..(mailfrom:like@awinic.com fp:SMTPD_---.Tm-KwVH_1688545239)
-          by smtp.aliyun-inc.com;
-          Wed, 05 Jul 2023 16:20:53 +0800
-From:   like@awinic.com
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     liweilei@awinic.com, liangdong@awinic.com, like@awinic.com,
-        yijiangtao@awinic.com
-Subject: [PATCH V1 1/1] regulator: Add awinic,aw3750x.yaml
-Date:   Wed,  5 Jul 2023 08:19:41 +0000
-Message-ID: <20230705081942.2608531-2-like@awinic.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230705081942.2608531-1-like@awinic.com>
-References: <20230705081942.2608531-1-like@awinic.com>
+        with ESMTP id S231317AbjGEIXP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 04:23:15 -0400
+Received: from relay2-d.mail.gandi.net (relay2-d.mail.gandi.net [217.70.183.194])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 060BF173C;
+        Wed,  5 Jul 2023 01:22:59 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1688545378;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=rydOgVNykw77d4FJDzENpk9IP9/IhrYgK2eGBj+DtDo=;
+        b=f7GkieLtVuK91DIemhGTaVzwZ65cQ3DEVfd/8UNvgdZ8qCyHjuqj9fwfYIVIRyCrozRBF4
+        g3NATy9M3Z27XB/jzpWAjFCjwvAyJIWV66A7TQl6pK79srxl7lU7NsQbVsbXNREj2wt3rA
+        g0FrNqsc+yg6ryTQ3qkalrjhezmZm+ydJH0l2BO56yVWQ48E6Hcp7Yzzwbv2JJeGNAcVLP
+        +tR776beHA4wQxRana4fVs8xujefzWiM4oKX6MmIHf6vDnS5yez9clfALcUsI2EhMNKmoD
+        mcw1FjIASORh7mw8SYkni/S35iWzuzu0DF1z/CDlFe9TnWZQu8AW+b6cWjbcNg==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 8A6694000B;
+        Wed,  5 Jul 2023 08:22:55 +0000 (UTC)
+Date:   Wed, 5 Jul 2023 10:22:54 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Arseniy Krasnov <avkrasnov@sberdevices.ru>
+Cc:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: nand: meson: support for 512B
+ ECC step size
+Message-ID: <20230705102254.0aeb94ea@xps-13>
+In-Reply-To: <365898fb-3719-38e0-4383-e04ccc0b475b@sberdevices.ru>
+References: <20230705065434.297040-1-AVKrasnov@sberdevices.ru>
+        <20230705065434.297040-2-AVKrasnov@sberdevices.ru>
+        <20230705093702.6c0421d7@xps-13>
+        <365898fb-3719-38e0-4383-e04ccc0b475b@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ke Li <like@awinic.com>
+Hi Arseniy,
 
-Signed-off-by: Ke Li <like@awinic.com>
----
- .../bindings/regulator/awinic,aw3750x.yaml    | 151 ++++++++++++++++++
- 1 file changed, 151 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
+avkrasnov@sberdevices.ru wrote on Wed, 5 Jul 2023 11:03:30 +0300:
 
-diff --git a/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml b/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
-new file mode 100644
-index 000000000000..cdb3d9dbf88f
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
-@@ -0,0 +1,151 @@
-+# SPDX-License-Identifier: GPL-2.0-only
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/awinic,aw3750x.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Awinic AW3750X Power Management IC
-+
-+maintainers:
-+  - Weidong Wang <wangweidong.a@awinic.com>
-+  - Ke Li <like@awinic.com>
-+
-+description: |
-+  AW3750X is designed to generate both positive and negative bias voltages for.
-+  TFT-LCD panels or other general dual-supply applications. It consists a highly
-+  integrated synchronous boost converter with input voltage from 2.7V to 5.5V.
-+
-+properties:
-+  compatible:
-+    const: awinic,aw3750x_led
-+
-+  enp:
-+    type: object
-+    $ref: regulator.yaml#
-+    description:
-+      Properties for single LDO regulator.
-+
-+    properties:
-+      regulator-name: true
-+
-+    required:
-+      - regulator-name
-+
-+    unevaluatedProperties: false
-+
-+  enn:
-+    type: object
-+    $ref: regulator.yaml#
-+    description:
-+      Properties for single BOOST regulator.
-+
-+    properties:
-+      regulator-name: true
-+
-+    required:
-+      - regulator-name
-+
-+    unevaluatedProperties: false
-+
-+required:
-+  - compatible
-+  - enp
-+  - enn
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/pinctrl/mt8186-pinfunc.h>
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    pio: pinctrl@10005000 {
-+      aw_enn_default: aw_enn_default {
-+        pins_cmd_dat {
-+          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
-+          slew-rate = <1>;
-+          output-low;
-+        };
-+      };
-+
-+      aw_enn_output_high: aw_enn_output_high {
-+        pins_cmd_dat {
-+          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
-+          slew-rate = <1>;
-+          output-high;
-+        };
-+      };
-+
-+      aw_enn_output_low: aw_enn_output_low {
-+        pins_cmd_dat {
-+          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
-+          slew-rate = <1>;
-+          output-low;
-+        };
-+      };
-+
-+      aw_enp_default: aw_enp_default {
-+        pins_cmd_dat {
-+          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-+          slew-rate = <1>;
-+          output-low;
-+        };
-+      };
-+
-+      aw_enp_output_high: aw_enp_output_high {
-+        pins_cmd_dat {
-+          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-+          slew-rate = <1>;
-+          output-high;
-+        };
-+      };
-+
-+      aw_enp_output_low: aw_enp_output_low {
-+        pins_cmd_dat {
-+          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-+          slew-rate = <1>;
-+          output-low;
-+        };
-+      };
-+
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        aw3750x@3e {
-+            compatible = "awinic,aw3750x_led";
-+            aw3750x_gpio_ctrl = <0>;
-+            reg = <0x3e>;
-+            outp = <0x0E>;
-+            outn = <0x0E>;
-+            enn-gpio = <&pio 7 0>;
-+            enp-gpio = <&pio 1 0>;
-+            pinctrl-names = "aw_enn_default", "aw_enn_output_high",
-+                            "aw_enn_output_low", "aw_enp_default",
-+                            "aw_enp_output_high", "aw_enp_output_low";
-+            pinctrl-0 = <&aw_enn_default>;
-+            pinctrl-1 = <&aw_enn_output_high>;
-+            pinctrl-2 = <&aw_enn_output_low>;
-+            pinctrl-3 = <&aw_enp_default>;
-+            pinctrl-4 = <&aw_enp_output_high>;
-+            pinctrl-5 = <&aw_enp_output_low>;
-+
-+            aw_lcdb_outp_vreg: enp {
-+              label = "outp";
-+              regulator-name = "outp";
-+              regulator-min-microvolt = <4000000>;
-+              regulator-max-microvolt = <6000000>;
-+            };
-+            aw_lcdb_outn_vreg: enn {
-+              label = "outn";
-+              regulator-name = "outn";
-+              regulator-min-microvolt = <4000000>;
-+              regulator-max-microvolt = <6000000>;
-+            };
-+        };
-+    };
--- 
-2.41.0
+> On 05.07.2023 10:37, Miquel Raynal wrote:
+> > Hi Arseniy,
+> >=20
+> > AVKrasnov@sberdevices.ru wrote on Wed, 5 Jul 2023 09:54:33 +0300:
+> >  =20
+> >> Meson NAND supports both 512B and 1024B ECC step size, so replace
+> >> 'const' for only 1024B step size with enum for both sizes.
+> >>
+> >> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> >> ---
+> >>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 +++-
+> >>  1 file changed, 3 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.=
+yaml b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> >> index 3bec8af91bbb..81ca8828731a 100644
+> >> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> >> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> >> @@ -49,7 +49,8 @@ patternProperties:
+> >>          const: hw
+> >> =20
+> >>        nand-ecc-step-size:
+> >> -        const: 1024
+> >> +        enum: [512, 1024]
+> >> +        default: 1024 =20
+> >=20
+> > I was actually wrong in my previous review, there is no strong default
+> > here as the existing binding (and code) try to use the closest
+> > parameters required by the NAND chip: we pick the "optimal"
+> > configuration. So if you don't provide any value here, we expect
+> > the strength and step size advertized by the chip to be used. This is a
+> > common default in the raw NAND subsystem.
+> >=20
+> > Please drop the default line, re-integrate the missing R-by tag from
+> > Rob and in a separate patch please mark nand-ecc-step-size and
+> > nand-ecc-strength mandatory if the other is provide. IOW, we expect
+> > either both, or none of them, but not a single one. =20
+>=20
+> I see, no problem! "mandatory" means update description of both fields li=
+ke:
+>=20
+>     description:                                                       =20
+>       Mandatory if nand-ecc-step-size is set.
 
+Nope :-)
+
+Something along:
+
+allOf:
+  - if:
+    <nand-chip>:
+      properties:
+        contains:
+          - nand-ecc-step-size
+    then:
+      required:
+        <nand-chip>:
+          properties:
+            - nand-ecc-strength
+
+And same with the opposite logic.
+
+>=20
+> etc.
+>=20
+> ?
+>=20
+> >  =20
+> >> =20
+> >>        nand-ecc-strength:
+> >>          enum: [8, 16, 24, 30, 40, 50, 60]
+> >> @@ -93,6 +94,7 @@ examples:
+> >>        nand@0 {
+> >>          reg =3D <0>;
+> >>          nand-rb =3D <0>;
+> >> +        nand-ecc-step-size =3D <1024>; =20
+> >=20
+> > So in the end this line is wrong and once you get the description right
+> > as I mentioned it above, this will fail to pass
+> > `make DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mtd/ dt_binid=
+ng_check`
+> > Please drop it from the example, don't add the second property here,
+> > it's best to show a clean example where people stop tampering for no
+> > reason with the optimal values. =20
+>=20
+> Ok!
+>=20
+> Thanks, Arseniy
+>=20
+> >  =20
+> >>        };
+> >>      };
+> >>   =20
+> >=20
+> >=20
+> > Thanks,
+> > Miqu=C3=A8l =20
+
+
+Thanks,
+Miqu=C3=A8l
