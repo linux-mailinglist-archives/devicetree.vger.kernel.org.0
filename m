@@ -2,131 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CDEA7480EF
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:34:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46164748109
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:36:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231346AbjGEJem (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 05:34:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51496 "EHLO
+        id S231638AbjGEJgk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 05:36:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231305AbjGEJel (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:34:41 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A62AB1722
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 02:34:39 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51a52a7d859so976198a12.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 02:34:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688549678; x=1691141678;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=rXURleKlaTFNIbTJ9xd745LCWhyovyOc9RZu94UdHB4=;
-        b=CkO7C71oRzFMdTiC7jMnovz3eVbsHlOo7s2oEzA8izZprXZqGtqMf9XLy8R4N2Gxkf
-         55gNLjKQjSPI6Tcj+x69U6GC9ejBrOVmAy0igh/p5oCp+ULSywHl8hYtA9lN3do/LdzZ
-         q6ihosgyqrpiui+dUAPSdh9kgyn6Yac1sD1r5xbvHfM1mZnlVBOtsYPR1WEC2gjlCntu
-         bxSgG7aykjmvPo7WvRDYvbUWFW7jtoSe1uw2r8yLSiZSBrtL3isv4932Mtuf0LsRlu+K
-         W69vVRbAPfR443FSD9Yvw83pJCmWZI4KsO6kr2s0C71U1rIKaiJ6P6G3J0zGypTbsPRV
-         Z5zA==
+        with ESMTP id S231680AbjGEJge (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:36:34 -0400
+Received: from mail-il1-f182.google.com (mail-il1-f182.google.com [209.85.166.182])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EA501737;
+        Wed,  5 Jul 2023 02:36:33 -0700 (PDT)
+Received: by mail-il1-f182.google.com with SMTP id e9e14a558f8ab-3425eb6865eso1033695ab.1;
+        Wed, 05 Jul 2023 02:36:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688549678; x=1691141678;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=rXURleKlaTFNIbTJ9xd745LCWhyovyOc9RZu94UdHB4=;
-        b=iWT1OQTqlRyfqYawZpHCqL3osHyVPfA2xg5xbKp81YfswIW43BY8sb99askvpiusmV
-         bOH8RunB/SM43miAnJM7aWBor2Go6YPPHiHTJylSxwbBE+p6NraoFdQILVFj6crOb6DQ
-         cRNge4rxvBXpFvMwEZd4fMiEnHcPmaHC4Vsb7HF1D6Eu7ydsjSqOmPSQe7ykSmy84T6v
-         AqNQVFUeP1hUM2o8xIwaS9kiTH4VHYy2qBApSd4jDMpUOij4QzekltvPZpeu/uVn9ICq
-         UqPfTn5JxGEbPme4cCveHCNv3RMVetPamg4RETFhzynf5R8t5nx5cmL5MZAHKQI5b3c4
-         SX9g==
-X-Gm-Message-State: ABy/qLa92zCIEmaTxiWabUQMSA6zNoV3cXfTtz1GUx1xvk6uR2pg5D88
-        YBcSs88kbLsIj/44O244OXyC2A==
-X-Google-Smtp-Source: APBJJlE7J4ROo3gkQLmcRe/QT38WIvVMq1KDJBWjeV0T+MvtcUyDCQfMzHs5dYSdZyD8tkxfaNJ3aw==
-X-Received: by 2002:a05:6402:7c4:b0:51e:da3:1585 with SMTP id u4-20020a05640207c400b0051e0da31585mr1597166edy.9.1688549678158;
-        Wed, 05 Jul 2023 02:34:38 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id p18-20020aa7d312000000b0051a2d2f82fdsm13044557edq.6.2023.07.05.02.34.36
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 02:34:37 -0700 (PDT)
-Message-ID: <a0631800-f3d5-ff13-b316-9bc027275a82@linaro.org>
-Date:   Wed, 5 Jul 2023 11:34:35 +0200
+        d=1e100.net; s=20221208; t=1688549793; x=1691141793;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=gCXnreO4f7zyeb3Oa/KsScusfsW3glrtOR4lvy1jYrQ=;
+        b=frlbV+AN8LJWD/1dZTgYTQgsAfh+44b3v/d72vt2ciZrJctZRGg5c0+Kfe23SHfZZS
+         WXPg/V5SkcBScKs/ecZPvEvQtOo7P/9RoKGSXl0Yp7Av0/xKTKx5ROSUcVm8M5CP5vRw
+         KEkfaI6rboNLNcqK3ssN0763PVZ+pnG1rUbnngXwE0uA47LqRozBfSJc74Nw3Y/gpBpp
+         Cbj/RY3WDCZq6YujZCzqv+aaQzC7KAPFDvtmeR4Cbvo9CsQdN2xRtkgBhsQ2dDrrG93X
+         1mDHNoSHZf1mnmUWPl07vzzpOiLpWn2ktbnYkQvFGnFUyfFHdePS7K0nRGZrKWaX5JhO
+         Uv6Q==
+X-Gm-Message-State: ABy/qLZHNRkRdZ0z9AI+LL7S70HwXwvHOztja30E7/a77/0KVHRGnQmb
+        cnn20t4bTUD2eXFyQR6dMpYdLgNEGw==
+X-Google-Smtp-Source: APBJJlHWTyqQCw+iuSJ7h7w8uxUGlhKBrSZt8LDRV91VBoqZzGInjjA4nj9irPaKMnwrO+FmfSav/A==
+X-Received: by 2002:a92:d241:0:b0:342:2b27:725c with SMTP id v1-20020a92d241000000b003422b27725cmr1288477ilg.6.1688549792767;
+        Wed, 05 Jul 2023 02:36:32 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id p2-20020a92d482000000b003460b456030sm2259430ilg.60.2023.07.05.02.36.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 02:36:32 -0700 (PDT)
+Received: (nullmailer pid 4106983 invoked by uid 1000);
+        Wed, 05 Jul 2023 09:36:30 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH V7 1/2] dt-bindings: firmware: bootstats: Add the dtschema
-Content-Language: en-US
-To:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@somainline.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Arnd Bergmann <arnd@arndb.de>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Sibi Sankar <quic_sibis@quicinc.com>,
-        Rajendra Nayak <quic_rjendra@quicinc.com>
-References: <cover.1688533340.git.quic_schowdhu@quicinc.com>
- <b3105990e021a71039f621e6c4e70ab05fb348fa.1688533340.git.quic_schowdhu@quicinc.com>
- <d339d413-5242-0d5a-96f6-c2f670e5e5dc@linaro.org>
- <968fb5d3-6cd8-7850-47e7-682e26f9ee5f@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <968fb5d3-6cd8-7850-47e7-682e26f9ee5f@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+From:   Rob Herring <robh@kernel.org>
+To:     like@awinic.com
+Cc:     broonie@kernel.org, liweilei@awinic.com, yijiangtao@awinic.com,
+        robh+dt@kernel.org, lgirdwood@gmail.com, liangdong@awinic.com,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+In-Reply-To: <20230705081942.2608531-2-like@awinic.com>
+References: <20230705081942.2608531-1-like@awinic.com>
+ <20230705081942.2608531-2-like@awinic.com>
+Message-Id: <168854979046.4106954.2655397738396869606.robh@kernel.org>
+Subject: Re: [PATCH V1 1/1] regulator: Add awinic,aw3750x.yaml
+Date:   Wed, 05 Jul 2023 03:36:30 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 10:33, Souradeep Chowdhury wrote:
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>> +
->>> +  abl-time:
->>> +    description: The property to store the duration of abl in ms.
->>> +    $ref: /schemas/types.yaml#/definitions/string-array
->>
->> I have no clue what this entire binding is about. Nothing can bind to
->> it, no usage explained. Properties are not used to "store the duration".
->> This does not look like suitable for DT, drop entire binding.
+
+On Wed, 05 Jul 2023 08:19:41 +0000, like@awinic.com wrote:
+> From: Ke Li <like@awinic.com>
 > 
-> This binding was created as per the suggestion on version 6 of the patch 
-> by Arnd. The idea was that these 2 devicetree properties will be used to 
-> populate the bootstat values from the bootloader and exposed to the user 
-> via /sys/firmware/devicetree/ directly.
+> Signed-off-by: Ke Li <like@awinic.com>
+> ---
+>  .../bindings/regulator/awinic,aw3750x.yaml    | 151 ++++++++++++++++++
+>  1 file changed, 151 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
 > 
-> Details in the link below:-
-> 
-> https://lore.kernel.org/lkml/7d397e67-5d56-4975-98af-1ac9746c07f4@app.fastmail.com/T/#mbdc9ad95fcbb5ad7b56c6996a3933899b42d982c
-> 
-> Can you suggest any alternative way to represent this as a binding?
 
-Then you should clearly state in the binding how this is going to be
-used and who is going to populate it. Not only in the binding but also
-in commit msg which currently has 0 rationale and answers to "why". Your
-commit msg explained only "what", which is usually obvious and much less
-important. Your commit should stand on its own and should clearly
-explain why we need this feature at all, what problem it solves.
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-And before you claim that there is some discussion under link or some
-cover letter - these do not matter. Commit and bindings matter.
+yamllint warnings/errors:
 
-What's more, I don't think that Arnd's advice is correct here - DT is
-suppose to describe hardware or firmware. These properties are coming
-from firmware but they are not describing any firmware or hardware
-characteristics. Instead they are debugging of current boot status.
+dtschema/dtc warnings/errors:
+Documentation/devicetree/bindings/regulator/awinic,aw3750x.example.dts:21.31-70.11: Warning (unit_address_vs_reg): /example-0/pinctrl@10005000: node has a unit name, but no reg or ranges property
+Documentation/devicetree/bindings/regulator/awinic,aw3750x.example.dts:94.24-124.15: Warning (gpios_property): /example-1/i2c/aw3750x@3e: Missing property '#gpio-cells' in node /example-0/pinctrl@10005000 or bad phandle (referred from enn-gpio[0])
+Documentation/devicetree/bindings/regulator/awinic,aw3750x.example.dts:94.24-124.15: Warning (gpios_property): /example-1/i2c/aw3750x@3e: Missing property '#gpio-cells' in node /example-0/pinctrl@10005000 or bad phandle (referred from enp-gpio[0])
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/awinic,aw3750x.example.dtb: aw3750x@3e: enp: Unevaluated properties are not allowed ('label' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/awinic,aw3750x.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/awinic,aw3750x.example.dtb: aw3750x@3e: enn: Unevaluated properties are not allowed ('label' was unexpected)
+	from schema $id: http://devicetree.org/schemas/regulator/awinic,aw3750x.yaml#
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/regulator/awinic,aw3750x.example.dtb: aw3750x@3e: 'aw3750x_gpio_ctrl', 'enn-gpio', 'enp-gpio', 'outn', 'outp', 'reg' do not match any of the regexes: 'pinctrl-[0-9]+'
+	from schema $id: http://devicetree.org/schemas/regulator/awinic,aw3750x.yaml#
 
-I will leave the decision on that for Rob, however anyway binding is
-very vague and incorrect, so I would expect he will come with the same
-concerns regardless whether it is suitable to DT or is not.
+doc reference errors (make refcheckdocs):
 
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230705081942.2608531-2-like@awinic.com
 
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-Best regards,
-Krzysztof
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
+
+pip3 install dtschema --upgrade
+
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
