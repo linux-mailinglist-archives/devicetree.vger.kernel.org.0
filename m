@@ -2,156 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 66C7674802E
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 10:54:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46966748093
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:15:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231455AbjGEIy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 04:54:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35880 "EHLO
+        id S231821AbjGEJPm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 05:15:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231317AbjGEIyZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 04:54:25 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54F15E47;
-        Wed,  5 Jul 2023 01:54:24 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3657UkoF005349;
-        Wed, 5 Jul 2023 08:54:19 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : from : to : cc : references : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=YoDoblR7kbON3CTgY71+4Rb/WnyCqKR+rW7kULg6i6o=;
- b=XxvQjaVXkuMj2VdCyXkPeX5yiODteTxShJ5eVF8dMJiT9a3WQdN/ByWuzyH6M0NrIylf
- TlTk5M19yFyvh+mxyyvm5N1gjuOffKJ5IsUv2ngH8Nv89EJ4IiYJTpccSfKR1tGSQKFl
- eqAdM7FztmtOAfzUfpb6C1VbDpWfRgx5Ls/7xGhejBLvpuHhA4q5f7dSa/jdRZeX7+eN
- SQ6zyb011Ip+/XPT9Oto5yrJ1eGRaDpp4FA4eiRC7sIT2N5rGj02880brE4LeH28OalC
- 2Zxvq242eUHRObFMcELz0Y9bcFDoxHB35iMFLaHTniwOFqfbyrhmXTcd+P5zazWEKbkJ pQ== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rmnw6h9mj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Jul 2023 08:54:19 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3658sInc007167
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 5 Jul 2023 08:54:18 GMT
-Received: from [10.214.66.58] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Wed, 5 Jul
- 2023 01:54:14 -0700
-Message-ID: <06506ed7-f861-0bca-8b87-e2da6a6bc789@quicinc.com>
-Date:   Wed, 5 Jul 2023 14:24:10 +0530
+        with ESMTP id S231533AbjGEJPl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:15:41 -0400
+Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F64F1711
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 02:15:40 -0700 (PDT)
+Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-992b66e5affso740577466b.3
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 02:15:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688548538; x=1691140538;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=mJCzfCbfP+uuklVnWKKFWLGAIMomZXFAF+p78y6SU4Q=;
+        b=AkpViPs4fGT4ZA3tALgBPTJKdU2Aq8uIRkXm91IFJm94eZa2oH9rg7elk8c6S/nGdQ
+         wvus5F0WNiCKJ+sZdvGPIo0/kegN80yJ87KdZjlu4a7/Sk+tHQXnLvpEoGP7xhpqf15N
+         LGpJUFdK25RU7UhSQ+ohQgD246XMcAaiWsg/baVZ0H3rPoCkKRTjYysBvlPmPsX5Qt8f
+         0TrjGtKMZGJEStRTkcwHDK8D38MmYLm08lxk+cbQAJGUytmifn9fxnqNQC72E19nVG3B
+         U9AaFYx3YndwYZ0zCqT8e1QyIOXP1UFqLnwJxo24RNXbiRKnVS/bTGXYwH861J9+bTd+
+         9Dfg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688548538; x=1691140538;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=mJCzfCbfP+uuklVnWKKFWLGAIMomZXFAF+p78y6SU4Q=;
+        b=eXxOJgEXqVbswKWvQagCLwpUcyLKE/TEATU2/vDv7YUe/nsWiGhv/u+itns/hGG7D9
+         7hP4YqV0iPqJu1L/O8Kfs+fJyMfFJc5lT6SzP3nAh/G6y25RAkikCjbO2cAC4AdJHcfi
+         N7XVAkkFg2qH0LHcVAZRDeLnQeFGmcGjL+JZlIhMhYIzAfZxJOYvlYmo/QtlCnWOyuI/
+         j3eXeSBNoYSOz3xPq53GnvDxMAj19kmC+3RC73V4TlNJQsXpjGRG1Evz053fvNPuQvA7
+         lGCWqwa54xXvEAW7P2IFB555R5Ski+EHa5VD5nN4U8ynqG21+CId4/Ujp7desVqZXGOb
+         HTdw==
+X-Gm-Message-State: ABy/qLYfSsXIm3ehdG+PZnBwZUQThU6CVtSPLd8b8wO17P1SGFbBJWnm
+        ioipkHLCK2PpqVzebtlXHi81NA==
+X-Google-Smtp-Source: ACHHUZ75COoZeSKc6xhwnQVXiL09syhh7QxYpUoNOdQcNMbMhSebB/nKk7rf2jkp6kQtIl02O9QlvA==
+X-Received: by 2002:a17:906:38a:b0:98d:63c5:d135 with SMTP id b10-20020a170906038a00b0098d63c5d135mr11511755eja.54.1688548538530;
+        Wed, 05 Jul 2023 02:15:38 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id i10-20020a170906250a00b0096a6be0b66dsm14279852ejb.208.2023.07.05.02.15.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 02:15:38 -0700 (PDT)
+Message-ID: <fb0e8dcf-5397-9e88-15c3-16a044ea6cb8@linaro.org>
+Date:   Wed, 5 Jul 2023 11:15:33 +0200
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 02/10] dt-bindings: power: Add rpm power domains for SDX75
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: fix DEBIX binding
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, marex@denx.de,
+        frieder.schrempf@kontron.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20230704184109.991104-1-m.felsch@pengutronix.de>
+ <6f7586ee-257b-35b5-f986-0d2b370e4035@linaro.org>
+ <20230705082853.26kfb7thnxkb5tz4@pengutronix.de>
 Content-Language: en-US
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>, <agross@kernel.org>,
-        <andersson@kernel.org>, <lee@kernel.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <linus.walleij@linaro.org>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <sboyd@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-References: <1688395346-3126-1-git-send-email-quic_rohiagar@quicinc.com>
- <1688395346-3126-3-git-send-email-quic_rohiagar@quicinc.com>
- <0d468d08-6410-e424-b4f3-5245cdb0334a@linaro.org>
- <85456057-c4ef-68a6-4fc5-c9fd03b01b71@quicinc.com>
-In-Reply-To: <85456057-c4ef-68a6-4fc5-c9fd03b01b71@quicinc.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nhIdpD_LGIKz5NV-vTkq9js7nBo1tA30
-X-Proofpoint-ORIG-GUID: nhIdpD_LGIKz5NV-vTkq9js7nBo1tA30
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-04_16,2023-07-04_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- spamscore=0 lowpriorityscore=0 mlxscore=0 phishscore=0 impostorscore=0
- malwarescore=0 bulkscore=0 mlxlogscore=620 adultscore=0 suspectscore=0
- clxscore=1015 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307050081
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230705082853.26kfb7thnxkb5tz4@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 7/4/2023 11:47 AM, Rohit Agarwal wrote:
->
-> On 7/3/2023 8:29 PM, Konrad Dybcio wrote:
->> On 3.07.2023 16:42, Rohit Agarwal wrote:
->>> Add RPM power domain bindings for the SDX75 SoC.
+On 05/07/2023 10:28, Marco Felsch wrote:
+> Hi Krzysztof,
+> 
+> On 23-07-05, Krzysztof Kozlowski wrote:
+>> On 04/07/2023 20:41, Marco Felsch wrote:
+>>> The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
+>>> corresponding bindings by adding an own entry for it.
 >>>
->>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 >>> ---
->>>   Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 1 +
->>>   include/dt-bindings/power/qcom-rpmpd.h                  | 8 ++++++++
->>>   2 files changed, 9 insertions(+)
+>>>  Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++--
+>>>  1 file changed, 7 insertions(+), 2 deletions(-)
 >>>
->>> diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml 
->>> b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
->>> index afad313..58e1be8 100644
->>> --- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
->>> +++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
->>> @@ -40,6 +40,7 @@ properties:
->>>         - qcom,sdm845-rpmhpd
->>>         - qcom,sdx55-rpmhpd
->>>         - qcom,sdx65-rpmhpd
->>> +      - qcom,sdx75-rpmhpd
->>>         - qcom,sm6115-rpmpd
->>>         - qcom,sm6125-rpmpd
->>>         - qcom,sm6350-rpmhpd
->>> diff --git a/include/dt-bindings/power/qcom-rpmpd.h 
->>> b/include/dt-bindings/power/qcom-rpmpd.h
->>> index 1bf8e87..8092d0d 100644
->>> --- a/include/dt-bindings/power/qcom-rpmpd.h
->>> +++ b/include/dt-bindings/power/qcom-rpmpd.h
->>> @@ -57,6 +57,14 @@
->>>   #define SDX65_CX_AO    4
->>>   #define SDX65_MXC    5
->>>   +/* SDX75 Power Domain Indexes */
->>> +#define SDX75_CX    0
->>> +#define SDX75_CX_AO    1
->>> +#define SDX75_MSS    2
->>> +#define SDX75_MX    3
->>> +#define SDX75_MX_AO    4
->>> +#define SDX75_MXC    5
->> Please instead introduce a set of defines without the SoC prefix
->> (i.e. CX, CX_AO, MX etc.). We've been putting this off for too long
->> and you're the first unlucky guy that submitted new RPMhPD support after
->> we've concluded it'd be the way to go! :D Sadly, we can't replace the
->> existing ones retroactively..
-> Surely No issues. Will update it.
+>>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> index 15d4110840654..d9e763ef932e5 100644
+>>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>>> @@ -1019,8 +1019,6 @@ properties:
+>>>                - dmo,imx8mp-data-modul-edm-sbc # i.MX8MP eDM SBC
+>>>                - fsl,imx8mp-evk            # i.MX8MP EVK Board
+>>>                - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
+>>> -              - polyhex,imx8mp-debix      # Polyhex Debix boards
+>>> -              - polyhex,imx8mp-debix-model-a # Polyhex Debix Model A Board
+>>>                - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
+>>>                - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
+>>>                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
+>>> @@ -1054,6 +1052,13 @@ properties:
+>>>            - const: phytec,imx8mp-phycore-som         # phyCORE-i.MX8MP SoM
+>>>            - const: fsl,imx8mp
+>>>  
+>>> +      - description: Polyhex DEBIX i.MX8MP based SBCs
+>>> +        items:
+>>> +          - enum:
+>>> +              - polyhex,imx8mp-debix-model-a        # Polyhex Debix Model A Board
+>>> +          - const: polyhex,imx8mp-debix             # Polyhex Debix boards
+>>
+>> Same comments as for patch #2. I think this should be rather deprecated
+>> - not a good pattern.
+> 
+> How can we deprecate a binding?
 
-I have a doubt here. Cant we completely omit the #defines here and 
-directly index this as 0,1,...
-because if the intention of this #defines is to understand the name of 
-the pd then we can get
-it from the .name attribute in rpmhpd as well, right?
+git grep "deprecated:" -- Documentation/devicetree/
 
-The problems with a common set of #define would be, lets say if we 
-define CX_AO as 1 and some platform
-doesn't have CX_AO then wouldnt it leave a null entry in the driver 
-entry of that platform?
+Best regards,
+Krzysztof
 
-Thanks,
-Rohit.
-
->
-> Thanks,
-> Rohit.
->> Konrad
->>> +
->>>   /* SM6350 Power Domain Indexes */
->>>   #define SM6350_CX    0
->>>   #define SM6350_GFX    1
