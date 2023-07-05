@@ -2,256 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 190D4748FA6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 23:23:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8339748FFC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 23:40:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231204AbjGEVX5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 17:23:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35272 "EHLO
+        id S230305AbjGEVkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 17:40:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231137AbjGEVX4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 17:23:56 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F015919AC;
-        Wed,  5 Jul 2023 14:23:53 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (85-160-42-71.reb.o2.cz [85.160.42.71])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 00DBC814;
-        Wed,  5 Jul 2023 23:23:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1688592186;
-        bh=mVKQWcInE/02nRlaf5o9UWQQ40Fi6TOUZNaa723ObdY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ccductrnQXwDm9XkJKW1dtrOIQyBAeCVlcgEgbXI1KCjHtBdxkgwvfd6bh3UztBSF
-         4l3w2ZzsdLn7/Ll2TxkNqIAjA+piOI10i6gDSaObQ2o0lpxo+mBTSj+1n5PVCfnuOS
-         /vCWlqg0kbgyAdGkqJ32GzyAePhMT5fy3IZBOvXI=
-Date:   Thu, 6 Jul 2023 00:23:51 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     "G.N. Zhou (OSS)" <guoniu.zhou@oss.nxp.com>
-Cc:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "jacopo.mondi@ideasonboard.com" <jacopo.mondi@ideasonboard.com>
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add binding doc for i.MX93 MIPI
- CSI-2
-Message-ID: <20230705212351.GC11949@pendragon.ideasonboard.com>
-References: <20230703113734.762307-1-guoniu.zhou@oss.nxp.com>
- <20230703113734.762307-2-guoniu.zhou@oss.nxp.com>
- <2292421.ElGaqSPkdT@steina-w>
- <AS8PR04MB90805B1F91BCDB7FDC058392FA2FA@AS8PR04MB9080.eurprd04.prod.outlook.com>
+        with ESMTP id S229697AbjGEVky (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 17:40:54 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 923261998;
+        Wed,  5 Jul 2023 14:40:53 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2FB68615C5;
+        Wed,  5 Jul 2023 21:40:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A80EC433C7;
+        Wed,  5 Jul 2023 21:40:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688593252;
+        bh=43KgAy9/42rhJ/qdDtut0U8IYVof/FSFApFtVi0NS7w=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=arRjBgE+Eu/fqU6RjT62qDCwUNGBrAdxDi6g7Qz7Q70iMYrm2Oor4Pix6c1Wm8aGI
+         wa4j+B3zFeZvQ9AJdNFHxa49DSlUVybqGi1ypsooLc4OWuGjaprJyXtFhWuFYBREWY
+         Ij8hY7mR7AxoE0A0a8ywbys314zG+kF97d+ZdxxMZx1eKlz3Z1sVSmIAv92TPb3Rft
+         KD0NdY9SSAU9Fqvgx3K5V38aT71w9ZHgCE7GFVT2yE9uHkmiFOteXXAaRYcaZwW10Q
+         BdOLGeRa0ypMSK8nRU1qaZKOD2MqKLRBoWeq2j//1+klx1a+b5fFcXCcL6rlGQ8tfi
+         +xFlZ9O2pVFbg==
+Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b70224ec56so15416501fa.3;
+        Wed, 05 Jul 2023 14:40:52 -0700 (PDT)
+X-Gm-Message-State: ABy/qLb4/BUBQoZGacEfVpogSC9MrKg8lzRStWg2T6TxkkG7I8xBfgOp
+        If15nzcDhoPz3gCL5cc7JSQqhLfVna7Reck4+A==
+X-Google-Smtp-Source: APBJJlFoq5cIOIjbR+234mv24z/4earTsTW24z8akNDSm6Vi1gZP0JHzxc4vEmZtR5+/51uG0JXrLKV1JtatdjeeqoM=
+X-Received: by 2002:a2e:a164:0:b0:2b6:fc60:776f with SMTP id
+ u4-20020a2ea164000000b002b6fc60776fmr3445500ljl.30.1688593250544; Wed, 05 Jul
+ 2023 14:40:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <AS8PR04MB90805B1F91BCDB7FDC058392FA2FA@AS8PR04MB9080.eurprd04.prod.outlook.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+References: <20230630185602.2175559-1-robh@kernel.org> <0aa7227d-264f-a87d-bef1-9f5d1c43a184@arm.com>
+In-Reply-To: <0aa7227d-264f-a87d-bef1-9f5d1c43a184@arm.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 5 Jul 2023 15:40:38 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+T_8JNAQ1Ca8kNH0LCkiytJuSZPZeC_pvyOOG6xvQh+g@mail.gmail.com>
+Message-ID: <CAL_Jsq+T_8JNAQ1Ca8kNH0LCkiytJuSZPZeC_pvyOOG6xvQh+g@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: arm: pmu: Add Cortex-A520, Cortex-A715,
+ and Cortex-A720
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 05, 2023 at 01:36:46AM +0000, G.N. Zhou (OSS) wrote:
-> Hi Alexander,
-> 
-> Thanks for you comment.
-> 
-> > -----Original Message-----
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Sent: 2023年7月4日 16:39
-> > To: linux-media@vger.kernel.org; devicetree@vger.kernel.org; dl-linux-imx
-> > <linux-imx@nxp.com>; G.N. Zhou (OSS) <guoniu.zhou@oss.nxp.com>
-> > Cc: mchehab@kernel.org; laurent.pinchart@ideasonboard.com;
-> > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org; conor+dt@kernel.org;
-> > jacopo.mondi@ideasonboard.com
-> > Subject: Re: [PATCH 1/2] media: dt-bindings: Add binding doc for i.MX93 MIPI
-> > CSI-2
-> > 
-> > Hi Guoniu,
-> > 
-> > thanks for posting this driver.
-> > 
-> > Am Montag, 3. Juli 2023, 13:37:33 CEST schrieb guoniu.zhou@oss.nxp.com:
-> > >
-> > > From: "Guoniu.zhou" <guoniu.zhou@nxp.com>
-> > >
-> > > Add new binding documentation for DesignWare Core MIPI CSI-2 receiver
-> > > and DPHY found on NXP i.MX93.
-> > >
-> > > Signed-off-by: Guoniu.zhou <guoniu.zhou@nxp.com>
-> > > ---
-> > >  .../bindings/media/nxp,dwc-mipi-csi2.yaml     | 140 ++++++++++++++++++
-> > >  1 file changed, 140 insertions(+)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.yaml
-> > > b/Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.yaml new
-> > > file mode 100644 index 000000000000..ece6fb8991d4
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/nxp,dwc-mipi-csi2.yaml
-> > > @@ -0,0 +1,140 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause) %YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/nxp,dwc-mipi-csi2.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: NXP i.MX93 MIPI CSI-2 Host Controller receiver
-> > > +
-> > > +maintainers:
-> > > +  - G.N. Zhou <guoniu.zhou@nxp.com>
-> > > +
-> > > +description: |-
-> > > +  The MIPI CSI-2 receiver found on i.MX93 originates from Synopsys
-> > > +  DesignWare Core and it implements the CSI-2 protocol on the host
-> > > +  side and a DPHY configured as a Slave acts as the physical layer.
-> > > +  Two data lanes are supported on i.MX93 family devices and the data
-> > > +  rate of each lane support up to 1.5Gbps.
-> > > +
-> > > +  While the CSI-2 receiver is separate from the MIPI D-PHY IP core,
-> > > + the PHY is completely wrapped by the CSI-2 controller and expose  a
-> > > + control interface which only can communicate with CSI-2 controller
-> > > + This binding thus covers both IP cores.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - fsl,imx93-mipi-csi2
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  clocks:
-> > > +    items:
-> > > +      - description: The peripheral clock (a.k.a. APB clock)
-> > > +      - description: The pixel clock
-> > > +      - description: The MIPI D-PHY clock
-> > > +
-> > > +  clock-names:
-> > > +    items:
-> > > +      - const: per
-> > > +      - const: pixel
-> > > +      - const: phy_cfg
-> > > +
-> > > +  power-domains:
-> > > +    maxItems: 1
-> > > +
-> > > +  ports:
-> > > +    $ref: /schemas/graph.yaml#/properties/ports
-> > > +
-> > > +    properties:
-> > > +      port@0:
-> > > +        $ref: /schemas/graph.yaml#/$defs/port-base
-> > > +        unevaluatedProperties: false
-> > > +        description:
-> > > +          Input port node, single endpoint describing the CSI-2 transmitter.
-> > > +
-> > > +        properties:
-> > > +          endpoint:
-> > > +            $ref: video-interfaces.yaml#
-> > > +            unevaluatedProperties: false
-> > > +
-> > > +            properties:
-> > > +              data-lanes:
-> > > +                minItems: 1
-> > > +                items:
-> > > +                  - const: 1
-> > > +                  - const: 2
-> > > +
-> > > +              fsl,hsfreqrange:
-> > > +                $ref: /schemas/types.yaml#/definitions/uint32
-> > > +                description:
-> > > +                  Used to select the desired high speed frequency range
-> > > +                  according to data lane bit rate. Please refer to i.MX93
-> > > +                  reference manual MIPI CSI-2 DPHY chapter to get a valid
-> > > +                  value.
-> > 
-> > If this is data lane bit rate specific, shouldn't it be set in s_stream callback or
-> > similar?
-> 
-> That's correct if we have a formula to calculate it and get data rate from sensor. But Synopsys only
-> provide a table to search the valid hsfreqrange according to data rate and the values are nonlinear
-> so I export a property to handle this issue.
+On Mon, Jul 3, 2023 at 1:40=E2=80=AFPM Robin Murphy <robin.murphy@arm.com> =
+wrote:
+>
+> On 2023-06-30 19:56, Rob Herring wrote:
+> > Add compatible strings for the Arm Cortex-A520, Cortex-A715, and
+> > Cortex-A720 CPU PMUs.
+> >
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> >   Documentation/devicetree/bindings/arm/pmu.yaml | 3 +++
+> >   1 file changed, 3 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/pmu.yaml b/Documenta=
+tion/devicetree/bindings/arm/pmu.yaml
+> > index e14358bf0b9c..0cc468d6c372 100644
+> > --- a/Documentation/devicetree/bindings/arm/pmu.yaml
+> > +++ b/Documentation/devicetree/bindings/arm/pmu.yaml
+> > @@ -49,7 +49,10 @@ properties:
+> >             - arm,cortex-a77-pmu
+> >             - arm,cortex-a78-pmu
+> >             - arm,cortex-a510-pmu
+> > +          - arm,cortex-a520-pmu
+> >             - arm,cortex-a710-pmu
+> > +          - arm,cortex-a715-pmu
+> > +          - arm,cortex-a720-pmu
+> >             - arm,cortex-x1-pmu
+> >             - arm,cortex-x2-pmu
+>
+> Should we catch up on Cortex-X (3 and 4 now) while we're at it?
 
-We have multiple drivers in mainline that do the same, so it's not a
-problem, you can have a table of values in the driver and search for the
-right entry at runtime. See
-drivers/media/platform/renesas/rcar-vin/rcar-csi2.c for instance.
+Yes. I'll add those.
 
-> > > +
-> > > +            required:
-> > > +              - data-lanes
-> > > +              - fsl,hsfreqrange
-> > > +
-> > > +      port@1:
-> > > +        $ref: /schemas/graph.yaml#/properties/port
-> > > +        description:
-> > > +          Output port node
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - clocks
-> > > +  - clock-names
-> > > +  - power-domains
-> > > +  - ports
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/clock/imx93-clock.h>
-> > > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +    #include <dt-bindings/power/fsl,imx93-power.h>
-> > > +
-> > > +    mipi-csi@4ae00000 {
-> > > +        compatible = "fsl,imx93-mipi-csi2";
-> > > +        reg = <0x4ae00000 0x10000>;
-> > > +        interrupts = <GIC_SPI 175 IRQ_TYPE_LEVEL_HIGH>;
-> > > +        clocks = <&clks IMX93_CLK_MIPI_CSI_GATE>,
-> > > +                 <&clks IMX93_CLK_CAM_PIX>,
-> > > +                 <&clks IMX93_CLK_MIPI_PHY_CFG>;
-> > > +        clock-names = "per", "pixel", "phy_cfg";
-> > > +        power-domains = <&media_blk_ctrl IMX93_MEDIABLK_PD_MIPI_CSI>;
-> > > +
-> > > +        ports {
-> > > +            #address-cells = <1>;
-> > > +            #size-cells = <0>;
-> > > +
-> > > +            port@0 {
-> > > +                reg = <0>;
-> > > +
-> > > +                mipi_from_sensor: endpoint {
-> > > +                    remote-endpoint = <&ap1302_to_mipi>;
-> > > +                    data-lanes = <1 2>;
-> > > +                    fsl,hsfreqrange = <0x2c>;
-> > > +                };
-> > > +            };
-> > > +
-> > > +            port@1 {
-> > > +                reg = <1>;
-> > > +
-> > > +                mipi_to_isi: endpoint {
-> > > +                    remote-endpoint = <&isi_in>;
-> > > +                };
-> > > +            };
-> > > +        };
-> > > +    };
-> > > +...
+Looking a bit further at this, it seems a bunch of platforms
+(including a Cortex-X3 based one) are just using "arm,armv8-pmuv3".
+That's supposed to be just for s/w models, but it's not enforceable.
 
--- 
-Regards,
-
-Laurent Pinchart
+Rob
