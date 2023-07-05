@@ -2,117 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1724748345
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 13:46:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC044748311
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 13:42:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231726AbjGELqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 07:46:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50328 "EHLO
+        id S231331AbjGELmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 07:42:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231721AbjGELqx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 07:46:53 -0400
-Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id A40EB19BE;
-        Wed,  5 Jul 2023 04:46:37 -0700 (PDT)
-X-IronPort-AV: E=Sophos;i="6.01,182,1684767600"; 
-   d="scan'208";a="166982754"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie5.idc.renesas.com with ESMTP; 05 Jul 2023 20:46:12 +0900
-Received: from localhost.localdomain (unknown [10.166.15.32])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 3E6C9400C458;
-        Wed,  5 Jul 2023 20:46:12 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
-        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
-        bhelgaas@google.com, kishon@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
-        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v17 05/20] PCI: dwc: Add outbound MSG TLPs support
-Date:   Wed,  5 Jul 2023 20:41:51 +0900
-Message-Id: <20230705114206.3585188-6-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
-References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
+        with ESMTP id S230488AbjGELmD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 07:42:03 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2CD21736
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 04:42:00 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4f96d680399so10018384e87.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 04:42:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688557319; x=1691149319;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=CaNHukNnVjDsPaAH2UItJR4RWTnzSz8CQM5za4d01xc=;
+        b=eoGCbKtPXzvda15F0EFg+vTluEi6TZEBd+7pMT4pGkWtwQrRjqNWhEKo/FVA3KMbG0
+         dkaVNTuimNtL4VUMmRIOTCirIG6TfXDlU/o28TFeU4WvdK5p55xIsA/p6BnptPWtPQp2
+         FfxGBhI301mJkHqaLL++z2vQVn+47JZ4hrnH+eax+PTHgL9a7hVl2d54/kx/K5hVSeOc
+         SbYoAhKEydcYnE5/x3oLPJ+xDYfu47dlEOJBB++GKvxnLjYfPXKX4E6lnaYCSzj40mzK
+         6ocdqZTXkGQHfsws1AfbSQPr02sGs4lEIacNxoq2+mvtjasMQnfDfmEijIHi9qpCM/Yg
+         jRMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688557319; x=1691149319;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=CaNHukNnVjDsPaAH2UItJR4RWTnzSz8CQM5za4d01xc=;
+        b=aC1MJ8PpkNQ41aM37edSiSqo1NBUufTZ6Iqsu6yavDgyvxhj9Pr7oGuxUlPVgvzL+d
+         1zdcFTPy2Iz09y4q3lvAOgDmyXESbSV6tWVNOkN0Wq4qCpLaDYOxmCJ0FpgCgRg1NeED
+         ZGqSe0rlAlhimt8FK5fkzj/uPx4ZbF96+9B6YrY+SHMkiEN5rnfwIO3hEbRsFZmzJ1ef
+         BRd3PdQsNLG+atQHIyHt+XKhrnlWxYoF1igHCzmGJ/PBy+kzoIMDKf2ZTkVMkE9PLanW
+         9cJyEYR/tmFX3XYIG4qztnZi182JtbS13jkq2EzIJaDqg9ccTGoAcWLjR9/gydshSEPE
+         hVoA==
+X-Gm-Message-State: ABy/qLbYDhU6E6BWKs4YPzMWJ3lJNXpsx7KeDzzaXlu60XJ5UFSUafjP
+        1CzH7Du86qDS1Krz+e+q6YfQiQ==
+X-Google-Smtp-Source: APBJJlFvQ35NSEFVi2NIkEQ1WNt56GRkE1nTH8Ny1kcUH3mWK3BNQT6Ii7cKXFgw3UkumO+kXtU5eg==
+X-Received: by 2002:a05:6512:3256:b0:4fb:9f93:365f with SMTP id c22-20020a056512325600b004fb9f93365fmr11125377lfr.38.1688557319123;
+        Wed, 05 Jul 2023 04:41:59 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003fb416d732csm1916808wmk.6.2023.07.05.04.41.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 04:41:58 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Date:   Wed, 05 Jul 2023 13:41:51 +0200
+Subject: [PATCH v2 1/3] dt-bindings: clock: amlogic: convert
+ amlogic,gxbb-clkc.txt to dt-schema
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Message-Id: <20230705-b4-amlogic-bindings-convert-take2-v2-1-22be915ddc3b@linaro.org>
+References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+In-Reply-To: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3423;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=6blIrzyVDZas5IcZi9A41vegPBQeeY36EiPBXllpWCM=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpVcDIG9EJRq/VdZ54P4MlMspaLByJsDrCw/YRGwx
+ 4SNHHPOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKVXAwAKCRB33NvayMhJ0c2fEA
+ DAnzgI58asWhl7TlJS6OIvn/cirsOIIi/YaI5uM2uvix525ka7MBOSs7U4ASlxEnSPzlntuVNZ4Zib
+ UtIfG5fKqlc6ru4wDUX9Yog9yegd7m3Smqatdw7fdxyNvWX+Z7j8j9roPCF3WRG46TryfAVcpA4rwy
+ x2nShrNgHcJg6j7h+SlJQqpfYKqz5n4+kNgfUjHMt5/KKvMn+XoTS2Mrae3zlgRq0v0shKH959T0QA
+ 9QcAPMwcsPrrF8gqYOzTFUJbgPlHIxRupUCXZqdiWFhmQW/k4kBxF3DVIbXSJ4gFMupbzpfUrlSm08
+ GbmHrhpzeWn7eUrt5ghPigCVVQdCqF8bu2BSqKcJq/KalvC8vN0aW7Yvo2+ic9L6IO6rerg6P2BPHN
+ xZernKG7WIgYFL/BqdaewH/9CMXfqPCtXh77LL096DBhuZo0RZbH1NDEreaN21tf8Lt39ofM1hliSq
+ Okrm9OCUCmnoFFiYqXd82KkJu3DH87zzJxBlVqVC6RFZEEO5ZmsLpZyBg6XNc+P9VHuI6G2UjNqVQU
+ 9CdBnQMTLYoPzcoNJDciiyKOx0x/mVwjzA5iT/FUiH2ay/AuKqJ6JmiofC+L4gBtZ8w2zAr1Qyioul
+ mj+E+h9jjFxXd6uWKyGp+r3sLEOcmvSis7LdqN2EimfU1wWOl3y+erBpB8Ew==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add "code" and "routing" into struct dw_pcie_ob_atu_cfg for sending
-MSG by iATU in the PCIe endpoint mode in near the future.
-PCIE_ATU_INHIBIT_PAYLOAD is set to issue TLP type of Msg instead of
-MsgD. So, this implementation supports the data-less messages only
-for now.
+Convert the Amlogic Clock Controller bindings to dt-schema.
 
-Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- drivers/pci/controller/dwc/pcie-designware.c | 9 +++++++--
- drivers/pci/controller/dwc/pcie-designware.h | 4 ++++
- 2 files changed, 11 insertions(+), 2 deletions(-)
+ .../bindings/clock/amlogic,gxbb-clkc.txt           | 53 ----------------------
+ .../bindings/clock/amlogic,gxbb-clkc.yaml          | 37 +++++++++++++++
+ 2 files changed, 37 insertions(+), 53 deletions(-)
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
-index e4ac1def7363..a531dc50abea 100644
---- a/drivers/pci/controller/dwc/pcie-designware.c
-+++ b/drivers/pci/controller/dwc/pcie-designware.c
-@@ -498,7 +498,7 @@ int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
- 	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_UPPER_TARGET,
- 			      upper_32_bits(atu->pci_addr));
- 
--	val = atu->type | PCIE_ATU_FUNC_NUM(atu->func_no);
-+	val = atu->type | atu->routing | PCIE_ATU_FUNC_NUM(atu->func_no);
- 	if (upper_32_bits(limit_addr) > upper_32_bits(cpu_addr) &&
- 	    dw_pcie_ver_is_ge(pci, 460A))
- 		val |= PCIE_ATU_INCREASE_REGION_SIZE;
-@@ -506,7 +506,12 @@ int dw_pcie_prog_outbound_atu(struct dw_pcie *pci,
- 		val = dw_pcie_enable_ecrc(val);
- 	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL1, val);
- 
--	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2, PCIE_ATU_ENABLE);
-+	val = PCIE_ATU_ENABLE;
-+	if (atu->type == PCIE_ATU_TYPE_MSG) {
-+		/* The data-less messages only for now */
-+		val |= PCIE_ATU_INHIBIT_PAYLOAD | atu->code;
-+	}
-+	dw_pcie_writel_atu_ob(pci, atu->index, PCIE_ATU_REGION_CTRL2, val);
- 
- 	/*
- 	 * Make sure ATU enable takes effect before any subsequent config
-diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-index 85de0d8346fa..c626d21243b0 100644
---- a/drivers/pci/controller/dwc/pcie-designware.h
-+++ b/drivers/pci/controller/dwc/pcie-designware.h
-@@ -147,11 +147,13 @@
- #define PCIE_ATU_TYPE_IO		0x2
- #define PCIE_ATU_TYPE_CFG0		0x4
- #define PCIE_ATU_TYPE_CFG1		0x5
-+#define PCIE_ATU_TYPE_MSG		0x10
- #define PCIE_ATU_TD			BIT(8)
- #define PCIE_ATU_FUNC_NUM(pf)           ((pf) << 20)
- #define PCIE_ATU_REGION_CTRL2		0x004
- #define PCIE_ATU_ENABLE			BIT(31)
- #define PCIE_ATU_BAR_MODE_ENABLE	BIT(30)
-+#define PCIE_ATU_INHIBIT_PAYLOAD	BIT(22)
- #define PCIE_ATU_FUNC_NUM_MATCH_EN      BIT(19)
- #define PCIE_ATU_LOWER_BASE		0x008
- #define PCIE_ATU_UPPER_BASE		0x00C
-@@ -292,6 +294,8 @@ struct dw_pcie_ob_atu_cfg {
- 	int index;
- 	int type;
- 	u8 func_no;
-+	u8 code;
-+	u8 routing;
- 	u64 cpu_addr;
- 	u64 pci_addr;
- 	u64 size;
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+deleted file mode 100644
+index 7ccecd5c02c1..000000000000
+--- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
++++ /dev/null
+@@ -1,53 +0,0 @@
+-* Amlogic GXBB Clock and Reset Unit
+-
+-The Amlogic GXBB clock controller generates and supplies clock to various
+-controllers within the SoC.
+-
+-Required Properties:
+-
+-- compatible: should be:
+-		"amlogic,gxbb-clkc" for GXBB SoC,
+-		"amlogic,gxl-clkc" for GXL and GXM SoC,
+-		"amlogic,axg-clkc" for AXG SoC.
+-		"amlogic,g12a-clkc" for G12A SoC.
+-		"amlogic,g12b-clkc" for G12B SoC.
+-		"amlogic,sm1-clkc" for SM1 SoC.
+-- clocks : list of clock phandle, one for each entry clock-names.
+-- clock-names : should contain the following:
+-  * "xtal": the platform xtal
+-
+-- #clock-cells: should be 1.
+-
+-Each clock is assigned an identifier and client nodes can use this identifier
+-to specify the clock which they consume. All available clocks are defined as
+-preprocessor macros in the dt-bindings/clock/gxbb-clkc.h header and can be
+-used in device tree sources.
+-
+-Parent node should have the following properties :
+-- compatible: "syscon", "simple-mfd, and "amlogic,meson-gx-hhi-sysctrl" or
+-              "amlogic,meson-axg-hhi-sysctrl"
+-- reg: base address and size of the HHI system control register space.
+-
+-Example: Clock controller node:
+-
+-sysctrl: system-controller@0 {
+-	compatible = "amlogic,meson-gx-hhi-sysctrl", "syscon", "simple-mfd";
+-	reg = <0 0 0 0x400>;
+-
+-	clkc: clock-controller {
+-		#clock-cells = <1>;
+-		compatible = "amlogic,gxbb-clkc";
+-		clocks = <&xtal>;
+-		clock-names = "xtal";
+-	};
+-};
+-
+-Example: UART controller node that consumes the clock generated by the clock
+-  controller:
+-
+-	uart_AO: serial@c81004c0 {
+-		compatible = "amlogic,meson-uart";
+-		reg = <0xc81004c0 0x14>;
+-		interrupts = <0 90 1>;
+-		clocks = <&clkc CLKID_CLK81>;
+-	};
+diff --git a/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml
+new file mode 100644
+index 000000000000..63246f1cb539
+--- /dev/null
++++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.yaml
+@@ -0,0 +1,37 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/clock/amlogic,gxbb-clkc.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic Clock Controller
++
++maintainers:
++  - Neil Armstrong <neil.armstrong@linaro.org>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,gxbb-clkc
++      - amlogic,gxl-clkc
++      - amlogic,axg-clkc
++      - amlogic,g12a-clkc
++      - amlogic,g12b-clkc
++      - amlogic,sm1-clkc
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: xtal
++
++  '#clock-cells':
++    const: 1
++
++required:
++  - compatible
++  - clocks
++  - clock-names
++  - '#clock-cells'
++
++additionalProperties: false
+
 -- 
-2.25.1
+2.34.1
 
