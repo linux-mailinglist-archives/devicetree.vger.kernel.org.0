@@ -2,102 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB1AD747DFD
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:11:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E284747E28
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232146AbjGEHLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 03:11:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40762 "EHLO
+        id S232251AbjGEHXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 03:23:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46078 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231598AbjGEHLu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:11:50 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4B4197
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 00:11:49 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e292cf214so23567a12.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 00:11:49 -0700 (PDT)
+        with ESMTP id S232230AbjGEHXs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:23:48 -0400
+Received: from mail-ej1-x636.google.com (mail-ej1-x636.google.com [IPv6:2a00:1450:4864:20::636])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 723C210D5
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 00:23:46 -0700 (PDT)
+Received: by mail-ej1-x636.google.com with SMTP id a640c23a62f3a-9939fbb7191so74577766b.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 00:23:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688541108; x=1691133108;
+        d=linaro.org; s=google; t=1688541825; x=1691133825;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=WX0WQA8HY3Ymz7UH7Yi3Ieb+P0qOXYqrfKwH/sPJabs=;
-        b=P0JOrfTD0q7ZHjY5IOju9DyPynfZK6LfPQ72KB/m00RTGvWkPesx2OKB/jZgHugBkB
-         QVeme2IiJ5n9GW+8xLwh8vU+UJy7xHY4w3rtTk+YvQnBWxANlXkEdBx8bMZsWvIS7MCI
-         U4UCyDwn8G5FI13IlIDN5lMZVBREdIZmcPPhvfwFZYSzuErqQhdjvGILLBBUsJ1IePSk
-         jpqsez32AaVjSkAZizs+NmDP4z7EeISbgQRvaRyTJ4i/DyHeBPKYI38KWb76Xv9kLdoP
-         KBRdkjmskKx1A8tzWLqYclk5w6SLYKg687/qQvOui0ItRD1v9UH5pWuEK34ZccmEQnVk
-         aNdg==
+        bh=lfHsvDQ9gANPVD8NJhKIViMe2g10IPISfPCqc4m/wEU=;
+        b=Kfs3hrRItqd9Y7BwC9buaitUGmo3La9s/LDZVVR/eZeWRl8IXBxJUGjPl7VVSCujc4
+         mfprd+UZdPsiwiDulfVUBm42k3zIZFk2c4fPArW5zrAVI2Dabho9AZK1IHJMrTm4QxVc
+         BJoNoUgcnQzmsm2UgcJ8fyOd/nky2Btk6Zg9nTbQiAK0zAD+h+1JMkW0tb62ZT+Cl9TN
+         mywdoYAQe5n8zGTXANOeEHAh/Yz/tZiJoE1zmbIHzulY024fkIX501zAcRVU2asSUpfF
+         xCoLzDOtM65yiuDgTzccaVxxRbur+k4Ym9PwPejDfPX84e8pyjbzfUd513EFn5tjvj7v
+         38jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688541108; x=1691133108;
+        d=1e100.net; s=20221208; t=1688541825; x=1691133825;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=WX0WQA8HY3Ymz7UH7Yi3Ieb+P0qOXYqrfKwH/sPJabs=;
-        b=JlTg8OTFFXN+NXPOQMRN9HdKrVzdXYf6fAtVzj636l88SuQ6i5p8iBJYU4IfDnIwII
-         Mx3wTn+S/KH6kfBz81iUVvcj8Hnmt9UuD7uwO846bDAQBX8fJMe/IMpm/8s9q5hWj91T
-         JfT//3tkT6MsaN6WsBSmdALVTmXm4cVtKIG6ygBXavV2TdC3xUup2vHLYmvmWwtExo1x
-         xIu9C5Aa+19HTNbJOwfvgJWF+cQ7F/Beyi3h8wK8L233pjuGB9FosCPgFZFSsj3Ewykm
-         3r9zuyILnnSgkW01yMuuFxGTkU0+DBWeKHRdRJdIt3taJIKmNvPgLs0wilS4tEykqdkK
-         LdMw==
-X-Gm-Message-State: ABy/qLa/RP3YHPmGyA/Wz/ko5V+P5dQgp+z4T3WXlFF9npkXuq7GY67b
-        FQoCjyGQlo+TBJ4D60q266MB8A==
-X-Google-Smtp-Source: APBJJlHOsPDM5DNg9y1IPD7Tqyg5hcpZ5XP4/BQMReGoYnghFMp8qzeO0uyGvCySn5432Yyb1XldGA==
-X-Received: by 2002:aa7:c544:0:b0:51d:ec12:32f8 with SMTP id s4-20020aa7c544000000b0051dec1232f8mr10241219edr.40.1688541107574;
-        Wed, 05 Jul 2023 00:11:47 -0700 (PDT)
+        bh=lfHsvDQ9gANPVD8NJhKIViMe2g10IPISfPCqc4m/wEU=;
+        b=BeeK9KzNnXwDENqVe8a5hjj5tESYk4Zedi4eAKh0ZqjBdekN9I4pQuFKc3iqv6CIye
+         NyhA+mNGoBtThHrO/ssZmvK5AwBcW2ilvjOivjm8rqV7N2vdvfqkyqv3Azk6b53iDiQg
+         4BXXYauBUaQ38ROSYYmt+p9Ocr8/8Si2WMzqNLKfDkwHB2drlAe96qeavksLDwowsfwM
+         MYHLF8lBxr1nLdDZmfvL7tW1tU9OzRLzpNdYEN+T2G+R/fZfFi5iheJSLKn1orQgfTJ1
+         q5fJ1nLB6Zk3Hdl/0UsE3746gsXSAFzF5xkKJNFKqfUR5Y8af8D+OSBJg8wX0yFCHG2i
+         9pbw==
+X-Gm-Message-State: ABy/qLbU3rlSvxk59qoCRgRqAAZMYc821PFEe64M7HTDtSqvH0klosK6
+        15aLeR8cdArssXK4Wz1/ngTm1A==
+X-Google-Smtp-Source: APBJJlHFN29jfTiNUx5sFWnNBEOCkG12dMSYS1/ng4NNgeX2L9P1cSy+erlCNqaNEgJair2vOCiZJw==
+X-Received: by 2002:a17:906:2d1:b0:98f:8481:24b3 with SMTP id 17-20020a17090602d100b0098f848124b3mr1189990ejk.37.1688541824853;
+        Wed, 05 Jul 2023 00:23:44 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id ca9-20020aa7cd69000000b0051dad094faasm9354972edb.36.2023.07.05.00.11.46
+        by smtp.gmail.com with ESMTPSA id gw26-20020a170906f15a00b009929d998abcsm8546834ejb.209.2023.07.05.00.23.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 00:11:47 -0700 (PDT)
-Message-ID: <596e25d8-2e8b-8d6b-b6b8-9b56b58602bd@linaro.org>
-Date:   Wed, 5 Jul 2023 09:11:45 +0200
+        Wed, 05 Jul 2023 00:23:44 -0700 (PDT)
+Message-ID: <175d03f6-122f-bbd2-5d38-61fe4022c5cd@linaro.org>
+Date:   Wed, 5 Jul 2023 09:23:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2 2/2] leds: pca995x: Add support for PCA995X chips
+Subject: Re: [PATCH v4 2/3] spi: cadence-quadspi: Add clock configuration for
+ StarFive JH7110 QSPI
 Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org
-Cc:     Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
-        Conor Dooley <conor+dt@kernel.org>,
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20230705000407.153005-1-marex@denx.de>
- <20230705000407.153005-2-marex@denx.de>
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Ziv Xu <ziv.xu@starfivetech.com>
+References: <20230704090453.83980-1-william.qiu@starfivetech.com>
+ <20230704090453.83980-3-william.qiu@starfivetech.com>
+ <808dac44-a72c-4675-1e4a-0ed96190efb4@linaro.org>
+ <90b55926-1d0c-b9c0-3020-5837e2028809@starfivetech.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230705000407.153005-2-marex@denx.de>
+In-Reply-To: <90b55926-1d0c-b9c0-3020-5837e2028809@starfivetech.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 02:04, Marek Vasut wrote:
-> From: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
+On 05/07/2023 09:04, William Qiu wrote:
 > 
-> The PCA995x chips are I2C controlled LED drivers. Each chip has
-> up to 16 outputs, each one with an individual 8-bit resolution
-> PWM for brightness control.
 > 
-> Signed-off-by: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
-> Signed-off-by: Marek Vasut <marex@denx.de> # Basically rewrite the driver
+> On 2023/7/5 14:21, Krzysztof Kozlowski wrote:
+>> On 04/07/2023 11:04, William Qiu wrote:
+>>> Add QSPI clock operation in device probe.
+>>>
+>>> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+>>> Reviewed-by: Hal Feng <hal.feng@starfivetech.com>
+>>> Reported-by: kernel test robot <lkp@intel.com>
+>>> Closes: https://lore.kernel.org/oe-kbuild-all/202306022017.UbwjjWRN-lkp@intel.com/
+>>> Reported-by: Julia Lawall <julia.lawall@inria.fr>
+>>> Closes: https://lore.kernel.org/r/202306040644.6ZHs55x4-lkp@intel.com/
+>>
+>>
+>>>  
+>>> @@ -1840,6 +1858,8 @@ static int cqspi_resume(struct device *dev)
+>>>  	struct spi_master *master = dev_get_drvdata(dev);
+>>>  
+>>>  	clk_prepare_enable(cqspi->clk);
+>>> +	if (of_device_is_compatible(dev->of_node, "starfive,jh7110-qspi"))
+>>
+>> Don't add compatible checks inside the code. It does not scale. We
+>> expect compatibles to be listed only in one place - of_device_id - and
+>> customize driver with match data / quirks / flags.
+>>
+>> Comment applies to all your diff hunks.
+>>
+> I'll use "of_device_get_match_data" to replace it. But the way I added
+> reset before is also by compatible checks. Should I change this place to 
+> "of_device_get_match_data" as well?
 
-...
-
-> +
-> +static struct i2c_driver pca995x_driver = {
-> +	.driver = {
-> +		.name = "leds-pca995x",
-> +		.owner = THIS_MODULE,
-> +		.of_match_table = of_match_ptr(pca995x_of_match),
-
-Drop of_match_ptr(), it will cause warnings and is not really helpful.
+I don't know what's there, but in general driver should be written in a
+consistent style.
 
 Best regards,
 Krzysztof
