@@ -2,192 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37949748AB3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 19:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC9C1748AC3
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 19:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232394AbjGERgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 13:36:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53330 "EHLO
+        id S231745AbjGERk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 13:40:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55566 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231305AbjGERgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 13:36:07 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04DE91BEB;
-        Wed,  5 Jul 2023 10:35:41 -0700 (PDT)
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 365FaBp3003086;
-        Wed, 5 Jul 2023 19:35:16 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=shpntqm9Lb88tQ8tlCGuG2FwYoCeA99QpOjJ1mJ95MI=;
- b=B9NUeEVnBg8MdHStPnL4TOmJhyuqDrSpAiTXxO/nPPpzy04upCGkWFZloothm1IsdlaP
- X2dM2UcrLRYot6pDInpUaDfpMw4tRdOgSMjIIUt05sxIHPJTt05NtgJdfiSkjWYJGqQo
- 5Qf6gvHVZoCkeCGLEsdD07XE10xUn4T3IucwxfOuRptLSABHo82p+XsFpOmpXmiiGV0P
- XYKMcsbwul2uScBGSCEWMtTWo929/YaPT+Wh3TxrAMZmjHQzF56NlcYYWFxkdKCpyT5u
- NiyW4MLstguYxELgKwv13IwhUcKcDJWT1p8IlKqjWxQyak83KOQne1tFXm8DXME2V55K Uw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rn8c9t3jy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Jul 2023 19:35:16 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2E6D9100057;
-        Wed,  5 Jul 2023 19:35:15 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2427D24C451;
-        Wed,  5 Jul 2023 19:35:15 +0200 (CEST)
-Received: from [10.201.21.121] (10.201.21.121) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 5 Jul
- 2023 19:35:12 +0200
-Message-ID: <f8c6e86d-af6a-b61f-c642-c23cb3cfb015@foss.st.com>
-Date:   Wed, 5 Jul 2023 19:35:07 +0200
+        with ESMTP id S231269AbjGERk5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 13:40:57 -0400
+Received: from mailrelay4-1.pub.mailoutpod2-cph3.one.com (mailrelay4-1.pub.mailoutpod2-cph3.one.com [46.30.211.179])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0EEC4DD
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 10:40:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=rsa1;
+        h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
+         message-id:subject:cc:to:from:date:from;
+        bh=uX1KxxDBhiVzU9ji2kzcp/Y9e3VFw+X4GIkq8uU2bbU=;
+        b=F5wP4GaD2OeQcLZCchJTXLTRkr0vmE7y7CKsxYuClzsRDNJ+3yyY7cEprDx7f/FhtN8Z33tJsusRX
+         mVakIqrhR1bEcfPpxboAERlKmb+NSF0ARG+NFKBxjvALdajSBXT1WlcaT2vGeq2CGlSonASxqHZrnm
+         KzmQw1g6dN3QSzKHYudGwh1LIgVmJ53dQAWtGDDyQ1QcEVCZQkOm0Rdy+bUVn7PRVrW4xQpGWCVwlQ
+         YSoWRXNNvAjnYgnE5qYBRcB+piSPngd0oBGvijCU4i+UpH4eHsZY2EmcnHVtW9aSOYM2PU6hqFBJG+
+         9JIGfzE8uVI7USi5+cVtXYGUdCffx8A==
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
+        d=ravnborg.org; s=ed1;
+        h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
+         message-id:subject:cc:to:from:date:from;
+        bh=uX1KxxDBhiVzU9ji2kzcp/Y9e3VFw+X4GIkq8uU2bbU=;
+        b=Do9skGeypNLVI7zeveYEQqKi0JsTReyLIbwKr68clQyyQMJ3aNfdzB7vvRM2FtMtLRQ9Oo10dibXO
+         VHe/CPDAQ==
+X-HalOne-ID: f076bdb9-1b5a-11ee-97e5-592bb1efe9dc
+Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
+        by mailrelay4 (Halon) with ESMTPSA
+        id f076bdb9-1b5a-11ee-97e5-592bb1efe9dc;
+        Wed, 05 Jul 2023 17:39:50 +0000 (UTC)
+Date:   Wed, 5 Jul 2023 19:39:49 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     neil.armstrong@linaro.org,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alim Akhtar <alim.akhtar@samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH 2/3] drm/panel: ld9040: Register a backlight device
+Message-ID: <20230705173949.GA106478@ravnborg.org>
+References: <20230703214715.623447-1-paul@crapouillou.net>
+ <20230703214715.623447-3-paul@crapouillou.net>
+ <194ac047-b20e-04c1-1d96-67cc483bb4a1@linaro.org>
+ <8e81dd5d9f62139e740ea123aa2087cb1bbcb04b.camel@crapouillou.net>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH v3 0/6] Introduce STM32 system bus
-Content-Language: en-US
-To:     <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
-        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
-        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>,
-        <jic23@kernel.org>, <olivier.moysan@foss.st.com>,
-        <arnaud.pouliquen@foss.st.com>, <mchehab@kernel.org>,
-        <fabrice.gasnier@foss.st.com>, <ulf.hansson@linaro.org>,
-        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>
-CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>
-References: <20230127164040.1047583-1-gatien.chevallier@foss.st.com>
-From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <20230127164040.1047583-1-gatien.chevallier@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.121]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-05_09,2023-07-05_01,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <8e81dd5d9f62139e740ea123aa2087cb1bbcb04b.camel@crapouillou.net>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
+        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello all,
+Hi Paul,
 
-I'm abandoning this series for:
-https://lore.kernel.org/lkml/20230705172759.1610753
+On Wed, Jul 05, 2023 at 04:38:05PM +0200, Paul Cercueil wrote:
+> Hi Neil,
+> 
+> Le mercredi 05 juillet 2023 à 15:57 +0200, Neil Armstrong a écrit :
+> > On 03/07/2023 23:47, Paul Cercueil wrote:
+> > > Register a backlight device to be able to switch between all the
+> > > gamma
+> > > levels.
+> > > 
+> > > Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> > > ---
+> > >   drivers/gpu/drm/panel/panel-samsung-ld9040.c | 40
+> > > ++++++++++++++++++++
+> > >   1 file changed, 40 insertions(+)
+> > > 
+> > > diff --git a/drivers/gpu/drm/panel/panel-samsung-ld9040.c
+> > > b/drivers/gpu/drm/panel/panel-samsung-ld9040.c
+> > > index 7fd9444b42c5..b4f87d6244cb 100644
+> > > --- a/drivers/gpu/drm/panel/panel-samsung-ld9040.c
+> > > +++ b/drivers/gpu/drm/panel/panel-samsung-ld9040.c
+> > > @@ -8,6 +8,7 @@
+> > >    * Andrzej Hajda <a.hajda@samsung.com>
+> > >   */
+> > >   
+> > > +#include <linux/backlight.h>
+> > >   #include <linux/delay.h>
+> > >   #include <linux/gpio/consumer.h>
+> > >   #include <linux/module.h>
+> > > @@ -311,8 +312,40 @@ static int ld9040_parse_dt(struct ld9040 *ctx)
+> > >         return 0;
+> > >   }
+> > >   
+> > > +static int ld9040_bl_update_status(struct backlight_device *dev)
+> > > +{
+> > > +       struct ld9040 *ctx = dev_get_drvdata(&dev->dev);
+> > > +
+> > > +       ctx->brightness = dev->props.brightness;
+Use backlight_get_brightness(dev);
 
-Sorry for the noise.
+> > > +       ld9040_brightness_set(ctx);
+> > > +
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static int ld9040_bl_get_intensity(struct backlight_device *dev)
+> > > +{
+> > > +       if (dev->props.fb_blank == FB_BLANK_UNBLANK &&
+> > > +                       dev->props.power == FB_BLANK_UNBLANK)
+> > > +               return dev->props.brightness;
+> > > +
+> > > +       return 0;
+> > > +}
+> > 
+> > You can totally drop the _get_brightness.
+> 
+> The current behaviour is to return 0 when the framebuffer is blanked. A
+> few drivers do that so I thought it was the norm; and the backlight
+> core doesn't do that by default (and just uses dev->props.brightness).
+> 
+> It is not clear to me if that's the preferred behaviour. The
+> "backlight_get_brightness" function in backlight.h seems to suggest
+> that the current behaviour is correct, unless it is not supposed to be
+> used in the backlight_ops.get_brightness() callback. Then in that case
+> some other drivers get it wrong too.
+Several drivers get it wrong.
+You are supposed to provide get_brightness only when you read back a
+value from the HW, which is not the case here so just drop it is the
+right choice.
 
-Best regards,
-Gatien
-
-On 1/27/23 17:40, Gatien Chevallier wrote:
-> Document STM32 System Bus. This bus is intended to control firewall
-> access for the peripherals connected to it.
-> 
-> For every peripheral, the bus checks the firewall registers to see
-> if the peripheral is configured as non-secure. If the peripheral
-> is configured as secure, the node is marked populated, so the
-> device won't be probed.
-> 
-> This is useful as a firewall configuration sanity check and avoid
-> platform crashes in case peripherals are incorrectly configured.
-> 
-> The STM32 System Bus implements the feature-domain-controller
-> bindings. It is used by peripherals to reference a domain
-> controller, in this case the firewall feature domain.
-> The bus uses the ID referenced by the feature-domains property to
-> know where to look in the firewall to get the security configuration
-> for the peripheral. This allows a device tree description rather
-> than a hardcoded peripheral table in the bus driver.
-> 
-> On STM32MP13/15 platforms, the firewall bus is represented by the
-> ETZPC node, which is responsible for the securing / MCU isolating
-> the capable peripherals.
-> 
-> STM32MP13/15 device trees are updated in this series to implement
-> the bus. All peripherals that are securable or MCU isolation capable
-> by the ETZPC are connected to the bus.
-> 
-> Changes in V2:
-> 	- Corrected YAMLS errors highlighted by Rob's robot
-> 	- Re-ordered Signed-off-by tags in two patches
-> 
-> Changes in V3:
-> 	- Document feature-domains property in YAML documentation for
-> 	concerned periperals under the System Bus
-> 	- Fix STM32 System Bus YAML documentation
-> 	- Remove STM32 System bus bindings that were currently used
-> 	as helpers for device tree
-> 	- Correct few errors in driver
-> 	- Add missing peripherals under the System Bus that were in
-> 	SoC variation device tree files
-> 	- Fix node names
-> 
-> Gatien Chevallier (5):
->    dt-bindings: treewide: add feature-domains description in binding
->      files
->    dt-bindings: bus: add STM32 System Bus
->    bus: stm32_sys_bus: add support for STM32MP15 and STM32MP13 system bus
->    ARM: dts: stm32: add ETZPC as a system bus for STM32MP15x boards
->    ARM: dts: stm32: add ETZPC as a system bus for STM32MP13x boards
-> 
-> Oleksii Moisieiev (1):
->    dt-bindings: Document common device controller bindings
-> 
->   .../devicetree/bindings/bus/st,sys-bus.yaml   |  127 +
->   .../bindings/crypto/st,stm32-hash.yaml        |    5 +
->   .../devicetree/bindings/dma/st,stm32-dma.yaml |    5 +
->   .../bindings/dma/st,stm32-dmamux.yaml         |    5 +
->   .../feature-domain-controller.yaml            |   84 +
->   .../devicetree/bindings/i2c/st,stm32-i2c.yaml |    5 +
->   .../bindings/iio/adc/st,stm32-adc.yaml        |    5 +
->   .../bindings/iio/adc/st,stm32-dfsdm-adc.yaml  |    5 +
->   .../bindings/iio/dac/st,stm32-dac.yaml        |    5 +
->   .../bindings/media/st,stm32-cec.yaml          |    5 +
->   .../bindings/media/st,stm32-dcmi.yaml         |    5 +
->   .../memory-controllers/st,stm32-fmc2-ebi.yaml |    5 +
->   .../bindings/mfd/st,stm32-lptimer.yaml        |    5 +
->   .../bindings/mfd/st,stm32-timers.yaml         |    6 +
->   .../devicetree/bindings/mmc/arm,pl18x.yaml    |    5 +
->   .../devicetree/bindings/net/stm32-dwmac.yaml  |    5 +
->   .../bindings/phy/phy-stm32-usbphyc.yaml       |    5 +
->   .../bindings/regulator/st,stm32-vrefbuf.yaml  |    5 +
->   .../devicetree/bindings/rng/st,stm32-rng.yaml |    5 +
->   .../bindings/serial/st,stm32-uart.yaml        |    5 +
->   .../bindings/sound/st,stm32-i2s.yaml          |    5 +
->   .../bindings/sound/st,stm32-sai.yaml          |    5 +
->   .../bindings/sound/st,stm32-spdifrx.yaml      |    5 +
->   .../bindings/spi/st,stm32-qspi.yaml           |    5 +
->   .../devicetree/bindings/spi/st,stm32-spi.yaml |    5 +
->   .../devicetree/bindings/usb/dwc2.yaml         |    5 +
->   MAINTAINERS                                   |    6 +
->   arch/arm/boot/dts/stm32mp131.dtsi             |  407 +--
->   arch/arm/boot/dts/stm32mp133.dtsi             |   51 +-
->   arch/arm/boot/dts/stm32mp13xc.dtsi            |   19 +-
->   arch/arm/boot/dts/stm32mp13xf.dtsi            |   18 +-
->   arch/arm/boot/dts/stm32mp151.dtsi             | 2722 +++++++++--------
->   arch/arm/boot/dts/stm32mp153.dtsi             |   52 +-
->   arch/arm/boot/dts/stm32mp15xc.dtsi            |   19 +-
->   drivers/bus/Kconfig                           |    9 +
->   drivers/bus/Makefile                          |    1 +
->   drivers/bus/stm32_sys_bus.c                   |  168 +
->   37 files changed, 2208 insertions(+), 1596 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/bus/st,sys-bus.yaml
->   create mode 100644 Documentation/devicetree/bindings/feature-controllers/feature-domain-controller.yaml
->   create mode 100644 drivers/bus/stm32_sys_bus.c
-> 
+	Sam
