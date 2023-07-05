@@ -2,102 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC9F1748AE9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 19:46:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FBEF748BB1
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 20:22:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232464AbjGERqN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 13:46:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58994 "EHLO
+        id S233508AbjGESWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 14:22:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231570AbjGERqM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 13:46:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AC91173F;
-        Wed,  5 Jul 2023 10:46:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2CA7461631;
-        Wed,  5 Jul 2023 17:46:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4D66C433C8;
-        Wed,  5 Jul 2023 17:46:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688579170;
-        bh=G3kTeTX8laaFf0hfRRCZcXhWR2amOKlU73GvQ4qcxb4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=t7XZYnxGaHQrTEoa3uUWqI6cfBF5z93iJcs6rr3+teBc40jn6VlNfjSCu8r1wHPde
-         ibHC4IVqgi2LAPpncEkOlcYqpsFopEVi6Cap+Lc0RmUUPCBNLEjUWhUiSPWKNMia/B
-         zsmZVQdHjg0vFdlyOLIop1dTx7F7uzs7/NtB/+Og/nNbkHeFUxxw0HsqGjYFjshwho
-         rZ1QiDZOTKuHVdayMZxKpb7Wa6xNePF2DevIlUCV+fECgG2JknmF6ZN9Y6ea/ys7wy
-         2t6yuE9MPit18brQOiJH+J17m1cEdgi3AnTvT+IV4XkvHY6OgCFa8aoOQocvZGY56E
-         Ijt6YtTVjPzEQ==
-Date:   Wed, 5 Jul 2023 10:49:52 -0700
-From:   Bjorn Andersson <andersson@kernel.org>
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: qcom: sc8180x: Fix cluster PSCI suspend param
-Message-ID: <4rc27noldhojif23o3wtl622skdwwntaklua6gk3u3jkphclgf@5g4ujstyc6mh>
-References: <20230705-topic-8180_sleep-v1-1-c5dce117364e@linaro.org>
+        with ESMTP id S233245AbjGESW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 14:22:26 -0400
+Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B73801FC6;
+        Wed,  5 Jul 2023 11:21:55 -0700 (PDT)
+Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 365ELITL007785;
+        Wed, 5 Jul 2023 19:29:47 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding : content-type; s=selector1;
+ bh=ASO7x6wwPI3SLWfbOr8DTOnpWV4+m1p0k3Uv8b/JSoE=;
+ b=JblBwHCmyxQQNKB6wA60itPw6b0nT0WPebNgtMUGOQRVBidiTdR8mcmGt4o6jz2FHdWU
+ uxMppjaBfb3A3gkPsj1R3MJLGyB58yiS/zsmesLLISWgLui2gXrkqoM1M45hCLo4Sspk
+ HsLr7ogY0TTQZI4S6dyVfrUKFu+exsZGvuTxk+s1cMJjeo5rTabQMPo1Hr/US6jvQnz8
+ w5E2M6bUvqfUeTfwEjd+3i1hnc1aPSgFSrVSXHHeGuGnkqjQ5fweuAhtEiUBamoLcG97
+ BYFYNGS027+rJk9nhQnk00+YcpM0a7pJrJ1PgS21YAc/gqfGKrS8f14Aba/JVdGEvkVH yQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rna75h458-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 05 Jul 2023 19:29:47 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2DB35100057;
+        Wed,  5 Jul 2023 19:29:47 +0200 (CEST)
+Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 2447E24C434;
+        Wed,  5 Jul 2023 19:29:47 +0200 (CEST)
+Received: from localhost (10.201.21.121) by SHFDAG1NODE1.st.com (10.75.129.69)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Wed, 5 Jul
+ 2023 19:29:46 +0200
+From:   Gatien Chevallier <gatien.chevallier@foss.st.com>
+To:     <Oleksii_Moisieiev@epam.com>, <gregkh@linuxfoundation.org>,
+        <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
+        <robh+dt@kernel.org>, <krzysztof.kozlowski+dt@linaro.org>,
+        <conor+dt@kernel.org>, <alexandre.torgue@foss.st.com>,
+        <vkoul@kernel.org>, <jic23@kernel.org>,
+        <olivier.moysan@foss.st.com>, <arnaud.pouliquen@foss.st.com>,
+        <mchehab@kernel.org>, <fabrice.gasnier@foss.st.com>,
+        <andi.shyti@kernel.org>, <ulf.hansson@linaro.org>,
+        <edumazet@google.com>, <kuba@kernel.org>, <pabeni@redhat.com>,
+        <hugues.fruchet@foss.st.com>, <lee@kernel.org>, <will@kernel.org>,
+        <catalin.marinas@arm.com>, <arnd@kernel.org>,
+        <richardcochran@gmail.com>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
+        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
+        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        Gatien Chevallier <gatien.chevallier@foss.st.com>
+Subject: [PATCH 07/10] arm64: dts: st: add RIFSC as a domain controller for STM32MP25x boards
+Date:   Wed, 5 Jul 2023 19:27:56 +0200
+Message-ID: <20230705172759.1610753-8-gatien.chevallier@foss.st.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230705172759.1610753-1-gatien.chevallier@foss.st.com>
+References: <20230705172759.1610753-1-gatien.chevallier@foss.st.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230705-topic-8180_sleep-v1-1-c5dce117364e@linaro.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.201.21.121]
+X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
+ (10.75.129.69)
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-05_09,2023-07-05_01,2023-05-22_02
+X-Spam-Status: No, score=-2.7 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 05, 2023 at 05:00:05PM +0200, Konrad Dybcio wrote:
-> The value was copypasted from 8150, but 8180 expects a different one.
-> Confirmed with both downstream device tree and Windows DSDT, not tested
-> on hardware (sorry, I don't have any).
-> 
-> Fix it.
-> 
-> Fixes: 8575f197b077 ("arm64: dts: qcom: Introduce the SC8180x platform")
-> Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+RIFSC is a firewall controller. Change its compatible so that is matches
+the documentation and reference RIFSC as a feature-domain-controller.
 
-Reviewed-by: Bjorn Andersson <andersson@kernel.org>
+Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+---
+ arch/arm64/boot/dts/st/stm32mp251.dtsi | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-Regards,
-Bjorn
+diff --git a/arch/arm64/boot/dts/st/stm32mp251.dtsi b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+index 5268a4321841..62101084cab8 100644
+--- a/arch/arm64/boot/dts/st/stm32mp251.dtsi
++++ b/arch/arm64/boot/dts/st/stm32mp251.dtsi
+@@ -106,17 +106,20 @@ soc@0 {
+ 		ranges = <0x0 0x0 0x0 0x80000000>;
+ 
+ 		rifsc: rifsc-bus@42080000 {
+-			compatible = "simple-bus";
++			compatible = "st,stm32mp25-rifsc";
+ 			reg = <0x42080000 0x1000>;
+ 			#address-cells = <1>;
+ 			#size-cells = <1>;
+ 			ranges;
++			feature-domain-controller;
++			#feature-domain-cells = <1>;
+ 
+ 			usart2: serial@400e0000 {
+ 				compatible = "st,stm32h7-uart";
+ 				reg = <0x400e0000 0x400>;
+ 				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
+ 				clocks = <&ck_flexgen_08>;
++				feature-domains = <&rifsc 32>;
+ 				status = "disabled";
+ 			};
+ 		};
+-- 
+2.25.1
 
-
-> ---
->  arch/arm64/boot/dts/qcom/sc8180x.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc8180x.dtsi b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> index be78a933d8eb..e58f931c2e45 100644
-> --- a/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc8180x.dtsi
-> @@ -298,7 +298,7 @@ BIG_CPU_SLEEP_0: cpu-sleep-1-0 {
->  		domain-idle-states {
->  			CLUSTER_SLEEP_0: cluster-sleep-0 {
->  				compatible = "domain-idle-state";
-> -				arm,psci-suspend-param = <0x4100c244>;
-> +				arm,psci-suspend-param = <0x4100a344>;
->  				entry-latency-us = <3263>;
->  				exit-latency-us = <6562>;
->  				min-residency-us = <9987>;
-> 
-> ---
-> base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
-> change-id: 20230705-topic-8180_sleep-e40beb42250a
-> 
-> Best regards,
-> -- 
-> Konrad Dybcio <konrad.dybcio@linaro.org>
-> 
