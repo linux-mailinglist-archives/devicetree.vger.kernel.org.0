@@ -2,119 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A4FF748E4A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:50:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E87D8748E5A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:52:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234319AbjGETuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 15:50:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53224 "EHLO
+        id S234029AbjGETwn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 15:52:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234274AbjGETuQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:50:16 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60EC0199E;
-        Wed,  5 Jul 2023 12:50:14 -0700 (PDT)
-Received: from pps.filterd (m0148663.ppops.net [127.0.0.1])
-        by mx0a-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 365H2ApZ012208;
-        Wed, 5 Jul 2023 19:49:48 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
- date : message-id : in-reply-to : references; s=pps0720;
- bh=5x3OxXEwu0z070b92aDOhncsAuFg1T2+MQocbqikStQ=;
- b=Zyj4W4YsyRXvjYy//+Eawjq8l+FuHJx+j96098Z1b5adgzx5b3fuceDvaZj2AGvnlTCB
- ZHPL38zGE5jI/wGogVS+95gpR5nvdIIjD9RgG0uSgvqvfzTzC1Szzix1wVTsQoyLcJFq
- gRMuGNgA3WmdhBoJ0zScShHZs7i18jwaHpgKKynu7AbQyTUFOgk1M2K9UpWOBW7qksIU
- K2sWbHGl+tFHWbO5bKeyxIvwDK7y1FB8edNe6+SDQu6VDv/yPw74GmwBv9gghnz/OedK
- HIAsayEtqJeD0639Ey2TH8NhvrQTyF7YM2L0vUsvg7wSDFn5KmyQAyzqIy8YRNtsBzqi nw== 
-Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
-        by mx0a-002e3701.pphosted.com (PPS) with ESMTPS id 3rn65h49yh-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 05 Jul 2023 19:49:48 +0000
-Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id 9A5458014CC;
-        Wed,  5 Jul 2023 19:49:46 +0000 (UTC)
-Received: from hpe.com (unknown [16.231.227.36])
-        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id F34B9808DBD;
-        Wed,  5 Jul 2023 19:49:45 +0000 (UTC)
-From:   nick.hawkins@hpe.com
-To:     verdun@hpe.com, nick.hawkins@hpe.com, linus.walleij@linaro.org,
-        brgl@bgdev.pl, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
-        linux@roeck-us.net, andy.shevchenko@gmail.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
-Subject: [PATCH v5 5/5] MAINTAINERS: hpe: Add GPIO
-Date:   Wed,  5 Jul 2023 14:45:44 -0500
-Message-Id: <20230705194544.100370-6-nick.hawkins@hpe.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230705194544.100370-1-nick.hawkins@hpe.com>
-References: <20230705194544.100370-1-nick.hawkins@hpe.com>
-X-Proofpoint-GUID: SvNEoVgX5QQsL72i0ZSYxikjGwIw1es_
-X-Proofpoint-ORIG-GUID: SvNEoVgX5QQsL72i0ZSYxikjGwIw1es_
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-05_11,2023-07-05_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0 adultscore=0
- mlxlogscore=999 malwarescore=0 mlxscore=0 lowpriorityscore=0 bulkscore=0
- priorityscore=1501 suspectscore=0 phishscore=0 clxscore=1015 spamscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307050180
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        with ESMTP id S233278AbjGETwm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:52:42 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5083A1BC8;
+        Wed,  5 Jul 2023 12:52:11 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-783698a37beso355521139f.0;
+        Wed, 05 Jul 2023 12:52:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688586717; x=1691178717;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=OgxCgI0UhXaalrd8FtZ3lKHjbHQYR+CHqoq8oQgcBj8=;
+        b=X3pVCOmJpBbfhdZcDChPxYRTG0mCFQZt8+ukhvnQO3NhFvLkORBDgf3sjcjqkuiqD4
+         amg9a+jR8VFrCeWiLt42DJ3jsdXBvNPi37tbB3DyFEL1DHJ86PgVwnuHUxNTq1cJbrBC
+         9zFUraBoag4A+IJSmyYJDIMdK5G2XO96jjlrfriv7urOV/j8Ryo7Ym0D+PpZKHiaN3n/
+         OtgSihTll7aGI5tSINq5j07NxsNaZwG6BZ+hLXqV9/mcr4NOUFPQcXWQHFVIjexw5zjP
+         nDwLBebILpX9576jAZUotFTjdZF36D0b3saB8FCvMNVtJlPeaCHKAGTQbiwzTGu6zhAQ
+         FWaA==
+X-Gm-Message-State: ABy/qLYRAwDzRWznqsLkTlFwPJKXLZNs1esCgkAEzgmkokEPhPWQgFPT
+        zewTzFqlW2YifnWhcB57kw==
+X-Google-Smtp-Source: APBJJlFfE26pMmnc4X7bL1ZeGdt2/p9FLN9uM6KgYidS2YWs2WUaDK7eEf0pVgwqz52ouAz0T6SvXg==
+X-Received: by 2002:a5e:891a:0:b0:785:ff35:f340 with SMTP id k26-20020a5e891a000000b00785ff35f340mr118432ioj.14.1688586717448;
+        Wed, 05 Jul 2023 12:51:57 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h2-20020a02c4c2000000b00411bdcdc488sm7729558jaj.173.2023.07.05.12.51.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 12:51:56 -0700 (PDT)
+Received: (nullmailer pid 1730881 invoked by uid 1000);
+        Wed, 05 Jul 2023 19:51:54 -0000
+Date:   Wed, 5 Jul 2023 13:51:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: Add SEAMA partition bindings
+Message-ID: <20230705195154.GA1702900-robh@kernel.org>
+References: <20230705-seama-partitions-v2-0-9d349f0d5ab7@linaro.org>
+ <20230705-seama-partitions-v2-1-9d349f0d5ab7@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705-seama-partitions-v2-1-9d349f0d5ab7@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Nick Hawkins <nick.hawkins@hpe.com>
+On Wed, Jul 05, 2023 at 12:17:46PM +0200, Linus Walleij wrote:
+> This types of NAND partitions appear in OpenWrt and
+> U-Boot.
+> 
+> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+> ChangeLog v1->v2:
+> - Fix up the binding to be childless
+> ---
+>  .../bindings/mtd/partitions/partitions.yaml        |  1 +
+>  .../devicetree/bindings/mtd/partitions/seama.yaml  | 50 ++++++++++++++++++++++
+>  2 files changed, 51 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> index 2edc65e0e361..9bd0a8d800da 100644
+> --- a/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/partitions.yaml
+> @@ -21,6 +21,7 @@ oneOf:
+>    - $ref: linksys,ns-partitions.yaml
+>    - $ref: qcom,smem-part.yaml
+>    - $ref: redboot-fis.yaml
+> +  - $ref: seama.yaml
 
-List the files added for GPIO.
+I think this is in the wrong place. These should be device level 
+partitioning schemas, not an individual partition type. (Though nesting 
+is possible)
 
-Signed-off-by: Nick Hawkins <nick.hawkins@hpe.com>
+>  
+>  properties:
+>    compatible: true
+> diff --git a/Documentation/devicetree/bindings/mtd/partitions/seama.yaml b/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
+> new file mode 100644
+> index 000000000000..5ed7764bba69
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/partitions/seama.yaml
+> @@ -0,0 +1,50 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mtd/partitions/seama.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Seattle Image Partitions
+> +
+> +description: The SEAttle iMAge (SEAMA) partition is a type of partition
+> +  used for NAND flash devices. This type of flash image is found in some
+> +  D-Link routers such as DIR-645, DIR-842, DIR-859, DIR-860L, DIR-885L,
+> +  DIR890L and DCH-M225, as well as in WD and NEC routers on the ath79
+> +  (MIPS), Broadcom BCM53xx, and RAMIPS platforms. This partition type
+> +  does not have children defined in the device tree, they need to be
+> +  detected by software.
+> +
+> +allOf:
+> +  - $ref: partition.yaml#
+> +
+> +maintainers:
+> +  - Linus Walleij <linus.walleij@linaro.org>
+> +
+> +select: false
 
----
+Remove this and your example will fail. You need unevaluatedProperties.
 
-v5:
- *Remove gpio-gxp.c reference as it has been discarded for separate
-  commit
- *Added missing gpio-gxp-pl.c reference
-v4:
- *No change
-v3:
- *No change
-v2:
- *Removed reference to PSU changes as they have been discarded.
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+There's a problem in partitions.yaml. It never gets applied, so this 
+schema never gets applied. The default 'select' is generated based on 
+$nodename or compatible, but it has neither. This needs some more 
+thought on how to fix given the variable way partitions can be combined. 
+Probably at a minimum, all the 'select: false' need to be removed. 
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 27ef11624748..559d4ecb65e9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2241,6 +2241,7 @@ M:	Jean-Marie Verdun <verdun@hpe.com>
- M:	Nick Hawkins <nick.hawkins@hpe.com>
- S:	Maintained
- F:	Documentation/devicetree/bindings/arm/hpe,gxp.yaml
-+F:	Documentation/devicetree/bindings/gpio/hpe,gxp-gpio.yaml
- F:	Documentation/devicetree/bindings/hwmon/hpe,gxp-fan-ctrl.yaml
- F:	Documentation/devicetree/bindings/i2c/hpe,gxp-i2c.yaml
- F:	Documentation/devicetree/bindings/spi/hpe,gxp-spifi.yaml
-@@ -2250,6 +2251,7 @@ F:	arch/arm/boot/dts/hpe-bmc*
- F:	arch/arm/boot/dts/hpe-gxp*
- F:	arch/arm/mach-hpe/
- F:	drivers/clocksource/timer-gxp.c
-+F:	drivers/gpio/gpio-gxp-pl.c
- F:	drivers/hwmon/gxp-fan-ctrl.c
- F:	drivers/i2c/busses/i2c-gxp.c
- F:	drivers/spi/spi-gxp.c
--- 
-2.17.1
-
+> +
+> +properties:
+> +  compatible:
+> +    const: seama
+> +
+> +  '#address-cells': false
+> +
+> +  '#size-cells': false
+> +
+> +required:
+> +  - compatible
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    partitions {
+> +        compatible = "fixed-partitions";
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +
+> +        partition@0 {
+> +            compatible = "seama";
+> +            reg = <0x0 0x800000>;
+> +            label = "firmware";
+> +        };
+> +    };
+> 
+> -- 
+> 2.34.1
+> 
