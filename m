@@ -2,72 +2,304 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F15C874877C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:09:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37E067487AB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:18:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232871AbjGEPJE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:09:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44812 "EHLO
+        id S232446AbjGEPSK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 11:18:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232978AbjGEPJD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:09:03 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7E0DFF;
-        Wed,  5 Jul 2023 08:08:57 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 20F2A6606FB9;
-        Wed,  5 Jul 2023 16:08:55 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1688569735;
-        bh=DAB/xdBSvdk3RQQGk/co/EsQruolCJBIE0IeITasuzg=;
-        h=Date:Subject:To:References:From:In-Reply-To:From;
-        b=H+RuK76CTC+QqMt3GE9bTfdoI5f9y4aLREMsq1fvrfZh5+GCQMW4zNngSJ5QLpp7f
-         7T7uwV6eN9jqj1uGVjqitMbqfzo/o3ki7ZarLD9u6SpbOsJR+CJZ5kIqnyCAcaOYBm
-         fOc6XKowB0oZ/FU40d2ehg6FfjCyOl7SFOB/ybOwg+X/xTxvd5X5eC1R3cl2f7aI+B
-         S+Qxir/ZtCWmpwlUCnSRCNrdUhhLh10/BfpYX+qPNlDGkfIfBpItNOuLN+0dMKZN8D
-         Q4TcoBth4YdZwPKkZ/lfiOcXy8NxZ8aP92LYwwVywrJGQ/sAPOiJw6dfjrPbb+bKiL
-         hfFd4a8pHykAw==
-Message-ID: <09f599b0-acdb-e946-3aab-27f9dbffc3f6@collabora.com>
-Date:   Wed, 5 Jul 2023 17:08:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 2/2] arm64: dts: mediatek: add missing space before {
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230495AbjGEPSJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:18:09 -0400
+Received: from mail-wr1-x430.google.com (mail-wr1-x430.google.com [IPv6:2a00:1450:4864:20::430])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18ECA170B;
+        Wed,  5 Jul 2023 08:18:08 -0700 (PDT)
+Received: by mail-wr1-x430.google.com with SMTP id ffacd0b85a97d-3112f5ab0b1so7571175f8f.0;
+        Wed, 05 Jul 2023 08:18:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688570286; x=1691162286;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=+rTM9zb9WY9Xvxel2SErjkaPh55ugzzbgIcOlX7MHw4=;
+        b=mk5aUeNMCsmeJqqc1eyESY1lW11bAcprGyGXPdJ33glrCXnGnXxdzoySWpxUhodgQf
+         7sA5wQPfmkta4s3zKgI+x9ku06bB9EivUCza+knU78/Up78E9pRezBrUs35kjucJhZOO
+         AFCP6DY74N5crn4bCU9rUUmMNu/eAJ6RNqFXpy3RRxfUpsVPCXQ5ee01uG7/rnupPO5k
+         sSt0E5uw59Pflsdlj+UPETEI9aqHthGRLqwZ7cY+EW62nD/HGrb24qNynBmVK0uGUipS
+         MspkLc3Ozf2XfL6JdvuE+6nP9pRM4lt1A1b4czD6/UwEcOCo8c0FiXhJyaFPW0xs9rmV
+         OPbQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688570286; x=1691162286;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=+rTM9zb9WY9Xvxel2SErjkaPh55ugzzbgIcOlX7MHw4=;
+        b=LEhQ+hkU61SRNv2ja21mMLnpXb0g9CZrLBeGtSqYQU9+CuTwzQiXdONuaIZNSZ4m5M
+         Z2qYBzOWlAF042WUMNCDFVvzIkAofMIreexKeJOaI7yO1l16eOhw806FiSOKHMYHC/kZ
+         vid6vwPWHJ6nYwq92ZQPJefmnnE4xvAi25it9v9ufI+ooPHq9liqXW6KMmKm6mNYNR8C
+         Jc/TvPbaI1s1jOkBsbbKZoqXzhFVBbakTLmfvdwqzlZRmt37lZkBR4zjiXxZY4e6Bqk8
+         l+15IANXUITreuC2jY92/gGCJ8vCcFLgk6lXSgd9oK5/19WjwFi7Jm/3iwReg2qPu45g
+         jMVQ==
+X-Gm-Message-State: ABy/qLaaTDUJ4sYnwN+kmZPTEEOfTlxPaOK5hPE2xQtL9teZpBmH9/f6
+        1FJ1TyyFXoUazMnmB9TwcOQ=
+X-Google-Smtp-Source: APBJJlEchMqCocnXvYS1zea7yJILbF0CxML3vQJxCuE0v67B8tiU5h9lvjNzB+voY7Zz9TrzqiSVTA==
+X-Received: by 2002:adf:e604:0:b0:314:311d:1b9 with SMTP id p4-20020adfe604000000b00314311d01b9mr10159765wrm.47.1688570286000;
+        Wed, 05 Jul 2023 08:18:06 -0700 (PDT)
+Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f3-20020a5d58e3000000b00314329f7d8asm10030876wrd.29.2023.07.05.08.18.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 08:18:05 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-References: <20230705150006.293690-1-krzysztof.kozlowski@linaro.org>
- <20230705150006.293690-2-krzysztof.kozlowski@linaro.org>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230705150006.293690-2-krzysztof.kozlowski@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: serial: tegra-hsuart: Convert to json-schema
+Date:   Wed,  5 Jul 2023 17:18:02 +0200
+Message-ID: <20230705151802.2512186-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 05/07/23 17:00, Krzysztof Kozlowski ha scritto:
-> Add missing whitespace between node name/label and opening {.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+From: Thierry Reding <treding@nvidia.com>
 
-Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
+Convert the Tegra High-Speed UART bindings from the free-form text
+format to json-schema.
 
+While at it, also fix fix the example to reflect the correct compatible
+string for Tegra30 chips.
+
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+Changes in v2:
+- add note about the corrected example to commit message
+- collate all single entry compatibles into an enum
+
+ .../bindings/serial/nvidia,tegra20-hsuart.txt |  73 ----------
+ .../serial/nvidia,tegra20-hsuart.yaml         | 125 ++++++++++++++++++
+ 2 files changed, 125 insertions(+), 73 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+
+diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
+deleted file mode 100644
+index f709304036c2..000000000000
+--- a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.txt
++++ /dev/null
+@@ -1,73 +0,0 @@
+-NVIDIA Tegra20/Tegra30 high speed (DMA based) UART controller driver.
+-
+-Required properties:
+-- compatible : should be,
+-  "nvidia,tegra20-hsuart" for Tegra20,
+-  "nvidia,tegra30-hsuart" for Tegra30,
+-  "nvidia,tegra186-hsuart" for Tegra186,
+-  "nvidia,tegra194-hsuart" for Tegra194.
+-
+-- reg: Should contain UART controller registers location and length.
+-- interrupts: Should contain UART controller interrupts.
+-- clocks: Must contain one entry, for the module clock.
+-  See ../clocks/clock-bindings.txt for details.
+-- resets : Must contain an entry for each entry in reset-names.
+-  See ../reset/reset.txt for details.
+-- reset-names : Must include the following entries:
+-  - serial
+-- dmas : Must contain an entry for each entry in dma-names.
+-  See ../dma/dma.txt for details.
+-- dma-names : Must include the following entries:
+-  - rx
+-  - tx
+-
+-Optional properties:
+-- nvidia,enable-modem-interrupt: Enable modem interrupts. Should be enable
+-		only if all 8 lines of UART controller are pinmuxed.
+-- nvidia,adjust-baud-rates: List of entries providing percentage of baud rate
+-  adjustment within a range.
+-  Each entry contains sets of 3 values. Range low/high and adjusted rate.
+-  <range_low range_high adjusted_rate>
+-  When baud rate set on controller falls within the range mentioned in this
+-  field, baud rate will be adjusted by percentage mentioned here.
+-  Ex: <9600 115200 200>
+-  Increase baud rate by 2% when set baud rate falls within range 9600 to 115200
+-
+-Baud Rate tolerance:
+-  Standard UART devices are expected to have tolerance for baud rate error by
+-  -4 to +4 %. All Tegra devices till Tegra210 had this support. However,
+-  Tegra186 chip has a known hardware issue. UART Rx baud rate tolerance level
+-  is 0% to +4% in 1-stop config. Otherwise, the received data will have
+-  corruption/invalid framing errors. Parker errata suggests adjusting baud
+-  rate to be higher than the deviations observed in Tx.
+-
+-  Tx deviation of connected device can be captured over scope (or noted from
+-  its spec) for valid range and Tegra baud rate has to be set above actual
+-  Tx baud rate observed. To do this we use nvidia,adjust-baud-rates
+-
+-  As an example, consider there is deviation observed in Tx for baud rates as
+-  listed below.
+-  0 to 9600 has 1% deviation
+-  9600 to 115200 2% deviation
+-  This slight deviation is expcted and Tegra UART is expected to handle it. Due
+-  to the issue stated above, baud rate on Tegra UART should be set equal to or
+-  above deviation observed for avoiding frame errors.
+-  Property should be set like this
+-  nvidia,adjust-baud-rates = <0 9600 100>,
+-  			     <9600 115200 200>;
+-
+-Example:
+-
+-serial@70006000 {
+-	compatible = "nvidia,tegra30-hsuart", "nvidia,tegra20-hsuart";
+-	reg = <0x70006000 0x40>;
+-	reg-shift = <2>;
+-	interrupts = <0 36 0x04>;
+-	nvidia,enable-modem-interrupt;
+-	clocks = <&tegra_car 6>;
+-	resets = <&tegra_car 6>;
+-	reset-names = "serial";
+-	dmas = <&apbdma 8>, <&apbdma 8>;
+-	dma-names = "rx", "tx";
+-	nvidia,adjust-baud-rates = <1000000 4000000 136>; /* 1.36% shift */
+-};
+diff --git a/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+new file mode 100644
+index 000000000000..04d55fecf47c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/serial/nvidia,tegra20-hsuart.yaml
+@@ -0,0 +1,125 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/serial/nvidia,tegra20-hsuart.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra20/Tegra30 high speed (DMA based) UART controller driver
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Jon Hunter <jonathanh@nvidia.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - nvidia,tegra20-hsuart
++          - nvidia,tegra30-hsuart
++          - nvidia,tegra186-hsuart
++          - nvidia,tegra194-hsuart
++      - items:
++          - const: nvidia,tegra124-hsuart
++          - const: nvidia,tegra30-hsuart
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    items:
++      - description: module clock
++
++  resets:
++    items:
++      - description: module reset
++
++  reset-names:
++    items:
++      - const: serial
++
++  dmas:
++    items:
++      - description: DMA channel used for reception
++      - description: DMA channel used for transmission
++
++  dma-names:
++    items:
++      - const: rx
++      - const: tx
++
++  nvidia,enable-modem-interrupt:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description: Enable modem interrupts. Should be enable only if all 8 lines of UART controller
++      are pinmuxed.
++
++  nvidia,adjust-baud-rates:
++    $ref: /schemas/types.yaml#/definitions/uint32-matrix
++    description: |
++      List of entries providing percentage of baud rate adjustment within a range. Each entry
++      contains a set of 3 values: range low/high and adjusted rate. When the baud rate set on the
++      controller falls within the range mentioned in this field, the baud rate will be adjusted by
++      percentage mentioned here.
++
++      Example: <9600 115200 200>
++
++      Increase baud rate by 2% when set baud rate falls within range 9600 to 115200.
++
++      Standard UART devices are expected to have tolerance for baud rate error by -4 to +4 %. All
++      Tegra devices till Tegra210 had this support. However, Tegra186 chip has a known hardware
++      issue. UART RX baud rate tolerance level is 0% to +4% in 1-stop config. Otherwise, the
++      received data will have corruption/invalid framing errors. Parker errata suggests adjusting
++      baud rate to be higher than the deviations observed in TX.
++
++      TX deviation of connected device can be captured over scope (or noted from its spec) for
++      valid range and Tegra baud rate has to be set above actual TX baud rate observed. To do this
++      we use nvidia,adjust-baud-rates.
++
++      As an example, consider there is deviation observed in TX for baud rates as listed below. 0
++      to 9600 has 1% deviation 9600 to 115200 2% deviation. This slight deviation is expcted and
++      Tegra UART is expected to handle it. Due to the issue stated above, baud rate on Tegra UART
++      should be set equal to or above deviation observed for avoiding frame errors. Property
++      should be set like this:
++
++        nvidia,adjust-baud-rates = <0 9600 100>,
++                                   <9600 115200 200>;
++    items:
++      items:
++        - description: range lower bound
++        - description: range upper bound
++        - description: adjustment (in permyriad, i.e. 0.01%)
++
++allOf:
++  - $ref: serial.yaml
++
++unevaluatedProperties: false
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++  - reset-names
++  - dmas
++  - dma-names
++
++examples:
++  - |
++    #include <dt-bindings/clock/tegra30-car.h>
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++
++    serial@70006000 {
++        compatible = "nvidia,tegra30-hsuart";
++        reg = <0x70006000 0x40>;
++        interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
++        nvidia,enable-modem-interrupt;
++        clocks = <&tegra_car TEGRA30_CLK_UARTA>;
++        resets = <&tegra_car 6>;
++        reset-names = "serial";
++        dmas = <&apbdma 8>, <&apbdma 8>;
++        dma-names = "rx", "tx";
++        nvidia,adjust-baud-rates = <1000000 4000000 136>; /* 1.36% shift */
++    };
+-- 
+2.41.0
 
