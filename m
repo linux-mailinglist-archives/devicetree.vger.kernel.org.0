@@ -2,105 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8339748FFC
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 23:40:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7EAB749037
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 23:50:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230305AbjGEVkz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 17:40:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39192 "EHLO
+        id S232079AbjGEVuG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 17:50:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42414 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229697AbjGEVky (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 17:40:54 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 923261998;
-        Wed,  5 Jul 2023 14:40:53 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2FB68615C5;
-        Wed,  5 Jul 2023 21:40:53 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8A80EC433C7;
-        Wed,  5 Jul 2023 21:40:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688593252;
-        bh=43KgAy9/42rhJ/qdDtut0U8IYVof/FSFApFtVi0NS7w=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=arRjBgE+Eu/fqU6RjT62qDCwUNGBrAdxDi6g7Qz7Q70iMYrm2Oor4Pix6c1Wm8aGI
-         wa4j+B3zFeZvQ9AJdNFHxa49DSlUVybqGi1ypsooLc4OWuGjaprJyXtFhWuFYBREWY
-         Ij8hY7mR7AxoE0A0a8ywbys314zG+kF97d+ZdxxMZx1eKlz3Z1sVSmIAv92TPb3Rft
-         KD0NdY9SSAU9Fqvgx3K5V38aT71w9ZHgCE7GFVT2yE9uHkmiFOteXXAaRYcaZwW10Q
-         BdOLGeRa0ypMSK8nRU1qaZKOD2MqKLRBoWeq2j//1+klx1a+b5fFcXCcL6rlGQ8tfi
-         +xFlZ9O2pVFbg==
-Received: by mail-lj1-f182.google.com with SMTP id 38308e7fff4ca-2b70224ec56so15416501fa.3;
-        Wed, 05 Jul 2023 14:40:52 -0700 (PDT)
-X-Gm-Message-State: ABy/qLb4/BUBQoZGacEfVpogSC9MrKg8lzRStWg2T6TxkkG7I8xBfgOp
-        If15nzcDhoPz3gCL5cc7JSQqhLfVna7Reck4+A==
-X-Google-Smtp-Source: APBJJlFoq5cIOIjbR+234mv24z/4earTsTW24z8akNDSm6Vi1gZP0JHzxc4vEmZtR5+/51uG0JXrLKV1JtatdjeeqoM=
-X-Received: by 2002:a2e:a164:0:b0:2b6:fc60:776f with SMTP id
- u4-20020a2ea164000000b002b6fc60776fmr3445500ljl.30.1688593250544; Wed, 05 Jul
- 2023 14:40:50 -0700 (PDT)
+        with ESMTP id S233022AbjGEVt2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 17:49:28 -0400
+Received: from mail-pl1-x62c.google.com (mail-pl1-x62c.google.com [IPv6:2607:f8b0:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 891081BD0;
+        Wed,  5 Jul 2023 14:49:25 -0700 (PDT)
+Received: by mail-pl1-x62c.google.com with SMTP id d9443c01a7336-1b852785a65so151485ad.0;
+        Wed, 05 Jul 2023 14:49:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688593765; x=1691185765;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=JlA7Omc66rXMNTH6X1ydcJJyDlSBvcJI/ger0lg7xWk=;
+        b=l/5lrwFm5S27bh4okIpLe8W9g6TnfrmD1hDoFUP4abPVME+Ose3bNs1mtZu//oMoGx
+         Us1VUD1Oa4+QAEDOl/FzgagEbhT4xkFJw/WOg/tmKtVUYovVKA9LtaVgLJVzXIsjID/X
+         iI8+jQ35Sm+dLdbO2EtVjfuOpwJS9RHZesZJdXb2CgQ0/JDJjV0KYCXxHGw4+CttLq8A
+         fOqoD+c0bT1fwV75DK6LuTwwXgFhHol8ONfy7Ai+SaxID89n58Sd118zXK7UjVXarm83
+         vrzARZoooAdW2+SopGdlqtAfDX/VCdOManSfphUqpxakZi2Mi+o67/VpDvwGxOKLAUQI
+         PLBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688593765; x=1691185765;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=JlA7Omc66rXMNTH6X1ydcJJyDlSBvcJI/ger0lg7xWk=;
+        b=gB7uV8kGnnLNbO3IkergJRPCTsZWKuftcUmA12UfvzGt6Mmr/gaCbQBffN37tXgDGK
+         OPAqwh0EDWRDtaGS7WbsJu5glRX5FRBQWXHGs2IG5ZvHGEdxKAvgjiZ+JlxXUmUhgMPu
+         45WgH9E9qM5jGzEB44fAUNaK+6ja1K9UXXQydSDmqDy7SxkNs3eh0mySG7jH2fqMxyBK
+         dh5CtgWqnfBT3N3U/4UXYZf09xtzIa3tj0iRKeWbnnyWCwZ1OqNjSGDDBZ796e/Y7dUQ
+         kaEXmEmSocxItiIqYKXckDHuUj9iePJgkvFgAN6hs886HQvnTa/+aJaTHfnYEnwgytmF
+         QCxw==
+X-Gm-Message-State: ABy/qLZOAOApkFuhvgQF12UBxEVetRzwPUVDqSnl6tF4krwU49pG+5A2
+        j4n99UJtgfTifdNZLxArTRQ=
+X-Google-Smtp-Source: APBJJlEPLpeBpRKLD+37mMaaabZCQQ3DaaVqaA+uW4TAiRKZXbYJOk1GzZrrd/fAet6CUy09hUwL8A==
+X-Received: by 2002:a17:902:e78a:b0:1b8:7613:594d with SMTP id cp10-20020a170902e78a00b001b87613594dmr4383059plb.24.1688593764637;
+        Wed, 05 Jul 2023 14:49:24 -0700 (PDT)
+Received: from google.com ([2620:15c:9d:2:9fac:a99f:7f0a:397])
+        by smtp.gmail.com with ESMTPSA id bh1-20020a170902a98100b001b3f039f8a8sm13129482plb.61.2023.07.05.14.49.23
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 14:49:24 -0700 (PDT)
+Date:   Wed, 5 Jul 2023 14:49:21 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Mike Looijmans <mike.looijmans@topic.nl>
+Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] Input: exc3000 - Support power supply regulators
+Message-ID: <ZKXlYbsk+6MPfeWy@google.com>
+References: <20230703084536.8429-1-mike.looijmans@topic.nl>
+ <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.12499438-d166-465a-8847-b25e1baa3dad@emailsignatures365.codetwo.com>
+ <20230703084536.8429-2-mike.looijmans@topic.nl>
 MIME-Version: 1.0
-References: <20230630185602.2175559-1-robh@kernel.org> <0aa7227d-264f-a87d-bef1-9f5d1c43a184@arm.com>
-In-Reply-To: <0aa7227d-264f-a87d-bef1-9f5d1c43a184@arm.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 5 Jul 2023 15:40:38 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+T_8JNAQ1Ca8kNH0LCkiytJuSZPZeC_pvyOOG6xvQh+g@mail.gmail.com>
-Message-ID: <CAL_Jsq+T_8JNAQ1Ca8kNH0LCkiytJuSZPZeC_pvyOOG6xvQh+g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: arm: pmu: Add Cortex-A520, Cortex-A715,
- and Cortex-A720
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230703084536.8429-2-mike.looijmans@topic.nl>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,FSL_HELO_FAKE,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 3, 2023 at 1:40=E2=80=AFPM Robin Murphy <robin.murphy@arm.com> =
-wrote:
->
-> On 2023-06-30 19:56, Rob Herring wrote:
-> > Add compatible strings for the Arm Cortex-A520, Cortex-A715, and
-> > Cortex-A720 CPU PMUs.
-> >
-> > Signed-off-by: Rob Herring <robh@kernel.org>
-> > ---
-> >   Documentation/devicetree/bindings/arm/pmu.yaml | 3 +++
-> >   1 file changed, 3 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/pmu.yaml b/Documenta=
-tion/devicetree/bindings/arm/pmu.yaml
-> > index e14358bf0b9c..0cc468d6c372 100644
-> > --- a/Documentation/devicetree/bindings/arm/pmu.yaml
-> > +++ b/Documentation/devicetree/bindings/arm/pmu.yaml
-> > @@ -49,7 +49,10 @@ properties:
-> >             - arm,cortex-a77-pmu
-> >             - arm,cortex-a78-pmu
-> >             - arm,cortex-a510-pmu
-> > +          - arm,cortex-a520-pmu
-> >             - arm,cortex-a710-pmu
-> > +          - arm,cortex-a715-pmu
-> > +          - arm,cortex-a720-pmu
-> >             - arm,cortex-x1-pmu
-> >             - arm,cortex-x2-pmu
->
-> Should we catch up on Cortex-X (3 and 4 now) while we're at it?
+Hi Mike,
 
-Yes. I'll add those.
+On Mon, Jul 03, 2023 at 10:45:36AM +0200, Mike Looijmans wrote:
+> Add power supply regulator support to the exc3000 devices.
+> 
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> 
+> ---
+> 
+>  drivers/input/touchscreen/exc3000.c | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/drivers/input/touchscreen/exc3000.c b/drivers/input/touchscreen/exc3000.c
+> index 4af4c1e5d0da..3e50af8a4a2d 100644
+> --- a/drivers/input/touchscreen/exc3000.c
+> +++ b/drivers/input/touchscreen/exc3000.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/interrupt.h>
+>  #include <linux/module.h>
+>  #include <linux/of.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <linux/sizes.h>
+>  #include <linux/timer.h>
+>  #include <asm/unaligned.h>
+> @@ -360,6 +361,12 @@ static int exc3000_probe(struct i2c_client *client)
+>  	if (IS_ERR(data->reset))
+>  		return PTR_ERR(data->reset);
+>  
+> +	/* For proper reset sequence, enable power while reset asserted */
+> +	error = devm_regulator_get_enable_optional(&client->dev, "vdd");
+> +	if (error && error != -ENODEV)
+> +		dev_err_probe(&client->dev, error,
+> +			      "failed to request vdd regulator\n");
 
-Looking a bit further at this, it seems a bunch of platforms
-(including a Cortex-X3 based one) are just using "arm,armv8-pmuv3".
-That's supposed to be just for s/w models, but it's not enforceable.
 
-Rob
+If there is a regulator described in the firmware we should not continue
+with initializing the device if we fail to grab/enable it. Think about
+what happens if you get -EPROBE_DEFER here. You should return here.
+
+Also, why are you using the _optional() variant? VDD is not an optional
+for the controller. regulator_get_optional() is needed when you need to
+alter the behavior of the device/driver depending on the presence of an
+optional supply, whereas here it should work fine with a sub supply that
+will be created if you simply call devm_regulator_get_enable() and there
+is not regulator mentioned in DT/ACPI for the board.
+
+Thanks.
+
+-- 
+Dmitry
