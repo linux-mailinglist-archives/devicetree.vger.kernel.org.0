@@ -2,73 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C13BB747D67
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 08:50:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A391747D6A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 08:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231755AbjGEGuF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 02:50:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49868 "EHLO
+        id S231823AbjGEGuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 02:50:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbjGEGtk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 02:49:40 -0400
-Received: from mail-ed1-x530.google.com (mail-ed1-x530.google.com [IPv6:2a00:1450:4864:20::530])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 223902680
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 23:49:07 -0700 (PDT)
-Received: by mail-ed1-x530.google.com with SMTP id 4fb4d7f45d1cf-51d91e9b533so7040409a12.3
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 23:49:06 -0700 (PDT)
+        with ESMTP id S231822AbjGEGtp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 02:49:45 -0400
+Received: from mail-ed1-x532.google.com (mail-ed1-x532.google.com [IPv6:2a00:1450:4864:20::532])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29EF72697
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 23:49:14 -0700 (PDT)
+Received: by mail-ed1-x532.google.com with SMTP id 4fb4d7f45d1cf-51dfa0771cdso4970092a12.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 23:49:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688539731; x=1691131731;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=GB4bpNO3SAJRb4aZuiOoT5tlPntO7wrJyRlzhpgfep0=;
-        b=D6HXcgpHibNmK6NkqhcOhTtIW5+ekU9iXxP97snkK3BNydz/RuVs6uGiuGiUOotYHc
-         pJIMnec7dx93W7yNBm7gBJ3WuDLzdOM2JoWQ2C+Pf2fCE2T7VPbT5j8BpE5dOqkA9NF9
-         oaYY7rFY0iPy7STFlXVDbPz38v8etgYx4yYI28cBb7HWdymSgzfqiXV8Lu+HZ15cRyuk
-         +A2aRwh8w+E1aGoNFZaf610DUh9YoIdypgtHu7f7p+jlvISmjSsVqJhQolms0NBmP/hb
-         QzCP/CYVepxNleUQvOreWm4BGHNJfQWNAOYLBgqmzgBtfokh8u7Ug0VpQUtv6xipPxY/
-         lyag==
+        d=linaro.org; s=google; t=1688539746; x=1691131746;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=gnpj157c3whA4keAde4dkEQlANMe2n/WYXZtcdvXOtI=;
+        b=qnxKcQ+ogqw9SGXbUz4Lb1635OSrmEZ6jrj1QiIUI9pHSW2xyBXeWXoJkYt7F4Wg1x
+         Yv2XRaBwAzke9DDDYzRvzOQ38gwNtS/fjv36UtAM6/sSFy3SDTjazsWiMmeRFeFNBtPm
+         Y1mBAKtb2L4lUBQLuh34mw4aZ6gtsQTY3TJCPV44qp+OSEbHH6DmboKo5ZxUAeL/Oy/7
+         jiheg/CimLISbrJsCu1IJjMP8liOf2FOeV+8K+kItsDsuylSrEet/bCLCc2HzlKgPsrH
+         u/FPNYa8kJCuNP86/m3IMSXkVT/tcDaOBQ7hdpX/Tdl+XMFE4OoRdybOiHXjOfKhxXKw
+         2V7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688539731; x=1691131731;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=GB4bpNO3SAJRb4aZuiOoT5tlPntO7wrJyRlzhpgfep0=;
-        b=Dx3pvEaueBFc9d40uCQVlVVI759Zu6yAniAnpCgZQXn1pGC2IKjR7yqR27x5Kb5+U6
-         DADekPz+wexal3n7Cu5Ax7muOnw3sPn0lUMQ401xc5nqn0pbDB0Uqulcpgm22HJj7beF
-         wzM0k3DikDSS42EzmfSDHFUcKlaz7+BR056rz87dmz8xtF+bmtwBeDbSZu3YK3AwjC7n
-         IKfgc0h1RG8fO84ejLB/Zwc8QCtI1U019YxsGrMvcJS6TE4fOJGGUAoLZx23RU+fEMgi
-         IviiCh8do/Y3bKtDtwVM4jvAaZ9rRs43McKs/+D4hLQnSoTj79A+E/GTc/DYZ8IJOZ+8
-         uFqQ==
-X-Gm-Message-State: ABy/qLaJsaVodr34nQ9rVLJfpPaLL5lpNYnA6+yicpzDjLNOPfQN4ESP
-        21UV4lJ2UGJ8x+YevAcR0IrIcg==
-X-Google-Smtp-Source: APBJJlGqxp0nR/roJ4vSdQwDqZktpU71hnPcawgc4zAU5CBltXqnjOabo4Kgh5z0KdGtSqmZXiPVgg==
-X-Received: by 2002:a17:906:c28f:b0:978:90cc:bf73 with SMTP id r15-20020a170906c28f00b0097890ccbf73mr10185458ejz.48.1688539730997;
-        Tue, 04 Jul 2023 23:48:50 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688539746; x=1691131746;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=gnpj157c3whA4keAde4dkEQlANMe2n/WYXZtcdvXOtI=;
+        b=XKfE+SC+LTkrTfXdydtc6NWSNfXCV/oAbVsMDLyG01S8W90omDM8BlBofMQ6jWlX7h
+         gwBUVeZzNBGc7P1ce7Utlkf9/fGz0PAe1ao8Ijh7krIx/kGXbPQamlDZwGyttdnq/mk9
+         4T71NHO8mozu0KcJvFTo0L78ZMgcIsj1SLQp2d5QpBqCdyniffGS4QST5yciFD4X1lqQ
+         /pdKTovgqtkXCWrcfDgx2Z+55Dq2Bd09AJHtjhiooYAy6qtcilG0C+f6rdyTfQoVEyNa
+         KeR6QFnxRYUUIDKOtLV2vcpe59tQrwaVWRNxjuJx7qBa0LvuiZKHns4x56W1fLGMw+6m
+         YHcA==
+X-Gm-Message-State: ABy/qLalhEJWQ95ecJq760tzPiHanumeQS8oGSCdMPS2neG9MbwNiiUy
+        EKC7Umj8bSPTakLBaMsQq6v9cM6sy1itGolfiiM=
+X-Google-Smtp-Source: APBJJlEv9Qie1QyGZE7X599Yi2UpWVPM1zDwcHS0k9EYYzxDgnLXI89gNsM3Zl16UKEQPrVgXCkkdg==
+X-Received: by 2002:a17:906:d8d1:b0:974:1ef1:81ad with SMTP id re17-20020a170906d8d100b009741ef181admr10699538ejb.4.1688539745878;
+        Tue, 04 Jul 2023 23:49:05 -0700 (PDT)
 Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id lj14-20020a170906f9ce00b00992bea2e9d2sm7504836ejb.62.2023.07.04.23.48.49
+        by smtp.gmail.com with ESMTPSA id w10-20020a170906130a00b00992b50fbbe9sm7849728ejb.90.2023.07.04.23.49.04
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 04 Jul 2023 23:48:50 -0700 (PDT)
+        Tue, 04 Jul 2023 23:49:05 -0700 (PDT)
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [RFT PATCH 3/3] arm64: dts: rockchip: correct audio-codec interrupt flag in Box Demo
-Date:   Wed,  5 Jul 2023 08:48:23 +0200
-Message-Id: <20230705064823.9210-3-krzysztof.kozlowski@linaro.org>
+Subject: [RFT PATCH 1/2] arm64: tegra: correct audio-codec interrupt flag in P2972-0000
+Date:   Wed,  5 Jul 2023 08:49:02 +0200
+Message-Id: <20230705064903.12690-1-krzysztof.kozlowski@linaro.org>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230705064823.9210-1-krzysztof.kozlowski@linaro.org>
-References: <20230705064823.9210-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -79,28 +77,27 @@ GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
 These are simple defines so they could be used in DTS but they will not
 have the same meaning: GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE.
 
-Correct the interrupt flags, assuming the author of the code wanted same
-logical behavior behind the name "ACTIVE_xxx", this is:
-  ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
+Correct the interrupt flags to a value used also in Tegra30 Beaver board
+with this device.
 
 Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts | 2 +-
+ arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-index 322f3e809f15..0c18406e4c59 100644
---- a/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3566-box-demo.dts
-@@ -416,7 +416,7 @@ brcmf: wifi@1 {
- 		compatible = "brcm,bcm4329-fmac";
- 		reg = <1>;
- 		interrupt-parent = <&gpio2>;
--		interrupts = <RK_PB2 GPIO_ACTIVE_HIGH>;
-+		interrupts = <RK_PB2 IRQ_TYPE_LEVEL_HIGH>;
- 		interrupt-names = "host-wake";
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&wifi_host_wake_h>;
+diff --git a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
+index 64a3398fe7a6..7c400e024332 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra194-p2972-0000.dts
+@@ -2115,7 +2115,7 @@ rt5658: audio-codec@1a {
+ 				compatible = "realtek,rt5658";
+ 				reg = <0x1a>;
+ 				interrupt-parent = <&gpio>;
+-				interrupts = <TEGRA194_MAIN_GPIO(S, 5) GPIO_ACTIVE_HIGH>;
++				interrupts = <TEGRA194_MAIN_GPIO(S, 5) IRQ_TYPE_EDGE_FALLING>;
+ 				clocks = <&bpmp TEGRA194_CLK_AUD_MCLK>;
+ 				clock-names = "mclk";
+ 				realtek,jd-src = <2>;
 -- 
 2.34.1
 
