@@ -2,153 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B675A7484E5
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:29:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87A8A7484EC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232034AbjGEN3D convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jul 2023 09:29:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37938 "EHLO
+        id S232211AbjGEN3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 09:29:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229645AbjGEN3B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:29:01 -0400
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407531713;
-        Wed,  5 Jul 2023 06:29:00 -0700 (PDT)
-Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-579d5d89b41so56399277b3.2;
-        Wed, 05 Jul 2023 06:29:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688563739; x=1691155739;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=+YA1kx3Yv436h9iBYuDcm04JxVNm4pa5MPBsgKZUqkY=;
-        b=Q0/hx1uRsqb126hYR2Gh2KVtyZt8Su5Bq7/vM4eSEFgJarys8cBabghmNq46HFxUwm
-         dQP74tpS+w52B4mjSn3WDSmPA7BlU8e7KfWhswwMkIC2GO7IUSVvQa++87+vEkTgO1tN
-         bfqpHrGJpKq6scuyWWuKkpS2g8ac7YLkl+dPJYekDU6OJ4dLJiJy1VRhAvP2NG9oOHCg
-         QM3LGi4U7fb88vzi5TkilPRBEoIjhamIJnUZ75g6FYAc9W3wSpy/cyxWpQ+KKje2LQS5
-         coIDm7ugIMe1IxsQdmzYR/ObHaPZCbg30xNqIHWgxUh1CbZH4TB/wKOPH9FOC8cIBSWd
-         32ug==
-X-Gm-Message-State: ABy/qLaEgRzqqbrAQeRUBCSKOJrobndFoXSs//d8wVHuDnAq8R1TkWi0
-        3IcELdAXKC0p7bpwoDZFUP3tiOJSjuqedg==
-X-Google-Smtp-Source: APBJJlF9lTjDJwGDfHQNgsg6uERsdkvs3f48K5QlWuNjbE6F3LsZo87xNJzv48bw6GCUPDJhgkcz7w==
-X-Received: by 2002:a81:9c03:0:b0:577:f47:3d8d with SMTP id m3-20020a819c03000000b005770f473d8dmr15128574ywa.25.1688563739071;
-        Wed, 05 Jul 2023 06:28:59 -0700 (PDT)
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
-        by smtp.gmail.com with ESMTPSA id u18-20020a818412000000b005772abf6234sm3513413ywf.11.2023.07.05.06.28.58
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 06:28:58 -0700 (PDT)
-Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-c4cb4919bb9so4602151276.3;
-        Wed, 05 Jul 2023 06:28:58 -0700 (PDT)
-X-Received: by 2002:a25:4b07:0:b0:bc3:b6de:1e96 with SMTP id
- y7-20020a254b07000000b00bc3b6de1e96mr13669002yba.6.1688563738532; Wed, 05 Jul
- 2023 06:28:58 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230703132929.356009-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdWHKR77MbhTcD6xJw42OXCF_DC3P0VNdXJqFXG5dZhQ+Q@mail.gmail.com> <OS0PR01MB592220826E0102C41FD4CD2C862FA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-In-Reply-To: <OS0PR01MB592220826E0102C41FD4CD2C862FA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 5 Jul 2023 15:28:47 +0200
-X-Gmail-Original-Message-ID: <CAMuHMdXSYA0t7H5bkPCE1gVEzscn+PLv3B1pbRtJqqc51RaMqw@mail.gmail.com>
-Message-ID: <CAMuHMdXSYA0t7H5bkPCE1gVEzscn+PLv3B1pbRtJqqc51RaMqw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r9a07g0{4,5}4: Add support for
- enabling MTU3
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S231937AbjGEN3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:29:37 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D73961719;
+        Wed,  5 Jul 2023 06:29:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 64DB661552;
+        Wed,  5 Jul 2023 13:29:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F190C433C8;
+        Wed,  5 Jul 2023 13:29:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688563774;
+        bh=E9F4liiB8PmsaYkzpF61IqGQLdVz5mRe/B8Y4yuj/rE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=l8VI+kvcq+IaHbcDzdIXjCgNsY1rQuHEMCq9CvZ90HSnqWeO1Fb/gfZYakXt9O9kb
+         hKO4KO3sPLZMfoJ9GMcAebA2UPEkbmg0zAVidfQzvrI8xPaWoDen6EEVeddye/I+kk
+         BUi4XwYypgQESBLg/z3SApTRNh4osJEsVswLskiBf/xIOGOCMiUBg5xI6ByxiIR0yt
+         +dDpsn24R00A3o9cTOEVkQrXtvjiCLb2W/q+3Q8ITqmuzP9wh0bjhyM/0NV41/Mfwh
+         TSLF3m8RkZnq3VJCA4YE6g9VOmFVigXNICQj4av3KkbGI0laEvjV7xhnLs5ipjJthu
+         GT+2sk5dVR1dA==
+Date:   Wed, 5 Jul 2023 15:29:32 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        Caleb Connolly <caleb@connolly.tech>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
-        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel:
+ Add LGD panel driver for Sony Xperia XZ3)
+Message-ID: <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
+References: <20230521-drm-panels-sony-v1-0-541c341d6bee@somainline.org>
+ <20230521-drm-panels-sony-v1-3-541c341d6bee@somainline.org>
+ <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
+ <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
+ <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
+ <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
+ <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
+ <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
+ <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
+ <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="clzl4rrz3426fhln"
+Content-Disposition: inline
+In-Reply-To: <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
 
-On Wed, Jul 5, 2023 at 3:06 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH] arm64: dts: renesas: r9a07g0{4,5}4: Add support for
-> > enabling MTU3
-> > On Mon, Jul 3, 2023 at 3:29 PM Biju Das <biju.das.jz@bp.renesas.com>
-> > wrote:
-> > > Add support for MTU3 macro to enable MTU3 node on RZ/{G2,V2}L SMARC
-> > EVK.
-> > >
-> > > The MTU3a PWM pins are muxed with spi1 pins and counter external input
-> > > phase clock pins are muxed with scif2 pins. Disable these IPs when
-> > > MTU3 macro is enabled.
-> > >
-> > > Apart from this, the counter Z phase clock signal is muxed with the
-> > > SDHI1 cd signal. So disable SDHI1 IP, when the counter Z phase signal
-> > > is enabled.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+--clzl4rrz3426fhln
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> > > --- a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
-> > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+On Wed, Jul 05, 2023 at 03:05:33PM +0200, Neil Armstrong wrote:
+> On 05/07/2023 14:04, Maxime Ripard wrote:
+> > Hi,
+> >=20
+> > On Tue, May 30, 2023 at 03:36:04PM +0300, Dmitry Baryshkov wrote:
+> > > On 30/05/2023 15:15, AngeloGioacchino Del Regno wrote:
+> > > > Il 30/05/23 13:44, Dmitry Baryshkov ha scritto:
+> > > > > On Tue, 30 May 2023 at 10:24, Neil Armstrong
+> > > > > <neil.armstrong@linaro.org> wrote:
+> > > > > >=20
+> > > > > > Hi Marijn, Dmitry, Caleb, Jessica,
+> > > > > >=20
+> > > > > > On 29/05/2023 23:11, Marijn Suijten wrote:
+> > > > > > > On 2023-05-22 04:16:20, Dmitry Baryshkov wrote:
+> > > > > > > <snip>
+> > > > > > > > > +=A0=A0 if (ctx->dsi->dsc) {
+> > > > > > > >=20
+> > > > > > > > dsi->dsc is always set, thus this condition can be dropped.
+> > > > > > >=20
+> > > > > > > I want to leave room for possibly running the panel without D=
+SC (at a
+> > > > > > > lower resolution/refresh rate, or at higher power consumption=
+ if there
+> > > > > > > is enough BW) by not assigning the pointer, if we get access =
+to panel
+> > > > > > > documentation: probably one of the magic commands sent in thi=
+s driver
+> > > > > > > controls it but we don't know which.
+> > > > > >=20
+> > > > > > I'd like to investigate if DSC should perhaps only be enabled i=
+f we
+> > > > > > run non certain platforms/socs ?
+> > > > > >=20
+> > > > > > I mean, we don't know if the controller supports DSC and those
+> > > > > > particular
+> > > > > > DSC parameters so we should probably start adding something lik=
+e :
+> > > > > >=20
+> > > > > > static drm_dsc_config dsc_params_qcom =3D {}
+> > > > > >=20
+> > > > > > static const struct of_device_id panel_of_dsc_params[] =3D {
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8150", , .d=
+ata =3D &dsc_params_qcom },
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8250", , .d=
+ata =3D &dsc_params_qcom },
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8350", , .d=
+ata =3D &dsc_params_qcom },
+> > > > > >  =A0=A0=A0=A0=A0=A0=A0=A0 { .compatible =3D "qcom,sm8450", , .d=
+ata =3D &dsc_params_qcom },
+> > > > > > };
+> > > > >=20
+> > > > > I think this would damage the reusability of the drivers. The pan=
+el
+> > > > > driver does not actually care if the SoC is SM8350, sunxi-somethi=
+ng or
+> > > > > RCar.
+> > > > > Instead it cares about host capabilities.
+> > > > >=20
+> > > > > I think instead we should extend mipi_dsi_host:
+> > > > >=20
+> > > > > #define MIPI_DSI_HOST_MODE_VIDEO BIT(0)
+> > > > > #define MIPI_DSI_HOST_MODE_CMD=A0 BIT(1)
+> > > > > #define MIPI_DSI_HOST_VIDEO_SUPPORTS_COMMANDS BIT(2)
+> > > > > // FIXME: do we need to provide additional caps here ?
+> > > > >=20
+> > > > > #define MIPI_DSI_DSC_1_1 BIT(0)
+> > > > > #define MIPI_DSI_DSC_1_2 BIT(1)
+> > > > > #define MIPI_DSI_DSC_NATIVE_422 BIT(2)
+> > > > > #define MIPI_DSI_DSC_NATIVE_420 BIT(3)
+> > > > > #define MIPI_DSI_DSC_FRAC_BPP BIT(4)
+> > > > > // etc.
+> > > > >=20
+> > > > > struct mipi_dsi_host {
+> > > > >  =A0 // new fields only
+> > > > >  =A0=A0 unsigned long mode_flags;
+> > > > >  =A0=A0 unsigned long dsc_flags;
+> > > > > };
+> > > > >=20
+> > > > > Then the panel driver can adapt itself to the host capabilities a=
+nd
+> > > > > (possibly) select one of the internally supported DSC profiles.
+> > > > >=20
+> > > >=20
+> > > > I completely agree about extending mipi_dsi_host, other SoCs could =
+reuse
+> > > > that and
+> > > > support for DSC panels would become a lot cleaner.
+> > >=20
+> > > Sounds good. I will wait for one or two more days (to get the possible
+> > > feedback on fields/flags/etc) and post an RFC patch to dri-devel.
+> >=20
+> > I just came across that discussion, and couldn't find those patches, did
+> > you ever send them?
+> >=20
+> > Either way, I'm not really sure it's a good idea to multiply the
+> > capabilities flags of the DSI host, and we should just stick to the
+> > spec. If the spec says that we have to support DSC while video is
+> > output, then that's what the panels should expect.
+>=20
+> Except some panels supports DSC & non-DSC, Video and Command mode, and
+> all that is runtime configurable. How do you handle that ?
 
-> > > +&mtu3_pins {
-> > > +       mtu3-zphase-clk {
-> > > +               pinmux = <RZG2L_PORT_PINMUX(19, 0, 3)>; /* MTIOC1A */
-> > > +       };
-> > > +};
-> >
-> > With the #defines moved up, mtu3-zphase-clk can be moved to mtu3_pins in
-> > rzg2l-smarc-pinfunction.dtsi.
->
-> Z-phase support is added only for cascade counter(MTU1 + MTU2)
->
-> I thought by making this as optional, SDHI + standalone MTU1 or MTU2
-> can still work. That is the reason it is moved here.
->
-> If we move "mtu3-zphase-clk" to  mtu3_pins in rzg2l-smarc-pinfunction.dtsi
-> Either
->
-> we need to make MTU3 mutually exclusive with SDHI
->
-> Or
->
-> Guard "mtu3-zphase-clk" with "MTU3_COUNTER_Z_PHASE_SIGNAL" macro in
-> rzg2l-smarc-pinfunction.dtsi.
->
-> Which one I need to select??
+In this case, most of the constraints are going to be on the encoder
+still so it should be the one driving it. The panel will only care about
+which mode has been selected, but it shouldn't be the one driving it,
+and thus we still don't really need to expose the host capabilities.
 
-I'd go for the #ifdef, as you had above.
+This is very much like HDMI: the encoder knows what the monitor is
+capable of, will take a decision based on its capabilities and the
+monitor's and will then let the monitor know. But the monitor never
+knows what the encoder is truly capable of, nor will it enforce
+something.
 
-> > > +
-> > > +&sdhi1 {
-> > > +       status = "disabled";
-> > > +};
-> > > +#endif /* MTU3_COUNTER_Z_PHASE_SIGNAL */
-> >
-> > BTW, how does the driver know it can use the counter Z phase clock
-> > signal?  I understand this can be either an input or output signal?
->
-> It is an input signal and is supported only for the cascade(MTU1 + MTU2) operation. When we supply z-phase signal(By inserting SD card or applying a voltage to cd pin on the sd connector), counter value gets cleared.
+Maxime
 
-The documentation for MTIOC1A says:
+--clzl4rrz3426fhln
+Content-Type: application/pgp-signature; name="signature.asc"
 
-    MTU1 TGRA input capture input/output compare output/PWM output pin
+-----BEGIN PGP SIGNATURE-----
 
-So the output functions are not yet supported by the driver?
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZKVwPAAKCRDj7w1vZxhR
+xU1aAP0ZPPGjtfbd5LeNowVSsVrKP9rzqfsnK4d7K+Mf/Stl9wD+NIKEIu2BPgSP
+zyEIbEEjC5KJN9bnZLDxQXByRgpSPAY=
+=w/p2
+-----END PGP SIGNATURE-----
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--clzl4rrz3426fhln--
