@@ -2,123 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F0DF3748E18
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:40:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 476D2748E58
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:50:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234320AbjGETj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 15:39:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46668 "EHLO
+        id S234211AbjGETu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 15:50:27 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53224 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234279AbjGETjx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:39:53 -0400
-Received: from mail-io1-f51.google.com (mail-io1-f51.google.com [209.85.166.51])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29740199E;
-        Wed,  5 Jul 2023 12:39:49 -0700 (PDT)
-Received: by mail-io1-f51.google.com with SMTP id ca18e2360f4ac-78666f06691so164440839f.0;
-        Wed, 05 Jul 2023 12:39:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688585988; x=1691177988;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=EmigWppDMAwntmLPkpHMViFD3zfbB0BalUBHyRmY93I=;
-        b=O0Hx0DJjaXwYP+yvm0yoGbkrJfx9adX747Wx8eccbhjCijufql33tPIigemLgwYP07
-         WmdleyqbK2jthxf4WIbHBCB/D45wsSToLzMHer0D4wQ3OM1rYd8vrW8Ejea/XkxYgVlD
-         RdIFih6oJUvcTOUP3n/POr5sMXlTGRF7TtW1Tkl8Ut7J7TVlZ4vP/mLY/hcZ/Xn4MScL
-         ZZK7qu35f7CDOzEvY96oyGpv64sHtOlR9wGOmjmad/61EXZCEU7QZDfsG60G5zj9dc8N
-         KUgZujUdI+o3GqdLwoddvC7B+1M0qnJ2Ew7YJ8Uo2Ql45DJM4Yzke7qJ4wLnY+VHA4FV
-         G9jg==
-X-Gm-Message-State: ABy/qLZFlIKvxvKGqXQZTz0o/LFFOCdFQkrKPqlxpFh6gP4Gif3nQnv6
-        4sC4xEaxllPtYm8C2qF7FA==
-X-Google-Smtp-Source: APBJJlE1T+SG//kQOjsdrxPqC6WYFy+jVqYd/9wV9AIbQOA/LFJUSpnFw6o7MHDprdjfMYp8ihzVDA==
-X-Received: by 2002:a6b:3c02:0:b0:786:45f7:fb7e with SMTP id k2-20020a6b3c02000000b0078645f7fb7emr58527iob.13.1688585988126;
-        Wed, 05 Jul 2023 12:39:48 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id d21-20020a02a495000000b0042ad887f705sm6314042jam.143.2023.07.05.12.39.43
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 12:39:47 -0700 (PDT)
-Received: (nullmailer pid 1714652 invoked by uid 1000);
-        Wed, 05 Jul 2023 19:39:32 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
-MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Gatien Chevallier <gatien.chevallier@foss.st.com>
-Cc:     fabrice.gasnier@foss.st.com, jic23@kernel.org, conor+dt@kernel.org,
-        hugues.fruchet@foss.st.com, richardcochran@gmail.com,
-        will@kernel.org, davem@davemloft.net, vkoul@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, linux-phy@lists.infradead.org,
-        arnd@kernel.org, gregkh@linuxfoundation.org,
-        linux-i2c@vger.kernel.org, linux-usb@vger.kernel.org,
-        arnaud.pouliquen@foss.st.com, mchehab@kernel.org,
-        olivier.moysan@foss.st.com, andi.shyti@kernel.org,
-        alexandre.torgue@foss.st.com, kuba@kernel.org,
-        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
-        linux-mmc@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org, pabeni@redhat.com,
-        linux-media@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Oleksii_Moisieiev@epam.com, lee@kernel.org,
-        devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com, netdev@vger.kernel.org,
-        robh+dt@kernel.org, ulf.hansson@linaro.org,
-        catalin.marinas@arm.com, edumazet@google.com,
-        linux-spi@vger.kernel.org, herbert@gondor.apana.org.au,
-        linux-iio@vger.kernel.org, linux-crypto@vger.kernel.org
-In-Reply-To: <20230705172759.1610753-4-gatien.chevallier@foss.st.com>
-References: <20230705172759.1610753-1-gatien.chevallier@foss.st.com>
- <20230705172759.1610753-4-gatien.chevallier@foss.st.com>
-Message-Id: <168858597253.1714602.9996873148476929300.robh@kernel.org>
-Subject: Re: [PATCH 03/10] dt-bindings: bus: add device tree bindings for
- ETZPC
-Date:   Wed, 05 Jul 2023 13:39:32 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
-        autolearn_force=no version=3.4.6
+        with ESMTP id S234070AbjGETuO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:50:14 -0400
+Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E617121;
+        Wed,  5 Jul 2023 12:50:12 -0700 (PDT)
+Received: from pps.filterd (m0134421.ppops.net [127.0.0.1])
+        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 365GsBDP028057;
+        Wed, 5 Jul 2023 19:49:45 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : subject :
+ date : message-id; s=pps0720;
+ bh=2TZ7uWy+KV2H+l6ExuqmbxwHBn84OisbQ+LUXCERh7E=;
+ b=S51fsHBgKxibwrnifbcQzN2WRS7KkID5Pq4PV/hUen/ZeVsl/o4p2fQ20oCcOikTcBg+
+ VysStpbHr3ZFgtJj+qGYW2HVNrCBnIQBUQ0cNe0KMST9F6aGzOhKCbBtt74YhCTVDFsz
+ 9/GZWEy63G0JReltp09LFmPrbJrQyKbKVv2xMXafgjFOlq/IGP+6AazezDG0ByqtwRmu
+ esjPOvS5IQdTaRSyYPOqZmENJazWJFiaF7SyO2rX7ktn0RUXma8Kd96dqH0HjJHMMKmG
+ Bfth5tkDA9qb/4DizJZFr5xtOWx9ozs3kQrSvFzaBWwtvAFISrUSMbYqwOfY6dXk0/JX Lw== 
+Received: from p1lg14881.it.hpe.com (p1lg14881.it.hpe.com [16.230.97.202])
+        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3rn93utu08-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 05 Jul 2023 19:49:44 +0000
+Received: from p1lg14885.dc01.its.hpecorp.net (unknown [10.119.18.236])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by p1lg14881.it.hpe.com (Postfix) with ESMTPS id 9CCBC804DF3;
+        Wed,  5 Jul 2023 19:49:43 +0000 (UTC)
+Received: from hpe.com (unknown [16.231.227.36])
+        by p1lg14885.dc01.its.hpecorp.net (Postfix) with ESMTP id 2C0F28081E4;
+        Wed,  5 Jul 2023 19:49:42 +0000 (UTC)
+From:   nick.hawkins@hpe.com
+To:     verdun@hpe.com, nick.hawkins@hpe.com, linus.walleij@linaro.org,
+        brgl@bgdev.pl, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, jdelvare@suse.com,
+        linux@roeck-us.net, andy.shevchenko@gmail.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org
+Subject: [PATCH v5 0/5] ARM: Add GPIO support
+Date:   Wed,  5 Jul 2023 14:45:39 -0500
+Message-Id: <20230705194544.100370-1-nick.hawkins@hpe.com>
+X-Mailer: git-send-email 2.17.1
+X-Proofpoint-ORIG-GUID: 6x1Osdyk7klH7nzwkV0PSvzArQMoD4SW
+X-Proofpoint-GUID: 6x1Osdyk7klH7nzwkV0PSvzArQMoD4SW
+X-HPE-SCL: -1
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-05_11,2023-07-05_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 spamscore=0 mlxscore=0
+ mlxlogscore=999 priorityscore=1501 clxscore=1015 suspectscore=0
+ adultscore=0 malwarescore=0 impostorscore=0 lowpriorityscore=0 bulkscore=0
+ phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307050180
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Nick Hawkins <nick.hawkins@hpe.com>
 
-On Wed, 05 Jul 2023 19:27:52 +0200, Gatien Chevallier wrote:
-> Document ETZPC (Extended TrustZone protection controller). ETZPC is a
-> firewall controller.
-> 
-> Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
-> ---
->  .../bindings/bus/st,stm32-etzpc.yaml          | 90 +++++++++++++++++++
->  1 file changed, 90 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/bus/st,stm32-etzpc.yaml
-> 
+The GXP SoC supports GPIO on multiple interfaces. The interfaces are
+CPLD and Host. The GPIOs are a combination of both physical and virtual
+I/O across the interfaces. The gpio-gxp-pl driver covers the CPLD which
+takes physical I/O from the board and shares it with GXP via a proprietary
+interface that maps the I/O onto a specific register area of the GXP.
+The CPLD interface supports interrupts.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Notes:
 
-yamllint warnings/errors:
+Based on previous feedback the gpio-gxp.c driver has been discarded in
+favor of it going into a separate larger patchset. This leaves behind
+only the gpio-gxp-pl.c driver.
 
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/bus/st,stm32-etzpc.yaml: title: 'STM32 Extended TrustZone protection controller bindings' should not be valid under {'pattern': '([Bb]inding| [Ss]chema)'}
-	hint: Everything is a binding/schema, no need to say it. Describe what hardware the binding is for.
-	from schema $id: http://devicetree.org/meta-schemas/core.yaml#
-Documentation/devicetree/bindings/bus/st,stm32-etzpc.example.dtb: /example-0/etzpc@5c007000: failed to match any schema with compatible: ['st,stm32mp13-sys-bus']
+After exploring the recommendation of using regmap_gpio it does not seem
+like a good fit. Some of the GPIOs are a combination of several bits in
+a byte where others are not contiguous blocks of GPIOs.
 
-doc reference errors (make refcheckdocs):
+The gxp-fan-ctrl driver in HWMON no longer will report fan presence
+or fan failure states as these GPIOs providing this information will be
+consumed by the host. It will be the hosts function to keep track of
+fan presence and status. There was an excellent suggestion to have linux
+handle the entire thermal management of the system however the HPE
+OpenBMC developers prefer to handle this inside OpenBMC stack instead.
 
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230705172759.1610753-4-gatien.chevallier@foss.st.com
+---
 
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
+Changes since v4:
+ *Removed gpio-gxp.c patch as it requires a much larger patchset based
+  on feedback.
+ *Modified MAINTAINERS Removing gpio-gxp.c and adding missing
+  gpio-gxp-pl.c
+ *Modified hpe,gxp-gpio.yaml by removing hpe,gxp-gpio compatible
+  reference for now in favor of adding it later with separate patchset.
+ *Modified cover letter to explain that although there is a suggestion
+  to have the kernel handle all thermal matters the HPE OpenBMC developers
+  prefer to handle it there instead.
+ *Modified cover letter to explain gpio-gxp.c removal
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
+Changes since v3:
+ *Added called with debugfs to read server id
+ *Added reviewed-by: tags to hwmon fan driver and fan yaml
+ *Changed maxItems to be 4 instead of 6 on reg and reg-names in gpio
+  yaml
+ *Moved gpio-gxp-pl.c to be in a separate patch/commit.
+ *Moved regmap_config out of function in both gpio drivers to turn into
+  static const
+ *Removed unnecesary variables and redundant conditionals
+ *Modified regmap_read switch statements to calculate offset and mask
+  then read at end
+ *Removed use of -EOPNOTSUPP in favor of -ENOTSUPP
+ *Removed redundant casting
+ *Switched generic_handle_irq for generic_handle_domain_irq
+ *Used GENMASK where applicable
+ *Used bitmap_xor and for_each_bit_set in PL PSU interrupt
+ *Made GPIO chip const and marked as a template (in the name)
+ *Made irq_chip const and immutable
+ *Corrected check on devm_gpiochip_add_data
+ *Removed dev_err_probe on platform_get_irq
+ *Changed return 0 to devm_request_irq
 
-pip3 install dtschema --upgrade
+Changes since v2:
+ *Removed shared fan variables between HWMON and GPIO based on feedback
+ *Removed reporting fan presence and failure from hwmon gxp-fan-ctrl
+  driver
+ *Removed GPIO dependency from gxp-fan-ctrl driver
+ *Changed description and title for hpe,gxp-gpio binding
+ *Corrected indention on example for hpe,gxp-gpio binding
+ *Removed additional example from hpe,gxp-gpio binding
 
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+Changes since v1:
+ *Removed ARM device tree changes and defconfig changes to reduce
+  patchset size
+ *Removed GXP PSU changes to reduce patchset size
+ *Corrected hpe,gxp-gpio YAML file based on feedback
+ *Created new gpio-gxp-pl file to reduce complexity
+ *Separated code into two files to keep size down: gpio-gxp.c and
+  gpio-gxp-pl.c
+ *Fixed Kconfig indentation as well as add new entry for gpio-gxp-pl
+ *Removed use of linux/of.h and linux/of_device.h
+ *Added mod_devicetable.h and property.h
+ *Fixed indentation of defines and uses consistent number of digits
+ *Corrected defines with improper GPIO_ namespace.
+ *For masks now use BIT()
+ *Added comment for PLREG offsets
+ *Move gpio_chip to be first in structure
+ *Calculate offset for high and low byte GPIO reads instead of having
+  H(High) and L(Low) letters added to the variables.
+ *Removed repeditive use of "? 1 : 0"
+ *Switched to handle_bad_irq()
+ *Removed improper bailout on gpiochip_add_data
+ *Used GENMASK to arm interrupts
+ *Removed use of of_match_device
+ *fixed sizeof in devm_kzalloc
+ *Added COMPILE_TEST to Kconfig
+ *Added dev_err_probe where applicable
+ *Removed unecessary parent and compatible checks
+
+Nick Hawkins (5):
+  dt-bindings: gpio: Add HPE GXP GPIO
+  gpio: gxp: Add HPE GXP GPIO PL
+  dt-bindings: hwmon: hpe,gxp-fan-ctrl: remove fn2 and pl registers
+  hwmon: (gxp_fan_ctrl) Provide fan info via gpio
+  MAINTAINERS: hpe: Add GPIO
+
+ .../bindings/gpio/hpe,gxp-gpio.yaml           |  71 +++
+ .../bindings/hwmon/hpe,gxp-fan-ctrl.yaml      |  16 +-
+ MAINTAINERS                                   |   2 +
+ drivers/gpio/Kconfig                          |   9 +
+ drivers/gpio/Makefile                         |   1 +
+ drivers/gpio/gpio-gxp-pl.c                    | 582 ++++++++++++++++++
+ drivers/hwmon/Kconfig                         |   2 +-
+ drivers/hwmon/gxp-fan-ctrl.c                  | 106 +---
+ 8 files changed, 671 insertions(+), 118 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/gpio/hpe,gxp-gpio.yaml
+ create mode 100644 drivers/gpio/gpio-gxp-pl.c
+
+-- 
+2.17.1
 
