@@ -2,100 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E8F8674886A
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10D5F74886C
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231445AbjGEPwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:52:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32892 "EHLO
+        id S229578AbjGEPwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 11:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231815AbjGEPwW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:52:22 -0400
-Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 110CD1732
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 08:52:20 -0700 (PDT)
-Received: by mail-lf1-x12c.google.com with SMTP id 2adb3069b0e04-4fba86f069bso7616962e87.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 08:52:19 -0700 (PDT)
+        with ESMTP id S232726AbjGEPw3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:52:29 -0400
+Received: from mail-wm1-x330.google.com (mail-wm1-x330.google.com [IPv6:2a00:1450:4864:20::330])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CCC71980;
+        Wed,  5 Jul 2023 08:52:28 -0700 (PDT)
+Received: by mail-wm1-x330.google.com with SMTP id 5b1f17b1804b1-3fbc54cab6fso62542535e9.0;
+        Wed, 05 Jul 2023 08:52:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688572337; x=1691164337;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=frIiMffWaC8FHtPAqH/Lcc+Tg0ak1iMFrHKKSrlhbsg=;
-        b=Fpvm7gEqWEDqjPw1xIOrWFSEQfVGYSt960vTw2G47d8gOuulduiUv03DxXxWAOSIFu
-         qDeIpn8fCuBUQMeaa9Lr8/JqQ/9wu8IvKPajkdb1aN1Ipu4WNcIrjg8ij2V4zEQpcmov
-         PnFWXIJSIerq1nQ73kLpA+6TZatpJU9S5PrzxLISbcIXHxQBQuCqMTdgWnj45D1reLC5
-         Iexp6ZYfPTDbDf1elyKYXVxwSIr12M4/7a7Gp5E1VxNlNSBzkWKyWHlh23TwSjd3sSfa
-         dh728KqpSTH/4QozgW89qudRFj0woVTFCBHeRN84jG5ifc3Cgl4s4CFBUlf7QCAmBSm0
-         903g==
+        d=gmail.com; s=20221208; t=1688572347; x=1691164347;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=Y2/kSi53CG1eKE+d3z+4nF+Gv2i9Cq21A2aJTR7JHkU=;
+        b=pImisVolPnAJxmulJVOtxagCpwTDHMTpo4cDdsl0fIGTenfObqG61eoiBC90HhvTtq
+         odIIpVhSCC52rqx5bhbILZIQ/sc5kOufjVw3kK6APsbSVwPtzqZrJxoISAknXXcL9Bii
+         PvDFkdmH3PjXMqx+LUj0+4GuHgw8O3o4I26T3OM7MX/WvUSNj5nG6tQVOiq6qSbMi1T2
+         kscPdwEyDPYFNJFiNp0j5tNcEGBrVHX8z949ACGgMX52HKl2hQJEVnPEYUNVUICMhkFu
+         Wkv6bHZKGeN5smVXkmjXcX8HiVxyqTXSNNstN2v+8KkLpL2QW7R9bETNOZZNbEhd+e7e
+         ci0A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688572337; x=1691164337;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=frIiMffWaC8FHtPAqH/Lcc+Tg0ak1iMFrHKKSrlhbsg=;
-        b=ilnTaCAiFo+57t/LW4rNMUJVXma3KOGzpc+VSNkNpMdRYWuWTTj22Y/zbnaQ3CD/Gu
-         zO4MiwynARA35k70oTjsVd3+I28skyb4EYEDfO4dJ4QplfKo+r8jOHYn2tdsPeztGrp4
-         14XG2SbbkXTKGG/uUY2y3qjrPTQvQfuaT7cAvYvcQiLPJSGP1bxPPm41iQrnA2wdzvE7
-         KdYudxIwojEftM47xnuspCyQsn0UlQyGNm6Arma6v1gNayyrKbyWZJceQZlSbNXqEnsW
-         KL9h3B9pBfGI6wYA+Sz9rYrRiF8FElXUXEmwU9M6isNy2h5iXQKoFYX6dRc5+7cAukWM
-         fVkA==
-X-Gm-Message-State: ABy/qLbaLyYKU1FmQFv/zw8QAFGAIWNqTlriy4WsBYmP9iqLMWZ1LzTG
-        9U6BdJz2LyuKya/zUUYW+yBlow==
-X-Google-Smtp-Source: APBJJlH9+DrIDduKdVcn+U1de79ZRpouG66xAaa3U2wJ9/rGVa+4ffrY0QJOiS9Uf5W9XRp3ZONXEA==
-X-Received: by 2002:a05:6512:324d:b0:4f9:6581:8b4c with SMTP id c13-20020a056512324d00b004f965818b4cmr10862547lfr.44.1688572337309;
-        Wed, 05 Jul 2023 08:52:17 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id le11-20020a170907170b00b009927d4d7a6dsm9535076ejc.192.2023.07.05.08.52.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 08:52:16 -0700 (PDT)
-Message-ID: <5804e11b-cfe2-2226-1c7e-199a7bbb58df@linaro.org>
-Date:   Wed, 5 Jul 2023 17:52:12 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 2/3] dt-bindings: arm: rockchip: Add Radxa ROCK 4SE
-Content-Language: en-US
-To:     Christopher Obbard <chris.obbard@collabora.com>,
-        linux-rockchip@lists.infradead.org
-Cc:     kernel@collabora.com, Andrew Lunn <andrew@lunn.ch>,
-        Andy Yan <andyshrk@163.com>,
-        Brian Norris <briannorris@chromium.org>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Chukun Pan <amadeus@jmu.edu.cn>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        d=1e100.net; s=20221208; t=1688572347; x=1691164347;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Y2/kSi53CG1eKE+d3z+4nF+Gv2i9Cq21A2aJTR7JHkU=;
+        b=KvRudYt7zTPzgHn1XVJ6MXpKKmNi1vqWkm7/ZUJeC9cpjbzGQFaNm9UGBo4EOc0qrv
+         UAWprd3n5/V6J6mJ02crERszfq1rotjR0Gz9vrd/Bc/IgGBsTe2gkWoZ0IUselMC0vWW
+         vrI+RAn6pf2e4VnbmvVekf80Nt1dpcB+O0Y7cBhcaKEvUN39s3A2R5Eg0iBOICKhTWlE
+         Xi3FHGRwhwBiZJST4t1wbNmtSES0Md4sxBgI6yZToCsQWBVYQah4uGGJU2ZDNgwJxv5S
+         uCTDh2rvf6bYs9qDNrmEIUrQDOGcRcKc5ygYVh3UGRFqW63DPCsAyAL2PMOPtBwiAT4D
+         iVUA==
+X-Gm-Message-State: AC+VfDy4TTfa5oM1EiP75gsqz/CdMVSIvJwMcI32LB1XbpC3tpNCS0wc
+        FKj2Wlh6oKElQIfvEskd1gE=
+X-Google-Smtp-Source: ACHHUZ6+UpPe6OxvIrJMNJE0tCUOUJZvg3lL/rslPKUvg/TJFkGocLkCjJOx5rFoUN8w51+WkB+8ew==
+X-Received: by 2002:a05:600c:22c3:b0:3fb:a1d0:a882 with SMTP id 3-20020a05600c22c300b003fba1d0a882mr13279526wmg.20.1688572346479;
+        Wed, 05 Jul 2023 08:52:26 -0700 (PDT)
+Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id n26-20020a7bcbda000000b003fbc30825fbsm2481820wmi.39.2023.07.05.08.52.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 08:52:26 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20230705141011.111568-1-chris.obbard@collabora.com>
- <20230705141011.111568-3-chris.obbard@collabora.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230705141011.111568-3-chris.obbard@collabora.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH v2 1/3] dt-bindings: arm: tegra: flowctrl: Convert to json-schema
+Date:   Wed,  5 Jul 2023 17:52:20 +0200
+Message-ID: <20230705155222.2519728-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.41.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 16:10, Christopher Obbard wrote:
-> Add devicetree binding entry for the Radxa ROCK 4SE.
-> 
-> Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
-> ---
-> 
+From: Thierry Reding <treding@nvidia.com>
 
+Convert the Tegra flow controller bindings from the free-form text
+format to json-schema.
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Signed-off-by: Thierry Reding <treding@nvidia.com>
+---
+Changes in v2:
+- move to soc/tegra directory (Krzysztof)
 
-Best regards,
-Krzysztof
+ .../arm/tegra/nvidia,tegra20-flowctrl.txt     | 18 --------
+ .../soc/tegra/nvidia,tegra20-flowctrl.yaml    | 41 +++++++++++++++++++
+ 2 files changed, 41 insertions(+), 18 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-flowctrl.txt
+ create mode 100644 Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-flowctrl.yaml
+
+diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-flowctrl.txt b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-flowctrl.txt
+deleted file mode 100644
+index a855c1bffc0f..000000000000
+--- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-flowctrl.txt
++++ /dev/null
+@@ -1,18 +0,0 @@
+-NVIDIA Tegra Flow Controller
+-
+-Required properties:
+-- compatible: Should contain one of the following:
+-  - "nvidia,tegra20-flowctrl": for Tegra20
+-  - "nvidia,tegra30-flowctrl": for Tegra30
+-  - "nvidia,tegra114-flowctrl": for Tegra114
+-  - "nvidia,tegra124-flowctrl": for Tegra124
+-  - "nvidia,tegra132-flowctrl", "nvidia,tegra124-flowctrl": for Tegra132
+-  - "nvidia,tegra210-flowctrl": for Tegra210
+-- reg: Should contain one register range (address and length)
+-
+-Example:
+-
+-	flow-controller@60007000 {
+-		compatible = "nvidia,tegra20-flowctrl";
+-		reg = <0x60007000 0x1000>;
+-	};
+diff --git a/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-flowctrl.yaml b/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-flowctrl.yaml
+new file mode 100644
+index 000000000000..705544b7f98f
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/tegra/nvidia,tegra20-flowctrl.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/soc/tegra/nvidia,tegra20-flowctrl.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NVIDIA Tegra Flow Controller
++
++maintainers:
++  - Thierry Reding <thierry.reding@gmail.com>
++  - Jon Hunter <jonathanh@nvidia.com>
++
++properties:
++  compatible:
++    oneOf:
++      - enum:
++          - nvidia,tegra20-flowctrl
++          - nvidia,tegra30-flowctrl
++          - nvidia,tegra114-flowctrl
++          - nvidia,tegra124-flowctrl
++          - nvidia,tegra210-flowctrl
++
++      - items:
++          - const: nvidia,tegra132-flowctrl
++          - const: nvidia,tegra124-flowctrl
++
++  reg:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++    flow-controller@60007000 {
++        compatible = "nvidia,tegra20-flowctrl";
++        reg = <0x60007000 0x1000>;
++    };
+-- 
+2.41.0
 
