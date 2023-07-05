@@ -2,178 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 530997488B9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01FC97488D6
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 18:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233253AbjGEP7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:59:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39566 "EHLO
+        id S229775AbjGEQDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 12:03:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43084 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233233AbjGEP7Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:59:24 -0400
-Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B20DA1FC4
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 08:59:01 -0700 (PDT)
-Received: by mail-wr1-x42f.google.com with SMTP id ffacd0b85a97d-3112f5ab0b1so7624308f8f.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 08:59:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688572731; x=1691164731;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=moibl62gzAsWVTokluvPSFK/S0tyJbu/881cJb+p80o=;
-        b=JSlq8CZYrL0RmBsVMhuobUhV95XMGPxVfjGNavCOWyxUgSDHCaJB4aAXpc5KoUvq40
-         fykvC+WCiFXbWE5Z/OEaXbgEQO5+99cEZcZ439cMGWzd0tn/RtXvHe13K1KHd1M/7kxS
-         agXTzzdaz8SDtGYRZtw+KzPgomGI6nfejQqRPgLR657DflSyEmtY9+UcMcetjEbXGOj0
-         S3SDFqvZOjtSHTaVjrTDKmXS6TOaWRSwrdb5HqsIN2TlRZEbKVeQIt9vc2/DgiklaPyx
-         XRzTGp9k6pT2BuWv6adsmAYFJtP1xt8B4r+oL5KMEzcv/dB7IqzPrpdKmwZ961oHLbSQ
-         iZBA==
+        with ESMTP id S233351AbjGEQDH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 12:03:07 -0400
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 843DD19AB;
+        Wed,  5 Jul 2023 09:03:06 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-7835ae70e46so261770639f.3;
+        Wed, 05 Jul 2023 09:03:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688572731; x=1691164731;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=moibl62gzAsWVTokluvPSFK/S0tyJbu/881cJb+p80o=;
-        b=gdN6bxTCEvb9QY0bGw5hnMBchbzLAZaHVoiRztwTkXUJdeJrXhix4BUh5gMQXxvn8S
-         aXMxvIzpTqg+ciq4zFaNbGdquDpkJxCnWyDrIHlvwGK/ds83muRq2xIg+PnXk/+OLHPK
-         bZ4xqMNNBEvehcrkr++fq5tdTIcxGAPqIbHYxBnqZTNfbGpppbntPWwC4NS3exmU8Jh5
-         lW/I4t57wWFzBr4xDbnKKGKbKBv456XvlHCiH01BKbhTfzerBrKFGLJEWRLBYYgWMx54
-         MSfVkzL5skjI5lccD2+kptFPk3KTxjdzkz92P2eB3omdYcp2AoYsTuWTQqnN4yqYdFH/
-         KgEA==
-X-Gm-Message-State: ABy/qLYbGDZ/rxMoKSQlmv56zL2a6q0hZbEp4Nlgklr82quIh5N5z3oi
-        2WUJ/UGbbE2+go6zMEfQs7UDag==
-X-Google-Smtp-Source: APBJJlGx+kWWfQ+ERifBEWKHxqWBwGmPAO4EZnQin0ptwlMz0lU3sRP6zkQMsbyuoLdBaBGZMnrUZQ==
-X-Received: by 2002:a5d:4f8d:0:b0:314:11ea:480d with SMTP id d13-20020a5d4f8d000000b0031411ea480dmr14762913wru.9.1688572731063;
-        Wed, 05 Jul 2023 08:58:51 -0700 (PDT)
-Received: from ?IPV6:2a01:e0a:982:cbb0:65eb:d140:2d45:ee85? ([2a01:e0a:982:cbb0:65eb:d140:2d45:ee85])
-        by smtp.gmail.com with ESMTPSA id s11-20020a5d69cb000000b00313f07ccca4sm27119522wrw.117.2023.07.05.08.58.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 08:58:49 -0700 (PDT)
-Message-ID: <bd6b9372-6eb0-c54f-9341-1dc46c4e63b0@linaro.org>
-Date:   Wed, 5 Jul 2023 17:58:48 +0200
+        d=1e100.net; s=20221208; t=1688572985; x=1691164985;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=8KBpOFJZyS5xM9abNo2nJ57ufwQERCZ3x55i0T0eDUY=;
+        b=Tyz24ETWp0Bg9+0tO2dn52iiN/aLrCHfAtIrZalJvQ+V8ob2KXyGvC5sX9bh6UM90B
+         z7Rvs+72z9tk0c6VSwcwkTpe2yOnHbiU/utD5uXG6IkD/Ty257s3Nytt/HQEa1VV3U2M
+         8QUdEhOJVpFhDs4Hhp++8vL/bd2KE4BystEwcgO75tdezzZTPziMUB8VjN07PctrDbuV
+         BUtTrk0BF5OxjOwm5PAB6vX+YfvCwWCdXzkcCG0a4DoMCKN8W6G5zCJ0XOphCWZ6Wd6h
+         CcXDyALA8Jta1+QcLH7IZWeewKh7yymSpJkKwuBokbDZ4+jTllUUc4QXZBojalzPkQuc
+         6R5A==
+X-Gm-Message-State: AC+VfDyhUEJ2xMX8JDHd+Gusii/ls7sDOFn1UVgxrdKOfj21ZUlQqhGI
+        Td5ucCC0HzfEUb/n+y8+kw==
+X-Google-Smtp-Source: ACHHUZ5Z8VqWZ/v/LomwEhPw2FxxUKwe6Z2nAX7VtpW4YDpUCLHgztTIHZAFe8baQtOy8AZBd0mglg==
+X-Received: by 2002:a5e:c910:0:b0:783:58f4:2e2e with SMTP id z16-20020a5ec910000000b0078358f42e2emr16821097iol.0.1688572984946;
+        Wed, 05 Jul 2023 09:03:04 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id k9-20020a02c769000000b0042b449ac66dsm2108515jao.56.2023.07.05.09.03.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 09:03:04 -0700 (PDT)
+Received: (nullmailer pid 712513 invoked by uid 1000);
+        Wed, 05 Jul 2023 16:03:01 -0000
+Date:   Wed, 5 Jul 2023 10:03:01 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>, kernel@sberdevices.ru,
+        Richard Weinberger <richard@nod.at>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Liang Yang <liang.yang@amlogic.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, oxffffaa@gmail.com,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: nand: meson: support for 512B
+ ECC step size
+Message-ID: <168857288612.706374.4421201197090184183.robh@kernel.org>
+References: <20230705065434.297040-1-AVKrasnov@sberdevices.ru>
+ <20230705065434.297040-2-AVKrasnov@sberdevices.ru>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
- LGD panel driver for Sony Xperia XZ3)
-Content-Language: en-US
-To:     Maxime Ripard <mripard@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <dri-devel@lists.freedesktop.org>,
-        Caleb Connolly <caleb@connolly.tech>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@somainline.org>,
-        Marijn Suijten <marijn.suijten@somainline.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Kuogee Hsieh <quic_khsieh@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Jessica Zhang <quic_jesszhan@quicinc.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Martin Botka <martin.botka@somainline.org>,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Jami Kettunen <jami.kettunen@somainline.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        freedreno <freedreno@lists.freedesktop.org>
-References: <ccc97880-8e74-b85b-9679-9c12c44c4b99@linaro.org>
- <brmrqeajbq3oyp3jjwmc6tuhiftz764u6az444xw6g7pwf5fr3@5tlp375qwhed>
- <617c8f8a-1fc7-c6a0-eaa5-ce75ff2adc1b@linaro.org>
- <CAA8EJppG=MAVpK1J_8bNnkJ23y9NtgY7a2GVResXJvhEKyNsrw@mail.gmail.com>
- <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
- <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
- <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
- <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
- <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
- <6e070141-8c0e-59ed-8a08-58c3fadb17df@linaro.org>
- <lidknise4copce3vb2wth4z3fl2p4npsc4u6ajqb6zsp6lnpca@rp6wxcmy2aa4>
-Organization: Linaro Developer Services
-In-Reply-To: <lidknise4copce3vb2wth4z3fl2p4npsc4u6ajqb6zsp6lnpca@rp6wxcmy2aa4>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230705065434.297040-2-AVKrasnov@sberdevices.ru>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 16:24, Maxime Ripard wrote:
-> On Wed, Jul 05, 2023 at 04:37:57PM +0300, Dmitry Baryshkov wrote:
->>>>>
->>>>> Either way, I'm not really sure it's a good idea to multiply the
->>>>> capabilities flags of the DSI host, and we should just stick to the
->>>>> spec. If the spec says that we have to support DSC while video is
->>>>> output, then that's what the panels should expect.
->>>>
->>>> Except some panels supports DSC & non-DSC, Video and Command mode, and
->>>> all that is runtime configurable. How do you handle that ?
->>>
->>> In this case, most of the constraints are going to be on the encoder
->>> still so it should be the one driving it. The panel will only care about
->>> which mode has been selected, but it shouldn't be the one driving it,
->>> and thus we still don't really need to expose the host capabilities.
->>
->> This is an interesting perspective. This means that we can and actually have
->> to extend the drm_display_mode with the DSI data and compression
->> information.
-> 
-> I wouldn't extend drm_display_mode, but extending one of the state
-> structures definitely.
-> 
-> We already have some extra variables in drm_connector_state for HDMI,
-> I don't think it would be a big deal to add a few for MIPI-DSI.
-> 
-> We also floated the idea for a while to create bus-specific states, with
-> helpers to match. Maybe it would be a good occasion to start doing it?
-> 
->> For example, the panel that supports all four types for the 1080p should
->> export several modes:
->>
->> 1920x1080-command
->> 1920x1080-command-DSC
->> 1920x1080-video
->> 1920x1080-video-DSC
->>
->> where video/command and DSC are some kinds of flags and/or information in
->> the drm_display_mode? Ideally DSC also has several sub-flags, which denote
->> what kind of configuration is supported by the DSC sink (e.g. bpp, yuv,
->> etc).
-> 
-> So we have two things to do, right? We need to expose what the panel can
-> take (ie, EDID for HDMI), and then we need to tell it what we picked
-> (infoframes).
-> 
-> We already express the former in mipi_dsi_device, so we could extend the
-> flags stored there.
-> 
-> And then, we need to tie what the DSI host chose to a given atomic state
-> so the panel knows what was picked and how it should set everything up.
 
-Yep this looks like a good plan
+On Wed, 05 Jul 2023 09:54:33 +0300, Arseniy Krasnov wrote:
+> Meson NAND supports both 512B and 1024B ECC step size, so replace
+> 'const' for only 1024B step size with enum for both sizes.
+> 
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> ---
+>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+> 
 
-Neil
 
-> 
->> Another option would be to get this handled via the bus format negotiation,
->> but that sounds like worse idea to me.
-> 
-> Yeah, I'm not really fond of the format negociation stuff either.
-> 
-> Maxime
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
+
+If a tag was not added on purpose, please state why and what changed.
+
+Missing tags:
+
+Acked-by: Rob Herring <robh@kernel.org>
+
+
 
