@@ -2,292 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 533A5748815
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D47F748817
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:33:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231540AbjGEPbD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:31:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54044 "EHLO
+        id S232166AbjGEPdA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 11:33:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54250 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232166AbjGEPbB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:31:01 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A8981709;
-        Wed,  5 Jul 2023 08:31:00 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id ffacd0b85a97d-3141c3a7547so7019165f8f.2;
-        Wed, 05 Jul 2023 08:30:59 -0700 (PDT)
+        with ESMTP id S233240AbjGEPc7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:32:59 -0400
+Received: from mail-il1-x12b.google.com (mail-il1-x12b.google.com [IPv6:2607:f8b0:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53D2B170B
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 08:32:58 -0700 (PDT)
+Received: by mail-il1-x12b.google.com with SMTP id e9e14a558f8ab-345ff28865aso18253445ab.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 08:32:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688571058; x=1691163058;
+        d=gmail.com; s=20221208; t=1688571177; x=1691163177;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=G08qe2rzsWUKKvfQmuR7vHXIhRnUox6mBuYVwWHjBzA=;
-        b=Mz48JymfnL+kBNsjSIVBZ88MpQhaA0UDGAmQRTPbhLzgKH2Kfwv0BicVne5U+fctBH
-         a5P14OPR9oFeGbZiuoJWsVGDnDGAL8uPd8/LumszXoYdTAV8B3YE2g97vG/96OINqEzD
-         FDzLT4wIfcf/6nO/YxzGyn7a1zl17sDLyJd9XjjqxBFBMm/06sXt5zK/2N5BINjZacUE
-         kOBwb4hDXM0wsjaAIjRbcXP1abPHi4x7y5yIDp1u/mRENIJGK+5LkSkFAVLOEYehhwdL
-         DAib9rO46vdubq4JGrFqXNHsD27jmBcGhxkiLW79CZYsbQf503BjeFuGDvBb4hRbDtwm
-         ir5Q==
+        bh=/rvWHF9U8sfQkc3CHaYD6TnGiSef+e8bi34L1T0Ri7U=;
+        b=hEs6mCiV+S1AnPKCVLbBE6J014SZWIODVvapzfbeenW0gN/iXuO1qnx6m4EVrrQMEs
+         r545g8PUEyssBevFXcKdLATN7+Yfy1aQ93cCJ9qYBxEvTbdGE0tAhtIGmke8OIu3QLvP
+         KXq4/qFLyfgeJKQ1cm0RikOnO/KqM/mW6gDHnS4lPeBC9XRd+fImAu8aizE/lTG0F5xa
+         y0TCl04bix9TKwRiEI+fOfQ5h1N1vc+kPCJWQ+s9TX9MOf4GnuX7vdSwSGBpppuoDOK5
+         DjtZhiM8BrPqYH1UxmWdioA2yvHQXc+EfO8s6JuGUu4cwM1cw0xsQieeC8rXe0X+nGfT
+         2iVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688571058; x=1691163058;
+        d=1e100.net; s=20221208; t=1688571177; x=1691163177;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=G08qe2rzsWUKKvfQmuR7vHXIhRnUox6mBuYVwWHjBzA=;
-        b=FEXFdEGk/ShuwQ2Pp+AAlifZ54uTcNb4D7Bwshfy/OTbhLDVrBlZPNTesxQUfsUily
-         cI5vWnQzSKW2xLwnM6hVxa3qUiF4qPSwYxWIiIr4GQvIZnFnRIGM9RuL9Bsh5rPIOduj
-         K7/cECOc28nVh7Z8QRI/tSysNzkxcym5VASHD/NyVQUV4wGrDeKVK7og2YLYJNrA51op
-         7uO1UnFwm5KbWTBS3bsrklkc5aDRCBmn1evczRAFg4xqgo4s4lvmsr2Vl06OZFcaEVoo
-         Aq+TMZ/R780e6GBc3HIE9ZBJtKPgxlA7jARbcfRRwck7yiO+/smfCMtYiPOyeDf65V87
-         /SKg==
-X-Gm-Message-State: ABy/qLYaZb7pDJnRjkEQ0z6snFC6UH/BaKbES3naA6eODrnHcdgDFKQC
-        h77HA8+ENA4J4ZrZC8FWK7Q=
-X-Google-Smtp-Source: APBJJlF06uMYspWnvkDfaVsh+GjnTCu+Oft17X7p7FEDIMnMJBiuz5uD9rmHYH+VDlyqnicWeja45w==
-X-Received: by 2002:adf:fec3:0:b0:314:1318:18b7 with SMTP id q3-20020adffec3000000b00314131818b7mr11325137wrs.19.1688571057556;
-        Wed, 05 Jul 2023 08:30:57 -0700 (PDT)
-Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
-        by smtp.gmail.com with ESMTPSA id b3-20020adfe303000000b0030fd03e3d25sm31371656wrj.75.2023.07.05.08.30.57
+        bh=/rvWHF9U8sfQkc3CHaYD6TnGiSef+e8bi34L1T0Ri7U=;
+        b=RJP1CnikpxGcPjr+rueZem7EolgoEg3SzMuGWaSC1fi6C5axIU9i+s6IR9BbDMzdOR
+         vJXBVPJ6mfkyvV8Gy3ryT4SrwJ8uXC3Cgc2eS3A5ZvxVaSmnoHWLBNzfLSXhVnUXGpiH
+         GD8YFnUvAPeX0Q/pmZ0JKthwf1HwX2oQWC9Vdy2tLQP3uPyRQ1bfIQcPe19aWuTOnIBv
+         TBkL5y977aVNghiTvvhU12sKmj1pd7S3O3b79E5alOez+EhJQV7kq9UD67sVmMvr8NIg
+         /AJUz7QHQX0uLL5/s9fW2WBuyuAgFfvp/mHg+i+ZT84CvXLh82l3tInsYXn4HirMZq2c
+         bqJw==
+X-Gm-Message-State: ABy/qLa94TmWCktHOKcrZJsU3yHVTO1VPQr7EnpKHGEgwayGeYxgZC02
+        HtS+lyatHLF43r1IGaQuvHmQ07XVhf/o8w==
+X-Google-Smtp-Source: APBJJlHVYcYNj0AWN+jIyjipazVXkXoBBdFwA36KNizeZYaZwrjyLVFXi00cia6u5eW2AWjDPiK3fA==
+X-Received: by 2002:a92:c604:0:b0:345:ca59:1546 with SMTP id p4-20020a92c604000000b00345ca591546mr16856498ilm.10.1688571177537;
+        Wed, 05 Jul 2023 08:32:57 -0700 (PDT)
+Received: from kvasir.. ([65.140.126.83])
+        by smtp.gmail.com with ESMTPSA id t9-20020a92c909000000b00345b53bdea4sm6290491ilp.37.2023.07.05.08.32.56
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 08:30:57 -0700 (PDT)
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        Wed, 05 Jul 2023 08:32:57 -0700 (PDT)
+From:   Dan Haab <riproute@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org
-Subject: [PATCH] dt-bindings: timer: tegra: Convert to json-schema
-Date:   Wed,  5 Jul 2023 17:30:56 +0200
-Message-ID: <20230705153056.2514908-1-thierry.reding@gmail.com>
-X-Mailer: git-send-email 2.41.0
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Dan Haab <dan.haab@luxul.com>
+Subject: [PATCH] ARM: dts: BCM5301X: Add Wi-Fi regulatory mappings for Luxul devices
+Date:   Wed,  5 Jul 2023 09:32:51 -0600
+Message-Id: <20230705153251.739236-1-riproute@gmail.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thierry Reding <treding@nvidia.com>
+From: Dan Haab <dan.haab@luxul.com>
 
-Convert the Tegra timer bindings from the free-form text format to
-json-schema.
+This allows setting FullMAC firmware regulatory domain.
 
-Signed-off-by: Thierry Reding <treding@nvidia.com>
+Signed-off-by: Dan Haab <dan.haab@luxul.com>
 ---
- .../bindings/timer/nvidia,tegra20-timer.yaml  | 121 ++++++++++++++++++
- .../bindings/timer/nvidia,tegra210-timer.yaml |  70 ++++++++++
- 2 files changed, 191 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra20-timer.yaml
- create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegra210-timer.yaml
+ .../dts/broadcom/bcm47094-luxul-xap-1610.dts  | 37 +++++++++++++++++++
+ .../broadcom/bcm47094-luxul-xwr-3150-v1.dts   | 36 ++++++++++++++++++
+ 2 files changed, 73 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/timer/nvidia,tegra20-timer.yaml b/Documentation/devicetree/bindings/timer/nvidia,tegra20-timer.yaml
-new file mode 100644
-index 000000000000..d57663d73095
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/nvidia,tegra20-timer.yaml
-@@ -0,0 +1,121 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/nvidia,tegra20-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/arch/arm/boot/dts/broadcom/bcm47094-luxul-xap-1610.dts b/arch/arm/boot/dts/broadcom/bcm47094-luxul-xap-1610.dts
+index 6875625869d9..afc635c8cdeb 100644
+--- a/arch/arm/boot/dts/broadcom/bcm47094-luxul-xap-1610.dts
++++ b/arch/arm/boot/dts/broadcom/bcm47094-luxul-xap-1610.dts
+@@ -64,6 +64,43 @@ &gmac0 {
+ 	nvmem-cell-names = "mac-address";
+ };
+ 
 +
-+title: NVIDIA Tegra20 (and later) Timer
++&pcie0 {
++	#address-cells = <3>;
++	#size-cells = <2>;
 +
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Jon Hunter <jonathanh@nvidia.com>
++	bridge@0,0 {
++		reg = <0x0000 0 0 0 0>;
 +
-+description: The Tegra20 timer provides four 29-bit timer channels and a single 32-bit free
-+  running counter. The first two channels may also trigger a watchdog reset.
++		#address-cells = <3>;
++		#size-cells = <2>;
 +
-+  The timer found on Tegra30 provides ten 29-bit timer channels, a single 32-bit free running
-+  counter, and 5 watchdog modules. The first two channels may also trigger a legacy watchdog
-+  reset.
++		wifi@0,0 {
++			compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
++			reg = <0x0000 0 0 0 0>;
++			brcm,ccode-map = "AU-AU-920", "CA-CA-892", "GB-DE-964", "NZ-AU-920", "US-US-825";
++		};
++	};
++};
 +
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - enum:
-+              - nvidia,tegra114-timer
-+              - nvidia,tegra124-timer
-+          - const: nvidia,tegra30-timer
++&pcie1 {
++	#address-cells = <3>;
++	#size-cells = <2>;
 +
-+      - items:
-+          - const: nvidia,tegra30-timer
-+          - const: nvidia,tegra20-timer
++	bridge@0,0 {
++		reg = <0x0000 0 0 0 0>;
 +
-+      - const: nvidia,tegra20-timer
++		#address-cells = <3>;
++		#size-cells = <2>;
 +
-+  reg:
-+    maxItems: 1
++		wifi@0,0 {
++			compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
++			reg = <0x0000 0 0 0 0>;
++			brcm,ccode-map = "AU-AU-920", "CA-CA-892", "GB-DE-964", "NZ-AU-920", "US-US-825";
++		};
++	};
++};
 +
-+  interrupts:
-+    minItems: 4
-+    maxItems: 6
+ &spi_nor {
+ 	status = "okay";
+ };
+diff --git a/arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dts b/arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dts
+index 789dd2a3d226..e28f7a350117 100644
+--- a/arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dts
++++ b/arch/arm/boot/dts/broadcom/bcm47094-luxul-xwr-3150-v1.dts
+@@ -81,6 +81,42 @@ &gmac0 {
+ 	nvmem-cell-names = "mac-address";
+ };
+ 
++&pcie0 {
++	#address-cells = <3>;
++	#size-cells = <2>;
 +
-+  clocks:
-+    items:
-+      - description: module clock
++	bridge@0,0 {
++		reg = <0x0000 0 0 0 0>;
 +
-+  clock-names:
-+    items:
-+      - const: timer
++		#address-cells = <3>;
++		#size-cells = <2>;
 +
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: nvidia,tegra30-timer
-+    then:
-+      properties:
-+        interrupts:
-+          description: One interrupt per each of timer channels 1 through 5 and one shared
-+            interrupt for the remaining channels.
-+          minItems: 6
-+    else:
-+      properties:
-+        interrupts:
-+          description: One interrupt for each timer channel.
-+          maxItems: 4
++		wifi@0,0 {
++			compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
++			reg = <0x0000 0 0 0 0>;
++			brcm,ccode-map = "AU-AU-953", "CA-CA-946", "GB-E0-846", "NZ-AU-953", "US-Q2-930";
++		};
++	};
++};
 +
-+additionalProperties: false
++&pcie1 {
++	#address-cells = <3>;
++	#size-cells = <2>;
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
++	bridge@0,0 {
++		reg = <0x0000 0 0 0 0>;
 +
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra20-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
++		#address-cells = <3>;
++		#size-cells = <2>;
 +
-+    timer@60005000 {
-+        compatible = "nvidia,tegra20-timer";
-+        reg = <0x60005000 0x60>;
-+        interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&tegra_car TEGRA20_CLK_TWD>;
-+    };
++		wifi@0,0 {
++			compatible = "brcm,bcm4366-fmac", "brcm,bcm4329-fmac";
++			reg = <0x0000 0 0 0 0>;
++			brcm,ccode-map = "AU-AU-953", "CA-CA-946", "GB-E0-846", "NZ-AU-953", "US-Q2-930";
++		};
++	};
++};
 +
-+  - |
-+    #include <dt-bindings/clock/tegra30-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    timer@60005000 {
-+        compatible = "nvidia,tegra30-timer", "nvidia,tegra20-timer";
-+        reg = <0x60005000 0x400>;
-+        interrupts = <GIC_SPI 0   IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 1   IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 41  IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 42  IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&tegra_car TEGRA30_CLK_TWD>;
-+    };
-+
-+  - |
-+    #include <dt-bindings/clock/tegra114-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    timer@60005000 {
-+      compatible = "nvidia,tegra114-timer", "nvidia,tegra30-timer";
-+      reg = <0x60005000 0x400>;
-+      interrupts = <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+                   <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-+      clocks = <&tegra_car TEGRA114_CLK_TIMER>;
-+    };
-diff --git a/Documentation/devicetree/bindings/timer/nvidia,tegra210-timer.yaml b/Documentation/devicetree/bindings/timer/nvidia,tegra210-timer.yaml
-new file mode 100644
-index 000000000000..2b42d8d03b7b
---- /dev/null
-+++ b/Documentation/devicetree/bindings/timer/nvidia,tegra210-timer.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/timer/nvidia,tegra210-timer.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra210 Timer
-+
-+maintainers:
-+  - Thierry Reding <thierry.reding@gmail.com>
-+  - Jon Hunter <jonathanh@nvidia.com>
-+
-+description: The Tegra210 timer provides fourteen 29-bit timer counters and one 32-bit timestamp
-+  counter. The TMRs run at either a fixed 1 MHz clock rate derived from the oscillator clock
-+  (TMR0-TMR9) or directly at the oscillator clock (TMR10-TMR13). Each TMR can be programmed to
-+  generate one-shot, periodic, or watchdog interrupts.
-+
-+properties:
-+  compatible:
-+    const: nvidia,tegra210-timer
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: One interrupt per each timer channels 0 through 13.
-+    minItems: 14
-+    maxItems: 14
-+
-+  clocks:
-+    items:
-+      - description: module clock
-+
-+  clock-names:
-+    items:
-+      - const: timer
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/tegra210-car.h>
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+
-+    timer@60005000 {
-+        compatible = "nvidia,tegra210-timer";
-+        reg = <0x60005000 0x400>;
-+        interrupts = <GIC_SPI 156 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 0 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 1 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 42 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 121 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 176 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 177 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 178 IRQ_TYPE_LEVEL_HIGH>,
-+                     <GIC_SPI 179 IRQ_TYPE_LEVEL_HIGH>;
-+        clocks = <&tegra_car TEGRA210_CLK_TIMER>;
-+        clock-names = "timer";
-+    };
+ &usb3 {
+ 	vcc-gpio = <&chipcommon 18 GPIO_ACTIVE_HIGH>;
+ };
 -- 
-2.41.0
+2.34.1
 
