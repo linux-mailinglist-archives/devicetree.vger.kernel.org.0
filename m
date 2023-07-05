@@ -2,69 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9101574809B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 076587480A7
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:18:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232426AbjGEJQo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 05:16:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44106 "EHLO
+        id S230474AbjGEJSV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 05:18:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45160 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232328AbjGEJQb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:16:31 -0400
-Received: from mail-io1-f48.google.com (mail-io1-f48.google.com [209.85.166.48])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CEE8BDD;
-        Wed,  5 Jul 2023 02:16:30 -0700 (PDT)
-Received: by mail-io1-f48.google.com with SMTP id ca18e2360f4ac-78666f06691so138839739f.0;
-        Wed, 05 Jul 2023 02:16:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688548590; x=1691140590;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=zrxkvponYz4V5NTYWmXXqT0XM8M8zhkcRZKfUVdIvfo=;
-        b=IClVVPsIgs/ysIKiBXnn4zwciWKPCAUaWpJeofySICfheeSgtZ2bqcdH9v3cPn+kDN
-         Pkoxp3TIgk7Ad/HQNHgEue6zvIAvaJ0DLOcd2CzY/fas7Zwzhl1aPE7SUqYHbFkiUXhe
-         jY7s9tsQEfywYhh2hT5z134Ws1VR5u9rFdSTzvfol1YeVXqfVhEDB91caBHN0KbT1I+l
-         PkjJvErlzyi4LdhfjmOQQc4CzbvK/95GA3vERHl7sVCccl9lRvay0C+WJK0uFcCCMx9r
-         7gyOBv7idhBnwSVeYeEYGCiDdEOQc+lJolALBIz6bOJPaFp7NbWandFDjtXFeO2bwB5t
-         wfvQ==
-X-Gm-Message-State: AC+VfDzsU48vNnjb4dz/wMAgqPzM3Wv4kzU+NR2uhNjYkDMDDe88ERpQ
-        8ECarSSjkfodwY6seKKPGg==
-X-Google-Smtp-Source: ACHHUZ7uV5drZripZphbrl8LDJeBSaflagI8Iu3OZ5ufCPyk2D1KK9nohHZs6UkU+btahidNzSfF3g==
-X-Received: by 2002:a5e:a911:0:b0:77e:3d2f:d1f4 with SMTP id c17-20020a5ea911000000b0077e3d2fd1f4mr15269163iod.15.1688548589990;
-        Wed, 05 Jul 2023 02:16:29 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id e20-20020a02a514000000b0042b48e5da4bsm1717283jam.134.2023.07.05.02.16.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 02:16:29 -0700 (PDT)
-Received: (nullmailer pid 4038325 invoked by uid 1000);
-        Wed, 05 Jul 2023 09:16:27 -0000
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+        with ESMTP id S230345AbjGEJR7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:17:59 -0400
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2668A3;
+        Wed,  5 Jul 2023 02:17:58 -0700 (PDT)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3658dRBP016367;
+        Wed, 5 Jul 2023 09:17:55 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=qcppdkim1;
+ bh=N9WLyw8Ji9rbL2e2djFfm2ye8gcJzcM5LV2eg8hbeOM=;
+ b=K3PJKdTUH2CR0d5xL8/209LiI+lLymV0dZLYDStIz0yDb3bdWUN+puZzCmi9gqghXQFj
+ Xh2x3SH0kLp+vLQmdnv/m6JAH0U3ewCCZ8ix87+x5EvI+a2c4lIJU1w7utlCCxs5guEP
+ 8Rw5s/9zTDy7ANXvoz2g/Q7Ulez4nAroXNjBIdOQ0eoYQpVDp0AdXTZs5lIjYOofyJlb
+ WDRvuUm084x3m6BHE0Yg+1ZgJOUEZXhrgnVkpB6UO3jypog2y23kRORTDzzVeKwV6MYE
+ Cqu2cLGSnDacxNmXMDA/zGzV14hH0HpLORMg18I/hjHkfnE6V5uJWV7vqkvEo3NFPWtM Ug== 
+Received: from nalasppmta04.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rn2cp8c0a-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 05 Jul 2023 09:17:55 +0000
+Received: from nalasex01c.na.qualcomm.com (nalasex01c.na.qualcomm.com [10.47.97.35])
+        by NALASPPMTA04.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3659HsqR011915
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 5 Jul 2023 09:17:54 GMT
+Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
+ nalasex01c.na.qualcomm.com (10.47.97.35) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.7; Wed, 5 Jul 2023 02:17:51 -0700
+From:   Komal Bajaj <quic_kbajaj@quicinc.com>
+To:     <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        Komal Bajaj <quic_kbajaj@quicinc.com>
+Subject: [PATCH v2 0/2] arm64: dts: qcom: qdu1000: add reserved gpios
+Date:   Wed, 5 Jul 2023 14:47:28 +0530
+Message-ID: <20230705091730.32087-1-quic_kbajaj@quicinc.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Mrinmay Sarkar <quic_msarkar@quicinc.com>
-Cc:     =?utf-8?q?Krzysztof_Wilczy=C5=84ski?= <kw@linux.com>,
-        agross@kernel.org, Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        konrad.dybcio@linaro.org, linux-pci@vger.kernel.org,
-        quic_nayiluri@quicinc.com, quic_shazhuss@quicinc.com,
-        linux-phy@lists.infradead.org, Bjorn Helgaas <bhelgaas@google.com>,
-        quic_ramkri@quicinc.com, linux-arm-msm@vger.kernel.org,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        quic_nitegupt@quicinc.com, conor+dt@kernel.org, mani@kernel.org
-In-Reply-To: <1688545032-17748-2-git-send-email-quic_msarkar@quicinc.com>
-References: <1688545032-17748-1-git-send-email-quic_msarkar@quicinc.com>
- <1688545032-17748-2-git-send-email-quic_msarkar@quicinc.com>
-Message-Id: <168854858595.4038242.5895489616920935149.robh@kernel.org>
-Subject: Re: [PATCH v1 1/6] dt-bindings: PCI: qcom: Add sa8775p compatible
-Date:   Wed, 05 Jul 2023 03:16:27 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01c.na.qualcomm.com (10.47.97.35)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: sv-PDc1XPUeDVC7-TbbY_fOiJT0z316C
+X-Proofpoint-ORIG-GUID: sv-PDc1XPUeDVC7-TbbY_fOiJT0z316C
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-04_16,2023-07-04_01,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 phishscore=0
+ priorityscore=1501 spamscore=0 clxscore=1015 bulkscore=0 mlxlogscore=510
+ lowpriorityscore=0 suspectscore=0 impostorscore=0 mlxscore=0 adultscore=0
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307050084
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -72,38 +77,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add reserved gpios on QDU1000 and QRU1000 IDP platform.
 
-On Wed, 05 Jul 2023 13:47:06 +0530, Mrinmay Sarkar wrote:
-> Add sa8775p platform to the binding.
-> 
-> Signed-off-by: Mrinmay Sarkar <quic_msarkar@quicinc.com>
-> ---
->  .../devicetree/bindings/pci/qcom,pcie.yaml    | 28 +++++++++++++++++++
->  1 file changed, 28 insertions(+)
-> 
+Changes in v2:
+ - Split changes into per-board commits.
+ - Updated the commit message.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
+Komal Bajaj (2):
+  arm64: dts: qcom: qdu1000-idp: Add reserved gpio list
+  arm64: dts: qcom: qru1000-idp: Add reserved gpio list
 
-yamllint warnings/errors:
-./Documentation/devicetree/bindings/pci/qcom,pcie.yaml:753:17: [warning] wrong indentation: expected 14 but found 16 (indentation)
+ arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 4 ++++
+ arch/arm64/boot/dts/qcom/qru1000-idp.dts | 4 ++++
+ 2 files changed, 8 insertions(+)
 
-dtschema/dtc warnings/errors:
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/1688545032-17748-2-git-send-email-quic_msarkar@quicinc.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
+-- 
+2.40.1
 
