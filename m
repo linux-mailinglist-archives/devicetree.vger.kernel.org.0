@@ -2,137 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E674674811B
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 578B574813F
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:43:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231688AbjGEJi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 05:38:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53534 "EHLO
+        id S231856AbjGEJnc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 05:43:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231739AbjGEJiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:38:25 -0400
-Received: from aposti.net (aposti.net [89.234.176.197])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 552DB1721;
-        Wed,  5 Jul 2023 02:38:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1688549901;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=oXLsTS7KaoyUn3o3Li2lCti5SQIdGRyASkhZ/jCo3J4=;
-        b=yXsvFk2x0L31gpfHefOp6MZcJRAUdCiZMsvz/dSYZSfdG68trY+SzYsk34D7vDxIqT+w2d
-        9Pm6fmbjeAnnSuIg5mxZN00qBgMqW659gmNkeVvcpSlJELRbJERfoJom8wqLdHeoCEa5C4
-        huetSgKD9HB33Kev/uAlIt/cz9sCGAE=
-Message-ID: <efc14246bd9613e4f0cb579e2dd14d64d715d829.camel@crapouillou.net>
-Subject: Re: [PATCH 2/3] drm/panel: ld9040: Register a backlight device
-From:   Paul Cercueil <paul@crapouillou.net>
-To:     =?UTF-8?Q?=EB=8C=80=EC=9D=B8=EA=B8=B0/Tizen?= Platform
-         =?UTF-8?Q?Lab=28SR=29/=EC=82=BC=EC=84=B1=EC=A0=84=EC=9E=90?= 
-        <inki.dae@samsung.com>,
-        'Krzysztof Kozlowski' <krzysztof.kozlowski+dt@linaro.org>,
-        'Rob Herring' <robh+dt@kernel.org>,
-        'Conor Dooley' <conor+dt@kernel.org>,
-        'Alim Akhtar' <alim.akhtar@samsung.com>,
-        'Neil Armstrong' <neil.armstrong@linaro.org>,
-        'Sam Ravnborg' <sam@ravnborg.org>
-Cc:     devicetree@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-Date:   Wed, 05 Jul 2023 11:38:19 +0200
-In-Reply-To: <0f0c01d9ae09$0d3a17f0$27ae47d0$@samsung.com>
-References: <20230703214715.623447-1-paul@crapouillou.net>
-         <CGME20230703214744epcas1p1d2763aa96e694d0e1693fabf953e83f6@epcas1p1.samsung.com>
-         <20230703214715.623447-3-paul@crapouillou.net>
-         <0f0c01d9ae09$0d3a17f0$27ae47d0$@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        with ESMTP id S231880AbjGEJnW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:43:22 -0400
+Received: from mail-yb1-xb29.google.com (mail-yb1-xb29.google.com [IPv6:2607:f8b0:4864:20::b29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1D001BE2
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 02:43:05 -0700 (PDT)
+Received: by mail-yb1-xb29.google.com with SMTP id 3f1490d57ef6-c5c03379a76so1936740276.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 02:43:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688550184; x=1691142184;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:from:to:cc:subject:date:message-id:reply-to;
+        bh=K7MA3dhvd5AQL536c1KKeikZR2ef4a702l13ckFaEQU=;
+        b=L9AH5lj0kONmG34ZPW0ptGEiBwdlqQuyqM/IsSbc93Q5nr0T6/qlGWAa80g/d+6yAy
+         2ul/m1wzuhzxVMvV4WbASw0NuZFyLOes66ES9RdZpR8c2oqH9+3wn1NraIlkwudWdyrJ
+         y7herPZ0dA2jaNmIwaonrz2LV+/fU9NHJFwmU8S9IlyR69k7Uhdamd087eE6TvVIh+Lb
+         Fz21pUZiM36QclWIQn8Egkg/nouVodeWZiB3DFmM6bx1ecSnxtCATq8QsN+/K86FLdyp
+         OGeWVQ8iGGzbqGxFVatyJzCP3TcnJhUFIgqubk/I54LvgfXrJyINXYsBrlR10yIRnTmV
+         pcgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688550184; x=1691142184;
+        h=cc:to:subject:message-id:date:from:in-reply-to:references
+         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=K7MA3dhvd5AQL536c1KKeikZR2ef4a702l13ckFaEQU=;
+        b=GYG14F9Putnt5SrjWRHwx4+UtN4oaw/7n5RAO71bKGnkCWJKK6bJ2TdR/K2K9mHIru
+         rQ5qNnrFAV1xxAbQ9x2MgTT20/TNPies3rE4vwWl0umP0CTwzHC2RoXWZFhh30oPXSe+
+         yGZ1uo4iwOIJq5+VZzwo1CTjgzdzQtbpQjGXy/fltR/JsIR3u1O45PsxGHodrpu0DteA
+         6Ikw54dPDnxXuMpQVoICJBCgB5rllwSM+pmIl8zrcNdB9B0Orau2+hzf5I+4cypL5PF0
+         BMEQf/uDP9hbzWAmf8OudgV9lk5u8a5Jc8QCLpL0eGPkWCKai1XEF7za0r4tWNcmCLef
+         Fr3Q==
+X-Gm-Message-State: ABy/qLanrVSrqc9tpI6bEjpRsPT/xDmbVIAA2EdbyWL/HJCMEqpJTtkS
+        zNjpghRlLd7EvduujqrzQCVwfDPxyjOgztiMEqbuFw==
+X-Google-Smtp-Source: APBJJlGsPWsHNOshbTpMsle8AZs1Y5nRfjdhbf4L3fxdfM8xWgQ1+olpaNfB03NugXn1ZHwq6FTapqx+BH5ktwKvzpk=
+X-Received: by 2002:a25:e749:0:b0:bce:d4c:e6c9 with SMTP id
+ e70-20020a25e749000000b00bce0d4ce6c9mr13110822ybh.45.1688550184751; Wed, 05
+ Jul 2023 02:43:04 -0700 (PDT)
 MIME-Version: 1.0
+References: <20230705053914.9759-1-quic_kbajaj@quicinc.com>
+ <20230705053914.9759-2-quic_kbajaj@quicinc.com> <CAA8EJpo406gV-5H8+y4SJbbRqnWFRo5wrR6a9KJ2arbN61tS2Q@mail.gmail.com>
+ <db283531-36a2-0535-4fe2-d1571b3fa8cb@quicinc.com>
+In-Reply-To: <db283531-36a2-0535-4fe2-d1571b3fa8cb@quicinc.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Wed, 5 Jul 2023 12:42:53 +0300
+Message-ID: <CAA8EJpotQs_C_b+qvR1gXcasOtcw6SA8hCgJfuHFa7PnvPeobQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] arm64: dts: qcom: qdu1000-idp: Update reserved memory region
+To:     Komal Bajaj <quic_kbajaj@quicinc.com>
+Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Inki,
+On Wed, 5 Jul 2023 at 10:06, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+>
+>
+>
+> On 7/5/2023 11:19 AM, Dmitry Baryshkov wrote:
+> > On Wed, 5 Jul 2023 at 08:40, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
+> >> Add missing reserved regions as described in QDU1000 memory map.
+> >>
+> >> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
+> >> ---
+> >>   arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 26 ++++++++++++++++++++++++
+> >>   1 file changed, 26 insertions(+)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> >> index 1d22f87fd238..3f5512ec0a90 100644
+> >> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> >> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
+> >> @@ -448,6 +448,32 @@ &qupv3_id_0 {
+> >>          status = "okay";
+> >>   };
+> >>
+> >> +&reserved_memory{
+> >> +       #address-cells = <2>;
+> >> +       #size-cells = <2>;
+> >> +       ranges;
+> >> +
+> >> +       ecc_meta_data_reserved_mem:ecc_meta_data_reserved_region@e0000000{
+> > no_underscores_in_node_names. Ever.
+> >
+> > Also, if you have checked other platforms, you'd have seen that other
+> > platforms use a much more generic node name for 'memory' nodes (which
+> > you should have used too).
+>
+> These memory nodes are new to QDU platform, so will it be okay if I keep
+> these names without region suffix?
 
-Le mardi 04 juillet 2023 =C3=A0 08:49 +0900, =EB=8C=80=EC=9D=B8=EA=B8=B0/Ti=
-zen Platform Lab(SR)/=EC=82=BC=EC=84=B1=EC=A0=84=EC=9E=90
-a =C3=A9crit=C2=A0:
-> Hi,
->=20
-> > -----Original Message-----
-> > From: dri-devel <dri-devel-bounces@lists.freedesktop.org> On Behalf
-> > Of
-> > Paul Cercueil
-> > Sent: Tuesday, July 4, 2023 6:47 AM
-> > To: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>; Rob
-> > Herring
-> > <robh+dt@kernel.org>; Conor Dooley <conor+dt@kernel.org>; Alim
-> > Akhtar
-> > <alim.akhtar@samsung.com>; Neil Armstrong
-> > <neil.armstrong@linaro.org>; Sam
-> > Ravnborg <sam@ravnborg.org>
-> > Cc: devicetree@vger.kernel.org; linux-samsung-soc@vger.kernel.org;
-> > linux-
-> > kernel@vger.kernel.org; dri-devel@lists.freedesktop.org; Paul
-> > Cercueil
-> > <paul@crapouillou.net>; linux-arm-kernel@lists.infradead.org
-> > Subject: [PATCH 2/3] drm/panel: ld9040: Register a backlight device
-> >=20
-> > Register a backlight device to be able to switch between all the
-> > gamma
-> > levels.
-> >=20
-> > Signed-off-by: Paul Cercueil <paul@crapouillou.net>
-> > ---
-> > =C2=A0drivers/gpu/drm/panel/panel-samsung-ld9040.c | 40
-> > ++++++++++++++++++++
-> > =C2=A01 file changed, 40 insertions(+)
-> >=20
-> > diff --git a/drivers/gpu/drm/panel/panel-samsung-ld9040.c
-> > b/drivers/gpu/drm/panel/panel-samsung-ld9040.c
-> > index 7fd9444b42c5..b4f87d6244cb 100644
-> > --- a/drivers/gpu/drm/panel/panel-samsung-ld9040.c
-> > +++ b/drivers/gpu/drm/panel/panel-samsung-ld9040.c
-> > @@ -8,6 +8,7 @@
-> > =C2=A0 * Andrzej Hajda <a.hajda@samsung.com>
-> > =C2=A0*/
-> >=20
-> > +#include <linux/backlight.h>
-> > =C2=A0#include <linux/delay.h>
-> > =C2=A0#include <linux/gpio/consumer.h>
-> > =C2=A0#include <linux/module.h>
-> > @@ -311,8 +312,40 @@ static int ld9040_parse_dt(struct ld9040 *ctx)
-> > =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
-> > =C2=A0}
-> >=20
-> > +static int ld9040_bl_update_status(struct backlight_device *dev)
-> > +{
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0struct ld9040 *ctx =3D dev_g=
-et_drvdata(&dev->dev);
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ctx->brightness =3D dev->pro=
-ps.brightness;
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0ld9040_brightness_set(ctx);
-> > +
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0return 0;
-> > +}
-> > +
-> > +static int ld9040_bl_get_intensity(struct backlight_device *dev)
-> > +{
-> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0if (dev->props.fb_blank =3D=
-=3D FB_BLANK_UNBLANK &&
->=20
-> fb_blank member is deprecated according to the description of
-> backlight.h
-> file so you could drop above condition I think.
+Just use 'memory@abcd'.
 
-Thanks. I'll send a V2.
+>
+> Thanks
+> Komal
+>
+> >
+> >> +               no-map;
+> >> +               reg = <0x0 0xe0000000 0x0 0x20000000>;
+> >> +       };
+> >> +
+> >> +       harq_buffer_mem:harq_buffer_region@800000000{
+> >> +               no-map;
+> >> +               reg = <0x8 0x0 0x0 0x80000000>;
+> >> +       };
+> >> +
+> >> +       tenx_sp_buffer_mem:tenx_sp_buffer_region@880000000{
+> >> +               no-map;
+> >> +               reg = <0x8 0x80000000 0x0 0x50000000>;
+> >> +       };
+> >> +
+> >> +       fapi_buffer_mem:fapi_buffer_region@8d0000000{
+> >> +               no-map;
+> >> +               reg = <0x8 0xd0000000 0x0 0x20000000>;
+> >> +       };
+> >> +};
+> >> +
+> >>   &sdhc {
+> >>          pinctrl-0 = <&sdc_on_state>;
+> >>          pinctrl-1 = <&sdc_off_state>;
+> >> --
+> >> 2.40.1
+> >>
+> >
+>
 
-Cheers,
--Paul
+
+-- 
+With best wishes
+Dmitry
