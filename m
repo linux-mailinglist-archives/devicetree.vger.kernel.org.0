@@ -2,90 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 908E5748893
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:55:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B6A474889A
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:57:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232742AbjGEPz4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:55:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36508 "EHLO
+        id S233070AbjGEP5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 11:57:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37876 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232726AbjGEPzz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:55:55 -0400
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com [209.85.166.45])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 392041BD3;
-        Wed,  5 Jul 2023 08:55:33 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id ca18e2360f4ac-7866189cff1so217588839f.0;
-        Wed, 05 Jul 2023 08:55:33 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688572532; x=1691164532;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=8rSoGXzR6xG4D7+xiKVq4hPnm2cmCrDmsuR9LzzxGbE=;
-        b=FY2PCz+V1fVgg1YjttWBhuqHB6RP48FQe1n/9dxbsMiMA5+N+/9jXE2/SceKYipfpt
-         DYanD3KNUrYvkDuAzDnyauXdO7CHAQn/FARFqRgz3ClJmkLWK8Mjv73UCtUwf5eVP7go
-         v47vhjpi2S/FzsoUb+8YuDNw34hDKYUtTqI1xRZG1pUh8qsvxm9niO56dtVKEUOXEDLW
-         2P6ddGCmGh3FzPNnggC72+q0fmdaylemmTuJ03e7N79BF1nq2EYGALPfHFQ3BTeH0I/6
-         fqOwNHhgPvVp7bpNsRG/ukBM6u3y00aArZF3O0ZHEjw9uw+dYxiDXRwsItlLaynsqZ16
-         1k2Q==
-X-Gm-Message-State: AC+VfDzRl5W/HxvXfUE+MhQtxJGBbNvuaIeNsCMLWQYaSvkpCbDRCw2q
-        +QN4fZDZEiV+WX2A+1hW3Q==
-X-Google-Smtp-Source: ACHHUZ4ygrlsf8gFmuXud+DEItzF9RQnCwmml5OJHzkp7JgXz/DC0Wq9IL7lhUkR6Q1E0P5+2IYt6A==
-X-Received: by 2002:a5e:8f46:0:b0:786:2706:ecf6 with SMTP id x6-20020a5e8f46000000b007862706ecf6mr18206376iop.11.1688572532183;
-        Wed, 05 Jul 2023 08:55:32 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id c14-20020a5d8b4e000000b007862c74cec6sm5199631iot.1.2023.07.05.08.55.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 08:55:31 -0700 (PDT)
-Received: (nullmailer pid 694283 invoked by uid 1000);
-        Wed, 05 Jul 2023 15:55:29 -0000
-Date:   Wed, 5 Jul 2023 09:55:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Astrid Rost <astrid.rost@axis.com>
-Cc:     Conor Dooley <conor+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        linux-leds@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee@kernel.org>,
+        with ESMTP id S232650AbjGEP5f (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:57:35 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2F0DB12A;
+        Wed,  5 Jul 2023 08:57:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:Content-Type:Mime-Version:
+        References:In-Reply-To:Message-Id:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=+tOjqvgYJNwlm6nq1waFWdOB29jJE7UIgZxS5xd47T0=; b=qZBJaOAKLcRXzvs3BA1NWHeR5+
+        jcDihT+COymIsLyZaLeuXJP5RmCHimVzZB78PPB9ckzLLDtxXxv8vKxbW0GZNAIgYqygoMKjQY+k1
+        VR7YCfx6Wa/NtGGDupvm/KYi/4RIayzUuiwsdErm/hKkr2nkkBKeVM9JqszQKPV2DA0s=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:48064 helo=pettiford)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qH4sa-0005PX-QW; Wed, 05 Jul 2023 11:57:21 -0400
+Date:   Wed, 5 Jul 2023 11:57:20 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Fabio Estevam <festevam@gmail.com>,
+        Nate Drude <Nate.D@variscite.com>,
+        Pierluigi Passaro <pierluigi.p@variscite.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org, kernel@axis.com
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Read max-brightness from
- devicetree
-Message-ID: <168857252930.694223.17559633375471869114.robh@kernel.org>
-References: <20230703130313.548519-1-astrid.rost@axis.com>
- <20230703130313.548519-2-astrid.rost@axis.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230703130313.548519-2-astrid.rost@axis.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Message-Id: <20230705115720.036340a2ea3bf23f1fac0815@hugovil.com>
+In-Reply-To: <9dc5738b-2170-a010-4685-ef8cc4bd3fa0@linaro.org>
+References: <20230704150240.2022020-1-hugo@hugovil.com>
+        <20230704172801.f11422b3f947c625f53af871@hugovil.com>
+        <CAOMZO5CWh0-5eMTBwjvNUrY-yOHE=daj6n-jAAfjWoV-H4rt0Q@mail.gmail.com>
+        <CAOMZO5AZiuEAh6nJB8Oub83At6bsvLhzOhsT_yOniZSucrAUMQ@mail.gmail.com>
+        <20230705093507.7458eada3ae05e0e1740a10e@hugovil.com>
+        <AS2PR08MB88082608DB46EC1287C6E54B852FA@AS2PR08MB8808.eurprd08.prod.outlook.com>
+        <CAOMZO5D-a4sUEqqsppjpgkCRFfeetY32+QP0CvrGw6v5q=J+KA@mail.gmail.com>
+        <20230705102502.d8c9fa894bd271a5526d81f7@hugovil.com>
+        <AS2PR08MB88085D6B7338AD6D4D3C9956852FA@AS2PR08MB8808.eurprd08.prod.outlook.com>
+        <20230705104837.e620da576f22f28244daacb1@hugovil.com>
+        <CAOMZO5D_p3hf+HVHNAijEevJRpzwmyGPcoHjiapsOx_ddsoksg@mail.gmail.com>
+        <20230705113419.183f686f47252abf3532fc9e@hugovil.com>
+        <45545984-ef00-f653-91db-cb6c1cb0a3a4@linaro.org>
+        <20230705115106.a4c314e8e177f6516bebda13@hugovil.com>
+        <9dc5738b-2170-a010-4685-ef8cc4bd3fa0@linaro.org>
+X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.33; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_PASS,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+        autolearn_force=no version=3.4.6
+Subject: Re: [PATCH] arm64: dts: imx8mn-var-som-symphony: fix USB OTG
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 5 Jul 2023 17:54:05 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-On Mon, 03 Jul 2023 15:03:12 +0200, Astrid Rost wrote:
-> Normally, the maximum brightness is determined by the hardware, and this
-> property is not required. This property is used to set a software limit.
-> It could happen that an LED is made so bright that it gets damaged or
-> causes damage due to restrictions in a specific system, such as mounting
-> conditions.
-> Note that this flag is mainly used for PWM-LEDs, where it is not possible
-> to map brightness to current. Drivers for other controllers should use
-> led-max-microamp.
+> On 05/07/2023 17:51, Hugo Villeneuve wrote:
+> >> As I wrote, interrupt type cannot be none. What does it even mean "none"
+> >> for your case?
+> > 
+> > Hi,
+> > I have no idea why Variscite are using this IRQ type of NONE.
 > 
-> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
-> ---
->  Documentation/devicetree/bindings/leds/common.yaml | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+> Because it worked :)
+
+lol
+
+> > 
+> > I can put IRQ_TYPE_EDGE_FALLING since I tested it and it works.
 > 
+> Seems reasonable because on schematics this looked pulled up.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Ok, I will resubmit a V2 of the patch then with this.
 
+Thank you,
+Hugo.
