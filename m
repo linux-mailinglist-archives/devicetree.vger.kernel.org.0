@@ -2,755 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DF957484B0
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B675A7484E5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 15:29:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229715AbjGENMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 09:12:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32946 "EHLO
+        id S232034AbjGEN3D convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jul 2023 09:29:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231676AbjGENMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:12:52 -0400
-Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E3421700;
-        Wed,  5 Jul 2023 06:12:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
-  t=1688562768; x=1720098768;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=u+CYWz+wrcDqdmitNpoma5P/Hi2wWpeXsryCS80wey4=;
-  b=jZ7C2VT6VNRddGpy6yHIOoK/qjwEin8mwNjfO8SIKKFTDibIFNiM0cad
-   ybgCuXYPoreiGjocv4Kib5y9QSzX3OlmsSEMvDKLe1hoIl7UKsfcOVXLO
-   v8WT9eAknjA0UzV+OB20nEJ9XyRhD991E7OkFiD2Cmp4yzBU04M2M9mAr
-   Hvn06LZrQaNzLWztdtZkx5/u+n9Av60X5pV+tEThAYoqK8XOXK3XN+7ku
-   DJwZoZx0bJ/STnpHUi+GO+i3gZiQ7SAqSm/A+4esN9+hFJ4pPgOA/vvgh
-   LR7ne13EsSrogyAGtkh2ibMwTd68XhofDmUSLi/q5c1z92XF7ivvOPbza
-   A==;
-X-IronPort-AV: E=Sophos;i="6.01,183,1684792800"; 
-   d="scan'208";a="31771723"
-Received: from vtuxmail01.tq-net.de ([10.115.0.20])
-  by mx1.tq-group.com with ESMTP; 05 Jul 2023 15:12:46 +0200
-Received: from steina-w.localnet (unknown [10.123.53.21])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 24CFD280078;
-        Wed,  5 Jul 2023 15:12:46 +0200 (CEST)
-From:   Alexander Stein <alexander.stein@ew.tq-group.com>
-To:     Jacky Bai <ping.bai@nxp.com>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>, Joy Zou <joy.zou@nxp.com>
-Cc:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a support
-Date:   Wed, 05 Jul 2023 15:12:45 +0200
-Message-ID: <4630917.iIbC2pHGDl@steina-w>
-Organization: TQ-Systems GmbH
-In-Reply-To: <VI1PR04MB5936370C11D1523558437D9BE12FA@VI1PR04MB5936.eurprd04.prod.outlook.com>
-References: <20230531065724.3671795-1-joy.zou@nxp.com> <3505527.iIbC2pHGDl@steina-w> <VI1PR04MB5936370C11D1523558437D9BE12FA@VI1PR04MB5936.eurprd04.prod.outlook.com>
+        with ESMTP id S229645AbjGEN3B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 09:29:01 -0400
+Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com [209.85.128.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 407531713;
+        Wed,  5 Jul 2023 06:29:00 -0700 (PDT)
+Received: by mail-yw1-f178.google.com with SMTP id 00721157ae682-579d5d89b41so56399277b3.2;
+        Wed, 05 Jul 2023 06:29:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688563739; x=1691155739;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=+YA1kx3Yv436h9iBYuDcm04JxVNm4pa5MPBsgKZUqkY=;
+        b=Q0/hx1uRsqb126hYR2Gh2KVtyZt8Su5Bq7/vM4eSEFgJarys8cBabghmNq46HFxUwm
+         dQP74tpS+w52B4mjSn3WDSmPA7BlU8e7KfWhswwMkIC2GO7IUSVvQa++87+vEkTgO1tN
+         bfqpHrGJpKq6scuyWWuKkpS2g8ac7YLkl+dPJYekDU6OJ4dLJiJy1VRhAvP2NG9oOHCg
+         QM3LGi4U7fb88vzi5TkilPRBEoIjhamIJnUZ75g6FYAc9W3wSpy/cyxWpQ+KKje2LQS5
+         coIDm7ugIMe1IxsQdmzYR/ObHaPZCbg30xNqIHWgxUh1CbZH4TB/wKOPH9FOC8cIBSWd
+         32ug==
+X-Gm-Message-State: ABy/qLaEgRzqqbrAQeRUBCSKOJrobndFoXSs//d8wVHuDnAq8R1TkWi0
+        3IcELdAXKC0p7bpwoDZFUP3tiOJSjuqedg==
+X-Google-Smtp-Source: APBJJlF9lTjDJwGDfHQNgsg6uERsdkvs3f48K5QlWuNjbE6F3LsZo87xNJzv48bw6GCUPDJhgkcz7w==
+X-Received: by 2002:a81:9c03:0:b0:577:f47:3d8d with SMTP id m3-20020a819c03000000b005770f473d8dmr15128574ywa.25.1688563739071;
+        Wed, 05 Jul 2023 06:28:59 -0700 (PDT)
+Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com. [209.85.219.176])
+        by smtp.gmail.com with ESMTPSA id u18-20020a818412000000b005772abf6234sm3513413ywf.11.2023.07.05.06.28.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 06:28:58 -0700 (PDT)
+Received: by mail-yb1-f176.google.com with SMTP id 3f1490d57ef6-c4cb4919bb9so4602151276.3;
+        Wed, 05 Jul 2023 06:28:58 -0700 (PDT)
+X-Received: by 2002:a25:4b07:0:b0:bc3:b6de:1e96 with SMTP id
+ y7-20020a254b07000000b00bc3b6de1e96mr13669002yba.6.1688563738532; Wed, 05 Jul
+ 2023 06:28:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+References: <20230703132929.356009-1-biju.das.jz@bp.renesas.com>
+ <CAMuHMdWHKR77MbhTcD6xJw42OXCF_DC3P0VNdXJqFXG5dZhQ+Q@mail.gmail.com> <OS0PR01MB592220826E0102C41FD4CD2C862FA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+In-Reply-To: <OS0PR01MB592220826E0102C41FD4CD2C862FA@OS0PR01MB5922.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 5 Jul 2023 15:28:47 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdXSYA0t7H5bkPCE1gVEzscn+PLv3B1pbRtJqqc51RaMqw@mail.gmail.com>
+Message-ID: <CAMuHMdXSYA0t7H5bkPCE1gVEzscn+PLv3B1pbRtJqqc51RaMqw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r9a07g0{4,5}4: Add support for
+ enabling MTU3
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Biju,
 
-Am Mittwoch, 5. Juli 2023, 08:50:24 CEST schrieb Joy Zou:
->=20
-> > -----Original Message-----
-> > From: Alexander Stein <alexander.stein@ew.tq-group.com>
-> > Sent: 2023=E5=B9=B45=E6=9C=8831=E6=97=A5 19:35
-> > To: Jacky Bai <ping.bai@nxp.com>; lgirdwood@gmail.com;
-> > broonie@kernel.org; robh+dt@kernel.org;
-> > krzysztof.kozlowski+dt@linaro.org;
-> > conor+dt@kernel.org; shawnguo@kernel.org; s.hauer@pengutronix.de;
-> > linux-arm-kernel@lists.infradead.org
-> > Cc: kernel@pengutronix.de; festevam@gmail.com; dl-linux-imx
-> > <linux-imx@nxp.com>; devicetree@vger.kernel.org;
-> > linux-arm-kernel@lists.infradead.org; linux-kernel@vger.kernel.org; Joy
-> > Zou
- <joy.zou@nxp.com>
-> > Subject: [EXT] Re: [PATCH v1 2/3] regulator: pca9450: add pca9451a
-> > support
-> >
-> >
-> >
-> > Caution: This is an external email. Please take care when clicking links
-> > or
- opening attachments. When in doubt, report the message using the
-> > 'Report this email' button
-> >
-> >
-> >
-> >
-> > Hi,
-> >
-> >
-> >
-> > Am Mittwoch, 31. Mai 2023, 08:57:23 CEST schrieb Joy Zou:
-> >=20
-> > > Adding support for pmic pca9451a.
+On Wed, Jul 5, 2023 at 3:06 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH] arm64: dts: renesas: r9a07g0{4,5}4: Add support for
+> > enabling MTU3
+> > On Mon, Jul 3, 2023 at 3:29 PM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > Add support for MTU3 macro to enable MTU3 node on RZ/{G2,V2}L SMARC
+> > EVK.
 > > >
+> > > The MTU3a PWM pins are muxed with spi1 pins and counter external input
+> > > phase clock pins are muxed with scif2 pins. Disable these IPs when
+> > > MTU3 macro is enabled.
 > > >
+> > > Apart from this, the counter Z phase clock signal is muxed with the
+> > > SDHI1 cd signal. So disable SDHI1 IP, when the counter Z phase signal
+> > > is enabled.
 > > >
-> > > This patch support old and new pmic pca9451a. The new pmic trimed
-> >=20
-> > BUCK1.
-> >=20
-> > > The default value of Toff_Deb is used to distinguish the old and new
-> > > pmic.
-> > >
-> > >
-> > >
-> > > Signed-off-by: Joy Zou <joy.zou@nxp.com>
-> > > ---
-> > >=20
-> > >  drivers/regulator/pca9450-regulator.c | 262
-> >=20
-> > ++++++++++++++++++++++++--
-> >=20
-> > >  include/linux/regulator/pca9450.h     |   2 +
-> > >  2 files changed, 252 insertions(+), 12 deletions(-)
-> > >
-> > >
-> > >
-> > > diff --git a/drivers/regulator/pca9450-regulator.c
-> > > b/drivers/regulator/pca9450-regulator.c index
-> > > 91bfb7e026c9..654aa4fbe494
-> > > 100644
-> > > --- a/drivers/regulator/pca9450-regulator.c
-> > > +++ b/drivers/regulator/pca9450-regulator.c
-> > > @@ -104,7 +104,15 @@ static const struct regulator_ops
-> > > pca9450_ldo_regulator_ops =3D { * 0.60 to 2.1875V (12.5mV step)
-> > >=20
-> > >   */
-> > > =20
-> > >  static const struct linear_range pca9450_dvs_buck_volts[] =3D {
-> > >=20
-> > > -     REGULATOR_LINEAR_RANGE(600000,  0x00, 0x7F, 12500),
-> > > +     REGULATOR_LINEAR_RANGE(600000, 0x00, 0x7F, 12500), };
-> > > +
-> > > +/*
-> > > + * BUCK1/3
-> > > + * 0.65 to 2.2375V (12.5mV step)
-> >
-> >
-> >
-> > Reading this comment, it seems the same distinction needs to be done for
-> > BUCK3 as well, no?
->=20
-> Sorry for the late reply!
-> The BUCK1 and BUCK3 are dual phase, so don't need to be done for BUCK3.
->=20
-> >
-> >
-> > > + */
-> > > +static const struct linear_range pca9450_trim_dvs_buck_volts[] =3D {
-> > > +     REGULATOR_LINEAR_RANGE(650000, 0x00, 0x7F, 12500),
-> > >=20
-> > >  };
-> > >
-> > >
-> > >
-> > >  /*
-> > >=20
-> > > @@ -663,6 +671,207 @@ static const struct pca9450_regulator_desc
-> > > pca9450bc_regulators[] =3D { },  };
-> > >
-> > >
-> > >
-> > > +static const struct pca9450_regulator_desc pca9451a_regulators[] =3D=
- {
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "buck1",
-> > > +                     .of_match =3D of_match_ptr("BUCK1"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_BUCK1,
-> > > +                     .ops =3D &pca9450_dvs_buck_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_BUCK1_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_dvs_buck_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_dvs_buck_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
-> > > +                     .vsel_mask =3D BUCK1OUT_DVS0_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_BUCK1CTRL,
-> > > +                     .enable_mask =3D BUCK1_ENMODE_MASK,
-> > > +                     .enable_val =3D BUCK_ENMODE_ONREQ,
-> > > +                     .ramp_mask =3D BUCK1_RAMP_MASK,
-> > > +                     .ramp_delay_table =3D
-> >=20
-> > pca9450_dvs_buck_ramp_table,
-> >=20
-> > > +                     .n_ramp_values =3D
-> >=20
-> > ARRAY_SIZE(pca9450_dvs_buck_ramp_table),
-> >=20
-> > > +                     .owner =3D THIS_MODULE,
-> > > +                     .of_parse_cb =3D pca9450_set_dvs_levels,
-> > > +             },
-> > > +             .dvs =3D {
-> > > +                     .run_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
-> > > +                     .run_mask =3D BUCK1OUT_DVS0_MASK,
-> > > +                     .standby_reg =3D PCA9450_REG_BUCK1OUT_DVS1,
-> > > +                     .standby_mask =3D BUCK1OUT_DVS1_MASK,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "buck1_trim",
-> > > +                     .of_match =3D of_match_ptr("BUCK1"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_BUCK1,
-> > > +                     .ops =3D &pca9450_dvs_buck_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_BUCK1_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_trim_dvs_buck_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_trim_dvs_buck_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
-> > > +                     .vsel_mask =3D BUCK1OUT_DVS0_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_BUCK1CTRL,
-> > > +                     .enable_mask =3D BUCK1_ENMODE_MASK,
-> > > +                     .enable_val =3D BUCK_ENMODE_ONREQ,
-> > > +                     .ramp_mask =3D BUCK1_RAMP_MASK,
-> > > +                     .ramp_delay_table =3D
-> >=20
-> > pca9450_dvs_buck_ramp_table,
-> >=20
-> > > +                     .n_ramp_values =3D
-> >=20
-> > ARRAY_SIZE(pca9450_dvs_buck_ramp_table),
-> >=20
-> > > +                     .owner =3D THIS_MODULE,
-> > > +                     .of_parse_cb =3D pca9450_set_dvs_levels,
-> > > +             },
-> > > +             .dvs =3D {
-> > > +                     .run_reg =3D PCA9450_REG_BUCK1OUT_DVS0,
-> > > +                     .run_mask =3D BUCK1OUT_DVS0_MASK,
-> > > +                     .standby_reg =3D PCA9450_REG_BUCK1OUT_DVS1,
-> > > +                     .standby_mask =3D BUCK1OUT_DVS1_MASK,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "buck2",
-> > > +                     .of_match =3D of_match_ptr("BUCK2"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_BUCK2,
-> > > +                     .ops =3D &pca9450_dvs_buck_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_BUCK2_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_dvs_buck_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_dvs_buck_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_BUCK2OUT_DVS0,
-> > > +                     .vsel_mask =3D BUCK2OUT_DVS0_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_BUCK2CTRL,
-> > > +                     .enable_mask =3D BUCK2_ENMODE_MASK,
-> > > +                     .enable_val =3D BUCK_ENMODE_ONREQ_STBYREQ,
-> > > +                     .ramp_mask =3D BUCK2_RAMP_MASK,
-> > > +                     .ramp_delay_table =3D
-> >=20
-> > pca9450_dvs_buck_ramp_table,
-> >=20
-> > > +                     .n_ramp_values =3D
-> >=20
-> > ARRAY_SIZE(pca9450_dvs_buck_ramp_table),
-> >=20
-> > > +                     .owner =3D THIS_MODULE,
-> > > +                     .of_parse_cb =3D pca9450_set_dvs_levels,
-> > > +             },
-> > > +             .dvs =3D {
-> > > +                     .run_reg =3D PCA9450_REG_BUCK2OUT_DVS0,
-> > > +                     .run_mask =3D BUCK2OUT_DVS0_MASK,
-> > > +                     .standby_reg =3D PCA9450_REG_BUCK2OUT_DVS1,
-> > > +                     .standby_mask =3D BUCK2OUT_DVS1_MASK,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "buck4",
-> > > +                     .of_match =3D of_match_ptr("BUCK4"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_BUCK4,
-> > > +                     .ops =3D &pca9450_buck_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_BUCK4_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_buck_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_buck_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_BUCK4OUT,
-> > > +                     .vsel_mask =3D BUCK4OUT_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_BUCK4CTRL,
-> > > +                     .enable_mask =3D BUCK4_ENMODE_MASK,
-> > > +                     .enable_val =3D BUCK_ENMODE_ONREQ,
-> > > +                     .owner =3D THIS_MODULE,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "buck5",
-> > > +                     .of_match =3D of_match_ptr("BUCK5"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_BUCK5,
-> > > +                     .ops =3D &pca9450_buck_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_BUCK5_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_buck_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_buck_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_BUCK5OUT,
-> > > +                     .vsel_mask =3D BUCK5OUT_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_BUCK5CTRL,
-> > > +                     .enable_mask =3D BUCK5_ENMODE_MASK,
-> > > +                     .enable_val =3D BUCK_ENMODE_ONREQ,
-> > > +                     .owner =3D THIS_MODULE,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "buck6",
-> > > +                     .of_match =3D of_match_ptr("BUCK6"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_BUCK6,
-> > > +                     .ops =3D &pca9450_buck_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_BUCK6_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_buck_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_buck_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_BUCK6OUT,
-> > > +                     .vsel_mask =3D BUCK6OUT_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_BUCK6CTRL,
-> > > +                     .enable_mask =3D BUCK6_ENMODE_MASK,
-> > > +                     .enable_val =3D BUCK_ENMODE_ONREQ,
-> > > +                     .owner =3D THIS_MODULE,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "ldo1",
-> > > +                     .of_match =3D of_match_ptr("LDO1"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_LDO1,
-> > > +                     .ops =3D &pca9450_ldo_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_LDO1_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_ldo1_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_ldo1_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_LDO1CTRL,
-> > > +                     .vsel_mask =3D LDO1OUT_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_LDO1CTRL,
-> > > +                     .enable_mask =3D LDO1_EN_MASK,
-> > > +                     .owner =3D THIS_MODULE,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "ldo4",
-> > > +                     .of_match =3D of_match_ptr("LDO4"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_LDO4,
-> > > +                     .ops =3D &pca9450_ldo_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_LDO4_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_ldo34_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_ldo34_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_LDO4CTRL,
-> > > +                     .vsel_mask =3D LDO4OUT_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_LDO4CTRL,
-> > > +                     .enable_mask =3D LDO4_EN_MASK,
-> > > +                     .owner =3D THIS_MODULE,
-> > > +             },
-> > > +     },
-> > > +     {
-> > > +             .desc =3D {
-> > > +                     .name =3D "ldo5",
-> > > +                     .of_match =3D of_match_ptr("LDO5"),
-> > > +                     .regulators_node =3D of_match_ptr("regulators"),
-> > > +                     .id =3D PCA9450_LDO5,
-> > > +                     .ops =3D &pca9450_ldo_regulator_ops,
-> > > +                     .type =3D REGULATOR_VOLTAGE,
-> > > +                     .n_voltages =3D PCA9450_LDO5_VOLTAGE_NUM,
-> > > +                     .linear_ranges =3D pca9450_ldo5_volts,
-> > > +                     .n_linear_ranges =3D
-> >=20
-> > ARRAY_SIZE(pca9450_ldo5_volts),
-> >=20
-> > > +                     .vsel_reg =3D PCA9450_REG_LDO5CTRL_H,
-> > > +                     .vsel_mask =3D LDO5HOUT_MASK,
-> > > +                     .enable_reg =3D PCA9450_REG_LDO5CTRL_H,
-> > > +                     .enable_mask =3D LDO5H_EN_MASK,
-> > > +                     .owner =3D THIS_MODULE,
-> > > +             },
-> > > +     },
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+
+> > > --- a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+> > > +++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+
+> > > +&mtu3_pins {
+> > > +       mtu3-zphase-clk {
+> > > +               pinmux = <RZG2L_PORT_PINMUX(19, 0, 3)>; /* MTIOC1A */
+> > > +       };
 > > > +};
-> > > +
-> > >=20
-> > >  static irqreturn_t pca9450_irq_handler(int irq, void *data)  {
-> > > =20
-> > >       struct pca9450 *pca9450 =3D data;
-> > >=20
-> > > @@ -708,8 +917,9 @@ static int pca9450_i2c_probe(struct i2c_client
-> > > *i2c)
-> > >=20
-> > >       const struct pca9450_regulator_desc     *regulator_desc;
-> > >       struct regulator_config config =3D { };
-> > >       struct pca9450 *pca9450;
-> > >=20
-> > > -     unsigned int device_id, i;
-> > > +     unsigned int device_id, i, val;
-> > >=20
-> > >       unsigned int reset_ctrl;
-> > >=20
-> > > +     bool pmic_trim =3D false;
-> > >=20
-> > >       int ret;
-> > >
-> > >
-> > >
-> > >       if (!i2c->irq) {
-> > >=20
-> > > @@ -721,6 +931,22 @@ static int pca9450_i2c_probe(struct i2c_client
-> > > *i2c)
-> > >=20
-> > >       if (!pca9450)
-> > >      =20
-> > >               return -ENOMEM;
-> > >
-> > >
-> > >
-> > > +     pca9450->regmap =3D devm_regmap_init_i2c(i2c,
-> > > +
-> >=20
-> > &pca9450_regmap_config);
-> >=20
-> > > +     if (IS_ERR(pca9450->regmap)) {
-> > > +             dev_err(&i2c->dev, "regmap initialization failed\n");
-> > > +             return PTR_ERR(pca9450->regmap);
-> > > +     }
-> > > +
-> > > +     ret =3D regmap_read(pca9450->regmap, PCA9450_REG_PWRCTRL,
-> >=20
-> > &val);
-> >=20
-> > > +     if (ret) {
-> > > +             dev_err(&i2c->dev, "Read device id error\n");
-> > > +             return ret;
-> > > +     }
-> > > +
-> > > +     if (val & PCA9450_REG_PWRCTRL_TOFF_DEB)
-> > > +             pmic_trim =3D true;
 > >
-> >
-> >
-> > PCA9450_REG_PWRCTRL is a read/write register. How is it possible to det=
-ect
-> > a chip revision using a bit which can be changed by software e.g.
-> > bootloader? Despite that this bit sets debounce time for PMIC_ON_REQ, h=
-ow
-> > is this related to BUCK1 voltage range?
->=20
-> There are old and new two kind PMIC pca9451a.=20
+> > With the #defines moved up, mtu3-zphase-clk can be moved to mtu3_pins in
+> > rzg2l-smarc-pinfunction.dtsi.
+>
+> Z-phase support is added only for cascade counter(MTU1 + MTU2)
+>
+> I thought by making this as optional, SDHI + standalone MTU1 or MTU2
+> can still work. That is the reason it is moved here.
+>
+> If we move "mtu3-zphase-clk" to  mtu3_pins in rzg2l-smarc-pinfunction.dtsi
+> Either
+>
+> we need to make MTU3 mutually exclusive with SDHI
+>
+> Or
+>
+> Guard "mtu3-zphase-clk" with "MTU3_COUNTER_Z_PHASE_SIGNAL" macro in
+> rzg2l-smarc-pinfunction.dtsi.
+>
+> Which one I need to select??
 
-There is only one part mentioned in the ordering options. How can I=20
-distinguish them? Any chip ID, date codes, markings?
-
-> This bit sets debounce time in
-> PCA9450_REG_PWRCTRL was set different value by hardware in order to only
-> distinguish the old and new PMIC. This bit isn't related to the BUCK1
-> voltage range. If the pmic_trim is true that means it's new pca9451a.
-
-But this bit is writable. How do you know it has not been modified since=20
-reset?
-
-Best regards,
-Alexander
+I'd go for the #ifdef, as you had above.
 
 > > > +
-> > >=20
-> > >       switch (type) {
-> > >       case PCA9450_TYPE_PCA9450A:
-> > >      =20
-> > >               regulator_desc =3D pca9450a_regulators; @@ -730,6 +956,=
-10
-> > >=20
-> > > @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
-> > >=20
-> > >               regulator_desc =3D pca9450bc_regulators;
-> > >               pca9450->rcnt =3D ARRAY_SIZE(pca9450bc_regulators);
-> > >               break;
-> > >=20
-> > > +     case PCA9450_TYPE_PCA9451A:
-> > > +             regulator_desc =3D pca9451a_regulators;
-> > > +             pca9450->rcnt =3D ARRAY_SIZE(pca9451a_regulators);
-> > > +             break;
-> > >=20
-> > >       default:
-> > >      =20
-> > >               dev_err(&i2c->dev, "Unknown device type");
-> > >               return -EINVAL;
-> > >=20
-> > > @@ -741,13 +971,6 @@ static int pca9450_i2c_probe(struct i2c_client
-> > > *i2c)
-> > >
-> > >
-> > >
-> > >       dev_set_drvdata(&i2c->dev, pca9450);
-> > >
-> > >
-> > >
-> > > -     pca9450->regmap =3D devm_regmap_init_i2c(i2c,
-> > > -
-> >=20
-> > &pca9450_regmap_config);
-> >=20
-> > > -     if (IS_ERR(pca9450->regmap)) {
-> > > -             dev_err(&i2c->dev, "regmap initialization failed\n");
-> > > -             return PTR_ERR(pca9450->regmap);
-> > > -     }
-> > > -
-> > >=20
-> > >       ret =3D regmap_read(pca9450->regmap, PCA9450_REG_DEV_ID,
-> >=20
-> > &device_id);
-> >=20
-> > >       if (ret) {
-> > >      =20
-> > >               dev_err(&i2c->dev, "Read device id error\n"); @@ -756,7
-> > >=20
-> > > +979,8 @@ static int pca9450_i2c_probe(struct i2c_client *i2c)
-> > >
-> > >
-> > >
-> > >       /* Check your board and dts for match the right pmic */
-> > >       if (((device_id >> 4) !=3D 0x1 && type =3D=3D PCA9450_TYPE_PCA9=
-450A) ||
-> > >=20
-> > > -         ((device_id >> 4) !=3D 0x3 && type =3D=3D PCA9450_TYPE_PCA9=
-450BC))
-> >=20
-> > {
-> >=20
-> > > +         ((device_id >> 4) !=3D 0x3 && type =3D=3D PCA9450_TYPE_PCA9=
-450BC)
-> > >=20
-> > ||
-> > ||
-> > > +         ((device_id >> 4) !=3D 0x9 && type =3D=3D PCA9450_TYPE_PCA9=
-451A))
-> > > + {
-> > >=20
-> > >               dev_err(&i2c->dev, "Device id(%x) mismatched\n",
-> > >              =20
-> > >                       device_id >> 4);
-> > >              =20
-> > >               return -EINVAL;
-> > >=20
-> > > @@ -767,7 +991,16 @@ static int pca9450_i2c_probe(struct i2c_client
-> > > *i2c)
-> > >=20
-> > >               struct regulator_dev *rdev;
-> > >               const struct pca9450_regulator_desc *r;
-> > >
-> > >
-> > >
-> > > -             r =3D &regulator_desc[i];
-> > > +             if (type =3D=3D PCA9450_TYPE_PCA9451A &&
-> > > +                 !strcmp((&regulator_desc[i])->desc.name, "buck1") &&
-> >=20
-> > pmic_trim) {
-> >=20
-> > > +                     r =3D &regulator_desc[i + 1];
-> > > +                     i =3D i + 1;
-> > > +             } else if (type =3D=3D PCA9450_TYPE_PCA9451A &&
-> > > +                        !strcmp((&regulator_desc[i])->desc.name,
-> >=20
-> > "buck1")) {
-> >=20
-> > > +                     r =3D &regulator_desc[i];
-> > > +                     i =3D i + 1;
+> > > +&sdhi1 {
+> > > +       status = "disabled";
+> > > +};
+> > > +#endif /* MTU3_COUNTER_Z_PHASE_SIGNAL */
 > >
-> >
-> >
-> > I would put this in a single 'type =3D=3D PCA9450_TYPE_PCA9451A' branch=
-, to
-> > indicate that only PCA9451A needs some kind of special handling.
->=20
-> Yes, this makes the logic clearer. I will change in next version.
->=20
-> >
-> >
-> > > +             } else
-> > > +                     r =3D &regulator_desc[i];
-> > >=20
-> > >               desc =3D &r->desc;
-> > >
-> > >
-> > >
-> > >               config.regmap =3D pca9450->regmap; @@ -847,7 +1080,8
-> >=20
-> > @@
-> >=20
-> > > static int pca9450_i2c_probe(struct i2c_client *i2c)
-> > >=20
-> > >       }
-> > >
-> > >
-> > >
-> > >       dev_info(&i2c->dev, "%s probed.\n",
-> > >=20
-> > > -             type =3D=3D PCA9450_TYPE_PCA9450A ? "pca9450a" :
-> >=20
-> > "pca9450bc");
-> >=20
-> > > +             type =3D=3D PCA9450_TYPE_PCA9450A ? "pca9450a" :
-> > > +             (type =3D=3D PCA9450_TYPE_PCA9451A ? "pca9451a" :
-> >=20
-> > "pca9450bc"));
-> >=20
-> > >
-> > >
-> > >       return 0;
-> > > =20
-> > >  }
-> > >=20
-> > > @@ -865,6 +1099,10 @@ static const struct of_device_id
-> > > pca9450_of_match[] =3D { .compatible =3D "nxp,pca9450c",
-> > >=20
-> > >               .data =3D (void *)PCA9450_TYPE_PCA9450BC,
-> > >      =20
-> > >       },
-> > >=20
-> > > +     {
-> > > +             .compatible =3D "nxp,pca9451a",
-> > > +             .data =3D (void *)PCA9450_TYPE_PCA9451A,
-> > > +     },
-> > >=20
-> > >       { }
-> > > =20
-> > >  };
-> > >  MODULE_DEVICE_TABLE(of, pca9450_of_match); diff --git
-> > >=20
-> > > a/include/linux/regulator/pca9450.h
-> > > b/include/linux/regulator/pca9450.h index 3c01c2bf84f5..5dd79f52165a
-> > > 100644
-> > > --- a/include/linux/regulator/pca9450.h
-> > > +++ b/include/linux/regulator/pca9450.h
-> > > @@ -9,6 +9,7 @@
-> > >=20
-> > >  enum pca9450_chip_type {
-> > > =20
-> > >       PCA9450_TYPE_PCA9450A =3D 0,
-> > >       PCA9450_TYPE_PCA9450BC,
-> > >=20
-> > > +     PCA9450_TYPE_PCA9451A,
-> > >=20
-> > >       PCA9450_TYPE_AMOUNT,
-> > > =20
-> > >  };
-> > >
-> > >
-> > >
-> > > @@ -93,6 +94,7 @@ enum {
-> > >=20
-> > >       PCA9450_MAX_REGISTER        =3D 0x2F,
-> > > =20
-> > >  };
-> > >
-> > >
-> > >
-> > > +#define PCA9450_REG_PWRCTRL_TOFF_DEB    BIT(5)
-> >
-> >
-> >
-> > Newline here please.
->=20
-> Ok, will modify it.
-> Thank you very much for your comments and efforts.
-> BR
-> Joy Zou
->=20
-> >
-> >
-> > Best regards,
-> > Alexander
-> >
-> >
-> >
-> > >  /* PCA9450 BUCK ENMODE bits */
-> > >  #define BUCK_ENMODE_OFF                      0x00
-> > >  #define BUCK_ENMODE_ONREQ            0x01
-> >
-> >
-> >
-> >
-> > --
-> > TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, =
-Germany
-> > Amtsgericht M=C3=BCnchen, HRB 105018
-> > Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan=
- Schneider
-> > http://www.tq-/
-> > group.com%2F&data=3D05%7C01%7Cjoy.zou%40nxp.com%7C1ecbe75c432d464
-> > cb45f08db61cb08bc%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7
-> > C638211296883052738%7CUnknown%7CTWFpbGZsb3d8eyJWIjoiMC4wLjAw
-> > MDAiLCJQIjoiV2luMzIiLCJBTiI6Ik1haWwiLCJXVCI6Mn0%3D%7C3000%7C%7C%
-> > 7C&sdata=3Dmz7vtBiDvAxY9FO7tTZO3oPBA8zvYS6f8hLgAwrU8uk%3D&reserved
-> > =3D0
-> >
-> >
->=20
->=20
+> > BTW, how does the driver know it can use the counter Z phase clock
+> > signal?  I understand this can be either an input or output signal?
+>
+> It is an input signal and is supported only for the cascade(MTU1 + MTU2) operation. When we supply z-phase signal(By inserting SD card or applying a voltage to cd pin on the sd connector), counter value gets cleared.
 
+The documentation for MTIOC1A says:
 
-=2D-=20
-TQ-Systems GmbH | M=C3=BChlstra=C3=9Fe 2, Gut Delling | 82229 Seefeld, Germ=
-any
-Amtsgericht M=C3=BCnchen, HRB 105018
-Gesch=C3=A4ftsf=C3=BChrer: Detlef Schneider, R=C3=BCdiger Stahl, Stefan Sch=
-neider
-http://www.tq-group.com/
+    MTU1 TGRA input capture input/output compare output/PWM output pin
 
+So the output functions are not yet supported by the driver?
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
