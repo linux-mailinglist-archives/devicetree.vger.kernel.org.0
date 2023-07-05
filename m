@@ -2,222 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D450747DE1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:07:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB1AD747DFD
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:11:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbjGEHHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 03:07:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38174 "EHLO
+        id S232146AbjGEHLv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 03:11:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40762 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231791AbjGEHHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:07:10 -0400
-Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [IPv6:2001:4b98:dc4:8::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15CA2E7B;
-        Wed,  5 Jul 2023 00:07:07 -0700 (PDT)
-X-GND-Sasl: miquel.raynal@bootlin.com
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
-        t=1688540826;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=4xHf+sc8Y2BweoyFrc66CDtYOy0GEjOo0c54ioqoJxI=;
-        b=L306DyHIWK20FJnSLQR5pvorUVvS/zh654OhhD6vOCmI8ePMnz+llp2KR/fphXBltNyn+5
-        lFEhXDIeZJZ8fZZeZJEDo9E862qA9AuD1X/G24y3NAqAu9btqfxYQpkObA5qTQHOFW1GOZ
-        a8eX0VnsAHl0lkp/g77Amu1NgIynFc26YkW1lRtr5N55DlU2U2RDPa+nTrSoD9LMoj/zij
-        AGbo+S06vPKc9LAGopslFFhA1I1nPrKbu3CRRgB+3CiXwe5E2nY9wra1GoDYv+PBaqjx/3
-        S4iiyiZHUd4MBo6w1XvoNTXT6WRKRG+Rl5uh6LK9j/+se8FSlTC72bl4XE8n+w==
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-X-GND-Sasl: miquel.raynal@bootlin.com
-Received: by mail.gandi.net (Postfix) with ESMTPSA id E6318FF803;
-        Wed,  5 Jul 2023 07:07:04 +0000 (UTC)
-Date:   Wed, 5 Jul 2023 09:07:03 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Arseniy Krasnov <avkrasnov@sberdevices.ru>
-Cc:     Liang Yang <liang.yang@amlogic.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 2/2] mtd: rawnand: meson: waiting w/o wired
- ready/busy pin
-Message-ID: <20230705090703.15a59c37@xps-13>
-In-Reply-To: <59246d83-7c4b-8b34-3173-71bdb698c2aa@sberdevices.ru>
-References: <20230608044728.1328506-1-AVKrasnov@sberdevices.ru>
-        <20230608044728.1328506-3-AVKrasnov@sberdevices.ru>
-        <20230704144357.286281dc@xps-13>
-        <47994f36-27d4-e5e4-73a9-6d4225671eec@sberdevices.ru>
-        <20230704151220.67857861@xps-13>
-        <73849b9c-0700-4946-84a2-428f98f0a6d6@sberdevices.ru>
-        <59246d83-7c4b-8b34-3173-71bdb698c2aa@sberdevices.ru>
-Organization: Bootlin
-X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
+        with ESMTP id S231598AbjGEHLu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:11:50 -0400
+Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B4B4197
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 00:11:49 -0700 (PDT)
+Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e292cf214so23567a12.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 00:11:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688541108; x=1691133108;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=WX0WQA8HY3Ymz7UH7Yi3Ieb+P0qOXYqrfKwH/sPJabs=;
+        b=P0JOrfTD0q7ZHjY5IOju9DyPynfZK6LfPQ72KB/m00RTGvWkPesx2OKB/jZgHugBkB
+         QVeme2IiJ5n9GW+8xLwh8vU+UJy7xHY4w3rtTk+YvQnBWxANlXkEdBx8bMZsWvIS7MCI
+         U4UCyDwn8G5FI13IlIDN5lMZVBREdIZmcPPhvfwFZYSzuErqQhdjvGILLBBUsJ1IePSk
+         jpqsez32AaVjSkAZizs+NmDP4z7EeISbgQRvaRyTJ4i/DyHeBPKYI38KWb76Xv9kLdoP
+         KBRdkjmskKx1A8tzWLqYclk5w6SLYKg687/qQvOui0ItRD1v9UH5pWuEK34ZccmEQnVk
+         aNdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688541108; x=1691133108;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=WX0WQA8HY3Ymz7UH7Yi3Ieb+P0qOXYqrfKwH/sPJabs=;
+        b=JlTg8OTFFXN+NXPOQMRN9HdKrVzdXYf6fAtVzj636l88SuQ6i5p8iBJYU4IfDnIwII
+         Mx3wTn+S/KH6kfBz81iUVvcj8Hnmt9UuD7uwO846bDAQBX8fJMe/IMpm/8s9q5hWj91T
+         JfT//3tkT6MsaN6WsBSmdALVTmXm4cVtKIG6ygBXavV2TdC3xUup2vHLYmvmWwtExo1x
+         xIu9C5Aa+19HTNbJOwfvgJWF+cQ7F/Beyi3h8wK8L233pjuGB9FosCPgFZFSsj3Ewykm
+         3r9zuyILnnSgkW01yMuuFxGTkU0+DBWeKHRdRJdIt3taJIKmNvPgLs0wilS4tEykqdkK
+         LdMw==
+X-Gm-Message-State: ABy/qLa/RP3YHPmGyA/Wz/ko5V+P5dQgp+z4T3WXlFF9npkXuq7GY67b
+        FQoCjyGQlo+TBJ4D60q266MB8A==
+X-Google-Smtp-Source: APBJJlHOsPDM5DNg9y1IPD7Tqyg5hcpZ5XP4/BQMReGoYnghFMp8qzeO0uyGvCySn5432Yyb1XldGA==
+X-Received: by 2002:aa7:c544:0:b0:51d:ec12:32f8 with SMTP id s4-20020aa7c544000000b0051dec1232f8mr10241219edr.40.1688541107574;
+        Wed, 05 Jul 2023 00:11:47 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id ca9-20020aa7cd69000000b0051dad094faasm9354972edb.36.2023.07.05.00.11.46
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 00:11:47 -0700 (PDT)
+Message-ID: <596e25d8-2e8b-8d6b-b6b8-9b56b58602bd@linaro.org>
+Date:   Wed, 5 Jul 2023 09:11:45 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 2/2] leds: pca995x: Add support for PCA995X chips
+Content-Language: en-US
+To:     Marek Vasut <marex@denx.de>, linux-leds@vger.kernel.org
+Cc:     Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>, Pavel Machek <pavel@ucw.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+References: <20230705000407.153005-1-marex@denx.de>
+ <20230705000407.153005-2-marex@denx.de>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230705000407.153005-2-marex@denx.de>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arseniy,
+On 05/07/2023 02:04, Marek Vasut wrote:
+> From: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
+> 
+> The PCA995x chips are I2C controlled LED drivers. Each chip has
+> up to 16 outputs, each one with an individual 8-bit resolution
+> PWM for brightness control.
+> 
+> Signed-off-by: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
+> Signed-off-by: Marek Vasut <marex@denx.de> # Basically rewrite the driver
 
-avkrasnov@sberdevices.ru wrote on Tue, 4 Jul 2023 20:32:13 +0300:
+...
 
-> On 04.07.2023 16:07, Arseniy Krasnov wrote:
-> >=20
-> >=20
-> > On 04.07.2023 16:12, Miquel Raynal wrote: =20
-> >> Hi Arseniy,
-> >>
-> >> avkrasnov@sberdevices.ru wrote on Tue, 4 Jul 2023 15:46:18 +0300:
-> >> =20
-> >>> On 04.07.2023 15:43, Miquel Raynal wrote: =20
-> >>>> Hi Arseniy,
-> >>>>
-> >>>> AVKrasnov@sberdevices.ru wrote on Thu, 8 Jun 2023 07:47:28 +0300:
-> >>>>    =20
-> >>>>> If there is no wired ready/busy pin, classic way to wait for command
-> >>>>> completion is to use function 'nand_soft_waitrdy()'. Meson NAND has
-> >>>>> special command which allows to wait for NAND_STATUS_READY bit with=
-out
-> >>>>> reading status in a software loop (as 'nand_soft_waitrdy()' does). =
-To
-> >>>>> use it send this command along with NAND_CMD_STATUS, then wait for =
-an
-> >>>>> interrupt, and after interrupt send NAND_CMD_READ0. So this feature
-> >>>>> allows to use interrupt driven waiting without wired ready/busy pin.
-> >>>>>
-> >>>>> Suggested-by: Liang Yang <liang.yang@amlogic.com>
-> >>>>> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
-> >>>>> ---
-> >>>>>  drivers/mtd/nand/raw/meson_nand.c | 77 +++++++++++++++++++++++++++=
-++--
-> >>>>>  1 file changed, 73 insertions(+), 4 deletions(-)
-> >>>>>
-> >>>>> diff --git a/drivers/mtd/nand/raw/meson_nand.c b/drivers/mtd/nand/r=
-aw/meson_nand.c
-> >>>>> index 074e14225c06..9f05e113b4ea 100644
-> >>>>> --- a/drivers/mtd/nand/raw/meson_nand.c
-> >>>>> +++ b/drivers/mtd/nand/raw/meson_nand.c
-> >>>>> @@ -38,6 +38,7 @@
-> >>>>>  #define NFC_CMD_SCRAMBLER_DISABLE	0
-> >>>>>  #define NFC_CMD_SHORTMODE_DISABLE	0
-> >>>>>  #define NFC_CMD_RB_INT		BIT(14)
-> >>>>> +#define NFC_CMD_RB_INT_NO_PIN	((0xb << 10) | BIT(18) | BIT(16))
-> >>>>> =20
-> >>>>>  #define NFC_CMD_GET_SIZE(x)	(((x) >> 22) & GENMASK(4, 0))
-> >>>>> =20
-> >>>>> @@ -179,6 +180,7 @@ struct meson_nfc {
-> >>>>>  	u32 info_bytes;
-> >>>>> =20
-> >>>>>  	unsigned long assigned_cs;
-> >>>>> +	bool no_rb_pin;
-> >>>>>  };
-> >>>>> =20
-> >>>>>  enum {
-> >>>>> @@ -392,7 +394,42 @@ static void meson_nfc_set_data_oob(struct nand=
-_chip *nand,
-> >>>>>  	}
-> >>>>>  }
-> >>>>> =20
-> >>>>> -static int meson_nfc_queue_rb(struct meson_nfc *nfc, int timeout_m=
-s)
-> >>>>> +static int meson_nfc_wait_no_rb_pin(struct meson_nfc *nfc, int tim=
-eout_ms,
-> >>>>> +				    bool need_cmd_read0)
-> >>>>> +{
-> >>>>> +	u32 cmd, cfg;
-> >>>>> +
-> >>>>> +	meson_nfc_cmd_idle(nfc, nfc->timing.twb);
-> >>>>> +	meson_nfc_drain_cmd(nfc);
-> >>>>> +	meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-> >>>>> +
-> >>>>> +	cfg =3D readl(nfc->reg_base + NFC_REG_CFG);
-> >>>>> +	cfg |=3D NFC_RB_IRQ_EN;
-> >>>>> +	writel(cfg, nfc->reg_base + NFC_REG_CFG);
-> >>>>> +
-> >>>>> +	reinit_completion(&nfc->completion);
-> >>>>> +	cmd =3D nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_STATUS;
-> >>>>> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> >>>>> +
-> >>>>> +	/* use the max erase time as the maximum clock for waiting R/B */
-> >>>>> +	cmd =3D NFC_CMD_RB | NFC_CMD_RB_INT_NO_PIN | nfc->timing.tbers_ma=
-x;
-> >>>>> +	writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> >>>>> +
-> >>>>> +	if (!wait_for_completion_timeout(&nfc->completion,
-> >>>>> +					 msecs_to_jiffies(timeout_ms)))
-> >>>>> +		return -ETIMEDOUT;
-> >>>>> +
-> >>>>> +	if (need_cmd_read0) {
-> >>>>> +		cmd =3D nfc->param.chip_select | NFC_CMD_CLE | NAND_CMD_READ0;
-> >>>>> +		writel(cmd, nfc->reg_base + NFC_REG_CMD);
-> >>>>> +		meson_nfc_drain_cmd(nfc);
-> >>>>> +		meson_nfc_wait_cmd_finish(nfc, CMD_FIFO_EMPTY_TIMEOUT);
-> >>>>> +	}   =20
-> >>>>
-> >>>> I forgot about this, you should avoid open coding core helpers, can =
-you
-> >>>> please send a followup patch to use nand_status_op() and
-> >>>> nand_exit_status_op() ?   =20
-> >>>
-> >>> A ok, so:
-> >>> 1) Sending NAND_CMD_STATUS goes to nand_status_op()
-> >>> 2) Sending NAND_CMD_READ0 goes to nand_exit_status_op()
-> >>>
-> >>> Ok, no problem! I'll prepare and send it on this week! =20
-> >>
-> >> Exactly. Sorry I had this in mind but I likely forgot to write it
-> >> down. =20
-> >=20
-> > Ok, got it! =20
->=20
-> Hm, seems 'int nand_exit_status_op(struct nand_chip *chip)' is not export=
-ed,
-> so I can't use it in the Meson module. While 'nand_status_op()' works ok.
-> May I can export 'nand_exit_status_op()?'
+> +
+> +static struct i2c_driver pca995x_driver = {
+> +	.driver = {
+> +		.name = "leds-pca995x",
+> +		.owner = THIS_MODULE,
+> +		.of_match_table = of_match_ptr(pca995x_of_match),
 
-Yes, in a separate patch please.
+Drop of_match_ptr(), it will cause warnings and is not really helpful.
 
->=20
-> Thanks, Arseniy
->=20
->=20
-> >=20
-> > Thanks, Arseniy
-> >  =20
-> >>
-> >> Thanks,
-> >> Miqu=C3=A8l =20
+Best regards,
+Krzysztof
 
-
-Thanks,
-Miqu=C3=A8l
