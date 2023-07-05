@@ -2,136 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CC0F74874D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:02:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89672748762
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 17:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233087AbjGEPCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 11:02:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37664 "EHLO
+        id S232650AbjGEPFA convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jul 2023 11:05:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40916 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233103AbjGEPBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:01:51 -0400
-Received: from mail-lj1-x229.google.com (mail-lj1-x229.google.com [IPv6:2a00:1450:4864:20::229])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C2DA1BD6
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 08:01:22 -0700 (PDT)
-Received: by mail-lj1-x229.google.com with SMTP id 38308e7fff4ca-2b6a1245542so115068911fa.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 08:01:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688569274; x=1691161274;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=W1rN3ipgesHiYjPePiPOURsWgd9LrOnJ6UtzIVJbQoQ=;
-        b=GuNRFMOu5B04UulRHgzb4b/IrJYJU8Ms2WYKP61D+456WCWC2d/8eu8tlgOv0GwHfG
-         /WzRkdY92cdQXvxU9sJMWlvGlmt6OCgxENPALEDHltklViNsgEpmI4W3Ai55GQBTGR0Q
-         b7xlX01XXcTZW8yhIYDK/JHON8OpxnNEBUBrJpuL9ttDJZw+zidks4+kOjubu5Emwo1t
-         TWCmmjfohcEf/8E2tsNqqiHtfHi99h25w06EmT4oeMWG4QQKWyFluW35GZK5l3VYzqkX
-         Ro+84AnWheig1UHYz3nyQS47wHgB10hT8B9wlQ85CQJI80HoeDNEl7jaOrco5mXUn5iT
-         HJ2w==
+        with ESMTP id S232900AbjGEPEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 11:04:54 -0400
+Received: from mail-yw1-f177.google.com (mail-yw1-f177.google.com [209.85.128.177])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8275A8F;
+        Wed,  5 Jul 2023 08:04:53 -0700 (PDT)
+Received: by mail-yw1-f177.google.com with SMTP id 00721157ae682-5728df0a7d9so85062657b3.1;
+        Wed, 05 Jul 2023 08:04:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688569274; x=1691161274;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
+        d=1e100.net; s=20221208; t=1688569492; x=1691161492;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=W1rN3ipgesHiYjPePiPOURsWgd9LrOnJ6UtzIVJbQoQ=;
-        b=J7aE07xIFj94vPcjjaIgudF3oqIN4MplrlATPtt1nOGcRiXLG/uIeGfS4RS/+41v/o
-         rbmrJOvf9K5PoKfaKz/15SdlTgpRiVsRlcRbp69FzrHZEYntdrGkNA11/B6vlOrC9D31
-         uODAXU0FisVkZ7mneAaetpR/Tj2nDq56+QERMoxl1V9mYTcFf3Q8Ou7Sihc8Q74xDmnh
-         Xj2jiqJ8cSbqA6sdPP6rZQmHQzKjsSUlzrKcVMAHsIF9MhZj1BFd47nmBlwG5nc+YOOM
-         DCebGPhxfibU6B9LG74gNI6KgEIJfB3lspLUROH+lFdklPm4kxJWjz0QPO6O17dE4JOh
-         hFMQ==
-X-Gm-Message-State: ABy/qLZA0YdXfbg+DoWX/rR+8xMzTo7Z8dM7z97baBOfjx1KRv38ikNd
-        xRe94TEczVmedKake3e2NRm4tQ==
-X-Google-Smtp-Source: APBJJlHE/3L+c+SvxD+CwLp89NiZ73HBKXHSKtFz9EfZC03bnFEmwoFw7YSR5zFNybXrRCZ98YHdvA==
-X-Received: by 2002:a2e:900e:0:b0:2b6:e121:cf68 with SMTP id h14-20020a2e900e000000b002b6e121cf68mr8061011ljg.5.1688569274314;
-        Wed, 05 Jul 2023 08:01:14 -0700 (PDT)
-Received: from krzk-bin.. ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id j25-20020a1709064b5900b009929d998ab6sm9001667ejv.131.2023.07.05.08.01.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 08:01:13 -0700 (PDT)
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-To:     Florian Fainelli <florian.fainelli@broadcom.com>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        Broadcom internal kernel review list 
-        <bcm-kernel-feedback-list@broadcom.com>,
+        bh=qJkpWmxC/JKgZ5aaFx50qi+mR1B+BzCJdGti+xFndAI=;
+        b=P+IgW2bL5+NIE8A/nxPkHPiNKfIjiudratgt6PWHInQ4e0WTvOJHoQOhRoQ93yLYlB
+         BxS2flRlguDSumOzRzvvqG06A7XS3wgGoRFRl9ypwGj+0AtX20S1jIFT3SSZ2O3FoMxM
+         j1y1rG2/m8zhQNBAKeosNH5Rw+Ngo8N4oN2GfXJr2ObFyx9vheX8BTtlYD0YUGd8hd1H
+         +2JR1jB/O09dd+GL00cHGkAkBEtKJC4qr9LSlDV6FREoAWq5aV1DP35TNXw5Ia//M2tl
+         AS2GpVMOSR+9b+lcm/I2C4H9QLIcU6uw9nRtoqz7ZIhNvipIWrLNCUU6qQNOlY8SbWlT
+         oUIg==
+X-Gm-Message-State: ABy/qLYYA+bdXyCqbdUSiC89PUogJaGCcFHFtze6UdmRKtCurJ8dllzt
+        KP7vLOLBC9SCc3tTwnWT32DaMW/IVpCK8Q==
+X-Google-Smtp-Source: APBJJlH8nVm4QYnEWTWykcpXZtQ7HNh5dPekivLX5mz87XxX1WIU9aSDeINsXtxoNRR4Ya2/cE57Ag==
+X-Received: by 2002:a0d:d545:0:b0:57a:fb9:73c2 with SMTP id x66-20020a0dd545000000b0057a0fb973c2mr6728758ywd.27.1688569492441;
+        Wed, 05 Jul 2023 08:04:52 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com. [209.85.128.173])
+        by smtp.gmail.com with ESMTPSA id b18-20020a0dd912000000b00570589c5aedsm6211474ywe.7.2023.07.05.08.04.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 05 Jul 2023 08:04:52 -0700 (PDT)
+Received: by mail-yw1-f173.google.com with SMTP id 00721157ae682-5728df0a7d9so85062227b3.1;
+        Wed, 05 Jul 2023 08:04:51 -0700 (PDT)
+X-Received: by 2002:a25:ce13:0:b0:c4f:43d7:7daf with SMTP id
+ x19-20020a25ce13000000b00c4f43d77dafmr9465081ybe.1.1688569491682; Wed, 05 Jul
+ 2023 08:04:51 -0700 (PDT)
+MIME-Version: 1.0
+References: <20230705145912.293315-1-krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230705145912.293315-1-krzysztof.kozlowski@linaro.org>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 5 Jul 2023 17:04:40 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdVoQvfdoLXD5X64RiXpjfjbzq7KTnQW_wH+X6CstrKAJg@mail.gmail.com>
+Message-ID: <CAMuHMdVoQvfdoLXD5X64RiXpjfjbzq7KTnQW_wH+X6CstrKAJg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] ARM: dts: renesas: add missing space before {
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        William Zhang <william.zhang@broadcom.com>,
-        Anand Gore <anand.gore@broadcom.com>,
-        Kursad Oney <kursad.oney@broadcom.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Subject: [PATCH 2/2] arm64: dts: broadcom: add missing space before {
-Date:   Wed,  5 Jul 2023 17:01:08 +0200
-Message-Id: <20230705150108.293999-2-krzysztof.kozlowski@linaro.org>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230705150108.293999-1-krzysztof.kozlowski@linaro.org>
-References: <20230705150108.293999-1-krzysztof.kozlowski@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing whitespace between node name/label and opening {.
+On Wed, Jul 5, 2023 at 4:59 PM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
+> Add missing whitespace between node name/label and opening {.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
-Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
----
- arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi    | 2 +-
- arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts | 2 +-
- arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.6.
 
-diff --git a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-index f549bda8c48c..2f124b027bbf 100644
---- a/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/bcmbca/bcm4908.dtsi
-@@ -577,7 +577,7 @@ leds: leds@800 {
- 			#size-cells = <0>;
- 		};
- 
--		hsspi: spi@1000{
-+		hsspi: spi@1000 {
- 			#address-cells = <1>;
- 			#size-cells = <0>;
- 			compatible = "brcm,bcm4908-hsspi", "brcm,bcmbca-hsspi-v1.0";
-diff --git a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
-index 699f7742ce7f..1d314f17bbdd 100644
---- a/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
-+++ b/arch/arm64/boot/dts/broadcom/northstar2/ns2-xmc.dts
-@@ -114,7 +114,7 @@ partition@4000000 {
- 			reg = <0x04000000 0x06400000>; /*  100MB */
- 		};
- 
--		partition@a400000{
-+		partition@a400000 {
- 			label = "ncustfs";
- 			reg = <0x0a400000 0x35c00000>; /*  860MB */
- 		};
-diff --git a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-index 7aece79bf882..f049687d6b96 100644
---- a/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-+++ b/arch/arm64/boot/dts/broadcom/stingray/stingray.dtsi
-@@ -565,7 +565,7 @@ dma0: dma-controller@310000 {
- 			iommus = <&smmu 0x6000 0x0000>;
- 		};
- 
--		enet: ethernet@340000{
-+		enet: ethernet@340000 {
- 			compatible = "brcm,amac";
- 			reg = <0x00340000 0x1000>;
- 			reg-names = "amac_base";
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.34.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
