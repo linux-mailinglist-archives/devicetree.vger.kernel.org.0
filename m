@@ -2,280 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BF567480B6
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AA277480CC
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:28:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230487AbjGEJU3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 05:20:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46988 "EHLO
+        id S229871AbjGEJ2X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 05:28:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231569AbjGEJUY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:20:24 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DD0A170E
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 02:20:20 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51d9890f368so7233949a12.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 02:20:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688548819; x=1691140819;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BklEsHObd9lavchnm/4o+Pr3bOXNI+WG9VrYnDlfX7o=;
-        b=EQeZouLRROqNhu91gJoDc7GAUq2uokA65yYUzgJNMk7xsGU/qBnXfF5M9jhB4Q1M4Y
-         Mbh0jto9tJqsCxHAr/CxCiD/nRQCRpB2LppPA/aizWlfVr5/oWsDWhAkPF+qTXhQaWYe
-         1vcQz8I07zXB0h49fw8VjjGeWkiD/Iq9vHpUPuYOdML/Ek1L9o7/myTN2MmV7l24NWvJ
-         /yZ7RmYgmzxpCyvh4bG32p/T3Zj/HS2N1nDYmUCCaBv+yiMGaKiKQrRcmVobaGkrPIms
-         k9CtXajXnQmlWZsKmVRBkwC3Ep2UaeOXIXNZv4dGgpNEWNAyvevLGGHcAUUOX7fv3Kd2
-         /hGQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688548819; x=1691140819;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BklEsHObd9lavchnm/4o+Pr3bOXNI+WG9VrYnDlfX7o=;
-        b=eHQGG7DiSTD6xcrxaLlWnyW/Wz9k/S6Vw2/FhrnHFweUhxoL4bupJVDDb/OSLcXFBr
-         sXAj2fMP7rJkO5kjCKPB78ODi9jiWF+DNlmXsB/wpRfQXVyoiNW3LLxGKSWdtiQyOhJh
-         0Xznius90cGQeyiBJwBHwRaAXrnSs0QG7mq6TRrrjDlChCOoGsILrGDClU3nSTdzt9EX
-         l9XB7WCkj8TWojAeX+GRClvUNlAHuPkg76vLSq8tGSeovtXB/MuOvG1e70RvNifYWrUx
-         ZmN0m0rGrJBIwwPMfzuWMwz6MsRAFKiywMeJOwFct+3vAnyvU5QCZMP6qZjn5Qb08G7z
-         WhMA==
-X-Gm-Message-State: ABy/qLYm/tyn8jnoGqCsUSlFMv7+SikI5ao+zwxSBJ6Wg+5fM0fERUOH
-        xw4a0+BG/FTX8Ge5rOA1cJRryQ==
-X-Google-Smtp-Source: APBJJlGUR6tdUIBs1Ggtp7BC+0WhkW9OOgzEC1K0guvcFh3QVyRQqIOjQG5pDHe0ySWPCgMprM+v+Q==
-X-Received: by 2002:a17:907:2ce6:b0:965:6075:d0e1 with SMTP id hz6-20020a1709072ce600b009656075d0e1mr13807518ejc.72.1688548818868;
-        Wed, 05 Jul 2023 02:20:18 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id e21-20020a170906c01500b009929ab17bdfsm8735573ejz.168.2023.07.05.02.20.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 02:20:18 -0700 (PDT)
-Message-ID: <2923201f-8bf4-a55d-a033-28ae5e569466@linaro.org>
-Date:   Wed, 5 Jul 2023 11:20:16 +0200
+        with ESMTP id S231366AbjGEJ2W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:28:22 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5BCA12A
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 02:28:20 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[127.0.0.1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1qGynx-0007GO-JO; Wed, 05 Jul 2023 11:28:09 +0200
+Message-ID: <61e9e380-dcb0-4dd4-562d-bffea2da5097@pengutronix.de>
+Date:   Wed, 5 Jul 2023 11:28:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH V1 1/1] regulator: Add awinic,aw3750x.yaml
+ Thunderbird/102.11.2
+Subject: Re: [PATCH 1/3] dt-bindings: arm: fsl: fix DEBIX binding
 Content-Language: en-US
-To:     like@awinic.com, lgirdwood@gmail.com, broonie@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     liweilei@awinic.com, liangdong@awinic.com, yijiangtao@awinic.com
-References: <20230705081942.2608531-1-like@awinic.com>
- <20230705081942.2608531-2-like@awinic.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230705081942.2608531-2-like@awinic.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Marco Felsch <m.felsch@pengutronix.de>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, marex@denx.de, frieder.schrempf@kontron.de
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230704184109.991104-1-m.felsch@pengutronix.de>
+ <6f7586ee-257b-35b5-f986-0d2b370e4035@linaro.org>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+In-Reply-To: <6f7586ee-257b-35b5-f986-0d2b370e4035@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 10:19, like@awinic.com wrote:
-> From: Ke Li <like@awinic.com>
+On 05.07.23 08:35, Krzysztof Kozlowski wrote:
+> On 04/07/2023 20:41, Marco Felsch wrote:
+>> The current imx8mp-debix-model-a.dts uses all three compatibles. Fix the
+>> corresponding bindings by adding an own entry for it.
+>>
+>> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+>> ---
+>>  Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++--
+>>  1 file changed, 7 insertions(+), 2 deletions(-)
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> index 15d4110840654..d9e763ef932e5 100644
+>> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+>> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+>> @@ -1019,8 +1019,6 @@ properties:
+>>                - dmo,imx8mp-data-modul-edm-sbc # i.MX8MP eDM SBC
+>>                - fsl,imx8mp-evk            # i.MX8MP EVK Board
+>>                - gateworks,imx8mp-gw74xx   # i.MX8MP Gateworks Board
+>> -              - polyhex,imx8mp-debix      # Polyhex Debix boards
+>> -              - polyhex,imx8mp-debix-model-a # Polyhex Debix Model A Board
+>>                - toradex,verdin-imx8mp     # Verdin iMX8M Plus Modules
+>>                - toradex,verdin-imx8mp-nonwifi  # Verdin iMX8M Plus Modules without Wi-Fi / BT
+>>                - toradex,verdin-imx8mp-wifi  # Verdin iMX8M Plus Wi-Fi / BT Modules
+>> @@ -1054,6 +1052,13 @@ properties:
+>>            - const: phytec,imx8mp-phycore-som         # phyCORE-i.MX8MP SoM
+>>            - const: fsl,imx8mp
+>>  
+>> +      - description: Polyhex DEBIX i.MX8MP based SBCs
+>> +        items:
+>> +          - enum:
+>> +              - polyhex,imx8mp-debix-model-a        # Polyhex Debix Model A Board
+>> +          - const: polyhex,imx8mp-debix             # Polyhex Debix boards
+> 
+> Same comments as for patch #2. I think this should be rather deprecated
+> - not a good pattern.
 
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
+The middle compatible was my suggestion, because there's also the Debix Model
+B Standard and Model B SE, which is the same board, but different SoC variant:
 
-Missing commit msg.
+ Model A:          Commercial Temperature Grade
+ Model B Standard: Industrial Temperature Grade
+ Model B SE:       Industrial Temperature Grate, but i.MX8MP Lite
+                   (No Neural/Video/Image accelerators).
+
+As everything outside the SoC is the same, I wanted a generic board
+compatible that bootloaders can match against. The SoMs should probably
+not reuse it, but I think it should be kept (perhaps renamed?) for the
+SBCs that don't utilize the Debix SoM.
+
+Cheers,
+Ahmad
 
 > 
-> Signed-off-by: Ke Li <like@awinic.com>
-> ---
->  .../bindings/regulator/awinic,aw3750x.yaml    | 151 ++++++++++++++++++
->  1 file changed, 151 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
+> Best regards,
+> Krzysztof
 > 
-> diff --git a/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml b/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
-> new file mode 100644
-> index 000000000000..cdb3d9dbf88f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/regulator/awinic,aw3750x.yaml
-> @@ -0,0 +1,151 @@
-> +# SPDX-License-Identifier: GPL-2.0-only
+> 
+> 
 
-Dual license.
-
-Please run scripts/checkpatch.pl and fix reported warnings. Some
-warnings can be ignored, but the code here looks like it needs a fix.
-Feel free to get in touch if the warning is not clear.
-
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/regulator/awinic,aw3750x.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Awinic AW3750X Power Management IC
-> +
-> +maintainers:
-> +  - Weidong Wang <wangweidong.a@awinic.com>
-> +  - Ke Li <like@awinic.com>
-> +
-> +description: |
-> +  AW3750X is designed to generate both positive and negative bias voltages for.
-> +  TFT-LCD panels or other general dual-supply applications. It consists a highly
-> +  integrated synchronous boost converter with input voltage from 2.7V to 5.5V.
-> +
-> +properties:
-> +  compatible:
-> +    const: awinic,aw3750x_led
-
-I don't understand why there is _led suffix. Isn't this regulator? Can
-it be anything else?
-
-Also, x looks like a wildcard, which is not allowed in compatibles.
-
-> +
-> +  enp:
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    description:
-> +      Properties for single LDO regulator.
-> +
-> +    properties:
-> +      regulator-name: true
-
-Drop
-
-> +
-> +    required:
-> +      - regulator-name
-
-Is it really required?
-
-> +
-> +    unevaluatedProperties: false
-> +
-> +  enn:
-> +    type: object
-> +    $ref: regulator.yaml#
-> +    description:
-> +      Properties for single BOOST regulator.
-> +
-> +    properties:
-> +      regulator-name: true
-> +
-> +    required:
-> +      - regulator-name
-> +
-> +    unevaluatedProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - enp
-> +  - enn
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/pinctrl/mt8186-pinfunc.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    pio: pinctrl@10005000 {
-> +      aw_enn_default: aw_enn_default {
-> +        pins_cmd_dat {
-> +          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
-> +          slew-rate = <1>;
-> +          output-low;
-> +        };
-> +      };
-> +
-> +      aw_enn_output_high: aw_enn_output_high {
-> +        pins_cmd_dat {
-> +          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
-> +          slew-rate = <1>;
-> +          output-high;
-> +        };
-> +      };
-> +
-> +      aw_enn_output_low: aw_enn_output_low {
-> +        pins_cmd_dat {
-> +          pinmux = <PINMUX_GPIO7__FUNC_GPIO7>;
-> +          slew-rate = <1>;
-> +          output-low;
-> +        };
-> +      };
-> +
-> +      aw_enp_default: aw_enp_default {
-> +        pins_cmd_dat {
-> +          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-> +          slew-rate = <1>;
-> +          output-low;
-> +        };
-> +      };
-
-All this is incorrect and unrelated. Drop it.
-
-> +
-> +      aw_enp_output_high: aw_enp_output_high {
-> +        pins_cmd_dat {
-> +          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-> +          slew-rate = <1>;
-> +          output-high;
-> +        };
-> +      };
-> +
-> +      aw_enp_output_low: aw_enp_output_low {
-> +        pins_cmd_dat {
-> +          pinmux = <PINMUX_GPIO1__FUNC_GPIO1>;
-> +          slew-rate = <1>;
-> +          output-low;
-> +        };
-> +      };
-> +
-> +    };
-> +
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        aw3750x@3e {
-
-Node names should be generic. See also explanation and list of examples
-in DT specification:
-https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
-
-
-> +            compatible = "awinic,aw3750x_led";
-> +            aw3750x_gpio_ctrl = <0>;
-> +            reg = <0x3e>;
-> +            outp = <0x0E>;
-> +            outn = <0x0E>;
-> +            enn-gpio = <&pio 7 0>;
-> +            enp-gpio = <&pio 1 0>;
-
-It does not look like you tested the bindings, at least after quick
-look. Please run `make dt_binding_check` (see
-Documentation/devicetree/bindings/writing-schema.rst for instructions).
-Maybe you need to update your dtschema and yamllint.
-
-> +            pinctrl-names = "aw_enn_default", "aw_enn_output_high",
-> +                            "aw_enn_output_low", "aw_enp_default",
-> +                            "aw_enp_output_high", "aw_enp_output_low";
-> +            pinctrl-0 = <&aw_enn_default>;
-> +            pinctrl-1 = <&aw_enn_output_high>;
-> +            pinctrl-2 = <&aw_enn_output_low>;
-> +            pinctrl-3 = <&aw_enp_default>;
-> +            pinctrl-4 = <&aw_enp_output_high>;
-> +            pinctrl-5 = <&aw_enp_output_low>;
-> +
-> +            aw_lcdb_outp_vreg: enp {
-> +              label = "outp";
-
-Really?
-
-
-Best regards,
-Krzysztof
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
 
