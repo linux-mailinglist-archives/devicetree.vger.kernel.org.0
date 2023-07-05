@@ -2,99 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA05A748CF1
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:05:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4876B748D97
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233486AbjGETFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 15:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43158 "EHLO
+        id S230495AbjGETPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 15:15:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231562AbjGETEP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:04:15 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C7FA1FEE;
-        Wed,  5 Jul 2023 12:03:40 -0700 (PDT)
-Received: from p200300ccff0adc001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0a:dc00:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qH7mk-0017Y1-DS; Wed, 05 Jul 2023 21:03:30 +0200
-Received: from andi by aktux with local (Exim 4.96)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qH7mj-001UQu-3D;
-        Wed, 05 Jul 2023 21:03:30 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        lgirdwood@gmail.com, broonie@kernel.org, perex@perex.cz,
-        tiwai@suse.com, peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
-        dmitry.torokhov@gmail.com, andreas@kemnade.info,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org
-Subject: [PATCH 3/3] ARM: dts: omap4: embt2ws: Add audio support
-Date:   Wed,  5 Jul 2023 21:03:24 +0200
-Message-Id: <20230705190324.355282-4-andreas@kemnade.info>
-X-Mailer: git-send-email 2.39.2
-In-Reply-To: <20230705190324.355282-1-andreas@kemnade.info>
-References: <20230705190324.355282-1-andreas@kemnade.info>
+        with ESMTP id S234821AbjGETOH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:14:07 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14A6D1FF7;
+        Wed,  5 Jul 2023 12:08:29 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-77a62a84855so277327039f.1;
+        Wed, 05 Jul 2023 12:08:28 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688584059; x=1691176059;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uXTVp5bLlN8Dye4PyREmx7eR8SYfjHTbX/OgX4GbQ4c=;
+        b=jAPPAV8LVJlpBLpGgGGV9YeBfWCGjGYrclLVlk7tS16mYcxCK/30Xnt2+ahhs53GdU
+         XaO+9tKlskdyE1kzUX1yIfAtQgw32kXHKj1puIb7MAVh8Bq0m6Kk97wqLGNjXCLl/wqb
+         kjNRGTCSVnDRP1e7+UhkPj4iXX0LarT+PzVSQwfPidX+bjpGnJAL1QYwSKz80DYkAjw0
+         b0OWAOAb0YkNElg20BH9bhLbjD1jfwnmOUP3lt5ASZb9Y/wSPpVsL15Y1IzCmcE6s/Qf
+         z9yh6R3h9tLrCph2WqD+xDJjTuiXK/ZpK4Bwi9CyiWj3nh4Q35OgXBeaZj8WvFDoZb9T
+         339Q==
+X-Gm-Message-State: ABy/qLaDILeYiYatk6EVChtcMBTK9exmXmbgVsS/Lic0CHv8KMptZJZx
+        paDBmrN/rt4Y29Puan8EGA==
+X-Google-Smtp-Source: APBJJlEw3s95+yreVL8/zH9bFXCIUVKhAUrPu/w7gjrTe/wT1EGB08eVJFGuMTJE/XI+hPeN49vf3w==
+X-Received: by 2002:a05:6602:276e:b0:777:afce:a35f with SMTP id l14-20020a056602276e00b00777afcea35fmr93287ioe.0.1688584058858;
+        Wed, 05 Jul 2023 12:07:38 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id j5-20020a02cc65000000b0042b298507b3sm3303587jaq.42.2023.07.05.12.07.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 12:07:38 -0700 (PDT)
+Received: (nullmailer pid 1616446 invoked by uid 1000);
+        Wed, 05 Jul 2023 19:07:36 -0000
+Date:   Wed, 5 Jul 2023 13:07:36 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Lee Jones <lee@kernel.org>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        linux-leds@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] [RFC] dt-bindings: leds: bd2606mvv: Fix maximum register
+ value
+Message-ID: <168858405563.1616231.4206225998783878334.robh@kernel.org>
+References: <20230704202929.91962-1-marex@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230704202929.91962-1-marex@denx.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a headset jack on the connection between control unit
-and display. Wire things up to have audio output with MCBSP2 as a master.
 
-Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
----
- arch/arm/boot/dts/omap4-epson-embt2ws.dts | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+On Tue, 04 Jul 2023 22:29:29 +0200, Marek Vasut wrote:
+> Since the chip can drive up to 6 lines, the maximum
+> register number should be only 5, not 6.
+> 
+> Signed-off-by: Marek Vasut <marex@denx.de>
+> ---
+> Cc: Andreas Kemnade <andreas@kemnade.info>
+> Cc: Conor Dooley <conor+dt@kernel.org>
+> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+> Cc: Lee Jones <lee@kernel.org>
+> Cc: Pavel Machek <pavel@ucw.cz>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: devicetree@vger.kernel.org
+> Cc: linux-leds@vger.kernel.org
+> ---
+>  Documentation/devicetree/bindings/leds/rohm,bd2606mvv.yaml | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-diff --git a/arch/arm/boot/dts/omap4-epson-embt2ws.dts b/arch/arm/boot/dts/omap4-epson-embt2ws.dts
-index 5e9a997f686b0..ee86981b2e448 100644
---- a/arch/arm/boot/dts/omap4-epson-embt2ws.dts
-+++ b/arch/arm/boot/dts/omap4-epson-embt2ws.dts
-@@ -46,6 +46,24 @@ key-lock {
- 		};
- 	};
- 
-+	sound {
-+		compatible = "simple-audio-card";
-+		simple-audio-card,name = "BT2 Sound";
-+		simple-audio-card,format = "left_j";
-+		simple-audio-card,bitclock-master = <&sound_master>;
-+		simple-audio-card,frame-master = <&sound_master>;
-+
-+		sound_master: simple-audio-card,cpu {
-+			system-clock-frequency = <24000000>;
-+			sound-dai = <&mcbsp2>;
-+		};
-+
-+		simple-audio-card,codec {
-+			sound-dai = <&tlv320aic3x>;
-+			system-clock-frequency = <24000000>;
-+		};
-+	};
-+
- 	unknown_supply: unknown-supply {
- 		compatible = "regulator-fixed";
- 		regulator-name = "unknown";
-@@ -274,6 +292,9 @@ &mcbsp2 {
- 	#sound-dai-cells = <0>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mcbsp2_pins>;
-+	assigned-clocks = <&abe_clkctrl OMAP4_MCBSP2_CLKCTRL 24>;
-+	assigned-clock-parents = <&abe_clkctrl OMAP4_MCBSP2_CLKCTRL 26>;
-+
- 	status = "okay";
- };
- 
--- 
-2.39.2
+Acked-by: Rob Herring <robh@kernel.org>
 
