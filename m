@@ -2,59 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8122C748DB9
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 410EF748DCB
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 21:30:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S234289AbjGETZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 15:25:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37408 "EHLO
+        id S233969AbjGETaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 15:30:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S234156AbjGETZ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:25:29 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E51804C03;
-        Wed,  5 Jul 2023 12:23:19 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 1460C616CC;
-        Wed,  5 Jul 2023 19:23:11 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3813CC433C7;
-        Wed,  5 Jul 2023 19:23:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688584990;
-        bh=XkVpsUMAas5eIwMCK29P6mupS9x7AHoqzqeWqww4zek=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eNl7MYi731YwNgsgM/VwIqWPCoZUNk0bnt3+OStb36lZZCm+6qhcnoPIgV5j+ziht
-         hVr94DU8Jay65as+NyTdkTyby1mDqoTxh1IjK1SHgJSbHhCGbwi5pNEGv8sMiOByOh
-         GKDQZHyNXX+mpxM2tpRqOn4YfMtGFVhZ4qrLn9OBxraO1IZwBGCiSBuzuJTbnkYGXI
-         lqnMqho2MgW3jb/iSaYQTBHqlsR2P1tvYKXreKn4uenMO9QoTIT6MRg3nkvq+27Jds
-         24ZU6wAVtUcid427JvedRqKRIxbIuzDoaI7Nvy33/HD/uvStyPDZaQfCx/8pW2Rzwx
-         +IGEg0bKCFjDw==
-Date:   Wed, 5 Jul 2023 20:23:03 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
-        dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH 3/3] ARM: dts: omap4: embt2ws: Add audio support
-Message-ID: <9014a59b-5972-484e-ac70-c013e049b140@sirena.org.uk>
-References: <20230705190324.355282-1-andreas@kemnade.info>
- <20230705190324.355282-4-andreas@kemnade.info>
+        with ESMTP id S234159AbjGETaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 15:30:21 -0400
+Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B66A1732;
+        Wed,  5 Jul 2023 12:30:16 -0700 (PDT)
+Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-78372b896d0so269751939f.2;
+        Wed, 05 Jul 2023 12:30:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688585415; x=1691177415;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=zr8NlcrVZF+DGU6x6DDrs6qz+39jnm7/l7Zp+WArtPU=;
+        b=T597Y0QmSt9vZnHyqUbDfwxOM5YMOD0Aph4PVCK8EHUMtjU/qyMEwVDBz94njdCmi2
+         Rb3fDgaGdBWIno7OPJ6WbOhj8SRQwI9kLjRFh5uc8gO9E1r5QoRqRCydvEpB2hSzVLbw
+         Aur74wmxVr0ZwA2/TXNlbp2q0nFKFul2qv4LHfVrAL3qlveehhRjjK4HFmbEgWbpYMsi
+         BqVbEvTS9i6zCZ+HJQiZbj3DdEeMV20yyDoNuAIW79yMyGIUvNwGY2sWcablJMtkEQ4F
+         8SIy9DlX9NoeFkR8AdsjGRcBwufmJYbP6oMW7gTIzk6Ynoh3ebzlpJHKPHdqX0C9vUAd
+         sHXg==
+X-Gm-Message-State: ABy/qLYergGt/1AuQtEuyE3X3XjHMDTxP2/ADstwMS3KTUsiXEy2GNSw
+        2s0aoJgevXn9+YUFXOf0djg62HSP5g==
+X-Google-Smtp-Source: APBJJlF22tTHKhJlfwbm/7ASMiZpp4lqbi2HXqFLRetXvka2tgu9d9LnOVgkTLLTi1mnXArtTSerBg==
+X-Received: by 2002:a05:6602:29bb:b0:783:7193:b019 with SMTP id u27-20020a05660229bb00b007837193b019mr102895ios.4.1688585415242;
+        Wed, 05 Jul 2023 12:30:15 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id z1-20020a02cea1000000b0042b61a5087csm966034jaq.132.2023.07.05.12.30.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 12:30:14 -0700 (PDT)
+Received: (nullmailer pid 1701874 invoked by uid 1000);
+        Wed, 05 Jul 2023 19:30:12 -0000
+Date:   Wed, 5 Jul 2023 13:30:12 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Souradeep Chowdhury <quic_schowdhu@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@somainline.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        Sibi Sankar <quic_sibis@quicinc.com>,
+        Rajendra Nayak <quic_rjendra@quicinc.com>
+Subject: Re: [PATCH V7 1/2] dt-bindings: firmware: bootstats: Add the dtschema
+Message-ID: <20230705193012.GA1642540-robh@kernel.org>
+References: <cover.1688533340.git.quic_schowdhu@quicinc.com>
+ <b3105990e021a71039f621e6c4e70ab05fb348fa.1688533340.git.quic_schowdhu@quicinc.com>
+ <d339d413-5242-0d5a-96f6-c2f670e5e5dc@linaro.org>
+ <968fb5d3-6cd8-7850-47e7-682e26f9ee5f@quicinc.com>
+ <a0631800-f3d5-ff13-b316-9bc027275a82@linaro.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pcNKJC6KNSizl/+7"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230705190324.355282-4-andreas@kemnade.info>
-X-Cookie: Don't feed the bats tonight.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <a0631800-f3d5-ff13-b316-9bc027275a82@linaro.org>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -62,40 +74,54 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jul 05, 2023 at 11:34:35AM +0200, Krzysztof Kozlowski wrote:
+> On 05/07/2023 10:33, Souradeep Chowdhury wrote:
+> >>> +    $ref: /schemas/types.yaml#/definitions/string-array
+> >>> +
+> >>> +  abl-time:
+> >>> +    description: The property to store the duration of abl in ms.
+> >>> +    $ref: /schemas/types.yaml#/definitions/string-array
+> >>
+> >> I have no clue what this entire binding is about. Nothing can bind to
+> >> it, no usage explained. Properties are not used to "store the duration".
+> >> This does not look like suitable for DT, drop entire binding.
+> > 
+> > This binding was created as per the suggestion on version 6 of the patch 
+> > by Arnd. The idea was that these 2 devicetree properties will be used to 
+> > populate the bootstat values from the bootloader and exposed to the user 
+> > via /sys/firmware/devicetree/ directly.
+> > 
+> > Details in the link below:-
+> > 
+> > https://lore.kernel.org/lkml/7d397e67-5d56-4975-98af-1ac9746c07f4@app.fastmail.com/T/#mbdc9ad95fcbb5ad7b56c6996a3933899b42d982c
+> > 
+> > Can you suggest any alternative way to represent this as a binding?
+> 
+> Then you should clearly state in the binding how this is going to be
+> used and who is going to populate it. Not only in the binding but also
+> in commit msg which currently has 0 rationale and answers to "why". Your
+> commit msg explained only "what", which is usually obvious and much less
+> important. Your commit should stand on its own and should clearly
+> explain why we need this feature at all, what problem it solves.
+> 
+> And before you claim that there is some discussion under link or some
+> cover letter - these do not matter. Commit and bindings matter.
+> 
+> What's more, I don't think that Arnd's advice is correct here - DT is
+> suppose to describe hardware or firmware. These properties are coming
+> from firmware but they are not describing any firmware or hardware
+> characteristics. Instead they are debugging of current boot status.
+> 
+> I will leave the decision on that for Rob, however anyway binding is
+> very vague and incorrect, so I would expect he will come with the same
+> concerns regardless whether it is suitable to DT or is not.
 
---pcNKJC6KNSizl/+7
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+My main concern here is not so much having this info in DT, but whether 
+it's just the start of various properties. Either because there's already 
+more data and these are just the 2 things you care about now, or because 
+once we enable this it's an invitation to add more properties.
 
-On Wed, Jul 05, 2023 at 09:03:24PM +0200, Andreas Kemnade wrote:
+Boot timing information seems like something multiple platforms might 
+want and only having 2 stages isn't extensible.
 
-> +	sound {
-> +		compatible = "simple-audio-card";
-
-For new usage audio-graph-card2 is preferred, it's a superset of the
-functionality and much more flexible.
-
-> +		simple-audio-card,codec {
-> +			sound-dai = <&tlv320aic3x>;
-> +			system-clock-frequency = <24000000>;
-> +		};
-> +	};
-
-Are you *sure* the BCLK always comes out at this rate?
-
---pcNKJC6KNSizl/+7
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSlwxcACgkQJNaLcl1U
-h9AxHQf/dak+OKZYRo/pero4Ava2YorLLQDCh8ADYq1T+GPQnaWaBTdq0golyC18
-AlqjHoluidxXdpB3UWSe9x0dlvNCpGCuVXnlWOTXDEG8DSK3S0PPbbNEEslMQh8c
-SBLHqRGCn2PQkurZiWVJYHRmkM79+HlVSC58kHit3ErbDsesSCrdyPSAl8UspAo7
-/jtUhvbU7+NmPj9DQ7JDwdJrQouIel015F1YmjLPHBzlMecQ0kernj55wb0l0K/N
-ytyuHhQyyadBVaGh0x9EoctC3/Nbk1ETR45Xlg9eIlSGwUTnyDzF/PhmlT9CVj6s
-ZrL++EXT411pHGrqVeBIgUE9Ht9fpg==
-=QPu1
------END PGP SIGNATURE-----
-
---pcNKJC6KNSizl/+7--
+Rob
