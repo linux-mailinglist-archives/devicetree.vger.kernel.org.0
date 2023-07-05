@@ -2,146 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8920C7491DC
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 01:27:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA1DA7491F6
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 01:40:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231669AbjGEX1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 19:27:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42690 "EHLO
+        id S232076AbjGEXko (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 19:40:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44690 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231608AbjGEX1n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 19:27:43 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE47A171A;
-        Wed,  5 Jul 2023 16:27:42 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3B2DF6187C;
-        Wed,  5 Jul 2023 23:27:42 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FE9CC433CA;
-        Wed,  5 Jul 2023 23:27:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688599661;
-        bh=71ABv5/JwaJZ55URTzD8vGgqeEszc1MgI9Tgv+MINjE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZONJDYYI4DfLy7Qsq2iruWU/TAy+MfhN8a+13GK2IWPkDZqio7bRNxa5SQs05lP4P
-         cwPUPxti1OHDRjna7RLvlHvYzjGzNzbIQj3qP3y/Bn+msmAYu9HbnUfdOB0mW+oJ0Y
-         xXd9KYSiaVMbhH8iXxtVbsReICsvqSFCZ93UbTBDH2SxezF1CiOXVRCeK6+eL9LKGf
-         lv5Tdq9By8SoiBvDGs8LHavKem9Wb+MzUqre5RXfWHiAchuT+L/DCozo3/BlyhktAW
-         7OLkwTDgnazo9mvhKgyHb/J//J+68K3lIP4d0Lf8VbQ7BmWtxd0vaabSh0ecr/t8zz
-         aclhgVyMhnn3Q==
-Received: by mail-lj1-f173.google.com with SMTP id 38308e7fff4ca-2b6ef64342aso231811fa.3;
-        Wed, 05 Jul 2023 16:27:41 -0700 (PDT)
-X-Gm-Message-State: ABy/qLZ15zN9i0RK29N24/YPEZcU9AmIcYDkhPFpv4CaynvygCJuwO56
-        xE1BiyzvzmSOMJMehNsGnW17NxHUoZ1nVel/ew==
-X-Google-Smtp-Source: APBJJlEpNIPlBGdtVBVr58J7X3ky87DEhp6DbA9itW5/VGUcmhmKpi6TWJGAkGRnBuBFSJRhMLcgVJySm3N6emm2tmc=
-X-Received: by 2002:a2e:a170:0:b0:2b6:e958:d03 with SMTP id
- u16-20020a2ea170000000b002b6e9580d03mr124735ljl.30.1688599659474; Wed, 05 Jul
- 2023 16:27:39 -0700 (PDT)
+        with ESMTP id S232075AbjGEXkn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 19:40:43 -0400
+Received: from mail-oa1-x33.google.com (mail-oa1-x33.google.com [IPv6:2001:4860:4864:20::33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 694A2198E
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 16:40:42 -0700 (PDT)
+Received: by mail-oa1-x33.google.com with SMTP id 586e51a60fabf-1a1fa977667so196055fac.1
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 16:40:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=rivosinc-com.20221208.gappssmtp.com; s=20221208; t=1688600441; x=1691192441;
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NLLif1KY2D3x/oQIb0fD6DgvzVEwBt9PgSDAy1D7jfw=;
+        b=GUqHR3iKA3GKI3FuCSb+pdbJzC8NCKsiIcv9MeUIUvVgtc5fdWqZABfE+K9cmW/amq
+         zWhMXjO2ROJtnMmSGMNvotrD3ew37U0nxfF4Jelj+YkaCXP541t0HaQyDY/WF9B5KVpv
+         2vGrYoqoPpFqUJQ8w0yLdkhTnnA70PliwOjBBjpciRhQj/2X8fOhvFYpt2UY2s/fvw2n
+         5s3fJOmoHlv/Mq3CXmD7kImG0SmvSfQGlGosw3lE3j9EYXQh5r9qyjR6A2KRWpV8zy+G
+         ctpYQrsNTFQoR0P8QUxAml2EIsaoejiP7D8UnzHHacxXkal7+h5nkx8ow1tQJSoqc3G2
+         5UZg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688600441; x=1691192441;
+        h=to:from:cc:content-transfer-encoding:mime-version:date:message-id
+         :subject:references:in-reply-to:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=NLLif1KY2D3x/oQIb0fD6DgvzVEwBt9PgSDAy1D7jfw=;
+        b=dvliXCj5cC3uDre/XkFDhApT7uvFhFL46k4oa+ZuGTYHievhAS5Io2WDrec9zvo017
+         AINGK19ShOwe3SWwXsv+GQrASJcXTRou5FdopewTaPq0BiPmviRR3SRdpgj77z4dB6a4
+         +foFVwyVlh2XX3/Px3jLWAIV5IgED7G3U3TOSiGxHBJ+qO0S2IVC2OaJVeuOU6z7eINF
+         H+E6CJsGzm7X87ALDRu8+1pg+mLyz9iDJI9Gt3McNNUz2AyJWt9p+5AiRtiAY6ogCLzX
+         UFu/a8PhMmNJDPnCnQuGF5e8XdKZsTIBgvmJbAMS/FWTCCaiTYizrtJmu6j1XZi7c2Jf
+         KzfQ==
+X-Gm-Message-State: ABy/qLYJ3YwKo8CPyzKeEtaDRYikFQIXZk2G1gIIkOcts+aqj5W7mJCO
+        Z2gGNF0e9GVn3YJ3y3+7xElHfQ==
+X-Google-Smtp-Source: APBJJlGhY6ik2a9lxlF0RgXnj1DEVnZ0h08AlHINQ5Ed9RK6Pu0MrgIAW8hiIMXydNfQShpu3O117w==
+X-Received: by 2002:a05:6870:79e:b0:1a7:e554:500a with SMTP id en30-20020a056870079e00b001a7e554500amr631818oab.49.1688600441720;
+        Wed, 05 Jul 2023 16:40:41 -0700 (PDT)
+Received: from localhost ([135.180.227.0])
+        by smtp.gmail.com with ESMTPSA id 14-20020a17090a194e00b0025dc5749b4csm2047993pjh.21.2023.07.05.16.40.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 05 Jul 2023 16:40:41 -0700 (PDT)
+In-Reply-To: <20230702-eats-scorebook-c951f170d29f@spud>
+References: <20230702-eats-scorebook-c951f170d29f@spud>
+Subject: Re: [PATCH v5] dt-bindings: riscv: deprecate riscv,isa
+Message-Id: <168860030764.22647.8715497868636301645.b4-ty@rivosinc.com>
+Date:   Wed, 05 Jul 2023 16:38:27 -0700
 MIME-Version: 1.0
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <1687955688-20809-11-git-send-email-quic_mojha@quicinc.com>
- <CAL_Jsq+O70mnreuS1m54RKM+uZu_z1L87RT8sKBYEw5uvowGJg@mail.gmail.com> <e0fef1b0-3fa1-08c1-3c0e-aca30c9da266@quicinc.com>
-In-Reply-To: <e0fef1b0-3fa1-08c1-3c0e-aca30c9da266@quicinc.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 5 Jul 2023 17:27:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+FEAYXJTfMKQ6nOKzZLJH49x=XroNCYnkqa=RHuQ99qg@mail.gmail.com>
-Message-ID: <CAL_Jsq+FEAYXJTfMKQ6nOKzZLJH49x=XroNCYnkqa=RHuQ99qg@mail.gmail.com>
-Subject: Re: [PATCH v4 10/21] soc: qcom: Add qcom's pstore minidump driver support
-To:     Mukesh Ojha <quic_mojha@quicinc.com>
-Cc:     corbet@lwn.net, agross@kernel.org, andersson@kernel.org,
-        konrad.dybcio@linaro.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, keescook@chromium.org, tony.luck@intel.com,
-        gpiccoli@igalia.com, mathieu.poirier@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
-        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Mailer: b4 0.13-dev-901c5
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Alistair Francis <alistair.francis@wdc.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        Atish Patra <atishp@atishpatra.org>,
+        Jessica Clarke <jrtc27@jrtc27.com>,
+        Rick Chen <rick@andestech.com>, Leo <ycliang@andestech.com>,
+        Oleksii <oleksii.kurochko@gmail.com>,
+        linux-riscv@lists.infradead.org, qemu-riscv@nongnu.org,
+        u-boot@lists.denx.de, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+From:   Palmer Dabbelt <palmer@rivosinc.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
+        Conor Dooley <conor@kernel.org>
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 29, 2023 at 3:16=E2=80=AFAM Mukesh Ojha <quic_mojha@quicinc.com=
-> wrote:
->
->
->
-> On 6/29/2023 4:27 AM, Rob Herring wrote:
-> > On Wed, Jun 28, 2023 at 6:37=E2=80=AFAM Mukesh Ojha <quic_mojha@quicinc=
-.com> wrote:
-> >>
-> >> This driver was inspired from the fact pstore ram region should be
-> >> fixed and boot firmware need to have awarness about this region,
-> >> so that it will be persistent across boot. But, there are many
-> >> QCOM SoC which does not support warm boot from hardware but they
-> >> have minidump support from the software, and for them, there is
-> >> no need of this pstore ram region to be fixed, but at the same
-> >> time have interest in the pstore frontends data. So, this driver
-> >> get the dynamic reserved region from the ram and register the
-> >> ramoops platform device.
-> >>
-> >>   +---------+     +---------+   +--------+     +---------+
-> >>   | console |     | pmsg    |   | ftrace |     | dmesg   |
-> >>   +---------+     +---------+   +--------+     +---------+
-> >>         |             |             |              |
-> >>         |             |             |              |
-> >>         +------------------------------------------+
-> >>                            |
-> >>                           \ /
-> >>                    +----------------+
-> >>              (1)   |pstore frontends|
-> >>                    +----------------+
-> >>                            |
-> >>                           \ /
-> >>                   +------------------- +
-> >>              (2)  | pstore backend(ram)|
-> >>                   +--------------------+
-> >>                            |
-> >>                           \ /
-> >>                   +--------------------+
-> >>              (3)  |qcom_pstore_minidump|
-> >>                   +--------------------+
-> >>                            |
-> >>                           \ /
-> >>                     +---------------+
-> >>              (4)    | qcom_minidump |
-> >>                     +---------------+
-> >>
-> >> This driver will route all the pstore front data to the stored
-> >> in qcom pstore reserved region and the reason of showing an
-> >> arrow from (3) to (4) as qcom_pstore_minidump driver will register
-> >> all the available frontends region with qcom minidump driver
-> >> in upcoming patch.
-> >>
-> >> Signed-off-by: Mukesh Ojha <quic_mojha@quicinc.com>
-> >> ---
-> >>   drivers/soc/qcom/Kconfig                | 12 +++++
-> >>   drivers/soc/qcom/Makefile               |  1 +
-> >>   drivers/soc/qcom/qcom_pstore_minidump.c | 85 +++++++++++++++++++++++=
-++++++++++
-> >
-> > drivers/soc/ is the dumping ground for things with no other place. As
-> > this is a pstore driver, it belongs with pstore.
->
-> The inspiration of this driver was taken from
-> drivers/platform/chrome/chromeos_pstore.c, do you think that is misplaced=
- ?
 
-The difference is really that's nothing more than platform specific
-logic to instantiate a normal ramoops device. It's kind of ugly, yes,
-but it's still just a normal ramoops device in the end. Your case is
-that plus all the extra parts for minidump.
+On Sun, 02 Jul 2023 00:10:01 +0100, Conor Dooley wrote:
+> intro
+> =====
+> 
+> When the RISC-V dt-bindings were accepted upstream in Linux, the base
+> ISA etc had yet to be ratified. By the ratification of the base ISA,
+> incompatible changes had snuck into the specifications - for example the
+> Zicsr and Zifencei extensions were spun out of the base ISA.
+> 
+> [...]
 
-Rob
+Applied, thanks!
+
+[1/1] dt-bindings: riscv: deprecate riscv,isa
+      https://git.kernel.org/palmer/c/aeb71e42caae
+
+Best regards,
+-- 
+Palmer Dabbelt <palmer@rivosinc.com>
+
