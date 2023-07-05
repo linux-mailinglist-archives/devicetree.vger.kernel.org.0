@@ -2,138 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6182A748184
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 11:54:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68B8B7481C0
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 12:10:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231895AbjGEJyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 05:54:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34670 "EHLO
+        id S231535AbjGEKKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 06:10:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40386 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231913AbjGEJyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 05:54:35 -0400
-Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82992171C
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 02:54:34 -0700 (PDT)
-Received: by mail-ej1-x629.google.com with SMTP id a640c23a62f3a-98934f000a5so749909566b.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 02:54:34 -0700 (PDT)
+        with ESMTP id S229850AbjGEKKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 06:10:21 -0400
+Received: from mail-yb1-xb2d.google.com (mail-yb1-xb2d.google.com [IPv6:2607:f8b0:4864:20::b2d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CD3DA10A
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 03:10:20 -0700 (PDT)
+Received: by mail-yb1-xb2d.google.com with SMTP id 3f1490d57ef6-bc379e4c1cbso7658276276.2
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 03:10:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688550873; x=1691142873;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=TVAJWg0I/HeACNC/zy3nFezd4dRzO+0cU65ERxt6e5A=;
-        b=IAqlJpp9lEg+99I2kgGQin+C7Sa8Ra+ZU4L5NYtlrWxz2TUT3Kow0t3BcazVaGa7O7
-         6K7OnUF6jg6fALaTASBVpvEq1cshDZqIAW7p3Km4J6adCIl1ltJdrANBcAy0cfMzXzCf
-         4NOPw1ZiPDfwrB9kMgXXzZiy0yrofWNtl/5j/LyKUM8Jbb6/xbUeJfDfJXxtWYwV0tzE
-         C5Xb3LioIcBtVF7nDBESyR+h7NElPUwHUrNWI90czJS3vzDkIawRAY+xetKFUk/E5yol
-         qgZu6zs+QI1JE8PhYVcD/kZTFxd6sUexE5U2OFTb/Mhp2bzrlH8Vu7dx6tPch4Qx50T2
-         7C7A==
+        d=linaro.org; s=google; t=1688551820; x=1691143820;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S5BiZxAdo175caCNPuZri1kWZT7Qvo2b/jAKdwh4fGo=;
+        b=OfyRAr1XW7hQ3Ug5ZYV83RPlh+OQjY+hZNUlo7TXuEAiE62322BbU2bzpy3jeDrn+O
+         sOHHB8tlEdgWtyhJH1G1KfEBI8Myk45vygP4UCFwK+jqZBC6bK00Lhq8ZDeFzStzOUhL
+         6+8iiOlPePTBoX/A5Z3ad9IvmVebeBa3k1UMzviqOxIqabHwgApVAvr9rxb1nCunAp0N
+         KYcg2t7wqpbkN+SOaW+6BSdqqJAPbUeVZWRl4KhQ0cfqmdzofbSgnNzehST4aw+vel/Z
+         zE1uF6JjFzyxrD9B/X0b+pmMZtrseJpyUBVAwc8+XOcTpyuCY1CvXJ3ei5UE3xb5y8Jl
+         ATIw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688550873; x=1691142873;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=TVAJWg0I/HeACNC/zy3nFezd4dRzO+0cU65ERxt6e5A=;
-        b=lb/lVikw+XmB6khdhT6NJ4OInBpvNeeNgVw6N1ZMNfGpdIRQSXmF4qIJh63pu3LuQO
-         CuxQUSu2G3hHtR1nnoRvZ7zSIWxssUTJ7qOs4WFZCgi6wEGeZG0JFLJFaw1byLO69SlS
-         CLqAdVSvZXar+A4HufwJhZ9eEvi94hkMiE2HZhvKzPylKrYR9dEg8nklqLmIP67ecMH9
-         EpfF098qze4+Ii0WpOH4IWrCe2zxPbtV/f6X2qsIP9YYJDE9Xr11ekf2s4g7/mTBSItQ
-         Z7/bkSkL0ICe/MXC8VsF4K4pbclV9zZvaq0+DiF3ci7pWK56TvIRFdYz2B654m3Lq/FN
-         WrlQ==
-X-Gm-Message-State: ABy/qLbi3cwIdAzP5DLvsJZeN1wJfBcYeH6gmg5F+arsTKNR8c/diKuf
-        fcaFqgnF2VBeMOLaUEyIIwHn6g==
-X-Google-Smtp-Source: ACHHUZ5W2hGP4f8dXuvYRWTyHfTgVsR/YjxrosQO10baQksmKKLIm3VXDUX8FJMugLE7X2n1g6ZhoA==
-X-Received: by 2002:a17:906:d961:b0:988:c3f9:3ad6 with SMTP id rp1-20020a170906d96100b00988c3f93ad6mr11780382ejb.42.1688550872960;
-        Wed, 05 Jul 2023 02:54:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id o18-20020a170906289200b00982b204678fsm14315546ejd.207.2023.07.05.02.54.30
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 02:54:32 -0700 (PDT)
-Message-ID: <038e7ea3-ef16-2344-6cba-88d7e5caf80c@linaro.org>
-Date:   Wed, 5 Jul 2023 11:54:29 +0200
+        d=1e100.net; s=20221208; t=1688551820; x=1691143820;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S5BiZxAdo175caCNPuZri1kWZT7Qvo2b/jAKdwh4fGo=;
+        b=k4zDhY0Tn3Jqkns5LwNepzDEv8+6z5/Xwn0D8eM0xMCyDvj9cKPaCv3pX6a3smT+5Y
+         xMeL3nM2voioJmXPQG9tTzT/nPy+td2LRKA0g48dpw0XeSweiMb/igZCY5kB8W7+egHE
+         W6s1Ams5uhO31GaVWURnXFgRTU30W/r4e7/i1QI+AkNLYxa9qN7AIMAmCRoi6qiEJvzZ
+         P09NuId1wJByh0tnOU2ZyLNJf4y/iOg5NAbPTiB4Wq14HKJUCgPFy7ygQxZkACH2D5/T
+         wtnzbpOfQnuffy9PTV4HcM+7kGl4K1bPccrQnFEBPKtXR7MNStrAKYhbYUf9Py8jysUx
+         3nyA==
+X-Gm-Message-State: ABy/qLZhKMiTGxEo24sMFQe+Un/kgBiuUFigMUboS2zD1aNuH4yNG0Wp
+        EYsIwtHLORkiODeY0kHTSON30cbbtnwk0ukBCf6zBQ==
+X-Google-Smtp-Source: APBJJlE8B6kTceIEY/HjSKPVfI5dkey3d/+conMUwS2ilyTvOTa/wNNq2saaTt+P5NoFmmRDanVQ3M4oLG7R+EgRgwo=
+X-Received: by 2002:a25:3621:0:b0:c65:1369:3f6c with SMTP id
+ d33-20020a253621000000b00c6513693f6cmr184700yba.16.1688551820039; Wed, 05 Jul
+ 2023 03:10:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 7/7] arm64: dts: qcom: Add support for the Xiaomi SM7125
- platform
-Content-Language: en-US
-To:     David Wronek <davidwronek@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
+References: <20230506-seama-partitions-v1-0-5806af1e4ac7@linaro.org>
+ <20230506-seama-partitions-v1-1-5806af1e4ac7@linaro.org> <96c63925-91d5-994a-a531-2d7bdb3b642a@linaro.org>
+In-Reply-To: <96c63925-91d5-994a-a531-2d7bdb3b642a@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 5 Jul 2023 12:10:08 +0200
+Message-ID: <CACRpkdY5p9jVO0iyGhi7GACY+hBQ6a7OdoJ3W9hg22aUeNMvkA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mtd: Add SEAMA partition bindings
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230704163848.169853-2-davidwronek@gmail.com>
- <20230704163848.169853-9-davidwronek@gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230704163848.169853-9-davidwronek@gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2023 18:32, David Wronek wrote:
-> There are 6 Xiaomi smartphones with the SM7125 SoC:
-> 
-> - POCO M2 Pro (gram)
-> - Redmi Note 9S (curtana)
-> - Redmi Note 9 Pro (Global, joyeuse)
-> - Redmi Note 9 Pro (India, curtana)
-> - Redmi Note 9 Pro Max (excalibur)
-> - Redmi Note 10 Lite (curtana)
-> 
-> These devices share a common board design (a.k.a miatoll) with only a
-> few differences. Add support for the common board, as well as support
-> for the global Redmi Note 9 Pro.
-> 
-> Signed-off-by: David Wronek <davidwronek@gmail.com>
-> ---
->  arch/arm64/boot/dts/qcom/Makefile             |   1 +
->  .../boot/dts/qcom/sm7125-xiaomi-joyeuse.dts   |  16 +
->  .../boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi  | 420 ++++++++++++++++++
->  3 files changed, 437 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts
->  create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-> index 337abc4ceb17..7ef9e7d43904 100644
-> --- a/arch/arm64/boot/dts/qcom/Makefile
-> +++ b/arch/arm64/boot/dts/qcom/Makefile
-> @@ -192,6 +192,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-sony-xperia-seine-pdx201.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6125-xiaomi-laurel-sprout.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6350-sony-xperia-lena-pdx213.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm6375-sony-xperia-murray-pdx225.dtb
-> +dtb-$(CONFIG_ARCH_QCOM)	+= sm7125-xiaomi-joyeuse.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm7225-fairphone-fp4.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-hdk.dtb
->  dtb-$(CONFIG_ARCH_QCOM)	+= sm8150-microsoft-surface-duo.dtb
-> diff --git a/arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts
-> new file mode 100644
-> index 000000000000..670fd63f3416
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts
-> @@ -0,0 +1,16 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (c) 2023, David Wronek <davidwronek@gmail.com>
+On Wed, May 10, 2023 at 4:57=E2=80=AFPM Krzysztof Kozlowski
+<krzysztof.kozlowski@linaro.org> wrote:
 
-I have some doubts that result looking exactly like other file is done
-not as derivative work. Please retain original copyrights.
+> > +select: false
+>
+> You miss update to partitions.yaml. Anyway, for your testing,
+> temporarily change it to true, to see errors.
 
-Best regards,
-Krzysztof
+This "select" just confuses me. I can set it to true and then I get
+a flood of irrelevant errors, and the same if I change it to true for
+any of the other childless partitions such as arm,arm-firmware-suite.yaml
 
+So I do a best effort here...
+
+> > +properties:
+> > +  compatible:
+> > +    const: seama
+> > +
+> > +  '#address-cells': false
+> > +
+> > +  '#size-cells': false
+>
+> You have children, so these must be true.
+
+Not really, seama is childless.
+
+I guess the example with fixed-partitions
+was confusion, seama can be a subpartition in a set
+of fixed-partions.
+
+I'll try to write up something so it's clear.
+
+Yours,
+Linus Walleij
