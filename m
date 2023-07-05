@@ -2,104 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 631E1747E3C
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:29:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA1DA747E5E
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 09:37:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231707AbjGEH3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 03:29:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49024 "EHLO
+        id S230521AbjGEHhI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 03:37:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52402 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230439AbjGEH3e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:29:34 -0400
-Received: from mail-ed1-x536.google.com (mail-ed1-x536.google.com [IPv6:2a00:1450:4864:20::536])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F200E4F
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 00:29:33 -0700 (PDT)
-Received: by mail-ed1-x536.google.com with SMTP id 4fb4d7f45d1cf-51e285ac32eso170952a12.2
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 00:29:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688542172; x=1691134172;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=04KsCEQq3BTQ3Hv4slClhCupTLs++iE2IM0zdOeIRKk=;
-        b=O7Q13QLtFiYubIqbr4dB4gWPNSwaF+mr4Cumj7k5dEPGuWLea/jl1B653FTWrAImMI
-         2xnjRF4alacRxam3juvdPamAy/dVG4pEugr4Q1G3xJe4UUm2tHdaH8TQ3SRiX1UD4u7E
-         9WQFZ3LtJjUo+k+93qgYCjQ8iUBct7fH3SDrHOdmNvmym/D5Hjh1EYkj3vSXMRlyi2GN
-         maEw9cPy4pEGSOHj7lBFJ5maICU9aUgwJWDZzh53BR/RSNzgyG2TAHESLVYQBFvdVsKK
-         HB3TPZLaIyvtwpwoRLdU3z0QO38fXG2pz2ujhNwfjUE5hyrnTg2j+VLl9SQQ7SPvmuq/
-         bGVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688542172; x=1691134172;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=04KsCEQq3BTQ3Hv4slClhCupTLs++iE2IM0zdOeIRKk=;
-        b=DfPOPLHRr6mc5Jo0bhp4NSCwVq/KsAqiDjdE60fyP7vnue0pTDdvcyxviLzm/WGXWP
-         Y6vIUEiW+ZeXloKojXzumpqUVwBHnM2nNBf6UhZCj6ApUNO47Hni8p7y6AddevRA6SmB
-         rri07HppvD3eIakC8BAKSNTGE1UUZG6RbRWZPuR/KFUixUbO13ippj5wycWG4WvXfdrS
-         Klxs/5mA4dqSRoGhiBIIpw2illj47st5j3Dqiq0Wr+Ce37z08DqxfXKKYWmeawifXqAe
-         99hvuPjWrM45i9XrR9O5OplPmBWJ363YBli3PaRqzobvQPNaFQlLwjR0HTw677A60qqI
-         dSuw==
-X-Gm-Message-State: ABy/qLZ1cLkBpYNShATANw6nVeKuYs0mhjAy5Y89RaANf0VrV5jw16jy
-        Cx/xygPLuB2/YGikQpDwwGNB5A==
-X-Google-Smtp-Source: APBJJlEt1mvtnReMBJcVFDryVN+XiJidc1ci2kcvMPZAKlMO7aNOrbX9FbwTnLjhGYQCJzEdo/yRiA==
-X-Received: by 2002:a05:6402:b16:b0:51e:2664:e6e7 with SMTP id bm22-20020a0564020b1600b0051e2664e6e7mr900391edb.38.1688542172081;
-        Wed, 05 Jul 2023 00:29:32 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id g19-20020a50ee13000000b0051df5bd1cd8sm6189542eds.65.2023.07.05.00.29.29
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 00:29:31 -0700 (PDT)
-Message-ID: <4fa4e983-03af-7222-3ffc-96ebe703a4f8@linaro.org>
-Date:   Wed, 5 Jul 2023 09:29:28 +0200
+        with ESMTP id S231315AbjGEHhH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 03:37:07 -0400
+Received: from relay9-d.mail.gandi.net (relay9-d.mail.gandi.net [217.70.183.199])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11603E41;
+        Wed,  5 Jul 2023 00:37:05 -0700 (PDT)
+X-GND-Sasl: miquel.raynal@bootlin.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=gm1;
+        t=1688542624;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Q6JVbObW4DqYx9q0QffEzB/qcd5stuGhTxLhBBsyTh8=;
+        b=g/yvzSdekzdtRDmOBQTW8pBMh4BYil5lC2CEjb78knxVTm9JJJ00Tud+XhonSVw/SryXua
+        BqitCmzLqgtyHAyuxipzOuDrcoqK/3Tokvy0lq6x6hEakmLH90vS95kjSQWtn9sw7C4M7h
+        wLG7VEYKz63Bs1kiD6zD9b9ZDsh14CN2XEsv1xX+GYnzbP1mu4w5JaOGli9paymNDvi7Kf
+        mZwxvn+AJANdMsGKnK/xfu1Yg88XbS30DP8yKDHiEQPerwC9f2m4z8EDLvljwR0X6Vj4SF
+        VX3hE2k+UO3hBc1poMG3z7bLVDWos0U1cKjOW4DRWgP420lcoFpqVOQCNM0NaA==
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+X-GND-Sasl: miquel.raynal@bootlin.com
+Received: by mail.gandi.net (Postfix) with ESMTPSA id 021B4FF809;
+        Wed,  5 Jul 2023 07:37:02 +0000 (UTC)
+Date:   Wed, 5 Jul 2023 09:37:02 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+Cc:     Liang Yang <liang.yang@amlogic.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        <oxffffaa@gmail.com>, <kernel@sberdevices.ru>,
+        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RFC PATCH v2 1/2] dt-bindings: nand: meson: support for 512B
+ ECC step size
+Message-ID: <20230705093702.6c0421d7@xps-13>
+In-Reply-To: <20230705065434.297040-2-AVKrasnov@sberdevices.ru>
+References: <20230705065434.297040-1-AVKrasnov@sberdevices.ru>
+        <20230705065434.297040-2-AVKrasnov@sberdevices.ru>
+Organization: Bootlin
+X-Mailer: Claws Mail 4.0.0 (GTK+ 3.24.33; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 1/3] dt-bindings: clock: fsl,imx8-acm: Add audio clock
- mux support
-Content-Language: en-US
-To:     Shengjiu Wang <shengjiu.wang@gmail.com>
-Cc:     Shengjiu Wang <shengjiu.wang@nxp.com>, abelvesa@kernel.org,
-        peng.fan@nxp.com, mturquette@baylibre.com, sboyd@kernel.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1688521839-3036-1-git-send-email-shengjiu.wang@nxp.com>
- <1688521839-3036-2-git-send-email-shengjiu.wang@nxp.com>
- <41ee8c5c-7a6f-04b2-9853-67fb6bdb67b3@linaro.org>
- <CAA+D8ANEsQzXEDjz3+SgKbCWz+cqUHbtLVD6fkd2spbNb5uvgw@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <CAA+D8ANEsQzXEDjz3+SgKbCWz+cqUHbtLVD6fkd2spbNb5uvgw@mail.gmail.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_LOW,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05/07/2023 08:45, Shengjiu Wang wrote:
->> Drop description, it's redundant. I did not ask to add it.
->>
->> Anyway, my comment is unanswered. Don't ignore the emails you receive.
->>
-> Can someone provide rationale for this?
->>
-> 
-> The Audio clock mux is binded with all the audio IP and audio clocks in the
-> subsystem
-> so need to list the power domain of related clocks and IPs. Each clock and
-> IPs has
-> a power domain, so there are so many power domains.
+Hi Arseniy,
 
-OK, Reference Manual does not mention them but I see your SCU PD driver
-actually registers such power domains.
+AVKrasnov@sberdevices.ru wrote on Wed, 5 Jul 2023 09:54:33 +0300:
 
-Best regards,
-Krzysztof
+> Meson NAND supports both 512B and 1024B ECC step size, so replace
+> 'const' for only 1024B step size with enum for both sizes.
+>=20
+> Signed-off-by: Arseniy Krasnov <AVKrasnov@sberdevices.ru>
+> ---
+>  Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yam=
+l b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> index 3bec8af91bbb..81ca8828731a 100644
+> --- a/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> +++ b/Documentation/devicetree/bindings/mtd/amlogic,meson-nand.yaml
+> @@ -49,7 +49,8 @@ patternProperties:
+>          const: hw
+> =20
+>        nand-ecc-step-size:
+> -        const: 1024
+> +        enum: [512, 1024]
+> +        default: 1024
 
+I was actually wrong in my previous review, there is no strong default
+here as the existing binding (and code) try to use the closest
+parameters required by the NAND chip: we pick the "optimal"
+configuration. So if you don't provide any value here, we expect
+the strength and step size advertized by the chip to be used. This is a
+common default in the raw NAND subsystem.
+
+Please drop the default line, re-integrate the missing R-by tag from
+Rob and in a separate patch please mark nand-ecc-step-size and
+nand-ecc-strength mandatory if the other is provide. IOW, we expect
+either both, or none of them, but not a single one.
+
+> =20
+>        nand-ecc-strength:
+>          enum: [8, 16, 24, 30, 40, 50, 60]
+> @@ -93,6 +94,7 @@ examples:
+>        nand@0 {
+>          reg =3D <0>;
+>          nand-rb =3D <0>;
+> +        nand-ecc-step-size =3D <1024>;
+
+So in the end this line is wrong and once you get the description right
+as I mentioned it above, this will fail to pass
+`make DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/mtd/ dt_binidng_c=
+heck`
+Please drop it from the example, don't add the second property here,
+it's best to show a clean example where people stop tampering for no
+reason with the optimal values.
+
+>        };
+>      };
+> =20
+
+
+Thanks,
+Miqu=C3=A8l
