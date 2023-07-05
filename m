@@ -2,280 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 184A1748318
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 13:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0866D748349
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 13:46:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbjGELmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 07:42:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46244 "EHLO
+        id S231776AbjGELqy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 07:46:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231313AbjGELmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 07:42:04 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1D387E3
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 04:42:03 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so10256997e87.1
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 04:42:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688557321; x=1691149321;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=ztBlDQIHDZqo7V/c8oOFDJdI7xBDmCnELF9YeTbIz60=;
-        b=Q8tXp0mhYJzKf5i1KzTXxvIFYOyLggu5Fu4qg2b33Mimz5fUhOkQ7l6dvMoMDLrn4x
-         mEfiOAI5Hnt0u2KQ2TJFFII2NLMDZp4Ph3qUq6ixyhZ4d17WAwOniuHAEF16AbG9eF7z
-         WkMXWhI68Lt87wd5/MYHFN7S4oltrqjUeKGQvBsfTXdFMh2hMYktd5xqpmYiQTdAvpnn
-         K0R5a8UVR39qGemYegwzZitbIDMAl+75kn6CKzZlUMzL5n5sbhTRHcex2/E661vaIP3i
-         UlfcC9++L16sPmU6PTCYIHau8VHj5FarUEu2CcaiScbOgYbBsKFEIUqF0uaSP3qcglYr
-         1+Hw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688557321; x=1691149321;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=ztBlDQIHDZqo7V/c8oOFDJdI7xBDmCnELF9YeTbIz60=;
-        b=NMu8opUGET7rIIUgRVP+C89MLIYWgd8sbuBLYQuchzOIcbEbyTRjDZyrrdMZrcgcU5
-         EZTMjoa6D/QBG2QGea0ENHcl8tUdFdhHSJIzyGNh7GMMJu9iKYW3OVCFXIa6xNTpUWdg
-         LmkkOwvR6te5X7Hi02RAv974uLBAD/MuhORe5nf86ja9lemzF8WFa+uM3mqCuqRc9asU
-         IU9CYDND/XNanP/e00rRm/4dV954FHgP+WFK1Wy394jVnvLWyK/TLhpiQCt65CWJvmxe
-         yoyA6g0kwuPONsLyP8dRDg3JvC9c+G1bLF3pp/AemWyRGOuvmKDC50CihxADxjdkMyQv
-         pebA==
-X-Gm-Message-State: ABy/qLaPo1LGADuTrWzv3Z2XXmC4Xb/SL9jr5tqYvIaZH5h3xukGZ+zz
-        J6z1ADgKZaiuLoKq2tL8UXRWYA==
-X-Google-Smtp-Source: APBJJlFfHWocgLHVuVZbV3+nPaMumekJ4wwZv2jTSVYFQ2xEyMcAxxdjissZ09VM/5ZLW2XbfWQlbg==
-X-Received: by 2002:ac2:4f14:0:b0:4f8:442c:de25 with SMTP id k20-20020ac24f14000000b004f8442cde25mr13134816lfr.5.1688557321290;
-        Wed, 05 Jul 2023 04:42:01 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id 8-20020a05600c028800b003fb416d732csm1916808wmk.6.2023.07.05.04.42.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 04:42:00 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Wed, 05 Jul 2023 13:41:53 +0200
-Subject: [PATCH v2 3/3] dt-bindings: soc: amlogic: document System Control
- registers
+        with ESMTP id S230126AbjGELqx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 07:46:53 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 47A6E19B0;
+        Wed,  5 Jul 2023 04:46:38 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,182,1684767600"; 
+   d="scan'208";a="166982757"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Jul 2023 20:46:12 +0900
+Received: from localhost.localdomain (unknown [10.166.15.32])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8279E400C458;
+        Wed,  5 Jul 2023 20:46:12 +0900 (JST)
+From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+To:     jingoohan1@gmail.com, gustavo.pimentel@synopsys.com,
+        lpieralisi@kernel.org, robh+dt@kernel.org, kw@linux.com,
+        bhelgaas@google.com, kishon@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     marek.vasut+renesas@gmail.com, fancer.lancer@gmail.com,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Subject: [PATCH v17 07/20] PCI: dwc: endpoint: Add multiple PFs support for dbi2
+Date:   Wed,  5 Jul 2023 20:41:53 +0900
+Message-Id: <20230705114206.3585188-8-yoshihiro.shimoda.uh@renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
+References: <20230705114206.3585188-1-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230705-b4-amlogic-bindings-convert-take2-v2-3-22be915ddc3b@linaro.org>
-References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
-In-Reply-To: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5263;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=lo56oO+Etmog3EY8Ab68Gwiv0DuAkQD0UTqVY8iJak8=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpVcEzTgg38yYhlrcvBrJImMVYRN+3f/3J0kcgWuW
- ZPWGsaSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKVXBAAKCRB33NvayMhJ0btUD/
- oDjPeA6DC4ldn8SQo55OJ4RbzqijHA8iJBqsNsf5BF/6fExPobnO3MpbGmbMnhygBi7vQkMqT+ORZ4
- 9FNXdys90CyDsjHIOSpqciM7zmQCgt3TnStENGygchJZQpanFGQBIL2SVVcCxC5ebbccP7P11vq5NK
- 6WC9jxQY7b579pwBUAdObAML7Y6dP0aC3yhlYmdTcEs6mkacmK4iZuGgXfm/IC62pztQSS6upoC/rn
- CJP+xqlF7pfIX4g/FbUuiKHgKmZLGwFq/bUCCMbJLJ3/e6xQXzg9tHk+i+1RKTSfHqonIgZjnPreYV
- +GJzrmBvQek8LE/gcQT3amCl/zgUMCBrvMyb68pfiSEsyeDhT/Sgr8psL5aOxLZ7EkzDVA60iyAt+n
- IMW4W2tnyqpWEZ2PItTRV9U/Hs2Q6tWSv/jg5LC+y4jIR0AhHE57ItVcI3zuK7FdEnfTnLhaC8AH/d
- Ou95md7fxstFAkksCXlXfJ2/jY9lMGchie+ZFZT/voRrQXEI4XUom9vbGDPlwWiLtdGWRcUeKPJUuv
- NWNk70fqkeZ8ekbziosrAn8PeRNRwVXlJ/ylbOEWXdh8KU9O53+8H/vVPWJT1PhoF24EaAoQWAd5Bx
- cwtktKCJBJCnHHZKkcBcfwqjYdvnwZRZ3oeLlOBh5si/5ULMxDbQflgIq0iA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the System Control registers regions found on all Amlogic
-SoC families and it's clock, power, pinctrl and phy subnodes.
+The commit 24ede430fa49 ("PCI: designware-ep: Add multiple PFs support
+for DWC") added .func_conf_select() to get the configuration space of
+different PFs and assumed that the offsets between dbi and dbi would
+be the same. However, Renesas R-Car Gen4 PCIe controllers have different
+offsets of function 1: dbi (+0x1000) and dbi2 (+0x800). To get
+the offset for dbi2, add .func_conf_select2() and
+dw_pcie_ep_func_select2().
 
-The regions has various independent registers tied to other
-hardware devices, thus the syscon compatible.
+Notes that dw_pcie_ep_func_select2() will call .func_conf_select()
+if .func_conf_select2() doesn't exist for backward compatibility.
 
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 ---
- .../soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml  | 160 +++++++++++++++++++++
- 1 file changed, 160 insertions(+)
+ .../pci/controller/dwc/pcie-designware-ep.c   | 32 ++++++++++++++-----
+ drivers/pci/controller/dwc/pcie-designware.h  |  3 +-
+ 2 files changed, 26 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-new file mode 100644
-index 000000000000..16977e4e4357
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml
-@@ -0,0 +1,160 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/soc/amlogic/amlogic,meson-gx-hhi-sysctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
+index 1d24ebf9686f..bd57516d5313 100644
+--- a/drivers/pci/controller/dwc/pcie-designware-ep.c
++++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
+@@ -54,21 +54,35 @@ static unsigned int dw_pcie_ep_func_select(struct dw_pcie_ep *ep, u8 func_no)
+ 	return func_offset;
+ }
+ 
++static unsigned int dw_pcie_ep_func_select2(struct dw_pcie_ep *ep, u8 func_no)
++{
++	unsigned int func_offset = 0;
 +
-+title: Amlogic Meson System Control registers
++	if (ep->ops->func_conf_select2)
++		func_offset = ep->ops->func_conf_select2(ep, func_no);
++	else if (ep->ops->func_conf_select)	/* for backward compatibility */
++		func_offset = ep->ops->func_conf_select(ep, func_no);
 +
-+maintainers:
-+  - Neil Armstrong <neil.armstrong@linaro.org>
++	return func_offset;
++}
 +
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - amlogic,meson-gx-hhi-sysctrl
-+          - amlogic,meson-gx-ao-sysctrl
-+          - amlogic,meson-axg-hhi-sysctrl
-+          - amlogic,meson-axg-ao-sysctrl
-+      - const: simple-mfd
-+      - const: syscon
-+
-+  reg:
-+    maxItems: 1
-+
-+  clock-controller:
-+    type: object
-+
-+  power-controller:
-+    $ref: /schemas/power/amlogic,meson-ee-pwrc.yaml
-+
-+  pinctrl:
-+    type: object
-+
-+  phy:
-+    type: object
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gx-hhi-sysctrl
-+            - amlogic,meson-axg-hhi-sysctrl
-+    then:
-+      properties:
-+        clock-controller:
-+          $ref: /schemas/clock/amlogic,gxbb-clkc.yaml#
-+
-+      required:
-+        - power-controller
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gx-ao-sysctrl
-+            - amlogic,meson-axg-ao-sysctrl
-+    then:
-+      properties:
-+        clock-controller:
-+          $ref: /schemas/clock/amlogic,gxbb-aoclkc.yaml#
-+
-+        power-controller: false
-+        phy: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-gx-hhi-sysctrl
-+    then:
-+      properties:
-+        phy: false
-+
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-axg-hhi-sysctrl
-+    then:
-+      properties:
-+        phy:
-+          oneOf:
-+            - $ref: /schemas/phy/amlogic,g12a-mipi-dphy-analog.yaml
-+            - $ref: /schemas/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
-+
-+required:
-+  - compatible
-+  - reg
-+  - clock-controller
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus@c883c000 {
-+        compatible = "simple-bus";
-+        reg = <0xc883c000 0x2000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges = <0x0 0xc883c000 0x2000>;
-+
-+        sysctrl: system-controller@0 {
-+            compatible = "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon";
-+            reg = <0 0x400>;
-+
-+            clock-controller {
-+                compatible = "amlogic,gxbb-clkc";
-+                #clock-cells = <1>;
-+                clocks = <&xtal>;
-+                clock-names = "xtal";
-+            };
-+
-+            power-controller {
-+                compatible = "amlogic,meson-gxbb-pwrc";
-+                #power-domain-cells = <1>;
-+                amlogic,ao-sysctrl = <&sysctrl_AO>;
-+
-+                resets = <&reset_viu>,
-+                         <&reset_venc>,
-+                         <&reset_vcbus>,
-+                         <&reset_bt656>,
-+                         <&reset_dvin>,
-+                         <&reset_rdma>,
-+                         <&reset_venci>,
-+                         <&reset_vencp>,
-+                         <&reset_vdac>,
-+                         <&reset_vdi6>,
-+                         <&reset_vencl>,
-+                         <&reset_vid_lock>;
-+                reset-names = "viu", "venc", "vcbus", "bt656", "dvin",
-+                              "rdma", "venci", "vencp", "vdac", "vdi6",
-+                              "vencl", "vid_lock";
-+                clocks = <&clk_vpu>, <&clk_vapb>;
-+                clock-names = "vpu", "vapb";
-+            };
-+        };
-+    };
-+
-+    bus@c8100000 {
-+        compatible = "simple-bus";
-+        reg = <0xc8100000 0x100000>;
-+        #address-cells = <1>;
-+        #size-cells = <1>;
-+        ranges = <0x0 0xc8100000 0x100000>;
-+
-+        sysctrl_AO: system-controller@0 {
-+            compatible = "amlogic,meson-gx-ao-sysctrl", "simple-mfd", "syscon";
-+            reg = <0 0x100>;
-+
-+            clock-controller {
-+                compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
-+                #clock-cells = <1>;
-+                #reset-cells = <1>;
-+                clocks = <&xtal>, <&clk81>;
-+                clock-names = "xtal", "mpeg-clk";
-+            };
-+        };
-+    };
-
+ static void __dw_pcie_ep_reset_bar(struct dw_pcie *pci, u8 func_no,
+ 				   enum pci_barno bar, int flags)
+ {
+-	u32 reg;
+-	unsigned int func_offset = 0;
++	u32 reg, reg_dbi2;
++	unsigned int func_offset, func_offset_dbi2;
+ 	struct dw_pcie_ep *ep = &pci->ep;
+ 
+ 	func_offset = dw_pcie_ep_func_select(ep, func_no);
++	func_offset_dbi2 = dw_pcie_ep_func_select2(ep, func_no);
+ 
+ 	reg = func_offset + PCI_BASE_ADDRESS_0 + (4 * bar);
++	reg_dbi2 = func_offset_dbi2 + PCI_BASE_ADDRESS_0 + (4 * bar);
+ 	dw_pcie_dbi_ro_wr_en(pci);
+-	dw_pcie_writel_dbi2(pci, reg, 0x0);
++	dw_pcie_writel_dbi2(pci, reg_dbi2, 0x0);
+ 	dw_pcie_writel_dbi(pci, reg, 0x0);
+ 	if (flags & PCI_BASE_ADDRESS_MEM_TYPE_64) {
+-		dw_pcie_writel_dbi2(pci, reg + 4, 0x0);
++		dw_pcie_writel_dbi2(pci, reg_dbi2 + 4, 0x0);
+ 		dw_pcie_writel_dbi(pci, reg + 4, 0x0);
+ 	}
+ 	dw_pcie_dbi_ro_wr_dis(pci);
+@@ -232,13 +246,15 @@ static int dw_pcie_ep_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+ 	enum pci_barno bar = epf_bar->barno;
+ 	size_t size = epf_bar->size;
+ 	int flags = epf_bar->flags;
+-	unsigned int func_offset = 0;
++	unsigned int func_offset, func_offset_dbi2;
+ 	int ret, type;
+-	u32 reg;
++	u32 reg, reg_dbi2;
+ 
+ 	func_offset = dw_pcie_ep_func_select(ep, func_no);
++	func_offset_dbi2 = dw_pcie_ep_func_select2(ep, func_no);
+ 
+ 	reg = PCI_BASE_ADDRESS_0 + (4 * bar) + func_offset;
++	reg_dbi2 = PCI_BASE_ADDRESS_0 + (4 * bar) + func_offset_dbi2;
+ 
+ 	if (!(flags & PCI_BASE_ADDRESS_SPACE))
+ 		type = PCIE_ATU_TYPE_MEM;
+@@ -254,11 +270,11 @@ static int dw_pcie_ep_set_bar(struct pci_epc *epc, u8 func_no, u8 vfunc_no,
+ 
+ 	dw_pcie_dbi_ro_wr_en(pci);
+ 
+-	dw_pcie_writel_dbi2(pci, reg, lower_32_bits(size - 1));
++	dw_pcie_writel_dbi2(pci, reg_dbi2, lower_32_bits(size - 1));
+ 	dw_pcie_writel_dbi(pci, reg, flags);
+ 
+ 	if (flags & PCI_BASE_ADDRESS_MEM_TYPE_64) {
+-		dw_pcie_writel_dbi2(pci, reg + 4, upper_32_bits(size - 1));
++		dw_pcie_writel_dbi2(pci, reg_dbi2 + 4, upper_32_bits(size - 1));
+ 		dw_pcie_writel_dbi(pci, reg + 4, 0);
+ 	}
+ 
+diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+index 812c221b3f7c..94bc20f5f600 100644
+--- a/drivers/pci/controller/dwc/pcie-designware.h
++++ b/drivers/pci/controller/dwc/pcie-designware.h
+@@ -340,9 +340,10 @@ struct dw_pcie_ep_ops {
+ 	 * access for different platform, if different func have different
+ 	 * offset, return the offset of func. if use write a register way
+ 	 * return a 0, and implement code in callback function of platform
+-	 * driver.
++	 * driver. The func_conf_select2 is for dbi2.
+ 	 */
+ 	unsigned int (*func_conf_select)(struct dw_pcie_ep *ep, u8 func_no);
++	unsigned int (*func_conf_select2)(struct dw_pcie_ep *ep, u8 func_no);
+ };
+ 
+ struct dw_pcie_ep_func {
 -- 
-2.34.1
+2.25.1
 
