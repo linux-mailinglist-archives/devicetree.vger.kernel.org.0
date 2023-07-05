@@ -2,137 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E46D1748AEB
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 19:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CA26748AF5
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 19:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231570AbjGERq6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 13:46:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59966 "EHLO
+        id S231550AbjGERt6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 13:49:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32868 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233156AbjGERq5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 13:46:57 -0400
-Received: from mail-io1-f46.google.com (mail-io1-f46.google.com [209.85.166.46])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AEAB18E;
-        Wed,  5 Jul 2023 10:46:55 -0700 (PDT)
-Received: by mail-io1-f46.google.com with SMTP id ca18e2360f4ac-783549ef058so322844939f.2;
-        Wed, 05 Jul 2023 10:46:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688579215; x=1691171215;
-        h=content-disposition:mime-version:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=7BPKw1fgvoqcgb7LOTZbCw+b3XPpLnIAGkcuOY8+t6M=;
-        b=WPuEnMo4mDQZsCc575NVN+q4+K2fHKE41LlJl5rw3aQgaWInRNpt2agUSFMm7Brq0U
-         YGC6o0d01U5t6TBvTsDnIGyJkCZe9yTCr+oEHrz2wKr6RIhYFuOw6MFISAJEDTaM+L3J
-         XG49PQFuANSdCKPW8C45QaAcw5dQuzc+5LU+3eKD3hRSNDqdJAz+uDeTQlQR0he3k3Cm
-         tkO25iK+O0Nn1lArtcHtTz9q3egsJD8igvoCEl6VpdJaEXqhmjPlUewgyPy8Z2bTN7j1
-         5WYZAjqR+00IkaEOTTyObfDDo8q0yGH0cHNoR7uwYIEPMNpMEuX9IvsAVBl14aZRjpFA
-         2SfQ==
-X-Gm-Message-State: AC+VfDzRDXxoTmWj5ilIbiVk0Uhbti06UDVrfq40P3rmArpMoSppDoBG
-        ZAYkQNBXWxzNjeKtB2QBdw==
-X-Google-Smtp-Source: ACHHUZ6h9L57pYKCTfEUv5ZD9+83UQnqH5g92h5DJquZ8TzckmjiP98XIO8kLy2+W89cZYfeCJim6g==
-X-Received: by 2002:a05:6602:19d1:b0:786:2498:40f0 with SMTP id ba17-20020a05660219d100b00786249840f0mr19797877iob.10.1688579214796;
-        Wed, 05 Jul 2023 10:46:54 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id p3-20020a02b383000000b0042b17c66fe4sm4095090jan.6.2023.07.05.10.46.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 10:46:54 -0700 (PDT)
-Received: (nullmailer pid 1268296 invoked by uid 1000);
-        Wed, 05 Jul 2023 17:46:52 -0000
-Date:   Wed, 5 Jul 2023 11:46:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+        with ESMTP id S229645AbjGERt4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 13:49:56 -0400
+Received: from mail.hugovil.com (mail.hugovil.com [162.243.120.170])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A0221E3;
+        Wed,  5 Jul 2023 10:49:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=hugovil.com
+        ; s=x; h=Subject:Content-Transfer-Encoding:MIME-Version:Message-Id:Date:Cc:To
+        :From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date
+        :Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:
+        References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:
+        List-Owner:List-Archive; bh=Umzk5ehZNG0T3NRYgnCWGiPxmb2XrP2Y/6G0hrOSDPc=; b=I
+        4SGMZT9SB/Gpbmci/2K4zbwREgZOFmMggtU0UrAV1nz/94JSwD8329cAQmA7p9dfR+sQX3V3W/JQA
+        VkCKCnogl1iqViH2qNVZID/ukIeK+tBxjFkmDW9oJBnmFyRciMvW/u/iI/Jm9Sy6+DxbKeUr5U4bZ
+        JU9+1Q+YkWR7uT8E=;
+Received: from modemcable061.19-161-184.mc.videotron.ca ([184.161.19.61]:53816 helo=localhost.localdomain)
+        by mail.hugovil.com with esmtpa (Exim 4.92)
+        (envelope-from <hugo@hugovil.com>)
+        id 1qH6dL-0006Oa-Qh; Wed, 05 Jul 2023 13:49:44 -0400
+From:   Hugo Villeneuve <hugo@hugovil.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Wim Van Sebroeck <wim@linux-watchdog.org>
-Subject: [GIT PULL] Devicetree updates for v6.5, part 2
-Message-ID: <20230705174652.GA1203382-robh@kernel.org>
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     hugo@hugovil.com, Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Date:   Wed,  5 Jul 2023 13:49:32 -0400
+Message-Id: <20230705174932.3652479-1-hugo@hugovil.com>
+X-Mailer: git-send-email 2.30.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 184.161.19.61
+X-SA-Exim-Mail-From: hugo@hugovil.com
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
+Subject: [PATCH v2] arm64: dts: imx8mn-var-som-symphony: fix USB OTG
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on mail.hugovil.com)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+From: Hugo Villeneuve <hvilleneuve@dimonoff.com>
 
-Please pull a few more DT updates. It's mostly things that fell thru the 
-cracks. Not sure what happened, but seems no watchdog changes got queued 
-up for this cycle.
+USB OTG is currently broken on the Variscite Symphony EVK and imx8mn
+nano SOM.
 
-Rob
+The PTN5150 circuitry on newer versions of the Symphony EVK board has
+a non-standard configuration in which the PTN5150 IRQ pin is left
+unconnected, and the PTN5150 ID pin is connected to GPIO1_IO11. This
+requires changes to the ptn5150 driver to support this new mode.
+Variscite have indicated their intention to submit those changes
+upstream.
 
+In the meantime, import device tree changes from linux-5.15 branch of
+varigit repos to at least make the USB OTG port operate correctly in
+host mode.
 
-The following changes since commit ecdb004843ed91222be38ed838e7ce7167018222:
+Fixes: 7358e05bddca ("arm64: dts: imx8mn-var-som-symphony: Add Variscite Symphony board with VAR-SOM-MX8MN")
+Signed-off-by: Hugo Villeneuve <hvilleneuve@dimonoff.com>
+---
+Link: [v1] https://lkml.org/lkml/2023/7/4/702
 
-  dt-bindings: interrupt-controller: add Ralink SoCs interrupt controller (2023-06-27 08:14:38 -0600)
+Changes from v1:
+- Add comments about PTN5150 IRQ/ID line connections
+- Remove "typec1_con: connector" node
+- Change IRQ type to IRQ_TYPE_EDGE_FALLING
 
-are available in the Git repository at:
+ .../dts/freescale/imx8mn-var-som-symphony.dts | 32 +++++++++++++++++--
+ 1 file changed, 30 insertions(+), 2 deletions(-)
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-6.5-2
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+index 406a711486da..a7a57442cb81 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+@@ -1,11 +1,14 @@
+ // SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+ /*
++ * Supports Symphony evaluation board versions >= 1.4a.
++ *
+  * Copyright 2019-2020 Variscite Ltd.
+  * Copyright (C) 2020 Krzysztof Kozlowski <krzk@kernel.org>
+  */
+ 
+ /dts-v1/;
+ 
++#include <dt-bindings/usb/pd.h>
+ #include "imx8mn-var-som.dtsi"
+ 
+ / {
+@@ -100,14 +103,26 @@ enet-sel-hog {
+ 		};
+ 	};
+ 
++	/*
++	 * For Symphony board version <= 1.4, the PTN5150 IRQ pin is connected
++	 * to GPIO1_IO11 on the SoM (R106 present, R132 absent). From Symphony
++	 * board version >= 1.4a, the PTN5150 ID pin is connected to GPIO1_IO11
++	 * on the SoM (R106 absent, R132 present).
++	 */
+ 	extcon_usbotg1: typec@3d {
+ 		compatible = "nxp,ptn5150";
+ 		reg = <0x3d>;
+ 		interrupt-parent = <&gpio1>;
+-		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
++		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_ptn5150>;
+ 		status = "okay";
++
++		port {
++			typec1_dr_sw: endpoint {
++				remote-endpoint = <&usb1_drd_sw>;
++			};
++		};
+ 	};
+ };
+ 
+@@ -148,8 +163,21 @@ &uart3 {
+ };
+ 
+ &usbotg1 {
++	dr_mode = "otg";
++	hnp-disable;
++	srp-disable;
++	adp-disable;
++	usb-role-switch;
+ 	disable-over-current;
+-	extcon = <&extcon_usbotg1>, <&extcon_usbotg1>;
++	samsung,picophy-pre-emp-curr-control = <3>;
++	samsung,picophy-dc-vol-level-adjust = <7>;
++	status = "okay";
++
++	port {
++		usb1_drd_sw: endpoint {
++			remote-endpoint = <&typec1_dr_sw>;
++		};
++	};
+ };
+ 
+ &iomuxc {
 
-for you to fetch changes up to 31e9f406efae513156c129e9f7ad16b9f0ec7a65:
+base-commit: d528014517f2b0531862c02865b9d4c908019dc4
+-- 
+2.30.2
 
-  dt-bindings: soc: qcom: stats: Update maintainer email (2023-07-05 09:54:53 -0600)
-
-----------------------------------------------------------------
-Devicetree updates for v6.5, part 2:
-
-- Whitespace clean-ups in binding examples
-
-- Restrict node name suffixes to "-[0-9]+" for cases of multiple
-  instances which don't have unit-addresses
-
-- Convert brcm,kona-wdt and cdns,wdt-r1p2 watchdog bindings to DT schema
-
-----------------------------------------------------------------
-Krzysztof Kozlowski (4):
-      dt-bindings: watchdog: restrict node name suffixes
-      dt-bindings: slimbus: restrict node name suffixes
-      dt-bindings: timestamp: restrict node name suffixes
-      dt-bindings: cleanup DTS example whitespaces
-
-Maulik Shah (1):
-      dt-bindings: soc: qcom: stats: Update maintainer email
-
-Nikita Bondarenko (1):
-      dt-bindings: watchdog: brcm,kona-wdt: convert txt file to yaml
-
-Srinivas Neeli (1):
-      dt-bindings: watchdog: cdns,wdt-r1p2: Convert cadence watchdog to yaml
-
- .../devicetree/bindings/arm/arm,coresight-cti.yaml | 18 +++----
- .../devicetree/bindings/arm/keystone/ti,sci.yaml   |  8 +--
- .../devicetree/bindings/display/msm/gmu.yaml       |  2 +-
- .../bindings/display/panel/samsung,s6e8aa0.yaml    |  2 +-
- .../bindings/display/rockchip/rockchip-vop.yaml    |  4 +-
- .../devicetree/bindings/iio/adc/ti,adc108s102.yaml |  2 +-
- .../bindings/media/renesas,rzg2l-cru.yaml          |  4 +-
- .../devicetree/bindings/media/renesas,vin.yaml     |  4 +-
- .../devicetree/bindings/mtd/mtd-physmap.yaml       |  2 +-
- .../devicetree/bindings/net/mediatek-dwmac.yaml    |  2 +-
- .../bindings/perf/amlogic,g12-ddr-pmu.yaml         |  4 +-
- .../devicetree/bindings/phy/mediatek,dsi-phy.yaml  |  2 +-
- .../remoteproc/amlogic,meson-mx-ao-arc.yaml        |  2 +-
- .../devicetree/bindings/slimbus/slimbus.yaml       |  2 +-
- .../devicetree/bindings/soc/qcom/qcom-stats.yaml   |  2 +-
- .../timestamp/hardware-timestamps-common.yaml      |  2 +-
- .../devicetree/bindings/usb/mediatek,mtu3.yaml     |  2 +-
- .../devicetree/bindings/usb/ti,am62-usb.yaml       |  2 +-
- .../devicetree/bindings/watchdog/brcm,kona-wdt.txt | 15 ------
- .../bindings/watchdog/brcm,kona-wdt.yaml           | 41 ++++++++++++++
- .../devicetree/bindings/watchdog/cadence-wdt.txt   | 23 --------
- .../bindings/watchdog/cdns,wdt-r1p2.yaml           | 62 ++++++++++++++++++++++
- .../devicetree/bindings/watchdog/watchdog.yaml     |  4 +-
- 23 files changed, 138 insertions(+), 73 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/brcm,kona-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/cadence-wdt.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/cdns,wdt-r1p2.yaml
