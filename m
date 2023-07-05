@@ -2,130 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A4BB3747CA3
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 07:49:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FB36747CBF
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 08:00:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230401AbjGEFtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 01:49:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58566 "EHLO
+        id S230353AbjGEGAK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 02:00:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60462 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231290AbjGEFts (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 01:49:48 -0400
-Received: from mail-yb1-xb34.google.com (mail-yb1-xb34.google.com [IPv6:2607:f8b0:4864:20::b34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8F6A10C3
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 22:49:40 -0700 (PDT)
-Received: by mail-yb1-xb34.google.com with SMTP id 3f1490d57ef6-bff27026cb0so7013293276.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 22:49:40 -0700 (PDT)
+        with ESMTP id S230157AbjGEGAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 02:00:09 -0400
+Received: from mail-ej1-x632.google.com (mail-ej1-x632.google.com [IPv6:2a00:1450:4864:20::632])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6199610C8
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 23:00:06 -0700 (PDT)
+Received: by mail-ej1-x632.google.com with SMTP id a640c23a62f3a-98df3dea907so740342766b.3
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 23:00:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688536179; x=1691128179;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:from:to:cc:subject:date:message-id:reply-to;
-        bh=5W58Fzb9Zl7oTLDX7IAWaHheZcu9ErUxDNxhsLQpU2I=;
-        b=sWbZXd9JcMPymfQeV+xlUdkWQqIjrQfCgHWB+bSaWHKy/EOgJp0HOXg9gCg2DH7WLD
-         wYs/Aans8cJIps7j99rPxc0EglgQAbRwzvL9nPw//VC1mozgdmweoXD7U66zSoeGo13Q
-         RN0Et5hyonkj4jE3dfXm2zt1lfBKTdYACw9a604i5O82LpFgny+WpPbNPf8KrpdrxiCc
-         KlgXYB1kVufEqXW9OVnElPk7VUVaQtSQkYCu0Y+rnJlL8WXKmIYko5fczlvyIP1Pbr4e
-         CGz43r1Iht+GnoyK7uPoVIgciGP4lO9Rf08U2RnyWx96nfWuvmaD5T88IL1qWq0wSeFH
-         5UIA==
+        d=linaro.org; s=google; t=1688536805; x=1691128805;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=lg4p70yBEKgSpD1cT2YGaKlK1TI1DMTxkPYru7t7pjo=;
+        b=JuxdT/xEit4IrqGeHlnyYjKmGmvgAzwPA8szxaSJH3EZcEWwW63T44Zc6/atD6SZSi
+         OHBv//7Ewd32S3ndKkXVvv1U81h/6FDKWuKhz9E+VHS0Yx0Ubstgg3xT7IuJxr5DLfQ/
+         +Y9WBvvo46+zTP4dmeFiih5GUAD+tGqaTA9cwBhlS5YhmHgci/emfftL3DCoHUhRaHFo
+         nbvT1yD4uC9SPhEGcPcsR99OcyBwYSVxCz+PlpodlKeuhew8rvdUVl5L4Kbvb2TZopri
+         4DcwPfXRWwC4l35FCWKhfZg70GjOlvVeaFYDjB8AQhR2Oh+rajLl5L6dXXbcFzPVSNqf
+         lBjw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688536179; x=1691128179;
-        h=cc:to:subject:message-id:date:from:in-reply-to:references
-         :mime-version:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=5W58Fzb9Zl7oTLDX7IAWaHheZcu9ErUxDNxhsLQpU2I=;
-        b=hTOBf4+fjEH4nUe/3l3w/mO5M0oKWzP3wCtoc6mMLXeW9R1EsyObrVAmoW54GXq8nz
-         S/TSBTjx84dZmRIwBLKQVIJGyfFdRuDnv8c9QSUzL67JfDRSsl5OOHncKOxXc8Rg11H1
-         OU9OQyh7A3DN3xM+j6p5EuBBlBdN0Dq+Wk0/l8f0NDbCtgr7l5tOZ/nkRlw72YkUziYw
-         0rdqbV9xDEnveOge3NGvC/d/Czy3vvBOT0A3HppMsLKnI7eYGOyT3uy8g84UJ1BqGLFP
-         dzufCESGr7ck6VhE5UPhJcJrRb8iZC9TaF22OvoGtg91a72YDmk4v0Le0AbznQMRDQ/P
-         5GQg==
-X-Gm-Message-State: ABy/qLbD9DwLOrF3MmONVUPt6jGXfnk3Ru0l+UzbmifyhjrW7tDNMkEA
-        0qtCEyunM+ofkmTzBNkyCFQVgucW8l1SifvEWK5vZg==
-X-Google-Smtp-Source: APBJJlEM6AOC9/Ew+OkPk9MgTVFm1ma9xNbW/8FDcQ1U+aQtiCG+kURvCEd8zQrSZ3EpR2MApxz+U8IXVL9oVp26on8=
-X-Received: by 2002:a25:b911:0:b0:c5c:c18f:c2bf with SMTP id
- x17-20020a25b911000000b00c5cc18fc2bfmr3487414ybj.11.1688536179552; Tue, 04
- Jul 2023 22:49:39 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688536805; x=1691128805;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=lg4p70yBEKgSpD1cT2YGaKlK1TI1DMTxkPYru7t7pjo=;
+        b=k4T7Rv4MzMzZ6d6JBIhDem8rt/aV8RS5ybpRL5bk+Lec44VxfgE+1Zs9sVD7ijSHHN
+         ILDGG59IuuiBo+dvFCZVHzP4fmhvT4UVqr9YJkLZGzIICLh1Nsn51Jt9aYpKFvkfEXS0
+         VDWITn8ldH+KGzYPLvEjg+USoKynSM+w863+TwbJdAjQwTrgSi7RPlrIz5kCDAM8/crw
+         6Y9CKGmQoZU3ckH5+o9rplbaWQsYtrNWEHG8TT2WrodlHQabcOqH5zZyPVJDz/udHtXN
+         nTGOfBQBkxZghTpZtV0jHycmlit7xVNzcKG0YylPrEoLfBvOIZVXh0lRmwYZbiL2TNrN
+         YQ3g==
+X-Gm-Message-State: ABy/qLY8My1SBtQ4eyDxLtr+M05bFFZbyoOg/Kjrwk5eFPjwVB+OFkRT
+        4jWPGJ3/YvO5CNpF2kn1qbSlpHF0jGVkfayMdgs=
+X-Google-Smtp-Source: APBJJlHovpZJ6c+S3ijS7SQT3N5tbS5WFllsIv8PWnLvlpcF+jgm5rZjp5jo94AHu/4D3FFDZ5JmTA==
+X-Received: by 2002:a17:906:a38b:b0:991:f207:411e with SMTP id k11-20020a170906a38b00b00991f207411emr10107006ejz.69.1688536804831;
+        Tue, 04 Jul 2023 23:00:04 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id k25-20020a17090666d900b00982842ea98bsm14071542ejp.195.2023.07.04.23.00.03
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 04 Jul 2023 23:00:04 -0700 (PDT)
+Message-ID: <afcf67e3-a017-b747-a0cf-284a87a8d24a@linaro.org>
+Date:   Wed, 5 Jul 2023 08:00:02 +0200
 MIME-Version: 1.0
-References: <20230705053914.9759-1-quic_kbajaj@quicinc.com> <20230705053914.9759-2-quic_kbajaj@quicinc.com>
-In-Reply-To: <20230705053914.9759-2-quic_kbajaj@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Wed, 5 Jul 2023 08:49:28 +0300
-Message-ID: <CAA8EJpo406gV-5H8+y4SJbbRqnWFRo5wrR6a9KJ2arbN61tS2Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: dts: qcom: qdu1000-idp: Update reserved memory region
-To:     Komal Bajaj <quic_kbajaj@quicinc.com>
-Cc:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [RESEND v1 1/2] dt-binding: spi: constrain minItems of clocks and
+ clock-names
+To:     William Qiu <william.qiu@starfivetech.com>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Emil Renner Berthing <kernel@esmil.dk>,
+        Linus Walleij <linus.walleij@linaro.org>
+References: <20230704092200.85401-1-william.qiu@starfivetech.com>
+ <20230704092200.85401-2-william.qiu@starfivetech.com>
+ <1b65e8d1-d5e1-0d6b-1248-d9683be44db8@linaro.org>
+ <c5027d42-b9be-090d-bd43-86c9b1448c99@starfivetech.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <c5027d42-b9be-090d-bd43-86c9b1448c99@starfivetech.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Jul 2023 at 08:40, Komal Bajaj <quic_kbajaj@quicinc.com> wrote:
->
-> Add missing reserved regions as described in QDU1000 memory map.
->
-> Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
-> ---
->  arch/arm64/boot/dts/qcom/qdu1000-idp.dts | 26 ++++++++++++++++++++++++
->  1 file changed, 26 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> index 1d22f87fd238..3f5512ec0a90 100644
-> --- a/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/qdu1000-idp.dts
-> @@ -448,6 +448,32 @@ &qupv3_id_0 {
->         status = "okay";
->  };
->
-> +&reserved_memory{
-> +       #address-cells = <2>;
-> +       #size-cells = <2>;
-> +       ranges;
-> +
-> +       ecc_meta_data_reserved_mem:ecc_meta_data_reserved_region@e0000000{
+On 05/07/2023 05:37, William Qiu wrote:
+>>> ---
+>>>  Documentation/devicetree/bindings/spi/spi-pl022.yaml | 11 ++++++++---
+>>>  1 file changed, 8 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/spi/spi-pl022.yaml b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+>>> index 91e540a92faf..42bb34c39971 100644
+>>> --- a/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+>>> +++ b/Documentation/devicetree/bindings/spi/spi-pl022.yaml
+>>> @@ -11,6 +11,7 @@ maintainers:
+>>>
+>>>  allOf:
+>>>    - $ref: spi-controller.yaml#
+>>> +  - $ref: /schemas/arm/primecell.yaml#
+>>
+>> This looks unrelated, so keep it as separate commit with its own rationale.
+>>
+> Because "arm,primecell-periphid"  is need in JH7110 SoC, so I added them in
+> one commit, so do I need to put them in two commit?
 
-no_underscores_in_node_names. Ever.
-
-Also, if you have checked other platforms, you'd have seen that other
-platforms use a much more generic node name for 'memory' nodes (which
-you should have used too).
-
-> +               no-map;
-> +               reg = <0x0 0xe0000000 0x0 0x20000000>;
-> +       };
-> +
-> +       harq_buffer_mem:harq_buffer_region@800000000{
-> +               no-map;
-> +               reg = <0x8 0x0 0x0 0x80000000>;
-> +       };
-> +
-> +       tenx_sp_buffer_mem:tenx_sp_buffer_region@880000000{
-> +               no-map;
-> +               reg = <0x8 0x80000000 0x0 0x50000000>;
-> +       };
-> +
-> +       fapi_buffer_mem:fapi_buffer_region@8d0000000{
-> +               no-map;
-> +               reg = <0x8 0xd0000000 0x0 0x20000000>;
-> +       };
-> +};
-> +
->  &sdhc {
->         pinctrl-0 = <&sdc_on_state>;
->         pinctrl-1 = <&sdc_off_state>;
-> --
-> 2.40.1
->
+You need to provide rationale why this is needed. I would assume this is
+needed for every primecell, not only JH7110, right?
 
 
--- 
-With best wishes
-Dmitry
+
+Best regards,
+Krzysztof
+
