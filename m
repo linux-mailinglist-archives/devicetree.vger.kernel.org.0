@@ -2,80 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C2EB747D0D
-	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 08:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09994747D19
+	for <lists+devicetree@lfdr.de>; Wed,  5 Jul 2023 08:33:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231636AbjGEG32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 02:29:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43104 "EHLO
+        id S230268AbjGEGdF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 02:33:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44236 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229892AbjGEG31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 02:29:27 -0400
-Received: from mail-ed1-x52c.google.com (mail-ed1-x52c.google.com [IPv6:2a00:1450:4864:20::52c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B13A010CF
-        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 23:29:26 -0700 (PDT)
-Received: by mail-ed1-x52c.google.com with SMTP id 4fb4d7f45d1cf-51d80d81d6eso7526329a12.1
-        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 23:29:26 -0700 (PDT)
+        with ESMTP id S229635AbjGEGdF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 02:33:05 -0400
+Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5C7091703
+        for <devicetree@vger.kernel.org>; Tue,  4 Jul 2023 23:33:02 -0700 (PDT)
+Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51e28b299adso79048a12.2
+        for <devicetree@vger.kernel.org>; Tue, 04 Jul 2023 23:33:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688538565; x=1691130565;
+        d=linaro.org; s=google; t=1688538781; x=1691130781;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=phyxHLO8a7moEZO+PoNeY0JF8+Azz+17t0Pevgwhi34=;
-        b=xRBAWRwzH66vlfdqYnjOsrYIrhpnBsxVWOa97RDb+Zg6xUTnemUfZLMfc/iG9AvICy
-         JYFbbTdNV2h2/vE0WtWB0THDl0yXMWrsHNMevPqwx48HSKYv6nhQw52LZlhtVZUDazWz
-         C8iYnssufhqGFSxVPBvfUD4r3bNoOGEc4DEW0ZHmOV1lV5PQvQ8/HKSCU6QcsryTUu1/
-         pbnVnc9In2GmPCxxa5QE00KGjQIZJQI6h0Q3rqaqg66QdW0TVvoor+BU29Y8A+l8fjwg
-         l+0JT7icaJz0BR6GomBTOAQxXWhqLCTXyo5+s6HC5dF6B2t4vfWKF/tbMe77E+BXkPTw
-         vyNw==
+        bh=4lCoKmln4WuI/lt9cbFISAsB5RRGuEG6xwKWMEIrA/0=;
+        b=GSTPFRMIiregd8994uXCU/ps7YmgrfBQlkeGkTe5dmR/tL0uslA5HRNx5u0en7yNtx
+         7EBjtv04Yucp+bEQoICW/zO6J7JuBuU0mrAo3SCgWkX9SMoQ7cUPREaHTRsPPLhXASsK
+         ue2U54t5spFp8lQ7ODW5K9dPXIF2/2i31ZkEvLtOso2fpm/C99SuC4DrS2eDn0SfB4Tl
+         nJVUqhJ9MocMsdvsqHINLqARTKkfJ8LuHY0Zn+KnjmJtIh591UAxeRrGj/3cvVM3vK2Y
+         mpatdrd6/51+X74OwKYSKuj60qduSpeMuhu+2zWVpqYZdcE+M/0uqcbgSwcgS/H+KB1o
+         cJpQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688538565; x=1691130565;
+        d=1e100.net; s=20221208; t=1688538781; x=1691130781;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=phyxHLO8a7moEZO+PoNeY0JF8+Azz+17t0Pevgwhi34=;
-        b=S5XhHXLylNohtOhUaOr8TDQ6uIdTKCJNZ+Ieguke9rsqCpFTtcDWvhPrrCuSjrAs3c
-         3dXy/nPNek9qKPCLx+ERcJgcdbP177/epYHDkTPgqWcMFhBxS5MggGnVXunS0S86W3od
-         yCHlw+sio6B16riUu4YV6MdcaF2uXsS2FONn7lBq1YVr4DzchQ4kSbIaUH9zZt2x/c3v
-         Mlf4OqlNyNnQiphIrDxJZDwsOrj8ZgeXUE7f132VE6Zolxw3RJ+XE/9W3sOLEldZkuln
-         dNcgQGNHrcmRAUiML50ds87huyHvttFByHjme/TvnKUbLzNESxAP4RkvzfVj8TuwfbE0
-         Hd3g==
-X-Gm-Message-State: ABy/qLZJpMcbJwmzevIgKsL8tz2y1TDffk9Bq3Rv9RlL1HHquixBeyGh
-        VPRDVvC36piOJoJOPc46E+fP/MdPxx826EaFaKQ=
-X-Google-Smtp-Source: APBJJlHYdTo4z/hlkFHoQa2+NZRZl1eD9iH9atBU3yCR3z2OgkJm/+XjFDGMziiDwRH6M40eVek78A==
-X-Received: by 2002:a17:907:20ac:b0:96b:e93:3aa8 with SMTP id pw12-20020a17090720ac00b0096b0e933aa8mr12138305ejb.21.1688538565237;
-        Tue, 04 Jul 2023 23:29:25 -0700 (PDT)
+        bh=4lCoKmln4WuI/lt9cbFISAsB5RRGuEG6xwKWMEIrA/0=;
+        b=G8uENQ2UPbsTUdXPqx1aYMuE7THOu0UDjJ1G0oUfb8YW2dzLw0BOaio1K19D826VHC
+         PnmTjqS+1K2HMUL4FrxC7XU4i+Wr0uP+6QcBBTD1h4ll7ui8oUewvxahXxVRfFNc6dVo
+         SHuZTaAb4brZowY9rIrnujTKkce8d0GWARtHe8r3NZfIWG58qjPrLThIPitdzvI27duL
+         xJtU6hbE4UJAKLr+5eyT/1GNj2t2Vl7KU4Z4jUglZIk2dKUAqjji4Sz+GZ8Ubwla+yW6
+         aefwedkBlyiGodBBBj7xnanhJ3upQ1tCKTSIJjw7AhDCPGLPv5gFONA0FG45tWfC6faL
+         Wbng==
+X-Gm-Message-State: ABy/qLbiTvaDJ6U/09eO0TFD4lh294Zo41jMT8VrDKY1QxAp30W7MUSs
+        mg3IIljpVY1F7WiJOHHlnPCnDw==
+X-Google-Smtp-Source: APBJJlGsadBiPVigTMaE5rljF1uJJTj29+Kym1A+vLFCCYI2BUjNKUKvCrCTBWCD+rZ+TVw+Lxn7WQ==
+X-Received: by 2002:a17:906:b7c7:b0:98c:df38:517b with SMTP id fy7-20020a170906b7c700b0098cdf38517bmr11027580ejb.33.1688538780832;
+        Tue, 04 Jul 2023 23:33:00 -0700 (PDT)
 Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id v14-20020a1709060b4e00b0099251942e1esm9446516ejg.119.2023.07.04.23.29.23
+        by smtp.gmail.com with ESMTPSA id l16-20020a1709065a9000b0098884f86e41sm14056844ejq.123.2023.07.04.23.32.59
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 04 Jul 2023 23:29:24 -0700 (PDT)
-Message-ID: <8f381404-159e-2000-c5e0-2b9ee809b4d7@linaro.org>
-Date:   Wed, 5 Jul 2023 08:29:22 +0200
+        Tue, 04 Jul 2023 23:33:00 -0700 (PDT)
+Message-ID: <4adb975e-bbd0-9a53-372a-404ec857a632@linaro.org>
+Date:   Wed, 5 Jul 2023 08:32:58 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [RESEND PATCH v6 2/7] dt-bindings: soc: starfive: Add StarFive
- syscon module
+Subject: Re: [PATCH v3 1/2] dt-bindings: leds: Read max-brightness from
+ devicetree
 Content-Language: en-US
-To:     Xingyu Wu <xingyu.wu@starfivetech.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Astrid Rost <astrid.rost@axis.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Conor Dooley <conor@kernel.org>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Hal Feng <hal.feng@starfivetech.com>,
-        William Qiu <william.qiu@starfivetech.com>,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org
-References: <20230704064610.292603-1-xingyu.wu@starfivetech.com>
- <20230704064610.292603-3-xingyu.wu@starfivetech.com>
+        Rob Herring <robh@kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     kernel@axis.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20230703130313.548519-1-astrid.rost@axis.com>
+ <20230703130313.548519-2-astrid.rost@axis.com>
 From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230704064610.292603-3-xingyu.wu@starfivetech.com>
+In-Reply-To: <20230703130313.548519-2-astrid.rost@axis.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -88,16 +83,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/07/2023 08:46, Xingyu Wu wrote:
-> From: William Qiu <william.qiu@starfivetech.com>
+On 03/07/2023 15:03, Astrid Rost wrote:
+> Normally, the maximum brightness is determined by the hardware, and this
+> property is not required. This property is used to set a software limit.
+> It could happen that an LED is made so bright that it gets damaged or
+> causes damage due to restrictions in a specific system, such as mounting
+> conditions.
+> Note that this flag is mainly used for PWM-LEDs, where it is not possible
+> to map brightness to current. Drivers for other controllers should use
+> led-max-microamp.
 > 
-> Add documentation to describe StarFive System Controller Registers.
-> 
-> Co-developed-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> Signed-off-by: Xingyu Wu <xingyu.wu@starfivetech.com>
-> Signed-off-by: William Qiu <william.qiu@starfivetech.com>
+> Signed-off-by: Astrid Rost <astrid.rost@axis.com>
 
-If you resent the same buggy code, then it is still no point to review.
+Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Best regards,
 Krzysztof
