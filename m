@@ -2,93 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 02CF474920E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 01:50:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4403F7492CE
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 02:56:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232145AbjGEXuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 19:50:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49112 "EHLO
+        id S230015AbjGFA4E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 20:56:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231539AbjGEXuY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 19:50:24 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA13D1732;
-        Wed,  5 Jul 2023 16:50:23 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 6DF8E6181A;
-        Wed,  5 Jul 2023 23:50:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPS id BC4A4C433C9;
-        Wed,  5 Jul 2023 23:50:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688601022;
-        bh=BgODPXLPTsaU0wj68dFe2wWU/mnAmoYudmtTIg9uug4=;
-        h=Subject:From:Date:References:In-Reply-To:To:Cc:From;
-        b=aq+2KA2q3s3qQaEOMbkSETl+1X+mfs637M/CazsUgB4O2lm21KaVSxkSNcAwixCc0
-         SgTYm68ui15/f0GFRRZ++yRyK17iqs/kqqD5nA8yrFC1a70mI5Ygp+GD5az4U/ujdB
-         sD4uRZffzhEmiHhAs1dK5nZiLkXRW8/sjPpUXcM6iqk9AzpP1fHH6wip8FMHFhgjRg
-         yUo71RvQ0qEbMIqqrbWyMCnGjxv3mKTFek7KrCyi67lX95wy3H+WPsLbKXkIm9iKQr
-         mLWia703Eh0HuzmJQXjHEe2hp8A7k+dPBDvHFsp4mPfpgvlirV2iFg/w5IKxaY/5JG
-         wXxvj9iQvk2iA==
-Received: from aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by aws-us-west-2-korg-oddjob-1.ci.codeaurora.org (Postfix) with ESMTP id 9B68EC6445A;
-        Wed,  5 Jul 2023 23:50:22 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+        with ESMTP id S229537AbjGFA4D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 20:56:03 -0400
+Received: from NAM10-DM6-obe.outbound.protection.outlook.com (mail-dm6nam10on2050.outbound.protection.outlook.com [40.107.93.50])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5C661722;
+        Wed,  5 Jul 2023 17:56:01 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Tw813niHf0lbuHU5/oGn2OYUWKIdaS4wJsHKUC/XlkTyzSuIOnuQrCtS9pmkQ0W8iMd1Ocv7ShcMIFTdZqBmu67OtP1WvB86oAQaZWsfvVzqeXtS3gAUJyy61h4mABbhbhfQvpnpI6xegmGkZfZIUBC6sTqUClHyNz2wKeWYquV6LIew82pEDeTyQeRT0fl/qWlq0JckZRRqww+Dx16voFbH1yr2Hlx0qs9IU+kzzo9DYKuv7Z5dlHqdSNCj2rNIzNU6ZFPCWxQJTEyfXiI6+mEgnR8rWJBbWpsRwCArfFTG3qD+nSn4wfiYCH3CcXPywTIyRL+fLPJWQHwuDmoRVQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kOipAcIt52X2bslgfQPNj78kIihkdfhPGlfAbUMbztk=;
+ b=f3fYVLa8WfQs4ucSi9vEMQ/TkTvsXgqM4HVrY3HssjJhqqVJBUErQszbVgDjcw5b/LDXOIqZJVlnwlbYhyY46fMn+7CO8PG/gWI2EPnWOJfIPyubnXNmC1G3PS72fTGPMr6TZ5dDehChWLvwLsJIA/SyzM6i3UYXKSi6X52oAUljiGEKnAAazBMTo+ICu+zDhgGViKUhftTUCzSKactPfJoheDPqoLypXQyOTy4vm23fx5tmsmdoxmSR6SocqydmgggDlSWXLXxn2OifFaY7IkdCEG8u+Qh5sh9NGiX0PPn8Q1G7MiL6mPYdnWHwRlrxhUnXA3vGDU2TjoXf/iq9Wg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
+ dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kOipAcIt52X2bslgfQPNj78kIihkdfhPGlfAbUMbztk=;
+ b=t47ucv0mHj3Z4q01wqSFkaLtJ8rnTQsUZqJfWnaw1WnwYAbP1rGD+tFu3pEBAQjIlFAuPBfpBhHQQIbcNrfbfcpRzRZRlbS+exczObRzBAALiI47B8LyqkKcFpt58kUo2RcZ0sHHcfGxmPRCG8pAv8TleZsZRceg5F5aIYiIw+Z5voTKx7fehziSX3szAe7jXKxqBJ7k2IWOUCdANbuZYUB0EX2l7M3tFsoVOb/zfmA9XMQdf6OO2FYawarD2FC3xmY0xYOrB8ALG9Ody3KNo3+cpI1iDHW/VrG3SjW2zuhvwHjIdUpUiYJs3IjCGcR1D5rUiCI2KG9+lKfwLs7sNw==
+Received: from BN1PR14CA0016.namprd14.prod.outlook.com (2603:10b6:408:e3::21)
+ by PH7PR12MB8825.namprd12.prod.outlook.com (2603:10b6:510:26a::21) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Thu, 6 Jul
+ 2023 00:55:59 +0000
+Received: from BN8NAM11FT042.eop-nam11.prod.protection.outlook.com
+ (2603:10b6:408:e3:cafe::d2) by BN1PR14CA0016.outlook.office365.com
+ (2603:10b6:408:e3::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.18 via Frontend
+ Transport; Thu, 6 Jul 2023 00:55:59 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
+ smtp.mailfrom=nvidia.com; dkim=none (message not signed)
+ header.d=none;dmarc=pass action=none header.from=nvidia.com;
+Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
+ 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
+ client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
+Received: from mail.nvidia.com (216.228.117.161) by
+ BN8NAM11FT042.mail.protection.outlook.com (10.13.177.85) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.6521.45 via Frontend Transport; Thu, 6 Jul 2023 00:55:59 +0000
+Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
+ (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 5 Jul 2023
+ 17:55:50 -0700
+Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail205.nvidia.com
+ (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Wed, 5 Jul 2023
+ 17:55:50 -0700
+Received: from build-gauthams-20230504T093912783.nvidia.com (10.127.8.14) by
+ mail.nvidia.com (10.129.68.8) with Microsoft SMTP Server id 15.2.986.37 via
+ Frontend Transport; Wed, 5 Jul 2023 17:55:50 -0700
+From:   Gautham Srinivasan <gauthams@nvidia.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
+CC:     Gautham Srinivasan <gauthams@nvidia.com>
+Subject: [PATCH 1/2] arm64: tegra: Enable PWM nodes for Orin Nano Devkit
+Date:   Thu, 6 Jul 2023 00:55:44 +0000
+Message-ID: <20230706005545.1813584-1-gauthams@nvidia.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Subject: Re: [PATCH v5] dt-bindings: riscv: deprecate riscv,isa
-From:   patchwork-bot+linux-riscv@kernel.org
-Message-Id: <168860102263.23922.9146715518598128204.git-patchwork-notify@kernel.org>
-Date:   Wed, 05 Jul 2023 23:50:22 +0000
-References: <20230702-eats-scorebook-c951f170d29f@spud>
-In-Reply-To: <20230702-eats-scorebook-c951f170d29f@spud>
-To:     Conor Dooley <conor@kernel.org>
-Cc:     linux-riscv@lists.infradead.org, palmer@dabbelt.com,
-        conor.dooley@microchip.com, paul.walmsley@sifive.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        alistair.francis@wdc.com, ajones@ventanamicro.com,
-        apatel@ventanamicro.com, atishp@atishpatra.org, jrtc27@jrtc27.com,
-        rick@andestech.com, ycliang@andestech.com,
-        oleksii.kurochko@gmail.com, qemu-riscv@nongnu.org,
-        u-boot@lists.denx.de, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, palmer@rivosinc.com, robh@kernel.org
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain
+X-NV-OnPremToCloud: ExternallySecured
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BN8NAM11FT042:EE_|PH7PR12MB8825:EE_
+X-MS-Office365-Filtering-Correlation-Id: 2ce2eb8c-7acc-4b35-dac0-08db7dbbc384
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Jar035kVoVv+ZJlulMWkbLoaR0ISGbnnr8E6lOBWGJKxRpETCyKf7HoZk+xN7SFWfzTuuekqZDLNcaMXgvdpnoEy8yvt4VRRwDBBWpJK2TAgl3sZF2FxD0nWiov/2777doqw3GGdpk0/EfsTH/uUTwau97qk1GSJinJp/01jqCSbi/mer/wWMlHsmaHa4tWtdT5f4BJVI7nu4oeQGGzM5zbaSv+BMwl3fGrUqX+x6+d1xWJTeAu89QE+k6LyE0Ehu89mHoFoTyvTlGrkQaQYVORGp03BN1672UBlS5wP8HUdeTLcnOC9LDx+o/rTa0Oq+gf+nw1TkHA4F4UFF2kdpgmIteWY6Vz/v+yrn4+23RJOEtiPpM29KGjfY2LmAhwvWmOMtlHnVojRGYQq9/pz7Re63+b1D24INwbhoUJ/cYmTN+twYS6ga3MSVx11Nz93UtrPNn/1Q9B0Xz6iMcPTAf4Nq5Ds5Fx3tPqQMqr6xc6wGNaNjYFlCMqg/rLXbibeC8uM/LKStfJpZtpsEW2jf7JulHjPDJZ8ZKS0OlcUrtjvTEadkJje9LGDCO7lhth6O0iwAhdIThPwKaNTb7hjjpg4orhfTpGPVNjEGQ4xiEvWSqC75EeC3ZSSr1b+9Js0upV1e6RrKWvQwjufwJorpBcJqmGP1V/8gQexS1k8RH/a9hDW2hoaHzforVXtzlUZfWjMxfkYu/NxrERgCXIpufmo3cBNwz0JR5TZtxYa3rz49ANgf5PItfaJ3e6T++b5
+X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(136003)(39860400002)(376002)(346002)(396003)(451199021)(40470700004)(36840700001)(46966006)(70206006)(8676002)(8936002)(2906002)(2616005)(40480700001)(5660300002)(26005)(1076003)(336012)(186003)(107886003)(41300700001)(70586007)(40460700003)(82740400003)(7696005)(356005)(7636003)(426003)(4326008)(47076005)(36756003)(316002)(83380400001)(6666004)(110136005)(36860700001)(478600001)(82310400005)(86362001);DIR:OUT;SFP:1101;
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2023 00:55:59.3490
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2ce2eb8c-7acc-4b35-dac0-08db7dbbc384
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
+X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT042.eop-nam11.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR12MB8825
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
+        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello:
+Orin Nano Devkit (P3768+P3767) supports PWM1, PWM5 and PWM7
+in 40 pin header. Enable them.
 
-This patch was applied to riscv/linux.git (for-next)
-by Palmer Dabbelt <palmer@rivosinc.com>:
+Signed-off-by: Gautham Srinivasan <gauthams@nvidia.com>
+---
+ .../nvidia/tegra234-p3768-0000+p3767-0000.dts | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-On Sun,  2 Jul 2023 00:10:01 +0100 you wrote:
-> From: Conor Dooley <conor.dooley@microchip.com>
-> 
-> intro
-> =====
-> 
-> When the RISC-V dt-bindings were accepted upstream in Linux, the base
-> ISA etc had yet to be ratified. By the ratification of the base ISA,
-> incompatible changes had snuck into the specifications - for example the
-> Zicsr and Zifencei extensions were spun out of the base ISA.
-> 
-> [...]
-
-Here is the summary with links:
-  - [v5] dt-bindings: riscv: deprecate riscv,isa
-    https://git.kernel.org/riscv/c/aeb71e42caae
-
-You are awesome, thank you!
+diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
+index 65e4b51b79c1..b2473a8b43ff 100644
+--- a/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
++++ b/arch/arm64/boot/dts/nvidia/tegra234-p3768-0000+p3767-0000.dts
+@@ -25,12 +25,31 @@
+ 			status = "okay";
+ 		};
+ 
++
++		pwm@3280000 {
++			assigned-clocks = <&bpmp TEGRA234_CLK_PWM1>;
++			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
++			status = "okay";
++		};
++
+ 		pwm@32a0000 {
+ 			assigned-clocks = <&bpmp TEGRA234_CLK_PWM3>;
+ 			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
+ 			status = "okay";
+ 		};
+ 
++		pwm@32c0000 {
++			assigned-clocks = <&bpmp TEGRA234_CLK_PWM5>;
++			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
++			status = "okay";
++		};
++
++		pwm@32e0000 {
++			assigned-clocks = <&bpmp TEGRA234_CLK_PWM7>;
++			assigned-clock-parents = <&bpmp TEGRA234_CLK_PLLP_OUT0>;
++			status = "okay";
++		};
++
+ 		hda@3510000 {
+ 			nvidia,model = "NVIDIA Jetson Orin NX HDA";
+ 			status = "okay";
 -- 
-Deet-doot-dot, I am a bot.
-https://korg.docs.kernel.org/patchwork/pwbot.html
-
+2.17.1
 
