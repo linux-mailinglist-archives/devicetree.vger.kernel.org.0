@@ -2,52 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E1B69749A05
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 12:56:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59498749A0F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 12:58:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231255AbjGFK4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 06:56:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44640 "EHLO
+        id S232159AbjGFK6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 06:58:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48884 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231769AbjGFK43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 06:56:29 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 0AF0826AD;
-        Thu,  6 Jul 2023 03:55:36 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9EFD1480;
-        Thu,  6 Jul 2023 03:56:17 -0700 (PDT)
-Received: from e120937-lin (unknown [172.31.20.19])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2D1903F663;
-        Thu,  6 Jul 2023 03:55:34 -0700 (PDT)
-Date:   Thu, 6 Jul 2023 11:55:32 +0100
-From:   Cristian Marussi <cristian.marussi@arm.com>
-To:     andy.shevchenko@gmail.com
-Cc:     Oleksii Moisieiev <Oleksii_Moisieiev@epam.com>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH v3 2/4] firmware: arm_scmi: Add SCMI v3.2 pincontrol
- protocol basic support
-Message-ID: <ZKadpOfcau9esJJq@e120937-lin>
-References: <cover.1686063941.git.oleksii_moisieiev@epam.com>
- <d388c7af3f72fd47baffe0de8c6fec8074cb483c.1686063941.git.oleksii_moisieiev@epam.com>
- <ZIAtdLTvM6qh4r9W@surfacebook>
- <ZJ78hBcjAhiU+ZBO@e120937-lin>
- <ZKM9TMHEMkMNaKt9@surfacebook>
+        with ESMTP id S232672AbjGFK6A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 06:58:00 -0400
+Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B462273C
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 03:57:08 -0700 (PDT)
+Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99342a599e9so69317266b.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 03:57:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688641027; x=1691233027;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=092L2NFJ+qxRZMwDDHah31TebKjJ3Qz4BGKrTA614qo=;
+        b=R3ok/LuHATPw7QzcSacAzN6Dedlw7csZlV77VLYrWd091NXov/sOQz1Wij4VxPwE01
+         XhVv+F+ccfALmC+rQXbggsxkFu0K4TTSgy7pu8CJkvB6WR6cHcHUNCpDtPxmz+7MRIeO
+         GszD07zUvXqDwEFJVHPH5oPObKSvEC9lhNJv9DhOvEzD4KpYPaTiPplKTmbNr4YcVo0H
+         Wyiqx467fBCYXPXiJQVMY8RUlQkjPCw48B23eXVhBUlonks+a3o6u90EB3fGUkurv3ti
+         0n7rutumD41NSxOb+Y8c7zbNna6V9jwbH2EOyV++X1zb2AOXb4UMyjX1smb9ZedDX82C
+         iaHA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688641027; x=1691233027;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=092L2NFJ+qxRZMwDDHah31TebKjJ3Qz4BGKrTA614qo=;
+        b=B/5EU86thwXOYnI5cjXhN8XKdJEyIvcMG6wxNJpyoWYkrmDCylB46SF3oBruh9zUJi
+         /hxwWPV0Dn86qeINzxVBbYQsV0aryflcGpS+OLC+c+FljVoTAH+UA64xdXxAUMSYHYSt
+         aWN5JP0DdXNE15jZZZ2lsxOotLP70L8EMdqa8AdNnLYGKPBoRYY94y/BLSxVLCSoO8mK
+         9r8VkMlU1FD4Igj3UQTsv9zT7O8B6JvZs0CFTxH7GWkikOsZGYkARUEDKFxQB3+mB3xS
+         0N15JGJEoM/4S8inyKu5Kd5yOmn878mi4yY3KDCuC7EBXlOK+gwzKy48UMgaDcoHxehV
+         wkUg==
+X-Gm-Message-State: ABy/qLbpcsEFSN+qXNFQ1kKxa0DYVfCjd5xNGqDXFl6wYHxA/gfGZyBS
+        G2LhwoboDdHhh5E0BFgCc3ScKxOcQTUniryeNZw=
+X-Google-Smtp-Source: APBJJlH8PRjhwyFUtcv0tpmau9uPFUcjpzmdGl4Chf6J3QkYTVhAUsi+4hAwKnBb/D8IMqz7Ftc2SA==
+X-Received: by 2002:a17:906:1114:b0:978:a186:464f with SMTP id h20-20020a170906111400b00978a186464fmr1109405eja.39.1688641026853;
+        Thu, 06 Jul 2023 03:57:06 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id gt4-20020a170906f20400b009935aba3a9dsm653682ejb.48.2023.07.06.03.57.05
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jul 2023 03:57:06 -0700 (PDT)
+Message-ID: <529beea3-3f36-3837-35c4-1efa25d8f1f2@linaro.org>
+Date:   Thu, 6 Jul 2023 12:57:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ZKM9TMHEMkMNaKt9@surfacebook>
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/3] dt-bindings: power: rpmpd: Remove the SoC specific
+ entries
+Content-Language: en-US
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <1688635218-23779-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1688635218-23779-2-git-send-email-quic_rohiagar@quicinc.com>
+ <318ab229-f29f-e6aa-16b8-79fa09013794@linaro.org>
+ <b994f92c-331b-ca64-01ec-ec285fb2a76e@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <b994f92c-331b-ca64-01ec-ec285fb2a76e@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -55,112 +80,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 04, 2023 at 12:27:40AM +0300, andy.shevchenko@gmail.com wrote:
-> Fri, Jun 30, 2023 at 05:02:12PM +0100, Cristian Marussi kirjoitti:
-> > On Wed, Jun 07, 2023 at 10:10:44AM +0300, andy.shevchenko@gmail.com wrote:
-> > > Tue, Jun 06, 2023 at 04:22:27PM +0000, Oleksii Moisieiev kirjoitti:
+On 06/07/2023 12:53, Rohit Agarwal wrote:
 > 
-> ...
-> 
+> On 7/6/2023 4:15 PM, Krzysztof Kozlowski wrote:
+>> On 06/07/2023 11:20, Rohit Agarwal wrote:
+>>> Remove the SoC specific entries and add a generic set of defines
+>>> that can be used by all the SoCs. This will remove the duplicate
+>>> entries among SoCs.
+>>> The arrangement of the defines is done according to the frequency
+>>> used in SoC specific entries in the driver to avoid wastage of
+>>> memory.
+>>>
+>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> Please compile kernel with this commit and tell us what is wrong... Even
+>> if bindings were not an ABI, but they are, this would not work.
+> Do you mean that individually this commit would fail compilation?
+> Yes, we would need all the patches together for compilation to be 
+> successful.
 
-Hi Andy,
+Yeah, it is not bisectable.
 
-> > > > -scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o
-> > > > +scmi-protocols-y = base.o clock.o perf.o power.o reset.o sensors.o system.o voltage.o powercap.o pinctrl.o
-> > > 
-> > > Why not splitting it and make it ordered?
-> > 
-> > Maybe a good idea for a separate cleanup...not sure can fit this series
-> > without causing churn with other in-flight SCMI series...I'll happily wait
-> > for Sudeep to decide.
- 
-[snip]
- 
-> > > > +	}
-> 
-> ...
-> 
-> > > All the same, why devm_*() is in use and what are the object lifetimes?
-> > 
-> > This bit about alocation and devres deserves an explanation in the context
-> > of the SCMI stack.
-> > 
-> > So, you can add support for a new SCMI protocol using the below macro
-> > 
-> >  DEFINE_SCMI_PROTOCOL_REGISTER_UNREGISTER
-> > 
-> > to register with the core SCMI stack a few things like an
-> > initialization function and the protocol operations you wish this
-> > protocol to expose.
-> > 
-> > At run-time, once the first user of your new protocol comes up (like
-> > the pinctrl driver later in the series), the core SCMI will take care
-> > to setup and initialize the protocol so that can be used by the SCMI
-> > drivers (like pinctrl-scmi.c) via its exposed proto_operations.
-> > (assuming the protocol has been also found as supported by the fw
-> > serving as the SCMI server)
-> > 
-> > When the last user of a protocol is gone, similarly, the protocol
-> > will be deinitialized (if anything is needed to be deinit really...)
-> > 
-> > Basically the core calls upfront the protocol_init function you provided
-> > and passes to it a ph protocol_handle that embeds a number of things
-> > useful for protocol implementations, like as example the xops-> needed
-> > to build and send messages using the core facilities.
-> > 
-> > Another thing that is embedded in the ph, as you noticed, is the ph->dev
-> > device reference to be optionally used for devres in your protocol: now,
-> > we do NOT have per-protocol devices, so, that device lifetine is NOT bound
-> > strictly to this protocol but to the whole stack... BUT the SCMI core
-> > takes care to open/close a devres group around your protocol_init invocation,
-> > so that you can use devres on your .protocol_init, and be assured that when
-> > your protocol will be de-initialized (since no more used by anyone) all your
-> > devres allocations will be freed.
-> > 
-> > For this see:
-> > 
-> >  drivers/firmware/arm_scmi/driver.c::scmi_alloc_init_protocol_instance()
-> > 
-> > This clearly works ONLY for allocations descending directly from the
-> > .protocol_init() call (when the devres group is open) and it was working
-> > fine till today for all protocols, since all existing protocols
-> > allocated all what they needed during protocol_init....
-> > 
-> > ... Pinctrl is a differenet beast, though, since it could make sense indeed
-> > (even though still under a bit of discussion..) to delay some allocations and
-> > SCMI querying to the platform after the protocol_init stage...i.e. lazy allocate
-> > some resources only later when the pinctrl subsystem will parse the DT and will
-> > ask the pinctrl-scmi driver just for the strictly needed resources.
-> > (so you avoid to query and allocate at boot time a bunch of pin stuff that you
-> > will never use...)
-> > 
-> > These lazy allocations instead, like the ones in scmi_pinctrl_get_group_info(),
-> > happen outside of the .protocol_init path so they HAVE TO to be explicitly
-> > managed manually without devres; as a consequence the addition of a
-> > dedicated .protocol_deinit() function and the frees on the err path: so
-> > that anything non devres allocated in the protcol devres_group can be
-> > freed properly when the core deinitializes the protocol.
-> > 
-> > What is WRONG, though, in this patch (and I missed it ... my bad) is that such
-> > explicit manual alloc/dealloc need not and should not be of devres kind but just
-> > plain simple kmalloc_ / kfree.
-> > (even though it is not harmful in this context...the ph->dev never unbounds till
-> > the end of the stack..it is certainkly not needed and confusing)
-> > 
-> > Hoping not to have bored you to death with all of this SCMI digression... :D
-> 
-> Thank you for a dive into the implementation of the SCMI. Perhaps you can
-> summarize that into some kernel doc aroung thouse callbacks, so people can
-> clearly see when it's possible and when it's not to use devm_*() APIs.
->
+Another problem is ABI impact, but I think Konrad covered it.
 
-Absolutely, this is definitely missing, it's just that till now I was
-the only dealing with this, so docs was overlooked ... and I am really
-the first to be in need of this documentation :P
-
-Thanks,
-Cristian
-
-P.S.: and apologies for late replies but our mail server seems to
-constantly classify you as spam :D
+Best regards,
+Krzysztof
 
