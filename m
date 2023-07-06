@@ -2,111 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C279F74A30D
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 19:27:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0007C74A342
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 19:40:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230466AbjGFR1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 13:27:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34568 "EHLO
+        id S231465AbjGFRkj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 13:40:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41182 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229492AbjGFR1U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 13:27:20 -0400
-Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF6619B2
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 10:27:19 -0700 (PDT)
-Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b8033987baso15205775ad.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 10:27:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1688664439; x=1691256439;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=Jn7a2xeSOCay/dfZF7fwDabuNtAa1pZY11og1PISP7o=;
-        b=iiQ+SMcyzSGrF/OXkZ0ynReYpKtMKZ0y0KTGoqTMo6wj7LWaQxw0z5jrVOvbH58TTg
-         +N0U8PwreurjB5vVwFH9fXYJNWvRbmTRctfibbcyIYqbrUA4jTbc/Z3dAQ/5MprxDTGt
-         7u084BXwAky1m625fwmIHNhkWTTHM8bi5k6mcNrCG+se3g8/+bm9vBberW5VtkXqIdxT
-         aodLfXEGxeET0tBuCnP1803Az+pVNyKlcAyoQzVfFuzvTEGIYaJbYz1Km6QS4zFK5xD7
-         9O0IZrbUp9uaCA7B3O6svuVhAsKLm33sopcJcweXt+u98ytGaP3ArwiqIPbHHzp4PvW4
-         7ilA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688664439; x=1691256439;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=Jn7a2xeSOCay/dfZF7fwDabuNtAa1pZY11og1PISP7o=;
-        b=HPJuaqM+NFX7a4KN2px4tQRAQxODVIH0mG2IFFv8jC+r19ckd9AkhuNG3AlMKoz8Fn
-         k2MT+iMeKtXdJQTJ2MwFdI6PAK3e8/rTODtxwMExHv1bnaFnheE3k1PZVH/5tovQUhA5
-         MPcmJzCCcaJbBPmLUyCQAcm5ysu5awwt6JuvqoZ3ABMVCD86Z0/rAP2lk178CH855XYZ
-         Vn9hTQD89nfS7CCRh9+G56tDECYSEWWnmucDTM7PdxRYPYarulBhBdNCwzTlsSry2fTt
-         UR1uYsuKAG1JeF7INDhXFamBKWDrqkwiyZ/Il6kF177VQnAVf3ve414Op2wXRKO3kj+c
-         RjaQ==
-X-Gm-Message-State: ABy/qLbqwbYMBtb4YC+wyDnhqGxO8HsAUv5cdAy0bgHCr1MQxqUEK+ow
-        POSFw2BUb7AaLKWnHj4uBA/TnA==
-X-Google-Smtp-Source: APBJJlE3KGdR0bMX6GYwQVcPoEOOedKCRiHGchyo57OKOouToD0llxWDSI4fWwVmCNS6bQ2O3EB6tw==
-X-Received: by 2002:a17:902:dac9:b0:1b8:76cb:c6a4 with SMTP id q9-20020a170902dac900b001b876cbc6a4mr8323507plx.21.1688664438768;
-        Thu, 06 Jul 2023 10:27:18 -0700 (PDT)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id y10-20020a17090322ca00b001b7fabe8b0asm1694210plg.2.2023.07.06.10.27.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 10:27:18 -0700 (PDT)
-Date:   Thu, 06 Jul 2023 10:27:18 -0700 (PDT)
-X-Google-Original-Date: Thu, 06 Jul 2023 10:26:32 PDT (-0700)
-Subject:     Re: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for starfive devices
-In-Reply-To: <20230627080620.329873-1-felix.moessbauer@siemens.com>
-CC:     kernel@esmil.dk, robh+dt@kernel.org,
-        daniel.bovensiepen@siemens.com, jan.kiszka@siemens.com,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        felix.moessbauer@siemens.com
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     felix.moessbauer@siemens.com, Conor Dooley <conor@kernel.org>
-Message-ID: <mhng-6b374b17-9e75-4ae5-b614-f89fcf8b64c4@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S229735AbjGFRki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 13:40:38 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C93211E;
+        Thu,  6 Jul 2023 10:40:20 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 7BE64610A4;
+        Thu,  6 Jul 2023 17:40:20 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CAC02C433CC;
+        Thu,  6 Jul 2023 17:40:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688665219;
+        bh=OafE7RfQPhCn8tz1LRoCXIwPX8fW355ojJh3GXDoLxg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vKaOglrQuoab84EHenMv3upxX9VjaL2ESZ5qhceANzLE9Dib+Fw2fJmKKyBW5viGp
+         xl3DY5S18g0EzXYOSHXeupXBotaUOw2gwrd5odDeIw8lTRM1XcBKLtFs9P9Z49kjt6
+         rdy+GnSvj80wAljeJscpKhnBogmq16beIU94wbHueiQNwQl1mrAZ/6tpMjXIoRXrzv
+         r51VOY1e+2swB3HPcjKhlUoo29LfX+l2tX2BRIXWisaewYbIZ5q01tA97PAF563zxU
+         Uh7w8cH0fucVFYJhnD96sZ8dDN0x+Roiywe7uxUOZv/KPkx+9RLRzB0RNl3IdBcvGt
+         B+3OJEagOFUOA==
+Received: by mail-lj1-f181.google.com with SMTP id 38308e7fff4ca-2b703cbfaf5so15491041fa.1;
+        Thu, 06 Jul 2023 10:40:19 -0700 (PDT)
+X-Gm-Message-State: ABy/qLZJymvt6CmIlHrasR5RAbmeclR2RS4UGb+/za1yWFZysGiwsrRk
+        0ViID54TPsVas1gW8ds4y4TMfbHG28Ne/za6Ug==
+X-Google-Smtp-Source: APBJJlFLFNiNJigyFmziwL1wFkrKwaYKPPN5OlsHTXZ5q/hFDchpxmkQpAARprOA+JxtkSg2vaCjxysk/E9zGT8Ut40=
+X-Received: by 2002:a2e:8885:0:b0:2b6:e9e1:f62f with SMTP id
+ k5-20020a2e8885000000b002b6e9e1f62fmr1875581lji.5.1688665217743; Thu, 06 Jul
+ 2023 10:40:17 -0700 (PDT)
+MIME-Version: 1.0
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <2023062814-chance-flounder-f002@gregkh> <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+ <cc30660f-dd72-aade-6346-a93c6ad4b695@quicinc.com> <29af84dc-7db8-0c43-07b6-eb743cf25e57@linaro.org>
+ <957a3cdb-6091-8679-ddb0-296db2347291@quicinc.com>
+In-Reply-To: <957a3cdb-6091-8679-ddb0-296db2347291@quicinc.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 6 Jul 2023 11:40:05 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK7MHR09U5h01=Gf1ZLeDVCgZdN-W1hQRH3AX+E94_uUg@mail.gmail.com>
+Message-ID: <CAL_JsqK7MHR09U5h01=Gf1ZLeDVCgZdN-W1hQRH3AX+E94_uUg@mail.gmail.com>
+Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related support
+To:     Trilok Soni <quic_tsoni@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mukesh Ojha <quic_mojha@quicinc.com>,
+        Greg KH <gregkh@linuxfoundation.org>, corbet@lwn.net,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        mathieu.poirier@linaro.org, catalin.marinas@arm.com,
+        will@kernel.org, linus.walleij@linaro.org,
+        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Alex Elder <elder@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jun 2023 01:06:20 PDT (-0700), felix.moessbauer@siemens.com wrote:
-> Add the '-@' DTC option for the starfive devices. This option
-> populates the '__symbols__' node that contains all the necessary symbols
-> for supporting device-tree overlays (for instance from the firmware or
-> the bootloader) on these devices.
+On Mon, Jul 3, 2023 at 3:06=E2=80=AFPM Trilok Soni <quic_tsoni@quicinc.com>=
+ wrote:
 >
-> The starfive devices allow various modules to be connected and this
-> enables users to create out-of-tree device-tree overlays for these modules.
+> On 7/2/2023 1:29 AM, Krzysztof Kozlowski wrote:
+> > On 30/06/2023 18:04, Mukesh Ojha wrote:
+> >>>
+> >>>> We don't add layers when they are not needed, and never when there i=
+s no
+> >>>> actual user.  If you need the extra "complexity" later, then add it
+> >>>> later when it is needed as who knows when that will ever be.
+> >>>>
+> >>>> Please redo this series based on that, thanks.
+> >>>
+> >>> My bigger issue with this whole series is what would this all look
+> >>> like if every SoC vendor upstreamed their own custom dumping
+> >>> mechanism. That would be a mess. (I have similar opinions on the
+> >>> $soc-vendor hypervisors.)
+> >
+> > Mukesh,
+> >
+> > LPC CFP is still open. There will be also Android and Kernel Debugging
+> > LPC microconference tracks. Coming with a unified solution could be a
+> > great topic for LPC. Solutions targeting only one user are quite often
+> > frowned upon.
 >
-> Please note that this change does increase the size of the resulting DTB
-> by ~20%. For example, with v6.4 increase in size is as follows:
->
-> jh7100-beaglev-starlight.dtb 6192 -> 7339
-> jh7100-starfive-visionfive-v1.dtb 6281 -> 7428
-> jh7110-starfive-visionfive-2-v1.2a.dtb 11101 -> 13447
-> jh7110-starfive-visionfive-2-v1.3b.dtb 11101 -> 13447
->
-> Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile | 6 ++++++
->  1 file changed, 6 insertions(+)
->
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
-> index 170956846d49..0141504c0f5c 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -1,4 +1,10 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +# Enables support for device-tree overlays
-> +DTC_FLAGS_jh7100-beaglev-starlight := -@
-> +DTC_FLAGS_jh7100-starfive-visionfive-v1 := -@
-> +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.2a := -@
-> +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b := -@
-> +
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
+> LPC is far out and in November. Can we not have others speak up if they
+> have the similar solution now? We can expand this to linux-kernel and
+> ask for the other SOC vendors to chime in. I am sure that we may have
+> existing solutions which came in for the one user first like Intel RDT
+> if I remember. I am sure ARM MPAM usecase was present at that time but
+> Intel RDT based solution which was x86 specific but accepted.
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+RDT predated MPAM. resctrl is the kernel feature, and it supports
+Intel and AMD which are not identical. resctrl is being (extensively)
+refactored to add in MPAM support.
+
+You are not the first here like Intel RDT, so I fail to see the
+parallel with minidump. We have an existing logging to persistent
+storage mechanism which is pstore. You should integrate into that
+rather than grafting something on to the side or underneath.
+
+Rob
