@@ -2,201 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A59374930E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 03:25:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF7D174936B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 04:04:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231218AbjGFBZ5 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jul 2023 21:25:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44520 "EHLO
+        id S232583AbjGFCEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 5 Jul 2023 22:04:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55238 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230305AbjGFBZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 21:25:57 -0400
-Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1268C1994;
-        Wed,  5 Jul 2023 18:25:55 -0700 (PDT)
-Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.226])
-        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4QxJhd2lkwz6J7DM;
-        Thu,  6 Jul 2023 09:24:01 +0800 (CST)
-Received: from localhost (10.34.206.101) by lhrpeml500005.china.huawei.com
- (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 6 Jul
- 2023 02:25:47 +0100
-Date:   Thu, 6 Jul 2023 09:25:43 +0800
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     "Paller, Kim Seer" <KimSeer.Paller@analog.com>,
-        "jic23@kernel.org" <jic23@kernel.org>,
-        "lars@metafoo.de" <lars@metafoo.de>,
-        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
-        "conor+dt@kernel.org" <conor+dt@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        kernel test robot <lkp@intel.com>
-Subject: Re: [PATCH v8 2/2] iio: adc: max14001: New driver
-Message-ID: <20230706092543.0000038d@Huawei.com>
-In-Reply-To: <CAHp75Ve_pBvVRxHTyvFy_-cWq9dNapO0hYn=ujXCPCqgQ1obUA@mail.gmail.com>
-References: <20230622143227.30147-1-kimseer.paller@analog.com>
-        <20230622143227.30147-2-kimseer.paller@analog.com>
-        <20230702180315.00003dbe@Huawei.com>
-        <fcf6daf6afec48b096df14d8b5308db0@analog.com>
-        <20230705155530.00002074@Huawei.com>
-        <CAHp75VfGFXtX2UCV+EzSMGaRMc5=WUpUJpRFB_K6NMJO2+iszg@mail.gmail.com>
-        <20230705172834.00001853@Huawei.com>
-        <CAHp75Ve_pBvVRxHTyvFy_-cWq9dNapO0hYn=ujXCPCqgQ1obUA@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [10.34.206.101]
-X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
- lhrpeml500005.china.huawei.com (7.191.163.240)
-X-CFilter-Loop: Reflected
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232489AbjGFCET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 22:04:19 -0400
+Received: from inva020.nxp.com (inva020.nxp.com [92.121.34.13])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5ADD19A9;
+        Wed,  5 Jul 2023 19:04:17 -0700 (PDT)
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4AD671A0695;
+        Thu,  6 Jul 2023 04:04:16 +0200 (CEST)
+Received: from aprdc01srsp001v.ap-rdc01.nxp.com (aprdc01srsp001v.ap-rdc01.nxp.com [165.114.16.16])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 12D8D1A0654;
+        Thu,  6 Jul 2023 04:04:16 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by aprdc01srsp001v.ap-rdc01.nxp.com (Postfix) with ESMTP id 19FA81800319;
+        Thu,  6 Jul 2023 10:04:14 +0800 (+08)
+From:   Shengjiu Wang <shengjiu.wang@nxp.com>
+To:     abelvesa@kernel.org, peng.fan@nxp.com, mturquette@baylibre.com,
+        sboyd@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, shengjiu.wang@gmail.com
+Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/3] clk: imx: add audio clock mux driver
+Date:   Thu,  6 Jul 2023 09:31:15 +0800
+Message-Id: <1688607078-4183-1-git-send-email-shengjiu.wang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 5 Jul 2023 12:36:40 +0300
-Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
+The Audio Clock Mux (ACM) is a collection of control registers
+and multiplexers that are used to route the audio source clocks
+to the audio peripherals on i.MX8QXP, i.MX8QM, i.MX8DXL
 
-> On Wed, Jul 5, 2023 at 12:28 PM Jonathan Cameron
-> <Jonathan.Cameron@huawei.com> wrote:
-> > On Wed, 5 Jul 2023 11:53:17 +0300
-> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
-> > > On Wed, Jul 5, 2023 at 10:55 AM Jonathan Cameron
-> > > <Jonathan.Cameron@huawei.com> wrote:  
-> > > > > > From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-> > > > > > Sent: Sunday, July 2, 2023 6:04 PM
-> > > > > > On Thu, 22 Jun 2023 22:32:27 +0800
-> > > > > > Kim Seer Paller <kimseer.paller@analog.com> wrote:  
-> 
-> ...
-> 
-> > > > > > > + /*
-> > > > > > > +  * Convert transmit buffer to big-endian format and reverse transmit
-> > > > > > > +  * buffer to align with the LSB-first input on SDI port.
-> > > > > > > +  */
-> > > > > > > + st->spi_tx_buffer =  
-> > > > > > cpu_to_be16(bitrev16(FIELD_PREP(MAX14001_ADDR_MASK,  
-> > > > > > > +                                                         reg_addr)));
-> > > > > > > +
-> > > > > > > + ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> > > > > > > + if (ret)
-> > > > > > > +         return ret;
-> > > > > > > +
-> > > > > > > + /*
-> > > > > > > +  * Align received data from the receive buffer, reversing and reordering
-> > > > > > > +  * it to match the expected MSB-first format.
-> > > > > > > +  */
-> > > > > > > + *data = (__force u16)(be16_to_cpu(bitrev16(st->spi_rx_buffer))) &
-> > > > > > > +  
-> > > > > >     MAX14001_DATA_MASK;  
-> > > > > > > +  
-> > > > > > These sequences still confuse me a lot because I'd expect the values in tx
-> > > > > > to have the opposite operations applied to those for rx and that's not the
-> > > > > > case.
-> > > > > >
-> > > > > > Let's take a le system.
-> > > > > > tx = cpu_to_be16(bitrev16(x))
-> > > > > >    = cpu_to_be16((__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8));
-> > > > > >    = __bitrev8(x & 0xff) | (__bitrev8(x >> 8) << 8)
-> > > > > > or swap all the bits in each byte, but don't swap the bytes.
-> > > > > >
-> > > > > > rx = cpu_to_be16(bitrev16(x))
-> > > > > >    = be16_to_cpu(((__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)_
-> > > > > >    = __bitrev8(x & 0xff) | __bitrev(x >> 8)
-> > > > > >
-> > > > > > also swap all the bits in each byte, but don't swap the bytes.
-> > > > > >
-> > > > > > So it is the reverse because the bytes swaps unwind themselves somewhat.
-> > > > > > For a be system cpu_to_be16 etc are noop.
-> > > > > > tx = (__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)
-> > > > > > rx = (__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)
-> > > > > >
-> > > > > > So in this case swap all 16 bits.
-> > > > > >
-> > > > > > Now, given I'd expected them to be reversed for the tx vs rx case.
-> > > > > > E.g.
-> > > > > > tx = cpu_to_be16(bitrev16(x))
-> > > > > > As above.
-> > > > > > For rx, le host
-> > > > > > rx = bitrev16(be16_to_cpu(x))
-> > > > > >    = __bitrev8((x >> 8) & 0xff) << 8) |  __bitrev8((((x & 0xff) << 8) >> 8)
-> > > > > > same as above (if you swap the two terms I think.
-> > > > > >
-> > > > > > For be the be16_to_cpu is a noop again, so it's just bitrev16(x) as expected.
-> > > > > >
-> > > > > > Hence if I've understood this correctly you could reverse the terms so that
-> > > > > > it was 'obvious' you were doing the opposite for the tx term vs the rx one
-> > > > > > without making the slightest bit of difference....
-> > > > > >
-> > > > > > hmm. Might be worth doing simply to avoid questions.  
-> > > > >
-> > > > > Thank you for your feedback. I have tested the modifications based on your
-> > > > > suggestions, taking the le system into account, and it appears that the code is
-> > > > > functioning correctly. Before sending the new patch version, I would like to
-> > > > > confirm if this aligns with your comments.  
-> > >  
-> > > > Yes. This looks good to me.  
-> > >
-> > > I think the implementation is still incorrect. See below.
-> > >  
-> > > > > static int max14001_read(void *context, unsigned int reg_addr, unsigned int *data)
-> > > > > {
-> > > > >       struct max14001_state *st = context;
-> > > > >       int ret;
-> > > > >
-> > > > >       struct spi_transfer xfers[] = {
-> > > > >               {
-> > > > >                       .tx_buf = &st->spi_tx_buffer,
-> > > > >                       .len = sizeof(st->spi_tx_buffer),
-> > > > >                       .cs_change = 1,
-> > > > >               }, {
-> > > > >                       .rx_buf = &st->spi_rx_buffer,
-> > > > >                       .len = sizeof(st->spi_rx_buffer),
-> > > > >               },
-> > > > >       };  
-> > >  
-> > > > >       st->spi_tx_buffer = cpu_to_be16(bitrev16(FIELD_PREP(MAX14001_ADDR_MASK, reg_addr)));  
-> > >
-> > > Here we got bits in CPU order, reversed them and converted to BE16.
-> > >  
-> > > > >       ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
-> > > > >       if (ret)
-> > > > >               return ret;  
-> > >  
-> > > > >       *data = cpu_to_be16(bitrev16(st->spi_rx_buffer));  
-> > >
-> > > Here we take __be16 response, reverse them and convert to BE16?!
-> > > This is weird. You should have be16_to_cpu() somewhere, not the opposite.  
-> > Good point - though functionally they end up the same (and the bitrev
-> > is making mess of type markings anyway). It is more logical
-> > to ensure the direction is reversed as you suggest.  
-> 
-> Also a question why we don't do that in reversed order.
-> Logically it sounds like bitrev16(be16_to_cpu()) should be.
-> Will it give the wrong results?
-Shouldn't make any difference as the two operations commute.
-I'd missed this.  You are right that the other order makes more
-sense.
+Shengjiu Wang (3):
+  dt-bindings: clock: fsl,imx8-acm: Add audio clock mux support
+  dt-bindings: clock: imx8-clock: Add audio clock mux related clock
+  clk: imx: imx8: add audio clock mux driver
 
-Jonathan
+ .../bindings/clock/fsl,imx8-acm.yaml          | 156 ++++++
+ drivers/clk/imx/Makefile                      |   2 +-
+ drivers/clk/imx/clk-imx8-acm.c                | 477 ++++++++++++++++++
+ include/dt-bindings/clock/imx8-clock.h        |  28 +
+ 4 files changed, 662 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/fsl,imx8-acm.yaml
+ create mode 100644 drivers/clk/imx/clk-imx8-acm.c
 
-> 
-> All in all this algo should be described in the comment in the code
-> (if not yet).
-> 
-> > > > >       return 0;
-> > > > > }  
-> 
+-- 
+2.34.1
 
