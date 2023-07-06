@@ -2,60 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF86E74A434
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:08:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 540D574A42F
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:08:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232412AbjGFTG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 15:06:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39798 "EHLO
+        id S232022AbjGFTIP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 15:08:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232408AbjGFTG0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:06:26 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B02F41FCC;
-        Thu,  6 Jul 2023 12:06:24 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-7835ae70e46so37955939f.3;
-        Thu, 06 Jul 2023 12:06:24 -0700 (PDT)
+        with ESMTP id S231213AbjGFTIO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:08:14 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6A9D1BDB;
+        Thu,  6 Jul 2023 12:08:13 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-78625caa702so38391239f.1;
+        Thu, 06 Jul 2023 12:08:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688670384; x=1691262384;
+        d=1e100.net; s=20221208; t=1688670493; x=1691262493;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=8TeOxhu7loKe1C7HyC68W1Lmyeli9G+BRUShO9fGMPE=;
-        b=SMbUmp/PaYTRRZZryKSQ1SfcSNvZEWaj9kL1NJ5heoJnOsvUoPihHpSg0XjOgrjbA8
-         5EUVqLQD4Je3NVncEUv53RbP8+zt6lsK/Lg2EyDxBNC5qHUym1x9GjhHr4dvuAT20VPH
-         SH+8YSpC2a7VvSTjotS2XZTFQLHGq3dX9yp3IbRxifZqyuphSedNpxY7bZHIR9kynJRg
-         fF+ZYYv9T9C53wissv1NM7yzHngHpPjmF5ZUrWKq++RGxe0Yq9MTRoI5v67DlovJ8URQ
-         4eyaESf4w46C0FvR/XhwDBjzJNMElfjQqUrTq//RAMDl5P76fPr1rWZ6ZAcb4TvLr5+t
-         qxOg==
-X-Gm-Message-State: ABy/qLYBvLHUCXTbRZC2abakXqXiBmM81anUWTiO7/9qG8yvB/Aa6z3J
-        E5olJeevrePUZDzBW9cRBw==
-X-Google-Smtp-Source: APBJJlHLwIbbooHeQcFPtwuN1zJaaF3C0Zx6KNMR/lvol3oa9asSOhyjbiacrcSMvF4EMC2UVmeELw==
-X-Received: by 2002:a6b:6313:0:b0:783:4f8d:4484 with SMTP id p19-20020a6b6313000000b007834f8d4484mr3276988iog.2.1688670383836;
-        Thu, 06 Jul 2023 12:06:23 -0700 (PDT)
+        bh=MDtpj3AemTprLuOeN9ET5glEPVq64dNxotKByZ/22z0=;
+        b=PY6YMo3GcW1OrqNb53C/AAohmERf+EGJZXLBoSkhsljsPRGSuvq4EOEnZA/ji6vL7m
+         FQTfaF26X2K2A2Ej3CQiMa0wJR6FREAjdMTBYo1I+kIbqE1dMJMsIX81uFvECyn2SuxX
+         zDEn4FIhLub8i9t8B2UQjYwf/kOMCIUSTpYjvcEb2wRnraV8GwVb5Q86S4EfajGe5rim
+         J36msV3MHqIO+58fv/NtCj7chgaE64NWPU6C4Z/kU0/+kbAjvZgwHf6j32UMfcp1WFTA
+         tQmIovXLL2hDSxPkv+HtzoYXCztWVPaO2pi0iUvomYzsZNkyFst/NTw3GwGGP7pX6IwB
+         wOOA==
+X-Gm-Message-State: ABy/qLbDBDkyPxl0d+fZlV6AZTWYgEtb4Ut09+piqYBX9wqmGYqjxW1t
+        4J1IfX/yj+bpdnLUbrCukQ==
+X-Google-Smtp-Source: APBJJlGcC2tN7uRy5/zmvOcJRSvJfJhaWa5WsJUy45o9yDL4txQsVMEV32bENG8vzc4/KNKPEfz9xw==
+X-Received: by 2002:a6b:760f:0:b0:786:26f0:3092 with SMTP id g15-20020a6b760f000000b0078626f03092mr2893375iom.3.1688670493131;
+        Thu, 06 Jul 2023 12:08:13 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id p5-20020a0566380e8500b0042b3bf0baacsm699928jas.138.2023.07.06.12.06.22
+        by smtp.gmail.com with ESMTPSA id f8-20020a056602038800b00785ce1b3293sm690554iov.49.2023.07.06.12.08.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 12:06:23 -0700 (PDT)
-Received: (nullmailer pid 160546 invoked by uid 1000);
-        Thu, 06 Jul 2023 19:06:21 -0000
-Date:   Thu, 6 Jul 2023 13:06:21 -0600
+        Thu, 06 Jul 2023 12:08:12 -0700 (PDT)
+Received: (nullmailer pid 163081 invoked by uid 1000);
+        Thu, 06 Jul 2023 19:08:10 -0000
+Date:   Thu, 6 Jul 2023 13:08:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Marek Vasut <marex@denx.de>
-Cc:     devicetree@vger.kernel.org,
-        Isai Gaspar <isaiezequiel.gaspar@nxp.com>,
-        linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Rob Herring <robh+dt@kernel.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, Lee Jones <lee@kernel.org>
-Subject: Re: [PATCH v3 1/2] dt-bindings: leds: pca995x: Add binding document
- for PCA995X chips
-Message-ID: <168867038074.160479.18106487146121275552.robh@kernel.org>
-References: <20230705231326.232356-1-marex@denx.de>
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: amlogic,meson-pinctrl-common:
+ allow gpio-line-names
+Message-ID: <20230706190810.GA161389-robh@kernel.org>
+References: <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-0-fa442d5aae91@linaro.org>
+ <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-1-fa442d5aae91@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230705231326.232356-1-marex@denx.de>
+In-Reply-To: <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-1-fa442d5aae91@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -67,31 +72,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 06 Jul 2023 01:13:25 +0200, Marek Vasut wrote:
-> The PCA995x chips are I2C controlled LED drivers. Each chip has
-> up to 16 outputs, each one with an individual 8-bit resolution
-> PWM for brightness control. Add binding document.
+On Thu, Jul 06, 2023 at 09:42:26AM +0200, Neil Armstrong wrote:
+> Allow gpio-line-names property for the gpio subnode.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
+> Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> Cc: Conor Dooley <conor+dt@kernel.org>
-> Cc: Isai Gaspar <isaiezequiel.gaspar@nxp.com>
-> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-> Cc: Lee Jones <lee@kernel.org>
-> Cc: Marek Vasut <marex@denx.de>
-> Cc: Pavel Machek <pavel@ucw.cz>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> Cc: linux-leds@vger.kernel.org
-> ---
-> V2: Fix the led@[0-9]+ match
-> V3: Unit addresses for leds@ are hex, add a-f into the glob
-> ---
->  .../devicetree/bindings/leds/nxp,pca995x.yaml | 81 +++++++++++++++++++
->  1 file changed, 81 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/leds/nxp,pca995x.yaml
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml        | 1 +
+>  1 file changed, 1 insertion(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> index a7b29ef0bab6..28659f0389a5 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
+> @@ -34,6 +34,7 @@ $defs:
+>  
+>      properties:
+>        gpio-controller: true
+> +      gpio-line-names: true
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+There should be a range of number of entries.
 
+>  
+>        "#gpio-cells":
+>          const: 2
+> 
+> -- 
+> 2.34.1
+> 
