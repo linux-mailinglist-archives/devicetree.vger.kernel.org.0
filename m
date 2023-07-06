@@ -2,116 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D02374A554
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 22:55:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96A5E74A5C0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 23:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229787AbjGFUzQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 16:55:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42898 "EHLO
+        id S231346AbjGFVNV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 17:13:21 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49330 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232631AbjGFUzP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 16:55:15 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C58A9D;
-        Thu,  6 Jul 2023 13:55:12 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-7866189cff1so42635239f.0;
-        Thu, 06 Jul 2023 13:55:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688676911; x=1691268911;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=781hmHvNO59Ce4e05rVFQVLl4Gj7HUr6rWG6tbtSkTg=;
-        b=hVKuQij3Vr8ZrbobSfJ64gH2K4iV8xeBigG3jpqLRplcAqukbsG/y80YBMjuZXXdd3
-         LnDEP5dQJJzznMvhqbdLgvpnJgRPO7o9pEyw+EFQcyQl4UGz10YtkkVCdTwXN1N4R6z2
-         UYuGSNl1dPXePbiQDWTIHCP+jHxJwITn497RTpa/xh702rVMY02CSooY0eH8vObxWQDE
-         YGQrmH4fst3V+qiiBPGIkAeqm1hpapKbKz2Bc076K9lBoV2gecHw6X6C9B/0T4QwmWOR
-         q+O+ggOpDubncuIAFhjAuDt5nkWPmAMh6J2peKYY8HfzbxK26hVSkekMiST7oFWQ9k3v
-         lQyQ==
-X-Gm-Message-State: ABy/qLbAkn7gvo1aNcPtYZ1HY8Ou9yXEmXSzrgTf0j3klqDnh1722vjT
-        1SmFEv1RjLLAZnb1wEZLDw==
-X-Google-Smtp-Source: APBJJlFTbf0DEJsDabvrCUGjZEyi4enCSM73H3xGdf3q/7mCzrHhF/smdG5Q4DD9PEPZ7v2GhJECkw==
-X-Received: by 2002:a5e:c009:0:b0:783:6190:f913 with SMTP id u9-20020a5ec009000000b007836190f913mr3129046iol.4.1688676911506;
-        Thu, 06 Jul 2023 13:55:11 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id dp21-20020a056602069500b0078647b08ab0sm778513iob.6.2023.07.06.13.55.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 13:55:10 -0700 (PDT)
-Received: (nullmailer pid 308623 invoked by uid 1000);
-        Thu, 06 Jul 2023 20:55:07 -0000
-From:   Rob Herring <robh@kernel.org>
-To:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     Conor Dooley <conor.dooley@microchip.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] perf: pmuv3: Add Cortex A520, A715, A720, X3 and X4 PMUs
-Date:   Thu,  6 Jul 2023 14:55:04 -0600
-Message-Id: <20230706205505.308523-2-robh@kernel.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230706205505.308523-1-robh@kernel.org>
-References: <20230706205505.308523-1-robh@kernel.org>
+        with ESMTP id S230108AbjGFVNV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 17:13:21 -0400
+Received: from fllv0015.ext.ti.com (fllv0015.ext.ti.com [198.47.19.141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B08919A7;
+        Thu,  6 Jul 2023 14:13:19 -0700 (PDT)
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 366LCiYc031415;
+        Thu, 6 Jul 2023 16:12:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1688677964;
+        bh=n1W53TeQDe5JDCf7UtyqlAcHmKtsABgVqfo1mFuklQc=;
+        h=Date:Subject:To:CC:References:From:In-Reply-To;
+        b=xTREQGBcMBf3NLvztHSFWf8W8ieUtzsm3JJMAO+L9NTMlBIzMwpRkB+Z7QHKwil1R
+         2ptXWyL/9WUHfr9DUMHPtUoRtPtqMRuLKud6HSdR3PGMApF/7Axfy+iUZeclJkjaR8
+         2rkXK40iuyiOVacKm5VkV/UBVpIauPVDu+gMlQ9Y=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 366LCiob031221
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 6 Jul 2023 16:12:44 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23; Thu, 6
+ Jul 2023 16:12:43 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.2507.23 via
+ Frontend Transport; Thu, 6 Jul 2023 16:12:43 -0500
+Received: from [128.247.81.105] (ileaxei01-snat.itg.ti.com [10.180.69.5])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 366LChjb027967;
+        Thu, 6 Jul 2023 16:12:43 -0500
+Message-ID: <aaf12da2-fbe4-eb30-81de-1c4ee41c2d4b@ti.com>
+Date:   Thu, 6 Jul 2023 16:12:43 -0500
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] can: m_can: Add hrtimer to generate software
+ interrupt
+Content-Language: en-US
+To:     Francesco Dolcini <francesco@dolcini.it>
+CC:     Marc Kleine-Budde <mkl@pengutronix.de>,
+        Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>, <linux-can@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Schuyler Patton <spatton@ti.com>,
+        Tero Kristo <kristo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        Oliver Hartkopp <socketcan@hartkopp.net>,
+        Simon Horman <simon.horman@corigine.com>
+References: <20230705195356.866774-1-jm@ti.com>
+ <20230705195356.866774-3-jm@ti.com>
+ <20230706-unstopped-skedaddle-7168f2b12189-mkl@pengutronix.de>
+ <0ba17779-9cd9-6cb2-a79c-6b14b73a42db@ti.com>
+ <ZKciVy4juK55OUrG@francesco-nb.int.toradex.com>
+From:   Judith Mendez <jm@ti.com>
+In-Reply-To: <ZKciVy4juK55OUrG@francesco-nb.int.toradex.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for the Arm Cortex-A520, Cortex-A715, Cortex-A720,
-Cortex-X3, and Cortex-X4 CPU PMUs. They are straight-forward additions
-with just new compatible strings.
+Hi,
 
-Acked-by: Mark Rutland <mark.rutland@arm.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
-v2:
- - Also add Cortex-X3 and Cortex-X4
----
- drivers/perf/arm_pmuv3.c | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+On 7/6/23 3:21 PM, Francesco Dolcini wrote:
+> On Thu, Jul 06, 2023 at 10:20:59AM -0500, Judith Mendez wrote:
+>> Hi Marc
+>>
+>> On 7/6/23 2:25 AM, Marc Kleine-Budde wrote:
+>>> On 05.07.2023 14:53:56, Judith Mendez wrote:
+>>>> Introduce timer polling method to MCAN since some SoCs may not
+>>>> have M_CAN interrupt routed to A53 Linux and do not have
+>>>> interrupt property in device tree M_CAN node.
+>>>>
+>>>> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
+>>>> routed to A53 Linux, instead they will use timer polling method.
+>>>>
+>>>> Add an hrtimer to MCAN class device. Each MCAN will have its own
+>>>> hrtimer instantiated if there is no hardware interrupt found in
+>>>> device tree M_CAN node. The timer will generate a software
+>>>> interrupt every 1 ms. In hrtimer callback, we check if there is
+>>>> a transaction pending by reading a register, then process by
+>>>> calling the isr if there is.
+>>>>
+>>>> Tested-by: Hiago De Franco <hiago.franco@toradex.com> # Toradex Verdin AM62
+>>>> Reviewed-by: Tony Lindgren <tony@atomide.com>
+>>>> Signed-off-by: Judith Mendez <jm@ti.com>
+>>>> ---
+> 
+> ...
+> 
+>>>> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_can/m_can_platform.c
+>>>> index 94dc82644113..76d11ce38220 100644
+>>>> --- a/drivers/net/can/m_can/m_can_platform.c
+>>>> +++ b/drivers/net/can/m_can/m_can_platform.c
+>>>> @@ -5,6 +5,7 @@
+>>>>    //
+>>>>    // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.com/
+>>>> +#include <linux/hrtimer.h>
+>>>>    #include <linux/phy/phy.h>
+>>>>    #include <linux/platform_device.h>
+>>>> @@ -96,12 +97,28 @@ static int m_can_plat_probe(struct platform_device *pdev)
+>>>>    		goto probe_fail;
+>>>
+>>> Please set "irq" to 0 during declaration.
+>>
+>> During declaration of irq, it is already set to 0:
+>>
+>> int irq, ret = 0;
+> 
+> The initialization here applies only to ret.
+> 
+> int irq = 0, ret = 0;
 
-diff --git a/drivers/perf/arm_pmuv3.c b/drivers/perf/arm_pmuv3.c
-index 08b3a1bf0ef6..d2dffb4e9d07 100644
---- a/drivers/perf/arm_pmuv3.c
-+++ b/drivers/perf/arm_pmuv3.c
-@@ -1266,9 +1266,14 @@ PMUV3_INIT_SIMPLE(armv8_cortex_a76)
- PMUV3_INIT_SIMPLE(armv8_cortex_a77)
- PMUV3_INIT_SIMPLE(armv8_cortex_a78)
- PMUV3_INIT_SIMPLE(armv9_cortex_a510)
-+PMUV3_INIT_SIMPLE(armv9_cortex_a520)
- PMUV3_INIT_SIMPLE(armv9_cortex_a710)
-+PMUV3_INIT_SIMPLE(armv9_cortex_a715)
-+PMUV3_INIT_SIMPLE(armv9_cortex_a720)
- PMUV3_INIT_SIMPLE(armv8_cortex_x1)
- PMUV3_INIT_SIMPLE(armv9_cortex_x2)
-+PMUV3_INIT_SIMPLE(armv9_cortex_x3)
-+PMUV3_INIT_SIMPLE(armv9_cortex_x4)
- PMUV3_INIT_SIMPLE(armv8_neoverse_e1)
- PMUV3_INIT_SIMPLE(armv8_neoverse_n1)
- PMUV3_INIT_SIMPLE(armv9_neoverse_n2)
-@@ -1334,9 +1339,14 @@ static const struct of_device_id armv8_pmu_of_device_ids[] = {
- 	{.compatible = "arm,cortex-a77-pmu",	.data = armv8_cortex_a77_pmu_init},
- 	{.compatible = "arm,cortex-a78-pmu",	.data = armv8_cortex_a78_pmu_init},
- 	{.compatible = "arm,cortex-a510-pmu",	.data = armv9_cortex_a510_pmu_init},
-+	{.compatible = "arm,cortex-a520-pmu",	.data = armv9_cortex_a520_pmu_init},
- 	{.compatible = "arm,cortex-a710-pmu",	.data = armv9_cortex_a710_pmu_init},
-+	{.compatible = "arm,cortex-a715-pmu",	.data = armv9_cortex_a715_pmu_init},
-+	{.compatible = "arm,cortex-a720-pmu",	.data = armv9_cortex_a720_pmu_init},
- 	{.compatible = "arm,cortex-x1-pmu",	.data = armv8_cortex_x1_pmu_init},
- 	{.compatible = "arm,cortex-x2-pmu",	.data = armv9_cortex_x2_pmu_init},
-+	{.compatible = "arm,cortex-x3-pmu",	.data = armv9_cortex_x3_pmu_init},
-+	{.compatible = "arm,cortex-x4-pmu",	.data = armv9_cortex_x4_pmu_init},
- 	{.compatible = "arm,neoverse-e1-pmu",	.data = armv8_neoverse_e1_pmu_init},
- 	{.compatible = "arm,neoverse-n1-pmu",	.data = armv8_neoverse_n1_pmu_init},
- 	{.compatible = "arm,neoverse-n2-pmu",	.data = armv9_neoverse_n2_pmu_init},
--- 
-2.40.1
+Understood, thanks!
 
+> 
+>>>>    	addr = devm_platform_ioremap_resource_byname(pdev, "m_can");
+>>>> -	irq = platform_get_irq_byname(pdev, "int0");
+>>>> -	if (IS_ERR(addr) || irq < 0) {
+>>>> -		ret = -EINVAL;
+>>>> +	if (IS_ERR(addr)) {
+>>>> +		ret = PTR_ERR(addr);
+>>>>    		goto probe_fail;
+>>>>    	}
+>>>> +	if (device_property_present(mcan_class->dev, "interrupts") ||
+>>>> +	    device_property_present(mcan_class->dev, "interrupt-names")) {
+>>>> +		irq = platform_get_irq_byname(pdev, "int0");
+>>>> +		if (irq == -EPROBE_DEFER) {
+>>>> +			ret = -EPROBE_DEFER;
+>>>> +			goto probe_fail;
+>>>> +		}
+>>>> +		if (irq < 0) {
+>>>> +			ret = -EINVAL;
+>>>
+>>> Please return the original error value.
+>>
+>> The original value returned is -EINVAL:
+>>
+>> -	if (IS_ERR(addr) || irq < 0) {
+>> -		ret = -EINVAL;
+>>
+>> Perhaps I am missing something here?
+> 
+> if (irq < 0) {
+> 	ret = irq;
+> 	...
+> }
+> 
+> And you can also get rid of the explicit test for -EPROBE_DEFER this
+> way simplifying the code.
+
+I misunderstood, thanks!!
+
+~ Judith
