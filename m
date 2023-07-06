@@ -2,116 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE03749A32
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 13:04:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63CA7749A37
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 13:06:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232480AbjGFLEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 07:04:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52422 "EHLO
+        id S231580AbjGFLGc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 07:06:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232493AbjGFLEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 07:04:12 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 580451BDC;
-        Thu,  6 Jul 2023 04:04:09 -0700 (PDT)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3666bM53002320;
-        Thu, 6 Jul 2023 11:04:06 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=OQDcod1PD7tvF8TN1BOeol9FFu+4ByUpek5GCOrZgSU=;
- b=nYczpvM2YFDZhnySE1C3gRLPJ0us1mlE0T6X5wZDaJltjS7UvvWWtypGeLxRp0NPvjLY
- M6aC5Lb3Bi89O3ftzq7/4e0aIRhjWWeXD7nESm5N4O10/mbYKPwkZ3VS527f8KwtoDQQ
- UATjQLIij2DKmxmQGLwWatmgoh0l5AAZsUCK2z4trQyAMgRyFrjqUfuYLDgb8lpKs8Hh
- QnudnRSlHwdBKZc0JeweTloBSZk5o52vhqy58y3j4SVF+7K74Yks/RZ2LxywMkmkkEsQ
- rd12MYwDzIMkpy7IRN+r55uBG9sq37Kd7KZ/3V3SERiBFZUU5Y70QMZqIHgXCvXXgRh4 sA== 
-Received: from nalasppmta02.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rn5mftwfe-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Jul 2023 11:04:05 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 366B44wn025344
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 6 Jul 2023 11:04:04 GMT
-Received: from [10.216.13.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 6 Jul
- 2023 04:04:00 -0700
-Message-ID: <00a04f70-b0d2-2ac8-d03d-93f48c036fed@quicinc.com>
-Date:   Thu, 6 Jul 2023 16:33:56 +0530
+        with ESMTP id S231565AbjGFLGb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 07:06:31 -0400
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 6F882DC;
+        Thu,  6 Jul 2023 04:06:30 -0700 (PDT)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 38B3B1480;
+        Thu,  6 Jul 2023 04:07:12 -0700 (PDT)
+Received: from [10.57.27.160] (unknown [10.57.27.160])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id C21363F663;
+        Thu,  6 Jul 2023 04:06:26 -0700 (PDT)
+Message-ID: <49ef52b7-0269-898c-7cc2-096f2f1037fc@arm.com>
+Date:   Thu, 6 Jul 2023 12:06:19 +0100
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 1/3] dt-bindings: power: rpmpd: Remove the SoC specific
- entries
-Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1688635218-23779-1-git-send-email-quic_rohiagar@quicinc.com>
- <1688635218-23779-2-git-send-email-quic_rohiagar@quicinc.com>
- <318ab229-f29f-e6aa-16b8-79fa09013794@linaro.org>
- <b994f92c-331b-ca64-01ec-ec285fb2a76e@quicinc.com>
- <529beea3-3f36-3837-35c4-1efa25d8f1f2@linaro.org>
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-In-Reply-To: <529beea3-3f36-3837-35c4-1efa25d8f1f2@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm, primecell-periphid at
+ etm nodes
+Content-Language: en-GB
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        suzuki.poulose@arm.com, coresight@lists.linaro.org,
+        imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Frank Li <Frank.Li@nxp.com>
+References: <20230705205954.4159781-1-Frank.Li@nxp.com>
+ <9405224.NyiUUSuA9g@steina-w>
+ <0125c54fd1617f3f945bc3f4bbef5b914b701c24.camel@pengutronix.de>
+From:   Robin Murphy <robin.murphy@arm.com>
+In-Reply-To: <0125c54fd1617f3f945bc3f4bbef5b914b701c24.camel@pengutronix.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: FIcpmynwcOY3YDoB1r3aMpDFhpM_-a4e
-X-Proofpoint-ORIG-GUID: FIcpmynwcOY3YDoB1r3aMpDFhpM_-a4e
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-06_07,2023-07-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 impostorscore=0
- suspectscore=0 malwarescore=0 spamscore=0 clxscore=1015 adultscore=0
- lowpriorityscore=0 bulkscore=0 mlxlogscore=497 priorityscore=1501
- mlxscore=0 phishscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307060098
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
+        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2023-07-06 09:23, Lucas Stach wrote:
+> Hi Alexander,
+> 
+> Am Donnerstag, dem 06.07.2023 um 07:06 +0200 schrieb Alexander Stein:
+>> Hi Frank,
+>>
+>> Am Mittwoch, 5. Juli 2023, 22:59:53 CEST schrieb Frank Li:
+>>> The reg size of etm nodes is incorrectly set to 64k instead of 4k. This
+>>> leads to a crash when calling amba_read_periphid().  After corrected reg
+>>> size, amba_read_periphid() retrieve the correct periphid.
+>>> arm,primecell-periphid were removed from the etm nodes.
+>>
+>> So this means the reference manual is wrong here? It clearly states the size
+>> is 64kiB. Reference Manual i.MX8MP Rev 1. 06/2021
+>> On a side note: Is imx8mq affected by this as well? The DAP memory table lists
+>> similar sizes in the RM .
+>>
+> Note that the 64K MMIO space per device is really an alignment thing.
+> It's a recommendation from ARM to allow individual device MMIO regions
+> to be mapped on kernels with 64K page size. Most of the time the real
+> MMIO space occupied by the device is actually much smaller than 64K.
 
-On 7/6/2023 4:27 PM, Krzysztof Kozlowski wrote:
-> On 06/07/2023 12:53, Rohit Agarwal wrote:
->> On 7/6/2023 4:15 PM, Krzysztof Kozlowski wrote:
->>> On 06/07/2023 11:20, Rohit Agarwal wrote:
->>>> Remove the SoC specific entries and add a generic set of defines
->>>> that can be used by all the SoCs. This will remove the duplicate
->>>> entries among SoCs.
->>>> The arrangement of the defines is done according to the frequency
->>>> used in SoC specific entries in the driver to avoid wastage of
->>>> memory.
->>>>
->>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->>>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->>> Please compile kernel with this commit and tell us what is wrong... Even
->>> if bindings were not an ABI, but they are, this would not work.
->> Do you mean that individually this commit would fail compilation?
->> Yes, we would need all the patches together for compilation to be
->> successful.
-> Yeah, it is not bisectable.
->
-> Another problem is ABI impact, but I think Konrad covered it.
+Indeed, it's quite common for TRM memory maps to be written in terms of 
+the interconnect configuration, i.e. from the point of view of the 
+interconnect itself, that whole range of address space is assigned to 
+that peripheral, and it may even be true that the entire range is routed 
+to the port where that peripheral is connected. However what's of more 
+interest for DT is how much of that range the peripheral itself actually 
+decodes.
 
-Yes, Thanks
+Robin.
 
->
-> Best regards,
-> Krzysztof
->
+> 
+> Regards,
+> Lucas
+> 
+>> Best regards,
+>> Alexander
+>>
+>>> Signed-off-by: Frank Li <Frank.Li@nxp.com>
+>>> ---
+>>>   arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++--------
+>>>   1 file changed, 4 insertions(+), 8 deletions(-)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+>>> cc406bb338fe..e0ca82ff6f15 100644
+>>> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+>>> @@ -306,8 +306,7 @@ soc: soc@0 {
+>>>
+>>>   		etm0: etm@28440000 {
+>>>   			compatible = "arm,coresight-etm4x",
+>> "arm,primecell";
+>>> -			reg = <0x28440000 0x10000>;
+>>> -			arm,primecell-periphid = <0xbb95d>;
+>>> +			reg = <0x28440000 0x1000>;
+>>>   			cpu = <&A53_0>;
+>>>   			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+>>>   			clock-names = "apb_pclk";
+>>> @@ -323,8 +322,7 @@ etm0_out_port: endpoint {
+>>>
+>>>   		etm1: etm@28540000 {
+>>>   			compatible = "arm,coresight-etm4x",
+>> "arm,primecell";
+>>> -			reg = <0x28540000 0x10000>;
+>>> -			arm,primecell-periphid = <0xbb95d>;
+>>> +			reg = <0x28540000 0x1000>;
+>>>   			cpu = <&A53_1>;
+>>>   			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+>>>   			clock-names = "apb_pclk";
+>>> @@ -340,8 +338,7 @@ etm1_out_port: endpoint {
+>>>
+>>>   		etm2: etm@28640000 {
+>>>   			compatible = "arm,coresight-etm4x",
+>> "arm,primecell";
+>>> -			reg = <0x28640000 0x10000>;
+>>> -			arm,primecell-periphid = <0xbb95d>;
+>>> +			reg = <0x28640000 0x1000>;
+>>>   			cpu = <&A53_2>;
+>>>   			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+>>>   			clock-names = "apb_pclk";
+>>> @@ -357,8 +354,7 @@ etm2_out_port: endpoint {
+>>>
+>>>   		etm3: etm@28740000 {
+>>>   			compatible = "arm,coresight-etm4x",
+>> "arm,primecell";
+>>> -			reg = <0x28740000 0x10000>;
+>>> -			arm,primecell-periphid = <0xbb95d>;
+>>> +			reg = <0x28740000 0x1000>;
+>>>   			cpu = <&A53_3>;
+>>>   			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+>>>   			clock-names = "apb_pclk";
+>>
+>>
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
