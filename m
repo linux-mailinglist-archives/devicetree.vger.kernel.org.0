@@ -2,65 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D6A0C749B68
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:09:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 469EB749B79
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:13:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232741AbjGFMJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 08:09:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
+        id S232302AbjGFMM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 08:12:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60272 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232711AbjGFMJQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:09:16 -0400
-Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3265A1BEA
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 05:09:14 -0700 (PDT)
-Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-991fe70f21bso77401366b.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 05:09:14 -0700 (PDT)
+        with ESMTP id S232432AbjGFMM5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:12:57 -0400
+Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1BE19A0
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 05:12:55 -0700 (PDT)
+Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fb9ae4cef6so840268e87.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 05:12:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688645352; x=1691237352;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=linaro.org; s=google; t=1688645574; x=1691237574;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AD7SP5cEltC2P6iI+W24BH/0PK5a9j/yuLzGT21WDwE=;
-        b=i9Vs0AY9co0nozmt6kxY8w+r5S9aLFWdrpYPpACl24iKi92FdSL06JLGkD4sX/JO5l
-         9DOXPpCOuPivcnDRKzdI1ng4c0OIN+7XmWf00m95DrN8hgLXTVOk2lxToj+A/ZSwqTkh
-         YXRXaTn/NDxVruaFvAm/4c3yiAN7Gv41JUKpQ1iiGEve2OvVw3X8SuUIqDZO5KWPqWOi
-         B24q1P52iNdG5HHK+91w1vsvwSKIWzs+6GIyIwv9pXylC9HfPO/a2yF6G53euw+Zd5NI
-         T2G1PjYvIqTIHXI9zJx/taJUYddohNXrHM0DDPhvnobjMOdxGtUw8a6RuGB2rA0kzppV
-         FfTg==
+        bh=eCOVUK9V8z/x1Thad53qnFqqGUkU711ApVBne/oyWeY=;
+        b=sNFCebxbR41MtEhtSQUKMTqJjk7ECC7CPb3H7aCiGYe/Y+JdfxK1pDGIYQpdZF5BKQ
+         X6QYtXSpFIuXmnh/9WLxf0hnHh8EtGv9sq7aQckriFm8//PtnG8niveRRA/3eMxBhYf0
+         mTKKV7ZDSnnbz6dbUk+zJkJzCNAZkiHzQvT0xKHm6z4fSDs7W0vvS7YPb2udwUfmQGJW
+         7x190SWDu8mCU6CmXbgA9clKRHBGYtZg2BwyaLH/or4eMQ3Dqigsknc2ReTnRINB31iC
+         hBaqJkM7oT9eKIcJ8Ev5o9OLT8642YfXPLTneHl/aALsbroyM5kv0aZSyAZ7EZbMlojW
+         k09Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688645352; x=1691237352;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1688645574; x=1691237574;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AD7SP5cEltC2P6iI+W24BH/0PK5a9j/yuLzGT21WDwE=;
-        b=TPzztUpY6MPH0KGUqKDazA5Edow3IPYPu9c1r90kNEKfPrmIiMtGPFO8TGZd8/qJyI
-         nCQ7d2SPYuXRGPg5hy2LcL8VQHPa4gV1IW85wkowQUYpC7VIZDXos8+TnrXzaNnwbE4q
-         FNz39TNDRXQb/OBSSf8Zy7qFllCszgSHa2l8A92Zel0MFjn0iFjwtuIRR3DK59T81Sfx
-         py5eh1kxpDi3jY4LsPWiJoQgRPkLCNuv5J5ZnVC1LoP6Lezu1QpMF+QCyN+fIpJgXoFD
-         +mKG8lb6xNOBWMu2cnkekRnAh2s5ePt15hoBVddyElbSckxYzQxROM4GMaNZPQkCpNKy
-         ZDHg==
-X-Gm-Message-State: ABy/qLbSHs4etNpXYlLUlavHZSgnkQWmo4Cp2kt1l04nyLdH5envL22k
-        xB+Ne0T/c3hEK/sSTKNOnzns0VIbrEea12sh5gY=
-X-Google-Smtp-Source: APBJJlEigXpf0qIEu3w7bh82NDf+I+AZ5IvWRIyMOVolQrW0lhHOOtLk1gTA6aU6jjVr7ttCRNEt3w==
-X-Received: by 2002:a17:906:196:b0:993:6b3c:fe06 with SMTP id 22-20020a170906019600b009936b3cfe06mr1175068ejb.25.1688645352276;
-        Thu, 06 Jul 2023 05:09:12 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id gh9-20020a170906e08900b0098e0a937a6asm734388ejb.69.2023.07.06.05.09.10
+        bh=eCOVUK9V8z/x1Thad53qnFqqGUkU711ApVBne/oyWeY=;
+        b=ekH5narkDfnykoPdo8hZoxeUXzj/aiUF+Xlv2O7y4ooBXZPGgAU/9TqbMv1b1CVGlo
+         1AGudDRbgKWHa1gGCl/ulIK0KyvVIXZk/N7HGU79Znqw4cGfKL7QMFlZL6sEe/qKBEeC
+         zRvZfc6U8xM3sxiyGLR967B3RynTOn6M/Y5kNr5c44tX/qsyd3RqyIPdtCErd780W4KM
+         cjMXZjTYvSS8taOPWeFk/6CrVtjISkKhZlHP72qBJbS8KsnFKG0lAieG+jDJgMFMnzMX
+         u+qMfJgtnEg6jPqPEJSs+CVmIG9pX/gua2rxA/VxNwI2KlUrHzoaGQLgPuva75uprUM+
+         lN6A==
+X-Gm-Message-State: ABy/qLblePNfMQaJ1+EddpdryTF6RUbWQ0LcvMnQirsurd/zY4GX9Aj5
+        4oJioNQQKMrLWCD3RDWmnGbbFw==
+X-Google-Smtp-Source: APBJJlGlb5wLmYtED5PMTrWEhdmg5Zph4EtRP/kgQEPFSN6KS+oRNR4Ei5uxAPG5QgIwUyis8yArfQ==
+X-Received: by 2002:a05:6512:3d0d:b0:4f9:7aee:8dc5 with SMTP id d13-20020a0565123d0d00b004f97aee8dc5mr1629293lfv.19.1688645573888;
+        Thu, 06 Jul 2023 05:12:53 -0700 (PDT)
+Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
+        by smtp.gmail.com with ESMTPSA id k16-20020ac24570000000b004fb81fbeb33sm227379lfm.251.2023.07.06.05.12.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 05:09:11 -0700 (PDT)
-Message-ID: <878103c6-0dc3-164b-92ce-17ec4f87bff6@linaro.org>
-Date:   Thu, 6 Jul 2023 14:09:09 +0200
+        Thu, 06 Jul 2023 05:12:53 -0700 (PDT)
+Message-ID: <9b93bbad-1299-2afb-eac1-218cf209b293@linaro.org>
+Date:   Thu, 6 Jul 2023 14:12:51 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
 Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for PCIe
-To:     Manivannan Sadhasivam <mani@kernel.org>
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>
 Cc:     Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
         andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, konrad.dybcio@linaro.org,
-        quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
-        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+        conor+dt@kernel.org, quic_shazhuss@quicinc.com,
+        quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
+        quic_nayiluri@quicinc.com,
         Lorenzo Pieralisi <lpieralisi@kernel.org>,
         =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
         Rob Herring <robh@kernel.org>,
@@ -74,14 +76,14 @@ References: <1688545032-17748-1-git-send-email-quic_msarkar@quicinc.com>
  <20230705084606.GF11854@thinkpad>
  <a450e2e8-307d-49e9-d76d-de397b801a96@linaro.org>
  <20230706111218.GA4808@thinkpad>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230706111218.GA4808@thinkpad>
+ <878103c6-0dc3-164b-92ce-17ec4f87bff6@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <878103c6-0dc3-164b-92ce-17ec4f87bff6@linaro.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -89,21 +91,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2023 13:12, Manivannan Sadhasivam wrote:
->>> Please note that the dts patches should come before driver patches.
+On 6.07.2023 14:09, Krzysztof Kozlowski wrote:
+> On 06/07/2023 13:12, Manivannan Sadhasivam wrote:
+>>>> Please note that the dts patches should come before driver patches.
+>>>>
+>>>
+>>> Why? DTS is always independent thus usually put at the end of patchset
+>>> or better separate. It is the first time I hear that DTS should be
+>>> before driver.
 >>>
 >>
->> Why? DTS is always independent thus usually put at the end of patchset
->> or better separate. It is the first time I hear that DTS should be
->> before driver.
->>
+>> This is what I was suggested by Rob during my initial days and I've been
+>> following this pattern since then. If that's not the case, I have no issues.
 > 
-> This is what I was suggested by Rob during my initial days and I've been
-> following this pattern since then. If that's not the case, I have no issues.
+> I really doubt Rob ever suggested that. He probably suggested that
+> bindings must come before user, but not the DTS.
+Besides, the flow in this patchset is very logical from the Linux POV
 
-I really doubt Rob ever suggested that. He probably suggested that
-bindings must come before user, but not the DTS.
+1. describe the hardware in bindings
+2. implement the drivers, conforming to the description
+3. describe the hardware in the device tree to ensure the (now
+   existing) driver probes
 
-Best regards,
-Krzysztof
-
+Konrad
+> 
+> Best regards,
+> Krzysztof
+> 
