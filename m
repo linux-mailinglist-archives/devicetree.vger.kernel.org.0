@@ -2,61 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C34A37496F0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D9CD7496F3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:00:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233959AbjGFIA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 04:00:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33504 "EHLO
+        id S233967AbjGFIAb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 04:00:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233660AbjGFIA0 (ORCPT
+        with ESMTP id S233931AbjGFIA0 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:00:26 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B128F1988
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:00:24 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fbf1b82dc7so3724585e9.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 01:00:24 -0700 (PDT)
+Received: from mail-wm1-x334.google.com (mail-wm1-x334.google.com [IPv6:2a00:1450:4864:20::334])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7BDB61BD9
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:00:25 -0700 (PDT)
+Received: by mail-wm1-x334.google.com with SMTP id 5b1f17b1804b1-3fbdfda88f4so3842935e9.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 01:00:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688630423; x=1691222423;
+        d=linaro.org; s=google; t=1688630424; x=1691222424;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=2LzHyhZ3766ra+sxcNP/ExwsumD2y82rPN/8KknPtQQ=;
-        b=ZSgCD5/Xzqc6ohe6XCBNIU6cfiQLO6qfelgjYmIgVMH6wsNy7tcTIGIiMQb342DpJ6
-         VbLBQWfsvvoBKjjJUp3sckHi2+4Jf5B1XgNFM0LIBKQXRDvwatSv62qKfIanzq4jlmXx
-         IEKf9O831C0xkuzXpIo+89mvBVfi9hMOH4noDfAemSUE4wskxb5IkcTN5sXX5KWu6jzB
-         luBPMmTPSvUbsASCMPkA/eIUx4zXo1UJaQEppXXRUK6oSo2bjyaWlc5uA2IXmGPn5DeJ
-         84mF1V74XLx2Z4cl954Q9+Xq1b/CHScc+Tm/Y71Qib8E/CWJ/+3joAxQzOR24mwRu2iW
-         pM0Q==
+        bh=93L8BkPgEfdpngtMZOT+90bXoBGPqeAdqsv/Z4sCp6I=;
+        b=vU150XI9RDT22VBPIwT5mYMka69+Kv9fzSDZpO62LhYUTzg6WLSHtDoGe/gcfFQGR/
+         UhrYqb5fDziNFbOSypz2z78fKWyyjVV6hV20yMOVXczDmP1878TWgV9xq7atIZzXrteB
+         BOrjtLs/APd41gYW0q6Odz0YgZW4anlVDfY9rzq+hJu38UNCoeEahZQispC4MwreCLe1
+         rrn7KQT8G2knMYzx51bwSOxpZCibwWYfYtgtLkkgZ1aGfFYTa59BHl86Q88Hqs4zzqKz
+         YK3aJ5LcBctCXPdEhCpV/q7yxUr/TjOwZ1JuJNUsSHEfy+efMU5UfUkEue+fGsrnveax
+         RkzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688630423; x=1691222423;
+        d=1e100.net; s=20221208; t=1688630424; x=1691222424;
         h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
          :mime-version:subject:date:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=2LzHyhZ3766ra+sxcNP/ExwsumD2y82rPN/8KknPtQQ=;
-        b=gU4X+0j+GaREmLMSS/p1kUHKjepx32b5q8lxbHU+R8rePUqfWR05WF+Irvq5qM9t/e
-         yUyDWQ8sFhfxKiDR+1WZzGMavJ0zJbzZt12ZLI5u/i6MKdP1GVMfnD6C6xKtsHKQxFk1
-         H4w4NDhyBRJoZ05hUWM7wKrwUSaLJcQgYT1oS5+heElmImdiwrnhJq7P1DoPpvT14e45
-         JQH7RueiFwNSQILVcYmiGURvZy0Olv61gPrgB8uDF6PhDtPfjyQK1gulR08gdSwTnXbJ
-         xvJHu1KsEnPT+IMARiRNVETUHM2rPN/YLaDbkg+/JrhmOsA15bUxVM3mnBZv+ypJzLRN
-         x95g==
-X-Gm-Message-State: ABy/qLaXLm6TIANkZL2S/EZnFZgRPVXBX022HG0VNKoJGUPjS5RabKZi
-        QWgFPog0NcC8fVs0HllJTN1kcw==
-X-Google-Smtp-Source: APBJJlGe9XBa7Qp5BI30NOFwdvROYBJIKr2+P7IwtfymzU6PMiAIhnzVSR0r4JA7sctPv67fYXpfiA==
-X-Received: by 2002:a1c:ed07:0:b0:3fb:d68d:4c6f with SMTP id l7-20020a1ced07000000b003fbd68d4c6fmr735323wmh.14.1688630423141;
-        Thu, 06 Jul 2023 01:00:23 -0700 (PDT)
+        bh=93L8BkPgEfdpngtMZOT+90bXoBGPqeAdqsv/Z4sCp6I=;
+        b=YVw03HM6HRtWKtN8HYG4XWVIDH6zW2/pxxs9vczDtDeHMXy30r5oN2c6eFut69JyjT
+         fL5yauMztc3xVvFwVa7R8fmXI7VnJiVGtnXsyEErc/+7Z9AW0QCZcZvIfVC+fnlTAD+Y
+         Zx2PYOQ1UkYN2NW+uGOg/tJy7X6MMbXYMRxaShj8TqJZ6074uXSBpV0f7PMwLOmkuU/4
+         sT/GJ0NFxZ0+ACHeH8YoTXDzmtr+nB6JPP8G2GKGTxe9+fErVwBsgetRqA0jsaaTR+yI
+         cma34iGHTK76ODO7WPKdyrXsftDzWpM5oiwVvo9tqSTKHdcLZNhNhRDb0x4UdARU2zcS
+         hNeA==
+X-Gm-Message-State: ABy/qLZOyeGigwxmoF7AOcQFpcK1kiU/IcicwJ20J70fGVCKA87WmuQ3
+        KtaXOgMMdnxaMXHUnLbEMan7AA==
+X-Google-Smtp-Source: APBJJlH0UmwL97d4yl5LZFrPLIyAm9frS5cCiPHFs9ODvBbOTYDidw/cS4bYqCerJ4g5RTh7W0WAmQ==
+X-Received: by 2002:a1c:ed0d:0:b0:3fa:934c:8350 with SMTP id l13-20020a1ced0d000000b003fa934c8350mr712696wmh.27.1688630424030;
+        Thu, 06 Jul 2023 01:00:24 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm5587375wmn.0.2023.07.06.01.00.22
+        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm5587375wmn.0.2023.07.06.01.00.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 01:00:22 -0700 (PDT)
+        Thu, 06 Jul 2023 01:00:23 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 06 Jul 2023 10:00:19 +0200
-Subject: [PATCH 1/3] arm64: dts: amlogic: meson-g12b-odroid-n2: fix usb hub
- hog name
+Date:   Thu, 06 Jul 2023 10:00:20 +0200
+Subject: [PATCH 2/3] arm64: dtb: amlogic: meson-g12-common: change
+ aobus-pinctrl node name
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-1-63ed070eeab2@linaro.org>
+Message-Id: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-2-63ed070eeab2@linaro.org>
 References: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
 In-Reply-To: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
@@ -69,20 +69,20 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=940;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=783;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=wn8G9m9VDqCtr/Okvn3AKh56BVrmR4ClWOMn8WHW110=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpnSUB+oLOF9akswI4NJw72dITuS/RSonHhGvRoy5
- gV/fRbmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKZ0lAAKCRB33NvayMhJ0dYnD/
- 9cZOf8YLC6qO8huvFBeEB2BlULKccOvHgjcA5v8Y4ThC8O6ljFtGTOyX+3g1LuH3qmVH0L6UxePztA
- G4tc1L+I5R6NA/obmIRMEo0sL0lNguMhGgIYv6xdrtLpA4vj9tv5yl7yl7jcOnCHMFVDA0vUnkQZDM
- WlASAMt+TIbSmtl+8UWoASGYX79nAPGtwoThSGj2K7mIb5Ru53S2JMnu/154qfenPwIsIi/dXYS0Xk
- 9QgACEaVR6ryPsAFAV32V36nJ0gOcfYWy7XIb/eWsbD3q7GlC1iIwav2GSeCN2O8N63VEyBUaqDqAw
- WoHPbqTFqrGCGzEMgEUelo8/Zw2IYLFKkdjUPOOt9lhfIpEL4MueecfRS+KQCnrgODguNOf4x+jUT5
- 3yxuP96489pIt6l9S1+t2WDizbuNv1q8F9otDpSLzD6Jku+DANbhkQVv9ya5VGM07oL7hJpOOkavH8
- vPiUd/SaU0zp896cT7IZt8QH1VraYL3cWHnPXIlXbf6v9a1umYlQexli1k92HOMLSkC6MEMkEZ3qS0
- /T5wcbOfC5djNlNaE+lrIWt/peIdcL8sC2AVNuKEz73KzWY6v+byczo5IvWZOMdMm7Z4Fk/WlK3ztK
- uuzX5slsMVN8NPRRkAGtfTvfgvD70281Z+PnwPZ4CE6NdW7Iya0hsxXme4wg==
+ bh=j0QAC12CtwfrA2b91cLW5DK1eWrkH7AjxGLlYCOHUHQ=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpnSUU9xjNbx3BwIiYJT5nPcv/ge5kWU6GfeJ0s8k
+ hFc3PyeJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKZ0lAAKCRB33NvayMhJ0UHQD/
+ 4xq6D1Guxs5dlH6ct0+eIOmFXYCUrg+J/IQlW6wT6+ghlC3C6MNL4cKteErw41khgrHPUGMTj7tEkc
+ y0e7CELHvDwEZE+Geo0j74JxjrjVhCXLoEJkSff2jdR4cWCx9FTQKmjhLKOsgjP3rv/5cKoQd16luY
+ alwYX41SnyHIzKjJsrxXHcERxx6cgoDzVsFz/FoIIpUzBOkVVjJ5nJ/L1ZhdmNQmGLKJMAhs3fwbqW
+ 1pTCh1BQdfGBqWNFxY0eRgHwRWLo9qTGXnMlaNRX9tSaRLwxxR+9yRuccPgSChBnFqgMXRoRvZVduV
+ ZeIVP+VxHUJ1nyOt1I/PCuRvMRjh7sARFMAxjJpnkarG5bKKe9G7yVVlJXNe88amcIgl0qo0IZ/Edr
+ 4iqMfdKBuBmUJWD3wxZohrarpybgCuxvvOZczrF74ZaAHsR2B3GtkpOLY9RdZ2gKzrDhpTmY+ZOFSn
+ JQqBJEIVzpV1fnrw4Ptz644zqrCh24KiujitJvDh2Mp9oQoSQJJC49fReigZq/EgpjQoR/+nHliXlF
+ w3tFhI4ngmyUTHe+Vqw6tGGBmtBmHswKXfRfOzFsZsORERL7gn/6bEXsbWHpZdM6e9lQlOyVnNu+EX
+ 8MytTF78aJJqmimWcjZtzbsbPkgdXZsgNDwlKjAt2etYgD1nqQoIpWFqQsiw==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -95,27 +95,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This fixes the following dtschema check error:
-arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dtb: pinctrl@40: bank@40: Unevaluated properties are not allowed ('hog-0' was unexpected)
+Bindings expects name to be "pinctrl", fix it.
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
+ arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-index 24d0442dffb2..a0b6646f73e4 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
-@@ -241,7 +241,7 @@ &gpio {
- 	 * This signal should be handled by a USB specific power sequence
- 	 * in order to reset the Hub when USB bus is powered down.
- 	 */
--	hog-0 {
-+	usb-hub-hog {
- 		gpio-hog;
- 		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
- 		output-high;
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+index 0c49655cc90c..6d39faba7c3f 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+@@ -1733,7 +1733,7 @@ clkc_AO: clock-controller {
+ 					clock-names = "xtal", "mpeg-clk";
+ 				};
+ 
+-				ao_pinctrl: pinctrl@14 {
++				ao_pinctrl: pinctrl {
+ 					compatible = "amlogic,meson-g12a-aobus-pinctrl";
+ 					#address-cells = <2>;
+ 					#size-cells = <2>;
 
 -- 
 2.34.1
