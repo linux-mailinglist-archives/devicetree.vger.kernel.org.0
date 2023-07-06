@@ -2,95 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 067EB7496B0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88DC07496CC
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:51:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233797AbjGFHmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 03:42:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55264 "EHLO
+        id S230290AbjGFHvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 03:51:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58248 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233508AbjGFHmh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:42:37 -0400
-Received: from mail-wr1-x42c.google.com (mail-wr1-x42c.google.com [IPv6:2a00:1450:4864:20::42c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E83C41BE1
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 00:42:32 -0700 (PDT)
-Received: by mail-wr1-x42c.google.com with SMTP id ffacd0b85a97d-3142a9ff6d8so286903f8f.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 00:42:32 -0700 (PDT)
+        with ESMTP id S229527AbjGFHvj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:51:39 -0400
+Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E4121BD9
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 00:51:38 -0700 (PDT)
+Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-51d80d81d6eso602580a12.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 00:51:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688629351; x=1691221351;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=WbxOrjdHKbXhlnZ+lfNH9KC2jI6IqoLPXw3l3BYO8wY=;
-        b=LV5oFIVWpwFHAtWyQEF9vh5vXnXRpyYR6xiAOOJ8SbAYbIHjPP7epD4KgcUrI2PEPb
-         mTJz27Bs9ZLYP4Qa/Klt3kmsPjDGMilSlAz3D0colMBTei4UxUgRArdK84Y3fAxzuXPw
-         G0tE/y94iFQH9z+Gxc2YvLWST9mL/AvDpEJYj07I0Q8rrCGkovGxqqXMo42fW+JfK0zv
-         Wgzwg9idZAKKNq+rQ5zyBA7C1GzU4Rh18U+n7huD+7GNR/fkc9e665vJkv7gXVaaryNl
-         OrHF9/CM6pMQ/hNINnQHAboEovs9o65JsbFnwQmi+mn+jhDPuaCEFRYv7rnKfPYkagly
-         3E+w==
+        d=linaro.org; s=google; t=1688629897; x=1691221897;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=3XPuUPdPd4IL646MDP7xQxkm1mxaIaMz/LLFTlhEzpE=;
+        b=jeihfA3SSlUzxo1jmrNrjXL158/UeCT7uZNbXEIqrzTux9MU7iS5WGGbJDTyncIKef
+         a5qOL8cxKFTRDK1JEAQhioSHbp+K3JShdU14BfRA+g8bPiK13EUwSpK51+ZbTJLqGH+U
+         EkbIsgnUJso8nWScVjexmDbyyM5QWz0enpCjUOis3Eid+Al+yBXkdYxC/W4mwXD4SIFi
+         P3JuNpBuLAB55CRQAjYRboSOBZmUO0sh3I7xfVVVEj/UYh1WFZX9UyGz5piDNVQyz1Qk
+         EoJTv3RTM97sM2FRGR1Wo0dHQYvUlmcT974XIJe1mdkkhrmFuB4q6NhcjLQUsOyjyc8X
+         h7fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688629351; x=1691221351;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=WbxOrjdHKbXhlnZ+lfNH9KC2jI6IqoLPXw3l3BYO8wY=;
-        b=lHdr1MlAoh0IfC1/HEqJR4i3zphHOhx/KLGJjS2duMDOPUqLP76E0EU92WrPy1cuHc
-         tBX0iRv95GsxUhcolaPRub4eK0R5p/XtUamYdCYhHk9uQhQtTIlQqXVVcI/R1T1VGlDj
-         z3MB6hHp+DFCZy78nxPS+vCCk4mg8CKDKhIfgFnMlJ/RGoAjddwrGeb/z7eA+S4sT41m
-         5+sQpHLZAanvm7vNtkaBvekgIQkPryc6KDi6mZjZzn2PmmQxQwLfSkzogpqRj33BU2EB
-         QS2F2AbDVZNtwB+ohj1LIYiQDpdb7pNdgOcxedXztk7HzwPLo7VMTe1OTIcXOB/NreNC
-         /btA==
-X-Gm-Message-State: ABy/qLbCrmiNAAir/C2roXvFjSrwzSpJ97ZZmEpy4oJKVNnvXp7qtksM
-        PH3Li+gA+BQo5/FyykYZBtTXDg==
-X-Google-Smtp-Source: APBJJlE78Dpcot4yN05l8xxI9dJuyq1KKsR5IHRaiwqI/bl8PWsDff2pYf38Ywa82zxVmsHAVbKHPw==
-X-Received: by 2002:adf:e505:0:b0:314:1ce8:a0a1 with SMTP id j5-20020adfe505000000b003141ce8a0a1mr692157wrm.17.1688629351386;
-        Thu, 06 Jul 2023 00:42:31 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:52eb:f6ff:feb3:451a])
-        by smtp.gmail.com with ESMTPSA id h5-20020adffd45000000b00313f07ccca4sm1076798wrs.117.2023.07.06.00.42.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 00:42:31 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Thu, 06 Jul 2023 09:42:27 +0200
-Subject: [PATCH 2/2] dt-bindings: pinctrl: amlogic,meson-pinctrl-common:
- allow gpio hogs
+        d=1e100.net; s=20221208; t=1688629897; x=1691221897;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=3XPuUPdPd4IL646MDP7xQxkm1mxaIaMz/LLFTlhEzpE=;
+        b=P3FfgvggdyKCWyq7DyWRcJW6kPLYmRBgFjv8/EGqU9krtlvuEXRT6U1ZaMaBXKB+dA
+         l/EPXzUcNsgEwrYbyKCPwKKkgpm7ZSCR3E9b9s9DFwQ8oy5rokxPx/su/eCVBiqx287e
+         iKO5lVPLMnrNOFawqexJSZQ3uPJbSZHChe+vIbGxm3H0BtcKS0fRAYbt9wivhAHOHdur
+         WL9jMHtDh1emRkk9dd9u53BmWTeTLni257E5qQ1Zv2N2leolYTOm6sLASCe4fcL0NT6k
+         xp51ueM3o2eAFF63QO5ydYctscn+VXQ0zmTb4HO85FtZawgBq+AmPXbHfFiqpuVJ8xPj
+         CQ4A==
+X-Gm-Message-State: ABy/qLbF4gKsewwlzRK0KMQzTKe8VXPgiwx7Pl99WgFfsQGWTGdgihHt
+        sn1ErYgDNSIGcrDbmQd9LPvswA==
+X-Google-Smtp-Source: APBJJlE1GzFFS11/BQZeeuoEMCqQI7WOCjyS5Cnvkbo7+aWcUl/LnigXelgXFEqsiJSV/bIfhHuY4g==
+X-Received: by 2002:a17:906:5346:b0:992:13c7:56d with SMTP id j6-20020a170906534600b0099213c7056dmr708586ejo.33.1688629897001;
+        Thu, 06 Jul 2023 00:51:37 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id lh6-20020a170906f8c600b0098e48ad11f2sm462030ejb.93.2023.07.06.00.51.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jul 2023 00:51:36 -0700 (PDT)
+Message-ID: <e1e12c86-da0d-0ae0-0542-86bdc4c81bb3@linaro.org>
+Date:   Thu, 6 Jul 2023 09:51:34 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-2-fa442d5aae91@linaro.org>
-References: <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-0-fa442d5aae91@linaro.org>
-In-Reply-To: <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-0-fa442d5aae91@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 2/3] dt-bindings: clock: amlogic: convert
+ amlogic,gxbb-aoclkc.txt to dt-schema
+To:     Jerome Brunet <jbrunet@baylibre.com>,
+        Rob Herring <robh@kernel.org>,
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
         Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=954;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=W+4PTPflVuY/VTPXicH0ipZFRZr1GRfAPhtre5st8GA=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpnBkxZQgeadpyhxnLHE7dGXL/a2+0lVvPpA4BWOU
- JGKwGOCJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKZwZAAKCRB33NvayMhJ0ZA+D/
- 0S0mjbLMqRomWDtTETONTeNmMXhWFdiOqk2iujAavuJhICbhbBSGXgUhXEH5oOGRmzKySeDSLjBZEI
- JX4vq5OcTI19LQzLFG274URpzZXfXwE4gctZTORzPebDLjd/E3l99I5jFVZGxU8L924zd8PhLI3xei
- VbrhEuOIQupf1teWOzlgilrKUeTNipmnDiuhqlOCak7iHoM2nFN4aM5K7t0S57qk7ZIyorEJhcDVml
- ZfHdbxo81p/pl7vPP+1LxQO6YkMchSAdlAOAELBVYppuuy+udGbSwwqJkQquyRL3t5kYfng4EWVx8S
- XjZo+6E+3P3kQdrqVPGjyiygaOWB6iaARlNFhFSuog854zEPLpyk3pqALyRSHGz1TBFJIQn1tyzs/E
- X7gplFT75ytW1PyWh/tOp3x0Gw1tfVvlk/akmhUitpfCZnxTZDNxRkfc7kd1LlDrgloPiW3JTd0XFe
- wdCN8OcychuGSg8dxvKJmNl6puE0zHHENdHC2p02G2i+Bm3aPey5gZJruMdr6kpyQ0yRxRvHG7I9i6
- kXT6HRG0Wgk3jHr52ym/3H62Bh0zfVYovOp6ZSDUPitWyNCFfS/oqH1hMvbCB+1kwUN1AagsdzHN7d
- cpjd0ays2SRMU3hRJskBX/h3yd+6/g9GW9fFHNP+gpw+fmOSUkVB4lElK+PA==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
+ <20230705-b4-amlogic-bindings-convert-take2-v2-2-22be915ddc3b@linaro.org>
+ <20230705195631.GA1732680-robh@kernel.org>
+ <1jttuh5www.fsf@starbuckisacylon.baylibre.com>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1jttuh5www.fsf@starbuckisacylon.baylibre.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -98,33 +87,37 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow gpio hog subnodes to the gpio subnode.
+On 06/07/2023 09:15, Jerome Brunet wrote:
+>>> +    then:
+>>> +      properties:
+>>> +        clock-names:
+>>> +          minItems: 2
+>>> +          items:
+>>> +            - const: xtal 
+>>> +            - const: mpeg-clk
+>>> +            - const: ext-32k-0
+>>> +            - const: ext-32k-1
+>>> +            - const: ext-32k-2
+>>
+>> As the names are always the same, move this to top-level and just set 
+>> the length here (except the constraints are the same as top-level, so 
+>> you can just drop this if/then).
+> 
+> If this is done, aren't we losing information ?
+> 
+> For example, "ext-32k-1" would become valid with a g12a as long as the
+> number of clocks is alright, which it is not.
 
-Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml  | 7 +++++++
- 1 file changed, 7 insertions(+)
+How it would be valid? It would be fourth item but only three are allowed.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
-index 28659f0389a5..d9a8e12bfb7f 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
-@@ -42,6 +42,13 @@ $defs:
-       gpio-ranges:
-         maxItems: 1
- 
-+    patternProperties:
-+      "^.+-hog(-[0-9]+)?$":
-+        type: object
-+
-+        required:
-+          - gpio-hog
-+
-     required:
-       - reg
-       - reg-names
+> 
+> I'm not concerned by the automated verification, more the information
+> provided to the users, which we used to have in the txt format.
 
--- 
-2.34.1
+No information is lost here, unless you claim that entries are entirely
+different?
+
+
+Best regards,
+Krzysztof
 
