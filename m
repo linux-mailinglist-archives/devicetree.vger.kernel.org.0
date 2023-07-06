@@ -2,61 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 03E7374A43C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:12:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 939FE74A452
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:18:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231467AbjGFTMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 15:12:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41624 "EHLO
+        id S229501AbjGFTSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 15:18:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229510AbjGFTMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:12:01 -0400
-Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6D01BDB;
-        Thu,  6 Jul 2023 12:12:00 -0700 (PDT)
-Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-785cbc5bfd2so38024039f.2;
-        Thu, 06 Jul 2023 12:12:00 -0700 (PDT)
+        with ESMTP id S229802AbjGFTSb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:18:31 -0400
+Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D471B1FC6;
+        Thu,  6 Jul 2023 12:18:28 -0700 (PDT)
+Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-785ccf19489so38183339f.3;
+        Thu, 06 Jul 2023 12:18:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688670720; x=1691262720;
+        d=1e100.net; s=20221208; t=1688671108; x=1691263108;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=rXU7Wt2272aI2cWoAWkzUapCyXWe+5UzEWsEVDkssTE=;
-        b=KIhP2M2D5arM0QCytoyBxUogEOoNdu/LtCIjCNwaV9AS72h9ekqEPJId7Ti48hwVIU
-         wk2p2eXipqgU7tvva6fibhaCtVNax5RaCpGrsBWtcjhQEa+37i2o3OlTyNHEpqgZg38X
-         J3zTvyIgTJ4KthiLe8fAsviquUtIlUq3FX/I9pJDo+EAID35VmsAnBhTFg3O62al8iJw
-         H/BU2vGEJEZiCYwPcHvTHEUNetbDoivaFbiDF7OBSAEwEo5jL3otQWpyRzcnBvOjdKus
-         c3ZjhjNeeh3I/Kor+hM4hkJgiDtoK3EF29ug9hJHVpCo8mmWWVS2D0izbKK128T18zFB
-         AwIQ==
-X-Gm-Message-State: ABy/qLaAhOpPwRmXqMXMjbzrhO72cLpNXClD+ilHpg/SWpn3t6wISwil
-        JCXibcDRrI6WwWBjvb900g==
-X-Google-Smtp-Source: APBJJlF07iocpCggVXaw78JSKNekrgWfNt3CbG1McmPUCJtGyu2pbeZDDeztboCM4rurH1+MtXodYA==
-X-Received: by 2002:a05:6602:2774:b0:780:ccb9:297b with SMTP id l20-20020a056602277400b00780ccb9297bmr3152305ioe.11.1688670720022;
-        Thu, 06 Jul 2023 12:12:00 -0700 (PDT)
+        bh=faxYBbkQkNObmdMc/UQbbUm/hK3wFyofz1gvqfG1ZAI=;
+        b=bnvp8zghDroiu7Zhx8wtj3jO926IoH43utxYHD4CtVtavupTyH/thCan9LM1zjFChK
+         q1lpo8Ch3d7jg8plrBY+3SwarTEYjGSh5IWsHPyzCySLwOepXXQseZ97uQ202dKABZgV
+         J+xOiVYNPLl/dxVHkAcIvzOMjGQejRv0I/P4mREiA+NWNmsnMXx6yVR+C07sf6DNgpWb
+         f6SaYthSFMm4wVAEGilkhRwqAt7pVEocswECxr3RsNmzn/KZCHb5Xrw+91ts0Fu90nwK
+         dvdiX4mcNuHdR7+eupYNZWdUNvCP89biVfQezlwS7dKjeYbypaPj2wnAw/2KUzr2+adU
+         ulDw==
+X-Gm-Message-State: ABy/qLYidU4dyJbM5Mm2IZXp4DBM2UEI80RAovcAOaExtnon8+xO8w2d
+        D5PdsIjprYLoTjr7sXs3hg==
+X-Google-Smtp-Source: APBJJlHhDQu+XP5X/+eyrY1BNM6jiIubxCPBwZi3080/0+VQd6I0eOXPQnvqJbl0iykgztx+ippEaA==
+X-Received: by 2002:a6b:760f:0:b0:785:d28f:1526 with SMTP id g15-20020a6b760f000000b00785d28f1526mr2960814iom.3.1688671108093;
+        Thu, 06 Jul 2023 12:18:28 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id u16-20020a02c950000000b0042b85d6e125sm112599jao.24.2023.07.06.12.11.58
+        by smtp.gmail.com with ESMTPSA id i13-20020a02ca4d000000b004267abdb240sm692774jal.38.2023.07.06.12.18.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 12:11:59 -0700 (PDT)
-Received: (nullmailer pid 168322 invoked by uid 1000);
-        Thu, 06 Jul 2023 19:11:57 -0000
-Date:   Thu, 6 Jul 2023 13:11:57 -0600
+        Thu, 06 Jul 2023 12:18:27 -0700 (PDT)
+Received: (nullmailer pid 177010 invoked by uid 1000);
+        Thu, 06 Jul 2023 19:18:25 -0000
+Date:   Thu, 6 Jul 2023 13:18:25 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexandru Ardelean <alex@shruggie.ro>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        olteanv@gmail.com, marius.muresan@mxt.ro
-Subject: Re: [PATCH 2/2] dt-bindings: net: phy: vsc8531: document
- 'vsc8531,clkout-freq-mhz' property
-Message-ID: <20230706191157.GA163793-robh@kernel.org>
-References: <20230706081554.1616839-1-alex@shruggie.ro>
- <20230706081554.1616839-2-alex@shruggie.ro>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: usb: ci-hdrc-usb2: Fix number of clocks
+Message-ID: <20230706191825.GA170669-robh@kernel.org>
+References: <20230706093928.3580544-1-alexander.stein@ew.tq-group.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230706081554.1616839-2-alex@shruggie.ro>
+In-Reply-To: <20230706093928.3580544-1-alexander.stein@ew.tq-group.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -68,42 +65,20 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 06, 2023 at 11:15:54AM +0300, Alexandru Ardelean wrote:
-> For VSC8351 and similar PHYs, a new property was added to generate a clock
-> signal on the CLKOUT pin.
-> This change documents the change in the device-tree bindings doc.
+On Thu, Jul 06, 2023 at 11:39:28AM +0200, Alexander Stein wrote:
+> Some (older) IP cores require 3 clocks, named 'ipg', 'ahb' and 'per' while
+> more recent IP cores just require one. Fix the number and explicitly
+> state the clock-names.
 > 
-> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
 > ---
->  Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> index 0a3647fe331b..133bdd644618 100644
-> --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-> @@ -31,6 +31,10 @@ Optional properties:
->  			  VSC8531_LINK_100_ACTIVITY (2),
->  			  VSC8531_LINK_ACTIVITY (0) and
->  			  VSC8531_DUPLEX_COLLISION (8).
-> +- vsc8531,clkout-freq-mhz : For VSC8531 and similar PHYs, this will output
+> >From I can tell, is that imx25, imx27, imx35 have specified 3 clocks in
+> their DT.
+> IMHO minItems for 'clock-names' can be removed as I presume that this
+> property is not set when only one clock is used.
 
-Please don't continue this naming pattern with 'vsc8531' prefix. The 
-prefix should be the vendor prefix.
+Rather than presume, did you test that? Well, I did[1] and can confirm.
 
-> +			  a clock signal on the CLKOUT pin of the chip.
-> +			  The supported values are 25, 50 & 125 Mhz.
-> +			  Default value is no clock signal on the CLKOUT pin.
->  - load-save-gpios	: GPIO used for the load/save operation of the PTP
->  			  hardware clock (PHC).
->  
-> @@ -69,5 +73,6 @@ Example:
->                  vsc8531,edge-slowdown	= <7>;
->                  vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
->                  vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
-> +                vsc8531,clkout-freq-mhz	= <50>;
->  		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
->          };
-> -- 
-> 2.40.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+[1] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230706093928.3580544-1-alexander.stein@ew.tq-group.com/
