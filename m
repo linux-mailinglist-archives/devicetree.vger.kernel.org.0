@@ -2,186 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 597B274A242
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 18:35:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58DCA74A2D7
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 19:08:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbjGFQfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 12:35:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38498 "EHLO
+        id S232480AbjGFRI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 13:08:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229610AbjGFQfl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 12:35:41 -0400
-Received: from mail-lf1-x132.google.com (mail-lf1-x132.google.com [IPv6:2a00:1450:4864:20::132])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F8301703
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 09:35:40 -0700 (PDT)
-Received: by mail-lf1-x132.google.com with SMTP id 2adb3069b0e04-4fb7769f15aso1393433e87.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 09:35:40 -0700 (PDT)
+        with ESMTP id S232507AbjGFRIz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 13:08:55 -0400
+Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F161737
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 10:08:49 -0700 (PDT)
+Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1b8bbce9980so6333375ad.2
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 10:08:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688661339; x=1691253339;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=YP6pMbBAQx82d9LFHalrVI6LUynmYyQZ/H6dn44Djmk=;
-        b=BRy5pDTiQ2zs/gl9rX2cTtf9ekYsoXL7EahS7K1nGfivSrjwAjkIe4dPTqpvbG7lDb
-         4nKpuNoFKhpBJsXXL4qbx8M/4mF+DBQFxPkCDe0oYB2aRBhLURa3FPyXiBBngGPONotW
-         C/I0PbPQw3FZSGL/3vxbdCU5rp48BaX8wSRjMoJbcoyOnkCOUWpLqCIh1N0tifRO4ObZ
-         wGqqXcvBElmth43cwxuGsVtl2wHtwMIjMoTIPNIS/ZVEEVfRChtT7IsCCPL6Qp9gj0/K
-         3oRZC0jS6IN9zIAU1/84pzNN0PwH5s+CXRcIzF7oHOfJGhwZOTnZhNiQsPviJ1W3l51p
-         aXOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688661339; x=1691253339;
-        h=cc:to:message-id:content-transfer-encoding:mime-version:subject
-         :date:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1688663328; x=1691255328;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=YP6pMbBAQx82d9LFHalrVI6LUynmYyQZ/H6dn44Djmk=;
-        b=IL0EHbM6r7FyZR4PFmVOc1StNtjwtQNtRMekB+g16VRbDjCxFFWtclsU+fetK0a6gr
-         kRJvzI3NUgIG90gmkoDlWJyVMlT7jJkU2SDxNDlER6wOAGGbRd07zla5KfFAUEACpH89
-         AIHm2BJeEuYPbU6UY3CNWcIAN+C53XRXSzfy3FyoRjsa9XlFosSI/i/1dW3cajPNR2jp
-         GoLnhuzKWV+AaPeDhrJjRR4oUsb5VQs8bnXCJUS0vc3y2wSQZlz/Hm5ye/+mmTqo5qxD
-         Eb3AHIRqNmo2viM/relGdQHrnaZB2YHwLRpMxCOVVaNpD+ljAIE+YkahJABB76t8Cj01
-         CEWA==
-X-Gm-Message-State: ABy/qLbXMe0hqbN8OdpQiAcwX+XxHOP1Evi/e1L1T/lU/wJKdx9gaTbt
-        xqCSE8tNOR9kPrJHvI0jOdzlog==
-X-Google-Smtp-Source: APBJJlGDp3vceUiFr1kPMxrcDTNPVvpzmiLLKKKO5itkcEey7tHf8gT/kcZeP3gLYzEukAdcCQfL1A==
-X-Received: by 2002:a19:6508:0:b0:4f9:69b8:1e7c with SMTP id z8-20020a196508000000b004f969b81e7cmr1743769lfb.46.1688661338703;
-        Thu, 06 Jul 2023 09:35:38 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id e7-20020ac25467000000b004fb763b5171sm325784lfn.86.2023.07.06.09.35.37
+        bh=uDFcTWubp+txWejOhlaxkosc/sM3fyBrGXhY50V6+cc=;
+        b=Q3tIlLGo1iMeILb+g6CH4AIl3stIczQL9hbypUuloisr7dgdnhmwB6ISQOKN6BvnsJ
+         K3O1JcQ5v3+cL1l+D2w4fY7JLprWSNENfngJS/iyg2okZpdYyQj0nlKgzNGHgR8WVuCG
+         rUuF78Z/asu/0QEztqH4ky05n9ZBKsI5h7Y55PmYGCUO9CHIjY8e7UQ1Btp63JMcRwzq
+         jhGDhbhg1BhKE7eMImJDzMF2Do6AD2gKr/BI86yx2Gr2orCka1+ixbby0Tv5EKv7699d
+         AWaojvSBoh3rC2chnKJ4rpkDNiNOHz5Y1/OwlK6eYZQox6JAojJLfoF6o08bcjzr6IJ3
+         tr8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688663328; x=1691255328;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=uDFcTWubp+txWejOhlaxkosc/sM3fyBrGXhY50V6+cc=;
+        b=e0+doCu1zCj7G983XzAfmVmRP9niLk77NPFTr3iHOPR+G+aJk+255eh+ROlUJzmY4X
+         LY+OLvl1vbKsy4UVajmhlYipBOVaRqYD+pCH9u2e4NYBsy4K0/pbkDg1X1GExi30qwNg
+         n9ZGkH4v3+nq4KV3uvCT1KC3cOUrIZRXoEVhG0FI/NOge5/aveJjwgaA8ccoq0xNeHGj
+         c8x82Sr+8ZyMMbqrA2ESjZfRINPKZJrUyIDL0G6v9k8zrDmTDtNyUKyjg/f9LhQBzkfa
+         xQDrxV1RTwWHgC/xzz10k2/tTSKZKhuWAKDM2vWFYvyNfrYHQIyudKLikTbeeSeXSZ6m
+         j+aA==
+X-Gm-Message-State: ABy/qLYquuaWxiNIHC+JfanhYK0k16uBcbtIlfjPT7usJdKeSwIitdr5
+        MBNt+oSYVz7vkRqzNoVZVELnHA==
+X-Google-Smtp-Source: APBJJlG74eEINUstmC9zOo36wEsjfZVnckhU+vtEAepiS2jkRuh+o/vzJ/8elzyQtASPJfPTGwaDJA==
+X-Received: by 2002:a17:902:efd1:b0:1a6:4b60:3195 with SMTP id ja17-20020a170902efd100b001a64b603195mr1567784plb.66.1688663328525;
+        Thu, 06 Jul 2023 10:08:48 -0700 (PDT)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id p6-20020a170902b08600b001b8a7e1b116sm1668898plr.191.2023.07.06.10.08.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 09:35:38 -0700 (PDT)
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-Date:   Thu, 06 Jul 2023 18:35:37 +0200
-Subject: [PATCH] arm64: dts: qcom: sm8350: Use proper CPU compatibles
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20230706-topic-sm8350-cpu-compat-v1-1-f8d6a1869781@linaro.org>
-X-B4-Tracking: v=1; b=H4sIAFjtpmQC/x2NQQrCMBAAv1L27EJMrAa/Ih6SzWoX2iRkWxFK/
- 27wOAPD7KDchBXuww6NP6JScofzaQCaQn4zSuoM1lhnbuaKa6lCqIt3o0GqG1JZaljRXqI3nse
- UrINex6CMsYVMU+/zNs9d1sYv+f53j+dx/AALzp1hfgAAAA==
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Marijn Suijten <marijn.suijten@somainline.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Konrad Dybcio <konrad.dybcio@linaro.org>
-X-Mailer: b4 0.12.2
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1688661337; l=2791;
- i=konrad.dybcio@linaro.org; s=20230215; h=from:subject:message-id;
- bh=GNy5G2e4ewtEYejU2/KqSKUdoornsUfW/gbpWdaEdvs=;
- b=t11FWiz+JUHLRsWMF8TySNmsOWb3ZgqOKOEpei+brzyI9S/luyVr32TK3svlrh/TMIHnKyoZL
- YitrBxZtn/mBV8lEuj/mO7s5wCOc8nb8vfiFBEtSN+IhCGXDRT92mOX
-X-Developer-Key: i=konrad.dybcio@linaro.org; a=ed25519;
- pk=iclgkYvtl2w05SSXO5EjjSYlhFKsJ+5OSZBjOkQuEms=
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+        Thu, 06 Jul 2023 10:08:47 -0700 (PDT)
+Date:   Thu, 06 Jul 2023 10:08:47 -0700 (PDT)
+X-Google-Original-Date: Thu, 06 Jul 2023 10:07:29 PDT (-0700)
+Subject:     Re: [PATCH v3 0/3] Add support for Allwinner PWM on D1/T113s/R329 SoCs
+In-Reply-To: <20230627082334.1253020-1-privatesub2@gmail.com>
+CC:     linux-kernel@vger.kernel.org, privatesub2@gmail.com,
+        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, wens@csie.org, jernej.skrabec@gmail.com,
+        samuel@sholland.org, Paul Walmsley <paul.walmsley@sifive.com>,
+        aou@eecs.berkeley.edu, p.zabel@pengutronix.de,
+        cristian.ciocaltea@collabora.com,
+        Greg KH <gregkh@linuxfoundation.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     privatesub2@gmail.com
+Message-ID: <mhng-0cca3d46-6031-4e8a-8e8f-2c479a20b95d@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Kryo names (once again) turned out to be fake. The CPUs report:
+On Tue, 27 Jun 2023 01:23:23 PDT (-0700), privatesub2@gmail.com wrote:
+> Hi,
+>
+> This series adds support for PWM controller on new
+> Allwinner's SoCs, such as D1, T113s and R329. The implemented driver
+> provides basic functionality for control PWM channels.
+>
+> v2:
+>  - fix dt-bindings
+>  - fix a remark in the driver
+>
+> v3:
+>  - fix dt-bindings
+>  - fix sunxi-d1s-t113.dtsi
+>
+> Aleksandr Shubin (3):
+>   dt-bindings: pwm: Add binding for Allwinner D1/T113-S3/R329 PWM
+>     controller
+>   pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM support
+>   riscv: dts: allwinner: d1: Add pwm node
+>
+>  .../bindings/pwm/allwinner,sun20i-pwm.yaml    |  86 +++++
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  11 +
+>  drivers/pwm/Kconfig                           |  10 +
+>  drivers/pwm/Makefile                          |   1 +
+>  drivers/pwm/pwm-sun20i.c                      | 322 ++++++++++++++++++
+>  5 files changed, 430 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
+>  create mode 100644 drivers/pwm/pwm-sun20i.c
 
-0x412fd050 (CA55 r2p0) (0 - 3)
-0x411fd410 (CA78 r1p1) (4 - 6)
-0x411fd440 (CX1  r1p1) (7)
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
 
-Use the compatibles that reflect that.
-
-Fixes: b7e8f433a673 ("arm64: dts: qcom: Add basic devicetree support for SM8350 SoC")
-Signed-off-by: Konrad Dybcio <konrad.dybcio@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8350.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/sm8350.dtsi b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-index ec451c616f3e..8ecfe84ba1b6 100644
---- a/arch/arm64/boot/dts/qcom/sm8350.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8350.dtsi
-@@ -48,7 +48,7 @@ cpus {
- 
- 		CPU0: cpu@0 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x0>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
-@@ -72,7 +72,7 @@ L3_0: l3-cache {
- 
- 		CPU1: cpu@100 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x100>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
-@@ -91,7 +91,7 @@ L2_100: l2-cache {
- 
- 		CPU2: cpu@200 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x200>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
-@@ -110,7 +110,7 @@ L2_200: l2-cache {
- 
- 		CPU3: cpu@300 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-a55";
- 			reg = <0x0 0x300>;
- 			clocks = <&cpufreq_hw 0>;
- 			enable-method = "psci";
-@@ -129,7 +129,7 @@ L2_300: l2-cache {
- 
- 		CPU4: cpu@400 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-a78";
- 			reg = <0x0 0x400>;
- 			clocks = <&cpufreq_hw 1>;
- 			enable-method = "psci";
-@@ -148,7 +148,7 @@ L2_400: l2-cache {
- 
- 		CPU5: cpu@500 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-a78";
- 			reg = <0x0 0x500>;
- 			clocks = <&cpufreq_hw 1>;
- 			enable-method = "psci";
-@@ -167,7 +167,7 @@ L2_500: l2-cache {
- 
- 		CPU6: cpu@600 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-a78";
- 			reg = <0x0 0x600>;
- 			clocks = <&cpufreq_hw 1>;
- 			enable-method = "psci";
-@@ -186,7 +186,7 @@ L2_600: l2-cache {
- 
- 		CPU7: cpu@700 {
- 			device_type = "cpu";
--			compatible = "qcom,kryo685";
-+			compatible = "arm,cortex-x1";
- 			reg = <0x0 0x700>;
- 			clocks = <&cpufreq_hw 2>;
- 			enable-method = "psci";
-
----
-base-commit: c36ac601a98fb148147640bae219108ee81566f8
-change-id: 20230706-topic-sm8350-cpu-compat-24b808e5dd23
-
-Best regards,
--- 
-Konrad Dybcio <konrad.dybcio@linaro.org>
-
+I'm not sure if this ended up somewhere, but I'm assuming it's not aimed 
+at my tree.  LMK if you guys want me to pick it up, I'm dropping it from 
+patchwork.
