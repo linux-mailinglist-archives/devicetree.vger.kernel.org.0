@@ -2,127 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B7F3749BB0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A242749BB4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231849AbjGFM3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 08:29:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36678 "EHLO
+        id S231918AbjGFMaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 08:30:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37054 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231706AbjGFM3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:29:16 -0400
-Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91B919A0
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 05:29:14 -0700 (PDT)
-Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fbef8ad9bbso7035755e9.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 05:29:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688646553; x=1691238553;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=QrwyGG22yUz0pXaaxwTuGI5EuvBFjwW6o/zgDSSwkOQ=;
-        b=Lgf1cOi+4+QGjJ6vTEGvJWc7DzjQzfv4w5BKVmRE40HSst27WRxPaOwU150CLSXJ4j
-         BO+HNRiJ1qXMampj7+/nE6mFbHRSRf0vi+7jG1/JddtB6urUwJiinZj33ugaWTSzNx3q
-         A4c2ryH1s9an3latetN75IwkfRPlx+fk842mO63qnWoz5ADaoP1OmvMep52wcA+K3mcU
-         HOZGbBB1RR9daw2jLO6jKBkgYgxjCY0S8W/Pgwgrnybzzyh1Dvqv6138oMRL+ikpYh9g
-         /NWnaO7yQrhKl1UcQTelDCmA6+H7SEthcRmzLsGS4kvwV+ZJ2Foy2cLZYpr3ZSiUsKyT
-         5TUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688646553; x=1691238553;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=QrwyGG22yUz0pXaaxwTuGI5EuvBFjwW6o/zgDSSwkOQ=;
-        b=eWm3BpjVS0dfzIXheQBB8xhItLodpYKnUPeOzIaWl2fAbsDfwNXt8EHZPGRPtAxSlW
-         rd/fq468UcT95RmSqJj59RFutGeDZWJy7RAFCQlSDwpPPxWWPZQcWAbazx00hYFaOtHT
-         ybmKz1rgDNklQpbw/U0a23BTb+sRd7ILmh0WNYeeGWqt0GELiEbq/L7fmTVyzBfcem9u
-         EFN1/J3jNju4JpdIW4QrwPrBNcWRrCtx54RwhAlu62tpxhr2awoTD6L8c4aIHUxxRH6z
-         o2Lr566Jai58MrNoYDci+MbwmzkC7r2bwG4sixEqaZYJlKyGxehv+UCf3IPZG27hcW4e
-         /jmg==
-X-Gm-Message-State: ABy/qLaMjKzeN/qoOXwKh0xHA/Pb7m4mRcaShqxI+8SwdF1yIOPu7Lo+
-        oz6LMwoTws4aw/sMoeRryRV4+mKzLoFhohqRRbY=
-X-Google-Smtp-Source: APBJJlENtsBPpzfe/86erIipmcvmcmpI0mPj2K7COvY/9J7rNN04Fa6U7vYjLisS/xtXgMELnlW8qQ==
-X-Received: by 2002:a7b:c5d4:0:b0:3fa:9e61:19ed with SMTP id n20-20020a7bc5d4000000b003fa9e6119edmr1221201wmk.23.1688646553292;
-        Thu, 06 Jul 2023 05:29:13 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id f14-20020adff44e000000b003142ea7a661sm1799342wrp.21.2023.07.06.05.29.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 05:29:12 -0700 (PDT)
-Message-ID: <55c3a448-e6c6-5e04-2cee-b2a18f0033e3@baylibre.com>
-Date:   Thu, 6 Jul 2023 14:29:11 +0200
+        with ESMTP id S230445AbjGFMaA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:30:00 -0400
+Received: from mga02.intel.com (mga02.intel.com [134.134.136.20])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A405619A0;
+        Thu,  6 Jul 2023 05:29:59 -0700 (PDT)
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="353426705"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; 
+   d="scan'208";a="353426705"
+Received: from orsmga003.jf.intel.com ([10.7.209.27])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 06 Jul 2023 05:29:59 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10762"; a="669736063"
+X-IronPort-AV: E=Sophos;i="6.01,185,1684825200"; 
+   d="scan'208";a="669736063"
+Received: from smile.fi.intel.com ([10.237.72.54])
+  by orsmga003.jf.intel.com with ESMTP; 06 Jul 2023 05:29:54 -0700
+Received: from andy by smile.fi.intel.com with local (Exim 4.96)
+        (envelope-from <andy@kernel.org>)
+        id 1qHO7M-000WDf-2I;
+        Thu, 06 Jul 2023 15:29:52 +0300
+Date:   Thu, 6 Jul 2023 15:29:52 +0300
+From:   Andy Shevchenko <andy@kernel.org>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        brgl@bgdev.pl, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] pinctrl: Add driver support for Amlogic C3 SoCs
+Message-ID: <ZKazwMpmsNzBuWA7@smile.fi.intel.com>
+References: <20230706114522.2490655-1-huqiang.qin@amlogic.com>
+ <20230706114522.2490655-3-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] pwm: mtk_disp: fix disp_pwm coverity issue
-Content-Language: en-US
-To:     Shuijing Li <shuijing.li@mediatek.com>, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com
-Cc:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com,
-        jitao.shi@mediatek.com
-References: <20230706100454.28998-1-shuijing.li@mediatek.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230706100454.28998-1-shuijing.li@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230706114522.2490655-3-huqiang.qin@amlogic.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+X-Spam-Status: No, score=-3.5 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H3,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_SOFTFAIL,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Jul 06, 2023 at 07:45:22PM +0800, Huqiang Qin wrote:
+> Add new pinctrl driver for Amlogic C3 SoCs which share the
 
+a new
 
-On 06/07/2023 12:04, Shuijing Li wrote:
-> There is a coverity issue in the original mtk_disp_pwm_get_state()
-> function. In function call DIV64_U64_ROUND_UP, division by expression
-> Which may be zero has undefined behavior.
-> Fix this accordingly.
-> 
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-> ---
->   drivers/pwm/pwm-mtk-disp.c | 9 ++++++++-
->   1 file changed, 8 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/pwm/pwm-mtk-disp.c b/drivers/pwm/pwm-mtk-disp.c
-> index 79e321e96f56..ca00058a6ef4 100644
-> --- a/drivers/pwm/pwm-mtk-disp.c
-> +++ b/drivers/pwm/pwm-mtk-disp.c
-> @@ -196,6 +196,14 @@ static int mtk_disp_pwm_get_state(struct pwm_chip *chip,
->   		return err;
->   	}
->   
-> +	rate = clk_get_rate(mdp->clk_main);
-> +	if (rate <= 0) {
-> +		dev_err(chip->dev, "Can't get rate: %pe\n", ERR_PTR(rate));
-> +		clk_disable_unprepare(mdp->clk_mm);
-> +		clk_disable_unprepare(mdp->clk_main);
-> +		return err;
-> +	}
+> same register layout as the previous Amloigc S4
+
+Missing period at the end.
+
+...
+
+> +config PINCTRL_AMLOGIC_C3
+> +	tristate "Amlogic C3 SoC pinctrl driver"
+> +	depends on ARM64
+> +	select PINCTRL_MESON_AXG_PMX
+> +	default y
+
+This default seems a bad cargo cult. Why ARM64 kernel should have all them be
+opt-out, instead of opt-in? Shouldn't this be a distro problem?
+
+...
+
+> +	MESON_PIN(GPIO_TEST_N)
+
+Is it real one?
+
+> +};
+
+...
+
+> +	/* Bank A func6 */
+> +	GROUP(spi_a_mosi_a,		6),
+> +	GROUP(gen_clk_a4,		6),
+> +	GROUP(clk12_24_a,		6)
+
+Leave trailing comma here as it's not a terminator.
+
+...
+
+> +static const char * const i2c2_groups[] = {
+> +	"i2c2_sda", "i2c2_scl"
+
+Ditto.
+
+> +};
 > +
->   	/*
->   	 * Apply DISP_PWM_DEBUG settings to choose whether to enable or disable
->   	 * registers double buffer and manual commit to working register before
-> @@ -206,7 +214,6 @@ static int mtk_disp_pwm_get_state(struct pwm_chip *chip,
->   					 mdp->data->bls_debug_mask,
->   					 mdp->data->bls_debug_mask);
->   
-> -	rate = clk_get_rate(mdp->clk_main);
->   	con0 = readl(mdp->base + mdp->data->con0);
->   	con1 = readl(mdp->base + mdp->data->con1);
->   	pwm_en = readl(mdp->base + DISP_PWM_EN);
+> +static const char * const i2c3_groups[] = {
+> +	"i2c3_sda_c", "i2c3_scl_c",
+> +	"i2c3_sda_x", "i2c3_scl_x",
+> +	"i2c3_sda_d", "i2c3_scl_d"
 
-IMHO, it should be done int the function `mtk_disp_pwm_apply` too.
-Do you agree ?
+Ditto.
+
+> +};
+
+...
+
+> +#ifdef CONFIG_OF
+
+Drop this ugly ifdeffery.
+
+> +static const struct of_device_id c3_pinctrl_dt_match[] = {
+> +	{
+> +		.compatible = "amlogic,c3-periphs-pinctrl",
+> +		.data = &c3_periphs_pinctrl_data,
+> +	},
+> +	{ },
+
+No comma for the terminator.
+
+> +};
+> +MODULE_DEVICE_TABLE(of, c3_pinctrl_dt_match);
+> +#endif /* CONFIG_OF */
+> +
+> +static struct platform_driver c3_pinctrl_driver = {
+> +	.probe  = meson_pinctrl_probe,
+> +	.driver = {
+> +		.name = "amlogic-c3-pinctrl",
+
+> +		.of_match_table = of_match_ptr(c3_pinctrl_dt_match),
+
+Drop the rather problematic of_match_ptr().
+
+> +	},
+> +};
 
 -- 
-Regards,
-Alexandre
+With Best Regards,
+Andy Shevchenko
+
+
