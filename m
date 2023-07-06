@@ -2,74 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 482CB74A694
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 00:10:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 284F974A703
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 00:24:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231833AbjGFWKO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 18:10:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41146 "EHLO
+        id S232059AbjGFWY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 18:24:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231666AbjGFWKM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 18:10:12 -0400
-Received: from mail-yb1-xb35.google.com (mail-yb1-xb35.google.com [IPv6:2607:f8b0:4864:20::b35])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF9C21BFF
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 15:10:09 -0700 (PDT)
-Received: by mail-yb1-xb35.google.com with SMTP id 3f1490d57ef6-c4dd86f5d78so1829922276.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 15:10:09 -0700 (PDT)
+        with ESMTP id S232467AbjGFWYL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 18:24:11 -0400
+Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE29526A4
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 15:22:09 -0700 (PDT)
+Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-c2cf4e61bc6so1442426276.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 15:22:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688681409; x=1691273409;
+        d=linaro.org; s=google; t=1688682126; x=1691274126;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=EaRYPoQhBK/4tB9AkHrTvbi+01+8KyCJD5rHLEiLHRY=;
-        b=tLbPe+XrraaPfIPZdRWkBh4e/SEhaJ9Zet06Uc7NH7vYFPUiPvihQ28EwpKzizoBic
-         K26L9OPHDDM8n/oHVUDe1QtWNv8R2OrMAYAXYNM7k5HgzlIYdhprUG1DtSkdLWxfIoJr
-         8/wbGP7bKMj+Z0PEdlbeo4XCMhBmQytubsI7/a2FC4x7Jz6H0cn0JOj0uc5edhe9GGIt
-         U+JbC5EHcOv86SFMYTn8jpSJIjbP67uauBA1Q4a89QiahN0gbbjFseLsAWa6faOlUnwv
-         0BLZlTU+50dCRKCWw1bcr3XtH3H+Mh63ALt87w5A/KP8Att4hvINACztwUzYiyOkBjX9
-         riDw==
+        bh=u3ZnLWYda5s0Z078Xc8xlFfay4f1nZm55XtpErGsqnI=;
+        b=J0xYFGJIHP1aeu1ek9eG6XIflCT3/NG5yzgBPxYBMizXOBO6SzfvC8tP6I15LvmIyd
+         0/diWULwbjQ+pfs84WKRci9q6gNUy690OJ5bQxf9A0iUP86G1a2NW6Rsh335QFw4SHrg
+         QeEZg3tfQ6RrkGkLW40v5FL8L8RPmgAomh9KQTHghpFGgAi1wSA7vnm65RByZrKHjuyA
+         Mu41CqWfjXSP5Z3ymsrnEDQw2bdhsL4P+0d1m2aGKX6s2dl5EgV73G3hSw+1i67ecDDu
+         mqEASUR4Sgg+gZMDouNoM1kRp4yLc4SJlTNYZHiQGwzBBWmekZfuUGwqEFnXUwROF7U7
+         od0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688681409; x=1691273409;
+        d=1e100.net; s=20221208; t=1688682126; x=1691274126;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=EaRYPoQhBK/4tB9AkHrTvbi+01+8KyCJD5rHLEiLHRY=;
-        b=K9XCggVUSCD3T2XgtaIkt0DA9NTFqIKq9bQmJWjLyxf0IQuqf5li3VfXCSNyEAUq58
-         MGzNJB6V1Ub/n2L8YzlWroiu8ghuH1KE8vELGUhO1sFV4Zu/SSR2CrwwEdNhiwIX2RRp
-         O39vNOzZiMZSyKg+pPkuknM2OvUKbk3HMTOyG/stUiYd//GDG2wVZNisWK1+Lc0tou7m
-         0ufgW5b8BCQicYEdyzaqSIq6hJgIFKpKYDHH6z2NmZ+ki2XWwoS9WJ8SZFyaelocw3Cr
-         6moNZ/39fYC6L2qRcqyNdK7Ccp5ctJnCpF0+vXE23Uo5elZIYiUzJlhxQ734J2WOzLeo
-         EAow==
-X-Gm-Message-State: ABy/qLYYFEmkanUYGz4KUMdAST8Ew9OavpH3O/TBZBHAG2MG8LyGREVi
-        hi66G0//jgzBN35/nBRy7bzJ92HQe3WVI3T086gvE9MDZhc4q7IxTmI=
-X-Google-Smtp-Source: APBJJlFzm1sQUiz398ok7Tkvc/xWGg74bFGoqYKbyjqE426nRYq1ut4c9nhjvrnp43q+sujH7LVMZmtIAuk8p0V3e7k=
-X-Received: by 2002:a5b:611:0:b0:c1c:e037:1379 with SMTP id
- d17-20020a5b0611000000b00c1ce0371379mr3138042ybq.1.1688681409016; Thu, 06 Jul
- 2023 15:10:09 -0700 (PDT)
+        bh=u3ZnLWYda5s0Z078Xc8xlFfay4f1nZm55XtpErGsqnI=;
+        b=JGbIdXZXB1f7cdxJEVipHIBtiLpREy0A/51oj7nkYR0ftG3B2waRQbNCB1uicFahj8
+         Vn9+8T6B8l8chn/WrpmL3YcGDdLoTM87gc+rxKe9v4WrTSuCcL3G4e0nr/+cFioJK657
+         9DnON+t/6i5rbNkAxV5811yS6GDF2oRS8Hqrqpq+yE7JRZI5ES2vlmRFy0nKq3Ao3fhW
+         q0UbOhKQjFz3HK6GMwbB5T8rNOT08c7UCr3Aj56dX/s/tqUiidJ+5aet6gvm9gZyYooC
+         FFuqj5dOJAnv/aXa70cxrPc6wdDiE6CEQENO5HeUltEjXYSny+QzKnV5fP9F+Uj8brcy
+         jDCQ==
+X-Gm-Message-State: ABy/qLYLGj4ma5Ven8RiOMuX4Hw9yiR5LgBycmWqkvZ9TbnxOx5HvC00
+        sjydsiSXyHZFGaznaCcWlWCFy0HoSkPj8wCjI761Lg==
+X-Google-Smtp-Source: APBJJlHrD0uZZQ/A/cUft82Lh9JCBJX/moY+JJATbzzD92duMgZi6yTWphFsvwNzjoMvOd6ujc0JNbgYNkCWWuDeuO4=
+X-Received: by 2002:a25:9cc6:0:b0:bfe:d93a:8f2b with SMTP id
+ z6-20020a259cc6000000b00bfed93a8f2bmr4069609ybo.60.1688682126451; Thu, 06 Jul
+ 2023 15:22:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230706073719.1156288-1-thomas.bourgoin@foss.st.com> <20230706073719.1156288-3-thomas.bourgoin@foss.st.com>
-In-Reply-To: <20230706073719.1156288-3-thomas.bourgoin@foss.st.com>
+References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
+ <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=W_Vw=WTuap60PtzU8Jc58T1PsEhJfY96NmFFgmC1DB9w@mail.gmail.com>
+ <CACRpkdZkNio99zS+ttEXncOtS1TcYbfunKSKddErRDV1gTY43w@mail.gmail.com>
+ <CAD=FV=Xx_Bf=Fr1aCmmcjXAv1CyMYwEFba7C6k_HRE1VPtTtHQ@mail.gmail.com>
+ <CACRpkdYif_h38TYDuSjY-0WkWNknFOe8n2Xe7zBydKxySrdZHA@mail.gmail.com> <CAD=FV=WNgAr=YaMu9+KSxZSHpG9Z31Pbka1N3E-OYR1-WKHiaQ@mail.gmail.com>
+In-Reply-To: <CAD=FV=WNgAr=YaMu9+KSxZSHpG9Z31Pbka1N3E-OYR1-WKHiaQ@mail.gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 7 Jul 2023 00:09:57 +0200
-Message-ID: <CACRpkdaHn8fhZtuhU4sXHK1xoxO3-xYg_Xb=3=bX8i-uJM9KDA@mail.gmail.com>
-Subject: Re: [PATCH 2/7] crypto: stm32 - add new algorithms support
-To:     Thomas BOURGOIN <thomas.bourgoin@foss.st.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Fri, 7 Jul 2023 00:21:55 +0200
+Message-ID: <CACRpkdZLgf15Ao6CPym6q2yC17XcA3kjtDCQ3F2-aa-XwZJ=xg@mail.gmail.com>
+Subject: Re: [v4 4/4] drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
+To:     Doug Anderson <dianders@google.com>
+Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        neil.armstrong@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, sam@ravnborg.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        hsinyi@google.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -77,92 +78,59 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thomas,
+On Thu, Jul 6, 2023 at 11:58=E2=80=AFPM Doug Anderson <dianders@google.com>=
+ wrote:
 
-thanks for your patch! I overall like the looks of
-the end result.
-
-On Thu, Jul 6, 2023 at 9:38=E2=80=AFAM Thomas BOURGOIN
-<thomas.bourgoin@foss.st.com> wrote:
-
-> From: Thomas Bourgoin <thomas.bourgoin@foss.st.com>
+> > So the Ilitek ILI9882t is an obvious break-out.
 >
-> Add the all SHA-2 (up to 512) and SHA-3 algorithm support.
-> Update compatible table to add stm32mp13.
->
-> Signed-off-by: Thomas Bourgoin <thomas.bourgoin@foss.st.com>
+> I guess. To me it feels like the concept of breaking the driver into
+> multiple sub-drivers and the idea of supporting ILI9882t more cleanly
+> are orthogonal. You could still do your patch #4 and break out the
+> page switching function without breaking up the driver.
 
-I testes to apply this and boot the Skomer (U8500, Samsung
-GT-S7710) This patch regresses the ux500 hash like this:
+Yeah that's true. But with Ilitek in particular we have these nice
+precedents:
+drivers/gpu/drm/panel/panel-ilitek-ili9322.c
+drivers/gpu/drm/panel/panel-ilitek-ili9341.c
+drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
 
-[    3.612426] stm32-hash a03c2000.hash: allocated hmac(sha256) fallback
-[    4.236755] stm32-hash a03c2000.hash: allocated sha256 fallback
-[    4.269287] alg: ahash: stm32-sha256 test failed (wrong result) on
-test vector 4, cfg=3D"init+update+final aligned buffer"
-[    4.280273] alg: self-tests for sha256 using stm32-sha256 failed (rc=3D-=
-22)
-[    4.280273] ------------[ cut here ]------------
-[    4.291748] WARNING: CPU: 0 PID: 100 at crypto/testmgr.c:5936
-alg_test.part.0+0x4d0/0x4e0
-[    4.299987] alg: self-tests for sha256 using stm32-sha256 failed (rc=3D-=
-22)
-[    4.299987] Modules linked in:
-[    4.309906] CPU: 0 PID: 100 Comm: cryptomgr_test Not tainted
-6.4.0-rc1-00014-g3c85f4ad9472 #274
-[    4.318603] Hardware name: ST-Ericsson Ux5x0 platform (Device Tree Suppo=
-rt)
-[    4.325561]  unwind_backtrace from show_stack+0x10/0x14
-[    4.330810]  show_stack from dump_stack_lvl+0x40/0x4c
-[    4.335876]  dump_stack_lvl from __warn+0x94/0xc0
-[    4.340606]  __warn from warn_slowpath_fmt+0x118/0x164
-[    4.345733]  warn_slowpath_fmt from alg_test.part.0+0x4d0/0x4e0
-[    4.351684]  alg_test.part.0 from cryptomgr_test+0x18/0x38
-[    4.357177]  cryptomgr_test from kthread+0xd0/0xd4
-[    4.361968]  kthread from ret_from_fork+0x14/0x2c
-[    4.366668] Exception stack(0xf0df5fb0 to 0xf0df5ff8)
-[    4.371734] 5fa0:                                     00000000
-00000000 00000000 00000000
-[    4.379913] 5fc0: 00000000 00000000 00000000 00000000 00000000
-00000000 00000000 00000000
-[    4.388061] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-[    4.394744] ---[ end trace 0000000000000000 ]---
-[    4.669372] stm32-hash a03c2000.hash: allocated hmac(sha1) fallback
-[    5.131622] stm32-hash a03c2000.hash: allocated sha1 fallback
-[    5.156005] alg: ahash: stm32-sha1 test failed (wrong result) on
-test vector 3, cfg=3D"init+update+final aligned buffer"
-[    5.166778] alg: self-tests for sha1 using stm32-sha1 failed (rc=3D-22)
-[    5.166778] ------------[ cut here ]------------
-[    5.177947] WARNING: CPU: 0 PID: 115 at crypto/testmgr.c:5936
-alg_test.part.0+0x4d0/0x4e0
-[    5.186187] alg: self-tests for sha1 using stm32-sha1 failed (rc=3D-22)
-[    5.186187] Modules linked in:
-[    5.195739] CPU: 0 PID: 115 Comm: cryptomgr_test Tainted: G
-W          6.4.0-rc1-00014-g3c85f4ad9472 #274
-[    5.205902] Hardware name: ST-Ericsson Ux5x0 platform (Device Tree Suppo=
-rt)
-[    5.212860]  unwind_backtrace from show_stack+0x10/0x14
-[    5.218109]  show_stack from dump_stack_lvl+0x40/0x4c
-[    5.223175]  dump_stack_lvl from __warn+0x94/0xc0
-[    5.227874]  __warn from warn_slowpath_fmt+0x118/0x164
-[    5.233032]  warn_slowpath_fmt from alg_test.part.0+0x4d0/0x4e0
-[    5.238952]  alg_test.part.0 from cryptomgr_test+0x18/0x38
-[    5.244445]  cryptomgr_test from kthread+0xd0/0xd4
-[    5.249267]  kthread from ret_from_fork+0x14/0x2c
-[    5.253967] Exception stack(0xf0f21fb0 to 0xf0f21ff8)
-[    5.259002] 1fa0:                                     00000000
-00000000 00000000 00000000
-[    5.267181] 1fc0: 00000000 00000000 00000000 00000000 00000000
-00000000 00000000 00000000
-[    5.275360] 1fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-[    5.282012] ---[ end trace 0000000000000000 ]---
+So it looks disorganized to me if this one Ilitek panel controller
+now goes inside another driver with other completely unrelated
+drivers.
 
-This worked before the patch (verified).
+> It feels to me fairly likely that many of the panels here are just as
+> different from each other as the ILI9882t is from them. I guess it's
+> not a dozen, but it feels like using the same "how different are they
+> from each other" metric we'd end up with at least 5-6 new drivers. It
+> seems clear to me that the panel that Sam first commented on is as
+> different from the others in the BOE driver as the ILI9882t is.
+> Certainly it has a pretty darn big unique command sequence for init...
 
->  drivers/crypto/stm32/Kconfig      |   2 +
->  drivers/crypto/stm32/stm32-hash.c | 666 ++++++++++++++++++++++++------
+It doesn't really matter until we can say certainly what display controller
+each of them is. It seems we can't, but for this one we can.
 
-The patch is a bit big so it is hard to see the problem, do you
-think you can break it into increments?
+> The problem is that it's hard for me to make a strong argument here
+> when there is prior art of panels being supported with blob-sequences.
+> In this case, I think you as an upstream developer have more leverage.
+> I can help put pressure to make sure that upstream concerns are
+> addressed, but I think it's on upstream to put their foot down and say
+> that these blob sequences are not OK for new panels. In each case I
+> landed a patch with a new blob sequence I tried to give the community
+> time to respond and I tried to telegraph what I was going to do to
+> make sure nobody was surprised...
+
+I would say it is not fair to block driver coming from hobbyists or minor
+vendors just trying to make something work. In general I think a working
+something is better than nothing so I wouldn't block anything.
+
+But with big companies who actually talk to Ilitek, Novotek and the other
+companies ending with -tek that make these display controllers I would
+certainly like to send the message that datasheets and proper
+defines would be appreciated, and say it is also for their best, because
+I mentioned proper gamma correction is possible if the driver author
+just invest time and works with the DRM community and that should
+be in their best interest. Feel free to pass this along the supply
+chain if you can.
 
 Yours,
 Linus Walleij
