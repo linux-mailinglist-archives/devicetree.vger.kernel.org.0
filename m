@@ -2,102 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9144C749BE0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:35:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D8A6749C27
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:44:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229528AbjGFMfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 08:35:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42034 "EHLO
+        id S230159AbjGFMod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 08:44:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45972 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229524AbjGFMfH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:35:07 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 928A0173F
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 05:35:06 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbf1b82d9cso6524315e9.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 05:35:06 -0700 (PDT)
+        with ESMTP id S229793AbjGFMo0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:44:26 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C2C326BE;
+        Thu,  6 Jul 2023 05:43:54 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-99384a80af7so75643066b.2;
+        Thu, 06 Jul 2023 05:43:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688646905; x=1691238905;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=2lGRta1DFJWgP2Ka3XUK1qfLkVKYTy4OhAMOsxkgoyQ=;
-        b=t9T2EPPp9hbOjIHqqad9elRw73dzrHEK2qBF+VJuC8f9Y3/9oMFx31mNw37w8ibwcy
-         52cdAg0Y7/Ozjn2LCoU9JJLD0kixWVjLFoeQwcSOWnSOGDJyiaHna6kf1NGSlP6EIHNB
-         AWQQ573f791IbjtZMj4Pfai38KjablEBnkRW3fTVKJ9tmjDz+St1xrbdQjmcLwdKig/H
-         wOIWU+6EHF/+4IvIFfRhyvcFdIwTfhJ5gK2gYQ4JfTH8N8yWiflC09nqE4vx2xuNmfLA
-         W3KxngHtkuQWfYwyJN78GH7JZ3H3mggVoHkYCrGMzYmf0lEXaPqioQaGUnzRQqm6kN+g
-         3I5g==
+        d=gmail.com; s=20221208; t=1688647430; x=1691239430;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=VYDnnG7pWiRMK+bq/FaL1Nx3W8B4x4Bv4nmC1xi18oc=;
+        b=WU3DExWNLUqZYnkc9V3f7/rFyIuLhFJTUI6iVkpSJtiPCDIRilY9gAoaxfXuj7YxdB
+         PMId4qdyX4Fg7rD4WPczrjDXryD8vtXhLafBvdpjzZYVgmZ4Oho0TZk1fLXfyD8OqONc
+         FU5MAmCTEtctoM57qKdk6n6Rl4eYJoJhY+S0kJ0jGaqfdcirBLh/h8RoHeOW3dlM0jeM
+         i2Z7f3gfPD4aqsXssb1HTeBha6FXNUaG3xtfl0qzTU1dAVssTZo+UEy0Te/+Yydb/P/P
+         KsLOyADoajSgQ2d84xOOSJKR2OiLBHMUJObkRqVEZE8/P8hi64iwghK4gLmoUKtCXhkp
+         0qWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688646905; x=1691238905;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=2lGRta1DFJWgP2Ka3XUK1qfLkVKYTy4OhAMOsxkgoyQ=;
-        b=kF9/QMPSus6iSzvKySV+XTmc5Pl8AooEREFZuWxyrHj3+eiitQG7RLDN6xKsqElWHx
-         1oZz3Kfumm7b/Id0T1vaz4y5PzY/1jHPLO5CZ6pp84MM/ADwDz+w42UqQe6jp3AbR13W
-         QOJkzpdhBX850r1NFKFqTGacE8XERBSQUOCu7fleQnRJ2BSRzfHgD8PJ7OhvXesOGrt1
-         979pK1Tx6gTVsNjZALQB+Vv6NaNzkpE4x4ngd66dgXrwo1FOcUOmA0TSa9t1BalgWg8/
-         k9q/TLMeY2OYBOyQAM9Jtv0B6ruNRjUi/S85WsQQ0P++qyNDSjVxHdN3fRDD/wBdhmRc
-         0Xng==
-X-Gm-Message-State: ABy/qLYPOoJaR32xjrKlc8mx8pEG8rBhAduIe1hfoRL7GTM+QH8sMdmp
-        V6IPHg9UXZdhdeSi9Y+1zaQbQA==
-X-Google-Smtp-Source: APBJJlFztCovuW8wVvfjzKQVaVRs6Fs31fNA/tQYgjyyw5T1md8AvL7PKf82FqXbSOSfVivrPPxFsQ==
-X-Received: by 2002:a5d:618d:0:b0:30f:c7e4:d207 with SMTP id j13-20020a5d618d000000b0030fc7e4d207mr1293596wru.61.1688646904933;
-        Thu, 06 Jul 2023 05:35:04 -0700 (PDT)
-Received: from [192.168.1.172] ([93.5.22.158])
-        by smtp.gmail.com with ESMTPSA id j14-20020a056000124e00b0031274a184d5sm1764357wrx.109.2023.07.06.05.35.03
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 05:35:04 -0700 (PDT)
-Message-ID: <67e02d84-3b51-9973-225a-cf11fcd1aaf2@baylibre.com>
-Date:   Thu, 6 Jul 2023 14:35:03 +0200
+        d=1e100.net; s=20221208; t=1688647430; x=1691239430;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=VYDnnG7pWiRMK+bq/FaL1Nx3W8B4x4Bv4nmC1xi18oc=;
+        b=NFAYHXgeOoWZutxY/FiAWNTGRK0E5oLRMylD0yH/X6+QT5HB/jr/B9SaZK5jvS2H91
+         MnxrgHhZXzNZPezpB0TLT3SrT7ftLyePdRBPjP99rOJQbzzGZkoqHUqGnTfX6f8eMAgE
+         rqFikvRoOI/iOZMCxmImxpuGRHgqaBj8uZZZ2Zzn7s96jNiMTY31s2zeMyCMzexKj7KG
+         tHdMLYuAR5o0xktMPfz9BmXCXn85GNnw8O6TMz+7GhMTSD4PvXuhqg9pMvJxAsP3x7JZ
+         3X5ZZ5h7V+esQqoNYA++3ADEJj1O61te0geFbwLc+im8aCzxaZC2pD8ou6MjQ34sFHEU
+         cBIg==
+X-Gm-Message-State: ABy/qLa8bxvw9wTQuww8OLa55zjRRtjzFUoK5+cJz0zC4nbJNaC8kqM8
+        sOdXF4oN4lHh/h0M1FTyPlw=
+X-Google-Smtp-Source: APBJJlFJLMBcouDHV83V7fJLXsWaO6PWP1fxv417ufkbm6zxVAmoGb3QorUlneH/dqmW1wEzU5sI/A==
+X-Received: by 2002:a17:906:6543:b0:993:a396:ac64 with SMTP id u3-20020a170906654300b00993a396ac64mr1218886ejn.38.1688647430394;
+        Thu, 06 Jul 2023 05:43:50 -0700 (PDT)
+Received: from david-ryuzu.fritz.box (ipbcc3a9b0.dynamic.kabel-deutschland.de. [188.195.169.176])
+        by smtp.googlemail.com with ESMTPSA id w14-20020a170906b18e00b00992ca779f42sm775915ejy.97.2023.07.06.05.43.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jul 2023 05:43:49 -0700 (PDT)
+From:   David Wronek <davidwronek@gmail.com>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        David Wronek <davidwronek@gmail.com>
+Subject: [PATCH v2 0/7] Add initial support for SM7125 and Xiaomi SM7125 platform
+Date:   Thu,  6 Jul 2023 14:40:19 +0200
+Message-ID: <20230706124339.134272-1-davidwronek@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Fix PM suspend/resume with
- venc clocks
-Content-Language: en-US
-To:     AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>, matthias.bgg@gmail.com
-Cc:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, yong.wu@mediatek.com,
-        tinghan.shen@mediatek.com, weiyi.lu@mediatek.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com
-References: <20230706095841.109315-1-angelogioacchino.delregno@collabora.com>
-From:   Alexandre Mergnat <amergnat@baylibre.com>
-In-Reply-To: <20230706095841.109315-1-angelogioacchino.delregno@collabora.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces support for the Qualcomm SM7125 SoC and the
+Xiaomi SM7125 platform.
 
+Signed-off-by: David Wronek <davidwronek@gmail.com>
+---
+Changes in v2:
+- Allow qcom,board-id and qcom,msm-id properties
+- Use QCOM_SCM_VMID_MSS_MSA definition
+- Change initial regulator modes from LPM to HPM
+- Move status to the bottom of nodes
+- Fix up PM6150 interrupts
+- Move clk patch to beginning of series
+- Fix up copyright
+- Take ownership of all commits with permission
+- Link to v1: https://lore.kernel.org/all/20230704163848.169853-2-davidwronek@gmail.com/
 
-On 06/07/2023 11:58, AngeloGioacchino Del Regno wrote:
-> Before suspending the LARBs we're making sure that any operation is
-> done: this never happens because we are unexpectedly unclocking the
-> LARB20 before executing the suspend handler for the MediaTek Smart
-> Multimedia Interface (SMI) and the cause of this is incorrect clocks
-> on this LARB.
-> 
-> Fix this issue by changing the Local Arbiter 20 (used by the video
-> encoder secondary core) apb clock to CLK_VENC_CORE1_VENC;
-> furthermore, in order to make sure that both the PM resume and video
-> encoder operation is stable, add the CLK_VENC(_CORE1)_LARB clock to
-> the VENC (main core) and VENC_CORE1 power domains, as this IP cannot
-> communicate with the rest of the system (the AP) without local
-> arbiter clocks being operational.
+---
+David Wronek (7):
+  clk: qcom: gcc-sc7180: Fix up gcc_sdcc2_apps_clk_src
+  dt-bindings: arm: qcom,ids: Add SoC ID for SM7125
+  dt-bindings: arm: qcom: Document SM7125 and xiaomi,joyeuse board
+  soc: qcom: socinfo: Add SoC ID for SM7125
+  arm64: dts: qcom: pm6150: Add resin and rtc nodes
+  arm64: dts: qcom: Add SM7125 device tree
+  arm64: dts: qcom: Add support for the Xiaomi SM7125 platform
 
-Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+ .../devicetree/bindings/arm/qcom.yaml         |   7 +
+ arch/arm64/boot/dts/qcom/Makefile             |   1 +
+ arch/arm64/boot/dts/qcom/pm6150.dtsi          |  15 +
+ .../boot/dts/qcom/sm7125-xiaomi-joyeuse.dts   |  16 +
+ .../boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi  | 419 ++++++++++++++++++
+ arch/arm64/boot/dts/qcom/sm7125.dtsi          |  16 +
+ drivers/clk/qcom/gcc-sc7180.c                 |   1 +
+ drivers/soc/qcom/socinfo.c                    |   1 +
+ include/dt-bindings/arm/qcom,ids.h            |   1 +
+ 9 files changed, 477 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-joyeuse.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125-xiaomi-miatoll.dtsi
+ create mode 100644 arch/arm64/boot/dts/qcom/sm7125.dtsi
 
 -- 
-Regards,
-Alexandre
+2.41.0
+
