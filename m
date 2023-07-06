@@ -2,115 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 58DCA74A2D7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 19:08:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CDB274A302
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 19:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232480AbjGFRI4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 13:08:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56524 "EHLO
+        id S231965AbjGFRUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 13:20:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232507AbjGFRIz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 13:08:55 -0400
-Received: from mail-pl1-x633.google.com (mail-pl1-x633.google.com [IPv6:2607:f8b0:4864:20::633])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41F161737
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 10:08:49 -0700 (PDT)
-Received: by mail-pl1-x633.google.com with SMTP id d9443c01a7336-1b8bbce9980so6333375ad.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 10:08:49 -0700 (PDT)
+        with ESMTP id S232073AbjGFRUK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 13:20:10 -0400
+Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B101BF8
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 10:20:07 -0700 (PDT)
+Received: by mail-pg1-x531.google.com with SMTP id 41be03b00d2f7-55ba895d457so574575a12.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 10:20:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1688663328; x=1691255328;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=uDFcTWubp+txWejOhlaxkosc/sM3fyBrGXhY50V6+cc=;
-        b=Q3tIlLGo1iMeILb+g6CH4AIl3stIczQL9hbypUuloisr7dgdnhmwB6ISQOKN6BvnsJ
-         K3O1JcQ5v3+cL1l+D2w4fY7JLprWSNENfngJS/iyg2okZpdYyQj0nlKgzNGHgR8WVuCG
-         rUuF78Z/asu/0QEztqH4ky05n9ZBKsI5h7Y55PmYGCUO9CHIjY8e7UQ1Btp63JMcRwzq
-         jhGDhbhg1BhKE7eMImJDzMF2Do6AD2gKr/BI86yx2Gr2orCka1+ixbby0Tv5EKv7699d
-         AWaojvSBoh3rC2chnKJ4rpkDNiNOHz5Y1/OwlK6eYZQox6JAojJLfoF6o08bcjzr6IJ3
-         tr8w==
+        d=linaro.org; s=google; t=1688664007; x=1691256007;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+        bh=k9ea0Od7Ss8KSCo0Ba6GtQFVksMPHnFvx3hnoqe8eeY=;
+        b=fQQ7hzusqcO2Mb5AQ960t54PR7FMZocWeAtbfCtyJZAV8i6B9OQAivVlHoDnpsFN2k
+         Qm1kdgueLRMJUOcbbfNh5RyCkx+scTiJF9FIL0O7an83YsYxsSTrbLNqkX+zGQom84FX
+         /cojomOG2sUxoe2p0zFMkAJIPsHSCKdsdkithdcPNeURi7RxIJBkg79qbywfJVZiuyNA
+         gNhKkyPv5XnliYrKT9IpuCN0GOj2XzFFZVpkj/kqWfUObmt7Y2qSlZNGLazWfyhr7Puk
+         1JsD4mwjtElm4HEK4vJ/PS3VV2CPQtjdj0Tui/QqCQS8H3gOGSjqnXec+bQZHK6nBCUw
+         ytPQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688663328; x=1691255328;
-        h=content-transfer-encoding:mime-version:message-id:to:from:cc
-         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20221208; t=1688664007; x=1691256007;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=uDFcTWubp+txWejOhlaxkosc/sM3fyBrGXhY50V6+cc=;
-        b=e0+doCu1zCj7G983XzAfmVmRP9niLk77NPFTr3iHOPR+G+aJk+255eh+ROlUJzmY4X
-         LY+OLvl1vbKsy4UVajmhlYipBOVaRqYD+pCH9u2e4NYBsy4K0/pbkDg1X1GExi30qwNg
-         n9ZGkH4v3+nq4KV3uvCT1KC3cOUrIZRXoEVhG0FI/NOge5/aveJjwgaA8ccoq0xNeHGj
-         c8x82Sr+8ZyMMbqrA2ESjZfRINPKZJrUyIDL0G6v9k8zrDmTDtNyUKyjg/f9LhQBzkfa
-         xQDrxV1RTwWHgC/xzz10k2/tTSKZKhuWAKDM2vWFYvyNfrYHQIyudKLikTbeeSeXSZ6m
-         j+aA==
-X-Gm-Message-State: ABy/qLYquuaWxiNIHC+JfanhYK0k16uBcbtIlfjPT7usJdKeSwIitdr5
-        MBNt+oSYVz7vkRqzNoVZVELnHA==
-X-Google-Smtp-Source: APBJJlG74eEINUstmC9zOo36wEsjfZVnckhU+vtEAepiS2jkRuh+o/vzJ/8elzyQtASPJfPTGwaDJA==
-X-Received: by 2002:a17:902:efd1:b0:1a6:4b60:3195 with SMTP id ja17-20020a170902efd100b001a64b603195mr1567784plb.66.1688663328525;
-        Thu, 06 Jul 2023 10:08:48 -0700 (PDT)
-Received: from localhost ([50.221.140.188])
-        by smtp.gmail.com with ESMTPSA id p6-20020a170902b08600b001b8a7e1b116sm1668898plr.191.2023.07.06.10.08.46
+        bh=k9ea0Od7Ss8KSCo0Ba6GtQFVksMPHnFvx3hnoqe8eeY=;
+        b=azJwnujjUooawEDUQcC9nZekxvm7jCN5fIPKcUfdv6diigsSDqv6jeiKIToVJnXZqL
+         dB0MBS0SaKN6oE0LBzlaPoyc2vZyTUPtx9NElrBuiXlV9bu93qVotwNL6iObX+X1WnNe
+         HMTbdZ87A3VSvOhgjKtYPFqlpd0eFSb+FfhClOeMNi2WbNVvT9WMKMEh8EaofsWoJ+Ih
+         l5hAVAsbYP+sNfV8zIVz1E/bV2hrXSbRQD/S+WZ/Dk4RwBsEp0b+n8ztYk96SHI2whO3
+         yYDPa1/sze0a4i1EeidfBqhjAcHOEJHqAgqbYyxHuAOzoSnfDixt1SAD3bKI5bvJ7ghN
+         nwQg==
+X-Gm-Message-State: ABy/qLYEcWyZma97A+lAP+mOzGnsdqAV0ppmIeEHNtdD8undNpUWUk8s
+        aUd2ElttSVkcVOSuliPGGLDtng==
+X-Google-Smtp-Source: APBJJlGIzD3wgfXmLqpF5j/wbpDQeS0eCZKqUWowt+GLYOi3W+0iK2Ooqw2rQRyVOs7PEhn81abgMw==
+X-Received: by 2002:a17:90a:c690:b0:262:c974:6057 with SMTP id n16-20020a17090ac69000b00262c9746057mr1931210pjt.32.1688664007220;
+        Thu, 06 Jul 2023 10:20:07 -0700 (PDT)
+Received: from p14s ([2604:3d09:148c:c800:b0a5:7a22:4bcf:c911])
+        by smtp.gmail.com with ESMTPSA id az9-20020a056a02004900b00519c3475f21sm1431884pgb.46.2023.07.06.10.20.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 10:08:47 -0700 (PDT)
-Date:   Thu, 06 Jul 2023 10:08:47 -0700 (PDT)
-X-Google-Original-Date: Thu, 06 Jul 2023 10:07:29 PDT (-0700)
-Subject:     Re: [PATCH v3 0/3] Add support for Allwinner PWM on D1/T113s/R329 SoCs
-In-Reply-To: <20230627082334.1253020-1-privatesub2@gmail.com>
-CC:     linux-kernel@vger.kernel.org, privatesub2@gmail.com,
-        thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, wens@csie.org, jernej.skrabec@gmail.com,
-        samuel@sholland.org, Paul Walmsley <paul.walmsley@sifive.com>,
-        aou@eecs.berkeley.edu, p.zabel@pengutronix.de,
-        cristian.ciocaltea@collabora.com,
-        Greg KH <gregkh@linuxfoundation.org>,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-riscv@lists.infradead.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     privatesub2@gmail.com
-Message-ID: <mhng-0cca3d46-6031-4e8a-8e8f-2c479a20b95d@palmer-ri-x1c9a>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        Thu, 06 Jul 2023 10:20:06 -0700 (PDT)
+Date:   Thu, 6 Jul 2023 11:20:03 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Trilok Soni <quic_tsoni@quicinc.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Mukesh Ojha <quic_mojha@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg KH <gregkh@linuxfoundation.org>, corbet@lwn.net,
+        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
+        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
+        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
+        Alex Elder <elder@linaro.org>
+Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
+ support
+Message-ID: <ZKb3wz2eXS6h1yIW@p14s>
+References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
+ <2023062814-chance-flounder-f002@gregkh>
+ <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
+ <cc30660f-dd72-aade-6346-a93c6ad4b695@quicinc.com>
+ <29af84dc-7db8-0c43-07b6-eb743cf25e57@linaro.org>
+ <957a3cdb-6091-8679-ddb0-296db2347291@quicinc.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <957a3cdb-6091-8679-ddb0-296db2347291@quicinc.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 27 Jun 2023 01:23:23 PDT (-0700), privatesub2@gmail.com wrote:
-> Hi,
->
-> This series adds support for PWM controller on new
-> Allwinner's SoCs, such as D1, T113s and R329. The implemented driver
-> provides basic functionality for control PWM channels.
->
-> v2:
->  - fix dt-bindings
->  - fix a remark in the driver
->
-> v3:
->  - fix dt-bindings
->  - fix sunxi-d1s-t113.dtsi
->
-> Aleksandr Shubin (3):
->   dt-bindings: pwm: Add binding for Allwinner D1/T113-S3/R329 PWM
->     controller
->   pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM support
->   riscv: dts: allwinner: d1: Add pwm node
->
->  .../bindings/pwm/allwinner,sun20i-pwm.yaml    |  86 +++++
->  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  11 +
->  drivers/pwm/Kconfig                           |  10 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-sun20i.c                      | 322 ++++++++++++++++++
->  5 files changed, 430 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/allwinner,sun20i-pwm.yaml
->  create mode 100644 drivers/pwm/pwm-sun20i.c
+On Mon, Jul 03, 2023 at 02:05:58PM -0700, Trilok Soni wrote:
+> On 7/2/2023 1:29 AM, Krzysztof Kozlowski wrote:
+> > On 30/06/2023 18:04, Mukesh Ojha wrote:
+> > > > 
+> > > > > We don't add layers when they are not needed, and never when there is no
+> > > > > actual user.  If you need the extra "complexity" later, then add it
+> > > > > later when it is needed as who knows when that will ever be.
+> > > > > 
+> > > > > Please redo this series based on that, thanks.
+> > > > 
+> > > > My bigger issue with this whole series is what would this all look
+> > > > like if every SoC vendor upstreamed their own custom dumping
+> > > > mechanism. That would be a mess. (I have similar opinions on the
+> > > > $soc-vendor hypervisors.)
+> > 
+> > Mukesh,
+> > 
+> > LPC CFP is still open. There will be also Android and Kernel Debugging
+> > LPC microconference tracks. Coming with a unified solution could be a
+> > great topic for LPC. Solutions targeting only one user are quite often
+> > frowned upon.
+> 
+> LPC is far out and in November. Can we not have others speak up if they have
+> the similar solution now? We can expand this to linux-kernel and ask for the
+> other SOC vendors to chime in. I am sure that we may have existing solutions
+> which came in for the one user first like Intel RDT if I remember. I am sure
+> ARM MPAM usecase was present at that time but Intel RDT based solution which
+> was x86 specific but accepted.
 
-Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
+I am not familiar with Intel RDT and Arm MPAM but the community is always
+improving on the way it does things.
 
-I'm not sure if this ended up somewhere, but I'm assuming it's not aimed 
-at my tree.  LMK if you guys want me to pick it up, I'm dropping it from 
-patchwork.
+LPC is indeed far out in November but it is an opportunity to cover the
+groundwork needed to have this discussion.  It is always best to improve on
+something then introduce something new.  Even better if something specific such
+as Intel RDT and Arm MPAM can be made more generic.  A perfect example is
+hwtracing Linus referred to.  The perf framework wasn't a perfect fit but it was
+enhanced to accommodate our requirements.  I suggest to look at what is currently
+available and come up with a strategy to be presented at LPC - event better if
+you have a prototype.  If you can't find anything or the drawbacks inherent to
+each avenue outweigh the benefits then we can have that conversation at LPC.
+
+> 
+> ---Trilok Soni
