@@ -2,58 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 939FE74A452
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A4974A459
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:22:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229501AbjGFTSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 15:18:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43546 "EHLO
+        id S232449AbjGFTW2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 15:22:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229802AbjGFTSb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:18:31 -0400
-Received: from mail-io1-f49.google.com (mail-io1-f49.google.com [209.85.166.49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D471B1FC6;
-        Thu,  6 Jul 2023 12:18:28 -0700 (PDT)
-Received: by mail-io1-f49.google.com with SMTP id ca18e2360f4ac-785ccf19489so38183339f.3;
-        Thu, 06 Jul 2023 12:18:28 -0700 (PDT)
+        with ESMTP id S229802AbjGFTW0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:22:26 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C4861BD3;
+        Thu,  6 Jul 2023 12:22:26 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3457157a164so3948525ab.1;
+        Thu, 06 Jul 2023 12:22:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688671108; x=1691263108;
+        d=1e100.net; s=20221208; t=1688671345; x=1691263345;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=faxYBbkQkNObmdMc/UQbbUm/hK3wFyofz1gvqfG1ZAI=;
-        b=bnvp8zghDroiu7Zhx8wtj3jO926IoH43utxYHD4CtVtavupTyH/thCan9LM1zjFChK
-         q1lpo8Ch3d7jg8plrBY+3SwarTEYjGSh5IWsHPyzCySLwOepXXQseZ97uQ202dKABZgV
-         J+xOiVYNPLl/dxVHkAcIvzOMjGQejRv0I/P4mREiA+NWNmsnMXx6yVR+C07sf6DNgpWb
-         f6SaYthSFMm4wVAEGilkhRwqAt7pVEocswECxr3RsNmzn/KZCHb5Xrw+91ts0Fu90nwK
-         dvdiX4mcNuHdR7+eupYNZWdUNvCP89biVfQezlwS7dKjeYbypaPj2wnAw/2KUzr2+adU
-         ulDw==
-X-Gm-Message-State: ABy/qLYidU4dyJbM5Mm2IZXp4DBM2UEI80RAovcAOaExtnon8+xO8w2d
-        D5PdsIjprYLoTjr7sXs3hg==
-X-Google-Smtp-Source: APBJJlHhDQu+XP5X/+eyrY1BNM6jiIubxCPBwZi3080/0+VQd6I0eOXPQnvqJbl0iykgztx+ippEaA==
-X-Received: by 2002:a6b:760f:0:b0:785:d28f:1526 with SMTP id g15-20020a6b760f000000b00785d28f1526mr2960814iom.3.1688671108093;
-        Thu, 06 Jul 2023 12:18:28 -0700 (PDT)
+        bh=b1vhHxHDYnQQYlAo2yiSpaZvyCaq/6aSS1boX6Qwnys=;
+        b=Q6/bSlyzmfAhRvaTafeHRhNs0B5FqmqUzAKPwCA135TLSems2u3Zjq9JOGXPpn+6Bq
+         sqiXcXldDiGtlawrZ+LPJlBfXmS8sfbL0CgMvNWTFLY3/FDTKeDuRY4jtkLw+Q9lAVEB
+         hBx4z49iEGywkcYnQch1D4wVxn8uoCBmYnmMQYpSQum82DKs2EGQzVzFGIR6drUTUUHU
+         +IkmgrP+Qnd73vv5mHmQE6VIqX+cBNYlZNfX2/y+GHrArWRLXvRfzI9pAAvTrvzBZ4ml
+         Qgha3/ifpTpsgBH+ecTKQd6nEygdCILfTepJXWpCAW/4hpVDktvN0/+RoXAHSilIfovc
+         gDcA==
+X-Gm-Message-State: ABy/qLZaiVsms9Gk3vgzGqW/WDEYayAH7ja6tdepl+V+XhTrHC9f7sYZ
+        2qkMZSCXydHvMP4jm00rnA==
+X-Google-Smtp-Source: APBJJlFWoym+oBQ2Q3VJdb2mYORaZVCrsen7ZoIQ1ReqH1GTrhFEq86fUM15IHFSUMYuwKf5lH1o8w==
+X-Received: by 2002:a05:6602:274e:b0:783:58a3:ce2a with SMTP id b14-20020a056602274e00b0078358a3ce2amr3175614ioe.12.1688671345303;
+        Thu, 06 Jul 2023 12:22:25 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id i13-20020a02ca4d000000b004267abdb240sm692774jal.38.2023.07.06.12.18.26
+        by smtp.gmail.com with ESMTPSA id f12-20020a056638118c00b0041f4ce6e9cdsm714157jas.65.2023.07.06.12.22.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 12:18:27 -0700 (PDT)
-Received: (nullmailer pid 177010 invoked by uid 1000);
-        Thu, 06 Jul 2023 19:18:25 -0000
-Date:   Thu, 6 Jul 2023 13:18:25 -0600
+        Thu, 06 Jul 2023 12:22:24 -0700 (PDT)
+Received: (nullmailer pid 182715 invoked by uid 1000);
+        Thu, 06 Jul 2023 19:22:23 -0000
+Date:   Thu, 6 Jul 2023 13:22:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] dt-bindings: usb: ci-hdrc-usb2: Fix number of clocks
-Message-ID: <20230706191825.GA170669-robh@kernel.org>
-References: <20230706093928.3580544-1-alexander.stein@ew.tq-group.com>
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        linux-amlogic@lists.infradead.org
+Subject: Re: [PATCH v3 2/3] dt-bindings: clock: amlogic: convert
+ amlogic,gxbb-aoclkc.txt to dt-schema
+Message-ID: <168867134189.182630.15973523447108474911.robh@kernel.org>
+References: <20230706-b4-amlogic-bindings-convert-take2-v3-0-f63de6f12dcc@linaro.org>
+ <20230706-b4-amlogic-bindings-convert-take2-v3-2-f63de6f12dcc@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230706093928.3580544-1-alexander.stein@ew.tq-group.com>
+In-Reply-To: <20230706-b4-amlogic-bindings-convert-take2-v3-2-f63de6f12dcc@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -65,20 +73,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 06, 2023 at 11:39:28AM +0200, Alexander Stein wrote:
-> Some (older) IP cores require 3 clocks, named 'ipg', 'ahb' and 'per' while
-> more recent IP cores just require one. Fix the number and explicitly
-> state the clock-names.
-> 
-> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
-> ---
-> >From I can tell, is that imx25, imx27, imx35 have specified 3 clocks in
-> their DT.
-> IMHO minItems for 'clock-names' can be removed as I presume that this
-> property is not set when only one clock is used.
 
-Rather than presume, did you test that? Well, I did[1] and can confirm.
+On Thu, 06 Jul 2023 16:52:33 +0200, Neil Armstrong wrote:
+> Convert the Amlogic Always-On Clock Controller bindings to dt-schema.
+> 
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> ---
+>  .../bindings/clock/amlogic,gxbb-aoclkc.txt         | 64 ----------------
+>  .../bindings/clock/amlogic,gxbb-aoclkc.yaml        | 85 ++++++++++++++++++++++
+>  2 files changed, 85 insertions(+), 64 deletions(-)
+> 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
 
-[1] https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230706093928.3580544-1-alexander.stein@ew.tq-group.com/
