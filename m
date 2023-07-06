@@ -2,92 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B8E87749485
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 06:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 201F87494D4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 07:07:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232804AbjGFEDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 00:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35460 "EHLO
+        id S229632AbjGFFHE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 01:07:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49850 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229476AbjGFEDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 00:03:36 -0400
-Received: from mail-ot1-x335.google.com (mail-ot1-x335.google.com [IPv6:2607:f8b0:4864:20::335])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3D2C19A0
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 21:03:35 -0700 (PDT)
-Received: by mail-ot1-x335.google.com with SMTP id 46e09a7af769-6b74791c948so233938a34.3
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 21:03:35 -0700 (PDT)
+        with ESMTP id S229589AbjGFFHD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 01:07:03 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2968DB2;
+        Wed,  5 Jul 2023 22:07:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688616215; x=1691208215;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=FYnNIawbku4DKzQ1lg5ea0ay/M1V65V06UjetuXA9iA=;
-        b=m0mCMyE1InXnqQ5cdii/3F7YbEoSK9lxA+z+DQdZTCfCx8cXChj8jRFysYNlLPMEAe
-         EptgGsCkDLVwc4TzxOPyiJY0RfeO17V+Of1nSUEmvNq0zgf+8VEFmJVxIZuNjyQ8wtcP
-         DZru+OMi/twpsdDVsIA/y1fSYVd0IJIYbi77ufYGez2Aj3f4lqGVrLsrBppNJFmEy0AQ
-         3AQ2zZSaWxkkQhc2jhlgo9NRpxi2/0ljjvSbK1oY0yuwgj3qzZGtyRs9TXS2GHo3HdLn
-         9E2J+F0p2vIrbu26KS4Mca5vOmuA8XX+F/HjF7XNyFoA5bWQrynh87gmX2sTdqRtGktl
-         khUA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688616215; x=1691208215;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=FYnNIawbku4DKzQ1lg5ea0ay/M1V65V06UjetuXA9iA=;
-        b=Z/RYO0z31qtO/seHin2O2l72gHwA16YSADjr5CVPGKspDw00MhaHcBIq4uiIMJtebr
-         PolXij9Q3xHidzVEN394K+/PpMNpxT6W2af/KsAP4+sQdp6aFvzUVbede+srFAMcjiFm
-         P0+GtudFYS73CaPreW7IHrgHhqIQsY+X8brCtIW8xpBeAP4RLCpefXI983T4B6UzlQca
-         d5u9goA03UQM+dPz+WbdUx9qnK9YD67uQXVcUfsiMGDxSvUhdVOg6DBn/B4U5MKy0rDO
-         ZMJksf6UCioFxXnv4izc+8DKfqqupCBKL39lxswkzIYnQ1jG6QtJvMjLFHiV5zZ5pYEB
-         h1gA==
-X-Gm-Message-State: ABy/qLbKfM+9XT1RQx1x3fsiRlu4LAyIRn3nGq/xfLiP0wriybTqlcAe
-        6V7ylx9pdr8l6CMVO/8a8fN+dg==
-X-Google-Smtp-Source: APBJJlEqmZLxNQQuzUk///fUNFmjd1X6nxiU+4HGt0ELa+ZA5RK91Tyw0++U5t+sxlKc/LKULTeoPg==
-X-Received: by 2002:a05:6358:4196:b0:134:d122:b681 with SMTP id w22-20020a056358419600b00134d122b681mr580552rwc.20.1688616215142;
-        Wed, 05 Jul 2023 21:03:35 -0700 (PDT)
-Received: from localhost ([122.172.87.195])
-        by smtp.gmail.com with ESMTPSA id fk25-20020a056a003a9900b0063f0068cf6csm263890pfb.198.2023.07.05.21.03.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 05 Jul 2023 21:03:34 -0700 (PDT)
-Date:   Thu, 6 Jul 2023 09:33:31 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-Cc:     Viresh Kumar <vireshk@kernel.org>,
-        Shiraz Hashim <shiraz.linux.kernel@gmail.com>, soc@kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1688620021; x=1720156021;
+  h=from:to:subject:date:message-id:in-reply-to:references:
+   mime-version:content-transfer-encoding;
+  bh=6Ht0rAFs+rZnK+7UtbasxXqvhje9rztLxAQxVYA9THI=;
+  b=NhLCotSkQODXDc6Kj963R9tQI779FclnLgQCD9AC9UExSoxtQ03eCn5F
+   63v/6xe04GVC7Pcr9baFaG2Ls6KNX7hGnJEeuiXQxUNCsZMEkjB7L6dA4
+   aOKsq3tbaAsriwDdUfPBxLaud641IjpW4+xuhmuVOvM6aMTjYqX9z26tI
+   m7oP0pf1LPjpWAG3g9DvStE+zh7uvWxdIWgAiUrgzhXbP5vsF+r3k6Nms
+   8N5DOaJh58hOz8c4u34OVGso7Q5EQPyhPxaIgaF5KueyA+aO8VIxW6SH0
+   edcIcW0tvD+etEHjcAfKEEm29Cp1PNIGkLnnNBwTdK5bSZp35eQiOvddV
+   g==;
+X-IronPort-AV: E=Sophos;i="6.01,184,1684792800"; 
+   d="scan'208";a="31780937"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 06 Jul 2023 07:06:59 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id BD365280084;
+        Thu,  6 Jul 2023 07:06:58 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     suzuki.poulose@arm.com, coresight@lists.linaro.org,
+        imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Patrice Chotard <patrice.chotard@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com
-Subject: Re: [PATCH] ARM: dts: st: add missing space before {
-Message-ID: <20230706040331.izqrdsq7wfrm6fqp@vireshk-i7>
-References: <20230705150033.293832-1-krzysztof.kozlowski@linaro.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Adam Ford <aford173@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Frank Li <Frank.Li@nxp.com>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm, primecell-periphid at etm nodes
+Date:   Thu, 06 Jul 2023 07:06:58 +0200
+Message-ID: <9405224.NyiUUSuA9g@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230705205954.4159781-1-Frank.Li@nxp.com>
+References: <20230705205954.4159781-1-Frank.Li@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230705150033.293832-1-krzysztof.kozlowski@linaro.org>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-07-23, 17:00, Krzysztof Kozlowski wrote:
-> Add missing whitespace between node name/label and opening {.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Hi Frank,
+
+Am Mittwoch, 5. Juli 2023, 22:59:53 CEST schrieb Frank Li:
+> The reg size of etm nodes is incorrectly set to 64k instead of 4k. This
+> leads to a crash when calling amba_read_periphid().  After corrected reg
+> size, amba_read_periphid() retrieve the correct periphid.
+> arm,primecell-periphid were removed from the etm nodes.
+
+So this means the reference manual is wrong here? It clearly states the siz=
+e=20
+is 64kiB. Reference Manual i.MX8MP Rev 1. 06/2021
+On a side note: Is imx8mq affected by this as well? The DAP memory table li=
+sts=20
+similar sizes in the RM .
+
+Best regards,
+Alexander
+
+> Signed-off-by: Frank Li <Frank.Li@nxp.com>
 > ---
->  arch/arm/boot/dts/st/spear1310.dtsi                    |  2 +-
->  arch/arm/boot/dts/st/spear1340.dtsi                    |  2 +-
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++--------
+>  1 file changed, 4 insertions(+), 8 deletions(-)
+>=20
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> cc406bb338fe..e0ca82ff6f15 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> @@ -306,8 +306,7 @@ soc: soc@0 {
+>=20
+>  		etm0: etm@28440000 {
+>  			compatible =3D "arm,coresight-etm4x",=20
+"arm,primecell";
+> -			reg =3D <0x28440000 0x10000>;
+> -			arm,primecell-periphid =3D <0xbb95d>;
+> +			reg =3D <0x28440000 0x1000>;
+>  			cpu =3D <&A53_0>;
+>  			clocks =3D <&clk IMX8MP_CLK_MAIN_AXI>;
+>  			clock-names =3D "apb_pclk";
+> @@ -323,8 +322,7 @@ etm0_out_port: endpoint {
+>=20
+>  		etm1: etm@28540000 {
+>  			compatible =3D "arm,coresight-etm4x",=20
+"arm,primecell";
+> -			reg =3D <0x28540000 0x10000>;
+> -			arm,primecell-periphid =3D <0xbb95d>;
+> +			reg =3D <0x28540000 0x1000>;
+>  			cpu =3D <&A53_1>;
+>  			clocks =3D <&clk IMX8MP_CLK_MAIN_AXI>;
+>  			clock-names =3D "apb_pclk";
+> @@ -340,8 +338,7 @@ etm1_out_port: endpoint {
+>=20
+>  		etm2: etm@28640000 {
+>  			compatible =3D "arm,coresight-etm4x",=20
+"arm,primecell";
+> -			reg =3D <0x28640000 0x10000>;
+> -			arm,primecell-periphid =3D <0xbb95d>;
+> +			reg =3D <0x28640000 0x1000>;
+>  			cpu =3D <&A53_2>;
+>  			clocks =3D <&clk IMX8MP_CLK_MAIN_AXI>;
+>  			clock-names =3D "apb_pclk";
+> @@ -357,8 +354,7 @@ etm2_out_port: endpoint {
+>=20
+>  		etm3: etm@28740000 {
+>  			compatible =3D "arm,coresight-etm4x",=20
+"arm,primecell";
+> -			reg =3D <0x28740000 0x10000>;
+> -			arm,primecell-periphid =3D <0xbb95d>;
+> +			reg =3D <0x28740000 0x1000>;
+>  			cpu =3D <&A53_3>;
+>  			clocks =3D <&clk IMX8MP_CLK_MAIN_AXI>;
+>  			clock-names =3D "apb_pclk";
 
-Acked-by: Viresh Kumar <viresh.kumar@linaro.org>
 
--- 
-viresh
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
