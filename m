@@ -2,184 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 67B42749F2E
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 16:39:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CABC749F39
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 16:42:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233200AbjGFOje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 10:39:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59066 "EHLO
+        id S233234AbjGFOmY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 10:42:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60860 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233197AbjGFOjc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 10:39:32 -0400
-Received: from EUR03-DBA-obe.outbound.protection.outlook.com (mail-dbaeur03on2081.outbound.protection.outlook.com [40.107.104.81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF6031725;
-        Thu,  6 Jul 2023 07:39:28 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=eqO8EkxNhWHBlJWztL/oP8h+cXde5cZsSSPhS5Ax1qJ69AxcUpme1fQcIKJ1JFjO7/np3lFXUQewJs61G9nAfWZZD8QacIexKGGo0ZoJQ779oZr+xHLErf6uIYriUvvdR7Fqa28CWieozNR1GWC2bldf15wRZS+QniQwjqI7ER9UVguqtXEuQjafYSYuvry7ktaPnniCyvdhsl0wG5NRaUDlqJ13wUrvBFWWsVgX4YzqT+SMynhaFRYj6R81n2Fy6WJPo8RViZSn/bSWt5dfagfcAmsepmTbiSXP76tJqeckuFVmNqa7A9jFW+A6fmy7Qh0GUV+MKmoTXb8k4aAh2Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Imj3XPrPDCk+Y5ROEykh9ou423JxrXt2tIJuvEmAHWQ=;
- b=ezsWe+E6ZTDD4m9fTULJIoJ0THJ0q/oVkovbN0JuMTtMcjTaORJIvN0XYqc+4L5MtKSk+CS5ilpULCWwLcqIt6/o+48ngD+ICgSDe02VlRnVGFQ+fbYt18menx/+MqoFHWfqSF1JPd4rs5UCkN/h9334N53WsFIUv5PCA9juQrlBhVUGk3TQLjWqwkTYb8nNUsXTha+WUTUu8vvLEMEWop4a8tiva6aaIIEtlfef61mjcuVaCyTI5IelNbrMcSuB7OONdRJ5Rj6JlLTjCv6pFaTduKIYcL3JCXNBsAAvqVfkpp/FDDk9lN63YqvFGN7GNDkZwHbyx0jCYfAGVoyLsg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Imj3XPrPDCk+Y5ROEykh9ou423JxrXt2tIJuvEmAHWQ=;
- b=hb3GLk2U199Hs+TcUkEd5XQrRESGcxA4jxEboEqI81tcgLS2VOSvAzXMU5yIM2aopWHLqo3Ojm2yta5COEqU9GG0Qs4Cc1/IAaA9iMlkyJk0WRrUjqdKiE/NvHU5agrxNmIAO8GJDLWZ1EJUH+BW58KeVYbwpCrms2yImqe2hd4=
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nxp.com;
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com (2603:10a6:20b:4::16)
- by AM7PR04MB6791.eurprd04.prod.outlook.com (2603:10a6:20b:103::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Thu, 6 Jul
- 2023 14:39:26 +0000
-Received: from AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c]) by AM6PR04MB4838.eurprd04.prod.outlook.com
- ([fe80::4a2a:262e:415f:e41c%7]) with mapi id 15.20.6565.016; Thu, 6 Jul 2023
- 14:39:26 +0000
-Date:   Thu, 6 Jul 2023 10:39:07 -0400
-From:   Frank Li <Frank.li@nxp.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Alexander Stein <alexander.stein@ew.tq-group.com>,
-        suzuki.poulose@arm.com, coresight@lists.linaro.org,
-        imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm, primecell-periphid
- at etm nodes
-Message-ID: <ZKbSC8LBjLuo3ygD@lizhi-Precision-Tower-5810>
-References: <20230705205954.4159781-1-Frank.Li@nxp.com>
- <9405224.NyiUUSuA9g@steina-w>
- <0125c54fd1617f3f945bc3f4bbef5b914b701c24.camel@pengutronix.de>
- <49ef52b7-0269-898c-7cc2-096f2f1037fc@arm.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <49ef52b7-0269-898c-7cc2-096f2f1037fc@arm.com>
-X-ClientProxiedBy: BY3PR04CA0007.namprd04.prod.outlook.com
- (2603:10b6:a03:217::12) To AM6PR04MB4838.eurprd04.prod.outlook.com
- (2603:10a6:20b:4::16)
+        with ESMTP id S233230AbjGFOmX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 10:42:23 -0400
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73E1E10F5;
+        Thu,  6 Jul 2023 07:42:22 -0700 (PDT)
+Received: from pps.filterd (m0279868.ppops.net [127.0.0.1])
+        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 366Dl7Xi002795;
+        Thu, 6 Jul 2023 14:42:18 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
+ mime-version : subject : to : cc : references : from : in-reply-to :
+ content-type : content-transfer-encoding; s=qcppdkim1;
+ bh=cOy/D9wwF+YVZW0ZIhp1zNdTAQ7GSvA0zuPjMg2pfCw=;
+ b=nw9wfHYpWg0E+3+ZIfYtFkz1XsAgPn/DjUrOLy1nvwSnGgp2V9thA5zrnjLtP/j3X82X
+ 3nmTLYDPVDcIDRON8xigEGPBV95p7e49wYTbV0RJjjH7f4dPK17yRSflVy9kUUNfUDFf
+ scFtu8AFM8m2PMZEOkAao1TBwkRc+30HzIUAMwhmwciQFxtpTSEJapLrppUQvyFSZgYU
+ 7zUfsjNPQjdPhliumCEfry8uUHabYCKAQIWde/A6sqS3hyPyScoCrLdilcyrOshlWqCY
+ Y/QsrVKfPiBWhhJAxhkhnopa0U/TZaXmB0C/7U9tthko2eyqUUvuydC9iKl1scNaW3Bw DQ== 
+Received: from nalasppmta05.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
+        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rn152kty6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 06 Jul 2023 14:42:18 +0000
+Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
+        by NALASPPMTA05.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 366EgHHa005936
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 6 Jul 2023 14:42:17 GMT
+Received: from [10.216.13.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
+ (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 6 Jul
+ 2023 07:42:13 -0700
+Message-ID: <337a8204-033f-3c00-ffc3-0bd3a6050e54@quicinc.com>
+Date:   Thu, 6 Jul 2023 20:12:09 +0530
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: AM6PR04MB4838:EE_|AM7PR04MB6791:EE_
-X-MS-Office365-Filtering-Correlation-Id: 053cec3b-4225-43fd-eae6-08db7e2ecc3c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: qqGOhzjmZ+8fhYV3GsszpWOCup8HYHgscOuEj2ZIK1r5xc8Q8UFbV1AObuSv18KgX5u+pLmb3WboqKAFvnKQey/gLafxhaDtHHfZX8bEb126b1fv4yv/Q/cC3Vulsfzz4FppbHnUL7TjybwLnBD5RNkSa+U4nHMOZ+re/jSSvP+apHo4Ywd/5IGeUfEqPAdc5AFUHrT66hu3p0w6nl5vljpLdj2U902vOxgIgjtzyVNsbWTHNtS18JI6JetBkermO8iZTcN4kLt/c1q6iy2Y60WqnYtJE8QcBmzcTVWEQajPUd5Ui+a9KDEiyY3a78mxvYt8fZScaojIGSQEuVcPf8vORSumwf+mbwfaPBtJ+l59jbMHSolPGrmfp7s2SR2Yp4dqIFjsKX9ySX1KiJLSVt6RosWj0ipPE+Fe8hY3FEOYkEj7RVCLDzc8YAO519+Fvb1wFA3mDRYQjnKJR+gct24XcYvHSeqF3WqmSDcvlGH2FyMT+XyBdOV7NLR9sh/swiQSGcUij6ehJrAulKj3IFmstQqEDn+J8FaXJn8589STpkrvxKOltQu1sEPxJfHSJ/190qymahRY85Ht1MhM6SSaGfq27mYOIZcKthS228rMVnQ15Bxc5mUYxDN0xAGr
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4838.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(7916004)(4636009)(39860400002)(396003)(376002)(136003)(366004)(346002)(451199021)(52116002)(6666004)(478600001)(6486002)(54906003)(83380400001)(26005)(86362001)(2906002)(66946007)(33716001)(9686003)(186003)(966005)(6506007)(6512007)(38350700002)(38100700002)(4326008)(316002)(6916009)(41300700001)(66556008)(66476007)(8676002)(8936002)(7416002)(5660300002)(32563001);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?F1r6/iH0SqJ81hHA/rqYMicLmo0dSdCeRwIG4meFF0aVqK1qxvy0dfXP2NMo?=
- =?us-ascii?Q?zMwrYC+4/5s0gF9T+xEZ4PSDIs2r9U5eZgOfzi5xRaplRVxqEkqlxAXYMg1k?=
- =?us-ascii?Q?ye4pnF/O1pzGhSSujZwr4MfYNkhNgP1GhsXFgzTI+JPUXp3cz4p1Z2NUvpFW?=
- =?us-ascii?Q?14n4+BxxOoPMVE6x2VDVmIPieNYKcJJGhb2SKr8Q1y73vDYxTEztHjna3B0R?=
- =?us-ascii?Q?jzjkPo7sl7O1aCtGHxqA84GRjCdXalCrnJUPA+QIDxr+HqdA1fVS7stkXRy3?=
- =?us-ascii?Q?Uj5e9Wi/cxaCq/dmrROeWf0J6EqOAo7uLTPkCs80NHpBtMVOugTF6is7DrTA?=
- =?us-ascii?Q?zBIqfxeJ6y6BLo/unFf54BoAwoSZZ1bI6+y/ClhWAbrXx1SjKUkn2MGUrPaF?=
- =?us-ascii?Q?gnylXWxf4HLmG12zZz2wNkpCUXLg+PHXZxZMgkhe8FZ/GpuVC8tWZyc/Zdr3?=
- =?us-ascii?Q?8qfq3haH1GwqWN6ZiI9VLApVpuZby7CDbLq64wglPdQwPbwye3s6kdnZChYo?=
- =?us-ascii?Q?yZRXO1ks0Ut3FXuicTt9ywC+FYbfNxG0JMFAoFljqgYRVBF7jxom547I/8b+?=
- =?us-ascii?Q?b1K0cbvdsgkA71uReB2Sei7jnytXu2EruSG2DBvUtA25Vk7QpErS/1ix8h1d?=
- =?us-ascii?Q?F7PxIJsxiSZWs1n6drkvs6YaY2COvAjZWX0JCCwgNq25eit01juOiKpQ2OIQ?=
- =?us-ascii?Q?SMXxYerEt950UIKEchL69OawpcOzufif7murN/a8XPe/+RIjCivSR+XzH7UH?=
- =?us-ascii?Q?hDXX7uGXFbsetqh/5abnurGYmuSyn7jQxYkToD+Bxf14ZPjANsyS9c+Hdkvh?=
- =?us-ascii?Q?WrzHK6kYFKpwsGP2Dk9ll4daMg8Do6PUx280lDBbUwGB2R3oZ7gW/ukuBN78?=
- =?us-ascii?Q?fewZODkMYBMPpvFiGp1IYWuPIzR5fc5cFE5zk7vo7XIVxaa1Tq8eDcYvTIio?=
- =?us-ascii?Q?z8hlXcR5waYiRNS/uJahXgj1XTw5wOZWgXifBVRZdzRPPW8k7hqR/AM9AKYZ?=
- =?us-ascii?Q?+N4q0c/e/xrrSNoHh1rToMz+IbhdBtc1nUkIMDi3FaNZ1repm0ZxBbVhS5QU?=
- =?us-ascii?Q?MlMzS69PtZrazgt3uY14+hNEmLYwo0KHXlarRnBOr0Vdrr12LT3F2PPk/jLn?=
- =?us-ascii?Q?AJzUeB9VpMVt+GARIorvQzMCvWyPCc4JtdRbMaLs5ENIMSHZX5BPbxBWUb0a?=
- =?us-ascii?Q?iiSV4eiNneFoKdX2BseopgBxYRCUvrax0Q4W5G/ZWYY0NlXs8HObZx4qW5Vj?=
- =?us-ascii?Q?L+05bO/Rbnn2tbeMhy3arpjdJSyrZ3+OpWdRxlqHzFrOcCS3e2dW1uH4ThWV?=
- =?us-ascii?Q?6WY9CwW/Mu7mKYuUthOR74rDlCksPw9J/mIY1I4zVfxC+sAXsuNtOY0MlZTS?=
- =?us-ascii?Q?tGQYm64ewTY+b2AkqKJ2R6p43FDNBiwb4IMmL17KVMKM4FTXxW9bTwdnBw/S?=
- =?us-ascii?Q?9a2k2BIFum0iNmSISxcDynJ6PgIkto4zQMCvMtA4MOojpTx8xZmfuQDyc4eN?=
- =?us-ascii?Q?EBNkdPrOatD9vXtazfQu9Hwa8depGBPIleHleiclpIgI+/FqSGD+vO+yCtWM?=
- =?us-ascii?Q?bRaxywt4MKh1jZoe4Hd2Qt4W4xq3wFee+gpHhO68?=
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 053cec3b-4225-43fd-eae6-08db7e2ecc3c
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4838.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2023 14:39:26.4601
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: f9JIebvs76FUYoPMuVdysk8/n0ZAoaJnDyG5JBUGJF+xHwdmtTQTqP0jzzUmVlAoZrYkYXCl3wtXw2RTd4jIyQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6791
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
+ Thunderbird/91.6.0
+Subject: Re: [PATCH 1/3] dt-bindings: power: rpmpd: Add Generic RPM(h) PD
+ indexes
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        <agross@kernel.org>, <andersson@kernel.org>,
+        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
+        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
+CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1688647793-20950-1-git-send-email-quic_rohiagar@quicinc.com>
+ <1688647793-20950-2-git-send-email-quic_rohiagar@quicinc.com>
+ <9e25ca29-9e19-b48c-06a7-f748af3fd243@linaro.org>
+From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
+In-Reply-To: <9e25ca29-9e19-b48c-06a7-f748af3fd243@linaro.org>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.80.80.8]
+X-ClientProxiedBy: nasanex01b.na.qualcomm.com (10.46.141.250) To
+ nalasex01a.na.qualcomm.com (10.47.209.196)
+X-QCInternal: smtphost
+X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
+X-Proofpoint-GUID: Dk8QoSW3p9f_FB-kWGpmnCZuV4063PEH
+X-Proofpoint-ORIG-GUID: Dk8QoSW3p9f_FB-kWGpmnCZuV4063PEH
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
+ definitions=2023-07-06_11,2023-07-06_02,2023-05-22_02
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=0
+ priorityscore=1501 phishscore=0 impostorscore=0 spamscore=0
+ lowpriorityscore=0 mlxscore=0 malwarescore=0 clxscore=1015 mlxlogscore=703
+ adultscore=0 bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2305260000 definitions=main-2307060131
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 06, 2023 at 12:06:19PM +0100, Robin Murphy wrote:
-> > > 
-> > > Am Mittwoch, 5. Juli 2023, 22:59:53 CEST schrieb Frank Li:
-> > > > The reg size of etm nodes is incorrectly set to 64k instead of 4k. This
-> > > > leads to a crash when calling amba_read_periphid().  After corrected reg
-> > > > size, amba_read_periphid() retrieve the correct periphid.
-> > > > arm,primecell-periphid were removed from the etm nodes.
-> > > 
-> > > So this means the reference manual is wrong here? It clearly states the size
-> > > is 64kiB. Reference Manual i.MX8MP Rev 1. 06/2021
-> > > On a side note: Is imx8mq affected by this as well? The DAP memory table lists
-> > > similar sizes in the RM .
-> > > 
-> > Note that the 64K MMIO space per device is really an alignment thing.
-> > It's a recommendation from ARM to allow individual device MMIO regions
-> > to be mapped on kernels with 64K page size. Most of the time the real
-> > MMIO space occupied by the device is actually much smaller than 64K.
-> 
-> Indeed, it's quite common for TRM memory maps to be written in terms of the
-> interconnect configuration, i.e. from the point of view of the interconnect
-> itself, that whole range of address space is assigned to that peripheral,
-> and it may even be true that the entire range is routed to the port where
-> that peripheral is connected. However what's of more interest for DT is how
-> much of that range the peripheral itself actually decodes.
 
-Yes, there are not problem by mapping bigger space in most case.
+On 7/6/2023 8:06 PM, Krzysztof Kozlowski wrote:
+> On 06/07/2023 14:49, Rohit Agarwal wrote:
+>> Add Generic RPM(h) Power Domain indexes that can be used
+>> for all the Qualcomm SoC henceforth.
+>>
+>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
+>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
+>> ---
+>>   include/dt-bindings/power/qcom-rpmpd.h | 49 ++++++++++++++++++++++++++++++++++
+>>   1 file changed, 49 insertions(+)
+> Didn't you just send a patch doing similar? There is no changelog, no
+> versioning, how can anyone figure out which patch is the latest or which
+> one should be ignored?
+No, that patch was removing all the other SoCs macro which was against 
+the ABI.
+So dropping that series completely and this being new series didnt 
+include the versioning.
+Since all the patches in that series needed to be dropped I thought to 
+start a new series.
 
-amba bus's periphal use close to end of region to show device's identical
-information.
-
-In drivers/amba/bus.c, 
-
-amba_read_periphid()
-{
-	...
-	size = resource_size(&dev->res);
-	...
-	for (pid = 0, i = 0; i < 4; i++)
-		pid |= (readl(tmp + size - 0x20 + 4 * i) & 255) << (i * 8);
-}
-
-So the range in DTS for arm,primecell should be actual IP address space.
-
-> 
-> Robin.
-> 
-> > 
-> > _______________________________________________
-> > linux-arm-kernel mailing list
-> > linux-arm-kernel@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Thanks,
+Rohit.
+> Best regards,
+> Krzysztof
+>
