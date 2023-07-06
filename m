@@ -2,62 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EA02A749655
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0657874966B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:33:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233223AbjGFHZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 03:25:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46508 "EHLO
+        id S233118AbjGFHdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 03:33:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233652AbjGFHZy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:25:54 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 750811BDB
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 00:25:49 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qHJMf-0004nH-2I; Thu, 06 Jul 2023 09:25:21 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 3B9B51EA41D;
-        Thu,  6 Jul 2023 07:25:14 +0000 (UTC)
-Date:   Thu, 6 Jul 2023 09:25:13 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH 2/2] can: m_can: Add hrtimer to generate software
- interrupt
-Message-ID: <20230706-unstopped-skedaddle-7168f2b12189-mkl@pengutronix.de>
-References: <20230705195356.866774-1-jm@ti.com>
- <20230705195356.866774-3-jm@ti.com>
+        with ESMTP id S229718AbjGFHdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:33:22 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3FA7A10A
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 00:33:18 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-3144bf65ce9so289797f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 00:33:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688628797; x=1691220797;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:from:to:cc:subject:date:message-id:reply-to;
+        bh=309+H+PBAX2oHRfRvkMbpKlusq5HD5Zi6qZ4kOaZfs8=;
+        b=IvP2VB4SiXOGQv47glGKQbzd/b6iS3TCWEMnR38LlzdBnrrLx0abTIHa0CvUy0HIRe
+         zdNziOaxTIxo8mJXkrp2lOgJ6pBsWzNVl+URxFt6sm3zqbh83f54D+D6Cwen6M7zwSNj
+         DbZLvwKbIRkyQweY6cdDe9xXydeONKFRFuV0qhsfdTWkcdCpOiS5gojB9ZyuUUtMJ12g
+         kvF6J6M2urHXjUhxcO9+iqL8poCTBvrolJlCoYLkefM7CXn9DzQoSQIrm7bkbYnqH7Dp
+         AWzfpkjvryOmIwJi0O7jYs0746NMU0wJQvCWWTczr4UkqCn8vi8lfy7IoNfV3xi6YLsj
+         YO1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688628797; x=1691220797;
+        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
+         :content-language:subject:reply-to:from:user-agent:mime-version:date
+         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=309+H+PBAX2oHRfRvkMbpKlusq5HD5Zi6qZ4kOaZfs8=;
+        b=gqzxMB25nscmNvsl7SG5Yy0Ytgo3gpPTQzrhs0fiU0vJ8ThJnG/AacFgOJNkvFz4+N
+         RZ8ARxPxj8KZrXgsLwjp1rKZRdjtDR4Hh4bTUKqXhSEU6BWLLmZSqNlY/FDA9oKOTfvb
+         hDS9eWRqMeFWoWE2ODu+fm78yamW/R0NFKrRfOULODKo+KlavGEqp9kRVP6eeAsp1Ke4
+         wtq275IRJNOf+NGUWz3cgn+JbsWyLBKQ8h7nNuQu2uA/Hqec8ekuE6RDrx4uZcJ+5mYN
+         1qubQ/DnQ5o+l1Vir33asA9MkfukYy+9MmUjhSSJylX+0v13LpgU9BHaHVhuGVl3qvSP
+         fIJA==
+X-Gm-Message-State: ABy/qLa+KgldIerX0IHayDSHM7trRMIz/4+bzwdPRi1Z+muVZS65b9cD
+        e9nLthHTOPgFwihHwnDtJt0ZmA==
+X-Google-Smtp-Source: APBJJlHg9pvtgZruIi3nLAIy9FlrcGadcm0O7MfOHnLrmUTIMHEoBs2obzlYf89x4mJOTr4PhccpOw==
+X-Received: by 2002:a05:6000:4ee:b0:313:e80b:2273 with SMTP id cr14-20020a05600004ee00b00313e80b2273mr730483wrb.46.1688628796648;
+        Thu, 06 Jul 2023 00:33:16 -0700 (PDT)
+Received: from ?IPV6:2a01:e0a:982:cbb0:15d1:2748:ead4:bdff? ([2a01:e0a:982:cbb0:15d1:2748:ead4:bdff])
+        by smtp.gmail.com with ESMTPSA id y15-20020a056000108f00b0031433d8af0dsm1093640wrw.18.2023.07.06.00.33.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jul 2023 00:33:16 -0700 (PDT)
+Message-ID: <9e071beb-9d9d-c6dc-8196-a3e23ea73713@linaro.org>
+Date:   Thu, 6 Jul 2023 09:33:15 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="tmycw3ojonpci4ns"
-Content-Disposition: inline
-In-Reply-To: <20230705195356.866774-3-jm@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Reply-To: neil.armstrong@linaro.org
+Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel: Add
+ LGD panel driver for Sony Xperia XZ3)
+Content-Language: en-US
+To:     Maxime Ripard <mripard@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        Caleb Connolly <caleb@connolly.tech>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+References: <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
+ <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
+ <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
+ <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
+ <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
+ <6e070141-8c0e-59ed-8a08-58c3fadb17df@linaro.org>
+ <lidknise4copce3vb2wth4z3fl2p4npsc4u6ajqb6zsp6lnpca@rp6wxcmy2aa4>
+ <CAA8EJpq_VeY=44FqYm7QAT32AR=rmMOV0RtAfNFkb1hpSp29dw@mail.gmail.com>
+ <djrx34qwb7yen47dmlsym4mg2pib4syncvdy52ma3sin7uhs7j@gi3znayuucnj>
+ <a718f7c1-4ef1-18c8-33c7-c5da22e92c89@linaro.org>
+ <q7wrbmdhdy2d3gqig3j34lqxdcwzbom7djlncfznxsa6ktm7j2@i5x4ngi7p2ia>
+Organization: Linaro Developer Services
+In-Reply-To: <q7wrbmdhdy2d3gqig3j34lqxdcwzbom7djlncfznxsa6ktm7j2@i5x4ngi7p2ia>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -66,261 +113,99 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 06/07/2023 09:24, Maxime Ripard wrote:
+> On Wed, Jul 05, 2023 at 11:09:40PM +0300, Dmitry Baryshkov wrote:
+>> On 05/07/2023 19:53, Maxime Ripard wrote:
+>>> On Wed, Jul 05, 2023 at 06:20:13PM +0300, Dmitry Baryshkov wrote:
+>>>> On Wed, 5 Jul 2023 at 17:24, Maxime Ripard <mripard@kernel.org> wrote:
+>>>>>
+>>>>> On Wed, Jul 05, 2023 at 04:37:57PM +0300, Dmitry Baryshkov wrote:
+>>>>>>>>>
+>>>>>>>>> Either way, I'm not really sure it's a good idea to multiply the
+>>>>>>>>> capabilities flags of the DSI host, and we should just stick to the
+>>>>>>>>> spec. If the spec says that we have to support DSC while video is
+>>>>>>>>> output, then that's what the panels should expect.
+>>>>>>>>
+>>>>>>>> Except some panels supports DSC & non-DSC, Video and Command mode, and
+>>>>>>>> all that is runtime configurable. How do you handle that ?
+>>>>>>>
+>>>>>>> In this case, most of the constraints are going to be on the encoder
+>>>>>>> still so it should be the one driving it. The panel will only care about
+>>>>>>> which mode has been selected, but it shouldn't be the one driving it,
+>>>>>>> and thus we still don't really need to expose the host capabilities.
+>>>>>>
+>>>>>> This is an interesting perspective. This means that we can and actually have
+>>>>>> to extend the drm_display_mode with the DSI data and compression
+>>>>>> information.
+>>>>>
+>>>>> I wouldn't extend drm_display_mode, but extending one of the state
+>>>>> structures definitely.
+>>>>>
+>>>>> We already have some extra variables in drm_connector_state for HDMI,
+>>>>> I don't think it would be a big deal to add a few for MIPI-DSI.
+>>>>>
+>>>>> We also floated the idea for a while to create bus-specific states, with
+>>>>> helpers to match. Maybe it would be a good occasion to start doing it?
+>>>>>
+>>>>>> For example, the panel that supports all four types for the 1080p should
+>>>>>> export several modes:
+>>>>>>
+>>>>>> 1920x1080-command
+>>>>>> 1920x1080-command-DSC
+>>>>>> 1920x1080-video
+>>>>>> 1920x1080-video-DSC
+>>>>>>
+>>>>>> where video/command and DSC are some kinds of flags and/or information in
+>>>>>> the drm_display_mode? Ideally DSC also has several sub-flags, which denote
+>>>>>> what kind of configuration is supported by the DSC sink (e.g. bpp, yuv,
+>>>>>> etc).
+>>>>>
+>>>>> So we have two things to do, right? We need to expose what the panel can
+>>>>> take (ie, EDID for HDMI), and then we need to tell it what we picked
+>>>>> (infoframes).
+>>>>>
+>>>>> We already express the former in mipi_dsi_device, so we could extend the
+>>>>> flags stored there.
+>>>>>
+>>>>> And then, we need to tie what the DSI host chose to a given atomic state
+>>>>> so the panel knows what was picked and how it should set everything up.
+>>>>
+>>>> This is definitely something we need. Marijn has been stuck with the
+>>>> panels that support different models ([1]).
+>>>>
+>>>> Would you prefer a separate API for this kind of information or
+>>>> abusing atomic_enable() is fine from your point of view?
+>>>>
+>>>> My vote would be for going with existing operations, with the slight
+>>>> fear of ending up with another DSI-specific hack (like
+>>>> pre_enable_prev_first).
+>>>
+>>> I don't think we can get away without getting access to the atomic_state
+>>> from the panel at least.
+>>>
+>>> Choosing one setup over another is likely going to depend on the mode,
+>>> and that's only available in the state.
+>>>
+>>> We don't have to go the whole way though and create the sub-classes of
+>>> drm_connector_state, but I think we should at least provide it to the
+>>> panel.
+>>>
+>>> What do you think of creating a new set of atomic_* callbacks for
+>>> panels, call that new set of functions from msm and start from there?
+>>
+>> We are (somewhat) bound by the panel_bridge, but yeah, it seems possible.
+> 
+> Bridges have access to the atomic state already, so it's another place
+> to plumb this through but I guess it would still be doable?
 
---tmycw3ojonpci4ns
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+It's definitely doable, but I fear we won't be able to test most of the
+panel drivers, should we introduce a new atomic set of panel callbacks ?
 
-On 05.07.2023 14:53:56, Judith Mendez wrote:
-> Introduce timer polling method to MCAN since some SoCs may not
-> have M_CAN interrupt routed to A53 Linux and do not have
-> interrupt property in device tree M_CAN node.
->=20
-> On AM62x SoC, MCANs on MCU domain do not have hardware interrupt
-> routed to A53 Linux, instead they will use timer polling method.
->=20
-> Add an hrtimer to MCAN class device. Each MCAN will have its own
-> hrtimer instantiated if there is no hardware interrupt found in
-> device tree M_CAN node. The timer will generate a software
-> interrupt every 1 ms. In hrtimer callback, we check if there is
-> a transaction pending by reading a register, then process by
-> calling the isr if there is.
->=20
-> Tested-by: Hiago De Franco <hiago.franco@toradex.com> # Toradex Verdin AM=
-62
-> Reviewed-by: Tony Lindgren <tony@atomide.com>
-> Signed-off-by: Judith Mendez <jm@ti.com>
-> ---
-> Changelog:
-> v9:
-> - Change add MS to HRTIMER_POLL_INTERVAL
-> - Change syntax from "=3D 0" to "!"
-> v8:
-> - Cancel hrtimer after interrupts in m_can_stop
-> - Move assignment of hrtimer_callback to m_can_class_register()
-> - Initialize irq =3D 0 if polling mode is used
+Or shall be simply move the "new" panel driver supporting atomic to bridge
+and only use panel_bridge for basic panels ?
 
-This change has been lost :(
+Neil
 
-> - Add reson for polling mode in commit msg
-> - Remove unrelated change
-> - Remove polling flag
-> v7:
-> - Clean up m_can_platform.c if/else section after removing poll-interval
-> - Remove poll-interval from patch description
-> v6:
-> - Move hrtimer stop/start function calls to m_can_open and m_can_close to
-> support power suspend/resume
-> v5:
-> - Change dev_dbg to dev_info if hardware interrupt exists and polling
-> is enabled
-> v4:
-> - No changes
-> v3:
-> - Create a define for 1 ms polling interval
-> - Change plarform_get_irq to optional to not print error msg
-> v2:
-> - Add functionality to check for 'poll-interval' property in MCAN node=20
-> - Add 'polling' flag in driver to check if device is using polling method
-> - Check for timer polling and hardware interrupt cases, default to
-> hardware interrupt method
-> - Change ns_to_ktime() to ms_to_ktime()
-> ---
->  drivers/net/can/m_can/m_can.c          | 32 +++++++++++++++++++++++++-
->  drivers/net/can/m_can/m_can.h          |  3 +++
->  drivers/net/can/m_can/m_can_platform.c | 23 +++++++++++++++---
->  3 files changed, 54 insertions(+), 4 deletions(-)
->=20
-> diff --git a/drivers/net/can/m_can/m_can.c b/drivers/net/can/m_can/m_can.c
-> index c5af92bcc9c9..13fd84b2e2dd 100644
-> --- a/drivers/net/can/m_can/m_can.c
-> +++ b/drivers/net/can/m_can/m_can.c
-> @@ -11,6 +11,7 @@
->  #include <linux/bitfield.h>
->  #include <linux/can/dev.h>
->  #include <linux/ethtool.h>
-> +#include <linux/hrtimer.h>
->  #include <linux/interrupt.h>
->  #include <linux/io.h>
->  #include <linux/iopoll.h>
-> @@ -308,6 +309,9 @@ enum m_can_reg {
->  #define TX_EVENT_MM_MASK	GENMASK(31, 24)
->  #define TX_EVENT_TXTS_MASK	GENMASK(15, 0)
-> =20
-> +/* Hrtimer polling interval */
-> +#define HRTIMER_POLL_INTERVAL_MS		1
-> +
->  /* The ID and DLC registers are adjacent in M_CAN FIFO memory,
->   * and we can save a (potentially slow) bus round trip by combining
->   * reads and writes to them.
-> @@ -1414,6 +1418,12 @@ static int m_can_start(struct net_device *dev)
-> =20
->  	m_can_enable_all_interrupts(cdev);
-> =20
-> +	if (!dev->irq) {
-> +		dev_dbg(cdev->dev, "Start hrtimer\n");
-> +		hrtimer_start(&cdev->hrtimer, ms_to_ktime(HRTIMER_POLL_INTERVAL_MS),
-> +			      HRTIMER_MODE_REL_PINNED);
-> +	}
-> +
->  	return 0;
->  }
-> =20
-> @@ -1568,6 +1578,11 @@ static void m_can_stop(struct net_device *dev)
->  {
->  	struct m_can_classdev *cdev =3D netdev_priv(dev);
-> =20
-> +	if (!dev->irq) {
-> +		dev_dbg(cdev->dev, "Stop hrtimer\n");
-> +		hrtimer_cancel(&cdev->hrtimer);
-> +	}
-> +
->  	/* disable all interrupts */
->  	m_can_disable_all_interrupts(cdev);
-> =20
-> @@ -1793,6 +1808,18 @@ static netdev_tx_t m_can_start_xmit(struct sk_buff=
- *skb,
->  	return NETDEV_TX_OK;
->  }
-> =20
-> +static enum hrtimer_restart hrtimer_callback(struct hrtimer *timer)
-> +{
-> +	struct m_can_classdev *cdev =3D container_of(timer, struct
-> +						   m_can_classdev, hrtimer);
-> +
-> +	m_can_isr(0, cdev->net);
-> +
-> +	hrtimer_forward_now(timer, ms_to_ktime(HRTIMER_POLL_INTERVAL_MS));
-> +
-> +	return HRTIMER_RESTART;
-> +}
-> +
->  static int m_can_open(struct net_device *dev)
->  {
->  	struct m_can_classdev *cdev =3D netdev_priv(dev);
-> @@ -1831,7 +1858,7 @@ static int m_can_open(struct net_device *dev)
->  		err =3D request_threaded_irq(dev->irq, NULL, m_can_isr,
->  					   IRQF_ONESHOT,
->  					   dev->name, dev);
-> -	} else {
-> +	} else if (dev->irq) {
->  		err =3D request_irq(dev->irq, m_can_isr, IRQF_SHARED, dev->name,
->  				  dev);
->  	}
-> @@ -2027,6 +2054,9 @@ int m_can_class_register(struct m_can_classdev *cde=
-v)
->  			goto clk_disable;
->  	}
-> =20
-> +	if (!cdev->net->irq)
-> +		cdev->hrtimer.function =3D &hrtimer_callback;
-> +
->  	ret =3D m_can_dev_setup(cdev);
->  	if (ret)
->  		goto rx_offload_del;
-> diff --git a/drivers/net/can/m_can/m_can.h b/drivers/net/can/m_can/m_can.h
-> index a839dc71dc9b..2ac18ac867a4 100644
-> --- a/drivers/net/can/m_can/m_can.h
-> +++ b/drivers/net/can/m_can/m_can.h
-> @@ -15,6 +15,7 @@
->  #include <linux/device.h>
->  #include <linux/dma-mapping.h>
->  #include <linux/freezer.h>
-> +#include <linux/hrtimer.h>
->  #include <linux/interrupt.h>
->  #include <linux/io.h>
->  #include <linux/iopoll.h>
-> @@ -93,6 +94,8 @@ struct m_can_classdev {
->  	int is_peripheral;
-> =20
->  	struct mram_cfg mcfg[MRAM_CFG_NUM];
-> +
-> +	struct hrtimer hrtimer;
->  };
-> =20
->  struct m_can_classdev *m_can_class_allocate_dev(struct device *dev, int =
-sizeof_priv);
-> diff --git a/drivers/net/can/m_can/m_can_platform.c b/drivers/net/can/m_c=
-an/m_can_platform.c
-> index 94dc82644113..76d11ce38220 100644
-> --- a/drivers/net/can/m_can/m_can_platform.c
-> +++ b/drivers/net/can/m_can/m_can_platform.c
-> @@ -5,6 +5,7 @@
->  //
->  // Copyright (C) 2018-19 Texas Instruments Incorporated - http://www.ti.=
-com/
-> =20
-> +#include <linux/hrtimer.h>
->  #include <linux/phy/phy.h>
->  #include <linux/platform_device.h>
-> =20
-> @@ -96,12 +97,28 @@ static int m_can_plat_probe(struct platform_device *p=
-dev)
->  		goto probe_fail;
+> 
+> Maxime
 
-Please set "irq" to 0 during declaration.
-
-> =20
->  	addr =3D devm_platform_ioremap_resource_byname(pdev, "m_can");
-> -	irq =3D platform_get_irq_byname(pdev, "int0");
-> -	if (IS_ERR(addr) || irq < 0) {
-> -		ret =3D -EINVAL;
-> +	if (IS_ERR(addr)) {
-> +		ret =3D PTR_ERR(addr);
->  		goto probe_fail;
->  	}
-> =20
-> +	if (device_property_present(mcan_class->dev, "interrupts") ||
-> +	    device_property_present(mcan_class->dev, "interrupt-names")) {
-> +		irq =3D platform_get_irq_byname(pdev, "int0");
-> +		if (irq =3D=3D -EPROBE_DEFER) {
-> +			ret =3D -EPROBE_DEFER;
-> +			goto probe_fail;
-> +		}
-> +		if (irq < 0) {
-> +			ret =3D -EINVAL;
-
-Please return the original error value.
-
-> +			goto probe_fail;
-> +		}
-> +	} else {
-> +		dev_dbg(mcan_class->dev, "Polling enabled, initialize hrtimer");
-> +		hrtimer_init(&mcan_class->hrtimer, CLOCK_MONOTONIC,
-> +			     HRTIMER_MODE_REL_PINNED);
-> +	}
-> +
->  	/* message ram could be shared */
->  	res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM, "message_ram=
-");
->  	if (!res) {
-> --=20
-> 2.34.1
->=20
->=20
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---tmycw3ojonpci4ns
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmSmbFYACgkQvlAcSiqK
-BOgJaQgAhz4eZqUAOMPrcuu3yj+65snWRq39dbNtx7p8P3zynTmJTY/u+/5FcduW
-zPjps+bE+c+GKIPZXzsAPqVVJqxUunIFZJUC8kPEtMB1jQE9b6dGFeQlh0ssgrHg
-OfGhmKJ6IqDpOOTx5edZgBYphH0rMsoFXTiZK0QKlqjtLny0JC1iq9+zas+/YY4p
-/rbDoNFZQLcLwRAubcQHZ2ihhDvSN0kzGk89q3yCKZ489RwtGq4e+h1Ols7Sxp6+
-c0gglKT4SAETZtzOSl1O+wiKS/o8A88bPzdnWSOOhCxU2ZdouOzEEMrYyiWhZW3L
-1xrmb/4u+8uKcZb0ViUZ+LH26P8pOg==
-=mZ8A
------END PGP SIGNATURE-----
-
---tmycw3ojonpci4ns--
