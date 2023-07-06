@@ -2,63 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A2D774960C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:09:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A62FF749612
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:10:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233331AbjGFHJb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 03:09:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36900 "EHLO
+        id S233659AbjGFHKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 03:10:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233761AbjGFHJY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:09:24 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3BE77172B
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 00:09:23 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4f4b2bc1565so375215e87.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 00:09:23 -0700 (PDT)
+        with ESMTP id S232711AbjGFHK1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:10:27 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 885EC1BE5
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 00:10:13 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3142a9ffa89so311539f8f.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 00:10:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688627361; x=1691219361;
+        d=linaro.org; s=google; t=1688627412; x=1691219412;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=e+3UxZtzHVgpN6AySbetYQrNrrAcbanGA/ITUARrZTA=;
-        b=joyw8U0qByKFtglxOZnIe4fsCxJKWScziH7T+kOstAb0UKThqasBr5CdPEY5B1i2wr
-         m8bJPFWK+EcfKKZXrttWGePda170qVCwdehzgiI/9cO1iau6sLuw+OokUf36N4AAc/ix
-         1emyeXwHLEDabZWynbCxNkxcohY1NXf7bY54Omq0JDF0RN0bNtAetf0qaSaBsiQIa5h2
-         G+GD6+cGPDTzmC3Lh/QGA7s/eYZ2VvVtoVZrIRx2Tv+rP1mJn1A3GX4qpIWc0M3y0tu1
-         pJq+4yNyTAfSYFXOGnL4z1ScNb6DNI7ypt70EIWSkceScCrzjY1pmvUL8bhvIg7GkleD
-         8ylw==
+        bh=moTzOrhP2jv4mEj0XJL18rLy1OehAna2H1R87VD2hYA=;
+        b=iqxf4K9V44dY2Z218o6zXfSMSWZr1TwwjgAgOVj7eo0o53YqM68rkRAP83eLvwqv6Z
+         5xGzxdOXvApMqU3NGkHHe+KP0aEcZyWVqfakhFTsy7+0FZ/gDbF5OpqIzYPcDwo8sjmr
+         9xSjv3G5/9IGlt1lEVhBXRYeD/60scayeO2TPy2tBmjsI71Cymwu9brNEbiS44VWXk/Y
+         Pwe22stFsb/n9OgNFXhX7CN3wX0xFq+hQyTD6Dg+OqeDmGgHod35X0OpH0IZpte1ulHL
+         GE4FyORKxU/ds/65xpagl6MnV50wtxweW2v6dWuvZLNrSeOVsUe12s5FXa6X1nR5UvQN
+         damA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688627361; x=1691219361;
+        d=1e100.net; s=20221208; t=1688627412; x=1691219412;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=e+3UxZtzHVgpN6AySbetYQrNrrAcbanGA/ITUARrZTA=;
-        b=TNmc0E3BsVum8+rMHbyx08MCrmnuR7gWyDF7GggridvtEAkG8wq+nk7soCzsBcB5uY
-         3tPOqvv1/N+N37Gk++hF+i3lqhtiiGmx0vTW3KieDwFOyhCXwZ9yzBVxkk5F8KQx7yTW
-         hwzzhKcTFPhBLHl/mim6uj4w+bhrCPj5OUjzdHNKsq2eplVmvDx8vXY509PJiE4gRnqa
-         vwncfH7IshLEwgVmbgNBtGvGC82lR6HFOwSOOH3GhGE2zkY/tVMtR1xnj2lNad7skr1U
-         koNx/fo9goiiTIH0AQqCzHay7ujJlBZ6s/AeH2Gvhk9saxo181ATGgsHYsf6MxCJvRs6
-         cLOA==
-X-Gm-Message-State: ABy/qLbyoGtYPm+hquSFB1xfPa+O1sn+HumrQkR8wKj7p+4JJICtbbxa
-        E1rEOa3H5K2ws22ssdwqmbi/ow==
-X-Google-Smtp-Source: APBJJlFON4bLuwxCrqhdPT27/apuffS9FmUkfshZ1Q98OKa5xztSFTpSlUmvsazqmjuaOs8p4DyYvA==
-X-Received: by 2002:a05:6512:1ca:b0:4f5:1418:e230 with SMTP id f10-20020a05651201ca00b004f51418e230mr734913lfp.52.1688627361586;
-        Thu, 06 Jul 2023 00:09:21 -0700 (PDT)
+        bh=moTzOrhP2jv4mEj0XJL18rLy1OehAna2H1R87VD2hYA=;
+        b=drpN0/nLCyZgKWstRfVPCa1FFNuf4rrxdqcaZlihPL9IpwCntwuNa01TgQ3VBVvPQM
+         8PaFrXvepV01dAK/kwAo3vnit7fwNhFloajOjpdGfq66kT6ILiosCK1FPy1nMH1IhDcQ
+         HBs+QqzGpl57qwjRqsBVUU446t61mrTZO2EDADLWDIiLW0OQrKbKzojMntaWX0boqRD0
+         z4aaW0+j04PHV6Zs0LvKTjDRq67YEpAArmIZS1aEDBsbQOMqSLmsffs9BBIq80dzYlyV
+         sVMR1b6hF9Wh514DkNX72mLhUCcImnSZZZ+4PeG8Ij5mKI4DWYJNvHXqVeYFuQ4FpMYa
+         jwhw==
+X-Gm-Message-State: ABy/qLZlgS8UER8tqZwKiS3/KOheYboBcVx2J1Ggi16kIRQJpwV0HdlX
+        McChDUqw2cjYyYctDtInvyu4uA==
+X-Google-Smtp-Source: APBJJlFueubgKVYMHwOORI74wg8se3YQAVmG40XVt55GH1mYfZakJ47RYWKjZKADuk84VaQcbPAqfQ==
+X-Received: by 2002:a5d:6287:0:b0:313:fa0f:3a05 with SMTP id k7-20020a5d6287000000b00313fa0f3a05mr954991wru.14.1688627411939;
+        Thu, 06 Jul 2023 00:10:11 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:15d1:2748:ead4:bdff? ([2a01:e0a:982:cbb0:15d1:2748:ead4:bdff])
-        by smtp.gmail.com with ESMTPSA id v19-20020a1cf713000000b003fbb00599e4sm4227903wmh.2.2023.07.06.00.09.20
+        by smtp.gmail.com with ESMTPSA id z12-20020a056000110c00b0031423a8f4f7sm1027746wrw.56.2023.07.06.00.10.10
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 00:09:21 -0700 (PDT)
-Message-ID: <80b3c16b-fbf0-4c52-af1f-b9965cdeab5a@linaro.org>
-Date:   Thu, 6 Jul 2023 09:09:19 +0200
+        Thu, 06 Jul 2023 00:10:11 -0700 (PDT)
+Message-ID: <d78b2a8e-2e38-e52c-2a2c-308675409a1f@linaro.org>
+Date:   Thu, 6 Jul 2023 09:10:10 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
 From:   neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 5/7] tty: serial: meson: add independent uart_data for
- A1 SoC family
+Subject: Re: [PATCH v2 7/7] arm64: dts: meson: a1: change uart compatible
+ string
 Content-Language: en-US
 To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
         gregkh@linuxfoundation.org, robh+dt@kernel.org,
@@ -71,9 +71,9 @@ Cc:     kelvin.zhang@amlogic.com, xianwei.zhao@amlogic.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230705181833.16137-1-ddrokosov@sberdevices.ru>
- <20230705181833.16137-6-ddrokosov@sberdevices.ru>
+ <20230705181833.16137-8-ddrokosov@sberdevices.ru>
 Organization: Linaro Developer Services
-In-Reply-To: <20230705181833.16137-6-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230705181833.16137-8-ddrokosov@sberdevices.ru>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
@@ -87,43 +87,39 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/07/2023 20:18, Dmitry Rokosov wrote:
-> Implement separate uart_data to ensure proper devname value for the A1
-> SoC family. Use 'ttyS' devname, as required by the A1 architecture,
-> instead of the legacy gx architecture.
+> In the current implementation, the meson-a1 configuration incorporates a
+> unique compatibility tag "amlogic,meson-a1-uart' within the meson-uart
+> driver due to its usage of the new console device name "ttyS".
+> Consequently, the previous compatibility tag designated for the
+> 'amlogic,meson-gx-uart' configuration has become obsolete and is no
+> longer relevant to the current setup.
 > 
 > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
->   drivers/tty/serial/meson_uart.c | 9 +++++++++
->   1 file changed, 9 insertions(+)
+>   arch/arm64/boot/dts/amlogic/meson-a1.dtsi | 4 ++--
+>   1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 6a63184b8091..84cf10b0ca5c 100644
-> --- a/drivers/tty/serial/meson_uart.c
-> +++ b/drivers/tty/serial/meson_uart.c
-> @@ -818,6 +818,11 @@ static struct meson_uart_data meson_g12a_uart_data = {
->   	.has_xtal_div2 = true,
->   };
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> index c5567031ba12..6273b9c862b3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-a1.dtsi
+> @@ -344,7 +344,7 @@ mux {
+>   			};
 >   
-> +static struct meson_uart_data meson_a1_uart_data = {
-> +	.uart_driver = &MESON_UART_DRIVER(ttyS),
-> +	.has_xtal_div2 = false,
-> +};
-> +
->   static struct meson_uart_data meson_s4_uart_data = {
->   	.uart_driver = &MESON_UART_DRIVER(ttyS),
->   	.has_xtal_div2 = true,
-> @@ -836,6 +841,10 @@ static const struct of_device_id meson_uart_dt_match[] = {
->   		.compatible = "amlogic,meson-s4-uart",
->   		.data = (void *)&meson_s4_uart_data,
->   	},
-> +	{
-> +		.compatible = "amlogic,meson-a1-uart",
-> +		.data = (void *)&meson_a1_uart_data,
-> +	},
->   	{ /* sentinel */ },
->   };
->   MODULE_DEVICE_TABLE(of, meson_uart_dt_match);
-
-With the real struct name:
+>   			uart_AO: serial@1c00 {
+> -				compatible = "amlogic,meson-gx-uart",
+> +				compatible = "amlogic,meson-a1-uart",
+>   					     "amlogic,meson-ao-uart";
+>   				reg = <0x0 0x1c00 0x0 0x18>;
+>   				interrupts = <GIC_SPI 25 IRQ_TYPE_EDGE_RISING>;
+> @@ -354,7 +354,7 @@ uart_AO: serial@1c00 {
+>   			};
+>   
+>   			uart_AO_B: serial@2000 {
+> -				compatible = "amlogic,meson-gx-uart",
+> +				compatible = "amlogic,meson-a1-uart",
+>   					     "amlogic,meson-ao-uart";
+>   				reg = <0x0 0x2000 0x0 0x18>;
+>   				interrupts = <GIC_SPI 26 IRQ_TYPE_EDGE_RISING>;
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
