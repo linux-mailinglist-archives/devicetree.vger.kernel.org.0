@@ -2,112 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7296D749CB7
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:52:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE5E6749D9E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 15:28:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232350AbjGFMwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 08:52:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56182 "EHLO
+        id S231989AbjGFN2I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 09:28:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45716 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232364AbjGFMwh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:52:37 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 826B11FEE;
-        Thu,  6 Jul 2023 05:52:14 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36697ItD009214;
-        Thu, 6 Jul 2023 12:52:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding : content-type; s=qcppdkim1;
- bh=Fu9VnLiwlouttdldB+v9Ip85Epoo1jQ9OpTIhWPE9Gs=;
- b=EE1OrOFWMVYBVVw+oFz725O+3Sf9fEexNn7DZ2Hb42JnoZ7EwL9P8QEBrjE4SVH/Lm+3
- rCUoTer7LUcUn8+pD+V5MmEedyOdKaHH34nDf6VebLxGDxmqAWiRMXKO2R7ZEOGFclEI
- JaeMkSE8muydfGvX/ueO10KYgS6gExqUF8ARhHf0DXdQfbkmrsDRrfbXn3VMpbFib8xn
- Wdx6XqzU92sPbBuLjNB+EEFqm4x7odfB8qw/+0DCuTO+Vk/ZeO/l7BwHkSOpdqT0rfzh
- QyU7jnK97/lN71R9rAVIwy5eca2rrEdtYCXvNLTi9/8EsMo9bWZZJjsfksODmCkVAyxm 2w== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rnsu70f5s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Jul 2023 12:52:08 +0000
-Received: from nalasex01b.na.qualcomm.com (nalasex01b.na.qualcomm.com [10.47.209.197])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 366Cq7s8003355
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 6 Jul 2023 12:52:07 GMT
-Received: from hu-kbajaj-hyd.qualcomm.com (10.80.80.8) by
- nalasex01b.na.qualcomm.com (10.47.209.197) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.1118.30; Thu, 6 Jul 2023 05:52:04 -0700
-From:   Komal Bajaj <quic_kbajaj@quicinc.com>
-To:     <agross@kernel.org>, <andersson@kernel.org>,
-        <konrad.dybcio@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        Komal Bajaj <quic_kbajaj@quicinc.com>
-Subject: [PATCH v3 2/2] arm64: dts: qcom: qru1000-idp: Update reserved memory region
-Date:   Thu, 6 Jul 2023 18:21:29 +0530
-Message-ID: <20230706125129.20969-3-quic_kbajaj@quicinc.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230706125129.20969-1-quic_kbajaj@quicinc.com>
-References: <20230706125129.20969-1-quic_kbajaj@quicinc.com>
+        with ESMTP id S232548AbjGFN2B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 09:28:01 -0400
+Received: from mail-wr1-x435.google.com (mail-wr1-x435.google.com [IPv6:2a00:1450:4864:20::435])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 93064172B;
+        Thu,  6 Jul 2023 06:27:47 -0700 (PDT)
+Received: by mail-wr1-x435.google.com with SMTP id ffacd0b85a97d-3141fa31c2bso632811f8f.2;
+        Thu, 06 Jul 2023 06:27:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688650066; x=1691242066;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=QP+Be5x94KOxJdNX22HWEfwU0tt0ZFxg470C7ejjtiA=;
+        b=jiRkx4IU2b4QkssUl5ksD4+GG37t62JFslOPj1EKFxMufLKrSkpzIXrEOTrSOD19dV
+         3yciLzT+//FnvWpx92cUHH7gFmW+XTx1sQ6hudefhc9fWxFnEH/ggCEXv+ixCuNiTP9g
+         KHyaN+OqWIoTFu9lgEfZlYNII9E4BzrutwZt+57aGwEnDKTpHSvSOhPTDMJZUCAGGqbG
+         A+6kIKPqzHT38/LKFWId4b6wIqIany+2ZWd87FwkqZh700kR0nfHwzzWYNVU1gAZsXaN
+         rujxVqEDJ1OxZ0vFcIxT8yaSPjTOAzEWto4b7wwxydMfZa3L+cbrJQZvU66J36WjVPIW
+         taaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688650066; x=1691242066;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=QP+Be5x94KOxJdNX22HWEfwU0tt0ZFxg470C7ejjtiA=;
+        b=KLMUDMZZNL8VD1DvImhPc21nuzopH934nDWA1qjnkAozYH+eVP7CIMMfaJKOaG3Lsc
+         p72ScRlpWdQ6wp8+g9ugoQBeZl6DDkRsBk3YPP3NB3/PYl9MYMKlfhDEIMgg5XSDle10
+         q2lPVCcF2jWdVex9cAXyWPd9IzMSZT9x+NlUDi/xguwENtwDD5LUKZKh3inw7/HILlbu
+         +przz56TIUF5HMC8LLWLNVZLfJD/TfuDwj/jbZjEPkppMb4TEkTcN4ScOWYOpB1pQcfG
+         vnmjK0ohp1OR5D/0FwtmLlhsOQlSDan4DjMvdRZLFVZbJWX9etx2OuNtNcrYJa6LxNga
+         Om+Q==
+X-Gm-Message-State: ABy/qLb627UwM1vjCyH09xNca3dn9RTQZVyMTRcLOmZ6hQpRLS1shOhT
+        33gebeRIPeEGzwMwv+5Fc5I=
+X-Google-Smtp-Source: APBJJlGAnOUuZiZbUEvafsHLoUDbIsD1teIpH67LcsObIoqmJ2UHIsLJiLd4fz3GwgC9/7d3d31ohg==
+X-Received: by 2002:a5d:684c:0:b0:314:4915:689 with SMTP id o12-20020a5d684c000000b0031449150689mr1551687wrw.34.1688650065607;
+        Thu, 06 Jul 2023 06:27:45 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id f18-20020adff992000000b003142e438e8csm1917330wrr.26.2023.07.06.06.27.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jul 2023 06:27:45 -0700 (PDT)
+Date:   Thu, 6 Jul 2023 15:27:43 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: timer: tegra: Convert to json-schema
+Message-ID: <ZKbBTye-aaDOYpCy@orome>
+References: <20230705153056.2514908-1-thierry.reding@gmail.com>
+ <20230705204723.GA1866650-robh@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01b.na.qualcomm.com (10.47.209.197)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: pAvEW9MtBu34ytifgkVG2NfhJl3tNEPl
-X-Proofpoint-ORIG-GUID: pAvEW9MtBu34ytifgkVG2NfhJl3tNEPl
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-06_09,2023-07-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=649
- adultscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- spamscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307060115
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="9ZoPfLZzEvSOhvP2"
+Content-Disposition: inline
+In-Reply-To: <20230705204723.GA1866650-robh@kernel.org>
+User-Agent: Mutt/2.2.10 (2023-03-25)
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add missing reserved regions as described in QRU1000 memory map.
 
-Signed-off-by: Komal Bajaj <quic_kbajaj@quicinc.com>
----
- arch/arm64/boot/dts/qcom/qru1000-idp.dts | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+--9ZoPfLZzEvSOhvP2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/qru1000-idp.dts b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-index 2cc893ae4d10..377a4b414ad5 100644
---- a/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-+++ b/arch/arm64/boot/dts/qcom/qru1000-idp.dts
-@@ -448,6 +448,18 @@ &qupv3_id_0 {
- 	status = "okay";
- };
+On Wed, Jul 05, 2023 at 02:47:23PM -0600, Rob Herring wrote:
+> On Wed, Jul 05, 2023 at 05:30:56PM +0200, Thierry Reding wrote:
+> > From: Thierry Reding <treding@nvidia.com>
+> >=20
+> > Convert the Tegra timer bindings from the free-form text format to
+> > json-schema.
+> >=20
+> > Signed-off-by: Thierry Reding <treding@nvidia.com>
+> > ---
+> >  .../bindings/timer/nvidia,tegra20-timer.yaml  | 121 ++++++++++++++++++
+> >  .../bindings/timer/nvidia,tegra210-timer.yaml |  70 ++++++++++
+> >  2 files changed, 191 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegr=
+a20-timer.yaml
+> >  create mode 100644 Documentation/devicetree/bindings/timer/nvidia,tegr=
+a210-timer.yaml
+>=20
+> Convert? Where's the removal?
 
-+&reserved_memory {
-+	ecc_meta_data_mem: ecc-meta-data@f0000000 {
-+		reg = <0x0 0xf0000000 0x0 0x10000000>;
-+		no-map;
-+	};
-+
-+	tenx_sp_mem: tenx-sp-buffer@800000000 {
-+		reg = <0x8 0x0 0x0 0x80000000>;
-+		no-map;
-+	};
-+};
-+
- &uart7 {
- 	status = "okay";
- };
---
-2.40.1
+Ugh... nevermind. Somebody beat me to it and I hadn't noticed that the
+plain text files had rebased out. These were merged into a combined DT
+binding in nvidia,tegra-timer.yaml.
 
+Sorry for the noise.
+
+Thierry
+
+--9ZoPfLZzEvSOhvP2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSmwU8ACgkQ3SOs138+
+s6H8oA//RVV42lNhkvxeYrO+yxypLhP99790vYMQfXVArb2yWm1iyjhSDVZBQgk3
+FKSz6mzNxuITmktGeB1xdL4yTqMNP5t8+AuoJlt2a8PqEmAR2iEFc8m9a0Tkk7zP
+IJNb1kBfX2/L5v5i3neh6THYoy0Jh3ucvuPFix7a5ElCEydoagDDPSSL34MJB6T7
+GkbbGQN5ls90r/8Q4t28BjmGWVO62oho6OSKlffweIus3wGrr1jaPFrrCuycX5Ja
+UJ3JgpO5BLL/6z/sti7cuoUGiR/gMefsKgMbOeZe4PBZ8PE7tAbw5udejDvyEoYQ
+1TCMj1Zp1MtjTGYmyU4U03CzL8bKz4A4wa4z+bfnSSm2yvOVoVSI+rYbiuLOEzkR
+aP2iE8L1RE5Z3Jb+WPT8v4ZkmhNgrQsfnYk9tboz17B43JFGPpdh6KQGoDi+JT/3
+XHIUNupLtkCQLlt9SY8u4JP9wtiPbDOkpSWss9FEkL/KmcGAKJ4pG803Q2Vix+Fa
+5DLfXaetrCK8rlrS8Zvu7s5nl1v43vuMkEEydDxPltpnlc6eHAt7yyPPxnatYenr
+/ko4ZJ4LAYCRTp6Em7u1/xMPhEV+Sj8tN2/+Sw6lkzK2E84ti2K55LqsaTFxCt3x
+c4slT4Ns8p+tRLxJtO04EqgV7TR4pPYh2SCfxPWFmuGywW41zss=
+=tnwl
+-----END PGP SIGNATURE-----
+
+--9ZoPfLZzEvSOhvP2--
