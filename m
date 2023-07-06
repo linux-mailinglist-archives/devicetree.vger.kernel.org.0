@@ -2,95 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BF66674A609
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 23:42:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2485474A62B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 23:58:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232025AbjGFVmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 17:42:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60014 "EHLO
+        id S230022AbjGFV6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 17:58:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232029AbjGFVmo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 17:42:44 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C97041FC8
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 14:42:39 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-c5f98fc4237so1269062276.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 14:42:39 -0700 (PDT)
+        with ESMTP id S229527AbjGFV6e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 17:58:34 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03F63E1
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 14:58:33 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbd33a1819so18065e9.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 14:58:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688679759; x=1691271759;
+        d=google.com; s=20221208; t=1688680711; x=1691272711;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=+0rENF/WeQpydVVWV122fwfebKo12jRQ+NnRzPzQpr8=;
-        b=W/SqLqzt3wFk2cSOkuV+T+EczeUwl3oqInbbKRlT4oXgXFrFobMBlM88wjGhpBU253
-         svEE5aOAjYqWkryCcUlYCJuW/m+di6FIaiJdkPSLXboETkhHC3BqRDKKtq5bJ+z2BQAX
-         tDRwXpY2Zu8qlvHrtOjOLSelcVKmsuZzTuHdm7lS3OG7eM9MV8j4FMWUa9k76kaFjp4l
-         wTkR+KszaKH45YQVXRN0pki6hALtHmL2LxxUYcW8xQ8wZxekpk7FpjKP1bU83cyW7mgg
-         7E+XipZ1JacoQzxN0opR0dm1UCUR98tPuw1W2nAmN68HRALf7+hWg4az4Y7dGQ8+p5ya
-         pbjQ==
+        bh=hEParp9WLCAzJ3tEVRlPTLLmfvfF/hCapi/kGt1xYS8=;
+        b=xiB/EdWarYX/DABsjTSbkGjKLUXIBA/on3IZ9C5asF3xRQs7MvPzZ8Yhkw7i6jQstE
+         Y1NbNXGIdu/ToE2OjUzQPG5X4xID1vpsFXasYJyBzZHpwzwUKfSdrKhpaySPn+1SDuwN
+         r+xv0JB8aQTdIjkXPjPlcjdCI/R2dVTzf4SDPIwXsRoaTMlkiAerr48tgWlkfpV/ZZTN
+         Moy/gJeQkmODRoVFubt83Nfon1X5+S4K4sxpa/SGdYU1ukjlH0LEF3jIrfoKsTcGTx9+
+         FXjjAXBchIiKkAxtguMuKtFHHhNSUQLZNMdC+EuM6gRRlyjBP0pwHNI8vpypyaRpZy7q
+         jJlA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688679759; x=1691271759;
+        d=1e100.net; s=20221208; t=1688680711; x=1691272711;
         h=content-transfer-encoding:cc:to:subject:message-id:date:from
          :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=+0rENF/WeQpydVVWV122fwfebKo12jRQ+NnRzPzQpr8=;
-        b=mGwXXf/aBIC+FJVrk/3uYmPXwuJOMNf3tVJLkLiIavJj2FLskRZKQP1UzRfvTXimvQ
-         3cmdpUEUk6eX4gMqsRs0qP4UOex6q5R4Z6RuhvO2g3i8VG0C5Ws9fLlt3gVwStQriVKi
-         aJzFQfhOK3QEyOafr6L9sLQViAkduXMQ71YLm8rUMHNUzK2LsIPiAIHnkCNZIlcE7cXe
-         l2e7Qz/0Xuwq6nglSTIlu2q/ENHvmX8geiYOV16N6xhUWiAld2O3h7irIE0Oqk6b3ZUi
-         iMDOTMFoBv7zQXvXr9+Rw77M4R+qYmZgCYYJjymA+/VyXAVemWadbTq5bixphcXR3jsj
-         rREQ==
-X-Gm-Message-State: ABy/qLaLZUlDfdRkw9P8YnNW1AD+VOYsS+eq5wRfoRDqg6QyWFaIqN4P
-        lxU24I5rS8OgfWaUbVxQvgdikOlqux/4nq9fJuehQQ==
-X-Google-Smtp-Source: APBJJlEAXANJaCshopEoGTyGyT4USXSJCsyd2uuiYqc82UYDe7R2DDGSeNcDz1Nv2iylOJfJTRv7yTcuFYW4NiENZ/k=
-X-Received: by 2002:a25:6085:0:b0:c18:1300:6339 with SMTP id
- u127-20020a256085000000b00c1813006339mr2997998ybb.52.1688679758872; Thu, 06
- Jul 2023 14:42:38 -0700 (PDT)
+        bh=hEParp9WLCAzJ3tEVRlPTLLmfvfF/hCapi/kGt1xYS8=;
+        b=DudgMGnRNaHo/NQIbNmLnP7uOgcB44OkaHps7vA7HQJeWeFoVEeX0n3uthgFb8YOug
+         +rWW4bh0Qs45npkYSHAnwHmGNlzouh4VsI2oanmtvHtTnr4ax+zkFMHlJamoMbu4Bgzq
+         ScccO3wP5hxcbtkAgM7soiFJD9HABS4t9mV+VPtnOzNLn+5KN8DEv/EsXLn6eM6AvJ5p
+         W7QJ/uH+j2t6QCgqY0Bs6vFhS/AxESP2kXeC6WZQKLCVzUI37jST1pg7yK/GESJKOtdJ
+         GpeVxeBnAORjFcNEXVwmQ3PljhqSbZrbMLpjeRdumh4ikkPo0n5aTYD9fJ5yVdlbn4eJ
+         6smg==
+X-Gm-Message-State: ABy/qLYjHs0xLeDpyyryEN2W3cGXGg5FLYx1wgUYPNHK92CroG2QcnPA
+        gpG6g9eA214YTGfyHV5l5mFGLwJcIeFoT6l7HZ+N4w==
+X-Google-Smtp-Source: APBJJlEucBcuIwFpFaL47CRMtACqwMy+V+9VA2el4pY1YppjoFasEMeMh2eRbuXA0Dxre1rzbmTDPgUHDjF2z7ZaK9s=
+X-Received: by 2002:a05:600c:46cd:b0:3f6:f4b:d4a6 with SMTP id
+ q13-20020a05600c46cd00b003f60f4bd4a6mr7987wmo.7.1688680711257; Thu, 06 Jul
+ 2023 14:58:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20230706073719.1156288-1-thomas.bourgoin@foss.st.com> <20230706073719.1156288-7-thomas.bourgoin@foss.st.com>
-In-Reply-To: <20230706073719.1156288-7-thomas.bourgoin@foss.st.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 6 Jul 2023 23:42:27 +0200
-Message-ID: <CACRpkdaF59sJQMc9ZuEM=YFJPaw-oAmvt=s4GYjchEGWQ=yWCw@mail.gmail.com>
-Subject: Re: [PATCH 6/7] crypto: stm32 - fix MDMAT condition
-To:     Thomas BOURGOIN <thomas.bourgoin@foss.st.com>
-Cc:     Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Lionel Debieve <lionel.debieve@foss.st.com>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
+ <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
+ <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com>
+ <CAD=FV=W_Vw=WTuap60PtzU8Jc58T1PsEhJfY96NmFFgmC1DB9w@mail.gmail.com>
+ <CACRpkdZkNio99zS+ttEXncOtS1TcYbfunKSKddErRDV1gTY43w@mail.gmail.com>
+ <CAD=FV=Xx_Bf=Fr1aCmmcjXAv1CyMYwEFba7C6k_HRE1VPtTtHQ@mail.gmail.com> <CACRpkdYif_h38TYDuSjY-0WkWNknFOe8n2Xe7zBydKxySrdZHA@mail.gmail.com>
+In-Reply-To: <CACRpkdYif_h38TYDuSjY-0WkWNknFOe8n2Xe7zBydKxySrdZHA@mail.gmail.com>
+From:   Doug Anderson <dianders@google.com>
+Date:   Thu, 6 Jul 2023 14:58:19 -0700
+Message-ID: <CAD=FV=WNgAr=YaMu9+KSxZSHpG9Z31Pbka1N3E-OYR1-WKHiaQ@mail.gmail.com>
+Subject: Re: [v4 4/4] drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
+        neil.armstrong@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, sam@ravnborg.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        hsinyi@google.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 6, 2023 at 9:39=E2=80=AFAM Thomas BOURGOIN
-<thomas.bourgoin@foss.st.com> wrote:
+Hi,
 
-> From: Thomas Bourgoin <thomas.bourgoin@foss.st.com>
+On Thu, Jul 6, 2023 at 2:36=E2=80=AFPM Linus Walleij <linus.walleij@linaro.=
+org> wrote:
 >
-> If IP has MDMAT support, set or reset the bit MDMAT in Control Register.
+> On Thu, Jul 6, 2023 at 11:25=E2=80=AFPM Doug Anderson <dianders@google.co=
+m> wrote:
 >
-> Fixes: b56403a25af7 ("crypto: stm32/hash - Support Ux500 hash")
-> Signed-off-by: Thomas Bourgoin <thomas.bourgoin@foss.st.com>
+> > In my mind it's really a tradeoff and I'm happy to go with whatever
+> > consensus that others agree with. What I'm never super happy with,
+> > though, is changing the bikeshed color too often, so I'd be really
+> > curious to hear Sam's thoughts on the issue and whether he'd like to
+> > see this driver broken out into a dozen drivers.
+>
+> This is not question about a dozen drivers, to be clear.
+>
+> I just want to break out the drivers that have an identifiable
+> display controller that differs from the others, especially this one.
+>
+> The rest of the drivers inside of this boe driver I can't really tell,
+> they seem related? We don't know?
+>
+> So the Ilitek ILI9882t is an obvious break-out.
 
-Oops probably my fault.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+I guess. To me it feels like the concept of breaking the driver into
+multiple sub-drivers and the idea of supporting ILI9882t more cleanly
+are orthogonal. You could still do your patch #4 and break out the
+page switching function without breaking up the driver.
 
-This should probably be applied for fixes/stable.
+It feels to me fairly likely that many of the panels here are just as
+different from each other as the ILI9882t is from them. I guess it's
+not a dozen, but it feels like using the same "how different are they
+from each other" metric we'd end up with at least 5-6 new drivers. It
+seems clear to me that the panel that Sam first commented on is as
+different from the others in the BOE driver as the ILI9882t is.
+Certainly it has a pretty darn big unique command sequence for init...
 
-Yours,
-Linus Walleij
+
+> For the rest, I guess I would be happier if the Chromium people
+> could use their leverage with vendors to muscle out the details
+> about display controller vendors and provide #defines for all
+> magic commands, we all dislike these opaque firmware-looking
+> jam tables.
+
+Yeah, I've grumbled about this with each new blob added. For instance:
+
+https://lore.kernel.org/r/CAD=3DFV=3DUo-7rFWGiJG0oJ0ydosA4DxhFqiWGrab1zoZyx=
+yPsOBg@mail.gmail.com/
+
+Where I said:
+
+> I'm not really an expert on
+> MIPI panels but the convention of a big stream of binary commands
+> seems to match what other panels in this driver do, even if their
+> table of binary data isn't quite as long as yours (are all of yours
+> actually needed?)
+
+The problem is that it's hard for me to make a strong argument here
+when there is prior art of panels being supported with blob-sequences.
+In this case, I think you as an upstream developer have more leverage.
+I can help put pressure to make sure that upstream concerns are
+addressed, but I think it's on upstream to put their foot down and say
+that these blob sequences are not OK for new panels. In each case I
+landed a patch with a new blob sequence I tried to give the community
+time to respond and I tried to telegraph what I was going to do to
+make sure nobody was surprised...
+
+-Doug
