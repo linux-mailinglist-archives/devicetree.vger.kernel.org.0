@@ -2,50 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 558FF749AA9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 13:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54458749AAF
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 13:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232160AbjGFLcV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 07:32:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36276 "EHLO
+        id S232037AbjGFLdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 07:33:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37132 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232453AbjGFLcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 07:32:07 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70C7D199C;
-        Thu,  6 Jul 2023 04:31:59 -0700 (PDT)
+        with ESMTP id S231833AbjGFLdL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 07:33:11 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 77A23AA;
+        Thu,  6 Jul 2023 04:33:10 -0700 (PDT)
 Received: from [IPv6:2a00:23c8:b70a:ae01:35d0:8e34:613c:c44e] (unknown [IPv6:2a00:23c8:b70a:ae01:35d0:8e34:613c:c44e])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits))
         (No client certificate requested)
         (Authenticated sender: obbardc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 3139D6602242;
-        Thu,  6 Jul 2023 12:31:57 +0100 (BST)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id B0B466602242;
+        Thu,  6 Jul 2023 12:33:08 +0100 (BST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1688643117;
-        bh=vbQlxNw0xEqKNvHiDqAMddYkxm9j3O7CBi79bnRH9OA=;
-        h=Subject:From:To:Date:In-Reply-To:References:From;
-        b=XufG4a28u8HEBpH5Bc44w6ttJ9HFg4VfUA7GIp7wQKH1dzHWlYNnGA2bT1m6yFA1M
-         pfalPAwYQohuHaQ7tnI0cTShYTKrF4mAeeXm/SohNWOlSwUJhZFu3QOsqgILVD+T5K
-         YopF3r68h43t3TpULniFd3PSMvcoeGZKHTC3dGgHvbwuAYFfgBYyAEDhMFmERUXELa
-         LWYXdwhNyAvgqPXIf02q0S86Fmn1Vt0fOFJGIDCYHQgG9yjIkPb+KKq0FiDdM9ZWjO
-         ImBXBlU6DmBB7HixR+hypF4SoQsHtPRd45z/w51EWifbNPlOPCDhyT78nbOXNoAy0J
-         07Ac3r9PniF8Q==
-Message-ID: <3efcb6215c19ff70e2b9ef8ed5bf48813c1499c9.camel@collabora.com>
-Subject: Re: [RFT PATCH 2/3] arm64: dts: rockchip: correct audio-codec
- interrupt flag in Rock Pi 4B
+        s=mail; t=1688643188;
+        bh=l5+LL5sG+6oNk98vidsTUD1ZT1xF0tRZN4EIfi2Jzz8=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=KInwh3I9qZsDTaBRQW8F/t2QGDZ/ofjWuirTgSfnjvf1QBmRrbOhTjY3xbvIQSbpX
+         Pit1IhOCJ2snhlQMmw0aDhv+7mrD/F8ov/0fLaHolXyNQmXdP1Oz7wjPeNxtDucp9A
+         bssu7N7XnEgKC2b/y3ocQaS6HS8MwwCz5W4FdpPBBNo/KxmkXtq3B7u6EBtuDgaCGC
+         B+ft4lFfJSpFsvqJkhNQ5BS0KMpucyYCvZjkvObuLrJcpWi1VI2c+QtHWVjutoWLHq
+         uetic+AXTYY95fYRBXaW9giOQPHdJAf1A1tr/NgWWHrTnHbldG02pyk9wGhQ8lKBGe
+         x/XNpt32UQfGg==
+Message-ID: <7fa80568e37cca3b8c4560e033cd2cfc18b2eb27.camel@collabora.com>
+Subject: Re: [PATCH v1 3/3] arm64: dts: rockchip: Add Radxa ROCK 4SE
 From:   Christopher Obbard <chris.obbard@collabora.com>
 To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        linux-rockchip@lists.infradead.org
+Cc:     kernel@collabora.com, Andy Yan <andyshrk@163.com>,
+        Chris Morgan <macromorgan@hotmail.com>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Date:   Thu, 06 Jul 2023 12:31:55 +0100
-In-Reply-To: <20230705064823.9210-2-krzysztof.kozlowski@linaro.org>
-References: <20230705064823.9210-1-krzysztof.kozlowski@linaro.org>
-         <20230705064823.9210-2-krzysztof.kozlowski@linaro.org>
+        Heiko Stuebner <heiko@sntech.de>,
+        Jagan Teki <jagan@edgeble.ai>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Date:   Thu, 06 Jul 2023 12:33:06 +0100
+In-Reply-To: <b573535b-25f8-8986-3d5d-2e8d4b4c5ca1@linaro.org>
+References: <20230705141011.111568-1-chris.obbard@collabora.com>
+         <20230705141011.111568-4-chris.obbard@collabora.com>
+         <b573535b-25f8-8986-3d5d-2e8d4b4c5ca1@linaro.org>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
 User-Agent: Evolution 3.48.4-1 
@@ -61,44 +67,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Krzysztof,
 
-On Wed, 2023-07-05 at 08:48 +0200, Krzysztof Kozlowski wrote:
-> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> These are simple defines so they could be used in DTS but they will not
-> have the same meaning: GPIO_ACTIVE_HIGH =3D 0 =3D IRQ_TYPE_NONE.
+On Wed, 2023-07-05 at 17:53 +0200, Krzysztof Kozlowski wrote:
+> On 05/07/2023 16:10, Christopher Obbard wrote:
+> > Add board-specific devicetree file for the RK3399T-based Radxa ROCK 4SE
+> > board. This board offers similar peripherals in a similar form-factor t=
+o
+> > the existing ROCK Pi 4B but uses the cost-optimised RK3399T processor
+> > (which has different OPP table than the RK3399) and other minimal hardw=
+are
+> > changes.
+> >=20
+> > Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
+> > ---
+> >=20
 >=20
-> Correct the interrupt flags, assuming the author of the code wanted same
-> logical behavior behind the name "ACTIVE_xxx", this is:
-> =C2=A0 ACTIVE_LOW=C2=A0 =3D> IRQ_TYPE_LEVEL_LOW
 >=20
-> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-> ---
-
-This works fine on my hardware. With that:
-
-Tested-by: Christopher Obbard <chris.obbard@collabora.com>
-
-> =C2=A0arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts | 2 +-
-> =C2=A01 file changed, 1 insertion(+), 1 deletion(-)
+> > +
+> > +&sdio0 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0status =3D "okay";
+> > +
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0brcmf: wifi@1 {
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0compatible =3D "brcm,bcm4329-fmac";
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0reg =3D <1>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&gpio0>;
+> > +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0interrupts =3D <RK_PA3 GPIO_ACTIVE_HIGH>;
 >=20
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts b/ar=
-ch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-> index cec3b7b1b947..8a17c1eaae15 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-pi-4b-plus.dts
-> @@ -31,7 +31,7 @@ brcmf: wifi@1 {
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0compatible =3D "brcm,bcm4329-fmac";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0reg =3D <1>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0interrupt-parent =3D <&gpio0>;
-> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0interrupts =3D <RK_PA3 GPIO_ACTIVE_HIGH>;
-> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0interrupts =3D <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0interrupt-names =3D "host-wake";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-names =3D "default";
-> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0pinctrl-0 =3D <&wifi_host_wake_l>;
+> I just send a patch to fix this in some files, so let's try keep it
+> good. Use proper interrupt type, not none.
+
+Thank you for your review. I missed that patch, sent only a few hours befor=
+e mine. I will address this in v2.
+
+
+Cheers!
+
+Chris
