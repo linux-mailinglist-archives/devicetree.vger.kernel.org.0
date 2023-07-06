@@ -2,174 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E12BE7492D0
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 02:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A59374930E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 03:25:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230383AbjGFA4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 5 Jul 2023 20:56:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37504 "EHLO
+        id S231218AbjGFBZ5 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 5 Jul 2023 21:25:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229537AbjGFA4J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 20:56:09 -0400
-Received: from NAM11-BN8-obe.outbound.protection.outlook.com (mail-bn8nam11on2040.outbound.protection.outlook.com [40.107.236.40])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B7611995;
-        Wed,  5 Jul 2023 17:56:08 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oOLG8m9IRb00xlWQWbOZ6KBPtaqeAPQVmu2fJ48oq4w1Xl/HyIXHGc3rQeak/mZIDgB7c24bC6tKMzWs3aw13H4zpDuqOExPE2W8OmC139A3rmgZ9xQECCq9ZA+93eMKnecDnQERtNvDeFt6fPylYfC5FuGxYTktCx07VO6Yy0vPIhp4cXaiABHNTpTNKYkU+723REnfr9O7c5saNlee5sOslUTsGE1B9zm2hVIC4LfOj4YqKXlIrFE9iGNZkWVox4v/5tBfwN3A7qrWsW7aWqLh3eELztdwGWd8OvJaGbGBM5f/zJN8DBENbQnTkQ17PTZ5wlFf0IYMu+rTKAMUxA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=EkRqfPUdP4+DH8eg32Tzj/APeJFaZPGSC327wWPJgSw=;
- b=eFY5PZ28a1T8lXGKBkTA5xe5AUk/L3mI/ikluu3BOViLz/EgoyunZOtBr3U7Aslasidhj3v8FVQz8m0jzERfH8NX8sGZ0NLgYk/Q07kIrRX8I21wIxT1yT55hC+3mvipLi8zZPBRE+CgAl8U7xHe3r6JSJteFDRBXReEda7fGY2+rzMzH7eh0E706RawoFatqmWzbFy03iGurxgVFr9By6rV9x5N0Rlz+wF3ZF+xJHTaAFHvVeokJcIU8jFPQftG8csym8laQuQGfdDcYw93ikgjLAiV+6dn6IKTRETTRwdnB93ah5SSfKofEIsLfjcIM7V3Fsn/cOMquSL20qJEGQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 216.228.117.161) smtp.rcpttodomain=kernel.org smtp.mailfrom=nvidia.com;
- dmarc=pass (p=reject sp=reject pct=100) action=none header.from=nvidia.com;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=EkRqfPUdP4+DH8eg32Tzj/APeJFaZPGSC327wWPJgSw=;
- b=NeSWg7FMTBNH8spn79wzPeqTEtkDgmDV7YiWDZ6rfBYX1OD/IWMaCkAICwCMtLQI/HSnRPOEdkdsKgQGZyyzdTeN/aiqXFgZqElBLhQcJySotcXUhJzKiZG/x3yKfhh90QSVRqC7xp+YVObZOymRFD5CuucmSboooJbTxHHeGSSmAoW9xpJfkK/Tv5WO5CIPHZzY+XpmY6Y8CGgfnlgD9CqyGsvUFATyMLsgrMEYSxAMjnqq2HiOVhU+jsvWrfTg0k2WicizhQHE38MH+itSEMQGR8lt3J25yxcecBG2A5fcUtYackJYg0i5bzSSROiosrirqA1J1fON/XPklQdxqg==
-Received: from BN9PR03CA0624.namprd03.prod.outlook.com (2603:10b6:408:106::29)
- by DM4PR12MB6109.namprd12.prod.outlook.com (2603:10b6:8:ae::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Thu, 6 Jul
- 2023 00:56:04 +0000
-Received: from BN8NAM11FT027.eop-nam11.prod.protection.outlook.com
- (2603:10b6:408:106:cafe::f6) by BN9PR03CA0624.outlook.office365.com
- (2603:10b6:408:106::29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.18 via Frontend
- Transport; Thu, 6 Jul 2023 00:56:04 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 216.228.117.161)
- smtp.mailfrom=nvidia.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=nvidia.com;
-Received-SPF: Pass (protection.outlook.com: domain of nvidia.com designates
- 216.228.117.161 as permitted sender) receiver=protection.outlook.com;
- client-ip=216.228.117.161; helo=mail.nvidia.com; pr=C
-Received: from mail.nvidia.com (216.228.117.161) by
- BN8NAM11FT027.mail.protection.outlook.com (10.13.177.96) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6521.45 via Frontend Transport; Thu, 6 Jul 2023 00:56:04 +0000
-Received: from rnnvmail205.nvidia.com (10.129.68.10) by mail.nvidia.com
- (10.129.200.67) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.5; Wed, 5 Jul 2023
- 17:55:55 -0700
-Received: from rnnvmail201.nvidia.com (10.129.68.8) by rnnvmail205.nvidia.com
- (10.129.68.10) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.37; Wed, 5 Jul 2023
- 17:55:54 -0700
-Received: from build-gauthams-20230504T093912783.nvidia.com (10.127.8.14) by
- mail.nvidia.com (10.129.68.8) with Microsoft SMTP Server id 15.2.986.37 via
- Frontend Transport; Wed, 5 Jul 2023 17:55:54 -0700
-From:   Gautham Srinivasan <gauthams@nvidia.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>
-CC:     Gautham Srinivasan <gauthams@nvidia.com>
-Subject: [PATCH 2/2] arm64: tegra: Enable soctherm for Orin Nano Devkit
-Date:   Thu, 6 Jul 2023 00:55:45 +0000
-Message-ID: <20230706005545.1813584-2-gauthams@nvidia.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230706005545.1813584-1-gauthams@nvidia.com>
-References: <20230706005545.1813584-1-gauthams@nvidia.com>
+        with ESMTP id S230305AbjGFBZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 5 Jul 2023 21:25:57 -0400
+Received: from frasgout.his.huawei.com (frasgout.his.huawei.com [185.176.79.56])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1268C1994;
+        Wed,  5 Jul 2023 18:25:55 -0700 (PDT)
+Received: from lhrpeml500005.china.huawei.com (unknown [172.18.147.226])
+        by frasgout.his.huawei.com (SkyGuard) with ESMTP id 4QxJhd2lkwz6J7DM;
+        Thu,  6 Jul 2023 09:24:01 +0800 (CST)
+Received: from localhost (10.34.206.101) by lhrpeml500005.china.huawei.com
+ (7.191.163.240) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.27; Thu, 6 Jul
+ 2023 02:25:47 +0100
+Date:   Thu, 6 Jul 2023 09:25:43 +0800
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     "Paller, Kim Seer" <KimSeer.Paller@analog.com>,
+        "jic23@kernel.org" <jic23@kernel.org>,
+        "lars@metafoo.de" <lars@metafoo.de>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "Hennerich, Michael" <Michael.Hennerich@analog.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "krzysztof.kozlowski@linaro.org" <krzysztof.kozlowski@linaro.org>,
+        "conor+dt@kernel.org" <conor+dt@kernel.org>,
+        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        kernel test robot <lkp@intel.com>
+Subject: Re: [PATCH v8 2/2] iio: adc: max14001: New driver
+Message-ID: <20230706092543.0000038d@Huawei.com>
+In-Reply-To: <CAHp75Ve_pBvVRxHTyvFy_-cWq9dNapO0hYn=ujXCPCqgQ1obUA@mail.gmail.com>
+References: <20230622143227.30147-1-kimseer.paller@analog.com>
+        <20230622143227.30147-2-kimseer.paller@analog.com>
+        <20230702180315.00003dbe@Huawei.com>
+        <fcf6daf6afec48b096df14d8b5308db0@analog.com>
+        <20230705155530.00002074@Huawei.com>
+        <CAHp75VfGFXtX2UCV+EzSMGaRMc5=WUpUJpRFB_K6NMJO2+iszg@mail.gmail.com>
+        <20230705172834.00001853@Huawei.com>
+        <CAHp75Ve_pBvVRxHTyvFy_-cWq9dNapO0hYn=ujXCPCqgQ1obUA@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 4.1.0 (GTK 3.24.33; x86_64-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-NV-OnPremToCloud: ExternallySecured
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BN8NAM11FT027:EE_|DM4PR12MB6109:EE_
-X-MS-Office365-Filtering-Correlation-Id: 40867fbf-eacc-41cc-4c87-08db7dbbc669
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: lI8zrt4thYbtiaYkoXfIhJ/U6+rMpCoX04oEmsq/+PS7xbW5Zs+m3gf4pwc3gQ3UD7KWe/GneiTJLvmupZYSDYCXyyfQuO2WMzteyuQEo6YzFJwyVffdinTT9JcVrNYk3rFA8Sh012yMO4LGoUGspkaU1SlZM7SNWDicwepWTbW2rISnwDitwjnghSoEV88Y1A1ZTLxcc9ZpDWVkXvhNqqvfyEeA518/Ep5uR/075YSdl3j+NcUdK5P7f27kPRD7xNeHfAwcabYacETsw6CiXf6zNA+VVjwMzNEceUot1xtcdycOoH4awmUeOFsrAhlIo7WXUHJktnXNa0xqkBKTEnyHr0HzOhXfW18EEPAhXgn2SZEykMUAhKjG0yuNkyOxoam5c9LHk0+v1fyOrzkOTBEk8H33mDNgnFrPQh6M2h7mZSkoWD5lo2VJKrBhqc3AWyedt5vu2qjR+y+re3qhJ94T+utUZBmZJv8uBN/1cYXZzoSbLuE9GQN6v70ZlmfnuknDybg1oYHiarVHVqYRoBGk+/R3ve4XgIT4K2rLKCSj8LQaJP/lN0wf1QdRihmNQzQRqWsnwB6XbOQTeCDzTd14VnrfixuJtfst77lLuOHlIWMzaMkV8/Xq1ZhL1tN6UQQT8MKN4YbvGZuATn0EdNafz4YVHP1h2p2NgZgvWiUE7v5DdSuixNk4nrxkGJ530qo5rcaI8cj96NvbuQnh4qmBW0PHOmAzqddKjeizLI/MmhoqfS/AhuVJVLFDmq3p
-X-Forefront-Antispam-Report: CIP:216.228.117.161;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:mail.nvidia.com;PTR:dc6edge2.nvidia.com;CAT:NONE;SFS:(13230028)(4636009)(136003)(396003)(346002)(376002)(39860400002)(451199021)(46966006)(40470700004)(36840700001)(82740400003)(70206006)(316002)(2616005)(70586007)(5660300002)(8936002)(41300700001)(4326008)(356005)(7636003)(86362001)(8676002)(40460700003)(40480700001)(426003)(82310400005)(36860700001)(2906002)(107886003)(186003)(1076003)(336012)(6666004)(7696005)(110136005)(26005)(36756003)(478600001)(47076005);DIR:OUT;SFP:1101;
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2023 00:56:04.2171
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 40867fbf-eacc-41cc-4c87-08db7dbbc669
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=43083d15-7273-40c1-b7db-39efd9ccc17a;Ip=[216.228.117.161];Helo=[mail.nvidia.com]
-X-MS-Exchange-CrossTenant-AuthSource: BN8NAM11FT027.eop-nam11.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB6109
-X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FORGED_SPF_HELO,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [10.34.206.101]
+X-ClientProxiedBy: lhrpeml500002.china.huawei.com (7.191.160.78) To
+ lhrpeml500005.china.huawei.com (7.191.163.240)
+X-CFilter-Loop: Reflected
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable soctherm for Orin Nano Devkit. This is needed for the CPU
-fan to operate.
+On Wed, 5 Jul 2023 12:36:40 +0300
+Andy Shevchenko <andy.shevchenko@gmail.com> wrote:
 
-Signed-off-by: Gautham Srinivasan <gauthams@nvidia.com>
----
- .../arm64/boot/dts/nvidia/tegra234-p3767.dtsi | 38 +++++++++++++++++++
- 1 file changed, 38 insertions(+)
+> On Wed, Jul 5, 2023 at 12:28 PM Jonathan Cameron
+> <Jonathan.Cameron@huawei.com> wrote:
+> > On Wed, 5 Jul 2023 11:53:17 +0300
+> > Andy Shevchenko <andy.shevchenko@gmail.com> wrote:  
+> > > On Wed, Jul 5, 2023 at 10:55 AM Jonathan Cameron
+> > > <Jonathan.Cameron@huawei.com> wrote:  
+> > > > > > From: Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+> > > > > > Sent: Sunday, July 2, 2023 6:04 PM
+> > > > > > On Thu, 22 Jun 2023 22:32:27 +0800
+> > > > > > Kim Seer Paller <kimseer.paller@analog.com> wrote:  
+> 
+> ...
+> 
+> > > > > > > + /*
+> > > > > > > +  * Convert transmit buffer to big-endian format and reverse transmit
+> > > > > > > +  * buffer to align with the LSB-first input on SDI port.
+> > > > > > > +  */
+> > > > > > > + st->spi_tx_buffer =  
+> > > > > > cpu_to_be16(bitrev16(FIELD_PREP(MAX14001_ADDR_MASK,  
+> > > > > > > +                                                         reg_addr)));
+> > > > > > > +
+> > > > > > > + ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
+> > > > > > > + if (ret)
+> > > > > > > +         return ret;
+> > > > > > > +
+> > > > > > > + /*
+> > > > > > > +  * Align received data from the receive buffer, reversing and reordering
+> > > > > > > +  * it to match the expected MSB-first format.
+> > > > > > > +  */
+> > > > > > > + *data = (__force u16)(be16_to_cpu(bitrev16(st->spi_rx_buffer))) &
+> > > > > > > +  
+> > > > > >     MAX14001_DATA_MASK;  
+> > > > > > > +  
+> > > > > > These sequences still confuse me a lot because I'd expect the values in tx
+> > > > > > to have the opposite operations applied to those for rx and that's not the
+> > > > > > case.
+> > > > > >
+> > > > > > Let's take a le system.
+> > > > > > tx = cpu_to_be16(bitrev16(x))
+> > > > > >    = cpu_to_be16((__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8));
+> > > > > >    = __bitrev8(x & 0xff) | (__bitrev8(x >> 8) << 8)
+> > > > > > or swap all the bits in each byte, but don't swap the bytes.
+> > > > > >
+> > > > > > rx = cpu_to_be16(bitrev16(x))
+> > > > > >    = be16_to_cpu(((__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)_
+> > > > > >    = __bitrev8(x & 0xff) | __bitrev(x >> 8)
+> > > > > >
+> > > > > > also swap all the bits in each byte, but don't swap the bytes.
+> > > > > >
+> > > > > > So it is the reverse because the bytes swaps unwind themselves somewhat.
+> > > > > > For a be system cpu_to_be16 etc are noop.
+> > > > > > tx = (__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)
+> > > > > > rx = (__bitrev8(x & 0xff) << 8) | __bitrev8(x >> 8)
+> > > > > >
+> > > > > > So in this case swap all 16 bits.
+> > > > > >
+> > > > > > Now, given I'd expected them to be reversed for the tx vs rx case.
+> > > > > > E.g.
+> > > > > > tx = cpu_to_be16(bitrev16(x))
+> > > > > > As above.
+> > > > > > For rx, le host
+> > > > > > rx = bitrev16(be16_to_cpu(x))
+> > > > > >    = __bitrev8((x >> 8) & 0xff) << 8) |  __bitrev8((((x & 0xff) << 8) >> 8)
+> > > > > > same as above (if you swap the two terms I think.
+> > > > > >
+> > > > > > For be the be16_to_cpu is a noop again, so it's just bitrev16(x) as expected.
+> > > > > >
+> > > > > > Hence if I've understood this correctly you could reverse the terms so that
+> > > > > > it was 'obvious' you were doing the opposite for the tx term vs the rx one
+> > > > > > without making the slightest bit of difference....
+> > > > > >
+> > > > > > hmm. Might be worth doing simply to avoid questions.  
+> > > > >
+> > > > > Thank you for your feedback. I have tested the modifications based on your
+> > > > > suggestions, taking the le system into account, and it appears that the code is
+> > > > > functioning correctly. Before sending the new patch version, I would like to
+> > > > > confirm if this aligns with your comments.  
+> > >  
+> > > > Yes. This looks good to me.  
+> > >
+> > > I think the implementation is still incorrect. See below.
+> > >  
+> > > > > static int max14001_read(void *context, unsigned int reg_addr, unsigned int *data)
+> > > > > {
+> > > > >       struct max14001_state *st = context;
+> > > > >       int ret;
+> > > > >
+> > > > >       struct spi_transfer xfers[] = {
+> > > > >               {
+> > > > >                       .tx_buf = &st->spi_tx_buffer,
+> > > > >                       .len = sizeof(st->spi_tx_buffer),
+> > > > >                       .cs_change = 1,
+> > > > >               }, {
+> > > > >                       .rx_buf = &st->spi_rx_buffer,
+> > > > >                       .len = sizeof(st->spi_rx_buffer),
+> > > > >               },
+> > > > >       };  
+> > >  
+> > > > >       st->spi_tx_buffer = cpu_to_be16(bitrev16(FIELD_PREP(MAX14001_ADDR_MASK, reg_addr)));  
+> > >
+> > > Here we got bits in CPU order, reversed them and converted to BE16.
+> > >  
+> > > > >       ret = spi_sync_transfer(st->spi, xfers, ARRAY_SIZE(xfers));
+> > > > >       if (ret)
+> > > > >               return ret;  
+> > >  
+> > > > >       *data = cpu_to_be16(bitrev16(st->spi_rx_buffer));  
+> > >
+> > > Here we take __be16 response, reverse them and convert to BE16?!
+> > > This is weird. You should have be16_to_cpu() somewhere, not the opposite.  
+> > Good point - though functionally they end up the same (and the bitrev
+> > is making mess of type markings anyway). It is more logical
+> > to ensure the direction is reversed as you suggest.  
+> 
+> Also a question why we don't do that in reversed order.
+> Logically it sounds like bitrev16(be16_to_cpu()) should be.
+> Will it give the wrong results?
+Shouldn't make any difference as the two operations commute.
+I'd missed this.  You are right that the other order makes more
+sense.
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-index a8aa6e7d8fbc..cb76b08e15b9 100644
---- a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
-@@ -98,6 +98,12 @@
- 		vin-supply = <&vdd_5v0_sys>;
- 	};
- 
-+	bpmp {
-+		thermal {
-+			status = "okay";
-+		};
-+	};
-+
- 	thermal-zones {
- 		tj-thermal {
- 			polling-delay = <1000>;
-@@ -118,5 +124,37 @@
- 				};
- 			};
- 		};
-+
-+		cpu-thermal {
-+			status = "okay";
-+		};
-+
-+		gpu-thermal {
-+			status = "okay";
-+		};
-+
-+		cv0-thermal {
-+			status = "okay";
-+		};
-+
-+		cv1-thermal {
-+			status = "okay";
-+		};
-+
-+		cv2-thermal {
-+			status = "okay";
-+		};
-+
-+		soc0-thermal {
-+			status = "okay";
-+		};
-+
-+		soc1-thermal {
-+			status = "okay";
-+		};
-+
-+		soc2-thermal {
-+			status = "okay";
-+		};
- 	};
- };
--- 
-2.17.1
+Jonathan
+
+> 
+> All in all this algo should be described in the comment in the code
+> (if not yet).
+> 
+> > > > >       return 0;
+> > > > > }  
+> 
 
