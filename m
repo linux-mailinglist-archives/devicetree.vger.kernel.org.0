@@ -2,133 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CDB274A302
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 19:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C279F74A30D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 19:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231965AbjGFRUL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 13:20:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32904 "EHLO
+        id S230466AbjGFR1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 13:27:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34568 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbjGFRUK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 13:20:10 -0400
-Received: from mail-pg1-x531.google.com (mail-pg1-x531.google.com [IPv6:2607:f8b0:4864:20::531])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0B101BF8
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 10:20:07 -0700 (PDT)
-Received: by mail-pg1-x531.google.com with SMTP id 41be03b00d2f7-55ba895d457so574575a12.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 10:20:07 -0700 (PDT)
+        with ESMTP id S229492AbjGFR1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 13:27:20 -0400
+Received: from mail-pl1-x62f.google.com (mail-pl1-x62f.google.com [IPv6:2607:f8b0:4864:20::62f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF6619B2
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 10:27:19 -0700 (PDT)
+Received: by mail-pl1-x62f.google.com with SMTP id d9443c01a7336-1b8033987baso15205775ad.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 10:27:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688664007; x=1691256007;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
-        bh=k9ea0Od7Ss8KSCo0Ba6GtQFVksMPHnFvx3hnoqe8eeY=;
-        b=fQQ7hzusqcO2Mb5AQ960t54PR7FMZocWeAtbfCtyJZAV8i6B9OQAivVlHoDnpsFN2k
-         Qm1kdgueLRMJUOcbbfNh5RyCkx+scTiJF9FIL0O7an83YsYxsSTrbLNqkX+zGQom84FX
-         /cojomOG2sUxoe2p0zFMkAJIPsHSCKdsdkithdcPNeURi7RxIJBkg79qbywfJVZiuyNA
-         gNhKkyPv5XnliYrKT9IpuCN0GOj2XzFFZVpkj/kqWfUObmt7Y2qSlZNGLazWfyhr7Puk
-         1JsD4mwjtElm4HEK4vJ/PS3VV2CPQtjdj0Tui/QqCQS8H3gOGSjqnXec+bQZHK6nBCUw
-         ytPQ==
+        d=dabbelt-com.20221208.gappssmtp.com; s=20221208; t=1688664439; x=1691256439;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=Jn7a2xeSOCay/dfZF7fwDabuNtAa1pZY11og1PISP7o=;
+        b=iiQ+SMcyzSGrF/OXkZ0ynReYpKtMKZ0y0KTGoqTMo6wj7LWaQxw0z5jrVOvbH58TTg
+         +N0U8PwreurjB5vVwFH9fXYJNWvRbmTRctfibbcyIYqbrUA4jTbc/Z3dAQ/5MprxDTGt
+         7u084BXwAky1m625fwmIHNhkWTTHM8bi5k6mcNrCG+se3g8/+bm9vBberW5VtkXqIdxT
+         aodLfXEGxeET0tBuCnP1803Az+pVNyKlcAyoQzVfFuzvTEGIYaJbYz1Km6QS4zFK5xD7
+         9O0IZrbUp9uaCA7B3O6svuVhAsKLm33sopcJcweXt+u98ytGaP3ArwiqIPbHHzp4PvW4
+         7ilA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688664007; x=1691256007;
-        h=in-reply-to:content-disposition:mime-version:references:message-id
-         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+        d=1e100.net; s=20221208; t=1688664439; x=1691256439;
+        h=content-transfer-encoding:mime-version:message-id:to:from:cc
+         :in-reply-to:subject:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=k9ea0Od7Ss8KSCo0Ba6GtQFVksMPHnFvx3hnoqe8eeY=;
-        b=azJwnujjUooawEDUQcC9nZekxvm7jCN5fIPKcUfdv6diigsSDqv6jeiKIToVJnXZqL
-         dB0MBS0SaKN6oE0LBzlaPoyc2vZyTUPtx9NElrBuiXlV9bu93qVotwNL6iObX+X1WnNe
-         HMTbdZ87A3VSvOhgjKtYPFqlpd0eFSb+FfhClOeMNi2WbNVvT9WMKMEh8EaofsWoJ+Ih
-         l5hAVAsbYP+sNfV8zIVz1E/bV2hrXSbRQD/S+WZ/Dk4RwBsEp0b+n8ztYk96SHI2whO3
-         yYDPa1/sze0a4i1EeidfBqhjAcHOEJHqAgqbYyxHuAOzoSnfDixt1SAD3bKI5bvJ7ghN
-         nwQg==
-X-Gm-Message-State: ABy/qLYEcWyZma97A+lAP+mOzGnsdqAV0ppmIeEHNtdD8undNpUWUk8s
-        aUd2ElttSVkcVOSuliPGGLDtng==
-X-Google-Smtp-Source: APBJJlGIzD3wgfXmLqpF5j/wbpDQeS0eCZKqUWowt+GLYOi3W+0iK2Ooqw2rQRyVOs7PEhn81abgMw==
-X-Received: by 2002:a17:90a:c690:b0:262:c974:6057 with SMTP id n16-20020a17090ac69000b00262c9746057mr1931210pjt.32.1688664007220;
-        Thu, 06 Jul 2023 10:20:07 -0700 (PDT)
-Received: from p14s ([2604:3d09:148c:c800:b0a5:7a22:4bcf:c911])
-        by smtp.gmail.com with ESMTPSA id az9-20020a056a02004900b00519c3475f21sm1431884pgb.46.2023.07.06.10.20.05
+        bh=Jn7a2xeSOCay/dfZF7fwDabuNtAa1pZY11og1PISP7o=;
+        b=HPJuaqM+NFX7a4KN2px4tQRAQxODVIH0mG2IFFv8jC+r19ckd9AkhuNG3AlMKoz8Fn
+         k2MT+iMeKtXdJQTJ2MwFdI6PAK3e8/rTODtxwMExHv1bnaFnheE3k1PZVH/5tovQUhA5
+         MPcmJzCCcaJbBPmLUyCQAcm5ysu5awwt6JuvqoZ3ABMVCD86Z0/rAP2lk178CH855XYZ
+         Vn9hTQD89nfS7CCRh9+G56tDECYSEWWnmucDTM7PdxRYPYarulBhBdNCwzTlsSry2fTt
+         UR1uYsuKAG1JeF7INDhXFamBKWDrqkwiyZ/Il6kF177VQnAVf3ve414Op2wXRKO3kj+c
+         RjaQ==
+X-Gm-Message-State: ABy/qLbqwbYMBtb4YC+wyDnhqGxO8HsAUv5cdAy0bgHCr1MQxqUEK+ow
+        POSFw2BUb7AaLKWnHj4uBA/TnA==
+X-Google-Smtp-Source: APBJJlE3KGdR0bMX6GYwQVcPoEOOedKCRiHGchyo57OKOouToD0llxWDSI4fWwVmCNS6bQ2O3EB6tw==
+X-Received: by 2002:a17:902:dac9:b0:1b8:76cb:c6a4 with SMTP id q9-20020a170902dac900b001b876cbc6a4mr8323507plx.21.1688664438768;
+        Thu, 06 Jul 2023 10:27:18 -0700 (PDT)
+Received: from localhost ([50.221.140.188])
+        by smtp.gmail.com with ESMTPSA id y10-20020a17090322ca00b001b7fabe8b0asm1694210plg.2.2023.07.06.10.27.17
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 10:20:06 -0700 (PDT)
-Date:   Thu, 6 Jul 2023 11:20:03 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Trilok Soni <quic_tsoni@quicinc.com>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mukesh Ojha <quic_mojha@quicinc.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg KH <gregkh@linuxfoundation.org>, corbet@lwn.net,
-        agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        keescook@chromium.org, tony.luck@intel.com, gpiccoli@igalia.com,
-        catalin.marinas@arm.com, will@kernel.org, linus.walleij@linaro.org,
-        andy.shevchenko@gmail.com, linux-doc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-hardening@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org,
-        Alex Elder <elder@linaro.org>
-Subject: Re: [PATCH v4 00/21] Add Qualcomm Minidump kernel driver related
- support
-Message-ID: <ZKb3wz2eXS6h1yIW@p14s>
-References: <1687955688-20809-1-git-send-email-quic_mojha@quicinc.com>
- <2023062814-chance-flounder-f002@gregkh>
- <CAL_JsqLO9yey2-4FcWsaGxijiS6hGL0SH9VoMuiyei-u9=Cv=w@mail.gmail.com>
- <cc30660f-dd72-aade-6346-a93c6ad4b695@quicinc.com>
- <29af84dc-7db8-0c43-07b6-eb743cf25e57@linaro.org>
- <957a3cdb-6091-8679-ddb0-296db2347291@quicinc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <957a3cdb-6091-8679-ddb0-296db2347291@quicinc.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Thu, 06 Jul 2023 10:27:18 -0700 (PDT)
+Date:   Thu, 06 Jul 2023 10:27:18 -0700 (PDT)
+X-Google-Original-Date: Thu, 06 Jul 2023 10:26:32 PDT (-0700)
+Subject:     Re: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for starfive devices
+In-Reply-To: <20230627080620.329873-1-felix.moessbauer@siemens.com>
+CC:     kernel@esmil.dk, robh+dt@kernel.org,
+        daniel.bovensiepen@siemens.com, jan.kiszka@siemens.com,
+        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
+        felix.moessbauer@siemens.com
+From:   Palmer Dabbelt <palmer@dabbelt.com>
+To:     felix.moessbauer@siemens.com, Conor Dooley <conor@kernel.org>
+Message-ID: <mhng-6b374b17-9e75-4ae5-b614-f89fcf8b64c4@palmer-ri-x1c9a>
+Mime-Version: 1.0 (MHng)
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 03, 2023 at 02:05:58PM -0700, Trilok Soni wrote:
-> On 7/2/2023 1:29 AM, Krzysztof Kozlowski wrote:
-> > On 30/06/2023 18:04, Mukesh Ojha wrote:
-> > > > 
-> > > > > We don't add layers when they are not needed, and never when there is no
-> > > > > actual user.  If you need the extra "complexity" later, then add it
-> > > > > later when it is needed as who knows when that will ever be.
-> > > > > 
-> > > > > Please redo this series based on that, thanks.
-> > > > 
-> > > > My bigger issue with this whole series is what would this all look
-> > > > like if every SoC vendor upstreamed their own custom dumping
-> > > > mechanism. That would be a mess. (I have similar opinions on the
-> > > > $soc-vendor hypervisors.)
-> > 
-> > Mukesh,
-> > 
-> > LPC CFP is still open. There will be also Android and Kernel Debugging
-> > LPC microconference tracks. Coming with a unified solution could be a
-> > great topic for LPC. Solutions targeting only one user are quite often
-> > frowned upon.
-> 
-> LPC is far out and in November. Can we not have others speak up if they have
-> the similar solution now? We can expand this to linux-kernel and ask for the
-> other SOC vendors to chime in. I am sure that we may have existing solutions
-> which came in for the one user first like Intel RDT if I remember. I am sure
-> ARM MPAM usecase was present at that time but Intel RDT based solution which
-> was x86 specific but accepted.
+On Tue, 27 Jun 2023 01:06:20 PDT (-0700), felix.moessbauer@siemens.com wrote:
+> Add the '-@' DTC option for the starfive devices. This option
+> populates the '__symbols__' node that contains all the necessary symbols
+> for supporting device-tree overlays (for instance from the firmware or
+> the bootloader) on these devices.
+>
+> The starfive devices allow various modules to be connected and this
+> enables users to create out-of-tree device-tree overlays for these modules.
+>
+> Please note that this change does increase the size of the resulting DTB
+> by ~20%. For example, with v6.4 increase in size is as follows:
+>
+> jh7100-beaglev-starlight.dtb 6192 -> 7339
+> jh7100-starfive-visionfive-v1.dtb 6281 -> 7428
+> jh7110-starfive-visionfive-2-v1.2a.dtb 11101 -> 13447
+> jh7110-starfive-visionfive-2-v1.3b.dtb 11101 -> 13447
+>
+> Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
+> ---
+>  arch/riscv/boot/dts/starfive/Makefile | 6 ++++++
+>  1 file changed, 6 insertions(+)
+>
+> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/starfive/Makefile
+> index 170956846d49..0141504c0f5c 100644
+> --- a/arch/riscv/boot/dts/starfive/Makefile
+> +++ b/arch/riscv/boot/dts/starfive/Makefile
+> @@ -1,4 +1,10 @@
+>  # SPDX-License-Identifier: GPL-2.0
+> +# Enables support for device-tree overlays
+> +DTC_FLAGS_jh7100-beaglev-starlight := -@
+> +DTC_FLAGS_jh7100-starfive-visionfive-v1 := -@
+> +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.2a := -@
+> +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b := -@
+> +
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-beaglev-starlight.dtb
+>  dtb-$(CONFIG_ARCH_STARFIVE) += jh7100-starfive-visionfive-v1.dtb
 
-I am not familiar with Intel RDT and Arm MPAM but the community is always
-improving on the way it does things.
-
-LPC is indeed far out in November but it is an opportunity to cover the
-groundwork needed to have this discussion.  It is always best to improve on
-something then introduce something new.  Even better if something specific such
-as Intel RDT and Arm MPAM can be made more generic.  A perfect example is
-hwtracing Linus referred to.  The perf framework wasn't a perfect fit but it was
-enhanced to accommodate our requirements.  I suggest to look at what is currently
-available and come up with a strategy to be presented at LPC - event better if
-you have a prototype.  If you can't find anything or the drawbacks inherent to
-each avenue outweigh the benefits then we can have that conversation at LPC.
-
-> 
-> ---Trilok Soni
+Acked-by: Palmer Dabbelt <palmer@rivosinc.com>
