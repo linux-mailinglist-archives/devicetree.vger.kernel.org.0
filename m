@@ -2,77 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 59498749A0F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 12:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B0B749A1C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 13:00:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232159AbjGFK6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 06:58:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48884 "EHLO
+        id S231245AbjGFLAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 07:00:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232672AbjGFK6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 06:58:00 -0400
-Received: from mail-ej1-x62e.google.com (mail-ej1-x62e.google.com [IPv6:2a00:1450:4864:20::62e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B462273C
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 03:57:08 -0700 (PDT)
-Received: by mail-ej1-x62e.google.com with SMTP id a640c23a62f3a-99342a599e9so69317266b.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 03:57:08 -0700 (PDT)
+        with ESMTP id S231213AbjGFLAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 07:00:06 -0400
+Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA1AE72
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 04:00:03 -0700 (PDT)
+Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb7373dd35so2183387e87.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 04:00:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688641027; x=1691233027;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=092L2NFJ+qxRZMwDDHah31TebKjJ3Qz4BGKrTA614qo=;
-        b=R3ok/LuHATPw7QzcSacAzN6Dedlw7csZlV77VLYrWd091NXov/sOQz1Wij4VxPwE01
-         XhVv+F+ccfALmC+rQXbggsxkFu0K4TTSgy7pu8CJkvB6WR6cHcHUNCpDtPxmz+7MRIeO
-         GszD07zUvXqDwEFJVHPH5oPObKSvEC9lhNJv9DhOvEzD4KpYPaTiPplKTmbNr4YcVo0H
-         Wyiqx467fBCYXPXiJQVMY8RUlQkjPCw48B23eXVhBUlonks+a3o6u90EB3fGUkurv3ti
-         0n7rutumD41NSxOb+Y8c7zbNna6V9jwbH2EOyV++X1zb2AOXb4UMyjX1smb9ZedDX82C
-         iaHA==
+        d=linaro.org; s=google; t=1688641201; x=1691233201;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=RIw6Fh9Mzt0uuZnHYmQ6kni+b2Er6GLAtWhId9yQcDE=;
+        b=WKVo/plSKMi13tRj/JX9hrD0Ny1/RzNyA9DJEu7sJqN92ZK/+XXOVe3Y2N/sf09N76
+         /lbFYd/kfRn/rDvlUrNaE2cROLYFpmiStxAx8jy4w/V8OhJzMuTGCpPOH+mRP+0pGOvT
+         HOAfJwfBITqVe/BwmL7KhRaty++mQQLZnP9sEsBCBxhXbaSryovAJ5L+KntqVC0iuexR
+         GKbAqP/vBASQTxjbL4KoeQAkrpoiksVWDEqr3HClCGSR45sq4/5uEdTbU8BFGfzlPdkW
+         OYIaug2eQKkPCSApWswUJ6vK6bu0/OpZH4BhkEMZriJxkyQPj1Oi6Nv/EsZI8PSEhfU8
+         8V0g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688641027; x=1691233027;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1688641201; x=1691233201;
+        h=content-transfer-encoding:in-reply-to:subject:from:references:cc:to
+         :content-language:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=092L2NFJ+qxRZMwDDHah31TebKjJ3Qz4BGKrTA614qo=;
-        b=B/5EU86thwXOYnI5cjXhN8XKdJEyIvcMG6wxNJpyoWYkrmDCylB46SF3oBruh9zUJi
-         /hxwWPV0Dn86qeINzxVBbYQsV0aryflcGpS+OLC+c+FljVoTAH+UA64xdXxAUMSYHYSt
-         aWN5JP0DdXNE15jZZZ2lsxOotLP70L8EMdqa8AdNnLYGKPBoRYY94y/BLSxVLCSoO8mK
-         9r8VkMlU1FD4Igj3UQTsv9zT7O8B6JvZs0CFTxH7GWkikOsZGYkARUEDKFxQB3+mB3xS
-         0N15JGJEoM/4S8inyKu5Kd5yOmn878mi4yY3KDCuC7EBXlOK+gwzKy48UMgaDcoHxehV
-         wkUg==
-X-Gm-Message-State: ABy/qLbpcsEFSN+qXNFQ1kKxa0DYVfCjd5xNGqDXFl6wYHxA/gfGZyBS
-        G2LhwoboDdHhh5E0BFgCc3ScKxOcQTUniryeNZw=
-X-Google-Smtp-Source: APBJJlH8PRjhwyFUtcv0tpmau9uPFUcjpzmdGl4Chf6J3QkYTVhAUsi+4hAwKnBb/D8IMqz7Ftc2SA==
-X-Received: by 2002:a17:906:1114:b0:978:a186:464f with SMTP id h20-20020a170906111400b00978a186464fmr1109405eja.39.1688641026853;
-        Thu, 06 Jul 2023 03:57:06 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id gt4-20020a170906f20400b009935aba3a9dsm653682ejb.48.2023.07.06.03.57.05
+        bh=RIw6Fh9Mzt0uuZnHYmQ6kni+b2Er6GLAtWhId9yQcDE=;
+        b=Bp2uZBcQKNn9Wy8Fc2dBdREkDJRhdtqhK/z+RmV26Aao1fk7MY3smmi52pJ6v2lPfm
+         YYPGEA/43irD5KgMlwc10oxNnsH5cL9QzN8nvYcKdvNkd82AK1yKAP4sdIA7MjJEQKLQ
+         6lhtb6/+3ykmwhxPTgUWhavEb82p8smXNlnOvx5fDa3rlannrPVejy4QS6o2WFqn71Tr
+         Zb/Jvmt5tvulo1MHC+XtDhk7y5aRlGtmw+lqhDWD/XcmatEzeYR+l3i3l9jtVXVZjJkR
+         eqvfU3qO7AwcE25DvdtA3u11Xze0jWSLEsAP1vCO6vilXP9e/vUhLX6Mr2dhDnvQSjST
+         dSUg==
+X-Gm-Message-State: ABy/qLb5unIfYhHXgyQptCAhOJ0AIP9XpYllx2iiJhkxQc4Nq5+yCkYS
+        c9eLZPqPPjK9YJTMg7rMVuALpQ==
+X-Google-Smtp-Source: APBJJlEeR6VMWmejmvNVUZu+unOnt/o8L01nB45AxLDcceq0HjTX1E1PmEtdRuS8Nyp0f4jOGiHjvg==
+X-Received: by 2002:a05:6512:10c3:b0:4f8:6253:540 with SMTP id k3-20020a05651210c300b004f862530540mr705957lfg.19.1688641201536;
+        Thu, 06 Jul 2023 04:00:01 -0700 (PDT)
+Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
+        by smtp.gmail.com with ESMTPSA id v12-20020ac2560c000000b004fb64600e5dsm201639lfd.219.2023.07.06.04.00.00
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 03:57:06 -0700 (PDT)
-Message-ID: <529beea3-3f36-3837-35c4-1efa25d8f1f2@linaro.org>
-Date:   Thu, 6 Jul 2023 12:57:04 +0200
+        Thu, 06 Jul 2023 04:00:01 -0700 (PDT)
+Message-ID: <7d335f1d-ef2c-ffe6-e364-c3dc47479929@linaro.org>
+Date:   Thu, 6 Jul 2023 12:59:59 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH 1/3] dt-bindings: power: rpmpd: Remove the SoC specific
- entries
 Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <1688635218-23779-1-git-send-email-quic_rohiagar@quicinc.com>
- <1688635218-23779-2-git-send-email-quic_rohiagar@quicinc.com>
- <318ab229-f29f-e6aa-16b8-79fa09013794@linaro.org>
- <b994f92c-331b-ca64-01ec-ec285fb2a76e@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <b994f92c-331b-ca64-01ec-ec285fb2a76e@quicinc.com>
+To:     Imran Shaik <quic_imrashai@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Taniya Das <quic_tdas@quicinc.com>,
+        Melody Olvera <quic_molvera@quicinc.com>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jagadeesh Kona <quic_jkona@quicinc.com>,
+        Satya Priya Kakitapalli <quic_skakitap@quicinc.com>,
+        Ajit Pandey <quic_ajipan@quicinc.com>
+References: <20230628092837.3090801-1-quic_imrashai@quicinc.com>
+ <20230628092837.3090801-4-quic_imrashai@quicinc.com>
+ <afde2981-3801-a93e-3cf2-2ab5d24ee3e1@linaro.org>
+ <05f3459f-a2cd-3e4d-bbc6-f0109dbae778@quicinc.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+Subject: Re: [PATCH V2 3/5] clk: qcom: gcc-qdu1000: Update GCC clocks as per
+ the latest hw version
+In-Reply-To: <05f3459f-a2cd-3e4d-bbc6-f0109dbae778@quicinc.com>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -80,29 +90,69 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2023 12:53, Rohit Agarwal wrote:
+On 6.07.2023 12:51, Imran Shaik wrote:
 > 
-> On 7/6/2023 4:15 PM, Krzysztof Kozlowski wrote:
->> On 06/07/2023 11:20, Rohit Agarwal wrote:
->>> Remove the SoC specific entries and add a generic set of defines
->>> that can be used by all the SoCs. This will remove the duplicate
->>> entries among SoCs.
->>> The arrangement of the defines is done according to the frequency
->>> used in SoC specific entries in the driver to avoid wastage of
->>> memory.
+> 
+> On 6/28/2023 4:36 PM, Konrad Dybcio wrote:
+>> On 28.06.2023 11:28, Imran Shaik wrote:
+>>> Add support for gcc_ddrss_ecpri_gsi_clk and update the GCC clkref clocks
+>>> as per the latest hardware version of QDU1000 and QRU100 SoCs.
 >>>
->>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->>> Suggested-by: Konrad Dybcio <konrad.dybcio@linaro.org>
->> Please compile kernel with this commit and tell us what is wrong... Even
->> if bindings were not an ABI, but they are, this would not work.
-> Do you mean that individually this commit would fail compilation?
-> Yes, we would need all the patches together for compilation to be 
-> successful.
+>>> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
+>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
+>>> Signed-off-by: Imran Shaik <quic_imrashai@quicinc.com>
+>>> ---
+[...]
 
-Yeah, it is not bisectable.
+>>>           .enable_reg = 0x9c004,
+>>>           .enable_mask = BIT(0),
+>>>           .hw.init = &(const struct clk_init_data) {
+>>>               .name = "gcc_pcie_0_clkref_en",
+>>> -            .ops = &clk_branch_ops,
+>>> +            .ops = &clk_branch2_ops,
+>> This sounds like a separate fix, clk_branch_ops seems to only concern
+>> 10+yo chips.
+>>
+>> Konrad
+> 
+> Sure, will split this patch and push the next series.
+One more nit, I noticed that a lot of QUIC folks respond to the comments
+to their revision-N and send revision-(N+1) like 5 seconds later..
 
-Another problem is ABI impact, but I think Konrad covered it.
+This maybe does not concern this message, as all you did is said "ok willfix",
+but if you have some sort of a company-wide "upstream best practices" board,
+you may add something like "wait a bit to let others respond to your email"
 
-Best regards,
-Krzysztof
+Konrad
 
+> 
+> Thanks,
+> Imran
+> 
+>>>           },
+>>>       },
+>>>   };
+>>> @@ -2274,14 +2293,13 @@ static struct clk_branch gcc_tsc_etu_clk = {
+>>>     static struct clk_branch gcc_usb2_clkref_en = {
+>>>       .halt_reg = 0x9c008,
+>>> -    .halt_bit = 31,
+>>> -    .halt_check = BRANCH_HALT_ENABLE,
+>>> +    .halt_check = BRANCH_HALT,
+>>>       .clkr = {
+>>>           .enable_reg = 0x9c008,
+>>>           .enable_mask = BIT(0),
+>>>           .hw.init = &(const struct clk_init_data) {
+>>>               .name = "gcc_usb2_clkref_en",
+>>> -            .ops = &clk_branch_ops,
+>>> +            .ops = &clk_branch2_ops,
+>>>           },
+>>>       },
+>>>   };
+>>> @@ -2523,6 +2541,8 @@ static struct clk_regmap *gcc_qdu1000_clocks[] = {
+>>>       [GCC_AGGRE_NOC_ECPRI_GSI_CLK] = &gcc_aggre_noc_ecpri_gsi_clk.clkr,
+>>>       [GCC_PCIE_0_PHY_AUX_CLK_SRC] = &gcc_pcie_0_phy_aux_clk_src.clkr,
+>>>       [GCC_PCIE_0_PIPE_CLK_SRC] = &gcc_pcie_0_pipe_clk_src.clkr,
+>>> +    [GCC_GPLL1_OUT_EVEN] = &gcc_gpll1_out_even.clkr,
+>>> +    [GCC_DDRSS_ECPRI_GSI_CLK] = &gcc_ddrss_ecpri_gsi_clk.clkr,
+>>>   };
+>>>     static const struct qcom_reset_map gcc_qdu1000_resets[] = {
