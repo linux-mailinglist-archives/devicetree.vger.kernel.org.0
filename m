@@ -2,109 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 520A574972F
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:16:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 329CF74976C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:24:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232942AbjGFIQI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 04:16:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40148 "EHLO
+        id S229556AbjGFIYP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 6 Jul 2023 04:24:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45154 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233391AbjGFIQH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:16:07 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF491726
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:16:06 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98dfb3f9af6so48522866b.2
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 01:16:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1688631365; x=1691223365;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=K74+bMhHCvWhymjIs0u9DKIZz/UhylbMWE8utWtKfGo=;
-        b=eVeIz8XEevGCBQiKJbnkroU2JVeqRd/LnF3UPy9nCay/6KpcKdsPWaPYHxvOhII/Eq
-         48HFXlnakNKq9keJTen76es9MF8iCNF2McZbAJuJZErshUwEHvB6CLDmbm9VkSm1eRQc
-         6DpnAfgx+xvTnO7BmWEtyjONvjeOdctuc8+TiCqknCcN7IfdakMfsVthQSi60THpdGj4
-         Xz9KPDeKyR8mW3aAokMK+znF1fz7o2oXrRzkjHB9bBCX0OETu5IuWXFsU8MfMzf9fK/p
-         +F6bTv5L/5aJdoCj3qoWT6zy9nEYX5N5yVmNUTj42+RfP3jBum1xheRjHjb30jkt3obf
-         d+/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688631365; x=1691223365;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=K74+bMhHCvWhymjIs0u9DKIZz/UhylbMWE8utWtKfGo=;
-        b=ZGoj4SFqy49FfJppyNK3mBDJj2LSdNs5Y99mZvk+FlvJ2MnWTba/iCGR1C3V8ku5wy
-         Y6rnv505IQfJdIGkxPp2WPJIhU7r8EQjnRd6rauzBia8J2WjsavDpUK8SrGzUu212J+C
-         qlnu1yI4P27sXMsO6zmMKogb67W1C56hhNXwxYVFhBTjDpY89UXCbKHFRdC9a+sFY2GG
-         rOPlL1PCsYQdYFN5MZo2x97AvL2Uj6ki/PuqRi6Nm0U1L6K+Vn1C+5Gz5uwg0/0fJBN2
-         YOIvidB42KjCC0TrzY8vnkyaGaF5zeNjcfmk0EO8TXtHtgIRehkISpOXeVnLZoTKaSoo
-         apUQ==
-X-Gm-Message-State: ABy/qLY0hbpHiG9K6jDssZ2fpvsdZ62MxAFvgGR/DwTQGZujiRYSfTkw
-        TrNiQ2nemfzW29Qsr0JJiGsXvg==
-X-Google-Smtp-Source: APBJJlGjgUEPmlKSXTAEJ2NVftvifEbaWoT+wyc9GTLi2HTneNUbqf8qB4UdzUVmEnNbTa44PQmYLw==
-X-Received: by 2002:a17:906:b846:b0:992:7295:61c9 with SMTP id ga6-20020a170906b84600b00992729561c9mr810149ejb.69.1688631364600;
-        Thu, 06 Jul 2023 01:16:04 -0700 (PDT)
-Received: from localhost.localdomain ([82.79.69.144])
-        by smtp.gmail.com with ESMTPSA id m8-20020a17090607c800b0099364d9f0e9sm478096ejc.102.2023.07.06.01.16.03
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 01:16:04 -0700 (PDT)
-From:   Alexandru Ardelean <alex@shruggie.ro>
-To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
-        pabeni@redhat.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        olteanv@gmail.com, alex@shruggie.ro, marius.muresan@mxt.ro
-Subject: [PATCH 2/2] dt-bindings: net: phy: vsc8531: document 'vsc8531,clkout-freq-mhz' property
-Date:   Thu,  6 Jul 2023 11:15:54 +0300
-Message-Id: <20230706081554.1616839-2-alex@shruggie.ro>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230706081554.1616839-1-alex@shruggie.ro>
-References: <20230706081554.1616839-1-alex@shruggie.ro>
+        with ESMTP id S229519AbjGFIYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:24:14 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35FEC130
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:24:13 -0700 (PDT)
+Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1qHKHH-0004UP-82; Thu, 06 Jul 2023 10:23:51 +0200
+Message-ID: <0125c54fd1617f3f945bc3f4bbef5b914b701c24.camel@pengutronix.de>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm, primecell-periphid
+ at etm nodes
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        suzuki.poulose@arm.com, coresight@lists.linaro.org,
+        imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Frank Li <Frank.Li@nxp.com>
+Date:   Thu, 06 Jul 2023 10:23:48 +0200
+In-Reply-To: <9405224.NyiUUSuA9g@steina-w>
+References: <20230705205954.4159781-1-Frank.Li@nxp.com>
+         <9405224.NyiUUSuA9g@steina-w>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For VSC8351 and similar PHYs, a new property was added to generate a clock
-signal on the CLKOUT pin.
-This change documents the change in the device-tree bindings doc.
+Hi Alexander,
 
-Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
----
- Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+Am Donnerstag, dem 06.07.2023 um 07:06 +0200 schrieb Alexander Stein:
+> Hi Frank,
+> 
+> Am Mittwoch, 5. Juli 2023, 22:59:53 CEST schrieb Frank Li:
+> > The reg size of etm nodes is incorrectly set to 64k instead of 4k. This
+> > leads to a crash when calling amba_read_periphid().  After corrected reg
+> > size, amba_read_periphid() retrieve the correct periphid.
+> > arm,primecell-periphid were removed from the etm nodes.
+> 
+> So this means the reference manual is wrong here? It clearly states the size 
+> is 64kiB. Reference Manual i.MX8MP Rev 1. 06/2021
+> On a side note: Is imx8mq affected by this as well? The DAP memory table lists 
+> similar sizes in the RM .
+> 
+Note that the 64K MMIO space per device is really an alignment thing.
+It's a recommendation from ARM to allow individual device MMIO regions
+to be mapped on kernels with 64K page size. Most of the time the real
+MMIO space occupied by the device is actually much smaller than 64K.
 
-diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-index 0a3647fe331b..133bdd644618 100644
---- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-+++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
-@@ -31,6 +31,10 @@ Optional properties:
- 			  VSC8531_LINK_100_ACTIVITY (2),
- 			  VSC8531_LINK_ACTIVITY (0) and
- 			  VSC8531_DUPLEX_COLLISION (8).
-+- vsc8531,clkout-freq-mhz : For VSC8531 and similar PHYs, this will output
-+			  a clock signal on the CLKOUT pin of the chip.
-+			  The supported values are 25, 50 & 125 Mhz.
-+			  Default value is no clock signal on the CLKOUT pin.
- - load-save-gpios	: GPIO used for the load/save operation of the PTP
- 			  hardware clock (PHC).
- 
-@@ -69,5 +73,6 @@ Example:
-                 vsc8531,edge-slowdown	= <7>;
-                 vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
-                 vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
-+                vsc8531,clkout-freq-mhz	= <50>;
- 		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
-         };
--- 
-2.40.1
+Regards,
+Lucas
+
+> Best regards,
+> Alexander
+> 
+> > Signed-off-by: Frank Li <Frank.Li@nxp.com>
+> > ---
+> >  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 12 ++++--------
+> >  1 file changed, 4 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > b/arch/arm64/boot/dts/freescale/imx8mp.dtsi index
+> > cc406bb338fe..e0ca82ff6f15 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> > @@ -306,8 +306,7 @@ soc: soc@0 {
+> > 
+> >  		etm0: etm@28440000 {
+> >  			compatible = "arm,coresight-etm4x", 
+> "arm,primecell";
+> > -			reg = <0x28440000 0x10000>;
+> > -			arm,primecell-periphid = <0xbb95d>;
+> > +			reg = <0x28440000 0x1000>;
+> >  			cpu = <&A53_0>;
+> >  			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> >  			clock-names = "apb_pclk";
+> > @@ -323,8 +322,7 @@ etm0_out_port: endpoint {
+> > 
+> >  		etm1: etm@28540000 {
+> >  			compatible = "arm,coresight-etm4x", 
+> "arm,primecell";
+> > -			reg = <0x28540000 0x10000>;
+> > -			arm,primecell-periphid = <0xbb95d>;
+> > +			reg = <0x28540000 0x1000>;
+> >  			cpu = <&A53_1>;
+> >  			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> >  			clock-names = "apb_pclk";
+> > @@ -340,8 +338,7 @@ etm1_out_port: endpoint {
+> > 
+> >  		etm2: etm@28640000 {
+> >  			compatible = "arm,coresight-etm4x", 
+> "arm,primecell";
+> > -			reg = <0x28640000 0x10000>;
+> > -			arm,primecell-periphid = <0xbb95d>;
+> > +			reg = <0x28640000 0x1000>;
+> >  			cpu = <&A53_2>;
+> >  			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> >  			clock-names = "apb_pclk";
+> > @@ -357,8 +354,7 @@ etm2_out_port: endpoint {
+> > 
+> >  		etm3: etm@28740000 {
+> >  			compatible = "arm,coresight-etm4x", 
+> "arm,primecell";
+> > -			reg = <0x28740000 0x10000>;
+> > -			arm,primecell-periphid = <0xbb95d>;
+> > +			reg = <0x28740000 0x1000>;
+> >  			cpu = <&A53_3>;
+> >  			clocks = <&clk IMX8MP_CLK_MAIN_AXI>;
+> >  			clock-names = "apb_pclk";
+> 
+> 
 
