@@ -2,134 +2,213 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 212EB74A0FB
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 17:29:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1C0874A10A
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 17:31:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233386AbjGFP32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 11:29:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35998 "EHLO
+        id S233751AbjGFPbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 11:31:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233607AbjGFP3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 11:29:16 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 496821BE2;
-        Thu,  6 Jul 2023 08:29:13 -0700 (PDT)
-Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 366DgALP000630;
-        Thu, 6 Jul 2023 15:29:10 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=QMl9Y/N7O6mnF8m5LLTeVc4dUifp6imZFRX1/7BnFTI=;
- b=NP1K7RKdXqd9jcHgkG4I3s5RHIVrb2GJksgcd6Xt+pYsggA0gkzwyZseZy9E9r8NrKZh
- 6PlHeN68Jw0kKdBlsb/oxkC0o9WbVkOLz7qoYY3HCyrUMbhNeuMO6QwHKxsl88I2Vt9F
- 3zVQYPR4hKoH9VKSxFZB3cjevJ/5AJ29XT64+xLcbrd3HK8r6AEcFSrDsj5a95JPg/2U
- mU/VJv3WuxIBq0nv94NLh2oYIRdNSkLUepKI/bIxh4HkI2ctfjwkoC2YRepbx05g0AqQ
- 7WbG7vr30Rfa/N9dEK6lFpyAox7B+NY1+L7K0UsmuaC85IDb1tgXdEaps7FKl6xnz7Rg zw== 
-Received: from nalasppmta03.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rnsu70umy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Jul 2023 15:29:09 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA03.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 366FT8RZ018865
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 6 Jul 2023 15:29:08 GMT
-Received: from [10.216.13.101] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 6 Jul
- 2023 08:29:04 -0700
-Message-ID: <5a4ea76c-7a54-c7b3-65e2-2f3b41b8c0e3@quicinc.com>
-Date:   Thu, 6 Jul 2023 20:59:01 +0530
+        with ESMTP id S233772AbjGFPbF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 11:31:05 -0400
+Received: from relmlie5.idc.renesas.com (relmlor1.renesas.com [210.160.252.171])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 3C9F41FC8;
+        Thu,  6 Jul 2023 08:30:54 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,185,1684767600"; 
+   d="scan'208";a="167244436"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 07 Jul 2023 00:30:53 +0900
+Received: from localhost.localdomain (unknown [10.226.93.34])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 732CF4006C96;
+        Fri,  7 Jul 2023 00:30:50 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH v2] arm64: dts: renesas: rzg2l-smarc: Add support for enabling MTU3
+Date:   Thu,  6 Jul 2023 16:30:47 +0100
+Message-Id: <20230706153047.368993-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101
- Thunderbird/91.6.0
-Subject: Re: [PATCH 1/4] dt-bindings: pinctrl: qcom-pmic-gpio: Add pm7550ba
- support
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        <agross@kernel.org>, <andersson@kernel.org>,
-        <linus.walleij@linaro.org>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>
-CC:     <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-gpio@vger.kernel.org>
-References: <1688650209-25119-1-git-send-email-quic_rohiagar@quicinc.com>
- <1688650209-25119-2-git-send-email-quic_rohiagar@quicinc.com>
- <4042fa22-8948-49c9-6e5c-dc8926ed5f99@linaro.org>
- <6d067262-d8af-f6f3-4ef7-870eafa15f46@quicinc.com>
- <8b04d830-4710-7f26-09e8-326b69d72396@linaro.org>
- <a50921ca-c858-dacc-6849-4898fdf7683c@quicinc.com>
- <f8152ec7-e38f-d215-3e1f-3165912b4031@linaro.org>
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-In-Reply-To: <f8152ec7-e38f-d215-3e1f-3165912b4031@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: _a5N2f2Ifr1-QBfX1xhlP4lLqu2So1bp
-X-Proofpoint-ORIG-GUID: _a5N2f2Ifr1-QBfX1xhlP4lLqu2So1bp
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-06_11,2023-07-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 mlxlogscore=947
- adultscore=0 bulkscore=0 clxscore=1015 priorityscore=1501 suspectscore=0
- spamscore=0 malwarescore=0 lowpriorityscore=0 impostorscore=0 phishscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2305260000
- definitions=main-2307060139
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=1.0 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for PMOD_MTU3 macro to enable MTU3 node on RZ/{G2,V2}L SMARC
+EVK.
 
-On 7/6/2023 8:53 PM, Konrad Dybcio wrote:
-> On 6.07.2023 17:11, Rohit Agarwal wrote:
->> On 7/6/2023 8:34 PM, Konrad Dybcio wrote:
->>> On 6.07.2023 16:45, Rohit Agarwal wrote:
->>>> On 7/6/2023 8:05 PM, Krzysztof Kozlowski wrote:
->>>>> On 06/07/2023 15:30, Rohit Agarwal wrote:
->>>>>> Add support for the pm7550ba GPIO support to the Qualcomm PMIC GPIO
->>>>>> binding.
->>>>>>
->>>>>> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
->>>>>> ---
->>>>>>     Documentation/devicetree/bindings/pinctrl/qcom,pmic-gpio.yaml | 3 +++
->>>>> I doubt that all your patches here and other patchsets are v1. Otherwise
->>>>> how did you get my Acks and Rbs? Please use proper versioning and
->>>>> provide changelog.
->>>>>
->>>>> What changed here?
->>>> Actually this is part of the original bigger series [1] that as per Bjorn's suggestion need to be broken
->>>> down according to the subsystem/maintainer.
->>>> Since it got broken down into multiple smaller series, I didnt include the versioning.
->>> All of that information should be included in the cover letter, to
->>> limit confusion both for maintainers and patch workflow tools.
->>>
->>> Since these patches all come from a separate series, it would be
->>> good for you to version this one as v(BIG_SERIES_REVISION)+1 because
->>> they've already been on LKML at least once. That would especially hold
->>> true if this revision included any changes.
->> Understood. Will send all the smaller series again with v2 as version with changelog.
-> v3, this was essentially a v2.
-Okay.
+The MTU3a PWM pins are muxed with spi1 pins and counter external input
+phase clock pins are muxed with scif2 pins. Disable these IPs when
+PMOD_MTU3 macro is enabled.
 
-Thanks,
-Rohit.
->
-> Konrad
->> Thanks,
->> Rohit.
->>> Konrad
->>>> [1] https://lore.kernel.org/all/9de424ca-271a-8ed2-5550-658a828c4ea5@quicinc.com/
->>>>
->>>>> Best regards,
->>>>> Krzysztof
->>>>>
+Apart from this, the counter Z phase clock signal is muxed with the
+SDHI1 cd signal. So disable SDHI1 IP, when the counter Z phase signal
+is enabled.
+
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+v1->v2:
+ * Renamed macro MTU3->PMOD_MTU3.
+ * Moved macro "PMOD1_SER0" from common dts to board-specific dts
+   and added an error check as it is mutually exclusive with PMOD_MTU3
+   macro.
+ * Moved mtu3-zphase-clk pin definition to rzg2l-smarc-pinfunction.dtsi.
+ * Moved mtu3 node to common dts.
+ * Moved macro definitions before dtsi includes, so that macros are
+   visible on these files.
+---
+ .../boot/dts/renesas/r9a07g044l2-smarc.dts    | 20 ++++++++++++++++
+ .../boot/dts/renesas/r9a07g054l2-smarc.dts    | 20 ++++++++++++++++
+ .../dts/renesas/rzg2l-smarc-pinfunction.dtsi  | 20 ++++++++++++++++
+ arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi  | 23 ++++++++++++++++---
+ 4 files changed, 80 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+index bc2af6c92ccd..7219e785b74c 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
++++ b/arch/arm64/boot/dts/renesas/r9a07g044l2-smarc.dts
+@@ -6,6 +6,26 @@
+  */
+ 
+ /dts-v1/;
++
++/* Enable SCIF2 (SER0) on PMOD1 (CN7) */
++#define PMOD1_SER0	1
++
++/*
++ * To enable MTU3a PWM on PMOD0,
++ * Disable PMOD1_SER0 by setting "#define PMOD1_SER0	0" above and
++ * enable PMOD_MTU3 by setting "#define PMOD_MTU3	1" below.
++ */
++#define PMOD_MTU3	0
++
++#if (PMOD_MTU3 && PMOD1_SER0)
++#error "Cannot set as PMOD_MTU3 and PMOD1_SER0 are mutually exclusive "
++#endif
++
++#define MTU3_COUNTER_Z_PHASE_SIGNAL	0
++#if (!PMOD_MTU3 && MTU3_COUNTER_Z_PHASE_SIGNAL)
++#error "Cannot set 1 to MTU3_COUNTER_Z_PHASE_SIGNAL as PMOD_MTU3=0"
++#endif
++
+ #include "r9a07g044l2.dtsi"
+ #include "rzg2l-smarc-som.dtsi"
+ #include "rzg2l-smarc-pinfunction.dtsi"
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
+index 3d01a4cf0fbe..b3e6016880dd 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
++++ b/arch/arm64/boot/dts/renesas/r9a07g054l2-smarc.dts
+@@ -6,6 +6,26 @@
+  */
+ 
+ /dts-v1/;
++
++/* Enable SCIF2 (SER0) on PMOD1 (CN7) */
++#define PMOD1_SER0	1
++
++/*
++ * To enable MTU3a PWM on PMOD0,
++ * Disable PMOD1_SER0 by setting "#define PMOD1_SER0	0" above and
++ * enable PMOD_MTU3 by setting "#define PMOD_MTU3	1" below.
++ */
++#define PMOD_MTU3	0
++
++#if (PMOD_MTU3 && PMOD1_SER0)
++#error "Cannot set as PMOD_MTU3 and PMOD1_SER0 are mutually exclusive "
++#endif
++
++#define MTU3_COUNTER_Z_PHASE_SIGNAL	0
++#if (!PMOD_MTU3 && MTU3_COUNTER_Z_PHASE_SIGNAL)
++#error "Cannot set 1 to MTU3_COUNTER_Z_PHASE_SIGNAL as PMOD_MTU3=0"
++#endif
++
+ #include "r9a07g054l2.dtsi"
+ #include "rzg2l-smarc-som.dtsi"
+ #include "rzg2l-smarc-pinfunction.dtsi"
+diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi
+index 9085d8c76ce1..18c526c7a4cf 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc-pinfunction.dtsi
+@@ -53,6 +53,26 @@ i2c3_pins: i2c3 {
+ 			 <RZG2L_PORT_PINMUX(18, 1, 3)>; /* SCL */
+ 	};
+ 
++	mtu3_pins: mtu3 {
++		mtu3-ext-clk-input-pin {
++			pinmux = <RZG2L_PORT_PINMUX(48, 0, 4)>, /* MTCLKA */
++				 <RZG2L_PORT_PINMUX(48, 1, 4)>; /* MTCLKB */
++		};
++
++		mtu3-pwm {
++			pinmux = <RZG2L_PORT_PINMUX(44, 0, 4)>, /* MTIOC3A */
++				 <RZG2L_PORT_PINMUX(44, 1, 4)>, /* MTIOC3B */
++				 <RZG2L_PORT_PINMUX(44, 2, 4)>, /* MTIOC3C */
++				 <RZG2L_PORT_PINMUX(44, 3, 4)>; /* MTIOC3D */
++		};
++
++#if MTU3_COUNTER_Z_PHASE_SIGNAL
++		mtu3-zphase-clk {
++			pinmux = <RZG2L_PORT_PINMUX(19, 0, 3)>; /* MTIOC1A */
++		};
++#endif /* MTU3_COUNTER_Z_PHASE_SIGNAL */
++	};
++
+ 	scif0_pins: scif0 {
+ 		pinmux = <RZG2L_PORT_PINMUX(38, 0, 1)>,	/* TxD */
+ 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
+diff --git a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+index 2a158a954b2f..68eab8e26bf2 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2l-smarc.dtsi
+@@ -8,9 +8,6 @@
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/pinctrl/rzg2l-pinctrl.h>
+ 
+-/* comment the #define statement to disable SCIF2 (SER0) on PMOD1 (CN7) */
+-#define PMOD1_SER0	1
+-
+ / {
+ 	aliases {
+ 		serial1 = &scif2;
+@@ -115,6 +112,26 @@ wm8978: codec@1a {
+ 	};
+ };
+ 
++#if PMOD_MTU3
++&mtu3 {
++	pinctrl-0 = <&mtu3_pins>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
++#if MTU3_COUNTER_Z_PHASE_SIGNAL
++/* SDHI cd pin is muxed with counter Z phase signal */
++&sdhi1 {
++	status = "disabled";
++};
++#endif /* MTU3_COUNTER_Z_PHASE_SIGNAL */
++
++&spi1 {
++	status = "disabled";
++};
++#endif /* PMOD_MTU3 */
++
+ /*
+  * To enable SCIF2 (SER0) on PMOD1 (CN7)
+  * SW1 should be at position 2->3 so that SER0_CTS# line is activated
+-- 
+2.25.1
+
