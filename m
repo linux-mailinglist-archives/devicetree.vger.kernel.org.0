@@ -2,63 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 355C974A509
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 22:48:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 262E174A544
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 22:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229694AbjGFUsO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 16:48:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37822 "EHLO
+        id S229802AbjGFUxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 16:53:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41728 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229640AbjGFUsN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 16:48:13 -0400
-Received: from mail11.truemail.it (mail11.truemail.it [IPv6:2001:4b7e:0:8::81])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 00C731992;
-        Thu,  6 Jul 2023 13:48:12 -0700 (PDT)
-Received: from francesco-nb.int.toradex.com (93-49-2-63.ip317.fastwebnet.it [93.49.2.63])
-        by mail11.truemail.it (Postfix) with ESMTPA id 08CE4209B4;
-        Thu,  6 Jul 2023 22:48:09 +0200 (CEST)
-Date:   Thu, 6 Jul 2023 22:48:04 +0200
-From:   Francesco Dolcini <francesco@dolcini.it>
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH 0/2] Enable multiple MCAN on AM62x
-Message-ID: <ZKcohPM0OpM/mQtq@francesco-nb.int.toradex.com>
-References: <20230705195356.866774-1-jm@ti.com>
+        with ESMTP id S229527AbjGFUxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 16:53:47 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EE6929D;
+        Thu,  6 Jul 2023 13:53:46 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-3460b67fdd8so4473505ab.0;
+        Thu, 06 Jul 2023 13:53:46 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688676826; x=1691268826;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=QmQlTYnbBO7R2y5tWSbbd2m1y7eVu/gcaftDtIQ03T4=;
+        b=M+kx9tnsJIGhUCdxlR5hM9B47L5M8xifvVk6v932/5z0Oj65TyD7LVQJFH459ET0ln
+         uy1YbLAWg4ep8nWPmnZ2FqdrgHvoIerPkLdByyBnUYDuIvEtvT+O7JNTNlU0d97aCuMB
+         sD1fF2lYAHATxMop/1mfiRII/b3rGe/9nZpHFfjmvF0+8Z+SgyQ4gz18T88zNe7WSUzL
+         b69UKlndu3v3exDLMu//1pZJvsdbv6QNTYc7xSq/I9GW3T6FXnyDu9pt03IJjkYjK6Op
+         LvkjIC5hLtEf4ahZWzMRZ3Ute7p6L2bgHT+/59gmakQ4IPybBvGUnetZQhOfPCW81qDl
+         2Hzg==
+X-Gm-Message-State: ABy/qLY3+zd8VMshT//+5uCBm9JBW3NBG7kFbGqWnrWfny2khqu/zkyH
+        eTAsvw/i34TcXagMm/0FfA==
+X-Google-Smtp-Source: APBJJlFBZXyr9owyggFM+k8tIXdwksUQtmvJBi274bxuyokVJOmryuNTKBlOKKE+NLYnM9wqKMZCTw==
+X-Received: by 2002:a92:db4c:0:b0:345:baef:842b with SMTP id w12-20020a92db4c000000b00345baef842bmr2980057ilq.25.1688676826136;
+        Thu, 06 Jul 2023 13:53:46 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id r16-20020a028810000000b0042b0a6d899fsm767400jai.60.2023.07.06.13.53.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 06 Jul 2023 13:53:45 -0700 (PDT)
+Received: (nullmailer pid 306726 invoked by uid 1000);
+        Thu, 06 Jul 2023 20:53:44 -0000
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>
+Cc:     Conor Dooley <conor.dooley@microchip.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] dt-bindings: arm: cpus: Add Cortex A520, A720, and X4
+Date:   Thu,  6 Jul 2023 14:53:34 -0600
+Message-Id: <20230706205334.306483-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230705195356.866774-1-jm@ti.com>
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_PASS,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 05, 2023 at 02:53:54PM -0500, Judith Mendez wrote:
-> v9:
-> - Change add MS to HRTIMER_POLL_INTERVAL
-> - Change syntax from "= 0" to "!"
+Add compatible strings for the Arm Cortex-A520, Cortex-A720, and
+Cortex-X4 2023 CPUs.
 
-Please add the series version to the mail subject, you did it up to v8,
-and you forgot now.
+Acked-by: Conor Dooley <conor.dooley@microchip.com>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+v2:
+ - Also add Cortex-X4
+---
+ Documentation/devicetree/bindings/arm/cpus.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Thanks!
-Francesco
+diff --git a/Documentation/devicetree/bindings/arm/cpus.yaml b/Documentation/devicetree/bindings/arm/cpus.yaml
+index 9e6a45eea4e5..0d17cbad9778 100644
+--- a/Documentation/devicetree/bindings/arm/cpus.yaml
++++ b/Documentation/devicetree/bindings/arm/cpus.yaml
+@@ -143,8 +143,10 @@ properties:
+       - arm,cortex-a78ae
+       - arm,cortex-a78c
+       - arm,cortex-a510
++      - arm,cortex-a520
+       - arm,cortex-a710
+       - arm,cortex-a715
++      - arm,cortex-a720
+       - arm,cortex-m0
+       - arm,cortex-m0+
+       - arm,cortex-m1
+@@ -158,6 +160,7 @@ properties:
+       - arm,cortex-x1c
+       - arm,cortex-x2
+       - arm,cortex-x3
++      - arm,cortex-x4
+       - arm,neoverse-e1
+       - arm,neoverse-n1
+       - arm,neoverse-n2
+-- 
+2.40.1
 
