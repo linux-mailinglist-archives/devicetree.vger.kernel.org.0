@@ -2,78 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 46050749632
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:20:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FAE574964B
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:24:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233217AbjGFHUJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 03:20:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42408 "EHLO
+        id S232538AbjGFHYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 03:24:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45374 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233161AbjGFHUJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:20:09 -0400
-Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3667A1BEE
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 00:20:02 -0700 (PDT)
-Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b6fdaf6eefso4642951fa.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 00:20:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688628000; x=1691220000;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=cMM/JKhymf2QTww3ufNFI5eYv4LI0VojyRQq8UqQbR0=;
-        b=TCngYVh5UCe5aCujjz8cVO6NfM+vf4AaK153X9x8q1taYuWwF2V2S748W9YntSs0Vs
-         /Ce6vCDiIO8VxO8WnoCOzoFt4lE5jQ91NqmQ2ILCSA6VfjoJmRNPRN/CIfMgwTawXNt1
-         YGsjfKWsphZP0ryythXMVprouE2vn7FKLJQ2gug32NOG5HMcG9SmkNVtpvW32OfT6xwR
-         h2xBoTyQa4o5BkajN+RrqkRN2xBTCSmKyD+IzxxKZnB2hIjuT9+9emA7x2oAJbPNPK7x
-         GpjHBTGiAln/vqjmjm4L+hafxgMq6rMPP3X89torWeIUob/ImptdOujse03LWkreJ+e+
-         J6rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688628000; x=1691220000;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=cMM/JKhymf2QTww3ufNFI5eYv4LI0VojyRQq8UqQbR0=;
-        b=Lg6llTcFbCgnzizAO9EF+8Jukr2MsYWi6Myk7yrZsz6AZdZ4TM1uSkyQw5h2Q7Zp69
-         7BVc3t/r04yU2hS5Oh4ugZ2tEEFhJlnbAw5Va2a4sW7adxBbZQHtNvcBxEbPnWknvI7O
-         2+2FGMFS4cHHxPNNKhsN0DUzkHruec3ItZohC2bJN9SEy1Tljoae2AWFBOVxP6Tsk3L0
-         /14+S68XnKEraYA7MKYhalDdX2GNpWkzY2yfTpXaegd8Q/X3Rx7ml7StY8ogY90AmPWU
-         PoQSsdyCJHyBQ1Q6YeVvDlKsB5xtGRO5Mi8FnMQm4N4X0FEinMuRN7yTAr7BdmEMjl6s
-         e67w==
-X-Gm-Message-State: ABy/qLbHy2atkh7wK1hrMSj+WfrHo6Is87sN8/1pzIh0RvXJWSq6X02D
-        HsMZJK2P41bgXbCbPcnzG5YLcA==
-X-Google-Smtp-Source: APBJJlEOfmx5Lxbc0GW0fcG8wpIqHoQsATTy4OBvCxJoECYIzBSWj41jCXVmvIRvuEdF+uNWBta9jg==
-X-Received: by 2002:a2e:8908:0:b0:2b6:ee1c:216a with SMTP id d8-20020a2e8908000000b002b6ee1c216amr669843lji.34.1688628000429;
-        Thu, 06 Jul 2023 00:20:00 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb0:4a33:b29e:11b3:752b])
-        by smtp.gmail.com with ESMTPSA id l6-20020adfe586000000b003112f836d4esm1033839wrm.85.2023.07.06.00.19.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 00:20:00 -0700 (PDT)
-References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
- <20230705-b4-amlogic-bindings-convert-take2-v2-2-22be915ddc3b@linaro.org>
- <20230705195631.GA1732680-robh@kernel.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Rob Herring <robh@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        with ESMTP id S231467AbjGFHYg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 03:24:36 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A21CDA;
+        Thu,  6 Jul 2023 00:24:35 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D1B2618AC;
+        Thu,  6 Jul 2023 07:24:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 00539C433C7;
+        Thu,  6 Jul 2023 07:24:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688628274;
+        bh=9YXus58HFCYWUgF7WtrOWJhmbffOAFniPNX7tWAUfxo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tDH99pEA6Fd2mbUppE/ZRMF5kkfzrmNwbrf5813UjgZuLjKhkbnOipsupdOj5+iye
+         SaSxr3F2i4cyJpW13kGIclP9h3VXOI+TxlD1tAdfZ5C8JSjdj1DYxONWVZuNF4xzDG
+         v5XVG1HC9PzEAl3NU0gkw9P0KfzS3Zt3khkpUWkj65DaMfBNJ/7AOLlQdAFMr0Qh0H
+         rxH/0Q1Thzshs/2dx1pElSqMPidv9wx2Pj13PBtgWJH1Pkcak2Iz4Vhhz5RfIzJKgY
+         11bAYUFtPch/mF5pn18dTt9D5nF4m/1k4/zfbrC1tnm6RlRySlqzRGijS5Th3MRcsX
+         hqjJQdW1+zQ3Q==
+Date:   Thu, 6 Jul 2023 09:24:31 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <dri-devel@lists.freedesktop.org>,
+        Caleb Connolly <caleb@connolly.tech>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: amlogic: convert
- amlogic,gxbb-aoclkc.txt to dt-schema
-Date:   Thu, 06 Jul 2023 09:15:26 +0200
-In-reply-to: <20230705195631.GA1732680-robh@kernel.org>
-Message-ID: <1jttuh5www.fsf@starbuckisacylon.baylibre.com>
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@somainline.org>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Kuogee Hsieh <quic_khsieh@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Jessica Zhang <quic_jesszhan@quicinc.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Conor Dooley <conor+dt@kernel.org>,
+        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
+        <linux-arm-msm@vger.kernel.org>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Martin Botka <martin.botka@somainline.org>,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Jami Kettunen <jami.kettunen@somainline.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        freedreno <freedreno@lists.freedesktop.org>
+Subject: Re: RFC: DSI host capabilities (was: [PATCH RFC 03/10] drm/panel:
+ Add LGD panel driver for Sony Xperia XZ3)
+Message-ID: <q7wrbmdhdy2d3gqig3j34lqxdcwzbom7djlncfznxsa6ktm7j2@i5x4ngi7p2ia>
+References: <739a8bd9-9ff0-5072-fdae-b64efdf86842@collabora.com>
+ <e927cfcd-bf34-5daf-0e24-4dd828106968@linaro.org>
+ <epds77sccy4cc5cdpoc4ir7sfz5sz3biwep6rbks2nuyqncidu@77gb4t2wy6vn>
+ <47a5678c-1eb3-dfc2-a9ac-f8e497455d11@linaro.org>
+ <unsithzszj7awvsmxwr7reshso5ju7u4nssil5tty6pocictf5@gwoltpgeecer>
+ <6e070141-8c0e-59ed-8a08-58c3fadb17df@linaro.org>
+ <lidknise4copce3vb2wth4z3fl2p4npsc4u6ajqb6zsp6lnpca@rp6wxcmy2aa4>
+ <CAA8EJpq_VeY=44FqYm7QAT32AR=rmMOV0RtAfNFkb1hpSp29dw@mail.gmail.com>
+ <djrx34qwb7yen47dmlsym4mg2pib4syncvdy52ma3sin7uhs7j@gi3znayuucnj>
+ <a718f7c1-4ef1-18c8-33c7-c5da22e92c89@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ta6lyqgdkmvaizdf"
+Content-Disposition: inline
+In-Reply-To: <a718f7c1-4ef1-18c8-33c7-c5da22e92c89@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -81,220 +91,126 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Wed 05 Jul 2023 at 13:56, Rob Herring <robh@kernel.org> wrote:
+--ta6lyqgdkmvaizdf
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> On Wed, Jul 05, 2023 at 01:41:52PM +0200, Neil Armstrong wrote:
->> Convert the Amlogic Always-On Clock Controller bindings to dt-schema.
->> 
->> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
->> ---
->>  .../bindings/clock/amlogic,gxbb-aoclkc.txt         |  64 -------------
->>  .../bindings/clock/amlogic,gxbb-aoclkc.yaml        | 101 +++++++++++++++++++++
->>  2 files changed, 101 insertions(+), 64 deletions(-)
->> 
->> diff --git
->> a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
->> b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
->> deleted file mode 100644
->> index c41f0be5d438..000000000000
->> --- a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.txt
->> +++ /dev/null
->> @@ -1,64 +0,0 @@
->> -* Amlogic GXBB AO Clock and Reset Unit
->> -
->> -The Amlogic GXBB AO clock controller generates and supplies clock to various
->> -controllers within the Always-On part of the SoC.
->> -
->> -Required Properties:
->> -
->> -- compatible: value should be different for each SoC family as :
->> -	- GXBB (S905) : "amlogic,meson-gxbb-aoclkc"
->> -	- GXL (S905X, S905D) : "amlogic,meson-gxl-aoclkc"
->> -	- GXM (S912) : "amlogic,meson-gxm-aoclkc"
->> -	- AXG (A113D, A113X) : "amlogic,meson-axg-aoclkc"
->> -	- G12A (S905X2, S905D2, S905Y2) : "amlogic,meson-g12a-aoclkc"
->> -	followed by the common "amlogic,meson-gx-aoclkc"
->> -- clocks: list of clock phandle, one for each entry clock-names.
->> -- clock-names: should contain the following:
->> -  * "xtal"     : the platform xtal
->> -  * "mpeg-clk" : the main clock controller mother clock (aka clk81)
->> -  * "ext-32k-0"  : external 32kHz reference #0 if any (optional)
->> -  * "ext-32k-1"  : external 32kHz reference #1 if any (optional - gx only)
->> -  * "ext-32k-2"  : external 32kHz reference #2 if any (optional - gx only)
->> -
->> -- #clock-cells: should be 1.
->> -
->> -Each clock is assigned an identifier and client nodes can use this identifier
->> -to specify the clock which they consume. All available clocks are defined as
->> -preprocessor macros in the dt-bindings/clock/gxbb-aoclkc.h header and can be
->> -used in device tree sources.
->> -
->> -- #reset-cells: should be 1.
->> -
->> -Each reset is assigned an identifier and client nodes can use this identifier
->> -to specify the reset which they consume. All available resets are defined as
->> -preprocessor macros in the dt-bindings/reset/gxbb-aoclkc.h header and can be
->> -used in device tree sources.
->> -
->> -Parent node should have the following properties :
->> -- compatible: "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd"
->> -- reg: base address and size of the AO system control register space.
->> -
->> -Example: AO Clock controller node:
->> -
->> -ao_sysctrl: sys-ctrl@0 {
->> -	compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
->> -	reg =  <0x0 0x0 0x0 0x100>;
->> -
->> -	clkc_AO: clock-controller {
->> -		compatible = "amlogic,meson-gxbb-aoclkc", "amlogic,meson-gx-aoclkc";
->> -		#clock-cells = <1>;
->> -		#reset-cells = <1>;
->> -		clocks = <&xtal>, <&clkc CLKID_CLK81>;
->> -		clock-names = "xtal", "mpeg-clk";
->> -	};
->> -
->> -Example: UART controller node that consumes the clock and reset generated
->> -  by the clock controller:
->> -
->> -	uart_AO: serial@4c0 {
->> -		compatible = "amlogic,meson-uart";
->> -		reg = <0x4c0 0x14>;
->> -		interrupts = <0 90 1>;
->> -		clocks = <&clkc_AO CLKID_AO_UART1>;
->> -		resets = <&clkc_AO RESET_AO_UART1>;
->> -	};
->> diff --git
->> a/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml
->> b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml
->> new file mode 100644
->> index 000000000000..0adcfbcf5c85
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/clock/amlogic,gxbb-aoclkc.yaml
->> @@ -0,0 +1,101 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/clock/amlogic,gxbb-aoclkc.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Amlogic Always-On Clock Controller
->> +
->> +maintainers:
->> +  - Neil Armstrong <neil.armstrong@linaro.org>
->> +
->> +properties:
->> +  compatible:
->> +    oneOf:
->> +      - items:
->> +          - enum:
->> +              - amlogic,meson-gxbb-aoclkc
->> +              - amlogic,meson-gxl-aoclkc
->> +              - amlogic,meson-gxm-aoclkc
->> +              - amlogic,meson-axg-aoclkc
->> +          - const: amlogic,meson-gx-aoclkc
->> +      - enum:
->> +          - amlogic,meson-axg-aoclkc
->> +          - amlogic,meson-g12a-aoclkc
->> +
->> +  clocks:
->> +    minItems: 2
->> +    maxItems: 5
->> +
->> +  clock-names:
->> +    minItems: 2
->> +    maxItems: 5
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +
->> +  '#reset-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - clocks
->> +  - clock-names
->> +  - '#clock-cells'
->> +  - '#reset-cells'
->> +
->> +allOf:
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - amlogic,meson-gxbb-aoclkc
->> +
->> +    then:
->> +      properties:
->> +        clock-names:
->> +          minItems: 2
->> +          items:
->> +            - const: xtal 
->> +            - const: mpeg-clk
->> +            - const: ext-32k-0
->> +            - const: ext-32k-1
->> +            - const: ext-32k-2
->
-> As the names are always the same, move this to top-level and just set 
-> the length here (except the constraints are the same as top-level, so 
-> you can just drop this if/then).
+On Wed, Jul 05, 2023 at 11:09:40PM +0300, Dmitry Baryshkov wrote:
+> On 05/07/2023 19:53, Maxime Ripard wrote:
+> > On Wed, Jul 05, 2023 at 06:20:13PM +0300, Dmitry Baryshkov wrote:
+> > > On Wed, 5 Jul 2023 at 17:24, Maxime Ripard <mripard@kernel.org> wrote:
+> > > >=20
+> > > > On Wed, Jul 05, 2023 at 04:37:57PM +0300, Dmitry Baryshkov wrote:
+> > > > > > > >=20
+> > > > > > > > Either way, I'm not really sure it's a good idea to multipl=
+y the
+> > > > > > > > capabilities flags of the DSI host, and we should just stic=
+k to the
+> > > > > > > > spec. If the spec says that we have to support DSC while vi=
+deo is
+> > > > > > > > output, then that's what the panels should expect.
+> > > > > > >=20
+> > > > > > > Except some panels supports DSC & non-DSC, Video and Command =
+mode, and
+> > > > > > > all that is runtime configurable. How do you handle that ?
+> > > > > >=20
+> > > > > > In this case, most of the constraints are going to be on the en=
+coder
+> > > > > > still so it should be the one driving it. The panel will only c=
+are about
+> > > > > > which mode has been selected, but it shouldn't be the one drivi=
+ng it,
+> > > > > > and thus we still don't really need to expose the host capabili=
+ties.
+> > > > >=20
+> > > > > This is an interesting perspective. This means that we can and ac=
+tually have
+> > > > > to extend the drm_display_mode with the DSI data and compression
+> > > > > information.
+> > > >=20
+> > > > I wouldn't extend drm_display_mode, but extending one of the state
+> > > > structures definitely.
+> > > >=20
+> > > > We already have some extra variables in drm_connector_state for HDM=
+I,
+> > > > I don't think it would be a big deal to add a few for MIPI-DSI.
+> > > >=20
+> > > > We also floated the idea for a while to create bus-specific states,=
+ with
+> > > > helpers to match. Maybe it would be a good occasion to start doing =
+it?
+> > > >=20
+> > > > > For example, the panel that supports all four types for the 1080p=
+ should
+> > > > > export several modes:
+> > > > >=20
+> > > > > 1920x1080-command
+> > > > > 1920x1080-command-DSC
+> > > > > 1920x1080-video
+> > > > > 1920x1080-video-DSC
+> > > > >=20
+> > > > > where video/command and DSC are some kinds of flags and/or inform=
+ation in
+> > > > > the drm_display_mode? Ideally DSC also has several sub-flags, whi=
+ch denote
+> > > > > what kind of configuration is supported by the DSC sink (e.g. bpp=
+, yuv,
+> > > > > etc).
+> > > >=20
+> > > > So we have two things to do, right? We need to expose what the pane=
+l can
+> > > > take (ie, EDID for HDMI), and then we need to tell it what we picked
+> > > > (infoframes).
+> > > >=20
+> > > > We already express the former in mipi_dsi_device, so we could exten=
+d the
+> > > > flags stored there.
+> > > >=20
+> > > > And then, we need to tie what the DSI host chose to a given atomic =
+state
+> > > > so the panel knows what was picked and how it should set everything=
+ up.
+> > >=20
+> > > This is definitely something we need. Marijn has been stuck with the
+> > > panels that support different models ([1]).
+> > >=20
+> > > Would you prefer a separate API for this kind of information or
+> > > abusing atomic_enable() is fine from your point of view?
+> > >=20
+> > > My vote would be for going with existing operations, with the slight
+> > > fear of ending up with another DSI-specific hack (like
+> > > pre_enable_prev_first).
+> >=20
+> > I don't think we can get away without getting access to the atomic_state
+> > from the panel at least.
+> >=20
+> > Choosing one setup over another is likely going to depend on the mode,
+> > and that's only available in the state.
+> >=20
+> > We don't have to go the whole way though and create the sub-classes of
+> > drm_connector_state, but I think we should at least provide it to the
+> > panel.
+> >=20
+> > What do you think of creating a new set of atomic_* callbacks for
+> > panels, call that new set of functions from msm and start from there?
+>=20
+> We are (somewhat) bound by the panel_bridge, but yeah, it seems possible.
 
-If this is done, aren't we losing information ?
+Bridges have access to the atomic state already, so it's another place
+to plumb this through but I guess it would still be doable?
 
-For example, "ext-32k-1" would become valid with a g12a as long as the
-number of clocks is alright, which it is not.
+Maxime
 
-I'm not concerned by the automated verification, more the information
-provided to the users, which we used to have in the txt format.
+--ta6lyqgdkmvaizdf
+Content-Type: application/pgp-signature; name="signature.asc"
 
->
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - amlogic,meson-g12a-aoclkc
->> +
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 3
->> +
->> +        clock-names:
->> +          minItems: 2
->> +          items:
->> +            - const: xtal 
->> +            - const: mpeg-clk
->> +            - const: ext-32k-0
->
-> Just 'maxItems: 3'
->
->> +
->> +  - if:
->> +      properties:
->> +        compatible:
->> +          enum:
->> +            - amlogic,meson-gxl-aoclkc
->> +            - amlogic,meson-gxm-aoclkc
->> +            - amlogic,meson-axg-aoclkc
->> +
->> +    then:
->> +      properties:
->> +        clocks:
->> +          maxItems: 2
->> +
->> +        clock-names:
->> +          items:
->> +            - const: xtal 
->> +            - const: mpeg-clk
->
-> maxItems: 2
->
->> +
->> +additionalProperties: false
->> 
->> -- 
->> 2.34.1
->> 
+-----BEGIN PGP SIGNATURE-----
 
+iHUEABYKAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCZKZsLwAKCRDj7w1vZxhR
+xQYLAQDrdn9drGvi55zx4P3Y2raA/CnwNgRdfA3IyCWJWHEDAgEAhpDQWL3p2wMq
+vhnP9QUdDtDLVJB0QOPAk5w1qMBU4w0=
+=CHew
+-----END PGP SIGNATURE-----
+
+--ta6lyqgdkmvaizdf--
