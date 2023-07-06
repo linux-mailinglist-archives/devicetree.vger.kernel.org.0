@@ -2,225 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 69E2374995C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 12:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DA8874999D
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 12:43:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229660AbjGFK07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 06:26:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60790 "EHLO
+        id S231666AbjGFKnz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 06:43:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39626 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231745AbjGFK06 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 06:26:58 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8D731BC2;
-        Thu,  6 Jul 2023 03:26:56 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits))
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 98A23660585C;
-        Thu,  6 Jul 2023 11:26:54 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1688639215;
-        bh=6CgHdMHanq24fvS8FaBS8qQ0RlrA+kGzfVHRX7V3k+U=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=m5giy2mCP/OsIEhQ87ulCwEghPPvsIuwbA3Q+mBAn7Jb9MxcTPtx5AtNq1BITdAZr
-         nA/Fb0ZmF6helJOemGYvB+JWK00bYzDbOu5JO1rBNhp638s3pQe6tvofWEaJ4SCMDi
-         4YoQJhQtuRhtemc6+DBW8lM0QEndAgAhYRvwEjMmZIYN6gdqiGJwzkMqonjkd5aOKn
-         6OzwQVzoYzgkeKE3lYMxwmdwcC1p+UyA0vels2urvwoOGV7bZrenay6YqK8wWBWB4B
-         EvQ7qp5SriPvb1RbAIcGOeSQRsyzDntlgKQvuJ8hV/CmqKHaDAKhqL1A3qwO7r603d
-         Ek6uHcPF9qOog==
-Message-ID: <7b8d221f-107f-3352-d851-a0cb40008c1a@collabora.com>
-Date:   Thu, 6 Jul 2023 12:26:52 +0200
+        with ESMTP id S231393AbjGFKny (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 06:43:54 -0400
+Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4DFFB19BD
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 03:43:53 -0700 (PDT)
+Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-9891c73e0fbso100363266b.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 03:43:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688640232; x=1691232232;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=ZlDMTzsKNMidmUdvGl8KWau1B0O61dJBW9y0FhLiN4c=;
+        b=CntR0Z4AQaH70ULKuK4ws5fg8VwI6RkXvH/jM/35U1758RZQOBz+3Kj2dJumsRIIZq
+         /n/z4sW9I+ya/u39JaJgdfMEJqKWc7OCC8ooMwwtu/ucwdQuMGXL0dNGPCevGWrIzmgY
+         v+ijlbpPBxIzFnH9l96i7ph4AFFRwAYZM1oyVRPnhqiFAvSyDMwk6qSVvw5mnqnwfizv
+         4AgHNEaelytnFYwKpJH35pRLjuKDRGSqIsg5lhrLdhmbQsI9vVepSJEr5SK2b6DqbgtC
+         56joC4SU4gKbmuIPUDk99o8/oVl0WLk+INUffmsJtyJXnhqDA20IiGlvOodjxo+9Aj0q
+         oEwA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688640232; x=1691232232;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=ZlDMTzsKNMidmUdvGl8KWau1B0O61dJBW9y0FhLiN4c=;
+        b=hfFZDw9nYi6TnnxRSCOWQ9MGJx8rPJElyR5w6MMUKxRN9iUg/LWXxQRnvWzPCOGGdU
+         RmtOULx00/CMEqJ84taRHZOuanffAkXMfmADSgYu4YjSkejXlQcza3fvsWE/A9Q/UDbI
+         i59ANsTGQ9joK6XiegxrCpFGU83yJi3g/riE+v+SWUEVNftX1r0uKedd68BiB+ICmV30
+         LalALaGneJZtdP9V+kdeArdmz/8rLcN6S8KNLAKlJBvzD3KOlmvJzRFJ3bT6YPkiX67B
+         R5zXy85DiBhVJhsLM+1/Z5mPH8Nu30IpqxTLzz0oCknYe8sZMkMtkFCerVdICSvW5+MZ
+         myYQ==
+X-Gm-Message-State: ABy/qLYxZH4LUJqjJWpRiqz6dLIFKxl0qgWZDZNvwIJws0T6MGqG6Wmg
+        PU2xaYRkTcdlLFSENjrNNXPR7w==
+X-Google-Smtp-Source: APBJJlGj3/9m6yl/nRf0ABw8E5K1spIchFLi90TK/GD98lFspv/f0NtTveCxXYHXGF3dtw3kBg2V3Q==
+X-Received: by 2002:a17:906:6a1b:b0:98f:450e:fc20 with SMTP id qw27-20020a1709066a1b00b0098f450efc20mr4598238ejc.17.1688640231840;
+        Thu, 06 Jul 2023 03:43:51 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id pv11-20020a170907208b00b0098e2969ed44sm633935ejb.45.2023.07.06.03.43.50
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jul 2023 03:43:51 -0700 (PDT)
+Message-ID: <97f2bcd7-cf78-d4e6-7c5f-672ec8d4d2c5@linaro.org>
+Date:   Thu, 6 Jul 2023 12:43:48 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
-Subject: Re: [PATCH v2,2/2] drm/mediatek: dp: Add the audio control to
- mtk_dp_data struct
+Subject: Re: [PATCH 0/2] Update PD Macros
 Content-Language: en-US
-To:     Shuijing Li <shuijing.li@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230706021425.31735-1-shuijing.li@mediatek.com>
- <20230706021425.31735-3-shuijing.li@mediatek.com>
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <20230706021425.31735-3-shuijing.li@mediatek.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, cros-qcom-dts-watchers@chromium.org
+References: <1688635428-25127-1-git-send-email-quic_rohiagar@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <1688635428-25127-1-git-send-email-quic_rohiagar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 06/07/23 04:14, Shuijing Li ha scritto:
-> Mainly add the following two flag:
+On 06/07/2023 11:23, Rohit Agarwal wrote:
+> Hi,
 > 
-> 1.The audio packet arrangement function is to only arrange audio
-> packets into the Hblanking area. In order to align with the HW
-> default setting of g1200, this function needs to be turned off.
+> This series updates the PD macros for the Qualcomm chipsets
+> in the devicetree files based on [1].
 > 
-> 2.Due to the difference of HW, different dividers need to be set.
-> 
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
-> Changes in v2:
-> - change the variables' name to be more descriptive
-> - add a comment that describes the function of mtk_dp_audio_sample_arrange
-> - reduce indentation by doing the inverse check
-> - add a definition of some bits
-> - add support for mediatek, mt8188-edp-tx
-> per suggestion from the previous thread:
-> https://lore.kernel.org/lkml/ac0fcec9-a2fe-06cc-c727-189ef7babe9c@collabora.com/
-> ---
->   drivers/gpu/drm/mediatek/mtk_dp.c     | 47 ++++++++++++++++++++++++++-
->   drivers/gpu/drm/mediatek/mtk_dp_reg.h |  6 ++++
->   2 files changed, 52 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
-> index 64eee77452c0..8e1a13ab2ba2 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp.c
-> @@ -139,6 +139,8 @@ struct mtk_dp_data {
->   	unsigned int smc_cmd;
->   	const struct mtk_dp_efuse_fmt *efuse_fmt;
->   	bool audio_supported;
-> +	bool audio_pkt_in_hblank_area;
-> +	u16 audio_m_div2_bit;
->   };
->   
->   static const struct mtk_dp_efuse_fmt mt8195_edp_efuse_fmt[MTK_DP_CAL_MAX] = {
-> @@ -647,7 +649,7 @@ static void mtk_dp_audio_sdp_asp_set_channels(struct mtk_dp *mtk_dp,
->   static void mtk_dp_audio_set_divider(struct mtk_dp *mtk_dp)
->   {
->   	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC0_P0_30BC,
-> -			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-> +			   mtk_dp->data->audio_m_div2_bit,
->   			   AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MASK);
->   }
->   
-> @@ -1362,6 +1364,18 @@ static void mtk_dp_sdp_set_down_cnt_init_in_hblank(struct mtk_dp *mtk_dp)
->   			   SDP_DOWN_CNT_INIT_IN_HBLANK_DP_ENC1_P0_MASK);
->   }
->   
-> +static void mtk_dp_audio_sample_arrange(struct mtk_dp *mtk_dp)
-> +{
-> +	/* arrange audio packets into the Hblanking and Vblanking area */
-> +	if (!mtk_dp->data->audio_pkt_in_hblank_area)
-> +		return;
+> [1] https://lore.kernel.org/all/1688635218-23779-1-git-send-email-quic_rohiagar@quicinc.com/
 
-There's only one remaining question: why is this done for MT8188 but *not* for
-MT8195?
+You need to clearly mark dependencies also in other patchset, otherwise
+this is unmerge'able. Specifically, the header changes should go with
+DTS branch, so you need to give proper hint to Bjorn about that.
 
-Thanks,
-Angelo
-
-> +
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3374, 0,
-> +			   SDP_ASP_INSERT_IN_HBLANK_DP_ENC1_P0_MASK);
-> +	mtk_dp_update_bits(mtk_dp, MTK_DP_ENC1_P0_3374, 0,
-> +			   SDP_DOWN_ASP_CNT_INIT_DP_ENC1_P0_MASK);
-> +}
-> +
->   static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
->   {
->   	u32 sram_read_start = min_t(u32, MTK_DP_TBC_BUF_READ_START_ADDR,
-> @@ -1371,6 +1385,7 @@ static void mtk_dp_setup_tu(struct mtk_dp *mtk_dp)
->   				    MTK_DP_PIX_PER_ADDR);
->   	mtk_dp_set_sram_read_start(mtk_dp, sram_read_start);
->   	mtk_dp_setup_encoder(mtk_dp);
-> +	mtk_dp_audio_sample_arrange(mtk_dp);
->   	mtk_dp_sdp_set_down_cnt_init_in_hblank(mtk_dp);
->   	mtk_dp_sdp_set_down_cnt_init(mtk_dp, sram_read_start);
->   }
-> @@ -2616,11 +2631,31 @@ static int mtk_dp_resume(struct device *dev)
->   
->   static SIMPLE_DEV_PM_OPS(mtk_dp_pm_ops, mtk_dp_suspend, mtk_dp_resume);
->   
-> +static const struct mtk_dp_data mt8188_edp_data = {
-> +	.bridge_type = DRM_MODE_CONNECTOR_eDP,
-> +	.smc_cmd = MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
-> +	.efuse_fmt = mt8195_edp_efuse_fmt,
-> +	.audio_supported = false,
-> +	.audio_pkt_in_hblank_area = false,
-> +	.audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-> +};
-> +
-> +static const struct mtk_dp_data mt8188_dp_data = {
-> +	.bridge_type = DRM_MODE_CONNECTOR_DisplayPort,
-> +	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
-> +	.efuse_fmt = mt8195_dp_efuse_fmt,
-> +	.audio_supported = true,
-> +	.audio_pkt_in_hblank_area = true,
-> +	.audio_m_div2_bit = MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
-> +};
-> +
->   static const struct mtk_dp_data mt8195_edp_data = {
->   	.bridge_type = DRM_MODE_CONNECTOR_eDP,
->   	.smc_cmd = MTK_DP_SIP_ATF_EDP_VIDEO_UNMUTE,
->   	.efuse_fmt = mt8195_edp_efuse_fmt,
->   	.audio_supported = false,
-> +	.audio_pkt_in_hblank_area = false,
-> +	.audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
->   };
->   
->   static const struct mtk_dp_data mt8195_dp_data = {
-> @@ -2628,9 +2663,19 @@ static const struct mtk_dp_data mt8195_dp_data = {
->   	.smc_cmd = MTK_DP_SIP_ATF_VIDEO_UNMUTE,
->   	.efuse_fmt = mt8195_dp_efuse_fmt,
->   	.audio_supported = true,
-> +	.audio_pkt_in_hblank_area = false,
-> +	.audio_m_div2_bit = AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2,
->   };
->   
->   static const struct of_device_id mtk_dp_of_match[] = {
-> +	{
-> +		.compatible = "mediatek,mt8188-edp-tx",
-> +		.data = &mt8188_edp_data,
-> +	},
-> +	{
-> +		.compatible = "mediatek,mt8188-dp-tx",
-> +		.data = &mt8188_dp_data,
-> +	},
->   	{
->   		.compatible = "mediatek,mt8195-edp-tx",
->   		.data = &mt8195_edp_data,
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dp_reg.h b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> index 84e38cef03c2..6d7f0405867e 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> +++ b/drivers/gpu/drm/mediatek/mtk_dp_reg.h
-> @@ -162,6 +162,7 @@
->   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_2	(1 << 8)
->   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_4	(2 << 8)
->   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_MUL_8	(3 << 8)
-> +#define MT8188_AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(4 << 8)
->   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_2	(5 << 8)
->   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_4	(6 << 8)
->   #define AUDIO_M_CODE_MULT_DIV_SEL_DP_ENC0_P0_DIV_8	(7 << 8)
-> @@ -228,6 +229,11 @@
->   							 VIDEO_STABLE_CNT_THRD_DP_ENC1_P0 | \
->   							 SDP_DP13_EN_DP_ENC1_P0 | \
->   							 BS2BS_MODE_DP_ENC1_P0)
-> +
-> +#define MTK_DP_ENC1_P0_3374			0x3374
-> +#define SDP_ASP_INSERT_IN_HBLANK_DP_ENC1_P0_MASK	BIT(12)
-> +#define SDP_DOWN_ASP_CNT_INIT_DP_ENC1_P0_MASK		GENMASK(11, 0)
-> +
->   #define MTK_DP_ENC1_P0_33F4			0x33f4
->   #define DP_ENC_DUMMY_RW_1_AUDIO_RST_EN			BIT(0)
->   #define DP_ENC_DUMMY_RW_1				BIT(9)
-
-
+Best regards,
+Krzysztof
 
