@@ -2,61 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CD085749B51
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6A0C749B68
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230501AbjGFMCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 08:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54954 "EHLO
+        id S232741AbjGFMJS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 08:09:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232364AbjGFMCo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:02:44 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AEAA1732;
-        Thu,  6 Jul 2023 05:02:44 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id B52466191C;
-        Thu,  6 Jul 2023 12:02:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E96F7C433C8;
-        Thu,  6 Jul 2023 12:02:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688644963;
-        bh=h9LrxEnYQVUI2MkYbCyF11apaeJLH2yAAAdmse5JAiI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kgNGcSYcVE3AYRdE7H5V5oVuZshVvy40hrtdXktEGVucVAOLL46WDITONePSeKoF+
-         d6uL6r+0bGKEO3p8ByHwgUyqZla17pk98qO0LWHtPo+mwmcSWYi3Y+7Zq5z7+zXV2f
-         0nj08ntYMRPHtY4ioUOYb+vl1I69A2+pQYOIwAG5WcGJGDFZw+pHtJJmVjLeNpFPr8
-         Hf0p9hK6ShXKXDMVgJolstggzMi7wK/T23G2SERuqk8RcKIx+fCQq9bolIEQXuBcfY
-         jYkDUCCWXCfIrne3ltvC3uBt6b105Q1Q0Og+odusezuXA1B3YzL1mrlSgrdlO2UTVk
-         JU/e+u5jGTYOg==
-Date:   Thu, 6 Jul 2023 13:02:36 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
-        dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH 2/3] ASoC: tlv320aic3x: use BCLK instead of MCLK if not
- in master mode
-Message-ID: <eeba3297-acdb-45ca-a80d-40d8b3a90231@sirena.org.uk>
-References: <20230705190324.355282-1-andreas@kemnade.info>
- <20230705190324.355282-3-andreas@kemnade.info>
- <15d3fc6e-d294-4968-bc7d-66307efc92db@sirena.org.uk>
- <20230705215611.5f96584e@aktux>
+        with ESMTP id S232711AbjGFMJQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:09:16 -0400
+Received: from mail-ej1-x630.google.com (mail-ej1-x630.google.com [IPv6:2a00:1450:4864:20::630])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3265A1BEA
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 05:09:14 -0700 (PDT)
+Received: by mail-ej1-x630.google.com with SMTP id a640c23a62f3a-991fe70f21bso77401366b.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 05:09:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688645352; x=1691237352;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=AD7SP5cEltC2P6iI+W24BH/0PK5a9j/yuLzGT21WDwE=;
+        b=i9Vs0AY9co0nozmt6kxY8w+r5S9aLFWdrpYPpACl24iKi92FdSL06JLGkD4sX/JO5l
+         9DOXPpCOuPivcnDRKzdI1ng4c0OIN+7XmWf00m95DrN8hgLXTVOk2lxToj+A/ZSwqTkh
+         YXRXaTn/NDxVruaFvAm/4c3yiAN7Gv41JUKpQ1iiGEve2OvVw3X8SuUIqDZO5KWPqWOi
+         B24q1P52iNdG5HHK+91w1vsvwSKIWzs+6GIyIwv9pXylC9HfPO/a2yF6G53euw+Zd5NI
+         T2G1PjYvIqTIHXI9zJx/taJUYddohNXrHM0DDPhvnobjMOdxGtUw8a6RuGB2rA0kzppV
+         FfTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688645352; x=1691237352;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=AD7SP5cEltC2P6iI+W24BH/0PK5a9j/yuLzGT21WDwE=;
+        b=TPzztUpY6MPH0KGUqKDazA5Edow3IPYPu9c1r90kNEKfPrmIiMtGPFO8TGZd8/qJyI
+         nCQ7d2SPYuXRGPg5hy2LcL8VQHPa4gV1IW85wkowQUYpC7VIZDXos8+TnrXzaNnwbE4q
+         FNz39TNDRXQb/OBSSf8Zy7qFllCszgSHa2l8A92Zel0MFjn0iFjwtuIRR3DK59T81Sfx
+         py5eh1kxpDi3jY4LsPWiJoQgRPkLCNuv5J5ZnVC1LoP6Lezu1QpMF+QCyN+fIpJgXoFD
+         +mKG8lb6xNOBWMu2cnkekRnAh2s5ePt15hoBVddyElbSckxYzQxROM4GMaNZPQkCpNKy
+         ZDHg==
+X-Gm-Message-State: ABy/qLbSHs4etNpXYlLUlavHZSgnkQWmo4Cp2kt1l04nyLdH5envL22k
+        xB+Ne0T/c3hEK/sSTKNOnzns0VIbrEea12sh5gY=
+X-Google-Smtp-Source: APBJJlEigXpf0qIEu3w7bh82NDf+I+AZ5IvWRIyMOVolQrW0lhHOOtLk1gTA6aU6jjVr7ttCRNEt3w==
+X-Received: by 2002:a17:906:196:b0:993:6b3c:fe06 with SMTP id 22-20020a170906019600b009936b3cfe06mr1175068ejb.25.1688645352276;
+        Thu, 06 Jul 2023 05:09:12 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id gh9-20020a170906e08900b0098e0a937a6asm734388ejb.69.2023.07.06.05.09.10
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 06 Jul 2023 05:09:11 -0700 (PDT)
+Message-ID: <878103c6-0dc3-164b-92ce-17ec4f87bff6@linaro.org>
+Date:   Thu, 6 Jul 2023 14:09:09 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="UomsMsmcZLuNBQaC"
-Content-Disposition: inline
-In-Reply-To: <20230705215611.5f96584e@aktux>
-X-Cookie: Being ugly isn't illegal.  Yet.
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for PCIe
+To:     Manivannan Sadhasivam <mani@kernel.org>
+Cc:     Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, konrad.dybcio@linaro.org,
+        quic_shazhuss@quicinc.com, quic_nitegupt@quicinc.com,
+        quic_ramkri@quicinc.com, quic_nayiluri@quicinc.com,
+        Lorenzo Pieralisi <lpieralisi@kernel.org>,
+        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
+        Rob Herring <robh@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-phy@lists.infradead.org
+References: <1688545032-17748-1-git-send-email-quic_msarkar@quicinc.com>
+ <20230705084606.GF11854@thinkpad>
+ <a450e2e8-307d-49e9-d76d-de397b801a96@linaro.org>
+ <20230706111218.GA4808@thinkpad>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230706111218.GA4808@thinkpad>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -65,41 +89,21 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 06/07/2023 13:12, Manivannan Sadhasivam wrote:
+>>> Please note that the dts patches should come before driver patches.
+>>>
+>>
+>> Why? DTS is always independent thus usually put at the end of patchset
+>> or better separate. It is the first time I hear that DTS should be
+>> before driver.
+>>
+> 
+> This is what I was suggested by Rob during my initial days and I've been
+> following this pattern since then. If that's not the case, I have no issues.
 
---UomsMsmcZLuNBQaC
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I really doubt Rob ever suggested that. He probably suggested that
+bindings must come before user, but not the DTS.
 
-On Wed, Jul 05, 2023 at 09:56:11PM +0200, Andreas Kemnade wrote:
-> Mark Brown <broonie@kernel.org> wrote:
+Best regards,
+Krzysztof
 
-> > It would be nicer to set the clock via the DT bindings, ideally with the
-> > clock bindings...
-
-> I found no path from these simple-audio-card things to provide a clk_id=
-=20
-> to set_dai_sysclk. I would of course prefer such a thing. Do I have overl=
-ooked
-> something?
-
-Since we already have clock bindings we should use those to configure
-the clocks, there's several drivers that have added this support already
-- look for clock providers.
-
---UomsMsmcZLuNBQaC
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSmrVsACgkQJNaLcl1U
-h9Aiigf+Ou9AA4di16Yf4y+H1mj8NnkVAid2OFXa6NQ0mptBZxo5im31eX6esarn
-GnrzN6qYs06qcNO/mOZepRaEuSgIUZlWLqaMAdOawiCHVgSuqkYHGtpTbZnjxDOP
-KSoqrumSBJOtyoKIh3ZT2YxrWcD193dkFDXILJB1jbpSQpMpe7D09Jgj1uCys0Xs
-JO6U5l0/pc5gZSmPpQnKNk2kDA/Y5ec7C+TXdffpc9T98s9xFHBq2lkVAfz+1T96
-ARQcsL9sa9rxo7L1opX98iqszsQ4roWK7WfdcGeUWt4tpF+6bLNuKc8jT8ZGPCmq
-RYMPCFF4pCILcLF1sIjozgLtc3OiAA==
-=RAi2
------END PGP SIGNATURE-----
-
---UomsMsmcZLuNBQaC--
