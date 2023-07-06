@@ -2,126 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FDE3749711
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:05:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09C8474972E
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233838AbjGFIFb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 04:05:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36754 "EHLO
+        id S233593AbjGFIQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 04:16:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40128 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233129AbjGFIFa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:05:30 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D931726
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:05:28 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbf1b82de7so2717255e9.1
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 01:05:28 -0700 (PDT)
+        with ESMTP id S229518AbjGFIQG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:16:06 -0400
+Received: from mail-ed1-x529.google.com (mail-ed1-x529.google.com [IPv6:2a00:1450:4864:20::529])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1F951988
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:16:03 -0700 (PDT)
+Received: by mail-ed1-x529.google.com with SMTP id 4fb4d7f45d1cf-51d80d81d6eso632261a12.1
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 01:16:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688630726; x=1691222726;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:from:to:cc:subject:date:message-id:reply-to;
-        bh=zJHWi0dKqNhNEFb0P2yrmf3OGLkGZqjsHWf4Z19C/yk=;
-        b=Zp3D4DRuWFgPbPNbJZaRkRdVCKJUNLkXwvScJ0MfjjHchKBoNAA/6/G3t0ovPvhY+3
-         mn5ax++SedHlInpD2KmtCLfUsuda8Y5nHRUf+7LOtyT2l+YK0AMmil2DjZSXT8dFpfB5
-         mPl+ScXd5+w+ElzZtEVTeznnIsSQjFtdyccXhpYCN1XC7Q/tYUEQccI70NenQ6ebuA4M
-         DBSJSnhv9aQl4eHzsMjzzpUMNS+BIBvj52ba1pP/P/pNchFduVSe9sbQOHKMhyChUkNn
-         9qcHWOuYskJLZBFv9zzA7Htp/1wlk2GFXHt5EnDcOJOBDJVErkHzS0637m8E0eASFzKQ
-         QD4w==
+        d=shruggie-ro.20221208.gappssmtp.com; s=20221208; t=1688631362; x=1691223362;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=MwhGXVbpyW7QZfWhQZ06L6pd7GPVWoOBooUvPzw56Y0=;
+        b=ouPNzmID1yqGEv788RGmeUJ8ULIA4KpwiYj8S1vp7f3utnzQJXfxKaOeJ6IU/TU28i
+         pagKGFK2Ff9mMkwFYY1M+QKexLm9vgu2zVRBhfY+kbb1PXbrsRrpKTUjFwplSnhRf96s
+         isV9iK7WoRd8iIgun3HPNkx7QX2aYXfsP7rOo/VyjwJxCQPYahQn/EEwZmLGFuBCCdNO
+         akGqY5IGw7KvYrqZSbdR/iEvv/qRsgZObx0G/gZR2ldZPnQyqSCTAinW0JsXEzSZIPwj
+         yGQpnrUYQ9LTnYzL7UzvoDzQQhadC6uzrXTuRuO/rKLi8CkwaqIMviN6RcsPNdaEMPJ0
+         8prw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688630726; x=1691222726;
-        h=mime-version:message-id:in-reply-to:date:subject:cc:to:from
-         :user-agent:references:x-gm-message-state:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=zJHWi0dKqNhNEFb0P2yrmf3OGLkGZqjsHWf4Z19C/yk=;
-        b=IVcCvgoeepqATW4y1blvvU/bHhecmEHzLgNSBCOX4e8fqW4NlErJ6ULAI8Vew+LuM0
-         cWZshTYGh19O4yQz/UNMIlFIlRXdZCXHpGw0vKCfEjsDjlLmVGy7aBIaqSE12imD+Mz/
-         vLKXB7eVCJ7NHQiI/f1y9jVWDZl5l4TzYWTMFJ3hjdhPNyGdoT3LM93JM+rfTFwPyhKI
-         7KQ8BU6O1ITDlJqps1vDgejTXA5lNgCW+qhqYm6seIiVrTH5va0mO4hVz/ayTgco0dyT
-         pa4H2SUyP+yGd0T0KW73uhNQU74LTvsG6vMzSRjehwxO/H8N2eFjL/OI2v8WsJk3qUkp
-         fnmA==
-X-Gm-Message-State: ABy/qLZK0dDDoQ74WPAHBOi/X+e2c0bkWFyGGJRscqU1okUij3MdjwER
-        WLJgaMPhmzkBHcpD4e4hh8RkOg==
-X-Google-Smtp-Source: APBJJlEYhCxm6pyqAs9nqvYnWqjDAvElsQCZ7tCEFYVVzKXx31jc4bQGlKqT2o4Gce1OGcJdhpmu7Q==
-X-Received: by 2002:a7b:c8d4:0:b0:3fb:e1d0:6417 with SMTP id f20-20020a7bc8d4000000b003fbe1d06417mr4265922wml.19.1688630726546;
-        Thu, 06 Jul 2023 01:05:26 -0700 (PDT)
-Received: from localhost ([2a01:e0a:3c5:5fb0:4a33:b29e:11b3:752b])
-        by smtp.gmail.com with ESMTPSA id 17-20020a05600c22d100b003fbca05faa9sm1315735wmg.24.2023.07.06.01.05.25
+        d=1e100.net; s=20221208; t=1688631362; x=1691223362;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=MwhGXVbpyW7QZfWhQZ06L6pd7GPVWoOBooUvPzw56Y0=;
+        b=ebx1RHNs7Nr1xx6NjuJZDlD83LN+wPDlZqApcv7XsNH+oo2Jc9+aKAvh+S+FltOndg
+         Y0+gawzM5OQjT2ViSBy5CEAOCowsKIAJQYHHA9z6+DYa0Hft3MJB8im/VCfIdMyZFJGV
+         tv+9Ksa8vpXheJpEUJBfWlRy28i6ZsfC+NOG9OXkIYQpHm4hwUGTbQ9c4523y7xizrsJ
+         NOvoOZJ1JP2mFTNKgcGSrjGWg/HyqkcfCfWJy/CtwrQbOHX20EGm/Bir/yonq4AijjD+
+         x2l2LiTn/sllAp1VvSgtJo0tdpD4duMaBwTDaahTJUSkBgJfeVEYWWQBwOEoW6szRM8E
+         rbcA==
+X-Gm-Message-State: ABy/qLZ5Nyxyq56IEIbEu2k86ae3uc7JbNksrp1rbGuqTm9YHycsNdMA
+        8WpT2w1LzTJHP+UXbp3RWGd4Dw==
+X-Google-Smtp-Source: APBJJlGXZ37ZNT+r0LgYupdqeE60aVZISQuMjkf12+gdCtairiP3dB62U7w0DeY7P+YZ5nKsbvSU6A==
+X-Received: by 2002:a17:906:198:b0:98d:f11e:4816 with SMTP id 24-20020a170906019800b0098df11e4816mr795357ejb.29.1688631362038;
+        Thu, 06 Jul 2023 01:16:02 -0700 (PDT)
+Received: from localhost.localdomain ([82.79.69.144])
+        by smtp.gmail.com with ESMTPSA id m8-20020a17090607c800b0099364d9f0e9sm478096ejc.102.2023.07.06.01.16.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 01:05:26 -0700 (PDT)
-References: <20230705-b4-amlogic-bindings-convert-take2-v2-0-22be915ddc3b@linaro.org>
- <20230705-b4-amlogic-bindings-convert-take2-v2-2-22be915ddc3b@linaro.org>
- <20230705195631.GA1732680-robh@kernel.org>
- <1jttuh5www.fsf@starbuckisacylon.baylibre.com>
- <e1e12c86-da0d-0ae0-0542-86bdc4c81bb3@linaro.org>
-User-agent: mu4e 1.8.13; emacs 28.2
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Rob Herring <robh@kernel.org>,
-        Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: clock: amlogic: convert
- amlogic,gxbb-aoclkc.txt to dt-schema
-Date:   Thu, 06 Jul 2023 10:03:32 +0200
-In-reply-to: <e1e12c86-da0d-0ae0-0542-86bdc4c81bb3@linaro.org>
-Message-ID: <1jpm555ut6.fsf@starbuckisacylon.baylibre.com>
+        Thu, 06 Jul 2023 01:16:01 -0700 (PDT)
+From:   Alexandru Ardelean <alex@shruggie.ro>
+To:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     davem@davemloft.net, edumazet@google.com, kuba@kernel.org,
+        pabeni@redhat.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        olteanv@gmail.com, alex@shruggie.ro, marius.muresan@mxt.ro
+Subject: [PATCH 1/2] net: phy: mscc: add support for CLKOUT ctrl reg for VSC8531 and similar
+Date:   Thu,  6 Jul 2023 11:15:53 +0300
+Message-Id: <20230706081554.1616839-1-alex@shruggie.ro>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_NONE,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The VSC8531 and similar PHYs (i.e. VSC8530, VSC8531, VSC8540 & VSC8541)
+have a CLKOUT pin on the chip that can be controlled by register (13G in
+the General Purpose Registers page) that can be configured to output a
+frequency of 25, 50 or 125 Mhz.
 
-On Thu 06 Jul 2023 at 09:51, Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
+This is useful when wanting to provide a clock source for the MAC in some
+board designs.
 
-> On 06/07/2023 09:15, Jerome Brunet wrote:
->>>> +    then:
->>>> +      properties:
->>>> +        clock-names:
->>>> +          minItems: 2
->>>> +          items:
->>>> +            - const: xtal 
->>>> +            - const: mpeg-clk
->>>> +            - const: ext-32k-0
->>>> +            - const: ext-32k-1
->>>> +            - const: ext-32k-2
->>>
->>> As the names are always the same, move this to top-level and just set 
->>> the length here (except the constraints are the same as top-level, so 
->>> you can just drop this if/then).
->> 
->> If this is done, aren't we losing information ?
->> 
->> For example, "ext-32k-1" would become valid with a g12a as long as the
->> number of clocks is alright, which it is not.
->
-> How it would be valid? It would be fourth item but only three are allowed.
->
+Signed-off-by: Marius Muresan <marius.muresan@mxt.ro>
+Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
+---
 
-I missed that the order in 'items' mattered. Thanks for the
-clarification.
+The original patch was done by Marius.
+The final (upstream) version was done by Alex.
 
->> 
->> I'm not concerned by the automated verification, more the information
->> provided to the users, which we used to have in the txt format.
->
-> No information is lost here, unless you claim that entries are entirely
-> different?
->
->
-> Best regards,
-> Krzysztof
+Tested on VSC8531.
+
+ drivers/net/phy/mscc/mscc.h      |  5 ++++
+ drivers/net/phy/mscc/mscc_main.c | 40 ++++++++++++++++++++++++++++++++
+ 2 files changed, 45 insertions(+)
+
+diff --git a/drivers/net/phy/mscc/mscc.h b/drivers/net/phy/mscc/mscc.h
+index 7a962050a4d4..4ea21921a7ba 100644
+--- a/drivers/net/phy/mscc/mscc.h
++++ b/drivers/net/phy/mscc/mscc.h
+@@ -181,6 +181,11 @@ enum rgmii_clock_delay {
+ #define VSC8502_RGMII_TX_DELAY_MASK	  0x0007
+ #define VSC8502_RGMII_RX_CLK_DISABLE	  0x0800
+ 
++/* CKLOUT Control register, for VSC8531 and similar */
++#define VSC8531_CLKOUT_CNTL		  13
++#define VSC8531_CLKOUT_CNTL_ENABLE	  BIT(15)
++#define VSC8531_CLKOUT_CNTL_FREQ_MASK	  GENMASK(14, 13)
++
+ #define MSCC_PHY_WOL_LOWER_MAC_ADDR	  21
+ #define MSCC_PHY_WOL_MID_MAC_ADDR	  22
+ #define MSCC_PHY_WOL_UPPER_MAC_ADDR	  23
+diff --git a/drivers/net/phy/mscc/mscc_main.c b/drivers/net/phy/mscc/mscc_main.c
+index 4171f01d34e5..61c1554935ce 100644
+--- a/drivers/net/phy/mscc/mscc_main.c
++++ b/drivers/net/phy/mscc/mscc_main.c
+@@ -618,6 +618,41 @@ static void vsc85xx_tr_write(struct phy_device *phydev, u16 addr, u32 val)
+ 	__phy_write(phydev, MSCC_PHY_TR_CNTL, TR_WRITE | TR_ADDR(addr));
+ }
+ 
++static int vsc8531_clkout_config(struct phy_device *phydev)
++{
++	static const u32 freq_vals[] = { 25, 50, 125 };
++	struct device *dev = &phydev->mdio.dev;
++	u16 mask, set;
++	u32 freq, i;
++	int rc;
++
++	mask = VSC8531_CLKOUT_CNTL_ENABLE | VSC8531_CLKOUT_CNTL_FREQ_MASK;
++	set = 0;
++
++	if (device_property_read_u32(dev, "vsc8531,clkout-freq-mhz", &freq) == 0) {
++		/* The indices from 'freq_vals' are used in the register */
++		for (i = 0; i < ARRAY_SIZE(freq_vals); i++) {
++			if (freq != freq_vals[i])
++				continue;
++
++			set |= VSC8531_CLKOUT_CNTL_ENABLE |
++			       FIELD_PREP(VSC8531_CLKOUT_CNTL_FREQ_MASK, i);
++			break;
++		}
++		if (set == 0)
++			dev_warn(dev,
++				 "Invalid 'vsc8531,clkout-freq-mhz' value %u\n",
++				 freq);
++	}
++
++	mutex_lock(&phydev->lock);
++	rc = phy_modify_paged(phydev, MSCC_PHY_PAGE_EXTENDED_GPIO,
++			      VSC8531_CLKOUT_CNTL, mask, set);
++	mutex_unlock(&phydev->lock);
++
++	return rc;
++}
++
+ static int vsc8531_pre_init_seq_set(struct phy_device *phydev)
+ {
+ 	int rc;
+@@ -1852,6 +1887,11 @@ static int vsc85xx_config_init(struct phy_device *phydev)
+ 		rc = vsc8531_pre_init_seq_set(phydev);
+ 		if (rc)
+ 			return rc;
++
++		rc = vsc8531_clkout_config(phydev);
++		if (rc)
++			return rc;
++
+ 	}
+ 
+ 	rc = vsc85xx_eee_init_seq_set(phydev);
+-- 
+2.40.1
 
