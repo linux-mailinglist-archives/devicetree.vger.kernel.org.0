@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EDBF7496EF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:00:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C34A37496F0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:00:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233208AbjGFIA0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 04:00:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33480 "EHLO
+        id S233959AbjGFIA2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 04:00:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33504 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231592AbjGFIAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:00:25 -0400
-Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2306C121
+        with ESMTP id S233660AbjGFIA0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:00:26 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B128F1988
         for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:00:24 -0700 (PDT)
-Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b69ed7d050so5055971fa.2
+Received: by mail-wm1-x32d.google.com with SMTP id 5b1f17b1804b1-3fbf1b82dc7so3724585e9.2
         for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 01:00:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688630422; x=1691222422;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=/DNkwga6/1zv+vFjJEB0SiQmwB5Ncp/pmSfHFUcuS9M=;
-        b=G7qX29I1jdpViSoQGgBbNX5C8dKhOdGzeZbvLWDR1rzLF7CVPQQd6GDia7C9VWs/1K
-         v4w6+eXenU58ba8bcfw+DUQqbgXsSTg8cIOSY2GnoFyxw9PhHpzh7QwO+9NCEVbCNjN1
-         LgoMqpsnok/1Bd9RtTBOC7xe+BShfRjwXOu1k0s0Fmd1t46rMNOTYZXxizv5qCga04lS
-         uEhpPHTG5Iz+wAn0A101N3SmE6O2PYr60+JDNmBxywhXBSNwlMIeP+uZB5OUEXxToLSc
-         zrGeIIDBs2XgQZmVVRExcPUkVPXn8+n0fEBO/u4dF0B8vbojWU7ROC4Ccag3sxDSRuUR
-         rGOQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688630422; x=1691222422;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1688630423; x=1691222423;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=/DNkwga6/1zv+vFjJEB0SiQmwB5Ncp/pmSfHFUcuS9M=;
-        b=JwrcP2x1Ofk2d+OO0eJo/LD4qyiNkMjewO8i/Qd1SJZF2fmBasbFOhr0L5AX7rSGjZ
-         0k18diz7CSIinGXaoUCf/VgyEJTi81AOxRQTSFPfvCta/eZhD0MBwCsMcm+QX5DNwzST
-         XepqmLP2osYX29L1DsPtUFEu5wF2v4GpBttGsbkExb5WqEas7jwQu+ao9xW04wBG8h8r
-         T7e4EsSrQo4Jx6GpsIgo2VUazeLehZ1bjZh5HrQXqi5tYJtrc9LQgwyaTeaB/FeSl4TU
-         nW2lI5GyzCNa3/UDME38IVyZI92k/YFokh5JJ8uD6mweOdcTGB+0oFaQUsEFArLYOP1X
-         NnFQ==
-X-Gm-Message-State: ABy/qLaV3zAXf/RqQTmTzbmxerQZfj9ufP0ZzKLhuT3gH8L2dH8pqbQm
-        m64GWc99I8AqvuoR/lgXEscvfA==
-X-Google-Smtp-Source: APBJJlEnXhY57vPXHaptivx2QID3UN3PcCRn5dL8PFd7YS6Al9ICw2IXkurEZoa0Pc8MfVmloyHkzQ==
-X-Received: by 2002:a05:6512:10cf:b0:4f3:d682:7b1c with SMTP id k15-20020a05651210cf00b004f3d6827b1cmr1061597lfg.45.1688630422283;
-        Thu, 06 Jul 2023 01:00:22 -0700 (PDT)
+        bh=2LzHyhZ3766ra+sxcNP/ExwsumD2y82rPN/8KknPtQQ=;
+        b=ZSgCD5/Xzqc6ohe6XCBNIU6cfiQLO6qfelgjYmIgVMH6wsNy7tcTIGIiMQb342DpJ6
+         VbLBQWfsvvoBKjjJUp3sckHi2+4Jf5B1XgNFM0LIBKQXRDvwatSv62qKfIanzq4jlmXx
+         IEKf9O831C0xkuzXpIo+89mvBVfi9hMOH4noDfAemSUE4wskxb5IkcTN5sXX5KWu6jzB
+         luBPMmTPSvUbsASCMPkA/eIUx4zXo1UJaQEppXXRUK6oSo2bjyaWlc5uA2IXmGPn5DeJ
+         84mF1V74XLx2Z4cl954Q9+Xq1b/CHScc+Tm/Y71Qib8E/CWJ/+3joAxQzOR24mwRu2iW
+         pM0Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688630423; x=1691222423;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=2LzHyhZ3766ra+sxcNP/ExwsumD2y82rPN/8KknPtQQ=;
+        b=gU4X+0j+GaREmLMSS/p1kUHKjepx32b5q8lxbHU+R8rePUqfWR05WF+Irvq5qM9t/e
+         yUyDWQ8sFhfxKiDR+1WZzGMavJ0zJbzZt12ZLI5u/i6MKdP1GVMfnD6C6xKtsHKQxFk1
+         H4w4NDhyBRJoZ05hUWM7wKrwUSaLJcQgYT1oS5+heElmImdiwrnhJq7P1DoPpvT14e45
+         JQH7RueiFwNSQILVcYmiGURvZy0Olv61gPrgB8uDF6PhDtPfjyQK1gulR08gdSwTnXbJ
+         xvJHu1KsEnPT+IMARiRNVETUHM2rPN/YLaDbkg+/JrhmOsA15bUxVM3mnBZv+ypJzLRN
+         x95g==
+X-Gm-Message-State: ABy/qLaXLm6TIANkZL2S/EZnFZgRPVXBX022HG0VNKoJGUPjS5RabKZi
+        QWgFPog0NcC8fVs0HllJTN1kcw==
+X-Google-Smtp-Source: APBJJlGe9XBa7Qp5BI30NOFwdvROYBJIKr2+P7IwtfymzU6PMiAIhnzVSR0r4JA7sctPv67fYXpfiA==
+X-Received: by 2002:a1c:ed07:0:b0:3fb:d68d:4c6f with SMTP id l7-20020a1ced07000000b003fbd68d4c6fmr735323wmh.14.1688630423141;
+        Thu, 06 Jul 2023 01:00:23 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm5587375wmn.0.2023.07.06.01.00.21
+        by smtp.gmail.com with ESMTPSA id v6-20020a05600c444600b003fbb1ce274fsm5587375wmn.0.2023.07.06.01.00.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 01:00:21 -0700 (PDT)
+        Thu, 06 Jul 2023 01:00:22 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH 0/3] arm64: meson: bunch of DT fixes, take 3
-Date:   Thu, 06 Jul 2023 10:00:18 +0200
-Message-Id: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
+Date:   Thu, 06 Jul 2023 10:00:19 +0200
+Subject: [PATCH 1/3] arm64: dts: amlogic: meson-g12b-odroid-n2: fix usb hub
+ hog name
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAJJ0pmQC/x2M0QrCMAwAf2Xk2UBdYUV/RXzI2mwG3VqaToSxf
- 1/w6TgObgflKqxw73ao/BWVvJpcLx3EF60zoyRz6F3vXXADtlwkIi2fPBu3oq0yLZgaTvJjxUZ
- v9himW/CJ2I0+gL1K5X+21eN5HCdo8is2dwAAAA==
+Message-Id: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-1-63ed070eeab2@linaro.org>
+References: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
+In-Reply-To: <20230706-topic-amlogic-upstream-dt-fixes-take3-v1-0-63ed070eeab2@linaro.org>
 To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
@@ -68,25 +69,25 @@ Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=885;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=940;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=9h0g8V0w4EZoDM1hBdRwvYsmKbF4/IRNYRMwqyBNE84=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpnST3ef3Co4BQAMsluEBGzZJtGLRbBpeHL0x8pHU
- 3GCjLwOJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKZ0kwAKCRB33NvayMhJ0WJ0EA
- CQ4qXCQThfkl+Emmx3JFRIMpaWg6plyZsXdJDXQ/863MYrlAs8/E7y92jh+Z3zgLtht6RkS2P4SQ9w
- +ds1nUPxTRSKY18bkPqW1EbRR6wqTE6WusHxDsebA39Q7iDU4Q26/25RfKwv4EiT5awYGX0h6IHqPQ
- JVOLttScBO9oeqEEg7iBfGwWE6nC5Z4cBVEUnDduycnC9hbh9ryYY0uDjbJ3euyQaA6WKVc8PdAjks
- mwcS9Bdd2RHYoa/MpGdrJsebeIKbtK3dqktRmwjMBXdZqKRtLdlmX7De2FLov/GWh1pp3rIIMtqJHZ
- ZAF7BiwWRURsUS64JvAztfFmZhT492pa9wyDakwFzyrP0WrwDaUsKOp7G+M62IFFWF6dJLjgNQt5nm
- fWT8KdjdLQof6HZr11ymke8v/bU1flFAQB+5pgX5D3I35MeQBjGrqLHVriwucdYO7gaqg2U88056ly
- mzSq2DQDFDnMMp3kZYPadJOpOUjoNemlMwQoTHzedohzHyIn7G8iH1NwHZehcHj3zUmNPDwv41POWi
- dcHCTFcvFbVmkxtAcsKV6EbC/gvj196z/oBaTiCls6zFvcyIjnWwCCjxxBxCPtFE2i9o9Ct/zviutT
- 4a8iLWD8s5L1mBJd5qIpyUjy5Nej6LO+Amy28RgWgfdqDB9sELuI1GPUMbHw==
+ bh=wn8G9m9VDqCtr/Okvn3AKh56BVrmR4ClWOMn8WHW110=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkpnSUB+oLOF9akswI4NJw72dITuS/RSonHhGvRoy5
+ gV/fRbmJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKZ0lAAKCRB33NvayMhJ0dYnD/
+ 9cZOf8YLC6qO8huvFBeEB2BlULKccOvHgjcA5v8Y4ThC8O6ljFtGTOyX+3g1LuH3qmVH0L6UxePztA
+ G4tc1L+I5R6NA/obmIRMEo0sL0lNguMhGgIYv6xdrtLpA4vj9tv5yl7yl7jcOnCHMFVDA0vUnkQZDM
+ WlASAMt+TIbSmtl+8UWoASGYX79nAPGtwoThSGj2K7mIb5Ru53S2JMnu/154qfenPwIsIi/dXYS0Xk
+ 9QgACEaVR6ryPsAFAV32V36nJ0gOcfYWy7XIb/eWsbD3q7GlC1iIwav2GSeCN2O8N63VEyBUaqDqAw
+ WoHPbqTFqrGCGzEMgEUelo8/Zw2IYLFKkdjUPOOt9lhfIpEL4MueecfRS+KQCnrgODguNOf4x+jUT5
+ 3yxuP96489pIt6l9S1+t2WDizbuNv1q8F9otDpSLzD6Jku+DANbhkQVv9ya5VGM07oL7hJpOOkavH8
+ vPiUd/SaU0zp896cT7IZt8QH1VraYL3cWHnPXIlXbf6v9a1umYlQexli1k92HOMLSkC6MEMkEZ3qS0
+ /T5wcbOfC5djNlNaE+lrIWt/peIdcL8sC2AVNuKEz73KzWY6v+byczo5IvWZOMdMm7Z4Fk/WlK3ztK
+ uuzX5slsMVN8NPRRkAGtfTvfgvD70281Z+PnwPZ4CE6NdW7Iya0hsxXme4wg==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -94,25 +95,28 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a bunch of fixes against the current applied and reviewed bindings.
+This fixes the following dtschema check error:
+arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2-plus.dtb: pinctrl@40: bank@40: Unevaluated properties are not allowed ('hog-0' was unexpected)
 
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Neil Armstrong (3):
-      arm64: dts: amlogic: meson-g12b-odroid-n2: fix usb hub hog name
-      arm64: dtb: amlogic: meson-g12-common: change aobus-pinctrl node name
-      arm64: dts: amlogic: drop cooling-[min|max]-state from pwm-fan
-
- arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi     | 2 +-
- arch/arm64/boot/dts/amlogic/meson-g12b-bananapi.dtsi  | 2 --
  arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi | 2 +-
- arch/arm64/boot/dts/amlogic/meson-sm1-odroid-hc4.dts  | 2 --
- 4 files changed, 2 insertions(+), 6 deletions(-)
----
-base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
-change-id: 20230706-topic-amlogic-upstream-dt-fixes-take3-7f973dae0b37
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Best regards,
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+index 24d0442dffb2..a0b6646f73e4 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dtsi
+@@ -241,7 +241,7 @@ &gpio {
+ 	 * This signal should be handled by a USB specific power sequence
+ 	 * in order to reset the Hub when USB bus is powered down.
+ 	 */
+-	hog-0 {
++	usb-hub-hog {
+ 		gpio-hog;
+ 		gpios = <GPIOH_4 GPIO_ACTIVE_HIGH>;
+ 		output-high;
+
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
