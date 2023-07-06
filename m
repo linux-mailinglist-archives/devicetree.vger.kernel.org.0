@@ -2,119 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 469EB749B79
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:13:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B7F3749BB0
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 14:29:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232302AbjGFMM7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 08:12:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60272 "EHLO
+        id S231849AbjGFM3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 08:29:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36678 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232432AbjGFMM5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:12:57 -0400
-Received: from mail-lf1-x130.google.com (mail-lf1-x130.google.com [IPv6:2a00:1450:4864:20::130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C1BE19A0
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 05:12:55 -0700 (PDT)
-Received: by mail-lf1-x130.google.com with SMTP id 2adb3069b0e04-4fb9ae4cef6so840268e87.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 05:12:55 -0700 (PDT)
+        with ESMTP id S231706AbjGFM3Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 08:29:16 -0400
+Received: from mail-wm1-x331.google.com (mail-wm1-x331.google.com [IPv6:2a00:1450:4864:20::331])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C91B919A0
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 05:29:14 -0700 (PDT)
+Received: by mail-wm1-x331.google.com with SMTP id 5b1f17b1804b1-3fbef8ad9bbso7035755e9.0
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 05:29:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688645574; x=1691237574;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688646553; x=1691238553;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=eCOVUK9V8z/x1Thad53qnFqqGUkU711ApVBne/oyWeY=;
-        b=sNFCebxbR41MtEhtSQUKMTqJjk7ECC7CPb3H7aCiGYe/Y+JdfxK1pDGIYQpdZF5BKQ
-         X6QYtXSpFIuXmnh/9WLxf0hnHh8EtGv9sq7aQckriFm8//PtnG8niveRRA/3eMxBhYf0
-         mTKKV7ZDSnnbz6dbUk+zJkJzCNAZkiHzQvT0xKHm6z4fSDs7W0vvS7YPb2udwUfmQGJW
-         7x190SWDu8mCU6CmXbgA9clKRHBGYtZg2BwyaLH/or4eMQ3Dqigsknc2ReTnRINB31iC
-         hBaqJkM7oT9eKIcJ8Ev5o9OLT8642YfXPLTneHl/aALsbroyM5kv0aZSyAZ7EZbMlojW
-         k09Q==
+        bh=QrwyGG22yUz0pXaaxwTuGI5EuvBFjwW6o/zgDSSwkOQ=;
+        b=Lgf1cOi+4+QGjJ6vTEGvJWc7DzjQzfv4w5BKVmRE40HSst27WRxPaOwU150CLSXJ4j
+         BO+HNRiJ1qXMampj7+/nE6mFbHRSRf0vi+7jG1/JddtB6urUwJiinZj33ugaWTSzNx3q
+         A4c2ryH1s9an3latetN75IwkfRPlx+fk842mO63qnWoz5ADaoP1OmvMep52wcA+K3mcU
+         HOZGbBB1RR9daw2jLO6jKBkgYgxjCY0S8W/Pgwgrnybzzyh1Dvqv6138oMRL+ikpYh9g
+         /NWnaO7yQrhKl1UcQTelDCmA6+H7SEthcRmzLsGS4kvwV+ZJ2Foy2cLZYpr3ZSiUsKyT
+         5TUA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688645574; x=1691237574;
+        d=1e100.net; s=20221208; t=1688646553; x=1691238553;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=eCOVUK9V8z/x1Thad53qnFqqGUkU711ApVBne/oyWeY=;
-        b=ekH5narkDfnykoPdo8hZoxeUXzj/aiUF+Xlv2O7y4ooBXZPGgAU/9TqbMv1b1CVGlo
-         1AGudDRbgKWHa1gGCl/ulIK0KyvVIXZk/N7HGU79Znqw4cGfKL7QMFlZL6sEe/qKBEeC
-         zRvZfc6U8xM3sxiyGLR967B3RynTOn6M/Y5kNr5c44tX/qsyd3RqyIPdtCErd780W4KM
-         cjMXZjTYvSS8taOPWeFk/6CrVtjISkKhZlHP72qBJbS8KsnFKG0lAieG+jDJgMFMnzMX
-         u+qMfJgtnEg6jPqPEJSs+CVmIG9pX/gua2rxA/VxNwI2KlUrHzoaGQLgPuva75uprUM+
-         lN6A==
-X-Gm-Message-State: ABy/qLblePNfMQaJ1+EddpdryTF6RUbWQ0LcvMnQirsurd/zY4GX9Aj5
-        4oJioNQQKMrLWCD3RDWmnGbbFw==
-X-Google-Smtp-Source: APBJJlGlb5wLmYtED5PMTrWEhdmg5Zph4EtRP/kgQEPFSN6KS+oRNR4Ei5uxAPG5QgIwUyis8yArfQ==
-X-Received: by 2002:a05:6512:3d0d:b0:4f9:7aee:8dc5 with SMTP id d13-20020a0565123d0d00b004f97aee8dc5mr1629293lfv.19.1688645573888;
-        Thu, 06 Jul 2023 05:12:53 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id k16-20020ac24570000000b004fb81fbeb33sm227379lfm.251.2023.07.06.05.12.52
+        bh=QrwyGG22yUz0pXaaxwTuGI5EuvBFjwW6o/zgDSSwkOQ=;
+        b=eWm3BpjVS0dfzIXheQBB8xhItLodpYKnUPeOzIaWl2fAbsDfwNXt8EHZPGRPtAxSlW
+         rd/fq468UcT95RmSqJj59RFutGeDZWJy7RAFCQlSDwpPPxWWPZQcWAbazx00hYFaOtHT
+         ybmKz1rgDNklQpbw/U0a23BTb+sRd7ILmh0WNYeeGWqt0GELiEbq/L7fmTVyzBfcem9u
+         EFN1/J3jNju4JpdIW4QrwPrBNcWRrCtx54RwhAlu62tpxhr2awoTD6L8c4aIHUxxRH6z
+         o2Lr566Jai58MrNoYDci+MbwmzkC7r2bwG4sixEqaZYJlKyGxehv+UCf3IPZG27hcW4e
+         /jmg==
+X-Gm-Message-State: ABy/qLaMjKzeN/qoOXwKh0xHA/Pb7m4mRcaShqxI+8SwdF1yIOPu7Lo+
+        oz6LMwoTws4aw/sMoeRryRV4+mKzLoFhohqRRbY=
+X-Google-Smtp-Source: APBJJlENtsBPpzfe/86erIipmcvmcmpI0mPj2K7COvY/9J7rNN04Fa6U7vYjLisS/xtXgMELnlW8qQ==
+X-Received: by 2002:a7b:c5d4:0:b0:3fa:9e61:19ed with SMTP id n20-20020a7bc5d4000000b003fa9e6119edmr1221201wmk.23.1688646553292;
+        Thu, 06 Jul 2023 05:29:13 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id f14-20020adff44e000000b003142ea7a661sm1799342wrp.21.2023.07.06.05.29.12
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 05:12:53 -0700 (PDT)
-Message-ID: <9b93bbad-1299-2afb-eac1-218cf209b293@linaro.org>
-Date:   Thu, 6 Jul 2023 14:12:51 +0200
+        Thu, 06 Jul 2023 05:29:12 -0700 (PDT)
+Message-ID: <55c3a448-e6c6-5e04-2cee-b2a18f0033e3@baylibre.com>
+Date:   Thu, 6 Jul 2023 14:29:11 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v1 0/6] arm64: qcom: sa8775p: add support for PCIe
+ Thunderbird/102.11.0
+Subject: Re: [PATCH] pwm: mtk_disp: fix disp_pwm coverity issue
 Content-Language: en-US
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>
-Cc:     Mrinmay Sarkar <quic_msarkar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, quic_shazhuss@quicinc.com,
-        quic_nitegupt@quicinc.com, quic_ramkri@quicinc.com,
-        quic_nayiluri@quicinc.com,
-        Lorenzo Pieralisi <lpieralisi@kernel.org>,
-        =?UTF-8?Q?Krzysztof_Wilczy=c5=84ski?= <kw@linux.com>,
-        Rob Herring <robh@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Kishon Vijay Abraham I <kishon@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-phy@lists.infradead.org
-References: <1688545032-17748-1-git-send-email-quic_msarkar@quicinc.com>
- <20230705084606.GF11854@thinkpad>
- <a450e2e8-307d-49e9-d76d-de397b801a96@linaro.org>
- <20230706111218.GA4808@thinkpad>
- <878103c6-0dc3-164b-92ce-17ec4f87bff6@linaro.org>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <878103c6-0dc3-164b-92ce-17ec4f87bff6@linaro.org>
-Content-Type: text/plain; charset=UTF-8
+To:     Shuijing Li <shuijing.li@mediatek.com>, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, matthias.bgg@gmail.com,
+        angelogioacchino.delregno@collabora.com
+Cc:     devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Project_Global_Chrome_Upstream_Group@mediatek.com,
+        jitao.shi@mediatek.com
+References: <20230706100454.28998-1-shuijing.li@mediatek.com>
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230706100454.28998-1-shuijing.li@mediatek.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.07.2023 14:09, Krzysztof Kozlowski wrote:
-> On 06/07/2023 13:12, Manivannan Sadhasivam wrote:
->>>> Please note that the dts patches should come before driver patches.
->>>>
->>>
->>> Why? DTS is always independent thus usually put at the end of patchset
->>> or better separate. It is the first time I hear that DTS should be
->>> before driver.
->>>
->>
->> This is what I was suggested by Rob during my initial days and I've been
->> following this pattern since then. If that's not the case, I have no issues.
-> 
-> I really doubt Rob ever suggested that. He probably suggested that
-> bindings must come before user, but not the DTS.
-Besides, the flow in this patchset is very logical from the Linux POV
 
-1. describe the hardware in bindings
-2. implement the drivers, conforming to the description
-3. describe the hardware in the device tree to ensure the (now
-   existing) driver probes
 
-Konrad
+On 06/07/2023 12:04, Shuijing Li wrote:
+> There is a coverity issue in the original mtk_disp_pwm_get_state()
+> function. In function call DIV64_U64_ROUND_UP, division by expression
+> Which may be zero has undefined behavior.
+> Fix this accordingly.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
+> ---
+>   drivers/pwm/pwm-mtk-disp.c | 9 ++++++++-
+>   1 file changed, 8 insertions(+), 1 deletion(-)
 > 
+> diff --git a/drivers/pwm/pwm-mtk-disp.c b/drivers/pwm/pwm-mtk-disp.c
+> index 79e321e96f56..ca00058a6ef4 100644
+> --- a/drivers/pwm/pwm-mtk-disp.c
+> +++ b/drivers/pwm/pwm-mtk-disp.c
+> @@ -196,6 +196,14 @@ static int mtk_disp_pwm_get_state(struct pwm_chip *chip,
+>   		return err;
+>   	}
+>   
+> +	rate = clk_get_rate(mdp->clk_main);
+> +	if (rate <= 0) {
+> +		dev_err(chip->dev, "Can't get rate: %pe\n", ERR_PTR(rate));
+> +		clk_disable_unprepare(mdp->clk_mm);
+> +		clk_disable_unprepare(mdp->clk_main);
+> +		return err;
+> +	}
+> +
+>   	/*
+>   	 * Apply DISP_PWM_DEBUG settings to choose whether to enable or disable
+>   	 * registers double buffer and manual commit to working register before
+> @@ -206,7 +214,6 @@ static int mtk_disp_pwm_get_state(struct pwm_chip *chip,
+>   					 mdp->data->bls_debug_mask,
+>   					 mdp->data->bls_debug_mask);
+>   
+> -	rate = clk_get_rate(mdp->clk_main);
+>   	con0 = readl(mdp->base + mdp->data->con0);
+>   	con1 = readl(mdp->base + mdp->data->con1);
+>   	pwm_en = readl(mdp->base + DISP_PWM_EN);
+
+IMHO, it should be done int the function `mtk_disp_pwm_apply` too.
+Do you agree ?
+
+-- 
+Regards,
+Alexandre
