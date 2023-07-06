@@ -2,268 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D59ED74977C
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:29:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 544CE7497A4
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:45:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230504AbjGFI3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 04:29:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46764 "EHLO
+        id S230125AbjGFIpA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 04:45:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50326 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230477AbjGFI3r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:29:47 -0400
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com [205.220.168.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D62D8173F;
-        Thu,  6 Jul 2023 01:29:45 -0700 (PDT)
-Received: from pps.filterd (m0279862.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3664YUHY001066;
-        Thu, 6 Jul 2023 08:29:41 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=qcppdkim1;
- bh=voGb2ArOH7ZKnpUQMYPZhEBsNYF91rK8OUaMy4ilX8I=;
- b=PIokNfMhSFMmcpQTu/HaHg5eTPPOWWHaiJFqRapLprOMH6TGI14hqSaHpSlR4faheB8D
- LyRr9XwBS3V/N6yZF5Ppe5Mg4gVCecgztPDB8XhpdY7+I4SC4+T7pjz+L8xokpTtq/Bg
- O7makrFHc7ut7uwAAHn23Q8Hk/I1kCmcMTHrAei8UdtD6R8lIKuEO+xAumoG/3+A0dJY
- CJjiCDLXTKlZI/HUZCDk4tgFR06NmcDmlXkIb8LZg4Ptg9JktbX0P8hnLk22+qBCSdMu
- S22cyWH7ik19MNnmJKvWu2ADN43n3m5fBewEvCLQOaPr/ET3Md4dmy1cJRpszVqxpjZw /g== 
-Received: from nalasppmta01.qualcomm.com (Global_NAT1.qualcomm.com [129.46.96.20])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rndvp19ed-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 06 Jul 2023 08:29:40 +0000
-Received: from nalasex01a.na.qualcomm.com (nalasex01a.na.qualcomm.com [10.47.209.196])
-        by NALASPPMTA01.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTPS id 3668TeMp016596
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 6 Jul 2023 08:29:40 GMT
-Received: from [10.218.5.19] (10.80.80.8) by nalasex01a.na.qualcomm.com
- (10.47.209.196) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.1118.30; Thu, 6 Jul
- 2023 01:29:33 -0700
-Message-ID: <38b3631d-b52a-133c-4d1b-76ce12b2e7dc@quicinc.com>
-Date:   Thu, 6 Jul 2023 13:59:29 +0530
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH V5 4/5] clk: qcom: camcc-sm8550: Add support for qdss,
- sleep and xo clocks
-Content-Language: en-US
-To:     Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        "Michael Turquette" <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
+        with ESMTP id S229489AbjGFIo7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:44:59 -0400
+Received: from APC01-PSA-obe.outbound.protection.outlook.com (mail-psaapc01on2118.outbound.protection.outlook.com [40.107.255.118])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E8B19BE;
+        Thu,  6 Jul 2023 01:44:57 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FKuEzYkUvE0yJroDWvI85LK9aad86UI6LzFujmBN3AtfEtuhcB0C1iGrKDQM6mI/k4Bkgq+UUEsFWa8dlGZEhdxyVOglMSpAouxW9HXB4IwgKgITz+SVknchvfAd0C/+sdQoUd4+6D9va4Y50F8CFjUyvkWDXSuS3jxbYt7+KpCqCsYM79cr/XzXOwmDnYRbrfxR1erWVZy4obH5YOyBoIJ4fVxewl15CHFWsfnITXmfHfHyhZHoQIscf+YnIUyX3gVCsoiaglgahGwwiw4WQUtTPQoWYekebywHQ2KXupU1aLwy8C5Sobt+NdUW/ss3NVrAcaM71yjxtU2iksofkQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=SY484SkOMkgpFQZ5yf64+WuWK7rmFeN8PwPbjghjyfY=;
+ b=Sni7kY2wSOgxjWsnuXCaT+rHE8Yx5IYV3mnetPuVb50GI3sk8/3ldVwfjKet4VEn5zmIFK9xADW2KtDh8NnJqYbohQ6nqynjocNdGzQ3OqC2fYEP+pOvxc8sdM+6jjLQ4wSmwdEtEUjfoDmezx+g34pT7SOcN7CoytVcIAwI1IFYkhmj2eDF15pJlV7OenLNSqxUGwnNZQii6LDXy/OQD0Cw3rPoXQit4Nho7ISdyWpm2su2LH1ry0ksDb7NSD8/6dI6OdmZyc4UtDqkbQYJ1Z/4Oz0oQmS4vh4QMZg/rdvjgzl+8wDcu8EV+6HCEUoJSnIfwF86twekRsDTnkOznA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amlogic.com; dmarc=pass action=none header.from=amlogic.com;
+ dkim=pass header.d=amlogic.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amlogic.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=SY484SkOMkgpFQZ5yf64+WuWK7rmFeN8PwPbjghjyfY=;
+ b=Fu9Ce3xsKFkYiTPTkPSWXvi7dKRHYPZWxdmE/7wx/+AdeJVVcE6hsllwleHAcjxM+KNGFWbCEfIBGZ+/hGCQWIcx6iAFJdT8H5mpcsNJ6fGGAL/HziBqWDnTq21ikEJoOjDW6alu8COD93lsN9MwdGocA23hvah4QoKOidg0MpqrWk6PCBNLBkBOjl+8KGMN1LJWwFld8XhrQ5Yo5PdDqKWCyDLhiXhi7Q5r0evn/1OTd7NVAAANXu70KV28rOZ0k8+d0oDAAVUfEcpra3keg7O2KXHqqvce2nh0dlj8nF57JspCdOvPi9Qsj6ZM7/1QK8VicgWbK9tK16ybX4wY0A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amlogic.com;
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com (2603:1096:400:289::14)
+ by KL1PR0302MB5362.apcprd03.prod.outlook.com (2603:1096:820:40::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Thu, 6 Jul
+ 2023 08:44:54 +0000
+Received: from TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::c478:28ff:9d91:61f5]) by TYZPR03MB6896.apcprd03.prod.outlook.com
+ ([fe80::c478:28ff:9d91:61f5%5]) with mapi id 15.20.6565.016; Thu, 6 Jul 2023
+ 08:44:53 +0000
+Message-ID: <8c1e84ab-e5e0-a3c8-517f-ced3dc516d3e@amlogic.com>
+Date:   Thu, 6 Jul 2023 16:44:45 +0800
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH 2/2] arm64: dts: add board AN400
+To:     neil.armstrong@linaro.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-CC:     Bjorn Andersson <andersson@kernel.org>,
-        Vladimir Zapolskiy <vladimir.zapolskiy@linaro.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-clk@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        "Satya Priya Kakitapalli" <quic_skakitap@quicinc.com>,
-        Imran Shaik <quic_imrashai@quicinc.com>,
-        Ajit Pandey <quic_ajipan@quicinc.com>
-References: <20230623164619.11464-1-quic_jkona@quicinc.com>
- <20230623164619.11464-5-quic_jkona@quicinc.com>
- <11b3058c-2261-95a4-2347-b0a33fdeb1e3@linaro.org>
- <99aebcb3-89d4-993b-5bc1-abc475b94843@quicinc.com>
- <a10cdae8-3f18-7ffc-8db7-ab21b47b91ca@linaro.org>
- <a04dd502-bd0f-e5c2-c935-16d221fb86cc@quicinc.com>
- <35b32667-fa29-3e00-1cad-e12a3eb7f362@linaro.org>
-From:   Jagadeesh Kona <quic_jkona@quicinc.com>
-In-Reply-To: <35b32667-fa29-3e00-1cad-e12a3eb7f362@linaro.org>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
+References: <20230704031636.3215838-1-xianwei.zhao@amlogic.com>
+ <20230704031636.3215838-3-xianwei.zhao@amlogic.com>
+ <112727a2-29c5-1402-deb7-f35119b4338e@linaro.org>
+Content-Language: en-US
+From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
+In-Reply-To: <112727a2-29c5-1402-deb7-f35119b4338e@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.80.80.8]
-X-ClientProxiedBy: nasanex01a.na.qualcomm.com (10.52.223.231) To
- nalasex01a.na.qualcomm.com (10.47.209.196)
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-ORIG-GUID: ISa-C9ayBufkoq_zvpX9LaKq352S06aG
-X-Proofpoint-GUID: ISa-C9ayBufkoq_zvpX9LaKq352S06aG
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-06_04,2023-07-06_01,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 suspectscore=0
- mlxscore=0 malwarescore=0 adultscore=0 priorityscore=1501
- lowpriorityscore=0 spamscore=0 phishscore=0 bulkscore=0 mlxlogscore=999
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307060074
-X-Spam-Status: No, score=-2.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+X-ClientProxiedBy: SI1PR02CA0056.apcprd02.prod.outlook.com
+ (2603:1096:4:1f5::7) To TYZPR03MB6896.apcprd03.prod.outlook.com
+ (2603:1096:400:289::14)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: TYZPR03MB6896:EE_|KL1PR0302MB5362:EE_
+X-MS-Office365-Filtering-Correlation-Id: 3df0d48a-8454-43c2-df13-08db7dfd44a1
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: xQ/uT89+mFvX2kyLz8h59IbGbKFNnOvnbgyEsOYqWmnh/sufHaTp7UoIKUqbwuXIlCTMnG4iWERz931GjIANjE7W1FJWRilsRPhV3dclvLKqdDXHKG1Xf4KxZX4Kx376tdBdyOgh23ge2Cv0oGFpXkybnc9Gz5v6kXw/ZBGBAymp07H4VsbOB168JCIGAcHIx+YowM7CX6ZIZnPI7yQZ3OKIrre/f/9s9eRv1giMv2wQ63x0Yh5O978bfmy7QPG1tFtKhMoWONQuKWjtnUn607GnzLJfFtwttR0Jnj9jyaN5dHrpjZJEr9FYhVDZe4JOBOQjBPw8o+Ueuoufe5BfnoRQ0bM08w2WcBVwt2FfMcx3X1Yr1+n+C+BIInjXfngB4aoe4LZuwpHNPxXCrA/rI7vktQQxo3qmW9FDQGbX1KjcGWLXOzk8tv5inrI2jaarzGNEdtJCiJdAhsc2QKNF9vtdEt7sOtIN6QpNh2emd+TPYeJ7ilbWE+wILAa0r90504z+F1KfC9ngEwkfFEu89UOApQL6nBIHjzi754Z5Ba0DkoXlrvnOVVb98Qezam7n4bbGCMD/vIP7QX6sq0s6JkeYUvT6gyC9Fbhfx3leqkFLu3Ts3zp6TmUCiWzAdHQ1x+huZRtdQwQYHbQKaars4X6uvfqqaB5nDkYR5T2GaMEcQMulJ7rZf36aQEIwcZAEzw9OZVYChn9zfcHHB++t5g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TYZPR03MB6896.apcprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(346002)(366004)(376002)(396003)(39850400004)(136003)(451199021)(66476007)(4326008)(66556008)(2616005)(31696002)(86362001)(186003)(53546011)(6506007)(26005)(83380400001)(38100700002)(66946007)(6666004)(6512007)(478600001)(6486002)(54906003)(41300700001)(36756003)(8936002)(44832011)(8676002)(31686004)(7416002)(5660300002)(2906002)(316002)(43740500002)(45980500001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVVZcjhLSUFPaC8zYWFvNU9jdzNFNWMvbTFSYytucENxdUUwQldkb1ZJbUlR?=
+ =?utf-8?B?U0x4OGRJY1ZtR0VOMTM1RmhMa2JoUXZoU3M3Y1lXOENHS0RqMUJYNVNzK0Z2?=
+ =?utf-8?B?NmsxMm4zTHVzVDJPeDc4b1FuOUZid3VEalhMY1J1bW0zK0Njb1NoNFFZZC9m?=
+ =?utf-8?B?aHdwbmpmS3RGQ3dsNzhocHBpZCtrZThnTkVsQnNmcVV2VmpVbXF0RER5c21y?=
+ =?utf-8?B?V2dGM1FUQWY3RUc4VVBxNktzajJVRk5idWtlMExSNzBGQzQweEpoOXhicEt2?=
+ =?utf-8?B?MVQwKzBHYXRSZy90OWtUWWdKbnBKc2czbGlRdFp1YUl0cEluTkpJL1NYUHpO?=
+ =?utf-8?B?RnpUN3gycVUwQVR2bERTTkNtSXdDaWF6NTk3empkRWwwVGxwN1R4RHRYQkRM?=
+ =?utf-8?B?dVFodG52aHRsNElNZ0NHZ0dCTC94T2RkSkYrSitCYW5TODU3bnlKZlB4Szlv?=
+ =?utf-8?B?RHBJWk83dTRYMjM5UXRkOVVyVXp2VCs0UnJmV3IycnZ5bXRlWEs4OVBNd0xT?=
+ =?utf-8?B?cnpZRm5oNDB0QWFCaEo1WnRqZ3RtZ3poN0d6VWxnVU5PTVFzbmd0UFRrSzVI?=
+ =?utf-8?B?L0diVUhoYTR4VlZueklZWmlTUGRyR2hsT0s0SloyRlZCQTF0VUhVRVZFTmJt?=
+ =?utf-8?B?YW5iUXprYkIyTEpCM3duZlVDR0JkcHpiamhGd0N4dnRkWWFib3U2aVRPUE1a?=
+ =?utf-8?B?U3NCcS9MREUxdDBMUnh5TTVlejNLazhtVmRSNzdBdUw3UDJiVVVLSlg3dzIx?=
+ =?utf-8?B?UXJaOHdzT0dVUTlrcVh0Vll6cTM0aGN1eDZ2d08veU5aZW1NaHc2WjhNQ0Vi?=
+ =?utf-8?B?NnFwOVNxL1Y2WldReGJMbDZjeklUTHVsUlZFNStKUys2SjQ1MXozSWoxaS8r?=
+ =?utf-8?B?VWx1aXdrVlh0SStVYjRGUVFHTjdnRURBUnpmSmFjUWowKzZvYnBnL0FzaDI5?=
+ =?utf-8?B?VkJZZi84SDJsNVNwRVZCUGVWMHU5NDgxSUVTSnpTQjVHUnZGUW9BMVUrVTk4?=
+ =?utf-8?B?ZVFIbC9wYnpTbjdGTDE3ayt1SHlFemF2eVRiL0IyWUt1L1VGeDdQeDU1LzJx?=
+ =?utf-8?B?b2pkOUZOWnJXRnNPNzFWTjc1V1QrM3ZOSURlMHJwek5qdlZuY0xyY0tyb2Nk?=
+ =?utf-8?B?UEF2SDNyby9nOFlHWlEvYW0xNG8rVG9FdVZyWTY4cCtXLzU5WVlJSHY5b2ZU?=
+ =?utf-8?B?ZWdid1VYSTNIcDNRUjFvR0txN1ZGQlUyR1hNcTNGYTBMdko2SEVOR1F4cUx1?=
+ =?utf-8?B?STltbVBlYXJ1NGZPUkJmdkowbDlQQThJNnRWNllFOVhraXdSbUZTZjE0K2I2?=
+ =?utf-8?B?UTRBcFNScE5ORHhXZDFRSkdxbk1PQTVyN0IwallpaDNEK2hZNUkzVXFBNldk?=
+ =?utf-8?B?ODBzUlZEY050VEZQNE9uTTVNK0tyWnU5WGZ4Rmx6Z0F4MmMyWENtTHg3bmt0?=
+ =?utf-8?B?UE5iNFBzRVFhVVIxclZjNDBWY01NYkR2MnRDay94VldUV3JJRllSUm1Xenll?=
+ =?utf-8?B?czFyTlBFOXJjT0d2TEQ1TVh2ak1ZUmRwczJOaFhaUStBd1MvUkUycVJXUjFJ?=
+ =?utf-8?B?UVl5M2oyYTRENFZHQ0RxNFpLa0VRVGRoQktnUmFJYUxzdFc5MTczTHJsNlh3?=
+ =?utf-8?B?UHh5Q1AxcUhmZ29NaWI0NllnTlRQaHNPY0tGbndjMDN6OW5oYXkrUWhrMHpV?=
+ =?utf-8?B?bDZhd1l2UDMyTzlJelA3cFBVcWVnNi9VSjQyZkw5bW1jVkdmbVYzby92a1RI?=
+ =?utf-8?B?MFpRaTl4MjdraUdtR3Jhb2IzWFUyVDZVR2lPa3Qyai80VW9iTGJldU5MVllG?=
+ =?utf-8?B?ek1nald5dkZyZGlGMjRaOG9OMm9xOWVObE00VGZ1SFZlc0FPK1FLandWcjBn?=
+ =?utf-8?B?cGFRUlR1NzU4K2hBaWhoOWQwTXBSZlkzYnYyOE9vSXdkNm9EQ1NkUzlmV25s?=
+ =?utf-8?B?YW1VSWpncElhTDRHMmZlUnBXOWxrMGYxSktzN1ZqWERoTHBJdXpybFRsWUxz?=
+ =?utf-8?B?WEFGaXIwbEsxQXBEZzdheW9zRDlUSEhTZ3U3SHZ6Z05INjlUVm5vSW1YTm9j?=
+ =?utf-8?B?WmFiSVhBWTJnZTVhU2h0TEFWblRHSHViVVptQldaWEFlcThlTzRaS1ErZlFZ?=
+ =?utf-8?B?QUJaQnY5dUhBd2dLUmRNY01WT3dlTURvVVRmWEUxM015ZkxpWXZxQ09ma0tY?=
+ =?utf-8?B?WWc9PQ==?=
+X-OriginatorOrg: amlogic.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3df0d48a-8454-43c2-df13-08db7dfd44a1
+X-MS-Exchange-CrossTenant-AuthSource: TYZPR03MB6896.apcprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2023 08:44:53.6340
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 0df2add9-25ca-4b3a-acb4-c99ddf0b1114
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 2ppt/cWJwkz0Ng5qdX70EFRc1xq82lAyKI2gGTUyHq8bLJhQT5npxVGyfxI94WOifeuoqiTIjcLIoLGrp0zx4bLqHy672tdDDtFI2ffwy38=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: KL1PR0302MB5362
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Neil,
+      Thanks.
 
-
-On 7/1/2023 4:51 AM, Konrad Dybcio wrote:
-> On 30.06.2023 09:14, Jagadeesh Kona wrote:
->>
->>
->> On 6/26/2023 7:10 PM, Dmitry Baryshkov wrote:
->>> On 26/06/2023 14:59, Jagadeesh Kona wrote:
->>>>
->>>>
->>>> On 6/24/2023 5:49 PM, Konrad Dybcio wrote:
->>>>> On 23.06.2023 18:46, Jagadeesh Kona wrote:
->>>>>> Add support for camera qdss, sleep and xo clocks.
->>>>>>
->>>>>> Co-developed-by: Taniya Das <quic_tdas@quicinc.com>
->>>>>> Signed-off-by: Taniya Das <quic_tdas@quicinc.com>
->>>>>> Signed-off-by: Jagadeesh Kona <quic_jkona@quicinc.com>
->>>>>> ---
->>>>>> Changes since v4:
->>>>>>    - No changes.
->>>>>> Changes since v3:
->>>>>>    - No changes.
->>>>>> Changes since v2:
->>>>>>    - No changes.
->>>>>> Changes since v1:
->>>>>>    - Newly added.
->>>>>>
->>>>>>    drivers/clk/qcom/camcc-sm8550.c | 180 ++++++++++++++++++++++++++++++++
->>>>>>    1 file changed, 180 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/clk/qcom/camcc-sm8550.c b/drivers/clk/qcom/camcc-sm8550.c
->>>>>> index 075bea32087c..7b4882444d58 100644
->>>>>> --- a/drivers/clk/qcom/camcc-sm8550.c
->>>>>> +++ b/drivers/clk/qcom/camcc-sm8550.c
->>>>>> @@ -22,6 +22,8 @@
->>>>>>    enum {
->>>>>>        DT_IFACE,
->>>>>>        DT_BI_TCXO,
->>>>>> +    DT_BI_TCXO_AO,
->>>>>> +    DT_SLEEP_CLK,
->>>>>>    };
->>>>>>    enum {
->>>>>> @@ -43,6 +45,7 @@ enum {
->>>>>>        P_CAM_CC_PLL10_OUT_EVEN,
->>>>>>        P_CAM_CC_PLL11_OUT_EVEN,
->>>>>>        P_CAM_CC_PLL12_OUT_EVEN,
->>>>>> +    P_SLEEP_CLK,
->>>>>>    };
->>>>>>    static const struct pll_vco lucid_ole_vco[] = {
->>>>>> @@ -881,6 +884,22 @@ static const struct clk_parent_data cam_cc_parent_data_11[] = {
->>>>>>        { .hw = &cam_cc_pll7_out_even.clkr.hw },
->>>>>>    };
->>>>>> +static const struct parent_map cam_cc_parent_map_12[] = {
->>>>>> +    { P_SLEEP_CLK, 0 },
->>>>>> +};
->>>>>> +
->>>>>> +static const struct clk_parent_data cam_cc_parent_data_12[] = {
->>>>>> +    { .index = DT_SLEEP_CLK },
->>>>>> +};
->>>>>> +
->>>>>> +static const struct parent_map cam_cc_parent_map_13[] = {
->>>>>> +    { P_BI_TCXO, 0 },
->>>>>> +};
->>>>>> +
->>>>>> +static const struct clk_parent_data cam_cc_parent_data_13_ao[] = {
->>>>>> +    { .index = DT_BI_TCXO_AO },
->>>>>> +};
->>>>>> +
->>>>>>    static const struct freq_tbl ftbl_cam_cc_bps_clk_src[] = {
->>>>>>        F(19200000, P_BI_TCXO, 1, 0, 0),
->>>>>>        F(200000000, P_CAM_CC_PLL8_OUT_EVEN, 1, 0, 0),
->>>>>> @@ -1565,6 +1584,29 @@ static struct clk_rcg2 cam_cc_mclk7_clk_src = {
->>>>>>        },
->>>>>>    };
->>>>>> +static const struct freq_tbl ftbl_cam_cc_qdss_debug_clk_src[] = {
->>>>>> +    F(19200000, P_BI_TCXO, 1, 0, 0),
->>>>>> +    F(75000000, P_CAM_CC_PLL0_OUT_EVEN, 8, 0, 0),
->>>>>> +    F(150000000, P_CAM_CC_PLL0_OUT_EVEN, 4, 0, 0),
->>>>>> +    F(300000000, P_CAM_CC_PLL0_OUT_MAIN, 4, 0, 0),
->>>>>> +    { }
->>>>>> +};
->>>>>> +
->>>>>> +static struct clk_rcg2 cam_cc_qdss_debug_clk_src = {
->>>>>> +    .cmd_rcgr = 0x13f24,
->>>>>> +    .mnd_width = 0,
->>>>>> +    .hid_width = 5,
->>>>>> +    .parent_map = cam_cc_parent_map_0,
->>>>>> +    .freq_tbl = ftbl_cam_cc_qdss_debug_clk_src,
->>>>>> +    .clkr.hw.init = &(const struct clk_init_data) {
->>>>>> +        .name = "cam_cc_qdss_debug_clk_src",
->>>>>> +        .parent_data = cam_cc_parent_data_0,
->>>>>> +        .num_parents = ARRAY_SIZE(cam_cc_parent_data_0),
->>>>>> +        .flags = CLK_SET_RATE_PARENT,
->>>>>> +        .ops = &clk_rcg2_shared_ops,
->>>>>> +    },
->>>>>> +};
->>>>>> +
->>>>>>    static const struct freq_tbl ftbl_cam_cc_sfe_0_clk_src[] = {
->>>>>>        F(466000000, P_CAM_CC_PLL6_OUT_EVEN, 1, 0, 0),
->>>>>>        F(594000000, P_CAM_CC_PLL6_OUT_EVEN, 1, 0, 0),
->>>>>> @@ -1611,6 +1653,26 @@ static struct clk_rcg2 cam_cc_sfe_1_clk_src = {
->>>>>>        },
->>>>>>    };
->>>>>> +static const struct freq_tbl ftbl_cam_cc_sleep_clk_src[] = {
->>>>>> +    F(32000, P_SLEEP_CLK, 1, 0, 0),
->>>>>> +    { }
->>>>>> +};
->>>>>> +
->>>>>> +static struct clk_rcg2 cam_cc_sleep_clk_src = {
->>>>>> +    .cmd_rcgr = 0x141a0,
->>>>>> +    .mnd_width = 0,
->>>>>> +    .hid_width = 5,
->>>>>> +    .parent_map = cam_cc_parent_map_12,
->>>>>> +    .freq_tbl = ftbl_cam_cc_sleep_clk_src,
->>>>>> +    .clkr.hw.init = &(const struct clk_init_data) {
->>>>>> +        .name = "cam_cc_sleep_clk_src",
->>>>>> +        .parent_data = cam_cc_parent_data_12,
->>>>>> +        .num_parents = ARRAY_SIZE(cam_cc_parent_data_12),
->>>>>> +        .flags = CLK_SET_RATE_PARENT,
->>>>>> +        .ops = &clk_rcg2_shared_ops,
->>>>>> +    },
->>>>>> +};
->>>>>> +
->>>>>>    static const struct freq_tbl ftbl_cam_cc_slow_ahb_clk_src[] = {
->>>>>>        F(19200000, P_BI_TCXO, 1, 0, 0),
->>>>>>        F(80000000, P_CAM_CC_PLL0_OUT_EVEN, 7.5, 0, 0),
->>>>>> @@ -1632,6 +1694,26 @@ static struct clk_rcg2 cam_cc_slow_ahb_clk_src = {
->>>>>>        },
->>>>>>    };
->>>>>> +static const struct freq_tbl ftbl_cam_cc_xo_clk_src[] = {
->>>>>> +    F(19200000, P_BI_TCXO, 1, 0, 0),
->>>>> You're overloading P_BI_TCXO with a different parent clock (XO_A).
->>>>>
->>>>
->>>> This RCG just requires active only voting, hence using XO_A as its parent.
->>>>
->>>> Both XO and XO_A are same clock in HW (BI_TCXO), hence we can reuse P_BI_TCXO in frequency table for XO_A parent as well.
->>>
->>> Please don't do such things, it complicates understanding the driver. The reviewer could have thought that here the driver was really referencing to the BI_TCXO rather than BI_TCXO_AO.
->>>
->>
->> The enum in parent list indicates the actual HW clock, and since XO and XO_A are the same HW clock, parent enum needs to be a single one. Only parent_data needs to be updated with AO as we have been doing for all targets.
-> I see your point, however to Linux, XO and XO_A are two separate clocks
-> within the CCF.
+On 2023/7/4 16:09, Neil Armstrong wrote:
+> [ EXTERNAL EMAIL ]
 > 
-
-Sure, I will introduce P_BI_TCXO_AO and use the same in above frequency 
-table in next series. I hope we will have to take care of similar 
-changes in all other existing chipsets cc files as well in a separate 
-cleanup patch.
-
-Thanks,
-Jagadeesh
-
-> Konrad
+> Hi,
+> 
+> On 04/07/2023 05:16, Xianwei Zhao wrote:
+>> Add devicetree support for Amlogic AN400  board based T7 SoC.
 >>
->> Thanks,
->> Jagadeesh
+>> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+>> ---
+>>   arch/arm64/boot/dts/amlogic/Makefile          |  1 +
+>>   .../dts/amlogic/amlogic-t7-a311d2-an400.dts   | 39 +++++++++++++++++++
+>>   2 files changed, 40 insertions(+)
+>>   create mode 100644 
+>> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
 >>
->>>>
->>>> Thanks,
->>>> Jagadeesh
->>>>
->>>>> The rest lgtm
->>>>>
->>>>> Konrad
->>>
->>> [skipped the rest]
->>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/Makefile 
+>> b/arch/arm64/boot/dts/amlogic/Makefile
+>> index 91fa425116ea..8b6f57a94863 100644
+>> --- a/arch/arm64/boot/dts/amlogic/Makefile
+>> +++ b/arch/arm64/boot/dts/amlogic/Makefile
+>> @@ -1,5 +1,6 @@
+>>   # SPDX-License-Identifier: GPL-2.0
+>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-c3-c302x-aw409.dtb
+>> +dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-an400.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += amlogic-t7-a311d2-khadas-vim4.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-a1-ad401.dtb
+>>   dtb-$(CONFIG_ARCH_MESON) += meson-axg-jethome-jethub-j100.dtb
+>> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts 
+>> b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
+>> new file mode 100644
+>> index 000000000000..d755e1ee108a
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dts
+>> @@ -0,0 +1,39 @@
+>> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+>> +/*
+>> + * Copyright (c) 2023 Amlogic, Inc. All rights reserved.
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +#include "amlogic-t7.dtsi"
+>> +
+>> +/ {
+>> +     model = "Amlogic A311D2 AN400 Development Board";
+>> +     compatible = "amlogic,an400", "amlogic,a311d2", "amlogic,t7";
+>> +     interrupt-parent = <&gic>;
+>> +     #address-cells = <2>;
+>> +     #size-cells = <2>;
+>> +
+>> +     aliases {
+>> +             serial0 = &uart_a;
+>> +     };
+>> +
+>> +     memory@0 {
+>> +             device_type = "memory";
+>> +             linux,usable-memory = <0x00000000 0x00000000 0x00000000 
+>> 0xE0000000
+>> +                                     0x00000001 0x00000000 0x00000000 
+>> 0x20000000>;
+> 
+> Please use "reg =" instead of linux,usable-memory, which is not a 
+> documented property
+> 
+> Please use `make CHECK_DTBS=yes amlogic/amlogic-t7-a311d2-an400.dtb` 
+> before posting DT patches,
+> and make sure there's no errors except already in-review bindings like 
+> here the UART compatible.
+> 
+> The result here is:
+> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 
+> 'anyOf' conditional failed, one must be fixed:
+>          'reg' is a required property
+>          'ranges' is a required property
+>          From schema: 
+> /usr/local/lib/python3.10/dist-packages/dtschema/schemas/root-node.yaml
+> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 
+> 'linux,usable-memory' does not match any of the regexes: 'pinctrl-[0-9]+'
+>          From schema: 
+> /usr/local/lib/python3.10/dist-packages/dtschema/schemas/memory.yaml
+> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: /: memory@0: 
+> 'reg' is a required property
+>          From schema: 
+> /usr/local/lib/python3.10/dist-packages/dtschema/schemas/memory.yaml
+> 
+> Please fix this one.
+>
+Will do
+> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: serial@78000: 
+> compatible: 'oneOf' conditional failed, one must be fixed:
+>          ['amlogic,t7-uart', 'amlogic,meson-s4-uart'] is too short
+>          ['amlogic,t7-uart', 'amlogic,meson-s4-uart'] is too long
+>          'amlogic,t7-uart' is not one of ['amlogic,meson6-uart', 
+> 'amlogic,meson8-uart', 'amlogic,meson8b-uart', 'amlogic,meson-gx-uart', 
+> 'amlogic,meson-s4-uart']
+>          'amlogic,meson-g12a-uart' was expected
+>          'amlogic,meson-ao-uart' was expected
+>          'amlogic,meson-gx-uart' was expected
+>          From schema: 
+> Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: serial@78000: 
+> Unevaluated properties are not allowed ('compatible' was unexpected)
+>          From schema: 
+> Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+> arch/arm64/boot/dts/amlogic/amlogic-t7-a311d2-an400.dtb: 
+> /soc/bus@fe000000/serial@78000: failed to match any schema with 
+> compatible: ['amlogic,t7-uart', 'amlogic,meson-s4-uart']
+> 
+> This one is OK, the UART bindings is reviewed and should be picked up 
+> for v6.6
+> 
+> Neil
+> 
+>> +     };
+>> +
+>> +     xtal: xtal-clk {
+>> +             compatible = "fixed-clock";
+>> +             clock-frequency = <24000000>;
+>> +             clock-output-names = "xtal";
+>> +             #clock-cells = <0>;
+>> +     };
+>> +};
+>> +
+>> +&uart_a {
+>> +     clocks = <&xtal>, <&xtal>, <&xtal>;
+>> +     clock-names = "xtal", "pclk", "baud";
+>> +     status = "okay";
+>> +};
+> 
