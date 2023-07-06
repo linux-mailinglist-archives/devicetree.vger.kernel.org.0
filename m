@@ -2,65 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B4B0674A438
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:09:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03E7374A43C
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 21:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229879AbjGFTIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 15:08:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
+        id S231467AbjGFTMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 15:12:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41624 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231577AbjGFTIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:08:36 -0400
-Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17AF21FDB;
-        Thu,  6 Jul 2023 12:08:33 -0700 (PDT)
-Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-7836164a08aso40571239f.1;
-        Thu, 06 Jul 2023 12:08:33 -0700 (PDT)
+        with ESMTP id S229510AbjGFTMB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 15:12:01 -0400
+Received: from mail-io1-f44.google.com (mail-io1-f44.google.com [209.85.166.44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6D01BDB;
+        Thu,  6 Jul 2023 12:12:00 -0700 (PDT)
+Received: by mail-io1-f44.google.com with SMTP id ca18e2360f4ac-785cbc5bfd2so38024039f.2;
+        Thu, 06 Jul 2023 12:12:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688670512; x=1691262512;
+        d=1e100.net; s=20221208; t=1688670720; x=1691262720;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Itwax76YnyojIQJLz79e5RUWj30r3AOwHBsYmcyrKf8=;
-        b=h3ze9329Evz5ZWAAs2vdSPqTxjo0G+rc2sJcdRYl6wvBqgo794EmeCuY3XLVQm7i0b
-         UiLJsqHeeytAprMAOJZwOqJosMQbDh7XrHjoOtMrP81+jMW5N0ErUBV7NCuyPIENy/06
-         IdQuNYwznYwg7DTVqFLwt+3TgadQ/r3PyXLW9G9FCSqEPaYefhJt2rWwPynnMzM1VnN8
-         edBVkSY0ksmKXRukrCSIglqWw6C1zyh2AH+95ITgn5GqRjuCSma7Me8z6S/7NeQd9tow
-         OZLMUeyu5Fo3Vviv+vbh5cYEDd+BrDL+eqOTrEFLCmdTPQVkJIKHJshWnsTStQ93my5m
-         YjpA==
-X-Gm-Message-State: ABy/qLZbbvgfrZvNmG79wZ0iQZmhmb7DZKuhepNkiUAmvFIq60GT5KHL
-        HkcTY+tMfGfVkmYiUm6OUuu6gvEVNA==
-X-Google-Smtp-Source: APBJJlHFhdTk+xqOGmEno8+1bLtlEjUG1mfQ9YrWoHF2NuJtBJMKXqpF6dYJ4OUONDLFmPmx63WqWQ==
-X-Received: by 2002:a5d:8488:0:b0:783:74c0:54ae with SMTP id t8-20020a5d8488000000b0078374c054aemr2879342iom.21.1688670512370;
-        Thu, 06 Jul 2023 12:08:32 -0700 (PDT)
+        bh=rXU7Wt2272aI2cWoAWkzUapCyXWe+5UzEWsEVDkssTE=;
+        b=KIhP2M2D5arM0QCytoyBxUogEOoNdu/LtCIjCNwaV9AS72h9ekqEPJId7Ti48hwVIU
+         wk2p2eXipqgU7tvva6fibhaCtVNax5RaCpGrsBWtcjhQEa+37i2o3OlTyNHEpqgZg38X
+         J3zTvyIgTJ4KthiLe8fAsviquUtIlUq3FX/I9pJDo+EAID35VmsAnBhTFg3O62al8iJw
+         H/BU2vGEJEZiCYwPcHvTHEUNetbDoivaFbiDF7OBSAEwEo5jL3otQWpyRzcnBvOjdKus
+         c3ZjhjNeeh3I/Kor+hM4hkJgiDtoK3EF29ug9hJHVpCo8mmWWVS2D0izbKK128T18zFB
+         AwIQ==
+X-Gm-Message-State: ABy/qLaAhOpPwRmXqMXMjbzrhO72cLpNXClD+ilHpg/SWpn3t6wISwil
+        JCXibcDRrI6WwWBjvb900g==
+X-Google-Smtp-Source: APBJJlF07iocpCggVXaw78JSKNekrgWfNt3CbG1McmPUCJtGyu2pbeZDDeztboCM4rurH1+MtXodYA==
+X-Received: by 2002:a05:6602:2774:b0:780:ccb9:297b with SMTP id l20-20020a056602277400b00780ccb9297bmr3152305ioe.11.1688670720022;
+        Thu, 06 Jul 2023 12:12:00 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id w6-20020a02cf86000000b0042b21e8853bsm690551jar.36.2023.07.06.12.08.30
+        by smtp.gmail.com with ESMTPSA id u16-20020a02c950000000b0042b85d6e125sm112599jao.24.2023.07.06.12.11.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 06 Jul 2023 12:08:31 -0700 (PDT)
-Received: (nullmailer pid 163648 invoked by uid 1000);
-        Thu, 06 Jul 2023 19:08:29 -0000
-Date:   Thu, 6 Jul 2023 13:08:29 -0600
+        Thu, 06 Jul 2023 12:11:59 -0700 (PDT)
+Received: (nullmailer pid 168322 invoked by uid 1000);
+        Thu, 06 Jul 2023 19:11:57 -0000
+Date:   Thu, 6 Jul 2023 13:11:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <neil.armstrong@linaro.org>
-Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: pinctrl: amlogic,meson-pinctrl-common:
- allow gpio hogs
-Message-ID: <168867050887.163590.877379254232081515.robh@kernel.org>
-References: <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-0-fa442d5aae91@linaro.org>
- <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-2-fa442d5aae91@linaro.org>
+To:     Alexandru Ardelean <alex@shruggie.ro>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        andrew@lunn.ch, hkallweit1@gmail.com, linux@armlinux.org.uk,
+        olteanv@gmail.com, marius.muresan@mxt.ro
+Subject: Re: [PATCH 2/2] dt-bindings: net: phy: vsc8531: document
+ 'vsc8531,clkout-freq-mhz' property
+Message-ID: <20230706191157.GA163793-robh@kernel.org>
+References: <20230706081554.1616839-1-alex@shruggie.ro>
+ <20230706081554.1616839-2-alex@shruggie.ro>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-2-fa442d5aae91@linaro.org>
+In-Reply-To: <20230706081554.1616839-2-alex@shruggie.ro>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -72,16 +68,42 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On Thu, 06 Jul 2023 09:42:27 +0200, Neil Armstrong wrote:
-> Allow gpio hog subnodes to the gpio subnode.
+On Thu, Jul 06, 2023 at 11:15:54AM +0300, Alexandru Ardelean wrote:
+> For VSC8351 and similar PHYs, a new property was added to generate a clock
+> signal on the CLKOUT pin.
+> This change documents the change in the device-tree bindings doc.
 > 
-> Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
-> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
 > ---
->  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml  | 7 +++++++
->  1 file changed, 7 insertions(+)
+>  Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> index 0a3647fe331b..133bdd644618 100644
+> --- a/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> +++ b/Documentation/devicetree/bindings/net/mscc-phy-vsc8531.txt
+> @@ -31,6 +31,10 @@ Optional properties:
+>  			  VSC8531_LINK_100_ACTIVITY (2),
+>  			  VSC8531_LINK_ACTIVITY (0) and
+>  			  VSC8531_DUPLEX_COLLISION (8).
+> +- vsc8531,clkout-freq-mhz : For VSC8531 and similar PHYs, this will output
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Please don't continue this naming pattern with 'vsc8531' prefix. The 
+prefix should be the vendor prefix.
 
+> +			  a clock signal on the CLKOUT pin of the chip.
+> +			  The supported values are 25, 50 & 125 Mhz.
+> +			  Default value is no clock signal on the CLKOUT pin.
+>  - load-save-gpios	: GPIO used for the load/save operation of the PTP
+>  			  hardware clock (PHC).
+>  
+> @@ -69,5 +73,6 @@ Example:
+>                  vsc8531,edge-slowdown	= <7>;
+>                  vsc8531,led-0-mode	= <VSC8531_LINK_1000_ACTIVITY>;
+>                  vsc8531,led-1-mode	= <VSC8531_LINK_100_ACTIVITY>;
+> +                vsc8531,clkout-freq-mhz	= <50>;
+>  		load-save-gpios		= <&gpio 10 GPIO_ACTIVE_HIGH>;
+>          };
+> -- 
+> 2.40.1
+> 
