@@ -2,62 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C4CB07495F9
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 08:59:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 359C67495FA
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 09:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233625AbjGFG7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 02:59:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34596 "EHLO
+        id S233210AbjGFHAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 03:00:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34944 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233160AbjGFG7O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 02:59:14 -0400
-Received: from mail-lf1-x12e.google.com (mail-lf1-x12e.google.com [IPv6:2a00:1450:4864:20::12e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4E0A130
-        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 23:59:10 -0700 (PDT)
-Received: by mail-lf1-x12e.google.com with SMTP id 2adb3069b0e04-4fb960b7c9dso370489e87.0
-        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 23:59:10 -0700 (PDT)
+        with ESMTP id S229718AbjGFG77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 02:59:59 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA9ACE63
+        for <devicetree@vger.kernel.org>; Wed,  5 Jul 2023 23:59:57 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fb960b7c9dso371447e87.0
+        for <devicetree@vger.kernel.org>; Wed, 05 Jul 2023 23:59:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688626749; x=1691218749;
+        d=linaro.org; s=google; t=1688626796; x=1691218796;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=n9jFGb+PSmEKw8iM/L00npVmUzIMITjEUhyzwx30WLI=;
-        b=bmDp52z15koXF7vGD+7OtpSMg8hXMZxBA5HXT+R2fq3fCMXEPDAL6DMaPcZrckr+L5
-         kQRjAKeMtrn0RWYeixsJIdXvpfEkHydJscG8G8oy7nFvsV0WBJZHENFa7tyY87aufkrR
-         WmysYoFxfFwHVOzn8HTqVamcfMl31dAG1T9yzKiB7GxN4HtGXPbjAW9dOOHZ/v8R+xB4
-         RRpVHVhZgfR2oQNn2INzHjN1qzM1cJ5Rs5mMHwRzKjKJPwaAllJ0GoMiS/zgLRJzITyN
-         5S4Aqakeq9i9MbDh1OAp0bkOvLRo0OiT0Jp/aihP30j9ohvhtEXwFROlJ8glr0V0hyLi
-         a21Q==
+        bh=ekCygdP574MvHjOEcOXc7gCddg3fyvdxIoCepPcTFCQ=;
+        b=giQdojI1VDIYHQKpiPkPYNZPgbveNNf5P9cKjKO3yo4PktUIwPs5/nySuYYV7lqkeL
+         5A4ELiPNYIuY/z6vW9ihSmwxniYQ9qphy9TOALeAmDxe8AtjXHZwmhnAoJfrVSCgqd9d
+         9HSkPSUdNvWugDG/EqJpsigc7QUgS6XAewvnsuf+WqxAr+adB8J3QSPl0LzytcH0k5TR
+         fYvSMaMxKb+7LVjCrcKxPBy04zlviMztD4PnmBs5firNH+o6u8bKiW7e4l+tzt7Oh0V5
+         R7NyO2S879cNjJJ2CMe1RexDpHj9hpTt9Au8tbVXwWqXZaoErLEKcNFsXJMSa13Dx20Q
+         yyyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688626749; x=1691218749;
+        d=1e100.net; s=20221208; t=1688626796; x=1691218796;
         h=content-transfer-encoding:in-reply-to:organization:references:cc:to
          :content-language:subject:reply-to:from:user-agent:mime-version:date
          :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=n9jFGb+PSmEKw8iM/L00npVmUzIMITjEUhyzwx30WLI=;
-        b=EK9rD8sjxolNeZC8S4kYwx/jyX8z7slvW5d8B/U8v6snVMYHN3l6Z9N3FSdddTKxBH
-         sqI4kd6xURJ/jOmnrEBaDh0RqgJF7jl1S+RnK4aym/lzzwaJ4t3prnHqryIGsJtJ9BKs
-         K3qwPRlzxQCP+439JNqqXLarZ7faCLUojiBvcnQxt6fuCoU3vRDHc6asASsG1f5CuE/J
-         5dTbkemKG/8kykTqWAzu2JVtOOcO6iZFy2vvZm5uAo2QQsI66jrwLYlywQMOwDE71tGS
-         aLZBWXcMWpso78W7d0d2TEY06ZSCcgh0bdHe48LFLXF7pya+cNTn3hIAGrTtBT48AYY+
-         Qjyw==
-X-Gm-Message-State: ABy/qLZLHk5mHV7Javm/UAtPXf+rXLAtb3QJliJoY14OVlNbjtPsxqXB
-        Pcb3mb7jPYV6kz9j7tKrtim4hg==
-X-Google-Smtp-Source: APBJJlHTzvV9NhPMkxSawgnU9Y4RN/6R8ct5nXX+3GLyP9CpFEYnVs5XlufLfY0d5j2KuXPAyOMDFg==
-X-Received: by 2002:a05:6512:451:b0:4f9:5ac3:4133 with SMTP id y17-20020a056512045100b004f95ac34133mr825472lfk.25.1688626748995;
-        Wed, 05 Jul 2023 23:59:08 -0700 (PDT)
+        bh=ekCygdP574MvHjOEcOXc7gCddg3fyvdxIoCepPcTFCQ=;
+        b=ETZCSDqwz9PRD5gwAR2jB6qqiSw0aZ1O193OKOwen/0eQAPDXYcXGZOA60yA4GhwxP
+         dBCoiErJECYNSDmuVVq8K3FtojBq39koFW7fRrdHFoWkV0ytnSe4hHsyKnnD4aE7UIQM
+         ZtxpStTwpbUfucISFfamYl2M6+T5L9co0a0BJQGYVu2bIKhQDv+XIOqLzwsu0sNG15rU
+         gBiH8pVYn17Ckcjh9r6dggxJSVUFKQ6X0h7lhx4LjmLaHeNHzgJ3uFUpBdUaFUOwqcMj
+         NW5Y5VE+WS9Hf1H9rtgindRzWWKQxgM+DTjgL/2WZxfapjAbYlMA4f26+vOojOxDUiwC
+         lW/Q==
+X-Gm-Message-State: ABy/qLaWccv9l04JPnSukBBeRsBfgzlmTaaW0cIqTE6A9kWL2gPBB2z8
+        aX+utTHu1IdSHzu9kVXU073Jlg==
+X-Google-Smtp-Source: APBJJlEsz6Fhpg12b102ApIe1RIyCXh4cNJ1O9HJo8CHhGB8sIkBqYMirtS3Gcv3aAz1DsYthrYKkw==
+X-Received: by 2002:a05:6512:3703:b0:4f8:7697:5207 with SMTP id z3-20020a056512370300b004f876975207mr641642lfr.23.1688626795843;
+        Wed, 05 Jul 2023 23:59:55 -0700 (PDT)
 Received: from ?IPV6:2a01:e0a:982:cbb0:15d1:2748:ead4:bdff? ([2a01:e0a:982:cbb0:15d1:2748:ead4:bdff])
-        by smtp.gmail.com with ESMTPSA id z8-20020adfdf88000000b003143bb5ecd5sm1001522wrl.69.2023.07.05.23.59.07
+        by smtp.gmail.com with ESMTPSA id f12-20020a7bcd0c000000b003fbd9e390e1sm4147027wmj.47.2023.07.05.23.59.54
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 05 Jul 2023 23:59:08 -0700 (PDT)
-Message-ID: <3beac94b-1a82-df36-1390-8321aa1a8e57@linaro.org>
-Date:   Thu, 6 Jul 2023 08:59:07 +0200
+        Wed, 05 Jul 2023 23:59:55 -0700 (PDT)
+Message-ID: <60927fc6-2819-a01a-6ea8-f1af301b1bad@linaro.org>
+Date:   Thu, 6 Jul 2023 08:59:54 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
  Thunderbird/102.12.0
 From:   neil.armstrong@linaro.org
 Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH v2 1/7] tty: serial: meson: use dev_err_probe
+Subject: Re: [PATCH v2 2/7] tty: serial: meson: redesign the module to
+ platform_driver
 Content-Language: en-US
 To:     Dmitry Rokosov <ddrokosov@sberdevices.ru>,
         gregkh@linuxfoundation.org, robh+dt@kernel.org,
@@ -70,14 +71,14 @@ Cc:     kelvin.zhang@amlogic.com, xianwei.zhao@amlogic.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
 References: <20230705181833.16137-1-ddrokosov@sberdevices.ru>
- <20230705181833.16137-2-ddrokosov@sberdevices.ru>
+ <20230705181833.16137-3-ddrokosov@sberdevices.ru>
 Organization: Linaro Developer Services
-In-Reply-To: <20230705181833.16137-2-ddrokosov@sberdevices.ru>
+In-Reply-To: <20230705181833.16137-3-ddrokosov@sberdevices.ru>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -86,28 +87,111 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 05/07/2023 20:18, Dmitry Rokosov wrote:
-> Use dev_err_probe() helper for error checking and standard logging.
-> It makes the driver's probe() function a little bit shorter.
+> Actually, the meson_uart module is already a platform_driver, but it is
+> currently registered manually and the uart core registration is run
+> outside the probe() scope, which results in some restrictions. For
+> instance, it is not possible to communicate with the OF subsystem
+> because it requires an initialized device object.
+> 
+> To address this issue, apply module_platform_driver() instead of direct
+> module init/exit routines. Additionally, move uart_register_driver() to
+> the driver probe(), and destroy manual console registration because it's
+> already run in the uart_register_driver() flow.
 > 
 > Signed-off-by: Dmitry Rokosov <ddrokosov@sberdevices.ru>
 > ---
->   drivers/tty/serial/meson_uart.c | 4 ++--
->   1 file changed, 2 insertions(+), 2 deletions(-)
+>   drivers/tty/serial/meson_uart.c | 51 ++++++++++-----------------------
+>   1 file changed, 15 insertions(+), 36 deletions(-)
 > 
 > diff --git a/drivers/tty/serial/meson_uart.c b/drivers/tty/serial/meson_uart.c
-> index 2501db5a7aaf..bca54f3d92a1 100644
+> index bca54f3d92a1..dcf994a11a21 100644
 > --- a/drivers/tty/serial/meson_uart.c
 > +++ b/drivers/tty/serial/meson_uart.c
-> @@ -726,8 +726,8 @@ static int meson_uart_probe(struct platform_device *pdev)
->   	of_property_read_u32(pdev->dev.of_node, "fifo-size", &fifosize);
+> @@ -621,12 +621,6 @@ static struct console meson_serial_console = {
+>   	.data		= &meson_uart_driver,
+>   };
 >   
->   	if (meson_ports[pdev->id]) {
-> -		dev_err(&pdev->dev, "port %d already allocated\n", pdev->id);
-> -		return -EBUSY;
-> +		return dev_err_probe(&pdev->dev, -EBUSY,
-> +				     "port %d already allocated\n", pdev->id);
->   	}
+> -static int __init meson_serial_console_init(void)
+> -{
+> -	register_console(&meson_serial_console);
+> -	return 0;
+> -}
+> -
+>   static void meson_serial_early_console_write(struct console *co,
+>   					     const char *s,
+>   					     u_int count)
+> @@ -652,9 +646,6 @@ OF_EARLYCON_DECLARE(meson, "amlogic,meson-ao-uart",
 >   
->   	port = devm_kzalloc(&pdev->dev, sizeof(struct uart_port), GFP_KERNEL);
+>   #define MESON_SERIAL_CONSOLE	(&meson_serial_console)
+>   #else
+> -static int __init meson_serial_console_init(void) {
+> -	return 0;
+> -}
+>   #define MESON_SERIAL_CONSOLE	NULL
+>   #endif
+>   
+> @@ -738,6 +729,13 @@ static int meson_uart_probe(struct platform_device *pdev)
+>   	if (ret)
+>   		return ret;
+>   
+> +	if (!meson_uart_driver.state) {
+> +		ret = uart_register_driver(&meson_uart_driver);
+> +		if (ret)
+> +			return dev_err_probe(&pdev->dev, ret,
+> +					     "can't register uart driver\n");
+> +	}
+> +
+>   	port->iotype = UPIO_MEM;
+>   	port->mapbase = res_mem->start;
+>   	port->mapsize = resource_size(res_mem);
+> @@ -776,6 +774,13 @@ static int meson_uart_remove(struct platform_device *pdev)
+>   	uart_remove_one_port(&meson_uart_driver, port);
+>   	meson_ports[pdev->id] = NULL;
+>   
+> +	for (int id = 0; id < AML_UART_PORT_NUM; id++)
+> +		if (meson_ports[id])
+> +			return 0;
+> +
+> +	/* No more available uart ports, unregister uart driver */
+> +	uart_unregister_driver(&meson_uart_driver);
+> +
+>   	return 0;
+>   }
+>   
+> @@ -809,33 +814,7 @@ static  struct platform_driver meson_uart_platform_driver = {
+>   	},
+>   };
+>   
+> -static int __init meson_uart_init(void)
+> -{
+> -	int ret;
+> -
+> -	ret = meson_serial_console_init();
+> -	if (ret)
+> -		return ret;
+> -	
+> -	ret = uart_register_driver(&meson_uart_driver);
+> -	if (ret)
+> -		return ret;
+> -
+> -	ret = platform_driver_register(&meson_uart_platform_driver);
+> -	if (ret)
+> -		uart_unregister_driver(&meson_uart_driver);
+> -
+> -	return ret;
+> -}
+> -
+> -static void __exit meson_uart_exit(void)
+> -{
+> -	platform_driver_unregister(&meson_uart_platform_driver);
+> -	uart_unregister_driver(&meson_uart_driver);
+> -}
+> -
+> -module_init(meson_uart_init);
+> -module_exit(meson_uart_exit);
+> +module_platform_driver(meson_uart_platform_driver);
+>   
+>   MODULE_AUTHOR("Carlo Caione <carlo@caione.org>");
+>   MODULE_DESCRIPTION("Amlogic Meson serial port driver");
 
 Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
