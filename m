@@ -2,79 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id ECB657497CF
-	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 10:58:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42DBB7497E3
+	for <lists+devicetree@lfdr.de>; Thu,  6 Jul 2023 11:03:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231703AbjGFI6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 04:58:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54606 "EHLO
+        id S231826AbjGFJDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 05:03:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56328 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230290AbjGFI6Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 04:58:16 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C68491BC9
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 01:58:15 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-9936b3d0286so55801866b.0
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 01:58:15 -0700 (PDT)
+        with ESMTP id S231551AbjGFJDf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 05:03:35 -0400
+Received: from mail-wr1-x434.google.com (mail-wr1-x434.google.com [IPv6:2a00:1450:4864:20::434])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4B491BCE
+        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 02:03:09 -0700 (PDT)
+Received: by mail-wr1-x434.google.com with SMTP id ffacd0b85a97d-3144bf65ce9so364341f8f.3
+        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 02:03:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688633894; x=1691225894;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fayqxLh/vco+SYInwt83ea7CX6FUWQU2usKrCQ013+k=;
-        b=SUHGYVGhzR4ydLLC3EczqM7/h6WyxuOP9FR5zKpzrxTsJrLh66qKsFCYMxex/QcrLA
-         NL1nUlWdl/RfC8wWgtBQ8KNBsAo260fgTZiWgFlMcI87P2w/8QIco1+PtLz/axGfoTm+
-         eBfGmx37NrrgCwr5DHiABlwgUon4P+36PgEuG0ZrDSjrWRh1XmZsU76R9A0bQKCd6jPK
-         46+5Y2uagL6AOS32r/MpE47o2Yfr0kJF+UPbjFWGtQs9apRKiwsjRvRP8AoCuJirPihn
-         5/FRjQH7uPix9qG760X2c+BNfCqk8NyGfgotPYQ3W++7bMUU3RnKKPHZzMHDkioQhZj4
-         YL3Q==
+        d=bytedance.com; s=google; t=1688634188; x=1691226188;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=ybQ/CZNAG22pD3nH7OaccSop7ti/KICGWdaCbCpWb14=;
+        b=SPRuhrsU4TSIm81nyIGiQJOxNSGVrgc2ZnWi4srtTkZ0wWkAx3AXtw/nFgSNPwXheH
+         UBhUkZjxKYkzswW+UnUCuciCyPkB2pKklhz0ldSLRLlZL29npRWKBX/tZeOCgkfkan8I
+         NyaM7QtBrB3wVE4d1I+p6eri/YCF1nSQkXixTTKRW7OHMLF5DGPAUwfmIp+a9kQFi+QZ
+         dwrZuwue0Nsv/nLw6+5+pnn+yLGBJvolGR5UH6bhotiRs7gsW3XV7zLLa6rU26uSG3NA
+         PaP4+xsD8moXD9ofLXVV5AnVmq43PoQuefdVLnuLRA2O7E2LgY9jYwFMyX1q0lBIwmUW
+         dO4g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688633894; x=1691225894;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fayqxLh/vco+SYInwt83ea7CX6FUWQU2usKrCQ013+k=;
-        b=AimYS+1w2SLGLOzTT9SVcOvrcCkMrOYjyzsJIwN9y+2w0M2IohLWys/Ch+cHYIsT3d
-         5B9fEuNlA5e1YCT4DB5m0vk9lT3MYWjVpwbFJJGD0hjg89LzVM1LIGWTETpGvJ7/dp14
-         +AX7afOU+90irQ/rKtu5hd3AmLZtfU9W7tcxKGjmm48vIMnaJxJmbhZPuHaLRfXMsddF
-         63p4RHGmCiZwEAKqXbgvfoLj+5qpFF8YPSpk2XmF1bjE+Ko0W7pdNClGtZvVPbqIYbKD
-         O5v+WK9jO6/m18nmNVrZnPlSXj5ClpVfPqpO7rUhJZ6Ssot9UhzRnxevTDMLtKpkk4Is
-         PgsA==
-X-Gm-Message-State: ABy/qLbp/11aT7iMklJIu7VkHuEB56XvxSpA0TKnVcM3sEApg6XzHccW
-        nLh4wfd4mJ6deZS3sktdcIsVzQ==
-X-Google-Smtp-Source: APBJJlFNHTYQWRHtROnOOty5+ELFvyo8/ZudrjTKHz8SF9FuZHky+aDb2X3o5VvOCjMOU5wiKluKFg==
-X-Received: by 2002:a17:906:7a5e:b0:992:b8b6:6bcd with SMTP id i30-20020a1709067a5e00b00992b8b66bcdmr979075ejo.16.1688633894307;
-        Thu, 06 Jul 2023 01:58:14 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id e9-20020a1709067e0900b0099236e3f270sm542442ejr.58.2023.07.06.01.58.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 01:58:13 -0700 (PDT)
-Message-ID: <464fdef5-f43c-a7b2-66d2-bf558a6ee2c7@linaro.org>
-Date:   Thu, 6 Jul 2023 10:58:11 +0200
+        d=1e100.net; s=20221208; t=1688634188; x=1691226188;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=ybQ/CZNAG22pD3nH7OaccSop7ti/KICGWdaCbCpWb14=;
+        b=BtmIl/zQfJpWe/JwtCzRsG2y7Z/kr7oEHS+UI7wk/D+iwfbG1fuWzkfRun/N/4CSiB
+         JA+IIXlYGPZiPVud56cbFpo0Ob6gjt2uAdpaSG2Pn8nK2kDFxbQDs23YbbxG58w7nQd4
+         AG5q2sxLIR6gxgvN458kf+fkmDcW0RzfSlkRVStaXbVNatabFDJC6UYx9Io+8CjY5AT6
+         o6HC0FCuZ/8U1C5cbjAHqDt/eYoFLSU912tc7iRwUlYlJCTy39dCzAKkvyPMmxlTMjVE
+         r0tAMmbaQ1SDrMU9U2qEhpApcZdakGd8Jzv5KfcdCNDoBXEEhxvu6N37jbmrSPVC+XvH
+         +JuA==
+X-Gm-Message-State: ABy/qLYTa8eJ3vX/Xsw618uNLqLNpICTDlMaKgLh3sAuERIDZs/j1mrY
+        LLaBKLmgDAUT8V+lqhyvkgabr2Mbd1F/lzqVW6G+2g==
+X-Google-Smtp-Source: APBJJlF97KD9nLAou+VLQkV6g+z36j8hSfywgVoYBVe0e6ASGIqI6D+7x6tZL67ba1/M8KAZyS4Nqzkvo9nQIHhhqzA=
+X-Received: by 2002:a5d:6047:0:b0:313:e8f9:803 with SMTP id
+ j7-20020a5d6047000000b00313e8f90803mr891587wrt.3.1688634187925; Thu, 06 Jul
+ 2023 02:03:07 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2,1/2] dt-bindings: display: mediatek: dp: Add compatible
- for MediaTek MT8188
-Content-Language: en-US
-To:     Shuijing Li <shuijing.li@mediatek.com>, chunkuang.hu@kernel.org,
-        p.zabel@pengutronix.de, airlied@gmail.com, daniel@ffwll.ch,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, matthias.bgg@gmail.com,
-        angelogioacchino.delregno@collabora.com, jitao.shi@mediatek.com
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Project_Global_Chrome_Upstream_Group@mediatek.com
-References: <20230706021425.31735-1-shuijing.li@mediatek.com>
- <20230706021425.31735-2-shuijing.li@mediatek.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230706021425.31735-2-shuijing.li@mediatek.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+References: <20230705114251.661-1-cuiyunhui@bytedance.com> <20230705114251.661-5-cuiyunhui@bytedance.com>
+ <20230705-oblivious-unstuffed-8e028a5b243c@spud> <CAEEQ3wmG1OiE3GFqQp9SP+oKUbTfuTPx=rNGd-sjKsW7vv3bew@mail.gmail.com>
+ <20230706-syndrome-wise-c1097518f2c6@wendy>
+In-Reply-To: <20230706-syndrome-wise-c1097518f2c6@wendy>
+From:   =?UTF-8?B?6L+Q6L6J5bSU?= <cuiyunhui@bytedance.com>
+Date:   Thu, 6 Jul 2023 17:02:56 +0800
+Message-ID: <CAEEQ3wk5AnesBhgHVkCqQbjC=ALShzJnRnppmFQfSeAxZ-51pw@mail.gmail.com>
+Subject: Re: [External] Re: [PATCH v3 4/4] dt-bindings: firmware: Document
+ ffitbl binding
+To:     Conor Dooley <conor.dooley@microchip.com>
+Cc:     Conor Dooley <conor@kernel.org>, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, sunilvl@ventanamicro.com,
+        ardb@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
+        aou@eecs.berkeley.edu, linux-riscv@lists.infradead.org,
+        rminnich@gmail.com, mark.rutland@arm.com, lpieralisi@kernel.org,
+        rafael@kernel.org, lenb@kernel.org, jdelvare@suse.com,
+        yc.hung@mediatek.com, angelogioacchino.delregno@collabora.com,
+        allen-kh.cheng@mediatek.com, pierre-louis.bossart@linux.intel.com,
+        tinghan.shen@mediatek.com, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, geshijian@bytedance.com,
+        weidong.wd@bytedance.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,19 +81,119 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2023 04:14, Shuijing Li wrote:
-> Add dt-binding documentation of dp-tx for MediaTek MT8188 SoC.
-> 
-> Signed-off-by: Shuijing Li <shuijing.li@mediatek.com>
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
-> ---
-> Changes in v2:
-> add a mediatek,mt8188-edp-tx compatible per suggestion from the previous thread:
-> https://lore.kernel.org/lkml/c4a4a900-c80d-b110-f10e-7fa2dae8b7b5@collabora.com/
-> ---
+Hi Conor,
 
-Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+On Thu, Jul 6, 2023 at 2:45=E2=80=AFPM Conor Dooley <conor.dooley@microchip=
+.com> wrote:
+>
+> On Thu, Jul 06, 2023 at 11:43:55AM +0800, =E8=BF=90=E8=BE=89=E5=B4=94 wro=
+te:
+> > On Wed, Jul 5, 2023 at 11:07=E2=80=AFPM Conor Dooley <conor@kernel.org>=
+ wrote:
+> > > On Wed, Jul 05, 2023 at 07:42:51PM +0800, Yunhui Cui wrote:
+> > > > Add the description for ffitbl subnode.
+> > > >
+> > > > Signed-off-by: Yunhui Cui <cuiyunhui@bytedance.com>
+> > > > ---
+> > > >  .../devicetree/bindings/firmware/ffitbl.txt   | 27 +++++++++++++++=
+++++
+> > > >  MAINTAINERS                                   |  1 +
+> > > >  2 files changed, 28 insertions(+)
+> > > >  create mode 100644 Documentation/devicetree/bindings/firmware/ffit=
+bl.txt
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/firmware/ffitbl.txt =
+b/Documentation/devicetree/bindings/firmware/ffitbl.txt
+> > > > new file mode 100644
+> > > > index 000000000000..c42368626199
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/firmware/ffitbl.txt
+> > >
+> > > Firstly, new dt-bindings need to be done in yaml, not in text form.
+> > > Secondly, you didn't re-run get_maintainer.pl after adding this bindi=
+ng,
+> > > so you have not CCed any of the other dt-binding maintainers nor the
+> > > devicetree mailing list.
+> >
+> > Re-run get_maintainer.pl and added maintainers into the maillist.
+> > emm.. There is some *txt in
+> > Documentation/devicetree/bindings/firmware/, isn't it?
+>
+> There might be, but that's not an excuse for adding _new_ ones, sorry.
 
-Best regards,
-Krzysztof
+Okay, I'll update it on v4.
 
+
+> > > > +FFI(FDT FIRMWARE INTERFACE) driver
+> > > > +
+> > > > +Required properties:
+> > > > + - entry             : acpi or smbios root pointer, u64
+> > > > + - reg                       : acpi or smbios version, u32
+> > >
+> > > Please go look at any other dt-binding (or the example schema) as to =
+how
+> > > these properties should be used. A "reg" certainly should not be bein=
+g
+> > > used to store the revision...
+> >
+> > Okay, If so=EF=BC=8CI'll add a property "version" into the dts instead =
+of
+> > "reg", just like, WDYT?
+> > ffitbl {
+>
+> Firstly, I'd much rather you spelt this out, like "ffi-table".
+>
+> >     smbios {
+> >         entry =3D "";
+>
+> I still don't understand why "entry", which is an address, is being
+> represented by an empty string.
+> I also don't really get why you have not used "reg" to describe its
+> start address and size.
+>
+> >         version =3D < 0x02 >;
+>
+> Probably missing a vendor prefix, and the spaces are unusual, but better
+> than it was, yes.
+
+Based on your review, I plan to modify it as follows:
+
+ffi-table {
+#address-cells =3D <2>;
+#size-cells =3D <0>;
+        smbios@entry1 {
+                compatible =3D "smbios";
+                reg =3D <entry1>;
+                version =3D <2>;
+        };
+        smbios@entry2 {
+                compatible =3D "smbios";
+                reg =3D <entry2>;
+                version =3D <3>;
+        };
+        acpi@entry {
+                compatible =3D "acpi";
+                reg =3D <entry>;
+                version =3D <6>;
+        };
+}
+
+The reason why #size-cells is 0 is because only one item is needed,
+#address-cells =3D <2>; because two u32 are needed to express the 64-bit
+address.
+The memory for the SMBIOS table itself will be preserved in "reserved
+memory" , so we don't have to worry about this piece of memory getting
+corrupted. ACPI as well. WDYT?
+
+> >     }
+> >    acpi {
+> >          entry =3D "";
+> >          version =3D < 0x06 >;
+> >   }
+> > }
+>
+> Thanks,
+> Conor.
+
+Thanks,
+Yunhui
