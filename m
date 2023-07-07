@@ -2,133 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CA55C74AADA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 07:58:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E22B474AAE2
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 07:59:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232406AbjGGF65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 01:58:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56156 "EHLO
+        id S232099AbjGGF7o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 01:59:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56726 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232152AbjGGF6q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 01:58:46 -0400
-Received: from mailrelay1-1.pub.mailoutpod2-cph3.one.com (mailrelay1-1.pub.mailoutpod2-cph3.one.com [IPv6:2a02:2350:5:400::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F1DC51FDA
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 22:58:42 -0700 (PDT)
+        with ESMTP id S231950AbjGGF7n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 01:59:43 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2645D1FC6;
+        Thu,  6 Jul 2023 22:59:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
-         message-id:subject:cc:to:from:date:from;
-        bh=q20VHodHGZT4fdRhC09BV38PMmJx8QS1c7nciSKkwLY=;
-        b=llxEnqN0N+hSG1nTxErtIkueh0kZy0toErFEMYQu3fQKHzYpt5b2VLtD+5o3h/ktfRHfVdFLG+OPA
-         YmlexpgUCZMPpMEpAuVDUI4e5y/S0NpZISH70y3QhgXviwDXT8bP2s/DlZ9ITz7Cg+6D1sPG593PNX
-         txe1pt6a5hER60MmWxQ6dKKyvEgKaDEI52bywhbdz78C9Ie9UIQiGDH2aSIavVWJB1u/g+Qe4/l2I6
-         XvfpoZjcYeHY4W0oMN234RnjQ1uebnRjKsJ0rwW/IIcP5AOw1oP4BgA4KAhvxCnsv/a3+zbGq5NTFU
-         GCdl/dpVwXKDD40cpGpL+gdHbYHTSCA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-transfer-encoding:content-type:mime-version:references:
-         message-id:subject:cc:to:from:date:from;
-        bh=q20VHodHGZT4fdRhC09BV38PMmJx8QS1c7nciSKkwLY=;
-        b=B4vI4XJlvHFbmBXLLhbqwy9jE3K8NFS/2kt/gg0ek8JUphip5J02cHk4JQ5WpAyXA4A78DhF6IHkn
-         UDKLsHEAA==
-X-HalOne-ID: 51151cb4-1c8b-11ee-ad7a-99461c6a3fe8
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay1 (Halon) with ESMTPSA
-        id 51151cb4-1c8b-11ee-ad7a-99461c6a3fe8;
-        Fri, 07 Jul 2023 05:58:40 +0000 (UTC)
-Date:   Fri, 7 Jul 2023 07:58:38 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Doug Anderson <dianders@google.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        neil.armstrong@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, hsinyi@google.com
-Subject: Re: [v4 4/4] drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI
- panel
-Message-ID: <20230707055838.GA288750@ravnborg.org>
-References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
- <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
- <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=W_Vw=WTuap60PtzU8Jc58T1PsEhJfY96NmFFgmC1DB9w@mail.gmail.com>
- <CACRpkdZkNio99zS+ttEXncOtS1TcYbfunKSKddErRDV1gTY43w@mail.gmail.com>
- <CAD=FV=Xx_Bf=Fr1aCmmcjXAv1CyMYwEFba7C6k_HRE1VPtTtHQ@mail.gmail.com>
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1688709581; x=1720245581;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=QaDgGYCu1NMCRE7l/cADR02LMIS3aO/47KaPk9B2K1k=;
+  b=Tdy3vd7TuPWCFXqxTwpd0jTj2zrcoU9F+YXChr3VHN+vG5jbKNizh0rD
+   3u2rx0dnFy/+vriqoQx7KdV9rpmvglJ3TLAs8R0DMOINQpECT01Zd4d5P
+   +S81nXnZ5HqZni4qztR9K7sh3lJT4xeKw+wtsX0t/PgP9VEbNk2yAXv6X
+   NzyziwaAeBhrSyJS6/LSnolut65lEHqfMz9Bb90AXm/aih17iuKpqzu6/
+   F8ibexjs88xnXNfjLH9OI0FlTXMd2cGYxRMZU46mBVvJzH8pFEsMa9W22
+   2dmZIzFFyWe1nmALAXBP+zkwSY8YF6qgEVFMC2YkIon7A+2a1o7n+9+gY
+   A==;
+X-IronPort-AV: E=Sophos;i="6.01,187,1684792800"; 
+   d="scan'208";a="31803624"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Jul 2023 07:59:39 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 12F59280084;
+        Fri,  7 Jul 2023 07:59:39 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Xu Yang <xu.yang_2@nxp.com>, Peng Fan <peng.fan@nxp.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/1] dt-bindings: usb: ci-hdrc-usb2: Fix number of clocks
+Date:   Fri, 07 Jul 2023 07:59:38 +0200
+Message-ID: <4814813.MHq7AAxBmi@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <20230706191825.GA170669-robh@kernel.org>
+References: <20230706093928.3580544-1-alexander.stein@ew.tq-group.com> <20230706191825.GA170669-robh@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAD=FV=Xx_Bf=Fr1aCmmcjXAv1CyMYwEFba7C6k_HRE1VPtTtHQ@mail.gmail.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi all,
-On Thu, Jul 06, 2023 at 02:25:16PM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Tue, Jul 4, 2023 at 12:47 AM Linus Walleij <linus.walleij@linaro.org> wrote:
-> >
-> > On Thu, Jun 1, 2023 at 5:55 PM Doug Anderson <dianders@google.com> wrote:
-> > > On Thu, May 25, 2023 at 2:32 AM Cong Yang
-> > > <yangcong5@huaqin.corp-partner.google.com> wrote:
-> > > >
-> > > > The Starry-ili9882 is a 10.51" WUXGA TFT panel. which fits in nicely with
-> > > > the existing panel-boe-tv101wum-nl6 driver. From the datasheet,MIPI need
-> > > > to keep the LP11 state before the lcm_reset pin is pulled high. So add
-> > > > lp11_before_reset flag.
-> > > >
-> > > > Signed-off-by: Cong Yang <yangcong5@huaqin.corp-partner.google.com>
-> > > > Reviewed-by: Douglas Anderson <dianders@chromium.org>
-> > > > ---
-> > > >  .../gpu/drm/panel/panel-boe-tv101wum-nl6.c    | 371 ++++++++++++++++++
-> > > >  1 file changed, 371 insertions(+)
-> > >
-> > > Applied to drm-misc-next:
-> > >
-> > > 8716a6473e6c drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
-> >
-> > Sorry for noticing too late and coming after the fact and complaining.
-> >
-> > We must stop using the panel-boe-tv101wum-nl6.c driver as a
-> > one-stop-shop for Chromium panels. The Starry panel in particular
-> > hardware-wise has nothing in common with the other panels in this
-> > driver and I'm suspicious about patch 3/4 as well.
-> >
-> > Please check my patch breaking it out to a separate driver, and
-> > if you could check internally if you have a datasheet for Ilitek
-> > ILI9882t or can use your vendor leverage to get one to improve
-> > on the driver (such as define the DCS commands...) that would
-> > be great.
-> >
-> > There are good reasons for grouping the panel drivers into
-> > respective display controller such as fixing bugs in one place
-> > and if we ever want to properly support things such as
-> > gamma correction it will provide the proper per-display-controller
-> > approach.
-> 
-> I mentioned in response to your patch #3 also [1], but closing the
-> loop here as well. The original reason several panels all ended up in
-> one driver was in response to Sam's feedback [2]. That was even
-> documented when the first of the "Chromium" panels landed in commit
-> 93ee1a2c0f08 ("drm/panel: support for BOE and INX video mode panel").
+Hi,
 
-If we should go with any sort of guideline then one-driver-per-controller.
-So we do not mix display controllers in one driver, but we can have
-different panels in one driver.
+Am Donnerstag, 6. Juli 2023, 21:18:25 CEST schrieb Rob Herring:
+> On Thu, Jul 06, 2023 at 11:39:28AM +0200, Alexander Stein wrote:
+> > Some (older) IP cores require 3 clocks, named 'ipg', 'ahb' and 'per' wh=
+ile
+> > more recent IP cores just require one. Fix the number and explicitly
+> > state the clock-names.
+> >=20
+> > Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> > ---
+> >=20
+> > >From I can tell, is that imx25, imx27, imx35 have specified 3 clocks in
+> >=20
+> > their DT.
+> > IMHO minItems for 'clock-names' can be removed as I presume that this
+> > property is not set when only one clock is used.
+>=20
+> Rather than presume, did you test that? Well, I did[1] and can confirm.
 
-Then there may be two almost identical controllers that can share the
-same driver, or there can be controllers used in two different ways so
-they warrant independent drivers. In other words this should be used
-with common sense.
+Okay, probably my wording was bad. There are a lot of users (e.g. imx8mm,=20
+imx8mn) which only have one clock but still provide some clock-names proper=
+ty.
+It works just because it is not called 'ipg', but some SoC specific clock=20
+name.
+So this patch should cause some warnings, but these users were incorrect in=
+=20
+the first place. Following up this patch, they need to be fixed.
 
-And if someone can help naming all the magic constant that would be
-super.
+Best regards,
+Alexander
 
-	Sam
+> Reviewed-by: Rob Herring <robh@kernel.org>
+>=20
+> [1]
+> https://patchwork.ozlabs.org/project/devicetree-bindings/patch/2023070609=
+39
+> 28.3580544-1-alexander.stein@ew.tq-group.com/
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
+
