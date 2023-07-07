@@ -2,150 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0958074AD71
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:56:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06D9E74ADAB
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 11:15:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231802AbjGGI4e convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 7 Jul 2023 04:56:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41282 "EHLO
+        id S231925AbjGGJPn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 05:15:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47150 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229891AbjGGI4d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:56:33 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 427AA11B
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:56:32 -0700 (PDT)
-Received: from ptz.office.stw.pengutronix.de ([2a0a:edc0:0:900:1d::77] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1qHhG1-0005rV-WC; Fri, 07 Jul 2023 10:56:06 +0200
-Message-ID: <6d1a6940f67eb2cd87817458d4ec9111b4fe7768.camel@pengutronix.de>
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm, primecell-periphid
- at etm nodes
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Frank Li <Frank.li@nxp.com>
-Cc:     suzuki.poulose@arm.com, coresight@lists.linaro.org,
-        imx@lists.linux.dev, Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S229910AbjGGJPm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 05:15:42 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB4611FF0
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 02:15:36 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id 2adb3069b0e04-4fba03becc6so3560633e87.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 02:15:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688721335; x=1691313335;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=9FjJZYNAatbuu1cji0jkL7Xcjs18H85nhXDDey1QoX0=;
+        b=n8YnOu5d8+FCDoMul7Ms5n+9b2ApsbwfHcs78aXePajg5lgDSjqvqeI+8uJdOcfFtZ
+         92c57RrDV9DZ8RWF+2ITqkfHCpnS/Khc018ljGEmfInEXkI7drnDNYkJJhqbdsaHw8Ae
+         uqSZWb+LqgPgVCSMJEa0w3Gz5f7rwIVnHZTtya0zxowtVdlcy/jmtw/eo+ggG6hQn4vK
+         MxapvIztkft21F35XUseqO2ZHw76VYkK8nNqt5AL6jjLX0WYRKblxauYWyGhsrO2pbrF
+         X7SqeRUcwtiJnIHjaDitxGXaOSHRYMwsD65f4RifUNPvG5CmkK7owE+mvHJc5Z0sPPvH
+         vxOQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688721335; x=1691313335;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=9FjJZYNAatbuu1cji0jkL7Xcjs18H85nhXDDey1QoX0=;
+        b=V6RxJmHx4ogU0r4j9tqr0rJ4Vo1TBc5Yatm361WoJ+8J2PBYO9Y0feoRP2vzcpld1C
+         UHYCw/4qKeoTsZzYpmIh8dWtUg7MbLEvuXacO0uT0JX+6fu+Oq6Zt5icKLwyPl8pI6AU
+         zhjw6uV6hKOtSIBLes9I2TGzgdzAeFJRGQbzTs9pozt78s5mQesrBeS0FzLQEP/KXUyx
+         8cr6W9mvhLzj+fBzlulRemN/JgiYomvl4TBB5KIal0I8UZGglQE073uPEKC0cGr71juF
+         nt5B90XIGOMlArwi4mg5bBXi1K6OQiRX0Iz1dHy7csOKpPAaFjoPydTz/F7trNKeZkmT
+         IU7g==
+X-Gm-Message-State: ABy/qLZcRhuB5QQoCSgO/oIpkHDz52nshWJi9Jj3p8275C7T2Myb09Rv
+        6CXmzrifqJ4R9/5D6Hhv2UM=
+X-Google-Smtp-Source: APBJJlH5M7W6wDGDWeONlTaN3FlEwk0tT5K97Ta9nyHtEi3tfb5YNxb7XTU+MsZDBtGvJQVLWS3IIA==
+X-Received: by 2002:a19:ca5b:0:b0:4fb:103f:7d56 with SMTP id h27-20020a19ca5b000000b004fb103f7d56mr1575906lfj.14.1688721334909;
+        Fri, 07 Jul 2023 02:15:34 -0700 (PDT)
+Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
+        by smtp.gmail.com with ESMTPSA id f6-20020ac251a6000000b004fba5c20ab1sm602008lfk.167.2023.07.07.02.15.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jul 2023 02:15:34 -0700 (PDT)
+From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Hauke Mehrtens <hauke@hauke-m.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Date:   Fri, 07 Jul 2023 10:56:03 +0200
-In-Reply-To: <24260662.6Emhk5qWAg@steina-w>
-References: <20230705205954.4159781-1-Frank.Li@nxp.com>
-         <49ef52b7-0269-898c-7cc2-096f2f1037fc@arm.com>
-         <ZKbSC8LBjLuo3ygD@lizhi-Precision-Tower-5810>
-         <24260662.6Emhk5qWAg@steina-w>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.46.4 (3.46.4-1.fc37) 
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
+Subject: [PATCH] ARM: dts: BCM5301X: Add Ethernet interfaces links
+Date:   Fri,  7 Jul 2023 11:15:19 +0200
+Message-Id: <20230707091519.21673-1-zajec5@gmail.com>
+X-Mailer: git-send-email 2.35.3
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:1d::77
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
+        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Freitag, dem 07.07.2023 um 07:34 +0200 schrieb Alexander Stein:
-> Hi Frank,
-> 
-> Am Donnerstag, 6. Juli 2023, 16:39:07 CEST schrieb Frank Li:
-> > On Thu, Jul 06, 2023 at 12:06:19PM +0100, Robin Murphy wrote:
-> > > > > Am Mittwoch, 5. Juli 2023, 22:59:53 CEST schrieb Frank Li:
-> > > > > > The reg size of etm nodes is incorrectly set to 64k instead of 4k.
-> > > > > > This
-> > > > > > leads to a crash when calling amba_read_periphid().  After corrected
-> > > > > > reg
-> > > > > > size, amba_read_periphid() retrieve the correct periphid.
-> > > > > > arm,primecell-periphid were removed from the etm nodes.
-> > > > > 
-> > > > > So this means the reference manual is wrong here? It clearly states
-> > > > > the size is 64kiB. Reference Manual i.MX8MP Rev 1. 06/2021
-> > > > > On a side note: Is imx8mq affected by this as well? The DAP memory
-> > > > > table lists similar sizes in the RM .
-> > > > 
-> > > > Note that the 64K MMIO space per device is really an alignment thing.
-> > > > It's a recommendation from ARM to allow individual device MMIO regions
-> > > > to be mapped on kernels with 64K page size. Most of the time the real
-> > > > MMIO space occupied by the device is actually much smaller than 64K.
-> > > 
-> > > Indeed, it's quite common for TRM memory maps to be written in terms of
-> > > the
-> > > interconnect configuration, i.e. from the point of view of the
-> > > interconnect
-> > > itself, that whole range of address space is assigned to that peripheral,
-> > > and it may even be true that the entire range is routed to the port where
-> > > that peripheral is connected. However what's of more interest for DT is
-> > > how
-> > > much of that range the peripheral itself actually decodes.
-> > 
-> > Yes, there are not problem by mapping bigger space in most case.
-> > 
-> > amba bus's periphal use close to end of region to show device's identical
-> > information.
-> 
-> Ah, thanks for the explanation. This make things more clear.
-> But on the other is it sensible to assume the memory resource size to fit the 
-> IP address space? It appears to me the size is fixed to 4kiB anyway. Would it 
-> make more sense to read the values from the address "base + 4K - x" instead of 
-> "base + size - x"?
-> 
-Huh? Why would AMBA peripherals be fixed to 4K in MMIO size? The ID
-detection by reading offsets at the end of the MMIO range is generic
-AMBA bus behavior.
+From: Rafał Miłecki <rafal@milecki.pl>
 
-The DT should declare the real peripheral MMIO size. Declaring the
-aligned size is not much of a problem on 64bit systems with huge
-address spaces but it still wastes vmap space when remapping the MMIO
-range. When the real peripheral decode size is known it should always
-be preferred over the aligned size.
+Northstar SoCs have 3 usable Ethernet interfaces each connected to one
+of switch ports. They all use fixed links.
 
-Regards,
-Lucas
+Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+---
+ arch/arm/boot/dts/broadcom/bcm-ns.dtsi | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-> Best regards,
-> Alexander
-> 
-> > In drivers/amba/bus.c,
-> > 
-> > amba_read_periphid()
-> > {
-> > 	...
-> > 	size = resource_size(&dev->res);
-> > 	...
-> > 	for (pid = 0, i = 0; i < 4; i++)
-> > 		pid |= (readl(tmp + size - 0x20 + 4 * i) & 255) << (i * 
-> 8);
-> > }
-> > 
-> > So the range in DTS for arm,primecell should be actual IP address space.
-> > 
-> > > Robin.
-> > > 
-> > > > _______________________________________________
-> > > > linux-arm-kernel mailing list
-> > > > linux-arm-kernel@lists.infradead.org
-> > > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-> 
+diff --git a/arch/arm/boot/dts/broadcom/bcm-ns.dtsi b/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
+index dae9c47ace76..88fda18af1f8 100644
+--- a/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
++++ b/arch/arm/boot/dts/broadcom/bcm-ns.dtsi
+@@ -272,14 +272,32 @@ xhci_port1: port@1 {
+ 
+ 		gmac0: ethernet@24000 {
+ 			reg = <0x24000 0x800>;
++			phy-mode = "internal";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
+ 		};
+ 
+ 		gmac1: ethernet@25000 {
+ 			reg = <0x25000 0x800>;
++			phy-mode = "internal";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
+ 		};
+ 
+ 		gmac2: ethernet@26000 {
+ 			reg = <0x26000 0x800>;
++			phy-mode = "internal";
++
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++			};
+ 		};
+ 
+ 		gmac3: ethernet@27000 {
+-- 
+2.35.3
 
