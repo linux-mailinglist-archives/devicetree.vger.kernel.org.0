@@ -2,65 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B06D74B983
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 00:28:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9A6A74B986
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 00:29:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231150AbjGGW2E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 18:28:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53864 "EHLO
+        id S229552AbjGGW3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 18:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54196 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjGGW2D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 18:28:03 -0400
-Received: from mail-il1-f179.google.com (mail-il1-f179.google.com [209.85.166.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A6ED2125;
-        Fri,  7 Jul 2023 15:28:01 -0700 (PDT)
-Received: by mail-il1-f179.google.com with SMTP id e9e14a558f8ab-3456fda4ed1so9799615ab.0;
-        Fri, 07 Jul 2023 15:28:01 -0700 (PDT)
+        with ESMTP id S229573AbjGGW3p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 18:29:45 -0400
+Received: from mail-io1-f54.google.com (mail-io1-f54.google.com [209.85.166.54])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 382552125;
+        Fri,  7 Jul 2023 15:29:44 -0700 (PDT)
+Received: by mail-io1-f54.google.com with SMTP id ca18e2360f4ac-783698a37beso90808239f.0;
+        Fri, 07 Jul 2023 15:29:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688768881; x=1691360881;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=56EyUDBChnxdpTRKBdVO1sD+qiaQ0xjE0Q15UIHjxIs=;
-        b=Dbz9zRwDSsaOxnx+7qubb1di/gbhm5okPgK20EXCdwB4RAbwNOy2E01N96n4xhHA4k
-         uiT4IxJUqASxkhUN408v3PbJwjtIzvoH+FnzEFP2IoVGQerlyoA87hpxEJvABf1bFdig
-         JQDL2wC1gs+svY+qSA2AU3ApZIg6A++bMEmYhA4SuK9JgSwkxpNgMmIWgCRyklCownWc
-         3u4Ewyf28ncu0LE336IUPpm8ztZcNTdT4bhaQ6Za6L0wOm0tuaReQ3T41Kbe5u5IG+Cz
-         mCooPbswhI5+sZVNCOOHEb0gDyCYJPcBErtL4YGp1Bk7iGIArl/QPp0ffu8x3TH9pv2a
-         jWGg==
-X-Gm-Message-State: ABy/qLbj7KtgzUbbCVRZHtrN68MtNyAaDDxYej7JhbRYtdmYUYpHfo3O
-        WWQG7wqOgic0+5yFVg3FOrZZs2EVaQ==
-X-Google-Smtp-Source: APBJJlHtm1LZWONsuEnFS1vDREZaeD3Yc+orTzrojiYVEdy1ehcSWL8ksd8C5wr+Py66mMapMCJOZA==
-X-Received: by 2002:a92:c803:0:b0:345:cc4d:bb7b with SMTP id v3-20020a92c803000000b00345cc4dbb7bmr6335723iln.6.1688768880773;
-        Fri, 07 Jul 2023 15:28:00 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688768983; x=1691360983;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=psEnD33Q4LbtjRBRJzCVPEQIimSo2c50Z8uxB8eIKAk=;
+        b=MaiT8S/Kx9yV8n7nGzLMrK4QOxFOQc1NJXJPJEDc2FsWlIjTDBxmnGx3nKjo7WwtAH
+         HI9jJpJOH0Wlg6JcyvMriK3egYPvMWRre/KRigS+zsKmLhgYxFW+GF7lPOv7FdeI6OAl
+         wL+IV1dcczZzYDatogexZ36gdWd+WJJc3jMLTs32aVehcu0zKBTwXQ37uBASY+jHuCvV
+         0tORfkq8vYd+dzdKDo+reRRk39RJR4/SDNy6jPSfAumRWP+9Fn2i4FugAVRfpZnntAE+
+         Tnric8hkgmZpWpgu4s3b96x5YwEMTBpZlgxqmyioQfC3KfyW/a69OwHg/sGfNrTXbSVH
+         yfGw==
+X-Gm-Message-State: ABy/qLYT4GIDNc5Uh9ivopIaxNIVDbznma+jeUw6qP9oaMPUlHpVBx+K
+        IFv50W2H1vD/gKfW1YjXoK19pk0Gtg==
+X-Google-Smtp-Source: APBJJlGqRJdlojCf+OXAmBHAqty4djhxd5U1wTgYVsaMRWWlzVDtbXRWKyHPvdirIljBYLLtIrdVmw==
+X-Received: by 2002:a5e:d70c:0:b0:780:ce12:6c50 with SMTP id v12-20020a5ed70c000000b00780ce126c50mr8096182iom.18.1688768983325;
+        Fri, 07 Jul 2023 15:29:43 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id e17-20020a92d751000000b00345d6e8ded4sm1589854ilq.25.2023.07.07.15.27.59
+        by smtp.gmail.com with ESMTPSA id a26-20020a029f9a000000b0042b45475212sm1567519jam.81.2023.07.07.15.29.41
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 15:27:59 -0700 (PDT)
-Received: (nullmailer pid 1083394 invoked by uid 1000);
-        Fri, 07 Jul 2023 22:27:58 -0000
-Date:   Fri, 7 Jul 2023 16:27:58 -0600
+        Fri, 07 Jul 2023 15:29:42 -0700 (PDT)
+Received: (nullmailer pid 1085234 invoked by uid 1000);
+        Fri, 07 Jul 2023 22:29:41 -0000
+Date:   Fri, 7 Jul 2023 16:29:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: clock: convert BCM53573 ILP clock to the
- json-schema
-Message-ID: <20230707222758.GA1079635-robh@kernel.org>
-References: <20230707130322.9375-1-zajec5@gmail.com>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 1/7] dt-bindings: arm: tegra: pmc: Improve property
+ descriptions
+Message-ID: <20230707222941.GA1083838-robh@kernel.org>
+References: <20230707131711.2997956-1-thierry.reding@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230707130322.9375-1-zajec5@gmail.com>
+In-Reply-To: <20230707131711.2997956-1-thierry.reding@gmail.com>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -68,129 +65,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 07, 2023 at 03:03:22PM +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
+On Fri, Jul 07, 2023 at 03:17:05PM +0200, Thierry Reding wrote:
+> From: Thierry Reding <treding@nvidia.com>
 > 
-> This helps validating DTS files.
+> Reformat the description of various properties to make them more
+> consistent with existing ones. Make use of json-schema's ability to
+> provide a description for individual list items to make improve the
+> documentation further.
 > 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
+> Signed-off-by: Thierry Reding <treding@nvidia.com>
 > ---
->  .../bindings/clock/brcm,bcm53573-ilp.txt      | 36 -------------
->  .../bindings/clock/brcm,bcm53573-ilp.yaml     | 51 +++++++++++++++++++
->  2 files changed, 51 insertions(+), 36 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
->  create mode 100644 Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.yaml
+>  .../arm/tegra/nvidia,tegra20-pmc.yaml         | 215 +++++++++---------
+>  1 file changed, 104 insertions(+), 111 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt b/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
-> deleted file mode 100644
-> index 2ebb107331dd..000000000000
-> --- a/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.txt
-> +++ /dev/null
-> @@ -1,36 +0,0 @@
-> -Broadcom BCM53573 ILP clock
-> -===========================
-> -
-> -This binding uses the common clock binding:
-> -    Documentation/devicetree/bindings/clock/clock-bindings.txt
-> -
-> -This binding is used for ILP clock (sometimes referred as "slow clock")
-> -on Broadcom BCM53573 devices using Cortex-A7 CPU.
-> -
-> -ILP's rate has to be calculated on runtime and it depends on ALP clock
-> -which has to be referenced.
-> -
-> -This clock is part of PMU (Power Management Unit), a Broadcom's device
-> -handing power-related aspects. Its node must be sub-node of the PMU
-> -device.
-> -
-> -Required properties:
-> -- compatible: "brcm,bcm53573-ilp"
-> -- clocks: has to reference an ALP clock
-> -- #clock-cells: should be <0>
-> -- clock-output-names: from common clock bindings, should contain clock
-> -		      name
-> -
-> -Example:
-> -
-> -pmu@18012000 {
-> -	compatible = "simple-mfd", "syscon";
+> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+> index 89191cfdf619..a90f01678775 100644
+> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+> +++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+> @@ -21,17 +21,14 @@ properties:
+>  
+>    reg:
+>      maxItems: 1
+> -    description:
+> -      Offset and length of the register set for the device.
+> +    description: Offset and length of the register set for the device.
 
-Really, the binding for this block needs to be converted or added first. 
-That means adding a specific compatible for the "pmu".
+nit: I'd add this to patch 2.
 
-> -	reg = <0x18012000 0x00001000>;
-> -
-> -	ilp {
-> -		compatible = "brcm,bcm53573-ilp";
-> -		clocks = <&alp>;
-> -		#clock-cells = <0>;
-> -		clock-output-names = "ilp";
-
-And this binding is simple enough it could be part of the parent 
-binding, but either way is fine.
-
-> -	};
-> -};
-> diff --git a/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.yaml b/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.yaml
-> new file mode 100644
-> index 000000000000..648f68a53119
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/brcm,bcm53573-ilp.yaml
-> @@ -0,0 +1,51 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/clock/brcm,bcm53573-ilp.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom BCM53573 ILP clock
-> +
-> +maintainers:
-> +  - Rafał Miłecki <rafal@milecki.pl>
-> +
-> +description: |
-> +  This binding is used for ILP clock (sometimes referred as "slow clock")
-> +  on Broadcom BCM53573 devices using Cortex-A7 CPU.
-> +
-> +  ILP's rate has to be calculated on runtime and it depends on ALP clock
-> +  which has to be referenced.
-> +
-> +  This clock is part of PMU (Power Management Unit), a Broadcom's device
-> +  handing power-related aspects. Its node must be sub-node of the PMU
-> +  device.
-> +
-> +properties:
-> +  compatible:
-> +    const: brcm,bcm53573-ilp
-> +
-> +  clocks:
-> +    description: ALP clock
-> +    maxItems: 1
-> +
-> +  "#clock-cells":
-> +    const: 0
-> +
-> +  clock-output-names:
-> +    const: ilp
-> +
-> +required:
-> +  - clocks
-> +  - "#clock-cells"
-> +  - clock-output-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    ilp {
-
-clock-controller {
-
-> +      compatible = "brcm,bcm53573-ilp";
-> +      clocks = <&alp>;
-> +      #clock-cells = <0>;
-> +      clock-output-names = "ilp";
-> +    };
-> -- 
-> 2.35.3
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
