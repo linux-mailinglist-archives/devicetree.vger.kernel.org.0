@@ -2,221 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 20E5074BA0A
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 01:26:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B06D474BA3A
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 01:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbjGGX0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 19:26:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41172 "EHLO
+        id S229969AbjGGXzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 19:55:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45446 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229990AbjGGX0l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 19:26:41 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F2642130;
-        Fri,  7 Jul 2023 16:26:40 -0700 (PDT)
-Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id B3F3F86307;
-        Sat,  8 Jul 2023 01:26:38 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1688772399;
-        bh=+k5hBa5Uaa5Q3Hl0QQ4uCMhCRoY2swvlbDIXmSFvLHY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Dq/E+4qTnnYhZkZG8IZKCpdjaTgxPDG/3IeP2egVUgkFQbGCmkjR3h0Vn396v8D+O
-         OuTuNPnikKzJQsIayY/CBu6d5LvLnKCtA2QAow6JbXq136c8bdFR1vF1g9C5pYSWjg
-         ighmcVawSMWuJUzWsXiKjoqqRodZIE0CMThoFVVWKKfzdJseC9Az1z6x4cunekNbDr
-         /R1D9fpa1onVkXj/Z2fi2OYY9jFpdPmp54APtRG+8uoBubu16SUiGlE8x9iXsqemjw
-         yYI0AKmdrtsnPT7volxsf2hRjA7zWtyHnv1dHXNtuMDeakOm/MtRgl2J3TRtyvGZvI
-         1mgCNX/DpF5iA==
-From:   Marek Vasut <marex@denx.de>
-To:     linux-remoteproc@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 2/2] remoteproc: imx_rproc: Switch iMX8MN/MP from SMCCC to MMIO
-Date:   Sat,  8 Jul 2023 01:26:26 +0200
-Message-Id: <20230707232626.374475-2-marex@denx.de>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230707232626.374475-1-marex@denx.de>
-References: <20230707232626.374475-1-marex@denx.de>
+        with ESMTP id S229471AbjGGXzs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 19:55:48 -0400
+Received: from mail-lj1-x22f.google.com (mail-lj1-x22f.google.com [IPv6:2a00:1450:4864:20::22f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7FDCB2115
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 16:55:47 -0700 (PDT)
+Received: by mail-lj1-x22f.google.com with SMTP id 38308e7fff4ca-2b6f97c7115so37682861fa.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 16:55:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gateworks-com.20221208.gappssmtp.com; s=20221208; t=1688774146; x=1691366146;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=dso2mcatmgfyOH+exjp6YHYefmmJPBr+6wmnSbURNss=;
+        b=Gla6d4HsaUjJy9WjX1asNY6ZNEdzeEWUwC0Besvq0JkMFcDjgth5Nsz1mFPyH2XE5V
+         gErvv3N/cEctuEZoWhwXOHMEKCR9vFo/UASGbTEZu4qwCOB79pbnXX88Hb0MhGsseomc
+         HhEBddFopoX97m+/9Jgj/kxlZy4KdPiDQyAvsMTdob5f4G/SYFRI36+ijRyNFvL5RnvX
+         +mcoeQIsgWAxZEXHhxnW8JWPd5J/3RJ81jccaAauh9JLV7AmZeIy7qMQzGkwXz4PuvD+
+         zYPg6fVALpmo18QvRcwGMVVU5FUHaOvWSopO84D2ghKJyMVay9VTj05xUjdi3OgxxTvZ
+         coNA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688774146; x=1691366146;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=dso2mcatmgfyOH+exjp6YHYefmmJPBr+6wmnSbURNss=;
+        b=hNQW0TyACme409Nn2kaVlylkWkwwwoMSp+2oOFD0r5/9pTOa/2cjoRh24cuWeJW55W
+         QgYSugcXyl//kS3hpHMwMZBfMAnlHDvYskbfEN4jB3pgZyHQcHxBYCuzS368SAzQlnre
+         DjhzdcSeolmFak2FBHgise9rYg28CpXZfh8tE3cy4sIqTOcFbiZAWsjzn5PjAqGnvxnO
+         Np4m3dq5wjuczewpsfcIuiyinNFGBIfrh2dR85iYk5/HmJWLUVj86sn7H7qwpZn0SNjm
+         npA1NR6VHiQu50RNWLzsPd1HLAkGggyRf5WiFRZYPuotzoj4bMEves0J+dtMk3a3379P
+         tDkw==
+X-Gm-Message-State: ABy/qLYomSdDYgzQdF1Mm0nI8qkZo9TMZo9zjIJglzObYotZw99bWPnk
+        OoLHqNPfQjdoDmwQA/2cZdVSxo5t15z0QUeIhnNMc5r6sAc3WZ2G
+X-Google-Smtp-Source: APBJJlFvAEM84y0BrkAjkxEDlbGpQ9eHri+HEwLLbNnPPKMCG6FZAVzbcMXgOKyPIXnwhr2elBDRxLbN0dCGbUGaDcU=
+X-Received: by 2002:a2e:b163:0:b0:2b6:df6b:84c0 with SMTP id
+ a3-20020a2eb163000000b002b6df6b84c0mr4716545ljm.25.1688774145636; Fri, 07 Jul
+ 2023 16:55:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230417055627.16482-1-laurent.pinchart@ideasonboard.com>
+ <20230417080117.jiqpynebq2we2hh4@pengutronix.de> <20230417081510.GA19964@pendragon.ideasonboard.com>
+ <3232774.44csPzL39Z@steina-w> <CAHCN7xJ26TMD4U_5wTtGcGFHZBTTewVRd+mnKa5Ff5cRxBdHPA@mail.gmail.com>
+ <20230417131553.bw5kkrpbptdnf6mi@pengutronix.de>
+In-Reply-To: <20230417131553.bw5kkrpbptdnf6mi@pengutronix.de>
+From:   Tim Harvey <tharvey@gateworks.com>
+Date:   Fri, 7 Jul 2023 16:55:33 -0700
+Message-ID: <CAJ+vNU2itUCBBagcHW+LhoLdhOvJQ=QKup8LZJuQu6HD2M6dvg@mail.gmail.com>
+Subject: Re: [PATCH v1 1/2] arm64: dts: imx8mp: Add CSIS DT nodes
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Adam Ford <aford173@gmail.com>,
+        Alexander Stein <alexander.stein@ew.tq-group.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de,
+        Xavier Roumegue <xavier.roumegue@oss.nxp.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-imx@nxp.com,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Jacopo Mondi <jacopo.mondi@ideasonboard.com>,
+        Shawn Guo <shawnguo@kernel.org>, linux-media@vger.kernel.org,
+        Marco Felsch <m.felsch@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MX8M CM7 boot via SMC call is problematic, since not all versions
-of ATF support this interface. Extend the MMIO support so it can boot
-the CM7 on MX8MN/MP instead and discern the two alternatives using DT
-compatible strings.
+On Mon, Apr 17, 2023 at 6:16=E2=80=AFAM Marco Felsch <m.felsch@pengutronix.=
+de> wrote:
+>
+> On 23-04-17, Adam Ford wrote:
+>
+> ...
+>
+> > > > > > > If we would add:
+> > > > > > >                                                 mipi_csi_0_in=
+:
+> > > endpoint {};
+> > > > > > >
+> > > > > > > here we could refernce it from overlays/board dts files more =
+easily.
+> > > > > >
+> > > > > > Isn't there an unwritten rule (or consensus) that an endpoint s=
+hould
+> > > > > > always have a remote-endpoint property ?
+> > > > >
+> > > > > I don't know if there is one.
+> > > > >
+> > > > > > While ports describe hardware properties of a device and should=
+ always
+> > > > > > be there regardless of connections, endpoints describe connecti=
+ons and
+> > > > > > I don't think they should be instantiated with a valid
+> > > > > > remote-endpoint.
+> > > > >
+> > > > > I know, therefore I mentioned it as idea to make it 'easier' to a=
+dd
+> > > > > camera nodes.
+> > > >
+> > > > As a middleground, would it be useful to have a label for the port =
+?
+> > > > Something like
+> > > >
+> > > >       mipi_csi_0: csi@32e40000 {
+> > > >               ports {
+> > > >                       mipi_csi_0_port_0: port@0 {
+> > > >                       };
+> > > >               };
+> > > >       };
+> > > >
+> > > > An overlay could then reference that and create the endpoint. I'm n=
+ot
+> > > > entirely sure how useful that would be though, as the overlay would=
+ need
+> > > > to enable the CSI node anyway. Compare
+> > > >
+> > > > --------
+> > > > &mipi_csi_0 {
+> > > >       status =3D "okay";
+> > > > };
+> > > >
+> > > > &mipi_csi_0_port_0 {
+> > > >       mipi_csi_0_in: endpoint {
+> > > >               remote-endpoint =3D <&imx327_out>;
+> > > >       };
+> > > > };
+> > > > --------
+> > > >
+> > > > with
+> > > >
+> > > > --------
+> > > > &mipi_csi_0 {
+> > > >       status =3D "okay";
+> > > >
+> > > >       ports {
+> > > >               port@0 {
+> > > >                       mipi_csi_0_in: endpoint {
+> > > >                               remote-endpoint =3D <&imx327_out>;
+> > > >                       };
+> > > >               };
+> > > >       };
+> > > > };
+> > > > --------
+> > > >
+> > > > I have a slight preference for the latter as it groups all the CSI0=
+ data
+> > > > in a single overlay target, but if the former is generally preferre=
+d,
+> > > > I'm fine with that too.
+> > >
+> > > The former is more compact, but also raises the following dtc warning=
+s while
+> > > creating the .dtbo:
+> > > Warning (graph_endpoint): /fragment@4/__overlay__: graph endpoint nod=
+e name
+> > > should be 'endpoint'
+> > > Warning (graph_endpoint): /fragment@4/__overlay__: graph connection t=
+o node '/
+> > > fragment@1/__overlay__/ports/port@1/endpoint' is not bidirectional
+> > >
+> > > for the following snippet:
+> > >
+> > > &mipi_csi_0_out {
+> > >         remote-endpoint =3D <&isp1_in>;
+> > > };
+> > >
+> > > I'm not sure if there is a chance to fix at all.
+> >
+> > Once there is consensus on how this should be generically plumbed,
+> > please keep me in the loop, so I can add the corresponding imx8m Nano
+> > trees as well.  I've tested Laurent's work for a while on the Nano
+> > that I have.  I was going to push DT updates for Nano, then I saw this
+> > conversation, so I decided to hold off for now.
+>
+> This was just an idea nothing serious. Maybe Krzysztof have a strong
+> opinion on that.
+>
+> Regards,
+>   Marco
+>
 
-Signed-off-by: Marek Vasut <marex@denx.de>
----
-Cc: Bjorn Andersson <andersson@kernel.org>
-Cc: Conor Dooley <conor+dt@kernel.org>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Peng Fan <peng.fan@nxp.com>
-Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Sascha Hauer <s.hauer@pengutronix.de>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: linux-arm-kernel@lists.infradead.org
-Cc: linux-remoteproc@vger.kernel.org
----
- drivers/remoteproc/imx_rproc.c | 53 ++++++++++++++++++++++++++++++++--
- drivers/remoteproc/imx_rproc.h |  2 ++
- 2 files changed, 53 insertions(+), 2 deletions(-)
+Hi Laurent,
 
-diff --git a/drivers/remoteproc/imx_rproc.c b/drivers/remoteproc/imx_rproc.c
-index d0eb96d6a4fe1..09589f664a2be 100644
---- a/drivers/remoteproc/imx_rproc.c
-+++ b/drivers/remoteproc/imx_rproc.c
-@@ -41,6 +41,12 @@
- #define IMX7D_M4_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST | \
- 					 IMX7D_SW_M4C_NON_SCLR_RST)
- 
-+#define IMX8M_M7_STOP			(IMX7D_ENABLE_M4 | IMX7D_SW_M4C_RST)
-+#define IMX8M_M7_POLL			IMX7D_ENABLE_M4
-+
-+#define IMX8M_GPR22			0x58
-+#define IMX8M_GPR22_CM7_CPUWAIT		BIT(0)
-+
- /* Address: 0x020D8000 */
- #define IMX6SX_SRC_SCR			0x00
- #define IMX6SX_ENABLE_M4		BIT(22)
-@@ -92,6 +98,7 @@ static int imx_rproc_detach_pd(struct rproc *rproc);
- struct imx_rproc {
- 	struct device			*dev;
- 	struct regmap			*regmap;
-+	struct regmap			*gpr;
- 	struct rproc			*rproc;
- 	const struct imx_rproc_dcfg	*dcfg;
- 	struct imx_rproc_mem		mem[IMX_RPROC_MEM_MAX];
-@@ -287,6 +294,18 @@ static const struct imx_rproc_att imx_rproc_att_imx6sx[] = {
- 	{ 0x80000000, 0x80000000, 0x60000000, 0 },
- };
- 
-+static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn_mmio = {
-+	.src_reg	= IMX7D_SRC_SCR,
-+	.src_mask	= IMX7D_M4_RST_MASK,
-+	.src_start	= IMX7D_M4_START,
-+	.src_stop	= IMX8M_M7_STOP,
-+	.gpr_reg	= IMX8M_GPR22,
-+	.gpr_wait	= IMX8M_GPR22_CM7_CPUWAIT,
-+	.att		= imx_rproc_att_imx8mn,
-+	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-+	.method		= IMX_RPROC_MMIO,
-+};
-+
- static const struct imx_rproc_dcfg imx_rproc_cfg_imx8mn = {
- 	.att		= imx_rproc_att_imx8mn,
- 	.att_size	= ARRAY_SIZE(imx_rproc_att_imx8mn),
-@@ -367,8 +386,14 @@ static int imx_rproc_start(struct rproc *rproc)
- 
- 	switch (dcfg->method) {
- 	case IMX_RPROC_MMIO:
--		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
--					 dcfg->src_start);
-+		if (priv->gpr) {
-+			ret = regmap_clear_bits(priv->gpr, dcfg->gpr_reg,
-+						dcfg->gpr_wait);
-+		} else {
-+			ret = regmap_update_bits(priv->regmap, dcfg->src_reg,
-+						 dcfg->src_mask,
-+						 dcfg->src_start);
-+		}
- 		break;
- 	case IMX_RPROC_SMC:
- 		arm_smccc_smc(IMX_SIP_RPROC, IMX_SIP_RPROC_START, 0, 0, 0, 0, 0, 0, &res);
-@@ -400,6 +425,16 @@ static int imx_rproc_stop(struct rproc *rproc)
- 
- 	switch (dcfg->method) {
- 	case IMX_RPROC_MMIO:
-+		if (priv->gpr) {
-+			ret = regmap_set_bits(priv->gpr, dcfg->gpr_reg,
-+					      dcfg->gpr_wait);
-+			if (ret) {
-+				dev_err(priv->dev,
-+					"Failed to quiescence M4 platform!\n");
-+				return ret;
-+			}
-+		}
-+
- 		ret = regmap_update_bits(priv->regmap, dcfg->src_reg, dcfg->src_mask,
- 					 dcfg->src_stop);
- 		break;
-@@ -988,6 +1023,10 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 		break;
- 	}
- 
-+	priv->gpr = syscon_regmap_lookup_by_phandle(dev->of_node, "gpr");
-+	if (IS_ERR(priv->gpr))
-+		priv->gpr = NULL;
-+
- 	regmap = syscon_regmap_lookup_by_phandle(dev->of_node, "syscon");
- 	if (IS_ERR(regmap)) {
- 		dev_err(dev, "failed to find syscon\n");
-@@ -997,6 +1036,14 @@ static int imx_rproc_detect_mode(struct imx_rproc *priv)
- 	priv->regmap = regmap;
- 	regmap_attach_dev(dev, regmap, &config);
- 
-+	if (priv->gpr) {
-+		ret = regmap_read(priv->gpr, dcfg->gpr_reg, &val);
-+		if (val & dcfg->gpr_wait) {
-+			imx_rproc_stop(priv->rproc);
-+			return 0;
-+		}
-+	}
-+
- 	ret = regmap_read(regmap, dcfg->src_reg, &val);
- 	if (ret) {
- 		dev_err(dev, "Failed to read src\n");
-@@ -1142,6 +1189,8 @@ static const struct of_device_id imx_rproc_of_match[] = {
- 	{ .compatible = "fsl,imx8mm-cm4", .data = &imx_rproc_cfg_imx8mq },
- 	{ .compatible = "fsl,imx8mn-cm7", .data = &imx_rproc_cfg_imx8mn },
- 	{ .compatible = "fsl,imx8mp-cm7", .data = &imx_rproc_cfg_imx8mn },
-+	{ .compatible = "fsl,imx8mn-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
-+	{ .compatible = "fsl,imx8mp-cm7-mmio", .data = &imx_rproc_cfg_imx8mn_mmio },
- 	{ .compatible = "fsl,imx8qxp-cm4", .data = &imx_rproc_cfg_imx8qxp },
- 	{ .compatible = "fsl,imx8qm-cm4", .data = &imx_rproc_cfg_imx8qm },
- 	{ .compatible = "fsl,imx8ulp-cm33", .data = &imx_rproc_cfg_imx8ulp },
-diff --git a/drivers/remoteproc/imx_rproc.h b/drivers/remoteproc/imx_rproc.h
-index 1c7e2127c7584..79a1b8956d142 100644
---- a/drivers/remoteproc/imx_rproc.h
-+++ b/drivers/remoteproc/imx_rproc.h
-@@ -31,6 +31,8 @@ struct imx_rproc_dcfg {
- 	u32				src_mask;
- 	u32				src_start;
- 	u32				src_stop;
-+	u32				gpr_reg;
-+	u32				gpr_wait;
- 	const struct imx_rproc_att	*att;
- 	size_t				att_size;
- 	enum imx_rproc_method		method;
--- 
-2.40.1
+Is there any consensus on this yet?
 
+I have a imx219 camera attached to an imx8mp-venice-gw74xx that I'm
+trying to figure out how to connect up via an overlay to test it.
+
+Best regards,
+
+Tim
