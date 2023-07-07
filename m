@@ -2,178 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BD82574B3EE
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 17:15:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A28174B406
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 17:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232693AbjGGPPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 11:15:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54124 "EHLO
+        id S232883AbjGGPVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 11:21:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56922 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231580AbjGGPPa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 11:15:30 -0400
-Received: from mail-ed1-x533.google.com (mail-ed1-x533.google.com [IPv6:2a00:1450:4864:20::533])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 58FDAAF
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 08:15:25 -0700 (PDT)
-Received: by mail-ed1-x533.google.com with SMTP id 4fb4d7f45d1cf-516500163b2so8376a12.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 08:15:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20221208; t=1688742924; x=1691334924;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=6YXbXsbvOMlSuicNXAF0XnpxUQZnLmXnnBQdiqFD9L8=;
-        b=t4S/cANiXbmvMjg9+iRh0/IUjvHNBWpdExMO3qEfwLtAOxOu8i17aSOIbYffXTeRTu
-         OKp74t6UeZyQ3Wu2VuHtLDul06uY5qxhbyGNBqKHAqvm6OgOJZIQUNsVx1M8qFVaJOHT
-         /YYQlBdOuzxN7OQeG4vY/nNpG8q6mBdk6pJlZWQ29wMjSVXFQwG3rVORMAh+nlTabczn
-         z9teO4aBAJ8L6IN6oLsO3pmjHYF/97RkDx0KYPy7J1ttsyo0K7nJHdwPkIkLBlPrFUN2
-         j62yOPvI5e+b5qsy1uPFPp3l20a6nrKrS8qyTf2jy9GaTo/AJH6Tj0sfAbQ4EL4esZo4
-         YEHw==
+        with ESMTP id S229618AbjGGPVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 11:21:04 -0400
+Received: from mail-il1-f178.google.com (mail-il1-f178.google.com [209.85.166.178])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A919210C;
+        Fri,  7 Jul 2023 08:21:03 -0700 (PDT)
+Received: by mail-il1-f178.google.com with SMTP id e9e14a558f8ab-345df4e68afso7703565ab.0;
+        Fri, 07 Jul 2023 08:21:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688742924; x=1691334924;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6YXbXsbvOMlSuicNXAF0XnpxUQZnLmXnnBQdiqFD9L8=;
-        b=d6yXgwENuC53/AMEkI7DUs47GX6beKKhI+kskYz4jhFbfXdt6JZPvf+2JkmhOgnEOt
-         Sij13rxPxK9HUDcKntRJL5zvoMaZcUN7FJEbBBTVfdzS5LZ1VIOv1l2fD7OodPMjxeew
-         c8KCOQyKUdtEJjm3FFalrRvI00kxForj8zXP0iBMvcJC3+rGpnM3lVB7+rlnfdymLdMn
-         kzmCnmyQUS8RPGd8mn+ygqfFkVlR7sNBrgXFjSnawHmnTPKxc9PYLJkPVNSwMffoGAwS
-         lEyL1/rVBIT8iCAxF6KaFissiS/DSLROkBL/UMjAQBKnFUx2uvjdhuVeTRgcXGItyn7H
-         hX8Q==
-X-Gm-Message-State: ABy/qLbm0br/e2xIatU6cDeWVYJ3Qh28K6MbcZ7WzZ7zp+Y2w5qqwmjn
-        IJAz7SRc1ShYd5Dl1dFzdgtARmUyMmn9GTmEP7CTMA==
-X-Google-Smtp-Source: APBJJlHqjh/fZar1rgohrt2gtrlPwgYw4AjqLbpsFPgJk65Dv3UNdqDGvcGVoreA/B+W4gTpmze0/YcfamzATkg2Vfk=
-X-Received: by 2002:a50:d682:0:b0:514:92e4:ab9f with SMTP id
- r2-20020a50d682000000b0051492e4ab9fmr74276edi.7.1688742923708; Fri, 07 Jul
- 2023 08:15:23 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688743263; x=1691335263;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rL/IqSliQWE/k5qHxsNvvh1YZrhQdGRZyr99h97/eUY=;
+        b=E2nSI/axcs0M60YqqOxVH8oRkVpkVwbT+5hjzMehkLKHrK+bZ+p23K9gM7+1bZIMf3
+         rBXIGR6m23cyd1eQ2D0sByKEdj5uN+HczqjaNcSQm5wdcbMmKgUXkDBelzcEhpCuCwbn
+         AHMe0NdruynllpxclexBLbZKxBYJAndUjWf65GnUelZ9ftEKJTaaGufgHWhsDGbjc4mU
+         +3gag5AvYc9Q5IPmHHiKJZzM8+/KteQCKNPH83wTjy+AI26qRGac4K6e6Zr+46iwhnms
+         xyXP1EiQG8RgkvD1V+c8Ci0XzkGDKN3E1nd/HQPsSt0/rS+JVyY1KvodF3qRyEDKIQeT
+         4Jyw==
+X-Gm-Message-State: ABy/qLbzd1Q2WovAocVSZRxxGm0i3kgW2OPgnExyul2Q1WXwLKZzthpy
+        eOoIjGUlxR7bjCxyQ60tcw==
+X-Google-Smtp-Source: APBJJlFyYg4jsqLMtrZwdHhLv4pwfC6duMAPrAIt71GIj1jKSnKNUViqYaVUZmofZqUjjxCTBsm9Mg==
+X-Received: by 2002:a92:de12:0:b0:346:b85:5f2 with SMTP id x18-20020a92de12000000b003460b8505f2mr5198421ilm.23.1688743262706;
+        Fri, 07 Jul 2023 08:21:02 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id b11-20020a92dccb000000b00325e56c1cdcsm1386377ilr.49.2023.07.07.08.20.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jul 2023 08:21:01 -0700 (PDT)
+Received: (nullmailer pid 327561 invoked by uid 1000);
+        Fri, 07 Jul 2023 15:20:56 -0000
+Date:   Fri, 7 Jul 2023 09:20:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
+Cc:     Oleksii_Moisieiev@epam.com, gregkh@linuxfoundation.org,
+        herbert@gondor.apana.org.au, davem@davemloft.net,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        alexandre.torgue@foss.st.com, vkoul@kernel.org, jic23@kernel.org,
+        olivier.moysan@foss.st.com, arnaud.pouliquen@foss.st.com,
+        mchehab@kernel.org, fabrice.gasnier@foss.st.com,
+        andi.shyti@kernel.org, ulf.hansson@linaro.org, edumazet@google.com,
+        kuba@kernel.org, pabeni@redhat.com, hugues.fruchet@foss.st.com,
+        lee@kernel.org, will@kernel.org, catalin.marinas@arm.com,
+        arnd@kernel.org, richardcochran@gmail.com,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, linux-i2c@vger.kernel.org,
+        linux-iio@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-media@vger.kernel.org, linux-mmc@vger.kernel.org,
+        netdev@vger.kernel.org, linux-phy@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH 04/10] dt-bindings: treewide: add feature-domains
+ description in binding files
+Message-ID: <20230707152056.GA317056-robh@kernel.org>
+References: <20230705172759.1610753-1-gatien.chevallier@foss.st.com>
+ <20230705172759.1610753-5-gatien.chevallier@foss.st.com>
+ <20230706145108.GA3858320-robh@kernel.org>
+ <0aaace47-1bb4-82c5-57a5-6f5d27eb4d45@foss.st.com>
 MIME-Version: 1.0
-References: <20230704050744.1196293-1-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=WNLcw2JbMf7tfob2KgjB8eXTC0p1J4OYnQL4k3Mz3mgA@mail.gmail.com> <CAHwB_NJbtvXNCFj5=NMBXWCt1S1_WrgGij2Kqdr1omno66kVUw@mail.gmail.com>
-In-Reply-To: <CAHwB_NJbtvXNCFj5=NMBXWCt1S1_WrgGij2Kqdr1omno66kVUw@mail.gmail.com>
-From:   Doug Anderson <dianders@google.com>
-Date:   Fri, 7 Jul 2023 08:15:11 -0700
-Message-ID: <CAD=FV=W5adfzPkP6dJGwfGO+mcbTdg8v9A0Sd4-FozF+W7nSrA@mail.gmail.com>
-Subject: Re: [PATCH] drm/panel: Add avdd/avee delay for Starry-himax83102-j02
- and Starry-ili9882t panel
-To:     cong yang <yangcong5@huaqin.corp-partner.google.com>
-Cc:     sam@ravnborg.org, neil.armstrong@linaro.org, daniel@ffwll.ch,
-        airlied@gmail.com, hsinyi@google.com,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-17.6 required=5.0 tests=BAYES_00,DKIMWL_WL_MED,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        ENV_AND_HDR_SPF_MATCH,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,USER_IN_DEF_DKIM_WL,USER_IN_DEF_SPF_WL
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <0aaace47-1bb4-82c5-57a5-6f5d27eb4d45@foss.st.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Jul 07, 2023 at 02:28:28PM +0200, Gatien CHEVALLIER wrote:
+> Hello Rob,
+> 
+> On 7/6/23 16:51, Rob Herring wrote:
+> > On Wed, Jul 05, 2023 at 07:27:53PM +0200, Gatien Chevallier wrote:
+> > > feature-domains is an optional property that allows a peripheral to
+> > > refer to one or more feature domain controller(s).
+> > > 
+> > > Description of this property is added to all peripheral binding files of
+> > > the peripheral under the STM32 firewall controllers. It allows an accurate
+> > > representation of the hardware, where various peripherals are connected
+> > > to this firewall bus. The firewall can then check the peripheral accesses
+> > > before allowing it to probe.
+> > > 
+> > > Signed-off-by: Gatien Chevallier <gatien.chevallier@foss.st.com>
+> > > ---
+> > > 
+> > > Disclaimer: Some error with dtbs_check will be observed as I've
+> > > considered the property to be generic, as Rob asked
+> > > 
+> > >   Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml  | 4 ++++
+> > >   Documentation/devicetree/bindings/dma/st,stm32-dma.yaml      | 4 ++++
+> > >   Documentation/devicetree/bindings/dma/st,stm32-dmamux.yaml   | 4 ++++
+> > >   Documentation/devicetree/bindings/i2c/st,stm32-i2c.yaml      | 4 ++++
+> > >   Documentation/devicetree/bindings/iio/adc/st,stm32-adc.yaml  | 4 ++++
+> > >   .../devicetree/bindings/iio/adc/st,stm32-dfsdm-adc.yaml      | 4 ++++
+> > >   Documentation/devicetree/bindings/iio/dac/st,stm32-dac.yaml  | 4 ++++
+> > >   .../devicetree/bindings/media/cec/st,stm32-cec.yaml          | 4 ++++
+> > >   Documentation/devicetree/bindings/media/st,stm32-dcmi.yaml   | 4 ++++
+> > >   .../bindings/memory-controllers/st,stm32-fmc2-ebi.yaml       | 4 ++++
+> > >   Documentation/devicetree/bindings/mfd/st,stm32-lptimer.yaml  | 4 ++++
+> > >   Documentation/devicetree/bindings/mfd/st,stm32-timers.yaml   | 5 +++++
+> > >   Documentation/devicetree/bindings/mmc/arm,pl18x.yaml         | 4 ++++
+> > >   Documentation/devicetree/bindings/net/stm32-dwmac.yaml       | 4 ++++
+> > >   Documentation/devicetree/bindings/phy/phy-stm32-usbphyc.yaml | 4 ++++
+> > >   .../devicetree/bindings/regulator/st,stm32-vrefbuf.yaml      | 4 ++++
+> > >   Documentation/devicetree/bindings/rng/st,stm32-rng.yaml      | 4 ++++
+> > >   Documentation/devicetree/bindings/serial/st,stm32-uart.yaml  | 4 ++++
+> > >   Documentation/devicetree/bindings/sound/st,stm32-i2s.yaml    | 4 ++++
+> > >   Documentation/devicetree/bindings/sound/st,stm32-sai.yaml    | 4 ++++
+> > >   .../devicetree/bindings/sound/st,stm32-spdifrx.yaml          | 4 ++++
+> > >   Documentation/devicetree/bindings/spi/st,stm32-qspi.yaml     | 4 ++++
+> > >   Documentation/devicetree/bindings/spi/st,stm32-spi.yaml      | 4 ++++
+> > >   Documentation/devicetree/bindings/usb/dwc2.yaml              | 4 ++++
+> > >   24 files changed, 97 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+> > > index b767ec72a999..daf8dcaef627 100644
+> > > --- a/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+> > > +++ b/Documentation/devicetree/bindings/crypto/st,stm32-hash.yaml
+> > > @@ -50,6 +50,10 @@ properties:
+> > >     power-domains:
+> > >       maxItems: 1
+> > > +  feature-domains:
+> > > +    minItems: 1
+> > > +    maxItems: 3
+> > 
+> > What are the 3 entries?
+> > 
+> > Rob
+> 
+> I thought I was benefiting from the description of the pattern-property in
+> the RIFSC YAML file. But yes anyway, it seems like it needs some description
+> here as the dependency does not appear in this file.
 
-On Thu, Jul 6, 2023 at 6:20=E2=80=AFPM cong yang
-<yangcong5@huaqin.corp-partner.google.com> wrote:
->
-> Hi,
->
-> On Fri, Jul 7, 2023 at 3:32=E2=80=AFAM Doug Anderson <dianders@google.com=
-> wrote:
-> >
-> > Hi,
-> >
-> > On Mon, Jul 3, 2023 at 10:07=E2=80=AFPM Cong Yang
-> > <yangcong5@huaqin.corp-partner.google.com> wrote:
-> > >
-> > > From power on/off sequence for panel data sheet[1], T2 timing VSP to =
-VSN
-> > > needs 1ms delay when power on, and VSN to VSP also needs 1ms delay wh=
-en
-> > > power off. Some pmic may not be able to adjust the delay internally, =
-so
-> > > let's add a delay between avdd/avee regulator gpio to meet the timing=
- of
-> > > panel.
-> >
-> > Unless I'm mistaken, all of this is best handled via regulator
-> > constraints in the device tree. See the file:
-> >
-> > Documentation/devicetree/bindings/regulator/regulator.yaml
-> >
-> > Specifically, any delays related to actually ramping up / down the
-> > regulator can be specified in the device tree. Nominally, you could
-> > argue that the 1 ms delay actually _does_ belong in the driver, but
-> > IMO the 1 ms number there is really just there because someone thought
-> > it was weird to specify a delay of 0 ms. Given that you already need
-> > remp delays in the device tree, it feels OK to me to just include the
-> > 1 ms there.
->
-> The regulator device tree has only the power on attribute
-> "regulator-enable-ramp-delay",
-> not has power off attribute. The regulator delay looks more like the
-> HW voltage requirement
-> of the power ic itself, and I just want to meet the panel spec
-> requirement. I add regulator-enable-ramp-delay
-> in dts he can also meet my requirement, but I have no way to control
-> the power off delays.
+Humm, that should limit the maximum entries to 2, so 3 would never work 
+(if RIFSC is the parent). 
 
-Hmmm, I guess the fact that the delay needed can be different for
-different boards / PMICs still makes me think that the delay doesn't
-belong in the panel driver. Different boards using the same panel
-would need different delays, right?
+> I picked 3 as a maxItems for our ST needs, I'll give it some more thought
+> when coming back with something clearer.
 
-So, thinking more...
+I'd expect you have 1 entry for register bus and 1 entry for DMA bus if 
+there is one. It's block specific for how many entries, so the RIFSC 
+schema should not be setting that. You could possibly say that 
+'feature-domains' is required for all the child nodes though.
 
-You're saying that you _can_ specify the enable delay in the device
-tree, but not the disable one, right? However, the timing diagram you
-provided doesn't seem to show the "disable" part. Since that's the
-part we're talking about now, could you provide a more complete timing
-diagram? Can you also talk to the panel vendor and confirm that the "1
-ms" actually matters or if they just put that there to ensure
-ordering? In other words, is it simply important that VDD1 gets to
-~90% before you turn on VSP, or do they truly need a full 1 ms delay?
-
-Can you provide any more details about the power IC you're using? Is
-it just a discrete PMIC with a GPIO enable, or is it something
-fancier? Correct me if I'm confused (entirely possible!), but I think
-some PMICs have a feature where they can turn on "active discharge" so
-that they ramp down more quickly when they're disabled. Any chance
-your PMIC has this?
-
-In general the fact that nobody has added
-"regulator-disable-ramp-delay" to the regulator framework already
-means that the problem you're facing isn't really a common problem.
-There are lots of devices out there that have more than one regulator
-but I don't see examples where drivers need to delay between turning
-all their regulators off. Are you positive that this is something that
-you really need to worry about?
-
-The above is a bit rambling (sorry!), but I guess the summary is:
-
-1. Please confirm that the panel driver truly needs 1 ms between
-regulators enabled.
-
-2. Please provide the power sequence diagram for disable. If there's a
-1 ms delay between regulators being disabled then please confirm.
-
-3. If the 1 ms delay isn't truly needed then we can just drop this patch, r=
-ight?
-
-4. IMO if the panel itself truly requires 1 ms between regulators
-being enabled and/or disabled, it would be OK to put the 1 ms delay in
-the driver but it feels wrong to be accounting for ramp time in the
-driver. This should be specified in the device tree.
-
-5. If we really need to account for the ramp down time, it would at
-least be good to submit a regulator framework patch proposing a way to
-specify this. We'd have to figure out how to make this work since I'd
-imagine that most regulator consumers don't care that much about ramp
-down time. Mark would be the real person to get advice from, but
-perhaps an API call like "regulator_wait_discharged(percent)" that a
-client could call?
-
-
--Doug
+Rob
