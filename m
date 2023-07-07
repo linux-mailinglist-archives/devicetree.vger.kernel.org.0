@@ -2,112 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D843874ADD5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 11:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB1C974ADF1
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 11:42:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232620AbjGGJeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 05:34:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52220 "EHLO
+        id S231492AbjGGJmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 05:42:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55444 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232033AbjGGJeX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 05:34:23 -0400
-Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA902107
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 02:34:21 -0700 (PDT)
-Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-bfe6ea01ff5so1798280276.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 02:34:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688722460; x=1691314460;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=saX3pFAboAcYrHkIs/SI1SEfN7MogeSF5MWoGtRMhFk=;
-        b=tKBHmQhdEqHIX9BwfY1SbILP0xtBAtAEBgnp60bPOiB0PARs0VGJapZZObxOAYPzob
-         8S9c8CGrMLscX7N0s5/idB3/STrzWHy9oaVEktZFa0VRFGEuSDCXnQFMv0L13N4CBMxk
-         p8pRTN2CHhIY56dyDbRLRTwGKtyeg7vcpr1Nd/vZfqQG4Aox5ANsXd53QryhJTlN+dRN
-         xUbMEwRwinN4LxNfqAChlUJCweJmoeYFKT3v42My7/WMj2b7vvRciEuEUvn5IJrK2dWj
-         hDUR3WHh01MVsTWtJqseun93zMx2WNmzS2h3kPeFm7zzQXvQznWld4vxbjD2vSpmZS6n
-         zB3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688722460; x=1691314460;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=saX3pFAboAcYrHkIs/SI1SEfN7MogeSF5MWoGtRMhFk=;
-        b=Y+MTOZC2uPzkOetYfX/JzdRSbryBVYs71Ea+iI335G0BiM+RZ2yRtcC2XBJKngWPrr
-         hOQlWlYzERqKZwA4h958Roann7iBOa6QORdkaUIUmpPw/k4PsIvecODpN722B7NqVUM6
-         iFEiiwAN+JXhJXower/JI3VRbeBGEnfKz2/NSyUDD/6riHYBblfUrvlKJPUYgd/tK9Mx
-         IEWD6ObbeSA1A0kATtA0WpsU5jtvcFEes3MhYexa9W7/uWMAGEDD9ztRV6EeXlnIJIP9
-         m/jG2dLbelIqehHcoO2HzirphP8dqdsx6iYkr3GMalFpydRBPF7E1MMfp/KQaxqr6bZJ
-         rISQ==
-X-Gm-Message-State: ABy/qLb6wTewOb9osT662fS7Tz3eFTV611EgZvgZm3YCnAlquOdL9X3K
-        gZVmLK9uJzbhQX4ArJlvCm7ft1lGq968jQf6DxOS9g==
-X-Google-Smtp-Source: APBJJlHjQReiyHI7JmsXYBFcwy7JZZqVtQoKWdLHJhl96Gf33wc5bk2N9yTDiaKvkgT1IOsbohnign+l1TnLkzIZ4Kw=
-X-Received: by 2002:a25:8f89:0:b0:c5e:cb99:6346 with SMTP id
- u9-20020a258f89000000b00c5ecb996346mr3668707ybl.14.1688722460628; Fri, 07 Jul
- 2023 02:34:20 -0700 (PDT)
+        with ESMTP id S232614AbjGGJmM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 05:42:12 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A051BEE;
+        Fri,  7 Jul 2023 02:42:09 -0700 (PDT)
+Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:27cd:2d0a:f02b:d955])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: benjamin.gaignard)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 73D316606FE7;
+        Fri,  7 Jul 2023 10:42:07 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1688722927;
+        bh=2RocGZadPxeM62Wimx6tn0ZTuqx4/+NH7SB92y3TF7g=;
+        h=From:To:Cc:Subject:Date:From;
+        b=OLfyRpXzX1AUrp8m+OCD2XhJlw8I7+yBWCoEPPjYJwICy+2slRJARBAAENODjOQC9
+         1c8yzsHJ5sn2H/rjQRU7dcAZ+JGrspz/3f333FFukb4zu/faMHCIz9GF1MvNNROLg4
+         npBR3KuCVKMwFnWYRfu0OnioniqzVduWpEvlDLWZWUrhT5dvkD7hZ7GL5TQqIQnhoB
+         45I4F7P+ft0Emrf6bhNHREVyHlPLeNlF92oxgtT0iZMBA5snEE0nlPB2SVVRIw6Nh0
+         KtAc7r5hBFEAlP7GJeUEXVfl8F43q7TQn073VIqRvZXgydDanvQzcBs+tLl0H5Z3cT
+         CoIaGcNu45MrA==
+From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
+To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        ezequiel@vanguardiasur.com.ar, aford173@gmail.com
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, kernel@collabora.com,
+        Benjamin Gaignard <benjamin.gaignard@collabora.com>
+Subject: [PATCH] ARM64: dts: freescale: Fix VPU G2 clock
+Date:   Fri,  7 Jul 2023 11:42:00 +0200
+Message-Id: <20230707094200.47119-1-benjamin.gaignard@collabora.com>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-References: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 7 Jul 2023 11:34:09 +0200
-Message-ID: <CACRpkdY0WKDAx1XP6fq2WZeoK6kH+t_weYJPJm1aMnMKb7ZayQ@mail.gmail.com>
-Subject: Re: [PATCH v3 00/28] ARM: qcom: apq8064: support CPU frequency scaling
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Georgi Djakov <djakov@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
-        Christian Marangi <ansuelsmth@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 2, 2023 at 7:43=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
+Set VPU G2 clock to 300MHz like described in documentation.
+This fix pixels error occurring with large resolution ( >= 2560x1600)
+HEVC test stream when using the postprocessor to produce NV12.
 
-> Implement CPUFreq support for one of the oldest supported Qualcomm
-> platforms, APQ8064. Each core has independent power and frequency
-> control. Additionally the L2 cache is scaled to follow the CPU
-> frequencies (failure to do so results in strange semi-random crashes).
->
-> Core voltage is controlled through the SAW2 devices, one for each core.
-> The L2 has two regulators, vdd-mem and vdd-dig.
->
-> Dependencies: [1].
->
-> [1] https://lore.kernel.org/linux-arm-msm/20230702134320.98831-1-dmitry.b=
-aryshkov@linaro.org/
+Fixes: 4ac7e4a81272 ("arm64: dts: imx8mq: Enable both G1 and G2 VPU's with vpu-blk-ctrl")
+Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Just because it looks so cool, I applied this patches and the prerequisite
-to master and booted the result on the APQ8060 DragonBoard, and
-it still works.
-Tested-by: Linus Walleij <linus.walleij@linaro.org>
-(Mostly for the DTS refactoring, which is what affects APQ8060)
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 0492556a10db..345c70c6c697 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -770,7 +770,7 @@ pgc_vpu: power-domain@6 {
+ 									 <&clk IMX8MQ_SYS1_PLL_800M>,
+ 									 <&clk IMX8MQ_VPU_PLL>;
+ 						assigned-clock-rates = <600000000>,
+-								       <600000000>,
++								       <300000000>,
+ 								       <800000000>,
+ 								       <0>;
+ 					};
+-- 
+2.39.2
 
-I guess the APQ8064 cpufreq and APQ8060 isn't actually far
-apart, so it should be possible to fix APQ8060 as well, but we
-can take that another day. I always wanted to fix the SAW2
-regulators.
-
-Yours,
-Linus Walleij
