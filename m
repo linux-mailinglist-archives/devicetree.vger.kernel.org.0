@@ -2,372 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9624574B0E4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 14:32:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B0D7F74B0EA
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 14:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230098AbjGGMar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 08:30:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59388 "EHLO
+        id S232327AbjGGMbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 08:31:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230289AbjGGMan (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 08:30:43 -0400
-Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A800F172B
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 05:30:36 -0700 (PDT)
-Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b700e85950so27289841fa.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 05:30:36 -0700 (PDT)
+        with ESMTP id S232073AbjGGMbD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 08:31:03 -0400
+Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C03DA213D
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 05:30:55 -0700 (PDT)
+Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b6f97c7115so27410261fa.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 05:30:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688733035; x=1691325035;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=yTSBGkbCdTiuLImTC/+Q/VqyS/BNdIlHaPBfQkN8Fbg=;
-        b=X0mHk2nwAm0xIRsxPWOcmqo74FEyr3W9KrBwXBbmVCUzelHpCfL1boyOKefeLb65Bv
-         ULwuwvhMr1F8s0FkXw6VyYHTbQnWvrFcPcPc6N0/xA5CMZGwpZ9WSS42MFAbfA+yw7m7
-         CBkqigP2cyugtdnPoB0tEbfPHmef/hhss0L7u51x7bWHO2dHYCP2D7lCIZeTVUQ5IicA
-         LmjG7PzU/hGl/JDHAZy5204VNiJC01PD73apE6gYM06zSvQx6vJnRDPMJzItm12lWVx1
-         HtSMSzCRWFmN+GWWKv5KFgKTyPWOf3lpPzadPFBxFtws0Ca2UPa/6/ZjeHqIVWNyrYT2
-         yEFA==
+        d=linaro.org; s=google; t=1688733054; x=1691325054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=iGvyCAsX8L6WnC8v9SRyT2lXuT9dJtv6Ob7UfVhRf9g=;
+        b=u7ln/9RrvRdtuIdt+mrgHIC4WouXbUjvvcIVfUQeCc9olrHTNL+Xsz/i6tHmVIFHov
+         BT/41CpZZMgWHCcDQQw5z+/9MP7kVM0Op4jNJXt1x0b2k3IDHC+2Y069a/yUZ3q5mmB4
+         14yJrVWZI2i0ymEfyZAe9EfFHKdM6vyxeyAvT/fZFjGyEhjY1anAHfwkflU8qiYZAUFS
+         9b38yUCTryN1/fjlrmgEGzpp91TJS/uGRN0dpd1FKmY9k8L8sKKMNogghvqmKVdocCHY
+         LVLvvpnEhxLZFV6VadxC2JiCNHTjGS/MmLvaQfRwt1yBPMy+M4BSBEjxfw7RumA/1IsH
+         OsgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688733035; x=1691325035;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=yTSBGkbCdTiuLImTC/+Q/VqyS/BNdIlHaPBfQkN8Fbg=;
-        b=F2NAcSzPX3QKqhP3RPUGfFIsr5bTD5UT2V/D6cDWkuks7DFDNX1Tfgz+n0yxBvJ2AQ
-         386brEdwthSBZNJIl4YHniEX4NB5QvIlGQxlNR/jERG1S0gcVlXmlBvYf9oQ7ZCT9dT1
-         rjkTCBEpFL7ugEY3TcTIkPGTSqoBTOxK7XFV4CGV/l3oG0HVJJkhxEhtWFrNf6esSvul
-         SBldUa+AQgjjzOIilhyI8QJz2KYzlwAzG7k9W9e7SzkER6hpDTtTxflPfvhfAHSaumKN
-         VPH/NhWI4i219L8cC90Z2hG74UtD9poQphKcfoEX/teCoNlZAu72JuWDNo+yGPh/0kRD
-         GNDw==
-X-Gm-Message-State: ABy/qLYDf1skBRwHs0P0BtBv2inHzTM4mmPvQ79ra0gJT+twWleDvjT9
-        jxnSKVxZ07bfi1/cpgp3J94FPw==
-X-Google-Smtp-Source: APBJJlFy3tzD5h45ARrNTXDkqtUYWCDJ2mAZYtRLy7+eWRoCdJFboNx6hUgnpec6EBha2RvS1liMdQ==
-X-Received: by 2002:a2e:9d04:0:b0:2b6:e8a0:a7f8 with SMTP id t4-20020a2e9d04000000b002b6e8a0a7f8mr3481998lji.31.1688733034716;
-        Fri, 07 Jul 2023 05:30:34 -0700 (PDT)
-Received: from eriador.lan (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id l5-20020a2e8685000000b002b6ee99fff2sm756803lji.34.2023.07.07.05.30.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 05:30:34 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>, linux-iio@vger.kernel.org
-Subject: [PATCH v2 8/8] arm64: dts: qcom: sm8450-hdk: add ADC-TM thermal zones
-Date:   Fri,  7 Jul 2023 15:30:27 +0300
-Message-Id: <20230707123027.1510723-9-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230707123027.1510723-1-dmitry.baryshkov@linaro.org>
-References: <20230707123027.1510723-1-dmitry.baryshkov@linaro.org>
+        d=1e100.net; s=20221208; t=1688733054; x=1691325054;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=iGvyCAsX8L6WnC8v9SRyT2lXuT9dJtv6Ob7UfVhRf9g=;
+        b=aznpX9G//XCWPmRl7Zt8Uzx45bKVN5VuiHpYuAEM4mch8hx5SZuejeC8KuWGlJakNv
+         Olz+IHDMltWeZUduaH767+x+WaUS4kb4im8Qksv0j4Wfs90o8bg2FnSNdrBw9JlPlNbD
+         8hsHwjZG8OViW4PkaC5PNlFqdx21tsC5p48OJM0sCnDLssgs1zjB08XqvgMCUHTPBtdV
+         st8CmaVRCwt7gC7jgU2ahhWd5jYubXQv7CaoxcxAUfcRdWVVvMX84bJNAOU3dsGZGLSD
+         6Y3YyjpC/OqqGeK/Dehubva/PGOz3sLJNTUOZz+3ErOJ090jVM0quUemLH749KEwDyye
+         0FVA==
+X-Gm-Message-State: ABy/qLanVTfcVDkptpTunFKx0PMIyW+Gj+evHplnu5OM4gROUYV18dWx
+        +t/T5UH3JsWxo1eIerQaWrfx5A==
+X-Google-Smtp-Source: APBJJlFVEtG496EnoT85BigKA2kUu5jfUK+oufO+W1N79iqyCJ+ptwY0uD9THh4p7PbnlmkyehJ19Q==
+X-Received: by 2002:a2e:9596:0:b0:2b6:d4f7:b7fa with SMTP id w22-20020a2e9596000000b002b6d4f7b7famr3220754ljh.5.1688733053913;
+        Fri, 07 Jul 2023 05:30:53 -0700 (PDT)
+Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
+        by smtp.gmail.com with ESMTPSA id m18-20020a2eb6d2000000b002b6e00a3e19sm751496ljo.132.2023.07.07.05.30.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jul 2023 05:30:53 -0700 (PDT)
+Message-ID: <95ac3e2d-69c6-e795-af68-924000eb318e@linaro.org>
+Date:   Fri, 7 Jul 2023 14:30:52 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: Add SM7125 device tree
+Content-Language: en-US
+To:     David Wronek <davidwronek@gmail.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <quic_tdas@quicinc.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
+References: <20230706124339.134272-1-davidwronek@gmail.com>
+ <20230706124339.134272-7-davidwronek@gmail.com>
+ <021ad5b4-772d-f2f6-f9ec-bca06db04dd8@linaro.org>
+ <CAEoe_eVAeNZVUHgpj64Redx5vg7wfzU4wjgH33TZ7ieoDifH-Q@mail.gmail.com>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <CAEoe_eVAeNZVUHgpj64Redx5vg7wfzU4wjgH33TZ7ieoDifH-Q@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones controlled through the ADC-TM (ADC thermal monitoring)
-PMIC interface. This includes several onboard sensors and the XO thermal
-sensor.
+On 6.07.2023 17:36, David Wronek wrote:
+> On Thu, Jul 6, 2023 at 5:25 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+>> On 6.07.2023 14:40, David Wronek wrote:
+>>> The Snapdragon 720G (sm7125) is software-wise very similar to the
+>>> Snapdragon 7c with minor differences in clock speeds and as added here,
+>>> it uses the Kryo 465 instead of Kryo 468.
+>>>
+>>> Signed-off-by: David Wronek <davidwronek@gmail.com>
+>>> ---
+>> Can you please paste the output of `dmesg | grep "secondary processor"`?
+>>
+>> That would let us determine the unique identifier of the cores.
+>>
+>> Konrad
+> I get this output with the command:
+> [    0.005884] CPU1: Booted secondary processor 0x0000000100 [0x51df805e]
+> [    0.007191] CPU2: Booted secondary processor 0x0000000200 [0x51df805e]
+> [    0.008559] CPU3: Booted secondary processor 0x0000000300 [0x51df805e]
+> [    0.010046] CPU4: Booted secondary processor 0x0000000400 [0x51df805e]
+> [    0.011639] CPU5: Booted secondary processor 0x0000000500 [0x51df805e]
+> [    0.014424] CPU6: Booted secondary processor 0x0000000600 [0x51ff804f]
+> [    0.016421] CPU7: Booted secondary processor 0x0000000700 [0x51ff804f]
+Hm okay so they are indeed Qualcomm-branded cores.. Sometimes they use the
+ARM ones and still call it Kryo 
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8450-hdk.dts | 244 ++++++++++++++++++++++++
- 1 file changed, 244 insertions(+)
+btw the implementer id of 0x51 is the ascii code of 'Q', nice quirk
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-index d07e402eaba3..4dfc964a4bb1 100644
---- a/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8450-hdk.dts
-@@ -133,6 +133,120 @@ pmic_glink_sbu: endpoint {
- 		};
- 	};
- 
-+	thermal-zones {
-+		camera-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 2>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		rear-tof-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 5>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		skin-msm-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		therm1-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 3>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		therm2-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 6>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		usb-conn-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 7>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wide-rfc-thermal {
-+			polling-delay-passive = <250>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 4>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <75000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		xo-thermal {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pmk8350_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+	};
-+
- 	vph_pwr: vph-pwr-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vph_pwr";
-@@ -607,6 +721,66 @@ &pmr735a_temp_alarm {
- 	io-channel-names = "thermal";
- };
- 
-+&pmk8350_adc_tm {
-+	status = "okay";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pmk8350_vadc PMK8350_ADC7_AMUX_THM1_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	skin-msm-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	camera-therm@2 {
-+		reg = <2>;
-+		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	therm1-therm@3 {
-+		reg = <3>;
-+		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	wide-rfc-therm@4 {
-+		reg = <4>;
-+		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	rear-tof-therm@5 {
-+		reg = <5>;
-+		io-channels = <&pmk8350_vadc PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	therm2-therm@6 {
-+		reg = <6>;
-+		io-channels = <&pmk8350_vadc PM8350_ADC7_GPIO3_100K_PU(1)>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	usb-conn-therm@7 {
-+		reg = <7>;
-+		io-channels = <&pmk8350_vadc PM8350B_ADC7_AMUX_THM5_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pmk8350_vadc {
- 	status = "okay";
- 
-@@ -615,20 +789,90 @@ channel@3 {
- 		label = "pmk8350_die_temp";
- 	};
- 
-+	channel@44 {
-+		reg = <PMK8350_ADC7_AMUX_THM1_100K_PU>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "pmk8350_xo_therm";
-+	};
-+
- 	channel@103 {
- 		reg = <PM8350_ADC7_DIE_TEMP(1)>;
- 		label = "pm8350_die_temp";
- 	};
- 
-+	channel@144 {
-+		reg = <PM8350_ADC7_AMUX_THM1_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "skin_msm_temp";
-+	};
-+
-+	channel@145 {
-+		reg = <PM8350_ADC7_AMUX_THM2_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "camera_temp";
-+	};
-+
-+	channel@146 {
-+		reg = <PM8350_ADC7_AMUX_THM3_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "therm1_temp";
-+	};
-+
-+	channel@147 {
-+		reg = <PM8350_ADC7_AMUX_THM4_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "wide_rfc_temp";
-+	};
-+
-+	channel@148 {
-+		reg = <PM8350_ADC7_AMUX_THM5_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "rear_tof_temp";
-+	};
-+
-+	channel@14c {
-+		reg = <PM8350_ADC7_GPIO3_100K_PU(1)>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "therm2_temp";
-+	};
-+
- 	channel@303 {
- 		reg = <PM8350B_ADC7_DIE_TEMP>;
- 		label = "pm8350b_die_temp";
- 	};
- 
-+	channel@348 {
-+		reg = <PM8350B_ADC7_AMUX_THM5_100K_PU>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "usb_conn_temp";
-+	};
-+
- 	channel@403 {
- 		reg = <PMR735A_ADC7_DIE_TEMP>;
- 		label = "pmr735a_die_temp";
- 	};
-+
-+	channel@44a {
-+		reg = <PMR735A_ADC7_GPIO1_100K_PU>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "qtm_w_temp";
-+	};
-+
-+	channel@44b {
-+		reg = <PMR735A_ADC7_GPIO2_100K_PU>;
-+		qcom,hw-settle-time = <200>;
-+		qcom,ratiometric;
-+		label = "qtm_n_temp";
-+	};
- };
- 
- &remoteproc_adsp {
--- 
-2.40.1
-
+Konrad
+> 
+> Sincerely,
+> David
+>>>  arch/arm64/boot/dts/qcom/sm7125.dtsi | 16 ++++++++++++++++
+>>>  1 file changed, 16 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/qcom/sm7125.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/qcom/sm7125.dtsi b/arch/arm64/boot/dts/qcom/sm7125.dtsi
+>>> new file mode 100644
+>>> index 000000000000..12dd72859a43
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/qcom/sm7125.dtsi
+>>> @@ -0,0 +1,16 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
+>>> + */
+>>> +
+>>> +#include "sc7180.dtsi"
+>>> +
+>>> +/* SM7125 uses Kryo 465 instead of Kryo 468 */
+>>> +&CPU0 { compatible = "qcom,kryo465"; };
+>>> +&CPU1 { compatible = "qcom,kryo465"; };
+>>> +&CPU2 { compatible = "qcom,kryo465"; };
+>>> +&CPU3 { compatible = "qcom,kryo465"; };
+>>> +&CPU4 { compatible = "qcom,kryo465"; };
+>>> +&CPU5 { compatible = "qcom,kryo465"; };
+>>> +&CPU6 { compatible = "qcom,kryo465"; };
+>>> +&CPU7 { compatible = "qcom,kryo465"; };
