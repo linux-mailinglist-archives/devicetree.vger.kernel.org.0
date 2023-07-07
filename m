@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 10DDB74B005
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 13:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DDBE74B006
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 13:40:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231184AbjGGLka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 07:40:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43686 "EHLO
+        id S229556AbjGGLkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 07:40:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43692 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229556AbjGGLk3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 07:40:29 -0400
-Received: from mail-lj1-x22d.google.com (mail-lj1-x22d.google.com [IPv6:2a00:1450:4864:20::22d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16C741FF9
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 04:40:27 -0700 (PDT)
-Received: by mail-lj1-x22d.google.com with SMTP id 38308e7fff4ca-2b708e49059so23768991fa.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 04:40:27 -0700 (PDT)
+        with ESMTP id S231316AbjGGLkb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 07:40:31 -0400
+Received: from mail-lj1-x233.google.com (mail-lj1-x233.google.com [IPv6:2a00:1450:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE1471FFF
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 04:40:29 -0700 (PDT)
+Received: by mail-lj1-x233.google.com with SMTP id 38308e7fff4ca-2b6ff1ada5dso26786221fa.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 04:40:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688730025; x=1691322025;
+        d=gmail.com; s=20221208; t=1688730028; x=1691322028;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=VJohZ7lGAq1LM6T9V/hW+S4IxuOJhGHNO2dnXDZkySE=;
-        b=oYjMGkyCga6VRQpvbFYt0nQ4pfdloi0zvRnO3AKyddcJn87qEkVbyKbGsX8X0riTUq
-         3hebvOBCGbBOwfT3kd3+xOaWdxPd659cLVCkFJ2lqw7Z7t82PyuMKFgfvRJcxQHZ8APP
-         UNlvPHiZ74VkzSHfE2aWh8Y0vb4BXyJqQelPnhCj+xutGv1YvieESVjxA92+CgbT+iWe
-         6ap5LdZpJ4jYgNTBDhGliAcuDVDDN5fzSoMpnFL2scm6dmbm9tb76mlumzkzgHQg5n0K
-         U/BbfCe8J6wD0TBfoJ8W7aKaw5qe+UjwZpu/wLC/2f6tuJkEqq/QJN7tclzAi2AAjVZQ
-         Pjcw==
+        bh=QDjimKTKFAxHeFfXo9ps9ICd4FUtaFxF9/m7GnvuWdo=;
+        b=nvPovBcvtvEEU2wGekaYIO5XZKiOL6RI/76v2Op0zKjc9gmnJ7N0Tu2pPluZJXWhxm
+         7KE9WcvHKYoDLO+4NglbCJF9Q02ycB2l49q0Rdkp/Gk9eTwfV6C9aqRw3hj9hfA9gL6j
+         Q6oKC0t8FxGQfqIWSDFnblf/dxWKTw7E4tQtyXLofW/gadaP2SrEa2U0OZ4xZ5x1BhXv
+         F9r9i5+FUCuSY3M5PQLEEjC7A5f0rczYF+MwdQRBqjKSJbPTPVzpMSQ24dVsP8kL5dWT
+         VFCzcJr+nR6qBOF2GySPuIuHuMIQGEIMUeREmiBdN8EsfSm9lMcDIYM1d8OmV9l8ml1p
+         tUhQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688730025; x=1691322025;
+        d=1e100.net; s=20221208; t=1688730028; x=1691322028;
         h=content-transfer-encoding:mime-version:references:in-reply-to
          :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
          :subject:date:message-id:reply-to;
-        bh=VJohZ7lGAq1LM6T9V/hW+S4IxuOJhGHNO2dnXDZkySE=;
-        b=VVS9uLVtXM4q8qAuJJOJpjQ6F9FwkngjLPBGhqBmMdwki7HicfjLK5GX5a4eJEY0ao
-         aY05GD3tgvIS2O85M8k6jFD+uEB2gufOHCkVa+7L+YXhmkn2DnOXrlxmdyadNtNES5Sv
-         Zd7f+vhtQHN+DdMQtZw979fIH7jvZ2X29e1G51czWrhAmnad/GuYCjKocg7x9fNIp08+
-         HeoMMDx4DZyYSn4BIdTCzqshQOKoeagh/l4OBgAXnVLQQH2eBBjIanhmlfaaDNGTC1gU
-         TSN7URAQtpjmsxacOXVwnbNSHevxUWIq7Dn3XBE9aVFqCewKOJHQKdIUvB33PCL4i6kR
-         m7MQ==
-X-Gm-Message-State: ABy/qLYbXx1uzWtv7kyo83LPJ+4ATsE8wHLAWpkgAL2VoXdPLJswUbtl
-        afYDqPoOZqCHLRhNxnj2CURI0722RDE=
-X-Google-Smtp-Source: APBJJlH5WsXKCy7D4MQGZiB0dKPD+0Lsp5dZju6RkAeLGPNHVX6dQyUzirzTjOpa5hK8WNS8Oo84vA==
-X-Received: by 2002:a2e:97c7:0:b0:2b7:a64:6c3c with SMTP id m7-20020a2e97c7000000b002b70a646c3cmr2408659ljj.37.1688730025178;
-        Fri, 07 Jul 2023 04:40:25 -0700 (PDT)
+        bh=QDjimKTKFAxHeFfXo9ps9ICd4FUtaFxF9/m7GnvuWdo=;
+        b=lnMZGOcscugduyumxLdSzjEKjYlVo5nI8EpCh+whALDpyGit2CKn4XQwGFmZFxU19p
+         myd/Y0ZLFTY5UrYLzgwd8DVoFn5rzAcw2GVrUTI+q4lMdKd0EC4a71XQmafJMzQd20e4
+         fb+nk0btcg26Xhhwhg1QBU8KPDk9z3AuFbIkrsbPBBurf86Sb5vev5NICanzZhHilcSF
+         7o7Xu9K5wXTlLLYMToP9iibqTevyHZPT5pT8MXpEhtz7kiO40yrZn1MOt4oyT3pUb3q2
+         oYNLp0DDBCMpf2vjR4DJFkv/MUKfebFQ5TUGfu6TsuuOHXLTxG/tuF3PNnEqeFvMLquG
+         ppSA==
+X-Gm-Message-State: ABy/qLZXLHDTIgFxG0XL7rFVnJZKsGImz0wwlV9xQPI7M5wzY5lPPoN8
+        pF44bdtoZKWc1TVmYV7mP0c=
+X-Google-Smtp-Source: APBJJlHFiv7bDjPZM+5ltRohWNd/FrYqZxOym4Ovmxaf0r3YvC534SCp8uSQkY/85hCvaLjJeJQP3A==
+X-Received: by 2002:a2e:9c87:0:b0:2b6:ddab:506a with SMTP id x7-20020a2e9c87000000b002b6ddab506amr3576108lji.34.1688730027553;
+        Fri, 07 Jul 2023 04:40:27 -0700 (PDT)
 Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id k19-20020a2e9213000000b002b708450951sm607722ljg.88.2023.07.07.04.40.23
+        by smtp.gmail.com with ESMTPSA id k19-20020a2e9213000000b002b708450951sm607722ljg.88.2023.07.07.04.40.26
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 04:40:25 -0700 (PDT)
+        Fri, 07 Jul 2023 04:40:27 -0700 (PDT)
 From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
 To:     Florian Fainelli <f.fainelli@gmail.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -60,9 +60,9 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
         =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH 2/4] ARM: dts: BCM53573: Drop nonexistent #usb-cells
-Date:   Fri,  7 Jul 2023 13:40:02 +0200
-Message-Id: <20230707114004.2740-2-zajec5@gmail.com>
+Subject: [PATCH 3/4] ARM: dts: BCM53573: Add cells sizes to PCIe node
+Date:   Fri,  7 Jul 2023 13:40:03 +0200
+Message-Id: <20230707114004.2740-3-zajec5@gmail.com>
 X-Mailer: git-send-email 2.35.3
 In-Reply-To: <20230707114004.2740-1-zajec5@gmail.com>
 References: <20230707114004.2740-1-zajec5@gmail.com>
@@ -81,30 +81,35 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Rafał Miłecki <rafal@milecki.pl>
 
-Such property simply doesn't exist (is not documented or used anywhere).
-
 This fixes:
-arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dtb: usb@d000: Unevaluated properties are not allowed ('#usb-cells' was unexpected)
-        From schema: Documentation/devicetree/bindings/usb/generic-ohci.yaml
+arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dtb: pcie@2000: '#address-cells' is a required property
+        From schema: /lib/python3.10/site-packages/dtschema/schemas/pci/pci-bus.yaml
+arch/arm/boot/dts/broadcom/bcm47189-luxul-xap-1440.dtb: pcie@2000: '#size-cells' is a required property
+        From schema: /lib/python3.10/site-packages/dtschema/schemas/pci/pci-bus.yaml
+
+Two properties that need to be added later are "device_type" and
+"ranges". Adding "device_type" on its own causes a new warning and the
+value of "ranges" needs to be determined yet.
 
 Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
 ---
- arch/arm/boot/dts/broadcom/bcm53573.dtsi | 2 --
- 1 file changed, 2 deletions(-)
+ arch/arm/boot/dts/broadcom/bcm53573.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm/boot/dts/broadcom/bcm53573.dtsi b/arch/arm/boot/dts/broadcom/bcm53573.dtsi
-index 3f03a381db0f..3cb71829e859 100644
+index 3cb71829e859..eed1a6147f0b 100644
 --- a/arch/arm/boot/dts/broadcom/bcm53573.dtsi
 +++ b/arch/arm/boot/dts/broadcom/bcm53573.dtsi
-@@ -156,8 +156,6 @@ ehci_port2: port@2 {
- 			};
+@@ -127,6 +127,9 @@ uart0: serial@300 {
  
- 			ohci: usb@d000 {
--				#usb-cells = <0>;
--
- 				compatible = "generic-ohci";
- 				reg = <0xd000 0x1000>;
- 				interrupt-parent = <&gic>;
+ 		pcie0: pcie@2000 {
+ 			reg = <0x00002000 0x1000>;
++
++			#address-cells = <3>;
++			#size-cells = <2>;
+ 		};
+ 
+ 		usb2: usb2@4000 {
 -- 
 2.35.3
 
