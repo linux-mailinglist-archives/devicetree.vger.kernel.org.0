@@ -2,155 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 195BB74ACA7
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D41774ACB4
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:20:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230159AbjGGITS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 04:19:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51404 "EHLO
+        id S232282AbjGGIUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 04:20:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232818AbjGGITR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:19:17 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 168911BEE;
-        Fri,  7 Jul 2023 01:19:15 -0700 (PDT)
-Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: kholk11)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id ADCD36606FCA;
-        Fri,  7 Jul 2023 09:19:13 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1688717954;
-        bh=V2zCa6YQcn89QUk+30ncJYOiCspZ2CW7lvzYLcoBYmw=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=EKago4s9/yPqzmRoj0O5g0MNg5s9C9Xge7/MwV8FE8TRU2SGLJxDeIdahrJXMvmwj
-         Z3w/3sIgqHZV8eK3VVGFX7Cfyc7mYfTmfiv65T6vsZsbZftmU/Y42RStc0XhkWyN1E
-         IZUA+jJRMx2Mpc1+t+0qAIkj0Rx2L8z6ZsPAUU2vHU9iAcUrPonmC/MNMcqwUHiBR1
-         1yRpFuvEBuuaWDgrZZquwRyGapgqeKZUz6rCRN4VAwv0f86ErE9Lkdy8wFtZ80tab5
-         YygvdisRuod+sWxfylNiarkLIdTTAP+dOXQGJzh/SClusExi6ev+6mIk9yWobhhEq3
-         ZS7LhUVVs3Jkg==
-Message-ID: <63457512-1cf4-d2a6-7afc-daa579de99e8@collabora.com>
-Date:   Fri, 7 Jul 2023 10:19:10 +0200
+        with ESMTP id S232848AbjGGIUx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:20:53 -0400
+Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210ED1FE6
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:20:50 -0700 (PDT)
+Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-313f3a6db22so1618516f8f.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 01:20:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688718048; x=1691310048;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=P7nX8phUtgvJlXBdE7HbRkDLu02J23oMaWSNoummNpM=;
+        b=ZvRIDUsv9vIYR3vOfIKZHZ/QP+RFnql63YTQ2nv/Djpc5JuPK9rESNbVRWm4JJB6Hw
+         kcxszPOe05wTw7dGH+e55op5+Lr9kOqpXCsbic8MTApQWi5qmCy5fQDI/Xo2MRKTRByh
+         FOhDdF54NLDI8XZDEM0Co03nzublpIdqEbZhkFNvP9vIkM4dPSASny6nALE5HEU6jsLm
+         ksl64aDAdJG5c3N9TsdmZqKF5riLzoXId8iPug1/hJaIJdM9upbbnKUZiNfOK63FHvz7
+         /KH6Ss2y7OAGJ17mySEv4H1UoCYj9Wdgdq8ouvYEXgh7vdJ+dIxAsZYU/TDqUXryYE4U
+         u4PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688718048; x=1691310048;
+        h=cc:to:content-transfer-encoding:mime-version:message-id:date
+         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=P7nX8phUtgvJlXBdE7HbRkDLu02J23oMaWSNoummNpM=;
+        b=SzNN0I0j9dQRZK87TsQ60jeyBYes50rxIBV30eGfCeJEY/c3/WZffEfXfHKcNBIds0
+         yDmW/DmPI6+8Zo4DwfJUN/ZBQcwSMOQgmgLy02+WkkoMFajWfjSxD1ZofvPuNjeKNeM+
+         ouIQ/PjnsXfdT2R0AvyhZkVhc9ZASwZZcwPcSsnGpQlE+hlM31E1Doke7p7CX881GkUv
+         630DNTocKXLa0565a/vmATL7oRyawFvGmY86oSjQwnFdr050aHU9gd9CxXC1iSPy4XWf
+         VBl9uSbg1BJ4m6rn0Gkd/SFNkvEHU3snEKt9x0iQ8TyVUitWBUdGhvQvA741AeC3Qixe
+         So+A==
+X-Gm-Message-State: ABy/qLbeL6GXweXYNJzUkj5F3+mLUY59uxFSq7sXoHlvMfJaYcKk5e+C
+        WYV6hWqohKwi3IOAVUEizz06xA==
+X-Google-Smtp-Source: APBJJlHuX5vVM/UKRZ/aziETXd4ETuHeeEBeYfXppfJI2XzCYX/DyG4sM35yPGMIok5s9ak2Lm7IHQ==
+X-Received: by 2002:adf:f711:0:b0:30e:3da5:46e5 with SMTP id r17-20020adff711000000b0030e3da546e5mr3619353wrp.59.1688718048582;
+        Fri, 07 Jul 2023 01:20:48 -0700 (PDT)
+Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
+        by smtp.gmail.com with ESMTPSA id a5-20020adffb85000000b00313e4d02be8sm3824395wrr.55.2023.07.07.01.20.47
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jul 2023 01:20:48 -0700 (PDT)
+From:   Neil Armstrong <neil.armstrong@linaro.org>
+Subject: [PATCH v2 0/2] dt-bindings: pinctrl: amlogic,meson-pinctrl-common:
+ add missing properties
+Date:   Fri, 07 Jul 2023 10:20:43 +0200
+Message-Id: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH] arm64: dts: mediatek: mt8195: Fix PM suspend/resume with
- venc clocks
-To:     Chen-Yu Tsai <wenst@chromium.org>
-Cc:     matthias.bgg@gmail.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        yong.wu@mediatek.com, tinghan.shen@mediatek.com,
-        weiyi.lu@mediatek.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, kernel@collabora.com
-References: <20230706095841.109315-1-angelogioacchino.delregno@collabora.com>
- <CAGXv+5HsScBVMOY4JcSNS_ZZdpLnNAYWUKohwmfQr6gJJv26CA@mail.gmail.com>
-Content-Language: en-US
-From:   AngeloGioacchino Del Regno 
-        <angelogioacchino.delregno@collabora.com>
-In-Reply-To: <CAGXv+5HsScBVMOY4JcSNS_ZZdpLnNAYWUKohwmfQr6gJJv26CA@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIANvKp2QC/52NQQ6DIBREr2JY9zeIVtqueo/GBSLiTxTIh5o2h
+ ruXeoSuJm8mmbezaAhNZPdqZ2Q2jOhdAXGqmJ6VswZwLMwEFw2XvIPkA2pQ6+JtyVeIiYxaIaD
+ TiRaY8A0DuhGdjaDFIFvdNfIqBSuPgUzZD9uzLzxjTJ4+h3yrf+1/nq0GDpNqWzFelDK3+rGgU
+ +TPnizrc85fDZYshucAAAA=
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <neil.armstrong@linaro.org>
+X-Mailer: b4 0.12.3
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1669;
+ i=neil.armstrong@linaro.org; h=from:subject:message-id;
+ bh=FyjsoTudixydC0nNMdjfVMOeLJOWeJk3gdhNn8W9tE4=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkp8revvGyh8h+u4H2kef4fC9pa+RedPwKKGzXjMPa
+ X3zF+TSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKfK3gAKCRB33NvayMhJ0SUdD/
+ 9MuupduiPkUIemehndLwaP/EAV+x1a1xZQnKh3dtyAmELloWg7peQif3zlirC5c1BdctZJNfUF7lWe
+ cSk3/9cFZdd+0FJ/ANgi2kadN+qJ6utMiOO9Na6SzHGnc/JHf68s9963iqzJ7wICkhMK88pz47r/ys
+ tMKZWoqiv/Fr47twhZH0fLTf7OMslDxgDrWqtCcX5o4aWE+sYwTzmQkhJbsEx03LzlVvgX6isPa1Zq
+ 4kA1WIRF1IqvMXZo/PSDWaADi3njfrRPUuEFU1a0cIYMell5xK46CGFrLaN82s9o9Gd8IwBaeK2kNt
+ xEHi4UwBMGP8IwuVca0nQG8UmWa4qbS+kQ9pDMI9nt0dlDslO840gQrh5MAmm/2udaBCsG+JdyUzLY
+ M/52rnAqJMrOPRj/xQkbeIyWOSn5BMpKFnErnU8cTXYWDbQ7bJrOqYrz+SgDIcsjfKk8iM94s3lA3E
+ N8SSJxhx63/GdkI7ztBpkmdPI0F0ouBjPJxf8C11QqDZIE/4Z+HyWdfOVxXn2D2FhU2Rf+QBaFrSOa
+ dUOB9VDTVVeyOamlUfOwIe66aErXGXFvLgsgVmM1cNmtTRMLVlGZQJPB3NICdlq56bRqk67syeG0OU
+ uLi17EtIDg+GERRxYKzcIuEJ77PFMa6hdwUzZDVTvK6IPkVBz21+lNeqIPRQ==
+X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
+ fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Il 07/07/23 07:06, Chen-Yu Tsai ha scritto:
-> On Thu, Jul 6, 2023 at 5:59 PM AngeloGioacchino Del Regno
-> <angelogioacchino.delregno@collabora.com> wrote:
->>
->> Before suspending the LARBs we're making sure that any operation is
->> done: this never happens because we are unexpectedly unclocking the
->> LARB20 before executing the suspend handler for the MediaTek Smart
->> Multimedia Interface (SMI) and the cause of this is incorrect clocks
->> on this LARB.
->>
->> Fix this issue by changing the Local Arbiter 20 (used by the video
->> encoder secondary core) apb clock to CLK_VENC_CORE1_VENC;
->> furthermore, in order to make sure that both the PM resume and video
->> encoder operation is stable, add the CLK_VENC(_CORE1)_LARB clock to
->> the VENC (main core) and VENC_CORE1 power domains, as this IP cannot
->> communicate with the rest of the system (the AP) without local
->> arbiter clocks being operational.
-> 
-> Somehow I feel like this is papering over some dependency issue in Linux.
-> 
+The amlogic DT uses gpio-line-names and gpio-hog, add those
+to the yaml converted pinctrl bindings.
 
-It felt the same here, but then, if you disable the video encoder driver entirely
-(or even both enc/dec drivers), you'll still get issues with the LARB20 timing out
-on the SLP_PROT_RDY check, as there's something in queue going through that larb,
-probably from something done by the bootloader before booting Linux.
+This will fix the following dtschema check errors:
+arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dtb: pinctrl@40: bank@40: Unevaluated properties are not allowed ('gpio-line-names', 'usb-hub-hog' were unexpected)
+arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: pinctrl@4b0: bank@4b0: Unevaluated properties are not allowed ('gpio-line-names' was unexpected)
+..
 
-Note that I'm pointing my finger to the bootloader because - again - even disabling
-the venc entirely produces the same issue, and if you disable probing the LARB20
-you will anyway get sleep issues (wakes up immediately after going to sleep).
+Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+---
+Changes in v2:
+- Added review tags
+- Moved line-names out of common and added min/max items for each bindings
+- Link to v1: https://lore.kernel.org/r/20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-0-fa442d5aae91@linaro.org
 
-That said, there is another possible solution to that (but even then, I think that
-we still need those clock assignments that I've done here), which is to implement
-the SMI power domains (mtcmos...): we'd be saving *all smi registers*, resetting an
-entire SMI ctx with a poweroff, powering back on and restoring all registers *but*
-larb20... at least that's the only solution that I've seen downstream (android
-kernels).
+---
+Neil Armstrong (2):
+      dt-bindings: pinctrl: amlogic,meson-pinctrl: allow gpio-line-names
+      dt-bindings: pinctrl: amlogic,meson-pinctrl-common: allow gpio hogs
 
-...and that's why I believe that this commit is correct.
+ .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml      | 4 ++++
+ .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml  | 7 +++++++
+ .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml         | 3 +++
+ .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml       | 3 +++
+ .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml  | 4 ++++
+ .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml   | 4 ++++
+ 6 files changed, 25 insertions(+)
+---
+base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
+change-id: 20230706-topic-amlogic-upstream-pinctrl-fix-bindings-c2b74c637872
 
-Of course, if there's something that I'm underestimating here, I'd be glad to
-understand.
-
-Cheers,
-Angelo
-
->> Fixes: 3b5838d1d82e ("arm64: dts: mt8195: Add iommu and smi nodes")
->> Fixes: 2b515194bf0c ("arm64: dts: mt8195: Add power domains controller")
->> Signed-off-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
->> ---
->>   arch/arm64/boot/dts/mediatek/mt8195.dtsi | 6 +++++-
->>   1 file changed, 5 insertions(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8195.dtsi b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> index 95bd058d6083..5c670fce1e47 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8195.dtsi
->> @@ -626,6 +626,8 @@ power-domain@MT8195_POWER_DOMAIN_VDEC1 {
->>
->>                                          power-domain@MT8195_POWER_DOMAIN_VENC_CORE1 {
->>                                                  reg = <MT8195_POWER_DOMAIN_VENC_CORE1>;
->> +                                               clocks = <&vencsys_core1 CLK_VENC_CORE1_LARB>;
->> +                                               clock-names = "venc1-larb";
->>                                                  mediatek,infracfg = <&infracfg_ao>;
->>                                                  #power-domain-cells = <0>;
->>                                          };
->> @@ -688,6 +690,8 @@ power-domain@MT8195_POWER_DOMAIN_VDEC2 {
->>
->>                                                  power-domain@MT8195_POWER_DOMAIN_VENC {
->>                                                          reg = <MT8195_POWER_DOMAIN_VENC>;
->> +                                                       clocks = <&vencsys CLK_VENC_LARB>;
->> +                                                       clock-names = "venc0-larb";
->>                                                          mediatek,infracfg = <&infracfg_ao>;
->>                                                          #power-domain-cells = <0>;
->>                                                  };
->> @@ -3094,7 +3098,7 @@ larb20: larb@1b010000 {
->>                          reg = <0 0x1b010000 0 0x1000>;
->>                          mediatek,larb-id = <20>;
->>                          mediatek,smi = <&smi_common_vpp>;
->> -                       clocks = <&vencsys_core1 CLK_VENC_CORE1_LARB>,
->> +                       clocks = <&vencsys_core1 CLK_VENC_CORE1_VENC>,
->>                                   <&vencsys_core1 CLK_VENC_CORE1_GALS>,
->>                                   <&vppsys0 CLK_VPP0_GALS_VDO0_VDO1_VENCSYS_CORE1>;
->>                          clock-names = "apb", "smi", "gals";
->> --
->> 2.40.1
->>
->>
-> 
-
-
+Best regards,
+-- 
+Neil Armstrong <neil.armstrong@linaro.org>
 
