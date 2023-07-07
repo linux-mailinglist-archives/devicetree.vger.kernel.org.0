@@ -2,175 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E5A3F74ADC6
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 11:28:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D843874ADD5
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 11:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231565AbjGGJ2o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 05:28:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50188 "EHLO
+        id S232620AbjGGJeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 05:34:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52220 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229572AbjGGJ2n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 05:28:43 -0400
-Received: from cpanel.siel.si (cpanel.siel.si [46.19.9.99])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A64031BE8;
-        Fri,  7 Jul 2023 02:28:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=norik.com;
-        s=default; h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
-        References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=198Ic8NzW8Fbs/Xun3gZbDNwGyTZWmBq6K6pN6bRECw=; b=TZnmsBMcarY8k2NGU0KOczzdYV
-        8xFOqEUDvCDpqmo3OAUwd+B5CZkQQZ7Zn/HdDFjlIzAyVGK5twrkwgDaSfpTFaFJpUlgyZQplLWw9
-        vjjbUZZKsIfex2ql0LQkfYI6iEs4aOudGlfirvuhk1Nzyd7F3Gf6wIMH//6K1KVhCcnhLNDNFlEHH
-        nk9N84duWmXUR4mJHKSQD5MOdeXeehFRcSfvcC7MoHGZd/8yGBTGJe2Fw5eESGlyDlXyfVod0Ri/n
-        AkGEFe1C1WomvH6z8myrhJkdmouT+oiJyHpMkZuEqwT1y60FpRKeUFanju/dpjEMNeSkOEV5ZdwOH
-        H11NsDyA==;
-Received: from [89.212.21.243] (port=43232 helo=[192.168.69.84])
-        by cpanel.siel.si with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.96)
-        (envelope-from <andrej.picej@norik.com>)
-        id 1qHhlO-004Ydy-0v;
-        Fri, 07 Jul 2023 11:28:29 +0200
-Message-ID: <67f953cd-af17-2a5c-6a1f-ac902c1636ce@norik.com>
-Date:   Fri, 7 Jul 2023 11:28:28 +0200
+        with ESMTP id S232033AbjGGJeX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 05:34:23 -0400
+Received: from mail-yb1-xb2b.google.com (mail-yb1-xb2b.google.com [IPv6:2607:f8b0:4864:20::b2b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6DA902107
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 02:34:21 -0700 (PDT)
+Received: by mail-yb1-xb2b.google.com with SMTP id 3f1490d57ef6-bfe6ea01ff5so1798280276.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 02:34:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688722460; x=1691314460;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=saX3pFAboAcYrHkIs/SI1SEfN7MogeSF5MWoGtRMhFk=;
+        b=tKBHmQhdEqHIX9BwfY1SbILP0xtBAtAEBgnp60bPOiB0PARs0VGJapZZObxOAYPzob
+         8S9c8CGrMLscX7N0s5/idB3/STrzWHy9oaVEktZFa0VRFGEuSDCXnQFMv0L13N4CBMxk
+         p8pRTN2CHhIY56dyDbRLRTwGKtyeg7vcpr1Nd/vZfqQG4Aox5ANsXd53QryhJTlN+dRN
+         xUbMEwRwinN4LxNfqAChlUJCweJmoeYFKT3v42My7/WMj2b7vvRciEuEUvn5IJrK2dWj
+         hDUR3WHh01MVsTWtJqseun93zMx2WNmzS2h3kPeFm7zzQXvQznWld4vxbjD2vSpmZS6n
+         zB3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688722460; x=1691314460;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=saX3pFAboAcYrHkIs/SI1SEfN7MogeSF5MWoGtRMhFk=;
+        b=Y+MTOZC2uPzkOetYfX/JzdRSbryBVYs71Ea+iI335G0BiM+RZ2yRtcC2XBJKngWPrr
+         hOQlWlYzERqKZwA4h958Roann7iBOa6QORdkaUIUmpPw/k4PsIvecODpN722B7NqVUM6
+         iFEiiwAN+JXhJXower/JI3VRbeBGEnfKz2/NSyUDD/6riHYBblfUrvlKJPUYgd/tK9Mx
+         IEWD6ObbeSA1A0kATtA0WpsU5jtvcFEes3MhYexa9W7/uWMAGEDD9ztRV6EeXlnIJIP9
+         m/jG2dLbelIqehHcoO2HzirphP8dqdsx6iYkr3GMalFpydRBPF7E1MMfp/KQaxqr6bZJ
+         rISQ==
+X-Gm-Message-State: ABy/qLb6wTewOb9osT662fS7Tz3eFTV611EgZvgZm3YCnAlquOdL9X3K
+        gZVmLK9uJzbhQX4ArJlvCm7ft1lGq968jQf6DxOS9g==
+X-Google-Smtp-Source: APBJJlHjQReiyHI7JmsXYBFcwy7JZZqVtQoKWdLHJhl96Gf33wc5bk2N9yTDiaKvkgT1IOsbohnign+l1TnLkzIZ4Kw=
+X-Received: by 2002:a25:8f89:0:b0:c5e:cb99:6346 with SMTP id
+ u9-20020a258f89000000b00c5ecb996346mr3668707ybl.14.1688722460628; Fri, 07 Jul
+ 2023 02:34:20 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 2/2] ARM: dts: imx6: pfla02: Fix SD card reboot problem
-Content-Language: en-GB
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        Marco Felsch <m.felsch@pengutronix.de>
-Cc:     devicetree@vger.kernel.org, conor+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, festevam@gmail.com,
-        s.hauer@pengutronix.de, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
-        shawnguo@kernel.org, linux-arm-kernel@lists.infradead.org,
-        upstream@phytec.de
-References: <20230704080304.816942-1-andrej.picej@norik.com>
- <20230704080304.816942-3-andrej.picej@norik.com>
- <20230704081712.7dyj2mspj2m25rp7@pengutronix.de>
- <7ed6fde0-37a4-a667-2629-0a6b8a202a69@norik.com>
- <14cd16df-ef47-05b3-5266-ffff109a8326@pengutronix.de>
- <3c0de35f-915a-7ae9-c369-9545b55dd2e4@norik.com>
- <6a2e5b14-c5d3-b384-2539-033381768dca@norik.com>
- <e9a08364-c277-bfec-cb31-b01b39e17bed@pengutronix.de>
-From:   Andrej Picej <andrej.picej@norik.com>
-In-Reply-To: <e9a08364-c277-bfec-cb31-b01b39e17bed@pengutronix.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - cpanel.siel.si
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - norik.com
-X-Get-Message-Sender-Via: cpanel.siel.si: authenticated_id: andrej.picej@norik.com
-X-Authenticated-Sender: cpanel.siel.si: andrej.picej@norik.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR,URIBL_BLOCKED autolearn=ham
-        autolearn_force=no version=3.4.6
+References: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230702174246.121656-1-dmitry.baryshkov@linaro.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 7 Jul 2023 11:34:09 +0200
+Message-ID: <CACRpkdY0WKDAx1XP6fq2WZeoK6kH+t_weYJPJm1aMnMKb7ZayQ@mail.gmail.com>
+Subject: Re: [PATCH v3 00/28] ARM: qcom: apq8064: support CPU frequency scaling
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Georgi Djakov <djakov@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-clk@vger.kernel.org,
+        Christian Marangi <ansuelsmth@gmail.com>,
+        Stephan Gerhold <stephan@gerhold.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Jul 2, 2023 at 7:43=E2=80=AFPM Dmitry Baryshkov
+<dmitry.baryshkov@linaro.org> wrote:
 
+> Implement CPUFreq support for one of the oldest supported Qualcomm
+> platforms, APQ8064. Each core has independent power and frequency
+> control. Additionally the L2 cache is scaled to follow the CPU
+> frequencies (failure to do so results in strange semi-random crashes).
+>
+> Core voltage is controlled through the SAW2 devices, one for each core.
+> The L2 has two regulators, vdd-mem and vdd-dig.
+>
+> Dependencies: [1].
+>
+> [1] https://lore.kernel.org/linux-arm-msm/20230702134320.98831-1-dmitry.b=
+aryshkov@linaro.org/
 
-On 5. 07. 23 14:06, Ahmad Fatoum wrote:
-> On 05.07.23 12:39, Andrej Picej wrote:> On 5. 07. 23 10:40, Andrej Picej wrote:
->>> On 5. 07. 23 10:30, Ahmad Fatoum wrote:
->>>> On 05.07.23 10:28, Andrej Picej wrote:
->>>>> I think the main reason for a failed boot is that the PMIC doesn't get reset and that the bootloader doesn't specifically enable the SD card regulator.
->>>>>
->>>>> Could this patch still be applied or should we put the fix in reset routine/bootloader?
->>>>
->>>> Is SD-Card not main boot medium? From your description, I thought BootROM
->>>> will fail to boot before bootloader has a chance to do anything about it.
->>>>
->>>
->>> Yes sorry, you are absolutly right, the BootROM fails. It confused me because I could see the booloader booting, but it was from one of the fallback mediums. So I guess fixing the bootloader is not really an option.
->>> Sorry for the confusion.
->>>
->>
->> Ok, the main problem is well known, that's why PHYTEC disables the imx watchdog and uses a PMIC one for the reboot handler. This one resets the board completely. The SD card regulator problem is really just the manifestation of that bug. Unfortunately I didn't noticed that. :(
->>
->> I will create a v2 with a proper fix, where imx watchdog gets disabled.
-> 
-> I'd be wary about solving it this way at the DTSI level, because it can
-> break existing users:
-> 
->    - Boot flow depends on reading boot reason, but with PMIC reset, everything
->      is power-on reset
-> 
->    - Bootloader starts i.MX watchdog, but new kernel will service only
->      PMIC watchdog leading to system reset
-> 
->    - Even if updating bootloader and kernel together, fallback of kernel
->      may end up that bootloader uses PMIC watchdog, but kernel uses i.MX
->      watchdog
-> 
->    - There can be valid reasons to use both watchdogs and disabling
->      one at the SoM level breaks that
-> > I had a similar issue once (Board controller reset to be used instead 
-of SoC
-> reset) and settled on using the barebox watchdog-priority/restart-priority[1]
-> binding to select the "better" watchdog and then fixed up this choice into
-> the kernel command line (barebox CONFIG_SYSTEMD_OF_WATCHDOG).
-> 
-> If you decide to fix it for the evaluation kits, please add some text
-> into the commit message that this fix should not be backported to older kernels.
-> While it's ultimately the correct thing to do, changing this is IMO not stable
-> backport material.
-> 
-> [1]: FWIW, there was past discussion about adding restart priorities to Linux, e.g.
-> https://lore.kernel.org/all/20201006102949.dbw6b2mrgt2ltgpw@pengutronix.de/
+Just because it looks so cool, I applied this patches and the prerequisite
+to master and booted the result on the APQ8060 DragonBoard, and
+it still works.
+Tested-by: Linus Walleij <linus.walleij@linaro.org>
+(Mostly for the DTS refactoring, which is what affects APQ8060)
 
-Ok I see the problems this might raise. Nevertheless I think it would be 
-good to sync upstream and PHYTEC downstream dts with this fix. Since by 
-default imx watchdog reset is really a no-go with phyFLEX.
-We could add the aliases for the watchdogs, marking the PMIC watchdog as 
-watchdog0, and imx watchdog as watchdog1 which I think should tell the 
-kernel to use the PMIC reboot handler, but not really sure how is that 
-any better then disabling the imx watchdog.
+I guess the APQ8064 cpufreq and APQ8060 isn't actually far
+apart, so it should be possible to fix APQ8060 as well, but we
+can take that another day. I always wanted to fix the SAW2
+regulators.
 
-Why do you think this shouldn't be backported to older kernels? Because
-someone might use this with "not compatible" bootloader?
-
-Thanks for your help,
-Andrej
-
-> 
-> Cheers,
-> Ahmad
-> 
->>
->> Thanks for your help,
->> Andrej
->>
->>
->>>
->>>>>
->>>>> Best regards,
->>>>> Andrej
->>>>>
->>>>>>
->>>>>> Regards,
->>>>>>      Marco
->>>>>>
->>>>>>>                 };
->>>>>>>                   vdd_sd1_reg: ldo10 {
->>>>>>> -- 
->>>>>>> 2.25.1
->>>>>>>
->>>>>>>
->>>>>>>
->>>>>
->>>>>
->>>>
->>
-> 
+Yours,
+Linus Walleij
