@@ -2,178 +2,399 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C0D8574B183
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 15:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4E2474B19B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 15:17:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232298AbjGGNLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 09:11:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42660 "EHLO
+        id S229695AbjGGNRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 09:17:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45562 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232134AbjGGNLE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 09:11:04 -0400
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (mail-vi1eur02on2056.outbound.protection.outlook.com [40.107.241.56])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EE9F1FF0;
-        Fri,  7 Jul 2023 06:11:00 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=L2QOjgIliM7itAwZNMcgE6kNyiRIXsjIw3EWSkHjF+FnIrU/7jT7pZbD8BmcF7hhDbpkphoSMu0BF6FwhFm6/fL3ENm6Ve4hLcHr8nAnNvcf06LpXutjPhXCJJjaAgtwaO3GF2ohQIw7/wzpjA377QUctLRm/ReDfWsbgH9MokwgsoVFsBDC2hXJgKu9vcWOJxU6ji7aRWuuyLZIyoeO2xJT7gYpQJov4biQFyBUbbeb256b0KzO+08dKz2tSpdo30LQ8Nl66zb/GDMSsLSUxwoSCsNwkIZNs/n65RFrKLZY058+0eCNEXJqVz1WRHNwFrycJJE8OE+fcD3zgKZH2w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=GVgvWbkOF/IFTQLpsubIH02XoZ8iTo+ESZhSIIaVwxc=;
- b=F3eTD94GMZ1W9lRyb65JADQPTPbhN3UdU4SSRaT60j5R6Tm70hHsc9c5hBD3pFiJc22qZvIee27FzKovSOVpA6RT4wOJWdgahT1ygp/Rg75aW4vlw2/7O8heCSJOms+5dv2WrbRnk1F3XNPlYIYyNwerd9srK+gToDRdEwlBf5/dkUs1oQ0RHxAs7zNGNcfJWlwejHaPDfb0Xr3BMlrpoOEEd4FRjZ2hWBIEh8hMJ5NWcXj/vHvpIJ+hWwBN7nShqnZAM9e++C40gVMBY7ivk0cMvQK+HrDtutJakxObwkr32GvE9KAvWVy4rmmlTMtEXWcMywj40YB+ByW0OlYJ7g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 20.93.157.195) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=topicproducts.com; dmarc=none action=none header.from=topic.nl;
- dkim=none (message not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=topic.nl; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=GVgvWbkOF/IFTQLpsubIH02XoZ8iTo+ESZhSIIaVwxc=;
- b=MTHYILH1/Oi0p1UtRchnP1wnS2j6iJjc/k26UNn2SaWbvFVGJfSOfs1GGMQceboya1zPHv7qz94HdhduHty1B5/jNfjVwm8X0CEiQ6TUulHZYNDBT1WYtmR5Ddd1Ri3Fl3ZL0WGbXsMN/Z9qXCuQ7U1S+u6yjwPfYu2QRXLhaohA3l9At/lN2Qy6ZNrDW67xX6Sux+DDZSnGRLFzQcnkiE73PFmWtqphziBDkqxnzd+gUMgJW5pLyfeiqFXsC/nzR9ckUHCpIcw1vhhojmFiiacLQoiWDPlM1gTFB+n506wFsU9rNalM9utqru09dNEYG+JTaBAzspOKvigo0hLDzQ==
-Received: from OS6P279CA0179.NORP279.PROD.OUTLOOK.COM (2603:10a6:e10:38::17)
- by AM9PR04MB8524.eurprd04.prod.outlook.com (2603:10a6:20b:433::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Fri, 7 Jul
- 2023 13:10:57 +0000
-Received: from HE1EUR01FT043.eop-EUR01.prod.protection.outlook.com
- (2603:10a6:e10:38:cafe::83) by OS6P279CA0179.outlook.office365.com
- (2603:10a6:e10:38::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.25 via Frontend
- Transport; Fri, 7 Jul 2023 13:10:57 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 20.93.157.195)
- smtp.mailfrom=topicproducts.com; dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received-SPF: Pass (protection.outlook.com: domain of topicproducts.com
- designates 20.93.157.195 as permitted sender)
- receiver=protection.outlook.com; client-ip=20.93.157.195;
- helo=westeu11-emailsignatures-cloud.codetwo.com; pr=C
-Received: from westeu11-emailsignatures-cloud.codetwo.com (20.93.157.195) by
- HE1EUR01FT043.mail.protection.outlook.com (10.152.0.207) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.6588.13 via Frontend Transport; Fri, 7 Jul 2023 13:10:57 +0000
-Received: from EUR02-VI1-obe.outbound.protection.outlook.com (104.47.11.42) by westeu11-emailsignatures-cloud.codetwo.com with CodeTwo SMTP Server (TLS12) via SMTP; Fri, 07 Jul 2023 13:10:56 +0000
-Authentication-Results-Original: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=topic.nl;
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com (2603:10a6:10:10f::26)
- by AS8PR04MB8817.eurprd04.prod.outlook.com (2603:10a6:20b:42c::10) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.17; Fri, 7 Jul
- 2023 13:10:52 +0000
-Received: from DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::4cd1:3e90:54e5:9696]) by DB8PR04MB6523.eurprd04.prod.outlook.com
- ([fe80::4cd1:3e90:54e5:9696%5]) with mapi id 15.20.6565.016; Fri, 7 Jul 2023
- 13:10:52 +0000
-From:   Mike Looijmans <mike.looijmans@topic.nl>
-To:     devicetree@vger.kernel.org, linux-input@vger.kernel.org
-CC:     Mike Looijmans <mike.looijmans@topic.nl>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] Input: exc3000 - Support power supply regulators
-Date:   Fri, 7 Jul 2023 15:10:42 +0200
-Message-ID: <20230707131042.10795-2-mike.looijmans@topic.nl>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20230707131042.10795-1-mike.looijmans@topic.nl>
-References: <20230707131042.10795-1-mike.looijmans@topic.nl>
- <1b153bce-a66a-45ee-a5c6-963ea6fb1c82.949ef384-8293-46b8-903f-40a477c056ae.e9863e93-aebd-4f13-b014-08dab638277d@emailsignatures365.codetwo.com>
-Content-Type: text/plain
-X-ClientProxiedBy: AM8P190CA0014.EURP190.PROD.OUTLOOK.COM
- (2603:10a6:20b:219::19) To DB8PR04MB6523.eurprd04.prod.outlook.com
- (2603:10a6:10:10f::26)
+        with ESMTP id S230289AbjGGNRT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 09:17:19 -0400
+Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 777F91FC9;
+        Fri,  7 Jul 2023 06:17:17 -0700 (PDT)
+Received: by mail-lf1-x131.google.com with SMTP id 2adb3069b0e04-4fb8574a3a1so2859958e87.1;
+        Fri, 07 Jul 2023 06:17:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1688735836; x=1691327836;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=NjW7KoRCDV8Jc0MWFIIb1Qt0B39sgkHOYdwi4ltUWdg=;
+        b=mMGXtaXZB0onqJwWxvXQ1p+n4SqWr4gB2xYYxhHDq2ZOQ1fYn3tGP+z1WEOuggD2bX
+         xsT1RpSXLM61XR1fSoU49e1zB93YhDTOYXsC3fiqs4DFK2KmQliuNDMUAxCzXqUb3zWE
+         b9c5lxk5oPjIXUyN7QCekCz+u04dLUYP9NP2L5gKD3ItfrqWy4dJ/d9q4S3DczHGW+k+
+         2J8NKDMoSFNm3XW41r8Kc0PfI2zP/vWIn4h6hAzB9u3esnyKuElPogs4/V10sZucvERG
+         CSBqfrZ+m5X99UatLTYvHnHd/n/sucpRZqN/MvJHlVsum+jVxwWpVngJI8K0uPc22wlr
+         1Fzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688735836; x=1691327836;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=NjW7KoRCDV8Jc0MWFIIb1Qt0B39sgkHOYdwi4ltUWdg=;
+        b=XwhWtMjL/zNlROMBvfTdIrK6iEplrrykx0hiKplceOOqqMuSvokd+xfawOnzJa9II7
+         BpPICx1UyytLeyOLD5LduprVLWnMejpHv1JNFQHoBuMlYp/xNihmwgkp5sELVIkIGDTg
+         xpq0GvNQsEjuOYhswPmyGKcjutlS6kVmfgIpFqrxK1sk/0DAJSZml8lZQJVOSBmRADTA
+         Ybuh/haTN9vFceovKmAUdLJpycJnfHyR1nJyCLLrwygaxa6NzWE0iSU5iI+o7Itb29/N
+         oaVmUXC0b29z2DZsYlBLWr+giFdASNnt/4kx8IEpfNRdiMWeVaQD9TWkAMRPAniUq3+w
+         ersw==
+X-Gm-Message-State: ABy/qLbps182pnPrBDoyRDm2F3KvJn2FEpq/9r36cZIdxtKuEycMesuL
+        OiEsi/Jsga7nXpoxZPO55vA=
+X-Google-Smtp-Source: APBJJlHMKOqOebIze0oyQEHlrdB0YZclTDs/GKBdOzMguECKZYPPyhrPTmC5uAwErv4uLKHbbLsz5Q==
+X-Received: by 2002:ac2:4c49:0:b0:4f8:6b7f:c6d6 with SMTP id o9-20020ac24c49000000b004f86b7fc6d6mr4959560lfk.48.1688735835285;
+        Fri, 07 Jul 2023 06:17:15 -0700 (PDT)
+Received: from localhost (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id m22-20020a7bce16000000b003fc01189b0dsm895243wmc.42.2023.07.07.06.17.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jul 2023 06:17:15 -0700 (PDT)
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: [PATCH 1/7] dt-bindings: arm: tegra: pmc: Improve property descriptions
+Date:   Fri,  7 Jul 2023 15:17:05 +0200
+Message-ID: <20230707131711.2997956-1-thierry.reding@gmail.com>
+X-Mailer: git-send-email 2.41.0
 MIME-Version: 1.0
-X-MS-TrafficTypeDiagnostic: DB8PR04MB6523:EE_|AS8PR04MB8817:EE_|HE1EUR01FT043:EE_|AM9PR04MB8524:EE_
-X-MS-Office365-Filtering-Correlation-Id: b112cde5-bed6-4676-4505-08db7eeb9a2e
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: X2n2s8PiEkgZLi2Qw6TwHMnopaRnt0zA1sCY4tPxdYwSPl3ql3gnHynUmqC2ZwSAS/HuxA1xEjCE55m3IRhNqWqgya0nMHQfjTWsMk1rkCftQ/4H0Driej659mV8zwS9uYr7En6saSpN4H1WDRtU+2W7eS/55YQ2UMS1zYq9lyLP4uUDJo0iN5pU3gTJ9d5UpS4R0RLvw48G9PT8Mbzp0Dy+fdxWr/R6bSE5KE2b6RTElNy+6g9Ihee8+0ZZKK4lbRe7GiaS5CW8W0ICQ5h9C0tmxB6dOm8fj8COpJtmjn5cUKX7L5xs5uEsD2E0+W7RajJFASLANl5dw99VeKwHkRZ7NDfJuYvWb/ONHWdnvYVNdhp24PZPMTeEObPHvzVhJhFOWs6KRYHktXZZxVfqO6JHc/7/g0ao6rfq7DSmxb1h24GvrwlrfafB0DV5479AFeqy1b4loaAaWspFdm4gYOFaNH9MevQ4A6XH8oVixrtTMH9l0zU0xx7IW9s3AIh3XhgPC0qTvevOYpr+B4RTFmNhr6++ME1VlB0mNFLf2dg3hjJb65l67zNJ1ktBCsQsfqCfcZvq4wyVS2K5UHju5+ZGyVb1DpPaqMz3AM80OD5nPUCxr9zlrmHX8+tIx5Bk
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6523.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(13230028)(4636009)(396003)(39840400004)(366004)(346002)(376002)(136003)(451199021)(6486002)(6666004)(52116002)(6512007)(42882007)(186003)(6506007)(1076003)(26005)(83380400001)(36756003)(2616005)(38350700002)(38100700002)(83170400001)(66556008)(66476007)(66946007)(4326008)(44832011)(316002)(2906002)(8936002)(8676002)(5660300002)(41300700001)(54906003)(478600001);DIR:OUT;SFP:1101;
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AS8PR04MB8817
-X-CodeTwo-MessageID: f70c9e22-1b55-4047-9e8f-d0ed698bd164.20230707131055@westeu11-emailsignatures-cloud.codetwo.com
-X-CodeTwoProcessed: true
-Content-Transfer-Encoding: quoted-printable
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: HE1EUR01FT043.eop-EUR01.prod.protection.outlook.com
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id-Prvs: 6f31972c-e10b-49f1-e944-08db7eeb961d
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: w3Rx3djhfBd8IUfAGV8AzbGy4z04FiIMULp/5uGoa3bD0rTmGVxq7IwB83+jA4vzJYgq3AGSi+CPue1G4mOICN5PJfGQvziTSsP0abkEmoWrmtZveLqkmNIboTlvDMusq18jnE4Q1bDwDLKgTUPt8C4jQByT0CIy+Y7KTh3k6J0hBY0wtqAPsS8Bwk48JW7MuBaTx2abun1njX1B2YcbTVCfsfFtjyl4VHuxJdTFGRJbe4ju+zF15fFHUzKtpAcyHJMG5cHLCddGBaybqDH+ZV/SFXGAR5WJYAzaA6xB7yslH22bUX6mI9petKyW3MeZt4LfgYdgAQMjSuWhaXMInB4uv+tESm3EuO3XdLSidkBVgL9PzEQLAT9x9lMv/ew/pWZbED0F1u6t2MxNUwXTWT06LCqhZ1uTrvetPGwnyl0zDxcC6x+tWyokqaHHuShFOxPUOaqBsc1XtuT9j/6iHpsm2C1omDOK6GeEuE+CPIpBQNq/c2FXdAV2nIQLFm0XpxqhqzQhOc3WdF68fnyYF+u7xZWaE8MqpngWg/U5Uta/ZkH/4QdIPIDIBpOzPN1plFzAbh+VLgZgQg7T14UEC2opBI/VZ7iQzY7KhVGD9NoKND2PWzfnl+iZLYDbF5hB/E5D5FYthA6rGXcVVHtKEwNLzdhgxXTzZjygtAdi5s+DdUmaWrt6uK62Acl9ZkTC
-X-Forefront-Antispam-Report: CIP:20.93.157.195;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:westeu11-emailsignatures-cloud.codetwo.com;PTR:westeu11-emailsignatures-cloud.codetwo.com;CAT:NONE;SFS:(13230028)(4636009)(346002)(376002)(39840400004)(396003)(136003)(451199021)(46966006)(36840700001)(44832011)(8936002)(8676002)(36860700001)(83380400001)(41300700001)(47076005)(83170400001)(5660300002)(316002)(336012)(2906002)(2616005)(42882007)(70586007)(40480700001)(70206006)(356005)(7596003)(7636003)(4326008)(82310400005)(54906003)(186003)(6486002)(1076003)(26005)(15974865002)(6506007)(478600001)(36756003)(6512007)(6666004);DIR:OUT;SFP:1101;
-X-OriginatorOrg: topic.nl
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2023 13:10:57.0476
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: b112cde5-bed6-4676-4505-08db7eeb9a2e
-X-MS-Exchange-CrossTenant-Id: 449607a5-3517-482d-8d16-41dd868cbda3
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=449607a5-3517-482d-8d16-41dd868cbda3;Ip=[20.93.157.195];Helo=[westeu11-emailsignatures-cloud.codetwo.com]
-X-MS-Exchange-CrossTenant-AuthSource: HE1EUR01FT043.eop-EUR01.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM9PR04MB8524
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,
-        RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,SPF_HELO_PASS,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add power supply regulator support to the exc3000 devices.
+From: Thierry Reding <treding@nvidia.com>
 
-Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+Reformat the description of various properties to make them more
+consistent with existing ones. Make use of json-schema's ability to
+provide a description for individual list items to make improve the
+documentation further.
 
+Signed-off-by: Thierry Reding <treding@nvidia.com>
 ---
+ .../arm/tegra/nvidia,tegra20-pmc.yaml         | 215 +++++++++---------
+ 1 file changed, 104 insertions(+), 111 deletions(-)
 
-Changes in v2:
-Add missing "return" statement
-Use devm_regulator_get_enable without _optional
-
- drivers/input/touchscreen/exc3000.c | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/drivers/input/touchscreen/exc3000.c b/drivers/input/touchscree=
-n/exc3000.c
-index 4af4c1e5d0da..e3f6d21b3c1b 100644
---- a/drivers/input/touchscreen/exc3000.c
-+++ b/drivers/input/touchscreen/exc3000.c
-@@ -18,6 +18,7 @@
- #include <linux/interrupt.h>
- #include <linux/module.h>
- #include <linux/of.h>
-+#include <linux/regulator/consumer.h>
- #include <linux/sizes.h>
- #include <linux/timer.h>
- #include <asm/unaligned.h>
-@@ -360,6 +361,12 @@ static int exc3000_probe(struct i2c_client *client)
- 	if (IS_ERR(data->reset))
- 		return PTR_ERR(data->reset);
-=20
-+	/* For proper reset sequence, enable power while reset asserted */
-+	error =3D devm_regulator_get_enable(&client->dev, "vdd");
-+	if (error && error !=3D -ENODEV)
-+		return dev_err_probe(&client->dev, error,
-+				     "failed to request vdd regulator\n");
+diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+index 89191cfdf619..a90f01678775 100644
+--- a/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
++++ b/Documentation/devicetree/bindings/arm/tegra/nvidia,tegra20-pmc.yaml
+@@ -21,17 +21,14 @@ properties:
+ 
+   reg:
+     maxItems: 1
+-    description:
+-      Offset and length of the register set for the device.
++    description: Offset and length of the register set for the device.
+ 
+   clock-names:
+     items:
++      # Tegra clock of the same name
+       - const: pclk
++      # 32 KHz clock input
+       - const: clk32k_in
+-    description:
+-      Must includes entries pclk and clk32k_in.
+-      pclk is the Tegra clock of that name and clk32k_in is 32KHz clock
+-      input to Tegra.
+ 
+   clocks:
+     maxItems: 2
+@@ -41,105 +38,103 @@ properties:
+ 
+   '#clock-cells':
+     const: 1
+-    description:
+-      Tegra PMC has clk_out_1, clk_out_2, and clk_out_3.
+-      PMC also has blink control which allows 32Khz clock output to
+-      Tegra blink pad.
+-      Consumer of PMC clock should specify the desired clock by having
+-      the clock ID in its "clocks" phandle cell with pmc clock provider.
+-      See include/dt-bindings/soc/tegra-pmc.h for the list of Tegra PMC
+-      clock IDs.
++    description: |
++      Tegra PMC has clk_out_1, clk_out_2, and clk_out_3. PMC also has blink
++      control which allows 32Khz clock output to Tegra blink pad.
 +
- 	if (data->reset) {
- 		msleep(EXC3000_RESET_MS);
- 		gpiod_set_value_cansleep(data->reset, 0);
---=20
-2.17.1
++      Consumer of PMC clock should specify the desired clock by having the
++      clock ID in its "clocks" phandle cell with PMC clock provider. See
++      include/dt-bindings/soc/tegra-pmc.h for the list of Tegra PMC clock IDs.
+ 
+   '#interrupt-cells':
+     const: 2
+-    description:
+-      Specifies number of cells needed to encode an interrupt source.
+-      The value must be 2.
++    description: Specifies number of cells needed to encode an interrupt
++      source.
+ 
+   interrupt-controller: true
+ 
+   nvidia,invert-interrupt:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: Inverts the PMU interrupt signal.
+-      The PMU is an external Power Management Unit, whose interrupt output
+-      signal is fed into the PMC. This signal is optionally inverted, and
+-      then fed into the ARM GIC. The PMC is not involved in the detection
+-      or handling of this interrupt signal, merely its inversion.
++    description: Inverts the PMU interrupt signal. The PMU is an external Power
++      Management Unit, whose interrupt output signal is fed into the PMC. This
++      signal is optionally inverted, and then fed into the ARM GIC. The PMC is
++      not involved in the detection or handling of this interrupt signal,
++      merely its inversion.
+ 
+   nvidia,core-power-req-active-high:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: Core power request active-high.
++    description: core power request active-high
+ 
+   nvidia,sys-clock-req-active-high:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: System clock request active-high.
++    description: system clock request active-high
+ 
+   nvidia,combined-power-req:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description: combined power request for CPU and Core.
++    description: combined power request for CPU and core
+ 
+   nvidia,cpu-pwr-good-en:
+     $ref: /schemas/types.yaml#/definitions/flag
+-    description:
+-      CPU power good signal from external PMIC to PMC is enabled.
++    description: CPU power good signal from external PMIC to PMC is enabled
+ 
+   nvidia,suspend-mode:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    enum: [0, 1, 2]
+-    description:
+-      The suspend mode that the platform should use.
+-      Mode 0 is for LP0, CPU + Core voltage off and DRAM in self-refresh
+-      Mode 1 is for LP1, CPU voltage off and DRAM in self-refresh
+-      Mode 2 is for LP2, CPU voltage off
++    description: the suspend mode that the platform should use
++    oneOf:
++      - description: LP0, CPU + Core voltage off and DRAM in self-refresh
++        const: 0
++      - description: LP1, CPU voltage off and DRAM in self-refresh
++        const: 1
++      - description: LP2, CPU voltage off
++        const: 2
+ 
+   nvidia,cpu-pwr-good-time:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description: CPU power good time in uSec.
++    description: CPU power good time in microseconds
+ 
+   nvidia,cpu-pwr-off-time:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description: CPU power off time in uSec.
++    description: CPU power off time in microseconds
+ 
+   nvidia,core-pwr-good-time:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+-    description:
+-      <Oscillator-stable-time Power-stable-time>
+-      Core power good time in uSec.
++    description: core power good time in microseconds
++    items:
++      - description: oscillator stable time
++      - description: power stable time
+ 
+   nvidia,core-pwr-off-time:
+     $ref: /schemas/types.yaml#/definitions/uint32
+-    description: Core power off time in uSec.
++    description: core power off time in microseconds
+ 
+   nvidia,lp0-vec:
+     $ref: /schemas/types.yaml#/definitions/uint32-array
+-    description:
+-      <start length> Starting address and length of LP0 vector.
+-      The LP0 vector contains the warm boot code that is executed
+-      by AVP when resuming from the LP0 state.
+-      The AVP (Audio-Video Processor) is an ARM7 processor and
+-      always being the first boot processor when chip is power on
+-      or resume from deep sleep mode. When the system is resumed
+-      from the deep sleep mode, the warm boot code will restore
+-      some PLLs, clocks and then brings up CPU0 for resuming the
+-      system.
++    description: |
++      Starting address and length of LP0 vector. The LP0 vector contains the
++      warm boot code that is executed by AVP when resuming from the LP0 state.
++      The AVP (Audio-Video Processor) is an ARM7 processor and always being
++      the first boot processor when chip is power on or resume from deep sleep
++      mode. When the system is resumed from the deep sleep mode, the warm boot
++      code will restore some PLLs, clocks and then brings up CPU0 for resuming
++      the system.
++    items:
++      - description: starting address of LP0 vector
++      - description: length of LP0 vector
+ 
+   core-supply:
+-    description:
+-      Phandle to voltage regulator connected to the SoC Core power rail.
++    description: phandle to voltage regulator connected to the SoC core power
++      rail
+ 
+   core-domain:
+     type: object
+-    description: |
+-      The vast majority of hardware blocks of Tegra SoC belong to a
+-      Core power domain, which has a dedicated voltage rail that powers
+-      the blocks.
+-
++    description: The vast majority of hardware blocks of Tegra SoC belong to a
++      core power domain, which has a dedicated voltage rail that powers the
++      blocks.
+     properties:
+       operating-points-v2:
+-        description:
+-          Should contain level, voltages and opp-supported-hw property.
+-          The supported-hw is a bitfield indicating SoC speedo or process
+-          ID mask.
++        description: Should contain level, voltages and opp-supported-hw
++          property. The supported-hw is a bitfield indicating SoC speedo or
++          process ID mask.
+ 
+       "#power-domain-cells":
+         const: 0
+@@ -152,37 +147,32 @@ properties:
+ 
+   i2c-thermtrip:
+     type: object
+-    description:
+-      On Tegra30, Tegra114 and Tegra124 if i2c-thermtrip subnode exists,
+-      hardware-triggered thermal reset will be enabled.
+-
++    description: On Tegra30, Tegra114 and Tegra124 if i2c-thermtrip subnode
++      exists, hardware-triggered thermal reset will be enabled.
+     properties:
+       nvidia,i2c-controller-id:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description:
+-          ID of I2C controller to send poweroff command to PMU.
+-          Valid values are described in section 9.2.148
+-          "APBDEV_PMC_SCRATCH53_0" of the Tegra K1 Technical Reference
+-          Manual.
++        description: ID of I2C controller to send poweroff command to PMU.
++          Valid values are described in section 9.2.148 "APBDEV_PMC_SCRATCH53_0"
++          of the Tegra K1 Technical Reference Manual.
+ 
+       nvidia,bus-addr:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description: Bus address of the PMU on the I2C bus.
++        description: bus address of the PMU on the I2C bus
+ 
+       nvidia,reg-addr:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description: PMU I2C register address to issue poweroff command.
++        description: PMU I2C register address to issue poweroff command
+ 
+       nvidia,reg-data:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description: Poweroff command to write to PMU.
++        description: power-off command to write to PMU
+ 
+       nvidia,pinmux-id:
+         $ref: /schemas/types.yaml#/definitions/uint32
+-        description:
+-          Pinmux used by the hardware when issuing Poweroff command.
+-          Defaults to 0. Valid values are described in section 12.5.2
+-          "Pinmux Support" of the Tegra4 Technical Reference Manual.
++        description: Pinmux used by the hardware when issuing power-off command.
++          Defaults to 0. Valid values are described in section 12.5.2 "Pinmux
++          Support" of the Tegra4 Technical Reference Manual.
+ 
+     required:
+       - nvidia,i2c-controller-id
+@@ -195,41 +185,44 @@ properties:
+   powergates:
+     type: object
+     description: |
+-      This node contains a hierarchy of power domain nodes, which should
+-      match the powergates on the Tegra SoC. Each powergate node
+-      represents a power-domain on the Tegra SoC that can be power-gated
+-      by the Tegra PMC.
+-      Hardware blocks belonging to a power domain should contain
+-      "power-domains" property that is a phandle pointing to corresponding
+-      powergate node.
+-      The name of the powergate node should be one of the below. Note that
+-      not every powergate is applicable to all Tegra devices and the following
+-      list shows which powergates are applicable to which devices.
+-      Please refer to Tegra TRM for mode details on the powergate nodes to
+-      use for each power-gate block inside Tegra.
+-      Name		Description			            Devices Applicable
+-      3d		  3D Graphics			            Tegra20/114/124/210
+-      3d0		  3D Graphics 0		            Tegra30
+-      3d1		  3D Graphics 1		            Tegra30
+-      aud		  Audio				                Tegra210
+-      dfd		  Debug				                Tegra210
+-      dis		  Display A			              Tegra114/124/210
+-      disb		Display B			              Tegra114/124/210
+-      heg		  2D Graphics		            	Tegra30/114/124/210
+-      iram		Internal RAM		            Tegra124/210
+-      mpe		  MPEG Encode			            All
+-      nvdec		NVIDIA Video Decode Engine	Tegra210
+-      nvjpg		NVIDIA JPEG Engine		      Tegra210
+-      pcie		PCIE				                Tegra20/30/124/210
+-      sata		SATA				                Tegra30/124/210
+-      sor		  Display interfaces       		Tegra124/210
+-      ve2		  Video Encode Engine 2		    Tegra210
+-      venc		Video Encode Engine		      All
+-      vdec		Video Decode Engine		      Tegra20/30/114/124
+-      vic		  Video Imaging Compositor	  Tegra124/210
+-      xusba		USB Partition A			        Tegra114/124/210
+-      xusbb		USB Partition B 		        Tegra114/124/210
+-      xusbc		USB Partition C			        Tegra114/124/210
++      This node contains a hierarchy of power domain nodes, which should match
++      the powergates on the Tegra SoC. Each powergate node represents a power-
++      domain on the Tegra SoC that can be power-gated by the Tegra PMC.
++
++      Hardware blocks belonging to a power domain should contain "power-domains"
++      property that is a phandle pointing to corresponding powergate node.
++
++      The name of the powergate node should be one of the below. Note that not
++      every powergate is applicable to all Tegra devices and the following list
++      shows which powergates are applicable to which devices.
++
++      Please refer to Tegra TRM for mode details on the powergate nodes to use
++      for each power-gate block inside Tegra.
++
++        Name     Description                   Devices Applicable
++        --------------------------------------------------------------
++        3d       3D Graphics                   Tegra20/114/124/210
++        3d0      3D Graphics 0                 Tegra30
++        3d1      3D Graphics 1                 Tegra30
++        aud      Audio                         Tegra210
++        dfd      Debug                         Tegra210
++        dis      Display A                     Tegra114/124/210
++        disb     Display B                     Tegra114/124/210
++        heg      2D Graphics                   Tegra30/114/124/210
++        iram     Internal RAM                  Tegra124/210
++        mpe      MPEG Encode                   All
++        nvdec    NVIDIA Video Decode Engine    Tegra210
++        nvjpg    NVIDIA JPEG Engine            Tegra210
++        pcie     PCIE                          Tegra20/30/124/210
++        sata     SATA                          Tegra30/124/210
++        sor      Display interfaces            Tegra124/210
++        ve2      Video Encode Engine 2         Tegra210
++        venc     Video Encode Engine           All
++        vdec     Video Decode Engine           Tegra20/30/114/124
++        vic      Video Imaging Compositor      Tegra124/210
++        xusba    USB Partition A               Tegra114/124/210
++        xusbb    USB Partition B               Tegra114/124/210
++        xusbc    USB Partition C               Tegra114/124/210
+ 
+     patternProperties:
+       "^[a-z0-9]+$":
+-- 
+2.41.0
 
-
-Met vriendelijke groet / kind regards,=0A=
-=0A=
-Mike Looijmans=0A=
-System Expert=0A=
-=0A=
-=0A=
-TOPIC Embedded Products B.V.=0A=
-Materiaalweg 4, 5681 RJ Best=0A=
-The Netherlands=0A=
-=0A=
-T: +31 (0) 499 33 69 69=0A=
-E: mike.looijmans@topicproducts.com=0A=
-W: www.topic.nl=0A=
-=0A=
-Please consider the environment before printing this e-mail=0A=
