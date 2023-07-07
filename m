@@ -2,95 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E4FB474B8A5
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 23:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F92A74B967
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 00:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229963AbjGGVYr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 17:24:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36792 "EHLO
+        id S229822AbjGGWQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 18:16:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49994 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229940AbjGGVYq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 17:24:46 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A56BD1FC6;
-        Fri,  7 Jul 2023 14:24:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 3D68361866;
-        Fri,  7 Jul 2023 21:24:45 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D164C433C8;
-        Fri,  7 Jul 2023 21:24:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688765084;
-        bh=G+d4KOWEk1wXy8u9qtfZ01SmJVIBU1UrPs7uv3d7fB4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gGpy61BiU3TIVBv+6T4Bj6QSGqobJ9AVL1JxYo2Pnk+7/BGs2Z220GJ+1jGriMp+4
-         GDI8qpMfNhT4Kf1l4Leu38Xo0gWeE/9CctBDprHFr2QudGNGxgX427aKd0cK3NaURY
-         XmuC4SWV2ddixE6Lq2tZNUnIQ3vdrpWd1/mD1yqnMn6BVeqPJyN3nv17t+R12w+eil
-         OymXn7P1affC3X411MLJ727ynfFvK2tSZZkLHM5G86ZJXF+CfDj/1G00PJnF6vsfEM
-         KXTlLJmc1XSn7QJ45LMNriVDTcx0cTQTDcbIpcryDfHVEsnTlByFdLpHzgo/hf/3g4
-         H33MgHbf9VUkw==
-Received: by mail-lj1-f174.google.com with SMTP id 38308e7fff4ca-2b703d7ed3aso38621521fa.1;
-        Fri, 07 Jul 2023 14:24:44 -0700 (PDT)
-X-Gm-Message-State: ABy/qLa8KQaDD6naUi12ZhJ91GHuDq/phuY173KbQlIr/jI3BT16652I
-        LRUCzQg2qm4tzRNW87UYLVcbvYKjjWvxrm3mwA==
-X-Google-Smtp-Source: APBJJlE6ugW2YHIKmWhWhAiS7uipRKQDgwf4HnMIWjN19FfoUdxCqdZhP0gk3DrCyJ0isLVGgJQkRZgV6Tet8cPlyK8=
-X-Received: by 2002:a2e:7a16:0:b0:2b5:7a87:a85a with SMTP id
- v22-20020a2e7a16000000b002b57a87a85amr4695203ljc.13.1688765082593; Fri, 07
- Jul 2023 14:24:42 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230707210653.868907-1-robh@kernel.org>
-In-Reply-To: <20230707210653.868907-1-robh@kernel.org>
+        with ESMTP id S229600AbjGGWQK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 18:16:10 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 897C11BE1;
+        Fri,  7 Jul 2023 15:16:08 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3461053677eso5565495ab.0;
+        Fri, 07 Jul 2023 15:16:08 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688768168; x=1691360168;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=cKBw1VHW9bCdy/+mW5EjuBfcrbR3Fe4lXFIemQXKnPQ=;
+        b=e/BQOfzayGzarbCGSc0r+CTLZveqA0vcgU7YopLZOzh35vxgLy3FvkKFFel+yhXAd8
+         IO1jfIzmfMFsyqHs9/vyQ+9U3m3hqdGyd+Lvk1zdl7xU4dOPRG96OLuy5DDX1LJIt0EG
+         vAV5lgS/Ap/FI9ZLFyOrAemGiqMMF1rWfuBy3sbuinm2htWYZH0+4W1rn8+ltDZCqaRW
+         JxHHRxo/mO10NSUQCRdIU2hyPGi37LySZqhJeisUTJY5+cSDEJqA2niU21HOSt4P3rqt
+         8SwHTQWII9oJj/052Rl75IF8n5qNc2DV9uBBmTUKdkoS9mUY0BZXXRxZnktoBLPSRNa+
+         rAKQ==
+X-Gm-Message-State: ABy/qLYqOTAyBmpD3yMwCtPJU4dxZR/cdqVHaYuO9gGcPUEQTTgeemjF
+        0Ozhttsy7Qe5gZnf9tZxphFiblw19g==
+X-Google-Smtp-Source: APBJJlEBJ8NigleNlLyhwiUZQhq1AptjKhnPtb9ArmdnA07oQII+e/ZxotrK9hotFfFYGrgc5ky3Vw==
+X-Received: by 2002:a05:6e02:b4f:b0:342:2abd:f757 with SMTP id f15-20020a056e020b4f00b003422abdf757mr7160046ilu.16.1688768167796;
+        Fri, 07 Jul 2023 15:16:07 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id el25-20020a0566384d9900b0042b37dda71asm1499090jab.136.2023.07.07.15.16.05
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jul 2023 15:16:06 -0700 (PDT)
+Received: (nullmailer pid 1064038 invoked by uid 1000);
+        Fri, 07 Jul 2023 22:16:04 -0000
 From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 7 Jul 2023 15:24:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJDHG=W7sObRU5iONhrMzEG9racR2ESrtFkux36a1f=nw@mail.gmail.com>
-Message-ID: <CAL_JsqJDHG=W7sObRU5iONhrMzEG9racR2ESrtFkux36a1f=nw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: leds: Convert Panasonic AN30259A to DT schema
-To:     Pavel Machek <pavel@ucw.cz>, Lee Jones <lee@kernel.org>,
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+Subject: [PATCH] dt-bindings: serial: Remove obsolete cavium-uart.txt
+Date:   Fri,  7 Jul 2023 16:16:02 -0600
+Message-Id: <20230707221602.1063972-1-robh@kernel.org>
+X-Mailer: git-send-email 2.40.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 7, 2023 at 3:07=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
->
-> Convert the Panasonic AN30259A 3-channel LED controller binding to DT
-> schema format.
->
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
+cavium-uart.txt binding is already covered by 8250.yaml, so remove it.
 
-[...]
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/serial/cavium-uart.txt           | 19 -------------------
+ 1 file changed, 19 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/serial/cavium-uart.txt
 
-> diff --git a/Documentation/devicetree/bindings/leds/panasonic,an30259a.ya=
-ml b/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
-> new file mode 100644
-> index 000000000000..f55f8c232bc6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/leds/panasonic,an30259a.yaml
-> @@ -0,0 +1,84 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/leds/panasonic,an30259a.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Panasonic AN30259A 3-channel LED controller
-> +
-> +maintainers:
-> +  - Simon Shields <simon@lineageos.org>
+diff --git a/Documentation/devicetree/bindings/serial/cavium-uart.txt b/Documentation/devicetree/bindings/serial/cavium-uart.txt
+deleted file mode 100644
+index 87a6c375cd44..000000000000
+--- a/Documentation/devicetree/bindings/serial/cavium-uart.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-* Universal Asynchronous Receiver/Transmitter (UART)
+-
+-- compatible: "cavium,octeon-3860-uart"
+-
+-  Compatibility with all cn3XXX, cn5XXX and cn6XXX SOCs.
+-
+-- reg: The base address of the UART register bank.
+-
+-- interrupts: A single interrupt specifier.
+-
+-- current-speed: Optional, the current bit rate in bits per second.
+-
+-Example:
+-	uart1: serial@1180000000c00 {
+-		compatible = "cavium,octeon-3860-uart","ns16550";
+-		reg = <0x11800 0x00000c00 0x0 0x400>;
+-		current-speed = <115200>;
+-		interrupts = <0 35>;
+-	};
+-- 
+2.40.1
 
-Bounces. Will need someone else.
