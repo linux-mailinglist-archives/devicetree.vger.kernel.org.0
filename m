@@ -2,61 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4529174B455
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 17:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 294B774B45C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 17:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229582AbjGGP3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 11:29:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32880 "EHLO
+        id S232159AbjGGPb3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 11:31:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33832 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229681AbjGGP3x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 11:29:53 -0400
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com [209.85.166.42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59A9C2121;
-        Fri,  7 Jul 2023 08:29:47 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id ca18e2360f4ac-783546553ddso73817639f.0;
-        Fri, 07 Jul 2023 08:29:47 -0700 (PDT)
+        with ESMTP id S229629AbjGGPb2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 11:31:28 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94F1B2128;
+        Fri,  7 Jul 2023 08:31:27 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-3463dd0bd4eso6893385ab.1;
+        Fri, 07 Jul 2023 08:31:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688743786; x=1691335786;
+        d=1e100.net; s=20221208; t=1688743887; x=1691335887;
         h=in-reply-to:content-disposition:mime-version:references:message-id
          :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
          :message-id:reply-to;
-        bh=Np7u1Gdthtj0H8HtGvq1aCjiEkrlbP9XGrbQ0FbEkYo=;
-        b=TpiyLktzlJu1VOvrk61nmTy2bFqz/goUK+PJ9IZUru4nD5MJ9GUy9MTSY4xvb7igRv
-         neX2LaMbGzi2JsO/6cSxxV8UyuHNoHL0ICT4J1YvFPU6Utk+oN+F4AMZ3X/Kqp12BWQl
-         Q/cq+2l2Ws5RQYUUVXTPs8hkzmclMxJlbRJ/Tca9kR3dV1FP3knRasDzxTdEl8IhEF+G
-         ONjb8dE8UnfasWiuKvQfQI7p6i21PkOgYqri0kY8iWIaHxeXlwFVLrUgp8QPDBE2zo7R
-         k65UtgyKOnk7CoWY0jejAOvmxUa+bSzRx7DOqx74dhYqS/eVLWAH9ap0PeKUhyr+1/b+
-         aWSA==
-X-Gm-Message-State: ABy/qLanTvjr1y/SR22dr0CvTIJCuYTMahSTfbdUw6u+ak1gJvVPmez8
-        pAFUGB6R7EHinrsYnv134w==
-X-Google-Smtp-Source: APBJJlG5IZMtz1lyDHAnM11LNIdYWsO0vZyrcvTYEhT3rk7aFygsR8f+tCdOG6f4F+MnwTUZXCoSdA==
-X-Received: by 2002:a92:d94d:0:b0:346:4293:df1 with SMTP id l13-20020a92d94d000000b0034642930df1mr2882969ilq.31.1688743786588;
-        Fri, 07 Jul 2023 08:29:46 -0700 (PDT)
+        bh=4krSfV5RdVLkdj4vMo1p32Ocs53a/+FB/VamolfXKgk=;
+        b=WBp05flFXWoWVZq0YXHDZnGoKOBKtl6VfMCvZFQrzTolU7oL3M69DelJQjissuu0RN
+         /apxE0MdKp2e5LlY/8czBJGrK7LS1I6/Phbuiht54ovgY8yXK/lI6Sik6wAY/q+ysqJv
+         nuMdxNRWkwsI5vO3lWlH7/dt7ZxBF1+Jg+UNVc6HMRmUDOFhfslbb/ByiSB/ZcY3QGOP
+         2aufgXnF6fFl/hxX1jUNHkQxNnW213E5ntkhjmVaCmqtLujfCnzcDXQJo11XXW5Dto/j
+         qlEXV+dPhv+sHIWSC1SSNsIV5DpnRP/6Hue0HZjXD/UUCFXI77XwrcO+oPSvgCS2L/HO
+         j2Hw==
+X-Gm-Message-State: ABy/qLZCXaubBe21tSvoq8ZW7BjTvpGrUsl4OQdIzNpe/N3yk/VRbYIk
+        GqwdrowOQDvcgEFGz/HExw==
+X-Google-Smtp-Source: APBJJlGsBsKFeZBb8fU2bcyVgRL9aJv0pp9rDtUdPfMV8gTZk6+GrVqq4VjMLpT6v23Sh93K9+x0rA==
+X-Received: by 2002:a92:c083:0:b0:345:ba42:ca4d with SMTP id h3-20020a92c083000000b00345ba42ca4dmr5490944ile.15.1688743886724;
+        Fri, 07 Jul 2023 08:31:26 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id p12-20020a92d48c000000b0033b2a123254sm1387612ilg.61.2023.07.07.08.29.44
+        by smtp.gmail.com with ESMTPSA id w5-20020a92db45000000b00342093347d8sm1346438ilq.76.2023.07.07.08.31.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 08:29:45 -0700 (PDT)
-Received: (nullmailer pid 337099 invoked by uid 1000);
-        Fri, 07 Jul 2023 15:29:43 -0000
-Date:   Fri, 7 Jul 2023 09:29:43 -0600
+        Fri, 07 Jul 2023 08:31:25 -0700 (PDT)
+Received: (nullmailer pid 339098 invoked by uid 1000);
+        Fri, 07 Jul 2023 15:31:24 -0000
+Date:   Fri, 7 Jul 2023 09:31:24 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     linux-amlogic@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        linux-amlogic@lists.infradead.org,
-        Neil Armstrong <neil.armstrong@linaro.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V2 2/4] dt-bindings: power: add Amlogic C3 power domains
-Message-ID: <168874378313.337045.7252600709382848540.robh@kernel.org>
-References: <20230707003710.2667989-1-xianwei.zhao@amlogic.com>
- <20230707003710.2667989-3-xianwei.zhao@amlogic.com>
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        devicetree@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>,
+        Conor Dooley <conor+dt@kernel.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: amlogic,meson-pinctrl:
+ allow gpio-line-names
+Message-ID: <168874388364.339042.7246831191006264441.robh@kernel.org>
+References: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
+ <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-1-2160060446d7@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230707003710.2667989-3-xianwei.zhao@amlogic.com>
+In-Reply-To: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-1-2160060446d7@linaro.org>
 X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
         FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
         HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
@@ -69,19 +74,19 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri, 07 Jul 2023 08:37:08 +0800, Xianwei Zhao wrote:
-> Add devicetree binding document and related header file for Amlogic C3 secure power domains.
+On Fri, 07 Jul 2023 10:20:44 +0200, Neil Armstrong wrote:
+> Allow gpio-line-names property for the gpio subnodes.
 > 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
+> Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
+> Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 > ---
-> V1 -> V2:  Mofiy filename  matching compatibles.
-> 	   Delete unnecessary blank line.
-> ---
->  .../power/amlogic,meson-sec-pwrc.yaml         |  3 ++-
->  include/dt-bindings/power/amlogic,c3-pwrc.h   | 25 +++++++++++++++++++
->  2 files changed, 27 insertions(+), 1 deletion(-)
->  create mode 100644 include/dt-bindings/power/amlogic,c3-pwrc.h
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml         | 4 ++++
+>  .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml | 3 +++
+>  .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml          | 3 +++
+>  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml     | 4 ++++
+>  .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml      | 4 ++++
+>  5 files changed, 18 insertions(+)
 > 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
