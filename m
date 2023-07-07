@@ -2,52 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A5F674B96B
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 00:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B39174B970
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 00:17:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232502AbjGGWQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 18:16:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50008 "EHLO
+        id S232449AbjGGWRj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 18:17:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229600AbjGGWQO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 18:16:14 -0400
-Received: from mail-io1-f52.google.com (mail-io1-f52.google.com [209.85.166.52])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 122DC2108;
-        Fri,  7 Jul 2023 15:16:14 -0700 (PDT)
-Received: by mail-io1-f52.google.com with SMTP id ca18e2360f4ac-7835971026fso86560939f.3;
-        Fri, 07 Jul 2023 15:16:14 -0700 (PDT)
+        with ESMTP id S229990AbjGGWRj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 18:17:39 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8387A2117;
+        Fri,  7 Jul 2023 15:17:37 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-78362f574c9so88471439f.3;
+        Fri, 07 Jul 2023 15:17:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688768173; x=1691360173;
+        d=1e100.net; s=20221208; t=1688768257; x=1691360257;
         h=content-transfer-encoding:mime-version:message-id:date:subject:cc
          :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=8HlUhAky3I6lbcHfVaorBQpgHZHmOUsL/DPXCPOigXk=;
-        b=SZNyGl+Kxb/szKU0H2bW6WYDb01ZT4gEJAq0REqh0VxfvRW5uWdtAI/wk/rk6Z/o9A
-         gd1kOmhrumZytrCVoecWodGNsjlTWAQNDxPDJ8s6jfADEsAc+XywT1Jsx5DTkQNrIWq1
-         lGxypNxLXVH6CoGm0zKIE3FQ1NIz9p5ykPDcUXMtiXOhnxZ96Pgk/D8ExYCvwSYDpLyL
-         2u5arEHORBc1f5Vp/1VcacpsclsmY+tzz0ZU6NQubkDGumxb2FQ2zaZlt5Mc9ai9mehO
-         RSzwxw7e0UPTLhjTBeD03RblhKzm8hRUuDCfc0JzkFbloiRBpKBY+rKfE4cOKwOR2QRk
-         FxyQ==
-X-Gm-Message-State: ABy/qLbPssXq2b1QpnsDCmJbomAa2B/yqRmawGzI7wNx7PFxjSR1XkMM
-        tNwGv2y+/qC/Lr8hsljJzg==
-X-Google-Smtp-Source: APBJJlGRkCnNP5i8lxAWu/yyaDXioxwmbsWTdbDQiguZS7lvcWh1pszYPCM9iUaitA9ZeMbvEU829Q==
-X-Received: by 2002:a5d:9d57:0:b0:786:2672:5331 with SMTP id k23-20020a5d9d57000000b0078626725331mr6047342iok.2.1688768173228;
-        Fri, 07 Jul 2023 15:16:13 -0700 (PDT)
+        bh=VbcO12KcuCZy6mIXJQxBwZ8MhvfUPsQU9+tPXTNckJU=;
+        b=D6xlbvcNkYavVRFid47w72LBvCAPCmPDCttROQ3cxnSc6Z8XR93dMRFpFus+zhHVKy
+         tuaUymJuDgNqHlwdY8PP6BMqe2Fth2ojMjEzimGme2myhFBFr6bnkcCz4mxjFTe8GVmt
+         KwnYmolRfUAuve9zXZ2d0MHFCbj9nvHy1+YZ42z9SQlf1Dmiqc4j6fYJiFKCcsEPavES
+         ot31d7m2FE4m/8n3C9hmRYSdEXMHikfJ8o1iMy4axUkSrgOM+Ix5vHm5ZiO/feM1Jke3
+         2+lDORUZbBhpTRRCO+cArqlPgRol7DDdfIEK39SyIK8+qHIY1sRLloleNymjdzuO/J1f
+         k15g==
+X-Gm-Message-State: ABy/qLZmolzBmpMCKwqii71n4QaHERy75BK7R7plEXTPfySaKq3gl7qO
+        OrmxRU7GpCEDJvPJSGXLXA==
+X-Google-Smtp-Source: APBJJlFO+EngP3AgSBdVkctaKn6OK6ew2bMWVk+3PoD7xbagCXQdFDfFEahreMSZGD6t8VCzb0Oc6g==
+X-Received: by 2002:a5e:dd0c:0:b0:786:ea57:22e2 with SMTP id t12-20020a5edd0c000000b00786ea5722e2mr2706201iop.20.1688768256760;
+        Fri, 07 Jul 2023 15:17:36 -0700 (PDT)
 Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id eq24-20020a0566384e3800b0042319c38763sm1596556jab.15.2023.07.07.15.16.11
+        by smtp.gmail.com with ESMTPSA id u25-20020a02aa99000000b0042b4e2fc546sm1542025jai.140.2023.07.07.15.17.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 15:16:12 -0700 (PDT)
-Received: (nullmailer pid 1066786 invoked by uid 1000);
-        Fri, 07 Jul 2023 22:16:10 -0000
+        Fri, 07 Jul 2023 15:17:35 -0700 (PDT)
+Received: (nullmailer pid 1071485 invoked by uid 1000);
+        Fri, 07 Jul 2023 22:17:34 -0000
 From:   Rob Herring <robh@kernel.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        Conor Dooley <conor+dt@kernel.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: serial: Remove obsolete nxp,lpc1850-uart.txt
-Date:   Fri,  7 Jul 2023 16:16:06 -0600
-Message-Id: <20230707221607.1064888-1-robh@kernel.org>
+Subject: [PATCH] ASoC: dt-bindings: audio-graph-card2: Drop incomplete example
+Date:   Fri,  7 Jul 2023 16:17:25 -0600
+Message-Id: <20230707221725.1071292-1-robh@kernel.org>
 X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -62,49 +64,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-nxp,lpc1850-uart.txt binding is already covered by 8250.yaml, so remove
-it.
+The example in audio-graph-card2 binding is incomplete, uses
+undocumented compatibles strings, and doesn't follow typical .dts
+formatting. Rather than try to fix with what would probably be a lengthy
+example, just drop the example.
 
 Signed-off-by: Rob Herring <robh@kernel.org>
 ---
- .../bindings/serial/nxp,lpc1850-uart.txt      | 28 -------------------
- 1 file changed, 28 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/serial/nxp,lpc1850-uart.txt
+ .../bindings/sound/audio-graph-card2.yaml     | 20 +------------------
+ 1 file changed, 1 insertion(+), 19 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/serial/nxp,lpc1850-uart.txt b/Documentation/devicetree/bindings/serial/nxp,lpc1850-uart.txt
-deleted file mode 100644
-index 04e23e63ee4f..000000000000
---- a/Documentation/devicetree/bindings/serial/nxp,lpc1850-uart.txt
-+++ /dev/null
-@@ -1,28 +0,0 @@
--* NXP LPC1850 UART
+diff --git a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
+index 3de7b36829da..d3ce4de449d5 100644
+--- a/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
++++ b/Documentation/devicetree/bindings/sound/audio-graph-card2.yaml
+@@ -39,22 +39,4 @@ required:
+ 
+ additionalProperties: false
+ 
+-examples:
+-  - |
+-    sound {
+-        compatible = "audio-graph-card2";
 -
--Required properties:
--- compatible	: "nxp,lpc1850-uart", "ns16550a".
--- reg		: offset and length of the register set for the device.
--- interrupts	: should contain uart interrupt.
--- clocks	: phandle to the input clocks.
--- clock-names	: required elements: "uartclk", "reg".
+-        links = <&cpu_port>;
+-    };
 -
--Optional properties:
--- dmas		: Two or more DMA channel specifiers following the
--		  convention outlined in bindings/dma/dma.txt
--- dma-names	: Names for the dma channels, if present. There must
--		  be at least one channel named "tx" for transmit
--		  and named "rx" for receive.
+-    cpu {
+-        compatible = "cpu-driver";
 -
--Since it's also possible to also use the of_serial.c driver all
--parameters from 8250.txt also apply but are optional.
+-        cpu_port: port { cpu_ep: endpoint { remote-endpoint = <&codec_ep>; }; };
+-    };
 -
--Example:
--uart0: serial@40081000 {
--	compatible = "nxp,lpc1850-uart", "ns16550a";
--	reg = <0x40081000 0x1000>;
--	reg-shift = <2>;
--	interrupts = <24>;
--	clocks = <&ccu2 CLK_APB0_UART0>, <&ccu1 CLK_CPU_UART0>;
--	clock-names = "uartclk", "reg";
--};
+-    codec {
+-        compatible = "codec-driver";
+-
+-        port { codec_ep: endpoint { remote-endpoint = <&cpu_ep>; }; };
+-    };
++...
 -- 
 2.40.1
 
