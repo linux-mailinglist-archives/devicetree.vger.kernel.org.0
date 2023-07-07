@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D41774ACB4
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:20:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C37F074ACB7
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:20:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232282AbjGGIUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 04:20:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
+        id S232848AbjGGIU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 04:20:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52490 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232848AbjGGIUx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:20:53 -0400
-Received: from mail-wr1-x42d.google.com (mail-wr1-x42d.google.com [IPv6:2a00:1450:4864:20::42d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 210ED1FE6
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:20:50 -0700 (PDT)
-Received: by mail-wr1-x42d.google.com with SMTP id ffacd0b85a97d-313f3a6db22so1618516f8f.3
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 01:20:50 -0700 (PDT)
+        with ESMTP id S232862AbjGGIUy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:20:54 -0400
+Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 760F91FF0
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:20:51 -0700 (PDT)
+Received: by mail-wm1-x32b.google.com with SMTP id 5b1f17b1804b1-3fbea14700bso16465715e9.3
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 01:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688718048; x=1691310048;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=P7nX8phUtgvJlXBdE7HbRkDLu02J23oMaWSNoummNpM=;
-        b=ZvRIDUsv9vIYR3vOfIKZHZ/QP+RFnql63YTQ2nv/Djpc5JuPK9rESNbVRWm4JJB6Hw
-         kcxszPOe05wTw7dGH+e55op5+Lr9kOqpXCsbic8MTApQWi5qmCy5fQDI/Xo2MRKTRByh
-         FOhDdF54NLDI8XZDEM0Co03nzublpIdqEbZhkFNvP9vIkM4dPSASny6nALE5HEU6jsLm
-         ksl64aDAdJG5c3N9TsdmZqKF5riLzoXId8iPug1/hJaIJdM9upbbnKUZiNfOK63FHvz7
-         /KH6Ss2y7OAGJ17mySEv4H1UoCYj9Wdgdq8ouvYEXgh7vdJ+dIxAsZYU/TDqUXryYE4U
-         u4PA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688718048; x=1691310048;
-        h=cc:to:content-transfer-encoding:mime-version:message-id:date
-         :subject:from:x-gm-message-state:from:to:cc:subject:date:message-id
+        d=linaro.org; s=google; t=1688718049; x=1691310049;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
          :reply-to;
-        bh=P7nX8phUtgvJlXBdE7HbRkDLu02J23oMaWSNoummNpM=;
-        b=SzNN0I0j9dQRZK87TsQ60jeyBYes50rxIBV30eGfCeJEY/c3/WZffEfXfHKcNBIds0
-         yDmW/DmPI6+8Zo4DwfJUN/ZBQcwSMOQgmgLy02+WkkoMFajWfjSxD1ZofvPuNjeKNeM+
-         ouIQ/PjnsXfdT2R0AvyhZkVhc9ZASwZZcwPcSsnGpQlE+hlM31E1Doke7p7CX881GkUv
-         630DNTocKXLa0565a/vmATL7oRyawFvGmY86oSjQwnFdr050aHU9gd9CxXC1iSPy4XWf
-         VBl9uSbg1BJ4m6rn0Gkd/SFNkvEHU3snEKt9x0iQ8TyVUitWBUdGhvQvA741AeC3Qixe
-         So+A==
-X-Gm-Message-State: ABy/qLbeL6GXweXYNJzUkj5F3+mLUY59uxFSq7sXoHlvMfJaYcKk5e+C
-        WYV6hWqohKwi3IOAVUEizz06xA==
-X-Google-Smtp-Source: APBJJlHuX5vVM/UKRZ/aziETXd4ETuHeeEBeYfXppfJI2XzCYX/DyG4sM35yPGMIok5s9ak2Lm7IHQ==
-X-Received: by 2002:adf:f711:0:b0:30e:3da5:46e5 with SMTP id r17-20020adff711000000b0030e3da546e5mr3619353wrp.59.1688718048582;
-        Fri, 07 Jul 2023 01:20:48 -0700 (PDT)
+        bh=FOphSGoCqT9615GltEcFI+ATbigEMUQ3m4Ic264wJ18=;
+        b=Gew4k+V0z9BN5NjFkuzGK1x7pdLIB2nyR2uEd2h6l6ii86d6qE9DzAQnbJneLvL1C+
+         w0fX7+Dy1N47pfNcz0nl80hin+lhpP1KqURqs74dBq/4Wp8B9bA8Qwsw9qKD3pZ5yBqZ
+         wdzadJQNafUD6BRe41telXv73hytM1ZezSK/NHcUYZwCSG7H17rbmiyF0EDfSxj1gVox
+         sSbUcdoodLNCa+TmahFWvvh5XAIRhL4W2hh4+A1F5A5DC78ff2x9vk4/oRonP9HV/597
+         JTiQwr58yPClItu1g2C9o9+DyCNJ8tsEgiVGkaqX0aj3YImx7V1W0Q3cwEQ+rSz0meI8
+         nGXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688718049; x=1691310049;
+        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
+         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=FOphSGoCqT9615GltEcFI+ATbigEMUQ3m4Ic264wJ18=;
+        b=dSEbaOEuCG+p0FmoVJ/sa8byoEd9J4ZuYaa1ipu7vofu0QjDhdOS4jV+lH5gcUhZQF
+         B2u5gVe5Z0jeVkEvneb2XvtRJPNVK/vD3WDAUksQ2aFw14VzC4GjS6KO7hOV8/1gJ67L
+         NxX3w34Pij8DvEmRHJN7KJEW23PtnClkzCRF38O80q07ZYqq4CTPeKkRoeD0S6mIpVVa
+         B2pT6jFh8yWi3fKOp0l+3piwfG4HI2dVkn6x6XkyMTIsTIuRQJVsPVtu0d0kBk3t1kG6
+         B+6qGMTLsD/wQ/WTdLrkBLt/gzw8hPEkNfxwETR17CPydKnQ+cXaBcf5hBKLJnrcS5yN
+         TrrQ==
+X-Gm-Message-State: ABy/qLb2V8DL9vasZkJJoDvojY97Gwp1DpkVjxkfm31utJoJkOR5JEJH
+        kLUaQNM7Bb4wkVMU++0qk+COfw==
+X-Google-Smtp-Source: APBJJlEDsfl+FZf6AgDHLFZ3DivOlzLtLq/U56dHHA8AvdbrFyq4W5RG2DSt1dLEruLN9tNeZw1DXw==
+X-Received: by 2002:a1c:7410:0:b0:3fa:984d:7e9f with SMTP id p16-20020a1c7410000000b003fa984d7e9fmr3425895wmc.6.1688718049549;
+        Fri, 07 Jul 2023 01:20:49 -0700 (PDT)
 Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id a5-20020adffb85000000b00313e4d02be8sm3824395wrr.55.2023.07.07.01.20.47
+        by smtp.gmail.com with ESMTPSA id a5-20020adffb85000000b00313e4d02be8sm3824395wrr.55.2023.07.07.01.20.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 01:20:48 -0700 (PDT)
+        Fri, 07 Jul 2023 01:20:49 -0700 (PDT)
 From:   Neil Armstrong <neil.armstrong@linaro.org>
-Subject: [PATCH v2 0/2] dt-bindings: pinctrl: amlogic,meson-pinctrl-common:
- add missing properties
-Date:   Fri, 07 Jul 2023 10:20:43 +0200
-Message-Id: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
+Date:   Fri, 07 Jul 2023 10:20:44 +0200
+Subject: [PATCH v2 1/2] dt-bindings: pinctrl: amlogic,meson-pinctrl: allow
+ gpio-line-names
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIANvKp2QC/52NQQ6DIBREr2JY9zeIVtqueo/GBSLiTxTIh5o2h
- ruXeoSuJm8mmbezaAhNZPdqZ2Q2jOhdAXGqmJ6VswZwLMwEFw2XvIPkA2pQ6+JtyVeIiYxaIaD
- TiRaY8A0DuhGdjaDFIFvdNfIqBSuPgUzZD9uzLzxjTJ4+h3yrf+1/nq0GDpNqWzFelDK3+rGgU
- +TPnizrc85fDZYshucAAAA=
+Message-Id: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-1-2160060446d7@linaro.org>
+References: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
+In-Reply-To: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
@@ -73,64 +72,118 @@ Cc:     Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         Neil Armstrong <neil.armstrong@linaro.org>
 X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1669;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=3911;
  i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=FyjsoTudixydC0nNMdjfVMOeLJOWeJk3gdhNn8W9tE4=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkp8revvGyh8h+u4H2kef4fC9pa+RedPwKKGzXjMPa
- X3zF+TSJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKfK3gAKCRB33NvayMhJ0SUdD/
- 9MuupduiPkUIemehndLwaP/EAV+x1a1xZQnKh3dtyAmELloWg7peQif3zlirC5c1BdctZJNfUF7lWe
- cSk3/9cFZdd+0FJ/ANgi2kadN+qJ6utMiOO9Na6SzHGnc/JHf68s9963iqzJ7wICkhMK88pz47r/ys
- tMKZWoqiv/Fr47twhZH0fLTf7OMslDxgDrWqtCcX5o4aWE+sYwTzmQkhJbsEx03LzlVvgX6isPa1Zq
- 4kA1WIRF1IqvMXZo/PSDWaADi3njfrRPUuEFU1a0cIYMell5xK46CGFrLaN82s9o9Gd8IwBaeK2kNt
- xEHi4UwBMGP8IwuVca0nQG8UmWa4qbS+kQ9pDMI9nt0dlDslO840gQrh5MAmm/2udaBCsG+JdyUzLY
- M/52rnAqJMrOPRj/xQkbeIyWOSn5BMpKFnErnU8cTXYWDbQ7bJrOqYrz+SgDIcsjfKk8iM94s3lA3E
- N8SSJxhx63/GdkI7ztBpkmdPI0F0ouBjPJxf8C11QqDZIE/4Z+HyWdfOVxXn2D2FhU2Rf+QBaFrSOa
- dUOB9VDTVVeyOamlUfOwIe66aErXGXFvLgsgVmM1cNmtTRMLVlGZQJPB3NICdlq56bRqk67syeG0OU
- uLi17EtIDg+GERRxYKzcIuEJ77PFMa6hdwUzZDVTvK6IPkVBz21+lNeqIPRQ==
+ bh=8cLAB23xsx5JAWFJT8tVpclgqbE6cQYK7di1wlZX13Y=;
+ b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkp8reH9NWBf+ukHsmyNlskNR0cEku39S9jIRN44L0
+ WYb9QLaJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKfK3gAKCRB33NvayMhJ0RuKEA
+ DJaMsgfIqACtdmvh4bGxTDGbuPyRKBO6MBJseIYkyvA9dtFpjULKm/KW/p8zVITCiuWqfIF/qbosBu
+ KnYfxfwBYoeXxQtmHdkWq8TR0SsSFdktU7Mk4SUHtFA0xUVQNxG7jw2tbrDM/3oHgBghzYz3OvCW47
+ 7j0T/vd3PtEWYgMAv/6Pm8930oXGDeICpfFRPuVt1XoP0MTSQOvRLk+Nj/dTFyqGo9c0BcB/Ei2Ftn
+ Xd/t+8l79OgUfGWpskJy17J0YlfYBbbiZMMMYRpHkuRT30FSrYYobbP0VP/Y8WGMtW/jKrdqwNH6Af
+ 6gGMR38+F/daLDtIRkuOxNdLEcTKdVx9jmSuyUE53WaLR3nRReDfIRu9LFDlguoOInkFLSXslrOD9h
+ KnS8Dg5G/gw1YwgtDOQwjXPBPTXve+BbJcDFuCfFXFC/wAUdgkqgk66CGqYfNLiLmbEFiEFa4QZDUV
+ v99z3/aSaZJVNItL9OxL3jr9+3VcW3hU3Q+Zl8k5lf+6mpHAhClLfQpQR8ahpeSKYkbbNnnJkPpHR2
+ jEBF5YRxLQte8Y7lFmYFXoB8fqSoQFpRcu7Dmex/TFuGhW+cfsM3B7NvMFaGC9ulF+bSsYjrETiJyw
+ D09dP9NwVYci8vgT2KbvgK5KrECFebn4BN7SbXakBBZU5kn6gPFy7y+WY9rA==
 X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
  fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The amlogic DT uses gpio-line-names and gpio-hog, add those
-to the yaml converted pinctrl bindings.
+Allow gpio-line-names property for the gpio subnodes.
 
-This will fix the following dtschema check errors:
-arch/arm64/boot/dts/amlogic/meson-sm1-bananapi-m5.dtb: pinctrl@40: bank@40: Unevaluated properties are not allowed ('gpio-line-names', 'usb-hub-hog' were unexpected)
-arch/arm64/boot/dts/amlogic/meson-gxbb-nanopi-k2.dtb: pinctrl@4b0: bank@4b0: Unevaluated properties are not allowed ('gpio-line-names' was unexpected)
-..
-
+Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
 Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
 ---
-Changes in v2:
-- Added review tags
-- Moved line-names out of common and added min/max items for each bindings
-- Link to v1: https://lore.kernel.org/r/20230706-topic-amlogic-upstream-pinctrl-fix-bindings-v1-0-fa442d5aae91@linaro.org
+ .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml         | 4 ++++
+ .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml | 3 +++
+ .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml          | 3 +++
+ .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml     | 4 ++++
+ .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml      | 4 ++++
+ 5 files changed, 18 insertions(+)
 
----
-Neil Armstrong (2):
-      dt-bindings: pinctrl: amlogic,meson-pinctrl: allow gpio-line-names
-      dt-bindings: pinctrl: amlogic,meson-pinctrl-common: allow gpio hogs
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+index 99080c9eaac3..4cee220ab652 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml
+@@ -36,6 +36,10 @@ patternProperties:
+           - const: mux
+           - const: gpio
+ 
++      gpio-line-names:
++        minItems: 62 # A1
++        maxItems: 82 # S4
++
+ unevaluatedProperties:
+   type: object
+   $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+index 7c9c94ec5b7b..0942ea60c6cd 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml
+@@ -36,6 +36,9 @@ patternProperties:
+           - const: ds
+           - const: gpio
+ 
++      gpio-line-names:
++        maxItems: 15
++
+ unevaluatedProperties:
+   type: object
+   $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+index 4bcb8b60420f..e3c8bde30559 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml
+@@ -38,6 +38,9 @@ patternProperties:
+           - const: mux
+           - const: ds
+ 
++      gpio-line-names:
++        maxItems: 85
++
+ unevaluatedProperties:
+   type: object
+   $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+index 32d99c9b6afc..c1b03147e8ec 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml
+@@ -44,6 +44,10 @@ patternProperties:
+           - const: pull
+           - const: gpio
+ 
++      gpio-line-names:
++        minItems: 11 # GXL
++        maxItems: 16 # Meson8
++
+ unevaluatedProperties:
+   type: object
+   $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
+diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+index d0441051f34a..4ec85b8248fa 100644
+--- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml
+@@ -45,6 +45,10 @@ patternProperties:
+           - const: pull-enable
+           - const: gpio
+ 
++      gpio-line-names:
++        minItems: 86 # AXG
++        maxItems: 120 # Meson8
++
+ unevaluatedProperties:
+   type: object
+   $ref: amlogic,meson-pinctrl-common.yaml#/$defs/meson-pins
 
- .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.yaml      | 4 ++++
- .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml  | 7 +++++++
- .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-aobus.yaml         | 3 +++
- .../bindings/pinctrl/amlogic,meson-pinctrl-g12a-periphs.yaml       | 3 +++
- .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-aobus.yaml  | 4 ++++
- .../devicetree/bindings/pinctrl/amlogic,meson8-pinctrl-cbus.yaml   | 4 ++++
- 6 files changed, 25 insertions(+)
----
-base-commit: e1f6a8eaf1c271a0158114a03e3605f4fba059ad
-change-id: 20230706-topic-amlogic-upstream-pinctrl-fix-bindings-c2b74c637872
-
-Best regards,
 -- 
-Neil Armstrong <neil.armstrong@linaro.org>
+2.34.1
 
