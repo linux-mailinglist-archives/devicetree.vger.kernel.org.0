@@ -2,66 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E02574B995
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 00:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF16D74BA04
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 01:25:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230134AbjGGWgZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 18:36:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55190 "EHLO
+        id S231316AbjGGXZS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 19:25:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40966 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGGWgZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 18:36:25 -0400
-Received: from mail-il1-f177.google.com (mail-il1-f177.google.com [209.85.166.177])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B58F211F
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 15:36:24 -0700 (PDT)
-Received: by mail-il1-f177.google.com with SMTP id e9e14a558f8ab-3460e9f2376so9713255ab.1
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 15:36:24 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688769383; x=1691361383;
-        h=in-reply-to:content-transfer-encoding:content-disposition
-         :mime-version:references:message-id:subject:cc:to:from:date
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=oRbpgwjHni1yVo7tNLwUVsUrfDg/Rbh5maKEnkp3CGE=;
-        b=DsP3TqeG7etBfyEf0TuDsqKeNGP1aINoI578HehZciHIetlpXPCoo4TuWdlF+cA6YC
-         eLbtJTOkMs3+8Sld9a08M1t9QHsoDBpNoGryG/nsM460ji+Lqljqwv+5960he4AzQSa4
-         hffgKfUnVqPqc4iCz8grghhH/02Q3NMuPnMmy6bza0bPoHobiQfOYDpDLIHYd+KcI3/r
-         fm5K8Pnb71kORLXULRc0ZTFACdEA9DVjc3Xz6YMX+4faewZnV5TY4zD2eW3kDTz6K1xe
-         PIXAbj51MTt3Q+1Tf9cV0qhF8aceE3K6mFc769sXyapSWnZ/IDoh9KrddoSbsTwDUuxb
-         Q9jw==
-X-Gm-Message-State: ABy/qLZvEoJUAA803SwVOBLLcLeVKFdfiWrFNKeQUk8ZBKZKFD5kR7m5
-        uWg/P9ho//7U+7eRHYVtkg==
-X-Google-Smtp-Source: APBJJlFmhSb76lpb1J2RVKOanEIgS+8GuN7loU9NLOPNEJpZipSxadrG9D4PuduVVNtNzgs4ZqZviA==
-X-Received: by 2002:a92:d385:0:b0:345:ed70:9a7e with SMTP id o5-20020a92d385000000b00345ed709a7emr6851292ilo.13.1688769383458;
-        Fri, 07 Jul 2023 15:36:23 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h14-20020a92d08e000000b003460b456030sm1621897ilh.60.2023.07.07.15.36.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 15:36:22 -0700 (PDT)
-Received: (nullmailer pid 1092967 invoked by uid 1000);
-        Fri, 07 Jul 2023 22:36:21 -0000
-Date:   Fri, 7 Jul 2023 16:36:21 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        devicetree@vger.kernel.org, Conor Dooley <conor+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>,
+        with ESMTP id S229646AbjGGXZR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 19:25:17 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 381BD2107;
+        Fri,  7 Jul 2023 16:25:15 -0700 (PDT)
+Received: from tr.lan (ip-86-49-120-218.bb.vodafone.cz [86.49.120.218])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 2289985F50;
+        Sat,  8 Jul 2023 01:25:01 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1688772301;
+        bh=SuB3l1QN8nvAY233gdCLXZjbGzm59nfH891us3OCgEw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=uyZpqpZsXHPaf6xdXLoTF2v+s7FIAc0xW5Lzpc39W7OUEEkDnODmLWHVLONr4qghn
+         VypFW9/aCryNgwtWq0lT/JdxzDpXyNoIxUMnCPsCLu/fZiKAmEjA+G5DXp/ayMXyAc
+         wAdV/8Cix7OxLiKhwdDTCCUBYIjP3krp1IvcX1I/skmG6kWN2UNm3j33mK24vfIe8b
+         BlsDdoJxJXZrVgExbWlcL5zgx4notlEj+8G+QstyWfsfmJ3dk+bYWTv9um7ncrp98i
+         op0Qewv+9tu+/MIIR3pMLPIfIWkMY3eVlrvUo0jtPtzMRHTPx4973nx8nhNunsIhIr
+         ga6fIJ0Z741QQ==
+From:   Marek Vasut <marex@denx.de>
+To:     linux-remoteproc@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH V2] dt-bindings: arm: bcm: add BCM53573 SoCs family
- binding
-Message-ID: <168876938093.1092911.14869051011601765335.robh@kernel.org>
-References: <20230707132850.12670-1-zajec5@gmail.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document fsl,startup-delay-ms
+Date:   Sat,  8 Jul 2023 01:24:43 +0200
+Message-Id: <20230707232444.374431-1-marex@denx.de>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230707132850.12670-1-zajec5@gmail.com>
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -69,28 +63,47 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document fsl,startup-delay-ms property which indicates how long
+the system software should wait until attempting to communicate
+with the CM firmware. This gives the CM firmware a bit of time
+to boot and get ready for communication.
 
-On Fri, 07 Jul 2023 15:28:50 +0200, Rafał Miłecki wrote:
-> From: Rafał Miłecki <rafal@milecki.pl>
-> 
-> BCM53573 is a family derived from Northstar with some important
-> differences:
-> 1. Cortex-A9 replaced by Cortex-A7
-> 2. XHCI controller dropped
-> 3. Two Ethernet interfaces removed
-> 4. Two 802.11ac cores embedded
-> 
-> Linux already contains DTS files for some on those devices so add a
-> proper binding for it.
-> 
-> Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
-> ---
-> V2: Add -v1 prefixes to Tenda AC6/W15E. There are more versions.
-> ---
->  .../bindings/arm/bcm/brcm,bcm53573.yaml       | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml
-> 
+Signed-off-by: Marek Vasut <marex@denx.de>
+---
+Cc: Bjorn Andersson <andersson@kernel.org>
+Cc: Conor Dooley <conor+dt@kernel.org>
+Cc: Fabio Estevam <festevam@gmail.com>
+Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc: NXP Linux Team <linux-imx@nxp.com>
+Cc: Peng Fan <peng.fan@nxp.com>
+Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Sascha Hauer <s.hauer@pengutronix.de>
+Cc: Shawn Guo <shawnguo@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: linux-arm-kernel@lists.infradead.org
+Cc: linux-remoteproc@vger.kernel.org
+---
+ .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml        | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+index 0c3910f152d1d..c940199ce89df 100644
+--- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
++++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+@@ -76,6 +76,11 @@ properties:
+       This property is to specify the resource id of the remote processor in SoC
+       which supports SCFW
+ 
++  fsl,startup-delay-ms:
++    default: 0
++    description:
++      CM firmware start up delay.
++
+ required:
+   - compatible
+ 
+-- 
+2.40.1
 
