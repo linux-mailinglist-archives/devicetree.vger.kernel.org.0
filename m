@@ -2,144 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id B0D7F74B0EA
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 14:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2938574B15B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 15:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232327AbjGGMbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 08:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59808 "EHLO
+        id S232036AbjGGNA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 09:00:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40862 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232073AbjGGMbD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 08:31:03 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C03DA213D
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 05:30:55 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b6f97c7115so27410261fa.2
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 05:30:55 -0700 (PDT)
+        with ESMTP id S229458AbjGGNA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 09:00:29 -0400
+Received: from mail-wm1-x329.google.com (mail-wm1-x329.google.com [IPv6:2a00:1450:4864:20::329])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 37BF610EC;
+        Fri,  7 Jul 2023 06:00:24 -0700 (PDT)
+Received: by mail-wm1-x329.google.com with SMTP id 5b1f17b1804b1-3fbc0609cd6so19031995e9.1;
+        Fri, 07 Jul 2023 06:00:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688733054; x=1691325054;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=iGvyCAsX8L6WnC8v9SRyT2lXuT9dJtv6Ob7UfVhRf9g=;
-        b=u7ln/9RrvRdtuIdt+mrgHIC4WouXbUjvvcIVfUQeCc9olrHTNL+Xsz/i6tHmVIFHov
-         BT/41CpZZMgWHCcDQQw5z+/9MP7kVM0Op4jNJXt1x0b2k3IDHC+2Y069a/yUZ3q5mmB4
-         14yJrVWZI2i0ymEfyZAe9EfFHKdM6vyxeyAvT/fZFjGyEhjY1anAHfwkflU8qiYZAUFS
-         9b38yUCTryN1/fjlrmgEGzpp91TJS/uGRN0dpd1FKmY9k8L8sKKMNogghvqmKVdocCHY
-         LVLvvpnEhxLZFV6VadxC2JiCNHTjGS/MmLvaQfRwt1yBPMy+M4BSBEjxfw7RumA/1IsH
-         OsgQ==
+        d=gmail.com; s=20221208; t=1688734822; x=1691326822;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=S0tEyMRY0wJEgL0LRi5OxuCMsiSdYV1eK+Ww5nubhkc=;
+        b=I9E8fq5cJrGGHhxKAersMUIKvUxWnFGxAKbQFCzGy8emJHCFncKks7Sfc3unVQTXD2
+         lG1x5Mo6K4iwvAWMWHHbOI/urz7WJsy5s5mxpaMLN8BK/udjLURTUxeeHK0GWswXPmwP
+         Nyq32vkeIQR97oKY5y6dViHppujxfR+3/iYfw+eIPd2XI9lhVLfolU4lzUubFEOHJfc5
+         Y5YZ4VQrP8VGJ91b4a0cfeGjsOodD/s7eNTSjVelKw4qUV389Onrch/ilBsjCeBVVe34
+         7WFgVizaIHAz/TrC09nHZJXZ8HYebzPeN8GFaBvZEZNXeaNmQ3vd4B6sqVs5eJcfWVYh
+         rzsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688733054; x=1691325054;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=iGvyCAsX8L6WnC8v9SRyT2lXuT9dJtv6Ob7UfVhRf9g=;
-        b=aznpX9G//XCWPmRl7Zt8Uzx45bKVN5VuiHpYuAEM4mch8hx5SZuejeC8KuWGlJakNv
-         Olz+IHDMltWeZUduaH767+x+WaUS4kb4im8Qksv0j4Wfs90o8bg2FnSNdrBw9JlPlNbD
-         8hsHwjZG8OViW4PkaC5PNlFqdx21tsC5p48OJM0sCnDLssgs1zjB08XqvgMCUHTPBtdV
-         st8CmaVRCwt7gC7jgU2ahhWd5jYubXQv7CaoxcxAUfcRdWVVvMX84bJNAOU3dsGZGLSD
-         6Y3YyjpC/OqqGeK/Dehubva/PGOz3sLJNTUOZz+3ErOJ090jVM0quUemLH749KEwDyye
-         0FVA==
-X-Gm-Message-State: ABy/qLanVTfcVDkptpTunFKx0PMIyW+Gj+evHplnu5OM4gROUYV18dWx
-        +t/T5UH3JsWxo1eIerQaWrfx5A==
-X-Google-Smtp-Source: APBJJlFVEtG496EnoT85BigKA2kUu5jfUK+oufO+W1N79iqyCJ+ptwY0uD9THh4p7PbnlmkyehJ19Q==
-X-Received: by 2002:a2e:9596:0:b0:2b6:d4f7:b7fa with SMTP id w22-20020a2e9596000000b002b6d4f7b7famr3220754ljh.5.1688733053913;
-        Fri, 07 Jul 2023 05:30:53 -0700 (PDT)
-Received: from [192.168.1.101] (abyj26.neoplus.adsl.tpnet.pl. [83.9.29.26])
-        by smtp.gmail.com with ESMTPSA id m18-20020a2eb6d2000000b002b6e00a3e19sm751496ljo.132.2023.07.07.05.30.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jul 2023 05:30:53 -0700 (PDT)
-Message-ID: <95ac3e2d-69c6-e795-af68-924000eb318e@linaro.org>
-Date:   Fri, 7 Jul 2023 14:30:52 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v2 6/7] arm64: dts: qcom: Add SM7125 device tree
-Content-Language: en-US
-To:     David Wronek <davidwronek@gmail.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        d=1e100.net; s=20221208; t=1688734822; x=1691326822;
+        h=user-agent:in-reply-to:content-disposition:mime-version:references
+         :message-id:subject:cc:to:from:date:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=S0tEyMRY0wJEgL0LRi5OxuCMsiSdYV1eK+Ww5nubhkc=;
+        b=VkkJNb0wL37NUaNhNJAud2glVM5HJo+2c9ZDnVFbjCsrtoE7Y9Z75XJG0IT/LwxdaB
+         U6SCtx30onmETarG1PjfY307guilUPzwNW2GS76maUyPvo2WMCPfG1MZonHioSpyKupF
+         YdliyiZzc4ymHF/xBbJYzOoWn+6Awhhwjb93CrB4L4aG1NolhMOtn4gBQivrqITx2ROV
+         gk/2kISPRzNtsJ5X2SFPCdr8UG/WNeL9gSQkEokhaybFA6F8XjkmUrj/OFSAIrJQ6Jtc
+         lxeGcx8w/jqqtCkTf461w+Ey0Q7J8k0rkTTGoZvoXSMdVqkqMNuPrp4G/LEWpWicvxwG
+         6AJw==
+X-Gm-Message-State: ABy/qLaI2izcDqpYvUvWGPlLrmc6MchfrvhwC6ywBDnr84YrcBX1cfbi
+        DTR7KrFFFito3T7SdTr5XdE=
+X-Google-Smtp-Source: APBJJlGb2G1eIpAgNIPsNZYiwtVXCyK9aq49QJPYhf5vHmH7mdsk6bKNhVt+ix/h16rZveqHcwjXoA==
+X-Received: by 2002:a05:600c:cc:b0:3fb:b53c:1a32 with SMTP id u12-20020a05600c00cc00b003fbb53c1a32mr3765656wmm.34.1688734822340;
+        Fri, 07 Jul 2023 06:00:22 -0700 (PDT)
+Received: from orome (p200300e41f4b7100f22f74fffe1f3a53.dip0.t-ipconnect.de. [2003:e4:1f4b:7100:f22f:74ff:fe1f:3a53])
+        by smtp.gmail.com with ESMTPSA id 10-20020a05600c22ca00b003f9b155b148sm2397838wmg.34.2023.07.07.06.00.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 07 Jul 2023 06:00:21 -0700 (PDT)
+Date:   Fri, 7 Jul 2023 15:00:20 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Gautham Srinivasan <gauthams@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Taniya Das <quic_tdas@quicinc.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org
-References: <20230706124339.134272-1-davidwronek@gmail.com>
- <20230706124339.134272-7-davidwronek@gmail.com>
- <021ad5b4-772d-f2f6-f9ec-bca06db04dd8@linaro.org>
- <CAEoe_eVAeNZVUHgpj64Redx5vg7wfzU4wjgH33TZ7ieoDifH-Q@mail.gmail.com>
-From:   Konrad Dybcio <konrad.dybcio@linaro.org>
-In-Reply-To: <CAEoe_eVAeNZVUHgpj64Redx5vg7wfzU4wjgH33TZ7ieoDifH-Q@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 2/2] arm64: tegra: Enable soctherm for Orin Nano Devkit
+Message-ID: <ZKgMZEpE0Y_h6MJ-@orome>
+References: <20230706005545.1813584-1-gauthams@nvidia.com>
+ <20230706005545.1813584-2-gauthams@nvidia.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rU0G3spu97e5FvdA"
+Content-Disposition: inline
+In-Reply-To: <20230706005545.1813584-2-gauthams@nvidia.com>
+User-Agent: Mutt/2.2.10 (2023-03-25)
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6.07.2023 17:36, David Wronek wrote:
-> On Thu, Jul 6, 2023 at 5:25 PM Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
->> On 6.07.2023 14:40, David Wronek wrote:
->>> The Snapdragon 720G (sm7125) is software-wise very similar to the
->>> Snapdragon 7c with minor differences in clock speeds and as added here,
->>> it uses the Kryo 465 instead of Kryo 468.
->>>
->>> Signed-off-by: David Wronek <davidwronek@gmail.com>
->>> ---
->> Can you please paste the output of `dmesg | grep "secondary processor"`?
->>
->> That would let us determine the unique identifier of the cores.
->>
->> Konrad
-> I get this output with the command:
-> [    0.005884] CPU1: Booted secondary processor 0x0000000100 [0x51df805e]
-> [    0.007191] CPU2: Booted secondary processor 0x0000000200 [0x51df805e]
-> [    0.008559] CPU3: Booted secondary processor 0x0000000300 [0x51df805e]
-> [    0.010046] CPU4: Booted secondary processor 0x0000000400 [0x51df805e]
-> [    0.011639] CPU5: Booted secondary processor 0x0000000500 [0x51df805e]
-> [    0.014424] CPU6: Booted secondary processor 0x0000000600 [0x51ff804f]
-> [    0.016421] CPU7: Booted secondary processor 0x0000000700 [0x51ff804f]
-Hm okay so they are indeed Qualcomm-branded cores.. Sometimes they use the
-ARM ones and still call it Kryo 
 
-btw the implementer id of 0x51 is the ascii code of 'Q', nice quirk
+--rU0G3spu97e5FvdA
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Konrad
-> 
-> Sincerely,
-> David
->>>  arch/arm64/boot/dts/qcom/sm7125.dtsi | 16 ++++++++++++++++
->>>  1 file changed, 16 insertions(+)
->>>  create mode 100644 arch/arm64/boot/dts/qcom/sm7125.dtsi
->>>
->>> diff --git a/arch/arm64/boot/dts/qcom/sm7125.dtsi b/arch/arm64/boot/dts/qcom/sm7125.dtsi
->>> new file mode 100644
->>> index 000000000000..12dd72859a43
->>> --- /dev/null
->>> +++ b/arch/arm64/boot/dts/qcom/sm7125.dtsi
->>> @@ -0,0 +1,16 @@
->>> +// SPDX-License-Identifier: GPL-2.0
->>> +/*
->>> + * Copyright (c) 2021, The Linux Foundation. All rights reserved.
->>> + */
->>> +
->>> +#include "sc7180.dtsi"
->>> +
->>> +/* SM7125 uses Kryo 465 instead of Kryo 468 */
->>> +&CPU0 { compatible = "qcom,kryo465"; };
->>> +&CPU1 { compatible = "qcom,kryo465"; };
->>> +&CPU2 { compatible = "qcom,kryo465"; };
->>> +&CPU3 { compatible = "qcom,kryo465"; };
->>> +&CPU4 { compatible = "qcom,kryo465"; };
->>> +&CPU5 { compatible = "qcom,kryo465"; };
->>> +&CPU6 { compatible = "qcom,kryo465"; };
->>> +&CPU7 { compatible = "qcom,kryo465"; };
+On Thu, Jul 06, 2023 at 12:55:45AM +0000, Gautham Srinivasan wrote:
+> Enable soctherm for Orin Nano Devkit. This is needed for the CPU
+> fan to operate.
+>=20
+> Signed-off-by: Gautham Srinivasan <gauthams@nvidia.com>
+> ---
+>  .../arm64/boot/dts/nvidia/tegra234-p3767.dtsi | 38 +++++++++++++++++++
+>  1 file changed, 38 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi b/arch/arm64/=
+boot/dts/nvidia/tegra234-p3767.dtsi
+> index a8aa6e7d8fbc..cb76b08e15b9 100644
+> --- a/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
+> +++ b/arch/arm64/boot/dts/nvidia/tegra234-p3767.dtsi
+> @@ -98,6 +98,12 @@
+>  		vin-supply =3D <&vdd_5v0_sys>;
+>  	};
+> =20
+> +	bpmp {
+> +		thermal {
+> +			status =3D "okay";
+> +		};
+> +	};
+
+I cannot find where we set status =3D "disabled" for this node and given
+that status =3D "okay" is the default, there doesn't seem to be any reason
+to set this.
+
+>  	thermal-zones {
+>  		tj-thermal {
+>  			polling-delay =3D <1000>;
+> @@ -118,5 +124,37 @@
+>  				};
+>  			};
+>  		};
+> +
+> +		cpu-thermal {
+> +			status =3D "okay";
+> +		};
+> +
+> +		gpu-thermal {
+> +			status =3D "okay";
+> +		};
+> +
+> +		cv0-thermal {
+> +			status =3D "okay";
+> +		};
+> +
+> +		cv1-thermal {
+> +			status =3D "okay";
+> +		};
+> +
+> +		cv2-thermal {
+> +			status =3D "okay";
+> +		};
+> +
+> +		soc0-thermal {
+> +			status =3D "okay";
+> +		};
+> +
+> +		soc1-thermal {
+> +			status =3D "okay";
+> +		};
+> +
+> +		soc2-thermal {
+> +			status =3D "okay";
+> +		};
+
+Why are these needed? Previous discussions concluded that we don't want
+to use any of these for monitoring temperatures because they are too
+fine-grained for fan control.
+
+I guess it could make sense to enable all of these so that they can be
+monitored using sysfs if that's something we want, but in that case it
+might be better to enable them in the top-level tegra234.dtsi.
+
+Thierry
+
+--rU0G3spu97e5FvdA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmSoDGEACgkQ3SOs138+
+s6EtQhAAj9e5ncxw4XyB1m7IPClAHJI4J+5BX/r9y/AMVmMzsUXUm+ujtfSInosB
+CiTOdQgSQCFTfIOCOPrO+6lv8ToJA4i0ci3IY5k/w+gM0r5eJLh0ZLSY/ToxTlgr
+Y654zcdpYFQ5eowRqnInDL7tdjxCYtZwgWBwyzuWf9vmbXHg5k6tniqU458SU7CD
+Qi3VW9Trhl8TmvrnC6T3mS1WDYAEqgIWsyOV0Iel2TRAyZBFduB/C6KX73eESls3
+73w2IQgfeg3KsCt9pnluPc7ANN+WiS1NLtdZuBTaDzthqtQ2HUq7VQVq8HR8/Nlz
+xtuIuNiwipockS9AbOzWaW8xw9m0dUQ40T38PbS6cEpSOxZX5gZ412yCqFLsR7sI
+XnnBIb8yuixHM84ue5cu/q3FhkND0QARswTZwUw6SWlgf0ZjAUmIk64QEKqoL02R
+/Sp1h/E/FUXxI60s8WGBNK0pCCcETkvjKvnn2k41IjwRy14zUv6HOwVjjpGN1jHD
+YJhc4EAeqlFQcY0FW7V0Uwu/QrjRonIfqIoG5SKkZoBJKiS6qlXbm/M1byZvyrZg
+8hZa7zGzFTeApfoVDSkeo0pwZ8jdvRQHj6uljOhi/MiPpLCsozp048nSw+rbeJS8
+nqxp4JUpn1KofMFvmTduHL1qywVohcGTC6uhy5Qew3RuC98BL4U=
+=aTvL
+-----END PGP SIGNATURE-----
+
+--rU0G3spu97e5FvdA--
