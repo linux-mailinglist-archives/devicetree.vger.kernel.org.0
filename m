@@ -2,93 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AB47674AB2B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 08:35:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9FD374AB49
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 08:48:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232159AbjGGGfG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 02:35:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38546 "EHLO
+        id S229781AbjGGGsZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 02:48:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42644 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232178AbjGGGe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 02:34:58 -0400
-Received: from mail-ed1-x52e.google.com (mail-ed1-x52e.google.com [IPv6:2a00:1450:4864:20::52e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B29B81FF9
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 23:34:30 -0700 (PDT)
-Received: by mail-ed1-x52e.google.com with SMTP id 4fb4d7f45d1cf-51e29ede885so1893341a12.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 23:34:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688711669; x=1691303669;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=lo9Ybkp8C7hyjxxxAW7ckg0KRs9g3goLaPeETqx3qFc=;
-        b=roioZ0eYvwTT7tPzv5TyxFc/Ekjoo/kOdQ8i6mdJzkYNlB7+eY0d2uGCC/Hse9ujFg
-         5PMz/RRUmb2OORgU9ftSLxbqkbQbX8WHM0IdjreZyMNIz4u+g06CdggLv4FZvhVf9UDz
-         7Zsy19b8HgsiW/qYZ1aoa9xeRnBGMDYGT+E+t8NzzW3fYB4GhPEeSz10rRCakKZtPwqQ
-         eRsCfqvgQmK00hC+hAXc1HmwnxuNs61Epuegn9DMTBSeArGqbF4UcL4N+jOhb0A0j73c
-         3K9xcAriOUVxYdhpPCZyR/giaoafNyCWEN8q/Gvgcyz8c1xq7lA4hV+RzDIPb2dCZv2f
-         13sg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688711669; x=1691303669;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=lo9Ybkp8C7hyjxxxAW7ckg0KRs9g3goLaPeETqx3qFc=;
-        b=H56A1pGIjMsUeBPY30YHO34oZTQkGhjI9IV516a+BaeEaZcDa7s+AP18kqG9M7H1Rj
-         loX7Ql/DFRSln/0F6pHbFLqA5BA3LxHoMHqGI8ORtJQUOtWnHJ5fuOLxNCclKQIWDA/Y
-         v6cxVAHGoGpr/26uXaGtanM5LCuUpTI5gM7CenDKWJdrSKMyw4TfXJnDhY/cGV7WmmMo
-         8tBoN7x2DWX0xAItJQ0kxqyIcAvyN9aEN14au1uAItNkYoIEEalt4KqYPOpUCrv0keEU
-         fl8kN2xpYbV+Hv/c7AXGMN+KW7x4F0CQNx/LBXfaBG//QNJ49BD7OCYDmmMhVAAx1EHk
-         nF0g==
-X-Gm-Message-State: ABy/qLa2D74RrZ/mToeN01xdFjM9D5LqXsVPGUUwwP7THbT5/gsp08gR
-        F2zxc4MABhp56/IK8U3sYok/BA==
-X-Google-Smtp-Source: APBJJlF2VOmcYgfChy7bMAqvwhS2dCJYj3prVbUZDw9t+pJQ45oDeOR9Pccv8izstFNC8DH9mX8oJg==
-X-Received: by 2002:a17:906:7a08:b0:974:1ef1:81ad with SMTP id d8-20020a1709067a0800b009741ef181admr3494616ejo.4.1688711669248;
-        Thu, 06 Jul 2023 23:34:29 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.219.26])
-        by smtp.gmail.com with ESMTPSA id y23-20020a170906471700b00993928e4d1bsm1721167ejq.24.2023.07.06.23.34.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 06 Jul 2023 23:34:28 -0700 (PDT)
-Message-ID: <e9b0b9ea-4871-5fec-b859-aebc1a0e6372@linaro.org>
-Date:   Fri, 7 Jul 2023 08:34:26 +0200
+        with ESMTP id S229446AbjGGGsZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 02:48:25 -0400
+Received: from rtits2.realtek.com.tw (rtits2.realtek.com [211.75.126.72])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id 9BCDB1FD8;
+        Thu,  6 Jul 2023 23:48:21 -0700 (PDT)
+Authenticated-By: 
+X-SpamFilter-By: ArmorX SpamTrap 5.77 with qID 3676lMI11007817, This message is accepted by code: ctloc85258
+Received: from mail.realtek.com (rtexh36506.realtek.com.tw[172.21.6.27])
+        by rtits2.realtek.com.tw (8.15.2/2.81/5.90) with ESMTPS id 3676lMI11007817
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
+        Fri, 7 Jul 2023 14:47:22 +0800
+Received: from RTEXMBS01.realtek.com.tw (172.21.6.94) by
+ RTEXH36506.realtek.com.tw (172.21.6.27) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2507.17; Fri, 7 Jul 2023 14:47:26 +0800
+Received: from RTEXH36505.realtek.com.tw (172.21.6.25) by
+ RTEXMBS01.realtek.com.tw (172.21.6.94) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2375.7; Fri, 7 Jul 2023 14:47:25 +0800
+Received: from localhost.localdomain (172.21.252.101) by
+ RTEXH36505.realtek.com.tw (172.21.6.25) with Microsoft SMTP Server id
+ 15.1.2375.32 via Frontend Transport; Fri, 7 Jul 2023 14:47:25 +0800
+From:   Stanley Chang <stanley_chang@realtek.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+CC:     Stanley Chang <stanley_chang@realtek.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Roy Luo <royluo@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Flavio Suligoi <f.suligoi@asem.it>,
+        Ray Chi <raychi@google.com>, <linux-phy@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-usb@vger.kernel.org>
+Subject: [PATCH v7 1/5] usb: phy: add usb phy notify port status API
+Date:   Fri, 7 Jul 2023 14:47:00 +0800
+Message-ID: <20230707064725.25291-1-stanley_chang@realtek.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v3 1/4] dt-bindings: pinctrl: qcom-pmic-gpio: Add pm7550ba
- support
-Content-Language: en-US
-To:     Rohit Agarwal <quic_rohiagar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
-References: <1688707209-30151-1-git-send-email-quic_rohiagar@quicinc.com>
- <1688707209-30151-2-git-send-email-quic_rohiagar@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <1688707209-30151-2-git-send-email-quic_rohiagar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-KSE-ServerInfo: RTEXMBS01.realtek.com.tw, 9
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-KSE-Antivirus-Interceptor-Info: fallback
+X-KSE-AntiSpam-Interceptor-Info: fallback
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2023 07:20, Rohit Agarwal wrote:
-> Add support for the pm7550ba GPIO support to the Qualcomm PMIC GPIO
-> binding.
-> 
-> Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
-> ---
+In Realtek SoC, the parameter of usb phy is designed to can dynamic
+tuning base on port status. Therefore, add a notify callback of phy
+driver when usb port status change.
 
+The Realtek phy driver is designed to dynamically adjust disconnection
+level and calibrate phy parameters. When the device connected bit changes
+and when the disconnected bit changes, do port status change notification:
 
-Reviewed-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Check if portstatus is USB_PORT_STAT_CONNECTION and portchange is
+USB_PORT_STAT_C_CONNECTION.
+1. The device is connected, the driver lowers the disconnection level and
+   calibrates the phy parameters.
+2. The device disconnects, the driver increases the disconnect level and
+   calibrates the phy parameters.
 
-Best regards,
-Krzysztof
+When controller to notify connect that device is already ready. If we
+adjust the disconnection level in notify_connect, the disconnect may have
+been triggered at this stage. So we need to change that as early as
+possible. Therefore, we add an api to notify phy the port status changes.
+
+Signed-off-by: Stanley Chang <stanley_chang@realtek.com>
+---
+v6 to v7 change:
+    No change
+v5 to v6 change:
+    No change
+v4 to v5 change:
+    No change
+v3 to v4 change:
+    Fix the warning for checkpatch with strict.
+v2 to v3 change:
+    Add more comments about the reason for adding this api
+v1 to v2 change:
+    No change
+---
+ drivers/usb/core/hub.c  | 13 +++++++++++++
+ include/linux/usb/phy.h | 13 +++++++++++++
+ 2 files changed, 26 insertions(+)
+
+diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
+index a739403a9e45..8433ff89dea6 100644
+--- a/drivers/usb/core/hub.c
++++ b/drivers/usb/core/hub.c
+@@ -614,6 +614,19 @@ static int hub_ext_port_status(struct usb_hub *hub, int port1, int type,
+ 		ret = 0;
+ 	}
+ 	mutex_unlock(&hub->status_mutex);
++
++	if (!ret) {
++		struct usb_device *hdev = hub->hdev;
++
++		if (hdev && !hdev->parent) {
++			struct usb_hcd *hcd = bus_to_hcd(hdev->bus);
++
++			if (hcd->usb_phy)
++				usb_phy_notify_port_status(hcd->usb_phy,
++							   port1 - 1, *status, *change);
++		}
++	}
++
+ 	return ret;
+ }
+ 
+diff --git a/include/linux/usb/phy.h b/include/linux/usb/phy.h
+index e4de6bc1f69b..b513749582d7 100644
+--- a/include/linux/usb/phy.h
++++ b/include/linux/usb/phy.h
+@@ -144,6 +144,10 @@ struct usb_phy {
+ 	 */
+ 	int	(*set_wakeup)(struct usb_phy *x, bool enabled);
+ 
++	/* notify phy port status change */
++	int	(*notify_port_status)(struct usb_phy *x, int port,
++				      u16 portstatus, u16 portchange);
++
+ 	/* notify phy connect status change */
+ 	int	(*notify_connect)(struct usb_phy *x,
+ 			enum usb_device_speed speed);
+@@ -316,6 +320,15 @@ usb_phy_set_wakeup(struct usb_phy *x, bool enabled)
+ 		return 0;
+ }
+ 
++static inline int
++usb_phy_notify_port_status(struct usb_phy *x, int port, u16 portstatus, u16 portchange)
++{
++	if (x && x->notify_port_status)
++		return x->notify_port_status(x, port, portstatus, portchange);
++	else
++		return 0;
++}
++
+ static inline int
+ usb_phy_notify_connect(struct usb_phy *x, enum usb_device_speed speed)
+ {
+-- 
+2.34.1
 
