@@ -2,119 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4999674B51C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 18:28:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E74D774B5DF
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 19:34:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232738AbjGGQ2f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 12:28:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53226 "EHLO
+        id S232682AbjGGRen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 13:34:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229502AbjGGQ2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 12:28:35 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 371EC2102;
-        Fri,  7 Jul 2023 09:28:34 -0700 (PDT)
-Received: from localhost (unknown [188.27.60.196])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: cristicc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 884B26606FEE;
-        Fri,  7 Jul 2023 17:28:32 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1688747312;
-        bh=Ief3Uz/0TJdx6oLRMTJ+yX/x6uF+9WAIZcWT6R5LfIg=;
-        h=From:To:Cc:Subject:Date:From;
-        b=WxxkNs4txkB8dmMYi2qEBfiSOnjl7Z6CBcbqf5j9aR6tb/6hSrzfciKXLHuYmjCUh
-         uW5hkqXWTvB5GT0NBmh5G0+jZnZc+xAV+fIL2lRmOPr6/4brJTONXMvBc5L8L+C+Yj
-         bNSqa24l+hlBmOgakpw34PmcbfvenVDg8iuTZnWHgEjLna3FUlVWfAn2ew6Gy6KHzh
-         Hgko3/sMEX/jRljb6/1PQsRYlTGt48IDyex3RmtBjfFueS3B/DVgzSnscButUu6WOI
-         Xqxi3KkeGH+Nno40oTF7Tv6YWdua9BYnPNS7NqV20x70mKzK2XS85ZOWkGyjIsTyq2
-         BFBDx4WCuOmjQ==
-From:   Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: [PATCH] arm64: dts: rockchip: Update sound card label on rk3588-rock-5b
-Date:   Fri,  7 Jul 2023 19:28:22 +0300
-Message-ID: <20230707162822.676024-1-cristian.ciocaltea@collabora.com>
-X-Mailer: git-send-email 2.41.0
+        with ESMTP id S232394AbjGGRem (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 13:34:42 -0400
+Received: from mail-yb1-xb32.google.com (mail-yb1-xb32.google.com [IPv6:2607:f8b0:4864:20::b32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1381D1FE5
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 10:34:41 -0700 (PDT)
+Received: by mail-yb1-xb32.google.com with SMTP id 3f1490d57ef6-c1aad78d5b2so4953621276.0
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 10:34:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688751280; x=1691343280;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=4T7IMxN0TP5UXWRADoHIlZLwq+oACmj5uQt2K3uBHp8=;
+        b=ua0N9EikGOR3PcFTrAJY6G11Vfgf3l/sbCakQgDc6n8aUXs9GX/k0AcJXtPvSLKw2L
+         wU72VhSqIXgNsPwPmw9cgMA8yzYOf3k7fWn+18GbY47N5ivDXR9CfEHnxAJ7Fd4IUQI+
+         EP1A+9Eti1IsdimXcmT7+7S1sbS528fTnZlNe12g6AfETIkY8d2JSdgNmAxrrJTLOeJo
+         QL0123RRJBW8qC/xQAaRShDQabXW4dfYtU5zUa6wDK3TPjrLj+sydSZJSa4sTBMqdrY7
+         Y8WBQ1EW+aBIyulIV3s4YGmjT2FnXyjtjcISV6h3l4EZiMMFsKguqla3YNxEQBOs3ldx
+         iVKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688751280; x=1691343280;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=4T7IMxN0TP5UXWRADoHIlZLwq+oACmj5uQt2K3uBHp8=;
+        b=i7N1qUj54iR+wfkxQJOfb7BWPRWEDqR6Ud/VVjwTPFrPqy/ySNvHdstV2h+VdTkpD9
+         zwuMX0O1jDkTnrHklyy1fqXF//qAW3wYyyZc04owDH1Foe48S+9WRjSjFExAVlaiyF+C
+         kwJ00brwKGuKfqDz++Bf4yR4x9G04fPfR99BT/GXeLr1vK29u73a5rm202Dvg620ESvU
+         ui8sZ4rYRWjFTVmQtpSOaLA7r+jykZkZSk54i+58k+3cJfju3hHWXsicI6L5PI3VffdL
+         t+oxKUmuNTQ+RW7r4uJgLbBrMjHoCoDeitqZTQG9ypHOtYe4/u2k1WaDUxefpQONUHyC
+         FEkg==
+X-Gm-Message-State: ABy/qLb0D4ns1nW78h/49Rj81qSG5FtjcYMRUA8Ndl3lzzQ4zbmtRY/+
+        KaZHBsvW3QZ2u34TbAEKqBwIfCzLvIWnzmDgLf1anA==
+X-Google-Smtp-Source: APBJJlF6NiXDPI9P8bH5HuRqAOnEAHZSiuJMz7y6h3P1N9fjLRuXkXl3vrm1y7HqnhUUPw2k5JPsRuq1E4Z7cYeqVxo=
+X-Received: by 2002:a25:aea6:0:b0:bd7:6e9d:656 with SMTP id
+ b38-20020a25aea6000000b00bd76e9d0656mr6339219ybj.17.1688751278764; Fri, 07
+ Jul 2023 10:34:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20230705-seama-partitions-v2-0-9d349f0d5ab7@linaro.org>
+ <20230705-seama-partitions-v2-1-9d349f0d5ab7@linaro.org> <20230705195154.GA1702900-robh@kernel.org>
+In-Reply-To: <20230705195154.GA1702900-robh@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Fri, 7 Jul 2023 19:34:27 +0200
+Message-ID: <CACRpkdbwCYknVbyNdPivTsdbc+R3ndCkkgMTsryoautimpQguA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mtd: Add SEAMA partition bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        Broadcom internal kernel review list 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The audio-graph-card driver uses the 'label' property to register the
-sound card in the system, but the currently assigned string is too
-generic and cannot be supported by alsa-project/alsa-ucm-conf:
+On Wed, Jul 5, 2023 at 9:51=E2=80=AFPM Rob Herring <robh@kernel.org> wrote:
+> On Wed, Jul 05, 2023 at 12:17:46PM +0200, Linus Walleij wrote:
 
-  card 0: Analog [Analog]
+> >    - $ref: redboot-fis.yaml
+> > +  - $ref: seama.yaml
+>
+> I think this is in the wrong place. These should be device level
+> partitioning schemas, not an individual partition type. (Though nesting
+> is possible)
 
-Use the more specific naming "rk3588-es8316", which is still generic
-enough to be shared with other compatible boards, e.g. Rock 5A. The
-audio card will be listed as:
+OK it wasn't there in v1, then Krzysztof said it should be there
+(if I understood correctly) and I will remove it again then.
 
-  card 0: rk3588es8316 [rk3588-es8316]
+> > +select: false
+>
+> Remove this and your example will fail. You need unevaluatedProperties.
 
-While at it, update also the DT node name, as there will be additional
-sound related nodes available, i.e. for HDMI. Note that this involves
-moving the node one position up, to preserve the alphabetical order.
+OK
 
-Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
----
- .../boot/dts/rockchip/rk3588-rock-5b.dts      | 20 +++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+> There's a problem in partitions.yaml. It never gets applied, so this
+> schema never gets applied. The default 'select' is generated based on
+> $nodename or compatible, but it has neither. This needs some more
+> thought on how to fix given the variable way partitions can be combined.
+> Probably at a minimum, all the 'select: false' need to be removed.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-index 51537030f8e3..87f4d5e9458d 100644
---- a/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3588-rock-5b.dts
-@@ -18,17 +18,9 @@ chosen {
- 		stdout-path = "serial2:1500000n8";
- 	};
- 
--	fan: pwm-fan {
--		compatible = "pwm-fan";
--		cooling-levels = <0 95 145 195 255>;
--		fan-supply = <&vcc5v0_sys>;
--		pwms = <&pwm1 0 50000 0>;
--		#cooling-cells = <2>;
--	};
--
--	sound {
-+	analog-sound {
- 		compatible = "audio-graph-card";
--		label = "Analog";
-+		label = "rk3588-es8316";
- 
- 		widgets = "Microphone", "Mic Jack",
- 			  "Headphone", "Headphones";
-@@ -43,6 +35,14 @@ sound {
- 		pinctrl-0 = <&hp_detect>;
- 	};
- 
-+	fan: pwm-fan {
-+		compatible = "pwm-fan";
-+		cooling-levels = <0 95 145 195 255>;
-+		fan-supply = <&vcc5v0_sys>;
-+		pwms = <&pwm1 0 50000 0>;
-+		#cooling-cells = <2>;
-+	};
-+
- 	vcc5v0_sys: vcc5v0-sys-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "vcc5v0_sys";
--- 
-2.41.0
+I don't think I can fix this problem, I'm not that good with schema.
+I don't even understand the thinking around the existing partitions.yaml.
 
+Yours,
+Linus Walleij
