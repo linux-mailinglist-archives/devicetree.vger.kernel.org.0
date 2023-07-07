@@ -2,94 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 443A074ACBC
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C0A174ACDD
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:27:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232898AbjGGIU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 04:20:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52488 "EHLO
+        id S232473AbjGGI1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 04:27:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232889AbjGGIUz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:20:55 -0400
-Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2249B1FC4
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:20:52 -0700 (PDT)
-Received: by mail-wm1-x32a.google.com with SMTP id 5b1f17b1804b1-3fbf1b82d9cso16922255e9.2
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 01:20:52 -0700 (PDT)
+        with ESMTP id S232377AbjGGI1y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:27:54 -0400
+Received: from mail-ej1-x62b.google.com (mail-ej1-x62b.google.com [IPv6:2a00:1450:4864:20::62b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9CA3102
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:27:51 -0700 (PDT)
+Received: by mail-ej1-x62b.google.com with SMTP id a640c23a62f3a-99384a80af7so187830366b.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 01:27:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688718050; x=1691310050;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=6Z0h6vYSqXNeuBCoLrE61zLNx+lI9H9j/VUTdBVk10g=;
-        b=r2Br/oqnScc9+dg3I8eO/6XZZ5PNr+6orb8PoloE9HRxKNhmqBK7YJV34xcn9q2Iru
-         fvXEvfkAMwM8kt2QGQePhnGe7WnI94dJfE5FY6ZCof205veCIGAYcEaoFSP4CZNzSo/Y
-         68hGtLi+2mMy2GioR1Qv7LQkEfcG2gpRuKLOHdPB5nGXTaHtCWKJuVi6hOP9fBLhnh3Y
-         hVPxPam457728573TphfbiVYPDFfg8jWBxU9P8yqt+08waaWsdbraiNSEb/uXnjDfPel
-         7Yet3qzpQdvpKIuvLWMd8ECWtqWxuI6Fu96bQzH0gOhVQOrjCsntaWNm1yJKFg9pWP0J
-         AbrQ==
+        d=linaro.org; s=google; t=1688718470; x=1691310470;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=FQJ5c3N6EKTWGPMRMDtrk/P3r+gReaLj0jfwbxhxXlo=;
+        b=cGkm1kJmQKgYnpJp7pO9LwLaX4yJaKJlW8/1ct3ulwTnpxggvaxqIiNtBAvm1pTs1T
+         6StKvLoVYnUb0XLqOSt1qY9Vq9btgK1a+y0eCoa07aKhCo1GcUDCub9itkkesa0VDD6G
+         6HOqRr0ma4SS2HlnH9PE0txT23zfCmOrGn6rO/yFn6q/RxwdMNYfU56Vr3ToyNOAfHB4
+         iBGhvi8cHfuWKlJan2vNnzhjDhGeM5Eo2inUsUu8oFPf8fFIb6x2wBtL4SLq9twpOMyn
+         v6sl9ePg7+AwVtVXuLRGLnR2MjChiHIHKFVV8yZXC4wcr5GUZCYDFWApqiyDi+RP0FMu
+         10jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688718050; x=1691310050;
-        h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
-         :mime-version:subject:date:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=6Z0h6vYSqXNeuBCoLrE61zLNx+lI9H9j/VUTdBVk10g=;
-        b=E7dE0W2y6m1KrLXTYn5IrkwryQjm4YLHrbe+2rFoQ6kB/tPwEtC3O/fAhHHs0iroIQ
-         xDp3X6NzLxVV6aIMKkXaS1ASQOwBuG5Z3t4Q7pvtKDRxM2Gpg0JenzfNEsfff6GuvvVq
-         Y18SJd5rR27KmIJBUXyJzCPYm5hvw4xCUUxDuwcAgweyVpvriyGIYJx8XYxUY4V5x8m1
-         a/vjC/5wD381FXx4lul/DFtrPOPbkdaZe+24xQaVdKO9ZBPkBUeIWJEVdWXRgv7VoxhY
-         5f/J09d9V3ZKeYAdjcfl/KuxJZKHOs9waaWkGFtDvw4vzeQpbV1EbkDsPMfWEYUTKUbu
-         vdUg==
-X-Gm-Message-State: ABy/qLbhAd36OFrK2Vo9aov4x3LX+YKj4D3AB8HJXHWLOOHG3f1mBKH2
-        drDnPoGjaY4/LkPXT61Tz2mRxg==
-X-Google-Smtp-Source: APBJJlFGuaAPvNctsxZT4h+rPeNLCrVRQZx2if4DjgbImxXDXh3d0dAHm+VNQdBF49oNM0Gf0m4naA==
-X-Received: by 2002:a05:600c:c8:b0:3fb:b05d:f27c with SMTP id u8-20020a05600c00c800b003fbb05df27cmr3255792wmm.34.1688718050542;
-        Fri, 07 Jul 2023 01:20:50 -0700 (PDT)
-Received: from arrakeen.starnux.net ([2a01:e0a:982:cbb0:8261:5fff:fe11:bdda])
-        by smtp.gmail.com with ESMTPSA id a5-20020adffb85000000b00313e4d02be8sm3824395wrr.55.2023.07.07.01.20.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 01:20:50 -0700 (PDT)
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Date:   Fri, 07 Jul 2023 10:20:45 +0200
-Subject: [PATCH v2 2/2] dt-bindings: pinctrl: amlogic,meson-pinctrl-common:
- allow gpio hogs
+        d=1e100.net; s=20221208; t=1688718470; x=1691310470;
+        h=content-transfer-encoding:in-reply-to:from:references:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=FQJ5c3N6EKTWGPMRMDtrk/P3r+gReaLj0jfwbxhxXlo=;
+        b=KibtmU5SqNgYlrFcZ/61sM5Zs61eUAoC5qkG9Q4M+gmjpKjpOTAI7bnQRcenb8vCNP
+         cOq4QTQfu9aTJRbEgiBwfMlJRPVtxQnpqN8OkytE00+xKC9nFyLlxaFpjyf7HMQLFIBF
+         1n8WlNS//II1UwcI9xRZhXR50trJomNkzBATdQWWUP5OITljxIu3OVjAhr+2d75Fp4nl
+         oxlgA2tIirC1+S9/DAahlvh78KF/ly/cLTslIW1iD9FOTZlRF3LQxAxquPEJ+nL5eACT
+         SCTGnEHffIW460oiUHGwoXiaHB7Zj9WPrpEtmKi5sFwcX7SNavO8w6vO1Ou2W/zCJQlG
+         8uFQ==
+X-Gm-Message-State: ABy/qLZ2z9I1lS/jqUMB7YKIe2Yf6bodoWLrG7frsG61CAQztLdBqhi0
+        hBIwXK1o1UQygBvKYLQg0DUipA==
+X-Google-Smtp-Source: APBJJlG6YgCW6SEYlY65g4J/X5KQFAGjtpNOYA3+55v0jjRgAbsrPyMiFhRTbEelwi//SZW4Csk2TA==
+X-Received: by 2002:a17:906:51cd:b0:993:d6e8:2386 with SMTP id v13-20020a17090651cd00b00993d6e82386mr382940ejk.16.1688718470204;
+        Fri, 07 Jul 2023 01:27:50 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.219.26])
+        by smtp.gmail.com with ESMTPSA id u2-20020a1709063b8200b0098e42bef732sm1833038ejf.183.2023.07.07.01.27.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jul 2023 01:27:49 -0700 (PDT)
+Message-ID: <9f1bd0f1-d93e-243a-4622-721319fd1235@linaro.org>
+Date:   Fri, 7 Jul 2023 10:27:48 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v1 1/3] dt-bindings: usb: Add HPE GXP UDCG Controller
+Content-Language: en-US
+To:     richard.yu@hpe.com, verdun@hpe.com, nick.hawkins@hpe.com,
+        gregkh@linuxfoundation.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20230706215910.78772-1-richard.yu@hpe.com>
+ <20230706215910.78772-2-richard.yu@hpe.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230706215910.78772-2-richard.yu@hpe.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Message-Id: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-2-2160060446d7@linaro.org>
-References: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
-In-Reply-To: <20230707-topic-amlogic-upstream-pinctrl-fix-bindings-v2-0-2160060446d7@linaro.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <neil.armstrong@linaro.org>
-X-Mailer: b4 0.12.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=998;
- i=neil.armstrong@linaro.org; h=from:subject:message-id;
- bh=xcMJDJisG5P8usDSUuJYQAhSJbsakC/C4wieWFF2OvM=;
- b=owEBbQKS/ZANAwAKAXfc29rIyEnRAcsmYgBkp8rfdkjrF4LrOwWQKI3uvXubBxsYnrCT9RuJaOrI
- X2sIXPaJAjMEAAEKAB0WIQQ9U8YmyFYF/h30LIt33NvayMhJ0QUCZKfK3wAKCRB33NvayMhJ0boLEA
- CLF9n1M62B3/yqBQIZjzcKQekaOoW5HwFNq5wiL2nk1Clia5bwryRVJ4Wsj6JXPDq6XUS9nGzMe+TG
- chtNsNDvtUJ9HFpO3436iq8nh+lAg5uscW8zUNvIpmTbu7vU+ADDAGgjy6j/U8m5hGOGCd4AwTNDSU
- DMhsndibEBRNH3aPBM0WB6UiTFIFHI9EP2C7Hhrae7UzEwzQG31pZtOrub3cwio4qIoaH8peWdf+Uh
- AjSbFZhorR4qCiY5pFnuJ213a2Z72dLr+7XVjd1abP2r8IWg2bLoEogRm1ww6FwqoUKEiwo1qNX5mq
- 3eTbtyeCV8COkEuUHqaFLx6XNMqAc2SzSHTLdLt/hPNdqr3Agl3zwAjA3L6ZpxKylLQZNRXzX0OaVx
- nKbAF2NZrQ5WQOEG5nD7LhORjk4l80W0Aiu/AZVDG9xMdPiUp6nbnwJbjaBP4mt9OYNavi++zgurUR
- NzCie0NMF/sLnrDD0uUGEu04UcjZHUhjxul7RwzSPww0Mq7EGOm1d9JV5Xj9U09ZjkiDnFLj+IRGQa
- Sb/VdBwEjfdKVWJ8UvT4fOXio4qnDxProlJsgKHUarcHaofxLNQyrc0v/TQyiAaPDcHzVwdl2XJv6E
- zP+vPxgO4l+gGkJdr7nbTY+RvuKVaWRPCafL3whWgYl2EAgyBVz9OYpgX9mQ==
-X-Developer-Key: i=neil.armstrong@linaro.org; a=openpgp;
- fpr=89EC3D058446217450F22848169AB7B1A4CFF8AE
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -98,34 +77,113 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow gpio hog subnodes to the gpio subnode.
+On 06/07/2023 23:59, richard.yu@hpe.com wrote:
+> From: Richard Yu <richard.yu@hpe.com>
+> 
+> Provide access to the two register regions for GXP Virtual EHCI
+> controller through the hpe,gxp-udcg binding.
 
-Fixes: 94df03a45276 ("dt-bindings: pinctrl: Convert Amlogic Meson pinctrl binding")
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
----
- .../devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml  | 7 +++++++
- 1 file changed, 7 insertions(+)
+Thank you for your patch. There is something to discuss/improve.
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
-index a7b29ef0bab6..e707c222a07f 100644
---- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-common.yaml
-@@ -41,6 +41,13 @@ $defs:
-       gpio-ranges:
-         maxItems: 1
- 
-+    patternProperties:
-+      "^.+-hog(-[0-9]+)?$":
-+        type: object
-+
-+        required:
-+          - gpio-hog
-+
-     required:
-       - reg
-       - reg-names
+> 
+> Signed-off-by: Richard Yu <richard.yu@hpe.com>
+> ---
+>  .../devicetree/bindings/usb/hpe,gxp-udcg.yaml | 70 +++++++++++++++++++
+>  1 file changed, 70 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/hpe,gxp-udcg.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/hpe,gxp-udcg.yaml b/Documentation/devicetree/bindings/usb/hpe,gxp-udcg.yaml
+> new file mode 100644
+> index 000000000000..e6746374f97d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/hpe,gxp-udcg.yaml
+> @@ -0,0 +1,70 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/hpe,gxp-udcg.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: HPE GXP USB Virtual EHCI controller
 
--- 
-2.34.1
+The word "virtual" in bindings pretty often raises questions, because we
+describe usually real hardware, not virtual. Some explanation in
+description would be useful.
+
+> +
+> +maintainers:
+> +  - Nick Hawkins <nick.hawkins@hpe.com>
+> +  - Richard Yu <richard.yu@hpe.com>
+> +
+> +description: |+
+
+Drop |+
+
+> +  The HPE GXP USB Virtual EHCI Controller implements 1 set of USB EHCI
+> +  register and several sets of device and endpoint registers to support
+> +  the virtual EHCI's downstream USB devices.
+> +
+
+If this is EHCI controller, then I would expect here reference to usb-hcd.
+
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - hpe,gxp-udcg
+> +
+> +  reg:
+> +    items:
+> +      - description: UDC Global (UDCG) config controller
+> +      - description: UDC Invidual config/interrupt controllers
+> +
+> +  reg-names:
+> +    items:
+> +      - const: udcg
+> +      - const: udc
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  hpe,vehci-downstream-ports:
+> +    description: Number of downstream ports supported by the GXP
+
+Why do you need this property in DT and what exactly does it represent?
+You have one device - EHCI controller - and on some boards it is further
+customized? Even though it is the same device?
+
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 4
+> +    minimum: 1
+> +    maximum: 8
+> +
+> +  hpe,vehci-generic-endpoints:
+> +    description: Number of generic endpoints supported by the GXP
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+
+Same concerns.
+
+> +    default: 16
+> +    minimum: 1
+> +    maximum: 16
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - reg-names
+> +  - interrupts
+> +  - hpe,vehci-downstream-ports
+> +  - hpe,vehci-generic-endpoints
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    udcg@80400800 {
+
+Node names should be generic. See also an explanation and list of
+examples (not exhaustive) in DT specification:
+https://devicetree-specification.readthedocs.io/en/latest/chapter2-devicetree-basics.html#generic-names-recommendation
+
+Best regards,
+Krzysztof
 
