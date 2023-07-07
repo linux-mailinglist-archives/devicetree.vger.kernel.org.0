@@ -2,153 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C1D3974AD59
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:50:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1397774AD66
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232068AbjGGIuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 04:50:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37690 "EHLO
+        id S232248AbjGGIyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 04:54:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39896 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231959AbjGGIup (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:50:45 -0400
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTP id F09C51FE4;
-        Fri,  7 Jul 2023 01:50:43 -0700 (PDT)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6526ED75;
-        Fri,  7 Jul 2023 01:51:25 -0700 (PDT)
-Received: from [10.57.28.254] (unknown [10.57.28.254])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4B06E3F73F;
-        Fri,  7 Jul 2023 01:50:39 -0700 (PDT)
-Message-ID: <5cf23bfd-a3b7-3dde-146b-4892d75b3485@arm.com>
-Date:   Fri, 7 Jul 2023 09:50:31 +0100
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm, primecell-periphid at
- etm nodes
-Content-Language: en-GB
-To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
-        Frank Li <Frank.li@nxp.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>, suzuki.poulose@arm.com,
-        coresight@lists.linaro.org, imx@lists.linux.dev,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20230705205954.4159781-1-Frank.Li@nxp.com>
- <49ef52b7-0269-898c-7cc2-096f2f1037fc@arm.com>
- <ZKbSC8LBjLuo3ygD@lizhi-Precision-Tower-5810> <24260662.6Emhk5qWAg@steina-w>
-From:   Robin Murphy <robin.murphy@arm.com>
-In-Reply-To: <24260662.6Emhk5qWAg@steina-w>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-4.3 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_MED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
+        with ESMTP id S232004AbjGGIyf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:54:35 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CA4B61999
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:54:33 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992e22c09edso183952866b.2
+        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 01:54:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=fairphone.com; s=fair; t=1688720072; x=1691312072;
+        h=in-reply-to:references:message-id:from:subject:cc:to:date
+         :content-transfer-encoding:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=FNP67nB8w4qAe9aasBZpn4WM7fGgxJQjgNj1BNpGYpk=;
+        b=hm5jlRhf90It3b7MxYzK9CxhkXtifZWEuoSDJil5qOn8bvfVKI+Zn+ozr6ggX1sn3C
+         2Ex8oq6zDb1bJduGSgQzfa3kbTcpyBHORIUodPQE5fWioLUyuExfrKC/9JTI4gWjQA7h
+         PJgDdtgaF44JSQ9s8OlG5DcTq3y8k6niUCW48jL7xWRQZKiCgfzQ7L7a633mdynmeZ9G
+         BYmsl7zMi8p0qv93Gixrg0IxflBQklDc0QvV82vgz59xMk1Od6g5X2E4+U9jWYIp8F2O
+         r/iYsYXv8Xc5WZi9IfmAXoJ6X8PjUljRLOEkrJZZHMz8IkwuZZVm08k0SYaBQzIqKqUd
+         zEtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688720072; x=1691312072;
+        h=in-reply-to:references:message-id:from:subject:cc:to:date
+         :content-transfer-encoding:mime-version:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=FNP67nB8w4qAe9aasBZpn4WM7fGgxJQjgNj1BNpGYpk=;
+        b=YboYpfmLF5YBX1bDu3uYW8MoYJAaOJcBv8LDUqEj2HCT4SWZ+4tBZpgTfGO9dnCtd4
+         g1YVye3nPkbb8iXUYt9z002Iqvyklm1cjfXNf1Ahoehq5r3N/27ySPd11fJcrb00QOoZ
+         9HBIW+LdxnoshB5UTK6nbXixo7hr6Chota5xCnCGp7C9Q5rBFXUwb8gWzV7xb90Nc2qn
+         w1WUgKYpL8QSdhWTCQ4QdeO3PeqFn2/Qthpajqj7DogZh+qfMgrro6eWiafrf6s0ICsk
+         rfYo7T2dwVWu24nhHO9lMHRrklXuSC088JaLqoOOIVPLWUd+kVbRb5/TQOGADC6Fgw4V
+         NHPg==
+X-Gm-Message-State: ABy/qLYBpxGk7okXbp7yg1ETYzGnPDzwmsFKgJIyIB2msOTnZhzJAwQL
+        OjHi62QUQQapctIgIVGc7BIJww==
+X-Google-Smtp-Source: APBJJlH2Il6moenVUvYLNNLTyQ7wfbK7qH483vc4iXpIumSLrG8TYsoHy5nczH3bWWUgBs7L8H0e8Q==
+X-Received: by 2002:a17:906:7c93:b0:992:5135:4106 with SMTP id w19-20020a1709067c9300b0099251354106mr3291168ejo.29.1688720072293;
+        Fri, 07 Jul 2023 01:54:32 -0700 (PDT)
+Received: from localhost (144-178-202-138.static.ef-service.nl. [144.178.202.138])
+        by smtp.gmail.com with ESMTPSA id n7-20020a1709065e0700b009937dbabbdasm1884181eju.217.2023.07.07.01.54.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 07 Jul 2023 01:54:32 -0700 (PDT)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 07 Jul 2023 10:54:31 +0200
+To:     "Luca Weiss" <luca.weiss@fairphone.com>,
+        "Satya Priya" <quic_c_skakit@quicinc.com>,
+        "Satya Priya Kakitapalli (Temp)" <quic_skakitap@quicinc.com>,
+        "Bjorn Andersson" <andersson@kernel.org>,
+        "Rob Herring" <robh+dt@kernel.org>
+Cc:     "Lee Jones" <lee.jones@linaro.org>,
+        "Liam Girdwood" <lgirdwood@gmail.com>,
+        "Mark Brown" <broonie@kernel.org>, <linux-arm-msm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <swboyd@chromium.org>, <quic_collinsd@quicinc.com>,
+        <quic_subbaram@quicinc.com>, <quic_jprakash@quicinc.com>
+Subject: Re: [PATCH V15 0/9] Add Qualcomm Technologies, Inc. PM8008
+ regulator driver
+From:   "Luca Weiss" <luca.weiss@fairphone.com>
+Message-Id: <CTVTA3OZJKG4.2ZSJ5I59AVRHO@otso>
+X-Mailer: aerc 0.15.1
+References: <1655200111-18357-1-git-send-email-quic_c_skakit@quicinc.com>
+ <CR8I57ZATTO2.232WHNST3N2YG@otso>
+In-Reply-To: <CR8I57ZATTO2.232WHNST3N2YG@otso>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2023-07-07 06:34, Alexander Stein wrote:
-> Hi Frank,
-> 
-> Am Donnerstag, 6. Juli 2023, 16:39:07 CEST schrieb Frank Li:
->> On Thu, Jul 06, 2023 at 12:06:19PM +0100, Robin Murphy wrote:
->>>>> Am Mittwoch, 5. Juli 2023, 22:59:53 CEST schrieb Frank Li:
->>>>>> The reg size of etm nodes is incorrectly set to 64k instead of 4k.
->>>>>> This
->>>>>> leads to a crash when calling amba_read_periphid().  After corrected
->>>>>> reg
->>>>>> size, amba_read_periphid() retrieve the correct periphid.
->>>>>> arm,primecell-periphid were removed from the etm nodes.
->>>>>
->>>>> So this means the reference manual is wrong here? It clearly states
->>>>> the size is 64kiB. Reference Manual i.MX8MP Rev 1. 06/2021
->>>>> On a side note: Is imx8mq affected by this as well? The DAP memory
->>>>> table lists similar sizes in the RM .
->>>>
->>>> Note that the 64K MMIO space per device is really an alignment thing.
->>>> It's a recommendation from ARM to allow individual device MMIO regions
->>>> to be mapped on kernels with 64K page size. Most of the time the real
->>>> MMIO space occupied by the device is actually much smaller than 64K.
->>>
->>> Indeed, it's quite common for TRM memory maps to be written in terms of
->>> the
->>> interconnect configuration, i.e. from the point of view of the
->>> interconnect
->>> itself, that whole range of address space is assigned to that peripheral,
->>> and it may even be true that the entire range is routed to the port where
->>> that peripheral is connected. However what's of more interest for DT is
->>> how
->>> much of that range the peripheral itself actually decodes.
->>
->> Yes, there are not problem by mapping bigger space in most case.
->>
->> amba bus's periphal use close to end of region to show device's identical
->> information.
-> 
-> Ah, thanks for the explanation. This make things more clear.
-> But on the other is it sensible to assume the memory resource size to fit the
-> IP address space? It appears to me the size is fixed to 4kiB anyway. Would it
-> make more sense to read the values from the address "base + 4K - x" instead of
-> "base + size - x"?
+On Fri Mar 17, 2023 at 9:06 AM CET, Luca Weiss wrote:
+> Hi Satya,
+>
+> On Tue Jun 14, 2022 at 11:48 AM CEST, Satya Priya wrote:
+> > Satya Priya (9):
+> >   dt-bindings: mfd: pm8008: Add reset-gpios
+> >   dt-bindings: mfd: pm8008: Change the address cells
+> >   dt-bindings: mfd: pm8008: Add regulators for pm8008
+> >   mfd: pm8008: Add reset-gpios
+> >   mfd: pm8008: Remove the regmap member from pm8008_data struct
+> >   mfd: pm8008: Use i2c_new_dummy_device() API
+> >   regulator: Add a regulator driver for the PM8008 PMIC
+> >   arm64: dts: qcom: pm8008: Add base dts file
+> >   arm64: dts: qcom: sc7280: Add pm8008 support for sc7280-idp
+>
+> Is there any activity on this patch series? It's been a few months since
+> this revision. Would be interested in this for the pm8008 found on
+> sm7225-fairphone-fp4.
 
-The size of PrimeCell components in general isn't necessarily 4KB 
-though, and the ID registers were defined relative to the *end* of the 
-register space. The old PrimeCell standards evolved into the CoreSight 
-spec, and from the oldest version of that I can easily link to[1]:
+Hi all,
 
-"Each component occupies one or more contiguous 4KB blocks of address 
-space. Where a component occupies more than one 4KB block, these 
-registers must appear in the highest 4KB block."
+Quick ping again, I'd really like to see this PM8008 series land.
 
-(FWIW the latest Coresight 3.0 spec relaxes this restriction, but we 
-tend to model newer stuff as platform drivers with explicit DT/ACPI 
-identifiers rather than amba drivers anyway)
+Regards
+Luca
 
-Thanks,
-Robin.
+>
+> Regards
+> Luca
+>
+> >
+> >  .../devicetree/bindings/mfd/qcom,pm8008.yaml       |  69 +++++-
+> >  arch/arm64/boot/dts/qcom/pm8008.dtsi               |  54 +++++
+> >  arch/arm64/boot/dts/qcom/sc7280-idp.dtsi           |  66 ++++++
+> >  drivers/mfd/qcom-pm8008.c                          |  60 ++++-
+> >  drivers/regulator/Kconfig                          |   9 +
+> >  drivers/regulator/Makefile                         |   1 +
+> >  drivers/regulator/qcom-pm8008-regulator.c          | 242 +++++++++++++=
+++++++++
+> >  include/linux/mfd/qcom_pm8008.h                    |   9 +
+> >  8 files changed, 492 insertions(+), 18 deletions(-)
+> >  create mode 100644 arch/arm64/boot/dts/qcom/pm8008.dtsi
+> >  create mode 100644 drivers/regulator/qcom-pm8008-regulator.c
+> >  create mode 100644 include/linux/mfd/qcom_pm8008.h
+> >
+> > --=20
+> > 2.7.4
 
-[1] https://developer.arm.com/documentation/ihi0029/d/?lang=en
-
-> 
-> Best regards,
-> Alexander
-> 
->> In drivers/amba/bus.c,
->>
->> amba_read_periphid()
->> {
->> 	...
->> 	size = resource_size(&dev->res);
->> 	...
->> 	for (pid = 0, i = 0; i < 4; i++)
->> 		pid |= (readl(tmp + size - 0x20 + 4 * i) & 255) << (i *
-> 8);
->> }
->>
->> So the range in DTS for arm,primecell should be actual IP address space.
->>
->>> Robin.
->>>
->>>> _______________________________________________
->>>> linux-arm-kernel mailing list
->>>> linux-arm-kernel@lists.infradead.org
->>>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-> 
