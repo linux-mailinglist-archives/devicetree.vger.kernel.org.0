@@ -2,135 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 284F974A703
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 00:24:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E31C74A82C
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 02:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232059AbjGFWY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 6 Jul 2023 18:24:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46076 "EHLO
+        id S230104AbjGGAiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 6 Jul 2023 20:38:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232467AbjGFWYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 18:24:11 -0400
-Received: from mail-yb1-xb2f.google.com (mail-yb1-xb2f.google.com [IPv6:2607:f8b0:4864:20::b2f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE29526A4
-        for <devicetree@vger.kernel.org>; Thu,  6 Jul 2023 15:22:09 -0700 (PDT)
-Received: by mail-yb1-xb2f.google.com with SMTP id 3f1490d57ef6-c2cf4e61bc6so1442426276.3
-        for <devicetree@vger.kernel.org>; Thu, 06 Jul 2023 15:22:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688682126; x=1691274126;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=u3ZnLWYda5s0Z078Xc8xlFfay4f1nZm55XtpErGsqnI=;
-        b=J0xYFGJIHP1aeu1ek9eG6XIflCT3/NG5yzgBPxYBMizXOBO6SzfvC8tP6I15LvmIyd
-         0/diWULwbjQ+pfs84WKRci9q6gNUy690OJ5bQxf9A0iUP86G1a2NW6Rsh335QFw4SHrg
-         QeEZg3tfQ6RrkGkLW40v5FL8L8RPmgAomh9KQTHghpFGgAi1wSA7vnm65RByZrKHjuyA
-         Mu41CqWfjXSP5Z3ymsrnEDQw2bdhsL4P+0d1m2aGKX6s2dl5EgV73G3hSw+1i67ecDDu
-         mqEASUR4Sgg+gZMDouNoM1kRp4yLc4SJlTNYZHiQGwzBBWmekZfuUGwqEFnXUwROF7U7
-         od0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688682126; x=1691274126;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=u3ZnLWYda5s0Z078Xc8xlFfay4f1nZm55XtpErGsqnI=;
-        b=JGbIdXZXB1f7cdxJEVipHIBtiLpREy0A/51oj7nkYR0ftG3B2waRQbNCB1uicFahj8
-         Vn9+8T6B8l8chn/WrpmL3YcGDdLoTM87gc+rxKe9v4WrTSuCcL3G4e0nr/+cFioJK657
-         9DnON+t/6i5rbNkAxV5811yS6GDF2oRS8Hqrqpq+yE7JRZI5ES2vlmRFy0nKq3Ao3fhW
-         q0UbOhKQjFz3HK6GMwbB5T8rNOT08c7UCr3Aj56dX/s/tqUiidJ+5aet6gvm9gZyYooC
-         FFuqj5dOJAnv/aXa70cxrPc6wdDiE6CEQENO5HeUltEjXYSny+QzKnV5fP9F+Uj8brcy
-         jDCQ==
-X-Gm-Message-State: ABy/qLYLGj4ma5Ven8RiOMuX4Hw9yiR5LgBycmWqkvZ9TbnxOx5HvC00
-        sjydsiSXyHZFGaznaCcWlWCFy0HoSkPj8wCjI761Lg==
-X-Google-Smtp-Source: APBJJlHrD0uZZQ/A/cUft82Lh9JCBJX/moY+JJATbzzD92duMgZi6yTWphFsvwNzjoMvOd6ujc0JNbgYNkCWWuDeuO4=
-X-Received: by 2002:a25:9cc6:0:b0:bfe:d93a:8f2b with SMTP id
- z6-20020a259cc6000000b00bfed93a8f2bmr4069609ybo.60.1688682126451; Thu, 06 Jul
- 2023 15:22:06 -0700 (PDT)
+        with ESMTP id S229891AbjGGAh7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 6 Jul 2023 20:37:59 -0400
+Received: from mail-sh.amlogic.com (mail-sh.amlogic.com [58.32.228.43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC41619A7;
+        Thu,  6 Jul 2023 17:37:14 -0700 (PDT)
+Received: from droid01-cd.amlogic.com (10.98.11.200) by mail-sh.amlogic.com
+ (10.18.11.5) with Microsoft SMTP Server id 15.1.2507.13; Fri, 7 Jul 2023
+ 08:37:04 +0800
+From:   Xianwei Zhao <xianwei.zhao@amlogic.com>
+To:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-amlogic@lists.infradead.org>, <linux-kernel@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        "Neil Armstrong" <neil.armstrong@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Xianwei Zhao <xianwei.zhao@amlogic.com>
+Subject: [PATCH V2 0/4] Power: C3: add  power domain driver
+Date:   Fri, 7 Jul 2023 08:37:06 +0800
+Message-ID: <20230707003710.2667989-1-xianwei.zhao@amlogic.com>
+X-Mailer: git-send-email 2.37.1
 MIME-Version: 1.0
-References: <1adda828-cf35-fb2c-6db5-f9ca91b5b62a@linaro.org>
- <20230525093151.2338370-1-yangcong5@huaqin.corp-partner.google.com>
- <20230525093151.2338370-5-yangcong5@huaqin.corp-partner.google.com>
- <CAD=FV=W_Vw=WTuap60PtzU8Jc58T1PsEhJfY96NmFFgmC1DB9w@mail.gmail.com>
- <CACRpkdZkNio99zS+ttEXncOtS1TcYbfunKSKddErRDV1gTY43w@mail.gmail.com>
- <CAD=FV=Xx_Bf=Fr1aCmmcjXAv1CyMYwEFba7C6k_HRE1VPtTtHQ@mail.gmail.com>
- <CACRpkdYif_h38TYDuSjY-0WkWNknFOe8n2Xe7zBydKxySrdZHA@mail.gmail.com> <CAD=FV=WNgAr=YaMu9+KSxZSHpG9Z31Pbka1N3E-OYR1-WKHiaQ@mail.gmail.com>
-In-Reply-To: <CAD=FV=WNgAr=YaMu9+KSxZSHpG9Z31Pbka1N3E-OYR1-WKHiaQ@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Fri, 7 Jul 2023 00:21:55 +0200
-Message-ID: <CACRpkdZLgf15Ao6CPym6q2yC17XcA3kjtDCQ3F2-aa-XwZJ=xg@mail.gmail.com>
-Subject: Re: [v4 4/4] drm/panel: Support for Starry-ili9882t TDDI MIPI-DSI panel
-To:     Doug Anderson <dianders@google.com>
-Cc:     Cong Yang <yangcong5@huaqin.corp-partner.google.com>,
-        neil.armstrong@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, sam@ravnborg.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        hsinyi@google.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.98.11.200]
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 6, 2023 at 11:58=E2=80=AFPM Doug Anderson <dianders@google.com>=
- wrote:
+First patch is that Use 'name' instead of 'index' as criterion.
+The  variate 'index' could be equal to zero in some SoCs. Such as C3 SoC,
+PWRC_C3_NNA_ID be defined zero.
 
-> > So the Ilitek ILI9882t is an obvious break-out.
->
-> I guess. To me it feels like the concept of breaking the driver into
-> multiple sub-drivers and the idea of supporting ILI9882t more cleanly
-> are orthogonal. You could still do your patch #4 and break out the
-> page switching function without breaking up the driver.
+Other patchs adds power controller driver support for Amlogic C3 SoC.
+The power domains registers can be accessed in the secure world only.
 
-Yeah that's true. But with Ilitek in particular we have these nice
-precedents:
-drivers/gpu/drm/panel/panel-ilitek-ili9322.c
-drivers/gpu/drm/panel/panel-ilitek-ili9341.c
-drivers/gpu/drm/panel/panel-ilitek-ili9881c.c
+Changes Since v1:
+ -Add a new patch for change that use 'name' instead of 'index'.
+ -Mofiy filename  matching compatibles
+ -Delete unnecessary blank line.
+ -Fixed some formatting.
+ -Delete status,use "okay" status by default.
 
-So it looks disorganized to me if this one Ilitek panel controller
-now goes inside another driver with other completely unrelated
-drivers.
+Xianwei Zhao (4):
+  soc: amlogic: use name instead of index as criterion
+  dt-bindings: power: add Amlogic C3 power domains
+  soc: c3: Add support for power domains controller
+  arm64: dts: add support for C3 power domain controller
 
-> It feels to me fairly likely that many of the panels here are just as
-> different from each other as the ILI9882t is from them. I guess it's
-> not a dozen, but it feels like using the same "how different are they
-> from each other" metric we'd end up with at least 5-6 new drivers. It
-> seems clear to me that the panel that Sam first commented on is as
-> different from the others in the BOE driver as the ILI9882t is.
-> Certainly it has a pretty darn big unique command sequence for init...
+ .../power/amlogic,meson-sec-pwrc.yaml         |  3 +-
+ arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi   |  9 ++++++
+ drivers/soc/amlogic/meson-secure-pwrc.c       | 28 ++++++++++++++++++-
+ include/dt-bindings/power/amlogic,c3-pwrc.h   | 25 +++++++++++++++++
+ 4 files changed, 63 insertions(+), 2 deletions(-)
+ create mode 100644 include/dt-bindings/power/amlogic,c3-pwrc.h
 
-It doesn't really matter until we can say certainly what display controller
-each of them is. It seems we can't, but for this one we can.
 
-> The problem is that it's hard for me to make a strong argument here
-> when there is prior art of panels being supported with blob-sequences.
-> In this case, I think you as an upstream developer have more leverage.
-> I can help put pressure to make sure that upstream concerns are
-> addressed, but I think it's on upstream to put their foot down and say
-> that these blob sequences are not OK for new panels. In each case I
-> landed a patch with a new blob sequence I tried to give the community
-> time to respond and I tried to telegraph what I was going to do to
-> make sure nobody was surprised...
+base-commit: 057889cb4244096ea5abcbe76ffd4d311c3078fe
+-- 
+2.37.1
 
-I would say it is not fair to block driver coming from hobbyists or minor
-vendors just trying to make something work. In general I think a working
-something is better than nothing so I wouldn't block anything.
-
-But with big companies who actually talk to Ilitek, Novotek and the other
-companies ending with -tek that make these display controllers I would
-certainly like to send the message that datasheets and proper
-defines would be appreciated, and say it is also for their best, because
-I mentioned proper gamma correction is possible if the driver author
-just invest time and works with the DRM community and that should
-be in their best interest. Feel free to pass this along the supply
-chain if you can.
-
-Yours,
-Linus Walleij
