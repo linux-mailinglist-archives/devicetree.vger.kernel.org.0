@@ -2,141 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 45AB874B04C
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 13:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA2C674B0B0
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 14:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232134AbjGGLxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 07:53:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47228 "EHLO
+        id S231666AbjGGMZy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 08:25:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56276 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232151AbjGGLxU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 07:53:20 -0400
-Received: from mail-lj1-x231.google.com (mail-lj1-x231.google.com [IPv6:2a00:1450:4864:20::231])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A46A32107
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 04:53:14 -0700 (PDT)
-Received: by mail-lj1-x231.google.com with SMTP id 38308e7fff4ca-2b6afc1ceffso28431601fa.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 04:53:14 -0700 (PDT)
+        with ESMTP id S229556AbjGGMZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 08:25:54 -0400
+Received: from mx1.tq-group.com (mx1.tq-group.com [93.104.207.81])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB5B31FE6;
+        Fri,  7 Jul 2023 05:25:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688730793; x=1691322793;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:from:to:cc:subject:date:message-id:reply-to;
-        bh=PZSXeZGMKpMDOu7F1W9eRuV1X8GeJBTFoMkBZSgI91Q=;
-        b=dEApMadfo4+atos66GSD0RWkDMDytZtfjsJgZxPqBSN516cTmGZZOfCJyOfFUYWYnV
-         Nkj6iR9y8++HgqQ3Y5LhbYWMd7P9j58YFEDdQbbl5EDwwJvAZiLe1Bqqe0hySN8HX3Z+
-         5etveCeafR/mCwiGHxg+5ApaLm1pdwAS7r5YLamN6ieBXyJxoRdZw/U+8nsN7LQc20A0
-         aVX9m7tC2ndSYWBpDKooqG6zHU5aipy6yrBS07wMQAHcbI/H9s3TXVZ2bygVCUcOSOvc
-         8xP8ZrFevrjKr8EMRiWcXUybgQReQ3lPsTAl7mqbBw4HLcq/0LT3CQiBMHCA99bGoQuc
-         K71g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688730793; x=1691322793;
-        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
-         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=PZSXeZGMKpMDOu7F1W9eRuV1X8GeJBTFoMkBZSgI91Q=;
-        b=P85uGg8zc4uL2PZv0mcvAYgXpwJsCdgbqhXiZge30ZLm0lSE/J8Rvk0kFUNc+r+XLG
-         XJ8HwMfrZGVRGnsWSyybA22OlKtcLtQZ5BwY7V3SOTBXc8Lav+VvqtNTWwuYuv6eOmin
-         WA7RuUWq2mGVU+9YgsxX2GpXgTpCZyQUYQI7aRHb1FCe0X/qtLfwM39UF0JcIT9r6/Mz
-         Wy7LdGsIFh1FTcM+pOKUmneZs+reUh+KSVIhKZtAuW7lOMoh7UVoRds+Na7W4YHC/wMM
-         qlPzOykZF81RQ0+ss7ZiP+L3FJJk7cwn4WyjCfeer/9Ik5NbEG11xILG5VXRUW9kBwwh
-         rMmg==
-X-Gm-Message-State: ABy/qLZSzGYHTWrRSTAwJbP6tQVUIF04F33+5abn+1NbPpVo87Ly18/P
-        +BAtWQlzWAgKsBmADTQWHDQ=
-X-Google-Smtp-Source: APBJJlFzQCJSQQd/hTTRsJy4AsQMql4KyWl5vZldSyyp6/MSfl21R5YlwVDfGkCuecXsgHwa35orzQ==
-X-Received: by 2002:a2e:96c6:0:b0:2b6:eb8c:af06 with SMTP id d6-20020a2e96c6000000b002b6eb8caf06mr3606614ljj.8.1688730792658;
-        Fri, 07 Jul 2023 04:53:12 -0700 (PDT)
-Received: from localhost.lan (031011218106.poznan.vectranet.pl. [31.11.218.106])
-        by smtp.gmail.com with ESMTPSA id b3-20020a2e9883000000b002b6b7a98c4bsm737596ljj.77.2023.07.07.04.53.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 07 Jul 2023 04:53:12 -0700 (PDT)
-From:   =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+  d=tq-group.com; i=@tq-group.com; q=dns/txt; s=key1;
+  t=1688732752; x=1720268752;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=fHVHlYyXVX/im36hgUnWjYzXHXB5AFCDep27NaHMXWM=;
+  b=beYPnHRJ6LKY9Vc0IQ+oKLuic53q8hblbBfJ7Xz0wFVVcE4e4VpFoNNV
+   Ce5q9PfSVCYwc95IqIAVJf2lZpAtbS2vee9SRRsT+G1/oMkzBk0THUnp0
+   xhvVGp7WBUBWGUSfzsWxWIchIoV4TxT4G/g/Kz/wnmFP0AATYejs2Yaxt
+   MqvcKbTyOr0geU5X37uW1DxdWzdPOb+2q4adAnag+fpvNlsZB80BkloYS
+   nC9MYl9a7HpZSzbws92PiGBxIDRqq1HpdvkXPURn5Mrnlx6hsB1A/1LU6
+   F+GeUjzIg6XzszGgy5suIa0xunNlJOhNQ1C/ClwtdRfoKrO9Dy5HTcYtL
+   w==;
+X-IronPort-AV: E=Sophos;i="6.01,187,1684792800"; 
+   d="scan'208";a="31813721"
+Received: from vtuxmail01.tq-net.de ([10.115.0.20])
+  by mx1.tq-group.com with ESMTP; 07 Jul 2023 14:25:49 +0200
+Received: from steina-w.localnet (unknown [10.123.53.21])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by vtuxmail01.tq-net.de (Postfix) with ESMTPSA id 97C4E280084;
+        Fri,  7 Jul 2023 14:25:49 +0200 (CEST)
+From:   Alexander Stein <alexander.stein@ew.tq-group.com>
+To:     Frank Li <Frank.li@nxp.com>, Robin Murphy <robin.murphy@arm.com>
+Cc:     Lucas Stach <l.stach@pengutronix.de>, suzuki.poulose@arm.com,
+        coresight@lists.linaro.org, imx@lists.linux.dev,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <rafal@milecki.pl>
-Subject: [PATCH] dt-bindings: arm: bcm: add BCM53573 SoCs family binding
-Date:   Fri,  7 Jul 2023 13:53:02 +0200
-Message-Id: <20230707115302.3491-1-zajec5@gmail.com>
-X-Mailer: git-send-email 2.35.3
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Marek Vasut <marex@denx.de>, Peng Fan <peng.fan@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/1] arm64: dts: imx8mp: remove arm, primecell-periphid at etm nodes
+Date:   Fri, 07 Jul 2023 14:25:49 +0200
+Message-ID: <6505804.Sb9uPGUboI@steina-w>
+Organization: TQ-Systems GmbH
+In-Reply-To: <5cf23bfd-a3b7-3dde-146b-4892d75b3485@arm.com>
+References: <20230705205954.4159781-1-Frank.Li@nxp.com> <24260662.6Emhk5qWAg@steina-w> <5cf23bfd-a3b7-3dde-146b-4892d75b3485@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="iso-8859-1"
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,
+        URIBL_BLOCKED autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Rafał Miłecki <rafal@milecki.pl>
+Hi Robin,
 
-BCM53573 is a family derived from Northstar with some important
-differences:
-1. Cortex-A9 replaced by Cortex-A7
-2. XHCI controller dropped
-3. Two Ethernet interfaces removed
-4. Two 802.11ac cores embedded
+Am Freitag, 7. Juli 2023, 10:50:31 CEST schrieb Robin Murphy:
+> On 2023-07-07 06:34, Alexander Stein wrote:
+> > Hi Frank,
+> >=20
+> > Am Donnerstag, 6. Juli 2023, 16:39:07 CEST schrieb Frank Li:
+> >> On Thu, Jul 06, 2023 at 12:06:19PM +0100, Robin Murphy wrote:
+> >>>>> Am Mittwoch, 5. Juli 2023, 22:59:53 CEST schrieb Frank Li:
+> >>>>>> The reg size of etm nodes is incorrectly set to 64k instead of 4k.
+> >>>>>> This
+> >>>>>> leads to a crash when calling amba_read_periphid().  After correct=
+ed
+> >>>>>> reg
+> >>>>>> size, amba_read_periphid() retrieve the correct periphid.
+> >>>>>> arm,primecell-periphid were removed from the etm nodes.
+> >>>>>=20
+> >>>>> So this means the reference manual is wrong here? It clearly states
+> >>>>> the size is 64kiB. Reference Manual i.MX8MP Rev 1. 06/2021
+> >>>>> On a side note: Is imx8mq affected by this as well? The DAP memory
+> >>>>> table lists similar sizes in the RM .
+> >>>>=20
+> >>>> Note that the 64K MMIO space per device is really an alignment thing.
+> >>>> It's a recommendation from ARM to allow individual device MMIO regio=
+ns
+> >>>> to be mapped on kernels with 64K page size. Most of the time the real
+> >>>> MMIO space occupied by the device is actually much smaller than 64K.
+> >>>=20
+> >>> Indeed, it's quite common for TRM memory maps to be written in terms =
+of
+> >>> the
+> >>> interconnect configuration, i.e. from the point of view of the
+> >>> interconnect
+> >>> itself, that whole range of address space is assigned to that
+> >>> peripheral,
+> >>> and it may even be true that the entire range is routed to the port
+> >>> where
+> >>> that peripheral is connected. However what's of more interest for DT =
+is
+> >>> how
+> >>> much of that range the peripheral itself actually decodes.
+> >>=20
+> >> Yes, there are not problem by mapping bigger space in most case.
+> >>=20
+> >> amba bus's periphal use close to end of region to show device's identi=
+cal
+> >> information.
+> >=20
+> > Ah, thanks for the explanation. This make things more clear.
+> > But on the other is it sensible to assume the memory resource size to f=
+it
+> > the IP address space? It appears to me the size is fixed to 4kiB anyway.
+> > Would it make more sense to read the values from the address "base + 4K=
+ -
+> > x" instead of "base + size - x"?
+>=20
+> The size of PrimeCell components in general isn't necessarily 4KB
+> though, and the ID registers were defined relative to the *end* of the
+> register space. The old PrimeCell standards evolved into the CoreSight
+> spec, and from the oldest version of that I can easily link to[1]:
+>=20
+> "Each component occupies one or more contiguous 4KB blocks of address
+> space. Where a component occupies more than one 4KB block, these
+> registers must appear in the highest 4KB block."
+>=20
+> (FWIW the latest Coresight 3.0 spec relaxes this restriction, but we
+> tend to model newer stuff as platform drivers with explicit DT/ACPI
+> identifiers rather than amba drivers anyway)
 
-Linux already contains DTS files for some on those devices so add a
-proper binding for it.
+Ah, I wasn't aware the register space for PrimeCells/CoreSight could be lar=
+ger=20
+than 4k. So the exact size must be known and used in DT. Thanks for=20
+explanation.
 
-Signed-off-by: Rafał Miłecki <rafal@milecki.pl>
----
- .../bindings/arm/bcm/brcm,bcm53573.yaml       | 39 +++++++++++++++++++
- 1 file changed, 39 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml
+Best regards,
+Alexander
 
-diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml
-new file mode 100644
-index 000000000000..6e502d718518
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml
-@@ -0,0 +1,39 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/bcm/brcm,bcm53573.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Broadcom BCM53573 SoCs family
-+
-+description:
-+  Broadcom BCM53573 / BCM47189 Wi-Fi SoCs derived from Northstar.
-+
-+maintainers:
-+  - Rafał Miłecki <rafal@milecki.pl>
-+
-+properties:
-+  $nodename:
-+    const: '/'
-+  compatible:
-+    oneOf:
-+      - description: BCM53573 based boards
-+        items:
-+          - enum:
-+              - tenda,ac6
-+              - tenda,w15e
-+          - const: brcm,bcm53573
-+
-+      - description: BCM47189 based boards
-+        items:
-+          - enum:
-+              - brcm,bcm947189acdbmr
-+              - luxul,xap-810-v1
-+              - luxul,xap-1440-v1
-+              - tenda,ac9
-+          - const: brcm,bcm47189
-+          - const: brcm,bcm53573
-+
-+additionalProperties: true
-+
-+...
--- 
-2.35.3
+> Thanks,
+> Robin.
+>=20
+> [1] https://developer.arm.com/documentation/ihi0029/d/?lang=3Den
+>=20
+> > Best regards,
+> > Alexander
+> >=20
+> >> In drivers/amba/bus.c,
+> >>=20
+> >> amba_read_periphid()
+> >> {
+> >>=20
+> >> 	...
+> >> 	size =3D resource_size(&dev->res);
+> >> 	...
+> >> 	for (pid =3D 0, i =3D 0; i < 4; i++)
+> >> =09
+> >> 		pid |=3D (readl(tmp + size - 0x20 + 4 * i) & 255) << (i *
+> >=20
+> > 8);
+> >=20
+> >> }
+> >>=20
+> >> So the range in DTS for arm,primecell should be actual IP address spac=
+e.
+> >>=20
+> >>> Robin.
+> >>>=20
+> >>>> _______________________________________________
+> >>>> linux-arm-kernel mailing list
+> >>>> linux-arm-kernel@lists.infradead.org
+> >>>> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+
+
+=2D-=20
+TQ-Systems GmbH | M=FChlstra=DFe 2, Gut Delling | 82229 Seefeld, Germany
+Amtsgericht M=FCnchen, HRB 105018
+Gesch=E4ftsf=FChrer: Detlef Schneider, R=FCdiger Stahl, Stefan Schneider
+http://www.tq-group.com/
+
 
