@@ -2,90 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D378B74B480
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 17:45:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92C3D74B4BE
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 17:58:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229471AbjGGPpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 11:45:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38330 "EHLO
+        id S229864AbjGGP65 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 11:58:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42872 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGGPpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 11:45:08 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3859F173B;
-        Fri,  7 Jul 2023 08:45:07 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 367CH9mW027393;
-        Fri, 7 Jul 2023 17:44:37 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=UirHfJWJ0M0c3P66CSNWUmzBZIs0e0lzSHowOTIQOxY=;
- b=R077onV69jpX15gfnwED6gCxOl6yExQaqxA53M7kAUStTuqI6BK8nT5z07EXtUEmHolY
- riyqdNY+iqw2vdORFsm8Ff3OR9V6cs5mzg/rbN1iDNyCpDtaXAmAKIeIylrkc1PkUjmO
- hchsdwamHlynmEL1RY40fiFNk47LZKTBA5P1Qhnz+JMV18+Ew+dTtXCkzH1eRGffvA8x
- wlSz5XaqZE2Y2se0KTE7WNPLGB6T8d3cDevC2/gA7JAHKnptpGkPK72PlMBcPaae7E88
- vBYPyaIvZL1KHTdsxqUau3JWVd60dpGsiUNHy8ji7tFOVFiy85DSPwi1zOkp0W8r83d2 SA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rpjjtsepn-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 07 Jul 2023 17:44:37 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 39181100050;
-        Fri,  7 Jul 2023 17:44:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 0FC1C22A6F1;
-        Fri,  7 Jul 2023 17:44:36 +0200 (CEST)
-Received: from [10.201.21.121] (10.201.21.121) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Fri, 7 Jul
- 2023 17:44:34 +0200
-Message-ID: <c6533f17-6100-5901-7281-256bff5db773@foss.st.com>
-Date:   Fri, 7 Jul 2023 17:44:34 +0200
+        with ESMTP id S229480AbjGGP64 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 11:58:56 -0400
+Received: from relmlie6.idc.renesas.com (relmlor2.renesas.com [210.160.252.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTP id DADA51BC3;
+        Fri,  7 Jul 2023 08:58:54 -0700 (PDT)
+X-IronPort-AV: E=Sophos;i="6.01,189,1684767600"; 
+   d="scan'208";a="171099728"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 08 Jul 2023 00:58:54 +0900
+Received: from localhost.localdomain (unknown [10.226.92.190])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 7C4104014CD9;
+        Sat,  8 Jul 2023 00:58:51 +0900 (JST)
+From:   Biju Das <biju.das.jz@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>
+Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: [PATCH] arm64: dts: renesas: rzg2lc-smarc: Add support for enabling MTU3
+Date:   Fri,  7 Jul 2023 16:58:49 +0100
+Message-Id: <20230707155849.86649-1-biju.das.jz@bp.renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 05/10] firewall: introduce stm32_firewall framework
-Content-Language: en-US
-To:     Greg KH <gregkh@linuxfoundation.org>
-CC:     <Oleksii_Moisieiev@epam.com>, <herbert@gondor.apana.org.au>,
-        <davem@davemloft.net>, <robh+dt@kernel.org>,
-        <krzysztof.kozlowski+dt@linaro.org>, <conor+dt@kernel.org>,
-        <alexandre.torgue@foss.st.com>, <vkoul@kernel.org>,
-        <jic23@kernel.org>, <olivier.moysan@foss.st.com>,
-        <arnaud.pouliquen@foss.st.com>, <mchehab@kernel.org>,
-        <fabrice.gasnier@foss.st.com>, <andi.shyti@kernel.org>,
-        <ulf.hansson@linaro.org>, <edumazet@google.com>, <kuba@kernel.org>,
-        <pabeni@redhat.com>, <hugues.fruchet@foss.st.com>,
-        <lee@kernel.org>, <will@kernel.org>, <catalin.marinas@arm.com>,
-        <arnd@kernel.org>, <richardcochran@gmail.com>,
-        <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <dmaengine@vger.kernel.org>,
-        <linux-i2c@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <alsa-devel@alsa-project.org>, <linux-media@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <linux-phy@lists.infradead.org>, <linux-serial@vger.kernel.org>,
-        <linux-spi@vger.kernel.org>, <linux-usb@vger.kernel.org>
-References: <20230705172759.1610753-1-gatien.chevallier@foss.st.com>
- <20230705172759.1610753-6-gatien.chevallier@foss.st.com>
- <2023070748-false-enroll-e5dc@gregkh>
- <febd65e1-68c7-f9d8-c8a4-3c3e88f15f3e@foss.st.com>
- <2023070744-superjet-slum-1772@gregkh>
-From:   Gatien CHEVALLIER <gatien.chevallier@foss.st.com>
-In-Reply-To: <2023070744-superjet-slum-1772@gregkh>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.121]
-X-ClientProxiedBy: SHFCAS1NODE1.st.com (10.75.129.72) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-07_10,2023-07-06_02,2023-05-22_02
-X-Spam-Status: No, score=-2.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_LOW,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=1.0 required=5.0 tests=AC_FROM_MANY_DOTS,BAYES_00,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -93,22 +45,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add support for PMOD_MTU3 macro to enable MTU3 node on RZ/G2LC SMARC
+EVK.
 
+The MTU3a PWM pins on PMOD0 are muxed with SPI1. Disable SPI1, when
+PMOD_MTU3 macro is enabled.
 
-On 7/7/23 17:10, Greg KH wrote:
-> On Fri, Jul 07, 2023 at 04:00:23PM +0200, Gatien CHEVALLIER wrote:
->> I'll change to (GPL-2.0-only OR BSD-3-Clause) :)
-> 
-> If you do that, I'll require a lawyer to sign off on it to verify that
-> you all know EXACTLY the work involved in dealing with dual-licensed
-> kernel code.  Sorry, licenses aren't jokes.
+Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+---
+ arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts  | 12 ++++++++++++
+ .../boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi |  9 +++++++++
+ arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi      | 14 +++++++++++++-
+ 3 files changed, 34 insertions(+), 1 deletion(-)
 
-I was worried about the interactions with software running on BSD
-license, hence my (poorly written) proposal. Looking back at it
-there's no good reason to use a dual-license here.
-GPL-2.0-only is fine.
+diff --git a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+index f67a6f125d9c..0b90367b6d1e 100644
+--- a/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
++++ b/arch/arm64/boot/dts/renesas/r9a07g044c2-smarc.dts
+@@ -35,6 +35,18 @@
+ /* comment the #define statement to disable SCIF1 (SER0) on PMOD1 (CN7) */
+ #define PMOD1_SER0	1
+ 
++/*
++ * To enable MTU3a PWM on PMOD0,
++ *  - Set DIP-Switch SW1-4 to Off position.
++ *  - Set SW_RSPI_CAN macro to 0.
++ *  - Set PMOD_MTU3 macro to 1.
++ */
++#define PMOD_MTU3	0
++
++#if (PMOD_MTU3 && SW_RSPI_CAN)
++#error "Cannot set as both PMOD_MTU3 and SW_RSPI_CAN are mutually exclusive"
++#endif
++
+ #include "r9a07g044c2.dtsi"
+ #include "rzg2lc-smarc-som.dtsi"
+ #include "rzg2lc-smarc.dtsi"
+diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
+index a78a8def363e..92c64d58349f 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc-pinfunction.dtsi
+@@ -50,6 +50,15 @@ i2c2_pins: i2c2 {
+ 			 <RZG2L_PORT_PINMUX(42, 4, 1)>; /* SCL */
+ 	};
+ 
++	mtu3_pins: mtu3 {
++		mtu3-pwm {
++			pinmux = <RZG2L_PORT_PINMUX(44, 0, 4)>, /* MTIOC3A */
++				 <RZG2L_PORT_PINMUX(44, 1, 4)>, /* MTIOC3B */
++				 <RZG2L_PORT_PINMUX(44, 2, 4)>, /* MTIOC3C */
++				 <RZG2L_PORT_PINMUX(44, 3, 4)>; /* MTIOC3D */
++		};
++	};
++
+ 	scif0_pins: scif0 {
+ 		pinmux = <RZG2L_PORT_PINMUX(38, 0, 1)>,	/* TxD */
+ 			 <RZG2L_PORT_PINMUX(38, 1, 1)>;	/* RxD */
+diff --git a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+index 6818fd49b2be..83fce96a2575 100644
+--- a/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
++++ b/arch/arm64/boot/dts/renesas/rzg2lc-smarc.dtsi
+@@ -11,7 +11,6 @@
+ #include "rzg2lc-smarc-pinfunction.dtsi"
+ #include "rz-smarc-common.dtsi"
+ 
+-
+ / {
+ 	aliases {
+ 		serial1 = &scif1;
+@@ -129,6 +128,19 @@ wm8978: codec@1a {
+ 	};
+ };
+ 
++#if PMOD_MTU3
++&mtu3 {
++	pinctrl-0 = <&mtu3_pins>;
++	pinctrl-names = "default";
++
++	status = "okay";
++};
++
++&spi1 {
++	status = "disabled";
++};
++#endif
++
+ /*
+  * To enable SCIF1 (SER0) on PMOD1 (CN7), On connector board
+  * SW1 should be at position 2->3 so that SER0_CTS# line is activated
+-- 
+2.25.1
 
-> 
-> thanks,
-> 
-> greg k-h
