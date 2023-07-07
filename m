@@ -2,116 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id C794F74AC46
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 09:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9217074ACA9
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 10:19:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231976AbjGGHvK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 03:51:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40816 "EHLO
+        id S232832AbjGGITT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 7 Jul 2023 04:19:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229778AbjGGHvJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 03:51:09 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D60961FC4
-        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 00:51:07 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fb863edcb6so2477027e87.0
-        for <devicetree@vger.kernel.org>; Fri, 07 Jul 2023 00:51:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688716266; x=1691308266;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:from:to:cc:subject:date:message-id:reply-to;
-        bh=exhYwOQz1Mbfg0VMEEcchmd9FhJ9ZbgKWVkcuVs8fv0=;
-        b=xy9u9tHINP2OhQOYpSRS9mO1n0Fgi9RiO05e3JV8Mt+yXH56YaNxaSeN1+PXqFtZ4X
-         p9dRgXW7WlB6Lkfu9dknMf0Wwy4SjzJP4Bn/y94MXR8px8Vkx/y8wn4KQfL51jHVl74T
-         uIUuQckQZzFw+xqSYT/hp6RNlhEKy68GLoeLnL2CBwImMWAb56rH0oqShtkxqUdbcepm
-         1zcusnJ56JuUsafQ82kiJQF3LUOLyTmcB6aMICY/sor+MzX50RYy9ps2HCDBlLdJ3Heg
-         NjtytqfBbAAgsi3zBYsOvXix5Jo9WUFGoVZnSOb4GUS8pw5Ze/SHp9RJZwJYa1fzfpLe
-         aRtA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688716266; x=1691308266;
-        h=content-transfer-encoding:in-reply-to:organization:references:cc:to
-         :content-language:subject:reply-to:from:user-agent:mime-version:date
-         :message-id:x-gm-message-state:from:to:cc:subject:date:message-id
-         :reply-to;
-        bh=exhYwOQz1Mbfg0VMEEcchmd9FhJ9ZbgKWVkcuVs8fv0=;
-        b=H+ulQpOt44L/0XtfzH4j73dNKLgPRt7snbnxVnXHpZzxugpYVEBP50+Hn1vPLvZdH/
-         bnTaGzOIxW9YdW1yzXRIf82h9tjuG4UznqGfvBqnkV3ycAU6ZEMu+nHU1hoT7VRdP8ET
-         wlysy4LL6vaYvutsGUkWavu+eX6CYjWVTkQB1BpVYBmb5M3cQ+itXXkJODW1FWrAk30g
-         L5+/QYJKVcrrDE0nUq875/FUOQHjLuAIXHzP0nYpfGzBt3xkLM1ljTxjA8rDhY0viMzO
-         A80KnBpI0RgTgmdwF7tLb3ARtTdTveayYmbU9H7h5i+dxTIFGs+sVVH/HeebB9PmLI7G
-         yyIQ==
-X-Gm-Message-State: ABy/qLZWp8ZyjN1q7nYJeoNDUqOBejqEICW5sT5LgcweHHgmZCHzjXHD
-        tJanXHF8M+99edkpTzaAQ+t4ag==
-X-Google-Smtp-Source: APBJJlGK4QzQeHIwj+Zs4m17eM9Q4NVc2gwIf2/qRxJ81UC32DmjTxUkqCh29R9ASPUDnJCF6MhltA==
-X-Received: by 2002:a05:6512:b8e:b0:4f9:a542:91c with SMTP id b14-20020a0565120b8e00b004f9a542091cmr4185793lfv.3.1688716265998;
-        Fri, 07 Jul 2023 00:51:05 -0700 (PDT)
-Received: from [192.168.27.65] (home.beaume.starnux.net. [82.66.176.246])
-        by smtp.gmail.com with ESMTPSA id 12-20020a05600c020c00b003f819faff24sm1651460wmi.40.2023.07.07.00.51.04
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 07 Jul 2023 00:51:05 -0700 (PDT)
-Message-ID: <9b389977-156b-44e8-0a80-4273f7d2f178@linaro.org>
-Date:   Fri, 7 Jul 2023 09:51:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-From:   Neil Armstrong <neil.armstrong@linaro.org>
-Reply-To: neil.armstrong@linaro.org
-Subject: Re: [PATCH V2 4/4] arm64: dts: add support for C3 power domain
- controller
-Content-Language: en-US
-To:     Xianwei Zhao <xianwei.zhao@amlogic.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232830AbjGGITR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 04:19:17 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12C0A1FC4
+        for <devicetree@vger.kernel.org>; Fri,  7 Jul 2023 01:19:17 -0700 (PDT)
+Received: from drehscheibe.grey.stw.pengutronix.de ([2a0a:edc0:0:c01:1d::a2])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1qHgg8-0000hE-1u; Fri, 07 Jul 2023 10:19:00 +0200
+Received: from [2a0a:edc0:0:900:1d::4e] (helo=lupine)
+        by drehscheibe.grey.stw.pengutronix.de with esmtp (Exim 4.94.2)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1qHgg5-00Cgor-M5; Fri, 07 Jul 2023 10:18:57 +0200
+Received: from pza by lupine with local (Exim 4.96)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1qHgg5-0002o2-13;
+        Fri, 07 Jul 2023 10:18:57 +0200
+Message-ID: <38ffed42bb021ea75bc662edd943a8e4ca92172b.camel@pengutronix.de>
+Subject: Re: [PATCH v3 2/3] pwm: Add Allwinner's D1/T113-S3/R329 SoCs PWM
+ support
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Aleksandr Shubin <privatesub2@gmail.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Kevin Hilman <khilman@baylibre.com>
-References: <20230707003710.2667989-1-xianwei.zhao@amlogic.com>
- <20230707003710.2667989-5-xianwei.zhao@amlogic.com>
-Organization: Linaro Developer Services
-In-Reply-To: <20230707003710.2667989-5-xianwei.zhao@amlogic.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-riscv@lists.infradead.org
+Date:   Fri, 07 Jul 2023 10:18:57 +0200
+In-Reply-To: <20230627082334.1253020-3-privatesub2@gmail.com>
+References: <20230627082334.1253020-1-privatesub2@gmail.com>
+         <20230627082334.1253020-3-privatesub2@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.46.4-2 
+MIME-Version: 1.0
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:c01:1d::a2
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/07/2023 02:37, Xianwei Zhao wrote:
-> Enable power domain controller for Amlogic C3 SoC
-> 
-> Signed-off-by: Xianwei Zhao <xianwei.zhao@amlogic.com>
-> ---
-> V1 -> V2: delete status,use "okay" status by default.
-> ---
->   arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi | 9 +++++++++
->   1 file changed, 9 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> index 60ad4f3eef9d..f6603fd57551 100644
-> --- a/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/amlogic-c3.dtsi
-> @@ -47,6 +47,15 @@ xtal: xtal-clk {
->   		#clock-cells = <0>;
->   	};
->   
-> +	sm: secure-monitor {
-> +		compatible = "amlogic,meson-gxbb-sm";
-> +
-> +		pwrc: power-controller {
-> +			compatible = "amlogic,c3-pwrc";
-> +			#power-domain-cells = <1>;
-> +		};
-> +	};
-> +
->   	soc {
->   		compatible = "simple-bus";
->   		#address-cells = <2>;
+On Di, 2023-06-27 at 11:23 +0300, Aleksandr Shubin wrote:
+[...]
+> +static int sun20i_pwm_probe(struct platform_device *pdev)
+> +{
+[...]
+> +	sun20i_chip->rst = devm_reset_control_get(&pdev->dev, NULL);
 
-Reviewed-by: Neil Armstrong <neil.armstrong@linaro.org>
+Please use devm_reset_control_get_exclusive() directly.
+
+regards
+Philipp
