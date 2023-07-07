@@ -2,78 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id DF3B374AA5B
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 07:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFAB674AA6F
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 07:26:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232373AbjGGFVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 01:21:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40634 "EHLO
+        id S231636AbjGGF0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 01:26:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229529AbjGGFVC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 01:21:02 -0400
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com [205.220.180.131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE22D2684;
-        Thu,  6 Jul 2023 22:20:45 -0700 (PDT)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
-        by mx0a-0031df01.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 3674q9Rg028621;
-        Fri, 7 Jul 2023 05:20:42 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=quicinc.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references; s=qcppdkim1;
- bh=tk+0xUjaXkcqSWaSR/rbMXpZdnO8MOFFvzF8RgLDr74=;
- b=Z9BzoRL+qF7bKdu44q3Jk3BoC/R0W4vdV4bR9JuzmAuUSSuvXFpdJTEi5VrfSDB6NuW1
- kYw3uHCVHmQJ+/A8YFbpgkRS8b0RYZ1AB3y/6kg3BTQNw1qelGFgI6M6k5ybwXQ8jWKH
- dKtVEIjIFaDuhGRe7tU1ShyySBy/m2qFXhzLQEGp667js7BCeWuJ9fZ9S1ZaCKvFn4Dw
- QBLr377gvTmsLDN3VVLOZBz7gFwRvFrv+0h2D//MrdOYWUMAWqV5HRf+TXD2pvBQzIsl
- pMd7TwlqrIv3IC0/qTZfPqyuZ6J+agry+tRvy7Bavt7vVF3JyLCcyRidEruzqjDykUDu 4Q== 
-Received: from apblrppmta02.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 3rp9vp097f-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Fri, 07 Jul 2023 05:20:42 +0000
-Received: from pps.filterd (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (8.17.1.5/8.17.1.5) with ESMTP id 3675KI4W029603;
-        Fri, 7 Jul 2023 05:20:18 GMT
-Received: from pps.reinject (localhost [127.0.0.1])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTPS id 3rjd7kp70a-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO);
-        Fri, 07 Jul 2023 05:20:18 +0000
-Received: from APBLRPPMTA02.qualcomm.com (APBLRPPMTA02.qualcomm.com [127.0.0.1])
-        by pps.reinject (8.17.1.5/8.17.1.5) with ESMTP id 3675KH9B029571;
-        Fri, 7 Jul 2023 05:20:18 GMT
-Received: from hu-sgudaval-hyd.qualcomm.com (hu-rohiagar-hyd.qualcomm.com [10.213.106.138])
-        by APBLRPPMTA02.qualcomm.com (PPS) with ESMTP id 3675KGaf029563;
-        Fri, 07 Jul 2023 05:20:18 +0000
-Received: by hu-sgudaval-hyd.qualcomm.com (Postfix, from userid 3970568)
-        id 398854EF7; Fri,  7 Jul 2023 10:50:17 +0530 (+0530)
-From:   Rohit Agarwal <quic_rohiagar@quicinc.com>
-To:     agross@kernel.org, andersson@kernel.org, konrad.dybcio@linaro.org,
-        linus.walleij@linaro.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        Rohit Agarwal <quic_rohiagar@quicinc.com>
-Subject: [PATCH v3 4/4] pinctrl: qcom-pmic-gpio: Add support for pmx75
-Date:   Fri,  7 Jul 2023 10:50:09 +0530
-Message-Id: <1688707209-30151-5-git-send-email-quic_rohiagar@quicinc.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1688707209-30151-1-git-send-email-quic_rohiagar@quicinc.com>
-References: <1688707209-30151-1-git-send-email-quic_rohiagar@quicinc.com>
-X-QCInternal: smtphost
-X-QCInternal: smtphost
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-Virus-Version: vendor=nai engine=6200 definitions=5800 signatures=585085
-X-Proofpoint-GUID: nl6-sXjJkpl2v0qjpaky9Be2sJhsbSVr
-X-Proofpoint-ORIG-GUID: nl6-sXjJkpl2v0qjpaky9Be2sJhsbSVr
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-07_02,2023-07-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 mlxscore=0
- phishscore=0 lowpriorityscore=0 adultscore=0 suspectscore=0
- priorityscore=1501 malwarescore=0 clxscore=1015 impostorscore=0
- mlxlogscore=930 spamscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2305260000 definitions=main-2307070049
-X-Spam-Status: No, score=-1.8 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,HEADER_FROM_DIFFERENT_DOMAINS,SPF_HELO_NONE,
-        SPF_NONE,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=no
+        with ESMTP id S232464AbjGGF03 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 01:26:29 -0400
+Received: from mailgw02.mediatek.com (unknown [210.61.82.184])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39F171FC6;
+        Thu,  6 Jul 2023 22:26:23 -0700 (PDT)
+X-UUID: cb4b1e1a1c8611eeb20a276fd37b9834-20230707
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=S908HPXLMOOveANHXI/Onpb6be3Nr0vIEIrUdob0Jo4=;
+        b=EkBwjGdv7QP5yEN9KhrszWDY/lcAQHkgeah7oELkXCtEhIGR6dkf+m0v8+cPSWtLUnaLRaESIioq7vDi/E1mS1+zMzEwlOVtaItKgBgmSoD1AuWl7YIKJ5Z4+fK0Y/uX+oxMJnk/DSKc0oD8y8fb75uzscIyZ7HcKhBTn/3xqv4=;
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.1.27,REQID:e98e22f9-61ba-4f7c-a356-d16869f52e9f,IP:0,U
+        RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+        release,TS:0
+X-CID-META: VersionHash:01c9525,CLOUDID:727ef60d-c22b-45ab-8a43-3004e9216b56,B
+        ulkID:nil,BulkQuantity:0,Recheck:0,SF:102,TC:nil,Content:0,EDM:-3,IP:nil,U
+        RL:0,File:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO
+X-CID-BVR: 0
+X-CID-BAS: 0,_,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-UUID: cb4b1e1a1c8611eeb20a276fd37b9834-20230707
+Received: from mtkmbs11n2.mediatek.inc [(172.21.101.187)] by mailgw02.mediatek.com
+        (envelope-from <tinghan.shen@mediatek.com>)
+        (Generic MTA with TLSv1.2 ECDHE-RSA-AES256-GCM-SHA384 256/256)
+        with ESMTP id 103852036; Fri, 07 Jul 2023 13:26:15 +0800
+Received: from mtkmbs11n1.mediatek.inc (172.21.101.186) by
+ mtkmbs13n1.mediatek.inc (172.21.101.193) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.1118.26; Fri, 7 Jul 2023 13:26:14 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by
+ mtkmbs11n1.mediatek.inc (172.21.101.73) with Microsoft SMTP Server id
+ 15.2.1118.26 via Frontend Transport; Fri, 7 Jul 2023 13:26:14 +0800
+From:   Tinghan Shen <tinghan.shen@mediatek.com>
+To:     Bjorn Andersson <andersson@kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>
+CC:     <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <Project_Global_Chrome_Upstream_Group@mediatek.com>
+Subject: [PATCH v14 00/12] Add support for MT8195 SCP 2nd core
+Date:   Fri, 7 Jul 2023 13:26:00 +0800
+Message-ID: <20230707052612.27521-1-tinghan.shen@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_PASS,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE,UNPARSEABLE_RELAY,URIBL_BLOCKED autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -81,25 +72,106 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-pmx75 pmic support gpio controller so add compatible in the driver.
+The mediatek remoteproc driver currently only allows bringing up a 
+single core SCP, e.g. MT8183. It also only bringing up the 1st 
+core in SoCs with a dual-core SCP, e.g. MT8195. This series support 
+to bring-up the 2nd core of the dual-core SCP.
 
-Signed-off-by: Rohit Agarwal <quic_rohiagar@quicinc.com>
----
- drivers/pinctrl/qcom/pinctrl-spmi-gpio.c | 1 +
- 1 file changed, 1 insertion(+)
+v13 -> v14:
+1. add review tag to patchset 1,6
+2. exchange the order of sram power on and reset assert in
+mt8195_scp_c1_before_load at patchset 2
+3. Use ERR_CAST in patchset 5
+4. Re-write patchset 7 to remove dependency between core 0 and core 1 
+5. Add patch set 10 to report watchdot timeout to all cores
 
-diff --git a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-index f1918fe..deded9c 100644
---- a/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-+++ b/drivers/pinctrl/qcom/pinctrl-spmi-gpio.c
-@@ -1253,6 +1253,7 @@ static const struct of_device_id pmic_gpio_of_match[] = {
- 	/* pmx55 has 11 GPIOs with holes on 3, 7, 10, 11 */
- 	{ .compatible = "qcom,pmx55-gpio", .data = (void *) 11 },
- 	{ .compatible = "qcom,pmx65-gpio", .data = (void *) 16 },
-+	{ .compatible = "qcom,pmx75-gpio", .data = (void *) 16 },
- 	{ },
- };
- 
+v12 -> v13:
+1. replace subdevice with new mediatek scp operations in patchset 7 
+2. add review tag to patchset 3
+3. modify mediatek,scp phandle name of video-codec@18000000 at patchset 11
+
+v11 -> v12:
+1. add scp_add_single/multi_core() to patchset 6
+2. remove unused comment in patchset 6
+3. rename list name from mtk_scp_cluster to mtk_scp_list
+4. rewrite the multi-core probe flow 
+5. disable rproc->autoboot and boot rproc by request_firmware_nowait at patchset 7 
+6. remove patchset 7 review tag  
+
+v10 -> v11:
+1. rewrite patchset 5 to probe single-core SCP with the cluster list
+2. Also in patchset 5, move the pointer of mtk_scp object from the
+   platform data property to the driver data property 
+3. move the appearance of mtk_scp cluster property to patcheset 7
+
+v9 -> v10:
+1. move the global mtk_scp list into the platform device driver data structure
+2. remove an unnecessary if() condition
+
+v8 -> v9:
+1. initialize l1tcm_size/l1tcm_phys at patchset 05/11 
+2. rewrite patchset 06/11 to unify the flow and remove hacks
+
+v7 -> v8:
+1. update the node name of mt8192 asurada SCP rpmsg subnode
+2. squash register definitions into driver patches
+3. initialize local variables on the declaration at patch v8 06/11 
+
+v6 -> v7:
+1. merge the mtk_scp_cluster struct into the mtk_scp structure
+   at the "Probe multi-core SCP" patch
+
+v5 -> v6:
+1. move the mtk_scp_of_regs structure from mtk_common.h to mtk_scp.c
+2. rename the SCP core 0 label from 'scp' to 'scp_c0'
+
+v4 -> v5:
+1. move resource release actions to the platform driver remove operation 
+2. fix dual-core watchdog handling
+
+v3 -> v4:
+1. change the representation of dual-core SCP in dts file and update SCP yaml
+2. rewrite SCP driver to reflect the change of dts node
+3. drop 'remove redundant call of rproc_boot for SCP' in v3 for further investigation
+
+v2 -> v3:
+1. change the representation of dual-core SCP in dts file and update SCP yaml
+2. rewrite SCP driver to reflect the change of dts node
+3. add SCP core 1 node to mt8195.dtsi
+4. remove redundant call of rproc_boot for SCP
+5. refine IPI error message
+
+v1 -> v2:
+1. update dt-binding property description
+2. remove kconfig for scp dual driver
+3. merge mtk_scp_dual.c and mtk_scp_subdev.c to mtk_scp.c
+
+
+Tinghan Shen (12):
+  dt-bindings: remoteproc: mediatek: Improve the rpmsg subnode
+    definition
+  arm64: dts: mediatek: Update the node name of SCP rpmsg subnode
+  dt-bindings: remoteproc: mediatek: Support MT8195 dual-core SCP
+  remoteproc: mediatek: Add MT8195 SCP core 1 operations
+  remoteproc: mediatek: Introduce cluster on single-core SCP
+  remoteproc: mediatek: Probe multi-core SCP
+  remoteproc: mediatek: Remove dependency of MT8195 SCP L2TCM power
+    control on dual-core SCP
+  remoteproc: mediatek: Setup MT8195 SCP core 1 SRAM offset
+  remoteproc: mediatek: Handle MT8195 SCP core 1 watchdog timeout
+  remoteproc: mediatek: Report watchdog crash to all cores
+  remoteproc: mediatek: Refine ipi handler error message
+  arm64: dts: mediatek: mt8195: Add SCP 2nd core
+
+ .../bindings/remoteproc/mtk,scp.yaml          | 176 ++++++-
+ .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi |   2 +-
+ .../boot/dts/mediatek/mt8192-asurada.dtsi     |   2 +-
+ .../boot/dts/mediatek/mt8195-cherry.dtsi      |   6 +-
+ arch/arm64/boot/dts/mediatek/mt8195.dtsi      |  34 +-
+ drivers/remoteproc/mtk_common.h               |  24 +
+ drivers/remoteproc/mtk_scp.c                  | 458 +++++++++++++++---
+ 7 files changed, 610 insertions(+), 92 deletions(-)
+
 -- 
-2.7.4
+2.18.0
 
