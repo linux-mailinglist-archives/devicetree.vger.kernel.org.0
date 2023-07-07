@@ -2,82 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CB1C974ADF1
-	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 11:42:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2ABD74AE9B
+	for <lists+devicetree@lfdr.de>; Fri,  7 Jul 2023 12:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231492AbjGGJmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 7 Jul 2023 05:42:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55444 "EHLO
+        id S232404AbjGGKO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 7 Jul 2023 06:14:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40130 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232614AbjGGJmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 05:42:12 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79A051BEE;
-        Fri,  7 Jul 2023 02:42:09 -0700 (PDT)
-Received: from benjamin-XPS-13-9310.. (unknown [IPv6:2a01:e0a:120:3210:27cd:2d0a:f02b:d955])
+        with ESMTP id S232729AbjGGKOb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 7 Jul 2023 06:14:31 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 208371FE7;
+        Fri,  7 Jul 2023 03:14:29 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        (Authenticated sender: benjamin.gaignard)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 73D316606FE7;
-        Fri,  7 Jul 2023 10:42:07 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1688722927;
-        bh=2RocGZadPxeM62Wimx6tn0ZTuqx4/+NH7SB92y3TF7g=;
-        h=From:To:Cc:Subject:Date:From;
-        b=OLfyRpXzX1AUrp8m+OCD2XhJlw8I7+yBWCoEPPjYJwICy+2slRJARBAAENODjOQC9
-         1c8yzsHJ5sn2H/rjQRU7dcAZ+JGrspz/3f333FFukb4zu/faMHCIz9GF1MvNNROLg4
-         npBR3KuCVKMwFnWYRfu0OnioniqzVduWpEvlDLWZWUrhT5dvkD7hZ7GL5TQqIQnhoB
-         45I4F7P+ft0Emrf6bhNHREVyHlPLeNlF92oxgtT0iZMBA5snEE0nlPB2SVVRIw6Nh0
-         KtAc7r5hBFEAlP7GJeUEXVfl8F43q7TQn073VIqRvZXgydDanvQzcBs+tLl0H5Z3cT
-         CoIaGcNu45MrA==
-From:   Benjamin Gaignard <benjamin.gaignard@collabora.com>
-To:     robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        ezequiel@vanguardiasur.com.ar, aford173@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, kernel@collabora.com,
-        Benjamin Gaignard <benjamin.gaignard@collabora.com>
-Subject: [PATCH] ARM64: dts: freescale: Fix VPU G2 clock
-Date:   Fri,  7 Jul 2023 11:42:00 +0200
-Message-Id: <20230707094200.47119-1-benjamin.gaignard@collabora.com>
-X-Mailer: git-send-email 2.39.2
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 9CCAB618EF;
+        Fri,  7 Jul 2023 10:14:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id D529DC433C8;
+        Fri,  7 Jul 2023 10:14:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+        s=korg; t=1688724868;
+        bh=hzgm6iCuJXquD0czGylXjzuQplsX1jKdOFq14AOxEls=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=AITopDNkXw+KpbAueDPJT9H8i0NNscSaV65CUxe+7QF4uUSDDWaFH/cd6Vr32/VY1
+         K5Eghn+qpb+DGhiJuq03oK817Vl3vwAvcaZuPSV1IijYp2Dryn+e5VRpLqSn1ZctYa
+         Enoo5DV+hLsKZB/N7s4jfIh/sykd8cqnW4YwQnRM=
+Date:   Fri, 7 Jul 2023 11:11:34 +0100
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     richard.yu@hpe.com
+Cc:     verdun@hpe.com, nick.hawkins@hpe.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] usb: gadget: udc: gxp-udc: add HPE GXP USB support
+Message-ID: <2023070749-nutlike-reverse-5847@gregkh>
+References: <20230706215910.78772-1-richard.yu@hpe.com>
+ <20230706215910.78772-3-richard.yu@hpe.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED autolearn=ham autolearn_force=no
-        version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230706215910.78772-3-richard.yu@hpe.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Set VPU G2 clock to 300MHz like described in documentation.
-This fix pixels error occurring with large resolution ( >= 2560x1600)
-HEVC test stream when using the postprocessor to produce NV12.
+On Thu, Jul 06, 2023 at 04:59:09PM -0500, richard.yu@hpe.com wrote:
+> From: Richard Yu <richard.yu@hpe.com>
+> 
+> The HPE GXP vEHCI controller presents a four port EHCI compatible PCI
+> function to host software. Each vEHCI port is logically connected to a
+> corresponding set of virtual device registers.
+> 
+> Signed-off-by: Richard Yu <richard.yu@hpe.com>
+> ---
+>  drivers/usb/gadget/udc/Kconfig   |    6 +
+>  drivers/usb/gadget/udc/Makefile  |    1 +
+>  drivers/usb/gadget/udc/gxp-udc.c | 1401 ++++++++++++++++++++++++++++++
+>  3 files changed, 1408 insertions(+)
+>  create mode 100644 drivers/usb/gadget/udc/gxp-udc.c
+> 
+> diff --git a/drivers/usb/gadget/udc/Kconfig b/drivers/usb/gadget/udc/Kconfig
+> index 83cae6bb12eb..c01eb2a2c7db 100644
+> --- a/drivers/usb/gadget/udc/Kconfig
+> +++ b/drivers/usb/gadget/udc/Kconfig
+> @@ -461,6 +461,12 @@ config USB_ASPEED_UDC
+>  	  dynamically linked module called "aspeed_udc" and force all
+>  	  gadget drivers to also be dynamically linked.
+>  
+> +config USB_GXP_UDC
+> +        bool "GXP UDC Driver"
+> +        depends on ARCH_HPE_GXP || COMPILE_TEST
+> +        help
+> +          Say "y" to add support for GXP UDC driver
+> +
+>  source "drivers/usb/gadget/udc/aspeed-vhub/Kconfig"
+>  
+>  #
+> diff --git a/drivers/usb/gadget/udc/Makefile b/drivers/usb/gadget/udc/Makefile
+> index ee569f63c74a..63fa262f31c5 100644
+> --- a/drivers/usb/gadget/udc/Makefile
+> +++ b/drivers/usb/gadget/udc/Makefile
+> @@ -42,3 +42,4 @@ obj-$(CONFIG_USB_ASPEED_VHUB)	+= aspeed-vhub/
+>  obj-$(CONFIG_USB_ASPEED_UDC)	+= aspeed_udc.o
+>  obj-$(CONFIG_USB_BDC_UDC)	+= bdc/
+>  obj-$(CONFIG_USB_MAX3420_UDC)	+= max3420_udc.o
+> +obj-$(CONFIG_USB_GXP_UDC)	+= gxp-udc.o
+> diff --git a/drivers/usb/gadget/udc/gxp-udc.c b/drivers/usb/gadget/udc/gxp-udc.c
+> new file mode 100644
+> index 000000000000..97d198128c06
+> --- /dev/null
+> +++ b/drivers/usb/gadget/udc/gxp-udc.c
+> @@ -0,0 +1,1401 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/* Copyright (C) 2023 Hewlett-Packard Enterprise Development Company, L.P. */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/delay.h>
+> +#include <linux/io.h>
+> +#include <linux/slab.h>
+> +#include <linux/clk.h>
+> +#include <linux/err.h>
+> +#include <linux/usb/ch9.h>
+> +#include <linux/usb/gadget.h>
+> +#include <linux/usb/otg.h>
+> +#include <linux/prefetch.h>
+> +#include <linux/regmap.h>
+> +#include <linux/mfd/syscon.h>
 
-Fixes: 4ac7e4a81272 ("arm64: dts: imx8mq: Enable both G1 and G2 VPU's with vpu-blk-ctrl")
-Signed-off-by: Benjamin Gaignard <benjamin.gaignard@collabora.com>
----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Are you sure you need all of these?  I don't see any syscon_* calls in
+this file.  Please audit the list of includes here and remove all
+unneeded ones.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 0492556a10db..345c70c6c697 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -770,7 +770,7 @@ pgc_vpu: power-domain@6 {
- 									 <&clk IMX8MQ_SYS1_PLL_800M>,
- 									 <&clk IMX8MQ_VPU_PLL>;
- 						assigned-clock-rates = <600000000>,
--								       <600000000>,
-+								       <300000000>,
- 								       <800000000>,
- 								       <0>;
- 					};
--- 
-2.39.2
+thanks,
 
+greg k-h
