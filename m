@@ -2,74 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 043DC74BDB3
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 16:06:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 095EC74BDCC
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 16:24:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229496AbjGHOGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jul 2023 10:06:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43928 "EHLO
+        id S229658AbjGHOYj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jul 2023 10:24:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47842 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGHOGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 10:06:12 -0400
+        with ESMTP id S229458AbjGHOYi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 10:24:38 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9517171F;
-        Sat,  8 Jul 2023 07:06:10 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC818191;
+        Sat,  8 Jul 2023 07:24:37 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 2203460C85;
-        Sat,  8 Jul 2023 14:06:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51684C433C8;
-        Sat,  8 Jul 2023 14:05:59 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 792E560C70;
+        Sat,  8 Jul 2023 14:24:37 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E77ACC433C8;
+        Sat,  8 Jul 2023 14:24:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688825169;
-        bh=lQQG5C/x03QfBnIDAUBC6OthDK2/PtT0kHEqFxkEQpA=;
+        s=k20201202; t=1688826276;
+        bh=cYp2646opo8JbxDix+tOX6h98Qvtgi6MUt4oterJbTc=;
         h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=sasX7Bz9d693N8HkNqBHBzRGJ4UQeUsSOXKfp5MLJd10jXmaiAh1WF1hyO/GppGQU
-         72LFLdPkcUy+0YQtt6z8d70yuOSiwZ+HBz46iZ+UeMGgm+026bkMPxrqubOwH7gr1a
-         j3gTGv1T3JcRcO5XVtx4eAQH8/3i7yHkUKxctG3O2Tjxpaz2gQbyX2VHkDMIGdE3tt
-         GDLBWH5OibvZjxWb5D99nl5VHmTkculcQJGMpZwxrV83CyigCBbcgNdj9K8ZVPU2SE
-         cxPgRaodwVry1ZPgEVl3CIppvHkpzDMsPUt87C1kuGRDN8kGB6IuQv6hbYhocHA9CE
-         6iGWQr4i1yDsg==
-Date:   Sat, 8 Jul 2023 15:05:55 +0100
+        b=Xe+++iJUo0B9ofzQCrwHd9qSNovyhKX/qS1aV8nXCIMxpLqED57KVf10INt39Kzdj
+         iL/Z/Q28Dcjz/NhfEBB58NAnZipFZtKHnxe/sCZNIlhZ3vVtqKyivM+9V0Q+s+s3HF
+         0ZJ55mSEpnBa2qImt2pSo/pAUNbnwSrxCKHThtQpFfZi9y6uuUu3LW5HHtD+U6DVuk
+         28GoZIIA5Fld0BhYk2hNCTOzab1d5iObuqoHbJlZMpzDTTLxVOwit+CJf4ywVIeBYm
+         5uAF8xfnITtqD39l3hW09vmOSNYrfNbBabcmPPRyfk/g2kBpnK0smohgLuWo7TnhNq
+         MqFPyqfIhDC2g==
+Date:   Sat, 8 Jul 2023 15:24:28 +0100
 From:   Jonathan Cameron <jic23@kernel.org>
-To:     Maksim Kiselev <bigunclemax@gmail.com>
-Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Jernej Skrabec <jernej.skrabec@gmail.com>,
-        Samuel Holland <samuel@sholland.org>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
-        Andre Przywara <andre.przywara@arm.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
-        Haibo Chen <haibo.chen@nxp.com>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        ChiaEn Wu <chiaen_wu@richtek.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Quentin Schulz <quentin.schulz@free-electrons.com>,
-        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH v8 0/4] Add support for Allwinner GPADC on
- D1/T113s/R329/T507 SoCs
-Message-ID: <20230708150555.45152996@jic23-huawei>
-In-Reply-To: <20230619154252.3951913-1-bigunclemax@gmail.com>
-References: <20230619154252.3951913-1-bigunclemax@gmail.com>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Marco Felsch <m.felsch@pengutronix.de>, lars@metafoo.de,
+        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
+        conor+dt@kernel.org, alazar@startmail.com, daniel.baluta@nxp.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH] dt-bindings: iio: adc: ti,ads1015: fix datarate max
+ value and meaning
+Message-ID: <20230708152428.58b527e8@jic23-huawei>
+In-Reply-To: <5e2f841a-9afe-a057-613b-e5263eb126cb@linaro.org>
+References: <20230621160857.3400747-1-m.felsch@pengutronix.de>
+        <5e2f841a-9afe-a057-613b-e5263eb126cb@linaro.org>
 X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
@@ -84,77 +60,29 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 19 Jun 2023 18:42:23 +0300
-Maksim Kiselev <bigunclemax@gmail.com> wrote:
+On Mon, 3 Jul 2023 18:18:28 +0200
+Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org> wrote:
 
-> This series adds support for general purpose ADC (GPADC) on new
-> Allwinner's SoCs, such as D1, T113s, T507 and R329. The implemented driver
-> provides basic functionality for getting ADC channels data.
-Applied 1-3 to the togreg branch of iio.git which will initially be pushed out as
-testing so that 0-day can see if we missed anything. I'll also be rebasing it
-on rc1 once available before pushing out as togreg.
+> On 21/06/2023 18:08, Marco Felsch wrote:
+> > Datarate (dr) is a 3-bit wide register field. Values from 0 to 7 are
+> > allowed for all devices but only for the ADS1115 devices a value of 7
+> > does make a difference.
+> > 
+> > While on it fix the description of the datarate for ADS1115 devices as
+> > well.
+> >   
+> 
+> 
+> Acked-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+
+Applied,
 
 Thanks,
 
 Jonathan
 
 > 
-> Change History:
-> v8:
-> - Added patch that changes Kconfig description for previous Allwinner GPADC
-> - Changed Kconfig description for this GPADC driver
-> - Fixed 'reg' range for gpadc node in 'sunxi-d1s-t113.dtsi'
-> 
-> v7:
-> - Fixed typo in DT bindings property
-> 
-> v6:
-> - Fixed DT bindings regexp for channel properties
-> - Dropped checking the max number of channels from the drivers code
->   (This is redundant as we raly on DT bindings check)
-> 
-> v5:
-> - Fixed DT bindings properties for child nodes
-> 
-> v4:
-> - Fixed DT bindings warnings
-> - Used GENMASK to clear the irq register
-> - Minor formatting fixes
-> 
-> v3:
-> - Added DT bindings dual license, fixed property order and example formatting
-> - Added explanations comments for timeout and mutex
-> - Dropped unnecessary regmap and used readl/writel instead
-> - Added error message about getting channel number
-> - Renamed labels and variables to make them self-explanatory
-> 
-> v2:
-> - Added lastch flag to avoid addition work for already selected channel
-> - Added reset assertion on module remove
-> - Added dynamic channel allocation and dropped iio_chan_spec arrays
-> - Changed IIO_CHAN_INFO_SCALE type to FRACTIONAL_LOG2
-> - Dropped separate compatible strings and configs for T113s and R329
-> - Fixed includes
-> - Fixed Kconfig description
-> - Removed duplicate probe error messages
-> - Used FIELD_PREP for bit setup
-> 
-> v1:
-> - Initial version
-> 
-> Maksim Kiselev (4):
->   iio: adc: Kconfig change description for Allwinner GPADC
->   iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
->   dt-bindings: iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
->   riscv: dts: allwinner: d1: Add GPADC node
-> 
->  .../iio/adc/allwinner,sun20i-d1-gpadc.yaml    |  91 ++++++
->  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  10 +
->  drivers/iio/adc/Kconfig                       |  12 +-
->  drivers/iio/adc/Makefile                      |   1 +
->  drivers/iio/adc/sun20i-gpadc-iio.c            | 276 ++++++++++++++++++
->  5 files changed, 389 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
->  create mode 100644 drivers/iio/adc/sun20i-gpadc-iio.c
+> Best regards,
+> Krzysztof
 > 
 
