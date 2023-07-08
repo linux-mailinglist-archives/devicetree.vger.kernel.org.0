@@ -2,105 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C4EE74BD2F
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 12:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D39C74BD85
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 14:54:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbjGHKCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jul 2023 06:02:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50896 "EHLO
+        id S230390AbjGHMxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jul 2023 08:53:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36458 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229552AbjGHKCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 06:02:15 -0400
-Received: from mailrelay4-1.pub.mailoutpod2-cph3.one.com (mailrelay4-1.pub.mailoutpod2-cph3.one.com [46.30.211.179])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAFF9130
-        for <devicetree@vger.kernel.org>; Sat,  8 Jul 2023 03:02:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=rsa1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=XAkZ6X4l+X6cWosMXu6LD/f+EfKx2L/IOaqJiF43ZK8=;
-        b=NSacb9lnGAUoKO1zq8ebBzmGagQUKthQZTsu0AFWKC3b30z7MSTYiMIghp0MXY0tzifesw1E7Uzfb
-         kMqcW3hI9Pf7vXlE9bUaV08+ZjqaxO+mYtWCjQeEg2Dcf+h3jt/mYGBZ7E3nrAJJuRuzvRrqisFVeo
-         r+6YL01rFpH/lsqGZY59NyjFkgdCIhvOhzMLuSoDYYiGtLKNB8Z9b0/PvAUoSehTnsMsDYs/BGnTn1
-         x9SKnRom59VvWtG0Im3ck6RXa8fHdxDyes6OYJMFYDovsLNTDYBiS0d7q+yysaqBsn8xP1RGI27UTq
-         7HCYnzp/gASugSkT2CJ34GmHzHqGhyA==
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed;
-        d=ravnborg.org; s=ed1;
-        h=in-reply-to:content-type:mime-version:references:message-id:subject:cc:to:
-         from:date:from;
-        bh=XAkZ6X4l+X6cWosMXu6LD/f+EfKx2L/IOaqJiF43ZK8=;
-        b=Dr1OI8BOGQz0I3Hc8Um998MHZ8KTcdhoW8kR02keYfqJU6Y5+yNuGHg2Wf4T+B5G6jlZgwqSGcaIA
-         jfr+YdMCQ==
-X-HalOne-ID: 5b568de5-1d76-11ee-8230-592bb1efe9dc
-Received: from ravnborg.org (2-105-2-98-cable.dk.customer.tdc.net [2.105.2.98])
-        by mailrelay4 (Halon) with ESMTPSA
-        id 5b568de5-1d76-11ee-8230-592bb1efe9dc;
-        Sat, 08 Jul 2023 10:01:09 +0000 (UTC)
-Date:   Sat, 8 Jul 2023 12:01:07 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Neil Armstrong <neil.armstrong@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH v2 0/3] Galaxy S2 (i9100) panel updates v2
-Message-ID: <20230708100107.GA443750@ravnborg.org>
-References: <20230708084027.18352-1-paul@crapouillou.net>
+        with ESMTP id S229627AbjGHMxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 08:53:12 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958001991;
+        Sat,  8 Jul 2023 05:53:11 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 6DA778634E;
+        Sat,  8 Jul 2023 14:53:09 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1688820790;
+        bh=j1VW+YqlIr6gMFRVJdYCG+mHS0tWNFRYQxRf8AA6Y/I=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=Oxql7ehPge5nSg6NraVob/joMOb/2cAVw3vB0uEHQ1ScHrHed0M7PRSzq+sIPfV67
+         R8025mKCQmdpsjSbfN/8DJ1sg5XNLXuc6e2QEpGkJI/cgNF1sKjEg33HPPouYy3K4W
+         Shkb6BshWHHlHeFTDmhosGRbOeOovJsMK4hIbKDNyUrDnUuuWs7EixbfKFON/IJ/RV
+         +G/oZNo2IBw/ny1zgxBqKImVocbPPbj6kz7z6fP07zTADqgoysLPbIgCUi5FfCapLA
+         MGI0hqCQ/Ldt2aLEksXjL1BMNBkQDERKA4ZD2hQi4qpSB8tU2DZDg/JFGb5o+2Q32V
+         tM84W++UvBCDQ==
+Message-ID: <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de>
+Date:   Sat, 8 Jul 2023 13:07:04 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230708084027.18352-1-paul@crapouillou.net>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_MSPIKE_H5,
-        RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,T_SCC_BODY_TEXT_LINE,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
+To:     Paulo Pavacic <pavacic.p@gmail.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Maya Matuszczyk <maccraft123mc@gmail.com>,
+        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
+        daniel@ffwll.ch, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org
+References: <20230607151127.1542024-1-pavacic.p@gmail.com>
+ <20230607151127.1542024-4-pavacic.p@gmail.com>
+ <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
+ <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com>
+ <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
+ <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
+ <CACRpkdYXtQwmZR1u-1fwmyC_8Yq4bMkjDBcUCfuGqSz_UhXWJQ@mail.gmail.com>
+ <CAO9szn0OuKW+-JZMs3TPUHiwLCe6cUPcsUq+og64K2utMyZpqQ@mail.gmail.com>
+ <CACRpkdb5stXKb7FNk_FC-PKduCngRX3sZTbzcxN+kRskz78fuQ@mail.gmail.com>
+ <CAO9szn3oTzrrwiyr91H14ep7OPUkA-SDST3CSQAQHvFFnkJWfA@mail.gmail.com>
+ <0d43e653-32cd-b25e-40fa-6f0571048467@denx.de>
+ <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Paul.
+On 7/7/23 17:26, Paulo Pavacic wrote:
+> Hello Marek,
 
-On Sat, Jul 08, 2023 at 10:40:24AM +0200, Paul Cercueil wrote:
-> Hi,
+Hi,
+
+> čet, 6. srp 2023. u 17:26 Marek Vasut <marex@denx.de> napisao je:
+>>
+>> On 7/6/23 17:18, Paulo Pavacic wrote:
+>>> Hello Linus,
+>>>
+>>> čet, 22. lip 2023. u 10:22 Linus Walleij <linus.walleij@linaro.org> napisao je:
+>>>>
+>>>> On Wed, Jun 21, 2023 at 5:09 PM Paulo Pavacic <pavacic.p@gmail.com> wrote:
+>>>>
+>>>>> A lot of modifications to st7701 are required. I believe it would
+>>>>> result in a driver that doesn't look or work the same. e.g compare
+>>>>> delays between initialization sequences of panel-fannal-c3004 and
+>>>>> panel-st7701. I think it would be optimal to create st7701s driver and
+>>>>> have special handling for st7701s panels. If there was a flag for
+>>>>> whether panel is st7701 or st7701s it would end up looking like a
+>>>>> mess.
+>>>>
+>>>> What matters is if the original authors of the old st7701 driver are
+>>>> around and reviewing and testing patches at all. What we need is
+>>>> active maintainers. (Added Jagan, Marek & Maya).
+>>>>
+>>>> I buy the reasoning that the st7701s is perhaps substantially different
+>>>> from st7701.
+>>>>
+>>>> If st7701s is very different then I suppose it needs a separate driver,
+>>>> then all we need to to name the driver properly, i.e.
+>>>> panel-sitronix-st7701s.c.
+>>>
+>>> I had in person talk with Paul Kocialkowski and I have concluded that
+>>> this is the best solution.
+>>> I believe I should rename it to st7701s due to the hardware changes. I
+>>> would like to create V5 patch with driver renamed to st7701s.
+>>> Please let me know if you agree / disagree.
+>>
+>> If I recall it right, the ST7701 and ST7701S are basically the same
+>> chip, aren't they ?
 > 
-> Follow-up on my patchset that fixes the display of the Samsung Galaxy S2
-> when running PostmarketOS.
+> I'm currently exploring all the differences. There aren't a lot of
+> differences, but there are some.
+> So far I can see that default register values are different, new
+> previously unused registers are now used and there has been some
+> reordering of how info is placed in registers [1] (data bits are in
+> different order). Moreover, instructions to some commands have been
+> changed and meaning of what data bits mean [2][3]. Also, new features
+> have been added [2]; there is now PCLKS 3 for example.
 > 
-> The first two patches update the LD9040 panel driver so that it looks
-> much better, and supports setting the backlight.
-> 
-> The third patch fixes the size of the panel in the Device Tree. The
-> previous values were completely bogus and caused Phosh (PmOS' UI) to
-> display tiny icons and text as it thought the DPI was much lower.
-> 
-> Changes since V1:
-> [1/3]: Remove spurious new line
-> [2/3]: Remove .get_brightness() callback, use bl_get_data() and
->        backlight_get_brightness()
-> 
-> Cheers,
-> -Paul
-> 
-> Paul Cercueil (3):
->   drm/panel: ld9040: Use better magic values
->   drm/panel: ld9040: Register a backlight device
->   ARM: dts: exynos/i9100: Fix LCD screen's physical size
+> You can see few differences in following images. Same images were
+> attached in this mail:
+> [1] https://ibb.co/NmgbZmy - GAMACTRL_st7701.png
+> [2] https://ibb.co/G79y235 - PCLKS2.png
 
-The series looks good.
+Ouch. I wonder if this is still something that can be abstracted out 
+with some helper accessor functions like:
 
-The first two patches are:
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
+if (model == ST7701)
+   write something
+else
+   write the other layout
 
-The third patch are:
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
-
-(I was not sure if I could/should stamp it r-b, so decided for the a-b).
-
-	Sam
-
+Or whether it makes sense to outright have a separate driver. The later 
+would introduce duplication, but maybe that much duplication is OK.
