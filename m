@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 88D0274BEB7
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 20:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3BDB74BED2
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 21:06:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229868AbjGHS24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jul 2023 14:28:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49272 "EHLO
+        id S230093AbjGHTGo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jul 2023 15:06:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53900 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229436AbjGHS24 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 14:28:56 -0400
+        with ESMTP id S229468AbjGHTGo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 15:06:44 -0400
 Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82243D2;
-        Sat,  8 Jul 2023 11:28:55 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 485931BE;
+        Sat,  8 Jul 2023 12:06:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
         s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
         References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
         Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
         Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=hMCzX6G+RqwJ+hPZQhd7V/qy5pJoruPr1loVfQz//CE=; b=kpwlnEqbJpSBtjbe5w3qyllTnU
-        ZjBcJpkem7IP5esUXHCks6TmjU8YYsRdz0YCMifm+RHNIPL9Aka8UV3Q/MJDYFFs+wPCrpKLaP8a2
-        xumKSLYxeUQpUDII/DBvZ5ySnSBnIp3hS/bFALaoxL0uSULHXWiHw7ozy+t+Gt73Wlvs=;
+        bh=w7h+S2cLgTjh16VlaZ5qoXFp6Lq6SvFpHp5l/5QTa9E=; b=dKqxm6fci1aX7/gYARS6Mna8ZG
+        Zr0aSElWDP6L4TSAE6MIA8ntF2Hvr0Q03Iwx/CAdR1YRlZR6GmQl7OSDtb/BjOiH0tVn8WTJUJbWl
+        jC7J0Clj6GDtWkeVJzMiu0eO460EBEDIWovMH+QWo902dPl0bk8O0auNwjoXGQO3173c=;
 Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
         (envelope-from <andrew@lunn.ch>)
-        id 1qICft-000pLJ-8U; Sat, 08 Jul 2023 20:28:53 +0200
-Date:   Sat, 8 Jul 2023 20:28:53 +0200
+        id 1qIDGO-000pQm-6m; Sat, 08 Jul 2023 21:06:36 +0200
+Date:   Sat, 8 Jul 2023 21:06:36 +0200
 From:   Andrew Lunn <andrew@lunn.ch>
-To:     Alexandru Ardelean <alex@shruggie.ro>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net,
-        edumazet@google.com, kuba@kernel.org, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowski+dt@linaro.org,
-        conor+dt@kernel.org, hkallweit1@gmail.com, linux@armlinux.org.uk,
-        olteanv@gmail.com, marius.muresan@mxt.ro
-Subject: Re: [PATCH 1/2] net: phy: mscc: add support for CLKOUT ctrl reg for
- VSC8531 and similar
-Message-ID: <8c188fbd-eaa4-4063-9153-d7b8c2772f8b@lunn.ch>
-References: <20230706081554.1616839-1-alex@shruggie.ro>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] ARM: dts: marvell: add missing space before {
+Message-ID: <7e458907-1961-4596-ad8e-0a20a745b501@lunn.ch>
+References: <20230705150018.293752-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20230706081554.1616839-1-alex@shruggie.ro>
+In-Reply-To: <20230705150018.293752-1-krzysztof.kozlowski@linaro.org>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
@@ -52,23 +52,10 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 06, 2023 at 11:15:53AM +0300, Alexandru Ardelean wrote:
-> The VSC8531 and similar PHYs (i.e. VSC8530, VSC8531, VSC8540 & VSC8541)
-> have a CLKOUT pin on the chip that can be controlled by register (13G in
-> the General Purpose Registers page) that can be configured to output a
-> frequency of 25, 50 or 125 Mhz.
+On Wed, Jul 05, 2023 at 05:00:17PM +0200, Krzysztof Kozlowski wrote:
+> Add missing whitespace between node name/label and opening {.
 > 
-> This is useful when wanting to provide a clock source for the MAC in some
-> board designs.
-> 
-> Signed-off-by: Marius Muresan <marius.muresan@mxt.ro>
-> Signed-off-by: Alexandru Ardelean <alex@shruggie.ro>
-
-Please take a look at
-https://www.kernel.org/doc/html/latest/process/maintainer-netdev.html
-
-The patch subject should indicate which tree this is for,
-net-next. 
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
 
 Reviewed-by: Andrew Lunn <andrew@lunn.ch>
 
