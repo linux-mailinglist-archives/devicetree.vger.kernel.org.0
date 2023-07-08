@@ -2,55 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CAC8C74BE6D
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 18:23:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36A6774BE9D
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 19:37:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229874AbjGHQXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jul 2023 12:23:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40102 "EHLO
+        id S229783AbjGHRh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jul 2023 13:37:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45232 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGHQXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 12:23:45 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 094021B5;
-        Sat,  8 Jul 2023 09:23:45 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8E3B560D3E;
-        Sat,  8 Jul 2023 16:23:44 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 288F6C433C7;
-        Sat,  8 Jul 2023 16:23:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688833424;
-        bh=A99StwgY1zVXF+35oUPoJCWd4DIdXY+XY+Fo3IdGtGg=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=plJOZS8ECyGooTXfwF7IOYvuuOWM1+09HRUTTotfwfuvmTHIAq8kADJQi4FyKUR1Z
-         +OOdRQLXZmBpLAB4Yvad49q6DDJhg5x6ueoQTqa/teoi8P5qo5yYOKbTJYxVRD2KGH
-         PZ3pM+liDaluVVK0Dd4SlyCli46Zyh9MFX6qU/AQ5wm7nlYe8TYUQ55R6vSn6bq1I8
-         I4IQCfiUszMuaeZ9OxuOGhGzEmyUWttsQXgeNhIEVv3rZXz44VBalFmRPRtGLWWQNW
-         wonaGj3XLW/CdjgvmshixOSCm9aiahcCNE7Awt18SdrwNXnv6uu2eDHTPWGz4M/Wbz
-         IxfR2cIppiRUw==
-Date:   Sat, 8 Jul 2023 17:23:36 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Mehdi Djait <mehdi.djait.k@gmail.com>
-Cc:     mazziesaccount@gmail.com, krzysztof.kozlowski+dt@linaro.org,
-        andriy.shevchenko@linux.intel.com, robh+dt@kernel.org,
-        lars@metafoo.de, linux-iio@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 0/7] iio: accel: Add support for Kionix/ROHM
- KX132-1211 accelerometer
-Message-ID: <20230708172336.79e68a0f@jic23-huawei>
-In-Reply-To: <cover.1686651032.git.mehdi.djait.k@gmail.com>
-References: <cover.1686651032.git.mehdi.djait.k@gmail.com>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
+        with ESMTP id S229483AbjGHRh2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 13:37:28 -0400
+Received: from mail-lj1-x22c.google.com (mail-lj1-x22c.google.com [IPv6:2a00:1450:4864:20::22c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1E1FE4C
+        for <devicetree@vger.kernel.org>; Sat,  8 Jul 2023 10:37:23 -0700 (PDT)
+Received: by mail-lj1-x22c.google.com with SMTP id 38308e7fff4ca-2b702319893so46479461fa.3
+        for <devicetree@vger.kernel.org>; Sat, 08 Jul 2023 10:37:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688837842; x=1691429842;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=wIrx8Hh4+qsy5gD7/8sxxizp8ZgMjlQzNcy2cLogGsw=;
+        b=tlo0jnyjw1HFN+Q7mdU36TusuH+aZvScVaxyl60NdmYt7X9+piYMlVfm7ZsX0ERNKT
+         srl+TZUXOojeJcg82cZQHra2kco3+4c+Mye7czL78lWxKVRkU+dAxKmdEkTIHYOSqGEw
+         xyGyMFDYasD2915Thk481AYlkvLgZF4ybj4iWTPC/Y7Jyr0pbcn5sDipDDE+1jso8UdR
+         nqUhgEZMaAOgO9iv4X4xXxiToxHr1m/pSY79YfcW7X5vp27XuyCW1wx6uO2NEdUrxxsb
+         KCsKYTLzj1OZfPz+cWZqll+ygpOenof+DFreUthR5HsMI2D45RKzhQC2OqOzyZw4pOOU
+         XONg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688837842; x=1691429842;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=wIrx8Hh4+qsy5gD7/8sxxizp8ZgMjlQzNcy2cLogGsw=;
+        b=Wplu3KdKXXQc0W4HgKl0czbtQjBdtwejNB5NAvXXEeHUqnYBbuO/9Q31OJL/Q7pLD5
+         hdsX0OPQRHv/Kk5Kfh2JtDtZFBIRbDRcp7sYq+ify9UmMEHwqylSVtAgX+qZ+V4m34no
+         ZpqCDhjNM6N5EofbCpYEeLsZp1AURjv44ZdWMljl8AGB+FvppVVuuyl8EmxJzB+trpmV
+         Fb2Pmgvq7HQFuhLQ642WNHuWuUsImNQYK4bPIInflmaKFp2y5W/z5Fj+/YxyXQtvrI9A
+         XOsliEYZIFrtweYOPtDeIVoMty8KfJ4de/lqcDCDAzleCvpaJSZQT6CaDQfJLjMGT9iW
+         WiYg==
+X-Gm-Message-State: ABy/qLa8vfLuCDNygxX9YiITondjFrjJAoCSleZOQ1OsJyvFTV4mG6Z/
+        ijcuTims33Z6rTlQCZ6D99/scQ==
+X-Google-Smtp-Source: APBJJlHEiHVjnLwDN4pfhQ+lKSf7HN+2dehTkk8GPn/j5ADoBQIzFiHnHOQIALPJG+IHY0hlC7aNDQ==
+X-Received: by 2002:a05:6512:2344:b0:4fb:7675:1c16 with SMTP id p4-20020a056512234400b004fb76751c16mr6522159lfu.49.1688837841940;
+        Sat, 08 Jul 2023 10:37:21 -0700 (PDT)
+Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
+        by smtp.gmail.com with ESMTPSA id g25-20020a19ee19000000b004f3afa1767dsm1072917lfb.197.2023.07.08.10.37.21
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Jul 2023 10:37:21 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH] ARM: dts: nxp/imx: limit sk-imx53 supported frequencies
+Date:   Sat,  8 Jul 2023 20:37:20 +0300
+Message-Id: <20230708173720.3548414-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -58,81 +74,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 13 Jun 2023 12:22:33 +0200
-Mehdi Djait <mehdi.djait.k@gmail.com> wrote:
+The SK-IMX53 board bearing i.MX536 CPU is not stable when running at 1.2
+GHz. Disable that frequency.
 
-> Hello everyone,
-> 
-> Version 6 for adding support for the kx132-1211 accelerometer
-> 
-> KX132-1211 accelerometer is a sensor which:
-> 	- supports G-ranges of (+/-) 2, 4, 8, and 16G
-> 	- can be connected to I2C or SPI
-> 	- has internal HW FIFO buffer
-> 	- supports various ODRs (output data rates)
-> 
-> The KX132-1211 accelerometer is very similar to the KX022A. 
-> One key difference is number of bits to report the number of data bytes that 
-> have been stored in the buffer: 8 bits for KX022A vs 10 bits for
-> KX132-1211.
-> 
-Just though I'd say that the series looks fine to me. I'm just waiting
-on reply to Matti's query on the last patch before applying it.
+Note, officially i.MX536 is rated up to 800 MHz, but running it at 1 GHz
+proved to be stable.
 
-Thanks,
+Fixes: 0b8576d8440a ("ARM: dts: imx: Add support for SK-iMX53 board")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Jonathan
-
-
-> Changes in v6:
-> - check for availability of chip_info for the SPI case
-> - changed the order of elements in the kx022a_data struct to save memory
-> 
-> Changes in v5:
-> - moved the "kfree" call to match the reverse of what happens in 
->   kx022a_fifo_enable() as suggested by Matti and Jonathan
-> - used min_t, checked for availability of chip_info and moved the
->   position of u16 buf_smp_lvl_mask as suggested by Andy
-> - introduced buf_smp_lvl_mask in Patch 7 as suggested by Jonathan
-> 
-> Changes in v4:
-> - moved the allocation of the fifo_buffer to kx022a_fifo_enable and
->   kx022a_fifo_disable
-> - some fixes to the regmap ranges of kx132-1211 
-> 
-> Changes in v3:
-> - added two new patches by separating the addition of the 
->   i2c_device_id table and the removal of blank lines from other
->   unrelated changes
-> - fixes a warning detected by the kernel test robot
-> - made all the changes related the chip_info in one patch
-> 
-> Changes in v2:
-> - added a new patch for warning when the device_id match fails in the
->   probe function
-> - added a new patch for the function that retrieves the number of bytes
->   in the buffer
-> - added a change to the Kconfig file in the patch adding the support
->   for the kx132-1211
-> - various fixes and modifications listed under each patch
-> 
-> Mehdi Djait (7):
->   dt-bindings: iio: Add KX132-1211 accelerometer
->   iio: accel: kionix-kx022a: Remove blank lines
->   iio: accel: kionix-kx022a: Warn on failed matches and assume
->     compatibility
->   iio: accel: kionix-kx022a: Add an i2c_device_id table
->   iio: accel: kionix-kx022a: Refactor driver and add chip_info structure
->   iio: accel: kionix-kx022a: Add a function to retrieve number of bytes
->     in buffer
->   iio: accel: Add support for Kionix/ROHM KX132-1211 accelerometer
-> 
->  .../bindings/iio/accel/kionix,kx022a.yaml     |  12 +-
->  drivers/iio/accel/Kconfig                     |   8 +-
->  drivers/iio/accel/kionix-kx022a-i2c.c         |  24 +-
->  drivers/iio/accel/kionix-kx022a-spi.c         |  15 +-
->  drivers/iio/accel/kionix-kx022a.c             | 312 ++++++++++++++----
->  drivers/iio/accel/kionix-kx022a.h             | 110 +++++-
->  6 files changed, 406 insertions(+), 75 deletions(-)
-> 
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
+index 6ea103a49697..ccb993ddc445 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
+@@ -77,6 +77,17 @@ &can1 {
+ 	status = "okay";
+ };
+ 
++&cpu0 {
++	/* CPU rated to 800 MHz, not the default 1.2GHz. Keep 1.0 GHz as it seem stable too. */
++	operating-points = <
++		/* kHz   uV */
++		166666  850000
++		400000  900000
++		800000  1050000
++		1000000 1200000
++	>;
++};
++
+ &ecspi1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_ecspi1>;
+-- 
+2.39.2
 
