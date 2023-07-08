@@ -2,83 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EC77674BD8F
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 15:03:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 043DC74BDB3
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 16:06:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229666AbjGHNDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jul 2023 09:03:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37780 "EHLO
+        id S229496AbjGHOGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jul 2023 10:06:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43928 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229462AbjGHNDh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 09:03:37 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64ECC1994;
-        Sat,  8 Jul 2023 06:03:35 -0700 (PDT)
-Received: from p5dc58ef9.dip0.t-ipconnect.de ([93.197.142.249] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <andreas@kemnade.info>)
-        id 1qI7ar-001Dj3-76; Sat, 08 Jul 2023 15:03:21 +0200
-Date:   Sat, 8 Jul 2023 15:03:19 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
-        dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH 2/3] ASoC: tlv320aic3x: use BCLK instead of MCLK if not
- in master mode
-Message-ID: <20230708150319.202789c1@aktux>
-In-Reply-To: <eeba3297-acdb-45ca-a80d-40d8b3a90231@sirena.org.uk>
-References: <20230705190324.355282-1-andreas@kemnade.info>
-        <20230705190324.355282-3-andreas@kemnade.info>
-        <15d3fc6e-d294-4968-bc7d-66307efc92db@sirena.org.uk>
-        <20230705215611.5f96584e@aktux>
-        <eeba3297-acdb-45ca-a80d-40d8b3a90231@sirena.org.uk>
-X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+        with ESMTP id S229458AbjGHOGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 10:06:12 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9517171F;
+        Sat,  8 Jul 2023 07:06:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 2203460C85;
+        Sat,  8 Jul 2023 14:06:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 51684C433C8;
+        Sat,  8 Jul 2023 14:05:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688825169;
+        bh=lQQG5C/x03QfBnIDAUBC6OthDK2/PtT0kHEqFxkEQpA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=sasX7Bz9d693N8HkNqBHBzRGJ4UQeUsSOXKfp5MLJd10jXmaiAh1WF1hyO/GppGQU
+         72LFLdPkcUy+0YQtt6z8d70yuOSiwZ+HBz46iZ+UeMGgm+026bkMPxrqubOwH7gr1a
+         j3gTGv1T3JcRcO5XVtx4eAQH8/3i7yHkUKxctG3O2Tjxpaz2gQbyX2VHkDMIGdE3tt
+         GDLBWH5OibvZjxWb5D99nl5VHmTkculcQJGMpZwxrV83CyigCBbcgNdj9K8ZVPU2SE
+         cxPgRaodwVry1ZPgEVl3CIppvHkpzDMsPUt87C1kuGRDN8kGB6IuQv6hbYhocHA9CE
+         6iGWQr4i1yDsg==
+Date:   Sat, 8 Jul 2023 15:05:55 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Maksim Kiselev <bigunclemax@gmail.com>
+Cc:     linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@gmail.com>,
+        Samuel Holland <samuel@sholland.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@collabora.com>,
+        Andre Przywara <andre.przywara@arm.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Cosmin Tanislav <demonsingur@gmail.com>,
+        Alexander Sverdlin <alexander.sverdlin@gmail.com>,
+        ChiYuan Huang <cy_huang@richtek.com>,
+        Leonard =?UTF-8?B?R8O2aHJz?= <l.goehrs@pengutronix.de>,
+        Haibo Chen <haibo.chen@nxp.com>,
+        Ramona Bolboaca <ramona.bolboaca@analog.com>,
+        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
+        ChiaEn Wu <chiaen_wu@richtek.com>,
+        William Breathitt Gray <william.gray@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Hugo Villeneuve <hvilleneuve@dimonoff.com>,
+        Mike Looijmans <mike.looijmans@topic.nl>,
+        Quentin Schulz <quentin.schulz@free-electrons.com>,
+        Maxime Ripard <mripard@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
+Subject: Re: [PATCH v8 0/4] Add support for Allwinner GPADC on
+ D1/T113s/R329/T507 SoCs
+Message-ID: <20230708150555.45152996@jic23-huawei>
+In-Reply-To: <20230619154252.3951913-1-bigunclemax@gmail.com>
+References: <20230619154252.3951913-1-bigunclemax@gmail.com>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.38; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
 Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
-        version=3.4.6
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, 19 Jun 2023 18:42:23 +0300
+Maksim Kiselev <bigunclemax@gmail.com> wrote:
 
-On Thu, 6 Jul 2023 13:02:36 +0100
-Mark Brown <broonie@kernel.org> wrote:
+> This series adds support for general purpose ADC (GPADC) on new
+> Allwinner's SoCs, such as D1, T113s, T507 and R329. The implemented driver
+> provides basic functionality for getting ADC channels data.
+Applied 1-3 to the togreg branch of iio.git which will initially be pushed out as
+testing so that 0-day can see if we missed anything. I'll also be rebasing it
+on rc1 once available before pushing out as togreg.
 
-> On Wed, Jul 05, 2023 at 09:56:11PM +0200, Andreas Kemnade wrote:
-> > Mark Brown <broonie@kernel.org> wrote:  
+Thanks,
+
+Jonathan
+
 > 
-> > > It would be nicer to set the clock via the DT bindings, ideally with the
-> > > clock bindings...  
+> Change History:
+> v8:
+> - Added patch that changes Kconfig description for previous Allwinner GPADC
+> - Changed Kconfig description for this GPADC driver
+> - Fixed 'reg' range for gpadc node in 'sunxi-d1s-t113.dtsi'
 > 
-> > I found no path from these simple-audio-card things to provide a clk_id 
-> > to set_dai_sysclk. I would of course prefer such a thing. Do I have overlooked
-> > something?  
+> v7:
+> - Fixed typo in DT bindings property
 > 
-> Since we already have clock bindings we should use those to configure
-> the clocks, there's several drivers that have added this support already
-> - look for clock providers.
+> v6:
+> - Fixed DT bindings regexp for channel properties
+> - Dropped checking the max number of channels from the drivers code
+>   (This is redundant as we raly on DT bindings check)
+> 
+> v5:
+> - Fixed DT bindings properties for child nodes
+> 
+> v4:
+> - Fixed DT bindings warnings
+> - Used GENMASK to clear the irq register
+> - Minor formatting fixes
+> 
+> v3:
+> - Added DT bindings dual license, fixed property order and example formatting
+> - Added explanations comments for timeout and mutex
+> - Dropped unnecessary regmap and used readl/writel instead
+> - Added error message about getting channel number
+> - Renamed labels and variables to make them self-explanatory
+> 
+> v2:
+> - Added lastch flag to avoid addition work for already selected channel
+> - Added reset assertion on module remove
+> - Added dynamic channel allocation and dropped iio_chan_spec arrays
+> - Changed IIO_CHAN_INFO_SCALE type to FRACTIONAL_LOG2
+> - Dropped separate compatible strings and configs for T113s and R329
+> - Fixed includes
+> - Fixed Kconfig description
+> - Removed duplicate probe error messages
+> - Used FIELD_PREP for bit setup
+> 
+> v1:
+> - Initial version
+> 
+> Maksim Kiselev (4):
+>   iio: adc: Kconfig change description for Allwinner GPADC
+>   iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
+>   dt-bindings: iio: adc: Add Allwinner D1/T113s/R329/T507 SoCs GPADC
+>   riscv: dts: allwinner: d1: Add GPADC node
+> 
+>  .../iio/adc/allwinner,sun20i-d1-gpadc.yaml    |  91 ++++++
+>  .../boot/dts/allwinner/sunxi-d1s-t113.dtsi    |  10 +
+>  drivers/iio/adc/Kconfig                       |  12 +-
+>  drivers/iio/adc/Makefile                      |   1 +
+>  drivers/iio/adc/sun20i-gpadc-iio.c            | 276 ++++++++++++++++++
+>  5 files changed, 389 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/allwinner,sun20i-d1-gpadc.yaml
+>  create mode 100644 drivers/iio/adc/sun20i-gpadc-iio.c
+> 
 
-ok, looking around:
-Just to make sure I am not running in a bad direction: Do you think
-tlv320aic32x4{,-clk}.c is a good example? It is ignoring clk_id. 
-I was mentally bound to have to use clk_id there, so I did not found a good
-solution.
-
-So I guess I have to configure the chip as a master and using mclk and compare
-register dumps with the state we have now and the state after the changes,
-additionally to check bclk functionality directly.
-
-Regards,
-Andreas
