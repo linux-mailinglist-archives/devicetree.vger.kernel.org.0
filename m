@@ -2,141 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D39C74BD85
-	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 14:54:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC77674BD8F
+	for <lists+devicetree@lfdr.de>; Sat,  8 Jul 2023 15:03:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230390AbjGHMxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jul 2023 08:53:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36458 "EHLO
+        id S229666AbjGHNDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 8 Jul 2023 09:03:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37780 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229627AbjGHMxM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 08:53:12 -0400
-Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 958001991;
-        Sat,  8 Jul 2023 05:53:11 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id 6DA778634E;
-        Sat,  8 Jul 2023 14:53:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1688820790;
-        bh=j1VW+YqlIr6gMFRVJdYCG+mHS0tWNFRYQxRf8AA6Y/I=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=Oxql7ehPge5nSg6NraVob/joMOb/2cAVw3vB0uEHQ1ScHrHed0M7PRSzq+sIPfV67
-         R8025mKCQmdpsjSbfN/8DJ1sg5XNLXuc6e2QEpGkJI/cgNF1sKjEg33HPPouYy3K4W
-         Shkb6BshWHHlHeFTDmhosGRbOeOovJsMK4hIbKDNyUrDnUuuWs7EixbfKFON/IJ/RV
-         +G/oZNo2IBw/ny1zgxBqKImVocbPPbj6kz7z6fP07zTADqgoysLPbIgCUi5FfCapLA
-         MGI0hqCQ/Ldt2aLEksXjL1BMNBkQDERKA4ZD2hQi4qpSB8tU2DZDg/JFGb5o+2Q32V
-         tM84W++UvBCDQ==
-Message-ID: <8b0ae1d1-c769-1f55-0452-4bbc62da133b@denx.de>
-Date:   Sat, 8 Jul 2023 13:07:04 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v4 3/3] drm/panel-fannal-c3004: Add fannal c3004 DSI panel
-To:     Paulo Pavacic <pavacic.p@gmail.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Jagan Teki <jagan@amarulasolutions.com>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        neil.armstrong@linaro.org, sam@ravnborg.org, airlied@gmail.com,
-        daniel@ffwll.ch, robh+dt@kernel.org,
+        with ESMTP id S229462AbjGHNDh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 09:03:37 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a02:c205:3004:2154::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64ECC1994;
+        Sat,  8 Jul 2023 06:03:35 -0700 (PDT)
+Received: from p5dc58ef9.dip0.t-ipconnect.de ([93.197.142.249] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <andreas@kemnade.info>)
+        id 1qI7ar-001Dj3-76; Sat, 08 Jul 2023 15:03:21 +0200
+Date:   Sat, 8 Jul 2023 15:03:19 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
+        dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org
-References: <20230607151127.1542024-1-pavacic.p@gmail.com>
- <20230607151127.1542024-4-pavacic.p@gmail.com>
- <CACRpkdbrEA54qmfTKSsFRG9ZS4u8hM6P5TXtOjRAiW+TD_v-fQ@mail.gmail.com>
- <CAO9szn00vRFm+iM1m7KgkW0WRuKyJEgVU4tVx4f5tF6KPnE=2w@mail.gmail.com>
- <CACRpkdaw8M3dSkmiV5QDOt3BBB7Jo6NxT0Og=zvA4REMA_7y9g@mail.gmail.com>
- <CAO9szn29A0qCABG0ACni42UGpsGKLwG7OT1y_ho3DgQ0WLvfmw@mail.gmail.com>
- <CACRpkdYXtQwmZR1u-1fwmyC_8Yq4bMkjDBcUCfuGqSz_UhXWJQ@mail.gmail.com>
- <CAO9szn0OuKW+-JZMs3TPUHiwLCe6cUPcsUq+og64K2utMyZpqQ@mail.gmail.com>
- <CACRpkdb5stXKb7FNk_FC-PKduCngRX3sZTbzcxN+kRskz78fuQ@mail.gmail.com>
- <CAO9szn3oTzrrwiyr91H14ep7OPUkA-SDST3CSQAQHvFFnkJWfA@mail.gmail.com>
- <0d43e653-32cd-b25e-40fa-6f0571048467@denx.de>
- <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
-Content-Language: en-US
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <CAO9szn20RY3uBDceyUJ1S+gb=FN8Hd5qqMfOSbitHFyFCZ+iLg@mail.gmail.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE,URIBL_BLOCKED
-        autolearn=ham autolearn_force=no version=3.4.6
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH 2/3] ASoC: tlv320aic3x: use BCLK instead of MCLK if not
+ in master mode
+Message-ID: <20230708150319.202789c1@aktux>
+In-Reply-To: <eeba3297-acdb-45ca-a80d-40d8b3a90231@sirena.org.uk>
+References: <20230705190324.355282-1-andreas@kemnade.info>
+        <20230705190324.355282-3-andreas@kemnade.info>
+        <15d3fc6e-d294-4968-bc7d-66307efc92db@sirena.org.uk>
+        <20230705215611.5f96584e@aktux>
+        <eeba3297-acdb-45ca-a80d-40d8b3a90231@sirena.org.uk>
+X-Mailer: Claws Mail 4.1.1 (GTK 3.24.37; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/7/23 17:26, Paulo Pavacic wrote:
-> Hello Marek,
-
 Hi,
 
-> čet, 6. srp 2023. u 17:26 Marek Vasut <marex@denx.de> napisao je:
->>
->> On 7/6/23 17:18, Paulo Pavacic wrote:
->>> Hello Linus,
->>>
->>> čet, 22. lip 2023. u 10:22 Linus Walleij <linus.walleij@linaro.org> napisao je:
->>>>
->>>> On Wed, Jun 21, 2023 at 5:09 PM Paulo Pavacic <pavacic.p@gmail.com> wrote:
->>>>
->>>>> A lot of modifications to st7701 are required. I believe it would
->>>>> result in a driver that doesn't look or work the same. e.g compare
->>>>> delays between initialization sequences of panel-fannal-c3004 and
->>>>> panel-st7701. I think it would be optimal to create st7701s driver and
->>>>> have special handling for st7701s panels. If there was a flag for
->>>>> whether panel is st7701 or st7701s it would end up looking like a
->>>>> mess.
->>>>
->>>> What matters is if the original authors of the old st7701 driver are
->>>> around and reviewing and testing patches at all. What we need is
->>>> active maintainers. (Added Jagan, Marek & Maya).
->>>>
->>>> I buy the reasoning that the st7701s is perhaps substantially different
->>>> from st7701.
->>>>
->>>> If st7701s is very different then I suppose it needs a separate driver,
->>>> then all we need to to name the driver properly, i.e.
->>>> panel-sitronix-st7701s.c.
->>>
->>> I had in person talk with Paul Kocialkowski and I have concluded that
->>> this is the best solution.
->>> I believe I should rename it to st7701s due to the hardware changes. I
->>> would like to create V5 patch with driver renamed to st7701s.
->>> Please let me know if you agree / disagree.
->>
->> If I recall it right, the ST7701 and ST7701S are basically the same
->> chip, aren't they ?
+On Thu, 6 Jul 2023 13:02:36 +0100
+Mark Brown <broonie@kernel.org> wrote:
+
+> On Wed, Jul 05, 2023 at 09:56:11PM +0200, Andreas Kemnade wrote:
+> > Mark Brown <broonie@kernel.org> wrote:  
 > 
-> I'm currently exploring all the differences. There aren't a lot of
-> differences, but there are some.
-> So far I can see that default register values are different, new
-> previously unused registers are now used and there has been some
-> reordering of how info is placed in registers [1] (data bits are in
-> different order). Moreover, instructions to some commands have been
-> changed and meaning of what data bits mean [2][3]. Also, new features
-> have been added [2]; there is now PCLKS 3 for example.
+> > > It would be nicer to set the clock via the DT bindings, ideally with the
+> > > clock bindings...  
 > 
-> You can see few differences in following images. Same images were
-> attached in this mail:
-> [1] https://ibb.co/NmgbZmy - GAMACTRL_st7701.png
-> [2] https://ibb.co/G79y235 - PCLKS2.png
+> > I found no path from these simple-audio-card things to provide a clk_id 
+> > to set_dai_sysclk. I would of course prefer such a thing. Do I have overlooked
+> > something?  
+> 
+> Since we already have clock bindings we should use those to configure
+> the clocks, there's several drivers that have added this support already
+> - look for clock providers.
 
-Ouch. I wonder if this is still something that can be abstracted out 
-with some helper accessor functions like:
+ok, looking around:
+Just to make sure I am not running in a bad direction: Do you think
+tlv320aic32x4{,-clk}.c is a good example? It is ignoring clk_id. 
+I was mentally bound to have to use clk_id there, so I did not found a good
+solution.
 
-if (model == ST7701)
-   write something
-else
-   write the other layout
+So I guess I have to configure the chip as a master and using mclk and compare
+register dumps with the state we have now and the state after the changes,
+additionally to check bclk functionality directly.
 
-Or whether it makes sense to outright have a separate driver. The later 
-would introduce duplication, but maybe that much duplication is OK.
+Regards,
+Andreas
