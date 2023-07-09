@@ -2,144 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id D20DC74C691
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 19:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 59CB874C698
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 19:19:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230354AbjGIRT2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jul 2023 13:19:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35380 "EHLO
+        id S230257AbjGIRTn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jul 2023 13:19:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35506 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230265AbjGIRT1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 13:19:27 -0400
-Received: from mail-ej1-x62d.google.com (mail-ej1-x62d.google.com [IPv6:2a00:1450:4864:20::62d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DC4D128
-        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 10:19:25 -0700 (PDT)
-Received: by mail-ej1-x62d.google.com with SMTP id a640c23a62f3a-98e011f45ffso419158966b.3
-        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 10:19:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688923164; x=1691515164;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=BxMRy4/ZX59Gjw8AFiUdNiqxbSxqjUU/VT1J6LS1+jY=;
-        b=V3PEFRinVlmUISMSTEBWWi+A+Id5wM6lxDwOU5Ky/AF6+yTwoHLw2Q5AA3CoCEHmzQ
-         oJE2pG3XUai0Tf0ZrgoXcn3+DjuBTQJ5b4fGjgAXVP6eYAhLmshKgn3f2NQ9t8RMjG3c
-         l7hg59kXci3I98oc9o04zV8mrReORbwQR1IbhKEV0hCCLtTCEEMvZwVZVilrhetfjUbC
-         7bEBBCAWrnWMOh2zGgeQXrQndvWixlVOIB6Pclf9jmXCbYAq+YolUYbxEzifRZLxxgFv
-         NjIGMFVHN91iI6PCoFJLXPw5PRP2jwI8Ii4SSaOfHJ/i4TXjfEvwoebT1CU9DwYQOGUm
-         KqKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688923164; x=1691515164;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=BxMRy4/ZX59Gjw8AFiUdNiqxbSxqjUU/VT1J6LS1+jY=;
-        b=e7GFaQ1LzFym1nx9qig7lqNfZXYf1ZoPmhkLW1ouGElOdt+dsndxTYHWuVEsMPeuXG
-         DjK5cNu1TSGm0qGWmG3830/apHvipnN4Eb2umnXbSSYjl7fKru0yvFRmny2bT01zoh7N
-         AFyL/EgQfdup0x4R84ZDiii8Ia8jcTZmW8GHB8be670HFp64GxVe9Wf0DWcPspvX+5oA
-         RmZqIj7ie4jdWwIdXQfOw0H8J75U0Bz5q9oLWBQvameiOiGigBAWEjUbsDBWcGC4vE3I
-         HyjOaewZUxRoV5Ve9FjG4tvJlIM4uCDiKUZIKX4+8xBMtVc9KXO9DQv5lg+IZ79VrSLu
-         0zAA==
-X-Gm-Message-State: ABy/qLZidgcynJnnV0VTTVjsZsPT4nJHqtA6hqZEIqmoHyxnXBjMNSWY
-        Gv/S2/jAKo5R7KuwKPVEyyK9zg==
-X-Google-Smtp-Source: APBJJlEKpLkUgb+Yuq/DwGb4Fz4U6Dm6A0KYZoHWxDN1MSqyW/la+01BJEq2DinOqGC6jvLPHm86Kg==
-X-Received: by 2002:a17:906:cc57:b0:989:21e4:6c6e with SMTP id mm23-20020a170906cc5700b0098921e46c6emr8879153ejb.53.1688923163998;
-        Sun, 09 Jul 2023 10:19:23 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id c21-20020a170906341500b00992ab0262c9sm5024947ejb.147.2023.07.09.10.19.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jul 2023 10:19:23 -0700 (PDT)
-Message-ID: <dffc7942-d9b6-e291-9cab-9a1642225fc3@linaro.org>
-Date:   Sun, 9 Jul 2023 19:19:20 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 04/11] iio: adc: Update bindings to remove support for
- ADC7 name used on QCOM PMICs
-Content-Language: en-US
-To:     Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org, Jonathan.Cameron@huawei.com,
-        sboyd@kernel.org, dmitry.baryshkov@linaro.org,
-        quic_subbaram@quicinc.com, quic_collinsd@quicinc.com,
-        quic_kamalw@quicinc.com, quic_jestar@quicinc.com,
-        marijn.suijten@somainline.org, andriy.shevchenko@linux.intel.com,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S230030AbjGIRTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 13:19:42 -0400
+Received: from mout02.posteo.de (mout02.posteo.de [185.67.36.66])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB4DC18D
+        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 10:19:40 -0700 (PDT)
+Received: from submission (posteo.de [185.67.36.169]) 
+        by mout02.posteo.de (Postfix) with ESMTPS id 4111C240105
+        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 19:19:38 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=posteo.de; s=2017;
+        t=1688923178; bh=IpCRT4PQk7DlnuUgJCIbzC9/+vGQLjShcVYXvAcsweU=;
+        h=Date:From:To:cc:Subject:Message-ID:MIME-Version:From;
+        b=ddg/N4oXaQ06mqAiNkIg6rIGqgAcFF+1boA6NKyytYp+zLMl11gFUtyy5uZAF37CQ
+         kgO4+wm8NgcOGCl3FwQb4QAlRNza3YBFxk5cVdMfL120hjXbzMbLR77HkaLGuGpC/T
+         3YYb0DiId2L+aozEclsHxHWyB5v7/lasjtbYlpGv4mv966i/5ypu+Bfw1OtcTLqxJS
+         yOyJl2QdU3vcSlxR0Lr5aa3ai8OBbp89NWaXABuO3395gfx6XWNhRLaTf74hSyDi3J
+         EnW5wQc7JDyewTixgci4ShhQjjW5MsjEuWqnH/wePPSDKxjwzN9FM2abaoru/hY3Q3
+         IoLqxy1CE0lvA==
+Received: from customer (localhost [127.0.0.1])
+        by submission (posteo.de) with ESMTPSA id 4QzYls0KMlz9rxD;
+        Sun,  9 Jul 2023 19:19:37 +0200 (CEST)
+Date:   Sun, 9 Jul 2023 19:19:36 +0200 (CEST)
+From:   Marc Dietrich <marvin24@posteo.de>
+To:     Thierry Reding <thierry.reding@gmail.com>
+cc:     Rob Herring <robh@kernel.org>, Marc Dietrich <marvin24@gmx.de>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, Luca Weiss <luca@z3ntu.xyz>,
-        linux-iio@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-Cc:     linux-arm-msm-owner@vger.kernel.org
-References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
- <20230708072835.3035398-5-quic_jprakash@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230708072835.3035398-5-quic_jprakash@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
-        autolearn_force=no version=3.4.6
+        Jon Hunter <jonathanh@nvidia.com>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] dt-bindings: arm: tegra: nvec: Convert to
+ json-schema
+In-Reply-To: <ZKbEEDWg5N8r8s-b@orome>
+Message-ID: <25075252-8e38-a5f5-ebbf-cddca1508210@posteo.de>
+References: <20230705155222.2519728-1-thierry.reding@gmail.com> <20230705155222.2519728-3-thierry.reding@gmail.com> <20230705205013.GA1871916-robh@kernel.org> <ZKbEEDWg5N8r8s-b@orome>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII; format=flowed
+X-Spam-Status: No, score=-5.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2023 09:28, Jishnu Prakash wrote:
-> Now that usage of "ADC7" name has been replaced with usage of "ADC5
-> Gen2" name everywhere, remove all support for "ADC7" name.
+Hi Thierry,
 
-Why?
+On Thu, 6 Jul 2023, Thierry Reding wrote:
 
+> On Wed, Jul 05, 2023 at 02:50:13PM -0600, Rob Herring wrote:
+>> On Wed, Jul 05, 2023 at 05:52:22PM +0200, Thierry Reding wrote:
+>>> From: Thierry Reding <treding@nvidia.com>
+>>>
+>>> Convert the NVIDIA embedded controller bindings from the free-form text
+>>> format to json-schema.
+>>>
+>>> Acked-by: Marc Dietrich <marvin24@gmx.de>
+>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>>> ---
+>>> Changes in v2:
+>>> - drop $ref for standard clock-frequency property
+>>> - use 4 spaces for indentation in example
+>>> - move to soc/tegra directory
+>>>
+>>>  .../bindings/arm/tegra/nvidia,nvec.txt        | 21 -----
+>>>  .../bindings/soc/tegra/nvidia,nvec.yaml       | 92 +++++++++++++++++++
+>>>  2 files changed, 92 insertions(+), 21 deletions(-)
+>>>  delete mode 100644 Documentation/devicetree/bindings/arm/tegra/nvidia,nvec.txt
+>>>  create mode 100644 Documentation/devicetree/bindings/soc/tegra/nvidia,nvec.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/tegra/nvidia,nvec.txt b/Documentation/devicetree/bindings/arm/tegra/nvidia,nvec.txt
+>>> deleted file mode 100644
+>>> index 5ae601e7f51f..000000000000
+>>> --- a/Documentation/devicetree/bindings/arm/tegra/nvidia,nvec.txt
+>>> +++ /dev/null
+>>> @@ -1,21 +0,0 @@
+>>> -NVIDIA compliant embedded controller
+>>> -
+>>> -Required properties:
+>>> -- compatible : should be "nvidia,nvec".
+>>> -- reg : the iomem of the i2c slave controller
+>>> -- interrupts : the interrupt line of the i2c slave controller
+>>> -- clock-frequency : the frequency of the i2c bus
+>>> -- gpios : the gpio used for ec request
+>>> -- slave-addr: the i2c address of the slave controller
+>>> -- clocks : Must contain an entry for each entry in clock-names.
+>>> -  See ../clocks/clock-bindings.txt for details.
+>>> -- clock-names : Must include the following entries:
+>>> -  Tegra20/Tegra30:
+>>> -  - div-clk
+>>> -  - fast-clk
+>>> -  Tegra114:
+>>> -  - div-clk
+>>> -- resets : Must contain an entry for each entry in reset-names.
+>>> -  See ../reset/reset.txt for details.
+>>> -- reset-names : Must include the following entries:
+>>> -  - i2c
+>>> diff --git a/Documentation/devicetree/bindings/soc/tegra/nvidia,nvec.yaml b/Documentation/devicetree/bindings/soc/tegra/nvidia,nvec.yaml
+>>> new file mode 100644
+>>> index 000000000000..0b4f898b2a1d
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/soc/tegra/nvidia,nvec.yaml
+>>> @@ -0,0 +1,92 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/soc/tegra/nvidia,nvec.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: NVIDIA compliant embedded controller
+>>> +
+>>> +maintainers:
+>>> +  - Thierry Reding <thierry.reding@gmail.com>
+>>> +  - Jon Hunter <jonathanh@nvidia.com>
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: nvidia,nvec
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +
+>>> +  clocks:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - description: divider clock
+>>> +      - description: fast clock
+>>> +
+>>> +  clock-names:
+>>> +    minItems: 1
+>>> +    items:
+>>> +      - const: div-clk
+>>> +      - const: fast-clk
+>>> +
+>>> +  resets:
+>>> +    items:
+>>> +      - description: module reset
+>>> +
+>>> +  reset-names:
+>>> +    items:
+>>> +      - const: i2c
+>>> +
+>>> +  clock-frequency: true
+>>> +
+>>> +  request-gpios:
+>>> +    description: phandle to the GPIO used for EC request
+>>> +
+>>> +  slave-addr:
+>>> +    $ref: /schemas/types.yaml#/definitions/uint32
+>>> +    description: I2C address of the slave controller
+>>> +
+>>> +  "#address-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#size-cells":
+>>> +    const: 0
+>>
+>> You don't have any child nodes defined, so these 2 properties are
+>> pointless.
+>
+> Good point. Looking at this a bit more, I think perhaps we should also
+> rename the node representing this to i2c@7000c500 because this is really
+> only a repurposed I2C controller, which is probably also where these
+> stray #address-cells and #size-cells come from.
+>
+> In DT we basically duplicate i2c@7000c500 and nvec@7000c500, but we can
+> probably also reuse most of i2c@7000c500 and just drop some things that
+> NVEC can't use (such as dmas and dma-names) and add the slave specific
+> bits (such as clock-frequency, slave-addr and request-gpios).
+>
+> Marc, any thoughts?
 
-> 
-> Signed-off-by: Jishnu Prakash <quic_jprakash@quicinc.com>
-> ---
->  .../bindings/iio/adc/qcom,spmi-vadc.yaml      |  5 +-
->  .../bindings/thermal/qcom-spmi-adc-tm5.yaml   |  1 -
->  .../dt-bindings/iio/qcom,spmi-adc7-pm8350.h   | 63 -------------
->  .../dt-bindings/iio/qcom,spmi-adc7-pm8350b.h  | 88 -------------------
->  .../dt-bindings/iio/qcom,spmi-adc7-pmk8350.h  | 46 ----------
->  .../dt-bindings/iio/qcom,spmi-adc7-pmr735a.h  | 28 ------
->  .../dt-bindings/iio/qcom,spmi-adc7-pmr735b.h  | 28 ------
->  include/dt-bindings/iio/qcom,spmi-vadc.h      | 76 ----------------
->  8 files changed, 1 insertion(+), 334 deletions(-)
->  delete mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350.h
->  delete mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pm8350b.h
->  delete mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmk8350.h
->  delete mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735a.h
->  delete mode 100644 include/dt-bindings/iio/qcom,spmi-adc7-pmr735b.h
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> index f886977de165..eb7d16e385ad 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> +++ b/Documentation/devicetree/bindings/iio/adc/qcom,spmi-vadc.yaml
-> @@ -26,7 +26,6 @@ properties:
->            - qcom,spmi-vadc
->            - qcom,spmi-adc5
->            - qcom,spmi-adc-rev2
-> -          - qcom,spmi-adc7
-
-NAK. You did not explained why dropping existing compatible is correct,
-expected and okay.
-
-Also:
-
-Please use subject prefixes matching the subsystem. You can get them for
-example with `git log --oneline -- DIRECTORY_OR_FILE` on the directory
-your patch is touching.
-
-
+the idea was indeed to convert the driver to the i2c-slave sub-sys and add
+the EC sub-functions (keyboard, mouse, power, ...) as children below the
+controllers node, which are currently hard-coded. As this didn't happen 
+yet these entries could be removed for now.
+Using i2c instead of nvec as the node name also makes sense, because that
+is the real hardware described by the following properties. On the other 
+hand, I'm not sure if it is worth the effort (u-boot would also need this 
+change).
 
 Best regards,
-Krzysztof
 
+Marc
