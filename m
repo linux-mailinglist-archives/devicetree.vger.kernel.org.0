@@ -2,115 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DF0074C021
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 02:17:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99E8F74C0D4
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 06:19:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbjGIARv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 8 Jul 2023 20:17:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52178 "EHLO
+        id S229935AbjGIETd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jul 2023 00:19:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40528 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229458AbjGIARu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 8 Jul 2023 20:17:50 -0400
-Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BF0BE4C
-        for <devicetree@vger.kernel.org>; Sat,  8 Jul 2023 17:17:49 -0700 (PDT)
-Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fb9ae4cef6so5082322e87.3
-        for <devicetree@vger.kernel.org>; Sat, 08 Jul 2023 17:17:49 -0700 (PDT)
+        with ESMTP id S229458AbjGIETb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 00:19:31 -0400
+Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B95EE45
+        for <devicetree@vger.kernel.org>; Sat,  8 Jul 2023 21:19:29 -0700 (PDT)
+Received: by mail-lf1-x12b.google.com with SMTP id 2adb3069b0e04-4fb7b2e3dacso5170764e87.0
+        for <devicetree@vger.kernel.org>; Sat, 08 Jul 2023 21:19:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688861867; x=1691453867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=hXWnFB7TlbQAIBfashq2bcvidLQkeNd93VaQ06HpejY=;
-        b=ZB3UmJkUNHrpmLoSMK7CiCJU8nagw5wA75E1RX1uTir/KXmH93d7Gi9L/RoidCPC8j
-         MUaefqyJmWCr13p7Nyqrzx3zjcb9FqK785hczrENqg+MxMpuVvGTRE48spM0UN48u4cB
-         jHvTY6h0NWE2+GbToaHwImbR8E5mKOj8mUeE8UdGLeGTLtlVp84i5ueyla6RWn3f7h15
-         GazlMAiMtGm7l2cKrEEEViHmZ3baV7QjgG/4WN3KsMLoUiSpJXSGCyNWNmkcG+Y3sOXX
-         4GD5gpgWxMwRrG69uZqiSnK2Mrtv08C5XYSfZc+WAGNiwVID4wWYQTvU0hwaYwZDcs6K
-         S7rg==
+        d=linaro.org; s=google; t=1688876368; x=1691468368;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=EV4gjfG2h9+eMvOMzJqwLX08mwvLdctC3KQGCJDlteI=;
+        b=oUe1HSUEOwKt3tiPcKQxZTqky8YJ/J+TVVTVJj49EcfWUiAmpnIpIL4mSIlM+26kN1
+         7FytEkFeH+4Dk8yENbCXnUWqPEujUkFqs8dkiJ34/aNjAc75DlS/CZH+/AyUsm0JNMW/
+         tbREqo3Bq+zUlRHLAvNnXxU0ZwRfPWhQta25cLhr+QrIhmcb2PX4p80IfDodhXaPBTiX
+         /PNWNGwg36b6LybvKeFPpCQE1IFLxwV84klPqcxO68hzFf7D6tSmGwmfE09sVu3YrUPY
+         tr76tP/441urfBW1eIl2NKwvZEQECSL6WTNVQhQZQ3iJFhZ9UbS8QE4FiIemR42K4C/V
+         IV8Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688861867; x=1691453867;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=hXWnFB7TlbQAIBfashq2bcvidLQkeNd93VaQ06HpejY=;
-        b=a6k/mewAvhG33vx9hwvq8GURuGyo3P7Le2B4KPUYKf8t0I/RBKLLaCZHaqO9g48GOq
-         OSElwVVCIGevJnaaoBo1yMxvw/T6gIACTj+xayDFqZSVzV6qHaMopz3W5ww0JZIQesWx
-         2yH2/AOPREfNQysTD2PUkRkk5A2njokFa8xVhDnhcxzNXFc7DUBT2nwP60L7l+ZL/xEQ
-         S7gQMqXq4zOiycG88VkSLfOsH75l9fTKFgspDPDO6aKHvfGADZ6+8Z6XalLB7z32D3P6
-         8JnbEsqpicIFUR9a7MzZsxhIPZvoZmqvKTcgRrJEDvAYp3amEe257Q/b6cNyZzfQ8xdd
-         0y3w==
-X-Gm-Message-State: ABy/qLZzblvjuYt00JaoMF2NBLqG57zZZJ74SLnVyBpAaTBGGvFdRQSr
-        NBt6DsMZ7LDOFRoitTwl9OE3ZA==
-X-Google-Smtp-Source: APBJJlHcRSy2r13NftwBi/jBgQovyjb73CXtDZGgb+OPim7zXhimjf2EkQsW/S9IRmXnTnCzoCjLAw==
-X-Received: by 2002:a05:6512:6c7:b0:4fb:8eec:ce47 with SMTP id u7-20020a05651206c700b004fb8eecce47mr7154821lff.58.1688861867171;
-        Sat, 08 Jul 2023 17:17:47 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id l3-20020ac24303000000b004fbb207ee0asm1157667lfh.206.2023.07.08.17.17.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 08 Jul 2023 17:17:46 -0700 (PDT)
-Message-ID: <4bd12281-63ed-ecb4-ae66-7ae63bdb1655@linaro.org>
-Date:   Sun, 9 Jul 2023 03:17:46 +0300
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH v8 08/11] arm64: dts: qcom: qrb5165-rb5: Switch on Type-C
- VBUS boost
-Content-Language: en-GB
-To:     Bryan O'Donoghue <bryan.odonoghue@linaro.org>, linux@roeck-us.net,
-        heikki.krogerus@linux.intel.com, gregkh@linuxfoundation.org,
-        andersson@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, luca.weiss@fairphone.com,
-        lujianhua000@gmail.com, linux-usb@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     konrad.dybcio@linaro.org, caleb.connolly@linaro.org,
-        subbaram@quicinc.com, jackp@quicinc.com, robertom@qti.qualcomm.com
-References: <20230515133643.3621656-1-bryan.odonoghue@linaro.org>
- <20230515133643.3621656-9-bryan.odonoghue@linaro.org>
+        d=1e100.net; s=20221208; t=1688876368; x=1691468368;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=EV4gjfG2h9+eMvOMzJqwLX08mwvLdctC3KQGCJDlteI=;
+        b=E3dwjOQk+tkBw+yqKM4+oUdA00rLeYmkgUKb7FwSG99LWxtT/TIKBwjCJWzxQzhU2c
+         Md0mKjK2WiFIy6/3y8vlzkkntZmOSG4FJOhdtMeTaSZMGRxbETPCRSQg8M+p0365WSd1
+         fU3/EOWeRtzek0TanEc0QCOZCQ2YbzkY7AQ3GF2V4Zs9wnFz9CsckoiTgK7TmIkSQy+b
+         XeDxu64c4FJVkRheNLejQwdn09LD4XFYVcIBLWohCUcEogsYMYMamlYE8l4QdIbgTsga
+         FmKvZJn9xaAc8WZtXJFIyk7bXSUoPx/ACh0dNbzr4EpXAqdsbmJ3R6oen4rPrO47EosJ
+         oRbA==
+X-Gm-Message-State: ABy/qLZRsKdhOOlGXLLOmQZYhXoqnFYvKcaKcWpuU4V9CMmTTBq6m0/P
+        RjIhIByaMYnpwmOuDg/Bd69IGQ==
+X-Google-Smtp-Source: APBJJlH1hMwnX24K5ue0eNJ38qb9anodescAmVYDk03Umy+uJIqB4CCuAZUizF0XtCaD0pLclhdRKA==
+X-Received: by 2002:a19:655a:0:b0:4fb:7cea:882a with SMTP id c26-20020a19655a000000b004fb7cea882amr6224939lfj.3.1688876367751;
+        Sat, 08 Jul 2023 21:19:27 -0700 (PDT)
+Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
+        by smtp.gmail.com with ESMTPSA id r11-20020a19ac4b000000b004fb8603f6e0sm1205851lfc.12.2023.07.08.21.19.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 08 Jul 2023 21:19:27 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230515133643.3621656-9-bryan.odonoghue@linaro.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Clark <robdclark@gmail.com>, Sean Paul <sean@poorly.run>,
+        Abhinav Kumar <quic_abhinavk@quicinc.com>,
+        Marijn Suijten <marijn.suijten@somainline.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Stephen Boyd <swboyd@chromium.org>,
+        David Airlie <airlied@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org
+Subject: [PATCH 0/5] arm64: dts: qcom: qrb5165-rb5: enable DP support
+Date:   Sun,  9 Jul 2023 07:19:21 +0300
+Message-Id: <20230709041926.4052245-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/05/2023 16:36, Bryan O'Donoghue wrote:
-> Switch on VBUS for the Type-C port. We need to support a higher amperage
-> than the bootloader set 2 Amps.
-> 
-> Reviewed-by: Konrad Dybcio <konrad.dybcio@linaro.org>
-> Signed-off-by: Bryan O'Donoghue <bryan.odonoghue@linaro.org>
-> ---
->   arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 6 ++++++
->   1 file changed, 6 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> index dd924331b0eea..b326bdeeb7742 100644
-> --- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> +++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-> @@ -1338,3 +1338,9 @@ &qup_spi0_data_clk {
->   	drive-strength = <6>;
->   	bias-disable;
->   };
-> +
-> +&pm8150b_vbus {
-> +	regulator-min-microamp = <500000>;
-> +	regulator-max-microamp = <3000000>;
-> +	status = "okay";
-> +};
+Implement DisplayPort support for the Qualcomm RB5 platform.
 
-Note, you are placing this declaration (and further changes in the next 
-patches) at the end of the file, in the pinctrl area. Please move them 
-up into a correct place.
+Note: while testing this, I had link training issues with several
+dongles with DP connectors. Other DisplayPort-USB-C dongles (with HDMI
+or VGA connectors) work perfectly.
+
+Dependencies: [1]
+Soft-dependencies: [2], [3]
+
+[1] https://lore.kernel.org/linux-arm-msm/20230515133643.3621656-1-bryan.odonoghue@linaro.org/
+[2] https://lore.kernel.org/linux-arm-msm/20230709034211.4045004-1-dmitry.baryshkov@linaro.org/
+[3] https://lore.kernel.org/linux-arm-msm/20230709034808.4049383-1-dmitry.baryshkov@linaro.org/
+
+Dmitry Baryshkov (5):
+  dt-bindings: display: msm: dp-controller: document SM8250 compatible
+  arm64: dts: qcom: sm8250: Add DisplayPort device node
+  arm64: dts: qcom: qrb5165-rb5: add onboard USB-C redriver
+  arm64: dts: qcom: qrb5165-rb5: enable displayport controller
+  arm64: dts: qcom: qrb5165-rb5: enable DP altmode
+
+ .../bindings/display/msm/dp-controller.yaml   |  1 +
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts      | 72 +++++++++++++-
+ arch/arm64/boot/dts/qcom/sm8250.dtsi          | 93 +++++++++++++++++++
+ 3 files changed, 164 insertions(+), 2 deletions(-)
 
 -- 
-With best wishes
-Dmitry
+2.39.2
 
