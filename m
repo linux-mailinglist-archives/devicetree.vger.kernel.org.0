@@ -2,91 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D39674C407
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 14:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7828E74C450
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 15:24:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230120AbjGIMZN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jul 2023 08:25:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51486 "EHLO
+        id S230306AbjGINYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jul 2023 09:24:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59772 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229535AbjGIMZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 08:25:13 -0400
-Received: from mail-pj1-x1030.google.com (mail-pj1-x1030.google.com [IPv6:2607:f8b0:4864:20::1030])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81528118
-        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 05:25:12 -0700 (PDT)
-Received: by mail-pj1-x1030.google.com with SMTP id 98e67ed59e1d1-263315da33cso710552a91.0
-        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 05:25:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688905512; x=1691497512;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=71y64z63+fA2sSj8/QHah0vmDRt2yHFpfJlSTQuGOGI=;
-        b=HN46Bg8zcUBcXUBzkZOfBJZlY7xMImkJR58a33weowgUgg/YA3mrJzXlft+Pdm0b6y
-         P3ChW2VhXwwWCnm6/ll0HFl9zNDCvlImzlrC4xkR1WfdoG73gaFV6NUQ5j3GzcWDGGH5
-         CEk+/h7vc0wCWD5I9BnB55QuY3wxnOQTNercDfT3W8iPuOOgpEJaWy8k0U/mABCeEZju
-         BUC9MqR4xU2r1/HwT4ub6JTA4KqtNj7VR8WQGzlQqdyxOH+O1fQL8nSjFY1hro9f7ZLF
-         gHexVR9FvyPz4tf9J4+32vbZUrikU/HBBrMA8DVY6fKFY4I8fw7ofTHzTI2W+i0ur7Th
-         c2Qw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688905512; x=1691497512;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=71y64z63+fA2sSj8/QHah0vmDRt2yHFpfJlSTQuGOGI=;
-        b=LyaI+QvO7AyalD15zv+a32DOXKSHZVvGZVCk/GytoR/KONEjLc9pvMycEoDN2QRcV0
-         76Biqvrt4ZFuzUu4SQMQ5sCdaP1QzLqy792c4PfYq1MFTR8KGO1T7RvJBNC5E4FqPbm3
-         D/EOilh4mFoBauEYKpyQPGtfk7oKa8lQK0ha1CNctgFlWYoJzgl/xOxh0L7f1E3t2KTE
-         bp/IsQcqJvk69JTHmybwGJbWjp9ly5fcKEyeRDXKykNBftfFroZudCsnbEWVm8+LBVC5
-         CCtNgPp4aViv5wmnFkcphW3vU5LKJs8iZecD7eFloujmiyUDBmjCRBe7THWmqQ3tbkto
-         jMrA==
-X-Gm-Message-State: ABy/qLb/rVQ/MMSjZgw4zrv5TZGUPrFgvrz2INUzz75fRCEBjC4KPD0Z
-        lyusm2Q2v+cwY9n6SDA3Uah0nUpAmx9gm+k+ipt/bfeJA0w=
-X-Google-Smtp-Source: APBJJlEYTm39ahv67mqEn6hJY405CsjZmKiLNI8nEj4Xh+ZFZPFbYq3XUn4N1O6ximzS02e7zaR9OYHZp4uyQgJgLJw=
-X-Received: by 2002:a17:902:d50f:b0:1b8:85c4:48f5 with SMTP id
- b15-20020a170902d50f00b001b885c448f5mr13195851plg.2.1688905511921; Sun, 09
- Jul 2023 05:25:11 -0700 (PDT)
+        with ESMTP id S229505AbjGINYS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 09:24:18 -0400
+Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41811103;
+        Sun,  9 Jul 2023 06:24:17 -0700 (PDT)
+Received: from i53875a50.versanet.de ([83.135.90.80] helo=phil.localnet)
+        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94.2)
+        (envelope-from <heiko.stuebner@vrull.eu>)
+        id 1qIUOU-0002QX-Dk; Sun, 09 Jul 2023 15:24:06 +0200
+From:   Heiko Stuebner <heiko.stuebner@vrull.eu>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org
+Cc:     "Hongren (Zenithal) Zheng" <i@zenithal.me>, linux@rivosinc.com,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Anup Patel <apatel@ventanamicro.com>,
+        linux-kernel@vger.kernel.org, Guo Ren <guoren@kernel.org>,
+        Atish Patra <atishp@rivosinc.com>,
+        Samuel Ortiz <sameo@rivosinc.com>,
+        =?ISO-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+        Evan Green <evan@rivosinc.com>, devicetree@vger.kernel.org,
+        Jiatai He <jiatai2021@iscas.ac.cn>,
+        Samuel Ortiz <sameo@rivosinc.com>
+Subject: Re: [PATCH v3 1/4] RISC-V: Add Bitmanip/Scalar Crypto parsing from DT
+Date:   Sun, 09 Jul 2023 15:24:05 +0200
+Message-ID: <3171655.5fSG56mABF@phil>
+In-Reply-To: <20230709115549.2666557-2-sameo@rivosinc.com>
+References: <20230709115549.2666557-1-sameo@rivosinc.com>
+ <20230709115549.2666557-2-sameo@rivosinc.com>
 MIME-Version: 1.0
-References: <20230708173720.3548414-1-dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230708173720.3548414-1-dmitry.baryshkov@linaro.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sun, 9 Jul 2023 09:25:00 -0300
-Message-ID: <CAOMZO5ByECB18dytkbuhKJkX2haRHMRGh8G7De-swth2W6pkBg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: nxp/imx: limit sk-imx53 supported frequencies
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
+X-Spam-Status: No, score=-1.1 required=5.0 tests=BAYES_00,
+        RCVD_IN_DNSWL_BLOCKED,SPF_NEUTRAL,T_SCC_BODY_TEXT_LINE,
+        T_SPF_HELO_TEMPERROR autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 8, 2023 at 2:37=E2=80=AFPM Dmitry Baryshkov
-<dmitry.baryshkov@linaro.org> wrote:
->
-> The SK-IMX53 board bearing i.MX536 CPU is not stable when running at 1.2
-> GHz. Disable that frequency.
->
-> Note, officially i.MX536 is rated up to 800 MHz, but running it at 1 GHz
-> proved to be stable.
+Am Sonntag, 9. Juli 2023, 13:55:43 CEST schrieb Samuel Ortiz:
+> From: "Hongren (Zenithal) Zheng" <i@zenithal.me>
+> 
+> Parse Zb/Zk related string from DT and output them to cpuinfo.
+> 
+> It is worth noting that the Scalar Crypto extension defines "zk" as a
+> shorthand for the Zkn, Zkr and Zkt extensions. Since the Zkn one also
+> implies the Zbkb, Zbkc and Zbkx extensions, simply passing the valid
+> "zk" extension name through a DT will enable all of the  Zbkb, Zbkc,
+> Zbkx, Zkn, Zkr and Zkt extensions.
+> 
+> Also, since there currently is no mechanism to merge all enabled
+> extensions, the generated cpuinfo output could be relatively large.
+> For example, setting the "riscv,isa" DT property to "rv64imafdc_zk_zks"
+> will generate the following cpuinfo output:
+> "rv64imafdc_zbkb_zbkc_zbkx_zknd_zkne_zknh_zkr_zksed_zksh_zkt".
+> 
+> Tested-by: Jiatai He <jiatai2021@iscas.ac.cn>
+> Reviewed-by: Evan Green <evan@rivosinc.com>
+> Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
+> Signed-off-by: Samuel Ortiz <sameo@rivosinc.com>
+> Signed-off-by: Hongren (Zenithal) Zheng <i@zenithal.me>
 
-If the datasheet says the maximum operating frequency is 800 MHz, just
-adhere to it.
+Signed-off-by lines should be the other way around (Hongren Zhen first,
+then yours), otherwise
 
-Running at 1 GHz on an 800 MHz device is not guaranteed that it works
-on all the temperature range and across all devices.
+Reviewed-by: Heiko Stuebner <heiko.stuebner@vrull.eu>
+Tested-by: Heiko Stuebner <heiko.stuebner@vrull.eu>
 
-Better play safe here.
+
+
