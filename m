@@ -2,92 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EA4474C6CD
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 19:41:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B0FB74C771
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 20:48:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbjGIRle (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jul 2023 13:41:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42988 "EHLO
+        id S230224AbjGISsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jul 2023 14:48:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55646 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231201AbjGIRld (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 13:41:33 -0400
-Received: from mail-ej1-x62a.google.com (mail-ej1-x62a.google.com [IPv6:2a00:1450:4864:20::62a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5215AFC
-        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 10:41:31 -0700 (PDT)
-Received: by mail-ej1-x62a.google.com with SMTP id a640c23a62f3a-98de21518fbso485428366b.0
-        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 10:41:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688924490; x=1691516490;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=9oeKoSQqGnKyOhvK1kMTJPXEjPeVsm/hf9GdEualz/s=;
-        b=vMNlkobbdhJz+MoQIMwxINl916JGFbmOshhhboGc9QS0at7vhlLfF+DcLaLhtjbtEC
-         K+LG9umoc4J1NFxFsfZs0ep+c4sdpVURBXS3TVMJRuJbPnn5Gp6yicHFDVdpau0N7DJC
-         sLmxR3I/Qqh92wKk4WpNNZRBOiijx1IXCzqaOwZ8d0fGrMz9XntFIYRl5/yIcjUm6Khe
-         NdroJi5r7Kz0IiEoh0uNbu5bpLx0szc0plQjYFLF3AT2hBiaC3kmRGrBHnx6AC8gS0FA
-         OX2jrrTKou9iskNn7vRpYdO1taGbBZVXRyq7EsU3B/YQQGWEq+/7Joe+6pNzx9L3btDh
-         RSYQ==
+        with ESMTP id S229876AbjGISsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 14:48:23 -0400
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D1BD7;
+        Sun,  9 Jul 2023 11:48:22 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-76c64da0e46so114600039f.0;
+        Sun, 09 Jul 2023 11:48:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688924490; x=1691516490;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=9oeKoSQqGnKyOhvK1kMTJPXEjPeVsm/hf9GdEualz/s=;
-        b=fgtHHX+r4eE4o4zG2xC0YTOnIRJp5YLtj/S+9DCytwydMaZABOY13R4+ggyOgfItfQ
-         Qjsme68V3ZEHqzPZZuIiPUGqhKhZw+BAW1ycCTCpwlyinlNKctZCGaV19KF+oEey/6h/
-         9lHWLLFMHM/qqobcNuoeIjDrOKzTj6l0LDjXj0SScr7NgC8oJAIb9qMmrByzxVGrsvI2
-         dL7UC9ORuWhUeo15T+T/Rujepaz11lUE4LaanHv+8s0DlP4+t0+vpVnQ2lD+gCrw7TWV
-         KweoPRULSh4IxbFZLIaEw3uaMg5cm4b3kPtUn+Cn+NkaMFE+1SkFglNAOKVV4vLkfaT8
-         jAcg==
-X-Gm-Message-State: ABy/qLbfUNd5ZPWXRwU1tNe5mrn5x9mM9geouHA3ZiIt7UP4hukjLwEd
-        hGlzMihSXTXchLtxNd81iFDEgw==
-X-Google-Smtp-Source: APBJJlHvRXJCSdZxiouXi07KpghTnQuXPR5PnU1C68ap3XHWWr3uMG+uW1w42kwNzkNLCiNxe4U2pQ==
-X-Received: by 2002:a17:906:5a6e:b0:965:9602:1f07 with SMTP id my46-20020a1709065a6e00b0096596021f07mr10035969ejc.39.1688924489848;
-        Sun, 09 Jul 2023 10:41:29 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id r11-20020a17090638cb00b00992b510089asm5031895ejd.84.2023.07.09.10.41.27
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 09 Jul 2023 10:41:29 -0700 (PDT)
-Message-ID: <0b5771b3-31b1-c17c-2be4-9b71538078bb@linaro.org>
-Date:   Sun, 9 Jul 2023 19:41:25 +0200
+        d=1e100.net; s=20221208; t=1688928501; x=1691520501;
+        h=date:subject:message-id:references:in-reply-to:cc:to:from
+         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=Z4lQFYgNjGGLNzxqxo8Kfz9DCjN7NHsnOH60gjbOH9Y=;
+        b=Ret8cRKcwV8Ahe2qGwuer6UIIoat/zmmP8DgysbDUv6QYM2SOrWITfgAOlrqDNGqM4
+         yWlHOs0hdMb11NEvHuyj1CZUVS8UDaZdOTyxZ5Y9OWzN8lp7+UVe9H8wgZ/2bUwFWJcC
+         9w6nRwA4s89aMhQKSeGkoIMx1dxb5vuAe6XfdzPphZ23Q5lXTewjz6IsVj+fbY5Lw/uh
+         xnutHjloM5fJQ3VHfN06zKQ2oldZ6BUZSOG8tIotWfRVa6UHmqhhbwZV8Va/1iDtUQ1q
+         TJgGJtrr8Z79mfL6bdEkR2SnL95t35+a+/L7QeSFNR4L9cXGRE8zQORIgCbmmJKZcAn/
+         CbiQ==
+X-Gm-Message-State: ABy/qLZRXLiWSvaFE0brMPCXO/zhtNzkRpwAhW7YtYR9xFgbmzDGKu9f
+        lC8hUZ2s+jiF+AZUHCvQ0qhKwtMbHg==
+X-Google-Smtp-Source: APBJJlHJjPkCUjzBIuH1hXcT6BFuGoJDVlNP46jln2r3iYCMqZud1rezHpYm/4xirSkmy6u7760HbA==
+X-Received: by 2002:a05:6e02:5cd:b0:346:6507:db89 with SMTP id l13-20020a056e0205cd00b003466507db89mr60357ils.20.1688928501419;
+        Sun, 09 Jul 2023 11:48:21 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id h12-20020a02c72c000000b0042acf934cbasm2666490jao.72.2023.07.09.11.48.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jul 2023 11:48:20 -0700 (PDT)
+Received: (nullmailer pid 136176 invoked by uid 1000);
+        Sun, 09 Jul 2023 18:48:18 -0000
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 07/11] iio: adc: Add support for QCOM PMIC5 Gen3 ADC
-Content-Language: en-US
-To:     Jishnu Prakash <quic_jprakash@quicinc.com>, agross@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linus.walleij@linaro.org, Jonathan.Cameron@huawei.com,
-        sboyd@kernel.org, dmitry.baryshkov@linaro.org,
-        quic_subbaram@quicinc.com, quic_collinsd@quicinc.com,
-        quic_kamalw@quicinc.com, quic_jestar@quicinc.com,
-        marijn.suijten@somainline.org, andriy.shevchenko@linux.intel.com,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Cosmin Tanislav <demonsingur@gmail.com>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        Ramona Bolboaca <ramona.bolboaca@analog.com>,
-        ChiYuan Huang <cy_huang@richtek.com>,
-        Ibrahim Tilki <Ibrahim.Tilki@analog.com>,
-        William Breathitt Gray <william.gray@linaro.org>,
-        Lee Jones <lee@kernel.org>,
-        =?UTF-8?Q?Leonard_G=c3=b6hrs?= <l.goehrs@pengutronix.de>,
-        Haibo Chen <haibo.chen@nxp.com>, linux-iio@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     linux-arm-msm-owner@vger.kernel.org
-References: <20230708072835.3035398-1-quic_jprakash@quicinc.com>
- <20230708072835.3035398-8-quic_jprakash@quicinc.com>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <20230708072835.3035398-8-quic_jprakash@quicinc.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+From:   Rob Herring <robh@kernel.org>
+To:     Piyush Mehta <piyush.mehta@amd.com>
+Cc:     nava.kishore.manne@amd.com, linux-kernel@vger.kernel.org,
+        git@amd.com, wsa@kernel.org, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
+        conor+dt@kernel.org, devicetree@vger.kernel.org,
+        dlemoal@kernel.org, michal.simek@amd.com,
+        sebastian.reichel@collabora.com, linux-usb@vger.kernel.org
+In-Reply-To: <20230709172542.1393828-1-piyush.mehta@amd.com>
+References: <20230709172542.1393828-1-piyush.mehta@amd.com>
+Message-Id: <168892849854.136160.7620779203584875736.robh@kernel.org>
+Subject: Re: [PATCH] dt-bindings: firmware: add reset-controller property
+Date:   Sun, 09 Jul 2023 12:48:18 -0600
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -95,162 +66,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08/07/2023 09:28, Jishnu Prakash wrote:
-> The ADC architecture on PMIC5 Gen3 is similar to that on PMIC5 Gen2,
-> with all SW communication to ADC going through PMK8550 which
-> communicates with other PMICs through PBS. One major difference is
-> that the register interface used here is that of an SDAM present on
 
-...
+On Sun, 09 Jul 2023 22:55:42 +0530, Piyush Mehta wrote:
+> The reset controller is responsible for managing both device-level resets
+> and individual PMC (Power Management Controller) block resets.
+> 
+> To facilitate this functionality reset-controller property is added to the
+> firmware device tree binding.
+> 
+> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
+> ---
+>  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml         | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+> 
 
+My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
+on your patch (DT_CHECKER_FLAGS is new in v5.13):
 
-> +static int adc5_gen3_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct iio_dev *indio_dev;
-> +	struct adc5_chip *adc;
-> +	struct regmap *regmap;
-> +	int ret, i, irq;
-> +	u32 *reg;
-> +	char buf[20];
-> +
-> +	regmap = dev_get_regmap(dev->parent, NULL);
-> +	if (!regmap)
-> +		return -ENODEV;
-> +
-> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*adc));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	adc = iio_priv(indio_dev);
-> +	adc->regmap = regmap;
-> +	adc->dev = dev;
-> +
-> +	ret = device_property_count_u32(dev, "reg");
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	adc->num_sdams = ret;
-> +
-> +	reg = devm_kcalloc(dev, adc->num_sdams, sizeof(u32), GFP_KERNEL);
-> +	if (!reg)
-> +		return -ENOMEM;
-> +
-> +	ret = device_property_read_u32_array(dev, "reg", reg, adc->num_sdams);
-> +	if (ret) {
-> +		dev_err(adc->dev, "Failed to read reg property, ret=%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	adc->base = devm_kcalloc(adc->dev, adc->num_sdams, sizeof(*adc->base), GFP_KERNEL);
-> +	if (!adc->base)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < adc->num_sdams; i++) {
-> +		adc->base[i].base_addr = reg[i];
-> +
-> +		irq = platform_get_irq(pdev, i);
-> +		if (irq < 0) {
-> +			dev_err(adc->dev, "Failed to get SDAM%d irq, ret=%d\n", i, irq);
-> +			return irq;
+yamllint warnings/errors:
 
-return dev_err_probe
+dtschema/dtc warnings/errors:
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml:
+Error in referenced schema matching $id: http://devicetree.org/schemas/reset/xlnx,zynqmp-reset.yaml
+/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: reset-controller: False schema does not allow {'compatible': ['xlnx,zynqmp-reset'], '#reset-cells': [[1]]}
+	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml#
+Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: /example-0/versal-firmware/reset-controller: failed to match any schema with compatible: ['xlnx,zynqmp-reset']
 
-> +		}
-> +		adc->base[i].irq = irq;
-> +
-> +		scnprintf(buf, sizeof(buf), "adc-sdam%d", i);
-> +		adc->base[i].irq_name = devm_kstrdup(adc->dev, buf, GFP_KERNEL);
-> +		if (!adc->base[i].irq_name)
-> +			return -ENOMEM;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, adc);
-> +
-> +	init_completion(&adc->complete);
-> +	mutex_init(&adc->lock);
-> +
-> +	ret = adc5_get_fw_data(adc);
-> +	if (ret < 0) {
-> +		dev_err(adc->dev, "adc get dt data failed, ret=%d\n", ret);
+doc reference errors (make refcheckdocs):
 
-return dev_err_probe
+See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230709172542.1393828-1-piyush.mehta@amd.com
 
-> +		return ret;
-> +	}
-> +
-> +	for (i = 0; i < adc->num_sdams; i++) {
-> +		ret = devm_request_irq(dev, adc->base[i].irq, adc5_gen3_isr,
-> +					0, adc->base[i].irq_name, adc);
-> +		if (ret < 0) {
-> +			dev_err(adc->dev, "Getting IRQ %d failed, ret=%d\n", adc->base[i].irq, ret);
+The base for the series is generally the latest rc1. A different dependency
+should be noted in *this* patch.
 
-return dev_err_probe
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure 'yamllint' is installed and dt-schema is up to
+date:
 
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	ret = adc_tm_register_tzd(adc);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (adc->n_tm_channels)
-> +		INIT_WORK(&adc->tm_handler_work, tm_handler_work);
-> +
-> +	indio_dev->name = pdev->name;
-> +	indio_dev->modes = INDIO_DIRECT_MODE;
-> +	indio_dev->info = &adc5_gen3_info;
-> +	indio_dev->channels = adc->iio_chans;
-> +	indio_dev->num_channels = adc->nchannels;
-> +
-> +	return devm_iio_device_register(dev, indio_dev);
-> +}
-> +
-> +static int adc5_gen3_exit(struct platform_device *pdev)
-> +{
-> +	struct adc5_chip *adc = platform_get_drvdata(pdev);
-> +	u8 data = 0;
-> +	int i, sdam_index;
-> +
-> +	mutex_lock(&adc->lock);
-> +	/* Disable all available channels */
-> +	for (i = 0; i < adc->num_sdams * 8; i++) {
-> +		sdam_index = i / 8;
-> +		data = MEAS_INT_DISABLE;
-> +		adc5_gen3_write(adc, sdam_index, ADC5_GEN3_TIMER_SEL, &data, 1);
-> +
-> +		/* To indicate there is an actual conversion request */
-> +		data = ADC5_GEN3_CHAN_CONV_REQ | (i - (sdam_index * 8));
-> +		adc5_gen3_write(adc, sdam_index, ADC5_GEN3_PERPH_CH, &data, 1);
-> +
-> +		data = ADC5_GEN3_CONV_REQ_REQ;
-> +		adc5_gen3_write(adc, sdam_index, ADC5_GEN3_CONV_REQ, &data, 1);
-> +	}
-> +
-> +	mutex_unlock(&adc->lock);
-> +
-> +	if (adc->n_tm_channels)
-> +		cancel_work_sync(&adc->tm_handler_work);
-> +
-> +	return 0;
-> +}
-> +
-> +static struct platform_driver adc5_gen3_driver = {
-> +	.driver = {
-> +		.name = "qcom-spmi-adc5-gen3",
-> +		.of_match_table = adc5_match_table,
-> +	},
-> +	.probe = adc5_gen3_probe,
-> +	.remove = adc5_gen3_exit,
-> +};
-> +module_platform_driver(adc5_gen3_driver);
-> +
-> +MODULE_ALIAS("platform:qcom-spmi-adc5-gen3");
+pip3 install dtschema --upgrade
 
-Drop alias. If you need it, it means you screwed ID tables or your DTS.
-
-
-Best regards,
-Krzysztof
+Please check and re-submit after running the above command yourself. Note
+that DT_SCHEMA_FILES can be set to your schema file to speed up checking
+your schema. However, it must be unset to test all examples with your schema.
 
