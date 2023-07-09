@@ -2,63 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B0FB74C771
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 20:48:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6AA474C7F0
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 21:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230224AbjGISsY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jul 2023 14:48:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55646 "EHLO
+        id S229888AbjGIT5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jul 2023 15:57:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51268 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229876AbjGISsX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 14:48:23 -0400
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com [209.85.166.53])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86D1BD7;
-        Sun,  9 Jul 2023 11:48:22 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id ca18e2360f4ac-76c64da0e46so114600039f.0;
-        Sun, 09 Jul 2023 11:48:22 -0700 (PDT)
+        with ESMTP id S229481AbjGIT5c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 15:57:32 -0400
+Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03513120
+        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 12:57:30 -0700 (PDT)
+Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5776312eaddso47044027b3.3
+        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 12:57:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688932650; x=1691524650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=XgkK/cTKfOK8S9x6ub2ynsjCNrDYz2SCb+BJn2q9Unk=;
+        b=xjcxJaKv9jAGc1Dv87OP97bV/xl+fCCJZ+nU0lk6whIQ3WhP1oann1gAglnF9TMkEW
+         xAZiuDwINGsBZjoRwi00MYneTlQ0BhHL0eX3AW1VoxnGXikik2QJ22OmU7ySrreugd5B
+         ZPO81iHotzDRGsQU2Ro82k/YKWevyvFrN0/LNEeQio2u8Sy9j5wEMVQIhFNCVSymam/q
+         IY1hcSpjeSaqYEo430Ats2iCNdVBz2RNk3nFQG+gYa7yqiBirr66+R6MKBT5i/BSFEWX
+         VhHQyTPgcp/X1W6pZaIRa7Rcy23W3OB5ukYwZl8PSDKsGxaOL6j6AEng0XqhOnlDyzTO
+         9guQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688928501; x=1691520501;
-        h=date:subject:message-id:references:in-reply-to:cc:to:from
-         :mime-version:content-transfer-encoding:x-gm-message-state:from:to
-         :cc:subject:date:message-id:reply-to;
-        bh=Z4lQFYgNjGGLNzxqxo8Kfz9DCjN7NHsnOH60gjbOH9Y=;
-        b=Ret8cRKcwV8Ahe2qGwuer6UIIoat/zmmP8DgysbDUv6QYM2SOrWITfgAOlrqDNGqM4
-         yWlHOs0hdMb11NEvHuyj1CZUVS8UDaZdOTyxZ5Y9OWzN8lp7+UVe9H8wgZ/2bUwFWJcC
-         9w6nRwA4s89aMhQKSeGkoIMx1dxb5vuAe6XfdzPphZ23Q5lXTewjz6IsVj+fbY5Lw/uh
-         xnutHjloM5fJQ3VHfN06zKQ2oldZ6BUZSOG8tIotWfRVa6UHmqhhbwZV8Va/1iDtUQ1q
-         TJgGJtrr8Z79mfL6bdEkR2SnL95t35+a+/L7QeSFNR4L9cXGRE8zQORIgCbmmJKZcAn/
-         CbiQ==
-X-Gm-Message-State: ABy/qLZRXLiWSvaFE0brMPCXO/zhtNzkRpwAhW7YtYR9xFgbmzDGKu9f
-        lC8hUZ2s+jiF+AZUHCvQ0qhKwtMbHg==
-X-Google-Smtp-Source: APBJJlHJjPkCUjzBIuH1hXcT6BFuGoJDVlNP46jln2r3iYCMqZud1rezHpYm/4xirSkmy6u7760HbA==
-X-Received: by 2002:a05:6e02:5cd:b0:346:6507:db89 with SMTP id l13-20020a056e0205cd00b003466507db89mr60357ils.20.1688928501419;
-        Sun, 09 Jul 2023 11:48:21 -0700 (PDT)
-Received: from robh_at_kernel.org ([64.188.179.250])
-        by smtp.gmail.com with ESMTPSA id h12-20020a02c72c000000b0042acf934cbasm2666490jao.72.2023.07.09.11.48.19
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 09 Jul 2023 11:48:20 -0700 (PDT)
-Received: (nullmailer pid 136176 invoked by uid 1000);
-        Sun, 09 Jul 2023 18:48:18 -0000
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+        d=1e100.net; s=20221208; t=1688932650; x=1691524650;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=XgkK/cTKfOK8S9x6ub2ynsjCNrDYz2SCb+BJn2q9Unk=;
+        b=luOaYbQaefaT6WqE+XDF+GMj30VTKovzVi8/Y71Q2WsHcRiDrjuYkihlEK2wKYNfKO
+         9cj7KPlsV4f6iEgn+4wz0AOkMm52uEWimWu3W3kgIoEqs/YELMHSmmsmgN81jRhNhdg7
+         Zlv+r3HcE3NSfapmVSfmnoriN1QVBxhwslgB/kti+xCGrLRvnu1KaxG5DD912ckV0lwT
+         FbLANXuIJGGreh6+BRcbiSeEor7xCmADcjvUal3jtOd65IfHo2GFbTAm+sf48dl63+3y
+         yVSXc0VhGZAnebWLHRCY2gwHQGKEP9UUrZMhx5ID7VVZfJo9XFhYt2NaVqvf1evcrIvP
+         ZtLA==
+X-Gm-Message-State: ABy/qLZIZyLtGjMEFtxwQ2PTDLrzPguJuWQdpe2T/xpCG6YhxWLxV9IC
+        g5vYOkxG5KgaeA2haBncdYQ5QRhdg8ZlfAtcoKxtCQ==
+X-Google-Smtp-Source: APBJJlEWiLC1rRoN9gpdE5lrRVxDT8GaXCmFXOsicSSUM/3fTD8jbXZmvNCrkiCQdAzvV1e9R57hEVnz+A8I8+HCzk0=
+X-Received: by 2002:a81:9283:0:b0:579:ef7e:d560 with SMTP id
+ j125-20020a819283000000b00579ef7ed560mr10575341ywg.23.1688932650127; Sun, 09
+ Jul 2023 12:57:30 -0700 (PDT)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-To:     Piyush Mehta <piyush.mehta@amd.com>
-Cc:     nava.kishore.manne@amd.com, linux-kernel@vger.kernel.org,
-        git@amd.com, wsa@kernel.org, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, broonie@kernel.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org,
-        dlemoal@kernel.org, michal.simek@amd.com,
-        sebastian.reichel@collabora.com, linux-usb@vger.kernel.org
-In-Reply-To: <20230709172542.1393828-1-piyush.mehta@amd.com>
-References: <20230709172542.1393828-1-piyush.mehta@amd.com>
-Message-Id: <168892849854.136160.7620779203584875736.robh@kernel.org>
-Subject: Re: [PATCH] dt-bindings: firmware: add reset-controller property
-Date:   Sun, 09 Jul 2023 12:48:18 -0600
-X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
-        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+References: <20230708173720.3548414-1-dmitry.baryshkov@linaro.org> <CAOMZO5ByECB18dytkbuhKJkX2haRHMRGh8G7De-swth2W6pkBg@mail.gmail.com>
+In-Reply-To: <CAOMZO5ByECB18dytkbuhKJkX2haRHMRGh8G7De-swth2W6pkBg@mail.gmail.com>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Date:   Sun, 9 Jul 2023 22:57:19 +0300
+Message-ID: <CAA8EJppvGd=S6WeJZGhn1tsxbHuFknemvSXEcM4MhpW_EhsCCA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: nxp/imx: limit sk-imx53 supported frequencies
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -66,46 +74,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, 9 Jul 2023 at 15:25, Fabio Estevam <festevam@gmail.com> wrote:
+>
+> On Sat, Jul 8, 2023 at 2:37=E2=80=AFPM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > The SK-IMX53 board bearing i.MX536 CPU is not stable when running at 1.=
+2
+> > GHz. Disable that frequency.
+> >
+> > Note, officially i.MX536 is rated up to 800 MHz, but running it at 1 GH=
+z
+> > proved to be stable.
+>
+> If the datasheet says the maximum operating frequency is 800 MHz, just
+> adhere to it.
+>
+> Running at 1 GHz on an 800 MHz device is not guaranteed that it works
+> on all the temperature range and across all devices.
 
-On Sun, 09 Jul 2023 22:55:42 +0530, Piyush Mehta wrote:
-> The reset controller is responsible for managing both device-level resets
-> and individual PMC (Power Management Controller) block resets.
-> 
-> To facilitate this functionality reset-controller property is added to the
-> firmware device tree binding.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@amd.com>
-> ---
->  .../firmware/xilinx/xlnx,zynqmp-firmware.yaml         | 11 +++++++++++
->  1 file changed, 11 insertions(+)
-> 
+I had to doublecheck this. Original board manufacturer (Starterkit)
+lists it as "FreeScale iMX536 (ARM Cortex-A8 1000MHz, ...". However I
+have verified that the board has MCIMX536AVV8C, SoC, which indeed is
+rated only up to 800 MHz. I'll send v2 using max 800 MHz for safety.
 
-My bot found errors running 'make DT_CHECKER_FLAGS=-m dt_binding_check'
-on your patch (DT_CHECKER_FLAGS is new in v5.13):
-
-yamllint warnings/errors:
-
-dtschema/dtc warnings/errors:
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.yaml:
-Error in referenced schema matching $id: http://devicetree.org/schemas/reset/xlnx,zynqmp-reset.yaml
-/builds/robherring/dt-review-ci/linux/Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: versal-firmware: reset-controller: False schema does not allow {'compatible': ['xlnx,zynqmp-reset'], '#reset-cells': [[1]]}
-	from schema $id: http://devicetree.org/schemas/firmware/xilinx/xlnx,zynqmp-firmware.yaml#
-Documentation/devicetree/bindings/firmware/xilinx/xlnx,zynqmp-firmware.example.dtb: /example-0/versal-firmware/reset-controller: failed to match any schema with compatible: ['xlnx,zynqmp-reset']
-
-doc reference errors (make refcheckdocs):
-
-See https://patchwork.ozlabs.org/project/devicetree-bindings/patch/20230709172542.1393828-1-piyush.mehta@amd.com
-
-The base for the series is generally the latest rc1. A different dependency
-should be noted in *this* patch.
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure 'yamllint' is installed and dt-schema is up to
-date:
-
-pip3 install dtschema --upgrade
-
-Please check and re-submit after running the above command yourself. Note
-that DT_SCHEMA_FILES can be set to your schema file to speed up checking
-your schema. However, it must be unset to test all examples with your schema.
-
+--=20
+With best wishes
+Dmitry
