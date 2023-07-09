@@ -2,68 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id E6AA474C7F0
-	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 21:57:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16D4574C837
+	for <lists+devicetree@lfdr.de>; Sun,  9 Jul 2023 22:30:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229888AbjGIT5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jul 2023 15:57:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51268 "EHLO
+        id S229848AbjGIUaY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jul 2023 16:30:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56372 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229481AbjGIT5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 15:57:32 -0400
-Received: from mail-yw1-x1130.google.com (mail-yw1-x1130.google.com [IPv6:2607:f8b0:4864:20::1130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 03513120
-        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 12:57:30 -0700 (PDT)
-Received: by mail-yw1-x1130.google.com with SMTP id 00721157ae682-5776312eaddso47044027b3.3
-        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 12:57:30 -0700 (PDT)
+        with ESMTP id S229564AbjGIUaW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 16:30:22 -0400
+Received: from mail-lj1-x22b.google.com (mail-lj1-x22b.google.com [IPv6:2a00:1450:4864:20::22b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B2804103
+        for <devicetree@vger.kernel.org>; Sun,  9 Jul 2023 13:30:21 -0700 (PDT)
+Received: by mail-lj1-x22b.google.com with SMTP id 38308e7fff4ca-2b6afc1ceffso61025061fa.0
+        for <devicetree@vger.kernel.org>; Sun, 09 Jul 2023 13:30:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688932650; x=1691524650;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=XgkK/cTKfOK8S9x6ub2ynsjCNrDYz2SCb+BJn2q9Unk=;
-        b=xjcxJaKv9jAGc1Dv87OP97bV/xl+fCCJZ+nU0lk6whIQ3WhP1oann1gAglnF9TMkEW
-         xAZiuDwINGsBZjoRwi00MYneTlQ0BhHL0eX3AW1VoxnGXikik2QJ22OmU7ySrreugd5B
-         ZPO81iHotzDRGsQU2Ro82k/YKWevyvFrN0/LNEeQio2u8Sy9j5wEMVQIhFNCVSymam/q
-         IY1hcSpjeSaqYEo430Ats2iCNdVBz2RNk3nFQG+gYa7yqiBirr66+R6MKBT5i/BSFEWX
-         VhHQyTPgcp/X1W6pZaIRa7Rcy23W3OB5ukYwZl8PSDKsGxaOL6j6AEng0XqhOnlDyzTO
-         9guQ==
+        d=linaro.org; s=google; t=1688934620; x=1691526620;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=UtFY5gTAaY9q5bjZEYwOpDzLkWnCyMxHf/Gn+VJEzFI=;
+        b=xS1HANqzCPIXDXDduNF7SsCuujTygdYMYsMG+iO3XD/lfuwXnyCO75pMqwUjNSFS3N
+         DWF1+65sLsp6QyvtaUqWpiY2BqbomqemXi3wO3/L0iO1f7GErIoPSLrA3pgD6oxg4C6a
+         39pmMHUb+41uRSFIhJIgj8xSGpkBdE2fYug9FSH4OZE6x/P6SJOeigXzIQAJZbMorNzl
+         lJmVU9W4DevtKUnAIoLZGNMHwz10h80DEVDdsX8LEpPEd9A8KFQTdB421Pi3lLaLRw6y
+         f4VB/AIeUZKXVEEr/BFlMJLkBYEdvIyvwGTxaaLHdqvwp1mAX6ybrDq7zbKJgpVuIMo3
+         tdXA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688932650; x=1691524650;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=XgkK/cTKfOK8S9x6ub2ynsjCNrDYz2SCb+BJn2q9Unk=;
-        b=luOaYbQaefaT6WqE+XDF+GMj30VTKovzVi8/Y71Q2WsHcRiDrjuYkihlEK2wKYNfKO
-         9cj7KPlsV4f6iEgn+4wz0AOkMm52uEWimWu3W3kgIoEqs/YELMHSmmsmgN81jRhNhdg7
-         Zlv+r3HcE3NSfapmVSfmnoriN1QVBxhwslgB/kti+xCGrLRvnu1KaxG5DD912ckV0lwT
-         FbLANXuIJGGreh6+BRcbiSeEor7xCmADcjvUal3jtOd65IfHo2GFbTAm+sf48dl63+3y
-         yVSXc0VhGZAnebWLHRCY2gwHQGKEP9UUrZMhx5ID7VVZfJo9XFhYt2NaVqvf1evcrIvP
-         ZtLA==
-X-Gm-Message-State: ABy/qLZIZyLtGjMEFtxwQ2PTDLrzPguJuWQdpe2T/xpCG6YhxWLxV9IC
-        g5vYOkxG5KgaeA2haBncdYQ5QRhdg8ZlfAtcoKxtCQ==
-X-Google-Smtp-Source: APBJJlEWiLC1rRoN9gpdE5lrRVxDT8GaXCmFXOsicSSUM/3fTD8jbXZmvNCrkiCQdAzvV1e9R57hEVnz+A8I8+HCzk0=
-X-Received: by 2002:a81:9283:0:b0:579:ef7e:d560 with SMTP id
- j125-20020a819283000000b00579ef7ed560mr10575341ywg.23.1688932650127; Sun, 09
- Jul 2023 12:57:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20230708173720.3548414-1-dmitry.baryshkov@linaro.org> <CAOMZO5ByECB18dytkbuhKJkX2haRHMRGh8G7De-swth2W6pkBg@mail.gmail.com>
-In-Reply-To: <CAOMZO5ByECB18dytkbuhKJkX2haRHMRGh8G7De-swth2W6pkBg@mail.gmail.com>
+        d=1e100.net; s=20221208; t=1688934620; x=1691526620;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=UtFY5gTAaY9q5bjZEYwOpDzLkWnCyMxHf/Gn+VJEzFI=;
+        b=aYmaXP6DXEpibQ+HSL7t35EtRNDcB+2h1VjQsqQjvzT7SRQFKh4u85/4XHIHUaIjQ6
+         2I0+wqpzILpoI5CgHYh05pNuM4GRvnF4bsaAe5x9GZ+0cemGpYhpSZPZ6I2EXBZftuWO
+         TrM6wsxnHsjPf0Q0fSZWrJlg9Wg8hDNFCWDBmoXmJWlkpIGureQOuf9eGTl7GRAzow6I
+         Cna18kURrashb3PqS0k46+Piggv1hAhmX7KfiXYb7Zorl2Z5L4TcTzvsXmnOrjBEbeyk
+         dFe4q1m6tXwgSyxcQaeFqUjVBt+L+AvW/rKhRc+W72fnrwwQBsVvFy2kBc2J+3foM7Ay
+         QxcQ==
+X-Gm-Message-State: ABy/qLbQs/74TUpxzz2raeP4/0reOxrfrx3txzdCJwTyP4xbFcnArkA1
+        DbPV7ZqAmKBUwIGrJ0hdPDfuvg==
+X-Google-Smtp-Source: APBJJlFg3wm3Bv3OLi2E+bqd6Iuf/vw0/jhW4LRLvDbwVehnrssv1sFum2uMEnI7Ji7r9FIhLgppCg==
+X-Received: by 2002:a2e:86d3:0:b0:2b6:efce:f787 with SMTP id n19-20020a2e86d3000000b002b6efcef787mr5804139ljj.51.1688934619981;
+        Sun, 09 Jul 2023 13:30:19 -0700 (PDT)
+Received: from lothlorien.lan (dzdqv0yyyyyyyyyyybm5y-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::ab2])
+        by smtp.gmail.com with ESMTPSA id c11-20020a2e9d8b000000b002b6d86b08fesm1721679ljj.18.2023.07.09.13.30.19
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 09 Jul 2023 13:30:19 -0700 (PDT)
 From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Sun, 9 Jul 2023 22:57:19 +0300
-Message-ID: <CAA8EJppvGd=S6WeJZGhn1tsxbHuFknemvSXEcM4MhpW_EhsCCA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: nxp/imx: limit sk-imx53 supported frequencies
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2] ARM: dts: nxp/imx: limit sk-imx53 supported frequencies
+Date:   Sun,  9 Jul 2023 23:30:19 +0300
+Message-Id: <20230709203019.291823-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.39.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
@@ -74,30 +74,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 9 Jul 2023 at 15:25, Fabio Estevam <festevam@gmail.com> wrote:
->
-> On Sat, Jul 8, 2023 at 2:37=E2=80=AFPM Dmitry Baryshkov
-> <dmitry.baryshkov@linaro.org> wrote:
-> >
-> > The SK-IMX53 board bearing i.MX536 CPU is not stable when running at 1.=
-2
-> > GHz. Disable that frequency.
-> >
-> > Note, officially i.MX536 is rated up to 800 MHz, but running it at 1 GH=
-z
-> > proved to be stable.
->
-> If the datasheet says the maximum operating frequency is 800 MHz, just
-> adhere to it.
->
-> Running at 1 GHz on an 800 MHz device is not guaranteed that it works
-> on all the temperature range and across all devices.
+The SK-IMX53 board, bearing i.MX536A CPU, is not stable when running at
+1.2 GHz (default iMX53 maximum). The SoC is only rated up to 800 MHz.
+Disable 1.2 GHz and 1 GHz frequencies.
 
-I had to doublecheck this. Original board manufacturer (Starterkit)
-lists it as "FreeScale iMX536 (ARM Cortex-A8 1000MHz, ...". However I
-have verified that the board has MCIMX536AVV8C, SoC, which indeed is
-rated only up to 800 MHz. I'll send v2 using max 800 MHz for safety.
+Fixes: 0b8576d8440a ("ARM: dts: imx: Add support for SK-iMX53 board")
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
 
---=20
-With best wishes
-Dmitry
+Changes since v1:
+- After additional consideration, also disable the 1 GHz frequency. The
+  datasheets are clear the the SoC is not required to support this
+  frequency (Fabio).
+
+---
+ arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
+
+diff --git a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
+index 6ea103a49697..3d9f14f32efd 100644
+--- a/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
++++ b/arch/arm/boot/dts/nxp/imx/imx53-sk-imx53.dts
+@@ -77,6 +77,16 @@ &can1 {
+ 	status = "okay";
+ };
+ 
++&cpu0 {
++	/* CPU rated to 800 MHz, not the default 1.2GHz. */
++	operating-points = <
++		/* kHz   uV */
++		166666  850000
++		400000  900000
++		800000  1050000
++	>;
++};
++
+ &ecspi1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_ecspi1>;
+-- 
+2.39.2
+
