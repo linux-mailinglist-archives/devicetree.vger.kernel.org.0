@@ -2,163 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 460E074DEAC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 22:00:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E10874DEB0
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 22:01:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230059AbjGJUAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 16:00:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55488 "EHLO
+        id S229641AbjGJUBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 16:01:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55804 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230039AbjGJUAT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 16:00:19 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408D9194
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 13:00:11 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-314417861b9so4981003f8f.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 13:00:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689019210; x=1691611210;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=fDVF60qAilYaG91C4u1IYCSH3KQRf6AdNGaAEoGvfFM=;
-        b=yXU0FjwO3subDNHy0x9pE7iLeHQibHe1wXc8Q5ghRl1CKg5sYF+8CWP1pCcydOygxw
-         h/DALfIuinvH4T5c6ROp3lh3+E775xUNKYI5sD1AKhUbD7jXWNOvDHxjfGwnr8j66uiU
-         eyhnvt/UFOA/4zCd68xcb4smBEHSBld7lP1zTJ1Z0NZKMz4Eeq16OBlXWQlbH3DVlPyS
-         /394p2BVbgGO8PkrPU0u/6F3P0M2YNPp+xippjq49vyUQc0Tqai+bvUC/GGVzu/EU8ku
-         ZfqzFAO9EPvgdi/I5kYgkto1Rl5va0jLvKfu2YE1kIJgJiucrNiu2ThjInNb5t5knUHv
-         hnAQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689019210; x=1691611210;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=fDVF60qAilYaG91C4u1IYCSH3KQRf6AdNGaAEoGvfFM=;
-        b=T9Yv0UJa32Bb9xRMnCQnPKBXm+qQtF/fYMcIH/KbWUdfnyIk+g8134Yy8cwdRkx2kr
-         7fE8H2Tg4uUp+cyjZHr0Vz1jDeR25eLckqimApbJWo69nRkTpWy0T4Y3wwV3sERmo/CW
-         yyJ4dof0YPc9AysbzXIS/1GvYaNqBG4p1RYf30FgZQL6lW7qnaxfJYrtX2j/YKSGh5cx
-         kc/fh9/qRj7dqkFQSv9PfrIATZcYCk92kMlDZm+s7naTlgz/6f1aTCTZ3pVEcAR9WDDB
-         FuMKucGsQJ3bldyLC6AkR5S+FtugzdccT2Cmq93t6IaAwdtf8fygoEzllsruVTiiqZS4
-         aLtw==
-X-Gm-Message-State: ABy/qLYEQfMFWdhSyvLx1MI1O9HvprdV8bo/WmqH4hpZzxuy5cFBa9oJ
-        kjoFg0Fug/zQZakYmZx4xA7vrQ==
-X-Google-Smtp-Source: APBJJlGDvQmb2dW/BEgKveO28TYyio02FWkCpTGpsbBmFvS5kr9/mYi+3CNJaLCbTGI3oIhUgd7KNg==
-X-Received: by 2002:adf:dcca:0:b0:313:e953:65d0 with SMTP id x10-20020adfdcca000000b00313e95365d0mr12064440wrm.28.1689019209593;
-        Mon, 10 Jul 2023 13:00:09 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id t23-20020a1709066bd700b00992025654c1sm146380ejs.179.2023.07.10.13.00.07
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 13:00:09 -0700 (PDT)
-Message-ID: <51a1c2e9-1165-c7ff-809d-b09e09d776e2@linaro.org>
-Date:   Mon, 10 Jul 2023 22:00:06 +0200
+        with ESMTP id S229954AbjGJUB2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 16:01:28 -0400
+Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0D7194;
+        Mon, 10 Jul 2023 13:01:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1689019287; x=1720555287;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=kZ45qk7hVluta2GMMn37Fyi3fXfY6yfPSBwe92peGkM=;
+  b=cY2faqJ4t4FjuhxMEj3aNkLQGeHkvqg/fm2/2RgjREXQ8/v76WsaDH+F
+   0IaPi7e6bXL0Ef4VFARa3Haa52O3zy9Gq9qBOJjjnIxd7zYFBWLX7sJOp
+   /gr62IAL0B5RyXeOja783qZbquZ224Lmq7H/qaV2FfPDvntjUQQGW1V0c
+   TjkEMgmaraMNLzhC6y5avPo8HyTbEnJuXEzB9jOHt2Gzu9wIrH3LbY6HF
+   qPCaa/dIb+38zzA0Hc8JkE2RcdImtpmLD8n4JqWX/F1HbEwHaLYbWM9n3
+   RBLnfht5h3jZYTIuqptwAbxImgdFDrBK0QJboY1khSCT0yCMOfv56wNzd
+   g==;
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="363309444"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
+   d="scan'208";a="363309444"
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 13:01:27 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="967538695"
+X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
+   d="scan'208";a="967538695"
+Received: from lkp-server01.sh.intel.com (HELO c544d7fc5005) ([10.239.97.150])
+  by fmsmga006.fm.intel.com with ESMTP; 10 Jul 2023 13:01:25 -0700
+Received: from kbuild by c544d7fc5005 with local (Exim 4.96)
+        (envelope-from <lkp@intel.com>)
+        id 1qIx4W-0003vK-1c;
+        Mon, 10 Jul 2023 20:01:24 +0000
+Date:   Tue, 11 Jul 2023 04:00:48 +0800
+From:   kernel test robot <lkp@intel.com>
+To:     alison@she-devel.com, johan@kernel.org
+Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alison@she-devel.com, achaiken@aurora.tech
+Subject: Re: [PATCH v8 1/2] gnss: ubx: customize serial device open to set
+ U-Blox Zed-F9P baud
+Message-ID: <202307110347.FjEbD70k-lkp@intel.com>
+References: <20230628150948.908273-2-alison@she-devel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document
- fsl,startup-delay-ms
-To:     Marek Vasut <marex@denx.de>, linux-remoteproc@vger.kernel.org
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230707232444.374431-1-marex@denx.de>
- <8f40484e-1721-a2bc-2344-f9e59e51a935@linaro.org>
- <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
- <c02d0271-9896-3990-33b0-c83fa54f5623@linaro.org>
- <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=unavailable autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230628150948.908273-2-alison@she-devel.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2023 15:46, Marek Vasut wrote:
-> On 7/10/23 14:52, Krzysztof Kozlowski wrote:
->> On 10/07/2023 11:18, Marek Vasut wrote:
->>> On 7/10/23 10:12, Krzysztof Kozlowski wrote:
->>>> On 08/07/2023 01:24, Marek Vasut wrote:
->>>>> Document fsl,startup-delay-ms property which indicates how long
->>>>> the system software should wait until attempting to communicate
->>>>> with the CM firmware. This gives the CM firmware a bit of time
->>>>> to boot and get ready for communication.
->>>>>
->>>>> Signed-off-by: Marek Vasut <marex@denx.de>
->>>>> ---
->>>>> Cc: Bjorn Andersson <andersson@kernel.org>
->>>>> Cc: Conor Dooley <conor+dt@kernel.org>
->>>>> Cc: Fabio Estevam <festevam@gmail.com>
->>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->>>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
->>>>> Cc: Peng Fan <peng.fan@nxp.com>
->>>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->>>>> Cc: Rob Herring <robh+dt@kernel.org>
->>>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->>>>> Cc: Shawn Guo <shawnguo@kernel.org>
->>>>> Cc: devicetree@vger.kernel.org
->>>>> Cc: linux-arm-kernel@lists.infradead.org
->>>>> Cc: linux-remoteproc@vger.kernel.org
->>>>> ---
->>>>>    .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml        | 5 +++++
->>>>>    1 file changed, 5 insertions(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->>>>> index 0c3910f152d1d..c940199ce89df 100644
->>>>> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->>>>> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->>>>> @@ -76,6 +76,11 @@ properties:
->>>>>          This property is to specify the resource id of the remote processor in SoC
->>>>>          which supports SCFW
->>>>>    
->>>>> +  fsl,startup-delay-ms:
->>>>> +    default: 0
->>>>> +    description:
->>>>> +      CM firmware start up delay.
->>>>
->>>> I don't see particular improvements from v2 and no responses addressing
->>>> my comment:
->>>> https://lore.kernel.org/all/20221102112451.128110-2-peng.fan@oss.nxp.com/
->>>
->>> I wasn't aware of this being submitted before, esp. since I wrote the
->>> binding document from scratch. Which comment is not addressed, the type
->>> ref is not present and the sentence starts with caps, so what is missing ?
->>
->>
->> That the property looks like a hacky solution to some SW problem. Why
->> this delay should be different on different boards?
-> 
-> It probably depends more on the CM4 firmware that is being launched. The 
-> ones I tested were fine with 50..500ms delay, but the delay was always 
-> needed.
+Hi,
 
-If this is for some official remoteproc FW running on M4, then probably
-this could be implied by compatible. Otherwise, if this depends on
-actual M4 firmware which can totally vary between each board of the same
-type (I can run my own FW on M4, right?), then it is not suitable DT
-property. How it would even look like? You add here 500 ms for all known
-firmwares and then someone comes with FW requiring delay of 600 ms.
+kernel test robot noticed the following build warnings:
 
-> 
-> Sure, it is a defect of the NXP provided SDK firmware, but that may not 
-> be fixable in all cases.
+[auto build test WARNING on 6995e2de6891c724bfeb2db33d7b87775f913ad1]
 
-Best regards,
-Krzysztof
+url:    https://github.com/intel-lab-lkp/linux/commits/alison-she-devel-com/gnss-ubx-customize-serial-device-open-to-set-U-Blox-Zed-F9P-baud/20230628-231318
+base:   6995e2de6891c724bfeb2db33d7b87775f913ad1
+patch link:    https://lore.kernel.org/r/20230628150948.908273-2-alison%40she-devel.com
+patch subject: [PATCH v8 1/2] gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
+config: microblaze-randconfig-r062-20230710 (https://download.01.org/0day-ci/archive/20230711/202307110347.FjEbD70k-lkp@intel.com/config)
+compiler: microblaze-linux-gcc (GCC) 12.3.0
+reproduce: (https://download.01.org/0day-ci/archive/20230711/202307110347.FjEbD70k-lkp@intel.com/reproduce)
 
+If you fix the issue in a separate patch/commit (i.e. not just a new version of
+the same patch/commit), kindly add following tags
+| Reported-by: kernel test robot <lkp@intel.com>
+| Closes: https://lore.kernel.org/oe-kbuild-all/202307110347.FjEbD70k-lkp@intel.com/
+
+cocci warnings: (new ones prefixed by >>)
+>> drivers/gnss/ubx.c:293:5-11: ERROR: allocation function on line 292 returns NULL not ERR_PTR on failure
+
+-- 
+0-DAY CI Kernel Test Service
+https://github.com/intel/lkp-tests/wiki
