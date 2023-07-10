@@ -2,228 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 22C2374CF6B
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 10:06:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B67BC74CF79
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 10:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232506AbjGJIGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 04:06:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35204 "EHLO
+        id S230342AbjGJIIt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 04:08:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36840 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232444AbjGJIF6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 04:05:58 -0400
-Received: from mail-yw1-x112b.google.com (mail-yw1-x112b.google.com [IPv6:2607:f8b0:4864:20::112b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBB9C194
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 01:05:55 -0700 (PDT)
-Received: by mail-yw1-x112b.google.com with SMTP id 00721157ae682-577ddda6ab1so60886637b3.0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 01:05:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688976355; x=1691568355;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=QA/OQiX/pzJCCl8hjUqWSyMfpeWVEaj4HEKssATZWgM=;
-        b=RZU+51thCwJE7K/xTfv65nD+a+HixYp05Wa6SBlO2OPNmy5m37MA39idOCBf48iw4I
-         JAUO3x4LUqFv5n9ZrELLbiRS/BO1nAGtwpdrXb8nNN8cnDlJ8LzjAQtWkEXmxTcomt/b
-         6SKNDx9Qnh0AyCoMIGQBFqko7Wj7IF9txSuTbmmzEpWua6Gd2wGn7hBgEqSgPDGJTBHx
-         rX0RleQMfXN1sw6RfY3oojqQIbFW8p9AqKQHEIMY1DqZDGQmZgWBqNdXw08LUdm4UA/H
-         NFFls4u9z7XvDbgPxkpjt/TGONun/oCEiAsv7cRZlG36Lvqp1p0iOWBwyDqUuyNHI4TI
-         frYA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688976355; x=1691568355;
-        h=content-transfer-encoding:cc:to:subject:message-id:date:from
-         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=QA/OQiX/pzJCCl8hjUqWSyMfpeWVEaj4HEKssATZWgM=;
-        b=HjtXddEPmRcjkp4ItKJo3pDhn18w8syiscfFqFcpofsP/m32GxCRklBA10nQ/m7zHV
-         d/MgoxkCS8H+pML9yLE4Y1tcx05e6hU4AZDzOiaPwvAjkH7WREc/qjBhj6Vit8j95eGv
-         lMc7vLJ2YWRu8Xv8AgyENpqeDdX36NGwoQIcbYKK83IlZLmORLMvYk06dsQFoKjBPdiM
-         5RiHLelloSZCYLrlpS/1YYvJw0/T/XvF/CGs8wwNoQOadkUsssa74eYqpWrBwf8cwOiY
-         uE2066fRUgvnm9IE2d8S8RKJThBqgEiDEDAUnGLkp6e/MeGkgF+9pQY9m9YqYNGWgp0F
-         zf2A==
-X-Gm-Message-State: ABy/qLZK9SpgEwGCk5S/I7NP9kwEjyDJQkTTS2oA83Uo8uYmbpJvl8o6
-        q3HG4KIgRscfBBSC5wiYrgr3Yh0c8C0BWsxcm+TGZw==
-X-Google-Smtp-Source: APBJJlEG5pnp9LkEiUqc/pFjf/LIV6zWlaq1ryHZ9f6Y/+cJDOgcs/p+rabjpQDm2Qv7iTSeTv8n58VhcfRI1V4/2bc=
-X-Received: by 2002:a0d:d48e:0:b0:56d:2d82:63de with SMTP id
- w136-20020a0dd48e000000b0056d2d8263demr11415234ywd.3.1688976354895; Mon, 10
- Jul 2023 01:05:54 -0700 (PDT)
+        with ESMTP id S230234AbjGJIIr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 04:08:47 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B701EB;
+        Mon, 10 Jul 2023 01:08:46 -0700 (PDT)
+Received: from [192.168.1.100] (2-237-20-237.ip236.fastwebnet.it [2.237.20.237])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits))
+        (No client certificate requested)
+        (Authenticated sender: kholk11)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id D7EE166057B8;
+        Mon, 10 Jul 2023 09:08:43 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1688976525;
+        bh=OM7rflBYguD1maMIODmrv7tZEbI632CV+e5rw9umrGs=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=kxJzgMBL7nRS5ctWr9TCrAqewi9ak1OkH8fxcs+/Qd6cZYCG3l2BWUSUWwcpy+Pfk
+         KFsFsGaFSczMymtsZT/P32vVUuppOUnLtVIf/tfcOJnOlFVsng+t8PDFN2F5eNJ5/K
+         22d2coqLnyxteVEEEEcNqNjKCsfy76B+Am2z45EwoR9S5rF1EG6Pf/NFGASToMhYja
+         dBXzXptlugWoikyF4L7MhdZ487xW8bAFcFp255lV3yGh7Z+XgOE0QJ28we9VOp+W1H
+         NahtL8YtZh48QzD1ud0Lr19v9fgAAak+uD+sOLtvO5IRMSosRjAdKPUKoEvfAl83uV
+         w52tXwrU+cA6w==
+Message-ID: <0b665705-eba3-74d4-c49c-586a485f736b@collabora.com>
+Date:   Mon, 10 Jul 2023 10:08:41 +0200
 MIME-Version: 1.0
-References: <cover.1686729444.git.Sandor.yu@nxp.com> <cec469206a166c4b070fd7d7bbf89a8df656ccc6.1686729444.git.Sandor.yu@nxp.com>
- <6f590bb6-7d17-3ae8-684d-2d4403d6ff55@linaro.org> <PAXPR04MB9448598256524162A74F0311F430A@PAXPR04MB9448.eurprd04.prod.outlook.com>
- <8966feba-eef9-2ea3-dbec-13fc53232a6b@linaro.org> <PAXPR04MB9448480F2A0E0542942A661AF430A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-In-Reply-To: <PAXPR04MB9448480F2A0E0542942A661AF430A@PAXPR04MB9448.eurprd04.prod.outlook.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 10 Jul 2023 11:05:43 +0300
-Message-ID: <CAA8EJppbbeZB-pdPdg+gft+kS8Pzsxvqd9v6DsRNwTkL71XSJQ@mail.gmail.com>
-Subject: Re: [EXT] Re: [PATCH v6 4/8] phy: Add HDMI configuration options
-To:     Sandor Yu <sandor.yu@nxp.com>
-Cc:     "andrzej.hajda@intel.com" <andrzej.hajda@intel.com>,
-        "neil.armstrong@linaro.org" <neil.armstrong@linaro.org>,
-        "robert.foss@linaro.org" <robert.foss@linaro.org>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "jernej.skrabec@gmail.com" <jernej.skrabec@gmail.com>,
-        "airlied@gmail.com" <airlied@gmail.com>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-phy@lists.infradead.org" <linux-phy@lists.infradead.org>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Oliver Brown <oliver.brown@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.12.0
+Subject: Re: [PATCH v2 3/3] arm64: dts: Replace deprecated extcon-usb-gpio
+ id-gpio/vbus-gpio properties
+Content-Language: en-US
+To:     Alexander Stein <alexander.stein@ew.tq-group.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-rockchip@lists.infradead.org
+References: <20230615145838.1526919-1-alexander.stein@ew.tq-group.com>
+ <20230615145838.1526919-3-alexander.stein@ew.tq-group.com>
+From:   AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>
+In-Reply-To: <20230615145838.1526919-3-alexander.stein@ew.tq-group.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 10 Jul 2023 at 11:01, Sandor Yu <sandor.yu@nxp.com> wrote:
->
->
->
-> > -----Original Message-----
-> > From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> > Sent: 2023=E5=B9=B47=E6=9C=8810=E6=97=A5 15:44
-> > To: Sandor Yu <sandor.yu@nxp.com>; andrzej.hajda@intel.com;
-> > neil.armstrong@linaro.org; robert.foss@linaro.org;
-> > Laurent.pinchart@ideasonboard.com; jonas@kwiboo.se;
-> > jernej.skrabec@gmail.com; airlied@gmail.com; daniel@ffwll.ch;
-> > robh+dt@kernel.org; krzysztof.kozlowski+dt@linaro.org;
-> > shawnguo@kernel.org; s.hauer@pengutronix.de; festevam@gmail.com;
-> > vkoul@kernel.org; dri-devel@lists.freedesktop.org;
-> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org;
-> > linux-kernel@vger.kernel.org; linux-phy@lists.infradead.org
-> > Cc: kernel@pengutronix.de; dl-linux-imx <linux-imx@nxp.com>; Oliver Bro=
-wn
-> > <oliver.brown@nxp.com>
-> > Subject: Re: [EXT] Re: [PATCH v6 4/8] phy: Add HDMI configuration optio=
-ns
-> >
-> >
-> > On 10/07/2023 10:28, Sandor Yu wrote:
-> > > Hi Dmitry,
-> > >
-> > > Thanks for your comments,
-> > >
-> > >> From: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> On 15/06/2023
-> > >> 04:38, Sandor Yu wrote:
-> > >>> Allow HDMI PHYs to be configured through the generic functions
-> > >>> through a custom structure added to the generic union.
-> > >>>
-> > >>> The parameters added here are based on HDMI PHY implementation
-> > >>> practices.  The current set of parameters should cover the potentia=
-l
-> > >>> users.
-> > >>>
-> > >>> Signed-off-by: Sandor Yu <Sandor.yu@nxp.com>
-> > >>> ---
-> > >>>    include/linux/phy/phy-hdmi.h | 38
-> > >> ++++++++++++++++++++++++++++++++++++
-> > >>>    include/linux/phy/phy.h      |  7 ++++++-
-> > >>>    2 files changed, 44 insertions(+), 1 deletion(-)
-> > >>>    create mode 100644 include/linux/phy/phy-hdmi.h
-> > >>>
-> > >>> diff --git a/include/linux/phy/phy-hdmi.h
-> > >>> b/include/linux/phy/phy-hdmi.h new file mode 100644 index
-> > >>> 000000000000..5765aa5bc175
-> > >>> --- /dev/null
-> > >>> +++ b/include/linux/phy/phy-hdmi.h
-> > >>> @@ -0,0 +1,38 @@
-> > >>> +/* SPDX-License-Identifier: GPL-2.0 */
-> > >>> +/*
-> > >>> + * Copyright 2022 NXP
-> > >>> + */
-> > >>> +
-> > >>> +#ifndef __PHY_HDMI_H_
-> > >>> +#define __PHY_HDMI_H_
-> > >>> +
-> > >>> +/**
-> > >>> + * Pixel Encoding as HDMI Specification
-> > >>> + * RGB, YUV422, YUV444:HDMI Specification 1.4a Section 6.5
-> > >>> + * YUV420: HDMI Specification 2.a Section 7.1  */ enum
-> > >>> +hdmi_phy_colorspace {
-> > >>> +     HDMI_PHY_COLORSPACE_RGB,        /* RGB 4:4:4 */
-> > >>> +     HDMI_PHY_COLORSPACE_YUV422,     /* YCbCr 4:2:2 */
-> > >>> +     HDMI_PHY_COLORSPACE_YUV444,     /* YCbCr 4:4:4 */
-> > >>> +     HDMI_PHY_COLORSPACE_YUV420,     /* YCbCr 4:2:0 */
-> > >>> +     HDMI_PHY_COLORSPACE_RESERVED4,
-> > >>> +     HDMI_PHY_COLORSPACE_RESERVED5,
-> > >>> +     HDMI_PHY_COLORSPACE_RESERVED6, };
-> > >>
-> > >> This enum duplicates enum hdmi_colorspace from <linux/hdmi.h> HDMI
-> > >> 2.0 defines '7' to be IDO-defined.
-> > >>
-> > >> Would it be better to use that enum instead?
-> > > Accept. I will create head file hdmi_colorspace.h to reuse enum
-> > hdmi_colorspace in <linux/hdmi.h>.
-> >
-> > Excuse me, it was supposed to be a question.
-> >
-> > Do you need another header file to reuse this enum?
-> I'm not sure community whether would accept the patch that simply include=
- <linux/hdmi.h> in phy-hdmi.h
-> because there are lots of other definition in <linux/hdmi.h> that not nee=
-d by phy-hdmi.h.
-> If the answer is yes, I happy to follow.
+Il 15/06/23 16:58, Alexander Stein ha scritto:
+> Use id-gpios and vbus-gpios instead.
+> 
+> Signed-off-by: Alexander Stein <alexander.stein@ew.tq-group.com>
+> Acked-by: Heiko Stuebner <heiko@sntech.de> #rockchip
+> Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com> #mediatek
 
-In my opinion it's a better alternative to creating yet another header.
-
->
-> >
-> > >
-> > > B.R
-> > > Sandor
-> > >>
-> > >>> +
-> > >>> +/**
-> > >>> + * struct phy_configure_opts_hdmi - HDMI configuration set
-> > >>> + * @pixel_clk_rate:  Pixel clock of video modes in KHz.
-> > >>> + * @bpc: Maximum bits per color channel.
-> > >>> + * @color_space: Colorspace in enum hdmi_phy_colorspace.
-> > >>> + *
-> > >>> + * This structure is used to represent the configuration state of =
-a HDMI
-> > phy.
-> > >>> + */
-> > >>> +struct phy_configure_opts_hdmi {
-> > >>> +     unsigned int pixel_clk_rate;
-> > >>> +     unsigned int bpc;
-> > >>> +     enum hdmi_phy_colorspace color_space; };
-> > >>> +
-> > >>> +#endif /* __PHY_HDMI_H_ */
-> > >>
-> > >> [skipped the rest]
-> > >>
-> > >> --
-> > >> With best wishes
-> > >> Dmitry
-> > >
-> >
-> > --
-> > With best wishes
-> > Dmitry
->
-> B.R
-> Sandor
->
+Reviewed-by: AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>
 
 
---=20
-With best wishes
-Dmitry
