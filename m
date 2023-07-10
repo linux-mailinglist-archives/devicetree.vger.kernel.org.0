@@ -2,98 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AABE774D985
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D185B74D995
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:09:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230284AbjGJPG0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 11:06:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34960 "EHLO
+        id S230448AbjGJPJs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 11:09:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233475AbjGJPGZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:06:25 -0400
-Received: from mx07-00178001.pphosted.com (mx07-00178001.pphosted.com [185.132.182.106])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E04FE8;
-        Mon, 10 Jul 2023 08:06:24 -0700 (PDT)
-Received: from pps.filterd (m0241204.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36AEYah4014972;
-        Mon, 10 Jul 2023 17:05:26 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=from : to : cc :
- subject : date : message-id : mime-version : content-transfer-encoding :
- content-type; s=selector1;
- bh=2cjSDo7sl+IkM/MEjjre6A5rcyDXhS8UL70yC06tCfg=;
- b=PA+nBCN3uV/aEfrFFIw6+S3vdJq0aZ88Tp//L4eLyjhnyV/zZmo5zvaZdVoY0uCLITIR
- aNLSeXdt3PTYuWVqCRURmSq6mSMI3ONve7eY2TJmaiQQggjIQk5wll9Lc/84cO8/EVcM
- IRhPCS1X3UI1UqmgA03w4x4j0dZoA12WIiyhGGG2kSW8QpXj8ajQPc/Fvk/lu5msjc/g
- OzBwqdaB1j3ESVzEt6fW9X4SJp9UDpkyWnvfoyO1TpXrvILG4zBh7jgFmjQ+c9Bv4yq3
- i2b797C4dbUa9SKBNrlsMxYda61XR+CK0lwTNgW3WatiZmAS2XfETrYnl5r2eoTUasQn UA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rrkvb071m-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Jul 2023 17:05:26 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7619010005A;
-        Mon, 10 Jul 2023 17:05:25 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 6DBE126028E;
-        Mon, 10 Jul 2023 17:05:25 +0200 (CEST)
-Received: from localhost (10.201.20.20) by SHFDAG1NODE1.st.com (10.75.129.69)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Mon, 10 Jul
- 2023 17:05:25 +0200
-From:   Etienne Carriere <etienne.carriere@foss.st.com>
-To:     <linux-kernel@vger.kernel.org>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>,
-        Alexandre Torgue <alexandre.torgue@foss.st.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        with ESMTP id S233533AbjGJPJr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:09:47 -0400
+Received: from mail-il1-f181.google.com (mail-il1-f181.google.com [209.85.166.181])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AAF56A0;
+        Mon, 10 Jul 2023 08:09:45 -0700 (PDT)
+Received: by mail-il1-f181.google.com with SMTP id e9e14a558f8ab-345ff33d286so24397755ab.3;
+        Mon, 10 Jul 2023 08:09:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689001785; x=1691593785;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=jKvprmbQggu3W5jTI7/RYtuI14SvwmXAeaCnRhx/8Eg=;
+        b=IOp9JgM9HfYcgWeDU+dXqH3tw0yGM6TtJeIsduTEnJi/zpSX9GM6ahF5ai3J/0JO4a
+         SPiIqXQf0QCMRIqo+IfBV0iBmHuiCdU6go7a75ubBfgRBU8Hrn1yCh+11IKwOINeqWfV
+         2zTyO7oStBp78+clg/9W+0/+KHB4s1+uhK37aRKeqGnZqkQAyM3G5frdz4TQLf6C1LbK
+         Pta1S84MoNDW57sZkADSdVv+Ahts2lfZYJc1YGPB4ZHa6Nb/rJ9KcFmxL0B2gw/UtfmZ
+         B5cwRqSD0rMmxBJZkQn1WiF3OKd50Biz1LiXgH81yql/LjMj2NaouOaQazyiFd/Mabaq
+         inFA==
+X-Gm-Message-State: ABy/qLbP4vBeL+epN7fCMjMMyeKb9VD+0+iZg4Gl9DQrwxDjUbkUx8pv
+        qLKyvxfsX55b31mR8BQi+Q==
+X-Google-Smtp-Source: APBJJlHBaTGeZWqsJNGHTw9YfpFhBk2BMRsd8PWrFG782s4SFRcoePJT+h6xwMH7fWTh51JVq7Dj8Q==
+X-Received: by 2002:a92:d585:0:b0:331:773f:e67a with SMTP id a5-20020a92d585000000b00331773fe67amr11073262iln.31.1689001784902;
+        Mon, 10 Jul 2023 08:09:44 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id t7-20020a92c0c7000000b00345cce526cdsm3584666ilf.54.2023.07.10.08.09.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jul 2023 08:09:44 -0700 (PDT)
+Received: (nullmailer pid 1983048 invoked by uid 1000);
+        Mon, 10 Jul 2023 15:09:42 -0000
+Date:   Mon, 10 Jul 2023 09:09:42 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marek Vasut <marex@denx.de>
+Cc:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-remoteproc@vger.kernel.org,
+        Bjorn Andersson <andersson@kernel.org>,
         Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Etienne Carriere <etienne.carriere@foss.st.com>
-Subject: [PATCH] ARM: dts: stm32: leverage OP-TEE ASync notif on STM32MP13x Soc family
-Date:   Mon, 10 Jul 2023 17:05:15 +0200
-Message-ID: <20230710150515.2127124-1-etienne.carriere@foss.st.com>
-X-Mailer: git-send-email 2.25.1
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Support
+ i.MX8MN/P MMIO
+Message-ID: <20230710150942.GA1979021-robh@kernel.org>
+References: <20230707232626.374475-1-marex@denx.de>
+ <b19f2ac1-64e5-830f-a840-e4ac624111d1@linaro.org>
+ <566cacd8-7110-850c-8d30-e1aba1591e92@denx.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Originating-IP: [10.201.20.20]
-X-ClientProxiedBy: SHFCAS1NODE2.st.com (10.75.129.73) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-10_11,2023-07-06_02,2023-05-22_02
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <566cacd8-7110-850c-8d30-e1aba1591e92@denx.de>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables use of GIC PPI#15 for OP-TEE asynchronous notifications
-on stm32mp13 platforms.
+On Mon, Jul 10, 2023 at 11:10:48AM +0200, Marek Vasut wrote:
+> On 7/10/23 10:13, Krzysztof Kozlowski wrote:
+> > On 08/07/2023 01:26, Marek Vasut wrote:
+> > > The MX8M CM7 boot via SMC call is problematic, since not all versions
+> > > of ATF support this interface. Document MMIO support used to boot the
+> > > CM7 on MX8MN/MP instead and discern MMIO interface using DT compatible
+> > > string. Document GPR register syscon phandle which is required by the
+> > > MMIO interface too.
+> > > 
+> > > Signed-off-by: Marek Vasut <marex@denx.de>
+> > > ---
+> > > Note that the MMIO being discerned using compatible string is similar
+> > > approach to "st,stm32mp1-rcc" vs "st,stm32mp1-rcc-secure".
+> > > ---
+> > 
+> > Same hardware should not have two compatibles, depending on the bus it is.
+> 
+> Yes, I know, but for whatever reason the ST does, so I picked the same
+> approach here. What else would you suggest, boolean properly like Peng wrote
+> ?
+> 
+> The compatible is also easier to handle on driver level, at least in Linux,
+> see 2/2 .
 
-Signed-off-by: Etienne Carriere <etienne.carriere@foss.st.com>
----
- arch/arm/boot/dts/st/stm32mp131.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+IIRC, in the ST case, the programming model presented to the OS is 
+different, so different compatibles. Seems like this case is similar.
 
-diff --git a/arch/arm/boot/dts/st/stm32mp131.dtsi b/arch/arm/boot/dts/st/stm32mp131.dtsi
-index d163c267e34c..02f872b99f1d 100644
---- a/arch/arm/boot/dts/st/stm32mp131.dtsi
-+++ b/arch/arm/boot/dts/st/stm32mp131.dtsi
-@@ -33,6 +33,8 @@ firmware {
- 		optee {
- 			method = "smc";
- 			compatible = "linaro,optee-tz";
-+			interrupt-parent = <&intc>;
-+			interrupts = <GIC_PPI 15 (GIC_CPU_MASK_SIMPLE(1) | IRQ_TYPE_LEVEL_LOW)>;
- 		};
- 
- 		scmi: scmi {
--- 
-2.25.1
+However, can't you try and SMC call and if it fails, use MMIO?
 
+Rob
