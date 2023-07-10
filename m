@@ -2,101 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id BA0EA74DE4D
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 21:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 460E074DEAC
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 22:00:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230329AbjGJTjQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 15:39:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46076 "EHLO
+        id S230059AbjGJUAU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 16:00:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55488 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229811AbjGJTjP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 15:39:15 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C695D9E;
-        Mon, 10 Jul 2023 12:39:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Disposition:Content-Type:MIME-Version:
-        References:Message-ID:Subject:Cc:To:From:Date:From:Sender:Reply-To:Subject:
-        Date:Message-ID:To:Cc:MIME-Version:Content-Type:Content-Transfer-Encoding:
-        Content-ID:Content-Description:Content-Disposition:In-Reply-To:References;
-        bh=O1YKh0iCibYzsm4hsCWbry564ZmymBSwh69WIn0oPJM=; b=svDqzOPyzOOPqTymB4KcsYSohE
-        EnNrMhpo5uqx6SfFuNs/gqFoSzOUNocdni5V//pWJO0rhKU+55pvKYxVRWXifQLe5uUcfDUq6FUf0
-        T7g6F7zl+52RnGQ3gCy1Ir74sMuai5p6dKqzc5MFpW2kcvPo5vC8gJUV33SqEYkS4z84=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qIwih-000yaT-6n; Mon, 10 Jul 2023 21:38:51 +0200
-Date:   Mon, 10 Jul 2023 21:38:51 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vesa =?iso-8859-1?B?SuTkc2tlbORpbmVu?= 
-        <vesa.jaaskelainen@vaisala.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Davis <afd@ti.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] net: phy: dp83822: Add support for line class driver
- configuration
-Message-ID: <6cf76d72-4747-46d2-a1f7-d2f1131491f7@lunn.ch>
-References: <20230710175621.8612-1-vesa.jaaskelainen@vaisala.com>
- <261cb91c-eb3a-4612-93ad-25e2bc1a7c23@lunn.ch>
- <87fac0dd-9a97-b188-4887-8c4bb21196d5@vaisala.com>
+        with ESMTP id S230039AbjGJUAT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 16:00:19 -0400
+Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 408D9194
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 13:00:11 -0700 (PDT)
+Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-314417861b9so4981003f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 13:00:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689019210; x=1691611210;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=fDVF60qAilYaG91C4u1IYCSH3KQRf6AdNGaAEoGvfFM=;
+        b=yXU0FjwO3subDNHy0x9pE7iLeHQibHe1wXc8Q5ghRl1CKg5sYF+8CWP1pCcydOygxw
+         h/DALfIuinvH4T5c6ROp3lh3+E775xUNKYI5sD1AKhUbD7jXWNOvDHxjfGwnr8j66uiU
+         eyhnvt/UFOA/4zCd68xcb4smBEHSBld7lP1zTJ1Z0NZKMz4Eeq16OBlXWQlbH3DVlPyS
+         /394p2BVbgGO8PkrPU0u/6F3P0M2YNPp+xippjq49vyUQc0Tqai+bvUC/GGVzu/EU8ku
+         ZfqzFAO9EPvgdi/I5kYgkto1Rl5va0jLvKfu2YE1kIJgJiucrNiu2ThjInNb5t5knUHv
+         hnAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689019210; x=1691611210;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=fDVF60qAilYaG91C4u1IYCSH3KQRf6AdNGaAEoGvfFM=;
+        b=T9Yv0UJa32Bb9xRMnCQnPKBXm+qQtF/fYMcIH/KbWUdfnyIk+g8134Yy8cwdRkx2kr
+         7fE8H2Tg4uUp+cyjZHr0Vz1jDeR25eLckqimApbJWo69nRkTpWy0T4Y3wwV3sERmo/CW
+         yyJ4dof0YPc9AysbzXIS/1GvYaNqBG4p1RYf30FgZQL6lW7qnaxfJYrtX2j/YKSGh5cx
+         kc/fh9/qRj7dqkFQSv9PfrIATZcYCk92kMlDZm+s7naTlgz/6f1aTCTZ3pVEcAR9WDDB
+         FuMKucGsQJ3bldyLC6AkR5S+FtugzdccT2Cmq93t6IaAwdtf8fygoEzllsruVTiiqZS4
+         aLtw==
+X-Gm-Message-State: ABy/qLYEQfMFWdhSyvLx1MI1O9HvprdV8bo/WmqH4hpZzxuy5cFBa9oJ
+        kjoFg0Fug/zQZakYmZx4xA7vrQ==
+X-Google-Smtp-Source: APBJJlGDvQmb2dW/BEgKveO28TYyio02FWkCpTGpsbBmFvS5kr9/mYi+3CNJaLCbTGI3oIhUgd7KNg==
+X-Received: by 2002:adf:dcca:0:b0:313:e953:65d0 with SMTP id x10-20020adfdcca000000b00313e95365d0mr12064440wrm.28.1689019209593;
+        Mon, 10 Jul 2023 13:00:09 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id t23-20020a1709066bd700b00992025654c1sm146380ejs.179.2023.07.10.13.00.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 13:00:09 -0700 (PDT)
+Message-ID: <51a1c2e9-1165-c7ff-809d-b09e09d776e2@linaro.org>
+Date:   Mon, 10 Jul 2023 22:00:06 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87fac0dd-9a97-b188-4887-8c4bb21196d5@vaisala.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document
+ fsl,startup-delay-ms
+To:     Marek Vasut <marex@denx.de>, linux-remoteproc@vger.kernel.org
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230707232444.374431-1-marex@denx.de>
+ <8f40484e-1721-a2bc-2344-f9e59e51a935@linaro.org>
+ <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
+ <c02d0271-9896-3990-33b0-c83fa54f5623@linaro.org>
+ <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
+Content-Language: en-US
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=unavailable autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Hi Andrew,
+On 10/07/2023 15:46, Marek Vasut wrote:
+> On 7/10/23 14:52, Krzysztof Kozlowski wrote:
+>> On 10/07/2023 11:18, Marek Vasut wrote:
+>>> On 7/10/23 10:12, Krzysztof Kozlowski wrote:
+>>>> On 08/07/2023 01:24, Marek Vasut wrote:
+>>>>> Document fsl,startup-delay-ms property which indicates how long
+>>>>> the system software should wait until attempting to communicate
+>>>>> with the CM firmware. This gives the CM firmware a bit of time
+>>>>> to boot and get ready for communication.
+>>>>>
+>>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>>> ---
+>>>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>>>> Cc: Conor Dooley <conor+dt@kernel.org>
+>>>>> Cc: Fabio Estevam <festevam@gmail.com>
+>>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>>>>> Cc: Peng Fan <peng.fan@nxp.com>
+>>>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+>>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+>>>>> Cc: Shawn Guo <shawnguo@kernel.org>
+>>>>> Cc: devicetree@vger.kernel.org
+>>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>>> Cc: linux-remoteproc@vger.kernel.org
+>>>>> ---
+>>>>>    .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml        | 5 +++++
+>>>>>    1 file changed, 5 insertions(+)
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>> index 0c3910f152d1d..c940199ce89df 100644
+>>>>> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>> @@ -76,6 +76,11 @@ properties:
+>>>>>          This property is to specify the resource id of the remote processor in SoC
+>>>>>          which supports SCFW
+>>>>>    
+>>>>> +  fsl,startup-delay-ms:
+>>>>> +    default: 0
+>>>>> +    description:
+>>>>> +      CM firmware start up delay.
+>>>>
+>>>> I don't see particular improvements from v2 and no responses addressing
+>>>> my comment:
+>>>> https://lore.kernel.org/all/20221102112451.128110-2-peng.fan@oss.nxp.com/
+>>>
+>>> I wasn't aware of this being submitted before, esp. since I wrote the
+>>> binding document from scratch. Which comment is not addressed, the type
+>>> ref is not present and the sentence starts with caps, so what is missing ?
+>>
+>>
+>> That the property looks like a hacky solution to some SW problem. Why
+>> this delay should be different on different boards?
 > 
-> This is needed for configuration in link between DP83822 and Ethernet Switch
-> chip.
+> It probably depends more on the CM4 firmware that is being launched. The 
+> ones I tested were fine with 50..500ms delay, but the delay was always 
+> needed.
 
-What switch chip is it?
+If this is for some official remoteproc FW running on M4, then probably
+this could be implied by compatible. Otherwise, if this depends on
+actual M4 firmware which can totally vary between each board of the same
+type (I can run my own FW on M4, right?), then it is not suitable DT
+property. How it would even look like? You add here 500 ms for all known
+firmwares and then someone comes with FW requiring delay of 600 ms.
 
-Most boards just connect the MACs together and don't have PHYs in the
-middle. There are some boards which do have PHYs, but they don't need
-any special mode.
-
-> In the connection there there is no Ethernet cable at all but routes
-> within the circuit boards but instead has capacitive coupling on routes.
-
-So you also left out the magnetics?
- 
-> So the setting itself is related to specific circuit board design.
-
-Agreed. So it is then valid to put it into DT, if it is actually
-needed.
-
-> MLT-3 is related to encoding used in the signals -- I suppose wiki page is
-> good introduction reference:
 > 
-> https://en.wikipedia.org/wiki/MLT-3_encoding
+> Sure, it is a defect of the NXP provided SDK firmware, but that may not 
+> be fixable in all cases.
 
-MLT-3 is well defined. What i could not find is any reference to what
-reduced MLT-3 is. If it is not part of any standard, why don't you
-just hard code the PHY to always use MTL-3 which is defined as part of
-802.3?
-
-I get the feeling reduced MLT-3 is TI proprietary. As such, it should
-default to MLT-3 as defined in 802.3 and there could then be an option
-to enable this proprietary mode for anybody we wants to use it.
-
-So before accepting any patches, we need a better understanding of
-that reduced MLT-3 is and why you would want to use it.
-
-     Andrew
+Best regards,
+Krzysztof
 
