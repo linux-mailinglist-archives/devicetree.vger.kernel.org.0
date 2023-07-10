@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0153774CB82
+	by mail.lfdr.de (Postfix) with ESMTP id 743A474CB85
 	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230394AbjGJFEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 01:04:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54508 "EHLO
+        id S230397AbjGJFEX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 01:04:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230381AbjGJFEU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:04:20 -0400
+        with ESMTP id S230396AbjGJFEW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:04:22 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4472CE;
-        Sun,  9 Jul 2023 22:04:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6F8E1CE;
+        Sun,  9 Jul 2023 22:04:21 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 78BC660DE4;
-        Mon, 10 Jul 2023 05:04:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D8FC433C9;
-        Mon, 10 Jul 2023 05:04:18 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 5087660DF2;
+        Mon, 10 Jul 2023 05:04:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 12EE1C433CC;
+        Mon, 10 Jul 2023 05:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688965458;
-        bh=ufYOuBUYuzI9w4Clsnbl5zs2aDpZHLV6tSGr0q2Xw70=;
+        s=k20201202; t=1688965460;
+        bh=BxSXh1DqezhaMiAbBc6UANLX0uDeostURSEbPVnEQjE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WZhTbOZ7uI0i+/ebRgsX7ELPg9f6jXAEpKJdUJeo0HAsv1hsXL1FSg5rNu0DT+12/
-         wwT+fY5uTSKBmp43vuzDjrwso0IhdoROYlx4g4AW1BDTVm2MNPamOpmpxUyw2ToAxB
-         PTGudaVJukRVtUSzsm9Q6ReBvBSDgZeRijKLHOfIiZ1unAANf7KNUOLzZSLmYAHfAZ
-         +XPzUS8QAP3DStf4A+SqKIzt7QcTvDMQbdU6QTP+ZZgDf1Ot7uLi6yB6RZS75E7q3l
-         xmz1W27ONT4ADGerUqfqgdLfqGTrPsK+HaChUJbdDU6yb/MvHOwqRyJEMPKYxm6i4J
-         IDv5tF/8f352A==
+        b=XACmZkxibD9R7DGjnJ3mGgynmFome341Fbsg/5ir0/krOJTnRBy9dgETEeinc19FY
+         q9Axz44a1HdvAs77y1tmqPQrmjSnsViML/ePKHUXC3nD1PVy3TH8pZ/L25ncLL+fRG
+         roFJiveaFu7WM5gGjc9iILn/TGRWh2wTqSuIFLa/GxbTFaaZRjzFGP2BJoSJ1VYDpL
+         +x/ngV1lQ2k3Y4xOO+wEqFQ6pe+cld1Jbp7qO2NcVhnGJl0HoUEF/Gk1jzAiRk9peZ
+         MPOpv6Lcfo8WLwWaPNLwCZ3tvLx/H1Y3YTRQk61ev6lqOyI1Y0LZpEIxZLy33fbchO
+         TEag4ZFNdPYjw==
 From:   Bjorn Andersson <andersson@kernel.org>
 To:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
         Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: qcom: rename HDMI labels in a correct way
-Date:   Sun,  9 Jul 2023 22:07:02 -0700
-Message-ID: <168896565952.1376307.7552845471652960129.b4-ty@kernel.org>
+Subject: Re: [PATCH] arm64: dts: qcom: qrb5165-rb5: fix thermal zone conflict
+Date:   Sun,  9 Jul 2023 22:07:04 -0700
+Message-ID: <168896565948.1376307.1430927295932643336.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
-References: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
+In-Reply-To: <20230613131224.666668-1-dmitry.baryshkov@linaro.org>
+References: <20230613131224.666668-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -59,22 +60,21 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 15 Jun 2023 11:34:20 +0300, Dmitry Baryshkov wrote:
-> In [1] Konrad noticed that the commit f43b6dc7d56e ("arm64: dts: qcom:
-> msm8996: rename labels for HDMI nodes") is a mess, it changes all HDMI
-> entries, which is plain incorrect. Rather than landing a fix, revert the
-> offending commit and land a clean version.
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/ZIrJ86IsLOm_Scbc@gerhold.net/
+On Tue, 13 Jun 2023 16:12:24 +0300, Dmitry Baryshkov wrote:
+> The commit 3a786086c6f8 ("arm64: dts: qcom: Add missing "-thermal"
+> suffix for thermal zones") renamed the thermal zone in the pm8150l.dtsi
+> file to comply with the schema. However this resulted in a clash with
+> the RB5 board file, which already contained the pm8150l-thermal zone for
+> the on-board sensor. This resulted in the board file definition
+> overriding the thermal zone defined in the PMIC include file (and thus
+> the on-die PMIC temp alarm was not probing at all).
 > 
 > [...]
 
 Applied, thanks!
 
-[1/2] Revert "arm64: dts: qcom: msm8996: rename labels for HDMI nodes"
-      commit: 2b812caf5f64df959555e48dfc7bf8f061d9fe8f
-[2/2] arm64: dts: qcom: msm8996: rename labels for HDMI nodes
-      commit: 1770394e68942f48d9b111694fccfef337905632
+[1/1] arm64: dts: qcom: qrb5165-rb5: fix thermal zone conflict
+      commit: 798f1df86e5709b7b6aedf493cc04c7fedbf544a
 
 Best regards,
 -- 
