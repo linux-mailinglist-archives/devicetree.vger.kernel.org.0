@@ -2,64 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id EE57C74DB17
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:31:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F7B274DB2F
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:36:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229844AbjGJQbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 12:31:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40612 "EHLO
+        id S230040AbjGJQgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 12:36:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229932AbjGJQbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:31:05 -0400
-Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D0DC123;
-        Mon, 10 Jul 2023 09:31:03 -0700 (PDT)
-Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        with ESMTP id S229538AbjGJQgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:36:35 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF19A127;
+        Mon, 10 Jul 2023 09:36:34 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        (Authenticated sender: marex@denx.de)
-        by phobos.denx.de (Postfix) with ESMTPSA id BF3B9866BF;
-        Mon, 10 Jul 2023 18:31:00 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
-        s=phobos-20191101; t=1689006661;
-        bh=g5iPEk5ffIEN1cPjeJDoPJ/MGkz/vg5kFPiwOJurMrI=;
-        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
-        b=p4cPx9ZohZcbRoILENRkm0ul1WkNLqxbOv8c7X6F05yN/O9Y3M6dEU35vopcbsYCS
-         SuHrH/zvdguLgneBJ5WBiEbZ2x7Dxzvs8ckki9ndMQgUcPjB4KlOg/bn6816l0ABSi
-         EqNYr9AFApYllqfEWIvahT0LrwDq4HiQgMWx4+XFtr92x4rCxkjXyg/6la8+vwYyoH
-         jsPLd/WbM3xEmCNdbpwbBvG7FPtTpeVpfveSgqH+NAgFpntOsKLUaK7+yml9LgTqBE
-         ofN2nhYMoj+CK0Yplhcw4OmNbtapxE7UHZ03b1YGOFQPp31UO2KXUWLQipjoNGT20W
-         +TUWS+p3GE0sQ==
-Message-ID: <93c72991-2e7f-0d49-c2be-06fbe5904356@denx.de>
-Date:   Mon, 10 Jul 2023 18:31:00 +0200
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 75E356110F;
+        Mon, 10 Jul 2023 16:36:34 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D151C433C7;
+        Mon, 10 Jul 2023 16:36:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689006993;
+        bh=AD97xExNl4d84kadkKD325pdkAS93Gnf4sgXQoaxnZc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=EmTrTk5j+Te/PpiLnGRf7RXv23Ll6SmZ3onfIrQDWSlcXzdLzeJiNp34vp0Lvzcx3
+         1VeiAo0BBxDKz9aBiiMJbwiz/uENORqMQ0DGn1RtFQ7oy4sU06ere2B5gvFfyQ4T/K
+         qRSScN9VA3Yfsq+GoD1/PHIxjXCPyS71pSAFmJcpTnIep9ZGLFVU2MRwv1C3uyDzzQ
+         PNQjjtkCwxFUAwzYHyIdskA1P1KGDwYGRJUvAKpqcSBEGJEF2xpWwuPWvLsQsxxAWM
+         GQ5K6DHT5Smi+Qfrzfn/nGxgQ8R/aDV6/zONQUtJCczf5/z4McP1y76BrNhxZ6JdmO
+         100S1CgHQ9MaA==
+Date:   Mon, 10 Jul 2023 17:36:27 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
+        peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
+        dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org
+Subject: Re: [PATCH 2/3] ASoC: tlv320aic3x: use BCLK instead of MCLK if not
+ in master mode
+Message-ID: <6144f294-939b-4fb7-a4c1-ca5a6dabd86b@sirena.org.uk>
+References: <20230705190324.355282-1-andreas@kemnade.info>
+ <20230705190324.355282-3-andreas@kemnade.info>
+ <15d3fc6e-d294-4968-bc7d-66307efc92db@sirena.org.uk>
+ <20230705215611.5f96584e@aktux>
+ <eeba3297-acdb-45ca-a80d-40d8b3a90231@sirena.org.uk>
+ <20230708150319.202789c1@aktux>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 2/2] remoteproc: imx_rproc: add start up delay
-Content-Language: en-US
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     linux-remoteproc@vger.kernel.org, Peng Fan <peng.fan@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Ye Li <ye.li@nxp.com>,
-        Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230707232444.374431-1-marex@denx.de>
- <20230707232444.374431-2-marex@denx.de> <ZKwpl1ZGJcX2RmJb@p14s>
-From:   Marek Vasut <marex@denx.de>
-In-Reply-To: <ZKwpl1ZGJcX2RmJb@p14s>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
-X-Virus-Status: Clean
-X-Spam-Status: No, score=-4.5 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_MED,
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="vHDl3oKRCXKY7VQ0"
+Content-Disposition: inline
+In-Reply-To: <20230708150319.202789c1@aktux>
+X-Cookie: Do you have lysdexia?
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
         SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
@@ -68,33 +67,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/10/23 17:53, Mathieu Poirier wrote:
-> On Sat, Jul 08, 2023 at 01:24:44AM +0200, Marek Vasut wrote:
->> From: Peng Fan <peng.fan@nxp.com>
->>
->> There is case that after remoteproc start remote processor[M4], the M4
->> runs slow and before M4 finish its own rpmsg framework initialization,
->> linux sends out vring kick message, then M4 firmware drops the kick
->> message. Some NXP released Cortex-M[x] images has such limitation that
->> it requires linux sends out vring kick message after M4 firmware finish
->> its rpmsg framework initialization.
->>
->> Reviewed-by: Jacky Bai <ping.bai@nxp.com>
->> Reviewed-by: Ye Li <ye.li@nxp.com>
->> Signed-off-by: Peng Fan <peng.fan@nxp.com>
->> ---
->> Note: picked from NXP downstream LF-6630-2 remoteproc: imx_rproc: add start up delay
->> https://github.com/nxp-imx/linux-imx.git 0b1b91c95b291a3b60d6224b13f6a95a75896abf
->> ---
->> Note: Literally all of the NXP BSP 2.13.0 firmware builds fail to boot
->>        without this being set to something like 50..500 ms , so this is
->>        rather useful to have.
-> 
-> My stance on this hasn't changed - hacks such as these do not scale and are a
-> nightmare to maintain.  The problem should be fixed in the M4's firmware.
 
-If the firmware cannot be updated, how do you propose that would be 
-fixed in the firmware ?
+--vHDl3oKRCXKY7VQ0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Frankly, I do not see much of an issue in maintaining driver-specific 
-mdelay().
+On Sat, Jul 08, 2023 at 03:03:19PM +0200, Andreas Kemnade wrote:
+> Mark Brown <broonie@kernel.org> wrote:
+
+> > Since we already have clock bindings we should use those to configure
+> > the clocks, there's several drivers that have added this support already
+> > - look for clock providers.
+
+> ok, looking around:
+> Just to make sure I am not running in a bad direction: Do you think
+> tlv320aic32x4{,-clk}.c is a good example? It is ignoring clk_id.=20
+> I was mentally bound to have to use clk_id there, so I did not found a go=
+od
+> solution.
+
+Yes, that looks like a good example - the whole thing here is to move
+away from using clk_id and to using the clock API to specify clocks.
+
+> So I guess I have to configure the chip as a master and using mclk and co=
+mpare
+> register dumps with the state we have now and the state after the changes,
+> additionally to check bclk functionality directly.
+
+You can probably get away with less but it's goot to be thorough.
+
+--vHDl3oKRCXKY7VQ0
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSsM4oACgkQJNaLcl1U
+h9DKTQf+KSiGFfJgn0+yCS95t/1zJ49EUaL2ZJUBjVK2dx2CDyvCcTr2/gdfUkK2
+klgsCubpCO1sj6X2Ogxw5b/el/L7wIIbWiR7pN/4GdCj3Dr6citfHmo4MPKlS0Z7
+CfdIVt781Xt2SfMNTxOkb6bE8+i80trmm4UTux5+llCVCw5s4fHI6lMngoIHypvA
+i5ngOyDYS0Op3tLf8/CEN+jYu7v1dltfwuEHfkghswSTT4OZF5Q3RfdVFrCBih7Z
+G6diu0etMQqdgoPp1gHkzxiYUw7/WJoWcrFVg0fAVgvPztaXR5J8FYBTZsnZhOmN
+V6V8i6RhYKQ/ESgvfjQUA8RojVXotA==
+=IDaC
+-----END PGP SIGNATURE-----
+
+--vHDl3oKRCXKY7VQ0--
