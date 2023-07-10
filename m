@@ -2,206 +2,831 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 6087E74DF58
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 22:33:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CC8674DF71
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 22:43:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230335AbjGJUdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 16:33:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45294 "EHLO
+        id S230353AbjGJUnO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 16:43:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48672 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230303AbjGJUdU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 16:33:20 -0400
-Received: from mx0a-002e3701.pphosted.com (mx0a-002e3701.pphosted.com [148.163.147.86])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DAFA198
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 13:33:19 -0700 (PDT)
-Received: from pps.filterd (m0134420.ppops.net [127.0.0.1])
-        by mx0b-002e3701.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36AK2X7k015074;
-        Mon, 10 Jul 2023 20:33:09 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=hpe.com; h=from : to : cc : subject
- : date : message-id : content-type : content-id :
- content-transfer-encoding : mime-version; s=pps0720;
- bh=5cepNOz6yOGc8HuKxkQ5Nh/H6UDF5xLEtPwfnrTAd+g=;
- b=P83z/OQ2ZGwsGNaejDGDigxGCBmF49i12aVmzZRTW7lWTug7PtTwD5XduvUPLOoJ+S1o
- n4UOrjbK3k2T4UXaBRPv8MHKKuNmft8RoW2AXwhywWSfxIu2vXRe93O0AzYTgjO3zw/t
- EEcOpwj7CnA3libSDcHd+NTmGKZFUAFxelCRUcSwnVfkMbD/wqwf++wWVqOtJxSbFanP
- ADm9dyHB004VM6lZGMi1/Rfr2p3SW8bf/mTzMR38vxewrVUrsAe2wNcnfiAud390H9dB
- VCgK7Ehxb6B2FdJ2wu7imV6+gim6nqx2jszcr007dC6Jj5QTDs5lfoZt22Um25eCV9Dy Ww== 
-Received: from p1lg14880.it.hpe.com (p1lg14880.it.hpe.com [16.230.97.201])
-        by mx0b-002e3701.pphosted.com (PPS) with ESMTPS id 3rrbmx6q3f-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Jul 2023 20:33:09 +0000
-Received: from p1wg14926.americas.hpqcorp.net (unknown [10.119.18.115])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by p1lg14880.it.hpe.com (Postfix) with ESMTPS id D651D800E86;
-        Mon, 10 Jul 2023 20:33:08 +0000 (UTC)
-Received: from p1wg14924.americas.hpqcorp.net (10.119.18.113) by
- p1wg14926.americas.hpqcorp.net (10.119.18.115) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 10 Jul 2023 08:32:51 -1200
-Received: from P1WG14918.americas.hpqcorp.net (16.230.19.121) by
- p1wg14924.americas.hpqcorp.net (10.119.18.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.986.42
- via Frontend Transport; Mon, 10 Jul 2023 08:32:51 -1200
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (192.58.206.38)
- by edge.it.hpe.com (16.230.19.121) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.986.42; Mon, 10 Jul 2023 20:32:51 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=B0rWY+snic274Kxy0b0u9hwYx8naO5BM0YYsvTVe4AQf/l8abujSiKTSkN5ObeCrD9Bf9IC0V3zEl4wEEoMsrzd6tF2OTLy0TegM9pspZUNH1v/z2O9o1ePM+pLqD9O0osyWV5mT8n+jv+ZgLaIq3D3Df3uq9tk93R17hCmVpozgc24W4If0InGNcLNJdNfQerIHsx7+VsCHeRFRTOyZelV4SrgmRi5Af+klVl+74CuLI4CCduCeBRkhSuZb2JIhx64iWNNGv0kv7Y53uBTLqgoI7F5fU4W2UOf8ZmtGb2nWSHI7sT9uUEzWjj9hDo+P3S7k414zMWHHPWt5bw7hRQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5cepNOz6yOGc8HuKxkQ5Nh/H6UDF5xLEtPwfnrTAd+g=;
- b=hWdtQFvjFCSYzCjaOH1JgWfIkEQjcFrU+envuPfYsakwMWCPiJf7Kkx1YAHoatdLonFDy942yPP6aU9psC9y9mLWkHFYlQHW7sCI8mQjKfaLtWk2RLIniynX2gfa4m98wo0BIjFRoAPDLcNRiJFTrw2khSUzKDPtpnoREpUmiFqvoALmemx9l9X/NyJYPUNGnRlIwXfNxK45Rjyvzo9yYOPJZtd7lg7g+e16BP9kdB5sjv5M2AObM9nc2HbLQOVs8VfWdS9RHng25xJNg6/oonWqjhD2Qb5xKTzWJI8DzevBHvau7+iGu710GOoQAw2XqOeHUhJeiYwEtZcOt5a16Q==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=hpe.com; dmarc=pass action=none header.from=hpe.com; dkim=pass
- header.d=hpe.com; arc=none
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:8:4e::10) by
- SJ0PR84MB1580.NAMPRD84.PROD.OUTLOOK.COM (2603:10b6:a03:432::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.6565.26; Mon, 10 Jul
- 2023 20:32:49 +0000
-Received: from DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::1411:4ecd:1d0:5eab]) by DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
- ([fe80::1411:4ecd:1d0:5eab%5]) with mapi id 15.20.6565.028; Mon, 10 Jul 2023
- 20:32:48 +0000
-From:   "Hawkins, Nick" <nick.hawkins@hpe.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "krzysztof.kozlowski+dt@linaro.org" 
-        <krzysztof.kozlowski+dt@linaro.org>
-CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Query about Implementing Device tree for Networking on HPE BMC
-Thread-Topic: Query about Implementing Device tree for Networking on HPE BMC
-Thread-Index: AQHZs22x0TIHqbQL5USX1uFaoQJjnA==
-Date:   Mon, 10 Jul 2023 20:32:48 +0000
-Message-ID: <4D2BD944-7A50-4FB9-9156-A02C77E6338E@hpe.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Microsoft-MacOutlook/16.74.23061800
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR84MB1927:EE_|SJ0PR84MB1580:EE_
-x-ms-office365-filtering-correlation-id: f3aa9d4b-9b74-47cb-aed8-08db8184d387
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: b0DUh1X6Oq+I7d+Qj7rNOW5l2pGpEgMlfNMROr0ydcJwnkS1kBYpJ6F8GWHzXLuuDXFJphjL9/q8TwNnQ8BFPOVjriQyg4JQTuXIFC4vgRqf2n/mVK6c+kuusKyZBXQtCy41s8BixTzOJ0iSgfsgZF8NuQFjLff7gL1Rm8nL2foa7soSe2OMxKRh0kn8OqQMxsmlkPQl0jEDUhN9IiN70HevoM4WaedwhpeI831SStzra1WzTCCzSzb6dsfRJIIDcn5NJhHj0mTwQ7/3kyUWZqA7f4kUCNCu/tlXpEuLKaRuoVCBR3FGXCZw16VdPkq25AJ09BJ0epo/rsTDUvKXEiY16GRJjrqPvAbtqmFcFTfdm1DTGM+NrnHzuWZ6EJiq1DEJCY0CUq666YPnAw8ISN6S9ydT7bmjOMMzhVu0P+Exha8dpzQdcy/tXaFNM8pQhZtQ8v/hxkMyT+RuoGmU4ufRF/M35UIhAvPBLpfiBIVtVXuqGAzfJ3NM6k3KWNV6pQLktKopTtmvOMPNgt5t7rv0DMWGCGrFr4MGDsMk1eX/2bYotXURabDgHclQu4X8yuBMOI2079jgYqs8sOQMFd+uqrXba5ZZtP/WMlPJCc2ng0zJBeWFvE70ZLEArOww90WgcGGPUow0WAIiO1L7/Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(13230028)(396003)(376002)(366004)(346002)(39860400002)(136003)(451199021)(38070700005)(38100700002)(86362001)(82960400001)(33656002)(36756003)(71200400001)(110136005)(76116006)(478600001)(6486002)(66946007)(91956017)(122000001)(186003)(6506007)(6512007)(316002)(2906002)(8936002)(66556008)(66446008)(66476007)(5660300002)(64756008)(8676002)(2616005)(83380400001)(4326008)(41300700001)(45980500001);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?OTZ5Mk5WcmRhNDlJWXA1endYdXlvcll3eTJ1OVVKTDJDOVJ6eHJ3RGJFMm5O?=
- =?utf-8?B?dWVZY1AzVGl4N2l0UVVHOC9TT1Z6aXpCTU1OZU5MWGtLZndiZkxLcVJlTjVB?=
- =?utf-8?B?SnF1dE9adHU0a2lvVm51ZW5tQW9hN3MwRFVDU1BrMGU0eTNOcFFyc0hRRVNK?=
- =?utf-8?B?dnA4U3d3bEZpWWlldFVDa1ZuYWtHekV2KzkyWmdobEdpQ1h5NmVXdDdYMUxn?=
- =?utf-8?B?cnpVR1p0WFN4Mml4bDJ0QS9PeFkvUW9JcU56Z0F4Sk0rU1NIY2UzZ3JLS1NK?=
- =?utf-8?B?Sk5wMmV1c0tFTUZDa1RENjgwYUh5YmtKMVJ4Z0JJcUY5VDcvZXhSTjdnandk?=
- =?utf-8?B?R1QyOG90anFXamkvY3RyTFplVE9XU2ZmSVN2UGZxblArWnJiSnlpdC9Ja2Yx?=
- =?utf-8?B?Qis0YXF3NWhqYll6Uk8zNGNtVG5VOGhJM0NDUmtZc2VPejZVakIxWDkzSDI0?=
- =?utf-8?B?NjNoSXFNUHpESE9RNnZKZDJ3OWVodTZ2QjFUQTdva2RjZGt4SFVoYU5pa2FE?=
- =?utf-8?B?SXhRZ3RjN0Q5WmNBbS9kaEpWNVFTbnl1a2lRbWVPL2xUQjR2K1gvZU9SL1Ux?=
- =?utf-8?B?ZVVtc2ZIUS9YWVBjN2ZHbHJFRlF0QjNIaDdWemFjYmdmeVJvejY4SkJtYlVn?=
- =?utf-8?B?ek5JUk5oNEMrZ1RmTnZZWDdLRnJLdG9ua1JTMnY0dG9ZTVl4SmR6WW9jMmhL?=
- =?utf-8?B?ODAzUVNNb0JNeGpvYVBoNVluVCtSSFZXWGRtS2kxVy90amx3V01JR3JyUFFK?=
- =?utf-8?B?aUxMekE2anp1czNtQmFVWCs4SlA2L0JiaW41anJ3TEI2VW9LTU9TcUpNOTdh?=
- =?utf-8?B?MVhkRFVzQlhqTkxzMEw4VWpncm1yN0NXQTJJL051SlZIRWVxRW9Yanc2ZE41?=
- =?utf-8?B?ZEt0TllBaUwzbVRQYWxnK2VVUjE0TUdseG9xdFFDb0x1Q1JMQ2N1SG0yNk9u?=
- =?utf-8?B?SjZRNjRkTER4aTVIYmIwN2wyNEE5MlRIOHI4NHM5MHNMWVNqZmtZOFA0eC9B?=
- =?utf-8?B?YjhSdHFSUTI1Z2xRTXlmci85bFl4UlVEdkVCcjNxRVpnZUtMV28zaTBmN0dQ?=
- =?utf-8?B?a1BjbWtmT2dWNGVNMk93U1lmdm0yNXBXWVhvbG9uYlFpdWNPUDhyemc2S3Vo?=
- =?utf-8?B?MUdrK1VhOTFVOFVtSWMrenJxTVhyTXpxVFExblRUOFpUOEd5Mkx2VGtCUXdW?=
- =?utf-8?B?L0pwbVhxYlFwa2FLMjdJQnhEaXh3S2M3VlhlaUFyMlVuS0ppNFJZcG1FVkUv?=
- =?utf-8?B?d3RQSkdXSXllNTE0eGZpS3BCekEwK3cwMC9PTDFLczhFNVlNTGhnQis4Zmdo?=
- =?utf-8?B?UG9rSkx4Snd2MGdydHZlcjQ2T3QxVndkUUszUjRpRzMxMFFiLzVKcjZtTnBO?=
- =?utf-8?B?Nnl2SUhNajhuZWhQNGpSU1hrWVI1MzFzeC9ZTFhoN0JuRlEvVnhoL29wUWRq?=
- =?utf-8?B?amZMaUI0RlRKTTdHZUZmenl2bzgzMG1ULy9JV2orSlNSb2NyVEZjbHlRclhW?=
- =?utf-8?B?cDNnVEYvcWVjVFFxYldDU2c0cG1JVVd0YzJISDc2eXRadTlhVjBsbnhFZEds?=
- =?utf-8?B?TU1kS3VsQlN4ZmhtQ2FSOXB1S2tHZ2hYVnEzc3JMaEZiYkxkODdZZDA5THI1?=
- =?utf-8?B?WVBzM0h2Y1ppM3JXZVd1TllsUk8xczdYQVFRM1UxMGJVR0xadUw4dmI4RGFo?=
- =?utf-8?B?ZkdPN2RkRXV1UmhtdUYzcXNRZFltTEZDekt6SUtKT3JWQWJ1K2xoUjJaZG45?=
- =?utf-8?B?SWNaOTkrSFdha0JzbTgzT1hGTW45Z0p2cHJ3UW0xZzZwOXF4cCs1K3F0akZv?=
- =?utf-8?B?WENReXVFUkV5dlEzTU5TdmV5WHZ2Qm55SGVBZDhEWUZBZU9oNUwwSjhYZzlm?=
- =?utf-8?B?a1lkV0oyeGcyeWdJeHR5QkVSVEorNTh2bWVUSkx5WHVYN3IrV0R1Mi9JeU5G?=
- =?utf-8?B?YXpsaUxYMHc1TDdhMzArb3ZwVldKVU9kNGlIM3FGbENUTE1PK1BGZy95TUUv?=
- =?utf-8?B?eXNJUGNpY25uRnpLUG1zcGVZMVYvQlhXdndQdVlxN0JCWUdaZVF0VC9GNlQ3?=
- =?utf-8?B?aTBCNzgwZHJpbFpXOFA1UGV1a1IzdjcveW1MZFVGa2g2WXVMSlZad2drdVpV?=
- =?utf-8?B?aU9vMmRDOHhrbE8xZXJBVHVFU0w4NHJ3RFBwMmNOdzhBTHRJOVkwbGlvNUR1?=
- =?utf-8?B?WHc9PQ==?=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <2B299814D8DDCF4C84D84D470D4D89D7@NAMPRD84.PROD.OUTLOOK.COM>
-Content-Transfer-Encoding: base64
+        with ESMTP id S229560AbjGJUnN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 16:43:13 -0400
+Received: from mail-ej1-x633.google.com (mail-ej1-x633.google.com [IPv6:2a00:1450:4864:20::633])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5738C127;
+        Mon, 10 Jul 2023 13:43:10 -0700 (PDT)
+Received: by mail-ej1-x633.google.com with SMTP id a640c23a62f3a-99313a34b2dso575965466b.1;
+        Mon, 10 Jul 2023 13:43:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20221208; t=1689021789; x=1691613789;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=rbXqsZsv8GsMvVf0SrhDK13+rgC7D43Is3mX+A2+JOQ=;
+        b=fmOisCcR06kzVtO1N+V7fgufsm6bztezxC0yf4AB55JQZoZH5ux6Ja1cJpTqkg9wG6
+         a0ZhNwaKRVyqVcsoKgV8FFJ89AXPZNEVytJ/N582FsBu9JcY0UTICFPGLA89D8QL8l9v
+         Z5YyxEoKvmPATcm84Rzm/vWTKe6ByGw5eBqQqV95JgP8OL5d394Ay/kP0gLb4lyz29J8
+         2Op4d3OOpsUUb1pTdB6EaXhKN49+NnV4N80N3k2nXIdRjxZVjokWG/u2s8WsHRBEch4G
+         5Fu86o66dFbTspLpUeuKpuxIvK80KfglVLl8flaNO4ZBqqFYVxO1da5Wf6W2H0QNSuyd
+         jVFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689021789; x=1691613789;
+        h=content-transfer-encoding:subject:from:cc:to:content-language
+         :user-agent:mime-version:date:message-id:x-gm-message-state:from:to
+         :cc:subject:date:message-id:reply-to;
+        bh=rbXqsZsv8GsMvVf0SrhDK13+rgC7D43Is3mX+A2+JOQ=;
+        b=NGtNv2xQcTZ82YaT9QBvg0ZCAy7r4pfuQEEmDrbvx8go8mXr1rLA7JQB21hJZtrLl9
+         yoHw8tBgnWXUwjF9PfXastBUQfOkkSNLQEhHJHrPDZK86KiTydPiE7ZTTbLEyz6QiNcz
+         fAk2lQwmIECViiOPiE23DqHo8xiyWeJD9tisX3c0uWTFRWCjGhpkPsSO7P7T2ZXykOAK
+         CU4hWA/kjEX/J0QGG09W4bJRHhdGc3WvSbKxJ/4OMfm1fhbCENerGWBAiwQTMuFQg9TR
+         lL/eNnzHamLW07+WGhHJyAoJSBqRh9fyInk9Vu21IMpSypNmBhKszKNkw+AhthXtOzVR
+         HTNA==
+X-Gm-Message-State: ABy/qLYYwrToD4NxnLyeQtU0diPGpB7cKvtLyMFkDwzTZ+oPpIpnwpXC
+        R38EcYQq4yxtq9C2JE5I4/TY3k462aMwOg==
+X-Google-Smtp-Source: APBJJlF8JAHTng2hTxBt6g3CI+GR15il43L7EU86mfTZh1Q3eOVwnJFW/ZuaEIB3/lTtLcfkfKpSUQ==
+X-Received: by 2002:a17:906:7a07:b0:993:da91:6e0c with SMTP id d7-20020a1709067a0700b00993da916e0cmr11407511ejo.3.1689021788491;
+        Mon, 10 Jul 2023 13:43:08 -0700 (PDT)
+Received: from [192.168.4.4] (host-95-237-109-246.retail.telecomitalia.it. [95.237.109.246])
+        by smtp.gmail.com with ESMTPSA id e17-20020a1709062c1100b009930308425csm202923ejh.31.2023.07.10.13.43.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 13:43:08 -0700 (PDT)
+Message-ID: <87174c80-aa05-8db7-18e8-e22479d9c635@gmail.com>
+Date:   Mon, 10 Jul 2023 22:43:07 +0200
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR84MB1927.NAMPRD84.PROD.OUTLOOK.COM
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3aa9d4b-9b74-47cb-aed8-08db8184d387
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Jul 2023 20:32:48.7402
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 105b2061-b669-4b31-92ac-24d304d195dc
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fvV5bTeGfGSF7+cCf6HeL50p/2KM46OPK/zfZsAV4xT6+aKmhvu6Hb1it9q7pzGbOyWB8o7xm+0AAzWBKmpHBA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR84MB1580
-X-OriginatorOrg: hpe.com
-X-Proofpoint-ORIG-GUID: JfzSNEp_1l42Gw0yHhA-KZ3YXTrcZCH4
-X-Proofpoint-GUID: JfzSNEp_1l42Gw0yHhA-KZ3YXTrcZCH4
-X-HPE-SCL: -1
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.254,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-10_16,2023-07-06_02,2023-05-22_02
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0 clxscore=1031
- phishscore=0 spamscore=0 suspectscore=0 priorityscore=1501 mlxscore=0
- adultscore=0 mlxlogscore=672 malwarescore=0 lowpriorityscore=0
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2305260000 definitions=main-2307100187
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,
-        SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Content-Language: en-US
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andrea Collamati <andrea.collamati@gmail.com>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+From:   Andrea Collamati <andrea.collamati@gmail.com>
+Subject: add mcp4728 I2C DAC driver
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_FROM,
+        RCVD_IN_DNSWL_NONE,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R3JlZXRpbmdzIFJvYiBhbmQgS3J6eXN6dG9mLA0KDQpJIGFtIGF0dGVtcHRpbmcgdG8gZGVzY3Jp
-YmUgdGhlIEhQRSBHWFAgQk1DcyBuZXR3b3JraW5nIGludGVyZmFjZXMgZm9yDQp0aGUgZGV2aWNl
-IHRyZWUuDQoNCkhlcmUgYXJlIHRoZSBkZXRhaWxzOiBUaGUgR1hQIGNvbnRhaW5zIHR3byBFdGhl
-cm5ldCBNQUNzIHRoYXQgY2FuIGJlDQpjb25uZWN0ZWQgZXh0ZXJuYWxseSB0byBzZXZlcmFsIHBo
-eXNpY2FsIGRldmljZXMuIEZyb20gYW4gZXh0ZXJuYWwNCmludGVyZmFjZSBwZXJzcGVjdGl2ZSB0
-aGUgQk1DIHByb3ZpZGVzIHR3byBTRVJERVMgaW50ZXJmYWNlIGNvbm5lY3Rpb25zDQpjYXBhYmxl
-IG9mIGVpdGhlciBTR01JSSBvciAxMDAwQmFzZS1YIG9wZXJhdGlvbi4gVGhlIEJNQyBhbHNvIHBy
-b3ZpZGVzDQphIFJNSUkgaW50ZXJmYWNlIGZvciBzaWRlYmFuZCBjb25uZWN0aW9ucyB0byBleHRl
-cm5hbCBFdGhlcm5ldCBjb250cm9sbGVycy4NCg0KVGhlIHByaW1hcnkgTUFDICh1bWFjMCkgY2Fu
-IGJlIG1hcHBlZCB0byBlaXRoZXIgU0dNSUkvMTAwMC1CYXNlWA0KU0VSREVTIGludGVyZmFjZS4g
-IFRoZSBzZWNvbmRhcnkgTUFDICh1bWFjMSkgY2FuIGJlIG1hcHBlZCB0byBvbmx5DQp0aGUgc2Vj
-b25kIFNHTUlJLzEwMDAtQmFzZSBYIFNlcmRlcyBpbnRlcmZhY2Ugb3IgaXQgY2FuIGJlIG1hcHBl
-ZCBmb3INClJNSUkgc2lkZWJhbmQuDQoNClRoZSBNRElPKG1kaW8wKSBpbnRlcmZhY2UgZnJvbSB0
-aGUgcHJpbWFyeSBNQUMgKHVtYWMwKSBpcyB1c2VkIGZvcg0KZXh0ZXJuYWwgUEhZIHN0YXR1cyBh
-bmQgY29uZmlndXJhdGlvbi4gVGhlIE1ESU8obWRpbzEpIGludGVyZmFjZSBmcm9tDQp0aGUgc2Vj
-b25kYXJ5IE1BQyAodW1hYzEpIGlzIHJvdXRlZCB0byB0aGUgU0dNSUkvMTAwQmFzZS1YIElQIGJs
-b2Nrcw0Kb24gdGhlIHR3byBTRVJERVMgaW50ZXJmYWNlIGNvbm5lY3Rpb25zLg0KDQpJIGNhbm5v
-dCBmaW5kIGFueSBleGFtcGxlcyBvZiBzb21ldGhpbmcgY3VycmVudGx5IGxpa2UgdGhpcyBpbiBs
-aW51eCBhbmQNCkkgYW0gbG9va2luZyBmb3Igc3VnZ2VzdGlvbnMuDQoNCkJlbG93IGlzIHRoaXMg
-cHJldmlvdXMgYXR0ZW1wdCB0aGF0IHdhcyB1c2VkIHRvIGRlc2NyaWJlIHRoaXMgYXJjaGl0ZWN0
-dXJlOg0KDQptZGlvMDogbWRpb0A0MDgwIHsNCgljb21wYXRpYmxlID0gImhwZSxneHAtdW1hYy1t
-ZGlvIjsNCglyZWcgPSA8MHg0MDgwIDB4MTA+Ow0KCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KCSNz
-aXplLWNlbGxzID0gPDA+Ow0KCWV4dF9waHkwOiBldGhlcm50LXBoeUAwIHsNCgkJY29tcGF0aWJs
-ZSA9ICJtYXJ2ZWxsLDg4ZTE0MTUiLCJldGhlcm5ldC1waHktaWVlZTgwMi4zLWMyMiI7DQoJCXBo
-eS1tb2RlID0gInNnbWlpIjsNCgkJcmVnID0gPDA+Ow0KCX07DQp9Ow0KDQptZGlvMTogbWRpb0A1
-MDgwIHsNCgljb21wYXRpYmxlID0gImhwZSxneHAtdW1hYy1tZGlvIjsNCglyZWcgPSA8MHg1MDgw
-IDB4MTA+Ow0KCSNhZGRyZXNzLWNlbGxzID0gPDE+Ow0KCSNzaXplLWNlbGxzID0gPDA+Ow0KCWlu
-dF9waHkwOiBldGhlcm50LXBoeUAwIHsNCgkJY29tcGF0aWJsZSA9ICJldGhlcm5ldC1waHktaWVl
-ZTgwMi4zLWMyMiI7DQoJCXBoeS1tb2RlID0gImdtaWkiOw0KICAgICAgICAgICAgICAgICAgICAg
-ICAgICAgICByZWcgPSA8MD47DQoJfTsNCg0KCWludF9waHkxOiBldGhlcm50LXBoeUAxIHsNCgkJ
-Y29tcGF0aWJsZSA9ICJldGhlcm5ldC1waHktaWVlZTgwMi4zLWMyMiI7DQoJCXBoeS1tb2RlID0g
-ImdtaWkiOw0KCQlyZWcgPSA8MT47DQoJfTsNCn07DQoNCnVtYWMwOiB1bWFjQDQwMDAgew0KCWNv
-bXBhdGlibGUgPSAiaHBlLCBneHAtdW1hYyI7DQogCXJlZyA9IDwweDQwMDAgMHg4MD47DQoJaW50
-ZXJydXB0cyA9IDwxMD47DQoJaW50ZXJydXB0LXBhcmVudCA9IDwmdmljMD47DQoJbWFjLWFkZHJl
-c3MgPSBbOTQgMTggODIgMTYgMDQgZDhdOw0KCXBoeS1oYW5kbGUgPSA8JmV4dF9waHkwPjsNCglp
-bnQtcGh5LWhhbmRsZSA9IDwmaW50X3BoeTA+Ow0KfTsNCg0KdW1hYzE6IHVtYWNANTAwMCB7DQoJ
-Y29tcGF0aWJsZSA9ICJocGUsIGd4cC11bWFjIjsNCiAJdXNlLW5jc2k7DQoJcmVnID0gPDB4NTAw
-MCAweDgwPjsNCglpbnRlcnJ1cHRzID0gPDExPjsNCglpbnRlcnJ1cHQtcGFyZW50ID0gPCZ2aWMw
-PjsNCgltYWMtYWRkcmVzcyA9IFs5NCAxOCA4MiAxNiAwNCBkOV07DQoJcGh5LWhhbmRsZSA9IDwm
-aW50X3BoeTE+Ow0KfTsNCg0KVGhhbmsgeW91IGZvciB5b3VyIGhlbHAuDQoNCi1OaWNrIEhhd2tp
-bnMNCg0K
+From 01b156ca1b27be83f4c74c288dbc0bcad178fe0b Mon Sep 17 00:00:00 2001
+From: Andrea Collamati <andrea.collamati@gmail.com>
+Date: Mon, 10 Jul 2023 16:20:40 +0200
+Subject: [PATCH] iio: add mcp4728 I2C DAC driver
+
+Microchip MCP4728 is a 12-bit quad channel
+digital-to-analog converter (DAC) with I2C interface.
+
+This patch adds support for per-channel gain, power state and power down mode control.
+Current state could be saved to on-chip EEPROM.
+Internal voltage reference and external vdd ref are supported.
+
+---
+ .../bindings/iio/dac/microchip,mcp4728.yaml   |  42 ++
+ drivers/iio/dac/Kconfig                       |  12 +
+ drivers/iio/dac/Makefile                      |   1 +
+ drivers/iio/dac/mcp4728.c                     | 641 ++++++++++++++++++
+ 4 files changed, 696 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+ create mode 100644 drivers/iio/dac/mcp4728.c
+
+diff --git a/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+new file mode 100644
+index 000000000000..68f4e359a921
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/dac/microchip,mcp4728.yaml
+@@ -0,0 +1,42 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/dac/microchip,mcp4728.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Microchip mcp4728
++
++maintainers:
++  - Andrea Collamati <andrea.collamati@gmail.com>
++
++properties:
++  compatible:
++    enum:
++      - microchip,mcp4728      
++  reg:
++    maxItems: 1
++
++  vdd-supply:
++    description: |
++      Provides both power and acts as the reference supply on the mcp4728
++      when Internal Vref is not selected.      
++
++required:
++  - compatible
++  - reg
++  - vdd-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        mcp4728_dac@64 {
++            compatible = "microchip,mcp4728";
++            reg = <0x60>;
++            vdd-supply = <&vdac_vdd>;
++        };
++    };
+diff --git a/drivers/iio/dac/Kconfig b/drivers/iio/dac/Kconfig
+index c0bf0d84197f..6c96cd30994a 100644
+--- a/drivers/iio/dac/Kconfig
++++ b/drivers/iio/dac/Kconfig
+@@ -376,6 +376,18 @@ config MCP4725
+       To compile this driver as a module, choose M here: the module
+       will be called mcp4725.
+ 
++config MCP4728
++    tristate "MCP4728 DAC driver"
++    depends on I2C
++    help
++      Say Y here if you want to build a driver for the Microchip
++      MCP4728 quad channel, 12-bit digital-to-analog converter (DAC)
++      with I2C interface.
++
++      To compile this driver as a module, choose M here: the module
++      will be called mcp4728.
++
++
+ config MCP4922
+     tristate "MCP4902, MCP4912, MCP4922 DAC driver"
+     depends on SPI
+diff --git a/drivers/iio/dac/Makefile b/drivers/iio/dac/Makefile
+index ec3e42713f00..35ac62a61b05 100644
+--- a/drivers/iio/dac/Makefile
++++ b/drivers/iio/dac/Makefile
+@@ -40,6 +40,7 @@ obj-$(CONFIG_M62332) += m62332.o
+ obj-$(CONFIG_MAX517) += max517.o
+ obj-$(CONFIG_MAX5821) += max5821.o
+ obj-$(CONFIG_MCP4725) += mcp4725.o
++obj-$(CONFIG_MCP4728) += mcp4728.o
+ obj-$(CONFIG_MCP4922) += mcp4922.o
+ obj-$(CONFIG_STM32_DAC_CORE) += stm32-dac-core.o
+ obj-$(CONFIG_STM32_DAC) += stm32-dac.o
+diff --git a/drivers/iio/dac/mcp4728.c b/drivers/iio/dac/mcp4728.c
+new file mode 100644
+index 000000000000..d304fa8ffa26
+--- /dev/null
++++ b/drivers/iio/dac/mcp4728.c
+@@ -0,0 +1,641 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Support for Microchip MCP4728
++ *
++ * Copyright (C) 2023 Andrea Collamati <andrea.collamati@gmail.com>
++ *
++ * Based on mcp4725 by Peter Meerwald <pmeerw@pmeerw.net>
++ *
++ * Driver for the Microchip I2C 12-bit digital-to-analog quad channels
++ * converter (DAC).
++ *
++ * (7-bit I2C slave address 0x60, the three LSBs can be configured in
++ * hardware)
++ */
++
++#include <linux/module.h>
++#include <linux/i2c.h>
++#include <linux/err.h>
++#include <linux/delay.h>
++#include <linux/regulator/consumer.h>
++#include <linux/mod_devicetable.h>
++#include <linux/property.h>
++
++#include <linux/iio/iio.h>
++#include <linux/iio/sysfs.h>
++
++#define MCP4728_DRV_NAME "mcp4728"
++
++#define MCP4728_RESOLUTION 12
++#define MCP4728_N_CHANNELS 4
++
++#define MCP4728_CMD_POS 3
++#define MCP4728_CMD_UDAC_POS 0
++#define MCP4728_CMD_CH_SEL_POS 1
++
++#define MCP4728_CMD_VREF_MASK 0x80
++#define MCP4728_CMD_VREF_POS 7
++
++#define MCP4728_CMD_PDMODE_MASK 0x60
++#define MCP4728_CMD_PDMODE_POS 5
++
++#define MCP4728_CMD_GAIN_MASK 0x10
++#define MCP4728_CMD_GAIN_POS 4
++
++#define MCP4728_MW_CMD 0x08 // Multiwrite Command
++#define MCP4728_SW_CMD 0x0A // Sequential Write Command (include eeprom)
++
++#define MCP4728_READ_RESPONSE_LEN (MCP4728_N_CHANNELS * 3 * 2) // Read Message
++#define MCP4728_WRITE_EEPROM_LEN \
++    (1 + MCP4728_N_CHANNELS * 2) // Sequential Write
++
++enum vref_mode {
++    MCP4728_VREF_EXTERNAL_VDD = 0,
++    MCP4728_VRED_INTERNAL_2048mV = 1,
++};
++
++enum gain_mode {
++    MCP4728_GAIN_X1 = 0,
++    MCP4728_GAIN_X2 = 1,
++};
++
++enum iio_powerdown_mode {
++    MCP4728_IIO_1K,
++    MCP4728_IIO_100K,
++    MCP4728_IIO_500K,
++};
++
++struct mcp4728_channel_data {
++    enum vref_mode ref_mode;
++    enum iio_powerdown_mode pd_mode;
++    enum gain_mode g_mode;
++    u16 dac_value;
++};
++
++struct mcp4728_data {
++    struct i2c_client *client;
++    int id;
++    struct regulator *vdd_reg;
++    bool powerdown;
++    struct mcp4728_channel_data channel_data[MCP4728_N_CHANNELS];
++};
++
++#define MCP4728_CHAN(chan)                                                     \
++    {                                                                      \
++        .type = IIO_VOLTAGE, .output = 1, .indexed = 1,                \
++        .channel = chan, .info_mask_separate = BIT(IIO_CHAN_INFO_RAW), \
++        .info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),          \
++        .ext_info = mcp4728_ext_info,                                  \
++    }
++
++static int mcp4728_suspend(struct device *dev);
++static int mcp4728_resume(struct device *dev);
++
++static ssize_t mcp4728_store_eeprom(struct device *dev,
++                    struct device_attribute *attr,
++                    const char *buf, size_t len)
++{
++    struct iio_dev *indio_dev = dev_to_iio_dev(dev);
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    u8 outbuf[MCP4728_WRITE_EEPROM_LEN];
++    int tries = 20;
++    u8 inbuf[3];
++    bool state;
++    int ret;
++    unsigned int i;
++
++    ret = kstrtobool(buf, &state);
++    if (ret < 0)
++        return ret;
++
++    if (!state)
++        return 0;
++
++    outbuf[0] = MCP4728_SW_CMD << MCP4728_CMD_POS; // Command ID
++
++    for (i = 0; i < MCP4728_N_CHANNELS; i++) {
++        struct mcp4728_channel_data *ch = &(data->channel_data[i]);
++        int offset = 1 + i * 2;
++
++        outbuf[offset] = ch->ref_mode << MCP4728_CMD_VREF_POS;
++        if (data->powerdown) {
++            u8 mcp4728_pd_mode = ch->pd_mode + 1;
++
++            outbuf[1] |= mcp4728_pd_mode << MCP4728_CMD_PDMODE_POS;
++        }
++
++        outbuf[offset] |= ch->g_mode << MCP4728_CMD_GAIN_POS;
++        outbuf[offset] |= ch->dac_value >> 8;
++        outbuf[offset + 1] = ch->dac_value & 0xff;
++    }
++
++    ret = i2c_master_send(data->client, outbuf, MCP4728_WRITE_EEPROM_LEN);
++    if (ret < 0)
++        return ret;
++    else if (ret != MCP4728_WRITE_EEPROM_LEN)
++        return -EIO;
++
++    /* wait RDY signal for write complete, takes up to 50ms */
++    while (tries--) {
++        msleep(20);
++        ret = i2c_master_recv(data->client, inbuf, 3);
++        if (ret < 0)
++            return ret;
++        else if (ret != 3)
++            return -EIO;
++
++        if (inbuf[0] & 0x80) // check RDY flag
++            break;
++    }
++
++    if (tries < 0) {
++        dev_err(&data->client->dev, "%s failed, incomplete\n",
++            __func__);
++        return -EIO;
++    }
++    return len;
++}
++
++static IIO_DEVICE_ATTR(store_eeprom, 0200, NULL, mcp4728_store_eeprom, 0);
++
++static struct attribute *mcp4728_attributes[] = {
++    &iio_dev_attr_store_eeprom.dev_attr.attr,
++    NULL,
++};
++
++static const struct attribute_group mcp4728_attribute_group = {
++    .attrs = mcp4728_attributes,
++};
++
++enum chip_id {
++    MCP4728,
++};
++
++static int mcp4728_program_channel_cfg(int channel, struct iio_dev *indio_dev)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    struct mcp4728_channel_data *ch = &(data->channel_data[channel]);
++    u8 outbuf[3];
++    int ret;
++
++    outbuf[0] = MCP4728_MW_CMD << MCP4728_CMD_POS; // Command ID
++    outbuf[0] |= channel << MCP4728_CMD_CH_SEL_POS; // Channel Selector
++    outbuf[0] |= 0; // UDAC = 0
++
++    outbuf[1] = ch->ref_mode << MCP4728_CMD_VREF_POS;
++    if (data->powerdown) {
++        u8 mcp4728_pd_mode = ch->pd_mode + 1;
++
++        outbuf[1] |= mcp4728_pd_mode << MCP4728_CMD_PDMODE_POS;
++    }
++
++    outbuf[1] |= ch->g_mode << MCP4728_CMD_GAIN_POS;
++
++    outbuf[1] |= ch->dac_value >> 8;
++    outbuf[2] = ch->dac_value & 0xff;
++
++    ret = i2c_master_send(data->client, outbuf, 3);
++    if (ret < 0)
++        return ret;
++    else if (ret != 3)
++        return -EIO;
++    else
++        return 0;
++}
++
++// powerdown mode
++static const char *const mcp4728_powerdown_modes[] = {
++    "1kohm_to_gnd",
++    "100kohm_to_gnd",
++    "500kohm_to_gnd"
++};
++
++static int mcp4728_get_powerdown_mode(struct iio_dev *indio_dev,
++                      const struct iio_chan_spec *chan)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++
++    return data->channel_data[chan->channel].pd_mode;
++}
++
++static int mcp4728_set_powerdown_mode(struct iio_dev *indio_dev,
++                      const struct iio_chan_spec *chan,
++                      unsigned int mode)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++
++    data->channel_data[chan->channel].pd_mode = mode;
++
++    return 0;
++}
++
++static ssize_t mcp4728_read_powerdown(struct iio_dev *indio_dev,
++                      uintptr_t private,
++                      const struct iio_chan_spec *chan,
++                      char *buf)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++
++    return sysfs_emit(buf, "%d\n", data->powerdown);
++}
++
++static ssize_t mcp4728_write_powerdown(struct iio_dev *indio_dev,
++                       uintptr_t private,
++                       const struct iio_chan_spec *chan,
++                       const char *buf, size_t len)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    bool state;
++    int ret;
++
++    ret = kstrtobool(buf, &state);
++    if (ret)
++        return ret;
++
++    if (state)
++        ret = mcp4728_suspend(&data->client->dev);
++    else
++        ret = mcp4728_resume(&data->client->dev);
++    if (ret < 0)
++        return ret;
++
++    return len;
++}
++
++static const struct iio_enum mcp4728_powerdown_mode_enum = {
++    .items = mcp4728_powerdown_modes,
++    .num_items = ARRAY_SIZE(mcp4728_powerdown_modes),
++    .get = mcp4728_get_powerdown_mode,
++    .set = mcp4728_set_powerdown_mode,
++};
++
++// vref mode
++static const char *const mcp4728_vref_modes[] = {
++    "vdd_ext",
++    "internal",
++};
++
++static int mcp4728_get_vref_mode(struct iio_dev *indio_dev,
++                 const struct iio_chan_spec *chan)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++
++    return data->channel_data[chan->channel].ref_mode;
++}
++
++static int mcp4728_set_vref_mode(struct iio_dev *indio_dev,
++                 const struct iio_chan_spec *chan,
++                 unsigned int mode)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    int ret;
++
++    data->channel_data[chan->channel].ref_mode = mode;
++
++    if (mode == MCP4728_VREF_EXTERNAL_VDD &&
++        data->channel_data[chan->channel].g_mode == MCP4728_GAIN_X2) {
++        dev_warn(
++            &data->client->dev,
++            "CH%d: Gain x2 not effective when vref is vdd, force to x1",
++            chan->channel);
++        data->channel_data[chan->channel].g_mode = MCP4728_GAIN_X1;
++    }
++
++    ret = mcp4728_program_channel_cfg(chan->channel, indio_dev);
++
++    return ret;
++}
++static const struct iio_enum mcp4728_vref_mode_enum = {
++    .items = mcp4728_vref_modes,
++    .num_items = ARRAY_SIZE(mcp4728_vref_modes),
++    .get = mcp4728_get_vref_mode,
++    .set = mcp4728_set_vref_mode,
++};
++
++// gain
++static const char *const mcp4728_gain_modes[] = {
++    "x1",
++    "x2",
++};
++
++static int mcp4728_get_gain_mode(struct iio_dev *indio_dev,
++                 const struct iio_chan_spec *chan)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++
++    return data->channel_data[chan->channel].g_mode;
++}
++
++static int mcp4728_set_gain_mode(struct iio_dev *indio_dev,
++                 const struct iio_chan_spec *chan,
++                 unsigned int mode)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    int ret;
++
++    if (mode == MCP4728_GAIN_X2 &&
++        data->channel_data[chan->channel].ref_mode ==
++            MCP4728_VREF_EXTERNAL_VDD) {
++        dev_err(&data->client->dev,
++            "CH%d: Gain x2 not effective when vref is vdd",
++            chan->channel);
++        return -EINVAL;
++    }
++
++    data->channel_data[chan->channel].g_mode = mode;
++
++    ret = mcp4728_program_channel_cfg(chan->channel, indio_dev);
++
++    return ret;
++}
++
++static const struct iio_enum mcp4728_gain_mode_enum = {
++    .items = mcp4728_gain_modes,
++    .num_items = ARRAY_SIZE(mcp4728_gain_modes),
++    .get = mcp4728_get_gain_mode,
++    .set = mcp4728_set_gain_mode,
++};
++
++static const struct iio_chan_spec_ext_info mcp4728_ext_info[] = {
++    {
++        .name = "powerdown",
++        .read = mcp4728_read_powerdown,
++        .write = mcp4728_write_powerdown,
++        .shared = IIO_SEPARATE,
++    },
++    IIO_ENUM("powerdown_mode", IIO_SEPARATE, &mcp4728_powerdown_mode_enum),
++    IIO_ENUM_AVAILABLE("powerdown_mode", IIO_SHARED_BY_TYPE,
++               &mcp4728_powerdown_mode_enum),
++    IIO_ENUM("vref_mode", IIO_SEPARATE, &mcp4728_vref_mode_enum),
++    IIO_ENUM_AVAILABLE("vref_mode", IIO_SHARED_BY_TYPE,
++               &mcp4728_vref_mode_enum),
++    IIO_ENUM("gain_mode", IIO_SEPARATE, &mcp4728_gain_mode_enum),
++    IIO_ENUM_AVAILABLE("gain_mode", IIO_SHARED_BY_TYPE,
++               &mcp4728_gain_mode_enum),
++    {},
++};
++
++static const struct iio_chan_spec mcp4728_channels[MCP4728_N_CHANNELS] = {
++    MCP4728_CHAN(0),
++    MCP4728_CHAN(1),
++    MCP4728_CHAN(2),
++    MCP4728_CHAN(3),
++};
++
++static int mcp4728_full_scale_mV(u32 *full_scale_mV, int channel,
++                 struct mcp4728_data *data)
++{
++    int ret;
++
++    if (data->channel_data[channel].ref_mode == MCP4728_VREF_EXTERNAL_VDD)
++        ret = regulator_get_voltage(data->vdd_reg);
++    else
++        ret = 2048000;
++
++    if (ret < 0)
++        return ret;
++
++    if (ret == 0)
++        return -EINVAL;
++
++    *full_scale_mV = ret / 1000;
++    return 0;
++}
++
++static u32 mcp4728_raw_to_mV(u32 raw, int channel, struct mcp4728_data *data)
++{
++    int ret;
++    u32 full_scale_mV;
++
++    ret = mcp4728_full_scale_mV(&full_scale_mV, channel, data);
++    if (ret)
++        return ret;
++
++    return (((raw + 1) * full_scale_mV) >> MCP4728_RESOLUTION);
++}
++
++static int mcp4728_read_raw(struct iio_dev *indio_dev,
++                struct iio_chan_spec const *chan, int *val,
++                int *val2, long mask)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    int ret;
++
++    switch (mask) {
++    case IIO_CHAN_INFO_RAW:
++        *val = data->channel_data[chan->channel].dac_value;
++        return IIO_VAL_INT;
++    case IIO_CHAN_INFO_SCALE:
++        if (data->channel_data[chan->channel].ref_mode ==
++            MCP4728_VREF_EXTERNAL_VDD)
++            ret = regulator_get_voltage(data->vdd_reg);
++        else
++            ret = 2048000;
++
++        if (ret < 0)
++            return ret;
++
++        *val = ret / 1000;
++        *val2 = MCP4728_RESOLUTION;
++        return IIO_VAL_FRACTIONAL_LOG2;
++    }
++    return -EINVAL;
++}
++
++static int mcp4728_write_raw(struct iio_dev *indio_dev,
++                 struct iio_chan_spec const *chan, int val,
++                 int val2, long mask)
++{
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    int ret;
++
++    switch (mask) {
++    case IIO_CHAN_INFO_RAW:
++        if (val < 0 || val > GENMASK(MCP4728_RESOLUTION - 1, 0))
++            return -EINVAL;
++        data->channel_data[chan->channel].dac_value = val;
++        ret = mcp4728_program_channel_cfg(chan->channel, indio_dev);
++        break;
++    default:
++        ret = -EINVAL;
++        break;
++    }
++
++    return ret;
++}
++
++static const struct iio_info mcp4728_info = {
++    .read_raw = mcp4728_read_raw,
++    .write_raw = mcp4728_write_raw,
++    .attrs = &mcp4728_attribute_group,
++};
++
++static int mcp4728_suspend(struct device *dev)
++{
++    struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    int err = 0;
++    unsigned int i;
++
++    data->powerdown = true;
++
++    for (i = 0; i < MCP4728_N_CHANNELS; i++) {
++        int ret = mcp4728_program_channel_cfg(i, indio_dev);
++
++        if (ret)
++            err = ret; //save last error
++    }
++    return err;
++}
++
++static int mcp4728_resume(struct device *dev)
++{
++    struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
++    struct mcp4728_data *data = iio_priv(indio_dev);
++    int err = 0;
++    unsigned int i;
++
++    data->powerdown = false;
++
++    for (i = 0; i < MCP4728_N_CHANNELS; i++) {
++        int ret = mcp4728_program_channel_cfg(i, indio_dev);
++
++        if (ret)
++            err = ret; //save last error
++    }
++    return err;
++}
++static DEFINE_SIMPLE_DEV_PM_OPS(mcp4728_pm_ops, mcp4728_suspend,
++                mcp4728_resume);
++
++static int mcp4728_init_channels_data(struct mcp4728_data *data)
++{
++    u8 inbuf[MCP4728_READ_RESPONSE_LEN];
++    int ret;
++    unsigned int i;
++
++    ret = i2c_master_recv(data->client, inbuf, MCP4728_READ_RESPONSE_LEN);
++    if (ret < 0) {
++        dev_err(&data->client->dev,
++            "failed to read mcp4728 conf. Err=%d\n", ret);
++        return ret;
++    } else if (ret != MCP4728_READ_RESPONSE_LEN) {
++        dev_err(&data->client->dev,
++            "failed to read mcp4728 conf. Wrong Response Len ret=%d\n",
++            ret);
++        return -EIO;
++    }
++
++    for (i = 0; i < MCP4728_N_CHANNELS; i++) {
++        struct mcp4728_channel_data *ch = &(data->channel_data[i]);
++        u8 r2 = inbuf[i * 6 + 1];
++        u8 r3 = inbuf[i * 6 + 2];
++        u32 dac_mv;
++
++        ch->dac_value = (r2 & 0x0F) << 8 | r3;
++        ch->ref_mode = (r2 & MCP4728_CMD_VREF_MASK) >>
++                   MCP4728_CMD_VREF_POS;
++        ch->pd_mode = (r2 & MCP4728_CMD_PDMODE_MASK) >>
++                  MCP4728_CMD_PDMODE_POS;
++        ch->g_mode = (r2 & MCP4728_CMD_GAIN_MASK) >>
++                 MCP4728_CMD_GAIN_POS;
++        if (ch->g_mode == MCP4728_GAIN_X2 &&
++            ch->ref_mode == MCP4728_VREF_EXTERNAL_VDD)
++            dev_warn(&data->client->dev,
++                 "CH%d: Gain x2 not effective when vref is vdd",
++                 i);
++
++        dac_mv = mcp4728_raw_to_mV(ch->dac_value, i, data);
++        dev_info(&data->client->dev,
++             "CH%d: Voltage=%dmV VRef=%d PowerDown=%d Gain=%d\n", i,
++             dac_mv, ch->ref_mode, ch->pd_mode, ch->g_mode);
++    }
++
++    return 0;
++}
++
++static int mcp4728_probe(struct i2c_client *client,
++             const struct i2c_device_id *id)
++{
++    struct mcp4728_data *data;
++    struct iio_dev *indio_dev;
++    int err;
++
++    indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*data));
++    if (indio_dev == NULL)
++        return -ENOMEM;
++    data = iio_priv(indio_dev);
++    i2c_set_clientdata(client, indio_dev);
++    data->client = client;
++    if (dev_fwnode(&client->dev))
++        data->id = (uintptr_t)device_get_match_data(&client->dev);
++    else
++        data->id = id->driver_data;
++
++    data->vdd_reg = devm_regulator_get(&client->dev, "vdd");
++    if (IS_ERR(data->vdd_reg))
++        return PTR_ERR(data->vdd_reg);
++
++    err = regulator_enable(data->vdd_reg);
++    if (err)
++        goto err_disable_vdd_reg;
++
++    err = mcp4728_init_channels_data(data);
++    if (err) {
++        dev_err(&client->dev,
++            "failed to read mcp4728 current configuration\n");
++        goto err_disable_vdd_reg;
++    }
++
++    indio_dev->name = id->name;
++    indio_dev->info = &mcp4728_info;
++    indio_dev->channels = mcp4728_channels;
++    indio_dev->num_channels = MCP4728_N_CHANNELS;
++    indio_dev->modes = INDIO_DIRECT_MODE;
++
++    err = iio_device_register(indio_dev);
++    if (err)
++        goto err_disable_vdd_reg;
++
++    return 0;
++
++err_disable_vdd_reg:
++    regulator_disable(data->vdd_reg);
++
++    return err;
++}
++
++static int mcp4728_remove(struct i2c_client *client)
++{
++    struct iio_dev *indio_dev = i2c_get_clientdata(client);
++    struct mcp4728_data *data = iio_priv(indio_dev);
++
++    iio_device_unregister(indio_dev);
++    regulator_disable(data->vdd_reg);
++    return 0;
++}
++
++static const struct i2c_device_id mcp4728_id[] = { { "mcp4728", MCP4728 }, {} };
++MODULE_DEVICE_TABLE(i2c, mcp4728_id);
++
++static const struct of_device_id mcp4728_of_match[] = {
++    { .compatible = "microchip,mcp4728", .data = (void *)MCP4728 },
++    {}
++};
++MODULE_DEVICE_TABLE(of, mcp4728_of_match);
++
++static struct i2c_driver mcp4728_driver = {
++        .driver = {
++                .name = MCP4728_DRV_NAME,
++                .of_match_table = mcp4728_of_match,
++                .pm = pm_sleep_ptr(&mcp4728_pm_ops),
++        },
++        .probe = mcp4728_probe,
++        .remove = mcp4728_remove,
++        .id_table = mcp4728_id,
++};
++module_i2c_driver(mcp4728_driver);
++
++MODULE_AUTHOR("Andrea Collamati <andrea.collamati@gmail.com>");
++MODULE_DESCRIPTION("MCP4728 12-bit DAC");
++MODULE_LICENSE("GPL");
+-- 
+2.17.1
+
+
