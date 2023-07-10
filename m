@@ -2,107 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 5756574D9A0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:14:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCD9F74D9A7
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S233553AbjGJPOA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 11:14:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38738 "EHLO
+        id S229938AbjGJPQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 11:16:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233549AbjGJPN7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:13:59 -0400
-Received: from mail-wr1-x431.google.com (mail-wr1-x431.google.com [IPv6:2a00:1450:4864:20::431])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D467FC0
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:13:57 -0700 (PDT)
-Received: by mail-wr1-x431.google.com with SMTP id ffacd0b85a97d-31454996e06so4220423f8f.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:13:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1689002036; x=1691594036;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :from:to:cc:subject:date:message-id:reply-to;
-        bh=85ipMnKhTmCRR/+ctL9Ale6MVh3KnIeTA4oNiNxzq0Y=;
-        b=ZL1I+X9kQ2ElwDmG+AEK8KwT/B08w/my8Sc4CIOHtVXTwmQ+PgCzzFJZ3Akw2b3y3T
-         1fnzKN5De4XH/rii8aIyjr73nPV2T28m7SZ2fCN2RHnnhWQlkGaA9R+/rPAyUrsqjsXV
-         VsAXMW2D8OlEfiPvhovXj47rzAu0Unx5urxgY/u6fxTUrilLOAq7wmavdMr1bkb+JIxt
-         zVNEDySJWILQPgM1DJAHSdMOwDmDJatkQBQrsjhkDumSpBw40PtY0tZpViOIVZz+Vh+B
-         CcOuj7FvNWveG1KXUD4UFxU6CAa1jGrSfaV3bI97KaGKRLEJOl8DjrPHo83nd0CXDLJ5
-         1UIg==
+        with ESMTP id S230364AbjGJPQc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:16:32 -0400
+Received: from mail-il1-f175.google.com (mail-il1-f175.google.com [209.85.166.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E2DEE8;
+        Mon, 10 Jul 2023 08:16:28 -0700 (PDT)
+Received: by mail-il1-f175.google.com with SMTP id e9e14a558f8ab-345f3e28082so16520625ab.1;
+        Mon, 10 Jul 2023 08:16:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689002036; x=1691594036;
-        h=content-transfer-encoding:in-reply-to:from:content-language
-         :references:cc:to:subject:user-agent:mime-version:date:message-id
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=85ipMnKhTmCRR/+ctL9Ale6MVh3KnIeTA4oNiNxzq0Y=;
-        b=ebfE6YxoltVi3i2+fJ/Htz5cz0ASFhC4rKnhmDxjFMzx6uzMGGZeN3UwEkmssXH99/
-         y9aH7/qflAqEDq6KLeiG7iTBaomeicMvX7QTIL1UjuHr6ylD4y5LMVs3MN4x3OHO47cN
-         2qv1GDTBXhByvYneNKEo5t7x7fX0I1xBsd8GeHhBZ2XxXwI25ooFi+gNlidcrawuYwGo
-         0+91MvC7nCHe92v4ftjhxTwZXChgF8p3JzUYT+bq480a3LCx+Jo88VnLJcN5YEPVFumM
-         z0LKNW+nEoF232/2T6rZGElxObE9U6P0G5911mLGy0GkNNkzDKXV+NRiYkl3duOjfYn2
-         yVJQ==
-X-Gm-Message-State: ABy/qLbiji379js1ecbSuz7s4vA0TFz7xKfZZl8tzhFnB+GSfvDfnQkE
-        ZwpSayxUYeys9f3ElM2v01vLYQ==
-X-Google-Smtp-Source: APBJJlGNw8LoIwWE17CDwj/ZPC8coYJt6YKpgmsEOFoHFqk4VAZJrlyE7FZLzg584jpHlBes6qR02Q==
-X-Received: by 2002:adf:e0cf:0:b0:314:4bf5:2c73 with SMTP id m15-20020adfe0cf000000b003144bf52c73mr636696wri.64.1689002036327;
-        Mon, 10 Jul 2023 08:13:56 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id s26-20020a056402165a00b0051df1797222sm5805120edx.11.2023.07.10.08.13.54
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 08:13:55 -0700 (PDT)
-Message-ID: <a184cf8c-19c1-e2fe-d4f4-adeaf0b8d42e@linaro.org>
-Date:   Mon, 10 Jul 2023 17:13:53 +0200
+        d=1e100.net; s=20221208; t=1689002187; x=1691594187;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=hY0GxBN2xgwjo+bXMXBJ7K5xkLz0l0SkC1bgFRQbePc=;
+        b=cN6cMSirBwhoQJd22ALwXCzhQ+lBzgR17BsfaIuv1l60jpsQorM6PGl62ATl+WcUEU
+         hNhHuGWYVeRYSpIelEHiiPwKJ12TEVlaSvvpjp7m61xRTyvIGvM61B9ijTIVgoVfIeA8
+         fhQKNJDaC45mwhJ0hSnG9kr9qmy7WKOCP78TMmXrvI2BBi9WLtUy7Ojp1d0duXF+fRy3
+         YulJGAZg/TrdKaQHxYhb1SGzwQdU5i14egetwl/AWp5Tbt9ZuuWQcJ+6KJ+85rETSdWl
+         tY0ImvDYVsZFYhqiPQKJUJ5NrGNKxSXObGFGySPi986VhDRHaIaywxwh/9hCwraS7FaR
+         QqjA==
+X-Gm-Message-State: ABy/qLaD2EBDl5Xj+6Jo0LUqIZuOyUTzPQVCU+IQGEeF0NjV4hnwVLGk
+        PgGhhFNwmx45vVFCns4YYIRURFehRw==
+X-Google-Smtp-Source: APBJJlHQ3fBw2fUWi1AJFW/AlBFt3ZRHqEH8HOO/lErk7nSvGOLZYzoYpqWfGTdLNdnO9DrDV6/6ig==
+X-Received: by 2002:a92:c142:0:b0:345:775f:1a2f with SMTP id b2-20020a92c142000000b00345775f1a2fmr12648247ilh.14.1689002187559;
+        Mon, 10 Jul 2023 08:16:27 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id c12-20020a92d3cc000000b003460b697bc0sm3610370ilh.59.2023.07.10.08.16.25
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jul 2023 08:16:26 -0700 (PDT)
+Received: (nullmailer pid 1992483 invoked by uid 1000);
+        Mon, 10 Jul 2023 15:16:24 -0000
+Date:   Mon, 10 Jul 2023 09:16:24 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Samuel Ortiz <sameo@rivosinc.com>
+Cc:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        linux-riscv@lists.infradead.org, linux@rivosinc.com,
+        Conor Dooley <conor.dooley@microchip.com>,
+        Andrew Jones <ajones@ventanamicro.com>,
+        Heiko Stuebner <heiko.stuebner@vrull.eu>,
+        Anup Patel <apatel@ventanamicro.com>,
+        linux-kernel@vger.kernel.org,
+        "Hongren (Zenithal) Zheng" <i@zenithal.me>,
+        Guo Ren <guoren@kernel.org>, Atish Patra <atishp@rivosinc.com>,
+        =?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
+        Evan Green <evan@rivosinc.com>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/4] dt-bindings: riscv: Document the 1.0 scalar
+ cryptography extensions
+Message-ID: <20230710151624.GA1987602-robh@kernel.org>
+References: <20230709115549.2666557-1-sameo@rivosinc.com>
+ <20230709115549.2666557-3-sameo@rivosinc.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH] dt-bindings: thermal: tegra: Convert to json-schema
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        "Rafael J . Wysocki" <rafael@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-tegra@vger.kernel.org
-References: <20230707133333.2998802-1-thierry.reding@gmail.com>
- <d6386a66-4cc2-9358-e65e-b09e614800c3@linaro.org> <ZKwW58xHD0cGfxvM@orome>
-Content-Language: en-US
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <ZKwW58xHD0cGfxvM@orome>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230709115549.2666557-3-sameo@rivosinc.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_NONE,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2023 16:34, Thierry Reding wrote:
-> On Mon, Jul 10, 2023 at 10:09:18AM +0200, Krzysztof Kozlowski wrote:
->> On 07/07/2023 15:33, Thierry Reding wrote:
-> [...]
->>> +          nvidia,cpu-throt-percent:
->>
->> Missing type
+On Sun, Jul 09, 2023 at 01:55:44PM +0200, Samuel Ortiz wrote:
+> The RISC-V cryptography extensions define a set of instructions, CSR
+> definitions, architectural interfaces and also extension shorthands for
+> running scalar and vector based cryptography operations on RISC-V
+> systems.
 > 
-> Isn't this already taken care of by core/property-units.yaml?
+> This documents all the dt-bindings for the scalar cryptography
+> extensions, including the Zk, Zkn and Zks shorthands.
+> 
+> Signed-off-by: Samuel Ortiz <sameo@rivosinc.com>
+> ---
+>  .../devicetree/bindings/riscv/extensions.yaml | 82 +++++++++++++++++++
+>  1 file changed, 82 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> index cc1f546fdbdc..361756978da1 100644
+> --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
+> @@ -190,6 +190,24 @@ properties:
+>              instructions as ratified at commit 6d33919 ("Merge pull request #158
+>              from hirooih/clmul-fix-loop-end-condition") of riscv-bitmanip.
+>  
+> +        - const: zbkb
+> +          description: |
 
-You are right, I did not notice unit suffix.
+Don't need '|' if no formatting to preserve.
 
-
-> That has
-> anything matching "-percent$" marked as int32-array. I suppose I could
-> override this with just uint32 to narrow it further down, but I was
-> under the impression that overriding standard properties this way was
-> frowned upon.
-
-Yep.
-
-Best regards,
-Krzysztof
-
+> +            The standard Zbkb cryptography extension for bit-manipulation
+> +            instructions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zbkc
+> +          description: |
+> +            The standard Zbkc cryptography extension for carry-less multiply
+> +            instructions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zbkx
+> +          description: |
+> +            The standard Zbkx cryptography extension for crossbar permutation
+> +            instructions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+>          - const: zicbom
+>            description:
+>              The standard Zicbom extension for base cache management operations as
+> @@ -240,6 +258,70 @@ properties:
+>              ratified in the 20191213 version of the unprivileged ISA
+>              specification.
+>  
+> +        - const: zk
+> +          description: |
+> +            The standard Zk cryptography extension is a shorthand for the
+> +            union of the Zkn, Zkr and Zkt cryptography extensions, as ratified
+> +            at commit 73de909 ("Zvk: Update AES instruction specs") of
+> +            riscv-crypto.
+> +
+> +        - const: zkn
+> +          description: |
+> +            The standard Zkn cryptography extension covers the NIST algorithm
+> +            suite that other cryptography extensions support. It is the union of
+> +            the Zbkb, Zbkc, Zbkx, Zknd, Zkne and Zknh extensions, as ratified at
+> +            commit 73de909 ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zknd
+> +          description: |
+> +            The standard Zknd cryptography extension for AES block cipher
+> +            decryption acceleration instructions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zkne
+> +          description: |
+> +            The standard Zkne cryptography extension for AES block cipher
+> +            encryption acceleration instructions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zknh
+> +          description: |
+> +            The standard Zknh cryptography extension for SHA2 hash algorithm
+> +            functions acceleration instructions as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zkr
+> +          description: |
+> +            The standard Zkr cryptography extension for the entropy source CSR
+> +            definitions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zks
+> +          description: |
+> +            The standard Zks cryptography extension covers the ShangMi algorithm
+> +            suite that other cryptography extensions support. It is the union of
+> +            the Zbkb, Zbkc, Zbkx, Zksed and Zksh extensions, as ratified at
+> +            commit 73de909 ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zksed
+> +          description: |
+> +            The standard Zksed cryptography extension for SM4 block cipher
+> +            acceleration instructions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zksh
+> +          description: |
+> +            The standard Zksh cryptography extension for SM3 hash algorithm
+> +            funstions acceleration instructions, as ratified at commit 73de909
+> +            ("Zvk: Update AES instruction specs") of riscv-crypto.
+> +
+> +        - const: zkt
+> +          description: |
+> +            The standard Zkt cryptography extension for data independent
+> +            execution latency attestation, for a safe subset of instructions,
+> +            as ratified at commit 73de909 ("Zvk: Update AES instruction specs")
+> +            of riscv-crypto.
+> +
+>          - const: ztso
+>            description:
+>              The standard Ztso extension for total store ordering, as ratified
+> -- 
+> 2.41.0
+> 
