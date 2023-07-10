@@ -2,71 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4658A74DB71
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8794674DB84
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:52:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230387AbjGJQrW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 12:47:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47208 "EHLO
+        id S230519AbjGJQwe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 12:52:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50020 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230393AbjGJQrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:47:20 -0400
-Received: from mail-wm1-x333.google.com (mail-wm1-x333.google.com [IPv6:2a00:1450:4864:20::333])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA0B3F4
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 09:47:18 -0700 (PDT)
-Received: by mail-wm1-x333.google.com with SMTP id 5b1f17b1804b1-3fbc63c2e84so52816875e9.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 09:47:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=9elements.com; s=google; t=1689007636; x=1691599636;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:from:to:cc:subject:date
-         :message-id:reply-to;
-        bh=irZH5XR1T/qwnIyZTduD5l9vw+nb1uCdEROQyV19vtI=;
-        b=Dz9FexAqOifkjtZ0/rZjnlB5kjjRexvmEsWnAVPg/iyKY4fBWOoIDGAJ72A/gzSeV9
-         n12cbYDmLsHYlGcMHUtPT0NF0kB2QZ3a1GrFGw3PEia7lbaSzPD3NPN1Z2Jw1tzYUvLU
-         oRoO9N7hXYtlB1f9DNxsKEBZ5QSG11l3z/9xuj6tY0oLla5mL84Ld+dC3I3O61EFIpkN
-         kDXugtGMgKTyqdhBvkQUsdnqmms85BVNbIRBdYWZfcV40scneK1z0SOspwHMUW/O030O
-         ryHNVk7KnTFAAS629I4ry84ab2I8H7q3icoV+9MeFQxF5+TGS2ROtTGsF+0LKfj1TJ2E
-         Axig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1689007636; x=1691599636;
-        h=content-transfer-encoding:mime-version:references:in-reply-to
-         :message-id:date:subject:cc:to:from:x-gm-message-state:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=irZH5XR1T/qwnIyZTduD5l9vw+nb1uCdEROQyV19vtI=;
-        b=Qkj3EaHaIIUNvkNwjI10td0rrMRfIql5df3wuNnoM1brSpjuDWCQV6fzRb1LlNIjxc
-         NfWfOWw3xpRgWNBuUooO2Hpsa+x7Lvn9k66nvHwIF/0HHQV4F1zkPdeg6boRKZ6Ayb4G
-         KW//qfiqIVghgYRQmqZ8ZsFXUaOKkRzgrevM3G/f3qRk5ZJ/OjAm+ZkkK6VcstSyHoKx
-         +fWGeC0GbN1THL9WiP5udwHeHvhGY3sgLj3ECJvXm3D2myfvtkoZtr0b3JgSCvv420gn
-         eKkdIq64s1K5O81eaOUDIcqIlUjC+Uq8eTe/gtnVR9AYlkxV1cOdPWeE3amI1TCMQ35d
-         H0YQ==
-X-Gm-Message-State: ABy/qLbqAVWTbjXtTOwdHYII9ZowzhOzbAMeUPtEQbtvXq9qWYudDI/i
-        9EKmdK+AS68Rx6ocogtFk6agTG3dvmDksTWrsQzjZw==
-X-Google-Smtp-Source: APBJJlGKH+jb9DaxU3qp5wI2jxJU1bnePW8y+5lpEySQhjtJAUag+JT6QNsQeAz72lQDztMSe/9YUw==
-X-Received: by 2002:a05:600c:364c:b0:3fb:b5cb:1130 with SMTP id y12-20020a05600c364c00b003fbb5cb1130mr12897496wmq.34.1689007636636;
-        Mon, 10 Jul 2023 09:47:16 -0700 (PDT)
-Received: from stroh80.sec.9e.network (ip-078-094-000-051.um19.pools.vodafone-ip.de. [78.94.0.51])
-        by smtp.gmail.com with ESMTPSA id n2-20020a05600c294200b003fbe791a0e8sm394704wmd.0.2023.07.10.09.47.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 10 Jul 2023 09:47:16 -0700 (PDT)
-From:   Naresh Solanki <naresh.solanki@9elements.com>
-X-Google-Original-From: Naresh Solanki <Naresh.Solanki@9elements.com>
-To:     devicetree@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
-        Jean Delvare <jdelvare@suse.com>,
-        Iwona Winiarska <iwona.winiarska@intel.com>
-Cc:     linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        Patrick Rudolph <patrick.rudolph@9elements.com>
-Subject: [PATCH 2/2] hwmon: (dimmtemp) Add Sapphire Rappids support
-Date:   Mon, 10 Jul 2023 18:47:04 +0200
-Message-ID: <20230710164705.3985996-2-Naresh.Solanki@9elements.com>
-X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230710164705.3985996-1-Naresh.Solanki@9elements.com>
-References: <20230710164705.3985996-1-Naresh.Solanki@9elements.com>
+        with ESMTP id S230406AbjGJQwd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:52:33 -0400
+Received: from madras.collabora.co.uk (madras.collabora.co.uk [46.235.227.172])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8237112E;
+        Mon, 10 Jul 2023 09:52:32 -0700 (PDT)
+Received: from jupiter.universe (dyndsl-091-248-189-246.ewe-ip-backbone.de [91.248.189.246])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        (Authenticated sender: sre)
+        by madras.collabora.co.uk (Postfix) with ESMTPSA id 1AAD96602B7B;
+        Mon, 10 Jul 2023 17:52:30 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
+        s=mail; t=1689007950;
+        bh=ABpJQ8z918e5OZkfpgP7HwSnXWU4EFxL3SvzflDiHoM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=nGNYDGcxK+5wDcCrAZ/2csXrrZCAaOWFOOyDfwc5T7vkrETYIb+QVrafuclahWIxr
+         IXE4pd4C+FGuT3BMPNyTVUw3r+bsP5f/dv74DqIUF7UJEPwL48DzCq17O2Yz0kPVJm
+         PjA2aBVKVCp5jrI/sElqItEyFPAjVWBj9qENQcctAYj62vGaXxXQT4vGi41pTVnX8i
+         2PQAe1Y9dy3EiqR2qiU1z/AZeeY06iEfOhJhTrRG+t3aurbv266IAsu+5F3ezmW76m
+         /o9IBSDGg40IAn8IcbLBeeUgWNgxXNM5oQwZhJaUzLW+hIsAG3IYTk3VFqVZq1uXWQ
+         kVcv8eJO1TtPA==
+Received: by jupiter.universe (Postfix, from userid 1000)
+        id 1980D480592; Mon, 10 Jul 2023 18:52:28 +0200 (CEST)
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     linux-rockchip@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Rob Herring <robh@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        kernel@collabora.com
+Subject: [PATCH v1 00/13] Improve Rock 5A Device Tree
+Date:   Mon, 10 Jul 2023 18:52:15 +0200
+Message-Id: <20230710165228.105983-1-sebastian.reichel@collabora.com>
+X-Mailer: git-send-email 2.40.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -74,84 +58,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Patrick Rudolph <patrick.rudolph@9elements.com>
+Hi,
 
-This patch extends the functionality of the hwmon (dimmtemp) to include
-support for Sapphire Rappids platform.
+This brings Rock 5A on par with the Rock 5B. All necessary driver
+changes have already been merged.
 
-Sapphire Rappids can accommodate up to 8 CPUs, each with 16 DIMMs. To
-accommodate this configuration, the maximum supported DIMM count is
-increased, and the corresponding Sapphire Rappids ID and threshold code
-are added.
+-- Sebastian
 
-The patch has been tested on a 4S system with 64 DIMMs installed.
-Default thresholds are utilized for Sapphire Rappids, as accessing the
-threshold requires accessing the UBOX device on Uncore bus 0, which can
-only be achieved using MSR access. The non-PCI-compliant MMIO BARs are
-not available for this purpose.
+Lucas Tanure (1):
+  arm64: dts: rockchip: rock-5a: add SD card support
 
-Signed-off-by: Patrick Rudolph <patrick.rudolph@9elements.com>
----
- drivers/hwmon/peci/dimmtemp.c | 24 +++++++++++++++++++++++-
- 1 file changed, 23 insertions(+), 1 deletion(-)
+Sebastian Reichel (12):
+  dt-bindings: vendor-prefixes: Add prefix for belling
+  dt-bindings: at24: add Belling BL24C16A
+  arm64: dts: rockchip: rock-5a: add PMIC
+  arm64: dts: rockchip: rock-5a: add vdd_cpu_big regulators
+  arm64: dts: rockchip: rock-5a: add 5V regulator
+  arm64: dts: rockchip: rock-5a: add status LED
+  arm64: dts: rockchip: rock-5a: add analog audio
+  arm64: dts: rockchip: rock-5a: add I2C EEPROM
+  arm64: dts: rockchip: rock-5a: add vdd_npu_s0 regulator
+  arm64: dts: rockchip: rock-5a: enable I2C interface from DSI and CSI
+    connectors
+  arm64: dts: rockchip: rock-5a: add ADC
+  arm64: dts: rockchip: rock-5a: add fan support
 
-diff --git a/drivers/hwmon/peci/dimmtemp.c b/drivers/hwmon/peci/dimmtemp.c
-index ce89da3937a0..ea4ac5a023cf 100644
---- a/drivers/hwmon/peci/dimmtemp.c
-+++ b/drivers/hwmon/peci/dimmtemp.c
-@@ -30,8 +30,10 @@
- #define DIMM_IDX_MAX_ON_ICX	2
- #define CHAN_RANK_MAX_ON_ICXD	4
- #define DIMM_IDX_MAX_ON_ICXD	2
-+#define CHAN_RANK_MAX_ON_SPR	128
-+#define DIMM_IDX_MAX_ON_SPR	2
- 
--#define CHAN_RANK_MAX		CHAN_RANK_MAX_ON_HSX
-+#define CHAN_RANK_MAX		CHAN_RANK_MAX_ON_SPR
- #define DIMM_IDX_MAX		DIMM_IDX_MAX_ON_HSX
- #define DIMM_NUMS_MAX		(CHAN_RANK_MAX * DIMM_IDX_MAX)
- 
-@@ -534,6 +536,15 @@ read_thresholds_icx(struct peci_dimmtemp *priv, int dimm_order, int chan_rank, u
- 	return 0;
- }
- 
-+static int
-+read_thresholds_spr(struct peci_dimmtemp *priv, int dimm_order, int chan_rank, u32 *data)
-+{
-+	/* Use defaults */
-+	*data = (95 << 16) | (90 << 8);
-+
-+	return 0;
-+}
-+
- static const struct dimm_info dimm_hsx = {
- 	.chan_rank_max	= CHAN_RANK_MAX_ON_HSX,
- 	.dimm_idx_max	= DIMM_IDX_MAX_ON_HSX,
-@@ -576,6 +587,13 @@ static const struct dimm_info dimm_icxd = {
- 	.read_thresholds = &read_thresholds_icx,
- };
- 
-+static const struct dimm_info dimm_spr = {
-+	.chan_rank_max	= CHAN_RANK_MAX_ON_SPR,
-+	.dimm_idx_max	= DIMM_IDX_MAX_ON_SPR,
-+	.min_peci_revision = 0x40,
-+	.read_thresholds = &read_thresholds_spr,
-+};
-+
- static const struct auxiliary_device_id peci_dimmtemp_ids[] = {
- 	{
- 		.name = "peci_cpu.dimmtemp.hsx",
-@@ -601,6 +619,10 @@ static const struct auxiliary_device_id peci_dimmtemp_ids[] = {
- 		.name = "peci_cpu.dimmtemp.icxd",
- 		.driver_data = (kernel_ulong_t)&dimm_icxd,
- 	},
-+	{
-+		.name = "peci_cpu.dimmtemp.spr",
-+		.driver_data = (kernel_ulong_t)&dimm_spr,
-+	},
- 	{ }
- };
- MODULE_DEVICE_TABLE(auxiliary, peci_dimmtemp_ids);
+ .../devicetree/bindings/eeprom/at24.yaml      |   3 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ .../boot/dts/rockchip/rk3588s-rock-5a.dts     | 586 ++++++++++++++++++
+ 3 files changed, 591 insertions(+)
+
 -- 
-2.41.0
+2.40.1
 
