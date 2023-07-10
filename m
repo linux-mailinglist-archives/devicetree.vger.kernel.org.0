@@ -2,53 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id AEDFB74CB7C
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0153774CB82
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:04:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230107AbjGJFET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 01:04:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54496 "EHLO
+        id S230394AbjGJFEW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 01:04:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54508 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229928AbjGJFES (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:04:18 -0400
+        with ESMTP id S230381AbjGJFEU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:04:20 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 24DD8CE;
-        Sun,  9 Jul 2023 22:04:18 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4472CE;
+        Sun,  9 Jul 2023 22:04:19 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id AD31260DE4;
-        Mon, 10 Jul 2023 05:04:17 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D9DBC433C8;
-        Mon, 10 Jul 2023 05:04:16 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 78BC660DE4;
+        Mon, 10 Jul 2023 05:04:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 49D8FC433C9;
+        Mon, 10 Jul 2023 05:04:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688965457;
-        bh=p8YNjR5FTTbYpldel0JyzfCWG3L7Lf5CN238TGr/nxA=;
+        s=k20201202; t=1688965458;
+        bh=ufYOuBUYuzI9w4Clsnbl5zs2aDpZHLV6tSGr0q2Xw70=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WJTx68/Zxf/bU3IANW7O+cWZUDIolnUEvYVYDSDs3yx+XAgGWvbWn8nQBOCdKOpJK
-         rl/AmC5DvIy/PM1OJmYgvWR0datPINSx0nNZZIJcg1g0+GpbPWxR2YHp+MQjgmfgvx
-         7FdiMG9tI3o/vz/cf0bdEDfqGo/NodVPiK8qyRuNyPwzJtxDzGVkZRtmxLHE6eM4iX
-         skG6awDb1RF/wlU5DkOAfWIPVQVkWTVxPCZ4spZcaMGWVZEavHJabuZe1x/QUnWbgL
-         zrroN06K8Bc1/jTNPmc4j36bYxjEEcRB+ibdWQjdBIj7OoE1MkcnNOjLKVnSTZaTZ+
-         GFDAc5/7bs0YQ==
+        b=WZhTbOZ7uI0i+/ebRgsX7ELPg9f6jXAEpKJdUJeo0HAsv1hsXL1FSg5rNu0DT+12/
+         wwT+fY5uTSKBmp43vuzDjrwso0IhdoROYlx4g4AW1BDTVm2MNPamOpmpxUyw2ToAxB
+         PTGudaVJukRVtUSzsm9Q6ReBvBSDgZeRijKLHOfIiZ1unAANf7KNUOLzZSLmYAHfAZ
+         +XPzUS8QAP3DStf4A+SqKIzt7QcTvDMQbdU6QTP+ZZgDf1Ot7uLi6yB6RZS75E7q3l
+         xmz1W27ONT4ADGerUqfqgdLfqGTrPsK+HaChUJbdDU6yb/MvHOwqRyJEMPKYxm6i4J
+         IDv5tF/8f352A==
 From:   Bjorn Andersson <andersson@kernel.org>
 To:     Andy Gross <agross@kernel.org>,
         Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Richard Cochran <richardcochran@gmail.com>,
-        Bartosz Golaszewski <brgl@bgdev.pl>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org,
-        Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
-Subject: Re: [RESEND PATCH v2 0/5] arm64: dts: qcom: enable ethernet on sa8775p-ride
-Date:   Sun,  9 Jul 2023 22:07:00 -0700
-Message-ID: <168896565968.1376307.18127304044280221873.b4-ty@kernel.org>
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/2] arm64: dts: qcom: rename HDMI labels in a correct way
+Date:   Sun,  9 Jul 2023 22:07:02 -0700
+Message-ID: <168896565952.1376307.7552845471652960129.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230622120142.218055-1-brgl@bgdev.pl>
-References: <20230622120142.218055-1-brgl@bgdev.pl>
+In-Reply-To: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
+References: <20230615083422.350297-1-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -63,29 +59,22 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 22 Jun 2023 14:01:37 +0200, Bartosz Golaszewski wrote:
-> From: Bartosz Golaszewski <bartosz.golaszewski@linaro.org>
+On Thu, 15 Jun 2023 11:34:20 +0300, Dmitry Baryshkov wrote:
+> In [1] Konrad noticed that the commit f43b6dc7d56e ("arm64: dts: qcom:
+> msm8996: rename labels for HDMI nodes") is a mess, it changes all HDMI
+> entries, which is plain incorrect. Rather than landing a fix, revert the
+> offending commit and land a clean version.
 > 
-> Bjorn,
-> 
-> Now that all other bits and pieces are in next, I'm resending the reviewed
-> DTS patches for pick up. This enables one of the 1Gb ethernet ports on
-> sa8775p-ride.
+> [1] https://lore.kernel.org/linux-arm-msm/ZIrJ86IsLOm_Scbc@gerhold.net/
 > 
 > [...]
 
 Applied, thanks!
 
-[1/5] arm64: dts: qcom: sa8775p: add the SGMII PHY node
-      commit: 683ef77158cbb56ede2a524751b150cec340128a
-[2/5] arm64: dts: qcom: sa8775p: add the first 1Gb ethernet interface
-      commit: ff499a0fbb2352bff15d75c13afe46decf90d7eb
-[3/5] arm64: dts: qcom: sa8775p-ride: enable the SerDes PHY
-      commit: 5ef26fb8b3ed72cc5beb6461c258127e3a388247
-[4/5] arm64: dts: qcom: sa8775p-ride: add pin functions for ethernet0
-      commit: 48c99529998026e21a78f84261d24c0b93c1027e
-[5/5] arm64: dts: qcom: sa8775p-ride: enable ethernet0
-      commit: 120ab6c06f69b39e54c949542fa85fd49ff51278
+[1/2] Revert "arm64: dts: qcom: msm8996: rename labels for HDMI nodes"
+      commit: 2b812caf5f64df959555e48dfc7bf8f061d9fe8f
+[2/2] arm64: dts: qcom: msm8996: rename labels for HDMI nodes
+      commit: 1770394e68942f48d9b111694fccfef337905632
 
 Best regards,
 -- 
