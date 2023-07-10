@@ -2,229 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 3197274D1E9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 11:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5554E74D20E
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 11:48:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231230AbjGJJkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 05:40:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54758 "EHLO
+        id S229840AbjGJJsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 05:48:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35320 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231509AbjGJJjZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 05:39:25 -0400
-Received: from esa.microchip.iphmx.com (esa.microchip.iphmx.com [68.232.153.233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52E351BF5;
-        Mon, 10 Jul 2023 02:37:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1688981825; x=1720517825;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=O+veMtx+JvcXWx4LygV6hHgSQoTVwUJDCTyGDuzrzBQ=;
-  b=LBLIx8HxraHsJs4qdxZJMnyOOT6d/dfzVDMICBJ2XZr2tFxTWZl2W6Zn
-   adHNgUCPcRIxHTs+qCsCjM7rwyhS2rAgZm3tnKpR7FsXLILQJtaD5hHFK
-   p143z1stnt/t7udHMVooZxL/8z67TwOwBH+ilu0q0crxPKVlwmdidj0ao
-   doC4iIr1CjV2T0nUsHphTxnhLYgyy7hDPzqTlBC+awcWveXN23JYL+IsQ
-   vyK0Opnas7kxK1fi3IlaA9rmdfcoYT2kx+RkJAtE0QA7EoU/tSbWxY66Q
-   4CeV/U88RPAu+TenEvs1KhJenz1doK0JOgMhX1jO+lyYsG6ofRE6NAPDB
-   g==;
-X-IronPort-AV: E=Sophos;i="6.01,194,1684825200"; 
-   d="scan'208";a="222870094"
-X-Amp-Result: SKIPPED(no attachment in message)
-Received: from unknown (HELO email.microchip.com) ([170.129.1.10])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 10 Jul 2023 02:37:02 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex02.mchp-main.com (10.10.85.144) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.2507.21; Mon, 10 Jul 2023 02:36:59 -0700
-Received: from wendy.microchip.com (10.10.115.15) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.2507.21 via Frontend
- Transport; Mon, 10 Jul 2023 02:36:57 -0700
-From:   Conor Dooley <conor.dooley@microchip.com>
-To:     <palmer@dabbelt.com>
-CC:     <conor@kernel.org>, <conor.dooley@microchip.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        with ESMTP id S233212AbjGJJsG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 05:48:06 -0400
+Received: from mail-io1-xd34.google.com (mail-io1-xd34.google.com [IPv6:2607:f8b0:4864:20::d34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5222030F3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 02:43:40 -0700 (PDT)
+Received: by mail-io1-xd34.google.com with SMTP id ca18e2360f4ac-78372625badso205898739f.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 02:43:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ventanamicro.com; s=google; t=1688982219; x=1691574219;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:from:to:cc:subject:date:message-id:reply-to;
+        bh=xsDadgu4zFYxaidCyMCgBtLLg4ch6o0hizhw6Xf+JWI=;
+        b=QEeq93mIOqTIkpTS2TDFGGcf3T/pxS5GqRaurc0PEkWCpbbc/YuE6hUpWBiQ9V0ydh
+         BuWxNcIdnGrEnAv//Nh74drOi0NHIeLcrhNOLEZ+IamGRy4QAtQp5fdb+nOvCiz6jfeH
+         ygk/f+fs0BQR6x6EFmkS98arVVrz/iJw2VB3pxkmHRgstWXSa7xbgE/mtj10BNCI5XZs
+         I+sOkHlYWWZwGGqKSgGzn5DwhKlRmlMswoNvFdIuOe+ZLzQbpDap7+xlIOeIoACsotoa
+         gqB3YTI6bavR3VFNDfGyceM0AHyllAc4fHdN5ETBYlDA29EjN0OhEipPBziwIlZGadMI
+         L/hQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688982219; x=1691574219;
+        h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+         :to:from:x-gm-message-state:from:to:cc:subject:date:message-id
+         :reply-to;
+        bh=xsDadgu4zFYxaidCyMCgBtLLg4ch6o0hizhw6Xf+JWI=;
+        b=StYAZxEmMNruLHV/s88u3MuR4BFvHL1U5/Qy8ZelFKy+OrC1D4phcKvN42EMlzh3wH
+         jDGLNztTvZkEZY8jT85PC6ZKeucrdz/DBAx/YJSDQbbsLJvwfipzUiW59qPAdZU+l97F
+         H3Z+ytfzBvPdFVtXmiT2rT24+3w6cTzV7vqZkEhzvNcrHBeMpX5jYmenMpl7VENCTchN
+         N1Id7yPn+tueJbd3x/PFKehLPTGyr5mPP7cN+7eB6p3NlgYoBxseUVf2DCQ1k6RoQ3LS
+         TsYw3VTPh7vajQHyBLjTXZckkvfboWlLEgg3w0b/YWy6ba3wCPIti6uhk7s4DcTz5txc
+         qG+A==
+X-Gm-Message-State: ABy/qLYobYd2DI2IJh97sa+O5u1D/lecSP3roZWRWMGnsU1pIaD2Qr+v
+        V16VaQvJx9Sa3kcGC5t7f3/Bpg==
+X-Google-Smtp-Source: APBJJlEKO1Ti+cjyC3HuUM8xLoZTM567hECGaUeRYBdWlSgOmax+9711bNT2933KYdLzT9Dw5jHtKQ==
+X-Received: by 2002:a5e:de44:0:b0:787:8cf:fe8a with SMTP id e4-20020a5ede44000000b0078708cffe8amr3889581ioq.2.1688982218808;
+        Mon, 10 Jul 2023 02:43:38 -0700 (PDT)
+Received: from anup-ubuntu-vm.localdomain ([103.97.165.210])
+        by smtp.gmail.com with ESMTPSA id k1-20020a6b7a41000000b007870c56387dsm936938iop.49.2023.07.10.02.43.32
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jul 2023 02:43:38 -0700 (PDT)
+From:   Anup Patel <apatel@ventanamicro.com>
+To:     Palmer Dabbelt <palmer@dabbelt.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        "Jonathan Corbet" <corbet@lwn.net>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+Cc:     Atish Patra <atishp@atishpatra.org>,
         Andrew Jones <ajones@ventanamicro.com>,
-        "Heiko Stuebner" <heiko.stuebner@vrull.eu>,
-        Evan Green <evan@rivosinc.com>,
         Sunil V L <sunilvl@ventanamicro.com>,
-        <linux-doc@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Palmer Dabbelt <palmer@rivosinc.com>
-Subject: [PATCH v4 11/11] RISC-V: provide Kconfig & commandline options to control parsing "riscv,isa"
-Date:   Mon, 10 Jul 2023 10:35:46 +0100
-Message-ID: <20230710-reappear-unable-5f954043552a@wendy>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230710-equipment-stained-dd042d66ba5d@wendy>
-References: <20230710-equipment-stained-dd042d66ba5d@wendy>
+        Conor Dooley <conor@kernel.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Anup Patel <anup@brainfault.org>,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, Anup Patel <apatel@ventanamicro.com>
+Subject: [PATCH v5 0/9] Linux RISC-V AIA Support
+Date:   Mon, 10 Jul 2023 15:13:12 +0530
+Message-Id: <20230710094321.1378351-1-apatel@ventanamicro.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-Developer-Signature: v=1; a=openpgp-sha256; l=5841; i=conor.dooley@microchip.com; h=from:subject:message-id; bh=O+veMtx+JvcXWx4LygV6hHgSQoTVwUJDCTyGDuzrzBQ=; b=owGbwMvMwCFWscWwfUFT0iXG02pJDCmrL9y8PuV2Ys/Sp1ln9klIzzh54OEpA/nQ7D/2q3hOTZnj v/iCeUcpC4MYB4OsmCJL4u2+Fqn1f1x2OPe8hZnDygQyhIGLUwAmUveUkWG1b8Le2iv7uZJ3qqh0xX 8XT9h6piP31ok5+4NWz7AKs05k+Gcnk/aSeyM3J7um42zJ1AaWd3XnZI/ef7F4Xpv/5e1vrvACAA==
-X-Developer-Key: i=conor.dooley@microchip.com; a=openpgp; fpr=F9ECA03CF54F12CD01F1655722E2C55B37CF380C
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        RCVD_IN_MSPIKE_H5,RCVD_IN_MSPIKE_WL,SPF_HELO_PASS,SPF_NONE,
-        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As it says on the tin, provide Kconfig option to control parsing the
-"riscv,isa" devicetree property. If either option is used, the kernel
-will fall back to parsing "riscv,isa", where "riscv,isa-base" and
-"riscv,isa-extensions" are not present.
-The Kconfig options are set up so that the default kernel configuration
-will enable the fallback path, without needing the commandline option.
+The RISC-V AIA specification is now frozen as-per the RISC-V international
+process. The latest frozen specifcation can be found at:
+https://github.com/riscv/riscv-aia/releases/download/1.0/riscv-interrupts-1.0.pdf
 
-Suggested-by: Andrew Jones <ajones@ventanamicro.com>
-Suggested-by: Palmer Dabbelt <palmer@rivosinc.com>
-Reviewed-by: Andrew Jones <ajones@ventanamicro.com>
-Signed-off-by: Conor Dooley <conor.dooley@microchip.com>
----
-Changes in v4:
-- add __init to fixup k210 build issue
-- use Drew's revised wording
+At a high-level, the AIA specification adds three things:
+1) AIA CSRs
+   - Improved local interrupt support
+2) Incoming Message Signaled Interrupt Controller (IMSIC)
+   - Per-HART MSI controller
+   - Support MSI virtualization
+   - Support IPI along with virtualization
+3) Advanced Platform-Level Interrupt Controller (APLIC)
+   - Wired interrupt controller
+   - In MSI-mode, converts wired interrupt into MSIs (i.e. MSI generator)
+   - In Direct-mode, injects external interrupts directly into HARTs
 
-Changes in v3:
-- Invert the Kconfig entry. It's now default y & not hidden by
-  NONPORTABLE, but its entablement will now activate the fallback
-- Add a commandline option to enable the fallback on kernels that do not
-  enable it in Kconfig, as Drew suggested
-- Default the global var to the Kconfig option & override it with the
-  commandline one, rather than have checks for IS_ENABLED() and for the
-  commandline option in riscv_fill_hwcap() &
-  riscv_early_of_processor_hartid()
----
- .../admin-guide/kernel-parameters.txt          |  7 +++++++
- arch/riscv/Kconfig                             | 18 ++++++++++++++++++
- arch/riscv/include/asm/hwcap.h                 |  1 +
- arch/riscv/kernel/cpu.c                        |  8 +++++++-
- arch/riscv/kernel/cpufeature.c                 | 14 +++++++++++++-
- 5 files changed, 46 insertions(+), 2 deletions(-)
+For an overview of the AIA specification, refer the AIA virtualization
+talk at KVM Forum 2022:
+https://static.sched.com/hosted_files/kvmforum2022/a1/AIA_Virtualization_in_KVM_RISCV_final.pdf
+https://www.youtube.com/watch?v=r071dL8Z0yo
 
-diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-index a1457995fd41..bdc3fa712e92 100644
---- a/Documentation/admin-guide/kernel-parameters.txt
-+++ b/Documentation/admin-guide/kernel-parameters.txt
-@@ -5468,6 +5468,13 @@
- 			[KNL] Disable ring 3 MONITOR/MWAIT feature on supported
- 			CPUs.
- 
-+	riscv_isa_fallback [RISCV]
-+			When CONFIG_RISCV_ISA_FALLBACK is not enabled, permit
-+			falling back to detecting extension support by parsing
-+			"riscv,isa" property on devicetree systems when the
-+			replacement properties are not found. See the Kconfig
-+			entry for RISCV_ISA_FALLBACK.
-+
- 	ro		[KNL] Mount root device read-only on boot
- 
- 	rodata=		[KNL]
-diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 4c07b9189c86..f52dd125ac5e 100644
---- a/arch/riscv/Kconfig
-+++ b/arch/riscv/Kconfig
-@@ -848,6 +848,24 @@ config XIP_PHYS_ADDR
- 	  be linked for and stored to.  This address is dependent on your
- 	  own flash usage.
- 
-+config RISCV_ISA_FALLBACK
-+	bool "Permit falling back to parsing riscv,isa for extension support by default"
-+	default y
-+	help
-+	  Parsing the "riscv,isa" devicetree property has been deprecated and
-+	  replaced by a list of explicitly defined strings. For compatibility
-+	  with existing platforms, the kernel will fall back to parsing the
-+	  "riscv,isa" property if the replacements are not found.
-+
-+	  Selecting N here will result in a kernel that does not use the
-+	  fallback, unless the commandline "riscv_isa_fallback" parameter is
-+	  present.
-+
-+	  Please see the dt-binding, located at
-+	  Documentation/devicetree/bindings/riscv/extensions.yaml for details
-+	  on the replacement properties, "riscv,isa-base" and
-+	  "riscv,isa-extensions".
-+
- endmenu # "Boot options"
- 
- config BUILTIN_DTB
-diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-index e3cda14a486b..b7b58258f6c7 100644
---- a/arch/riscv/include/asm/hwcap.h
-+++ b/arch/riscv/include/asm/hwcap.h
-@@ -81,6 +81,7 @@ struct riscv_isa_ext_data {
- 
- extern const struct riscv_isa_ext_data riscv_isa_ext[];
- extern const size_t riscv_isa_ext_count;
-+extern bool riscv_isa_fallback;
- 
- unsigned long riscv_isa_extension_base(const unsigned long *isa_bitmap);
- 
-diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-index 28d5af21f544..208f1a700121 100644
---- a/arch/riscv/kernel/cpu.c
-+++ b/arch/riscv/kernel/cpu.c
-@@ -41,7 +41,7 @@ int riscv_of_processor_hartid(struct device_node *node, unsigned long *hart)
- 	return 0;
- }
- 
--int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *hart)
-+int __init riscv_early_of_processor_hartid(struct device_node *node, unsigned long *hart)
- {
- 	const char *isa;
- 
-@@ -87,6 +87,12 @@ int riscv_early_of_processor_hartid(struct device_node *node, unsigned long *har
- 	return 0;
- 
- old_interface:
-+	if (!riscv_isa_fallback) {
-+		pr_warn("CPU with hartid=%lu is invalid: this kernel does not parse \"riscv,isa\"",
-+			*hart);
-+		return -ENODEV;
-+	}
-+
- 	if (of_property_read_string(node, "riscv,isa", &isa)) {
- 		pr_warn("CPU with hartid=%lu has no \"riscv,isa-base\" or \"riscv,isa\" property\n",
- 			*hart);
-diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-index 2c4503fa984f..5945dfc5f806 100644
---- a/arch/riscv/kernel/cpufeature.c
-+++ b/arch/riscv/kernel/cpufeature.c
-@@ -471,6 +471,18 @@ static int __init riscv_fill_hwcap_from_ext_list(unsigned long *isa2hwcap)
- 	return 0;
- }
- 
-+#ifdef CONFIG_RISCV_ISA_FALLBACK
-+bool __initdata riscv_isa_fallback = true;
-+#else
-+bool __initdata riscv_isa_fallback;
-+static int __init riscv_isa_fallback_setup(char *__unused)
-+{
-+	riscv_isa_fallback = true;
-+	return 1;
-+}
-+early_param("riscv_isa_fallback", riscv_isa_fallback_setup);
-+#endif
-+
- void __init riscv_fill_hwcap(void)
- {
- 	char print_str[NUM_ALPHA_EXTS + 1];
-@@ -490,7 +502,7 @@ void __init riscv_fill_hwcap(void)
- 	} else {
- 		int ret = riscv_fill_hwcap_from_ext_list(isa2hwcap);
- 
--		if (ret) {
-+		if (ret && riscv_isa_fallback) {
- 			pr_info("Falling back to deprecated \"riscv,isa\"\n");
- 			riscv_fill_hwcap_from_isa_string(isa2hwcap);
- 		}
+To test this series, use QEMU v7.2 (or higher) and OpenSBI v1.2 (or higher).
+
+These patches can also be found in the riscv_aia_v5 branch at:
+https://github.com/avpatel/linux.git
+
+Changes since v4:
+ - Rebased on Linux-6.5-rc1
+ - Added "Dependencies" in the APLIC bindings (PATCH6 in v4)
+ - Dropped the PATCH6 which was changing the IOMMU DMA domain APIs
+ - Dropped use of IOMMU DMA APIs in the IMSIC driver (PATCH4)
+
+Changes since v3:
+ - Rebased on Linux-6.4-rc6
+ - Droped PATCH2 of v3 series instead we now set FWNODE_FLAG_BEST_EFFORT via
+   IRQCHIP_DECLARE()
+ - Extend riscv_fw_parent_hartid() to support both DT and ACPI in PATCH1
+ - Extend iommu_dma_compose_msi_msg() instead of adding iommu_dma_select_msi()
+   in PATCH6
+ - Addressed Conor's comments in PATCH3
+ - Addressed Conor's and Rob's comments in PATCH7
+
+Changes since v2:
+ - Rebased on Linux-6.4-rc1
+ - Addressed Rob's comments on DT bindings patches 4 and 8.
+ - Addessed Marc's comments on IMSIC driver PATCH5
+ - Replaced use of OF apis in APLIC and IMSIC drivers with FWNODE apis
+   this makes both drivers easily portable for ACPI support. This also
+   removes unnecessary indirection from the APLIC and IMSIC drivers.
+ - PATCH1 is a new patch for portability with ACPI support
+ - PATCH2 is a new patch to fix probing in APLIC drivers for APLIC-only systems.
+ - PATCH7 is a new patch which addresses the IOMMU DMA domain issues pointed
+   out by SiFive
+
+Changes since v1:
+ - Rebased on Linux-6.2-rc2
+ - Addressed comments on IMSIC DT bindings for PATCH4
+ - Use raw_spin_lock_irqsave() on ids_lock for PATCH5
+ - Improved MMIO alignment checks in PATCH5 to allow MMIO regions
+   with holes.
+ - Addressed comments on APLIC DT bindings for PATCH6
+ - Fixed warning splat in aplic_msi_write_msg() caused by
+   zeroed MSI message in PATCH7
+ - Dropped DT property riscv,slow-ipi instead will have module
+   parameter in future.
+
+Anup Patel (9):
+  RISC-V: Add riscv_fw_parent_hartid() function
+  irqchip/riscv-intc: Add support for RISC-V AIA
+  dt-bindings: interrupt-controller: Add RISC-V incoming MSI controller
+  irqchip: Add RISC-V incoming MSI controller driver
+  irqchip/riscv-imsic: Add support for PCI MSI irqdomain
+  dt-bindings: interrupt-controller: Add RISC-V advanced PLIC
+  irqchip: Add RISC-V advanced PLIC driver
+  RISC-V: Select APLIC and IMSIC drivers
+  MAINTAINERS: Add entry for RISC-V AIA drivers
+
+ .../interrupt-controller/riscv,aplic.yaml     |  172 +++
+ .../interrupt-controller/riscv,imsics.yaml    |  172 +++
+ MAINTAINERS                                   |   12 +
+ arch/riscv/Kconfig                            |    2 +
+ arch/riscv/include/asm/processor.h            |    3 +
+ arch/riscv/kernel/cpu.c                       |   16 +
+ drivers/irqchip/Kconfig                       |   20 +-
+ drivers/irqchip/Makefile                      |    2 +
+ drivers/irqchip/irq-riscv-aplic.c             |  774 ++++++++++++
+ drivers/irqchip/irq-riscv-imsic.c             | 1060 +++++++++++++++++
+ drivers/irqchip/irq-riscv-intc.c              |   36 +-
+ include/linux/irqchip/riscv-aplic.h           |  119 ++
+ include/linux/irqchip/riscv-imsic.h           |   86 ++
+ 13 files changed, 2467 insertions(+), 7 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,aplic.yaml
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/riscv,imsics.yaml
+ create mode 100644 drivers/irqchip/irq-riscv-aplic.c
+ create mode 100644 drivers/irqchip/irq-riscv-imsic.c
+ create mode 100644 include/linux/irqchip/riscv-aplic.h
+ create mode 100644 include/linux/irqchip/riscv-imsic.h
+
 -- 
-2.40.1
+2.34.1
 
