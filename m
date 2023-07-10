@@ -2,179 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D0F74D276
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 12:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B73D74D39C
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 12:37:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232226AbjGJKAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 06:00:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42608 "EHLO
+        id S231543AbjGJKhv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 06:37:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45166 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230352AbjGJJ7s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 05:59:48 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40916268B
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 02:58:13 -0700 (PDT)
-Received: from moin.white.stw.pengutronix.de ([2a0a:edc0:0:b01:1d::7b] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1qIneV-0006xt-D8; Mon, 10 Jul 2023 11:57:55 +0200
-Received: from pengutronix.de (unknown [172.20.34.65])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (Client did not present a certificate)
-        (Authenticated sender: mkl-all@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 31B751ECD02;
-        Mon, 10 Jul 2023 09:57:52 +0000 (UTC)
-Date:   Mon, 10 Jul 2023 11:57:51 +0200
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Judith Mendez <jm@ti.com>
-Cc:     Chandrasekar Ramakrishnan <rcsekar@samsung.com>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        "David S . Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>, linux-can@vger.kernel.org,
-        netdev@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Schuyler Patton <spatton@ti.com>,
-        Tero Kristo <kristo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        devicetree@vger.kernel.org,
-        Oliver Hartkopp <socketcan@hartkopp.net>,
-        Simon Horman <simon.horman@corigine.com>
-Subject: Re: [PATCH v10 0/2] Enable multiple MCAN on AM62x
-Message-ID: <20230710-overheat-ruined-12d17707e324-mkl@pengutronix.de>
-References: <20230707204714.62964-1-jm@ti.com>
+        with ESMTP id S229569AbjGJKhu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 06:37:50 -0400
+Received: from phobos.denx.de (phobos.denx.de [85.214.62.61])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3062CAF;
+        Mon, 10 Jul 2023 03:37:49 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 71DEE85C18;
+        Mon, 10 Jul 2023 12:37:46 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1688985467;
+        bh=ym8uz0BCS37t3xlsMd6uQbneBbl9ZB0uMF8AmcXpVBE=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=0N9VaViqN/JiKh44yvspMe5S4matG9BvQvSdLhzkXZ/s85XuUU8z+oHfN69NxfxDc
+         pe7vKrWP/ZShSi+nCCvb1/9ZAr2z0atriKL7lFt2ol9OBX3vl+a5UV0ZqfAL0G2WWO
+         ss8C17fkEPsYmSt8Lh0dPqjhXDKfZiioXU/Yt+PRsl9hV4qYYC/YK+7h8SB/p7qOfZ
+         9a1xlBF5SASKwcpzJN2c12Cd5EAE323MEad9Ouhv/3ZMZWQabrf3pToEE1fYlnUc9T
+         mALyLEvf3Qgcvppl5cIFUNVK1w2LztBwQGDas3f5z70o1I8Xu2+nNPDJg82hJxRfQG
+         NJJoIfcLsWFGg==
+Message-ID: <566cacd8-7110-850c-8d30-e1aba1591e92@denx.de>
+Date:   Mon, 10 Jul 2023 11:10:48 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="scrncn37d33goitk"
-Content-Disposition: inline
-In-Reply-To: <20230707204714.62964-1-jm@ti.com>
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:b01:1d::7b
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
-X-Spam-Status: No, score=-4.2 required=5.0 tests=BAYES_00,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Support i.MX8MN/P
+ MMIO
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-remoteproc@vger.kernel.org
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230707232626.374475-1-marex@denx.de>
+ <b19f2ac1-64e5-830f-a840-e4ac624111d1@linaro.org>
+Content-Language: en-US
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <b19f2ac1-64e5-830f-a840-e4ac624111d1@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 7/10/23 10:13, Krzysztof Kozlowski wrote:
+> On 08/07/2023 01:26, Marek Vasut wrote:
+>> The MX8M CM7 boot via SMC call is problematic, since not all versions
+>> of ATF support this interface. Document MMIO support used to boot the
+>> CM7 on MX8MN/MP instead and discern MMIO interface using DT compatible
+>> string. Document GPR register syscon phandle which is required by the
+>> MMIO interface too.
+>>
+>> Signed-off-by: Marek Vasut <marex@denx.de>
+>> ---
+>> Note that the MMIO being discerned using compatible string is similar
+>> approach to "st,stm32mp1-rcc" vs "st,stm32mp1-rcc-secure".
+>> ---
+> 
+> Same hardware should not have two compatibles, depending on the bus it is.
 
---scrncn37d33goitk
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, I know, but for whatever reason the ST does, so I picked the same 
+approach here. What else would you suggest, boolean properly like Peng 
+wrote ?
 
-On 07.07.2023 15:47:12, Judith Mendez wrote:
-> On AM62x there are two MCANs in MCU domain. The MCANs in MCU domain
-> were not enabled since there is no hardware interrupt routed to A53
-> GIC interrupt controller. Therefore A53 Linux cannot be interrupted
-> by MCU MCANs.
->=20
-> This solution instantiates a hrtimer with 1 ms polling interval
-> for MCAN device when there is no hardware interrupt property in
-> DTB MCAN node. The hrtimer generates a recurring software interrupt
-> which allows to call the isr. The isr will check if there is pending
-> transaction by reading a register and proceed normally if there is.
-> MCANs with hardware interrupt routed to A53 Linux will continue to
-> use the hardware interrupt as expected.
->=20
-> Timer polling method was tested on both classic CAN and CAN-FD
-> at 125 KBPS, 250 KBPS, 1 MBPS and 2.5 MBPS with 4 MBPS bitrate
-> switching.
->=20
-> Letency and CPU load benchmarks were tested on 3x MCAN on AM62x.
-
-Latency
-
-> 1 MBPS timer polling interval is the better timer polling interval
-> since it has comparable latency to hardware interrupt with the worse
-> case being 1ms + CAN frame propagation time and CPU load is not
-> substantial. Latency can be improved further with less than 1 ms
-> polling intervals, howerver it is at the cost of CPU usage since CPU
-
-However
-
-> load increases at 0.5 ms.
->=20
-> Note that in terms of power, enabling MCU MCANs with timer-polling
-> implementation might have negative impact since we will have to wake
-> up every 1 ms whether there are CAN packets pending in the RX FIFO or
-> not. This might prevent the CPU from entering into deeper idle states
-> for extended periods of time.
->=20
-> v9:
-> Link: https://lore.kernel.org/linux-can/20230419223323.20384-1-jm@ti.com/=
-T/#t
->=20
-> v8:
-> Link: https://lore.kernel.org/linux-can/20230530224820.303619-1-jm@ti.com=
-/T/#t
->=20
-> v7:
-> Link: https://lore.kernel.org/linux-can/20230523023749.4526-1-jm@ti.com/T=
-/#t
->=20
-> v6:
-> Link: https://lore.kernel.org/linux-can/20230518193613.15185-1-jm@ti.com/=
-T/#t
->=20
-> v5:
-> Link: https://lore.kernel.org/linux-can/20230510202952.27111-1-jm@ti.com/=
-T/#t
->=20
-> v4:
-> Link: https://lore.kernel.org/linux-can/c3395692-7dbf-19b2-bd3f-31ba86fa4=
-ac9@linaro.org/T/#t
-
-The link doesn't point to v4, fixed.
-
-> v2:
-> Link: https://lore.kernel.org/linux-can/20230424195402.516-1-jm@ti.com/T/=
-#t
->=20
-> V1:
-> Link: https://lore.kernel.org/linux-can/19d8ae7f-7b74-a869-a818-93b74d106=
-709@ti.com/T/#t
-
-Was there a v1? That link doesn't point to it, removed.
-
->=20
-> RFC:
-> Link: https://lore.kernel.org/linux-can/52a37e51-4143-9017-42ee-8d17c6702=
-8e3@ti.com/T/#t
-
-Doesn't point to RFC, fixed.
-
-Applied to linux-can-next/testing.
-
-Thanks,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde          |
-Embedded Linux                   | https://www.pengutronix.de |
-Vertretung N=C3=BCrnberg              | Phone: +49-5121-206917-129 |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-9   |
-
---scrncn37d33goitk
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEDs2BvajyNKlf9TJQvlAcSiqKBOgFAmSr1hwACgkQvlAcSiqK
-BOhHqwgAstPyKnj9LCXokgj8mdcICYHPuXIsk0LtOYpArWkekPcaAJgv6u4sBjlT
-HhHksfmbomzyYUmbwfm3lynXBFRJoHacN8oXfiDBv6DwXVJNyGqFq77GqezyJTTv
-9TNbSartJEYnRSgHuzWiVr5OzPqmCq/kL4Lv5J2OV6yjFCF8spG/bcxbt0tv6KYp
-J2/24b884jYeHEKZ+2rjUiKBphXZd0A7Uo0qsjVE86hVKsuh1ng43bQ4Oj16layp
-DexZYAZK4ODY+kJxVRF9upZwXFgCRs8+zef4vMOytpjPF7ctkjnaBLiuA61gfj0C
-JNPBYja4NGINDjk2KyztqsnVqBGffw==
-=Y7y0
------END PGP SIGNATURE-----
-
---scrncn37d33goitk--
+The compatible is also easier to handle on driver level, at least in 
+Linux, see 2/2 .
