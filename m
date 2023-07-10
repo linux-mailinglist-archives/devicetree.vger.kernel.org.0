@@ -2,144 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id CEF4A74D601
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 14:53:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5EE774D609
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 14:54:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232124AbjGJMw6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 08:52:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45244 "EHLO
+        id S230078AbjGJMys (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 08:54:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230255AbjGJMwz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 08:52:55 -0400
-Received: from mail-ej1-x62f.google.com (mail-ej1-x62f.google.com [IPv6:2a00:1450:4864:20::62f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81C91E5
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:52:54 -0700 (PDT)
-Received: by mail-ej1-x62f.google.com with SMTP id a640c23a62f3a-9923833737eso513325266b.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:52:54 -0700 (PDT)
+        with ESMTP id S229774AbjGJMys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 08:54:48 -0400
+Received: from mail-wr1-x432.google.com (mail-wr1-x432.google.com [IPv6:2a00:1450:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8FFEFA8
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:54:46 -0700 (PDT)
+Received: by mail-wr1-x432.google.com with SMTP id ffacd0b85a97d-3158a5e64b6so2713802f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:54:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688993573; x=1691585573;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1688993685; x=1691585685;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=AHWY81sARKxmSAcd4nk/bZMGQBQKjhgjQTq8oSyO1b4=;
-        b=I0cKZdoexvj3AJGvP7+HRL4mIJTYq8GZL1W862pexDwIe2BN7TOxZy3P2u22aEEBmk
-         4Cq39uRO0HT61Ik/blppDSkjTpLpygtV4P7Y4wx2Lh+qxhARjmLD5VzYXQIj+ToD11zr
-         7cpq03jm0JIm4tpCRNY4op1I9NfsNL6MHfME7gE7wnk6TDw+dUD4UMI4lFtD4HYdJPAB
-         83ZcBEPJbH46uqQWEyWPuFnfPwff9xNL3gzPMP+6K+kcfPPF21K/u+TzBA55ekjMB3tu
-         h7HC6kvZe1LG9y4YbiZI31qj39pMyj1a8aRWIgZZdbJfwcnC4FMtBqpmYTAWoM/V4Vmt
-         uviA==
+        bh=abv8RbjDLsB7qEHaf8MGMChzo7Az5wZJp4aotAIPofw=;
+        b=b2IwCjppmUDIKW7ZIaF0KTVBe2UZDvxxN/b3hBOykv4/OjDBsrpSaTVMty/DwdZd2g
+         d3IiIqQUVBoiIw5iq2qhak5rlUTZKp60BPw7nfrdTWzkeQndrdVBPqyje40q8Aty2vU5
+         hHO1PV5Aui/ycRm4xA/lBcY5kJCvWU5VOwcEA1XjvzJhGvnJE5o7JxtA+JzppYUfBb5S
+         5JnyngwQbPD0GF4/WltI+XBcw+55akHyWsyxPYuxVncUx15DQXHMJR7QGYEXDvv/aKIx
+         jS2e01lA/HONXz+/9XytOyRNrPd8c+wa41F1g5TM37u+XOQLLksG/dfsyIkCA148DLNP
+         NfuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688993573; x=1691585573;
-        h=content-transfer-encoding:in-reply-to:from:references:cc:to
-         :content-language:subject:user-agent:mime-version:date:message-id
+        d=1e100.net; s=20221208; t=1688993685; x=1691585685;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=AHWY81sARKxmSAcd4nk/bZMGQBQKjhgjQTq8oSyO1b4=;
-        b=SyKl7chnFhTJk9ncTOa/ymkMik63YGBdhMX1I2zbYn1iomgO2l7zQ+JUAULFe3lPtv
-         wSymnGsAunlR9HpRGmyCt4SjTbJY0lc9Qc9WOvL2FLkseBAtkWBNnE8ziRU44yUeIhr1
-         CoWM7bdhMJpxjbWJgThy6UY6yrzZZQBXH9sCFzroTP2LYXYKahYWt9J9WKdlmIzQK6ou
-         op9W37MWbSsxQgwlNAI7nMZ4pZpqLR2wuMEKWckvdHdOMo5XzcEty/iHsezX5ER567A/
-         eBp6zXHvRxKRDmk5F0/9LceYvU1m8Ia52gL0XqLYDs3BYzoLuFYUCUIx8tMBVaIhuw6b
-         H9Wg==
-X-Gm-Message-State: ABy/qLYD9BNN4lBFq2Ia21vEA9NOa7e+ypZDtFTqBkM94l7siaiPL5i9
-        WZnJVYvr9+5iPLiFE5D6PMBkLQ==
-X-Google-Smtp-Source: APBJJlGMQ5pqjdC6B5iMJN0LM1yKLb9rKFVIWRU6rEo8Fw75IGgEggDmSNRsdXrojwYeVG2pfAf24A==
-X-Received: by 2002:a17:906:72cb:b0:993:fe68:5696 with SMTP id m11-20020a17090672cb00b00993fe685696mr5501020ejl.13.1688993572966;
-        Mon, 10 Jul 2023 05:52:52 -0700 (PDT)
-Received: from [192.168.1.20] ([178.197.223.104])
-        by smtp.gmail.com with ESMTPSA id i26-20020a17090671da00b009931a3adf64sm6259026ejk.17.2023.07.10.05.52.50
+        bh=abv8RbjDLsB7qEHaf8MGMChzo7Az5wZJp4aotAIPofw=;
+        b=WGUC52HeW4HDu2KNdRC0LZ7owezU33d4Y7GjGjAM1apAyneiznIwYpEe9DUuUJVpeA
+         0jWmaUwNymhV7eZ/VNwOi1ic1XbnBwrVZgrhHZA9kj0R58h+Y0Fva2iHNWFxbu1c7GdX
+         SfNcz5ptNF4ffWwCq3GMTZWwbHGD9rr4cgc2AA7exIlJw9Wc0wlyAtnUYOHuXxnOd1Vg
+         ICm9UhLVxeIuzRoSyVWXCRvMgvhaVMtmqw6rZUW5Z83zuJ18Sb2S4oUXV95C9ksPzLzN
+         8dyhqW5blWic8JkJZpsThRLpZ+FqHhqApBohs058l9IF/RfSnFcVbXFjcAYL5tkeFbsO
+         FYuQ==
+X-Gm-Message-State: ABy/qLZjsRXDrS3hrpYvOJjjXZ9ZY7hkdSu14XjwNhdYip2wj4Bp2cHa
+        WyJjs180ABFh7VJCz8UJTqXMNw==
+X-Google-Smtp-Source: APBJJlHCI4auE2IEOjXBCxZiOjauKMJU0L917s49nJJx2e4LjmSAQnLYSQYOsSTxBjhnt4Aw1NVolw==
+X-Received: by 2002:adf:e34c:0:b0:314:3b17:d7c5 with SMTP id n12-20020adfe34c000000b003143b17d7c5mr12183853wrj.43.1688993684720;
+        Mon, 10 Jul 2023 05:54:44 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id q17-20020a05600000d100b003142eb75724sm11636974wrx.24.2023.07.10.05.54.43
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 05:52:52 -0700 (PDT)
-Message-ID: <c02d0271-9896-3990-33b0-c83fa54f5623@linaro.org>
-Date:   Mon, 10 Jul 2023 14:52:50 +0200
+        Mon, 10 Jul 2023 05:54:44 -0700 (PDT)
+Message-ID: <fd1c1034-c54e-2e9d-0c9e-f62b0bcdc3cf@baylibre.com>
+Date:   Mon, 10 Jul 2023 14:54:42 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.13.0
-Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document
- fsl,startup-delay-ms
-Content-Language: en-US
-To:     Marek Vasut <marex@denx.de>, linux-remoteproc@vger.kernel.org
-Cc:     Bjorn Andersson <andersson@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 1/8] dt-bindings: power: Add MT8365 power domains
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20230707232444.374431-1-marex@denx.de>
- <8f40484e-1721-a2bc-2344-f9e59e51a935@linaro.org>
- <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
-From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
-In-Reply-To: <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
-Content-Type: text/plain; charset=UTF-8
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org,
+        Fabien Parent <fparent@baylibre.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Rob Herring <robh@kernel.org>
+References: <20230627131040.3418538-1-msp@baylibre.com>
+ <20230627131040.3418538-2-msp@baylibre.com>
+Content-Language: en-US
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230627131040.3418538-2-msp@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2023 11:18, Marek Vasut wrote:
-> On 7/10/23 10:12, Krzysztof Kozlowski wrote:
->> On 08/07/2023 01:24, Marek Vasut wrote:
->>> Document fsl,startup-delay-ms property which indicates how long
->>> the system software should wait until attempting to communicate
->>> with the CM firmware. This gives the CM firmware a bit of time
->>> to boot and get ready for communication.
->>>
->>> Signed-off-by: Marek Vasut <marex@denx.de>
->>> ---
->>> Cc: Bjorn Andersson <andersson@kernel.org>
->>> Cc: Conor Dooley <conor+dt@kernel.org>
->>> Cc: Fabio Estevam <festevam@gmail.com>
->>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
->>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
->>> Cc: NXP Linux Team <linux-imx@nxp.com>
->>> Cc: Peng Fan <peng.fan@nxp.com>
->>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
->>> Cc: Rob Herring <robh+dt@kernel.org>
->>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
->>> Cc: Shawn Guo <shawnguo@kernel.org>
->>> Cc: devicetree@vger.kernel.org
->>> Cc: linux-arm-kernel@lists.infradead.org
->>> Cc: linux-remoteproc@vger.kernel.org
->>> ---
->>>   .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml        | 5 +++++
->>>   1 file changed, 5 insertions(+)
->>>
->>> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->>> index 0c3910f152d1d..c940199ce89df 100644
->>> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->>> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
->>> @@ -76,6 +76,11 @@ properties:
->>>         This property is to specify the resource id of the remote processor in SoC
->>>         which supports SCFW
->>>   
->>> +  fsl,startup-delay-ms:
->>> +    default: 0
->>> +    description:
->>> +      CM firmware start up delay.
->>
->> I don't see particular improvements from v2 and no responses addressing
->> my comment:
->> https://lore.kernel.org/all/20221102112451.128110-2-peng.fan@oss.nxp.com/
-> 
-> I wasn't aware of this being submitted before, esp. since I wrote the 
-> binding document from scratch. Which comment is not addressed, the type 
-> ref is not present and the sentence starts with caps, so what is missing ?
 
 
-That the property looks like a hacky solution to some SW problem. Why
-this delay should be different on different boards?
+On 27/06/2023 15:10, Markus Schneider-Pargmann wrote:
+> Add power domains dt-bindings for MT8365.
 
-Best regards,
-Krzysztof
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
 
+-- 
+Regards,
+Alexandre
