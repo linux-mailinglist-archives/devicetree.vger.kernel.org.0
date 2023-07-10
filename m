@@ -2,108 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E5D74CB17
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 06:13:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C54974CB23
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 06:18:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230286AbjGJENF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 00:13:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42052 "EHLO
+        id S230004AbjGJESN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 00:18:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43768 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230252AbjGJENC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 00:13:02 -0400
-Received: from n169-112.mail.139.com (n169-112.mail.139.com [120.232.169.112])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0629E5;
-        Sun,  9 Jul 2023 21:13:00 -0700 (PDT)
-X-RM-TagInfo: emlType=0                                       
-X-RM-SPAM:                                                                                        
-X-RM-SPAM-FLAG: 00000000
-Received: from  (unknown[183.194.159.125])
-        by rmsmtp-lg-appmail-26-12031 (RichMail) with SMTP id 2eff64ab852fc25-b3e08;
-        Mon, 10 Jul 2023 12:12:37 +0800 (CST)
-X-RM-TRANSID: 2eff64ab852fc25-b3e08
-From:   Shenghao Ding <13916275206@139.com>
-To:     broonie@kernel.org, devicetree@vger.kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz,
-        pierre-louis.bossart@linux.intel.com
-Cc:     kevin-lu@ti.com, shenghao-ding@ti.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, liam.r.girdwood@intel.com,
-        mengdong.lin@intel.com, x1077012@ti.com, peeyush@ti.com,
-        navada@ti.com, tiwai@suse.de, Shenghao Ding <13916275206@139.com>
-Subject: [PATCH v2 3/3] MAINTAINERS: Add entries for TEXAS INSTRUMENTS AUDIO (ASoC/HDA) DRIVERS
-Date:   Mon, 10 Jul 2023 12:12:17 +0800
-Message-Id: <20230710041217.151099-3-13916275206@139.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20230710041217.151099-1-13916275206@139.com>
-References: <20230710041217.151099-1-13916275206@139.com>
+        with ESMTP id S229590AbjGJESL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 00:18:11 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CBE03E7;
+        Sun,  9 Jul 2023 21:18:10 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 4A84C60DC5;
+        Mon, 10 Jul 2023 04:18:10 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DA883C433C7;
+        Mon, 10 Jul 2023 04:18:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688962689;
+        bh=icelyTv0me7PhCdYXmZ6RGwhJh8wbgcHWtBnbl35BNI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZjgPRFKD9qaKDg9g43bXHtw9j+7d++U/AAkBS++AxOyDWfkwU30+rrofrn6egW+gM
+         23o4p9bhMo0olgeo4aFWMAoiq34u8oGSh9Vyy6dHthVy76HgG92YN8D+W00OXz3Yvx
+         rNXak9HkgCcVHaX9k/VOlZN5ST08+Ko/ZdeL4PFsF8tIUV7lb0ZIZSdHVPmWZ/lOTo
+         IjizoqA7I2HbGkorc30YMfXBJACxQ3KpJhieKLOY5MtWKL6PZVw2a4GNLAduj4Pw01
+         dZ9vixwKFW+IQesOfIpwzUGOypxnFWIBEPR9VZpq8jpaJvhuieoahVZM6bcqh5jSmy
+         54JF7kJy1oBtg==
+Date:   Sun, 9 Jul 2023 21:21:45 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Neil Armstrong <neil.armstrong@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-mtp: add chassis-type
+ property
+Message-ID: <pfoaaercog5pgmz3ytuieclzmluw3dn7ir5kn7rmsvdnevpjx5@bd7kwdiofg4w>
+References: <20230622-topic-sm8x50-upstream-chassis-type-v1-0-13f676eb71f3@linaro.org>
+ <20230622-topic-sm8x50-upstream-chassis-type-v1-5-13f676eb71f3@linaro.org>
+ <CAA8EJpphEZa1Vfs1ipm+1x7MvYgF7HMiW-GfNzYi37YPoMzKVw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-1.7 required=5.0 tests=BAYES_00,
-        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FROM,FROM_LOCAL_DIGITS,
-        FROM_LOCAL_HEX,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=no autolearn_force=no version=3.4.6
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAA8EJpphEZa1Vfs1ipm+1x7MvYgF7HMiW-GfNzYi37YPoMzKVw@mail.gmail.com>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the MAINTAINERS entries for TEXAS INSTRUMENTS AUDIO (ASoC/HDA) DRIVERS.
+On Thu, Jun 22, 2023 at 01:48:30PM +0300, Dmitry Baryshkov wrote:
+> On Thu, 22 Jun 2023 at 12:06, Neil Armstrong <neil.armstrong@linaro.org> wrote:
+> >
+> > Qualcomm's Mobile Test Platforms devices are handsets, set the
+> > chassis-type property to 'handset'.
+> 
+> Is it really a device that you can take into your hand and put close
+> to the head?
+> 
 
-Signed-off-by: Shenghao Ding <13916275206@139.com>
+It's a little bit bulky, but it looks like a handset.
 
----
-Changes in v2:
-Add maintian team members to support TEXAS INSTRUMENTS AUDIO DRIVER
----
- MAINTAINERS | 33 +++++++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
+Regards,
+Bjorn
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 3be1bdfe8ecc..42a3694f3064 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -21049,6 +21049,39 @@ S:	Maintained
- F:	Documentation/devicetree/bindings/sound/davinci-mcasp-audio.yaml
- F:	sound/soc/ti/
- 
-+TEXAS INSTRUMENTS AUDIO (ASoC/HDA) DRIVERS
-+M:	Shenghao Ding <shenghao-ding@ti.com>
-+M:	Kevin Lu <kevin-lu@ti.com>
-+M:	Baojun Xu <x1077012@ti.com>
-+L:	alsa-devel@alsa-project.org (moderated for non-subscribers)
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/sound/tas2552.txt
-+F:	Documentation/devicetree/bindings/sound/tas2562.yaml
-+F:	Documentation/devicetree/bindings/sound/tas2770.yaml
-+F:	Documentation/devicetree/bindings/sound/tas27xx.yaml
-+F:	Documentation/devicetree/bindings/sound/ti,pcm1681.txt
-+F:	Documentation/devicetree/bindings/sound/ti,pcm3168a.yaml
-+F:	Documentation/devicetree/bindings/sound/ti,tlv320*.yaml
-+F:	Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
-+F:	Documentation/devicetree/bindings/sound/tlv320aic31xx.txt
-+F:	Documentation/devicetree/bindings/sound/tpa6130a2.txt
-+F:	include/sound/tas2*.h
-+F:	include/sound/tlv320*.h
-+F:	include/sound/tpa6130a2-plat.h
-+F:	sound/pci/hda/tas2781_hda_i2c.c
-+F:	sound/soc/codecs/pcm1681.c
-+F:	sound/soc/codecs/pcm1789*.*
-+F:	sound/soc/codecs/pcm179x*.*
-+F:	sound/soc/codecs/pcm186x*.*
-+F:	sound/soc/codecs/pcm3008.*
-+F:	sound/soc/codecs/pcm3060*.*
-+F:	sound/soc/codecs/pcm3168a*.*
-+F:	sound/soc/codecs/pcm5102a.c
-+F:	sound/soc/codecs/pcm512x*.*
-+F:	sound/soc/codecs/tas2*.*
-+F:	sound/soc/codecs/tlv320*.*
-+F:	sound/soc/codecs/tpa6130a2.*
-+
- TEXAS INSTRUMENTS DMA DRIVERS
- M:	Peter Ujfalusi <peter.ujfalusi@gmail.com>
- L:	dmaengine@vger.kernel.org
--- 
-2.34.1
-
-
+> >
+> > Signed-off-by: Neil Armstrong <neil.armstrong@linaro.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sdm845-mtp.dts | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> > index b2d4336e764b..41675a8de268 100644
+> > --- a/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> > +++ b/arch/arm64/boot/dts/qcom/sdm845-mtp.dts
+> > @@ -15,6 +15,7 @@
+> >  / {
+> >         model = "Qualcomm Technologies, Inc. SDM845 MTP";
+> >         compatible = "qcom,sdm845-mtp", "qcom,sdm845";
+> > +       chassis-type = "handset";
+> >
+> >         aliases {
+> >                 serial0 = &uart9;
+> >
+> > --
+> > 2.34.1
+> >
+> 
+> 
+> -- 
+> With best wishes
+> Dmitry
