@@ -2,64 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E10874DEB0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 22:01:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B041474DEC5
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 22:06:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229641AbjGJUBa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 16:01:30 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55804 "EHLO
+        id S231674AbjGJUGg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 16:06:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59502 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229954AbjGJUB2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 16:01:28 -0400
-Received: from mga04.intel.com (mga04.intel.com [192.55.52.120])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DB0D7194;
-        Mon, 10 Jul 2023 13:01:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
-  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
-  t=1689019287; x=1720555287;
-  h=date:from:to:cc:subject:message-id:references:
-   mime-version:in-reply-to;
-  bh=kZ45qk7hVluta2GMMn37Fyi3fXfY6yfPSBwe92peGkM=;
-  b=cY2faqJ4t4FjuhxMEj3aNkLQGeHkvqg/fm2/2RgjREXQ8/v76WsaDH+F
-   0IaPi7e6bXL0Ef4VFARa3Haa52O3zy9Gq9qBOJjjnIxd7zYFBWLX7sJOp
-   /gr62IAL0B5RyXeOja783qZbquZ224Lmq7H/qaV2FfPDvntjUQQGW1V0c
-   TjkEMgmaraMNLzhC6y5avPo8HyTbEnJuXEzB9jOHt2Gzu9wIrH3LbY6HF
-   qPCaa/dIb+38zzA0Hc8JkE2RcdImtpmLD8n4JqWX/F1HbEwHaLYbWM9n3
-   RBLnfht5h3jZYTIuqptwAbxImgdFDrBK0QJboY1khSCT0yCMOfv56wNzd
-   g==;
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="363309444"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
-   d="scan'208";a="363309444"
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Jul 2023 13:01:27 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=McAfee;i="6600,9927,10767"; a="967538695"
-X-IronPort-AV: E=Sophos;i="6.01,195,1684825200"; 
-   d="scan'208";a="967538695"
-Received: from lkp-server01.sh.intel.com (HELO c544d7fc5005) ([10.239.97.150])
-  by fmsmga006.fm.intel.com with ESMTP; 10 Jul 2023 13:01:25 -0700
-Received: from kbuild by c544d7fc5005 with local (Exim 4.96)
-        (envelope-from <lkp@intel.com>)
-        id 1qIx4W-0003vK-1c;
-        Mon, 10 Jul 2023 20:01:24 +0000
-Date:   Tue, 11 Jul 2023 04:00:48 +0800
-From:   kernel test robot <lkp@intel.com>
-To:     alison@she-devel.com, johan@kernel.org
-Cc:     oe-kbuild-all@lists.linux.dev, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alison@she-devel.com, achaiken@aurora.tech
-Subject: Re: [PATCH v8 1/2] gnss: ubx: customize serial device open to set
- U-Blox Zed-F9P baud
-Message-ID: <202307110347.FjEbD70k-lkp@intel.com>
-References: <20230628150948.908273-2-alison@she-devel.com>
+        with ESMTP id S230106AbjGJUGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 16:06:34 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20C3613E
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 13:06:33 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id a640c23a62f3a-992f15c36fcso650774466b.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 13:06:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1689019591; x=1691611591;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=1BsV3afNUPdRTqIu9mC0ppRm+HLuppkRLq5+x+yU4ss=;
+        b=iGsuPKAQ4y+HsUAXtu0egNmfuNLKhZpsLpulpuyFtbJuqk+DZ1W0Hn/IMhqy8VOGrX
+         qpAKbUMmEB4Gs03GN/GnUE5qZm49XEktkZYEhp1VFeLvk4Tl1wBAzx5zXfQwadTvV2Cz
+         DcmYDldJlJUPng05pyrCVnYkU8gYLBYSS35NOzG0/WRTY1W6NTrl8pQTY62XnQiH7VpY
+         ffZITKenjkKtuuDY67OpKol4V5t3sx0/gtPefhTz8GvK9GEIe65KqSVUXcI3pa4DQAtt
+         MHlUXmSAa7oF0tVn3Q3aqhxLKZoCPkYtCm0Nb6MOqbSgUuf8FpAhBG+VixX89pnwZEiG
+         wLow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689019591; x=1691611591;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=1BsV3afNUPdRTqIu9mC0ppRm+HLuppkRLq5+x+yU4ss=;
+        b=fidiwwV7CYEApdf4gPOW32eSWGwFeTcgXtatVEXVtcTFXUCmXHXGnL6bVOa701/D2U
+         2VS2R1/gQF+DKonWt69aDJM9NmOWrs0A4quFa4kt0s7gOCom7ew7nXEdr4vylg3xYDN0
+         /Aeo4KALtzwzkWYHcluA5VPJPDlOnluD9XtwZk5H60ZWggQtJY0JXQTFGEzShvYVK5L/
+         ONT6wwwTVrn+kTvhkMYKkrQd873rJJuFanodvgVHtzENvBEVKyrUXvnXKHrZHZy2FzgI
+         xGfueTzppjM6QKjwUSU9/EuQ+8bpHijZ07b5A4bfzROW3FfjCef+RajRQvrFf6sdAL4u
+         16lA==
+X-Gm-Message-State: ABy/qLY3ZFSKXVjphW39BLaDBtITDxll5FlJzcpoRLO/hryfgbEkM0qR
+        6zm2jL+AWhdY6ZQvEUBjsr4WAw==
+X-Google-Smtp-Source: APBJJlEFYeatmYspjFQNCMZfZRMGTpcYPZh9depifJXq2wY7Qxc4M/1FWw5viZ1q7/HRU8uqbAP7EQ==
+X-Received: by 2002:a17:906:a242:b0:982:8ec0:15a3 with SMTP id bi2-20020a170906a24200b009828ec015a3mr11921561ejb.67.1689019591609;
+        Mon, 10 Jul 2023 13:06:31 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id dk7-20020a170906f0c700b009931a3adf64sm176882ejb.17.2023.07.10.13.06.29
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 13:06:30 -0700 (PDT)
+Message-ID: <5f65d487-4692-0e94-a79a-82c663317ec7@linaro.org>
+Date:   Mon, 10 Jul 2023 22:06:28 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20230628150948.908273-2-alison@she-devel.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_NONE,T_SCC_BODY_TEXT_LINE
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 3/6] dt-bindings: thermal: tsens: Add ipq5332 compatible
+Content-Language: en-US
+To:     Praveenkumar I <quic_ipkumar@quicinc.com>, agross@kernel.org,
+        andersson@kernel.org, konrad.dybcio@linaro.org, amitk@kernel.org,
+        thara.gopinath@gmail.com, rafael@kernel.org,
+        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     quic_varada@quicinc.com
+References: <20230710103735.1375847-1-quic_ipkumar@quicinc.com>
+ <20230710103735.1375847-4-quic_ipkumar@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230710103735.1375847-4-quic_ipkumar@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
         autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -67,28 +80,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 10/07/2023 12:37, Praveenkumar I wrote:
+> IPQ5332 uses TSENS v2.3.3 with combined interrupt. RPM is not
+> available in the SoC, hence adding new compatible to have the
+> sensor enablement and calibration function.>
+> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> ---
+>  Documentation/devicetree/bindings/thermal/qcom-tsens.yaml | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> index 8b7863c3989e..ee57713f6131 100644
+> --- a/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.yaml
+> @@ -68,8 +68,10 @@ properties:
+>            - const: qcom,tsens-v2
+>  
+>        - description: v2 of TSENS with combined interrupt
+> -        enum:
+> -          - qcom,ipq8074-tsens
+> +        items:
 
-kernel test robot noticed the following build warnings:
+Drop items, you do not have multiple items.
 
-[auto build test WARNING on 6995e2de6891c724bfeb2db33d7b87775f913ad1]
+> +          - enum:
+> +              - qcom,ipq8074-tsens
+> +              - qcom,ipq5332-tsens
 
-url:    https://github.com/intel-lab-lkp/linux/commits/alison-she-devel-com/gnss-ubx-customize-serial-device-open-to-set-U-Blox-Zed-F9P-baud/20230628-231318
-base:   6995e2de6891c724bfeb2db33d7b87775f913ad1
-patch link:    https://lore.kernel.org/r/20230628150948.908273-2-alison%40she-devel.com
-patch subject: [PATCH v8 1/2] gnss: ubx: customize serial device open to set U-Blox Zed-F9P baud
-config: microblaze-randconfig-r062-20230710 (https://download.01.org/0day-ci/archive/20230711/202307110347.FjEbD70k-lkp@intel.com/config)
-compiler: microblaze-linux-gcc (GCC) 12.3.0
-reproduce: (https://download.01.org/0day-ci/archive/20230711/202307110347.FjEbD70k-lkp@intel.com/reproduce)
+Keep the order.
+>  
+>        - description: v2 of TSENS with combined interrupt
+>          items:
+> @@ -289,6 +291,7 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,ipq8074-tsens
+> +              - qcom,ipq5332-tsens
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202307110347.FjEbD70k-lkp@intel.com/
+And here
 
-cocci warnings: (new ones prefixed by >>)
->> drivers/gnss/ubx.c:293:5-11: ERROR: allocation function on line 292 returns NULL not ERR_PTR on failure
+>      then:
+>        properties:
+>          interrupts:
+> @@ -304,6 +307,7 @@ allOf:
+>            contains:
+>              enum:
+>                - qcom,ipq8074-tsens
+> +              - qcom,ipq5332-tsens
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+And here.
+
+>                - qcom,tsens-v0_1
+>                - qcom,tsens-v1
+>                - qcom,tsens-v2
+
+Best regards,
+Krzysztof
+
