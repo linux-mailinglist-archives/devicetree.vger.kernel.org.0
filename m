@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id F133274DD75
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 20:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8707674DD86
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 20:41:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229658AbjGJSi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 14:38:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50632 "EHLO
+        id S233222AbjGJSlG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 14:41:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229575AbjGJSiZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 14:38:25 -0400
-Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2B7A1;
-        Mon, 10 Jul 2023 11:38:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
-        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
-        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
-        In-Reply-To:References; bh=4yz8HG+CcroNh3v9p1h/qbj6u5JCE/mk4ofgQ+MT8vE=; b=s+
-        mmbPp2BHAUK8Wdo/YsKjrFDtUnYaxtknL+2Rapat/BqTOQ/lgPgRRZ1nPTQOdxfEpVi3hdn/cQqYB
-        pdEcmEDV40SK0pg4mwWDlK/HD9b+tYl9gwMNV+JtSwLTF/HQ37Q5IDkT1Kht+HFWEKgADdFRMPLva
-        x6DBD2hJBYjYuBI=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
-        (envelope-from <andrew@lunn.ch>)
-        id 1qIvlw-000yNJ-EK; Mon, 10 Jul 2023 20:38:08 +0200
-Date:   Mon, 10 Jul 2023 20:38:08 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Vesa =?iso-8859-1?B?SuTkc2tlbORpbmVu?= 
-        <vesa.jaaskelainen@vaisala.com>
-Cc:     "David S. Miller" <davem@davemloft.net>,
-        Eric Dumazet <edumazet@google.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Paolo Abeni <pabeni@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        with ESMTP id S232032AbjGJSlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 14:41:02 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91FA21B7;
+        Mon, 10 Jul 2023 11:40:57 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 30EB961188;
+        Mon, 10 Jul 2023 18:40:57 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 832ACC433C9;
+        Mon, 10 Jul 2023 18:40:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1689014456;
+        bh=FWiqJzgFeCVtSPbsHpYgNf42BRrRoNIOtWAJqK2o6Uo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=spneGbfQNgQFGor1z3/FHKATtaZIzZd4cTg8x7lL34tGTJskPdypDUricgyEYQYFN
+         cb2CmTNa6DekKx9R6XFv03h45W3l2CkEntkUSle4XaI++04kCB9CERLIZ7hfJHKePz
+         LHg55ZnHBVHmiO0kxv5rFR5z0nOy9eMZH8Kph3ojVHRQGKTNgyaW3Kz20X+/gx0/gO
+         MJPZMDr1Dg6JUGbgSd0Yx2BTf5A8Tx7zK5O90uWA7z2h4qvIOk+k9+X//GhR1qEown
+         L0weFDBxwrY2ry0YYWYkTNmNFZYJoXzLbLo2aHDADkvNKGrwhDW+hw4aGueSDgXZNu
+         5eP98ZmRQ6ZeQ==
+Date:   Mon, 10 Jul 2023 19:40:52 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Davis <afd@ti.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] net: phy: dp83822: Add support for line class driver
- configuration
-Message-ID: <261cb91c-eb3a-4612-93ad-25e2bc1a7c23@lunn.ch>
-References: <20230710175621.8612-1-vesa.jaaskelainen@vaisala.com>
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: microchip: add missing space before {
+Message-ID: <20230710-doorway-fifty-017db429d779@spud>
+References: <20230705150058.293942-1-krzysztof.kozlowski@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="rGxB0qPBFE0fZBJZ"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20230710175621.8612-1-vesa.jaaskelainen@vaisala.com>
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+In-Reply-To: <20230705150058.293942-1-krzysztof.kozlowski@linaro.org>
+X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,19 +61,46 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 10, 2023 at 08:56:18PM +0300, Vesa Jääskeläinen wrote:
-> Add support to specify either class A or class B (default) for line driver.
-> 
-> Class A: full MLT-3 on both Tx+ and Tx–
-> Class B: reduced MLT-3
-> 
-> By default the PHY is in Class B mode.
 
-Hi Vesa
+--rGxB0qPBFE0fZBJZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Do you have a reference to 802.3 or some other document which
-describes these. How does reduced differ from full? Is this really a
-hardware property of the board?
+On Wed, Jul 05, 2023 at 05:00:58PM +0200, Krzysztof Kozlowski wrote:
+> Add missing whitespace between node name/label and opening {.
+>=20
+> Signed-off-by: Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+> ---
+>  arch/arm/boot/dts/microchip/at91sam9260.dtsi       | 2 +-
+>  arch/arm/boot/dts/microchip/at91sam9261.dtsi       | 2 +-
+>  arch/arm/boot/dts/microchip/at91sam9g20ek_2mmc.dts | 2 +-
+>  arch/arm/boot/dts/microchip/at91sam9g45.dtsi       | 2 +-
+>  arch/arm/boot/dts/microchip/at91sam9m10g45ek.dts   | 2 +-
+>  arch/arm/boot/dts/microchip/at91sam9rl.dtsi        | 2 +-
+>  arch/arm/boot/dts/microchip/at91sam9x5.dtsi        | 2 +-
+>  arch/arm/boot/dts/microchip/sama5d3.dtsi           | 2 +-
+>  arch/arm/boot/dts/microchip/sama5d4.dtsi           | 2 +-
+>  9 files changed, 9 insertions(+), 9 deletions(-)
 
-Thanks
-	Andrew
+I saw this whitespace patch when I was looking for the other ones on
+lore this morning. Nicolas, off-list, said I could grab the trivial
+stuff, therefore I've pushed this, so that it don't get lost between
+merge windows, leave, etc.
+
+Cheers,
+Conor.
+
+
+--rGxB0qPBFE0fZBJZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKxQtAAKCRB4tDGHoIJi
+0kyBAQDSeF5Qz0Qf059ssX0no91mf4kiL9p6D+aPvQAPEUqg4AD/fAcYPLsznKuA
+6RITBNVr3RqPcNp1Ho3XHdNRQ/UIIAQ=
+=AoUc
+-----END PGP SIGNATURE-----
+
+--rGxB0qPBFE0fZBJZ--
