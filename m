@@ -2,73 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 06E4B74D485
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 13:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B5274D4AB
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 13:37:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231322AbjGJLYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 07:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39370 "EHLO
+        id S229583AbjGJLh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 07:37:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43410 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231575AbjGJLYe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 07:24:34 -0400
-Received: from mail-lf1-x133.google.com (mail-lf1-x133.google.com [IPv6:2a00:1450:4864:20::133])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC7C5E9
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 04:24:31 -0700 (PDT)
-Received: by mail-lf1-x133.google.com with SMTP id 2adb3069b0e04-4fb77f21c63so6643504e87.2
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 04:24:31 -0700 (PDT)
+        with ESMTP id S229751AbjGJLhx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 07:37:53 -0400
+Received: from mail-ed1-x531.google.com (mail-ed1-x531.google.com [IPv6:2a00:1450:4864:20::531])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1A53E1
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 04:37:51 -0700 (PDT)
+Received: by mail-ed1-x531.google.com with SMTP id 4fb4d7f45d1cf-51e5d9e20ecso528284a12.1
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 04:37:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google; t=1688988270; x=1691580270;
+        d=linaro.org; s=google; t=1688989070; x=1691581070;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :from:to:cc:subject:date:message-id:reply-to;
-        bh=EsmRez3KeHQWdsJ3zq2e6f0SK1pc07OA73nm0/B2seM=;
-        b=v0Cr0QFWQsHZmlclQH2S9Qiaqz4FCviB34atyeGMOYHIL453hnO1P9ILhLa7R+LZ2i
-         udryNYN2F2C89rhT8HZWQDieO0lTSZzNQlkgf+Sc4j8oo8QgZExJ3OwzDq15y9RDkJch
-         phy83dvtqbWKScZoWelz1h0za6LV6KmcQECdtzZ/r+otPTrXe4Kdldt9t5N6Hr0qgmjM
-         okWJYXfFqMB3J+34Za4lF/hfH/VPHCH81vQnQuagrV3lVPqDxJJIBnkQNG/ppOSGZ0wl
-         tNxoHueAFq0+VPy16aWWHw6jfLF1IYbCGw3AfslNtdyy5+l3EatW0vdnY71fRas5JtRF
-         15/g==
+        bh=mS49Wtz3TzRcx25R7DDNtuIqce10iBXCdR5Hdk2vgrA=;
+        b=iU+M+r71BtUY/oZSjRY/hyhQMcK14jxslw0ePhv0rlRL0pxcSqeE3jppUK200SYR96
+         ieERUpDDjd1BqSyPc9TI80p6owY2zi989cjQ5617ZdksfVtY8M+RMM2L9FqKbVYDxC6/
+         501MNT67p1egcawEx7hNsX0jK6mGz7Gt4m9WwY0OycapuevPjINwJuGE7hUIjL63u7p5
+         vKezK74Hp1sf+PW99U3FPWffRmhJ9nkNyPKoT/Hlb24Lb3wSxsgube81Fte8kW/rfdxg
+         hfQzOMu1lg1y1A2xoYJR5nEpAMzFeERv2epyXA1Pyg+l/RSEh3ffptKtWedQJp7n9YHt
+         PjYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688988270; x=1691580270;
+        d=1e100.net; s=20221208; t=1688989070; x=1691581070;
         h=content-transfer-encoding:in-reply-to:from:references:cc:to
          :content-language:subject:user-agent:mime-version:date:message-id
          :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=EsmRez3KeHQWdsJ3zq2e6f0SK1pc07OA73nm0/B2seM=;
-        b=JJNxdczmpxZWIo47NzKpeH97FwW8Iq//mgy+EBSkRGJUnIM/ctTHHX5JalPt8YV4Yo
-         FHTQaytB2QV4dUIhk5NgLgJpvQbYg1h3Oko8br7toNto1sWWuOx82BYw9s1meDQ+JDGh
-         IRyt0XKlOmYzTF60OZAXDyfpfxJ1uG0sxHqMUx0eKNfPP+fTRULLXfYpOUxI8MFCjLra
-         1Yl65UA4YL5MsHl1GmbXY8sHMcEEpUJbnIDtjnKLXtmAXueZE2/kO0VW3xiLTpc9kJF7
-         WPfKOenSWvE2NWFihlOlhajdik+3GXNKGS5n3BqwFLp3ZmRNxp5D1Ip5All9O8ZBtwuG
-         Z7wQ==
-X-Gm-Message-State: ABy/qLbkPKIEhnzMakMnil2GFvhQeV2cXny2K0KkqXlRGlny+KfLGKSv
-        3Fyy6i09HYNk9+ocu99WSKsXUhyfTAP8sYHMpb8=
-X-Google-Smtp-Source: APBJJlGGbY2Z3JDTdaSK2Ajis/zFp40GglOPvR+BEW0tOC1+kQ83lZAaGRYqDnmhNR3TkSv/y/DUUQ==
-X-Received: by 2002:ac2:4e81:0:b0:4fb:9168:1fc7 with SMTP id o1-20020ac24e81000000b004fb91681fc7mr8851360lfr.51.1688988270147;
-        Mon, 10 Jul 2023 04:24:30 -0700 (PDT)
-Received: from ?IPV6:2001:14ba:a0db:1f00::8a5? (dzdqv0yyyyyyyyyyybcwt-3.rev.dnainternet.fi. [2001:14ba:a0db:1f00::8a5])
-        by smtp.gmail.com with ESMTPSA id g17-20020ac25391000000b004fb5bbc47cdsm1668763lfh.307.2023.07.10.04.24.29
+        bh=mS49Wtz3TzRcx25R7DDNtuIqce10iBXCdR5Hdk2vgrA=;
+        b=ThDcH6b+HfPfoFHOWI//s6Lev0Ut3MkUBblkNTqfdGFa8LPjqVoW7xCgDQqUTBuQCy
+         i/m4he60V/yj4upLVuhTsCTLShCqQny5itEcwJ40mm6Ek50M8b0hp2OGz3Mcvq6gaPIU
+         USMRKGkguVn/oUWuP7O9drxoJLN1E8cL210Z/YG54g+S2sROtFvPWQLgs1jgf3N6rxub
+         hnS+uQGceZom305GXKlSIYlMRXIPnJ2j6jqheFUMoWIOiU7RHEjGFEwShCa1BC7va8ld
+         weekuQHPYgf2swoWbl72Qy1oIP865cXmc2PZw86xU/dMYRVNgM7vPML/V4UbOHU0aMnw
+         3stg==
+X-Gm-Message-State: ABy/qLaUhLD7Huc5VkwCX6D4I7SATNsDnBeYT1/HahGZFHfUrv7gbLnP
+        zLFb2FQKHO3QCXbe6gHauZzf6w==
+X-Google-Smtp-Source: APBJJlG/ythdjVOEGhXXPzG6fsYC/s5Hx+kLbmBV7fACvh0QaTgNc2JsK6P/IaMxUnP/Jvb9324wAw==
+X-Received: by 2002:a05:6402:2ce:b0:51e:293e:eb96 with SMTP id b14-20020a05640202ce00b0051e293eeb96mr8499341edx.40.1688989070227;
+        Mon, 10 Jul 2023 04:37:50 -0700 (PDT)
+Received: from [192.168.1.20] ([178.197.223.104])
+        by smtp.gmail.com with ESMTPSA id l9-20020aa7c309000000b0051def9be785sm5645491edq.85.2023.07.10.04.37.48
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 10 Jul 2023 04:24:29 -0700 (PDT)
-Message-ID: <96e52c65-6216-91ba-8d2b-197f86433d98@linaro.org>
-Date:   Mon, 10 Jul 2023 14:24:29 +0300
+        Mon, 10 Jul 2023 04:37:49 -0700 (PDT)
+Message-ID: <d752e5e0-3c34-02ad-6768-42eb2c66e582@linaro.org>
+Date:   Mon, 10 Jul 2023 13:37:47 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.12.0
-Subject: Re: [PATCH 6/6] thermal/drivers/tsens: Add IPQ5332 support
-Content-Language: en-GB
-To:     Praveenkumar I <quic_ipkumar@quicinc.com>, agross@kernel.org,
-        andersson@kernel.org, konrad.dybcio@linaro.org, amitk@kernel.org,
-        thara.gopinath@gmail.com, rafael@kernel.org,
-        daniel.lezcano@linaro.org, rui.zhang@intel.com, robh+dt@kernel.org,
-        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     quic_varada@quicinc.com
-References: <20230710103735.1375847-1-quic_ipkumar@quicinc.com>
- <20230710103735.1375847-7-quic_ipkumar@quicinc.com>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-In-Reply-To: <20230710103735.1375847-7-quic_ipkumar@quicinc.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: drop the IPQ5019 SoC ID
+Content-Language: en-US
+To:     Kathiravan T <quic_kathirav@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_anusha@quicinc.com, quic_saahtoma@quicinc.com
+References: <20230710105419.1228966-1-quic_kathirav@quicinc.com>
+ <20230710105419.1228966-2-quic_kathirav@quicinc.com>
+From:   Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>
+In-Reply-To: <20230710105419.1228966-2-quic_kathirav@quicinc.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
         DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
@@ -80,79 +83,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10/07/2023 13:37, Praveenkumar I wrote:
-> IPQ5332 uses tsens v2.3.3 IP and it is having combined interrupt as
-> like IPQ8074. But as the SoCs does not have RPM, kernel needs to
-> take care of sensor enablement and calibration. Hence introduced
-> new ops and data for IPQ5332 and reused the feature_config from
-> IPQ8074.
+On 10/07/2023 12:54, Kathiravan T wrote:
+> IPQ5019 SoC is not available in production. Lets drop it.
 > 
-> Signed-off-by: Praveenkumar I <quic_ipkumar@quicinc.com>
+> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
 > ---
->   drivers/thermal/qcom/tsens-v2.c | 13 +++++++++++++
->   drivers/thermal/qcom/tsens.c    |  3 +++
->   drivers/thermal/qcom/tsens.h    |  2 +-
->   3 files changed, 17 insertions(+), 1 deletion(-)
+>  include/dt-bindings/arm/qcom,ids.h | 1 -
+>  1 file changed, 1 deletion(-)
 > 
-> diff --git a/drivers/thermal/qcom/tsens-v2.c b/drivers/thermal/qcom/tsens-v2.c
-> index db48b1d95348..8b6e3876fd2c 100644
-> --- a/drivers/thermal/qcom/tsens-v2.c
-> +++ b/drivers/thermal/qcom/tsens-v2.c
-> @@ -237,6 +237,19 @@ struct tsens_plat_data data_ipq8074 = {
->   	.fields	= tsens_v2_regfields,
->   };
->   
-> +static const struct tsens_ops ops_ipq5332_v2 = {
+> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+> index bcbe9ee2cdaf..179dd56b2d95 100644
+> --- a/include/dt-bindings/arm/qcom,ids.h
+> +++ b/include/dt-bindings/arm/qcom,ids.h
+> @@ -250,7 +250,6 @@
+>  #define QCOM_ID_QRU1000			539
+>  #define QCOM_ID_QDU1000			545
+>  #define QCOM_ID_QDU1010			587
+> -#define QCOM_ID_IPQ5019			569
 
-Please drop v2. It is unclear if it refers to tsens being v2 or being 
-specific to ipq5332 v2.
+What about users of this binding? What's the impact on them? When did
+the SoC become obsolete and unsupported by Qualcomm? Remember that
+ceasing a production does not mean that magically all users of a product
+disappear...
 
-> +	.init		= init_common,
-> +	.get_temp	= get_temp_tsens_valid,
-> +	.calibrate	= tsens_v2_calibration,
-> +};
-> +
-> +struct tsens_plat_data data_ipq5332 = {
-> +	.sensors_to_en	= 0xF800,
 
-This doesn't seem to match the offsets that you have enabled in the DTSI.
-
-> +	.ops		= &ops_ipq5332_v2,
-> +	.feat		= &ipq8074_feat,
-> +	.fields		= tsens_v2_regfields,
-> +};
-> +
->   /* Kept around for backward compatibility with old msm8996.dtsi */
->   struct tsens_plat_data data_8996 = {
->   	.num_sensors	= 13,
-> diff --git a/drivers/thermal/qcom/tsens.c b/drivers/thermal/qcom/tsens.c
-> index 169690355dad..e8ba2901cda8 100644
-> --- a/drivers/thermal/qcom/tsens.c
-> +++ b/drivers/thermal/qcom/tsens.c
-> @@ -1140,6 +1140,9 @@ static const struct of_device_id tsens_table[] = {
->   	}, {
->   		.compatible = "qcom,ipq8074-tsens",
->   		.data = &data_ipq8074,
-> +	}, {
-> +		.compatible = "qcom,ipq5332-tsens",
-> +		.data = &data_ipq5332,
->   	}, {
->   		.compatible = "qcom,mdm9607-tsens",
->   		.data = &data_9607,
-> diff --git a/drivers/thermal/qcom/tsens.h b/drivers/thermal/qcom/tsens.h
-> index f8897bc8944e..36040f9beebc 100644
-> --- a/drivers/thermal/qcom/tsens.h
-> +++ b/drivers/thermal/qcom/tsens.h
-> @@ -701,6 +701,6 @@ extern struct tsens_plat_data data_8226, data_8909, data_8916, data_8939, data_8
->   extern struct tsens_plat_data data_tsens_v1, data_8976, data_8956;
->   
->   /* TSENS v2 targets */
-> -extern struct tsens_plat_data data_8996, data_ipq8074, data_tsens_v2;
-> +extern struct tsens_plat_data data_8996, data_ipq8074, data_ipq5332, data_tsens_v2;
->   
->   #endif /* __QCOM_TSENS_H__ */
-
--- 
-With best wishes
-Dmitry
+Best regards,
+Krzysztof
 
