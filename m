@@ -2,54 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 459C374DBE9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 19:08:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3DAC74DC02
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 19:12:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231330AbjGJRIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 13:08:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33390 "EHLO
+        id S229769AbjGJRMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 13:12:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229468AbjGJRIo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 13:08:44 -0400
+        with ESMTP id S229538AbjGJRMd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 13:12:33 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 096F1D7
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 10:08:43 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D08E10D;
+        Mon, 10 Jul 2023 10:12:32 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 9124361121
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 17:08:43 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1935AC433C7;
-        Mon, 10 Jul 2023 17:08:40 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id DD81661127;
+        Mon, 10 Jul 2023 17:12:31 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id E6C96C433C7;
+        Mon, 10 Jul 2023 17:12:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689008923;
-        bh=3Z4TPRsy8cNNAv+TW7IInp0X7LnEVRi5Jc25+9CNTJg=;
+        s=k20201202; t=1689009151;
+        bh=vvAVbgZpcOMJ/qEH4hsXQCETNWbXWjh5iV2QQXaC0tg=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=f9YvNiIYh23Pv/Hxh1rF/aneANgmBIby+UDNydORAmxfWpr+m9lLf82bqBDrKzKrE
-         Cu2jOzwQUxHWIPOOpGxsWDg0bCtRMNq5L5cE2OtLtKhpCpcGqKq/V651+jkqyXnebd
-         bGiinvXoOxIWezwcPzgj0Uha0zqKuoZU3ZT7C8quTWCm25F2pDf0v/RBNP0TkN+1zN
-         zvhhhKnW5A6q4JKNiwOq6NEz5Su6dZy5bMpauIwrMHsaisMAjNp6PQGyo0B9IptNbX
-         aqXANR+6TwlWXYiy6N0exkU9uxnMkezAFJn+3JdL823L86kCgUp0P24Yp7RR2M3Zfm
-         9mdCx7DOHT//A==
-Date:   Mon, 10 Jul 2023 18:08:39 +0100
+        b=Oro8aYvmVsJJ98tLydLUTYFS87pkQOLf5Krtz8ir5PIx2/x56qIU53TcWk3tyBZg9
+         FqyVbrFAMXMNljNmfitBPZ3DhejlpOY6XWHiiar04lkpMA5pr62g/BFt/HsQtTdD/j
+         2+yRpyQTFaFTgFNpAqWZgeU6S8JMVUTQ4GGLv2VZTlpAotJtpAXgV981jeDdTDwCDL
+         MHIBfRdYs52NqSK1wUn3dIV+7ry5MM+N1MSs5v/Jy+3f+Kjizg/XgE+uxRBol87Yz3
+         JLcC1eSEtgJtBPWjD9BQuzCJR3DMafBO/BhjW4t+xauuE6sM6I/xQkEdFhDCRZvuEs
+         j0loaPokieDog==
+Date:   Mon, 10 Jul 2023 18:12:26 +0100
 From:   Conor Dooley <conor@kernel.org>
-To:     =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>
-Cc:     Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <rafal@milecki.pl>
-Subject: Re: [PATCH] dt-bindings: arm: bcm: add BCM53573 SoCs family binding
-Message-ID: <20230710-mahogany-unequal-91830352ffc5@spud>
-References: <20230707115302.3491-1-zajec5@gmail.com>
+To:     Nicolas Ferre <nicolas.ferre@microchip.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
+        alexandre.belloni@bootlin.com, sre@kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 3/4] dt-bindings: power: reset: atmel,sama5d2-shdwc:
+ convert to yaml
+Message-ID: <20230710-eldercare-affection-778b7e26951a@spud>
+References: <20230524123528.439082-1-claudiu.beznea@microchip.com>
+ <20230524123528.439082-4-claudiu.beznea@microchip.com>
+ <20230524-blizzard-hunting-4da815e634e2@spud>
+ <20230607204351.GA3984668-robh@kernel.org>
+ <20230607-refute-acrobat-3b3f645da71b@spud>
+ <CAL_JsqLyLs3Vfsd8LRd5_dUbzjE9LgMNnWa+8uP88Ab+E1oLfw@mail.gmail.com>
+ <20230608-tiptop-unfold-66c4b8f4e620@spud>
+ <82f1d66a-b8cf-69bd-4783-e2c867c11828@microchip.com>
+ <20230613-library-enigmatic-267396f84d78@spud>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Fh2KFgUN8vnG0j99"
+        protocol="application/pgp-signature"; boundary="/fvOucPn118co02/"
 Content-Disposition: inline
-In-Reply-To: <20230707115302.3491-1-zajec5@gmail.com>
+In-Reply-To: <20230613-library-enigmatic-267396f84d78@spud>
 X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
         DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
         RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
@@ -61,67 +69,46 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---Fh2KFgUN8vnG0j99
-Content-Type: text/plain; charset=utf-8
+--/fvOucPn118co02/
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Fri, Jul 07, 2023 at 01:53:02PM +0200, Rafa=C5=82 Mi=C5=82ecki wrote:
-> From: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
+Hey Nicolas,
+
+On Tue, Jun 13, 2023 at 07:44:58PM +0100, Conor Dooley wrote:
+> On Fri, Jun 09, 2023 at 12:09:24PM +0200, Nicolas Ferre wrote:
+> > On 08/06/2023 at 18:49, Conor Dooley wrote:
+> > >=20
+> > > On Thu, Jun 08, 2023 at 08:38:10AM -0600, Rob Herring wrote:
+> > >=20
+> > > > For reference, anything done by Arm, Linaro or NVIDIA employees is
+> > > > okay to relicense to dual license.
+> > > Ah cool, that's good to know, thanks.
+> > > Perhaps I should try to get a similar edict issued for Microchip ones.
+> > > @Nicolas, does that sound reasonable?
+> >=20
+> > Well, we can work it out internally, indeed. But is there a public stat=
+ement
+> > about this somewhere?
 >=20
-> BCM53573 is a family derived from Northstar with some important
-> differences:
-> 1. Cortex-A9 replaced by Cortex-A7
-> 2. XHCI controller dropped
-> 3. Two Ethernet interfaces removed
-> 4. Two 802.11ac cores embedded
->=20
-> Linux already contains DTS files for some on those devices so add a
-> proper binding for it.
->=20
-> Signed-off-by: Rafa=C5=82 Mi=C5=82ecki <rafal@milecki.pl>
-> ---
->  .../bindings/arm/bcm/brcm,bcm53573.yaml       | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/arm/bcm/brcm,bcm535=
-73.yaml
->=20
-> diff --git a/Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml=
- b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml
-> new file mode 100644
-> index 000000000000..6e502d718518
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/bcm/brcm,bcm53573.yaml
-> @@ -0,0 +1,39 @@
-> +# SPDX-License-Identifier: GPL-2.0
+> You mean, is there a public statement about Arm/Linaro/Nvidia being okay
+> with relicensing bindings as dual license?
 
-How come this is not dual licensed?
+This was sitting at the end of my queue, don't recall following this up
+internally. Getting an edict might be more hassle than it is worth & I
+guess I am always CCed on bindings to Ack them.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/bcm/brcm,bcm53573.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Broadcom BCM53573 SoCs family
 
-Title seems a little odd given the description.
-"Broadcom Northstar derived Wi-Fi SoCs"?
-
-Otherwise,
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---Fh2KFgUN8vnG0j99
+--/fvOucPn118co02/
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKw7FwAKCRB4tDGHoIJi
-0iNkAQCxoV2bPjloA9kSJpj91NM4g4mkYYuNW8qp0iiOvTuWQQEAwDdnb2/oUT3+
-w19emIjbn6Dgi8Msa6PU7LyPXNfVswU=
-=zyl8
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKw7+gAKCRB4tDGHoIJi
+0iRRAQDA/gIPYRJcURGv5S6W/ljvEX7yrygRh24zGK97esFiDwEA/v0daV8787V0
+xmXk0NdicJ0n2tVchsnCPmBr+PmLIQw=
+=70wv
 -----END PGP SIGNATURE-----
 
---Fh2KFgUN8vnG0j99--
+--/fvOucPn118co02/--
