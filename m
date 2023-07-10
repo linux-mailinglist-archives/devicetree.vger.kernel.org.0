@@ -2,128 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 4214574DA18
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:42:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D473F74DA79
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 17:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231978AbjGJPmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 11:42:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46026 "EHLO
+        id S233607AbjGJPxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 11:53:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51324 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231307AbjGJPmu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:42:50 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B794AD1;
-        Mon, 10 Jul 2023 08:42:49 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 4F5EB61093;
-        Mon, 10 Jul 2023 15:42:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 38172C433C8;
-        Mon, 10 Jul 2023 15:42:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689003768;
-        bh=MLkm2Efg9j8j0AApJz1dQVqV7X1VG6QWOQOfrXe3kPo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rFxOpWlaPaIK0ysrxL/QJL3Cqc/8xF85GhTcg22mRqejW5TCuPF9WZ9NSiD+ZhsdD
-         jxP/uNptaTdppw5S2SGXnP+Y550EvEtY5ni7onUZCzgKlO2XiPUoS0hVKKS7wzqTJA
-         X6fw61TqMATPuETdMDLFTtjrjNe/12iyqRy7lNws4T9+G2W+vTmGDOFVB91q3II2NQ
-         Ir3IWmune9kQPQi4ZBekP+UCEB69dEia2CiNNXsYNrFil7VrUQyW32pjmKuUekbD+D
-         rrQZaCsPaDzdlRHEg3X5gUu2M2y8yCYbnmc3EhAFuT5NvL+2muKa6OoBkQE1W1z07Q
-         zVjdp0Dj9zcRw==
-Date:   Mon, 10 Jul 2023 16:42:42 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Samuel Ortiz <sameo@rivosinc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        linux-riscv@lists.infradead.org, linux@rivosinc.com,
-        Conor Dooley <conor.dooley@microchip.com>,
-        Andrew Jones <ajones@ventanamicro.com>,
-        Heiko Stuebner <heiko.stuebner@vrull.eu>,
-        Anup Patel <apatel@ventanamicro.com>,
-        linux-kernel@vger.kernel.org,
-        "Hongren (Zenithal) Zheng" <i@zenithal.me>,
-        Guo Ren <guoren@kernel.org>, Atish Patra <atishp@rivosinc.com>,
-        =?iso-8859-1?Q?Bj=F6rn_T=F6pel?= <bjorn@rivosinc.com>,
-        Evan Green <evan@rivosinc.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 2/4] dt-bindings: riscv: Document the 1.0 scalar
- cryptography extensions
-Message-ID: <20230710-education-evolution-f12520405842@spud>
-References: <20230709115549.2666557-1-sameo@rivosinc.com>
- <20230709115549.2666557-3-sameo@rivosinc.com>
- <20230710151624.GA1987602-robh@kernel.org>
+        with ESMTP id S233665AbjGJPx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 11:53:29 -0400
+Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2453E5A
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:53:07 -0700 (PDT)
+Received: by mail-wr1-x436.google.com with SMTP id ffacd0b85a97d-314417861b9so4723231f8f.0
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 08:53:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20221208.gappssmtp.com; s=20221208; t=1689004386; x=1691596386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=tdKrsajVjo/xr86zMfcWuNX46q5dSrbFvouEd5MKVhM=;
+        b=TLZ//gR7t6mLNcmnE7ROIxsTiKnkjbFRvBVbhJTximPrdpJ0BSh2Ea6ZvOT6Uy8D+e
+         DIVVcH5Xh4hGYNnp0vZir4NWamp1NTqHb+S1YFHH0AQPz20nDnj5dX/Jd2iq8TUuGXEN
+         +pdnHr+DhstmSgWNBWzuDhSVzIL6P91lRD5myVEPNcGOBnwWlE6w6BwJUwUUB3zvS7nt
+         2loEsLdfkz7pQcA+gR2vz5cI47r4cxaDNldsj6Ot8PoVBlod/2fSc9+vEyrwF9ge0ZsK
+         9OYZFVz0kDTP9TjocKrLcaZTRH4POqm4H2aCflof2GinpmhN9S0T2dHoXU+hI85ePl8S
+         hGUA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689004386; x=1691596386;
+        h=content-transfer-encoding:in-reply-to:from:content-language
+         :references:cc:to:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=tdKrsajVjo/xr86zMfcWuNX46q5dSrbFvouEd5MKVhM=;
+        b=OSkasOaYdwHJYwHeNlAw8cMyyAw7mdgM7Db268AjKm6wAwGHjDBr4eZoegOqsRu59e
+         2zVvWhIoGxPBWYmWGHCIHKFs5eULujkoP8MLnooC93AXZe5s6qt5gjCYgc//lVllw9z/
+         jjmPSIJTXq3hi6cvP1szGFpZEjcEmKN5lAebwwhWF1B8hwH2TWnJJbrygxEbBgPbcgrc
+         Mdb/G/pMOJ2JcAMMrIyX6OykrcLLqAknyTg9l/pYlPuLSDZuTgGJwwStUbkRQLkesI7G
+         FSrXXS3P4is/pMyuVIrqlA3WtHaHOw/EbWksNAu+7N9WHtHa+lHl3bwCWMCycnjiZJrq
+         d9Bw==
+X-Gm-Message-State: ABy/qLYUrq8KU67J6M4ioeWthnyt6hkczs1aUUtFeHZLLv0h7iq7Cdab
+        vsRsfAppoyUu88ZJWg8eGUe3aQ==
+X-Google-Smtp-Source: APBJJlFKC+MrjlBKB0FNvPot8NUcDH+VTlvf4Fkur8znn+3cOPWDO++w16oLgmvffnjrZtmeMAaE8g==
+X-Received: by 2002:a5d:4c8f:0:b0:315:89c5:9d2f with SMTP id z15-20020a5d4c8f000000b0031589c59d2fmr9552701wrs.53.1689004385926;
+        Mon, 10 Jul 2023 08:53:05 -0700 (PDT)
+Received: from [192.168.1.172] ([93.5.22.158])
+        by smtp.gmail.com with ESMTPSA id e16-20020a5d4e90000000b0031424f4ef1dsm12044766wru.19.2023.07.10.08.53.04
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 08:53:05 -0700 (PDT)
+Message-ID: <7dd9399c-3806-b202-53b2-863690b14ab9@baylibre.com>
+Date:   Mon, 10 Jul 2023 17:53:03 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="33PrQJ5t6h82PbWt"
-Content-Disposition: inline
-In-Reply-To: <20230710151624.GA1987602-robh@kernel.org>
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.11.0
+Subject: Re: [PATCH v6 2/8] soc: mediatek: pm-domains: Move bools to a flags
+ field
+To:     Markus Schneider-Pargmann <msp@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Chun-Jie Chen <chun-jie.chen@mediatek.com>,
+        AngeloGioacchino Del Regno 
+        <angelogioacchino.delregno@collabora.com>,
+        Tinghan Shen <tinghan.shen@mediatek.com>,
+        Fabien Parent <parent.f@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20230627131040.3418538-1-msp@baylibre.com>
+ <20230627131040.3418538-3-msp@baylibre.com>
+Content-Language: en-US
+From:   Alexandre Mergnat <amergnat@baylibre.com>
+In-Reply-To: <20230627131040.3418538-3-msp@baylibre.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=unavailable autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Reviewed-by: Alexandre Mergnat <amergnat@baylibre.com>
+Tested-by: Alexandre Mergnat <amergnat@baylibre.com>
 
---33PrQJ5t6h82PbWt
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Mon, Jul 10, 2023 at 09:16:24AM -0600, Rob Herring wrote:
-> On Sun, Jul 09, 2023 at 01:55:44PM +0200, Samuel Ortiz wrote:
-> > The RISC-V cryptography extensions define a set of instructions, CSR
-> > definitions, architectural interfaces and also extension shorthands for
-> > running scalar and vector based cryptography operations on RISC-V
-> > systems.
-> >=20
-> > This documents all the dt-bindings for the scalar cryptography
-> > extensions, including the Zk, Zkn and Zks shorthands.
-> >=20
-> > Signed-off-by: Samuel Ortiz <sameo@rivosinc.com>
-> > ---
-> >  .../devicetree/bindings/riscv/extensions.yaml | 82 +++++++++++++++++++
-> >  1 file changed, 82 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/riscv/extensions.yaml b/=
-Documentation/devicetree/bindings/riscv/extensions.yaml
-> > index cc1f546fdbdc..361756978da1 100644
-> > --- a/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > +++ b/Documentation/devicetree/bindings/riscv/extensions.yaml
-> > @@ -190,6 +190,24 @@ properties:
-> >              instructions as ratified at commit 6d33919 ("Merge pull re=
-quest #158
-> >              from hirooih/clmul-fix-loop-end-condition") of riscv-bitma=
-nip.
-> > =20
-> > +        - const: zbkb
-> > +          description: |
->=20
-> Don't need '|' if no formatting to preserve.
+On 27/06/2023 15:10, Markus Schneider-Pargmann wrote:
+> To simplify the macros, use a flags field for simple bools. This is in
+> preparation for more flags.
 
-The existing binding only adds the `|` where the commit message contains
-a #, please drop the `|`s if you end up re-submitting. Otherwise,
-
-Reviewed-by: Conor Dooley <conor.dooley@microchip.com>
-
-Cheers,
-Conor.
-
---33PrQJ5t6h82PbWt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKwm8gAKCRB4tDGHoIJi
-0lmVAP0dsukr8M+O+PT302/sFjsPmEzuEd8tDVvPqj1YwfVzkAD/SjAtHUhGT5OR
-ns6O+iOSrmQmy4IV1qDjUf2BJD/wCgo=
-=tIFO
------END PGP SIGNATURE-----
-
---33PrQJ5t6h82PbWt--
+-- 
+Regards,
+Alexandre
