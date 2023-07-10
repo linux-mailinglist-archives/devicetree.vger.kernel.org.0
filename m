@@ -2,79 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A539574D951
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 16:50:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02C0274D955
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 16:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230255AbjGJOuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 10:50:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55042 "EHLO
+        id S232198AbjGJOyR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 10:54:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55700 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S230008AbjGJOuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 10:50:02 -0400
-Received: from mx07-00178001.pphosted.com (mx08-00178001.pphosted.com [91.207.212.93])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7A13B106;
-        Mon, 10 Jul 2023 07:50:00 -0700 (PDT)
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.17.1.19/8.17.1.19) with ESMTP id 36ACrLXs015879;
-        Mon, 10 Jul 2023 16:49:38 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foss.st.com; h=message-id : date :
- mime-version : subject : to : cc : references : from : in-reply-to :
- content-type : content-transfer-encoding; s=selector1;
- bh=VI5BUgJKKnKd81L1yWTc/ee+ko738S4C9F8jfybX2Fo=;
- b=Oytith9HRt/VQTLW1jj7BPwyCTMarM5sJXs/+TBddf+wFYTUJc7PCMHu3/9vNQOQ08UO
- QyCJGxEldx30p9C0l/W513Arbmdv6qvTYyJ806Y0ZNwEG/y4wJYYVOx49Jln5ElHeN6I
- 7gVav+ee+MtrmO0VcrDrlrHbO376iRPJa8VXDsg6aX+V6yFXq90osOGjZBJvMrvhkQW/
- O/T2UjZ5IYovB14QHw8VfHG5aiUSB4b4vls/2JZce/H2mVqcAxPRj3IlhaJwLL8YKLrW
- 2nNd4CmIpvolCRGUWjQeQbwtYOX9tlGtmyXR6UH9Kzd0qkG1ZMHZLsLwvX+w6/bhmmzd yg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com (PPS) with ESMTPS id 3rrjcygtfm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 10 Jul 2023 16:49:38 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EC66910005D;
-        Mon, 10 Jul 2023 16:49:36 +0200 (CEST)
-Received: from Webmail-eu.st.com (shfdag1node1.st.com [10.75.129.69])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D816C25E537;
-        Mon, 10 Jul 2023 16:49:36 +0200 (CEST)
-Received: from [10.201.21.122] (10.201.21.122) by SHFDAG1NODE1.st.com
- (10.75.129.69) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2507.21; Mon, 10 Jul
- 2023 16:49:36 +0200
-Message-ID: <a53e130e-8968-7e69-8b5a-ac37b8e01770@foss.st.com>
-Date:   Mon, 10 Jul 2023 16:49:35 +0200
+        with ESMTP id S231201AbjGJOyQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 10:54:16 -0400
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com [209.85.166.41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39643BC;
+        Mon, 10 Jul 2023 07:54:15 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id ca18e2360f4ac-7835ffc53bfso95944639f.1;
+        Mon, 10 Jul 2023 07:54:15 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1689000854; x=1691592854;
+        h=in-reply-to:content-disposition:mime-version:references:message-id
+         :subject:cc:to:from:date:x-gm-message-state:from:to:cc:subject:date
+         :message-id:reply-to;
+        bh=knPR9yYz2WPKjMufisii9UreVZbTEUXAVqzrTii1/pc=;
+        b=iB2P/liM2qawVfb9Mg8keb3ejKKJLhkE80DwSaDp8wfgTRiH5J+NPxsK/ovH+lSYA8
+         k37yq30ka8a7/hUBeY85uZ+DOUFKaEr2swKFxU8ZWPDgt3lujjZHbJUo0Yw/ZrmIxjXa
+         uEoxitcrAcecgpf7hTCHgDmT+nnytQZ18Ptc+7qUPU4OJ9qscWdVM6e3jZ2Sy0IR/Rvz
+         llpGEo5H5tC/hstM86lg7/G12C+y7IzMfS35sy06HRPAi2639Q2g+haejUDW7XW8cG6+
+         T8wks9DrZ522kfT9ZvNcPjeO4CYgeut85F89MgyIVmLSu0TFSdeC/XFgza5VnE58lT6f
+         nAGQ==
+X-Gm-Message-State: ABy/qLb6nz6qo82ndIID0aKEBQqeicQj+wQ1yGbTFFOoGgY1/YAbHxi2
+        /K5gEXRn8bmeVh3Jgm+Arw==
+X-Google-Smtp-Source: APBJJlGPm/9hK472s8BUH0Uh4raLcJ8oAan5K6rZW4ED77sMyiI/8jfWetBwTIUn6yLeXrs3JcbMWw==
+X-Received: by 2002:a6b:e817:0:b0:783:63d6:4c3 with SMTP id f23-20020a6be817000000b0078363d604c3mr6441287ioh.10.1689000854497;
+        Mon, 10 Jul 2023 07:54:14 -0700 (PDT)
+Received: from robh_at_kernel.org ([64.188.179.250])
+        by smtp.gmail.com with ESMTPSA id a22-20020a6b6616000000b0078702f4894asm1629889ioc.9.2023.07.10.07.54.11
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 10 Jul 2023 07:54:13 -0700 (PDT)
+Received: (nullmailer pid 1959292 invoked by uid 1000);
+        Mon, 10 Jul 2023 14:54:10 -0000
+Date:   Mon, 10 Jul 2023 08:54:10 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Baoquan He <bhe@redhat.com>
+Cc:     devicetree@vger.kernel.org, mturquette@baylibre.com,
+        kernel test robot <lkp@intel.com>,
+        Jonathan.Cameron@huawei.com, maz@kernel.org, vkoul@kernel.org,
+        dragan.cvetic@amd.com, edumazet@google.com, tglx@linutronix.de,
+        tsbogend@alpha.franken.de, linux-kernel@vger.kernel.org,
+        frowand.list@gmail.com, eli.billauer@gmail.com,
+        derek.kiernan@amd.com, kuba@kernel.org, sboyd@kernel.org,
+        schnelle@linux.ibm.com, robh+dt@kernel.org,
+        linus.walleij@linaro.org, arnd@arndb.de, pabeni@redhat.com,
+        davem@davemloft.net, linux-mm@kvack.org, akpm@linux-foundation.org,
+        linux@dominikbrodowski.net, gregkh@linuxfoundation.org,
+        joyce.ooi@intel.com
+Subject: Re: [PATCH 8/8] of: make OF_EARLY_FLATTREE depend on HAS_IOMEM
+Message-ID: <168900051598.1946989.3367114616050746231.robh@kernel.org>
+References: <20230707135852.24292-1-bhe@redhat.com>
+ <20230707135852.24292-9-bhe@redhat.com>
 MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
- Thunderbird/102.11.0
-Subject: Re: [PATCH 0/2] ARM: dts: sm32mp: remove shmem for scmi-optee
-Content-Language: en-US
-To:     Patrick Delaunay <patrick.delaunay@foss.st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Gabriel Fernandez <gabriel.fernandez@foss.st.com>
-CC:     Christophe PRIOUZEAU <christophe.priouzeau@st.com>,
-        Etienne CARRIERE <etienne.carriere@foss.st.com>,
-        Gatien CHEVALLIER <gatien.chevallier@foss.st.com>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>
-References: <20230705154459.1194895-1-patrick.delaunay@foss.st.com>
-From:   Alexandre TORGUE <alexandre.torgue@foss.st.com>
-In-Reply-To: <20230705154459.1194895-1-patrick.delaunay@foss.st.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.201.21.122]
-X-ClientProxiedBy: EQNCAS1NODE3.st.com (10.75.129.80) To SHFDAG1NODE1.st.com
- (10.75.129.69)
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.205,Aquarius:18.0.957,Hydra:6.0.591,FMLib:17.11.176.26
- definitions=2023-07-10_10,2023-07-06_02,2023-05-22_02
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,NICE_REPLY_A,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20230707135852.24292-9-bhe@redhat.com>
+X-Spam-Status: No, score=-1.2 required=5.0 tests=BAYES_00,
+        FREEMAIL_ENVFROM_END_DIGIT,FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,
+        HEADER_FROM_DIFFERENT_DOMAINS,RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=no
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -82,26 +73,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/5/23 17:44, Patrick Delaunay wrote:
+
+On Fri, 07 Jul 2023 21:58:52 +0800, Baoquan He wrote:
+> On s390 systems (aka mainframes), it has classic channel devices for
+> networking and permanent storage that are currently even more common
+> than PCI devices. Hence it could have a fully functional s390 kernel
+> with CONFIG_PCI=n, then the relevant iomem mapping functions
+> [including ioremap(), devm_ioremap(), etc.] are not available.
 > 
-> Remove the optional shared memory in SYSRAM and
-> use the OP-TEE native shared memory for SCMI-OPTEE to
-> - avoid boot issue with the latest OP-TEE version 3.22.0 for STM32MP15 SoC,
->    when CFG_STM32MP1_SCMI_SHM_SYSRAM is disabled
-> - prepare migration with the same configuration for STM32MP13 SoC
+> In LKP error report at below on s390:
+> ------
+> ld: kernel/dma/coherent.o: in function `dma_init_coherent_memory':
+> coherent.c:(.text+0x102): undefined reference to `memremap'
+> ld: coherent.c:(.text+0x226): undefined reference to `memunmap'
+> ld: kernel/dma/coherent.o: in function `dma_declare_coherent_memory':
+> coherent.c:(.text+0x8b8): undefined reference to `memunmap'
+> ld: kernel/dma/coherent.o: in function `dma_release_coherent_memory':
+> coherent.c:(.text+0x9aa): undefined reference to `memunmap'
+> ------
 > 
+> In the config file, several Kconfig options are:
+> ------
+> '# CONFIG_PCI is not set'
+> CONFIG_OF_EARLY_FLATTREE=y
+> CONFIG_DMA_DECLARE_COHERENT=y
+> ------
 > 
+> So, enabling OF_EARLY_FLATTREE will select DMA_DECLARE_COHERENT
+> and cause above building errors even though they are not needed
+> because CONFIG_PCI is disabled.
 > 
-> Patrick Delaunay (2):
->    ARM: dts: sm32mp: remove shmem for scmi-optee on stm32mp15
->    ARM: dts: sm32mp: remove shmem for scmi-optee on stm32mp13
+> Here let OF_EARLY_FLATTREE depend on HAS_IOMEM so that it won't
+> be built to cause compiling error if PCI is unset.
 > 
->   arch/arm/boot/dts/st/stm32mp131.dtsi     | 14 --------------
->   arch/arm/boot/dts/st/stm32mp15-scmi.dtsi | 16 ----------------
->   2 files changed, 30 deletions(-)
+> Reported-by: kernel test robot <lkp@intel.com>
+> Closes: https://lore.kernel.org/oe-kbuild-all/202306211329.ticOJCSv-lkp@intel.com/
+> Signed-off-by: Baoquan He <bhe@redhat.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> ---
+>  drivers/of/Kconfig | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
 
-Applied to stm32-next. Will be send for fixes in this v6.5 cycle.
+Applied, thanks!
 
-Thanks
-Alex
