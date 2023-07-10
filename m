@@ -2,72 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E91E74D8E0
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 16:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 00AF274D90B
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 16:31:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230103AbjGJOVk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 10:21:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42456 "EHLO
+        id S231719AbjGJOa5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 10:30:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S232114AbjGJOVj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 10:21:39 -0400
-Received: from gloria.sntech.de (gloria.sntech.de [185.11.138.130])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E04FD2;
-        Mon, 10 Jul 2023 07:21:37 -0700 (PDT)
-Received: from i53875a50.versanet.de ([83.135.90.80] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa  (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94.2)
-        (envelope-from <heiko@sntech.de>)
-        id 1qIrlf-0001VJ-9u; Mon, 10 Jul 2023 16:21:35 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Conor Dooley <conor+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [RFT PATCH v2 1/3] arm64: dts: rockchip: correct wifi interrupt flag in
- eaidk-610
-Date:   Mon, 10 Jul 2023 16:21:34 +0200
-Message-ID: <2762773.BEx9A2HvPv@phil>
-In-Reply-To: <168899855919.1747213.375800621361302991.b4-ty@sntech.de>
-References: <20230707063335.13317-1-krzysztof.kozlowski@linaro.org>
- <168899855919.1747213.375800621361302991.b4-ty@sntech.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,SPF_PASS,
-        T_SCC_BODY_TEXT_LINE,T_SPF_HELO_TEMPERROR autolearn=ham
-        autolearn_force=no version=3.4.6
+        with ESMTP id S231578AbjGJOa5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 10:30:57 -0400
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.220.29])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1AB6EBB;
+        Mon, 10 Jul 2023 07:30:56 -0700 (PDT)
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by smtp-out2.suse.de (Postfix) with ESMTPS id 8CF8B1FFA2;
+        Mon, 10 Jul 2023 14:30:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+        t=1688999454; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=SjlMk0EbffxuJOjramPPb1TR2XCPnRGkKXj9Qt7aAIQ=;
+        b=O2gr+3UKqOIqNDknFnuyExnyA2GyVIpvfbTUZDFkgROlAWUvecJcwYBk3f9qGdVarxw/ps
+        iYm9yXIxGqTMj6uOyBg9AOjOa6C47zxfKmHOjkBeM2H6wJPzHQFk4GzPrYOUFukNxmzOIN
+        sIbyCBg0nbtitfhDHZO7FLFcMSBlk64=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+        s=susede2_ed25519; t=1688999454;
+        h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+         mime-version:mime-version:content-type:content-type:
+         in-reply-to:in-reply-to:references:references;
+        bh=SjlMk0EbffxuJOjramPPb1TR2XCPnRGkKXj9Qt7aAIQ=;
+        b=1x34zqImdfaqQE5pWTOJvMwf0R480bRp7n1ETIvCExjCri9k/g4gKTj4ALsioIT21D4zyp
+        5bOQX6oDJRF4NWAA==
+Received: from imap2.suse-dmz.suse.de (imap2.suse-dmz.suse.de [192.168.254.74])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature ECDSA (P-521) server-digest SHA512)
+        (No client certificate requested)
+        by imap2.suse-dmz.suse.de (Postfix) with ESMTPS id 2E1E713A05;
+        Mon, 10 Jul 2023 14:30:54 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([192.168.254.65])
+        by imap2.suse-dmz.suse.de with ESMTPSA
+        id SJlECh4WrGS8QwAAMHmgww
+        (envelope-from <tiwai@suse.de>); Mon, 10 Jul 2023 14:30:54 +0000
+Date:   Mon, 10 Jul 2023 16:30:53 +0200
+Message-ID: <87351vzvmq.wl-tiwai@suse.de>
+From:   Takashi Iwai <tiwai@suse.de>
+To:     Shenghao Ding <13916275206@139.com>
+Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
+        krzysztof.kozlowski+dt@linaro.org, robh+dt@kernel.org,
+        lgirdwood@gmail.com, perex@perex.cz,
+        pierre-louis.bossart@linux.intel.com, kevin-lu@ti.com,
+        shenghao-ding@ti.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org, liam.r.girdwood@intel.com,
+        mengdong.lin@intel.com, x1077012@ti.com, peeyush@ti.com,
+        navada@ti.com
+Subject: Re: [PATCH v2 1/3] ALSA: hda/tas2781: Add tas2781 HDA driver
+In-Reply-To: <20230710041217.151099-1-13916275206@139.com>
+References: <20230710041217.151099-1-13916275206@139.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) Emacs/27.2 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,SPF_HELO_NONE,
+        SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham autolearn_force=no
+        version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 10. Juli 2023, 16:16:20 CEST schrieb Heiko Stuebner:
-> On Fri, 7 Jul 2023 08:33:33 +0200, Krzysztof Kozlowski wrote:
-> > GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> > These are simple defines so they could be used in DTS but they will not
-> > have the same meaning: GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE.
-> > 
-> > Correct the interrupt flags, assuming the author of the code wanted same
-> > logical behavior behind the name "ACTIVE_xxx", this is:
-> >   ACTIVE_HIGH  => IRQ_TYPE_LEVEL_HIGH
-> > 
-> > [...]
+On Mon, 10 Jul 2023 06:12:15 +0200,
+Shenghao Ding wrote:
 > 
-> Applied, thanks!
+> Integrate tas2781 configs for Lenovo Laptops. All of the tas2781s in the
+> laptop will be aggregated as one audio device. The code support realtek
+> as the primary codec. Rename "struct cs35l41_dev_name" to
+> "struct scodec_dev_name" for all other side codecs instead of the certain
+> one.
 > 
-> [1/3] arm64: dts: rockchip: correct wifi interrupt flag in eaidk-610
->       commit: 8183bb7e291b7818f49ea39687c2fafa01a46e27
-> [2/3] arm64: dts: rockchip: correct wifi interrupt flag in Rock Pi 4B
->       commit: cfa12c32b96fd5b12f77d880d6a1ddd2a502756e
-> [3/3] arm64: dts: rockchip: correct wifi interrupt flag in Box Demo
->       commit: 2d6f7e3938a7aba154c8e8afaddc8b7f1e0a1b56
+> Signed-off-by: Shenghao Ding <13916275206@139.com>
+> 
+> ---
+> Changes in v2:
+>  -  simplify the check of vendor id with Lenovo
+>  - ThinkPad is one of Lenovo's brands, they suggested me to use
+>    ALC269_FIXUP_THINKPAD_ACPI.
+>  - Add comments on ACARD_SINGLE_RANGE_EXT_TLV
+>  - Add the range check for tas_priv->tasdevice[] in tas2781_acpi_get_i2c_res.
+>  - remove acpi_subsystem_id
+>  - Issue in Laptop 0x17aa38be ACPI talbe caused codec->bus->pci->subsystem_device
+>    is not equal to (codec->core.subsystem_id & 0xffff) in snd_hda_pick_fixup.
+>    The former is 0x3802 and the latter is 0x38be leads to getting the wrong
+>    fixup_id and enter into the wrong entry. Although, this issue has been raised
+>    to the laptop manufacturer, but the ACPI table is locked, cannot be changed
+>    any more. Correct the wrong entry in the code.
+>  - Rename "struct cs35l41_dev_name" to "struct scodec_dev_name" for all
+>    other side codecs instead of one certain codec.
+>  - Ignore the checkpatch complaints in alc269_fixup_tbl
+>  - Drop the hunk which is irrelevant with my code in
+>    alc_fixup_headset_mode_alc255_no_hp_mic
+>  - Add tiwai@suse.de into Cc list
+>  - remove useless index
+>  - combine ALC287_FIXUP_TAS2781_I2C_2 and ALC287_FIXUP_TAS2781_I2C_4 together as
+>    ALC287_FIXUP_TAS2781_I2C, The code view all the tas2781s in the laptop as one instance.
+>  - delete the white space at the end of the line in alc_fixup_headset_mode_alc255_no_hp_mic
 
-we got one successful test and all the changes concern broadcom wifi
-modules, I assume that this should work on all of them the same :-)
+The patch looks almost fine.  Just a few things:
+
+> @@ -6730,12 +6730,32 @@ static int comp_match_cs35l41_dev_name(struct device *dev, void *data)
+>  	return !strcmp(d + n, tmp);
+>  }
+>  
+> +static int comp_match_tas2781_dev_name(struct device *dev,
+> +	void *data)
+
+The indentation in the patch doesn't look good.
+I don't want to be too strict about it, but this inconsistent
+indentation makes reading quite difficult, so better to be fixed.
+In general, it's recommended to align the opened parenthesis.
+(But, in the case above, you don't need to break the line at all.)
+
+> @@ -10761,6 +10843,22 @@ static int patch_alc269(struct hda_codec *codec)
+>  		codec->fixup_id = HDA_FIXUP_ID_NOT_SET;
+>  	}
+>  
+> +	/* FIXME: Issue in Laptop 0x17aa38be ACPI talbe caused
+> +	 * codec->bus->pci->subsystem_device is not equal to
+> +	 * (codec->core.subsystem_id & 0xffff) in snd_hda_pick_fixup.
+> +	 * The former is 0x3802 and the latter is 0x38be leads to getting the
+> +	 * wrong fixup_id and enter into the wrong entry. Although, this issue
+> +	 * has been raised to the laptop manufacturer, but the ACPI table is
+> +	 * locked, cannot be changed any more. Correct the wrong entry in the
+> +	 * code.
+> +	 */
+> +	if (codec->fixup_id == ALC287_FIXUP_YOGA7_14ITL_SPEAKERS &&
+> +		codec->core.vendor_id == 0x10ec0287 &&
+> +		codec->core.subsystem_id == 0x17aa38be) {
+> +		codec_dbg(codec, "Clear wrong fixup for 17aa38be\n");
+> +		codec->fixup_id = ALC287_FIXUP_TAS2781_I2C;
+> +	}
+
+This should be rather applied differently.  A similar workaround was
+found in the commit 56ec3e755bd1041d35bdec020a99b327697ee470
+    ALSA: hda/realtek: Apply fixup for Lenovo Yoga Duet 7 properly
 
 
+thanks,
+
+Takashi
