@@ -2,65 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F7B274DB2F
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:36:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C02E74DB3D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 18:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S230040AbjGJQgg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 12:36:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42352 "EHLO
+        id S229679AbjGJQib (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 12:38:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43610 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229538AbjGJQgf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:36:35 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF19A127;
-        Mon, 10 Jul 2023 09:36:34 -0700 (PDT)
+        with ESMTP id S229641AbjGJQia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 12:38:30 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C021E8;
+        Mon, 10 Jul 2023 09:38:29 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 75E356110F;
-        Mon, 10 Jul 2023 16:36:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8D151C433C7;
-        Mon, 10 Jul 2023 16:36:30 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 21B6F61063;
+        Mon, 10 Jul 2023 16:38:29 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 72B7FC433C8;
+        Mon, 10 Jul 2023 16:38:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689006993;
-        bh=AD97xExNl4d84kadkKD325pdkAS93Gnf4sgXQoaxnZc=;
+        s=k20201202; t=1689007108;
+        bh=Fxz8+nz1c9dZXZma3dpEF6OCZwk8mfyDi3Fn7q3yb6c=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=EmTrTk5j+Te/PpiLnGRf7RXv23Ll6SmZ3onfIrQDWSlcXzdLzeJiNp34vp0Lvzcx3
-         1VeiAo0BBxDKz9aBiiMJbwiz/uENORqMQ0DGn1RtFQ7oy4sU06ere2B5gvFfyQ4T/K
-         qRSScN9VA3Yfsq+GoD1/PHIxjXCPyS71pSAFmJcpTnIep9ZGLFVU2MRwv1C3uyDzzQ
-         PNQjjtkCwxFUAwzYHyIdskA1P1KGDwYGRJUvAKpqcSBEGJEF2xpWwuPWvLsQsxxAWM
-         GQ5K6DHT5Smi+Qfrzfn/nGxgQ8R/aDV6/zONQUtJCczf5/z4McP1y76BrNhxZ6JdmO
-         100S1CgHQ9MaA==
-Date:   Mon, 10 Jul 2023 17:36:27 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Andreas Kemnade <andreas@kemnade.info>
-Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
+        b=r2rwe0dIJi6Odn6hhVbJn1ebHX7biXrlxpuc0rCtXdGislVv1WZL5Z0eaYB/1/VAO
+         jbEFVocdwTH5AbDrGDNU0yb8jnSHxLWaTtKIGwa4t+VOMvitXWNLvQY4ReGCAtrBBY
+         8zPb6834EEx4wm7vrDaggdezvdjB80uNotA/WUMyMz4MIbuW0ce5DlVn8wER3I+akK
+         XwQyl1JMUwZhp9WQLHX41GNosgYFyByvy/Zs2J7hhDOJNpoiNBPBgaSa9MG/i8pz6J
+         hlCietG1zatWWEDU+qLnfwvOHQ9ZBL1VI/fy1VVMKOD9e7L9R9ZqBM3XH2ebR/i1Tp
+         CqEC41blvM9SA==
+Date:   Mon, 10 Jul 2023 17:38:23 +0100
+From:   Conor Dooley <conor@kernel.org>
+To:     Huqiang Qin <huqiang.qin@amlogic.com>
+Cc:     linus.walleij@linaro.org, robh+dt@kernel.org,
         krzysztof.kozlowski+dt@linaro.org, conor+dt@kernel.org,
-        lgirdwood@gmail.com, perex@perex.cz, tiwai@suse.com,
-        peter.ujfalusi@gmail.com, jarkko.nikula@bitmer.com,
-        dmitry.torokhov@gmail.com, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-Subject: Re: [PATCH 2/3] ASoC: tlv320aic3x: use BCLK instead of MCLK if not
- in master mode
-Message-ID: <6144f294-939b-4fb7-a4c1-ca5a6dabd86b@sirena.org.uk>
-References: <20230705190324.355282-1-andreas@kemnade.info>
- <20230705190324.355282-3-andreas@kemnade.info>
- <15d3fc6e-d294-4968-bc7d-66307efc92db@sirena.org.uk>
- <20230705215611.5f96584e@aktux>
- <eeba3297-acdb-45ca-a80d-40d8b3a90231@sirena.org.uk>
- <20230708150319.202789c1@aktux>
+        neil.armstrong@linaro.org, khilman@baylibre.com,
+        jbrunet@baylibre.com, martin.blumenstingl@googlemail.com,
+        brgl@bgdev.pl, andy@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH V2 1/2] dt-bindings: gpio: Add a header file for Amlogic
+ C3 SoCs
+Message-ID: <20230710-maybe-mantis-e647d94fd13a@spud>
+References: <20230710042812.2007928-1-huqiang.qin@amlogic.com>
+ <20230710042812.2007928-2-huqiang.qin@amlogic.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vHDl3oKRCXKY7VQ0"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="j5AdCmeQS6DzLf1m"
 Content-Disposition: inline
-In-Reply-To: <20230708150319.202789c1@aktux>
-X-Cookie: Do you have lysdexia?
-X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
-        autolearn_force=no version=3.4.6
+In-Reply-To: <20230710042812.2007928-2-huqiang.qin@amlogic.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
+        autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
@@ -68,48 +63,139 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---vHDl3oKRCXKY7VQ0
+--j5AdCmeQS6DzLf1m
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sat, Jul 08, 2023 at 03:03:19PM +0200, Andreas Kemnade wrote:
-> Mark Brown <broonie@kernel.org> wrote:
+On Mon, Jul 10, 2023 at 12:28:11PM +0800, Huqiang Qin wrote:
+> Add dt-binding and related header file for Amlogic C3 GPIO.
+>=20
+> Signed-off-by: Huqiang Qin <huqiang.qin@amlogic.com>
+> ---
+>  .../pinctrl/amlogic,meson-pinctrl-a1.yaml     |  1 +
+>  include/dt-bindings/gpio/amlogic-c3-gpio.h    | 72 +++++++++++++++++++
+>  2 files changed, 73 insertions(+)
+>  create mode 100644 include/dt-bindings/gpio/amlogic-c3-gpio.h
+>=20
+> diff --git a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinc=
+trl-a1.yaml b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinct=
+rl-a1.yaml
+> index 99080c9eaac3..e019b6aa6ca3 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.=
+yaml
+> +++ b/Documentation/devicetree/bindings/pinctrl/amlogic,meson-pinctrl-a1.=
+yaml
+> @@ -17,6 +17,7 @@ properties:
+>      enum:
+>        - amlogic,meson-a1-periphs-pinctrl
+>        - amlogic,meson-s4-periphs-pinctrl
+> +      - amlogic,c3-periphs-pinctrl
 
-> > Since we already have clock bindings we should use those to configure
-> > the clocks, there's several drivers that have added this support already
-> > - look for clock providers.
+Alphanumerical order here perhaps?
 
-> ok, looking around:
-> Just to make sure I am not running in a bad direction: Do you think
-> tlv320aic32x4{,-clk}.c is a good example? It is ignoring clk_id.=20
-> I was mentally bound to have to use clk_id there, so I did not found a go=
-od
-> solution.
+>  required:
+>    - compatible
+> diff --git a/include/dt-bindings/gpio/amlogic-c3-gpio.h b/include/dt-bind=
+ings/gpio/amlogic-c3-gpio.h
+> new file mode 100644
+> index 000000000000..75c8da6f505f
+> --- /dev/null
+> +++ b/include/dt-bindings/gpio/amlogic-c3-gpio.h
+> @@ -0,0 +1,72 @@
+> +/* SPDX-License-Identifier: (GPL-2.0-only OR MIT) */
 
-Yes, that looks like a good example - the whole thing here is to move
-away from using clk_id and to using the clock API to specify clocks.
+Any reason to deviate from the usual license terms for bindings, which is
+"GPL-2.0-only OR BSD-2-Clause"?
 
-> So I guess I have to configure the chip as a master and using mclk and co=
-mpare
-> register dumps with the state we have now and the state after the changes,
-> additionally to check bclk functionality directly.
+Cheers,
+Conor.
 
-You can probably get away with less but it's goot to be thorough.
 
---vHDl3oKRCXKY7VQ0
+> +/*
+> + * Copyright (c) 2021 Amlogic, Inc. All rights reserved.
+> + * Author: Huqiang Qin <huqiang.qin@amlogic.com>
+> + */
+> +
+> +#ifndef _DT_BINDINGS_AMLOGIC_C3_GPIO_H
+> +#define _DT_BINDINGS_AMLOGIC_C3_GPIO_H
+> +
+> +#define	GPIOE_0		0
+> +#define	GPIOE_1		1
+> +#define	GPIOE_2		2
+> +#define	GPIOE_3		3
+> +#define	GPIOE_4		4
+> +
+> +#define	GPIOB_0		5
+> +#define	GPIOB_1		6
+> +#define	GPIOB_2		7
+> +#define	GPIOB_3		8
+> +#define	GPIOB_4		9
+> +#define	GPIOB_5		10
+> +#define	GPIOB_6		11
+> +#define	GPIOB_7		12
+> +#define	GPIOB_8		13
+> +#define	GPIOB_9		14
+> +#define	GPIOB_10	15
+> +#define	GPIOB_11	16
+> +#define	GPIOB_12	17
+> +#define	GPIOB_13	18
+> +#define	GPIOB_14	19
+> +
+> +#define	GPIOC_0		20
+> +#define	GPIOC_1		21
+> +#define	GPIOC_2		22
+> +#define	GPIOC_3		23
+> +#define	GPIOC_4		24
+> +#define	GPIOC_5		25
+> +#define	GPIOC_6		26
+> +
+> +#define	GPIOX_0		27
+> +#define	GPIOX_1		28
+> +#define	GPIOX_2		29
+> +#define	GPIOX_3		30
+> +#define	GPIOX_4		31
+> +#define	GPIOX_5		32
+> +#define	GPIOX_6		33
+> +#define	GPIOX_7		34
+> +#define	GPIOX_8		35
+> +#define	GPIOX_9		36
+> +#define	GPIOX_10	37
+> +#define	GPIOX_11	38
+> +#define	GPIOX_12	39
+> +#define	GPIOX_13	40
+> +
+> +#define	GPIOD_0		41
+> +#define	GPIOD_1		42
+> +#define	GPIOD_2		43
+> +#define	GPIOD_3		44
+> +#define	GPIOD_4		45
+> +#define	GPIOD_5		46
+> +#define	GPIOD_6		47
+> +
+> +#define	GPIOA_0		48
+> +#define	GPIOA_1		49
+> +#define	GPIOA_2		50
+> +#define	GPIOA_3		51
+> +#define	GPIOA_4		52
+> +#define	GPIOA_5		53
+> +
+> +#define	GPIO_TEST_N	54
+> +
+> +#endif /* _DT_BINDINGS_AMLOGIC_C3_GPIO_H */
+> --=20
+> 2.37.1
+>=20
+
+--j5AdCmeQS6DzLf1m
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmSsM4oACgkQJNaLcl1U
-h9DKTQf+KSiGFfJgn0+yCS95t/1zJ49EUaL2ZJUBjVK2dx2CDyvCcTr2/gdfUkK2
-klgsCubpCO1sj6X2Ogxw5b/el/L7wIIbWiR7pN/4GdCj3Dr6citfHmo4MPKlS0Z7
-CfdIVt781Xt2SfMNTxOkb6bE8+i80trmm4UTux5+llCVCw5s4fHI6lMngoIHypvA
-i5ngOyDYS0Op3tLf8/CEN+jYu7v1dltfwuEHfkghswSTT4OZF5Q3RfdVFrCBih7Z
-G6diu0etMQqdgoPp1gHkzxiYUw7/WJoWcrFVg0fAVgvPztaXR5J8FYBTZsnZhOmN
-V6V8i6RhYKQ/ESgvfjQUA8RojVXotA==
-=IDaC
+iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKwz/wAKCRB4tDGHoIJi
+0rEIAQCP3MeY9QpZ837QyziushD+wG7oQQH+/bUiJFdErQw1eQD/UHA++uo9GhtN
++J3t+px8WOPw2tOaHLK0z5Ew8Kf+wg0=
+=vmZA
 -----END PGP SIGNATURE-----
 
---vHDl3oKRCXKY7VQ0--
+--j5AdCmeQS6DzLf1m--
