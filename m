@@ -2,104 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 9647B74CA59
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 05:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB49F74CA5D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 05:23:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229619AbjGJDW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 9 Jul 2023 23:22:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56228 "EHLO
+        id S229887AbjGJDXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 9 Jul 2023 23:23:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56614 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229942AbjGJDW5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 23:22:57 -0400
-Received: from ex01.ufhost.com (ex01.ufhost.com [61.152.239.75])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39DD1AB;
-        Sun,  9 Jul 2023 20:22:54 -0700 (PDT)
-Received: from EXMBX165.cuchost.com (unknown [175.102.18.54])
-        (using TLSv1 with cipher DHE-RSA-AES256-SHA (256/256 bits))
-        (Client CN "EXMBX165", Issuer "EXMBX165" (not verified))
-        by ex01.ufhost.com (Postfix) with ESMTP id E952A24E023;
-        Mon, 10 Jul 2023 11:22:51 +0800 (CST)
-Received: from EXMBX172.cuchost.com (172.16.6.92) by EXMBX165.cuchost.com
- (172.16.6.75) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Jul
- 2023 11:22:51 +0800
-Received: from [192.168.125.93] (113.72.145.114) by EXMBX172.cuchost.com
- (172.16.6.92) with Microsoft SMTP Server (TLS) id 15.0.1497.42; Mon, 10 Jul
- 2023 11:22:51 +0800
-Message-ID: <d046796e-34a0-56e5-a740-6a1fcf41d216@starfivetech.com>
-Date:   Mon, 10 Jul 2023 11:22:50 +0800
-MIME-Version: 1.0
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101
- Thunderbird/102.3.2
-Subject: Re: [PATCH v1 1/5] ASoC: dt-bindings: Add StarFive JH7110 dummy
- PWM-DAC transmitter
-To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
+        with ESMTP id S229884AbjGJDXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 9 Jul 2023 23:23:47 -0400
+Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C49FAAB;
+        Sun,  9 Jul 2023 20:23:46 -0700 (PDT)
+Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        (No client certificate requested)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 1D15460DC5;
+        Mon, 10 Jul 2023 03:23:46 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 96289C433C7;
+        Mon, 10 Jul 2023 03:23:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=k20201202; t=1688959425;
+        bh=lqe8M7rk/LG743hh6/dDFwTSc8ca5NiN9IWm+xYMIkw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Az1XMuo7BJ5sIjavnqwP3S0wBqAcQC7d9El7dkF5aU71+wD9WgriwA6uoJ5tlGwLi
+         RTazBGQdGtwza7hExsaTAVQxe+SxOO0kYuf+MSEI60bvI4bi+crok3JRZKMyrh+ojP
+         Lz7g2Eatq+mFQ+07OK6MMB4kDHy+mIzpVMHUysYoVPQcWAi3DmecP3lbfJaWjxL6sk
+         +PrixTwzzaZiT+aXZeZEfKznT7OHEzgqIGsPYmrioLp/Mrn5t0CiTCruTg4XGwVa7v
+         iNWMnOjEqqxZl3+xFCNMTIPx3bM0R/HAbKngjN7li2QPrS9AB3Qnp5ALbrzXf1Doc7
+         Ejb7ZBdEOhjmQ==
+Date:   Sun, 9 Jul 2023 20:27:20 -0700
+From:   Bjorn Andersson <andersson@kernel.org>
+To:     Konrad Dybcio <konrad.dybcio@linaro.org>
+Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>, Vinod Koul <vkoul@kernel.org>,
+        Kishon Vijay Abraham I <kishon@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Conor Dooley <conor@kernel.org>,
-        "Walker Chen" <walker.chen@starfivetech.com>,
-        Xingyu Wu <xingyu.wu@starfivetech.com>,
-        Emil Renner Berthing <emil.renner.berthing@canonical.com>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-riscv@lists.infradead.org>, <linux-kernel@vger.kernel.org>
-References: <20230626110909.38718-1-hal.feng@starfivetech.com>
- <20230626110909.38718-2-hal.feng@starfivetech.com>
- <006ddacd-0496-70d1-3310-99b16706de84@linaro.org>
- <0312262c-28c0-9445-c6f7-2079a57db8c7@starfivetech.com>
- <c0244a98-4c91-93d8-a3e4-5210d0b3f205@linaro.org>
-Content-Language: en-US
-From:   Hal Feng <hal.feng@starfivetech.com>
-In-Reply-To: <c0244a98-4c91-93d8-a3e4-5210d0b3f205@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [113.72.145.114]
-X-ClientProxiedBy: EXCAS062.cuchost.com (172.16.6.22) To EXMBX172.cuchost.com
- (172.16.6.92)
-X-YovoleRuleAgent: yovoleflag
-X-Spam-Status: No, score=-2.0 required=5.0 tests=BAYES_00,NICE_REPLY_A,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+        Conor Dooley <conor+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-arm-msm@vger.kernel.org, linux-phy@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 2/5] phy: qcom-qmp-combo: add support for the USB+DP
+ PHY on SM8150 platform
+Message-ID: <teisqo5zbl65gu5fy6sqhuuaai2ynnu4ce7ybof72nhyweb6n5@3n77j6xw3obj>
+References: <20230531023415.1209301-1-dmitry.baryshkov@linaro.org>
+ <20230531023415.1209301-3-dmitry.baryshkov@linaro.org>
+ <47e84a3c-b457-7aff-ad6a-809178c08b62@linaro.org>
+ <CAA8EJprDPzTQU1j6n17gYAeiXw1t6M_d4CciTtD8mHNksYGHow@mail.gmail.com>
+ <10388324-45c7-b8ae-fb48-64becff76e66@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <10388324-45c7-b8ae-fb48-64becff76e66@linaro.org>
+X-Spam-Status: No, score=-4.4 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
+        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_MED,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+        autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 1 Jul 2023 10:17:51 +0200, Krzysztof Kozlowski wrote:
-> On 30/06/2023 03:57, Hal Feng wrote:
->> On Mon, 26 Jun 2023 17:34:56 +0200, Krzysztof Kozlowski wrote:
->>> On 26/06/2023 13:09, Hal Feng wrote:
->>>> Add bindings for StarFive JH7110 dummy PWM-DAC transmitter.
->>>
->>> ...
->>>
->>>> +required:
->>>> +  - compatible
->>>> +  - "#sound-dai-cells"
->>>> +
->>>> +additionalProperties: false
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    pwmdac-dit {
->>>> +        compatible = "starfive,jh7110-pwmdac-dit";
->>>> +        #sound-dai-cells = <0>;
->>>
->>> BTW, I don't see any resources here. Neither in the driver. I think you
->>> just added this for driver, not for a real hardware.
->> 
->> Yes, this is a dummy PWM-DAC transmitter as described in the title. The
->> StarFive JH7110 PWM-DAC module doesn't need a hardware codec, but a
->> dummy codec is needed for the driver.
+On Wed, May 31, 2023 at 02:16:42PM +0200, Konrad Dybcio wrote:
 > 
-> Bindings are no for drivers, therefore with such reasoning the answer
-> is: drop entire binding. If you think otherwise, please give me some
-> more details about the hardware.
+> 
+> On 31.05.2023 14:13, Dmitry Baryshkov wrote:
+> > On Wed, 31 May 2023 at 14:35, Konrad Dybcio <konrad.dybcio@linaro.org> wrote:
+> >> On 31.05.2023 04:34, Dmitry Baryshkov wrote:
+> >>> SM8150 and SC8180X are close relatives. Reuse sc8180x data to support
+> >>> USB+DP combo PHY on SM8150 platform.
+> >>>
+> >>> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> >>> ---
+> >> I'm not sure this is right. Downstream reuses SA8195 USB seq.
+> > 
+> > The upstream driver uses sm8150 data for sc8180x. So even if sc8180x
+> > data is not correct for sc8180x, it is definitely the one that we
+> > should use for sm8150:
+> Right sorry, this patch adds support for 81*5*0. I wanted to point out
+> that 8180 has a different set of init commands and one of them is probably
+> incorrect.
+> 
 
-I agreed. I will drop this binding and the compatible in patch 2. Thanks.
+FWIW, DP works on my sc8180x devices. (But perhaps still not correct?)
 
-Best regards,
-Hal
+Regards,
+Bjorn
