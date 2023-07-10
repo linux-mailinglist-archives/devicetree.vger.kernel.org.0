@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C57F74DD54
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 20:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F133274DD75
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 20:38:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S229964AbjGJS2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 14:28:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45480 "EHLO
+        id S229658AbjGJSi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 14:38:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S229543AbjGJS2M (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 14:28:12 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [139.178.84.217])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4AF2C180
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 11:28:11 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
-        (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id DB1176118A
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 18:28:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8E5C7C433C7;
-        Mon, 10 Jul 2023 18:28:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689013690;
-        bh=3cEI8jFkOTOGNVblYnm1wjEjkydkAdSYYTHa2XVe8Wo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JTIuZKQ0i0CbTrehTO/hSAjxqwZ3XRhJ8CA6d0KpZYOHPHXRx3FY8YN7CSleZoGp9
-         EkbA7WDC7RFPfvJ4jdunfb/iG7H4x3UOWoWQneljSv5d9UxKJgndk7ROTXhv7EHn/4
-         LqOyGC2u/M2q687yk0vgYpfeY3yc2maJ2mWYeQrWYVeeh/SnjfNON9ebPDjUtK2wSm
-         mjSYptWK9yxolE0/hGM94B7AaBwn+m9dAygDoMB5zKT4mI+Cvv/Z8m2XwLUy3oB7QX
-         98Wb/4Y4bzzdFh2Md1BYu8fSGib9rZuQSLKE+KOpA0M+rTQ8F6b6xZojpnMyXixF5Y
-         H2dvKg1IbG5/Q==
-Date:   Mon, 10 Jul 2023 19:28:06 +0100
-From:   Conor Dooley <conor@kernel.org>
-To:     Felix Moessbauer <felix.moessbauer@siemens.com>,
-        Walker Chen <walker.chen@starfivetech.com>
-Cc:     Emil Renner Berthing <kernel@esmil.dk>,
+        with ESMTP id S229575AbjGJSiZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 14:38:25 -0400
+Received: from vps0.lunn.ch (vps0.lunn.ch [156.67.10.101])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F2B7A1;
+        Mon, 10 Jul 2023 11:38:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Disposition:
+        Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:From:
+        Sender:Reply-To:Subject:Date:Message-ID:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Content-Disposition:
+        In-Reply-To:References; bh=4yz8HG+CcroNh3v9p1h/qbj6u5JCE/mk4ofgQ+MT8vE=; b=s+
+        mmbPp2BHAUK8Wdo/YsKjrFDtUnYaxtknL+2Rapat/BqTOQ/lgPgRRZ1nPTQOdxfEpVi3hdn/cQqYB
+        pdEcmEDV40SK0pg4mwWDlK/HD9b+tYl9gwMNV+JtSwLTF/HQ37Q5IDkT1Kht+HFWEKgADdFRMPLva
+        x6DBD2hJBYjYuBI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.94.2)
+        (envelope-from <andrew@lunn.ch>)
+        id 1qIvlw-000yNJ-EK; Mon, 10 Jul 2023 20:38:08 +0200
+Date:   Mon, 10 Jul 2023 20:38:08 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Vesa =?iso-8859-1?B?SuTkc2tlbORpbmVu?= 
+        <vesa.jaaskelainen@vaisala.com>
+Cc:     "David S. Miller" <davem@davemloft.net>,
+        Eric Dumazet <edumazet@google.com>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Paolo Abeni <pabeni@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Daniel Bovensiepen <daniel.bovensiepen@siemens.com>,
-        Jan Kiszka <jan.kiszka@siemens.com>,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/1] riscv: dts: Enable device-tree overlay support for
- starfive devices
-Message-ID: <20230710-villain-dainty-d1a90ce57a27@spud>
-References: <20230627080620.329873-1-felix.moessbauer@siemens.com>
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Davis <afd@ti.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/2] net: phy: dp83822: Add support for line class driver
+ configuration
+Message-ID: <261cb91c-eb3a-4612-93ad-25e2bc1a7c23@lunn.ch>
+References: <20230710175621.8612-1-vesa.jaaskelainen@vaisala.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="MTGoKLMunEpeFoDx"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20230627080620.329873-1-felix.moessbauer@siemens.com>
-X-Spam-Status: No, score=-7.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_HI,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20230710175621.8612-1-vesa.jaaskelainen@vaisala.com>
+X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
+        SPF_HELO_PASS,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -60,69 +60,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 10, 2023 at 08:56:18PM +0300, Vesa Jääskeläinen wrote:
+> Add support to specify either class A or class B (default) for line driver.
+> 
+> Class A: full MLT-3 on both Tx+ and Tx–
+> Class B: reduced MLT-3
+> 
+> By default the PHY is in Class B mode.
 
---MTGoKLMunEpeFoDx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Vesa
 
+Do you have a reference to 802.3 or some other document which
+describes these. How does reduced differ from full? Is this really a
+hardware property of the board?
 
-Emil, Walker,
-
-On Tue, Jun 27, 2023 at 04:06:20PM +0800, Felix Moessbauer wrote:
-> Add the '-@' DTC option for the starfive devices. This option
-> populates the '__symbols__' node that contains all the necessary symbols
-> for supporting device-tree overlays (for instance from the firmware or
-> the bootloader) on these devices.
->=20
-> The starfive devices allow various modules to be connected and this
-> enables users to create out-of-tree device-tree overlays for these module=
-s.
->=20
-> Please note that this change does increase the size of the resulting DTB
-> by ~20%. For example, with v6.4 increase in size is as follows:
-
-Whatcha think?
-
-> jh7100-beaglev-starlight.dtb 6192 -> 7339
-> jh7100-starfive-visionfive-v1.dtb 6281 -> 7428
-> jh7110-starfive-visionfive-2-v1.2a.dtb 11101 -> 13447
-> jh7110-starfive-visionfive-2-v1.3b.dtb 11101 -> 13447
->=20
-> Signed-off-by: Felix Moessbauer <felix.moessbauer@siemens.com>
-> ---
->  arch/riscv/boot/dts/starfive/Makefile | 6 ++++++
->  1 file changed, 6 insertions(+)
->=20
-> diff --git a/arch/riscv/boot/dts/starfive/Makefile b/arch/riscv/boot/dts/=
-starfive/Makefile
-> index 170956846d49..0141504c0f5c 100644
-> --- a/arch/riscv/boot/dts/starfive/Makefile
-> +++ b/arch/riscv/boot/dts/starfive/Makefile
-> @@ -1,4 +1,10 @@
->  # SPDX-License-Identifier: GPL-2.0
-> +# Enables support for device-tree overlays
-> +DTC_FLAGS_jh7100-beaglev-starlight :=3D -@
-> +DTC_FLAGS_jh7100-starfive-visionfive-v1 :=3D -@
-> +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.2a :=3D -@
-> +DTC_FLAGS_jh7110-starfive-visionfive-2-v1.3b :=3D -@
-> +
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-beaglev-starlight.dtb
->  dtb-$(CONFIG_ARCH_STARFIVE) +=3D jh7100-starfive-visionfive-v1.dtb
-> =20
-> --=20
-> 2.39.2
->=20
-
---MTGoKLMunEpeFoDx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRh246EGq/8RLhDjO14tDGHoIJi0gUCZKxNtgAKCRB4tDGHoIJi
-0l9xAQCftFaO6Lwn6sxOnIF0Vd1kVEIz5wi5s9sxgRd8EYtkoQEAxJt7CLfD3oNi
-SRAhiqUnDeuBQpFLNILY+tXRQVKE4A0=
-=GH7D
------END PGP SIGNATURE-----
-
---MTGoKLMunEpeFoDx--
+Thanks
+	Andrew
