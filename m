@@ -2,60 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CB8374CBDC
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:07:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 050FD74CC10
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 07:09:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231258AbjGJFHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 01:07:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55950 "EHLO
+        id S232254AbjGJFJY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 01:09:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55496 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231458AbjGJFGI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:06:08 -0400
+        with ESMTP id S232267AbjGJFIk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 01:08:40 -0400
 Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50D0410C2;
-        Sun,  9 Jul 2023 22:05:13 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C870E1737;
+        Sun,  9 Jul 2023 22:06:29 -0700 (PDT)
 Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
         (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
          key-exchange X25519 server-signature RSA-PSS (2048 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id A96A460DE9;
-        Mon, 10 Jul 2023 05:05:01 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 86FB5C433C9;
-        Mon, 10 Jul 2023 05:04:59 +0000 (UTC)
+        by dfw.source.kernel.org (Postfix) with ESMTPS id 92A5A60E86;
+        Mon, 10 Jul 2023 05:05:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4337CC433C8;
+        Mon, 10 Jul 2023 05:05:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1688965501;
-        bh=YFjhvatW0hePg8+5hNpwF77bjV3DIDQRM2rj8LszAm4=;
+        s=k20201202; t=1688965503;
+        bh=saShK635QSs3orwJA8c812VOrfMx0o4gXTyjxnyGwyo=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=BjK9vKsICxkBzHxVV9KtYyBijYI6tgdX9QYtoOWg6L7+/JDlKnDhbxtK/9FahkIl0
-         zUTbWmrMvS6Pxv3h9q252yotY3DmxSkxPQCr5KW+RFSOEsQauzoi0nvgEa00mNlQjF
-         I9fbiUlmlNckU9Siw3tXNCbxGAtNn0rgR0sJziArV8BCAwwAlUDZkQFFqQg5kWBI+R
-         Oq1hNzx1EMtssEgR36aX3JrPwLfzpsPVdsV0aHltTOxiMd97KQo/495SQarz/ZVcjd
-         e1SzxOf+DeBtecRcFR0PUEjYDiksO0wEx4XAhHTnFb+/AxxBxStNgj8YTRKycDL3MM
-         6ycnuKZCaZGew==
+        b=c2l0ZC3yc3up6GwYqwgSOG6MjkjngvVxw15HWEDyF5vmA7hYEFW52gomHHdPAz0PQ
+         GriWkisfU+RVb4cjWzckQPCheAM0IPvM+3/Ubxct4TVZdAlqxiKPcrXvzWiUTIwZ/5
+         TnYQzO+FVjxTXX+4ZDsVOcv18Y3wE1v1gSbjuufJUmLm2mHVu6oHEulk0EUJL2NEmW
+         h2CYUpLljBhZWnfePWnAnWuVajiAvVucm9xNMt/dC4QRPeuJDVu89EwxfGULTB1eA5
+         PB2ovr/eiDlVLt7tygMWi+vfU7v9FWPPfRyFva+KkA3u0QhD+rOyzROO30nPesmE0K
+         zhgKINpin4xLw==
 From:   Bjorn Andersson <andersson@kernel.org>
-To:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Rob Clark <robdclark@gmail.com>,
-        Abhinav Kumar <quic_abhinavk@quicinc.com>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
+To:     Andy Gross <agross@kernel.org>,
+        Konrad Dybcio <konrad.dybcio@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
         Conor Dooley <conor+dt@kernel.org>,
-        Krishna Manikandan <quic_mkrishn@quicinc.com>,
-        Andy Gross <agross@kernel.org>,
-        Konrad Dybcio <konrad.dybcio@linaro.org>,
-        Luca Weiss <luca@z3ntu.xyz>
-Cc:     linux-arm-msm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Conor Dooley <conor.dooley@microchip.com>
-Subject: Re: (subset) [PATCH v3 0/7] Display support for MSM8226
-Date:   Sun,  9 Jul 2023 22:07:38 -0700
-Message-ID: <168896565945.1376307.16565002896351645834.b4-ty@kernel.org>
+        Neil Armstrong <neil.armstrong@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 0/5] arm64: dts: qcom: add chassis-type to reference platforms
+Date:   Sun,  9 Jul 2023 22:07:40 -0700
+Message-ID: <168896565967.1376307.11264681031668585319.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.41.0
-In-Reply-To: <20230308-msm8226-mdp-v3-0-b6284145d67a@z3ntu.xyz>
-References: <20230308-msm8226-mdp-v3-0-b6284145d67a@z3ntu.xyz>
+In-Reply-To: <20230622-topic-sm8x50-upstream-chassis-type-v1-0-13f676eb71f3@linaro.org>
+References: <20230622-topic-sm8x50-upstream-chassis-type-v1-0-13f676eb71f3@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
@@ -70,20 +61,24 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Thu, 01 Jun 2023 19:00:07 +0200, Luca Weiss wrote:
-> This series adds the required configs for MDP5 and DSI blocks that are
-> needed for MDSS on MSM8226. Finally we can add the new nodes into the
-> dts.
-> 
-> Tested on apq8026-lg-lenok and msm8926-htc-memul.
+On Thu, 22 Jun 2023 10:57:17 +0200, Neil Armstrong wrote:
+> Add the chassis-type property to the Qualcomm MTP, QRD and
+> HDK reference platforms.
 > 
 > 
-> [...]
 
 Applied, thanks!
 
-[7/7] ARM: dts: qcom: msm8226: Add mdss nodes
-      commit: d5fb01ad5eb449ccfd950e946a882639cad168b3
+[1/5] arm64: dts: qcom: sm8[1235]50-mtp: add chassis-type property
+      commit: 46b17dfd0154b3720b22a4056c0f060ba0c7ec66
+[2/5] arm64: dts: qcom: sm8[45]50-qrd: add chassis-type property
+      commit: b047b90261791fd439dfd0d885e1a3e995c05985
+[3/5] arm64: dts: qcom: sm8[1234]50-hdk: add chassis-type property
+      commit: 8fef2422f53a84ec32f9d7ac8d6af1fa9426e835
+[4/5] arm64: dts: qcom: msm89xx-mtp: add chassis-type property
+      commit: d8d1d994246f7d44241c5332817c8e850e1b2e73
+[5/5] arm64: dts: qcom: sdm845-mtp: add chassis-type property
+      commit: 2b08da0d791ff08e1c29ee3abd2563ce0a9da7b9
 
 Best regards,
 -- 
