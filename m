@@ -2,74 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 37EED74D700
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 15:09:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A46AC74D71D
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 15:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231553AbjGJNJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 09:09:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54378 "EHLO
+        id S231679AbjGJNMB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 10 Jul 2023 09:12:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57908 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S233265AbjGJNIH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 09:08:07 -0400
-Received: from mail-vs1-xe29.google.com (mail-vs1-xe29.google.com [IPv6:2607:f8b0:4864:20::e29])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1E451FEE
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 06:07:47 -0700 (PDT)
-Received: by mail-vs1-xe29.google.com with SMTP id ada2fe7eead31-440ac4b44a8so1636910137.3
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 06:07:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20221208; t=1688994463; x=1691586463;
-        h=to:subject:message-id:date:from:reply-to:mime-version:from:to:cc
-         :subject:date:message-id:reply-to;
-        bh=qByi5P9M7+yOnaVyMG6pvW4P+aOlzbN0OZfndybu/l0=;
-        b=qoZL7tybLWbwI3R3w1uNcYrS/hV2TxCv2oMAXBUltuFL40M5tOrn134PgYnPADsO5w
-         s52SZDTPCGGAlGJwa6kaivyVUZmUnLJ0TqYSZfvwYr4O4s7wjd0HZrPnQaza+6Sf2Rfh
-         005j9jVq9/8OF1ByBfRiUtjsGUMLd0HuOeqo4M6ONYZ8dOwoO/KscW+JzwSsV7RGlAlt
-         inLEqCtKtQwOslPb8nkyDhwqDbQJujPrSuPzDrWgI/KYYAcGCf5lwLzGyYmZ/xSoGXmq
-         WQYZjXJFQ6hDrKh+AYW6G8mqhsklHTZFdBZpfgcaDCbrYpqhDzayilqN2fw/VriopHhP
-         co+A==
+        with ESMTP id S230358AbjGJNL4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 09:11:56 -0400
+Received: from mail-yw1-f175.google.com (mail-yw1-f175.google.com [209.85.128.175])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2B13137;
+        Mon, 10 Jul 2023 06:11:41 -0700 (PDT)
+Received: by mail-yw1-f175.google.com with SMTP id 00721157ae682-579efc32377so50609507b3.1;
+        Mon, 10 Jul 2023 06:11:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20221208; t=1688994463; x=1691586463;
-        h=to:subject:message-id:date:from:reply-to:mime-version
-         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
-        bh=qByi5P9M7+yOnaVyMG6pvW4P+aOlzbN0OZfndybu/l0=;
-        b=LVIrQFcXzNEXzvsnLnF0yqL5COYoscZjZgMpFlupGDAJn8BjbUXfghSn6MhbU/55rW
-         hSvrlYUaIVjZMdN7G8MFJL87uQASug7triF3mMa4bza02bBbH/vDrZ1hVPpO9vbsJPko
-         jRgHWZsufUd9Pf0eEtaybOj1rdzob82z8HFxaiem4GItsWme5wIWMe1Ksg25Y7oTkNK9
-         JjFuqqETGq5wPR8reZ0MtjUGgqcybGiTJzQgeQ1UrORmLZutPgXzv0IFDWJZGjt2ZrgU
-         mnQ+sluPMeHr7Y04dIwLviDR8jC1iufWafnjIU1jiI8m2Z6d7Kd1t5IDSXVYDp1FYLzE
-         CNpw==
-X-Gm-Message-State: ABy/qLZHr68t05Qov3Xy+IRJdOxAK9lg7o9h6p71myaKTVngtD9dpOm9
-        7+71ORMCJi2Nm0YalHLsPkdhvubga9uocG5AzQs=
-X-Google-Smtp-Source: APBJJlHw17jWBKyGshulmqUFWz3O/wSJq4JqlgIjr4sv01k/uqZbqCVP1A83rghCERQwjMCoh+07XFDSqFtnOBa8TmQ=
-X-Received: by 2002:a67:f8c4:0:b0:443:8a7b:f769 with SMTP id
- c4-20020a67f8c4000000b004438a7bf769mr5871340vsp.30.1688994463241; Mon, 10 Jul
- 2023 06:07:43 -0700 (PDT)
+        d=1e100.net; s=20221208; t=1688994700; x=1691586700;
+        h=content-transfer-encoding:cc:to:subject:message-id:date:from
+         :in-reply-to:references:mime-version:x-gm-message-state:from:to:cc
+         :subject:date:message-id:reply-to;
+        bh=UoHyZxxfb/ifCS70Pj34y4LsKa4Pr9H50/su8/hRRU4=;
+        b=fX8h7JgepKPAkKg44LQgW3dMFZtXIGqCyflkm/WM+G7y5Jwkb7w6yWkHQ5izvgbl2k
+         nNH5Jj1OJTOn9y2/D/WTyjs6s7lS087ArbUjHcZcw8hEI9Il4tcOKYg659og0TiANx1v
+         0yOiekvzVW+lXxrVQbiuJhMmtrLGhDKQofjSjRJNf0zGQ9BI5ZYgcr1qwyUmMOVOKj8S
+         +mXXjj0mUj4FTNs8idUuaZebdSDZOv5mttI1fM+CrizgWuzrs9AXLrOu11MRPOaEqo8O
+         /HOVRIx/QbPjNZjLZ9czCRAscHzV4Ggx1mF8N9oLoHscnqu3CxquJrT3B8xrEp5aTlLN
+         JXDw==
+X-Gm-Message-State: ABy/qLY8baT3QZW5f9FrVkxtiOXTerGml/Z0UVAdfp4i0RIb9KhwRFM3
+        ly3DCUOX94iI+YLuvjEXSs6aEbrKNjqmWw==
+X-Google-Smtp-Source: APBJJlEnvVJXQllLyXyyGVtDubMHH+kLy8Oecga1vRIEf5aVTceDn7/yihfuvl7h7sVJxAzL+Ox9/A==
+X-Received: by 2002:a25:abae:0:b0:c1b:4347:b3d4 with SMTP id v43-20020a25abae000000b00c1b4347b3d4mr10134840ybi.7.1688994700623;
+        Mon, 10 Jul 2023 06:11:40 -0700 (PDT)
+Received: from mail-yb1-f181.google.com (mail-yb1-f181.google.com. [209.85.219.181])
+        by smtp.gmail.com with ESMTPSA id f8-20020a056902038800b00c3a96009bdfsm2537570ybs.35.2023.07.10.06.11.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 06:11:40 -0700 (PDT)
+Received: by mail-yb1-f181.google.com with SMTP id 3f1490d57ef6-bd0a359ca35so4037768276.3;
+        Mon, 10 Jul 2023 06:11:40 -0700 (PDT)
+X-Received: by 2002:a25:a063:0:b0:c83:27d4:c0d6 with SMTP id
+ x90-20020a25a063000000b00c8327d4c0d6mr2583973ybh.37.1688994700213; Mon, 10
+ Jul 2023 06:11:40 -0700 (PDT)
 MIME-Version: 1.0
-Received: by 2002:ab0:64cb:0:b0:781:caa:4818 with HTTP; Mon, 10 Jul 2023
- 06:07:42 -0700 (PDT)
-Reply-To: mr.richard101kone@gmail.com
-From:   Richard Wilson <williamphilip0056@gmail.com>
-Date:   Mon, 10 Jul 2023 06:07:42 -0700
-Message-ID: <CADkLOGZ83AJgH+9PG-OcOTAKsh8Aue_RR5X6cM_ZyU_VS18siA@mail.gmail.com>
-Subject: Hello
-To:     undisclosed-recipients:;
+References: <20230706153047.368993-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20230706153047.368993-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 10 Jul 2023 15:11:27 +0200
+X-Gmail-Original-Message-ID: <CAMuHMdUUF905k5857Og9PbQSSL1bcaWt9V7J-wzkbzhBrnBW5Q@mail.gmail.com>
+Message-ID: <CAMuHMdUUF905k5857Og9PbQSSL1bcaWt9V7J-wzkbzhBrnBW5Q@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: renesas: rzg2l-smarc: Add support for
+ enabling MTU3
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Spam-Status: No, score=4.5 required=5.0 tests=BAYES_50,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,FREEMAIL_ENVFROM_END_DIGIT,
-        FREEMAIL_FROM,FREEMAIL_REPLYTO,RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,
-        SPF_PASS,T_SCC_BODY_TEXT_LINE,UNDISC_FREEM autolearn=no
-        autolearn_force=no version=3.4.6
-X-Spam-Level: ****
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-1.4 required=5.0 tests=BAYES_00,
+        FREEMAIL_FORGED_FROMDOMAIN,FREEMAIL_FROM,HEADER_FROM_DIFFERENT_DOMAINS,
+        RCVD_IN_DNSWL_BLOCKED,RCVD_IN_MSPIKE_H2,SPF_HELO_NONE,SPF_PASS,
+        T_SCC_BODY_TEXT_LINE autolearn=no autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
--- 
+On Thu, Jul 6, 2023 at 5:30 PM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> Add support for PMOD_MTU3 macro to enable MTU3 node on RZ/{G2,V2}L SMARC
+> EVK.
+>
+> The MTU3a PWM pins are muxed with spi1 pins and counter external input
+> phase clock pins are muxed with scif2 pins. Disable these IPs when
+> PMOD_MTU3 macro is enabled.
+>
+> Apart from this, the counter Z phase clock signal is muxed with the
+> SDHI1 cd signal. So disable SDHI1 IP, when the counter Z phase signal
+> is enabled.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v1->v2:
+>  * Renamed macro MTU3->PMOD_MTU3.
+>  * Moved macro "PMOD1_SER0" from common dts to board-specific dts
+>    and added an error check as it is mutually exclusive with PMOD_MTU3
+>    macro.
+>  * Moved mtu3-zphase-clk pin definition to rzg2l-smarc-pinfunction.dtsi.
+>  * Moved mtu3 node to common dts.
+>  * Moved macro definitions before dtsi includes, so that macros are
+>    visible on these files.
 
-Dear
-I am contacting you to assist retrieve his huge deposit Mr. Alexander
-left in the bank before its get confiscated by the bank. Get back to
-me for more detail's
-Barr's Richard Wilson
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v6.6.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
