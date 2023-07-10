@@ -2,145 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id A82A374E017
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 23:14:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7315774E076
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 23:53:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S232550AbjGJVOb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 17:14:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38050 "EHLO
+        id S229563AbjGJVxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 17:53:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47758 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231127AbjGJVOG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 17:14:06 -0400
-Received: from dfw.source.kernel.org (dfw.source.kernel.org [IPv6:2604:1380:4641:c500::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12D771999
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 14:13:35 -0700 (PDT)
-Received: from smtp.kernel.org (relay.kernel.org [52.25.139.140])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (2048 bits))
+        with ESMTP id S229462AbjGJVxM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 17:53:12 -0400
+Received: from phobos.denx.de (phobos.denx.de [IPv6:2a01:238:438b:c500:173d:9f52:ddab:ee01])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 323CCD2;
+        Mon, 10 Jul 2023 14:53:09 -0700 (PDT)
+Received: from [127.0.0.1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
+        (using TLSv1.3 with cipher TLS_AES_128_GCM_SHA256 (128/128 bits))
         (No client certificate requested)
-        by dfw.source.kernel.org (Postfix) with ESMTPS id 8949B61208
-        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 21:13:34 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id DD4A4C433C7;
-        Mon, 10 Jul 2023 21:13:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=k20201202; t=1689023614;
-        bh=WRBYobPoSiX9Bs9tPTqxJ6CgeX9ttbxvGsZ4Eo0kj2w=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=X2gHDp89fMENCKrtuZPoAtfzhJqofBFRw0Ja2rYcaHjyIzvUqJepLHftRWejhTCi7
-         7mYjL4x6/UKqtObX8vFne7UyeUsxwmH9kMiLaiytuLcU7SAD6A57bGjjRAnm/zkCYV
-         E5AiIDdcwHh9/neDAvVdKZRjWYv+bOyr5fzq2HnsrYfz53nBesSsTtOeppxEcP7I92
-         NEL/SmFm7I9lIC2pAqQHbLZLV1bpcxXBi9Me1fhbWTCzZ4Lg5gipR+H4hloN67vUFa
-         elazlXFWW9NRXMqfdunTtuoUv49POvb4WBCrslzIUAMM8IfyFf6XhPZFDERn3ZHBOK
-         kAZ7DFE7et2gA==
-From:   Dinh Nguyen <dinguyen@kernel.org>
-To:     netdev@vger.kernel.org
-Cc:     dinguyen@kernel.org, kuba@kernel.org, davem@davemloft.net,
-        edumazet@google.com, joabreu@synopsys.com, pabeni@redhat.com,
-        robh+dt@kernel.org, krzysztof.kozlowskii+dt@linaro.org,
-        conor+dt@kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] net: dwmac_socfpga: use the standard "ahb" reset
-Date:   Mon, 10 Jul 2023 16:13:13 -0500
-Message-Id: <20230710211313.567761-2-dinguyen@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20230710211313.567761-1-dinguyen@kernel.org>
-References: <20230710211313.567761-1-dinguyen@kernel.org>
+        (Authenticated sender: marex@denx.de)
+        by phobos.denx.de (Postfix) with ESMTPSA id 5173E867A4;
+        Mon, 10 Jul 2023 23:53:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=denx.de;
+        s=phobos-20191101; t=1689025981;
+        bh=+UdLdUODEO0TLfLU9bHWHtpgEWPd1HHi+BZK2EX044s=;
+        h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+        b=p0/gkufNAUVzehKc35+avIIHglrnZBePHDasAjVnzI+DCOSXTk+7Y9dUhAyL/2LTy
+         q4cfSX/gPvP0KkuacUkBNzpH0A9ADn2EC3GyVs4yAERh8wgkbjzAIBq/fgOUbotZMx
+         r0ikmCcUOqSBIHeKd7KoSg13l6rNClENZTvOjO0ej2Cj22yvgj43uksAtZiLRzYCCY
+         ANMYlbTvLbckvlnL63LhVoP/SQyngIIQiOSWyV/6N/7rqPFD4beJ+Jsv3QRxEYZyaS
+         MQAB9c1BoGnZBtCWfSBQdXKkggrIeHkAFXEH+XkFR+NbQ/BLqe7G5gW5l/LsPwXgm3
+         JXuOkrTYGxPTQ==
+Message-ID: <6e2e16be-1f83-70d2-4c5d-c2e89a7d017f@denx.de>
+Date:   Mon, 10 Jul 2023 23:52:59 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIMWL_WL_HIGH,
-        DKIM_SIGNED,DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,
-        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE
-        autolearn=ham autolearn_force=no version=3.4.6
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: remoteproc: imx_rproc: Document
+ fsl,startup-delay-ms
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        linux-remoteproc@vger.kernel.org
+Cc:     Bjorn Andersson <andersson@kernel.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20230707232444.374431-1-marex@denx.de>
+ <8f40484e-1721-a2bc-2344-f9e59e51a935@linaro.org>
+ <d3180b8f-96d6-380b-4518-17334a90799d@denx.de>
+ <c02d0271-9896-3990-33b0-c83fa54f5623@linaro.org>
+ <7a1d7a67-0a0c-8527-d430-30a1cb40de48@denx.de>
+ <51a1c2e9-1165-c7ff-809d-b09e09d776e2@linaro.org>
+From:   Marek Vasut <marex@denx.de>
+In-Reply-To: <51a1c2e9-1165-c7ff-809d-b09e09d776e2@linaro.org>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: clamav-milter 0.103.8 at phobos.denx.de
+X-Virus-Status: Clean
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,
+        RCVD_IN_DNSWL_BLOCKED,SPF_HELO_NONE,T_SCC_BODY_TEXT_LINE,
+        T_SPF_TEMPERROR autolearn=ham autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The "stmmaceth-ocp" reset line of stmmac controller on the SoCFPGA
-platform is essentially the "ahb" reset on the standard stmmac controller.
+On 7/10/23 22:00, Krzysztof Kozlowski wrote:
+> On 10/07/2023 15:46, Marek Vasut wrote:
+>> On 7/10/23 14:52, Krzysztof Kozlowski wrote:
+>>> On 10/07/2023 11:18, Marek Vasut wrote:
+>>>> On 7/10/23 10:12, Krzysztof Kozlowski wrote:
+>>>>> On 08/07/2023 01:24, Marek Vasut wrote:
+>>>>>> Document fsl,startup-delay-ms property which indicates how long
+>>>>>> the system software should wait until attempting to communicate
+>>>>>> with the CM firmware. This gives the CM firmware a bit of time
+>>>>>> to boot and get ready for communication.
+>>>>>>
+>>>>>> Signed-off-by: Marek Vasut <marex@denx.de>
+>>>>>> ---
+>>>>>> Cc: Bjorn Andersson <andersson@kernel.org>
+>>>>>> Cc: Conor Dooley <conor+dt@kernel.org>
+>>>>>> Cc: Fabio Estevam <festevam@gmail.com>
+>>>>>> Cc: Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>
+>>>>>> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+>>>>>> Cc: NXP Linux Team <linux-imx@nxp.com>
+>>>>>> Cc: Peng Fan <peng.fan@nxp.com>
+>>>>>> Cc: Pengutronix Kernel Team <kernel@pengutronix.de>
+>>>>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>>>>> Cc: Sascha Hauer <s.hauer@pengutronix.de>
+>>>>>> Cc: Shawn Guo <shawnguo@kernel.org>
+>>>>>> Cc: devicetree@vger.kernel.org
+>>>>>> Cc: linux-arm-kernel@lists.infradead.org
+>>>>>> Cc: linux-remoteproc@vger.kernel.org
+>>>>>> ---
+>>>>>>     .../devicetree/bindings/remoteproc/fsl,imx-rproc.yaml        | 5 +++++
+>>>>>>     1 file changed, 5 insertions(+)
+>>>>>>
+>>>>>> diff --git a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>> index 0c3910f152d1d..c940199ce89df 100644
+>>>>>> --- a/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>> +++ b/Documentation/devicetree/bindings/remoteproc/fsl,imx-rproc.yaml
+>>>>>> @@ -76,6 +76,11 @@ properties:
+>>>>>>           This property is to specify the resource id of the remote processor in SoC
+>>>>>>           which supports SCFW
+>>>>>>     
+>>>>>> +  fsl,startup-delay-ms:
+>>>>>> +    default: 0
+>>>>>> +    description:
+>>>>>> +      CM firmware start up delay.
+>>>>>
+>>>>> I don't see particular improvements from v2 and no responses addressing
+>>>>> my comment:
+>>>>> https://lore.kernel.org/all/20221102112451.128110-2-peng.fan@oss.nxp.com/
+>>>>
+>>>> I wasn't aware of this being submitted before, esp. since I wrote the
+>>>> binding document from scratch. Which comment is not addressed, the type
+>>>> ref is not present and the sentence starts with caps, so what is missing ?
+>>>
+>>>
+>>> That the property looks like a hacky solution to some SW problem. Why
+>>> this delay should be different on different boards?
+>>
+>> It probably depends more on the CM4 firmware that is being launched. The
+>> ones I tested were fine with 50..500ms delay, but the delay was always
+>> needed.
+> 
+> If this is for some official remoteproc FW running on M4
 
-Because of commit ("e67f325e9cd6 net: stmmac: explicitly deassert
-GMAC_AHB_RESET") adds the support for getting the 'ahb' reset, the
-SoCFPGA dwmac driver no longer need to get the stmmaceth-ocp reset.
+It is not, it is some SDK which can be downloaded from NXP website, 
+which can then be used to compile the firmware blob. The license is 
+BSD-3 however, so it is conductive to producing binaries without 
+matching sources ...
 
-Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
----
- .../ethernet/stmicro/stmmac/dwmac-socfpga.c   | 20 ++++++-------------
- 1 file changed, 6 insertions(+), 14 deletions(-)
+>, then probably
+> this could be implied by compatible. Otherwise, if this depends on
+> actual M4 firmware which can totally vary between each board of the same
+> type (I can run my own FW on M4, right?
 
-diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-index 6267bcb60206..a4b8b86129f4 100644
---- a/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-+++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-socfpga.c
-@@ -52,7 +52,7 @@ struct socfpga_dwmac {
- 	struct	device *dev;
- 	struct regmap *sys_mgr_base_addr;
- 	struct reset_control *stmmac_rst;
--	struct reset_control *stmmac_ocp_rst;
-+	struct reset_control *stmmac_ahb_rst;
- 	void __iomem *splitter_base;
- 	void __iomem *tse_pcs_base;
- 	void __iomem *sgmii_adapter_base;
-@@ -290,7 +290,7 @@ static int socfpga_gen5_set_phy_mode(struct socfpga_dwmac *dwmac)
- 		val = SYSMGR_EMACGRP_CTRL_PHYSEL_ENUM_GMII_MII;
- 
- 	/* Assert reset to the enet controller before changing the phy mode */
--	reset_control_assert(dwmac->stmmac_ocp_rst);
-+	reset_control_assert(dwmac->stmmac_ahb_rst);
- 	reset_control_assert(dwmac->stmmac_rst);
- 
- 	regmap_read(sys_mgr_base_addr, reg_offset, &ctrl);
-@@ -319,7 +319,7 @@ static int socfpga_gen5_set_phy_mode(struct socfpga_dwmac *dwmac)
- 	/* Deassert reset for the phy configuration to be sampled by
- 	 * the enet controller, and operation to start in requested mode
- 	 */
--	reset_control_deassert(dwmac->stmmac_ocp_rst);
-+	reset_control_deassert(dwmac->stmmac_ahb_rst);
- 	reset_control_deassert(dwmac->stmmac_rst);
- 	if (phymode == PHY_INTERFACE_MODE_SGMII)
- 		socfpga_sgmii_config(dwmac, true);
-@@ -346,7 +346,7 @@ static int socfpga_gen10_set_phy_mode(struct socfpga_dwmac *dwmac)
- 		val = SYSMGR_EMACGRP_CTRL_PHYSEL_ENUM_GMII_MII;
- 
- 	/* Assert reset to the enet controller before changing the phy mode */
--	reset_control_assert(dwmac->stmmac_ocp_rst);
-+	reset_control_assert(dwmac->stmmac_ahb_rst);
- 	reset_control_assert(dwmac->stmmac_rst);
- 
- 	regmap_read(sys_mgr_base_addr, reg_offset, &ctrl);
-@@ -372,7 +372,7 @@ static int socfpga_gen10_set_phy_mode(struct socfpga_dwmac *dwmac)
- 	/* Deassert reset for the phy configuration to be sampled by
- 	 * the enet controller, and operation to start in requested mode
- 	 */
--	reset_control_deassert(dwmac->stmmac_ocp_rst);
-+	reset_control_deassert(dwmac->stmmac_ahb_rst);
- 	reset_control_deassert(dwmac->stmmac_rst);
- 	if (phymode == PHY_INTERFACE_MODE_SGMII)
- 		socfpga_sgmii_config(dwmac, true);
-@@ -410,15 +410,6 @@ static int socfpga_dwmac_probe(struct platform_device *pdev)
- 		goto err_remove_config_dt;
- 	}
- 
--	dwmac->stmmac_ocp_rst = devm_reset_control_get_optional(dev, "stmmaceth-ocp");
--	if (IS_ERR(dwmac->stmmac_ocp_rst)) {
--		ret = PTR_ERR(dwmac->stmmac_ocp_rst);
--		dev_err(dev, "error getting reset control of ocp %d\n", ret);
--		goto err_remove_config_dt;
--	}
--
--	reset_control_deassert(dwmac->stmmac_ocp_rst);
--
- 	ret = socfpga_dwmac_parse_data(dwmac, dev);
- 	if (ret) {
- 		dev_err(dev, "Unable to parse OF data\n");
-@@ -441,6 +432,7 @@ static int socfpga_dwmac_probe(struct platform_device *pdev)
- 	 * the driver later.
- 	 */
- 	dwmac->stmmac_rst = stpriv->plat->stmmac_rst;
-+	dwmac->stmmac_ahb_rst = stpriv->plat->stmmac_ahb_rst;
- 
- 	ret = ops->set_phy_mode(dwmac);
- 	if (ret)
--- 
-2.25.1
+Yeah
 
+> ), then it is not suitable DT
+> property. How it would even look like? You add here 500 ms for all known
+> firmwares and then someone comes with FW requiring delay of 600 ms.
+
+I would say, some sane default and if some firmware is specifically 
+weird, just up the delay. It is better than no firmware working at all.
+
+Do you have a better hint how to deal with this ?
