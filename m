@@ -2,61 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from out1.vger.email (out1.vger.email [IPv6:2620:137:e000::1:20])
-	by mail.lfdr.de (Postfix) with ESMTP id 561A974D4C9
-	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 13:50:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 731B374D4F4
+	for <lists+devicetree@lfdr.de>; Mon, 10 Jul 2023 14:10:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S231583AbjGJLuj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 10 Jul 2023 07:50:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47182 "EHLO
+        id S230467AbjGJMKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 10 Jul 2023 08:10:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53708 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S231920AbjGJLug (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 07:50:36 -0400
-Received: from madras.collabora.co.uk (madras.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e5ab])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 106D7E3;
-        Mon, 10 Jul 2023 04:50:32 -0700 (PDT)
-Received: from obbardc-t14.home (unknown [IPv6:2a00:23c8:b70a:ae01:f690:3e44:90e:2421])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        (Authenticated sender: obbardc)
-        by madras.collabora.co.uk (Postfix) with ESMTPSA id 67A976607001;
-        Mon, 10 Jul 2023 12:50:31 +0100 (BST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
-        s=mail; t=1688989831;
-        bh=DR7uiuLvS/1UwwlyDPNnRUlzzR9ZrApORlGUcB+k/VI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=I/9kK0r1PJpPmyXoADG9UmEEqenk4JI6jazuDCwTVjz+z4wdl7MZ8ms6f3XdMJhSu
-         bpEMHR9viwxR+uOWdAWSFVDUwYCkgrVUstsZlRo+WCTJkLE0kPEwhqJxWMoYq7uhW3
-         xmdyQ2QfuBeTYnHNXtRvmbAF6Va67eRopb0zIRpr6b8dF/JFFRsvfn/Fh8kDdrTKry
-         lcoJxg5jXICvFEXbtE2J7DilQvdTCTmRY6708yEXd8GbnpDDv8xBQPSQd5aZMk2pvb
-         5pvCZutYXKqFDcbIw6goP6c6/a9KvqjI9SLBk3mD/J5cBIqdNRoqA9fOTM2hUlR1hE
-         75b+5PT/6PHtA==
-From:   Christopher Obbard <chris.obbard@collabora.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     kernel@collabora.com,
-        Christopher Obbard <chris.obbard@collabora.com>,
-        Andy Yan <andyshrk@163.com>,
-        Chris Morgan <macromorgan@hotmail.com>,
-        Conor Dooley <conor+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Jagan Teki <jagan@edgeble.ai>,
-        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
-        Maya Matuszczyk <maccraft123mc@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        Tianling Shen <cnsztl@gmail.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 3/3] arm64: dts: rockchip: Add Radxa ROCK 4SE
-Date:   Mon, 10 Jul 2023 12:50:25 +0100
-Message-Id: <20230710115025.507439-4-chris.obbard@collabora.com>
-X-Mailer: git-send-email 2.40.1
-In-Reply-To: <20230710115025.507439-1-chris.obbard@collabora.com>
-References: <20230710115025.507439-1-chris.obbard@collabora.com>
+        with ESMTP id S231134AbjGJMKw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 10 Jul 2023 08:10:52 -0400
+Received: from mail-lf1-x12d.google.com (mail-lf1-x12d.google.com [IPv6:2a00:1450:4864:20::12d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9792F100
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:10:51 -0700 (PDT)
+Received: by mail-lf1-x12d.google.com with SMTP id 2adb3069b0e04-4fba8f2197bso6861156e87.3
+        for <devicetree@vger.kernel.org>; Mon, 10 Jul 2023 05:10:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google; t=1688991050; x=1691583050;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=bUyQk17MJT3ao4v6RmDakeDvMlU54/RUOborqwgq2Pc=;
+        b=sJ5CdSxBaK4ZxFXLdKAkIUfHbc/Iqtb8Fb8kcXrvw0q91MvnOiJKJ7qxDJKN/n3sAD
+         eRonNevW7IMf/P7rCDxwTlWH4M8hVMAqZh9ljVb7jUu1DI5pdgfT9szg1uGmVEq9rHov
+         YiMtH2bx5xinaxNoq0t/E8LfjaD7X6PfvP8tgZDMPZVBjZvObkB2QXu0NfpljU9gvjMt
+         2iaVlAlxjshhLtH7U8yYmje/WERSD6R6zWWVcsJx2PUgdQe8wrbE2QhBG33rQ77Ro9+u
+         /3MvPvZZBnnew1TRQV8H3HU7sv0yBWv7OLi/5F/UmBxzl/yMfkLUbfexnirfmRiOWRjf
+         kq5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20221208; t=1688991050; x=1691583050;
+        h=content-transfer-encoding:in-reply-to:from:references:cc:to
+         :content-language:subject:user-agent:mime-version:date:message-id
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=bUyQk17MJT3ao4v6RmDakeDvMlU54/RUOborqwgq2Pc=;
+        b=a2493qI9CSj8YR8Z2dxAw6/XLkuTJ3JlelJBDw9hSViQjb6BNqqXYLPPGC7isU2Qu7
+         6PKeqQY/ckxI7i9TM3prtogIuEyRzfnP8dpW/2ODZzn2CenfpKT1evoyE4a9LlKel6AR
+         y6f4knc2vEp2jfJY+4Qj8w4MXSIOr3ifJuwRof2HA10V5fGYjD0jcGJdaMmxcM4R0o8U
+         kI3fQd9v1tpLDBHwxYSX5vBXPKo3ncDk+cFmOKAdaR55olb2T6VK6hMphWBCv8Kdot7j
+         9LBP8v2ACLk/z72y4xZoTVCYAR7kyOUeOWqH8bNDd7NgR8ZgjUcPaJmVvv6m2zokbMsx
+         da5A==
+X-Gm-Message-State: ABy/qLbCv4e2UoPhO91EQEh+uRR9MdnjEUSeyt76ldTFdM3CZrSMy7Uc
+        Z1Ki3Gxtf6xxNDeTBu3dmhbs5A==
+X-Google-Smtp-Source: APBJJlGYFJBq0+fUXFgKsXuZtDpS7DQMojOgepm6/ZPiqpLZRz1nLPokxoLdXqkSf/XQediGcStaiw==
+X-Received: by 2002:a05:6512:1108:b0:4fb:893a:d322 with SMTP id l8-20020a056512110800b004fb893ad322mr10580256lfg.68.1688991049671;
+        Mon, 10 Jul 2023 05:10:49 -0700 (PDT)
+Received: from [192.168.1.101] (abxj141.neoplus.adsl.tpnet.pl. [83.9.3.141])
+        by smtp.gmail.com with ESMTPSA id d5-20020ac24c85000000b004fa35167729sm1666246lfl.159.2023.07.10.05.10.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 10 Jul 2023 05:10:49 -0700 (PDT)
+Message-ID: <55e55042-5189-15cb-5b0f-4c7f321a4f61@linaro.org>
+Date:   Mon, 10 Jul 2023 14:10:47 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Spam-Status: No, score=-2.1 required=5.0 tests=BAYES_00,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,RCVD_IN_DNSWL_BLOCKED,
-        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=ham
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101
+ Thunderbird/102.13.0
+Subject: Re: [PATCH 1/2] dt-bindings: arm: qcom,ids: drop the IPQ5019 SoC ID
+Content-Language: en-US
+To:     Krzysztof Kozlowski <krzysztof.kozlowski@linaro.org>,
+        Kathiravan T <quic_kathirav@quicinc.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <andersson@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzysztof.kozlowski+dt@linaro.org>,
+        Conor Dooley <conor+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     quic_srichara@quicinc.com, quic_sjaganat@quicinc.com,
+        quic_anusha@quicinc.com, quic_saahtoma@quicinc.com
+References: <20230710105419.1228966-1-quic_kathirav@quicinc.com>
+ <20230710105419.1228966-2-quic_kathirav@quicinc.com>
+ <d752e5e0-3c34-02ad-6768-42eb2c66e582@linaro.org>
+From:   Konrad Dybcio <konrad.dybcio@linaro.org>
+In-Reply-To: <d752e5e0-3c34-02ad-6768-42eb2c66e582@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Spam-Status: No, score=-2.2 required=5.0 tests=BAYES_00,DKIM_SIGNED,
+        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,NICE_REPLY_A,RCVD_IN_DNSWL_NONE,
+        SPF_HELO_NONE,SPF_PASS,T_SCC_BODY_TEXT_LINE autolearn=unavailable
         autolearn_force=no version=3.4.6
 X-Spam-Checker-Version: SpamAssassin 3.4.6 (2021-04-09) on
         lindbergh.monkeyblade.net
@@ -64,106 +84,35 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add board-specific devicetree file for the RK3399T-based Radxa ROCK 4SE
-board. This board offers similar peripherals in a similar form-factor to
-the existing ROCK Pi 4B but uses the cost-optimised RK3399T processor
-(which has different OPP table than the RK3399) and other minimal hardware
-changes.
+On 10.07.2023 13:37, Krzysztof Kozlowski wrote:
+> On 10/07/2023 12:54, Kathiravan T wrote:
+>> IPQ5019 SoC is not available in production. Lets drop it.
+>>
+>> Signed-off-by: Kathiravan T <quic_kathirav@quicinc.com>
+>> ---
+>>  include/dt-bindings/arm/qcom,ids.h | 1 -
+>>  1 file changed, 1 deletion(-)
+>>
+>> diff --git a/include/dt-bindings/arm/qcom,ids.h b/include/dt-bindings/arm/qcom,ids.h
+>> index bcbe9ee2cdaf..179dd56b2d95 100644
+>> --- a/include/dt-bindings/arm/qcom,ids.h
+>> +++ b/include/dt-bindings/arm/qcom,ids.h
+>> @@ -250,7 +250,6 @@
+>>  #define QCOM_ID_QRU1000			539
+>>  #define QCOM_ID_QDU1000			545
+>>  #define QCOM_ID_QDU1010			587
+>> -#define QCOM_ID_IPQ5019			569
+> 
+> What about users of this binding? What's the impact on them? When did
+> the SoC become obsolete and unsupported by Qualcomm? Remember that
+> ceasing a production does not mean that magically all users of a product
+> disappear...
+This + from my experience, SOCID entries are set in stone and freed
+indices are never reclaimed
 
-Signed-off-by: Christopher Obbard <chris.obbard@collabora.com>
----
-
-Changes in v2:
-- Set proper interrupt type for brcmf.
-
- arch/arm64/boot/dts/rockchip/Makefile         |  1 +
- .../boot/dts/rockchip/rk3399-rock-4se.dts     | 65 +++++++++++++++++++
- 2 files changed, 66 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-rock-4se.dts
-
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index b7fb908eb92d..7ab29cbe71c4 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -58,6 +58,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-mezzanine.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-roc-pc-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-4c-plus.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-4se.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4a-plus.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-rock-pi-4b.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-rock-4se.dts b/arch/arm64/boot/dts/rockchip/rk3399-rock-4se.dts
-new file mode 100644
-index 000000000000..7cfc198bbae7
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-rock-4se.dts
-@@ -0,0 +1,65 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2019 Akash Gajjar <Akash_Gajjar@mentor.com>
-+ * Copyright (c) 2019 Pragnesh Patel <Pragnesh_Patel@mentor.com>
-+ */
-+
-+/dts-v1/;
-+#include "rk3399-rock-pi-4.dtsi"
-+#include "rk3399-t-opp.dtsi"
-+
-+/ {
-+	model = "Radxa ROCK 4SE";
-+	compatible = "radxa,rock-4se", "rockchip,rk3399";
-+
-+	aliases {
-+		mmc2 = &sdio0;
-+	};
-+};
-+
-+&pinctrl {
-+	usb2 {
-+		vcc5v0_host_en: vcc5v0-host-en {
-+			rockchip,pins = <4 RK_PD1 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
-+
-+&sdio0 {
-+	status = "okay";
-+
-+	brcmf: wifi@1 {
-+		compatible = "brcm,bcm4329-fmac";
-+		reg = <1>;
-+		interrupt-parent = <&gpio0>;
-+		interrupts = <RK_PA3 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "host-wake";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&wifi_host_wake_l>;
-+	};
-+};
-+
-+&uart0 {
-+	status = "okay";
-+
-+	bluetooth {
-+		compatible = "brcm,bcm4345c5";
-+		clocks = <&rk808 1>;
-+		clock-names = "lpo";
-+		device-wakeup-gpios = <&gpio2 RK_PD3 GPIO_ACTIVE_HIGH>;
-+		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
-+		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
-+		max-speed = <1500000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_enable_h>;
-+		vbat-supply = <&vcc3v3_sys>;
-+		vddio-supply = <&vcc_1v8>;
-+	};
-+};
-+
-+&vcc5v0_host {
-+	enable-active-high;
-+	gpio = <&gpio4 RK_PD1 GPIO_ACTIVE_HIGH>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&vcc5v0_host_en>;
-+};
--- 
-2.40.1
-
+Konrad
+> 
+> 
+> Best regards,
+> Krzysztof
+> 
